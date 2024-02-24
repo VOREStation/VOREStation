@@ -1,0 +1,79 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/weapon/material/shard/shrapnel,
+/obj/machinery/firealarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"b" = (
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"c" = (
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
+"d" = (
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"e" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"f" = (
+/obj/item/stack/rods,
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"g" = (
+/obj/structure/lattice,
+/obj/item/stack/rods,
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
+"h" = (
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
+"i" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"j" = (
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
+"k" = (
+/turf/template_noop,
+/area/space)
+"l" = (
+/turf/simulated/wall,
+/area/tether_away/debrisfield/shuttle_buffer)
+
+(1,1,1) = {"
+b
+l
+j
+j
+e
+"}
+(2,1,1) = {"
+c
+a
+f
+j
+k
+"}
+(3,1,1) = {"
+i
+d
+d
+j
+k
+"}
+(4,1,1) = {"
+k
+j
+g
+h
+k
+"}

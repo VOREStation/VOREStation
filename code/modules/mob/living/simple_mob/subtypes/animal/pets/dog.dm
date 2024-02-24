@@ -3,6 +3,7 @@
 	real_name = "dog"
 	desc = "It's a dog."
 	tt_desc = "E Canis lupus familiaris"
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
@@ -16,7 +17,7 @@
 
 	mob_size = MOB_SMALL
 
-	has_langs = list("Dog")
+	has_langs = list(LANGUAGE_ANIMAL)
 
 	say_list_type = /datum/say_list/dog
 
@@ -32,7 +33,7 @@
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
 				if ((M.client && !( M.blinded )))
-					M.show_message("<font color='blue'>[user] baps [name] on the nose with the rolled up [O]</font>")
+					M.show_message(span_blue("[user] baps [name] on the nose with the rolled up [O]."))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					set_dir(i)
@@ -41,7 +42,7 @@
 		..()
 
 /mob/living/simple_mob/animal/passive/dog/regenerate_icons()
-	overlays = list()
+	cut_overlays()
 
 	if(inventory_head)
 		var/head_icon_state = inventory_head.icon_state
@@ -50,7 +51,7 @@
 
 		var/icon/head_icon = image('icons/mob/corgi_head.dmi',head_icon_state)
 		if(head_icon)
-			overlays += head_icon
+			add_overlay(head_icon)
 
 	if(inventory_back)
 		var/back_icon_state = inventory_back.icon_state
@@ -59,7 +60,7 @@
 
 		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
 		if(back_icon)
-			overlays += back_icon
+			add_overlay(back_icon)
 
 	return
 
@@ -87,6 +88,8 @@
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
+	holder_type = /obj/item/weapon/holder/corgi
+	organ_names = /decl/mob_organ_names/corgi
 
 /mob/living/simple_mob/animal/passive/dog/corgi/puppy
 	name = "corgi puppy"
@@ -95,11 +98,12 @@
 	icon_state = "puppy"
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
+	holder_type = /obj/item/weapon/holder/corgi
 
 //pupplies cannot wear anything.
 /mob/living/simple_mob/animal/passive/dog/corgi/puppy/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, "<font color='red'>You can't fit this on [src]</font>")
+		to_chat(usr, span_red("You can't fit this on [src]!"))
 		return
 	..()
 
@@ -116,6 +120,7 @@
 	var/turns_since_scan = 0
 	var/obj/movement_target
 	makes_dirt = FALSE	//VOREStation edit: no more dirt
+	holder_type = /obj/item/weapon/holder/corgi
 
 /mob/living/simple_mob/animal/passive/dog/corgi/Ian/Life()
 	..()
@@ -180,11 +185,12 @@
 	response_harm   = "kicks"
 	var/turns_since_scan = 0
 	var/puppies = 0
+	holder_type = /obj/item/weapon/holder/lisa
 
 //Lisa already has a cute bow!
 /mob/living/simple_mob/animal/passive/dog/corgi/Lisa/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, "<font color='red'>[src] already has a cute bow!</font>")
+		to_chat(usr, span_red("[src] already has a cute bow!"))
 		return
 	..()
 
@@ -219,6 +225,35 @@
 					set_dir(i)
 					sleep(1)
 
+//NARSIAN HAS COME
+/mob/living/simple_mob/animal/passive/dog/corgi/narsian
+	name = "Nars-Ian"
+	desc = "It's a corgi???"
+	icon_state = "narsian"
+	icon_living = "narsian"
+	icon_rest = "narsian_rest"
+	icon_dead = "narsian_dead"
+
+	makes_dirt = FALSE
+	holder_type = /obj/item/weapon/holder/narsian
+
+/mob/living/simple_mob/animal/passive/dog/void_puppy
+	name = "void puppy"
+	desc = "My stars!"
+	icon_state = "void_puppy"
+	icon_living = "void_puppy"
+	icon_dead = "void_puppy_dead"
+	holder_type = /obj/item/weapon/holder/void_puppy
+
+/mob/living/simple_mob/animal/passive/dog/bullterrier
+	name = "bull terrier"
+	desc = "It's a bull terrier."
+	icon_state = "bullterrier"
+	icon_living = "bullterrier"
+	icon_dead = "bullterrier_dead"
+	icon_rest = null
+	holder_type = /obj/item/weapon/holder/bullterrier
+
 // Tamaskans
 /mob/living/simple_mob/animal/passive/dog/tamaskan
 	name = "tamaskan"
@@ -233,3 +268,15 @@
 	real_name = "Spice"	//Intended to hold the name without altering it.
 	gender = FEMALE
 	desc = "It's a tamaskan, the name Spice can be found on its collar."
+
+// Brittany Spaniel
+/mob/living/simple_mob/animal/passive/dog/brittany
+	name = "brittany"
+	real_name = "brittany"
+	desc = "It's a brittany spaniel."
+	icon_state = "brittany"
+	icon_living = "brittany"
+	icon_dead = "brittany_dead"
+
+/decl/mob_organ_names/corgi
+	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "heart") //You monster.

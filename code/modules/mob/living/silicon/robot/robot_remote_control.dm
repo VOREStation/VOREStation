@@ -17,20 +17,22 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 /mob/living/silicon/robot/proc/post_mmi_setup()
 	if(istype(mmi, /obj/item/device/mmi/inert/ai_remote))
 		make_shell()
-		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 	else
-		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
+		playsound(src, 'sound/voice/liveagain.ogg', 75, 1)
 	return
 
 /mob/living/silicon/robot/proc/make_shell()
 	shell = TRUE
 	braintype = "AI Shell"
 	SetName("[modtype] AI Shell [num2text(ident)]")
+	rbPDA = new /obj/item/device/pda/ai/shell(src)
+	setup_PDA()
 	GLOB.available_ai_shells |= src
 	if(!QDELETED(camera))
 		camera.c_tag = real_name	//update the camera name too
 	notify_ai(ROBOT_NOTIFICATION_AI_SHELL)
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/robot/proc/revert_shell()
 	if(!shell)
@@ -40,7 +42,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	GLOB.available_ai_shells -= src
 	if(!QDELETED(camera))
 		camera.c_tag = real_name
-	updateicon()
+	update_icon()
 
 // This should be called before the AI client/mind is actually moved.
 /mob/living/silicon/robot/proc/deploy_init(mob/living/silicon/ai/AI)
@@ -54,7 +56,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	// Have the borg have eyes when active.
 	mainframe = AI
 	deployed = TRUE
-	updateicon()
+	update_icon()
 
 	// Laws.
 	connected_ai = mainframe // So they share laws.
@@ -77,8 +79,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 
 // Called after the AI transfers over.
 /mob/living/silicon/robot/proc/post_deploy()
-	if(!custom_sprite) // Check for custom sprite.
-		set_custom_sprite()
+	return
 
 /mob/living/silicon/robot/proc/undeploy(message)
 	if(!deployed || !mind || !mainframe)
@@ -89,7 +90,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 		to_chat(src, span("notice", message))
 	mind.transfer_to(mainframe)
 	deployed = FALSE
-	updateicon()
+	update_icon()
 	mainframe.teleop = null
 	mainframe.deployed_shell = null
 	SetName("[modtype] AI Shell [num2text(ident)]")
@@ -114,7 +115,8 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 /mob/living/silicon/robot/attack_ai(mob/user)
 	if(shell && config.allow_ai_shells && (!connected_ai || connected_ai == user))
 		var/mob/living/silicon/ai/AI = user
-		AI.deploy_to_shell(src)
+		if(istype(AI))		// Just in case we're clicked by a borg
+			AI.deploy_to_shell(src)
 	else
 		return ..()
 

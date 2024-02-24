@@ -1,12 +1,7 @@
 /obj/structure/closet/secure_closet/cargotech
 	name = "cargo technician's locker"
 	req_access = list(access_cargo)
-	icon_state = "securecargo1"
-	icon_closed = "securecargo"
-	icon_locked = "securecargo1"
-	icon_opened = "securecargoopen"
-	icon_broken = "securecargobroken"
-	icon_off = "securecargooff"
+	closet_appearance = /decl/closet_appearance/secure_closet/cargo
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargotech,
@@ -34,12 +29,7 @@
 /obj/structure/closet/secure_closet/quartermaster
 	name = "quartermaster's locker"
 	req_access = list(access_qm)
-	icon_state = "secureqm1"
-	icon_closed = "secureqm"
-	icon_locked = "secureqm1"
-	icon_opened = "secureqmopen"
-	icon_broken = "secureqmbroken"
-	icon_off = "secureqmoff"
+	closet_appearance = /decl/closet_appearance/secure_closet/cargo/qm
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargo,
@@ -47,16 +37,25 @@
 		/obj/item/clothing/under/rank/cargo/jeans,
 		/obj/item/clothing/under/rank/cargo/jeans/female,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/device/radio/headset/headset_cargo,
-		/obj/item/device/radio/headset/headset_cargo/alt,
+		/obj/item/device/radio/headset/headset_qm, //VOREStation Edit,
+		/obj/item/device/radio/headset/headset_qm/alt, //VOREStation Edit,
+		/obj/item/clothing/under/rank/neo_qm,
+		/obj/item/clothing/under/rank/neo_qm_skirt,
+		/obj/item/clothing/under/rank/neo_qm_jacket,
+		/obj/item/clothing/under/rank/neo_qm_white,
+		/obj/item/clothing/under/rank/neo_qm_white_skirt,
+		/obj/item/clothing/under/rank/neo_qm_turtle,
+		/obj/item/clothing/under/rank/neo_qm_turtle_skirt,
+		/obj/item/clothing/under/rank/neo_qm_gorka,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/gloves/fingerless,
-		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/weapon/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/head/soft,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo/qm,
+		/obj/item/clothing/head/beret/qm,
 		/obj/item/clothing/shoes/boots/winter/supply)
 
 /obj/structure/closet/secure_closet/quartermaster/Initialize()
@@ -70,13 +69,8 @@
 
 /obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
-	icon_state = "miningsec1"
-	icon_closed = "miningsec"
-	icon_locked = "miningsec1"
-	icon_opened = "miningsecopen"
-	icon_broken = "miningsecbroken"
-	icon_off = "miningsecoff"
 	req_access = list(access_mining)
+	closet_appearance = /decl/closet_appearance/secure_closet/mining
 
 	starts_with = list(
 		/obj/item/device/radio/headset/headset_mine,
@@ -85,12 +79,14 @@
 		/obj/item/clothing/shoes/black,
 		/obj/item/device/analyzer,
 		/obj/item/weapon/storage/bag/ore,
+		/obj/item/weapon/storage/belt/miner,
 		/obj/item/device/flashlight/lantern,
 		/obj/item/weapon/shovel,
-		/obj/item/weapon/pickaxe,
+		/obj/item/weapon/pickaxe/drill,
 		/obj/item/clothing/glasses/material,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
 		/obj/item/clothing/shoes/boots/winter/mining,
+		/obj/item/device/emergency_beacon,
 		/obj/item/stack/marker_beacon/thirty)
 
 /obj/structure/closet/secure_closet/miner/Initialize()

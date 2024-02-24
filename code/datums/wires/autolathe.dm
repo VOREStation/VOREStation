@@ -1,60 +1,57 @@
 /datum/wires/autolathe
-
 	holder_type = /obj/machinery/autolathe
 	wire_count = 6
+	proper_name = "Autolathe"
 
-var/const/AUTOLATHE_HACK_WIRE = 1
-var/const/AUTOLATHE_SHOCK_WIRE = 2
-var/const/AUTOLATHE_DISABLE_WIRE = 4
+/datum/wires/autolathe/New(atom/_holder)
+	wires = list(WIRE_AUTOLATHE_HACK, WIRE_ELECTRIFY, WIRE_AUTOLATHE_DISABLE)
+	return ..()
 
-/datum/wires/autolathe/GetInteractWindow()
+/datum/wires/autolathe/get_status()
+	. = ..()
 	var/obj/machinery/autolathe/A = holder
-	. += ..()
-	. += "<BR>The red light is [A.disabled ? "off" : "on"]."
-	. += "<BR>The green light is [A.shocked ? "off" : "on"]."
-	. += "<BR>The blue light is [A.hacked ? "off" : "on"].<BR>"
+	. += "The red light is [A.disabled ? "off" : "on"]."
+	. += "The green light is [A.shocked ? "off" : "on"]."
+	. += "The blue light is [A.hacked ? "off" : "on"]."
 
-/datum/wires/autolathe/CanUse()
+/datum/wires/autolathe/interactable(mob/user)
 	var/obj/machinery/autolathe/A = holder
 	if(A.panel_open)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-/datum/wires/autolathe/Interact(var/mob/living/user)
-	if(CanUse(user))
-		var/obj/machinery/autolathe/V = holder
-		V.attack_hand(user)
-
-/datum/wires/autolathe/UpdateCut(index, mended)
+/datum/wires/autolathe/on_cut(wire, mend)
 	var/obj/machinery/autolathe/A = holder
-	switch(index)
-		if(AUTOLATHE_HACK_WIRE)
-			A.hacked = !mended
-		if(AUTOLATHE_SHOCK_WIRE)
-			A.shocked = !mended
-		if(AUTOLATHE_DISABLE_WIRE)
-			A.disabled = !mended
+	switch(wire)
+		if(WIRE_AUTOLATHE_HACK)
+			A.hacked = !mend
+			A.update_tgui_static_data(usr)
+		if(WIRE_ELECTRIFY)
+			A.shocked = !mend
+		if(WIRE_AUTOLATHE_DISABLE)
+			A.disabled = !mend
+	..()
 
-/datum/wires/autolathe/UpdatePulsed(index)
-	if(IsIndexCut(index))
+/datum/wires/autolathe/on_pulse(wire)
+	if(is_cut(wire))
 		return
 	var/obj/machinery/autolathe/A = holder
-	switch(index)
-		if(AUTOLATHE_HACK_WIRE)
+	switch(wire)
+		if(WIRE_AUTOLATHE_HACK)
 			A.hacked = !A.hacked
+			A.update_tgui_static_data(usr)
 			spawn(50)
-				if(A && !IsIndexCut(index))
+				if(A && !is_cut(wire))
 					A.hacked = 0
-					Interact(usr)
-		if(AUTOLATHE_SHOCK_WIRE)
+					A.update_tgui_static_data(usr)
+		if(WIRE_ELECTRIFY)
 			A.shocked = !A.shocked
 			spawn(50)
-				if(A && !IsIndexCut(index))
+				if(A && !is_cut(wire))
 					A.shocked = 0
-					Interact(usr)
-		if(AUTOLATHE_DISABLE_WIRE)
+		if(WIRE_AUTOLATHE_DISABLE)
 			A.disabled = !A.disabled
 			spawn(50)
-				if(A && !IsIndexCut(index))
+				if(A && !is_cut(wire))
 					A.disabled = 0
-					Interact(usr)
+	..()

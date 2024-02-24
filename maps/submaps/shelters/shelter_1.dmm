@@ -46,6 +46,10 @@
 "i" = (
 /obj/structure/bed/pod,
 /obj/item/weapon/bedsheet/mime,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "j" = (
@@ -76,6 +80,7 @@
 "n" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "o" = (

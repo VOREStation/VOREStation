@@ -38,6 +38,12 @@
 	light_power = 1
 	light_color = "#FF0D00"
 
+/obj/effect/projectile/muzzle/laser_em
+	icon_state = "muzzle_em_laser"
+	light_range = 3
+	light_power = 1
+	light_color = "#00C6FF"
+
 /obj/effect/projectile/muzzle/lightning
 	icon_state = "muzzle_lightning"
 	light_range = 2
@@ -86,7 +92,7 @@
 	light_power = 0.5
 	light_color = "#FF0D00"
 
-/obj/effect/projectile/tungsten/muzzle
+/obj/effect/projectile/muzzle/tungsten
 	icon_state = "muzzle_mhd_laser"
 	light_range = 4
 	light_power = 3
@@ -100,3 +106,5 @@
 	light_power = 0.5
 	light_color = "#80F5FF"
 //VOREStation edit ends
+/obj/effect/projectile/muzzle/pointdefense
+	icon_state = "muzzle_pointdef"

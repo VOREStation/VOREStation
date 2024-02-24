@@ -16,7 +16,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY
-	density = 1
+	density = TRUE
 
 /obj/machinery/atmospherics/pipe/tank/New()
 	icon_state = "air"
@@ -69,10 +69,6 @@
 /obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/device/pipe_painter))
 		return
-
-	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
-		var/obj/item/device/analyzer/A = W
-		A.analyze_gases(src, user)
 
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"
@@ -136,6 +132,7 @@
 /obj/machinery/atmospherics/pipe/tank/phoron
 	name = "Pressure Tank (Phoron)"
 	icon_state = "phoron_map"
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/pipe/tank/phoron/New()
 	air_temporary = new
@@ -156,7 +153,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
 
-	air_temporary.adjust_gas("sleeping_agent", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas("nitrous_oxide", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
 
 	..()
 	icon_state = "n2o"

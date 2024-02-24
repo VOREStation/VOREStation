@@ -111,7 +111,7 @@ var/hadevent    = 0
 	//world << sound('sound/AI/aliens.ogg')
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
-		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in using_map.station_levels)
+		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in using_map.station_levels))
 			if(temp_vent.network.normal_members.len > 50) // Stops Aliens getting stuck in small networks. See: Security, Virology
 				vents += temp_vent
 
@@ -169,7 +169,7 @@ var/hadevent    = 0
 
 
 	var/list/area/areas = list()
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(istype(A, /area/security/prison) || istype(A, /area/security/brig))
 			areas += A
 
@@ -187,7 +187,7 @@ var/hadevent    = 0
 
 			for (var/obj/structure/closet/secure_closet/brig/temp_closet in A)
 				temp_closet.locked = 0
-				temp_closet.icon_state = temp_closet.icon_closed
+				temp_closet.icon_state = "closed_unlocked"
 
 			for (var/obj/machinery/door/airlock/security/temp_airlock in A)
 				spawn(0) temp_airlock.prison_open()
@@ -196,7 +196,7 @@ var/hadevent    = 0
 				spawn(0) temp_glassairlock.prison_open()
 
 			for (var/obj/machinery/door_timer/temp_timer in A)
-				temp_timer.releasetime = 1
+				temp_timer.timer_duration = 1
 
 		sleep(150)
 		command_announcement.Announce("Gr3y.T1d3 virus detected in [station_name()] imprisonment subroutines. Recommend station AI involvement.", "Security Alert")
@@ -236,7 +236,7 @@ var/hadevent    = 0
 				apc.overload_lighting()
 
 	else
-		for(var/obj/machinery/power/apc/apc in machines)
+		for(var/obj/machinery/power/apc/apc in GLOB.apcs)
 			apc.overload_lighting()
 
 	return
@@ -297,9 +297,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE")
 				if(5)
 					to_chat(M, "<br>")
-					to_chat(M, "<span class='danger'>THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED</span>")
+					to_chat(M, "<span class='danger'>THE SITE MANAGER, HOP AND HOS ARE [who2]...LAWS UPDATED</span>")
 					to_chat(M, "<br>")
-					M.add_ion_law("THE COLONY DIRECTOR, HOP AND HOS ARE [who2]")
+					M.add_ion_law("THE SITE MANAGER, HOP AND HOS ARE [who2]")
 				if(6)
 					to_chat(M, "<br>")
 					to_chat(M, "<span class='danger'>THE STATION IS BUILT FOR [who2]...LAWS UPDATED</span>")
@@ -362,14 +362,14 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 
 	spawn(0)
 		to_world("Started processing APCs")
-		for (var/obj/machinery/power/apc/APC in machines)
+		for (var/obj/machinery/power/apc/APC in GLOB.APCs)
 			if(APC.z in station_levels)
 				APC.ion_act()
 				apcnum++
 		to_world("Finished processing APCs. Processed: [apcnum]")
 	spawn(0)
 		to_world("Started processing SMES")
-		for (var/obj/machinery/power/smes/SMES in machines)
+		for (var/obj/machinery/power/smes/SMES in GLOB.smeses)
 			if(SMES.z in station_levels)
 				SMES.ion_act()
 				smesnum++

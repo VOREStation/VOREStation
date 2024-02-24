@@ -37,7 +37,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<font color='blue'><b>You are now nearly invisible to normal detection.</b></font>")
+	to_chat(H, span_blue("<b>You are now nearly invisible to normal detection.</b>"))
 	H.alpha = 5
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
@@ -59,7 +59,7 @@
 
 	for(var/mob/O in oviewers(H))
 		O.show_message("[H.name] appears from thin air!",1)
-	playsound(get_turf(H), 'sound/effects/stealthoff.ogg', 75, 1)
+	playsound(src, 'sound/effects/stealthoff.ogg', 75, 1)
 
 
 /obj/item/rig_module/teleporter
@@ -83,8 +83,8 @@
 		return
 
 	holder.spark_system.start()
-	playsound(T, 'sound/effects/phasein.ogg', 25, 1)
-	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
+	playsound(src, 'sound/effects/phasein.ogg', 25, 1)
+	playsound(src, 'sound/effects/sparks2.ogg', 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 
 /obj/item/rig_module/teleporter/proc/phase_out(var/mob/M,var/turf/T)
@@ -209,7 +209,7 @@
 		engage(1)
 
 /obj/item/rig_module/self_destruct/engage(var/skip_check)
-	if(!skip_check && usr && alert(usr, "Are you sure you want to push that button?", "Self-destruct", "No", "Yes") == "No")
+	if(!skip_check && usr && tgui_alert(usr, "Are you sure you want to push that button?", "Self-destruct", list("No", "Yes")) == "No")
 		return
 	if(holder && holder.wearer)
 		smoke.set_up(10, 0, holder.loc)

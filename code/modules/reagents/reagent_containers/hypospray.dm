@@ -6,14 +6,16 @@
 	name = "hypospray"
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "hypo"
 	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 5
-	unacidable = 1
+	unacidable = TRUE
 	volume = 30
 	possible_transfer_amounts = null
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
+	drop_sound = 'sound/items/drop/gun.ogg'
+	pickup_sound = 'sound/items/pickup/gun.ogg'
 	preserve_item = 1
 	var/filled = 0
 	var/list/filled_reagents = list()
@@ -40,9 +42,11 @@
 		if(!affected)
 			to_chat(user, "<span class='danger'>\The [H] is missing that limb!</span>")
 			return
+		/* since synths have oil/coolant streams now, it only makes sense that you should be able to inject stuff. preserved for posterity.
 		else if(affected.robotic >= ORGAN_ROBOT)
 			to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 			return
+		*/
 
 		//VOREStation Add Start - Adds Prototype Hypo functionality
 		if(H != user && prototype)
@@ -84,13 +88,15 @@
 
 //A vial-loaded hypospray. Cartridge-based!
 /obj/item/weapon/reagent_containers/hypospray/vial
-	name = "hypospray mkII"
+	name = "advanced hypospray"
+	icon_state = "advhypo"
 	desc = "A new development from DeForest Medical, this new hypospray takes 30-unit vials as the drug supply for easy swapping."
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/loaded_vial //Wow, what a name.
 	volume = 0
 
 /obj/item/weapon/reagent_containers/hypospray/vial/Initialize()
 	. = ..()
+	icon_state = "[initial(icon_state)]"
 	loaded_vial = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src) //Comes with an empty vial
 	volume = loaded_vial.volume
 	reagents.maximum_volume = loaded_vial.reagents.maximum_volume
@@ -105,11 +111,18 @@
 			loaded_vial = null
 			to_chat(user, "<span class='notice'>You remove the vial from the [src].</span>")
 			update_icon()
-			playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+			playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 			return
 		..()
 	else
 		return ..()
+
+/obj/item/weapon/reagent_containers/hypospray/vial/update_icon()
+	..()
+	if(loaded_vial)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]_empty"
 
 /obj/item/weapon/reagent_containers/hypospray/vial/attackby(obj/item/weapon/W, mob/user as mob)
 	if(istype(W, /obj/item/weapon/reagent_containers/glass/beaker/vial))
@@ -127,7 +140,7 @@
 			loaded_vial.reagents.trans_to_holder(reagents,volume)
 			user.visible_message("<span class='notice'>[user] has loaded [W] into \the [src].</span>","<span class='notice'>You have loaded [W] into \the [src].</span>")
 			update_icon()
-			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+			playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		else
 			to_chat(user, "<span class='notice'>\The [src] already has a vial.</span>")
 	else
@@ -171,16 +184,28 @@
 		icon_state = "[initial(icon_state)]0"
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/examine(mob/user)
-	. = ..(user)
+	. = ..()
 	if(reagents && reagents.reagent_list.len)
-		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
+		. += "<span class='notice'>It is currently loaded.</span>"
 	else
-		to_chat(user, "<span class='notice'>It is spent.</span>")
+		. += "<span class='notice'>It is spent.</span>"
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/detox
 	name = "autoinjector (antitox)"
 	icon_state = "green"
 	filled_reagents = list("anti_toxin" = 5)
+
+//Special autoinjectors, while having potent chems like the 15u ones, the chems are usually potent enough that 5u is enough
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+	name = "bone repair injector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating damage to bones."
+	filled_reagents = list("osteodaxon" = 5)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed
+	name = "clone injector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating genetic damage."
+	filled_reagents = list("rezadone" = 5)
 
 // These have a 15u capacity, somewhat higher tech level, and generally more useful chems, but are otherwise the same as the regular autoinjectors.
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector
@@ -191,6 +216,11 @@
 	volume = 15
 	origin_tech = list(TECH_BIO = 4)
 	filled_reagents = list("inaprovaline" = 15)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty //for the autolathe
+	name = "large autoinjector"
+	filled = 0
+	filled_reagents = list()
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute
 	name = "trauma hypo"
@@ -219,7 +249,7 @@
 	name = "purity hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This variant excels at \
 	resolving viruses, infections, radiation, and genetic maladies."
-	filled_reagents = list("spaceacillin" = 9, "arithrazine" = 5, "ryetalyn" = 1)
+	filled_reagents = list("spaceacillin" = 4, "arithrazine" = 5, "prussian_blue" = 5, "ryetalyn" = 1)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain
 	name = "pain hypo"
@@ -242,11 +272,6 @@
 	name = "clotting agent"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. This variant excels at treating bleeding wounds and internal bleeding."
 	filled_reagents = list("inaprovaline" = 5, "myelamine" = 10)
-
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
-	name = "bone repair injector"
-	desc = "A refined version of the standard autoinjector, allowing greater capacity. This one excels at treating damage to bones."
-	filled_reagents = list("inaprovaline" = 5, "osteodaxon" = 10)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose
 	name = "glucose hypo"
@@ -283,11 +308,11 @@
 	This one is filled with serotrotium, which causes concentrated production of the serotonin neurotransmitter in humans."
 	filled_reagents = list("serotrotium" = 15)
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/space_drugs
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bliss
 	name = "illicit injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one contains various illicit drugs, held inside a hypospray to make smuggling easier."
-	filled_reagents = list("space_drugs" = 15)
+	filled_reagents = list("bliss" = 15)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/cryptobiolin
 	name = "cryptobiolin injector"

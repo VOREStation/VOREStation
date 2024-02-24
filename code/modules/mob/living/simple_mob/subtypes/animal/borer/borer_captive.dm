@@ -5,11 +5,11 @@
 	real_name = "host brain"
 	universal_understand = 1
 
-/mob/living/captive_brain/say(var/message)
+/mob/living/captive_brain/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "<font color='red'>You cannot speak in IC (muted).</font>")
+			to_chat(src, span_red("You cannot speak in IC (muted)."))
 			return
 
 	if(istype(src.loc, /mob/living/simple_mob/animal/borer))
@@ -31,7 +31,12 @@
 			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
 
+/mob/living/captive_brain/me_verb(message as text)
+	to_chat(src, "<span class='danger'>You cannot emote as a captive mind.</span>")
+	return
+
 /mob/living/captive_brain/emote(var/message)
+	to_chat(src, "<span class='danger'>You cannot emote as a captive mind.</span>")
 	return
 
 /mob/living/captive_brain/process_resist()

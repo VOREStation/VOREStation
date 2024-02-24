@@ -4,8 +4,8 @@
 	desc = "A bluespace telepad used for teleporting objects to and from a location."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	circuit = /obj/item/weapon/circuitboard/telesci_pad
 	idle_power_usage = 200
 	active_power_usage = 5000
@@ -14,7 +14,7 @@
 /obj/machinery/telepad/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/ore/bluespace_crystal(src)
+	component_parts += new /obj/item/weapon/bluespace_crystal(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)

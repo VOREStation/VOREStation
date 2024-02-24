@@ -6,8 +6,10 @@
 	add_language(LANGUAGE_ECUREUILIAN,	1)
 	add_language(LANGUAGE_DAEMON,		1)
 	add_language(LANGUAGE_ENOCHIAN,		1)
+	add_language(LANGUAGE_DRUDAKAR,		1)
+	add_language(LANGUAGE_TAVAN,		1)	
 
-/mob/AIize(move = 1)
+/mob/AIize(var/move = TRUE)
 	. = ..()
 	add_language(LANGUAGE_BIRDSONG,		1)
 	add_language(LANGUAGE_SAGARU,		1)
@@ -15,3 +17,5 @@
 	add_language(LANGUAGE_ECUREUILIAN,	1)
 	add_language(LANGUAGE_DAEMON,		1)
 	add_language(LANGUAGE_ENOCHIAN,		1)
+	add_language(LANGUAGE_DRUDAKAR,		1)
+	add_language(LANGUAGE_TAVAN,		1)

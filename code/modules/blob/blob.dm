@@ -6,9 +6,9 @@
 	light_range = 2
 	light_color = "#b5ff5b"
 	desc = "Some blob creature thingy"
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 2
 
 	var/maxHealth = 30
@@ -22,7 +22,7 @@
 	update_icon()
 	return ..(loc)
 
-/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target)
+/obj/effect/blob/CanPass(var/atom/movable/mover, var/turf/target)
 	return FALSE
 
 /obj/effect/blob/ex_act(var/severity)
@@ -43,7 +43,7 @@
 /obj/effect/blob/take_damage(var/damage)	// VOREStation Edit
 	health -= damage
 	if(health < 0)
-		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		qdel(src)
 	else
 		update_icon()
@@ -103,7 +103,7 @@
 		if(L.stat == DEAD)
 			continue
 		L.visible_message("<span class='danger'>The blob attacks \the [L]!</span>", "<span class='danger'>The blob attacks you!</span>")
-		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+		playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 		L.take_organ_damage(rand(30, 40))
 		return
 	new expandType(T, min(health, 30))
@@ -135,7 +135,7 @@
 
 /obj/effect/blob/attackby(var/obj/item/weapon/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 	var/damage = 0
 	switch(W.damtype)
@@ -193,7 +193,7 @@
 	update_nearby_tiles()
 
 /obj/effect/blob/shield/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	..()
 

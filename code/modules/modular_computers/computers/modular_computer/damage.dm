@@ -1,9 +1,9 @@
 /obj/item/modular_computer/examine(var/mob/user)
 	. = ..()
 	if(damage > broken_damage)
-		to_chat(user, "<span class='danger'>It is heavily damaged!</span>")
+		. += "<span class='danger'>It is heavily damaged!</span>"
 	else if(damage)
-		to_chat(user, "It is damaged.")
+		. += "It is damaged."
 
 /obj/item/modular_computer/proc/break_apart()
 	visible_message("\The [src] breaks apart!")

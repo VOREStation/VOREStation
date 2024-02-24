@@ -1,12 +1,12 @@
 /atom/movable/proc/Bump_vr(var/atom/A, yes)
 	return
 
-/atom/movable/set_dir(newdir)
-	. = ..(newdir)
-	if(riding_datum)
-		riding_datum.handle_vehicle_offsets()
-
-/atom/movable/relaymove(mob/user, direction)
+/atom/movable/vv_get_dropdown()
 	. = ..()
-	if(riding_datum)
-		riding_datum.handle_ride(user, direction)
+	VV_DROPDOWN_OPTION("move_atom", "Move To Coordinate")
+
+/atom/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("move_atom")
+		usr.client.cmd_admin_move_atom(src)
+		href_list["datumrefresh"] = "\ref[src]"

@@ -13,6 +13,7 @@
 	throwforce = 6
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
+	unacidable = TRUE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 	action_button_name = "Remove/Replace Paddles"
 
@@ -43,25 +44,23 @@
 
 
 /obj/item/device/defib_kit/update_icon()
-	var/list/new_overlays = list()
+	cut_overlays()
 
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
-		new_overlays += "[initial(icon_state)]-paddles"
+		add_overlay("[initial(icon_state)]-paddles")
 	if(bcell && paddles)
 		if(bcell.check_charge(paddles.chargecost))
 			if(paddles.combat)
-				new_overlays += "[initial(icon_state)]-combat"
+				add_overlay("[initial(icon_state)]-combat")
 			else if(!paddles.safety)
-				new_overlays += "[initial(icon_state)]-emagged"
+				add_overlay("[initial(icon_state)]-emagged")
 			else
-				new_overlays += "[initial(icon_state)]-powered"
+				add_overlay("[initial(icon_state)]-powered")
 
 		var/ratio = CEILING(bcell.percent()/25, 1) * 25
-		new_overlays += "[initial(icon_state)]-charge[ratio]"
+		add_overlay("[initial(icon_state)]-charge[ratio]")
 	else
-		new_overlays += "[initial(icon_state)]-nocell"
-
-	overlays = new_overlays
+		add_overlay("[initial(icon_state)]-nocell")
 
 /obj/item/device/defib_kit/ui_action_click()
 	toggle_paddles()
@@ -88,7 +87,7 @@
 		reattach_paddles(user)
 	else if(istype(W, /obj/item/weapon/cell))
 		if(bcell)
-			to_chat(user, "<span class='notice'>\the [src] already has a cell.</span>")
+			to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
 		else
 			if(!user.unEquip(W))
 				return
@@ -97,7 +96,7 @@
 			to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
 			update_icon()
 
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(bcell)
 			bcell.update_icon()
 			bcell.forceMove(get_turf(src.loc))
@@ -145,6 +144,12 @@
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_belt) == src)
 		return 1
+	//VOREStation Add Start - RIGSuit compatability
+	if((slot_flags & SLOT_BACK) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	//VOREStation Add End
 
 	return 0
 
@@ -265,8 +270,8 @@
 
 //Checks for various conditions to see if the mob is revivable
 /obj/item/weapon/shockpaddles/proc/can_defib(mob/living/carbon/human/H) //This is checked before doing the defib operation
-	if((H.species.flags & NO_SCAN))
-		return "buzzes, \"Unrecogized physiology. Operation aborted.\""
+	if((H.species.flags & NO_DEFIB))
+		return "buzzes, \"Incompatible physiology. Operation aborted.\""
 	else if(H.isSynthetic() && !use_on_synthetic)
 		return "buzzes, \"Synthetic Body. Operation aborted.\""
 	else if(!H.isSynthetic() && use_on_synthetic)
@@ -281,9 +286,8 @@
 	return null
 
 /obj/item/weapon/shockpaddles/proc/can_revive(mob/living/carbon/human/H) //This is checked right before attempting to revive
-
-	var/deadtime = world.time - H.timeofdeath
-	if (deadtime > DEFIB_TIME_LIMIT && !H.isSynthetic())
+	var/obj/item/organ/internal/brain/brain = H.internal_organs_by_name[O_BRAIN]
+	if(H.should_have_organ(O_BRAIN) && (!brain || brain.defib_timer <= 0 ) )
 		return "buzzes, \"Resuscitation failed - Excessive neural degeneration. Further attempts futile.\""
 
 	H.updatehealth()
@@ -333,14 +337,14 @@
 	if(!heart)
 		return TRUE
 
-	var/blood_volume = round((H.vessel.get_reagent_amount("blood")/H.species.blood_volume)*100)
+	var/blood_volume = H.vessel.get_reagent_amount("blood")
 	if(!heart || heart.is_broken())
 		blood_volume *= 0.3
 	else if(heart.is_bruised())
 		blood_volume *= 0.7
 	else if(heart.damage > 1)
 		blood_volume *= 0.8
-	return blood_volume < BLOOD_VOLUME_SURVIVE
+	return blood_volume < H.species.blood_volume*H.species.blood_level_fatal
 
 /obj/item/weapon/shockpaddles/proc/check_charge(var/charge_amt)
 	return 0
@@ -381,23 +385,21 @@
 
 // This proc is used so that we can return out of the revive process while ensuring that busy and update_icon() are handled
 /obj/item/weapon/shockpaddles/proc/do_revive(mob/living/carbon/human/H, mob/user)
-	if(!H.client && !H.teleop)
-		for(var/mob/observer/dead/ghost in player_list)
-			if(ghost.mind == H.mind)
-				to_chat(ghost, "<b><font color = #330033><font size = 3>Someone is attempting to resuscitate you. Re-enter your body if you want to be revived!</b> (Verbs -> Ghost -> Re-enter corpse)</font></font>")
-				break
+	var/mob/observer/dead/ghost = H.get_ghost()
+	if(ghost)
+		ghost.notify_revive("Someone is trying to resuscitate you. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg', source = src)
 
 	//beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
 	user.visible_message("<span class='warning'>\The [user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")
 	if(!do_after(user, 30, H))
 		return
-	user.visible_message("<span class='notice'>\The [user] places [src] on [H]'s chest.</span>", "<span class='warning'>You place [src] on [H]'s chest.</span>")
-	playsound(get_turf(src), 'sound/machines/defib_charge.ogg', 50, 0)
+	user.visible_message("<b>\The [user]</b> places [src] on [H]'s chest.", "<span class='warning'>You place [src] on [H]'s chest.</span>")
+	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
 
 	var/error = can_defib(H)
 	if(error)
 		make_announcement(error, "warning")
-		playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
 	if(check_blood_level(H))
@@ -410,18 +412,18 @@
 	//deduct charge here, in case the base unit was EMPed or something during the delay time
 	if(!checked_use(chargecost))
 		make_announcement("buzzes, \"Insufficient charge.\"", "warning")
-		playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
 	H.visible_message("<span class='warning'>\The [H]'s body convulses a bit.</span>")
-	playsound(get_turf(src), "bodyfall", 50, 1)
-	playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 50, 1, -1)
+	playsound(src, "bodyfall", 50, 1)
+	playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
 	set_cooldown(cooldowntime)
 
 	error = can_revive(H)
 	if(error)
 		make_announcement(error, "warning")
-		playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
@@ -435,7 +437,7 @@
 		H.adjustToxLoss(-H.getToxLoss())
 
 	make_announcement("pings, \"Resuscitation successful.\"", "notice")
-	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
+	playsound(src, 'sound/machines/defib_success.ogg', 50, 0)
 
 	make_alive(H)
 
@@ -456,8 +458,8 @@
 		to_chat(user, "<span class='warning'>You can't do that while the safety is enabled.</span>")
 		return
 
-	playsound(get_turf(src), 'sound/machines/defib_charge.ogg', 50, 0)
-	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>")
+	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
+	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>", runemessage = "whines")
 
 	if(!do_after(user, chargetime, H))
 		return
@@ -465,12 +467,12 @@
 	//deduct charge here, in case the base unit was EMPed or something during the delay time
 	if(!checked_use(chargecost))
 		make_announcement("buzzes, \"Insufficient charge.\"", "warning")
-		playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
 	user.visible_message("<span class='danger'><i>\The [user] shocks [H] with \the [src]!</i></span>", "<span class='warning'>You shock [H] with \the [src]!</span>")
-	playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 100, 1, -1)
-	playsound(loc, 'sound/weapons/Egloves.ogg', 100, 1, -1)
+	playsound(src, 'sound/machines/defib_zap.ogg', 100, 1, -1)
+	playsound(src, 'sound/weapons/Egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)
 
 	H.stun_effect_act(2, 120, target_zone)
@@ -481,36 +483,55 @@
 	add_attack_logs(user,H,"Shocked using [name]")
 
 /obj/item/weapon/shockpaddles/proc/make_alive(mob/living/carbon/human/M) //This revives the mob
-	var/deadtime = world.time - M.timeofdeath
-
 	dead_mob_list.Remove(M)
 	if((M in living_mob_list) || (M in dead_mob_list))
 		WARNING("Mob [M] was defibbed but already in the living or dead list still!")
 	living_mob_list += M
 
 	M.timeofdeath = 0
-	M.stat = UNCONSCIOUS //Life() can bring them back to consciousness if it needs to.
+	M.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
 	M.failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 	M.reload_fullscreen()
 
 	M.emote("gasp")
 	M.Weaken(rand(10,25))
 	M.updatehealth()
-	apply_brain_damage(M, deadtime)
+	apply_brain_damage(M)
+	// VOREStation Edits Start: Defib pain
+	if(istype(M.species, /datum/species/xenochimera)) // Only do the following to Xenochimera. Handwave this however you want, this is to balance defibs on an alien race.
+		M.adjustHalLoss(220) // This hurts a LOT, stacks on top of the previous halloss.
+		M.feral += 100 // If they somehow weren't already feral, force them feral by increasing ferality var directly, to avoid any messy checks. handle_feralness() will immediately set our feral properly according to halloss anyhow.
+	// VOREStation Edits End
+	// SSgame_master.adjust_danger(-20) // VOREStation Edit - We don't use SSgame_master yet.
 
-/obj/item/weapon/shockpaddles/proc/apply_brain_damage(mob/living/carbon/human/H, var/deadtime)
-	if(deadtime < DEFIB_TIME_LOSS) return
-
-	if(!H.should_have_organ(O_BRAIN)) return //no brain
+/obj/item/weapon/shockpaddles/proc/apply_brain_damage(mob/living/carbon/human/H)
+	if(!H.should_have_organ(O_BRAIN))
+		return // No brain.
 
 	var/obj/item/organ/internal/brain/brain = H.internal_organs_by_name[O_BRAIN]
-	if(!brain) return //no brain
+	if(!brain)
+		return // Still no brain.
 
-	var/brain_damage = CLAMP((deadtime - DEFIB_TIME_LOSS)/(DEFIB_TIME_LIMIT - DEFIB_TIME_LOSS)*brain.max_damage, H.getBrainLoss(), brain.max_damage)
+	// If the brain'd `defib_timer` var gets below this number, brain damage will happen at a linear rate.
+	// This is measures in `Life()` ticks. E.g. 10 minute defib timer = 300 `Life()` ticks.				// Original math was VERY off. Life() tick occurs every ~2 seconds, not every 2 world.time ticks.
+	var/brain_damage_timer = ((config.defib_timer MINUTES) / 20) - ((config.defib_braindamage_timer MINUTES) / 20)
+
+	if(brain.defib_timer > brain_damage_timer)
+		return // They got revived before brain damage got a chance to set in.
+
+	// As the brain decays, this will be between 0 and 1, with 1 being the most fresh.
+	var/brain_death_scale = brain.defib_timer / brain_damage_timer
+
+	// This is backwards from what you might expect, since 1 = fresh and 0 = rip.
+	var/damage_calc = LERP(brain.max_damage, H.getBrainLoss(), brain_death_scale)
+
+	// A bit of sanity.
+	var/brain_damage = between(H.getBrainLoss(), damage_calc, brain.max_damage)
+
 	H.setBrainLoss(brain_damage)
 
 /obj/item/weapon/shockpaddles/proc/make_announcement(var/message, var/msg_class)
-	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.")
+	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.", runemessage = "buzz")
 
 /obj/item/weapon/shockpaddles/emag_act(mob/user)
 	if(safety)
@@ -530,10 +551,10 @@
 		safety = new_safety
 		if(safety)
 			make_announcement("beeps, \"Safety protocols enabled!\"", "notice")
-			playsound(get_turf(src), 'sound/machines/defib_safetyon.ogg', 50, 0)
+			playsound(src, 'sound/machines/defib_safetyon.ogg', 50, 0)
 		else
 			make_announcement("beeps, \"Safety protocols disabled!\"", "warning")
-			playsound(get_turf(src), 'sound/machines/defib_safetyoff.ogg', 50, 0)
+			playsound(src, 'sound/machines/defib_safetyoff.ogg', 50, 0)
 		update_icon()
 	..()
 

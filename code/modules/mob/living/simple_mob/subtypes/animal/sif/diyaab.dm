@@ -29,19 +29,38 @@
 	maxHealth = 25
 	health = 25
 
-	movement_cooldown = 0
+	meat_amount = 2
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
+	movement_cooldown = -1
 
 	melee_damage_lower = 2
 	melee_damage_upper = 6
 	base_attack_cooldown = 1 SECOND
-	attack_sharp = 1 //Bleeds, but it shouldn't rip off a limb?
+	attack_sharp = TRUE //Bleeds, but it shouldn't rip off a limb?
 	attacktext = list("gouged")
 
 	say_list_type = /datum/say_list/diyaab
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
+	// What do you hit the mob with (on help) to get something from it?
+	harvest_tool = /obj/item/weapon/tool/wirecutters
+	// How long do we have to wait until it's harvestable again?
+	harvest_cooldown = 10 MINUTES
+	// How long does it take to harvest?
+	harvest_delay = 30 SECONDS
+	// What world.time was the last harvest?
+	harvest_recent = 0
+	// How many times do we roll on the chance table?
+	harvest_per_hit = 1
+	// Verb for harvesting. "sheared" "clipped" etc.
+	harvest_verb = "sheared"
+	// Associative list of paths and their chances. path = straws in the lot
+	harvest_results = list(
+		/obj/item/stack/material/cloth/diyaab = 10
+		)
+
 /datum/say_list/diyaab
 	speak = list("Awrr?", "Aowrl!", "Worrl.")
 	emote_see = list("sniffs the air cautiously","looks around")
 	emote_hear = list("snuffles")
-

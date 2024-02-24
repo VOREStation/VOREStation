@@ -25,7 +25,7 @@
 		if(path != root)
 			choices.Insert(1,"/")
 
-		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in choices
+		var/choice = tgui_input_list(src, "Choose a file to access:", "Download", choices)
 		switch(choice)
 			if(null)
 				return
@@ -39,7 +39,7 @@
 
 	var/extension = copytext(path,-4,0)
 	if( !fexists(path) || !(extension in valid_extensions) )
-		to_chat(src, "<font color='red'>Error: browse_files(): File not found/Invalid file([path]).</font>")
+		to_chat(src, span_red("Error: browse_files(): File not found/Invalid file([path])."))
 		return
 
 	return path
@@ -53,8 +53,23 @@
 /client/proc/file_spam_check()
 	var/time_to_wait = fileaccess_timer - world.time
 	if(time_to_wait > 0)
-		to_chat(src, "<font color='red'>Error: file_spam_check(): Spam. Please wait [round(time_to_wait/10)] seconds.</font>")
+		to_chat(src, span_red("Error: file_spam_check(): Spam. Please wait [round(time_to_wait/10)] seconds."))
 		return 1
 	fileaccess_timer = world.time + FTPDELAY
 	return 0
 #undef FTPDELAY
+
+/// Returns the md5 of a file at a given path.
+/proc/md5filepath(path)
+	. = md5(file(path))
+
+/// Save file as an external file then md5 it.
+/// Used because md5ing files stored in the rsc sometimes gives incorrect md5 results.
+/proc/md5asfile(file)
+	var/static/notch = 0
+	// its importaint this code can handle md5filepath sleeping instead of hard blocking, if it's converted to use rust_g.
+	var/filename = "tmp/md5asfile.[world.realtime].[world.timeofday].[world.time].[world.tick_usage].[notch]"
+	notch = WRAP(notch+1, 0, 2**15)
+	fcopy(file, filename)
+	. = md5filepath(filename)
+	fdel(filename)

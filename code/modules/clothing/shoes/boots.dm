@@ -5,23 +5,53 @@
 	force = 3
 	can_hold_knife = 1
 	step_volume_mod = 1.2
+	drop_sound = 'sound/items/drop/boots.ogg'
 
 /obj/item/clothing/shoes/boots/cowboy
 	name = "cowboy boots"
 	desc = "Lacking a durasteel horse to ride."
 	icon_state = "cowboy"
+	drop_sound = 'sound/items/drop/leather.ogg'
 
 /obj/item/clothing/shoes/boots/cowboy/classic
 	name = "classic cowboy boots"
 	desc = "A classic looking pair of durable cowboy boots."
 	icon_state = "cowboy_classic"
-	item_state_slots = list(slot_r_hand_str = "leather", slot_l_hand_str = "leather")
 
 /obj/item/clothing/shoes/boots/cowboy/snakeskin
-	name = "snakeskin cowboy boots"
+	name = "snake skin boots"
 	desc = "A pair of cowboy boots made from python skin."
 	icon_state = "cowboy_snakeskin"
-	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+
+/obj/item/clothing/shoes/boots/cowboy/green
+	name = "green cowboy boots"
+	desc = "A classic looking pair of durable cowboy boots made out of snappy green leather."
+	icon_state = "cowboy_green"
+
+/obj/item/clothing/shoes/boots/cowboy/blue
+	name = "blue cowboy boots"
+	desc = "A classic looking pair of durable cowboy boots made out of extra fancy blue leather."
+	icon_state = "cowboy_blue"
+
+/obj/item/clothing/shoes/boots/cowboy/brown
+	name = "brown cowboy boots"
+	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
+	icon_state = "cowboy_brown"
+
+/obj/item/clothing/shoes/boots/cowboy/black
+	name = "black cowboy boots"
+	desc = "You get the feeling that these were red at one point."
+	icon_state = "cowboy_black"
+
+/obj/item/clothing/shoes/boots/cowboy/white
+	name = "white cowboy boots"
+	desc = "Perfect for those that like style while remaining rugged as ever."
+	icon_state = "cowboy_white"
+
+/obj/item/clothing/shoes/boots/cowboy/fancy
+	name = "fancy cowboy boots"
+	desc = "A gambler was 100% wearing these when he died."
+	icon_state = "cowboy_fancy"
 
 /obj/item/clothing/shoes/boots/jackboots
 	name = "jackboots"
@@ -29,11 +59,39 @@
 	icon_state = "jackboots"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
+	drop_sound = 'sound/items/drop/boots.ogg'
+	pickup_sound = 'sound/items/pickup/boots.ogg'
 
 /obj/item/clothing/shoes/boots/jackboots/toeless
 	name = "toe-less jackboots"
 	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
 	icon_state = "digiboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+	species_restricted = null
+
+/obj/item/clothing/shoes/boots/jackboots/knee
+	name = "knee-length jackboots"
+	desc = "Taller synthleather boots with an artificial shine."
+	icon_state = "kneeboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+
+/obj/item/clothing/shoes/boots/jackboots/toeless/knee
+	name = "toe-less knee-length jackboots"
+	desc = "Modified pair of taller boots, particularly friendly to those species whose toes hold claws."
+	icon_state = "digikneeboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+	species_restricted = null
+
+/obj/item/clothing/shoes/boots/jackboots/thigh
+	name = "thigh-length jackboots"
+	desc = "Even taller synthleather boots with an artificial shine."
+	icon_state = "thighboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+
+/obj/item/clothing/shoes/boots/jackboots/toeless/thigh
+	name = "toe-less thigh-length jackboots"
+	desc = "Modified pair of even taller boots, particularly friendly to those species whose toes hold claws."
+	icon_state = "digithighboots"
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	species_restricted = null
 
@@ -43,6 +101,8 @@
 	icon_state = "workboots"
 	armor = list(melee = 40, bullet = 0, laser = 0, energy = 15, bomb = 20, bio = 0, rad = 20)
 	siemens_coefficient = 0.7
+	drop_sound = 'sound/items/drop/boots.ogg'
+	pickup_sound = 'sound/items/pickup/boots.ogg'
 
 /obj/item/clothing/shoes/boots/workboots/toeless
 	name = "toe-less workboots"
@@ -74,7 +134,7 @@
 	icon_state = "winterboots_sci"
 
 /obj/item/clothing/shoes/boots/winter/command
-	name = "colony director's winter boots"
+	name = "site manager's winter boots"
 	desc = "A pair of winter boots. They're lined with dark fur, and trimmed in the colours of superiority."
 	icon_state = "winterboots_cap"
 
@@ -109,10 +169,20 @@
 	icon_state = "winterboots_hydro"
 
 /obj/item/clothing/shoes/boots/winter/explorer
-	name = "explorer winter boots"
+	name = "away team winter boots"
 	desc = "Steel-toed winter boots for mining or exploration in hazardous environments. Very good at keeping toes warm and uncrushed."
 	icon_state = "explorer"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
+
+/obj/item/clothing/shoes/boots/winter/christmasred
+	name = "red christmas boots"
+	desc = "A pair of fluffy red christmas boots!"
+	icon_state = "winterboots_christmasr"
+
+/obj/item/clothing/shoes/boots/winter/christmasgreen
+	name = "green christmas boots"
+	desc = "A pair of fluffy green christmas boots!"
+	icon_state = "winterboots_christmasg"
 
 // Allows the wearer to climb cliffs, which could allow for shortcuts or sequence-breaking.
 /obj/item/clothing/shoes/boots/winter/climbing
@@ -120,6 +190,7 @@
 	desc = "A pair of winter boots, with metal bracing attached to assist in climbing rocky terrain."
 	icon_state = "climbing_boots"
 	rock_climbing = TRUE
+	//Climbing delay with boots is 1
 
 /obj/item/clothing/shoes/boots/tactical
 	name = "tactical boots"
@@ -171,3 +242,18 @@
 	icon_state = "jackboots"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.6
+
+/obj/item/clothing/shoes/boots/singer
+    name = "blue performer's boots"
+    desc = "These boots were made for dancing."
+    icon_state = "bsing"
+
+/obj/item/clothing/shoes/boots/singer/yellow
+	name = "yellow performer's boots"
+	desc = "These boots were made for dancing."
+	icon_state = "ysing"
+
+/obj/item/clothing/shoes/boots/half_moon
+    name = "half moon boots"
+    desc = "Flexible and tight, these boots ensure the wearer will be leaving a solid impression without sacrificing mobility."
+    icon_state = "half_moon"

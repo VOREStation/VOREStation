@@ -12,14 +12,14 @@
 	var/final_average
 	if (accurate) //keeping it legible
 		for(var/i = 1 to total)
-			RGB = ReadRGB(colors[i])
+			RGB = rgb2num(colors[i])
 			colorsum[1] += RGB[1]*RGB[1]
 			colorsum[2] += RGB[2]*RGB[2]
 			colorsum[3] += RGB[3]*RGB[3]
 		final_average = rgb(sqrt(colorsum[1]/total), sqrt(colorsum[2]/total), sqrt(colorsum[3]/total))
 	else
 		for(var/i = 1 to total)
-			RGB = ReadRGB(colors[i])
+			RGB = rgb2num(colors[i])
 			colorsum[1] += RGB[1]
 			colorsum[2] += RGB[2]
 			colorsum[3] += RGB[3]
@@ -32,7 +32,7 @@
 		for(var/y_pixel = 1 to I.Height())
 			var/this_color = I.GetPixel(x_pixel, y_pixel)
 			if(this_color)
-				if (ignoreGreyscale && ReadHSV(RGBtoHSV(this_color))[2] == 0) //If saturation is 0, must be greyscale
+				if (ignoreGreyscale && rgb2num(this_color, COLORSPACE_HSV)[2] == 0) //If saturation is 0, must be greyscale
 					continue
 				colors.Add(this_color)
 	return colors
@@ -43,17 +43,3 @@
 			if (I.GetPixel(x_pixel, y_pixel))
 				return y_pixel - 1
 	return null
-
-//Standard behaviour is to cut pixels from the main icon that are covered by pixels from the mask icon unless passed mask_ready, see below.
-/proc/get_icon_difference(var/icon/main, var/icon/mask, var/mask_ready)
-	/*You should skip prep if the mask is already sprited properly. This significantly improves performance by eliminating most of the realtime icon work.
-	e.g. A 'ready' mask is a mask where the part you want cut out is missing (no pixels, 0 alpha) from the sprite, and everything else is solid white.*/
-
-	if(istype(main) && istype(mask))
-		if(!mask_ready) //Prep the mask if we're using a regular old sprite and not a special-made mask.
-			mask.Blend(rgb(255,255,255), ICON_SUBTRACT) //Make all pixels on the mask as black as possible.
-			mask.Opaque(rgb(255,255,255)) //Make the transparent pixels (background) white.
-			mask.BecomeAlphaMask() //Make all the black pixels vanish (fully transparent), leaving only the white background pixels.
-
-		main.AddAlphaMask(mask) //Make the pixels in the main icon that are in the transparent zone of the mask icon also vanish (fully transparent).
-		return main

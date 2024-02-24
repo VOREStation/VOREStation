@@ -7,9 +7,9 @@
 	icon_living = "fox2"
 	icon_dead = "fox2_dead"
 	icon_rest = "fox2_rest"
-	icon = 'icons/mob/fox_vr.dmi'
+	icon = 'icons/mob/pets.dmi'
 
-	movement_cooldown = 0.5
+	movement_cooldown = -1
 	see_in_dark = 6
 	mob_size = MOB_SMALL //Foxes are not smaller than cats so bumping them up to small
 
@@ -23,11 +23,12 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323		//Above 50 Degrees Celcius
 
-	meat_amount = 1
+	meat_amount = 2
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
 
 	say_list_type = /datum/say_list/fox
 	ai_holder_type = /datum/ai_holder/simple_mob/fox
+	holder_type = /obj/item/weapon/holder/fox
 
 	var/turns_since_scan = 0
 	var/mob/flee_target
@@ -183,16 +184,13 @@
 	set_dir(get_dir(src, friend))
 	say("Yap!")
 */
-/obj/item/weapon/reagent_containers/food/snacks/meat/fox
-	name = "Fox meat"
-	desc = "The fox doesn't say a goddamn thing, now."
 
 //Captain fox
 /mob/living/simple_mob/animal/passive/fox/renault
 	name = "Renault"
-	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
+	desc = "Renault, the Site Manager's trustworthy fox. I wonder what it says?"
 	tt_desc = "Vulpes nobilis"
-	//befriend_job = "Colony Director" Sebbe edit: couldn't make this work, commenting out for now.
+	//befriend_job = "Site Manager" Sebbe edit: couldn't make this work, commenting out for now.
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. awoo.
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
@@ -224,7 +222,7 @@
 	name = "syndi-fox"
 	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
 	tt_desc = "Vulpes malus"
-	icon = 'icons/mob/fox_vr.dmi'
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "syndifox"
 	icon_living = "syndifox"
 	icon_dead = "syndifox_dead"

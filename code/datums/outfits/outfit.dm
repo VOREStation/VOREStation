@@ -39,7 +39,9 @@ var/list/outfits_decls_by_type_
 	var/suit_store = null
 	var/r_hand = null
 	var/l_hand = null
-	var/list/backpack_contents = list() // In the list(path=count,otherpath=count) format
+	// In the list(path=count,otherpath=count) format
+	var/list/uniform_accessories = list() // webbing, armbands etc - fits in slot_tie
+	var/list/backpack_contents = list()
 
 	var/id_type
 	var/id_desc
@@ -54,6 +56,8 @@ var/list/outfits_decls_by_type_
 	var/satchel_one  = /obj/item/weapon/storage/backpack/satchel/norm
 	var/satchel_two  = /obj/item/weapon/storage/backpack/satchel
 	var/messenger_bag = /obj/item/weapon/storage/backpack/messenger
+	var/sports_bag = /obj/item/weapon/storage/backpack/sport
+	var/satchel_three = /obj/item/weapon/storage/backpack/satchel/strapless
 
 	var/flags // Specific flags
 
@@ -74,6 +78,8 @@ var/list/outfits_decls_by_type_
 			if(3) back = satchel_one
 			if(4) back = satchel_two
 			if(5) back = messenger_bag
+			if(6) back = sports_bag
+			if(7) back = satchel_three
 			else back = null
 
 /decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H)
@@ -101,6 +107,7 @@ var/list/outfits_decls_by_type_
 			H.equip_to_slot_or_del(new path(H), slot_in_backpack)
 
 	post_equip(H)
+
 	if(W) // We set ID info last to ensure the ID photo is as correct as possible.
 		H.set_id_info(W)
 	return 1
@@ -144,6 +151,12 @@ var/list/outfits_decls_by_type_
 		H.put_in_l_hand(new l_hand(H))
 	if(r_hand)
 		H.put_in_r_hand(new r_hand(H))
+
+	for(var/path in uniform_accessories)
+		var/number = uniform_accessories[path]
+		for(var/i=0,i<number,i++)
+			H.equip_to_slot_or_del(new path(H), slot_tie)
+
 	if(H.species)
 		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL, flags&OUTFIT_COMPREHENSIVE_SURVIVAL)
 
@@ -169,6 +182,8 @@ var/list/outfits_decls_by_type_
 		pda.ownjob = assignment
 		pda.ownrank = rank
 		pda.name = "PDA-[H.real_name] ([assignment])"
+		if(H.client.prefs.ringtone) // if null we use the job default
+			pda.ttone = H.client.prefs.ringtone
 		return pda
 
 /decl/hierarchy/outfit/dd_SortValue()

@@ -14,6 +14,5 @@
 	else
 		return ..()
 
-/obj/item/organ/external/proc/is_hidden_by_tail()
-	if(owner && owner.tail_style && owner.tail_style.hide_body_parts && (organ_tag in owner.tail_style.hide_body_parts))
-		return 1
+/obj/item/organ/external/digitize(var/company, var/skip_prosthetics = FALSE, var/keep_organs = FALSE)
+	robotize(company, skip_prosthetics, keep_organs)

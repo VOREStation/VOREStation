@@ -3,6 +3,7 @@
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
+	drop_sound = 'sound/items/drop/rubber.ogg'
 	w_class = ITEMSIZE_NORMAL
 	var/deploy_path = /obj/structure/inflatable
 
@@ -22,8 +23,8 @@
 /obj/structure/inflatable
 	name = "inflatable wall"
 	desc = "An inflated membrane. Do not puncture."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	opacity = 0
 	can_atmos_pass = ATMOS_PASS_DENSITY
 
@@ -85,7 +86,7 @@
 /obj/structure/inflatable/proc/hit(var/damage, var/sound_effect = 1)
 	health = max(0, health - damage)
 	if(sound_effect)
-		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 	if(health <= 0)
 		puncture()
 
@@ -101,7 +102,7 @@
 	qdel(src)
 
 /obj/structure/inflatable/proc/deflate()
-	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+	playsound(src, 'sound/machines/hiss.ogg', 75, 1)
 	//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
 	visible_message("[src] slowly deflates.")
 	spawn(50)
@@ -110,7 +111,7 @@
 		qdel(src)
 
 /obj/structure/inflatable/proc/puncture()
-	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+	playsound(src, 'sound/machines/hiss.ogg', 75, 1)
 	visible_message("[src] rapidly deflates!")
 	var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 	src.transfer_fingerprints_to(R)
@@ -153,8 +154,8 @@
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	opacity = 0
 
 	icon = 'icons/obj/inflatable.dmi'
@@ -203,7 +204,7 @@
 	isSwitchingStates = 1
 	flick("door_opening",src)
 	sleep(10)
-	density = 0
+	density = FALSE
 	opacity = 0
 	state = 1
 	update_icon()
@@ -213,7 +214,7 @@
 	isSwitchingStates = 1
 	flick("door_closing",src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	opacity = 0
 	state = 0
 	update_icon()
@@ -226,7 +227,7 @@
 		icon_state = "door_closed"
 
 /obj/structure/inflatable/door/deflate()
-	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+	playsound(src, 'sound/machines/hiss.ogg', 75, 1)
 	visible_message("[src] slowly deflates.")
 	spawn(50)
 		var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
@@ -234,7 +235,7 @@
 		qdel(src)
 
 /obj/structure/inflatable/door/puncture()
-	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
+	playsound(src, 'sound/machines/hiss.ogg', 75, 1)
 	visible_message("[src] rapidly deflates!")
 	var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 	src.transfer_fingerprints_to(R)
@@ -246,9 +247,9 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall_torn"
 
-	attack_self(mob/user)
-		to_chat(user, "<span class='notice'>The inflatable wall is too torn to be inflated!</span>")
-		add_fingerprint(user)
+/obj/item/inflatable/torn/attack_self(mob/user)
+	to_chat(user, "<span class='notice'>The inflatable wall is too torn to be inflated!</span>")
+	add_fingerprint(user)
 
 /obj/item/inflatable/door/torn
 	name = "torn inflatable door"
@@ -256,9 +257,9 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_door_torn"
 
-	attack_self(mob/user)
-		to_chat(user, "<span class='notice'>The inflatable door is too torn to be inflated!</span>")
-		add_fingerprint(user)
+/obj/item/inflatable/door/torn/attack_self(mob/user)
+	to_chat(user, "<span class='notice'>The inflatable door is too torn to be inflated!</span>")
+	add_fingerprint(user)
 
 /obj/item/weapon/storage/briefcase/inflatable
 	name = "inflatable barrier box"
@@ -267,13 +268,4 @@
 	w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 	can_hold = list(/obj/item/inflatable)
-
-	New()
-		..()
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
+	starts_with = list(/obj/item/inflatable/door = 3, /obj/item/inflatable = 4)

@@ -564,7 +564,7 @@ datum
 
 			captainslaser
 				steal_target = /obj/item/weapon/gun/energy/captain
-				explanation_text = "Steal the Colony Director's antique laser gun."
+				explanation_text = "Steal the Site Manager's antique laser gun."
 				weight = 20
 
 				get_points(var/job)
@@ -749,7 +749,7 @@ datum
 
 
 			blueprints
-				steal_target = /obj/item/blueprints
+				steal_target = /obj/item/areaeditor/blueprints
 				explanation_text = "Steal the station's blueprints."
 				weight = 20
 
@@ -1081,8 +1081,8 @@ datum
 						return 0
 
 			drugs
-				steal_target = /datum/reagent/space_drugs
-				explanation_text = "Steal some space drugs."
+				steal_target = /datum/reagent/drugs/bliss
+				explanation_text = "Steal some bliss."
 				weight = 40
 
 				get_points(var/job)
@@ -1453,7 +1453,7 @@ datum
 					return 0
 				return 1
 
-datum/objective/silence
+/datum/objective/silence
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 	check_completion()

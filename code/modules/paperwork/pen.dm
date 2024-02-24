@@ -1,18 +1,24 @@
 /* Pens!
  * Contains:
  *		Pens
+ *		Coloured Pens
+ *		Fountain Pens
+ *		Multi Pen
+ *		Reagent Pens
+ *		Blade Pens
  *		Sleepy Pens
  *		Parapens
+ *		Chameleon Pen
+ *		Crayons
  */
-
 
 /*
  * Pens
  */
 /obj/item/weapon/pen
-	desc = "It's a normal black ink pen."
 	name = "pen"
-	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
+	desc = "It's a normal black ink pen."
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
 	item_state = "pen"
 	slot_flags = SLOT_BELT | SLOT_EARS
@@ -20,14 +26,22 @@
 	w_class = ITEMSIZE_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list(DEFAULT_WALL_MATERIAL = 10)
+	matter = list(MAT_STEEL = 10)
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 /obj/item/weapon/pen/attack_self(var/mob/user)
+	if(!user.checkClickCooldown())
+		return
+	user.setClickCooldown(1 SECOND)
 	to_chat(user, "<span class='notice'>Click.</span>")
-	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
+	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 
+/*
+ * Coloured Pens
+ */
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."
 	icon_state = "pen_blue"
@@ -38,14 +52,58 @@
 	icon_state = "pen_red"
 	colour = "red"
 
+/*
+ * Fountain Pens
+ */
 /obj/item/weapon/pen/fountain
-	desc = "A well made fountain pen."
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
 
+/obj/item/weapon/pen/fountain2
+	desc = "A well made fountain pen, with a faux wood body. This one has golden accents."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain3
+	desc = "A well made expesive rosewood pen with golden accents. Very pretty."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain4
+	desc = "A well made and expensive fountain pen. This one has silver accents."
+	icon_state = "blues_fountain"
+
+/obj/item/weapon/pen/fountain5
+	desc = "A well made and expensive fountain pen. This one has gold accents."
+	icon_state = "blueg_fountain"
+
+/obj/item/weapon/pen/fountain6
+	desc = "A well made and expensive fountain pen. The nib is quite sharp."
+	icon_state = "command_fountain"
+
+/obj/item/weapon/pen/fountain7
+	desc = "A well made and expensive fountain pen made from gold."
+	icon_state = "gold_fountain"
+
+/obj/item/weapon/pen/fountain8
+	desc = "A well made and expensive fountain pen."
+	icon_state = "black_fountain"
+
+/obj/item/weapon/pen/fountain9
+	desc = "A well made and expensive fountain pen made for gesturing."
+	icon_state = "mime_fountain"
+
+
+/*
+ * Multi Pen
+ */
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
 	var/selectedColor = 1
 	var/colors = list("black","blue","red")
+
+/obj/item/weapon/pen/AltClick(mob/user)
+	to_chat(user, "<span class='notice'>Click.</span>")
+	playsound(src, 'sound/items/penclick.ogg', 50, 1)
+	return
 
 /obj/item/weapon/pen/multi/attack_self(mob/user)
 	if(++selectedColor > 3)
@@ -66,7 +124,7 @@
 	colour = "white"
 
 /*
- * Reagent pens
+ * Reagent Pens
  */
 
 /obj/item/weapon/pen/reagent
@@ -92,6 +150,97 @@
 				add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
 
 /*
+ * Blade Pens
+ */
+/obj/item/weapon/pen/blade
+	desc = "It's a normal black ink pen."
+	description_antag = "This pen can be transformed into a dangerous melee and thrown assassination weapon with an Alt-Click.\
+	When active, it cannot be caught safely."
+	name = "pen"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "pen"
+	item_state = "pen"
+	slot_flags = SLOT_BELT | SLOT_EARS
+	throwforce = 3
+	w_class = ITEMSIZE_TINY
+	throw_speed = 7
+	throw_range = 15
+	armor_penetration = 20
+
+	var/active = 0
+	var/active_embed_chance = 0
+	var/active_force = 15
+	var/active_throwforce = 30
+	var/active_w_class = ITEMSIZE_NORMAL
+	var/active_icon_state
+	var/default_icon_state
+
+/obj/item/weapon/pen/blade/Initialize()
+	. = ..()
+	active_icon_state = "[icon_state]-x"
+	default_icon_state = icon_state
+
+/obj/item/weapon/pen/blade/AltClick(mob/user)
+	..()
+	if(active)
+		deactivate(user)
+	else
+		activate(user)
+
+	to_chat(user, "<span class='notice'>You [active ? "de" : ""]activate \the [src]'s blade.</span>")
+
+/obj/item/weapon/pen/blade/proc/activate(mob/living/user)
+	if(active)
+		return
+	active = 1
+	icon_state = active_icon_state
+	embed_chance = active_embed_chance
+	force = active_force
+	throwforce = active_throwforce
+	sharp = TRUE
+	edge = TRUE
+	w_class = active_w_class
+	playsound(src, 'sound/weapons/saberon.ogg', 15, 1)
+	damtype = SEARING
+	catchable = FALSE
+
+	attack_verb |= list(\
+		"slashed",\
+		"cut",\
+		"shredded",\
+		"stabbed"\
+		)
+
+/obj/item/weapon/pen/blade/proc/deactivate(mob/living/user)
+	if(!active)
+		return
+	playsound(src, 'sound/weapons/saberoff.ogg', 15, 1)
+	active = 0
+	icon_state = default_icon_state
+	embed_chance = initial(embed_chance)
+	force = initial(force)
+	throwforce = initial(throwforce)
+	sharp = initial(sharp)
+	edge = initial(edge)
+	w_class = initial(w_class)
+	damtype = BRUTE
+	catchable = TRUE
+
+/obj/item/weapon/pen/blade/blue
+	desc = "It's a normal blue ink pen."
+	icon_state = "pen_blue"
+	colour = "blue"
+
+/obj/item/weapon/pen/blade/red
+	desc = "It's a normal red ink pen."
+	icon_state = "pen_red"
+	colour = "red"
+
+/obj/item/weapon/pen/blade/fountain
+	desc = "A well made fountain pen, with a faux wood body."
+	icon_state = "pen_fountain"
+
+/*
  * Sleepy Pens
  */
 /obj/item/weapon/pen/reagent/sleepy
@@ -100,7 +249,8 @@
 
 /obj/item/weapon/pen/reagent/sleepy/New()
 	..()
-	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
+	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
+	reagents.add_reagent("stoxin", 14)	//VOREStation Add
 
 
 /*
@@ -115,7 +265,7 @@
 	reagents.add_reagent("cryptobiolin", 10)
 
 /*
- * Chameleon pen
+ * Chameleon Pen
  */
 /obj/item/weapon/pen/chameleon
 	var/signature = ""
@@ -128,11 +278,11 @@
 		personnel_list.Add(t.fields["name"])
 	personnel_list.Add("Anonymous")
 
-	var/new_signature = input("Enter new signature pattern.", "New Signature") as null|anything in personnel_list
+	var/new_signature = tgui_input_list(usr, "Enter new signature pattern.", "New Signature", personnel_list)
 	if(new_signature)
 		signature = new_signature
 	*/
-	signature = sanitize(input("Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
+	signature = sanitize(tgui_input_text(usr, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
 
 /obj/item/weapon/pen/proc/get_signature(var/mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
@@ -145,7 +295,7 @@
 	set category = "Object"
 
 	var/list/possible_colours = list ("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red", "Invisible", "Black")
-	var/selected_type = input("Pick new colour.", "Pen Colour", null, null) as null|anything in possible_colours
+	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Pen Colour", possible_colours)
 
 	if(selected_type)
 		switch(selected_type)
@@ -173,7 +323,6 @@
 /*
  * Crayons
  */
-
 /obj/item/weapon/pen/crayon
 	name = "crayon"
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."
@@ -186,11 +335,8 @@
 	var/uses = 30 //0 for unlimited uses
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
-
-/obj/item/weapon/pen/crayon/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>")
-	return (BRUTELOSS|OXYLOSS)
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 /obj/item/weapon/pen/crayon/New()
 	name = "[colourName] crayon"

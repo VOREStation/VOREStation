@@ -7,16 +7,37 @@
 								2 for preloading absolutely everything;
 								*/
 
-#define RUST_G "rust_g"			// If uncommented, we will use the rust-g (https://github.com/tgstation/rust-g) native library for fast
-								// logging. This requires you to have the rust_g.dll or rust_g (renamed from librust_g.so) installed in the root folder or BYOND/bin
-								// The define's value should be the name of library file.
-
 // ZAS Compile Options
+//#define FIREDBG		// Uncomment to turn on ZAS debugging related to fire stuff.
 //#define ZASDBG	 	// Uncomment to turn on super detailed ZAS debugging that probably won't even compile.
 #define MULTIZAS		// Uncomment to turn on Multi-Z ZAS Support!
+
+// Movement Compile Options
+//#define CARDINAL_INPUT_ONLY // Uncomment to disable diagonal player movement (restore previous cardinal-moves-only behavior)
+
+// Comment/Uncomment this to turn off/on shuttle code debugging logs
+#define DEBUG_SHUTTLES
 
 // If we are doing the map test build, do not include the main maps, only the submaps.
 #if MAP_TEST
 	#define USING_MAP_DATUM /datum/map
 	#define MAP_OVERRIDE 1
 #endif
+
+///Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while
+//#define REFERENCE_TRACKING
+#ifdef REFERENCE_TRACKING
+
+///Should we be logging our findings or not
+#define REFERENCE_TRACKING_LOG
+
+///Used for doing dry runs of the reference finder, to test for feature completeness
+//#define REFERENCE_TRACKING_DEBUG
+
+///Run a lookup on things hard deleting by default.
+//#define GC_FAILURE_HARD_LOOKUP
+#ifdef GC_FAILURE_HARD_LOOKUP
+#define FIND_REF_NO_CHECK_TICK
+#endif //ifdef GC_FAILURE_HARD_LOOKUP
+
+#endif //ifdef REFERENCE_TRACKING

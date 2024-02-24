@@ -21,8 +21,9 @@
 		var/total_moles = mixture.total_moles
 		results += "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>"
 		for(var/mix in mixture.gas)
-			results += "<span class='notice'>[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]%</span>"
+			results += "<span class='notice'>[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]% ([round(mixture.gas[mix], 0.01)] moles)</span>"
 		results += "<span class='notice'>Temperature: [round(mixture.temperature-T0C)]&deg;C</span>"
+		results += "<span class='notice'>Heat Capacity: [round(mixture.heat_capacity(),0.1)]</span>"
 	else
 		results += "<span class='notice'>\The [target] is empty!</span>"
 

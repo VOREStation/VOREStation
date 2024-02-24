@@ -13,8 +13,7 @@
 	1.2	* src.getShockFireLoss() + 		\
 	1.2	* src.getShockBruteLoss() + 		\
 	1.7	* src.getCloneLoss() + 		\
-	2	* src.halloss + 			\
-	-1	* src.chem_effects[CE_PAINKILLER]
+	2	* src.halloss
 
 	if(src.slurring)
 		src.traumatic_shock -= 20
@@ -27,6 +26,13 @@
 				src.traumatic_shock += 30
 			else if(organ.is_dislocated())
 				src.traumatic_shock += 15
+	
+	// Some individuals/species are more or less supectible to pain. Default trauma_mod = 1. Does not affect painkillers
+	if(istype(src, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		H.traumatic_shock *= H.species.trauma_mod
+		
+	src.traumatic_shock += -1 *  src.chem_effects[CE_PAINKILLER]
 
 	if(src.traumatic_shock < 0)
 		src.traumatic_shock = 0

@@ -1,10 +1,10 @@
 /obj/machinery/disease2/diseaseanalyser
 	name = "disease analyser"
 	desc = "Analyzes diseases to find out information about them!"
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "analyser"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	var/scanning = 0
 	var/pause = 0

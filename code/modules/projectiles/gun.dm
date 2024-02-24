@@ -39,7 +39,7 @@
 	icon_state = "detective"
 	item_state = "gun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	matter = list(MAT_STEEL = 2000)
 	w_class = ITEMSIZE_NORMAL
 	throwforce = 5
 	throw_speed = 4
@@ -49,6 +49,8 @@
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
+	drop_sound = 'sound/items/drop/gun.ogg'
+	pickup_sound = 'sound/items/pickup/gun.ogg'
 
 	var/automatic = 0
 	var/burst = 1
@@ -76,6 +78,8 @@
 
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
+
+	var/reload_time = 1		//Base reload time in seconds
 
 	//aiming system stuff
 	var/keep_aim = 1 	//1 for keep shooting until aim is lowered
@@ -154,11 +158,11 @@
 		var/mob/living/M = loc
 		if(istype(M))
 			if(M.can_wield_item(src) && src.is_held_twohanded(M))
-				item_state_slots[slot_l_hand_str] = wielded_item_state
-				item_state_slots[slot_r_hand_str] = wielded_item_state
+				LAZYSET(item_state_slots, slot_l_hand_str, wielded_item_state)
+				LAZYSET(item_state_slots, slot_r_hand_str, wielded_item_state)
 			else
-				item_state_slots[slot_l_hand_str] = initial(item_state)
-				item_state_slots[slot_r_hand_str] = initial(item_state)
+				LAZYSET(item_state_slots, slot_l_hand_str, initial(item_state))
+				LAZYSET(item_state_slots, slot_r_hand_str, initial(item_state))
 	..()
 
 
@@ -244,7 +248,7 @@
 			to_chat(user, "<span class='notice'>You ready \the [src]!  Click and drag the target around to shoot.</span>")
 		else//Otherwise just make a new one
 			auto_target = new/obj/screen/auto_target(get_turf(A), src)
-			visible_message("<span class='danger'>\[user] readies the [src]!</span>")
+			visible_message("<span class='danger'>\The [user] readies the [src]!</span>")
 			playsound(src, 'sound/weapons/TargetOn.ogg', 50, 1)
 			to_chat(user, "<span class='notice'>You ready \the [src]!  Click and drag the target around to shoot.</span>")
 			return
@@ -278,7 +282,7 @@
 		verbs += /obj/item/weapon/gun/verb/allow_dna
 		return
 
-	if(A.is_screwdriver())
+	if(A.has_tool_quality(TOOL_SCREWDRIVER))
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			to_chat(user, "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>")
 			playsound(src, A.usesound, 50, 1)
@@ -388,6 +392,9 @@
 			handle_click_empty(user)
 			break
 
+		if(i == 1) // So one burst only makes one message and not 3+ messages.
+			handle_firing_text(user, target, pointblank, reflex)
+
 		process_accuracy(projectile, user, target, i, held_twohanded)
 
 		if(pointblank)
@@ -416,14 +423,6 @@
 		if(one_handed_penalty >= 20)
 			to_chat(user, "<span class='warning'>You struggle to keep \the [src] pointed at the correct position with just one hand!</span>")
 
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs(user,target_for_log,"Fired gun [src.name] ([reflex ? "REFLEX" : "MANUAL"])")
-
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.setMoveCooldown(move_delay)
@@ -438,6 +437,7 @@
 		else
 			set_light(0)
 		//VOREStation Edit End
+	user.hud_used.update_ammo_hud(user, src)
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
 /obj/item/weapon/gun/proc/Fire_userless(atom/target)
@@ -467,7 +467,7 @@
 			P.dispersion = disp
 
 			P.shot_from = src.name
-			P.silenced = silenced
+			P.silenced |= silenced // A silent bullet (e.g., BBs) can be fired quietly from any gun.
 
 			P.old_style_target(target)
 			P.fire()
@@ -530,15 +530,14 @@
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)
 	if (user)
 		user.visible_message("*click click*", "<span class='danger'>*click*</span>")
+		user.hud_used.update_ammo_hud(user, src)
 	else
 		src.visible_message("*click click*")
-	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
+	playsound(src, 'sound/weapons/empty.ogg', 100, 1)
 
-//called after successfully firing
-/obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
-	if(fire_anim)
-		flick(fire_anim, src)
-
+// Called when the user is about to fire.
+// Moved from handle_post_fire() because if using a laser, the message for when someone got shot would show up before the firing message.
+/obj/item/weapon/gun/proc/handle_firing_text(mob/user, atom/target, pointblank = FALSE, reflex = FALSE)
 	if(silenced)
 		to_chat(user, "<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex":""]</span>")
 		for(var/mob/living/L in oview(2,user))
@@ -554,6 +553,19 @@
 			"<span class='warning'>You fire \the [src][pointblank ? " point blank at \the [target]":""][reflex ? " by reflex":""]!</span>",
 			"You hear a [fire_sound_text]!"
 			)
+
+	var/target_for_log
+	if(ismob(target))
+		target_for_log = target
+	else
+		target_for_log = "[target.name]"
+
+	add_attack_logs(user, target_for_log, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
+
+//called after successfully firing
+/obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
+	if(fire_anim)
+		flick(fire_anim, src)
 
 	if(muzzle_flash)
 		set_light(muzzle_flash)
@@ -641,6 +653,12 @@
 		if(!isnull(M.accuracy_dispersion))
 			P.dispersion = max(P.dispersion + M.accuracy_dispersion, 0)
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.species)
+			P.accuracy += H.species.gun_accuracy_mod
+			P.dispersion = max(P.dispersion + H.species.gun_accuracy_dispersion_mod, 0)
+
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
@@ -671,9 +689,9 @@
 		return
 
 	if(silenced)
-		playsound(user, shot_sound, 10, 1)
+		playsound(src, shot_sound, 10, 1)
 	else
-		playsound(user, shot_sound, 50, 1)
+		playsound(src, shot_sound, 50, 1)
 
 //Suicide handling.
 /obj/item/weapon/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
@@ -684,9 +702,9 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = 1
-	M.visible_message("<font color='red'>[user] sticks their gun in their mouth, ready to pull the trigger...</font>")
+	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 40))
-		M.visible_message("<font color='blue'>[user] decided life was worth living</font>")
+		M.visible_message(span_blue("[user] decided life was worth living"))
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
@@ -701,7 +719,7 @@
 		in_chamber.on_hit(M)
 		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp = TRUE)
 			user.death()
 		else if(in_chamber.damage_type == HALLOSS)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
@@ -738,7 +756,7 @@
 	. = ..()
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		to_chat(user, "The fire selector is set to [current_mode.name].")
+		. += "The fire selector is set to [current_mode.name]."
 
 /obj/item/weapon/gun/proc/switch_firemodes(mob/user)
 	if(firemodes.len <= 1)
@@ -750,8 +768,35 @@
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	to_chat(user, "<span class='notice'>\The [src] is now set to [new_mode.name].</span>")
+	user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD
 
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	switch_firemodes(user)
+
+/* TGMC Ammo HUD Port Begin */
+/obj/item/weapon/gun
+	var/hud_enabled = TRUE
+
+/obj/item/weapon/gun/proc/has_ammo_counter()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_type()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_count()
+	return FALSE
+
+/obj/item/weapon/gun/equipped(mob/living/user, slot) // When a gun is equipped to your hands, we'll add the HUD to the user. Pending porting over TGMC guncode where wielding is far more sensible.
+	if(slot == slot_l_hand || slot == slot_r_hand)
+		user.hud_used.add_ammo_hud(user, src)
+	else
+		user.hud_used.remove_ammo_hud(user, src)
+
+	return ..()
+
+/obj/item/weapon/gun/dropped(mob/living/user) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti.
+	user.hud_used.remove_ammo_hud(user, src)
+
+	..()

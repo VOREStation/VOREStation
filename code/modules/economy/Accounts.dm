@@ -9,6 +9,7 @@
 	var/security_level = 0	//0 - auto-identify from worn ID, require only account number
 							//1 - require manual login / account number and pin
 							//2 - require card and manual login
+	var/offmap = FALSE //Should this account be hidden from station consoles?
 
 /datum/transaction
 	var/target_name = ""
@@ -18,10 +19,11 @@
 	var/time = ""
 	var/source_terminal = ""
 
-/proc/create_account(var/new_owner_name = "Default user", var/starting_funds = 0, var/obj/machinery/account_database/source_db)
+/proc/create_account(var/new_owner_name = "Default user", var/starting_funds = 0, var/obj/machinery/account_database/source_db, var/offmap = FALSE)
 
 	//create a new account
 	var/datum/money_account/M = new()
+	M.offmap = offmap
 	M.owner_name = new_owner_name
 	M.remote_access_pin = rand(1111, 111111)
 	M.money = starting_funds
@@ -33,7 +35,7 @@
 	T.amount = starting_funds
 	if(!source_db)
 		//set a random date, time and location some time over the past few decades
-		T.date = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], 25[rand(10,56)]"
+		T.date = "[num2text(rand(1,28))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], 23[rand(12,19)]"
 		T.time = "[rand(0,24)]:[rand(11,59)]"
 		T.source_terminal = "NTGalaxyNet Terminal #[rand(111,1111)]"
 
@@ -67,7 +69,7 @@
 		if(!R.stamped)
 			R.stamped = new
 		R.stamped += /obj/item/weapon/stamp
-		R.overlays += stampoverlay
+		R.add_overlay(stampoverlay)
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account

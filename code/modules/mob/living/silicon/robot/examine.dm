@@ -1,53 +1,46 @@
 /mob/living/silicon/robot/examine(mob/user)
-	var/custom_infix = custom_name ? ", [modtype] [braintype]" : ""
-	..(user, infix = custom_infix)
+	var/custom_infix = custom_name ? ", [modtype][sprite_type ? " [sprite_type]" : ""] [braintype]" : ""
+	. = ..(user, infix = custom_infix)
 
-	var/msg = ""
-	msg += "<span class='warning'>"
 	if (src.getBruteLoss())
 		if (src.getBruteLoss() < 75)
-			msg += "It looks slightly dented.\n"
+			. += "<span class='warning'>It looks slightly dented.</span>"
 		else
-			msg += "<B>It looks severely dented!</B>\n"
+			. += "<span class='warning'><B>It looks severely dented!</B></span>"
 	if (src.getFireLoss())
 		if (src.getFireLoss() < 75)
-			msg += "It looks slightly charred.\n"
+			. += "<span class='warning'>It looks slightly charred.</span>"
 		else
-			msg += "<B>It looks severely burnt and heat-warped!</B>\n"
-	msg += "</span>"
+			. += "<span class='warning'><B>It looks severely burnt and heat-warped!</B></span>"
 
 	if(opened)
-		msg += "<span class='warning'>Its cover is open and the power cell is [cell ? "installed" : "missing"].</span>\n"
+		. += "<span class='warning'>Its cover is open and the power cell is [cell ? "installed" : "missing"].</span>"
 	else
-		msg += "Its cover is closed.\n"
+		. += "Its cover is closed."
 
 	if(!has_power)
-		msg += "<span class='warning'>It appears to be running on backup power.</span>\n"
+		. += "<span class='warning'>It appears to be running on backup power.</span>"
 
 	switch(src.stat)
 		if(CONSCIOUS)
 			if(shell)
-				msg += "It appears to be an [deployed ? "active" : "empty"] AI shell.\n"
+				. += "It appears to be an [deployed ? "active" : "empty"] AI shell."
 			else if(!src.client)
-				msg += "It appears to be in stand-by mode.\n" //afk
-		if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responding.</span>\n"
-		if(DEAD)			msg += "<span class='deadsay'>It looks completely unsalvageable.</span>\n"
-	msg += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit
+				. += "It appears to be in stand-by mode." //afk
+		if(UNCONSCIOUS)		. += "<span class='warning'>It doesn't seem to be responding.</span>"
+		if(DEAD)			. += "<span class='deadsay'>It looks completely unsalvageable.</span>"
 
 	// VOREStation Edit: Start
-	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
+	. += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit
 	// VOREStation Edit: End
 
-	msg += "*---------*"
+	. += "*---------*"
 
-	if(print_flavor_text()) msg += "\n[print_flavor_text()]\n"
+	if(print_flavor_text()) . += "<br>[print_flavor_text()]"
 
 	if (pose)
-		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
+		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
-		msg += "\nIt is [pose]"
+		. += "<br>It is [pose]" //Extra <br> intentional
 
-	to_chat(user,msg)
 	user.showLaws(src)
-	return

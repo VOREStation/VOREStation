@@ -10,18 +10,26 @@
 // UPDATE 06.04.2018
 // The emag thing wasn't working as intended, manually overwrote it.
 
+#define BLAST_DOOR_CRUSH_DAMAGE 40
+#define SHUTTER_CRUSH_DAMAGE 0 // VOREStation Edit - Shutter damage 0.
+
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = null
 	min_force = 20 //minimum amount of force needed to damage the door with a melee weapon
-	var/material/implicit_material
+	var/datum/material/implicit_material
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.
 	var/icon_state_open = null
 	var/icon_state_opening = null
 	var/icon_state_closed = null
 	var/icon_state_closing = null
+	var/open_sound = 'sound/machines/door/blastdooropen.ogg'
+	var/close_sound = 'sound/machines/door/blastdoorclose.ogg'
+	var/damage = BLAST_DOOR_CRUSH_DAMAGE
+	var/multiplier = 1 // The multiplier for how powerful our YEET is.
+	var/istransparent = 0
 
 	closed_layer = ON_WINDOW_LAYER // Above airlocks when closed
 	var/id = 1.0
@@ -59,9 +67,13 @@
 	SSradiation.resistance_cache.Remove(get_turf(src))
 	return
 
-// Has to be in here, comment at the top is older than the emag_act code on doors proper
+// Proc: emag_act()
+// Description: Emag action to allow blast doors to double their yeet distance and speed.
 /obj/machinery/door/blast/emag_act()
-	return -1
+	if(!emagged)
+		emagged = 1
+		multiplier = 2 // Haha emag go yeet
+		return 1
 
 // Blast doors are triggered remotely, so nobody is allowed to physically influence it.
 /obj/machinery/door/blast/allowed(mob/M)
@@ -72,8 +84,9 @@
 // Description: Opens the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_open()
 	src.operating = 1
+	playsound(src, open_sound, 100, 1)
 	flick(icon_state_opening, src)
-	src.density = 0
+	src.density = FALSE
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(0)
@@ -85,22 +98,38 @@
 // Parameters: None
 // Description: Closes the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_close()
+	// Blast door turf checks. We do this before the door closes to prevent it from failing after the door is closed, because obv a closed door will block any adjacency checks.
+	var/turf/T = get_turf(src)
+	var/list/yeet_turfs = T.CardinalTurfs(TRUE)
+
 	src.operating = 1
+	playsound(src, close_sound, 100, 1)
 	src.layer = closed_layer
 	flick(icon_state_closing, src)
-	src.density = 1
+	src.density = TRUE
 	update_nearby_tiles()
 	src.update_icon()
-	src.set_opacity(initial(opacity))
+	if(src.istransparent)
+		src.set_opacity(0)
+	else
+		src.set_opacity(1)
 	sleep(15)
 	src.operating = 0
+
+	// Blast door crushing.
+	for(var/turf/turf in locs)
+		for(var/atom/movable/AM in turf)
+			if(AM.airlock_crush(damage))
+				if(LAZYLEN(yeet_turfs))
+					AM.throw_at(get_edge_target_turf(src, get_dir(src, pick(yeet_turfs))), (rand(1,3) * multiplier), (rand(2,4) * multiplier)) // YEET.
+				take_damage(damage*0.2)
 
 // Proc: force_toggle()
 // Parameters: None
 // Description: Opens or closes the door, depending on current state. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_toggle(var/forced = 0, mob/user as mob)
 	if (forced)
-		playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+		playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 
 	if(src.density)
 		src.force_open()
@@ -150,7 +179,7 @@
 					user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
 				else
 					user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
-					playsound(src.loc, hitsound, 100, 1)
+					playsound(src, hitsound, 100, 1)
 					take_damage(W.force*0.35) //it's a blast door, it should take a while. -Luke
 				return
 
@@ -160,7 +189,7 @@
 			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
 		var/obj/item/stack/P = C
-		if(P.amount < amt)
+		if(P.get_amount() < amt)
 			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 			return
 		to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
@@ -174,13 +203,13 @@
 	else if(src.density && (user.a_intent == I_HURT)) //If we can't pry it open and it's not a weapon.... Eh, let's attack it anyway.
 		var/obj/item/weapon/W = C
 		user.setClickCooldown(user.get_attack_speed(W))
-		if(W.damtype == BRUTE || W.damtype == BURN)
+		if(istype(W) && (W.damtype == BRUTE || W.damtype == BURN))
 			user.do_attack_animation(src)
 			if(W.force < min_force) //No actual non-weapon item shouls have a force greater than the min_force, but let's include this just in case.
 				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
 			else
 				user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
-				playsound(src.loc, hitsound, 100, 1)
+				playsound(src, hitsound, 100, 1)
 				take_damage(W.force*0.15) //If the item isn't a weapon, let's make this take longer than usual to break it down.
 			return
 
@@ -194,13 +223,13 @@
 			if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 15 SECONDS,src))
-					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 					force_open(1)
 			else
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] closed!</span>")
 				if(do_after(user, 5 SECONDS,src))
-					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
 					force_close(1)
 		else
@@ -244,18 +273,19 @@
 		force_open()
 
 	if(autoclose && src.operating && !(stat & BROKEN || stat & NOPOWER))
-		spawn(150)
-			close()
+		addtimer(CALLBACK(src, PROC_REF(close), 15 SECONDS))
 	return 1
 
 // Proc: close()
 // Parameters: None
 // Description: Closes the door. Does necessary checks.
 /obj/machinery/door/blast/close()
+
 	if (src.operating || (stat & BROKEN || stat & NOPOWER))
 		return
-	force_close()
 
+	force_close()
+	return 1
 
 // Proc: repair()
 // Parameters: None
@@ -270,13 +300,13 @@
 // If for some reason this is actually needed for something important, uncomment this.
 /obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
 	if(is_zone)
-		return ATMOS_PASS_YES
+		return TRUE
 	return ..()
 */
 
 // SUBTYPE: Regular
 // Your classical blast door, found almost everywhere.
-obj/machinery/door/blast/regular
+/obj/machinery/door/blast/regular
 	icon_state_open = "pdoor0"
 	icon_state_opening = "pdoorc0"
 	icon_state_closed = "pdoor1"
@@ -284,9 +314,26 @@ obj/machinery/door/blast/regular
 	icon_state = "pdoor1"
 	maxhealth = 600
 
-obj/machinery/door/blast/regular/open
+/obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
-	density = 0
+	density = FALSE
+	opacity = 0
+
+
+// SUBTYPE: Shuttle
+// Slightly weaker, intergrated shutters - open state is hidden from view. Found on fancy_shuttles
+/obj/machinery/door/blast/shuttle
+	name = "shuttle blast doors"
+	icon_state_open = "spdoor0"
+	icon_state_opening = "spdoorc0"
+	icon_state_closed = "spdoor1"
+	icon_state_closing = "spdoorc1"
+	icon_state = "spdoor1"
+	maxhealth = 400
+
+/obj/machinery/door/blast/shuttle/open
+	icon_state = "spdoor0"
+	density = FALSE
 	opacity = 0
 
 // SUBTYPE: Shutters
@@ -297,3 +344,133 @@ obj/machinery/door/blast/regular/open
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
+	damage = SHUTTER_CRUSH_DAMAGE
+
+// SUBTYPE: Transparent
+// Not technically a blast door but operates like one. Allows air and light.
+/obj/machinery/door/blast/gate
+	name = "thick gate"
+	icon_state_open = "tshutter0"
+	icon_state_opening = "tshutterc0"
+	icon_state_closed = "tshutter1"
+	icon_state_closing = "tshutterc1"
+	icon_state = "tshutter1"
+	damage = SHUTTER_CRUSH_DAMAGE
+	maxhealth = 400
+	block_air_zones = 0
+	opacity = 0
+	istransparent = 1
+
+/obj/machinery/door/blast/gate/open
+	icon_state = "tshutter0"
+	density = FALSE
+
+/obj/machinery/door/blast/gate/thin
+	name = "thin gate"
+	icon_state_open = "shutter2_0"
+	icon_state_opening = "shutter2_c0"
+	icon_state_closed = "shutter2_1"
+	icon_state_closing = "shutter2_c1"
+	icon_state = "shutter2_1"
+	maxhealth = 200
+	opacity = 0
+
+/obj/machinery/door/blast/gate/thin/open
+	icon_state = "shutter2_1"
+	density = FALSE
+
+/obj/machinery/door/blast/gate/bars
+	name = "prison bars"
+	icon_state_open = "bars_0"
+	icon_state_opening = "bars_c0"
+	icon_state_closed = "bars_1"
+	icon_state_closing = "bars_c1"
+	icon_state = "bars_1"
+	maxhealth = 600
+	opacity = 0
+
+/obj/machinery/door/blast/gate/bars/open
+	icon_state = "bars_1"
+	density = FALSE
+
+// SUBTYPE: Multi-tile
+// Pod doors ported from Paradise
+
+ // Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell. - Unknown
+ // Wise words. - Bxil
+/obj/machinery/door/blast/multi_tile
+	name = "large blast door"
+
+/obj/machinery/door/blast/multi_tile/Initialize(mapload)
+	. = ..()
+	apply_opacity_to_my_turfs(opacity)
+
+/obj/machinery/door/blast/multi_tile/set_opacity()
+	. = ..()
+	apply_opacity_to_my_turfs(opacity)
+
+/obj/machinery/door/blast/multi_tile/proc/apply_opacity_to_my_turfs(new_opacity)
+	for(var/turf/T in locs)
+		T.set_opacity(new_opacity)
+	update_nearby_tiles()
+
+/obj/machinery/door/blast/multi_tile
+	icon_state_open = "open"
+	icon_state_opening = "opening"
+	icon_state_closed = "closed"
+	icon_state_closing = "closing"
+	icon_state = "closed"
+
+/obj/machinery/door/blast/multi_tile/four_tile_ver_sec
+	icon = 'icons/obj/doors/1x4blast_vert_sec.dmi'
+	bound_height = 128
+	width = 4
+	dir = NORTH
+	autoclose = TRUE
+
+/obj/machinery/door/blast/multi_tile/four_tile_ver
+	icon = 'icons/obj/doors/1x4blast_vert.dmi'
+	bound_height = 128
+	width = 4
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/three_tile_ver
+	icon = 'icons/obj/doors/1x3blast_vert.dmi'
+	bound_height = 96
+	width = 3
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/two_tile_ver
+	icon = 'icons/obj/doors/1x2blast_vert.dmi'
+	bound_height = 64
+	width = 2
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/four_tile_hor_sec
+	icon = 'icons/obj/doors/1x4blast_hor_sec.dmi'
+	bound_width = 128
+	width = 4
+	dir = EAST
+	autoclose = TRUE
+
+/obj/machinery/door/blast/multi_tile/four_tile_hor
+	icon = 'icons/obj/doors/1x4blast_hor.dmi'
+	bound_width = 128
+	width = 4
+	dir = EAST
+
+/obj/machinery/door/blast/multi_tile/three_tile_hor
+	icon = 'icons/obj/doors/1x3blast_hor.dmi'
+	bound_width = 96
+	width = 3
+	dir = EAST
+
+/obj/machinery/door/blast/multi_tile/two_tile_hor
+	icon = 'icons/obj/doors/1x2blast_hor.dmi'
+	bound_width = 64
+	width = 2
+	dir = EAST
+
+
+#undef BLAST_DOOR_CRUSH_DAMAGE
+#undef SHUTTER_CRUSH_DAMAGE

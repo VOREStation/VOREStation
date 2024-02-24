@@ -31,7 +31,7 @@
 	from the pod is not a crewmember.</span>")
 	R.ckey = M.ckey
 	visible_message("<span class='warning'>As \the [src] opens, the eyes of the robot flicker as it is activated.</span>")
-	R.Namepick()
+	R.namepick()
 	log_and_message_admins("successfully opened \a [src] and got a Lost Drone.")
 	..()
 
@@ -57,7 +57,7 @@
 	definiton of 'your gravesite' is where your pod is.</span>")
 	R.ckey = M.ckey
 	visible_message("<span class='warning'>As \the [src] opens, the eyes of the robot flicker as it is activated.</span>")
-	R.Namepick()
+	R.namepick()
 	..()
 
 /obj/structure/ghost_pod/ghost_activated/swarm_drone
@@ -89,7 +89,7 @@
 		qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/swarm_drone/event/Initialize()
-	..()
+	. = ..()
 
 	var/turf/T = get_turf(src)
 	say_dead_object("A <span class='notice'>[drone_class] swarm drone</span> shell is now available in \the [T.loc].", src)

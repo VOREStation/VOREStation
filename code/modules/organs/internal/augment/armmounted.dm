@@ -21,7 +21,7 @@
 	integrated_object_type = /obj/item/weapon/gun/energy/laser/mounted/augment
 
 /obj/item/organ/internal/augment/armmounted/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_FOREARM)
 				organ_tag = O_AUG_R_FOREARM
@@ -66,7 +66,7 @@
 	integrated_object_type = /obj/item/weapon/portable_scanner
 
 /obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_HAND)
 				organ_tag = O_AUG_R_HAND
@@ -86,6 +86,13 @@
 
 	integrated_object_type = /obj/item/weapon/melee/energy/sword
 
+/obj/item/organ/internal/augment/armmounted/hand/blade
+	name = "handblade implant"
+	desc = "A small implant that fits neatly into the hand. It deploys a small, but dangerous blade."
+	icon_state = "augment_handblade"
+
+	integrated_object_type = /obj/item/weapon/melee/augment/blade
+
 /*
  * Shoulder augment.
  */
@@ -103,7 +110,7 @@
 	integrated_object_type = null
 
 /obj/item/organ/internal/augment/armmounted/shoulder/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_UPPERARM)
 				organ_tag = O_AUG_R_UPPERARM
@@ -128,14 +135,22 @@
 		return
 
 	if(aug_cooldown)
-		if(last_activate <= world.time + aug_cooldown)
-			last_activate = world.time
+		if(cooldown <= world.time)
+			cooldown = world.time + aug_cooldown
 		else
 			return
 
 	if(istype(owner, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = owner
 		H.add_modifier(/datum/modifier/melee_surge, 0.75 MINUTES)
+
+/obj/item/organ/internal/augment/armmounted/shoulder/blade
+	name = "armblade implant"
+	desc = "A large implant that fits into a subject's arm. It deploys a large metal blade by some painful means."
+
+	icon_state = "augment_armblade"
+
+	integrated_object_type = /obj/item/weapon/melee/augment/blade/arm
 
 // The toolkit / multi-tool implant.
 
@@ -174,7 +189,7 @@
 		)
 
 /obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize()
-	..()
+	. = ..()
 
 	if(integrated_object)
 		integrated_tools[integrated_object_type] = integrated_object

@@ -71,7 +71,7 @@
 /obj/item/organ/internal/heart/grey/colormatch/slime/process()
 	..()
 	if(!(QDELETED(src)) && src.loc != owner)
-		visible_message("<span class='notice'>\The [src] splatters!</span>")
+		visible_message("<b>\The [src]</b> splatters!")
 		var/turf/T = get_turf(src)
 		var/obj/effect/decal/cleanable/blood/B = new (T)
 
@@ -92,7 +92,7 @@
 	var/strain_regen_cooldown = 5 MINUTES
 
 /obj/item/organ/internal/regennetwork/Initialize()
-	..()
+	. = ..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)
 		if(ishuman(owner))
@@ -120,7 +120,7 @@
 	..()
 
 	if(!(QDELETED(src)) && src.loc != owner)
-		visible_message("<span class='notice'>\The [src] splatters!</span>")
+		visible_message("<b>\The [src]</b> splatters!")
 		var/turf/T = get_turf(src)
 		var/obj/effect/decal/cleanable/blood/B = new (T)
 

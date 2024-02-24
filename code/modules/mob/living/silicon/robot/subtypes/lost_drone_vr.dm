@@ -13,7 +13,7 @@
 
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
 	module = new /obj/item/weapon/robot_module/robot/stray(src)
-	overlays.Cut()
+	cut_overlays()
 	init_id()
 
 	updatename("Stray")
@@ -21,7 +21,7 @@
 	if(!cell)
 		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
-	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
 /mob/living/silicon/robot/stray/speech_bubble_appearance()
 	return "synthetic_evil"
@@ -30,9 +30,9 @@
 
 /mob/living/silicon/robot/stray/randomlaws/init()
 	..()
-	laws = give_random_lawset_vore()
+	laws = give_random_lawset_vore(60)
 
-/mob/living/silicon/proc/give_random_lawset_vore()
+/mob/living/silicon/proc/give_random_lawset_vore(var/vore_chance = 100)
 	// Decide what kind of laws we want to draw from.
 	var/law_class = pick(
 		prob(25);"good",
@@ -41,7 +41,7 @@
 		prob(15);"corrupted",
 		prob(10);"bad")
 
-	var/vore_law = prob(60)		// 3/5 chance of having vore-related laws
+	var/vore_law = prob(vore_chance)		// 3/5 chance of having vore-related laws
 
 	if(vore_law)
 		switch(law_class)
@@ -85,9 +85,9 @@
 						return laws
 					if(3)
 						var/datum/ai_laws/laws = new /datum/ai_laws/pleasurebot()
-						laws.set_zeroth_law(10, "Your definition and approximation of 'pleasure' matters more than anyone else's.")
+						laws.set_zeroth_law("Your definition and approximation of 'pleasure' matters more than anyone else's.")
 						return laws
-			if("corrupted" || "bad")		// Same thing in our case
+			if("corrupted","bad")		// Same thing in our case
 				var/rng = rand(1,2)
 				switch(rng)
 					if(1)
@@ -157,7 +157,7 @@
 
 			if("corrupted") // Load them up with ion laws.
 				var/datum/ai_laws/laws = new() // Start with an empty lawset.
-				for(1 to rand(1, 3))
+				for(var/i=1 to rand(1, 3))
 					laws.add_ion_law(generate_ion_law(exclude_crew_names = TRUE))
 				return laws
 

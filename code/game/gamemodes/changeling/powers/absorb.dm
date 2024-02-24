@@ -3,11 +3,11 @@
 	desc = "Permits us to syphon the DNA from a human. They become one with us, and we become stronger if they were of our kind."
 	ability_icon_state = "ling_absorb_dna"
 	genomecost = 0
-	verbpath = /mob/proc/changeling_absorb_dna
+	verbpath = /mob/living/proc/changeling_absorb_dna
 
 //Absorbs the victim's DNA. Requires a strong grip on the victim.
 //Doesn't cost anything as it's the most basic ability.
-/mob/proc/changeling_absorb_dna()
+/mob/living/proc/changeling_absorb_dna()
 	set category = "Changeling"
 	set name = "Absorb DNA"
 
@@ -67,8 +67,7 @@
 	to_chat(src, "<span class='notice'>We have absorbed [T]!</span>")
 	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
 	to_chat(T, "<span class='danger'>You have been absorbed by the changeling!</span>")
-	if(src.nutrition < 400)
-		src.nutrition = min((src.nutrition + T.nutrition), 400)
+	adjust_nutrition(T.nutrition)
 	changeling.chem_charges += 10
 	if(changeling.readapts <= 0)
 		changeling.readapts = 0 //SANITYYYYYY

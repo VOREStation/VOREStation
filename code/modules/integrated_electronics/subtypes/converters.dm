@@ -97,7 +97,7 @@
 
 /obj/item/integrated_circuit/converter/refdecode/do_work()
 	pull_data()
-	set_pin_data(IC_OUTPUT, 1, weakref(locate(get_pin_data(IC_INPUT, 1))))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(locate(get_pin_data(IC_INPUT, 1))))
 	push_data()
 	activate_pin(2)
 
@@ -361,7 +361,7 @@
 	var/saturation = get_pin_data(IC_INPUT, 2)
 	var/value = get_pin_data(IC_INPUT, 3)
 	if(isnum(hue) && isnum(saturation) && isnum(value))
-		result = HSVtoRGB(hsv(AngleToHue(hue),saturation,value))
+		result = rgb(h = hue, s = saturation, v = value, space = COLORSPACE_HSV)
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()

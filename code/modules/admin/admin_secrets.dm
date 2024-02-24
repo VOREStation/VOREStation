@@ -12,7 +12,7 @@ var/datum/admin_secrets/admin_secrets = new()
 	for(var/datum/admin_secret_category/category in categories)
 		category_assoc[category.type] = category
 
-	for(var/item_type in (typesof(/datum/admin_secret_item) - /datum/admin_secret_item))
+	for(var/item_type in subtypesof(/datum/admin_secret_item))
 		var/datum/admin_secret_item/secret_item = item_type
 		if(!initial(secret_item.name))
 			continue
@@ -59,7 +59,7 @@ var/datum/admin_secrets/admin_secrets = new()
 
 /datum/admin_secret_item/proc/can_execute(var/mob/user)
 	if(can_view(user))
-		if(!warn_before_use || alert("Execute the command '[name]'?", name, "No","Yes") == "Yes")
+		if(!warn_before_use || tgui_alert(usr, "Execute the command '[name]'?", name, list("No","Yes")) == "Yes")
 			return 1
 	return 0
 

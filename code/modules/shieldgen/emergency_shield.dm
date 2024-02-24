@@ -1,12 +1,12 @@
 /obj/machinery/shield
-	name = "Emergency energy shield"
+	name = "emergency energy shield"
 	desc = "An energy shield used to contain hull breaches."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-old"
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 1
-	unacidable = 1
+	anchored = TRUE
+	unacidable = TRUE
 	can_atmos_pass = ATMOS_PASS_NO
 	var/const/max_health = 200
 	var/health = max_health //The shield can only take so much beating (prevents perma-prisons)
@@ -24,7 +24,7 @@
 
 /obj/machinery/shield/proc/check_failure()
 	if (src.health <= 0)
-		visible_message("<span class='notice'>\The [src] dissipates!</span>")
+		visible_message("<b>\The [src]</b> dissipates!")
 		qdel(src)
 		return
 
@@ -35,7 +35,7 @@
 
 /obj/machinery/shield/Destroy()
 	opacity = 0
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	..()
 
@@ -48,7 +48,7 @@
 		src.health -= aforce
 
 	//Play a fitting sound
-	playsound(src.loc, 'sound/effects/EMPulse.ogg', 75, 1)
+	playsound(src, 'sound/effects/EMPulse.ogg', 75, 1)
 
 	check_failure()
 	set_opacity(1)
@@ -93,7 +93,7 @@
 
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
-	visible_message("<span class='notice'><B>\[src] was hit by [AM].</B></span>")
+	visible_message("<span class='danger'>\The [src] was hit by [AM].</span>")
 
 	//Super realistic, resource-intensive, real-time damage calculations.
 	var/tforce = 0
@@ -105,7 +105,7 @@
 	src.health -= tforce
 
 	//This seemed to be the best sound for hitting a force field.
-	playsound(src.loc, 'sound/effects/EMPulse.ogg', 100, 1)
+	playsound(src, 'sound/effects/EMPulse.ogg', 100, 1)
 
 	check_failure()
 
@@ -120,9 +120,9 @@
 	desc = "Used to seal minor hull breaches."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "shieldoff"
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 0
+	anchored = FALSE
 	pressure_resistance = 2*ONE_ATMOSPHERE
 	req_access = list(access_engine)
 	var/const/max_health = 100
@@ -134,7 +134,7 @@
 	var/is_open = 0 //Whether or not the wires are exposed
 	var/locked = 0
 	var/check_delay = 60	//periodically recheck if we need to rebuild a shield
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	var/global/list/blockedturfs =  list(
 		/turf/space,
@@ -153,10 +153,11 @@
 
 	create_shields()
 
-	idle_power_usage = 0
+	var/new_power_usage = 0
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
-		idle_power_usage += shield_tile.shield_idle_power
-	update_use_power(1)
+		new_power_usage += shield_tile.shield_idle_power
+	update_idle_power_usage(new_power_usage)
+	update_use_power(USE_POWER_IDLE)
 
 /obj/machinery/shieldgen/proc/shields_down()
 	if(!active) return 0 //If it's already off, how did this get called?
@@ -166,7 +167,7 @@
 
 	collapse_shields()
 
-	update_use_power(0)
+	update_use_power(USE_POWER_OFF)
 
 /obj/machinery/shieldgen/proc/create_shields()
 	for(var/turf/target_tile in range(2, src))
@@ -205,7 +206,7 @@
 				new_power_usage += shield_tile.shield_idle_power
 
 			if (new_power_usage != idle_power_usage)
-				idle_power_usage = new_power_usage
+				update_idle_power_usage(new_power_usage)
 				use_power(0)
 
 			check_delay = 60
@@ -258,14 +259,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("<font color='blue'>[bicon(src)] [user] deactivated the shield generator.</font>", \
-			"<font color='blue'>[bicon(src)] You deactivate the shield generator.</font>", \
+		user.visible_message(span_blue("\icon[src][bicon(src)] [user] deactivated the shield generator."), \
+			span_blue("\icon[src][bicon(src)] You deactivate the shield generator."), \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("<font color='blue'>[bicon(src)] [user] activated the shield generator.</font>", \
-				"<font color='blue'>[bicon(src)] You activate the shield generator.</font>", \
+			user.visible_message(span_blue("\icon[src][bicon(src)] [user] activated the shield generator."), \
+				span_blue("\icon[src][bicon(src)] You activate the shield generator."), \
 				"You hear heavy droning.")
 			src.shields_up()
 		else
@@ -279,13 +280,13 @@
 		return 1
 
 /obj/machinery/shieldgen/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 100, 1)
 		if(is_open)
-			to_chat(user, "<font color='blue'>You close the panel.</font>")
+			to_chat(user, span_blue("You close the panel."))
 			is_open = 0
 		else
-			to_chat(user, "<font color='blue'>You open the panel and expose the wiring.</font>")
+			to_chat(user, span_blue("You open the panel and expose the wiring."))
 			is_open = 1
 
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
@@ -299,22 +300,22 @@
 				to_chat(user, "<span class='notice'>You repair the [src]!</span>")
 				update_icon()
 
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(locked)
 			to_chat(user, "The bolts are covered, unlocking this would retract the covers.")
 			return
 		if(anchored)
 			playsound(src, W.usesound, 100, 1)
-			to_chat(user, "<font color='blue'>You unsecure the [src] from the floor!</font>")
+			to_chat(user, span_blue("You unsecure the [src] from the floor!"))
 			if(active)
-				to_chat(user, "<font color='blue'>The [src] shuts off!</font>")
+				to_chat(user, span_blue("The [src] shuts off!"))
 				src.shields_down()
-			anchored = 0
+			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
 			playsound(src, W.usesound, 100, 1)
-			to_chat(user, "<font color='blue'>You secure the [src] to the floor!</font>")
-			anchored = 1
+			to_chat(user, span_blue("You secure the [src] to the floor!"))
+			anchored = TRUE
 
 
 	else if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
@@ -322,7 +323,7 @@
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "<font color='red'>Access denied.</font>")
+			to_chat(user, span_red("Access denied."))
 
 	else
 		..()

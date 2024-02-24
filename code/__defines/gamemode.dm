@@ -1,7 +1,16 @@
-#define GAME_STATE_PREGAME		1
-#define GAME_STATE_SETTING_UP	2
-#define GAME_STATE_PLAYING		3
-#define GAME_STATE_FINISHED		4
+// Ticker game states, turns out these are  equivilent to runlevels1
+#define GAME_STATE_INIT			0	// RUNLEVEL_INIT
+#define GAME_STATE_PREGAME		1	// RUNLEVEL_LOBBY
+#define GAME_STATE_SETTING_UP	2	// RUNLEVEL_SETUP
+#define GAME_STATE_PLAYING		3	// RUNLEVEL_GAME
+#define GAME_STATE_FINISHED		4	// RUNLEVEL_POSTGAME
+
+//End game state, to manage round end.
+#define END_GAME_NOT_OVER		1	// Still playing normally
+#define END_GAME_MODE_FINISHED	2	// Mode has finished but game has not, wait for game to end too.
+#define END_GAME_READY_TO_END	3	// Game and Mode have finished, do rounded stuff.
+#define END_GAME_ENDING			4	// Just waiting for ending timer.
+#define END_GAME_DELAYED		5	// Admin has delayed the round.
 
 // Security levels.
 #define SEC_LEVEL_GREEN 0
@@ -26,8 +35,16 @@
 #define BE_RAIDER     0x800
 #define BE_PLANT      0x1000
 #define BE_MUTINEER   0x2000
-#define BE_PAI        0x4000
-#define BE_LOYALIST   0x8000
+#define BE_LOYALIST   0x4000
+#define BE_PAI        0x8000
+//VOREStation Add
+#define BE_LOSTDRONE	0x10000
+#define BE_MAINTPRED	0x20000
+#define BE_MORPH		0x40000
+#define BE_CORGI		0x80000
+#define BE_CURSEDSWORD	0x100000
+#define BE_SURVIVOR		0x200000
+//VOREStation Add End
 
 var/list/be_special_flags = list(
 	"Traitor"          = BE_TRAITOR,
@@ -36,7 +53,6 @@ var/list/be_special_flags = list(
 	"Wizard"           = BE_WIZARD,
 	"Malf AI"          = BE_MALF,
 	"Revolutionary"    = BE_REV,
-	"Loyalist"         = BE_LOYALIST,
 	"Xenomorph"        = BE_ALIEN,
 	"Positronic Brain" = BE_AI,
 	"Cultist"          = BE_CULTIST,
@@ -45,7 +61,16 @@ var/list/be_special_flags = list(
 	"Raider"           = BE_RAIDER,
 	"Diona"            = BE_PLANT,
 	"Mutineer"         = BE_MUTINEER,
-	"pAI"              = BE_PAI
+	"Loyalist"         = BE_LOYALIST,
+	"pAI"              = BE_PAI,
+	//VOREStation Add
+	"Lost Drone"       = BE_LOSTDRONE,
+	"Maint Pred"       = BE_MAINTPRED,
+	"Morph"            = BE_MORPH,
+	"Corgi"            = BE_CORGI,
+	"Cursed Sword"     = BE_CURSEDSWORD,
+	"Ship Survivor"	   = BE_SURVIVOR
+	//VOREStation Add End
 )
 
 
@@ -82,13 +107,13 @@ var/list/be_special_flags = list(
 #define MODE_MONKEY "monkey"
 #define MODE_RENEGADE "renegade"
 #define MODE_REVOLUTIONARY "revolutionary"
-#define MODE_LOYALIST "loyalist"
 #define MODE_MALFUNCTION "malf"
 #define MODE_TRAITOR "traitor"
 #define MODE_AUTOTRAITOR "autotraitor"
 #define MODE_INFILTRATOR "infiltrator"
 #define MODE_THUG "thug"
 #define MODE_STOWAWAY "stowaway"
+#define MODE_SURVIVOR "Shipwreck Survivor"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 120
 
@@ -131,3 +156,27 @@ var/list/be_special_flags = list(
 #define Sp_HOLDVAR	"holdervar"
 
 #define CHANGELING_STASIS_COST 20
+
+//Spell stuff, for Technomancer and Cult.
+//cast_method flags
+#define CAST_USE		1	// Clicking the spell in your hand.
+#define CAST_MELEE		2	// Clicking an atom in melee range.
+#define CAST_RANGED		4	// Clicking an atom beyond melee range.
+#define CAST_THROW		8	// Throwing the spell and hitting an atom.
+#define CAST_COMBINE	16	// Clicking another spell with this spell.
+#define CAST_INNATE		32	// Activates upon verb usage, used for mobs without hands.
+
+//Aspects
+#define ASPECT_FIRE			"fire" 		//Damage over time and raising body-temp.  Firesuits protect from this.
+#define ASPECT_FROST		"frost"		//Slows down the affected, also involves imbedding with icicles.  Winter coats protect from this.
+#define ASPECT_SHOCK		"shock"		//Energy-expensive, usually stuns.  Insulated armor protects from this.
+#define ASPECT_AIR			"air"		//Mostly involves manipulation of atmos, useless in a vacuum.  Magboots protect from this.
+#define ASPECT_FORCE		"force" 	//Manipulates gravity to push things away or towards a location.
+#define ASPECT_TELE			"tele"		//Teleportation of self, other objects, or other people.
+#define ASPECT_DARK			"dark"		//Makes all those photons vanish using magic-- WITH SCIENCE.  Used for sneaky stuff.
+#define ASPECT_LIGHT		"light"		//The opposite of dark, usually blinds, makes holo-illusions, or makes laser lightshows.
+#define ASPECT_BIOMED		"biomed"	//Mainly concerned with healing and restoration.
+#define ASPECT_EMP			"emp"		//Unused now.
+#define ASPECT_UNSTABLE		"unstable"	//Heavily RNG-based, causes instability to the victim.
+#define ASPECT_CHROMATIC	"chromatic"	//Used to combine with other spells.
+#define ASPECT_UNHOLY		"unholy"	//Involves the dead, blood, and most things against divine beings.

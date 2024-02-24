@@ -1,5 +1,6 @@
 /proc/send2irc(var/channel, var/msg)
 	return  // VOREStation Edit - Can't exploit shell if we never call shell!
+	/* Unreachable with above VOREStation Edit
 	if (config.use_irc_bot)
 		if (config.use_node_bot)
 			shell("node bridge.js -h \"[config.irc_bot_host]\" -p \"[config.irc_bot_port]\" -c \"[channel]\" -m \"[escape_shell_arg(msg)]\"")
@@ -17,11 +18,12 @@
 							nudge_lib = "lib/nudge.so"
 
 						spawn(0)
-							call(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[escape_shell_arg(msg)]")
+							LIBCALL(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[escape_shell_arg(msg)]")
 					else
 						spawn(0)
 							ext_python("ircbot_message.py", "[config.comms_password] [config.irc_bot_host] [channel] [escape_shell_arg(msg)]")
 	return
+	*/
 
 /proc/send2mainirc(var/msg)
 	if(config.main_irc)
@@ -37,4 +39,3 @@
 /hook/startup/proc/ircNotify()
 	send2mainirc("Server starting up on byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
 	return 1
-

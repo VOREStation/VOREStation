@@ -19,12 +19,12 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
+		mouse_opacity = 1
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
-		overlays.Cut()
+		cut_overlays()
 		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
@@ -43,9 +43,9 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,"<span class='vwarning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
 		// Do this after the potential vore, so we get the belly
 		update_icon()
@@ -70,15 +70,15 @@
 	//Shifting out
 	else
 		ability_flags |= AB_PHASE_SHIFTED
+		mouse_opacity = 0
 		custom_emote(1,"phases out!")
 		real_name = name
 		name = "Something"
 
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
-		overlays.Cut()
+		cut_overlays()
 		flick("tp_out",src)
 		sleep(5)
 		invisibility = INVISIBILITY_LEVEL_TWO
@@ -123,7 +123,7 @@
 		to_chat(src,"<span class='warning'>Nobody nearby to mend!</span>")
 		return FALSE
 
-	var/mob/living/target = input(src,"Pick someone to mend:","Mend Other") as null|anything in targets
+	var/mob/living/target = tgui_input_list(src,"Pick someone to mend:","Mend Other", targets)
 	if(!target)
 		return FALSE
 

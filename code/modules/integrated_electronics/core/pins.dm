@@ -21,7 +21,7 @@ D [1]/  ||
 /datum/integrated_io
 	var/name = "input/output"
 	var/obj/item/integrated_circuit/holder = null
-	var/weakref/data = null // This is a weakref, to reduce typecasts.  Note that oftentimes numbers and text may also occupy this.
+	var/datum/weakref/data = null // This is a weakref, to reduce typecasts.  Note that oftentimes numbers and text may also occupy this.
 	var/list/linked = list()
 	var/io_type = DATA_CHANNEL
 
@@ -40,14 +40,14 @@ D [1]/  ||
 	holder = null
 	. = ..()
 
-/datum/integrated_io/nano_host()
-	return holder.nano_host()
+/datum/integrated_io/tgui_host()
+	return holder.tgui_host()
 
 
 /datum/integrated_io/proc/data_as_type(var/as_type)
 	if(!isweakref(data))
 		return
-	var/weakref/w = data
+	var/datum/weakref/w = data
 	var/output = w.resolve()
 	return istype(output, as_type) ? output : null
 
@@ -82,7 +82,7 @@ list[](
 		return result
 
 	if(isweakref(input))
-		var/weakref/w = input
+		var/datum/weakref/w = input
 		var/atom/A = w.resolve()
 		//return A ? "([A.name] \[Ref\])" : "(null)" // For refs, we want just the name displayed.
 		return A ? "(\ref[A] \[Ref\])" : "(null)"
@@ -147,19 +147,20 @@ list[](
 		src.linked.Remove(their_io)
 
 /datum/integrated_io/proc/ask_for_data_type(mob/user, var/default, var/list/allowed_data_types = list("string","number","null"))
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in allowed_data_types
+	var/type_to_use = tgui_input_list(usr, "Please choose a type to use.","[src] type setting", allowed_data_types)
 	if(!holder.check_interactivity(user))
 		return
 
 	var/new_data = null
 	switch(type_to_use)
 		if("string")
-			new_data = input("Now type in a string.","[src] string writing", istext(default) ? default : null) as null|text
+			new_data = tgui_input_text(usr, "Now type in a string.","[src] string writing", istext(default) ? default : null, MAX_NAME_LEN)
+			new_data = sanitize(new_data,MAX_NAME_LEN)
 			if(istext(new_data) && holder.check_interactivity(user) )
 				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
 				return new_data
 		if("number")
-			new_data = input("Now type in a number.","[src] number writing", isnum(default) ? default : null) as null|num
+			new_data = tgui_input_number(usr, "Now type in a number.","[src] number writing", isnum(default) ? default : null, MAX_NAME_LEN)
 			if(isnum(new_data) && holder.check_interactivity(user) )
 				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
 				return new_data

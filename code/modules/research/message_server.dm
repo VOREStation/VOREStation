@@ -52,9 +52,10 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	icon_state = "server"
 	name = "Messaging Server"
 	desc = "Facilitates both PDA messages and request console functions."
-	density = 1
-	anchored = 1.0
-	use_power = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
 
@@ -82,9 +83,8 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	return
 
 /obj/machinery/message_server/examine(mob/user, distance, infix, suffix)
-	if(..())
-		to_chat(user, "It appears to be [active ? "online" : "offline"].")
-	
+	. = ..()
+	. += "It appears to be [active ? "online" : "offline"]."
 
 /obj/machinery/message_server/proc/GenerateKey()
 	//Feel free to move to Helpers.
@@ -114,15 +114,15 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 /obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
 	rc_msgs += new/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
-	var/authmsg = "[message]<br>"
+	var/authmsg = "[message]\n"
 	if (id_auth)
-		authmsg += "[id_auth]<br>"
+		authmsg += "([id_auth])\n"
 	if (stamp)
-		authmsg += "[stamp]<br>"
+		authmsg += "([stamp])\n"
 	for (var/obj/machinery/requests_console/Console in allConsoles)
 		if (ckey(Console.department) == ckey(recipient))
 			if(Console.inoperable())
-				Console.message_log += "<B>Message lost due to console failure.</B><BR>Please contact [station_name()] system adminsitrator or AI for technical assistance.<BR>"
+				Console.message_log += list(list("Message lost due to console failure.","Please contact [station_name()] system adminsitrator or AI for technical assistance."))
 				continue
 			if(Console.newmessagepriority < priority)
 				Console.newmessagepriority = priority
@@ -130,20 +130,20 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			switch(priority)
 				if(2)
 					if(!Console.silent)
-						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5)
-					Console.message_log += "<B><FONT color='red'>High Priority message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></FONT></B><BR>[authmsg]"
+						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
+						Console.audible_message(text("\icon[Console][bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5, runemessage = "beep! beep!")
+					Console.message_log += list(list("High Priority message from [sender]", "[authmsg]"))
 				else
 					if(!Console.silent)
-						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4)
-					Console.message_log += "<B>Message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></B><BR>[authmsg]"
+						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
+						Console.audible_message(text("\icon[Console][bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4, runemessage = "beep beep")
+					Console.message_log += list(list("Message from [sender]", "[authmsg]"))
 			Console.set_light(2)
 
 
 /obj/machinery/message_server/attack_hand(user as mob)
 //	to_chat(user, "<font color='blue'>There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays.</font>")
-	to_chat(user, "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]")
+	to_chat(user, "<span class='filter_notice'>You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"].</span>")
 	active = !active
 	update_icon()
 
@@ -155,7 +155,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
 		user.drop_item()
 		qdel(O)
-		to_chat(user, "You install additional memory and processors into message server. Its filtering capabilities been enhanced.")
+		to_chat(user, "<span class='filter_notice'>You install additional memory and processors into message server. Its filtering capabilities been enhanced.</span>")
 	else
 		..(O, user)
 
@@ -238,9 +238,10 @@ var/obj/machinery/blackbox_recorder/blackbox
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
 	desc = "Records all radio communications, as well as various other information in case of the worst."
-	density = 1
-	anchored = 1.0
-	use_power = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
 	var/list/messages = list()		//Stores messages of non-standard frequencies
@@ -365,13 +366,13 @@ var/obj/machinery/blackbox_recorder/blackbox
 		query_insert.Execute()
 
 // Sanitize inputs to avoid SQL injection attacks
-proc/sql_sanitize_text(var/text)
+/proc/sql_sanitize_text(var/text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
 	text = replacetext(text, "&", "")
 	return text
 
-proc/feedback_set(var/variable,var/value)
+/proc/feedback_set(var/variable,var/value)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -382,7 +383,7 @@ proc/feedback_set(var/variable,var/value)
 
 	FV.set_value(value)
 
-proc/feedback_inc(var/variable,var/value)
+/proc/feedback_inc(var/variable,var/value)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -393,7 +394,7 @@ proc/feedback_inc(var/variable,var/value)
 
 	FV.inc(value)
 
-proc/feedback_dec(var/variable,var/value)
+/proc/feedback_dec(var/variable,var/value)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -404,7 +405,7 @@ proc/feedback_dec(var/variable,var/value)
 
 	FV.dec(value)
 
-proc/feedback_set_details(var/variable,var/details)
+/proc/feedback_set_details(var/variable,var/details)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -416,7 +417,7 @@ proc/feedback_set_details(var/variable,var/details)
 
 	FV.set_details(details)
 
-proc/feedback_add_details(var/variable,var/details)
+/proc/feedback_add_details(var/variable,var/details)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -427,3 +428,6 @@ proc/feedback_add_details(var/variable,var/details)
 	if(!FV) return
 
 	FV.add_details(details)
+
+#undef MESSAGE_SERVER_SPAM_REJECT
+#undef MESSAGE_SERVER_DEFAULT_SPAM_LIMIT

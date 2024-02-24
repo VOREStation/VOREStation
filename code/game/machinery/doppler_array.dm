@@ -1,9 +1,9 @@
 var/list/doppler_arrays = list()
 
 /obj/machinery/doppler_array
-	anchored = 1
+	anchored = TRUE
 	name = "tachyon-doppler array"
-	density = 1
+	density = TRUE
 	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array."
 	dir = NORTH
 
@@ -41,14 +41,11 @@ var/list/doppler_arrays = list()
 	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [took]seconds."
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='game say'><span class='name'>[src]</span> states coldly, \"[message]\"</span>",2)
+		O.show_message("<span class='npcsay'><span class='name'>[src]</span> states coldly, \"[message]\"</span>",2)
 
 /obj/machinery/doppler_array/power_change()
 	..()
-	if(stat & BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
+	if(!(stat & NOPOWER))
+		icon_state = initial(icon_state)
 	else
-		if(!(stat & NOPOWER))
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = "[initial(icon_state)]_off"

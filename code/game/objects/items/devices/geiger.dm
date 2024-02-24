@@ -13,7 +13,6 @@
 	var/datum/looping_sound/geiger/soundloop
 
 /obj/item/device/geiger/Initialize()
-	START_PROCESSING(SSobj, src)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
@@ -33,9 +32,9 @@
 	update_sound()
 
 /obj/item/device/geiger/examine(mob/user)
-	..(user)
+	. = ..()
 	get_radiation()
-	to_chat(user, "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>")
+	. += "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>"
 
 /obj/item/device/geiger/rad_act(amount)
 	if(!amount || !scanning)
@@ -60,9 +59,13 @@
 
 /obj/item/device/geiger/attack_self(var/mob/user)
 	scanning = !scanning
+	if(scanning)
+		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	update_sound()
-	to_chat(user, "<span class='notice'>[bicon(src)] You switch [scanning ? "on" : "off"] \the [src].</span>")
+	to_chat(user, "<span class='notice'>\icon[src][bicon(src)] You switch [scanning ? "on" : "off"] \the [src].</span>")
 
 /obj/item/device/geiger/update_icon()
 	if(!scanning)
@@ -82,3 +85,84 @@
 			icon_state = "geiger_on_4"
 		if(RAD_LEVEL_VERY_HIGH to INFINITY)
 			icon_state = "geiger_on_5"
+
+///////////////////////
+
+/obj/item/device/geiger/wall
+	name = "mounted geiger counter"
+	desc = "A wall mounted device used for detecting and measuring radiation in an area."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "geiger_wall"
+	item_state = "geiger_wall"
+	anchored = TRUE
+	scanning = 1
+	radiation_count = 0
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
+	w_class = ITEMSIZE_LARGE
+	flags = NOBLOODY
+	var/circuit = /obj/item/weapon/circuitboard/geiger
+	var/number = 0
+	var/last_tick //used to delay the powercheck
+	var/wiresexposed = 0
+
+/obj/item/device/geiger/wall/Initialize()
+	START_PROCESSING(SSobj, src)
+	soundloop = new(list(src), FALSE)
+	return ..()
+
+/obj/item/device/geiger/wall/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	QDEL_NULL(soundloop)
+	return ..()
+
+/obj/item/device/geiger/wall/attack_self(var/mob/user)
+	scanning = !scanning
+	update_icon()
+	update_sound()
+	to_chat(user, "<span class='notice'>\icon[src] You switch [scanning ? "on" : "off"] \the [src].</span>")
+
+/obj/item/device/geiger/wall/update_icon()
+	if(!scanning)
+		icon_state = "geiger_wall-p"
+		return 1
+
+	switch(radiation_count)
+		if(null)
+			icon_state = "geiger_level_1"
+		if(-INFINITY to RAD_LEVEL_LOW)
+			icon_state = "geiger_level_1"
+		if(RAD_LEVEL_LOW to RAD_LEVEL_MODERATE)
+			icon_state = "geiger_level_2"
+		if(RAD_LEVEL_MODERATE to RAD_LEVEL_HIGH)
+			icon_state = "geiger_level_3"
+		if(RAD_LEVEL_HIGH to RAD_LEVEL_VERY_HIGH)
+			icon_state = "geiger_level_4"
+		if(RAD_LEVEL_VERY_HIGH to INFINITY)
+			icon_state = "geiger_level_5"
+
+/obj/item/device/geiger/wall/attack_ai(mob/user as mob)
+	src.add_fingerprint(user)
+	spawn (0)
+		attack_self(user)
+
+/obj/item/device/geiger/wall/attack_hand(mob/user as mob)
+	src.add_fingerprint(user)
+	spawn (0)
+		attack_self(user)
+
+/obj/item/device/geiger/wall/north
+	pixel_y = 28
+	dir = SOUTH
+
+/obj/item/device/geiger/wall/south
+	pixel_y = -28
+	dir = NORTH
+
+/obj/item/device/geiger/wall/east
+	pixel_x = 28
+	dir = EAST
+
+/obj/item/device/geiger/wall/west
+	pixel_x = -28
+	dir = WEST

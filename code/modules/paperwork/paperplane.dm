@@ -35,15 +35,14 @@
 	return ..()
 
 /obj/item/weapon/paperplane/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/list/stamped = internalPaper.stamped
 	if(!stamped)
 		stamped = new
 	else if(stamped)
-		for(var/S in stamped)
-			var/obj/item/weapon/stamp/ = S
+		for(var/obj/item/weapon/stamp/stamp as anything in stamped)
 			var/image/stampoverlay = image('icons/obj/bureaucracy.dmi', "paperplane_[initial(stamp.icon_state)]")
-			overlays += stampoverlay
+			add_overlay(stampoverlay)
 
 /obj/item/weapon/paperplane/attack_self(mob/user)
 	to_chat(user, "<span class='notice'>You unfold [src].</span>")

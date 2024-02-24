@@ -2,14 +2,15 @@ var/global/list/sparring_attack_cache = list()
 
 //Species unarmed attacks
 /datum/unarmed_attack
+	var/attack_name = "fist"
 	var/attack_verb = list("attack")	// Empty hand hurt intent verb.
 	var/attack_noun = list("fist")
 	var/damage = 0						// Extra empty hand attack damage.
 	var/attack_sound = "punch"
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
 	var/shredding = 0 // Calls the old attack_alien() behavior on objects/mobs when on harm intent.
-	var/sharp = 0
-	var/edge = 0
+	var/sharp = FALSE
+	var/edge = FALSE
 
 	var/damage_type = BRUTE
 	var/sparring_variant_type = /datum/unarmed_attack/light_strike
@@ -91,7 +92,7 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/proc/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message("<span class='warning'>[user] [pick(attack_verb)] [target] in the [affecting.name]!</span>")
-	playsound(user.loc, attack_sound, 25, 1, -1)
+	playsound(user, attack_sound, 25, 1, -1)
 
 /datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
 	var/obj/item/organ/internal/eyes/eyes = target.internal_organs_by_name[O_EYES]
@@ -109,12 +110,13 @@ var/global/list/sparring_attack_cache = list()
 	return FALSE //return true if the unarmed override prevents further attacks
 
 /datum/unarmed_attack/bite
+	attack_name = "bite"
 	attack_verb = list("bit")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 0
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 
 /datum/unarmed_attack/bite/event1
 
@@ -127,6 +129,7 @@ var/global/list/sparring_attack_cache = list()
 	return TRUE
 
 /datum/unarmed_attack/punch
+	attack_name = "punch"
 	attack_verb = list("punched")
 	attack_noun = list("fist")
 	eye_attack_text = "fingers"
@@ -181,6 +184,7 @@ var/global/list/sparring_attack_cache = list()
 		user.visible_message("<span class='danger'>[user] [pick("punched", "threw a punch against", "struck", "slammed [TU.his] [pick(attack_noun)] into")] [target]'s [organ]!</span>") //why do we have a separate set of verbs for lying targets?
 
 /datum/unarmed_attack/kick
+	attack_name = "kick"
 	attack_verb = list("kicked", "kicked", "kicked", "kneed")
 	attack_noun = list("kick", "kick", "kick", "knee strike")
 	attack_sound = "swing_hit"
@@ -224,6 +228,7 @@ var/global/list/sparring_attack_cache = list()
 		if(5)		user.visible_message("<span class='danger'>[user] landed a strong [pick(attack_noun)] against [target]'s [organ]!</span>")
 
 /datum/unarmed_attack/stomp
+	attack_name = "stomp"
 	attack_verb = null
 	attack_noun = list("stomp")
 	attack_sound = "swing_hit"
@@ -269,11 +274,12 @@ var/global/list/sparring_attack_cache = list()
 		if(5)		user.visible_message("<span class='danger'>[pick("[user] landed a powerful stomp on", "[user] stomped down hard on", "[user] slammed [TU.his] [shoes ? copytext(shoes.name, 1, -1) : "foot"] down hard onto")] [target]'s [organ]!</span>") //Devastated lol. No. We want to say that the stomp was powerful or forceful, not that it /wrought devastation/
 
 /datum/unarmed_attack/light_strike
+	attack_name = "light hit"
 	attack_noun = list("tap","light strike")
 	attack_verb = list("tapped", "lightly struck")
 	damage = 3
 	damage_type = AGONY
 	shredding = 0
 	damage = 0
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE

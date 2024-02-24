@@ -7,7 +7,6 @@
 
 /obj/machinery/telecomms/relay/preset/station
 	id = "Station Relay"
-	listening_level = 1
 	autolinkers = list("s_relay")
 
 /obj/machinery/telecomms/relay/preset/telecomms
@@ -28,7 +27,7 @@
 	id = "CentCom Relay"
 	hide = 1
 	toggled = 1
-	//anchored = 1
+	//anchored = TRUE
 	//use_power = 0
 	//idle_power_usage = 0
 	produces_heat = 0
@@ -59,17 +58,17 @@
 	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ)
 
 	//Common and other radio frequencies for people to freely use
-	New()
-		for(var/i = PUBLIC_LOW_FREQ, i < PUBLIC_HIGH_FREQ, i += 2)
-			freq_listening |= i
-		..()
+/obj/machinery/telecomms/receiver/preset_right/New()
+	for(var/i = PUBLIC_LOW_FREQ, i < PUBLIC_HIGH_FREQ, i += 2)
+		freq_listening |= i
+	..()
 
 /obj/machinery/telecomms/receiver/preset_cent
 	id = "CentCom Receiver"
 	network = "tcommsat"
 	produces_heat = 0
 	autolinkers = list("receiverCent")
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, SYND_FREQ)
 
 
 //Buses
@@ -108,7 +107,7 @@
 /obj/machinery/telecomms/bus/preset_cent
 	id = "CentCom Bus"
 	network = "tcommsat"
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, SYND_FREQ)
 	produces_heat = 0
 	autolinkers = list("processorCent", "centcom")
 
@@ -201,7 +200,7 @@
 
 /obj/machinery/telecomms/server/presets/centcomm
 	id = "CentCom Server"
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, SYND_FREQ)
 	produces_heat = 0
 	autolinkers = list("centcom")
 

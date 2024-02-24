@@ -5,6 +5,10 @@
 	var/b_hair = 0
 	var/h_style = "Bald"
 
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
+	var/grad_style = "none"
 	//Facial hair colour and style
 	var/r_facial = 0
 	var/g_facial = 0
@@ -32,6 +36,8 @@
 	var/b_synth							//Same as above
 	var/synth_markings = 0				//Enables/disables markings on synth parts.
 
+	var/digitigrade = 0 // 0 = no digi, 1 = default, 2+ = digi styles... (Not used yet)
+
 	//var/size_multiplier = 1 //multiplier for the mob's icon size //VOREStation Edit (Moved to /mob/living)
 	var/damage_multiplier = 1 //multiplies melee combat damage
 	var/icon_update = 1 //whether icon updating shall take place
@@ -39,8 +45,11 @@
 	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)
+	var/bday_month = 0	//Character birth month
+	var/bday_day = 0	//Character birthday day
+
 	var/b_type = "A+"	//Player's bloodtype
-	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso)
+	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso). Also holds the datum for the type of robolimb.
 
 	var/list/all_underwear = list()
 	var/list/all_underwear_metadata = list()
@@ -50,6 +59,7 @@
 
 	// General information
 	var/home_system = ""
+	var/birthplace = ""
 	var/citizenship = ""
 	var/personal_faction = ""
 	var/religion = ""
@@ -77,11 +87,9 @@
 
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
-	var/miming = null //Toggle for the mime's abilities.
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
-	var/list/bad_external_organs = list()// organs we check until they are good.
 
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
@@ -112,3 +120,44 @@
 	var/mob/living/carbon/human/vr_link = null
 
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
+
+	inventory_panel_type = /datum/inventory_panel/human
+	butchery_loot = list(/obj/item/stack/animalhide/human = 1)
+
+	// Horray Furries!
+	var/datum/sprite_accessory/ears/ear_style = null
+	var/r_ears = 30
+	var/g_ears = 30
+	var/b_ears = 30
+	var/r_ears2 = 30
+	var/g_ears2 = 30
+	var/b_ears2 = 30
+	var/r_ears3 = 30 //Trust me, we could always use more colour. No japes.
+	var/g_ears3 = 30
+	var/b_ears3 = 30
+	var/datum/sprite_accessory/tail/tail_style = null
+	var/r_tail = 30
+	var/g_tail = 30
+	var/b_tail = 30
+	var/r_tail2 = 30
+	var/g_tail2 = 30
+	var/b_tail2 = 30
+	var/r_tail3 = 30
+	var/g_tail3 = 30
+	var/b_tail3 = 30
+	var/datum/sprite_accessory/wing/wing_style = null
+	var/r_wing = 30
+	var/g_wing = 30
+	var/b_wing = 30
+	var/r_wing2 = 30
+	var/g_wing2 = 30
+	var/b_wing2 = 30
+	var/r_wing3 = 30
+	var/g_wing3 = 30
+	var/b_wing3 = 30
+
+	var/wagging = 0 //UGH.
+	var/flapping = 0
+
+	// Custom Species Name
+	var/custom_species

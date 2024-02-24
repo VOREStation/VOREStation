@@ -1,14 +1,15 @@
 /mob
-	density = 1
+	density = TRUE
 	layer = MOB_LAYER
 	plane = MOB_PLANE
 	animate_movement = 2
-	flags = PROXMOVE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	///when this be added to vis_contents of something it inherit something.plane, important for visualisation of mob in openspace.
+	vis_flags = VIS_INHERIT_PLANE
 	var/datum/mind/mind
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
-	var/move_delay = null // For movement speed delays.
-	var/next_move = null // For click delay, despite the misleading name.
+	var/next_move = null // world.time when mob is next allowed to self-move.
 
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
@@ -17,16 +18,10 @@
 	var/obj/screen/pullin = null
 	var/obj/screen/purged = null
 	var/obj/screen/internals = null
-	var/obj/screen/oxygen = null
 	var/obj/screen/i_select = null
 	var/obj/screen/m_select = null
-	var/obj/screen/toxin = null
-	var/obj/screen/fire = null
-	var/obj/screen/bodytemp = null
 	var/obj/screen/healths = null
 	var/obj/screen/throw_icon = null
-	var/obj/screen/nutrition_icon = null
-	var/obj/screen/pressure = null
 	var/obj/screen/pain = null
 	var/obj/screen/gun/item/item_use_icon = null
 	var/obj/screen/gun/radio/radio_use_icon = null
@@ -36,6 +31,7 @@
 	var/obj/screen/ling/chems/ling_chem_display = null
 	var/obj/screen/wizard/energy/wiz_energy_display = null
 	var/obj/screen/wizard/instability/wiz_instability_display = null
+	var/obj/screen/autowhisper_display = null
 
 	var/datum/plane_holder/plane_holder = null
 	var/list/vis_enabled = null		// List of vision planes that should be graphically visible (list of their VIS_ indexes).
@@ -91,13 +87,15 @@
 	var/resting = 0			//Carbon
 	var/lying = 0
 	var/lying_prev = 0
+	var/is_shifted = FALSE // VoreStation Edit; pixel shifting
 	var/canmove = 1
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
-	var/unacidable = 0
+	var/unacidable = FALSE
 	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
 	var/list/languages = list()         // For speaking/listening.
+	var/list/language_keys = list()		// List of language keys indexing languages
 	var/species_language = null			// For species who want reset to use a specified default.
 	var/only_species_language  = 0		// For species who can only speak their default and no other languages. Does not affect understanding.
 	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
@@ -112,14 +110,11 @@
 	var/bodytemperature = 310.055	//98.7 F
 	var/drowsyness = 0.0//Carbon
 	var/charges = 0.0
-	var/nutrition = 400.0//Carbon
 
-	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/paralysis = 0.0
 	var/stunned = 0.0
 	var/weakened = 0.0
 	var/losebreath = 0.0//Carbon
-	var/intent = null//Living
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living
 	var/m_int = null//Living
@@ -179,7 +174,7 @@
 	var/mob/living/carbon/LAssailant = null
 
 //Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
-	var/spell/list/spell_list = list()
+	var/list/spell/spell_list = list()
 
 //Changlings, but can be used in other modes
 //	var/obj/effect/proc_holder/changpower/list/power_list = list()
@@ -191,6 +186,7 @@
 	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
 	var/area/lastarea = null
+	var/lastareachange = null
 
 	var/digitalcamo = 0 // Can they be tracked by the AI?
 
@@ -211,7 +207,7 @@
 	var/mob/teleop = null
 
 	var/turf/listed_turf = null  	//the current turf being examined in the stat panel
-	var/list/shouldnt_see = list()	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
+	var/list/shouldnt_see = list(/mob/observer/eye)	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
 
 	var/list/active_genes=list()
 	var/mob_size = MOB_MEDIUM
@@ -223,6 +219,9 @@
 
 	var/typing
 	var/obj/effect/decal/typing_indicator
+	var/obj/effect/decal/typing_indicator_active
+	var/cur_typing_indicator
+	var/custom_speech_bubble = "default"
 
 	var/low_priority = FALSE //Skip processing life() if there's just no players on this Z-level
 
@@ -233,3 +232,9 @@
 	var/attack_icon_state //State for above
 
 	var/registered_z
+
+	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+
+	var/list/progressbars = null //VOREStation Edit
+
+	var/datum/focus //What receives our keyboard inputs. src by default

@@ -29,11 +29,11 @@
 		var/mob/living/M = src.loc
 		M.say(pick(heard_talk))
 
-/obj/item/clothing/mask/gas/poltergeist/hear_talk(mob/M as mob, text)
+/obj/item/clothing/mask/gas/poltergeist/hear_talk(mob/M, list/message_pieces, verb)
 	..()
 	if(heard_talk.len > max_stored_messages)
 		heard_talk.Remove(pick(heard_talk))
-	heard_talk.Add(text)
+	heard_talk.Add(multilingual_to_message(message_pieces))
 	if(istype(src.loc, /mob/living) && world.time - last_twitch > 50)
 		last_twitch = world.time
 
@@ -77,29 +77,29 @@
 				charges += 0.25
 			else
 				charges += 1
-				playsound(src.loc, 'sound/effects/splat.ogg', 50, 1, -3)
+				playsound(src, 'sound/effects/splat.ogg', 50, 1, -3)
 
 	//use up stored charges
 	if(charges >= 10)
 		charges -= 10
-		new /obj/effect/spider/eggcluster(pick(view(1,src)))
+		new /obj/effect/spider/eggcluster(pick(RANGE_TURFS(1,src)))
 
 	if(charges >= 3)
 		if(prob(5))
 			charges -= 1
 			var/spawn_type = pick(/mob/living/simple_mob/creature)
-			new spawn_type(pick(view(1,src)))
-			playsound(src.loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
+			new spawn_type(pick(RANGE_TURFS(1,src)))
+			playsound(src, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
 
 	if(charges >= 1)
 		if(shadow_wights.len < 5 && prob(5))
 			shadow_wights.Add(new /obj/effect/shadow_wight(src.loc))
-			playsound(src.loc, 'sound/effects/ghost.ogg', 50, 1, -3)
+			playsound(src, 'sound/effects/ghost.ogg', 50, 1, -3)
 			charges -= 0.1
 
 	if(charges >= 0.1)
 		if(prob(5))
-			src.visible_message("<font color='red'>[bicon(src)] [src]'s eyes glow ruby red for a moment!</font>")
+			src.visible_message(span_red("\icon[src][bicon(src)] [src]'s eyes glow ruby red for a moment!"))
 			charges -= 0.1
 
 	//check on our shadow wights
@@ -116,25 +116,25 @@
 		else if(get_dist(W, src) > 10)
 			shadow_wights.Remove(wight_check_index)
 
-/obj/item/weapon/vampiric/hear_talk(mob/M as mob, text)
+/obj/item/weapon/vampiric/hear_talk(mob/M, list/message_pieces, verb)
 	..()
-	if(world.time - last_bloodcall >= bloodcall_interval && M in view(7, src))
+	if(world.time - last_bloodcall >= bloodcall_interval && (M in view(7, src)))
 		bloodcall(M)
 
 /obj/item/weapon/vampiric/proc/bloodcall(var/mob/living/carbon/human/M)
 	last_bloodcall = world.time
 	if(istype(M))
-		playsound(src.loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
+		playsound(src, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
 		nearby_mobs.Add(M)
 
 		var/target = pick(M.organs_by_name)
 		M.apply_damage(rand(5, 10), BRUTE, target)
-		to_chat(M, "<font color='red'>The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out.</font>")
+		to_chat(M, span_red("The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out."))
 		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(M.loc)
 		B.target_turf = pick(range(1, src))
 		B.blood_DNA = list()
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		M.vessel.remove_reagent("blood",rand(25,50))
+		M.remove_blood(rand(25,50))
 
 //animated blood 2 SPOOKY
 /obj/effect/decal/cleanable/blood/splatter/animated
@@ -170,7 +170,7 @@
 	name = "shadow wight"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "shade"
-	density = 1
+	density = TRUE
 
 /obj/effect/shadow_wight/New()
 	START_PROCESSING(SSobj, src)
@@ -180,7 +180,7 @@
 		src.loc = get_turf(pick(orange(1,src)))
 		var/mob/living/carbon/M = locate() in src.loc
 		if(M)
-			playsound(src.loc, pick('sound/hallucinations/behind_you1.ogg',\
+			playsound(src, pick('sound/hallucinations/behind_you1.ogg',\
 			'sound/hallucinations/behind_you2.ogg',\
 			'sound/hallucinations/i_see_you1.ogg',\
 			'sound/hallucinations/i_see_you2.ogg',\
@@ -194,10 +194,10 @@
 			'sound/hallucinations/turn_around1.ogg',\
 			'sound/hallucinations/turn_around2.ogg',\
 			), 50, 1, -3)
-			M.sleeping = max(M.sleeping,rand(5,10))
+			M.Sleeping(rand(5, 10))
 			src.loc = null
 	else
 		STOP_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/Bump(var/atom/obstacle)
-	to_chat(obstacle, "<font color='red'>You feel a chill run down your spine!</font>")
+	to_chat(obstacle, span_red("You feel a chill run down your spine!"))

@@ -24,12 +24,13 @@
 	return selected
 
 #define CLONE_BIOMASS 30 //VOREstation Edit
+#define MINIMUM_HEAL_LEVEL 40
 
 /obj/machinery/clonepod
 	name = "cloning pod"
 	desc = "An electronically-lockable pod for growing organic tissue."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/clonepod
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
@@ -46,17 +47,12 @@
 	var/list/containers = list()	// Beakers for our liquid biomass
 	var/container_limit = 3			// How many beakers can the machine hold?
 
-/obj/machinery/clonepod/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
+	var/speed_coeff
+	var/efficiency
 
-	RefreshParts()
+/obj/machinery/clonepod/Initialize()
+	. = ..()
+	default_apply_parts()
 	update_icon()
 
 /obj/machinery/clonepod/attack_ai(mob/user as mob)
@@ -209,8 +205,8 @@
 			return
 
 		else if((occupant.health >= heal_level || occupant.health == occupant.getMaxHealth()) && (!eject_wait))
-			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-			audible_message("\The [src] signals that the cloning process is complete.")
+			playsound(src, 'sound/machines/medbayscanner1.ogg', 50, 1)
+			audible_message("\The [src] signals that the cloning process is complete.", runemessage = "ding")
 			connected_message("Cloning Process Complete.")
 			locked = 0
 			go_out()
@@ -254,16 +250,16 @@
 			user.drop_item()
 			W.forceMove(src)
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(locked && (anchored || occupant))
 			to_chat(user, "<span class='warning'>Can not do that while [src] is in use.</span>")
 		else
 			if(anchored)
-				anchored = 0
+				anchored = FALSE
 				connected.pods -= src
 				connected = null
 			else
-				anchored = 1
+				anchored = TRUE
 			playsound(src, W.usesound, 100, 1)
 			if(anchored)
 				user.visible_message("[user] secures [src] to the floor.", "You secure [src] to the floor.")
@@ -299,13 +295,16 @@
 
 /obj/machinery/clonepod/RefreshParts()
 	..()
-	var/rating = 0
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/scanning_module) || istype(P, /obj/item/weapon/stock_parts/manipulator))
-			rating += P.rating
+	speed_coeff = 0
+	efficiency = 0
+	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
+		efficiency += S.rating
+	for(var/obj/item/weapon/stock_parts/manipulator/P in component_parts)
+		speed_coeff += P.rating
+	heal_level = max(min((efficiency * 15) + 10, 100), MINIMUM_HEAL_LEVEL)
 
-	heal_level = rating * 10 - 20
-	heal_rate = round(rating / 4)
+/obj/machinery/clonepod/proc/get_completion()
+	. = (100 * ((occupant.health + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/verb/eject()
 	set name = "Eject Cloner"
@@ -466,6 +465,7 @@
 
 /obj/item/weapon/implant/health
 	name = "health implant"
+	known_implant = TRUE
 	var/healthstring = ""
 
 /obj/item/weapon/implant/health/proc/sensehealth()
@@ -499,30 +499,30 @@
 	name = "data disk - 'God Emperor of Mankind'"
 	read_only = 1
 
-	New()
-		initializeDisk()
-		buf.types=DNA2_BUF_UE|DNA2_BUF_UI
-		//data = "066000033000000000AF00330660FF4DB002690"
-		//data = "0C80C80C80C80C80C8000000000000161FBDDEF" - Farmer Jeff
-		buf.dna.real_name="God Emperor of Mankind"
-		buf.dna.unique_enzymes = md5(buf.dna.real_name)
-		buf.dna.UI=list(0x066,0x000,0x033,0x000,0x000,0x000,0xAF0,0x033,0x066,0x0FF,0x4DB,0x002,0x690)
-		//buf.dna.UI=list(0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x000,0x000,0x000,0x000,0x161,0xFBD,0xDEF) // Farmer Jeff
-		buf.dna.UpdateUI()
+/obj/item/weapon/disk/data/demo/New()
+	initializeDisk()
+	buf.types=DNA2_BUF_UE|DNA2_BUF_UI
+	//data = "066000033000000000AF00330660FF4DB002690"
+	//data = "0C80C80C80C80C80C8000000000000161FBDDEF" - Farmer Jeff
+	buf.dna.real_name="God Emperor of Mankind"
+	buf.dna.unique_enzymes = md5(buf.dna.real_name)
+	buf.dna.UI=list(0x066,0x000,0x033,0x000,0x000,0x000,0xAF0,0x033,0x066,0x0FF,0x4DB,0x002,0x690)
+	//buf.dna.UI=list(0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x000,0x000,0x000,0x000,0x161,0xFBD,0xDEF) // Farmer Jeff
+	buf.dna.UpdateUI()
 
 /obj/item/weapon/disk/data/monkey
 	name = "data disk - 'Mr. Muggles'"
 	read_only = 1
 
-	New()
-		..()
-		initializeDisk()
-		buf.types=DNA2_BUF_SE
-		var/list/new_SE=list(0x098,0x3E8,0x403,0x44C,0x39F,0x4B0,0x59D,0x514,0x5FC,0x578,0x5DC,0x640,0x6A4)
-		for(var/i=new_SE.len;i<=DNA_SE_LENGTH;i++)
-			new_SE += rand(1,1024)
-		buf.dna.SE=new_SE
-		buf.dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
+/obj/item/weapon/disk/data/monkey/New()
+	..()
+	initializeDisk()
+	buf.types=DNA2_BUF_SE
+	var/list/new_SE=list(0x098,0x3E8,0x403,0x44C,0x39F,0x4B0,0x59D,0x514,0x5FC,0x578,0x5DC,0x640,0x6A4)
+	for(var/i=new_SE.len;i<=DNA_SE_LENGTH;i++)
+		new_SE += rand(1,1024)
+	buf.dna.SE=new_SE
+	buf.dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 
 /obj/item/weapon/disk/data/New()
 	..()
@@ -534,9 +534,8 @@
 	to_chat(user, "You flip the write-protect tab to [read_only ? "protected" : "unprotected"].")
 
 /obj/item/weapon/disk/data/examine(mob/user)
-	..(user)
-	to_chat(user, text("The write-protect tab is set to [read_only ? "protected" : "unprotected"]."))
-	return
+	. = ..()
+	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
 
 /*
  *	Diskette Box

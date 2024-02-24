@@ -10,5 +10,5 @@
 	. = ..()
 	if(!.)
 		return
-	if (ticker.mode) alert("The game mode is [ticker.mode.name]")
-	else alert("For some reason there's a ticker, but not a game mode")
+	if (ticker.mode) tgui_alert_async(usr, "The game mode is [ticker.mode.name]")
+	else tgui_alert_async(usr, "For some reason there's a ticker, but not a game mode")

@@ -35,8 +35,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/briefcase,
-		/obj/item/weapon/storage/secure/briefcase
+		/obj/item/weapon/storage,
 		)
 
 	req_access = list()
@@ -69,8 +68,8 @@
 	desc = "A heavy, powerful hardsuit used by construction crews and mining corporations."
 	icon_state = "engineering_rig"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 50)
-	slowdown = 1
-	offline_slowdown = 10
+	slowdown = 0.5
+	offline_slowdown = 5
 	offline_vision_restriction = 2
 	emp_protection = -20
 	siemens_coefficient= 0.75
@@ -83,7 +82,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/bag/ore,
+		/obj/item/weapon/storage,
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/pickaxe,
 		/obj/item/weapon/rcd
@@ -110,7 +109,7 @@
 	icon_state = "eva_rig"
 	armor = list(melee = 30, bullet = 10, laser = 20,energy = 25, bomb = 20, bio = 100, rad = 100)
 	slowdown = 0
-	offline_slowdown = 1
+	offline_slowdown = 0.5
 	offline_vision_restriction = 1
 	siemens_coefficient= 0.75
 
@@ -121,7 +120,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/weapon/storage,
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 		)
@@ -162,12 +161,13 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/ce
+	boot_type = /obj/item/clothing/shoes/magboots/rig/ce //VOREStation Add
 
 	allowed = list(
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/weapon/storage,
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 		)
@@ -200,7 +200,7 @@
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
 	armor = list(melee = 45, bullet = 5, laser = 45, energy = 80, bomb = 60, bio = 100, rad = 100)
-	slowdown = 1
+	slowdown = 0.5
 	offline_vision_restriction = 1
 	siemens_coefficient= 0.75
 
@@ -211,7 +211,7 @@
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
 		/obj/item/stack/flag,
-		/obj/item/weapon/storage/excavation,
+		/obj/item/weapon/storage,
 		/obj/item/weapon/pickaxe,
 		/obj/item/device/healthanalyzer,
 		/obj/item/device/measuring_tape,
@@ -221,8 +221,8 @@
 		/obj/item/device/gps,
 		/obj/item/device/beacon_locator,
 		/obj/item/device/radio/beacon,
-		/obj/item/weapon/pickaxe/hand,
-		/obj/item/weapon/storage/bag/fossils)
+		/obj/item/weapon/pickaxe/hand
+		)
 
 	req_access = list()
 	req_one_access = list()
@@ -245,9 +245,10 @@
 	desc = "A durable suit designed for medical rescue in high risk areas."
 	icon_state = "medical_rig"
 	armor = list(melee = 30, bullet = 15, laser = 20, energy = 60, bomb = 30, bio = 100, rad = 100)
-	slowdown = 1
+	slowdown = 0.5
 	offline_vision_restriction = 1
 	siemens_coefficient= 0.75
+	seal_delay = 5
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
 
@@ -255,7 +256,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/firstaid,
+		/obj/item/weapon/storage,
 		/obj/item/device/healthanalyzer,
 		/obj/item/stack/medical,
 		/obj/item/roller
@@ -283,8 +284,8 @@
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
 	armor = list(melee = 60, bullet = 40, laser = 30, energy = 15, bomb = 60, bio = 100, rad = 30)
-	slowdown = 1
-	offline_slowdown = 3
+	slowdown = 0.5
+	offline_slowdown = 1.5
 	offline_vision_restriction = 1
 	siemens_coefficient= 0.7
 
@@ -295,7 +296,8 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/melee/baton
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/storage
 		)
 
 	req_access = list()

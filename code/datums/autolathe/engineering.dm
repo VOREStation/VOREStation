@@ -50,6 +50,10 @@
 	name = "keycard authenticator electronics"
 	path =/obj/item/weapon/circuitboard/keycard_auth
 
+/datum/category_item/autolathe/engineering/geiger_wall
+	name = "wall-mounted geiger counter electronics"
+	path =/obj/item/weapon/circuitboard/geiger
+
 /datum/category_item/autolathe/engineering/photocopier
 	name = "photocopier electronics"
 	path =/obj/item/weapon/circuitboard/photocopier
@@ -73,6 +77,10 @@
 /datum/category_item/autolathe/engineering/request
 	name = "request console electronics"
 	path =/obj/item/weapon/circuitboard/request
+
+/datum/category_item/autolathe/engineering/electrochromic
+	name = "electrochromic window control electronics"
+	path =/obj/item/weapon/circuitboard/electrochromic
 
 /datum/category_item/autolathe/engineering/pipelayer
 	name = "pipe layer electronics"

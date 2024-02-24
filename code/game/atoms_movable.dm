@@ -1,13 +1,13 @@
 /atom/movable
 	layer = OBJ_LAYER
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER //VOREStation Edit
-	var/last_move = null
-	var/anchored = 0
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
+	glide_size = 8
+	var/last_move = null //The direction the atom last moved
+	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
 	var/moving_diagonally
 	var/move_speed = 10
 	var/l_move_time = 1
-	var/m_flag = 1
 	var/throwing = 0
 	var/thrower
 	var/turf/throw_source = null
@@ -19,109 +19,151 @@
 	var/icon_scale_x = 1 // Used to scale icons up or down horizonally in update_transform().
 	var/icon_scale_y = 1 // Used to scale icons up or down vertically in update_transform().
 	var/icon_rotation = 0 // Used to rotate icons in update_transform()
+	var/icon_expected_height = 32
+	var/icon_expected_width = 32
 	var/old_x = 0
 	var/old_y = 0
-	var/datum/riding/riding_datum //VOREStation Add - Moved from /obj/vehicle
+	var/datum/riding/riding_datum = null
 	var/does_spin = TRUE // Does the atom spin when thrown (of course it does :P)
 	var/movement_type = NONE
 
+	var/cloaked = FALSE //If we're cloaked or not
+	var/image/cloaked_selfimage //The image we use for our client to let them see where we are
+
+/atom/movable/Initialize(mapload)
+	. = ..()
+	switch(blocks_emissive)
+		if(EMISSIVE_BLOCK_GENERIC)
+			var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = PLANE_EMISSIVE, alpha = src.alpha)
+			gen_emissive_blocker.color = GLOB.em_block_color
+			gen_emissive_blocker.dir = dir
+			gen_emissive_blocker.appearance_flags |= appearance_flags
+			add_overlay(list(gen_emissive_blocker), TRUE)
+		if(EMISSIVE_BLOCK_UNIQUE)
+			render_target = ref(src)
+			em_block = new(src, render_target)
+			add_overlay(list(em_block), TRUE)
+	if(opacity)
+		AddElement(/datum/element/light_blocking)
+	switch(light_system)
+		if(STATIC_LIGHT)
+			update_light()
+		if(MOVABLE_LIGHT)
+			AddComponent(/datum/component/overlay_lighting, starts_on = light_on)
+		if(MOVABLE_LIGHT_DIRECTIONAL)
+			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, starts_on = light_on)
+
 /atom/movable/Destroy()
 	. = ..()
-	if(reagents)
-		qdel(reagents)
-		reagents = null
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	var/turf/un_opaque
-	if(opacity && isturf(loc))
-		un_opaque = loc
+
+	if(opacity)
+		RemoveElement(/datum/element/light_blocking)
 
 	moveToNullspace()
-	if(un_opaque)
-		un_opaque.recalc_atom_opacity()
-	if (pulledby)
-		if (pulledby.pulling == src)
-			pulledby.pulling = null
-		pulledby = null
+
+	vis_contents.Cut()
+	for(var/atom/movable/A as anything in vis_locs)
+		A.vis_contents -= src
+
+	if(pulledby)
+		pulledby.stop_pulling()
+
+	if(orbiting)
+		stop_orbit()
 	QDEL_NULL(riding_datum) //VOREStation Add
 
 /atom/movable/vv_edit_var(var_name, var_value)
-	if(GLOB.VVpixelmovement[var_name])			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
+	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
 		return FALSE
 	return ..()
 
 ////////////////////////////////////////
-// Here's where we rewrite how byond handles movement except slightly different
-// To be removed on step_ conversion
-// All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direct=0)
-	. = FALSE
-	if(!newloc || newloc == loc)
-		return
-
-	if(!direct)
-		direct = get_dir(src, newloc)
-	set_dir(direct)
-
-	if(!loc.Exit(src, newloc))
-		return
-
-	if(!newloc.Enter(src, src.loc))
-		return
-
-	if(!check_multi_tile_move_density_dir(direct, locs))	// We're big, and we can't move that way.
-		return
-
-	// Past this is the point of no return
-	if(!locs || locs.len <= 1)	// We're not a multi-tile object.
-		var/atom/oldloc = loc
-		var/area/oldarea = get_area(oldloc)
-		var/area/newarea = get_area(newloc)
-		loc = newloc
-		. = TRUE
-		oldloc.Exited(src, newloc)
-		if(oldarea != newarea)
-			oldarea.Exited(src, newloc)
-
-		for(var/i in oldloc)
-			if(i == src) // Multi tile objects
-				continue
-			var/atom/movable/thing = i
-			thing.Uncrossed(src)
-
-		newloc.Entered(src, oldloc)
-		if(oldarea != newarea)
-			newarea.Entered(src, oldloc)
-
-		for(var/i in loc)
-			if(i == src) // Multi tile objects
-				continue
-			var/atom/movable/thing = i
-			thing.Crossed(src)
-
-	else if(newloc)	// We're a multi-tile object.
-		. = doMove(newloc)
-
-//
-////////////////////////////////////////
-
-/atom/movable/Move(atom/newloc, direct = 0)
+/atom/movable/Move(atom/newloc, direct = 0, movetime)
+	// Didn't pass enough info
 	if(!loc || !newloc)
 		return FALSE
+
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc, direct, movetime) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+		return FALSE
+
+	// Store this early before we might move, it's used several places
 	var/atom/oldloc = loc
 
+	// If we're not moving to the same spot (why? does that even happen?)
 	if(loc != newloc)
 		if(!direct)
 			direct = get_dir(oldloc, newloc)
-		if (!(direct & (direct - 1))) //Cardinal move
-			. = ..()
-		else //Diagonal move, split it into cardinal moves
+		if (IS_CARDINAL(direct)) //Cardinal move
+			// Track our failure if any in this value
+			. = TRUE
+
+			// Face the direction of movement
+			set_dir(direct)
+
+			// Check to make sure we can leave
+			if(!loc.Exit(src, newloc))
+				. = FALSE
+
+			// Check to make sure we can enter, if we haven't already failed
+			if(. && !newloc.Enter(src, src.loc))
+				. = FALSE
+
+			// Check to make sure if we're multi-tile we can move, if we haven't already failed
+			if(. && !check_multi_tile_move_density_dir(direct, locs))
+				. = FALSE
+
+			// Definitely moving if you enter this, no failures so far
+			if(. && locs.len <= 1)	// We're not a multi-tile object.
+				var/area/oldarea = get_area(oldloc)
+				var/area/newarea = get_area(newloc)
+				var/old_z = get_z(oldloc)
+				var/dest_z = get_z(newloc)
+
+				// Do The Move
+				if(movetime)
+					glide_for(movetime) // First attempt, lets let the diag do it.
+				loc = newloc
+				. = TRUE
+
+				// So objects can be informed of z-level changes
+				if (old_z != dest_z)
+					onTransitZ(old_z, dest_z)
+
+				// We don't call parent so we are calling this for byond
+				oldloc.Exited(src, newloc)
+				if(oldarea != newarea)
+					oldarea.Exited(src, newloc)
+
+				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
+				for(var/atom/movable/thing as anything in oldloc)
+					// We don't call parent so we are calling this for byond
+					thing.Uncrossed(src)
+
+				// We don't call parent so we are calling this for byond
+				newloc.Entered(src, oldloc)
+				if(oldarea != newarea)
+					newarea.Entered(src, oldloc)
+
+				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
+				for(var/atom/movable/thing as anything in loc)
+					// We don't call parent so we are calling this for byond
+					thing.Crossed(src, oldloc)
+
+			// We're a multi-tile object (multiple locs)
+			else if(. && newloc)
+				. = doMove(newloc)
+
+		//Diagonal move, split it into cardinal moves
+		else
 			moving_diagonally = FIRST_DIAG_STEP
 			var/first_step_dir
 			// The `&& moving_diagonally` checks are so that a forceMove taking
 			// place due to a Crossed, Bumped, etc. call will interrupt
 			// the second half of the diagonal movement, or the second attempt
 			// at a first half if step() fails because we hit something.
+			glide_for(movetime * 2)
 			if (direct & NORTH)
 				if (direct & EAST)
 					if (step(src, NORTH) && moving_diagonally)
@@ -160,52 +202,57 @@
 						first_step_dir = WEST
 						moving_diagonally = SECOND_DIAG_STEP
 						. = step(src, SOUTH)
-			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!.)
-					set_dir(first_step_dir)
-				//else if (!inertia_moving)
-				//	inertia_next_move = world.time + inertia_move_delay
-				//	newtonian_move(direct)
+			// If we failed, turn to face the direction of the first step at least
+			if(!. && moving_diagonally == SECOND_DIAG_STEP)
+				set_dir(first_step_dir)
+			// Done, regardless!
 			moving_diagonally = 0
+			// We return because step above will call Move() and we don't want to do shenanigans back in here again
 			return
 
-	if(!loc || (loc == oldloc && oldloc != newloc))
+	else if(!loc || (loc == oldloc))
 		last_move = 0
 		return
 
+	// If we moved, call Moved() on ourselves
 	if(.)
-		Moved(oldloc, direct)
+		Moved(oldloc, direct, FALSE, movetime ? movetime : ( (TICKS2DS(WORLD_ICON_SIZE/glide_size)) * (moving_diagonally ? (0.5) : 1) ) )
 
-	//Polaris stuff
+	// Update timers/cooldown stuff
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
-	m_flag = 1
-	//End
-
-	last_move = direct
-	set_dir(direct)
-	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc,direct)) //movement failed due to buckled mob(s)
-		return FALSE
-	//VOREStation Add
-	else if(. && riding_datum)
-		riding_datum.handle_vehicle_layer()
-		riding_datum.handle_vehicle_offsets()
-	//VOREStation Add End
+	last_move = direct // The direction you last moved
+	// set_dir(direct) //Don't think this is necessary
 
 //Called after a successful Move(). By this point, we've already moved
-/atom/movable/proc/Moved(atom/OldLoc, Dir, Forced = FALSE)
-	//if (!inertia_moving)
-	//	inertia_next_move = world.time + inertia_move_delay
-	//	newtonian_move(Dir)
-	//if (length(client_mobs_in_contents))
-	//	update_parallax_contents()
+/atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, direction, forced, movetime)
+	// Handle any buckled mobs on this movable
+	if(has_buckled_mobs())
+		handle_buckled_mob_movement(old_loc, direction, movetime)
+	if(riding_datum)
+		riding_datum.handle_vehicle_layer()
+		riding_datum.handle_vehicle_offsets()
+	for (var/datum/light_source/light as anything in light_sources) // Cycle through the light sources on this atom and tell them to update.
+		light.source_atom.update_light()
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, direction)
 
 	return TRUE
+
+/atom/movable/set_dir(newdir)
+	. = ..(newdir)
+	if(riding_datum)
+		riding_datum.handle_vehicle_offsets()
+
+/atom/movable/relaymove(mob/user, direction)
+	. = ..()
+	if(riding_datum)
+		riding_datum.handle_ride(user, direction)
 
 // Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
-	. = TRUE
 	return CanPass(AM, loc)
 
 /atom/movable/CanPass(atom/movable/mover, turf/target)
@@ -214,15 +261,6 @@
 		if(mover.loc in locs)
 			. = TRUE
 	return .
-
-//oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
-/atom/movable/Crossed(atom/movable/AM, oldloc)
-	return
-
-/atom/movable/Uncross(atom/movable/AM, atom/newloc)
-	. = ..()
-	if(isturf(newloc) && !CheckExit(AM, newloc))
-		return FALSE
 
 /atom/movable/Bump(atom/A)
 	if(!A)
@@ -233,75 +271,120 @@
 		throwing = 0
 		if(QDELETED(A))
 			return
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
+
 	A.Bumped(src)
 	A.last_bumped = world.time
 
-/atom/movable/proc/forceMove(atom/destination)
+/atom/movable/proc/forceMove(atom/destination, direction, movetime)
 	. = FALSE
 	if(destination)
-		. = doMove(destination)
+		. = doMove(destination, direction, movetime)
 	else
 		CRASH("No valid destination passed into forceMove")
 
 /atom/movable/proc/moveToNullspace()
 	return doMove(null)
 
-/atom/movable/proc/doMove(atom/destination)
-	. = FALSE
+/atom/movable/proc/doMove(atom/destination, direction, movetime)
+	var/atom/oldloc = loc
+	var/area/old_area = get_area(oldloc)
+	var/same_loc = oldloc == destination
+
 	if(destination)
-		var/atom/oldloc = loc
-		var/same_loc = oldloc == destination
-		var/area/old_area = get_area(oldloc)
 		var/area/destarea = get_area(destination)
 
+		// Do The Move
+		glide_for(movetime)
+		last_move = isnull(direction) ? 0 : direction
 		loc = destination
+
+		// Unset this in case it was set in some other proc. We're no longer moving diagonally for sure.
 		moving_diagonally = 0
 
+		// We are moving to a different loc
 		if(!same_loc)
+			// Not moving out of nullspace
 			if(oldloc)
 				oldloc.Exited(src, destination)
+				// If it's not the same area, Exited() it
 				if(old_area && old_area != destarea)
 					old_area.Exited(src, destination)
-			for(var/atom/movable/AM in oldloc)
+
+			// Uncross everything where we left
+			for(var/atom/movable/AM as anything in oldloc)
+				if(AM == src)
+					continue
 				AM.Uncrossed(src)
+				if(loc != destination) // Uncrossed() triggered a separate movement
+					return
+
+			// Information about turf and z-levels for source and dest collected
 			var/turf/oldturf = get_turf(oldloc)
 			var/turf/destturf = get_turf(destination)
 			var/old_z = (oldturf ? oldturf.z : null)
 			var/dest_z = (destturf ? destturf.z : null)
+
+			// So objects can be informed of z-level changes
 			if (old_z != dest_z)
 				onTransitZ(old_z, dest_z)
+
+			// Destination atom Entered
 			destination.Entered(src, oldloc)
+
+			// Entered() the new area if it's not the same area
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
 
-			for(var/atom/movable/AM in destination)
+			// We ignore ourselves because if we're multi-tile we might be in both old and new locs
+			for(var/atom/movable/AM as anything in destination)
 				if(AM == src)
 					continue
 				AM.Crossed(src, oldloc)
+				if(loc != destination) // Crossed triggered a separate movement
+					return
+
+			// Call our thingy to inform everyone we moved
+			Moved(oldloc, NONE, TRUE)
 
 		// Break pulling if we are too far to pull now.
 		if(pulledby && (pulledby.z != src.z || get_dist(pulledby, src) > 1))
 			pulledby.stop_pulling()
 
-		Moved(oldloc, NONE, TRUE)
-		. = TRUE
+		// We moved
+		return TRUE
 
 	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
-	else
-		. = TRUE
-		if (loc)
-			var/atom/oldloc = loc
-			var/area/old_area = get_area(oldloc)
-			oldloc.Exited(src, null)
-			if(old_area)
-				old_area.Exited(src, null)
+	else if(oldloc)
 		loc = null
+
+		// Uncross everything where we left (no multitile safety like above because we are definitely not still there)
+		for(var/atom/movable/AM as anything in oldloc)
+			AM.Uncrossed(src)
+
+		// Exited() our loc and area
+		oldloc.Exited(src, null)
+		if(old_area)
+			old_area.Exited(src, null)
+
+		// We moved
+		return TRUE
 
 /atom/movable/proc/onTransitZ(old_z,new_z)
 	GLOB.z_moved_event.raise_event(src, old_z, new_z)
-	for(var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		var/atom/movable/AM = item
+	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	for(var/atom/movable/AM as anything in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
 		AM.onTransitZ(old_z,new_z)
+
+/atom/movable/proc/glide_for(movetime)
+	if(movetime)
+		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(movetime), 1)
+		spawn(movetime)
+			glide_size = initial(glide_size)
+	else
+		glide_size = initial(glide_size)
+
 /////////////////////////////////////////////////////////////////
 
 //called when src is thrown into hit_atom
@@ -344,95 +427,29 @@
 					continue
 				src.throw_impact(A,speed)
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower)
-	if(!target || !src)
-		return 0
-	if(target.z != src.z)
-		return 0
-	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
-	src.throwing = 1
-	src.thrower = thrower
-	src.throw_source = get_turf(src)	//store the origin turf
-	src.pixel_z = 0
-	if(usr)
-		if(HULK in usr.mutations)
-			src.throwing = 2 // really strong throw!
+/atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback) //If this returns FALSE then callback will not be called.
+	. = TRUE
+	if (!target || speed <= 0 || QDELETED(src) || (target.z != src.z))
+		return FALSE
 
-	var/dist_travelled = 0
-	var/dist_since_sleep = 0
-	var/area/a = get_area(src.loc)
+	if (pulledby)
+		pulledby.stop_pulling()
 
-	var/dist_x = abs(target.x - src.x)
-	var/dist_y = abs(target.y - src.y)
+	var/datum/thrownthing/TT = new(src, target, range, speed, thrower, callback)
+	throwing = TT
 
-	var/dx
-	if (target.x > src.x)
-		dx = EAST
-	else
-		dx = WEST
+	pixel_z = 0
+	if(spin && does_spin)
+		SpinAnimation(4,1)
 
-	var/dy
-	if (target.y > src.y)
-		dy = NORTH
-	else
-		dy = SOUTH
-
-	var/error
-	var/major_dir
-	var/major_dist
-	var/minor_dir
-	var/minor_dist
-	if(dist_x > dist_y)
-		error = dist_x/2 - dist_y
-		major_dir = dx
-		major_dist = dist_x
-		minor_dir = dy
-		minor_dist = dist_y
-	else
-		error = dist_y/2 - dist_x
-		major_dir = dy
-		major_dist = dist_y
-		minor_dir = dx
-		minor_dist = dist_x
-
-	while(src && target && src.throwing && istype(src.loc, /turf) \
-		  && ((abs(target.x - src.x)+abs(target.y - src.y) > 0 && dist_travelled < range) \
-		  	   || (a && a.has_gravity == 0) \
-			   || istype(src.loc, /turf/space)))
-		// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-		var/atom/step
-		if(error >= 0)
-			step = get_step(src, major_dir)
-			error -= minor_dist
-		else
-			step = get_step(src, minor_dir)
-			error += major_dist
-		if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-			break
-		src.Move(step)
-		hit_check(speed)
-		dist_travelled++
-		dist_since_sleep++
-		if(dist_since_sleep >= speed)
-			dist_since_sleep = 0
-			sleep(1)
-		a = get_area(src.loc)
-		// and yet it moves
-		if(src.does_spin)
-			src.SpinAnimation(speed = 4, loops = 1)
-
-	//done throwing, either because it hit something or it finished moving
-	if(isobj(src)) src.throw_impact(get_turf(src),speed)
-	src.throwing = 0
-	src.thrower = null
-	src.throw_source = null
-	fall()
-
+	SSthrowing.processing[src] = TT
+	if (SSthrowing.state == SS_PAUSED && length(SSthrowing.currentrun))
+		SSthrowing.currentrun[src] = TT
 
 //Overlays
 /atom/movable/overlay
 	var/atom/master = null
-	anchored = 1
+	anchored = TRUE
 
 /atom/movable/overlay/New()
 	for(var/x in src.verbs)
@@ -453,36 +470,39 @@
 	if(z in using_map.sealed_levels)
 		return
 
-	if(config.use_overmap)
+	if(using_map.use_overmap)
 		overmap_spacetravel(get_turf(src), src)
 		return
 
 	var/move_to_z = src.get_transit_zlevel()
 	if(move_to_z)
-		z = move_to_z
+		var/new_z = move_to_z
+		var/new_x
+		var/new_y
 
 		if(x <= TRANSITIONEDGE)
-			x = world.maxx - TRANSITIONEDGE - 2
-			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+			new_x = world.maxx - TRANSITIONEDGE - 2
+			new_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
-			x = TRANSITIONEDGE + 1
-			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+			new_x = TRANSITIONEDGE + 1
+			new_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (y <= TRANSITIONEDGE)
-			y = world.maxy - TRANSITIONEDGE -2
-			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+			new_y = world.maxy - TRANSITIONEDGE -2
+			new_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
-			y = TRANSITIONEDGE + 1
-			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+			new_y = TRANSITIONEDGE + 1
+			new_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
 			var/datum/game_mode/nuclear/G = ticker.mode
 			G.check_nuke_disks()
 
-		spawn(0)
-			if(loc) loc.Entered(src)
+		var/turf/T = locate(new_x, new_y, new_z)
+		if(istype(T))
+			forceMove(T)
 
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
@@ -492,6 +512,14 @@
 	if(!candidates.len)
 		return null
 	return text2num(pickweight(candidates))
+
+// Returns the current scaling of the sprite.
+// Note this DOES NOT measure the height or width of the icon, but returns what number is being multiplied with to scale the icons, if any.
+/atom/movable/proc/get_icon_scale_x()
+	return icon_scale_x
+
+/atom/movable/proc/get_icon_scale_y()
+	return icon_scale_y
 
 /atom/movable/proc/update_transform()
 	var/matrix/M = matrix()
@@ -516,3 +544,97 @@
 // Called when touching a lava tile.
 /atom/movable/proc/lava_act()
 	fire_act(null, 10000, 1000)
+
+
+// Procs to cloak/uncloak
+/atom/movable/proc/cloak()
+	if(cloaked)
+		return FALSE
+	cloaked = TRUE
+	. = TRUE // We did work
+
+	var/static/animation_time = 1 SECOND
+	cloaked_selfimage = get_cloaked_selfimage()
+
+	//Wheeee
+	cloak_animation(animation_time)
+
+	//Needs to be last so people can actually see the effect before we become invisible
+	if(cloaked) // Ensure we are still cloaked after the animation delay
+		plane = CLOAKED_PLANE
+
+/atom/movable/proc/uncloak()
+	if(!cloaked)
+		return FALSE
+	cloaked = FALSE
+	. = TRUE // We did work
+
+	var/static/animation_time = 1 SECOND
+	QDEL_NULL(cloaked_selfimage)
+
+	//Needs to be first so people can actually see the effect, so become uninvisible first
+	plane = initial(plane)
+
+	//Oooooo
+	uncloak_animation(animation_time)
+
+
+// Animations for cloaking/uncloaking
+/atom/movable/proc/cloak_animation(var/length = 1 SECOND)
+	//Save these
+	var/initial_alpha = alpha
+
+	//Animate alpha fade
+	animate(src, alpha = 0, time = length)
+
+	//Animate a cloaking effect
+	var/our_filter = filters.len+1 //Filters don't appear to have a type that can be stored in a var and accessed. This is how the DM reference does it.
+	filters += filter(type="wave", x = 0, y = 16, size = 0, offset = 0, flags = WAVE_SIDEWAYS)
+	animate(filters[our_filter], offset = 1, size = 8, time = length, flags = ANIMATION_PARALLEL)
+
+	//Wait for animations to finish
+	sleep(length+5)
+
+	//Remove those
+	filters -= filter(type="wave", x = 0, y = 16, size = 8, offset = 1, flags = WAVE_SIDEWAYS)
+
+	//Back to original alpha
+	alpha = initial_alpha
+
+/atom/movable/proc/uncloak_animation(var/length = 1 SECOND)
+	//Save these
+	var/initial_alpha = alpha
+
+	//Put us back to normal, but no alpha
+	alpha = 0
+
+	//Animate alpha fade up
+	animate(src, alpha = initial_alpha, time = length)
+
+	//Animate a cloaking effect
+	var/our_filter = filters.len+1 //Filters don't appear to have a type that can be stored in a var and accessed. This is how the DM reference does it.
+	filters += filter(type="wave", x=0, y = 16, size = 8, offset = 1, flags = WAVE_SIDEWAYS)
+	animate(filters[our_filter], offset = 0, size = 0, time = length, flags = ANIMATION_PARALLEL)
+
+	//Wait for animations to finish
+	sleep(length+5)
+
+	//Remove those
+	filters -= filter(type="wave", x=0, y = 16, size = 0, offset = 0, flags = WAVE_SIDEWAYS)
+
+
+// So cloaked things can see themselves, if necessary
+/atom/movable/proc/get_cloaked_selfimage()
+	var/icon/selficon = icon(icon, icon_state)
+	selficon.MapColors(0,0,0, 0,0,0, 0,0,0, 1,1,1) //White
+	var/image/selfimage = image(selficon)
+	selfimage.color = "#0000FF"
+	selfimage.alpha = 100
+	selfimage.layer = initial(layer)
+	selfimage.plane = initial(plane)
+	selfimage.loc = src
+
+	return selfimage
+
+/atom/movable/proc/get_cell()
+	return

@@ -25,14 +25,18 @@ var/datum/species/shapeshifter/promethean/prometheans
 	bump_flag =        SLIME
 	swap_flags =       MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags =       MONKEY|SLIME|SIMPLE_ANIMAL
-	flags =            NO_SCAN | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT
+	flags =            NO_SCAN | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_DEFIB
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
 	num_alternate_languages = 3
-	species_language = LANGUAGE_SOL_COMMON
-	secondary_langs = list(LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
+	language = LANGUAGE_PROMETHEAN
+	species_language = LANGUAGE_PROMETHEAN
+	secondary_langs = list(LANGUAGE_PROMETHEAN, LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
+
+	blood_name = "gelatinous ooze"
+	blood_reagents = "slimejelly"
 
 	breath_type = null
 	poison_type = null
@@ -43,7 +47,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 
 	min_age =		1
-	max_age =		10
+	max_age =		16
 
 	economic_modifier = 3
 
@@ -55,6 +59,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 	oxy_mod =		0
 	flash_mod =		0.5 //No centralized, lensed eyes.
 	item_slowdown_mod = 1.33
+	throwforce_absorb_threshold = 10
+
+	chem_strength_alcohol = 2
 
 	cloning_modifier = /datum/modifier/cloning_sickness/promethean
 
@@ -110,15 +117,21 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings, //VOREStation Add,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail, //VOREStation Add,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears, //VOREStation Add,
 		/mob/living/carbon/human/proc/regenerate
 		)
 
 	valid_transform_species = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY)
 
 	var/heal_rate = 0.5 // Temp. Regen per tick.
+
+	default_emotes = list(
+		/decl/emote/audible/squish,
+		/decl/emote/audible/chirp,
+		/decl/emote/visible/bounce,
+		/decl/emote/visible/jiggle,
+		/decl/emote/visible/lightup,
+		/decl/emote/visible/vibrate
+	)
 
 /datum/species/shapeshifter/promethean/New()
 	..()
@@ -142,8 +155,11 @@ var/datum/species/shapeshifter/promethean/prometheans
 		H.equip_to_slot_or_del(L, slot_in_backpack)
 
 /datum/species/shapeshifter/promethean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
+	var/static/list/parent_handles = list("head", "r_hand", "l_hand", "mouth")
 
-	if(H.zone_sel.selecting == "head" || H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand") return ..() //VOREStation Edit
+	if(H.zone_sel.selecting in parent_handles)
+		return ..()
+
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target
@@ -159,7 +175,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			if(FEMALE)
 				t_him = "her"
 
-	H.visible_message("<span class='notice'>\The [H] glomps [target] to make [t_him] feel better!</span>", \
+	H.visible_message("<b>\The [H]</b> glomps [target] to make [t_him] feel better!", \
 					"<span class='notice'>You glomp [target] to make [t_him] feel better!</span>")
 	H.apply_stored_shock_to(target)
 
@@ -188,33 +204,50 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(istype(T))
 		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
 			for(var/obj/O in T)
-				O.clean_blood()
-				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+				if(O.clean_blood())
+					H.adjust_nutrition(rand(5, 15))
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
-				T.clean_blood()
-				S.dirt = 0
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
-		if(H.clean_blood(1))
-			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
-		if(H.r_hand)
-			if(H.r_hand.clean_blood())
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
-		if(H.l_hand)
-			if(H.l_hand.clean_blood())
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				if(T.clean_blood())
+					H.adjust_nutrition(rand(10, 20))
+				if(S.dirt > 50)
+					S.dirt = 0
+					H.adjust_nutrition(rand(10, 20))
+		if(H.feet_blood_color || LAZYLEN(H.feet_blood_DNA))
+			LAZYCLEARLIST(H.feet_blood_DNA)
+			H.feet_blood_DNA = null
+			H.feet_blood_color = null
+			H.adjust_nutrition(rand(3, 10))
+		if(H.bloody_hands)
+			LAZYCLEARLIST(H.blood_DNA)
+			H.blood_DNA = null
+			H.hand_blood_color = null
+			H.bloody_hands = 0
+			H.adjust_nutrition(rand(3, 10))
+		if(!(H.gloves || (H.wear_suit && (H.wear_suit.body_parts_covered & HANDS))))
+			if(H.r_hand)
+				if(H.r_hand.clean_blood())
+					H.adjust_nutrition(rand(5, 15))
+			if(H.l_hand)
+				if(H.l_hand.clean_blood())
+					H.adjust_nutrition(rand(5, 15))
+/*
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(rand(5, 15))
 		if(H.wear_suit)
 			if(H.wear_suit.clean_blood())
 				H.update_inv_wear_suit(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(rand(5, 15))
 		if(H.w_uniform)
 			if(H.w_uniform.clean_blood())
 				H.update_inv_w_uniform(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(rand(5, 15))
+*/
+		// Prometheans themselves aren't very safe places for other biota.
+		H.germ_level = 0
+		H.update_bloodied()
 		//End cleaning code.
 
 		var/datum/gas_mixture/environment = T.return_air()
@@ -297,8 +330,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 				if(ToxReg)
 					strain_negation += to_pay * max(0, (1 - ToxReg.get_strain_percent()))
 
-			H.nutrition -= (3 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
-			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
+			H.adjust_nutrition(-(3 * nutrition_cost)) // Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
 
 			var/agony_to_apply = ((1 / starve_mod) * (nutrition_cost - strain_negation)) //Regenerating damage causes minor pain over time, if the organs responsible are nonexistant or too high on strain. Small injures will be no issue, large ones will cause problems.
 

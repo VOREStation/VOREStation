@@ -90,9 +90,9 @@
 	last_instability_event = world.time
 	spawn(1)
 		var/image/instability_flash = image('icons/obj/spells.dmi',"instability")
-		overlays |= instability_flash
+		add_overlay(instability_flash)
 		sleep(4)
-		overlays.Remove(instability_flash)
+		cut_overlay(instability_flash)
 		qdel(instability_flash)
 
 /mob/living/silicon/instability_effects()
@@ -273,6 +273,7 @@
 			var/outgoing_instability = (amount) * ( 1 / (radius**2) )
 
 			L.receive_radiated_instability(outgoing_instability)
+			src.adjust_instability(-outgoing_instability) //This should prevent feedback loops
 
 // This should only be used for EXTERNAL sources of instability, such as from someone or something glowing.
 /mob/living/proc/receive_radiated_instability(amount)

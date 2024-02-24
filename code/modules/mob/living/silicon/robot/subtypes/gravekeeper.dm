@@ -14,7 +14,7 @@
 
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
 	module = new /obj/item/weapon/robot_module/robot/gravekeeper(src)
-	overlays.Cut()
+	cut_overlays()
 	init_id()
 
 	updatename("Gravekeeper")
@@ -24,4 +24,4 @@
 
 	laws = new /datum/ai_laws/gravekeeper()
 
-	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)

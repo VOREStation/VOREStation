@@ -43,7 +43,7 @@
 				"rad" = 0
 				)
 
-	movement_cooldown = 5
+	movement_cooldown = -1
 
 	melee_damage_lower = 6
 	melee_damage_upper = 14
@@ -53,6 +53,8 @@
 	attack_sharp = TRUE
 	attack_edge = TRUE
 	attacktext = list("gouged")
+
+	organ_names = /decl/mob_organ_names/shantak
 
 	say_list_type = /datum/say_list/shantak
 
@@ -93,9 +95,11 @@
 	rally_pack()
 	return ..()
 
-
-// These ones only retaliate. Used for a PoI.
+// These ones only retaliate. Used for PoIs.
 /mob/living/simple_mob/animal/sif/shantak/retaliate
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
+/mob/living/simple_mob/animal/sif/shantak/leader/autofollow/retaliate
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
 //Vorestation Addition
@@ -104,3 +108,6 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 	makes_dirt = 0
 	faction = "neutral"
+
+/decl/mob_organ_names/shantak
+	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "mane", "snout")

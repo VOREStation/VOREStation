@@ -1,14 +1,15 @@
 /obj/structure/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle_parts.dmi'
+	unacidable = TRUE
 
 /obj/structure/shuttle/window
 	name = "shuttle window"
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "0_0" //The states are a bitflag for connecting window directions, then connecting shuttle wall directions
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	can_atmos_pass = ATMOS_PASS_NO
 
 	var/window_flags = 0 // Bitflags to indicate connected windows
@@ -48,8 +49,8 @@
 
 /obj/structure/shuttle/engine
 	name = "engine"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 /obj/structure/shuttle/engine/heater
 	name = "heater"

@@ -6,6 +6,7 @@
 	det_time = 20
 	item_state = "flashbang"
 	slot_flags = SLOT_BELT
+	hud_state = "grenade_smoke"
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 	var/smoke_color
 	var/smoke_strength = 8
@@ -21,7 +22,7 @@
 	return ..()
 
 /obj/item/weapon/grenade/smokebomb/detonate()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 	src.smoke.set_up(10, 0, usr.loc)
 	spawn(0)
 		for(var/i = 1 to smoke_strength)

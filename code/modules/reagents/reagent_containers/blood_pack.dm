@@ -21,10 +21,13 @@
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "empty"
 	item_state = "bloodpack_empty"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 	volume = 200
 	var/label_text = ""
 
 	var/blood_type = null
+	var/reag_id = "blood"
 
 /obj/item/weapon/reagent_containers/blood/Initialize()
 	. = ..()
@@ -33,7 +36,7 @@
 	if(blood_type != null)
 		label_text = "[blood_type]"
 		update_iv_label()
-		reagents.add_reagent("blood", 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
+		reagents.add_reagent(reag_id, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
 		update_icon()
 
 /obj/item/weapon/reagent_containers/blood/on_reagent_change()
@@ -53,7 +56,7 @@
 
 /obj/item/weapon/reagent_containers/blood/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
-		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
+		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
 			to_chat(user, "<span class='notice'>The label can be at most 50 characters long.</span>")
 		else if(length(tmp_label) > 10)
@@ -92,6 +95,14 @@
 
 /obj/item/weapon/reagent_containers/blood/OMinus
 	blood_type = "O-"
+
+/obj/item/weapon/reagent_containers/blood/synthplas
+	blood_type = "O-"
+	reag_id = "synthblood_dilute"
+
+/obj/item/weapon/reagent_containers/blood/synthblood
+	blood_type = "O-"
+	reag_id = "synthblood"
 
 /obj/item/weapon/reagent_containers/blood/empty
 	name = "Empty BloodPack"

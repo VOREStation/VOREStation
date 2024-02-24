@@ -11,13 +11,14 @@ var/global/list/grub_machine_overlays = list()
 
 	health = 5
 	maxHealth = 5
-	movement_cooldown = 3
+	movement_cooldown = 0
 
 	melee_damage_lower = 1	// This is a tiny worm. It will nibble and thats about it.
 	melee_damage_upper = 1
 
-	meat_amount = 2
+	meat_amount = 1
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	butchery_loot = list()		// No hides
 
 	faction = "grubs"
 
@@ -30,7 +31,7 @@ var/global/list/grub_machine_overlays = list()
 	pass_flags = PASSTABLE
 	can_pull_size = ITEMSIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
-	density = 0
+	density = FALSE
 
 	//stop_when_pulled = 0
 
@@ -45,6 +46,8 @@ var/global/list/grub_machine_overlays = list()
 
 	var/obj/machinery/abstract_grub_machine/powermachine
 	var/power_drained = 0
+
+	var/tracked = FALSE
 
 	ai_holder_type = /datum/ai_holder/simple_mob/solargrub_larva
 
@@ -172,7 +175,9 @@ var/global/list/grub_machine_overlays = list()
 /mob/living/simple_mob/animal/solargrub_larva/proc/expand_grub()
 	eject_from_machine()
 	visible_message("<span class='warning'>\The [src] suddenly balloons in size!</span>")
-	new /mob/living/simple_mob/vore/solargrub(get_turf(src))
+	log_game("A larva has matured into a grub in area [src.loc.name] ([src.x],[src.y],[src.z]")
+	var/mob/living/simple_mob/vore/solargrub/adult = new(get_turf(src))
+	adult.tracked = tracked
 //	grub.power_drained = power_drained //TODO
 	qdel(src)
 
@@ -205,8 +210,7 @@ var/global/list/grub_machine_overlays = list()
 	var/static/potential_targets = typecacheof(list(/obj/machinery))
 	var/list/actual_targets = list()
 
-	for(var/AT in typecache_filter_list(range(vision_range, holder), potential_targets))
-		var/obj/machinery/M = AT
+	for(var/obj/machinery/M as anything in typecache_filter_list(range(vision_range, holder), potential_targets))
 		if(istype(M, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/V = M
 			if(!V.welded && prob(50))

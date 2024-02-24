@@ -28,12 +28,11 @@
 	var/obj/item/weapon/key/rover/key
 	var/siren = 0 //This is for eventually getting the siren sprite to work.
 
-	dunebuggy
-		name = "Research Dune Buggy"
-		desc = "A Dune Buggy developed for asteroid exploration and transportation. It has a sticker that says to wear EVA suits if used in space."
-		icon = 'icons/vore/rover_vr.dmi'
-		icon_state = "dunebug"
-
+/obj/vehicle/train/rover/engine/dunebuggy
+	name = "Research Dune Buggy"
+	desc = "A Dune Buggy developed for asteroid exploration and transportation. It has a sticker that says to wear EVA suits if used in space."
+	icon = 'icons/vore/rover_vr.dmi'
+	icon_state = "dunebug"
 
 /obj/item/weapon/key/rover
 	name = "The Rover key"
@@ -47,7 +46,7 @@
 	desc = "A trolley designed to transport security equipment to a scene."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "secitemcarrierbot"
-	anchored = 0
+	anchored = FALSE
 	passenger_allowed = 0
 	locked = 0
 
@@ -100,8 +99,9 @@
 
 //cargo trains are open topped, so there is a chance the projectile will hit the mob ridding the train instead
 /obj/vehicle/train/rover/bullet_act(var/obj/item/projectile/Proj)
-	if(buckled_mob && prob(70))
-		buckled_mob.bullet_act(Proj)
+	if(has_buckled_mobs() && prob(70))
+		var/mob/living/L = pick(buckled_mobs)
+		L.bullet_act(Proj)
 		return
 	..()
 
@@ -164,28 +164,28 @@
 	else
 		verbs += /obj/vehicle/train/rover/engine/verb/stop_engine
 
-/obj/vehicle/train/rover/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/RunOver(var/mob/living/M)
 	var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
 
-	H.apply_effects(5, 5)
+	M.apply_effects(5, 5)
 	for(var/i = 0, i < rand(1,3), i++)
-		H.apply_damage(rand(1,5), BRUTE, pick(parts))
+		M.apply_damage(rand(1,5), BRUTE, pick(parts))
 
-/obj/vehicle/train/rover/trolley/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/trolley/RunOver(var/mob/living/M)
 	..()
-	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
-/obj/vehicle/train/rover/engine/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/engine/RunOver(var/mob/living/M)
 	..()
 
 	if(is_train_head() && istype(load, /mob/living/carbon/human))
 		var/mob/living/carbon/human/D = load
-		to_chat(D, "<span class='danger'>You ran over \the [H]!</span>")
-		visible_message("<span class='danger'>\The [src] ran over \the [H]!</span>")
-		add_attack_logs(D,H,"Ran over with [src.name]")
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey]), driven by [D.name] ([D.ckey])</font>")
+		to_chat(D, "<span class='danger'>You ran over \the [M]!</span>")
+		visible_message("<span class='danger'>\The [src] ran over \the [M]!</span>")
+		add_attack_logs(D,M,"Ran over with [src.name]")
+		attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey]), driven by [D.name] ([D.ckey])")]")
 	else
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
+		attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
 
 //-------------------------------------------
@@ -205,14 +205,11 @@
 		return ..()
 
 /obj/vehicle/train/rover/engine/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(!istype(usr, /mob/living/carbon/human))
-		return
-
-	to_chat(user, "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition.")
-	to_chat(user, "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%")
+	. = ..()
+	if(Adjacent(user))
+		. += "The power light is [on ? "on" : "off"]."
+		. += "There are[key ? "" : " no"] keys in the ignition."
+		. += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
 
 /obj/vehicle/train/rover/engine/verb/start_engine()
 	set name = "Start engine"
@@ -302,7 +299,7 @@
 	return ..()
 
 /obj/vehicle/train/rover/engine/unload(var/mob/user, var/direction)
-	var/mob/living/carbon/human/C = load	
+	var/mob/living/carbon/human/C = load
 
 
 	if(ismob(load))
@@ -335,7 +332,7 @@
 		C.pixel_y += load_offset_y
 		C.layer = layer
 
-		overlays += C
+		add_overlay(C)
 
 		//we can set these back now since we have already cloned the icon into the overlay
 		C.pixel_x = initial(C.pixel_x)
@@ -348,7 +345,7 @@
 		load = dummy_load.actual_load
 		dummy_load.actual_load = null
 		qdel(dummy_load)
-		overlays.Cut()
+		cut_overlays()
 	..()
 
 //-------------------------------------------
@@ -400,6 +397,6 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 	else
-		anchored = 1
+		anchored = TRUE

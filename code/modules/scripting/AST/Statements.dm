@@ -11,22 +11,20 @@
 	Represents a call to a function.
 */
 //
-	FunctionCall
-		var
-			func_name
-			node/identifier/object
-			list/parameters=new
+/node/statement/FunctionCall
+	var/func_name
+	var/node/identifier/object
+	var/list/parameters=list()
 
 /*
 	Class: FunctionDefinition
 	Defines a function.
 */
 //
-	FunctionDefinition
-		var
-			func_name
-			list/parameters=new
-			node/BlockDefinition/FunctionBlock/block
+/node/statement/FunctionDefinition
+	var/func_name
+	var/list/parameters=list()
+	var/node/BlockDefinition/FunctionBlock/block
 
 /*
 	Class: VariableAssignment
@@ -40,13 +38,10 @@
 	- <VariableDeclaration>
 */
 //
-	VariableAssignment
-		var
-			node
-				identifier
-					object
-					var_name
-				expression/value
+/node/statement/VariableAssignment
+	var/node/identifier/object
+	var/node/identifier/var_name
+	var/node/expression/value
 
 /*
 	Class: VariableDeclaration
@@ -56,67 +51,56 @@
 	- <VariableAssignment>
 */
 //
-	VariableDeclaration
-		var
-			node
-				identifier
-					object
-					var_name
+/node/statement/VariableDeclaration
+	var/node/identifier/object
+	var/node/identifier/var_name
 
 /*
 	Class: IfStatement
 */
 //
-	IfStatement
-		var
-			node
-				BlockDefinition
-					block
-					else_block //may be null
-				expression/cond
+/node/statement/IfStatement
+	var/node/BlockDefinition/block
+	var/node/BlockDefinition/else_block // may be null
+	var/node/expression/cond
 
 /*
 	Class: WhileLoop
 	Loops while a given condition is true.
 */
 //
-	WhileLoop
-		var
-			node
-				BlockDefinition/block
-				expression/cond
+/node/statement/WhileLoop
+	var/node/BlockDefinition/block
+	var/node/expression/cond
 
 /*
 	Class: ForLoop
 	Loops while test is true, initializing a variable, increasing the variable
 */
-	ForLoop
-		var
-			node
-				BlockDefinition/block
-				expression/test
-				expression/init
-				expression/increment
+/node/statement/ForLoop
+	var/node/BlockDefinition/block
+	var/node/expression/test
+	var/node/expression/init
+	var/node/expression/increment
 
 /*
 	Class: BreakStatement
 	Ends a loop.
 */
 //
-	BreakStatement
+/node/statement/BreakStatement
 
 /*
 	Class: ContinueStatement
 	Skips to the next iteration of a loop.
 */
 //
-	ContinueStatement
+/node/statement/ContinueStatement
 
 /*
 	Class: ReturnStatement
 	Ends the function and returns a value.
 */
 //
-	ReturnStatement
-		var
-			node/expression/value
+/node/statement/ReturnStatement
+	var/node/expression/value

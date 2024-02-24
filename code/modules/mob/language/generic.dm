@@ -5,12 +5,6 @@
 	key = ""
 	flags = RESTRICTED|NONGLOBAL|INNATE|NO_TALK_MSG|NO_STUTTER
 
-/datum/language/noise/format_message(message, verb)
-	return "<span class='message'><span class='[colour]'>[message]</span></span>"
-
-/datum/language/noise/format_message_plain(message, verb)
-	return message
-
 /datum/language/noise/format_message_radio(message, verb)
 	return "<span class='[colour]'>[message]</span>"
 
@@ -24,7 +18,7 @@
 // 'basic' language; spoken by default.
 /datum/language/common
 	name = LANGUAGE_GALCOM
-	desc = "The common galactic tongue, engineered for cross-species communication."
+	desc = "The common galactic tongue, engineered for cross-species communication. Every spacer there is knows this!"
 	speech_verb = "says"
 	whisper_verb = "whispers"
 	key = "0"
@@ -133,7 +127,7 @@
 
 /datum/language/sign
 	name = LANGUAGE_SIGN
-	desc = "A sign language commonly used for those who are deaf or mute."
+	desc = "A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments."
 	signlang_verb = list("gestures")
 	colour = "say_quote"
 	key = "s"
@@ -143,10 +137,22 @@
 	var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
 	return (hands || !iscarbon(speaker))
 
+/datum/language/sign/scramble(var/input, var/list/known_languages)
+	return stars(input)
+
+// This is a little weird because broadcast is traditionally for hivemind languages
+// But in practice, it's just a way for a language to override all other languages and bypass hear_say
+// which is exactly what sign language does.
+/datum/language/sign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+	log_say("(SIGN) [message]", speaker)
+	var/verb_to_use = pick(signlang_verb)
+	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
+
+
 // Silly language for those times when you try to talk a languague you normally can't
 /datum/language/gibberish
 	name = LANGUAGE_GIBBERISH
-	desc = "A completely incomprehensible language."
+	desc = "A completely incomprehensible gibberish that can barely be called a language."
 	signlang_verb = list("flails")
 	speech_verb = "spews"
 	whisper_verb = "mumbles"

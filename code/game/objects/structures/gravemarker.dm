@@ -3,10 +3,10 @@
 	desc = "An object used in marking graves."
 	icon_state = "gravemarker"
 
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	throwpass = 1
-	climbable = 1
+	climbable = TRUE
 
 	layer = ABOVE_JUNK_LAYER
 
@@ -17,7 +17,7 @@
 	var/epitaph = ""		//A quick little blurb
 //	var/dir_locked = 0		//Can it be spun?	Not currently implemented
 
-	var/material/material
+	var/datum/material/material
 
 /obj/structure/gravemarker/New(var/newloc, var/material_name)
 	..(newloc)
@@ -30,38 +30,36 @@
 	color = material.icon_colour
 
 /obj/structure/gravemarker/examine(mob/user)
-	..()
-	if(get_dist(src, user) < 4)
-		if(grave_name)
-			to_chat(user, "Here Lies [grave_name]")
-	if(get_dist(src, user) < 2)
-		if(epitaph)
-			to_chat(user, epitaph)
+	. = ..()
+	if(grave_name && get_dist(src, user) < 4)
+		. += "Here Lies [grave_name]"
+	if(epitaph && get_dist(src, user) < 2)
+		. += epitaph
 
 /obj/structure/gravemarker/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
-	if(get_dir(loc, target) & dir)
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
-/obj/structure/gravemarker/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
+/obj/structure/gravemarker/Uncross(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
+		return !density
+	return TRUE
 
 /obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
-	if(W.is_screwdriver())
-		var/carving_1 = sanitizeSafe(input(user, "Who is \the [src.name] for?", "Gravestone Naming", null)  as text, MAX_NAME_LEN)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
+		var/carving_1 = sanitizeSafe(tgui_input_text(user, "Who is \the [src.name] for?", "Gravestone Naming", null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(carving_1)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
 			if(do_after(user, material.hardness * W.toolspeed))
 				user.visible_message("[user] carves something into \the [src.name].", "You carve your message into \the [src.name].")
 				grave_name += carving_1
 				update_icon()
-		var/carving_2 = sanitizeSafe(input(user, "What message should \the [src.name] have?", "Epitaph Carving", null)  as text, MAX_NAME_LEN)
+		var/carving_2 = sanitizeSafe(tgui_input_text(user, "What message should \the [src.name] have?", "Epitaph Carving", null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(carving_2)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
 			if(do_after(user, material.hardness * W.toolspeed))
@@ -69,7 +67,7 @@
 				epitaph += carving_2
 				update_icon()
 		return
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("[user] starts taking down \the [src.name].", "You start taking down \the [src.name].")
 		if(do_after(user, material.hardness * W.toolspeed))
 			user.visible_message("[user] takes down \the [src.name].", "You take down \the [src.name].")

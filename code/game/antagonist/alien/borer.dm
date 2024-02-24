@@ -30,7 +30,7 @@ var/datum/antagonist/borer/borers
 	borers = src
 
 /datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
-	return "<a href='?src=\ref[src];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
+	return "<a href='?src=\ref[src];[HrefToken()];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
 
 /datum/antagonist/borer/create_objectives(var/datum/mind/player)
 	if(!..())
@@ -68,7 +68,7 @@ var/datum/antagonist/borer/borers
 /datum/antagonist/borer/proc/get_vents()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
-		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in using_map.station_levels)
+		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in using_map.station_levels))
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent
 	return vents

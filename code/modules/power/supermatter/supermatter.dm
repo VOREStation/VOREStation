@@ -1,4 +1,3 @@
-
 #define NITROGEN_RETARDATION_FACTOR 0.15	//Higher == N2 slows reaction more
 #define THERMAL_RELEASE_MODIFIER 10000		//Higher == more heat released during reaction
 #define PHORON_RELEASE_MODIFIER 1500		//Higher == less phoron released by reaction
@@ -25,21 +24,37 @@
 
 // Base variants are applied to everyone on the same Z level
 // Range variants are applied on per-range basis: numbers here are on point blank, it scales with the map size (assumes square shaped Z levels)
-#define DETONATION_RADS 20
-#define DETONATION_HALLUCINATION_BASE 300
-#define DETONATION_HALLUCINATION_RANGE 300
-#define DETONATION_HALLUCINATION 600
+#define DETONATION_RADS 40
+#define DETONATION_MOB_CONCUSSION 4			// Value that will be used for Weaken() for mobs.
 
+// Base amount of ticks for which a specific type of machine will be offline for. +- 20% added by RNG.
+// This does pretty much the same thing as an electrical storm, it just affects the whole Z level instantly.
+#define DETONATION_APC_OVERLOAD_PROB 10		// prob() of overloading an APC's lights.
+#define DETONATION_SHUTDOWN_APC 120			// Regular APC.
+#define DETONATION_SHUTDOWN_CRITAPC 10		// Critical APC. AI core and such. Considerably shorter as we don't want to kill the AI with a single blast. Still a nuisance.
+#define DETONATION_SHUTDOWN_SMES 60			// SMES
+#define DETONATION_SHUTDOWN_RNG_FACTOR 20	// RNG factor. Above shutdown times can be +- X%, where this setting is the percent. Do not set to 100 or more.
+#define DETONATION_SOLAR_BREAK_CHANCE 60	// prob() of breaking solar arrays (this is per-panel, and only affects the Z level SM is on)
+
+// If power level is between these two, explosion strength will be scaled accordingly between min_explosion_power and max_explosion_power
+#define DETONATION_EXPLODE_MIN_POWER 200	// If power level is this or lower, minimal detonation strength will be used
+#define DETONATION_EXPLODE_MAX_POWER 2000	// If power level is this or higher maximal detonation strength will be used
 
 #define WARNING_DELAY 20			//seconds between warnings.
 
+// Keeps Accent sounds from layering, increase or decrease as preferred.
+#define SUPERMATTER_ACCENT_SOUND_COOLDOWN 2 SECONDS
+
 /obj/machinery/power/supermatter
 	name = "Supermatter"
-	desc = "A strangely translucent and iridescent crystal. <font color='red'>You get headaches just from looking at it.</font>"
-	icon = 'icons/obj/engine.dmi'
+	desc = "A strangely translucent and iridescent crystal. <span class='red'>You get headaches just from looking at it.</span>"
+	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter"
-	density = 1
-	anchored = 0
+	plane = MOB_PLANE // So people can walk behind the top part
+	layer = ABOVE_MOB_LAYER // So people can walk behind the top part
+	density = TRUE
+	anchored = FALSE
+	unacidable = TRUE
 	light_range = 4
 
 	var/gasefficency = 0.25
@@ -65,7 +80,8 @@
 	var/pull_radius = 14
 	// Time in ticks between delamination ('exploding') and exploding (as in the actual boom)
 	var/pull_time = 100
-	var/explosion_power = 8
+	var/min_explosion_power = 8
+	var/max_explosion_power = 16
 
 	var/emergency_issued = 0
 
@@ -87,6 +103,9 @@
 	var/config_hallucination_power = 0.1
 
 	var/debug = 0
+
+	/// Cooldown tracker for accent sounds,
+	var/last_accent_sound = 0
 
 	var/datum/looping_sound/supermatter/soundloop
 
@@ -131,30 +150,82 @@
 	return SUPERMATTER_INACTIVE
 
 
+/obj/machinery/power/supermatter/proc/get_epr()
+	var/turf/T = get_turf(src)
+	if(!istype(T))
+		return
+	var/datum/gas_mixture/air = T.return_air()
+	if(!air)
+		return 0
+	return round((air.total_moles / air.group_multiplier) / 23.1, 0.01)
+
+
 /obj/machinery/power/supermatter/proc/explode()
-	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+
+	set waitfor = 0
+
+	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("SUPERMATTER([x],[y],[z]) Exploded. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
-	anchored = 1
+	anchored = TRUE
 	grav_pulling = 1
 	exploded = 1
-	var/turf/TS = get_turf(src)		// The turf supermatter is on. SM being in a locker, mecha, or other container shouldn't block it's effects that way.
-	if(!TS)
+	sleep(pull_time)
+	var/turf/TS = get_turf(src)		// The turf supermatter is on. SM being in a locker, exosuit, or other container shouldn't block it's effects that way.
+	if(!istype(TS))
 		return
-	for(var/z in GetConnectedZlevels(TS.z))
+
+	var/list/affected_z = GetConnectedZlevels(TS.z)
+
+	// Effect 1: Radiation, weakening to all mobs on Z level
+	for(var/z in affected_z)
 		SSradiation.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
+
 	for(var/mob/living/mob in living_mob_list)
-		var/turf/T = get_turf(mob)
-		if(T && (loc.z == T.z))
-			if(istype(mob, /mob/living/carbon/human))
-				//Hilariously enough, running into a closet should make you get hit the hardest.
-				var/mob/living/carbon/human/H = mob
-				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
-	spawn(pull_time)
-		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
-		spawn(5) //to allow the explosion to finish
-		new /obj/item/broken_sm(TS)
+		var/turf/TM = get_turf(mob)
+		if(!TM)
+			continue
+		if(!(TM.z in affected_z))
+			continue
+
+		mob.Weaken(DETONATION_MOB_CONCUSSION)
+		to_chat(mob, "<span class='danger'>An invisible force slams you against the ground!</span>")
+
+	// Effect 2: Z-level wide electrical pulse
+	for(var/obj/machinery/power/apc/A in GLOB.apcs)
+		if(!(A.z in affected_z))
+			continue
+
+		// Overloads lights
+		if(prob(DETONATION_APC_OVERLOAD_PROB))
+			A.overload_lighting()
+		// Causes the APCs to go into system failure mode.
+		var/random_change = rand(100 - DETONATION_SHUTDOWN_RNG_FACTOR, 100 + DETONATION_SHUTDOWN_RNG_FACTOR) / 100
+		if(A.is_critical)
+			A.energy_fail(round(DETONATION_SHUTDOWN_CRITAPC * random_change))
+		else
+			A.energy_fail(round(DETONATION_SHUTDOWN_APC * random_change))
+
+	// Effect 3: Break solar arrays
+	for(var/obj/machinery/power/solar/S in machines)
+		if(!(S.z in affected_z))
+			continue
+		if(prob(DETONATION_SOLAR_BREAK_CHANCE))
+			S.health = -1
+			S.broken()
+
+	// Effect 4: Medium scale explosion
+	spawn(0)
+		var/explosion_power = min_explosion_power
+		if(power > 0)
+			// 0-100% where 0% is at DETONATION_EXPLODE_MIN_POWER or lower and 100% is at DETONATION_EXPLODE_MAX_POWER or higher
+			var/strength_percentage = between(0, (power - DETONATION_EXPLODE_MIN_POWER) / ((DETONATION_EXPLODE_MAX_POWER - DETONATION_EXPLODE_MIN_POWER) / 100), 100)
+			explosion_power = between(min_explosion_power, (((max_explosion_power - min_explosion_power) * (strength_percentage / 100)) + min_explosion_power), max_explosion_power)
+
+		explosion(TS, explosion_power/2, explosion_power, max_explosion_power, explosion_power * 4, 1)
 		qdel(src)
-		return
+		// Allow the explosion to finish
+		spawn(5)
+			new /obj/item/broken_sm(TS)
 
 //Changes color and luminosity of the light to these values if they were not already set
 /obj/machinery/power/supermatter/proc/shift_light(var/lum, var/clr)
@@ -202,20 +273,6 @@
 			global_announcer.autosay(alert_msg, "Supermatter Monitor")
 			public_alert = 0
 
-
-/obj/machinery/power/supermatter/get_transit_zlevel()
-	//don't send it back to the station -- most of the time
-	if(prob(99))
-		var/list/candidates = using_map.accessible_z_levels.Copy()
-		for(var/zlevel in using_map.station_levels)
-			candidates.Remove("[zlevel]")
-		candidates.Remove("[src.z]")
-
-		if(candidates.len)
-			return text2num(pickweight(candidates))
-
-	return ..()
-
 /obj/machinery/power/supermatter/process()
 
 	var/turf/L = loc
@@ -242,10 +299,28 @@
 	if(grav_pulling)
 		supermatter_pull(src)
 
+	// Vary volume by power produced.
 	if(power)
 		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.
 		// Capped to 20 volume since higher volumes get annoying and it sounds worse.
-		soundloop.volume = min(round(power/10)+1, 20)
+		// Formula previously was min(round(power/10)+1, 20)
+		soundloop.volume = CLAMP((50 + (power / 50)), 50, 100)
+
+	// Swap loops between calm and delamming.
+	if(damage >= 300)
+		soundloop.mid_sounds = list('sound/machines/sm/loops/delamming.ogg' = 1)
+	else
+		soundloop.mid_sounds = list('sound/machines/sm/loops/calm.ogg' = 1)
+
+	// Play Delam/Neutral sounds at rate determined by power and damage.
+	if(last_accent_sound < world.time && prob(20))
+		var/aggression = min(((damage / 800) * (power / 2500)), 1.0) * 100
+		if(damage >= 300)
+			playsound(src, "smdelam", max(50, aggression), FALSE, 10)
+		else
+			playsound(src, "smcalm", max(50, aggression), FALSE, 10)
+		var/next_sound = round((100 - aggression) * 5)
+		last_accent_sound = world.time + max(SUPERMATTER_ACCENT_SOUND_COOLDOWN, next_sound)
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/removed = null
@@ -341,11 +416,11 @@
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
-		ui_interact(user)
+		tgui_interact(user)
 	return
 
 /obj/machinery/power/supermatter/attack_ai(mob/user as mob)
-	ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/power/supermatter/attack_hand(mob/user as mob)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
@@ -355,9 +430,15 @@
 
 	Consume(user)
 
+/obj/machinery/power/supermatter/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AiSupermatter", name)
+		ui.open()
+
 // This is purely informational UI that may be accessed by AIs or robots
-/obj/machinery/power/supermatter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
+/obj/machinery/power/supermatter/tgui_data(mob/user)
+	var/list/data = list()
 
 	data["integrity_percentage"] = round(get_integrity())
 	var/datum/gas_mixture/env = null
@@ -372,12 +453,7 @@
 		data["ambient_pressure"] = round(env.return_pressure())
 	data["detonating"] = grav_pulling
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "supermatter_crystal.tmpl", "Supermatter Crystal", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return data
 
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
@@ -438,7 +514,7 @@
 
 /obj/machinery/power/supermatter/shard //Small subtype, less efficient and more sensitive, but less boom.
 	name = "Supermatter Shard"
-	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. <font color='red'>You get headaches just from looking at it.</font>"
+	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. <span class='red'>You get headaches just from looking at it.</span>"
 	icon_state = "darkmatter_shard"
 	base_icon_state = "darkmatter_shard"
 
@@ -450,7 +526,8 @@
 
 	pull_radius = 5
 	pull_time = 45
-	explosion_power = 3
+	min_explosion_power = 3
+	max_explosion_power = 6
 
 /obj/machinery/power/supermatter/shard/announce_warning() //Shards don't get announcements
 	return
@@ -458,11 +535,11 @@
 /obj/item/broken_sm
 	name = "shattered supermatter plinth"
 	desc = "The shattered remains of a supermatter shard plinth. It doesn't look safe to be around."
-	icon = 'icons/obj/engine.dmi'
+	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter_broken"
 
 /obj/item/broken_sm/New()
-	message_admins("Broken SM shard created at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	message_admins("Broken SM shard created at ([x],[y],[z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
@@ -472,3 +549,26 @@
 /obj/item/broken_sm/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
+
+#undef NITROGEN_RETARDATION_FACTOR
+#undef THERMAL_RELEASE_MODIFIER
+#undef PHORON_RELEASE_MODIFIER
+#undef OXYGEN_RELEASE_MODIFIER
+#undef REACTION_POWER_MODIFIER
+
+#undef DETONATION_RADS
+#undef DETONATION_MOB_CONCUSSION
+
+#undef DETONATION_APC_OVERLOAD_PROB
+#undef DETONATION_SHUTDOWN_APC
+#undef DETONATION_SHUTDOWN_CRITAPC
+#undef DETONATION_SHUTDOWN_SMES
+#undef DETONATION_SHUTDOWN_RNG_FACTOR
+#undef DETONATION_SOLAR_BREAK_CHANCE
+
+#undef DETONATION_EXPLODE_MIN_POWER
+#undef DETONATION_EXPLODE_MAX_POWER
+
+#undef WARNING_DELAY
+
+#undef SUPERMATTER_ACCENT_SOUND_COOLDOWN

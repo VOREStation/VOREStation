@@ -9,13 +9,14 @@
 	var/home_low_priority = FALSE		// If true, the mob will not go home unless it has nothing better to do, e.g. its following someone.
 	var/max_home_distance = 3			// How far the mob can go away from its home before being told to go_home().
 										// Note that there is a 'BYOND cap' of 14 due to limitations of get_/step_to().
-
 	// Wandering.
 	var/wander = FALSE					// If true, the mob will randomly move in the four cardinal directions when idle.
 	var/wander_delay = 0				// How many ticks until the mob can move a tile in handle_wander_movement().
 	var/base_wander_delay = 2			// What the above var gets set to when it wanders. Note that a tick happens every half a second.
 	var/wander_when_pulled = FALSE		// If the mob will refrain from wandering if someone is pulling it.
 
+	// Breakthrough
+	var/failed_breakthroughs = 0		// How many times we've failed to breakthrough something lately
 
 /datum/ai_holder/proc/walk_to_destination()
 	ai_log("walk_to_destination() : Entering.",AI_LOG_TRACE)
@@ -26,22 +27,24 @@
 		ai_log("walk_to_destination() : Exiting.", AI_LOG_TRACE)
 		return
 
-	var/get_to = min_distance_to_destination
 	var/distance = get_dist(holder, destination)
-	ai_log("walk_to_destination() : get_to is [get_to].", AI_LOG_TRACE)
+	ai_log("walk_to_destination() : get_to is [min_distance_to_destination].", AI_LOG_TRACE)
 
-	// We're here!
-	if(distance <= get_to)
+	// We're here! Or we're horribly lost
+	if(distance <= min_distance_to_destination || holder.z != destination.z)
+		check_use_ladder()
 		give_up_movement()
 		set_stance(stance == STANCE_REPOSITION ? STANCE_APPROACH : STANCE_IDLE)
 		ai_log("walk_to_destination() : Destination reached. Exiting.", AI_LOG_INFO)
 		return
 
 	ai_log("walk_to_destination() : Walking.", AI_LOG_TRACE)
-	walk_path(destination, get_to)
+	walk_path(destination, min_distance_to_destination)
 	ai_log("walk_to_destination() : Exiting.",AI_LOG_TRACE)
 
 /datum/ai_holder/proc/should_go_home()
+	if(stance != STANCE_IDLE)
+		return FALSE
 	if(!returns_home || !home_turf)
 		return FALSE
 	if(get_dist(holder, home_turf) > max_home_distance)
@@ -90,7 +93,9 @@
 		//	step_to(holder, A)
 			if(holder.IMove(get_step_to(holder, A)) == MOVEMENT_FAILED)
 				ai_log("walk_path() : Failed to move, attempting breakthrough.", AI_LOG_INFO)
-				breakthrough(A) // We failed to move, time to smash things.
+				if(!breakthrough(A) && failed_breakthroughs++ >= 5) // We failed to move, time to smash things.
+					give_up_movement()
+					failed_breakthroughs = 0
 			return
 
 		if(move_once() == FALSE) // Start walking the path.
@@ -106,7 +111,9 @@
 		ai_log("walk_path() : Going to IMove().", AI_LOG_TRACE)
 		if(holder.IMove(get_step_to(holder, A)) == MOVEMENT_FAILED )
 			ai_log("walk_path() : Failed to move, attempting breakthrough.", AI_LOG_INFO)
-			breakthrough(A) // We failed to move, time to smash things.
+			if(!breakthrough(A) && failed_breakthroughs++ >= 5) // We failed to move, time to smash things.
+				give_up_movement()
+				failed_breakthroughs = 0
 
 	ai_log("walk_path() : Exited.", AI_LOG_TRACE)
 
@@ -119,7 +126,7 @@
 
 	if(path_display)
 		var/turf/T = src.path[1]
-		T.overlays -= path_overlay
+		T.cut_overlay(path_overlay)
 
 //	step_towards(holder, src.path[1])
 	if(holder.IMove(get_step_towards(holder, src.path[1])) != MOVEMENT_ON_COOLDOWN)
@@ -134,10 +141,12 @@
 	return MOVEMENT_ON_COOLDOWN
 
 /datum/ai_holder/proc/should_wander()
-	return wander && !leader
+	return (stance == STANCE_IDLE) && wander && !leader
 
 // Wanders randomly in cardinal directions.
 /datum/ai_holder/proc/handle_wander_movement()
+	if(!holder)
+		return
 	ai_log("handle_wander_movement() : Entered.", AI_LOG_TRACE)
 	if(isturf(holder.loc) && can_act())
 		wander_delay--
@@ -152,3 +161,34 @@
 			holder.IMove(get_step(holder,moving_to))
 			wander_delay = base_wander_delay
 	ai_log("handle_wander_movement() : Exited.", AI_LOG_TRACE)
+
+/datum/ai_holder/proc/check_use_ladder()
+	// No target, don't use the ladder
+	// Target is visible, don't use the ladder
+	if(!target || can_see_target(target))
+		return
+
+	var/has_hands = TRUE
+	if(istype(holder, /mob/living/simple_mob))
+		var/mob/living/simple_mob/S = holder
+		has_hands = S.has_hands
+
+	// Don't have means to use a ladder or the space around it, don't use the ladder
+	if(!has_hands && !holder.hovering)
+		return
+
+	var/obj/structure/ladder/L = locate() in get_turf(holder)
+	if(!istype(L))
+		return // No ladder, can't use it
+
+	if(!holder.may_climb_ladders(L))
+		return // Can't climb the ladder for other reasons (Probably inconsequential?)
+
+	var/list/directions = list()
+	if(L.allowed_directions & DOWN)
+		directions += L.target_down
+	if(L.allowed_directions & UP)
+		directions += L.target_up
+
+	if(directions.len)
+		L.climbLadder(holder, pick(directions))

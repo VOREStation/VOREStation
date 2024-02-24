@@ -12,7 +12,6 @@
 
 /obj/item/weapon/circuitboard/security/New()
 	..()
-	network = using_map.station_networks
 
 /obj/item/weapon/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")
@@ -37,7 +36,7 @@
 	name = T_BOARD("entertainment camera monitor")
 	build_path = /obj/machinery/computer/security/telescreen/entertainment
 	board_type = new /datum/frame/frame_types/display
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/security/telescreen/entertainment/New()
 	..()
@@ -45,7 +44,7 @@
 
 /obj/item/weapon/circuitboard/security/construct(var/obj/machinery/computer/security/C)
 	if (..(C))
-		C.network = network.Copy()
+		C.set_network(network.Copy())
 
 /obj/item/weapon/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
 	if (..(C))
@@ -75,7 +74,7 @@
 			to_chat(user, "<span class='warning'>Circuit controls are locked.</span>")
 			return
 		var/existing_networks = jointext(network,",")
-		var/input = sanitize(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
+		var/input = sanitize(tgui_input_text(usr, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
 		if(!input)
 			to_chat(usr, "No input found please hang up and try your call again.")
 			return

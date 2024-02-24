@@ -1,5 +1,3 @@
-var/global/list/ore_data = list()
-
 /ore
 	var/name
 	var/display_name
@@ -17,6 +15,7 @@ var/global/list/ore_data = list()
 		"million" = 999
 		)
 	var/xarch_source_mineral = "iron"
+	var/reagent = "silicate"
 
 /ore/New()
 	. = ..()
@@ -36,6 +35,7 @@ var/global/list/ore_data = list()
 		"million" = 704
 		)
 	xarch_source_mineral = "potassium"
+	reagent = "uranium"
 
 /ore/hematite
 	name = "hematite"
@@ -46,16 +46,19 @@ var/global/list/ore_data = list()
 	spread_chance = 25
 	ore = /obj/item/weapon/ore/iron
 	scan_icon = "mineral_common"
+	reagent = "iron"
 
 /ore/coal
 	name = "carbon"
 	display_name = "raw carbon"
 	smelts_to = "plastic"
+	compresses_to = "graphite"
 	alloy = 1
 	result_amount = 5
 	spread_chance = 25
 	ore = /obj/item/weapon/ore/coal
 	scan_icon = "mineral_common"
+	reagent = "carbon"
 
 /ore/glass
 	name = "sand"
@@ -80,6 +83,7 @@ var/global/list/ore_data = list()
 		"billion_lower" = 10
 		)
 	xarch_source_mineral = "phoron"
+	reagent = "phoron"
 
 /ore/silver
 	name = "silver"
@@ -89,6 +93,7 @@ var/global/list/ore_data = list()
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/silver
 	scan_icon = "mineral_uncommon"
+	reagent = "silver"
 
 /ore/gold
 	smelts_to = "gold"
@@ -104,6 +109,7 @@ var/global/list/ore_data = list()
 		"billion" = 4,
 		"billion_lower" = 3
 		)
+	reagent = "gold"
 
 /ore/diamond
 	name = "diamond"
@@ -115,6 +121,7 @@ var/global/list/ore_data = list()
 	ore = /obj/item/weapon/ore/diamond
 	scan_icon = "mineral_rare"
 	xarch_source_mineral = "nitrogen"
+	reagent = "carbon"
 
 /ore/platinum
 	name = "platinum"
@@ -126,6 +133,7 @@ var/global/list/ore_data = list()
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/osmium
 	scan_icon = "mineral_rare"
+	reagent = "platinum"
 
 /ore/hydrogen
 	name = "mhydrogen"
@@ -133,6 +141,7 @@ var/global/list/ore_data = list()
 	smelts_to = "tritium"
 	compresses_to = "mhydrogen"
 	scan_icon = "mineral_rare"
+	reagent = "hydrogen"
 
 /ore/verdantium
 	name = MAT_VERDANTIUM
@@ -155,6 +164,7 @@ var/global/list/ore_data = list()
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/marble
 	scan_icon = "mineral_common"
+	reagent = "calciumcarbonate"
 
 /ore/lead
 	name = MAT_LEAD
@@ -164,3 +174,73 @@ var/global/list/ore_data = list()
 	spread_chance = 20
 	ore = /obj/item/weapon/ore/lead
 	scan_icon = "mineral_rare"
+	reagent = "lead"
+/*
+/ore/copper
+	name = "copper"
+	display_name = "copper"
+	smelts_to = "copper"
+	alloy = 1
+	result_amount = 5
+	spread_chance = 15
+	ore = /obj/item/weapon/ore/copper
+	scan_icon = "mineral_common"
+	reagent = "copper"
+
+/ore/tin
+	name = "tin"
+	display_name = "tin"
+	smelts_to = "tin"
+	alloy = 1
+	result_amount = 5
+	spread_chance = 10
+	ore = /obj/item/weapon/ore/tin
+	scan_icon = "mineral_common"
+
+/ore/quartz
+	name = "quartz"
+	display_name = "unrefined quartz"
+	compresses_to = "quartz"
+	result_amount = 5
+	spread_chance = 5
+	ore = /obj/item/weapon/ore/quartz
+	scan_icon = "mineral_common"
+
+/ore/bauxite
+	name = "bauxite"
+	display_name = "bauxite"
+	smelts_to = "aluminium"
+	result_amount = 5
+	spread_chance = 25
+	ore = /obj/item/weapon/ore/bauxite
+	scan_icon = "mineral_common"
+	reagent = "aluminum"
+*/
+/ore/rutile
+	name = "rutile"
+	display_name = "rutile"
+	smelts_to = "titanium"
+	result_amount = 5
+	spread_chance = 12
+	alloy = 1
+	ore = /obj/item/weapon/ore/rutile
+	scan_icon = "mineral_uncommon"
+/*
+/ore/painite
+	name = "painite"
+	display_name = "rough painite"
+	compresses_to = "painite"
+	result_amount = 5
+	spread_chance = 3
+	ore = /obj/item/weapon/ore/painite
+	scan_icon = "mineral_rare"
+
+/ore/void_opal
+	name = "void opal"
+	display_name = "rough void opal"
+	compresses_to = "void opal"
+	result_amount = 5
+	spread_chance = 1
+	ore = /obj/item/weapon/ore/void_opal
+	scan_icon = "mineral_rare"
+*/

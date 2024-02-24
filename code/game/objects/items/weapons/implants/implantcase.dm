@@ -21,7 +21,7 @@
 /obj/item/weapon/implantcase/attackby(obj/item/weapon/I as obj, mob/user as mob)
 	..()
 	if (istype(I, /obj/item/weapon/pen))
-		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
+		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null, MAX_NAME_LEN)
 		if (user.get_active_hand() != I)
 			return
 		if((!in_range(src, usr) && src.loc != user))
@@ -277,5 +277,35 @@
 
 /obj/item/weapon/implantcase/sprinter/New()
 	src.imp = new /obj/item/weapon/implant/organ/pelvic( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/armblade
+	name = "glass case - 'Armblade'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/armblade/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm/blade( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/handblade
+	name = "glass case - 'Handblade'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/handblade/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist/blade( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/restrainingbolt
+	name = "glass case - 'Restraining Bolt'"
+	desc = "A case containing a restraining bolt."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/restrainingbolt/New()
+	src.imp = new /obj/item/weapon/implant/restrainingbolt( src )
 	..()
 	return

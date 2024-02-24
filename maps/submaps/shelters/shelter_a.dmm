@@ -280,8 +280,10 @@
 "D" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/voidcraft/survival_pod{
+	destroy_hits = 100;
 	id_tag = "shelter_gamma"
 	},
+/obj/effect/floor_decal/industrial/danger/full,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "E" = (

@@ -238,8 +238,7 @@ Example: USING PROCCALL = BLOCKING, SELECT = FORCE_NULLS, PRIORITY = HIGH SELECT
 	do
 		CHECK_TICK
 		finished = TRUE
-		for(var/i in running)
-			var/datum/SDQL2_query/query = i
+		for(var/datum/SDQL2_query/query as anything in running)
 			if(QDELETED(query))
 				running -= query
 				continue
@@ -446,7 +445,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					ENABLE_BITFIELD(options, SDQL2_OPTION_DO_NOT_AUTOGC)
 
 /datum/SDQL2_query/proc/ARun()
-	INVOKE_ASYNC(src, .proc/Run)
+	INVOKE_ASYNC(src, PROC_REF(Run))
 
 /datum/SDQL2_query/proc/Run()
 	if(SDQL2_IS_RUNNING)
@@ -562,8 +561,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		location = list(location)
 
 	if(type == "*")
-		for(var/i in location)
-			var/datum/d = i
+		for(var/datum/d as anything in location)
 			if(d.can_vv_get() || superuser)
 				out += d
 			SDQL2_TICK_CHECK
@@ -634,14 +632,14 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				if(!is_proper_datum(i))
 					continue
 				world.SDQL_var(i, query_tree["call"][1], null, i, superuser, src)
-				obj_count_finished++
+				obj_count_finished += 1
 				SDQL2_TICK_CHECK
 				SDQL2_HALT_CHECK
 
 		if("delete")
 			for(var/datum/d in found)
 				SDQL_qdel_datum(d)
-				obj_count_finished++
+				obj_count_finished += 1
 				SDQL2_TICK_CHECK
 				SDQL2_HALT_CHECK
 
@@ -663,7 +661,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					if(!is_proper_datum(d))
 						continue
 					SDQL_internal_vv(d, set_list)
-					obj_count_finished++
+					obj_count_finished += 1
 					SDQL2_TICK_CHECK
 					SDQL2_HALT_CHECK
 	if(islist(obj_count_finished))
@@ -672,7 +670,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 /datum/SDQL2_query/proc/SDQL_print(object, list/text_list, print_nulls = TRUE)
 	if(is_proper_datum(object))
-		text_list += "<A HREF='?_src_=vars;Vars=\ref[object]'>\ref[object]</A> : [object]"
+		text_list += "<A HREF='?_src_=vars;[HrefToken()];Vars=\ref[object]'>\ref[object]</A> : [object]"
 		if(istype(object, /atom))
 			var/atom/A = object
 			var/turf/T = A.loc
@@ -1048,7 +1046,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 		else if(char == "'")
 			if(word != "")
-				to_chat(usr, "<font color='red'>SDQL2: You have an error in your SDQL syntax, unexpected ' in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again.</font>")
+				to_chat(usr, span_red("SDQL2: You have an error in your SDQL syntax, unexpected ' in query: \"[span_gray("[query_text]")]\" following \"[span_gray("[word]")]\". Please check your syntax, and try again."))
 				return null
 
 			word = "'"
@@ -1068,7 +1066,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					word += char
 
 			if(i > len)
-				to_chat(usr, "<font color='red'>SDQL2: You have an error in your SDQL syntax, unmatched ' in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again.</font>")
+				to_chat(usr, span_red("SDQL2: You have an error in your SDQL syntax, unmatched ' in query: \"[span_gray("[query_text]")]\". Please check your syntax, and try again."))
 				return null
 
 			query_list += "[word]'"
@@ -1076,7 +1074,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 		else if(char == "\"")
 			if(word != "")
-				to_chat(usr, "<font color='red'>SDQL2: You have an error in your SDQL syntax, unexpected \" in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again.</font>")
+				to_chat(usr, span_red("SDQL2: You have an error in your SDQL syntax, unexpected \" in query: \"[span_gray("[query_text]")]\" following \"[span_gray("[word]")]\". Please check your syntax, and try again."))
 				return null
 
 			word = "\""
@@ -1096,7 +1094,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					word += char
 
 			if(i > len)
-				to_chat(usr, "<font color='red'>SDQL2: You have an error in your SDQL syntax, unmatched \" in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again.</font>")
+				to_chat(usr, span_red("SDQL2: You have an error in your SDQL syntax, unmatched \" in query: \"[span_gray("[query_text]")]\". Please check your syntax, and try again."))
 				return null
 
 			query_list += "[word]\""
@@ -1125,3 +1123,29 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 /obj/effect/statclick/SDQL2_VV_all/Click()
 	usr.client.debug_variables(GLOB.sdql2_queries)
+
+#undef SDQL_qdel_datum
+
+#undef SDQL2_STATE_ERROR
+#undef SDQL2_STATE_IDLE
+#undef SDQL2_STATE_PRESEARCH
+#undef SDQL2_STATE_SEARCHING
+#undef SDQL2_STATE_EXECUTING
+#undef SDQL2_STATE_SWITCHING
+#undef SDQL2_STATE_HALTING
+
+// 2 undefs missing here still because of SDQL_2_parser
+
+#undef SDQL2_OPTION_SELECT_OUTPUT_SKIP_NULLS
+#undef SDQL2_OPTION_BLOCKING_CALLS
+#undef SDQL2_OPTION_HIGH_PRIORITY
+#undef SDQL2_OPTION_DO_NOT_AUTOGC
+
+#undef SDQL2_OPTIONS_DEFAULT
+
+#undef SDQL2_IS_RUNNING
+#undef SDQL2_HALT_CHECK
+
+#undef SDQL2_TICK_CHECK
+
+#undef SDQL2_STAGE_SWITCH_CHECK

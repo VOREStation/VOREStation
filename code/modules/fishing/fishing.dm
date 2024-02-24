@@ -35,7 +35,8 @@ GLOBAL_LIST_INIT(generic_fishing_pool_list, list(
 		/obj/random/junk = 80,
 		/obj/random/trash = 80,
 		/obj/item/weapon/spacecash/c1 = 10,
-		/obj/item/weapon/spacecash/c10 = 5,
+		/obj/item/weapon/spacecash/c5 = 3,
+		/obj/item/weapon/spacecash/c10 = 2,
 		/obj/item/weapon/spacecash/c100 = 1
 		))
 
@@ -145,7 +146,7 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 					has_fish = FALSE
 			//List of possible outcomes.
 			if(!fish_type)
-				to_chat(user,"You caught... nothing. How sad.")
+				to_chat(user,"<span class='filter_notice'>You caught... nothing. How sad.</span>")
 			else
 				var/fished = new fish_type(get_turf(user))
 				if(isliving(fished))

@@ -12,9 +12,9 @@
 	desc = "Ding-aling ding dong. Get your NanoTrasen-approved ice cream!"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_vat"
-	density = 1
-	anchored = 0
-	use_power = 0
+	density = TRUE
+	anchored = FALSE
+	use_power = USE_POWER_OFF
 	flags = OPENCONTAINER | NOREACT
 
 	var/list/product_types = list()
@@ -92,7 +92,7 @@
 		var/obj/item/weapon/reagent_containers/food/snacks/icecream/I = O
 		if(!I.ice_creamed)
 			if(product_types[dispense_flavour] > 0)
-				src.visible_message("[bicon(src)] <span class='info'>[user] scoops delicious [flavour_name] icecream into [I].</span>")
+				src.visible_message("\icon[src][bicon(src)] <span class='info'>[user] scoops delicious [flavour_name] icecream into [I].</span>")
 				product_types[dispense_flavour] -= 1
 				I.add_ice_cream(flavour_name)
 			//	if(beaker)
@@ -183,13 +183,13 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
 	name = "[flavour_name] icecream"
-	src.overlays += "icecream_[flavour_name]"
+	add_overlay("icecream_[flavour_name]")
 	desc = "Delicious [cone_type] cone with a dollop of [flavour_name] ice cream."
 	ice_creamed = 1
 
 #undef ICECREAM_VANILLA
-#undef FLAVOUR_CHOCOLATE
-#undef FLAVOUR_STRAWBERRY
-#undef FLAVOUR_BLUE
+#undef ICECREAM_CHOCOLATE
+#undef ICECREAM_STRAWBERRY
+#undef ICECREAM_BLUE
 #undef CONE_WAFFLE
 #undef CONE_CHOC

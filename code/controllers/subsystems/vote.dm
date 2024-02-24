@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(vote)
 	var/duration
 	var/mode
 	var/question
+	var/gamemode_vote_called = FALSE // Have we had a gamemode vote this round?  Only auto-call if we haven't
 	var/list/choices = list()
 	var/list/gamemode_names = list()
 	var/list/voted = list()
@@ -34,8 +35,7 @@ SUBSYSTEM_DEF(vote)
 	// Before doing the vote, see if anyone is playing.
 	// If not, just do the transfer.
 	var/players_are_in_round = FALSE
-	for(var/a in player_list) // Mobs with clients attached.
-		var/mob/living/L = a
+	for(var/mob/living/L as anything in player_list) // Mobs with clients attached.
 		if(!istype(L)) // Exclude ghosts and other weird things.
 			continue
 		if(L.stat == DEAD) // Dead mobs aren't playing.
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(vote)
 					else
 						factor = 1.4
 				choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-				to_world("<font color='purple'>Crew Transfer Factor: [factor]</font>")
+				to_world(span_purple("Crew Transfer Factor: [factor]"))
 				greatest_votes = max(choices["Initiate Crew Transfer"], choices["Extend the Shift"]) //VOREStation Edit
 
 	. = list() // Get all options with that many votes and return them in a list
@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(vote)
 		if(mode == VOTE_ADD_ANTAGONIST)
 			antag_add_failed = 1
 	log_vote(text)
-	to_chat(world, "<font color='purple'>[text]</font>")
+	to_chat(world, span_purple("[text]"))
 
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(vote)
 	if(mode == VOTE_GAMEMODE) //fire this even if the vote fails.
 		if(!round_progressing)
 			round_progressing = 1
-			to_world("<font color='red'><b>The round will start soon.</b></font>")
+			to_world(span_red("<b>The round will start soon.</b>"))
 
 	if(restart)
 		to_world("World restarting due to vote...")
@@ -191,7 +191,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = config.vote_period)
 	if(!mode)
-		if(started_time != null && !(check_rights(R_ADMIN) || automatic))
+		if(started_time != null && !(check_rights(R_ADMIN|R_EVENT) || automatic))
 			var/next_allowed_time = (started_time + config.vote_delay)
 			if(next_allowed_time > world.time)
 				return 0
@@ -213,7 +213,7 @@ SUBSYSTEM_DEF(vote)
 					additional_text.Add("<td align = 'center'>[M.required_players]</td>")
 				gamemode_names["secret"] = "Secret"
 			if(VOTE_CREW_TRANSFER)
-				if(!check_rights(R_ADMIN|R_MOD, 0)) // The gods care not for the affairs of the mortals
+				if(!check_rights(R_ADMIN|R_MOD|R_EVENT, 0)) // The gods care not for the affairs of the mortals
 					if(get_security_level() == "red" || get_security_level() == "delta")
 						to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 						return 0
@@ -231,11 +231,11 @@ SUBSYSTEM_DEF(vote)
 						choices.Add(antag.role_text)
 				choices.Add("None")
 			if(VOTE_CUSTOM)
-				question = sanitizeSafe(input(usr, "What is the vote for?") as text|null)
+				question = sanitizeSafe(tgui_input_text(usr, "What is the vote for?"))
 				if(!question)
 					return 0
 				for(var/i = 1 to 10)
-					var/option = capitalize(sanitize(input(usr, "Please enter an option or hit cancel to finish") as text|null))
+					var/option = capitalize(sanitize(tgui_input_text(usr, "Please enter an option or hit cancel to finish")))
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)
@@ -252,13 +252,14 @@ SUBSYSTEM_DEF(vote)
 
 		log_vote(text)
 
-		to_world("<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.</font>")
+		to_world(span_purple("<b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote."))
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 		if(mode == VOTE_GAMEMODE && round_progressing)
+			gamemode_vote_called = TRUE
 			round_progressing = 0
-			to_world("<font color='red'><b>Round start has been delayed.</b></font>")
+			to_world(span_red("<b>Round start has been delayed.</b>"))
 
 		time_remaining = round(config.vote_period / 10)
 		return 1
@@ -269,7 +270,7 @@ SUBSYSTEM_DEF(vote)
 		return
 	var/admin = FALSE
 	if(C.holder)
-		if(C.holder.rights & R_ADMIN)
+		if(C.holder.rights & R_ADMIN|R_EVENT)
 			admin = TRUE
 
 	. = "<html><head><title>Voting Panel</title></head><body>"
@@ -301,41 +302,41 @@ SUBSYSTEM_DEF(vote)
 
 		. += "</table><hr>"
 		if(admin)
-			. += "(<a href='?src=\ref[src];vote=cancel'>Cancel Vote</a>) "
+			. += "(<a href='?src=\ref[src];[HrefToken()];vote=cancel'>Cancel Vote</a>) "
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 		if(admin || config.allow_vote_restart)
 			. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
 		else
-			. += "<font color='grey'>Restart (Disallowed)</font>"
+			. += span_gray("Restart (Disallowed)")
 		. += "</li><li>"
 
 		if(admin || config.allow_vote_restart)
 			. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 		else
-			. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
+			. += span_gray("Crew Transfer (Disallowed)")
 
 		if(admin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config.allow_vote_restart ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='?src=\ref[src];[HrefToken()];vote=toggle_restart'>[config.allow_vote_restart ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
 		if(admin || config.allow_vote_mode)
 			. += "<a href='?src=\ref[src];vote=gamemode'>GameMode</a>"
 		else
-			. += "<font color='grey'>GameMode (Disallowed)</font>"
+			. += span_gray("GameMode (Disallowed)")
 
 		if(admin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_gamemode'>[config.allow_vote_mode ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='?src=\ref[src];[HrefToken()];vote=toggle_gamemode'>[config.allow_vote_mode ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
 		if(!antag_add_failed && config.allow_extra_antags)
 			. += "<a href='?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
 		else
-			. += "<font color='grey'>Add Antagonist (Disallowed)</font>"
+			. += span_gray("Add Antagonist (Disallowed)")
 		. += "</li>"
 
 		if(admin)
-			. += "<li><a href='?src=\ref[src];vote=custom'>Custom</a></li>"
+			. += "<li><a href='?src=\ref[src];[HrefToken()];vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
 
 	. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
@@ -350,7 +351,8 @@ SUBSYSTEM_DEF(vote)
 
 		if("cancel")
 			if(usr.client.holder)
-				reset()
+				if("Yes" == tgui_alert(usr, "You are about to cancel this vote. Are you sure?", "Cancel Vote", list("No", "Yes")))
+					reset()
 		if("toggle_restart")
 			if(usr.client.holder)
 				config.allow_vote_restart = !config.allow_vote_restart
@@ -360,7 +362,12 @@ SUBSYSTEM_DEF(vote)
 
 		if(VOTE_RESTART)
 			if(config.allow_vote_restart || usr.client.holder)
-				initiate_vote(VOTE_RESTART, usr.key)
+				var/admin_number_present = send2irc_adminless_only(usr.ckey, usr)
+				if(admin_number_present <= 0 || usr.client.holder)
+					if(tgui_alert(usr, "Are you sure you want to start a RESTART VOTE? You should only do this if the server is dying and no staff are around to investigate.", "RESTART VOTE", list("No", "Yes I want to start a RESTART VOTE")) == "Yes I want to start a RESTART VOTE")
+						initiate_vote(VOTE_RESTART, usr.key)
+				else
+					to_chat(usr, "<span class = 'warning'>You can't start a RESTART VOTE while there are staff around. If you are having an issue with the round, please ahelp it.</span>")
 		if(VOTE_GAMEMODE)
 			if(config.allow_vote_mode || usr.client.holder)
 				initiate_vote(VOTE_GAMEMODE, usr.key)

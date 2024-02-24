@@ -14,7 +14,7 @@
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLUDGEON
 
-	slowdown = 0.25
+	slowdown = 0.5
 
 	reach = 2
 
@@ -23,7 +23,7 @@
 	var/list/accepted_mobs = list(/mob/living/simple_mob/animal/passive/fish)
 
 /obj/item/weapon/material/fishing_net/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/material/fishing_net/afterattack(var/atom/A, var/mob/user, var/proximity)
@@ -48,7 +48,7 @@
 				to_chat(user, "<span class='notice'>Your net is already holding something!</span>")
 				accept = FALSE
 		if(!accept)
-			to_chat(user, "[A] can't be trapped in \the [src].")
+			to_chat(user, "<span class='filter_notice'>[A] can't be trapped in \the [src].</span>")
 			return
 		var/mob/L = A
 		user.visible_message("<span class='notice'>[user] snatches [L] with \the [src].</span>", "<span class='notice'>You snatch [L] with \the [src].</span>")
@@ -78,7 +78,7 @@
 
 /obj/item/weapon/material/fishing_net/update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 
 	..()
 

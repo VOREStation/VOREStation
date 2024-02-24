@@ -4,12 +4,12 @@
 /obj/machinery/organ_printer
 	name = "organ printer"
 	desc = "It's a machine that prints organs."
-	icon = 'icons/obj/surgery.dmi'
+	icon = 'icons/obj/surgery_vr.dmi' //VOREStation Edit
 	icon_state = "bioprinter"
 
-	anchored = 1
-	density = 1
-	use_power = 1
+	anchored = TRUE
+	density = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	active_power_usage = 300
 
@@ -34,6 +34,7 @@
 		"Eyes"    = list(/obj/item/organ/internal/eyes,   20),
 		"Liver"   = list(/obj/item/organ/internal/liver,  20),
 		"Spleen"  = list(/obj/item/organ/internal/spleen, 20),
+		"Stomach"  = list(/obj/item/organ/internal/stomach, 20),
 		"Arm, Left"   = list(/obj/item/organ/external/arm,  40),
 		"Arm, Right"   = list(/obj/item/organ/external/arm/right,  40),
 		"Leg, Left"   = list(/obj/item/organ/external/leg,  40),
@@ -69,27 +70,25 @@
 	return ..()
 
 /obj/machinery/organ_printer/update_icon()
-	overlays.Cut()
+	//VOREStation Edit
+	cut_overlays()
 	if(panel_open)
-		overlays += "bioprinter_panel_open"
+		add_overlay("bioprinter_panel_open")
 	if(printing)
-		overlays += "bioprinter_working"
+		add_overlay("bioprinter_working")
+	//VOREStation Edit End
 
-/obj/machinery/organ_printer/New()
-	..()
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	RefreshParts()
+/obj/machinery/organ_printer/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/organ_printer/examine(var/mob/user)
 	. = ..()
 	var/biomass = get_biomass_volume()
 	if(biomass)
-		to_chat(user, "<span class='notice'>It is loaded with [biomass] units of biomass.</span>")
+		. += "<span class='notice'>It is loaded with [biomass] units of biomass.</span>"
 	else
-		to_chat(user, "<span class='notice'>It is not loaded with any biomass.</span>")
+		. += "<span class='notice'>It is not loaded with any biomass.</span>"
 
 /obj/machinery/organ_printer/RefreshParts()
 	// Print Delay updating
@@ -134,7 +133,7 @@
 		return
 
 	if(container)
-		var/response = alert(user, "What do you want to do?", "Bioprinter Menu", "Print Limbs", "Cancel")
+		var/response = tgui_alert(user, "What do you want to do?", "Bioprinter Menu", list("Print Limbs", "Cancel"))
 		if(response == "Print Limbs")
 			printing_menu(user)
 	else
@@ -151,7 +150,7 @@
 	if(anomalous_organs)
 		possible_list |= anomalous_products
 
-	var/choice = input("What would you like to print?") as null|anything in possible_list
+	var/choice = tgui_input_list(usr, "What would you like to print?", "Print Choice", possible_list)
 
 	if(!choice || printing || (stat & (BROKEN|NOPOWER)))
 		return
@@ -161,15 +160,15 @@
 
 	container.reagents.remove_reagent("biomass", possible_list[choice][2])
 
-	use_power = 2
+	update_use_power(USE_POWER_ACTIVE)
 	printing = 1
 	update_icon()
 
-	visible_message("<span class='notice'>\The [src] begins churning.</span>")
+	visible_message("<b>\The [src]</b> begins churning.")
 
 	sleep(print_delay)
 
-	use_power = 1
+	update_use_power(USE_POWER_IDLE)
 	printing = 0
 	update_icon()
 
@@ -213,7 +212,7 @@
 /obj/machinery/organ_printer/proc/can_print(var/choice, var/masscount = 0)
 	var/biomass = get_biomass_volume()
 	if(biomass < masscount)
-		visible_message("<span class='notice'>\The [src] displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'</span>")
+		visible_message("<b>\The [src]</b> displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'")
 		return 0
 
 	if(!loaded_dna || !loaded_dna["donor"])
@@ -272,7 +271,7 @@
 	icon_state = "bioprinter"
 	circuit = /obj/item/weapon/circuitboard/bioprinter
 
-/obj/machinery/organ_printer/flesh/full/New()
+/obj/machinery/organ_printer/flesh/full/Initialize()
 	. = ..()
 	container = new /obj/item/weapon/reagent_containers/glass/bottle/biomass(src)
 
@@ -287,7 +286,7 @@
 /obj/machinery/organ_printer/flesh/print_organ(var/choice)
 	var/obj/item/organ/O = ..()
 
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(src, 'sound/machines/ding.ogg', 50, 1)
 	visible_message("<span class='info'>\The [src] dings, then spits out \a [O].</span>")
 	return O
 
@@ -337,7 +336,7 @@
 	circuit = /obj/item/weapon/circuitboard/roboprinter
 
 	var/matter_amount_per_sheet = 10
-	var/matter_type = DEFAULT_WALL_MATERIAL
+	var/matter_type = MAT_STEEL
 
 /obj/machinery/organ_printer/robot/full/New()
 	. = ..()
@@ -352,7 +351,7 @@
 	var/obj/item/organ/O = ..()
 	O.robotize()
 	O.status |= ORGAN_CUT_AWAY  // robotize() resets status to 0
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(src, 'sound/machines/ding.ogg', 50, 1)
 	audible_message("<span class='info'>\The [src] dings, then spits out \a [O].</span>")
 	return O
 

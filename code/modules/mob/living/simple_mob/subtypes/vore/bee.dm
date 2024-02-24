@@ -11,7 +11,7 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 //	speed = 5
 	maxHealth = 25
 	health = 25
@@ -23,6 +23,9 @@
 
 	say_list_type = /datum/say_list/bee
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
+	meat_amount = 5
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	//Space bees aren't affected by atmos.
 	min_oxy = 0

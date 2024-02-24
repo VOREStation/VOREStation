@@ -1,7 +1,7 @@
 /*
  *
- *   This file is used by Travis to indicate that additional maps need to be compiled to look for errors such as missing paths.
- *   Do not add anything but the MAP_TEST definition here as it will be overwritten by Travis when running tests.
+ *   This file is used by CI to indicate that additional maps need to be compiled to look for errors such as missing paths.
+ *   Do not add anything but the MAP_TEST definition here as it will be overwritten by CI when running tests.
  *
  *
  *   Should you wish to edit set MAP_TEST to 1 like so:

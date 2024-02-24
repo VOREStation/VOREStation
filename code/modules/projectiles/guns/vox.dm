@@ -34,8 +34,8 @@
 		update_icon()
 
 /obj/item/weapon/gun/launcher/spikethrower/examine(mob/user)
-	..(user)
-	to_chat(user, "It has [spikes] spike\s remaining.")
+	. = ..()
+	. += "It has [spikes] spike\s remaining."
 
 /obj/item/weapon/gun/launcher/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"

@@ -3,6 +3,8 @@
 	desc = "a red pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	w_class = ITEMSIZE_TINY
 	light_color = "#E09D37"
 	var/wax = 2000
@@ -24,8 +26,8 @@
 
 /obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
 			light("<span class='notice'>\The [user] casually lights the [src] with [W].</span>")
 	else if(istype(W, /obj/item/weapon/flame/lighter))

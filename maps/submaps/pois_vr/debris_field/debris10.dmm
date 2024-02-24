@@ -1,0 +1,45 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/space)
+"b" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/airless,
+/area/space)
+"c" = (
+/turf/template_noop,
+/area/space)
+"d" = (
+/obj/structure/grille/broken,
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/airless,
+/area/space)
+"e" = (
+/obj/item/stack/rods,
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"f" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"g" = (
+/obj/structure/grille,
+/turf/simulated/floor/airless,
+/area/space)
+
+(1,1,1) = {"
+a
+d
+g
+"}
+(2,1,1) = {"
+b
+e
+f
+"}
+(3,1,1) = {"
+c
+f
+c
+"}

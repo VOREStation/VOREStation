@@ -12,8 +12,8 @@ var/global/list/stool_cache = list() //haha stool
 	throwforce = 10
 	w_class = ITEMSIZE_HUGE
 	var/base_icon = "stool_base"
-	var/material/material
-	var/material/padding_material
+	var/datum/material/material
+	var/datum/material/padding_material
 
 /obj/item/weapon/stool/padded
 	icon_state = "stool_padded_preview" //set for the map
@@ -21,7 +21,7 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/weapon/stool/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
 	if(!new_material)
-		new_material = DEFAULT_WALL_MATERIAL
+		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
 	if(new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
@@ -37,22 +37,22 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/weapon/stool/update_icon()
 	// Prep icon.
 	icon_state = ""
-	overlays.Cut()
+	cut_overlays()
 	// Base icon.
-	var/cache_key = "stool-[material.name]"
+	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon)
 		I.color = material.icon_colour
 		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+	add_overlay(stool_cache[cache_key])
 	// Padding overlay.
 	if(padding_material)
-		var/padding_cache_key = "stool-padding-[padding_material.name]"
+		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]"
 		if(isnull(stool_cache[padding_cache_key]))
 			var/image/I =  image(icon, "[base_icon]_padding") //VOREStation Edit
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+		add_overlay(stool_cache[padding_cache_key])
 	// Strings.
 	if(padding_material)
 		name = "[padding_material.display_name] [initial(name)]" //this is not perfect but it will do for now.
@@ -67,7 +67,7 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/proc/remove_padding()
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 		padding_material = null
 	update_icon()
 
@@ -104,13 +104,13 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/proc/dismantle()
 	if(material)
-		material.place_sheet(get_turf(src))
+		material.place_sheet(get_turf(src), 1)
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 	qdel(src)
 
 /obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		dismantle()
 		qdel(src)
@@ -140,12 +140,12 @@ var/global/list/stool_cache = list() //haha stool
 		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
-	else if (W.is_wirecutter())
+	else if (W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!padding_material)
 			to_chat(user, "\The [src] has no padding to remove.")
 			return
 		to_chat(user, "You remove the padding from \the [src].")
-		playsound(src.loc, W.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		remove_padding()
 	else
 		..()

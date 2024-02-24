@@ -1,4 +1,4 @@
-var/list/blobs = list()
+GLOBAL_LIST_EMPTY(all_blobs)
 
 /obj/structure/blob
 	name = "blob"
@@ -17,22 +17,24 @@ var/list/blobs = list()
 	var/heal_timestamp = 0 //we got healed when?
 	var/mob/observer/blob/overmind = null
 	var/base_name = "blob" // The name that gets appended along with the blob_type's name.
+	var/faction = "blob"
 
-/obj/structure/blob/New(var/newloc, var/new_overmind)
-	..(newloc)
+/obj/structure/blob/Initialize(newloc, new_overmind)
 	if(new_overmind)
 		overmind = new_overmind
+		faction = overmind.blob_type.faction
 	update_icon()
 	if(!integrity)
 		integrity = max_integrity
 	set_dir(pick(cardinal))
-	blobs += src
+	GLOB.all_blobs += src
 	consume_tile()
+	return ..()
 
 
 /obj/structure/blob/Destroy()
-	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
-	blobs -= src
+	playsound(src, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
+	GLOB.all_blobs -= src
 	overmind = null
 	return ..()
 
@@ -46,26 +48,33 @@ var/list/blobs = list()
 		color = null
 		set_light(0)
 
+/obj/structure/blob/update_transform()
+	var/matrix/M = matrix()
+	M.Scale(icon_scale_x, icon_scale_y)
+	animate(src, transform = M, time = 10)
+
 // Blob tiles are not actually dense so we need Special Code(tm).
 /obj/structure/blob/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSBLOB))
 		return TRUE
 	else if(istype(mover, /mob/living))
 		var/mob/living/L = mover
-		if(L.faction == "blob")
+		if(L.faction == faction)
 			return TRUE
 	else if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
-		if(istype(P.firer) && P.firer.faction == "blob")
+		if(istype(P.firer, /obj/structure/blob))
+			return TRUE
+		if(istype(P.firer) && P.firer.faction == faction)
 			return TRUE
 	return FALSE
 
 /obj/structure/blob/examine(mob/user)
-	..()
+	. = ..()
 	if(!overmind)
-		to_chat(user, "It seems inert.") // Dead blob.
+		. += "It seems inert." // Dead blob.
 	else
-		to_chat(user, overmind.blob_type.desc)
+		. += overmind.blob_type.desc
 
 /obj/structure/blob/get_description_info()
 	if(overmind)
@@ -85,6 +94,7 @@ var/list/blobs = list()
 		update_icon()
 		pulse_timestamp = world.time + 1 SECOND
 		if(overmind)
+			faction = overmind.blob_type.faction
 			overmind.blob_type.on_pulse(src)
 		return TRUE //we did it, we were pulsed!
 	return FALSE //oh no we failed
@@ -101,8 +111,10 @@ var/list/blobs = list()
 
 	shuffle_inplace(blobs_to_affect)
 
-	for(var/L in blobs_to_affect)
-		var/obj/structure/blob/B = L
+	for(var/obj/structure/blob/B as anything in blobs_to_affect)
+		if(B.faction != faction)
+			continue
+
 		if(!B.overmind && !istype(B, /obj/structure/blob/core) && prob(30))
 			B.overmind = pulsing_overmind //reclaim unclaimed, non-core blobs.
 			B.update_icon()
@@ -112,7 +124,7 @@ var/list/blobs = list()
 		if(overmind)
 			expand_probablity *= overmind.blob_type.spread_modifier
 			if(overmind.blob_type.slow_spread_with_size)
-				expand_probablity /= (blobs.len / 10)
+				expand_probablity /= (GLOB.all_blobs.len / 10)
 
 		if(distance <= expand_range)
 			var/can_expand = TRUE
@@ -135,7 +147,8 @@ var/list/blobs = list()
 			var/dirn = pick(dirs)
 			dirs.Remove(dirn)
 			T = get_step(src, dirn)
-			if(!(locate(/obj/structure/blob) in T))
+			var/obj/structure/blob/B = locate(/obj/structure/blob) in T
+			if(!B || B.faction != faction)	// Allow opposing blobs to fight.
 				break
 			else
 				T = null
@@ -146,7 +159,7 @@ var/list/blobs = list()
 
 	if(istype(T, /turf/space) && !(locate(/obj/structure/lattice) in T) && prob(80))
 		make_blob = FALSE
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Let's give some feedback that we DID try to spawn in space, since players are used to it
+		playsound(src, 'sound/effects/splat.ogg', 50, 1) //Let's give some feedback that we DID try to spawn in space, since players are used to it
 
 	consume_tile() //hit the tile we're in, making sure there are no border objects blocking us
 
@@ -161,6 +174,7 @@ var/list/blobs = list()
 
 	if(make_blob) //well, can we?
 		var/obj/structure/blob/B = new /obj/structure/blob/normal(src.loc)
+		B.faction = faction
 		if(controller)
 			B.overmind = controller
 		else
@@ -218,30 +232,114 @@ var/list/blobs = list()
 	qdel(src)
 	return B
 
+/obj/structure/blob/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
+	user.do_attack_animation(src)
+	if(overmind)
+		damage *= overmind.blob_type.brute_multiplier
+	else
+		damage *= 2
+
+	if(overmind)
+		damage = overmind.blob_type.on_received_damage(src, damage, BRUTE, user)
+
+	adjust_integrity(-damage)
+
+	return
+
+/obj/structure/blob/attack_hand(mob/living/M as mob)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.setClickCooldown(H.get_attack_speed())
+		var/datum/unarmed_attack/attack = H.get_unarmed_attack(src, BP_TORSO)
+		if(!attack)
+			return FALSE
+
+		if(attack.unarmed_override(H, src, BP_TORSO))
+			return FALSE
+
+		H.do_attack_animation(src)
+		H.visible_message("<span class='danger'>[H] strikes \the [src]!</span>")
+
+		var/real_damage = rand(3,6)
+		var/hit_dam_type = attack.damage_type
+		real_damage += attack.get_unarmed_damage(H)
+		if(H.gloves)
+			if(istype(H.gloves, /obj/item/clothing/gloves))
+				var/obj/item/clothing/gloves/G = H.gloves
+				real_damage += G.punch_force
+				hit_dam_type = G.punch_damtype
+		if(HULK in H.mutations)
+			real_damage *= 2 // Hulks do twice the damage
+
+		real_damage = max(1, real_damage)
+
+		var/damage_mult_burn = 1
+		var/damage_mult_brute = 1
+
+		if(hit_dam_type == SEARING)
+			damage_mult_burn *= 0.3
+			damage_mult_brute *= 0.6
+
+		else if(hit_dam_type == BIOACID)
+			damage_mult_burn *= 0.6
+			damage_mult_brute = 0
+
+		else if(hit_dam_type in list(ELECTROCUTE, BURN))
+			damage_mult_brute = 0
+
+		else if(hit_dam_type in list(BRUTE, CLONE))
+			damage_mult_burn = 0
+
+		else if(hit_dam_type != HALLOSS) // Tox, Oxy, or something new. Half damage split to the organism.
+			damage_mult_burn = 0.25
+			damage_mult_brute = 0.25
+
+		else
+			damage_mult_brute = 0.25
+			damage_mult_burn = 0
+
+		var/burn_dam = real_damage * damage_mult_burn
+		var/brute_dam = real_damage * damage_mult_brute
+
+		if(overmind)
+			if(brute_dam)
+				brute_dam = overmind.blob_type.on_received_damage(src, brute_dam, BRUTE, M)
+			if(burn_dam)
+				burn_dam = overmind.blob_type.on_received_damage(src, burn_dam, BURN, M)
+
+		real_damage = burn_dam + brute_dam
+
+		adjust_integrity(-real_damage)
+
+	else
+		attack_generic(M, rand(1,10), "bashed")
+
 /obj/structure/blob/attackby(var/obj/item/weapon/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 	var/damage = W.force
 	switch(W.damtype)
-		if(BURN)
+		if(BURN, BIOACID, ELECTROCUTE, OXY)
 			if(overmind)
 				damage *= overmind.blob_type.burn_multiplier
 			else
 				damage *= 2
 
 			if(damage > 0)
-				playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
+				playsound(src, 'sound/items/welder.ogg', 100, 1)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
-		if(BRUTE)
+		if(BRUTE, SEARING, TOX, CLONE)
 			if(overmind)
 				damage *= overmind.blob_type.brute_multiplier
 			else
 				damage *= 2
 
 			if(damage > 0)
-				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
+				playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
 	if(overmind)
@@ -253,7 +351,7 @@ var/list/blobs = list()
 	if(!P)
 		return
 
-	if(istype(P.firer) && P.firer.faction == "blob")
+	if(istype(P.firer) && P.firer.faction == faction)
 		return
 
 	var/damage = P.get_structure_damage() // So tasers don't hurt the blob.
@@ -279,10 +377,35 @@ var/list/blobs = list()
 	if(overmind)
 		overmind.blob_type.on_water(src, amount)
 
+/obj/structure/blob/blob_act(var/obj/structure/blob/B)
+	. = ..()
+
+	if(B)
+
+		if(!B.overmind)
+			return
+
+		if(B.faction != faction)
+			var/damage = rand(B.overmind.blob_type.damage_lower, B.overmind.blob_type.damage_upper)
+			var/inc_damage_type = B.overmind.blob_type.damage_type
+
+			if(overmind)
+				damage = overmind.blob_type.on_received_damage(src, damage, inc_damage_type, B)
+
+			else
+				faction = B.faction
+				overmind = B.overmind
+				update_icon()
+				return
+
+			adjust_integrity(-1 * damage)
+
+	return
+
 /obj/structure/blob/proc/adjust_integrity(amount)
 	integrity = between(0, integrity + amount, max_integrity)
 	if(integrity == 0)
-		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		if(overmind)
 			overmind.blob_type.on_death(src)
 		qdel(src)

@@ -5,6 +5,14 @@
 	identity_type = /datum/identification/hypo
 
 // The good.
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/unidentified
+	init_hide_identity = TRUE
+	flags = 0
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed/unidentified
+	init_hide_identity = TRUE
+	flags = 0
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute/unidentified
 	init_hide_identity = TRUE
 	flags = 0
@@ -37,10 +45,6 @@
 	init_hide_identity = TRUE
 	flags = 0
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed/unidentified
-	init_hide_identity = TRUE
-	flags = 0
-
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat/unidentified
 	init_hide_identity = TRUE
 	flags = 0
@@ -54,7 +58,7 @@
 	init_hide_identity = TRUE
 	flags = 0
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/space_drugs/unidentified
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bliss/unidentified
 	init_hide_identity = TRUE
 	flags = 0
 

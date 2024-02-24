@@ -63,7 +63,7 @@
 	return loc == card
 
 /mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
-	if(!can_use_rig() || !canClick())
+	if(!can_use_rig())
 		return 0
 	var/obj/item/weapon/rig/rig = get_rig()
 	if(istype(rig) && !rig.offline && rig.selected_module)

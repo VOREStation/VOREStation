@@ -2,8 +2,8 @@
 	name = "\improper IV drip"
 	desc = "Helpful for giving someone blood! Or taking it away. It giveth, it taketh."
 	icon = 'icons/obj/iv_drip.dmi'
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 
 
 /obj/machinery/iv_drip/var/mob/living/carbon/human/attached = null
@@ -16,7 +16,7 @@
 	else
 		icon_state = ""
 
-	overlays = null
+	cut_overlays()
 
 	if(beaker)
 		var/datum/reagents/reagents = beaker.reagents
@@ -34,7 +34,7 @@
 				if(91 to INFINITY)	filling.icon_state = "reagent100"
 
 			filling.icon += reagents.get_color()
-			overlays += filling
+			add_overlay(filling)
 
 /obj/machinery/iv_drip/MouseDrop(over_object, src_location, over_location)
 	..()
@@ -66,13 +66,12 @@
 		update_icon()
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You start to dismantle the IV drip.</span>")
 		if(do_after(user, 15))
 			to_chat(user, "<span class='notice'>You dismantle the IV drip.</span>")
-			var/obj/item/stack/rods/A = new /obj/item/stack/rods(src.loc)
-			A.amount = 6
+			new /obj/item/stack/rods(src.loc, 6)
 			if(beaker)
 				beaker.loc = get_turf(src)
 				beaker = null
@@ -128,7 +127,7 @@
 				return
 
 			// If the human is losing too much blood, beep.
-			if(((T.vessel.get_reagent_amount("blood")/T.species.blood_volume)*100) < BLOOD_VOLUME_SAFE)
+			if(T.vessel.get_reagent_amount("blood") < T.species.blood_volume*T.species.blood_level_safe)
 				visible_message("\The [src] beeps loudly.")
 
 			var/datum/reagent/B = T.take_blood(beaker,amount)
@@ -165,21 +164,20 @@
 	to_chat(usr, "The IV drip is now [mode ? "injecting" : "taking blood"].")
 
 /obj/machinery/iv_drip/examine(mob/user)
-	..(user)
-	if(!(user in view(2)) && user != src.loc)
-		return
+	. = ..()
 
-	to_chat(user, "The IV drip is [mode ? "injecting" : "taking blood"].")
+	if(get_dist(user, src) <= 2)
+		. += "The IV drip is [mode ? "injecting" : "taking blood"]."
 
-	if(beaker)
-		if(beaker.reagents && beaker.reagents.reagent_list.len)
-			to_chat(user, "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>")
+		if(beaker)
+			if(beaker.reagents?.reagent_list?.len)
+				. += "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>"
+			else
+				. += "<span class='notice'>Attached is an empty [beaker].</span>"
 		else
-			to_chat(user, "<span class='notice'>Attached is an empty [beaker].</span>")
-	else
-		to_chat(user, "<span class='notice'>No chemicals are attached.</span>")
+			. += "<span class='notice'>No chemicals are attached.</span>"
 
-	to_chat(user, "<span class='notice'>[attached ? attached : "No one"] is attached.</span>")
+		. += "<span class='notice'>[attached ? attached : "No one"] is attached.</span>"
 
 /obj/machinery/iv_drip/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE)) //allow bullets, beams, thrown objects, mice, drones, and the like through.

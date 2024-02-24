@@ -29,5 +29,5 @@
 		if(pay_energy(1500))
 			T.assume_gas("oxygen", 200)
 			T.assume_gas("nitrogen", 800)
-			playsound(src.loc, 'sound/effects/spray.ogg', 50, 1, -3)
+			playsound(src, 'sound/effects/spray.ogg', 50, 1, -3)
 			adjust_instability(10)

@@ -64,13 +64,16 @@
 /mob/living/simple_mob/proc/add_eyes()
 	if(!eye_layer)
 		eye_layer = image(icon, "[icon_state]-eyes")
+		if(custom_eye_color)
+			eye_layer.color = custom_eye_color
 		eye_layer.plane = PLANE_LIGHTING_ABOVE
-
+	eye_layer.appearance_flags = appearance_flags //VOREStation Edit. Make eye overlays respect the mob's scaling settings.
 	add_overlay(eye_layer)
 
 /mob/living/simple_mob/proc/remove_eyes()
 	cut_overlay(eye_layer)
-
+	qdel(eye_layer)
+	eye_layer = null
 
 /mob/living/simple_mob/gib()
 	..(icon_gib,1,icon) // we need to specify where the gib animation is stored

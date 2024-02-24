@@ -2,34 +2,43 @@
 	TODO README
 */
 
-var/list/fusion_cores = list()
+GLOBAL_LIST_EMPTY(fusion_cores)
 
 #define MAX_FIELD_STR 1000
 #define MIN_FIELD_STR 1
 
 /obj/machinery/power/fusion_core
-	name = "\improper R-UST Mk. 8 Tokamak core"
+	name = "\improper R-UST Mk. 9 Tokamak core"
 	desc = "An enormous solenoid for generating extremely high power electromagnetic fields. It includes a kinetic energy harvester."
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "core0"
-	density = 1
-	use_power = 1
+	density = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	active_power_usage = 500 //multiplied by field strength
-	anchored = 0
+	anchored = FALSE
 
 	circuit = /obj/item/weapon/circuitboard/fusion_core
 
+	var/obj/item/hose_connector/output/Output
+
 	var/obj/effect/fusion_em_field/owned_field
 	var/field_strength = 1//0.01
+	var/target_field_strength = 1
 	var/id_tag
 
+	var/reactant_dump = FALSE	// Does the tokomak actively try to syphon materials?
+
 /obj/machinery/power/fusion_core/mapped
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/power/fusion_core/Initialize()
 	. = ..()
-	fusion_cores += src
+	GLOB.fusion_cores += src
+
+	Output = new(src)
+	create_reagents(10000)
+
 	default_apply_parts()
 
 /obj/machinery/power/fusion_core/mapped/Initialize()
@@ -41,14 +50,31 @@ var/list/fusion_cores = list()
 		FCC.connected_devices -= src
 		if(FCC.cur_viewed_device == src)
 			FCC.cur_viewed_device = null
-	fusion_cores -= src
+	GLOB.fusion_cores -= src
 	return ..()
+
+/obj/machinery/power/fusion_core/proc/check_core_status()
+	if(stat & BROKEN)
+		return
+	if(idle_power_usage > avail())
+		return
+	. = 1
 
 /obj/machinery/power/fusion_core/process()
 	if((stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
+
+	if(Output.get_pairing())
+		reagents.trans_to_holder(Output.reagents, Output.reagents.maximum_volume)
+		if(prob(5))
+			visible_message("<b>\The [src]</b> gurgles as it exports fluid.")
+
 	if(owned_field)
+
+		set_strength(target_field_strength)
+
 		spawn(1)
+			owned_field.process()
 			owned_field.stability_monitor()
 			owned_field.radiation_scale()
 			owned_field.temp_dump()
@@ -60,7 +86,7 @@ var/list/fusion_cores = list()
 	if(href_list["str"])
 		var/dif = text2num(href_list["str"])
 		field_strength = min(max(field_strength + dif, MIN_FIELD_STR), MAX_FIELD_STR)
-		active_power_usage = 500 * field_strength
+		update_active_power_usage(500 * field_strength)
 		if(owned_field)
 			owned_field.ChangeFieldStrength(field_strength)
 
@@ -70,7 +96,7 @@ var/list/fusion_cores = list()
 	owned_field = new(loc, src)
 	owned_field.ChangeFieldStrength(field_strength)
 	icon_state = "core1"
-	use_power = 2
+	update_use_power(USE_POWER_ACTIVE)
 	. = 1
 
 /obj/machinery/power/fusion_core/proc/Shutdown(var/force_rupture)
@@ -82,7 +108,7 @@ var/list/fusion_cores = list()
 			owned_field.RadiateAll()
 		qdel(owned_field)
 		owned_field = null
-	use_power = 1
+	update_use_power(USE_POWER_IDLE)
 
 /obj/machinery/power/fusion_core/proc/AddParticles(var/name, var/quantity = 1)
 	if(owned_field)
@@ -95,15 +121,17 @@ var/list/fusion_cores = list()
 
 /obj/machinery/power/fusion_core/proc/set_strength(var/value)
 	value = CLAMP(value, MIN_FIELD_STR, MAX_FIELD_STR)
-	field_strength = value
-	active_power_usage = 5 * value
-	if(owned_field)
-		owned_field.ChangeFieldStrength(value)
+
+	if(field_strength != value)
+		field_strength = value
+		update_active_power_usage(5 * value)
+		if(owned_field)
+			owned_field.ChangeFieldStrength(value)
 
 /obj/machinery/power/fusion_core/attack_hand(var/mob/user)
 	if(!Adjacent(user)) // As funny as it was for the AI to hug-kill the tokamak field from a distance...
 		return
-	visible_message("<span class='notice'>\The [user] hugs \the [src] to make it feel better!</span>")
+	visible_message("<b>\The [user]</b> hugs \the [src] to make it feel better!")
 	if(owned_field)
 		Shutdown()
 
@@ -121,7 +149,8 @@ var/list/fusion_cores = list()
 		return
 
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = input("Enter a new ident tag.", "Fusion Core", id_tag) as null|text
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Fusion Core", id_tag, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return

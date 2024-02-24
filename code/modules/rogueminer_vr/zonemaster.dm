@@ -6,7 +6,8 @@
 /datum/rogue/zonemaster
 	//our area
 	var/area/asteroid/rogue/myarea
-	var/area/shuttle/belter/myshuttle
+	// var/area/shuttle/belter/myshuttle
+	var/obj/effect/shuttle_landmark/myshuttle_landmark
 
 	//world.time
 	var/prepared_at = 0
@@ -26,13 +27,15 @@
 	var/original_mobs = 0
 
 	//in-use spawns from the area
-	var/obj/asteroid_spawner/list/rockspawns = list()
-	var/obj/rogue_mobspawner/list/mobspawns = list()
+	var/list/obj/asteroid_spawner/rockspawns = list()
+	var/list/obj/rogue_mobspawner/mobspawns = list()
 
 /datum/rogue/zonemaster/New(var/area/A)
 	ASSERT(A)
 	myarea = A
-	myshuttle = locate(myarea.shuttle_area)
+	myshuttle_landmark = locate(/obj/effect/shuttle_landmark) in myarea
+	if(!istype(myshuttle_landmark))
+		warning("Zonemaster cannot find a shuttle landmark in its area '[A]'")
 	spawn(10) //This is called from controller New() and freaks out if this calls back too fast.
 		rm_controller.mark_clean(src)
 
@@ -46,7 +49,7 @@
 		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
 			continue
 		var/area/A = get_area(H)
-		if((A == myarea) || (A == myshuttle)) //The loc of a turf is the area it is in.
+		if(A == myarea) //The loc of a turf is the area it is in.
 			humans++
 	return humans
 
@@ -124,6 +127,8 @@
 
 	rm_controller.dbg("ZM(pa): The asteroid has [A.map.len] X-lists.")
 
+	var/list/changedturfs = list()
+
 	for(var/Ix=1, Ix <= A.map.len, Ix++)
 		var/list/curr_x = A.map[Ix]
 		rm_controller.dbg("ZM(pa): Now doing X:[Ix] which has [curr_x.len] Y-lists.")
@@ -150,22 +155,24 @@
 
 					rm_controller.dbg("ZM(pa): Replacing [P.type] with [T].")
 					var/turf/newturf = P.ChangeTurf(T)
+					changedturfs += newturf
 					switch(newturf.type)
 						if(/turf/simulated/mineral/vacuum)
 							place_resources(newturf)
 
-					newturf.update_icon(1)
 				else //Anything not a turf
 					rm_controller.dbg("ZM(pa): Creating [T].")
 					new T(spot)
 
+	for(var/turf/T in changedturfs)
+		T.update_icon(1)
 
 /datum/rogue/zonemaster/proc/place_resources(var/turf/simulated/mineral/M)
 	#define XENOARCH_SPAWN_CHANCE 0.3
 	#define DIGSITESIZE_LOWER 4
 	#define DIGSITESIZE_UPPER 12
-	#define ARTIFACTSPAWNNUM_LOWER 6
-	#define ARTIFACTSPAWNNUM_UPPER 12 //Replace with difficulty-based ones.
+	#define ARTIFACTSPAWNNUM_LOWER 1
+	#define ARTIFACTSPAWNNUM_UPPER 1 //Replace with difficulty-based ones.
 
 	if(!M.mineral && prob(rm_controller.diffstep_chances[rm_controller.diffstep])) //Difficulty translates directly into ore chance
 		rm_controller.dbg("ZM(par): Adding mineral to [M.x],[M.y].")
@@ -184,8 +191,7 @@
 		return
 
 	var/farEnough = 1
-	for(var/A in SSxenoarch.digsite_spawning_turfs)
-		var/turf/T = A
+	for(var/turf/T as anything in SSxenoarch.digsite_spawning_turfs)
 		if(T in range(5, M))
 			farEnough = 0
 			break
@@ -380,6 +386,7 @@
 	var/ignored = list(
 	/obj/asteroid_spawner,
 	/obj/rogue_mobspawner,
+	/obj/effect/shuttle_landmark,
 	/obj/effect/step_trigger/teleporter/roguemine_loop/north,
 	/obj/effect/step_trigger/teleporter/roguemine_loop/south,
 	/obj/effect/step_trigger/teleporter/roguemine_loop/east,
@@ -387,7 +394,9 @@
 
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
-			I.overlays.Cut()
+			I.cut_overlays()
+			continue
+		else if(!I.simulated)
 			continue
 		else if(I.type in ignored)
 			continue
@@ -397,7 +406,9 @@
 	//A deletion so nice that I give it twice
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
-			I.overlays.Cut()
+			I.cut_overlays()
+			continue
+		else if(!I.simulated)
 			continue
 		else if(I.type in ignored)
 			continue

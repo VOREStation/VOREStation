@@ -1,0 +1,151 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/eris/r_wall,
+/area/om_adventure/poi/alienchamber1)
+"e" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/shuttle/floor/alien/blue,
+/area/om_adventure/poi/alienchamber1)
+"f" = (
+/obj/structure/loot_pile/surface/alien/security,
+/turf/simulated/shuttle/floor/alien/blue,
+/area/om_adventure/poi/alienchamber1)
+"n" = (
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber1)
+"D" = (
+/obj/structure/table/alien,
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber1)
+"P" = (
+/turf/simulated/shuttle/floor/alien/blue,
+/area/om_adventure/poi/alienchamber1)
+"Z" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber1)
+
+(1,1,1) = {"
+n
+n
+n
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+n
+n
+n
+a
+Z
+Z
+x
+x
+x
+a
+"}
+(3,1,1) = {"
+n
+n
+n
+a
+Z
+x
+e
+x
+x
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+x
+P
+P
+e
+x
+a
+"}
+(5,1,1) = {"
+a
+D
+Z
+x
+x
+x
+P
+x
+Z
+a
+"}
+(6,1,1) = {"
+a
+Z
+x
+P
+x
+x
+x
+Z
+D
+a
+"}
+(7,1,1) = {"
+a
+x
+e
+f
+P
+x
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+x
+x
+e
+x
+Z
+a
+n
+n
+n
+"}
+(9,1,1) = {"
+a
+x
+x
+x
+Z
+Z
+a
+n
+n
+n
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+n
+n
+n
+"}

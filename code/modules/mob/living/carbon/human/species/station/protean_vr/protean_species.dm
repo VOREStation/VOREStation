@@ -11,6 +11,10 @@
 	knockout_message = "collapses inwards, forming a disordered puddle of gray goo."
 	remains_type = /obj/effect/decal/cleanable/ash
 
+	selects_bodytype = SELECTS_BODYTYPE_SHAPESHIFTER
+	base_species = SPECIES_HUMAN
+	digi_allowed = TRUE
+
 	blood_color = "#505050" //This is the same as the 80,80,80 below, but in hex
 	flesh_color = "#505050"
 	base_color = "#FFFFFF" //Color mult, start out with this
@@ -20,6 +24,7 @@
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	health_hud_intensity = 2
 	num_alternate_languages = 3
+	species_language = LANGUAGE_EAL
 	assisted_langs = list(LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	color_mult = TRUE
 
@@ -59,6 +64,8 @@
 	siemens_coefficient =   1.5 //Very bad zappy times
 	rarity_value =          5
 
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
 	has_organ = list(
 		O_BRAIN = /obj/item/organ/internal/mmi_holder/posibrain/nano,
 		O_ORCH = /obj/item/organ/internal/nano/orchestrator,
@@ -96,8 +103,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/proc/eat_trash
+		/mob/living/carbon/human/proc/shapeshifter_select_ears
 		)
 
 	var/global/list/abilities = list()
@@ -121,17 +127,19 @@
 		saved_nif.quick_implant(H)
 
 /datum/species/protean/get_bodytype(var/mob/living/carbon/human/H)
-	if(H)
-		return H.impersonate_bodytype || ..()
-	return ..()
+	if(!H || base_species == name) return ..()
+	var/datum/species/S = GLOB.all_species[base_species]
+	return S.get_bodytype(H)
+
+/datum/species/protean/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
+	return GLOB.playable_species
 
 /datum/species/protean/handle_post_spawn(var/mob/living/carbon/human/H)
 	..()
 	H.synth_color = TRUE
 
 /datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
-	var/obj/item/stack/material/steel/metal_stack = new()
-	metal_stack.amount = 3
+	var/obj/item/stack/material/steel/metal_stack = new(null, 3)
 
 	var/obj/item/clothing/accessory/permit/nanotech/permit = new()
 	permit.set_name(H.real_name)
@@ -144,11 +152,13 @@
 		H.equip_to_slot_or_del(metal_stack, slot_in_backpack)
 
 	spawn(0) //Let their real nif load if they have one
+		if(!H) //Human could have been deleted in this amount of time. Observing does this, mannequins, etc.
+			return
 		if(!H.nif)
-			var/obj/item/device/nif/bioadap/new_nif = new()
+			var/obj/item/device/nif/protean/new_nif = new()
 			new_nif.quick_implant(H)
 		else
-			H.nif.durability = rand(21,25)
+			H.nif.durability = 25
 
 /datum/species/protean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 	return ..() //Wut
@@ -160,14 +170,22 @@
 	return rgb(80,80,80,230)
 
 /datum/species/protean/handle_death(var/mob/living/carbon/human/H)
-	to_chat(H,"<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
-	spawn(1) //This spawn is here so that if the protean_blob calls qdel, it doesn't try to gib the humanform.
+	if(!H)
+		return // Iono!
+
+	if(H.temporary_form)
+		H.forceMove(H.temporary_form.drop_location())
+		H.ckey = H.temporary_form.ckey
+		QDEL_NULL(H.temporary_form)
+
+	to_chat(H, "<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
+
+	spawn(1)
 		if(H)
 			H.gib()
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
-		H.nano_intoblob()
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
 	var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs
@@ -185,7 +203,7 @@
 		if(refactory.get_stored_material(MAT_GOLD) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/gold, origin = refactory)
 
-		//Silver adds darksight
+		//Silver adds accuracy and evasion
 		if(refactory.get_stored_material(MAT_SILVER) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/silver, origin = refactory)
 
@@ -208,15 +226,14 @@
 			stat(null, "- -- --- REFACTORY ERROR! --- -- -")
 
 		stat(null, "- -- --- Abilities (Shift+LMB Examines) --- -- -")
-		for(var/ability in abilities)
-			var/obj/effect/protean_ability/A = ability
+		for(var/obj/effect/protean_ability/A as anything in abilities)
 			stat("[A.ability_name]",A.atom_button_text())
 
 // Various modifiers
 /datum/modifier/protean
 	stacks = MODIFIER_STACK_FORBID
 	var/material_use = METAL_PER_TICK
-	var/material_name = DEFAULT_WALL_MATERIAL
+	var/material_name = MAT_STEEL
 
 /datum/modifier/protean/on_applied()
 	. = ..()
@@ -297,11 +314,10 @@
 	material_name = MAT_STEEL
 
 /datum/modifier/protean/steel/tick()
-	holder.adjustBruteLoss(-10,include_robo = TRUE) //Looks high, but these ARE modified by species resistances, so this is really 20% of this
-	holder.adjustFireLoss(-1,include_robo = TRUE) //And this is really double this
+	holder.adjustBruteLoss(-1,include_robo = TRUE) //Modified by species resistances
+	holder.adjustFireLoss(-0.5,include_robo = TRUE) //Modified by species resistances
 	var/mob/living/carbon/human/H = holder
-	for(var/organ in H.internal_organs)
-		var/obj/item/organ/O = organ
+	for(var/obj/item/organ/O as anything in H.internal_organs)
 		// Fix internal damage
 		if(O.damage > 0)
 			O.damage = max(0,O.damage-0.1)
@@ -315,11 +331,21 @@
 	desc = "This is a 'Permit for Advanced Nanotechnology' card. It allows the owner to possess and operate advanced nanotechnology on NanoTrasen property. It must be renewed on a monthly basis."
 	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "permit_pan"
+
+	var/validstring = "VALID THROUGH END OF: "
+	var/registring = "REGISTRANT: "
+
 /obj/item/clothing/accessory/permit/nanotech/set_name(var/new_name)
 	owner = 1
 	if(new_name)
-		src.name += " ([new_name])"
-		desc += "\nVALID THROUGH END OF: [time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+544)]\nREGISTRANT: [new_name]"
+		name += " ([new_name])"
+		validstring += "[time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+300)]"
+		registring += "[new_name]"
+
+/obj/item/clothing/accessory/permit/nanotech/examine(mob/user)
+	. = ..()
+	. += validstring
+	. += registring
 
 #undef DAM_SCALE_FACTOR
 #undef METAL_PER_TICK

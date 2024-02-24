@@ -1,8 +1,7 @@
 //TODO: Flash range does nothing currently
 
-proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
+/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
 	var/multi_z_scalar = config.multi_z_explosion_scalar
-	src = null	//so we don't abort once src is deleted
 	spawn(0)
 		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
@@ -55,7 +54,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 							M << 'sound/effects/explosionfar.ogg'
 
 		if(adminlog)
-			message_admins("Explosion with [shaped ? "shaped" : "non-shaped"] size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+			message_admins("Explosion with [shaped ? "shaped" : "non-shaped"] size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 			log_game("Explosion with [shaped ? "shaped" : "non-shaped"] size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
 
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
@@ -108,6 +107,6 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			defer_powernet_rebuild = 0
 	return 1
 
-proc/secondaryexplosion(turf/epicenter, range)
+/proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))
 		tile.ex_act(2)

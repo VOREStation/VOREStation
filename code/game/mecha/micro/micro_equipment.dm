@@ -61,25 +61,25 @@
 	equip_type = EQUIP_MICRO_WEAPON
 	required_type = list(/obj/mecha/micro/sec)
 
-	Topic(href,href_list)
-		..()
-		if(href_list["mode"])
-			mode = text2num(href_list["mode"])
-			switch(mode)
-				if(0)
-					occupant_message("Now firing buckshot.")
-					projectile = /obj/item/projectile/bullet/pellet/shotgun
-				if(1)
-					occupant_message("Now firing beanbags.")
-					projectile = /obj/item/projectile/bullet/shotgun/beanbag
-				if(2)
-					occupant_message("Now firing slugs.")
-					projectile = /obj/item/projectile/bullet/shotgun
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microshotgun/Topic(href,href_list)
+	..()
+	if(href_list["mode"])
+		mode = text2num(href_list["mode"])
+		switch(mode)
+			if(0)
+				occupant_message("Now firing buckshot.")
+				projectile = /obj/item/projectile/bullet/pellet/shotgun
+			if(1)
+				occupant_message("Now firing beanbags.")
+				projectile = /obj/item/projectile/bullet/shotgun/beanbag
+			if(2)
+				occupant_message("Now firing slugs.")
+				projectile = /obj/item/projectile/bullet/shotgun
 
-		return
+	return
 
-	get_equip_info()
-		return "[..()] \[<a href='?src=\ref[src];mode=0'>BS</a>|<a href='?src=\ref[src];mode=1'>BB</a>|<a href='?src=\ref[src];mode=2'>S</a>\]"
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microshotgun/get_equip_info()
+	return "[..()] \[<a href='?src=\ref[src];mode=0'>BS</a>|<a href='?src=\ref[src];mode=1'>BB</a>|<a href='?src=\ref[src];mode=2'>S</a>\]"
 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/microflashbang
@@ -113,44 +113,44 @@
 	equip_type = EQUIP_MICRO_UTILITY
 	required_type = list(/obj/mecha/micro/utility)
 
-	action(atom/target)
-		if(!action_checks(target)) return
-		if(isobj(target))
-			var/obj/target_obj = target
-			if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='danger'>[chassis] starts to drill [target]</span>", "<span class='warning'>You hear the drill.</span>")
-		occupant_message("<span class='danger'>You start to drill [target]</span>")
-		var/T = chassis.loc
-		var/C = target.loc	//why are these backwards? we may never know -Pete
-		if(do_after_cooldown(target))
-			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/simulated/wall))
-					var/turf/simulated/wall/W = target
-					if(W.reinf_material)
-						occupant_message("<span class='warning'>[target] is too durable to drill through.</span>")
-					else
-						log_message("Drilled through [target]")
-						target.ex_act(2)
-				else if(istype(target, /turf/simulated/mineral))
-					for(var/turf/simulated/mineral/M in range(chassis,1))
-						if(get_dir(chassis,M)&chassis.dir)
-							M.GetDrilled()
-					log_message("Drilled through [target]")
-					var/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop/ore_box = (locate(/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop) in chassis.equipment)
-					if(ore_box)
-						for(var/obj/item/weapon/ore/ore in range(chassis,1))
-							if(get_dir(chassis,ore)&chassis.dir)
-								if (ore_box.contents.len >= ore_box.orecapacity)
-									occupant_message("<span class='warning'>The ore compartment is full.</span>")
-									return 1
-								else
-									ore.forceMove(ore_box)
-				else if(target.loc == C)
+/obj/item/mecha_parts/mecha_equipment/tool/drill/micro/action(atom/target)
+	if(!action_checks(target)) return
+	if(isobj(target))
+		var/obj/target_obj = target
+		if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	chassis.visible_message("<span class='danger'>[chassis] starts to drill [target]</span>", "<span class='warning'>You hear the drill.</span>")
+	occupant_message("<span class='danger'>You start to drill [target]</span>")
+	var/T = chassis.loc
+	var/C = target.loc	//why are these backwards? we may never know -Pete
+	if(do_after_cooldown(target))
+		if(T == chassis.loc && src == chassis.selected)
+			if(istype(target, /turf/simulated/wall))
+				var/turf/simulated/wall/W = target
+				if(W.reinf_material)
+					occupant_message("<span class='warning'>[target] is too durable to drill through.</span>")
+				else
 					log_message("Drilled through [target]")
 					target.ex_act(2)
-		return 1
+			else if(istype(target, /turf/simulated/mineral))
+				for(var/turf/simulated/mineral/M in range(chassis,1))
+					if(get_dir(chassis,M)&chassis.dir)
+						M.GetDrilled()
+				log_message("Drilled through [target]")
+				var/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop/ore_box = (locate(/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop) in chassis.equipment)
+				if(ore_box)
+					for(var/obj/item/weapon/ore/ore in range(chassis,1))
+						if(get_dir(chassis,ore)&chassis.dir)
+							if (ore_box.contents.len >= ore_box.orecapacity)
+								occupant_message("<span class='warning'>The ore compartment is full.</span>")
+								return 1
+							else
+								ore.forceMove(ore_box)
+			else if(target.loc == C)
+				log_message("Drilled through [target]")
+				target.ex_act(2)
+	return 1
 
 
 /obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop
@@ -165,38 +165,38 @@
 	required_type = list(/obj/mecha/micro/utility)
 	var/orecapacity = 500
 
-	action(atom/target)
-		if(!action_checks(target)) return
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='info'>[chassis] sweeps around with its ore scoop.</span>")
-		occupant_message("<span class='info'>You sweep around the area with the scoop.</span>")
-		var/T = chassis.loc
-		//var/C = target.loc	//why are these backwards? we may never know -Pete
-		if(do_after_cooldown(target))
-			if(T == chassis.loc && src == chassis.selected)
-				for(var/obj/item/weapon/ore/ore in range(chassis,1))
-					if(get_dir(chassis,ore)&chassis.dir)
-						if (contents.len >= orecapacity)
-							occupant_message("<span class='warning'>The ore compartment is full.</span>")
-							return 1
-						else
-							ore.Move(src)
-		return 1
+/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop/action(atom/target)
+	if(!action_checks(target)) return
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	chassis.visible_message("<span class='info'>[chassis] sweeps around with its ore scoop.</span>")
+	occupant_message("<span class='info'>You sweep around the area with the scoop.</span>")
+	var/T = chassis.loc
+	//var/C = target.loc	//why are these backwards? we may never know -Pete
+	if(do_after_cooldown(target))
+		if(T == chassis.loc && src == chassis.selected)
+			for(var/obj/item/weapon/ore/ore in range(chassis,1))
+				if(get_dir(chassis,ore)&chassis.dir)
+					if (contents.len >= orecapacity)
+						occupant_message("<span class='warning'>The ore compartment is full.</span>")
+						return 1
+					else
+						ore.Move(src)
+	return 1
 
-	Topic(href,href_list)
-		..()
-		if (href_list["empty_box"])
-			if(contents.len < 1)
-				occupant_message("The ore compartment is empty.")
-				return
-			for (var/obj/item/weapon/ore/O in contents)
-				contents -= O
-				O.loc = chassis.loc
-			occupant_message("Ore compartment emptied.")
+/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop/Topic(href,href_list)
+	..()
+	if (href_list["empty_box"])
+		if(contents.len < 1)
+			occupant_message("The ore compartment is empty.")
+			return
+		for (var/obj/item/weapon/ore/O in contents)
+			contents -= O
+			O.loc = chassis.loc
+		occupant_message("Ore compartment emptied.")
 
-	get_equip_info()
-		return "[..()] <br /><a href='?src=\ref[src];empty_box=1'>Empty ore compartment</a>"
+/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop/get_equip_info()
+	return "[..()] <br /><a href='?src=\ref[src];empty_box=1'>Empty ore compartment</a>"
 
 /obj/item/mecha_parts/mecha_equipment/tool/orescoop/verb/empty_box() //so you can still get the ore out if someone detaches it from the mech
 	set name = "Empty Ore compartment"

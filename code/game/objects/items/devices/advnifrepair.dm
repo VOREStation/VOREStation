@@ -10,7 +10,7 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	matter = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 6000)
+	matter = list(MAT_STEEL = 4000, MAT_GLASS = 6000)
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 	var/datum/reagents/supply
 	var/efficiency = 15 //How many units reagent per 1 unit nanopaste
@@ -24,7 +24,7 @@
 /obj/item/device/nifrepairer/attackby(obj/W, mob/user)
 	if(istype(W,/obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/np = W
-		if(np.use(1) && supply.get_free_space() >= efficiency)
+		if((supply.get_free_space() >= efficiency) && np.use(1))
 			to_chat(user, "<span class='notice'>You convert some nanopaste into programmed nanites inside \the [src].</span>")
 			supply.add_reagent(id = "nifrepairnanites", amount = efficiency)
 			update_icon()
@@ -56,8 +56,9 @@
 	return 1
 
 /obj/item/device/nifrepairer/examine(mob/user)
-	if(..(user, 1))
+	. = ..()
+	if(Adjacent(user))
 		if(supply.total_volume)
-			to_chat(user, "<span class='notice'>\The [src] contains [supply.total_volume] units of programmed nanites, ready for dispensing.</span>")
+			. += "<span class='notice'>\The [src] contains [supply.total_volume] units of programmed nanites, ready for dispensing.</span>"
 		else
-			to_chat(user, "<span class='notice'>\The [src] is empty and ready to accept nanopaste.</span>")
+			. += "<span class='notice'>\The [src] is empty and ready to accept nanopaste.</span>"

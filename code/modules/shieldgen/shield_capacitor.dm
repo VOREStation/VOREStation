@@ -8,16 +8,17 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "capacitor"
 	var/active = 0
-	density = 1
+	density = TRUE
 	var/stored_charge = 0	//not to be confused with power cell charge, this is in Joules
 	var/last_stored_charge = 0
 	var/time_since_fail = 100
 	var/max_charge = 8e6	//8 MJ
 	var/max_charge_rate = 400000	//400 kW
 	var/locked = 0
-	use_power = 0 //doesn't use APC power
+	use_power = USE_POWER_OFF //doesn't use APC power
 	var/charge_rate = 100000	//100 kW
 	var/obj/machinery/shield_gen/owned_gen
+	interact_offline = TRUE
 
 /obj/machinery/shield_capacitor/advanced
 	name = "advanced shield capacitor"
@@ -39,16 +40,16 @@
 
 	if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = W
-		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
+		if((access_captain in C.access) || (access_security in C.access) || (access_engine in C.access))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			to_chat(user, "<font color='red'>Access denied.</font>")
-	else if(W.is_wrench())
+			to_chat(user, span_red("Access denied."))
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
-		src.visible_message("<font color='blue'>[bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</font>")
+		src.visible_message(span_blue("\icon[src][bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user]."))
 
 		if(anchored)
 			spawn(0)
@@ -58,7 +59,7 @@
 						owned_gen.capacitors |= src
 						owned_gen.updateDialog()
 		else
-			if(owned_gen && src in owned_gen.capacitors)
+			if(owned_gen && (src in owned_gen.capacitors))
 				owned_gen.capacitors -= src
 			owned_gen = null
 	else
@@ -67,36 +68,30 @@
 /obj/machinery/shield_capacitor/attack_hand(mob/user)
 	if(stat & (BROKEN))
 		return
-	interact(user)
+	tgui_interact(user)
 
-/obj/machinery/shield_capacitor/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
-			user.unset_machine()
-			user << browse(null, "window=shield_capacitor")
-			return
-	var/t = "<B>Shield Capacitor Control Console</B><br><br>"
-	if(locked)
-		t += "<i>Swipe your ID card to begin.</i>"
-	else
-		t += "This capacitor is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
-		t += "Capacitor Status: [time_since_fail > 2 ? "<font color=green>OK.</font>" : "<font color=red>Discharging!</font>"]<br>"
-		t += "Stored Energy: [format_SI(stored_charge, "J")] ([100 * round(stored_charge/max_charge, 0.01)]%)<br>"
-		t += "Charge Rate: \
-		<a href='?src=\ref[src];charge_rate=-100000'>\[----\]</a> \
-		<a href='?src=\ref[src];charge_rate=-10000'>\[---\]</a> \
-		<a href='?src=\ref[src];charge_rate=-1000'>\[--\]</a> \
-		<a href='?src=\ref[src];charge_rate=-100'>\[-\]</a>[format_SI(charge_rate, "W")]\
-		<a href='?src=\ref[src];charge_rate=100'>\[+\]</a> \
-		<a href='?src=\ref[src];charge_rate=1000'>\[++\]</a> \
-		<a href='?src=\ref[src];charge_rate=10000'>\[+++\]</a> \
-		<a href='?src=\ref[src];charge_rate=100000'>\[++++\]</a><br>"
-	t += "<hr>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> "
-	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
+/obj/machinery/shield_capacitor/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShieldCapacitor", name)
+		ui.open()
 
-	user << browse(t, "window=shield_capacitor;size=500x400")
-	user.set_machine(src)
+/obj/machinery/shield_capacitor/tgui_status(mob/user)
+	if(stat & BROKEN)
+		return STATUS_CLOSE
+	return ..()
+
+/obj/machinery/shield_capacitor/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["active"] = active
+	data["time_since_fail"] = time_since_fail
+	data["stored_charge"] = stored_charge
+	data["max_charge"] = max_charge
+	data["charge_rate"] = charge_rate
+	data["max_charge_rate"] = max_charge_rate
+
+	return data
 
 /obj/machinery/shield_capacitor/process()
 	if (!anchored)
@@ -119,21 +114,20 @@
 		time_since_fail = 0 //losing charge faster than we can draw from PN
 	last_stored_charge = stored_charge
 
-/obj/machinery/shield_capacitor/Topic(href, href_list[])
-	..()
-	if( href_list["close"] )
-		usr << browse(null, "window=shield_capacitor")
-		usr.unset_machine()
-		return
-	if( href_list["toggle"] )
-		if(!active && !anchored)
-			to_chat(usr, "<font color='red'>The [src] needs to be firmly secured to the floor first.</font>")
-			return
-		active = !active
-	if( href_list["charge_rate"] )
-		charge_rate = between(10000, charge_rate + text2num(href_list["charge_rate"]), max_charge_rate)
+/obj/machinery/shield_capacitor/tgui_act(action, params)
+	if(..())
+		return TRUE
 
-	updateDialog()
+	switch(action)
+		if("toggle")
+			if(!active && !anchored)
+				to_chat(usr, span_red("The [src] needs to be firmly secured to the floor first."))
+				return
+			active = !active
+			. = TRUE
+		if("charge_rate")
+			charge_rate = clamp(text2num(params["rate"]), 10000, max_charge_rate)
+			. = TRUE
 
 /obj/machinery/shield_capacitor/power_change()
 	if(stat & BROKEN)

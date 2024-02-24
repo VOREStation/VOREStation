@@ -24,7 +24,7 @@ GLOBAL_DATUM(vchatdb, /database)
 //For INSERT/CREATE/DELETE, etc that return a RowsAffected.
 /proc/vchat_exec_update(var/query)
 	if(!check_vchat())
-		log_debug("There's no vchat database open but you tried to query it with: [query]")
+		log_world("There's no vchat database open but you tried to query it with: [query]")
 		return FALSE
 
 	//Solidify our query
@@ -35,7 +35,7 @@ GLOBAL_DATUM(vchatdb, /database)
 
 	//Handle errors
 	if(q.Error())
-		log_debug("Query \"[islist(query)?query[1]:query]\" ended in error [q.ErrorMsg()]")
+		log_world("Query \"[islist(query)?query[1]:query]\" ended in error [q.ErrorMsg()]")
 		return FALSE
 
 	return q.RowsAffected()
@@ -43,7 +43,7 @@ GLOBAL_DATUM(vchatdb, /database)
 //For SELECT, that return results.
 /proc/vchat_exec_query(var/query)
 	if(!check_vchat())
-		log_debug("There's no vchat database open but you tried to query it!")
+		log_world("There's no vchat database open but you tried to query it!")
 		return FALSE
 
 	//Solidify our query
@@ -54,7 +54,7 @@ GLOBAL_DATUM(vchatdb, /database)
 
 	//Handle errors
 	if(q.Error())
-		log_debug("Query \"[islist(query)?query[1]:query]\" ended in error [q.ErrorMsg()]")
+		log_world("Query \"[islist(query)?query[1]:query]\" ended in error [q.ErrorMsg()]")
 		return FALSE
 
 	//Return any results
@@ -83,8 +83,6 @@ GLOBAL_DATUM(vchatdb, /database)
 	//Byond is so great half the time it doesn't delete the file
 	var/cleanup = "DROP TABLE IF EXISTS messages"
 	vchat_exec_update(cleanup)
-	cleanup = "VACUUM"
-	vchat_exec_update(cleanup)
 
 	//Messages table
 	var/tabledef = "CREATE TABLE messages(\
@@ -105,17 +103,21 @@ GLOBAL_DATUM(vchatdb, /database)
 	var/list/messagedef = list(
 		"INSERT INTO messages (ckey,worldtime,message) VALUES (?, ?, ?)",
 		ckey,
-		world.time,
+		world.time || 0,
 		message)
 
 	return vchat_exec_update(messagedef)
 
-//Get a player's message history
-/proc/vchat_get_messages(var/ckey, var/oldest = 0)
+//Get a player's message history.  If limit is supplied, messages will be in reverse order.
+/proc/vchat_get_messages(var/ckey, var/limit)
 	if(!ckey)
 		return
 
-	var/list/getdef = list("SELECT * FROM messages WHERE ckey = ? AND worldtime >= ?", ckey, oldest)
+	var/list/getdef
+	if (limit)
+		getdef = list("SELECT * FROM messages WHERE ckey = ? ORDER BY id DESC LIMIT [text2num(limit)]", ckey)
+	else
+		getdef = list("SELECT * FROM messages WHERE ckey = ?", ckey)
 
 	return vchat_exec_query(getdef)
 

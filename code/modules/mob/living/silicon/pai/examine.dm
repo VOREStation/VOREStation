@@ -1,26 +1,18 @@
 /mob/living/silicon/pai/examine(mob/user)
-	..(user, infix = ", personal AI")
+	. = ..(user, infix = ", personal AI")
 
-	var/msg = ""
 	switch(src.stat)
 		if(CONSCIOUS)
-			if(!src.client)	msg += "\nIt appears to be in stand-by mode.\n" //afk
-		if(UNCONSCIOUS)		msg += "\n<span class='warning'>It doesn't seem to be responding.</span>\n"
-		if(DEAD)			msg += "\n<span class='deadsay'>It looks completely unsalvageable.</span>\n"
-	msg += attempt_vr(src,"examine_bellies",args) //VOREStation Edit
-
+			if(!src.client)	. += "It appears to be in stand-by mode." //afk
+		if(UNCONSCIOUS)		. += "<span class='warning'>It doesn't seem to be responding.</span>"
+		if(DEAD)			. += "<span class='deadsay'>It looks completely unsalvageable.</span>"
+	
 	// VOREStation Edit: Start
-	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
+	. += attempt_vr(src,"examine_bellies",args) //VOREStation Edit
+	if(print_flavor_text()) . += "\n[print_flavor_text()]\n"
 	// VOREStation Edit: End
-
-	msg += "\n*---------*"
-
-	if(print_flavor_text()) msg += "\n[print_flavor_text()]\n"
-
+	. += "*---------*"
 	if (pose)
-		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
+		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
-		msg += "\nIt is [pose]"
-
-	to_chat(user,msg)
+		. += "<br>It is [pose]" //Extra <br> intentional

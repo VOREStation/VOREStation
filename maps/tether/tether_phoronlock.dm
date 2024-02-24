@@ -13,13 +13,13 @@
 // Pumps: (obj/machinery/atmospherics/unary/vent_pump/high_volume), frequency = 1379 id_tag = "[base]_pump"
 //
 
-obj/machinery/airlock_sensor/phoron
+/obj/machinery/airlock_sensor/phoron
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
 	name = "phoronlock sensor"
 	var/previousPhoron
 
-obj/machinery/airlock_sensor/phoron/process()
+/obj/machinery/airlock_sensor/phoron/process()
 	if(on)
 		var/datum/gas_mixture/air_sample = return_air()
 		var/pressure = round(air_sample.return_pressure(), 0.1)
@@ -27,7 +27,7 @@ obj/machinery/airlock_sensor/phoron/process()
 
 		if(abs(pressure - previousPressure) > 0.1 || previousPressure == null || abs(phoron - previousPhoron) > 0.1 || previousPhoron == null)
 			var/datum/signal/signal = new
-			signal.transmission_method = 1 //radio signal
+			signal.transmission_method = TRANSMISSION_RADIO //radio signal
 			signal.data["tag"] = id_tag
 			signal.data["timestamp"] = world.time
 			signal.data["pressure"] = num2text(pressure)
@@ -38,10 +38,10 @@ obj/machinery/airlock_sensor/phoron/process()
 			alert = (pressure < ONE_ATMOSPHERE*0.8) || (phoron > 0.5)
 			update_icon()
 
-obj/machinery/airlock_sensor/phoron/airlock_interior
+/obj/machinery/airlock_sensor/phoron/airlock_interior
 	command = "cycle_interior"
 
-obj/machinery/airlock_sensor/phoron/airlock_exterior
+/obj/machinery/airlock_sensor/phoron/airlock_exterior
 	command = "cycle_exterior"
 
 
@@ -81,7 +81,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 	if(!radio_connection)
 		return 0
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 	signal.data = list(
 		"tag" = scrub_id,
@@ -121,63 +121,29 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 
 /obj/machinery/embedded_controller/radio/airlock/phoron/Initialize()
 	. = ..()
-	program = new/datum/computer/file/embedded_program/airlock/phoron(src)
+	program = new/datum/embedded_program/airlock/phoron(src)
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
 /obj/machinery/embedded_controller/radio/airlock/phoron
 	name = "Phoron Lock Controller"
+	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "secure")
 
-/obj/machinery/embedded_controller/radio/airlock/phoron/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-
-	data = list(
+/obj/machinery/embedded_controller/radio/airlock/phoron/tgui_data(mob/user)
+	. = list(
 		"chamber_pressure" = program.memory["chamber_sensor_pressure"],
 		"chamber_phoron" = program.memory["chamber_sensor_phoron"],
 		"exterior_status" = program.memory["exterior_status"],
 		"interior_status" = program.memory["interior_status"],
-		"processing" = program.memory["processing"]
+		"processing" = program.memory["processing"],
+		"internalTemplateName" = "AirlockConsolePhoron",
 	)
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "phoron_airlock_console.tmpl", name, 470, 290)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/embedded_controller/radio/airlock/phoron/Topic(href, href_list)
-	if(..())
-		return
-
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-
-	var/clean = 0
-	switch(href_list["command"])	//anti-HTML-hacking checks
-		if("cycle_ext")
-			clean = 1
-		if("cycle_int")
-			clean = 1
-		if("force_ext")
-			clean = 1
-		if("force_int")
-			clean = 1
-		if("abort")
-			clean = 1
-		if("secure")
-			clean = 1
-
-	if(clean)
-		program.receive_user_command(href_list["command"])
-
-	return 1
 
 //
 // PHORON LOCK CONTROLLER PROGRAM
 //
 
 //Handles the control of airlocks
-
+// Airlocks
 #define STATE_IDLE			0
 #define STATE_PREPARE		1
 #define STATE_CLEAN			16
@@ -187,10 +153,10 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 #define TARGET_INOPEN		-1
 #define TARGET_OUTOPEN		-2
 
-/datum/computer/file/embedded_program/airlock/phoron
+/datum/embedded_program/airlock/phoron
 	var/tag_scrubber
 
-/datum/computer/file/embedded_program/airlock/phoron/New(var/obj/machinery/embedded_controller/M)
+/datum/embedded_program/airlock/phoron/New(var/obj/machinery/embedded_controller/M)
 	..(M)
 	memory["chamber_sensor_phoron"] = 0
 	memory["external_sensor_pressure"] = VIRGO3B_ONE_ATMOSPHERE
@@ -204,7 +170,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		var/obj/machinery/embedded_controller/radio/airlock/phoron/controller = M
 		tag_scrubber = controller.tag_scrubber ? controller.tag_scrubber : "[id_tag]_scrubber"
 
-/datum/computer/file/embedded_program/airlock/phoron/receive_signal(datum/signal/signal, receive_method, receive_param)
+/datum/embedded_program/airlock/phoron/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]
 	if(!receive_tag) return
 	if(..()) return 1
@@ -228,7 +194,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 // Note: This code doesn't wait for pumps and scrubbers to be offline like other code does
 // The idea is to make the doors open and close faster, since there isn't much harm really.
 // But lets evaluate how it actually works in the game.
-/datum/computer/file/embedded_program/airlock/phoron/process()
+/datum/embedded_program/airlock/phoron/process()
 	switch(state)
 		if(STATE_IDLE)
 			if(target_state == TARGET_INOPEN)
@@ -246,6 +212,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		if(STATE_PREPARE)
 			if (check_doors_secured())
 				if(target_state == TARGET_INOPEN)
+					playsound(master, 'sound/AI/airlockin.ogg', 100, 0)
 					if(memory["chamber_sensor_phoron"] > memory["target_phoron"])
 						state = STATE_CLEAN
 						signalScrubber(tag_scrubber, 1) // Start cleaning
@@ -259,11 +226,13 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 				else if(memory["pump_status"] != "off")
 					signalPump(tag_airpump, 0)
 				else
+					playsound(master, 'sound/AI/airlockout.ogg', 100, 0)
 					cycleDoors(target_state)
 					state = STATE_IDLE
 					target_state = TARGET_NONE
 
 		if(STATE_CLEAN)
+			playsound(master, 'sound/machines/2beep.ogg', 100, 0)
 			if(!check_doors_secured())
 				//the airlock will not allow itself to continue to cycle when any of the doors are forced open.
 				stop_cycling()
@@ -274,25 +243,27 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 				state = STATE_PRESSURIZE
 
 		if(STATE_PRESSURIZE)
+			playsound(master, 'sound/machines/2beep.ogg', 100, 0)
 			if(!check_doors_secured())
 				//the airlock will not allow itself to continue to cycle when any of the doors are forced open.
 				stop_cycling()
 			else if(memory["chamber_sensor_pressure"] >= memory["target_pressure"] * 0.95)
 				signalPump(tag_airpump, 0)	// send a signal to stop pumping. No need to wait for it tho.
 				cycleDoors(target_state)
+				playsound(master, 'sound/AI/airlockdone.ogg', 100, 0)
 				state = STATE_IDLE
 				target_state = TARGET_NONE
 
 	memory["processing"] = (state != target_state)
 	return 1
 
-/datum/computer/file/embedded_program/airlock/phoron/stop_cycling()
+/datum/embedded_program/airlock/phoron/stop_cycling()
 	state = STATE_IDLE
 	target_state = TARGET_NONE
 	signalPump(tag_airpump, 0)
 	signalScrubber(tag_scrubber, 0)
 
-/datum/computer/file/embedded_program/airlock/phoron/proc/signalScrubber(var/tag, var/power)
+/datum/embedded_program/airlock/phoron/proc/signalScrubber(var/tag, var/power)
 	var/datum/signal/signal = new
 	signal.data = list(
 		"tag" = tag,
@@ -300,13 +271,3 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		"power" = "[power]",
 	)
 	post_signal(signal)
-
-
-#undef STATE_IDLE
-#undef STATE_PREPARE
-#undef STATE_CLEAN
-#undef STATE_PRESSURIZE
-
-#undef TARGET_NONE
-#undef TARGET_INOPEN
-#undef TARGET_OUTOPEN

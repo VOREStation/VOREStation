@@ -13,20 +13,38 @@
 	allowed = list (/obj/item/weapon/reagent_containers/spray/plantbgone, /obj/item/device/analyzer/plant_analyzer, /obj/item/seeds,
 	/obj/item/weapon/reagent_containers/glass/bottle, /obj/item/weapon/material/minihoe)
 
+/obj/item/clothing/suit/storage/apron/white
+	name = "white apron"
+	desc = "A basic white apron."
+	icon_state = "apron_white"
+	item_state_slots = list(slot_r_hand_str = "apronchef", slot_l_hand_str = "apronchef")
+
+/obj/item/clothing/suit/storage/apron/altevian
+	name = "Multi-purpose Crafters' Pride"
+	desc = "An apron designed by rodent-like spacers who take pride in their work. It's made with high-quality material."
+	icon_state = "apron_altevian"
+	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
+
 //Captain
 /obj/item/clothing/suit/captunic
-	name = "colony director's parade tunic"
-	desc = "Worn by a Colony Director to show their class."
+	name = "site manager's parade tunic"
+	desc = "Worn by a Site Manager to show their class."
 	icon_state = "captunic"
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/captunic/capjacket
-	name = "colony director's uniform jacket"
-	desc = "A less formal jacket for everyday Colony Director use."
+	name = "site manager's uniform jacket"
+	desc = "A less formal jacket for everyday Site Manager use."
 	icon_state = "capjacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEHOLSTER
+
+//Command
+/obj/item/clothing/suit/storage/toggle/cmddressjacket
+	name = "command dress jacket"
+	desc = "A fancy dress jacket made for command staff. Makes you feel in charge."
+	icon_state = "cmddressjacket"
 
 //Chaplain
 /obj/item/clothing/suit/storage/hooded/chaplain_hoodie
@@ -161,7 +179,7 @@
 	blood_overlay_type = "armor"
 	allowed = list (/obj/item/device/analyzer, /obj/item/device/flashlight, /obj/item/device/multitool, /obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
 	/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency/oxygen,
-	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering)
+	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering, /obj/item/taperoll/atmos, /obj/item/device/analyzer, /obj/item/weapon/extinguisher/mini) //VOREStation edit. Few more tools that can be put on vests
 	body_parts_covered = UPPER_TORSO
 
 /obj/item/clothing/suit/storage/hazardvest/blue
@@ -171,12 +189,12 @@
 
 /obj/item/clothing/suit/storage/hazardvest/green
 	name = "green hazard vest"
-	desc = "A high-visibility vest used by emergency responders. This one is green!"
+	desc = "A high-visibility vest used by emergency responders."
 	icon_state = "hazard_g"
 
 /obj/item/clothing/suit/storage/hazardvest/white
 	name = "white hazard vest"
-	desc = "A high-visibility vest used in work zones. This one has a red cross!"
+	desc = "A high-visibility vest used in work zones. This one bears the symbol of a disaster relief team!"
 	icon_state = "hazard_w"
 
 //Lawyer
@@ -234,9 +252,17 @@
 
 //Mime
 /obj/item/clothing/suit/suspenders
-	name = "suspenders"
+	name = "red suspenders"
 	desc = "They suspend the illusion of the mime's play."
-	icon = 'icons/obj/clothing/belts.dmi'
+	icon = 'icons/inventory/belt/item.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 	body_parts_covered = 0
+
+/obj/item/clothing/suit/suspenders/blue
+	name = "blue suspenders"
+	icon_state = "suspenders_blue"
+
+/obj/item/clothing/suit/suspenders/grey
+	name = "grey suspenders"
+	icon_state = "suspenders_grey"

@@ -6,13 +6,7 @@
 	..()
 	items = list()
 
-/datum/uplink_category/proc/can_view(obj/item/device/uplink/U)
-	for(var/datum/uplink_item/item in items)
-		if(item.can_view(U))
-			return 1
-	return 0
-
-datum/uplink_category/ammunition
+/datum/uplink_category/ammunition
 	name = "Ammunition"
 
 /datum/uplink_category/services

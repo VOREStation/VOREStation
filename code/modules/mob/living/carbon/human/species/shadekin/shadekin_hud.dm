@@ -1,16 +1,7 @@
 /obj/screen/shadekin
+	name = "shadekin status"
 	icon = 'icons/mob/shadekin_hud.dmi'
 	invisibility = 101
-
-/obj/screen/shadekin/darkness
-	name = "darkness"
-	icon_state = "dark"
-	alpha = 150
-
-/obj/screen/shadekin/energy
-	name = "energy"
-	icon_state = "energy0"
-	alpha = 150
 
 
 

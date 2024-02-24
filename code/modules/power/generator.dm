@@ -1,11 +1,14 @@
+GLOBAL_LIST_EMPTY(all_turbines)
+
 /obj/machinery/power/generator
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
-	icon_state = "teg"
-	density = 1
-	anchored = 0
+	icon_state = "teg-unassembled"
+	density = TRUE
+	anchored = FALSE
+	unacidable = TRUE
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
 
 	var/max_power = 500000
@@ -27,12 +30,16 @@
 /obj/machinery/power/generator/Initialize()
 	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
-	spawn(1)
-		reconnect()
-	return ..()
+	GLOB.all_turbines += src
+	..() //Not returned, because...
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/generator/LateInitialize()
+	reconnect()
 
 /obj/machinery/power/generator/Destroy()
 	QDEL_NULL(soundloop)
+	GLOB.all_turbines -= src
 	return ..()
 
 //generators connect in dir and reverse_dir(dir) directions
@@ -61,14 +68,27 @@
 				circ1 = null
 				circ2 = null
 
-/obj/machinery/power/generator/proc/updateicon()
-	if(stat & (NOPOWER|BROKEN))
-		overlays.Cut()
+/obj/machinery/power/generator/update_icon()
+	icon_state = anchored ? "teg-assembled" : "teg-unassembled"
+	cut_overlays()
+	if (circ1)
+		circ1.temperature_overlay = null
+	if (circ2)
+		circ2.temperature_overlay = null
+	if (stat & (NOPOWER|BROKEN))
+		return 1
 	else
-		overlays.Cut()
-
-		if(lastgenlev != 0)
-			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
+		if (lastgenlev != 0)
+			add_overlay("teg-op[lastgenlev]")
+			if (circ1 && circ2)
+				var/extreme = (lastgenlev > 9) ? "ex" : ""
+				if (circ1.last_temperature < circ2.last_temperature)
+					circ1.temperature_overlay = "circ-[extreme]cold"
+					circ2.temperature_overlay = "circ-[extreme]hot"
+				else
+					circ1.temperature_overlay = "circ-[extreme]hot"
+					circ2.temperature_overlay = "circ-[extreme]cold"
+		return 1
 
 /obj/machinery/power/generator/process()
 	if(!circ1 || !circ2 || !anchored || stat & (BROKEN|NOPOWER))
@@ -143,25 +163,28 @@
 		genlev = 1
 	if(genlev != lastgenlev)
 		lastgenlev = genlev
-		updateicon()
+		update_icon()
 	add_avail(effective_gen)
 
 /obj/machinery/power/generator/attack_ai(mob/user)
 	attack_hand(user)
 
 /obj/machinery/power/generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 75, 1)
 		anchored = !anchored
 		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
 					"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
 					"You hear a ratchet.")
-		use_power = anchored
+		update_use_power(anchored ? USE_POWER_IDLE : USE_POWER_ACTIVE)
 		if(anchored) // Powernet connection stuff.
 			connect_to_network()
 		else
 			disconnect_from_network()
 		reconnect()
+		lastgenlev = 0
+		effective_gen = 0
+		update_icon()
 	else
 		..()
 
@@ -170,62 +193,52 @@
 	if(stat & (BROKEN|NOPOWER) || !anchored) return
 	if(!circ1 || !circ2) //Just incase the middle part of the TEG was not wrenched last.
 		reconnect()
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/power/generator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/generator/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TEGenerator", name)
+		ui.open()
+
+/obj/machinery/power/generator/tgui_data(mob/user)
 	// this is the data which will be sent to the ui
 	var/vertical = 0
 	if (dir == NORTH || dir == SOUTH)
 		vertical = 1
 
-	var/data[0]
-	data["totalOutput"] = effective_gen/1000
-	data["maxTotalOutput"] = max_power/1000
-	data["thermalOutput"] = last_thermal_gen/1000
-	data["circConnected"] = 0
+	var/list/data = list()
+	data["totalOutput"] = effective_gen
+	data["maxTotalOutput"] = max_power
+	data["thermalOutput"] = last_thermal_gen
 
+	data["primary"] = list()
 	if(circ1)
 		//The one on the left (or top)
-		data["primaryDir"] = vertical ? "top" : "left"
-		data["primaryOutput"] = last_circ1_gen/1000
-		data["primaryFlowCapacity"] = circ1.volume_capacity_used*100
-		data["primaryInletPressure"] = circ1.air1.return_pressure()
-		data["primaryInletTemperature"] = circ1.air1.temperature
-		data["primaryOutletPressure"] = circ1.air2.return_pressure()
-		data["primaryOutletTemperature"] = circ1.air2.temperature
+		data["primary"]["dir"] = vertical ? "top" : "left"
+		data["primary"]["output"] = last_circ1_gen
+		data["primary"]["flowCapacity"] = circ1.volume_capacity_used*100
+		data["primary"]["inletPressure"] = circ1.air1.return_pressure()
+		data["primary"]["inletTemperature"] = circ1.air1.temperature
+		data["primary"]["outletPressure"] = circ1.air2.return_pressure()
+		data["primary"]["outletTemperature"] = circ1.air2.temperature
 
+	data["secondary"] = list()
 	if(circ2)
 		//Now for the one on the right (or bottom)
-		data["secondaryDir"] = vertical ? "bottom" : "right"
-		data["secondaryOutput"] = last_circ2_gen/1000
-		data["secondaryFlowCapacity"] = circ2.volume_capacity_used*100
-		data["secondaryInletPressure"] = circ2.air1.return_pressure()
-		data["secondaryInletTemperature"] = circ2.air1.temperature
-		data["secondaryOutletPressure"] = circ2.air2.return_pressure()
-		data["secondaryOutletTemperature"] = circ2.air2.temperature
+		data["secondary"]["dir"] = vertical ? "bottom" : "right"
+		data["secondary"]["output"] = last_circ2_gen
+		data["secondary"]["flowCapacity"] = circ2.volume_capacity_used*100
+		data["secondary"]["inletPressure"] = circ2.air1.return_pressure()
+		data["secondary"]["inletTemperature"] = circ2.air1.temperature
+		data["secondary"]["outletPressure"] = circ2.air2.return_pressure()
+		data["secondary"]["outletTemperature"] = circ2.air2.temperature
 
-	if(circ1 && circ2)
-		data["circConnected"] = 1
-	else
-		data["circConnected"] = 0
-
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "generator.tmpl", "Thermoelectric Generator", 450, 500)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+	return data
 
 /obj/machinery/power/generator/power_change()
 	..()
-	updateicon()
+	update_icon()
 
 
 /obj/machinery/power/generator/verb/rotate_clockwise()
@@ -248,11 +261,11 @@
 
 	src.set_dir(turn(src.dir, 90))
 
-/obj/machinery/power/generator/power_spike()
-//	if(!effective_gen >= max_power / 2 && powernet) // Don't make a spike if we're not making a whole lot of power.
-//		return
+/obj/machinery/power/generator/power_spike(var/announce_prob = 30)
+	if(!(effective_gen >= max_power / 2 && powernet)) // Don't make a spike if we're not making a whole lot of power.
+		return
 
-	var/list/powernet_union = powernet.nodes
+	var/list/powernet_union = powernet.nodes.Copy()
 	for(var/obj/machinery/power/terminal/T in powernet.nodes)
 		if(T.master && istype(T.master, /obj/machinery/power/smes))
 			var/obj/machinery/power/smes/S = T.master
@@ -260,7 +273,7 @@
 
 	var/found_grid_checker = FALSE
 	for(var/obj/machinery/power/grid_checker/G in powernet_union)
-		G.power_failure(prob(30)) // If we found a grid checker, then all is well.
+		G.power_failure(announce_prob) // If we found a grid checker, then all is well.
 		found_grid_checker = TRUE
 	if(!found_grid_checker) // Otherwise lets break some stuff.
 		spawn(1)

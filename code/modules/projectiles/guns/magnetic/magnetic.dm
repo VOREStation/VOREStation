@@ -1,3 +1,10 @@
+#define ICON_CELL 1
+#define ICON_CAP 2
+#define ICON_BAD 4
+#define ICON_CHARGE 8
+#define ICON_READY 16
+#define ICON_LOADED 32
+
 /obj/item/weapon/gun/magnetic
 	name = "improvised coilgun"
 	desc = "A coilgun hastily thrown together out of a basic frame and advanced power storage components. Is it safe for it to be duct-taped together like that?"
@@ -9,8 +16,7 @@
 	w_class = ITEMSIZE_LARGE
 
 	var/obj/item/weapon/cell/cell                              // Currently installed powercell.
-	var/obj/item/weapon/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots.
-	var/obj/item/weapon/stock_parts/manipulator/manipulator    // Installed manipulator. Mostly for Phoron Bore, higher rating == less mats consumed upon firing
+	var/obj/item/weapon/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots. Set to a path to spawn with one of that type.
 	var/removable_components = TRUE                            // Whether or not the gun can be dismantled.
 	var/gun_unreliable = 15                                    // Percentage chance of detonating in your hands.
 
@@ -21,12 +27,25 @@
 	var/power_cost = 950                                       // Cost per fire, should consume almost an entire basic cell.
 	var/power_per_tick                                         // Capacitor charge per process(). Updated based on capacitor rating.
 
-/obj/item/weapon/gun/magnetic/New()
+	var/state = 0
+
+/obj/item/weapon/gun/magnetic/Initialize()
+	. = ..()
+	// So you can have some spawn with components
+	if(ispath(cell))
+		cell = new cell(src)
+	if(ispath(capacitor))
+		capacitor = new capacitor(src)
+		capacitor.charge = capacitor.max_charge
+	if(ispath(loaded))
+		loaded = new loaded(src)
+
 	START_PROCESSING(SSobj, src)
+
 	if(capacitor)
 		power_per_tick = (power_cost*0.15) * capacitor.rating
+
 	update_icon()
-	. = ..()
 
 /obj/item/weapon/gun/magnetic/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -45,49 +64,82 @@
 				capacitor.charge(power_per_tick)
 		else
 			capacitor.use(capacitor.charge * 0.05)
-	update_icon()
 
-/obj/item/weapon/gun/magnetic/update_icon()
-	var/list/overlays_to_add = list()
+	update_state() // May update icon, only if things changed.
+
+/obj/item/weapon/gun/magnetic/proc/update_state()
+	var/newstate = 0
+
+	// Parts or lack thereof
 	if(removable_components)
 		if(cell)
-			overlays_to_add += image(icon, "[icon_state]_cell")
+			newstate |= ICON_CELL
 		if(capacitor)
-			overlays_to_add += image(icon, "[icon_state]_capacitor")
-	if(!cell || !capacitor)
-		overlays_to_add += image(icon, "[icon_state]_red")
-	else if(capacitor.charge < power_cost)
-		overlays_to_add += image(icon, "[icon_state]_amber")
-	else
-		overlays_to_add += image(icon, "[icon_state]_green")
-	if(loaded)
-		overlays_to_add += image(icon, "[icon_state]_loaded")
+			newstate |= ICON_CAP
 
-	overlays = overlays_to_add
+	// Functional state
+	if(!cell || !capacitor)
+		newstate |= ICON_BAD
+	else if(capacitor.charge < power_cost)
+		newstate |= ICON_CHARGE
+	else
+		newstate |= ICON_READY
+
+	// Ammo indicator
+	if(loaded)
+		newstate |= ICON_LOADED
+
+	// Only update if the state has changed
+	var/needs_update = FALSE
+	if(state != newstate)
+		needs_update = TRUE
+
+	state = newstate
+
+	if(needs_update)
+		update_icon()
+
+/obj/item/weapon/gun/magnetic/update_icon()
+	cut_overlays()
+	if(state & ICON_CELL)
+		add_overlay("[icon_state]_cell")
+	if(state & ICON_CAP)
+		add_overlay("[icon_state]_capacitor")
+	if(state & ICON_BAD)
+		add_overlay("[icon_state]_red")
+	if(state & ICON_CHARGE)
+		add_overlay("[icon_state]_amber")
+	if(state & ICON_READY)
+		add_overlay("[icon_state]_green")
+	if(state & ICON_LOADED)
+		add_overlay("[icon_state]_loaded")
+
 	..()
 
-/obj/item/weapon/gun/magnetic/proc/show_ammo(var/mob/user)
+/obj/item/weapon/gun/magnetic/proc/show_ammo()
+	var/list/ammotext = list()
 	if(loaded)
-		to_chat(user, "<span class='notice'>It has \a [loaded] loaded.</span>")
+		ammotext += "<span class='notice'>It has \a [loaded] loaded.</span>"
+
+	return ammotext
 
 /obj/item/weapon/gun/magnetic/examine(var/mob/user)
-	. = ..(user, 2)
-	if(.)
-		show_ammo(user)
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += show_ammo()
 
 		if(cell)
-			to_chat(user, "<span class='notice'>The installed [cell.name] has a charge level of [round((cell.charge/cell.maxcharge)*100)]%.</span>")
+			. += "<span class='notice'>The installed [cell.name] has a charge level of [round((cell.charge/cell.maxcharge)*100)]%.</span>"
 		if(capacitor)
-			to_chat(user, "<span class='notice'>The installed [capacitor.name] has a charge level of [round((capacitor.charge/capacitor.max_charge)*100)]%.</span>")
+			. += "<span class='notice'>The installed [capacitor.name] has a charge level of [round((capacitor.charge/capacitor.max_charge)*100)]%.</span>"
 
-		if(!cell || !capacitor)
-			to_chat(user, "<span class='notice'>The capacitor charge indicator is blinking <font color ='[COLOR_RED]'>red</font>. Maybe you should check the cell or capacitor.</span>")
+		if(state & ICON_BAD)
+			. += "<span class='notice'>The capacitor charge indicator is blinking [span_red("red")]. Maybe you should check the cell or capacitor.</span>"
 		else
-			if(capacitor.charge < power_cost)
-				to_chat(user, "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_ORANGE]'>amber</font>.</span>")
+			if(state & ICON_CHARGE)
+				. += "<span class='notice'>The capacitor charge indicator is [span_orange("amber")].</span>"
 			else
-				to_chat(user, "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_GREEN]'>green</font>.</span>")
-		return TRUE
+				. += "<span class='notice'>The capacitor charge indicator is [span_green("green")].</span>"
 
 /obj/item/weapon/gun/magnetic/attackby(var/obj/item/thing, var/mob/user)
 
@@ -97,21 +149,19 @@
 				to_chat(user, "<span class='warning'>\The [src] already has \a [cell] installed.</span>")
 				return
 			cell = thing
-			user.drop_from_inventory(cell)
-			cell.forceMove(src)
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
-			user.visible_message("<span class='notice'>\The [user] slots \the [cell] into \the [src].</span>")
+			user.drop_from_inventory(cell, src)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
+			user.visible_message("<b>\The [user]</b> slots \the [cell] into \the [src].")
 			update_icon()
 			return
 
-		if(thing.is_screwdriver())
+		if(thing.has_tool_quality(TOOL_SCREWDRIVER))
 			if(!capacitor)
 				to_chat(user, "<span class='warning'>\The [src] has no capacitor installed.</span>")
 				return
-			capacitor.forceMove(get_turf(src))
 			user.put_in_hands(capacitor)
-			user.visible_message("<span class='notice'>\The [user] unscrews \the [capacitor] from \the [src].</span>")
-			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			user.visible_message("<b>\The [user]</b> unscrews \the [capacitor] from \the [src].")
+			playsound(src, thing.usesound, 50, 1)
 			capacitor = null
 			update_icon()
 			return
@@ -121,11 +171,10 @@
 				to_chat(user, "<span class='warning'>\The [src] already has \a [capacitor] installed.</span>")
 				return
 			capacitor = thing
-			user.drop_from_inventory(capacitor)
-			capacitor.forceMove(src)
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			user.drop_from_inventory(capacitor, src)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			power_per_tick = (power_cost*0.15) * capacitor.rating
-			user.visible_message("<span class='notice'>\The [user] slots \the [capacitor] into \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> slots \the [capacitor] into \the [src].")
 			update_icon()
 			return
 
@@ -146,8 +195,8 @@
 			loaded = new load_type(src, 1)
 			ammo.use(1)
 
-		user.visible_message("<span class='notice'>\The [user] loads \the [src] with \the [loaded].</span>")
-		playsound(loc, 'sound/weapons/flipblade.ogg', 50, 1)
+		user.visible_message("<b>\The [user]</b> loads \the [src] with \the [loaded].")
+		playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		update_icon()
 		return
 	. = ..()
@@ -166,8 +215,8 @@
 		if(removing)
 			removing.forceMove(get_turf(src))
 			user.put_in_hands(removing)
-			user.visible_message("<span class='notice'>\The [user] removes \the [removing] from \the [src].</span>")
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			user.visible_message("<b>\The [user]</b> removes \the [removing] from \the [src].")
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			update_icon()
 			return
 	. = ..()
@@ -235,8 +284,8 @@
 					visible_message("<span class='danger'>\The [src] begins to rattle, its acceleration chamber collapsing in on itself!</span>")
 					removable_components = FALSE
 					spawn(15)
-						audible_message("<span class='critical'>\The [src]'s power supply begins to overload as the device crumples!</span>") //Why are you still holding this?
-						playsound(loc, 'sound/effects/grillehit.ogg', 10, 1)
+						audible_message("<span class='critical'>\The [src]'s power supply begins to overload as the device crumples!</span>", runemessage = "VWRRRRRRRR") //Why are you still holding this?
+						playsound(src, 'sound/effects/grillehit.ogg', 10, 1)
 						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 						var/turf/T = get_turf(src)
 						sparks.set_up(2, 1, T)
@@ -258,3 +307,10 @@
 	cell = new /obj/item/weapon/cell/high
 	capacitor = new /obj/item/weapon/stock_parts/capacitor
 	. = ..()
+
+#undef ICON_CELL
+#undef ICON_CAP
+#undef ICON_BAD
+#undef ICON_CHARGE
+#undef ICON_READY
+#undef ICON_LOADED

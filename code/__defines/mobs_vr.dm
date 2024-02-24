@@ -1,13 +1,13 @@
 #undef VIS_COUNT
 
-#define VIS_CH_STATUS_R		23
-#define VIS_CH_HEALTH_VR	24
-#define VIS_CH_BACKUP		25
-#define VIS_CH_VANTAG		26
+#define VIS_CH_STATUS_R		28
+#define VIS_CH_HEALTH_VR	29
+#define VIS_CH_BACKUP		30
+#define VIS_CH_VANTAG		31
 
-#define VIS_AUGMENTED		27
+#define VIS_AUGMENTED		32
 
-#define VIS_COUNT			27
+#define VIS_COUNT			32
 
 //Protean organs
 #define O_ORCH		"orchestrator"
@@ -25,14 +25,14 @@
 #define SPECIES_PROTEAN			"Protean"
 #define SPECIES_RAPALA			"Rapala"
 #define SPECIES_SERGAL			"Sergal"
+#define SPECIES_ALTEVIAN		"Altevian"
 #define SPECIES_SHADEKIN_CREW	"Black-Eyed Shadekin"
 #define SPECIES_VASILISSAN		"Vasilissan"
 #define SPECIES_VULPKANIN		"Vulpkanin"
 #define SPECIES_XENOCHIMERA		"Xenochimera"
-#define SPECIES_XENOHYBRID		"Xenomorph Hybrid"
-#define SPECIES_ZORREN_FLAT		"Flatland Zorren"
-#define SPECIES_ZORREN_HIGH		"Highlander Zorren"
+#define SPECIES_ZORREN_HIGH		"Zorren"
 #define SPECIES_CUSTOM			"Custom Species"
+#define SPECIES_TAJARAN			"Tajara"
 //monkey species
 #define SPECIES_MONKEY_AKULA		"Sobaka"
 #define SPECIES_MONKEY_NEVREAN		"Sparra"
@@ -41,3 +41,16 @@
 //event species
 #define SPECIES_WEREBEAST			"Werebeast"
 #define SPECIES_SHADEKIN			"Shadekin"
+//custom species base sprites
+#define SPECIES_FENNEC				"Fennec"
+#define SPECIES_XENOHYBRID			"Xenohybrid"
+
+//for custom bodytypes
+
+#define SELECTS_BODYTYPE_FALSE			0
+#define SELECTS_BODYTYPE_CUSTOM			1
+#define SELECTS_BODYTYPE_SHAPESHIFTER	2
+
+#define MARKING_NONDIGI_ONLY 		(1 << 0)
+#define MARKING_DIGITIGRADE_ONLY 	(1 << 1)
+#define MARKING_ALL_LEGS 			MARKING_NONDIGI_ONLY|MARKING_DIGITIGRADE_ONLY

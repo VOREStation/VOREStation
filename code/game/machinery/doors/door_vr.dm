@@ -4,6 +4,9 @@
 
 /obj/machinery/door
 	var/reinforcing = 0	//vorestation addition
+	var/tintable = 0
+	var/icon_tinted
+	var/id_tint
 
 /obj/machinery/door/firedoor
 	heat_proof = 1
@@ -66,7 +69,7 @@
 
 		return TRUE
 
-	if(reinforcing && istype(I, /obj/item/weapon/weldingtool))
+	if(reinforcing && I.has_tool_quality(TOOL_WELDER))
 		if(!density)
 			to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
 			return TRUE
@@ -75,7 +78,7 @@
 			to_chat(user, "<span class='warning'>You will need more plasteel to reinforce \the [src].</span>")
 			return TRUE
 
-		var/obj/item/weapon/weldingtool/welder = I
+		var/obj/item/weapon/weldingtool/welder = I.get_welder()
 		if(welder.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start weld \the plasteel into place.</span>")
 			playsound(src, welder.usesound, 50, 1)
@@ -86,9 +89,8 @@
 				reinforcing = 0
 		return TRUE
 
-	if(reinforcing && I.is_crowbar())
-		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc)
-		reinforcing_sheet.amount = reinforcing
+	if(reinforcing && I.has_tool_quality(TOOL_CROWBAR))
+		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc, reinforcing)
 		reinforcing = 0
 		to_chat(user, "<span class='notice'>You remove \the [reinforcing_sheet].</span>")
 		playsound(src, I.usesound, 100, 1)
@@ -99,7 +101,44 @@
 /obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return // blast doors are immune to fire completely.
 
-/obj/machinery/door/blast/regular/
+/obj/machinery/door/blast/regular
 	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
 
+/obj/machinery/door/blast/angled/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.
 
+/obj/machinery/door/blast/angled
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
+
+/obj/machinery/door/blast/puzzle/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.
+
+/obj/machinery/door/blast/puzzle
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
+
+/obj/machinery/door/proc/toggle()
+	if(glass)
+		icon = icon_tinted
+		glass = 0
+		if(!operating && density)
+			set_opacity(1)
+	else
+		icon = initial(icon)
+		glass = 1
+		if(!operating)
+			set_opacity(0)
+
+/obj/machinery/button/windowtint/doortint
+	name = "door tint control"
+	desc = "A remote control switch for polarized glass doors."
+
+/obj/machinery/button/windowtint/doortint/toggle_tint()
+	use_power(5)
+	active = !active
+	update_icon()
+
+	for(var/obj/machinery/door/D in range(src,range))
+		if(D.icon_tinted && (D.id_tint == src.id || !D.id_tint))
+			spawn(0)
+				D.toggle()
+				return

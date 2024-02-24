@@ -48,9 +48,9 @@
 
 /obj/item/weapon/syndie/c4explosive/proc/detonate()
 	icon_state = "c-4[size]_1"
-	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1)
+	playsound(src, 'sound/weapons/armbomb.ogg', 75, 1)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("[bicon(src)] <span class = 'warning'> The [src.name] beeps! </span>")
+		O.show_message("\icon[src][bicon(src)] <span class = 'warning'> The [src.name] beeps! </span>")
 	sleep(50)
 	explosion(get_turf(src), devastate, heavy_impact, light_impact, flash_range)
 	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
@@ -89,7 +89,7 @@
 		user.visible_message("<span class='rose'>Without even breaking stride, \the [user] flips open \the [src] in one smooth movement.</span>")
 
 	else if(lit && detonator_mode)
-		switch(alert(user, "What would you like to do?", "Lighter", "Press the button.", "Close the lighter."))
+		switch(tgui_alert(user, "What would you like to do?", "Lighter", list("Press the button.", "Close the lighter.")))
 			if("Press the button.")
 				to_chat(user, "<span class='warning'>You press the button.</span>")
 				icon_state = "[base_state]click"
@@ -106,7 +106,7 @@
 
 
 /obj/item/weapon/flame/lighter/zippo/c4detonator/attackby(obj/item/weapon/W, mob/user as mob)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		detonator_mode = !detonator_mode
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You unscrew the top panel of \the [src] revealing a button.</span>")

@@ -1,11 +1,13 @@
 #define MEMOFILE "data/memo.sav"	//where the memos are saved
-#define ENABLE_MEMOS 1				//using a define because screw making a config variable for it. This is more efficient and purty.
+#define ENABLE_MEMOS // this is so stupid
 
 //switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.
 /client/proc/admin_memo(task in list("write","show","delete"))
 	set name = "Memo"
 	set category = "Server"
-	if(!ENABLE_MEMOS)		return
+	#ifndef ENABLE_MEMOS
+	return
+	#endif
 	if(!check_rights(0))	return
 	switch(task)
 		if("write")		admin_memo_write()
@@ -16,26 +18,28 @@
 /client/proc/admin_memo_write()
 	var/savefile/F = new(MEMOFILE)
 	if(F)
-		var/memo = sanitize(input(src,"Type your memo\n(Leaving it blank will delete your current memo):","Write Memo",null) as null|message, extra = 0)
+		var/memo = sanitize(tgui_input_text(src,"Type your memo\n(Leaving it blank will delete your current memo):","Write Memo",null, multiline = TRUE, prevent_enter = TRUE), extra = 0)
 		switch(memo)
 			if(null)
 				return
 			if("")
 				F.dir.Remove(ckey)
-				to_chat(src, "<b>Memo removed</b>")
+				to_chat(src, "<span class='filter_adminlog'><b>Memo removed</b></span>")
 				return
 		if( findtext(memo,"<script",1,0) )
 			return
-		to_chat(F[ckey], "[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]")
+		to_chat(F[ckey], "<span class='filter_adminlog'>[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]</span>")
 		message_admins("[key] set an admin memo:<br>[memo]")
 
 //show all memos
 /client/proc/admin_memo_show()
-	if(ENABLE_MEMOS)
-		var/savefile/F = new(MEMOFILE)
-		if(F)
-			for(var/ckey in F.dir)
-				to_chat(src, "<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>")
+	#ifndef ENABLE_MEMOS
+	return
+	#endif
+	var/savefile/F = new(MEMOFILE)
+	if(F)
+		for(var/ckey in F.dir)
+			to_chat(src, "<span class='filter_adminlog'><center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center></span>")
 
 //delete your own or somebody else's memo
 /client/proc/admin_memo_delete()
@@ -43,12 +47,12 @@
 	if(F)
 		var/ckey
 		if(check_rights(R_SERVER,0))	//high ranking admins can delete other admin's memos
-			ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
+			ckey = tgui_input_list(src,"Whose memo shall we remove?","Remove Memo", F.dir)
 		else
 			ckey = src.ckey
 		if(ckey)
 			F.dir.Remove(ckey)
-			to_chat(src, "<b>Removed Memo created by [ckey].</b>")
+			to_chat(src, "<span class='filter_adminlog'><b>Removed Memo created by [ckey].</b></span>")
 
 #undef MEMOFILE
 #undef ENABLE_MEMOS

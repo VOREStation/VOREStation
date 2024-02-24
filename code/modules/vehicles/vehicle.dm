@@ -8,12 +8,12 @@
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
 	layer = MOB_LAYER + 0.1 //so it sits above objects including mobs
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	animate_movement=1
 	light_range = 3
 
-	can_buckle = 1
+	can_buckle = TRUE
 	buckle_movable = 1
 	buckle_lying = 0
 
@@ -42,8 +42,6 @@
 	var/load_offset_y = 0		//pixel_y offset for item overlay
 	var/mob_offset_y = 0		//pixel_y offset for mob overlay
 
-	//var/datum/riding/riding_datum = null //VOREStation Edit - Moved to movables.
-
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
@@ -66,79 +64,54 @@
 
 /obj/vehicle/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	. = ..(buckled_mob, force)
-	buckled_mob.update_water()
+	buckled_mob?.update_water()
 	if(riding_datum)
 		riding_datum.restore_position(buckled_mob)
 		riding_datum.handle_vehicle_offsets() // So the person in back goes to the front.
 
-/obj/vehicle/set_dir(newdir)
-	..(newdir)
-	if(riding_datum)
-		riding_datum.handle_vehicle_offsets()
+/obj/vehicle/Move(var/newloc, var/direction, var/movetime)
+	if(world.time < l_move_time + move_delay) //This AND the riding datum move speed limit?
+		return
 
-//MOVEMENT
-/obj/vehicle/relaymove(mob/user, direction)
-	if(riding_datum)
-		riding_datum.handle_ride(user, direction)
+	if(mechanical && on && powered && cell.charge < charge_use)
+		turn_off()
+		return
 
-/obj/vehicle/Moved()
 	. = ..()
-	if(riding_datum)
-		riding_datum.handle_vehicle_layer()
-		riding_datum.handle_vehicle_offsets()
 
-/obj/vehicle/Move()
-	if(world.time > l_move_time + move_delay)
-		var/old_loc = get_turf(src)
-		if(mechanical && on && powered && cell.charge < charge_use)
-			turn_off()
+	if(mechanical && on && powered)
+		cell.use(charge_use)
 
-		var/init_anc = anchored
-		anchored = 0
-		if(!..())
-			anchored = init_anc
-			return 0
-
-		set_dir(get_dir(old_loc, loc))
-		anchored = init_anc
-
-		if(mechanical && on && powered)
-			cell.use(charge_use)
-
-		//Dummy loads do not have to be moved as they are just an overlay
-		//See load_object() proc in cargo_trains.dm for an example
-		if(load && !istype(load, /datum/vehicle_dummy_load))
-			load.forceMove(loc)
-			load.set_dir(dir)
-
-		return 1
-	else
-		return 0
+	//Dummy loads do not have to be moved as they are just an overlay
+	//See load_object() proc in cargo_trains.dm for an example
+	//Also mobs are buckled to the vehicle and get moved in atom/movable/Move's call to take care of that
+	if(load && !(load in buckled_mobs) && !istype(load, /datum/vehicle_dummy_load))
+		load.forceMove(loc)
 
 /obj/vehicle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/hand_labeler))
 		return
 	if(mechanical)
-		if(W.is_screwdriver())
+		if(W.has_tool_quality(TOOL_SCREWDRIVER))
 			if(!locked)
 				open = !open
 				update_icon()
 				to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 				playsound(src, W.usesound, 50, 1)
-		else if(W.is_crowbar() && cell && open)
+		else if(W.has_tool_quality(TOOL_CROWBAR) && cell && open)
 			remove_cell(user)
 
 		else if(istype(W, /obj/item/weapon/cell) && !cell && open)
 			insert_cell(W, user)
-		else if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/T = W
+		else if(W.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/T = W.get_welder()
 			if(T.welding)
 				if(health < maxhealth)
 					if(open)
 						health = min(maxhealth, health+10)
 						user.setClickCooldown(user.get_attack_speed(W))
 						playsound(src, T.usesound, 50, 1)
-						user.visible_message("<font color='red'>[user] repairs [src]!</font>","<font color='blue'> You repair [src]!</font>")
+						user.visible_message(span_red("[user] repairs [src]!"),span_blue("You repair [src]!"))
 					else
 						to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 				else
@@ -195,7 +168,7 @@
 	pulse2.icon = 'icons/effects/effects.dmi'
 	pulse2.icon_state = "empdisable"
 	pulse2.name = "emp sparks"
-	pulse2.anchored = 1
+	pulse2.anchored = TRUE
 	pulse2.set_dir(pick(cardinal))
 
 	spawn(10)
@@ -220,14 +193,21 @@
 /obj/vehicle/proc/turn_on()
 	if(!mechanical || stat)
 		return FALSE
+	if(!cell)
+		return FALSE
 	if(powered && cell.charge < charge_use)
 		return FALSE
+	if(on)
+		return FALSE
 	on = 1
+	playsound(src, 'sound/machines/vehicle/ignition.ogg', 50, 1, -3)
 	set_light(initial(light_range))
 	update_icon()
 	return TRUE
 
 /obj/vehicle/proc/turn_off()
+	if(!on)
+		return FALSE
 	if(!mechanical)
 		return FALSE
 	on = 0
@@ -246,7 +226,7 @@
 		return TRUE
 
 /obj/vehicle/proc/explode()
-	src.visible_message("<font color='red'><B>[src] blows apart!</B></font>", 1)
+	src.visible_message(span_red("<B>[src] blows apart!</B>"), 1)
 	var/turf/Tsec = get_turf(src)
 
 	//stuns people who are thrown off a train that has been blown up
@@ -319,7 +299,7 @@
 	cell = null
 	powercheck()
 
-/obj/vehicle/proc/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/RunOver(var/mob/living/M)
 	return		//write specifics for different vehicles
 
 //-------------------------------------------
@@ -344,7 +324,7 @@
 
 	C.forceMove(loc)
 	C.set_dir(dir)
-	C.anchored = 1
+	C.anchored = TRUE
 
 	load = C
 
@@ -394,9 +374,14 @@
 
 	load.forceMove(dest)
 	load.set_dir(get_dir(loc, dest))
-	load.anchored = 0		//we can only load non-anchored items, so it makes sense to set this to false
-	load.pixel_x = initial(load.pixel_x)
-	load.pixel_y = initial(load.pixel_y)
+	load.anchored = FALSE		//we can only load non-anchored items, so it makes sense to set this to false
+	if(ismob(load))
+		var/mob/L = load
+		L.pixel_x = L.default_pixel_x
+		L.pixel_y = L.default_pixel_y
+	else
+		load.pixel_x = initial(load.pixel_x)
+		load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)
 
 	if(ismob(load))
@@ -417,7 +402,7 @@
 	if(!damage)
 		return
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+	user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
 	user.do_attack_animation(src)
 	src.health -= damage
 	if(mechanical && prob(10))

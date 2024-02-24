@@ -6,6 +6,8 @@
 	icon = 'icons/obj/apc_repair.dmi'
 	icon_state = "apc_frame"
 	refund_amt = 2
+	build_wall_only = TRUE
+	matter = list(MAT_STEEL = 100, MAT_GLASS = 30)
 
 /obj/item/frame/apc/try_build(turf/on_wall, mob/user as mob)
 	if (get_dist(on_wall, user)>1)
@@ -29,8 +31,7 @@
 			to_chat(user, "<span class='warning'>There is another network terminal here.</span>")
 			return
 		else
-			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)
-			C.amount = 10
+			new /obj/item/stack/cable_coil(loc, 10)
 			to_chat(user, "You cut the cables and disassemble the unused power terminal.")
 			qdel(T)
 	new /obj/machinery/power/apc(loc, ndir, 1)

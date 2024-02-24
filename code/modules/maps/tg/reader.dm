@@ -2,15 +2,9 @@
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
 
-/*
 //global datum that will preload variables on atoms instanciation
 GLOBAL_VAR_INIT(use_preloader, FALSE)
 GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
-*/
-
-//global datum that will preload variables on atoms instanciation
-var/global/dmm_suite/preloader/_preloader = new()
-var/global/use_preloader = FALSE
 
 /dmm_suite
 		// /"([a-zA-Z]+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\n]*)"\}/g
@@ -36,6 +30,12 @@ var/global/use_preloader = FALSE
  *
  */
 /dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num)
+	
+	dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
+	trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
+	trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
+	modelCache = list()
+
 	//How I wish for RAII
 	if(!measureOnly)
 		Master.StartLoadingMap()
@@ -144,7 +144,7 @@ var/global/use_preloader = FALSE
 			var/maxx = xcrdStart
 
 			// Assemble the grid of keys
-			var/list/key_list = list()
+			var/list/list/key_list = list()
 			for(var/line in gridLines)
 				var/list/line_keys = list()
 				xcrd = 1
@@ -152,14 +152,13 @@ var/global/use_preloader = FALSE
 					if(xcrd > world.maxx)
 						if(cropMap)
 							break
-						else
+						else if(!measureOnly)
 							world.maxx = xcrd
 
 					if(xcrd >= 1)
 						var/model_key = copytext(line, tpos, tpos + key_len)
 						line_keys[++line_keys.len] = model_key
 						#ifdef TESTING
-						else
 							++turfsSkipped
 						#endif
 						CHECK_TICK
@@ -170,7 +169,7 @@ var/global/use_preloader = FALSE
 			if(orientation != 0)
 				var/num_cols = key_list[1].len
 				var/num_rows = key_list.len
-				var/list/new_key_list = list()
+				var/list/list/new_key_list = list()
 				// If it's rotated 180 degrees, the dimensions are the same
 				if(orientation == 180)
 					new_key_list.len = num_rows
@@ -297,6 +296,7 @@ var/global/use_preloader = FALSE
 			old_position = dpos + 1
 
 			if(!atom_def) // Skip the item if the path does not exist.  Fix your crap, mappers!
+				error("Maploader skipping undefined type: '[trim_text(copytext(full_def, 1, variables_start))]' (key=[model_key])")
 				continue
 			members.Add(atom_def)
 
@@ -349,9 +349,9 @@ var/global/use_preloader = FALSE
 	index = members.len
 	if(members[index] != /area/template_noop)
 		var/atom/instance
-		_preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
+		GLOB._preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
 		var/atype = members[index]
-		for(var/area/A in all_areas)
+		for(var/area/A in world)
 			if(A.type == atype)
 				instance = A
 				break
@@ -360,8 +360,8 @@ var/global/use_preloader = FALSE
 		if(crds)
 			instance.contents.Add(crds)
 
-		if(use_preloader && instance)
-			_preloader.load(instance)
+		if(GLOB.use_preloader && instance)
+			GLOB._preloader.load(instance)
 
 	//then instance the /turf and, if multiple tiles are presents, simulates the DMM underlays piling effect
 
@@ -397,7 +397,7 @@ var/global/use_preloader = FALSE
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
 /dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, orientation=0)
-	_preloader.setup(attributes, path)
+	GLOB._preloader.setup(attributes, path)
 
 	if(crds)
 		if(!no_changeturf && ispath(path, /turf))
@@ -405,8 +405,8 @@ var/global/use_preloader = FALSE
 		else
 			. = create_atom(path, crds)//first preloader pass
 
-	if(use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
-		_preloader.load(.)
+	if(GLOB.use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
+		GLOB._preloader.load(.)
 
 	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
 	if(TICK_CHECK)
@@ -529,7 +529,7 @@ var/global/use_preloader = FALSE
 
 /dmm_suite/preloader/proc/setup(list/the_attributes, path)
 	if(the_attributes.len)
-		use_preloader = TRUE
+		GLOB.use_preloader = TRUE
 		attributes = the_attributes
 		target_path = path
 
@@ -539,7 +539,7 @@ var/global/use_preloader = FALSE
 		if(islist(value))
 			value = deepCopyList(value)
 		what.vars[attribute] = value
-	use_preloader = FALSE
+	GLOB.use_preloader = FALSE
 
 /area/template_noop
 	name = "Area Passthrough"

@@ -25,7 +25,7 @@ How they spawn stuff is decided by behaviour vars, which are explained below
 	cast_sound = 'sound/items/welder.ogg'
 
 /spell/aoe_turf/conjure/cast(list/targets, mob/user)
-	playsound(get_turf(user), cast_sound, 50, 1)
+	playsound(user, cast_sound, 50, 1)
 
 	for(var/i=1,i <= summon_amt,i++)
 		if(!targets.len)
@@ -53,8 +53,8 @@ How they spawn stuff is decided by behaviour vars, which are explained below
 			summoned_object = new summoned_object_type(spawn_place)
 		var/atom/movable/overlay/animation = new /atom/movable/overlay(spawn_place)
 		animation.name = "conjure"
-		animation.density = 0
-		animation.anchored = 1
+		animation.density = FALSE
+		animation.anchored = TRUE
 		animation.icon = 'icons/effects/effects.dmi'
 		animation.plane = OBJ_PLANE
 		animation.layer = ABOVE_JUNK_LAYER

@@ -4,10 +4,10 @@
 	desc = "Small wall-mounted chime triggered by a doorbell"
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "dbchime-standby"
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 200
-	anchored = 1
+	anchored = TRUE
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 
@@ -20,7 +20,7 @@
 	if(inoperable())
 		return
 	use_power(active_power_usage)
-	playsound(src.loc, chime_sound, 75)
+	playsound(src, chime_sound, 75)
 	icon_state = "dbchime-active"
 	set_light(2, 0.5, "#33FF33")
 	visible_message("\The [src]'s light flashes.")
@@ -33,9 +33,9 @@
 	update_icon()
 
 /obj/machinery/doorbell_chime/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(panel_open)
-		overlays += "dbchime-open"
+		add_overlay("dbchime-open")
 	if(inoperable())
 		icon_state = "dbchime-off"
 	if(!id_tag)
@@ -43,7 +43,6 @@
 	else
 		icon_state = "dbchime-standby"
 
-//TFF 3/6/19 - Port Cit RP fix of infinite frames. ToDo: Make it so that you can completely deconstruct it and reconstruct it.
 /obj/machinery/doorbell_chime/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
@@ -89,7 +88,7 @@
 	desc = "A doorbell, press to chime."
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "doorbell-standby"
-	use_power = 0
+	use_power = USE_POWER_OFF
 
 /obj/machinery/button/doorbell/New(var/loc, var/dir, var/building = 0)
 	..()
@@ -130,16 +129,16 @@
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	else if(panel_open && istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter the name for \the [src].", src.name, initial(src.name)), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for \the [src].", src.name, initial(src.name), MAX_NAME_LEN), MAX_NAME_LEN)
 		if(t && in_range(src, user))
 			name = t
 	else if(panel_open && istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/M = W
 		M.connectable = src
 		to_chat(user, "<span class='caution'>You save the data in \the [M]'s buffer.</span>")
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>You start to unwrench \the [src].</span>")
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 15) && !QDELETED(src))
 			to_chat(user, "<span class='notice'>You unwrench \the [src].</span>")
 			new /obj/item/frame/doorbell(src.loc)

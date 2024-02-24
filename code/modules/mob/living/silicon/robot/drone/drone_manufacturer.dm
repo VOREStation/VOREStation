@@ -9,9 +9,9 @@
 	desc = "A large automated factory for producing maintenance drones."
 	appearance_flags = 0
 
-	density = 1
-	anchored = 1
-	use_power = 1
+	density = TRUE
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
 	active_power_usage = 5000
 
@@ -63,9 +63,9 @@
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
 
 /obj/machinery/drone_fabricator/examine(mob/user)
-	..(user)
+	. = ..()
 	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
-		to_chat(user, "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>")
+		. += "<br><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 
 /obj/machinery/drone_fabricator/proc/create_drone(var/client/player)
 
@@ -154,7 +154,7 @@
 		to_chat(src, "<span class='danger'>There are no available drone spawn points, sorry.</span>")
 		return
 
-	var/choice = input(src,"Which fabricator do you wish to use?") as null|anything in all_fabricators
+	var/choice = tgui_input_list(src, "Which fabricator do you wish to use?", "Fabricator Choice", all_fabricators)
 	if(choice)
 		var/obj/machinery/drone_fabricator/chosen_fabricator = all_fabricators[choice]
 		chosen_fabricator.create_drone(src.client)

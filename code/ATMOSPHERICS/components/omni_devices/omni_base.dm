@@ -5,7 +5,7 @@
 	name = "omni device"
 	icon = 'icons/atmos/omni_devices_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "base"
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	initialize_directions = 0
 	construction_type = /obj/item/pipe/quaternary
 	level = 1
@@ -67,7 +67,7 @@
 	last_flow_rate = 0
 
 	if(error_check())
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
 		return 0
@@ -80,7 +80,7 @@
 		update_icon()
 
 /obj/machinery/atmospherics/omni/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(!W.is_wrench())
+	if(!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 
 	if(!can_unwrench())
@@ -91,26 +91,17 @@
 	playsound(src, W.usesound, 50, 1)
 	if(do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+			"<b>\The [user]</b> unfastens \the [src].", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
-
-/obj/machinery/atmospherics/omni/can_unwrench()
-	var/int_pressure = 0
-	for(var/datum/omni_port/P in ports)
-		int_pressure += P.air.return_pressure()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		return 0
-	return 1
 
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())
 		return
 
 	src.add_fingerprint(usr)
-	ui_interact(user)
+	tgui_interact(user)
 	return
 
 /obj/machinery/atmospherics/omni/proc/build_icons()

@@ -19,10 +19,11 @@
 	attack_armor_pen = 60 //Being punched by a living, floating statue.
 	attacktext = list("smashed their armoured gauntlet into")
 	friendly = list("pats")
+	organ_names = /decl/mob_organ_names/juggernaut
 	mob_size = MOB_HUGE
 
 
-	movement_cooldown = 6 //Not super fast, but it might catch up to someone in armor who got punched once or twice.
+	movement_cooldown = 2 //Not super fast, but it might catch up to someone in armor who got punched once or twice.
 
 //	environment_smash = 2	// Whatever this gets renamed to, Juggernauts need to break things
 
@@ -45,7 +46,7 @@
 				"rad" = 100)
 
 /mob/living/simple_mob/construct/juggernaut/Life()
-	weakened = 0
+	SetWeakened(0)
 	..()
 
 /mob/living/simple_mob/construct/juggernaut/bullet_act(var/obj/item/projectile/P)
@@ -142,3 +143,6 @@
 		return -1 // complete projectile permutation
 
 	return (..(P))
+
+/decl/mob_organ_names/juggernaut
+	hit_zones = list("body", "left pauldron", "right pauldron", "left arm", "right arm", "eye", "head", "crystaline spike")

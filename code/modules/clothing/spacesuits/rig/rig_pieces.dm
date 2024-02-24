@@ -9,13 +9,13 @@
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection =    HEAD|FACE|EYES
 	cold_protection =    HEAD|FACE|EYES
-	brightness_on = 4
+	light_range = 4
 	sprite_sheets = list(
-		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
-		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi',
-		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
-		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi'
+		SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/head/mob_skrell.dmi',
+		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
+		SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi',
+		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi'
 		)
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
 	max_pressure_protection = null
@@ -23,7 +23,8 @@
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
-	item_flags = THICKMATERIAL|PHORONGUARD
+	flags = PHORONGUARD
+	item_flags = THICKMATERIAL
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS
@@ -53,10 +54,10 @@
 	resilience = 0.2
 	can_breach = 1
 	sprite_sheets = list(
-		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',
-		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
-		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi'
+		SPECIES_TAJ = 'icons/inventory/suit/mob_tajaran.dmi',
+		SPECIES_UNATHI = 'icons/inventory/suit/mob_unathi.dmi',
+		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
+		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
 		)
 	supporting_limbs = list()
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
@@ -69,7 +70,7 @@
 		tacknife.loc = get_turf(src)
 		if(M.put_in_active_hand(tacknife))
 			to_chat(M, "<span class='notice'>You slide \the [tacknife] out of [src].</span>")
-			playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+			playsound(src, 'sound/weapons/flipblade.ogg', 40, 1)
 			tacknife = null
 			update_icon()
 		return
@@ -83,7 +84,7 @@
 		tacknife = I
 		I.loc = src
 		to_chat(M, "<span class='notice'>You slide the [I] into [src].</span>")
-		playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+		playsound(src, 'sound/weapons/flipblade.ogg', 40, 1)
 		update_icon()
 	..()
 

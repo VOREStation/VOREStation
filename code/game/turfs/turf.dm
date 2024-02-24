@@ -2,6 +2,7 @@
 	icon = 'icons/turf/floors.dmi'
 	layer = TURF_LAYER
 	plane = TURF_PLANE
+	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE// Important for interaction with and visualization of openspace.
 	level = 1
 	var/holy = 0
 
@@ -33,25 +34,37 @@
 	var/block_tele = FALSE      // If true, most forms of teleporting to or from this turf tile will fail.
 	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
 	var/list/dangerous_objects // List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.
+	var/tmp/changing_turf
 
-/turf/New()
-	..()
-	for(var/atom/movable/AM as mob|obj in src)
-		spawn( 0 )
-			src.Entered(AM)
-			return
-	turfs |= src
+/turf/Initialize(mapload)
+	. = ..()
+	for(var/atom/movable/AM in src)
+		Entered(AM)
 
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
+	//Lighting related
+	set_luminosity(!(dynamic_lighting))
 
+	if(opacity)
+		directional_opacity = ALL_CARDINALS
+
+	//Pathfinding related
 	if(movement_cost && pathweight == 1) // This updates pathweight automatically.
 		pathweight = movement_cost
 
+	var/turf/Ab = GetAbove(src)
+	if(Ab)
+		Ab.multiz_turf_new(src, DOWN)
+	var/turf/Be = GetBelow(src)
+	if(Be)
+		Be.multiz_turf_new(src, UP)
+
 /turf/Destroy()
-	turfs -= src
+	if (!changing_turf)
+		stack_trace("Improper turf qdel. Do not qdel turfs directly.")
+	changing_turf = FALSE
+	cleanbot_reserved_turfs -= src
+	if(connections)
+		connections.erase_all()
 	..()
 	return QDEL_HINT_IWILLGC
 
@@ -64,7 +77,22 @@
 /turf/proc/is_intact()
 	return 0
 
+// Used by shuttle code to check if this turf is empty enough to not crush want it lands on.
+/turf/proc/is_solid_structure()
+	return 1
+
 /turf/attack_hand(mob/user)
+	//QOL feature, clicking on turf can toggle doors, unless pulling something
+	if(!user.pulling)
+		var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
+		if(AL)
+			AL.attack_hand(user)
+			return TRUE
+		var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+		if(FD)
+			FD.attack_hand(user)
+			return TRUE
+
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
 		return 0
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
@@ -81,7 +109,7 @@
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
 
-turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = W
 		if(S.use_to_pickup && S.collection_mode)
@@ -142,45 +170,6 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			sleep(2)
 			O.update_transform()
 
-var/const/enterloopsanity = 100
-/turf/Entered(atom/atom as mob|obj)
-
-	if(movement_disabled)
-		to_chat(usr, "<span class='warning'>Movement is admin-disabled.</span>") //This is to identify lag problems
-		return
-	..()
-
-	if(!istype(atom, /atom/movable))
-		return
-
-	var/atom/movable/A = atom
-
-	if(ismob(A))
-		var/mob/M = A
-		if(!M.lastarea)
-			M.lastarea = get_area(M.loc)
-		if(M.lastarea.has_gravity == 0)
-			inertial_drift(M)
-		if(M.flying) //VORESTATION Edit Start. This overwrites the above is_space without touching it all that much.
-			inertial_drift(M)
-			M.make_floating(1) //VOREStation Edit End.
-		else if(!is_space())
-			M.inertia_dir = 0
-			M.make_floating(0)
-		if(isliving(M))
-			var/mob/living/L = M
-			L.handle_footstep(src)
-	..()
-	var/objects = 0
-	if(A && (A.flags & PROXMOVE))
-		for(var/atom/movable/thing in range(1))
-			if(objects++ > enterloopsanity) break
-			spawn(0)
-				if(A) //Runtime prevention
-					A.HasProximity(thing, 1)
-					if ((thing && A) && (thing.flags & PROXMOVE))
-						thing.HasProximity(A, 1)
-
 /turf/CanPass(atom/movable/mover, turf/target)
 	if(!target)
 		return FALSE
@@ -188,7 +177,7 @@ var/const/enterloopsanity = 100
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
 
-	crash_with("Non movable passed to turf CanPass : [mover]")
+	stack_trace("Non movable passed to turf CanPass : [mover]")
 	return FALSE
 
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
@@ -249,40 +238,25 @@ var/const/enterloopsanity = 100
 /turf/proc/is_plating()
 	return 0
 
-/turf/proc/inertial_drift(atom/movable/A as mob|obj)
-	if(!(A.last_move))	return
-	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
-		var/mob/M = A
-		if(M.Process_Spacemove(1))
-			M.inertia_dir  = 0
-			return
-		spawn(5)
-			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
-				if(M.inertia_dir)
-					step(M, M.inertia_dir)
-					return
-				M.inertia_dir = M.last_move
-				step(M, M.inertia_dir)
-	return
-
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
 
-/turf/proc/AdjacentTurfs()
-	var/L[] = new()
-	for(var/turf/simulated/t in oview(src,1))
-		if(!t.density)
-			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
-				L.Add(t)
-	return L
+/turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
+	. = list()
+	for(var/turf/T as anything in (trange(1,src) - src))
+		if(check_blockage)
+			if(!T.density)
+				if(!LinkBlocked(src, T) && !TurfBlockedNonWindow(T))
+					. += T
+		else
+			. += T
 
-/turf/proc/CardinalTurfs()
-	var/L[] = new()
-	for(var/turf/simulated/T in AdjacentTurfs())
+/turf/proc/CardinalTurfs(var/check_blockage = TRUE)
+	. = list()
+	for(var/turf/T as anything in AdjacentTurfs(check_blockage))
 		if(T.x == src.x || T.y == src.y)
-			L.Add(T)
-	return L
+			. += T
 
 /turf/proc/Distance(turf/t)
 	if(get_dist(src,t) == 1)
@@ -337,6 +311,47 @@ var/const/enterloopsanity = 100
 /turf/AllowDrop()
 	return TRUE
 
+/turf/proc/can_engrave()
+	return FALSE
+
+/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool)
+
+	if(!tool || !tool.sharp || !can_engrave())
+		return FALSE
+
+	if(jobban_isbanned(vandal, "Graffiti"))
+		to_chat(vandal, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
+		return
+
+	var/too_much_graffiti = 0
+	for(var/obj/effect/decal/writing/W in src)
+		too_much_graffiti++
+	if(too_much_graffiti >= 5)
+		to_chat(vandal, "<span class='warning'>There's too much graffiti here to add more.</span>")
+		return FALSE
+
+	var/message = sanitize(tgui_input_text(usr, "Enter a message to engrave.", "Graffiti"), trim = TRUE)
+	if(!message)
+		return FALSE
+
+	if(!vandal || vandal.incapacitated() || !Adjacent(vandal) || !tool.loc == vandal)
+		return FALSE
+
+	vandal.visible_message("<span class='warning'>\The [vandal] begins carving something into \the [src].</span>")
+
+	if(!do_after(vandal, max(20, length(message)), src))
+		return FALSE
+
+	vandal.visible_message("<span class='danger'>\The [vandal] carves some graffiti into \the [src].</span>")
+	var/obj/effect/decal/writing/graffiti = new(src)
+	graffiti.message = message
+	graffiti.author = vandal.ckey
+
+	if(lowertext(message) == "elbereth")
+		to_chat(vandal, "<span class='notice'>You feel much safer.</span>")
+
+	return TRUE
+
 // Returns false if stepping into a tile would cause harm (e.g. open space while unable to fly, water tile while a slime, lava, etc).
 /turf/proc/is_safe_to_enter(mob/living/L)
 	if(LAZYLEN(dangerous_objects))
@@ -385,3 +400,17 @@ var/const/enterloopsanity = 100
 		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
 		return TRUE
 	return FALSE
+
+
+// We're about to be the A-side in a turf translation
+/turf/proc/pre_translate_A(var/turf/B)
+	return
+// We're about to be the B-side in a turf translation
+/turf/proc/pre_translate_B(var/turf/A)
+	return
+// We were the the A-side in a turf translation
+/turf/proc/post_translate_A(var/turf/B)
+	return
+// We were the the B-side in a turf translation
+/turf/proc/post_translate_B(var/turf/A)
+	return

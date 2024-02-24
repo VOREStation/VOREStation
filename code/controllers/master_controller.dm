@@ -13,10 +13,10 @@ var/global/last_tick_duration = 0
 
 var/global/pipe_processing_killed = 0
 
-datum/controller/game_controller
+/datum/controller/game_controller
 	var/list/shuttle_list	                    // For debugging and VV
 
-datum/controller/game_controller/New()
+/datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.
 	if(master_controller != src)
 		log_debug("Rebuilding Master Controller")
@@ -33,7 +33,7 @@ datum/controller/game_controller/New()
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
 
-datum/controller/game_controller/proc/setup()
+/datum/controller/game_controller/proc/setup()
 
 	setup_objects()
 	// setupgenetics() Moved to SSatoms
@@ -48,7 +48,7 @@ datum/controller/game_controller/proc/setup()
 // #define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
 // #endif
 
-datum/controller/game_controller/proc/setup_objects()
+/datum/controller/game_controller/proc/setup_objects()
 	// Set up antagonists.
 	populate_antag_type_list()
 

@@ -11,14 +11,16 @@
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 5
+	drop_sound = 'sound/items/drop/glass.ogg'
+	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/reagent_containers/dropper/examine(var/mob/user)
-	if(!..(user, 2))
-		return
-	if(reagents && reagents.reagent_list.len)
-		to_chat(user, "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>")
-	else
-		to_chat(user, "<span class='notice'>It is empty.</span>")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		if(reagents && reagents.reagent_list.len)
+			. += "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>"
+		else
+			. += "<span class='notice'>It is empty.</span>"
 
 /obj/item/weapon/reagent_containers/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!target.reagents || !proximity) return

@@ -55,16 +55,18 @@
 
 		for(var/modifier_type in B.brainmob.modifiers)	//Can't be shoved in an MMI.
 			if(istype(modifier_type, /datum/modifier/no_borg))
-				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatable.</span>")
+				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatible.</span>")
 				return
 
-		user.visible_message("<span class='notice'>\The [user] sticks \a [O] into \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> sticks \a [O] into \the [src].")
+		B.preserved = TRUE
 
 		brainmob = B.brainmob
 		B.brainmob = null
 		brainmob.loc = src
 		brainmob.container = src
-		brainmob.stat = 0
+		brainmob.set_stat(CONSCIOUS)
+		brainmob.blinded = 0 //VOREedit Fixes MMIs vision
 		dead_mob_list -= brainmob//Update dem lists
 		living_mob_list += brainmob
 
@@ -108,6 +110,7 @@
 			brainobj = null
 		else	//Or make a new one if empty.
 			brain = new(user.loc)
+		brain.preserved = FALSE
 		brainmob.container = null//Reset brainmob mmi var.
 		brainmob.loc = brain//Throw mob into brain.
 		living_mob_list -= brainmob//Get outta here
@@ -185,7 +188,7 @@
 	src.brainmob.add_language(LANGUAGE_EAL)
 	src.brainmob.loc = src
 	src.brainmob.container = src
-	src.brainmob.stat = 0
+	src.brainmob.set_stat(CONSCIOUS)
 	src.brainmob.silent = 0
 	radio = new(src)
 	dead_mob_list -= src.brainmob
@@ -194,23 +197,19 @@
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
 
 /obj/item/device/mmi/digital/examine(mob/user)
-	if(!..(user))
-		return
-
-	var/msg = "<span class='info'>*---------*</span>\nThis is [bicon(src)] \a <EM>[src]</EM>!\n[desc]\n"
-	msg += "<span class='warning'>"
+	. = ..()
 
 	if(src.brainmob && src.brainmob.key)
 		switch(src.brainmob.stat)
 			if(CONSCIOUS)
-				if(!src.brainmob.client)	msg += "It appears to be in stand-by mode.\n" //afk
-			if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
-			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+				if(!src.brainmob.client)
+					. += "<span class='warning'>It appears to be in stand-by mode.</span>" //afk
+			if(UNCONSCIOUS)
+				. += "<span class='warning'>It doesn't seem to be responsive.</span>"
+			if(DEAD)
+				. += "<span class='deadsay'>It appears to be completely inactive.</span>"
 	else
-		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	msg += "</span><span class='info'>*---------*</span>"
-	to_chat(user,msg)
-	return
+		. += "<span class='deadsay'>It appears to be completely inactive.</span>"
 
 /obj/item/device/mmi/digital/emp_act(severity)
 	if(!src.brainmob)
@@ -230,7 +229,7 @@
 /obj/item/device/mmi/digital/transfer_identity(var/mob/living/carbon/H)
 	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
-	brainmob.stat = 0
+	brainmob.set_stat(CONSCIOUS)
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 	return
@@ -238,7 +237,7 @@
 /obj/item/device/mmi/digital/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
-		to_chat(user, "<font color='blue'>You carefully locate the manual activation switch and start the [src]'s boot process.</font>")
+		to_chat(user, span_blue("You carefully locate the manual activation switch and start the [src]'s boot process."))
 		request_player()
 
 /obj/item/device/mmi/digital/proc/request_player()
@@ -262,7 +261,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
+		M.show_message(span_blue("\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 /obj/item/device/mmi/digital/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a synthetic brain now.")
@@ -280,7 +279,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>\The [src] chimes quietly.</font>")
+		M.show_message(span_blue("\The [src] chimes quietly."))
 
 /obj/item/device/mmi/digital/robot
 	name = "robotic intelligence circuit"

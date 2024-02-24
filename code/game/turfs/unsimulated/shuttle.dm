@@ -8,7 +8,7 @@
 	name = "wall"
 	icon_state = "light"
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 
 /turf/unsimulated/shuttle/wall/dark

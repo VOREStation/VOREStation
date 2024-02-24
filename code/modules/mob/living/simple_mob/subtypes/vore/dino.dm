@@ -13,7 +13,7 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
-	movement_cooldown = 4
+	movement_cooldown = 0.5
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 12
@@ -24,6 +24,9 @@
 	heat_damage_per_tick = 15
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
+
+	meat_amount = 5
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	//Phoron dragons aren't affected by atmos.
 	min_oxy = 0

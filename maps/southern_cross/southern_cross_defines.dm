@@ -34,6 +34,7 @@
 	company_name  = "NanoTrasen"
 	company_short = "NT"
 	starsys_name  = "Vir"
+	use_overmap = TRUE
 
 	shuttle_docked_message = "The scheduled shuttle to the %dock_name% has docked with the station at docks one and two. It will depart in approximately %ETD%."
 	shuttle_leaving_dock = "The Crew Transfer Shuttle has left the station. Estimate %ETA% until the shuttle docks at %dock_name%."
@@ -79,35 +80,45 @@
 							)
 	usable_email_tlds = list("freemail.nt")
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
-	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 
+	default_skybox = /datum/skybox_settings/southern_cross
+
+	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 	unit_test_exempt_from_atmos = list(/area/tcomm/chamber)
 
 	planet_datums_to_make = list(/datum/planet/sif)
 
-
-// Short range computers see only the six main levels, others can see the surrounding surface levels.
-/datum/map/southern_cross/get_map_levels(var/srcz, var/long_range = TRUE)
-	if (long_range && (srcz in map_levels))
-		return map_levels
-	else if (srcz == Z_LEVEL_TRANSIT)
-		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
-	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE) // Station can see other decks.
-		return list(
+	map_levels = list(
 			Z_LEVEL_STATION_ONE,
 			Z_LEVEL_STATION_TWO,
 			Z_LEVEL_STATION_THREE,
 			Z_LEVEL_SURFACE,
-			Z_LEVEL_SURFACE_MINE,
-			Z_LEVEL_SURFACE_WILD)
+			Z_LEVEL_SURFACE_MINE
+		)
+
+// Commented out due to causing a lot of bugs. The base proc plus overmap achieves this functionality anyways.
+/*
+// Short range computers see only the six main levels, others can see the surrounding surface levels.
+/datum/map/southern_cross/get_map_levels(var/srcz, var/long_range = TRUE)
+	if (long_range && (srcz in map_levels))
+		return map_levels
+	else if (srcz == Z_LEVEL_TRANSIT && !long_range)
+		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
+	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE) // Station can see other decks.
+		return list(
+				Z_LEVEL_STATION_ONE,
+				Z_LEVEL_STATION_TWO,
+				Z_LEVEL_STATION_THREE,
+			)
 	else if(srcz in list(Z_LEVEL_SURFACE, Z_LEVEL_SURFACE_MINE, Z_LEVEL_SURFACE_WILD)) // Being on the surface lets you see other surface Zs.
 		return list(
-			Z_LEVEL_SURFACE,
-			Z_LEVEL_SURFACE_MINE,
-			Z_LEVEL_SURFACE_WILD)
+				Z_LEVEL_SURFACE,
+				Z_LEVEL_SURFACE_MINE,
+				Z_LEVEL_SURFACE_WILD
+			)
 	else
 		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
-
+*/
 /datum/map/southern_cross/perform_map_generation()
 	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
 
@@ -126,6 +137,11 @@
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
 	// Todo: Forest generation.
 	return 1
+
+// Skybox Settings
+/datum/skybox_settings/southern_cross
+	icon_state = "dyable"
+	random_color = TRUE
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define SOUTHERN_CROSS_MAP_SIZE 160 // Width and height of compiled in Southern Cross z levels.
@@ -171,19 +187,19 @@
 /datum/map_z_level/southern_cross/surface
 	z = Z_LEVEL_SURFACE
 	name = "Plains"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONSOLES
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/surface_mine
 	z = Z_LEVEL_SURFACE_MINE
 	name = "Mountains"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONSOLES
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/surface_wild
 	z = Z_LEVEL_SURFACE_WILD
 	name = "Wilderness"
-	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/misc
@@ -234,8 +250,7 @@
 	expected_z_levels = list(
 		Z_LEVEL_SURFACE,
 		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SURFACE_WILD,
-		Z_LEVEL_TRANSIT
+		Z_LEVEL_SURFACE_WILD
 	)
 
 /obj/effect/step_trigger/teleporter/bridge/east_to_west/Initialize()
@@ -274,12 +289,30 @@
 	teleport_z = src.z
 	return ..()
 
-/datum/planet/sif
-	expected_z_levels = list(
-		Z_LEVEL_SURFACE,
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SURFACE_WILD
-	)
+/obj/effect/map_effect/portal/master/side_a/plains_to_caves
+	portal_id = "plains_caves-normal"
+
+/obj/effect/map_effect/portal/master/side_b/caves_to_plains
+	portal_id = "plains_caves-normal"
+
+/obj/effect/map_effect/portal/master/side_a/plains_to_caves/river
+	portal_id = "plains_caves-river"
+
+/obj/effect/map_effect/portal/master/side_b/caves_to_plains/river
+	portal_id = "plains_caves-river"
+
+
+/obj/effect/map_effect/portal/master/side_a/caves_to_wilderness
+	portal_id = "caves_wilderness-normal"
+
+/obj/effect/map_effect/portal/master/side_b/wilderness_to_caves
+	portal_id = "caves_wilderness-normal"
+
+/obj/effect/map_effect/portal/master/side_a/caves_to_wilderness/river
+	portal_id = "caves_wilderness-river"
+
+/obj/effect/map_effect/portal/master/side_b/wilderness_to_caves/river
+	portal_id = "caves_wilderness-river"
 
 //Suit Storage Units
 
@@ -293,3 +326,11 @@
 	model_text = "Pilot"
 	req_access = null
 	req_one_access = list(access_pilot,access_explorer)
+
+/datum/map/southern_cross/get_map_info()
+	. = list()
+	. +=  "The NLS [full_name] is a small waystation in orbit of the frozen garden world of Sif, jewel of the Vir system.<br>"
+	. +=  "Humanity stands on the precipice of a technological singularity, and the vast majority of the Solar Confederate Government would rather it move firmly away from the edge. <br>"
+	. +=  "Though Vir is typically peaceful, the system has seen its fair share of conflict in the face of technological extremists, rogue drone intelligence, and worse.<br>"
+	. +=  "As an employee of NanoTrasen, operators of the Southern Cross and one of the galaxy's largest research corporations, you're probably just here to do a job."
+	return jointext(., "<br>")

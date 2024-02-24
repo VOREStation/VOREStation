@@ -9,22 +9,35 @@
 /datum/supply_pack/supply/food
 	name = "Kitchen supply crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/condiment/flour = 6,
+			/obj/item/weapon/reagent_containers/food/condiment/carton/flour = 6,
 			/obj/item/weapon/reagent_containers/food/drinks/milk = 3,
 			/obj/item/weapon/reagent_containers/food/drinks/soymilk = 2,
 			/obj/item/weapon/storage/fancy/egg_box = 2,
 			/obj/item/weapon/reagent_containers/food/snacks/tofu = 4,
-			/obj/item/weapon/reagent_containers/food/snacks/meat = 4
+			/obj/item/weapon/reagent_containers/food/snacks/meat = 4,
+			/obj/item/weapon/reagent_containers/food/condiment/yeast = 3,
+			/obj/item/weapon/reagent_containers/food/condiment/sprinkles = 1
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/freezer
+	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Food crate"
+
+/datum/supply_pack/supply/fancyfood
+	name = "Artisanal food delivery"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic = 6,
+			/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic = 6
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer/centauri
+	containername = "Artisanal food crate"
+
 
 /datum/supply_pack/supply/toner
 	name = "Toner cartridges"
 	contains = list(/obj/item/device/toner = 6)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "Toner cartridges"
 
 /datum/supply_pack/supply/janitor
@@ -38,7 +51,7 @@
 			/obj/item/clothing/head/soft/purple,
 			/obj/item/weapon/storage/belt/janitor,
 			/obj/item/clothing/shoes/galoshes,
-			/obj/item/weapon/caution = 4,
+			/obj/item/clothing/suit/caution = 4,
 			/obj/item/weapon/storage/bag/trash,
 			/obj/item/device/lightreplacer,
 			/obj/item/weapon/reagent_containers/spray/cleaner,
@@ -47,7 +60,7 @@
 			/obj/structure/mopbucket
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/galaksi
 	containername = "Janitorial supplies"
 
 /datum/supply_pack/supply/shipping
@@ -61,7 +74,7 @@
 				/obj/item/weapon/tool/wirecutters,
 				/obj/item/weapon/tape_roll = 2)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "Shipping supplies crate"
 
 /datum/supply_pack/supply/bureaucracy
@@ -76,18 +89,25 @@
 			/obj/item/weapon/folder/yellow,
 			/obj/item/weapon/hand_labeler,
 			/obj/item/weapon/tape_roll,
-			/obj/structure/filingcabinet/chestdrawer{anchored = 0},
+			/obj/structure/filingcabinet/chestdrawer{anchored = FALSE},
 			/obj/item/weapon/paper_bin
 			)
 	name = "Office supplies"
 	cost = 15
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "Office supplies crate"
+
+/datum/supply_pack/supply/sticky_notes
+	name = "Stationery - sticky notes (50)"
+	contains = list(/obj/item/sticky_pad/random)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ummarcar
+	containername = "\improper Sticky notes crate"
 
 /datum/supply_pack/supply/spare_pda
 	name = "Spare PDAs"
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/thinktronic
 	containername = "Spare PDA crate"
 	contains = list(/obj/item/device/pda = 3)
 
@@ -111,7 +131,7 @@
 			/obj/item/clothing/glasses/meson
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Shaft miner equipment"
 	access = access_mining
 /* //VOREStation Edit - Pointless on Tether.
@@ -126,12 +146,61 @@
 	name = "Cargo Train Tug"
 	contains = list(/obj/vehicle/train/engine)
 	cost = 35
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/large/xion
 	containername = "Cargo Train Tug Crate"
 
 /datum/supply_pack/supply/cargotrailer
 	name = "Cargo Train Trolley"
 	contains = list(/obj/vehicle/train/trolley)
 	cost = 15
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/large/xion
 	containername = "Cargo Train Trolley Crate"
+
+/datum/supply_pack/explorergear
+	name="Away Team gear"
+	contains = list (
+					/obj/item/device/cataloguer,
+					/obj/item/device/geiger,
+					/obj/item/clothing/suit/storage/hooded/explorer,
+					/obj/item/device/flashlight/glowstick,
+					/obj/item/device/flashlight,
+					/obj/item/stack/marker_beacon/thirty,
+					/obj/item/weapon/storage/belt/explorer,
+					/obj/item/clothing/mask/gas/explorer,
+					/obj/item/weapon/cartridge/explorer,
+			 		/obj/item/device/gps/explorer,
+			 		/obj/item/clothing/under/explorer,
+			 		/obj/item/device/radio/headset/explorer,
+			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/weapon/material/knife/tacknife/survival,
+					/obj/item/weapon/material/knife/machete,
+			 		/obj/item/clothing/accessory/holster/machete,
+					)
+	cost=25
+	containertype = /obj/structure/closet/crate/secure/xion
+	containername = "Away Team equipment"
+	access = list(access_eva, access_explorer)
+
+/datum/supply_pack/pilotgear
+	name= "Pilot gear"
+	contains = list (
+					/obj/item/weapon/storage/backpack/parachute,
+					/obj/item/device/radio/headset/pilot,
+					/obj/item/device/radio/headset/pilot/alt,
+					/obj/item/clothing/mask/gas/half,
+					/obj/item/device/flashlight/glowstick,
+					/obj/item/stack/marker_beacon/thirty,
+					/obj/item/device/gps/explorer,
+					/obj/item/clothing/gloves/fingerless,
+					/obj/item/clothing/suit/storage/toggle/bomber/pilot,
+			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/device/flashlight,
+					/obj/item/weapon/material/knife/tacknife/survival,
+					/obj/item/clothing/head/pilot_vr,
+					/obj/item/clothing/under/rank/pilot1,
+					/obj/item/clothing/suit/storage/toggle/bomber/pilot
+					)
+	cost=20
+	containertype = /obj/structure/closet/crate/secure/xion
+	containername = "Pilot equipment"
+	access = access_pilot

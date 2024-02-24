@@ -27,24 +27,28 @@
 
 	//Snapshot is crazy and likes putting each topic hyperlink on a seperate line from any other tags so it's nice and clean.
 	interactions += "<HR><center><font size= \"1\">The fax will transmit everything above this line</font><br>"
-	interactions += "<A href='?src=\ref[src];confirm=1'>Send fax</A> "
-	interactions += "<A href='?src=\ref[src];penmode=1'>Pen mode: [isCrayon ? "Crayon" : "Pen"]</A> "
-	interactions += "<A href='?src=\ref[src];cancel=1'>Cancel fax</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];confirm=1'>Send fax</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];penmode=1'>Pen mode: [isCrayon ? "Crayon" : "Pen"]</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];cancel=1'>Cancel fax</A> "
 	interactions += "<BR>"
-	interactions += "<A href='?src=\ref[src];toggleheader=1'>Toggle Header</A> "
-	interactions += "<A href='?src=\ref[src];togglefooter=1'>Toggle Footer</A> "
-	interactions += "<A href='?src=\ref[src];clear=1'>Clear page</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];toggleheader=1'>Toggle Header</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];togglefooter=1'>Toggle Footer</A> "
+	interactions += "<A href='?src=\ref[src];[HrefToken()];clear=1'>Clear page</A> "
 	interactions += "</center>"
 
 /obj/item/weapon/paper/admin/proc/generateHeader()
 	var/originhash = md5("[origin]")
 	var/timehash = copytext(md5("[world.time]"),1,10)
 	var/text = null
-	var/logo = alert(usr, "Do you want the header of your fax to have a NanoTrasen or SolGov logo?","Fax Logo","NanoTrasen","SolGov")
+	var/logo = tgui_alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo",list("NanoTrasen","SolGov","Trader")) //VOREStation Add - Trader
 	if(logo == "SolGov")
 		logo = "sglogo.png"
-	else
+	//VOREStation Edit/Add
+	else if(logo == "NanoTrasen")
 		logo = "ntlogo.png"
+	else
+		logo = "trader.png"
+	//VOREStation Edit/Add End
 	//TODO change logo based on who you're contacting.
 	text = "<center><img src = [logo]></br>"
 	text += "<b>[origin] Quantum Uplink Signed Message</b><br>"
@@ -71,7 +75,7 @@
 	generateFooter()
 	updateDisplay()
 
-obj/item/weapon/paper/admin/proc/updateDisplay()
+/obj/item/weapon/paper/admin/proc/updateDisplay()
 	usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[headerOn ? header : ""][info_links][stamps][footerOn ? footer : ""][interactions]</BODY></HTML>", "window=[name];can_close=0")
 
 
@@ -83,8 +87,10 @@ obj/item/weapon/paper/admin/proc/updateDisplay()
 			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
 			return
 
-		var/t =  sanitize(input("Enter what you want to write:", "Write", null, null) as message, free_space, extra = 0)
-
+		var/raw_t = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE, prevent_enter = TRUE)
+		if(!raw_t)
+			return
+		var/t =  sanitize(raw_t, free_space, extra = 0)
 		if(!t)
 			return
 
@@ -114,7 +120,7 @@ obj/item/weapon/paper/admin/proc/updateDisplay()
 		return
 
 	if(href_list["confirm"])
-		switch(alert("Are you sure you want to send the fax as is?",, "Yes", "No"))
+		switch(tgui_alert(usr, "Are you sure you want to send the fax as is?","Send Fax", list("Yes", "No")))
 			if("Yes")
 				if(headerOn)
 					info = header + info
@@ -152,4 +158,4 @@ obj/item/weapon/paper/admin/proc/updateDisplay()
 		return
 
 /obj/item/weapon/paper/admin/get_signature()
-	return input(usr, "Enter the name you wish to sign the paper with (will prompt for multiple entries, in order of entry)", "Signature") as text|null
+	return tgui_input_text(usr, "Enter the name you wish to sign the paper with (will prompt for multiple entries, in order of entry)", "Signature")

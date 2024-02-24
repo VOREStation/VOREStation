@@ -30,7 +30,7 @@ var/total_unit_tests = 0
 	log_unit_test("Initializing Unit Testing")
 
 	if(!ticker)
-		crash_with("No Ticker")
+		stack_trace("No Ticker")
 		world.Del()
 
 	var/said_msg = 0
@@ -94,10 +94,10 @@ var/total_unit_tests = 0
 
 	if(all_unit_tests_passed)
 		log_unit_test("[ASCII_GREEN]*** All Unit Tests Passed \[[total_unit_tests]\] ***[ASCII_RESET]")
-		world.Del()
 	else
 		log_unit_test("[ASCII_RED]!!! \[[failed_unit_tests]\\[total_unit_tests]\] Unit Tests Failed !!![ASCII_RESET]")
-		world.Del()
+	log_unit_test("Caught [GLOB.total_runtimes] Runtime\s.")
+	world.Del()
 
 /datum/unit_test/proc/get_standard_turf()
 	return locate(20,20,1)

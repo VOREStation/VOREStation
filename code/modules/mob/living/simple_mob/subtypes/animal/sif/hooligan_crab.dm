@@ -27,7 +27,7 @@
 	name = "hooligan crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey. \
 	You probably shouldn't mess with it."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/hooligan_crab)
+	//catalogue_data = list(/datum/category_item/catalogue/fauna/hooligan_crab)			//TODO: write non-sif lore
 
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"
@@ -39,7 +39,7 @@
 
 	maxHealth = 200
 	health = 200
-	movement_cooldown = 10
+	movement_cooldown = 4
 	movement_sound = 'sound/weapons/heavysmash.ogg'
 	movement_shake_radius = 5
 
@@ -72,7 +72,8 @@
 	attack_edge = TRUE
 	melee_attack_delay = 1 SECOND
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/crab
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/crabmeat
+	meat_amount = 6
 
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -80,6 +81,8 @@
 	friendly = "pinches"
 	attacktext = list("clawed", "pinched", "crushed")
 	speak_emote = list("clicks")
+
+	organ_names = /decl/mob_organ_names/crab
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hooligan
 	say_list_type = /datum/say_list/crab
@@ -93,7 +96,7 @@
 		var/was_stunned = L.incapacitated(INCAPACITATION_DISABLED)
 		L.Weaken(weaken_amount)
 
-		playsound(L, 'sound/effects/break_stone.ogg', 75, 1)
+		playsound(src, 'sound/effects/break_stone.ogg', 75, 1)
 		if(was_stunned) // Try to prevent chain-stuns by having them thrown.
 			var/throwdir = get_dir(src, L)
 			L.throw_at(get_edge_target_turf(L, throwdir), 5, 1, src)
@@ -116,5 +119,5 @@
 		if(prob(10))
 			for(var/mob/living/L in hearers(holder))
 				if(!istype(L, holder)) // Don't follow other hooligan crabs.
-					holder.visible_message("<span class='notice'>\The [holder] starts to follow \the [L].</span>")
+					holder.visible_message("<b>\The [holder]</b> starts to follow \the [L].")
 					set_follow(L, rand(20 SECONDS, 40 SECONDS))

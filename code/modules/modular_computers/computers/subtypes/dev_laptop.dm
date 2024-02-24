@@ -4,7 +4,7 @@
 	desc = "A portable computer."
 	hardware_flag = PROGRAM_LAPTOP
 	icon_state_unpowered = "laptop-open"
-	icon = 'icons/obj/modular_laptop_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/modular_laptop.dmi'
 	icon_state = "laptop-open"
 	icon_state_screensaver = "standby"
 	base_idle_power_usage = 25
@@ -41,7 +41,7 @@
 	if(anchored)
 		..()
 	else
-		overlays.Cut()
+		cut_overlays()
 		set_light(0)		// No glow from closed laptops
 		icon_state = icon_state_closed
 

@@ -4,13 +4,15 @@
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
-	density = 0
-	anchored = 1
+	layer = ABOVE_WINDOW_LAYER
+	density = FALSE
+	anchored = TRUE
 	var/shattered = 0
-	var/list/ui_users = list()
 	var/glass = 1
+	var/datum/tgui_module/appearance_changer/mirror/M
 
-/obj/structure/mirror/New(var/loc, var/dir, var/building = 0, mob/user as mob)
+/obj/structure/mirror/Initialize(mapload, var/dir, var/building = 0, mob/user as mob)
+	M = new(src, null)
 	if(building)
 		glass = 0
 		icon_state = "mirror_frame"
@@ -18,17 +20,16 @@
 		pixel_y = (dir & 3)? (dir == 1 ? -30 : 30) : 0
 	return
 
+/obj/structure/mirror/Destroy()
+	QDEL_NULL(M)
+	. = ..()
+
 /obj/structure/mirror/attack_hand(mob/user as mob)
 	if(!glass) return
 	if(shattered)	return
 
 	if(ishuman(user))
-		var/datum/nano_module/appearance_changer/AC = ui_users[user]
-		if(!AC)
-			AC = new(src, user)
-			AC.name = "SalonPro Nano-Mirror&trade;"
-			ui_users[user] = AC
-		AC.ui_interact(user)
+		M.tgui_interact(user)
 
 /obj/structure/mirror/proc/shatter()
 	if(!glass) return
@@ -49,15 +50,15 @@
 	..()
 
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		if(!glass)
-			playsound(src.loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20 * I.toolspeed))
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				new /obj/item/frame/mirror( src.loc )
 				qdel(src)
 		return
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		if(shattered && glass)
 			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 			icon_state = "mirror_frame"
@@ -65,7 +66,7 @@
 			new /obj/item/weapon/material/shard( src.loc )
 			return
 		if(!shattered && glass)
-			playsound(src.loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You remove the glass.</span>")
 			glass = !glass
 			icon_state = "mirror_frame"
@@ -88,7 +89,7 @@
 			return
 
 	if(shattered && glass)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return
 
 	if(prob(I.force * 2))
@@ -97,13 +98,13 @@
 			shatter()
 	else
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
+		playsound(src, 'sound/effects/Glasshit.ogg', 70, 1)
 
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
 
 	user.do_attack_animation(src)
 	if(shattered && glass)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return 0
 
 	if(damage)
@@ -124,7 +125,7 @@
 /obj/structure/mirror/raider/attack_hand(var/mob/living/carbon/human/user)
 	if(istype(get_area(src),/area/syndicate_mothership))
 		if(istype(user) && user.mind && user.mind.special_role == "Raider" && user.species.name != SPECIES_VOX && is_alien_whitelisted(user, SPECIES_VOX))
-			var/choice = input("Do you wish to become a true Vox of the Shoal? This is not reversible.") as null|anything in list("No","Yes")
+			var/choice = tgui_alert(usr, "Do you wish to become a true Vox of the Shoal? This is not reversible.", "Become Vox?", list("No","Yes"))
 			if(choice && choice == "Yes")
 				var/mob/living/carbon/human/vox/vox = new(get_turf(src),SPECIES_VOX)
 				vox.gender = user.gender
@@ -132,7 +133,7 @@
 				if(user.mind)
 					user.mind.transfer_to(vox)
 				spawn(1)
-					var/newname = sanitizeSafe(input(vox,"Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN)
+					var/newname = sanitizeSafe(tgui_input_text(vox,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
 					if(!newname || newname == "")
 						var/datum/language/L = GLOB.all_languages[vox.species.default_language]
 						newname = L.get_random_name()

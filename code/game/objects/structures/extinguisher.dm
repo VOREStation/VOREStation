@@ -2,27 +2,23 @@
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/closet.dmi'
-	icon_state = "extinguisher_closed"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
-	anchored = 1
-	density = 0
+	icon_state = "extinguisher" // map preview sprite
+	layer = ABOVE_WINDOW_LAYER
+	anchored = TRUE
+	density = FALSE
 	var/obj/item/weapon/extinguisher/has_extinguisher
 	var/opened = 0
 
-/obj/structure/extinguisher_cabinet/New(var/loc, var/dir, var/building = 0)
-	..()
+/obj/structure/extinguisher_cabinet/Initialize(var/mapload, var/dir, var/building = 0)
+	. = ..()
 
 	if(building)
-		if(loc)
-			src.loc = loc
-
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
 		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
-		update_icon()
-		return
 	else
 		has_extinguisher = new/obj/item/weapon/extinguisher(src)
+
+	update_icon()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(isrobot(user))
@@ -35,10 +31,10 @@
 			to_chat(user, "<span class='notice'>You place [O] in [src].</span>")
 		else
 			opened = !opened
-	if(O.is_wrench())
+	if(O.has_tool_quality(TOOL_WRENCH))
 		if(!has_extinguisher)
 			to_chat(user, "<span class='notice'>You start to unwrench the extinguisher cabinet.</span>")
-			playsound(src.loc, O.usesound, 50, 1)
+			playsound(src, O.usesound, 50, 1)
 			if(do_after(user, 15 * O.toolspeed))
 				to_chat(user, "<span class='notice'>You unwrench the extinguisher cabinet.</span>")
 				new /obj/item/frame/extinguisher_cabinet( src.loc )
@@ -80,13 +76,19 @@
 	update_icon()
 
 /obj/structure/extinguisher_cabinet/update_icon()
-	if(!opened)
-		icon_state = "extinguisher_closed"
-		return
+	var/suffix = "empty"
 	if(has_extinguisher)
 		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
-			icon_state = "extinguisher_mini"
+			suffix = "mini"
+		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/atmo))
+			suffix = "advanced"
 		else
-			icon_state = "extinguisher_full"
-	else
-		icon_state = "extinguisher_empty"
+			suffix = "standard"
+
+	icon_state = "[initial(icon_state)][opened ? "" : "_closed"]_[suffix]"
+
+/obj/structure/extinguisher_cabinet/old
+	name = "extinguisher cabinet"
+	desc = "A classic small wall mounted cabinet designed to hold a fire extinguisher."
+	icon = 'icons/obj/closet.dmi'
+	icon_state = "oldextinguisher" // map preview sprite

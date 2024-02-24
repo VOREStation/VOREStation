@@ -6,34 +6,41 @@
 	name = "foam"
 	icon_state = "foam"
 	opacity = 0
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	layer = OBJ_LAYER + 0.9
 	mouse_opacity = 0
 	animate_movement = 0
 	var/amount = 3
 	var/expand = 1
 	var/metal = 0
+	var/dries = 1 //VOREStation Add
+	var/slips = 0 //VOREStation Add
 
-/obj/effect/effect/foam/New(var/loc, var/ismetal = 0)
-	..(loc)
-	icon_state = "[ismetal? "m" : ""]foam"
+/obj/effect/effect/foam/Initialize(var/mapload, var/ismetal = 0)
+	. = ..()
+	//icon_state = "[ismetal? "m" : ""]foam" //VOREStation Removal
 	metal = ismetal
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
-	spawn(3 + metal * 3)
-		process()
-		checkReagents()
-	spawn(120)
-		STOP_PROCESSING(SSobj, src)
-		sleep(30)
-		if(metal)
-			var/obj/structure/foamedmetal/M = new(src.loc)
-			M.metal = metal
-			M.updateicon()
-		flick("[icon_state]-disolve", src)
-		sleep(5)
-		qdel(src)
-	return
+	if(dries) //VOREStation Add
+		addtimer(CALLBACK(src, PROC_REF(post_spread)), 3 + metal * 3)
+		addtimer(CALLBACK(src, PROC_REF(pre_harden)), 12 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(harden)), 15 SECONDS)
+
+/obj/effect/effect/foam/proc/post_spread()
+	process()
+	checkReagents()
+
+/obj/effect/effect/foam/proc/pre_harden()
+	return //VOREStation Edit
+
+/obj/effect/effect/foam/proc/harden()
+	if(metal)
+		var/obj/structure/foamedmetal/M = new(src.loc)
+		M.metal = metal
+		M.update_icon()
+	flick("[icon_state]-disolve", src)
+	QDEL_IN(src, 5)
 
 /obj/effect/effect/foam/proc/checkReagents() // transfer any reagents to the floor
 	if(!metal && reagents)
@@ -74,15 +81,11 @@
 			qdel(src)
 
 /obj/effect/effect/foam/Crossed(var/atom/movable/AM)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(AM.is_incorporeal())
+		return
 	if(metal)
 		return
-	if(istype(AM, /mob/living))
+	if(slips && istype(AM, /mob/living)) //VOREStation Add
 		var/mob/living/M = AM
 		M.slip("the foam", 6)
 
@@ -131,9 +134,9 @@
 /obj/structure/foamedmetal
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
-	density = 1
+	density = TRUE
 	opacity = 1 // changed in New()
-	anchored = 1
+	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	can_atmos_pass = ATMOS_PASS_NO
@@ -144,11 +147,11 @@
 	update_nearby_tiles(1)
 
 /obj/structure/foamedmetal/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles(1)
 	return ..()
 
-/obj/structure/foamedmetal/proc/updateicon()
+/obj/structure/foamedmetal/update_icon()
 	if(metal == 1)
 		icon_state = "metalfoam"
 	else

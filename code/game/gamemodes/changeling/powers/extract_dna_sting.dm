@@ -37,7 +37,8 @@
 
 	add_attack_logs(src,T,"DNA extraction sting (changeling)")
 
-	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages)
+	var/saved_dna = T.dna.Clone() /// Prevent transforming bugginess. 
+	var/datum/absorbed_dna/newDNA = new(T.real_name, saved_dna, T.species.name, T.languages, T.identifying_gender, T.flavor_text, T.modifiers)
 	absorbDNA(newDNA)
 
 	feedback_add_details("changeling_powers","ED")

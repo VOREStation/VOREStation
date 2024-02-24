@@ -1,0 +1,178 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"b" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
+"c" = (
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
+"d" = (
+/turf/simulated/mineral/floor/vacuum,
+/area/submap/debrisfield/misc_debris)
+"e" = (
+/turf/simulated/mineral/vacuum,
+/area/submap/debrisfield/misc_debris)
+"f" = (
+/obj/tether_away_spawner/debrisfield/carp,
+/turf/simulated/mineral/floor/vacuum,
+/area/submap/debrisfield/misc_debris)
+"g" = (
+/turf/simulated/mineral/vacuum,
+/area/tether_away/debrisfield/shuttle_buffer)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+b
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+c
+c
+c
+g
+g
+g
+g
+c
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+c
+c
+g
+g
+e
+g
+g
+g
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+c
+c
+g
+d
+d
+f
+g
+g
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+c
+c
+d
+d
+d
+f
+g
+g
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+c
+c
+g
+g
+e
+d
+g
+c
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+g
+c
+c
+g
+e
+g
+g
+g
+b
+a
+"}
+(9,1,1) = {"
+a
+a
+g
+g
+c
+g
+g
+g
+g
+g
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+b
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -1,25 +1,17 @@
 //print an error message to world.log
 
-// Fall back to using old format if we are not using rust-g
-#ifdef RUST_G
-	#define WRITE_LOG(log, text) call(RUST_G, "log_write")(log, text)
-#else
-	#define WRITE_LOG(log, text) log << "\[[time_stamp()]][text]"
-#endif
+//This is an external call, "true" and "false" are how rust parses out booleans
+#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+#define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 
 /* For logging round startup. */
 /proc/start_log(log)
-	#ifndef RUST_G
-	log = file(log)
-	#endif
 	WRITE_LOG(log, "START: Starting up [log_path].")
 	return log
 
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
-	#ifdef RUST_G
-	call(RUST_G, "log_close_all")()
-	#endif
+	rustg_log_close_all()
 
 /proc/error(msg)
 	to_world_log("## ERROR: [msg]")
@@ -43,13 +35,20 @@
 	if (config.log_admin)
 		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
 
+/proc/log_pray(text, client/source)
+	admin_log.Add(text)
+	if (config.log_admin)
+		WRITE_LOG(diary, "PRAY: [key_name(source)]: [text]")
+
 /proc/log_debug(text)
 	if (config.log_debug)
-		WRITE_LOG(debug_log, "DEBUG: [text]")
+		WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
 
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
-			to_chat(C, "DEBUG: [text]")
+			to_chat(C,
+					type = MESSAGE_TYPE_DEBUG,
+					html = "<span class='filter_debuglog'>DEBUG: [text]</span>")
 
 /proc/log_game(text)
 	if (config.log_game)
@@ -104,7 +103,6 @@
 		speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style=\"color:gray\"><i>[text]</i></span>"
 		GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style=\"color:gray\"><i>[text]</i></span>"
 
-
 /proc/log_emote(text, mob/speaker)
 	if (config.log_emote)
 		WRITE_LOG(diary, "EMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
@@ -134,8 +132,7 @@
 		WRITE_LOG(diary, "DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>DEADSAY:</u> - <span style=\"color:green\">[text]</span>"
-	GLOB.round_text_log += "<font size=1><span style=\"color:#7e668c\"><b>([time_stamp()])</b> (<b>[src]/[speaker.client]</b>) <u>DEADSAY:</u> - [text]</span></font>"
-
+	GLOB.round_text_log += "<font size=1><span style=\"color:#7e668c\"><b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>DEADSAY:</u> - [text]</span></font>"
 
 /proc/log_ghostemote(text, mob/speaker)
 	if (config.log_emote)
@@ -151,7 +148,6 @@
 
 	speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>MSG:</u> - <span style=\"color:[COLOR_GREEN]\">[text]</span>"
 	GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>MSG:</u> - <span style=\"color:[COLOR_GREEN]\">[text]</span>"
-
 
 /proc/log_to_dd(text)
 	to_world_log(text) //this comes before the config check because it can't possibly runtime
@@ -169,12 +165,17 @@
 	if(Debug2)
 		WRITE_LOG(diary, "TOPIC: [text]")
 
-/proc/log_href(text)
-	// Configs are checked by caller
-	WRITE_LOG(href_logfile, "HREF: [text]")
-
 /proc/log_unit_test(text)
 	to_world_log("## UNIT_TEST: [text]")
+
+#ifdef REFERENCE_TRACKING_LOG
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#else
+#define log_reftracker(msg)
+#endif
+
+/proc/log_asset(text)
+	WRITE_LOG(diary, "ASSET: [text]")
 
 /proc/report_progress(var/progress_message)
 	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)
@@ -259,20 +260,28 @@
 	return key_name(whom, 1, include_name)
 
 // Helper procs for building detailed log lines
+//
+// These procs must not fail under ANY CIRCUMSTANCES!
+//
+
 /datum/proc/log_info_line()
 	return "[src] ([type])"
 
 /atom/log_info_line()
+	. = ..()
 	var/turf/t = get_turf(src)
 	if(istype(t))
-		return "([t]) ([t.x],[t.y],[t.z]) ([t.type])"
+		return "[.] @ [t.log_info_line()]"
 	else if(loc)
-		return "([loc]) (0,0,0) ([loc.type])"
+		return "[.] @ ([loc]) (0,0,0) ([loc.type])"
 	else
-		return "(NULL) (0,0,0) (NULL)"
+		return "[.] @ (NULL) (0,0,0) (NULL)"
+
+/turf/log_info_line()
+	return "([src]) ([x],[y],[z]) ([type])"
 
 /mob/log_info_line()
-	return "[..()] ([ckey])"
+	return "[..()] (ckey=[ckey])"
 
 /proc/log_info_line(var/datum/d)
 	if(!d)

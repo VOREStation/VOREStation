@@ -1,14 +1,17 @@
 /obj/item/weapon/storage/belt
 	name = "belt"
 	desc = "Can hold various things."
-	icon = 'icons/obj/clothing/belts.dmi'
+	icon = 'icons/inventory/belt/item.dmi'
 	icon_state = "utility"
 	storage_slots = 7
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7 //This should ensure belts always have enough room to store whatever.
 	max_w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/belt.dmi')
+	equip_sound = 'sound/items/toolbelt_equip.ogg'
+	drop_sound = 'sound/items/drop/toolbelt.ogg'
+	pickup_sound = 'sound/items/pickup/toolbelt.ogg'
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/belt/mob_teshari.dmi')
 
 	var/show_above_suit = 0
 
@@ -23,13 +26,16 @@
 	update_icon()
 
 //Some belts have sprites to show icons
-/obj/item/weapon/storage/belt/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+/obj/item/weapon/storage/belt/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask = null)
 	var/image/standing = ..()
 	if(!inhands && contents.len)
 		for(var/obj/item/i in contents)
 			var/i_state = i.item_state
 			if(!i_state) i_state = i.icon_state
-			standing.add_overlay(image(icon = INV_BELT_DEF_ICON, icon_state = i_state))
+			var/image/add_icon = image(icon = INV_BELT_DEF_ICON, icon_state = i_state)
+			if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
+				standing.filters += filter(type = "alpha", icon = clip_mask)
+			standing.add_overlay(add_icon)
 	return standing
 
 /obj/item/weapon/storage/update_icon()
@@ -48,6 +54,8 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
@@ -68,6 +76,9 @@
 		/obj/item/weapon/tape_roll,
 		/obj/item/device/integrated_electronics/wirer,
 		/obj/item/device/integrated_electronics/debugger, //Vorestation edit adding debugger to toolbelt can hold list
+		/obj/item/weapon/shovel/spade, //VOREStation edit. If it can hold minihoes and hatchers, why not the gardening spade?
+		/obj/item/stack/nanopaste, //VOREStation edit. Think of it as a tube of superglue. Belts hold that all the time.
+		/obj/item/device/geiger //VOREStation edit. Engineers work with rad-slinging stuff sometimes too
 		)
 
 /obj/item/weapon/storage/belt/utility/full
@@ -80,6 +91,17 @@
 		/obj/item/stack/cable_coil/random_belt
 	)
 
+/obj/item/weapon/storage/belt/utility/full/multitool
+	starts_with = list(
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/device/multitool
+	)
+
 /obj/item/weapon/storage/belt/utility/atmostech
 	starts_with = list(
 		/obj/item/weapon/tool/screwdriver,
@@ -87,6 +109,8 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/wirecutters,
+		/obj/item/device/analyzer, //Vorestation edit. Gives atmos techs a few extra tools fitting their job from the start
+		/obj/item/weapon/extinguisher/mini //Vorestation edit. As above, the mini's much more handy to have rather than lugging a big one around
 	)
 
 /obj/item/weapon/storage/belt/utility/chief
@@ -94,17 +118,101 @@
 	desc = "Holds tools, looks snazzy."
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
+	storage_slots = 8	//If they get better everything-else, why not the belt too?
+	can_hold = list(
+		/obj/item/weapon/rcd,	//They've given one from the get-go, it's hard to imagine they wouldn't be given something that can store it neater than a bag
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/clothing/glasses,
+		/obj/item/clothing/gloves,
+		/obj/item/device/pda,
+		/obj/item/device/megaphone,
+		/obj/item/taperoll,
+		/obj/item/device/radio/headset,
+		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
+		/obj/item/device/geiger,
+		/obj/item/areaeditor/blueprints,	//It's a bunch of paper that could prolly be rolled up & slipped into the belt, not to mention CE only, see the RCD's thing above
+		/obj/item/wire_reader	//As above
+		)
 
 /obj/item/weapon/storage/belt/utility/chief/full
 	starts_with = list(
-		/obj/item/weapon/tool/screwdriver/power,
-		/obj/item/weapon/tool/crowbar/power,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
 		/obj/item/weapon/weldingtool/experimental,
 		/obj/item/device/multitool,
 		/obj/item/stack/cable_coil/random_belt,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/device/analyzer
 	)
+
+/obj/item/weapon/storage/belt/utility/holding
+	name = "tool-belt of holding"
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	icon_state = "utility_holding"
+	storage_slots = 14 //twice the amount as a normal belt
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14
+	can_hold = list(
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
+		/obj/item/weapon/tool/transforming/jawsoflife,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/clothing/glasses,
+		/obj/item/clothing/gloves,
+		/obj/item/device/pda,
+		/obj/item/device/megaphone,
+		/obj/item/taperoll,
+		/obj/item/device/radio/headset,
+		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
+		/obj/item/weapon/cell, //this is a bigger belt, might as well make it hold bigger cells too
+		/obj/item/weapon/pipe_dispenser, //bigger belt for bigger tools
+		/obj/item/weapon/rcd, //see above
+		/obj/item/device/quantum_pad_booster,
+		/obj/item/weapon/inducer,
+		/obj/item/stack/material/steel,
+		/obj/item/stack/material/glass,
+		/obj/item/device/lightreplacer,
+		/obj/item/weapon/pickaxe/plasmacutter
+	)
+
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -144,6 +252,13 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "ems"
 
+/obj/item/weapon/storage/belt/medical/holding
+	name = "medical belt of holding"
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	icon_state = "med_holding"
+	storage_slots = 14 //twice the amount as a normal belt
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14
+
 /obj/item/weapon/storage/belt/security
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
@@ -162,6 +277,7 @@
 		/obj/item/weapon/melee/baton,
 		/obj/item/weapon/gun/energy/taser,
 		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/weapon/gun/energy/stunrevolver/vintage,
 		/obj/item/weapon/gun/magnetic/railgun/heater/pistol,
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
@@ -179,7 +295,8 @@
 		/obj/item/weapon/gun/projectile/p92x,
 		/obj/item/taperoll,
 		/obj/item/weapon/gun/projectile/colt/detective,
-		/obj/item/device/holowarrant
+		/obj/item/device/holowarrant,
+		/obj/item/device/ticket_printer	//VOREStation Edit
 		)
 
 /obj/item/weapon/storage/belt/detective
@@ -220,9 +337,12 @@
 		/obj/item/device/flash,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
-		/obj/item/ammo_magazine,
-		/obj/item/weapon/gun/projectile/colt/detective,
-		/obj/item/device/holowarrant
+		///obj/item/ammo_magazine,	//Detectives don't get projectile weapons as standard here
+		///obj/item/weapon/gun/projectile/colt/detective,	//Detectives don't get projectile weapons as standard here
+		/obj/item/weapon/gun/energy/stunrevolver/detective,	//In keeping with the same vein as above, they can store their special one
+		/obj/item/device/holowarrant,
+		/obj/item/weapon/reagent_containers/food/drinks/flask,
+		/obj/item/device/ticket_printer	//VOREStation Edit
 		)
 
 /obj/item/weapon/storage/belt/soulstone
@@ -319,10 +439,28 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 
+/obj/item/weapon/storage/belt/bandolier
+	name = "shotgun bandolier"
+	desc = "Designed to hold shotgun shells. Can't really hold more than that."
+	icon_state = "bandolier1"
+	storage_slots = 8
+	max_w_class = ITEMSIZE_TINY
+	can_hold = list(
+		/obj/item/ammo_casing/a12g,
+		/obj/item/ammo_casing/a12g/pellet,
+		/obj/item/ammo_casing/a12g/blank,
+		/obj/item/ammo_casing/a12g/practice,
+		/obj/item/ammo_casing/a12g/beanbag,
+		/obj/item/ammo_casing/a12g/stunshell,
+		/obj/item/ammo_casing/a12g/flash,
+		/obj/item/ammo_casing/a12g/emp,
+		/obj/item/ammo_casing/a12g/flechette
+		)
+
 /obj/item/weapon/storage/belt/security/tactical/bandolier
-	name = "combat belt"
+	name = "combat bandolier"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
-	icon_state = "bandolier"
+	icon_state = "bandolier2"
 
 /obj/item/weapon/storage/belt/janitor
 	name = "janitorial belt"
@@ -346,7 +484,8 @@
 		/obj/item/device/megaphone,
 		/obj/item/taperoll,
 		/obj/item/weapon/reagent_containers/spray,
-		/obj/item/weapon/soap
+		/obj/item/weapon/soap,
+		/obj/item/device/lightreplacer //VOREStation edit
 		)
 
 /obj/item/weapon/storage/belt/archaeology
@@ -374,6 +513,7 @@
 		/obj/item/weapon/anodevice,
 		/obj/item/clothing/glasses,
 		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/tool/transforming/powerdrill,
 		/obj/item/weapon/storage/excavation,
 		/obj/item/weapon/anobattery,
 		/obj/item/device/ano_scanner,
@@ -441,3 +581,12 @@
 	desc = "The fancy utility-belt holding the tools, cuffs and gadgets of the Go Go ERT-Rangers. The belt buckle is not real phoron, but it is still surprisingly comfortable to wear."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_belt"
+
+/obj/item/weapon/storage/belt/dbandolier
+	name = "\improper Donk-Soft bandolier"
+	desc = "A Donk-Soft bandolier! Carry your spare darts anywhere! Ages 8 and up."
+	icon_state = "dbandolier"
+	storage_slots = 8
+	can_hold = list(
+		/obj/item/ammo_casing/afoam_dart
+		)

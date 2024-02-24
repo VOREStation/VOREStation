@@ -24,6 +24,9 @@ var/global/list/map_count = list()
 	var/floor_type = /turf/simulated/floor
 	var/target_turf_type
 
+	var/skip_dense = FALSE
+	var/keep_outside = FALSE
+
 	// Storage for the final iteration of the map.
 	var/list/map = list()           // Actual map.
 
@@ -61,11 +64,16 @@ var/global/list/map_count = list()
 		rand_seed(seed)
 		priority_process = 1
 
+	var/failed = FALSE
 	for(var/i = 0;i<max_attempts;i++)
-		if(generate())
-			if(!do_not_announce) admin_notice("<span class='danger'>[capitalize(name)] generation completed in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</span>", R_DEBUG)
-			return
-	if(!do_not_announce) admin_notice("<span class='danger'>[capitalize(name)] failed to generate ([round(0.1*(world.timeofday-start_time),0.1)] seconds): could not produce sane map.</span>", R_DEBUG)
+		if(!generate())
+			failed = TRUE
+
+	if(!do_not_announce)
+		if(!failed)
+			admin_notice("<span class='danger'>[capitalize(name)] generation completed in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</span>", R_DEBUG)
+		else
+			admin_notice("<span class='danger'>[capitalize(name)] failed to generate ([round(0.1*(world.timeofday-start_time),0.1)] seconds): could not produce sane map.</span>", R_DEBUG)
 
 /datum/random_map/proc/get_map_cell(var/x,var/y)
 	if(!map)
@@ -162,11 +170,11 @@ var/global/list/map_count = list()
 	if(!current_cell)
 		return 0
 	var/turf/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
-	if(!T || (target_turf_type && !istype(T,target_turf_type)))
+	if(!T || (skip_dense && T.density) || (target_turf_type && !istype(T,target_turf_type)))
 		return 0
 	var/newpath = get_appropriate_path(map[current_cell])
 	if(newpath)
-		T.ChangeTurf(newpath)
+		T.ChangeTurf(newpath, preserve_outdoors = keep_outside)
 	get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
 	return T
 

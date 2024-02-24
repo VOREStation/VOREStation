@@ -4,8 +4,8 @@
 	name = "gravity generator control"
 	desc = "A computer to control a local gravity generator.  Qualified personnel only."
 	icon_state = "airtunnel0e"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/obj/machinery/gravity_generator = null
 
 
@@ -14,9 +14,9 @@
 	desc = "A device which produces a gravaton field when set up."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingGen"
-	anchored = 1
-	density = 1
-	use_power = 1
+	anchored = TRUE
+	density = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 200
 	active_power_usage = 1000
 	var/on = 1
@@ -24,26 +24,16 @@
 	var/effectiverange = 25
 
 	// Borrows code from cloning computer
-/obj/machinery/computer/gravity_control_computer/New()
-	..()
-	spawn(5)
-		updatemodules()
-		return
-	return
+/obj/machinery/computer/gravity_control_computer/Initialize()
+	. = ..()
+	updatemodules()
 
-/obj/machinery/gravity_generator/New()
-	..()
-	spawn(5)
-		locatelocalareas()
-		return
-	return
-
-
-
+/obj/machinery/gravity_generator/Initialize()
+	. = ..()
+	locatelocalareas()
+	
 /obj/machinery/computer/gravity_control_computer/proc/updatemodules()
 	src.gravity_generator = findgenerator()
-
-
 
 /obj/machinery/gravity_generator/proc/locatelocalareas()
 	for(var/area/A in range(src,effectiverange))
@@ -127,13 +117,13 @@
 					if((A in G.localareas) && (G.on))
 						break
 				if(!G)
-					A.gravitychange(0,A)
+					A.gravitychange(0)
 
 
 		else
 			for(var/area/A in gravity_generator:localareas)
 				gravity_generator:on = 1
-				A.gravitychange(1,A)
+				A.gravitychange(1)
 
 		src.updateUsrDialog()
 		return

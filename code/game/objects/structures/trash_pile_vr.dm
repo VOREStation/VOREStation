@@ -3,8 +3,8 @@
 	desc = "A heap of garbage, but maybe there's something interesting inside?"
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 	var/list/searchedby	= list()// Characters that have searched this trashpile, with values of searched time.
 	var/mob/living/hider		// A simple animal that might be hiding in the pile
@@ -22,9 +22,9 @@
 		/obj/item/weapon/bluespace_harpoon,
 		/obj/item/clothing/glasses/thermal/syndi,
 		/obj/item/weapon/gun/energy/netgun,
-		/obj/item/weapon/gun/projectile/pirate,
-		/obj/item/clothing/accessory/permit/gun,
-		/obj/item/weapon/gun/projectile/dartgun
+		/obj/item/weapon/gun/projectile/dartgun,
+		/obj/item/clothing/gloves/black/bloodletter,
+		/obj/item/weapon/gun/energy/mouseray/metamorphosis
 		)
 
 	var/global/list/allocated_gamma = list()
@@ -69,18 +69,61 @@
 		var/mob/living/L = user
 		//They're in it, and want to get out.
 		if(L.loc == src)
-			var/choice = alert("Do you want to exit \the [src]?","Un-Hide?","Exit","Stay")
+			var/choice = tgui_alert(user, "Do you want to exit \the [src]?","Un-Hide?",list("Exit","Stay"))
 			if(choice == "Exit")
 				if(L == hider)
 					hider = null
 				L.forceMove(get_turf(src))
 		else if(!hider)
-			var/choice = alert("Do you want to hide in \the [src]?","Un-Hide?","Hide","Stay")
+			var/choice = tgui_alert(user, "Do you want to hide in \the [src]?","Un-Hide?",list("Hide","Stay"))
 			if(choice == "Hide" && !hider) //Check again because PROMPT
 				L.forceMove(src)
 				hider = L
 	else
 		return ..()
+
+/obj/structure/trash_pile/attack_ghost(mob/observer/user as mob)
+	if(config.disable_player_mice)
+		to_chat(user, "<span class='warning'>Spawning as a mouse is currently disabled.</span>")
+		return
+
+	//VOREStation Add Start
+	if(jobban_isbanned(user, "GhostRoles"))
+		to_chat(user, "<span class='warning'>You cannot become a mouse because you are banned from playing ghost roles.</span>")
+		return
+	//VOREStation Add End
+
+	if(!user.MayRespawn(1))
+		return
+
+	var/turf/T = get_turf(src)
+	if(!T || (T.z in using_map.admin_levels))
+		to_chat(user, "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>")
+		return
+
+	var/timedifference = world.time - user.client.time_died_as_mouse
+	if(user.client.time_died_as_mouse && timedifference <= mouse_respawn_time * 600)
+		var/timedifference_text
+		timedifference_text = time2text(mouse_respawn_time * 600 - timedifference,"mm:ss")
+		to_chat(user, "<span class='warning'>You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left.</span>")
+		return
+
+	var/response = tgui_alert(user, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?",list("Squeek!","Nope!"))
+	if(response != "Squeek!") return  //Hit the wrong key...again.
+
+	var/mob/living/simple_mob/animal/passive/mouse/host
+	host = new /mob/living/simple_mob/animal/passive/mouse(get_turf(src))
+
+	if(host)
+		if(config.uneducated_mice)
+			host.universal_understand = 0
+		announce_ghost_joinleave(src, 0, "They are now a mouse.")
+		host.ckey = user.ckey
+		to_chat(host, "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>")
+
+	var/atom/A = get_holder_at_turf_level(src)
+	A.visible_message("[host] crawls out of \the [src].")
+	return
 
 /obj/structure/trash_pile/attack_hand(mob/user)
 	//Human mob
@@ -138,10 +181,10 @@
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/laceup,
-					prob(4);/obj/item/clothing/shoes/leather,
+					prob(4);/obj/item/clothing/shoes/laceup/brown,
 					prob(4);/obj/item/clothing/suit/storage/hazardvest,
 					prob(4);/obj/item/clothing/under/color/grey,
-					prob(4);/obj/item/weapon/caution,
+					prob(4);/obj/item/clothing/suit/caution,
 					prob(4);/obj/item/weapon/cell,
 					prob(4);/obj/item/weapon/cell/device,
 					prob(4);/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
@@ -164,7 +207,7 @@
 					prob(3);/obj/item/device/pda,
 					prob(3);/obj/item/device/radio/headset,
 					prob(3);/obj/item/weapon/camera_assembly,
-					prob(3);/obj/item/weapon/caution/cone,
+					prob(3);/obj/item/clothing/head/cone,
 					prob(3);/obj/item/weapon/cell/high,
 					prob(3);/obj/item/weapon/spacecash/c10,
 					prob(3);/obj/item/weapon/spacecash/c20,
@@ -180,18 +223,30 @@
 					prob(2);/obj/item/clothing/shoes/galoshes,
 					prob(2);/obj/item/clothing/under/pants/camo,
 					prob(2);/obj/item/clothing/under/syndicate/tacticool,
+					prob(2);/obj/item/clothing/under/hyperfiber,
 					prob(2);/obj/item/device/camera,
 					prob(2);/obj/item/device/flashlight/flare,
 					prob(2);/obj/item/device/flashlight/glowstick,
 					prob(2);/obj/item/device/flashlight/glowstick/blue,
 					prob(2);/obj/item/weapon/card/emag_broken,
 					prob(2);/obj/item/weapon/cell/super,
-					prob(2);/obj/item/weapon/contraband/poster,
+					prob(2);/obj/item/poster,
 					prob(2);/obj/item/weapon/reagent_containers/glass/rag,
 					prob(2);/obj/item/weapon/storage/box/sinpockets,
 					prob(2);/obj/item/weapon/storage/secure/briefcase,
 					prob(2);/obj/item/clothing/under/fluff/latexmaid,
+					prob(2);/obj/item/toy/tennis,
+					prob(2);/obj/item/toy/tennis/red,
+					prob(2);/obj/item/toy/tennis/yellow,
+					prob(2);/obj/item/toy/tennis/green,
+					prob(2);/obj/item/toy/tennis/cyan,
+					prob(2);/obj/item/toy/tennis/blue,
+					prob(2);/obj/item/toy/tennis/purple,
+					prob(1);/obj/item/toy/baseball,
+					prob(1);/obj/item/weapon/storage/box/brainzsnax,
+					prob(1);/obj/item/weapon/storage/box/brainzsnax/red,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
+					prob(1);/obj/item/clothing/glasses/sunglasses/bigshot,
 					prob(1);/obj/item/clothing/glasses/welding,
 					prob(1);/obj/item/clothing/gloves/yellow,
 					prob(1);/obj/item/clothing/head/bio_hood/general,
@@ -207,7 +262,7 @@
 					prob(1);/obj/item/device/flashlight/glowstick/yellow,
 					prob(1);/obj/item/device/flashlight/pen,
 					prob(1);/obj/item/device/paicard,
-					prob(1);/obj/item/weapon/card/emag,
+					prob(1);/obj/item/clothing/accessory/permit/gun,
 					prob(1);/obj/item/clothing/mask/gas/voice,
 					prob(1);/obj/item/weapon/spacecash/c100,
 					prob(1);/obj/item/weapon/spacecash/c50,
@@ -224,15 +279,22 @@
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
 					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
 					prob(4);/obj/item/weapon/gun/energy/sizegun,
+					prob(4);/obj/item/device/slow_sizegun,
+					prob(4);/obj/item/clothing/accessory/collar/shock/bluespace,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,
+					prob(3);/obj/item/clothing/gloves/heavy_engineer,
 					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
 					prob(2);/obj/item/weapon/implanter/sizecontrol,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
 					prob(2);/obj/item/weapon/handcuffs/legcuffs/fuzzy,
 					prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 					prob(2);/obj/item/weapon/grenade/anti_photon,
+					prob(2);/obj/item/clothing/under/hyperfiber/bluespace,
+					prob(2);/obj/item/selectable_item/chemistrykit/size,
+					prob(2);/obj/item/selectable_item/chemistrykit/gender,
+					prob(2);/obj/item/clothing/gloves/bluespace/emagged,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(1);/obj/item/device/nif/bad,
 					prob(1);/obj/item/device/radio_jammer,
@@ -241,10 +303,17 @@
 					prob(1);/obj/item/weapon/beartrap,
 					prob(1);/obj/item/weapon/cell/hyper/empty,
 					prob(1);/obj/item/weapon/disk/nifsoft/compliance,
+					prob(1);/obj/item/weapon/implanter/compliance,
 					prob(1);/obj/item/weapon/material/knife/tacknife,
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
-					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+					prob(1);/obj/item/device/survivalcapsule/popcabin,
+					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
+					prob(1);/obj/item/capture_crystal,
+					prob(1);/obj/item/device/perfect_tele/one_beacon,
+					prob(1);/obj/item/clothing/gloves/bluespace,
+					prob(1);/obj/item/weapon/gun/energy/mouseray,
+					prob(1);/obj/item/clothing/accessory/collar/shock/bluespace/modified)
 
 	var/obj/item/I = new path()
 	return I
@@ -268,10 +337,12 @@
 
 /obj/structure/mob_spawner/mouse_nest
 	name = "trash"
-	desc = "A small heap of trash, perfect for mice to nest in."
+	desc = "A small heap of trash, perfect for mice and other pests to nest in."
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	spawn_types = list(/mob/living/simple_mob/animal/passive/mouse)
+	spawn_types = list(
+    /mob/living/simple_mob/animal/passive/mouse= 100,
+    /mob/living/simple_mob/animal/passive/cockroach = 25)
 	simultaneous_spawns = 1
 	destructible = 1
 	spawn_delay = 1 HOUR

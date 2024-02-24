@@ -93,7 +93,6 @@
 	desc = "A small box containing Yonra's personal effects"
 	has_items = list(
 		/obj/item/weapon/melee/fluff/holochain/mass,
-		/obj/item/weapon/implanter/reagent_generator/yonra,
 		/obj/item/clothing/accessory/medal/silver/unity)
 
 //ivymoomoo:Ivy Baladeva
@@ -101,13 +100,13 @@
 	name = "Ivy's Courier"
 	desc = "A bag resembling something used by college students. Contains items for ''MooMoo''."
 
-	New()
-		..()
-		new /obj/item/clothing/head/beretg(src)
-		new /obj/item/device/fluff/id_kit_ivy(src)
-		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
-		new /obj/item/weapon/storage/box/matches(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
+/obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo/New()
+	..()
+	new /obj/item/clothing/head/beretg(src)
+	new /obj/item/device/fluff/id_kit_ivy(src)
+	new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
+	new /obj/item/weapon/storage/box/matches(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -139,17 +138,18 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_state = "duffle_med"
 	slowdown = 0
+	can_tilt = 0
 
-	New()
-		..()
-		new /obj/item/clothing/accessory/holster/hip(src)
-		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
-		new /obj/item/clothing/head/caphat/formal/fedcover(src)
-		new /obj/item/clothing/suit/armor/det_suit(src)
-		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
-		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
-		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
-		new /obj/item/clothing/suit/space/fluff/joan(src)
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu/New()
+	..()
+	new /obj/item/clothing/accessory/holster/hip(src)
+	new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
+	new /obj/item/clothing/head/caphat/formal/fedcover(src)
+	new /obj/item/clothing/suit/armor/det_suit(src)
+	new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
+	new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
+	new /obj/item/clothing/head/helmet/space/fluff/joan(src)
+	new /obj/item/clothing/suit/space/fluff/joan(src)
 
 //joanrisu:Katarina Eine
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
@@ -157,14 +157,14 @@
 	desc = "A duffle bag Katarina uses to carry her tools."
 	slowdown = 0
 
-	New()
-		..()
-		new /obj/item/clothing/accessory/holster/hip(src)
-		new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
-		new /obj/item/clothing/suit/armor/det_suit(src)
-		new /obj/item/clothing/accessory/storage/black_vest(src)
-		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
-		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina/New()
+	..()
+	new /obj/item/clothing/accessory/holster/hip(src)
+	new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
+	new /obj/item/clothing/suit/armor/det_suit(src)
+	new /obj/item/clothing/accessory/storage/black_vest(src)
+	new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
+	new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
@@ -217,6 +217,24 @@
 		/obj/item/clothing/under/fluff/wolfgirl,
 		/obj/item/weapon/melee/fluffstuff/wolfgirlsword,
 		/obj/item/weapon/shield/fluff/wolfgirlshield)
+
+// Ryumi: Nikki Yumeno
+/obj/item/weapon/storage/box/fluff
+	name = "Nikki's Outfit Box"
+	desc = "Warning: Contains dangerous amounts of dork."
+	has_items = list(
+		/obj/item/weapon/rig/nikki,
+		/obj/item/clothing/head/fluff/nikki,
+		/obj/item/clothing/under/skirt/outfit/fluff/nikki,
+		/obj/item/clothing/shoes/fluff/nikki)
+
+// DefiintelyNotARock:Aku Zoles
+/obj/item/weapon/storage/secure/briefcase/dealer
+	name = "Aku's Dealer briefcase"
+	desc = "A slick black briefcase with a digital lock."
+	starts_with = list(
+		/obj/item/weapon/spacecasinocash/c1000 = 3,
+		/obj/item/weapon/storage/dicecup/loaded = 3)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
@@ -277,39 +295,51 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 	name = "Medical Swimsuit capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/medical)
 
+/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini
+	name = "Cow Bikini Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/cowbikini)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/stripperpink
+	name = "Skimpy Pink Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/stripper/stripper_pink)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/strippergreen
+	name = "Skimpy Green Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/stripper/stripper_green)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/mankini
+	name = "Pink Mankini capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/stripper/mankini)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/highclass
+	name = "High Class Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/highclass)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/risque
+	name = "Risque Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/risque)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/streamlined
+	name = "Streamlined Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/streamlined)
+
 //Monkey boxes for the new primals we have
 /obj/item/weapon/storage/box/monkeycubes/sobakacubes
 	name = "sobaka cube box"
 	desc = "Drymate brand sobaka cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/sobakacubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/sarucubes
 	name = "saru cube box"
 	desc = "Drymate brand saru cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/sarucubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sarucube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sarucube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/sparracubes
 	name = "sparra cube box"
 	desc = "Drymate brand sparra cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/sparracubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sparracube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sparracube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/wolpincubes
 	name = "wolpin cube box"
 	desc = "Drymate brand wolpin cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/wolpincubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube = 4)

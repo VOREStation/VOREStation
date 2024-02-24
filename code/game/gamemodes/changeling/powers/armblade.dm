@@ -54,7 +54,7 @@
 	icon_state = "arm_blade"
 	w_class = ITEMSIZE_HUGE
 	force = 5
-	anchored = 1
+	anchored = TRUE
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
@@ -88,11 +88,6 @@
 	creator = null
 	..()
 
-/obj/item/weapon/melee/changeling/suicide_act(mob/user)
-	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	user.visible_message("<span class='danger'>[user] is impaling [T.himself] with the [src.name]! It looks like [T.he] [T.is] trying to commit suicide.</span>")
-	return(BRUTELOSS)
-
 /obj/item/weapon/melee/changeling/process()  //Stolen from ninja swords.
 	if(!creator || loc != creator || !creator.item_is_in_hands(src))
 		// Tidy up a bit.
@@ -113,11 +108,11 @@
 /obj/item/weapon/melee/changeling/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/slash.ogg', 50, 1)
+		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
 		return 1
 	if(unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
 		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/slash.ogg', 50, 1)
+		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
 		return 1
 
 	return 0
@@ -138,8 +133,8 @@
 	icon_state = "arm_blade"
 	force = 40
 	armor_penetration = 15
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	pry = 1
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	defend_chance = 60
@@ -157,8 +152,8 @@
 	desc = "A grotesque claw made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon_state = "ling_claw"
 	force = 15
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	defend_chance = 50
 	projectile_parry_chance = 15

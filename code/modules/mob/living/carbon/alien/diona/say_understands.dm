@@ -1,6 +1,5 @@
-/mob/living/carbon/alien/diona/say_understands(var/mob/other,var/datum/language/speaking = null)
-
-	if (istype(other, /mob/living/carbon/human) && !speaking)
+/mob/living/carbon/alien/diona/say_understands(var/mob/other, var/datum/language/speaking = null)
+	if(ishuman(other) && !speaking)
 		if(languages.len >= 2) // They have sucked down some blood.
-			return 1
+			return TRUE
 	return ..()

@@ -6,7 +6,7 @@ var/datum/antagonist/thug/thugs
 	role_text = "Thug"
 	role_text_plural = "Thugs"
 	bantype = "renegade"
-	restricted_jobs = list("AI", "Cyborg")
+	avoid_silicons = TRUE
 	welcome_text = "Sometimes, people just need to get messed up. Luckily, that's what you're here to do."
 	antag_text = "You are a <b>minor</b> antagonist! Within the server rules, do whatever it is \
 		that you came to the station to do, be it violence, theft, or just extreme self-defense. \

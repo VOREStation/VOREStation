@@ -11,7 +11,9 @@ var/const/ENGINEER			=(1<<6)
 var/const/ATMOSTECH			=(1<<7)
 var/const/AI				=(1<<8)
 var/const/CYBORG			=(1<<9)
-var/const/INTERN			=(1<<15) //VOREStation Add
+var/const/CLOWN				=(1<<13)
+var/const/MIME				=(1<<14)
+var/const/INTERN			=(1<<15)
 
 var/const/MEDSCI			=(1<<1)
 
@@ -26,6 +28,10 @@ var/const/PSYCHIATRIST		=(1<<7)
 var/const/ROBOTICIST		=(1<<8)
 var/const/XENOBIOLOGIST		=(1<<9)
 var/const/PARAMEDIC			=(1<<10)
+var/const/PATHFINDER 		=(1<<11)
+var/const/EXPLORER 			=(1<<12)
+var/const/SAR 				=(1<<13)
+var/const/XENOBOTANIST		=(1<<14)
 
 var/const/CIVILIAN			=(1<<2)
 
@@ -42,95 +48,23 @@ var/const/LAWYER			=(1<<9)
 var/const/CHAPLAIN			=(1<<10)
 var/const/ASSISTANT			=(1<<11)
 var/const/BRIDGE			=(1<<12)
-var/const/CLOWN				=(1<<13) //VOREStation Add
-var/const/MIME				=(1<<14) //VOREStation Add
+var/const/PILOT 			=(1<<13)
+var/const/ENTERTAINER		=(1<<14)
+var/const/ENTREPRENEUR		=(1<<15)
 
-var/list/assistant_occupations = list(
-)
+//VOREStation Add
+var/const/TALON				=(1<<3)
 
-
-var/list/command_positions = list(
-	"Colony Director",
-	"Head of Personnel",
-	"Head of Security",
-	"Chief Engineer",
-	"Research Director",
-	"Chief Medical Officer",
-	"Command Secretary"
-)
-
-
-var/list/engineering_positions = list(
-	"Chief Engineer",
-	"Station Engineer",
-	"Atmospheric Technician",
-)
-
-
-var/list/medical_positions = list(
-	"Chief Medical Officer",
-	"Medical Doctor",
-	"Geneticist",
-	"Psychiatrist",
-	"Chemist",
-	"Paramedic"
-)
-
-
-var/list/science_positions = list(
-	"Research Director",
-	"Scientist",
-	"Geneticist",	//Part of both medical and science
-	"Roboticist",
-	"Xenobiologist"
-)
-
-//BS12 EDIT
-var/list/cargo_positions = list(
-	"Quartermaster",
-	"Cargo Technician",
-	"Shaft Miner"
-)
-
-var/list/civilian_positions = list(
-	"Head of Personnel",
-	"Bartender",
-	"Botanist",
-	"Chef",
-	"Janitor",
-	"Librarian",
-	"Lawyer",
-	"Chaplain",
-	USELESS_JOB, //VOREStation Edit - Visitor not Assistant
-	"Intern" //VOREStation Edit - Intern
-)
-
-
-var/list/security_positions = list(
-	"Head of Security",
-	"Warden",
-	"Detective",
-	"Security Officer"
-)
-
-
-var/list/planet_positions = list(
-	"Pathfinder", // VOREStation Edit - Added Pathfinder
-	"Explorer",
-	"Pilot",
-	"Field Medic"  // VOREStation Edit - Field Medic
-)
-
-
-var/list/nonhuman_positions = list(
-	"AI",
-	"Cyborg",
-	"pAI"
-)
-
+var/const/TALCAP			=(1<<0)
+var/const/TALPIL			=(1<<1)
+var/const/TALDOC			=(1<<2)
+var/const/TALSEC			=(1<<3)
+var/const/TALENG			=(1<<4)
+var/const/TALMIN			=(1<<5)
+//VOREStation Add End
 
 /proc/guest_jobbans(var/job)
-	return ((job in command_positions) || (job in nonhuman_positions) || (job in security_positions))
+	return ( (job in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY)) )
 
 /proc/get_job_datums()
 	var/list/occupations = list()

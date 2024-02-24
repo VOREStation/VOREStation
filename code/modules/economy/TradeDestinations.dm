@@ -11,7 +11,7 @@ var/list/weighted_mundaneevent_locations = list()
 	var/can_shuttle_here = 0		//one day crew from the station will be able to travel to this destination
 	var/list/viable_random_events = list()
 	var/list/temp_price_change[BIOMEDICAL]
-	var/list/viable_mundane_events = list()
+	var/mundane_probability = 0
 
 /datum/trade_destination/proc/get_custom_eventstring(var/event_type)
 	return null
@@ -24,7 +24,7 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(SECURITY_BREACH, CORPORATE_ATTACK, AI_LIBERATION)
-	viable_mundane_events = list(ELECTION, RESIGNATION, CELEBRITY_DEATH)
+	mundane_probability = 3
 
 /datum/trade_destination/nohio
 	name = "New Ohio"
@@ -33,7 +33,7 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(SECURITY_BREACH, CULT_CELL_REVEALED, BIOHAZARD_OUTBREAK, PIRATES, ALIEN_RAIDERS)
-	viable_mundane_events = list(RESEARCH_BREAKTHROUGH, RESEARCH_BREAKTHROUGH, BARGAINS, GOSSIP)
+	mundane_probability = 4
 
 /datum/trade_destination/sophia
 	name = "Sophia"
@@ -42,7 +42,7 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(INDUSTRIAL_ACCIDENT, PIRATES, CORPORATE_ATTACK)
-	viable_mundane_events = list(RESEARCH_BREAKTHROUGH, RESEARCH_BREAKTHROUGH)
+	mundane_probability = 2
 
 /datum/trade_destination/jade
 	name = "Jade"
@@ -51,7 +51,7 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(PIRATES, INDUSTRIAL_ACCIDENT)
-	viable_mundane_events = list(TOURISM)
+	mundane_probability = 1
 
 /datum/trade_destination/sif
 	name = "Sif"
@@ -60,7 +60,7 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(RIOTS, INDUSTRIAL_ACCIDENT, BIOHAZARD_OUTBREAK, CULT_CELL_REVEALED, FESTIVAL, MOURNING)
-	viable_mundane_events = list(BARGAINS, GOSSIP, SONG_DEBUT, MOVIE_RELEASE, ELECTION, TOURISM, RESIGNATION, CELEBRITY_DEATH)
+	mundane_probability = 8
 
 /datum/trade_destination/mars
 	name = "Mars"
@@ -69,7 +69,7 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(RIOTS, INDUSTRIAL_ACCIDENT, BIOHAZARD_OUTBREAK, CULT_CELL_REVEALED, FESTIVAL, MOURNING)
-	viable_mundane_events = list(ELECTION, TOURISM, RESIGNATION)
+	mundane_probability = 3
 
 /datum/trade_destination/nisp
 	name = "Nisp"
@@ -78,7 +78,7 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(WILD_ANIMAL_ATTACK, CULT_CELL_REVEALED, FESTIVAL, MOURNING, ANIMAL_RIGHTS_RAID, ALIEN_RAIDERS)
-	viable_mundane_events = list(ELECTION, TOURISM, BIG_GAME_HUNTERS, RESIGNATION)
+	mundane_probability = 4
 
 /datum/trade_destination/abelsrest
 	name = "Abel's Rest"
@@ -87,4 +87,4 @@ var/list/weighted_mundaneevent_locations = list()
 	willing_to_buy = list()
 	willing_to_sell = list()
 	viable_random_events = list(WILD_ANIMAL_ATTACK, CULT_CELL_REVEALED, FESTIVAL, MOURNING, ANIMAL_RIGHTS_RAID, ALIEN_RAIDERS)
-	viable_mundane_events = list(ELECTION, TOURISM, BIG_GAME_HUNTERS, RESIGNATION)
+	mundane_probability = 4

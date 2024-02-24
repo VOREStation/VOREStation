@@ -44,7 +44,7 @@
 			src.loc = null
 			user.put_in_hands(I)
 			user.visible_message("<span class='notice'>\A [I] appears in \the [user]'s hand!</span>")
-			log_and_message_admins("has stolen [I] with [src].")
+			add_attack_logs(user,I,"Stolen with [src]")
 			qdel(src)
 		//Now let's try to teleport a living mob.
 		else if(istype(hit_atom, /mob/living))

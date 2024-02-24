@@ -25,7 +25,10 @@
 	attacktext = list("bitten")
 	attack_sound = 'sound/weapons/bite.ogg'
 
+	organ_names = /decl/mob_organ_names/tree
+
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	meat_amount = 2
 
 	pixel_x = -16
 
@@ -38,6 +41,9 @@
 
 /mob/living/simple_mob/animal/space/tree/death()
 	..(null,"is hacked into pieces!")
-	playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
+	playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
 	new /obj/item/stack/material/wood(loc)
 	qdel(src)
+
+/decl/mob_organ_names/tree
+	hit_zones = list("trunk", "branches", "twigs")

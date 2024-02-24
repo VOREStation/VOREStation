@@ -5,6 +5,8 @@
 	var/gsr = 0
 	var/list/dna
 	var/used
+	drop_sound = 'sound/items/drop/glass.ogg'
+	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/forensics/swab/proc/is_used()
 	return used
@@ -90,7 +92,7 @@
 	else if(choices.len == 1)
 		choice = choices[1]
 	else
-		choice = input("What kind of evidence are you looking for?","Evidence Collection") as null|anything in choices
+		choice = tgui_input_list(usr, "What kind of evidence are you looking for?","Evidence Collection", choices)
 
 	if(!choice)
 		return

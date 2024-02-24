@@ -12,6 +12,7 @@
 	wait_if_pulled = 1
 	min_target_dist = 0
 
+	var/vocal = 1
 	var/amount = 10 // 1 for tile, 2 for lattice
 	var/maxAmount = 60
 	var/tilemake = 0 // When it reaches 100, bot makes a tile
@@ -29,28 +30,38 @@
 	else
 		icon_state = "floorbot[on]e"
 
-/mob/living/bot/floorbot/attack_hand(var/mob/user)
-	user.set_machine(src)
-	var/list/dat = list()
-	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];operation=start'>[src.on ? "On" : "Off"]</A><BR>"
-	dat += "Maintenance panel is [open ? "opened" : "closed"]<BR>"
-	dat += "Tiles left: [amount]<BR>"
-	dat += "Behvaiour controls are [locked ? "locked" : "unlocked"]<BR>"
+/mob/living/bot/floorbot/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Floorbot", name)
+		ui.open()
+
+/mob/living/bot/floorbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["on"] = on
+	data["open"] = open
+	data["locked"] = locked
+
+	data["vocal"] = vocal
+	data["amount"] = amount
+
+	data["possible_bmode"] = list("NORTH", "EAST", "SOUTH", "WEST")
+
+	data["improvefloors"] = null
+	data["eattiles"] = null
+	data["maketiles"] = null
+	data["bmode"] = null
+
 	if(!locked || issilicon(user))
-		dat += "Improves floors: <A href='?src=\ref[src];operation=improve'>[improvefloors ? "Yes" : "No"]</A><BR>"
-		dat += "Finds tiles: <A href='?src=\ref[src];operation=tiles'>[eattiles ? "Yes" : "No"]</A><BR>"
-		dat += "Make singles pieces of metal into tiles when empty: <A href='?src=\ref[src];operation=make'>[maketiles ? "Yes" : "No"]</A><BR>"
-		var/bmode
-		if(targetdirection)
-			bmode = dir2text(targetdirection)
-		else
-			bmode = "Disabled"
-		dat += "<BR><BR>Bridge Mode : <A href='?src=\ref[src];operation=bridgemode'>[bmode]</A><BR>"
-	var/datum/browser/popup = new(user, "autorepair", "Repairbot v1.1 controls")
-	popup.set_content(jointext(dat,null))
-	popup.open()
-	return
+		data["improvefloors"] = improvefloors
+		data["eattiles"] = eattiles
+		data["maketiles"] = maketiles
+		data["bmode"] = dir2text(targetdirection)
+	return data
+
+/mob/living/bot/floorbot/attack_hand(var/mob/user)
+	tgui_interact(user)
 
 /mob/living/bot/floorbot/emag_act(var/remaining_charges, var/mob/user)
 	. = ..()
@@ -58,41 +69,42 @@
 		emagged = 1
 		if(user)
 			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
-			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		return 1
 
-/mob/living/bot/floorbot/Topic(href, href_list)
+/mob/living/bot/floorbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	switch(href_list["operation"])
+		return TRUE
+
+	add_fingerprint(src)
+
+	switch(action)
 		if("start")
-			if (on)
+			if(on)
 				turn_off()
 			else
 				turn_on()
+			. = TRUE
+
+	if(locked && !issilicon(usr))
+		return
+
+	switch(action)
+		if("vocal")
+			vocal = !vocal
+			. = TRUE
 		if("improve")
 			improvefloors = !improvefloors
+			. = TRUE
 		if("tiles")
 			eattiles = !eattiles
+			. = TRUE
 		if("make")
 			maketiles = !maketiles
+			. = TRUE
 		if("bridgemode")
-			switch(targetdirection)
-				if(null)
-					targetdirection = 1
-				if(1)
-					targetdirection = 2
-				if(2)
-					targetdirection = 4
-				if(4)
-					targetdirection = 8
-				if(8)
-					targetdirection = null
-				else
-					targetdirection = null
-	attack_hand(usr)
+			targetdirection = text2dir(params["dir"])
+			. = TRUE
 
 /mob/living/bot/floorbot/handleRegular()
 	++tilemake
@@ -100,9 +112,9 @@
 		tilemake = 0
 		addTiles(1)
 
-	if(prob(1))
+	if(vocal && prob(1))
 		custom_emote(2, "makes an excited beeping sound!")
-		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 
 /mob/living/bot/floorbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
@@ -216,7 +228,7 @@
 			return
 		busy = 1
 		update_icons()
-		visible_message("<span class='notice'>\The [src] begins to repair the hole.</span>")
+		visible_message("<b>\The [src]</b> begins to repair the hole.")
 		if(do_after(src, 50))
 			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
 				var/obj/item/I
@@ -233,7 +245,7 @@
 		if(F.broken || F.burnt)
 			busy = 1
 			update_icons()
-			visible_message("<span class='notice'>\The [src] begins to remove the broken floor.</span>")
+			visible_message("<b>\The [src]</b> begins to remove the broken floor.")
 			if(do_after(src, 50, F))
 				if(F.broken || F.burnt)
 					F.make_plating()
@@ -243,7 +255,7 @@
 		else if(!F.flooring && amount)
 			busy = 1
 			update_icons()
-			visible_message("<span class='notice'>\The [src] begins to improve the floor.</span>")
+			visible_message("<b>\The [src]</b> begins to improve the floor.")
 			if(do_after(src, 50))
 				if(!F.flooring)
 					F.set_flooring(get_flooring_data(floor_build_type))
@@ -253,7 +265,7 @@
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
-		visible_message("<span class='notice'>\The [src] begins to collect tiles.</span>")
+		visible_message("<b>\The [src]</b> begins to collect tiles.")
 		busy = 1
 		update_icons()
 		if(do_after(src, 20))
@@ -266,8 +278,8 @@
 		update_icons()
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
-		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
-			visible_message("<span class='notice'>\The [src] begins to make tiles.</span>")
+		if(M.get_material_name() == MAT_STEEL)
+			visible_message("<b>\The [src]</b> begins to make tiles.")
 			busy = 1
 			update_icons()
 			if(do_after(50))
@@ -278,7 +290,7 @@
 /mob/living/bot/floorbot/explode()
 	turn_off()
 	visible_message("<span class='danger'>\The [src] blows apart!</span>")
-	playsound(src.loc, "sparks", 50, 1)
+	playsound(src, "sparks", 50, 1)
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/weapon/storage/toolbox/mechanical/N = new /obj/item/weapon/storage/toolbox/mechanical(Tsec)
@@ -286,12 +298,12 @@
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
-	var/obj/item/stack/tile/floor/T = new /obj/item/stack/tile/floor(Tsec)
-	T.amount = amount
+	new /obj/item/stack/tile/floor(Tsec, amount)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	//qdel(src)
+	return ..()
 
 /mob/living/bot/floorbot/proc/addTiles(var/am)
 	amount += am
@@ -370,7 +382,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if (istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)
@@ -400,7 +412,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

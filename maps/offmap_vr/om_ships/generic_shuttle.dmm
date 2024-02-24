@@ -1,0 +1,1206 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/gen)
+"ad" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/gen)
+"ae" = (
+/obj/structure/closet/walllocker/emerglocker/west,
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"af" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet,
+/obj/machinery/button/remote/blast_door{
+	id = "generic_dorm1_blast";
+	name = "Blast Doors Controls";
+	pixel_x = 24;
+	pixel_y = -28
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"ag" = (
+/obj/structure/closet/walllocker/emerglocker/west,
+/obj/machinery/button/remote/blast_door{
+	id = "generic_dorm2_blast";
+	name = "Blast Doors Controls";
+	pixel_x = -24;
+	pixel_y = -28
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"ah" = (
+/obj/structure/table/standard,
+/obj/machinery/recharger,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"ai" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"aj" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/button/remote/airlock{
+	id = "generic-dorm1-door";
+	name = "Room 1 Lock";
+	pixel_x = -6;
+	pixel_y = -26;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"ak" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	id = "generic-dorm2-door";
+	name = "Room 2 Lock";
+	pixel_x = 6;
+	pixel_y = -26;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"al" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"am" = (
+/obj/structure/table/standard,
+/obj/machinery/recharger,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"an" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock{
+	id_tag = "generic-dorm1-door"
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"ao" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock{
+	id_tag = "generic-dorm2-door"
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"ap" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aq" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"ar" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"as" = (
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"at" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"au" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"av" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"ax" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"ay" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"az" = (
+/obj/machinery/computer/ship/helm{
+	req_one_access = newlist()
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"aA" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"aB" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aD" = (
+/obj/structure/bed/chair/bay/chair,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aE" = (
+/obj/effect/floor_decal/steeldecal/steel_decals3,
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central6,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aF" = (
+/obj/machinery/computer/ship/sensors{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"aG" = (
+/obj/structure/bed/chair/bay/comfy/green{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/generic_shuttle/gen)
+"aH" = (
+/obj/machinery/computer/ship/engines{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"aI" = (
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aJ" = (
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aK" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/gen)
+"aL" = (
+/obj/item/modular_computer/tablet/preset/custom_loadout/standard,
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aM" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aN" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"aO" = (
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"aP" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/generic_shuttle/gen)
+"aQ" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aR" = (
+/obj/machinery/computer/shuttle_control/explore/generic_shuttle{
+	req_one_access = newlist()
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10,
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aS" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/gen)
+"aT" = (
+/obj/structure/bed/chair/bay/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aV" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aW" = (
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 1
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aX" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aY" = (
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"aZ" = (
+/obj/structure/bed/chair/bay/chair{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"ba" = (
+/obj/effect/floor_decal/steeldecal/steel_decals_central1,
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bc" = (
+/obj/effect/floor_decal/steeldecal/steel_decals_central5,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bd" = (
+/obj/effect/floor_decal/steeldecal/steel_decals_central7,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"be" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bf" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bg" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bh" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bi" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/gen)
+"bk" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/gen)
+"bm" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bn" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "generic_shuttle_docker";
+	name = "interior access button";
+	pixel_x = 28;
+	pixel_y = 26;
+	req_one_access = list(101)
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/shuttle/generic_shuttle/gen)
+"bo" = (
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/gen)
+"bp" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "generic_shuttle_docker";
+	pixel_y = 28
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/gen)
+"bq" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/airlock_sensor{
+	pixel_y = 28
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/generic_shuttle,
+/obj/effect/overmap/visitable/ship/landable/generic_shuttle,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/gen)
+"br" = (
+/obj/machinery/door/airlock/glass_external,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "generic_shuttle_docker";
+	name = "exterior access button";
+	pixel_x = 5;
+	pixel_y = -26;
+	req_one_access = list(101)
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/gen)
+"bs" = (
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/eng)
+"bt" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled{
+	icon_state = "monotile"
+	},
+/area/shuttle/generic_shuttle/eng)
+"bu" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable,
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/eng)
+"bv" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 6
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/toolbox/mechanical,
+/obj/fiftyspawner/steel,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bw" = (
+/obj/machinery/atmospherics/pipe/simple/visible/universal{
+	dir = 4
+	},
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bx" = (
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/visible/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"by" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 28
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bz" = (
+/obj/machinery/computer/ship/navigation/telescreen{
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bA" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bB" = (
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bC" = (
+/obj/machinery/atmospherics/binary/pump{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bD" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bE" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bF" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bG" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bH" = (
+/obj/structure/table/standard,
+/obj/machinery/cell_charger,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bI" = (
+/obj/structure/sign/atmos/air{
+	pixel_x = -32
+	},
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/steeldecal/monofloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/generic_shuttle/eng)
+"bJ" = (
+/obj/machinery/portable_atmospherics/canister/phoron,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bK" = (
+/obj/machinery/atmospherics/pipe/simple/visible/universal,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bL" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/metalfoam,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bM" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bN" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/structure/sign/atmos/phoron{
+	pixel_x = 32
+	},
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/effect/floor_decal/steeldecal/monofloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/generic_shuttle/eng)
+"bO" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/structure/sign/atmos/co2{
+	pixel_x = -32
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/generic_shuttle/eng)
+"bP" = (
+/obj/machinery/atmospherics/binary/pump{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bQ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bR" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow,
+/turf/simulated/floor/plating,
+/area/shuttle/generic_shuttle/eng)
+"bS" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/generic_shuttle/eng)
+"bT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 6
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/eng)
+"bU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 4
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/eng)
+"bV" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/eng)
+"bW" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/eng)
+"bX" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/generic_shuttle/eng)
+"dV" = (
+/obj/structure/fuel_port,
+/turf/simulated/wall/shull,
+/area/shuttle/generic_shuttle/eng)
+"gZ" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "generic_dorm2_blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/turf/template_noop,
+/area/shuttle/generic_shuttle/gen)
+"jV" = (
+/obj/machinery/shipsensors,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/shuttle/generic_shuttle/gen)
+"tg" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet,
+/turf/simulated/floor/wood,
+/area/shuttle/generic_shuttle/gen)
+"Ue" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "generic_dorm1_blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/turf/template_noop,
+/area/shuttle/generic_shuttle/gen)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+aK
+aK
+ab
+ab
+ab
+bs
+bs
+bs
+bs
+bs
+bs
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+ab
+ab
+ab
+ah
+ab
+ap
+aw
+aD
+aL
+aT
+aJ
+bf
+aJ
+bs
+bv
+bC
+bI
+bO
+bs
+bs
+aa
+"}
+(4,1,1) = {"
+aa
+Ue
+ad
+ae
+ai
+an
+aq
+ax
+aE
+aM
+aU
+ba
+bg
+aJ
+bs
+bw
+bD
+bJ
+bP
+bT
+bX
+aa
+"}
+(5,1,1) = {"
+aa
+Ue
+ad
+af
+aj
+ab
+ar
+ay
+aF
+aN
+aV
+bb
+bh
+bm
+bt
+bx
+bE
+bK
+bQ
+bU
+bs
+aa
+"}
+(6,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+as
+az
+aG
+aO
+aW
+bc
+bi
+bn
+bs
+by
+dV
+bs
+bM
+bV
+jV
+aa
+"}
+(7,1,1) = {"
+aa
+gZ
+ad
+ag
+ak
+ab
+at
+aA
+aH
+aP
+aX
+bd
+ab
+bo
+bs
+bz
+bF
+bL
+bP
+bU
+bs
+aa
+"}
+(8,1,1) = {"
+aa
+gZ
+ad
+tg
+al
+ao
+au
+aB
+aI
+aQ
+aY
+aY
+bj
+bp
+bs
+bA
+bG
+bM
+bR
+bW
+bX
+aa
+"}
+(9,1,1) = {"
+aa
+ab
+ab
+ab
+am
+ab
+av
+aC
+aJ
+aR
+aZ
+be
+bk
+bq
+bu
+bB
+bH
+bN
+bS
+bs
+bs
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+aS
+aS
+ab
+ab
+br
+bs
+bs
+bs
+bs
+bs
+bs
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

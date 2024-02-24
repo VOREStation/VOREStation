@@ -4,10 +4,10 @@
 #define UTILITY_SPELLS "Utility"
 #define SUPPORT_SPELLS "Support"
 
-var/list/all_technomancer_spells = typesof(/datum/technomancer/spell) - /datum/technomancer/spell
-var/list/all_technomancer_equipment = typesof(/datum/technomancer/equipment) - /datum/technomancer/equipment
-var/list/all_technomancer_consumables = typesof(/datum/technomancer/consumable) - /datum/technomancer/consumable
-var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) - /datum/technomancer/assistance
+var/list/all_technomancer_spells = subtypesof(/datum/technomancer/spell)
+var/list/all_technomancer_equipment = subtypesof(/datum/technomancer/equipment)
+var/list/all_technomancer_consumables = subtypesof(/datum/technomancer/consumable)
+var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance)
 
 /datum/technomancer
 	var/name = "technomancer thing"
@@ -25,7 +25,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 /obj/item/weapon/technomancer_catalog
 	name = "catalog"
 	desc = "A \"book\" featuring a holographic display, metal cover, and miniaturized teleportation device, allowing the user to \
-	requisition various things from.. where ever they came from."
+	requisition various things from... wherever they came from."
 	icon = 'icons/obj/storage.dmi'
 	icon_state ="scientology" //placeholder
 	w_class = ITEMSIZE_SMALL
@@ -40,6 +40,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	var/tab = 4 // Info tab, so new players can read it before doing anything.
 	var/spell_tab = ALL_SPELLS
 	var/show_scepter_text = 0
+	var/universal = FALSE //VOREStation Add - Allows non-technomancers to use this catalog
 
 /obj/item/weapon/technomancer_catalog/apprentice
 	name = "apprentice's catalog"
@@ -51,12 +52,22 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	budget = 2000
 	max_budget = 2000
 
+//VOREStation Add
+/obj/item/weapon/technomancer_catalog/universal
+	name = "universal catalog"
+	desc = "A catalog to be used with the KHI 'Universal Core', shamelessly \
+	copied by a Kitsuhana designer from some group of 'technomancers' or another.<br>\
+	The back of the book has <i>'Export Edition'</i> stamped on it."
+	budget = 700
+	max_budget = 700
+	universal = TRUE
+//VOREStation Add End
 
 // Proc: bind_to_owner()
 // Parameters: 1 (new_owner - mob that the book is trying to bind to)
 // Description: Links the catalog to hopefully the technomancer, so that only they can access it.
 /obj/item/weapon/technomancer_catalog/proc/bind_to_owner(var/mob/living/carbon/human/new_owner)
-	if(!owner && technomancers.is_antagonist(new_owner.mind))
+	if(!owner && (technomancers.is_antagonist(new_owner.mind) || universal)) //VOREStation Edit - Universal catalogs
 		owner = new_owner
 
 // Proc: New()
@@ -217,7 +228,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			to run out in a critical moment.  Besides waiting for your Core to recharge, you can buy certain functions which \
 			do something to generate energy.<br>"
 			dat += "<br>"
-			dat += "The second thing you need to know is that awesome power over the physical world has consquences, in the form \
+			dat += "The second thing you need to know is that awesome power over the physical world has consequences, in the form \
 			of <b>Instability</b>.  Instability is the result of your Core's energy being used to fuel it, and so little is \
 			understood about it, even among fellow Core owners, however it is almost always a bad thing to have.  Instability will \
 			'cling' to you as you use functions, with powerful functions creating lots of instability.  The effects of holding onto \
@@ -230,7 +241,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			purple colored lightning that appears around something with instability lingering on it.  High amounts of instability \
 			may cause the object afflicted with it to glow a dark purple, which is often known simply as <b>Glow</b>, which spreads \
 			the instability.  You should stay far away from anyone afflicted by Glow, as they will be a danger to both themselves and \
-			anything nearby.  Multiple sources of Glow can perpetuate the glow for a very long time if they are not seperated.<br>"
+			anything nearby.  Multiple sources of Glow can perpetuate the glow for a very long time if they are not separated.<br>"
 			dat += "<br>"
 			dat += "You should strive to keep you and your apprentices' cores secure.  To help with this, each core comes with a \
 			locking mechanism, which should make attempts at forceful removal by third parties (or you) futile, until it is \
@@ -374,4 +385,3 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 				qdel(AM)
 				return
 	to_chat(user, "<span class='warn'>\The [src] is unable to refund \the [AM].</span>")
-

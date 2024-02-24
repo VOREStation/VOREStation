@@ -4,7 +4,7 @@
 /client/can_vv_get(var_name)
 	return var_name != NAMEOF(src, feedback_form) // No snooping.
 
-GENERAL_PROTECT_DATUM(datum/managed_browser/feedback_form)
+GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 
 // A fairly simple object to hold information about a player's feedback as it's being written.
 // Having this be it's own object instead of being baked into /mob/new_player allows for it to be used
@@ -99,7 +99,7 @@ GENERAL_PROTECT_DATUM(datum/managed_browser/feedback_form)
 	if(href_list["feedback_edit_body"])
 		// This is deliberately not sanitized here, and is instead checked when hitting the submission button,
 		// as we want to give the user a chance to fix it without needing to rewrite the whole thing.
-		feedback_body = input(my_client, "Please write your feedback here.", "Feedback Body", feedback_body) as null|message
+		feedback_body = tgui_input_text(my_client, "Please write your feedback here.", "Feedback Body", feedback_body, multiline = TRUE, prevent_enter = TRUE)
 		display() // Refresh the window with new information.
 		return
 
@@ -112,7 +112,7 @@ GENERAL_PROTECT_DATUM(datum/managed_browser/feedback_form)
 		return
 
 	if(href_list["feedback_choose_topic"])
-		feedback_topic = input(my_client, "Choose the topic you want to submit your feedback under.", "Feedback Topic", feedback_topic) in config.sqlite_feedback_topics
+		feedback_topic = tgui_input_list(my_client, "Choose the topic you want to submit your feedback under.", "Feedback Topic", config.sqlite_feedback_topics)
 		display()
 		return
 
@@ -129,7 +129,7 @@ GENERAL_PROTECT_DATUM(datum/managed_browser/feedback_form)
 			to_chat(my_client, span("warning", "It appears you didn't write anything, or it was invalid."))
 			return
 
-		if(alert(my_client, "Are you sure you want to submit your feedback?", "Confirm Submission", "No", "Yes") == "Yes")
+		if(tgui_alert(my_client, "Are you sure you want to submit your feedback?", "Confirm Submission", list("No", "Yes")) == "Yes")
 			var/author_text = my_client.ckey
 			if(can_be_private() && feedback_hide_author)
 				author_text = md5(my_client.ckey + SSsqlite.get_feedback_pepper())

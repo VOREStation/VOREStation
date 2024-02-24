@@ -1,13 +1,8 @@
 /obj/structure/closet/secure_closet/medical1
 	name = "medicine closet"
 	desc = "Filled with medical junk."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_medical)
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/alt
 
 	starts_with = list(
 		/obj/item/weapon/storage/box/autoinjectors,
@@ -21,13 +16,8 @@
 /obj/structure/closet/secure_closet/medical2
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_surgery)
+	closet_appearance = /decl/closet_appearance/secure_closet/medical
 
 	starts_with = list(
 		/obj/item/weapon/tank/anesthetic = 3,
@@ -37,28 +27,26 @@
 /obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"
 	req_access = list(access_medical_equip)
-	icon_state = "securemed1"
-	icon_closed = "securemed"
-	icon_locked = "securemed1"
-	icon_opened = "securemedopen"
-	icon_broken = "securemedbroken"
-	icon_off = "securemedoff"
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
 		/obj/item/clothing/under/rank/nurse,
 		/obj/item/clothing/under/rank/orderly,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/shoes/white,
 		/obj/item/weapon/cartridge/medical,
 		/obj/item/device/radio/headset/headset_med,
 		/obj/item/device/radio/headset/headset_med/alt,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt,
 		/obj/item/clothing/shoes/boots/winter/medical,
 		/obj/item/clothing/under/rank/nursesuit,
 		/obj/item/clothing/head/nursehat,
-		/obj/item/weapon/storage/box/freezer = 3)
+		/obj/item/weapon/storage/box/freezer = 3,
+		/obj/item/weapon/storage/belt/medical) //VOREStation Add
 
 /obj/structure/closet/secure_closet/medical3/Initialize()
 	if(prob(50))
@@ -105,13 +93,8 @@
 /obj/structure/closet/secure_closet/paramedic
 	name = "paramedic locker"
 	desc = "Supplies for a first responder."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_medical_equip)
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/paramedic
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
@@ -123,6 +106,8 @@
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/suit/storage/toggle/labcoat/emt,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/para,
+		/obj/item/clothing/shoes/boots/winter/medical,
 		/obj/item/device/radio/headset/headset_med/alt,
 		/obj/item/weapon/cartridge/medical,
 		/obj/item/weapon/storage/briefcase/inflatable,
@@ -141,34 +126,39 @@
 /obj/structure/closet/secure_closet/CMO
 	name = "chief medical officer's locker"
 	req_access = list(access_cmo)
-	icon_state = "cmosecure1"
-	icon_closed = "cmosecure"
-	icon_locked = "cmosecure1"
-	icon_opened = "cmosecureopen"
-	icon_broken = "cmosecurebroken"
-	icon_off = "cmosecureoff"
+	closet_appearance = /decl/closet_appearance/secure_closet/cmo
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/chief_medical_officer,
 		/obj/item/clothing/under/rank/chief_medical_officer/skirt,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmo,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern/cmo,
 		/obj/item/weapon/cartridge/cmo,
 		/obj/item/clothing/gloves/sterile/latex,
-		/obj/item/clothing/shoes/brown	,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/clothing/under/rank/neo_cmo,
+		/obj/item/clothing/under/rank/neo_cmo_skirt,
+		/obj/item/clothing/under/rank/neo_cmo_turtle,
+		/obj/item/clothing/under/rank/neo_cmo_turtle_skirt,
+		/obj/item/clothing/under/rank/neo_cmo_gorka,
 		/obj/item/device/radio/headset/heads/cmo,
 		/obj/item/device/radio/headset/heads/cmo/alt,
 		/obj/item/device/flash,
 		/obj/item/weapon/reagent_containers/hypospray/vial,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/cmo,
 		/obj/item/clothing/shoes/boots/winter/medical,
+		/obj/item/clothing/head/beret/medical/cmo,
+		/obj/item/clothing/head/beret/medical/cmo/blue,
 		/obj/item/weapon/storage/box/freezer,
 		/obj/item/clothing/mask/gas,
 		/obj/item/taperoll/medical,
 		/obj/item/clothing/suit/bio_suit/cmo,
 		/obj/item/clothing/head/bio_hood/cmo,
 		/obj/item/clothing/shoes/white,
-		/obj/item/weapon/reagent_containers/glass/beaker/vial) //VOREStation Add
+		/obj/item/weapon/reagent_containers/glass/beaker/vial, //VOREStation Add
+		/obj/item/weapon/storage/belt/medical) //VOREStation Add
 
 /obj/structure/closet/secure_closet/CMO/Initialize()
 	if(prob(50))
@@ -208,13 +198,8 @@
 /obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_chemistry)
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/chemistry
 
 	starts_with = list(
 		/obj/item/weapon/storage/box/pillbottles = 2,
@@ -228,15 +213,13 @@
 
 
 /obj/structure/closet/secure_closet/psych
-	name = "psychiatric closet"
+	name = "psychiatric cabinet"
 	desc = "Store psychology tools and medicines in here."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_psychiatrist)
+	closet_appearance = /decl/closet_appearance/cabinet/secure
+
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/psych,
@@ -257,30 +240,14 @@
 /obj/structure/closet/secure_closet/medical_wall
 	name = "first aid closet"
 	desc = "It's a secure wall-mounted storage unit for first aid supplies."
-	icon_state = "medical_wall_locked"
-	icon_closed = "medical_wall_unlocked"
-	icon_locked = "medical_wall_locked"
-	icon_opened = "medical_wall_open"
-	icon_broken = "medical_wall_spark"
-	icon_off = "medical_wall_off"
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	wall_mounted = 1
+	store_mobs = 0
 	req_access = list(access_medical_equip)
-
-/obj/structure/closet/secure_closet/medical_wall/update_icon()
-	if(broken)
-		icon_state = icon_broken
-	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened
+	closet_appearance = /decl/closet_appearance/wall/medical
 
 /obj/structure/closet/secure_closet/medical_wall/pills
 	name = "pill cabinet"

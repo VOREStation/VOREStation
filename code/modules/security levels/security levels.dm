@@ -8,7 +8,7 @@
 //6 = code delta
 
 //config.alert_desc_blue_downto
-/var/datum/announcement/priority/security/security_announcement_up = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/misc/notice1.ogg'))
+/var/datum/announcement/priority/security/security_announcement_up = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/alert_levels/alert_raise.ogg'))
 /var/datum/announcement/priority/security/security_announcement_down = new(do_log = 0, do_newscast = 1)
 
 /proc/set_security_level(var/level)
@@ -60,16 +60,12 @@
 				security_level = SEC_LEVEL_BLUE
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
-					security_announcement_up.Announce("[config.alert_desc_red_upto]", "Attention! Code red!")
+					security_announcement_up.Announce("[config.alert_desc_red_upto]", "Attention! Code red!", new_sound = sound('sound/effects/alert_levels/red_alert.ogg', volume = 75))
 				else
 					security_announcement_down.Announce("[config.alert_desc_red_downto]", "Attention! Code red!")
 				security_level = SEC_LEVEL_RED
-				/*	- At the time of commit, setting status displays didn't work properly
-				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications,world)
-				if(CC)
-					CC.post_status("alert", "redalert")*/
 			if(SEC_LEVEL_DELTA)
-				security_announcement_up.Announce("[config.alert_desc_delta]", "Attention! Delta alert level reached!", new_sound = 'sound/effects/siren.ogg')
+				security_announcement_up.Announce("[config.alert_desc_delta]", "Attention! Delta alert level reached!", new_sound = 'sound/effects/alert_levels/deltaklaxon.ogg')
 				security_level = SEC_LEVEL_DELTA
 
 		var/newlevel = get_security_level()
@@ -78,13 +74,20 @@
 				FA.set_security_level(newlevel)
 		for(var/obj/machinery/status_display/FA in machines)
 			if(FA.z in using_map.contact_levels)
-				FA.display_alert(newlevel)
-				FA.mode = 3
+				FA.on_alert_changed(newlevel)
+		//VOREStation Add
+		for(var/obj/machinery/holoposter/HP as anything in GLOB.holoposters)
+			HP.update_icon()
+		//VOREStation Add End
 
 		if(level >= SEC_LEVEL_RED)
 			atc.reroute_traffic(yes = 1) // Tell them fuck off we're busy.
 		else
 			atc.reroute_traffic(yes = 0)
+
+		spawn()
+			SSnightshift.check_nightshift()
+
 		admin_chat_message(message = "Security level is now: [uppertext(get_security_level())]", color = "#CC2222") //VOREStation Add
 
 /proc/get_security_level()

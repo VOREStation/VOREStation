@@ -18,6 +18,22 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/clone_source = FALSE
 	var/mob/living/carbon/brain/brainmob = null
 	var/can_assist = TRUE
+	var/defib_timer = -1
+
+/obj/item/organ/internal/brain/process()
+	..()
+	if(owner && owner.stat != DEAD) // So there's a lower risk of ticking twice.
+		tick_defib_timer()
+
+// This is called by `process()` when the owner is alive, or brain is not in a body, and by `Life()` directly when dead.
+/obj/item/organ/internal/brain/proc/tick_defib_timer()
+	if(preserved) // In an MMI/ice box/etc.
+		return
+
+	if(!owner || owner.stat == DEAD)
+		defib_timer = max(--defib_timer, 0)
+	else
+		defib_timer = min(++defib_timer, (config.defib_timer MINUTES) / 20)		// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 
 /obj/item/organ/internal/brain/proc/can_assist()
 	return can_assist
@@ -65,9 +81,13 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health
+	defib_timer = (config.defib_timer MINUTES) / 20				// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 	spawn(5)
-		if(brainmob && brainmob.client)
-			brainmob.client.screen.len = null //clear the hud
+		if(brainmob)
+			butcherable = FALSE
+
+			if(brainmob.client)
+				brainmob.client.screen.len = null //clear the hud
 
 /obj/item/organ/internal/brain/Destroy()
 	QDEL_NULL(brainmob)
@@ -79,8 +99,13 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		brainmob = new(src)
 		brainmob.name = H.real_name
 		brainmob.real_name = H.real_name
-		brainmob.dna = H.dna.Clone()
-		brainmob.timeofhostdeath = H.timeofdeath
+
+		if(istype(H))
+			brainmob.dna = H.dna.Clone()
+			brainmob.timeofhostdeath = H.timeofdeath
+			brainmob.ooc_notes = H.ooc_notes //VOREStation Edit
+			brainmob.ooc_notes_likes = H.ooc_notes_likes
+			brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)
@@ -96,25 +121,26 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
-	..(user)
+	. = ..()
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		to_chat(user, "You can feel the small spark of life still left in this one.")
+		. += "You can feel the small spark of life still left in this one."
 	else
-		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
+		. += "This one seems particularly lifeless. Perhaps it will regain some of its luster later..."
 
 /obj/item/organ/internal/brain/removed(var/mob/living/user)
 
 	if(name == initial(name))
 		name = "\the [owner.real_name]'s [initial(name)]"
 
-	var/mob/living/simple_mob/animal/borer/borer = owner.has_brain_worms()
+	var/mob/living/simple_mob/animal/borer/borer = owner?.has_brain_worms()
 
 	if(borer)
 		borer.detatch() //Should remove borer if the brain is removed - RR
 
 	var/obj/item/organ/internal/brain/B = src
-	if(istype(B) && istype(owner))
-		B.transfer_identity(owner)
+	if(istype(B) && owner)
+		if(istype(owner, /mob/living/carbon))
+			B.transfer_identity(owner)
 
 	..()
 
@@ -161,6 +187,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	parent_organ = BP_TORSO
 	clone_source = TRUE
 	flags = OPENCONTAINER
+	var/list/owner_flavor_text = list()
 
 /obj/item/organ/internal/brain/slime/is_open_container()
 	return 1
@@ -174,6 +201,11 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			H = owner
 			color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
 
+/obj/item/organ/internal/brain/slime/removed(var/mob/living/user)
+	if(istype(owner))
+		owner_flavor_text = owner.flavor_texts.Copy()
+	..()
+
 /obj/item/organ/internal/brain/slime/proc/reviveBody()
 	var/datum/dna2/record/R = new /datum/dna2/record()
 	R.dna = brainmob.dna
@@ -183,6 +215,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = brainmob.languages
 	R.flavor = list()
+	if(islist(owner_flavor_text))
+		R.flavor = owner_flavor_text.Copy()
 	for(var/datum/modifier/mod in brainmob.modifiers)
 		if(mod.flags & MODIFIER_GENETIC)
 			R.genetic_modifiers.Add(mod.type)
@@ -205,7 +239,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 					return 0
 
 	for(var/modifier_type in R.genetic_modifiers)	//Can't be revived. Probably won't happen...?
-		if(istype(modifier_type, /datum/modifier/no_clone))
+		if(ispath(modifier_type, /datum/modifier/no_clone))
 			return 0
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(get_turf(src), R.dna.species)
@@ -221,6 +255,9 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(!R.dna.real_name)	//to prevent null names
 		R.dna.real_name = "promethean ([rand(0,999)])"
 	H.real_name = R.dna.real_name
+	H.ooc_notes = brainmob.ooc_notes // VOREStation Edit
+	H.ooc_notes_likes = brainmob.ooc_notes_likes
+	H.ooc_notes_dislikes = brainmob.ooc_notes_dislikes
 
 	H.nutrition = 260 //Enough to try to regenerate ONCE.
 	H.adjustBruteLoss(40)
@@ -243,19 +280,19 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	qdel(src)
 	return 1
 
-/datum/chemical_reaction/promethean_brain_revival
+/decl/chemical_reaction/instant/promethean_brain_revival
 	name = "Promethean Revival"
 	id = "prom_revival"
 	result = null
 	required_reagents = list("phoron" = 40)
 	result_amount = 1
 
-/datum/chemical_reaction/promethean_brain_revival/can_happen(var/datum/reagents/holder)
+/decl/chemical_reaction/instant/promethean_brain_revival/can_happen(var/datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/organ/internal/brain/slime))
 		return ..()
 	return FALSE
 
-/datum/chemical_reaction/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
+/decl/chemical_reaction/instant/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
 	var/obj/item/organ/internal/brain/slime/brain = holder.my_atom
 	if(brain.reviveBody())
 		brain.visible_message("<span class='notice'>[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!</span>")

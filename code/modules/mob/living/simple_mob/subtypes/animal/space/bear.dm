@@ -12,7 +12,7 @@
 	maxHealth = 125
 	health = 125
 
-	movement_cooldown = 0.5 SECONDS
+	movement_cooldown = -1
 
 	melee_damage_lower = 15
 	melee_damage_upper = 35
@@ -23,6 +23,7 @@
 	attacktext = list("mauled")
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
+	meat_amount = 8
 
 	say_list_type = /datum/say_list/bear
 

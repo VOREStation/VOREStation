@@ -24,11 +24,19 @@
 
 //Options for vchat
 var vchat_opts = {
-	crush_messages: 3, //How many messages back should we try to combine if crushing is on
-	pingThisOften: 10000, //ms
-	pingDropsAllowed: 2,
-	cookiePrefix: "vst-" //If you're another server, you can change this if you want.
+	msBeforeDropped: 30000, //No ping for this long, and the server must be gone
+	cookiePrefix: "vst-", //If you're another server, you can change this if you want.
+	alwaysShow: ["vc_looc", "vc_system"], //Categories to always display on every tab
+	vchatTabsVer: 1.0 //Version of vchat tabs save 'file'
 };
+
+/***********
+* If you are changing either tabBackgroundColor in dark or lightmode,
+* lease keep this synchronized with code\modules\examine\examine.dm
+* I cannot think of a elegant way to ensure it tracks these settings properly.
+* As long as LIGHTMODE stays as "none", stuff should not break.
+* Thank you!
+************/
 
 var DARKMODE_COLORS = {
 	buttonBgColor: "#40628a",
@@ -75,11 +83,8 @@ var vchat_state = {
 	byond_ckey: null,
 
 	//Ping status
-	lastPingAttempt: 0,
-	lastPingReply: 0,
-	missedPings: 0,
-	latency: 0,
-	reconnecting: false,
+	lastPingReceived: 0,
+	latency_sent: 0,
 
 	//Last ID
 	lastId: 0
@@ -92,15 +97,15 @@ function start_vchat() {
 	//Inform byond we're done
 	vchat_state.ready = true;
 	push_Topic('done_loading');
+	push_Topic_showingnum(this.showingnum);
 
 	//I'll do my own winsets
 	doWinset("htmloutput", {"is-visible": true});
 	doWinset("oldoutput", {"is-visible": false});
 	doWinset("chatloadlabel", {"is-visible": false});
-	
+
 	//Commence the pingening
-	send_ping();
-	setInterval(send_ping, vchat_opts.pingThisOften);
+	setInterval(check_ping, vchat_opts.msBeforeDropped);
 
 	//For fun
 	send_debug("VChat Loaded!");
@@ -115,65 +120,91 @@ function start_vue() {
 		el: '#app',
 		data: {
 			messages: [], //List o messages from byond
+			shown_messages: [], //Used on filtered tabs, but not "Main" because it has 0len categories list, which bypasses filtering for speed
+			unshown_messages: 0, //How many messages in archive would be shown but aren't
+			archived_messages: [], //Too old to show
 			tabs: [ //Our tabs
-				{name: "Main", classes: ["vc_showall"], immutable: true, active: true}
+				{name: "Main", categories: [], immutable: true, active: true}
 			],
-			always_show: ["vc_looc", "vc_system"], //Classes to always display on every tab
 			unread_messages: {}, //Message categories that haven't been looked at since we got one of them
 			editing: false, //If we're in settings edit mode
 			paused: false, //Autoscrolling
 			latency: 0, //Not necessarily network latency, since the game server has to align the responses into ticks
+			reconnecting: false, //If we've lost our connection
 			ext_styles: "", //Styles for chat downloaded files
 			is_admin: false,
 
 			//Settings
 			inverted: false, //Dark mode
-			crushing: true, //Combine similar messages
+			crushing: 3, //Combine similar messages
+			animated: false, //Small CSS animations for new messages
+			fontsize: 0.9, //Font size nudging
+			lineheight: 130,
 			showingnum: 200, //How many messages to show
-			animated: true, //Small CSS animations for new messages
-			fontsize: "zoom_normal", //Font size nudging
 
-			//The table to map game css classes to our vchat classes
+			//The table to map game css classes to our vchat categories
 			type_table: [
 				{
-					matches: ".say, .emote",
+					matches: ".filter_say, .say, .emote, .emotesubtle", //VOREStation Edit
 					becomes: "vc_localchat",
 					pretty: "Local Chat",
+					tooltip: "In-character local messages (say, emote, etc)",
 					required: false,
 					admin: false
 				},
 				{
-					matches: ".alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
+					matches: ".filter_radio, .alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
 					becomes: "vc_radio",
 					pretty: "Radio Comms",
+					tooltip: "All departments of radio messages",
 					required: false,
 					admin: false
 				},
 				{
-					matches: ".notice, .adminnotice, .info, .sinister, .cult",
+					matches: ".filter_notice, .notice:not(.pm), .adminnotice, .info, .sinister, .cult",
 					becomes: "vc_info",
 					pretty: "Notices",
+					tooltip: "Non-urgent messages from the game and items",
 					required: false,
 					admin: false
 				},
 				{
-					matches: ".critical, .danger, .userdanger, .warning, .italics",
+					matches: ".filter_warning, .warning:not(.pm), .critical, .userdanger, .italics",
 					becomes: "vc_warnings",
 					pretty: "Warnings",
+					tooltip: "Urgent messages from the game and items",
 					required: false,
 					admin: false
 				},
 				{
-					matches: ".deadsay",
+					matches: ".valert, .vwarning, .vnotice, .vdanger",
+					becomes: "vc_vore_message",
+					pretty: "Vore Messages",
+					tooltip: "Vore Messages",
+					required: false,
+					admin: false
+				},
+				{
+					matches: ".filter_deadsay, .deadsay",
 					becomes: "vc_deadchat",
 					pretty: "Deadchat",
+					tooltip: "All of deadchat",
 					required: false,
 					admin: false
 				},
 				{
-					matches: ".ooc:not(.looc)",
+					matches: ".filter_pray",
+					becomes: "vc_pray",
+					pretty: "Pray",
+					tooltip: "Prayer messages",
+					required: false,
+					admin: false
+				},
+				{
+					matches: ".ooc, .filter_ooc",
 					becomes: "vc_globalooc",
 					pretty: "Global OOC",
+					tooltip: "The bluewall of global OOC messages",
 					required: false,
 					admin: false
 				},
@@ -182,73 +213,122 @@ function start_vue() {
 					matches: ".nif",
 					becomes: "vc_nif",
 					pretty: "NIF Messages",
+					tooltip: "Messages from the NIF itself and people inside",
+					required: false,
+					admin: false
+				},
+				{
+					matches: ".psay, .pemote",
+					becomes: "vc_pmessage",
+					pretty: "Pred/Prey Messages",
+					tooltip: "Messages from / to absorbed or dominated prey",
 					required: false,
 					admin: false
 				},
 				//VOREStation Add End
 				{
-					matches: ".pm",
-					becomes: "vc_adminpm",
-					pretty: "Admin PMs",
+					matches: ".mentor_channel, .mentor",
+					becomes: "vc_mentor",
+					pretty: "Mentor messages",
+					tooltip: "Mentorchat and mentor pms",
 					required: false,
 					admin: false
 				},
 				{
-					matches: ".admin_channel",
+					matches: ".filter_pm, .pm",
+					becomes: "vc_adminpm",
+					pretty: "Admin PMs",
+					tooltip: "Messages to/from admins ('adminhelps')",
+					required: false,
+					admin: false
+				},
+				{
+					matches: ".filter_ASAY, .admin_channel",
 					becomes: "vc_adminchat",
 					pretty: "Admin Chat",
+					tooltip: "ASAY messages",
 					required: false,
 					admin: true
 				},
 				{
-					matches: ".mod_channel",
+					matches: ".filter_MSAY, .mod_channel",
 					becomes: "vc_modchat",
 					pretty: "Mod Chat",
+					tooltip: "MSAY messages",
 					required: false,
 					admin: true
 				},
 				{
-					matches: ".event_channel",
+					matches: ".filter_ESAY, .event_channel",
 					becomes: "vc_eventchat",
 					pretty: "Event Chat",
+					tooltip: "ESAY messages",
 					required: false,
 					admin: true
 				},
 				{
-					matches: ".ooc.looc, .ooc .looc", //Dumb game
+					matches: ".filter_combat, .danger",
+					becomes: "vc_combat",
+					pretty: "Combat Logs",
+					tooltip: "Urist McTraitor has stabbed you with a knife!",
+					required: false,
+					admin: false
+				},
+				{
+					matches: ".filter_adminlogs, .log_message",
+					becomes: "vc_adminlogs",
+					pretty: "Admin Logs",
+					tooltip: "ADMIN LOG: Urist McAdmin has jumped to coordinates X, Y, Z",
+					required: false,
+					admin: true
+				},
+				{
+					matches: ".filter_attacklogs",
+					becomes: "vc_attacklogs",
+					pretty: "Attack Logs",
+					tooltip: "Urist McTraitor has shot John Doe",
+					required: false,
+					admin: true
+				},
+				{
+					matches: ".filter_debuglogs",
+					becomes: "vc_debuglogs",
+					pretty: "Debug Logs",
+					tooltip: "DEBUG: SSPlanets subsystem Recover().",
+					required: false,
+					admin: true
+				},
+				{
+					matches: ".looc",
 					becomes: "vc_looc",
 					pretty: "Local OOC",
+					tooltip: "Local OOC messages, always enabled",
 					required: true
 				},
 				{
-					matches: ".boldannounce",
+					matches: ".rlooc",
+					becomes: "vc_rlooc",
+					pretty: "Remote LOOC",
+					tooltip: "Remote LOOC messages",
+					required: false,
+					admin: true
+				},
+				{
+					matches: ".boldannounce, .filter_system",
 					becomes: "vc_system",
 					pretty: "System Messages",
+					tooltip: "Messages from your client, always enabled",
 					required: true
+				},
+				{
+					matches: ".unsorted",
+					becomes: "vc_unsorted",
+					pretty: "Unsorted",
+					tooltip: "Messages that don't have any filters.",
+					required: false,
+					admin: false
 				}
 			],
-		},
-		created: function() {
-			/*Dog mode
-			setTimeout(function(){
-				document.body.className += " woof";
-			},5000);
-			*/
-			/* Stress test
-			var varthis = this;
-			setInterval( function() {
-				if(varthis.messages.length > 10000) {
-					return;
-				}
-				var stringymessages = JSON.stringify(varthis.messages);
-				var unstringy = JSON.parse(stringymessages);
-				unstringy.forEach( function(message) {
-					message.id = ++vchat_state.lastId;
-					varthis.messages.push(message);	
-				});
-				varthis.internal_message("Now have " + varthis.messages.length + " messages in array.");
-			}, 10000);
-			*/
 		},
 		mounted: function() {
 			//Load our settings
@@ -267,6 +347,13 @@ function start_vue() {
 			}
 		},
 		watch: {
+			reconnecting: function(newSetting, oldSetting) {
+				if(newSetting == true && oldSetting == false) {
+					this.internal_message("Your client has lost connection to the server, or there is severe lag. Your client will reconnect if possible.");
+				} else if (newSetting == false && oldSetting == true) {
+					this.internal_message("Your client has reconnected to the server.");
+				}
+			},
 			//Save the inverted setting to LS
 			inverted: function (newSetting) {
 				set_storage("darkmode",newSetting);
@@ -277,29 +364,58 @@ function start_vue() {
 					document.body.classList.remove("inverted");
 					switch_ui_mode(LIGHTMODE_COLORS);
 				}
-			}, 
+			},
 			crushing: function (newSetting) {
 				set_storage("crushing",newSetting);
 			},
 			animated: function (newSetting) {
 				set_storage("animated",newSetting);
 			},
-			fontsize: function (newSetting) {
+			fontsize: function (newSetting, oldSetting) {
+				if(isNaN(newSetting)) { //Numbers only
+					this.fontsize = oldSetting;
+					return;
+				}
+				if(newSetting < 0.2) {
+					this.fontsize = 0.2;
+				} else if(newSetting > 5) {
+					this.fontsize = 5;
+				}
 				set_storage("fontsize",newSetting);
 			},
+			lineheight: function (newSetting, oldSetting) {
+				if(!isFinite(newSetting)) { //Integers only
+					this.lineheight = oldSetting;
+					return;
+				}
+				if(newSetting < 100) {
+					this.lineheight = 100;
+				} else if(newSetting > 200) {
+					this.lineheight = 200;
+				}
+				set_storage("lineheight",newSetting);
+			},
 			showingnum: function (newSetting, oldSetting) {
-				if(!isFinite(newSetting)) {
+				if(!isFinite(newSetting)) { //Integers only
 					this.showingnum = oldSetting;
 					return;
 				}
-				
+
 				newSetting = Math.floor(newSetting);
-				if(newSetting <= 50) {
+				if(newSetting < 50) {
 					this.showingnum = 50;
 				} else if(newSetting > 2000) {
 					this.showingnum = 2000;
 				}
+
 				set_storage("showingnum",this.showingnum);
+				push_Topic_showingnum(this.showingnum); // Send the buffer length back to byond so we have it in case of reconnect
+				this.attempt_archive();
+			},
+			current_categories: function(newSetting, oldSetting) {
+				if(newSetting.length) {
+					this.apply_filter(newSetting);
+				}
 			}
 		},
 		computed: {
@@ -311,27 +427,23 @@ function start_vue() {
 				});
 				return tab;
 			},
-			//Which classes does the active tab need?
-			active_classes: function() {
-				let classarray = this.active_tab.classes;
-				let classtext = classarray.toString(); //Convert to a string
-				let classproper = classtext.replace(/,/g," ");
-				if(this.inverted) classproper += " inverted";
-				return classproper; //Swap commas for spaces
-			},
 			//What color does the latency pip get?
 			ping_classes: function() {
-				if(this.latency === 0) { return "grey"; }
+				if(!this.latency) {
+					return this.reconnecting ? "red" : "green"; //Standard
+				}
+
+				if (this.latency == "?") { return "grey"; } //Waiting for latency test reply
 				else if(this.latency < 0 ) {return "red"; }
 				else if(this.latency <= 200) { return "green"; }
 				else if(this.latency <= 400) { return "yellow"; }
-				else { return "red"; }
+				else { return "grey"; }
 			},
-			shown_messages: function() {
-				if(this.messages.length <= this.showingnum) {
-					return this.messages;
+			current_categories: function() {
+				if(this.active_tab == this.tabs[0]) {
+					return []; //Everything, no filtering, special case for speed.
 				} else {
-					return this.messages.slice(-1*this.showingnum);
+					return this.active_tab.categories.concat(vchat_opts.alwaysShow);
 				}
 			}
 		},
@@ -339,10 +451,58 @@ function start_vue() {
 			//Load the chat settings
 			load_settings: function() {
 				this.inverted = get_storage("darkmode", false);
-				this.crushing = get_storage("crushing", true);
+				this.crushing = get_storage("crushing", 3);
+				this.animated = get_storage("animated", false);
+				this.fontsize = get_storage("fontsize", 0.9);
+				this.lineheight = get_storage("lineheight", 130);
 				this.showingnum = get_storage("showingnum", 200);
-				this.animated = get_storage("animated", true);
-				this.fontsize = get_storage("fontsize", 'zoom_normal');
+
+				if(isNaN(this.crushing)){this.crushing = 3;} //This used to be a bool (03-02-2020)
+				if(isNaN(this.fontsize)){this.fontsize = 0.9;} //This used to be a string (03-02-2020)
+
+				this.load_tabs();
+			},
+			load_tabs: function() {
+				var loadstring = get_storage("tabs")
+				if(!loadstring)
+					return;
+				var loadfile = JSON.parse(loadstring);
+				//Malformed somehow.
+				if(!loadfile.version || !loadfile.tabs) {
+					this.internal_message("There was a problem loading your tabs. Any new ones you make will be saved, however.");
+					return;
+				}
+				//Version is old? Sorry.
+				if(!loadfile.version == vchat_opts.vchatTabsVer) {
+					this.internal_message("Your saved tabs are for an older version of VChat and must be recreated, sorry.");
+					return;
+				}
+
+				this.tabs.push.apply(this.tabs, loadfile.tabs);
+			},
+			save_tabs: function() {
+				var savefile = {
+					version: vchat_opts.vchatTabsVer,
+					tabs: []
+				}
+
+				//The tabs contain a bunch of vue stuff that gets funky when you try to serialize it with stringify, so we 'purify' it
+				this.tabs.forEach(function(tab){
+					if(tab.immutable)
+						return;
+
+					var name = tab.name;
+
+					var categories = [];
+					tab.categories.forEach(function(category){categories.push(category);});
+
+					var cleantab = {name: name, categories: categories, immutable: false, active: false}
+
+					savefile.tabs.push(cleantab);
+				});
+
+				var savestring = JSON.stringify(savefile);
+				set_storage("tabs", savestring);
 			},
 			//Change to another tab
 			switchtab: function(tab) {
@@ -350,13 +510,16 @@ function start_vue() {
 				this.active_tab.active = false;
 				tab.active = true;
 
-				tab.classes.forEach( function(cls) {
+				tab.categories.forEach( function(cls) {
 					this.unread_messages[cls] = 0;
 				}, this);
+
+				this.apply_filter(this.current_categories);
 			},
 			//Toggle edit mode
 			editmode: function() {
 				this.editing = !this.editing;
+				this.save_tabs();
 			},
 			//Toggle autoscroll
 			pause: function() {
@@ -366,7 +529,7 @@ function start_vue() {
 			newtab: function() {
 				this.tabs.push({
 					name: "New Tab",
-					classes: this.always_show.slice(),
+					categories: [],
 					immutable: false,
 					active: false
 				});
@@ -406,17 +569,17 @@ function start_vue() {
 			tab_unread_count: function(tab) {
 				var unreads = 0;
 				var thisum = this.unread_messages;
-				tab.classes.find( function(cls){
+				tab.categories.find( function(cls){
 					if(thisum[cls]) {
 						unreads += thisum[cls];
 					}
 				});
 				return unreads;
 			},
-			tab_unread_classes: function(tab) {
+			tab_unread_categories: function(tab) {
 				var unreads = false;
 				var thisum = this.unread_messages;
-				tab.classes.find( function(cls){
+				tab.categories.find( function(cls){
 					if(thisum[cls]) {
 						unreads = true;
 						return true;
@@ -424,6 +587,39 @@ function start_vue() {
 				});
 
 				return { red: unreads, grey: !unreads};
+			},
+			attempt_archive: function() {
+				var wiggle = 20; //Wiggle room to prevent hysterisis effects. Slice off 20 at a time.
+				//Pushing out old messages
+				if(this.messages.length > this.showingnum) {//Time to slice off old messages
+					var too_old = this.messages.splice(0,wiggle); //We do a few at a time to avoid doing it too often
+					Array.prototype.push.apply(this.archived_messages, too_old); //ES6 adds spread operator. I'd use it if I could.
+				}/*
+				//Pulling back old messages
+				} else if(this.messages.length < (this.showingnum - wiggle)) { //Sigh, repopulate old messages
+					var too_new = this.archived_messages.splice(this.messages.length - (this.showingnum - wiggle));
+					Array.prototype.shift.apply(this.messages, too_new);
+				}
+				*/
+			},
+			apply_filter: function(cat_array) {
+				//Clean up the array
+				this.shown_messages.splice(0);
+				this.unshown_messages = 0;
+
+				//For each message, try to find it's category in the categories we're showing
+				this.messages.forEach( function(msg){
+					if(cat_array.indexOf(msg.category) > -1) { //Returns the position in the array, and -1 for not found
+						this.shown_messages.push(msg);
+					}
+				}, this);
+
+				//For each message, try to find it's category in the categories we're showing
+				this.archived_messages.forEach( function(msg){
+					if(cat_array.indexOf(msg.category) > -1) { //Returns the position in the array, and -1 for not found
+						this.unshown_messages++;
+					}
+				}, this);
 			},
 			//Push a new message into our array
 			add_message: function(message) {
@@ -434,18 +630,18 @@ function start_vue() {
 					content: message.message,
 					repeats: 1
 				};
+
 				//Get a category
 				newmessage.category = this.get_category(newmessage.content);
-				if(!this.active_tab.classes.some(function(cls) { return (cls == newmessage.category || cls == "vc_showall"); })) {
-					if (isNaN(this.unread_messages[newmessage.category])) {
-						this.unread_messages[newmessage.category] = 0;
-					}
-					this.unread_messages[newmessage.category] += 1;
+
+				//Put it in unsorted blocks
+				if (newmessage.category == "vc_unsorted") {
+					newmessage.content = "<span class='unsorted'>" + newmessage.content + "</span>";
 				}
 
 				//Try to crush it with one of the last few
 				if(this.crushing) {
-					let crushwith = this.messages.slice(-(vchat_opts.crush_messages));
+					let crushwith = this.messages.slice(-(this.crushing));
 					for (let i = crushwith.length - 1; i >= 0; i--) {
 						let oldmessage = crushwith[i];
 						if(oldmessage.content == newmessage.content) {
@@ -455,8 +651,23 @@ function start_vue() {
 					}
 				}
 
+				newmessage.content = newmessage.content.replace(
+					/(\b(https?):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|])/img, //Honestly good luck with this regex ~Gear
+					'<a href="$1">$1</a>');
+
+				//Unread indicator and insertion into current tab shown messages if sensible
+				if(this.current_categories.length && (this.current_categories.indexOf(newmessage.category) < 0)) { //Not in the current categories
+					if (isNaN(this.unread_messages[newmessage.category])) {
+						this.unread_messages[newmessage.category] = 0;
+					}
+					this.unread_messages[newmessage.category] += 1;
+				} else if(this.current_categories.length) { //Is in the current categories
+					this.shown_messages.push(newmessage);
+				}
+
 				//Append to vue's messages
 				newmessage.id = ++vchat_state.lastId;
+				this.attempt_archive();
 				this.messages.push(newmessage);
 			},
 			//Push an internally generated message into our array
@@ -487,7 +698,7 @@ function start_vue() {
 					event.preventDefault ? event.preventDefault() : (event.returnValue = false); //The second one is the weird IE method.
 
 					var href = ele.getAttribute('href'); // Gets actual href without transformation into fully qualified URL
-					
+
 					if (href[0] == '?' || (href.length >= 8 && href.substring(0,8) == "byond://")) {
 						window.location = href; //Internal byond link
 					} else { //It's an external link
@@ -505,7 +716,7 @@ function start_vue() {
 				let doc = domparser.parseFromString(message, 'text/html');
 				let evaluating = doc.querySelector('span');
 
-				let category = "nomatch"; //What we use if the classes aren't anything we know.
+				let category = "vc_unsorted"; //What we use if the classes aren't anything we know.
 				if(!evaluating) return category;
 				this.type_table.find( function(type) {
 					if(evaluating.msMatchesSelector(type.matches)) {
@@ -518,29 +729,64 @@ function start_vue() {
 			},
 			save_chatlog: function() {
 				var textToSave = "<html><head><style>"+this.ext_styles+"</style></head><body>";
-				this.messages.forEach( function(message) {
-					textToSave += message.content;
-					if(message.repeats > 1) {
-						textToSave += "(x"+message.repeats+")";
+
+				var messagesToSave = this.archived_messages.concat(this.messages);
+				var cats = this.current_categories;
+
+				messagesToSave.forEach( function(message) {
+					if(cats.length == 0 || (cats.indexOf(message.category) >= 0)) { //only in the active tab
+						textToSave += message.content;
+						if(message.repeats > 1) {
+							textToSave += "(x"+message.repeats+")";
+						}
+						textToSave += "<br>\n";
 					}
-					textToSave += "<br>\n";
 				});
 				textToSave += "</body></html>";
-				var hiddenElement = document.createElement('a');
-				hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
-				hiddenElement.target = '_blank';
 
-				var filename = "chat_export.html";
+				var fileprefix = "log";
+				var extension =".html";
+
+				var now = new Date();
+				var hours = String(now.getHours());
+				if(hours.length < 2) {
+					hours = "0" + hours;
+				}
+				var minutes = String(now.getMinutes());
+				if(minutes.length < 2) {
+					minutes = "0" + minutes;
+				}
+				var dayofmonth = String(now.getDate());
+				if(dayofmonth.length < 2) {
+					dayofmonth = "0" + dayofmonth;
+				}
+				var month = String(now.getMonth()+1); //0-11
+				if(month.length < 2) {
+					month = "0" + month;
+				}
+				var year = String(now.getFullYear());
+				var datesegment = " "+year+"-"+month+"-"+dayofmonth+" ("+hours+" "+minutes+")";
+
+				var filename = fileprefix+datesegment+extension;
 
 				//Unlikely to work unfortunately, not supported in any version of IE, only Edge
-				if (hiddenElement.download !== undefined){
-            		hiddenElement.download = filename;
-            		hiddenElement.click();
-        		//Probably what will end up getting used
-        		} else {
-        			let blob = new Blob([textToSave], {type: 'text/html;charset=utf8;'});
-        			saved = window.navigator.msSaveBlob(blob, filename);
-        		}
+				var hiddenElement = document.createElement('a');
+				if (hiddenElement.download !== undefined) {
+					hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave); //Has a problem in byond 512 due to weird unicode handling
+					hiddenElement.target = '_blank';
+					hiddenElement.download = filename;
+					hiddenElement.click();
+				//Probably what will end up getting used
+				} else {
+					var blob = new Blob([textToSave], {type: 'text/html;charset=utf8;'});
+					saved = window.navigator.msSaveOrOpenBlob(blob, filename);
+				}
+			},
+			do_latency_test: function() {
+				send_latency_check();
+			},
+			blur_this: function(event) {
+				event.target.blur();
 			}
 		}
 	});
@@ -551,29 +797,45 @@ function start_vue() {
 * Actual Methods
 *
 ************/
-//Send a 'ping' to byond and check to see if we got the last one back in a timely manner
-function send_ping() {
-	vchat_state.latency = (Math.min(Math.max(vchat_state.lastPingReply - vchat_state.lastPingAttempt, -1), 999));
-	//If their last reply was in the previous ping window or earlier.
-	if(vchat_state.latency < 0) {
-		vchat_state.missedPings++;
-		if((vchat_state.missedPings >= vchat_opts.pingDropsAllowed) && !vchat_state.reconnecting) {
-			system_message("Your client has lost connection with the server. It will reconnect automatically if possible.");
-			vchat_state.reconnecting = true;
+function check_ping() {
+	var time_ago = Date.now() - vchat_state.lastPingReceived;
+	if(time_ago > vchat_opts.msBeforeDropped)
+		vueapp.reconnecting = true;
+}
+
+//Send a 'ping' to byond
+function send_latency_check() {
+	if(vchat_state.latency_sent)
+			return;
+
+	vchat_state.latency_sent = Date.now();
+	vueapp.latency = "?";
+	push_Topic("ping");
+	setTimeout(function() {
+		if(vchat_state.latency_ms == "?") {
+			vchat_state.latency_ms = 999;
 		}
+	}, 1000); // 1 second to reply otherwise we mark it as bad
+	setTimeout(function() {
+		vchat_state.latency_sent = 0;
+		vueapp.latency = 0;
+	}, 5000); //5 seconds to display ping time overall
+}
+
+function get_latency_check() {
+	if(!vchat_state.latency_sent) {
+		return; //Too late
 	}
 
-	vueapp.latency = vchat_state.latency;
-	push_Topic("keepalive_client");
-	vchat_state.lastPingAttempt = Date.now();
+	vueapp.latency = Date.now() - vchat_state.latency_sent;
 }
 
 //We accept double-url-encoded JSON strings because Byond is garbage and UTF-8 encoded url_encode() text has crazy garbage in it.
 function byondDecode(message) {
-	
+
 	//Byond encodes spaces as pluses?! This is 1998 I guess.
 	message = message.replace(/\+/g, "%20");
-	try { 
+	try {
 		message = decodeURIComponent(message);
 	} catch (err) {
 		message = unescape(message);
@@ -603,6 +865,11 @@ function push_Topic(topic_uri) {
 	window.location = '?_src_=chat&proc=' + topic_uri; //Yes that's really how it works.
 }
 
+// Send the showingnum back to byond
+function push_Topic_showingnum(topic_num) {
+	window.location = '?_src_=chat&showingnum=' + topic_num;
+}
+
 //Tells byond client to focus the main map window.
 function focusMapWindow() {
 	window.location = 'byond://winset?mapwindow.map.focus=true';
@@ -616,7 +883,7 @@ function send_debug(message) {
 //A side-channel to send events over that aren't just chat messages, if necessary.
 function get_event(event) {
 	if(!vchat_state.ready) {
-		push_Topic('not_ready');
+		push_Topic("not_ready");
 		return;
 	}
 
@@ -628,7 +895,7 @@ function get_event(event) {
 		case 'internal_error':
 			system_message("Event parse error: " + event);
 			break;
-		
+
 		//They provided byond data.
 		case 'byond_player':
 			send_client_data();
@@ -642,13 +909,22 @@ function get_event(event) {
 			break;
 
 		//Just a ping.
-		case 'keepalive_server':
-			vchat_state.lastPingReply = Date.now();
-			vchat_state.missedPings = 0;
-			reconnecting = false;
+		case 'keepalive':
+			vchat_state.lastPingReceived = Date.now();
+			vueapp.reconnecting = false;
 			break;
-	
-		default: 
+
+		//Response to a latency test.
+		case 'pong':
+			get_latency_check();
+			break;
+
+		//The server doesn't know if we're loaded or not (we bail above if we're not, so we must be).
+		case 'availability':
+			push_Topic("done_loading");
+			break;
+
+		default:
 			system_message("Didn't know what to do with event: " + event);
 	}
 }
@@ -672,14 +948,18 @@ function set_localstorage(key, value) {
 function get_localstorage(key, deffo) {
 	let localstorage = window.localStorage;
 	let value = localstorage.getItem(vchat_opts.cookiePrefix+key);
-	
+
 	//localstorage only stores strings.
 	if(value === "null" || value === null) {
 		value = deffo;
+	//Coerce bools back into their native forms
 	} else if(value === "true") {
 		value = true;
 	} else if(value === "false") {
 		value = false;
+	//Coerce numbers back into numerical form
+	} else if(!isNaN(value)) {
+		value = +value;
 	}
 	return value;
 }
@@ -708,6 +988,8 @@ function get_cookie(key, deffo) {
 			right = true;
 		} else if(right === "false") {
 			right = false;
+		} else if(!isNaN(right)) {
+			right = +right;
 		}
 		cookie_object[left] = right; //Stick into object
 	});
@@ -716,9 +998,9 @@ function get_cookie(key, deffo) {
 
 // Button Controls that need background-color and text-color set.
 var SKIN_BUTTONS = [
-	/* Rpane */ "rpane.textb", "rpane.infob", "rpane.wikib", "rpane.forumb", "rpane.rulesb", "rpane.github", "rpane.mapb", "rpane.changelog",
+	/* Rpane */ "rpane.textb", "rpane.infob", "rpane.wikib", "rpane.forumb", "rpane.rulesb", "rpane.github", "rpane.discord", "rpane.mapb", "rpane.changelog",
 	/* Mainwindow */ "mainwindow.saybutton", "mainwindow.mebutton", "mainwindow.hotkey_toggle"
-	
+
 ];
 // Windows or controls that need background-color set.
 var SKIN_ELEMENTS = [

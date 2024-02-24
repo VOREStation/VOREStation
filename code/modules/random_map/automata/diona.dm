@@ -1,5 +1,5 @@
-/turf/simulated/wall/diona/New(var/newloc)
-	..(newloc,"biomass")
+/turf/simulated/wall/diona/Initialize(mapload)
+	..(mapload, "biomass")
 
 /turf/simulated/wall/diona/attack_generic(var/mob/user, var/damage, var/attack_message)
 	if(istype(user, /mob/living/carbon/alien/diona))
@@ -15,8 +15,8 @@
 
 /obj/structure/diona
 	icon = 'icons/obj/diona.dmi'
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	opacity = 0
 	layer = TURF_LAYER + 0.01
 

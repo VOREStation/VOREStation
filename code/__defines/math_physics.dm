@@ -2,6 +2,7 @@
 #define R_IDEAL_GAS_EQUATION       8.31    // kPa*L/(K*mol).
 #define ONE_ATMOSPHERE             101.325 // kPa.
 #define IDEAL_GAS_ENTROPY_CONSTANT 1164    // (mol^3 * s^3) / (kg^3 * L).
+#define ADIABATIC_EXPONENT 0.667 //Actually adiabatic exponent - 1.
 
 #define T0C  273.15  //    0.0 degrees celcius
 #define T20C 293.15  //   20.0 degrees celcius

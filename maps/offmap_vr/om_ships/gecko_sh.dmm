@@ -1,0 +1,3864 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"aF" = (
+/obj/structure/table/steel,
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "gecko_sh_blast";
+	name = "Blast Shields Control"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"aK" = (
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"aL" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"aY" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"bw" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"bA" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"bE" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
+"bI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"bL" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"bN" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"bP" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"bY" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"cg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ci" = (
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"cq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"cR" = (
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"cX" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/light,
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"cY" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"dm" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"dO" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/clothing/suit/space/void/refurb/engineering,
+/obj/item/clothing/suit/space/void/refurb/engineering,
+/obj/item/clothing/head/helmet/space/void/refurb/engineering,
+/obj/item/clothing/head/helmet/space/void/refurb/engineering,
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/closet/crate/einstein,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"dS" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/airlock_sensor{
+	pixel_x = -25
+	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"dY" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"ea" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ec" = (
+/obj/structure/closet/walllocker/emerglocker/east,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"ey" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/sign/warning/nosmoking_1,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"eD" = (
+/obj/machinery/computer/ship/sensors,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"eJ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"eP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"fe" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"fB" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"fD" = (
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"fP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"fR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"fX" = (
+/obj/structure/sign/warning/airlock,
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"gh" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"gC" = (
+/obj/machinery/atmospherics/unary/engine/biggest{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"gT" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"hC" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"hH" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ic" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/structure/table/steel,
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "gecko_sh_blast";
+	name = "Blast Shields Control"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"if" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/effect/catwalk_plated,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"je" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"jo" = (
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh_engineering)
+"jp" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"jq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"jT" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"kd" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6;
+	pixel_x = 7;
+	pixel_y = 26
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"kn" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/machinery/meter,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"kx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"kI" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"kJ" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"kU" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"kW" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
+"lh" = (
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ll" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/gecko_sh,
+/obj/effect/overmap/visitable/ship/landable/gecko_sh,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"lr" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"lt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"lw" = (
+/obj/machinery/suit_cycler/vintage/rugged,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"lB" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 14
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"lC" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"lV" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -27
+	},
+/obj/structure/closet/crate{
+	dir = 1
+	},
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"me" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"mf" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"mA" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"mY" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"nE" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"oe" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"oi" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/oxygen_pump{
+	dir = 1;
+	pixel_y = -29
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"om" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/structure/railing/grey,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"oL" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"pf" = (
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"po" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"ps" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"pG" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"pH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"pV" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh)
+"qh" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"qx" = (
+/obj/machinery/computer/shuttle_control/explore/gecko_sh,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"qO" = (
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"rg" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/airlock_sensor{
+	pixel_y = 21
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump,
+/obj/structure/handrail,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"rj" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"rr" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ru" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/bed/chair/bay/comfy{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"rv" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"rA" = (
+/obj/structure/bed/chair/bay/shuttle,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"rE" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/sign/warning/nosmoking_1,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"rL" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"rQ" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"rU" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"rY" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"sB" = (
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"sL" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/structure/railing/grey,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"sS" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"te" = (
+/obj/machinery/light/small,
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"tD" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"tM" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"tP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"tV" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -14
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"ue" = (
+/obj/machinery/atmospherics/unary/engine/bigger{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ug" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"um" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ut" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"uv" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"uw" = (
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"ux" = (
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"uR" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"vE" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether,
+/obj/structure/sign/directions/bridge{
+	dir = 1;
+	pixel_y = 42
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"wF" = (
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"wG" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"wH" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/structure/sign/directions/engineering{
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"wQ" = (
+/obj/structure/closet/walllocker/emerglocker/west,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"wV" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/closet/crate{
+	dir = 1
+	},
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"xc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"xd" = (
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"xB" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"xO" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"xT" = (
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/structure/fuel_port/heavy{
+	pixel_y = 28
+	},
+/obj/structure/closet/crate{
+	dir = 2
+	},
+/obj/item/weapon/tool/crowbar/red,
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"xU" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"ye" = (
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"yy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"yE" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 10;
+	pixel_x = -8;
+	pixel_y = 26
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"yR" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/closet/walllocker/emerglocker/north,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"yT" = (
+/obj/structure/railing/grey,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"yX" = (
+/obj/machinery/atmospherics/binary/pump/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"zx" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"zE" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -30
+	},
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"zF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"zM" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"zO" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"zT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"AE" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"Bd" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"Bf" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Bp" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Br" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"Bz" = (
+/obj/structure/closet/walllocker/emerglocker/east,
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"BD" = (
+/obj/structure/handrail,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"BH" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/oxygen_pump{
+	dir = 1;
+	pixel_y = -29
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"BL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"BN" = (
+/obj/machinery/light/small,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"BP" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_cockpit)
+"BV" = (
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
+"BW" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Ca" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"Ck" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Ct" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/airlock_sensor{
+	pixel_x = 26
+	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"Cx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"CZ" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Da" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"Dc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Df" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"Di" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Dl" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"Do" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"Dy" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"DM" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"Ed" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/machinery/meter,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"En" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Ez" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"ER" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"ES" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"Ff" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Fj" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
+"Fp" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Fx" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/crate{
+	dir = 1
+	},
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"FA" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "gecko_sh_blast";
+	name = "Blast Shields Control";
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"FE" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"FL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"FN" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"FS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"FX" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Gm" = (
+/obj/machinery/shipsensors{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/gecko_sh)
+"Gs" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"GF" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"GT" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Ho" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Hp" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"HJ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"Id" = (
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/suit_cycler/vintage/pilot,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"Im" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Iz" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"IL" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"IM" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/bed/chair/bay/comfy{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"IQ" = (
+/turf/simulated/wall/shull,
+/area/shuttle/gecko_sh_engineering)
+"Jc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"Jn" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"JE" = (
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"Km" = (
+/turf/template_noop,
+/area/shuttle/gecko_sh)
+"Kn" = (
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Kz" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/oxygen_pump{
+	dir = 1;
+	pixel_y = -29
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"KX" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"KZ" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Lc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"Lf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Ln" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"Lp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"LR" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"LU" = (
+/obj/structure/bed/chair/bay/comfy,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"Mf" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/structure/handrail,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"MA" = (
+/turf/simulated/floor/airless,
+/area/shuttle/gecko_sh_engineering)
+"MO" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"MR" = (
+/obj/structure/closet/walllocker/emerglocker/west,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Nr" = (
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"Nz" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"NE" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"NI" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -30
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"NM" = (
+/obj/structure/handrail,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -27
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"NN" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"NR" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Ol" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"Or" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"Ow" = (
+/obj/machinery/atmospherics/unary/engine/bigger{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/gecko_sh_engineering)
+"OH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"ON" = (
+/obj/machinery/light,
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"OZ" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump,
+/obj/structure/handrail,
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "geck_sh_docking_port";
+	name = "Port AIrlock Control";
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Pc" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"Px" = (
+/obj/structure/handrail,
+/turf/simulated/floor/airless,
+/area/shuttle/gecko_sh_engineering)
+"Pz" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/catwalk_plated,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"PD" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"PI" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/closet/crate/engineering,
+/obj/item/weapon/storage/toolbox/mechanical,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/weapon/storage/toolbox/electrical,
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"PJ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"PW" = (
+/obj/structure/handrail,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 27
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Ql" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Qn" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Qu" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/closet/crate{
+	dir = 1
+	},
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"Qx" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"QO" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Rd" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/railing/grey,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Rg" = (
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Rh" = (
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb/pilot,
+/obj/item/clothing/head/helmet/space/void/refurb/pilot,
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb/pilot,
+/obj/item/clothing/head/helmet/space/void/refurb/pilot,
+/obj/structure/closet/crate/aether{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_cockpit)
+"Ri" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "geck_sh_docking_port;geck_sh_docking_star";
+	dir = 1;
+	id_tag = "geck_sh_docking";
+	pixel_y = -22
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Rp" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"RB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"RG" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"RT" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"RV" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Sa" = (
+/obj/machinery/suit_cycler/vintage,
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"SJ" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh)
+"SV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/modular_computer/telescreen/preset{
+	pixel_y = 23
+	},
+/obj/structure/handrail,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"SZ" = (
+/obj/structure/closet/walllocker/emerglocker/west,
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Td" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Tj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/emerglocker/west,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Tw" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 27
+	},
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Tx" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/airlock_sensor{
+	pixel_y = 21
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump,
+/obj/structure/handrail,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"TE" = (
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"TM" = (
+/obj/structure/bed/chair/bay/shuttle,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"UF" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"UK" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/computer/ship/engines{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"UY" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/gecko_sh_engineering)
+"Vh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Vr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_cockpit)
+"Vs" = (
+/obj/structure/cable,
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/power/port_gen/pacman/mrs{
+	anchored = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"VT" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"VW" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"Wj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Wr" = (
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"Wv" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Wx" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
+"Wz" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"WB" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/gecko_sh_engineering)
+"WN" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"WP" = (
+/turf/template_noop,
+/area/template_noop)
+"WW" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh_engineering)
+"Xn" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Xr" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/structure/table/steel,
+/obj/item/weapon/tool/wrench,
+/obj/item/stack/material/tritium{
+	amount = 25
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"Xs" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gecko_sh_blast";
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"XJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"XU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_sh)
+"XX" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Yd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh_engineering)
+"Yj" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump,
+/obj/structure/handrail,
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "geck_sh_docking_star";
+	name = "Starboard Airlock Control";
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Yq" = (
+/turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh_cockpit)
+"Yx" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/oxygen_pump{
+	dir = 1;
+	pixel_y = -29
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"YG" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/item/weapon/tank/air,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/crate/aether{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"YK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/emerglocker/east,
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"YO" = (
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Zb" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -30
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Zo" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh)
+"Zp" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"Zs" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/sign/warning/engineering_access{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_sh)
+"ZJ" = (
+/turf/simulated/wall/shull,
+/area/shuttle/gecko_sh)
+"ZK" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+
+(1,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}
+(2,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+IQ
+IQ
+IQ
+IQ
+IQ
+IQ
+IQ
+Fj
+"}
+(3,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+IQ
+NM
+Zb
+bI
+RV
+UY
+Ow
+WP
+"}
+(4,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+IQ
+IL
+ER
+rQ
+aY
+WB
+MA
+WP
+"}
+(5,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+ZJ
+ZJ
+ZJ
+Df
+Df
+ZJ
+Df
+Df
+IQ
+IQ
+IQ
+IQ
+IQ
+BV
+kW
+WP
+WP
+WP
+IQ
+IQ
+kU
+IQ
+IQ
+IQ
+IQ
+Wx
+"}
+(6,1,1) = {"
+WP
+WP
+WP
+Km
+pV
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+yE
+lr
+ZJ
+bw
+sS
+Wz
+Wz
+En
+Wz
+Wz
+tM
+Dy
+mA
+Dy
+IQ
+IQ
+IQ
+IQ
+IQ
+WP
+WP
+IQ
+UF
+IQ
+Px
+WP
+WP
+WP
+"}
+(7,1,1) = {"
+WP
+Km
+pV
+ZJ
+ZJ
+ZJ
+Nr
+Nr
+GF
+Nr
+te
+ZJ
+OZ
+rj
+BH
+ZJ
+rY
+Wr
+Df
+Df
+Wr
+Df
+Df
+jo
+jo
+jo
+Dy
+nE
+Dy
+ea
+Qn
+IQ
+IQ
+IQ
+IQ
+kJ
+IQ
+IQ
+IQ
+WP
+WP
+"}
+(8,1,1) = {"
+WP
+ZJ
+ZJ
+ZJ
+Nr
+GF
+RT
+LR
+Nr
+Ol
+Ol
+Wr
+Tx
+kn
+Yx
+Wr
+ci
+wQ
+gT
+gT
+MR
+gT
+lC
+Tj
+SZ
+jo
+jo
+jo
+jo
+jo
+yT
+Wv
+Wv
+gh
+NI
+aL
+IQ
+IQ
+IQ
+Fj
+WP
+"}
+(9,1,1) = {"
+WP
+Gm
+ZJ
+fB
+lB
+uR
+Wr
+Br
+Wr
+cq
+Bd
+kx
+kx
+PD
+fX
+Wr
+pf
+cR
+gT
+uv
+gT
+Fp
+lC
+Wz
+TE
+jo
+Qu
+wF
+NN
+jo
+Td
+ZK
+zO
+Ck
+ut
+fR
+RV
+um
+ue
+WP
+WP
+"}
+(10,1,1) = {"
+WP
+ZJ
+Wr
+Wr
+Wr
+Wr
+Wr
+Mf
+zE
+Gs
+fe
+eP
+dS
+jT
+kI
+qh
+Rp
+PJ
+gT
+jp
+gT
+dm
+lC
+ug
+TE
+jo
+Yd
+Dl
+WW
+Xs
+om
+Vh
+bY
+YO
+Wj
+cg
+aY
+FS
+YO
+WP
+WP
+"}
+(11,1,1) = {"
+WP
+WP
+Yq
+wG
+aF
+Rh
+Wr
+cY
+Tw
+bL
+cX
+Wr
+Hp
+tP
+FX
+Wr
+rA
+me
+mf
+me
+mf
+po
+mf
+po
+ON
+jo
+xO
+Pc
+Ez
+jo
+sL
+xd
+xd
+YO
+rr
+BN
+IQ
+IQ
+IQ
+IQ
+Fj
+"}
+(12,1,1) = {"
+WP
+WP
+BP
+JE
+IM
+oL
+Wr
+Wr
+Wr
+Wr
+Wr
+Wr
+vE
+fP
+YG
+Wr
+aK
+zT
+gT
+jp
+gT
+dm
+lC
+po
+Zs
+jo
+FA
+Pc
+PI
+je
+Ho
+BL
+XJ
+WN
+Im
+bI
+RV
+um
+YO
+gC
+WP
+"}
+(13,1,1) = {"
+WP
+WP
+BP
+qx
+Qx
+AE
+Lc
+eJ
+Vr
+OH
+FN
+xc
+bP
+if
+Ri
+pH
+SV
+Pz
+Bp
+xU
+Bp
+hC
+oe
+Da
+VT
+RB
+MO
+LU
+UK
+Xn
+Nz
+Vs
+BW
+yX
+KZ
+rQ
+aY
+rL
+YO
+YO
+WP
+"}
+(14,1,1) = {"
+WP
+WP
+BP
+eD
+ru
+bA
+Wr
+Wr
+Wr
+Wr
+Wr
+Wr
+bN
+lt
+Ql
+Wr
+XX
+yy
+gT
+jp
+gT
+dm
+lC
+po
+wH
+jo
+ai
+Do
+dO
+ey
+KX
+Lf
+FL
+hH
+Im
+Dc
+rE
+FS
+YO
+YO
+WP
+"}
+(15,1,1) = {"
+WP
+WP
+Yq
+wG
+ic
+Id
+Wr
+Sa
+lV
+wV
+Fx
+Wr
+FE
+tP
+Di
+Wr
+TM
+Cx
+mf
+me
+mf
+po
+mf
+po
+ON
+jo
+BD
+Do
+ES
+jo
+Bf
+qO
+qO
+YO
+ps
+lh
+IQ
+IQ
+IQ
+IQ
+Wx
+"}
+(16,1,1) = {"
+WP
+ZJ
+Wr
+Wr
+Wr
+Wr
+Wr
+HJ
+Iz
+XU
+mY
+eP
+Ct
+NE
+Jn
+qh
+Rp
+Ca
+gT
+jp
+gT
+dm
+lC
+QO
+TE
+jo
+Yd
+DM
+VW
+Xs
+Rd
+Vh
+GT
+YO
+Wj
+jq
+RV
+um
+ue
+WP
+WP
+"}
+(17,1,1) = {"
+WP
+Gm
+ZJ
+fB
+tV
+xB
+Wr
+Br
+Wr
+Jc
+Ln
+kx
+kx
+zx
+fX
+Wr
+yR
+dY
+gT
+CZ
+gT
+rU
+lC
+Wz
+TE
+jo
+xT
+lw
+Xr
+jo
+rv
+NR
+zO
+zM
+Lp
+Dc
+aY
+FS
+YO
+WP
+WP
+"}
+(18,1,1) = {"
+WP
+ZJ
+ZJ
+ZJ
+Nr
+uw
+Zo
+Or
+Nr
+tD
+tD
+Wr
+rg
+Ed
+Kz
+Wr
+fD
+zF
+gT
+gT
+YK
+gT
+lC
+ec
+Bz
+jo
+jo
+jo
+jo
+jo
+yT
+Kn
+Kn
+Rg
+ye
+pG
+IQ
+IQ
+IQ
+Wx
+WP
+"}
+(19,1,1) = {"
+WP
+Km
+SJ
+ZJ
+ZJ
+ZJ
+Nr
+Nr
+uw
+Nr
+te
+ZJ
+Yj
+ll
+oi
+ZJ
+rY
+Wr
+Df
+Df
+Wr
+Df
+Df
+jo
+jo
+jo
+Dy
+ux
+Dy
+ea
+mA
+IQ
+IQ
+IQ
+IQ
+kJ
+IQ
+IQ
+IQ
+WP
+WP
+"}
+(20,1,1) = {"
+WP
+WP
+WP
+Km
+SJ
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+ZJ
+kd
+lr
+ZJ
+sB
+sS
+Wz
+Wz
+Zp
+Wz
+Wz
+tM
+Dy
+Qn
+Dy
+IQ
+IQ
+IQ
+IQ
+IQ
+WP
+WP
+IQ
+UF
+IQ
+Px
+WP
+WP
+WP
+"}
+(21,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+ZJ
+ZJ
+ZJ
+Df
+Df
+ZJ
+Df
+Df
+IQ
+IQ
+IQ
+IQ
+IQ
+BV
+bE
+WP
+WP
+WP
+IQ
+IQ
+kU
+IQ
+IQ
+IQ
+IQ
+Fj
+"}
+(22,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+IQ
+IL
+Ff
+bI
+RV
+UY
+Ow
+WP
+"}
+(23,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+IQ
+PW
+RG
+rQ
+aY
+WB
+MA
+WP
+"}
+(24,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+IQ
+IQ
+IQ
+IQ
+IQ
+IQ
+IQ
+Wx
+"}
+(25,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}

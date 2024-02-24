@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/technology/drone/hivebot/laser // Hivebot Scanner Data - This is for Laser Hivebots
+/datum/category_item/catalogue/technology/drone/hivebot/rapidfire // Hivebot Scanner Data - This is for Rapidfire Hivebots
 	name = "Drone - Rapidfire Hivebot"
 	desc = "A drone that walks on several legs, with yellow/gold armor plating. It appears to have some sort of \
 	rifle, built for high-rate fire. Other than that, it has similar yellowish color \

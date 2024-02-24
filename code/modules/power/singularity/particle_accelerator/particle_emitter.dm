@@ -12,11 +12,11 @@
 	icon_state = "emitter_center"
 	reference = "emitter_center"
 
-/obj/structure/particle_accelerator/particle_emitter/left
+/obj/structure/particle_accelerator/particle_emitter/right // It's looking for these in opposite directions.
 	icon_state = "emitter_left"
 	reference = "emitter_left"
 
-/obj/structure/particle_accelerator/particle_emitter/right
+/obj/structure/particle_accelerator/particle_emitter/left
 	icon_state = "emitter_right"
 	reference = "emitter_right"
 
@@ -31,7 +31,7 @@
 	if((last_shot + fire_delay) <= world.time)
 		last_shot = world.time
 		var/obj/effect/accelerated_particle/A = null
-		var/turf/T = get_step(src,dir)
+		var/turf/T = src.loc // if it doesn't spawn here, it won't bump stuff directly infront of the PA
 		switch(strength)
 			if(0)
 				A = new/obj/effect/accelerated_particle/weak(T, dir)

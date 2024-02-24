@@ -7,3 +7,6 @@
 		area = NA
 		name = "[area.name] APC"
 	update()
+
+/obj/machinery/power/apc/get_cell()
+	return cell

@@ -1,204 +1,212 @@
 var/list/gamemode_cache = list()
 
 /datum/configuration
-	var/server_name = null				// server name (for world name / status)
-	var/server_suffix = 0				// generate numeric suffix based on server port
+	var/static/server_name = null				// server name (for world name / status)
+	var/static/server_suffix = 0				// generate numeric suffix based on server port
 
-	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
+	var/static/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
-	var/log_ooc = 0						// log OOC channel
-	var/log_access = 0					// log login/logout
-	var/log_say = 0						// log client say
-	var/log_admin = 0					// log admin actions
-	var/log_debug = 1					// log debug output
-	var/log_game = 0					// log game events
-	var/log_vote = 0					// log voting
-	var/log_whisper = 0					// log client whisper
-	var/log_emote = 0					// log emotes
-	var/log_attack = 0					// log attack messages
-	var/log_adminchat = 0				// log admin chat messages
-	var/log_adminwarn = 0				// log warnings admins get about bomb construction and such
-	var/log_pda = 0						// log pda messages
-	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
-	var/log_runtime = 0					// logs world.log to a file
-	var/log_world_output = 0			// log to_world_log(messages)
-	var/log_graffiti = 0					// logs graffiti
-	var/sql_enabled = 0					// for sql switching
-	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
-	var/allow_vote_restart = 0 			// allow votes to restart
-	var/ert_admin_call_only = 0
-	var/allow_vote_mode = 0				// allow votes to change mode
-	var/allow_admin_jump = 1			// allows admin jumping
-	var/allow_admin_spawning = 1		// allows admin item spawning
-	var/allow_admin_rev = 1				// allows admin revives
-	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
-	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
-	var/vote_autotransfer_initial = 108000 // Length of time before the first autotransfer vote is called
-	var/vote_autotransfer_interval = 36000 // length of time before next sequential autotransfer vote
-	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
-	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
-	var/vote_no_dead = 0				// dead people can't vote (tbi)
-//	var/enable_authentication = 0		// goon authentication
-	var/del_new_on_log = 1				// del's new players if they log before they spawn in
-	var/feature_object_spell_system = 0 //spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
-	var/traitor_scaling = 0 			//if amount of traitors scales based on amount of players
-	var/objectives_disabled = 0 			//if objectives are disabled or not
-	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
-	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
-	var/allow_Metadata = 0				// Metadata is supported.
-	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/fps = 20
-	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
-	var/Tickcomp = 0
-	var/socket_talk	= 0					// use socket_talk to communicate with other processes
-	var/list/resource_urls = null
-	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
-	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
-	var/list/mode_names = list()
-	var/list/modes = list()				// allowed modes
-	var/list/votable_modes = list()		// votable modes
-	var/list/probabilities = list()		// relative probability of each mode
-	var/list/player_requirements = list() // Overrides for how many players readied up a gamemode needs to start.
-	var/list/player_requirements_secret = list() // Same as above, but for the secret gamemode.
-	var/humans_need_surnames = 0
-	var/allow_random_events = 0			// enables random events mid-round when set to 1
-	var/enable_game_master = 0			// enables the 'smart' event system.
-	var/allow_ai = 1					// allow ai job
-	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
-	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
-	var/hostedby = null
-	var/respawn = 1
-	var/guest_jobban = 1
-	var/usewhitelist = 0
-	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
-	var/show_mods = 0
-	var/show_devs = 0
-	var/show_event_managers = 0
-	var/mods_can_tempban = 0
-	var/mods_can_job_tempban = 0
-	var/mod_tempban_max = 1440
-	var/mod_job_tempban_max = 1440
-	var/load_jobs_from_txt = 0
-	var/ToRban = 0
-	var/automute_on = 0					//enables automuting/spam prevention
-	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
+	var/static/log_ooc = 0						// log OOC channel
+	var/static/log_access = 0					// log login/logout
+	var/static/log_say = 0						// log client say
+	var/static/log_admin = 0					// log admin actions
+	var/static/log_debug = 1					// log debug output
+	var/static/log_game = 0					// log game events
+	var/static/log_vote = 0					// log voting
+	var/static/log_whisper = 0					// log client whisper
+	var/static/log_emote = 0					// log emotes
+	var/static/log_attack = 0					// log attack messages
+	var/static/log_adminchat = 0				// log admin chat messages
+	var/static/log_adminwarn = 0				// log warnings admins get about bomb construction and such
+	var/static/log_pda = 0						// log pda messages
+	var/static/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
+	var/static/log_runtime = 0					// logs world.log to a file
+	var/static/log_world_output = 0			// log to_world_log(messages)
+	var/static/log_graffiti = 0					// logs graffiti
+	var/static/sql_enabled = 0					// for sql switching
+	var/static/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
+	var/static/allow_vote_restart = 0 			// allow votes to restart
+	var/static/ert_admin_call_only = 0
+	var/static/allow_vote_mode = 0				// allow votes to change mode
+	var/static/allow_admin_jump = 1			// allows admin jumping
+	var/static/allow_admin_spawning = 1		// allows admin item spawning
+	var/static/allow_admin_rev = 1				// allows admin revives
+	var/static/pregame_time = 180				// pregame time in seconds
+	var/static/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
+	var/static/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
+	var/static/vote_autotransfer_initial = 108000 // Length of time before the first autotransfer vote is called
+	var/static/vote_autotransfer_interval = 36000 // length of time before next sequential autotransfer vote
+	var/static/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
+	var/static/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
+	var/static/vote_no_dead = 0				// dead people can't vote (tbi)
+//	var/static/enable_authentication = 0		// goon authentication
+	var/static/del_new_on_log = 1				// del's new players if they log before they spawn in
+	var/static/feature_object_spell_system = 0 //spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
+	var/static/traitor_scaling = 0 			//if amount of traitors scales based on amount of players
+	var/static/objectives_disabled = 0 			//if objectives are disabled or not
+	var/static/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
+	var/static/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
+	var/static/allow_Metadata = 0				// Metadata is supported.
+	var/static/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
+	var/static/fps = 20
+	var/static/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
+	var/static/Tickcomp = 0
+	var/static/socket_talk	= 0					// use socket_talk to communicate with other processes
+	var/static/list/resource_urls = null
+	var/static/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
+	var/static/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
+	var/static/list/mode_names = list()
+	var/static/list/modes = list()				// allowed modes
+	var/static/list/votable_modes = list()		// votable modes
+	var/static/list/probabilities = list()		// relative probability of each mode
+	var/static/list/player_requirements = list() // Overrides for how many players readied up a gamemode needs to start.
+	var/static/list/player_requirements_secret = list() // Same as above, but for the secret gamemode.
+	var/static/humans_need_surnames = 0
+	var/static/allow_random_events = 0			// enables random events mid-round when set to 1
+	var/static/enable_game_master = 0			// enables the 'smart' event system.
+	var/static/allow_ai = 1					// allow ai job
+	var/static/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
+	var/static/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
+	var/static/hostedby = null
 
-	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
-	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
+	var/static/respawn = 1
+	var/static/respawn_time = 3000			// time before a dead player is allowed to respawn (in ds, though the config file asks for minutes, and it's converted below)
+	var/static/respawn_message = "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
 
-	var/character_slots = 10				// The number of available character slots
-	var/loadout_slots = 3					// The number of loadout slots per character
+	var/static/guest_jobban = 1
+	var/static/usewhitelist = 0
+	var/static/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
+	var/static/show_mods = 0
+	var/static/show_devs = 0
+	var/static/show_mentors = 0
+	var/static/show_event_managers = 0
+	var/static/mods_can_tempban = 0
+	var/static/mods_can_job_tempban = 0
+	var/static/mod_tempban_max = 1440
+	var/static/mod_job_tempban_max = 1440
+	var/static/load_jobs_from_txt = 0
+	var/static/ToRban = 0
+	var/static/automute_on = 0					//enables automuting/spam prevention
+	var/static/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
 
-	var/max_maint_drones = 5				//This many drones can spawn,
-	var/allow_drone_spawn = 1				//assuming the admin allow them to.
-	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+	var/static/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
+	var/static/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
 
-	var/disable_player_mice = 0
-	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
+	var/static/character_slots = 10				// The number of available character slots
+	var/static/loadout_slots = 3					// The number of loadout slots per character
 
-	var/usealienwhitelist = 0
-	var/limitalienplayers = 0
-	var/alien_to_human_ratio = 0.5
-	var/allow_extra_antags = 0
-	var/guests_allowed = 1
-	var/debugparanoid = 0
-	var/panic_bunker = 0
-	var/paranoia_logging = 0
+	var/static/max_maint_drones = 5				//This many drones can spawn,
+	var/static/allow_drone_spawn = 1				//assuming the admin allow them to.
+	var/static/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
 
-	var/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
-	var/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
-	var/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
-	var/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
-	var/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
-	var/ipr_minimum_age = 5			//How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
+	var/static/disable_player_mice = 0
+	var/static/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
 
-	var/serverurl
-	var/server
-	var/banappeals
-	var/wikiurl
-	var/wikisearchurl
-	var/forumurl
-	var/githuburl
-	var/rulesurl
-	var/mapurl
+	var/static/usealienwhitelist = 0
+	var/static/limitalienplayers = 0
+	var/static/alien_to_human_ratio = 0.5
+	var/static/allow_extra_antags = 0
+	var/static/guests_allowed = 1
+	var/static/debugparanoid = 0
+	var/static/panic_bunker = 0
+	var/static/paranoia_logging = 0
+
+	var/static/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
+	var/static/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
+	var/static/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+	var/static/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+	var/static/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+	var/static/ipr_minimum_age = 5			//How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
+
+	var/static/serverurl
+	var/static/server
+	var/static/banappeals
+	var/static/wikiurl
+	var/static/wikisearchurl
+	var/static/forumurl
+	var/static/githuburl
+	var/static/discordurl
+	var/static/rulesurl
+	var/static/mapurl
+	var/static/patreonurl
 
 	//Alert level description
-	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_yellow_upto = "A minor security emergency has developed. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
-	var/alert_desc_yellow_downto = "Code yellow procedures are now in effect. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
-	var/alert_desc_violet_upto = "A major medical emergency has developed. Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey all relevant instructions from medical staff."
-	var/alert_desc_violet_downto = "Code violet procedures are now in effect; Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey relevant instructions from medical staff."
-	var/alert_desc_orange_upto = "A major engineering emergency has developed. Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
-	var/alert_desc_orange_downto = "Code orange procedures are now in effect; Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
-	var/alert_desc_blue_upto = "A major security emergency has developed. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person."
-	var/alert_desc_blue_downto = "Code blue procedures are now in effect. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person."
-	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
-	var/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	var/static/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	var/static/alert_desc_yellow_upto = "A minor security emergency has developed. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
+	var/static/alert_desc_yellow_downto = "Code yellow procedures are now in effect. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
+	var/static/alert_desc_violet_upto = "A major medical emergency has developed. Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey all relevant instructions from medical staff."
+	var/static/alert_desc_violet_downto = "Code violet procedures are now in effect; Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey relevant instructions from medical staff."
+	var/static/alert_desc_orange_upto = "A major engineering emergency has developed. Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
+	var/static/alert_desc_orange_downto = "Code orange procedures are now in effect; Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
+	var/static/alert_desc_blue_upto = "A major security emergency has developed. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person."
+	var/static/alert_desc_blue_downto = "Code blue procedures are now in effect. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person."
+	var/static/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	var/static/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	var/static/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
 
-	var/forbid_singulo_possession = 0
+	var/static/forbid_singulo_possession = 0
 
 	//game_options.txt configs
 
-	var/health_threshold_softcrit = 0
-	var/health_threshold_crit = 0
-	var/health_threshold_dead = -100
+	var/static/health_threshold_softcrit = 0
+	var/static/health_threshold_crit = 0
+	var/static/health_threshold_dead = -100
 
-	var/organ_health_multiplier = 1
-	var/organ_regeneration_multiplier = 1
-	var/organs_decay
-	var/default_brain_health = 400
-	var/allow_headgibs = FALSE
+	var/static/organ_health_multiplier = 1
+	var/static/organ_regeneration_multiplier = 1
+	var/static/organs_decay
+	var/static/default_brain_health = 400
+	var/static/allow_headgibs = FALSE
 
 	//Paincrit knocks someone down once they hit 60 shock_stage, so by default make it so that close to 100 additional damage needs to be dealt,
 	//so that it's similar to HALLOSS. Lowered it a bit since hitting paincrit takes much longer to wear off than a halloss stun.
-	var/organ_damage_spillover_multiplier = 0.5
+	var/static/organ_damage_spillover_multiplier = 0.5
 
-	var/bones_can_break = 0
-	var/limbs_can_break = 0
+	var/static/bones_can_break = 0
+	var/static/limbs_can_break = 0
 
-	var/revival_pod_plants = 1
-	var/revival_cloning = 1
-	var/revival_brain_life = -1
+	var/static/revival_pod_plants = 1
+	var/static/revival_cloning = 1
+	var/static/revival_brain_life = -1
 
-	var/use_loyalty_implants = 0
+	var/static/use_loyalty_implants = 0
 
-	var/welder_vision = 1
-	var/generate_map = 0
-	var/no_click_cooldown = 0
+	var/static/welder_vision = 1
+	var/static/generate_map = 0
+	var/static/no_click_cooldown = 0
 
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
-	var/run_speed = 0
-	var/walk_speed = 0
+	var/static/run_speed = 0
+	var/static/walk_speed = 0
 
 	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
-	var/animal_delay = 0
+	var/static/human_delay = 0
+	var/static/robot_delay = 0
+	var/static/monkey_delay = 0
+	var/static/alien_delay = 0
+	var/static/slime_delay = 0
+	var/static/animal_delay = 0
 
-	var/footstep_volume = 0
+	var/static/footstep_volume = 0
 
-	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
-	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
-	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
-	var/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
+	var/static/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
+	var/static/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
+	var/static/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
+	var/static/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
 
-	var/simultaneous_pm_warning_timeout = 100
+	var/static/simultaneous_pm_warning_timeout = 100
 
-	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
-	var/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
+	var/static/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
+	var/static/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
 
-	var/assistant_maint = 0 //Do assistants get maint access?
-	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
-	var/ghost_interaction = 0
+	var/static/assistant_maint = 0 //Do assistants get maint access?
+	var/static/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
+	var/static/ghost_interaction = 0
 
-	var/comms_password = ""
+	var/static/comms_password = ""
 
-	var/enter_allowed = 1
+	var/static/enter_allowed = 1
 
 	var/use_irc_bot = 0
 	var/use_node_bot = 0
@@ -211,60 +219,93 @@ var/list/gamemode_cache = list()
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
 
+	var/static/list/engine_map = list("Supermatter Engine", "Edison's Bane")	// Comma separated list of engines to choose from.  Blank means fully random.
+
 	// Event settings
-	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
+	var/static/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
 	// No custom time, no custom time, between 80 to 100 minutes respectively.
-	var/list/event_first_run   = list(EVENT_LEVEL_MUNDANE = null, 	EVENT_LEVEL_MODERATE = null,	EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000))
+	var/static/list/event_first_run   = list(EVENT_LEVEL_MUNDANE = null, 	EVENT_LEVEL_MODERATE = null,	EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000))
 	// The lowest delay until next event
 	// 10, 30, 50 minutes respectively
-	var/list/event_delay_lower = list(EVENT_LEVEL_MUNDANE = 6000,	EVENT_LEVEL_MODERATE = 18000,	EVENT_LEVEL_MAJOR = 30000)
+	var/static/list/event_delay_lower = list(EVENT_LEVEL_MUNDANE = 6000,	EVENT_LEVEL_MODERATE = 18000,	EVENT_LEVEL_MAJOR = 30000)
 	// The upper delay until next event
 	// 15, 45, 70 minutes respectively
-	var/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
+	var/static/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
 
-	var/aliens_allowed = 0
-	var/ninjas_allowed = 0
-	var/abandon_allowed = 1
-	var/ooc_allowed = 1
-	var/looc_allowed = 1
-	var/dooc_allowed = 1
-	var/dsay_allowed = 1
+	var/static/aliens_allowed = 1 //Changed to 1 so player xenos can lay eggs.
+	var/static/ninjas_allowed = 0
+	var/static/abandon_allowed = 1
+	var/static/ooc_allowed = 1
+	var/static/looc_allowed = 1
+	var/static/dooc_allowed = 1
+	var/static/dsay_allowed = 1
+
+	var/persistence_disabled = FALSE
+	var/persistence_ignore_mapload = FALSE
+
+	var/allow_byond_links = 0
+	var/allow_discord_links = 0
+	var/allow_url_links = 0					// honestly if I were you i'd leave this one off, only use in dire situations
 
 	var/starlight = 0	// Whether space turfs have ambient light or not
 
-	var/list/ert_species = list(SPECIES_HUMAN)
+	var/static/list/ert_species = list(SPECIES_HUMAN)
 
-	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
+	var/static/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
-	var/aggressive_changelog = 0
+	var/static/aggressive_changelog = 0
 
-	var/list/language_prefixes = list(",","#")//Default language prefixes
+	var/static/list/language_prefixes = list(",","#")//Default language prefixes
 
-	var/show_human_death_message = 1
+	var/static/show_human_death_message = 1
 
-	var/radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB // 0:1 subtraction:division for computing effective radiation on a turf
-	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
-	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
-	var/radiation_material_resistance_divisor = 1
-	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
+	var/static/radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB // 0:1 subtraction:division for computing effective radiation on a turf
+	var/static/radiation_decay_rate = 1 //How much radiation is reduced by each tick
+	var/static/radiation_resistance_multiplier = 8.5 //VOREstation edit
+	var/static/radiation_material_resistance_divisor = 1
+	var/static/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
-	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
-	var/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
+	var/static/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
+	var/static/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
 
 	// New shiny SQLite stuff.
 	// The basics.
-	var/sqlite_enabled = FALSE // If it should even be active. SQLite can be ran alongside other databases but you should not have them do the same functions.
+	var/static/sqlite_enabled = FALSE // If it should even be active. SQLite can be ran alongside other databases but you should not have them do the same functions.
 
 	// In-Game Feedback.
-	var/sqlite_feedback = FALSE // Feedback cannot be submitted if this is false.
-	var/list/sqlite_feedback_topics = list("General") // A list of 'topics' that feedback can be catagorized under by the submitter.
-	var/sqlite_feedback_privacy = FALSE // If true, feedback submitted can have its author name be obfuscated. This is not 100% foolproof (it's md5 ffs) but can stop casual snooping.
-	var/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
-	var/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
+	var/static/sqlite_feedback = FALSE // Feedback cannot be submitted if this is false.
+	var/static/list/sqlite_feedback_topics = list("General") // A list of 'topics' that feedback can be catagorized under by the submitter.
+	var/static/sqlite_feedback_privacy = FALSE // If true, feedback submitted can have its author name be obfuscated. This is not 100% foolproof (it's md5 ffs) but can stop casual snooping.
+	var/static/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
+	var/static/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
+
+	var/static/defib_timer = 10 // How long until someone can't be defibbed anymore, in minutes.
+	var/static/defib_braindamage_timer = 2 // How long until someone will get brain damage when defibbed, in minutes. The closer to the end of the above timer, the more brain damage they get.
+
+	// disables the annoying "You have already logged in this round, disconnect or be banned" popup for multikeying, because it annoys the shit out of me when testing.
+	var/static/disable_cid_warn_popup = FALSE
+
+	// whether or not to use the nightshift subsystem to perform lighting changes
+	var/static/enable_night_shifts = FALSE
+
+	// How strictly the loadout enforces object species whitelists
+	var/loadout_whitelist = LOADOUT_WHITELIST_LAX
+
+	var/static/vgs_access_identifier = null	// VOREStation Edit - VGS
+	var/static/vgs_server_port = null	// VOREStation Edit - VGS
+
+	var/disable_webhook_embeds = FALSE
+
+	var/static/list/jukebox_track_files
+
+	var/static/suggested_byond_version
+	var/static/suggested_byond_build
+
+	var/static/invoke_youtubedl = null
 
 /datum/configuration/New()
-	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
+	var/list/L = subtypesof(/datum/game_mode)
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
@@ -414,11 +455,23 @@ var/list/gamemode_cache = list()
 				if ("allow_admin_spawning")
 					config.allow_admin_spawning = 1
 
+				if ("allow_byond_links")
+					allow_byond_links = 1
+
+				if ("allow_discord_links")
+					allow_discord_links = 1
+
+				if ("allow_url_links")
+					allow_url_links = 1
+
 				if ("no_dead_vote")
 					config.vote_no_dead = 1
 
 				if ("default_no_vote")
 					config.vote_no_default = 1
+
+				if ("pregame_time")
+					config.pregame_time = text2num(value)
 
 				if ("vote_delay")
 					config.vote_delay = text2num(value)
@@ -452,6 +505,13 @@ var/list/gamemode_cache = list()
 
 				if ("norespawn")
 					config.respawn = 0
+
+				if ("respawn_time")
+					var/raw_minutes = text2num(value)
+					config.respawn_time = raw_minutes MINUTES
+
+				if ("respawn_message")
+					config.respawn_message = "<span class='notice'><B>[value]</B></span>"
 
 				if ("servername")
 					config.server_name = value
@@ -491,6 +551,13 @@ var/list/gamemode_cache = list()
 
 				if ("githuburl")
 					config.githuburl = value
+
+				if ("discordurl")
+					config.discordurl = value
+
+				if ("patreonurl")
+					config.patreonurl = value
+
 				if ("guest_jobban")
 					config.guest_jobban = 1
 
@@ -536,6 +603,12 @@ var/list/gamemode_cache = list()
 
 				if("protect_roles_from_antagonist")
 					config.protect_roles_from_antagonist = 1
+
+				if("persistence_disabled")
+					config.persistence_disabled = TRUE // Previously this forcibly set persistence enabled in the saves.
+
+				if("persistence_ignore_mapload")
+					config.persistence_ignore_mapload = TRUE
 
 				if ("probability")
 					var/prob_pos = findtext(value, " ")
@@ -585,6 +658,9 @@ var/list/gamemode_cache = list()
 
 				if("show_devs")
 					config.show_devs = 1
+
+				if("show_mentors")
+					config.show_mentors = 1
 
 				if("show_event_managers")
 					config.show_event_managers = 1
@@ -738,6 +814,9 @@ var/list/gamemode_cache = list()
 
 				if("use_overmap")
 					config.use_overmap = 1
+
+				if("engine_map")
+					config.engine_map = splittext(value, ",")
 /*
 				if("station_levels")
 					using_map.station_levels = text2numlist(value, ";")
@@ -869,7 +948,36 @@ var/list/gamemode_cache = list()
 				if("sqlite_feedback_cooldown")
 					config.sqlite_feedback_cooldown = text2num(value)
 
+				if("defib_timer")
+					config.defib_timer = text2num(value)
 
+				if("defib_braindamage_timer")
+					config.defib_braindamage_timer = text2num(value)
+
+				if("disable_cid_warn_popup")
+					config.disable_cid_warn_popup = TRUE
+
+				if("enable_night_shifts")
+					config.enable_night_shifts = TRUE
+
+				if("jukebox_track_files")
+					config.jukebox_track_files = splittext(value, ";")
+
+				if("suggested_byond_version")
+					config.suggested_byond_version = text2num(value)
+
+				if("suggested_byond_build")
+					config.suggested_byond_build = text2num(value)
+
+				// VOREStation Edit Start - Can't be in _vr file because it is loaded too late.
+				if("vgs_access_identifier")
+					config.vgs_access_identifier = value
+				if("vgs_server_port")
+					config.vgs_server_port = text2num(value)
+				// VOREStation Edit End
+
+				if("invoke_youtubedl")
+					config.invoke_youtubedl = value
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
@@ -936,6 +1044,9 @@ var/list/gamemode_cache = list()
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
+
+				if("loadout_whitelist")
+					config.loadout_whitelist = text2num(value)
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

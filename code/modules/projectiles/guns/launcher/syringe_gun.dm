@@ -4,7 +4,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "syringe-cartridge"
 	var/icon_flight = "syringe-cartridge-flight" //so it doesn't look so weird when shot
-	matter = list(DEFAULT_WALL_MATERIAL = 125, "glass" = 375)
+	matter = list(MAT_STEEL = 125, MAT_GLASS = 375)
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 3
 	force = 3
@@ -23,14 +23,14 @@
 		to_chat(user, "<span class='notice'>You carefully insert [syringe] into [src].</span>")
 		user.remove_from_mob(syringe)
 		syringe.loc = src
-		sharp = 1
+		sharp = TRUE
 		name = "syringe dart"
 		update_icon()
 
 /obj/item/weapon/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
 		to_chat(user, "<span class='notice'>You remove [syringe] from [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		user.put_in_hands(syringe)
 		syringe = null
 		sharp = initial(sharp)
@@ -68,7 +68,7 @@
 	item_state = "syringegun"
 	w_class = ITEMSIZE_NORMAL
 	force = 7
-	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	matter = list(MAT_STEEL = 2000)
 	slot_flags = SLOT_BELT
 
 	fire_sound = 'sound/weapons/empty.ogg'
@@ -97,7 +97,7 @@
 		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", "<span class='warning'>You unlatch and carefully relax the bolt on [src], unloading the spring.</span>")
 		next = null
 	else if(darts.len)
-		playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+		playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", "<span class='warning'>You draw back the bolt on the [src], loading the spring!</span>")
 		next = darts[1]
 	add_fingerprint(user)
@@ -114,7 +114,7 @@
 		darts -= C
 		user.put_in_hands(C)
 		user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
 		..()
 

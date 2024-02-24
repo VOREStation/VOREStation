@@ -14,7 +14,9 @@
 /turf/simulated/floor/outdoors/snow/Entered(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
-		if(L.hovering) // Flying things shouldn't make footprints.
+		if(L.hovering || L.flying) // Flying things shouldn't make footprints.
+			if(L.flying)
+				L.adjust_nutrition(-0.5)
 			return ..()
 		var/mdir = "[A.dir]"
 		crossed_dirs[mdir] = 1
@@ -31,7 +33,7 @@
 		to_chat(user, "<span class='notice'>You begin to remove \the [src] with your [W].</span>")
 		if(do_after(user, 4 SECONDS * W.toolspeed))
 			to_chat(user, "<span class='notice'>\The [src] has been dug up, and now lies in a pile nearby.</span>")
-			new /obj/item/stack/material/snow(src)
+			new /obj/item/stack/material/snow(src, 10)
 			demote()
 		else
 			to_chat(user, "<span class='notice'>You decide to not finish removing \the [src].</span>")
@@ -50,6 +52,18 @@
 	name = "ice"
 	icon_state = "ice"
 	desc = "Looks slippery."
+	edge_blending_priority = 0
+	can_be_plated = FALSE
+
+/turf/simulated/floor/outdoors/ice/dark
+	name = "black ice"
+	icon_state = "ice_dark"
+	desc = "An uneven surface of dark rocks glazed over by solid ice. Looks slippey, maybe even painful"
+
+/turf/simulated/floor/outdoors/ice/dark_smooth
+	name = "smooth black ice"
+	icon_state = "ice_dark_smooth"
+	desc = "Dark rock that has been smoothened to be perfectly even. It's coated in a layer of slippey ice"
 
 /turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
 	sleep(1 * world.tick_lag)
@@ -65,3 +79,4 @@
 	icon_state = "ice"
 	desc = "Looks slippery."
 	movement_cost = 4
+	edge_blending_priority = 0

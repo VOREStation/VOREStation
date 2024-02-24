@@ -1,7 +1,7 @@
 /obj/item/modular_computer/tablet/preset/custom_loadout/rugged
 	name = "rugged tablet computer"
 	desc = "A rugged tablet computer."
-	icon = 'icons/obj/modular_tablet_vr.dmi'
+	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "rugged"
 	icon_state_unpowered = "rugged"
 	max_damage = 300
@@ -19,7 +19,7 @@
 /obj/item/modular_computer/tablet/preset/custom_loadout/elite
 	name = "elite tablet computer"
 	desc = "A more expensive tablet computer."
-	icon = 'icons/obj/modular_tablet_vr.dmi'
+	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "elite"
 	icon_state_unpowered = "elite"
 
@@ -37,7 +37,7 @@
 /obj/item/modular_computer/tablet/preset/custom_loadout/hybrid
 	name = "hybrid tablet computer"
 	desc = "A human/alien hybrid tech tablet computer."
-	icon = 'icons/obj/modular_tablet_vr.dmi'
+	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "hybrid"
 	icon_state_unpowered = "hybrid"
 

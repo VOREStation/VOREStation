@@ -1,5 +1,3 @@
-#define PROCESS_ACCURACY 10
-
 /obj/item/organ/internal/liver
 	name = "liver"
 	icon_state = "liver"
@@ -8,7 +6,7 @@
 
 /obj/item/organ/internal/liver/process()
 	..()
-	if(!owner) return
+	if(!iscarbon(owner)) return
 
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 

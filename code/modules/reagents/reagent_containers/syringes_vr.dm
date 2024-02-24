@@ -63,7 +63,7 @@
 
 /obj/item/weapon/reagent_containers/syringe/proc/infect_limb(var/obj/item/organ/external/eo)
 	src = null
-	var/weakref/limb_ref = weakref(eo)
+	var/datum/weakref/limb_ref = WEAKREF(eo)
 	spawn(rand(5 MINUTES,10 MINUTES))
 		var/obj/item/organ/external/found_limb = limb_ref.resolve()
 		if(istype(found_limb))
@@ -85,7 +85,7 @@
 
 //Allow for capped syringes
 /obj/item/weapon/reagent_containers/syringe/update_icon()
-	cut_overlays(src)
+	cut_overlays()
 
 	var/matrix/tf = matrix()
 	if(isstorage(loc))
@@ -101,12 +101,11 @@
 		icon_state = "capped"
 		return
 
-	var/list/new_overlays = list()
 	var/rounded_vol = round(reagents.total_volume, round(reagents.maximum_volume / 3))
 	if(reagents.total_volume)
 		filling = image(icon, src, "filler[rounded_vol]")
 		filling.color = reagents.get_color()
-		new_overlays += filling
+		add_overlay(filling)
 
 	if(ismob(loc))
 		var/injoverlay
@@ -115,9 +114,8 @@
 				injoverlay = "draw"
 			if (SYRINGE_INJECT)
 				injoverlay = "inject"
-		new_overlays += injoverlay
+		add_overlay(injoverlay)
 
-	add_overlay(new_overlays)
 	icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 

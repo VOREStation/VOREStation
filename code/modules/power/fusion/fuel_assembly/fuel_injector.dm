@@ -1,37 +1,37 @@
-var/list/fuel_injectors = list()
+GLOBAL_LIST_EMPTY(fuel_injectors)
 
 /obj/machinery/fusion_fuel_injector
 	name = "fuel injector"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "injector0"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	req_access = list(access_engine)
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 500
 
 	circuit = /obj/item/weapon/circuitboard/fusion_injector
 
-	var/fuel_usage = 0.0001
+	var/fuel_usage = 30
 	var/id_tag
 	var/injecting = 0
 	var/obj/item/weapon/fuel_assembly/cur_assembly
 
 /obj/machinery/fusion_fuel_injector/Initialize()
 	. = ..()
-	fuel_injectors += src
+	GLOB.fuel_injectors += src
 	default_apply_parts()
 
 /obj/machinery/fusion_fuel_injector/Destroy()
 	if(cur_assembly)
 		cur_assembly.forceMove(get_turf(src))
 		cur_assembly = null
-	fuel_injectors -= src
+	GLOB.fuel_injectors -= src
 	return ..()
 
 /obj/machinery/fusion_fuel_injector/mapped
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/fusion_fuel_injector/process()
 	if(injecting)
@@ -43,7 +43,8 @@ var/list/fuel_injectors = list()
 /obj/machinery/fusion_fuel_injector/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = input("Enter a new ident tag.", "Fuel Injector", id_tag) as null|text
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Fuel Injector", id_tag, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return
@@ -56,9 +57,9 @@ var/list/fuel_injectors = list()
 
 		if(cur_assembly)
 			cur_assembly.forceMove(get_turf(src))
-			visible_message("<span class='notice'>\The [user] swaps \the [src]'s [cur_assembly] for \a [W].</span>")
+			visible_message("<b>\The [user]</b> swaps \the [src]'s [cur_assembly] for \a [W].")
 		else
-			visible_message("<span class='notice'>\The [user] inserts \a [W] into \the [src].</span>")
+			visible_message("<b>\The [user]</b> inserts \a [W] into \the [src].")
 
 		user.drop_from_inventory(W)
 		W.forceMove(src)
@@ -68,7 +69,7 @@ var/list/fuel_injectors = list()
 		cur_assembly = W
 		return
 
-	if(W.is_wrench() || W.is_screwdriver() || W.is_crowbar() || istype(W, /obj/item/weapon/storage/part_replacer))
+	if(W.has_tool_quality(TOOL_WRENCH) || W.has_tool_quality(TOOL_SCREWDRIVER) || W.has_tool_quality(TOOL_CROWBAR) || istype(W, /obj/item/weapon/storage/part_replacer))
 		if(injecting)
 			to_chat(user, "<span class='warning'>Shut \the [src] off first!</span>")
 			return
@@ -92,7 +93,7 @@ var/list/fuel_injectors = list()
 	if(cur_assembly)
 		cur_assembly.forceMove(get_turf(src))
 		user.put_in_hands(cur_assembly)
-		visible_message("<span class='notice'>\The [user] removes \the [cur_assembly] from \the [src].</span>")
+		visible_message("<b>\The [user]</b> removes \the [cur_assembly] from \the [src].")
 		cur_assembly = null
 		return
 	else
@@ -103,13 +104,13 @@ var/list/fuel_injectors = list()
 	if(!injecting && cur_assembly)
 		icon_state = "injector1"
 		injecting = 1
-		use_power = 1
+		update_use_power(USE_POWER_IDLE)
 
 /obj/machinery/fusion_fuel_injector/proc/StopInjecting()
 	if(injecting)
 		injecting = 0
 		icon_state = "injector0"
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 
 /obj/machinery/fusion_fuel_injector/proc/Inject()
 	if(!injecting)
@@ -118,15 +119,14 @@ var/list/fuel_injectors = list()
 		var/amount_left = 0
 		for(var/reagent in cur_assembly.rod_quantities)
 			if(cur_assembly.rod_quantities[reagent] > 0)
-				var/amount = cur_assembly.rod_quantities[reagent] * fuel_usage
-				var/numparticles = round(amount * 1000)
+				var/numparticles = fuel_usage
 				if(numparticles < 1)
 					numparticles = 1
 				var/obj/effect/accelerated_particle/A = new/obj/effect/accelerated_particle(get_turf(src), dir)
 				A.particle_type = reagent
 				A.additional_particles = numparticles - 1
 				if(cur_assembly)
-					cur_assembly.rod_quantities[reagent] -= amount
+					cur_assembly.rod_quantities[reagent] -= fuel_usage
 					amount_left += cur_assembly.rod_quantities[reagent]
 		if(cur_assembly)
 			cur_assembly.percent_depleted = amount_left / cur_assembly.initial_amount

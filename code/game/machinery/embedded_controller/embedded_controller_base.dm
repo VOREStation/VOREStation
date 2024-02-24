@@ -1,18 +1,21 @@
 /obj/machinery/embedded_controller
-	var/datum/computer/file/embedded_program/program	//the currently executing program
-
 	name = "Embedded Controller"
-	anchored = 1
-
-	use_power = 1
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
-
+	var/datum/embedded_program/program	//the currently executing program
+	var/list/valid_actions = list()
 	var/on = 1
 
-obj/machinery/embedded_controller/radio/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
-	..()
+/obj/machinery/embedded_controller/Initialize()
+	if(ispath(program))
+		program = new program(src)
+	return ..()
+
+/obj/machinery/embedded_controller/Destroy()
+	if(istype(program))
+		qdel(program) // the program will clear the ref in its Destroy
+	return ..()
 
 /obj/machinery/embedded_controller/proc/post_signal(datum/signal/signal, comm_line)
 	return 0
@@ -22,7 +25,19 @@ obj/machinery/embedded_controller/radio/Destroy()
 
 	if(program)
 		program.receive_signal(signal, receive_method, receive_param)
-			//spawn(5) program.process() //no, program.process sends some signals and machines respond and we here again and we lag -rastaf0
+
+/obj/machinery/embedded_controller/Topic()
+	. = ..()
+	stack_trace("WARNING: Embedded controller [src] ([type]) had Topic() called unexpectedly. Please report this.")
+
+/obj/machinery/embedded_controller/tgui_act(action, params)
+	if(..())
+		return TRUE
+	if(LAZYLEN(valid_actions))
+		if(action in valid_actions)
+			program.receive_user_command(action)
+	if(usr)
+		add_fingerprint(usr)
 
 /obj/machinery/embedded_controller/process()
 	if(program)
@@ -31,23 +46,29 @@ obj/machinery/embedded_controller/radio/Destroy()
 	update_icon()
 
 /obj/machinery/embedded_controller/attack_ai(mob/user as mob)
-	src.ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)
-
 	if(!user.IsAdvancedToolUser())
 		return 0
 
-	src.ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/embedded_controller/ui_interact()
-	return
+/obj/machinery/embedded_controller/tgui_interact(mob/user, datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "EmbeddedController", src)
+		ui.open()
 
+//
+// Embedded controller with a radio! (Most things (All things?) use this)
+//
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
 	power_channel = ENVIRON
-	density = 0
+	density = FALSE
+	unacidable = TRUE
 
 	var/id_tag
 	//var/radio_power_use = 50 //power used to xmit signals
@@ -55,11 +76,15 @@ obj/machinery/embedded_controller/radio/Destroy()
 	var/frequency = 1379
 	var/radio_filter = null
 	var/datum/radio_frequency/radio_connection
-	unacidable = 1
 
 /obj/machinery/embedded_controller/radio/Initialize()
+	set_frequency(frequency) // Set it before parent instantiates program
 	. = ..()
-	set_frequency(frequency)
+
+/obj/machinery/embedded_controller/radio/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src,frequency)
+	..()
 
 /obj/machinery/embedded_controller/radio/update_icon()
 	if(on && program)

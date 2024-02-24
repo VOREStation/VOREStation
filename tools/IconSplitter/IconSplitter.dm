@@ -20,7 +20,7 @@ obj
 
 
 
-client/verb/split_dmi()
+/client/verb/split_dmi()
 	set name = "Split Dmi"
 	set desc = "Loads DmiToSplit.dmi and removes the icon_states of user provided input into another .dmi."
 	set category = "Here"

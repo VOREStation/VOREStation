@@ -1,27 +1,33 @@
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/miner
-	name = "Emergency trauma injector"
-	desc = "A rapid injector for emergency treatment of injuries. The warning label advises that it is not a substitute for proper medical treatment."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
-	amount_per_transfer_from_this = 10
-	volume = 10
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn
+	name = "autoinjector (burn)"
+	icon_state = "purple"
+	filled_reagents = list("dermaline" = 3.5, "leporazine" = 1.5)
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/miner/Initialize()
-	..()
-	reagents.add_reagent("bicaridine", 5)
-	reagents.add_reagent("tricordrazine", 3)
-	reagents.add_reagent("tramadol", 2)
-	update_icon()
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/trauma
+	name = "autoinjector (trauma)"
+	icon_state = "black"
+	filled_reagents = list("bicaridine" = 4, "tramadol" = 1)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy
+	name = "autoinjector (oxy)"
+	icon_state = "blue"
+	filled_reagents = list("dexalinp" = 5)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/rad
+	name = "autoinjector (rad)"
+	icon_state = "black"
+	filled_reagents = list("hyronalin" = 5)
 
 /obj/item/weapon/storage/box/traumainjectors
-	name = "box of emergency trauma injectors"
-	desc = "Contains emergency trauma autoinjectors."
+	name = "box of emergency injectors"
+	desc = "Contains emergency autoinjectors."
 	icon_state = "syringe"
-
-/obj/item/weapon/storage/box/traumainjectors/Initialize()
-	..()
-	for (var/i = 1 to 7)
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/miner(src)
+	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/trauma = 4,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox = 2,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn = 1
+	)
 
 /obj/item/weapon/reagent_containers/hypospray
 	var/prototype = 0

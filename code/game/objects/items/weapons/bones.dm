@@ -44,3 +44,9 @@
 	name = "ribcage"
 	desc = "If you had some mallets, you could probably use this as a makeshift xylophone."
 	icon_state = "ribs"
+
+/obj/item/weapon/bone/horn	//Teppi horn!!!!
+	name = "horn"
+	desc = "A hard conical structure made of bone or some other similar organic material. Traditionally seen affixed to helmets, hollowed out and filled with tasty drinks, or occasionally, attatched to the heads of animals."
+	icon = 'icons/obj/bones_vr.dmi'
+	icon_state = "horn"

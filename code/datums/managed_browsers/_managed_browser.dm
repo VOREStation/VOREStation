@@ -16,10 +16,10 @@ GLOBAL_VAR(managed_browser_id_ticker)
 
 /datum/managed_browser/New(client/new_client)
 	if(!new_client)
-		crash_with("Managed browser object was not given a client.")
+		stack_trace("Managed browser object was not given a client.")
 		return
 	if(!base_browser_id)
-		crash_with("Managed browser object does not have a base browser id defined in its type.")
+		stack_trace("Managed browser object does not have a base browser id defined in its type.")
 		return
 
 	my_client = new_client

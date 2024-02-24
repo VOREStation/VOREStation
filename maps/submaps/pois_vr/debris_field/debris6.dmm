@@ -1,0 +1,28 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
+"b" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"c" = (
+/turf/template_noop,
+/area/space)
+
+(1,1,1) = {"
+b
+b
+c
+"}
+(2,1,1) = {"
+b
+a
+b
+"}
+(3,1,1) = {"
+b
+b
+c
+"}

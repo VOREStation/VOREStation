@@ -35,19 +35,22 @@
 	var/combat_flags = 0	// Otherwise use set_flag/clear_flag in one of your own procs for tricks
 	var/other_flags = 0
 
+	var/vision_flags_mob = 0
+	var/darkness_view = 0
+
+	var/can_uninstall = TRUE
+
 	var/list/planes_enabled = null	// List of vision planes this nifsoft enables when active
 
+	var/vision_exclusive = FALSE	//Whether or not this NIFSoft provides exclusive vision modifier
+
 	var/list/incompatible_with = null // List of NIFSofts that are disabled when this one is enabled
-
-	var/obj/effect/nif_stat/stat_line // The stat line in the statpanel for this NIFSoft
-
 
 //Constructor accepts the NIF it's being loaded into
 /datum/nifsoft/New(var/obj/item/device/nif/nif_load)
 	ASSERT(nif_load)
 
 	nif = nif_load
-	stat_line = new(src)
 	if(!install(nif))
 		qdel(src)
 
@@ -56,7 +59,6 @@
 	if(nif)
 		uninstall()
 		nif = null
-	QDEL_NULL(stat_line)
 	return ..()
 
 //Called when the software is installed in the NIF
@@ -67,6 +69,8 @@
 
 //Called when the software is removed from the NIF
 /datum/nifsoft/proc/uninstall()
+	if(!can_uninstall)
+		return nif.uninstall(src)
 	if(nif)
 		if(active)
 			deactivate()
@@ -104,6 +108,11 @@
 		nif.set_flag(combat_flags,NIF_FLAGS_COMBAT)
 		nif.set_flag(other_flags,NIF_FLAGS_OTHER)
 
+		if(vision_exclusive)
+			var/mob/living/carbon/human/H = nif.human
+			if(H && istype(H))
+				H.recalculate_vis()
+
 	return nif_result
 
 //Called when attempting to deactivate an implant
@@ -127,6 +136,11 @@
 		nif.clear_flag(combat_flags,NIF_FLAGS_COMBAT)
 		nif.clear_flag(other_flags,NIF_FLAGS_OTHER)
 
+		if(vision_exclusive)
+			var/mob/living/carbon/human/H = nif.human
+			if(H && istype(H))
+				H.recalculate_vis()
+
 	return nif_result
 
 //Called when an implant expires
@@ -138,7 +152,7 @@
 /datum/nifsoft/proc/disk_install(var/mob/living/carbon/human/target,var/mob/living/carbon/human/user)
 	return TRUE
 
-//Stat-line clickable text
+//Status text for menu
 /datum/nifsoft/proc/stat_text()
 	if(activates)
 		return "[active ? "Active" : "Disabled"]"
@@ -181,7 +195,8 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
 		)
 	w_class = ITEMSIZE_SMALL
-	var/datum/nifsoft/stored = null
+	var/datum/nifsoft/stored_organic = null
+	var/datum/nifsoft/stored_synthetic = null
 
 /obj/item/weapon/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
 	if(!in_range(user, A))
@@ -207,11 +222,19 @@
 	update_icon()
 
 	if(A == user && do_after(Hu,1 SECONDS,Ht))
-		new stored(Ht.nif,extra)
-		qdel(src)
+		if(Ht.isSynthetic())
+			new stored_synthetic(Ht.nif,extra)
+			qdel(src)
+		else
+			new stored_organic(Ht.nif,extra)
+			qdel(src)
 	else if(A != user && do_after(Hu,10 SECONDS,Ht))
-		new stored(Ht.nif,extra)
-		qdel(src)
+		if(Ht.isSynthetic())
+			new stored_synthetic(Ht.nif,extra)
+			qdel(src)
+		else
+			new stored_organic(Ht.nif,extra)
+			qdel(src)
 	else
 		icon_state = "[initial(icon_state)]"	//If it fails to apply to a valid target and doesn't get deleted, reset its icon state
 		update_icon()
@@ -231,7 +254,8 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
 		)
-	stored = /datum/nifsoft/compliance
+	stored_organic = /datum/nifsoft/compliance
+	stored_synthetic = /datum/nifsoft/compliance
 	var/laws
 
 /obj/item/weapon/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
@@ -243,10 +267,10 @@
 	..(A,user,flag,params)
 
 /obj/item/weapon/disk/nifsoft/compliance/attack_self(mob/user)
-	var/newlaws = input(user,"Please Input Laws","Compliance Laws",laws) as message
+	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
 	newlaws = sanitize(newlaws,2048)
 	if(newlaws)
-		to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
+		to_chat(user,"<span class='filter_notice'>You set the laws to: <br><span class='notice'>[newlaws]</span></span>")
 		laws = newlaws
 
 /obj/item/weapon/disk/nifsoft/compliance/extra_params()
@@ -261,7 +285,8 @@
 	Align ocular port with eye socket and depress red plunger.\""
 
 	icon_state = "security"
-	stored = /datum/nifsoft/package/security
+	stored_organic = /datum/nifsoft/package/security
+	stored_synthetic = /datum/nifsoft/package/security
 
 /datum/nifsoft/package/security
 	software = list(/datum/nifsoft/ar_sec,/datum/nifsoft/flashprot)
@@ -269,7 +294,8 @@
 /obj/item/weapon/storage/box/nifsofts_security
 	name = "security nifsoft uploaders"
 	desc = "A box of free nifsofts for security employees."
-	icon_state = "disk_kit"
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "nifsoft_kit_sec"
 
 /obj/item/weapon/storage/box/nifsofts_security/New()
 	..()
@@ -285,7 +311,8 @@
 	Align ocular port with eye socket and depress red plunger.\""
 
 	icon_state = "engineering"
-	stored = /datum/nifsoft/package/engineering
+	stored_organic = /datum/nifsoft/package/engineering
+	stored_synthetic = /datum/nifsoft/package/engineering
 
 /datum/nifsoft/package/engineering
 	software = list(/datum/nifsoft/ar_eng,/datum/nifsoft/alarmmonitor,/datum/nifsoft/uvblocker)
@@ -293,7 +320,8 @@
 /obj/item/weapon/storage/box/nifsofts_engineering
 	name = "engineering nifsoft uploaders"
 	desc = "A box of free nifsofts for engineering employees."
-	icon_state = "disk_kit"
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "nifsoft_kit_eng"
 
 /obj/item/weapon/storage/box/nifsofts_engineering/New()
 	..()
@@ -308,7 +336,8 @@
 	\"Portable NIFSoft Installation Media. \n\
 	Align ocular port with eye socket and depress red plunger.\""
 
-	stored = /datum/nifsoft/package/medical
+	stored_organic = /datum/nifsoft/package/medical
+	stored_synthetic = /datum/nifsoft/package/medical
 
 /datum/nifsoft/package/medical
 	software = list(/datum/nifsoft/ar_med,/datum/nifsoft/crewmonitor)
@@ -316,7 +345,8 @@
 /obj/item/weapon/storage/box/nifsofts_medical
 	name = "medical nifsoft uploaders"
 	desc = "A box of free nifsofts for medical employees."
-	icon_state = "disk_kit"
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "nifsoft_kit_med"
 
 /obj/item/weapon/storage/box/nifsofts_medical/New()
 	..()
@@ -332,17 +362,45 @@
 	Align ocular port with eye socket and depress red plunger.\""
 
 	icon_state = "mining"
-	stored = /datum/nifsoft/package/mining
+	stored_organic = /datum/nifsoft/package/mining
+	stored_synthetic = /datum/nifsoft/package/mining_synth
 
 /datum/nifsoft/package/mining
 	software = list(/datum/nifsoft/material,/datum/nifsoft/spare_breath)
 
+/datum/nifsoft/package/mining_synth
+	software = list(/datum/nifsoft/material,/datum/nifsoft/pressure,/datum/nifsoft/heatsinks)
+
 /obj/item/weapon/storage/box/nifsofts_mining
 	name = "mining nifsoft uploaders"
 	desc = "A box of free nifsofts for mining employees."
-	icon_state = "disk_kit"
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "nifsoft_kit_mining"
 
 /obj/item/weapon/storage/box/nifsofts_mining/New()
 	..()
 	for(var/i = 0 to 7)
 		new /obj/item/weapon/disk/nifsoft/mining(src)
+
+// Mass Alteration Disk //
+/obj/item/weapon/disk/nifsoft/sizechange
+	name = "NIFSoft Uploader - Mass Alteration"
+	desc = "Contains free NIFSofts for special purposes.\n\
+	It has a small label: \n\
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
+
+	icon_state = "mining"
+	stored_organic = /datum/nifsoft/sizechange
+	stored_synthetic = /datum/nifsoft/sizechange
+
+/obj/item/weapon/storage/box/nifsofts_sizechange
+	name = "mass alteration nifsoft uploaders"
+	desc = "A box of free nifsofts for special purposes."
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "nifsoft_kit_mining"
+
+/obj/item/weapon/storage/box/nifsofts_sizechange/New()
+	..()
+	for(var/i = 0 to 7)
+		new /obj/item/weapon/disk/nifsoft/sizechange(src)

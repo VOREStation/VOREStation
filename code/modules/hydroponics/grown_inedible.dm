@@ -8,18 +8,16 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/weapon/grown/New(newloc,planttype)
+/obj/item/weapon/grown/Initialize(ml, planttype)
 
-	..()
+	. = ..()
 
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
+	create_reagents(50)
 
 	//Handle some post-spawn var stuff.
 	if(planttype)
 		plantname = planttype
-		var/datum/seed/S = plant_controller.seeds[plantname]
+		var/datum/seed/S = SSplants.seeds[plantname]
 		if(!S || !S.chems)
 			return
 

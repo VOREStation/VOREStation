@@ -12,8 +12,10 @@
 	return
 
 /obj/item/weapon/implant/uplink/post_implant(mob/source)
-	listening_objects |= src
-	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	var/choices = list("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	activation_emote = tgui_input_list(usr, "Choose activation emote. If you cancel this, one will be picked at random.", "Implant Activation", choices)
+	if(!activation_emote)
+		activation_emote = pick(choices)
 	source.mind.store_memory("Uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	to_chat(source, "The implanted uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
 

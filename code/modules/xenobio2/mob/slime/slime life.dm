@@ -10,7 +10,7 @@ Slime specific life events go here.
 			if(is_child)
 				if(nutrition >= 275)
 					growthcounter++
-					nutrition -= hunger_factor
+					adjust_nutrition(-hunger_factor)
 				if(nutrition <= 75)
 					growthcounter--
 				if(growthcounter >= growthpoint)
@@ -36,7 +36,7 @@ Slime specific life events go here.
 							I.icon_state = "aslime-sad"
 						else
 							I.icon_state = "aslime-angry"
-					overlays += I
+					add_overlay(I)
 					emote_on = 1
 					spawn(30)
 						GenerateAdultIcon()
@@ -46,7 +46,7 @@ Slime specific life events go here.
 			if(is_child)
 				icon_state = "slime baby dead"
 			else
-				overlays.Cut()
+				cut_overlays()
 				icon_state = "slime adult dead"
 				color = traitdat.traits[TRAIT_XENO_COLOR]
 

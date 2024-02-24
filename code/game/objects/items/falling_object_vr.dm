@@ -8,9 +8,10 @@
 	var/falling_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
-/obj/effect/falling_effect/Initialize(mapload, type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita)
+/obj/effect/falling_effect/Initialize(mapload, type)
 	..()
-	falling_type = type
+	if(type)
+		falling_type = type
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/falling_effect/LateInitialize()
@@ -38,7 +39,7 @@
 	for(var/mob/living/M in oviewers(3, src))
 		shake_camera(M, 2, 2)
 
-	playsound(loc, 'sound/effects/meteorimpact.ogg', 50, 1)
+	playsound(src, 'sound/effects/meteorimpact.ogg', 50, 1)
 	density = initial(density)
 	opacity = initial(opacity)
 	plane = initial(plane)

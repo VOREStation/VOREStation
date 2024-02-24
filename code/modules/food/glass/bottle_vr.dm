@@ -5,6 +5,13 @@
 	icon_state = "bottle-4"
 	prefill = list("bicaridine" = 60)
 
+/obj/item/weapon/reagent_containers/glass/bottle/vermicetol
+	name = "vermicetol bottle"
+	desc = "A small bottle. Vermicetol is an powerful analgesic medication and can be used to treat blunt trauma."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle-4"
+	prefill = list("vermicetol" = 60)
+
 /obj/item/weapon/reagent_containers/glass/bottle/keloderm
 	name = "keloderm bottle"
 	desc = "A small bottle. A fifty-fifty mix of the popular burn medications kelotane and deramline."

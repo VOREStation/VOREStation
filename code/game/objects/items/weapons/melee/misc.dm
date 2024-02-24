@@ -8,11 +8,22 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+	hitsound = 'sound/weapons/whip.ogg'
+	reach = 2
 
-	suicide_act(mob/user)
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
-		user.visible_message(span("danger", "\The [user] [T.is] strangling [T.himself] with \the [src]! It looks like [T.he] [T.is] trying to commit suicide."), span("danger", "You start to strangle yourself with \the [src]!"), span("danger", "You hear the sound of someone choking!"))
-		return (OXYLOSS)
+/obj/item/weapon/melee/chainofcommand/curator_whip
+	name = "leather whip"
+	desc = "A fine weapon for some treasure hunting."
+	icon_state = "curator_whip"
+	force = 5
+	throwforce = 5
+	origin_tech = list(TECH_COMBAT = 2)
+
+/obj/item/weapon/melee/chainofcommand/curator_whip/toy
+	name = "toy whip"
+	desc = "A fake whip. Perfect for fake treasure hunting"
+	force = 2
+	throwforce = 2
 
 /obj/item/weapon/melee/umbrella
 	name = "umbrella"
@@ -43,11 +54,10 @@
 		var/mob/living/carbon/human/H = src.loc
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
-	..()
 
 // Randomizes color
 /obj/item/weapon/melee/umbrella/random/New()
-	color = "#"+get_random_colour()
+	color = get_random_colour()
 	..()
 
 /obj/item/weapon/melee/cursedblade
@@ -58,8 +68,8 @@
 	force = 30
 	throwforce = 10
 	w_class = ITEMSIZE_NORMAL
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	can_speak = 1
@@ -69,7 +79,7 @@
 /obj/item/weapon/melee/cursedblade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 

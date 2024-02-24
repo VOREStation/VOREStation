@@ -19,10 +19,10 @@
 		else
 			var/list/datum/sprite_accessory/hair/valid_hairstyles = list()
 			for(var/hair_string in hair_styles_list)
-				var/list/datum/sprite_accessory/hair/test = hair_styles_list[hair_string]
+				var/datum/sprite_accessory/hair/test = hair_styles_list[hair_string]
 				if(test.flags & HAIR_TIEABLE)
 					valid_hairstyles.Add(hair_string)
-			selected_string = input("Select a new hairstyle", "Your hairstyle", hair_style) as null|anything in valid_hairstyles
+			selected_string = tgui_input_list(usr, "Select a new hairstyle", "Your hairstyle", valid_hairstyles)
 		if(incapacitated())
 			to_chat(src, "<span class='warning'>You can't mess with your hair right now!</span>")
 			return
@@ -51,7 +51,7 @@
 			choices += M
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to tackle?") as null|anything in choices
+	var/mob/living/T = tgui_input_list(src, "Who do you wish to tackle?", "Target Choice", choices)
 
 	if(!T || !src || src.stat) return
 
@@ -61,7 +61,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot tackle in your current state.")
+		to_chat(src, "<span class='filter_notice'>You cannot tackle in your current state.</span>")
 		return
 
 	last_special = world.time + 50
@@ -72,13 +72,13 @@
 	else
 		failed = 1
 
-	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+	playsound(src, 'sound/weapons/pierce.ogg', 25, 1, -1)
 	if(failed)
 		src.Weaken(rand(2,4))
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
-			O.show_message(text("<font color='red'><B>[] [failed ? "tried to tackle" : "has tackled"] down []!</font></B>", src, T), 1)
+			O.show_message("<span class='filter_warning'>[span_red("<B>[src] [failed ? "tried to tackle" : "has tackled"] down [T]!</B>")]</span>", 1)
 
 /mob/living/carbon/human/proc/commune()
 	set category = "Abilities"
@@ -90,30 +90,30 @@
 	var/text = null
 
 	targets += getmobs() //Fill list, prompt user with list
-	target = input("Select a creature!", "Speak to creature", null, null) as null|anything in targets
+	target = tgui_input_list(usr, "Select a creature!", "Speak to creature", targets)
 
 	if(!target) return
 
-	text = input("What would you like to say?", "Speak to creature", null, null)
+	text = tgui_input_text(usr, "What would you like to say?", "Speak to creature", null, MAX_MESSAGE_LEN)
 
-	text = sanitize(text)
+	text = sanitize(text, MAX_MESSAGE_LEN)
 
 	if(!text) return
 
 	var/mob/M = targets[target]
 
 	if(istype(M, /mob/observer/dead) || M.stat == DEAD)
-		to_chat(src, "Not even a [src.species.name] can speak to the dead.")
+		to_chat(src, "<span class='filter_notice'>Not even a [src.species.name] can speak to the dead.</span>")
 		return
 
 	log_say("(COMMUNE to [key_name(M)]) [text]",src)
 
-	to_chat(M, "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>")
+	to_chat(M, "<span class='filter_say'>[span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")]</span>")
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		to_chat(H, "<font color='red'>Your nose begins to bleed...</font>")
+		to_chat(H, "<span class='filter_notice'>[span_red("Your nose begins to bleed...")]</span>")
 		H.drip(1)
 
 /mob/living/carbon/human/proc/regurgitate()
@@ -126,7 +126,7 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message("<font color='red'><B>[src] hurls out the contents of their stomach!</B></font>")
+		src.visible_message("<span class='filter_warning'>[span_red("<B>[src] hurls out the contents of their stomach!</B>")]</span>")
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -134,11 +134,11 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities"
 
-	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
+	var/msg = sanitize(tgui_input_text(usr, "Message:", "Psychic Whisper"))
 	if(msg)
 		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
-		to_chat(M, "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>")
-		to_chat(src, "<font color='green'>You said: \"[msg]\" to [M]</font>")
+		to_chat(M, "<span class='filter_say'>[span_green("You hear a strange, alien voice in your head... <i>[msg]</i>")]</span>")
+		to_chat(src, "<span class='filter_say'>[span_green("You said: \"[msg]\" to [M]")]</span>")
 	return
 
 /mob/living/carbon/human/proc/diona_split_nymph()
@@ -178,9 +178,28 @@
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 
-	visible_message("<span class='warning'>\The [src] quivers slightly, then splits apart with a wet slithering noise.</span>")
+	var/obj/item/organ/external/Chest = organs_by_name[BP_TORSO]
 
-	qdel(src)
+	if(Chest.robotic >= 2)
+		visible_message("<span class='warning'>\The [src] shudders slightly, then ejects a cluster of nymphs with a wet slithering noise.</span>")
+		species = GLOB.all_species[SPECIES_HUMAN] // This is hard-set to default the body to a normal FBP, without changing anything.
+
+		// Bust it
+		src.death()
+
+		for(var/obj/item/organ/internal/diona/Org in internal_organs) // Remove Nymph organs.
+			qdel(Org)
+
+		// Purge the diona verbs.
+		verbs -= /mob/living/carbon/human/proc/diona_split_nymph
+		verbs -= /mob/living/carbon/human/proc/regenerate
+
+		for(var/obj/item/organ/external/E in organs) // Just fall apart.
+			E.droplimb(TRUE)
+
+	else
+		visible_message("<span class='warning'>\The [src] quivers slightly, then splits apart with a wet slithering noise.</span>")
+		qdel(src)
 
 /mob/living/carbon/human/proc/self_diagnostics()
 	set name = "Self-Diagnostics"
@@ -190,32 +209,37 @@
 	if(stat == DEAD) return
 
 	to_chat(src, "<span class='notice'>Performing self-diagnostic, please wait...</span>")
-	sleep(50)
-	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
 
-	output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
+	spawn(50)
+		var/output = "<span class='filter_notice'><span class='notice'>Self-Diagnostic Results:\n</span>"
 
-	output += "Current Battery Charge: [nutrition]\n"
+		output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
 
-	var/toxDam = getToxLoss()
-	if(toxDam)
-		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
-	else
-		output += "System Instability: <span style='color:green;'>OK</span>\n"
+		if(isSynthetic())
+			output += "Current Battery Charge: [nutrition]\n"
 
-	for(var/obj/item/organ/external/EO in organs)
-		if(EO.brute_dam || EO.burn_dam)
-			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
-		else
-			output += "[EO.name] - <span style='color:green;'>OK</span>\n"
+			var/toxDam = getToxLoss()
+			if(toxDam)
+				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
+			else
+				output += "System Instability: <span style='color:green;'>OK</span>\n"
 
-	for(var/obj/item/organ/IO in internal_organs)
-		if(IO.damage)
-			output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
-		else
-			output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+		for(var/obj/item/organ/external/EO in organs)
+			if(EO.robotic >= ORGAN_ASSISTED)
+				if(EO.brute_dam || EO.burn_dam)
+					output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
+				else
+					output += "[EO.name] - <span style='color:green;'>OK</span>\n"
 
-	to_chat(src,output)
+		for(var/obj/item/organ/IO in internal_organs)
+			if(IO.robotic >= ORGAN_ASSISTED)
+				if(IO.damage)
+					output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
+				else
+					output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+		output += "</span>"
+
+		to_chat(src,output)
 
 /mob/living/carbon/human
 	var/next_sonar_ping = 0
@@ -279,11 +303,11 @@
 		return
 	else
 		active_regen = TRUE
-		src.visible_message("<B>[src]</B>'s flesh begins to mend...")
+		src.visible_message("<span class='filter_notice'><B>[src]</B>'s flesh begins to mend...</span>")
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	if(do_after(src,delay_length))
-		nutrition -= 200
+		adjust_nutrition(-200)
 
 		for(var/obj/item/organ/I in internal_organs)
 			if(I.robotic >= ORGAN_ROBOT) // No free robofix.
@@ -326,5 +350,31 @@
 		active_regen = FALSE
 	else
 		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
-		nutrition -= 75
+		adjust_nutrition(-75)
 		active_regen = FALSE
+
+/mob/living/carbon/human/proc/setmonitor_state()
+	set name = "Set monitor display"
+	set desc = "Set your monitor display"
+	set category = "IC"
+	if(stat)
+		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
+		return
+	var/obj/item/organ/external/head/E = organs_by_name[BP_HEAD]
+	if(!E)
+		to_chat(src,"<span class='warning'>You don't seem to have a head!</span>")
+		return
+	var/datum/robolimb/robohead = all_robolimbs[E.model]
+	if(!robohead.monitor_styles || !robohead.monitor_icon)
+		to_chat(src,"<span class='warning'>Your head doesn't have a monitor, or it doesn't support being changed!</span>")
+		return
+	var/list/states
+	if(!states)
+		states = params2list(robohead.monitor_styles)
+	var/choice = tgui_input_list(usr, "Select a screen icon:", "Screen Icon Choice", states)
+	if(choice)
+		E.eye_icon_location = robohead.monitor_icon
+		E.eye_icon = states[choice]
+		E.eye_icon_override = TRUE
+		to_chat(src,"<span class='warning'>You set your monitor to display [choice]!</span>")
+		update_icons_body()

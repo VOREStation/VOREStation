@@ -42,6 +42,8 @@
 	return 1
 
 /obj/item/modular_computer/Initialize()
+	if(!overlay_icon)
+		overlay_icon = icon
 	START_PROCESSING(SSobj, src)
 	install_default_hardware()
 	if(hard_drive)
@@ -70,22 +72,34 @@
 /obj/item/modular_computer/update_icon()
 	icon_state = icon_state_unpowered
 
-	overlays.Cut()
+	cut_overlays()
+
+	. = list()
+
 	if(bsod)
-		overlays.Add("bsod")
-		return
+		. += mutable_appearance(overlay_icon, "bsod")
+		. += emissive_appearance(overlay_icon, "bsod")
+		return add_overlay(.)
 	if(!enabled)
 		if(icon_state_screensaver)
-			overlays.Add(icon_state_screensaver)
+			. += mutable_appearance(overlay_icon, icon_state_screensaver)
+			. += emissive_appearance(overlay_icon, icon_state_screensaver)
 		set_light(0)
-		return
+		return add_overlay(.)
+	
 	set_light(light_strength)
+	
 	if(active_program)
-		overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+		var/program_state = active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu
+		. += mutable_appearance(overlay_icon, program_state)
+		. += emissive_appearance(overlay_icon, program_state)
 		if(active_program.program_key_state)
-			overlays.Add(active_program.program_key_state)
+			. += mutable_appearance(overlay_icon, active_program.program_key_state)
 	else
-		overlays.Add(icon_state_menu)
+		. += mutable_appearance(overlay_icon, icon_state_menu)
+		. += emissive_appearance(overlay_icon, icon_state_menu)
+	
+	return add_overlay(.)
 
 /obj/item/modular_computer/proc/turn_on(var/mob/user)
 	if(bsod)
@@ -119,7 +133,7 @@
 		active_program = null
 	var/mob/user = usr
 	if(user && istype(user))
-		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+		tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
 	update_icon()
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
@@ -154,7 +168,7 @@
 		run_program(autorun.stored_data)
 
 	if(user)
-		ui_interact(user)
+		tgui_interact(user)
 
 /obj/item/modular_computer/proc/minimize_program(mob/user)
 	if(!active_program || !processor_unit)
@@ -162,11 +176,11 @@
 
 	idle_threads.Add(active_program)
 	active_program.program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
-	SSnanoui.close_uis(active_program.NM ? active_program.NM : active_program)
+	SStgui.close_uis(active_program.TM ? active_program.TM : active_program)
 	active_program = null
 	update_icon()
 	if(istype(user))
-		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+		tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
 
 
 /obj/item/modular_computer/proc/run_program(prog)
@@ -202,17 +216,16 @@
 		minimize_program(user)
 
 	if(P.run_program(user))
-		active_program = P
 		update_icon()
 	return 1
 
 /obj/item/modular_computer/proc/update_uis()
-	if(active_program) //Should we update program ui or computer ui?
-		SSnanoui.update_uis(active_program)
-		if(active_program.NM)
-			SSnanoui.update_uis(active_program.NM)
+	if(active_program)
+		SStgui.update_uis(active_program)
+		if(active_program.TM)
+			SStgui.update_uis(active_program.TM)
 	else
-		SSnanoui.update_uis(src)
+		SStgui.update_uis(src)
 
 /obj/item/modular_computer/proc/check_update_ui_need()
 	var/ui_update_needed = 0
@@ -255,6 +268,18 @@
 	else
 		return ..()
 
+/obj/item/modular_computer/apply_visual(var/mob/user)
+	if(active_program)
+		return active_program.apply_visual(user)
+
+/obj/item/modular_computer/remove_visual(var/mob/user)
+	if(active_program)
+		return active_program.remove_visual(user)
+
+/obj/item/modular_computer/relaymove(var/mob/user, direction)
+	if(active_program)
+		return active_program.relaymove(user, direction)
+
 /obj/item/modular_computer/proc/set_autorun(program)
 	if(!hard_drive)
 		return
@@ -267,3 +292,9 @@
 		autorun.stored_data = null
 	else
 		autorun.stored_data = program
+
+/obj/item/modular_computer/proc/find_file_by_uid(var/uid)
+	if(hard_drive)
+		. = hard_drive.find_file_by_uid(uid)
+	if(portable_drive && !.)
+		. = portable_drive.find_file_by_uid(uid)

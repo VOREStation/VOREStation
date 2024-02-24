@@ -3,11 +3,11 @@
 	desc = "Stick 'em up!"
 	icon = 'icons/effects/Targeted.dmi'
 	icon_state = "locking"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	opacity = 0
 	plane = ABOVE_PLANE
-	simulated = 0
+	simulated = FALSE
 	mouse_opacity = 0
 
 	var/mob/living/aiming_at   // Who are we currently targeting, if anyone?
@@ -92,7 +92,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-obj/aiming_overlay/proc/update_aiming_deferred()
+/obj/aiming_overlay/proc/update_aiming_deferred()
 	set waitfor = 0
 	sleep(0)
 	update_aiming()
@@ -175,7 +175,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 	aiming_with = thing
 	aiming_at = target
 	if(istype(aiming_with, /obj/item/weapon/gun))
-		playsound(get_turf(owner), 'sound/weapons/TargetOn.ogg', 50,1)
+		playsound(owner, 'sound/weapons/TargetOn.ogg', 50,1)
 	forceMove(get_turf(target))
 	START_PROCESSING(SSobj, src)
 
@@ -215,9 +215,9 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 	if(!aiming_with || !aiming_at)
 		return
 	if(istype(aiming_with, /obj/item/weapon/gun))
-		playsound(get_turf(owner), 'sound/weapons/TargetOff.ogg', 50,1)
+		playsound(owner, 'sound/weapons/TargetOff.ogg', 50,1)
 	if(!no_message)
-		owner.visible_message("<span class='notice'>\The [owner] lowers \the [aiming_with].</span>")
+		owner.visible_message("<b>\The [owner]</b> lowers \the [aiming_with].")
 
 	aiming_with = null
 	aiming_at.aimed -= src

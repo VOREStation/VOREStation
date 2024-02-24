@@ -14,7 +14,7 @@
 	pass_flags = PASSTABLE
 	braintype = "Drone"
 	lawupdate = 0
-	density = 1
+	density = TRUE
 	idcard_type = /obj/item/weapon/card/id/syndicate
 	req_access = list(999)
 	integrated_light_power = 3
@@ -23,7 +23,8 @@
 	can_pull_size = ITEMSIZE_NO_CONTAINER
 	can_pull_mobs = MOB_PULL_SMALLER
 	can_enter_vent_with = list(
-		/obj)
+		/obj,
+		/atom/movable/emissive_blocker)
 
 	mob_always_swap = 1
 
@@ -57,7 +58,7 @@
 		)
 
 /mob/living/silicon/robot/drone/swarm/Initialize()
-	..()
+	. = ..()
 
 	add_language(LANGUAGE_SWARMBOT, 1)
 

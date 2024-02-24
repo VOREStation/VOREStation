@@ -61,7 +61,7 @@
 
 /datum/uplink_item/item/visible_weapons/riggedlaser
 	name = "Exosuit Rigged Laser"
-	item_cost = 60
+	item_cost = 30
 	path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
 
 /datum/uplink_item/item/visible_weapons/revolver
@@ -90,7 +90,7 @@
 	path = /obj/item/weapon/gun/projectile/p92x/large
 
 /datum/uplink_item/item/visible_weapons/lemat
-	name = "LeMat"
+	name = "Mako Revolver"
 	item_cost = 60
 	path = /obj/item/weapon/gun/projectile/revolver/lemat
 
@@ -103,7 +103,7 @@
 	name = "Anti-Materiel Rifle (14.5mm)"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
 	path = /obj/item/weapon/gun/projectile/heavysniper
-	antag_roles = list("mercenary")
+	antag_roles = list("mercenary", "ert") //VOREStation Edit
 
 /datum/uplink_item/item/visible_weapons/heavysnipertraitor
 	name = "Anti-Materiel Rifle (14.5mm)"
@@ -138,6 +138,11 @@
 	name = "Combat Shotgun"
 	item_cost = 75
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
+	
+/datum/uplink_item/item/visible_weapons/semishotgun
+	name = "Semi-Automatic Shotgun"
+	item_cost = 100
+	path = /obj/item/weapon/gun/projectile/shotgun/semi
 
 /datum/uplink_item/item/visible_weapons/leveraction
 	name = "Lever Action Rifle"
@@ -145,9 +150,9 @@
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever
 
 /datum/uplink_item/item/visible_weapons/egun
-	name = "Energy Gun"
-	item_cost = 60
-	path = /obj/item/weapon/gun/energy/gun
+	name = "Compact Energy Gun"
+	item_cost = 30
+	path = /obj/item/weapon/gun/energy/gun/compact
 
 /datum/uplink_item/item/visible_weapons/lasercannon
 	name = "Laser Cannon"
@@ -171,5 +176,17 @@
 
 /datum/uplink_item/item/visible_weapons/xray
 	name = "Xray Gun"
-	item_cost = 85
+	item_cost = 60
 	path = /obj/item/weapon/gun/energy/xray
+
+/datum/uplink_item/item/visible_weapons/flamethrower
+	name = "Heavy Flamethrower"
+	desc = "A large flamethrower that runs on pressurized, gaseous phoron and electric charge."
+	item_cost = 60
+	path = /obj/item/weapon/storage/secure/briefcase/flamer
+
+/datum/uplink_item/item/visible_weapons/concussion_grenades
+	name = "Concussion Grenades (8)"
+	desc = "A box of eight concussion grenades."
+	item_cost = 30
+	path = /obj/item/weapon/storage/box/syndie_kit/concussion_grenade

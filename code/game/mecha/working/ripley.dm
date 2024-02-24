@@ -7,10 +7,39 @@
 	step_energy_drain = 5 // vorestation edit because 10 drained a significant chunk of its cell before you even got out the airlock
 	max_temperature = 20000
 	health = 200
-	maxhealth = 200
+	maxhealth = 200		//Don't forget to update the /old variant if  you change this number.
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	cargo_capacity = 10
 	var/obj/item/weapon/mining_scanner/orescanner // vorestation addition
+
+	minimum_penetration = 10
+
+	encumbrance_gap = 2
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/mining,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
+
+	icon_scale_x = 1.2
+	icon_scale_y = 1.2
+
+/obj/mecha/working/ripley/Move()
+	. = ..()
+	if(.)
+		collect_ore()
+
+/obj/mecha/working/ripley/proc/collect_ore()
+	if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in equipment)
+		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in cargo
+		if(ore_box)
+			for(var/obj/item/weapon/ore/ore in range(1, src))
+				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
+					ore_box.stored_ore[ore.material]++
+					qdel(ore)
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
@@ -30,7 +59,6 @@
 	max_temperature = 65000
 	health = 250
 	lights_power = 8
-	damage_absorption = list("fire"=0.5,"bullet"=0.8,"bomb"=0.5)
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/firefighter
 	max_hull_equip = 2
 	max_weapon_equip = 0
@@ -55,7 +83,7 @@
 	max_special_equip = 1
 
 /obj/mecha/working/ripley/deathripley/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety
 	ME.attach(src)
 	return
@@ -65,7 +93,7 @@
 	name = "APLU \"Miner\""
 
 /obj/mecha/working/ripley/mining/Initialize()
-	..()
+	. = ..()
 	//Attach drill
 	if(prob(25)) //Possible diamond drill... Feeling lucky?
 		var/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/D = new /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
@@ -80,8 +108,22 @@
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)//Deletes the beacon so it can't be found easily
 		qdel (B)
 
+/obj/mecha/working/ripley/antique
+	name = "APLU \"Geiger\""
+	desc = "You can't beat the classics."
+	icon_state = "ripley-old"
+	initial_icon = "ripley-old"
 
-// VORESTATION EDIT BEGIN
+	show_pilot = TRUE
+	pilot_lift = 5
+
+	max_utility_equip = 1
+	max_universal_equip = 3
+
+	icon_scale_x = 1
+	icon_scale_y = 1
+
+//Vorestation Edit Start
 
 /obj/mecha/working/ripley/New()
 	..()
@@ -95,5 +137,14 @@
 
 	orescanner.attack_self(usr)
 
-// VORESTATION EDIT END
+//Vorestation Edit End
 
+//Meant for random spawns.
+/obj/mecha/working/ripley/mining/old
+	desc = "An old, dusty mining ripley."
+
+/obj/mecha/working/ripley/mining/old/New()
+	..()
+	health = 25
+	maxhealth = 190	//Just slightly worse.
+	cell.charge = rand(0, cell.charge)

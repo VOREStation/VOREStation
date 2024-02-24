@@ -1,0 +1,115 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/rshull,
+/area/submap/debrisfield/misc_debris)
+"g" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"i" = (
+/mob/living/simple_mob/vore/aggressive/corrupthound/space,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"m" = (
+/obj/structure/bed/chair/bay/shuttle,
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/gibspawner/robot,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"q" = (
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"r" = (
+/obj/effect/gibspawner/robot,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"v" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/gibspawner/robot,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"y" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/wall/rshull,
+/area/submap/debrisfield/misc_debris)
+"B" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/item/weapon/paper/robo_escape_pod,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"D" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Door"
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"E" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"Q" = (
+/obj/structure/bed/chair/bay/shuttle,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"S" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+
+(1,1,1) = {"
+a
+E
+E
+E
+y
+"}
+(2,1,1) = {"
+y
+S
+S
+v
+a
+"}
+(3,1,1) = {"
+a
+m
+i
+S
+a
+"}
+(4,1,1) = {"
+a
+Q
+S
+q
+a
+"}
+(5,1,1) = {"
+a
+B
+r
+g
+a
+"}
+(6,1,1) = {"
+y
+a
+D
+a
+y
+"}

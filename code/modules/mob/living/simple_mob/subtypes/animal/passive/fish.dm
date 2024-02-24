@@ -11,16 +11,19 @@
 	icon = 'icons/mob/fish.dmi'
 	item_state = "fish"
 
-	catalogue_data = list(/datum/category_item/catalogue/fauna/invasive_fish)
+	//catalogue_data = list(/datum/category_item/catalogue/fauna/invasive_fish)		 //TODO: write non-sif lore
 
 	mob_size = MOB_SMALL
 	// So fish are actually underwater.
 	plane = TURF_PLANE
 	layer = UNDERWATER_LAYER
 
+	organ_names = /decl/mob_organ_names/fish
+
 	holder_type = /obj/item/weapon/holder/fish
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
+	meat_amount = 3
 
 	// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
 	var/global/list/suitable_turf_types =  list(
@@ -31,14 +34,30 @@
 		/turf/simulated/floor/water
 	)
 
+	var/randomize_location = TRUE
+
+/mob/living/simple_mob/animal/passive/fish/Initialize()
+	. = ..()
+
+	if(!default_pixel_x && randomize_location)
+		default_pixel_x = rand(-12, 12)
+
+	if(!default_pixel_y && randomize_location)
+		default_pixel_y = rand(-6, 10)
+
 // Makes the AI unable to willingly go on land.
-/mob/living/simple_mob/animal/passive/fish/IMove(newloc)
+/mob/living/simple_mob/animal/passive/fish/IMove(turf/newloc, safety = TRUE)
 	if(is_type_in_list(newloc, suitable_turf_types))
 		return ..() // Procede as normal.
 	return MOVEMENT_FAILED // Don't leave the water!
 
 // Take damage if we are not in water
 /mob/living/simple_mob/animal/passive/fish/handle_breathing()
+	if(istype(loc, /obj/item/glass_jar/fish))
+		var/obj/item/glass_jar/fish/F = loc
+		if(F.filled)
+			return
+
 	var/turf/T = get_turf(src)
 	if(T && !is_type_in_list(T, suitable_turf_types))
 		if(prob(50))
@@ -113,7 +132,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/javelin)
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
 
 /datum/category_item/catalogue/fauna/icebass
 	name = "Sivian Fauna - Glitter Bass"
@@ -140,7 +159,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/icebass)
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
 
 	var/max_red = 150
 	var/min_red = 50
@@ -158,24 +177,28 @@
 	var/image/belly_image
 
 /mob/living/simple_mob/animal/passive/fish/icebass/Initialize()
-	..()
+	. = ..()
 	dorsal_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 	belly_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 	update_icon()
 
 /mob/living/simple_mob/animal/passive/fish/icebass/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
+
 	if(!dorsal_image)
 		dorsal_image = image(icon, "[icon_state]_mask-body")
 	if(!belly_image)
 		belly_image = image(icon, "[icon_state]_mask-belly")
 
+	dorsal_image.icon_state = "[icon_state]_mask-body"
+	belly_image.icon_state = "[icon_state]_mask-belly"
+
 	dorsal_image.color = dorsal_color
 	belly_image.color = belly_color
 
-	overlays += dorsal_image
-	overlays += belly_image
+	add_overlay(dorsal_image)
+	add_overlay(belly_image)
 
 /datum/category_item/catalogue/fauna/rockfish
 	name = "Sivian Fauna - Rock Puffer"
@@ -225,21 +248,24 @@
 
 	var/image/head_image
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
 
 /mob/living/simple_mob/animal/passive/fish/rockfish/Initialize()
-	..()
+	. = ..()
 	head_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
+	update_icon()
 
 /mob/living/simple_mob/animal/passive/fish/rockfish/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(!head_image)
 		head_image = image(icon, "[icon_state]_mask")
 
+	head_image.icon_state = "[icon_state]_mask"
+
 	head_image.color = head_color
 
-	overlays += head_image
+	add_overlay(head_image)
 
 /datum/category_item/catalogue/fauna/solarfish
 	name = "Sivian Fauna - Solar Fin"
@@ -269,7 +295,7 @@
 
 	has_eye_glow = TRUE
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
 
 /datum/category_item/catalogue/fauna/murkin
 	name = "Sivian Fauna - Murkfish"
@@ -297,3 +323,6 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+
+/decl/mob_organ_names/fish
+	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")

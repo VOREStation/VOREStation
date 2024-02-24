@@ -4,7 +4,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "ccharger0"
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 60000	//60 kW. (this the power drawn when charging)
 	var/efficiency = 60000 //will provide the modified power rate when upgraded
@@ -13,38 +13,41 @@
 	var/chargelevel = -1
 	circuit = /obj/item/weapon/circuitboard/cell_charger
 
-/obj/machinery/cell_charger/New()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-	RefreshParts()
-	..()
-	return
+/obj/machinery/cell_charger/Initialize()
+	. = ..()
+	default_apply_parts()
+	add_overlay("ccharger1")
 
 /obj/machinery/cell_charger/update_icon()
-	icon_state = "ccharger[charging ? 1 : 0]"
+	if(!anchored)
+		cut_overlays()
+		icon_state = "ccharger2"
 
 	if(charging && !(stat & (BROKEN|NOPOWER)))
-
 		var/newlevel = 	round(charging.percent() * 4.0 / 99)
 		//to_world("nl: [newlevel]")
 
 		if(chargelevel != newlevel)
 
-			overlays.Cut()
-			overlays += "ccharger-o[newlevel]"
+			cut_overlays()
+			add_overlay("ccharger-o[newlevel]")
 
 			chargelevel = newlevel
-	else
-		overlays.Cut()
+
+		add_overlay(image(charging.icon, charging.icon_state))
+		add_overlay("ccharger-[charging.connector_type]-on")
+
+	else if(anchored)
+		cut_overlays()
+		icon_state = "ccharger0"
+		add_overlay("ccharger1")
 
 /obj/machinery/cell_charger/examine(mob/user)
-	if(!..(user, 5))
-		return
-
-	to_chat(user, "[charging ? "[charging]" : "Nothing"] is in [src].")
-	if(charging)
-		to_chat(user, "Current charge: [charging.charge] / [charging.maxcharge]")
+	. = ..()
+	if(get_dist(user, src) <= 5)
+		. += "[charging ? "[charging]" : "Nothing"] is in [src]."
+		if(charging)
+			. += "Current charge: [charging.charge] / [charging.maxcharge]"
 
 /obj/machinery/cell_charger/attackby(obj/item/weapon/W, mob/user)
 	if(stat & BROKEN)
@@ -71,7 +74,7 @@
 			user.visible_message("[user] inserts [charging] into [src].", "You insert [charging] into [src].")
 			chargelevel = -1
 		update_icon()
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return
@@ -79,6 +82,7 @@
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attach" : "detach"] [src] [anchored ? "to" : "from"] the ground")
 		playsound(src, W.usesound, 75, 1)
+		update_icon()
 	else if(default_deconstruction_screwdriver(user, W))
 		return
 	else if(default_deconstruction_crowbar(user, W))
@@ -118,16 +122,16 @@
 /obj/machinery/cell_charger/process()
 	//to_world("ccpt [charging] [stat]")
 	if((stat & (BROKEN|NOPOWER)) || !anchored)
-		update_use_power(0)
+		update_use_power(USE_POWER_OFF)
 		return
 
 	if(charging && !charging.fully_charged())
 		charging.give(efficiency*CELLRATE)
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 
 		update_icon()
 	else
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 
 /obj/machinery/cell_charger/RefreshParts()
 	var/E = 0

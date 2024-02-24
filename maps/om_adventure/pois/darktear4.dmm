@@ -1,0 +1,89 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"g" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/darktear4)
+"j" = (
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/darktear4)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+j
+a
+a
+a
+a
+a
+a
+j
+"}
+(3,1,1) = {"
+a
+a
+g
+j
+j
+j
+a
+j
+a
+"}
+(4,1,1) = {"
+a
+j
+j
+j
+j
+j
+j
+j
+a
+"}
+(5,1,1) = {"
+j
+a
+a
+a
+j
+j
+g
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+j
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+j
+a
+a
+"}

@@ -33,7 +33,7 @@
 					if(FD.blocked)
 						FD.visible_message("<span class='danger'>\The [chassis] begins prying on \the [FD]!</span>")
 						if(do_after(chassis.occupant,10 SECONDS,FD))
-							playsound(FD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.blocked = 0
 							FD.update_icon()
 							FD.open(1)
@@ -41,7 +41,7 @@
 					else if(FD.density)
 						FD.visible_message("<span class='warning'>\The [chassis] begins forcing \the [FD] open!</span>")
 						if(do_after(chassis.occupant, 5 SECONDS,FD))
-							playsound(FD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.visible_message("<span class='danger'>\The [chassis] forces \the [FD] open!</span>")
 							FD.open(1)
 					else
@@ -57,7 +57,7 @@
 							if(do_after(chassis.occupant, 15 SECONDS,AD) && chassis.Adjacent(AD))
 								AD.welded = FALSE
 								AD.update_icon()
-								playsound(AD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+								playsound(AD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 								AD.visible_message("<span class='danger'>\The [chassis] tears \the [AD] open!</span>")
 						if(!AD.welded)
 							if(density)
@@ -76,15 +76,15 @@
 
 		occupant_message("You lift [target] and start to load it into cargo compartment.")
 		chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
-		set_ready_state(0)
+		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
-		O.anchored = 1
+		O.anchored = TRUE
 		var/T = chassis.loc
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
 				cargo_holder.cargo += O
 				O.loc = chassis
-				O.anchored = 0
+				O.anchored = FALSE
 				occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 				log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 			else
@@ -100,22 +100,22 @@
 			M.adjustOxyLoss(round(dam_force/2))
 			M.updatehealth()
 			occupant_message("<span class='warning'>You squeeze [target] with [src.name]. Something cracks.</span>")
-			playsound(src.loc, "fracture", 5, 1, -2) //CRACK
+			playsound(src, "fracture", 5, 1, -2) //CRACK
 			chassis.visible_message("<span class='warning'>[chassis] squeezes [target].</span>")
 		else if(chassis.occupant.a_intent == I_DISARM && enable_special)
-			playsound(src.loc, 'sound/mecha/hydraulic.ogg', 10, 1, -2)
+			playsound(src, 'sound/mecha/hydraulic.ogg', 10, 1, -2)
 			M.take_overall_damage(dam_force/2)
 			M.adjustOxyLoss(round(dam_force/3))
 			M.updatehealth()
 			occupant_message("<span class='warning'>You slam [target] with [src.name]. Something cracks.</span>")
-			playsound(src.loc, "fracture", 3, 1, -2) //CRACK 2
+			playsound(src, "fracture", 3, 1, -2) //CRACK 2
 			chassis.visible_message("<span class='warning'>[chassis] slams [target].</span>")
 			M.throw_at(get_step(M,get_dir(src, M)), 14, 1.5, chassis)
 		else
 			step_away(M,chassis)
 			occupant_message("You push [target] out of the way.")
 			chassis.visible_message("[chassis] pushes [target] out of the way.")
-		set_ready_state(0)
+		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
 	return 1
@@ -137,15 +137,15 @@
 			if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
 				chassis.occupant_message("You lift [target] and start to load it into cargo compartment.")
 				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
-				set_ready_state(0)
+				set_ready_state(FALSE)
 				chassis.use_power(energy_drain)
-				O.anchored = 1
+				O.anchored = TRUE
 				var/T = chassis.loc
 				if(do_after_cooldown(target))
 					if(T == chassis.loc && src == chassis.selected)
 						cargo_holder.cargo += O
 						O.loc = chassis
-						O.anchored = 0
+						O.anchored = FALSE
 						chassis.occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 					else
@@ -169,7 +169,7 @@
 			step_away(M,chassis)
 			chassis.occupant_message("You smash into [target], sending them flying.")
 			chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
-		set_ready_state(0)
+		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
 	return 1

@@ -10,17 +10,11 @@
 		bloodsies.color		= blood_color
 		standing.add_overlay(bloodsies)
 
-//UNIFORM: Always appends "_s" to iconstate, stupidly.
-/obj/item/clothing/under/get_worn_icon_state(var/slot_name)
-	var/state2use = ..()
-	state2use += "_s"
-	return state2use
-
 //HELMET: May have a lighting overlay
-/obj/item/clothing/head/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+/obj/item/clothing/head/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask = null)
 	var/image/standing = ..()
-	if(on && slot_name == slot_head_str)
-		var/cache_key = "[light_overlay][LAZYACCESS(sprite_sheets,body_type) ? "_[body_type]" : ""]"
+	if(light_on && slot_name == slot_head_str)
+		var/cache_key = "[light_overlay][LAZYACCESS(sprite_sheets, body_type) ? "_[body_type]" : ""]"
 		if(standing && light_overlay_cache[cache_key])
 			standing.add_overlay(light_overlay_cache[cache_key])
 	return standing
@@ -29,6 +23,7 @@
 /obj/item/clothing/suit/apply_blood(var/image/standing)
 	if(blood_DNA && blood_sprite_state && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = "[blood_overlay_type]blood")
+		blood_sprite_state = "[blood_overlay_type]blood"
+		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)
 		bloodsies.color		= blood_color
 		standing.add_overlay(bloodsies)

@@ -2,6 +2,7 @@
 /datum/artifact_effect/heat
 	name = "heat"
 	var/target_temp
+	effect_color = "#ff6600"
 
 /datum/artifact_effect/heat/New()
 	..()
@@ -10,13 +11,15 @@
 	target_temp = rand(300, 600)
 
 /datum/artifact_effect/heat/DoEffectTouch(var/mob/user)
+	var/atom/holder = get_master_holder()
 	if(holder)
-		to_chat(user, "<font color='red'> You feel a wave of heat travel up your spine!</font>")
+		to_chat(user, span_red("You feel a wave of heat travel up your spine!"))
 		var/datum/gas_mixture/env = holder.loc.return_air()
 		if(env)
 			env.temperature += rand(5,50)
 
 /datum/artifact_effect/heat/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/datum/gas_mixture/env = holder.loc.return_air()
 		if(env && env.temperature < target_temp)

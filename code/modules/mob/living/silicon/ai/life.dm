@@ -58,18 +58,18 @@
 				to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 				aiRestorePowerRoutine = 0
 				clear_fullscreen("blind")
-				updateicon()
+				update_icon()
 				return
 			else if (aiRestorePowerRoutine==3)
 				to_chat(src, "Alert cancelled. Power has been restored.")
 				aiRestorePowerRoutine = 0
 				clear_fullscreen("blind")
-				updateicon()
+				update_icon()
 				return
 			else if (APU_power)
 				aiRestorePowerRoutine = 0
 				clear_fullscreen("blind")
-				updateicon()
+				update_icon()
 				return
 		else
 			var/area/current_area = get_area(src)
@@ -79,7 +79,7 @@
 					aiRestorePowerRoutine = 1
 
 					//Blind the AI
-					updateicon()
+					update_icon()
 					overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 					src.sight = src.sight&~SEE_TURFS
 					src.sight = src.sight&~SEE_MOBS
@@ -94,6 +94,7 @@
 
 					spawn(20)
 						to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
+						end_multicam()
 						sleep(50)
 						if (loc.power_equip)
 							if (!istype(T, /turf/space))
@@ -121,9 +122,9 @@
 									break
 							if (!theAPC)
 								switch(PRP)
-									if (1) 
+									if (1)
 										to_chat(src, "Unable to locate APC!")
-									else 
+									else
 										to_chat(src, "Lost connection with the APC!")
 								src:aiRestorePowerRoutine = 2
 								return
@@ -134,11 +135,11 @@
 									clear_fullscreen("blind") //This, too, is a fix to issue 603
 									return
 							switch(PRP)
-								if (1) 
+								if (1)
 									to_chat(src, "APC located. Optimizing route to APC to avoid needless power waste.")
-								if (2) 
+								if (2)
 									to_chat(src, "Best route identified. Hacking offline APC power port.")
-								if (3) 
+								if (3)
 									to_chat(src, "Power port upload access confirmed. Loading control program into APC power port software.")
 								if (4)
 									to_chat(src, "Transfer complete. Forcing APC to execute program.")
@@ -151,7 +152,7 @@
 									aiRestorePowerRoutine = 3
 									to_chat(src, "Here are your current laws:")
 									show_laws()
-									updateicon()
+									update_icon()
 							sleep(50)
 							theAPC = null
 
@@ -169,7 +170,7 @@
 /mob/living/silicon/ai/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 		setOxyLoss(0)
 	else
 		health = 100 - getFireLoss() - getBruteLoss() // Oxyloss is not part of health as it represents AIs backup power. AI is immune against ToxLoss as it is machine.

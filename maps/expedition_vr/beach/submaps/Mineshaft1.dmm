@@ -1,0 +1,903 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/mineral/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"c" = (
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"d" = (
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/submap/cave/AMine1)
+"e" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/submap/cave/AMine1)
+"f" = (
+/turf/simulated/wall,
+/area/submap/cave/AMine1)
+"g" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"h" = (
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"i" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"j" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"k" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"l" = (
+/obj/structure/table/standard,
+/obj/structure/bedsheetbin,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"m" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"n" = (
+/obj/item/weapon/ore/gold,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"o" = (
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"p" = (
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"q" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"r" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"s" = (
+/obj/structure/window/reinforced/full,
+/turf/simulated/wall,
+/area/submap/cave/AMine1)
+"t" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"u" = (
+/obj/structure/table/standard,
+/obj/machinery/cell_charger,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"v" = (
+/obj/structure/table/standard,
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/high,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"w" = (
+/obj/structure/loot_pile/maint/trash,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"x" = (
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"y" = (
+/obj/machinery/power/apc{
+	operating = 0;
+	pixel_x = 31
+	},
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"z" = (
+/obj/structure/ore_box,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"A" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"B" = (
+/obj/structure/closet/crate/trashcart,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"C" = (
+/obj/structure/closet/crate/engineering,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"D" = (
+/obj/machinery/light,
+/obj/machinery/space_heater,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"E" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"F" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"G" = (
+/obj/structure/table/rack,
+/obj/item/weapon/pickaxe/drill,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"H" = (
+/obj/machinery/vending/cola,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"I" = (
+/obj/machinery/vending/snack,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"J" = (
+/obj/machinery/washing_machine,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"K" = (
+/obj/structure/ore_box,
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/submap/cave/AMine1)
+"L" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"M" = (
+/obj/item/weapon/stool,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"N" = (
+/obj/machinery/light/small{
+	brightness_color = "#DA0205";
+	brightness_power = 1;
+	brightness_range = 5;
+	dir = 8
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+"O" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/submap/cave/AMine1)
+"P" = (
+/obj/structure/table/standard,
+/obj/item/pizzabox,
+/turf/simulated/floor/tiled,
+/area/submap/cave/AMine1)
+"Q" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"R" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/submap/cave/AMine1)
+"S" = (
+/obj/machinery/light/small,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/AMine1)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+N
+c
+b
+b
+b
+b
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+b
+n
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+b
+b
+b
+o
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+b
+b
+b
+p
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+z
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+c
+b
+b
+b
+b
+b
+b
+b
+b
+A
+c
+c
+c
+d
+O
+d
+d
+d
+c
+c
+c
+c
+a
+"}
+(14,1,1) = {"
+a
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+K
+d
+f
+Q
+f
+d
+c
+c
+c
+c
+a
+"}
+(15,1,1) = {"
+a
+c
+d
+f
+f
+f
+f
+s
+s
+s
+s
+s
+f
+f
+f
+f
+f
+R
+f
+d
+c
+c
+c
+c
+a
+"}
+(16,1,1) = {"
+a
+c
+e
+f
+g
+h
+h
+h
+h
+h
+h
+h
+g
+G
+G
+f
+f
+Q
+f
+d
+c
+c
+c
+c
+a
+"}
+(17,1,1) = {"
+a
+c
+d
+f
+h
+h
+h
+t
+h
+h
+h
+h
+t
+h
+h
+h
+h
+h
+f
+d
+c
+c
+c
+c
+a
+"}
+(18,1,1) = {"
+a
+c
+d
+f
+f
+m
+f
+f
+f
+m
+f
+f
+f
+f
+f
+f
+f
+Q
+f
+d
+c
+S
+b
+b
+a
+"}
+(19,1,1) = {"
+a
+c
+d
+f
+i
+h
+i
+f
+u
+x
+x
+B
+f
+g
+h
+L
+h
+h
+f
+d
+c
+c
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+c
+d
+f
+j
+h
+q
+f
+v
+x
+x
+C
+f
+H
+h
+M
+j
+M
+f
+d
+c
+b
+b
+b
+a
+"}
+(21,1,1) = {"
+a
+c
+d
+f
+k
+h
+r
+f
+v
+x
+x
+D
+f
+I
+h
+M
+j
+M
+f
+d
+c
+b
+b
+b
+a
+"}
+(22,1,1) = {"
+a
+c
+e
+f
+l
+h
+j
+f
+w
+x
+x
+E
+f
+h
+h
+M
+P
+M
+f
+d
+b
+b
+b
+b
+a
+"}
+(23,1,1) = {"
+a
+c
+d
+f
+i
+h
+i
+f
+x
+x
+y
+F
+f
+J
+h
+t
+h
+h
+f
+b
+b
+b
+b
+b
+a
+"}
+(24,1,1) = {"
+a
+c
+d
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+b
+b
+b
+b
+b
+a
+"}
+(25,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

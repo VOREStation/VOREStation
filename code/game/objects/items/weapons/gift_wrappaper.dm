@@ -13,6 +13,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 	item_state = "gift1"
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/a_gift/New()
 	..()
@@ -26,6 +28,7 @@
 
 /obj/item/weapon/gift/attack_self(mob/user as mob)
 	user.drop_item()
+	playsound(src, 'sound/items/package_unwrap.ogg', 50,1)
 	if(src.gift)
 		user.put_in_active_hand(gift)
 		src.gift.add_fingerprint(user)
@@ -46,17 +49,14 @@
 /obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
-	if (!W.is_wirecutter())
+	if (!W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user, "<span class='warning'>I need wirecutters for that.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You cut open the present.</span>")
 
 	for(var/mob/M in src) //Should only be one but whatever.
-		M.loc = src.loc
-		if (M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
+		M.forceMove(src.loc)
 
 	qdel(src)
 
@@ -74,7 +74,7 @@
 		/obj/item/weapon/lipstick/random,
 		/obj/item/weapon/grenade/smokebomb,
 		/obj/item/weapon/corncob,
-		/obj/item/weapon/contraband/poster,
+		/obj/item/poster/custom,
 		/obj/item/weapon/book/manual/barman_recipes,
 		/obj/item/weapon/book/manual/chef_recipes,
 		/obj/item/weapon/bikehorn,
@@ -82,26 +82,26 @@
 		/obj/item/weapon/beach_ball/holoball,
 		/obj/item/toy/balloon,
 		/obj/item/toy/blink,
-		/obj/item/toy/crossbow,
-		/obj/item/weapon/gun/projectile/revolver/capgun,
+		/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
+		/obj/item/weapon/storage/box/capguntoy,
 		/obj/item/toy/katana,
-		/obj/item/toy/prize/deathripley,
-		/obj/item/toy/prize/durand,
-		/obj/item/toy/prize/fireripley,
-		/obj/item/toy/prize/gygax,
-		/obj/item/toy/prize/honk,
-		/obj/item/toy/prize/marauder,
-		/obj/item/toy/prize/mauler,
-		/obj/item/toy/prize/odysseus,
-		/obj/item/toy/prize/phazon,
-		/obj/item/toy/prize/ripley,
-		/obj/item/toy/prize/seraph,
+		/obj/item/toy/mecha/deathripley,
+		/obj/item/toy/mecha/durand,
+		/obj/item/toy/mecha/fireripley,
+		/obj/item/toy/mecha/gygax,
+		/obj/item/toy/mecha/honk,
+		/obj/item/toy/mecha/marauder,
+		/obj/item/toy/mecha/mauler,
+		/obj/item/toy/mecha/odysseus,
+		/obj/item/toy/mecha/phazon,
+		/obj/item/toy/mecha/ripley,
+		/obj/item/toy/mecha/seraph,
 		/obj/item/toy/spinningtoy,
 		/obj/item/toy/sword,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/device/paicard,
-		/obj/item/device/instrument/violin,
+		/obj/item/instrument/violin,
 		/obj/item/weapon/storage/belt/utility/full,
 		/obj/item/clothing/accessory/tie/horrible)
 
@@ -123,6 +123,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "wrap_paper"
 	var/amount = 20.0
+	drop_sound = 'sound/items/drop/wrapper.ogg'
+	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
 /obj/item/weapon/wrapping_paper/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 	..()
@@ -130,13 +132,14 @@
 		to_chat(user, "<span class='warning'>You MUST put the paper on a table!</span>")
 	if (W.w_class < ITEMSIZE_LARGE)
 		var/obj/item/I = user.get_inactive_hand()
-		if(I.is_wirecutter())
+		if(I && I.has_tool_quality(TOOL_WIRECUTTER))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
 				to_chat(user, "<span class='warning'>You need more paper!</span>")
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/weapon/gift)) //No gift wrapping gifts!
+					to_chat(user, "<span class='warning'>You can't wrap something that's already wrapped!</span>")
 					return
 
 				src.amount -= a_used
@@ -162,8 +165,9 @@
 
 
 /obj/item/weapon/wrapping_paper/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "There is about [src.amount] square units of paper left!")
+	. = ..()
+	if(Adjacent(user))
+		. += "There is about [src.amount] square units of paper left!"
 
 /obj/item/weapon/wrapping_paper/attack(mob/target as mob, mob/user as mob)
 	if (!istype(target, /mob/living/carbon/human)) return
@@ -174,11 +178,7 @@
 			var/obj/effect/spresent/present = new /obj/effect/spresent (H.loc)
 			src.amount -= 2
 
-			if (H.client)
-				H.client.perspective = EYE_PERSPECTIVE
-				H.client.eye = present
-
-			H.loc = present
+			H.forceMove(present)
 
 			add_attack_logs(user,H,"Wrapped with [src]")
 		else

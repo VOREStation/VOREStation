@@ -16,7 +16,7 @@
 	if(!equip_ready)
 		return 0
 
-	playsound(chassis, 'sound/effects/bang.ogg', 30, 1, 30)
+	playsound(src, 'sound/effects/bang.ogg', 30, 1, 30)
 	chassis.occupant_message("<span class='warning'>You emit a high-pitched noise from the mech.</span>")
 	for(var/mob/living/carbon/M in ohearers(6, chassis))
 		if(istype(M, /mob/living/carbon/human))
@@ -26,7 +26,7 @@
 				return
 		to_chat(M, "<span class='warning'>Your ears feel like they're bleeding!</span>")
 		playsound(M, 'sound/effects/bang.ogg', 70, 1, 30)
-		M.sleeping = 0
+		M.SetSleeping(0)
 		M.ear_deaf += 30
 		M.ear_damage += rand(5, 20)
 		M.Weaken(3)

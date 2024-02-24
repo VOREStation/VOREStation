@@ -35,13 +35,15 @@
 	var/mob/living/simple_mob/blob/spore/S = null
 	if(overmind)
 		S = new overmind.blob_type.spore_type(src.loc, src)
-		S.faction = "blob"
+		S.faction = overmind.blob_type.faction
 		if(istype(S))
 			S.overmind = overmind
 			overmind.blob_mobs.Add(S)
 			if(overmind.blob_type.ranged_spores)
 				S.projectiletype = overmind.blob_type.spore_projectile
 				S.projectilesound = overmind.blob_type.spore_firesound
+				S.projectile_accuracy = overmind.blob_type.spore_accuracy
+				S.projectile_dispersion = overmind.blob_type.spore_dispersion
 		else //Other mobs don't add themselves in New. Ew.
 			S.nest = src
 			spores += S
@@ -51,3 +53,8 @@
 	name = "sluggish factory blob"
 	max_spores = 4
 	spore_cooldown = 16 SECONDS
+
+/obj/structure/blob/factory/turret	// Produces a single spore slowly, but is intended to be used as a 'mortar' by the blob type.
+	name = "volatile factory blob"
+	max_spores = 1
+	spore_cooldown = 10 SECONDS

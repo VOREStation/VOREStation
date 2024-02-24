@@ -9,7 +9,7 @@
 "i" = (/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
 "j" = (/obj/structure/bonfire/sifwood,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
 "k" = (/obj/random/mob/robotic,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"l" = (/obj/structure/bed/roller/adv,/obj/random/humanoidremains,/obj/random/cash,/obj/random/cigarettes,/obj/item/clothing/under/explorer,/obj/item/clothing/shoes/boots/winter/explorer,/obj/item/clothing/mask/gas/explorer,/obj/item/clothing/accessory/permit/gun/planetside,/obj/item/clothing/suit/armor/pcarrier/light/nt,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
+"l" = (/obj/structure/bed/roller/adv,/obj/random/humanoidremains,/obj/random/cash,/obj/random/cigarettes,/obj/item/clothing/under/explorer,/obj/item/clothing/shoes/boots/winter/explorer,/obj/item/clothing/mask/gas/explorer,/obj/item/clothing/accessory/permit/gun/planetside,/obj/item/clothing/suit/armor/pcarrier/light/nt,/obj/random/projectile/scrapped_smg,/obj/random/projectile/scrapped_pistol,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
 "m" = (/obj/random/medical/lite,/obj/random/technology_scanner,/obj/random/toolbox,/obj/random/trash,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
 "n" = (/obj/structure/fence/corner{icon_state = "corner"; dir = 1},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
 "o" = (/obj/structure/fence/door/locked{icon_state = "door_closed"; dir = 1},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)

@@ -5,8 +5,14 @@
 	var/load = 0				// the current load on the powernet, increased by each machine at processing
 	var/newavail = 0			// what available power was gathered last tick, then becomes...
 	var/avail = 0				//...the current available power in the powernet
+	var/viewavail = 0			// the availability as it appears on the power console (gradually updated)
 	var/viewload = 0			// the load as it appears on the power console (gradually updated)
 	var/number = 0				// Unused //TODEL
+
+	var/smes_demand = 0			// Amount of power demanded by all SMESs from this network. Needed for load balancing.
+	var/list/inputting = list()	// List of SMESs that are demanding power from this network. Needed for load balancing.
+	var/smes_avail = 0			// Amount of power (avail) from SMESes. Used by SMES load balancing
+	var/smes_newavail = 0		// As above, just for newavail
 
 	var/perapc = 0			// per-apc avilability
 	var/perapc_excess = 0
@@ -113,32 +119,60 @@
 
 		perapc = avail/numapc + perapc_excess
 
-	if(netexcess > 100 && nodes && nodes.len)		// if there was excess power last cycle
-		for(var/obj/machinery/power/smes/S in nodes)	// find the SMESes in the network
-			S.restore()				// and restore some of the power that was used
+
+	// At this point, all other machines have finished using power. Anything left over may be used up to charge SMESs.
+	if(inputting.len && smes_demand)
+		var/smes_input_percentage = between(0, (netexcess / smes_demand) * 100, 100)
+		for(var/obj/machinery/power/terminal/T in inputting)
+			var/obj/machinery/power/smes/S = T.master
+			if(istype(S))
+				S.input_power(smes_input_percentage, T)
+
+	netexcess = avail - load
+	if(netexcess)
+		var/perc = get_percent_load(1)
+		for(var/obj/machinery/power/smes/S in nodes)
+			S.restore(perc)
 
 	//updates the viewed load (as seen on power computers)
-	viewload = round(load)
+	viewavail = round(0.8 * viewavail + 0.2 * avail)
+	viewload = round(0.8 * viewload + 0.2 * load)
 
 	//reset the powernet
 	load = 0
 	avail = newavail
+	smes_avail = smes_newavail
+	inputting.Cut()
+	smes_demand = 0
 	newavail = 0
+	smes_newavail = 0
+
+/datum/powernet/proc/get_percent_load(var/smes_only = 0)
+	if(smes_only)
+		var/smes_used = load - (avail - smes_avail) 			// SMESs are always last to provide power
+		if(!smes_used || smes_used < 0 || !smes_avail)			// SMES power isn't available or being used at all, SMES load is therefore 0%
+			return 0
+		return between(0, (smes_used / smes_avail) * 100, 100)	// Otherwise return percentage load of SMESs.
+	else
+		if(!load)
+			return 0
+		return between(0, (load / avail) * 100, 100)
 
 /datum/powernet/proc/get_electrocute_damage()
-	switch(avail)
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000)
-			return min(rand(10,20),rand(10,20))
-		else
-			return 0
+	//1kW = 5
+	//10kW = 24
+	//100kW = 45
+	//250kW = 53
+	//1MW = 66
+	//10MW = 88
+	//100MW = 110
+	//1GW = 132
+	if(avail >= 1000)
+		var/damage = log(1.1,avail)
+		damage = damage - (log(1.1,damage)*1.5)
+		return round(damage)
+	else
+		return 0
 
 ////////////////////////////////////////////////
 // Misc.
@@ -148,8 +182,8 @@
 // return a knot cable (O-X) if one is present in the turf
 // null if there's none
 /turf/proc/get_cable_node()
-	if(!istype(src, /turf/simulated/floor))
-		return null
+	//if(!istype(src, /turf/simulated/floor)) //VOREStation Removal - Why?
+		//return null //VOREStation Removal - Why?
 	for(var/obj/structure/cable/C in src)
 		if(C.d1 == 0)
 			return C

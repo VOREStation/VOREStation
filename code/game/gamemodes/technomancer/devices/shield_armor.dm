@@ -58,8 +58,8 @@
 
 	if(istype(damage_source, /obj/item/projectile))
 		var/obj/item/projectile/P = damage_source
-		P.sharp = 0
-		P.edge = 0
+		P.sharp = FALSE
+		P.edge = FALSE
 		P.embed_chance = 0
 		if(P.agony)
 			var/agony_blocked = P.agony * (modified_block_percentage / 100)
@@ -70,7 +70,7 @@
 	to_chat(user, "<span class='warning'>Your shield has absorbed most of \the [damage_source].</span>")
 
 	spark_system.start()
-	playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+	playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 	return 0 // This shield does not block all damage, so returning 0 is needed to tell the game to apply the new damage.
 
 /obj/item/clothing/suit/armor/shield/attack_self(mob/user)

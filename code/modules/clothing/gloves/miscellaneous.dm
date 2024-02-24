@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/captain
 	desc = "Regal blue gloves, with a nice gold trim. Swanky."
-	name = "colony director's gloves"
+	name = "site manager's gloves"
 	icon_state = "captain"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 
@@ -56,11 +56,13 @@
 	permeability_coefficient = 0.01
 	germ_level = 0
 	fingerprint_chance = 25
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
 //	var/balloonPath = /obj/item/latexballon
 
 //TODO: Make inflating gloves a thing
 /*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/carbon/human/user)
-	user.visible_message("<span class='notice'>\The [src] expands!</span>")
+	user.visible_message("<b>\The [src]</b> expands!")
 	qdel(src)*/
 
 /obj/item/clothing/gloves/sterile/latex
@@ -81,6 +83,8 @@
 	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0.75 //thick work gloves
+	drop_sound = 'sound/items/drop/leather.ogg'
+	pickup_sound = 'sound/items/pickup/leather.ogg'
 
 /obj/item/clothing/gloves/duty
 	desc = "These brown duty gloves are made from a durable synthetic."
@@ -109,6 +113,8 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	species_restricted = list("Vox")
+	drop_sound = 'sound/items/drop/metalboots.ogg'
+	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
@@ -119,7 +125,7 @@
 	name = "knuckle dusters"
 	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
 	icon_state = "knuckledusters"
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 	attack_verb = list("punched", "beaten", "struck")
 	flags = THICKMATERIAL	// Stops rings from increasing hit strength
 	siemens_coefficient = 1
@@ -127,6 +133,8 @@
 	overgloves = 1
 	force = 5
 	punch_force = 5
+	drop_sound = 'sound/items/drop/metalboots.ogg'
+	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
 /obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"
@@ -159,3 +167,8 @@
 
 /obj/item/clothing/gloves/ranger/yellow
 	glovecolor = "yellow"
+
+/obj/item/clothing/gloves/waterwings
+	name = "water wings"
+	desc = "Swim aids designed to help a wearer float in water and learn to swim."
+	icon_state = "waterwings"

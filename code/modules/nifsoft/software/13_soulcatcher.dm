@@ -14,250 +14,257 @@
 	desc = "A mind storage and processing system capable of capturing and supporting human-level minds in a small VR space."
 	list_pos = NIF_SOULCATCHER
 	cost = 100 //If I wanna trap people's minds and lood them, then by god I'll do so.
-	wear = 1
+	wear = 0
 	p_drain = 0.01
 
-	var/setting_flags = (NIF_SC_CATCHING_OTHERS|NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS|NIF_SC_PROJECTING)
+	var/setting_flags = (NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS|NIF_SC_PROJECTING)
 	var/list/brainmobs = list()
 	var/inside_flavor = "A small completely white room with a couch, and a window to what seems to be the outside world. A small sign in the corner says 'Configure Me'."
 
-	New()
-		..()
-		load_settings()
+/datum/nifsoft/soulcatcher/New()
+	..()
+	load_settings()
 
-	Destroy()
-		QDEL_LIST_NULL(brainmobs)
-		return ..()
+/datum/nifsoft/soulcatcher/Destroy()
+	QDEL_LIST_NULL(brainmobs)
+	return ..()
 
-	activate()
-		if((. = ..()))
-			show_settings(nif.human)
-			spawn(0)
-				deactivate()
+/datum/nifsoft/soulcatcher/activate()
+	if((. = ..()))
+		show_settings(nif.human)
+		spawn(0)
+			deactivate()
 
-	deactivate()
-		if((. = ..()))
-			return TRUE
-
-	stat_text()
-		return "Change Settings ([brainmobs.len] minds)"
-
-	install()
-		if((. = ..()))
-			nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)	//Required on install, because other_flags aren't sufficient for our complicated settings.
-			nif.human.verbs |= /mob/living/carbon/human/proc/nsay
-			nif.human.verbs |= /mob/living/carbon/human/proc/nme
-
-	uninstall()
-		QDEL_LIST_NULL(brainmobs)
-		if((. = ..()) && nif && nif.human) //Sometimes NIFs are deleted outside of a human
-			nif.human.verbs -= /mob/living/carbon/human/proc/nsay
-			nif.human.verbs -= /mob/living/carbon/human/proc/nme
-
-	proc/save_settings()
-		if(!nif)
-			return
-		nif.save_data["[list_pos]"] = inside_flavor
+/datum/nifsoft/soulcatcher/deactivate(var/force = FALSE)
+	if((. = ..()))
 		return TRUE
 
-	proc/load_settings()
-		if(!nif)
-			return
-		var/load = nif.save_data["[list_pos]"]
-		if(load)
-			inside_flavor = load
-		return TRUE
+/datum/nifsoft/soulcatcher/stat_text()
+	return "Change Settings ([brainmobs.len] minds)"
 
-	proc/notify_into(var/message)
-		var/sound = nif.good_sound
+/datum/nifsoft/soulcatcher/install()
+	if((. = ..()))
+		//nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)	//Only required on install if the flag is in the default setting_flags list defined few lines above.
+		if(nif?.human)
+			nif.human.verbs |= /mob/proc/nsay
+			nif.human.verbs |= /mob/proc/nme
 
-		to_chat(nif.human,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
-		nif.human << sound
+/datum/nifsoft/soulcatcher/uninstall()
+	QDEL_LIST_NULL(brainmobs)
+	if((. = ..()) && nif?.human) //Sometimes NIFs are deleted outside of a human
+		nif.human.verbs -= /mob/proc/nsay
+		nif.human.verbs -= /mob/proc/nme
 
-		for(var/brainmob in brainmobs)
-			var/mob/living/carbon/brain/caught_soul/CS = brainmob
-			to_chat(CS,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
-			brainmob << sound
+/datum/nifsoft/soulcatcher/proc/save_settings()
+	if(!nif)
+		return
+	nif.save_data["[list_pos]"] = inside_flavor
+	return TRUE
 
-	proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
-		var/sender_name = eyeobj ? eyeobj.name : sender.name
+/datum/nifsoft/soulcatcher/proc/load_settings()
+	if(!nif)
+		return
+	var/load = nif.save_data["[list_pos]"]
+	if(load)
+		inside_flavor = load
+	return TRUE
 
-		//AR Projecting
-		if(eyeobj)
-			sender.eyeobj.visible_message("<b>[sender_name]</b> says, \"[message]\"")
+/datum/nifsoft/soulcatcher/proc/notify_into(var/message)
+	var/sound = nif.good_sound
 
-		//Not AR Projecting
-		else
-			to_chat(nif.human,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
-			for(var/brainmob in brainmobs)
-				var/mob/living/carbon/brain/caught_soul/CS = brainmob
-				to_chat(CS,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+	to_chat(nif.human,
+			type = MESSAGE_TYPE_NIF,
+			html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+	nif.human << sound
 
-		log_nsay(message,nif.human.real_name,sender)
+	for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
+		to_chat(CS,
+				type = MESSAGE_TYPE_NIF,
+				html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+		CS << sound
 
-	proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj)
-		var/sender_name = eyeobj ? eyeobj.name : sender.name
+/datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
+	var/sender_name = eyeobj ? eyeobj.name : sender.name
 
-		//AR Projecting
-		if(eyeobj)
-			sender.eyeobj.visible_message("[sender_name] [message]")
+	//AR Projecting
+	if(eyeobj)
+		sender.eyeobj.visible_message("<span class='game say'><b>[sender_name]</b> says, \"[message]\"</span>")
 
-		//Not AR Projecting
-		else
-			to_chat(nif.human,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
-			for(var/brainmob in brainmobs)
-				var/mob/living/carbon/brain/caught_soul/CS = brainmob
-				to_chat(CS,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+	//Not AR Projecting
+	else
+		to_chat(nif.human,
+				type = MESSAGE_TYPE_NIF,
+				html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
+			to_chat(CS,
+					type = MESSAGE_TYPE_NIF,
+					html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 
-		log_nme(message,nif.human.real_name,sender)
+	log_nsay(message,nif.human.real_name,sender)
 
-	proc/show_settings(var/mob/living/carbon/human/H)
-		set waitfor = FALSE
-		var/settings_list = list(
-		"Catching You \[[setting_flags & NIF_SC_CATCHING_ME ? "Enabled" : "Disabled"]\]" = NIF_SC_CATCHING_ME,
-		"Catching Prey \[[setting_flags & NIF_SC_CATCHING_OTHERS ? "Enabled" : "Disabled"]\]" = NIF_SC_CATCHING_OTHERS,
-		"Ext. Hearing \[[setting_flags & NIF_SC_ALLOW_EARS ? "Enabled" : "Disabled"]\]" = NIF_SC_ALLOW_EARS,
-		"Ext. Vision \[[setting_flags & NIF_SC_ALLOW_EYES ? "Enabled" : "Disabled"]\]" = NIF_SC_ALLOW_EYES,
-		"Mind Backups \[[setting_flags & NIF_SC_BACKUPS ? "Enabled" : "Disabled"]\]" = NIF_SC_BACKUPS,
-		"AR Projecting \[[setting_flags & NIF_SC_PROJECTING ? "Enabled" : "Disabled"]\]" = NIF_SC_PROJECTING,
-		"Design Inside",
-		"Erase Contents")
-		var/choice = input(nif.human,"Select a setting to modify:","Soulcatcher NIFSoft") as null|anything in settings_list
-		if(choice in settings_list)
-			switch(choice)
+/datum/nifsoft/soulcatcher/proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj)
+	var/sender_name = eyeobj ? eyeobj.name : sender.name
 
-				if("Design Inside")
-					var/new_flavor = input(nif.human, "Type what the prey sees after being 'caught'. This will be \
-					printed after an intro ending with: \"Around you, you see...\" to the prey. If you already \
-					have prey, this will be printed to them after \"Your surroundings change to...\". Limit 2048 char.", \
-					"VR Environment", html_decode(inside_flavor)) as message
-					new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2)
-					inside_flavor = new_flavor
-					nif.notify("Updating VR environment...")
-					for(var/brain in brainmobs)
-						var/mob/living/carbon/brain/caught_soul/CS = brain
-						to_chat(CS,"<span class='notice'>Your surroundings change to...</span>\n[inside_flavor]")
-					save_settings()
-					return TRUE
+	//AR Projecting
+	if(eyeobj)
+		sender.eyeobj.visible_message("<span class='emote'>[sender_name] [message]</span>")
 
-				if("Erase Contents")
-					var/mob/living/carbon/brain/caught_soul/brainpick = input(nif.human,"Select a mind to delete:","Erase Mind") as null|anything in brainmobs
+	//Not AR Projecting
+	else
+		to_chat(nif.human,
+				type = MESSAGE_TYPE_NIF,
+				html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
+			to_chat(CS,
+					type = MESSAGE_TYPE_NIF,
+					html = "<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 
-					var/warning = alert(nif.human,"Are you SURE you want to erase \"[brainpick]\"?","Erase Mind","CANCEL","DELETE","CANCEL")
-					if(warning == "DELETE")
-						brainmobs -= brainpick
-						qdel(brainpick)
-					return TRUE
+	log_nme(message,nif.human.real_name,sender)
 
-				//Must just be a flag without special handling then.
-				else
-					var/flag = settings_list[choice]
-					return toggle_setting(flag)
+/datum/nifsoft/soulcatcher/proc/show_settings(var/mob/living/carbon/human/H)
+	set waitfor = FALSE
+	var/settings_list = list(
+	"Catching You \[[setting_flags & NIF_SC_CATCHING_ME ? "Enabled" : "Disabled"]\]" = NIF_SC_CATCHING_ME,
+	"Catching Prey \[[setting_flags & NIF_SC_CATCHING_OTHERS ? "Enabled" : "Disabled"]\]" = NIF_SC_CATCHING_OTHERS,
+	"Ext. Hearing \[[setting_flags & NIF_SC_ALLOW_EARS ? "Enabled" : "Disabled"]\]" = NIF_SC_ALLOW_EARS,
+	"Ext. Vision \[[setting_flags & NIF_SC_ALLOW_EYES ? "Enabled" : "Disabled"]\]" = NIF_SC_ALLOW_EYES,
+	"Mind Backups \[[setting_flags & NIF_SC_BACKUPS ? "Enabled" : "Disabled"]\]" = NIF_SC_BACKUPS,
+	"AR Projecting \[[setting_flags & NIF_SC_PROJECTING ? "Enabled" : "Disabled"]\]" = NIF_SC_PROJECTING,
+	"Design Inside",
+	"Erase Contents")
+	var/choice = tgui_input_list(nif.human,"Select a setting to modify:","Soulcatcher NIFSoft", settings_list)
+	if(choice in settings_list)
+		switch(choice)
 
-	proc/toggle_setting(var/flag)
-		setting_flags ^= flag
+			if("Design Inside")
+				var/new_flavor = tgui_input_text(nif.human, "Type what the prey sees after being 'caught'. This will be \
+				printed after an intro ending with: \"Around you, you see...\" to the prey. If you already \
+				have prey, this will be printed to them after \"Your surroundings change to...\". Limit 2048 char.", \
+				"VR Environment", html_decode(inside_flavor), MAX_MESSAGE_LEN*2, TRUE, prevent_enter = TRUE)
+				new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2)
+				inside_flavor = new_flavor
+				nif.notify("Updating VR environment...")
+				for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
+					to_chat(CS,"<span class='notice'>Your surroundings change to...</span>\n[inside_flavor]")
+				save_settings()
+				return TRUE
 
-		var/notify_message
-		//Special treatment
-		switch(flag)
-			if(NIF_SC_BACKUPS)
-				if(setting_flags & NIF_SC_BACKUPS)
-					notify_message = "Mind backup system enabled."
-				else
-					notify_message = "Mind backup system disabled."
+			if("Erase Contents")
+				var/mob/living/carbon/brain/caught_soul/brainpick = tgui_input_list(nif.human,"Select a mind to delete:","Erase Mind", brainmobs)
 
-			if(NIF_SC_CATCHING_ME)
-				if(setting_flags & NIF_SC_CATCHING_ME)
-					nif.set_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
-				else
-					nif.clear_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
-			if(NIF_SC_CATCHING_OTHERS)
-				if(setting_flags & NIF_SC_CATCHING_OTHERS)
-					nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
-				else
-					nif.clear_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
-			if(NIF_SC_ALLOW_EARS)
-				if(setting_flags & NIF_SC_ALLOW_EARS)
-					for(var/brain in brainmobs)
-						var/mob/living/carbon/brain/caught_soul/brainmob = brain
-						brainmob.ext_deaf = FALSE
-					notify_message = "External audio input enabled."
-				else
-					for(var/brain in brainmobs)
-						var/mob/living/carbon/brain/caught_soul/brainmob = brain
-						brainmob.ext_deaf = TRUE
-					notify_message = "External audio input disabled."
-			if(NIF_SC_ALLOW_EYES)
-				if(setting_flags & NIF_SC_ALLOW_EYES)
-					for(var/brain in brainmobs)
-						var/mob/living/carbon/brain/caught_soul/brainmob = brain
-						brainmob.ext_blind = FALSE
-					notify_message = "External video input enabled."
-				else
-					for(var/brain in brainmobs)
-						var/mob/living/carbon/brain/caught_soul/brainmob = brain
-						brainmob.ext_blind = TRUE
-					notify_message = "External video input disabled."
+				var/warning = tgui_alert(nif.human,"Are you SURE you want to erase \"[brainpick]\"?","Erase Mind",list("CANCEL","DELETE"))
+				if(warning == "DELETE")
+					brainmobs -= brainpick
+					qdel(brainpick)
+				return TRUE
 
-		if(notify_message)
-			notify_into(notify_message)
+			//Must just be a flag without special handling then.
+			else
+				var/flag = settings_list[choice]
+				return toggle_setting(flag)
 
-		return TRUE
+/datum/nifsoft/soulcatcher/proc/toggle_setting(var/flag)
+	setting_flags ^= flag
 
-	//Complex version for catching in-round characters
-	proc/catch_mob(var/mob/M)
-		if(!M.mind)	return
+	var/notify_message
+	//Special treatment
+	switch(flag)
+		if(NIF_SC_BACKUPS)
+			if(setting_flags & NIF_SC_BACKUPS)
+				notify_message = "Mind backup system enabled."
+			else
+				notify_message = "Mind backup system disabled."
 
-		//Create a new brain mob
-		var/mob/living/carbon/brain/caught_soul/brainmob = new(nif)
-		brainmob.nif = nif
-		brainmob.soulcatcher = src
-		brainmob.container = src
-		brainmob.stat = 0
-		brainmob.silent = FALSE
-		dead_mob_list -= brainmob
-		brainmob.add_language(LANGUAGE_GALCOM)
-		brainmobs |= brainmob
+		if(NIF_SC_CATCHING_ME)
+			if(setting_flags & NIF_SC_CATCHING_ME)
+				nif.set_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
+			else
+				nif.clear_flag(NIF_O_SCMYSELF,NIF_FLAGS_OTHER)
+		if(NIF_SC_CATCHING_OTHERS)
+			if(setting_flags & NIF_SC_CATCHING_OTHERS)
+				nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
+			else
+				nif.clear_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
+		if(NIF_SC_ALLOW_EARS)
+			if(setting_flags & NIF_SC_ALLOW_EARS)
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
+					brainmob.ext_deaf = FALSE
+				notify_message = "External audio input enabled."
+			else
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
+					brainmob.ext_deaf = TRUE
+				notify_message = "External audio input disabled."
+		if(NIF_SC_ALLOW_EYES)
+			if(setting_flags & NIF_SC_ALLOW_EYES)
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
+					brainmob.ext_blind = FALSE
+				notify_message = "External video input enabled."
+			else
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
+					brainmob.ext_blind = TRUE
+				notify_message = "External video input disabled."
 
-		//Put the mind and player into the mob
-		M.mind.transfer_to(brainmob)
-		brainmob.name = brainmob.mind.name
-		brainmob.real_name = brainmob.mind.name
+	if(notify_message)
+		notify_into(notify_message)
 
-		//If we caught our owner, special settings.
-		if(M == nif.human)
-			brainmob.ext_deaf = FALSE
-			brainmob.ext_blind = FALSE
-			brainmob.parent_mob = TRUE
+	return TRUE
 
-		//If they have these values, apply them
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			brainmob.dna = H.dna
-			brainmob.ooc_notes = H.ooc_notes
-			brainmob.timeofhostdeath = H.timeofdeath
-			SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
+//Complex version for catching in-round characters
+/datum/nifsoft/soulcatcher/proc/catch_mob(var/mob/M)
+	if(!M.mind)	return
 
-		//Else maybe they're a joining ghost
-		else if(isobserver(M))
-			brainmob.transient = TRUE
-			qdel(M) //Bye ghost
+	//Create a new brain mob
+	var/mob/living/carbon/brain/caught_soul/brainmob = new(nif)
+	brainmob.nif = nif
+	brainmob.soulcatcher = src
+	brainmob.container = src
+	brainmob.stat = 0
+	brainmob.silent = FALSE
+	dead_mob_list -= brainmob
+	brainmob.add_language(LANGUAGE_GALCOM)
+	brainmobs |= brainmob
 
-		//Give them a flavortext message
-		var/message = "<span class='notice'>Your vision fades in a haze of static, before returning.</span>\n\
-						Around you, you see...\n\
-						[inside_flavor]"
+	//Put the mind and player into the mob
+	M.mind.transfer_to(brainmob)
+	brainmob.name = brainmob.mind.name
+	brainmob.real_name = brainmob.mind.name
 
-		to_chat(brainmob,message)
+	//If we caught our owner, special settings.
+	if(M == nif.human)
+		brainmob.ext_deaf = FALSE
+		brainmob.ext_blind = FALSE
+		brainmob.parent_mob = TRUE
 
-		//Reminder on how this works to host
-		if(brainmobs.len == 1) //Only spam this on the first one
-			to_chat(nif.human,"<span class='notice'>Your occupant's messages/actions can only be seen by you, and you can \
-			send messages that only they can hear/see by using the NSay and NMe verbs (or the *nsay and *nme emotes).</span>")
+	//If they have these values, apply them
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		brainmob.dna = H.dna
+		brainmob.ooc_notes = H.ooc_notes
+		brainmob.ooc_notes_likes = H.ooc_notes_likes
+		brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
+		brainmob.timeofhostdeath = H.timeofdeath
+		SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
-		//Announce to host and other minds
-		notify_into("New mind loaded: [brainmob.name]")
-		return TRUE
+	//Else maybe they're a joining ghost
+	else if(isobserver(M))
+		brainmob.transient = TRUE
+		qdel(M) //Bye ghost
+
+	//Give them a flavortext message
+	var/message = "<span class='notice'>Your vision fades in a haze of static, before returning.</span>\n\
+					Around you, you see...\n\
+					[inside_flavor]"
+
+	to_chat(brainmob,message)
+
+	//Reminder on how this works to host
+	if(brainmobs.len == 1) //Only spam this on the first one
+		to_chat(nif.human,"<span class='notice'>Your occupant's messages/actions can only be seen by you, and you can \
+		send messages that only they can hear/see by using the NSay and NMe verbs (or the *nsay and *nme emotes).</span>")
+
+	//Announce to host and other minds
+	notify_into("New mind loaded: [brainmob.name]")
+	return TRUE
 
 ////////////////
 //The caught mob
@@ -333,9 +340,9 @@
 /mob/living/carbon/brain/caught_soul/hear_say()
 	if(ext_deaf || !client)
 		return FALSE
-	..()
+	.=..()
 
-/mob/living/carbon/brain/caught_soul/show_message()
+/mob/living/carbon/brain/caught_soul/show_message(msg, type, alt, alt_type)
 	if(ext_blind || !client)
 		return FALSE
 	..()
@@ -362,7 +369,7 @@
 	else
 		return ..(direction)
 
-/mob/living/carbon/brain/caught_soul/say(var/message)
+/mob/living/carbon/brain/caught_soul/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	if(silent) return FALSE
 	soulcatcher.say_into(message,src,eyeobj)
 
@@ -476,45 +483,63 @@
 
 ///////////////////
 //Verbs for humans
-/mob/living/carbon/human/proc/nsay(message as text|null)
+/mob/proc/nsay(message as text)
 	set name = "NSay"
 	set desc = "Speak into your NIF's Soulcatcher."
 	set category = "IC"
 
+	src.nsay_act(message)
+
+/mob/proc/nsay_act(message as text)
+	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
+
+/mob/living/carbon/human/nsay_act(message as text)
+	if(stat != CONSCIOUS)
+		to_chat(src,SPAN_WARNING("You can't use NSay while unconscious."))
+		return
 	if(!nif)
-		to_chat(src,"<span class='warning'>You can't use NSay without a NIF.</span>")
+		to_chat(src,SPAN_WARNING("You can't use NSay without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,"<span class='warning'>You need the Soulcatcher software to use NSay.</span>")
+		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NSay."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,"<span class='warning'>You need a loaded mind to use NSay.</span>")
+		to_chat(src,SPAN_WARNING("You need a loaded mind to use NSay."))
 		return
 	if(!message)
-		message = input("Type a message to say.","Speak into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.say_into(sane_message,src)
 
-/mob/living/carbon/human/proc/nme(message as text|null)
+/mob/proc/nme(message as message)
 	set name = "NMe"
 	set desc = "Emote into your NIF's Soulcatcher."
 	set category = "IC"
 
+	src.nme_act(message)
+
+/mob/proc/nme_act(message as message)
+	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
+
+/mob/living/carbon/human/nme_act(message as message)
+	if(stat != CONSCIOUS)
+		to_chat(src,SPAN_WARNING("You can't use NMe while unconscious."))
+		return
 	if(!nif)
-		to_chat(src,"<span class='warning'>You can't use NMe without a NIF.</span>")
+		to_chat(src,SPAN_WARNING("You can't use NMe without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,"<span class='warning'>You need the Soulcatcher software to use NMe.</span>")
+		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NMe."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,"<span class='warning'>You need a loaded mind to use NMe.</span>")
+		to_chat(src,SPAN_WARNING("You need a loaded mind to use NMe."))
 		return
 
 	if(!message)
-		message = input("Type an action to perform.","Emote into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.emote_into(sane_message,src)
@@ -563,24 +588,24 @@
 	QDEL_NULL(eyeobj)
 	soulcatcher.notify_into("[src] ended AR projection.")
 
-/mob/living/carbon/brain/caught_soul/verb/nsay(message as text|null)
+/mob/living/carbon/brain/caught_soul/verb/nsay_brain(message as text)
 	set name = "NSay"
 	set desc = "Speak into the NIF's Soulcatcher (circumventing AR speaking)."
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = input("Type a message to say.","Speak into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.say_into(sane_message,src,null)
 
-/mob/living/carbon/brain/caught_soul/verb/nme(message as text|null)
+/mob/living/carbon/brain/caught_soul/verb/nme_brain(message as message)
 	set name = "NMe"
 	set desc = "Emote into the NIF's Soulcatcher (circumventing AR speaking)."
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = input("Type an action to perform.","Emote into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.emote_into(sane_message,src,null)

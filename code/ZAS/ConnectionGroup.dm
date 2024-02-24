@@ -57,14 +57,12 @@ Class Procs:
 
 */
 
-
-/connection_edge/var/zone/A
-
-/connection_edge/var/list/connecting_turfs = list()
-/connection_edge/var/direct = 0
-/connection_edge/var/sleeping = 1
-
-/connection_edge/var/coefficient = 0
+/connection_edge
+	var/zone/A
+	var/list/connecting_turfs = list()
+	var/direct = 0
+	var/sleeping = 1
+	var/coefficient = 0
 
 /connection_edge/New()
 	CRASH("Cannot make connection edge without specifications.")
@@ -119,7 +117,8 @@ Class Procs:
 
 
 
-/connection_edge/zone/var/zone/B
+/connection_edge/zone
+	var/zone/B
 
 /connection_edge/zone/New(zone/A, zone/B)
 
@@ -189,8 +188,11 @@ Class Procs:
 	if(A == from) return B
 	else return A
 
-/connection_edge/unsimulated/var/turf/B
-/connection_edge/unsimulated/var/datum/gas_mixture/air
+/connection_edge/unsimulated
+	var/turf/B
+
+/connection_edge/unsimulated
+	var/datum/gas_mixture/air
 
 /connection_edge/unsimulated/New(zone/A, turf/B)
 	src.A = A
@@ -242,7 +244,7 @@ Class Procs:
 	if(!A.air.compare(air, vacuum_exception = 1))
 		air_master.mark_edge_active(src)
 
-proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
+/proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
 	//This implements a simplistic version of the Stefan-Boltzmann law.
 	var/energy_delta = ((A.temperature - B.temperature) ** 4) * STEFAN_BOLTZMANN_CONSTANT * connecting_tiles * 2.5
 	var/maximum_energy_delta = max(0, min(A.temperature * A.heat_capacity() * A.group_multiplier, B.temperature * B.heat_capacity() * B.group_multiplier))

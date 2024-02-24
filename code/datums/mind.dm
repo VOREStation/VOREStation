@@ -55,6 +55,10 @@
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
+	var/list/purchase_log = new
+	var/used_TC = 0
+
+	var/list/learned_recipes //List of learned recipe TYPES.
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
@@ -71,9 +75,11 @@
 	//used to store what traits the player had picked out in their preferences before joining, in text form.
 	var/list/traits = list()
 
+	var/datum/religion/my_religion
+
 /datum/mind/New(var/key)
 	src.key = key
-
+	purchase_log = list()
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
@@ -85,7 +91,6 @@
 			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
 
-		SSnanoui.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
@@ -119,12 +124,12 @@
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || !ticker.mode)
-		alert("Not before round-start!", "Alert")
+		tgui_alert_async(usr, "Not before round-start!", "Alert")
 		return
 
 	var/out = "<B>[name]</B>[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
+	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];[HrefToken()];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 	out += "Factions and special roles:<br><table>"
 	for(var/antag_type in all_antag_types)
@@ -138,22 +143,22 @@
 		for(var/datum/objective/O in objectives)
 			out += "<b>Objective #[num]:</b> [O.explanation_text] "
 			if(O.completed)
-				out += "(<font color='green'>complete</font>)"
+				out += "([span_green("complete")])"
 			else
-				out += "(<font color='red'>incomplete</font>)"
-			out += " <a href='?src=\ref[src];obj_completed=\ref[O]'>\[toggle\]</a>"
-			out += " <a href='?src=\ref[src];obj_delete=\ref[O]'>\[remove\]</a><br>"
+				out += "([span_red("incomplete")])"
+			out += " <a href='?src=\ref[src];[HrefToken()];obj_completed=\ref[O]'>\[toggle\]</a>"
+			out += " <a href='?src=\ref[src];[HrefToken()];obj_delete=\ref[O]'>\[remove\]</a><br>"
 			num++
-		out += "<br><a href='?src=\ref[src];obj_announce=1'>\[announce objectives\]</a>"
+		out += "<br><a href='?src=\ref[src];[HrefToken()];obj_announce=1'>\[announce objectives\]</a>"
 
 	else
 		out += "None."
-	out += "<br><a href='?src=\ref[src];obj_add=1'>\[add\]</a><br><br>"
-	out += "<b>Ambitions:</b> [ambitions ? ambitions : "None"] <a href='?src=\ref[src];amb_edit=\ref[src]'>\[edit\]</a></br>"
+	out += "<br><a href='?src=\ref[src];[HrefToken()];obj_add=1'>\[add\]</a><br><br>"
+	out += "<b>Ambitions:</b> [ambitions ? ambitions : "None"] <a href='?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
@@ -185,7 +190,7 @@
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
+		var/new_memo = sanitize(tgui_input_text(usr, "Write new memory", "Memory", memory, multiline = TRUE, prevent_enter = TRUE))
 		if (isnull(new_memo)) return
 		memory = new_memo
 
@@ -193,7 +198,7 @@
 		var/datum/mind/mind = locate(href_list["amb_edit"])
 		if(!mind)
 			return
-		var/new_ambition = input("Enter a new ambition", "Memory", mind.ambitions) as null|message
+		var/new_ambition = tgui_input_text(usr, "Enter a new ambition", "Memory", mind.ambitions, multiline = TRUE, prevent_enter = TRUE)
 		if(isnull(new_ambition))
 			return
 		if(mind)
@@ -217,7 +222,8 @@
 			if(!def_value)//If it's a custom objective, it will be an empty string.
 				def_value = "custom"
 
-		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/list/choices = list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/new_obj_type = tgui_input_list(usr, "Select objective type:", "Objective type", choices, def_value)
 		if (!new_obj_type) return
 
 		var/datum/objective/new_objective = null
@@ -236,10 +242,10 @@
 
 				var/mob/def_target = null
 				var/objective_list[] = list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain)
-				if (objective&&(objective.type in objective_list) && objective:target)
-					def_target = objective:target.current
+				if (objective&&(objective.type in objective_list) && objective.target)
+					def_target = objective.target.current
 
-				var/new_target = input("Select target:", "Objective target", def_target) as null|anything in possible_targets
+				var/new_target = tgui_input_list(usr, "Select target:", "Objective target", possible_targets, def_target)
 				if (!new_target) return
 
 				var/objective_path = text2path("/datum/objective/[new_obj_type]")
@@ -285,12 +291,12 @@
 				if (!steal.select_target())
 					return
 
-			if("download","capture","absorb")
+			if("download","capture","absorb", "vore")
 				var/def_num
 				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
 					def_num = objective.target_amount
 
-				var/target_number = input("Input target number:", "Objective", def_num) as num|null
+				var/target_number = tgui_input_number(usr, "Input target number:", "Objective", def_num)
 				if (isnull(target_number))//Ordinarily, you wouldn't need isnull. In this case, the value may already exist.
 					return
 
@@ -304,11 +310,14 @@
 					if("absorb")
 						new_objective = new /datum/objective/absorb
 						new_objective.explanation_text = "Absorb [target_number] compatible genomes."
+					if("vore")
+						new_objective = new /datum/objective/vore
+						new_objective.explanation_text = "Devour [target_number] [target_number == 1 ? "person" : "people"]. What happens to them after you do that is irrelevant."
 				new_objective.owner = src
 				new_objective.target_amount = target_number
 
 			if ("custom")
-				var/expl = sanitize(input("Custom objective:", "Objective", objective ? objective.explanation_text : "") as text|null)
+				var/expl = sanitize(tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : ""))
 				if (!expl) return
 				new_objective = new /datum/objective
 				new_objective.owner = src
@@ -404,13 +413,13 @@
 				//	var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
 					var/crystals
 					crystals = tcrystals
-					crystals = input("Amount of telecrystals for [key]", crystals) as null|num
+					crystals = tgui_input_number(usr, "Amount of telecrystals for [key]", crystals)
 					if (!isnull(crystals))
 						tcrystals = crystals
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
-		to_chat(current, "<font color='blue'>Your current objectives:</font>")
+		to_chat(current, span_blue("Your current objectives:"))
 		for(var/datum/objective/objective in objectives)
 			to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
@@ -480,6 +489,19 @@
 	else
 		return 0
 
+/datum/mind/proc/get_ghost(even_if_they_cant_reenter)
+	for(var/mob/observer/dead/G in player_list)
+		if(G.mind == src)
+			if(G.can_reenter_corpse || even_if_they_cant_reenter)
+				return G
+			break
+
+/datum/mind/proc/grab_ghost(force)
+	var/mob/observer/dead/G = get_ghost(even_if_they_cant_reenter = force)
+	. = G
+	if(G)
+		G.reenter_corpse()
+
 //Initialisation procs
 /mob/living/proc/mind_initialize()
 	if(mind)
@@ -498,8 +520,9 @@
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
-	..()
-	if(!mind.assigned_role)	mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
+	. = ..()
+	if(!mind.assigned_role)
+		mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
 
 //slime
 /mob/living/simple_mob/slime/mind_initialize()

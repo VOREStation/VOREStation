@@ -6,7 +6,7 @@ var/datum/antagonist/stowaway/stowaways
 	role_text = "Stowaway"
 	role_text_plural = "Stowaways"
 	bantype = "renegade"
-	restricted_jobs = list("AI")
+	avoid_silicons = TRUE // This was previously allowing cyborgs to be stowaways, but given that they would just connect to the AI, it didn't make much sense
 	welcome_text = "People are known to run from many things, or to many things, for many different reasons. You happen to be one of those people."
 	antag_text = "You are a <b>minor</b> antagonist! Within the server rules, do whatever it is \
 		that you came to the station to do. Espionage, thievery, or just running from the law are all examples. \

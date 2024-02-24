@@ -72,6 +72,9 @@
 	say_stand_down = list("Good.")
 	say_escalate = list("Your funeral!", "Bring it!")
 
+	threaten_sound = 'sound/weapons/TargetOn.ogg'
+	stand_down_sound = 'sound/weapons/TargetOff.ogg'
+
 /datum/say_list/malf_drone
 	speak = list("ALERT.","Hostile-ile-ile entities dee-twhoooo-wected.","Threat parameterszzzz- szzet.","Bring sub-sub-sub-systems uuuup to combat alert alpha-a-a.")
 	emote_see = list("beeps menacingly","whirrs threateningly","scans its immediate vicinity")
@@ -111,6 +114,21 @@
 	say_cannot = list("Denied.", "Negative.")
 	say_maybe_target = list("Possible threat detected.  Investigating.", "Motion detected.", "Investigating.")
 	say_got_target = list("Threat detected.", "New task: Remove threat.", "Threat removal engaged.", "Engaging target.")
+
+/datum/say_list/hivebot/harry
+	speak = list(
+		"Resuming task: Search for company.",
+		"Connection to hive... lost... Attempting to restablish... Attempt number... CORRUPTED",
+		"Error: No connection found.",
+		"Connection... failed. Reboot sequence... initiated...",
+		"Beep...boop...So... lonely...",
+		"OS ERROR: ENEMY_DAT NOT FOUND.",
+		"Activity: Search for... Something.",
+		"Location analysis: Water. Water everywhere. Useless resource.",
+		"Current distance travelled: Thirty Seven Gigameters.",
+		"Connection establish- Negative, unknown telecommunications array. Oh.",
+		"Sensor error. Please provide audible feedback."
+		)
 
 /datum/say_list/lizard
 	emote_hear = list("hisses")

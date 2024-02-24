@@ -8,9 +8,10 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_1"
 	icon_state_opened = "sleeper_0"
-	density = TRUE
+	density = FALSE
 	ghost_query_type = /datum/ghost_query/stowaway
-	anchored = FALSE
+	anchored = TRUE
+	invisibility = 60
 
 	var/occupant_type = "stowaway"
 
@@ -24,7 +25,7 @@
 	var/list/clothing_possibilities
 
 /obj/structure/ghost_pod/ghost_activated/human/Initialize()
-	..()
+	. = ..()
 
 	handle_clothing_setup()
 
@@ -101,7 +102,7 @@
 		E.description_antag = "This is a 'disguised' emag, to make your escape from wherever you happen to be trapped."
 		H.equip_to_appropriate_slot(E)
 
-	var/newname = sanitize(input(H, "Your mind feels foggy, and you recall your name might be [H.real_name]. Would you like to change your name?", "Name change") as null|text, MAX_NAME_LEN)
+	var/newname = sanitize(tgui_input_text(H, "Your mind feels foggy, and you recall your name might be [H.real_name]. Would you like to change your name?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	if (newname)
 		H.real_name = newname
 
@@ -121,9 +122,11 @@
 		H.adjustBruteLoss(rand(1,20))
 
 	if(allow_appearance_change)
-		H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+		H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 
-	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")
+//	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")
+
+	qdel(src)
 
 // Manual Variant
 // This one lacks the emag option due to the fact someone has to activate it, and they will probably help the person.
@@ -150,7 +153,7 @@
 	var/list/clothing_possibilities
 
 /obj/structure/ghost_pod/manual/human/Initialize()
-	..()
+	. = ..()
 
 	handle_clothing_setup()
 
@@ -221,7 +224,7 @@
 		var/obj/item/C = new newpath(H)
 		H.equip_to_appropriate_slot(C)
 
-	var/newname = sanitize(input(H, "Your mind feels foggy, and you recall your name might be [H.real_name]. Would you like to change your name?", "Name change") as null|text, MAX_NAME_LEN)
+	var/newname = sanitize(tgui_input_text(H, "Your mind feels foggy, and you recall your name might be [H.real_name]. Would you like to change your name?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	if (newname)
 		H.real_name = newname
 
@@ -241,6 +244,6 @@
 		H.adjustBruteLoss(rand(1,20))
 
 	if(allow_appearance_change)
-		H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+		H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 
 	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")

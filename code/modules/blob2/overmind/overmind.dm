@@ -23,7 +23,15 @@ var/list/overminds = list()
 	var/ai_controlled = TRUE
 	var/auto_pilot = FALSE // If true, and if a client is attached, the AI routine will continue running.
 
-/mob/observer/blob/New(var/newloc, pre_placed = 0, starting_points = 60, desired_blob_type = null)
+	universal_understand = TRUE
+
+	var/list/has_langs = list(LANGUAGE_ANIMAL)
+	var/datum/language/default_language = null
+
+/mob/observer/blob/get_default_language()
+	return default_language
+
+/mob/observer/blob/Initialize(newloc, pre_placed = 0, starting_points = 60, desired_blob_type = null)
 	blob_points = starting_points
 	if(pre_placed) //we already have a core!
 		placed = 1
@@ -40,19 +48,21 @@ var/list/overminds = list()
 	color = blob_type.complementary_color
 	if(blob_core)
 		blob_core.update_icon()
-		level_seven_blob_announcement(blob_core)
 
-	..(newloc)
+	for(var/L in has_langs)
+		languages |= GLOB.all_languages[L]
+	if(languages.len)
+		default_language = languages[1]
+
+	return ..(newloc)
 
 /mob/observer/blob/Destroy()
-	for(var/BL in blobs)
-		var/obj/structure/blob/B = BL
+	for(var/obj/structure/blob/B as anything in GLOB.all_blobs)
 		if(B && B.overmind == src)
 			B.overmind = null
 			B.update_icon() //reset anything that was ours
 
-	for(var/BLO in blob_mobs)
-		var/mob/living/simple_mob/blob/spore/BM = BLO
+	for(var/mob/living/simple_mob/blob/spore/BM as anything in blob_mobs)
 		if(BM)
 			BM.overmind = null
 			BM.update_icons()
@@ -66,11 +76,11 @@ var/list/overminds = list()
 		if(blob_core)
 			stat(null, "Core Health: [blob_core.integrity]")
 		stat(null, "Power Stored: [blob_points]/[max_blob_points]")
-		stat(null, "Total Blobs: [blobs.len]")
+		stat(null, "Total Blobs: [GLOB.all_blobs.len]")
 
-/mob/observer/blob/Move(NewLoc, Dir = 0)
+/mob/observer/blob/Move(var/atom/NewLoc, Dir = 0)
 	if(placed)
-		var/obj/structure/blob/B = locate() in range("3x3", NewLoc)
+		var/obj/structure/blob/B = (locate() in view("5x5", NewLoc))
 		if(B)
 			forceMove(NewLoc)
 			return TRUE
@@ -94,3 +104,62 @@ var/list/overminds = list()
 		if(blob_points >= 100)
 			if(!auto_factory() && !auto_resource())
 				auto_node()
+
+/mob/observer/blob/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+	message = sanitize(message)
+
+	if(!message)
+		return
+
+	//If you're muted for IC chat
+	if(client)
+		if(message)
+			client.handle_spam_prevention(MUTE_IC)
+			if((client.prefs.muted & MUTE_IC) || say_disabled)
+				to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
+				return
+
+	//These will contain the main receivers of the message
+	var/list/listening = list()
+	var/list/listening_obj = list()
+
+	var/turf/T = get_turf(src)
+	if(T)
+		//Obtain the mobs and objects in the message range
+		var/list/results = get_mobs_and_objs_in_view_fast(T, world.view, remote_ghosts = client ? TRUE : FALSE)
+		listening = results["mobs"]
+		listening_obj = results["objs"]
+	else
+		return 1 //If we're in nullspace, then forget it.
+
+	var/list/message_pieces = parse_languages(message)
+	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quirk for dealing with hivemind/signlang languages.
+		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
+		S.speaking.broadcast(src, S.message)
+		return 1
+
+	if(!LAZYLEN(message_pieces))
+		log_runtime(EXCEPTION("Message failed to generate pieces. [message] - [json_encode(message_pieces)]"))
+		return 0
+
+	//Handle nonverbal languages here
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking.flags & NONVERBAL)
+			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
+
+	for(var/mob/M in listening)
+		spawn()
+			if(M && src)
+				if(get_dist(M, src) <= world.view || (M.stat == DEAD && !forbid_seeing_deadchat))
+					M.hear_say(message_pieces, "conveys", (M.faction == blob_type.faction), src)
+
+	//Object message delivery
+	for(var/obj/O in listening_obj)
+		spawn(0)
+			if(O && src) //If we still exist, when the spawn processes
+				var/dst = get_dist(get_turf(O),get_turf(src))
+				if(dst <= world.view)
+					O.hear_talk(src, message_pieces, "conveys")
+
+	log_say(message, src)
+	return 1

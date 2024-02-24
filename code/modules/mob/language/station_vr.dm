@@ -11,18 +11,18 @@
 
 /datum/language/birdsong
 	name = LANGUAGE_BIRDSONG
-	desc = "A language primarily spoken by Narvians"
+	desc = "A tweety language primarily spoken by Nevreans."
 	speech_verb = "chirps"
 	colour = "birdsongc"
-	key = "7"
-	syllables = list ("cheep", "peep", "tweet")
+	key = "G"
+	syllables = list ("chee", "pee", "twee", "hoo", "ee", "oo", "ch", "ts", "sch", "twe", "too", "pha", "ewe", "shee", "shoo", "p", "tw", "aw", "caw", "c")
 
 /datum/language/sergal
 	name = LANGUAGE_SAGARU
 	desc = "The dominant language of the Sergal homeworld, Vilous. It consists of aggressive low-pitched hissing and throaty growling."
 	speech_verb = "snarls"
 	colour = "sergal"
-	key = "t"
+	key = "T"
 	syllables = list ("grr", "gah", "woof", "arf", "arra", "rah", "wor", "sarg")
 
 /datum/language/vulpkanin
@@ -32,7 +32,7 @@
 	ask_verb = "rurs"
 	exclaim_verb = "barks"
 	colour = "vulpkanin"
-	key = "8"
+	key = "V"
 	syllables = list("rur","ya","cen","rawr","bar","kuk","tek","qat","uk","wu","vuh","tah","tch","schz","auch", \
 	"ist","ein","entch","zwichs","tut","mir","wo","bis","es","vor","nic","gro","lll","enem","zandt","tzch","noch", \
 	"hel","ischt","far","wa","baram","iereng","tech","lach","sam","mak","lich","gen","or","ag","eck","gec","stag","onn", \
@@ -44,7 +44,7 @@
 	speech_verb = "squeaks"
 	whisper_verb = "whispers"
 	exclaim_verb = "chitters"
-	key = "9"
+	key = "S"
 	syllables = list("sque","sqah","boo","beh","nweh","boopa","nah","wah","een","sweh")
 
 /datum/language/demon
@@ -54,7 +54,7 @@
 	ask_verb = "croons"
 	exclaim_verb = "incants"
 	colour = "daemon" //So fancy
-	key = "n"
+	key = "D"
 	syllables = list("viepn","e","bag","docu","kar","xlaqf","raa","qwos","nen","ty","von","kytaf","xin","ty","ka","baak","hlafaifpyk","znu","agrith","na'ar","uah","plhu","six","fhler","bjel","scee","lleri",
 	"dttm","aggr","uujl","hjjifr","wwuthaav",)
 	machine_understands = FALSE
@@ -66,7 +66,7 @@
 	ask_verb = "hums"
 	exclaim_verb = "loudly sings"
 	colour = "enochian" //So fancy
-	key = "i"
+	key = "I"
 	syllables = list("salve","sum","loqui","operatur","iusta","et","permittit","facere","effercio","pluribus","enim","hoc",
 	"mihi","wan","six","tartu")
 	machine_understands = FALSE
@@ -78,7 +78,7 @@
 	ask_verb = "chitters"
 	exclaim_verb = "rasps"
 	colour = "bug"
-	key = "x"
+	key = "X"
 	syllables = list("vaur","uyek","uyit","avek","sc'theth","k'ztak","teth","wre'ge","lii","dra'","zo'","ra'","kax'","zz","vh","ik","ak",
     "uhk","zir","sc'orth","sc'er","thc'yek","th'zirk","th'esk","k'ayek","ka'mil","sc'","ik'yir","yol","kig","k'zit","'","'","zrk","krg","isk'yet","na'k",
     "sc'azz","th'sc","nil","n'ahk","sc'yeth","aur'sk","iy'it","azzg","a'","i'","o'","u'","a","i","o","u","zz","kr","ak","nrk","tzzk","bz","xic'","k'lax'","histh")
@@ -88,24 +88,64 @@
 	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
 	speech_verb = "mars"
 	ask_verb = "mars"
-	exclaim_verb = "mars"
-	colour = "changeling"
-	key = "m"
+	exclaim_verb = "MARS"
+	colour = "shadekin"
+	key = "M"
 	machine_understands = FALSE
 	flags = WHITELISTED | HIVEMIND
 
-/datum/language/human/slavic
-	name = LANGUAGE_SLAVIC
-	desc = "The official language of the Independent Colonial Confederation of Gilgamesh, originally established in 2122 by the short-lived United Slavic Confederation on Earth."
-	colour = "solcom"
-	key = "r"
-
+/datum/language/drudakar
+	name = LANGUAGE_DRUDAKAR
+	desc = "The native language of the D'Rudak'Ar, a loosely tied together community of dragons and demi-dragons based in the Diul system. Features include many hard consonants and rolling 'r's."
+	speech_verb = "gaos"
+	ask_verb = "gaos"
+	exclaim_verb = "GAOS"
+	whisper_verb = "gaos"
+	colour = "drudakar"
+	key = "K"
 	syllables = list(
-		"rus", "zem", "ave", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
-		"danya", "da", "mied", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
-		"ko", "ne", "en", "po", "ra", "li", "on", "byl", "cto", "eni", "ost", "ol", "ego",
-		"ver", "stv", "pro"
+		"gok", "rha", "rou", "gao", "do", "ra", "bo", "lah", "draz", "khi", "zah", "lah", "ora", "ille",
+		"ghlas", "ghlai", "tyur", "vah", "bao", "raag", "drag", "zhi", "dahl", "tiyr", "vahl", "nyem",
+		"roar", "hyaa", "ma", "ha", "ya", "shi", "yo", "go"
 	)
+
+/datum/language/spacer
+	name = LANGUAGE_SPACER
+	desc = "A rough pidgin-language comprised of Tradeband, Gutter, and Sol Common used by various space-born communities unique to Humanity."
+	key = "J"
+	syllables = list(
+		"ada", "zir", "bian", "ach", "usk", "ado", "ich", "cuan", "iga", "qing", "le", "que", "ki", "qaf", "dei", "eta"
+	)
+	colour = "spacer"
+	machine_understands = TRUE
+
+/datum/language/tavan
+	name = LANGUAGE_TAVAN
+	desc = "A language native to the rat-like Altevians, it has been adopted by other rodent faring species over time."
+	key = "E"
+	speech_verb = "squeaks"
+	whisper_verb = "squiks"
+	exclaim_verb = "squeaks loudly"
+	syllables = list ("sque", "uik", "squeak", "squee", "eak", "eek", "uek", "squik",
+			"squeek", "sq", "squee", "ee", "ek", "ak", "ueak", "squea")
+	colour = "tavan"
+
+/datum/language/echosong
+	name = LANGUAGE_ECHOSONG
+	desc = "An ultrasound-based language, inaudible to those unable to understand it, spoken by few species capable of actually hearing it."
+	key = "U"
+	signlang_verb = list("opens their mouth soundlessly", "mouthes something silently")
+	signlang_verb_understood = list("squeaks")
+	colour = "echosong"
+	flags = INAUDIBLE
+	ignore_adverb = TRUE
+
+/datum/language/echosong/scramble(var/input, var/list/known_languages)
+	return stars(input)
+
+/datum/language/echosong/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+	log_say("(INAUDIBLE) [message]", speaker)
+	speaker.say_signlang(format_message(message), pick(signlang_verb), pick(signlang_verb_understood), src, 2)
 
 /datum/language/unathi
 	flags = 0
@@ -113,20 +153,15 @@
 	flags = 0
 /datum/language/skrell
 	flags = 0
-/datum/language/human
-	flags = 0
-/datum/language/seromi
+/datum/language/teshari
 	flags = 0
 /datum/language/zaddat
 	flags = 0
+/datum/language/human
+	flags = 0
 /datum/language/gutter
-	flags = WHITELISTED
 	machine_understands = FALSE
-/datum/language/human/monkey
-	flags = RESTRICTED
-/datum/language/skrell/monkey
-	flags = RESTRICTED
-/datum/language/unathi/monkey
-	flags = RESTRICTED
-/datum/language/tajaran/monkey
+	desc = "A dialect of Tradeband not uncommon amongst traders in the Free Trade Union. The language is often difficult to translate due to changing frequently and being highly colloquial."
+	partial_understanding = list(LANGUAGE_TRADEBAND = 30, LANGUAGE_SOL_COMMON = 10)
+/datum/language/human/animal
 	flags = RESTRICTED

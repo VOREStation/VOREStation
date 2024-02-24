@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics
 	name = "atmoalter"
-	use_power = 0
+	use_power = USE_POWER_OFF
 	layer = OBJ_LAYER // These are mobile, best not be under everything.
 	var/datum/gas_mixture/air_contents = new
 
@@ -15,24 +15,28 @@
 
 /obj/machinery/portable_atmospherics/New()
 	..()
-
-	air_contents.volume = volume
-	air_contents.temperature = T20C
+	//VOREStation Edit - Fix runtime
+	if(air_contents)
+		air_contents.volume = volume
+		air_contents.temperature = T20C
+	//VOREStation Edit End
 
 	return 1
+
+/obj/machinery/portable_atmospherics/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/portable_atmospherics/LateInitialize()
+	var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
+	if(port)
+		connect(port)
+		update_icon()
 
 /obj/machinery/portable_atmospherics/Destroy()
 	QDEL_NULL(air_contents)
 	QDEL_NULL(holding)
-	. = ..()
-
-/obj/machinery/portable_atmospherics/Initialize()
-	. = ..()
-	spawn()
-		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
-		if(port)
-			connect(port)
-			update_icon()
+	return ..()
 
 /obj/machinery/portable_atmospherics/process()
 	if(!connected_port) //only react when pipe_network will ont it do it for you
@@ -69,7 +73,7 @@
 	connected_port.connected_device = src
 	connected_port.on = 1 //Activate port updates
 
-	anchored = 1 //Prevent movement
+	anchored = TRUE //Prevent movement
 
 	//Actually enforce the air sharing
 	var/datum/pipe_network/network = connected_port.return_network(src)
@@ -87,7 +91,7 @@
 	if(network)
 		network.gases -= air_contents
 
-	anchored = 0
+	anchored = FALSE
 
 	connected_port.connected_device = null
 	connected_port = null
@@ -113,7 +117,7 @@
 		update_icon()
 		return
 
-	else if (W.is_wrench())
+	else if (W.has_tool_quality(TOOL_WRENCH))
 		if(connected_port)
 			disconnect()
 			to_chat(user, "<span class='notice'>You disconnect \the [src] from the port.</span>")
@@ -134,12 +138,6 @@
 			else
 				to_chat(user, "<span class='notice'>Nothing happens.</span>")
 				return
-
-	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		var/obj/item/device/analyzer/A = W
-		A.analyze_gases(src, user)
-		return
-
 	return
 
 
@@ -175,7 +173,7 @@
 		power_change()
 		return
 
-	if(I.is_screwdriver() && removeable_cell)
+	if(I.has_tool_quality(TOOL_SCREWDRIVER) && removeable_cell)
 		if(!cell)
 			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
 			return

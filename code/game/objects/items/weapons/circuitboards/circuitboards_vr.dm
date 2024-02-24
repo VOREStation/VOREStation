@@ -2,6 +2,17 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
+/obj/item/weapon/circuitboard/get_examine_desc()
+	. = ..()
+	if(LAZYLEN(req_components))
+		var/list/nice_list = list()
+		for(var/B in req_components)
+			var/atom/A = B
+			if(!ispath(A))
+				continue
+			nice_list += list("[req_components[A]] [initial(A.name)]")
+		. += "Required components: [english_list(nice_list)]."
+
 // VOREStation specific circuit boards!
 
 // Board for the parts lathe in partslathe.dm
@@ -52,11 +63,18 @@
 	name = T_BOARD("timeclock")
 	build_path = /obj/machinery/computer/timeclock
 	board_type = new /datum/frame/frame_types/timeclock_terminal
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 // Board for the ID restorer in id_restorer_vr.dm
 /obj/item/weapon/circuitboard/id_restorer
 	name = T_BOARD("ID restoration console")
 	build_path = /obj/machinery/computer/id_restorer
 	board_type = new /datum/frame/frame_types/id_restorer
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+
+/obj/item/weapon/circuitboard/security/xenobio
+	name = T_BOARD("xenobiology camera monitor")
+	build_path = /obj/machinery/computer/security/xenobio
+	network = list(NETWORK_XENOBIO)
+	req_access = list()
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)

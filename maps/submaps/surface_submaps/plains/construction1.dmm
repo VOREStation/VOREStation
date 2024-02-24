@@ -1,51 +1,414 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/obj/structure/lattice,/turf/template_noop,/area/template_noop)
-"c" = (/turf/simulated/floor/outdoors/rocks,/area/template_noop)
-"d" = (/obj/structure/grille,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"e" = (/obj/structure/firedoor_assembly,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"f" = (/obj/structure/lattice,/turf/simulated/floor/outdoors/rocks,/area/template_noop)
-"g" = (/turf/simulated/floor/plating/external,/area/submap/construction1)
-"h" = (/obj/structure/firedoor_assembly,/obj/structure/grille,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"i" = (/obj/item/clothing/gloves/black,/turf/simulated/floor/outdoors/rocks,/area/template_noop)
-"j" = (/turf/simulated/floor/tiled/external,/area/submap/construction1)
-"k" = (/obj/item/weapon/tool/wrench,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"l" = (/turf/simulated/wall,/area/submap/construction1)
-"m" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"n" = (/obj/item/weapon/pickaxe/drill,/turf/simulated/floor/outdoors/rocks,/area/template_noop)
-"o" = (/obj/structure/girder,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"p" = (/obj/item/clothing/head/hardhat,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"q" = (/obj/item/frame,/turf/simulated/floor/tiled/external,/area/submap/construction1)
-"r" = (/obj/item/clothing/head/orangebandana,/turf/template_noop,/area/template_noop)
-"s" = (/obj/item/clothing/head/welding/engie,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"t" = (/obj/structure/door_assembly/door_assembly_mai,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"u" = (/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"v" = (/obj/item/weapon/airlock_electronics,/turf/simulated/floor/tiled/external,/area/submap/construction1)
-"w" = (/obj/item/clothing/suit/storage/hazardvest,/turf/template_noop,/area/template_noop)
-"x" = (/obj/structure/windoor_assembly,/turf/simulated/floor/tiled/external,/area/submap/construction1)
-"y" = (/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"z" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled/external,/area/submap/construction1)
-"A" = (/obj/item/weapon/shovel,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"B" = (/obj/item/weapon/airlock_electronics,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"C" = (/obj/item/weapon/weldingtool/largetank,/turf/simulated/floor/tiled/external,/area/submap/construction1)
-"D" = (/obj/item/weapon/tool/crowbar,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"E" = (/obj/item/clothing/glasses/welding,/turf/simulated/floor/plating/external,/area/submap/construction1)
-"F" = (/obj/item/clothing/suit/storage/hazardvest,/turf/simulated/floor/plating/external,/area/submap/construction1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"c" = (
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/template_noop)
+"d" = (
+/obj/structure/grille,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"e" = (
+/obj/structure/firedoor_assembly,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"f" = (
+/obj/structure/lattice,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/template_noop)
+"g" = (
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"h" = (
+/obj/structure/firedoor_assembly,
+/obj/structure/grille,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"i" = (
+/obj/item/clothing/gloves/black,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/template_noop)
+"j" = (
+/turf/simulated/floor/tiled/external/virgo3b,
+/area/submap/construction1)
+"k" = (
+/obj/item/weapon/tool/wrench,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"l" = (
+/turf/simulated/wall,
+/area/submap/construction1)
+"m" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"n" = (
+/obj/item/weapon/pickaxe/drill,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/template_noop)
+"o" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"p" = (
+/obj/item/clothing/head/hardhat,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"q" = (
+/obj/item/frame,
+/turf/simulated/floor/tiled/external/virgo3b,
+/area/submap/construction1)
+"r" = (
+/obj/item/clothing/head/orangebandana,
+/turf/template_noop,
+/area/template_noop)
+"s" = (
+/obj/item/clothing/head/welding/engie,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"t" = (
+/obj/structure/door_assembly/door_assembly_mai,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"u" = (
+/obj/item/weapon/storage/toolbox/electrical,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"v" = (
+/obj/item/weapon/airlock_electronics,
+/turf/simulated/floor/tiled/external/virgo3b,
+/area/submap/construction1)
+"w" = (
+/obj/item/clothing/suit/storage/hazardvest,
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/obj/structure/windoor_assembly,
+/turf/simulated/floor/tiled/external/virgo3b,
+/area/submap/construction1)
+"y" = (
+/obj/item/weapon/storage/toolbox/mechanical,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"z" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/tiled/external/virgo3b,
+/area/submap/construction1)
+"A" = (
+/obj/item/weapon/shovel,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"B" = (
+/obj/item/weapon/airlock_electronics,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"C" = (
+/obj/item/weapon/weldingtool/largetank,
+/turf/simulated/floor/tiled/external/virgo3b,
+/area/submap/construction1)
+"D" = (
+/obj/item/weapon/tool/crowbar,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"E" = (
+/obj/item/clothing/glasses/welding,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
+"F" = (
+/obj/item/clothing/suit/storage/hazardvest,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/construction1)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaa
-aaaaaaaaaaaabaaa
-aaaacdecffccfgba
-aaaachgggficffaa
-aaacchgjkfccccaa
-aaccclmjgfcnccaa
-aalloojjgpfccaaa
-aalggljqgefccraa
-aalsgtjjuffcaaaa
-aalgglvjgffcwaaa
-aalllllxlgfcaaaa
-acyjjzjjjAfcaaaa
-acgBjjjCggfcaaaa
-acddDpggEgfcaaaa
-aacccdeFfffaaaaa
-aaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+c
+c
+c
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+c
+l
+l
+l
+l
+l
+y
+g
+d
+c
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+c
+c
+l
+g
+s
+g
+l
+j
+B
+d
+c
+a
+"}
+(5,1,1) = {"
+a
+a
+c
+c
+c
+c
+o
+g
+g
+g
+l
+j
+j
+D
+c
+a
+"}
+(6,1,1) = {"
+a
+a
+d
+h
+h
+l
+o
+l
+t
+l
+l
+z
+j
+p
+d
+a
+"}
+(7,1,1) = {"
+a
+a
+e
+g
+g
+m
+j
+j
+j
+v
+l
+j
+j
+g
+e
+a
+"}
+(8,1,1) = {"
+a
+a
+c
+g
+j
+j
+j
+q
+j
+j
+x
+j
+C
+g
+F
+a
+"}
+(9,1,1) = {"
+a
+a
+f
+g
+k
+g
+g
+g
+u
+g
+l
+j
+g
+E
+f
+a
+"}
+(10,1,1) = {"
+a
+a
+f
+f
+f
+f
+p
+e
+f
+f
+g
+A
+g
+g
+f
+a
+"}
+(11,1,1) = {"
+a
+a
+c
+i
+c
+c
+f
+f
+f
+f
+f
+f
+f
+f
+f
+a
+"}
+(12,1,1) = {"
+a
+a
+c
+c
+c
+n
+c
+c
+c
+c
+c
+c
+c
+c
+a
+a
+"}
+(13,1,1) = {"
+a
+b
+f
+f
+c
+c
+c
+c
+a
+w
+a
+a
+a
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+g
+f
+c
+c
+a
+r
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+b
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(16,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

@@ -40,7 +40,7 @@
 		for(var/C in vantag_choices_list)
 			names_list[vantag_choices_list[C]] = C
 
-		var/selection = input(user, "How do you want to be involved with VS Event Characters, ERP-wise? They will see this choice on you in a HUD. Event characters are admin-selected and spawned players, possibly with assigned objectives, who are obligated to respect ERP prefs and RP their actions like any other player, though it may be a slightly shorter RP if they are pressed for time or being caught.", "Event Preference") as null|anything in names_list
+		var/selection = tgui_input_list(user, "How do you want to be involved with VS Event Characters, ERP-wise? They will see this choice on you in a HUD. Event characters are admin-selected and spawned players, possibly with assigned objectives, who are obligated to respect ERP prefs and RP their actions like any other player, though it may be a slightly shorter RP if they are pressed for time or being caught.", "Event Preference", names_list)
 		if(selection && selection != "Normal")
 			pref.vantag_preference = names_list[selection]
 

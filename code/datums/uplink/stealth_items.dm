@@ -38,3 +38,15 @@
 	name = "Makeover Kit"
 	item_cost = 5
 	path = /obj/item/weapon/makeover
+
+/datum/uplink_item/item/stealth_items/thievesgloves
+	name = "Thieve's Gloves"
+	desc = "A pair of sterile gloves that allow the wearer to inspect the backpacks of other players, and swap pocket items."
+	item_cost = 30
+	path = /obj/item/clothing/gloves/sterile/thieves
+
+/datum/uplink_item/item/stealth_items/deadringer
+	name = "Stealth Watch"
+	desc = "A strange watch which can be used to create a fake corpse if you are injured when it is active, as it projects a cloaking field around your person."
+	item_cost = 50
+	path = /obj/item/weapon/deadringer

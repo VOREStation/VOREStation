@@ -4,7 +4,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "holocontrol"
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
 	var/item_power_usage = 500
 
@@ -62,6 +62,12 @@
 	"Theatre" 			= new/datum/holodeck_program(/area/holodeck/source_theatre),
 	"Meetinghall" 		= new/datum/holodeck_program(/area/holodeck/source_meetinghall),
 	"Courtroom" 		= new/datum/holodeck_program(/area/holodeck/source_courtroom, list('sound/music/traitor.ogg')),
+	"Chessboard"		= new/datum/holodeck_program(/area/holodeck/source_chess),
+	"Micro Building Area"		= new/datum/holodeck_program(/area/holodeck/source_smoleworld), //VOREStation add
+	"Gym"				= new/datum/holodeck_program(/area/holodeck/source_gym), //VOREStation add
+	"Game Room"			= new/datum/holodeck_program(/area/holodeck/source_game_room), //VOREStation add
+	"Patient Ward"		= new/datum/holodeck_program(/area/holodeck/source_patient_ward), //VOREStation add
+	"Inside"			= new/datum/holodeck_program(/area/holodeck/the_uwu_zone, list('sound/vore/sunesound/prey/loop.ogg')), //VOREStation add
 	"Turn Off" 			= new/datum/holodeck_program(/area/holodeck/source_plating, list())
 	)
 
@@ -78,60 +84,59 @@
 		return
 	user.set_machine(src)
 
-	ui_interact(user)
+	tgui_interact(user)
 
 /**
- *  Display the NanoUI window for the Holodeck Computer.
- *
- *  See NanoUI documentation for details.
+ * Open the UI!
  */
-/obj/machinery/computer/HolodeckControl/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/computer/HolodeckControl/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Holodeck", name)
+		ui.open()
 
-	var/list/data = list()
-	var/program_list[0]
-	var/restricted_program_list[0]
+/**
+ * Data for the TGUI UI
+ */
+/obj/machinery/computer/HolodeckControl/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	var/list/program_list = list()
+	var/list/restricted_program_list = list()
 
 	for(var/P in supported_programs)
-		program_list[++program_list.len] = P
+		program_list.Add(P)
 
 	for(var/P in restricted_programs)
-		restricted_program_list[++restricted_program_list.len] = P
+		restricted_program_list.Add(P)
 
 	data["supportedPrograms"] = program_list
 	data["restrictedPrograms"] = restricted_program_list
 	data["currentProgram"] = current_program
+	data["isSilicon"] = FALSE
 	if(issilicon(user))
-		data["isSilicon"] = 1
-	else
-		data["isSilicon"] = null
+		data["isSilicon"] = TRUE
+
 	data["safetyDisabled"] = safety_disabled
 	data["emagged"] = emagged
+	data["gravity"] = FALSE
 	if(linkedholodeck.has_gravity)
-		data["gravity"] = 1
-	else
-		data["gravity"] = null
+		data["gravity"] = TRUE
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "holodeck.tmpl", src.name, 400, 550)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(20)
+	return data
 
-/obj/machinery/computer/HolodeckControl/Topic(href, href_list)
+/obj/machinery/computer/HolodeckControl/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+		return TRUE
 
-		if(href_list["program"])
-			var/prog = href_list["program"]
+	switch(action)
+		if("program")
+			var/prog = params["program"]
 			if(prog in (supported_programs + restricted_programs))
 				if(loadProgram(prog))
 					current_program = prog
+			return TRUE
 
-		else if(href_list["AIoverride"])
+		if("AIoverride")
 			if(!issilicon(usr))
 				return
 
@@ -146,16 +151,16 @@
 			else
 				message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
 				log_game("[key_name(usr)] restored the holodeck's safeties")
+			return TRUE
 
-		else if(href_list["gravity"])
+		if("gravity")
 			toggleGravity(linkedholodeck)
+			return TRUE
 
-		src.add_fingerprint(usr)
-
-	SSnanoui.update_uis(src)
+	add_fingerprint(usr)
 
 /obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
-	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 	last_to_emag = user //emag again to change the owner
 	if (!emagged)
 		emagged = 1
@@ -224,7 +229,7 @@
 			damaged = 1
 			loadProgram(powerdown_program, 0)
 			active = 0
-			use_power = 1
+			update_use_power(USE_POWER_IDLE)
 			for(var/mob/M in range(10,src))
 				M.show_message("The holodeck overloads!")
 
@@ -268,10 +273,10 @@
 		loadProgram(powerdown_program, 0)
 
 		if(!linkedholodeck.has_gravity)
-			linkedholodeck.gravitychange(1,linkedholodeck)
+			linkedholodeck.gravitychange(1)
 
 		active = 0
-		use_power = 1
+		update_use_power(USE_POWER_IDLE)
 
 
 /obj/machinery/computer/HolodeckControl/proc/loadProgram(var/prog, var/check_delay = 1)
@@ -301,7 +306,7 @@
 
 	last_change = world.time
 	active = 1
-	use_power = 2
+	update_use_power(USE_POWER_ACTIVE)
 
 	for(var/item in holographic_objs)
 		derez(item)
@@ -312,6 +317,9 @@
 
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
 		qdel(B)
+
+	for(var/obj/effect/landmark/L in linkedholodeck)
+		qdel(L)
 
 	holographic_objs = A.copy_contents_to(linkedholodeck , 1)
 	for(var/obj/holo_obj in holographic_objs)
@@ -324,12 +332,19 @@
 
 	for(var/mob/living/M in mobs_in_area(linkedholodeck))
 		if(M.mind)
-			linkedholodeck.play_ambience(M)
+			linkedholodeck.play_ambience(M, initial = TRUE)
 
 	linkedholodeck.sound_env = A.sound_env
 
+	if(prog == powerdown_program)
+		linkedholodeck.requires_power = TRUE
+	else
+		linkedholodeck.requires_power = FALSE
+	linkedholodeck.power_change()
+
 	spawn(30)
 		for(var/obj/effect/landmark/L in linkedholodeck)
+			L.delete_me = 1
 			if(L.name=="Atmospheric Test Start")
 				spawn(20)
 					var/turf/T = get_turf(L)
@@ -362,19 +377,19 @@
 
 	last_gravity_change = world.time
 	active = 1
-	use_power = 1
+	update_use_power(USE_POWER_IDLE)
 
 	if(A.has_gravity)
-		A.gravitychange(0,A)
+		A.gravitychange(0)
 	else
-		A.gravitychange(1,A)
+		A.gravitychange(1)
 
 /obj/machinery/computer/HolodeckControl/proc/emergencyShutdown()
 	//Turn it back to the regular non-holographic room
 	loadProgram(powerdown_program, 0)
 
 	if(!linkedholodeck.has_gravity)
-		linkedholodeck.gravitychange(1,linkedholodeck)
+		linkedholodeck.gravitychange(1)
 
 	active = 0
-	use_power = 1
+	update_use_power(USE_POWER_IDLE)

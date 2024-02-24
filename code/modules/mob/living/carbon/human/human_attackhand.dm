@@ -1,3 +1,6 @@
+/mob/living/carbon/human
+	var/datum/unarmed_attack/default_attack
+
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
 	// VOREStation Edit - Begin
 	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
@@ -16,6 +19,12 @@
 				if(soft_type)
 					return soft_type
 			return G.special_attack
+	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
+		if(pulling_punches)
+			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
+			if(soft_type)
+				return soft_type
+		return src.default_attack
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if(u_attack.is_usable(src, target, hit_zone))
 			if(pulling_punches)
@@ -33,7 +42,7 @@
 		if(H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(!temp || !temp.is_usable())
-			to_chat(H, "<font color='red'>You can't use your hand.</font>")
+			to_chat(H, "<span class='warning'>You can't use your hand.</span>")
 			return
 	if(H.lying)
 		return
@@ -47,8 +56,8 @@
 			var/hit_zone = get_zone_with_miss_chance(H.zone_sel.selecting, src, H.get_accuracy_penalty())
 			if(!hit_zone)
 				H.do_attack_animation(src)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				visible_message("<font color='red'><B>[H] reaches for [src], but misses!</B></font>")
+				playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				visible_message("<span class='filter_combat'>[span_red("<B>[H] reaches for [src], but misses!</B>")]</span>")
 				return FALSE
 
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
@@ -125,7 +134,7 @@
 			LAssailant = M
 
 			H.do_attack_animation(src)
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			//VORESTATION EDIT
 			visible_message("<span class='warning'>[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!</span>")
 			//VORESTATION END END
@@ -236,7 +245,7 @@
 			else
 				H.visible_message("<span class='danger'>[attack_message]</span>")
 
-			playsound(loc, ((miss_type) ? (miss_type == 1 ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), 25, 1, -1)
+			playsound(src, ((miss_type) ? (miss_type == 1 ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), 25, 1, -1)
 
 			add_attack_logs(H,src,"Melee attacked with fists (miss/block)")
 
@@ -296,10 +305,13 @@
 
 			var/randn = rand(1, 100)
 			last_push_time = world.time
-			if(!(species.flags & NO_SLIP) && randn <= 25)
+			// We ARE wearing shoes OR
+			// We as a species CAN be slipped when barefoot
+			// And also 1 in 4 because rngesus
+			if((shoes || !(species.flags & NO_SLIP)) && randn <= 25)
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				if(armor_check < 60)
 					visible_message("<span class='danger'>[M] has pushed [src]!</span>")
 				else
@@ -309,7 +321,7 @@
 			if(randn <= 60)
 				//See about breaking grips or pulls
 				if(break_all_grabs(M))
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+					playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 					return
 
 				//Actually disarm them
@@ -317,11 +329,11 @@
 					if(I)
 						drop_from_inventory(I)
 						visible_message("<span class='danger'>[M] has disarmed [src]!</span>")
-						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
 
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("<font color='red'> <B>[M] attempted to disarm [src]!</B></font>")
+			playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			visible_message("<span class='filter_combat'>[span_red("<B>[M] attempted to disarm [src]!</B>")]</span>")
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
@@ -414,9 +426,9 @@
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 
 	if(user == src)
-		user.visible_message("\The [user] starts applying pressure to [TU.his] [organ.name]!", "You start applying pressure to your [organ.name]!")
+		user.visible_message("<span class='filter_notice'>\The [user] starts applying pressure to [TU.his] [organ.name]!</span>", "<span class='filter_notice'>You start applying pressure to your [organ.name]!</span>")
 	else
-		user.visible_message("\The [user] starts applying pressure to [src]'s [organ.name]!", "You start applying pressure to [src]'s [organ.name]!")
+		user.visible_message("<span class='filter_notice'>\The [user] starts applying pressure to [src]'s [organ.name]!</span>", "<span class='filter_notice'>You start applying pressure to [src]'s [organ.name]!</span>")
 	spawn(0)
 		organ.applied_pressure = user
 
@@ -426,8 +438,42 @@
 		organ.applied_pressure = null
 
 		if(user == src)
-			user.visible_message("\The [user] stops applying pressure to [TU.his] [organ.name]!", "You stop applying pressure to your [organ]!")
+			user.visible_message("\<span class='filter_notice'>The [user] stops applying pressure to [TU.his] [organ.name]!</span>", "<span class='filter_notice'>You stop applying pressure to your [organ]!</span>")
 		else
-			user.visible_message("\The [user] stops applying pressure to [src]'s [organ.name]!", "You stop applying pressure to [src]'s [organ.name]!")
+			user.visible_message("<span class='filter_notice'>\The [user] stops applying pressure to [src]'s [organ.name]!</span>", "<span class='filter_notice'>You stop applying pressure to [src]'s [organ.name]!</span>")
 
 	return TRUE
+
+/mob/living/carbon/human/verb/check_attacks()
+	set name = "Check Attacks"
+	set category = "IC"
+	set src = usr
+
+	var/dat = "<b><font size = 5>Known Attacks</font></b><br/><br/>"
+
+	if(default_attack)
+		dat += "Current default attack: [default_attack.attack_name] - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/>"
+
+	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
+		if(u_attack == default_attack)
+			dat += "<b>Primarily [u_attack.attack_name]</b> - default - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/><br/>"
+		else
+			dat += "<b>Primarily [u_attack.attack_name]</b> - <a href='byond://?src=\ref[src];default_attk=\ref[u_attack]'>set default</a><br/><br/><br/>"
+
+	src << browse(dat, "window=checkattack")
+
+/mob/living/carbon/human/Topic(href, href_list)
+	if(href_list["default_attk"])
+		if(href_list["default_attk"] == "reset_attk")
+			set_default_attack(null)
+		else
+			var/datum/unarmed_attack/u_attack = locate(href_list["default_attk"])
+			if(u_attack && (u_attack in species.unarmed_attacks))
+				set_default_attack(u_attack)
+		check_attacks()
+		return 1
+	else
+		return ..()
+
+/mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
+	default_attack = u_attack

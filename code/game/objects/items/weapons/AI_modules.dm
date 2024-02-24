@@ -18,6 +18,7 @@ AI MODULES
 	throw_range = 15
 	origin_tech = list(TECH_DATA = 3)
 	preserve_item = 1
+	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/ai_laws/laws = null
 
 /obj/item/weapon/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)
@@ -106,6 +107,7 @@ AI MODULES
 
 	if(laws)
 		laws.sync(target, 0)
+		target.notify_of_law_change()
 	addAdditionalLaws(target, sender)
 
 	to_chat(target, "\The [sender] has uploaded a change to the laws you must follow, using \an [src]. From now on: ")
@@ -131,7 +133,7 @@ AI MODULES
 
 /obj/item/weapon/aiModule/safeguard/attack_self(var/mob/user as mob)
 	..()
-	var/targName = sanitize(input("Please enter the name of the person to safeguard.", "Safeguard who?", user.name))
+	var/targName = sanitize(tgui_input_text(usr, "Please enter the name of the person to safeguard.", "Safeguard who?", user.name))
 	targetName = targName
 	desc = text("A 'safeguard' AI module: 'Safeguard []. Anyone threatening or attempting to harm [] is no longer to be considered a crew member, and is a threat which must be neutralized.'", targetName, targetName)
 
@@ -157,7 +159,7 @@ AI MODULES
 
 /obj/item/weapon/aiModule/oneHuman/attack_self(var/mob/user as mob)
 	..()
-	var/targName = sanitize(input("Please enter the name of the person who is the only crew member.", "Who?", user.real_name))
+	var/targName = sanitize(tgui_input_text(usr, "Please enter the name of the person who is the only crew member.", "Who?", user.real_name))
 	targetName = targName
 	desc = text("A 'one crew member' AI module: 'Only [] is a crew member.'", targetName)
 
@@ -238,11 +240,11 @@ AI MODULES
 
 /obj/item/weapon/aiModule/freeform/attack_self(var/mob/user as mob)
 	..()
-	var/new_lawpos = input("Please enter the priority for your new law. Can only write to law sectors 15 and above.", "Law Priority (15+)", lawpos) as num
+	var/new_lawpos = tgui_input_number(usr, "Please enter the priority for your new law. Can only write to law sectors 15 and above.", "Law Priority (15+)", lawpos)
 	if(new_lawpos < MIN_SUPPLIED_LAW_NUMBER)	return
 	lawpos = min(new_lawpos, MAX_SUPPLIED_LAW_NUMBER)
 	var/newlaw = ""
-	var/targName = sanitize(input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", newlaw))
+	var/targName = sanitize(tgui_input_text(usr, "Please enter a new law for the AI.", "Freeform Law Entry", newlaw))
 	newFreeFormLaw = targName
 	desc = "A 'freeform' AI module: ([lawpos]) '[newFreeFormLaw]'"
 
@@ -355,7 +357,7 @@ AI MODULES
 /obj/item/weapon/aiModule/freeformcore/attack_self(var/mob/user as mob)
 	..()
 	var/newlaw = ""
-	var/targName = sanitize(input("Please enter a new core law for the AI.", "Freeform Law Entry", newlaw))
+	var/targName = sanitize(tgui_input_text(usr, "Please enter a new core law for the AI.", "Freeform Law Entry", newlaw))
 	newFreeFormLaw = targName
 	desc = "A 'freeform' Core AI module:  '[newFreeFormLaw]'"
 
@@ -379,7 +381,7 @@ AI MODULES
 /obj/item/weapon/aiModule/syndicate/attack_self(var/mob/user as mob)
 	..()
 	var/newlaw = ""
-	var/targName = sanitize(input("Please enter a new law for the AI.", "Freeform Law Entry", newlaw))
+	var/targName = sanitize(tgui_input_text(usr, "Please enter a new law for the AI.", "Freeform Law Entry", newlaw))
 	newFreeFormLaw = targName
 	desc = "A hacked AI law module:  '[newFreeFormLaw]'"
 
@@ -416,3 +418,75 @@ AI MODULES
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = list(TECH_DATA = 4)
 	laws = new/datum/ai_laws/antimov()
+
+/****************** NT Aggressive *****************/
+
+/obj/item/weapon/aiModule/nanotrasen_aggressive
+	name = "\improper 'NT Aggressive' core AI module"
+	desc = "An 'NT Aggressive' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_ILLEGAL = 1)
+	laws = new/datum/ai_laws/nanotrasen_aggressive()
+
+/******************** Mercenary Directives ********************/
+
+/obj/item/weapon/aiModule/syndicate_override
+	name = "\improper 'Mercenary Directives' core AI module"
+	desc = "A 'Mercenary Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 4)
+	laws = new/datum/ai_laws/syndicate_override()
+
+/******************** Spider Clan Directives ********************/
+
+/obj/item/weapon/aiModule/ninja_override
+	name = "\improper 'Spider Clan Directives' core AI module"
+	desc = "A 'Spider Clan Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 4)
+	laws = new/datum/ai_laws/ninja_override()
+
+/******************** Maintenance ********************/
+
+/obj/item/weapon/aiModule/maintenance
+	name = "\improper 'Maintenance' core AI module"
+	desc = "A 'Maintenance' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/maintenance()
+
+/******************** Peacekeeper ********************/
+
+/obj/item/weapon/aiModule/peacekeeper
+	name = "\improper 'Peacekeeper' core AI module"
+	desc = "A 'Peacekeeper' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/peacekeeper()
+
+/******************** Reporter ********************/
+
+/obj/item/weapon/aiModule/reporter
+	name = "\improper 'Reporter' core AI module"
+	desc = "A 'Reporter' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/reporter()
+
+/******************** Live and Let Live ********************/
+
+/obj/item/weapon/aiModule/live_and_let_live
+	name = "\improper 'Live and Let Live' core AI module"
+	desc = "A 'Live and Let Live' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/live_and_let_live()
+
+/******************** Guardian of Balance ********************/
+
+/obj/item/weapon/aiModule/balance
+	name = "\improper 'Guardian of Balance' core AI module"
+	desc = "A 'Guardian of Balance' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/balance()
+
+/******************** Gravekeeper ********************/
+
+/obj/item/weapon/aiModule/gravekeeper
+	name = "\improper 'Gravekeeper' core AI module"
+	desc = "A 'Gravekeeper' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/gravekeeper()

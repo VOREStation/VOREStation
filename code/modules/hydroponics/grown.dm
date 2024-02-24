@@ -7,51 +7,44 @@
 	desc = "Nutritious! Probably."
 	flags = NOCONDUCT
 	slot_flags = SLOT_HOLSTER
+	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 	var/plantname
 	var/datum/seed/seed
 	var/potency = -1
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(newloc,planttype)
 
-	..()
+/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(var/mapload, var/planttype)
+	. = ..()
+
 	if(!dried_type)
 		dried_type = type
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
 
-	// Fill the object up with the appropriate reagents.
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
+
 	if(planttype)
 		plantname = planttype
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize()
-	..()
-	spawn()
-		if(!plantname)
-			return
+	if(!plantname)
+		log_debug("Plantname not provided and and [src] requires it at [x],[y],[z]")
+		return INITIALIZE_HINT_QDEL
 
-		if(!plant_controller)
-			sleep(250) // ugly hack, should mean roundstart plants are fine.
-		if(!plant_controller)
-			to_world("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
-			qdel(src)
-			return
+	seed = SSplants.seeds[plantname]
 
-		seed = plant_controller.seeds[plantname]
+	if(!seed)
+		log_debug("Plant name '[plantname]' does not exist and [src] requires it at [x],[y],[z]")
+		return INITIALIZE_HINT_QDEL
 
-		if(!seed)
-			return
+	name = "[seed.seed_name]"
+	trash = seed.get_trash_type()
 
-		name = "[seed.seed_name]"
-		trash = seed.get_trash_type()
+	update_icon()
 
-		update_icon()
+	potency = seed.get_trait(TRAIT_POTENCY)
 
-		if(!seed.chems)
-			return
-
-		potency = seed.get_trait(TRAIT_POTENCY)
-
+	if(seed.chems)
 		for(var/rid in seed.chems)
 			var/list/reagent_data = seed.chems[rid]
 			if(reagent_data && reagent_data.len)
@@ -70,18 +63,11 @@
 			force = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/proc/update_desc()
-
 	if(!seed)
 		return
-	if(!plant_controller)
-		sleep(250) // ugly hack, should mean roundstart plants are fine.
-	if(!plant_controller)
-		to_world("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
-		qdel(src)
-		return
 
-	if(plant_controller.product_descs["[seed.uid]"])
-		desc = plant_controller.product_descs["[seed.uid]"]
+	if(SSplants.product_descs["[seed.uid]"])
+		desc = SSplants.product_descs["[seed.uid]"]
 	else
 		var/list/descriptors = list()
 		if(reagents.has_reagent("sugar") || reagents.has_reagent("cherryjelly") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
@@ -102,11 +88,11 @@
 			descriptors |= "radioactive"
 		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("space_drugs"))
+		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("bliss") || reagents.has_reagent("earthsblood"))
 			descriptors |= "hallucinogenic"
-		if(reagents.has_reagent("bicaridine"))
+		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
 			descriptors |= "medicinal"
-		if(reagents.has_reagent("gold"))
+		if(reagents.has_reagent("gold") || reagents.has_reagent("earthsblood"))
 			descriptors |= "shiny"
 		if(reagents.has_reagent("lube"))
 			descriptors |= "slippery"
@@ -133,36 +119,32 @@
 			desc += " mushroom"
 		else
 			desc += " fruit"
-		plant_controller.product_descs["[seed.uid]"] = desc
+		SSplants.product_descs["[seed.uid]"] = desc
 	desc += ". Delicious! Probably."
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/update_icon()
-	if(!seed || !plant_controller || !plant_controller.plant_icon_cache)
+	if(!seed || !SSplants || !SSplants.plant_icon_cache)
 		return
-	overlays.Cut()
+	cut_overlays()
 	var/image/plant_icon
 	var/icon_key = "fruit-[seed.get_trait(TRAIT_PRODUCT_ICON)]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"
-	if(plant_controller.plant_icon_cache[icon_key])
-		plant_icon = plant_controller.plant_icon_cache[icon_key]
+	if(SSplants.plant_icon_cache[icon_key])
+		plant_icon = SSplants.plant_icon_cache[icon_key]
 	else
 		plant_icon = image('icons/obj/hydroponics_products.dmi',"blank")
 		var/image/fruit_base = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-product")
 		fruit_base.color = "[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"
-		plant_icon.overlays |= fruit_base
-		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in icon_states('icons/obj/hydroponics_products.dmi'))
+		plant_icon.add_overlay(fruit_base)
+		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in cached_icon_states('icons/obj/hydroponics_products.dmi'))
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
-			plant_icon.overlays |= fruit_leaves
-		plant_controller.plant_icon_cache[icon_key] = plant_icon
-	overlays |= plant_icon
+			plant_icon.add_overlay(fruit_leaves)
+		SSplants.plant_icon_cache[icon_key] = plant_icon
+	add_overlay(plant_icon)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = M
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(M.is_incorporeal())
+		return
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
 		if(istype(M))
 
@@ -176,7 +158,7 @@
 
 			M.stop_pulling()
 			to_chat(M, "<span class='notice'>You slipped on the [name]!</span>")
-			playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+			playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 			M.Stun(8)
 			M.Weaken(5)
 			seed.thrown_at(src,M)
@@ -199,59 +181,81 @@
 				var/obj/item/weapon/cell/potato/pocell = new /obj/item/weapon/cell/potato(get_turf(user))
 				if(src.loc == user && istype(user,/mob/living/carbon/human))
 					user.put_in_hands(pocell)
-				pocell.maxcharge = src.potency * 10
+				pocell.maxcharge = src.potency * 200
 				pocell.charge = pocell.maxcharge
 				qdel(src)
 				return
-		else if(W.sharp)
+
+		if(W.sharp)
+
 			if(seed.kitchen_tag == "pumpkin") // Ugggh these checks are awful.
 				user.show_message("<span class='notice'>You carve a face into [src]!</span>", 1)
 				new /obj/item/clothing/head/pumpkinhead (user.loc)
 				qdel(src)
 				return
-			else if(seed.chems)
+
+			if(seed.chems)
+
 				if(W.sharp && W.edge && !isnull(seed.chems["woodpulp"]))
 					user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
-					playsound(loc, 'sound/effects/woodcutting.ogg', 50, 1)
+					playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 					var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)
 					if(!flesh_colour) flesh_colour = seed.get_trait(TRAIT_PRODUCT_COLOUR)
 					for(var/i=0,i<2,i++)
 						var/obj/item/stack/material/wood/NG = new (user.loc)
 						if(flesh_colour) NG.color = flesh_colour
 						for (var/obj/item/stack/material/wood/G in user.loc)
-							if(G==NG)
+							if(G == NG)
 								continue
-							if(G.amount>=G.max_amount)
+							if(G.get_amount() >= G.max_amount)
 								continue
 							G.attackby(NG, user)
-						to_chat(user, "You add the newly-formed wood to the stack. It now contains [NG.amount] planks.")
+						to_chat(user, "<span class='filter_notice'>You add the newly-formed wood to the stack. It now contains [NG.get_amount()] planks.</span>")
 					qdel(src)
 					return
-				else if(!isnull(seed.chems["potato"]))
-					to_chat(user, "You slice \the [src] into sticks.")
+
+				if(seed.kitchen_tag == "sunflower")
+					new /obj/item/weapon/reagent_containers/food/snacks/rawsunflower(get_turf(src))
+					to_chat(user, SPAN_NOTICE("You remove the seeds from the flower, slightly damaging them."))
+					qdel(src)
+					return
+
+				if(seed.kitchen_tag == "potato" || !isnull(seed.chems["potato"]))
+					to_chat(user, "<span class='filter_notice'>You slice \the [src] into sticks.</span>")
 					new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(get_turf(src))
 					qdel(src)
 					return
-				else if(!isnull(seed.chems["carrotjuice"]))
-					to_chat(user, "You slice \the [src] into sticks.")
+
+				if(!isnull(seed.chems["carrotjuice"]))
+					to_chat(user, "<span class='filter_notice'>You slice \the [src] into sticks.</span>")
 					new /obj/item/weapon/reagent_containers/food/snacks/carrotfries(get_turf(src))
 					qdel(src)
 					return
-				else if(!isnull(seed.chems["soymilk"]))
-					to_chat(user, "You roughly chop up \the [src].")
+
+				if(!isnull(seed.chems["pineapplejuice"]))
+					to_chat(user, "<span class='filter_notice'>You slice \the [src] into rings.</span>")
+					new /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring(get_turf(src))
+					qdel(src)
+					return
+
+				if(!isnull(seed.chems["soymilk"]))
+					to_chat(user, "<span class='filter_notice'>You roughly chop up \the [src].</span>")
 					new /obj/item/weapon/reagent_containers/food/snacks/soydope(get_turf(src))
 					qdel(src)
 					return
-				else if(seed.get_trait(TRAIT_FLESH_COLOUR))
-					to_chat(user, "You slice up \the [src].")
+
+				if(seed.get_trait(TRAIT_FLESH_COLOUR))
+					to_chat(user, "<span class='filter_notice'>You slice up \the [src].</span>")
 					var/slices = rand(3,5)
 					var/reagents_to_transfer = round(reagents.total_volume/slices)
-					for(var/i=i;i<=slices;i++)
+					for(var/i=1; i<=slices; i++)
 						var/obj/item/weapon/reagent_containers/food/snacks/fruit_slice/F = new(get_turf(src),seed)
-						if(reagents_to_transfer) reagents.trans_to_obj(F,reagents_to_transfer)
+						if(reagents_to_transfer)
+							reagents.trans_to_obj(F,reagents_to_transfer)
 					qdel(src)
 					return
-	..()
+
+	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
@@ -293,18 +297,33 @@
 			var/obj/item/stack/tile/grass/G = new (user.loc)
 			if(flesh_colour) G.color = flesh_colour
 			for (var/obj/item/stack/tile/grass/NG in user.loc)
-				if(G==NG)
+				if(G == NG)
 					continue
-				if(NG.amount>=NG.max_amount)
+				if(NG.get_amount() >= NG.max_amount)
 					continue
 				NG.attackby(G, user)
-			to_chat(user, "You add the newly-formed grass to the stack. It now contains [G.amount] tiles.")
+			to_chat(user, "You add the newly-formed grass to the stack. It now contains [G.get_amount()] tiles.")
+		qdel(src)
+		return
+
+	if(seed.kitchen_tag == "carpet")
+		user.show_message("<span class='notice'>You shape some carpet squares out of \the [src] fibers!</span>", 1)
+		for(var/i=0,i<2,i++)
+			var/obj/item/stack/tile/carpet/G = new (user.loc)
+			for (var/obj/item/stack/tile/carpet/NG in user.loc)
+				if(G == NG)
+					continue
+				if(NG.get_amount() >= NG.max_amount)
+					continue
+				NG.attackby(G, user)
+			to_chat(user, "<span class='filter_notice'>You add the newly-formed carpet to the stack. It now contains [G.get_amount()] tiles.</span>")
 		qdel(src)
 		return
 
 	if(seed.get_trait(TRAIT_SPREAD) > 0)
 		to_chat(user, "<span class='notice'>You plant the [src.name].</span>")
 		new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(get_turf(user),src.seed)
+		GLOB.seed_planted_shift_roundstat++
 		qdel(src)
 		return
 
@@ -365,6 +384,8 @@ var/list/fruit_icon_cache = list()
 
 	name = "[S.seed_name] slice"
 	desc = "A slice of \a [S.seed_name]. Tasty, probably."
+	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 	var/rind_colour = S.get_trait(TRAIT_PRODUCT_COLOUR)
 	var/flesh_colour = S.get_trait(TRAIT_FLESH_COLOUR)
@@ -373,9 +394,9 @@ var/list/fruit_icon_cache = list()
 		var/image/I = image(icon,"fruit_rind")
 		I.color = rind_colour
 		fruit_icon_cache["rind-[rind_colour]"] = I
-	overlays |= fruit_icon_cache["rind-[rind_colour]"]
+	add_overlay(fruit_icon_cache["rind-[rind_colour]"])
 	if(!fruit_icon_cache["slice-[rind_colour]"])
 		var/image/I = image(icon,"fruit_slice")
 		I.color = flesh_colour
 		fruit_icon_cache["slice-[rind_colour]"] = I
-	overlays |= fruit_icon_cache["slice-[rind_colour]"]
+	add_overlay(fruit_icon_cache["slice-[rind_colour]"])

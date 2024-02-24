@@ -1,12 +1,7 @@
 /obj/structure/closet/secure_closet/captains
-	name = "colony director's locker"
-	icon_state = "capsecure1"
-	icon_closed = "capsecure"
-	icon_locked = "capsecure1"
-	icon_opened = "capsecureopen"
-	icon_broken = "capsecurebroken"
-	icon_off = "capsecureoff"
+	name = "site manager's locker"
 	req_access = list(access_captain)
+	closet_appearance = /decl/closet_appearance/secure_closet/command
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/captain,
@@ -24,13 +19,8 @@
 
 /obj/structure/closet/secure_closet/hop
 	name = "head of personnel's locker"
-	icon_state = "hopsecure1"
-	icon_closed = "hopsecure"
-	icon_locked = "hopsecure1"
-	icon_opened = "hopsecureopen"
-	icon_broken = "hopsecurebroken"
-	icon_off = "hopsecureoff"
 	req_access = list(access_hop)
+	closet_appearance = /decl/closet_appearance/secure_closet/command/hop
 
 	starts_with = list(
 		/obj/item/clothing/suit/storage/vest,
@@ -39,22 +29,15 @@
 		/obj/item/device/radio/headset/heads/hop,
 		/obj/item/device/radio/headset/heads/hop/alt,
 		/obj/item/weapon/storage/box/ids = 2,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/gun/martin, //VOREStation Add,
-		/obj/item/weapon/storage/box/commandkeys, //VOREStation Add,
-		/obj/item/weapon/storage/box/servicekeys, //VOREStation Add,
-		///obj/item/weapon/gun/projectile/sec/flash, //VOREStation Removal,
+		/obj/item/weapon/gun/energy/gun/compact,
+		/obj/item/weapon/storage/box/commandkeys,
+		/obj/item/weapon/storage/box/servicekeys,
 		/obj/item/device/flash)
 
 /obj/structure/closet/secure_closet/hop2
 	name = "head of personnel's attire"
-	icon_state = "hopsecure1"
-	icon_closed = "hopsecure"
-	icon_locked = "hopsecure1"
-	icon_opened = "hopsecureopen"
-	icon_broken = "hopsecurebroken"
-	icon_off = "hopsecureoff"
 	req_access = list(access_hop)
+	closet_appearance = /decl/closet_appearance/secure_closet/command/hop
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/head_of_personnel,
@@ -66,28 +49,35 @@
 		/obj/item/clothing/under/lawyer/red,
 		/obj/item/clothing/under/lawyer/red/skirt,
 		/obj/item/clothing/under/lawyer/oldman,
+		/obj/item/clothing/under/rank/neo_hop,
+		/obj/item/clothing/under/rank/neo_hop_skirt,
+		/obj/item/clothing/under/rank/neo_hop_parade_masc,
+		/obj/item/clothing/under/rank/neo_hop_parade_fem,
+		/obj/item/clothing/under/rank/neo_hop_turtle,
+		/obj/item/clothing/under/rank/neo_hop_turtle_skirt,
+		/obj/item/clothing/under/rank/neo_cmd_gorka,
+		/obj/item/clothing/suit/storage/toggle/labcoat/neo_hopformal,
+		/obj/item/clothing/suit/storage/toggle/labcoat/neo_civ_dep,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/clothing/shoes/black,
-		/obj/item/clothing/shoes/leather,
+		/obj/item/clothing/shoes/laceup,
+		/obj/item/clothing/shoes/laceup/brown,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/under/rank/head_of_personnel_whimsy,
 		/obj/item/clothing/head/caphat/hop,
-		/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
-		/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt,
-		/obj/item/clothing/glasses/sunglasses)
+		/obj/item/clothing/under/suit_jacket/teal,
+		/obj/item/clothing/under/suit_jacket/teal/skirt,
+		/obj/item/clothing/glasses/sunglasses,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/hop,
+		/obj/item/clothing/head/caphat/hop/beret,
+		/obj/item/clothing/head/caphat/hop/beret/white)
 
 
 /obj/structure/closet/secure_closet/hos
 	name = "head of security's locker"
 	req_access = list(access_hos)
-	icon_state = "hossecure1"
-	icon_closed = "hossecure"
-	icon_locked = "hossecure1"
-	icon_opened = "hossecureopen"
-	icon_broken = "hossecurebroken"
-	icon_off = "hossecureoff"
-	req_access = list(access_hos)
-	storage_capacity = 2.5 * MOB_MEDIUM
+	storage_capacity = 2.6 * MOB_MEDIUM
+	closet_appearance = /decl/closet_appearance/secure_closet/security/hos
 
 	starts_with = list(
 		/obj/item/clothing/head/helmet/HoS,
@@ -120,9 +110,11 @@
 		/obj/item/weapon/melee/telebaton,
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security/hos,
 		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/device/flashlight/maglight,
-		/obj/item/clothing/mask/gas/half)
+		/obj/item/clothing/mask/gas/half,
+		/obj/item/clothing/mask/gas/sechailer/swat/hos)
 
 /obj/structure/closet/secure_closet/hos/Initialize()
 	if(prob(50))
@@ -136,13 +128,9 @@
 
 /obj/structure/closet/secure_closet/warden
 	name = "warden's locker"
-	icon_state = "wardensecure1"
-	icon_closed = "wardensecure"
-	icon_locked = "wardensecure1"
-	icon_opened = "wardensecureopen"
-	icon_broken = "wardensecurebroken"
-	icon_off = "wardensecureoff"
+	storage_capacity = 42
 	req_access = list(access_armory)
+	closet_appearance = /decl/closet_appearance/secure_closet/security/warden
 
 	starts_with = list(
 		/obj/item/clothing/suit/storage/vest/warden,
@@ -150,9 +138,17 @@
 		/obj/item/clothing/under/rank/warden/corp,
 		/obj/item/clothing/suit/storage/vest/wardencoat,
 		/obj/item/clothing/suit/storage/vest/wardencoat/alt,
+		/obj/item/clothing/suit/storage/vest/wardencoat/alt2, //VOREStation Add,
 		/obj/item/clothing/head/helmet/dermal,
 		/obj/item/clothing/head/helmet/warden,
 		/obj/item/clothing/head/helmet/warden/hat,
+		/obj/item/clothing/under/rank/neo_warden_red,
+		/obj/item/clothing/under/rank/neo_warden_red_skirt,
+		/obj/item/clothing/under/rank/neo_warden_blue,
+		/obj/item/clothing/suit/storage/vest/wardencoat/neo_armsco_trench,
+		/obj/item/clothing/suit/storage/vest/wardencoat/neo_bluewarden,
+		/obj/item/clothing/suit/storage/vest/wardencoat/neo_warden_heavy,
+		/obj/item/clothing/under/rank/neo_sec_gorka,
 		/obj/item/weapon/cartridge/security,
 		/obj/item/device/radio/headset/headset_sec,
 		/obj/item/device/radio/headset/headset_sec/alt,
@@ -171,7 +167,8 @@
 		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/device/flashlight/maglight,
 		/obj/item/device/megaphone,
-		/obj/item/clothing/mask/gas/half)
+		/obj/item/clothing/mask/gas/half,
+		/obj/item/clothing/mask/gas/sechailer/swat/warden)
 
 /obj/structure/closet/secure_closet/warden/Initialize()
 	if(prob(50))
@@ -184,13 +181,8 @@
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
-	icon_state = "sec1"
-	icon_closed = "sec"
-	icon_locked = "sec1"
-	icon_opened = "secopen"
-	icon_broken = "secbroken"
-	icon_off = "secoff"
 	req_access = list(access_brig)
+	closet_appearance = /decl/closet_appearance/secure_closet/security
 
 	starts_with = list(
 		/obj/item/clothing/suit/storage/vest/officer,
@@ -225,7 +217,7 @@
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sec
 	if(prob(30))
-		starts_with += /obj/item/weapon/contraband/poster/nanotrasen
+		starts_with += /obj/item/poster/nanotrasen
 	return ..()
 
 /obj/structure/closet/secure_closet/security/cargo/Initialize()
@@ -251,18 +243,17 @@
 
 /obj/structure/closet/secure_closet/detective
 	name = "detective's cabinet"
-	icon_state = "cabinetdetective_locked"
-	icon_closed = "cabinetdetective"
-	icon_locked = "cabinetdetective_locked"
-	icon_opened = "cabinetdetective_open"
-	icon_broken = "cabinetdetective_broken"
-	icon_off = "cabinetdetective_broken"
 	req_access = list(access_forensics_lockers)
+	closet_appearance = /decl/closet_appearance/cabinet/secure
+
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
 
 	starts_with = list(
 		/obj/item/clothing/accessory/badge/holo/detective,
 		/obj/item/clothing/gloves/black,
-		///obj/item/gunbox, //VOREStation Removal,
+		///obj/item/gunbox, // VOREStation Removal
+		/obj/item/gunbox/stun,
 		/obj/item/weapon/storage/belt/detective,
 		/obj/item/weapon/storage/box/evidence,
 		/obj/item/device/radio/headset/headset_sec,
@@ -277,22 +268,10 @@
 		/obj/item/weapon/storage/bag/detective,
 		/obj/item/device/tape/random = 3)
 
-/obj/structure/closet/secure_closet/detective/update_icon()
-	if(broken)
-		icon_state = icon_broken
-	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened
-
-
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(access_captain)
+	closet_appearance = /decl/closet_appearance/secure_closet/courtroom
 
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral = 2)
@@ -302,7 +281,8 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"
 	req_access = list(access_brig)
-	anchored = 1
+	closet_appearance = /decl/closet_appearance/secure_closet/brig
+	anchored = TRUE
 	var/id = null
 
 	starts_with = list(
@@ -312,18 +292,19 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/posters
 	name = "morale storage"
 	req_access = list(access_security)
-	anchored = 1
+	anchored = TRUE
 
 	starts_with = list(
-		/obj/item/weapon/contraband/poster/nanotrasen,
-		/obj/item/weapon/contraband/poster/nanotrasen,
-		/obj/item/weapon/contraband/poster/nanotrasen,
-		/obj/item/weapon/contraband/poster/nanotrasen,
-		/obj/item/weapon/contraband/poster/nanotrasen)
+		/obj/item/poster/nanotrasen,
+		/obj/item/poster/nanotrasen,
+		/obj/item/poster/nanotrasen,
+		/obj/item/poster/nanotrasen,
+		/obj/item/poster/nanotrasen)
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(access_lawyer)
+	closet_appearance = /decl/closet_appearance/secure_closet/courtroom
 
 	starts_with = list(
 		/obj/item/clothing/shoes/brown,
@@ -336,26 +317,9 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 
 /obj/structure/closet/secure_closet/wall
 	name = "wall locker"
-	icon_state = "wall-locker1"
-	icon_closed = "wall-locker"
-	icon_locked = "wall-locker1"
-	icon_opened = "wall-lockeropen"
-	icon_broken = "wall-lockerbroken"
-	icon_off = "wall-lockeroff"
 	req_access = list(access_security)
-	density = 1
+	closet_appearance = /decl/closet_appearance/wall
+	density = TRUE
 
 	//too small to put a man in
 	large = 0
-
-/obj/structure/closet/secure_closet/wall/update_icon()
-	if(broken)
-		icon_state = icon_broken
-	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened

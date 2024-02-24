@@ -10,25 +10,27 @@
 /obj/item/weapon/storage/firstaid
 	name = "first aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
-//	var/list/icon_variety // VOREStation edit
+	var/list/icon_variety
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/storage/firstaid/Initialize()
 	. = ..()
-//	if(icon_variety) // VOREStation edit
-//		icon_state = pick(icon_variety)
-//		icon_variety = null
+	if(icon_variety)
+		icon_state = pick(icon_variety)
+		icon_variety = null
 
 /obj/item/weapon/storage/firstaid/fire
 	name = "fire first aid kit"
 	desc = "It's an emergency medical kit for when the toxins lab <i>spontaneously</i> burns down."
 	icon_state = "ointment"
 	item_state_slots = list(slot_r_hand_str = "firstaid-ointment", slot_l_hand_str = "firstaid-ointment")
-//	icon_variety = list("ointment","firefirstaid") // VOREStation edit
+	//icon_variety = list("ointment","firefirstaid") //VOREStation Removal
 	starts_with = list(
 		/obj/item/device/healthanalyzer,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
@@ -56,7 +58,7 @@
 	desc = "Used to treat when one has a high amount of toxins in their body."
 	icon_state = "antitoxin"
 	item_state_slots = list(slot_r_hand_str = "firstaid-toxin", slot_l_hand_str = "firstaid-toxin")
-//	icon_variety = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3") // VOREStation edit
+	//icon_variety = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3") //VOREStation Removal
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/syringe/antitoxin,
 		/obj/item/weapon/reagent_containers/syringe/antitoxin,
@@ -134,7 +136,7 @@
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
-		///obj/item/device/healthanalyzer/advanced, //VOREStation Removal,
+		/obj/item/device/healthanalyzer/advanced,
 		/obj/item/weapon/autopsy_scanner
 		)
 
@@ -149,7 +151,7 @@
 		/obj/item/weapon/surgical/bonegel,
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
-		///obj/item/device/healthanalyzer/advanced, //VOREStation Removal,
+		/obj/item/device/healthanalyzer/advanced,
 		/obj/item/weapon/autopsy_scanner
 		)
 
@@ -163,7 +165,7 @@
 	name = "bone repair kit"
 	desc = "Contains chemicals to mend broken bones."
 	max_storage_space = ITEMSIZE_COST_SMALL * 7
-	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed = 8)
+	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed = 8)
 
 /*
  * Pill Bottles
@@ -173,13 +175,15 @@
 	desc = "It's an airtight container for storing medication."
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
+	drop_sound = 'sound/items/drop/pillbottle.ogg'
+	pickup_sound = 'sound/items/pickup/pillbottle.ogg'
 	item_state_slots = list(slot_r_hand_str = "contsolid", slot_l_hand_str = "contsolid")
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/dice,/obj/item/weapon/paper)
 	allow_quick_gather = 1
 	allow_quick_empty = 1
-	use_to_pickup = 1
-	use_sound = null
+	use_to_pickup = TRUE
+	use_sound = 'sound/items/storage/pillbottle.ogg'
 	max_storage_space = ITEMSIZE_COST_TINY * 14
 	max_w_class = ITEMSIZE_TINY
 	var/wrapper_color
@@ -196,15 +200,15 @@
 	update_icon()
 
 /obj/item/weapon/storage/pill_bottle/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(wrapper_color)
 		var/image/I = image(icon, "pillbottle_wrap")
 		I.color = wrapper_color
-		overlays += I
+		add_overlay(I)
 
 /obj/item/weapon/storage/pill_bottle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
-		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
+		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
 			to_chat(user, "<span class='notice'>The label can be at most 50 characters long.</span>")
 		else if(length(tmp_label) > 10)

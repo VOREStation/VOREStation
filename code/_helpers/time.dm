@@ -1,23 +1,9 @@
-#define SECOND *10
-#define SECONDS *10
-
-#define MINUTE *600
-#define MINUTES *600
-
-#define HOUR *36000
-#define HOURS *36000
-
-#define DAY *864000
-#define DAYS *864000
-
 #define TimeOfGame (get_game_time())
 #define TimeOfTick (TICK_USAGE*0.01*world.tick_lag)
 
-#define TICK *world.tick_lag
-#define TICKS *world.tick_lag
+#define DS2NEARESTTICK(DS) TICKS2DS(-round(-(DS2TICKS(DS))))
 
-#define DS2TICKS(DS) ((DS)/world.tick_lag)	// Convert deciseconds to ticks
-#define TICKS2DS(T) ((T) TICKS) 				// Convert ticks to deciseconds
+var/world_startup_time
 
 /proc/get_game_time()
 	var/global/time_offset = 0
@@ -35,27 +21,29 @@
 
 	return wtime + (time_offset + wusage) * world.tick_lag
 
-var/roundstart_hour
+GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 var/station_date = ""
 var/next_station_date_change = 1 DAY
 
-#define duration2stationtime(time) time2text(station_time_in_ticks + time, "hh:mm")
-#define worldtime2stationtime(time) time2text(roundstart_hour HOURS + time, "hh:mm")
-#define round_duration_in_ticks (round_start_time ? world.time - round_start_time : 0)
-#define station_time_in_ticks (roundstart_hour HOURS + round_duration_in_ticks)
+#define duration2stationtime(time) time2text(station_time_in_ds + time, "hh:mm")
+#define roundstart_delay_time (world.time - round_duration_in_ds)
+#define world_time_in_ds(time) (GLOB.roundstart_hour HOURS + time - roundstart_delay_time)
+#define round_duration_in_ds (GLOB.round_start_time ? REALTIMEOFDAY - GLOB.round_start_time : 0)
+#define station_time_in_ds (GLOB.roundstart_hour HOURS + round_duration_in_ds)
 
 /proc/stationtime2text()
-	return time2text(station_time_in_ticks, "hh:mm")
+	return time2text(station_time_in_ds + GLOB.timezoneOffset, "hh:mm")
+
+/proc/worldtime2stationtime(time)
+	return time2text(world_time_in_ds(time) + GLOB.timezoneOffset, "hh:mm")
 
 /proc/stationdate2text()
 	var/update_time = FALSE
-	if(station_time_in_ticks > next_station_date_change)
+	if(station_time_in_ds > next_station_date_change)
 		next_station_date_change += 1 DAY
 		update_time = TRUE
 	if(!station_date || update_time)
-		var/extra_days = round(station_time_in_ticks / (1 DAY)) DAYS
-		var/timeofday = world.timeofday + extra_days
-		station_date = num2text((text2num(time2text(timeofday, "YYYY"))+544)) + "-" + time2text(timeofday, "MM-DD")
+		station_date = num2text((text2num(time2text(REALTIMEOFDAY, "YYYY"))+300)) + "-" + time2text(REALTIMEOFDAY, "MM-DD") //VOREStation Edit
 	return station_date
 
 //ISO 8601
@@ -64,13 +52,20 @@ var/next_station_date_change = 1 DAY
 	var/time_portion = time2text(world.timeofday, "hh:mm:ss")
 	return "[date_portion]T[time_portion]"
 
+/proc/get_timezone_offset()
+	var/midnight_gmt_here = text2num(time2text(0,"hh")) * 36000
+	if(midnight_gmt_here > 12 HOURS)
+		return 24 HOURS - midnight_gmt_here
+	else
+		return midnight_gmt_here
+
 /proc/gameTimestamp(format = "hh:mm:ss", wtime=null)
 	if(!wtime)
 		wtime = world.time
 	return time2text(wtime - GLOB.timezoneOffset, format)
 
 /* Returns 1 if it is the selected month and day */
-proc/isDay(var/month, var/day)
+/proc/isDay(var/month, var/day)
 	if(isnum(month) && isnum(day))
 		var/MM = text2num(time2text(world.timeofday, "MM")) // get the current month
 		var/DD = text2num(time2text(world.timeofday, "DD")) // get the current day
@@ -83,19 +78,19 @@ proc/isDay(var/month, var/day)
 
 var/next_duration_update = 0
 var/last_round_duration = 0
-var/round_start_time = 0
+GLOBAL_VAR_INIT(round_start_time, 0)
 
 /hook/roundstart/proc/start_timer()
-	round_start_time = world.time
+	GLOB.round_start_time = REALTIMEOFDAY
 	return 1
 
 /proc/roundduration2text()
-	if(!round_start_time)
+	if(!GLOB.round_start_time)
 		return "00:00"
 	if(last_round_duration && world.time < next_duration_update)
 		return last_round_duration
 
-	var/mills = round_duration_in_ticks // 1/10 of a second, not real milliseconds but whatever
+	var/mills = round_duration_in_ds // 1/10 of a second, not real milliseconds but whatever
 	//var/secs = ((mills % 36000) % 600) / 10 //Not really needed, but I'll leave it here for refrence.. or something
 	var/mins = round((mills % 36000) / 600)
 	var/hours = round(mills / 36000)
@@ -107,20 +102,19 @@ var/round_start_time = 0
 	next_duration_update = world.time + 1 MINUTES
 	return last_round_duration
 
-//Can be useful for things dependent on process timing
-/proc/process_schedule_interval(var/process_name)
-	var/datum/controller/process/process = processScheduler.getProcess(process_name)
-	return process.schedule_interval
-
-/hook/startup/proc/set_roundstart_hour()
-	roundstart_hour = pick(2,7,12,17)
-	return 1
-
 /var/midnight_rollovers = 0
 /var/rollovercheck_last_timeofday = 0
+/var/rollover_safety_date = 0 // set in world/New to the server startup day-of-month
 /proc/update_midnight_rollover()
-	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
-		return midnight_rollovers++
+	// Day has wrapped (world.timeofday drops to 0 at the start of each real day)
+	if (world.timeofday < rollovercheck_last_timeofday)
+		// If the day started/last wrap was < 12 hours ago, this is spurious
+		if(rollover_safety_date < world.realtime - (12 HOURS))
+			midnight_rollovers++
+			rollover_safety_date = world.realtime
+		else
+			warning("Time rollover error: world.timeofday decreased from previous check, but the day or last rollover is less than 12 hours old. System clock?")
+	rollovercheck_last_timeofday = world.timeofday
 	return midnight_rollovers
 
 //Increases delay as the server gets more overloaded,

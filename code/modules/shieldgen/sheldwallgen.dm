@@ -1,11 +1,11 @@
 ////FIELD GEN START //shameless copypasta from fieldgen, powersink, and grille
 /obj/machinery/shieldwallgen
-		name = "Shield Generator"
+		name = "shield generator"
 		desc = "A shield generator."
 		icon = 'icons/obj/stationobjs.dmi'
 		icon_state = "Shield_Gen"
-		anchored = 0
-		density = 1
+		anchored = FALSE
+		density = TRUE
 		req_access = list(access_engine_equip)
 		var/active = 0
 		var/power = 0
@@ -23,17 +23,17 @@
 		//There have to be at least two posts, so these are effectively doubled
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
-		use_power = 0	//Draws directly from power net. Does not use APC power.
+		use_power = USE_POWER_OFF	//Draws directly from power net. Does not use APC power.
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		to_chat(user, "<font color='red'>The shield generator needs to be firmly secured to the floor first.</font>")
+		to_chat(user, span_red("The shield generator needs to be firmly secured to the floor first."))
 		return 1
 	if(src.locked && !istype(user, /mob/living/silicon))
-		to_chat(user, "<font color='red'>The controls are locked!</font>")
+		to_chat(user, span_red("The controls are locked!"))
 		return 1
 	if(power != 1)
-		to_chat(user, "<font color='red'>The shield generator needs to be powered by wire underneath.</font>")
+		to_chat(user, span_red("The shield generator needs to be powered by wire underneath."))
 		return 1
 
 	if(src.active >= 1)
@@ -105,7 +105,7 @@
 		src.active = 2
 	if(src.active >= 1)
 		if(src.power == 0)
-			src.visible_message("<font color='red'>The [src.name] shuts down due to lack of power!</font>", \
+			src.visible_message(span_red("The [src.name] shuts down due to lack of power!"), \
 				"You hear heavy droning fade out")
 			icon_state = "Shield_Gen"
 			src.active = 0
@@ -157,7 +157,7 @@
 
 
 /obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		if(active)
 			to_chat(user, "Turn off the field generator first.")
 			return
@@ -166,14 +166,14 @@
 			state = 1
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You secure the external reinforcing bolts to the floor.")
-			src.anchored = 1
+			src.anchored = TRUE
 			return
 
 		else if(state == 1)
 			state = 0
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You undo the external reinforcing bolts.")
-			src.anchored = 0
+			src.anchored = FALSE
 			return
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
@@ -181,11 +181,11 @@
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "<font color='red'>Access denied.</font>")
+			to_chat(user, span_red("Access denied."))
 
 	else
 		src.add_fingerprint(user)
-		visible_message("<font color='red'>The [src.name] has been hit with \the [W.name] by [user.name]!</font>")
+		visible_message(span_red("The [src.name] has been hit with \the [W.name] by [user.name]!"))
 
 /obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
 	var/obj/machinery/shieldwall/F
@@ -224,9 +224,9 @@
 		desc = "An energy shield."
 		icon = 'icons/effects/effects.dmi'
 		icon_state = "shieldwall"
-		anchored = 1
-		density = 1
-		unacidable = 1
+		anchored = TRUE
+		density = TRUE
+		unacidable = TRUE
 		light_range = 3
 		var/needs_power = 0
 		var/active = 1

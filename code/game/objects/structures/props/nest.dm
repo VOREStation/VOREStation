@@ -20,7 +20,7 @@
 	var/total_creature_max	//If set, it can spawn this many creatures, total, ever.
 
 /obj/structure/prop/nest/Initialize()
-	..()
+	. = ..()
 	den_mobs = list()
 	START_PROCESSING(SSobj, src)
 	last_spawn = world.time

@@ -77,8 +77,7 @@ var/global/list/alt_farmanimals = list()
 
 	registered = TRUE
 	entopic_images += my_image
-	for(var/m in entopic_users)
-		var/mob/M = m
+	for(var/mob/M as anything in entopic_users)
 		if(M.client)
 			M.client.images += my_image
 
@@ -88,8 +87,7 @@ var/global/list/alt_farmanimals = list()
 
 	registered = FALSE
 	entopic_images -= my_image
-	for(var/m in entopic_users)
-		var/mob/M = m
+	for(var/mob/M as anything in entopic_users)
 		if(M.client)
 			M.client.images -= my_image
 

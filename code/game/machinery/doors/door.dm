@@ -6,11 +6,12 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	anchored = 1
+	anchored = TRUE
 	opacity = 1
-	density = 1
-	can_atmos_pass = ATMOS_PASS_DENSITY
+	density = TRUE
+	can_atmos_pass = ATMOS_PASS_PROC
 	layer = DOOR_OPEN_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 
@@ -31,6 +32,9 @@
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
+	var/anim_length_before_density = 3
+	var/anim_length_before_finalize = 7
+
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -42,11 +46,11 @@
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
-			visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
+			visible_message("<span class='danger'>\The [user] smashes into [src]!</span>")
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
 		else
-			visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
+			visible_message("<b>\The [user]</b> bonks \the [src] harmlessly.")
 	user.do_attack_animation(src)
 
 /obj/machinery/door/New()
@@ -75,18 +79,24 @@
 	return
 
 /obj/machinery/door/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	. = ..()
 
 /obj/machinery/door/process()
 	if(close_door_at && world.time >= close_door_at)
 		if(autoclose)
-			close_door_at = next_close_time()
+			close_door_at = world.time + next_close_wait()
 			spawn(0)
 				close()
 		else
 			close_door_at = 0
+	if (..() == PROCESS_KILL && !close_door_at)
+		return PROCESS_KILL
+
+/obj/machinery/door/proc/autoclose_in(wait)
+	close_door_at = world.time + wait
+	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating || !ticker)
@@ -113,7 +123,11 @@
 			return																		//VOREStation Edit: unable to open doors
 		else
 			bumpopen(M)
-
+	if(istype(AM, /obj/item/device/uav))
+		if(check_access(null))
+			open()
+		else
+			do_animate("deny")
 
 	if(istype(AM, /mob/living/bot))
 		var/mob/living/bot/bot = AM
@@ -145,8 +159,8 @@
 
 /obj/machinery/door/CanZASPass(turf/T, is_zone)
 	if(is_zone)
-		return block_air_zones ? ATMOS_PASS_NO : ATMOS_PASS_YES
-	return ..()
+		return !block_air_zones // Block merging unless block_air_zones = 0
+	return !density // Block airflow unless density = FALSE
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
@@ -191,7 +205,7 @@
 		tforce = 15 * (speed/5)
 	else
 		tforce = AM:throwforce * (speed/5)
-	playsound(src.loc, hitsound, 100, 1)
+	playsound(src, hitsound, 100, 1)
 	take_damage(tforce)
 	return
 
@@ -245,12 +259,12 @@
 
 			return
 
-		if(repairing && istype(I, /obj/item/weapon/weldingtool))
+		if(repairing && I.has_tool_quality(TOOL_WELDER))
 			if(!density)
 				to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 				return
 
-			var/obj/item/weapon/weldingtool/welder = I
+			var/obj/item/weapon/weldingtool/welder = I.get_welder()
 			if(welder.remove_fuel(0,user))
 				to_chat(user, "<span class='notice'>You start to fix dents and weld \the [get_material_name()] into place.</span>")
 				playsound(src, welder.usesound, 50, 1)
@@ -261,9 +275,9 @@
 					repairing = 0
 			return
 
-		if(repairing && I.is_crowbar())
-			var/obj/item/stack/material/repairing_sheet = get_material().place_sheet(loc)
-			repairing_sheet.amount += repairing-1
+		if(repairing && I.has_tool_quality(TOOL_CROWBAR))
+			var/datum/material/mat = get_material()
+			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc, repairing)
 			repairing = 0
 			to_chat(user, "<span class='notice'>You remove \the [repairing_sheet].</span>")
 			playsound(src, I.usesound, 100, 1)
@@ -279,7 +293,7 @@
 					user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
 				else
 					user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
-					playsound(src.loc, hitsound, 100, 1)
+					playsound(src, hitsound, 100, 1)
 					take_damage(W.force)
 			return
 
@@ -326,13 +340,13 @@
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(src.health <= 0)
-		to_chat(user, "\The [src] is broken!")
-	if(src.health < src.maxhealth / 4)
-		to_chat(user, "\The [src] looks like it's about to break!")
+		. += "It is broken!"
+	else if(src.health < src.maxhealth / 4)
+		. += "It looks like it's about to break!"
 	else if(src.health < src.maxhealth / 2)
-		to_chat(user, "\The [src] looks seriously damaged!")
+		. += "It looks seriously damaged!"
 	else if(src.health < src.maxhealth * 3/4)
-		to_chat(user, "\The [src] shows signs of damage!")
+		. += "It shows signs of damage!"
 
 
 /obj/machinery/door/proc/set_broken()
@@ -404,7 +418,7 @@
 		if("deny")
 			if(density && !(stat & (NOPOWER|BROKEN)))
 				flick("door_deny", src)
-				playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+				playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 	return
 
 
@@ -416,10 +430,10 @@
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(0)
-	sleep(3)
-	src.density = 0
+	sleep(anim_length_before_density)
+	src.density = FALSE
 	update_nearby_tiles()
-	sleep(7)
+	sleep(anim_length_before_finalize)
 	src.layer = open_layer
 	explosion_resistance = 0
 	update_icon()
@@ -427,12 +441,12 @@
 	operating = 0
 
 	if(autoclose)
-		close_door_at = next_close_time()
+		autoclose_in(next_close_wait())
 
 	return 1
 
-/obj/machinery/door/proc/next_close_time()
-	return world.time + (normalspeed ? 150 : 5)
+/obj/machinery/door/proc/next_close_wait()
+	return (normalspeed ? 150 : 5)
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	if(!can_close(forced))
@@ -441,12 +455,12 @@
 
 	close_door_at = 0
 	do_animate("closing")
-	sleep(3)
-	src.density = 1
+	sleep(anim_length_before_density)
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 	src.layer = closed_layer
 	update_nearby_tiles()
-	sleep(7)
+	sleep(anim_length_before_finalize)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!
@@ -484,8 +498,7 @@
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Move(new_loc, new_dir)
-	//update_nearby_tiles()
+/obj/machinery/door/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))

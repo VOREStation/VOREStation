@@ -19,33 +19,33 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
-	uncloak()
+	reveal()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/deadringer/dropped()
 	if(timer > 20)
-		uncloak()
+		reveal()
 		watchowner = null
 	return
 
 /obj/item/weapon/deadringer/attack_self(var/mob/living/user as mob)
 	var/mob/living/H = src.loc
 	if (!istype(H, /mob/living/carbon/human))
-		to_chat(H,"<font color='blue'>You have no clue what to do with this thing.</font>")
+		to_chat(H, span_blue("You have no clue what to do with this thing."))
 		return
 	if(!activated)
 		if(timer == 0)
-			to_chat(H, "<font color='blue'>You press a small button on [src]'s side. It starts to hum quietly.</font>")
+			to_chat(H, span_blue("You press a small button on [src]'s side. It starts to hum quietly."))
 			bruteloss_prev = H.getBruteLoss()
 			fireloss_prev = H.getFireLoss()
 			activated = 1
 			return
 		else
-			to_chat(H,"<font color='blue'>You press a small button on [src]'s side. It buzzes a little.</font>")
+			to_chat(H, span_blue("You press a small button on [src]'s side. It buzzes a little."))
 			return
 	if(activated)
-		to_chat(H,"<font color='blue'>You press a small button on [src]'s side. It stops humming.</font>")
+		to_chat(H, span_blue("You press a small button on [src]'s side. It stops humming."))
 		activated = 0
 		return
 
@@ -58,16 +58,16 @@
 				deathprevent()
 				activated = 0
 				if(watchowner.isSynthetic())
-					to_chat(watchowner, "<font color='blue'>You fade into nothingness! [src]'s screen blinks, being unable to copy your synthetic body!</font>")
+					to_chat(watchowner, span_blue("You fade into nothingness! [src]'s screen blinks, being unable to copy your synthetic body!"))
 				else
-					to_chat(watchowner, "<font color='blue'>You fade into nothingness, leaving behind a fake body!</font>")
+					to_chat(watchowner, span_blue("You fade into nothingness, leaving behind a fake body!"))
 				icon_state = "deadringer_cd"
 				timer = 50
 				return
 	if(timer > 0)
 		timer--
 	if(timer == 20)
-		uncloak()
+		reveal()
 		if(corpse)
 			new /obj/effect/effect/smoke/chem(corpse.loc)
 			qdel(corpse)
@@ -86,10 +86,10 @@
 	makeacorpse(watchowner)
 	return
 
-/obj/item/weapon/deadringer/proc/uncloak()
+/obj/item/weapon/deadringer/proc/reveal()
 	if(watchowner)
 		watchowner.alpha = 255
-		playsound(get_turf(src), 'sound/effects/uncloak.ogg', 35, 1, -1)
+		playsound(src, 'sound/effects/uncloak.ogg', 35, 1, -1)
 	return
 
 /obj/item/weapon/deadringer/proc/makeacorpse(var/mob/living/carbon/human/H)
@@ -104,60 +104,60 @@
 		temp = corpse.get_equipped_item(slot_w_uniform)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_w_uniform)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_wear_suit))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/suit/chameleon/changeling(corpse), slot_wear_suit)
 		temp = corpse.get_equipped_item(slot_wear_suit)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_wear_suit)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_shoes))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/shoes/chameleon/changeling(corpse), slot_shoes)
 		temp = corpse.get_equipped_item(slot_shoes)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_shoes)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_gloves))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/gloves/chameleon/changeling(corpse), slot_gloves)
 		temp = corpse.get_equipped_item(slot_gloves)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_gloves)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_l_ear))
 		temp = H.get_equipped_item(slot_l_ear)
 		corpse.equip_to_slot_or_del(new temp.type(corpse), slot_l_ear)
 		temp = corpse.get_equipped_item(slot_l_ear)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_glasses))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/glasses/chameleon/changeling(corpse), slot_glasses)
 		temp = corpse.get_equipped_item(slot_glasses)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_glasses)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_wear_mask))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/mask/chameleon/changeling(corpse), slot_wear_mask)
 		temp = corpse.get_equipped_item(slot_wear_mask)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_wear_mask)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_head))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/head/chameleon/changeling(corpse), slot_head)
 		temp = corpse.get_equipped_item(slot_head)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_head)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_belt))
 		corpse.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/chameleon/changeling(corpse), slot_belt)
 		temp = corpse.get_equipped_item(slot_belt)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_belt)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_back))
 		corpse.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/chameleon/changeling(corpse), slot_back)
 		temp = corpse.get_equipped_item(slot_back)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_back)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	corpse.identifying_gender = H.identifying_gender
 	corpse.flavor_texts = H.flavor_texts.Copy()
 	corpse.real_name = H.real_name
@@ -172,7 +172,4 @@
 	corpse.adjustBruteLoss(H.getBruteLoss())
 	corpse.UpdateAppearance()
 	corpse.regenerate_icons()
-	for(var/obj/item/organ/internal/I in corpse.internal_organs)
-		var/obj/item/organ/internal/G = I
-		G.Destroy()
-	return
+	QDEL_NULL_LIST(corpse.internal_organs)

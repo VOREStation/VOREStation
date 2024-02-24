@@ -12,7 +12,9 @@
 
 	organ_verbs = list(/mob/living/carbon/human/proc/augment_menu)	// Verbs added by the organ when present in the body.
 	target_parent_classes = list()	// Is the parent supposed to be organic, robotic, assisted?
-	forgiving_class = FALSE	// Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.
+	forgiving_class = TRUE	// Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.
+
+	butcherable = FALSE
 
 	var/obj/item/integrated_object	// Objects held by the organ, used for re-usable, deployable things.
 	var/integrated_object_type	// Object type the organ will spawn.
@@ -26,13 +28,11 @@
 	var/radial_state = null	// Icon state for the augment's radial icon.
 
 	var/aug_cooldown = 30 SECONDS
-	var/last_activate = null
+	var/cooldown = null
 
 /obj/item/organ/internal/augment/Initialize()
-	..()
-
+	. = ..()
 	setup_radial_icon()
-
 	if(integrated_object_type)
 		integrated_object = new integrated_object_type(src)
 		integrated_object.canremove = FALSE
@@ -59,10 +59,14 @@
 		return
 
 	if(aug_cooldown)
-		if(last_activate <= world.time + aug_cooldown)
-			last_activate = world.time
+		if(cooldown <= world.time)
+			cooldown = world.time + aug_cooldown
 		else
 			return
+
+	if(robotic && owner.get_restraining_bolt())
+		to_chat(owner, "<span class='warning'>\The [src] doesn't respond.</span>")
+		return
 
 	var/item_to_equip = integrated_object
 	if(!item_to_equip && integrated_object_type)

@@ -7,7 +7,7 @@
 	colour = "soghun"
 	key = "q"
 	machine_understands = 0
-	flags = RESTRICTED
+	flags = WHITELISTED // RESTRICTED would make this completely unavailable from character select
 	syllables = list("hs","zt","kr","st","sh")
 
 /datum/language/diona_local/get_random_name()
@@ -20,7 +20,8 @@
 	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses low frequency waves for slow communication at long ranges."
 	key = "w"
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	colour = "say_quote_italics"
+	flags = WHITELISTED | HIVEMIND // RESTRICTED would make this completely unavailable from character select
 
 /datum/language/unathi
 	name = LANGUAGE_UNATHI
@@ -92,7 +93,12 @@
 	signlang_verb = list("gestures with their hands", "gestures with their ears and tail", "gestures with their ears, tail and hands")
 	colour = "tajaran"
 	key = "l"
-	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
+	flags = WHITELISTED | SIGNLANG | NO_STUTTER //nonverbal define was not needed here, and i need to use it ~Layne
+
+/datum/language/tajsign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+	log_say("(SIGN) [message]", speaker)
+	var/verb_to_use = pick(signlang_verb)
+	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
 
 /datum/language/tajsign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/list/allowed_species = list(SPECIES_TAJ, SPECIES_TESHARI)	// Need a tail and ears and such to use this.
@@ -109,7 +115,7 @@
 
 /datum/language/skrell
 	name = LANGUAGE_SKRELLIAN
-	desc = "A set of warbles and hums, the language itself a complex mesh of both melodic and rhythmic components, exceptionally capable of conveying intent and emotion of the speaker."
+	desc = "A set of warbles and hums, the language itself a complex mesh of both melodic and rhythmic components, exceptionally capable of conveying intent and emotion of the speaker. Native to Skrell."
 	speech_verb = "warbles"
 	ask_verb = "warbles"
 	exclaim_verb = "sings"
@@ -120,19 +126,6 @@
 	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
-/datum/language/skrellfar
-	name = LANGUAGE_SKRELLIANFAR
-	desc = "The most common language among the Skrellian Far Kingdoms. Has an even higher than usual concentration of inaudible phonemes."
-	speech_verb = "warbles"
-	ask_verb = "warbles"
-	exclaim_verb = "sings"
-	whisper_verb = "hums"
-	colour = "skrellfar"
-	key = "p"
-	space_chance = 30
-	flags = WHITELISTED
-	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix", "...", "oo", "q", "nq", "x", "xq", "ll", "...", "...", "...") //should sound like there's holes in it
-
 /datum/language/skrell/get_random_name(var/gender)
 	var/list/first_names = file2list('config/names/first_name_skrell.txt')
 	var/list/last_names = file2list('config/names/last_name_skrell.txt')
@@ -140,7 +133,7 @@
 
 /datum/language/human
 	name = LANGUAGE_SOL_COMMON
-	desc = "A bastardized hybrid of many languages, including Chinese, English, French, and more; it is the common language of the Sol system."
+	desc = "A bastardized hybrid of many human languages, including Chinese, English, French, and more; it is the common language of the Sol system."
 	speech_verb = "says"
 	whisper_verb = "whispers"
 	colour = "solcom"
@@ -167,7 +160,7 @@
 
 /datum/language/machine
 	name = LANGUAGE_EAL
-	desc = "An efficient language of encoded tones developed by positronics."
+	desc = "An efficient language of encoded tones developed by positronics, although compatible with any synthetic lifeforms."
 	speech_verb = "whistles"
 	ask_verb = "chirps"
 	exclaim_verb = "whistles loudly"
@@ -183,9 +176,9 @@
 	else
 		return pick(ai_names)
 
-/datum/language/seromi
+/datum/language/teshari
 	name = LANGUAGE_SCHECHI
-	desc = "A trilling language spoken by the diminutive Teshari."
+	desc = "A trilling language spoken by the Teshari."
 	speech_verb = "chirps"
 	ask_verb = "chirrups"
 	exclaim_verb = "trills"
@@ -199,8 +192,8 @@
 			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
 		)
 
-/datum/language/seromi/get_random_name(gender)
-	return ..(gender, 1, 4, 1.5)
+/datum/language/teshari/get_random_name(gender)
+	return ..(gender, 2, 4, 1.5)
 
 
 /datum/language/zaddat
@@ -214,6 +207,19 @@
 	flags = WHITELISTED
 	space_chance = 20
 	syllables = list("z", "dz", "i", "iv", "ti", "az", "hix", "xo", "av", "xo", "x", "za", "at", "vi")
+
+/datum/language/promethean
+	name = LANGUAGE_PROMETHEAN
+	desc = "A complex language of prometheans, composed of guttural noises and bioluminescent signals."
+	signlang_verb = list("flickers","flashes","rapidly flashes a light","quickly flickers a light")
+	speech_verb = "gurgles"
+	ask_verb = "gurgles"
+	exclaim_verb = "gurgles"
+	colour = "promethean"
+	key = "t"
+	flags = WHITELISTED | NONVERBAL
+	space_chance = 20
+	syllables = list("gur","gul","gug","gel","ger","geg","gir","gil","gig","gor","gol","gog","ug","ul","ur","uu","el","eg","er","oe","ig","il","ir","oi","og","ol","or","oo")
 
 
 //Syllable Lists

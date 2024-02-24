@@ -2,7 +2,7 @@
 	name = "nanopaste"
 	singular_name = "nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
-	icon = 'icons/obj/stacks.dmi'
+	icon = 'icons/obj/stacks_vr.dmi' //VOREStation Edit
 	icon_state = "nanopaste"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
@@ -16,7 +16,7 @@
 	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
 		if (R.getBruteLoss() || R.getFireLoss())
-			if(do_after(user,7 * toolspeed))
+			if(do_after(user, 7 * toolspeed, R, exclusive = TASK_ALL_EXCLUSIVE))
 				R.adjustBruteLoss(-15)
 				R.adjustFireLoss(-15)
 				R.updatehealth()
@@ -51,9 +51,9 @@
 			else if(can_use(1))
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(S.open >= 2)
-					if(do_after(user,5 * toolspeed))
+					if(do_after(user, 5 * toolspeed, S, exclusive = TASK_ALL_EXCLUSIVE))
 						S.heal_damage(restoration_internal, restoration_internal, robo_repair = 1)
-				else if(do_after(user,5 * toolspeed))
+				else if(do_after(user, 5 * toolspeed, S, exclusive = TASK_ALL_EXCLUSIVE))
 					S.heal_damage(restoration_external,restoration_external, robo_repair =1)
 				H.updatehealth()
 				use(1)

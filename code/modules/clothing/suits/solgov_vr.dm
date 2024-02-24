@@ -1,100 +1,183 @@
-//SolGov Uniform Suits
+/obj/item/clothing/suit/storage/solgov/service/sifguard
+	name = "\improper NDF jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force."
 
-//Service
-/obj/item/clothing/suit/storage/service/sifguard
-	name = "explorer's jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons."
+/obj/item/clothing/suit/storage/solgov/service/fleet
+	name = "fleet service jacket"
+	desc = "A navy blue TCG Fleet service jacket."
 
-/obj/item/clothing/suit/storage/service/sifguard/medical
-	name = "explorer's medical jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and blue trim."
+/obj/item/clothing/suit/storage/solgov/service/fleet/snco
+	name = "fleet SNCO service jacket"
+	desc = "A navy blue TCG Fleet service jacket with silver cuffs."
 
-/obj/item/clothing/suit/storage/service/sifguard/medical/command
-	name = "explorer's medical command jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and blue trim."
+/obj/item/clothing/suit/storage/solgov/service/fleet/officer
+	name = "fleet officer's service jacket"
+	desc = "A navy blue TCG Fleet dress jacket with silver accents."
 
-/obj/item/clothing/suit/storage/service/sifguard/engineering
-	name = "explorer's engineering jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and orange trim."
+/obj/item/clothing/suit/storage/solgov/service/fleet/command
+	name = "fleet senior officer's service jacket"
+	desc = "A navy blue TCG Fleet dress jacket with gold accents."
 
-/obj/item/clothing/suit/storage/service/sifguard/engineering/command
-	name = "explorer's engineering command jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and orange trim."
+/obj/item/clothing/suit/storage/solgov/service/fleet/flag
+	name = "fleet flag officer's service jacket"
+	desc = "A navy blue TCG Fleet dress jacket with red accents."
 
-/obj/item/clothing/suit/storage/service/sifguard/supply
-	name = "explorer's supply jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and brown trim."
-
-/obj/item/clothing/suit/storage/service/sifguard/security
-	name = "explorer's security jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has silver buttons and red trim."
-
-/obj/item/clothing/suit/storage/service/sifguard/security/command
-	name = "explorer's security command jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and red trim."
-
-/obj/item/clothing/suit/storage/service/sifguard/command
-	name = "explorer's command jacket"
-	desc = "A uniform service jacket belonging to the Society of Universal Cartographers. It has gold buttons and gold trim."
-
-/obj/item/clothing/suit/storage/service/marine
+/obj/item/clothing/suit/storage/solgov/service/army
 	name = "marine coat"
-	desc = "An USDF Marine Corps service coat. Green and undecorated."
+	desc = "An TCG Marine service coat. Green and undecorated."
 
-/obj/item/clothing/suit/storage/service/marine/medical
+/obj/item/clothing/suit/storage/solgov/service/army/medical
 	name = "marine medical jacket"
-	desc = "An USDF Marine Corps service coat. This one has blue markings."
+	desc = "An TCG Marine service coat. This one has blue markings."
 
-/obj/item/clothing/suit/storage/service/marine/medical/command
+/obj/item/clothing/suit/storage/solgov/service/army/medical/command
 	name = "marine medical command jacket"
-	desc = "An USDF Marine Corps service coat. This one has blue and gold markings."
+	desc = "An TCG Marine service coat. This one has blue and gold markings."
 
-/obj/item/clothing/suit/storage/service/marine/engineering
+/obj/item/clothing/suit/storage/solgov/service/army/engineering
 	name = "marine engineering jacket"
-	desc = "An USDF Marine Corps service coat. This one has orange markings."
+	desc = "An TCG Marine service coat. This one has orange markings."
 
-/obj/item/clothing/suit/storage/service/marine/engineering/command
+/obj/item/clothing/suit/storage/solgov/service/army/engineering/command
 	name = "marine engineering command jacket"
-	desc = "An USDF Marine Corps service coat. This one has orange and gold markings."
+	desc = "An TCG Marine service coat. This one has orange and gold markings."
 
-/obj/item/clothing/suit/storage/service/marine/supply
+/obj/item/clothing/suit/storage/solgov/service/army/supply
 	name = "marine supply jacket"
-	desc = "An USDF Marine Corps service coat. This one has brown markings."
+	desc = "An TCG Marine service coat. This one has brown markings."
 
-/obj/item/clothing/suit/storage/service/marine/security
+/obj/item/clothing/suit/storage/solgov/service/army/security
 	name = "marine security jacket"
-	desc = "An USDF Marine Corps service coat. This one has red markings."
+	desc = "An TCG Marine service coat. This one has red markings."
 
-/obj/item/clothing/suit/storage/service/marine/security/command
+/obj/item/clothing/suit/storage/solgov/service/army/security/command
 	name = "marine security command jacket"
-	desc = "An USDF Marine Corps service coat. This one has red and gold markings."
+	desc = "An TCG Marine service coat. This one has red and gold markings."
 
-/obj/item/clothing/suit/storage/service/marine/command
+/obj/item/clothing/suit/storage/solgov/service/army/service
+	name = "marine service jacket"
+	desc = "An TCG Marine service coat. This one has green markings."
+
+/obj/item/clothing/suit/storage/solgov/service/army/service/command
+	name = "marine service command jacket"
+	desc = "An TCG Marine service coat. This one has green and gold markings."
+
+/obj/item/clothing/suit/storage/solgov/service/army/exploration
+	name = "marine exploration jacket"
+	desc = "An TCG Marine service coat. This one has purple markings."
+
+/obj/item/clothing/suit/storage/solgov/service/army/exploration/command
+	name = "marine exploration command jacket"
+	desc = "An TCG Marine service coat. This one has purple and gold markings."
+
+/obj/item/clothing/suit/storage/solgov/service/army/command
 	name = "marine command jacket"
-	desc = "An USDF Marine Corps service coat. This one has gold markings."
+	desc = "An TCG Marine Corps service coat. This one has gold markings."
 
-//Dress
+//Dress - murder me with a gun why are these 3 different types
+/obj/item/clothing/suit/storage/solgov/dress/sifguard
+	name = "\improper NDF dress jacket"
+	desc = "A silver and grey dress jacket belonging to the Nanotrasen Defense Force. Fashionable, for the 25th century at least."
 
-/obj/item/clothing/suit/dress/expedition
-	name = "explorer's dress jacket"
-	desc = "A silver and grey dress jacket belonging to the Society of Universal Cartographers. Fashionable, for the 25th century at least."
+/obj/item/clothing/suit/storage/solgov/dress/sifguard/senior
+	name = "\improper NDF senior's dress coat"
 
-/obj/item/clothing/suit/dress/expedition/command
-	name = "explorer's command dress jacket"
-	desc = "A gold and grey dress jacket belonging to the Society of Universal Cartographers. The height of fashion."
+/obj/item/clothing/suit/storage/solgov/dress/sifguard/chief
+	name = "\improper NDF chief's dress coat"
+
+/obj/item/clothing/suit/storage/solgov/dress/sifguard/command
+	name = "\improper NDF officer's dress coat"
+	desc = "A gold and black dress peacoat belonging to the Nanotrasen Defense Force. The height of fashion."
+
+/obj/item/clothing/suit/storage/solgov/dress/sifguard/command/cdr
+	name = "\improper NDF commander's dress coat"
+
+/obj/item/clothing/suit/storage/solgov/dress/sifguard/command/capt
+	name = "\improper NDF captain's dress coat"
+
+/obj/item/clothing/suit/storage/solgov/dress/sifguard/command/adm
+	name = "\improper NDF admiral's dress coat"
+
+/obj/item/clothing/suit/storage/solgov/dress/fleet
+	name = "fleet dress jacket"
+	desc = "A navy blue TCG Fleet dress jacket. Don't get near pasta sauce or vox."
+
+/obj/item/clothing/suit/storage/solgov/dress/fleet/snco
+	name = "fleet dress SNCO jacket"
+	desc = "A navy blue TCG Fleet dress jacket with silver cuffs. Don't get near pasta sauce or vox."
+
+/obj/item/clothing/suit/storage/solgov/dress/fleet/officer
+	name = "fleet officer's dress jacket"
+	desc = "A navy blue TCG Fleet dress jacket with silver accents. Don't get near pasta sauce or vox."
+
+/obj/item/clothing/suit/storage/solgov/dress/fleet/command
+	name = "fleet senior officer's dress jacket"
+	desc = "A navy blue TCG Fleet dress jacket with gold accents. Don't get near pasta sauce or vox."
+
+/obj/item/clothing/suit/storage/solgov/dress/fleet/flag
+	name = "fleet flag officer's dress jacket"
+	desc = "A navy blue TCG Fleet dress jacket with red accents. Don't get near pasta sauce or vox."
+
+/obj/item/clothing/suit/dress/solgov/fleet/sailor
+	name = "fleet dress overwear"
+	desc = "A navy blue TCG Fleet dress suit. Almost looks like a school-girl outfit."
+
+/obj/item/clothing/suit/dress/solgov/army
+	name = "marine dress jacket"
+	desc = "A tailored black TCG Marines dress jacket with red trim. So sexy it hurts."
+
+/obj/item/clothing/suit/dress/solgov/army/command
+	name = "marine officer's dress jacket"
+	desc = "A tailored black TCG Marines dress jacket with gold trim. Smells like ceremony."
+
+//Misc
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/solgov
+	name = "\improper NDF winter coat"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/solgov/army
+	name = "marine winter coat"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/solgov/fleet
+	name = "fleet winter coat"
+
+/obj/item/clothing/suit/storage/toggle/dress
+	name = "clasped dress jacket"
+	desc = "A uniform dress jacket with gold toggles."
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet
 	name = "fleet dress jacket"
-	desc = "A crisp white USDF Fleet dress jacket with blue and gold accents. Don't get near pasta sauce or vox."
+	desc = "A crisp white TCG Fleet dress jacket with blue and gold accents. Don't get near pasta sauce or vox."
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet/command
 	name = "fleet command dress jacket"
-	desc = "A crisp white USDF Fleet dress jacket dripping with gold accents. So bright it's blinding."
+	desc = "A crisp white TCG Fleet dress jacket dripping with gold accents. So bright it's blinding."
 
-/obj/item/clothing/suit/dress/marine
-	name = "marine dress jacket"
-	desc = "A tailored black USDF Marine Corps dress jacket with red trim. So sexy it hurts."
+/obj/item/clothing/suit/storage/marshal_jacket
+	name = "colonial marshal jacket"
+	desc = "A black synthleather jacket. The word 'MARSHAL' is stenciled onto the back in gold lettering."
 
-/obj/item/clothing/suit/dress/marine/command
-	name = "marine command dress jacket"
-	desc = "A tailored black USDF Marine Corps dress jacket with gold trim. Smells like ceremony."
+//Terrans
+
+//Service
+
+/obj/item/clothing/suit/storage/terran/service/navy
+	name = "Ares coat"
+	desc = "A Ares Navy service coat. Black and undecorated."
+
+/obj/item/clothing/suit/storage/terran/service/navy/command
+	name = "Ares command coat"
+	desc = "An Ares Navy service command coat. White and undecorated."
+
+//Dress
+/obj/item/clothing/suit/dress/terran/navy
+	name = "Ares dress cloak"
+	desc = "A black Ares Navy dress cloak with red detailing. So sexy it hurts."
+
+/obj/item/clothing/suit/dress/terran/navy/officer
+	name = "Ares officer's dress cloak"
+	desc = "A black Ares Navy dress cloak with gold detailing. Smells like ceremony."
+
+/obj/item/clothing/suit/dress/terran/navy/command
+	name = "Ares command dress cloak"
+	desc = "A black Ares Navy dress cloak with royal detailing. Smells like ceremony."

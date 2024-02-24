@@ -23,11 +23,10 @@ SUBSYSTEM_DEF(circuit)
 
 /datum/controller/subsystem/circuit/proc/circuits_init()
 	//Cached lists for free performance
-	for(var/path in typesof(/obj/item/integrated_circuit))
-		var/obj/item/integrated_circuit/IC = path
-		var/name = initial(IC.name)
-		all_components[name] = path // Populating the component lists
-		cached_components[IC] = new path
+	for(var/obj/item/integrated_circuit/IC as anything in typesof(/obj/item/integrated_circuit))
+		var/path = IC
+		all_components[initial(IC.name)] = path // Populating the component lists
+		cached_components[path] = new path
 
 		if(!(initial(IC.spawn_flags) & (IC_SPAWN_DEFAULT | IC_SPAWN_RESEARCH)))
 			continue
@@ -38,11 +37,10 @@ SUBSYSTEM_DEF(circuit)
 		var/list/category_list = circuit_fabricator_recipe_list[category]
 		category_list += IC // Populating the fabricator categories
 
-	for(var/path in typesof(/obj/item/device/electronic_assembly))
-		var/obj/item/device/electronic_assembly/A = path
-		var/name = initial(A.name)
-		all_assemblies[name] = path
-		cached_assemblies[A] = new path
+	for(var/obj/item/device/electronic_assembly/A as anything in typesof(/obj/item/device/electronic_assembly))
+		var/path = A
+		all_assemblies[initial(A.name)] = path
+		cached_assemblies[path] = new path
 
 
 	circuit_fabricator_recipe_list["Assemblies"] = list(

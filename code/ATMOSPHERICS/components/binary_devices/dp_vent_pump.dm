@@ -20,7 +20,7 @@
 
 	level = 1
 
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -64,7 +64,7 @@
 	if(!check_icon_cache())
 		return
 
-	overlays.Cut()
+	cut_overlays()
 
 	var/vent_icon = "vent"
 
@@ -80,7 +80,7 @@
 	else
 		vent_icon += "[use_power ? "[pump_direction ? "out" : "in"]" : "off"]"
 
-	overlays += icon_manager.get_atmos_icon("device", , , vent_icon)
+	add_overlay(icon_manager.get_atmos_icon("device", , , vent_icon))
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_underlays()
 	if(..())
@@ -176,7 +176,7 @@
 		return 0
 
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 
 	signal.data = list(
@@ -200,8 +200,9 @@
 		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+	. = ..()
+	if(Adjacent(user))
+		. += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
 
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
@@ -214,10 +215,10 @@
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return 0
 	if(signal.data["power"])
-		use_power = text2num(signal.data["power"])
+		update_use_power(text2num(signal.data["power"]))
 
 	if(signal.data["power_toggle"])
-		use_power = !use_power
+		update_use_power(!use_power)
 
 	if(signal.data["direction"])
 		pump_direction = text2num(signal.data["direction"])
@@ -234,25 +235,13 @@
 		pump_direction = 1
 
 	if(signal.data["set_input_pressure"])
-		input_pressure_min = between(
-			0,
-			text2num(signal.data["set_input_pressure"]),
-			ONE_ATMOSPHERE*50
-		)
+		input_pressure_min = between(0,	text2num(signal.data["set_input_pressure"]), ONE_ATMOSPHERE*50)
 
 	if(signal.data["set_output_pressure"])
-		output_pressure_max = between(
-			0,
-			text2num(signal.data["set_output_pressure"]),
-			ONE_ATMOSPHERE*50
-		)
+		output_pressure_max = between(0, text2num(signal.data["set_output_pressure"]), ONE_ATMOSPHERE*50)
 
 	if(signal.data["set_external_pressure"])
-		external_pressure_bound = between(
-			0,
-			text2num(signal.data["set_external_pressure"]),
-			ONE_ATMOSPHERE*50
-		)
+		external_pressure_bound = between(0, text2num(signal.data["set_external_pressure"]), ONE_ATMOSPHERE*50)
 
 	if(signal.data["status"])
 		spawn(2)

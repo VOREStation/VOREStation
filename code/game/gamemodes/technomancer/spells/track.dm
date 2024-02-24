@@ -44,7 +44,7 @@ var/list/technomancer_belongings = list()
 		if(L == user)
 			continue
 		mob_choices += L
-	var/choice = input(user,"Decide what or who to track.","Tracking") as null|anything in object_choices + mob_choices
+	var/choice = tgui_input_list(user, "Decide what or who to track.", "Tracking", (object_choices + mob_choices))
 	if(choice)
 		tracked = choice
 		tracking = 1

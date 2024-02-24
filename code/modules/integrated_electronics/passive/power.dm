@@ -125,7 +125,7 @@
 	create_reagents(volume)
 
 /obj/item/integrated_circuit/passive/power/chemical_cell/interact(mob/user)
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 	..()
 
@@ -160,7 +160,7 @@
 	var/area/A = get_area(src)
 	if(A)
 		if(A.powered(EQUIP) && assembly.give_power(power_amount))
-			A.use_power(power_amount, EQUIP)
+			A.use_power_oneoff(power_amount, EQUIP)
 			// give_power() handles CELLRATE on its own.
 
 // Interacts with the powernet.
@@ -215,7 +215,7 @@
 				assembly.give_power(amount)
 			else
 				var/amount = assembly.draw_power(throughput)
-				IO.add_avail(amount)
+				IO.add_avail(amount / CELLRATE)
 
 		set_pin_data(IC_OUTPUT, 1, IO.avail())
 		set_pin_data(IC_OUTPUT, 2, IO.surplus())

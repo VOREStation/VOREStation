@@ -21,7 +21,7 @@
 	icon_state = "strange"
 	var/datum/geosample/geologic_data
 	origin_tech = list(TECH_MATERIAL = 5)
-	w_class = ITEMSIZE_SMALL	//TFF 25/11/19 - fixes the strange rocks to be small size like before and not normal.
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/strangerock/New(loc, var/inside_item_type = 0)
 	pixel_x = rand(0,16)-8
@@ -41,8 +41,8 @@
 		qdel(src)
 		return
 
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
 		if(W.isOn())
 			if(W.get_fuel() >= 2)
 				var/obj/item/inside = locate() in src

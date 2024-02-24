@@ -1,3 +1,6 @@
+GLOBAL_VAR_INIT(href_token, GenerateToken())
+GLOBAL_PROTECT(href_token)
+
 var/list/admin_datums = list()
 
 /datum/admins
@@ -13,6 +16,8 @@ var/list/admin_datums = list()
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
 	var/admincaster_signature	//What you'll sign the newsfeeds as
 
+	var/href_token
+
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
@@ -20,6 +25,7 @@ var/list/admin_datums = list()
 		qdel(src)
 		return
 	admincaster_signature = "[using_map.company_name] Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	href_token = GenerateToken()
 	rank = initial_rank
 	rights = initial_rights
 	admin_datums[ckey] = src
@@ -31,18 +37,18 @@ var/list/admin_datums = list()
 		owner = C
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
-		admins |= C
+		GLOB.admins |= C
 
 /datum/admins/proc/disassociate()
 	if(owner)
-		admins -= owner
+		GLOB.admins -= owner
 		owner.remove_admin_verbs()
 		owner.deadmin_holder = owner.holder
 		owner.holder = null
 
 /datum/admins/proc/reassociate()
 	if(owner)
-		admins += owner
+		GLOB.admins += owner
 		owner.holder = src
 		owner.deadmin_holder = null
 		owner.add_admin_verbs()
@@ -60,7 +66,7 @@ if rights_required == 0, then it simply checks if they are an admin.
 if it doesn't return 1 and show_msg=1 it will prints a message explaining why the check has failed
 generally it would be used like so:
 
-proc/admin_proc()
+/proc/admin_proc()
 	if(!check_rights(R_ADMIN)) return
 	to_world("you have enough rights!")
 
@@ -76,7 +82,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 		return FALSE
 	if(!C.holder)
 		if(show_msg)
-			to_chat(C, "<span class='warning'>Error: You are not an admin.</span>")
+			to_chat(C, "<span class='filter_adminlog warning'>Error: You are not an admin.</span>")
 		return FALSE
 
 	if(rights_required)
@@ -84,7 +90,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 			return TRUE
 		else
 			if(show_msg)
-				to_chat(C, "<span class='warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+				to_chat(C, "<span class='filter_adminlog warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
 			return FALSE
 	else
 		return TRUE
@@ -98,7 +104,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 			if(usr.client.holder.rights != other.holder.rights)
 				if( (usr.client.holder.rights & other.holder.rights) == other.holder.rights )
 					return 1	//we have all the rights they have and more
-		to_chat(usr, "<font color='red'>Error: Cannot proceed. They have more or equal rights to us.</font>")
+		to_chat(usr, "<span class='filter_adminlog warning'>Error: Cannot proceed. They have more or equal rights to us.</span>")
 	return 0
 
 /client/proc/mark_datum(datum/D)
@@ -119,3 +125,33 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 		holder.disassociate()
 		//qdel(holder)
 	return 1
+
+//This proc checks whether subject has at least ONE of the rights specified in rights_required.
+/proc/check_rights_for(client/subject, rights_required)
+	if(subject && subject.holder)
+		if(rights_required && !(rights_required & subject.holder.rights))
+			return 0
+		return 1
+	return 0
+
+/proc/GenerateToken()
+	. = ""
+	for(var/I in 1 to 32)
+		. += "[rand(10)]"
+
+/proc/RawHrefToken(forceGlobal = FALSE)
+	var/tok = GLOB.href_token
+	if(!forceGlobal && usr)
+		var/client/C = usr.client
+		if(!C)
+			CRASH("No client for HrefToken()!")
+		var/datum/admins/holder = C.holder
+		if(holder)
+			tok = holder.href_token
+	return tok
+
+/proc/HrefToken(forceGlobal = FALSE)
+	return "admin_token=[RawHrefToken(forceGlobal)]"
+
+/proc/HrefTokenFormField(forceGlobal = FALSE)
+	return "<input type='hidden' name='admin_token' value='[RawHrefToken(forceGlobal)]'>"

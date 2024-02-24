@@ -23,42 +23,47 @@
 		"You're so happy suddenly, you almost want to dance and sing.",
 		"You feel like the world is out to help you.")
 
+	effect_state = "summoning"
+	effect_color = "#009118"
+
 /datum/artifact_effect/goodfeeling/DoEffectTouch(var/mob/user)
 	if(user)
 		if (istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
 			if(prob(50))
 				if(prob(75))
-					to_chat(H, "<b><font color='blue' size='[num2text(rand(1,5))]'>[pick(drastic_messages)]</b></font>")
+					to_chat(H, span_blue("<b><font size='[num2text(rand(1,5))]'>[pick(drastic_messages)]</b></font>"))
 				else
-					to_chat(H, "<font color='blue'>[pick(messages)]</font>")
+					to_chat(H, span_blue("[pick(messages)]"))
 
 			if(prob(50))
 				H.dizziness += rand(3,5)
 
 /datum/artifact_effect/goodfeeling/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
 			if(prob(5))
 				if(prob(75))
-					to_chat(H, "<font color='blue'>[pick(messages)]</font>")
+					to_chat(H, span_blue("[pick(messages)]"))
 				else
-					to_chat(H, "<font color='blue' size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>")
+					to_chat(H, span_blue("<font size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>"))
 
 			if(prob(5))
 				H.dizziness += rand(3,5)
 		return 1
 
 /datum/artifact_effect/goodfeeling/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
 			if(prob(50))
 				if(prob(95))
-					to_chat(H, "<font color='blue' size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>")
+					to_chat(H, span_blue("<font size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>"))
 				else
-					to_chat(H, "<font color='blue'>[pick(messages)]</font>")
+					to_chat(H, span_blue("[pick(messages)]"))
 
 			if(prob(50))
 				H.dizziness += rand(3,5)

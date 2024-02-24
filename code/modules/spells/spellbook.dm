@@ -125,7 +125,7 @@
 							break
 						else
 							if(aspell.can_improve("speed") && aspell.can_improve("power"))
-								switch(alert(src, "Do you want to upgrade this spell's speed or power?", "Select Upgrade", "Speed", "Power", "Cancel"))
+								switch(tgui_alert(src, "Do you want to upgrade this spell's speed or power?", "Select Upgrade", list("Speed", "Power", "Cancel")))
 									if("Speed")
 										temp = aspell.quicken_spell()
 									if("Power")
@@ -270,7 +270,7 @@
 	else
 		user.add_spell(S)
 		to_chat(user, "<span class='notice'>you rapidly read through the arcane book. Suddenly you realize you understand [spellname]!</span>")
-		user.attack_log += text("\[[time_stamp()]\] <font color='orange'>[user.real_name] ([user.ckey]) learned the spell [spellname] ([S]).</font>")
+		user.attack_log += text("\[[time_stamp()]\] [span_orange("[user.real_name] ([user.ckey]) learned the spell [spellname] ([S]).")]")
 		onlearned(user)
 
 /obj/item/weapon/spellbook/oneuse/proc/recoil(mob/user as mob)
@@ -291,7 +291,7 @@
 
 /obj/item/weapon/spellbook/oneuse/fireball/recoil(mob/user as mob)
 	..()
-	explosion(user.loc, -1, 0, 2, 3, 0, flame_range = 2)
+	explosion(user.loc, -1, 0, 2, 3, 0)
 	qdel(src)
 
 /obj/item/weapon/spellbook/oneuse/smoke
@@ -300,13 +300,11 @@
 	icon_state ="booksmoke"
 	desc = "This book is overflowing with the dank arts."
 
-/obj/item/weapon/spellbook/oneuse/smoke/recoil(mob/user as mob)
+/obj/item/weapon/spellbook/oneuse/smoke/recoil(mob/living/user as mob)
 	..()
 	to_chat(user, "<span class='caution'>Your stomach rumbles...</span>")
 	if(user.nutrition)
-		user.nutrition -= 200
-		if(user.nutrition <= 0)
-			user.nutrition = 0
+		user.adjust_nutrition(-200)
 
 /obj/item/weapon/spellbook/oneuse/blind
 	spell = /spell/targeted/genetic/blind
@@ -409,7 +407,7 @@
 	if(istype(user, /mob/living/carbon/human))
 		to_chat(user, "<font size='15' color='red'><b>HOR-SIE HAS RISEN</b></font>")
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
-		magichead.canremove = 0		//curses!
+		magichead.canremove = FALSE		//curses!
 		magichead.flags_inv = null	//so you can still see their face
 		magichead.voicechange = 1	//NEEEEIIGHH
 		user.drop_from_inventory(user.wear_mask)

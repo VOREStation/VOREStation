@@ -11,9 +11,10 @@
 
 	patrol_speed = 3
 	target_speed = 6
+	cTimeMult = 0.3 // Big bois should be big fast :3
 
+	vocal = 1
 	cleaning = 0
-	blood = 0
 	var/red_switch = 0
 	var/blue_switch = 0
 	var/green_switch = 0
@@ -25,9 +26,9 @@
 		icon_state = "edCLN[on]"
 
 /mob/living/bot/cleanbot/edCLN/handleIdle()
-	if(prob(10))
+	if(vocal && prob(10))
 		custom_emote(2, "makes a less than thrilled beeping sound.")
-		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
+		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
 	if(red_switch && !blue_switch && !green_switch && prob(10) || src.emagged)
 		if(istype(loc, /turf/simulated))
@@ -37,7 +38,7 @@
 	if(!red_switch && blue_switch && !green_switch && prob(50) || src.emagged)
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
-			visible_message("<span class='notice'>\The [src] squirts a puddle of water on the floor!</span>")
+			visible_message("<b>\The [src]</b> squirts a puddle of water on the floor!")
 			T.wet_floor()
 
 	if(!red_switch && !blue_switch && green_switch && prob(10) || src.emagged)
@@ -68,63 +69,41 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	//qdel(src)
+	return ..()
 
-/mob/living/bot/cleanbot/edCLN/attack_hand(var/mob/user)
-	var/dat
-	usr.set_machine(src)
-	add_fingerprint(usr)
+/mob/living/bot/cleanbot/edCLN/tgui_data(mob/user)
+	var/list/data = ..()
+	data["version"] = "v3.0"
+	data["rgbpanel"] = TRUE
+	data["red_switch"] = red_switch
+	data["green_switch"] = green_switch
+	data["blue_switch"] = blue_switch
+	return data
 
-	dat += "<TT><B>Automatic Station Cleaner v2.0</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	dat += "Maintenance panel is [open ? "opened" : "closed"]"
-	if(!locked || issilicon(user))
-		dat += "<BR>Cleans Blood: <A href='?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A><BR>"
-		if(using_map.bot_patrolling)
-			dat += "<BR>Patrol station: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "Yes" : "No"]</A><BR>"
-	if(open && !locked)
-		dat += "<BR>Red Switch: <A href='?src=\ref[src];operation=red_switch'>[red_switch ? "On" : "Off"]</A><BR>"
-		dat += "<BR>Green Switch: <A href='?src=\ref[src];operation=green_switch'>[green_switch ? "On" : "Off"]</A><BR>"
-		dat += "<BR>Blue Switch: <A href='?src=\ref[src];operation=blue_switch'>[blue_switch ? "On" : "Off"]</A>"
-
-	user << browse("<HEAD><TITLE>Cleaner v2.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
-	onclose(user, "autocleaner")
-	return
-
-/mob/living/bot/cleanbot/edCLN/Topic(href, href_list)
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	switch(href_list["operation"])
-		if("start")
-			if(on)
-				turn_off()
-			else
-				turn_on()
-		if("blood")
-			blood = !blood
-			get_targets()
-		if("patrol")
-			will_patrol = !will_patrol
-			patrol_path = null
+/mob/living/bot/cleanbot/edCLN/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+	switch(action)
 		if("red_switch")
 			red_switch = !red_switch
 			to_chat(usr, "<span class='notice'>You flip the red switch [red_switch ? "on" : "off"].</span>")
+			. = TRUE
 		if("green_switch")
-			green_switch = !blue_switch
+			green_switch = !green_switch
 			to_chat(usr, "<span class='notice'>You flip the green switch [green_switch ? "on" : "off"].</span>")
+			. = TRUE
 		if("blue_switch")
 			blue_switch = !blue_switch
 			to_chat(usr, "<span class='notice'>You flip the blue switch [blue_switch ? "on" : "off"].</span>")
-	attack_hand(usr)
+			. = TRUE
 
 /mob/living/bot/cleanbot/edCLN/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
 			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
-			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		emagged = 1
 		return 1
 
@@ -142,7 +121,7 @@
 	..()
 
 	if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && src.loc != usr)
@@ -174,8 +153,8 @@
 				icon_state = "edCLN_bucket"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(W.has_tool_quality(TOOL_WELDER))
+				var/obj/item/weapon/weldingtool/WT = W.get_welder()
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "bucketed frame assembly"
@@ -215,7 +194,7 @@
 				qdel(W)
 
 		if(7)
-			if(W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, "<span class='notice'>Attatching the mop to the frame...</span>")

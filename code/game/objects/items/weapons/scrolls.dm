@@ -3,6 +3,10 @@
 	desc = "A scroll for moving around."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_books.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_books.dmi'
+		)
 	var/uses = 4.0
 	w_class = ITEMSIZE_TINY
 	item_state = "paper"
@@ -42,10 +46,9 @@
 	return
 
 /obj/item/weapon/teleportation_scroll/proc/teleportscroll(var/mob/user)
-
-	var/A
-
-	A = input(user, "Area to jump to", "BOOYEA", A) in teleportlocs
+	var/A = tgui_input_list(user, "Area to jump to:", "Teleportation Scroll", teleportlocs)
+	if(!A)
+		return
 	var/area/thearea = teleportlocs[A]
 
 	if (user.stat || user.restrained())

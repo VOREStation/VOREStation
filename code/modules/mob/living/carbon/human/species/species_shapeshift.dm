@@ -13,7 +13,7 @@ var/list/wrapped_species_by_ref = list()
 
 	var/list/valid_transform_species = list()
 	var/monochromatic
-	var/default_form = SPECIES_HUMAN
+	//var/default_form = SPECIES_HUMAN //VOREStation edit
 
 /datum/species/shapeshifter/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
 	return valid_transform_species
@@ -63,7 +63,7 @@ var/list/wrapped_species_by_ref = list()
 
 /datum/species/shapeshifter/handle_post_spawn(var/mob/living/carbon/human/H)
 	..()
-	wrapped_species_by_ref["\ref[H]"] = default_form
+	wrapped_species_by_ref["\ref[H]"] = base_species //VOREStation edit
 	if(monochromatic)
 		H.r_hair =   H.r_skin
 		H.g_hair =   H.g_skin
@@ -88,6 +88,7 @@ var/list/wrapped_species_by_ref = list()
 
 	var/list/valid_hairstyles = list()
 	var/list/valid_facialhairstyles = list()
+	var/list/valid_gradstyles = GLOB.hair_gradients
 	for(var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
 		if(gender == MALE && S.gender == FEMALE)
@@ -110,10 +111,13 @@ var/list/wrapped_species_by_ref = list()
 
 	visible_message("<span class='notice'>\The [src]'s form contorts subtly.</span>")
 	if(valid_hairstyles.len)
-		var/new_hair = input("Select a hairstyle.", "Shapeshifter Hair") as null|anything in valid_hairstyles
+		var/new_hair = tgui_input_list(usr, "Select a hairstyle.", "Shapeshifter Hair", valid_hairstyles)
 		change_hair(new_hair ? new_hair : "Bald")
+	if(valid_gradstyles.len)
+		var/new_hair = tgui_input_list(usr, "Select a hair gradient style.", "Shapeshifter Hair", valid_gradstyles)
+		change_hair_gradient(new_hair ? new_hair : "None")
 	if(valid_facialhairstyles.len)
-		var/new_hair = input("Select a facial hair style.", "Shapeshifter Hair") as null|anything in valid_facialhairstyles
+		var/new_hair = tgui_input_list(usr, "Select a facial hair style.", "Shapeshifter Hair", valid_facialhairstyles)
 		change_facial_hair(new_hair ? new_hair : "Shaved")
 
 /mob/living/carbon/human/proc/shapeshifter_select_gender()
@@ -126,11 +130,11 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_gender = input("Please select a gender.", "Shapeshifter Gender") as null|anything in list(FEMALE, MALE, NEUTER, PLURAL)
+	var/new_gender = tgui_input_list(usr, "Please select a gender.", "Shapeshifter Gender", list(FEMALE, MALE, NEUTER, PLURAL))
 	if(!new_gender)
 		return
 
-	var/new_gender_identity = input("Please select a gender Identity.", "Shapeshifter Gender Identity") as null|anything in list(FEMALE, MALE, NEUTER, PLURAL, HERM) //VOREStation Edit
+	var/new_gender_identity = tgui_input_list(usr, "Please select a gender Identity.", "Shapeshifter Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM)) //VOREStation Edit
 	if(!new_gender_identity)
 		return
 
@@ -149,19 +153,21 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 50
 
 	var/new_species = null
-	new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in species.get_valid_shapeshifter_forms(src)
+	new_species = tgui_input_list(usr, "Please select a species to emulate.", "Shapeshifter Body", species.get_valid_shapeshifter_forms(src))
 
 	if(!new_species || !GLOB.all_species[new_species] || wrapped_species_by_ref["\ref[src]"] == new_species)
 		return
 	shapeshifter_change_shape(new_species)
 
+/* VOREStation edit - moved to species_shapeshift_vr.dm
 /mob/living/carbon/human/proc/shapeshifter_change_shape(var/new_species = null)
 	if(!new_species)
 		return
 
 	wrapped_species_by_ref["\ref[src]"] = new_species
-	visible_message("<span class='notice'>\The [src] shifts and contorts, taking the form of \a [new_species]!</span>")
+	visible_message("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!")
 	regenerate_icons()
+*/
 
 /mob/living/carbon/human/proc/shapeshifter_select_colour()
 
@@ -173,7 +179,7 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_skin = input("Please select a new body color.", "Shapeshifter Colour") as color
+	var/new_skin = input(usr, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin)) as null|color
 	if(!new_skin)
 		return
 	shapeshifter_set_colour(new_skin)
@@ -211,11 +217,15 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_hair = input("Please select a new hair color.", "Hair Colour") as color
+	var/new_hair = input(usr, "Please select a new hair color.", "Hair Colour") as color
 	if(!new_hair)
 		return
 	shapeshifter_set_hair_color(new_hair)
-	var/new_fhair = input("Please select a new facial hair color.", "Facial Hair Color") as color
+	var/new_grad = input(usr, "Please select a new hair gradient color.", "Hair Gradient Colour") as color
+	if(!new_grad)
+		return
+	shapeshifter_set_grad_color(new_grad)
+	var/new_fhair = input(usr, "Please select a new facial hair color.", "Facial Hair Color") as color
 	if(!new_fhair)
 		return
 	shapeshifter_set_facial_color(new_fhair)
@@ -223,6 +233,10 @@ var/list/wrapped_species_by_ref = list()
 /mob/living/carbon/human/proc/shapeshifter_set_hair_color(var/new_hair)
 
 	change_hair_color(hex2num(copytext(new_hair, 2, 4)), hex2num(copytext(new_hair, 4, 6)), hex2num(copytext(new_hair, 6, 8)))
+
+/mob/living/carbon/human/proc/shapeshifter_set_grad_color(var/new_grad)
+
+	change_grad_color(hex2num(copytext(new_grad, 2, 4)), hex2num(copytext(new_grad, 4, 6)), hex2num(copytext(new_grad, 6, 8)))
 
 /mob/living/carbon/human/proc/shapeshifter_set_facial_color(var/new_fhair)
 
@@ -303,14 +317,14 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 50
 
 	var/current_color = rgb(r_eyes,g_eyes,b_eyes)
-	var/new_eyes = input("Pick a new color for your eyes.","Eye Color", current_color) as null|color
+	var/new_eyes = input(usr, "Pick a new color for your eyes.","Eye Color", current_color) as null|color
 	if(!new_eyes)
 		return
-	
+
 	shapeshifter_set_eye_color(new_eyes)
 
 /mob/living/carbon/human/proc/shapeshifter_set_eye_color(var/new_eyes)
-	
+
 	var/list/new_color_rgb_list = hex2rgb(new_eyes)
 	// First, update mob vars.
 	r_eyes = new_color_rgb_list[1]

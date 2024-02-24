@@ -1,0 +1,42 @@
+[
+    {
+    "url": "https://s.put.re/bkZYkYwX.mp3",
+    "title": "Flip-Flap (Title One)",
+    "duration": 1500,
+    "artist": "X-CEED",
+    "secret": false,
+    "lobby": true,
+    "jukebox": false,
+    "genre": "Jazz"
+    }, 
+    {
+    "url": "https://s.put.re/EzLP21Mp.mp3",
+    "title": "Robocop Theme (Title Two)",
+    "duration": 1180,
+    "artist": "Cboyardee",
+    "secret": false,
+    "lobby": true,
+    "jukebox": false,
+    "genre": "Electronic"
+    }, 
+    {
+    "url": "https://s.put.re/uDpZrL1L.mp3",
+    "title": "Tin Tin on the Moon (Remix)",
+    "duration": 2320,
+    "artist": "Jeroen Tel (Remixed by Cuboos)",
+    "secret": false,
+    "lobby": true,
+    "jukebox": true,
+    "genre": "Electronic"
+    }, 
+    {
+    "url": "https://s.put.re/nNXTd9ko.mp3",
+    "title": "Phoron Will Make Us Rich",
+    "duration": 1370,
+    "artist": "Earthcrusher",
+    "secret": false,
+    "lobby": true,
+    "jukebox": true,
+    "genre": "Electronic"
+    }
+]

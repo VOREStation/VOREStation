@@ -29,11 +29,16 @@ other types of metals and chemistry for reagents).
 	var/list/chemicals = list()		//List of chemicals.
 	var/build_path = null			//The path of the object that gets created.
 	var/time = 10					//How many ticks it requires to build
-	var/category = null 			//Primarily used for Mech Fabricators, but can be used for anything.
+	var/list/category = list() 			//Primarily used for Mech Fabricators, but can be used for anything.
 	var/sort_string = "ZZZZZ"		//Sorting order
+	/// Optional string that interfaces can use as part of search filters. See- item/borg/upgrade/ai and the Exosuit Fabs.
+	var/search_metadata
 
 /datum/design/New()
 	..()
+	if(!islist(category))
+		log_runtime(EXCEPTION("Warning: Design [type] defined a non-list category. Please fix this."))
+		category = list(category)
 	item_name = name
 	AssembleDesignInfo()
 
@@ -63,9 +68,19 @@ other types of metals and chemistry for reagents).
 /datum/design/item
 	build_type = PROTOLATHE
 
-//Make sure items don't get free power
+//Make sure items don't get free power, or resources. Also make things be recycled with proper values.
 /datum/design/item/Fabricate()
 	var/obj/item/I = ..()
+
+	if(LAZYLEN(materials))
+		if(!LAZYLEN(I.matter))
+			I.matter = list()
+		else
+			I.matter.Cut()
+
+		for(var/matname in materials)
+			I.matter[matname] = materials[matname]
+
 	var/obj/item/weapon/cell/C = I.get_cell()
 	if(C)
 		C.charge = 0

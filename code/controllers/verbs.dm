@@ -4,6 +4,7 @@
 // Clickable stat() button.
 /obj/effect/statclick
 	name = "Initializing..."
+	blocks_emissive = FALSE
 	var/target
 
 /obj/effect/statclick/New(loc, text, target) //Don't port this to Initialize it's too critical
@@ -74,8 +75,7 @@
 	options["MC"] = Master
 	options["Failsafe"] = Failsafe
 	options["Configuration"] = config
-	for(var/i in Master.subsystems)
-		var/datum/controller/subsystem/S = i
+	for(var/datum/controller/subsystem/S as anything in Master.subsystems)
 		if(!istype(S))		//Eh, we're a debug verb, let's have typechecking.
 			continue
 		var/strtype = "SS[get_end_section_of_type(S.type)]"
@@ -89,21 +89,16 @@
 
 	//Goon PS stuff, and other yet-to-be-subsystem things.
 	options["LEGACY: master_controller"] = master_controller
-	options["LEGACY: ticker"] = ticker
-	options["LEGACY: tickerProcess"] = tickerProcess
 	options["LEGACY: air_master"] = air_master
 	options["LEGACY: job_master"] = job_master
 	options["LEGACY: radio_controller"] = radio_controller
-	options["LEGACY: supply_controller"] = supply_controller
 	options["LEGACY: emergency_shuttle"] = emergency_shuttle
 	options["LEGACY: paiController"] = paiController
 	options["LEGACY: cameranet"] = cameranet
 	options["LEGACY: transfer_controller"] = transfer_controller
 	options["LEGACY: gas_data"] = gas_data
-	options["LEGACY: plant_controller"] = plant_controller
-	options["LEGACY: alarm_manager"] = alarm_manager
 
-	var/pick = input(mob, "Choose a controller to debug/view variables of.", "VV controller:") as null|anything in options
+	var/pick = input(mob, "Choose a controller to debug/view variables of.", "VV controller:") as null|anything in options // Leaving as input() due to debug tool
 	if(!pick)
 		return
 	var/datum/D = options[pick]
@@ -112,28 +107,3 @@
 	feedback_add_details("admin_verb", "DebugController")
 	message_admins("Admin [key_name_admin(mob)] is debugging the [pick] controller.")
 	debug_variables(D)
-
-//VOREStation Edit Begin
-/client/proc/debug_process_scheduler()
-	set category = "Debug"
-	set name = "Debug Process Scheduler"
-	set desc = "Debug the process scheduler itself. For vulpine use only."
-
-	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
-	debug_variables(processScheduler)
-	feedback_add_details("admin_verb", "DProcSchd")
-	message_admins("Admin [key_name_admin(usr)] is debugging the process scheduler.")
-
-/client/proc/debug_process(controller in processScheduler.nameToProcessMap)
-	set category = "Debug"
-	set name = "Debug Process Controller"
-	set desc = "Debug one of the periodic loop background task controllers for the game (be careful!)"
-
-	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
-	var/datum/controller/process/P = processScheduler.nameToProcessMap[controller]
-	debug_variables(P)
-	feedback_add_details("admin_verb", "DProcCtrl")
-	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
-//VOREStation Edit End

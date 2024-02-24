@@ -75,17 +75,17 @@ var/datum/controller/rogue/rm_controller
 						/mob/living/simple_mob/animal/space/bats/roguemines = 1,
 						/mob/living/simple_mob/animal/space/carp/roguemines = 2,
 						/mob/living/simple_mob/animal/space/goose/roguemines = 2,
-						/mob/living/simple_mob/animal/wolf/space/roguemines = 1),
+						/mob/living/simple_mob/vore/wolf/space/roguemines = 1),
 
 		"tier3" = list(
 						/mob/living/simple_mob/animal/space/carp/roguemines = 1,
 						/mob/living/simple_mob/animal/space/goose/roguemines = 1,
-						/mob/living/simple_mob/animal/wolf/space/roguemines = 3,
+						/mob/living/simple_mob/vore/wolf/space/roguemines = 3,
 						/mob/living/simple_mob/animal/space/carp/large/roguemines = 2,
 						/mob/living/simple_mob/animal/space/bear/roguemines = 1),
 
 		"tier4" = list(
-						/mob/living/simple_mob/animal/wolf/space/roguemines = 1,
+						/mob/living/simple_mob/vore/wolf/space/roguemines = 1,
 						/mob/living/simple_mob/animal/space/carp/large/roguemines = 4,
 						/mob/living/simple_mob/animal/space/bear/roguemines = 2),
 
@@ -143,7 +143,7 @@ var/datum/controller/rogue/rm_controller
 	return oldest_zone
 
 /datum/controller/rogue/proc/mark_clean(var/datum/rogue/zonemaster/ZM)
-	if(!ZM in all_zones) //What? Who?
+	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(mc): Some unknown zone asked to be listed.")
 
 	if(ZM in ready_zones)
@@ -152,7 +152,7 @@ var/datum/controller/rogue/rm_controller
 	clean_zones += ZM
 
 /datum/controller/rogue/proc/mark_ready(var/datum/rogue/zonemaster/ZM)
-	if(!ZM in all_zones) //What? Who?
+	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(mr): Some unknown zone asked to be listed.")
 
 	if(ZM in clean_zones)
@@ -161,19 +161,19 @@ var/datum/controller/rogue/rm_controller
 	ready_zones += ZM
 
 /datum/controller/rogue/proc/unmark_clean(var/datum/rogue/zonemaster/ZM)
-	if(!ZM in all_zones) //What? Who?
+	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(umc): Some unknown zone asked to be listed.")
 
-	if(!ZM in clean_zones)
+	if(!(ZM in clean_zones))
 		rm_controller.dbg("RMC(umc): Finite state machine broken.")
 
 	clean_zones -= ZM
 
 /datum/controller/rogue/proc/unmark_ready(var/datum/rogue/zonemaster/ZM)
-	if(!ZM in all_zones) //What? Who?
+	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(umr): Some unknown zone asked to be listed.")
 
-	if(!ZM in ready_zones)
+	if(!(ZM in ready_zones))
 		rm_controller.dbg("RMC(umr): Finite state machine broken.")
 
 	ready_zones -= ZM
@@ -197,6 +197,6 @@ var/datum/controller/rogue/rm_controller
 		rm_controller.dbg("RMC(pnz): Cleaning up oldest zone.")
 		spawn(0) //Detatch it so we can return the new zone for now.
 			var/datum/rogue/zonemaster/ZM_oldest = get_oldest_zone()
-			ZM_oldest.clean_zone()
+			if(ZM_oldest) ZM_oldest.clean_zone()
 
 	return ZM_target

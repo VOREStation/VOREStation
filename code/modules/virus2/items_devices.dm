@@ -3,7 +3,8 @@
 /obj/item/device/antibody_scanner
 	name = "antibody scanner"
 	desc = "Scans living beings for antibodies in their blood."
-	icon_state = "health"
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "antibody"
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
 
@@ -30,14 +31,14 @@
 		report("Antibodies detected: [antigens2string(C.antibodies)]", user)
 
 /obj/item/device/antibody_scanner/proc/report(var/text, mob/user as mob)
-	to_chat(user, "<font color='blue'>[bicon(src)] \The [src] beeps,</font> \"<font color='blue'>[text]</font>\"")
+	to_chat(user, "[span_blue("\icon[src][bicon(src)] \The [src] beeps,")] \"[span_blue("[text]")]\"")
 
 ///////////////VIRUS DISH///////////////
 
 /obj/item/weapon/virusdish
 	name = "virus dish"
 	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-b"
+	icon_state = "virussample"
 	var/datum/disease2/disease/virus2 = null
 	var/growth = 0
 	var/basic_info = null
@@ -66,9 +67,9 @@
 		qdel(src)
 
 /obj/item/weapon/virusdish/examine(mob/user)
-	..()
+	. = ..()
 	if(basic_info)
-		to_chat(user, "[basic_info] : <a href='?src=\ref[src];info=1'>More Information</a>")
+		. += "[basic_info] : <a href='?src=\ref[src];info=1'>More Information</a>"
 
 /obj/item/weapon/virusdish/Topic(href, href_list)
 	. = ..()
@@ -81,7 +82,7 @@
 /obj/item/weapon/ruinedvirusdish
 	name = "ruined virus sample"
 	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-b"
+	icon_state = "virussample-ruined"
 	desc = "The bacteria in the dish are completely dead."
 
 /obj/item/weapon/ruinedvirusdish/attackby(var/obj/item/weapon/W as obj,var/mob/living/carbon/user as mob)

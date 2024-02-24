@@ -12,11 +12,11 @@
 		return
 
 	if(handcuffed || legcuffed)
-		to_chat(src, "<font color='red'>You cannot evolve when you are cuffed.</font>")
+		to_chat(src, span_red("You cannot evolve when you are cuffed."))
 		return
 
 	if(amount_grown < max_grown)
-		to_chat(src, "<font color='red'>You are not fully grown.</font>")
+		to_chat(src, span_red("You are not fully grown."))
 		return
 
 	// confirm_evolution() handles choices and other specific requirements.
@@ -36,7 +36,7 @@
 	if(mind)
 		mind.transfer_to(adult)
 		if (can_namepick_as_adult)
-			var/newname = sanitize(input(adult, "You have become an adult. Choose a name for yourself.", "Adult Name") as null|text, MAX_NAME_LEN)
+			var/newname = sanitize(tgui_input_text(adult, "You have become an adult. Choose a name for yourself.", "Adult Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 
 			if(!newname)
 				adult.fully_replace_character_name(name, "[src.adult_name] ([instance_num])")

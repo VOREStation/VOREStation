@@ -1,3 +1,6 @@
+/*
+ * Cardmon trading card game
+ */
 /obj/item/weapon/pack/cardemon
 	name = "cardemon booster pack"
 	desc = "Finally! A children's card game in space!"

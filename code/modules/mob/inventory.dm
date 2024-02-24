@@ -47,16 +47,16 @@ var/list/slot_equipment_priority = list( \
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
+/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, ignore_obstructions = 1)
 	if(!W)
 		return 0
-	if(!W.mob_can_equip(src, slot))
+	if(!W.mob_can_equip(src, slot, disable_warning, ignore_obstructions))
 		if(del_on_fail)
 			qdel(W)
 
 		else
 			if(!disable_warning)
-				to_chat(src, "<font color='red'>You are unable to equip that.</font>") //Only print if del_on_fail is false
+				to_chat(src, span_red("You are unable to equip that.")) //Only print if del_on_fail is false
 		return 0
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
@@ -68,7 +68,16 @@ var/list/slot_equipment_priority = list( \
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
+/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot, ignore_obstructions = 1)
+	return equip_to_slot_if_possible(W, slot, 1, 1, 0, ignore_obstructions)
+
+//hurgh. these feel hacky, but they're the only way I could get the damn thing to work. I guess they could be handy for antag spawners too?
+/mob/proc/equip_voidsuit_to_slot_or_del_with_refit(obj/item/clothing/suit/space/void/W as obj, slot, species = SPECIES_HUMAN)
+	W.refit_for_species(species)
+	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
+
+/mob/proc/equip_voidhelm_to_slot_or_del_with_refit(obj/item/clothing/head/helmet/space/void/W as obj, slot, species = SPECIES_HUMAN)
+	W.refit_for_species(species)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
@@ -84,7 +93,7 @@ var/list/slot_equipment_priority = list( \
 
 	return 0
 
-/mob/proc/equip_to_storage(obj/item/newitem)
+/mob/proc/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
 	return 0
 
 /* Hands */
@@ -98,6 +107,10 @@ var/list/slot_equipment_priority = list( \
 // Override for your specific mob's hands or lack thereof.
 /mob/proc/is_holding_item_of_type(typepath)
 	return FALSE
+
+// Override for your specific mob's hands or lack thereof.
+/mob/proc/get_all_held_items()
+	return list()
 
 //Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
 /mob/proc/put_in_l_hand(var/obj/item/W)
@@ -125,7 +138,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/put_in_hands(var/obj/item/W)
 	if(!W)
 		return 0
-	W.forceMove(get_turf(src))
+	W.forceMove(drop_location())
 	W.reset_plane_and_layer()
 	W.dropped()
 	return 0
@@ -136,10 +149,8 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target)
 	if(W)
 		remove_from_mob(W, target)
-		if(!(W && W.loc))
-			return 1 // self destroying objects (tk, grabs)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
@@ -152,7 +163,6 @@ var/list/slot_equipment_priority = list( \
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
 	return
-
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
 	Does nothing else.
@@ -175,7 +185,7 @@ var/list/slot_equipment_priority = list( \
 	if(!I) //If there's nothing to drop, the drop is automatically successful.
 		return 1
 	var/slot = get_inventory_slot(I)
-	return slot && I.mob_can_unequip(src, slot)
+	return I.mob_can_unequip(src, slot)
 
 /mob/proc/get_inventory_slot(obj/item/I)
 	var/slot = 0
@@ -189,10 +199,27 @@ var/list/slot_equipment_priority = list( \
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
 /mob/proc/unEquip(obj/item/I, force = 0, var/atom/target) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!(force || canUnEquip(I)))
-		return
+		return FALSE
 	drop_from_inventory(I, target)
-	return 1
+	return TRUE
 
+//visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
+//item MUST BE FORCEMOVE'D OR QDEL'D
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE)
+	return u_equip(I, force, null, TRUE, idrop)
+
+///sometimes we only want to grant the item's action if it's equipped in a specific slot.
+/obj/item/proc/item_action_slot_check(slot, mob/user)
+	if(slot == SLOT_BACK || slot == LEGS) //these aren't true slots, so avoid granting actions there
+		return FALSE
+	return TRUE
+
+///Get the item on the mob in the storage slot identified by the id passed in
+/mob/proc/get_item_by_slot(slot_id)
+	return null
+
+/mob/proc/getBackSlot()
+	return SLOT_BACK
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O, var/atom/target)
@@ -210,8 +237,7 @@ var/list/slot_equipment_priority = list( \
 		else
 			I.dropInto(drop_location())
 		I.dropped(src)
-	return 1
-
+	return TRUE
 
 //Returns the item equipped to the specified slot, if any.
 /mob/proc/get_equipped_item(var/slot)
@@ -232,11 +258,10 @@ var/list/slot_equipment_priority = list( \
 	if(hasvar(src,"wear_id")) if(src:wear_id) items += src:wear_id
 	if(hasvar(src,"wear_mask")) if(src:wear_mask) items += src:wear_mask
 	if(hasvar(src,"wear_suit")) if(src:wear_suit) items += src:wear_suit
-//	if(hasvar(src,"w_radio")) if(src:w_radio) items += src:w_radio  commenting this out since headsets go on your ears now PLEASE DON'T BE MAD KEELIN
 	if(hasvar(src,"w_uniform")) if(src:w_uniform) items += src:w_uniform
 
-	//if(hasvar(src,"l_hand")) if(src:l_hand) items += src:l_hand
-	//if(hasvar(src,"r_hand")) if(src:r_hand) items += src:r_hand
+	if(hasvar(src,"l_hand")) if(src:l_hand) items += src:l_hand
+	if(hasvar(src,"r_hand")) if(src:r_hand) items += src:r_hand
 
 	return items
 

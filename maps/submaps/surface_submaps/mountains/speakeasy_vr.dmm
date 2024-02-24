@@ -1,0 +1,54 @@
+"a" = (/turf/template_noop,/area/submap/Speakeasy)
+"c" = (/turf/simulated/floor/carpet/turcarpet,/area/submap/Speakeasy)
+"f" = (/obj/structure/table/gamblingtable,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"g" = (/obj/structure/bed/chair/wood{dir = 1},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"h" = (/obj/random/handgun,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"i" = (/obj/item/clothing/head/fedora,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"j" = (/obj/structure/bookcase,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"k" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"l" = (/obj/structure/bed/chair/comfy/black,/turf/simulated/floor/carpet/turcarpet,/area/submap/Speakeasy)
+"m" = (/obj/structure/table/woodentable,/obj/machinery/light/poi{dir = 4},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"n" = (/obj/structure/reagent_dispensers/beerkeg,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"o" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"p" = (/obj/machinery/media/jukebox,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"s" = (/obj/structure/bed/chair/wood{dir = 4},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"u" = (/obj/structure/table/gamblingtable,/obj/machinery/light/poi{dir = 4},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"v" = (/obj/structure/table/fancyblack,/obj/item/clothing/mask/smokable/cigarette/cigar,/turf/simulated/floor/carpet/turcarpet,/area/submap/Speakeasy)
+"w" = (/turf/simulated/wall/wood,/area/submap/Speakeasy)
+"x" = (/obj/structure/bed/chair/sofa/left/blue{dir = 4},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"B" = (/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"C" = (/turf/simulated/mineral/floor/cave,/area/submap/Speakeasy)
+"D" = (/obj/structure/bed/chair/sofa/corner/black{dir = 4},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"E" = (/obj/structure/bed/chair/comfy/black{dir = 1},/turf/simulated/floor/carpet/turcarpet,/area/submap/Speakeasy)
+"H" = (/obj/machinery/vending/boozeomat,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"I" = (/obj/structure/table/woodentable,/obj/random/drinkbottle,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"K" = (/obj/effect/floor_decal/corner/black/diagonal,/turf/simulated/floor/tiled/neutral,/area/submap/Speakeasy)
+"L" = (/obj/structure/bed/chair/wood{dir = 8},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"M" = (/obj/machinery/light/poi{dir = 1},/turf/simulated/floor/carpet/turcarpet,/area/submap/Speakeasy)
+"N" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"O" = (/obj/machinery/light/poi{dir = 1},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"R" = (/obj/structure/bed/chair/sofa/black{dir = 1},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"U" = (/obj/structure/bed/chair/sofa/right/blue{dir = 1},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"V" = (/obj/structure/table/woodentable,/obj/machinery/chemical_dispenser/bar_soft/full{dir = 1},/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"W" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"X" = (/obj/structure/table/woodentable,/obj/machinery/chemical_dispenser/bar_alc/full,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"Y" = (/obj/structure/table/fancyblack,/obj/random/cash/big,/turf/simulated/floor/carpet/turcarpet,/area/submap/Speakeasy)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaa
+awwwwwwwwwwaaaaa
+awnnwBMlMBwwwwaa
+awiBjBYvYBwfLwwa
+awhBjBcEcBwgBBwa
+awwwwBBBBBwBWWwa
+awXHwwwowwwBNmwa
+awBBBOBBBBBBNNwa
+awVNININNIBBggwa
+awBkkkkkkkBBBBwa
+awpBBBBBBBKKKWwa
+awwxffBBBBKKKuwa
+aawDRUBBBBKKKgwa
+aawwwwBBBBsfLwwa
+aaaaawwowwwwwwaa
+aaaaaaCCCaaaaaaa
+"}

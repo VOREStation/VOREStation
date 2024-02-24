@@ -34,16 +34,21 @@
 
 	#endif
 
+	// asset_cache
+	var/asset_cache_job
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = text2num(href_list["asset_cache_confirm_arrival"])
-		completed_asset_jobs += job
-		return
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
+			return
 
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
 		to_world_log("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
-		//del(usr)
+		return
+
+	// Tgui Topic middleware
+	if(!tgui_Topic(href_list))
 		return
 
 	//Admin PM
@@ -55,9 +60,17 @@
 		cmd_admin_pm(C,null)
 		return
 
+	if(href_list["mentorhelp_msg"])
+		var/client/C = locate(href_list["mentorhelp_msg"])
+		if(ismob(C))
+			var/mob/M = C
+			C = M.client
+		cmd_mentor_pm(C, null)
+		return
+
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			to_chat(usr, "<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>")
+			to_chat(usr, "<span class='warning'>You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you</span>")
 			return
 		if(mute_irc)
 			to_chat(usr, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
@@ -65,16 +78,61 @@
 		send2adminirc(href_list["irc_msg"])
 		return
 
+	//VOREStation Add
+	if(href_list["discord_reg"])
+		var/their_id = html_decode(href_list["discord_reg"])
+		var/sane = FALSE
+		for(var/list/L as anything in GLOB.pending_discord_registrations)
+			if(!islist(L))
+				GLOB.pending_discord_registrations -= L
+				continue
+			if(L["ckey"] == ckey && L["id"] == their_id)
+				GLOB.pending_discord_registrations -= list(L)
+				var/time = L["time"]
+				if((world.realtime - time) > 10 MINUTES)
+					to_chat(src, "<span class='warning'>Sorry, that link has expired. Please request another on Discord.</span>")
+					return
+				sane = TRUE
+				break
+
+		if(!sane)
+			to_chat(src, "<span class='warning'>Sorry, that link doesn't appear to be valid. Please try again.</span>")
+			return
+
+		var/sql_discord = sql_sanitize_text(their_id)
+		var/sql_ckey = sql_sanitize_text(ckey)
+		var/DBQuery/query = dbcon.NewQuery("UPDATE erro_player SET discord_id = '[sql_discord]' WHERE ckey = '[sql_ckey]'")
+		if(query.Execute())
+			to_chat(src, "<span class='notice'>Registration complete! Thank you for taking the time to register your Discord ID.</span>")
+			log_and_message_admins("[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord snowflake ID is: [their_id]")
+			admin_chat_message(message = "[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord is: <@[their_id]>", color = "#4eff22")
+			notes_add(ckey, "Discord ID: [their_id]")
+			world.VgsAddMemberRole(their_id)
+		else
+			to_chat(src, "<span class='warning'>There was an error registering your Discord ID in the database. Contact an administrator.</span>")
+			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?")
+		return
+	//VOREStation Add End
+
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
 
+	//byond bug ID:2256651
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
+
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
+		if("mentorholder")	hsrc = (check_rights(R_ADMIN, 0) ? holder : mentorholder)
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
-		if("chat")		return chatOutput.Topic(href, href_list)
 
 	switch(href_list["action"])
 		if("openLink")
@@ -85,7 +143,7 @@
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
+		to_chat(src, span_red("Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB."))
 		return 0
 /*	//Don't need this at the moment. But it's here if it's needed later.
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
@@ -109,29 +167,32 @@
 		return null
 
 	if(!config.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
+		alert(src,"This server doesn't allow guest accounts to play. Please go to https://www.byond.com/ and register for a key.","Guest") // Not tgui_alert
 		del(src)
 		return
 
-	chatOutput = new /datum/chatOutput(src) //veechat
-	chatOutput.send_resources()
-	spawn()
-		chatOutput.start()
-
 	//Only show this if they are put into a new_player mob. Otherwise, "what title screen?"
 	if(isnewplayer(src.mob))
-		to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
+		to_chat(src, span_red("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	// Instantiate tgui panel
+	tgui_panel = new(src, "browseroutput")
+
 	GLOB.ahelp_tickets.ClientLogin(src)
+	GLOB.mhelp_tickets.ClientLogin(src)
 
 	//Admin Authorisation
 	holder = admin_datums[ckey]
 	if(holder)
-		admins += src
+		GLOB.admins += src
 		holder.owner = src
+
+	mentorholder = mentor_datums[ckey]
+	if (mentorholder)
+		mentorholder.associate(GLOB.directory[ckey])
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -140,9 +201,21 @@
 		preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
+	prefs.client = src // Only relevant if we reloaded it from the global list, otherwise prefs/New sets it
+
+	hook_vr("client_new",list(src)) //VOREStation Code. For now this only loads vore prefs, so better put before mob.Login() call but after normal prefs are loaded.
 
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
+	if(prefs)
+		prefs.selecting_slots = FALSE
+
+	// Initialize tgui panel
+	tgui_panel.initialize()
+
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
@@ -171,7 +244,6 @@
 
 	if(!void)
 		void = new()
-		void.MakeGreed()
 	screen += void
 
 	if((prefs.lastchangelog != changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
@@ -179,8 +251,6 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
-
-	hook_vr("client_new",list(src)) //VOREStation Code
 
 	if(config.paranoia_logging)
 		var/alert = FALSE //VOREStation Edit start.
@@ -191,9 +261,9 @@
 			log_and_message_admins("PARANOIA: [key_name(src)] has a very new BYOND account ([account_age] days).")
 			alert = TRUE
 		if(alert)
-			for(var/client/X in admins)
+			for(var/client/X in GLOB.admins)
 				if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
-					X << 'sound/voice/bcriminal.ogg'
+					X << 'sound/effects/tones/newplayerping.ogg'
 				window_flash(X)
 		//VOREStation Edit end.
 
@@ -203,8 +273,12 @@
 /client/Del()
 	if(holder)
 		holder.owner = null
-		admins -= src
+		GLOB.admins -= src
+	if (mentorholder)
+		mentorholder.owner = null
+		GLOB.mentors -= src
 	GLOB.ahelp_tickets.ClientLogout(src)
+	GLOB.mhelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	return ..()
@@ -288,13 +362,14 @@
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
+	// If you're about to disconnect the player, you have to use to_chat_immediate otherwise they won't get the message (SSchat will queue it)
+
 	//Panic bunker code
 	if (isnum(player_age) && player_age == 0) //first connection
 		if (config.panic_bunker && !holder && !deadmin_holder)
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
-			to_chat(src, "Sorry but the server is currently not accepting connections from never before seen players.")
-			qdel(src)
+			disconnect_with_message("Sorry but the server is currently not accepting connections from never before seen players.")
 			return 0
 
 	// IP Reputation Check
@@ -312,23 +387,24 @@
 
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
-					to_chat(src, "Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
-					qdel(src)
+					disconnect_with_message("Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
-					to_chat(src, "Sorry, we do not accept connections from users via VPN/Proxy/Tor connections.")
-					qdel(src)
+					disconnect_with_message("Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you believe this is in error, contact an admin out-of-game.")
 					return 0
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
 	// VOREStation Edit Start - Department Hours
-	if(config.time_off)
-		var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
-		query_hours.Execute()
+	var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
+	if(query_hours.Execute())
 		while(query_hours.NextRow())
-			LAZYINITLIST(department_hours)
 			department_hours[query_hours.item[1]] = text2num(query_hours.item[2])
+			play_hours[query_hours.item[1]] = text2num(query_hours.item[3])
+	else
+		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
+		log_debug("Error loading play hours for [ckey]: [error_message]")
+		tgui_alert_async(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
 	// VOREStation Edit End - Department Hours
 
 	if(sql_id)
@@ -345,7 +421,6 @@
 	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO `erro_connection_log`(`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
 	query_accesslog.Execute()
 
-#undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
 
@@ -362,38 +437,30 @@
 	else
 		. = ..()
 
-
-// Byond seemingly calls stat, each tick.
-// Calling things each tick can get expensive real quick.
-// So we slow this down a little.
-// See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat
-/client/Stat()
-	. = ..()
-	if (holder)
-		sleep(1)
-	else
-		stoplag(5)
-
 /client/proc/last_activity_seconds()
 	return inactivity / 10
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
 	spawn (10) //removing this spawn causes all clients to not get verbs.
-		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
 
-mob/proc/MayRespawn()
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
+		//Precache the client with all other assets slowly, so as to not block other browse() calls
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(getFilesSlow), src, SSassets.preload, FALSE), 5 SECONDS)
+
+/mob/proc/MayRespawn()
 	return 0
 
-client/proc/MayRespawn()
+/client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
 	return 0
 
-client/verb/character_setup()
+/client/verb/character_setup()
 	set name = "Character Setup"
 	set category = "Preferences"
 	if(prefs)
@@ -417,31 +484,11 @@ client/verb/character_setup()
 		return FALSE
 	return ..()
 
-/client/verb/reload_vchat()
-	set name = "Reload VChat"
-	set category = "OOC"
-
-	//Timing
-	if(src.chatOutputLoadedAt > (world.time - 10 SECONDS))
-		alert(src, "You can only try to reload VChat every 10 seconds at most.")
-		return
-	
-	//Log, disable
-	log_debug("[key_name(src)] reloaded VChat.")
-	
-	//The hard way
-	qdel_null(src.chatOutput)
-	chatOutput = new /datum/chatOutput(src) //veechat
-	chatOutput.send_resources()
-	spawn()
-		chatOutput.start()
-	
-
 //This is for getipintel.net.
 //You're welcome to replace this proc with your own that does your own cool stuff.
 //Just set the client's ip_reputation var and make sure it makes sense with your config settings (higher numbers are worse results)
 /client/proc/update_ip_reputation()
-	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
+	var/request = "https://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
 	var/http[] = world.Export(request)
 
 	/* Debug
@@ -496,3 +543,54 @@ client/verb/character_setup()
 	else
 		ip_reputation = score
 		return TRUE
+
+/client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
+	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
+	window_flash(src)
+	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
+	qdel(src)
+
+/// Keydown event in a tgui window this client has open. Has keycode passed to it.
+/client/verb/TguiKeyDown(keycode as text)
+	set name = "TguiKeyDown"
+	set hidden = TRUE
+	return // stub
+
+/// Keyup event in a tgui window this client has open. Has keycode passed to it.
+/client/verb/TguiKeyUp(keycode as text) // Doesn't seem to currently fire?
+	set name = "TguiKeyUp"
+	set hidden = TRUE
+	return // stub
+
+/client/verb/toggle_fullscreen()
+	set name = "Toggle Fullscreen"
+	set category = "OOC"
+
+	fullscreen = !fullscreen
+
+	if (fullscreen)
+		winset(usr, "mainwindow", "on-size=")
+		winset(usr, "mainwindow", "titlebar=false")
+		winset(usr, "mainwindow", "can-resize=false")
+		winset(usr, "mainwindow", "menu=")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "is-maximized=true")
+	else
+		winset(usr, "mainwindow", "menu=menu")
+		winset(usr, "mainwindow", "titlebar=true")
+		winset(usr, "mainwindow", "can-resize=true")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "on-size=attempt_auto_fit_viewport") // The attempt_auto_fit_viewport() proc is not implemented yet
+
+/*
+/client/verb/toggle_status_bar()
+	set name = "Toggle Status Bar"
+	set category = "OOC"
+
+	show_status_bar = !show_status_bar
+
+	if (show_status_bar)
+		winset(usr, "input", "is-visible=true")
+	else
+		winset(usr, "input", "is-visible=false")
+*/

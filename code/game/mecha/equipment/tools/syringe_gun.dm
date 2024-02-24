@@ -1,6 +1,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
 	name = "syringe gun"
 	desc = "Exosuit-mounted chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur. (Can be attached to: Medical Exosuits)"
+	mech_flags = EXOSUIT_MODULE_MEDICAL
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "syringegun"
 	var/list/syringes
@@ -17,17 +18,16 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_MAGNET = 4, TECH_DATA = 3)
 	required_type = list(/obj/mecha/medical)
 
-/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/New()
-	..()
+/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize()
+	. = ..()
 	flags |= NOREACT
 	syringes = new
 	known_reagents = list("inaprovaline"="Inaprovaline","anti_toxin"="Dylovene")
 	processed_reagents = new
 	create_reagents(max_volume)
-	synth = new (list(src),0)
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/detach()
-	synth.stop()
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/critfail()
@@ -58,7 +58,7 @@
 	if(reagents.total_volume<=0)
 		occupant_message("<span class=\"alert\">No available reagents to load syringe with.</span>")
 		return
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
 	var/turf/trg = get_turf(target)
 	var/obj/item/weapon/reagent_containers/syringe/S = syringes[1]
@@ -67,7 +67,7 @@
 	syringes -= S
 	S.icon = 'icons/obj/chemical.dmi'
 	S.icon_state = "syringeproj"
-	playsound(chassis, 'sound/items/syringeproj.ogg', 50, 1)
+	playsound(src, 'sound/items/syringeproj.ogg', 50, 1)
 	log_message("Launched [S] from [src], targeting [target].")
 	spawn(-1)
 		src = null //if src is deleted, still process the syringe
@@ -122,7 +122,7 @@
 				m++
 		if(processed_reagents.len)
 			message += " added to production"
-			synth.start()
+			START_PROCESSING(SSfastprocess, src)
 			occupant_message(message)
 			occupant_message("Reagent processing started.")
 			log_message("Reagent processing started.")
@@ -242,7 +242,7 @@
 	return 1
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/proc/add_known_reagent(r_id,r_name)
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	do_after_cooldown()
 	if(!(r_id in known_reagents))
 		known_reagents += r_id
@@ -263,22 +263,17 @@
 	update_equip_info()
 	return
 
-/datum/global_iterator/mech_synth
-	delay = 100
-
-/datum/global_iterator/mech_synth/process(var/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/S)
-	if(!S.chassis)
-		return stop()
-	var/energy_drain = S.energy_drain*10
-	if(!S.processed_reagents.len || S.reagents.total_volume >= S.reagents.maximum_volume || !S.chassis.has_charge(energy_drain))
-		S.occupant_message("<span class=\"alert\">Reagent processing stopped.</span>")
-		S.log_message("Reagent processing stopped.")
-		return stop()
-	var/amount = S.synth_speed / S.processed_reagents.len
-	for(var/reagent in S.processed_reagents)
-		S.reagents.add_reagent(reagent,amount)
-		S.chassis.use_power(energy_drain)
-	return 1
+/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/process()
+	if(!chassis)
+		return PROCESS_KILL
+	if(!processed_reagents.len || reagents.total_volume >= reagents.maximum_volume || !chassis.has_charge(energy_drain))
+		occupant_message("<span class=\"alert\">Reagent processing stopped.</span>")
+		log_message("Reagent processing stopped.")
+		return PROCESS_KILL
+	var/amount = synth_speed / processed_reagents.len
+	for(var/reagent in processed_reagents)
+		reagents.add_reagent(reagent,amount)
+		chassis.use_power(energy_drain)
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone
 	name = "crisis dronebay"
@@ -317,12 +312,8 @@
 	equip_type = EQUIP_HULL
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/Initialize()
-	..()
+	. = ..()
 	drone_overlay = new(src.icon, icon_state = droid_state)
-
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	..()
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/attach(obj/mecha/M as obj)
 	. = ..(M)
@@ -460,17 +451,20 @@
 						E.status &= ~ORGAN_BROKEN
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/toggle_drone()
-	..()
 	if(chassis)
 		enabled = !enabled
 		if(enabled)
-			set_ready_state(0)
+			set_ready_state(FALSE)
 			log_message("Activated.")
-			chassis.overlays += drone_overlay
 		else
-			set_ready_state(1)
+			set_ready_state(TRUE)
 			log_message("Deactivated.")
-			chassis.overlays -= drone_overlay
+
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/add_equip_overlay(obj/mecha/M as obj)
+	..()
+	if(enabled)
+		M.add_overlay(drone_overlay)
+	return
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/Topic(href, href_list)
 	..()

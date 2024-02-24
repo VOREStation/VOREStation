@@ -1,6 +1,7 @@
 /datum/artifact_effect/heal
 	name = "heal"
 	effect_type = EFFECT_ORGANIC
+	effect_color = "#4649ff"
 
 /datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)
 	//todo: check over this properly
@@ -8,7 +9,7 @@
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(prob(weakness * 100))
 			var/mob/living/carbon/C = toucher
-			to_chat(C, "<font color='blue'>You feel a soothing energy invigorate you.</font>")
+			to_chat(C, span_blue("You feel a soothing energy invigorate you."))
 
 			if(ishuman(toucher))
 				var/mob/living/carbon/human/H = toucher
@@ -17,7 +18,7 @@
 						affecting.heal_damage(25 * weakness, 25 * weakness)
 				//H:heal_organ_damage(25, 25)
 				H.vessel.add_reagent("blood",5)
-				H.nutrition += 50 * weakness
+				H.adjust_nutrition(50 * weakness)
 				H.adjustBrainLoss(-25 * weakness)
 				H.radiation -= min(H.radiation, 25 * weakness)
 				H.bodytemperature = initial(H.bodytemperature)
@@ -33,6 +34,7 @@
 			return 1
 
 /datum/artifact_effect/heal/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	//todo: check over this properly
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -40,7 +42,7 @@
 			var/weakness = GetAnomalySusceptibility(C)
 			if(prob(weakness * 100))
 				if(prob(10))
-					to_chat(C, "<font color='blue'>You feel a soothing energy radiating from something nearby.</font>")
+					to_chat(C, span_blue("You feel a soothing energy radiating from something nearby."))
 				C.adjustBruteLoss(-1 * weakness)
 				C.adjustFireLoss(-1 * weakness)
 				C.adjustToxLoss(-1 * weakness)
@@ -49,13 +51,14 @@
 				C.updatehealth()
 
 /datum/artifact_effect/heal/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	//todo: check over this properly
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/C in range(src.effectrange,T))
 			var/weakness = GetAnomalySusceptibility(C)
 			if(prob(weakness * 100))
-				to_chat(C, "<font color='blue'>A wave of energy invigorates you.</font>")
+				to_chat(C, span_blue("A wave of energy invigorates you."))
 				C.adjustBruteLoss(-5 * weakness)
 				C.adjustFireLoss(-5 * weakness)
 				C.adjustToxLoss(-5 * weakness)

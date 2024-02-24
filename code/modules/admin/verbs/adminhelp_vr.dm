@@ -25,7 +25,7 @@
 		to_chat(usr, "<span class='danger'>Error: You cannot request spice (muted from adminhelps).</span>")
 		return
 
-	if(alert(usr, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.",,"No","Yes") != "No")
+	if(tgui_alert(usr, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.","Spicy!",list("Yes","No")) != "No")
 		message_admins("[ADMIN_FULLMONTY(usr)] has requested the round be spiced up a little.")
 		to_chat(usr, "<span class='notice'>You have requested some more spice in your round.</span>")
 	else
@@ -34,5 +34,6 @@
 
 	//if they requested spice, then remove spice verb temporarily to prevent spamming
 	usr.verbs -= /client/verb/adminspice
-	spawn(6000)
-		usr.verbs += /client/verb/adminspice	// 10 minute cool-down for spice request
+	spawn(10 MINUTES)
+		if(usr)		// In case we left in the 10 minute cooldown
+			usr.verbs += /client/verb/adminspice	// 10 minute cool-down for spice request

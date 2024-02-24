@@ -29,6 +29,8 @@ var/global/photo_count = 0
 	icon_state = "photo"
 	item_state = "paper"
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 	var/id
 	var/icon/img	//Big photo image
 	var/scribble	//Scribble on the back.
@@ -45,17 +47,18 @@ var/global/photo_count = 0
 
 /obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/weapon/pen))
-		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text, 128)
+		var/txt = sanitize(tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", null, 128), 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
 	..()
 
 /obj/item/weapon/photo/examine(mob/user)
+	//This is one time we're not going to call parent, because photos are 'secret' unless you're close enough.
 	if(in_range(user, src))
 		show(user)
-		to_chat(user,desc)
+		return list(desc)
 	else
-		to_chat(user, "<span class='notice'>It is too far away.</span>")
+		return list("<span class='notice'>It is too far away to examine.</span>")
 
 /obj/item/weapon/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo_[id].png")
@@ -72,7 +75,7 @@ var/global/photo_count = 0
 	set category = "Object"
 	set src in usr
 
-	var/n_name = sanitizeSafe(input(usr, "What would you like to label the photo?", "Photo Labelling", null)  as text, MAX_NAME_LEN)
+	var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the photo?", "Photo Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "photo")]"
@@ -96,7 +99,7 @@ var/global/photo_count = 0
 		var/mob/living/carbon/human/M = usr
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
-		playsound(loc, "rustle", 50, 1, -5)
+		playsound(src, "rustle", 50, 1, -5)
 		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
@@ -125,7 +128,7 @@ var/global/photo_count = 0
 	item_state = "camera"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
-	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	matter = list(MAT_STEEL = 2000)
 	var/pictures_max = 10
 	var/pictures_left = 10
 	var/on = 1
@@ -137,7 +140,7 @@ var/global/photo_count = 0
 /obj/item/device/camera/verb/change_size()
 	set name = "Set Photo Focus"
 	set category = "Object"
-	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3,5,7)
+	var/nsize = tgui_input_list(usr, "Photo Size","Pick a size of resulting photo.", list(1,3,5,7))
 	if(nsize)
 		size = nsize
 		to_chat(usr, "<span class='notice'>Camera will now take [size]x[size] photos.</span>")
@@ -192,7 +195,7 @@ var/global/photo_count = 0
 	for(var/i; i <= sorted.len; i++)
 		var/atom/A = sorted[i]
 		if(A)
-			var/icon/img = getFlatIcon(A)//, picture_planes = picture_planes)//build_composite_icon(A) //VOREStation Edit
+			var/icon/img = getFlatIcon(A, no_anim = TRUE)//, picture_planes = picture_planes)//build_composite_icon(A) //VOREStation Edit
 
 			// If what we got back is actually a picture, draw it.
 			if(istype(img, /icon))
@@ -204,8 +207,8 @@ var/global/photo_count = 0
 				var/xoff = (A.x - center.x) * 32 + center_offset
 				var/yoff = (A.y - center.y) * 32 + center_offset
 				if (istype(A,/atom/movable))
-					xoff+=A:step_x
-					yoff+=A:step_y
+					xoff+=A:pixel_x
+					yoff+=A:pixel_y
 				res.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
 
 	// Lastly, render any contained effects on top.
@@ -213,7 +216,7 @@ var/global/photo_count = 0
 		// Calculate where we are relative to the center of the photo
 		var/xoff = (the_turf.x - center.x) * 32 + center_offset
 		var/yoff = (the_turf.y - center.y) * 32 + center_offset
-		res.Blend(getFlatIcon(the_turf.loc), blendMode2iconMode(the_turf.blend_mode),xoff,yoff)
+		res.Blend(getFlatIcon(the_turf.loc, no_anim = TRUE), blendMode2iconMode(the_turf.blend_mode),xoff,yoff)
 	return res
 
 
@@ -231,9 +234,9 @@ var/global/photo_count = 0
 					holding = "They are holding \a [A.r_hand]"
 
 		if(!mob_detail)
-			mob_detail = "You can see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]. "
+			mob_detail = "You can see [A] on the photo[(A:health / A.getMaxHealth()) < 0.75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]. "
 		else
-			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
+			mob_detail += "You can also see [A] on the photo[(A:health / A.getMaxHealth()) < 0.75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
 
 	return mob_detail
 
@@ -241,7 +244,7 @@ var/global/photo_count = 0
 	if(!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
-	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
+	playsound(src, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."

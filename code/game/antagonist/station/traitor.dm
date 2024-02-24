@@ -3,7 +3,8 @@ var/datum/antagonist/traitor/traitors
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor
 	id = MODE_TRAITOR
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Colony Director")
+	antag_sound = 'sound/effects/antag_notice/traitor_alert.ogg'
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Site Manager")
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	can_speak_aooc = FALSE	// If they want to plot and plan as this sort of traitor, they'll need to do it ICly.
 
@@ -18,7 +19,7 @@ var/datum/antagonist/traitor/traitors
 	traitors = src
 
 /datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)
-	return "<a href='?src=\ref[player];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[player.current]'>\[spawn uplink\]</a>"
+	return "<a href='?src=\ref[player];[HrefToken()];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];[HrefToken()];spawn_uplink=\ref[player.current]'>\[spawn uplink\]</a>"
 
 /datum/antagonist/traitor/Topic(href, href_list)
 	if (..())

@@ -1,6 +1,6 @@
-/* this is a playing card deck based off of the Rider-Waite Tarot Deck.
-*/
-
+/*
+ * This is a playing card deck based off of the Rider-Waite Tarot Deck.
+ */
 /obj/item/weapon/deck/tarot
 	name = "deck of tarot cards"
 	desc = "For all your occult needs!"
@@ -36,7 +36,7 @@
 			newcards += P
 			cards -= P
 		cards = newcards
-		playsound(user, 'sound/items/cardshuffle.ogg', 50, 1)
+		playsound(src, 'sound/items/cardshuffle.ogg', 50, 1)
 		user.visible_message("\The [user] shuffles [src].")
 		cooldown = world.time
 	else

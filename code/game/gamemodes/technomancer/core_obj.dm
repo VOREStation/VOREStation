@@ -7,13 +7,13 @@
 	item_state = "technomancer_core"
 	w_class = ITEMSIZE_HUGE
 	slot_flags = SLOT_BACK
-	unacidable = 1
+	unacidable = TRUE
 	origin_tech = list(
 		TECH_MATERIAL = 8, TECH_ENGINEERING = 8, TECH_POWER = 8, TECH_BLUESPACE = 10,
 		TECH_COMBAT = 7, TECH_MAGNET = 9, TECH_DATA = 5
 		)
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/back.dmi'
+		SPECIES_TESHARI = 'icons/inventory/back/mob_teshari.dmi'
 		)
 	var/energy = 10000
 	var/max_energy = 10000
@@ -30,11 +30,12 @@
 		"wizard's cloak"	= "wizard_cloak"
 		)
 
-	// Some spell-specific variables go here, since spells themselves are temporary.  Cores are more long term and more accessable than \
+	// Some spell-specific variables go here, since spells themselves are temporary.  Cores are more long term and more accessable than
 	// mind datums.  It may also allow creative players to try to pull off a 'soul jar' scenario.
 	var/list/summoned_mobs = list()	// Maintained horribly with maintain_summon_list().
 	var/list/wards_in_use = list()	// Wards don't count against the cap for other summons.
 	var/max_summons = 10			// Maximum allowed summoned entities.  Some cores will have different caps.
+	var/universal = FALSE			// Allows non-technomancers to use the core - VOREStation Add
 
 /obj/item/weapon/technomancer_core/New()
 	..()
@@ -88,7 +89,7 @@
 	if(world.time % 5 == 0) // Maintaining fat lists is expensive, I imagine.
 		maintain_summon_list()
 	if(wearer && wearer.mind)
-		if(!(technomancers.is_antagonist(wearer.mind))) // In case someone tries to wear a stolen core.
+		if(!(technomancers.is_antagonist(wearer.mind)) && !universal) // In case someone tries to wear a stolen core. //VOREStation Edit - Add universal cores
 			wearer.adjust_instability(20)
 	if(!wearer || wearer.stat == DEAD) // Unlock if we're dead or not worn.
 		canremove = TRUE
@@ -120,7 +121,7 @@
 			if(L.stat == DEAD)
 				summoned_mobs -= L
 				spawn(1)
-					L.visible_message("<span class='notice'>\The [L] begins to fade away...</span>")
+					L.visible_message("<b>\The [L]</b> begins to fade away...")
 					animate(L, alpha = 255, alpha = 0, time = 30) // Makes them fade into nothingness.
 					sleep(30)
 					qdel(L)
@@ -252,7 +253,7 @@
 	energy = 7000
 	max_energy = 7000
 	regen_rate = 70 //100 seconds to full
-	slowdown = -1
+	slowdown = -0.5
 	instability_modifier = 0.9
 	cooldown_modifier = 0.9
 
@@ -266,7 +267,7 @@
 	energy = 20000
 	max_energy = 20000
 	regen_rate = 25 //800 seconds to full
-	slowdown = 1
+	slowdown = 0.5
 	instability_modifier = 1.0
 	spell_power_modifier = 1.4
 
@@ -350,3 +351,18 @@
 
 	canremove = !canremove
 	to_chat(usr, "<span class='notice'>You [canremove ? "de" : ""]activate the locking mechanism on \the [src].</span>")
+
+//For the adminbuse! VOREStation Add
+/obj/item/weapon/technomancer_core/universal
+	name = "universal core"
+	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats. \
+	This one is a copy of a 'technomancer' core, shamelessly ripped off by a Kitsuhana pattern designer \
+	for fun, so that he could perform impressive 'magic'. The pack sloshes slightly if you shake it.<br>\
+	Under the straps, <i>'Export Edition'</i> is printed."
+	energy = 7000
+	max_energy = 7000
+	regen_rate = 30 //233 seconds to full
+	instability_modifier = 0.3
+	spell_power_modifier = 0.7
+	universal = TRUE
+//VOREStation Add End

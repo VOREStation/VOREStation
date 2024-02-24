@@ -12,6 +12,7 @@
 	S["backbag"]	>> pref.backbag
 	S["pdachoice"]	>> pref.pdachoice
 	S["communicator_visibility"]	>> pref.communicator_visibility
+	S["ringtone"]	>> pref.ringtone
 
 /datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
 	S["all_underwear"] << pref.all_underwear
@@ -19,6 +20,34 @@
 	S["backbag"]	<< pref.backbag
 	S["pdachoice"]	<< pref.pdachoice
 	S["communicator_visibility"]	<< pref.communicator_visibility
+	S["ringtone"]	<< pref.ringtone
+
+var/global/list/valid_ringtones = list(
+		"beep",
+		"boom",
+		"slip",
+		"honk",
+		"SKREE",
+		"xeno",
+		"spark",
+		"rad",
+		"servo",
+		"buh-boop",
+		"trombone",
+		"whistle",
+		"chirp",
+		"slurp",
+		"pwing",
+		"clack",
+		"bzzt",
+		"chimes",
+		"prbt",
+		"bark",
+		"bork",
+		"roark",
+		"chitter",
+		"squish"
+		)
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
@@ -36,11 +65,11 @@
 			pref.all_underwear -= underwear_category_name
 
 	// TODO - Looks like this is duplicating the work of sanitize_character() if so, remove
-	if(pref.backbag > 5 || pref.backbag < 1)
-		pref.backbag = 1 //Same as above
+	if(pref.backbag > backbaglist.len || pref.backbag < 1)
+		pref.backbag = 2 //Same as above
 	character.backbag = pref.backbag
 
-	if(pref.pdachoice > 5 || pref.pdachoice < 1)
+	if(pref.pdachoice > 8 || pref.pdachoice < 1)
 		pref.pdachoice = 1
 	character.pdachoice = pref.pdachoice
 
@@ -73,6 +102,7 @@
 			pref.all_underwear_metadata -= underwear_metadata
 	pref.backbag	= sanitize_integer(pref.backbag, 1, backbaglist.len, initial(pref.backbag))
 	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
+	pref.ringtone	= sanitize(pref.ringtone, 20)
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
@@ -89,6 +119,7 @@
 	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
+	. += "Ringtone (leave blank for job default): <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
 
 	return jointext(.,null)
 
@@ -111,13 +142,13 @@
 
 /datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_backpack"])
-		var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference", backbaglist[pref.backbag]) as null|anything in backbaglist
+		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag:", "Character Preference", backbaglist, backbaglist[pref.backbag])
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag = backbaglist.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_pda"])
-		var/new_pdachoice = input(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist[pref.pdachoice]) as null|anything in pdachoicelist
+		var/new_pdachoice = tgui_input_list(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist, pdachoicelist[pref.pdachoice])
 		if(!isnull(new_pdachoice) && CanUseTopic(user))
 			pref.pdachoice = pdachoicelist.Find(new_pdachoice)
 			return TOPIC_REFRESH
@@ -126,7 +157,7 @@
 		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[href_list["change_underwear"]]
 		if(!UWC)
 			return
-		var/datum/category_item/underwear/selected_underwear = input(user, "Choose underwear:", "Character Preference", pref.all_underwear[UWC.name]) as null|anything in UWC.items
+		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
 		if(selected_underwear && CanUseTopic(user))
 			pref.all_underwear[UWC.name] = selected_underwear.name
 		return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -146,6 +177,16 @@
 		if(CanUseTopic(user))
 			pref.communicator_visibility = !pref.communicator_visibility
 			return TOPIC_REFRESH
-
+	else if(href_list["set_ringtone"])
+		var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", valid_ringtones + "Other", pref.ringtone)
+		if(!choice || !CanUseTopic(user))
+			return TOPIC_NOACTION
+		if(choice == "Other")
+			var/raw_choice = sanitize(tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20), 20)
+			if(raw_choice && CanUseTopic(user))
+				pref.ringtone = raw_choice
+		else
+			pref.ringtone = choice
+		return TOPIC_REFRESH
 
 	return ..()

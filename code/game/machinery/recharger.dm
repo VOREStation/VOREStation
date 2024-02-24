@@ -4,35 +4,32 @@
 	desc = "A standard recharger for all devices that use power."
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "recharger0"
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 4
 	active_power_usage = 40000	//40 kW
 	var/efficiency = 40000 //will provide the modified power rate when upgraded
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/device/defib_kit, /obj/item/ammo_casing/microbattery)  //VOREStation Add - NSFW Batteries
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/suit_cooling_unit/emergency, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/device/defib_kit, /obj/item/ammo_casing/microbattery, /obj/item/device/paicard, /obj/item/device/personal_shield_generator)  //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
 	var/portable = 1
 	circuit = /obj/item/weapon/circuitboard/recharger
 
-/obj/machinery/recharger/New()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-	RefreshParts()
-	..()
-	return
+/obj/machinery/recharger/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/recharger/examine(mob/user)
-	if(!..(user, 5))
-		return
+	. = ..()
 
-	to_chat(user, "[charging ? "[charging]" : "Nothing"] is in [src].")
-	if(charging)
-		var/obj/item/weapon/cell/C = charging.get_cell()
-		to_chat(user, "Current charge: [C.charge] / [C.maxcharge]")
+	if(get_dist(user, src) <= 5)
+		. += "[charging ? "[charging]" : "Nothing"] is in [src]."
+		if(charging)
+			var/obj/item/weapon/cell/C = charging.get_cell()
+			if(C)				// Sometimes we get things without cells in it.
+				. += "Current charge: [C.charge] / [C.maxcharge]"
 
 /obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	var/allowed = 0
@@ -72,9 +69,21 @@
 			if(EW.use_external_power)
 				to_chat(user, "<span class='notice'>\The [EW] has no recharge port.</span>")
 				return
-		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery))	//VOREStation Edit: NSFW charging
+		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery) && !istype(G, /obj/item/device/paicard))	//VOREStation Edit: NSFW charging
 			to_chat(user, "\The [G] does not have a battery installed.")
 			return
+		if(istype(G, /obj/item/device/paicard))
+			var/obj/item/device/paicard/ourcard = G
+			if(ourcard.panel_open)
+				to_chat(user, "<span class='warning'>\The [ourcard] won't fit in the recharger with its panel open.</span>")
+				return
+			if(ourcard.pai)
+				if(ourcard.pai.stat == CONSCIOUS)
+					to_chat(user, "<span class='warning'>\The [ourcard] boops... it doesn't need to be recharged!</span>")
+					return
+			else
+				to_chat(user, "<span class='warning'>\The [ourcard] doesn't have a personality!</span>")
+				return
 
 		user.drop_item()
 		G.loc = src
@@ -82,13 +91,13 @@
 		update_icon()
 		user.visible_message("[user] inserts [charging] into [src].", "You insert [charging] into [src].")
 
-	else if(portable && G.is_wrench())
+	else if(portable && G.has_tool_quality(TOOL_WRENCH))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] [src].")
-		playsound(loc, G.usesound, 75, 1)
+		playsound(src, G.usesound, 75, 1)
 	else if(default_deconstruction_screwdriver(user, G))
 		return
 	else if(default_deconstruction_crowbar(user, G))
@@ -97,6 +106,8 @@
 		return
 
 /obj/machinery/recharger/attack_hand(mob/user as mob)
+	if(!Adjacent(user))
+		return FALSE
 	add_fingerprint(user)
 
 	if(charging)
@@ -106,7 +117,7 @@
 		charging = null
 		update_icon()
 
-/obj/machinery/cell_charger/attack_ai(mob/user)
+/obj/machinery/recharger/attack_ai(mob/user)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Borgs can remove the cell if they are near enough
 		if(charging)
 			user.visible_message("[user] removes [charging] from [src].", "You remove [charging] from [src].")
@@ -117,34 +128,53 @@
 
 /obj/machinery/recharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
-		update_use_power(0)
+		update_use_power(USE_POWER_OFF)
 		icon_state = icon_state_idle
 		return
 
 	if(!charging)
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 		icon_state = icon_state_idle
+	//VOREStation Edit Start - pAI revival!
+	else if(istype(charging, /obj/item/device/paicard))
+		var/obj/item/device/paicard/pcard = charging
+		if(pcard.is_damage_critical())
+			pcard.forceMove(get_turf(src))
+			charging = null
+			pcard.damage_random_component()
+			update_icon()
+		else if(pcard.pai.bruteloss)
+			pcard.pai.adjustBruteLoss(-5)
+		else if(pcard.pai.fireloss)
+			pcard.pai.adjustFireLoss(-5)
+		else
+			charging = null
+			update_icon()
+			src.visible_message("<span class ='notice'>\The [src] ejects the [pcard]!</span>")
+			pcard.forceMove(get_turf(src))
+			pcard.pai.full_restore()
+	//VOREStation Edit End
 	else
 		var/obj/item/weapon/cell/C = charging.get_cell()
 		if(istype(C))
 			if(!C.fully_charged())
 				icon_state = icon_state_charging
 				C.give(CELLRATE*efficiency)
-				update_use_power(2)
+				update_use_power(USE_POWER_ACTIVE)
 			else
 				icon_state = icon_state_charged
-				update_use_power(1)
+				update_use_power(USE_POWER_IDLE)
 
 		//VOREStation Add - NSFW Batteries
 		else if(istype(charging, /obj/item/ammo_casing/microbattery))
 			var/obj/item/ammo_casing/microbattery/batt = charging
 			if(batt.shots_left >= initial(batt.shots_left))
 				icon_state = icon_state_charged
-				update_use_power(1)
+				update_use_power(USE_POWER_IDLE)
 			else
 				icon_state = icon_state_charging
 				batt.shots_left++
-				update_use_power(2)
+				update_use_power(USE_POWER_ACTIVE)
 			return
 		//VOREStation Add End
 

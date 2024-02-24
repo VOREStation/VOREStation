@@ -2,7 +2,7 @@
 	name = "large crystal"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "crystal"
-	density = 1
+	density = TRUE
 
 /obj/structure/crystal/New()
 	..()
@@ -17,7 +17,7 @@
 	"It's mesmerizing to behold.")
 
 /obj/structure/crystal/Destroy()
-	src.visible_message("<font color='red'><b>[src] shatters!</b></font>")
+	src.visible_message(span_red("<b>[src] shatters!</b>"))
 	if(prob(75))
 		new /obj/item/weapon/material/shard/phoron(src.loc)
 	if(prob(50))

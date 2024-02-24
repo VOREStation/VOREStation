@@ -5,20 +5,16 @@
 	var/stopper = 1 // stops throwers
 	invisibility = 99 // nope cant see this shit
 	plane = ABOVE_PLANE
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/mob/screen1.dmi' //VS Edit
 	icon_state = "centermarker" //VS Edit
 
 /obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
 	return 0
 
-/obj/effect/step_trigger/Crossed(H as mob|obj)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = H
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+/obj/effect/step_trigger/Crossed(atom/movable/H as mob|obj)
+	if(H.is_incorporeal())
+		return
 	..()
 	if(!H)
 		return
@@ -39,57 +35,57 @@
 	var/nostop = 0 // if 1: will only be stopped by teleporters
 	var/list/affecting = list()
 
-	Trigger(var/atom/A)
-		if(!A || !istype(A, /atom/movable))
+/obj/effect/step_trigger/thrower/Trigger(var/atom/A)
+	if(!A || !istype(A, /atom/movable))
+		return
+	var/atom/movable/AM = A
+	var/curtiles = 0
+	var/stopthrow = 0
+	for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
+		if(AM in T.affecting)
 			return
-		var/atom/movable/AM = A
-		var/curtiles = 0
-		var/stopthrow = 0
-		for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
-			if(AM in T.affecting)
-				return
 
-		if(ismob(AM))
-			var/mob/M = AM
-			if(immobilize)
-				M.canmove = 0
+	if(ismob(AM))
+		var/mob/M = AM
+		if(immobilize)
+			M.canmove = 0
 
-		affecting.Add(AM)
-		while(AM && !stopthrow)
-			if(tiles)
-				if(curtiles >= tiles)
-					break
-			if(AM.z != src.z)
+	affecting.Add(AM)
+	while(AM && !stopthrow)
+		if(tiles)
+			if(curtiles >= tiles)
 				break
+		if(AM.z != src.z)
+			break
 
-			curtiles++
+		curtiles++
 
-			sleep(speed)
+		sleep(speed)
 
-			// Calculate if we should stop the process
-			if(!nostop)
-				for(var/obj/effect/step_trigger/T in get_step(AM, direction))
-					if(T.stopper && T != src)
-						stopthrow = 1
-			else
-				for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
-					if(T.stopper)
-						stopthrow = 1
+		// Calculate if we should stop the process
+		if(!nostop)
+			for(var/obj/effect/step_trigger/T in get_step(AM, direction))
+				if(T.stopper && T != src)
+					stopthrow = 1
+		else
+			for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
+				if(T.stopper)
+					stopthrow = 1
 
-			if(AM)
-				var/predir = AM.dir
-				step(AM, direction)
-				if(!facedir)
-					AM.set_dir(predir)
+		if(AM)
+			var/predir = AM.dir
+			step(AM, direction)
+			if(!facedir)
+				AM.set_dir(predir)
 
 
 
-		affecting.Remove(AM)
+	affecting.Remove(AM)
 
-		if(ismob(AM))
-			var/mob/M = AM
-			if(immobilize)
-				M.canmove = 1
+	if(ismob(AM))
+		var/mob/M = AM
+		if(immobilize)
+			M.canmove = 1
 
 /* Stops things thrown by a thrower, doesn't do anything */
 
@@ -109,6 +105,8 @@
 
 
 /obj/effect/step_trigger/teleporter/proc/move_object(atom/movable/AM, turf/T)
+	if(!T)
+		return
 	if(AM.anchored && !istype(AM, /obj/mecha))
 		return
 
@@ -119,7 +117,7 @@
 			L.stop_pulling()
 			P.forceMove(T)
 			L.forceMove(T)
-			L.start_pulling(P)
+			L.continue_pulling(P)
 		else
 			L.forceMove(T)
 	else
@@ -160,10 +158,11 @@
 	var/teleport_y_offset = 0
 	var/teleport_z_offset = 0
 
-	Trigger(var/atom/movable/A)
-		if(teleport_x && teleport_y && teleport_z)
-			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
-				var/turf/T = locate(rand(teleport_x, teleport_x_offset), rand(teleport_y, teleport_y_offset), rand(teleport_z, teleport_z_offset))
+/obj/effect/step_trigger/teleporter/random/Trigger(var/atom/movable/A)
+	if(teleport_x && teleport_y && teleport_z)
+		if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
+			var/turf/T = locate(rand(teleport_x, teleport_x_offset), rand(teleport_y, teleport_y_offset), rand(teleport_z, teleport_z_offset))
+			if(T)
 				A.forceMove(T)
 
 /* Teleporter that sends objects stepping on it to a specific landmark. */
@@ -221,7 +220,7 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
 				safety--
 				continue
-			else if(candidate && !candidate.outdoors)
+			else if(candidate && !candidate.is_outdoors())
 				safety--
 				continue
 			else
@@ -249,3 +248,40 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 	else
 		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
 		return
+
+//Death
+
+/obj/effect/step_trigger/death
+	var/deathmessage = "You die a horrible, brutal and very sudden death."
+	var/deathalert = "has stepped on a death trigger."
+
+/obj/effect/step_trigger/death/Trigger(var/atom/movable/A)
+	if(isliving(A))
+		to_chat(A, "<span class='danger'>[deathmessage]</span>")
+		log_and_message_admins("[A] [deathalert]")
+		qdel(A)
+
+/obj/effect/step_trigger/death/train_lost
+	deathmessage = "You fly down the tunnel of the train at high speed for a few moments before impact kills you with sheer concussive force."
+	deathalert = "fell off the side of the train and died horribly."
+
+/obj/effect/step_trigger/death/train_crush
+	deathmessage = "You get horribly crushed by the train, there's pretty much nothing left of you."
+	deathalert = "fell under the train and was crushed horribly."
+
+/obj/effect/step_trigger/death/fly_off
+	deathmessage = "You get caught up in the slipstream of the train and quickly dragged down into the tracks. Your body is brutally smashed into the electrified rails and then sucked right under a carriage. No one is finding that mess, thankfully."
+	deathalert = "tried to fly away from the train but was died horribly in the process."
+
+//warning
+
+/obj/effect/step_trigger/warning
+	var/warningmessage = "Warning!"
+	icon_state = "warnmarker"
+
+/obj/effect/step_trigger/warning/Trigger(var/atom/movable/A)
+	if(isliving(A))
+		to_chat(A, "<span class='warning'>[warningmessage]</span>")
+
+/obj/effect/step_trigger/warning/train_edge
+	warningmessage = "The wind billowing alongside the train is extremely strong here! Any movement could easily pull you down beneath the carriages, return to the train immediately!"

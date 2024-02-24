@@ -9,6 +9,8 @@
 	siemens_coefficient = 0.8
 	species_restricted = null
 	step_volume_mod = 0.5
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
@@ -22,8 +24,10 @@
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0 //They're thick rubber boots! Of course they won't conduct electricity!
 	item_flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN+0.5
 	species_restricted = null
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
 /obj/item/clothing/shoes/dress
 	name = "dress shoes"
@@ -44,6 +48,38 @@
 
 	wizard_garb = 1
 
+/obj/item/clothing/shoes/flipflop
+	name = "flip flops"
+	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
+	icon_state = "thongsandal"
+	addblends = "thongsandal_a"
+
+/obj/item/clothing/shoes/cookflop
+	name = "grilling sandals"
+	desc = "All this talk of antags, greytiding, and griefing... I just wanna grill for god's sake!"
+	icon_state = "cookflops"
+	species_restricted = null
+	body_parts_covered = 0
+
+/obj/item/clothing/shoes/tourist_1
+	name = "tourist sandals"
+	desc = "Black sandals usually worn by tourists. Need I say more?"
+	icon_state = "tourist_1"
+	species_restricted = null
+	body_parts_covered = 0
+
+/obj/item/clothing/shoes/tourist_2
+	name = "tourist sandals"
+	desc = "Green sandals usually worn by tourists. Need I say more?"
+	icon_state = "tourist_2"
+	species_restricted = null
+	body_parts_covered = 0
+
+/obj/item/clothing/shoes/sandal/clogs
+	name = "plastic clogs"
+	desc = "A pair of plastic clog shoes."
+	icon_state = "clogs"
+
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
 	name = "magic shoes"
@@ -54,7 +90,7 @@
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN+0.5
 	force = 0
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
@@ -98,19 +134,26 @@
 	force = 0
 	species_restricted = null
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
-/obj/item/clothing/shoes/slippers_worn
+/obj/item/clothing/shoes/slippers/worn
 	name = "worn bunny slippers"
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
 	item_state_slots = list(slot_r_hand_str = "slippers", slot_l_hand_str = "slippers")
-	force = 0
-	w_class = ITEMSIZE_SMALL
 
 /obj/item/clothing/shoes/laceup
-	name = "laceup shoes"
-	desc = "The height of fashion, and they're pre-polished!"
-	icon_state = "laceups"
+	name = "black oxford shoes"
+	icon_state = "oxford_black"
+
+/obj/item/clothing/shoes/laceup/grey
+	name = "grey oxford shoes"
+	icon_state = "oxford_grey"
+
+/obj/item/clothing/shoes/laceup/brown
+	name = "brown oxford shoes"
+	icon_state = "oxford_brown"
 
 /obj/item/clothing/shoes/swimmingfins
 	desc = "Help you swim good."
@@ -118,18 +161,12 @@
 	icon_state = "flippers"
 	item_state_slots = list(slot_r_hand_str = "galoshes", slot_l_hand_str = "galoshes")
 	item_flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN+0.5
 	species_restricted = null
-
-/obj/item/clothing/shoes/flipflop
-	name = "flip flops"
-	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
-	icon_state = "thongsandal"
-	addblends = "thongsandal_a"
 
 /obj/item/clothing/shoes/athletic
 	name = "athletic shoes"
-	desc = "A pair of sleek atheletic shoes. Made by and for the sporty types."
+	desc = "A pair of sleek athletic shoes. Made by and for the sporty types."
 	icon_state = "sportshoe"
 	addblends = "sportshoe_a"
 	item_state_slots = list(slot_r_hand_str = "sportheld", slot_l_hand_str = "sportheld")
@@ -155,6 +192,8 @@
 	force = 0
 	w_class = ITEMSIZE_SMALL
 	species_restricted = null
+	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
 /obj/item/clothing/shoes/boots/ranger
 	var/bootcolor = "white"
@@ -187,3 +226,31 @@
 
 /obj/item/clothing/shoes/boots/ranger/yellow
 	bootcolor = "yellow"
+
+/*
+ * 80s
+ */
+
+/obj/item/clothing/shoes/sneakerspurple
+	name = "purple sneakers"
+	desc = "A stylish, expensive pair of purple sneakers."
+	icon_state = "sneakerspurple"
+	item_state = "sneakerspurple"
+
+/obj/item/clothing/shoes/sneakersblue
+	name = "blue sneakers"
+	desc = "A stylish, expensive pair of blue sneakers."
+	icon_state = "sneakersblue"
+	item_state = "sneakersblue"
+
+/obj/item/clothing/shoes/sneakersred
+	name = "red sneakers"
+	desc = "A stylish, expensive pair of red sneakers."
+	icon_state = "sneakersred"
+	item_state = "sneakersred"
+
+/obj/item/clothing/shoes/ballet
+	name = "pointe shoes"
+	desc = "These shoes feature long lace straps and flattened off toes. Great for the most elegant of dances!"
+	icon_state = "ballet"
+	item_state = "ballet"

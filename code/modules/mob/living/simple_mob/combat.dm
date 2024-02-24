@@ -3,26 +3,29 @@
 	set waitfor = FALSE // For attack animations. Don't want the AI processor to get held up.
 
 	if(!A.Adjacent(src))
-		return FALSE
+		return ATTACK_FAILED
 	var/turf/their_T = get_turf(A)
 
 	face_atom(A)
 
 	if(melee_attack_delay)
-	//	their_T.color = "#FF0000"
 		melee_pre_animation(A)
+		. = ATTACK_SUCCESSFUL //Shoving this in here as a 'best guess' since this proc is about to sleep and return and we won't be able to know the real value
 		handle_attack_delay(A, melee_attack_delay) // This will sleep this proc for a bit, which is why waitfor is false.
 
 	// Cooldown testing is done at click code (for players) and interface code (for AI).
-	setClickCooldown(get_attack_speed())
+	// VOREStation Edit Start: Simplemob Injury
+	if(injury_enrages)
+		setClickCooldown(get_attack_speed() - ((injury_level / 2) SECONDS)) // Increase how fast we can attack by our injury level / 2
+	else
+		setClickCooldown(get_attack_speed() + ((injury_level / 2) SECONDS)) // Delay how fast we can attack by our injury level / 2
+	// VOREStation Edit Stop: Simplemob Injury
 
+	// Returns a value, but will be lost if
 	. = do_attack(A, their_T)
 
 	if(melee_attack_delay)
 		melee_post_animation(A)
-	//	their_T.color = "#FFFFFF"
-
-
 
 // This does the actual attack.
 // This is a seperate proc for the purposes of attack animations.
@@ -88,7 +91,16 @@
 //The actual top-level ranged attack proc
 /mob/living/simple_mob/proc/shoot_target(atom/A)
 	set waitfor = FALSE
-	setClickCooldown(get_attack_speed())
+
+	if(!istype(A) || QDELETED(A))
+		return
+
+	// VOREStation Edit Start: Simplemob Injury
+	if(injury_enrages)
+		setClickCooldown(get_attack_speed() - ((injury_level / 2) SECONDS)) // Increase how fast we can attack by our injury level / 2
+	else
+		setClickCooldown(get_attack_speed() + ((injury_level / 2) SECONDS)) // Delay how fast we can attack by our injury level / 2
+	// VOREStation Edit Stop: Simplemob Injury
 
 	face_atom(A)
 
@@ -145,7 +157,7 @@
 
 	if(do_after(src, reload_time))
 		if(reload_sound)
-			playsound(src.loc, reload_sound, 50, 1)
+			playsound(src, reload_sound, 70, 1)
 		reload_count = 0
 		. = TRUE
 	else

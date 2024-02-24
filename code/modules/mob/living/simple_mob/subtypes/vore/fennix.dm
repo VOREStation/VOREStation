@@ -12,6 +12,9 @@
 	maxHealth = 60
 	health = 60
 
+	meat_amount = 5
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
+
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
@@ -19,7 +22,7 @@
 	harm_intent_damage = 20
 	melee_damage_lower = 1
 	melee_damage_upper = 3
-	attacktext = list("Bites")
+	attacktext = list("bit")
 
 	say_list_type = /datum/say_list/fennix
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative

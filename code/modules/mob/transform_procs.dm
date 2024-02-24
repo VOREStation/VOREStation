@@ -41,19 +41,26 @@
 
 	return src
 
-/mob/new_player/AIize()
+/mob/new_player/AIize(var/move = TRUE)
 	spawning = 1
 	return ..()
 
-/mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
+/mob/living/carbon/human/AIize(var/move = TRUE) // 'move' argument needs defining here too because BYOND is dumb
 	if (transforming)
 		return
 	for(var/t in organs)
 		qdel(t)
 
+	//VOREStation Edit Start - Hologram examine flavor
+	var/mob/living/silicon/ai/O = ..(move)
+	if(O)
+		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
+		return O
+	//VOREStation Edit End
+
 	return ..(move)
 
-/mob/living/carbon/AIize()
+/mob/living/carbon/AIize(var/move = TRUE)
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -64,10 +71,34 @@
 	invisibility = 101
 	return ..()
 
-/mob/proc/AIize(move=1)
+/mob/proc/AIize(var/move = TRUE)
 	if(client)
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
-	var/mob/living/silicon/ai/O = new (loc, using_map.default_law_type,,1)//No MMI but safety is in effect.
+
+	var/newloc = loc
+	if(move)
+		var/obj/loc_landmark
+		for(var/obj/effect/landmark/start/sloc in landmarks_list)
+			if (sloc.name != "AI")
+				continue
+			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
+				continue
+			loc_landmark = sloc
+		if (!loc_landmark)
+			for(var/obj/effect/landmark/tripai in landmarks_list)
+				if (tripai.name == "tripai")
+					if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
+						continue
+					loc_landmark = tripai
+		if (!loc_landmark)
+			to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
+			for(var/obj/effect/landmark/start/sloc in landmarks_list)
+				if (sloc.name == "AI")
+					loc_landmark = sloc
+
+		newloc = loc_landmark.loc
+
+	var/mob/living/silicon/ai/O = new (newloc, using_map.default_law_type,,1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
 
@@ -101,28 +132,6 @@
 		if(LANGUAGE_ROOTLOCAL in B.alternate_languages)
 			O.add_language(LANGUAGE_ROOTLOCAL, 1)
 
-	if(move)
-		var/obj/loc_landmark
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
-			if (sloc.name != "AI")
-				continue
-			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
-				continue
-			loc_landmark = sloc
-		if (!loc_landmark)
-			for(var/obj/effect/landmark/tripai in landmarks_list)
-				if (tripai.name == "tripai")
-					if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
-						continue
-					loc_landmark = tripai
-		if (!loc_landmark)
-			to_chat(O, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
-			for(var/obj/effect/landmark/start/sloc in landmarks_list)
-				if (sloc.name == "AI")
-					loc_landmark = sloc
-
-		O.loc = loc_landmark.loc
-
 	O.on_mob_init()
 
 	O.add_ai_verbs()
@@ -147,12 +156,6 @@
 		qdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
-
-	// cyborgs produced by Robotize get an automatic power cell
-	O.cell = new(O)
-	O.cell.maxcharge = 7500
-	O.cell.charge = 7500
-
 
 	O.gender = gender
 	O.invisibility = 0
@@ -182,11 +185,12 @@
 		var/datum/preferences/B = O.client.prefs
 		for(var/language in B.alternate_languages)
 			O.add_language(language)
-		O.resize(B.size_multiplier, animate = TRUE)		//VOREStation Addition: add size prefs to borgs
-		O.fuzzy = B.fuzzy								//VOREStation Addition: add size prefs to borgs
+		O.resize(B.size_multiplier, animate = TRUE, ignore_prefs = TRUE)
+		O.fuzzy = B.fuzzy
+		O.custom_speech_bubble = B.custom_speech_bubble
 
 	callHook("borgify", list(O))
-	O.Namepick()
+	O.namepick()
 
 	spawn(0)	// Mobs still instantly del themselves, thus we need to spawn or O will never be returned
 		qdel(src)
@@ -241,10 +245,10 @@
 /mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<font color='red'>Sorry but this mob type is currently unavailable.</font>")
+		to_chat(usr, span_red("Sorry but this mob type is currently unavailable."))
 		return
 
 	if(transforming)
@@ -275,10 +279,10 @@
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "<font color='red'>Sorry but this mob type is currently unavailable.</font>")
+		to_chat(usr, span_red("Sorry but this mob type is currently unavailable."))
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)
@@ -327,6 +331,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

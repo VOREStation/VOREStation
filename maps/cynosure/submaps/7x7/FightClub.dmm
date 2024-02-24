@@ -1,0 +1,32 @@
+"a" = (/obj/structure/sign/poster/custom{dir = 1; pixel_y = 32; poster_decl = /decl/poster/pol_14},/turf/template_noop,/area/template_noop)
+"i" = (/obj/machinery/power/apc{coverlocked = 0; locked = 0; name = "south bump"; operating = 0; pixel_y = -24},/obj/item/weapon/cell/high/empty,/turf/simulated/floor/plating,/area/template_noop)
+"m" = (/obj/structure/railing,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/plating,/area/template_noop)
+"o" = (/turf/simulated/wall{can_open = 1},/area/template_noop)
+"u" = (/obj/structure/railing{dir = 4},/turf/simulated/floor/plating,/area/template_noop)
+"y" = (/obj/structure/railing{dir = 1},/turf/simulated/floor/plating,/area/template_noop)
+"z" = (/obj/structure/railing{dir = 8},/obj/structure/railing,/turf/simulated/floor/plating,/area/template_noop)
+"C" = (/turf/simulated/wall/r_wall,/area/template_noop)
+"D" = (/obj/structure/railing{dir = 4},/obj/structure/railing,/turf/simulated/floor/plating,/area/template_noop)
+"F" = (/obj/structure/sign/poster{dir = 1; pixel_y = 32; poster_decl = /decl/poster/pol_11},/turf/simulated/floor/plating,/area/template_noop)
+"G" = (/obj/random/trash,/turf/simulated/floor/plating,/area/template_noop)
+"I" = (/obj/random/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/maintenance/engineering,/obj/random/maintenance/security,/obj/random/maintenance/security,/turf/simulated/floor/plating,/area/template_noop)
+"J" = (/obj/structure/sign/poster{dir = 1; pixel_y = 32; poster_decl = /decl/poster/pol_16},/turf/simulated/floor/plating,/area/template_noop)
+"L" = (/obj/random/crate,/obj/random/plushie,/obj/random/maintenance/clean,/obj/random/medical,/obj/random/medical/lite,/obj/random/medical/lite,/turf/simulated/floor/plating,/area/template_noop)
+"N" = (/turf/simulated/floor/plating,/area/template_noop)
+"O" = (/turf/simulated/wall,/area/template_noop)
+"P" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/plating,/area/template_noop)
+"Q" = (/obj/item/clothing/gloves/boxing/yellow,/obj/item/clothing/gloves/boxing/green,/obj/item/clothing/gloves/boxing/blue,/obj/item/clothing/gloves/boxing,/obj/structure/table/rack,/turf/simulated/floor/plating,/area/template_noop)
+"W" = (/obj/structure/railing{dir = 4},/obj/structure/railing{dir = 1},/obj/effect/decal/cleanable/blood,/turf/simulated/floor/plating,/area/template_noop)
+"X" = (/obj/random/mouseremains,/turf/simulated/floor/plating,/area/template_noop)
+"Y" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 1},/turf/simulated/floor/plating,/area/template_noop)
+"Z" = (/obj/structure/railing{dir = 8},/turf/simulated/floor/plating,/area/template_noop)
+
+(1,1,1) = {"
+OCCCCCC
+OGJPFNO
+ONYyWNO
+oNZNuNX
+ONzmDNO
+OOLIQiO
+aOOOOOO
+"}

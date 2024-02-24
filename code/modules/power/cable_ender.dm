@@ -11,7 +11,7 @@
 	plane = PLATING_PLANE
 	layer = PIPES_LAYER - 0.05 //Just below pipes
 	color = null
-	unacidable = 1
+	unacidable = TRUE
 	var/id = null
 
 /obj/structure/cable/ender/get_connections(var/powernetless_only = 0)
@@ -24,7 +24,7 @@
 
 /obj/structure/cable/ender/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user,  "<span class='notice'> These cables are too tough to be cut with those [W.name].</span>")
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))

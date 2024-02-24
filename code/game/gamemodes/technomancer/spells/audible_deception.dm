@@ -25,8 +25,8 @@
 		"Glass Shattering"		=	"shatter",
 		"Grille Damage"			=	'sound/effects/grillehit.ogg',
 		"Energy Pulse"			=	'sound/effects/EMPulse.ogg',
-		"Airlock"				=	'sound/machines/airlock.ogg',
-		"Airlock Creak"			=	'sound/machines/airlock_creaking.ogg',
+		"Airlock"				=	'sound/machines/door/old_airlock.ogg',
+		"Airlock Creak"			=	'sound/machines/door/airlock_creaking.ogg',
 
 		"Shotgun Pumping"		=	'sound/weapons/shotgunpump.ogg',
 		"Flash"					=	'sound/weapons/flash.ogg',
@@ -68,14 +68,14 @@
 	var/list/sound_options = available_sounds
 	if(check_for_scepter())
 		sound_options["!!AIR HORN!!"] = 'sound/items/AirHorn.ogg'
-	var/new_sound = input("Select the sound you want to make.","Sounds") as null|anything in sound_options
+	var/new_sound = tgui_input_list(usr, "Select the sound you want to make.", "Sounds", sound_options)
 	if(new_sound)
 		selected_sound = sound_options[new_sound]
 
 /obj/item/weapon/spell/audible_deception/on_ranged_cast(atom/hit_atom, mob/living/user)
 	var/turf/T = get_turf(hit_atom)
 	if(selected_sound && pay_energy(200))
-		playsound(T, selected_sound, 80, 1, -1)
+		playsound(src, selected_sound, 80, 1, -1)
 		adjust_instability(1)
 		// Air Horn time.
 		if(selected_sound == 'sound/items/AirHorn.ogg' && pay_energy(3800))
@@ -83,7 +83,7 @@
 			for(var/mob/living/carbon/M in ohearers(6, T))
 				if(M.get_ear_protection() >= 2)
 					continue
-				M.sleeping = 0
+				M.SetSleeping(0)
 				M.stuttering += 20
 				M.ear_deaf += 30
 				M.Weaken(3)
@@ -92,4 +92,4 @@
 					M.Paralyse(4)
 				else
 					M.make_jittery(50)
-				to_chat(M, "<font color='red' size='7'><b>HONK</b></font>")
+				to_chat(M, span_red("<font size='7'><b>HONK</b></font>"))

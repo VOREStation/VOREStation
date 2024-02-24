@@ -96,6 +96,10 @@
 	name = "POI - Mine Vault"
 	ambience = AMBIENCE_FOREBODING
 
+/area/submap/cave/vault6
+	name = "POI - Mine Vault"
+	ambience = AMBIENCE_FOREBODING
+
 /area/submap/cave/IceCave1A
 	name = "POI - Ice Cave 1A"
 	ambience = AMBIENCE_SPACE
@@ -123,6 +127,22 @@
 	name = "POI - Crashed Containment Shuttle"
 	ambience = AMBIENCE_HIGHSEC
 
+/area/submap/geyser_1
+	name = "POI - Ore-Rich Geyser"
+	ambience = AMBIENCE_RUINS
+
+/area/submap/geyser_2
+	name = "POI - Fenced Geyser"
+	ambience = AMBIENCE_RUINS
+
+/area/submap/geyser_3
+	name = "POI - Magmatic Geyser"
+	ambience = AMBIENCE_RUINS
+
+/area/submap/ore_cliff
+	name = "POI - Ore-Topped Cliff"
+	ambience = AMBIENCE_RUINS
+
 /area/submap/deadspy
 	name = "POI - Dead Spy"
 	ambience = AMBIENCE_FOREBODING
@@ -135,3 +155,15 @@
 	name = "POI - Trench Outpost"
 	requires_power = FALSE
 	icon_state = "submap2"
+
+/area/submap/Excavation
+	name = "POI - Excavation Site"
+	ambience = AMBIENCE_FOREBODING
+
+/area/submap/spatial_anomaly
+	name = "POI - Spatial Anomaly"
+	ambience = AMBIENCE_FOREBODING
+
+/area/submap/Speakeasy  //VOREStation add
+	name = "POI - Speakeasy"
+	requires_power = FALSE

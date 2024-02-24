@@ -31,3 +31,36 @@
 			if(0)
 				results += "[desc_panel_image("crowbar")]to finish deconstruction."
 	return results
+
+/turf/simulated/floor/get_description_info()
+	. = ..()
+	if(broken || burnt)
+		. += "It is broken."
+
+/turf/simulated/floor/get_description_interaction()
+	. = ..()
+	if(broken || burnt)
+		if(is_plating())
+			. += "Use a welder on it to repair the damage."
+		else
+			. += "Use a crowbar on it to remove it."
+	else if(flooring)
+		if(flooring.flags & TURF_IS_FRAGILE)
+			. += "You can use a crowbar on it to remove it, but this will destroy it!"
+		else if(flooring.flags & TURF_REMOVE_CROWBAR)
+			. += "Use a crowbar on it to remove it."
+		if(flooring.flags & TURF_REMOVE_SCREWDRIVER)
+			. += "Use a screwdriver on it to remove it."
+		if(flooring.flags & TURF_REMOVE_WRENCH)
+			. += "Use a wrench on it to remove it."
+		if(flooring.flags & TURF_REMOVE_SHOVEL)
+			. += "Use a shovel on it to remove it."
+
+/turf/simulated/floor/outdoors/snow/get_description_interaction()
+	. = ..()
+	. += "Use a shovel on it to get rid of the snow and reveal the ground beneath."
+	. += "Use an empty hand on it to scoop up some snow, which you can use to make snowballs or snowmen."
+
+/turf/simulated/floor/outdoors/grass/get_description_interaction()
+	. = "Use floor tiles on it to make a plating."  // using . = ..() would incorrectly say you can remove the grass with a shovel
+	. += "Use a shovel on it to dig for worms."

@@ -6,118 +6,148 @@
 //
 
 /obj/item/clothing/head/helmet/space/void
-	sprite_sheets = list(
-		"Tajara" 				= 'icons/mob/species/tajaran/helmet.dmi',
-		"Skrell" 				= 'icons/mob/species/skrell/helmet.dmi',
-		"Unathi" 				= 'icons/mob/species/unathi/helmet.dmi',
-		"Teshari"				= 'icons/mob/species/seromi/head.dmi',
-		"Nevrean" 				= 'icons/mob/species/nevrean/helmet_vr.dmi',
-		"Akula" 				= 'icons/mob/species/akula/helmet_vr.dmi',
-		"Sergal"				= 'icons/mob/species/sergal/helmet_vr.dmi',
-		"Flatland Zorren" 		= 'icons/mob/species/fennec/helmet_vr.dmi',
-		"Highlander Zorren" 	= 'icons/mob/species/fox/helmet_vr.dmi',
-		"Vulpkanin"				= 'icons/mob/species/vulpkanin/helmet.dmi',
-		"Promethean"			= 'icons/mob/species/skrell/helmet.dmi',
-		"Xenomorph Hybrid"		= 'icons/mob/species/unathi/helmet.dmi'
-		)
-
-	sprite_sheets_obj = list(
-		"Tajara" 			= 'icons/obj/clothing/species/tajaran/hats.dmi', // Copied from void.dm
-		"Skrell"			= 'icons/obj/clothing/species/skrell/hats.dmi',  // Copied from void.dm
-		"Unathi"			= 'icons/obj/clothing/species/unathi/hats.dmi',  // Copied from void.dm
-		"Teshari"			= 'icons/obj/clothing/species/seromi/hats.dmi',  // Copied from void.dm
-		"Nevrean"			= 'icons/obj/clothing/species/nevrean/hats.dmi',
-		"Akula"				= 'icons/obj/clothing/species/akula/hats.dmi',
-		"Sergal"			= 'icons/obj/clothing/species/sergal/hats.dmi',
-		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/hats.dmi',
-		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/hats.dmi',
-		"Vulpkanin"			= 'icons/obj/clothing/species/vulpkanin/hats.dmi',
-		"Promethean"		= 'icons/obj/clothing/species/skrell/hats.dmi',
-		"Xenomorph Hybrid"	= 'icons/obj/clothing/species/unathi/hats.dmi'
-		)
+	species_restricted = list(SPECIES_HUMAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 
 /obj/item/clothing/suit/space/void
-	sprite_sheets = list(
-		"Tajara" 				= 'icons/mob/species/tajaran/suit.dmi',
-		"Skrell" 				= 'icons/mob/species/skrell/suit.dmi',
-		"Unathi" 				= 'icons/mob/species/unathi/suit.dmi',
-		"Teshari"				= 'icons/mob/species/seromi/suit.dmi',
-		"Nevrean" 				= 'icons/mob/species/nevrean/suit_vr.dmi',
-		"Akula" 				= 'icons/mob/species/akula/suit_vr.dmi',
-		"Sergal"				= 'icons/mob/species/sergal/suit_vr.dmi',
-		"Flatland Zorren" 		= 'icons/mob/species/fennec/suit_vr.dmi',
-		"Highlander Zorren" 	= 'icons/mob/species/fox/suit_vr.dmi',
-		"Vulpkanin"				= 'icons/mob/species/vulpkanin/suit.dmi',
-		"Promethean"			= 'icons/mob/species/skrell/suit.dmi',
-		"Xenomorph Hybrid"		= 'icons/mob/species/unathi/suit.dmi'
-		)
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 
+/obj/item/clothing/head/helmet/space/void/heck
+	name = "\improper H.E.C.K. helmet"
+	desc = "Hostile Environiment Cross-Kinetic Helmet: A helmet designed to withstand the wide variety of hazards from \[REDACTED\]. It wasn't enough for its last owner."
+	icon_state = "hostile_env"
+	item_state = "hostile_env"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
 
-
-	sprite_sheets_obj = list(
-		"Tajara"			= 'icons/obj/clothing/species/tajaran/suits.dmi', // Copied from void.dm
-		"Skrell"			= 'icons/obj/clothing/species/skrell/suits.dmi',  // Copied from void.dm
-		"Unathi"			= 'icons/obj/clothing/species/unathi/suits.dmi',  // Copied from void.dm
-		"Teshari"			= 'icons/obj/clothing/species/seromi/suits.dmi',  // Copied from void.dm
-		"Nevrean"			= 'icons/obj/clothing/species/nevrean/suits.dmi',
-		"Akula"				= 'icons/obj/clothing/species/akula/suits.dmi',
-		"Sergal"			= 'icons/obj/clothing/species/sergal/suits.dmi',
-		"Flatland Zorren"	= 'icons/obj/clothing/species/fennec/suits.dmi',
-		"Highlander Zorren"	= 'icons/obj/clothing/species/fox/suits.dmi',
-		"Vulpkanin"			= 'icons/obj/clothing/species/vulpkanin/suits.dmi',
-		"Promethean"		= 'icons/obj/clothing/species/skrell/suits.dmi'
-		)
-
-	// This is a hack to prevent the item_state variable on the suits from taking effect
-	// when the item is equipped in outer clothing slot.
-	// This variable is normally used to set the icon_override when the suit is refitted,
-	// however the species spritesheet now means we no longer need that anyway!
-	sprite_sheets_refit = list()
-
-/obj/item/clothing/suit/space/void/explorer
-	desc = "A classy red voidsuit for the needs of any semi-retro-futuristic spaceperson! This one is rather loose fitting."
-	species_restricted = list(
-		SPECIES_HUMAN,
-		SPECIES_SKRELL,
-		SPECIES_UNATHI,
-		SPECIES_TAJ,
-		SPECIES_TESHARI,
-		SPECIES_AKULA,
-		SPECIES_ALRAUNE,
-		SPECIES_NEVREAN,
-		SPECIES_RAPALA,
-		SPECIES_SERGAL,
-		SPECIES_VASILISSAN,
-		SPECIES_VULPKANIN,
-		SPECIES_XENOCHIMERA,
-		SPECIES_XENOHYBRID,
-		SPECIES_ZORREN_FLAT,
-		SPECIES_ZORREN_HIGH
-	)
-/obj/item/clothing/suit/space/void/explorer/Initialize()
+/obj/item/clothing/head/helmet/space/void/heck/Initialize()
 	. = ..()
-	sprite_sheets += sprite_sheets_refit
+	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hostile_env_glass")
+	glass_overlay.appearance_flags = RESET_COLOR
+	add_overlay(glass_overlay)
 
-/obj/item/clothing/head/helmet/space/void/explorer
-	desc = "A helmet that matches a red voidsuit! So classy."
-	species_restricted = list(
-		SPECIES_HUMAN,
-		SPECIES_SKRELL,
-		SPECIES_UNATHI,
-		SPECIES_TAJ,
-		SPECIES_TESHARI,
-		SPECIES_AKULA,
-		SPECIES_ALRAUNE,
-		SPECIES_NEVREAN,
-		SPECIES_RAPALA,
-		SPECIES_SERGAL,
-		SPECIES_VASILISSAN,
-		SPECIES_VULPKANIN,
-		SPECIES_XENOCHIMERA,
-		SPECIES_XENOHYBRID,
-		SPECIES_ZORREN_FLAT,
-		SPECIES_ZORREN_HIGH
-	)
-/obj/item/clothing/head/helmet/space/void/explorer/Initialize()
+/obj/item/clothing/head/helmet/space/void/heck/apply_accessories(var/image/standing)
 	. = ..()
-	sprite_sheets += sprite_sheets_refit
+	var/mutable_appearance/glass_overlay = mutable_appearance(icon_override, "hostile_env_glass")
+	glass_overlay.appearance_flags = KEEP_APART|RESET_COLOR
+	standing.add_overlay(glass_overlay)
+	return standing
+
+/obj/item/clothing/suit/space/void/heck
+	name = "\improper H.E.C.K. suit"
+	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from \[REDACTED\]. It wasn't enough for its last owner."
+	icon_state = "hostile_env"
+	item_state = "hostile_env"
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	slowdown = 1.5
+	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
+
+/obj/item/clothing/head/helmet/space/void/syndicate_contract
+	name = "syndicate contract helmet"
+	desc = "A free helmet, gifted you by your new not-quite-corporate master!"
+	icon_state = "syndicate-contract"
+	item_state = "syndicate-contract"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 60)
+	siemens_coefficient = 0.6
+	camera_networks = list(NETWORK_MERCENARY)
+
+/obj/item/clothing/suit/space/void/syndicate_contract
+	name = "syndicate contract suit"
+	desc = "A free suit, gifted you by your new not-quite-corporate master!"
+	icon_state = "syndicate-contract"
+	item_state = "syndicate-contract"
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 60)
+	siemens_coefficient = 0.6
+
+/obj/item/clothing/head/helmet/space/void/chrono
+	name = "chrono-helmet"
+	desc = "From out of space and time, this helmet will protect you while you perform your duties."
+	icon_state = "chronohelmet"
+	item_state = "chronohelmet"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+
+/obj/item/clothing/suit/space/void/chrono
+	name = "chrono-suit"
+	desc = "From out of space and time, this helmet will protect you while you perform your duties."
+	icon_state = "chronosuit"
+	item_state = "chronosuit"
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+
+/obj/item/clothing/suit/space/void/autolok
+	name = "AutoLok pressure suit"
+	desc = "A high-tech snug-fitting pressure suit. Fits any species. It offers very little physical protection, but is equipped with sensors that will automatically deploy the integral helmet to protect the wearer."
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_state = "autoloksuit"
+	item_state = "autoloksuit"
+	item_state_slots = list(slot_r_hand_str = "space_suit_syndicate", slot_l_hand_str = "space_suit_syndicate")
+	armor = list(melee = 15, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 100, rad = 80)
+	slowdown = 0.5
+	siemens_coefficient = 1
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt
+	breach_threshold = 6 //this thing is basically tissue paper
+	w_class = ITEMSIZE_NORMAL //if it's snug, high-tech, and made of relatively soft materials, it should be much easier to store!
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = null
+
+/obj/item/clothing/suit/space/void/autolok/Initialize()
+	. = ..()
+	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
+
+//override the attackby screwdriver proc so that people can't remove the helmet
+/obj/item/clothing/suit/space/void/autolok/attackby(obj/item/W as obj, mob/user as mob)
+
+	if(!isliving(user))
+		return
+
+	if(istype(W, /obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+		return ..()
+
+	if(user.get_inventory_slot(src) == slot_wear_suit)
+		to_chat(user, "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>")
+		return
+
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
+		if(boots || tank || cooler)
+			var/choice = tgui_input_list(usr, "What component would you like to remove?", "Remove Component", list(boots,tank,cooler))
+			if(!choice) return
+
+			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
+				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
+				tank.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
+				src.tank = null
+			else if(choice == cooler)
+				to_chat(user, "You pop \the [cooler] out of \the [src]'s storage compartment.")
+				cooler.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
+				src.cooler = null
+			else if(choice == boots)
+				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
+				boots.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
+				src.boots = null
+		else
+			to_chat(user, "\The [src] does not have anything installed.")
+		return
+
+	..()
+
+/obj/item/clothing/head/helmet/space/void/autolok
+	name = "AutoLok pressure helmet"
+	desc = "A rather close-fitting helmet designed to protect the wearer from hazardous conditions. Automatically deploys when the suit's sensors detect an environment that is hazardous to the wearer."
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_state = "autolokhelmet"
+	item_state = "autolokhelmet"
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt too
+	flags_inv = HIDEEARS|BLOCKHAIR //removed HIDEFACE/MASK/EYES flags so sunglasses or facemasks don't disappear. still gotta have BLOCKHAIR or it'll clip out tho.
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = null

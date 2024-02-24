@@ -3,7 +3,7 @@
 	icon_state = "protolathe"
 	flags = OPENCONTAINER
 	circuit = /obj/item/weapon/circuitboard/protolathe
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 5000
 
@@ -15,20 +15,42 @@
 	var/mat_efficiency = 1
 	var/speed = 1
 
-	materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, MAT_PLASTEEL = 0, "plastic" = 0, "gold" = 0, "silver" = 0, "osmium" = 0, MAT_LEAD = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0, MAT_METALHYDROGEN = 0, MAT_SUPERMATTER = 0)
+	//VOREStation Edit - Broke this into lines
+	materials = list(
+		MAT_STEEL = 0,
+		MAT_GLASS = 0,
+		MAT_PLASTEEL = 0,
+		MAT_PLASTIC = 0,
+		MAT_GRAPHITE = 0,
+		MAT_GOLD = 0,
+		MAT_SILVER = 0,
+		MAT_OSMIUM = 0,
+		MAT_LEAD = 0,
+		MAT_PHORON = 0,
+		MAT_URANIUM = 0,
+		MAT_DIAMOND = 0,
+		MAT_DURASTEEL = 0,
+		MAT_VERDANTIUM = 0,
+		MAT_MORPHIUM = 0,
+		MAT_METALHYDROGEN = 0,
+		MAT_SUPERMATTER = 0,
+		MAT_TITANIUM = 0)
 
-	hidden_materials = list(MAT_PLASTEEL, MAT_DURASTEEL, MAT_VERDANTIUM, MAT_MORPHIUM, MAT_METALHYDROGEN, MAT_SUPERMATTER)
+	hidden_materials = list(MAT_PLASTEEL, MAT_DURASTEEL, MAT_GRAPHITE, MAT_VERDANTIUM, MAT_MORPHIUM, MAT_METALHYDROGEN, MAT_SUPERMATTER)
 
 /obj/machinery/r_n_d/protolathe/Initialize()
 	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	RefreshParts()
+
+// Go through all materials, and add them to the possible storage, but hide them unless we contain them.
+	for(var/Name in name_to_material)
+		if(Name in materials)
+			continue
+
+		hidden_materials |= Name
+
+		materials[Name] = 0
+
+	default_apply_parts()
 
 /obj/machinery/r_n_d/protolathe/process()
 	..()
@@ -49,6 +71,7 @@
 			removeFromQueue(1)
 			if(linked_console)
 				linked_console.updateUsrDialog()
+			flick("[initial(icon_state)]_finish", src)
 		update_icon()
 	else
 		if(busy)
@@ -81,15 +104,20 @@
 		eject_materials(f, -1)
 	..()
 
+
 /obj/machinery/r_n_d/protolathe/update_icon()
+	cut_overlays()
+
+	icon_state = initial(icon_state)
+
 	if(panel_open)
-		icon_state = "protolathe_t"
-	else if(busy)
-		icon_state = "protolathe_n"
-	else
-		if(icon_state == "protolathe_n")
-			flick("protolathe_u", src) // If lid WAS closed, show opening animation
-		icon_state = "protolathe"
+		overlays.Add(image(icon, "[icon_state]_panel"))
+
+	if(stat & NOPOWER)
+		return
+
+	if(busy)
+		icon_state = "[icon_state]_work"
 
 /obj/machinery/r_n_d/protolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
@@ -135,23 +163,21 @@
 	if(materials[S.material.name] + amnt <= max_res_amount)
 		if(S && S.get_amount() >= 1)
 			var/count = 0
-			overlays += "fab-load-metal"
-			spawn(10)
-				overlays -= "fab-load-metal"
+			flick("[initial(icon_state)]_loading", src)
 			while(materials[S.material.name] + amnt <= max_res_amount && S.get_amount() >= 1)
 				materials[S.material.name] += amnt
 				S.use(1)
 				count++
-			to_chat(user, "You insert [count] [sname] into the fabricator.")
+			to_chat(user, "<span class='filter_notice'>You insert [count] [sname] into the fabricator.</span>")
 	else
-		to_chat(user, "The fabricator cannot hold more [sname].")
+		to_chat(user, "<span class='filter_notice'>The fabricator cannot hold more [sname].</span>")
 	busy = 0
 
 	var/stacktype = S.type
 	var/t = getMaterialName(stacktype)
-	overlays += "protolathe_[t]"
+	add_overlay("protolathe_[t]")
 	spawn(10)
-		overlays -= "protolathe_[t]"
+		cut_overlay("protolathe_[t]")
 
 	updateUsrDialog()
 	return
@@ -207,27 +233,44 @@
 					new_item.matter[i] = new_item.matter[i] * mat_efficiency
 
 /obj/machinery/r_n_d/protolathe/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-	var/recursive = amount == -1 ? 1 : 0
-	material = lowertext(material)
-	var/obj/item/stack/material/mattype
-	var/material/MAT = get_material_by_name(material)
+	var/recursive = amount == -1 ? TRUE : FALSE
+	var/matstring = lowertext(material)
 
-	if(!MAT)
+	// 0 or null, nothing to eject
+	if(!materials[matstring])
+		return
+	// Problem, fix problem and abort
+	if(materials[matstring] < 0)
+		warning("[src] tried to eject material '[material]', which it has 'materials[matstring]' of!")
+		materials[matstring] = 0
 		return
 
-	mattype = MAT.stack_type
-
-	if(!mattype)
+	// Find the material datum for our material
+	var/datum/material/M = get_material_by_name(matstring)
+	if(!M)
+		warning("[src] tried to eject material '[matstring]', which didn't match any known material datum!")
+		return
+	// Find what type of sheets it makes
+	var/obj/item/stack/material/S = M.stack_type
+	if(!S)
+		warning("[src] tried to eject material '[matstring]', which didn't have a stack_type!")
 		return
 
-	var/obj/item/stack/material/S = new mattype(loc)
+	// If we were passed -1, then it's recursive ejection and we should eject all we can
 	if(amount <= 0)
-		amount = S.max_amount
-	var/ejected = min(round(materials[material] / S.perunit), amount)
-	S.amount = min(ejected, amount)
-	if(S.amount <= 0)
-		qdel(S)
+		amount = initial(S.max_amount)
+	// Smaller of what we have left, or the desired amount (note the amount is in sheets, but the array stores perunit values)
+	var/ejected = min(round(materials[matstring] / initial(S.perunit)), amount)
+
+	// Place a sheet
+	S = M.place_sheet(get_turf(src), ejected)
+	if(!istype(S))
+		warning("[src] tried to eject material '[material]', which didn't generate a proper stack when asked!")
 		return
-	materials[material] -= ejected * S.perunit
-	if(recursive && materials[material] >= S.perunit)
-		eject_materials(material, -1)
+
+	// Reduce our amount stored
+	materials[matstring] -= ejected * S.perunit
+	
+	// Recurse if we have enough left for more sheets
+	if(recursive && materials[matstring] >= S.perunit)
+		eject_materials(matstring, -1)

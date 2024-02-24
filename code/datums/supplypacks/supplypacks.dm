@@ -23,6 +23,8 @@ var/list/all_supply_groups = list("Atmospherics",
 								  "Science",
 								  "Security",
 								  "Supplies",
+								  "Vendor Refills",
+								  "Hardsuits",
 								  "Voidsuits")
 
 /datum/supply_pack

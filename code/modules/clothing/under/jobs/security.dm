@@ -26,6 +26,17 @@
 	siemens_coefficient = 0.9
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/rank/security/modern
+	name = "modernized security officer's jumpsuit"
+	desc = "A recent redesign of the classic Security jumpsuit, featuring sturdy materials, joint padding, one giant zipper, and tight-fitting synthleather."
+	icon_state = "securitymodern"
+	item_state = "securitymodern"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
+	rolled_sleeves = -1
+	worn_state = "securitymodern"
+	icon = 'icons/inventory/uniform/item.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+
 /obj/item/clothing/under/rank/security/turtleneck
 	name = "security turtleneck"
 	desc = "It's a stylish turtleneck made of a robust nanoweave. Nobody said the Law couldn't be fashionable."
@@ -93,6 +104,7 @@
 	H.update_inv_w_uniform(1)
 	to_chat(H, "<span class='notice'>You roll the sleeves of your shirt [unrolled ? "up" : "down"]</span>")
 */
+
 /obj/item/clothing/under/det/grey
 	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks."
@@ -118,6 +130,11 @@
 /obj/item/clothing/under/det/grey/waistcoat
 	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
+	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long, /obj/item/clothing/accessory/wcoat)
+
+/obj/item/clothing/under/det/black/waistcoat
+	icon_state = "detective3"
+	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, a red tie, and a charcoal vest."
 	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long, /obj/item/clothing/accessory/wcoat)
 
 /obj/item/clothing/under/det/skirt
@@ -173,3 +190,28 @@
 	icon_state = "wardenblueclothes"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 	rolled_sleeves = 0
+
+/*
+ * Tan uniforms
+ */
+/obj/item/clothing/under/rank/security/tan
+	name = "security officer's uniform"
+	desc = "The latest in fashionable security outfits."
+	icon_state = "officertanclothes"
+	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/rank/head_of_security/tan
+	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
+	name = "head of security's uniform"
+	icon_state = "hostanclothes"
+	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/rank/warden/tan
+	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
+	name = "warden's uniform"
+	icon_state = "wardentanclothes"
+	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
+	rolled_sleeves = 0
+

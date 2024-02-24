@@ -27,8 +27,6 @@ SUBSYSTEM_DEF(timer)
 	var/last_invoke_tick = 0
 	var/static/last_invoke_warning = 0
 	var/static/bucket_auto_reset = TRUE
-	var/static/datum/timedevent/timer // VOREStation Edit - For debugging this goes here.
-	var/super_debug = FALSE // VOREStation Edit - Temporary Debugging
 
 /datum/controller/subsystem/timer/PreInit()
 	bucket_list.len = BUCKET_LEN
@@ -104,13 +102,11 @@ SUBSYSTEM_DEF(timer)
 	if (next_clienttime_timer_index)
 		clienttime_timers.Cut(1, next_clienttime_timer_index+1)
 
-	var/pre_state = src.state
 	if (MC_TICK_CHECK)
-		log_world("Timer bailing before execution at world.time=[world.time] with LIT=[last_invoke_tick], TICK_USAGE=[TICK_USAGE], current_ticklimit=[Master.current_ticklimit], state=[pre_state] -> [src.state], queued_priority=[queued_priority] tick_overrun=[tick_overrun]") // VOREStation Edit - Debugging
 		return
 
 	var/static/list/spent = list()
-	// var/static/datum/timedevent/timer VOREStation Edit - for debugging purpose putting this as datum scope
+	var/static/datum/timedevent/timer
 	if (practical_offset > BUCKET_LEN)
 		head_offset += TICKS2DS(BUCKET_LEN)
 		practical_offset = 1
@@ -143,14 +139,7 @@ SUBSYSTEM_DEF(timer)
 				last_invoke_tick = world.time
 
 			if (MC_TICK_CHECK)
-				if (super_debug) log_world("Bailing from execution with practical_offset=[practical_offset] and timer=[timer]") // VOREStation Edit - Super Debug
 				return
-
-			// VOREStation Edit Start - Debugging
-			if (timer.next == timer && timer.next != head)
-				log_world("Self-looping out of bucket timer failure condition X occurred")
-				CRASH("Invalid timer: [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
-			// VOREStation Edit End - Debugging
 
 			timer = timer.next
 			if (timer == head)
@@ -170,8 +159,7 @@ SUBSYSTEM_DEF(timer)
 
 			if (timer.timeToRun < head_offset)
 				bucket_resolution = null //force bucket recreation
-				CRASH("[i] Invalid timer state: Timer in long run queue with a time to run less then head_offset. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
-
+				stack_trace("[i] Invalid timer state: Timer in long run queue with a time to run less then head_offset. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 				if (timer.callBack && !timer.spent)
 					timer.callBack.InvokeAsync()
 					spent += timer
@@ -182,7 +170,7 @@ SUBSYSTEM_DEF(timer)
 
 			if (timer.timeToRun < head_offset + TICKS2DS(practical_offset-1))
 				bucket_resolution = null //force bucket recreation
-				CRASH("[i] Invalid timer state: Timer in long run queue that would require a backtrack to transfer to short run queue. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
+				stack_trace("[i] Invalid timer state: Timer in long run queue that would require a backtrack to transfer to short run queue. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 				if (timer.callBack && !timer.spent)
 					timer.callBack.InvokeAsync()
 					spent += timer
@@ -214,8 +202,7 @@ SUBSYSTEM_DEF(timer)
 
 	bucket_count -= length(spent)
 
-	for (var/i in spent)
-		var/datum/timedevent/qtimer = i
+	for(var/datum/timedevent/qtimer as anything in spent)
 		if(QDELETED(qtimer))
 			bucket_count++
 			continue
@@ -246,11 +233,6 @@ SUBSYSTEM_DEF(timer)
 
 /datum/controller/subsystem/timer/proc/reset_buckets()
 	var/list/bucket_list = src.bucket_list
-	// VOREStation Edit Start - Debugging
-	log_world("Beginning Timer bucket reset. bucket_list.len=[length(bucket_list)], BUCKET_LEN=[BUCKET_LEN], \
-		world.tick_lag = [world.tick_lag], bucket_resolution=[bucket_resolution], world.time: [world.time], \
-		head_offset: [head_offset], practical_offset: [practical_offset]")
-	// VOREStation Edit End - Debugging
 	var/list/alltimers = list()
 	//collect the timers currently in the bucket
 	for (var/bucket_head in bucket_list)
@@ -272,14 +254,9 @@ SUBSYSTEM_DEF(timer)
 
 	alltimers += second_queue
 	if (!length(alltimers))
-		// VOREStation Edit Start - Debugging
-		log_world("Finished Timer bucket reset. bucket_list.len=[length(bucket_list)], BUCKET_LEN=[BUCKET_LEN], \
-			world.tick_lag = [world.tick_lag], bucket_resolution=[bucket_resolution], world.time: [world.time], \
-			head_offset: [head_offset], practical_offset: [practical_offset] (NO TIMERS)")
-		// VOREStation Edit End - Debugging
 		return
 
-	sortTim(alltimers, /proc/cmp_timer)
+	sortTim(alltimers, GLOBAL_PROC_REF(cmp_timer))
 
 	var/datum/timedevent/head = alltimers[1]
 
@@ -323,11 +300,7 @@ SUBSYSTEM_DEF(timer)
 		alltimers.Cut(1, i+1)
 	second_queue = alltimers
 	bucket_count = new_bucket_count
-	// VOREStation Edit Start - Debugging
-	log_world("Finished Timer bucket reset. bucket_list.len=[length(bucket_list)], BUCKET_LEN=[BUCKET_LEN], \
-		world.tick_lag = [world.tick_lag], bucket_resolution=[bucket_resolution], world.time: [world.time], \
-		head_offset: [head_offset], practical_offset: [practical_offset]")
-	// VOREStation Edit End - Debugging
+
 
 /datum/controller/subsystem/timer/Recover()
 	second_queue |= SStimer.second_queue
@@ -421,8 +394,6 @@ SUBSYSTEM_DEF(timer)
 	var/datum/timedevent/buckethead
 	if(bucketpos > 0)
 		buckethead = bucket_list[bucketpos]
-	else // VOREStation Edit - Debugging
-		log_world("WARNING: non-positive bucket pos [bucketpos] for [src]! next=[next ? next : "NULL"] prev=[prev ? prev : "NULL"]") // VOREStation Edit - Debugging
 	if(buckethead == src)
 		bucket_list[bucketpos] = next
 		SStimer.bucket_count--
@@ -486,10 +457,10 @@ SUBSYSTEM_DEF(timer)
 		CRASH("addtimer called without a callback")
 
 	if (wait < 0)
-		crash_with("addtimer called with a negative wait. Converting to [world.tick_lag]")
+		stack_trace("addtimer called with a negative wait. Converting to [world.tick_lag]")
 
 	if (callback.object != GLOBAL_PROC && QDELETED(callback.object) && !QDESTROYING(callback.object))
-		crash_with("addtimer called with a callback assigned to a qdeleted object. In the future such timers will not be supported and may refuse to run or run with a 0 wait")
+		stack_trace("addtimer called with a callback assigned to a qdeleted object. In the future such timers will not be supported and may refuse to run or run with a 0 wait")
 
 	wait = max(CEILING(wait, world.tick_lag), world.tick_lag)
 
@@ -520,7 +491,7 @@ SUBSYSTEM_DEF(timer)
 						. = hash_timer.id
 					return
 	else if(flags & TIMER_OVERRIDE)
-		crash_with("TIMER_OVERRIDE used without TIMER_UNIQUE")
+		stack_trace("TIMER_OVERRIDE used without TIMER_UNIQUE")
 
 	var/datum/timedevent/timer = new(callback, wait, flags, hash)
 	return timer.id
@@ -541,6 +512,26 @@ SUBSYSTEM_DEF(timer)
 		return TRUE
 	return FALSE
 
+/**
+ * Get the remaining deciseconds on a timer
+ *
+ * Arguments:
+ * * id a timerid or a /datum/timedevent
+ */
+/proc/timeleft(id, datum/controller/subsystem/timer/timer_subsystem)
+	if (!id)
+		return null
+	if (id == TIMER_ID_NULL)
+		CRASH("Tried to get timeleft of a null timerid. Use TIMER_STOPPABLE flag")
+	if (istype(id, /datum/timedevent))
+		var/datum/timedevent/timer = id
+		return timer.timeToRun - world.time
+	timer_subsystem = timer_subsystem || SStimer
+	//id is string
+	var/datum/timedevent/timer = timer_subsystem.timer_id_dict[id]
+	if(!timer || timer.spent)
+		return null
+	return timer.timeToRun - (timer.flags & TIMER_CLIENT_TIME ? REALTIMEOFDAY : world.time)
 
 #undef BUCKET_LEN
 #undef BUCKET_POS

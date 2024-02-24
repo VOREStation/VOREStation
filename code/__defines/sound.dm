@@ -18,43 +18,47 @@
 #define SOUND_MINIMUM_PRESSURE 10
 #define FALLOFF_SOUNDS 0.5
 
-//Sound environment defines. Reverb preset for sounds played in an area, see sound datum reference for more.
-#define GENERIC 0
-#define PADDED_CELL 1
-#define ROOM 2
-#define BATHROOM 3
-#define LIVINGROOM 4
-#define STONEROOM 5
-#define AUDITORIUM 6
-#define CONCERT_HALL 7
-#define CAVE 8
-#define ARENA 9
-#define HANGAR 10
-#define CARPETED_HALLWAY 11
-#define HALLWAY 12
-#define STONE_CORRIDOR 13
-#define ALLEY 14
-#define FOREST 15
-#define CITY 16
-#define MOUNTAINS 17
-#define QUARRY 18
-#define PLAIN 19
-#define PARKING_LOT 20
-#define SEWER_PIPE 21
-#define UNDERWATER 22
-#define DRUGGED 23
-#define DIZZY 24
-#define PSYCHOTIC 25
+#define MAX_INSTRUMENT_CHANNELS (128 * 6)
 
-#define STANDARD_STATION STONEROOM
-#define LARGE_ENCLOSED HANGAR
-#define SMALL_ENCLOSED BATHROOM
-#define TUNNEL_ENCLOSED CAVE
-#define LARGE_SOFTFLOOR CARPETED_HALLWAY
-#define MEDIUM_SOFTFLOOR LIVINGROOM
-#define SMALL_SOFTFLOOR ROOM
-#define ASTEROID CAVE
-#define SPACE UNDERWATER
+//default byond sound environments
+#define SOUND_ENVIRONMENT_NONE -1
+#define SOUND_ENVIRONMENT_GENERIC 0
+#define SOUND_ENVIRONMENT_PADDED_CELL 1
+#define SOUND_ENVIRONMENT_ROOM 2
+#define SOUND_ENVIRONMENT_BATHROOM 3
+#define SOUND_ENVIRONMENT_LIVINGROOM 4
+#define SOUND_ENVIRONMENT_STONEROOM 5
+#define SOUND_ENVIRONMENT_AUDITORIUM 6
+#define SOUND_ENVIRONMENT_CONCERT_HALL 7
+#define SOUND_ENVIRONMENT_CAVE 8
+#define SOUND_ENVIRONMENT_ARENA 9
+#define SOUND_ENVIRONMENT_HANGAR 10
+#define SOUND_ENVIRONMENT_CARPETED_HALLWAY 11
+#define SOUND_ENVIRONMENT_HALLWAY 12
+#define SOUND_ENVIRONMENT_STONE_CORRIDOR 13
+#define SOUND_ENVIRONMENT_ALLEY 14
+#define SOUND_ENVIRONMENT_FOREST 15
+#define SOUND_ENVIRONMENT_CITY 16
+#define SOUND_ENVIRONMENT_MOUNTAINS 17
+#define SOUND_ENVIRONMENT_QUARRY 18
+#define SOUND_ENVIRONMENT_PLAIN 19
+#define SOUND_ENVIRONMENT_PARKING_LOT 20
+#define SOUND_ENVIRONMENT_SEWER_PIPE 21
+#define SOUND_ENVIRONMENT_UNDERWATER 22
+#define SOUND_ENVIRONMENT_DRUGGED 23
+#define SOUND_ENVIRONMENT_DIZZY 24
+#define SOUND_ENVIRONMENT_PSYCHOTIC 25
+//If we ever make custom ones add them here
+
+#define STANDARD_STATION SOUND_ENVIRONMENT_STONEROOM
+#define LARGE_ENCLOSED SOUND_ENVIRONMENT_HANGAR
+#define SMALL_ENCLOSED SOUND_ENVIRONMENT_BATHROOM
+#define TUNNEL_ENCLOSED SOUND_ENVIRONMENT_CAVE
+#define LARGE_SOFTFLOOR SOUND_ENVIRONMENT_CARPETED_HALLWAY
+#define MEDIUM_SOFTFLOOR SOUND_ENVIRONMENT_LIVINGROOM
+#define SMALL_SOFTFLOOR SOUND_ENVIRONMENT_ROOM
+#define ASTEROID SOUND_ENVIRONMENT_CAVE
+#define SPACE SOUND_ENVIRONMENT_UNDERWATER
 
 // Ambience presets.
 // All you need to do to make an area play one of these is set their ambience var to one of these lists.
@@ -70,7 +74,9 @@
 // Restricted, military, or mercenary aligned locations like the armory, the merc ship/base, BSD, etc.
 #define AMBIENCE_HIGHSEC list(\
 	'sound/ambience/highsec/highsec1.ogg',\
-	'sound/ambience/highsec/highsec2.ogg'\
+	'sound/ambience/highsec/highsec2.ogg',\
+	'sound/ambience/highsec/highsec3.ogg',\
+	'sound/ambience/highsec/highsec4.ogg'\
 	)
 
 // Ruined structures found on the surface or in the caves.
@@ -108,14 +114,19 @@
 #define AMBIENCE_GENERIC list(\
 	'sound/ambience/generic/generic1.ogg',\
 	'sound/ambience/generic/generic2.ogg',\
-	'sound/ambience/generic/generic3.ogg',\
-	'sound/ambience/generic/generic4.ogg'\
+	'sound/ambience/generic/generic3.ogg'\
 	)
+// 'sound/ambience/generic/generic4.ogg'
 
 // Sounds of PA announcements, presumably involving shuttles?
 #define AMBIENCE_ARRIVALS list(\
 	'sound/ambience/arrivals/arrivals1.ogg',\
-	'sound/ambience/arrivals/arrivals2.ogg'\
+	'sound/ambience/arrivals/arrivals2.ogg',\
+	'sound/ambience/arrivals/arrivals3.ogg',\
+	'sound/ambience/arrivals/arrivals4.ogg',\
+	'sound/ambience/arrivals/arrivals5.ogg',\
+	'sound/ambience/arrivals/arrivals6.ogg',\
+	'sound/ambience/arrivals/arrivals7.ogg'\
 	)
 
 // Sounds suitable for being inside dark, tight corridors in the underbelly of the station.
@@ -125,7 +136,10 @@
 	'sound/ambience/maintenance/maintenance3.ogg',\
 	'sound/ambience/maintenance/maintenance4.ogg',\
 	'sound/ambience/maintenance/maintenance5.ogg',\
-	'sound/ambience/maintenance/maintenance6.ogg'\
+	'sound/ambience/maintenance/maintenance6.ogg',\
+	'sound/ambience/maintenance/maintenance7.ogg',\
+	'sound/ambience/maintenance/maintenance8.ogg',\
+	'sound/ambience/maintenance/maintenance9.ogg'\
 	)
 
 // Life support machinery at work, keeping everyone breathing.
@@ -137,7 +151,9 @@
 
 // Creepy AI/borg stuff.
 #define AMBIENCE_AI list(\
-	'sound/ambience/ai/ai1.ogg'\
+	'sound/ambience/ai/ai1.ogg',\
+	'sound/ambience/ai/ai2.ogg',\
+	'sound/ambience/ai/ai3.ogg'\
 	)
 
 // Peaceful sounds when floating in the void.
@@ -155,7 +171,11 @@
 // Concerning sounds, for when one discovers something horrible happened in a PoI.
 #define AMBIENCE_FOREBODING list(\
 	'sound/ambience/foreboding/foreboding1.ogg',\
-	'sound/ambience/foreboding/foreboding2.ogg'\
+	'sound/ambience/foreboding/foreboding2.ogg',\
+	'sound/ambience/foreboding/foreboding3.ogg',\
+	'sound/ambience/foreboding/foreboding4.ogg',\
+	'sound/ambience/foreboding/foreboding5.ogg',\
+	'sound/ambience/foreboding/foreboding6.ogg'\
 	)
 
 // Ambience heard when aboveground on Sif and not in a Point of Interest.
@@ -176,4 +196,32 @@
 // For the memes.
 #define AMBIENCE_AESTHETIC list(\
 	'sound/ambience/vaporwave.ogg'\
+	)
+	
+#define AMBIENCE_OUTPOST list(\
+	'sound/ambience/expoutpost/expoutpost1.ogg',\
+	'sound/ambience/expoutpost/expoutpost2.ogg',\
+	'sound/ambience/expoutpost/expoutpost3.ogg',\
+	'sound/ambience/expoutpost/expoutpost4.ogg'\
+	)
+	
+#define AMBIENCE_SUBSTATION list(\
+	'sound/ambience/substation/substation1.ogg',\
+	'sound/ambience/substation/substation2.ogg'\
+	)
+	
+#define AMBIENCE_HANGAR list(\
+	'sound/ambience/hangar/hangar1.ogg',\
+	'sound/ambience/hangar/hangar2.ogg',\
+	'sound/ambience/hangar/hangar3.ogg',\
+	'sound/ambience/hangar/hangar4.ogg',\
+	'sound/ambience/hangar/hangar5.ogg',\
+	'sound/ambience/hangar/hangar6.ogg'\
+	)
+	
+#define AMBIENCE_ATMOS list(\
+	'sound/ambience/engineering/engineering1.ogg',\
+	'sound/ambience/engineering/engineering2.ogg',\
+	'sound/ambience/engineering/engineering3.ogg',\
+	'sound/ambience/atmospherics/atmospherics1.ogg'\
 	)

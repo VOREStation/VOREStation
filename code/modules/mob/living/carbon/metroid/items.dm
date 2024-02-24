@@ -256,12 +256,12 @@
 			qdel(src)*/
 */
 /obj/effect/golemrune
-	anchored = 1
+	anchored = TRUE
 	desc = "a strange rune used to create golems. It glows when spirits are nearby."
 	name = "rune"
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "golem"
-	unacidable = 1
+	unacidable = TRUE
 	layer = TURF_LAYER
 
 	New()
@@ -360,8 +360,7 @@
 	. = ..()
 	reagents.add_reagent("nutriment", 4)
 	reagents.add_reagent("slimejelly", 1)
-	spawn(rand(1200,1500))//the egg takes a while to "ripen"
-		Grow()
+	addtimer(CALLBACK(src, ./proc/Grow), rand(120 SECONDS, 150 SECONDS))
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/slime/proc/Grow()
 	grown = 1

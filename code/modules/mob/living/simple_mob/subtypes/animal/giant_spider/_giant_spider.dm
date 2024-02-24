@@ -73,7 +73,7 @@
 	maxHealth = 200
 	health = 200
 	pass_flags = PASSTABLE
-	movement_cooldown = 10
+	movement_cooldown = 3
 	movement_sound = 'sound/effects/spider_loop.ogg'
 	poison_resist = 0.5
 
@@ -83,9 +83,12 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "punches"
 
+	organ_names = /decl/mob_organ_names/spider
+
+
 	melee_damage_lower = 18
 	melee_damage_upper = 30
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 	attack_sound = 'sound/weapons/bite.ogg'
 
@@ -95,14 +98,24 @@
 
 	speak_emote = list("chitters")
 
-	meat_amount = 1
+	meat_amount = 5
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	say_list_type = /datum/say_list/spider
 
+	tame_items = list(
+	/obj/item/weapon/reagent_containers/food/snacks/xenomeat = 10,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 40,
+	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
+	)
+
 	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks.
 	var/poison_chance = 10			// Chance for injection to occur.
 	var/poison_per_bite = 5			// Amount added per injection.
+
+	butchery_loot = list(\
+		/obj/item/stack/material/chitin = 1\
+		)
 
 /mob/living/simple_mob/animal/giant_spider/apply_melee_effects(var/atom/A)
 	if(isliving(A))
@@ -131,3 +144,6 @@
 
 	if(poison_per_bite)
 		poison_per_bite *= 1.3
+
+/decl/mob_organ_names/spider
+	hit_zones = list("cephalothorax", "abdomen", "left forelegs", "right forelegs", "left hind legs", "right hind legs", "pedipalp", "mouthparts")

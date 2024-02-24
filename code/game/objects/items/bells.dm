@@ -6,6 +6,7 @@
 	force = 2
 	throwforce = 2
 	w_class = 2.0
+	matter = list(MAT_STEEL = 50)
 	var/broken
 	attack_verb = list("annoyed")
 	var/static/radial_examine = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine")
@@ -13,13 +14,13 @@
 	var/static/radial_pickup = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_pickup")
 
 /obj/item/weapon/deskbell/examine(mob/user)
-	..()
+	. = ..()
 	if(broken)
-		to_chat(user,"<b>It looks damaged, the ringer is stuck firmly inside.</b>")
+		. += "<b>It looks damaged, the ringer is stuck firmly inside.</b>"
 
 /obj/item/weapon/deskbell/attack(mob/target as mob, mob/living/user as mob)
 	if(!broken)
-		playsound(user.loc, 'sound/effects/deskbell.ogg', 50, 1)
+		playsound(src, 'sound/effects/deskbell.ogg', 50, 1)
 	..()
 
 /obj/item/weapon/deskbell/attack_hand(mob/user)
@@ -49,7 +50,7 @@
 	// Once the player has decided their option, choose the behaviour that will happen under said option.
 	switch(choice)
 		if("examine")
-			examine(user)
+			user.examinate(src)
 
 		if("use")
 			if(check_ability(user))
@@ -61,12 +62,12 @@
 
 /obj/item/weapon/deskbell/proc/ring(mob/user)
 	if(user.a_intent == "harm")
-		playsound(user.loc, 'sound/effects/deskbell_rude.ogg', 50, 1)
+		playsound(src, 'sound/effects/deskbell_rude.ogg', 50, 1)
 		to_chat(user,"<span class='notice'>You hammer [src] rudely!</span>")
 		if (prob(2))
 			break_bell(user)
 	else
-		playsound(user.loc, 'sound/effects/deskbell.ogg', 50, 1)
+		playsound(src, 'sound/effects/deskbell.ogg', 50, 1)
 		to_chat(user,"<span class='notice'>You gracefully ring [src].</span>")
 
 /obj/item/weapon/deskbell/proc/check_ability(mob/user)
@@ -86,7 +87,7 @@
 /obj/item/weapon/deskbell/attackby(obj/item/W, mob/user, params)
 	if(!istype(W))
 		return
-	if(W.is_wrench() && isturf(loc))
+	if(W.has_tool_quality(TOOL_WRENCH) && isturf(loc))
 		if(do_after(5))
 			if(!src) return
 			to_chat(user, "<span class='notice'>You dissasemble the desk bell</span>")

@@ -6,7 +6,7 @@
 	**the catalogue entry ends here.**"
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/otie //Spawn this one only if you're looking for a bad time. Not friendly.
+/mob/living/simple_mob/vore/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
 	desc = "The classic bioengineered longdog."
 	tt_desc = "Otus robustus"
@@ -19,8 +19,8 @@
 	maxHealth = 150
 	health = 150
 	minbodytemp = 200
-	melee_damage_lower = 2
-	melee_damage_upper = 7 //Don't break my bones bro
+	melee_damage_lower = 10
+	melee_damage_upper = 20 //Don't break my bones bro
 	see_in_dark = 8
 	response_help = "pets"
 	response_disarm = "bops"
@@ -49,13 +49,18 @@
 
 // Activate Noms!
 
-/mob/living/simple_mob/otie
+/mob/living/simple_mob/vore/otie
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 20
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
+	vore_stomach_name = "Grut"
+	vore_stomach_flavor = "You have ended up in the otie's primary stomach. The end of the line for the solidness of the most of its food. It is very hot and humid here, and it doesn't help that the little air left is saturated with pungent fumes of digesting food. The slimy folds of this powerful belly knead and squeeze firmly against your form, the globs and strands of the dark, almost tar-like internal slop within feel rather thick compared to the usual. The muscular walls seem awfully eager to cling and rub against you, while oozing numbingly thick and dense juices against your body."
+	vore_default_contamination_flavor = "Acrid"
+	vore_default_contamination_color = "black"
+	vore_default_item_mode = IM_DIGEST
 
-/mob/living/simple_mob/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
+/mob/living/simple_mob/vore/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "mutated feral otie"
 	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B."
 	tt_desc = "Otus phoronis"
@@ -76,7 +81,14 @@
 	max_n2 = 0
 	has_eye_glow = TRUE
 
-/mob/living/simple_mob/otie/red
+/mob/living/simple_mob/vore/otie/feral/chubby
+	name = "chubby mutated feral otie"
+	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B. What an absolute unit."
+	icon_state = "photiec"
+	icon_living = "photiec"
+	icon_rest = "photiec_rest"
+
+/mob/living/simple_mob/vore/otie/red
 	name = "feral red otie"
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces."
 	tt_desc = "Otus infernalis"
@@ -98,19 +110,35 @@
 	maxbodytemp = 1000
 	has_eye_glow = TRUE
 
-/mob/living/simple_mob/otie/red/friendly //gets the pet2tame feature and doesn't kill you right away
+/mob/living/simple_mob/vore/otie/red/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "red otie"
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. This one seems rather peaceful though."
 	faction = "neutral"
 	tamed = 1
 
-/mob/living/simple_mob/otie/friendly //gets the pet2tame feature and doesn't kill you right away
+/mob/living/simple_mob/vore/otie/red/chubby //gets the pet2tame feature and doesn't kill you right away
+	name = "chubby red otie"
+	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. What an absolute unit."
+	icon_state = "hotiec"
+	icon_living = "hotiec"
+	icon_rest = "hotiec_rest"
+	faction = "neutral"
+	tamed = 1
+
+/mob/living/simple_mob/vore/otie/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "otie"
 	desc = "The classic bioengineered longdog. This one might even tolerate you!"
 	faction = "neutral"
 	tamed = 1
 
-/mob/living/simple_mob/otie/cotie //same as above but has a little collar :v
+/mob/living/simple_mob/vore/otie/friendly/chubby
+	name = "chubby otie"
+	desc = "The classic bioengineered longdog. This one might even tolerate you! What an absolute unit"
+	icon_state = "fotie"
+	icon_living = "fotie"
+	icon_rest = "fotie_rest"
+
+/mob/living/simple_mob/vore/otie/cotie //same as above but has a little collar :v
 	name = "tamed otie"
 	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. However a proper domesticated otie is an oxymoron and the collar is likely just a decoration."
 	icon_state = "cotie"
@@ -119,7 +147,14 @@
 	faction = "neutral"
 	tamed = 1
 
-/mob/living/simple_mob/otie/cotie/phoron //friendly phoron pup with collar
+/mob/living/simple_mob/vore/otie/cotie/chubby
+	name = "chubby tamed otie"
+	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. What an absolute unit."
+	icon_state = "fcotie"
+	icon_living = "fcotie"
+	icon_rest = "fcotie_rest"
+
+/mob/living/simple_mob/vore/otie/cotie/phoron //friendly phoron pup with collar
 	name = "mutated otie"
 	desc = "Looks like someone did manage to domesticate one of those wild phoron mutants. What a badass."
 	tt_desc = "Otus phoronis"
@@ -137,9 +172,9 @@
 	max_n2 = 0
 	has_eye_glow = TRUE
 
-/mob/living/simple_mob/otie/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
+/mob/living/simple_mob/vore/otie/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
-	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
+	desc = "The VARMAcorp bioengineering division flagship product on big mean guard dogs."
 	icon_state = "sotie"
 	icon_living = "sotie"
 	icon_rest = "sotie_rest"
@@ -155,9 +190,17 @@
 	var/check_records = 0 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
 
-/mob/living/simple_mob/otie/security/phoron
+/mob/living/simple_mob/vore/otie/security/chubby
+	name = "chubby guard otie"
+	desc = "The VARMAcorp bioengineering division flagship product on big mean guard dogs. What an absolute unit."
+	icon_state = "fsotie"
+	icon_living = "fsotie"
+	icon_rest = "fsotie_rest"
+	icon_dead = "fsotie-dead"
+
+/mob/living/simple_mob/vore/otie/security/phoron
 	name = "mutated guard otie"
-	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs for infernal environments."
+	desc = "An extra rare phoron resistant version of the VARMAcorp trained guard dogs adapted for hostile environments."
 	tt_desc = "Otus phoronis"
 	icon_state = "secphotie"
 	icon_living = "secphotie"
@@ -172,9 +215,9 @@
 	min_n2 = 0
 	max_n2 = 0
 
-/mob/living/simple_mob/otie/security/phoron/red
+/mob/living/simple_mob/vore/otie/security/phoron/red
 	name = "red guard otie"
-	desc = "An ominous looking version of the VARMAcorp trained snowflake guard dogs."
+	desc = "An ominous looking version of the big mean VARMAcorp guard dogs."
 	tt_desc = "Otus infernalis"
 	icon_state = "sechotie"
 	icon_living = "sechotie"
@@ -182,13 +225,20 @@
 	icon_dead = "sechotie-dead"
 	maxbodytemp = 1000
 
-/mob/living/simple_mob/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
+/mob/living/simple_mob/vore/otie/security/phoron/red/chubby
+	name = "chubby red guard otie"
+	desc = "An ominous looking version of the big mean VARMAcorp guard dogs. What an absolute unit."
+	icon_state = "hotiesc"
+	icon_living = "hotiesc"
+	icon_rest = "hotiesc_rest"
+
+/mob/living/simple_mob/vore/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
 	if(istype(O, /obj/item/weapon/reagent_containers/food))
 		qdel(O)
-		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+		playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 		if(!has_AI())//No autobarf on player control.
 			return
-		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/otie/security))
+		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/vore/otie/security))
 			to_chat(user,"<span class='notice'>The guard pup accepts your offer for their catch.</span>")
 			release_vore_contents()
 		else if(prob(2)) //Small chance to get prey out from non-sec oties.
@@ -197,21 +247,21 @@
 		return
 	. = ..()
 
-/mob/living/simple_mob/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
+/mob/living/simple_mob/vore/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
 	if(ishuman(prey))
 		vore_selected.digest_mode = DM_HOLD
 		if(check_threat(prey) >= 4)
-			global_announcer.autosay("[src] has detained suspect <b>[target_name(prey)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
+			global_announcer.autosay("[src] is detaining suspect <b>[target_name(prey)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
 	if(istype(prey,/mob/living/simple_mob/animal/passive/mouse))
 		vore_selected.digest_mode = DM_DIGEST
 	. = ..()
 
-/mob/living/simple_mob/otie/security/proc/check_threat(var/mob/living/M)
+/mob/living/simple_mob/vore/otie/security/proc/check_threat(var/mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
 		return 0
 	return M.assess_perp(0, 0, 0, check_records, check_arrest)
 
-/mob/living/simple_mob/otie/security/proc/target_name(mob/living/T)
+/mob/living/simple_mob/vore/otie/security/proc/target_name(mob/living/T)
 	if(ishuman(T))
 		var/mob/living/carbon/human/H = T
 		return H.get_id_name("unidentified person")
@@ -219,7 +269,7 @@
 
 //Pet 4 friendly
 
-/mob/living/simple_mob/otie/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/vore/otie/attack_hand(mob/living/carbon/human/M as mob)
 
 	switch(M.a_intent)
 		if(I_HELP)
@@ -252,12 +302,12 @@
 		else
 			..()
 
-/mob/living/simple_mob/otie/death(gibbed, deathmessage = "dies!")
+/mob/living/simple_mob/vore/otie/death(gibbed, deathmessage = "dies!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
 
-/mob/living/simple_mob/otie/Login()
+/mob/living/simple_mob/vore/otie/Login()
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
@@ -265,7 +315,7 @@
 	verbs |= /mob/living/proc/toggle_rider_reins
 	movement_cooldown = 0
 
-/mob/living/simple_mob/otie/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/otie/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
 /datum/say_list/otie
@@ -277,7 +327,7 @@
 
 /datum/ai_holder/simple_mob/melee/evasive/otie
 
-/datum/ai_holder/simple_mob/melee/evasive/otie/New(var/mob/living/simple_mob/otie/new_holder)
+/datum/ai_holder/simple_mob/melee/evasive/otie/New(var/mob/living/simple_mob/vore/otie/new_holder)
 	.=..()
 	if(new_holder.tamed)
 		hostile = FALSE

@@ -15,10 +15,16 @@
 
 /turf/simulated/Destroy()
 	updateVisibility(src)
+	if(zone)
+		if(can_safely_remove_from_zone())
+			c_copy_air()
+			zone.remove(src)
+		else
+			zone.rebuild()
 	return ..()
 
-/turf/simulated/New()
-	..()
+/turf/simulated/Initialize()
+	. = ..()
 	updateVisibility(src)
 
 
@@ -38,8 +44,8 @@
 	updateVisibility(src)
 	return ..()
 
-/obj/effect/New()
-	..()
+/obj/effect/Initialize()
+	. = ..()
 	updateVisibility(src)
 
 // DOORS

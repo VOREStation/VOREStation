@@ -2,11 +2,12 @@
 /obj/machinery/power/port_gen
 	name = "Placeholder Generator"	//seriously, don't use this. It can't be anchored without VV magic.
 	desc = "A portable generator for emergency backup power"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "portgen0"
-	density = 1
-	anchored = 0
-	use_power = 0
+	icon = 'icons/obj/power_vr.dmi' //VOREStation Edit
+	icon_state = "portgen0" //VOREStation Edit
+	density = TRUE
+	anchored = FALSE
+	use_power = USE_POWER_OFF
+	interact_offline = TRUE
 
 	var/active = 0
 	var/power_gen = 5000
@@ -28,15 +29,30 @@
 /obj/machinery/power/port_gen/proc/handleInactive()
 	return
 
+/obj/machinery/power/port_gen/proc/TogglePower()
+	if(active)
+		active = FALSE
+		update_icon()
+		// soundloop.stop()
+	else if(HasFuel())
+		active = TRUE
+		update_icon()
+		// soundloop.start()
+
 /obj/machinery/power/port_gen/process()
 	if(active && HasFuel() && !IsBroken() && anchored && powernet)
 		add_avail(power_gen * power_output)
 		UseFuel()
-		src.updateDialog()
 	else
-		active = 0
-		icon_state = initial(icon_state)
+		active = FALSE
+		update_icon()
 		handleInactive()
+
+/obj/machinery/power/port_gen/update_icon()
+	if(active)
+		icon_state = "[initial(icon_state)]on"
+	else
+		icon_state = initial(icon_state)
 
 /obj/machinery/power/powered()
 	return 1 //doesn't require an external power source
@@ -48,12 +64,12 @@
 		return
 
 /obj/machinery/power/port_gen/examine(mob/user)
-	if(!..(user,1 ))
-		return
-	if(active)
-		to_chat(user, "<span class='notice'>The generator is on.</span>")
-	else
-		to_chat(user, "<span class='notice'>The generator is off.</span>")
+	. = ..()
+	if(Adjacent(user)) //It literally has a light on the sprite, are you sure this is necessary?
+		if(active)
+			. += "<span class='notice'>The generator is on.</span>"
+		else
+			. += "<span class='notice'>The generator is off.</span>"
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes
@@ -112,24 +128,16 @@
 
 /obj/machinery/power/port_gen/pacman/Initialize()
 	. = ..()
+	default_apply_parts()
 	if(anchored)
 		connect_to_network()
-
-/obj/machinery/power/port_gen/pacman/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	RefreshParts()
 
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
 	return ..()
 
 /obj/machinery/power/port_gen/pacman/dismantle()
-	while ( sheets > 0 )
+	while( sheets > 0 )
 		DropFuel()
 	return ..()
 
@@ -144,13 +152,13 @@
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
-	..(user)
-	to_chat(user, "\The [src] appears to be producing [power_gen*power_output] W.")
-	to_chat(user, "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
+	. = ..()
+	. += "It appears to be producing [power_gen*power_output] W."
+	. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
 	if(IsBroken())
-		to_chat(user, "<span class='warning'>\The [src] seems to have broken down.</span>")
+		. += "<span class='warning'>It seems to have broken down.</span>"
 	if(overheating)
-		to_chat(user, "<span class='danger'>\The [src] is overheating!</span>")
+		. += "<span class='danger'>It is overheating!</span>"
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet
@@ -161,10 +169,8 @@
 //Removes one stack's worth of material from the generator.
 /obj/machinery/power/port_gen/pacman/DropFuel()
 	if(sheets)
-		var/obj/item/stack/material/S = new sheet_path(loc)
-		var/amount = min(sheets, S.max_amount)
-		S.amount = amount
-		sheets -= amount
+		var/obj/item/stack/material/S = new sheet_path(loc, sheets)
+		sheets -= S.get_amount()
 
 /obj/machinery/power/port_gen/pacman/UseFuel()
 
@@ -220,16 +226,16 @@
 /obj/machinery/power/port_gen/pacman/handleInactive()
 	var/cooling_temperature = 20
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (environment)
+	if(environment)
 		var/ratio = min(environment.return_pressure()/ONE_ATMOSPHERE, 1)
 		var/ambient = environment.temperature - T20C
 		cooling_temperature += ambient*ratio
 
-	if (temperature > cooling_temperature)
+	if(temperature > cooling_temperature)
 		var/temp_loss = (temperature - cooling_temperature)/TEMPERATURE_DIVISOR
 		temp_loss = between(2, round(temp_loss, 1), TEMPERATURE_CHANGE_MAX)
 		temperature = max(temperature - temp_loss, cooling_temperature)
-		src.updateDialog()
+		updateDialog()
 
 	if(overheating)
 		overheating--
@@ -263,7 +269,7 @@
 /obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
-		var/amount = min((max_sheets - sheets), addstack.amount)
+		var/amount = min((max_sheets - sheets), addstack.get_amount())
 		if(amount < 1)
 			to_chat(user, "<span class='warning'>The [src.name] is full!</span>")
 			return
@@ -273,14 +279,14 @@
 		updateUsrDialog()
 		return
 	else if(!active)
-		if(O.is_wrench())
+		if(O.has_tool_quality(TOOL_WRENCH))
 			if(!anchored)
 				connect_to_network()
 				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
 			else
 				disconnect_from_network()
 				to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			anchored = !anchored
 			return
 		else if(default_deconstruction_screwdriver(user, O))
@@ -295,97 +301,77 @@
 	..()
 	if (!anchored)
 		return
-	ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/port_gen/tgui_status(mob/user, datum/tgui_state/state)
 	if(IsBroken())
-		return
+		return STATUS_CLOSE
+	return ..()
 
-	var/data[0]
+/obj/machinery/power/port_gen/pacman/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PortableGenerator", name)
+		ui.open()
+
+/obj/machinery/power/port_gen/pacman/tgui_data(mob/user)
+	var/list/data = list()
+
 	data["active"] = active
+
 	if(istype(user, /mob/living/silicon/ai))
-		data["is_ai"] = 1
+		data["is_ai"] = TRUE
 	else if(istype(user, /mob/living/silicon/robot) && !Adjacent(user))
-		data["is_ai"] = 1
+		data["is_ai"] = TRUE
 	else
-		data["is_ai"] = 0
-	data["output_set"] = power_output
-	data["output_max"] = max_power_output
-	data["output_safe"] = max_safe_output
-	data["output_watts"] = power_output * power_gen
-	data["temperature_current"] = src.temperature
-	data["temperature_max"] = src.max_temperature
-	data["temperature_overheat"] = overheating
-	// 1 sheet = 1000cm3?
+		data["is_ai"] = FALSE
+
+	data["sheet_name"] = capitalize(sheet_name)
 	data["fuel_stored"] = round((sheets * 1000) + (sheet_left * 1000))
 	data["fuel_capacity"] = round(max_sheets * 1000, 0.1)
 	data["fuel_usage"] = active ? round((power_output / time_per_sheet) * 1000) : 0
-	data["fuel_type"] = sheet_name
 
+	data["anchored"] = anchored
+	data["connected"] = (powernet == null ? 0 : 1)
+	data["ready_to_boot"] = anchored && HasFuel()
+	data["power_generated"] = DisplayPower(power_gen)
+	data["power_output"] = DisplayPower(power_gen * power_output)
+	data["unsafe_output"] = power_output > max_safe_output
+	data["power_available"] = (powernet == null ? 0 : DisplayPower(avail()))
+	data["temperature_current"] = temperature
+	data["temperature_max"] = max_temperature
+	data["temperature_overheat"] = overheating
+	// 1 sheet = 1000cm3?
 
+	return data
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "pacman.tmpl", src.name, 500, 560)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-
-/*
-/obj/machinery/power/port_gen/pacman/interact(mob/user)
-	if (get_dist(src, user) > 1 )
-		if (!istype(user, /mob/living/silicon/ai))
-			user.unset_machine()
-			user << browse(null, "window=port_gen"
-			return
-
-	user.set_machine(src)
-
-	var/dat = text("<b>[name]</b><br>")
-	if (active)
-		dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
-	else
-		dat += text("Generator: <A href='?src=\ref[src];action=enable'>Off</A><br>")
-	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='?src=\ref[src];action=eject'>Eject</A><br>")
-	var/stack_percent = round(sheet_left * 100, 1)
-	dat += text("Current stack: [stack_percent]% <br>")
-	dat += text("Power output: <A href='?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] Watts<A href='?src=\ref[src];action=higher_power'>+</A><br>")
-	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
-
-	var/tempstr = "Temperature: [temperature]&deg;C<br>"
-	dat += (overheating)? "<span class='danger'>[tempstr]</span>" : tempstr
-	dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
-	user << browse("[dat]", "window=port_gen")
-	onclose(user, "port_gen")
-*/
-
-/obj/machinery/power/port_gen/pacman/Topic(href, href_list)
+/obj/machinery/power/port_gen/pacman/tgui_act(action, params)
 	if(..())
 		return
 
-	src.add_fingerprint(usr)
-	if(href_list["action"])
-		if(href_list["action"] == "enable")
-			if(!active && HasFuel() && !IsBroken())
-				active = 1
-				icon_state = "portgen1"
-		if(href_list["action"] == "disable")
-			if (active)
-				active = 0
-				icon_state = "portgen0"
-		if(href_list["action"] == "eject")
+	add_fingerprint(usr)
+	switch(action)
+		if("toggle_power")
+			TogglePower()
+			. = TRUE
+
+		if("eject")
 			if(!active)
 				DropFuel()
-		if(href_list["action"] == "lower_power")
-			if (power_output > 1)
+				. = TRUE
+
+		if("lower_power")
+			if(power_output > 1)
 				power_output--
-		if (href_list["action"] == "higher_power")
-			if (power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
+				. = TRUE
+
+		if("higher_power")
+			if(power_output < max_power_output || (emagged && power_output < round(max_power_output * 2.5)))
 				power_output++
+				. = TRUE
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"

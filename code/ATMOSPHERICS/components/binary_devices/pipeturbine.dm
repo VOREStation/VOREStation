@@ -1,12 +1,10 @@
-#define ADIABATIC_EXPONENT 0.667 //Actually adiabatic exponent - 1.
-
 /obj/machinery/atmospherics/pipeturbine
 	name = "turbine"
 	desc = "A gas turbine. Converting pressure into energy since 1884."
 	icon = 'icons/obj/pipeturbine.dmi'
 	icon_state = "turbine"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 
 	var/efficiency = 0.4
 	var/kin_energy = 0
@@ -73,18 +71,18 @@
 		network2.update = 1
 
 /obj/machinery/atmospherics/pipeturbine/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if (dP > 10)
-		overlays += image('icons/obj/pipeturbine.dmi', "moto-turb")
+		add_overlay(image('icons/obj/pipeturbine.dmi', "moto-turb"))
 	if (kin_energy > 100000)
-		overlays += image('icons/obj/pipeturbine.dmi', "low-turb")
+		add_overlay(image('icons/obj/pipeturbine.dmi', "low-turb"))
 	if (kin_energy > 500000)
-		overlays += image('icons/obj/pipeturbine.dmi', "med-turb")
+		add_overlay(image('icons/obj/pipeturbine.dmi', "med-turb"))
 	if (kin_energy > 1000000)
-		overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
+		add_overlay(image('icons/obj/pipeturbine.dmi', "hi-turb"))
 
 /obj/machinery/atmospherics/pipeturbine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>")
@@ -231,16 +229,15 @@
 	desc = "Electrogenerator. Converts rotation into power."
 	icon = 'icons/obj/pipeturbine.dmi'
 	icon_state = "motor"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 
 	var/kin_to_el_ratio = 0.1	//How much kinetic energy will be taken from turbine and converted into electricity
 	var/obj/machinery/atmospherics/pipeturbine/turbine
 
-/obj/machinery/power/turbinemotor/New()
-	..()
-	spawn(1)
-		updateConnection()
+/obj/machinery/power/turbinemotor/Initialize()
+	. = ..()
+	updateConnection()
 
 /obj/machinery/power/turbinemotor/proc/updateConnection()
 	turbine = null
@@ -259,7 +256,7 @@
 	add_avail(power_generated)
 
 /obj/machinery/power/turbinemotor/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		turbine = null

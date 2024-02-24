@@ -11,12 +11,12 @@
 	var/list/allowed_types = list()
 
 /obj/item/device/kit/examine()
-	..()
-	to_chat(usr, "It has [uses] use\s left.")
+	. = ..()
+	. += "It has [uses] use\s left."
 
 /obj/item/device/kit/proc/use(var/amt, var/mob/user)
 	uses -= amt
-	playsound(get_turf(user), 'sound/items/Screwdriver.ogg', 50, 1)
+	playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 	if(uses<1)
 		user.drop_item()
 		qdel(src)
@@ -98,10 +98,8 @@
 			suit.desc = new_desc
 			suit.icon_state = "[new_icon]_suit"
 			suit.toggleicon = "[new_icon]_suit"
-			suit.item_state = "[new_icon]_suit"
 			var/obj/item/clothing/head/hood/S = suit.hood
 			S.icon_state = "[new_icon]_helmet"
-			S.item_state = "[new_icon]_helmet"
 			if(new_icon_file)
 				suit.icon = new_icon_file
 				S.icon = new_icon_file
@@ -157,6 +155,7 @@
 /obj/item/device/kit/suit/rig/customize(var/obj/item/I, var/mob/user)
 	var/obj/item/weapon/rig/RIG = I
 	RIG.suit_state = new_icon
+	RIG.item_state = new_icon
 	RIG.suit_type = "customized [initial(RIG.suit_type)]"
 	RIG.name = "[new_name]"
 	RIG.desc = new_desc
@@ -170,17 +169,17 @@
 		piece.desc = "It seems to be part of a [RIG.name]."
 		piece.icon_state = "[RIG.suit_state]"
 		if(istype(piece, /obj/item/clothing/shoes))
-			icon = 'icons/mob/custom_items_rig_boots.dmi'
-			icon_override = 'icons/mob/custom_items_rig_boots.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_boots.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_boots.dmi'
 		if(istype(piece, /obj/item/clothing/suit))
-			icon = 'icons/mob/custom_items_rig_suit.dmi'
-			icon_override = 'icons/mob/custom_items_rig_suit.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_suit.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_suit.dmi'
 		if(istype(piece, /obj/item/clothing/head))
-			icon = 'icons/mob/custom_items_rig_helmet.dmi'
-			icon_override = 'icons/mob/custom_items_rig_helmet.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_helmet.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_helmet.dmi'
 		if(istype(piece, /obj/item/clothing/gloves))
-			icon = 'icons/mob/custom_items_rig_gloves.dmi'
-			icon_override = 'icons/mob/custom_items_rig_gloves.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_gloves.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_gloves.dmi'
 	if(RIG.helmet && istype(RIG.helmet, /obj/item/clothing/head/helmet) && new_light_overlay)
 		var/obj/item/clothing/head/helmet/H = RIG.helmet
 		H.light_overlay = new_light_overlay
@@ -195,6 +194,9 @@
 		kit.customize(src, user)
 		return
 	return ..()
+
+/obj/item/device/kit/suit/rig/debug/Initialize()
+	set_info("debug suit", "This is a test", "debug", CUSTOM_ITEM_OBJ, CUSTOM_ITEM_MOB)
 
 /obj/item/device/kit/paint
 	name = "mecha customisation kit"
@@ -216,11 +218,11 @@
 
 
 /obj/item/device/kit/paint/examine()
-	..()
-	to_chat(usr, "This kit will convert an exosuit into: [new_name].")
-	to_chat(usr, "This kit can be used on the following exosuit models:")
+	. = ..()
+	. += "This kit will convert an exosuit into: [new_name]."
+	. += "This kit can be used on the following exosuit models:"
 	for(var/exotype in allowed_types)
-		to_chat(usr, "- [capitalize(exotype)]")
+		. += "- [capitalize(exotype)]"
 
 /obj/item/device/kit/paint/customize(var/obj/mecha/M, var/mob/user)
 	if(!can_customize(M))
@@ -237,7 +239,7 @@
 	M.initial_icon = new_icon
 	if(new_icon_file)
 		M.icon = new_icon_file
-	M.reset_icon()
+	M.update_icon()
 	use(1, user)
 
 /obj/mecha/attackby(var/obj/item/weapon/W, var/mob/user)
@@ -252,9 +254,20 @@
 /obj/item/device/kit/paint/ripley
 	name = "\"Classic\" APLU customisation kit"
 	new_name = "APLU \"Classic\""
-	new_desc = "A very retro APLU unit; didn't they retire these back in 2543?"
+	new_desc = "A very retro APLU unit; didn't they retire these back in 2303?"
 	new_icon = "ripley-old"
 	allowed_types = list("ripley")
+	var/showpilot = TRUE
+	var/showpilot_lift = 5
+
+/obj/item/device/kit/paint/ripley/customize(obj/mecha/M, mob/user)
+	if(showpilot)
+		M.show_pilot = TRUE
+		M.pilot_lift = 5
+	else
+		M.show_pilot = FALSE
+		M.pilot_lift = 0
+	. = ..()
 
 /obj/item/device/kit/paint/ripley/death
 	name = "\"Reaper\" APLU customisation kit"
@@ -262,18 +275,21 @@
 	new_desc = "A terrifying, grim power loader. Why do those clamps have spikes?"
 	new_icon = "deathripley"
 	allowed_types = list("ripley","firefighter")
+	showpilot = FALSE
 
 /obj/item/device/kit/paint/ripley/flames_red
 	name = "\"Firestarter\" APLU customisation kit"
 	new_name = "APLU \"Firestarter\""
 	new_desc = "A standard APLU exosuit with stylish orange flame decals."
 	new_icon = "ripley_flames_red"
+	showpilot = FALSE
 
 /obj/item/device/kit/paint/ripley/flames_blue
 	name = "\"Burning Chrome\" APLU customisation kit"
 	new_name = "APLU \"Burning Chrome\""
 	new_desc = "A standard APLU exosuit with stylish blue flame decals."
 	new_icon = "ripley_flames_blue"
+	showpilot = FALSE
 
 // Durand kits.
 /obj/item/device/kit/paint/durand
@@ -306,7 +322,7 @@
 /obj/item/device/kit/paint/gygax/darkgygax
 	name = "\"Silhouette\" Gygax customisation kit"
 	new_name = "Gygax \"Silhouette\""
-	new_desc = "An ominous Gygax exosuit modelled after the fictional corporate 'death squads' that were popular in pulp action-thrillers back in 2554."
+	new_desc = "An ominous Gygax exosuit modelled after the fictional corporate 'death squads' that were popular in pulp action-thrillers back in 2314."
 	new_icon = "darkgygax"
 
 /obj/item/device/kit/paint/gygax/recitence

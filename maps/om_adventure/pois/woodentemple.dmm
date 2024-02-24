@@ -1,0 +1,547 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/bed/chair/sofa/pew/right{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"c" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/wmarble,
+/area/om_adventure/poi/woodentemple)
+"d" = (
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"e" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/outdoors/grass,
+/area/om_adventure/poi/woodentemple)
+"f" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor,
+/area/om_adventure/poi/woodentemple)
+"g" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"j" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"k" = (
+/obj/structure/bed/pod,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"m" = (
+/obj/structure/bed/chair/sofa/pew/right{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"o" = (
+/obj/structure/table/rack/steel,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/wmarble,
+/area/om_adventure/poi/woodentemple)
+"r" = (
+/turf/simulated/floor/outdoors/grass,
+/area/om_adventure/poi/woodentemple)
+"s" = (
+/obj/structure/table/woodentable,
+/obj/item/trash/candle,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"v" = (
+/obj/structure/table/woodentable,
+/obj/random/maintenance,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"w" = (
+/obj/structure/bed/chair/sofa/pew/left,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"x" = (
+/obj/structure/curtain/black{
+	anchored = 1;
+	icon_state = "open";
+	opacity = 0
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"A" = (
+/obj/structure/curtain/black{
+	anchored = 1
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"C" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"E" = (
+/obj/structure/table/woodentable,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"F" = (
+/obj/structure/bed/chair/sofa/pew/right,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"G" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/wmarble,
+/area/om_adventure/poi/woodentemple)
+"H" = (
+/turf/simulated/floor/wmarble,
+/area/om_adventure/poi/woodentemple)
+"J" = (
+/obj/structure/table/woodentable,
+/obj/random/awayloot/looseloot,
+/obj/item/trash/candle,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"K" = (
+/obj/structure/table/rack/steel,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"M" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"N" = (
+/obj/structure/bed/chair/sofa/pew/left{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"Q" = (
+/obj/structure/flora/pottedplant/orientaltree,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"R" = (
+/turf/simulated/floor/carpet,
+/area/om_adventure/poi/woodentemple)
+"S" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/om_adventure/poi/woodentemple)
+"U" = (
+/obj/structure/bed/chair/sofa/pew/left{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"W" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"X" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"Z" = (
+/turf/simulated/wall/hardwood,
+/area/om_adventure/poi/woodentemple)
+
+(1,1,1) = {"
+a
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+a
+a
+a
+"}
+(2,1,1) = {"
+r
+r
+Z
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+Z
+r
+r
+a
+a
+"}
+(3,1,1) = {"
+r
+Z
+Z
+Z
+Z
+S
+f
+S
+Z
+Z
+Z
+S
+S
+S
+Z
+Z
+Z
+Z
+r
+r
+a
+"}
+(4,1,1) = {"
+r
+r
+Z
+J
+v
+d
+C
+j
+d
+A
+X
+m
+N
+Q
+J
+v
+Z
+r
+r
+r
+a
+"}
+(5,1,1) = {"
+r
+r
+S
+Q
+d
+j
+g
+d
+d
+x
+d
+d
+d
+g
+d
+d
+S
+r
+r
+r
+r
+"}
+(6,1,1) = {"
+r
+r
+S
+w
+d
+d
+d
+C
+d
+A
+d
+d
+d
+d
+K
+K
+Z
+r
+Z
+r
+r
+"}
+(7,1,1) = {"
+r
+r
+S
+F
+d
+d
+Z
+Z
+G
+Z
+Z
+d
+R
+d
+Z
+Z
+Z
+Z
+Z
+Z
+r
+"}
+(8,1,1) = {"
+r
+r
+Z
+M
+d
+d
+S
+r
+r
+r
+S
+R
+R
+R
+Z
+o
+H
+H
+Z
+r
+r
+"}
+(9,1,1) = {"
+r
+r
+Z
+E
+g
+d
+S
+r
+e
+r
+S
+R
+R
+R
+G
+H
+c
+H
+G
+r
+r
+"}
+(10,1,1) = {"
+r
+r
+Z
+v
+d
+d
+S
+r
+r
+r
+S
+R
+R
+R
+Z
+o
+H
+H
+Z
+r
+r
+"}
+(11,1,1) = {"
+r
+r
+S
+w
+d
+d
+Z
+Z
+G
+Z
+Z
+d
+R
+d
+Z
+Z
+Z
+Z
+Z
+Z
+r
+"}
+(12,1,1) = {"
+r
+r
+S
+F
+d
+d
+d
+d
+d
+A
+d
+d
+d
+d
+d
+d
+Z
+r
+Z
+r
+r
+"}
+(13,1,1) = {"
+r
+r
+S
+Q
+d
+d
+d
+g
+d
+x
+d
+g
+d
+d
+d
+s
+S
+r
+r
+r
+r
+"}
+(14,1,1) = {"
+r
+r
+Z
+s
+E
+k
+k
+k
+d
+A
+W
+U
+b
+Q
+v
+E
+Z
+r
+r
+r
+a
+"}
+(15,1,1) = {"
+r
+Z
+Z
+Z
+Z
+S
+S
+S
+Z
+Z
+Z
+S
+S
+S
+Z
+Z
+Z
+Z
+r
+r
+a
+"}
+(16,1,1) = {"
+r
+r
+Z
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+Z
+r
+r
+a
+a
+"}
+(17,1,1) = {"
+a
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+a
+a
+a
+"}

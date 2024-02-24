@@ -10,8 +10,8 @@
 	desc = "an ultra rare hat. It commands a certain respect."
 	icon_state = "petehat"
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
+		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi',
+		SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi'
 		)
 
 /obj/item/clothing/head/collectable/slime
@@ -37,6 +37,8 @@
 	desc = "What looks like an ordinary paper hat, is actually a rare and valuable collector's edition paper hat. Keep away from water, fire and Librarians."
 	icon_state = "paper"
 	body_parts_covered = 0
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 /obj/item/clothing/head/collectable/tophat
 	name = "collectable top hat"
@@ -45,7 +47,7 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/head/collectable/captain
-	name = "collectable colony director's hat"
+	name = "collectable site manager's hat"
 	desc = "A Collectable Hat that'll make you look just like a real comdom!"
 	icon_state = "captain"
 	body_parts_covered = 0
@@ -106,7 +108,7 @@
 /obj/item/clothing/head/collectable/hardhat
 	name = "collectable hard hat"
 	desc = "WARNING! Offers no real protection, or luminosity, but it is damn fancy!"
-	icon_state = "hardhat0_yellow"
+	icon_state = "hardhat0_old_yellow"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/collectable/HoS

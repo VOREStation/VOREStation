@@ -91,9 +91,20 @@
 			fail("[pred.vore_selected].nom_mob([prey]) did not put prey inside [pred]")
 			return 1
 		else
-			var/turf/T = locate(/turf/space)
+			// Get an empty space level instead of just picking a random space turf
+			var/empty_z = using_map.get_empty_zlevel()
+			if(!empty_z)
+				fail("Unable to get empty z-level for vore space protection test!")
+				return 1
+
+			// Away from map edges so they don't transit while we're testing
+			var/mid_w = round(world.maxx*0.5)
+			var/mid_h = round(world.maxy*0.5)
+
+			var/turf/T = locate(mid_w, mid_h, empty_z)
+
 			if(!T)
-				fail("could not find a space turf for testing")
+				fail("Unable to get turf for vore space protection test!")
 				return 1
 			else
 				pred.forceMove(T)

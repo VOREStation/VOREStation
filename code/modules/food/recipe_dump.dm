@@ -8,15 +8,14 @@
 
 	//////////////////////// DRINK
 	var/list/drink_recipes = list()
-	for(var/path in typesof(/datum/chemical_reaction/drinks) - /datum/chemical_reaction/drinks)
-		var/datum/chemical_reaction/drinks/CR = new path()
-		drink_recipes[path] = list("Result" = CR.name,
+	for(var/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
+		drink_recipes[CR.type] = list("Result" = CR.name,
         						"ResAmt" = CR.result_amount,
-        						"Reagents" = CR.required_reagents)
-		qdel(CR)
+        						"Reagents" = CR.required_reagents,
+								"Catalysts" = CR.catalysts)
 
 	//////////////////////// FOOD
-	var/list/food_recipes = typesof(/datum/recipe/microwave) - /datum/recipe/microwave
+	var/list/food_recipes = subtypesof(/datum/recipe)
 	//Build a useful list
 	for(var/Rp in food_recipes)
 		//Lists don't work with datum-stealing no-instance initial() so we have to.
@@ -30,8 +29,11 @@
 						"Result" = "[res.name]",
 						"ResAmt" = "1",
 						"Reagents" = R.reagents,
+						"Catalysts" = list(),
 						"Fruit" = R.fruit,
 						"Ingredients" = R.items,
+						"Coating" = R.coating,
+						"Appliance" = R.appliance,
 						"Image" = result_icon
 						)
 
@@ -39,22 +41,24 @@
 		qdel(R)
 
 	//////////////////////// FOOD+ (basically condiments, tofu, cheese, soysauce, etc)
-	for(var/path in typesof(/datum/chemical_reaction/food) - /datum/chemical_reaction/food)
-		var/datum/chemical_reaction/food/CR = new path()
-		food_recipes[path] = list("Result" = CR.name,
+	for(var/decl/chemical_reaction/instant/food/CR in SSchemistry.chemical_reactions)
+		food_recipes[CR.type] = list("Result" = CR.name,
 								"ResAmt" = CR.result_amount,
 								"Reagents" = CR.required_reagents,
+								"Catalysts" = CR.catalysts,
 								"Fruit" = list(),
 								"Ingredients" = list(),
 								"Image" = null)
-		qdel(CR)
 
 	//////////////////////// PROCESSING
 	//Items needs further processing into human-readability.
 	for(var/Rp in food_recipes)
 		var/working_ing_list = list()
+		food_recipes[Rp]["has_coatable_items"] = FALSE
 		for(var/I in food_recipes[Rp]["Ingredients"])
 			var/atom/ing = new I()
+			if(istype(ing, /obj/item/weapon/reagent_containers/food/snacks)) // only subtypes of this have a coating variable and are checked for it (fruit are a subtype of this, so there's a check for them too later)
+				food_recipes[Rp]["has_coatable_items"] = TRUE
 
 			//So now we add something like "Bread" = 3
 			if(ing.name in working_ing_list)
@@ -63,30 +67,72 @@
 			else
 				working_ing_list[ing.name] = 1
 
+		if(LAZYLEN(food_recipes[Rp]["Fruit"]))
+			food_recipes[Rp]["has_coatable_items"] = TRUE
 		food_recipes[Rp]["Ingredients"] = working_ing_list
 
 	//Reagents can be resolved to nicer names as well
 	for(var/Rp in food_recipes)
 		for(var/rid in food_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
 			var/R_name = Rd.name
 			var/amt = food_recipes[Rp]["Reagents"][rid]
 			food_recipes[Rp]["Reagents"] -= rid
 			food_recipes[Rp]["Reagents"][R_name] = amt
+		for(var/rid in food_recipes[Rp]["Catalysts"])
+			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
+			var/R_name = Rd.name
+			var/amt = food_recipes[Rp]["Catalysts"][rid]
+			food_recipes[Rp]["Catalysts"] -= rid
+			food_recipes[Rp]["Catalysts"][R_name] = amt
 	for(var/Rp in drink_recipes)
 		for(var/rid in drink_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
 			var/R_name = Rd.name
 			var/amt = drink_recipes[Rp]["Reagents"][rid]
 			drink_recipes[Rp]["Reagents"] -= rid
 			drink_recipes[Rp]["Reagents"][R_name] = amt
+		for(var/rid in drink_recipes[Rp]["Catalysts"])
+			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
+			var/R_name = Rd.name
+			var/amt = drink_recipes[Rp]["Catalysts"][rid]
+			drink_recipes[Rp]["Catalysts"] -= rid
+			drink_recipes[Rp]["Catalysts"][R_name] = amt
+			
+	//We can also change the appliance to its proper name.
+	for(var/Rp in food_recipes)
+		switch(food_recipes[Rp]["Appliance"])
+			if(1)
+				food_recipes[Rp]["Appliance"] = "Microwave"
+			if(2)
+				food_recipes[Rp]["Appliance"] = "Fryer"
+			if(4)
+				food_recipes[Rp]["Appliance"] = "Oven"
+			if(8)
+				food_recipes[Rp]["Appliance"] = "Grill"
+			if(16)
+				food_recipes[Rp]["Appliance"] = "Candy Maker"
+			if(32)
+				food_recipes[Rp]["Appliance"] = "Cereal Maker"
 
 	//////////////////////// SORTING
 	var/list/foods_to_paths = list()
 	var/list/drinks_to_paths = list()
 
-	for(var/Rp in food_recipes)
-		foods_to_paths["[food_recipes[Rp]["Result"]] [Rp]"] = Rp //Append recipe datum path to keep uniqueness
+	for(var/Rp in food_recipes) // "Appliance" will sort the list by APPLIANCES first. Items without an appliance will append to the top of the list. The old method was "Result", which sorts the list by the name of the result.
+		foods_to_paths["[food_recipes[Rp]["Appliance"]] [Rp]"] = Rp //Append recipe datum path to keep uniqueness
 	for(var/Rp in drink_recipes)
 		drinks_to_paths["[drink_recipes[Rp]["Result"]] [Rp]"] = Rp
 
@@ -119,7 +165,7 @@
 
 	html += "<html><body><h3>Food Recipes (as of [time2text(world.realtime,"MMM DD, YYYY")])</h3><br>"
 	html += "<table class='recipes'>"
-	html += "<tr><th>Icon</th><th>Name</th><th>Ingredients</th></tr>"
+	html += "<tr><th>Icon</th><th>Name</th><th>Appliance</th><th>Ingredients</th></tr>"
 	for(var/Rp in food_recipes)
 		//Open this row
 		html += "<tr>"
@@ -135,6 +181,9 @@
 
 		//Name
 		html += "<td><b>[food_recipes[Rp]["Result"]]</b></td>"
+		
+		//Appliance
+		html += "<td><b>[food_recipes[Rp]["Appliance"]]</b></td>"
 
 		//Ingredients
 		html += "<td><ul>"
@@ -147,6 +196,20 @@
 			count++
 		if(pretty_ing != "")
 			html += "<li><b>Ingredients:</b> [pretty_ing]</li>"
+
+		//Coating
+		if(!food_recipes[Rp]["has_coatable_items"])
+			html += "<span class = \"coating coating_not_applicable\"><li><b>Coating:</b> N/A, no coatable items</li></span>" 
+			// css can be used to style or hide these depending on the class.  This has two classes
+			// coating and coating_not_applicable, which can each have styles applied. 
+		else if(food_recipes[Rp]["Coating"] == -1)
+			html += "<span class = \"coating coating_any_coating\"><li><b>Coating:</b> Optionally, any coating</li></span>"
+		else if(isnull(food_recipes[Rp]["Coating"]))
+			html += "<span class = \"coating coating_uncoated\"><li><b>Coating:</b> Must be uncoated</li></span>"
+		else
+			var/coatingtype = food_recipes[Rp]["Coating"]
+			var/datum/reagent/coating = new coatingtype()
+			html += "<span class = \"coating coating_specific_coating\"><li><b>Coating:</b> [coating.name]</li></span>"
 
 		//For each fruit
 		var/pretty_fru = ""
@@ -165,6 +228,15 @@
 			count++
 		if(pretty_rea != "")
 			html += "<li><b>Mix in:</b> [pretty_rea]</li>"
+
+		//For each catalyst
+		var/pretty_cat = ""
+		count = 0
+		for(var/cat in food_recipes[Rp]["Catalysts"])
+			pretty_cat += "[count == 0 ? "" : ", "][food_recipes[Rp]["Catalysts"][cat]]u [cat]"
+			count++
+		if(pretty_cat != "")
+			html += "<li><b>Catalysts:</b> [pretty_cat]</li>"
 
 		//Close ingredients
 		html += "</ul></td>"
@@ -203,6 +275,15 @@
 			count++
 		if(pretty_rea != "")
 			html += "<li><b>Mix together:</b> [pretty_rea]</li>"
+
+		//For each catalyst
+		var/pretty_cat = ""
+		count = 0
+		for(var/cat in drink_recipes[Rp]["Catalysts"])
+			pretty_cat += "[count == 0 ? "" : ", "][drink_recipes[Rp]["Catalysts"][cat]]u [cat]"
+			count++
+		if(pretty_cat != "")
+			html += "<li><b>Catalysts:</b> [pretty_cat]</li>"
 
 		html += "<li>Makes [drink_recipes[Rp]["ResAmt"]]u</li>"
 

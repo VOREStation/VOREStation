@@ -40,5 +40,4 @@
 		else
 			L.electrocute_act(power, src, 0.75, BP_TORSO)
 
-
 	adjust_instability(3)

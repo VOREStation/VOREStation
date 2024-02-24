@@ -33,7 +33,7 @@
 			to_chat(user, "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.</span>")
 			return
 		if(io.io_type != selected_io.io_type)
-			to_chat(user, "<span class='warning'>Those two types of channels are incompatable.  The first is a [selected_io.io_type], \
+			to_chat(user, "<span class='warning'>Those two types of channels are incompatible.  The first is a [selected_io.io_type], \
 			while the second is a [io.io_type].</span>")
 			return
 		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
@@ -114,23 +114,23 @@
 	var/accepting_refs = 0
 
 /obj/item/device/integrated_electronics/debugger/attack_self(mob/user)
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
-	if(!CanInteract(user, physical_state))
+	var/type_to_use = tgui_input_list(usr, "Please choose a type to use.","[src] type setting", list("string","number","ref", "null"))
+	if(!CanInteract(user, GLOB.tgui_physical_state))
 		return
 
 	var/new_data = null
 	switch(type_to_use)
 		if("string")
 			accepting_refs = 0
-			new_data = input("Now type in a string.","[src] string writing") as null|text
+			new_data = tgui_input_text(usr, "Now type in a string.","[src] string writing", null, MAX_MESSAGE_LEN)
 			new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
-			if(istext(new_data) && CanInteract(user, physical_state))
+			if(istext(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				data_to_write = new_data
 				to_chat(user, "<span class='notice'>You set \the [src]'s memory to \"[new_data]\".</span>")
 		if("number")
 			accepting_refs = 0
-			new_data = input("Now type in a number.","[src] number writing") as null|num
-			if(isnum(new_data) && CanInteract(user, physical_state))
+			new_data = tgui_input_number(usr, "Now type in a number.","[src] number writing")
+			if(isnum(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				data_to_write = new_data
 				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [new_data].</span>")
 		if("ref")
@@ -143,7 +143,7 @@
 
 /obj/item/device/integrated_electronics/debugger/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && proximity)
-		data_to_write = weakref(target)
+		data_to_write = WEAKREF(target)
 		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
 		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
 		now off.</span>")
@@ -154,7 +154,7 @@
 		io.write_data_to_pin(data_to_write)
 		var/data_to_show = data_to_write
 		if(isweakref(data_to_write))
-			var/weakref/w = data_to_write
+			var/datum/weakref/w = data_to_write
 			var/atom/A = w.resolve()
 			data_to_show = A.name
 		to_chat(user, "<span class='notice'>You write '[data_to_write ? data_to_show : "NULL"]' to the '[io]' pin of \the [io.holder].</span>")
@@ -206,7 +206,7 @@
 			to_chat(user, "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.</span>")
 			return
 		if(io.io_type != selected_io.io_type)
-			to_chat(user, "<span class='warning'>Those two types of channels are incompatable.  The first is a [selected_io.io_type], \
+			to_chat(user, "<span class='warning'>Those two types of channels are incompatible.  The first is a [selected_io.io_type], \
 			while the second is a [io.io_type].</span>")
 			return
 		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
@@ -244,7 +244,7 @@
 
 /obj/item/device/multitool/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && toolmode == MULTITOOL_MODE_INTCIRCUITS && proximity)
-		weakref_wiring = weakref(target)
+		weakref_wiring = WEAKREF(target)
 		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
 		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
 		now off.</span>")
@@ -274,62 +274,54 @@
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/device/multitool
 		)
-	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 
-/obj/item/weapon/storage/bag/circuits/basic/New()
-	..()
-	spawn(2 SECONDS) // So the list has time to initialize.
-//		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
-//			if(IC.spawn_flags & IC_SPAWN_DEFAULT)
-//				for(var/i = 1 to 4)
-//					new IC.type(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/arithmetic(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/trig(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/input(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/output(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/memory(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/logic(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/time(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/reagents(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/transfer(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/converter(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/power(src)
+/obj/item/weapon/storage/bag/circuits/basic/Initialize()
+	. = ..()
+	new /obj/item/weapon/storage/bag/circuits/mini/arithmetic(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/trig(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/input(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/output(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/memory(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/logic(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/time(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/reagents(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/transfer(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/converter(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/power(src)
+	new /obj/item/device/electronic_assembly(src)
+	new /obj/item/device/assembly/electronic_assembly(src)
+	new /obj/item/device/assembly/electronic_assembly(src)
+	new /obj/item/device/multitool(src)
+	new /obj/item/weapon/tool/screwdriver(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	make_exact_fit()
 
-		new /obj/item/device/electronic_assembly(src)
-		new /obj/item/device/assembly/electronic_assembly(src)
-		new /obj/item/device/assembly/electronic_assembly(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/weapon/tool/screwdriver(src)
-		new /obj/item/weapon/tool/crowbar(src)
-		make_exact_fit()
+/obj/item/weapon/storage/bag/circuits/all/Initialize()
+	. = ..()
+	new /obj/item/weapon/storage/bag/circuits/mini/arithmetic/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/trig/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/input/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/output/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/memory/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/logic/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/smart/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/manipulation/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/time/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/reagents/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/transfer/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/converter/all(src)
+	new /obj/item/weapon/storage/bag/circuits/mini/power/all(src)
 
-/obj/item/weapon/storage/bag/circuits/all/New()
-	..()
-	spawn(2 SECONDS) // So the list has time to initialize.
-		new /obj/item/weapon/storage/bag/circuits/mini/arithmetic/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/trig/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/input/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/output/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/memory/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/logic/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/smart/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/manipulation/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/time/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/reagents/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/transfer/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/converter/all(src)
-		new /obj/item/weapon/storage/bag/circuits/mini/power/all(src)
+	new /obj/item/device/electronic_assembly(src)
+	new /obj/item/device/electronic_assembly/medium(src)
+	new /obj/item/device/electronic_assembly/large(src)
+	new /obj/item/device/electronic_assembly/drone(src)
+	new /obj/item/device/integrated_electronics/wirer(src)
+	new /obj/item/device/integrated_electronics/debugger(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	make_exact_fit()
 
-		new /obj/item/device/electronic_assembly(src)
-		new /obj/item/device/electronic_assembly/medium(src)
-		new /obj/item/device/electronic_assembly/large(src)
-		new /obj/item/device/electronic_assembly/drone(src)
-		new /obj/item/device/integrated_electronics/wirer(src)
-		new /obj/item/device/integrated_electronics/debugger(src)
-		new /obj/item/weapon/tool/crowbar(src)
-		make_exact_fit()
-
-/obj/item/weapon/storage/bag/circuits/mini/
+/obj/item/weapon/storage/bag/circuits/mini
 	name = "circuit box"
 	desc = "Used to partition categories of circuits, for a neater workspace."
 	w_class = 2

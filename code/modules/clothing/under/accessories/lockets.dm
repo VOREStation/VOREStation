@@ -2,6 +2,8 @@
 	name = "silver locket"
 	desc = "A small locket of high-quality metal."
 	icon_state = "locket"
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_MASK | SLOT_TIE
 	slot = ACCESSORY_SLOT_DECOR
@@ -13,7 +15,7 @@
 	if(!base_icon)
 		base_icon = icon_state
 
-	if(!("[base_icon]_open" in icon_states(icon)))
+	if(!("[base_icon]_open" in cached_icon_states(icon)))
 		to_chat(user, "\The [src] doesn't seem to open.")
 		return
 

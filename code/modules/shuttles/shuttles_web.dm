@@ -1,12 +1,11 @@
 //This shuttle traverses a "web" of route_datums to have a wider range of places to go and make flying feel like movement is actually occuring.
-/datum/shuttle/web_shuttle
-	flags = SHUTTLE_FLAGS_NONE
+/datum/shuttle/autodock/web_shuttle
+	flags = SHUTTLE_FLAGS_ZERO_G
 	var/visible_name = null // The pretty name shown to people in announcements, since the regular name var is used internally for other things.
 	var/cloaked = FALSE
 	var/can_cloak = FALSE
 	var/cooldown = 0
 	var/last_move = 0	//the time at which we last moved
-	var/area/current_area = null
 	var/datum/shuttle_web_master/web_master = null
 	var/web_master_type = null
 	var/flight_time_modifier = 1.0
@@ -15,15 +14,15 @@
 	var/autopilot_delay = 60 // How many ticks to not do anything when not following an autopath. Should equal two minutes.
 	var/autopilot_first_delay = null // If your want your shuttle to stay for a different amount of time for the first time, set this.
 	var/can_rename = TRUE // Lets the pilot rename the shuttle. Only available once.
-	category = /datum/shuttle/web_shuttle
+	category = /datum/shuttle/autodock/web_shuttle
 	var/list/obj/item/clothing/head/pilot/helmets
 
-/datum/shuttle/web_shuttle/New()
-	current_area = locate(current_area)
+/datum/shuttle/autodock/web_shuttle/New()
 	web_master = new web_master_type(src)
 	build_destinations()
 	if(autopilot)
 		flags |= SHUTTLE_FLAGS_PROCESS
+		process_state = DO_AUTOPILOT
 		if(autopilot_first_delay)
 			autopilot_delay = autopilot_first_delay
 	if(!visible_name)
@@ -31,42 +30,45 @@
 	helmets = list()
 	..()
 
-/datum/shuttle/web_shuttle/Destroy()
-	qdel(web_master)
+/datum/shuttle/autodock/web_shuttle/Destroy()
+	QDEL_NULL(web_master)
 	helmets.Cut()
 	return ..()
 
+/datum/shuttle/autodock/web_shuttle/current_dock_target()
+	// TODO - Probably don't even need to override this right?  Debug testing code below will check!
+	. = web_master?.get_current_destination()?.my_landmark?.docking_controller?.id_tag
+	if (. != ..())
+		warning("Web shuttle [src] had current_dock_target()=[.] but autodock.current_dock_target() = [..()]")
 
-/datum/shuttle/web_shuttle/current_dock_target()
-	if(web_master)
-		return web_master.current_dock_target()
-
-/datum/shuttle/web_shuttle/move(var/area/origin, var/area/destination)
+/datum/shuttle/autodock/web_shuttle/perform_shuttle_move()
 	..()
 	last_move = world.time
 
-/datum/shuttle/web_shuttle/short_jump()
+/datum/shuttle/autodock/web_shuttle/short_jump()
 	. = ..()
 	update_helmets()
 
-/datum/shuttle/web_shuttle/long_jump()
+/datum/shuttle/autodock/web_shuttle/long_jump()
 	. = ..()
 	update_helmets()
 
-/datum/shuttle/web_shuttle/on_shuttle_departure()
+/datum/shuttle/autodock/web_shuttle/on_shuttle_departure()
 	. = ..()
 	web_master.on_shuttle_departure()
 	update_helmets()
 
-/datum/shuttle/web_shuttle/on_shuttle_arrival()
+/datum/shuttle/autodock/web_shuttle/on_shuttle_arrival()
 	. = ..()
+	active_docking_controller = current_location.docking_controller
+	update_docking_target(current_location)
 	web_master.on_shuttle_arrival()
 	update_helmets()
 
-/datum/shuttle/web_shuttle/proc/build_destinations()
+/datum/shuttle/autodock/web_shuttle/proc/build_destinations()
 	return
 
-/datum/shuttle/web_shuttle/process()
+/datum/shuttle/autodock/web_shuttle/process()
 	update_helmets()
 
 	if(moving_status == SHUTTLE_IDLE)
@@ -76,8 +78,8 @@
 
 		else // Otherwise we are about to start one or just finished one.
 			if(autopilot_delay > 0) // Wait for awhile so people can get on and off.
-				if(docking_controller && !skip_docking_checks()) // Dock to the destination if possible.
-					var/docking_status = docking_controller.get_docking_status()
+				if(active_docking_controller && shuttle_docking_controller) // Dock to the destination if possible.
+					var/docking_status = shuttle_docking_controller.get_docking_status()
 					if(docking_status == "undocked")
 						dock()
 						autopilot_say("Docking.")
@@ -96,8 +98,8 @@
 				autopilot_delay--
 
 			else // Time to go.
-				if(docking_controller && !skip_docking_checks()) // Undock if possible.
-					var/docking_status = docking_controller.get_docking_status()
+				if(active_docking_controller && shuttle_docking_controller) // Undock if possible.
+					var/docking_status = shuttle_docking_controller.get_docking_status()
 					if(docking_status == "docked")
 						undock()
 						autopilot_say("Undocking.")
@@ -109,42 +111,45 @@
 				autopilot_say("Taking off.")
 				web_master.process_autopath()
 
-/datum/shuttle/web_shuttle/proc/update_helmets()
-	for(var/helm in helmets)
-		if(!helm)
-			helmets -= helm
+/datum/shuttle/autodock/web_shuttle/proc/update_helmets()
+	for(var/obj/item/clothing/head/pilot/H as anything in helmets)
+		if(QDELETED(H))
+			helmets -= H
 			continue
-		var/obj/item/clothing/head/pilot/H = helm
-		if(!H.shuttle_comp || get_area(H.shuttle_comp) != get_area(H))
+		if(!H.shuttle_comp || !(get_area(H) in shuttle_area))
 			H.shuttle_comp = null
-			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>")
+			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>", runemessage = "ping")
 			H.update_hud("discon")
 			helmets -= H
 		else
 			H.update_hud(moving_status)
 
-/datum/shuttle/web_shuttle/proc/adjust_autopilot(on)
+/datum/shuttle/autodock/web_shuttle/proc/adjust_autopilot(on)
 	if(on)
 		if(autopilot)
 			return
 		autopilot = TRUE
 		autopilot_delay = initial(autopilot_delay)
-		shuttle_controller.process_shuttles += src
+		SSshuttles.process_shuttles |= src
+		if(process_state == IDLE_STATE)
+			process_state = DO_AUTOPILOT
 	else
 		if(!autopilot)
 			return
 		autopilot = FALSE
-		shuttle_controller.process_shuttles -= src
+		SSshuttles.process_shuttles -= src
+		if (process_state == DO_AUTOPILOT)
+			process_state = initial(process_state)
 
-/datum/shuttle/web_shuttle/proc/autopilot_say(message) // Makes the autopilot 'talk' to the passengers.
+/datum/shuttle/autodock/web_shuttle/proc/autopilot_say(message) // Makes the autopilot 'talk' to the passengers.
 	var/padded_message = "<span class='game say'><span class='name'>shuttle autopilot</span> states, \"[message]\"</span>"
-	message_passengers(current_area, padded_message)
+	message_passengers(padded_message)
 
-/datum/shuttle/web_shuttle/proc/rename_shuttle(mob/user)
+/datum/shuttle/autodock/web_shuttle/proc/rename_shuttle(mob/user)
 	if(!can_rename)
 		to_chat(user, "<span class='warning'>You can't rename this vessel.</span>")
 		return
-	var/new_name = input(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name) as null|text
+	var/new_name = tgui_input_text(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name)
 	var/sanitized_name = sanitizeName(new_name, MAX_NAME_LEN, TRUE)
 	if(sanitized_name)
 		//can_rename = FALSE //VOREStation Removal
@@ -161,7 +166,11 @@
 	icon_screen = "flight_center"
 	var/list/my_doors //Should be list("id_tag" = "Pretty Door Name", ...)
 	var/list/my_sensors //Should be list("id_tag" = "Pretty Sensor Name", ...)
+	tgui_subtemplate = "ShuttleControlConsoleWeb"
+	skip_act = TRUE
 
+// Note - Searching own area for doors/sensors is fine for legacy web shuttles as they are single-area.
+//        However if this code is copied to future multi-area shuttles, should search in all shuttle areas
 /obj/machinery/computer/shuttle_control/web/Initialize()
 	. = ..()
 	var/area/my_area = get_area(src)
@@ -173,7 +182,7 @@
 				my_doors[find_doors[A.id_tag]] = A
 				find_doors -= A.id_tag
 		for(var/lost in find_doors)
-			log_debug("[my_area] shuttle computer couldn't find [lost] door!")
+			log_shuttle("[my_area] shuttle computer couldn't find [lost] door!")
 
 	if(my_sensors)
 		var/list/find_sensors = my_sensors
@@ -183,10 +192,10 @@
 				my_sensors[find_sensors[S.id_tag]] = S
 				find_sensors -= S.id_tag
 		for(var/lost in find_sensors)
-			log_debug("[my_area] shuttle computer couldn't find [lost] sensor!")
+			log_shuttle("[my_area] shuttle computer couldn't find [lost] sensor!")
 
 /obj/machinery/computer/shuttle_control/web/attackby(obj/I, mob/user)
-	var/datum/shuttle/web_shuttle/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	var/datum/shuttle/autodock/web_shuttle/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(shuttle && istype(I,/obj/item/clothing/head/pilot))
 		var/obj/item/clothing/head/pilot/H = I
 		H.shuttle_comp = src
@@ -197,87 +206,17 @@
 
 	return ..()
 
+/obj/machinery/computer/shuttle_control/web/tgui_data(mob/user)
+	var/list/data = list()
 
-// Fairly copypasta-y.
-/obj/machinery/computer/shuttle_control/web/attack_hand(mob/user)
-	if(..(user))
-		return
-	src.add_fingerprint(user)
-
-	ui_interact(user)
-
-	/*
-	// If nanoUI falls over and you want a non-nanoUI UI, feel free to uncomment this section.
-	var/datum/shuttle/web_shuttle/WS = shuttle_controller.shuttles[shuttle_tag]
-	if(!istype(WS))
-		message_admins("ERROR: Shuttle computer ([src]) ([shuttle_tag]) could not find their shuttle in the shuttles list.")
-		return
-
-	var/list/dat = list()
-	dat += "<center>[shuttle_tag] Ship Control<hr>"
-
-	if(WS.moving_status != SHUTTLE_IDLE)
-		dat += "Location: <font color='red'>Moving</font> <br>"
-	else
-		var/area/areacheck = get_area(src)
-		dat += "Location: [areacheck.name]<br>"
-
-		if((WS.last_move + WS.cooldown) > world.time)
-			dat += "<font color='red'>Engines charging.</font><br>"
-		else
-			dat += "<font color='green'>Engines ready.</font><br>"
-
-		if(WS.can_cloak)
-			dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
-
-		for(var/datum/shuttle_route/route in WS.current_destination.routes)
-			dat += "<b><a href='?src=\ref[src];traverse=\ref[route]'>[route.display_route(WS.current_destination)]</a></b><br>"
-
-
-	//Docking
-		dat += "<br><br>"
-		if(WS.skip_docking_checks())
-			dat += "Docking Status: <font color='grey'>Not in use.</font>"
-		else
-			var/override_en = WS.docking_controller.override_enabled
-			var/docking_status = WS.docking_controller.get_docking_status()
-
-			dat += "Docking Status: "
-			switch(docking_status)
-				if("undocked")
-					dat += "<font color='[override_en? "red" : "grey"]'>Undocked</font>"
-				if("docking")
-					dat += "<font color='[override_en? "red" : "yellow"]'>Docking</font>"
-				if("undocking")
-					dat += "<font color='[override_en? "red" : "yellow"]'>Undocking</font>"
-				if("docked")
-					dat += "<font color='[override_en? "red" : "green"]'>Docked</font>"
-
-			if(override_en)
-				dat += " <font color='red'>(Override Enabled)</font>"
-
-			dat += ". <A href='?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
-
-			switch(docking_status)
-				if("undocked")
-					dat += "<b><A href='?src=\ref[src];dock_command=[1]'>Dock</A></b>"
-				if("docked")
-					dat += "<b><A href='?src=\ref[src];undock_command=[1]'>Undock</A></b>"
-		dat += "</center>"
-
-	user << browse(dat.Join(), "window=[shuttle_tag]shuttlecontrol;size=300x300")
-	*/
-
-
-/obj/machinery/computer/shuttle_control/web/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
 	var/list/routes[0]
-	var/datum/shuttle/web_shuttle/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	var/datum/shuttle/autodock/web_shuttle/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(shuttle))
+		to_chat(user, "<span class='warning'>Unable to establish link with the shuttle.</span>")
 		return
 
 	var/list/R = shuttle.web_master.get_available_routes()
-	for (var/i = 1 to length(R))
+	for(var/i = 1 to length(R))
 		var/datum/shuttle_route/route = R[i]
 		var/travel_time = null
 		var/travel_modifier = shuttle.flight_time_modifier
@@ -304,7 +243,6 @@
 		if(SHUTTLE_INTRANSIT)
 			shuttle_state = "in_transit"
 
-
 	// For the progress bar.
 	var/elapsed_time = world.time - shuttle.depart_time
 	var/total_time = shuttle.arrive_time - shuttle.depart_time
@@ -312,7 +250,6 @@
 
 	if(total_time) // Need to check or we might divide by zero.
 		percent_finished = (elapsed_time / total_time) * 100
-
 
 	var/list/doors = list()
 	if(my_doors)
@@ -333,11 +270,11 @@
 		"future_location" = future_location,
 		"shuttle_state" = shuttle_state,
 		"routes" = routes,
-		"has_docking" = shuttle.docking_controller? 1 : 0,
+		"has_docking" = shuttle.shuttle_docking_controller? 1 : 0,
 		"skip_docking" = shuttle.skip_docking_checks(),
 		"is_moving" = shuttle.moving_status != SHUTTLE_IDLE,
-		"docking_status" = shuttle.docking_controller? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = shuttle.docking_controller? shuttle.docking_controller.override_enabled : null,
+		"docking_status" = shuttle.shuttle_docking_controller? shuttle.shuttle_docking_controller.get_docking_status() : null,
+		"docking_override" = shuttle.shuttle_docking_controller? shuttle.shuttle_docking_controller.override_enabled : null,
 		"is_in_transit" = shuttle.has_arrive_time(),
 		"travel_progress" = between(0, percent_finished, 100),
 		"time_left" = round( (total_time - elapsed_time) / 10),
@@ -347,107 +284,105 @@
 		"autopilot" = shuttle.autopilot ? 1 : 0,
 		"can_rename" = shuttle.can_rename ? 1 : 0,
 		"doors" = doors,
-		"sensors" = sensors
+		"sensors" = sensors,
+		"subtemplate" = tgui_subtemplate,
 	)
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	return data
 
-	if(!ui)
-		ui = new(user, src, ui_key, "flight.tmpl", "[shuttle.visible_name] Flight Computer", 500, 500)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-
-/obj/machinery/computer/shuttle_control/web/Topic(href, href_list)
+/obj/machinery/computer/shuttle_control/web/tgui_act(action, list/params)
 	if(..())
-		return 1
+		return TRUE
 
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-
-	var/datum/shuttle/web_shuttle/WS = shuttle_controller.shuttles[shuttle_tag]
+	var/datum/shuttle/autodock/web_shuttle/WS = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(WS))
 		message_admins("ERROR: Shuttle computer ([src]) ([shuttle_tag]) could not find their shuttle in the shuttles list.")
 		return
 
-	if(href_list["refresh"])
-		ui_interact(usr)
-
-	if (WS.moving_status != SHUTTLE_IDLE)
-		to_chat(usr, "<font color='blue'>[WS.visible_name] is busy moving.</font>")
+	if(WS.moving_status != SHUTTLE_IDLE)
+		to_chat(usr, span_blue("[WS.visible_name] is busy moving."))
 		return
 
-	if(href_list["rename_command"])
-		WS.rename_shuttle(usr)
+	switch(action)
+		if("rename_command")
+			WS.rename_shuttle(usr)
 
-	if(href_list["dock_command"])
-		if(WS.autopilot)
-			to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
-			return
-		WS.dock()
+		if("dock_command")
+			if(WS.autopilot)
+				to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
+				return
+			WS.dock()
 
-	if(href_list["undock_command"])
-		if(WS.autopilot)
-			to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
-			return
-		WS.undock()
+		if("undock_command")
+			if(WS.autopilot)
+				to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
+				return
+			WS.undock()
 
-	if(href_list["cloak_command"])
-		if(!WS.can_cloak)
-			return
-		WS.cloaked = TRUE
-		to_chat(usr, "<span class='danger'>Ship stealth systems have been activated. The station will not be warned of our arrival.</span>")
+		if("toggle_cloaking")
+			if(!WS.can_cloak)
+				return
+			WS.cloaked = !WS.cloaked
+			if(WS.cloaked)
+				to_chat(usr, "<span class='danger'>Ship stealth systems have been activated. The station will not be warned of our arrival.</span>")
+			else
+				to_chat(usr, "<span class='danger'>Ship stealth systems have been deactivated. The station will be warned of our arrival.</span>")
 
-	if(href_list["uncloak_command"])
-		if(!WS.can_cloak)
-			return
-		WS.cloaked = FALSE
-		to_chat(usr, "<span class='danger'>Ship stealth systems have been deactivated. The station will be warned of our arrival.</span>")
+		if("toggle_autopilot")
+			WS.adjust_autopilot(!WS.autopilot)
 
-	if(href_list["autopilot_on_command"])
-		WS.adjust_autopilot(TRUE)
+		if("traverse")
+			if(WS.autopilot)
+				to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
+				return
 
-	if(href_list["autopilot_off_command"])
-		WS.adjust_autopilot(FALSE)
+			if((WS.last_move + WS.cooldown) > world.time)
+				to_chat(usr, span_red("The ship's drive is inoperable while the engines are charging."))
+				return
 
-	if(href_list["traverse"])
-		if(WS.autopilot)
-			to_chat(usr, "<span class='warning'>The autopilot must be disabled before you can control the vessel manually.</span>")
-			return
+			var/index = text2num(params["traverse"])
+			var/datum/shuttle_route/new_route = WS.web_master.current_destination.routes[index]
+			if(!istype(new_route))
+				message_admins("ERROR: Shuttle computer was asked to traverse a nonexistant route.")
+				return
 
-		if((WS.last_move + WS.cooldown) > world.time)
-			to_chat(usr, "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>")
-			return
+			if(!check_docking(WS))
+				return TRUE
 
-		var/index = text2num(href_list["traverse"])
-		var/datum/shuttle_route/new_route = WS.web_master.current_destination.routes[index]
-		if(!istype(new_route))
-			message_admins("ERROR: Shuttle computer was asked to traverse a nonexistant route.")
-			return
+			var/datum/shuttle_destination/target_destination = new_route.get_other_side(WS.web_master.current_destination)
+			if(!istype(target_destination))
+				message_admins("ERROR: Shuttle computer was asked to travel to a nonexistant destination.")
+				return
 
-		if(!check_docking(WS))
-	//		updateUsrDialog()
-			ui_interact(usr)
-			return
+			WS.next_location = target_destination.my_landmark
+			if(!can_move(WS, usr))
+				return
 
-		var/datum/shuttle_destination/target_destination = new_route.get_other_side(WS.web_master.current_destination)
-		if(!istype(target_destination))
-			message_admins("ERROR: Shuttle computer was asked to travel to a nonexistant destination.")
-			return
+			WS.web_master.future_destination = target_destination
+			to_chat(usr, "<span class='notice'>[WS.visible_name] flight computer received command.</span>")
+			WS.web_master.reset_autopath() // Deviating from the path will almost certainly confuse the autopilot, so lets just reset its memory.
 
-		WS.web_master.future_destination = target_destination
-		to_chat(usr, "<span class='notice'>[WS.visible_name] flight computer received command.</span>")
-		WS.web_master.reset_autopath() // Deviating from the path will almost certainly confuse the autopilot, so lets just reset its memory.
+			var/travel_time = new_route.travel_time * WS.flight_time_modifier
+			// TODO - Leshana - Change this to use proccess stuff of autodock!
+			if(new_route.interim && new_route.travel_time)
+				WS.long_jump(target_destination.my_landmark, new_route.interim, travel_time / 10)
+			else
+				WS.short_jump(target_destination.my_landmark)
 
-		var/travel_time = new_route.travel_time * WS.flight_time_modifier
+//check if we're undocked, give option to force launch
+/obj/machinery/computer/shuttle_control/web/proc/check_docking(datum/shuttle/autodock/MS)
+	if(MS.skip_docking_checks() || MS.check_undocked())
+		return 1
 
-		if(new_route.interim && new_route.travel_time)
-			WS.long_jump(WS.current_area, target_destination.my_area, new_route.interim, travel_time / 10)
-		else
-			WS.short_jump(WS.current_area, target_destination.my_area)
+	var/choice = tgui_alert(usr, "The shuttle is currently docked! Please undock before continuing.","Error",list("Cancel","Force Launch"))
+	if(choice == "Cancel")
+		return 0
 
-	ui_interact(usr)
+	choice = tgui_alert(usr, "Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", list("Force Launch", "Cancel"))
+	if(choice == "Cancel")
+		return 0
+
+	return 1
 
 // Props, for now.
 /obj/structure/flight_left
@@ -474,11 +409,18 @@
 
 /obj/shuttle_connector/Initialize()
 	. = ..()
-	SSshuttles.OnDocksInitialized(CALLBACK(src, .proc/setup_routes))
+	GLOB.shuttle_added.register_global(src, PROC_REF(setup_routes))
 
-/obj/shuttle_connector/proc/setup_routes()
-	if(destinations && shuttle_name)
-		var/datum/shuttle/web_shuttle/ES = shuttle_controller.shuttles[shuttle_name]
+/obj/shuttle_connector/Destroy()
+	GLOB.shuttle_added.unregister_global(src, PROC_REF(setup_routes))
+	. = ..()
+
+// This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!
+/obj/shuttle_connector/proc/setup_routes(var/new_shuttle)
+	var/datum/shuttle/autodock/web_shuttle/ES = SSshuttles.shuttles[shuttle_name]
+	if(ES != new_shuttle)
+		return // Its not our shuttle! Ignore!
+	if(destinations && istype(ES))
 		var/datum/shuttle_web_master/WM = ES.web_master
 
 		for(var/new_dest in destinations)
@@ -487,7 +429,9 @@
 
 			for(var/type_to_link in D.routes_to_make)
 				var/travel_delay = D.routes_to_make[type_to_link]
-				D.link_destinations(WM.get_destination_by_type(type_to_link), D.preferred_interim_area, travel_delay)
+				D.link_destinations(WM.get_destination_by_type(type_to_link), D.preferred_interim_tag, travel_delay)
+	else
+		warning("[log_info_line()]'s shuttle [global.log_info_line(ES)] initialized but destinations:[destinations]")
 
 	qdel(src)
 

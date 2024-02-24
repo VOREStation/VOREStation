@@ -11,7 +11,7 @@
 	name = "Monkey crate"
 	contains = list (/obj/item/weapon/storage/box/monkeycubes)
 	cost = 20
-	containertype = /obj/structure/closet/crate/freezer
+	containertype = /obj/structure/closet/crate/freezer/nanotrasen
 	containername = "Monkey crate"
 
 /datum/supply_pack/hydro/farwa
@@ -48,6 +48,13 @@
 	cost = 45
 	containertype = /obj/structure/largecrate/animal/cat
 	containername = "Cat Crate"
+
+/datum/supply_pack/hydro/catslug
+	name = "Catslug Crate"
+	contains = list()
+	cost = 200
+	containertype = /obj/structure/largecrate/animal/catslug
+	containername = "Catslug Crate"
 
 /datum/supply_pack/hydro/hydroponics
 	name = "Hydroponics Supply Crate"
@@ -110,7 +117,7 @@
 			/obj/item/seeds/sugarcaneseed
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/hydroponics
+	containertype = /obj/structure/closet/crate/carp
 	containername = "Seeds crate"
 	access = access_hydroponics
 
@@ -124,7 +131,7 @@
 			/obj/item/weapon/material/twohanded/fireaxe/scythe
 			)
 	cost = 45
-	containertype = /obj/structure/closet/crate/hydroponics
+	containertype = /obj/structure/closet/crate/grayson
 	containername = "Weed control crate"
 	access = access_hydroponics
 
@@ -132,7 +139,7 @@
 	name = "Water tank crate"
 	contains = list(/obj/structure/reagent_dispensers/watertank)
 	cost = 10
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/large/aether
 	containername = "water tank crate"
 
 /datum/supply_pack/hydro/bee_keeper
@@ -144,15 +151,15 @@
 			/obj/item/bee_pack
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/hydroponics
+	containertype = /obj/structure/closet/crate/carp
 	containername = "Beekeeping crate"
 	access = access_hydroponics
 
 /datum/supply_pack/hydro/tray
 	name = "Empty hydroponics trays"
 	cost = 50
-	containertype = /obj/structure/closet/crate/hydroponics
+	containertype = /obj/structure/closet/crate/aether
 	containername = "Hydroponics tray crate"
-	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = 0} = 3)
+	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = FALSE} = 3)
 	access = access_hydroponics
 

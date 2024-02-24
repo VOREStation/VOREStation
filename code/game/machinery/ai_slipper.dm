@@ -2,8 +2,8 @@
 	name = "\improper AI Liquid Dispenser"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "liquid_dispenser"
-	anchored = 1.0
-	use_power = 1
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	var/uses = 20
 	var/disabled = 1

@@ -4,8 +4,10 @@
 	var/list/cardinal_neighbors = list()
 	for(var/check_dir in cardinal)
 		var/turf/simulated/T = get_step(get_turf(src), check_dir)
-		if(istype(T))
+		//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
+		if(istype(T) && !istype(check_dir, /turf/simulated/open)) //Let's not have them go on open space where you can't really get to them.
 			cardinal_neighbors |= T
+		//VOREStation Edit End
 	return cardinal_neighbors
 
 /obj/effect/plant/proc/update_neighbors()
@@ -33,7 +35,7 @@
 		neighbors |= floor
 
 	if(neighbors.len)
-		plant_controller.add_plant(src)	//if we have neighbours again, start processing
+		SSplants.add_plant(src)	//if we have neighbours again, start processing
 
 	// Update all of our friends.
 	var/turf/T = get_turf(src)
@@ -74,8 +76,7 @@
 			plant.layer = layer + 0.1
 
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			seed.do_sting(L,src)
 			if(seed.get_trait(TRAIT_CARNIVOROUS))
 				seed.do_thorns(L,src)
@@ -90,31 +91,40 @@
 		if(prob(chance))
 			sampled = 0
 
-	if(is_mature() && !has_buckled_mobs())
-		for(var/turf/neighbor in neighbors)
-			for(var/mob/living/M in neighbor)
-				if(seed.get_trait(TRAIT_SPREAD) >= 2 && (M.lying || prob(round(seed.get_trait(TRAIT_POTENCY)))))
-					entangle(M)
+	if(is_mature())
+		if(!has_buckled_mobs())
+			for(var/turf/neighbor in neighbors)
+				for(var/mob/living/M in neighbor)
+					if(seed.get_trait(TRAIT_SPREAD) >= 2 && (M.lying || prob(round(seed.get_trait(TRAIT_POTENCY)))))
+						entangle(M)
 
-	if(is_mature() && neighbors.len && prob(spread_chance))
-		//spread to 1-3 adjacent turfs depending on yield trait.
-		var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
+		if(seed.get_trait(TRAIT_SPORING) && prob(1))
+			visible_message(SPAN_WARNING("\The [src] hisses, releasing a cloud of spores!"), SPAN_WARNING("Something nearby hisses loudly!"))
+			seed.create_spores(get_turf(src))
 
-		for(var/i in 1 to max_spread)
-			if(prob(spread_chance))
-				sleep(rand(3,5))
-				if(!neighbors.len)
-					break
-				spread_to(pick(neighbors))
+		if(length(neighbors) && prob(spread_chance))
+			//spread to 1-3 adjacent turfs depending on yield trait.
+			var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
+
+			for(var/i in 1 to max_spread)
+				if(prob(spread_chance))
+					sleep(rand(3,5))
+					if(!length(neighbors))
+						break
+					spread_to(pick(neighbors))
 
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health()
 	if(has_buckled_mobs() || neighbors.len)
-		plant_controller.add_plant(src)
+		SSplants.add_plant(src)
 
 //spreading vines aren't created on their final turf.
 //Instead, they are created at their parent and then move to their destination.
 /obj/effect/plant/proc/spread_to(turf/target_turf)
+	//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
+	if(istype(target_turf, /turf/simulated/open))
+		return			
+	//VOREStation Edit End
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 
 	spawn(1) // This should do a little bit of animation.
@@ -122,9 +132,9 @@
 			return
 
 		//move out to the destination
-		child.anchored = 0
-		step_to(child, target_turf)
-		child.anchored = 1
+		child.anchored = FALSE
+		child.Move(target_turf)	// Do a normal move, so we can cross and uncross things we need to. Stairs, Open space "falling", etc.
+		child.anchored = TRUE
 		child.update_icon()
 
 		//see if anything is there
@@ -160,7 +170,7 @@
 			continue
 		for(var/obj/effect/plant/neighbor in check_turf.contents)
 			neighbor.neighbors |= check_turf
-			plant_controller.add_plant(neighbor)
+			SSplants.add_plant(neighbor)
 	spawn(1) if(src) qdel(src)
 
 #undef NEIGHBOR_REFRESH_TIME

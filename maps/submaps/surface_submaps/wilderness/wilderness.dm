@@ -1,5 +1,5 @@
 // This causes PoI maps to get 'checked' and compiled, when undergoing a unit test.
-// This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
+// This is so CI can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 // When adding a new PoI, please add it to this list.
 #if MAP_TEST
 #include "spider1.dmm"
@@ -22,6 +22,7 @@
 #include "Rockybase.dmm"
 #include "MHR.dmm"
 #include "GovPatrol.dmm"
+#include "kururakden.dmm"
 #include "DecoupledEngine.dmm"
 #include "DoomP.dmm"
 #include "CaveS.dmm"
@@ -33,7 +34,22 @@
 #include "ButcherShack.dmm"
 #include "Chapel.dmm"
 #include "Shelter.dmm"
-
+#include "derelictengine.dmm"
+#include "wolfden.dmm"
+#include "demonpool.dmm"
+#include "frostoasis.dmm"
+#include "xenohive.dmm"
+#include "borglab.dmm"
+#include "chasm.dmm"
+#include "deathden.dmm"
+#include "leopardmanderden.dmm"
+#include "greatwolfden.dmm"
+#include "syndisniper.dmm"
+#include "otieshelter.dmm"
+#include "lonewolf.dmm"
+#include "emptycabin.dmm"
+#include "dogbase.dmm"
+#include "drgnplateu.dmm"
 #endif
 
 // The 'wilderness' is the endgame for Explorers. Extremely dangerous and far away from help, but with vast shinies.
@@ -162,7 +178,7 @@
 	desc = "The surprisingly high-tech home of Sif Free Radio, the only radio station run by mindless clones."
 	mappath = 'maps/submaps/surface_submaps/wilderness/DJOutpost4.dmm'
 	template_group = "Sif Free Radio"
-	cost = 10
+	cost = INFINITY /// Prevent spawning.
 
 /datum/map_template/surface/wilderness/deep/Boombase
 	name = "Boombase"
@@ -181,7 +197,7 @@
 	name = "Blue Shuttle Down"
 	desc = "You REALLY shouldn't be near this. Mostly because they're Police."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Blueshuttledown.dmm'
-	cost = 50
+	cost = INFINITY /// Prevent spawning.
 	template_group = "Shuttle Down"
 
 /datum/map_template/surface/wilderness/deep/Rockybase
@@ -200,6 +216,12 @@
 	name = "Government Patrol"
 	desc = "A long lost SifGuard ground survey patrol. Now they have you guys!"
 	mappath = 'maps/submaps/surface_submaps/wilderness/GovPatrol.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/normal/KururakDen
+	name = "Kururak Den"
+	desc = "The den of a Kururak pack. May contain hibernating members."
+	mappath = 'maps/submaps/surface_submaps/wilderness/kururakden.dmm'
 	cost = 5
 
 /datum/map_template/surface/wilderness/normal/DecoupledEngine
@@ -273,3 +295,105 @@
 	desc = "A pool of water contaminated with highly dangerous chemicals."
 	mappath = 'maps/submaps/surface_submaps/wilderness/chemspill2.dmm'
 	cost = 10
+
+/datum/map_template/surface/wilderness/normal/FrostflyNest
+	name = "Frostfly Nest"
+	desc = "The nest of a Frostfly, or more."
+	mappath = 'maps/submaps/surface_submaps/wilderness/FrostflyNest.dmm'
+	cost = 20
+
+/datum/map_template/surface/wilderness/deep/DerelictEngine
+	name = "Derelict Engine"
+	desc = "An crashed alien ship, something went wrong inside."
+	mappath = 'maps/submaps/surface_submaps/wilderness/derelictengine.dmm'
+	cost = 45
+
+/datum/map_template/surface/wilderness/normal/WolfDen
+	name = "Wolf Den"
+	desc = "Small wolf den and their hunt spoils."
+	mappath = 'maps/submaps/surface_submaps/wilderness/wolfden.dmm'
+	cost = 10
+
+/datum/map_template/surface/wilderness/normal/DemonPool
+	name = "Demon Pool"
+	desc = "A cult ritual gone horribly wrong."
+	mappath = 'maps/submaps/surface_submaps/wilderness/demonpool.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/normal/FrostOasis
+	name = "Frost Oasis"
+	desc = "A strange oasis with a gathering of wild animals."
+	mappath = 'maps/submaps/surface_submaps/wilderness/frostoasis.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/XenoHive
+	name = "Xeno Hive"
+	desc = "A containment experiment gone wrong."
+	mappath = 'maps/submaps/surface_submaps/wilderness/xenohive.dmm'
+	cost = 25
+
+/datum/map_template/surface/wilderness/deep/BorgLab
+	name = "Borg Lab"
+	desc = "Production of experimental combat robots gone rogue."
+	mappath = 'maps/submaps/surface_submaps/wilderness/borglab.dmm'
+	cost = 30
+
+/datum/map_template/surface/wilderness/normal/Chasm
+	name = "Chasm"
+	desc = "An inconspicuous looking cave, watch your step."
+	mappath = 'maps/submaps/surface_submaps/wilderness/chasm.dmm'
+	cost = 20
+
+/datum/map_template/surface/wilderness/deep/DeathDen
+	name = "Death Den"
+	desc = "Gathering of acolytes gone wrong."
+	mappath = 'maps/submaps/surface_submaps/wilderness/deathden.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/leopardmanderden
+	name = "Leopardmander Den"
+	desc = "Den of a voracious but very rare beast."
+	mappath = 'maps/submaps/surface_submaps/wilderness/leopardmanderden.dmm'
+	cost = 10
+
+/datum/map_template/surface/wilderness/deep/greatwolfden
+	name = "Great Wolf Den"
+	desc = "Den hosted by the biggest alpha wolf of the wilderness"
+	mappath = 'maps/submaps/surface_submaps/wilderness/greatwolfden.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/dogbase
+	name = "Dog Base"
+	desc = "A highly secured base with hungry trained canines"
+	mappath = 'maps/submaps/surface_submaps/wilderness/dogbase.dmm'
+	cost = 20
+
+/datum/map_template/surface/wilderness/normal/emptycabin
+	name = "Empty Cabin"
+	desc = "An inconspicuous looking den hosted by a hungry otie"
+	mappath = 'maps/submaps/surface_submaps/wilderness/emptycabin.dmm'
+	cost = 10
+
+/datum/map_template/surface/wilderness/deep/lonewolf
+	name = "Lone Wolf"
+	desc = "A large oppressing wolf, supervising from above its cliff"
+	mappath = 'maps/submaps/surface_submaps/wilderness/lonewolf.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/deep/otieshelter
+	name = "Otie Shelter"
+	desc = "A experimental lab of various breeds of oties"
+	mappath = 'maps/submaps/surface_submaps/wilderness/otieshelter.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/syndisniper
+	name = "Syndi Sniper"
+	desc = "Syndicate watch tower, deadly but secluded"
+	mappath = 'maps/submaps/surface_submaps/wilderness/syndisniper.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/deep/drgnplateu
+	name = "Dragon Plateu"
+	desc = "A dangerous plateu of cliffs home to a rampant gold hoarding dragon"
+	mappath = 'maps/submaps/surface_submaps/wilderness/drgnplateu.dmm'
+	cost = 15

@@ -6,7 +6,7 @@
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	opacity = 1
-	density = 0
+	density = FALSE
 
 /obj/structure/curtain/open
 	icon_state = "open"
@@ -22,7 +22,7 @@
 		..(P, def_zone)
 
 /obj/structure/curtain/attack_hand(mob/user)
-	playsound(get_turf(loc), "rustle", 15, 1, -5)
+	playsound(src, "rustle", 15, 1, -5)
 	toggle()
 	..()
 
@@ -38,13 +38,12 @@
 		layer = OBJ_LAYER
 
 /obj/structure/curtain/attackby(obj/item/P, mob/user)
-	if(P.is_wirecutter())
+	if(P.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, P.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You start to cut the shower curtains.</span>")
 		if(do_after(user, 10))
 			to_chat(user, "<span class='notice'>You cut the shower curtains.</span>")
-			var/obj/item/stack/material/plastic/A = new /obj/item/stack/material/plastic( src.loc )
-			A.amount = 3
+			new /obj/item/stack/material/plastic(src.loc, 3)
 			qdel(src)
 		return
 	else

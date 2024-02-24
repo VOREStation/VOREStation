@@ -4,8 +4,12 @@ var/global/list/active_radio_jammers = list()
 	var/turf/Tr = get_turf(radio)
 	if(!Tr) return 0 //Nullspace radios don't get jammed.
 
-	for(var/jammer in active_radio_jammers)
-		var/obj/item/device/radio_jammer/J = jammer
+	var/area/our_area = get_area(Tr)
+
+	if(our_area.no_comms)
+		return TRUE
+
+	for(var/obj/item/device/radio_jammer/J as anything in active_radio_jammers)
 		var/turf/Tj = get_turf(J)
 
 		if(J.on && Tj.z == Tr.z) //If we're on the same Z, it's worth checking.
@@ -109,8 +113,6 @@ var/global/list/active_radio_jammers = list()
 
 	// Only Cut() if we need to.
 	if(overlay_percent != last_overlay_percent)
-		overlays.Cut()
-		var/image/I = image(src.icon, src, "jammer_overlay_[overlay_percent]")
-		overlays += I
+		cut_overlays()
+		add_overlay("jammer_overlay_[overlay_percent]")
 		last_overlay_percent = overlay_percent
-

@@ -23,9 +23,8 @@
 	for(var/datum/malf_hardware/H in hardware_list)
 		possible_choices += H.name
 
-	possible_choices += "CANCEL"
-	var/choice = input("Select desired hardware. You may only choose one hardware piece!: ") in possible_choices
-	if(choice == "CANCEL")
+	var/choice = tgui_input_list(user, "Select desired hardware. You may only choose one hardware piece!: ", "Hardware Choice", possible_choices)
+	if(!choice)
 		return
 	var/note = null
 
@@ -47,7 +46,7 @@
 		error("Hardware without description: [C]")
 		return
 
-	var/confirmation = alert("[note] - Is this what you want?", "Hardware selection", "Yes", "No")
+	var/confirmation = tgui_alert(user, "[note] - Is this what you want?", "Hardware selection", list("Yes", "No"))
 	if(confirmation != "Yes")
 		to_chat(user, "Selection cancelled. Use command again to select")
 		return
@@ -85,7 +84,7 @@
 		return
 
 	var/datum/malf_research/res = user.research
-	var/datum/malf_research_ability/tar = input("Select your next research target") in res.available_abilities
+	var/datum/malf_research_ability/tar = tgui_input_list(user, "Select your next research target", "Select Research", res.available_abilities)
 	if(!tar)
 		return
 	res.focus = tar
@@ -168,7 +167,7 @@
 // Description: Returns a list of all unhacked APCs
 /proc/get_unhacked_apcs(var/mob/living/silicon/ai/user)
 	var/list/H = list()
-	for(var/obj/machinery/power/apc/A in machines)
+	for(var/obj/machinery/power/apc/A in GLOB.apcs)
 		if(A.hacker && A.hacker == user)
 			continue
 		H.Add(A)

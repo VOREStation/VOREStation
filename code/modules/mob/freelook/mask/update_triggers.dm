@@ -4,18 +4,17 @@
 
 /mob/living/var/updating_cult_vision = 0
 
-/mob/living/Move()
-	var/oldLoc = src.loc
+/mob/living/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(cultnet.provides_vision(src))
-			if(!updating_cult_vision)
-				updating_cult_vision = 1
-				spawn(CULT_UPDATE_BUFFER)
-					if(oldLoc != src.loc)
-						cultnet.updateVisibility(oldLoc, 0)
-						cultnet.updateVisibility(loc, 0)
-					updating_cult_vision = 0
+	if(!cultnet.provides_vision(src))
+		return
+	if(!updating_cult_vision)
+		updating_cult_vision = 1
+		spawn(CULT_UPDATE_BUFFER)
+			if(old_loc != src.loc)
+				cultnet.updateVisibility(old_loc, 0)
+				cultnet.updateVisibility(loc, 0)
+			updating_cult_vision = 0
 
 #undef CULT_UPDATE_BUFFER
 

@@ -11,7 +11,7 @@
 		to_chat(src, "You cannot leave your host in your current state.")
 
 	if(docile)
-		to_chat(src, "<font color='blue'>You are feeling far too docile to do that.</font>")
+		to_chat(src, span_blue("You are feeling far too docile to do that."))
 		return
 
 	if(!host || !src) return
@@ -60,7 +60,7 @@
 		to_chat(src, "There are no viable hosts within range...")
 		return
 
-	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
+	var/mob/living/carbon/M = tgui_input_list(src, "Who do you wish to infest?", "Target Choice", choices)
 
 	if(!M || !src) return
 
@@ -169,7 +169,8 @@
 
 	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
 	H.verbs |= /mob/living/carbon/human/proc/tackle
-	H.verbs |= /mob/living/carbon/proc/spawn_larvae
+	if(antag)
+		H.verbs |= /mob/living/carbon/proc/spawn_larvae
 
 	if(H.client)
 		H.ghostize(0)
@@ -211,18 +212,18 @@
 		to_chat(src, "You cannot secrete chemicals in your current state.")
 
 	if(docile)
-		to_chat(src, "<font color='blue'>You are feeling far too docile to do that.</font>")
+		to_chat(src, span_blue("You are feeling far too docile to do that."))
 		return
 
 	if(chemicals < 50)
 		to_chat(src, "You don't have enough chemicals!")
 
-	var/chem = input("Select a chemical to secrete.", "Chemicals") as null|anything in list("alkysine","bicaridine","hyperzine","tramadol")
+	var/chem = tgui_input_list(usr, "Select a chemical to secrete.", "Chemicals", list("alkysine","bicaridine","hyperzine","tramadol"))
 
 	if(!chem || chemicals < 50 || !host || controlling || !src || stat) //Sanity check.
 		return
 
-	to_chat(src, "<font color='red'><B>You squirt a measure of [chem] from your reservoirs into [host]'s bloodstream.</B></font>")
+	to_chat(src, span_red("<B>You squirt a measure of [chem] from your reservoirs into [host]'s bloodstream.</B>"))
 	host.reagents.add_reagent(chem, 10)
 	chemicals -= 50
 
@@ -252,7 +253,7 @@
 		to_chat(src, "You cannot use that ability again so soon.")
 		return
 
-	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
+	var/mob/living/carbon/M = tgui_input_list(src, "Who do you wish to dominate?", "Target Choice", choices)
 
 	if(!M || !src) return
 
@@ -260,8 +261,8 @@
 		to_chat(src, "You cannot infest someone who is already infested!")
 		return
 
-	to_chat(src, "<font color='red'>You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread.</font>")
-	to_chat(M, "<font color='red'>You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing.</font>")
+	to_chat(src, span_red("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
+	to_chat(M, span_red("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
 	M.Weaken(10)
 
 	used_dominate = world.time
@@ -280,7 +281,7 @@
 		return
 
 	if(docile)
-		to_chat(src, "<font color='blue'>You are feeling far too docile to do that.</font>")
+		to_chat(src, span_blue("You are feeling far too docile to do that."))
 		return
 
 	to_chat(src, "You begin delicately adjusting your connection to the host brain...")
@@ -291,8 +292,8 @@
 			return
 		else
 
-			to_chat(src, "<font color='red'><B>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</B></font>")
-			to_chat(host, "<font color='red'><B>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</B></font>")
+			to_chat(src, span_red("<B>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</B>"))
+			to_chat(host, span_red("<B>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</B>"))
 			host.add_language("Cortical Link")
 
 			// host -> brain
@@ -332,7 +333,8 @@
 
 			host.verbs += /mob/living/carbon/proc/release_control
 			host.verbs += /mob/living/carbon/proc/punish_host
-			host.verbs += /mob/living/carbon/proc/spawn_larvae
+			if(antag)
+				host.verbs += /mob/living/carbon/proc/spawn_larvae
 
 			return
 

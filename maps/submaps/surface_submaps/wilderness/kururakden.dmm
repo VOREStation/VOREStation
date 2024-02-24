@@ -1,0 +1,23 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/KururakDen)
+"c" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+"d" = (/obj/random/mob/sif/kururak,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+"e" = (/mob/living/simple_mob/animal/sif/kururak/leader,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+"f" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+"g" = (/obj/random/junk,/obj/random/medical/pillbottle,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+"h" = (/obj/random/junk,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+"i" = (/obj/random/powercell,/obj/random/unidentified_medicine/old_medicine,/obj/random/trash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+"j" = (/obj/random/humanoidremains,/obj/random/coin,/obj/random/contraband,/obj/random/projectile/random,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
+
+(1,1,1) = {"
+aaaaaaaaaa
+aaaaabbaaa
+aaabbbbbaa
+aabbbfbbaa
+aacbgdccaa
+abhdccibaa
+abfcefbbaa
+abbdjbbaaa
+abbbbbbaaa
+aaaaaaaaaa
+"}

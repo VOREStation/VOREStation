@@ -14,8 +14,8 @@
 	desc = "A large cabinet with drawers."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "filingcabinet"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
@@ -36,19 +36,17 @@
 		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
 		user.drop_item()
 		P.loc = src
-		icon_state = "[initial(icon_state)]-open"
-		sleep(5)
-		icon_state = initial(icon_state)
-		updateUsrDialog()
-	else if(P.is_wrench())
-		playsound(loc, P.usesound, 50, 1)
+		open_animation()
+		SStgui.update_uis(src)
+	else if(P.has_tool_quality(TOOL_WRENCH))
+		playsound(src, P.usesound, 50, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
-	else if(P.is_screwdriver())
+	else if(P.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>You begin taking the [name] apart.</span>")
 		playsound(src, P.usesound, 50, 1)
 		if(do_after(user, 10 * P.toolspeed))
-			playsound(loc, P.usesound, 50, 1)
+			playsound(src, P.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You take the [name] apart.</span>")
 			new /obj/item/stack/material/steel( src.loc, 4 )
 			for(var/obj/item/I in contents)
@@ -63,20 +61,12 @@
 		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
 		return
 
-	user.set_machine(src)
-	var/dat = "<center><table>"
-	for(var/obj/item/P in src)
-		dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
-	dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=filingcabinet;size=350x300")
-
-	return
+	tgui_interact(user)
 
 /obj/structure/filingcabinet/attack_tk(mob/user)
 	if(anchored)
-		attack_self_tk(user)
-	else
-		..()
+		return attack_self_tk(user)
+	return ..()
 
 /obj/structure/filingcabinet/attack_self_tk(mob/user)
 	if(contents.len)
@@ -89,26 +79,50 @@
 			return
 	to_chat(user, "<span class='notice'>You find nothing in [src].</span>")
 
-/obj/structure/filingcabinet/Topic(href, href_list)
-	if(href_list["retrieve"])
-		usr << browse("", "window=filingcabinet") // Close the menu
+/obj/structure/filingcabinet/tgui_state(mob/user)
+	return GLOB.tgui_physical_state
 
-		//var/retrieveindex = text2num(href_list["retrieve"])
-		var/obj/item/P = locate(href_list["retrieve"])//contents[retrieveindex]
-		if(istype(P) && (P.loc == src) && src.Adjacent(usr))
-			usr.put_in_hands(P)
-			updateUsrDialog()
-			icon_state = "[initial(icon_state)]-open"
-			spawn(0)
-				sleep(5)
-				icon_state = initial(icon_state)
+/obj/structure/filingcabinet/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "FileCabinet", name)
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/obj/structure/filingcabinet/tgui_data(mob/user)
+	var/list/files = list()
+	for(var/obj/item/P in src)
+		files.Add(list(list(
+			"name" = P.name,
+			"ref" = "\ref[P]",
+		)))
+
+	return list("contents" = files)
+
+/obj/structure/filingcabinet/tgui_act(action, params)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("retrieve")
+			var/obj/item/P = locate(params["ref"])
+			if(istype(P) && (P.loc == src) && usr.Adjacent(src))
+				usr.put_in_hands(P)
+				open_animation()
+				SStgui.update_uis(src)
+
+/obj/structure/filingcabinet/proc/open_animation()
+	flick("[initial(icon_state)]-open",src)
+	playsound(src, 'sound/bureaucracy/filingcabinet.ogg', 50, 1)
+	spawn(0)
+		sleep(20)
+		icon_state = initial(icon_state)
 
 /*
  * Security Record Cabinets
  */
 /obj/structure/filingcabinet/security
 	var/virgin = 1
-
 
 /obj/structure/filingcabinet/security/proc/populate()
 	if(virgin)
@@ -130,7 +144,6 @@
 			P.name = "Security Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/security/attack_hand()
 	populate()
@@ -168,7 +181,6 @@
 				P.name = "Medical Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/medical/attack_hand()
 	populate()

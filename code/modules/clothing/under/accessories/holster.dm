@@ -2,12 +2,13 @@
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
-	slot = ACCESSORY_SLOT_TORSO //Legacy/balance purposes
+	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 1
 	var/obj/item/holstered = null
 	var/list/can_hold //VOREStation Add
 	var/holster_in = 'sound/items/holsterin.ogg'
 	var/holster_out = 'sound/items/holsterout.ogg'
+	w_class = ITEMSIZE_NORMAL
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
@@ -25,13 +26,12 @@
 		return
 
 	if(holster_in)
-		playsound(get_turf(src), holster_in, 50)
+		playsound(src, holster_in, 50)
 
 	if(istype(user))
 		user.stop_aiming(no_message=1)
 	holstered = I
-	user.drop_from_inventory(holstered)
-	holstered.loc = src
+	user.drop_from_inventory(holstered, target = src)
 	holstered.add_fingerprint(user)
 	w_class = max(w_class, holstered.w_class)
 	user.visible_message("<span class='notice'>[user] holsters \the [holstered].</span>", "<span class='notice'>You holster \the [holstered].</span>")
@@ -62,7 +62,7 @@
 				)
 
 		if(holster_out)
-			playsound(get_turf(src), holster_out, sound_vol)
+			playsound(src, holster_out, sound_vol)
 
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
@@ -86,11 +86,11 @@
 	..()
 
 /obj/item/clothing/accessory/holster/examine(mob/user)
-	..(user)
-	if (holstered)
-		to_chat(user, "A [holstered] is holstered here.")
+	. = ..(user)
+	if(holstered)
+		. += "A [holstered] is holstered here."
 	else
-		to_chat(user, "It is empty.")
+		. += "It is empty."
 
 /obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()
@@ -136,6 +136,9 @@
 	desc = "A worn-out handgun holster. Perfect for concealed carry"
 	icon_state = "holster"
 
+/obj/item/clothing/accessory/holster/armpit/black
+	icon_state = "holster_b"
+
 /obj/item/clothing/accessory/holster/waist
 	name = "waist holster"
 	desc = "A handgun holster. Made of expensive leather."
@@ -143,15 +146,26 @@
 	overlay_state = "holster_low"
 	concealed_holster = 0
 
+/obj/item/clothing/accessory/holster/waist/black
+	icon_state = "holster_b_low"
+
 /obj/item/clothing/accessory/holster/hip
 	name = "hip holster"
-	desc = "A handgun holster slung low on the hip, draw pardner!"
+	desc = "<i>No one dared to ask his business, no one dared to make a slip. The stranger there among them had a big iron on his hip.</i>"
 	icon_state = "holster_hip"
 	concealed_holster = 0
 
+/obj/item/clothing/accessory/holster/hip/black
+	desc = "A handgun holster slung low on the hip, draw pardner!"
+	icon_state = "holster_b_hip"
+
 /obj/item/clothing/accessory/holster/leg
 	name = "leg holster"
-	desc = "A tacticool handgun holster. Worn on the upper leg."
+	desc = "A drop leg holster made of a durable synthetic leather."
 	icon_state = "holster_leg"
 	overlay_state = "holster_leg"
 	concealed_holster = 0
+
+/obj/item/clothing/accessory/holster/leg/black
+	desc = "A tacticool handgun holster. Worn on the upper leg."
+	icon_state = "holster_b_leg"

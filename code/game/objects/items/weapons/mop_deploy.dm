@@ -1,9 +1,10 @@
 /obj/item/weapon/mop_deploy
 	name = "mop"
 	desc = "Deployable mop."
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
 	force = 3
-	anchored = 1    // Never spawned outside of inventory, should be fine.
+	anchored = TRUE    // Never spawned outside of inventory, should be fine.
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1

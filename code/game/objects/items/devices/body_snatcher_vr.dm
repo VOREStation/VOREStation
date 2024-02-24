@@ -7,7 +7,7 @@
 	item_state = "healthanalyzer"
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(MAT_STEEL = 200)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2, TECH_ILLEGAL = 1)
 
 /obj/item/device/bodysnatcher/New()
@@ -29,7 +29,7 @@
 			to_chat(usr,"<span class='warning'>A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done.</span>")
 			return
 
-		var/choice = alert(usr,"This will swap your mind with the target's mind. This will result in them controlling your body, and you controlling their body. Continue?","Confirmation","Continue","Cancel")
+		var/choice = tgui_alert(usr,"This will swap your mind with the target's mind. This will result in them controlling your body, and you controlling their body. Continue?","Confirmation",list("Continue","Cancel"))
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(M))
 
 			usr.visible_message("<span class='warning'>[usr] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!</span>","<span class='notice'>You begin swap minds with [M]!</span>")
@@ -40,7 +40,11 @@
 					var/datum/mind/user_mind = user.mind
 					var/datum/mind/prey_mind = M.mind
 					var/target_ooc_notes = M.ooc_notes
+					var/target_likes = M.ooc_notes_likes
+					var/target_dislikes = M.ooc_notes_dislikes
 					var/user_ooc_notes = user.ooc_notes
+					var/user_likes = user.ooc_notes_likes
+					var/user_dislikes = user.ooc_notes_dislikes
 					M.ghostize()
 					usr.ghostize()
 					usr.mind = null
@@ -52,7 +56,11 @@
 					prey_mind.active = TRUE
 					prey_mind.transfer_to(user)
 					M.ooc_notes = user_ooc_notes //Let's keep their OOC notes over to their new body.
+					M.ooc_notes_likes = user_likes
+					M.ooc_notes_dislikes = user_dislikes
 					user.ooc_notes = target_ooc_notes
+					user.ooc_notes_likes = target_likes
+					user.ooc_notes_dislikes = target_dislikes
 					usr.sleeping = 10 //Device knocks out both the user and the target.
 					usr.eye_blurry = 30 //Blurry vision while they both get used to their new body's vision
 					usr.slurring = 50 //And let's also have them slurring while they attempt to get used to using their new body.

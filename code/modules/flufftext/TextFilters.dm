@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-proc/Intoxicated(phrase)
+/proc/Intoxicated(phrase)
 	phrase = html_decode(phrase)
 	var/leng=length(phrase)
 	var/counter=length(phrase)
@@ -13,9 +13,10 @@ proc/Intoxicated(phrase)
 			if(lowertext(newletter)=="s")	newletter="ch"
 			if(lowertext(newletter)=="a")	newletter="ah"
 			if(lowertext(newletter)=="c")	newletter="k"
-		switch(rand(1,7))
+		switch(rand(1,9))
 			if(1,3,5,8)	newletter="[lowertext(newletter)]"
-			if(2,4,6,15)	newletter="[uppertext(newletter)]"
+			//if(2,4,6,15)	newletter="[uppertext(newletter)]"
+			if(2,4,6,9)	newletter="[uppertext(newletter)]"
 			if(7)	newletter+="'"
 			//if(9,10)	newletter="<b>[newletter]</b>"
 			//if(11,12)	newletter="<big>[newletter]</big>"
@@ -23,7 +24,7 @@ proc/Intoxicated(phrase)
 		newphrase+="[newletter]";counter-=1
 	return newphrase
 
-proc/NewStutter(phrase,stunned)
+/proc/NewStutter(phrase,stunned)
 	phrase = html_decode(phrase)
 
 	var/list/split_phrase = splittext(phrase," ") //Split it up into words.
@@ -59,10 +60,10 @@ proc/NewStutter(phrase,stunned)
 
 	return sanitize(jointext(split_phrase," "))
 
-proc/Stagger(mob/M,d) //Technically not a filter, but it relates to drunkenness.
+/proc/Stagger(mob/M,d) //Technically not a filter, but it relates to drunkenness.
 	step(M, pick(d,turn(d,90),turn(d,-90)))
 
-proc/Ellipsis(original_msg, chance = 50)
+/proc/Ellipsis(original_msg, chance = 50)
 	if(chance <= 0) return "..."
 	if(chance >= 100) return original_msg
 

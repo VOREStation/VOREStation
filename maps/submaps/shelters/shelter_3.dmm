@@ -93,6 +93,7 @@
 "p" = (
 /obj/machinery/door/airlock/voidcraft/survival_pod,
 /obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "q" = (

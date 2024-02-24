@@ -7,12 +7,14 @@ var/list/ventcrawl_machinery = list(
 /mob/living/var/list/can_enter_vent_with = list(
 	/obj/item/weapon/implant,
 	/obj/item/device/radio/borg,
+	/obj/item/device/radio/headset/mob_headset,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
 	/obj/belly,
-	/obj/screen
+	/obj/screen,
+	/atom/movable/emissive_blocker
 	)
-	//VOREStation Edit : added /obj/belly, to this list, travis is complaining about this in his indentation check
+	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check. Added mob_headset for those with radios so there's no weirdness.
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
 
 /mob/living/var/list/icon/pipes_shown = list()
@@ -27,9 +29,24 @@ var/list/ventcrawl_machinery = list(
 	if(!(/mob/living/proc/ventcrawl in verbs))
 		to_chat(src, "<span class='warning'>You don't possess the ability to ventcrawl!</span>")
 		return FALSE
+	if(pulling)
+		to_chat(src, "<span class='warning'>You cannot bring \the [pulling] into the vent with you!</span>")
+		return FALSE
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You cannot ventcrawl in your current state!</span>")
 		return FALSE
+	if(buckled)
+		to_chat(src, "<span class='warning'>You cannot ventcrawl while buckled!</span>")
+		return FALSE
+	if(restrict_vore_ventcrawl)
+		var/foundstuff = FALSE
+		for(var/obj/belly/B in vore_organs)
+			if(B.contents.len)
+				foundstuff = TRUE
+				break
+		if(foundstuff)
+			to_chat(src, "<span class='warning'>You cannot ventcrawl while full!</span>")
+			return FALSE
 	return ventcrawl_carry()
 
 /mob/living/Login()
@@ -50,7 +67,10 @@ var/list/ventcrawl_machinery = list(
 	//Ability master easy test for allowed (cheaper than istype)
 	if(carried_item == ability_master)
 		return 1
-
+	if(isanimal(src))
+		var/mob/living/simple_mob/S = src
+		if(carried_item == S.myid)	//VOREStation Edit
+			return 1	//VOREStation Edit
 	//Try to find it in our allowed list (istype includes subtypes)
 	var/listed = FALSE
 	for(var/test_type in can_enter_vent_with)
@@ -58,8 +78,8 @@ var/list/ventcrawl_machinery = list(
 			listed = TRUE
 			break
 
-	//Only allow it if it's "IN" the mob, not equipped on/being held
-	if(listed && !get_inventory_slot(carried_item))
+	//Only allow it if it's "IN" the mob, not equipped on/being held. //Disabled, as it's very annoying that, for example, Pun Pun has no way to ventcrawl with his suit if given the verb, since the list of allowed items is ignored for worn items.
+	if(listed/* && !get_inventory_slot(carried_item)*/)
 		return 1
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
@@ -97,7 +117,7 @@ var/list/ventcrawl_machinery = list(
 	if(pipes.len == 1)
 		pipe = pipes[1]
 	else
-		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
+		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe", pipes)
 	if(canmove && pipe)
 		return pipe
 

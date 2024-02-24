@@ -10,8 +10,10 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 10
-	matter = list(DEFAULT_WALL_MATERIAL = 90)
+	matter = list(MAT_STEEL = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	drop_sound = 'sound/items/drop/gascan.ogg'
+	pickup_sound = 'sound/items/pickup/gascan.ogg'
 
 	var/spray_particles = 3
 	var/spray_amount = 10	//units of liquid per particle
@@ -19,6 +21,7 @@
 	var/last_use = 1.0
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
+	var/rand_overlays = 6
 
 /obj/item/weapon/extinguisher/mini
 	name = "fire extinguisher"
@@ -32,15 +35,33 @@
 	max_water = 150
 	spray_particles = 3
 	sprite_name = "miniFE"
+	rand_overlays = 0
+
+/obj/item/weapon/extinguisher/atmo
+	name = "atmospheric fire extinguisher"
+	desc = "A heavy duty fire extinguisher meant to fight large fires."
+	icon_state = "atmos_extinguisher0"
+	item_state = "atmos_extinguisher"
+	throwforce = 12
+	w_class = ITEMSIZE_LARGE
+	force = 3.0
+	max_water = 600
+	spray_particles = 3
+	sprite_name = "atmos_extinguisher"
+	rand_overlays = 0
 
 /obj/item/weapon/extinguisher/Initialize()
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water)
+	reagents.add_reagent("firefoam", max_water)
+	if(rand_overlays)
+		var/choice = rand(1,rand_overlays)
+		add_overlay("[item_state]O[choice]")
 	. = ..()
 
 /obj/item/weapon/extinguisher/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "[bicon(src)] [src.name] contains [src.reagents.total_volume] units of water left!")
+	. = ..()
+	if(get_dist(user, src) == 0)
+		. += "[src] has [src.reagents.total_volume] units of foam left!"
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
@@ -69,11 +90,11 @@
 /obj/item/weapon/extinguisher/afterattack(var/atom/target, var/mob/user, var/flag)
 	//TODO; Add support for reagents in water.
 
-	if( istype(target, /obj/structure/reagent_dispensers/watertank) && flag)
+	if( istype(target, /obj/structure/reagent_dispensers) && flag)
 		var/obj/o = target
 		var/amount = o.reagents.trans_to_obj(src, 50)
 		to_chat(user, "<span class='notice'>You fill [src] with [amount] units of the contents of [target].</span>")
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 
 	if (!safety)
@@ -86,7 +107,7 @@
 
 		src.last_use = world.time
 
-		playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
+		playsound(src, 'sound/effects/extinguish.ogg', 75, 1, -3)
 
 		var/direction = get_dir(src,target)
 

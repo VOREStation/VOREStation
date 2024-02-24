@@ -9,8 +9,8 @@
 	being_shocked = TRUE
 	var/power_bounced = power / 2
 	tesla_zap(src, 3, power_bounced)
-	//addtimer(CALLBACK(src, .proc/reset_shocked), 10)
-	//schedule_task_with_source_in(10, src, .proc/reset_shocked)
+	//addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
+	//schedule_task_with_source_in(10, src, PROC_REF(reset_shocked))
 	spawn(10) reset_shocked()
 
 /obj/proc/reset_shocked()
@@ -63,12 +63,3 @@
 /obj/mecha/tesla_act(power)
 	..()
 	take_damage(power / 200, "energy") // A surface lightning strike will do 100 damage.
-
-
-
-
-
-
-
-
-

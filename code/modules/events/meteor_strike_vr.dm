@@ -21,7 +21,7 @@
 	desc = "The sky is falling!"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/meteor_falling/New()
 	..()
@@ -61,10 +61,6 @@
 			var/turf/mob_turf = get_turf(L)
 			if(!mob_turf || !(mob_turf.z in impacted.expected_z_levels))
 				continue
-			if(!L.buckled && !issilicon(L))
-				if(!L.Check_Shoegrip())
-					L.throw_at(get_step_rand(L),1,5)
-				L.Weaken(5)
 			if(L.client)
 				to_chat(L, "<span class='danger'>The ground lurches beneath you!</span>")
 				shake_camera(L, 6, 1)
@@ -77,8 +73,8 @@
 	desc = "A big hunk of star-stuff."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
-	density = 1
-	climbable = 1
+	density = TRUE
+	climbable = TRUE
 
 /obj/structure/meteorite/New()
 	..()

@@ -42,7 +42,7 @@
 /mob/living/carbon/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
-proc/isdeaf(A)
+/proc/isdeaf(A)
 	if(istype(A, /mob))
 		var/mob/M = A
 		return (M.sdisabilities & DEAF) || M.ear_deaf
@@ -57,24 +57,24 @@ proc/isdeaf(A)
 /mob/proc/is_cloaked()
 	return FALSE
 
-proc/hasorgans(A) // Fucking really??
+/proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
 
-proc/iscuffed(A)
+/proc/iscuffed(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
 		if(C.handcuffed)
 			return 1
 	return 0
 
-proc/hassensorlevel(A, var/level)
+/proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
 	return 0
 
-proc/getsensorlevel(A)
+/proc/getsensorlevel(A)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -83,7 +83,7 @@ proc/getsensorlevel(A)
 
 
 /proc/is_admin(var/mob/user)
-	return check_rights(R_ADMIN, 0, user) != 0
+	return check_rights(R_ADMIN|R_EVENT, 0, user) != 0
 
 
 /proc/hsl2rgb(h, s, l)
@@ -132,7 +132,7 @@ proc/getsensorlevel(A)
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0)
+/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0, var/force_hit = FALSE)
 	zone = check_zone(zone)
 
 	if(!ranged_attack)
@@ -143,6 +143,9 @@ proc/getsensorlevel(A)
 		for(var/obj/item/weapon/grab/G in target.grabbed_by)
 			if(G.state >= GRAB_AGGRESSIVE)
 				return zone
+
+	if(force_hit)
+		return zone
 
 	var/miss_chance = 10
 	if (zone in base_miss_chance)
@@ -184,7 +187,13 @@ proc/getsensorlevel(A)
 		p++
 	return t
 
-proc/slur(phrase)
+/proc/stars_all(list/message_pieces, pr)
+	// eugh, we have to clone the list to avoid collateral damage due to the nature of these messages
+	. = list()
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		. += new /datum/multilingual_say_piece(S.speaking, stars(S.message))
+
+/proc/slur(phrase)
 	phrase = html_decode(phrase)
 	var/leng=length(phrase)
 	var/counter=length(phrase)
@@ -197,9 +206,10 @@ proc/slur(phrase)
 			if(lowertext(newletter)=="s")	newletter="ch"
 			if(lowertext(newletter)=="a")	newletter="ah"
 			if(lowertext(newletter)=="c")	newletter="k"
-		switch(rand(1,15))
+		switch(rand(1,9))
 			if(1,3,5,8)	newletter="[lowertext(newletter)]"
-			if(2,4,6,15)	newletter="[uppertext(newletter)]"
+			//if(2,4,6,15)	newletter="[uppertext(newletter)]"
+			if(2,4,6,9)	newletter="[uppertext(newletter)]"
 			if(7)	newletter+="'"
 			//if(9,10)	newletter="<b>[newletter]</b>"
 			//if(11,12)	newletter="<big>[newletter]</big>"
@@ -231,7 +241,7 @@ proc/slur(phrase)
 	return sanitize(t)
 
 
-proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
+/proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
@@ -358,7 +368,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			else
 				hud_used.action_intent.icon_state = I_HELP
 
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
 		if(C.sdisabilities & BLIND || C.blinded)
@@ -366,8 +376,8 @@ proc/is_blind(A)
 	return 0
 
 /proc/mobs_in_area(var/area/A)
-	var/list/mobs = new
-	for(var/mob/living/M in mob_list)
+	var/list/mobs = list()
+	for(var/M in mob_list)
 		if(get_area(M) == A)
 			mobs += M
 	return mobs
@@ -397,7 +407,7 @@ proc/is_blind(A)
 		return // Can't talk in deadchat if you can't see it.
 
 	for(var/mob/M in player_list)
-		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights)) && M.is_preference_enabled(/datum/client_preference/show_dsay))
+		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.is_preference_enabled(/datum/client_preference/holder/show_staff_dsay))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
 			var/follow
 			var/lname
 			if(M.forbid_seeing_deadchat && !M.client.holder)
@@ -427,7 +437,7 @@ proc/is_blind(A)
 
 /proc/say_dead_object(var/message, var/obj/subject = null)
 	for(var/mob/M in player_list)
-		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights)) && M.is_preference_enabled(/datum/client_preference/show_dsay))
+		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.is_preference_enabled(/datum/client_preference/holder/show_staff_dsay))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
 			var/follow
 			var/lname = "Game Master"
 			if(M.forbid_seeing_deadchat && !M.client.holder)
@@ -596,33 +606,33 @@ proc/is_blind(A)
 
 //The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
-	"head" = 40,
-	"chest" = 10,
-	"groin" = 20,
-	"l_leg" = 20,
-	"r_leg" = 20,
-	"l_arm" = 20,
-	"r_arm" = 20,
-	"l_hand" = 50,
-	"r_hand" = 50,
-	"l_foot" = 50,
-	"r_foot" = 50,
+	BP_HEAD = 40,
+	BP_TORSO = 10,
+	BP_GROIN = 20,
+	BP_L_LEG = 20,
+	BP_R_LEG = 20,
+	BP_L_ARM = 20,
+	BP_R_ARM = 20,
+	BP_L_HAND = 50,
+	BP_R_HAND = 50,
+	BP_L_FOOT = 50,
+	BP_R_FOOT = 50,
 )
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
-	"head" = 25,
-	"chest" = 70,
-	"groin" = 30,
-	"l_leg" = 25,
-	"r_leg" = 25,
-	"l_arm" = 25,
-	"r_arm" = 25,
-	"l_hand" = 10,
-	"r_hand" = 10,
-	"l_foot" = 10,
-	"r_foot" = 10,
+	BP_HEAD = 25,
+	BP_TORSO = 70,
+	BP_GROIN = 30,
+	BP_L_LEG = 25,
+	BP_R_LEG = 25,
+	BP_L_ARM = 25,
+	BP_R_ARM = 25,
+	BP_L_HAND = 10,
+	BP_R_HAND = 10,
+	BP_L_FOOT = 10,
+	BP_R_FOOT = 10,
 )
 
 /mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
@@ -679,3 +689,6 @@ var/global/image/backplane
 		return
 
 	item.screen_loc = screen_place
+
+/mob/proc/can_feed()
+	return TRUE

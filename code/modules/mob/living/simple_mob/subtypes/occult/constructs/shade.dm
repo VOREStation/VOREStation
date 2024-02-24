@@ -20,6 +20,8 @@
 	attack_armor_pen = 100	//It's a ghost/horror from beyond, I ain't gotta explain 100 AP
 	attacktext = list("drained the life from")
 
+	organ_names = /decl/mob_organ_names/shade
+
 	minbodytemp = 0
 	maxbodytemp = 4000
 	min_oxy = 0
@@ -41,8 +43,11 @@
 	..()
 	for(var/mob/M in viewers(src, null))
 		if((M.client && !( M.blinded )))
-			M.show_message("<font color='red'>[src] lets out a contented sigh as their form unwinds.</font>")
+			M.show_message(span_red("[src] lets out a contented sigh as their form unwinds."))
 
 	ghostize()
 	qdel(src)
 	return
+
+/decl/mob_organ_names/shade
+	hit_zones = list("spectral robe", "featureless visage", "haunting glow")

@@ -11,7 +11,7 @@
 	create_reagents(100)
 
 /obj/effect/decal/cleanable/chemcoating/Initialize()
-	..()
+	. = ..()
 	var/turf/T = get_turf(src)
 	if(T)
 		for(var/obj/O in get_turf(src))

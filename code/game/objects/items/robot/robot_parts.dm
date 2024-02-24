@@ -73,22 +73,22 @@
 
 /obj/item/robot_parts/robot_suit/New()
 	..()
-	src.updateicon()
+	src.update_icon()
 
-/obj/item/robot_parts/robot_suit/proc/updateicon()
-	src.overlays.Cut()
+/obj/item/robot_parts/robot_suit/update_icon()
+	cut_overlays()
 	if(src.l_arm)
-		src.overlays += "l_arm+o"
+		add_overlay("l_arm+o")
 	if(src.r_arm)
-		src.overlays += "r_arm+o"
+		add_overlay("r_arm+o")
 	if(src.chest)
-		src.overlays += "chest+o"
+		add_overlay("chest+o")
 	if(src.l_leg)
-		src.overlays += "l_leg+o"
+		add_overlay("l_leg+o")
 	if(src.r_leg)
-		src.overlays += "r_leg+o"
+		add_overlay("r_leg+o")
 	if(src.head)
-		src.overlays += "head+o"
+		add_overlay("head+o")
 
 /obj/item/robot_parts/robot_suit/proc/check_completion()
 	if(src.l_arm && src.r_arm)
@@ -100,7 +100,7 @@
 
 /obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
+	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_STEEL && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
 		var/obj/item/stack/material/M = W
 		if (M.use(1))
 			var/obj/item/weapon/secbot_assembly/ed209_assembly/B = new /obj/item/weapon/secbot_assembly/ed209_assembly
@@ -117,28 +117,28 @@
 		user.drop_item()
 		W.loc = src
 		src.l_leg = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
 		if(src.r_leg)	return
 		user.drop_item()
 		W.loc = src
 		src.r_leg = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
 		if(src.l_arm)	return
 		user.drop_item()
 		W.loc = src
 		src.l_arm = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
 		if(src.r_arm)	return
 		user.drop_item()
 		W.loc = src
 		src.r_arm = W
-		src.updateicon()
+		src.update_icon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
 		if(src.chest)	return
@@ -146,7 +146,7 @@
 			user.drop_item()
 			W.loc = src
 			src.chest = W
-			src.updateicon()
+			src.update_icon()
 		else if(!W:wires)
 			to_chat(user, "<span class='warning'>You need to attach wires to it first!</span>")
 		else
@@ -158,7 +158,7 @@
 			user.drop_item()
 			W.loc = src
 			src.head = W
-			src.updateicon()
+			src.update_icon()
 		else
 			to_chat(user, "<span class='warning'>You need to attach a flash to it first!</span>")
 
@@ -222,14 +222,14 @@
 
 			feedback_inc("cyborg_birth",1)
 			callHook("borgify", list(O))
-			O.Namepick()
+			O.namepick()
 
 			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>The MMI must go in after everything else!</span>")
 
 	if (istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", src.name, src.created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", src.name, src.created_name), MAX_NAME_LEN)
 		if (!t)
 			return
 		if (!in_range(src, usr) && src.loc != usr)

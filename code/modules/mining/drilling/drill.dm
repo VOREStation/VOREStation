@@ -1,8 +1,8 @@
 /obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
-	anchored = 0
-	use_power = 0 //The drill takes power directly from a cell.
-	density = 1
+	anchored = FALSE
+	use_power = USE_POWER_OFF //The drill takes power directly from a cell.
+	density = TRUE
 	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
 /obj/machinery/mining/drill
@@ -11,11 +11,37 @@
 	icon_state = "mining_drill"
 	circuit = /obj/item/weapon/circuitboard/miningdrill
 	var/braces_needed = 2
-	var/list/supports = list()
+	var/total_brace_tier = 0
+	var/list/obj/machinery/mining/brace/supports = list()
 	var/supported = 0
 	var/active = 0
 	var/list/resource_field = list()
-	var/obj/item/device/radio/intercom/faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
+	var/obj/item/device/radio/intercom/faultreporter
+	var/drill_range = 5
+	var/offset = 2
+	var/current_capacity = 0
+
+	var/list/stored_ore = list(
+		"sand" = 0,
+		"hematite" = 0,
+		"carbon" = 0,
+		"raw copper" = 0,
+		"raw tin" = 0,
+		"void opal" = 0,
+		"painite" = 0,
+		"quartz" = 0,
+		"raw bauxite" = 0,
+		"phoron" = 0,
+		"silver" = 0,
+		"gold" = 0,
+		"marble" = 0,
+		"uranium" = 0,
+		"diamond" = 0,
+		"platinum" = 0,
+		"lead" = 0,
+		"mhydrogen" = 0,
+		"verdantium" = 0,
+		"rutile" = 0)
 
 	var/list/ore_types = list(
 		"hematite" = /obj/item/weapon/ore/iron,
@@ -24,10 +50,14 @@
 		"silver" = /obj/item/weapon/ore/silver,
 		"diamond" = /obj/item/weapon/ore/diamond,
 		"phoron" = /obj/item/weapon/ore/phoron,
-		"osmium" = /obj/item/weapon/ore/osmium,
-		"hydrogen" = /obj/item/weapon/ore/hydrogen,
-		"silicates" = /obj/item/weapon/ore/glass,
-		"carbon" = /obj/item/weapon/ore/coal
+		"platinum" = /obj/item/weapon/ore/osmium,
+		"mhydrogen" = /obj/item/weapon/ore/hydrogen,
+		"sand" = /obj/item/weapon/ore/glass,
+		"carbon" = /obj/item/weapon/ore/coal,
+	//	"copper" = /obj/item/weapon/ore/copper,
+	//	"tin" = /obj/item/weapon/ore/tin,
+	//	"bauxite" = /obj/item/weapon/ore/bauxite,
+		"rutile" = /obj/item/weapon/ore/rutile
 		)
 
 	//Upgrades
@@ -40,11 +70,14 @@
 	// Found with an advanced laser. exotic_drilling >= 1
 	var/list/ore_types_uncommon = list(
 		MAT_MARBLE = /obj/item/weapon/ore/marble,
+		//"painite" = /obj/item/weapon/ore/painite,
+		//"quartz" = /obj/item/weapon/ore/quartz,
 		MAT_LEAD = /obj/item/weapon/ore/lead
 		)
 
 	// Found with an ultra laser. exotic_drilling >= 2
 	var/list/ore_types_rare = list(
+		//"void opal" = /obj/item/weapon/ore/void_opal,
 		MAT_VERDANTIUM = /obj/item/weapon/ore/verdantium
 		)
 
@@ -52,16 +85,48 @@
 	var/need_update_field = 0
 	var/need_player_check = 0
 
-/obj/machinery/mining/drill/New()
 
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/cell/high(src)
+/obj/machinery/mining/drill/examine(mob/user) //Let's inform people about stuff. Let people KNOW how it works.
+	. = ..()
+	if(Adjacent(user))
+		if(cell)
+			. += "The drill's cell is [round(cell.percent() )]% charged."
+			if(charge_use) //Prevention of dividing by 0 errors.
+				. += "The drill reads that it can mine for [round((cell.charge/charge_use)/60)] more minutes before the cell depletes."
+		else
+			. += "The drill has no cell installed."
+		if(drill_range)
+			. += "The drill will mine in a range of [drill_range] tiles."
+		if(harvest_speed)
+			. += "The drill can mine [harvest_speed] [(harvest_speed == 1)? "ore" : "ores"] a second!"
+		if(exotic_drilling)
+			. += "The drill is upgraded and is capable of mining [(exotic_drilling == 1)? "moderately further" : "as deep as possible"]!"
+		if(capacity && current_capacity)
+			. += "The drill currently has [current_capacity] capacity taken up and can fit [capacity - current_capacity] more ore."
 
-	RefreshParts()
+/obj/machinery/mining/drill/Initialize()
+	. = ..()
+	if(ispath(cell))
+		cell = new cell(src)
+	default_apply_parts()
+	faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
+
+/obj/machinery/mining/drill/Destroy()
+	qdel_null(faultreporter)
+	qdel_null(cell)
+	return ..()
+
+/obj/machinery/mining/drill/dismantle()
+	if(cell)
+		cell.forceMove(loc)
+		cell = null
+	return ..()
+
+/obj/machinery/mining/drill/get_cell()
+	return cell
+
+/obj/machinery/mining/drill/loaded
+	cell = /obj/item/weapon/cell/high
 
 /obj/machinery/mining/drill/process()
 
@@ -86,7 +151,11 @@
 		return
 
 	//Drill through the flooring, if any.
-	if(istype(get_turf(src), /turf/simulated))
+	if(istype(get_turf(src), /turf/simulated/mineral))
+		var/turf/simulated/mineral/M = get_turf(src)
+		M.GetDrilled()
+
+	else if(istype(get_turf(src), /turf/simulated))
 		var/turf/simulated/T = get_turf(src)
 		T.ex_act(2.0)
 
@@ -110,7 +179,7 @@
 
 		for(var/metal in ore_types)
 
-			if(contents.len >= capacity)
+			if(current_capacity >= capacity)
 				system_error("Insufficient storage space.")
 				active = 0
 				need_player_check = 1
@@ -136,8 +205,8 @@
 					harvesting.resources[metal] = 0
 
 				for(var/i=1, i <= create_ore, i++)
-					var/oretype = ore_types[metal]
-					new oretype(src)
+					stored_ore[metal]++	// Adds the ore to the drill.
+					current_capacity++	// Adds the ore to the drill's capacity.
 
 		if(!found_resource)	// If a drill can't see an advanced material, it will destroy it while going through.
 			harvesting.has_resources = 0
@@ -155,10 +224,13 @@
 /obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
 	if(!active)
 		if(istype(O, /obj/item/device/multitool))
-			var/newtag = text2num(sanitizeSafe(input(user, "Enter new ID number or leave empty to cancel.", "Assign ID number") as text, 4))
+			var/newtag = text2num(sanitizeSafe(tgui_input_text(user, "Enter new ID number or leave empty to cancel.", "Assign ID number", null, 4), 4))
 			if(newtag)
 				name = "[initial(name)] #[newtag]"
 				to_chat(user, "<span class='notice'>You changed the drill ID to: [newtag]</span>")
+			else
+				name = "[initial(name)]"
+				to_chat(user, SPAN_NOTICE("You removed the drill's ID and any extraneous labels."))
 			return
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -173,7 +245,7 @@
 			to_chat(user, "The drill already has a cell installed.")
 		else
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			cell = O
 			component_parts += O
 			to_chat(user, "You install \the [O].")
@@ -182,10 +254,11 @@
 
 /obj/machinery/mining/drill/attack_hand(mob/user as mob)
 	check_supports()
+	RefreshParts()
 
 	if (panel_open && cell && user.Adjacent(src))
 		to_chat(user, "You take out \the [cell].")
-		cell.loc = get_turf(user)
+		user.put_in_hands(cell)
 		component_parts -= cell
 		cell = null
 		return
@@ -200,10 +273,12 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				visible_message("<span class='notice'>\The [src] lurches downwards, grinding noisily.</span>")
+				visible_message("<b>\The [src]</b> lurches downwards, grinding noisily.")
 				need_update_field = 1
+				harvest_speed *= total_brace_tier
+				charge_use *= total_brace_tier
 			else
-				visible_message("<span class='notice'>\The [src] shudders to a grinding halt.</span>")
+				visible_message("<b>\The [src]</b> shudders to a grinding halt.")
 		else
 			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
 	else
@@ -227,10 +302,12 @@
 	harvest_speed = 0
 	capacity = 0
 	charge_use = 50
+	drill_range = 5
+	offset = 2
 
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
-			harvest_speed = P.rating
+			harvest_speed = P.rating ** 2 // 1, 4, 9, 16, 25
 			exotic_drilling = P.rating - 1
 			if(exotic_drilling >= 1)
 				ore_types |= ore_types_uncommon
@@ -239,33 +316,48 @@
 			else
 				ore_types -= ore_types_uncommon
 				ore_types -= ore_types_rare
+			if(P.rating > 3) // are we t4+?
+				// default drill range 5, offset 2
+				if(P.rating >= 5) // t5
+					drill_range = 9
+					offset = 4
+				else if(P.rating >= 4) // t4
+					drill_range = 7
+					offset = 3
 		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
 			charge_use -= 10 * P.rating
-	cell = locate(/obj/item/weapon/cell) in component_parts
+	cell = locate(/obj/item/weapon/cell) in src
 
 /obj/machinery/mining/drill/proc/check_supports()
 
 	supported = 0
+	total_brace_tier = 0
 
 	if((!supports || !supports.len) && initial(anchored) == 0)
 		icon_state = "mining_drill"
-		anchored = 0
+		anchored = FALSE
 		active = 0
 	else
-		anchored = 1
+		anchored = TRUE
 
-	if(supports && supports.len >= braces_needed)
-		supported = 1
+	if(supports)
+		if(supports.len >= braces_needed)
+			supported = 1
+		else for(var/obj/machinery/mining/brace/check in supports)
+			if(check.brace_tier >= 3)
+				supported = 1
+		for(var/obj/machinery/mining/brace/check in supports)
+			total_brace_tier += check.brace_tier
 
 	update_icon()
 
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
 	if(error)
-		src.visible_message("<span class='notice'>\The [src] flashes a '[error]' warning.</span>")
-		faultreporter.autosay(error, src.name, "Supply")
+		src.visible_message("<b>\The [src]</b> flashes a '[error]' warning.")
+		faultreporter.autosay(error, src.name, "Supply", using_map.get_map_levels(z))
 	need_player_check = 1
 	active = 0
 	update_icon()
@@ -278,11 +370,11 @@
 	var/turf/T = get_turf(src)
 	if(!istype(T)) return
 
-	var/tx = T.x - 2
-	var/ty = T.y - 2
+	var/tx = T.x - offset
+	var/ty = T.y - offset
 	var/turf/simulated/mine_turf
-	for(var/iy = 0,iy < 5, iy++)
-		for(var/ix = 0, ix < 5, ix++)
+	for(var/iy = 0,iy < drill_range, iy++)
+		for(var/ix = 0, ix < drill_range, ix++)
 			mine_turf = locate(tx + ix, ty + iy, T.z)
 			if(!istype(mine_turf, /turf/space/))
 				if(mine_turf && mine_turf.has_resources)
@@ -307,8 +399,12 @@
 
 	var/obj/structure/ore_box/B = locate() in orange(1)
 	if(B)
-		for(var/obj/item/weapon/ore/O in contents)
-			O.loc = B
+		for(var/ore in stored_ore)
+			if(stored_ore[ore] > 0)
+				var/ore_amount = stored_ore[ore]	// How many ores does the satchel have?
+				B.stored_ore[ore] += ore_amount 	// Add the ore to the machine.
+				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
+				current_capacity = 0				// Set the amount of ore in the drill to 0.
 		to_chat(usr, "<span class='notice'>You unload the drill's storage cache into the ore box.</span>")
 	else
 		to_chat(usr, "<span class='notice'>You must move an ore box up to the drill before you can unload it.</span>")
@@ -319,12 +415,23 @@
 	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
 	icon_state = "mining_brace"
 	circuit = /obj/item/weapon/circuitboard/miningdrillbrace
+	var/brace_tier = 1
 	var/obj/machinery/mining/drill/connected
 
-/obj/machinery/mining/brace/New()
-	..()
+/obj/machinery/mining/brace/examine(mob/user)
+	. = ..()
+	if(brace_tier >= 3)
+		. += SPAN_NOTICE("The internals of the brace look resilient enough to support a drill by itself.")
 
-	component_parts = list()
+/obj/machinery/mining/brace/Initialize()
+	. = ..()
+	default_apply_parts()
+
+/obj/machinery/mining/brace/RefreshParts()
+	..()
+	brace_tier = 0
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		brace_tier += M.rating
 
 /obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(connected && connected.active)
@@ -335,8 +442,10 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
+	if(default_part_replacement(user,W))
+		return
 
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 
 		if(istype(get_turf(src), /turf/space))
 			to_chat(user, "<span class='notice'>You can't anchor something to empty space. Idiot.</span>")

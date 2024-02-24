@@ -4,7 +4,7 @@
 /obj/item/weapon/contraband
 	name = "contraband item"
 	desc = "You probably shouldn't be holding this."
-	icon = 'icons/obj/contraband.dmi'
+	icon = 'icons/obj/contraband_vr.dmi' //VOREStation Edit
 	force = 0
 
 
@@ -12,6 +12,8 @@
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
 	icon_state = "rolled_poster"
+	drop_sound = 'sound/items/drop/wrapper.ogg'
+	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 	var/serial_number = null
 
 	var/poster_type = /obj/structure/sign/poster
@@ -88,13 +90,46 @@
 		serial_number = given_serial
 	..(loc)
 
+//Selectable subtype
+/obj/item/weapon/contraband/poster/custom
+	name = "rolled-up poly-poster"
+	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface. This one is made from some kind of e-paper, and could display almost anything!"
+	poster_type = /obj/structure/sign/poster/custom
+
+/obj/item/weapon/contraband/poster/custom/New(turf/loc, var/given_serial = 0)
+	if(given_serial == 0)
+		serial_number = 1 //Decidedly unrandom
+	else
+		serial_number = given_serial
+	..(loc)
+
+/obj/item/weapon/contraband/poster/custom/verb/select_poster()
+	set name = "Set Poster type"
+	set category = "Object"
+	set desc = "Click to choose a poster to display."
+
+	var/mob/M = usr
+	var/list/options = list()
+	for(var/datum/poster/posteroption in poster_designs)
+		options[posteroption.listing_name] = posteroption
+
+	var/choice = tgui_input_list(M, "Choose a poster!", "Customize Poster", options)
+	if(src && choice && !M.stat && in_range(M,src))
+		var serial = poster_designs.Find(options[choice])
+		serial_number = serial
+		name = "rolled-up poly-poster - No.[serial]"
+		to_chat(M, "The poster is now: [choice].")
+		return 1
+
+
+
 //############################## THE ACTUAL DECALS ###########################
 
 /obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
-	icon = 'icons/obj/contraband.dmi'
-	anchored = 1
+	icon = 'icons/obj/contraband_vr.dmi' //VOREStation Edit
+	anchored = TRUE
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it
 	var/poster_type		//So mappers can specify a desired poster
 	var/ruined = 0
@@ -145,8 +180,8 @@
 	poster_set = TRUE
 
 /obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wirecutter())
-		playsound(src.loc, W.usesound, 100, 1)
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
+		playsound(src, W.usesound, 100, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
 			qdel(src)
@@ -160,13 +195,13 @@
 	if(ruined)
 		return
 
-	if(alert("Do I want to rip the poster from the wall?","You think...","Yes","No") == "Yes")
+	if(tgui_alert(usr, "Do I want to rip the poster from the wall?","You think...",list("Yes","No")) == "Yes")
 
 		if(ruined || !user.Adjacent(src))
 			return
 
 		visible_message("<span class='warning'>[user] rips [src] in a single, decisive motion!</span>" )
-		playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
+		playsound(src, 'sound/items/poster_ripped.ogg', 100, 1)
 		ruined = 1
 		icon_state = "poster_ripped"
 		name = "ripped poster"
@@ -185,6 +220,7 @@
 	// Description suffix
 	var/desc=""
 	var/icon_state=""
+	var/listing_name=""
 
 // NT poster subtype.
 /obj/structure/sign/poster/nanotrasen
@@ -199,3 +235,8 @@
 	set_poster(design)
 
 	..(newloc, placement_dir, serial, itemtype)
+
+//Non-Random Posters
+
+/obj/structure/sign/poster/custom
+	roll_type = /obj/item/weapon/contraband/poster/custom

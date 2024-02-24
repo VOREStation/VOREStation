@@ -10,13 +10,20 @@
 		if(istype(nest, /obj/structure/blob/factory))
 			var/obj/structure/blob/factory/F = nest
 			F.spores -= src
+		//VOREStation Edit Start
+		if(istype(nest, /obj/structure/mob_spawner))
+			var/obj/structure/mob_spawner/S = nest
+			S.get_death_report(src)
+		//VOREStation Edit End
 		nest = null
 
-	for(var/s in owned_soul_links)
-		var/datum/soul_link/S = s
+	if(isbelly(loc) && tf_mob_holder)
+		mind?.vore_death = TRUE
+		tf_mob_holder.mind?.vore_death = TRUE
+
+	for(var/datum/soul_link/S as anything in owned_soul_links)
 		S.owner_died(gibbed)
-	for(var/s in shared_soul_links)
-		var/datum/soul_link/S = s
+	for(var/datum/soul_link/S as anything in shared_soul_links)
 		S.sharer_died(gibbed)
 
 	. = ..()

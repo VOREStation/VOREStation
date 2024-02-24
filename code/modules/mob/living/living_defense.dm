@@ -101,14 +101,6 @@
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
-	//Being hit while using a deadman switch
-	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
-		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
-		if(signaler.deadman && prob(80))
-			log_and_message_admins("has triggered a signaler deadman's switch")
-			src.visible_message("<font color='red'>[src] triggers their deadman's switch!</font>")
-			signaler.signal()
-
 	if(ai_holder && P.firer)
 		ai_holder.react_to_attack(P.firer)
 
@@ -129,7 +121,6 @@
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		to_chat(src, "<font color='red'>You have been hit by [P]!</font>")
 		if(!P.nodamage)
 			apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, P, sharp=proj_sharp, edge=proj_edge)
 		qdel(P)
@@ -163,17 +154,26 @@
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
-/mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
+/mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	  return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
 	var/list/L = src.get_contents()
+
+	if(LAZYLEN(modifiers))
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.emp_modifier))
+				severity = CLAMP(severity + M.emp_modifier, 1, 5)
+
+	if(severity == 5)	// Effectively nullified.
+		return
+
 	for(var/obj/O in L)
 		O.emp_act(severity)
 	..()
 
 /mob/living/blob_act(var/obj/structure/blob/B)
-	if(stat == DEAD || faction == "blob")
+	if(stat == DEAD || faction == B.faction)
 		return
 
 	var/damage = rand(30, 40)
@@ -201,11 +201,14 @@
 		damage *= 0.66 // Take 2/3s as much damage.
 
 	visible_message("<span class='danger'>\The [B] [attack_verb] \the [src]!</span>", "<span class='danger'>[attack_message]!</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 
 	//Armor
 	var/soaked = get_armor_soak(def_zone, armor_check, armor_pen)
 	var/absorb = run_armor_check(def_zone, armor_check, armor_pen)
+
+	if(ai_holder)
+		ai_holder.react_to_attack(B)
 
 	apply_damage(damage, damage_type, def_zone, absorb, soaked)
 
@@ -214,7 +217,7 @@
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!</span>")
+	visible_message("<span class='danger'>[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!</span>")
 
 	if(ai_holder)
 		ai_holder.react_to_attack(user)
@@ -263,10 +266,10 @@
 			miss_chance = max(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("<font color='blue'>\The [O] misses [src] narrowly!</font>")
+			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
 			return
 
-		src.visible_message("<font color='red'>[src] has been hit by [O].</font>")
+		src.visible_message("<span class='filter_warning'>[span_red("[src] has been hit by [O].")]</span>")
 		var/armor = run_armor_check(null, "melee")
 		var/soaked = get_armor_soak(null, "melee")
 
@@ -293,7 +296,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("<font color='red'>[src] staggers under the impact!</font>","<font color='red'>You stagger under the impact!</font>")
+			visible_message("<span class='filter_warning'>[span_red("[src] staggers under the impact!")]</span>","<span class='filter_warning'>[span_red("You stagger under the impact!")]</span>")
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
@@ -302,7 +305,7 @@
 				if(soaked >= round(throw_damage*0.8))
 					return
 
-				//Handles embedding for non-humans and simple_mobs.
+				//Handles embedding for non-humans and simple_animals.
 				embed(O)
 
 				var/turf/T = near_wall(dir,2)
@@ -310,13 +313,49 @@
 				if(T)
 					src.loc = T
 					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = 1
+					src.anchored = TRUE
 					src.pinned += O
+
+	//VORESTATION EDIT START - Allows for thrown vore!
+	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
+	if(istype(AM, /mob/living))
+		var/mob/living/thrown_mob = AM
+
+		if(!allowmobvore && isanimal(thrown_mob)) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
+			return
+		if(!thrown_mob.allowmobvore && isanimal(src)) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
+			return
+
+		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
+		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
+		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
+			vore_selected.nom_mob(thrown_mob) //Eat them!!!
+			visible_message("<span class='vwarning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
+			if(thrown_mob.loc != vore_selected)
+				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			on_throw_vore_special(TRUE, thrown_mob)
+			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
+			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
+
+		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
+		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
+		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore)) //Pred thrown into prey.
+			visible_message("<span class='vwarning'>[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!</span>")
+			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
+			if(src.loc != thrown_mob.vore_selected)
+				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
+			return
+	//VORESTATION EDIT END - Allows for thrown vore!
+
+/mob/living/proc/on_throw_vore_special(var/pred = TRUE, var/mob/living/target)
+	return
 
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
 	O.loc = src
 	src.embedded += O
 	src.verbs += /mob/proc/yank_out_object
+	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
@@ -354,15 +393,21 @@
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
-		handle_light()
+		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
+		throw_alert("fire", /obj/screen/alert/fire)
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
-		handle_light()
+		for(var/obj/effect/dummy/lighting_obj/moblight/fire/F in src)
+			qdel(F)
+		clear_alert("fire")
 		update_fire()
+
+	if(has_modifier_of_type(/datum/modifier/fire))
+		remove_modifiers_of_type(/datum/modifier/fire)
 
 /mob/living/proc/update_fire()
 	return
@@ -456,15 +501,15 @@
 	to_chat(src, span("critical", "You've been struck by lightning!"))
 
 // Called when touching a lava tile.
-// Does roughly 100 damage to unprotected mobs, and 20 to fully protected mobs.
+// Does roughly 70 damage (30 instantly, up to ~40 over time) to unprotected mobs, and 10 to fully protected mobs.
 /mob/living/lava_act()
-	add_modifier(/datum/modifier/fire/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
-	inflict_heat_damage(40) // Another 40, however this is instantly applied to unprotected mobs.
-	adjustFireLoss(20) // Lava cannot be 100% resisted with fire protection.
+	adjust_fire_stacks(1)
+	add_modifier(/datum/modifier/fire/stack_managed/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
+	inflict_heat_damage(20) // Another 20, however this is instantly applied to unprotected mobs.
+	adjustFireLoss(10) // Lava cannot be 100% resisted with fire protection.
 
 /mob/living/proc/reagent_permeability()
 	return 1
-	return round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2)
 
 /mob/living/proc/handle_actions()
 	//Pretty bad, i'd use picked/dropped instead but the parent calls in these are nonexistent
@@ -555,3 +600,73 @@
 		accuracy_penalty += 45
 
 	return accuracy_penalty
+
+// Applies direct "cold" damage while checking protection against the cold.
+/mob/living/proc/inflict_cold_damage(amount)
+	amount *= 1 - get_cold_protection(50) // Within spacesuit protection.
+	if(amount > 0)
+		adjustFireLoss(amount)
+
+// Ditto, but for "heat".
+/mob/living/proc/inflict_heat_damage(amount)
+	amount *= 1 - get_heat_protection(10000) // Within firesuit protection.
+	if(amount > 0)
+		adjustFireLoss(amount)
+
+// and one for electricity because why not
+/mob/living/proc/inflict_shock_damage(amount)
+	electrocute_act(amount, null, 1 - get_shock_protection(), pick(BP_HEAD, BP_TORSO, BP_GROIN))
+
+// also one for water (most things resist it entirely, except for slimes)
+/mob/living/proc/inflict_water_damage(amount)
+	amount *= 1 - get_water_protection()
+	if(amount > 0)
+		adjustToxLoss(amount)
+
+// one for abstracted away ""poison"" (mostly because simplemobs shouldn't handle reagents)
+/mob/living/proc/inflict_poison_damage(amount)
+	if(isSynthetic())
+		return
+	amount *= 1 - get_poison_protection()
+	if(amount > 0)
+		adjustToxLoss(amount)
+
+/mob/living/proc/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
+	return 1
+
+/mob/living/proc/get_organ_target()
+	var/mob/shooter = src
+	var/t = shooter.zone_sel.selecting
+	if ((t in list( O_EYES, O_MOUTH )))
+		t = BP_HEAD
+	var/obj/item/organ/external/def_zone = ran_zone(t)
+	return def_zone
+
+// heal ONE external organ, organ gets randomly selected from damaged ones.
+/mob/living/proc/heal_organ_damage(var/brute, var/burn)
+	adjustBruteLoss(-brute)
+	adjustFireLoss(-burn)
+	src.updatehealth()
+
+// damage ONE external organ, organ gets randomly selected from damaged ones.
+/mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
+	if(status_flags & GODMODE)	return 0	//godmode
+	adjustBruteLoss(brute)
+	adjustFireLoss(burn)
+	src.updatehealth()
+
+// heal MANY external organs, in random order
+/mob/living/proc/heal_overall_damage(var/brute, var/burn)
+	adjustBruteLoss(-brute)
+	adjustFireLoss(-burn)
+	src.updatehealth()
+
+// damage MANY external organs, in random order
+/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+	if(status_flags & GODMODE)	return 0	//godmode
+	adjustBruteLoss(brute)
+	adjustFireLoss(burn)
+	src.updatehealth()
+
+/mob/living/proc/restore_all_organs()
+	return

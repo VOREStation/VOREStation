@@ -1,4 +1,4 @@
-/obj/mecha/medical/odysseus/
+/obj/mecha/medical/odysseus
 	desc = "These exosuits are developed and produced by Vey-Med. (&copy; All rights reserved)."
 	name = "Odysseus"
 	catalogue_data = list(
@@ -9,13 +9,16 @@
 	initial_icon = "odysseus"
 	step_in = 2
 	max_temperature = 15000
-	health = 120
-	maxhealth = 120
+	health = 70
+	maxhealth = 70
 	wreckage = /obj/effect/decal/mecha_wreckage/odysseus
 	internal_damage_threshold = 35
 	deflect_chance = 15
 	step_energy_drain = 6
 	var/obj/item/clothing/glasses/hud/health/mech/hud
+
+	icon_scale_x = 1.2
+	icon_scale_y = 1.2
 
 /obj/mecha/medical/odysseus/New()
 	..()
@@ -25,7 +28,7 @@
 /obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.glasses)
-			occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
+			occupant_message(span_red("[H.glasses] prevent you from using [src] [hud]!"))
 		else
 			H.glasses = hud
 			H.recalculate_vis()
@@ -46,7 +49,7 @@
 		set name = "Set client perspective."
 		set category = "Exosuit Interface"
 		set src = usr.loc
-		var/perspective = input("Select a perspective type.",
+		var/perspective = input(usr, "Select a perspective type.",
                       "Client perspective",
                       occupant.client.perspective) in list(MOB_PERSPECTIVE,EYE_PERSPECTIVE)
 		to_world("[perspective]")
@@ -124,10 +127,20 @@
 			C.images += holder
 */
 /obj/mecha/medical/odysseus/loaded/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/sleeper
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/tool/sleeper
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
 	ME.attach(src)
+
+//Meant for random spawns.
+/obj/mecha/medical/odysseus/old
+	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
+
+/obj/mecha/medical/odysseus/old/New()
+	..()
+	health = 25
+	maxhealth = 50	//Just slightly worse.
+	cell.charge = rand(0, (cell.charge/2))

@@ -28,7 +28,7 @@
 	icon_state = "bigcat"
 	icon_living = "bigcat"
 	icon_dead = "bigcat_dead"
-	icon_rest = "bigcat_rest"
+	icon_rest = "bigcat_sleep"
 	icon = 'icons/mob/64x64.dmi'
 
 	default_pixel_x = -16
@@ -39,13 +39,16 @@
 
 	universal_understand = 1
 
-	movement_cooldown = 1
+	movement_cooldown = -1
 
 	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_upper = 20
 	attack_armor_pen = 40
 	base_attack_cooldown = 2 SECONDS
 	attacktext = list("gouged", "bit", "cut", "clawed", "whipped")
+
+	organ_names = /decl/mob_organ_names/kururak
+	meat_amount = 5
 
 	armor = list(
 		"melee" = 30,
@@ -72,7 +75,7 @@
 
 	special_attack_min_range = 0
 	special_attack_max_range = 4
-	special_attack_cooldown = 30 SECONDS
+	special_attack_cooldown = 1 MINUTE
 
 	// Players have 2 seperate cooldowns for these, while the AI must choose one. Both respect special_attack_cooldown
 	var/last_strike_time = 0
@@ -92,7 +95,7 @@
 	instinct = 50
 
 /mob/living/simple_mob/animal/sif/kururak/Initialize()
-	..()
+	. = ..()
 	if(!instinct)
 		if(prob(20))
 			instinct = rand(6, 10)
@@ -108,11 +111,11 @@
 			var/mob/living/carbon/human/H = L
 			if(H.get_active_hand())
 				var/obj/item/I = H.get_active_hand()
-				if(I.force >= 1.20 * melee_damage_upper)
+				if(I.force <= 1.25 * melee_damage_upper)
 					return TRUE
 		else if(istype(L, /mob/living/simple_mob))
 			var/mob/living/simple_mob/S = L
-			if(S.melee_damage_upper > 1.20 * melee_damage_upper)
+			if(S.melee_damage_upper > 1.5 * melee_damage_upper)
 				return TRUE
 
 /mob/living/simple_mob/animal/sif/kururak/handle_special()
@@ -122,7 +125,7 @@
 
 /mob/living/simple_mob/animal/sif/kururak/apply_melee_effects(atom/A)	// Only gains instinct.
 	instinct += rand(1, 2)
-	return
+	return ..()
 
 /mob/living/simple_mob/animal/sif/kururak/should_special_attack(atom/A)
 	return has_modifier_of_type(/datum/modifier/ace)
@@ -136,6 +139,8 @@
 			set_AI_busy(TRUE)
 			rending_strike(A)
 			set_AI_busy(FALSE)
+	a_intent = I_HURT
+	return ..()
 
 /mob/living/simple_mob/animal/sif/kururak/verb/do_flash()
 	set category = "Abilities"
@@ -169,7 +174,7 @@
 		if(!choices.len)
 			choices["radial"] = get_turf(src)
 
-		A = input(src,"What do we wish to flash?") in null|choices
+		A = tgui_input_list(src, "What do we wish to flash?", "Target Choice", choices)
 
 
 	visible_message(span("alien","\The [src] flares its tails!"))
@@ -186,11 +191,8 @@
 						flash_strength *= H.species.flash_mod
 						if(flash_strength > 0)
 							to_chat(H, span("alien","You are disoriented by \the [src]!"))
-							H.Confuse(flash_strength + 5)
-							H.Blind(flash_strength)
 							H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 							H.flash_eyes()
-							H.adjustHalLoss(flash_strength / 5)
 							H.apply_damage(flash_strength * H.species.flash_burn/5, BURN, BP_HEAD, 0, 0, "Photon burns")
 
 		else if(issilicon(L))
@@ -257,7 +259,7 @@
 			to_chat(src, span("warning","There are no viable targets within range..."))
 			return
 
-		A = input(src,"What do we wish to strike?") in null|choices
+		A = tgui_input_list(src, "What do we wish to strike?", "Target Choice", choices)
 
 	if(!A || !src) return
 
@@ -280,9 +282,11 @@
 		visible_message(span("danger","\The [src] rakes its claws against \the [A]."))
 		var/obj/mecha/M = A
 		M.take_damage(damage_to_apply)
-		if(prob(3) && do_after(src, 5))
-			visible_message(span("critical","\The [src]'s strike ripped \the [M]'s access hatch open, allowing it to drag [M.occupant] out!"))
-			M.go_out()
+		if(prob(3))
+			visible_message(span("critical","\The [src] begins digging its claws into \the [M]'s hatch!"))
+			if(do_after(src, 1 SECOND))
+				visible_message(span("critical","\The [src] rips \the [M]'s access hatch open, dragging [M.occupant] out!"))
+				M.go_out()
 
 	else
 		A.attack_generic(src, damage_to_apply, "rakes its claws against")	// Well it's not a mob, and it's not a mech.
@@ -329,6 +333,15 @@
 	else
 		remove_modifiers_of_type(/datum/modifier/ace)
 
+/mob/living/simple_mob/animal/sif/kururak/hibernate/Initialize()
+	. = ..()
+	lay_down()
+	instinct = 0
+
+/*
+ * Kururak AI
+ */
+
 /datum/ai_holder/simple_mob/intentional/kururak
 	hostile = FALSE
 	retaliate = TRUE
@@ -359,6 +372,8 @@
 	else
 		hostile = initial(hostile)
 
+	return ..()
+
 /datum/ai_holder/simple_mob/intentional/kururak/pre_special_attack(atom/A)
 	holder.a_intent = I_HURT
 	if(isliving(A))
@@ -378,9 +393,16 @@
 	else if(istype(A, /obj/mecha))
 		holder.a_intent = I_GRAB
 
+	return ..()
+
+/datum/ai_holder/simple_mob/intentional/kururak/post_special_attack(atom/A)
+	holder.a_intent = I_HURT
+	return ..()
+
 /datum/ai_holder/simple_mob/intentional/kururak/post_melee_attack()
 	if(holder.has_modifier_of_type(/datum/modifier/ace))
 		request_help()
+	return ..()
 
 // Kururak Ace modifier, given to the one with the highest Instinct.
 
@@ -402,3 +424,6 @@
 	evasion = 20
 	bleeding_rate_percent = 0.7
 	attack_speed_percent = 0.8
+
+/decl/mob_organ_names/kururak
+	hit_zones = list("head", "chest", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "far left tail", "far right tail", "left middle tail", "right middle tail")

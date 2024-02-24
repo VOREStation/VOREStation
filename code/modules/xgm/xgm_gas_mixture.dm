@@ -189,6 +189,7 @@
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
 	//return R_IDEAL_GAS_EQUATION * ( log (1 + IDEAL_GAS_ENTROPY_CONSTANT/partial_pressure) + 20 )
 
+#undef SPECIFIC_ENTROPY_VACUUM
 
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
@@ -277,6 +278,12 @@
 
 	return removed
 
+//Returns the amount of gas that has the given flag, in moles
+/datum/gas_mixture/proc/get_by_flag(flag)
+	. = 0
+	for(var/g in gas)
+		if(gas_data.flags[g] & flag)
+			. += gas[g]
 
 //Copies gas and temperature from another gas_mixture.
 /datum/gas_mixture/proc/copy_from(const/datum/gas_mixture/sample)
@@ -414,10 +421,10 @@
 	if(full_heat_capacity + s_full_heat_capacity)
 		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
 
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
+	//WOOT WOOT TOUCH THIS AND YOU ARE A MISCHIEVIOUS LITTLE ELF
 	if(sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
 		ratio = sharing_lookup_table[connecting_tiles]
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
+	//WOOT WOOT TOUCH THIS AND YOU ARE A MISCHIEVIOUS LITTLE ELF
 
 	for(var/g in avg_gas)
 		gas[g] = max(0, (gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
@@ -440,7 +447,7 @@
 
 
 //Equalizes a list of gas mixtures.  Used for pipe networks.
-/proc/equalize_gases(datum/gas_mixture/list/gases)
+/proc/equalize_gases(list/datum/gas_mixture/gases)
 	//Calculate totals from individual components
 	var/total_volume = 0
 	var/total_thermal_energy = 0
@@ -478,3 +485,7 @@
 			gasmix.multiply(gasmix.volume)
 
 	return 1
+
+/datum/gas_mixture/proc/get_mass()
+	for(var/g in gas)
+		. += gas[g] * gas_data.molar_mass[g] * group_multiplier

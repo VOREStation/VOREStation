@@ -12,7 +12,8 @@
 	desc = "A conveyor belt."
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	anchored = 1
+	anchored = TRUE
+	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/conveyor
 	var/operating = OFF	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -35,18 +36,25 @@
 	update_dir()
 
 	if(on)
-		operating = FORWARDS
-		setmove()
+		set_operating(FORWARDS)
 
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/gear(src)
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/gear(src)
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/stack/cable_coil(src,5)
-	RefreshParts()
+	default_apply_parts()
 
-/obj/machinery/conveyor/proc/setmove()
+/obj/machinery/conveyor/proc/toggle_speed(var/forced)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		update_active_power_usage(initial(idle_power_usage) * 4)
+	else // low gear
+		update_active_power_usage(initial(idle_power_usage))
+	update()
+
+/obj/machinery/conveyor/proc/set_operating(var/new_operating)
+	if(new_operating == operating)
+		return // No change
+	operating = new_operating
 	if(operating == FORWARDS)
 		movedir = forwards
 	else if(operating == BACKWARDS)
@@ -61,8 +69,8 @@
 
 /obj/machinery/conveyor/proc/update_dir()
 	if(!(dir in cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
-		forwards = turn(dir, 135)
-		backwards = turn(dir, 45)
+		forwards = turn(dir, 45)
+		backwards = turn(dir, 135)
 	else
 		forwards = dir
 		backwards = turn(dir, 180)
@@ -71,6 +79,7 @@
 	if(stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = OFF
+		update_use_power(USE_POWER_OFF)
 		return
 	if(!operable)
 		operating = OFF
@@ -78,19 +87,32 @@
 		operating = OFF
 	icon_state = "conveyor[operating]"
 
+	if(!operating)
+		update_use_power(USE_POWER_OFF)
+		return
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+		update_use_power(USE_POWER_ACTIVE)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
+		update_use_power(USE_POWER_ACTIVE)
+
 	// machine process
 	// move items to the target location
 /obj/machinery/conveyor/process()
 	if(stat & (BROKEN | NOPOWER))
-		return
+		return PROCESS_KILL
 	if(!operating)
-		return
-	use_power(100)
+		return PROCESS_KILL
 
 	affecting = loc.contents - src		// moved items will be all in loc
 	spawn(1)	// slight delay to prevent infinite propagation due to map order	//TODO: please no spawn() in process(). It's a very bad idea
 		var/items_moved = 0
 		for(var/atom/movable/A in affecting)
+			if(istype(A,/obj/effect/abstract)) // Flashlight's lights are not physical objects
+				continue
 			if(!A.anchored)
 				if(A.loc == src.loc) // prevents the object from being affected if it's not currently here.
 					step(A,movedir)
@@ -110,7 +132,7 @@
 
 	if(istype(I, /obj/item/device/multitool))
 		if(panel_open)
-			var/input = sanitize(input(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
+			var/input = sanitize(tgui_input_text(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
 			if(!input)
 				to_chat(user, "No input found. Please hang up and try your call again.")
 				return
@@ -171,8 +193,8 @@
 		C.set_operable(stepdir, id, op)
 
 /obj/machinery/conveyor/power_change()
-	..()
-	update()
+	if((. = ..()))
+		update()
 
 // the conveyor control switch
 //
@@ -187,11 +209,13 @@
 	var/position = 0			// 0 off, -1 reverse, 1 forward
 	var/last_pos = -1			// last direction setting
 	var/operated = 1			// true if just operated
+	var/oneway = 0				// Voreadd: One way levels mid-round!
 
 	var/id = "" 				// must match conveyor IDs to control them
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
-	anchored = 1
+	anchored = TRUE
+	var/speed_active = FALSE // are the linked conveyors on SSfastprocess?
 
 
 
@@ -205,6 +229,15 @@
 	for(var/obj/machinery/conveyor/C in machines)
 		if(C.id == id)
 			conveyors += C
+
+/obj/machinery/conveyor_switch/proc/toggle_speed(var/forced)
+	speed_active = !speed_active // switching gears
+	if(speed_active) // high gear
+		for(var/obj/machinery/conveyor/C in conveyors)
+			C.toggle_speed(TRUE)
+	else // low gear
+		for(var/obj/machinery/conveyor/C in conveyors)
+			C.toggle_speed(FALSE)
 
 // update the icon depending on the position
 
@@ -226,8 +259,7 @@
 	operated = 0
 
 	for(var/obj/machinery/conveyor/C in conveyors)
-		C.operating = position
-		C.setmove()
+		C.set_operating(position)
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
@@ -236,7 +268,7 @@
 		return
 
 	if(position == 0)
-		if(last_pos < 0)
+		if(last_pos < 0 || oneway == 1)
 			position = 1
 			last_pos = 0
 		else
@@ -259,49 +291,56 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
-	if(istype(I, /obj/item/weapon/weldingtool))
-		if(panel_open)
-			var/obj/item/weapon/weldingtool/WT = I
-			if(!WT.remove_fuel(0, user))
-				to_chat(user, "The welding tool must be on to complete this task.")
-				return
-			playsound(src, WT.usesound, 50, 1)
-			if(do_after(user, 20 * WT.toolspeed))
-				if(!src || !WT.isOn()) return
-				to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
-				new /obj/item/stack/material/steel( src.loc, 2 )
-				qdel(src)
-				return
+	if(!panel_open) //It's probably better to just check this once instead of each time
+		return
 
-	if(istype(I, /obj/item/device/multitool))
-		if(panel_open)
-			var/input = sanitize(input(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
-			if(!input)
-				to_chat(user, "No input found. Please hang up and try your call again.")
-				return
-			id = input
-			conveyors = list() // Clear list so they aren't double added.
-			for(var/obj/machinery/conveyor/C in machines)
-				if(C.id == id)
-					conveyors += C
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = I.get_welder()
+		if(!WT.remove_fuel(0, user))
+			to_chat(user, "The welding tool must be on to complete this task.")
+			return
+		playsound(src, WT.usesound, 50, 1)
+		if(do_after(user, 20 * WT.toolspeed))
+			if(!src || !WT.isOn()) return
+			to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
+			new /obj/item/stack/material/steel( src.loc, 2 )
+			qdel(src)
 			return
 
+	if(I.has_tool_quality(TOOL_MULTITOOL))
+		var/input = sanitize(tgui_input_text(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
+		if(!input)
+			to_chat(user, "No input found. Please hang up and try your call again.")
+			return
+		id = input
+		conveyors = list() // Clear list so they aren't double added.
+		for(var/obj/machinery/conveyor/C in machines)
+			if(C.id == id)
+				conveyors += C
+		return
+
+	if(I.has_tool_quality(TOOL_WRENCH))
+		if(oneway == 1)
+			to_chat(user, "You set the switch to two way operation.")
+			oneway = 0
+			playsound(src, I.usesound, 50, 1)
+			return
+		else
+			to_chat(user, "You set the switch to one way operation.")
+			oneway = 1
+			playsound(src, I.usesound, 50, 1)
+			return
+
+	//Ports making conveyors fast from CHOMPstation
+	if(I.has_tool_quality(TOOL_WIRECUTTER))
+		toggle_speed()
+		to_chat(user, "You adjust the speed of the conveyor switch")
+		return
+
 /obj/machinery/conveyor_switch/oneway
-	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
-	desc = "A conveyor control switch. It appears to only go in one direction."
+	oneway = 1
 
-// attack with hand, switch position
-/obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
-	if(position == 0)
-		position = convdir
-	else
-		position = 0
-
-	operated = 1
-	update()
-
-	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in machines)
-		if(S.id == src.id)
-			S.position = position
-			S.update()
+/obj/machinery/conveyor_switch/examine()
+	.=..()
+	if(oneway == 1)
+		. += " It appears to only go in one direction."

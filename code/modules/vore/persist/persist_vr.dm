@@ -1,5 +1,5 @@
 /**
- * Stuff having to do with inter-round persistence. 
+ * Stuff having to do with inter-round persistence.
  */
 
 // Minds represent IC characters.
@@ -40,7 +40,7 @@
  */
 /proc/prep_for_persist(var/mob/persister)
 	if(!istype(persister))
-		crash_with("Persist (P4P): Given non-mob [persister].")
+		stack_trace("Persist (P4P): Given non-mob [persister].")
 		return
 
 	// Find out of this mob is a proper mob!
@@ -48,12 +48,12 @@
 		// Okay this mob has a real loaded-from-savefile mind in it!
 		var/datum/preferences/prefs = preferences_datums[persister.mind.loaded_from_ckey]
 		if(!prefs)
-			WARNING("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
+			warning("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
 			return
 
 		// Okay, lets do a few checks to see if we should really save tho!
 		if(!prefs.load_character(persister.mind.loaded_from_slot))
-			WARNING("Persist (P4P): [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
+			warning("Persist (P4P): [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
 			return // Failed to load character
 
 		// For now as a safety measure we will only save if the name matches.
@@ -74,12 +74,12 @@
 
 /proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
 	if(!istype(occupant))
-		crash_with("Persist (PID): Given non-mob [occupant].")
+		stack_trace("Persist (PID): Given non-mob [occupant].")
 		return
 
 	var/datum/preferences/prefs = prep_for_persist(occupant)
 	if(!prefs)
-		WARNING("Persist (PID): Skipping [occupant] for persisting, as they have no prefs.")
+		warning("Persist (PID): Skipping [occupant] for persisting, as they have no prefs.")
 		return
 
 	//This one doesn't rely on persistence prefs
@@ -175,26 +175,7 @@
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
 /proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
 	if(!istype(character)) return
-	var/list/new_body_markings = list()
-	for(var/N in character.organs_by_name)
-		var/obj/item/organ/external/O = character.organs_by_name[N]
-		if(!O) continue // Skip missing limbs!
-
-		for(var/name in O.markings)
-			// Expected to be list("color" = mark_color, "datum" = mark_datum). Sanity checks to ensure it.
-			var/list/ML = O.markings[name]
-			var/datum/sprite_accessory/marking/mark_datum = ML["datum"]
-			var/mark_color = ML["color"]
-			if(!istype(mark_datum) || !mark_color)
-				log_debug("[character]'s organ [O] ([O.type]) has marking [list2params(ML)] with invalid/missing color/datum!")
-				continue;
-			if(!(mark_datum.name in body_marking_styles_list))
-				log_debug("[character]'s organ [O] ([O.type]) has marking [mark_datum] which is not in body_marking_styles_list!")
-				continue;
-			// Note: Since datums can cover multiple organs, we may encounter it multiple times, but this is okay
-			// because you're only allowed to have each marking type once! If this assumption changes, obviously update this. ~Leshana
-			new_body_markings[mark_datum.name] = mark_color
-	prefs.body_markings = new_body_markings // Overwrite with new list!
+	prefs.body_markings = character.get_prioritised_markings() // Overwrite with new list!
 
 /**
 * Resolve any surplus/deficit in nutrition's effet on weight all at once.
@@ -225,14 +206,14 @@
 */
 /proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
 	if(!istype(H))
-		crash_with("Persist (NIF): Given a nonhuman: [H]")
+		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return
 
 	if(!prefs)
 		prefs = prep_for_persist(H)
 
 	if(!prefs)
-		WARNING("Persist (NIF): [H] has no prefs datum, skipping")
+		warning("Persist (NIF): [H] has no prefs datum, skipping")
 		return
 
 	var/obj/item/device/nif/nif = H.nif
@@ -254,6 +235,6 @@
 	var/datum/category_item/player_setup_item/vore/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
 
 	var/savefile/S = new /savefile(prefs.path)
-	if(!S) WARNING ("Persist (NIF): Couldn't load NIF save savefile? [prefs.real_name]")
+	if(!S) warning("Persist (NIF): Couldn't load NIF save savefile? [prefs.real_name]")
 	S.cd = "/character[prefs.default_slot]"
 	nif_prefs.save_character(S)

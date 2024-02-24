@@ -32,11 +32,10 @@
 	if(shifted_out)
 		shifted_out = FALSE
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
-		overlays.Cut()
+		cut_overlays()
 		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
@@ -56,9 +55,9 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,"<span class='vwarning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
 		// Do this after the potential vore, so we get the belly
 		update_icon()
@@ -89,11 +88,10 @@
 		name = "Something"
 		health = maxHealth	//Fullheal
 
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
-		overlays.Cut()
+		cut_overlays()
 		flick("phaseout",src)
 		sleep(30)
 		invisibility = INVISIBILITY_LEVEL_TWO
@@ -145,11 +143,10 @@
 	real_name = name
 	name = "Something"
 
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.escapable = FALSE
 
-	overlays.Cut()
+	cut_overlays()
 	flick("phaseout",src)
 	sleep(30)
 	invisibility = INVISIBILITY_LEVEL_TWO
@@ -166,11 +163,10 @@
 	spawn(300)
 		shifted_out = FALSE
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
-		overlays.Cut()
+		cut_overlays()
 		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
@@ -203,9 +199,9 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,"<span class='vwarning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
 		// Do this after the potential vore, so we get the belly
 		update_icon()

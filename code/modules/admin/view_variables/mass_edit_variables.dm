@@ -28,7 +28,7 @@
 
 		names = sortList(names)
 
-		variable = input("Which var?", "Var") as null|anything in names
+		variable = tgui_input_list(usr, "Which var?", "Var", names)
 	else
 		variable = var_name
 
@@ -49,7 +49,7 @@
 	if(variable in GLOB.VVpixelmovement)
 		if(!check_rights(R_DEBUG))
 			return
-		var/prompt = alert(src, "Editing this var may irreparably break tile gliding for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT")
+		var/prompt = tgui_alert(src, "Editing this var may irreparably break tile gliding for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", list("ABORT","Continue","ABORT"))
 		if (prompt != "Continue")
 			return
 
@@ -115,7 +115,7 @@
 			var/pre_processing = new_value
 			var/unique
 			if (varsvars && varsvars.len)
-				unique = alert(usr, "Process vars unique to each instance, or same for all?", "Variable Association", "Unique", "Same")
+				unique = tgui_alert(usr, "Process vars unique to each instance, or same for all?", "Variable Association", list("Unique", "Same"))
 				if(unique == "Unique")
 					unique = TRUE
 				else
@@ -142,7 +142,7 @@
 				CHECK_TICK
 
 		if (VV_NEW_TYPE)
-			var/many = alert(src, "Create only one [value["type"]] and assign each or a new one for each thing", "How Many", "One", "Many", "Cancel")
+			var/many = tgui_alert(src, "Create only one [value["type"]] and assign each or a new one for each thing", "How Many", list("One", "Many", "Cancel"))
 			if (many == "Cancel")
 				return
 			if (many == "Many")

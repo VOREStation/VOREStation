@@ -41,7 +41,7 @@
 
 /datum/lore/codex/page/robo_heph
 	name = "Hephaestus Industries"
-	data = "Hephaestus joined the civilian prosthetic market in earnest after the First Contact War. Wartime amputees and fully-prosthetic Mechanized Division veterans found themselves looking for the Hephaestus parts that they had access to during the conflict. Hephaestus responded by producing the first civilian model of their rugged green prosthetics, leveraging their ties with SolGov to offer discounts to many of those returning from war. HI-Civilian is not quite as durable or easily maintained as the military model, to conform with most systems' legal restrictions on the capacities of prosthetic limbs, but maintains an unmatched reputation for resilience to damage and ease of repair.\
+	data = "Hephaestus joined the civilian prosthetic market in earnest after the Hegemony War. Wartime amputees and fully-prosthetic Mechanized Division veterans found themselves looking for the Hephaestus parts that they had access to during the conflict. Hephaestus responded by producing the first civilian model of their rugged green prosthetics, leveraging their ties with SolGov to offer discounts to many of those returning from war. HI-Civilian is not quite as durable or easily maintained as the military model, to conform with most systems' legal restrictions on the capacities of prosthetic limbs, but maintains an unmatched reputation for resilience to damage and ease of repair.\
 	<br><br>\
 	Hephaestus prosthetics are somewhat expensive, but are a reasonable investment for many of average or above economic status. It has sufficient manual dexterity for most tasks, without sacrificing the rugged durability that made the brand popular."
 

@@ -17,32 +17,35 @@
 	origin_tech = list(TECH_MATERIAL = 2)
 	description_info = "Some equipment may gain new abilities or advantages if equipped to certain types of Exosuits."
 	var/equip_cooldown = 0
-	var/equip_ready = 1
+	var/equip_ready = TRUE
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
 	var/range = MELEE //bitflags
-	var/salvageable = 1
+	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
+	var/mech_flags = NONE
+	var/salvageable = TRUE
 	var/required_type = /obj/mecha //may be either a type or a list of allowed types
 	var/equip_type = null //mechaequip2
 	var/allow_duplicate = FALSE
 	var/ready_sound = 'sound/mecha/mech_reload_default.ogg' //Sound to play once the fire delay passed.
 	var/enable_special = FALSE	// Will the tool do its special?
 
+	var/step_delay = 0	// Does the component slow/speed up the suit?
+
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
 	sleep(equip_cooldown)
-	set_ready_state(1)
+	set_ready_state(TRUE)
 	if(ready_sound) //Kind of like the kinetic accelerator.
-		playsound(loc, ready_sound, 50, 1, -1)
+		playsound(src, ready_sound, 50, 1, -1)
 	if(target && chassis)
 		return 1
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>\The [src] will fill [equip_type?"a [equip_type]":"any"] slot.</span>")
+	. = ..()
+	. += "<span class='notice'>[src] will fill [equip_type?"a [equip_type]":"any"] slot.</span>"
 
-/obj/item/mecha_parts/mecha_equipment/New()
-	..()
+/obj/item/mecha_parts/mecha_equipment/proc/add_equip_overlay(obj/mecha/M as obj)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
@@ -87,7 +90,7 @@
 		if(chassis.selected == src)
 			chassis.selected = null
 		src.update_chassis_page()
-		chassis.occupant_message("<font color='red'>The [src] is destroyed!</font>")
+		chassis.occupant_message(span_red("The [src] is destroyed!"))
 		chassis.log_append_to_last("[src] is destroyed.",1)
 		if(istype(src, /obj/item/mecha_parts/mecha_equipment/weapon))//Gun
 			switch(chassis.mech_faction)
@@ -144,9 +147,6 @@
 	if(energy_drain && !chassis.has_charge(energy_drain))
 		return 0
 	return 1
-
-/obj/item/mecha_parts/mecha_equipment/proc/handle_movement_action() //Any modules that have special effects or needs when taking a step or floating through space.
-	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/action(atom/target)
 	return
@@ -223,33 +223,39 @@
 	src.update_chassis_page()
 	return
 
+/obj/item/mecha_parts/mecha_equipment/Destroy()
+	detach()
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
+	if(!chassis)
+		return
 	moveto = moveto || get_turf(chassis)
-	if(src.Move(moveto))
-		chassis.equipment -= src
-		chassis.universal_equipment -= src
-		if(equip_type)
-			switch(equip_type)
-				if(EQUIP_HULL)
-					chassis.hull_equipment -= src
-				if(EQUIP_WEAPON)
-					chassis.weapon_equipment -= src
-				if(EQUIP_UTILITY)
-					chassis.utility_equipment -= src
-				if(EQUIP_SPECIAL)
-					chassis.special_equipment -= src
-				//VOREStation Addition begin: MICROMECHS
-				if(EQUIP_MICRO_UTILITY)
-					chassis.micro_utility_equipment -= src
-				if(EQUIP_MICRO_WEAPON)
-					chassis.micro_weapon_equipment -= src
-				//VOREStation Addition end: MICROMECHS
-		if(chassis.selected == src)
-			chassis.selected = null
-		update_chassis_page()
-		chassis.log_message("[src] removed from equipment.")
-		chassis = null
-		set_ready_state(1)
+	forceMove(moveto)
+	chassis.equipment -= src
+	chassis.universal_equipment -= src
+	if(equip_type)
+		switch(equip_type)
+			if(EQUIP_HULL)
+				chassis.hull_equipment -= src
+			if(EQUIP_WEAPON)
+				chassis.weapon_equipment -= src
+			if(EQUIP_UTILITY)
+				chassis.utility_equipment -= src
+			if(EQUIP_SPECIAL)
+				chassis.special_equipment -= src
+			//VOREStation Addition begin: MICROMECHS
+			if(EQUIP_MICRO_UTILITY)
+				chassis.micro_utility_equipment -= src
+			if(EQUIP_MICRO_WEAPON)
+				chassis.micro_weapon_equipment -= src
+			//VOREStation Addition end: MICROMECHS
+	if(chassis.selected == src)
+		chassis.selected = null
+	update_chassis_page()
+	chassis.log_message("[src] removed from equipment.")
+	chassis = null
+	set_ready_state(TRUE)
 	enable_special = FALSE
 	return
 
@@ -266,7 +272,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/occupant_message(message)
 	if(chassis)
-		chassis.occupant_message("[bicon(src)] [message]")
+		chassis.occupant_message("\icon[src][bicon(src)] [message]")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/log_message(message)
@@ -276,3 +282,6 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/MoveAction() //Allows mech equipment to do an action upon the mech moving
 	return
+
+/obj/item/mecha_parts/mecha_equipment/proc/get_step_delay() // Equipment returns its slowdown or speedboost.
+	return step_delay

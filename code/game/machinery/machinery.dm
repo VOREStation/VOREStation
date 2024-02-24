@@ -5,12 +5,16 @@ Overview:
    of 'Del' removes reference to src machine in global 'machines list'.
 
 Class Variables:
+
+   power_init_complete (boolean)
+      Indicates that we have have registered our static power usage with the area.
+
    use_power (num)
       current state of auto power use.
       Possible Values:
-         0 -- no auto power use
-         1 -- machine is using power at its idle power level
-         2 -- machine is using power at its active power level
+         USE_POWER_OFF:0 -- no auto power use
+         USE_POWER_IDLE:1 -- machine is using power at its idle power level
+         USE_POWER_ACTIVE:2 -- machine is using power at its active power level
 
    active_power_usage (num)
       Value for the amount of power to use when in active power mode
@@ -51,28 +55,18 @@ Class Procs:
 
    Destroy()                     'game/machinery/machine.dm'
 
-   auto_use_power()            'game/machinery/machine.dm'
-      This proc determines how power mode power is deducted by the machine.
-      'auto_use_power()' is called by the 'master_controller' game_controller every
-      tick.
+   get_power_usage()            'game/machinery/machinery_power.dm'
+      Returns the amount of power this machine uses every SSmachines cycle.
+      Default definition uses 'use_power', 'active_power_usage', 'idle_power_usage'
 
-      Return Value:
-         return:1 -- if object is powered
-         return:0 -- if object is not powered.
-
-      Default definition uses 'use_power', 'power_channel', 'active_power_usage',
-      'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
-
-   powered(chan = EQUIP)         'modules/power/power.dm'
+   powered(chan = CURRENT_CHANNEL)         'game/machinery/machinery_power.dm'
       Checks to see if area that contains the object has power available for power
       channel given in 'chan'.
 
-   use_power(amount, chan=EQUIP, autocalled)   'modules/power/power.dm'
+   use_power_oneoff(amount, chan=CURRENT_CHANNEL)   'game/machinery/machinery_power.dm'
       Deducts 'amount' from the power channel 'chan' of the area that contains the object.
-      If it's autocalled then everything is normal, if something else calls use_power we are going to
-      need to recalculate the power two ticks in a row.
 
-   power_change()               'modules/power/power.dm'
+   power_change()               'game/machinery/machinery_power.dm'
       Called by the area that contains the object when ever that area under goes a
       power state change (area runs out of power, or area channel is turned off).
 
@@ -101,38 +95,50 @@ Class Procs:
 
 	var/stat = 0
 	var/emagged = 0
-	var/use_power = 1
+	var/use_power = USE_POWER_IDLE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
 	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
+	var/power_init_complete = FALSE
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
-	var/panel_open = 0
+	var/panel_open = FALSE
 	var/global/gl_uid = 1
 	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
 	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/weapon/circuitboard/circuit = null
 
+	// 0.0 - 1.0 multipler for prob() based on bullet structure damage
+	// So if this is 1.0 then a 100 damage bullet will always break this structure
+	// If this is 0.5 then a 50 damage bullet will break this structure 25% of the time
+	var/bullet_vulnerability = 0.25
+
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+
 /obj/machinery/New(l, d=0)
-	..(l)
-	if(d)
+	..()
+	if(isnum(d))
 		set_dir(d)
-	if(circuit)
+	if(ispath(circuit))
 		circuit = new circuit(src)
 
-/obj/machinery/Initialize()
+/obj/machinery/Initialize(var/mapload)
 	. = ..()
 	global.machines += src
+	if(ispath(circuit))
+		circuit = new circuit(src)
 	if(!speed_process)
 		START_MACHINE_PROCESSING(src)
 	else
 		START_PROCESSING(SSfastprocess, src)
+	if(!mapload)
+		power_change()
 
 /obj/machinery/Destroy()
 	if(!speed_process)
@@ -145,7 +151,9 @@ Class Procs:
 			if(A.loc == src) // If the components are inside the machine, delete them.
 				qdel(A)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
-				component_parts -= A
+				warning("[A] was still in [src]'s component_parts when it was Destroy()'d")
+		component_parts.Cut()
+		component_parts = null
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
 			if(ishuman(A))
@@ -157,9 +165,8 @@ Class Procs:
 				qdel(A)
 	return ..()
 
-/obj/machinery/process()//If you dont use process or power why are you here
-	if(!(use_power || idle_power_usage || active_power_usage))
-		return PROCESS_KILL
+/obj/machinery/process() // Steady power usage is handled separately. If you dont use process why are you here?
+	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
 	if(use_power && stat == 0)
@@ -169,7 +176,7 @@ Class Procs:
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
-		pulse2.anchored = 1
+		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(cardinal))
 
 		spawn(10)
@@ -179,37 +186,46 @@ Class Procs:
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			qdel(src)
+			fall_apart(severity)
 			return
 		if(2.0)
 			if(prob(50))
-				qdel(src)
+				fall_apart(severity)
 				return
 		if(3.0)
 			if(prob(25))
-				qdel(src)
+				fall_apart(severity)
 				return
 		else
 	return
 
-//sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(var/new_use_power)
-	use_power = new_use_power
-
-/obj/machinery/proc/auto_use_power()
-	if(!powered(power_channel))
-		return 0
-	if(use_power == 1)
-		use_power(idle_power_usage, power_channel, 1)
-	else if(use_power >= 2)
-		use_power(active_power_usage, power_channel, 1)
-	return 1
+/obj/machinery/vv_edit_var(var/var_name, var/new_value)
+	if(var_name == NAMEOF(src, use_power))
+		update_use_power(new_value)
+		return TRUE
+	else if(var_name == NAMEOF(src, power_channel))
+		update_power_channel(new_value)
+		return TRUE
+	else if(var_name == NAMEOF(src, idle_power_usage))
+		update_idle_power_usage(new_value)
+		return TRUE
+	else if(var_name == NAMEOF(src, active_power_usage))
+		update_active_power_usage(new_value)
+		return TRUE
+	return ..()
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
 	return !inoperable(additional_flags)
 
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER | BROKEN | additional_flags))
+
+// Duplicate of below because we don't want to fuck around with CanUseTopic in TGUI
+// TODO: Replace this with can_interact from /tg/
+/obj/machinery/tgui_status(mob/user)
+	if(!interact_offline && (stat & (NOPOWER | BROKEN)))
+		return STATUS_CLOSE
+	return ..()
 
 /obj/machinery/CanUseTopic(var/mob/user)
 	if(!interact_offline && (stat & (NOPOWER | BROKEN)))
@@ -240,7 +256,7 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
+	if(!user.IsAdvancedToolUser())  //Vorestation edit
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 	if(ishuman(user))
@@ -268,14 +284,14 @@ Class Procs:
 
 /obj/machinery/proc/state(var/msg)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("[bicon(src)] <span class = 'notice'>[msg]</span>", 2)
+		O.show_message("\icon[src][bicon(src)] <span class = 'notice'>[msg]</span>", 2)
 
 /obj/machinery/proc/ping(text=null)
 	if(!text)
 		text = "\The [src] pings."
 
 	state(text, "blue")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+	playsound(src, 'sound/machines/ping.ogg', 50, 0)
 
 /obj/machinery/proc/shock(mob/user, prb)
 	if(inoperable())
@@ -303,44 +319,57 @@ Class Procs:
 	CB.apply_default_parts(src)
 	RefreshParts()
 
+/obj/machinery/proc/default_use_hicell()
+	var/obj/item/weapon/cell/C = locate(/obj/item/weapon/cell) in component_parts
+	if(C)
+		component_parts -= C
+		qdel(C)
+		C = new /obj/item/weapon/cell/high(src)
+		component_parts += C
+		RefreshParts()
+		return C
+
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
+	var/parts_replaced = FALSE
 	if(!istype(R))
 		return 0
 	if(!component_parts)
 		return 0
-	if(panel_open)
+	to_chat(user, "<span class='notice'>Following parts detected in [src]:</span>")
+	for(var/obj/item/C in component_parts)
+		to_chat(user, "<span class='notice'>    [C.name]</span>")
+	if(panel_open || !R.panel_req)
 		var/obj/item/weapon/circuitboard/CB = circuit
 		var/P
-		for(var/obj/item/weapon/stock_parts/A in component_parts)
+		for(var/obj/item/A in component_parts)
 			for(var/T in CB.req_components)
 				if(ispath(A.type, T))
 					P = T
 					break
-			for(var/obj/item/weapon/stock_parts/B in R.contents)
+			for(var/obj/item/B in R.contents)
 				if(istype(B, P) && istype(A, P))
-					if(B.rating > A.rating)
+					if(B.get_rating() > A.get_rating())
 						R.remove_from_storage(B, src)
 						R.handle_item_insertion(A, 1)
 						component_parts -= A
 						component_parts += B
 						B.loc = null
 						to_chat(user, "<span class='notice'>[A.name] replaced with [B.name].</span>")
+						parts_replaced = TRUE
 						break
 			update_icon()
 			RefreshParts()
-	else
-		to_chat(user, "<span class='notice'>Following parts detected in the machine:</span>")
-		for(var/var/obj/item/C in component_parts) //var/var/obj/item/C?
-			to_chat(user, "<span class='notice'>    [C.name]</span>")
+			if(parts_replaced)
+				R.play_rped_sound()
 	return 1
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
 /obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
-	if(!W.is_wrench())
+	if(!W.has_tool_quality(TOOL_WRENCH))
 		return FALSE
 	if(panel_open)
 		return FALSE // Close panel first!
-	playsound(loc, W.usesound, 50, 1)
+	playsound(src, W.usesound, 50, 1)
 	var/actual_time = W.toolspeed * time
 	if(actual_time != 0)
 		user.visible_message( \
@@ -356,14 +385,14 @@ Class Procs:
 	return TRUE
 
 /obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/C)
-	if(!C.is_crowbar())
+	if(!C.has_tool_quality(TOOL_CROWBAR))
 		return 0
 	if(!panel_open)
 		return 0
 	. = dismantle()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
-	if(!S.is_screwdriver())
+	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
@@ -372,7 +401,7 @@ Class Procs:
 	return 1
 
 /obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
-	if(!S.is_screwdriver())
+	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	if(!circuit)
 		return 0
@@ -387,7 +416,7 @@ Class Procs:
 		. = dismantle()
 
 /obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
-	if(!S.is_screwdriver())
+	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
@@ -396,32 +425,35 @@ Class Procs:
 	return 1
 
 /obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/W)
-	if(!W.is_wirecutter())
+	if(!W.has_tool_quality(TOOL_WIRECUTTER))
 		return 0
 	if(!panel_open)
 		return 0
 	user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-	playsound(src.loc, W.usesound, 50, 1)
+	playsound(src, W.usesound, 50, 1)
 	new/obj/item/stack/cable_coil(get_turf(src), 5)
 	. = dismantle()
 
 /obj/machinery/proc/dismantle()
-	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-	//TFF 3/6/19 - port Cit RP fix of infinite frames. If it doesn't have a circuit board, don't create a frame. Return a smack instead. BONK!
+	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
+	for(var/obj/I in contents)
+		if(istype(I,/obj/item/weapon/card/id))
+			I.forceMove(src.loc)
+
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
-	A.anchored = 1
+	A.anchored = TRUE
 	A.frame_type = M.board_type
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
 	if(A.frame_type.frame_class == FRAME_CLASS_ALARM || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
-		A.density = 0
+		A.density = FALSE
 	else
-		A.density = 1
+		A.density = TRUE
 
 	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)
@@ -453,7 +485,86 @@ Class Procs:
 	qdel(src)
 	return 1
 
+/obj/machinery/bullet_act(obj/item/projectile/P, def_zone)
+	. = ..()
+	if(prob(P.get_structure_damage() * bullet_vulnerability))
+		fall_apart()
+
+/**
+ * Like an angrier dismantle, where it destroys some of the parts and doesn't give you a frame
+ ** severity: Same severities as ex_act (so lower is more destructive)
+ ** scatter: If you want the parts to slide around 1 turf in random directions
+ */
+/obj/machinery/proc/fall_apart(var/severity = 3, var/scatter = TRUE)
+	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+
+	var/atom/droploc = drop_location()
+	if(!droploc || !contents.len) // not even a circuit?
+		playsound(src, 'sound/machines/machine_die_short.ogg')
+		spark_system.start()
+		qdel(spark_system)
+		qdel(src)
+		return
+
+	var/list/surviving_parts = list()
+	// Deleting IDs is lame, unless this is like nuclear severity
+	if(severity != 1)
+		for(var/obj/item/weapon/card/id/I in contents)
+			surviving_parts |= I
+
+	// May populate some items to throw around
+	if(!LAZYLEN(component_parts) && circuit)
+		circuit.apply_default_parts(src)
+
+	var/survivability
+	switch(severity)
+		// No survivors
+		if(1)
+			survivability = 0
+
+		// 1 part survives
+		if(2)
+			survivability = 0
+			var/atom/movable/picked_part = pick(contents)
+			if(istype(picked_part))
+				surviving_parts |= picked_part
+
+		// 50% of parts destroyed on average
+		if(3)
+			survivability = 50
+
+		// No parts destroyed, but you lose the frame
+		else
+			survivability = 100
+
+	for(var/atom/movable/P in contents)
+		if(prob(survivability))
+			surviving_parts |= P
+
+	if(circuit && severity >= 2)
+		var/datum/frame/frame_types/FT = circuit.board_type
+		if(istype(FT))
+			// Some steel from the frame, but about half
+			surviving_parts += new /obj/item/stack/material/steel(null, max(1,round(FT.frame_size/2)))
+			// Two bits of cable, but not the 5 required to rebuild
+			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
+			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
+
+	for(var/atom/movable/A as anything in surviving_parts)
+		A.forceMove(droploc)
+		if(scatter && isturf(droploc))
+			var/turf/T = droploc
+			A.Move(get_step(T, pick(alldirs)))
+
+	playsound(src, 'sound/machines/machine_die_short.ogg')
+	spark_system.start()
+	qdel(spark_system)
+	qdel(src)
+
 /datum/proc/apply_visual(mob/M)
+	M.sight = 0 //Just reset their mesons and stuff so they can't use them, by default.
 	return
 
 /datum/proc/remove_visual(mob/M)

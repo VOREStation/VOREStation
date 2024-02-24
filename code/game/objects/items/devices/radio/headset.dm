@@ -4,11 +4,11 @@
 	var/radio_desc = ""
 	icon_state = "headset"
 	item_state = null //To remove the radio's state
-	matter = list(DEFAULT_WALL_MATERIAL = 75)
+	matter = list(MAT_STEEL = 75)
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
 	slot_flags = SLOT_EARS
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/ears/mob_teshari.dmi')
 
 	var/translate_binary = 0
 	var/translate_hive = 0
@@ -16,6 +16,9 @@
 	var/obj/item/device/encryptionkey/keyslot2 = null
 	var/ks1type = null
 	var/ks2type = null
+
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/device/radio/headset/New()
 	..()
@@ -37,30 +40,34 @@
 	return list_secure_channels()
 
 /obj/item/device/radio/headset/examine(mob/user)
-	if(!(..(user, 1) && radio_desc))
-		return
+	. = ..()
 
-	to_chat(user, "The following channels are available:")
-	to_chat(user, radio_desc)
+	if(radio_desc && Adjacent(user))
+		. += "The following channels are available:"
+		. += radio_desc
 
-/obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
-	if (channel == "special")
-		if (translate_binary)
+/obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, list/message_pieces, channel)
+	if(channel == "special")
+		if(translate_binary)
 			var/datum/language/binary = GLOB.all_languages["Robot Talk"]
-			binary.broadcast(M, message)
-		if (translate_hive)
+			binary.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
+			return RADIO_CONNECTION_NON_SUBSPACE
+		if(translate_hive)
 			var/datum/language/hivemind = GLOB.all_languages["Hivemind"]
-			hivemind.broadcast(M, message)
-		return null
+			hivemind.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
+			return RADIO_CONNECTION_NON_SUBSPACE
+		return RADIO_CONNECTION_FAIL
 
 	return ..()
 
 /obj/item/device/radio/headset/receive_range(freq, level, aiOverride = 0)
 	if (aiOverride)
+		//playsound(loc, 'sound/effects/radio_common.ogg', 20, 1, 1, preference = /datum/client_preference/radio_sounds)
 		return ..(freq, level)
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		if(H.l_ear == src || H.r_ear == src)
+			//playsound(loc, 'sound/effects/radio_common.ogg', 20, 1, 1, preference = /datum/client_preference/radio_sounds)
 			return ..(freq, level)
 	return -1
 
@@ -74,6 +81,9 @@
 				append = "_r"
 
 	return "[..()][append]"
+
+/obj/item/device/radio/headset/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
 
 /obj/item/device/radio/headset/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)
@@ -168,13 +178,13 @@
 
 
 /obj/item/device/radio/headset/heads/captain
-	name = "colony director's headset"
+	name = "site manager's headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
 
 /obj/item/device/radio/headset/heads/captain/alt
-	name = "colony director's bowman headset"
+	name = "site manager's bowman headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
@@ -202,37 +212,37 @@
 
 /obj/item/device/radio/headset/heads/rd
 	name = "research director's headset"
-	desc = "Headset of the researching God."
+	desc = "Headset of the eccentric-in-chief."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/rd
 
 /obj/item/device/radio/headset/heads/rd/alt
 	name = "research director's bowman headset"
-	desc = "Headset of the researching God."
+	desc = "Headset of the eccentric-in-chief."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/rd
 
 /obj/item/device/radio/headset/heads/hos
 	name = "head of security's headset"
-	desc = "The headset of the man who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/hos/alt
 	name = "head of security's bowman headset"
-	desc = "The headset of the man who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/ce
 	name = "chief engineer's headset"
-	desc = "The headset of the guy who is in charge of morons"
+	desc = "The headset of the clown who is in charge of the circus."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/ce
 
 /obj/item/device/radio/headset/heads/ce/alt
 	name = "chief engineer's bowman headset"
-	desc = "The headset of the guy who is in charge of morons"
+	desc = "The headset of the clown who is in charge of the circus."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/ce
 
@@ -250,13 +260,13 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the guy who will one day be Colony Director."
+	desc = "The headset of the poor fool who will one day be Site Manager."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
 /obj/item/device/radio/headset/heads/hop/alt
 	name = "head of personnel's bowman headset"
-	desc = "The headset of the guy who will one day be Colony Director."
+	desc = "The headset of the poor fool who will one day be Site Manager."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
@@ -269,13 +279,13 @@
 
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
-	desc = "A headset used by the QM and his slaves."
+	desc = "A headset used by the QM and their cronies."
 	icon_state = "cargo_headset"
 	ks2type = /obj/item/device/encryptionkey/headset_cargo
 
 /obj/item/device/radio/headset/headset_cargo/alt
 	name = "supply bowman headset"
-	desc = "A bowman headset used by the QM and his slaves."
+	desc = "A bowman headset used by the QM and their cronies."
 	icon_state = "cargo_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/headset_cargo
 
@@ -326,10 +336,10 @@
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
-	if(!(W.is_screwdriver() || istype(W, /obj/item/device/encryptionkey)))
+	if(!(W.has_tool_quality(TOOL_SCREWDRIVER) || istype(W, /obj/item/device/encryptionkey)))
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(keyslot1 || keyslot2)
 
 
@@ -380,7 +390,7 @@
 	return
 
 
-/obj/item/device/radio/headset/proc/recalculateChannels(var/setDescription = 0)
+/obj/item/device/radio/headset/recalculateChannels(var/setDescription = 0)
 	src.channels = list()
 	src.translate_binary = 0
 	src.translate_hive = 0

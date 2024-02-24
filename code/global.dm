@@ -1,11 +1,5 @@
-//#define TESTING
-#if DM_VERSION < 506
-#warn This compiler is out of date. You may experience issues with projectile animations.
-#endif
-
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
-var/global/list/all_areas                = list()
 var/global/list/machines                 = list()	// ALL Machines, wether processing or not.
 var/global/list/processing_machines      = list()	// TODO - Move into SSmachines
 var/global/list/processing_power_items   = list()	// TODO - Move into SSmachines
@@ -38,7 +32,7 @@ var/href_logfile		= null
 // var/const/starsys_name	= "Vir"
 var/const/game_version	= "VOREStation"
 var/changelog_hash		= ""
-var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 544)
+var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 300) //VOREStation Edit
 var/round_progressing = 1
 
 var/master_mode       = "extended" // "extended"
@@ -88,6 +82,7 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 	41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21,
 	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
 )
+var/global/const/SQRT_TWO = 1.41421356237
 
 var/datum/configuration/config      = null
 
@@ -107,7 +102,6 @@ var/gravity_is_on = 1
 
 var/join_motd = null
 
-var/datum/game_master/game_master = new() // Game Master, an AI for choosing events.
 var/datum/metric/metric = new() // Metric datum, used to keep track of the round.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
@@ -132,18 +126,27 @@ var/custom_event_msg = null
 var/DBConnection/dbcon     = new() // Feedback    database (New database)
 var/DBConnection/dbcon_old = new() // /tg/station database (Old database) -- see the files in the SQL folder for information on what goes where.
 
-// Reference list for disposal sort junctions. Filled up by sorting junction's New()
-/var/list/tagger_locations = list()
-
 // Added for Xenoarchaeology, might be useful for other stuff.
 var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
 
 
-// Used by robots and robot preferences.
+// Used by robots and robot preferences for regular modules.
 var/list/robot_module_types = list(
 	"Standard", "Engineering", "Surgeon",  "Crisis",
 	"Miner",    "Janitor",     "Service",      "Clerical", "Security",
 	"Research"
+)
+// List of modules added during code red
+var/list/emergency_module_types = list(
+	"Combat"
+)
+// List of modules available to AI shells
+var/list/shell_module_types = list(
+	"Standard", "Service", "Clerical"
+)
+// List of whitelisted modules
+var/list/whitelisted_module_types = list(
+	"Lost"
 )
 
 // Some scary sounds.
@@ -162,9 +165,13 @@ var/static/list/scarySounds = list(
 	'sound/effects/Glassbr3.ogg',
 	'sound/items/Welder.ogg',
 	'sound/items/Welder2.ogg',
-	'sound/machines/airlock.ogg',
+	'sound/machines/door/old_airlock.ogg',
 	'sound/effects/clownstep1.ogg',
-	'sound/effects/clownstep2.ogg'
+	'sound/effects/clownstep2.ogg',
+	'sound/voice/teppi/roar.ogg',	//VOREStation Add
+	'sound/voice/moth/scream_moth.ogg',	//VOREStation Add
+	'sound/voice/nya.ogg',	//VOREStation Add
+	'sound/voice/succlet_shriek.ogg'	//VOREStation Add
 )
 
 // Bomb cap!

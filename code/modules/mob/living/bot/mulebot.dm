@@ -11,8 +11,8 @@
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	health = 150
 	maxHealth = 150
 	mob_bump_flag = HEAVY
@@ -61,97 +61,84 @@
 	load(C)
 
 /mob/living/bot/mulebot/attack_hand(var/mob/user)
-	interact(user)
+	tgui_interact(user)
 
-/mob/living/bot/mulebot/proc/interact(var/mob/user)
-	var/dat
-	dat += "<TT><B>Multiple Utility Load Effector Mk. III</B></TT><BR><BR>"
-	dat += "ID: [suffix]<BR>"
-	dat += "Power: [on ? "On" : "Off"]<BR>"
+/mob/living/bot/mulebot/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MuleBot", "Mulebot [suffix ? "([suffix])" : ""]")
+		ui.open()
 
-	if(!open)
-		dat += "<BR>Current Load: [load ? load.name : "<i>none</i>"]<BR>"
+/mob/living/bot/mulebot/tgui_data(mob/user)
+	var/list/data = ..()
+	data["suffix"] = suffix
+	data["power"] = on
+	data["issillicon"] = issilicon(user)
+	data["load"] = load
+	data["locked"] = locked
+	data["auto_return"] = auto_return
+	data["crates_only"] = crates_only
+	data["hatch"] = open
+	data["safety"] = safety
+	return data
 
-		if(locked)
-			dat += "<HR>Controls are locked"
-		else
-			dat += "<HR>Controls are unlocked<BR><BR>"
-
-		if(!locked || issilicon(user))
-			dat += "<A href='byond://?src=\ref[src];op=power'>Toggle power</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=stop'>Stop</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=go'>Proceed</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=home'>Return to home</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=destination'>Set destination</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=sethome'>Set home</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=autoret'>Toggle auto return home</A> ([auto_return ? "On" : "Off"])<BR>"
-			dat += "<A href='byond://?src=\ref[src];op=cargotypes'>Toggle non-standard cargo</A> ([crates_only ? "Off" : "On"])<BR>"
-
-			if(load)
-				dat += "<A href='byond://?src=\ref[src];op=unload'>Unload now</A><BR>"
-			dat += "<HR>The maintenance hatch is closed.<BR>"
-
-	else
-		if(!issilicon(user))
-			dat += "The maintenance hatch is open.<BR><BR>"
-
-			dat += "<A href='byond://?src=\ref[src];op=safety'>Toggle safety</A> ([safety ? "On" : "Off - DANGER"])<BR>"
-		else
-			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
-
-	user << browse("<HEAD><TITLE>Mulebot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
-	onclose(user, "mulebot")
-	return
-
-/mob/living/bot/mulebot/Topic(href, href_list)
+/mob/living/bot/mulebot/tgui_act(action, params)
 	if(..())
-		return
-	usr.set_machine(src)
+		return TRUE
+
 	add_fingerprint(usr)
-	switch(href_list["op"])
+	switch(action)
 		if("power")
 			if(on)
 				turn_off()
 			else
 				turn_on()
 			visible_message("[usr] switches [on ? "on" : "off"] [src].")
+			. = TRUE
 
 		if("stop")
 			obeyCommand("Stop")
+			. = TRUE
 
 		if("go")
 			obeyCommand("GoTD")
+			. = TRUE
 
 		if("home")
 			obeyCommand("Home")
+			. = TRUE
 
 		if("destination")
 			obeyCommand("SetD")
+			. = TRUE
 
 		if("sethome")
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = input("Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", null) in null|beaconlist
+				new_dest = tgui_input_list(usr, "Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
-				alert("No destination beacons available.")
+				tgui_alert_async(usr, "No destination beacons available.")
 			if(new_dest)
 				home = get_turf(beaconlist[new_dest])
 				homeName = new_dest
+			. = TRUE
 
 		if("unload")
 			unload()
+			. = TRUE
 
 		if("autoret")
 			auto_return = !auto_return
+			. = TRUE
 
 		if("cargotypes")
 			crates_only = !crates_only
+			. = TRUE
 
 		if("safety")
 			safety = !safety
-
-	interact(usr)
+			. = TRUE
 
 /mob/living/bot/mulebot/attackby(var/obj/item/O, var/mob/user)
 	..()
@@ -167,9 +154,9 @@
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = input("Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]") in null|beaconlist
+				new_dest = tgui_input_list(usr, "Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
-				alert("No destination beacons available.")
+				tgui_alert_async(usr, "No destination beacons available.")
 			if(new_dest)
 				resetTarget()
 				target = get_turf(beaconlist[new_dest])
@@ -183,7 +170,7 @@
 	locked = !locked
 	to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 	flick("mulebot-emagged", src)
-	playsound(loc, 'sound/effects/sparks1.ogg', 100, 0)
+	playsound(src, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
 
 /mob/living/bot/mulebot/update_icons()
@@ -200,15 +187,15 @@
 		flick("mulebot-emagged", src)
 	update_icons()
 
-/mob/living/bot/mulebot/handleFrustrated()
+/mob/living/bot/mulebot/handleFrustrated(has_target)
 	custom_emote(2, "makes a sighing buzz.")
-	playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+	playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 	..()
 
 /mob/living/bot/mulebot/handleAdjacentTarget()
 	if(target == src.loc)
 		custom_emote(2, "makes a chiming sound.")
-		playsound(loc, 'sound/machines/chime.ogg', 50, 0)
+		playsound(src, 'sound/machines/chime.ogg', 50, 0)
 		UnarmedAttack(target)
 		resetTarget()
 		if(auto_return && home && (loc != home))
@@ -241,21 +228,20 @@
 		M.Weaken(5)
 	..()
 
-/mob/living/bot/mulebot/proc/runOver(var/mob/living/carbon/human/H)
-	if(istype(H)) // No safety checks - WILL run over lying humans. Stop ERPing in the maint!
-		visible_message("<span class='warning'>[src] drives over [H]!</span>")
-		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+/mob/living/bot/mulebot/proc/runOver(var/mob/living/M)
+	if(istype(M)) // At this point, MULEBot has somehow crossed over onto your tile with you still on it. CRRRNCH.
+		visible_message("<span class='warning'>[src] drives over [M]!</span>")
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 
 		var/damage = rand(5, 7)
-		H.apply_damage(2 * damage, BRUTE, BP_HEAD)
-		H.apply_damage(2 * damage, BRUTE, BP_TORSO)
-		H.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
-		H.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
-		H.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
-		H.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
+		M.apply_damage(2 * damage, BRUTE, BP_HEAD)
+		M.apply_damage(2 * damage, BRUTE, BP_TORSO)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
 
-		blood_splatter(src, H, 1)
-	..()
+		blood_splatter(src, M, 1)
 
 /mob/living/bot/mulebot/relaymove(var/mob/user, var/direction)
 	if(load == user)
@@ -298,7 +284,7 @@
 
 	if(crates_only && !istype(C,/obj/structure/closet/crate))
 		custom_emote(2, "makes a sighing buzz.")
-		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return
 
 	var/obj/structure/closet/crate/crate = C
@@ -317,7 +303,7 @@
 	C.pixel_y += 9
 	if(C.layer < layer)
 		C.layer = layer + 0.1
-	overlays += C
+	add_overlay(C)
 
 	busy = 0
 
@@ -326,7 +312,7 @@
 		return
 
 	busy = 1
-	overlays.Cut()
+	cut_overlays()
 
 	load.forceMove(loc)
 	load.pixel_y -= 9

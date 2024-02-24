@@ -6,7 +6,7 @@
 
 /*
 /obj/item/clothing/gloves/boxing/attackby(obj/item/weapon/W, mob/user)
-	if(W.is_wirecutter() || istype(W, /obj/item/weapon/surgical/scalpel))
+	if(W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/weapon/surgical/scalpel))
 		to_chat(user, "<span class='notice'>That won't work.</span>")	//Nope
 		return
 	..()

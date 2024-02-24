@@ -1,7 +1,7 @@
 /mob/living/silicon/robot/updatehealth()
 	if(status_flags & GODMODE)
 		health = getMaxHealth()
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 		return
 	health = getMaxHealth() - (getBruteLoss() + getFireLoss())
 	return
@@ -20,13 +20,13 @@
 		if(C.installed != 0) amount += C.electronics_damage
 	return amount
 
-/mob/living/silicon/robot/adjustBruteLoss(var/amount)
+/mob/living/silicon/robot/adjustBruteLoss(var/amount,var/include_robo)
 	if(amount > 0)
 		take_overall_damage(amount, 0)
 	else
 		heal_overall_damage(-amount, 0)
 
-/mob/living/silicon/robot/adjustFireLoss(var/amount)
+/mob/living/silicon/robot/adjustFireLoss(var/amount,var/include_robo)
 	if(amount > 0)
 		take_overall_damage(0, amount)
 	else
@@ -62,7 +62,7 @@
 	var/datum/robot_component/picked = pick(parts)
 	picked.heal_damage(brute,burn)
 
-/mob/living/silicon/robot/take_organ_damage(var/brute = 0, var/burn = 0, var/sharp = 0, var/edge = 0, var/emp = 0)
+/mob/living/silicon/robot/take_organ_damage(var/brute = 0, var/burn = 0, var/sharp = FALSE, var/edge = FALSE, var/emp = 0)
 	var/list/components = get_damageable_components()
 	if(!components.len)
 		return
@@ -79,11 +79,11 @@
 			cell.charge -= cost
 			if(cell.charge <= 0)
 				cell.charge = 0
-				to_chat(src, "<font color='red'>Your shield has overloaded!</font>")
+				to_chat(src, "<span class='filter_warning'>[span_red("Your shield has overloaded!")]</span>")
 			else
 				brute -= absorb_brute
 				burn -= absorb_burn
-				to_chat(src, "<font color='red'>Your shield absorbs some of the impact!</font>")
+				to_chat(src, "<span class='filter_combat'>[span_red("Your shield absorbs some of the impact!")]</span>")
 
 	if(!emp)
 		var/datum/robot_component/armour/A = get_armour()
@@ -110,7 +110,7 @@
 
 		parts -= picked
 
-/mob/living/silicon/robot/take_overall_damage(var/brute = 0, var/burn = 0, var/sharp = 0, var/used_weapon = null)
+/mob/living/silicon/robot/take_overall_damage(var/brute = 0, var/burn = 0, var/sharp = FALSE, var/used_weapon = null)
 	if(status_flags & GODMODE)	return	//godmode
 	var/list/datum/robot_component/parts = get_damageable_components()
 
@@ -126,11 +126,11 @@
 			cell.charge -= cost
 			if(cell.charge <= 0)
 				cell.charge = 0
-				to_chat(src, "<font color='red'>Your shield has overloaded!</font>")
+				to_chat(src, "<span class='filter_warning'>[span_red("Your shield has overloaded!")]</span>")
 			else
 				brute -= absorb_brute
 				burn -= absorb_burn
-				to_chat(src, "<font color='red'>Your shield absorbs some of the impact!</font>")
+				to_chat(src, "<span class='filter_combat'>[span_red("Your shield absorbs some of the impact!")]</span>")
 
 	var/datum/robot_component/armour/A = get_armour()
 	if(A)

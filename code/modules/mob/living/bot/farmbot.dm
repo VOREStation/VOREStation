@@ -6,11 +6,11 @@
 /mob/living/bot/farmbot
 	name = "Farmbot"
 	desc = "The botanist's best friend."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/obj/chemical_tanks.dmi'
 	icon_state = "farmbot0"
 	health = 50
 	maxHealth = 50
-	req_one_access = list(access_robotics, access_hydroponics, access_xenobiology)	//TFF 11/7/19 - adds Xenobio access on behalf of Nalarac
+	req_one_access = list(access_robotics, access_hydroponics, access_xenobiology)
 
 	var/action = "" // Used to update icon
 	var/waters_trays = 1
@@ -30,38 +30,45 @@
 	tank = newTank
 	tank.forceMove(src)
 
+/mob/living/bot/farmbot/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Farmbot", name)
+		ui.open()
 
-/mob/living/bot/farmbot/attack_hand(var/mob/user as mob)
+/mob/living/bot/farmbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["on"] = on
+	data["tank"] = !!tank
+	if(tank)
+		data["tankVolume"] = tank.reagents.total_volume
+		data["tankMaxVolume"] = tank.reagents.maximum_volume
+	data["locked"] = locked
+
+	data["waters_trays"] = null
+	data["refills_water"] = null
+	data["uproots_weeds"] = null
+	data["replaces_nutriment"] = null
+	data["collects_produce"] = null
+	data["removes_dead"] = null
+
+	if(!locked)
+		data["waters_trays"] = waters_trays
+		data["refills_water"] = refills_water
+		data["uproots_weeds"] = uproots_weeds
+		data["replaces_nutriment"] = replaces_nutriment
+		data["collects_produce"] = collects_produce
+		data["removes_dead"] = removes_dead
+
+	return data
+
+
+/mob/living/bot/farmbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
-	var/dat = ""
-	dat += "<TT><B>Automatic Hyrdoponic Assisting Unit v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Water Tank: "
-	if (tank)
-		dat += "[tank.reagents.total_volume]/[tank.reagents.maximum_volume]"
-	else
-		dat += "Error: Watertank not found"
-	dat += "<br>Behaviour controls are [locked ? "locked" : "unlocked"]<hr>"
-	if(!locked)
-		dat += "<TT>Watering controls:<br>"
-		dat += "Water plants : <A href='?src=\ref[src];water=1'>[waters_trays ? "Yes" : "No"]</A><BR>"
-		dat += "Refill watertank : <A href='?src=\ref[src];refill=1'>[refills_water ? "Yes" : "No"]</A><BR>"
-		dat += "<br>Weeding controls:<br>"
-		dat += "Weed plants: <A href='?src=\ref[src];weed=1'>[uproots_weeds ? "Yes" : "No"]</A><BR>"
-		dat += "<br>Nutriment controls:<br>"
-		dat += "Replace fertilizer: <A href='?src=\ref[src];replacenutri=1'>[replaces_nutriment ? "Yes" : "No"]</A><BR>"
-		/* VOREStation Removal - No whole-job lag-bot automation.
-		dat += "<br>Plant controls:<br>"
-		dat += "Collect produce: <A href='?src=\ref[src];collect=1'>[collects_produce ? "Yes" : "No"]</A><BR>"
-		dat += "Remove dead plants: <A href='?src=\ref[src];removedead=1'>[removes_dead ? "Yes" : "No"]</A><BR>"
-		*/
-		dat += "</TT>"
-
-	user << browse("<HEAD><TITLE>Farmbot v1.0 controls</TITLE></HEAD>[dat]", "window=autofarm")
-	onclose(user, "autofarm")
-	return
+	tgui_interact(user)
 
 /mob/living/bot/farmbot/emag_act(var/remaining_charges, var/mob/user)
 	. = ..()
@@ -73,35 +80,47 @@
 			emagged = 1
 		return 1
 
-/mob/living/bot/farmbot/Topic(href, href_list)
+/mob/living/bot/farmbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
-	usr.machine = src
+		return TRUE
+
 	add_fingerprint(usr)
-	if((href_list["power"]) && (access_scanner.allowed(usr)))
-		if(on)
-			turn_off()
-		else
-			turn_on()
+
+	switch(action)
+		if("power")
+			if(!access_scanner.allowed(usr))
+				return FALSE
+			if(on)
+				turn_off()
+			else
+				turn_on()
+			. = TRUE
 
 	if(locked)
-		return
+		return TRUE
 
-	if(href_list["water"])
-		waters_trays = !waters_trays
-	else if(href_list["refill"])
-		refills_water = !refills_water
-	else if(href_list["weed"])
-		uproots_weeds = !uproots_weeds
-	else if(href_list["replacenutri"])
-		replaces_nutriment = !replaces_nutriment
-	else if(href_list["collect"])
-		collects_produce = !collects_produce
-	else if(href_list["removedead"])
-		removes_dead = !removes_dead
+	switch(action)
+		if("water")
+			waters_trays = !waters_trays
+			. = TRUE
+		if("refill")
+			refills_water = !refills_water
+			. = TRUE
+		if("weed")
+			uproots_weeds = !uproots_weeds
+			. = TRUE
+		if("replacenutri")
+			replaces_nutriment = !replaces_nutriment
+			. = TRUE
+		// VOREStation Edit: No automatic hydroponics
+		// if("collect")
+		// 	collects_produce = !collects_produce
+		// 	. = TRUE
+		// if("removedead")
+		// 	removes_dead = !removes_dead
+		// 	. = TRUE
+		// VOREStation Edit End
 
-	attack_hand(usr)
-	return
 
 /mob/living/bot/farmbot/update_icons()
 	if(on && action)
@@ -109,12 +128,9 @@
 	else
 		icon_state = "farmbot[on]"
 
-
 /mob/living/bot/farmbot/handleRegular()
 	if(emagged && prob(1))
 		flick("farmbot_broke", src)
-
-
 
 /mob/living/bot/farmbot/handleAdjacentTarget()
 	UnarmedAttack(target)
@@ -137,6 +153,7 @@
 				times_idle = 0 //VOREStation Add - Idle shutoff time
 				return
 	if(++times_idle == 150) turn_off() //VOREStation Add - Idle shutoff time
+
 /mob/living/bot/farmbot/calcTargetPath() // We need to land NEXT to the tray, because the tray itself is impassable
 	for(var/trayDir in list(NORTH, SOUTH, EAST, WEST))
 		target_path = AStar(get_turf(loc), get_step(get_turf(target), trayDir), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, max_target_dist, id = botcard)
@@ -185,7 +202,7 @@
 
 				busy = 1
 				if(do_after(src, 30, A))
-					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+					playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 					visible_message("<span class='notice'>[src] waters \the [A].</span>")
 					tank.reagents.trans_to(T, 100 - T.waterlevel)
 			if(FARMBOT_UPROOT)
@@ -223,7 +240,7 @@
 		while(do_after(src, 10) && tank.reagents.total_volume < tank.reagents.maximum_volume)
 			tank.reagents.add_reagent("water", 100) //VOREStation Edit
 			if(prob(5))
-				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+				playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 
 		busy = 0
 		action = ""
@@ -269,8 +286,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	//qdel(src)
+	return ..()
 
 
 /mob/living/bot/farmbot/confirmTarget(var/atom/targ)
@@ -313,7 +330,7 @@
 /obj/item/weapon/farmbot_arm_assembly
 	name = "water tank/robot arm assembly"
 	desc = "A water tank with a robot arm permanently grafted to it."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/obj/chemical_tanks.dmi'
 	icon_state = "water_arm"
 	var/build_step = 0
 	var/created_name = "Farmbot"
@@ -392,7 +409,7 @@
 		qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = input(user, "Enter new robot name", name, created_name) as text
+		var/t = tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN)
 		t = sanitize(t, MAX_NAME_LEN)
 		if(!t)
 			return

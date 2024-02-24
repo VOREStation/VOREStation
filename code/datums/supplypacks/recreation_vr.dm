@@ -20,7 +20,7 @@
 			/obj/item/clothing/suit/straight_jacket,
 			/obj/item/weapon/handcuffs/legcuffs/fuzzy,
 			/obj/item/weapon/melee/fluff/holochain/mass,
-			/obj/item/weapon/material/twohanded/fluff/riding_crop,
+			/obj/item/weapon/material/twohanded/riding_crop,
 			/obj/item/clothing/under/fluff/latexmaid
 			)
 	containertype = /obj/structure/closet/crate
@@ -64,3 +64,45 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "collar crate"
+
+/datum/supply_pack/recreation/shiny
+	name = "Shiny Clothing"
+	contains = list(
+			/obj/item/clothing/mask/muzzle/ballgag = 1,
+			/obj/item/clothing/mask/muzzle/ballgag/ringgag = 1,
+			/obj/item/clothing/head/shiny_hood = 1,
+			/obj/item/clothing/head/shiny_hood/poly = 1,
+			/obj/item/clothing/head/shiny_hood/closed = 1,
+			/obj/item/clothing/head/shiny_hood/closed/poly = 1,
+			/obj/item/clothing/under/shiny/catsuit = 1,
+			/obj/item/clothing/under/shiny/catsuit/poly = 1,
+			/obj/item/clothing/under/shiny/leotard = 1,
+			/obj/item/clothing/under/shiny/leotard/poly = 1,
+			/obj/item/clothing/accessory/shiny/gloves = 1,
+			/obj/item/clothing/accessory/shiny/gloves/poly = 1,
+			/obj/item/clothing/accessory/shiny/socks = 1,
+			/obj/item/clothing/accessory/shiny/socks/poly = 1
+			)
+	containertype = /obj/structure/closet/crate
+	containername = "Shiny clothes crate"
+	cost = 30
+
+//3/19/21
+/datum/supply_pack/recreation/smoleworld
+	name = "Smole Bulding Bricks"
+	contains = list(
+			/obj/item/weapon/storage/smolebrickcase, /obj/item/weapon/storage/smolebrickcase,
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate
+	containername = "Smole Bulding Brick crate"
+
+/datum/supply_pack/recreation/smolesnackplanets
+	name = "Snack planets pack"
+	num_contained = 4
+	contains = list(
+			/obj/item/weapon/storage/bagoplanets, /obj/item/weapon/storage/bagoplanets
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate
+	containername = "Snack planets crate"

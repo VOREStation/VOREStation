@@ -1,0 +1,579 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/light/bigfloorlamp,
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage)
+"h" = (
+/turf/simulated/wall/wood,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"i" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/rack,
+/obj/effect/landmark/costume/imperium_monk,
+/obj/effect/landmark/costume/madscientist,
+/obj/effect/landmark/costume/maid,
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"l" = (
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"n" = (
+/obj/structure/table/rack,
+/obj/effect/landmark/costume/butler,
+/obj/effect/landmark/costume/chicken,
+/obj/effect/landmark/costume/commie,
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"o" = (
+/obj/machinery/light/bigfloorlamp,
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"p" = (
+/obj/structure/table/rack,
+/obj/effect/landmark/costume/nyangirl,
+/obj/effect/landmark/costume/pirate,
+/obj/effect/landmark/costume/plaguedoctor,
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"q" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/groundbase/poi/wildvillage)
+"s" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"t" = (
+/obj/machinery/light/floortube{
+	pixel_y = -5
+	},
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"u" = (
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"x" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"z" = (
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"F" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/rack,
+/obj/effect/landmark/costume/gladiator,
+/obj/effect/landmark/costume/highlander,
+/obj/effect/landmark/costume/holiday_priest,
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"H" = (
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"L" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"N" = (
+/turf/simulated/floor/water,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"O" = (
+/obj/structure/bed/chair/sofa/bench{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"R" = (
+/obj/structure/table/rack,
+/obj/effect/landmark/costume/marisawizard,
+/obj/effect/landmark/costume/marisawizard/fake,
+/obj/effect/landmark/costume/nightowl,
+/obj/effect/landmark/costume/scratch,
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"T" = (
+/obj/structure/table/rack,
+/obj/effect/landmark/costume/cutewitch,
+/obj/effect/landmark/costume/elpresidente,
+/obj/effect/landmark/costume/fakewizard,
+/obj/effect/landmark/costume/waiter,
+/turf/simulated/floor/bmarble{
+	edge_blending_priority = -1
+	},
+/area/submap/groundbase/poi/wildvillage/long/long2)
+"W" = (
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage)
+
+(1,1,1) = {"
+a
+W
+W
+W
+q
+q
+q
+W
+W
+W
+W
+W
+W
+W
+q
+q
+q
+W
+W
+W
+W
+W
+W
+a
+"}
+(2,1,1) = {"
+W
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+W
+"}
+(3,1,1) = {"
+W
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+W
+"}
+(4,1,1) = {"
+W
+u
+h
+h
+h
+L
+h
+u
+u
+u
+u
+o
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+W
+"}
+(5,1,1) = {"
+W
+u
+h
+T
+n
+H
+x
+H
+u
+z
+L
+z
+L
+z
+u
+L
+u
+u
+N
+N
+u
+u
+u
+W
+"}
+(6,1,1) = {"
+W
+u
+h
+F
+H
+H
+H
+t
+u
+O
+L
+O
+L
+O
+u
+L
+u
+N
+N
+N
+N
+u
+u
+W
+"}
+(7,1,1) = {"
+W
+u
+L
+H
+H
+H
+H
+H
+u
+l
+L
+l
+L
+l
+u
+L
+u
+N
+N
+N
+N
+u
+u
+W
+"}
+(8,1,1) = {"
+q
+L
+L
+H
+H
+H
+H
+H
+u
+L
+L
+u
+L
+u
+u
+L
+u
+N
+N
+N
+N
+u
+u
+W
+"}
+(9,1,1) = {"
+q
+L
+L
+H
+H
+H
+H
+t
+u
+u
+L
+L
+L
+L
+L
+L
+u
+N
+N
+N
+N
+u
+u
+W
+"}
+(10,1,1) = {"
+q
+L
+L
+H
+H
+H
+H
+H
+u
+L
+L
+u
+L
+u
+u
+L
+u
+N
+N
+N
+N
+u
+u
+W
+"}
+(11,1,1) = {"
+W
+u
+L
+H
+H
+H
+H
+H
+u
+z
+L
+z
+L
+z
+u
+L
+u
+N
+N
+N
+N
+u
+u
+W
+"}
+(12,1,1) = {"
+W
+u
+h
+i
+H
+H
+H
+t
+u
+O
+L
+O
+L
+O
+u
+L
+u
+N
+N
+N
+N
+u
+u
+W
+"}
+(13,1,1) = {"
+W
+u
+h
+R
+p
+H
+s
+H
+u
+l
+L
+l
+L
+l
+u
+L
+u
+u
+N
+N
+u
+u
+u
+W
+"}
+(14,1,1) = {"
+W
+u
+h
+h
+h
+L
+h
+u
+u
+u
+u
+o
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+W
+"}
+(15,1,1) = {"
+W
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+W
+"}
+(16,1,1) = {"
+W
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+u
+u
+L
+u
+u
+u
+u
+u
+u
+u
+W
+"}
+(17,1,1) = {"
+a
+W
+W
+W
+q
+q
+q
+W
+W
+W
+W
+W
+W
+W
+q
+q
+q
+W
+W
+W
+W
+W
+W
+a
+"}

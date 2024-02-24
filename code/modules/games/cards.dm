@@ -18,6 +18,8 @@
 	name = "deck of cards"
 	desc = "A simple deck of playing cards."
 	icon_state = "deck"
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 /obj/item/weapon/deck/cards/New()
 	..()
@@ -109,7 +111,7 @@
 	cards -= P
 	H.parentdeck = src
 	H.update_icon()
-	user.visible_message("<span class='notice'>\The [user] draws a card.</span>")
+	user.visible_message("<b>\The [user]</b> draws a card.")
 	to_chat(user,"<span class='notice'>It's the [P].</span>")
 
 /obj/item/weapon/deck/verb/deal_card()
@@ -131,7 +133,7 @@
 			players += player
 	//players -= usr
 
-	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
+	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal a card?", "Deal to whom?", players)
 	if(!usr || !src || !M) return
 
 	deal_at(usr, M, 1)
@@ -155,10 +157,10 @@
 			players += player
 	//players -= usr
 	var/maxcards = max(min(cards.len,10),1)
-	var/dcard = input("How many card(s) do you wish to deal? You may deal up to [maxcards] cards.") as num
+	var/dcard = tgui_input_number(usr, "How many card(s) do you wish to deal? You may deal up to [maxcards] cards.", null, null, maxcards)
 	if(dcard > maxcards)
 		return
-	var/mob/living/M = input("Who do you wish to deal [dcard] card(s)?") as null|anything in players
+	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal [dcard] card(s)?", "Deal to whom?", players)
 	if(!usr || !src || !M) return
 
 	deal_at(usr, M, dcard)
@@ -186,7 +188,7 @@
 		if(P.name != "Blank Card")
 			to_chat(user,"<span class = 'notice'>You cannot write on that card.</span>")
 			return
-		var/cardtext = sanitize(input(user, "What do you wish to write on the card?", "Card Editing") as text|null, MAX_PAPER_MESSAGE_LEN)
+		var/cardtext = sanitize(tgui_input_text(user, "What do you wish to write on the card?", "Card Editing", null, MAX_PAPER_MESSAGE_LEN), MAX_PAPER_MESSAGE_LEN)
 		if(!cardtext)
 			return
 		P.name = cardtext
@@ -230,7 +232,7 @@
 			cards -= P
 		cards = newcards
 		user.visible_message("<span class = 'notice'>\The [user] shuffles [src].</span>")
-		playsound(user, 'sound/items/cardshuffle.ogg', 50, 1)
+		playsound(src, 'sound/items/cardshuffle.ogg', 50, 1)
 		cooldown = world.time
 	else
 		return
@@ -281,6 +283,8 @@
 	w_class = ITEMSIZE_TINY
 	var/list/cards = list()
 	var/parentdeck = null // This variable is added here so that card pack dependent card can be mixed together by defining a "parentdeck" for them
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 
 /obj/item/weapon/pack/attack_self(var/mob/user as mob)
@@ -301,6 +305,8 @@
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "empty"
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 	w_class = ITEMSIZE_TINY
 
 	var/concealed = 0
@@ -315,14 +321,14 @@
 
 	var/i
 	var/maxcards = min(cards.len,5) // Maximum of 5 cards at once
-	var/discards = input("How many cards do you want to discard? You may discard up to [maxcards] card(s)") as num
+	var/discards = tgui_input_number(usr, "How many cards do you want to discard? You may discard up to [maxcards] card(s)", null, null, maxcards, 0)
 	if(discards > maxcards)
 		return
 	for	(i = 0;i < discards;i++)
 		var/list/to_discard = list()
 		for(var/datum/playingcard/P in cards)
 			to_discard[P.name] = P
-		var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
+		var/discarding = tgui_input_list(usr, "Which card do you wish to put down?", "Card Selection", to_discard)
 
 		if(!discarding || !to_discard[discarding] || !usr || !src) return
 
@@ -337,7 +343,8 @@
 		H.update_icon()
 		src.update_icon()
 		usr.visible_message("<span class = 'notice'>\The [usr] plays \the [discarding].</span>")
-		H.loc = get_step(usr,usr.dir)
+		H.loc = get_turf(usr)
+		H.Move(get_step(usr,usr.dir))
 
 	if(!cards.len)
 		qdel(src)
@@ -348,11 +355,11 @@
 	user.visible_message("<span class = 'notice'>\The [user] [concealed ? "conceals" : "reveals"] their hand.</span>")
 
 /obj/item/weapon/hand/examine(mob/user)
-	..(user)
+	. = ..()
 	if((!concealed) && cards.len)
-		to_chat(user,"It contains: ")
+		. += "It contains: "
 		for(var/datum/playingcard/P in cards)
-			to_chat(user,"\The [P.name].")
+			. += "\The [P.name]."
 
 /obj/item/weapon/hand/verb/Removecard()
 
@@ -372,7 +379,7 @@
 	var/pickablecards = list()
 	for(var/datum/playingcard/P in cards)
 		pickablecards[P.name] += P
-	var/pickedcard = input("Which card do you want to remove from the hand?")	as null|anything in pickablecards
+	var/pickedcard = tgui_input_list(usr, "Which card do you want to remove from the hand?", "Card Selection", pickablecards)
 
 	if(!pickedcard || !pickablecards[pickedcard] || !usr || !src) return
 
@@ -393,28 +400,30 @@
 
 /obj/item/weapon/hand/update_icon(var/direction = 0)
 
-	if(!cards.len)
+	var/cardNumber = cards.len
+
+	if(!cardNumber)
 		qdel(src)
 		return
-	else if(cards.len > 1)
-		name = "hand of cards"
+	else if(cardNumber > 1)
+		name = "hand of cards ([cardNumber])"
 		desc = "Some playing cards."
 	else
 		name = "a playing card"
 		desc = "A playing card."
 
-	overlays.Cut()
+	cut_overlays()
 
 
-	if(cards.len == 1)
+	if(cardNumber == 1)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
 		I.pixel_y += (-5+rand(10))
-		overlays += I
+		add_overlay(I)
 		return
 
-	var/offset = FLOOR(20/cards.len, 1)
+	var/offset = FLOOR(20/cardNumber, 1)
 
 	var/matrix/M = matrix()
 	if(direction)
@@ -443,8 +452,9 @@
 			else
 				I.pixel_x = -7+(offset*i)
 		I.transform = M
-		overlays += I
+		add_overlay(I)
 		i++
+
 
 /obj/item/weapon/hand/dropped(mob/user as mob)
 	if(locate(/obj/structure/table, loc))

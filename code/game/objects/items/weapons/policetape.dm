@@ -32,7 +32,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape
 	name = "tape"
 	icon = 'icons/policetape.dmi'
-	anchored = 1
+	anchored = TRUE
 	layer = WINDOW_LAYER
 	var/lifted = 0
 	var/crumpled = 0
@@ -114,7 +114,7 @@ var/list/tape_roll_applications = list()
 	color = COLOR_DEEP_SKY_BLUE
 
 /obj/item/taperoll/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/image/overlay = image(icon = src.icon)
 	overlay.appearance_flags = RESET_COLOR
 	if(ismob(loc))
@@ -122,7 +122,7 @@ var/list/tape_roll_applications = list()
 			overlay.icon_state = "start"
 		else
 			overlay.icon_state = "stop"
-		overlays += overlay
+		add_overlay(overlay)
 
 
 /obj/item/taperoll/dropped(mob/user)
@@ -303,11 +303,11 @@ var/list/tape_roll_applications = list()
 
 		if(tape_roll_applications[F] & direction) // hazard_overlay in F.overlays wouldn't work.
 			user.visible_message("\The [user] uses the adhesive of \the [src] to remove area markings from \the [F].", "You use the adhesive of \the [src] to remove area markings from \the [F].")
-			F.overlays -= hazard_overlay
+			F.cut_overlay(hazard_overlay)
 			tape_roll_applications[F] &= ~direction
 		else
 			user.visible_message("\The [user] applied \the [src] on \the [F] to create area markings.", "You apply \the [src] on \the [F] to create area markings.")
-			F.overlays |= hazard_overlay
+			F.add_overlay(hazard_overlay)
 			tape_roll_applications[F] |= direction
 		return
 
@@ -333,7 +333,7 @@ var/list/tape_roll_applications = list()
 
 /obj/item/tape/attack_hand(mob/user as mob)
 	if (user.a_intent == I_HELP && src.allowed(user))
-		user.show_viewers("<span class='notice'>\The [user] lifts \the [src], allowing passage.</span>")
+		user.show_viewers("<b>\The [user]</b> lifts \the [src], allowing passage.")
 		for(var/obj/item/tape/T in gettapeline())
 			T.lift(100) //~10 seconds
 	else
@@ -377,7 +377,7 @@ var/list/tape_roll_applications = list()
 	if(user.a_intent == I_HELP)
 		to_chat(user, "<span class='warning'>You refrain from breaking \the [src].</span>")
 		return
-	user.visible_message("<span class='notice'>\The [user] breaks \the [src]!</span>","<span class='notice'>You break \the [src].</span>")
+	user.visible_message("<b>\The [user]</b> breaks \the [src]!","<span class='notice'>You break \the [src].</span>")
 
 	for (var/obj/item/tape/T in gettapeline())
 		if(T == src)

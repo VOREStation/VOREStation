@@ -33,9 +33,10 @@ List of things solar grubs should be able to do:
 	melee_damage_lower = 1
 	melee_damage_upper = 3	//low damage, but poison and stuns are strong
 
-	movement_cooldown = 8
+	movement_cooldown = 3
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	meat_amount = 6
 
 	response_help = "pokes"
 	response_disarm = "pushes"
@@ -50,6 +51,7 @@ List of things solar grubs should be able to do:
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable
 	var/shock_chance = 10 // Beware
+	var/tracked = FALSE
 
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
@@ -69,12 +71,12 @@ List of things solar grubs should be able to do:
 		if(attached)
 			set_AI_busy(TRUE)
 			if(prob(2))
-				src.visible_message("<span class='notice'>\The [src] begins to sink power from the net.</span>")
+				src.visible_message("<b>\The [src]</b> begins to sink power from the net.")
 			if(prob(5))
 				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 				sparks.set_up(5, 0, get_turf(src))
 				sparks.start()
-			anchored = 1
+			anchored = TRUE
 			PN = attached.powernet
 			PN.draw_power(100000) // previous value 150000
 			var/apc_drain_rate = 750 //Going to see if grubs are better as a minimal bother. previous value : 4000
@@ -86,7 +88,7 @@ List of things solar grubs should be able to do:
 						var/drain_val = min(apc_drain_rate, cur_charge)
 						A.cell.use(drain_val * CELLRATE)
 		else if(!attached && anchored)
-			anchored = 0
+			anchored = FALSE
 			PN = null
 
 /mob/living/simple_mob/vore/solargrub //active noms
@@ -123,7 +125,7 @@ List of things solar grubs should be able to do:
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_mob/vore/solargrub/death()
-	src.anchored = 0
+	src.anchored = FALSE
 	set_light(0)
 	..()
 
@@ -137,7 +139,29 @@ List of things solar grubs should be able to do:
 		set_light(2.5, 1, COLOR_YELLOW)
 		return 1
 
-/datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker)
-	holder.anchored = 0
+/mob/living/simple_mob/vore/solargrub/init_vore()
+	..()
+	var/obj/belly/B = vore_selected
+	B.name = "stomach"
+	B.desc = "Through either grave error, overwhelming willingness, or some other factor, you find yourself lodged halfway past the solargrub's mandibles. While it had initially hissed and chittered in glee at the prospect of a new meal, it is clearly more versed in suckling on power cables; inch by inch, bit by bit, it undulates forth to slowly, noisily gulp you down its short esophagus... and right into its extra-cramped, surprisingly hot stomach. As the rest of you spills out into the plush-walled chamber, the grub's soft body bulges outwards here and there with your compressed figure. Before long, a thick slime oozes out from the surrounding stomach walls; only time will tell how effective it is on something solid like you..."
+
+	B.emote_lists[DM_HOLD] = list(
+		"The air trapped within the solargrub is hot, humid, and tinged with ozone, but otherwise mercifully harmless to you aside from being heavy on the lungs.",
+		"Your doughy, squishy surroundings heavily pulse around your body as the solargrub attempts to wriggle elsewhere, its solid prey weighing it down quite a bit.",
+		"Suddenly, an arc of electricity harmlessly jumps through the grub's stomach, briefly illuminating your slimy, glistening surroundings in a flash of yellow.",
+		"With all the power coursing through the solargrub's body, its inner muscles are in a constant state of vibrating all over you, adding an extra element to your full-body massage.",
+		"For a moment, the solargrub's stomach walls clench down even more firmly than before, working its subtle inner vibrations into your muscles, steadily relaxing them down.",
+		"The incredible heat trapped within the solargrub helps daze and disorient you, ensuring that its new filling wouldn't interfere in its power-draining.")
+
+	B.emote_lists[DM_DIGEST] = list(
+		"Every breath taken inside the solargrub is swelteringly hot, painfully thick, and more than subtly caustic, worsening with every passing moment spent inside!",
+		"As the solargrub wriggles off somewhere quiet to digest its meal, the resulting undulations help crush you down into a more compact, easier to handle morsel!",
+		"From time to time, additional jolts of electricity unpleasantly course through your body, helping ensure that the solargrub's food was thoroughly paralyzed!",
+		"With how incredibly charged the solargrub is, its constant internal vibrating adds an additional layer of processing to its stomach's slow, steady churning, helping break you down faster!",
+		"The solargrub chitters in irritation at your continued solidity, followed by a string of crushingly tight stomach clenches that grind its caustic stomach ooze into your body!",
+		"The deceptively severe heat trapped within the solargrub works in tandem with its inner muscles and your tingling, prickling stomach juice bath to weaken you!")
+
+/datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker, ignore_timers = FALSE)
+	holder.anchored = FALSE
 	holder.set_AI_busy(FALSE)
 	..()

@@ -30,7 +30,7 @@
 	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
 	then click where you want to fire.  Most energy weapons can fire through windows harmlessly. To recharge this weapon, use a weapon recharger."
 
-/obj/item/weapon/gun/energy/gun/stunrevolver
+/obj/item/weapon/gun/energy/stunrevolver
 	description_info = "This is an energy weapon.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
 	then click where you want to fire.  Most energy weapons can fire through windows harmlessly. To recharge this weapon, use a weapon recharger."
 
@@ -77,6 +77,30 @@
 //*******
 //*Melee*
 //*******
+/*
+/obj/item/weapon/melee/baton/proc/describe_agonypower()
+	switch(agonyforce)
+		if(1 to 20)
+			return "a mild amount of"
+		if(21 to 40)
+			return "a modest amount of"
+		if(41 to 60)
+			return "a moderate amount of"
+		if(61 to 80)
+			return "a serious amount of"
+		if(81 to 100)
+			return "a significant amount of"
+
+/obj/item/weapon/melee/baton/get_description_info()
+	. = ..()
+	var/baton_stats = description_info + "\
+	<br>"
+
+	if(agonyforce)
+		baton_stats += "\nIt also inflicts [describe_agonypower()] pain, if charged and active."
+
+	return baton_stats
+*/
 
 /obj/item/weapon/melee/baton
 	description_info = "The baton needs to be turned on to apply the stunning effect.  Use it in your hand to toggle it on or off.  If your intent is \

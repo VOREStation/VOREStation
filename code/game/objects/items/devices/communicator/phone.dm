@@ -39,15 +39,15 @@
 	comm.voice_requests.Remove(src)
 
 	if(user)
-		comm.visible_message("<span class='notice'>[bicon(src)] Connecting to [src].</span>")
-		to_chat(user, "<span class='notice'>[bicon(src)] Attempting to call [comm].</span>")
+		comm.visible_message("<span class='notice'>\icon[src][bicon(src)] Connecting to [src].</span>")
+		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Attempting to call [comm].</span>")
 		sleep(10)
-		to_chat(user, "<span class='notice'>[bicon(src)] Dialing internally from [station_name()], [system_name()].</span>")
+		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Dialing internally from [station_name()], [system_name()].</span>")
 		sleep(20) //If they don't have an exonet something is very wrong and we want a runtime.
-		to_chat(user, "<span class='notice'>[bicon(src)] Connection re-routed to [comm] at [comm.exonet.address].</span>")
+		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Connection re-routed to [comm] at [comm.exonet.address].</span>")
 		sleep(40)
-		to_chat(user, "<span class='notice'>[bicon(src)] Connection to [comm] at [comm.exonet.address] established.</span>")
-		comm.visible_message("<span class='notice'>[bicon(src)] Connection to [src] at [exonet.address] established.</span>")
+		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Connection to [comm] at [comm.exonet.address] established.</span>")
+		comm.visible_message("<span class='notice'>\icon[src][bicon(src)] Connection to [src] at [exonet.address] established.</span>")
 		sleep(20)
 
 	src.add_communicating(comm)
@@ -86,28 +86,28 @@
 
 	//Now for some connection fluff.
 	if(user)
-		to_chat(user, "<span class='notice'>[bicon(src)] Connecting to [candidate].</span>")
-	to_chat(new_voice, "<span class='notice'>[bicon(src)] Attempting to call [src].</span>")
+		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Connecting to [candidate].</span>")
+	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Attempting to call [src].</span>")
 	sleep(10)
-	to_chat(new_voice, "<span class='notice'>[bicon(src)] Dialing to [station_name()], Kara Subsystem, [system_name()].</span>")
+	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Dialing to [station_name()], Kara Subsystem, [system_name()].</span>")
 	sleep(20)
-	to_chat(new_voice, "<span class='notice'>[bicon(src)] Connecting to [station_name()] telecommunications array.</span>")
+	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Connecting to [station_name()] telecommunications array.</span>")
 	sleep(40)
-	to_chat(new_voice, "<span class='notice'>[bicon(src)] Connection to [station_name()] telecommunications array established.  Redirecting signal to [src].</span>")
+	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Connection to [station_name()] telecommunications array established.  Redirecting signal to [src].</span>")
 	sleep(20)
 
 	//We're connected, no need to hide everything.
 	new_voice.client.screen.Remove(blackness)
 	qdel(blackness)
 
-	to_chat(new_voice, "<span class='notice'>[bicon(src)] Connection to [src] established.</span>")
+	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Connection to [src] established.</span>")
 	to_chat(new_voice, "<b>To talk to the person on the other end of the call, just talk normally.</b>")
 	to_chat(new_voice, "<b>If you want to end the call, use the 'Hang Up' verb.  The other person can also hang up at any time.</b>")
 	to_chat(new_voice, "<b>Remember, your character does not know anything you've learned from observing!</b>")
 	if(new_voice.mind)
 		new_voice.mind.assigned_role = "Disembodied Voice"
 	if(user)
-		to_chat(user, "<span class='notice'>[bicon(src)] Your communicator is now connected to [candidate]'s communicator.</span>")
+		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Your communicator is now connected to [candidate]'s communicator.</span>")
 
 // Proc: close_connection()
 // Parameters: 3 (user - the user who initiated the disconnect, target - the mob or device being disconnected, reason - string shown when disconnected)
@@ -120,8 +120,8 @@
 	for(var/mob/living/voice/voice in voice_mobs) //Handle ghost-callers
 		if(target && voice != target) //If no target is inputted, it deletes all of them.
 			continue
-		to_chat(voice, "<span class='danger'>[bicon(src)] [reason].</span>")
-		visible_message("<span class='danger'>[bicon(src)] [reason].</span>")
+		to_chat(voice, "<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
+		visible_message("<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
 		voice_mobs.Remove(voice)
 		qdel(voice)
 		update_icon()
@@ -131,8 +131,8 @@
 			continue
 		src.del_communicating(comm)
 		comm.del_communicating(src)
-		comm.visible_message("<span class='danger'>[bicon(src)] [reason].</span>")
-		visible_message("<span class='danger'>[bicon(src)] [reason].</span>")
+		comm.visible_message("<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
+		visible_message("<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
 		if(comm.camera && video_source == comm.camera) //We hung up on the person on video
 			end_video()
 		if(camera && comm.video_source == camera) //We hung up on them while they were watching us
@@ -161,9 +161,9 @@
 	voice_requests |= candidate
 
 	if(ringer)
-		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
-			O.show_message(text("[bicon(src)] *beep*"))
+			O.show_message(text("\icon[src][bicon(src)] *beep*"))
 
 	alert_called = 1
 	update_icon()
@@ -174,7 +174,7 @@
 		L = loc
 
 	if(L)
-		to_chat(L, "<span class='notice'>[bicon(src)] Communications request from [who].</span>")
+		to_chat(L, "<span class='notice'>\icon[src][bicon(src)] Communications request from [who].</span>")
 
 // Proc: del_request()
 // Parameters: 1 (candidate - the ghost or communicator to be declined)
@@ -197,13 +197,13 @@
 		us = loc
 
 	if(us)
-		to_chat(us, "<span class='notice'>[bicon(src)] Declined request.</span>")
+		to_chat(us, "<span class='notice'>\icon[src][bicon(src)] Declined request.</span>")
 
 // Proc: see_emote()
 // Parameters: 2 (M - the mob the emote originated from, text - the emote's contents)
 // Description: Relays the emote to all linked communicators.
 /obj/item/device/communicator/see_emote(mob/living/M, text)
-	var/rendered = "[bicon(src)] <span class='message'>[text]</span>"
+	var/rendered = "\icon[src][bicon(src)] <span class='message'>[text]</span>"
 	for(var/obj/item/device/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
@@ -227,12 +227,12 @@
 	..()
 
 // Proc: hear_talk()
-// Parameters: 4 (M - the mob the speech originated from, text - what is being said, verb - the word used to describe how text is being said, speaking - language
-//				being used)
+// Parameters: 3 (M - the mob the speech originated from,
+//                list/message_pieces - what is being said w/ baked languages,
+//                verb - the word used to describe how text is being said)
 // Description: Relays the speech to all linked communicators.
-/obj/item/device/communicator/hear_talk(mob/living/M, text, verb, datum/language/speaking)
+/obj/item/device/communicator/hear_talk(mob/M, list/message_pieces, verb)
 	for(var/obj/item/device/communicator/comm in communicating)
-
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		//VOREStation Edit Start for commlinks
@@ -246,25 +246,18 @@
 		//VOREStation Edit End
 
 		for(var/mob/mob in mobs_to_relay)
-			//Can whoever is hearing us understand?
-			if(!mob.say_understands(M, speaking))
-				if(speaking)
-					text = speaking.scramble(text)
-				else
-					text = stars(text)
+			var/list/combined = mob.combine_message(message_pieces, verb, M)
+			var/message = combined["formatted"]
 			var/name_used = M.GetVoice()
 			var/rendered = null
-			if(speaking) //Language being used
-				rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [speaking.format_message(text, verb)]</span>"
-			else
-				rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [verb], <span class='message'>\"[text]\"</span></span>"
+			rendered = "<span class='game say'>\icon[src][bicon(src)] <span class='name'>[name_used]</span> [message]</span>"
 			mob.show_message(rendered, 2)
 
 // Proc: show_message()
 // Parameters: 4 (msg - the message, type - number to determine if message is visible or audible, alt - unknown, alt_type - unknown)
 // Description: Relays the message to all linked communicators.
 /obj/item/device/communicator/show_message(msg, type, alt, alt_type)
-	var/rendered = "[bicon(src)] <span class='message'>[msg]</span>"
+	var/rendered = "\icon[src][bicon(src)] <span class='message'>[msg]</span>"
 	for(var/obj/item/device/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
@@ -293,8 +286,7 @@
 	if (usr != src)
 		return //something is terribly wrong
 
-	var/confirm = alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator?  \
-						This will reset your respawn timer, if someone answers.", "Join as Voice?", "Yes","No")
+	var/confirm = tgui_alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
 	if(confirm == "No")
 		return
 
@@ -323,7 +315,7 @@
 		to_chat(src , "<span class='danger'>There are no available communicators, sorry.</span>")
 		return
 
-	var/choice = input(src,"Send a voice request to whom?") as null|anything in choices
+	var/choice = tgui_input_list(src,"Send a voice request to whom?", "Recipient Choice", choices)
 	if(choice)
 		var/obj/item/device/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src
@@ -340,59 +332,35 @@
 
 	if(video_source) //Already in a video
 		to_chat(user, "<span class='danger'>You are already connected to a video call!</span>")
+		return
 
 	if(user.blinded) //User is blinded
 		to_chat(user, "<span class='danger'>You cannot see well enough to do that!</span>")
+		return
 
 	if(!(src in comm.communicating) || !comm.camera) //You called someone with a broken communicator or one that's fake or yourself or something
-		to_chat(user, "<span class='danger'>[bicon(src)]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>")
+		to_chat(user, "<span class='danger'>\icon[src][bicon(src)]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>")
+		return
 
-	to_chat(user, "<span class='notice'>[bicon(src)] Attempting to start video over existing call.</span>")
+	to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Attempting to start video over existing call.</span>")
 	sleep(30)
-	to_chat(user, "<span class='notice'>[bicon(src)] Please wait...</span>")
+	to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Please wait...</span>")
 
 	video_source = comm.camera
-	comm.visible_message("<span class='danger'>[bicon(src)] New video connection from [comm].</span>")
-	watch_video(user)
+	comm.visible_message("<span class='danger'>\icon[src][bicon(src)] New video connection from [comm].</span>")
+	update_active_camera_screen()
+	GLOB.moved_event.register(video_source, src, PROC_REF(update_active_camera_screen))
 	update_icon()
-
-// Proc: watch_video()
-// Parameters: user - the mob doing the viewing of video
-// Description: Moves a mob's eye to the far end for the duration of viewing the far end
-/obj/item/device/communicator/proc/watch_video(mob/user)
-	if(!Adjacent(user) || !video_source) return
-	user.set_machine(video_source)
-	user.reset_view(video_source)
-	to_chat(user, "<span class='notice'>Now viewing video session. To leave camera view, close the communicator window OR: OOC -> Cancel Camera View</span>")
-	to_chat(user, "<span class='notice'>To return to an active video session, use the communicator in your hand.</span>")
-	spawn(0)
-		while(user.machine == video_source && Adjacent(user))
-			var/turf/T = get_turf(video_source)
-			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !video_source.can_use())
-				to_chat(user, "<span class='warning'>The screen bursts into static, then goes black.</span>")
-				video_cleanup(user)
-				return
-			sleep(10)
-
-		video_cleanup(user)
-
-// Proc: video_cleanup()
-// Parameters: user - the mob who doesn't want to see video anymore
-// Description: Cleans up mob's client when they stop watching a video
-/obj/item/device/communicator/proc/video_cleanup(mob/user)
-	if(!user) return
-
-	user.reset_view(null)
-	user.unset_machine()
 
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
 /obj/item/device/communicator/proc/end_video(var/reason)
+	GLOB.moved_event.unregister(video_source, src, PROC_REF(update_active_camera_screen))
+	show_static()
 	video_source = null
 
-	. = "<span class='danger'>[bicon(src)] [reason ? reason : "Video session ended"].</span>"
+	. = "<span class='danger'>\icon[src][bicon(src)] [reason ? reason : "Video session ended"].</span>"
 
 	visible_message(.)
 	update_icon()
-

@@ -1,25 +1,32 @@
 // Based on railing.dmi from https://github.com/Endless-Horizon/CEV-Eris
 /obj/structure/railing
 	name = "railing"
-	desc = "A standard steel railing.  Play stupid games, win stupid prizes."
+	desc = "A standard steel railing, painted orange.  Play stupid games, win stupid prizes."
 	icon = 'icons/obj/railing.dmi'
-	density = 1
+	density = TRUE
 	throwpass = 1
-	climbable = 1
+	climbable = TRUE
 	layer = WINDOW_LAYER
-	anchored = 1
+	anchored = TRUE
 	flags = ON_BORDER
 	icon_state = "railing0"
 	var/broken = FALSE
 	var/health = 70
 	var/maxhealth = 70
 	var/check = 0
+	var/icon_modifier = ""
+
+/obj/structure/railing/grey
+	name = "grey railing"
+	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
+	icon_modifier = "grey_"
+	icon_state = "grey_railing0"
 
 /obj/structure/railing/New(loc, constructed = 0)
 	..()
 	// TODO - "constructed" is not passed to us. We need to find a way to do this safely.
 	if (constructed) // player-constructed railings
-		anchored = 0
+		anchored = FALSE
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
@@ -37,7 +44,14 @@
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
-	if(get_dir(mover, target) == turn(dir, 180))
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+		return !density
+	return TRUE
+
+/obj/structure/railing/Uncross(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
 		return !density
 	return TRUE
 
@@ -46,17 +60,17 @@
 	if(health < maxhealth)
 		switch(health / maxhealth)
 			if(0.0 to 0.5)
-				to_chat(user, "<span class='warning'>It looks severely damaged!</span>")
+				. += "<span class='warning'>It looks severely damaged!</span>"
 			if(0.25 to 0.5)
-				to_chat(user, "<span class='warning'>It looks damaged!</span>")
+				. += "<span class='warning'>It looks damaged!</span>"
 			if(0.5 to 1.0)
-				to_chat(user, "<span class='notice'>It has a few scrapes and dents.</span>")
+				. += "<span class='notice'>It has a few scrapes and dents.</span>"
 
 /obj/structure/railing/take_damage(amount)
 	health -= amount
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
-		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 		new /obj/item/stack/rods(get_turf(src))
 		qdel(src)
 
@@ -101,27 +115,27 @@
 /obj/structure/railing/update_icon(var/UpdateNeighgors = 1)
 	NeighborsCheck(UpdateNeighgors)
 	//layer = (dir == SOUTH) ? FLY_LAYER : initial(layer) // wtf does this even do
-	overlays.Cut()
+	cut_overlays()
 	if (!check || !anchored)//|| !anchored
-		icon_state = "railing0"
+		icon_state = "[icon_modifier]railing0"
 	else
-		icon_state = "railing1"
+		icon_state = "[icon_modifier]railing1"
 		if (check & 32)
-			overlays += image ('icons/obj/railing.dmi', src, "corneroverlay")
+			add_overlay(image(icon, src, "[icon_modifier]corneroverlay"))
 		if ((check & 16) || !(check & 32) || (check & 64))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_l")
+			add_overlay(image(icon, src, "[icon_modifier]frontoverlay_l"))
 		if (!(check & 2) || (check & 1) || (check & 4))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_r")
+			add_overlay(image(icon, src, "[icon_modifier]frontoverlay_r"))
 			if(check & 4)
 				switch (src.dir)
 					if (NORTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = 32)
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_x = 32))
 					if (SOUTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = -32)
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_x = -32))
 					if (EAST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = -32)
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = -32))
 					if (WEST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
+						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
 
 /obj/structure/railing/verb/rotate_counterclockwise()
 	set name = "Rotate Railing Counter-Clockwise"
@@ -186,37 +200,30 @@
 	update_icon()
 	return
 
-/obj/structure/railing/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
-
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
-	if(W.is_wrench() && !anchored)
-		playsound(src.loc, W.usesound, 50, 1)
+	if(W.has_tool_quality(TOOL_WRENCH) && !anchored)
+		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
-			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> dismantles \the [src].", "<span class='notice'>You dismantle \the [src].</span>")
 			new /obj/item/stack/material/steel(get_turf(usr), 2)
 			qdel(src)
 			return
 
 	// Repair
-	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/F = W
+	if(health < maxhealth && W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/F = W.get_welder()
 		if(F.welding)
-			playsound(src.loc, F.usesound, 50, 1)
+			playsound(src, F.usesound, 50, 1)
 			if(do_after(user, 20, src))
-				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
+				user.visible_message("<b>\The [user]</b> repairs some damage to \the [src].", "<span class='notice'>You repair some damage to \the [src].</span>")
 				health = min(health+(maxhealth/5), maxhealth) // 20% repair per application
 				return
 
 	// Install
-	if(W.is_screwdriver())
-		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrewing \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
-		playsound(loc, W.usesound, 75, 1)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
+		user.visible_message(anchored ? "<b>\The [user]</b> begins unscrewing \the [src]." : "<b>\The [user]</b> begins fasten \the [src]." )
+		playsound(src, W.usesound, 75, 1)
 		if(do_after(user, 10, src))
 			to_chat(user, (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>"))
 			anchored = !anchored
@@ -238,7 +245,7 @@
 					M.apply_damage(8,def_zone = "head")
 					take_damage(8)
 					visible_message("<span class='danger'>[G.assailant] slams [G.affecting]'s face against \the [src]!</span>")
-					playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+					playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 				else
 					to_chat(user, "<span class='danger'>You need a better grip to do that!</span>")
 					return
@@ -253,7 +260,7 @@
 			return
 
 	else
-		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 		take_damage(W.force)
 		user.setClickCooldown(user.get_attack_speed(W))
 
@@ -279,14 +286,14 @@
 		return
 
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
-	climbers |= user
+	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
-		climbers -= user
+		LAZYREMOVE(climbers, user)
 		return
 
 	if(!can_climb(user, post_climb_check=1))
-		climbers -= user
+		LAZYREMOVE(climbers, user)
 		return
 
 	if(get_turf(user) == get_turf(src))
@@ -296,7 +303,7 @@
 
 	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
 	if(!anchored)	take_damage(maxhealth) // Fatboy
-	climbers -= user
+	LAZYREMOVE(climbers, user)
 
 /obj/structure/railing/can_climb(var/mob/living/user, post_climb_check=0)
 	if(!..())

@@ -6,12 +6,12 @@
 	base_icon = "modern_chair"
 	applies_material_colour = 0
 
-/obj/structure/bed/chair/modern_chair/Initialize()
-	. = ..()
+/obj/structure/bed/chair/modern_chair/New(var/newloc, var/new_material, var/new_padding_material)
+	..()
 	var/image/I = image(icon, "[base_icon]_over")
 	I.layer = ABOVE_MOB_LAYER
 	I.plane = MOB_PLANE
-	overlays |= I
+	add_overlay(I)
 
 /obj/structure/bed/chair/bar_stool
 	name = "bar stool"
@@ -120,6 +120,7 @@
 	desc = "Like a normal chair, but more stationary."
 	icon_state = "bay_chair_preview"
 	base_icon = "bay_chair"
+	buckle_movable = 1
 
 /obj/structure/bed/chair/bay/chair/padded/red/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc, new_material, "carpet")
@@ -192,7 +193,6 @@
 	desc = "It's a chair. Only for the highest ranked asses."
 	icon_state = "capchair_preview"
 	base_icon = "capchair"
-	buckle_movable = 1
 
 /obj/structure/bed/chair/bay/comfy/captain/update_icon()
 	..()
@@ -202,21 +202,22 @@
 	add_overlay(I)
 
 /obj/structure/bed/chair/bay/comfy/captain/New(var/newloc, var/new_material, var/new_padding_material)
-	..(newloc, DEFAULT_WALL_MATERIAL, "blue")
+	..(newloc, MAT_STEEL, "blue")
 
 /obj/structure/bed/chair/bay/shuttle
 	name = "shuttle seat"
 	desc = "A comfortable, secure seat. It has a sturdy-looking buckling system for smoother flights."
 	base_icon = "shuttle_chair"
 	icon_state = "shuttle_chair_preview"
+	buckle_movable = 0
 	var/buckling_sound = 'sound/effects/metal_close.ogg'
 	var/padding = "blue"
 
 /obj/structure/bed/chair/bay/shuttle/New(var/newloc, var/new_material, var/new_padding_material)
-	..(newloc, DEFAULT_WALL_MATERIAL, padding)
+	..(newloc, MAT_STEEL, padding)
 
 /obj/structure/bed/chair/bay/shuttle/post_buckle_mob()
-	playsound(loc,buckling_sound,75,1)
+	playsound(src,buckling_sound,75,1)
 	if(has_buckled_mobs())
 		base_icon = "shuttle_chair-b"
 	else

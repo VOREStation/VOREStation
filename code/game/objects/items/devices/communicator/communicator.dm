@@ -14,7 +14,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 #define WTHRTAB 7
 #define MANITAB 8
 #define SETTTAB 9
-#define EXTRTAB 10
 
 /obj/item/device/communicator
 	name = "communicator"
@@ -27,9 +26,9 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	show_messages = 1
 
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_DATA = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 10)
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
 
-	var/video_range = 4
+	var/video_range = 3
 	var/obj/machinery/camera/communicator/video_source	// Their camera
 	var/obj/machinery/camera/communicator/camera		// Our camera
 
@@ -43,19 +42,18 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/note = "Thank you for choosing the T-14.2 Communicator, this is your notepad!" //Current note in the notepad function
 	var/notehtml = ""
 
-	var/obj/item/weapon/commcard/cartridge = null //current cartridge
 	var/fon = 0 // Internal light
 	var/flum = 2 // Brightness
 
 	var/list/modules = list(
-							list("module" = "Phone", "icon" = "phone64", "number" = PHONTAB),
-							list("module" = "Contacts", "icon" = "person64", "number" = CONTTAB),
-							list("module" = "Messaging", "icon" = "comment64", "number" = MESSTAB),
-							list("module" = "News", "icon" = "note64", "number" = NEWSTAB), // Need a different icon,
-							list("module" = "Note", "icon" = "note64", "number" = NOTETAB),
-							list("module" = "Weather", "icon" = "sun64", "number" = WTHRTAB),
-							list("module" = "Crew Manifest", "icon" = "note64", "number" = MANITAB), // Need a different icon,
-							list("module" = "Settings", "icon" = "gear64", "number" = SETTTAB),
+							list("module" = "Phone", "icon" = "phone", "number" = PHONTAB),
+							list("module" = "Contacts", "icon" = "user", "number" = CONTTAB),
+							list("module" = "Messaging", "icon" = "comment-alt", "number" = MESSTAB),
+							list("module" = "News", "icon" = "newspaper", "number" = NEWSTAB), // Need a different icon,
+							list("module" = "Note", "icon" = "sticky-note", "number" = NOTETAB),
+							list("module" = "Weather", "icon" = "sun", "number" = WTHRTAB),
+							list("module" = "Crew Manifest", "icon" = "crown", "number" = MANITAB), // Need a different icon,
+							list("module" = "Settings", "icon" = "cog", "number" = SETTTAB),
 							)	//list("module" = "Name of Module", "icon" = "icon name64", "number" = "what tab is the module")
 
 	var/selected_tab = HOMETAB
@@ -74,12 +72,29 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/update_ticks = 0
 	var/newsfeed_channel = 0
 
+	// If you turn this on, it changes the way communicator video works. User configurable option.
+	var/selfie_mode = FALSE
+
+	// Ringtones! (Based on the PDA ones)
+	var/ttone = "beep" //The ringtone!
+	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
+								"boom" = 'sound/effects/explosionfar.ogg',
+								"slip" = 'sound/misc/slip.ogg',
+								"honk" = 'sound/items/bikehorn.ogg',
+								"SKREE" = 'sound/voice/shriek1.ogg',
+								// "holy" = 'sound/items/PDA/ambicha4-short.ogg',
+								"xeno" = 'sound/voice/hiss1.ogg',
+								"dust" = 'sound/effects/supermatter.ogg',
+								"spark" = 'sound/effects/sparks4.ogg',
+								"rad" = 'sound/items/geiger/high1.ogg',
+								"servo" = 'sound/machines/rig/rigservo.ogg')
+
 // Proc: New()
 // Parameters: None
 // Description: Adds the new communicator to the global list of all communicators, sorts the list, obtains a reference to the Exonet node, then tries to
 //				assign the device to the holder's name automatically in a spectacularly shitty way.
-/obj/item/device/communicator/New()
-	..()
+/obj/item/device/communicator/Initialize()
+	. = ..()
 	all_communicators += src
 	all_communicators = sortAtom(all_communicators)
 	node = get_exonet_node()
@@ -87,24 +102,25 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	camera = new(src)
 	camera.name = "[src] #[rand(100,999)]"
 	camera.c_tag = camera.name
-	//This is a pretty terrible way of doing this.
-	spawn(5 SECONDS) //Wait for our mob to finish spawning.
-		if(ismob(loc))
-			register_device(loc.name)
-			initialize_exonet(loc)
-		else if(istype(loc, /obj/item/weapon/storage))
-			var/obj/item/weapon/storage/S = loc
-			if(ismob(S.loc))
-				register_device(S.loc.name)
-				initialize_exonet(S.loc)
 
-// Proc: examine()
-// Parameters: user - the user doing the examining
-// Description: Allows the user to click a link when examining to look at video if one is going.
-/obj/item/device/communicator/examine(mob/user)
-	. = ..(user, 1)
-	if(. && video_source)
-		to_chat(user, "<span class='notice'>It looks like it's on a video call: <a href='?src=\ref[src];watchvideo=1'>\[view\]</a></span>")
+	setup_tgui_camera()
+
+	//This is a pretty terrible way of doing this.
+	addtimer(CALLBACK(src, PROC_REF(register_to_holder)), 5 SECONDS)
+
+// Proc: register_to_holder()
+// Parameters: None
+// Description: Tries to register ourselves to the mob that we've presumably spawned in. Not the most amazing way of doing this.
+/obj/item/device/communicator/proc/register_to_holder()
+	if(ismob(loc))
+		register_device(loc.name)
+		initialize_exonet(loc)
+	else if(istype(loc, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = loc
+		if(ismob(S.loc))
+			register_device(S.loc.name)
+			initialize_exonet(S.loc)
+
 
 // Proc: initialize_exonet()
 // Parameters: 1 (user - the person the communicator belongs to)
@@ -125,28 +141,22 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: 1 (user - the person examining the device)
 // Description: Shows all the voice mobs inside the device, and their status.
 /obj/item/device/communicator/examine(mob/user)
-	if(!..(user))
-		return
+	. = ..()
 
-	var/msg = ""
 	for(var/mob/living/voice/voice in contents)
-		msg += "<span class='notice'>On the screen, you can see a image feed of [voice].</span>\n"
-		msg += "<span class='warning'>"
+		. += "<span class='notice'>On the screen, you can see a image feed of [voice].</span>"
 
 		if(voice && voice.key)
 			switch(voice.stat)
 				if(CONSCIOUS)
 					if(!voice.client)
-						msg += "[voice] appears to be asleep.\n" //afk
+						. += "<span class='warning'>[voice] appears to be asleep.</span>" //afk
 				if(UNCONSCIOUS)
-					msg += "[voice] doesn't appear to be conscious.\n"
+					. += "<span class='warning'>[voice] doesn't appear to be conscious.</span>"
 				if(DEAD)
-					msg += "<span class='deadsay'>[voice] appears to have died...</span>\n" //Hopefully this never has to be used.
+					. += "<span class='deadsay'>[voice] appears to have died...</span>" //Hopefully this never has to be used.
 		else
-			msg += "<span class='notice'>The device doesn't appear to be transmitting any data.</span>\n"
-		msg += "</span>"
-	to_chat(user, msg)
-	return
+			. += "<span class='notice'>The device doesn't appear to be transmitting any data.</span>"
 
 // Proc: emp_act()
 // Parameters: None
@@ -203,17 +213,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(!get_connection_to_tcomms())
 			close_connection(reason = "Connection timed out")
 
-// Proc: attack()
-// Parameters: 2 (M - what is being attacked. user - the mob that has the communicator)
-// Description: When the communicator has an attached commcard with internal devices, relay the attack() through to those devices.
-// 		Contents of the for loop are copied from gripper code, because that does approximately what we want to do.
-/obj/item/device/communicator/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(cartridge && cartridge.active_devices)
-		for(var/obj/item/wrapped in cartridge.active_devices)
-			if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
-				wrapped.attack(M,user)
-	return 0
-
 // Proc: attackby()
 // Parameters: 2 (C - what is used on the communicator. user - the mob that has the communicator)
 // Description: When an ID is swiped on the communicator, the communicator reads the job and checks it against the Owner name, if success, the occupation is added.
@@ -229,13 +228,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			occupation = idcard.assignment
 			to_chat(user, "<span class='notice'>Occupation updated.</span>")
 
-	if(istype(C, /obj/item/weapon/commcard) && !cartridge)
-		cartridge = C
-		user.drop_item()
-		cartridge.forceMove(src)
-		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
-		modules[++modules.len] = list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
-		SSnanoui.update_uis(src) // update all UIs attached to src
 	return
 
 // Proc: attack_self()
@@ -246,9 +238,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	initialize_exonet(user)
 	alert_called = 0
 	update_icon()
-	ui_interact(user)
-	if(video_source)
-		watch_video(user)
+	tgui_interact(user)
 
 // Proc: MouseDrop()
 //Same thing PDAs do
@@ -275,14 +265,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: New()
 // Parameters: None
 // Description: Gives ghosts an exonet address based on their key and ghost name.
-/mob/observer/dead/New()
+/mob/observer/dead/Initialize()
 	. = ..()
-	spawn(20)
-		exonet = new(src)
-		if(client)
-			exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
-		else
-			exonet.make_address("communicator-[key]-[src.real_name]")
+	exonet = new(src)
+	if(client)
+		exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
+	else
+		exonet.make_address("communicator-[key]-[src.real_name]")
 
 // Proc: Destroy()
 // Parameters: None
@@ -291,7 +280,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	. = ..()
 	if(exonet)
 		exonet.remove_address()
-		exonet = null
+		qdel_null(exonet)
 	return ..()
 
 // Proc: register_device()
@@ -313,7 +302,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/Destroy()
 	for(var/mob/living/voice/voice in contents)
 		voice_mobs.Remove(voice)
-		to_chat(voice, "<span class='danger'>[bicon(src)] Connection timed out with remote host.</span>")
+		to_chat(voice, "<span class='danger'>\icon[src][bicon(src)] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
 
@@ -329,6 +318,11 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	listening_objects.Remove(src)
 	QDEL_NULL(camera)
 	QDEL_NULL(exonet)
+
+	last_camera_turf = null
+	qdel(cam_screen)
+	QDEL_LIST(cam_plane_masters)
+	qdel(cam_background)
 
 	return ..()
 
@@ -359,38 +353,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	client_huds |= global_hud.whitense
 	client_huds |= global_hud.darkMask
 
-/obj/item/device/communicator/verb/verb_remove_cartridge()
-	set category = "Object"
-	set name = "Remove commcard"
-	set src in usr
-
-	// Can't remove what isn't there
-	if(!cartridge)
-		to_chat(usr, "<span class='notice'>There isn't a commcard to remove!</span>")
-		return
-
-	// Can't remove if you're physically unable to
-	if(usr.stat || usr.restrained() || usr.paralysis || usr.stunned || usr.weakened)
-		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
-		return
-
-	var/turf/T = get_turf(src)
-	cartridge.loc = T
-	// If it's in someone, put the cartridge in their hands
-	if (ismob(loc))
-		var/mob/M = loc
-		M.put_in_hands(cartridge)
-	// Else just set it on the ground
-	else
-		cartridge.loc = get_turf(src)
-	cartridge = null
-	// We have to iterate through the modules to find EXTRTAB, because list procs don't play nice with a list of lists
-	for(var/i = 1, i <= modules.len, i++)
-		if(modules[i]["number"] == EXTRTAB)
-			modules.Cut(i, i+1)
-			break
-	to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
-
 //It's the 26th century. We should have smart watches by now.
 /obj/item/device/communicator/watch
 	name = "communicator watch"
@@ -415,3 +377,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	icon_state = initial(icon_state)
 
+#undef HOMETAB
+#undef PHONTAB
+#undef CONTTAB
+#undef MESSTAB
+#undef NEWSTAB
+#undef NOTETAB
+#undef WTHRTAB
+#undef MANITAB
+#undef SETTTAB

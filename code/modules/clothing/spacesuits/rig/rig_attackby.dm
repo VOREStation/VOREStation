@@ -7,7 +7,7 @@
 			return
 
 	// Pass repair items on to the chestpiece.
-	if(chest && (istype(W,/obj/item/stack/material) || istype(W, /obj/item/weapon/weldingtool)))
+	if(chest && (istype(W,/obj/item/stack/material) || W.has_tool_quality(TOOL_WELDER)))
 		return chest.attackby(W,user)
 
 	// Lock or unlock the access panel.
@@ -17,7 +17,7 @@
 			to_chat(user, "<span class='danger'>It looks like the locking system has been shorted out.</span>")
 			return
 
-		if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
+		if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 			locked = 0
 			to_chat(user, "<span class='danger'>\The [src] doesn't seem to have a locking mechanism.</span>")
 			return
@@ -30,7 +30,7 @@
 		to_chat(user, "You [locked ? "lock" : "unlock"] \the [src] access panel.")
 		return
 
-	else if(W.is_crowbar())
+	else if(W.has_tool_quality(TOOL_CROWBAR))
 		if(!open && locked)
 			to_chat(user, "The access panel is locked shut.")
 			return
@@ -41,7 +41,7 @@
 
 	if(open)
 		// Hacking.
-		if(W.is_wirecutter() || istype(W, /obj/item/device/multitool))
+		if(W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/multitool))
 			if(open)
 				wires.Interact(user)
 			else
@@ -102,7 +102,7 @@
 			src.cell = W
 			return
 
-		else if(W.is_wrench())
+		else if(W.has_tool_quality(TOOL_WRENCH))
 
 			if(!air_supply)
 				to_chat(user, "There is no tank to remove.")
@@ -116,13 +116,13 @@
 			air_supply = null
 			return
 
-		else if(W.is_screwdriver())
+		else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 
 			var/list/current_mounts = list()
 			if(cell) current_mounts   += "cell"
 			if(installed_modules && installed_modules.len) current_mounts += "system module"
 
-			var/to_remove = input("Which would you like to modify?") as null|anything in current_mounts
+			var/to_remove = tgui_input_list(usr, "Which would you like to modify?", "Removal Choice", current_mounts)
 			if(!to_remove)
 				return
 
@@ -160,7 +160,7 @@
 						to_chat(user, "There are no installed modules to remove.")
 						return
 
-					var/removal_choice = input("Which module would you like to remove?") as null|anything in possible_removals
+					var/removal_choice = tgui_input_list(usr, "Which module would you like to remove?", "Removal Choice", possible_removals)
 					if(!removal_choice)
 						return
 
@@ -190,8 +190,8 @@
 
 /obj/item/weapon/rig/emag_act(var/remaining_charges, var/mob/user)
 	if(!subverted)
-		req_access.Cut()
-		req_one_access.Cut()
+		LAZYCLEARLIST(req_access)
+		LAZYCLEARLIST(req_one_access)
 		locked = 0
 		subverted = 1
 		to_chat(user, "<span class='danger'>You short out the access protocol for the suit.</span>")

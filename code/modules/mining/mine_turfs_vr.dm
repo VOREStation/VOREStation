@@ -14,6 +14,16 @@
 /turf/simulated/mineral/floor/ignore_cavegen
 	ignore_cavegen = TRUE
 
+/turf/simulated/mineral/ignore_cavegen/cave
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	temperature	= T20C
+
+/turf/simulated/mineral/floor/ignore_cavegen/cave
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	temperature	= T20C
+
 /turf/simulated/mineral/vacuum
 	oxygen = 0
 	nitrogen = 0

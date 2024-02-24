@@ -19,7 +19,7 @@
 		to_chat(usr, "The hailer is fried. The tiny input screen just shows a waving ASCII penis.")
 		return
 
-	var/new_message = input(usr, "Please enter new message (leave blank to reset).") as text
+	var/new_message = tgui_input_text(usr, "Please enter new message (leave blank to reset).")
 	if(!new_message || new_message == "")
 		use_message = "Halt! Security!"
 	else
@@ -32,13 +32,13 @@
 		return
 
 	if(isnull(insults))
-		playsound(get_turf(src), 'sound/voice/halt.ogg', 100, 1, vary = 0)
-		user.audible_message("<span class='warning'>[user]'s [name] rasps, \"[use_message]\"</span>", "<span class='warning'>\The [user] holds up \the [name].</span>")
+		playsound(src, 'sound/voice/halt.ogg', 100, 1, vary = 0)
+		user.audible_message("<span class='warning'>[user]'s [name] rasps, \"[use_message]\"</span>", "<span class='warning'>\The [user] holds up \the [name].</span>", runemessage = "\[TTS Voice\] [use_message]")
 	else
 		if(insults > 0)
-			playsound(get_turf(src), 'sound/voice/binsult.ogg', 100, 1, vary = 0)
+			playsound(src, 'sound/voice/binsult.ogg', 100, 1, vary = 0)
 			// Yes, it used to show the transcription of the sound clip. That was a) inaccurate b) immature as shit.
-			user.audible_message("<span class='warning'>[user]'s [name] gurgles something indecipherable and deeply offensive.</span>", "<span class='warning'>\The [user] holds up \the [name].</span>")
+			user.audible_message("<span class='warning'>[user]'s [name] gurgles something indecipherable and deeply offensive.</span>", "<span class='warning'>\The [user] holds up \the [name].</span>", runemessage = "\[TTS Voice\] #&@&^%(*")
 			insults--
 		else
 			to_chat(user, "<span class='danger'>*BZZZZZZZZT*</span>")

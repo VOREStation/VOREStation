@@ -4,51 +4,52 @@
 	name = "micro"
 	desc = "Another crewmember, small enough to fit in your hand."
 	icon_state = "micro"
-	icon_override = 'icons/mob/head_vr.dmi'
-	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID | SLOT_HOLSTER
 	w_class = ITEMSIZE_SMALL
-	item_icons = list() // No in-hand sprites (for now, anyway, we could totally add some)
-	pixel_y = 0			// Override value from parent.
+	item_icons = null // No in-hand sprites (for now, anyway, we could totally add some)
+	pixel_y = 0		  // Override value from parent.
 
-/obj/item/weapon/holder/micro/examine(var/mob/user)
+/obj/item/weapon/holder/examine(mob/user)
+	. = list()
 	for(var/mob/living/M in contents)
-		M.examine(user)
+		. += M.examine(user)
 
-/obj/item/weapon/holder/MouseDrop(mob/M as mob)
+/obj/item/weapon/holder/MouseDrop(mob/M)
 	..()
 	if(M != usr) return
 	if(usr == src) return
 	if(!Adjacent(usr)) return
-	if(istype(M,/mob/living/silicon/ai)) return
+	if(isAI(M)) return
 	for(var/mob/living/carbon/human/O in contents)
-		O.show_inv(usr)
+		O.show_inventory_panel(usr, state = GLOB.tgui_deep_inventory_state)
 
 /obj/item/weapon/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
+	user.setClickCooldown(user.get_attack_speed())
 	for(var/L in contents)
-		if(!isliving(L))
-			continue
-		if(ishuman(L) && user.canClick())
+		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.help_shake_act(user)
-			user.setClickCooldown(user.get_attack_speed()) //uses the same cooldown as regular attack_hand
-			return
-		if(istype(L, /mob/living/simple_mob) && user.canClick())
+		if(isanimal(L))
 			var/mob/living/simple_mob/S = L
 			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
-			user.setClickCooldown(user.get_attack_speed())
-			
 
-/obj/item/weapon/holder/micro/update_state()
-	if(istype(loc,/turf) || !(held_mob) || !(held_mob.loc == src))
-		qdel(src)
-
-/obj/item/weapon/holder/micro/Destroy()
-	var/turf/here = get_turf(src)
-	for(var/atom/movable/A in src)
-		A.forceMove(here)
-	return ..()
-
-/obj/item/weapon/holder/micro/sync(var/mob/living/M)
+//Egg features.
+/obj/item/weapon/holder/attack_hand(mob/living/user as mob)
+	if(istype(src.loc, /obj/item/weapon/storage/vore_egg)) //Don't scoop up the egged mob
+		src.pickup(user)
+		user.drop_from_inventory(src)
+		return
 	..()
-	for(var/mob/living/carbon/human/I in contents)
-		item_state = lowertext(I.species.name)
+
+/obj/item/weapon/holder/container_resist(mob/living/held)
+	if(!istype(src.loc, /obj/item/weapon/storage/vore_egg))
+		..()
+	else
+		var/obj/item/weapon/storage/vore_egg/E = src.loc
+		if(isbelly(E.loc))
+			var/obj/belly/B = E.loc
+			B.relay_resist(held, E)
+			return
+		E.hatch(held)
+		return

@@ -12,7 +12,7 @@
 	color = "#666666"
 
 /obj/structure/table/steel/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
 	..()
 
 /obj/structure/table/marble
@@ -29,7 +29,7 @@
 
 /obj/structure/table/reinforced/New()
 	material = get_material_by_name(DEFAULT_TABLE_MATERIAL)
-	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 
 /obj/structure/table/steel_reinforced
@@ -37,8 +37,8 @@
 	color = "#666666"
 
 /obj/structure/table/steel_reinforced/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
-	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
+	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 
 /obj/structure/table/wooden_reinforced
@@ -47,7 +47,7 @@
 
 /obj/structure/table/wooden_reinforced/New()
 	material = get_material_by_name("wood")
-	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 
 /obj/structure/table/woodentable
@@ -72,8 +72,16 @@
 
 /obj/structure/table/sifwooden_reinforced/New()
 	material = get_material_by_name("alien wood")
-	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	reinforced = get_material_by_name(MAT_STEEL)
 	..()
+
+/obj/structure/table/hardwoodtable
+	icon_state = "stone_preview"
+	color = "#42291a"
+
+/obj/structure/table/hardwoodtable/Initialize(mapload)
+	material = get_material_by_name("hardwood")
+	return ..()
 
 /obj/structure/table/gamblingtable
 	icon_state = "gamble_preview"
@@ -129,7 +137,7 @@
 	verbs -= /obj/structure/table/proc/do_put
 	..()
 
-/obj/structure/table/alien/dismantle(obj/item/weapon/wrench/W, mob/user)
+/obj/structure/table/alien/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 
@@ -147,7 +155,7 @@
 	color = "#666666"
 
 /obj/structure/table/bench/steel/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
 	..()
 
 
@@ -165,7 +173,7 @@
 
 /obj/structure/table/bench/reinforced/New()
 	material = get_material_by_name(DEFAULT_TABLE_MATERIAL)
-	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 
 /obj/structure/table/bench/steel_reinforced
@@ -173,8 +181,8 @@
 	color = "#666666"
 
 /obj/structure/table/bench/steel_reinforced/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
-	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
+	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 
 /obj/structure/table/bench/wooden_reinforced
@@ -183,7 +191,7 @@
 
 /obj/structure/table/bench/wooden_reinforced/New()
 	material = get_material_by_name("wood")
-	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 */
 /obj/structure/table/bench/wooden
@@ -210,7 +218,7 @@
 	icon_state = "padded_preview"
 
 /obj/structure/table/bench/padded/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
 	carpeted = 1
 	..()
 

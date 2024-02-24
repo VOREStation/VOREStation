@@ -4,7 +4,8 @@
 #define AI_NORMAL		2 // Default level.
 #define AI_SMART		3 // Will do more processing to be a little smarter, like not walking while confused if it could risk stepping randomly onto a bad tile.
 
-#define ai_log(M,V)	if(debug_ai) ai_log_output(M,V)
+//#define ai_log(M,V)	if(debug_ai) ai_log_output(M,V)
+#define ai_log(M,V)
 
 // Logging level defines.
 #define AI_LOG_OFF		0 // Don't show anything.
@@ -19,6 +20,11 @@
 #define MOVEMENT_ON_COOLDOWN	-1	// Recently moved and needs to try again soon.
 #define MOVEMENT_FAILED			0	// Move() returned false for whatever reason and the mob didn't move.
 #define MOVEMENT_SUCCESSFUL		1	// Move() returned true and the mob hopefully moved.
+
+// Results of pre-attack checks
+#define ATTACK_ON_COOLDOWN		-1	// Recently attacked and needs to try again soon.
+#define ATTACK_FAILED			0	// Something else went wrong! Maybe they moved away!
+#define ATTACK_SUCCESSFUL		1	// We attacked (or tried to, misses count too)
 
 // Reasons for targets to not be valid. Based on why, the AI responds differently.
 #define AI_TARGET_VALID			0 // We can fight them.

@@ -38,7 +38,7 @@
 					return test_result
 
 
-			if(UT_NORMAL || UT_NORMAL_COLD)
+			if(UT_NORMAL,UT_NORMAL_COLD)
 				if(abs(pressure - ONE_ATMOSPHERE) > 10)
 					test_result["msg"] = "Pressure out of bounds: [pressure] | [t_msg]"
 					return test_result
@@ -61,6 +61,7 @@
 		test_result["result"] = 1
 		test_result["msg"] = "Checked [GM_checked.len] zones"
 	else
+		test_result["result"] = 1 // VOREStation Add - Why MUST we map in every area?
 		test_result["msg"] = "No zones checked."
 
 	return test_result
@@ -78,12 +79,12 @@
 	return 1
 
 /datum/unit_test/zas_area_test/supply_centcomm
-	name = "ZAS: Supply Shuttle (CentCom)"
-	area_path = /area/supply/dock
+	name = "ZAS: Supply Shuttle"
+	area_path = /area/shuttle/supply
 
 /datum/unit_test/zas_area_test/emergency_shuttle
 	name = "ZAS: Emergency Shuttle"
-	area_path = /area/shuttle/escape/centcom
+	area_path = /area/shuttle/escape
 
 /datum/unit_test/zas_area_test/ai_chamber
 	name = "ZAS: AI Chamber"
@@ -119,3 +120,7 @@
 /datum/unit_test/zas_area_test/cargo_bay
 	name = "ZAS: Cargo Bay"
 	area_path = /area/quartermaster/storage
+
+#undef UT_NORMAL
+#undef UT_VACUUM
+#undef UT_NORMAL_COLD

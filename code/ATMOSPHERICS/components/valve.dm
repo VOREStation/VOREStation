@@ -42,9 +42,9 @@
 
 /obj/machinery/atmospherics/valve/init_dir()
 	switch(dir)
-		if(NORTH || SOUTH)
+		if(NORTH,SOUTH)
 			initialize_directions = NORTH|SOUTH
-		if(EAST || WEST)
+		if(EAST,WEST)
 			initialize_directions = EAST|WEST
 
 /obj/machinery/atmospherics/valve/get_neighbor_nodes_for_init()
@@ -201,7 +201,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/valve/return_network_air(datum/network/reference)
+/obj/machinery/atmospherics/valve/return_network_air(datum/pipe_network/reference)
 	return null
 
 /obj/machinery/atmospherics/valve/disconnect(obj/machinery/atmospherics/reference)
@@ -288,7 +288,7 @@
 				open()
 
 /obj/machinery/atmospherics/valve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/valve/digital) && !src.allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
@@ -301,11 +301,11 @@
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+			"<b>\The [user]</b> unfastens \the [src].", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
-	..()
-	to_chat(user, "It is [open ? "open" : "closed"].")
+	. = ..()
+	. += "It is [open ? "open" : "closed"]."

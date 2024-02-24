@@ -1,0 +1,145 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"v" = (
+/turf/simulated/mineral/vacuum/sdmine,
+/area/submap/space_rocks/bittynest2)
+"B" = (
+/obj/tether_away_spawner/asteroidbaddies,
+/turf/simulated/mineral/floor/vacuum{
+	ignore_cavegen = 1
+	},
+/area/submap/space_rocks/bittynest2)
+"R" = (
+/obj/random/underdark/uncertain,
+/turf/simulated/mineral/floor/vacuum{
+	ignore_cavegen = 1
+	},
+/area/submap/space_rocks/bittynest2)
+"W" = (
+/turf/simulated/mineral/floor/vacuum{
+	ignore_cavegen = 1
+	},
+/area/submap/space_rocks/bittynest2)
+
+(1,1,1) = {"
+a
+a
+a
+a
+v
+v
+a
+v
+v
+a
+"}
+(2,1,1) = {"
+a
+a
+v
+v
+v
+v
+v
+v
+v
+a
+"}
+(3,1,1) = {"
+a
+v
+v
+v
+v
+W
+R
+v
+v
+v
+"}
+(4,1,1) = {"
+a
+v
+v
+v
+W
+W
+B
+W
+v
+v
+"}
+(5,1,1) = {"
+v
+v
+v
+W
+W
+W
+W
+W
+v
+a
+"}
+(6,1,1) = {"
+v
+v
+W
+W
+W
+W
+W
+v
+v
+v
+"}
+(7,1,1) = {"
+v
+v
+R
+B
+W
+W
+W
+W
+v
+a
+"}
+(8,1,1) = {"
+v
+v
+v
+W
+W
+v
+v
+W
+a
+a
+"}
+(9,1,1) = {"
+a
+v
+v
+v
+v
+v
+v
+W
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+v
+v
+a
+a
+a
+a
+a
+"}

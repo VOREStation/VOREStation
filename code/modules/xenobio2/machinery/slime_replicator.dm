@@ -8,8 +8,8 @@
 	desc = "A machine for creating slimes from cores. Amazing!"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "restruct_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/slimereplicator
 	var/obj/item/xenoproduct/slime/core/core = null
 	var/inuse
@@ -17,24 +17,18 @@
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
 
-/obj/machinery/slime/replicator/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	RefreshParts()
+/obj/machinery/slime/replicator/Initialize()
+	. = ..()
+	default_apply_parts()
 	update_light_color()
-
 
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
-	if(W.is_screwdriver() && !inuse)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) && !inuse)
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		default_deconstruction_crowbar(user, W)
 		return
 
@@ -63,7 +57,7 @@
 
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
-		src.visible_message("[bicon(src)] [src] pings unhappily.")
+		src.visible_message("\icon[src][bicon(src)] [src] pings unhappily.")
 	else if(inuse)
 		return
 

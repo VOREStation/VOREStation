@@ -26,11 +26,20 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/working/hoverpod/New()
-	..()
+/obj/mecha/working/hoverpod/Initialize()
+	. = ..()
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
 	ion_trail.set_up(src)
-	ion_trail.start()
+
+/obj/mecha/working/hoverpod/moved_inside(var/mob/living/carbon/human/H as mob)
+	. = ..(H)
+	if(.)
+		ion_trail.start()
+
+/obj/mecha/working/hoverpod/go_out()
+	. = ..()
+	if(!occupant)
+		ion_trail.stop()
 
 //Modified phazon code
 /obj/mecha/working/hoverpod/Topic(href, href_list)
@@ -51,6 +60,9 @@
 						"}
 	output += ..()
 	return output
+
+/obj/mecha/working/hoverpod/can_ztravel()
+	return (stabilization_enabled && has_charge(step_energy_drain))
 
 // No space drifting
 /obj/mecha/working/hoverpod/check_for_support()
@@ -106,7 +118,7 @@
 	max_special_equip = 1
 
 /obj/mecha/working/hoverpod/combatpod/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
@@ -117,7 +129,7 @@
 	desc = "Who knew a tiny ball could fit three people?"
 
 /obj/mecha/working/hoverpod/shuttlepod/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger

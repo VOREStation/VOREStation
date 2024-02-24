@@ -1,0 +1,68 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/outdoor/roofed)
+"g" = (
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/roofed)
+"F" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/roofed)
+"N" = (
+/turf/template_noop,
+/area/template_noop)
+"S" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/groundbase/poi/outdoor)
+"U" = (
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/poi/outdoor)
+"Y" = (
+/obj/random/crate,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/roofed)
+
+(1,1,1) = {"
+N
+U
+a
+a
+a
+"}
+(2,1,1) = {"
+U
+S
+g
+F
+a
+"}
+(3,1,1) = {"
+U
+S
+g
+Y
+a
+"}
+(4,1,1) = {"
+U
+S
+g
+F
+a
+"}
+(5,1,1) = {"
+N
+U
+a
+a
+a
+"}

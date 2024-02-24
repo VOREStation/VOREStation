@@ -1,17 +1,37 @@
 /obj/machinery/computer/gyrotron_control
 	name = "gyrotron control console"
 	desc = "Used to control the R-UST stability beams."
-	icon = 'icons/obj/machines/power/fusion.dmi'
-	icon_state = "engine"
 	light_color = COLOR_BLUE
 	circuit = /obj/item/weapon/circuitboard/gyrotron_control
 
+	icon_keyboard = "generic_key"
+	icon_screen = "mass_driver"
+
 	var/id_tag
 	var/scan_range = 25
+	var/datum/tgui_module/gyrotron_control/monitor
+
+/obj/machinery/computer/gyrotron_control/New()
+	..()
+	monitor = new(src)
+	monitor.gyro_tag = id_tag
+	monitor.scan_range = scan_range
+
+/obj/machinery/computer/gyrotron_control/Destroy()
+	QDEL_NULL(monitor)
+	..()
 
 /obj/machinery/computer/gyrotron_control/attack_ai(var/mob/user)
 	attack_hand(user)
 
+/obj/machinery/computer/gyrotron_control/attack_hand(var/mob/user as mob)
+	..()
+	if(stat & (BROKEN|NOPOWER))
+		return
+
+	monitor.tgui_interact(user)
+
+/*
 /obj/machinery/computer/gyrotron_control/attack_hand(var/mob/user)
 	add_fingerprint(user)
 	interact(user)
@@ -70,17 +90,17 @@
 		return
 
 	if(href_list["modifypower"])
-		var/new_val = input("Enter new emission power level (1 - 50)", "Modifying power level", G.mega_energy) as num
+		var/new_val = input(usr, "Enter new emission power level (1 - 50)", "Modifying power level", G.mega_energy) as num
 		if(!new_val)
 			to_chat(usr, "<span class='warning'>That's not a valid number.</span>")
 			return 1
 		G.mega_energy = CLAMP(new_val, 1, 50)
-		G.active_power_usage = G.mega_energy * 1500
+		G.update_active_power_usage(G.mega_energy * 1500)
 		updateUsrDialog()
 		return 1
 
 	if(href_list["modifyrate"])
-		var/new_val = input("Enter new emission delay between 1 and 10 seconds.", "Modifying emission rate", G.rate) as num
+		var/new_val = input(usr, "Enter new emission delay between 1 and 10 seconds.", "Modifying emission rate", G.rate) as num
 		if(!new_val)
 			to_chat(usr, "<span class='warning'>That's not a valid number.</span>")
 			return 1
@@ -94,15 +114,17 @@
 		return 1
 
 	return 0
+*/
 
 /obj/machinery/computer/gyrotron_control/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = input("Enter a new ident tag.", "Gyrotron Control", id_tag) as null|text
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron Control", monitor.gyro_tag, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
-			id_tag = new_ident
+			monitor.gyro_tag = new_ident
 		return
-
+/*
 /obj/machinery/computer/gyrotron_control/update_icon()
 	if(stat & (BROKEN))
 		icon = 'icons/obj/computer.dmi'
@@ -118,3 +140,4 @@
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		set_light(light_range_on, light_power_on)
+*/

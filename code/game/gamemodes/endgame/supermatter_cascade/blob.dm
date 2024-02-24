@@ -14,14 +14,14 @@
 	var/next_check=0
 	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
 
-/turf/unsimulated/wall/supermatter/New()
-	..()
+/turf/unsimulated/wall/supermatter/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSturfs, src)
 	next_check = world.time+5 SECONDS
 
 /turf/unsimulated/wall/supermatter/Destroy()
 	STOP_PROCESSING(SSturfs, src)
-	..()
+	return ..()
 
 /turf/unsimulated/wall/supermatter/process()
 	// Only check infrequently.

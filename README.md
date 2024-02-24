@@ -6,7 +6,11 @@
 
 Going to make a Pull Request? Make sure you read the [CONTRIBUTING.md](.github/CONTRIBUTING.md) first!
 
+Want to make a test server or your own private server? Read our [GitHub Wiki!](https://github.com/VOREStation/VOREStation/wiki)
+
 VOREStation is a fork of the Polaris code branch, itself a fork of the Baystation12 code branch, for the game Space Station 13.
+
+![Render Nanomaps](https://github.com/VOREStation/VOREStation/workflows/Render%20Nanomaps/badge.svg)
 
 ---
 
@@ -21,7 +25,17 @@ If you wish to develop and host this codebase in a closed source manner you may 
 
 See [here](https://www.gnu.org/licenses/why-affero-gpl.html) for more information.
 
+Any files located in the
+`vorestation/goon`,
+`vorestation/icons/goonstation`, or
+`vorestation/sound/goonstation`
+directories, or any subdirectories of mentioned directories are licensed under the
+Creative Commons 3.0 BY-NC-SA license
+(https://creativecommons.org/licenses/by-nc-sa/3.0)
+
 All assets including icons and sound are under a [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/) license unless otherwise indicated.
+
+Attributions and other licenses with links to original works are noted in [ATTRIBUTIONS.md](./ATTRIBUTIONS.md).
 
 ### GETTING THE CODE
 The simplest way to obtain the code is using the github .zip feature. If you do this, you won't be able to make a Pull Request later, though. You'll need to use the git method.

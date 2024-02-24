@@ -5,9 +5,9 @@
  * /obj/item/rig_module/device/drill
  * /obj/item/rig_module/device/orescanner
  * /obj/item/rig_module/device/rcd
+ * /obj/item/rig_module/device/arch_drill
  * /obj/item/rig_module/device/anomaly_scanner
  * /obj/item/rig_module/maneuvering_jets
- * /obj/item/rig_module/foam_sprayer
  * /obj/item/rig_module/device/broadcaster
  * /obj/item/rig_module/chem_dispenser
  * /obj/item/rig_module/chem_dispenser/injector
@@ -96,6 +96,17 @@
 
 	device_type = /obj/item/weapon/rcd/electric/mounted/rig
 
+/obj/item/rig_module/device/arch_drill
+	name = "archaeology drill mount"
+	desc = "A cell-powered fine-excavation device for a hardsuit."
+	icon_state = "exdrill"
+	interface_name = "mounted excavation tool"
+	interface_desc = "A device for excavating ancient relics."
+	usable = 1
+	engage_string = "Configure Drill Depth"
+
+	device_type = /obj/item/weapon/pickaxe/excavationdrill
+
 /obj/item/rig_module/device/New()
 	..()
 	if(device_type) device = new device_type(src)
@@ -116,8 +127,6 @@
 	if(!resolved && device && target)
 		device.afterattack(target,holder.wearer,1)
 	return 1
-
-
 
 /obj/item/rig_module/chem_dispenser
 	name = "mounted chemical dispenser"
@@ -192,7 +201,7 @@
 				break
 
 	if(total_transferred)
-		to_chat(user, "<font color='blue'>You transfer [total_transferred] units into the suit reservoir.</font>")
+		to_chat(user, span_blue("You transfer [total_transferred] units into the suit reservoir."))
 	else
 		to_chat(user, "<span class='danger'>None of the reagents seem suitable.</span>")
 	return 1
@@ -312,26 +321,26 @@
 	if(!..())
 		return 0
 
-	var/choice= input("Would you like to toggle the synthesiser or set the name?") as null|anything in list("Enable","Disable","Set Name")
+	var/choice = tgui_alert(usr, "Would you like to toggle the synthesiser or set the name?","",list("Enable","Disable","Set Name","Cancel"))
 
-	if(!choice)
+	if(!choice || choice == "Cancel")
 		return 0
 
 	switch(choice)
 		if("Enable")
 			active = 1
 			voice_holder.active = 1
-			to_chat(usr, "<font color='blue'>You enable the speech synthesiser.</font>")
+			to_chat(usr, span_blue("You enable the speech synthesiser."))
 		if("Disable")
 			active = 0
 			voice_holder.active = 0
-			to_chat(usr, "<font color='blue'>You disable the speech synthesiser.</font>")
+			to_chat(usr, span_blue("You disable the speech synthesiser."))
 		if("Set Name")
 			var/raw_choice = sanitize(input(usr, "Please enter a new name.")  as text|null, MAX_NAME_LEN)
 			if(!raw_choice)
 				return 0
 			voice_holder.voice = raw_choice
-			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice]</B>.</font>")
+			to_chat(usr, span_blue("You are now mimicking <B>[voice_holder.voice]</B>."))
 	return 1
 
 /obj/item/rig_module/maneuvering_jets
@@ -401,11 +410,7 @@
 	jets.holder = null
 	jets.ion_trail.set_up(jets)
 
-/obj/item/rig_module/foam_sprayer
-
-
 //Deployable Mop
-
 /obj/item/rig_module/mounted/mop
 
 	name = "mop projector"
@@ -418,29 +423,14 @@
 	interface_name = "mop projector"
 	interface_desc = "A mop that can be deployed from the hand of the wearer."
 
-	usable = 0
+	usable = 1
 	selectable = 1
 	toggleable = 1
-	use_power_cost = 0
+	use_power_cost = 5
 	active_power_cost = 0
 	passive_power_cost = 0
 
-	gun = /obj/item/weapon/reagent_containers/spray/cleaner
-
-//obj/item/weapon/reagent_containers/spray/cleaner
-//	spary =
-
-/obj/item/rig_module/mounted/engage(atom/target)
-
-	if(!..())
-		return 0
-
-	if(!target)
-		gun.attack_self(holder.wearer)
-		return 1
-
-	gun.Fire(target,holder.wearer)
-	return 1
+	gun_type = /obj/item/weapon/gun/energy/temperature/mounted
 
 /obj/item/rig_module/mounted/mop/process()
 
@@ -518,7 +508,7 @@
 		to_chat(user, "<span class='danger'>Another grenade of that type will not fit into the module.</span>")
 		return 0
 
-	to_chat(user, "<font color='blue'><b>You slot \the [input_device] into the suit module.</b></font>")
+	to_chat(user, span_blue("<b>You slot \the [input_device] into the suit module.</b>"))
 	user.drop_from_inventory(input_device)
 	qdel(input_device)
 	accepted_item.charges++
@@ -642,7 +632,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<font color='blue'><b>You activate the suit's sprint mode.</b></font>")
+	to_chat(H, span_blue("<b>You activate the suit's sprint mode.</b>"))
 
 	holder.slowdown = initial(holder.slowdown) - sprint_speed
 

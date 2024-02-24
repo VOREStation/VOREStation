@@ -29,7 +29,7 @@ mob
 			if(sandbox)
 				sandbox.update()
 
-datum/hSB
+/datum/hSB
 	var/owner = null
 	var/admin = 0
 	proc
@@ -101,15 +101,15 @@ datum/hSB
 					hsb.req_access = list()
 					var/accesses = get_all_accesses()
 					for(var/A in accesses)
-						if(alert(usr, "Will this airlock require [get_access_desc(A)] access?", "Sandbox:", "Yes", "No") == "Yes")
-							hsb.req_access += A
+						if(tgui_alert(usr, "Will this airlock require [get_access_desc(A)] access?", "Sandbox:", list("Yes", "No")) == "Yes")
+							LAZYADD(hsb.req_access, A)
 
 					hsb.loc = usr.loc
 					to_chat(usr, "<b>Sandbox:  Created an airlock.</b>")
 				if("hsbcanister")
-					var/list/hsbcanisters = typesof(/obj/machinery/portable_atmospherics/canister/) - /obj/machinery/portable_atmospherics/canister/
-					var/hsbcanister = input(usr, "Choose a canister to spawn.", "Sandbox:") in hsbcanisters + "Cancel"
-					if(!(hsbcanister == "Cancel"))
+					var/list/hsbcanisters = subtypesof(/obj/machinery/portable_atmospherics/canister)
+					var/hsbcanister = tgui_input_list(usr, "Choose a canister to spawn:", "Sandbox", hsbcanisters)
+					if(hsbcanister)
 						new hsbcanister(usr.loc)
 				if("hsbfueltank")
 					//var/obj/hsb = new/obj/weldfueltank
@@ -146,6 +146,6 @@ datum/hSB
 							continue
 						selectable += O
 
-					var/hsbitem = input(usr, "Choose an object to spawn.", "Sandbox:") in selectable + "Cancel"
-					if(hsbitem != "Cancel")
+					var/hsbitem = tgui_input_list(usr, "Choose an object to spawn:", "Sandbox", selectable)
+					if(hsbitem)
 						new hsbitem(usr.loc)

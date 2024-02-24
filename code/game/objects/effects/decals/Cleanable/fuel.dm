@@ -3,12 +3,15 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
 	plane = DIRTY_PLANE
-	anchored = 1
+	layer = DIRTY_LAYER
+	anchored = TRUE
 	var/amount = 1
+	generic_filth = TRUE
+	persistent = FALSE
 
 /obj/effect/decal/cleanable/liquid_fuel/New(turf/newLoc,amt=1,nologs=1)
 	if(!nologs)
-		message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
+		message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
 		log_game("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z])")
 	src.amount = amt
 
@@ -35,7 +38,7 @@
 	for(var/d in cardinal)
 		var/turf/simulated/target = get_step(src,d)
 		var/turf/simulated/origin = get_turf(src)
-		if(origin.CanPass(null, target, 0, 0) && target.CanPass(null, origin, 0, 0))
+		if(origin.CanPass(src, target) && target.CanPass(src, origin))
 			var/obj/effect/decal/cleanable/liquid_fuel/other_fuel = locate() in target
 			if(other_fuel)
 				other_fuel.amount += amount*0.25
@@ -48,7 +51,7 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
-	anchored = 0
+	anchored = FALSE
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, amt = 1, d = 0)
 	set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
@@ -70,7 +73,7 @@
 		var/turf/simulated/O = get_step(S,d)
 		if(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
 			continue
-		if(O.CanPass(null, S, 0, 0) && S.CanPass(null, O, 0, 0))
+		if(O.CanPass(src, S) && S.CanPass(src, O))
 			var/new_pool_amount = amount * 0.25
 			if(new_pool_amount > 0.1)
 				var/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/F = new(O, new_pool_amount, d)

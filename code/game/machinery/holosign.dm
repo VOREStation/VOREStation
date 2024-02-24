@@ -5,10 +5,10 @@
 	icon = 'icons/obj/holosign.dmi'
 	icon_state = "sign_off"
 	plane = MOB_PLANE
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 4
-	anchored = 1
+	anchored = TRUE
 	var/lit = 0
 	var/id = null
 	var/on_icon = "sign_on"
@@ -19,7 +19,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	lit = !lit
-	use_power = lit ? 2 : 1
+	update_use_power(lit ? USE_POWER_ACTIVE : USE_POWER_IDLE)
 	update_icon()
 
 /obj/machinery/holosign/update_icon()
@@ -34,7 +34,7 @@
 	..()
 	if(stat & NOPOWER)
 		lit = 0
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 
 	update_icon()
 

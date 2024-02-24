@@ -22,7 +22,7 @@ What can I do with Planesmasters?
 	Planesmasters can be used as a neater way to deal with client images or potentially to do some neat things
 
 How do planes work?
-	A plane can be any integer from -100 to 100. (If you want more, bug lummox.)
+	A plane can be any integer from -10000 to 10000.
 	All planes above 0, the 'base plane', are visible even when your character cannot 'see' them, for example, the HUD.
 	All planes below 0, the 'base plane', are only visible when a character can see them.
 
@@ -40,17 +40,24 @@ What is the naming convention for planes or layers?
 
 */
 
-#define SPACE_PLANE     		-82	// Reserved for use in space/parallax
-#define PARALLAX_PLANE  		-80	// Reserved for use in space/parallax
 
-// OPENSPACE_PLANE reserves all planes between OPENSPACE_PLANE_START and OPENSPACE_PLANE_END inclusive
-#define OPENSPACE_PLANE 		-75 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
-#define OPENSPACE_PLANE_START	-73
-#define OPENSPACE_PLANE_END		-58
-#define OVER_OPENSPACE_PLANE	-57
+#define SPACE_PLANE     		-82	// Reserved for use in space/parallax
+#define PARALLAX_PLANE  		-81	// Reserved for use in space/parallax
+#define SKYBOX_PLANE			-80	// Skybox parallax
+#define DUST_PLANE				-79 // For dust overlay on space turfs. Should be above skybox for parallax effect.
+
+#define PLANE_LOOKINGGLASS		-78 // For the Looking Glass holodecks
+#define PLANE_LOOKINGGLASS_IMG	-77 // For the Looking Glass holodecks
+
+
+#define OPENSPACE_PLANE			-51 // Has to be lower than turfs
+	#define OPENSPACE_LAYER 	600 // Above every other layer
+#define OPENSPACE_BACKDROP_PLANE	-50 // Black square has to be above openspace turfs
+
+#define MAP_VIEW_PLANE			-48 // Plane for 'embedded' maps in consoles and such
+	#define MAP_VIEW_LAYER			0
 
 // Turf Planes
-#define SPACE_PLANE				-43 // Space turfs themselves
 #define PLATING_PLANE			-44 // Plating
 	#define DISPOSAL_LAYER		2.1 // Under objects, even when planeswapped
 	#define PIPES_LAYER			2.2	// Under objects, even when planeswapped
@@ -59,12 +66,17 @@ What is the naming convention for planes or layers?
 	#define ABOVE_UTILITY		2.5 // Above stuff like pipes and wires
 #define TURF_PLANE				-45 // Turfs themselves, most flooring
 	#define WATER_FLOOR_LAYER	2.0 // The 'bottom' of water tiles.
+	#define BUILTIN_DECAL_LAYER 2.01 // For floors that automatically add decal overlays
+	#define MAPPER_DECAL_LAYER	2.02 // For intentionally placed floor decal overlays
 	#define UNDERWATER_LAYER	2.5 // Anything on this layer will render under the water layer.
 	#define WATER_LAYER			3.0 // Layer for water overlays.
 	#define ABOVE_TURF_LAYER	3.1	// Snow and wallmounted/floormounted equipment
 #define DECAL_PLANE				-44 // Permanent decals
+	#define DECAL_LAYER			10
 #define DIRTY_PLANE				-43 // Nonpermanent decals
+	#define DIRTY_LAYER			11
 #define BLOOD_PLANE				-42 // Blood is really dirty, but we can do special stuff if we separate it
+	#define BLOOD_DECAL_LAYER	12
 
 // Obj planes
 #define OBJ_PLANE				-35
@@ -81,10 +93,17 @@ What is the naming convention for planes or layers?
 	#define ON_WINDOW_LAYER			3.3 // Ontop of a window
 	#define ABOVE_WINDOW_LAYER 		3.4 //Above full tile windows so wall items are clickable
 
+#define ABOVE_OBJ_PLANE -30
+
 // Mob planes
 #define MOB_PLANE				-25
 	#define BELOW_MOB_LAYER			3.9 // Should be converted to plane swaps
 	#define ABOVE_MOB_LAYER			4.1	// Should be converted to plane swaps
+
+#define ABOVE_MOB_PLANE			-24
+
+// Invisible things plane
+#define CLOAKED_PLANE			-15
 
 // Top plane (in the sense that it's the highest in 'the world' and not a UI element)
 #define ABOVE_PLANE				-10
@@ -106,10 +125,25 @@ What is the naming convention for planes or layers?
 	#define HUD_LAYER				20	// Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
 	#define SCREEN_LAYER			22	// Mob HUD/effects layer
 
+#define PLANE_STATUS			2 //Status Indicators that show over mobs' heads when certain things like stuns affect them.
+
 #define PLANE_ADMIN1			3 //Purely for shenanigans (below lighting)
 #define PLANE_PLANETLIGHTING	4 //Lighting on planets
+
 #define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
-#define PLANE_LIGHTING_ABOVE	6 //For glowy eyes etc. that shouldn't be affected by darkness
+	#define LIGHTING_RENDER_TARGET	"LIGHT_PLANE"
+
+#define PLANE_O_LIGHTING_VISUAL	6 //For masking the lighting plane
+	#define O_LIGHTING_VISUAL_RENDER_TARGET	"O_LIGHT_VISUAL_PLANE"
+
+#define PLANE_LIGHTING_ABOVE	7 //For glowy eyes etc. that shouldn't be affected by darkness
+	#define LIGHTING_ABOVE_RENDER_TARGET	"LIGHTING_ABOVE_PLANE"
+
+#define PLANE_EMISSIVE			8 //Glowing lights in otherwise dark areas using overlays/sprites
+	#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+	#define EMISSIVE_LAYER_UNBLOCKABLE 9999
+
+#define PLANE_RUNECHAT			9
 
 #define PLANE_GHOSTS			10 //Spooooooooky ghooooooosts
 #define PLANE_AI_EYE			11 //The AI eye lives here
@@ -141,6 +175,9 @@ What is the naming convention for planes or layers?
 	#define CRIT_LAYER			18.3
 
 //Client UI HUD stuff
+#define PLANE_HOLOMAP_FRAME		92
+#define PLANE_HOLOMAP			93 // Holomap rendered here
+#define PLANE_HOLOMAP_ICONS		94 // Holomap markers and bobbins
 #define PLANE_PLAYER_HUD		95 //The character's UI is on this plane
 	#define LAYER_HUD_UNDER		1 //Under the HUD items
 	#define LAYER_HUD_BASE		2 //The HUD items themselves
@@ -160,7 +197,6 @@ What is the naming convention for planes or layers?
 /atom/proc/reset_plane_and_layer()
 	plane = initial(plane)
 	layer = initial(layer)
-
 
 // Check if a mob can "logically" see an atom plane
 #define MOB_CAN_SEE_PLANE(M, P) (P <= PLANE_WORLD || (P in M.planes_visible))

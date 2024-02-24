@@ -7,13 +7,13 @@
 
 	emote_type = 2 //This lets them emote through containers.  The communicator has a image feed of the person calling them so...
 
-/mob/living/voice/New(loc)
+/mob/living/voice/Initialize(loc)
 	add_language(LANGUAGE_GALCOM)
 	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 
 	if(istype(loc, /obj/item/device/communicator))
 		comm = loc
-	..()
+	. = ..()
 
 // Proc: transfer_identity()
 // Parameters: 1 (speaker - the mob (usually an observer) to copy information from)
@@ -80,10 +80,10 @@
 	set desc = "Changes your name."
 	set src = usr
 
-	var/new_name = sanitizeSafe(input(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name)  as text, MAX_NAME_LEN)
+	var/new_name = sanitizeSafe(tgui_input_text(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(new_name)
 		if(comm)
-			comm.visible_message("<span class='notice'>[bicon(comm)] [src.name] has left, and now you see [new_name].</span>")
+			comm.visible_message("<span class='notice'>\icon[comm][bicon(comm)] [src.name] has left, and now you see [new_name].</span>")
 		//Do a bit of logging in-case anyone tries to impersonate other characters for whatever reason.
 		var/msg = "[src.client.key] ([src]) has changed their communicator identity's name to [new_name]."
 		message_admins(msg)
@@ -104,13 +104,15 @@
 // Proc: say()
 // Parameters: 4 (generic say() arguments)
 // Description: Adds a speech bubble to the communicator device, then calls ..() to do the real work.
-/mob/living/voice/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering=0)
+/mob/living/voice/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	//Speech bubbles.
 	if(comm)
 		var/speech_bubble_test = say_test(message)
 		//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"h[speech_bubble_test]") //VOREStation Edit - Commented out in case of needed reenable.
-		var/speech_type = speech_bubble_appearance()
-		var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+		var/speech_type = custom_speech_bubble
+		if(!speech_type || speech_type == "default")
+			speech_type = speech_bubble_appearance()
+		var/image/speech_bubble = generate_speech_bubble(comm, "[speech_type][speech_bubble_test]")
 		spawn(30)
 			qdel(speech_bubble)
 
@@ -118,7 +120,7 @@
 			M << speech_bubble
 		src << speech_bubble
 
-	..(message, speaking, verb, alt_name, whispering) //mob/living/say() can do the actual talking.
+	..() //mob/living/say() can do the actual talking.
 
 // Proc: speech_bubble_appearance()
 // Parameters: 0
@@ -126,17 +128,17 @@
 /mob/living/voice/speech_bubble_appearance()
 	return "comm"
 
-/mob/living/voice/say_understands(var/other,var/datum/language/speaking = null)
+/mob/living/voice/say_understands(var/other, var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
-	if (!speaking)
-		if (istype(other, /mob/living/carbon))
-			return 1
-		if (istype(other, /mob/living/silicon))
-			return 1
-		if (istype(other, /mob/living/carbon/brain))
-			return 1
+	if(!speaking)
+		if(iscarbon(other))
+			return TRUE
+		if(issilicon(other))
+			return TRUE
+		if(isbrain(other))
+			return TRUE
 	return ..()
 
-/mob/living/voice/custom_emote(var/m_type=1,var/message = null,var/range=world.view)
+/mob/living/voice/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message = null, var/range = world.view)
 	if(!comm) return
 	..(m_type,message,comm.video_range)

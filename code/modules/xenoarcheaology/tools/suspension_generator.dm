@@ -1,8 +1,8 @@
 /obj/machinery/suspension_gen
 	name = "suspension field generator"
-	desc = "It has stubby legs bolted up against it's body for stabilising."
+	desc = "It has stubby bolts up against it's treads for stabilising."
 	icon = 'icons/obj/xenoarchaeology.dmi'
-	icon_state = "suspension2"
+	icon_state = "suspension"
 	density = 1
 	req_access = list(access_research)
 	var/obj/item/weapon/cell/cell
@@ -11,9 +11,9 @@
 	var/power_use = 5
 	var/obj/effect/suspension_field/suspension_field
 
-/obj/machinery/suspension_gen/New()
-	..()
-	src.cell = new /obj/item/weapon/cell/high(src)
+/obj/machinery/suspension_gen/Initialize()
+	. = ..()
+	cell = new /obj/item/weapon/cell/high(src)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -21,7 +21,7 @@
 
 		var/turf/T = get_turf(suspension_field)
 		for(var/mob/living/M in T)
-			M.weakened = max(M.weakened, 3)
+			M.Weaken(3)
 			cell.charge -= power_use
 			if(prob(5))
 				to_chat(M, "<span class='warning'>[pick("You feel tingly","You feel like floating","It is hard to speak","You can barely move")].</span>")
@@ -29,116 +29,84 @@
 		for(var/obj/item/I in T)
 			if(!suspension_field.contents.len)
 				suspension_field.icon_state = "energynet"
-				suspension_field.overlays += "shield2"
+				suspension_field.add_overlay("shield2")
 			I.forceMove(suspension_field)
 
 		if(cell.charge <= 0)
 			deactivate()
 
-/obj/machinery/suspension_gen/interact(var/mob/user)
-	var/dat = "<b>Multi-phase mobile suspension field generator MK II \"Steadfast\"</b><br>"
-	if(cell)
-		var/colour = "red"
-		if(cell.charge / cell.maxcharge > 0.66)
-			colour = "green"
-		else if(cell.charge / cell.maxcharge > 0.33)
-			colour = "orange"
-		dat += "<b>Energy cell</b>: <font color='[colour]'>[100 * cell.charge / cell.maxcharge]%</font><br>"
-	else
-		dat += "<b>Energy cell</b>: None<br>"
-	if(auth_card)
-		dat += "<A href='?src=\ref[src];ejectcard=1'>\[[auth_card]\]<a><br>"
-		if(!locked)
-			dat += "<b><A href='?src=\ref[src];toggle_field=1'>[suspension_field ? "Disable" : "Enable"] field</a></b><br>"
-		else
-			dat += "<br>"
-	else
-		dat += "<A href='?src=\ref[src];insertcard=1'>\[------\]<a><br>"
-		if(!locked)
-			dat += "<b><A href='?src=\ref[src];toggle_field=1'>[suspension_field ? "Disable" : "Enable"] field</a></b><br>"
-		else
-			dat += "Enter your ID to begin.<br>"
-
-	dat += "<hr>"
-	dat += "<hr>"
-	dat += "<font color='blue'><b>Always wear safety gear and consult a field manual before operation.</b></font><br>"
-	if(!locked)
-		dat += "<A href='?src=\ref[src];lock=1'>Lock console</A><br>"
-	else
-		dat += "<br>"
-	dat += "<A href='?src=\ref[src];refresh=1'>Refresh console</A><br>"
-	dat += "<A href='?src=\ref[src];close=1'>Close console</A>"
-	user << browse(dat, "window=suspension;size=500x400")
-	onclose(user, "suspension")
-
-/obj/machinery/suspension_gen/Topic(href, href_list)
-	..()
-	usr.set_machine(src)
-
-	if(href_list["toggle_field"])
-		if(!suspension_field)
-			if(cell.charge > 0)
-				if(anchored)
-					activate()
-				else
-					to_chat(usr, "<span class='warning'>You are unable to activate [src] until it is properly secured on the ground.</span>")
-		else
-			deactivate()
-	else if(href_list["insertcard"])
-		var/obj/item/I = usr.get_active_hand()
-		if (istype(I, /obj/item/weapon/card))
-			usr.drop_item()
-			I.loc = src
-			auth_card = I
-			if(attempt_unlock(I, usr))
-				to_chat(usr, "<span class='info'>You insert [I], the console flashes \'<i>Access granted.</i>\'</span>")
-			else
-				to_chat(usr, "<span class='warning'>You insert [I], the console flashes \'<i>Access denied.</i>\'</span>")
-	else if(href_list["ejectcard"])
-		if(auth_card)
-			if(ishuman(usr))
-				auth_card.loc = usr.loc
-				if(!usr.get_active_hand())
-					usr.put_in_hands(auth_card)
-				auth_card = null
-			else
-				auth_card.loc = loc
-				auth_card = null
-	else if(href_list["lock"])
-		locked = 1
-	else if(href_list["close"])
-		usr.unset_machine()
-		usr << browse(null, "window=suspension")
-
-	updateUsrDialog()
-
 /obj/machinery/suspension_gen/attack_hand(var/mob/user)
 	if(!panel_open)
-		interact(user)
+		tgui_interact(user)
 	else if(cell)
 		cell.loc = loc
 		cell.add_fingerprint(user)
 		cell.update_icon()
 
-		icon_state = "suspension0"
+		icon_state = "suspension"
 		cell = null
 		to_chat(user, "<span class='info'>You remove the power cell</span>")
 
-/obj/machinery/suspension_gen/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/suspension_gen/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "XenoarchSuspension", name)
+		ui.open()
+
+/obj/machinery/suspension_gen/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["cell"] = cell
+	data["cellCharge"] = cell?.charge
+	data["cellMaxCharge"] = cell?.maxcharge
+
+	data["locked"] = locked
+	data["suspension_field"] = suspension_field
+
+	return data
+
+/obj/machinery/suspension_gen/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("toggle_field")
+			if(locked)
+				return
+			if(!suspension_field)
+				if(cell.charge > 0)
+					if(anchored)
+						activate()
+					else
+						to_chat(usr, "<span class='warning'>You are unable to activate [src] until it is properly secured on the ground.</span>")
+			else
+				deactivate()
+			return TRUE
+
+		if("lock")
+			if(allowed(usr))
+				locked = !locked
+				return TRUE
+
+/obj/machinery/suspension_gen/attackby(obj/item/W as obj, mob/user as mob)
 	if(!locked && !suspension_field && default_deconstruction_screwdriver(user, W))
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(!suspension_field)
 			if(anchored)
 				anchored = 0
 			else
 				anchored = 1
-			playsound(loc, W.usesound, 50, 1)
-			to_chat(user, "<span class='info'>You wrench the stabilising legs [anchored ? "into place" : "up against the body"].</span>")
+			playsound(src, W.usesound, 50, 1)
+			to_chat(user, "<span class='info'>You wrench the stabilising bolts [anchored ? "into place" : "loose"].</span>")
 			if(anchored)
-				desc = "It is resting securely on four stubby legs."
+				desc = "Its tracks are held firmly in place with securing bolts."
+				icon_state = "suspension_wrenched"
 			else
-				desc = "It has stubby legs bolted up against it's body for stabilising."
+				desc = "It has stubby bolts aligned along it's tracks for stabilising."
+				icon_state = "suspension"
+			playsound(loc, 'sound/items/Ratchet.ogg', 40)
+			update_icon()
 		else
 			to_chat(user, "<span class='warning'>You are unable to secure [src] while it is active!</span>")
 	else if (istype(W, /obj/item/weapon/cell))
@@ -150,7 +118,7 @@
 				W.loc = src
 				cell = W
 				to_chat(user, "<span class='info'>You insert the power cell.</span>")
-				icon_state = "suspension1"
+				icon_state = "suspension"
 	else if(istype(W, /obj/item/weapon/card))
 		var/obj/item/weapon/card/I = W
 		if(!auth_card)
@@ -181,21 +149,23 @@
 	var/collected = 0
 
 	for(var/mob/living/M in T)
-		M.weakened += 5
-		M.visible_message("<font color='blue'>[bicon(M)] [M] begins to float in the air!</font>","You feel tingly and light, but it is difficult to move.")
+		M.Weaken(5)
+		M.visible_message(span_blue("[bicon(M)] [M] begins to float in the air!"),"You feel tingly and light, but it is difficult to move.")
 
 	suspension_field = new(T)
-	src.visible_message("<font color='blue'>[bicon(src)] [src] activates with a low hum.</font>")
-	icon_state = "suspension3"
+	visible_message(span_blue("[bicon(src)] [src] activates with a low hum."))
+	icon_state = "suspension_on"
+	playsound(loc, 'sound/machines/quiet_beep.ogg', 40)
+	update_icon()
 
-	for(var/obj/item/I in T)
+	for(var/obj/item/weapon/I in T)
 		I.loc = suspension_field
 		collected++
 
 	if(collected)
 		suspension_field.icon_state = "energynet"
-		suspension_field.overlays += "shield2"
-		src.visible_message("<font color='blue'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</font>")
+		add_overlay("shield2")
+		visible_message(span_blue("[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
 		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
@@ -208,12 +178,14 @@
 
 	for(var/mob/living/M in T)
 		to_chat(M, "<span class='info'>You no longer feel like floating.</span>")
-		M.weakened = min(M.weakened, 3)
+		M.Weaken(3)
 
-	src.visible_message("<font color='blue'>[bicon(src)] [src] deactivates with a gentle shudder.</font>")
+	visible_message(span_blue("[bicon(src)] [src] deactivates with a gentle shudder."))
 	qdel(suspension_field)
 	suspension_field = null
-	icon_state = "suspension2"
+	icon_state = "suspension_wrenched"
+	playsound(loc, 'sound/machines/quiet_beep.ogg', 40)
+	update_icon()
 
 /obj/machinery/suspension_gen/Destroy()
 	deactivate()
@@ -225,9 +197,9 @@
 	set category = "Object"
 
 	if(anchored)
-		to_chat(usr, "<font color='red'>You cannot rotate [src], it has been firmly fixed to the floor.</font>")
+		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
 		return
-	src.set_dir(turn(src.dir, 90))
+	set_dir(turn(dir, 90))
 
 /obj/machinery/suspension_gen/verb/rotate_clockwise()
 	set src in view(1)
@@ -235,9 +207,17 @@
 	set category = "Object"
 
 	if(anchored)
-		to_chat(usr, "<font color='red'>You cannot rotate [src], it has been firmly fixed to the floor.</font>")
+		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
 		return
-	src.set_dir(turn(src.dir, 270))
+	set_dir(turn(dir, 270))
+
+/obj/machinery/suspension_gen/update_icon()
+	cut_overlays()
+	if(panel_open)
+		add_overlay("suspension_panel")
+	else
+		cut_overlay("suspension_panel")
+	. = ..()
 
 /obj/effect/suspension_field
 	name = "energy field"

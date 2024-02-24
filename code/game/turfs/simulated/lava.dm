@@ -10,18 +10,23 @@
 	light_range = 2
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
+	light_on = TRUE
 	movement_cost = 2
 	can_build_into_floor = TRUE
+	can_be_plated = FALSE
 	can_dirty = FALSE
+	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
+	flags = TURF_ACID_IMMUNE
 
 /turf/simulated/floor/lava/outdoors
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 // For maximum pedantry.
 /turf/simulated/floor/lava/Initialize()
-	if(!outdoors)
+	if(!is_outdoors())
 		name = "magma"
 	update_icon()
+	update_light()
 	return ..()
 
 /turf/simulated/floor/lava/make_outdoors()
@@ -32,22 +37,28 @@
 	..()
 	name = "magma"
 
-/turf/simulated/floor/lava/update_icon()
-	cut_overlays()
-	..()
-	update_icon_edge()
+/turf/simulated/floor/lava/make_plating(place_product, defer_icon_update)
+	return
+
+/turf/simulated/floor/lava/set_flooring(decl/flooring/newflooring, initializing)
+	if(newflooring?.type == initial_flooring)
+		return ..()
+	return
+
+/turf/simulated/floor/lava/ex_act(severity)
+	return
 
 /turf/simulated/floor/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSturfs, src)
 
 /turf/simulated/floor/lava/hitby(atom/movable/AM)
 	if(burn_stuff(AM))
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSturfs, src)
 
 /turf/simulated/floor/lava/process()
 	if(!burn_stuff())
-		STOP_PROCESSING(SSobj, src)
+		return PROCESS_KILL
 
 /turf/simulated/floor/lava/proc/is_safe()
 	//if anything matching this typecache is found in the lava, we don't burn things
@@ -68,14 +79,14 @@
 	for(var/thing in thing_to_check)
 		if(isobj(thing))
 			var/obj/O = thing
-			if(O.throwing)
+			if(O.throwing || O.is_incorporeal())
 				continue
 			. = TRUE
 			O.lava_act()
 
 		else if(isliving(thing))
 			var/mob/living/L = thing
-			if(L.hovering || L.throwing) // Flying over the lava. We're just gonna pretend convection doesn't exist.
+			if(L.hovering || L.throwing || L.is_incorporeal()) // Flying over the lava. We're just gonna pretend convection doesn't exist.
 				continue
 			. = TRUE
 			L.lava_act()

@@ -7,11 +7,11 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	desc = "A gravitational singularity."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	plane = ABOVE_PLANE
 	light_range = 6
-	unacidable = 1 //Don't comment this out.
+	unacidable = TRUE //Don't comment this out.
 
 	var/current_size = 1
 	var/allowed_size = 1
@@ -95,7 +95,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	var/count = locate(/obj/machinery/containment_field) in orange(30, src)
 
 	if (!count)
-		message_admins("A singulo has been created without containment fields active ([x], [y], [z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>).")
+		message_admins("A singulo has been created without containment fields active ([x], [y], [z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>).")
 
 	investigate_log("was created. [count ? "" : "<font color='red'>No containment fields were active.</font>"]", I_SINGULO)
 
@@ -265,8 +265,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	return 1
 
 /obj/singularity/proc/eat()
-	for(var/T in orange(grav_pull, src))
-		var/atom/X = T
+	for(var/atom/X as anything in orange(grav_pull, src))
 		if(!X.simulated)
 			continue
 		var/dist = get_dist(X, src)
@@ -337,10 +336,10 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	var/dir2 = 0
 	var/dir3 = 0
 	switch(direction)
-		if(NORTH||SOUTH)
+		if(NORTH,SOUTH)
 			dir2 = 4
 			dir3 = 8
-		if(EAST||WEST)
+		if(EAST,WEST)
 			dir2 = 1
 			dir3 = 2
 	var/turf/T2 = T
@@ -366,7 +365,8 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		return 0
 
 	// VOREStation Edit Start
-	if(istype(get_area(T), /area/crew_quarters/sleep)) //No going to dorms
+	var/area/A = get_area(T)
+	if(A.forbid_singulo) //No going to dorms
 		return 0
 	// VOREStation Edit End
 
@@ -465,15 +465,15 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	move_self = 0
 	switch (current_size)
 		if(STAGE_ONE)
-			overlays += image('icons/obj/singularity.dmi',"chain_s1")
+			add_overlay(image('icons/obj/singularity.dmi',"chain_s1"))
 		if(STAGE_TWO)
-			overlays += image('icons/effects/96x96.dmi',"chain_s3")
+			add_overlay(image('icons/effects/96x96.dmi',"chain_s3"))
 		if(STAGE_THREE)
-			overlays += image('icons/effects/160x160.dmi',"chain_s5")
+			add_overlay(image('icons/effects/160x160.dmi',"chain_s5"))
 		if(STAGE_FOUR)
-			overlays += image('icons/effects/224x224.dmi',"chain_s7")
+			add_overlay(image('icons/effects/224x224.dmi',"chain_s7"))
 		if(STAGE_FIVE)
-			overlays += image('icons/effects/288x288.dmi',"chain_s9")
+			add_overlay(image('icons/effects/288x288.dmi',"chain_s9"))
 
 /obj/singularity/proc/on_release()
 	chained = 0

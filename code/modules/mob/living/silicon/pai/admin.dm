@@ -3,11 +3,11 @@
 	set name = "Make pAI"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN|R_EVENT|R_DEBUG))
 		return
 
 	if(!pai_key)
-		var/client/C = input("Select client") as null|anything in GLOB.clients
+		var/client/C = tgui_input_list(usr, "Select client:", "Client Choice", GLOB.clients)
 		if(!C) return
 		pai_key = C.key
 

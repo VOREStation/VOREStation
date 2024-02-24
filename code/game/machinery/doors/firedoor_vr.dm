@@ -16,3 +16,8 @@
 	name = "\improper Emergency Shutter System"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with the walls, and has a panel in the floor for maintenance."
 	icon = 'icons/obj/doors/DoorHazardHidden_steel.dmi'
+
+/obj/machinery/door/firedoor/glass/hidden/shuttle
+	name = "\improper Emergency Shuttle Shutters"
+	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with shuttle walls."
+	icon = 'icons/obj/doors/DoorHazardHidden_shuttle.dmi'

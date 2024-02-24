@@ -45,7 +45,8 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/structure/cable
 	level = 1
-	anchored =1
+	anchored =TRUE
+	unacidable = TRUE
 	var/datum/powernet/powernet
 	name = "power cable"
 	desc = "A flexible superconducting cable for heavy-duty power transfer."
@@ -110,17 +111,10 @@ var/list/possible_cable_coil_colours = list(
 	cable_list -= src							//remove it from global cable list
 	return ..()									// then go ahead and delete the cable
 
-// Ghost examining the cable -> tells him the power
-/obj/structure/cable/attack_ghost(mob/user)
-	if(user.client && user.client.inquisitive_ghost)
-		user.examinate(src)
-		// following code taken from attackby (multitool)
-		if(powernet && (powernet.avail > 0))
-			to_chat(user, "<span class='warning'>[powernet.avail]W in power network.</span>")
-		else
-			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
-	return
-
+/obj/structure/cable/examine(mob/user)
+	. = ..()
+	if(isobserver(user))
+		. += "<span class='warning'>[powernet?.avail > 0 ? "[DisplayPower(powernet.avail)] in power network." : "The cable is not powered."]</span>"
 
 // Rotating cables requires d1 and d2 to be rotated
 /obj/structure/cable/set_dir(new_dir)
@@ -183,7 +177,7 @@ var/list/possible_cable_coil_colours = list(
 	if(!T.is_plating())
 		return
 
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		var/obj/item/stack/cable_coil/CC
 		if(d1 == UP || d2 == UP)
 			to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")
@@ -230,7 +224,7 @@ var/list/possible_cable_coil_colours = list(
 	else if(istype(W, /obj/item/device/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			to_chat(user, "<span class='warning'>[powernet.avail]W in power network.</span>")
+			to_chat(user, "<span class='warning'>[DisplayPower(powernet.avail)] in power network.</span>")
 
 		else
 			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
@@ -271,7 +265,7 @@ var/list/possible_cable_coil_colours = list(
 				qdel(src)
 	return
 
-obj/structure/cable/proc/cableColor(var/colorC)
+/obj/structure/cable/proc/cableColor(var/colorC)
 	var/color_n = "#DD0000"
 	if(colorC)
 		color_n = colorC
@@ -505,16 +499,22 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_RED
+	gender = NEUTER
 	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 20)
 	slot_flags = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = /obj/item/stack/cable_coil
+	singular_name = "length"
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
+	tool_qualities = list(TOOL_CABLE_COIL)
+	singular_name = "cable"
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
@@ -523,14 +523,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	matter = null
 	uses_charge = 1
 	charge_costs = list(1)
-
-/obj/item/stack/cable_coil/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	if(locate(/obj/item/weapon/stool) in user.loc)
-		user.visible_message("<span class='suicide'>[user] is making a noose with the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
-	else
-		user.visible_message("<span class='suicide'>[user] is strangling [TU.himself] with the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
-	return(OXYLOSS)
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
@@ -554,6 +546,11 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
+
+		//VOREStation Add - No welding nanoform limbs
+		if(S.robotic > ORGAN_LIFELIKE)
+			return ..()
+		//VOREStation Add End
 
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -583,7 +580,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		name = "cable piece"
 	else
 		icon_state = "coil"
-		name = "cable coil"
+		name = initial(name)
 
 /obj/item/stack/cable_coil/proc/set_cable_color(var/selected_color, var/user)
 	if(!selected_color)
@@ -602,21 +599,12 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	else
 		w_class = ITEMSIZE_SMALL
 
-/obj/item/stack/cable_coil/examine(mob/user)
-	var/msg = ""
-
-	if(get_amount() == 1)
-		msg += "A short piece of power cable."
-	else if(get_amount() == 2)
-		msg += "A piece of power cable."
-	else
-		msg += "A coil of power cable."
-
-		if(get_dist(src, user) <= 1)
-			msg += " There are [get_amount()] lengths of cable in the coil."
-
-	to_chat(user, msg)
-
+/obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/device/multitool))
+		var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
+		set_cable_color(selected_type, usr)
+		return
+	return ..()
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
@@ -634,13 +622,12 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		src.use(15)
 	else
 		to_chat(usr, "<span class='notice'>You cannot do that.</span>")
-	..()
 
 /obj/item/stack/cable_coil/cyborg/verb/set_colour()
 	set name = "Change Colour"
 	set category = "Object"
 
-	var/selected_type = input("Pick new colour.", "Cable Colour", null, null) as null|anything in possible_cable_coil_colours
+	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
 	set_cable_color(selected_type, usr)
 
 // Items usable on a cable coil :
@@ -956,7 +943,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 20)
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = null
@@ -986,21 +973,19 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	return 0
 
 /obj/item/stack/cable_coil/alien/examine(mob/user)
-	var/msg = "A spool of cable."
+	. = ..()
 
-	if(get_dist(src, user) <= 1)
-		msg += " It doesn't seem to have a beginning, or an end."
-
-	to_chat(user, msg)
+	if(Adjacent(user))
+		. += "It doesn't seem to have a beginning, or an end."
 
 /obj/item/stack/cable_coil/alien/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = input("How many units of wire do you want to take from [src]?  You can only take up to [amount] at a time.", "Split stacks", 1) as num|null
+		var/N = tgui_input_number(usr, "How many units of wire do you want to take from [src]? You can only take up to [amount] at a time.", "Split stacks", 1, amount)
 		if(N && N <= amount)
 			var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
 			CC.amount = N
 			CC.update_icon()
-			to_chat(user,"<font color='blue'>You take [N] units of wire from the [src].</font>")
+			to_chat(user,span_blue("You take [N] units of wire from the [src]."))
 			if (CC)
 				user.put_in_hands(CC)
 				src.add_fingerprint(user)

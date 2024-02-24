@@ -8,8 +8,8 @@
 	desc = "A machine for cutting up slimes to get to their cores."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "scanner_0old"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/slimeextractor
 	var/inuse
 	var/mob/living/simple_mob/xeno/slime/occupant = null
@@ -18,25 +18,19 @@
 	var/operatingcolor = "#FFFF22"
 
 
-/obj/machinery/slime/extractor/New()
-	..()
+/obj/machinery/slime/extractor/Initialize()
+	. = ..()
+	default_apply_parts()
 	update_light_color()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	RefreshParts()
 
 /obj/machinery/slime/extractor/attackby(var/obj/item/W, var/mob/user)
 
 	//Let's try to deconstruct first.
-	if(W.is_screwdriver() && !inuse)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) && !inuse)
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		default_deconstruction_crowbar(user, W)
 		return
 
@@ -99,7 +93,7 @@
 
 /obj/machinery/slime/extractor/proc/extract_cores()
 	if(!src.occupant)
-		src.visible_message("[bicon(src)] [src] pings unhappily.")
+		src.visible_message("\icon[src][bicon(src)] [src] pings unhappily.")
 	else if(inuse)
 		return
 

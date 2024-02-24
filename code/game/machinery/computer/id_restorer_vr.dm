@@ -17,6 +17,7 @@
 	var/obj/item/weapon/card/id/inserted
 
 /obj/machinery/computer/id_restorer/attackby(obj/I, mob/user)
+	/*
 	if(istype(I, /obj/item/weapon/card/id) && !(istype(I,/obj/item/weapon/card/id/guest)))
 		if(!inserted && user.unEquip(I))
 			I.forceMove(src)
@@ -24,20 +25,23 @@
 		else if(inserted)
 			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
 		return
+	*/
 	..()
 
 /obj/machinery/computer/id_restorer/attack_hand(mob/user)
 	if(..()) return
 	if(stat & (NOPOWER|BROKEN)) return
 
-	var/choice = alert(user,"What do you want to do?","[src]","Restore ID access","Eject ID","Cancel")
+	/*
+	if(!inserted) // No point in giving you an option what to do if there's no ID to do things with.
+		to_chat(user, "<span class='notice'>No ID is inserted.</span>")
+		return
+
+	var/choice = tgui_alert(user,"What do you want to do?","[src]",list("Restore ID access","Eject ID","Cancel"))
 	if(user.incapacitated() || (get_dist(src, user) > 1))
 		return
 	switch(choice)
 		if("Restore ID access")
-			if(!inserted)
-				to_chat(user, "<span class='notice'>No ID is inserted.</span>")
-				return
 			var/mob/living/carbon/human/H = user
 			if(!(istype(H)))
 				to_chat(user, "<span class='warning'>Invalid user detected. Access denied.</span>")
@@ -66,9 +70,6 @@
 				flick(icon_fail, src)
 				return
 		if("Eject ID")
-			if(!inserted)
-				to_chat(user, "<span class='notice'>No ID is inserted.</span>")
-				return
 			if(ishuman(user))
 				inserted.forceMove(get_turf(src))
 				if(!user.get_active_hand())
@@ -80,6 +81,7 @@
 			return
 		if("Cancel")
 			return
+	*/
 
 
 //Frame

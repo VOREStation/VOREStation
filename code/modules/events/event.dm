@@ -1,3 +1,4 @@
+// Event Meta instances represent choices for the event manager to choose for random events.
 /datum/event_meta
 	var/name 		= ""
 	var/enabled 	= 1	// Whether or not the event is available for random selection at all
@@ -8,9 +9,10 @@
 	var/one_shot	= 0	// If true, then the event will not be re-added to the list of available events
 	var/add_to_queue= 1	// If true, add back to the queue of events upon finishing.
 	var/list/role_weights = list()
+	var/list/min_job_count = list()
 	var/datum/event/event_type
 
-/datum/event_meta/New(var/event_severity, var/event_name, var/datum/event/type, var/event_weight, var/list/job_weights, var/is_one_shot = 0, var/min_event_weight = 0, var/max_event_weight = 0, var/add_to_queue = 1)
+/datum/event_meta/New(var/event_severity, var/event_name, var/datum/event/type, var/event_weight, var/list/job_weights, var/is_one_shot = 0, var/min_event_weight = 0, var/max_event_weight = 0, var/add_to_queue = 1, var/list/min_jobs)
 	name = event_name
 	severity = event_severity
 	event_type = type
@@ -21,6 +23,9 @@
 	src.add_to_queue = add_to_queue
 	if(job_weights)
 		role_weights = job_weights
+	if(min_jobs)
+		min_job_count = min_jobs
+
 
 /datum/event_meta/proc/get_weight(var/list/active_with_role)
 	if(!enabled)
@@ -39,6 +44,20 @@
 
 	return total_weight
 
+/datum/event_meta/proc/minimum_active(var/list/active_with_role)
+	var/can_fire = TRUE
+	for(var/role in min_job_count)
+		if(role in active_with_role)
+			if(active_with_role[role] < min_job_count[role])
+				can_fire = FALSE
+				break
+
+	return can_fire
+
+/datum/event_meta/no_overmap/get_weight() //these events have overmap equivalents, and shouldn't fire randomly if overmap is used
+	return global.using_map.use_overmap ? 0 : ..()
+
+// Event datums define and execute the actual events themselves.
 /datum/event	//NOTE: Times are measured in master controller ticks!
 	var/startWhen			= 0	//When in the lifetime to call start().
 	var/announceWhen		= 0	//When in the lifetime to call announce().
@@ -51,6 +70,9 @@
 	var/endedAt				= 0 //When this event ended.
 	var/processing_active 	= TRUE
 	var/datum/event_meta/event_meta = null
+	var/list/affecting_z	= null // List of z-levels to affect, null lets the event choose (usally station_levels)
+	var/has_skybox_image	= FALSE // True if SSskybox should query this event for an image to put in the skybox.
+	var/obj/effect/overmap/visitable/ship/victim = null // Ship this event is acting upon (If this is event is due to overmap travel).nt etc.
 
 /datum/event/nothing
 
@@ -65,6 +87,8 @@
 //Allows you to start before announcing or vice versa.
 //Only called once.
 /datum/event/proc/start()
+	if(has_skybox_image)
+		SSskybox.rebuild_skyboxes(affecting_z)
 	return
 
 //Called when the tick is equal to the announceWhen variable.
@@ -87,6 +111,8 @@
 //For example: if(activeFor == myOwnVariable + 30) doStuff()
 //Only called once.
 /datum/event/proc/end()
+	if(has_skybox_image)
+		SSskybox.rebuild_skyboxes(affecting_z)
 	return
 
 //Returns the latest point of event processing.
@@ -125,26 +151,43 @@
 	activeFor++
 
 //Called when start(), announce() and end() has all been called.
-/datum/event/proc/kill()
+/datum/event/proc/kill(external_use = FALSE)
 	// If this event was forcefully killed run end() for individual cleanup
 	if(isRunning)
 		isRunning = 0
 		end()
 
 	endedAt = world.time
-	SSevents.active_events -= src
-	SSevents.event_complete(src)
+	if(!external_use)
+		SSevents.event_complete(src)
 
-/datum/event/New(var/datum/event_meta/EM)
+//Called during building of skybox to get overlays
+/datum/event/proc/get_skybox_image()
+	return
+
+/datum/event/New(var/datum/event_meta/EM, external_use = FALSE)
 	// event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
-	SSevents.active_events += src
+	if(!external_use)
+		SSevents.active_events += src
 
-	event_meta = EM
-	severity = event_meta.severity
-	if(severity < EVENT_LEVEL_MUNDANE) severity = EVENT_LEVEL_MUNDANE
-	if(severity > EVENT_LEVEL_MAJOR) severity = EVENT_LEVEL_MAJOR
+		event_meta = EM
+		severity = event_meta.severity
+		if(severity < EVENT_LEVEL_MUNDANE) severity = EVENT_LEVEL_MUNDANE
+		if(severity > EVENT_LEVEL_MAJOR) severity = EVENT_LEVEL_MAJOR
 
 	startedAt = world.time
 
+	if(!affecting_z)
+		affecting_z = using_map.station_levels.Copy()
+
 	setup()
 	..()
+
+/datum/event/Destroy()
+	victim = null
+	. = ..()
+
+/datum/event/proc/location_name()
+	if(victim)
+		return victim.name
+	return station_name()

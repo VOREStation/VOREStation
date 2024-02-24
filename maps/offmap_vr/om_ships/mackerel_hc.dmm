@@ -1,0 +1,1497 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aq" = (
+/obj/machinery/shipsensors{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"az" = (
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"aF" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"bh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "mackerel_hc_docking_port;mackerel_hc_docking_star";
+	dir = 1;
+	id_tag = "mackerel_hc_docking";
+	pixel_y = -22
+	},
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"bw" = (
+/obj/machinery/computer/ship/sensors,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"bI" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"bY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window,
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"cv" = (
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"cD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light,
+/obj/structure/closet/walllocker/emerglocker/west,
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"dG" = (
+/obj/structure/grille,
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"dJ" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"fD" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"gv" = (
+/obj/machinery/computer/shuttle_control/explore/mackerel_hc,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"gU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"hu" = (
+/obj/machinery/atmospherics/valve/open,
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"jp" = (
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"ju" = (
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"jx" = (
+/obj/structure/handrail,
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"ka" = (
+/turf/simulated/wall/shull,
+/area/shuttle/mackerel_hc)
+"kq" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc)
+"kU" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"lT" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"mf" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"mi" = (
+/obj/structure/shuttle/engine/heater,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"mw" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 10;
+	pixel_x = -8;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"nD" = (
+/obj/structure/shuttle/engine/heater,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"oq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"pQ" = (
+/obj/structure/hull_corner,
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"pZ" = (
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"rc" = (
+/obj/structure/sign/warning/airlock,
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"rm" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"rr" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"sg" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"sl" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"tk" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"tL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/westright,
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"tV" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/mackerel_hc)
+"ue" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"ug" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"um" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window,
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"uR" = (
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"vt" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc)
+"we" = (
+/obj/structure/closet/crate/engineering,
+/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/electrical,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"wv" = (
+/obj/structure/closet/crate/engineering/electrical,
+/obj/item/weapon/tank/phoron,
+/obj/item/weapon/tank/phoron,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"wF" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"xd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"xB" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"yH" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"zq" = (
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"zY" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6;
+	pixel_x = 7;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"AA" = (
+/obj/machinery/atmospherics/valve/open,
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"BN" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"BP" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/fuel_port{
+	pixel_y = 26
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"Da" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"Dc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"Dh" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"Dl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window,
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"EK" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"EL" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"FL" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 1
+	},
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_hc,
+/obj/effect/overmap/visitable/ship/landable/mackerel_hc,
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_hc_docking_star";
+	name = "Starboard Airlock Control";
+	pixel_x = -8;
+	pixel_y = 22
+	},
+/obj/machinery/airlock_sensor{
+	pixel_x = 7;
+	pixel_y = 21
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"FS" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/emerglocker/west,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"Gm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/westright,
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"GF" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"GK" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"GW" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/mackerel_hc)
+"Jq" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/westright,
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"JG" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"JP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/closet/walllocker/emerglocker/north,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"JQ" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow,
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"JY" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc)
+"Kb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -30
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"Ko" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"LU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"Mv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"Nr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/symbol/maint,
+/turf/simulated/wall/rshull{
+	can_open = 1
+	},
+/area/shuttle/mackerel_hc)
+"NN" = (
+/obj/structure/symbol/maint,
+/turf/simulated/wall/rshull{
+	can_open = 1
+	},
+/area/shuttle/mackerel_hc)
+"OR" = (
+/obj/machinery/airlock_sensor{
+	pixel_x = -25
+	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"Pc" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"PI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"PL" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_hc_docking_port";
+	name = "Port Airlock Control";
+	pixel_x = 8;
+	pixel_y = 22
+	},
+/obj/machinery/airlock_sensor{
+	pixel_x = -8;
+	pixel_y = 21
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"PY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"Qz" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 10
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"Rv" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"RT" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"RV" = (
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/plating,
+/area/shuttle/mackerel_hc)
+"So" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"Sp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/westright,
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"SU" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"TG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/airlock_sensor{
+	pixel_x = 26
+	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"UW" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"UY" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"Wj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/light,
+/obj/structure/handrail,
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"Wv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/westright,
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"WI" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"WP" = (
+/turf/template_noop,
+/area/template_noop)
+"WS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/wall/shull,
+/area/shuttle/mackerel_hc)
+"WW" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"Xn" = (
+/turf/simulated/wall/rshull,
+/area/shuttle/mackerel_hc)
+"Xs" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"YD" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"Zb" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
+"Zp" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"ZJ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/computer/ship/engines{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"ZK" = (
+/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/firedoor/glass,
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"ZZ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+
+(1,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}
+(2,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+GW
+ka
+ka
+ka
+ka
+ka
+vt
+WP
+"}
+(3,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+ka
+ka
+Zb
+bI
+mi
+UY
+WP
+WP
+"}
+(4,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+ka
+ka
+jx
+dJ
+mi
+UY
+WP
+WP
+"}
+(5,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+ka
+dG
+dG
+ka
+WP
+ka
+dG
+dG
+ka
+WP
+WP
+WP
+JY
+ka
+ka
+tV
+ka
+ka
+kq
+WP
+"}
+(6,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+az
+WP
+WP
+az
+WP
+az
+WP
+WP
+az
+WP
+WP
+WP
+WP
+WP
+ka
+tV
+jx
+WP
+WP
+WP
+"}
+(7,1,1) = {"
+WP
+ka
+az
+az
+pQ
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+mw
+ka
+ka
+ka
+ka
+tV
+ka
+WP
+WP
+WP
+"}
+(8,1,1) = {"
+WP
+az
+WP
+aq
+ka
+ka
+fD
+ju
+EL
+ue
+EL
+zq
+JG
+RT
+WS
+PL
+ka
+rm
+AA
+tk
+JQ
+ka
+WP
+WP
+WP
+"}
+(9,1,1) = {"
+WP
+ka
+az
+ka
+ka
+Xn
+Xn
+Xn
+NN
+Xn
+Xn
+wF
+NN
+Xn
+Xn
+ZK
+rc
+Xn
+NN
+Xn
+tV
+ka
+ka
+ka
+vt
+"}
+(10,1,1) = {"
+WP
+WP
+WP
+aF
+cv
+Zp
+cD
+ug
+JP
+um
+Dc
+Dl
+WW
+Xs
+OR
+Dh
+bY
+Kb
+Wj
+ug
+BP
+FS
+we
+ka
+WP
+"}
+(11,1,1) = {"
+WP
+WP
+WP
+aF
+gv
+So
+mf
+uR
+EK
+So
+So
+GK
+Pc
+xd
+xd
+xd
+YD
+lT
+rr
+BN
+sg
+ZJ
+nD
+sl
+WP
+"}
+(12,1,1) = {"
+WP
+WP
+WP
+aF
+bw
+Ko
+gU
+xB
+oq
+Sp
+Gm
+Jq
+PI
+Wv
+TG
+Mv
+Sp
+tL
+bh
+PY
+SU
+ZZ
+wv
+ka
+WP
+"}
+(13,1,1) = {"
+WP
+ka
+az
+ka
+ka
+Xn
+Xn
+Da
+NN
+Xn
+Xn
+LU
+Nr
+Xn
+Xn
+ZK
+rc
+Xn
+NN
+Xn
+tV
+ka
+ka
+ka
+kq
+"}
+(14,1,1) = {"
+WP
+az
+WP
+WP
+ka
+ka
+jp
+kU
+pZ
+yH
+pZ
+GF
+yH
+RV
+WS
+FL
+ka
+rm
+hu
+Rv
+JQ
+ka
+WP
+WP
+WP
+"}
+(15,1,1) = {"
+WP
+ka
+az
+az
+UW
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+ka
+zY
+ka
+ka
+ka
+ka
+tV
+ka
+WP
+WP
+WP
+"}
+(16,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+az
+WP
+WP
+az
+WP
+az
+WP
+WP
+az
+WP
+WP
+WP
+WP
+WP
+ka
+tV
+jx
+WP
+WP
+WP
+"}
+(17,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+ka
+dG
+dG
+ka
+WP
+ka
+dG
+dG
+ka
+WP
+WP
+WP
+GW
+ka
+ka
+tV
+ka
+ka
+vt
+WP
+"}
+(18,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+ka
+ka
+jx
+dJ
+mi
+UY
+WP
+WP
+"}
+(19,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+ka
+ka
+WI
+Qz
+mi
+UY
+WP
+WP
+"}
+(20,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+JY
+ka
+ka
+ka
+ka
+ka
+kq
+WP
+"}
+(21,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}

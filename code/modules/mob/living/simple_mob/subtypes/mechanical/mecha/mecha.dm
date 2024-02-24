@@ -8,13 +8,15 @@
 	icon = 'icons/mecha/mecha.dmi'
 
 	faction = "syndicate"
-	movement_cooldown = 5
+	movement_cooldown = 1.5
 	movement_sound = "mechstep" // This gets fed into playsound(), which can also take strings as a 'group' of sound files.
 	turn_sound = 'sound/mecha/mechturn.ogg'
 	maxHealth = 300
 	mob_size = MOB_LARGE
+	damage_threshold = 5 //Anything that's 5 or less damage will not do damage.
 
-	// Very close to the base 'damage_absorption' var on the base mecha class.
+	organ_names = /decl/mob_organ_names/mecha
+
 	armor = list(
 				"melee"		= 20,
 				"bullet"	= 10,
@@ -57,7 +59,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/Destroy()
-	qdel(sparks)
+	qdel_null(sparks)
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/death()
@@ -139,3 +141,6 @@
 		severity++ // This somewhat misleadingly makes it less severe.
 		deflect_sprite()
 	..(severity)
+
+/decl/mob_organ_names/mecha
+	hit_zones = list("central chassis", "control module", "hydraulics", "left arm", "right arm", "left leg", "right leg", "sensor suite", "radiator", "power supply", "left equipment mount", "right equipment mount")

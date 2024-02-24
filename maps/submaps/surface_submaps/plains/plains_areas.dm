@@ -61,6 +61,9 @@
 /area/submap/Smol3
 	name = "POI - Merchant's Stand"
 
+/area/submap/PlainsKururak
+	name = "POI - Lone Kururak"
+
 /area/submap/PooledR
 	name = "POI - Pooled Rocks"
 	ambience = AMBIENCE_SIF
@@ -102,4 +105,32 @@
 
 /area/submap/ChemSpill1
 	name = "POI - Ruptured Canister"
+	ambience = AMBIENCE_TECH_RUINS
+
+/area/submap/BuriedTreasure
+	name = "POI - Buried Treasure"
+	ambience = AMBIENCE_FOREBODING
+
+/area/submap/oldhotel
+	name = "POI - Old Hotel"
+	ambience = AMBIENCE_SIF
+
+/area/submap/priderock
+	name = "POI - Pride Rock"
+	ambience = AMBIENCE_SIF
+
+/area/submap/lonehome
+	name = "POI - Lone Home"
+	ambience = AMBIENCE_FOREBODING
+
+/area/submap/hotspring
+	name = "POI - Hot Spring"
+	ambience = AMBIENCE_SIF
+
+/area/submap/methlab
+	name = "POI - Meth Lab"
+	ambience = AMBIENCE_TECH_RUINS
+
+/area/submap/VRDen
+	name = "POI - VR Den"
 	ambience = AMBIENCE_TECH_RUINS

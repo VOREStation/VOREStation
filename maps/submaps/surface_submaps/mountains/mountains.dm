@@ -1,5 +1,5 @@
 // This causes PoI maps to get 'checked' and compiled, when undergoing a unit test.
-// This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
+// This is so CI can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 // When adding a new PoI, please add it to this list.
 #if MAP_TEST
 #include "deadBeacon.dmm"
@@ -25,6 +25,7 @@
 #include "vault3.dmm"
 #include "vault4.dmm"
 #include "vault5.dmm"
+#include "vault6.dmm"
 #include "IceCave1A.dmm"
 #include "IceCave1B.dmm"
 #include "IceCave1C.dmm"
@@ -38,6 +39,9 @@
 #include "Geyser2.dmm"
 #include "Geyser3.dmm"
 #include "Cliff1.dmm"
+#include "excavation1.dmm"
+#include "spatial_anomaly.dmm"
+#include "speakeasy_vr.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -233,6 +237,13 @@
 	allow_duplicates = TRUE
 	template_group = "Underground Cliffs"
 
+/datum/map_template/surface/mountains/normal/deadly_rabbit // VOREStation Edit
+	name = "The Killer Rabbit"
+	desc = "A cave where the Knights of the Round have fallen to a murderous Rabbit."
+	mappath = 'maps/submaps/surface_submaps/mountains/deadly_rabbit_vr.dmm'
+	cost = 5
+	allow_duplicates = FALSE
+
 /**************
  * Deep Caves *
  **************/
@@ -254,8 +265,8 @@
 
 /datum/map_template/surface/mountains/normal/crashed_ufo_frigate //VOREStation Edit
 	name = "Crashed UFO Frigate"
-	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet its combat protocols still seem to be running..."
-	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo.dmm'
+	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet the combat protocols still seem to be running..."
+	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo_frigate.dmm'
 	cost = 60
 	discard_prob = 50
 
@@ -340,3 +351,24 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1_vr.dmm'	//VOREStation Edit
 	cost = 20
 	fixed_orientation = TRUE
+
+/datum/map_template/surface/mountains/normal/excavation1 //VOREStation Edit
+	name = "Excavation Site"
+	desc = "An abandoned mining site."
+	mappath = 'maps/submaps/surface_submaps/mountains/excavation1.dmm'
+	cost = 20
+
+/datum/map_template/surface/mountains/deep/spatial_anomaly
+	name = "spatial anomaly"
+	desc = "A strange section of the caves that seems twist and turn in ways that shouldn't be physically possible."
+	mappath = 'maps/submaps/surface_submaps/mountains/spatial_anomaly.dmm'
+	cost = INFINITY /// Prevent spawning.
+	fixed_orientation = TRUE
+
+/datum/map_template/surface/mountains/normal/Speakeasy //VOREStation add
+	name = "Speakeasy"
+	desc = "A hidden underground bar to serve drinks in secret and in style."
+	mappath = 'maps/submaps/surface_submaps/mountains/speakeasy_vr.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+

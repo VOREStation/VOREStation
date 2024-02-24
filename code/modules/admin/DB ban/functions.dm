@@ -1,6 +1,6 @@
 
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
-datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null, var/banip = null, var/bancid = null)
+/datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null, var/banip = null, var/bancid = null)
 
 	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
 
@@ -51,7 +51,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		validckey = 1
 	if(!validckey)
 		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key))) //VOREStation Edit Start.
-			var/confirm = alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin" , "Yes", "No")
+			var/confirm = tgui_alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin", list("Yes", "No"))
 			if(confirm == "No")
 				return //VOREStation Edit End
 
@@ -72,7 +72,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 			who += ", [C]"
 
 	var/adminwho
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(!adminwho)
 			adminwho = "[C]"
 		else
@@ -83,12 +83,12 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	var/sql = "INSERT INTO erro_ban (`id`,`bantime`,`serverip`,`bantype`,`reason`,`job`,`duration`,`rounds`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`,`edits`,`unbanned`,`unbanned_datetime`,`unbanned_ckey`,`unbanned_computerid`,`unbanned_ip`) VALUES (null, Now(), '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"
 	var/DBQuery/query_insert = dbcon.NewQuery(sql)
 	query_insert.Execute()
-	to_chat(usr, "<font color='blue'>Ban saved to database.</font>")
+	to_chat(usr, "<span class='filter_adminlog'>[span_blue("Ban saved to database.")]</span>")
 	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
 
 
 
-datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
+/datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	if(!check_rights(R_BAN))	return
 
@@ -137,22 +137,22 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 		ban_number++;
 
 	if(ban_number == 0)
-		to_chat(usr, "<font color='red'>Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin.</font>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin.")]</span>")
 		return
 
 	if(ban_number > 1)
-		to_chat(usr, "<font color='red'>Database update failed due to multiple bans fitting the search criteria. Note down the ckey, job and current time and contact the database admin.</font>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Database update failed due to multiple bans fitting the search criteria. Note down the ckey, job and current time and contact the database admin.")]</span>")
 		return
 
 	if(istext(ban_id))
 		ban_id = text2num(ban_id)
 	if(!isnum(ban_id))
-		to_chat(usr, "<font color='red'>Database update failed due to a ban ID mismatch. Contact the database admin.</font>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Database update failed due to a ban ID mismatch. Contact the database admin.")]</span>")
 		return
 
 	DB_ban_unban_by_id(ban_id)
 
-datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
+/datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 	if(!check_rights(R_BAN))	return
 
@@ -173,7 +173,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		duration = query.item[2]
 		reason = query.item[3]
 	else
-		to_chat(usr, "Invalid ban id. Contact the database admin")
+		to_chat(usr, "<span class='filter_adminlog'>Invalid ban id. Contact the database admin</span>")
 		return
 
 	reason = sql_sanitize_text(reason)
@@ -182,7 +182,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 	switch(param)
 		if("reason")
 			if(!value)
-				value = sanitize(input("Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null|text)
+				value = sanitize(tgui_input_text(usr, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null))
 				value = sql_sanitize_text(value)
 				if(!value)
 					to_chat(usr, "Cancelled")
@@ -193,7 +193,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
 		if("duration")
 			if(!value)
-				value = input("Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null) as null|num
+				value = tgui_input_number(usr, "Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null)
 				if(!isnum(value) || !value)
 					to_chat(usr, "Cancelled")
 					return
@@ -202,17 +202,13 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s duration from [duration] to [value]",1)
 			update_query.Execute()
 		if("unban")
-			if(alert("Unban [pckey]?", "Unban?", "Yes", "No") == "Yes")
+			if(tgui_alert(usr, "Unban [pckey]?", "Unban?", list("Yes", "No")) == "Yes")
 				DB_ban_unban_by_id(banid)
 				return
-			else
-				to_chat(usr, "Cancelled")
-				return
-		else
-			to_chat(usr, "Cancelled")
-			return
+	to_chat(usr, "<span class='filter_adminlog'>Cancelled</span>")
+	return
 
-datum/admins/proc/DB_ban_unban_by_id(var/id)
+/datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	if(!check_rights(R_BAN))	return
 
@@ -232,11 +228,11 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		ban_number++;
 
 	if(ban_number == 0)
-		to_chat(usr, "<font color='red'>Database update failed due to a ban id not being present in the database.</font>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Database update failed due to a ban id not being present in the database.")]</span>")
 		return
 
 	if(ban_number > 1)
-		to_chat(usr, "<font color='red'>Database update failed due to multiple bans having the same ID. Contact the database admin.</font>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Database update failed due to multiple bans having the same ID. Contact the database admin.")]</span>")
 		return
 
 	if(!src.owner || !istype(src.owner, /client))
@@ -272,7 +268,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		to_chat(usr, "<font color='red'>Failed to establish database connection</font>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Failed to establish database connection")]</span>")
 		return
 
 	var/output = "<div align='center'><table width='90%'><tr>"
@@ -283,7 +279,8 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	output += "<td width='65%' align='center' bgcolor='#f9f9f9'>"
 
-	output += "<form method='GET' action='?src=\ref[src]'><b>Add custom ban:</b> (ONLY use this if you can't ban through any other method)"
+	output += "<form method='GET' action='?src=\ref[src]'>[HrefTokenFormField()]"
+	output += "<b>Add custom ban:</b> (ONLY use this if you can't ban through any other method)"
 	output += "<input type='hidden' name='src' value='\ref[src]'>"
 	output += "<table width='100%'><tr>"
 	output += "<td width='50%' align='right'><b>Ban type:</b><select name='dbbanaddtype'>"
@@ -301,7 +298,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	output += "<option value=''>--</option>"
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
-	for(var/j in nonhuman_positions)
+	for(var/j in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))
 		output += "<option value='[j]'>[j]</option>"
 	var/list/bantypes = list("traitor","changeling","operative","revolutionary","cultist","wizard") //For legacy bans.
 	for(var/antag_type in all_antag_types) // Grab other bans.
@@ -318,7 +315,8 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	output += "</tr>"
 	output += "</table>"
 
-	output += "<form method='GET' action='?src=\ref[src]'><table width='60%'><tr><td colspan='2' align='left'><b>Search:</b>"
+	output += "<form method='GET' action='?src=\ref[src]'>[HrefTokenFormField()]"
+	output += "<table width='60%'><tr><td colspan='2' align='left'><b>Search:</b>"
 	output += "<input type='hidden' name='src' value='\ref[src]'></td></tr>"
 	output += "<tr><td width='50%' align='right'><b>Ckey:</b> <input type='text' name='dbsearchckey' value='[playerckey]'></td>"
 	output += "<td width='50%' align='right'><b>Admin ckey:</b> <input type='text' name='dbsearchadmin' value='[adminckey]'></td></tr>"
@@ -439,7 +437,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 					if("PERMABAN")
 						typedesc = "<font color='red'><b>PERMABAN</b></font>"
 					if("TEMPBAN")
-						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
+						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
 					if("JOB_PERMABAN")
 						typedesc = "<b>JOBBAN</b><br><font size='2'>([job])</font>"
 					if("JOB_TEMPBAN")
@@ -450,14 +448,14 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				output += "<td align='center'><b>[ckey]</b></td>"
 				output += "<td align='center'>[bantime]</td>"
 				output += "<td align='center'><b>[ackey]</b></td>"
-				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
+				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"
 				output += "<td align='center' colspan='3' bgcolor=''><b>CIP:</b> [cid]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[lcolor]'>"
-				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
+				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
 				output += "</tr>"
 				if(edits)
 					output += "<tr bgcolor='[dcolor]'>"

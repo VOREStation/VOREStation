@@ -18,10 +18,12 @@
 
 	maxHealth = 100
 	health = 100
+	see_in_dark = 7
 
 	harm_intent_damage = 5
 	melee_damage_lower = 25
 	melee_damage_upper = 25
+	attack_armor_pen = 15	//It's a freaking alien.
 	attack_sharp = TRUE
 	attack_edge = TRUE
 
@@ -29,6 +31,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	meat_amount = 5
 
 /mob/living/simple_mob/animal/space/alien/drone
 	name = "alien drone"
@@ -64,7 +67,9 @@
 
 	pixel_x = -16
 	old_x = -16
-	meat_amount = 5
+	icon_expected_width = 64
+	icon_expected_height = 64
+	meat_amount = 8
 
 /mob/living/simple_mob/animal/space/alien/queen
 	name = "alien queen"
@@ -80,7 +85,7 @@
 	projectilesound = 'sound/weapons/pierce.ogg'
 
 
-	movement_cooldown = 8
+	movement_cooldown = 3
 
 /mob/living/simple_mob/animal/space/alien/queen/empress
 	name = "alien empress"
@@ -91,10 +96,12 @@
 	icon_rest = "queen_sleep"
 	maxHealth = 400
 	health = 400
-	meat_amount = 5
+	meat_amount = 15
 
 	pixel_x = -16
 	old_x = -16
+	icon_expected_width = 64
+	icon_expected_height = 64
 
 /mob/living/simple_mob/animal/space/alien/queen/empress/mother
 	name = "alien mother"
@@ -105,12 +112,14 @@
 	icon_rest = "empress_rest"
 	maxHealth = 600
 	health = 600
-	meat_amount = 10
+	meat_amount = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 
 	pixel_x = -32
 	old_x = -32
+	icon_expected_width = 96
+	icon_expected_height = 96
 
 /mob/living/simple_mob/animal/space/alien/death()
 	..()

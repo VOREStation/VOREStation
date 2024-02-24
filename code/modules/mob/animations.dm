@@ -237,8 +237,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	//Check for clients with pref enabled
 	var/list/viewing = list()
-	for(var/m in viewers(A))
-		var/mob/M = m
+	for(var/mob/M as anything in viewers(A))
 		var/client/C = M.client
 		if(C && C.is_preference_enabled(/datum/client_preference/attack_icons))
 			viewing += M.client
@@ -297,6 +296,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return TRUE //Found an item, doing item attack animation.
 
 /mob/proc/spin(spintime, speed)
+	if(!speed || speed < 1)		// Do NOT spin with infinite speed, it will break the reality
+		return
 	spawn()
 		var/D = dir
 		while(spintime >= speed)

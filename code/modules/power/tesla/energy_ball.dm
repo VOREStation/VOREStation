@@ -40,8 +40,7 @@
 		var/obj/singularity/energy_ball/EB = orbiting.orbiting
 		EB.orbiting_balls -= src
 
-	for(var/ball in orbiting_balls)
-		var/obj/singularity/energy_ball/EB = ball
+	for(var/obj/singularity/energy_ball/EB as anything in orbiting_balls)
 		qdel(EB)
 
 	. = ..()
@@ -60,7 +59,7 @@
 
 		move_the_basket_ball(max(wait - 5, 4 + orbiting_balls.len * 1.5))
 
-		playsound(src.loc, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
+		playsound(src, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
 
 		set_dir(tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE))
 
@@ -71,10 +70,9 @@
 		energy = 0 // ensure we dont have miniballs of miniballs
 
 /obj/singularity/energy_ball/examine(mob/user)
-	..()
+	. = ..()
 	if(orbiting_balls.len)
-		to_chat(user, "The amount of orbiting mini-balls is [orbiting_balls.len].")
-
+		. += "The amount of orbiting mini-balls is [orbiting_balls.len]."
 
 /obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)
 	//we face the last thing we zapped, so this lets us favor that direction a bit
@@ -88,7 +86,7 @@
 			forceMove(T)
 			set_dir(move_dir)
 			for(var/mob/living/carbon/C in loc)
-				dust_mobs(C)
+				dust_mob(C)
 			sleep(1) // So movement is smooth
 
 /obj/singularity/energy_ball/proc/handle_energy()
@@ -102,8 +100,8 @@
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
 
-		playsound(src.loc, 'sound/effects/lightning_chargeup.ogg', 100, 1, extrarange = 30)
-		//addtimer(CALLBACK(src, .proc/new_mini_ball), 100)
+		playsound(src, 'sound/effects/lightning_chargeup.ogg', 100, 1, extrarange = 30)
+		//addtimer(CALLBACK(src, PROC_REF(new_mini_ball)), 100)
 		spawn(100) new_mini_ball()
 
 	else if(energy < energy_to_lower && orbiting_balls.len)
@@ -113,13 +111,14 @@
 		var/Orchiectomy_target = pick(orbiting_balls)
 		qdel(Orchiectomy_target)
 
-	else if(orbiting_balls.len)
+	else
 		dissipate() //sing code has a much better system.
 
 /obj/singularity/energy_ball/proc/new_mini_ball()
 	if(!loc)
 		return
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
+	all_singularities -= EB //why are these miniballs even singularities in the first place, they don't do anything
 
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)
@@ -129,43 +128,38 @@
 
 	EB.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 
+/obj/singularity/energy_ball/attack_hand(mob/user)
+	dust_mob(user)
+	return 1
 
 /obj/singularity/energy_ball/Bump(atom/A)
-	dust_mobs(A)
+	dust_mob(A)
 
 /obj/singularity/energy_ball/Bumped(atom/movable/AM)
-	dust_mobs(AM)
+	dust_mob(AM)
 
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))
 		target.orbiting_balls += src
 		//TODO-LESH-DEL global.poi_list -= src
-		target.dissipate_strength = target.orbiting_balls.len
+		target.dissipate_strength = target.orbiting_balls.len + 1
 
 	. = ..()
 /obj/singularity/energy_ball/stop_orbit()
 	if (orbiting && istype(orbiting.orbiting, /obj/singularity/energy_ball))
 		var/obj/singularity/energy_ball/orbitingball = orbiting.orbiting
 		orbitingball.orbiting_balls -= src
-		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len
+		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len + 1
 	..()
 	if (!loc && !QDELETED(src))
 		qdel(src)
 
 
-/obj/singularity/energy_ball/proc/dust_mobs(atom/A)
-	if(isliving(A))
-		var/mob/living/L = A
-		if(L.incorporeal_move)
-			return
-	if(!iscarbon(A))
+/obj/singularity/energy_ball/proc/dust_mob(mob/living/L)
+	if(!istype(L) || L.incorporeal_move)
 		return
-	for(var/obj/machinery/power/grounding_rod/GR in orange(src, 2))
-		if(GR.anchored)
-			return
-	var/mob/living/carbon/C = A
-	// C.dust() - Changing to do fatal elecrocution instead
-	C.electrocute_act(500, src, def_zone = BP_TORSO)
+	// L.dust() - Changing to do fatal elecrocution instead
+	L.electrocute_act(500, src, def_zone = BP_TORSO)
 
 /proc/tesla_zap(atom/source, zap_range = 3, power, explosive = FALSE, stun_mobs = TRUE)
 	if(!source) // Some mobs and maybe some objects delete themselves when they die.

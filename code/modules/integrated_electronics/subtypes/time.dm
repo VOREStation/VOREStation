@@ -25,7 +25,7 @@
 		var/new_delay = CLAMP(delay_input, 1, 1 HOUR)
 		delay = new_delay
 
-	addtimer(CALLBACK(src, .proc/activate_pin, 2), delay)
+	addtimer(CALLBACK(src, PROC_REF(activate_pin), 2), delay)
 
 /obj/item/integrated_circuit/time/ticker
 	name = "ticker circuit"
@@ -65,7 +65,7 @@
 
 /obj/item/integrated_circuit/time/ticker/proc/tick()
 	if(is_running && check_power())
-		addtimer(CALLBACK(src, .proc/tick), delay)
+		addtimer(CALLBACK(src, PROC_REF(tick)), delay)
 		if(world.time > next_fire)
 			next_fire = world.time + delay
 			activate_pin(1)
@@ -86,10 +86,10 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/time/clock/do_work()
-	set_pin_data(IC_OUTPUT, 1, time2text(station_time_in_ticks, "hh:mm:ss") )
-	set_pin_data(IC_OUTPUT, 2, text2num(time2text(station_time_in_ticks, "hh") ) )
-	set_pin_data(IC_OUTPUT, 3, text2num(time2text(station_time_in_ticks, "mm") ) )
-	set_pin_data(IC_OUTPUT, 4, text2num(time2text(station_time_in_ticks, "ss") ) )
+	set_pin_data(IC_OUTPUT, 1, time2text(station_time_in_ds, "hh:mm:ss") )
+	set_pin_data(IC_OUTPUT, 2, text2num(time2text(station_time_in_ds, "hh") ) )
+	set_pin_data(IC_OUTPUT, 3, text2num(time2text(station_time_in_ds, "mm") ) )
+	set_pin_data(IC_OUTPUT, 4, text2num(time2text(station_time_in_ds, "ss") ) )
 
 	push_data()
 	activate_pin(2)

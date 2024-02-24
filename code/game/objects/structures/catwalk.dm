@@ -1,113 +1,203 @@
-// Based on catwalk.dm from https://github.com/Endless-Horizon/CEV-Eris
 /obj/structure/catwalk
 	name = "catwalk"
 	desc = "Cats really don't like these things."
-	plane = DECAL_PLANE
-	layer = ABOVE_UTILITY
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk"
-	density = 0
+	plane = DECAL_PLANE
+	layer = DECAL_LAYER
+	density = FALSE
+	anchored = TRUE
+	var/hatch_open = FALSE
+	var/plating_color = null
+	var/obj/item/stack/tile/plated_tile = null
+	var/static/plating_colors = list(
+		/obj/item/stack/tile/floor = "#858a8f",
+		/obj/item/stack/tile/floor/dark = "#4f4f4f",
+		/obj/item/stack/tile/floor/white = "#e8e8e8",
+		/obj/item/stack/tile/floor/techmaint = "#4d585b",
+		/obj/item/stack/tile/floor/techgrey = "#363f43")
 	var/health = 100
 	var/maxhealth = 100
-	anchored = 1.0
 
 /obj/structure/catwalk/Initialize()
 	. = ..()
-	for(var/obj/structure/catwalk/O in range(1))
-		O.update_icon()
 	for(var/obj/structure/catwalk/C in get_turf(src))
 		if(C != src)
-			warning("Duplicate [type] in [loc] ([x], [y], [z])")
-			return INITIALIZE_HINT_QDEL
+			qdel(C)
+	update_connections(1)
 	update_icon()
 
+
 /obj/structure/catwalk/Destroy()
-	var/turf/location = loc
-	. = ..()
-	location.alpha = initial(location.alpha)
-	for(var/obj/structure/catwalk/L in orange(location, 1))
-		L.update_icon()
+	redraw_nearby_catwalks()
+	update_falling()
+	return ..()
+
+/obj/structure/catwalk/proc/update_falling()
+	spawn(1) //We get called in Destroy() and things. We might not be gone yet, so let's just put this off.
+		if(istype(loc, /turf/simulated/open))
+			var/turf/simulated/open/O = loc
+			O.update() //Will cause anything on the open turf to fall if it should
+
+/obj/structure/catwalk/proc/redraw_nearby_catwalks()
+	for(var/direction in alldirs)
+		var/obj/structure/catwalk/L = locate() in get_step(src, direction)
+		if(L)
+			L.update_connections()
+			L.update_icon() //so siding get updated properly
 
 /obj/structure/catwalk/update_icon()
-	var/connectdir = 0
-	for(var/direction in cardinal)
-		if(locate(/obj/structure/catwalk, get_step(src, direction)))
-			connectdir |= direction
-
-	//Check the diagonal connections for corners, where you have, for example, connections both north and east. In this case it checks for a north-east connection to determine whether to add a corner marker or not.
-	var/diagonalconnect = 0 //1 = NE; 2 = SE; 4 = NW; 8 = SW
-	//NORTHEAST
-	if(connectdir & NORTH && connectdir & EAST)
-		if(locate(/obj/structure/catwalk, get_step(src, NORTHEAST)))
-			diagonalconnect |= 1
-	//SOUTHEAST
-	if(connectdir & SOUTH && connectdir & EAST)
-		if(locate(/obj/structure/catwalk, get_step(src, SOUTHEAST)))
-			diagonalconnect |= 2
-	//NORTHWEST
-	if(connectdir & NORTH && connectdir & WEST)
-		if(locate(/obj/structure/catwalk, get_step(src, NORTHWEST)))
-			diagonalconnect |= 4
-	//SOUTHWEST
-	if(connectdir & SOUTH && connectdir & WEST)
-		if(locate(/obj/structure/catwalk, get_step(src, SOUTHWEST)))
-			diagonalconnect |= 8
-
-	icon_state = "catwalk[connectdir]-[diagonalconnect]"
-
+	update_connections()
+	cut_overlays()
+	icon_state = ""
+	var/image/I
+	if(!hatch_open)
+		for(var/i = 1 to 4)
+			var/connect = connections?[i] || 0
+			I = image(icon, "catwalk[connect]", dir = 1<<(i-1))
+			add_overlay(I)
+	if(plating_color)
+		I = image(icon, "plated")
+		I.color = plating_color
+		add_overlay(I)
 
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
+			new /obj/item/stack/rods(src.loc)
 			qdel(src)
-		if(2.0)
+		if(2)
+			new /obj/item/stack/rods(src.loc)
 			qdel(src)
-		if(3.0)
-			qdel(src)
-	return
+
+/obj/structure/catwalk/attack_robot(var/mob/user)
+	if(Adjacent(user))
+		attack_hand(user)
+
+/obj/structure/catwalk/proc/deconstruct(mob/user)
+	playsound(src, 'sound/items/Welder.ogg', 100, 1)
+	to_chat(user, "<span class='notice'>Slicing \the [src] joints ...</span>")
+	new /obj/item/stack/rods(src.loc)
+	new /obj/item/stack/rods(src.loc)
+	//Lattice would delete itself, but let's save ourselves a new obj
+	if(isspace(loc) || isopenspace(loc))
+		new /obj/structure/lattice/(src.loc)
+	if(plated_tile)
+		new plated_tile(src.loc)
+	qdel(src)
 
 /obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
-		if(WT.isOn())
-			if(WT.remove_fuel(0, user))
-				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
-				new /obj/item/stack/rods(src.loc)
-				new /obj/item/stack/rods(src.loc)
-				new /obj/structure/lattice(src.loc)
-				qdel(src)
-	if(C.is_screwdriver())
-		if(health < maxhealth)
-			to_chat(user, "<span class='notice'>You begin repairing \the [src.name] with \the [C.name].</span>")
-			if(do_after(user, 20, src))
-				health = maxhealth
-	else
-		take_damage(C.force)
-		user.setClickCooldown(user.get_attack_speed(C))
-	return ..()
-
-/obj/structure/catwalk/Crossed()
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = usr
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
+	if(C.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = C.get_welder()
+		if(WT.isOn() && WT.remove_fuel(0, user))
+			deconstruct(user)
 			return
-	//VOREStation Edit end: SHADEKIN
-	. = ..()
-	if(isliving(usr))
-		playsound(src, pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg'), 25, 1)
+	if(C.has_tool_quality(TOOL_CROWBAR) && plated_tile)
+		hatch_open = !hatch_open
+		if(hatch_open)
+			playsound(src, 'sound/items/Crowbar.ogg', 100, 2)
+			to_chat(user, "<span class='notice'>You pry open \the [src]'s maintenance hatch.</span>")
+			update_falling()
+		else
+			playsound(src, 'sound/items/Deconstruct.ogg', 100, 2)
+			to_chat(user, "<span class='notice'>You shut \the [src]'s maintenance hatch.</span>")
+		update_icon()
+		return
+	if(istype(C, /obj/item/stack/tile/floor) && !plated_tile)
+		var/obj/item/stack/tile/floor/ST = C
+		to_chat(user, "<span class='notice'>Placing tile...</span>")
+		if (!do_after(user, 10))
+			return
+		if(!ST.use(1))
+			return
+		to_chat(user, "<span class='notice'>You plate \the [src]</span>")
+		name = "plated catwalk"
+		plated_tile = C.type
+		src.add_fingerprint(user)
+		for(var/tiletype in plating_colors)
+			if(istype(ST, tiletype))
+				plating_color = plating_colors[tiletype]
+		update_icon()
 
-/obj/structure/catwalk/CheckExit(atom/movable/O, turf/target)
-	if(O.checkpass(PASSGRILLE))
-		return 1
-	if(target && target.z < src.z)
-		return 0
-	return 1
+/obj/structure/catwalk/refresh_neighbors()
+	return
 
 /obj/structure/catwalk/take_damage(amount)
 	health -= amount
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
-		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 		new /obj/item/stack/rods(get_turf(src))
 		Destroy()
+
+/obj/structure/catwalk/Crossed(atom/movable/AM)
+	. = ..()
+	if(isliving(AM) && !AM.is_incorporeal())
+		playsound(src, pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg'), 25, 1)
+
+/obj/effect/catwalk_plated
+	name = "plated catwalk spawner"
+	icon = 'icons/turf/catwalks.dmi'
+	icon_state = "catwalk_plated"
+	density = TRUE
+	anchored = TRUE
+	var/activated = FALSE
+	plane = DECAL_PLANE
+	layer = DECAL_LAYER
+	var/tile = /obj/item/stack/tile/floor
+	var/platecolor = "#858a8f"
+
+/obj/effect/catwalk_plated/Initialize(mapload)
+	. = ..()
+	activate()
+
+/obj/effect/catwalk_plated/CanPass()
+	return 0
+
+/obj/effect/catwalk_plated/attack_hand()
+	attack_generic()
+
+/obj/effect/catwalk_plated/attack_ghost()
+	attack_generic()
+
+/obj/effect/catwalk_plated/attack_generic()
+	activate()
+
+/obj/effect/catwalk_plated/proc/activate()
+	if(activated) return
+
+	if(locate(/obj/structure/catwalk) in loc)
+		warning("Frame Spawner: A catwalk already exists at [loc.x]-[loc.y]-[loc.z]")
+	else
+		var/obj/structure/catwalk/C = new /obj/structure/catwalk(loc)
+		C.plated_tile = tile
+		C.plating_color = platecolor
+		C.name = "plated catwalk"
+		C.update_icon()
+	activated = 1
+	/* We don't have wallframes - yet
+	for(var/turf/T in orange(src, 1))
+		for(var/obj/effect/wallframe_spawn/other in T)
+			if(!other.activated) other.activate()
+	*/
+	qdel(src)
+
+/obj/effect/catwalk_plated/dark
+	icon_state = "catwalk_plateddark"
+	tile = /obj/item/stack/tile/floor/dark
+	platecolor = "#4f4f4f"
+
+/obj/effect/catwalk_plated/white
+	icon_state = "catwalk_platedwhite"
+	tile = /obj/item/stack/tile/floor/white
+	platecolor = "#e8e8e8"
+
+/obj/effect/catwalk_plated/techmaint
+	icon_state = "catwalk_techmaint"
+	tile = /obj/item/stack/tile/floor/techmaint
+	platecolor = "#4d585b"
+
+/obj/effect/catwalk_plated/techfloor
+	icon_state = "catwalk_techfloor"
+	tile = /obj/item/stack/tile/floor/techgrey
+	platecolor = "#363f43"

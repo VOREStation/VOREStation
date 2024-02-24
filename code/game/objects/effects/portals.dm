@@ -5,12 +5,12 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
-	density = 1
-	unacidable = 1//Can't destroy energy portals.
+	density = TRUE
+	unacidable = TRUE//Can't destroy energy portals.
 	var/failchance = 5
 	var/obj/item/target = null
 	var/creator = null
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
 	if(istype(M,/mob) && !(istype(M,/mob/living)))
@@ -20,13 +20,9 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		return
 	return
 
-/obj/effect/portal/Crossed(AM as mob|obj)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+/obj/effect/portal/Crossed(atom/movable/AM as mob|obj)
+	if(AM.is_incorporeal())
+		return
 	if(istype(AM,/mob) && !(istype(AM,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
@@ -42,12 +38,9 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		return
 	return
 
-/obj/effect/portal/New()
-	..() // Necessary for the list boilerplate to work
-	spawn(300)
-		qdel(src)
-		return
-	return
+/obj/effect/portal/Initialize()
+	. = ..()
+	QDEL_IN(src, 30 SECONDS)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport

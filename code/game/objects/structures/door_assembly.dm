@@ -2,8 +2,8 @@
 	name = "airlock assembly"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_as_0"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	w_class = ITEMSIZE_HUGE
 	var/state = 0
 	var/base_icon_state = ""
@@ -14,8 +14,8 @@
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
 	var/created_name = null
 
-	New()
-		update_state()
+/obj/structure/door_assembly/New()
+	update_state()
 
 /obj/structure/door_assembly/door_assembly_com
 	base_icon_state = "com"
@@ -136,33 +136,33 @@
 	airlock_type = "/multi_tile/glass"
 	glass = -1 //To prevent bugs in deconstruction process.
 
-	New()
-		if(dir in list(EAST, WEST))
-			bound_width = width * world.icon_size
-			bound_height = world.icon_size
-		else
-			bound_width = world.icon_size
-			bound_height = width * world.icon_size
-		update_state()
+/obj/structure/door_assembly/multi_tile/New()
+	if(dir in list(EAST, WEST))
+		bound_width = width * world.icon_size
+		bound_height = world.icon_size
+	else
+		bound_width = world.icon_size
+		bound_height = width * world.icon_size
+	update_state()
 
-	Move()
-		. = ..()
-		if(dir in list(EAST, WEST))
-			bound_width = width * world.icon_size
-			bound_height = world.icon_size
-		else
-			bound_width = world.icon_size
-			bound_height = width * world.icon_size
+/obj/structure/door_assembly/multi_tile/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(dir in list(EAST, WEST))
+		bound_width = width * world.icon_size
+		bound_height = world.icon_size
+	else
+		bound_width = world.icon_size
+		bound_height = width * world.icon_size
 
 /obj/structure/door_assembly/proc/rename_door(mob/living/user)
-	var/t = sanitizeSafe(input(user, "Enter the name for the windoor.", src.name, src.created_name), MAX_NAME_LEN)
+	var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the [base_name].", src.name, src.created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(!in_range(src, user) && src.loc != user)	return
 	created_name = t
 	update_state()
 
 /obj/structure/door_assembly/attack_robot(mob/living/silicon/robot/user)
-	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/weapon/robot_module/robot/engineering/general)) \
-	|| istype(user.module,/obj/item/weapon/robot_module/drone))) //Only dron (and engiborg) needs this.
+	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/weapon/robot_module/robot/engineering)) \
+	|| istype(user.module,/obj/item/weapon/robot_module/drone))) //Only drone (and engiborg) needs this.
 		rename_door(user)
 
 /obj/structure/door_assembly/attackby(obj/item/W as obj, mob/user as mob)
@@ -170,13 +170,13 @@
 		rename_door(user)
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if (WT.remove_fuel(0, user))
 			playsound(src, WT.usesound, 50, 1)
 			if(istext(glass))
 				user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
-				if(do_after(user, 40 * WT.toolspeed))
+				if(do_after(user, 4 SECONDS * WT.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
 					if(!src || !WT.isOn()) return
 					to_chat(user, "<span class='notice'>You welded the [glass] plating off!</span>")
 					var/M = text2path("/obj/item/stack/material/[glass]")
@@ -184,14 +184,14 @@
 					glass = 0
 			else if(glass == 1)
 				user.visible_message("[user] welds the glass panel out of the airlock assembly.", "You start to weld the glass panel out of the airlock assembly.")
-				if(do_after(user, 40 * WT.toolspeed))
+				if(do_after(user, 4 SECONDS * WT.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
 					if(!src || !WT.isOn()) return
 					to_chat(user, "<span class='notice'>You welded the glass panel out!</span>")
 					new /obj/item/stack/material/glass/reinforced(src.loc)
 					glass = 0
 			else if(!anchored)
 				user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")
-				if(do_after(user, 40 * WT.toolspeed))
+				if(do_after(user, 4 SECONDS * WT.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
 					if(!src || !WT.isOn()) return
 					to_chat(user, "<span class='notice'>You dissasembled the airlock assembly!</span>")
 					new /obj/item/stack/material/steel(src.loc, 4)
@@ -200,14 +200,14 @@
 			to_chat(user, "<span class='notice'>You need more welding fuel.</span>")
 			return
 
-	else if(W.is_wrench() && state == 0)
+	else if(W.has_tool_quality(TOOL_WRENCH) && state == 0)
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring the airlock assembly from the floor.", "You starts unsecuring the airlock assembly from the floor.")
 		else
 			user.visible_message("[user] begins securing the airlock assembly to the floor.", "You starts securing the airlock assembly to the floor.")
 
-		if(do_after(user, 40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
 			if(!src) return
 			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured the airlock assembly!</span>")
 			anchored = !anchored
@@ -218,16 +218,16 @@
 			to_chat(user, "<span class='warning'>You need one length of coil to wire the airlock assembly.</span>")
 			return
 		user.visible_message("[user] wires the airlock assembly.", "You start to wire the airlock assembly.")
-		if(do_after(user, 40) && state == 0 && anchored)
+		if(do_after(user, 4 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) && state == 0 && anchored)
 			if (C.use(1))
 				src.state = 1
 				to_chat(user, "<span class='notice'>You wire the airlock.</span>")
 
-	else if(W.is_wirecutter() && state == 1 )
+	else if(W.has_tool_quality(TOOL_WIRECUTTER) && state == 1 )
 		playsound(src, W.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-		if(do_after(user, 40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
 			if(!src) return
 			to_chat(user, "<span class='notice'>You cut the airlock wires.!</span>")
 			new/obj/item/stack/cable_coil(src.loc, 1)
@@ -237,7 +237,7 @@
 		playsound(src, W.usesound, 100, 1)
 		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
-		if(do_after(user, 40))
+		if(do_after(user, 4 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE))
 			if(!src) return
 			user.drop_item()
 			W.loc = src
@@ -245,7 +245,7 @@
 			src.state = 2
 			src.electronics = W
 
-	else if(W.is_crowbar() && state == 2 )
+	else if(W.has_tool_quality(TOOL_CROWBAR) && state == 2 )
 		//This should never happen, but just in case I guess
 		if (!electronics)
 			to_chat(user, "<span class='notice'>There was nothing to remove.</span>")
@@ -255,7 +255,7 @@
 		playsound(src, W.usesound, 100, 1)
 		user.visible_message("\The [user] starts removing the electronics from the airlock assembly.", "You start removing the electronics from the airlock assembly.")
 
-		if(do_after(user, 40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
 			if(!src) return
 			to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
 			src.state = 1
@@ -268,9 +268,9 @@
 		if (S)
 			if (S.get_amount() >= 1)
 				if(material_name == "rglass")
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 					user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
-					if(do_after(user, 40) && !glass)
+					if(do_after(user, 4 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) && !glass)
 						if (S.use(1))
 							to_chat(user, "<span class='notice'>You installed reinforced glass windows into the airlock assembly.</span>")
 							glass = 1
@@ -280,18 +280,18 @@
 						to_chat(user, "You cannot make an airlock out of that material.")
 						return
 					if(S.get_amount() >= 2)
-						playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+						playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 						user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
-						if(do_after(user, 40) && !glass)
+						if(do_after(user, 4 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) && !glass)
 							if (S.use(2))
 								to_chat(user, "<span class='notice'>You installed [material_display_name(material_name)] plating into the airlock assembly.</span>")
 								glass = material_name
 
-	else if(W.is_screwdriver() && state == 2 )
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && state == 2 )
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now finishing the airlock.</span>")
 
-		if(do_after(user, 40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
 			if(!src) return
 			to_chat(user, "<span class='notice'>You finish the airlock!</span>")
 			var/path

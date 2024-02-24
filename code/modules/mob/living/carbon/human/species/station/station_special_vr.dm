@@ -9,15 +9,17 @@
 	name_plural = "Xenochimeras"
 	icobase = 'icons/mob/human_races/r_xenochimera.dmi'
 	deform = 'icons/mob/human_races/r_def_xenochimera.dmi'
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/chimera, /datum/unarmed_attack/bite/sharp)
 	darksight = 8		//critters with instincts to hide in the dark need to see in the dark - about as good as tajara.
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
 	burn_mod =  1.15	//As vulnerable to burn as a Tajara.
 	base_species = "Xenochimera"
-	selects_bodytype = TRUE
+	selects_bodytype = SELECTS_BODYTYPE_CUSTOM
+	digi_allowed = TRUE
 
-	num_alternate_languages = 2
+	num_alternate_languages = 3
+	species_language = null
 	secondary_langs = list("Sol Common")
 	//color_mult = 1 //It seemed to work fine in testing, but I've been informed it's unneeded.
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
@@ -25,14 +27,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/reconstitute_form,
 		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,
-		/mob/living/carbon/human/proc/tie_hair,
-		/mob/living/proc/shred_limb,
-		/mob/living/proc/flying_toggle,
-		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
+		/mob/living/carbon/human/proc/tie_hair)
 
 	virus_immune = 1 // They practically ARE one.
 	min_age = 18
@@ -54,16 +49,18 @@
 	//primitive_form = "Farwa"
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE//Whitelisted as restricted is broken.
-	flags = NO_SCAN | NO_INFECT //Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is.
+	flags = NO_SCAN | NO_INFECT // | NO_DEFIB // Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is. Leaving NO_DEFIB there for the future/in case reversion to old 'chimera no-defib.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
-	has_organ = list(    //Same organ list as tajarans.
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
+	has_organ = list(    //Same organ list as tajarans, except for their SPECIAL BRAIN.
 		O_HEART =    /obj/item/organ/internal/heart,
 		O_LUNGS =    /obj/item/organ/internal/lungs,
 		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
-		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_BRAIN =    /obj/item/organ/internal/brain/xenochimera,
 		O_EYES =     /obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
@@ -76,8 +73,8 @@
 	reagent_tag = IS_CHIMERA
 
 /datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
-	//If they're KO'd/dead, they're probably not thinking a lot about much of anything.
-	if(!H.stat)
+	//If they're KO'd/dead, or reviving, they're probably not thinking a lot about much of anything.
+	if(!H.stat || !(H.revive_ready == REVIVING_NOW || H.revive_ready == REVIVING_DONE))
 		handle_feralness(H)
 
 	//While regenerating
@@ -85,6 +82,10 @@
 		H.weakened = 5
 		H.canmove = 0
 		H.does_not_breathe = TRUE
+		var/regen_sounds = H.regen_sounds
+		if(prob(2)) // 2% chance of playing squelchy noise while reviving, which is run roughly every 2 seconds/tick while regenerating.
+			playsound(H, pick(regen_sounds), 30)
+			H.visible_message("<span class='danger'><p><font size=4>[H.name]'s motionless form shudders grotesquely, rippling unnaturally.</font></p></span>")
 
 	//Cold/pressure effects when not regenerating
 	else
@@ -95,6 +96,9 @@
 		//Very low pressure damage
 		if(adjusted_pressure2 <= 20)
 			H.take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+		//they handle areas where they can't breathe better than most, but it still lowers their effective health as well as all the other bad stuff that comes with unbreathable environments
+		if(H.getOxyLoss() >= 50)
+			H.does_not_breathe = TRUE
 
 		//Cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage or trigger feral.
 		//NB: 'body_temperature' used here is the 'setpoint' species var
@@ -103,17 +107,24 @@
 			H.shock_stage = min(H.shock_stage + (temp_diff/20), 160) // Divided by 20 is the same as previous numbers, but a full scale
 			H.eye_blurry = max(5,H.eye_blurry)
 
+/obj/item/organ/internal/brain/xenochimera
+	var/laststress = 0
 
 /datum/species/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
+	//first, calculate how stressed the chimera is
+	var/laststress = 0
+	var/obj/item/organ/internal/brain/xenochimera/B = H.internal_organs_by_name[O_BRAIN]
+	if(B) //if you don't have a chimera brain in a chimera body somehow, you don't get the feraless protection
+		laststress = B.laststress
 
-	//Low-ish nutrition has messages and eventually feral
-	var/hungry = H.nutrition <= 200
+	//Low-ish nutrition has messages and can eventually cause feralness
+	var/hunger = max(0, 150 - H.nutrition)
 
-	//At 360 nutrition, this is 30 brute/burn, or 18 halloss. Capped at 50 brute/30 halloss - if they take THAT much, no amount of satiation will help them. Also they're fat.
-	var/shock = H.traumatic_shock > min(60, H.nutrition/10)
+	//pain makes feralness a thing
+	var/shock = 0.75*H.traumatic_shock
 
-	//Caffeinated xenochimera can become feral and have special messages
-	var/jittery = H.jitteriness >= 100
+	//Caffeinated or otherwise overexcited xenochimera can become feral and have special messages
+	var/jittery = max(0, H.jitteriness - 100)
 
 	//To reduce distant object references
 	var/feral = H.feral
@@ -122,11 +133,25 @@
 	var/danger = FALSE
 	var/feral_state = FALSE
 
-	//Handle feral triggers and pre-feral messages
-	if(!feral && (hungry || shock || jittery))
+	//finally, calculate the current stress total the chimera is operating under, and the cause
+	var/currentstress = (hunger + shock + jittery)
+	var/cause = "stress"
+	if(hunger > shock && hunger > jittery)
+		cause = "hunger"
+	else if (shock > hunger && shock > jittery)
+		cause = "shock"
+	else if (jittery > shock && jittery > hunger)
+		cause = "jittery"
 
-		// If they're hungry, give nag messages (when not bellied)
-		if(H.nutrition >= 100 && prob(0.5) && !isbelly(H.loc))
+	//check to see if they go feral if they weren't before
+	if(!feral && !isbelly(H.loc))
+		// if stress is below 15, no chance of snapping. Also if they weren't feral before, they won't suddenly become feral unless they get MORE stressed
+		if((currentstress > laststress) && prob(clamp(currentstress-15, 0, 100)) )
+			go_feral(H, currentstress, cause)
+			feral = currentstress //update the local var
+
+		//they didn't go feral, give 'em a chance of hunger messages
+		else if(H.nutrition <= 200 && prob(0.5))
 			switch(H.nutrition)
 				if(150 to 200)
 					to_chat(H,"<span class='info'>You feel rather hungry. It might be a good idea to find some some food...</span>")
@@ -134,76 +159,27 @@
 					to_chat(H,"<span class='warning'>You feel like you're going to snap and give in to your hunger soon... It would be for the best to find some [pick("food","prey")] to eat...</span>")
 					danger = TRUE
 
-		// Going feral due to hunger
-		else if(H.nutrition < 100 && !isbelly(H.loc))
-			to_chat(H,"<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>")
-			log_and_message_admins("has gone feral due to hunger.", H)
-			feral = 5
-			danger = TRUE
-			feral_state = TRUE
-			if(!H.stat)
-				H.emote("twitch")
-
-		// If they're hurt, chance of snapping.
-		else if(shock)
-
-			//If the majority of their shock is due to halloss, greater chance of snapping.
-			if(2.5*H.halloss >= H.traumatic_shock)
-				if(prob(min(10,(0.2 * H.traumatic_shock))))
-					to_chat(H,"<span class='danger'><big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...</big></span>")
-					log_and_message_admins("has gone feral due to halloss.", H)
-					feral = 5
-					danger = TRUE
-					feral_state = TRUE
-					if(!H.stat)
-						H.emote("twitch")
-
-			//Majority due to other damage sources
-			else if(prob(min(10,(0.1 * H.traumatic_shock))))
-				to_chat(H,"<span class='danger'><big>Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.</big></span>")
-				feral = 5
-				danger = TRUE
-				feral_state = TRUE
-				log_and_message_admins("has gone feral due to injury.", H)
-				if(!H.stat)
-					H.emote("twitch")
-
-		//No hungry or shock, but jittery
-		else if(jittery)
-			to_chat(H,"<span class='warning'><big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big></span>")
-			feral = 5
-			danger = TRUE
-			feral_state = TRUE
-			log_and_message_admins("has gone feral due to jitteriness.", H)
-			if(!H.stat)
-				H.emote("twitch")
+	//now the check's done, update their brain so it remembers how stressed they were
+	if(B && !isbelly(H.loc)) //another sanity check for brain implant shenanigans, also no you don't get to hide in a belly and get your laststress set to a huge amount to skip rolls
+		B.laststress = currentstress
 
 	// Handle being feral
 	if(feral)
 		//We're feral
 		feral_state = TRUE
 
-		//Shock due to mostly halloss. More feral.
-		if(shock && 2.5*H.halloss >= H.traumatic_shock)
+		//If they're still stressed, they stay feral
+		if(currentstress >= 15)
 			danger = TRUE
-			feral = max(feral, H.halloss)
+			feral = max(feral, currentstress)
 
-		//Shock due to mostly injury. More feral.
-		else if(shock)
-			danger = TRUE
-			feral = max(feral, H.traumatic_shock * 2)
-
-		//Still jittery? More feral.
-		if(jittery)
-			danger = TRUE
-			feral = max(feral, H.jitteriness-100)
-
-		//Still hungry? More feral.
-		if(H.feral + H.nutrition < 150)
-			danger = TRUE
-			feral++
 		else
 			feral = max(0,--feral)
+
+			// Being in a belly or in the darkness decreases stress further. Helps mechanically reward players for staying in darkness + RP'ing appropriately. :9
+			var/turf/T = get_turf(H)
+			if(feral && (isbelly(H.loc) || T.get_lumcount() <= 0.1))
+				feral = max(0,--feral)
 
 		//Set our real mob's var to our temp var
 		H.feral = feral
@@ -232,8 +208,8 @@
 			//This is basically the 'lite' version of the below block.
 			var/list/nearby = H.living_mobs(world.view)
 
-			//Not in the dark and out in the open.
-			if(!darkish && isturf(H.loc))
+			//Not in the dark, or a belly, and out in the open.
+			if(!darkish && isturf(H.loc) && !isbelly(H.loc)) // Added specific check for if in belly
 
 				//Always handle feral if nobody's around and not in the dark.
 				if(!nearby.len)
@@ -247,18 +223,18 @@
 			update_xenochimera_hud(H, danger, feral_state)
 			return
 
-		// In the darkness or "hidden". No need for custom scene-protection checks as it's just an occational infomessage.
-		if(darkish || !isturf(H.loc))
+		// In the darkness, or "hidden", or in a belly. No need for custom scene-protection checks as it's just an occational infomessage.
+		if(darkish || !isturf(H.loc) || isbelly(H.loc)) // Specific check for if in belly. !isturf should do this, but JUST in case.
 			// If hurt, tell 'em to heal up
-			if (shock)
+			if (cause == "shock")
 				to_chat(H,"<span class='info'>This place seems safe, secure, hidden, a place to lick your wounds and recover...</span>")
 
 			//If hungry, nag them to go and find someone or something to eat.
-			else if(hungry)
+			else if(cause == "hunger")
 				to_chat(H,"<span class='info'>Secure in your hiding place, your hunger still gnaws at you. You need to catch some food...</span>")
 
 			//If jittery, etc
-			else if(jittery)
+			else if(cause == "jittery")
 				to_chat(H,"<span class='info'>sneakysneakyyesyesyescleverhidingfindthingsyessssss</span>")
 
 			//Otherwise, just tell them to keep hiding.
@@ -277,16 +253,16 @@
 			// Someone/something nearby
 			if(nearby.len)
 				var/M = pick(nearby)
-				if(shock)
+				if(cause == "shock")
 					to_chat(H,"<span class='danger'>You're hurt, in danger, exposed, and [M] looks to be a little too close for comfort...</span>")
-				else if(hungry || jittery)
+				else
 					to_chat(H,"<span class='danger'>Every movement, every flick, every sight and sound has your full attention, your hunting instincts on high alert... In fact, [M] looks extremely appetizing...</span>")
 
 			// Nobody around
 			else
-				if(hungry)
+				if(cause == "hunger")
 					to_chat(H,"<span class='danger'>Confusing sights and sounds and smells surround you - scary and disorienting it may be, but the drive to hunt, to feed, to survive, compels you.</span>")
-				else if(jittery)
+				else if(cause == "jittery")
 					to_chat(H,"<span class='danger'>yesyesyesyesyesyesgetthethingGETTHETHINGfindfoodsfindpreypounceyesyesyes</span>")
 				else
 					to_chat(H,"<span class='danger'>Confusing sights and sounds and smells surround you, this place is wrong, confusing, frightening. You need to hide, go to ground...</span>")
@@ -294,48 +270,36 @@
 	// HUD update time
 	update_xenochimera_hud(H, danger, feral_state)
 
+/datum/species/xenochimera/proc/go_feral(var/mob/living/carbon/human/H, var/stress, var/cause)
+	// Going feral due to hunger
+	if(cause == "hunger")
+		to_chat(H,"<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>")
+		log_and_message_admins("has gone feral due to hunger.", H)
 
-/datum/species/xenochimera/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
-	ASSERT(to_copy)
-	ASSERT(istype(H))
+	// If they're hurt, chance of snapping.
+	else if(cause == "shock")
+		//If the majority of their shock is due to halloss, give them a different message (3x multiplier on check as halloss is 2x - meaning t_s must be at least 3x for other damage sources to be the greater part)
+		if(3*H.halloss >= H.traumatic_shock)
+			to_chat(H,"<span class='danger'><big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...</big></span>")
+			log_and_message_admins("has gone feral due to halloss.", H)
 
-	if(ispath(to_copy))
-		to_copy = "[initial(to_copy.name)]"
-	if(istext(to_copy))
-		to_copy = GLOB.all_species[to_copy]
+		//Majority due to other damage sources
+		else
+			to_chat(H,"<span class='danger'><big>Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.</big></span>")
+			log_and_message_admins("has gone feral due to injury.", H)
 
-	var/datum/species/xenochimera/new_copy = new()
+	//No hungry or shock, but jittery
+	else if(cause == "jittery")
+		to_chat(H,"<span class='warning'><big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big></span>")
+		log_and_message_admins("has gone feral due to jitteriness.", H)
 
-	//Initials so it works with a simple path passed, or an instance
-	new_copy.base_species = to_copy.name
-	new_copy.icobase = to_copy.icobase
-	new_copy.deform = to_copy.deform
-	new_copy.tail = to_copy.tail
-	new_copy.tail_animation = to_copy.tail_animation
-	new_copy.icobase_tail = to_copy.icobase_tail
-	new_copy.color_mult = to_copy.color_mult
-	new_copy.primitive_form = to_copy.primitive_form
-	new_copy.appearance_flags = to_copy.appearance_flags
-	new_copy.flesh_color = to_copy.flesh_color
-	new_copy.base_color = to_copy.base_color
-	new_copy.blood_mask = to_copy.blood_mask
-	new_copy.damage_mask = to_copy.damage_mask
-	new_copy.damage_overlays = to_copy.damage_overlays
-
-	//Set up a mob
-	H.species = new_copy
-	H.icon_state = lowertext(new_copy.get_bodytype())
-
-	if(new_copy.holder_type)
-		H.holder_type = new_copy.holder_type
-
-	if(H.dna)
-		H.dna.ready_dna(H)
-
-	return new_copy
-
-/datum/species/xenochimera/get_bodytype()
-	return base_species
+	else // catch-all just in case something weird happens
+		to_chat(H,"<span class='warning'><big>The stress of your situation is too much for you, and your survival instincts kick in!</big></span>")
+		log_and_message_admins("has gone feral for unknown reasons.", H)
+	//finally, set their feral var
+	H.feral = stress
+	if(!H.stat)
+		H.emote("twitch")
 
 /datum/species/xenochimera/get_race_key()
 	var/datum/species/real = GLOB.all_species[base_species]
@@ -368,15 +332,23 @@
 	slowdown = -0.15	//Small speedboost, as they've got a bunch of legs. Or something. I dunno.
 	brute_mod = 0.8		//20% brute damage reduction
 	burn_mod =  1.15	//15% burn damage increase. They're spiders. Aerosol can+lighter = dead spiders.
+	throwforce_absorb_threshold = 10
+	digi_allowed = TRUE
 
-	num_alternate_languages = 2
+	num_alternate_languages = 3
+	species_language = LANGUAGE_VESPINAE
 	secondary_langs = list(LANGUAGE_VESPINAE)
 	color_mult = 1
 	tail = "tail" //Spider tail.
 	icobase_tail = 1
 
 	inherent_verbs = list(
-		/mob/proc/weaveWebBindings)
+		/mob/living/carbon/human/proc/check_silk_amount,
+		/mob/living/carbon/human/proc/toggle_silk_production,
+		/mob/living/carbon/human/proc/weave_structure,
+		/mob/living/carbon/human/proc/weave_item,
+		/mob/living/carbon/human/proc/set_silk_color,
+		/mob/living/carbon/human/proc/tie_hair)
 
 	min_age = 18
 	max_age = 80
@@ -402,9 +374,15 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
 	flesh_color = "#AFA59E" //Gray-ish. Not sure if this is really needed, but eh.
 	base_color 	= "#333333" //Blackish-gray
 	blood_color = "#0952EF" //Spiders have blue blood.
+
+	is_weaver = TRUE
+	silk_reserve = 500
+	silk_max_reserve = 1000
 
 /datum/species/spider/handle_environment_special(var/mob/living/carbon/human/H)
 	if(H.stat == DEAD) // If they're dead they won't need anything.
@@ -443,9 +421,12 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_CANILUNZT)
 	name_language = LANGUAGE_CANILUNZT
+	species_language = LANGUAGE_CANILUNZT
 	primitive_form = "Wolpin"
 	color_mult = 1
 	icon_height = 64
+	can_climb = TRUE
+	climbing_delay = 1
 
 	min_age = 18
 	max_age = 200
@@ -458,12 +439,11 @@
 
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	inherent_verbs = list(
-		/mob/living/proc/shred_limb,
-		/mob/living/proc/eat_trash)
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
+
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -474,7 +454,7 @@
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/werebeast),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/werebeast),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
 		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
 		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
@@ -484,4 +464,3 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
-

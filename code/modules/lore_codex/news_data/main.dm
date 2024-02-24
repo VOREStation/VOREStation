@@ -1,9 +1,58 @@
 /datum/lore/codex/category/main_news // The top-level categories for the news thing
 	name = "Index"
-	data = "Below you'll find a list of articles relevant to the current (as of 2562) political climate, especially concerning the Almach Rim \
+	data = "Below you'll find a list of articles relevant to the current (as of 2565) political climate, especially concerning the local \
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article114,
+		/datum/lore/codex/page/article113,
+		/datum/lore/codex/page/outage,
+		/datum/lore/codex/page/article112,
+		/datum/lore/codex/page/article111,
+		/datum/lore/codex/page/article110,
+		/datum/lore/codex/page/article109,
+		/datum/lore/codex/page/article108,
+		/datum/lore/codex/page/article107,
+		/datum/lore/codex/page/article106,
+		/datum/lore/codex/page/article105,
+		/datum/lore/codex/page/article104,
+		/datum/lore/codex/page/article103,
+		/datum/lore/codex/page/article102,
+		/datum/lore/codex/page/article101,
+		/datum/lore/codex/page/article100,
+		/datum/lore/codex/page/article99,
+		/datum/lore/codex/page/article98,
+		/datum/lore/codex/page/article97,
+		/datum/lore/codex/page/article96,
+		/datum/lore/codex/page/article95,
+		/datum/lore/codex/page/article94,
+		/datum/lore/codex/page/article93,
+		/datum/lore/codex/page/article92,
+		/datum/lore/codex/page/article91,
+		/datum/lore/codex/page/article90,
+		/datum/lore/codex/page/article89,
+		/datum/lore/codex/page/article88,
+		/datum/lore/codex/page/article87,
+		/datum/lore/codex/page/article86,
+		/datum/lore/codex/page/article85,
+		/datum/lore/codex/page/article84,
+		/datum/lore/codex/page/article83,
+		/datum/lore/codex/page/article82,
+		/datum/lore/codex/page/article81,
+		/datum/lore/codex/page/article80,
+		/datum/lore/codex/page/article79,
+		/datum/lore/codex/page/article78,
+		/datum/lore/codex/page/article77,
+		/datum/lore/codex/page/article76,
+		/datum/lore/codex/page/article75,
+		/datum/lore/codex/page/article74,
+		/datum/lore/codex/page/article73,
+		/datum/lore/codex/page/article72,
+		/datum/lore/codex/page/article71,
+		/datum/lore/codex/page/article70,
+		/datum/lore/codex/page/article69,
+		/datum/lore/codex/page/article68,
+		/datum/lore/codex/page/article67,
 		/datum/lore/codex/page/article66,
 		/datum/lore/codex/page/article65,
 		/datum/lore/codex/page/article64,
@@ -75,6 +124,12 @@
 		/datum/lore/codex/page/about_news,
 		)
 
+	var/newsindex
+
+/datum/lore/codex/category/main_news/New()
+	..()
+	newsindex = LAZYLEN(children)
+
 /datum/lore/codex/page/about_news
 	name = "About the Publisher"
 	data = "The <i>Daedalus Pocket Newscaster</i> is produced and maintained by Occulum Broadcast, the foremost authority on media distribution \
@@ -123,7 +178,7 @@
 
 /datum/lore/codex/page/article4
 	name = "2/14/62 - SCG Denounces Aetolian Coup; Mobilizes Fleet"
-	data = "Dismissing claims of inaction, a spokesperson for the Solar Confederate Government today confirmed that the Colonial Assembly has voted overwhelmingly in favor of swift military action in response to the coup on Aetolus earlier this month. Icarus Front Chairperson Mackenzie West was quick to make a damning official statement: \"Dr. Harper and her radical agitators cannot be excused for their violent, despicable attempts to destabilize the flourishing economy of the Almach Rim. The ruthless murder of innocents, and illegal seizure of private property are crimes that cannot merely be met with strong words and gentle slaps to the wrist\"...\"I am proud to announce that two units of brave Solar marines have been assigned to the SCG-R Song Shi rapid response cruiser, with the full backing of the Icarus Front - and I hope with my heart, the backing of all patriotic Solar citizens.\"¬ù\
+	data = "Dismissing claims of inaction, a spokesperson for the Solar Confederate Government today confirmed that the Colonial Assembly has voted overwhelmingly in favor of swift military action in response to the coup on Aetolus earlier this month. Icarus Front Chairperson Mackenzie West was quick to make a damning official statement: \"Dr. Harper and her radical agitators cannot be excused for their violent, despicable attempts to destabilize the flourishing economy of the Almach Rim. The ruthless murder of innocents, and illegal seizure of private property are crimes that cannot merely be met with strong words and gentle slaps to the wrist\"...\"I am proud to announce that two units of brave Solar marines have been assigned to the SCG-R Song Shi rapid response cruiser, with the full backing of the Icarus Front - and I hope with my heart, the backing of all patriotic Solar citizens.\"√Ç¬ù\
 	<br><br>\
 	The decision faced resistance from more laissez faire Assembly member states, including prominent SEO governor Bruno Ofako, delaying an earlier consensus. Supporters of the action hope that this decisive display of military strength will encourage the rebels to stand down without further bloodshed, and submit to prosecution by the Lunar High Courts.\
 	<br><br>\
@@ -299,7 +354,7 @@
 	<br><br>\
 	Sources within the Vir Governmental Authority have reported that a full scale recall of remote drone craft under their operation has been initiated in order to improve security measures and prevent future exploitation of government systems, statements that eerily echo those of Occulum Broadcast following emergent drone attacks earlier this year. Investigations are reportedly \"well underway\" to determine the whereabouts of those responsible for the apparent manual modification of these short-range remote craft.\
 	<br><br>\
-	Erkki Laukkanen, Chief of Fleet Staff for the Vir Defense Force has commended all patrol crews involved, and has promised \"swift retribution\" for the attempted bombings."
+	Erkki Laukkanen, Chief of Fleet Staff for the Sif Defense Force has commended all patrol crews involved, and has promised \"swift retribution\" for the attempted bombings."
 /datum/lore/codex/page/article26
 	name = "11/24/62 - Boiling Point Stronghold Seized in Vir"
 	data = "Combined forces from the SCG Fleet and Almach Militia have today struck a powerful blow to Boiling Point terrorist operations in the Vir system. With close cooperation from the crew of NanoTrasen facilities in the region, special forces were able to infiltrate what is believed to have been a major stronghold for the radical Mercurial group, located deep in the remote Ullran Expanse region of Sif. The raid closely follows the thwarted Boiling Point attack on the Radiance Energy Chain, a major energy collection array in the system which is now known to have been masterminded from the concealed bunker complex on Sif.\
@@ -332,7 +387,7 @@
 	<br><br>\
 	No more! Shall the people of this great nation have to fear the machinations of radicals! No more! Shall these twisted minds impose their perversion of humanity through violence! No more!\
 	<br><br>\
-	This Assembly... Nay, this nation expresses its thanks the noble members of our military who joined together to make this outcome possible. We thank the Fleet, of course for their tireless action hunting down these killers, and their heroic action over this past weekend. We thank the Vir Defense Force, without whom we could never have located the intelligence that led to these decisive victories... The Almach Militia, for their cooperation in the apprehension of these so-called \"revolutionaries\". \[West clears their throat\] And of course, we thank the local forces - the police and reserves who dealt firsthand with the chaos sewn by Boiling Point in their vicious crusade.\
+	This Assembly... Nay, this nation expresses its thanks the noble members of our military who joined together to make this outcome possible. We thank the Fleet, of course for their tireless action hunting down these killers, and their heroic action over this past weekend. We thank the Sif Defense Force, without whom we could never have located the intelligence that led to these decisive victories... The Almach Militia, for their cooperation in the apprehension of these so-called \"revolutionaries\". \[West clears their throat\] And of course, we thank the local forces - the police and reserves who dealt firsthand with the chaos sewn by Boiling Point in their vicious crusade.\
 	<br><br>\
 	\[Mackenzie West shifts at the podium, setting down the List of Dissidents.\]\
 	<br><br>\
@@ -413,7 +468,7 @@
 	<br><br>\
 	I don't see this whole affair as a chance to spread the galactic anti-corporate revolution the way President Fisher does, of course. I make no secret of my stance on Trans-Stellars, but I also know that we're better off with Sol than without. The 'Silent Collapse' was two hundred years ago, but we still bear the scars from it. When the Scandinavian Union pulled out support for the Sivian colonization project, SolGov saved us. I do mean saved us, sure as if they'd fished us out of a life pod. There were no factories, no steel, no concrete on Sif until the Engineering Corps built Radiance and New Reykjavik. Corporations and regional governments cowered from the Karan pirates, until the Marines chased them out. Whether Sivian or Karan, you owe the roof over your head to the Sol Confederate Government. With that great debt in mind, how dare we turn our backs on the Bowl, or Abel's Rest, or Nyx, when they need us! How dare we let oligarchs prey on the weak! How dare we choose not to act when we have, by virtue of our votes in the Assembly and our voice within the halls of public debate, the means to share our peace and prosperity with the rest of our people!\
 	<br><br>\
-	This is what I mean by SolGov being the only true republic, the only state founded for the common good. The 'human spirit' West croons on about isn't our industriousness, or our skill at arms. If humanity-- if this Terran culture is commendable for anything, it is that we assist our fellows. We take in Casteless Skrell, Unbound Unathi, republican Tajaran. We pass around the hat when someone's house burns down. We help our friends, our neighbors, and even strangers. The fact that Martei and Harper are perverting this impulse, padding their juntas with the air of legitimacy to inspire honest people to ride to their defense, is the reason their state is unconscionable, the reason it was was born flawed, the reason we cannot suffer it to continue, much less help it on its way.\
+	This is what I mean by SolGov being the only true republic, the only state founded for the common good. The 'human spirit' West croons on about isn't our industriousness, or our skill at arms. If humanity-- if this Solar culture is commendable for anything, it is that we assist our fellows. We take in Casteless Skrell, Unbound Unathi, republican Tajaran. We pass around the hat when someone's house burns down. We help our friends, our neighbors, and even strangers. The fact that Martei and Harper are perverting this impulse, padding their juntas with the air of legitimacy to inspire honest people to ride to their defense, is the reason their state is unconscionable, the reason it was was born flawed, the reason we cannot suffer it to continue, much less help it on its way.\
 	<br><br>\
 	Now, I'm sure you've noticed by now, that I haven't said much more than three words about technoprogressivism, or transtech, or whatever the word du jour is. Frankly, that's on purpose. 'Transtech' has never once been about technology. The Icarus Front-- the old one, that united us and took us to the stars, not the new one we spend forty hours a week arguing with about healthcare-- The Icarus Front was a popular revolution, you know. Hel, they were Marxists. It was a world where the kind of lack of accountability, the entrenched oligarchy and geographical class divide that we're dealing with now was spiraling out of control. In the old United States, the rich and powerful got the technology to grow loyal subjects in tubes, to make drone intelligences smarter in some ways than a human could ever be, to-- well, to do what Angessa Martei's done, only with no SolGov to stop her. Meanwhile, the 'little people' in the Middle East, Southeast Asia, and other 'forgotten' parts of the world were left behind, hopelessly. I don't mean to downplay the importance of the Gray Tide, but if you look at historical accounts from that era, the thing that really united the Front was the knowledge that, if they didn't act immediately, they'd be seen as 'externalities' by immortal superintelligent businesspeople and politicians. The take-away from the Gray Tide should never have been that 'nanotechnology is dangerous'-- it should have been 'nobody should be able to destroy an entire city without facing consequences.'\
 	<br><br>\
@@ -505,9 +560,9 @@
 	<br><br>\
 	Mason Keldow says, 'People working in orbit say 'Don't go to the surface, Spiders are down there.''\
 	<br><br>\
-	Mason Keldow says, 'And apparently there was a big ol' purple one sitting right by a camp we had set up. A giant mother who'd - if I hadn't met that lovely mass of fur and ice instead - would have probably said its ìhelloî in the worst possible way.'\
+	Mason Keldow says, 'And apparently there was a big ol' purple one sitting right by a camp we had set up. A giant mother who'd - if I hadn't met that lovely mass of fur and ice instead - would have probably said its 'hello' in the worst possible way.'\
 	<br><br>\
-	Mason Keldow says, 'They are a species that prevents anyone from actually working or otherwise making use of all that land. If I were in office, I'd make an effort to clear out the dangerous species that surround the outer regions of Sif ñ relocate them if possible - and use that territory for something productive.'\
+	Mason Keldow says, 'They are a species that prevents anyone from actually working or otherwise making use of all that land. If I were in office, I'd make an effort to clear out the dangerous species that surround the outer regions of Sif - relocate them if possible - and use that territory for something productive.'\
 	<br><br>\
 	Mason Keldow says, 'New forms of Transit, new buildings, new jobs.'\
 	<br><br>\
@@ -782,3 +837,449 @@
 	Executive Sifat Unar of the Emergent Intelligence Oversight has voiced immediate concern over the motion, criticising the use of 'foreign government' in reference to Almach; 'Our Fleet has suffered a few defeats, but this conflict goes deeper than mere lasers and shells and to surrender to torturers, mind-hackers, and Machiavellian machines at this stage would be insanity. To allow a seccessionist state, particularly one so unabashedly guilty of crimes against humanity that go far beyond even our modern definitions of 'Human Sanctity', to exist unquestioned a stone's throw from some of our most precious member states, would be a failing not only of this government, but of humanity that would echo through history like a great shameful dirge for all to hear.'\
 	<br><br>\
 	A communications blackout has been instated on the Gavel system by the Almach Militia, though earlier reports indicate continued strikes on numerous civilian colonies who were unwilling, or unable to deactivate their automated defence systems prior to the invaders arrival."
+
+/datum/lore/codex/page/article67
+	name = "10/08/63 - 'Magnetic Weapon' Designs Released Following Gavel Threat"
+	data = "Private security and ExoMartian law enforcement agencies are now receiving modernized man-portable magnetic weapon designs produced by Mars Military Industries thanks to increased budget from the S.C.G. The 'hallmarks' of these weapons, as one M.M. Industries spokesperson says, are their incredible ability to launch physical projectiles at velocities rivalling present portable laser technology in practical utility. Many of the designs utilize generalized, easy-to-manufacture compressed matter cartridges as their primary ammunition, meaning no specialized production facilities are required outside of standard shipyard or planetary lathe systems, 'to ensure a cutting edge in the battlefield, down to the last man'.\
+	<br><br>\
+	Some corporations, such as Hephaestus, NanoTrasen, and the PCRC, are already preparing to utilize these released designs in their own laboratories and stations, undoubtedly providing yet more materiel backing to the Almach front."
+
+/datum/lore/codex/page/article68
+	name = "10/10/63 - Gavel Encircled - Liberation In Sight"
+	data = "Significant Fleet reinforcements from the Unathi border have 'trapped' the Almach fleet in the Gavel system and are poised for a decisive victory, according to latest reports from the front. Solar vessels from all sides of the war-torn system have closed in to ensure the invading force have no means of retreat. The relief force includes elements of the Hegemony-border fleets and the previously deployed flotilla stationed in Saint Columbia. Speaking at the Colonial Assembly this morning, Rewi Kerehoma of the Sol Economic Organization has stated that the reinforcements will 'beyond a doubt' prevent a repeat of 'embarrassing' errors made in the past month.\
+	<br><br>\
+	Efforts have been made to re-establish contact with the occupied system, which has been blocked from communication with the rest of the galaxy since the occupation began last week. According to scattered civilian signals from the system, the Association has adopted a 'salted earth' policy to the system following Solar military response, openly demolishing system infrastructure with little regard for its residents. A spokesperson for Grayson Manufactories, who maintain a significant presence in the Gavel system , has proposed that 'The Almachi had no intention of holding this system, this may have been nothing more than a show of force against corporate assets supporting the war effort.'\
+	<br><br>\
+	In related news, Admiral Ripon Latt has officially retired from his post following immense political pressure from the Assembly. Latt was until this week, commander of the Rim Expeditionary Force - currently in the Saint Columbia system - and has been the primary target for blame in the SCG's defeat in Relan, and failure to prevent the invasion of Gavel. The disgraced admiral will receive a full officer's pension, but no official honours befitting of his previous rank. Latt is to be replaced immediately by Admiral Silvain Barka, an experienced veteran of anti-piracy action in the Rarkajar Rift."
+
+/datum/lore/codex/page/article69
+	name = "10/26/63 - 'Largest Engagement Since The Hegemony War' As Gavel Freed"
+	data = "The Almach Association invasion force in the Gavel system has been all but annihilated by a successful Solar counter-encirclement, at great cost to both sides. The combined Rim Expeditionary Force in Saint Columbia, along with the newly formed Gavel Relief Fleet - which had been massing in the Vir system over the past week - launched the successful attack this Tuesday evening, leaving no route of escape for Almachi invaders and resulting in 'pitched fighting' between the fleets that lasted several days. Solar forces are currently in the process of performing security sweeps of the system and its scattered habitats and it is expected to be several weeks before the system is declared safe to civilian traffic and for refugees to return home.\
+	<br><br>\
+	Even as exact causalities remain unconfirmed, the battle has made history as the single largest ship-to-ship engagement by tonnage involving the Sol military since the cessation of hostilities with the Unathi in 2520, involving over one hundred vessels of all sizes across both sides, as well as countless unmanned drones and light craft. Almachi forces, in numbers described as 'far from an insignificant portion of the total fleet' fought fiercely, and 'in manners more reminiscent of mercenary gangs than a single organized force, and with tactics varying from the conventional to the outright mystifying'. Admiral Silvain Barka has commended his own crew for applying lessons learnt from prior 'Aetothean' commando strikes in preventing similar incidents from occurring in the confusion of battle; in a candid interview this morning he stated  'Like any Promethean, (Aetotheans) hate the cold, and my crew are the coldest (expletive) around.' \
+	<br><br>\
+	The designations of twenty-four Sol Defense Vessels declared 'lost in action' have not yet been released, though next of kin of missing or deceased servicepeople have reportedly been notified."
+
+/datum/lore/codex/page/article70
+	name = "11/11/63 - Gavel Salvation Reveals True Cost of War"
+	data = "Reports from liberating forces in the Gavel system have confirmed early accounts of 'inhuman' tactics employed by the Almachi invaders during their short occupation and defense of the region. Besides an apparent disregard for sapient life, especially any that gave an outward appearance of defending themselves, the Militia is believed to have employed troops and tactics 'the likes of which had only been imagined', in 'a manner that can only be described as experimental'.\
+	<br><br>\
+	Most harrowing of the accounts are those of alleged 'kill-switch clone armies' consisting of near-identical vatborn troops deployed to some of New Xanadu's largest surface colonies. According to local residents, the 'uncanny' troops arrived en-masse 'from the depths of the wastes' at the beginning of the invasion, despite wearing no obvious gear that would protect them from the extreme, unbreathable environment beyond the confines of controlled habitats. The clones are said to have targetted infrastructure including life support, with little regard for those who stood in their way. However, what has baffled Fleet analysts is the reaction upon the arrival of Sol surface troops; the clones did not fight back, but rather dropped dead 'all at once, as if a switch had been flipped'.\
+	<br><br>\
+	Teams from the SCG's top analytical and regulatory bodies including the EIO have been hard at work collecting examples of the unusual Almachi technology from throughout Gavel. Executive Sifat Unar has stated that 'It is vital that we ensure this transgressive technology no longer poses a threat to sapient life, either now or to future generations. A full cleanup operation is underway, and we are working to analyse what we have found and better understand the enemy's limits and the extent of their biological and technological... Practices.'\
+	<br><br>\
+	The current confirmed death toll, including civilian losses in Gavel has now reached 11,520 and is expected to rise. Debate continues whether to add the so-called 'Kill-switchers' to the tally."
+
+/datum/lore/codex/page/article71
+	name = "11/21/63 - Tajaran Pearlshield Draws Line In The Sand"
+	data = "Khama Suketa enai-Lutiir, representative of the Tajaran Pearlshield Coalition, has just issued a formal statement:\
+	<br><br>\
+	'It's no secret that we members of the Pearlshield Coalition have our differences and conflicts, both within and without. Much as some might call it the spice of life, it's with shame that I admit it has left us somewhat paralyzed over the last few months, even as a war has raged on a mere few jumps away from our borders. But in acknowledgment of our differences, something we have been able to unanimously agree upon is the sanctity of life and common decency, sanctity that Almach has continued to violate in the name of political conquest. Our relationship with SolGov - and indeed, any who would call us 'friend' - should be one of mutual cooperation and benefit, not of hard boundaries delineating 'us' and 'them'. There is only 'we', and we cannot stand idly by.\
+	<br><br>\
+	'To this end, the Pearlshield has negotiated with local forces in the Silk system, and are taking over interim protection of the system, to free up Solar military forces so they can assist in the war effort. We have also begun construction of a large residential station to supplement the Silk station itself, alleviating its acknowledged overpopulation issues and providing additional logistical support for our defensive fleet. Finally, our cousins in Mesomori have generously loaned their new flagship, the PCMV Raniira's Grace, with all hands on deck for temporary joint assignment with Solar military forces. They are quite eager to provide a taste of Tajaran firepower and ingenuity.\
+	<br><br>\
+	'We wish we could spare more at this time, but alas, we're still finding our feet among the stars, stepping carefully among the proverbial minefield that is our own share of cosmic threats. Know that these contributions represent a grand investment in their own right, and they are only the beginning should this war carry on.\
+	<br><br>\
+	'We will have more to say as it comes up. May all our stars shine upon us.'"
+
+/datum/lore/codex/page/article72
+	name = "11/23/63 - Surviving 'Kill-switcher' Assassinated During Vir Interview"
+	data = "An Almachi 'kill-switcher' clone soldier capturing during the liberation of the Gavel system was yesterday 'forced' to explosively self-terminate during a live TV broadcast with Virite news anchor David Huexqole aboard a SCG prisoner transport craft, allegedly by the statement of a code phrase, clearly audible on the recording. Following the attack, the apparent 'activator' is reported to have escaped to nearby NanoTrasen logistical station, the Southern Cross amidst the chaos where a minor altercation took place, resulting in the injury of one Positronic crew member and death of one Almachi accomplice, which initial reports suggest to have been a 'Vox mercenary'. The search continues for the Almachi agent, and local authorities remain confident that they will be apprehended.\
+	<br><br>\
+	David Huexqole, a popular local media personality, was the only other immediate victim of the attack, suffering moderate injuries and was rushed to the Southern Cross for emergency surgery where he is reported to have made a full recovery. Huexqole has expressed his gratitude to the 'skilled and charming staff, clearly shaken by the war but nonetheless capable for it.' but has expressed concerns regarding so-called sleeper agents within Sol space, 'Isa (341, the interviewed clone), seemed genuinely reformed. She spoke openly of regret, and struggling with what it meant to be created only to die. Before she blew herself up, I never would have thought her capable - it was like she changed in an instant.'\
+	<br><br>\
+	Initial blast investigation suggests the presence of a previously unidentified compound in the clone's bloodstream, which was detonated following 'activation' by the as of yet unidentified Association agent, believed to have been present in the room during the recording. Moments prior to termination, the clone's demeanour is visibly altered and the phrase 'Those of Sol must look to the eastern star, Phorcys.' was clearly stated. A spokesperson for the Saint Columbia Telemetry Station has stated that observation of Phorcys, an uninhabited star system located approximately between the Almach Association state of Vounna and Skrellian Far Kingdom space, has revealed 'no immediate anomalous behaviour or presence' but that analysis will continue in the coming weeks 'in order to verify the potential meaning of this statement.'"
+
+/datum/lore/codex/page/article73
+	name = "11/25/63 - Phorcys Star Ignites!"
+	data = "The Phorcys star system, mentioned cryptically during Friday's dramatic televised Almachi assassination, has 'gone supernova' several thousand millennia ahead of schedule, sparking concerns of 'Almach Superweapon' involvement. The process, which ordinarily takes place over many months and is preceded by millions of years of obvious stellar evolution, began rapidly in the early hours of this morning and has already begun to consume the entire system at a rapid rate - mercifully consisting of only two uninhabitable dwarf planets.\
+	<br><br>\
+	According to government telemetric sources, who have been observing the system since Friday's message, the 'ignition' was preceded by 'abnormal bluespace readings', but it is impossible at this time to confirm whether the phenomena was a natural anomaly that Almachi sources were able to identify ahead of time, or if the long-rumoured 'Whythe Superweapon' was in fact involved. If direct Almach involvement were the case, the range of such an 'attack' would be unprecedented, with the afflicted star far from any populated area or territorial claims and 'no evidence of sapient passage to the system in several decades.'\
+	<br><br>\
+	General Secretary Mackenzie West, speaking on behalf of the Colonial Assembly has stated that 'The Solar Confederate Government is taking this matter very seriously. The mere prospect of a weapon of this calibre would indeed pose an existential threat to our society, and perhaps mankind. However, at this time we cannot jump to conclusions, this may in fact be a game of smoke and mirrors; an effort to use a previously unobserved phenomena as a weapon of propaganda, and we cannot allow this to cloud our judgement. We are in close contact with the Skrell in order to determine the nature of this sudden ignition. Know that the Fleet is on high alert, and fighting forth from the Saint Columbia system will continue unaffected.'"
+
+/datum/lore/codex/page/article74
+	name = "11/27/63 - Whythe Superweapon Confirmed In Phorcys Blast"
+	data = "New government footage from the moment of ignition in the Phorcys system has confirmed the 'brief' presence of an artificial 'bluespace gate' within the star just prior to its rapid expansion and structural collapse. This verifies claims of responsibility made by the Almach Association late yesterday, and casts no doubt on the threat posed by the so-called Whythe Superweapon. The Colonial Assembly has been in continuous session since the initial incident, and one staffer has described the atmosphere as one of 'unhinged panic'.\
+	<br><br>\
+	The prevailing fear amongst the government, with the assent of top physicists in the private sector is that such a weapon could be used against Solar targets, and that it is no longer a question of 'how', but 'when', and indeed 'where'. The only unknown factor is the superweapon's capability for repeat use, and 'rate of fire' which is yet to be demonstrated but widely considered to be 'not a risk worth taking under any circumstances'.\
+	<br><br>\
+	Latest reports from the Assembly have are that a 'scramble' is taking place to resolve the 'Almach Situation', and that the ongoing offensive out of Saint Columbia has been redirected towards Relan and Whythe. According to Skrellian correspondent Hasan Drust, official aid has been requested as of this afternoon."
+
+/datum/lore/codex/page/article75
+	name = "12/01/63 - Skrell Defer Aid Citing 'Deliberations'"
+	data = "Official Solar contacts within the Skrellian government have reportedly delayed tangible aid in the rapidly escalating Almach Crisis, citing 'Internal Deliberations', agreeing only to continue to share telemetric data on the movement of Association forces. The Skrell, who were instrumental in the Solar victory against the Unathi 40 years ago have long been considered taciturn in their internal affairs, but have previously been open in their support of Sol action when it comes to national defence, making their indecisive response greatly unexpected to some.\
+	<br><br>\
+	Speaker ISA-5, who has been increasingly critical of the war in the past several days, has dismissed concerns that the Skrell are 'siding with the Association', citing the long term close relationship between their governments, 'The Skrell are not war hawks, and they've never shown outward ill-will against other sapients. We can't let a bureaucratic delay allow public opinion to turn against an entire species of people who have always had our backs. If our allies need time for deliberations, we should allow them and not expect mere muscle and military aid when words could have been our solution from the beginning. I've no doubt that they will not allow the situation to become so dire that the Association are able to cause us any serious harm as they have threatened. I'm convinced that diplomacy will prevail, and that if the Skrell are in fact negotiating with the Association, then it is with all of our best interests in mind.'"
+
+/datum/lore/codex/page/article76
+	name = "12/20/63 - Jee Relaunches Libraries Across Vir"
+	data = "Vir's Colonial Assembly representative and long time education reformist Vani Jee has launched her long planned 'modernization' of exonet-linked library system throughout the Vir system. During her campaign early this year she brought to light the 'staggering unsuitability' of library networks in Vir, particularly those being provided for corporate employees and residents, with particular pressure placed on the NanoTrasen Corporation whose literary collection was described as 'basically smut and whatever an old drone had scraped from the bottom of the exonet barrel.' Following her subsequent election, she reaffirmed her desire for education reform, making 'post-education' providers her first target.\
+	<br><br>\
+	The new system, which she successfully acquired government funding for this October, is due to be launched this week and includes a 'personally curated' collection in addition to titles recommended by affected institutions, and a particular focus on local authors."
+
+/datum/lore/codex/page/article77
+	name = "01/23/63 - 'Extreme' Environmental Alert Following Ullran Expanse Chemical Leak"
+	data = "Residents and visitors to Sif's remote Ullran Expanse have been advised to exercise extreme caution when travelling and to avoid consuming local water sources following a 'catastrophic' chemical spill in the mountains. The exact cause and origin of the spill has yet to be confirmed, though it is currently believed to have originated from an improperly disposed of chemical tank. Local rivers and their outflow have been tested with 'extremely lethal' levels of acutely corrosive material.\
+	<br><br>\
+	Governor Hainirsdottir has issued a statement assuring Sif residents that the cleanup process is already underway, and the contamination which return to safe exposure levels for most sapients within 'Just a few days', but that the risk to local ecosystems in much higher and 'may take decades to recover.' and locals are advised to use only pre-packaged or thoroughly filtered water for the next 'six months, at least.'\
+	<br><br>\
+	A spokesperson for the Sif Environmental Agency has described this leak as 'At least regionally, perhaps the worst environmental disaster since the introduction of the invasive spider species.' and has expressed concern about similar accidents occurring in more populated areas if stricter regulations are not put in place.\
+	<br><br>\
+	The Ullran Expanse Chemical Relief Fund has been set up and is collection donations at save-ullran.xo.vr/donate"
+
+/datum/lore/codex/page/article78
+	name = "01/27/64 - NanoTrasen Implicated In Devastating Ullran Chemical Spill"
+	data = "Files recovered from the contamination site by clean-up crews and submitted to the Sif Environmental Agency suggest that the hazardous materials were discarded in the region by the NanoTrasen Corporation. Though the company is not currently accused of malicious intent, ownership has been proven of several cargo containers filled with Growth Inhibitor 78-1, a compound used in the manufacture of Vatborn humans which is known to severely inhibit cell regeneration in living creatures.\
+	<br><br>\
+	The documents, which have not been released in full by the SEA, were also leaked onto the exonet from several sources which NanoTrasen initially dismissed as fraudulent but have since admitted to their authenticity. Investigations are currently underway to determine those at fault within the company so that prosecution may begin. Third-party commentators have alleged that, 'The debris field and damaged containers suggests cargo jettisoned from a craft within the Sif atmosphere', though the circumstances are yet to be thoroughly examined.\
+	<br><br>\
+	Certain members of the civilian clean-up crews responsible for waste disposal have also accused NanoTrasen of failing to provide their employees with sufficient safety information and protective equipment, which led to several minor injuries and one volunteer was reportedly admitted to hospital for 'severe side-effects of exposure' but has since been discharged."
+
+/datum/lore/codex/page/article79
+	name = "02/10/64 - Shelf Fleet Vanishes Without A Trace!"
+	data = "Government agencies are scrambling to explain the apparent 'total disappearance' of the Almach-aligned Shelf fleet. Initial reports from the fleet's last known location describe a phenomenon not dissimilar to that observed just prior to the ignition of the Phorcys star in November, but the SCG has assured the media that 'No activity has been detected from the Whythe superweapon that would indicate any relation to the ongoing Shelf situation.'\
+	<br><br>\
+	Independent telemetric data from several sources has confirmed the presence of a 'bluespace anomaly' in the moments preceding the fleet. Currently efforts are focused on determining whether the fleet has been lost with all hands or if survivors may yet be found, but no trace of the fleet or of telltale signs of large fleet movements anywhere within or beyond Almachi space have yet been detected.\
+	<br><br>\
+	This afternoon, Speaker Mackenzie West of the Icarus Front addressed Sol, and indicated that communication was underway 'across faction lines' with the Association to determine the cause and implications of Shelf's apparent loss. The Almach Assocation has claimed not to be responsible for the 'possible attack' and both sides has expressed concern for the 'astronomical loss of life this may represent.'\
+	<br><br>\
+	Shelf, a largely Positronic colony fleet, consists of over 1700 vessels including the 'One Leaky Bitch', current headquarters of Morpheus Shelf, Morpheus' non-Solar 'spin-out' corporation established last June. The fleet has continuously denied direct affiliation with the Almach Assocation, but was involved in a major drone attack on Solar vessels just nine months ago, which was claimed to be 'in error'."
+
+/datum/lore/codex/page/article80
+	name = "02/12/64 - Spectralist Wardens to hold Vigils for Lost Fleet"
+	data = "In the wake of Shelf's sudden disappearence, Wardens across SolGov space have collectively agreed to hold services and vigils throughout dozens of systems for those who are doubtless worried for their loved ones aboard the missing ships. Spectralism, a synthetic-centric religion, finds it's roots within 'Haven', a small vessel and community that travels alongside the wider Shelf fleet, though considers itself a distinct entity. Its ministers, known as Wardens, tend to its adherants wherever they may be found.\
+	<br><br>\
+	Despite Haven's well-known and somewhat-controversial independence of identity from Shelf, all indications point to the Fleet's disappearance having taken the attached ship with it. All twelve Spectralist Elders are known to have been onboard Haven at the time of its disappearance, as well as numerous other significant Spectralists and other spiritual leaders thought to have been on Shelf. The potential loss of the entire upper organizational body could be devastating to the religion, who have long been instrumental in the synthetic rights movement.\
+	<br><br>\
+	Ceramica, a Warden operating out of Nyx, reached out for comment with the following: 'We are as worried as everyone else who calls Shelf their home, or who has lost contact with friends or family. You need not believe in the First Spark to have a place at your local vigil; We welcome everyone who may be hurting. This is our way, this has always been our way. We remind everyone to stay mindful, and to reach out to those you see struggling. In times like this, we cannot leave each other behind.'"
+
+/datum/lore/codex/page/article81
+	name = "02/14/64 - Shelf Safe After 'Impossible' Jump!"
+	data = "The missing Shelf fleet has reappeared hundreds of light years beyond the Eutopia system just days after its sudden disappearance on Monday. Unencrypted bluespace transmissions from the fleet's new location - several months travel from its last known position in Almachi space - assured all who would listen that 'The fleet (had) arrived safe and sound.' and apologized for 'Any alarm (the fleet) may have caused'. Though no official report has been released nor information from Shelf itself, initial counts indicate that a number of Shelfican vessels may not have survived the 'impossible journey' intact.\
+	<br><br>\
+	Current analysis of the bluespace anomaly detected prior to Shelf's unexpected departure indicate that the same technology as employed by the Whythe Superweapon may have been used by Shelf to create 'a bluespace portal thus far inconceivable by modern science'. The revelation has sparked concerns that 'extreme mercurial elements' within Shelf may have been responsible for the hardware behind the Assocation's 'system eating' weapon.\
+	<br><br>\
+	Sifat Unar of the EIO has expressed particular concern that 'Such improbable technology relying on concepts deemed so staggeringly arcane that our very understanding of the laws of the universe had written them off as impossible - and to be applied in such callous ways without regard for life or perhaps even the fabric of reality, could only have been developed by machine minds that could threaten our very being.' Shelf has dismissed these claims as 'Scaremongering' and 'Just jealous that somebody else thought of it first', though they would not confirm nor deny their involvement in the development of the new bluespace portals."
+
+/datum/lore/codex/page/article82
+	name = "04/11/64 - Whythe Breached - An End In Sight?"
+	data = "According to latest reports from the Almach front, Sol vessels have established a foothold in the debris fields of the desolate Whythe system, home to the enemy's controversial 'Superweapon'. Admiral Barka has confirmed that bombardment of the weapon has begun, but that 'shields are holding at present', owing to the vast construction's immense power generation capabilities, but remains confident that the 'siege' will come to an end within a few months, and that the Almachi now hold only 'minimal retaliatory capacity'.\
+	<br><br>\
+	Fleet sources have been quick to address a flurry of activity on the exonet which proposed that the superweapon might be deployed against Sol's core systems in a last-ditch effort to inflict damage on their former government. According to a statement posted just hours after the initial invasion press release, 'the Fleet is aware of all risk factors regarding the Whythe Superweapon, and following two long months of analysis are certain that constant, substantial pressure placed on the weapon's shield systems will render the offensive component of the weapon dormant until the hull can be breached.'\
+	<br><br>\
+	The general mood in the Colonial Assembly today is one of relief, as all signs point to a total collapse or surrender of Association forces in their home systems once their trump card has been captured or destroyed by SCG forces. Secretary West has already expressed congratulations to the troops, 'despite the lack of assistance from our allies, as the Shadow Coalition would have had us believe was necessary.'"
+
+/datum/lore/codex/page/article83
+	name = "04/13/64 - Skrell Ultimatum Shocks Sol!"
+	data = "After three months of diplomatic iciness, the Skrellian Far Kingdoms have contacted both the SCG and Almach Association with one demand: Sign an armistice or prepare for war. Supported by an immense fleet movement through the recently quashed Xe'qua region, the Far Kingdoms have demanded an immediate end to hostilities, and 'incorporation of Almachi holdings as a Skrellian protectorate, under strict oversight and regulation of their research and activities.' By Skrell demands, the Fleet has two weeks to fully withdraw from the Almach region and any vessels on either side continuing to engage will be 'disabled, boarded, and have its crew arrested pending a formal peace agreement.'\
+	<br><br>\
+	A wave of outrage has swept the Colonial Assembly, with heated debate as to Sol's response defying all party lines. While Speaker ISA-5 has been widely criticized by political opponents for their 'overzealous trust in the Skrell', they have remained acquiescent to the Skrell's demands, stating that it may be the best way to avoid any further bloodshed and maintain good relationships with the Skrell. Conversely, a small group of hardliners from across the major parties headed by SEO Representative Colin Zula of Alpha Centauri, have formed a political coalition opposing any form of 'Surrender or appeasement in the face of foreign aggression', demanding Sol keep its forces in place and 'Finish off the Association before they can be allowed to wreak havoc unsupervised and uncontrolled.'\
+	<br><br>\
+	Surprising some, long-time supporter of the Almach War, MacKenzie West has established themselves as a figure of moderation in the Assembly, promising that the Icarus Front would pursue 'aggressive negotiations' with the Far Kingdoms in order to better understand their motivations and, if territory is to be ceded,  'ensure the Almachi are placed under a firm hand'. He notes that the Skrell have never adhered to Five Points policy, but that careful diplomacy has always ensured their 'less savoury tendencies' have never spilled over to Sol space."
+
+/datum/lore/codex/page/article84
+	name = "04/16/64 - Assembly Shaken By Reshuffle"
+	data = "Following the shock announcement of the Skrellian demands on Monday, sixteen planetary representatives under the SEO's Colin Zula have announced the formation of a new political party named the 'Solar Sovereignty Party' under the banner of 'Independence from foreign demands'. The party consists of defectors from all three major parties; 9 Sol Economic Organization, 4 Icarus Front and 3 Shadow Coalition representatives have 'jumped ship' and will back Zula's demands to resume war with the Association, even if it means butting heads with the Skrell.\
+	<br><br>\
+	Rewi Kerehoma, chair of the SEO has expressed 'regret' that Mr. Zula and his supporters had chosen to splinter from the party, rather than work with 'More moderate, but like-minded' individuals across the SEO and wider Assembly. The SEO's official stance on the Skrellian demands are to demand close Solar oversight of any 'protectorate' to ensure that the region is 'policed to the highest standard, but that current Almachi citizens are afforded all the sapient rights they would be under the SCG.'\
+	<br><br>\
+	In the Shadow Coalition, a formal motion has been put forth by a small minority of representatives calling for the resignation of Speaker ISA-5, citing 'Total blindness to the political situation,' in the leadup to this week's events.\
+	<br><br>\
+	Meanwhile as Skrell vessels enter the Whythe system, the Solar Fleet has ceased bombardment of the Whythe Superweapon, handing off 'suppression' of the weapon to Skrell forces."
+
+/datum/lore/codex/page/article85
+	name = "04/20/64 - Sol To Submit - Almach Subsumed Under Treaty of Whythe"
+	data = "Following 'intense' deliberations between the Far Kingdoms and representatives from the SCG, a decision has been reached to cede the secessionist Almach Association territory to the Skrell, and withdraw all forces from the region. The newly established Almach Protectorate will be subject to 'extremely stringent' oversight by Skrellian authorities, and international exchange of 'research and technologies' from the region will be banned 'in both directions', pending more a more exacting deal with the SCG. Sol is to be allowed 'regular inspections' of the territory on a schedule established by the Kingdoms.\
+	<br><br>\
+	The Solar envoy included the chairs of each of the major parties, senior ambassadors to major Skrell systems, and representatives from the Solar Fleet. The newly founded SSF were extended an invitation, but reportedly turned it down. A dejected looking MacKenzie West announced the terms of the treaty late this afternoon, stating that they had 'fought tooth and nail' for a fair deal for all parties involved, including civilians of all species now living under Skrellian occupation, and that 'those not directly involved in the corruption of humanity's sanctity should not be made to suffer for the actions of their superiors.'\
+	<br><br>\
+	Notably absent from deliberations were many key members of the Association's upper echelons, with 'lesser' diplomats taking the place of both Angessa Martei and Vounna's Naomi Harper. Almachi and Skrell sources were reluctant to explain these absenses, and it remains unclear as to whether they have been taken into Skrellian custody or remain at large.\
+	<br><br>\
+	Selma Jorg, Representative for Vir, has decried the treaty as a 'Sapientarian disaster in the making'. The former career diplomat has cited the 'general mistreatment of species deemed 'lesser'' as a recurring concern with the Skrell, and the complete occupation of majority human and positronic space, which unprecedented, could lead to 'conditions not much better than slavery' for those still living in the area. She has refrained from any direct accusations, pending the results of Sol's first permitted inspection."
+
+/datum/lore/codex/page/article85
+	name = "04/22/64 - Skrell Impose New Regime in Relan"
+	data = "As agreed upon in the Treaty of Whythe, the Far Kingdoms have occupied the Relan system, putting an end to the Free Relan Federation. How the system will be organized is not entirely clear at this point. Despite the effective abolition of the Relanian government, Skrell presence in the system appears relatively light, and many of the scattered stations have no Skrell presence at all.\
+	<br><br>\
+	Former President Nia Fischer gave the following statement to a crowd gathered outside the Capitol Section of Carter: 'This is a dark time for all of us. I promise to you that, in my continued service to you, I will work with the Far Kingdoms to ensure that all of our people are treated well and our rights respected, and that we will arrive at a form of government that is acceptable to you.' The gathered crowd began to shout questions and accusations, and Fischer was quickly escorted back into the capitol by Skrellian guards without answering questions from the press or others. The crowd was quickly dispersed by Skrellian military police and Carter's own police force.\
+	<br><br>\
+	In the meantime, the governing of the system remains in the hands of the sparse occupation forces, aided by parts of the former Federation government.\
+	<br><br>\
+	In other news from the system, the Republic of Taron has negotiated a preliminary navigation and trade agreement with the Far Kingdoms, officially maintaining their neutrality despite the occupation of the majority of the system."
+
+/datum/lore/codex/page/article86
+	name = "04/27/64 - Chaos in Relan"
+	data = "Simmering tensions in the Relan system have boiled over, with riots erupting on Carter, Abhayaranya, and New Busan. Since former President Fischer's brief address, small demonstrations against both the Skrell occupation and the collaborating elements of the former Federation government have taken place on many stations, but within the last day full-blown riots have broken out. While accurate information on the situation within the stations is rare, it is currently believed that the deaths of two protesters on Abhayaranya were the catalyst.\
+	<br><br>\
+	Damage to the three stations has been relatively light, with one major exception. A large fire broke out in the Capitol Section of Carter, killing at least 22, including former President Fischer, and wounding at least 74 more. Other casualties among rioters, police, and the populations of the stations are unknown at this point.\
+	<br><br>\
+	Other stations with significant permanent populations have been paralyzed by local inaction and the disloyalty of local police and security forces to the Far Kindgoms Skrell, and several with no Skrell presence have issued statements that they will not be accepting any military presence from the Far Kingdoms. It is unclear at this point if this represents the beginning of another major conflict within the system."
+
+/datum/lore/codex/page/article87
+	name = "04/30/64 - Meralar Correspondent: Triumphant Return!"
+	data = "Celebrations have erupted throughout Tajaran space with the return of the PCMV Raniira's Grace, which has spent the last several months providing joint assistance with Solar military forces during the now-ceased hostilities with the Almach Association.\
+	<br><br>\
+	Khama Suketa enai-Lutiir, representative of the Tajaran Pearlshield Coalition, has provided the following statement:\
+	<br><br>\
+	'It is great honour that we welcome the crew of the Raniira's Grace back to their homes at Mesomori. We have all seen the battle reports, and loathe as we are to celebrate bloodshed, sometimes it is a necessary evil in the pursuit of a greater peace, and the Grace pursued that peace with fervour and tenacity as befitting our kind, and exemplified what we can do when put to the test. She is but one ship, and yet one ship can make all the difference. Lives have been saved, and the crew has returned alive and well. This is merely the beginning of what we can accomplish in the cosmos.'\
+	<br><br>\
+	When asked for comment on the Treaty of Whythe, Suketa had this to say:\
+	<br><br>\
+	'Indeed, the bittersweetness behind all of this. I will say, it is a... complicated and nuanced situation, as is so often the case with politics. We have our views on the matter, for sure, but now is not the time to formally engage with them. The Pearlshield is watching carefully, and when the dust settles and the terms of the treaty are exercised and accepted, we can take clearer view and action as possible and necessary. We still stand by the ideals we entered the war with, and we trust our allies to share them as ever. That will suffice for the moment.'"
+
+/datum/lore/codex/page/article88
+	name = "05/13/64 - Agreement Signed at Ithaca Station, New Government In Place"
+	data = "In an effort to end the ongoing violence in the Relan system and regain the cooperation of 'insubordinate' stations, the Far Kingdoms Skrell have negotiated an agreement with community leaders and former Assemblypersons from a number of stations, including insubordinates, meeting at the largest of the insubordinates, Ithaca. Under these agreements, the Skrell will vacate most stations in the system, but will maintain a fleet base in Relan's Outer Belt for mutual defence, first at Carter and later at a dedicated station. Relan will have harsh restrictions placed on its military and will agree to formal diplomatic neutrality, but will be free to organize its own government under supervision and military occupation will end.\
+	<br><br>\
+	The mood on Ithaca has been tense as negotiations have gone on, but with the announcement of the results, crowds have packed the main thoroughfares and public spaces of the station in celebration. Francis Harp Yong, governor of Ithaca and a leading figure in the talks, addressed a crowd outside the Administration Section of Ithaca today. \
+	<br><br>\
+	'The agreement we have signed with the Skrell today has given our people a new chance, free from the mistakes of the war and the baggage of the former Association. The war was not brought on us by our choice, nor the occupation we have recently faced. We want peace, and that is obvious even to those who were fighting against us weeks or days ago.\
+	<br><br>\
+	Make no mistake, that is what our agreement today symbolizes. A new era of peace for us, where we no longer have to worry about the threat of piracy or invasion. We can return to our homes, rebuild our stations, and forge a new future for ourselves and our children'\
+	<br><br>\
+	It was also announced that though the work of restoring order to the system is ongoing, they expect elections will be held for a new Assembly and President within the next few months, with the exact date announced once violence on the major stations has ceased and cooperation from the insubordinate stations is secured. Yong will head an interim government in the meantime."
+
+/datum/lore/codex/page/article89
+	name = "08/15/64 - Almach Permits First Solar Inspection"
+	data = "Almost four months since its establishment as a Skrellian territory, the Almach Protectorate Government has extended its first formal invitation to Solar Confederate Government inspectors to ensure the fledgling state is complying with restrictions imposed by the Treaty of Whythe.\
+	<br><br>\
+	The composition of the official Solar Inspection Group has been a matter of much deliberation over the past several months, and owing to the ground to be covered now includes over 3,500 experts from a wide variety of fields. The bulk of the Group is comprised of Transgressive Technologies Commission agents, including the EIO, but also includes military officials, independent observers, and corporate representatives. The inclusion of the latter group spurred heated debate in the Colonial Assembly, but ultimately 'thought-leaders' from Ward-Takahashi, NanoTrasen, and Hephaestus Industries were admitted, while other interests will have to be satisfied to be represented by Sol Economic Organization liaisons.\
+	<br><br>\
+	The APG, currently based out of what is to be a neutral embassy on Carter in Relan pending the completion of the new government centre of Vigilance Station in Whythe, is not legally required to fully comply with Five Points regulation, though the Whythe terms ensure that any transgressive research is undertaken under the strictest guidelines. The Skrell have amiably agreed to ensure that any innovation by the protectorate is safe, controlled, and does not enter Solar territory. These terms are similar to those applied to such technologies developed by and for the Skrell themselves, whose expertise is considered unrivalled in the field, but has been widely criticised by certain human bioconservative groups.\
+	<br><br>\
+	The inspection is expected to take several weeks, and will begin tomorrow."
+
+/datum/lore/codex/page/article90
+	name = "08/29/64 - Kaleidoscope Cosmetics Goes Trans-Stellar After Genix Merger"
+	data = "Personal care giant Kaleidoscope Cosmetics has been officially recognised by the Solar Galactic Exchange as a true Trans-stellar Corporation today, following a controversial merger with Genix Therapeutic Systems and expanding its corporate assets to over 20 key systems.\
+	<br><br>\
+	Genix, which will now be operating under the Kaleidoscope name while retaining some corporate autonomy, has come under some scrutiny from the Transgressive Technologies Commission in recent months following its aggressive acquisition of liquidated Almachi assets in the aftermath of the Association's dissolution in April. The company was cleared of suspected Five Points violations without fanfare just two weeks ago, and allowed to resume work on the development a variety of previously approved commercial genetic modification products.\
+	<br><br>\
+	Many cosmetic gene-modification products have been available for some time - primarily in the Almach Rim - but have remained targeted at a relatively niche market. These treatments, ranging from cosmetic anti-aging to 'fantasy' body features are now set to be marketed and available in 'hundreds' of Kaleidoscope clinics galaxy-wide in the coming months. The TTC has reported that they are 'Confident that no transgressive modification is being provided and that these modifications are strictly superficial'. They have officially wished Kaleidoscope's directors well in their ascent to the galactic stage."
+
+/datum/lore/codex/page/article91
+	name = "09/21/64 - Almach Passes Inspection - Concerns Raised"
+	data = "The Solar Inspection Group has granted the Almach Protectorate a passing grade in the first official inspection of the territory under Skrellian rule, though ethical concerns have been raised by a number of independent observers involved in the process.\
+	<br><br>\
+	During the course of the month-long inspection, Skrell facilitators were cooperative in ensuring the SIG were given 'unlimited' access to all research and development facilities requested by Sol, as well as informing the group of numerous previously unidentified locations that had been flagged by the Almach Protectorate Government since assuming control of the region in April. Critics of protectorate have suggested that the 'official list' may not be as comprehensive as stated, but the SIG has stated that they are 'confident that no deception has been undertaken by the APG. We have observed no evidence of research being concealed from our teams, and to the best of our knowledge the only locations left undisturbed are those few still occupied by Association holdouts, beyond the control of either inspecting government.'\
+	<br><br>\
+	Also as a result of the inspection, concerns have been raised regarding the treatment of ex-Association citizens, particularly the often genetically modified residents of Angessa's Pearl. While Angessa Martei's location is still unknown, her legacy - a society described by some as a cult of personality with emphasis on the cult - poses a significant threat to Skrellian control of the Exalt's Light system, and the clash of 'strong ideologies' has allegedly resulted in mistreatment of detainees that, according to the official report 'would not be permitted in Solar jurisdictions'.\
+	<br><br>\
+	The Protectorate's passing grade opens the door for interstellar trade to resume between the two nations for the first time in several years. Manufacturing giant Ward-Takahashi has already released a public statement on its intent to deal with the APG, and several other trans-stellars are expected to follow suit."
+
+/datum/lore/codex/page/article92
+	name = "09/24/64 - Kaleidoscope Announce Exclusive Almach Deal"
+	data = "Mere days after the announcement of the reopening of Almachi-Solar trade, the Kaleidoscope Cosmetics corporation has confirmed that they have secured 'exclusive rights' to genetic products produced by several major manufacturers in the Angessa's Pearl system formerly owned by The Exalt - the insular mercurial theocracy of Exalt's Light - and recently handed over to the Almach Protectorate Government.\
+	<br><br>\
+	The details of the company's trade agreement have not been made public, but have reportedly already been approved by both the APG and SCG. The promptness of the agreement suggests to some that negotitations had been underway well before the announcement of the Protectorate's passing grade. Though cooperation between trans-stellar interests and government entities is far from unusual, such dealings with foreign governments - such as those widely made as 'open secrets' with Eutopia - are considered distasteful by many within the Icarus Front.\
+	<br><br>\
+	The Angessan products Kaleidoscope intends to offer have also not been made public, but are all to be thoroughly screened by the Transgressive Technologies Commission before being made available, though 'failing' proposals may be approved for use exclusively within Protectorate territory."
+
+/datum/lore/codex/page/article93
+	name = "10/04/64 - Yong Wins Relani Elections"
+	data = "Despite concerns about domestic unrest and potential Skrellian interference, elections in Relan have gone ahead, selecting a new President and System Assembly. Francis Harp Yong, leader of the interim government and previous governor of the city-station Ithaca, known for his leading role in negotiating the end of Skrellian occupation and calming riots and rebellions earlier this year, has won the Presidency in a landslide, receiving nearly seventy percent of the vote. His party, the Spacer Union, has secured a narrow majority in the Assembly. The New Federalists, led by former member of the Harper government Odoacer Mieville, are the largest opposition party.\
+	<br><br>\
+	Yong has promised to reinforce Relani neutrality and rebuild the pre-war social system, forming a coalition of labor, technoprogressives, and anti-war activists. His victory likely means an end to the unrest that has plagued Relan since the end of the war with Almach."
+
+/datum/lore/codex/page/article94
+	name = "12/23/64 - Two Vessels Feared Lost In Isavau's Gamble"
+	data = "Two Solar salvage vessels have been declared missing this week while undertaking operations in the remote Isavau's Gamble system. Locals also report that several smaller craft from the Eutopia system have 'vanished' under similar circumstances. Authorities are treating the disappearances as potential pirate attacks.\
+	<br><br>\
+	The XIV Sri Chamarajendra with crew of 32, and IIV Reimarus with 9 are both reported to have lost contact with the system's spaceport while undertaking far-orbit salvage operations on decommissioned and abandoned facilities, including the ILS Harvest Moon which detonated with all hands earlier this year. The disappearances have spurred the system government to request greater anti-piracy support from the SCG, which has been much reduced since the Almach War and increased tensions on the Hegemony border.\
+	<br><br>\
+	While Proximal to the independent and often 'lawless' Eutopia system, as well as the Rarkajar Rift, infamous prowl of the human-tajaran Jaguar Gang, the Isavau's System has rarely been a direct target for such large-scale apparent hijackings, and no group has yet claimed credit or demanded ransom."
+
+/datum/lore/codex/page/article95
+	name = "12/27/64 - NanoTrasen Accused In Satisfaction Poll Fixing"
+	data = "The results of an annual system-wide corporate employee satisfaction poll in Vir have been called into question after a leak of internal employee contracts by an anonymous whistle blower. According to verified documents provided to the Vir News Network, NanoTrasen employees on annual employment contracts up for renewal are instructed to fill out an appended form expressing 'Extremely High' satisfaction with their employment at the company, or the contract will be deemed 'incomplete' and thus invalid.\
+	<br><br>\
+	NanoTrasen have been winners of the Vir Happy Employee Award for the 7 years running as of this year, and as such the legitimacy of the award, which has been run in major systems by the Sol Economic Organization since 2503, has been called seriously into question. The SEO has expressed regrets regarding the alleged fixing, but has stated that participating corporations are within their right to encourage employees to vote in a particular way.\
+	<br><br>\
+	According to NanoTrasen, the so-called 'Satisfaction Clause' in their contract renewal process is entirely permissible from a legal standpoint, and the company has no plans to make any changes at this time. When approached for comment, one anonymous employee stated that they 'had never even heard of' the award."
+
+/datum/lore/codex/page/article96
+	name = "01/03/65 - VirGov Seals Security Deal With Local Firm"
+	data = "Governor Lusia Hainirsdottir has announced sweeping changes to government law enforcement in Vir, lynchpinned by the signing of a five-year contract with home-grown independent security and arms firm, Hedberg-Hammarstrom. The private enterprise will be assuming 'key duties' in local law enforcement and system security, in a move that Hainirsdottir says 'will save millions in taxpayer money, and encourages local, Virite businesses that we trust them every step of the way'.\
+	<br><br>\
+	While many colonies and facilities in Vir rely wholly on in-house security forces and will continue to do so, Hedberg-Hammarstrom is set to take over government patrol duties throughout the system, as well as administrating a large portion of previously government-run local law enforcement agencies including policing and wilderness garrisons.\
+	<br><br>\
+	CEO Gunnar Hammarstrom has reassured current SifGuard members at all levels that they need not fear for their jobs, and that for many the changes will be as simple as a slight change in uniform and a different name on their paychecks, but that H-H agents will be assuming managerial roles in most locations."
+
+/datum/lore/codex/page/article97
+	name = "01/05/65 - Top NanoTrasen Executive Injured In Sif Bombing"
+	data = "Calvert Moravec, Chief Operations Officer for NanoTrasen Vir remains in a critical condition following a suspected assassination attempt on Saturday. The former gubernatorial candidate had been making a speech at a small NanoTrasen facility known for a prior terrorist attack by Boiling Point forces two years ago, when a small explosive device detonated close to the executive's leg, rendering him unconcious.\
+	<br><br>\
+	NanoTrasen security have elected to investigate the bombing internally, refusing to cooperate with SifGuard authorities on the grounds of disagreements with newly established Hedberg-Hammarstrom management. Mr. Moravec, nephew of NanoTrasen CEO Albary Moravec had reportedly been speaking out against H-H's involvement in national policing when the blast occurred.\
+	<br><br>\
+	Commander Spradling of NanoTrasen Internal Security has issued a company-wide active search order for one member of the audience who remains unaccounted for named 'Lae Vu', who is believed to be a journalist or posing as such, accompanied by images from communicator footage taken at the event.\
+	<br><br>\
+	This amateur footage also shows one member of the audience shouting an anti-corporate slogan and throwing a small electronic device at Moravec before being escorted from the room, just moments prior to the explosion. Spradling has stated that this individual, who is believed to be a disgruntled veteran of the Sif Defense Force, remains one of several persons of interest, but that the thrown item does not appear to be connected directly with the explosive device.\
+	<br><br>\
+	Reports from witnesses suggest that Mr. Moravec made a temporary recovery thanks to the fast action of medical staff aboard the NLS Southern Cross, but that a few hours later he appeared to suffer from a seizure, after which he was placed into a medically induced coma that he is yet to recover from. Unverified images from the Cross appear to show a disoriented individual resembling Moravec self-medicating with a cocktail of prescribed painkillers and alcoholic beverages, though the company strongly denies their veracity."
+
+/datum/lore/codex/page/article98
+	name = "02/02/65 - NanoTrasen Announces Employee-Led Advisement Scheme"
+	data = "Trans-stellar giant NanoTrasen has today announced the launch of their brand-new 'NanoTrasen Employee Representation Committee' scheme, which will allow employee-selected representatives to have a say in company policy on a local basis. Initially launching as a pilot in 'a few key regions', the NERC is intended to provide an in-house method for those working for NanoTrasen to 'address grievances and provide valuable input without resorting to radical means'.\
+	<br><br>\
+	Vir is one of three size regions of varying scale but similar company presence selected for the pilot program, alongside the 'Deep Bowl' - including Stove, Viola and New Singapore, and 'South America', on Earth. Elections are expected to take place over the coming weeks, with each region electing representatives from core facilities in their locale. The Vir Branch will be expected to select five employees, one from each of; their New Reykjavik Head Office (Colloquially know as 'CentComm'), Karan colony the NCS Northern Star, Kalmar-based NMB Gullstrand medical research center, Sivian way-station NLS Southern Cross, and the company's sprawling Ekmanshalvo Fabrication Plant.\
+	<br><br>\
+	The Representation Committee is set to have quite significant powers over their region's day-to-day operations, ranging from Standard Operation Procedure, to security enforcement, to interior design."
+
+/datum/lore/codex/page/article99
+	name = "02/06/65 - Calvert Moravec Dead At 58, Announces Withdrawal From Public Life"
+	data = "Just over a month since his injury in a brazen assassination attempt, NanoTrasen Vir's Chief Operations Officer Calvert Moravec has announced his 'temporary withdrawal' from public and corporate matters, in an inspiring speech given from his post-cloning recovery ward. The noted corporate executive passed away on Friday, following a long comatose period, but is expected to make a full recovery.\
+	<br><br>\
+	Mr. Moravec has stated that he believes a spell 'away from the public eye' will do wonders for his recovery, and 'expects to make a return some time in the coming years'. However, Moravec has reaffirmed that his stance on corporate policing, which is believed to have been the reason for the January bombing, remains unchanged; 'The refusal of Hedberg-Hammarstrom to allow our security teams to access government criminal records has been a significant hindrance to the investigation into my death. Allowing just one corporation exclusive access to this data is unequivocally wrong.'"
+
+/datum/lore/codex/page/article100
+	name = "02/08/65 - NERC Campaigning Begins in Vir"
+	data = "NanoTrasen's latest employee initiative, the NanoTrasen Employee Representation Committee is set to hold their first in-house election this coming weekend, after 'respectable' signup rates for the positions across all participating Vir-based facilities.\
+	<br><br>\
+	According to those interviewed at a few sites, campaigning may be mixed. One potential committee member for the Gullstrand Medical Center described the competition as 'cut-throat' with staff looking to be split between the selection of already respected chief medical experts, and 'more represenative' service staff. Conversely, one worker at the Ekmanshalvo Fabrication Plant complex stated that he 'would probably just vote for whoever I've heard of.'\
+	<br><br>\
+	Final voting will take place on Saturday the 13th of February, with results announced by the following Monday."
+
+/datum/lore/codex/page/article101
+	name = "02/11/65 - Top Astronomers Announce 'Alarming' Tachyon Downtick"
+	data = "The Galactic Survey Administration has today released a 'high priority' report on what is being described as a 'significant decline in core tachyon density' throughout the known galaxy. According to recent findings tachyon deterioration, which had previously been 'negligible' has undergone a 'rapid acceleration' which could begin to seriously affect interstellar transit in as soon as 30 to 50 years.\
+	<br><br>\
+	Tachyons are a naturally occurring particle present in varying density which form the primary mechanism for bluespace drive operation. In simple terms, the higher the density of tachyons, the more efficiently starship engines are capable of operating. Low-density regions such as the Rarkajar Rift have long posed a challenge to interstellar trade, and the expansion of such regions could prove devastating to galactic unity.\
+	<br><br>\
+	FTL industry leaders Focal Point Energistics have already announced 'immediate investigation' into the GSA's findings after taking a blow on the stock exchange, and have guaranteed a 'commitment to future-proofing' in all forthcoming products."
+
+/datum/lore/codex/page/article102
+	name = "02/15/65 - NanoTrasen Announces First NERC Members"
+	data = "Following Saturday's internal election, NanoTrasen Vir has elected the first five members for its new Employee Representation Committee. These individuals are expected to hold the position for one month:\
+	<br><br>\
+	For the New Reykjavik Head Office Iraluq James, a remote personnel operative, won the position on a platform of employee morale, team-building and employee-employer conflict resolution.\
+	<br><br>\
+	On the NCS Northern Star, NanoTrasen's main colony station in Vir Victoria Bell, a cybernetic chef and hardshell operator won her place with promises of increased regulatory transparency and clarity, including the publication of an in-house magazine.\
+	<br><br>\
+	At the NMB Gullstrand medical science center in Kalmar, a close race between top doctors was upset by the election of a station security commander, Wish Elara-Voight who promises 'improvements to the safety and security of NanoTrasen facilities with a focus on enforcing current SoP and CorpReg policies and placing new procedure in the handbooks.'\
+	<br><br>\
+	The waypoint station NLS Southern Cross selected a cybernetic Unathi candidate, researcher Dr. Haven Rasikl to represent them on the basis of encouraging interdepartmental cooperation and communication.\
+	<br><br>\
+	Finally, the Ekmanshalvo Fabrication Plant has selected fabrication programmer Terazon Norddahl, who promises to push for overhauls and modernization of the company's internal transport and support systems, including shuttle scheduling."
+
+/datum/lore/codex/page/article103
+	name = "03/10/65 - GSA Confirms Presence Of 'New' Deep-Space Threat"
+	data = "This morning the Galactic Survey Administration released confirmation that a previously unknown deep-space dwelling species was indeed responsible for the disappearance of five Extraplanar Discovery Division vessels early last year, three of which have returned adrift over the past several days. The species, colloquially dubbed the 'Bluespace Bugs' after initial reports from the recovered EDD ships, are believed to be capable of manipulating matter in a manner reminicent of experimental bluespace technology.\
+	<br><br>\
+	The three 'returning' vessels are said to have been 'significantly off-course', with their points of galactic re-entry differing vastly from their initial points of egress, and final programmed return routes. Each ship having departed on routes from Sol, the SCG-E Bungaree was reported adrift by Almach Protectorate officials close to the Vounna system, the SCG-E Ketumati severely damaged on a collision course with the Erebus star, in the Nyx system, and the SCG-E Mag Mell collided with the garden world of Sif, in Vir. The Gagarin and Xu Fu remain unaccounted for, but due to the proximity of final contact, their disappearance has also been ascribed to the 'bugs'.\
+	<br><br>\
+	Investigation of the recovered vessels each indicated signs of a brief struggle, always following reports of unexplained equipment disappearances and equipment failure. No crew, or crew remains have been found, with the exception of a single unidentified human thumb aboard the Bungaree.\
+	<br><br>\
+	Additionally, each ship has been identified as having undergone some degree of material alteration, with elements ranging from hull plating to crew belongings having taken on a crystaline form dubbed 'Magmellite' after the ship most thoroughly 'reconstructed'. It is unclear whether the mineral is somehow secreted by the alien species, or merely a product of the same environment.\
+	<br><br>\
+	GSA sources have stated that there is no current evidence that the insectoid creatures - identified only from scattered descriptions left from missing EDD personnel - are in any way sapient or malicious, and the lost vessels are thought to have merely disturbed a scattered array of endemic populations far from the galactic plane. Precisely why the species has only been encountered in the past year, and now all at once, is not yet known."
+
+/datum/lore/codex/page/article104
+	name = "05/24/65 - Oculum Apologizes for Interstellar Relay Outages"
+	data = "Week-long difficulties with interstellar transmissions in several central star systems due to an 'unexpected behaviour' in bluespace relays 'should be resolved soon' according to telecoms giant Oculum Broadcast. The company has apologized to customers for connection speed drops as much as 80% which have rendered certain live systems near impossible for many customers, including disruption of telecast Colonial Assembly meetings on Luna which have been temporarily put on hold in order to allow representatives time to attend in person.\
+	<br><br>\
+	Customers may experience reduced speeds compared to prior service, but have been promised a two-year price freeze on exonet service packages for home and business users on most major providers in participating areas. In-system communications remain unaffected.\
+	<br><br>\
+	Initial reports that the finale broadcast of Game of Drones was 'rendered unwatchable' by connection issues proved to be unfounded as severe lag and audio distortion were confirmed as 'part of the creator's artistic vision for the story's end'."
+
+/datum/lore/codex/page/article105
+	name = "06/07/65 - 104 Feared Dead In Oasis Tourist Shuttle Incident"
+	data = "The Vir Governmental Authority has confirmed the destruction of a small interstellar tourist vessel departing the Vir system. The ITV Relaxation IX operated by Thousand Palms Hotels, was bound for a popular resort in Oasis and reportedly 'split in two' shortly after confirming system bluespace departure with Vir space traffic control, exposing all passenger compartments to space and killing at least 94 of the 108 people onboard.\
+	<br><br>\
+	Four crew members recovered from forward sections are being treated for 'non-life-threatening' pressure injuries at a nearby medical facility, and ten individuals believed to have been situated at the rear of the ship remain unaccounted for. The exact cause of the break-up is yet to be determined, but initial accounts from surviving crew members describe the bluespace drive of the ship as having 'taken off by itself' at such speed that the rear of the fuselage was 'cut clean off' with no regard for structural elements. Foul play is not currently suspected.\
+	<br><br>\
+	The VGA believes that the chances of finding further survivors are 'extremely slim', though efforts to recover the rear section, which was 'sling-shot' into interstellar space, are underway. Gilthari Exports, Thousand Palms' parent company have temporarily suspended operation of all vessels fitted with similar bluespace drives, and Major Bill's Transportation is expected to follow suit. Wulf Aeronautics was unavailable for comment at this time."
+
+/datum/lore/codex/page/article106
+	name = "07/09/65 - 'Bluespace Bugs' Linked To Almach Tech"
+	data = "Initial public reports on the extraplanar species commonly known as 'Bluespace Bugs' has proposed that the first recognizable signs of their activity within observable space, coincide precisely with the development - and particularly the test-firing - of the Whythe Superweapon, and that there may be a direct link between the two. The report, released by the Galactic Survey Administration this afternoon hypothesizes that the newly developed bluespace manipulation techniques used in Whythe may have acted as a signal to the deep-space dwelling creatures in a manner similar to moths attracted to artificial light. The GSA is currently collaborating with the Almach Protectorate Government to investigate the potential link further.\
+	<br><br>\
+	Additionally, findings from analysis of both inorganic and biological samples collected from the three recovered Extraplanar Discovery ships believed to belong to the 'Bugs' has excited much of the scientific community, with news that the insect-like aliens and their apparent dietary waste-product Magmellite may be composed in a manner completely unlike any life previously encountered in the known galaxy. The findings may rewrite our understanding of biology and material science, though a full specimen is desired to confirm these early findings.\
+	<br><br>\
+	The creatures have been given a tentative scientific name X Extraneus Tarlevi, after Captain Volmer Tarlev of the SCG-E Ketumati whose recorded descriptions were instrumental in establishing a basic understanding of the species' behavior. Researchers currently believe that the Bluespace Bugs are merely a form of bulk-feeding omnivore attracted to the EDD vessels in deep space by their bluespace drives, and that the loss of the ships was merely unfortunate happenstance rather than deliberate, malicious attack. Studies are already underway to determine methods that might prevent further incidents of this types before any further extraplanar missions are approved."
+
+/datum/lore/codex/page/article107
+	name = "08/15/65 - Enigmatic Arkship Sighted After 200 Year Voyage"
+	data = "Recent reports from the New Singapore-based Exoplanar Traffic Observation Committee, have claimed historic extraplanar arkship, the VHS Rodnakya, has changed trajectory and may be approaching the galactic plane once more.\
+	<br><br>\
+	The ETOC, comprised of mostly exoplanar and shuttlecraft enthusiasts in the Bowl, have been tracking both government and private survey expeditions since the 2450's, reporting the approximate locations and assumed status of vessels for public record. The VHS Rodnakya has been a major point of interest among ETOC members since its formation, sometimes dominating discussions entirely, and the focus for numerous unverified theories.\
+	<br><br>\
+	The Arkship and its support fleet, known as 'Vystholm' was constructed in the early 2300's by Stanislava Dalibor, and left the galactic plane in response to the abolition of the SCG's First Contact Policy that demanded the capture and interrogation of unknown sapient aliens. It has not had any official contact with the galactic community since. Largely known for radical and since-outdated views on non-human intelligent life, their original crew was known to include a number of early Icarus Front extremists which may have fermented into a dangerous ideology after 200 years of isolation.\
+	<br><br>\
+	This alleged trajectory change has sparked excitement among the committee, including a flurry of completely unsupported reports of spies infiltrating Solar society, from the corporate workforce to major government bodies.\
+	<br><br>\
+	The Vir News Network does not endorse the unverified claims of the Exoplanar Traffic Observation Committee."
+
+/datum/lore/codex/page/article108
+	name = "09/12/65 - Gateway Transport Suspended Amidst Safety Concerns"
+	data = "Nine of the galaxy's top trans-stellars have announced immediate suspension of bluespace gateway transit services following a report by Wulf Aeronautics indicating that some of the same tachyon instabilities affecting their faster-than-light engine technology may have even more severe reprecussions for rapid point-to-point teleportation that could result in 'significant decrease in matter' during rematerialization that could result in customer death, disfigurement, or loss of luggage.\
+	<br><br>\
+	Dismissing accusations that this was a move to bolster a weakened spacecraft travel industry, Focal Point Energistics, the original developers of modern gateway technology were first to announce their suspension of service on all first-party operated access points. Major contract operators, including NanoTrasen, Ward-Takahashi, and Gilthari Exports have followed suit citing a desire for caution when dealing with premium employee transport.\
+	<br><br>\
+	NanoTrasen are the Vir system's leading operator of gateway transport, offering 'luxury, near-instant interplanetary commutes' between most major company facilities, and the Vir Interstellar Spaceport. The company says it will be removing many smaller gate installations for 'full examination and required enhancements' and expects the service to return 'within a few weeks'.\
+	<br><br>\
+	Major Bill's Transportation have announced an increased frequency of service to affected NanoTrasen locations for the duration of the gateway suspension."
+
+/datum/lore/codex/page/article109
+	name = "10/23/65 - 12th Missing Ship Prompts Official Isavau Response"
+	data = "After a shocking 12th interstellar vessel was declared missing in the Isavau's Gamble system earlier this week, the SCG has formally announced the launch of an official investigation, including the deployment of a significant Fleet security presence in the region. The lost ship, the HFV El Cid is recorded as having a crew complement of eight, pushing the total missing people in the system over the past year over one hundred and fifty. A contingent of around twenty SCG vessels - search and rescue, salvage, and armed warships - has been dispatched to the region to take over from near-absent local investigators, but is not expected to arrive for at least a month due to worsening FTL flight conditions.\
+	<br><br>\
+	The El Cid is believed to have been hauling highly secure cargo internationally, which may have been the final deciding factor in launching a confederation-level investigation into the abnormal number of appearances, and the SCG has come under quick criticism for their apparent prioritization of lost cargo over sapient lives. Fleet Admiral Silvain Barka, celebrated veteran of the Almach War, has stated 'Lives are our number one concern. The matter of the Hephaestus cargo has simply moved our timeline forward due to concerns that if high-grade arms were to fall into pirate hands, the situation in Isavau's Gamble could rapidly worsen. We want to avoid that, and bring back as many of the missing crew as possible.'\
+	<br><br>\
+	While piracy has long been a concern in the Bowl, with the 'Jaguar Gang' pirates making their home in the region, and a general uptick having occurred since the beginning of the Almach Crisis, it is unusual for such a high proportion of missing ships crews to remain lost without report of recovery or ransom demands. Accusations of brutality have been levied at the Vystholm flotilla, despite their improbable distance from the star system. To date the XIV Sri Chamarajendra remains the single largest loss of life, at 32 believed dead during a large salvage mission late last year."
+
+/datum/lore/codex/page/article110
+	name = "10/26/65 - 'Bluespace Bug' Confirmed Activity Near Tajaran Space"
+	data = "The following address is from Khama Suketa enai-Lutiir, representative of the Tajaran Pearlshield Coalition:\
+	<br><br>\
+	'Good day, everyone. We would like to put the rumor mills to rest lest they get out of hand. Eleven Solar days ago, the Silk system's perimeter defenses picked up what appeared to be a derelict Vox raiding ship that had drifted into range. Security forces boarded the craft and found clear signs of fighting within the crew compartments, but no traces of the crew themselves. The craft's bluespace drives were notably ripped out of the hull, and it's believed the craft had been drifting for up to nearly two Solar weeks prior, as it has been identified as the 'Skiskatachtlakta', belonging to a well-known Vox raiding group our cousins in the Arrathiir system have been contending with for a few years now, and that was their last confirmed contact with it.\
+	<br><br>\
+	'Most importantly however, and the key reason for this address, is a significant portion of the ship's hull, particularly concentrated around the site of its bluespace drives, has been confirmed to've been converted to the material known as 'Magmellite', related to the so-called 'bluespace bugs' or X Extraneus Tarlevi that have been of note outside our borders. To acknowledge and assuage any natural alarm on our own part, there is no indication any part of the incident took place on our side of the Rift, and we are deploying additional reconnaissance and recovery ships, drones and general personnel throughout controlled space to keep a watchful eye, and we are negotiating with Solar forces in Silk to expand our presence as appropriate. We are currently analyzing the Magmellite samples recovered from the Skiskatachtlakta and will be sharing any findings with our fellows in the scientific sphere, as well as returning the ship's plundered riches if and when possible.\
+	<br><br>\
+	'There is currently no cause for concern beyond the understandable. If and when there is, we will rise to the occasion as always. Together, we will discover the truth of these strange times we find ourselves in. Until then, be safe, and be well. May our stars shine upon us all.'"
+
+/datum/lore/codex/page/article111
+	name = "01/14/66 - Unathi Border On Alert After Manoeuvre Scare"
+	data = "The Solar garrison at Abel's Rest remains on high alert following a critical near-miss scenario resulting from an unannounced Unathi fleet arrival at the disputed system's perimeter alert zone, which has since been determined to be not a deliberate act of war. According to the Moghes Hegemony the fleet is 'part of a re-evaluation of <the Hegemony's> key troop deployments, that will be of mutual benefit to peace in the region'.\
+	<br><br>\
+	The arriving fleet, comprised of mostly troop transport vessels, remained in distant orbit of the star for seven hours before diplomatic contact could be established, during which time the SCG garrison remained at battle-ready stance. This marks the closest proximity to open conflict in Abel's Rest since the end of the Unathi War over 45 years ago. SolGov peacekeepers have confirmed decreased planetside garrison activity over the past several months, and key Hegemony warships have departed in recent weeks.\
+	<br><br>\
+	It remains impossible to determine the Unathi's true intentions as such a withdrawal could preface devastating planetary bombardment, or invasion elsewhere, and some members of the Icarus Front have called for immediate redeployment to the front in response. The SCG Fleet has assured the public that relations with the Hegemony have 'never been better' and that long-range sensors indicate a withdrawal from the entire border region on a far wider scale."
+
+/datum/lore/codex/page/article112
+	name = "02/13/66 - Isavau's Gamble Fleet Report 'All Silent'"
+	data = "Early reports from the SCG contingent sent to investigate potential pirate activity in the Isavau's Gamble system include shocking descriptions of a system 'gone silent', with supposedly zero manmade signals originating from any ship or station in the entire area. Prior loss of contact several days prior had been ascribed to naturally occurring background noise 'overwhelming' the system Spaceport's bluespace relays, which had been operating at reduced efficiency due to the ongoing tachyon downtick.\
+	<br><br>\
+	While messages from the SCG-D Brazen Bull were similarly weakened by what has been described as a bluespace 'hum', no immediate cause for alarm was raised. The fleet indicated that they were proceeding to investigate the Isavau International Spaceport and hoped to make direct contact with the crew within a matter of hours.\
+	<br><br>\
+	While telecommunications outages were a forecasted consequence of the tachyon downtick, highly focused and widespread instances such as that occurring in Isavau's Gamble were not, which has cast doubt on the predictive models being used, and raised concerns of additional factors at play. A newly observed phenomena from the Brazen Bull's report, 'blue points of light suspended in space with no discernible origin' has led to some speculation of a re-concentration of tachyon particles which some hope may hold the key to preventing further deterioration of the energetic landscape."
+
+/datum/lore/codex/page/outage
+	name = "02/14/66 - 02/15/74 - RELAY DATA OUTAGE"
+	data = "Article data lost for 2922 day period. Reason: Damage sustained to Oculum systems during Skathari Incursion. Please contact your administrator for details."
+
+/datum/lore/codex/page/article113
+	name = "08/17/74 - Vox Continue To Show Alarming Divergence In Behaviour; Experts Baffled"
+	data = "Reports published by the Interspecies Joint Anti-Piracy Initiative this month continue to support an unsettling trend; the Vox, violent reptoavian aliens best known for engaging in rampant piracy, are simply not behaving as expected. Tactical and strategic models built painstakingly over the last three centuries are now showing accuracy ratings as low as 3%, with a rapidly growing number of raids either occurring outwith predicted regions or timeframes, or more alarmingly, not being predicted at all.\
+	<br><br>\
+	'Something has altered their priorities,' said Wataru Murata, the head of the Joint Operations Group in charge of tracking Vox activity. 'In some areas we're seeing vastly more unarmed transport, mining and salvaging vessels, than we were as recently as two months ago, and in others, we're seeing strength and frequency of raiding groups as much as tripling. It's a very complex situation.'\
+	<br><br>\
+	'They've never been so unpredictable before,' agreed senior naval officer Akira Doi. 'I understand that there is currently no official theory on why this is happening, but I believe it all goes back to the Skathari Incursion.'\
+	<br><br>\
+	Many leading scientists are skeptical that the Incursion, despite having thrown much of the galactic community into chaos over an eight-year period of conflict with the insectoid Skathari, could have seriously disrupted the Vox in the same way, given the relatively low indications of Skathari presence in known Vox operating territories, but Admiral Doi strongly disagrees.\
+	<br><br>\
+	'The Skathari are aggressive to an unprecedented degree,' he explained, 'and they had the ability and numbers to annihilate entire communities. I see no reason why that shouldn't have applied to the Vox.'\
+	<br><br>\
+	While some colonies and stations welcome this reprieve from raids and piracy, others are finding themselves under renewed pressure, with resources and labour withdrawn on the advice of apparently unreliable modelling. A representative of the Pearlshield Coalition territory of Arrathiir had this to say regarding the sluggish reallocation of resources after the latest wave of raids:\
+	<br><br>\
+	'On the frontier we are no strangers to fighting and rebuilding after raider attacks, but without reliable resupply of fuel and munitions from the home worlds, we cannot even field our ships. This is costing us dearly.'"
+
+/datum/lore/codex/page/article114
+	name = "09/25/74 - 'Emerald Skies' Conspiracy Protest Shuts Down New Reykjavik Mall"
+	data = "This weekend saw the Vinterlykke Shopping Center shut down after a surge of protesters crowded the mall. Vinterlykke is known as the largest mall in New Reykjavik, renowned for its expansive selection of shops, restaurants, and entertainment options.\
+	<br><br>\
+	According to witnesses, protesters crowded the major walkways, preventing shoppers from passing and leaving some stranded in shops to avoid the crowd. Many shops barred and locked the storefronts in response, an unnamed employee of one store commenting, 'That many people <...> you never know if it's going to get out of control.'\
+	<br><br>\
+	The protesters chanted with signs regarding NanoTrasen's exclusive rights in studying the Sif Anomalous Region, demanding that studies into the anomalous properties be public knowledge. The march appears to be headed by the Skathari conspiracy group 'Emerald Skies', known in recent months for many other smaller protests regarding the government response to the Incursion, and beliefs that Skathari are more intelligent than the public has been informed.\
+	<br><br>\
+	The disruption was eventually cleared out by mall security forces before the crowd could grow out of control. It is reported that Vinterlykke will reopen on Monday with additional security measures in place."

@@ -10,8 +10,8 @@
 	name = "Electromagnetic Generator"
 	desc = "A device that uses station power to create points of magnetic energy."
 	plane = PLATING_PLANE
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 
 	var/freq = 1449		// radio frequency
@@ -43,10 +43,10 @@
 // update the invisibility and icon
 /obj/machinery/magnetic_module/hide(var/intact)
 	invisibility = intact ? 101 : 0
-	updateicon()
+	update_icon()
 
 // update the icon_state
-/obj/machinery/magnetic_module/proc/updateicon()
+/obj/machinery/magnetic_module/update_icon()
 	var/state="floor_magnet"
 	var/onstate=""
 	if(!on)
@@ -142,10 +142,10 @@
 
 	// Update power usage:
 	if(on)
-		use_power = 2
-		active_power_usage = electricity_level*15
+		update_use_power(USE_POWER_ACTIVE)
+		update_active_power_usage(electricity_level * 15)
 	else
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 
 	// Overload conditions:
 	/* // Eeeehhh kinda stupid
@@ -157,7 +157,7 @@
 					qdel(src)
 	*/
 
-	updateicon()
+	update_icon()
 
 /obj/machinery/magnetic_module/proc/magnetic_process() // proc that actually does the pulling
 	if(pulling) return
@@ -188,9 +188,9 @@
 	name = "Magnetic Control Console"
 	icon = 'icons/obj/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
 	icon_state = "airlock_control_standby"
-	density = 1
-	anchored = 1.0
-	use_power = 1
+	density = TRUE
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 45
 	var/frequency = 1449
 	var/code = 0
@@ -275,7 +275,7 @@
 
 		// Prepare signal beforehand, because this is a radio operation
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 // radio transmission
+		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
 		signal.data["code"] = code
@@ -298,7 +298,7 @@
 
 		// Broadcast the signal
 
-		radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
+		radio_connection.post_signal(src, signal, radio_filter = RADIO_MAGNETS)
 
 		spawn(1)
 			updateUsrDialog() // pretty sure this increases responsiveness
@@ -314,7 +314,7 @@
 				if(speed <= 0)
 					speed = 1
 			if("setpath")
-				var/newpath = sanitize(input(usr, "Please define a new path!",,path) as text|null)
+				var/newpath = sanitize(tgui_input_text(usr, "Please define a new path!",,path))
 				if(newpath && newpath != "")
 					moving = 0 // stop moving
 					path = newpath
@@ -341,7 +341,7 @@
 
 		// Prepare the radio signal
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 // radio transmission
+		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
 		signal.data["code"] = code
@@ -365,7 +365,7 @@
 
 		// Broadcast the signal
 		spawn()
-			radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
+			radio_connection.post_signal(src, signal, radio_filter = RADIO_MAGNETS)
 
 		if(speed == 10)
 			sleep(1)

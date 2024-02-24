@@ -5,8 +5,8 @@
 /obj/item/weapon/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "standard"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
 	force = 5.0
@@ -14,6 +14,10 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
+	/// Are we EMP immune?
+	var/emp_proof = FALSE
+	var/static/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglier code in nanoUI.
+	var/c_uid
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
 	var/rigged = 0		// true if rigged to explode
@@ -21,16 +25,19 @@
 	var/self_recharge = FALSE // If true, the cell will recharge itself.
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
+	var/connector_type = "standard" //What connector sprite to use when in a cell charger, null if no connectors
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 	// Overlay stuff.
-	var/overlay_half_state = "cell-o1" // Overlay used when not fully charged but not empty.
-	var/overlay_full_state = "cell-o2" // Overlay used when fully charged.
+	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
 /obj/item/weapon/cell/New()
 	..()
+	c_uid = cell_uid++
 	charge = maxcharge
 	update_icon()
 	if(self_recharge)
@@ -48,6 +55,12 @@
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)
 			give(charge_amount)
+			// TGMC Ammo HUD - Update the HUD every time we're called to recharge.
+			if(istype(loc, /obj/item/weapon/gun/energy)) // Are we in a gun currently?
+				var/obj/item/weapon/gun/energy/gun = loc
+				var/mob/living/user = gun.loc
+				if(istype(user))
+					user?.hud_used.update_ammo_hud(user, gun) // Update the HUD
 	else
 		return PROCESS_KILL
 
@@ -68,29 +81,14 @@
 #define OVERLAY_EMPTY	0
 
 /obj/item/weapon/cell/update_icon()
-	var/new_overlay = null // The overlay that is needed.
-	// If it's different than the current overlay, then it'll get changed.
-	// Otherwise nothing happens, to save on CPU.
-
-	if(charge < 0.01) // Empty.
-		new_overlay = OVERLAY_EMPTY
-		if(last_overlay_state != new_overlay)
-			cut_overlays()
-
-	else if(charge/maxcharge >= 0.995) // Full
-		new_overlay = OVERLAY_FULL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_half_state)
-			add_overlay(overlay_full_state)
-
-
-	else // Inbetween.
-		new_overlay = OVERLAY_PARTIAL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_full_state)
-			add_overlay(overlay_half_state)
-
-	last_overlay_state = new_overlay
+	if(!standard_overlays)
+		return
+	var/ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
+	var/new_state = "[icon_state]_[ratio]"
+	if(new_state != last_overlay_state)
+		cut_overlay(last_overlay_state)
+		add_overlay(new_state)
+		last_overlay_state = new_state
 
 #undef OVERLAY_FULL
 #undef OVERLAY_PARTIAL
@@ -145,10 +143,10 @@
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	..()
-	if(get_dist(src, user) <= 1)
-		to_chat(user, " It has a power rating of [maxcharge].\nThe charge meter reads [round(src.percent() )]%.")
-	return
+	. = ..()
+	if(Adjacent(user))
+		. += "It has a power rating of [maxcharge]."
+		. += "The charge meter reads [round(src.percent() )]%."
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
@@ -200,6 +198,8 @@
 		rigged = 1 //broken batterys are dangerous
 
 /obj/item/weapon/cell/emp_act(severity)
+	if(emp_proof)
+		return
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -233,35 +233,17 @@
 	return
 
 /obj/item/weapon/cell/proc/get_electrocute_damage()
-	switch (charge)
-/*		if (9000 to INFINITY)
-			return min(rand(90,150),rand(90,150))
-		if (2500 to 9000-1)
-			return min(rand(70,145),rand(70,145))
-		if (1750 to 2500-1)
-			return min(rand(35,110),rand(35,110))
-		if (1500 to 1750-1)
-			return min(rand(30,100),rand(30,100))
-		if (750 to 1500-1)
-			return min(rand(25,90),rand(25,90))
-		if (250 to 750-1)
-			return min(rand(20,80),rand(20,80))
-		if (100 to 250-1)
-			return min(rand(20,65),rand(20,65))*/
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000-1)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000-1)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000-1)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000-1)
-			return min(rand(10,20),rand(10,20))
-		else
-			return 0
-
-/obj/item/weapon/cell/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<span class='danger'>\The [user] is licking the electrodes of \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
-	return (FIRELOSS)
+	//1kW = 5
+	//10kW = 24
+	//100kW = 45
+	//250kW = 53
+	//1MW = 66
+	//10MW = 88
+	//100MW = 110
+	//1GW = 132
+	if(charge >= 1000)
+		var/damage = log(1.1,charge)
+		damage = damage - (log(1.1,damage)*1.5)
+		return round(damage)
+	else
+		return 0

@@ -12,7 +12,7 @@
 	..()
 
 /obj/item/device/assembly/electronic_assembly/attackby(obj/item/I as obj, mob/user as mob)
-	if (I.is_crowbar())
+	if (I.has_tool_quality(TOOL_CROWBAR))
 		toggle_open(user)
 	else if (opened)
 		EA.attackby(I, user)
@@ -20,7 +20,7 @@
 		..()
 
 /obj/item/device/assembly/electronic_assembly/proc/toggle_open(mob/user)
-	playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
+	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	opened = !opened
 	EA.opened = opened
 	to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
@@ -46,10 +46,10 @@
 		return
 
 /obj/item/device/assembly/electronic_assembly/examine(mob/user)
-	.=..(user, 1)
+	. = ..()
 	if(EA)
 		for(var/obj/item/integrated_circuit/IC in EA.contents)
-			IC.external_examine(user)
+			. += IC.external_examine(user)
 
 /obj/item/device/assembly/electronic_assembly/verb/toggle()
 	set src in usr
@@ -78,7 +78,7 @@
 	output.assembly = src
 
 /obj/item/device/electronic_assembly/device/check_interactivity(mob/user)
-	if(!CanInteract(user, state = deep_inventory_state))
+	if(!CanInteract(user, state = GLOB.tgui_deep_inventory_state))
 		return 0
 	return 1
 

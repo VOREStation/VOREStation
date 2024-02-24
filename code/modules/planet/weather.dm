@@ -1,17 +1,21 @@
 /datum/weather_holder
 	var/datum/planet/our_planet = null // Reference to the planet datum that holds this datum.
 	var/datum/weather/current_weather = null // The current weather that is affecting the planet.
+	var/imminent_weather = null // The current weather that is affecting the planet.
 	var/temperature = T20C // The temperature to set planetary walls to.
 	var/wind_dir = 0 // The direction the wind is blowing. Moving against the wind slows you down, while moving with it speeds you up.
 	var/wind_speed = 0 // How fast or slow a mob can be due to wind acting on them.
 	var/list/allowed_weather_types = list() // Assoc list of weather identifiers, containing the actual weather datum.
 	var/list/roundstart_weather_chances = list() // Assoc list of weather identifiers and their odds of being picked to happen at roundstart.
 	var/next_weather_shift = null // world.time when the weather subsystem will advance the forecast.
+	var/imminent_weather_shift = null // world.time when weather will shift towards pre-set imminent weather type.
 	var/list/forecast = list() // A list of what the weather will be in the future. This allows it to be pre-determined and planned around.
 
 	// Holds the weather icon, using vis_contents. Documentation says an /atom/movable is required for placing inside another atom's vis_contents.
 	var/atom/movable/weather_visuals/visuals = null
 	var/atom/movable/weather_visuals/special/special_visuals = null
+
+	var/firework_override = FALSE
 
 /datum/weather_holder/New(var/source)
 	..()
@@ -22,6 +26,20 @@
 			W.holder = src
 	visuals = new()
 	special_visuals = new()
+
+/datum/weather_holder/proc/apply_to_turf(turf/T)
+	if(visuals in T.vis_contents)
+		warning("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
+		return
+	T.vis_contents += visuals
+	T.vis_contents += special_visuals
+
+/datum/weather_holder/proc/remove_from_turf(turf/T)
+	if(!(visuals in T.vis_contents))
+		warning("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
+		return
+	T.vis_contents -= visuals
+	T.vis_contents -= special_visuals
 
 /datum/weather_holder/proc/change_weather(var/new_weather)
 	var/old_light_modifier = null
@@ -48,7 +66,9 @@
 	log_debug("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F).")
 
 /datum/weather_holder/process()
-	if(world.time >= next_weather_shift)
+	if(imminent_weather && world.time >= imminent_weather_shift)
+		proceed_to_imminent_weather()
+	else if(!imminent_weather && world.time >= next_weather_shift)
 		if(!current_weather) // Roundstart (hopefully).
 			initialize_weather()
 		else
@@ -77,6 +97,19 @@
 	change_weather(new_weather)
 	build_forecast() // To fill the forecast to the desired length.
 
+/datum/weather_holder/proc/queue_imminent_weather(weather_to_queue)
+	if(!(weather_to_queue in allowed_weather_types))
+		return
+	imminent_weather = weather_to_queue
+	imminent_weather_shift = world.time + 90 SECONDS
+
+/datum/weather_holder/proc/proceed_to_imminent_weather()
+	var/new_weather = imminent_weather
+	imminent_weather = null
+	forecast.Cut() // Clear the forecast, since we're force-changing the weather.
+	change_weather(new_weather)
+	build_forecast() // To fill the forecast.
+
 // Creates a list of future weather shifts, that the planet will undergo at some point in the future.
 // Determining it ahead of time allows for attentive players to plan further ahead, if they can see the forecast.
 /datum/weather_holder/proc/build_forecast()
@@ -103,6 +136,7 @@
 
 /datum/weather_holder/proc/update_icon_effects()
 	visuals.icon_state = current_weather.icon_state
+	visuals.icon = current_weather.icon
 
 /datum/weather_holder/proc/update_temperature()
 	temperature = LERP(current_weather.temp_low, current_weather.temp_high, our_planet.sun_position)
@@ -123,13 +157,12 @@
 	for(var/mob/M in player_list) // Don't need to care about clientless mobs.
 		if(M.z in our_planet.expected_z_levels)
 			var/turf/T = get_turf(M)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue
 			to_chat(M, message)
 
 /datum/weather_holder/proc/get_weather_datum(desired_type)
 	return allowed_weather_types[desired_type]
-
 
 /datum/weather_holder/proc/show_transition_message()
 	if(!current_weather.transition_messages.len)
@@ -161,6 +194,7 @@
 	var/show_message = FALSE		// Is set to TRUE and plays the messsage every [message_delay]
 
 	var/list/transition_messages = list()// List of messages shown to all outdoor mobs when this weather is transitioned to, for flavor. Not shown if already this weather.
+	var/imminent_transition_message = null
 	var/observed_message = null // What is shown to a player 'examining' the weather.
 
 	// Looping sound datums for weather sounds, both inside and outside.
@@ -188,8 +222,7 @@
 		return
 
 	for(var/z_level in 1 to world.maxz)
-		for(var/a in GLOB.players_by_zlevel[z_level])
-			var/mob/M = a
+		for(var/mob/M as anything in GLOB.players_by_zlevel[z_level])
 
 			// Check if the mob left the z-levels we control. If so, make the sounds stop for them.
 			if(!(z_level in holder.our_planet.expected_z_levels))
@@ -200,7 +233,7 @@
 			// Otherwise they should hear some sounds, depending on if they're inside or not.
 			var/turf/T = get_turf(M)
 			if(istype(T))
-				if(T.outdoors) // Mob is currently outdoors.
+				if(T.is_outdoors()) // Mob is currently outdoors.
 					hear_outdoor_sounds(M, TRUE)
 					hear_indoor_sounds(M, FALSE)
 

@@ -7,7 +7,7 @@
 		H.put_in_hands(hat)
 		H.visible_message("<span class='danger'>\The [H] removes \the [src]'s [hat].</span>")
 		hat = null
-		updateicon()
+		update_icon()
 	else
 		return ..()
 
@@ -18,6 +18,6 @@
 			return
 		user.unEquip(W)
 		wear_hat(W)
-		user.visible_message("<span class='notice'>\The [user] puts \the [W] on \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> puts \the [W] on \the [src].")
 		return
 	return ..()

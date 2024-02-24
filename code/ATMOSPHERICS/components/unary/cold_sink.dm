@@ -6,9 +6,9 @@
 	desc = "Cools gas when connected to pipe network"
 	icon = 'icons/obj/Cryogenic2_vr.dmi'
 	icon_state = "freezer_0"
-	density = 1
-	anchored = 1
-	use_power = 0
+	density = TRUE
+	anchored = TRUE
+	use_power = USE_POWER_OFF
 	idle_power_usage = 5			// 5 Watts for thermostat related circuitry
 	circuit = /obj/item/weapon/circuitboard/unary_atmos/cooler
 
@@ -21,15 +21,9 @@
 	var/set_temperature = T20C		// Thermostat
 	var/cooling = 0
 
-/obj/machinery/atmospherics/unary/freezer/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
-	RefreshParts()
+/obj/machinery/atmospherics/unary/freezer/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/atmospherics/unary/freezer/atmos_init()
 	if(node)
@@ -59,12 +53,18 @@
 	return
 
 /obj/machinery/atmospherics/unary/freezer/attack_ai(mob/user as mob)
-	ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/atmospherics/unary/freezer/attack_hand(mob/user as mob)
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/atmospherics/unary/freezer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/unary/freezer/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "GasTemperatureSystem", name)
+		ui.open()
+
+/obj/machinery/atmospherics/unary/freezer/tgui_data(mob/user)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["on"] = use_power ? 1 : 0
@@ -82,34 +82,26 @@
 		temp_class = "average"
 	data["gasTemperatureClass"] = temp_class
 
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "freezer.tmpl", "Gas Cooling System", 440, 300)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+	return data
 
-/obj/machinery/atmospherics/unary/freezer/Topic(href, href_list)
+/obj/machinery/atmospherics/unary/freezer/tgui_act(action, params)
 	if(..())
-		return 1
-	if(href_list["toggleStatus"])
-		use_power = !use_power
-		update_icon()
-	if(href_list["temp"])
-		var/amount = text2num(href_list["temp"])
-		if(amount > 0)
-			set_temperature = min(set_temperature + amount, 1000)
-		else
-			set_temperature = max(set_temperature + amount, 0)
-	if(href_list["setPower"]) //setting power to 0 is redundant anyways
-		var/new_setting = between(0, text2num(href_list["setPower"]), 100)
-		set_power_level(new_setting)
+		return TRUE
+	
+	. = TRUE
+	switch(action)
+		if("toggleStatus")
+			update_use_power(!use_power)
+			update_icon()
+		if("setGasTemperature")
+			var/amount = text2num(params["temp"])
+			if(amount > 0)
+				set_temperature = min(amount, 1000)
+			else
+				set_temperature = max(amount, 0)
+		if("setPower") //setting power to 0 is redundant anyways
+			var/new_setting = between(0, text2num(params["value"]), 100)
+			set_power_level(new_setting)
 
 	add_fingerprint(usr)
 
@@ -178,6 +170,6 @@
 	..()
 
 /obj/machinery/atmospherics/unary/freezer/examine(mob/user)
-	..(user)
+	. = ..()
 	if(panel_open)
-		to_chat(user, "The maintenance hatch is open.")
+		. += "The maintenance hatch is open."

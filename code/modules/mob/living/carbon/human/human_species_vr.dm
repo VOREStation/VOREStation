@@ -14,9 +14,6 @@
 /mob/living/carbon/human/xenochimera/New(var/new_loc)
 	..(new_loc, "Xenochimera")
 
-/mob/living/carbon/human/xenohybrid/New(var/new_loc)
-	..(new_loc, "Xenomorph Hybrid")
-
 /mob/living/carbon/human/spider/New(var/new_loc)
 	..(new_loc, "Vasilissan")
 
@@ -31,3 +28,6 @@
 
 /mob/living/carbon/human/shadekin/New(var/new_loc)
 	..(new_loc, SPECIES_SHADEKIN)
+
+/mob/living/carbon/human/altevian/New(var/new_loc)
+	..(new_loc, SPECIES_ALTEVIAN)

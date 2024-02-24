@@ -5,19 +5,15 @@
 
 /obj/structure/closet/secure_closet/CMO_wardrobe
 	name = "chief medical officer's locker"
-	icon_state = "cmosecure1"
-	icon_closed = "cmosecure"
-	icon_locked = "cmosecure1"
-	icon_opened = "cmosecureopen"
-	icon_broken = "cmosecurebroken"
-	icon_off = "cmosecureoff"
 	req_access = list(access_cmo)
+	closet_appearance = /decl/closet_appearance/secure_closet/cmo
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/chief_medical_officer,
 		/obj/item/clothing/under/rank/chief_medical_officer/skirt,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmo,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern/cmo,
 		/obj/item/weapon/cartridge/cmo,
 		/obj/item/clothing/gloves/sterile/latex,
 		/obj/item/clothing/shoes/brown,

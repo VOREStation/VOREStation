@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(events)
-	name = "Events"
-	wait = 20
+	name = "Events"	// VOREStation Edit - This is still the main events subsystem for us.
+	wait = 2 SECONDS
+
+	var/tmp/list/currentrun = null
 
 	var/list/datum/event/active_events = list()
 	var/list/datum/event/finished_events = list()
@@ -11,22 +13,36 @@ SUBSYSTEM_DEF(events)
 	var/datum/event_meta/new_event = new
 
 /datum/controller/subsystem/events/Initialize()
+	allEvents = subtypesof(/datum/event)
 	event_containers = list(
 			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
 			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
 			EVENT_LEVEL_MAJOR 		= new/datum/event_container/major
 		)
-	allEvents = typesof(/datum/event) - /datum/event
+	if(global.using_map.use_overmap)
+		GLOB.overmap_event_handler.create_events(global.using_map.overmap_z, global.using_map.overmap_size, global.using_map.overmap_event_areas)
 	return ..()
 
 /datum/controller/subsystem/events/fire(resumed)
-	for(var/datum/event/E in active_events)
+	if (!resumed)
+		src.currentrun = active_events.Copy()
+
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currentrun
+	while (currentrun.len)
+		var/datum/event/E = currentrun[currentrun.len]
+		currentrun.len--
 		if(E.processing_active)
 			E.process()
+		if (MC_TICK_CHECK)
+			return
 
 	for(var/i = EVENT_LEVEL_MUNDANE to EVENT_LEVEL_MAJOR)
-		var/list/datum/event_container/EC = event_containers[i]
+		var/datum/event_container/EC = event_containers[i]
 		EC.process()
+
+/datum/controller/subsystem/events/stat_entry()
+	..("E:[active_events.len]")
 
 /datum/controller/subsystem/events/Recover()
 	if(SSevents.active_events)
@@ -35,6 +51,8 @@ SUBSYSTEM_DEF(events)
 		finished_events |= SSevents.finished_events
 
 /datum/controller/subsystem/events/proc/event_complete(var/datum/event/E)
+	active_events -= E
+
 	if(!E.event_meta || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
 		log_debug("Event of '[E.type]' with missing meta-data has completed.")
 		return
@@ -50,7 +68,7 @@ SUBSYSTEM_DEF(events)
 	log_debug("Event '[EM.name]' has completed at [stationtime2text()].")
 
 /datum/controller/subsystem/events/proc/delay_events(var/severity, var/delay)
-	var/list/datum/event_container/EC = event_containers[severity]
+	var/datum/event_container/EC = event_containers[severity]
 	EC.next_event_time += delay
 
 /datum/controller/subsystem/events/proc/RoundEnd()

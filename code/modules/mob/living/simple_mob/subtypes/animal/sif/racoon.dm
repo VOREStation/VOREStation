@@ -34,12 +34,13 @@
 
 	universal_understand = 1
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	melee_damage_lower = 5
 	melee_damage_upper = 15
 	base_attack_cooldown = 1 SECOND
 	attacktext = list("nipped", "bit", "cut", "clawed")
+	meat_amount = 3
 
 	armor = list(
 		"melee" = 15,
@@ -121,7 +122,7 @@
 				var/obj/item/clothing/head/newhat = H.get_active_hand()
 				H.drop_from_inventory(newhat, get_turf(src))
 				if(!stat)
-					intent = I_HELP
+					a_intent = I_HELP
 					newhat.attack_hand(src)
 			else if(src.get_active_hand())
 				to_chat(user, "<span class='notice'>\The [src] seems busy with \the [get_active_hand()] already!</span>")
@@ -140,11 +141,11 @@
 	..()
 
 /mob/living/simple_mob/animal/sif/sakimm/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(hat)
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
-		var/image/I = image('icons/mob/head.dmi', src, hat_state)
+		var/image/I = image('icons/inventory/head/mob.dmi', src, hat_state)
 		I.pixel_y = -15 // Sakimm are tiny!
 		I.appearance_flags = RESET_COLOR
 		add_overlay(I)
@@ -181,12 +182,13 @@
 	if(holder.get_active_hand() && istype(holder.get_active_hand(), /obj/item/clothing/head) && !S.hat)
 		var/obj/item/I = holder.get_active_hand()
 		S.take_hat(S)
-		holder.visible_message("<span class='notice'>\The [holder] wears \the [I]</span>")
+		holder.visible_message("<b>\The [holder]</b> wears \the [I]")
 
 /mob/living/simple_mob/animal/sif/sakimm/intelligent
 	desc = "What appears to be an oversized rodent with hands. This one has a curious look in its eyes."
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/sakimm
 	randomize_size = FALSE	// Most likely to have a hat.
+	melee_attack_delay = 0	// For some reason, having a delay makes item pick-up not work.
 
 /datum/ai_holder/simple_mob/intentional/sakimm
 	hostile = FALSE
@@ -256,14 +258,10 @@
 
 	for(var/possible_target in possible_targets)
 		var/atom/A = possible_target
-		if(found(A))
-			. = list(A)
-			break
 		if(istype(A, /mob/living) && !can_pick_mobs)
 			continue
 		if(can_attack(A)) // Can we attack it?
 			. += A
-			continue
 
 	for(var/obj/item/I in .)
 		last_search = world.time
@@ -330,7 +328,7 @@
 		if(istype(holder) && istype(holder.get_active_hand(), /obj/item/clothing/head) && !S.hat)
 			var/obj/item/I = holder.get_active_hand()
 			S.take_hat(S)
-			holder.visible_message("<span class='notice'>\The [holder] wears \the [I]</span>")
+			holder.visible_message("<b>\The [holder]</b> wears \the [I]")
 		carrying_item = TRUE
 
 	if(istype(holder) && S.hat)		// Do we have a hat? Hats are loot.

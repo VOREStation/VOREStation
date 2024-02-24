@@ -1,0 +1,112 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"b" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
+"c" = (
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
+"d" = (
+/turf/simulated/mineral/vacuum,
+/area/tether_away/debrisfield/shuttle_buffer)
+
+(1,1,1) = {"
+a
+a
+a
+b
+b
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+b
+b
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+c
+d
+c
+c
+d
+d
+c
+c
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+c
+d
+d
+c
+c
+c
+c
+c
+a
+a
+"}
+(5,1,1) = {"
+b
+b
+c
+d
+d
+c
+c
+c
+c
+d
+b
+a
+"}
+(6,1,1) = {"
+b
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+"}

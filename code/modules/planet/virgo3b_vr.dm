@@ -1,7 +1,7 @@
 var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/time/virgo3b
-	seconds_in_day = 3 HOURS
+	seconds_in_day = 6 HOURS
 
 /datum/planet/virgo3b
 	name = "Virgo-3B"
@@ -93,35 +93,39 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 		new_color = rgb(new_r, new_g, new_b)
 
-	spawn(1)
-		update_sun_deferred(2, new_brightness, new_color)
+	update_sun_deferred(new_brightness, new_color)
 
 
 /datum/weather_holder/virgo3b
 	temperature = T0C
 	allowed_weather_types = list(
-		WEATHER_CLEAR		= new /datum/weather/virgo3b/clear(),
-		WEATHER_OVERCAST	= new /datum/weather/virgo3b/overcast(),
-		WEATHER_LIGHT_SNOW	= new /datum/weather/virgo3b/light_snow(),
-		WEATHER_SNOW		= new /datum/weather/virgo3b/snow(),
-		WEATHER_BLIZZARD	= new /datum/weather/virgo3b/blizzard(),
-		WEATHER_RAIN		= new /datum/weather/virgo3b/rain(),
-		WEATHER_STORM		= new /datum/weather/virgo3b/storm(),
-		WEATHER_HAIL		= new /datum/weather/virgo3b/hail(),
-		WEATHER_BLOOD_MOON	= new /datum/weather/virgo3b/blood_moon(),
-		WEATHER_EMBERFALL	= new /datum/weather/virgo3b/emberfall(),
-		WEATHER_ASH_STORM	= new /datum/weather/virgo3b/ash_storm(),
-		WEATHER_FALLOUT		= new /datum/weather/virgo3b/fallout()
+		WEATHER_CLEAR			= new /datum/weather/virgo3b/clear(),
+		WEATHER_OVERCAST		= new /datum/weather/virgo3b/overcast(),
+		WEATHER_LIGHT_SNOW		= new /datum/weather/virgo3b/light_snow(),
+		WEATHER_SNOW			= new /datum/weather/virgo3b/snow(),
+		WEATHER_BLIZZARD		= new /datum/weather/virgo3b/blizzard(),
+		WEATHER_RAIN			= new /datum/weather/virgo3b/rain(),
+		WEATHER_STORM			= new /datum/weather/virgo3b/storm(),
+		WEATHER_HAIL			= new /datum/weather/virgo3b/hail(),
+		WEATHER_FOG				= new /datum/weather/virgo3b/fog(),
+		WEATHER_BLOOD_MOON		= new /datum/weather/virgo3b/blood_moon(),
+		WEATHER_EMBERFALL		= new /datum/weather/virgo3b/emberfall(),
+		WEATHER_ASH_STORM		= new /datum/weather/virgo3b/ash_storm(),
+		WEATHER_ASH_STORM_SAFE	= new /datum/weather/virgo3b/ash_storm_safe(),
+		WEATHER_FALLOUT			= new /datum/weather/virgo3b/fallout(),
+		WEATHER_FALLOUT_TEMP	= new /datum/weather/virgo3b/fallout/temp(),
+		WEATHER_CONFETTI		= new /datum/weather/virgo3b/confetti()
 		)
 	roundstart_weather_chances = list(
-		WEATHER_CLEAR		= 30,
-		WEATHER_OVERCAST	= 30,
-		WEATHER_LIGHT_SNOW	= 20,
-		WEATHER_SNOW		= 5,
-		WEATHER_BLIZZARD	= 5,
-		WEATHER_RAIN		= 5,
-		WEATHER_STORM		= 2.5,
-		WEATHER_HAIL		= 2.5
+		WEATHER_CLEAR		= 60,
+		WEATHER_OVERCAST	= 60,
+		WEATHER_FOG			= 40,
+		WEATHER_LIGHT_SNOW	= 40,
+		WEATHER_SNOW		= 10,
+		WEATHER_BLIZZARD	= 10,
+		WEATHER_RAIN		= 10,
+		WEATHER_STORM		= 5,
+		WEATHER_HAIL		= 5
 		)
 
 /datum/weather/virgo3b
@@ -133,7 +137,8 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR = 60,
-		WEATHER_OVERCAST = 40
+		WEATHER_OVERCAST = 40,
+		WEATHER_FOG = 20,
 		)
 	transition_messages = list(
 		"The sky clears up.",
@@ -142,6 +147,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		)
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
+	imminent_transition_message = "The sky is rapidly clearing up."
 
 /datum/weather/virgo3b/overcast
 	name = "overcast"
@@ -149,6 +155,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	transition_chances = list(
 		WEATHER_CLEAR = 25,
 		WEATHER_OVERCAST = 50,
+		WEATHER_FOG = 10,
 		WEATHER_LIGHT_SNOW = 10,
 		WEATHER_SNOW = 5,
 		WEATHER_RAIN = 5,
@@ -160,6 +167,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		"Clouds cut off your view of the sky.",
 		"It's very cloudy."
 		)
+	imminent_transition_message = "Benign clouds are quickly gathering."
 
 /datum/weather/virgo3b/light_snow
 	name = "light snow"
@@ -178,6 +186,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		"Small snowflakes begin to fall from above.",
 		"It begins to snow lightly.",
 		)
+	imminent_transition_message = "It appears a light snow is about to start."
 
 /datum/weather/virgo3b/snow
 	name = "moderate snow"
@@ -200,18 +209,21 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		"It's starting to snow.",
 		"The air feels much colder as snowflakes fall from above."
 	)
+	imminent_transition_message = "A snowfall is starting."
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_snow
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
+/*
 /datum/weather/virgo3b/snow/process_effects()
 	..()
-	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
+	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)
 				if(istype(T))
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(33))
 						T.chill()
+*/
 
 /datum/weather/virgo3b/blizzard
 	name = "blizzard"
@@ -226,25 +238,29 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		WEATHER_SNOW = 45,
 		WEATHER_BLIZZARD = 40,
 		WEATHER_HAIL = 10,
-		WEATHER_OVERCAST = 5
+		WEATHER_OVERCAST = 5,
+		WEATHER_FOG = 5
 		)
 	observed_message = "A blizzard blows snow everywhere."
 	transition_messages = list(
 		"Strong winds howl around you as a blizzard appears.",
 		"It starts snowing heavily, and it feels extremly cold now."
 	)
+	imminent_transition_message = "Wind is howling. Blizzard is coming."
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
+/*
 /datum/weather/virgo3b/blizzard/process_effects()
 	..()
-	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
+	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)
 				if(istype(T))
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(50))
 						T.chill()
+*/
 
 /datum/weather/virgo3b/rain
 	name = "rain"
@@ -256,6 +272,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 	transition_chances = list(
 		WEATHER_OVERCAST = 25,
+		WEATHER_FOG = 25,
 		WEATHER_LIGHT_SNOW = 10,
 		WEATHER_RAIN = 50,
 		WEATHER_STORM = 10,
@@ -265,28 +282,27 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	transition_messages = list(
 		"The sky is dark, and rain falls down upon you."
 	)
+	imminent_transition_message = "Light drips of water are starting to fall from the sky."
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 /datum/weather/virgo3b/rain/process_effects()
 	..()
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to rain on them.
 
 			// If they have an open umbrella, it'll guard from rain
-			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
-					continue
-			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
-					continue
+			var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+			if(!istype(U) || !U.open)
+				U = L.get_inactive_hand()
+
+			if(istype(U) && U.open)
+				if(show_message)
+					to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
+				continue
 
 			L.water_act(1)
 			if(show_message)
@@ -310,36 +326,36 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		"Loud thunder is heard in the distance.",
 		"A bright flash heralds the approach of a storm."
 	)
+	imminent_transition_message = "You can hear distant thunder. Storm is coming."
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 40,
+		WEATHER_FOG = 25,
 		WEATHER_HAIL = 10,
 		WEATHER_OVERCAST = 5
 		)
 
 /datum/weather/virgo3b/storm/process_effects()
 	..()
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to rain on them.
 
 			// If they have an open umbrella, it'll guard from rain
-			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain showers loudly onto your umbrella!</span>")
-					continue
-			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain showers loudly onto your umbrella!</span>")
-					continue
+			var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+			if(!istype(U) || !U.open)
+				U = L.get_inactive_hand()
+
+			if(istype(U) && U.open)
+				if(show_message)
+					to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
+				continue
 
 
 			L.water_act(2)
@@ -369,6 +385,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	transition_chances = list(
 		WEATHER_RAIN = 45,
 		WEATHER_STORM = 40,
+		WEATHER_FOG = 20,
 		WEATHER_HAIL = 10,
 		WEATHER_OVERCAST = 5
 		)
@@ -378,27 +395,26 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		"It begins to hail.",
 		"An intense chill is felt, and chunks of ice start to fall from the sky, towards you."
 	)
+	imminent_transition_message = "Small bits of ice are falling from the sky, growing larger by the second. Hail is starting, get to cover!"
 
 /datum/weather/virgo3b/hail/process_effects()
 	..()
-	for(var/humie in human_mob_list)
-		var/mob/living/carbon/human/H = humie
+	for(var/mob/living/carbon/H as anything in human_mob_list)
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to pelt them with ice.
 
 			// If they have an open umbrella, it'll guard from hail
-			var/obj/item/weapon/melee/umbrella/U
-			if(istype(H.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				U = H.get_active_hand()
-			else if(istype(H.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
+			var/obj/item/weapon/melee/umbrella/U = H.get_active_hand()
+			if(!istype(U) || !U.open)
 				U = H.get_inactive_hand()
-			if(U && U.open)
+
+			if(istype(U) && U.open)
 				if(show_message)
 					to_chat(H, "<span class='notice'>Hail patters onto your umbrella.</span>")
 				continue
-		
+
 			var/target_zone = pick(BP_ALL)
 			var/amount_blocked = H.run_armor_check(target_zone, "melee")
 			var/amount_soaked = H.get_armor_soak(target_zone, "melee")
@@ -416,18 +432,45 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 			if(show_message)
 				to_chat(H, effect_message)
 
+/datum/weather/virgo3b/fog
+	name = "fog"
+	icon_state = "fog"
+	wind_high = 1
+	wind_low = 0
+	light_modifier = 0.7
+
+	temp_high = 235.15
+	temp_low = 	225.15
+
+	transition_chances = list(
+		WEATHER_FOG = 70,
+		WEATHER_OVERCAST = 15,
+		WEATHER_LIGHT_SNOW = 10,
+		WEATHER_RAIN = 5
+		)
+	observed_message = "A fogbank has rolled over the region."
+	transition_messages = list(
+		"Fog rolls in.",
+		"Visibility falls as the air becomes dense.",
+		"The clouds drift lower, as if to smother the forests."
+	)
+	imminent_transition_message = "Clouds are drifting down as the area is getting foggy."
+	outdoor_sounds_type = /datum/looping_sound/weather/wind
+	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
+
 /datum/weather/virgo3b/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
 	flight_failure_modifier = 25
 	transition_chances = list(
-		WEATHER_BLOODMOON = 100
+		WEATHER_BLOOD_MOON = 100
 		)
 	observed_message = "Everything is red. Something really ominous is going on."
 	transition_messages = list(
 		"The sky turns blood red!"
 	)
+	imminent_transition_message = "The sky is turning red. Blood Moon is starting."
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -447,6 +490,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	transition_messages = list(
 		"Gentle embers waft down around you like grotesque snow."
 	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers start to rain down."
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -468,20 +512,42 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	transition_messages = list(
 		"Smoldering clouds of scorching ash billow down around you!"
 	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers fill the air and wind is picking up too. Ashstorm is coming, get to cover!"
 	// Lets recycle.
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
 /datum/weather/virgo3b/ash_storm/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to burn them with ash.
 
 			L.inflict_heat_damage(rand(1, 3))
+
+/datum/weather/virgo3b/ash_storm_safe
+	name = "light ash storm"
+	icon_state = "ashfall_moderate"
+	light_modifier = 0.1
+	light_color = "#FF0000"
+	temp_high = 323.15	// 50c
+	temp_low = 313.15	// 40c
+	wind_high = 6
+	wind_low = 3
+	flight_failure_modifier = 50
+	transition_chances = list(
+		WEATHER_ASH_STORM_SAFE = 100
+		)
+	observed_message = "All that can be seen is black smoldering ash."
+	transition_messages = list(
+		"Smoldering clouds of scorching ash billow down around you!"
+	)
+	imminent_transition_message = "Dark smoke is filling the sky, as ash and embers fill the air and wind is picking up too."
+	// Lets recycle.
+	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
+	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
 
 // Totally radical.
@@ -498,6 +564,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	transition_messages = list(
 		"Radioactive soot and ash start to float down around you, contaminating whatever they touch."
 	)
+	imminent_transition_message = "Sky and clouds are growing sickly green... Radiation storm is approaching, get to cover!"
 	outdoor_sounds_type = /datum/looping_sound/weather/wind
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
@@ -511,12 +578,11 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/weather/virgo3b/fallout/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to irradiate them with fallout.
 
 			L.rad_act(rand(direct_rad_low, direct_rad_high))
@@ -530,6 +596,33 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	var/turf/T = pick(turfs) // We get one try per tick.
 	if(!istype(T))
 		return
-	if(T.outdoors)
+	if(T.is_outdoors())
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
+
+/datum/weather/virgo3b/fallout/temp
+	name = "short-term fallout"
+	timer_low_bound = 1
+	timer_high_bound = 3
+	transition_chances = list(
+		WEATHER_FALLOUT = 10,
+		WEATHER_RAIN = 50,
+		WEATHER_FOG = 35,
+		WEATHER_STORM = 20,
+		WEATHER_OVERCAST = 5
+		)
+
+/datum/weather/virgo3b/confetti
+	name = "confetti"
+	icon_state = "confetti"
+
+	transition_chances = list(
+		WEATHER_CLEAR = 50,
+		WEATHER_OVERCAST = 20,
+		WEATHER_CONFETTI = 5
+		)
+	observed_message = "Confetti is raining from the sky."
+	transition_messages = list(
+		"Suddenly, colorful confetti starts raining from the sky."
+	)
+	imminent_transition_message = "A rain is starting... A rain of confetti...?"
 

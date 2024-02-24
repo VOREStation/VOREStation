@@ -28,9 +28,9 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	icon = 'icons/480x480.dmi'
 	icon_state = "25percent"
 
-	New()
-		src.pixel_x = -224
-		src.pixel_y = -224
+/obj/effect/debugging/camera_range/New()
+	src.pixel_x = -224
+	src.pixel_y = -224
 
 /obj/effect/debugging/marker
 	icon = 'icons/turf/areas.dmi'
@@ -42,8 +42,6 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 /client/proc/do_not_use_these()
 	set category = "Mapping"
 	set name = "-None of these are for ingame use!!"
-
-	..()
 
 /client/proc/camera_view()
 	set category = "Mapping"
@@ -71,7 +69,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set name = "Camera Report"
 
 	if(!master_controller)
-		alert(usr,"Master_controller not found.","Sec Camera Report")
+		tgui_alert_async(usr,"Master_controller not found.","Sec Camera Report")
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()
@@ -96,7 +94,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 			if(!(locate(/obj/structure/grille,T)))
 				var/window_check = 0
 				for(var/obj/structure/window/W in T)
-					if (W.dir == turn(C1.dir,180) || W.dir in list(5,6,9,10) )
+					if (W.dir == turn(C1.dir,180) || (W.dir in list(5,6,9,10)) )
 						window_check = 1
 						break
 				if(!window_check)
@@ -139,7 +137,7 @@ var/list/debug_verbs = list (
         ,/client/proc/cmd_assume_direct_control
         ,/client/proc/jump_to_dead_group
         ,/client/proc/startSinglo
-        ,/client/proc/ticklag
+        ,/client/proc/set_server_fps
         ,/client/proc/cmd_admin_grantfullaccess
         ,/client/proc/kaboom
         ,/client/proc/cmd_admin_areatest
@@ -164,7 +162,6 @@ var/list/debug_verbs = list (
         ,/datum/admins/proc/setup_supermatter
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
-		,/client/proc/debug_process_scheduler // VOREStation Edit - Nice
 		,/client/proc/take_picture
 	)
 
@@ -221,7 +218,7 @@ var/list/debug_verbs = list (
 	var/turf/simulated/location = get_turf(usr)
 
 	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
-		to_chat(usr, "<font color='red'>this debug tool cannot be used from space</font>")
+		to_chat(usr, span_red("this debug tool cannot be used from space"))
 		return
 
 	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to make thousands of these.
@@ -230,10 +227,10 @@ var/list/debug_verbs = list (
 
 	if(!usedZAScolors)
 		to_chat(usr, "ZAS Test Colors")
-		to_chat(usr, "Green = Zone you are standing in")
-		to_chat(usr, "Blue = Connected zone to the zone you are standing in")
-		to_chat(usr, "Yellow = A zone that is connected but not one adjacent to your connected zone")
-		to_chat(usr, "Red = Not connected")
+		to_chat(usr, "[span_green("Green")] = Zone you are standing in")
+		to_chat(usr, "[span_blue("Blue")] = Connected zone to the zone you are standing in")
+		to_chat(usr, "[span_yellow("Yellow")] = A zone that is connected but not one adjacent to your connected zone")
+		to_chat(usr, "[span_red("Red")] = Not connected")
 		usedZAScolors = 1
 
 	testZAScolors_zones += location.zone
@@ -276,19 +273,19 @@ var/list/debug_verbs = list (
 	set category = "ZAS"
 	set name = "Reboot ZAS"
 
-	if(alert("This will destroy and remake all zone geometry on the whole map.","Reboot ZAS","Reboot ZAS","Nevermind") == "Reboot ZAS")
+	if(tgui_alert(usr, "This will destroy and remake all zone geometry on the whole map.","Reboot ZAS",list("Reboot ZAS","Nevermind")) == "Reboot ZAS")
 		SSair.RebootZAS()
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"
-	var/level = input("Which z-level?","Level?") as text
+	var/level = tgui_input_text(usr, "Which z-level?","Level?")
 	if(!level) return
 	var/num_level = text2num(level)
 	if(!num_level) return
 	if(!isnum(num_level)) return
 
-	var/type_text = input("Which type path?","Path?") as text
+	var/type_text = tgui_input_text(usr, "Which type path?","Path?")
 	if(!type_text) return
 	var/type_path = text2path(type_text)
 	if(!type_path) return
@@ -326,7 +323,7 @@ var/list/debug_verbs = list (
 	set category = "Mapping"
 	set name = "Count Objects All"
 
-	var/type_text = input("Which type path?","") as text
+	var/type_text = tgui_input_text(usr, "Which type path?","")
 	if(!type_text) return
 	var/type_path = text2path(type_text)
 	if(!type_path) return
@@ -365,7 +362,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Regroup All Airgroups Attempt"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>") //Why not.. Delete the procs instead?
+	to_chat(usr, span_red("Proc disabled.")) //Why not.. Delete the procs instead?
 
 	/*prevent_airgroup_regroup = 0
 	for(var/datum/air_group/AG in air_master.air_groups)
@@ -376,7 +373,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill pipe processing"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*pipe_processing_killed = !pipe_processing_killed
 	if(pipe_processing_killed)
@@ -388,7 +385,7 @@ var/global/prevent_airgroup_regroup = 0
 	set category = "Mapping"
 	set name = "Kill air processing"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*air_processing_killed = !air_processing_killed
 	if(air_processing_killed)
@@ -402,7 +399,7 @@ var/global/say_disabled = 0
 	set category = "Mapping"
 	set name = "Disable all communication verbs"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*say_disabled = !say_disabled
 	if(say_disabled)
@@ -417,7 +414,7 @@ var/global/movement_disabled_exception //This is the client that calls the proc,
 	set category = "Mapping"
 	set name = "Disable all movement"
 
-	to_chat(usr, "<font color='red'>Proc disabled.</font>")
+	to_chat(usr, span_red("Proc disabled."))
 
 	/*movement_disabled = !movement_disabled
 	if(movement_disabled)

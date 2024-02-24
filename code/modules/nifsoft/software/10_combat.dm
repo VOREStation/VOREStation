@@ -7,7 +7,6 @@
 	illegal = TRUE
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
-	activates = FALSE //It's armor.
 	combat_flags = (NIF_C_BRUTEARMOR) // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/burn_armor
@@ -19,7 +18,6 @@
 	illegal = TRUE
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
-	activates = FALSE //It's armor.
 	combat_flags = (NIF_C_BURNARMOR) // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/painkillers
@@ -34,10 +32,10 @@
 	tick_flags = NIF_ACTIVETICK
 	combat_flags = (NIF_C_PAINKILLERS)
 
-	life()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			H.bloodstr.add_reagent("numbenzyme",0.5)
+/datum/nifsoft/painkillers/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		H.bloodstr.add_reagent("numbenzyme",0.5)
 
 /datum/nifsoft/hardclaws
 	name = "Bloodletters"
@@ -58,8 +56,8 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 	damage = 15
 	attack_sound = "punch"
 	miss_sound = 'sound/weapons/punchmiss.ogg'
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	sparring_variant_type = /datum/unarmed_attack/hardclaws
 
 /datum/nifsoft/hidelaser
@@ -74,31 +72,27 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 	var/used = FALSE
 	combat_flags = (NIF_C_HIDELASER)
 
-	activate()
-		if((. = ..()))
-			if(used)
-				nif.notify("You do not have a hidden weapon to deploy anymore!",TRUE)
-				deactivate()
-				return FALSE
-			if(!nif.use_charge(50))
-				nif.notify("Insufficient energy to deploy weapon!",TRUE)
-				deactivate()
-				return FALSE
+/datum/nifsoft/hidelaser/activate()
+	if((. = ..()))
+		if(used)
+			nif.notify("You do not have a hidden weapon to deploy anymore!",TRUE)
+			deactivate()
+			return FALSE
+		if(!nif.use_charge(50))
+			nif.notify("Insufficient energy to deploy weapon!",TRUE)
+			deactivate()
+			return FALSE
 
-			var/mob/living/carbon/human/H = nif.human
-			H.adjustHalLoss(30)
-			var/obj/item/weapon/gun/energy/gun/martin/dazzle/dgun = new(get_turf(H))
-			H.put_in_hands(dgun)
-			nif.notify("Weapon deployed!",TRUE)
-			used = TRUE
-			spawn(0)
-				uninstall()
+		var/mob/living/carbon/human/H = nif.human
+		H.adjustHalLoss(30)
+		var/obj/item/weapon/gun/energy/gun/compact/dazzle/dgun = new(get_turf(H))
+		H.put_in_hands(dgun)
+		nif.notify("Weapon deployed!",TRUE)
+		used = TRUE
+		spawn(0)
+			uninstall()
 
 //The gun to go with this implant
-/obj/item/weapon/gun/energy/gun/martin/dazzle
+/obj/item/weapon/gun/energy/gun/compact/dazzle
 	name = "Microlaser"
 	desc = "A tiny nanofabricated laser."
-
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "PDW"
-	item_state = "gun"

@@ -11,7 +11,9 @@
 	var/pass_flags = 0
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
-	var/simulated = 1 //filter for actions - used by lighting overlays
+	var/simulated = TRUE //filter for actions - used by lighting overlays
+	var/atom_say_verb = "says"
+	var/bubble_icon = "normal" ///what icon the atom uses for speechbubbles
 	var/fluorescent // Shows up under a UV light.
 
 	var/last_bumped = 0
@@ -24,25 +26,40 @@
 	///Chemistry.
 
 	// Overlays
-	var/list/our_overlays	//our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
-	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	///Our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
+	var/list/our_overlays
+	///Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/priority_overlays
+	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
+	var/list/managed_vis_overlays
+
+	///Our local copy of filter data so we can add/remove it
+	var/list/filter_data
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 	// Track if we are already had initialize() called to prevent double-initialization.
 	var/initialized = FALSE
 
+	/// Last name used to calculate a color for the chatmessage overlays
+	var/chat_color_name
+	/// Last color calculated for the the chatmessage overlays
+	var/chat_color
+	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
+	var/chat_color_darkened
+	/// The chat color var, without alpha.
+	var/chat_color_hover
+
 /atom/New(loc, ...)
 	// Don't call ..() unless /datum/New() ever exists
 
 	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
 	// Native BYOND maploading sets those vars before invoking New(), by doing this FIRST we come as close to that behavior as we can.
-	if(use_preloader && (src.type == _preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		_preloader.load(src)
+	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		GLOB._preloader.load(src)
 
 	// Pass our arguments to InitAtom so they can be passed to initialize(), but replace 1st with if-we're-during-mapload.
-	var/do_initialize = SSatoms && SSatoms.initialized // Workaround our non-ideal initialization order: SSatoms may not exist yet.
-	//var/do_initialize = SSatoms.initialized
+	var/do_initialize = SSatoms.initialized
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = (do_initialize == INITIALIZATION_INNEW_MAPLOAD)
 		if(SSatoms.InitAtom(src, args))
@@ -66,11 +83,18 @@
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
 /atom/proc/Initialize(mapload, ...)
 	if(QDELETED(src))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
+		stack_trace("GC: -- [type] had initialize() called after qdel() --")
 	if(initialized)
-		crash_with("Warning: [src]([type]) initialized multiple times!")
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	initialized = TRUE
 	return INITIALIZE_HINT_NORMAL
+
+/atom/Destroy()
+	if(reagents)
+		QDEL_NULL(reagents)
+	if(light)
+		QDEL_NULL(light)
+	return ..()
 
 // Called after all object's normal initialize() if initialize() returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
@@ -101,6 +125,8 @@
 /atom/proc/Bumped(AM as mob|obj)
 	set waitfor = FALSE
 
+	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
+
 // Convenience proc to see if a container is open for chemistry handling
 // returns true if open
 // false if closed
@@ -116,19 +142,35 @@
 		return flags & INSERT_CONTAINER
 */
 
-/atom/proc/CheckExit()
-	return 1
-
-// If you want to use this, the atom must have the PROXMOVE flag, and the moving
-// atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
-/atom/proc/HasProximity(atom/movable/AM as mob|obj)
+// Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
+// all the atoms that still have the proc, but get events other ways.
+/atom/proc/HasProximity(turf/T, atom/movable/AM, old_loc)
 	return
+
+//Register listeners on turfs in a certain range
+/atom/proc/sense_proximity(var/range = 1, var/callback)
+	ASSERT(callback)
+	ASSERT(isturf(loc))
+	var/list/turfs = trange(range, src)
+	for(var/turf/T as anything in turfs)
+		GLOB.turf_entered_event.register(T, src, callback)
+
+//Unregister from prox listening in a certain range. You should do this BEFORE you move, but if you
+// really can't, then you can set the center where you moved from.
+/atom/proc/unsense_proximity(var/range = 1, var/callback, var/center)
+	ASSERT(isturf(center) || isturf(loc))
+	var/list/turfs = trange(range, center ? center : src)
+	for(var/turf/T as anything in turfs)
+		GLOB.turf_entered_event.unregister(T, src, callback)
+
 
 /atom/proc/emp_act(var/severity)
 	return
 
-
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return
+
 	P.on_hit(src, 0, def_zone)
 	. = 0
 
@@ -169,8 +211,11 @@
 			found += A.search_contents_for(path,filter_path)
 	return found
 
+/atom/proc/get_examine_desc()
+	return desc
+
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src][infix]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
@@ -183,10 +228,19 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	to_chat(user, "[bicon(src)] That's [f_name] [suffix]")
-	to_chat(user,desc)
+	var/list/output = list("\icon[src.examine_icon()][bicon(src)] That's [f_name] [suffix]", get_examine_desc())
 
-	return distance == -1 || (get_dist(src, user) <= distance)
+	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
+		output += description_info
+
+	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
+		user.client.statpanel = "Examine" // Switch to stat panel
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
+	return output
+
+// Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
+/atom/proc/examine_icon()
+	return icon(icon=src.icon, icon_state=src.icon_state, dir=SOUTH, frame=1, moving=0)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -195,11 +249,26 @@
 
 //called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, new_dir)
 	. = new_dir != dir
 	dir = new_dir
 
-/atom/proc/ex_act()
-	return
+// Called to set the atom's density and used to add behavior to density changes.
+/atom/proc/set_density(var/new_density)
+	if(density == new_density)
+		return FALSE
+	density = !!new_density // Sanitize to be strictly 0 or 1
+	return TRUE
+
+// Called to set the atom's invisibility and usd to add behavior to invisibility changes.
+/atom/proc/set_invisibility(var/new_invisibility)
+	if(invisibility == new_invisibility)
+		return FALSE
+	invisibility = new_invisibility
+	return TRUE
+
+/atom/proc/ex_act(var/strength = 3)
+	return (SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, strength, src) & COMPONENT_IGNORE_EXPLOSION)
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return -1
@@ -387,7 +456,7 @@
 	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()
 
-	was_bloodied = 1
+	was_bloodied = TRUE
 	if(!blood_color)
 		blood_color = "#A10808"
 	if(istype(M))
@@ -415,7 +484,11 @@
 	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
-		return 1
+		return TRUE
+
+/atom/proc/on_rag_wipe(var/obj/item/weapon/reagent_containers/glass/rag/R)
+	clean_blood()
+	R.reagents.splash(src, 1)
 
 /atom/proc/get_global_map_pos()
 	if(!islist(global_map) || isemptylist(global_map)) return
@@ -446,7 +519,7 @@
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message)
+/atom/proc/visible_message(var/message, var/blind_message, var/list/exclude_mobs, var/range = world.view, var/runemessage = "<span style='font-size: 1.5em'>👁</span>")
 
 	//VOREStation Edit
 	var/list/see
@@ -454,28 +527,30 @@
 		var/obj/belly/B = loc
 		see = B.get_mobs_and_objs_in_belly()
 	else
-		see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+		see = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
 	//VOREStation Edit End
 
 	var/list/seeing_mobs = see["mobs"]
 	var/list/seeing_objs = see["objs"]
+	if(LAZYLEN(exclude_mobs))
+		seeing_mobs -= exclude_mobs
 
-	for(var/obj in seeing_objs)
-		var/obj/O = obj
-		O.show_message(message, 1, blind_message, 2)
-	for(var/mob in seeing_mobs)
-		var/mob/M = mob
+	for(var/obj/O as anything in seeing_objs)
+		O.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
+	for(var/mob/M as anything in seeing_mobs)
 		if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane))
-			M.show_message(message, 1, blind_message, 2)
+			M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
+			if(runemessage != -1)
+				M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), audible = FALSE)
 		else if(blind_message)
-			M.show_message(blind_message, 2)
+			M.show_message(blind_message, AUDIBLE_MESSAGE)
 
 // Show a message to all mobs and objects in earshot of this atom
 // Use for objects performing audible actions
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance)
+/atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance, var/radio_message, var/runemessage)
 
 	var/range = hearing_distance || world.view
 	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
@@ -483,14 +558,18 @@
 	var/list/hearing_mobs = hear["mobs"]
 	var/list/hearing_objs = hear["objs"]
 
-	for(var/obj in hearing_objs)
-		var/obj/O = obj
-		O.show_message(message, 2, deaf_message, 1)
+	if(radio_message)
+		for(var/obj/O as anything in hearing_objs)
+			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
+	else
+		for(var/obj/O as anything in hearing_objs)
+			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 
-	for(var/mob in hearing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in hearing_mobs)
 		var/msg = message
-		M.show_message(msg, 2, deaf_message, 1)
+		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
+		if(runemessage != -1)
+			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"))
 
 /atom/movable/proc/dropInto(var/atom/destination)
 	while(istype(destination))
@@ -517,6 +596,9 @@
 	var/area/A = get_area(T)
 	if(A && A.has_gravity())
 		return TRUE
+	return FALSE
+
+/atom/proc/is_incorporeal()
 	return FALSE
 
 /atom/proc/drop_location()
@@ -556,12 +638,96 @@
 	. = ..()
 	var/custom_edit_name
 	if(!isliving(src))
-		custom_edit_name = "<a href='?_src_=vars;datumedit=\ref[src];varnameedit=name'><b>[src]</b></a>"
+		custom_edit_name = "<a href='?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=name'><b>[src]</b></a>"
 	. += {"
 		[custom_edit_name]
 		<br><font size='1'>
-		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=left'><<</a>
-		<a href='?_src_=vars;datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
-		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=right'>>></a>
+		<a href='?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a>
+		<a href='?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
+		<a href='?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>
 		</font>
 		"}
+	var/turf/T = get_turf(src)
+	. += "<br><font size='1'>[ADMIN_COORDJMP(T)]</font>"
+
+/atom/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, light_range))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_range = var_value)
+			else
+				set_light_range(var_value)
+			. =  TRUE
+		if(NAMEOF(src, light_power))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_power = var_value)
+			else
+				set_light_power(var_value)
+			. =  TRUE
+		if(NAMEOF(src, light_color))
+			if(light_system == STATIC_LIGHT)
+				set_light(l_color = var_value)
+			else
+				set_light_color(var_value)
+			. =  TRUE
+		if(NAMEOF(src, light_on))
+			set_light_on(var_value)
+			. =  TRUE
+		if(NAMEOF(src, light_flags))
+			set_light_flags(var_value)
+			. =  TRUE
+		if(NAMEOF(src, opacity))
+			set_opacity(var_value)
+			. =  TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	. = ..()
+
+/atom/proc/atom_say(message)
+	if(!message)
+		return
+	var/list/speech_bubble_hearers = list()
+	for(var/mob/M in get_mobs_in_view(7, src))
+		M.show_message("<span class='npcsay'><span class='name'>[src]</span> [atom_say_verb], \"[message]\"</span>", 2, null, 1)
+		if(M.client)
+			speech_bubble_hearers += M.client
+
+	if(length(speech_bubble_hearers))
+		var/image/I = generate_speech_bubble(src, "[bubble_icon][say_test(message)]", FLY_LAYER)
+		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_hearers, 30)
+
+/atom/proc/speech_bubble(bubble_state = "", bubble_loc = src, list/bubble_recipients = list())
+	return
+
+/atom/Entered(atom/movable/AM, atom/old_loc)
+	. = ..()
+	GLOB.moved_event.raise_event(AM, old_loc, AM.loc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
+	SEND_SIGNAL(AM, COMSIG_ATOM_ENTERING, src, old_loc)
+
+/atom/Exit(atom/movable/AM, atom/new_loc)
+	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, new_loc) & COMPONENT_ATOM_BLOCK_EXIT)
+		return FALSE
+
+/atom/Exited(atom/movable/AM, atom/new_loc)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
+
+/atom/proc/get_visible_gender(mob/user, force)
+	return gender
+
+/atom/proc/interact(mob/user)
+	return
+
+// Purpose: Determines if the object can pass this atom.
+// Called by: Movement.
+// Inputs: The moving atom, target turf.
+// Outputs: Boolean if can pass.
+// Airflow and ZAS zones now uses CanZASPass() instead of this proc.
+/atom/proc/CanPass(atom/movable/mover, turf/target)
+	return !density

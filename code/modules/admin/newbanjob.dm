@@ -63,7 +63,7 @@ var/savefile/Banlistjob
 		bantimestamp = CMinutes + minutes
 	if(rank == "Heads")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Head of Personnel")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Colony Director")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Site Manager")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Head of Security")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Chief Engineer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Research Director")
@@ -77,7 +77,7 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
 		return 1
 	if(rank == "Engineering")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Station Engineer")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Engineer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Atmospheric Technician")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Chief Engineer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
@@ -96,7 +96,7 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
 		return 1
 	if(rank == "CE_Station_Engineer")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Station Engineer")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Engineer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Chief Engineer")
 		return 1
 	if(rank == "CE_Atmospheric_Tech")
@@ -141,7 +141,7 @@ var/savefile/Banlistjob
 
 	Banlistjob.cd = "/base"
 	if ( Banlistjob.dir.Find("[ckey][computerid][rank]") )
-		to_chat(usr,"<font color='red'>Banjob already exists.</font>")
+		to_chat(usr, span_red("Banjob already exists."))
 		return 0
 	else
 		Banlistjob.dir.Add("[ckey][computerid][rank]")
@@ -211,7 +211,7 @@ var/savefile/Banlistjob
 	for (var/A in Banlistjob.dir)
 		count++
 		Banlistjob.cd = "/base/[A]"
-		dat += text("<tr><td><A href='?src=\ref[src];unjobbanf=[Banlistjob["key"]][Banlistjob["id"]][Banlistjob["rank"]]'>(U)</A> Key: <B>[Banlistjob["key"]] </B>Rank: <B>[Banlistjob["rank"]]</B></td><td> ([Banlistjob["temp"] ? "[GetBanExpjob(Banlistjob["minutes"]) ? GetBanExpjob(Banlistjob["minutes"]) : "Removal pending" ]" : "Permaban"])</td><td>(By: [Banlistjob["bannedby"]])</td><td>(Reason: [Banlistjob["reason"]])</td></tr>")
+		dat += text("<tr><td><A href='?src=\ref[src];[HrefToken()];unjobbanf=[Banlistjob["key"]][Banlistjob["id"]][Banlistjob["rank"]]'>(U)</A> Key: <B>[Banlistjob["key"]] </B>Rank: <B>[Banlistjob["rank"]]</B></td><td> ([Banlistjob["temp"] ? "[GetBanExpjob(Banlistjob["minutes"]) ? GetBanExpjob(Banlistjob["minutes"]) : "Removal pending" ]" : "Permaban"])</td><td>(By: [Banlistjob["bannedby"]])</td><td>(Reason: [Banlistjob["reason"]])</td></tr>")
 
 	dat += "</table>"
 	dat = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , </FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"

@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/energy/ionrifle
 	name = "ion rifle"
-	desc = "The NT Mk60 EW Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. Not the best of its type."
+	desc = "The RayZar Mk60 EW Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. Not the best of its type."
+	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist energy weapons of various types and quality primarily for the civilian market."
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
 	wielded_item_state = "ionrifle-wielded"
@@ -13,9 +14,12 @@
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 4)) //so it doesn't EMP itself, I guess
 
+/obj/item/weapon/gun/energy/ionrifle/empty
+	cell_type = null
+
 /obj/item/weapon/gun/energy/ionrifle/pistol
 	name = "ion pistol"
-	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability."
+	desc = "The RayZar Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability."
 	icon_state = "ionpistol"
 	item_state = null
 	w_class = ITEMSIZE_NORMAL
@@ -35,6 +39,7 @@
 /obj/item/weapon/gun/energy/floragun
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
+	description_fluff = "The floral somatoray is a relatively recent invention of the NanoTrasen corporation, turning a process that once involved transferring plants to massive mutating racks, into a remote interface. Do not look directly into the transmission end."
 	icon_state = "floramut100"
 	item_state = "floramut"
 	projectile_type = /obj/item/projectile/energy/floramut
@@ -42,7 +47,9 @@
 	modifystate = "floramut"
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge
 	battery_lock = 1
+
 	var/decl/plantgene/gene = null
+	var/obj/item/weapon/stock_parts/micro_laser/emitter
 
 	firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut"),
@@ -50,8 +57,42 @@
 		list(mode_name="induce specific mutations", projectile_type=/obj/item/projectile/energy/floramut/gene, modifystate="floramut"),
 		)
 
+/obj/item/weapon/gun/energy/floragun/Initialize()
+	. = ..()
+	emitter = new(src)
+
+/obj/item/weapon/gun/energy/floragun/examine(var/mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "It has [emitter ? emitter : "no micro laser"] installed."
+
+/obj/item/weapon/gun/energy/floragun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/weapon/stock_parts/micro_laser))
+		if(!emitter)
+			user.drop_item()
+			W.loc = src
+			emitter = W
+			to_chat(user, "<span class='notice'>You install a [emitter.name] in [src].</span>")
+		else
+			to_chat(user, "<span class='notice'>[src] already has a laser.</span>")
+
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
+		if(emitter)
+			to_chat(user, "<span class='notice'>You remove the [emitter.name] from the [src].</span>")
+			emitter.loc = get_turf(src.loc)
+			playsound(src, W.usesound, 50, 1)
+			emitter = null
+			return
+		else
+			to_chat(user, "<span class='notice'>There is no micro laser in this [src].</span>")
+			return
+
 /obj/item/weapon/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
 	//allow shooting into adjacent hydrotrays regardless of intent
+	if(!emitter)
+		to_chat(user, "<span class='notice'>The [src] has no laser! </span>")
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+		return
 	if(adjacent_flag && istype(target,/obj/machinery/portable_atmospherics/hydroponics))
 		user.visible_message("<span class='danger'>\The [user] fires \the [src] into \the [target]!</span>")
 		Fire(target,user)
@@ -63,12 +104,12 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/genemask = input("Choose a gene to modify.") as null|anything in plant_controller.plant_gene_datums
+	var/genemask = tgui_input_list(usr, "Choose a gene to modify.", "Gene Choice", SSplants.plant_gene_datums)
 
 	if(!genemask)
 		return
 
-	gene = plant_controller.plant_gene_datums[genemask]
+	gene = SSplants.plant_gene_datums[genemask]
 
 	to_chat(usr, "<span class='info'>You set the [src]'s targeted genetic area to [genemask].</span>")
 
@@ -77,8 +118,16 @@
 /obj/item/weapon/gun/energy/floragun/consume_next_projectile()
 	. = ..()
 	var/obj/item/projectile/energy/floramut/gene/G = .
+	var/obj/item/projectile/energy/florayield/GY = .
+	var/obj/item/projectile/energy/floramut/GM = .
+	// Inserting the upgrade level of the gun to the projectile as there isn't a better way to do this.
 	if(istype(G))
 		G.gene = gene
+		G.lasermod = emitter.rating
+	else if(istype(GY))
+		GY.lasermod = emitter.rating
+	else if(istype(GM))
+		GM.lasermod = emitter.rating
 
 /obj/item/weapon/gun/energy/meteorgun
 	name = "meteor gun"
@@ -147,7 +196,7 @@
 		user.visible_message("*fizzle*", "<span class='danger'>*fizzle*</span>")
 	else
 		src.visible_message("*fizzle*")
-	playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 1)
+	playsound(src, 'sound/effects/sparks1.ogg', 100, 1)
 /*
 /obj/item/weapon/gun/energy/staff/animate
 	name = "staff of animation"
@@ -155,7 +204,7 @@
 	projectile_type = /obj/item/projectile/animate
 	charge_cost = 240
 */
-obj/item/weapon/gun/energy/staff/focus
+/obj/item/weapon/gun/energy/staff/focus
 	name = "mental focus"
 	desc = "An artifact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
 	icon = 'icons/obj/wizard.dmi'

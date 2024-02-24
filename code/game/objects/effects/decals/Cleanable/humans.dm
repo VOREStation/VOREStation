@@ -8,9 +8,10 @@ var/global/list/image/splatter_cache=list()
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 	var/drydesc = "It's dry and crusty. Someone is not doing their job."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	plane = BLOOD_PLANE
+	layer = BLOOD_DECAL_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
@@ -20,7 +21,8 @@ var/global/list/image/splatter_cache=list()
 	var/synthblood = 0
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
-	var/drytime
+	generic_filth = TRUE
+	persistent = FALSE
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
@@ -33,12 +35,7 @@ var/global/list/image/splatter_cache=list()
 	if(invisibility != 100)
 		invisibility = 100
 		amount = 0
-		STOP_PROCESSING(SSobj, src)
 	..(ignore=1)
-
-/obj/effect/decal/cleanable/blood/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
 
 /obj/effect/decal/cleanable/blood/New()
 	..()
@@ -52,17 +49,16 @@ var/global/list/image/splatter_cache=list()
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
-	drytime = world.time + DRYING_TIME * (amount+1)
-	START_PROCESSING(SSobj, src)
-
-/obj/effect/decal/cleanable/blood/process()
-	if(world.time > drytime)
-		dry()
+	addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount+1))
 
 /obj/effect/decal/cleanable/blood/update_icon()
-	if(basecolor == "rainbow") basecolor = "#[get_random_colour(1)]"
+	if(basecolor == "rainbow") basecolor = get_random_colour(1)
 	color = basecolor
-	if(synthblood)
+
+	if(basecolor == SYNTH_BLOOD_COLOUR)
+		name = "oil"
+		desc = "It's quite oily."
+	else if(synthblood)
 		name = "synthetic blood"
 		desc = "It's quite greasy."
 	else
@@ -70,12 +66,8 @@ var/global/list/image/splatter_cache=list()
 		desc = initial(desc)
 
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = perp
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(perp.is_incorporeal())
+		return
 	if (!istype(perp))
 		return
 	if(amount < 1)
@@ -96,10 +88,10 @@ var/global/list/image/splatter_cache=list()
 			if(!S.blood_DNA)
 				S.blood_DNA = list()
 				S.blood_overlay.color = basecolor
-				S.overlays += S.blood_overlay
+				S.add_overlay(S.blood_overlay)
 			if(S.blood_overlay && S.blood_overlay.color != basecolor)
 				S.blood_overlay.color = basecolor
-				S.overlays += S.blood_overlay
+				S.add_overlay(S.blood_overlay)
 			S.blood_DNA |= blood_DNA.Copy()
 			perp.update_inv_shoes()
 
@@ -120,7 +112,6 @@ var/global/list/image/splatter_cache=list()
 	desc = drydesc
 	color = adjust_brightness(color, -50)
 	amount = 0
-	STOP_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -175,15 +166,15 @@ var/global/list/image/splatter_cache=list()
 		icon_state = "writing1"
 
 /obj/effect/decal/cleanable/blood/writing/examine(mob/user)
-	..(user)
-	to_chat(user, "It reads: <font color='[basecolor]'>\"[message]\"</font>")
+	. = ..()
+	. += "It reads: <font color='[basecolor]'>\"[message]\"</font>"
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
 	desc = "They look bloody and gruesome."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6")
@@ -193,16 +184,16 @@ var/global/list/image/splatter_cache=list()
 
 	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
 	if(!fleshcolor || fleshcolor == "rainbow")
-		fleshcolor = "#[get_random_colour(1)]"
+		fleshcolor = get_random_colour(1)
 	giblets.color = fleshcolor
 
 	var/icon/blood = new(base_icon,"[icon_state]",dir)
-	if(basecolor == "rainbow") basecolor = "#[get_random_colour(1)]"
+	if(basecolor == "rainbow") basecolor = get_random_colour(1)
 	blood.Blend(basecolor,ICON_MULTIPLY)
 
 	icon = blood
-	overlays.Cut()
-	overlays += giblets
+	cut_overlays()
+	add_overlay(giblets)
 
 /obj/effect/decal/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6","gibup1","gibup1","gibup1")
@@ -238,21 +229,25 @@ var/global/list/image/splatter_cache=list()
 	name = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 
 	var/list/datum/disease2/disease/virus2 = list()
-	var/dry=0 // Keeps the lag down
+	var/dry = 0 // Keeps the lag down
 
-/obj/effect/decal/cleanable/mucus/New()
-	spawn(DRYING_TIME * 2)
-		dry=1
+/obj/effect/decal/cleanable/mucus/Initialize()
+	. = ..()
+	VARSET_IN(src, dry, TRUE, DRYING_TIME * 2)
 
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
-/obj/effect/decal/cleanable/mucus/mapped/New()
-	..()
+/obj/effect/decal/cleanable/mucus/mapped/Initialize()
+	. = ..()
 	virus2 |= new /datum/disease2/disease
 	virus2[1].makerandom()
+
+/obj/effect/decal/cleanable/mucus/mapped/Destroy()
+	virus2.Cut()
+	return ..()

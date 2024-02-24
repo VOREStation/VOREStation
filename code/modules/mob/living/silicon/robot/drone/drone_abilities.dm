@@ -4,7 +4,7 @@
 	set desc = "Tag yourself for delivery through the disposals system."
 	set category = "Robot Commands"
 
-	var/new_tag = input("Select the desired destination.", "Set Mail Tag", null) as null|anything in tagger_locations
+	var/new_tag = tgui_input_list(usr, "Select the desired destination.", "Set Mail Tag", GLOB.tagger_locations)
 
 	if(!new_tag)
 		mail_destination = ""
@@ -29,7 +29,7 @@
 		H.put_in_hands(hat)
 		H.visible_message("<span class='danger'>\The [H] removes \the [src]'s [hat].</span>")
 		hat = null
-		updateicon()
+		update_icon()
 		return
 	else
 		return ..()

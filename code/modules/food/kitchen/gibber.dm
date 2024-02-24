@@ -4,8 +4,9 @@
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	req_access = list(access_kitchen,access_morgue)
 
 	var/operating = 0 //Is it on?
@@ -14,7 +15,7 @@
 	var/gib_time = 40        // Time from starting until meat appears
 	var/gib_throw_dir = WEST // Direction to spit meat and gibs in.
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 500
 
@@ -22,21 +23,27 @@
 /obj/machinery/gibber/autogibber
 	var/turf/input_plate
 
-/obj/machinery/gibber/autogibber/New()
-	..()
-	spawn(5)
-		for(var/i in cardinal)
-			var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
-			if(input_obj)
-				if(isturf(input_obj.loc))
-					input_plate = input_obj.loc
-					gib_throw_dir = i
-					qdel(input_obj)
-					break
+/obj/machinery/gibber/autogibber/Initialize()
+	. = ..()
+	for(var/i in cardinal)
+		var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
+		if(input_obj)
+			if(isturf(input_obj.loc))
+				input_plate = input_obj.loc
+				gib_throw_dir = i
+				qdel(input_obj)
+				break
 
-		if(!input_plate)
-			log_misc("a [src] didn't find an input plate.")
-			return
+	if(!input_plate)
+		log_misc("a [src] didn't find an input plate.")
+
+/obj/machinery/gibber/Destroy()
+	occupant = null
+	return ..()
+
+/obj/machinery/gibber/autogibber/Destroy()
+	input_plate = null
+	return ..()
 
 /obj/machinery/gibber/autogibber/Bumped(var/atom/A)
 	if(!input_plate) return
@@ -52,20 +59,20 @@
 
 /obj/machinery/gibber/New()
 	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if (dirty)
-		src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+		add_overlay("grbloody")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
-		src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+		add_overlay("grjam")
 	else if (operating)
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")
+		add_overlay("gruse")
 	else
-		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
+		add_overlay("gridle")
 
 /obj/machinery/gibber/relaymove(mob/user as mob)
 	src.go_out()
@@ -81,8 +88,8 @@
 		src.startgibbing(user)
 
 /obj/machinery/gibber/examine()
-	..()
-	to_chat(usr, "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"].")
+	. = ..()
+	. += "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"]."
 
 /obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
@@ -182,18 +189,13 @@
 	update_icon()
 
 	var/slab_name = occupant.name
-	var/slab_count = 3
-	var/slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	var/slab_count = 2 + occupant.meat_amount
+	var/slab_type = occupant.meat_type ? occupant.meat_type : /obj/item/weapon/reagent_containers/food/snacks/meat
 	var/slab_nutrition = src.occupant.nutrition / 15
 
-	// Some mobs have specific meat item types.
-	if(istype(src.occupant,/mob/living/simple_mob))
-		var/mob/living/simple_mob/critter = src.occupant
-		if(critter.meat_amount)
-			slab_count = critter.meat_amount
-		if(critter.meat_type)
-			slab_type = critter.meat_type
-	else if(istype(src.occupant,/mob/living/carbon/human))
+	var/list/byproducts = occupant?.butchery_loot?.Copy()
+
+	if(istype(src.occupant,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = occupant
 		slab_name = src.occupant.real_name
 		slab_type = H.isSynthetic() ? /obj/item/stack/material/steel : H.species.meat_type
@@ -209,24 +211,33 @@
 			new_meat.name = "[slab_name] [new_meat.name]"
 			new_meat.reagents.add_reagent("nutriment",slab_nutrition)
 			if(src.occupant.reagents)
-				src.occupant.reagents.trans_to_obj(new_meat, round(occupant.reagents.total_volume/slab_count,1))
+				src.occupant.reagents.trans_to_obj(new_meat, round(occupant.reagents.total_volume/(2 + occupant.meat_amount),1))
 
 	add_attack_logs(user,occupant,"Used [src] to gib")
 
 	src.occupant.ghostize()
 
 	spawn(gib_time)
-
-		operating = 0
 		occupant.gib()
 		occupant = null
-
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		operating = 0
+		if(LAZYLEN(byproducts))
+			for(var/path in byproducts)
+				while(byproducts[path])
+					if(prob(min(90,30 * byproducts[path])))
+						new path(src)
+
+					byproducts[path] -= 1
+
 		for (var/obj/thing in contents)
-			// There's a chance that the gibber will fail to destroy some evidence.
+			// There's a chance that the gibber will fail to destroy or butcher some evidence.
 			if(istype(thing,/obj/item/organ) && prob(80))
-				qdel(thing)
+				var/obj/item/organ/OR = thing
+				if(OR.can_butcher(src))
+					OR.butcher(src, null, src)	// Butcher it, and add it to our list of things to launch.
+				else
+					qdel(thing)
 				continue
 			thing.forceMove(get_turf(thing)) // Drop it onto the turf for throwing.
 			thing.throw_at(get_edge_target_turf(src,gib_throw_dir),rand(0,3),emagged ? 100 : 50) // Being pelted with bits of meat and bone would hurt.

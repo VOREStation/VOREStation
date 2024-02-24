@@ -42,12 +42,16 @@
 						/obj/item/mecha_parts/part/phazon_right_arm,
 						/obj/item/mecha_parts/part/phazon_right_leg,
 						/obj/item/mecha_parts/part/phazon_torso,
+						/obj/item/weapon/circuitboard/mecha/phazon/targeting,
+						/obj/item/weapon/circuitboard/mecha/phazon/peripherals,
+						/obj/item/weapon/circuitboard/mecha/phazon/main,
 						/obj/item/device/bodysnatcher,
 						/obj/item/weapon/bluespace_harpoon,
 						/obj/item/clothing/accessory/permit/gun,
 						/obj/item/device/perfect_tele,
 						/obj/item/device/sleevemate,
 						/obj/item/weapon/disk/nifsoft/compliance,
+						/obj/item/weapon/implanter/compliance,
 						/obj/item/seeds/ambrosiadeusseed,
 						/obj/item/seeds/ambrosiavulgarisseed,
 						/obj/item/seeds/libertymycelium,
@@ -59,7 +63,7 @@
 						/obj/item/weapon/card/emag,
 						/obj/item/weapon/card/emag_broken,
 						/obj/item/weapon/card/id/syndicate,
-						/obj/item/weapon/contraband/poster,
+						/obj/item/poster,
 						/obj/item/weapon/disposable_teleporter,
 						/obj/item/weapon/grenade/flashbang/clusterbang,
 						/obj/item/weapon/grenade/flashbang/clusterbang,
@@ -88,14 +92,12 @@
 		to_chat(user, "You unwrap the package.")
 		qdel(src)
 
-/obj/item/weapon/storage/fancy/cigar/havana // Putting this here 'cuz fuck it. -Spades
-	name = "\improper Havana cigar case"
-	desc = "Save these for the fancy-pantses at the next CentCom black tie reception. You can't blow the smoke from such majestic stogies in just anyone's face."
-	icon_state = "cigarcase"
-	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEMSIZE_TINY
-	throwforce = 2
-	slot_flags = SLOT_BELT
-	storage_slots = 7
-	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar/havana)
-	icon_type = "cigar"
+/obj/item/weapon/miscdisc
+	name = "strange artefact"
+	desc = "A large disc-shaped item, with a red, opaque crystal embedded in the center. It is some what heavy. There are indentations along the ring of the disc. Alien scripture lines the disc."
+	icon_state = "wahdisc"
+	icon = 'icons/obj/contraband_vr.dmi'
+	w_class = ITEMSIZE_NORMAL
+
+/obj/item/weapon/miscdisc/attack_self(mob/living/user as mob)
+	to_chat(user, "As you hold the large disc in your open palm, fingers cusped around the edge, the crystal embedded in the item begins to vibrate. It lifts itself from the disc a few cenimetres, before beginning to glow with a bright red light. The glow lasts for a few seconds, before the crystal embeds itself back into the disc with a quick snap.")

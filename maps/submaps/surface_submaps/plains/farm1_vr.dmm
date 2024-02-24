@@ -3,28 +3,26 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/farm1)
 "c" = (
 /obj/structure/railing,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/farm1)
 "d" = (
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/farm1)
 "e" = (
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/farm1)
 "f" = (
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/farm1)
 "g" = (
 /turf/simulated/wall/wood,
@@ -58,12 +56,7 @@
 "n" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /obj/item/seeds/cornseed,
-/turf/simulated/floor/outdoors/dirt{
-	outdoors = 0
-	},
-/area/submap/farm1)
-"o" = (
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
@@ -85,19 +78,19 @@
 "r" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /obj/item/seeds/bluetomatoseed,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
 "s" = (
-/turf/simulated/floor/outdoors/mud{
+/turf/simulated/floor/outdoors/mud/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
 "t" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /obj/item/seeds/icepepperseed,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
@@ -108,23 +101,23 @@
 "v" = (
 /obj/machinery/door/window/eastleft,
 /obj/machinery/door/window/westleft,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/farm1)
 "w" = (
 /mob/living/bot/farmbot,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
 "x" = (
 /obj/structure/sink/puddle,
-/turf/simulated/floor/outdoors/mud{
+/turf/simulated/floor/outdoors/mud/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
 "y" = (
 /obj/item/weapon/material/knife/machete/hatchet,
-/turf/simulated/floor/outdoors/mud{
+/turf/simulated/floor/outdoors/mud/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
@@ -145,7 +138,6 @@
 /area/submap/farm1)
 "C" = (
 /obj/structure/bed/chair/wood{
-	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -162,7 +154,7 @@
 "F" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /obj/item/seeds/wheatseed,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
@@ -190,41 +182,59 @@
 /turf/simulated/floor/wood,
 /area/submap/farm1)
 "L" = (
-/turf/simulated/floor/outdoors/rocks,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/submap/farm1)
 "M" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/farm1)
 "N" = (
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/farm1)
 "O" = (
 /obj/structure/loot_pile/maint/technical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/farm1)
 "P" = (
 /obj/machinery/power/port_gen/pacman,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/farm1)
 "Q" = (
 /obj/structure/closet/crate/hydroponics/prespawned,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/farm1)
 "R" = (
 /obj/structure/table/steel,
 /obj/machinery/cell_charger,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/farm1)
 "S" = (
 /obj/structure/table/steel,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/farm1)
 "T" = (
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/farm1)
+"V" = (
+/obj/structure/grille/rustic,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/farm1)
 
 (1,1,1) = {"
@@ -745,11 +755,11 @@ e
 e
 i
 n
-o
+M
 r
 w
 r
-o
+M
 F
 i
 e
@@ -779,11 +789,11 @@ e
 e
 i
 n
-o
+M
 r
-o
+M
 r
-o
+M
 F
 i
 e
@@ -793,9 +803,9 @@ e
 e
 g
 g
-h
-h
-h
+V
+V
+V
 g
 g
 e
@@ -813,11 +823,11 @@ e
 e
 i
 n
-o
+M
 r
-o
+M
 r
-o
+M
 F
 i
 e
@@ -847,11 +857,11 @@ e
 e
 i
 n
-o
+M
 s
 s
 s
-o
+M
 F
 i
 e
@@ -881,11 +891,11 @@ e
 e
 i
 n
-o
+M
 s
 x
 s
-o
+M
 F
 i
 e
@@ -915,11 +925,11 @@ e
 e
 i
 n
-o
+M
 s
 y
 s
-o
+M
 F
 i
 e
@@ -949,11 +959,11 @@ e
 e
 i
 n
-o
+M
 t
-o
+M
 t
-o
+M
 F
 i
 e
@@ -983,11 +993,11 @@ e
 e
 i
 n
-o
+M
 t
-o
+M
 t
-o
+M
 F
 i
 e
@@ -1017,11 +1027,11 @@ e
 e
 i
 n
-o
+M
 t
-o
+M
 t
-o
+M
 F
 i
 e
@@ -1065,9 +1075,9 @@ b
 e
 g
 g
-h
-h
-h
+V
+V
+V
 g
 g
 e

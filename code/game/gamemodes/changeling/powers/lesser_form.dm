@@ -46,7 +46,7 @@
 	for(var/datum/dna/DNA in changeling.absorbed_dna)
 		names += "[DNA.real_name]"
 
-	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
+	var/S = tgui_input_list(src, "Select the target DNA:", "Target DNA", names)
 	if(!S)	return
 
 	var/datum/dna/chosen_dna = changeling.GetDNA(S)
@@ -67,7 +67,7 @@
 	C.transforming = 1
 	C.canmove = 0
 	C.icon = null
-	C.overlays.Cut()
+	C.cut_overlays()
 	C.invisibility = 101
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( C.loc )
 	animation.icon_state = "blank"
@@ -100,7 +100,7 @@
 	O.adjustBruteLoss(C.getBruteLoss())
 	O.setOxyLoss(C.getOxyLoss())
 	O.adjustFireLoss(C.getFireLoss())
-	O.stat = C.stat
+	O.set_stat(C.stat)
 	for (var/obj/item/weapon/implant/I in implants)
 		I.loc = O
 		I.implanted = O

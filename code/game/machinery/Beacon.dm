@@ -5,8 +5,8 @@
 	desc = "A device that draws power from bluespace and creates a permanent tracking beacon."
 	level = 1		// underfloor
 	layer = UNDER_JUNK_LAYER
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 0
 	var/obj/item/device/radio/beacon/Beacon
 
@@ -27,10 +27,10 @@
 // update the invisibility and icon
 /obj/machinery/bluespace_beacon/hide(var/intact)
 	invisibility = intact ? 101 : 0
-	updateicon()
+	update_icon()
 
 // update the icon_state
-/obj/machinery/bluespace_beacon/proc/updateicon()
+/obj/machinery/bluespace_beacon/update_icon()
 	var/state="floor_beacon"
 
 	if(invisibility)
@@ -48,4 +48,4 @@
 		if(Beacon.loc != src.loc)
 			Beacon.loc = src.loc
 
-	updateicon()
+	update_icon()

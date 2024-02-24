@@ -7,6 +7,8 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = null
 	item_state = "pill"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 	var/base_state = "pill"
 
@@ -89,19 +91,42 @@
 
 	return
 
+/obj/item/weapon/reagent_containers/pill/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(is_sharp(W))
+		var/obj/item/weapon/reagent_containers/powder/J = new /obj/item/weapon/reagent_containers/powder(src.loc)
+		user.visible_message("<span class='warning'>[user] gently cuts up [src] with [W]!</span>")
+		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
+
+		if(reagents)
+			reagents.trans_to_obj(J, reagents.total_volume)
+		J.get_appearance()
+		qdel(src)
+
+	if(istype(W, /obj/item/weapon/card/id))
+		var/obj/item/weapon/reagent_containers/powder/J = new /obj/item/weapon/reagent_containers/powder(src.loc)
+		user.visible_message("<span class='warning'>[user] clumsily chops up [src] with [W]!</span>")
+		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
+
+		if(reagents)
+			reagents.trans_to_obj(J, reagents.total_volume)
+		J.get_appearance()
+		qdel(src)
+
+	return ..()
+
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills. END
 ////////////////////////////////////////////////////////////////////////////////
 
 //Pills
 /obj/item/weapon/reagent_containers/pill/antitox
-	name = "Dylovene (25u)"
+	name = "Dylovene (30u)" //VOREStation Edit
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/antitox/Initialize()
 	. = ..()
-	reagents.add_reagent("anti_toxin", 25)
+	reagents.add_reagent("anti_toxin", 30) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/tox
@@ -145,13 +170,13 @@
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/kelotane
-	name = "Kelotane (15u)"
+	name = "Kelotane (20u)" //VOREStation Edit
 	desc = "Used to treat burns."
 	icon_state = "pill3"
 
 /obj/item/weapon/reagent_containers/pill/kelotane/Initialize()
 	. = ..()
-	reagents.add_reagent("kelotane", 15)
+	reagents.add_reagent("kelotane", 20) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/paracetamol
@@ -195,13 +220,13 @@
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/dexalin
-	name = "Dexalin (15u)"
+	name = "Dexalin (7.5u)" //VOREstation Edit
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/dexalin/Initialize()
 	. = ..()
-	reagents.add_reagent("dexalin", 15)
+	reagents.add_reagent("dexalin", 7.5) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/dexalin_plus
@@ -255,7 +280,7 @@
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/spaceacillin
-	name = "Spaceacillin (10u)"
+	name = "Spaceacillin (15u)" //VOREStation Edit
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 	icon_state = "pill3"
 
@@ -265,23 +290,33 @@
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/carbon
-	name = "Carbon (15u)"
+	name = "Carbon (30u)" //VOREStation Edit
 	desc = "Used to neutralise chemicals in the stomach."
 	icon_state = "pill3"
 
 /obj/item/weapon/reagent_containers/pill/carbon/Initialize()
 	. = ..()
-	reagents.add_reagent("carbon", 15)
+	reagents.add_reagent("carbon", 30) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/iron
-	name = "Iron (15u)"
-	desc = "Used to aid in blood regeneration after bleeding."
+	name = "Iron (30u)" //VOREStation Edit
+	desc = "Used to aid in blood regeneration after bleeding for red-blooded crew."
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/iron/Initialize()
 	. = ..()
-	reagents.add_reagent("iron", 15)
+	reagents.add_reagent("iron", 30) //VOREStation Edit
+	color = reagents.get_color()
+
+/obj/item/weapon/reagent_containers/pill/copper
+	name = "Copper (30u)"
+	desc = "Used to aid in blood regeneration after bleeding for blue-blooded crew."
+	icon_state = "pill1"
+
+/obj/item/weapon/reagent_containers/pill/copper/Initialize()
+	. = ..()
+	reagents.add_reagent("copper", 30)
 	color = reagents.get_color()
 
 //Not-quite-medicine
@@ -292,7 +327,7 @@
 
 /obj/item/weapon/reagent_containers/pill/happy/Initialize()
 	. = ..()
-	reagents.add_reagent("space_drugs", 15)
+	reagents.add_reagent("bliss", 15)
 	reagents.add_reagent("sugar", 15)
 	color = reagents.get_color()
 

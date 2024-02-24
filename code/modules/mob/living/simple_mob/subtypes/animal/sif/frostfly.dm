@@ -38,12 +38,14 @@
 	var/energy = 100
 	var/max_energy = 100
 
-	movement_cooldown = 0.5
+	movement_cooldown = -1
 
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 	base_attack_cooldown = 1.5 SECONDS
 	attacktext = list("nipped", "bit", "pinched")
+
+	organ_names = /decl/mob_organ_names/frostfly
 
 	projectiletype = /obj/item/projectile/energy/blob/freezing
 
@@ -81,7 +83,7 @@
 	return 1	// It literally produces a cryogenic mist inside itself. Cold doesn't bother it.
 
 /mob/living/simple_mob/animal/sif/frostfly/Initialize()
-	..()
+	. = ..()
 	smoke_special = new
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -167,3 +169,7 @@
 		holder.face_atom(A)
 
 	F.energy = max(0, F.energy - 1)	// The AI will eventually flee.
+
+
+/decl/mob_organ_names/frostfly
+	hit_zones = list("head", "thorax", "abdomen", "left vestigal wing", "right vestigal wing", "left legs", "right legs")

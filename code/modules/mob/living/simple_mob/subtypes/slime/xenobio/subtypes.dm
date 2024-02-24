@@ -351,12 +351,12 @@
 		if(valid_turf)
 			valid_turfs.Add(potential_turf)
 
-	var/turf/T = get_turf(src)
-	var/turf/target_turf = pick(valid_turfs)
-
-	if(!target_turf)
+	if(!(valid_turfs.len))
 		to_chat(src, span("warning", "There wasn't an unoccupied spot to teleport to."))
 		return FALSE
+
+	var/turf/target_turf = pick(valid_turfs)
+	var/turf/T = get_turf(src)
 
 	var/datum/effect/effect/system/spark_spread/s1 = new /datum/effect/effect/system/spark_spread
 	s1.set_up(5, 1, T)
@@ -445,8 +445,10 @@
 	..()
 
 /mob/living/simple_mob/slime/xenobio/amber/proc/feed_aura()
-	for(var/mob/living/L in view(2, src))
-		if(L == src) // Don't feed themselves, or it is impossible to stop infinite slimes without killing all of the ambers.
+	for(var/mob/living/L in view(1, src))
+		if(L.stat == DEAD || !IIsAlly(L))
+			continue
+		if(L == src || istype(L, /mob/living/simple_mob/slime/xenobio/amber)) // Don't feed themselves, or it is impossible to stop infinite slimes without killing all of the ambers.
 			continue
 		if(istype(L, /mob/living/simple_mob/slime/xenobio))
 			var/mob/living/simple_mob/slime/xenobio/X = L
@@ -470,7 +472,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 
-	movement_cooldown = 0 // This actually isn't any faster due to AI limitations that hopefully the timer subsystem can fix in the future.
+	movement_cooldown = -1 // This actually isn't any faster due to AI limitations that hopefully the timer subsystem can fix in the future.
 
 	slime_mutation = list(
 		/mob/living/simple_mob/slime/xenobio/dark_blue,
@@ -486,7 +488,8 @@
 	color = "#FF3333"
 	slime_color = "red"
 	coretype = /obj/item/slime_extract/red
-	movement_cooldown = 0 // See above.
+	movement_cooldown = -1 // See above.
+	untamable = TRUE // Will enrage if disciplined.
 
 	description_info = "This slime is faster than the others.  Attempting to discipline this slime will always cause it to go rabid and berserk."
 
@@ -497,7 +500,7 @@
 			/mob/living/simple_mob/slime/xenobio/orange
 		)
 
-	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/red // Will enrage if disciplined.
+	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime
 
 
 /mob/living/simple_mob/slime/xenobio/green
@@ -561,7 +564,7 @@
 
 /datum/modifier/aura/slime_heal
 	name = "slime mending"
-	desc = "You feel somewhat gooy."
+	desc = "You feel somewhat gooey."
 	mob_overlay_state = "pink_sparkles"
 	stacks = MODIFIER_STACK_FORBID
 	aura_max_distance = 2
@@ -603,6 +606,7 @@
 		)
 
 /mob/living/simple_mob/slime/xenobio/gold/slimebatoned(mob/living/user, amount)
+	adjust_discipline(round(amount/2))
 	power_charge = between(0, power_charge + amount, 10)
 
 /mob/living/simple_mob/slime/xenobio/gold/get_description_interaction() // So it doesn't say to use a baton on them.

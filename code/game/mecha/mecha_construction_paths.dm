@@ -3,19 +3,19 @@
 ////////////////////////////////
 
 /datum/construction/mecha/custom_action(step, obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
-		if (W.remove_fuel(0, user))
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
+		if(W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
 			return 0
-	else if(I.is_wrench())
+	else if(I.has_tool_quality(TOOL_WRENCH))
 		playsound(holder, 'sound/items/Ratchet.ogg', 50, 1)
 
-	else if(I.is_screwdriver())
+	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(holder, 'sound/items/Screwdriver.ogg', 50, 1)
 
-	else if(I.is_wirecutter())
+	else if(I.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
 	else if(istype(I, /obj/item/stack/cable_coil))
@@ -35,19 +35,19 @@
 	return 1
 
 /datum/construction/reversible/mecha/custom_action(index as num, diff as num, obj/item/I, mob/user as mob)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
-		if (W.remove_fuel(0, user))
+	if(I.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
+		if(W.remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
 			return 0
-	else if(I.is_wrench())
+	else if(I.has_tool_quality(TOOL_WRENCH))
 		playsound(holder, 'sound/items/Ratchet.ogg', 50, 1)
 
-	else if(I.is_screwdriver())
+	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(holder, 'sound/items/Screwdriver.ogg', 50, 1)
 
-	else if(I.is_wirecutter())
+	else if(I.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
 	else if(istype(I, /obj/item/stack/cable_coil))
@@ -79,7 +79,7 @@
 
 /datum/construction/mecha/ripley_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	qdel(I)
 	return 1
 
@@ -91,7 +91,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/ripley(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "ripley0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	const_holder.overlays.len = 0
 	spawn()
 		qdel(src)
@@ -102,7 +102,7 @@
 	result = "/obj/mecha/working/ripley"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="External armor is wrenched."),
 					//2
@@ -111,10 +111,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/stack/material/plasteel,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=IS_WELDER,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=IS_WELDER,
 					 		"backkey"=IS_WRENCH,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
@@ -190,8 +190,7 @@
 				holder.icon_state = "ripley4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "ripley2"
 		if(10)
 			if(diff==FORWARD)
@@ -238,8 +237,7 @@
 				holder.icon_state = "ripley10"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/steel(get_turf(holder), 5)
 				holder.icon_state = "ripley8"
 		if(4)
 			if(diff==FORWARD)
@@ -261,8 +259,7 @@
 				holder.icon_state = "ripley13"
 			else
 				user.visible_message("[user] pries external armor layer from [holder].", "You prie external armor layer from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/plasteel(get_turf(holder), 5)
 				holder.icon_state = "ripley11"
 		if(1)
 			if(diff==FORWARD)
@@ -291,7 +288,7 @@
 
 /datum/construction/mecha/gygax_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	qdel(I)
 	return 1
 
@@ -303,7 +300,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/gygax(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "gygax0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 	return
@@ -313,7 +310,7 @@
 	result = "/obj/mecha/combat/gygax"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="External armor is wrenched."),
 					 //2
@@ -322,10 +319,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/mecha_parts/part/gygax_armour,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=IS_WELDER,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=IS_WELDER,
 					 		"backkey"=IS_WRENCH,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
@@ -377,7 +374,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //18
@@ -425,8 +422,7 @@
 				holder.icon_state = "gygax4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "gygax2"
 		if(16)
 			if(diff==FORWARD)
@@ -521,8 +517,7 @@
 				holder.icon_state = "gygax16"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/steel(get_turf(holder), 5)
 				holder.icon_state = "gygax14"
 		if(4)
 			if(diff==FORWARD)
@@ -575,7 +570,7 @@
 
 /datum/construction/mecha/serenity_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	qdel(I)
 	return 1
 
@@ -587,7 +582,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/serenity(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "gygax0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 	return
@@ -597,7 +592,7 @@
 	result = "/obj/mecha/combat/gygax/serenity"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="External armor is wrenched."),
 					 //2
@@ -606,10 +601,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/stack/material/plasteel,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=IS_WELDER,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=IS_WELDER,
 					 		"backkey"=IS_WRENCH,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
@@ -661,7 +656,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //18
@@ -709,8 +704,7 @@
 				holder.icon_state = "gygax4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "gygax2"
 		if(16)
 			if(diff==FORWARD)
@@ -805,8 +799,7 @@
 				holder.icon_state = "gygax16"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You pry the internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/steel(get_turf(holder), 5)
 				holder.icon_state = "gygax14"
 		if(4)
 			if(diff==FORWARD)
@@ -828,8 +821,7 @@
 				holder.icon_state = "gygax19-s"
 			else
 				user.visible_message("[user] pries the external armor layer from [holder].", "You pry the external armor layer from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder)) // Fixes serenity giving Gygax Armor Plates for the reverse action...
-				MS.amount = 5
+				new /obj/item/stack/material/plasteel(get_turf(holder), 5) // Fixes serenity giving Gygax Armor Plates for the reverse action...
 				holder.icon_state = "gygax17"
 		if(1)
 			if(diff==FORWARD)
@@ -860,7 +852,7 @@
 
 /datum/construction/mecha/firefighter_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	user.drop_item()
 	qdel(I)
 	return 1
@@ -873,7 +865,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/firefighter(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "fireripley0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 	return
@@ -883,7 +875,7 @@
 	result = "/obj/mecha/working/ripley/firefighter"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="External armor is wrenched."),
 					//2
@@ -896,10 +888,10 @@
 					 		"desc"="External armor is being installed."),
 					 //4
 					 list("key"=/obj/item/stack/material/plasteel,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=IS_WELDER,
 					 		"desc"="Internal armor is welded."),
 					 //5
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=IS_WELDER,
 					 		"backkey"=IS_WRENCH,
 					 		"desc"="Internal armor is wrenched"),
 					 //6
@@ -927,7 +919,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //12
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //13
@@ -975,8 +967,7 @@
 				holder.icon_state = "fireripley4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "fireripley2"
 		if(11)
 			if(diff==FORWARD)
@@ -1023,8 +1014,7 @@
 				holder.icon_state = "fireripley10"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/plasteel(get_turf(holder), 5)
 				holder.icon_state = "fireripley8"
 		if(5)
 			if(diff==FORWARD)
@@ -1046,8 +1036,7 @@
 				holder.icon_state = "fireripley13"
 			else
 				user.visible_message("[user] removes the external armor from [holder].", "You remove the external armor from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/plasteel(get_turf(holder), 5)
 				holder.icon_state = "fireripley11"
 		if(2)
 			if(diff==FORWARD)
@@ -1055,8 +1044,7 @@
 				holder.icon_state = "fireripley14"
 			else
 				user.visible_message("[user] pries external armor layer from [holder].", "You prie external armor layer from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/plasteel(get_turf(holder), 5)
 				holder.icon_state = "fireripley12"
 		if(1)
 			if(diff==FORWARD)
@@ -1085,7 +1073,7 @@
 
 /datum/construction/mecha/durand_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	qdel(I)
 	return 1
 
@@ -1097,7 +1085,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/durand(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "durand0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 	return
@@ -1107,7 +1095,7 @@
 	result = "/obj/mecha/combat/durand"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="External armor is wrenched."),
 					 //2
@@ -1116,10 +1104,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/mecha_parts/part/durand_armour,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=IS_WELDER,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=IS_WELDER,
 					 		"backkey"=IS_WRENCH,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
@@ -1171,7 +1159,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //18
@@ -1220,8 +1208,7 @@
 				holder.icon_state = "durand4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "durand2"
 		if(16)
 			if(diff==FORWARD)
@@ -1316,8 +1303,7 @@
 				holder.icon_state = "durand16"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/steel(get_turf(holder), 5)
 				holder.icon_state = "durand14"
 		if(4)
 			if(diff==FORWARD)
@@ -1369,7 +1355,7 @@
 
 /datum/construction/mecha/odysseus_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	qdel(I)
 	return 1
 
@@ -1381,7 +1367,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/odysseus(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "odysseus0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 	return
@@ -1391,7 +1377,7 @@
 	result = "/obj/mecha/medical/odysseus"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="External armor is wrenched."),
 					//2
@@ -1400,10 +1386,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/stack/material/plasteel,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=IS_WELDER,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=IS_WELDER,
 					 		"backkey"=IS_WRENCH,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
@@ -1431,7 +1417,7 @@
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is adjusted"),
 					 //11
-					 list("key"=/obj/item/weapon/tool/wirecutters,
+					 list("key"=IS_WIRECUTTER,
 					 		"backkey"=IS_SCREWDRIVER,
 					 		"desc"="The wiring is added"),
 					 //12
@@ -1479,8 +1465,7 @@
 				holder.icon_state = "odysseus4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "odysseus2"
 		if(10)
 			if(diff==FORWARD)
@@ -1527,8 +1512,7 @@
 				holder.icon_state = "odysseus10"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/steel(get_turf(holder), 5)
 				holder.icon_state = "odysseus8"
 		if(4)
 			if(diff==FORWARD)
@@ -1549,9 +1533,8 @@
 				user.visible_message("[user] secures external armor layer.", "You secure external reinforced armor layer.")
 				holder.icon_state = "odysseus13"
 			else
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 5
-				user.visible_message("[user] pries [MS] from [holder].", "You prie [MS] from [holder].")
+				new /obj/item/stack/material/plasteel(get_turf(holder), 5)
+				user.visible_message("[user] pries the plasteel from [holder].", "You prie the plasteel from [holder].")
 				holder.icon_state = "odysseus11"
 		if(1)
 			if(diff==FORWARD)
@@ -1582,7 +1565,7 @@
 
 /datum/construction/mecha/phazon_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	qdel(I)
 	return 1
 
@@ -1594,7 +1577,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/phazon(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "phazon0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 	return
@@ -1603,7 +1586,7 @@
 	result = "/obj/mecha/combat/phazon"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="External armor is wrenched."),
 					//2
@@ -1612,10 +1595,10 @@
 							"desc"="External armor is installed."),
 					//3
 					list("key"=/obj/item/stack/material/plasteel,
-							"backkey"=/obj/item/weapon/weldingtool,
+							"backkey"=IS_WELDER,
 							"desc"="Internal armor is welded."),
 					//4
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_WRENCH,
 							"desc"="Internal armor is wrenched"),
 					//5
@@ -1667,7 +1650,7 @@
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is adjusted"),
 					//17
-					list("key"=/obj/item/weapon/tool/wirecutters,
+					list("key"=IS_WIRECUTTER,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is added"),
 					//18
@@ -1714,8 +1697,7 @@
 				holder.icon_state = "phazon4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "phazon2"
 		if(16)
 			if(diff==FORWARD)
@@ -1810,8 +1792,7 @@
 				holder.icon_state = "phazon20"
 			else
 				user.visible_message("[user] pries the internal armor layer from [holder].", "You pry the internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/steel(get_turf(holder), 5)
 				holder.icon_state = "phazon14"
 		if(4)
 			if(diff==FORWARD)
@@ -1833,8 +1814,7 @@
 				holder.icon_state = "phazon23"
 			else
 				user.visible_message("[user] pries the external armor layer from [holder].", "You pry external armor layer from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/plasteel(get_turf(holder), 5)
 				holder.icon_state = "phazon21"
 		if(1)
 			if(diff==FORWARD)
@@ -1864,7 +1844,7 @@
 
 /datum/construction/mecha/janus_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
-	holder.overlays += I.icon_state+"+o"
+	holder.add_overlay(I.icon_state+"+o")
 	qdel(I)
 	return 1
 
@@ -1876,7 +1856,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/janus(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "janus0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 	return
@@ -1885,7 +1865,7 @@
 	result = "/obj/mecha/combat/phazon/janus"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_CROWBAR,
 							"desc"="External armor is installed."),
 					//2
@@ -1894,10 +1874,10 @@
 							"desc"="External armor is attached."),
 					//3
 					list("key"=/obj/item/stack/material/morphium,
-							"backkey"=/obj/item/weapon/weldingtool,
+							"backkey"=IS_WELDER,
 							"desc"="Internal armor is welded"),
 					//4
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=IS_WELDER,
 							"backkey"=IS_CROWBAR,
 							"desc"="Internal armor is wrenched"),
 					//5
@@ -1957,7 +1937,7 @@
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is adjusted"),
 					//19
-					list("key"=/obj/item/weapon/tool/wirecutters,
+					list("key"=IS_WIRECUTTER,
 							"backkey"=IS_SCREWDRIVER,
 							"desc"="The wiring is added"),
 					//20
@@ -2004,8 +1984,7 @@
 				holder.icon_state = "janus4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "janus2"
 		if(18)
 			if(diff==FORWARD)
@@ -2116,8 +2095,7 @@
 				holder.icon_state = "janus18"
 			else
 				user.visible_message("[user] pries the internal armor layer from [holder].", "You pry the internal armor layer from [holder].")
-				var/obj/item/stack/material/durasteel/MS = new /obj/item/stack/material/durasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/durasteel(get_turf(holder), 5)
 				holder.icon_state = "janus16"
 		if(4)
 			if(diff==FORWARD)
@@ -2139,8 +2117,7 @@
 				holder.icon_state = "janus21"
 			else
 				user.visible_message("[user] pries the external armor layer from [holder].", "You pry external armor layer from [holder].")
-				var/obj/item/stack/material/morphium/MS = new /obj/item/stack/material/morphium(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/material/morphium(get_turf(holder), 5)
 				holder.icon_state = "janus19"
 		if(1)
 			if(diff==FORWARD)

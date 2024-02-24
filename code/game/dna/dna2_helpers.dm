@@ -22,27 +22,29 @@
 
 // Give Random Bad Mutation to M
 /proc/randmutb(var/mob/living/M)
-	if(!M) return
+	if(!M || !(M.dna)) return
 	M.dna.check_integrity()
-	var/block = pick(GLASSESBLOCK,COUGHBLOCK,FAKEBLOCK,NERVOUSBLOCK,CLUMSYBLOCK,TWITCHBLOCK,HEADACHEBLOCK,BLINDBLOCK,DEAFBLOCK,HALLUCINATIONBLOCK)
+	//var/block = pick(GLASSESBLOCK,COUGHBLOCK,FAKEBLOCK,NERVOUSBLOCK,CLUMSYBLOCK,TWITCHBLOCK,HEADACHEBLOCK,BLINDBLOCK,DEAFBLOCK,HALLUCINATIONBLOCK) // Most of these are disabled anyway.
+	var/block = pick(FAKEBLOCK,CLUMSYBLOCK,BLINDBLOCK,DEAFBLOCK)
 	M.dna.SetSEState(block, 1)
 
 // Give Random Good Mutation to M
 /proc/randmutg(var/mob/living/M)
-	if(!M) return
+	if(!M || !(M.dna)) return
 	M.dna.check_integrity()
-	var/block = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK,REGENERATEBLOCK,INCREASERUNBLOCK,REMOTETALKBLOCK,MORPHBLOCK,BLENDBLOCK,NOPRINTSBLOCK,SHOCKIMMUNITYBLOCK,SMALLSIZEBLOCK)
+	//var/block = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK,REGENERATEBLOCK,INCREASERUNBLOCK,REMOTETALKBLOCK,MORPHBLOCK,BLENDBLOCK,NOPRINTSBLOCK,SHOCKIMMUNITYBLOCK,SMALLSIZEBLOCK) // Much like above, most of these blocks are disabled in code.
+	var/block = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,REGENERATEBLOCK,REMOTETALKBLOCK)
 	M.dna.SetSEState(block, 1)
 
 // Random Appearance Mutation
 /proc/randmuti(var/mob/living/M)
-	if(!M) return
+	if(!M || !(M.dna)) return
 	M.dna.check_integrity()
 	M.dna.SetUIValue(rand(1,DNA_UI_LENGTH),rand(1,4095))
 
 // Scramble UI or SE.
 /proc/scramble(var/UI, var/mob/M, var/prob)
-	if(!M)	return
+	if(!M || !(M.dna))	return
 	M.dna.check_integrity()
 	if(UI)
 		for(var/i = 1, i <= DNA_UI_LENGTH-1, i++)
@@ -177,7 +179,7 @@
 
 		// Ears
 		var/ears = dna.GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1
-		if(ears <= 1)
+		if(ears < 1)
 			H.ear_style = null
 		else if((0 < ears) && (ears <= ear_styles_list.len))
 			H.ear_style = ear_styles_list[ear_styles_list[ears]]
@@ -189,17 +191,21 @@
 		H.r_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_R,   255)
 		H.g_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_G,   255)
 		H.b_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_B,	  255)
+		H.r_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_R,   255)
+		H.g_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_G,   255)
+		H.b_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_B,	  255)
+
 
 		//Tail
 		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE, tail_styles_list.len + 1) - 1
-		if(tail <= 1)
+		if(tail < 1)
 			H.tail_style = null
 		else if((0 < tail) && (tail <= tail_styles_list.len))
 			H.tail_style = tail_styles_list[tail_styles_list[tail]]
 
 		//Wing
 		var/wing = dna.GetUIValueRange(DNA_UI_WING_STYLE, wing_styles_list.len + 1) - 1
-		if(wing <= 1)
+		if(wing < 1)
 			H.wing_style = null
 		else if((0 < wing) && (wing <= wing_styles_list.len))
 			H.wing_style = wing_styles_list[wing_styles_list[wing]]
@@ -208,11 +214,17 @@
 		H.r_wing   = dna.GetUIValueRange(DNA_UI_WING_R,    255)
 		H.g_wing   = dna.GetUIValueRange(DNA_UI_WING_G,    255)
 		H.b_wing   = dna.GetUIValueRange(DNA_UI_WING_B,    255)
+		H.r_wing2  = dna.GetUIValueRange(DNA_UI_WING2_R,    255)
+		H.g_wing2  = dna.GetUIValueRange(DNA_UI_WING2_G,    255)
+		H.b_wing2  = dna.GetUIValueRange(DNA_UI_WING2_B,    255)
+		H.r_wing3  = dna.GetUIValueRange(DNA_UI_WING3_R,    255)
+		H.g_wing3  = dna.GetUIValueRange(DNA_UI_WING3_G,    255)
+		H.b_wing3  = dna.GetUIValueRange(DNA_UI_WING3_B,    255)
 
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
 		if((0 < size) && (size <= player_sizes_list.len))
-			H.resize(player_sizes_list[player_sizes_list[size]], FALSE)
+			H.resize(player_sizes_list[player_sizes_list[size]], TRUE, ignore_prefs = TRUE)
 
 		// Tail/Taur Color
 		H.r_tail   = dna.GetUIValueRange(DNA_UI_TAIL_R,    255)
@@ -221,23 +233,21 @@
 		H.r_tail2  = dna.GetUIValueRange(DNA_UI_TAIL2_R,   255)
 		H.g_tail2  = dna.GetUIValueRange(DNA_UI_TAIL2_G,   255)
 		H.b_tail2  = dna.GetUIValueRange(DNA_UI_TAIL2_B,   255)
+		H.r_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_R,   255)
+		H.g_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_G,   255)
+		H.b_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_B,   255)
 
 		// Technically custom_species is not part of the UI, but this place avoids merge problems.
 		H.custom_species = dna.custom_species
-		if(istype(H.species,/datum/species/custom))
-			var/datum/species/custom/CS = H.species
-			var/datum/species/custom/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
-
-		if(istype(H.species,/datum/species/xenochimera))
-			var/datum/species/xenochimera/CS = H.species
-			var/datum/species/xenochimera/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
-
-		if(istype(H.species,/datum/species/alraune))
-			var/datum/species/alraune/CS = H.species
-			var/datum/species/alraune/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
+		H.custom_say = dna.custom_say
+		H.custom_ask = dna.custom_ask
+		H.custom_whisper = dna.custom_whisper
+		H.custom_exclaim = dna.custom_exclaim
+		H.species.blood_color = dna.blood_color
+		H.custom_heat = dna.custom_heat
+		H.custom_cold = dna.custom_cold
+		var/datum/species/S = H.species
+		S.produceCopy(dna.species_traits, H, dna.base_species)
 		// VOREStation Edit End
 
 		H.force_update_organs() //VOREStation Add - Gotta do this too
@@ -252,9 +262,9 @@
 
 //VOREStation Add
 /mob/living/carbon/human/proc/force_update_organs()
-	for(var/organ in organs + internal_organs)
-		var/obj/item/organ/O = organ
+	for(var/obj/item/organ/O as anything in organs + internal_organs)
 		O.species = species
+	species.post_spawn_special(src)
 //VOREStation Add End
 
 // Used below, simple injection modifier.

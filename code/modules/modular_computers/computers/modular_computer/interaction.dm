@@ -97,11 +97,11 @@
 	uninstall_component(user, portable_drive)
 	update_uis()
 
-/obj/item/modular_computer/attack_ghost(var/mob/observer/ghost/user)
+/obj/item/modular_computer/attack_ghost(var/mob/observer/dead/user)
 	if(enabled)
-		ui_interact(user)
-	else if(check_rights(R_ADMIN, 0, user))
-		var/response = alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", "Yes", "No")
+		tgui_interact(user)
+	else if(check_rights(R_ADMIN|R_EVENT, 0, user))
+		var/response = tgui_alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", list("Yes", "No"))
 		if(response == "Yes")
 			turn_on(user)
 
@@ -116,7 +116,7 @@
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/item/modular_computer/attack_self(var/mob/user)
 	if(enabled && screen_on)
-		ui_interact(user)
+		tgui_interact(user)
 	else if(!enabled && screen_on)
 		turn_on(user)
 
@@ -146,7 +146,7 @@
 			try_install_component(user, C)
 		else
 			to_chat(user, "This component is too large for \the [src].")
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		var/list/components = get_all_components()
 		if(components.len)
 			to_chat(user, "Remove all components from \the [src] before disassembling it.")
@@ -155,8 +155,8 @@
 		src.visible_message("\The [src] has been disassembled by [user].")
 		qdel(src)
 		return
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(!WT.isOn())
 			to_chat(user, "\The [W] is off.")
 			return
@@ -171,7 +171,7 @@
 			to_chat(user, "You repair \the [src].")
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		var/list/all_components = get_all_components()
 		if(!all_components.len)
 			to_chat(user, "This device doesn't have any components installed.")
@@ -180,7 +180,7 @@
 		for(var/obj/item/weapon/computer_hardware/H in all_components)
 			component_names.Add(H.name)
 
-		var/choice = input(usr, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
+		var/choice = tgui_input_list(usr, "Which component do you want to uninstall?", "Computer maintenance", component_names)
 
 		if(!choice)
 			return

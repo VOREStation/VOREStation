@@ -50,11 +50,16 @@
 	if (isnull(version) || version != 1)
 		fdel(path)
 		if (!silent)
-			alert(user, "Your savefile was incompatible with this version and was deleted.")
+			tgui_alert_async(user, "Your savefile was incompatible with this version and was deleted.")
 		return 0
 
 	F["name"] >> src.name
 	F["description"] >> src.description
 	F["role"] >> src.role
 	F["comments"] >> src.comments
+	F["eyecolor"] >> src.eye_color
+	F["chassis"] >> src.chassis
+	F["emotion"] >> src.ouremotion
+	F["gender"] >> src.gender
+
 	return 1

@@ -3,7 +3,7 @@
 	desc = "A security robot.  He looks less than thrilled."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "sled2090"
-	density = 1
+	density = TRUE
 	health = 200
 	maxHealth = 200
 
@@ -21,6 +21,7 @@
 	xeno_harm_strength = 9
 	req_one_access = list(access_research, access_robotics)
 	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
+	retaliates = FALSE
 	var/xeno_stun_strength = 6
 
 /mob/living/bot/secbot/ed209/slime/update_icons()
@@ -40,7 +41,7 @@
 	if(emagged)
 		projectile = /obj/item/projectile/beam/shock
 
-	playsound(loc, emagged ? 'sound/weapons/laser3.ogg' : 'sound/weapons/Taser.ogg', 50, 1)
+	playsound(src, emagged ? 'sound/weapons/laser3.ogg' : 'sound/weapons/Taser.ogg', 50, 1)
 	var/obj/item/projectile/P = new projectile(loc)
 
 	P.firer = src
@@ -66,7 +67,7 @@
 
 /obj/item/weapon/secbot_assembly/ed209_assembly/slime/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob) // Here in the event it's added into a PoI or some such. Standard construction relies on the standard ED up until taser.
 	if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && src.loc != usr)
@@ -98,8 +99,8 @@
 				icon_state = "ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(W.has_tool_quality(TOOL_WELDER))
+				var/obj/item/weapon/weldingtool/WT = W.get_welder()
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "shielded frame assembly"
@@ -149,7 +150,7 @@
 				qdel(W)
 
 		if(8)
-			if(W.is_screwdriver())
+			if(W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, "<span class='notice'>Now attaching the gun to the frame...</span>")

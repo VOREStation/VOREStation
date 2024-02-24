@@ -1,3 +1,4 @@
+
 /obj/item/clothing/shoes/black
 	name = "black shoes"
 	icon_state = "black"
@@ -33,11 +34,6 @@
 	name = "white shoes"
 	icon_state = "white"
 	permeability_coefficient = 0.01
-
-/obj/item/clothing/shoes/leather
-	name = "leather shoes"
-	desc = "A sturdy pair of leather shoes."
-	icon_state = "leather"
 
 /obj/item/clothing/shoes/rainbow
 	name = "rainbow shoes"

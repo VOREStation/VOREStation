@@ -13,11 +13,11 @@
 /obj/item/device/holowarrant/examine(mob/user)
 	. = ..()
 	if(active)
-		to_chat(user, "It's a holographic warrant for '[active.fields["namewarrant"]]'.")
+		. += "It's a holographic warrant for '[active.fields["namewarrant"]]'."
 	if(in_range(user, src) || istype(user, /mob/observer/dead))
-		show_content(user)
+		show_content(user) //Opens a browse window, not chatbox related
 	else
-		to_chat(user, "<span class='notice'>You have to go closer if you want to read it.</span>")
+		. += "<span class='notice'>You have to go closer if you want to read it.</span>"
 
 //hit yourself with it
 /obj/item/device/holowarrant/attack_self(mob/living/user as mob)
@@ -30,7 +30,7 @@
 		to_chat(user,"<span class='notice'>There are no warrants available</span>")
 		return
 	var/temp
-	temp = input(user, "Which warrant would you like to load?") as null|anything in warrants
+	temp = tgui_input_list(user, "Which warrant would you like to load?", "Warrant Selection", warrants)
 	for(var/datum/data/record/warrant/W in data_core.warrants)
 		if(W.fields["namewarrant"] == temp)
 			active = W
@@ -40,7 +40,7 @@
 	if(active)
 		var/obj/item/weapon/card/id/I = W.GetIdCard()
 		if(access_hos in I.access) // VOREStation edit
-			var/choice = alert(user, "Would you like to authorize this warrant?","Warrant authorization","Yes","No")
+			var/choice = tgui_alert(user, "Would you like to authorize this warrant?","Warrant authorization",list("Yes","No"))
 			if(choice == "Yes")
 				active.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
 			user.visible_message("<span class='notice'>You swipe \the [I] through the [src].</span>", \
@@ -68,7 +68,7 @@
 	if(active.fields["arrestsearch"] == "arrest")
 		var/output = {"
 		<HTML><HEAD><TITLE>[active.fields["namewarrant"]]</TITLE></HEAD>
-		<BODY bgcolor='#FFFFFF'><center><large><b>Sol Central Government Colonial Marshal Bureau</b></large></br>
+		<BODY bgcolor='#FFFFFF'><center><large><b>Commonwealth Security Bond Association</b></large></br>
 		in the jurisdiction of the</br>
 		[using_map.boss_name] in [using_map.station_name]</br>
 		</br>
@@ -95,7 +95,7 @@
 		to conduct a one time lawful search of the Suspect's person/belongings/premises and/or Department </br>
 		for any items and materials that could be connected to the suspected criminal act described below, </br>
 		pending an investigation in progress. The Security Officer(s) are obligated to remove any and all</br>
-		such items from the Suspects posession and/or Department and file it as evidence. The Suspect/Department </br>
+		such items from the Suspect's possession and/or Department and file it as evidence. The Suspect/Department </br>
 		staff is expected to offer full co-operation. In the event of the Suspect/Department staff attempting </br>
 		to resist/impede this search or flee, they must be taken into custody immediately! </br>
 		All confiscated items must be filed and taken to Evidence!</small></i></br>
@@ -113,9 +113,9 @@
 
 /obj/item/weapon/storage/box/holowarrants // VOREStation addition starts
 	name = "holowarrant devices"
-	desc = "A box of holowarrant diplays for security use."
+	desc = "A box of holowarrant displays for security use."
 
-/obj/item/weapon/storage/box/holowarrants/New() 
+/obj/item/weapon/storage/box/holowarrants/New()
 	..()
 	for(var/i = 0 to 3)
 		new /obj/item/device/holowarrant(src) // VOREStation addition ends

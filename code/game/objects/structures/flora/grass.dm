@@ -2,7 +2,7 @@
 /obj/structure/flora/grass
 	name = "grass"
 	icon = 'icons/obj/flora/snowflora.dmi'
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
@@ -10,7 +10,6 @@
 /obj/structure/flora/grass/brown/New()
 	..()
 	icon_state = "snowgrass[rand(1, 3)]bb"
-
 
 /obj/structure/flora/grass/green
 	icon_state = "snowgrass1gb"

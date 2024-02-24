@@ -1,6 +1,8 @@
-//Let's get some REAL contraband stuff in here. Because come on, getting brigged for LIPSTICK is no fun.
-
-//Illicit drugs~
+// Let's get some REAL contraband stuff in here. Because come on, getting brigged for LIPSTICK is no fun.
+//
+// Includes drug powder.
+//
+// Illicit drugs~
 /obj/item/weapon/storage/pill_bottle/happy
 	name = "bottle of Happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
@@ -19,7 +21,7 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random/toxin
 	random_reagent_list = list(
-		list("mindbreaker" = 10, "space_drugs" = 20)	= 3,
+		list("mindbreaker" = 10, "bliss" = 20)	= 3,
 		list("carpotoxin" = 15)							= 2,
 		list("impedrezene" = 15)						= 2,
 		list("zombiepowder" = 10)						= 1)
@@ -39,3 +41,56 @@
 
 	desc = "Contains [english_list(names)]."
 	update_icon()
+
+//
+// Drug Powder
+//
+/obj/item/weapon/reagent_containers/powder
+	name = "powder"
+	desc = "A powdered form of... something."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "powder"
+	item_state = "powder"
+	amount_per_transfer_from_this = 2
+	possible_transfer_amounts = 2
+	w_class = ITEMSIZE_TINY
+	volume = 50
+
+/obj/item/weapon/reagent_containers/powder/examine(mob/user)
+	if(reagents)
+		var/datum/reagent/R = reagents.get_master_reagent()
+		desc = "A powdered form of what appears to be [R.name]. There's about [reagents.total_volume] units here."
+	return ..()
+
+/obj/item/weapon/reagent_containers/powder/Initialize()
+	..()
+	get_appearance()
+
+/obj/item/weapon/reagent_containers/powder/proc/get_appearance()
+	/// Names and colors based on dominant reagent.
+	if (reagents.reagent_list.len > 0)
+		color = reagents.get_color()
+		var/datum/reagent/R = reagents.get_master_reagent()
+		var/new_name = lowertext(R)
+		name = "powdered [new_name]"
+
+/// Snorting.
+
+/obj/item/weapon/reagent_containers/powder/attackby(var/obj/item/weapon/W, var/mob/living/user)
+
+	if(!ishuman(user)) /// You gotta be fleshy to snort the naughty drugs.
+		return ..()
+
+	if(!istype(W, /obj/item/weapon/glass_extra/straw) && !istype(W, /obj/item/weapon/reagent_containers/rollingpaper))
+		return ..()
+
+	user.visible_message("<span class='warning'>[user] snorts [src] with [W]!</span>")
+	playsound(loc, 'sound/effects/snort.ogg', 50, 1)
+
+	if(reagents)
+		reagents.trans_to_mob(user, amount_per_transfer_from_this, CHEM_BLOOD)
+
+	if(!reagents.total_volume) /// Did we use all of it?
+		qdel(src)
+
+////// End powder. /////////

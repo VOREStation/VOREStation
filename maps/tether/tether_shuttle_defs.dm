@@ -1,209 +1,270 @@
 //////////////////////////////////////////////////////////////
 // Escape shuttle and pods
-/datum/shuttle/ferry/emergency/escape
+/datum/shuttle/autodock/ferry/emergency/escape
 	name = "Escape"
-	location = 1 // At offsite
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/escape
 	warmup_time = 10
-	area_offsite = /area/shuttle/escape/centcom
-	area_station = /area/shuttle/escape/station
-	area_transition = /area/shuttle/escape/transit
-	docking_controller_tag = "escape_shuttle"
-	dock_target_station = "escape_dock"
-	dock_target_offsite = "centcom_dock"
+	landmark_offsite = "escape_cc"
+	landmark_station = "escape_station"
+	landmark_transition = "escape_transit"
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	move_direction = NORTH
 
 //////////////////////////////////////////////////////////////
-/datum/shuttle/ferry/escape_pod/large_escape_pod1
+/datum/shuttle/autodock/ferry/escape_pod/large_escape_pod1
 	name = "Large Escape Pod 1"
-	location = 0
+	location = FERRY_LOCATION_STATION
+	shuttle_area = /area/shuttle/large_escape_pod1
 	warmup_time = 0
-	area_station = /area/shuttle/large_escape_pod1/station
-	area_offsite = /area/shuttle/large_escape_pod1/centcom
-	area_transition = /area/shuttle/large_escape_pod1/transit
+	landmark_station = "escapepod1_station"
+	landmark_offsite = "escapepod1_cc"
+	landmark_transition = "escapepod1_transit"
 	docking_controller_tag = "large_escape_pod_1"
-	dock_target_station = "large_escape_pod_1_berth"
-	dock_target_offsite = "large_escape_pod_1_recovery"
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	move_direction = EAST
 
-//////////////////////////////////////////////////////////////
-/* Removed for the time being
-/datum/shuttle/ferry/escape_pod/large_escape_pod2
-	name = "Large Escape Pod 2"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/large_escape_pod2/station
-	area_offsite = /area/shuttle/large_escape_pod2/centcom
-	area_transition = /area/shuttle/large_escape_pod2/transit
-	docking_controller_tag = "large_escape_pod_2"
-	dock_target_station = "large_escape_pod_2_berth"
-	dock_target_offsite = "large_escape_pod_2_recovery"
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-*/
 //////////////////////////////////////////////////////////////
 // Supply shuttle
-/datum/shuttle/ferry/supply/cargo
+/datum/shuttle/autodock/ferry/supply/cargo
 	name = "Supply"
-	location = 1
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/supply
 	warmup_time = 10
-	area_offsite = /area/supply/dock
-	area_station = /area/supply/station
+	landmark_offsite = "supply_cc"
+	landmark_station = "supply_station"
 	docking_controller_tag = "supply_shuttle"
-	dock_target_station = "cargo_bay"
 	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
+	move_direction = NORTH
 
 //////////////////////////////////////////////////////////////
 // Trade Ship
-/datum/shuttle/ferry/trade
+/datum/shuttle/autodock/multi/trade
 	name = "Trade"
-	location = 1
-	warmup_time = 10	//want some warmup time so people can cancel.
-	area_offsite = /area/shuttle/trade/centcom
-	area_station = /area/shuttle/trade/station
+	current_location = "trade_dock"
+	shuttle_area = /area/shuttle/trade
 	docking_controller_tag = "trade_shuttle"
-	dock_target_station = "trade_shuttle_dock_airlock"
-	dock_target_offsite = "trade_shuttle_bay"
-
-//////////////////////////////////////////////////////////////
-// Away Mission Shuttle
-// TODO - Not implemented yet on new map
-/*
-/datum/shuttle/multi_shuttle/awaymission
-	name = "AwayMission"
-	legit = TRUE
-	warmup_time = 8
-	move_time = 60
-	origin = /area/shuttle/awaymission/home
-	interim = /area/shuttle/awaymission/warp
-	start_location = "NSB Adephagia (AM)"
-	destinations = list(
-		"Old Engineering Base (AM)" = /area/shuttle/awaymission/oldengbase
+	warmup_time = 10	//want some warmup time so people can cancel.
+	destination_tags = list(
+		"trade_dock",
+		"tether_dockarm_d1l",
+		"aerostat_south",
+		"beach_e",
+		"beach_c",
+		"beach_nw"
 	)
-	docking_controller_tag = "awaymission_shuttle"
-	destination_dock_targets = list(
-		"NSB Adephagia (AM)" = "d1a2_dock_airlock"
-	)
-	announcer = "Automated Traffic Control"
-	//These seem backwards because they are written from the perspective of the merc and vox ships
-	departure_message = "Attention. The away mission vessel is approaching the colony."
-	arrival_message = "Attention. The away mission vessel is now leaving from the colony."
-
-/datum/shuttle/multi_shuttle/awaymission/New()
-	..()
-	var/area/awaym_dest = locate(/area/shuttle/awaymission/away)
-	if(awaym_dest && awaym_dest.contents.len) // Otherwise this is an empty imaginary area
-		destinations["Unknown Location [rand(1000,9999)]"] = awaym_dest
-
-*/
+	defer_initialisation = TRUE
+	move_direction = WEST
 
 //////////////////////////////////////////////////////////////
 // Tether Shuttle
-/datum/shuttle/ferry/tether_backup
+/datum/shuttle/autodock/ferry/tether_backup
 	name = "Tether Backup"
-	location = 1 // At offsite
+	location = FERRY_LOCATION_OFFSITE //Offsite is the surface hangar
 	warmup_time = 5
-	move_time = 45
-	area_offsite = /area/shuttle/tether/surface
-	area_station = /area/shuttle/tether/station
-	area_transition = /area/shuttle/tether/transit
-	crash_areas = list(/area/shuttle/tether/crash1, /area/shuttle/tether/crash2)
+	move_time = 5
+	landmark_offsite = "tether_backup_low"
+	landmark_station = "tether_dockarm_d1a3"
+	landmark_transition = "tether_backup_transit"
+	shuttle_area = /area/shuttle/tether
+	//crash_areas = list(/area/shuttle/tether/crash1, /area/shuttle/tether/crash2)
 	docking_controller_tag = "tether_shuttle"
-	dock_target_station = "tether_dock_airlock"
-	dock_target_offsite = "tether_pad_airlock"
-
-//////////////////////////////////////////////////////////////
-// Antag Space "Proto Shuttle" Shuttle
-/datum/shuttle/multi_shuttle/protoshuttle
-	name = "Proto"
-	warmup_time = 8
-	move_time = 60
-	origin = /area/shuttle/antag_space/base
-	interim = /area/shuttle/antag_space/transit
-	start_location = "Home Base"
-	destinations = list(
-		"Nearby" = /area/shuttle/antag_space/north,
-		"Docks" =  /area/shuttle/antag_space/docks
-	)
-	docking_controller_tag = "antag_space_shuttle"
-	destination_dock_targets = list("Home Base" = "antag_space_dock")
-
-//////////////////////////////////////////////////////////////
-// Antag Surface "Land Crawler" Shuttle
-/datum/shuttle/multi_shuttle/landcrawler
-	name = "Land Crawler"
-	warmup_time = 8
-	move_time = 60
-	origin = /area/shuttle/antag_ground/base
-	interim = /area/shuttle/antag_ground/transit
-	start_location = "Home Base"
-	destinations = list(
-		"Solar Array" = /area/shuttle/antag_ground/solars,
-		"Mining Outpost" =  /area/shuttle/antag_ground/mining
-	)
-	docking_controller_tag = "antag_ground_shuttle"
-	destination_dock_targets = list("Home Base" = "antag_ground_dock")
+	move_direction = NORTH
 
 //////////////////////////////////////////////////////////////
 // Mercenary Shuttle
-/datum/shuttle/multi_shuttle/mercenary
+/datum/shuttle/autodock/multi/mercenary
 	name = "Mercenary"
 	warmup_time = 8
 	move_time = 60
-	origin = /area/syndicate_station/start
-	//interim = /area/syndicate_station/transit // Disabled until this even exists.
-	start_location = "Mercenary base"
-	destinations = list(
-		//"Northwest of the station" = /area/syndicate_station/northwest,
-		//"North of the station" = /area/syndicate_station/north,
-		//"Northeast of the station" = /area/syndicate_station/northeast,
-		//"(Land) Southwest of Tether" = /area/syndicate_station/southwest,
-		//"South of the station" = /area/syndicate_station/south,
-		//"Southeast of the station" = /area/syndicate_station/southeast,
-		//"Telecomms Satellite" = /area/syndicate_station/commssat,
-		"(Land) Solar farm west of Tether" = /area/syndicate_station/mining,
-		"Tether spaceport" = /area/syndicate_station/arrivals_dock
+	current_location = "merc_base"
+	shuttle_area = /area/shuttle/mercenary
+	destination_tags = list(
+		"merc_base",
+		"aerostat_south",
+		"beach_e",
+		"beach_nw",
+		"tether_solars_ne",
+		"tether_solars_sw",
+		"tether_mine_nw",
+		"tether_space_NE",
+		"tether_space_SE",
+		"tether_space_SW",
+		"tether_dockarm_d2l" //End of right docking arm
 		)
 	docking_controller_tag = "merc_shuttle"
-	destination_dock_targets = list(
-		"Mercenary base" = "merc_base",
-		"Tether spaceport" = "nuke_shuttle_dock_airlock",
-		)
 	announcer = "Automated Traffic Control"
-
-/datum/shuttle/multi_shuttle/mercenary/New()
 	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
 	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
-	..()
+	defer_initialisation = TRUE
+	move_direction = WEST
+
+//////////////////////////////////////////////////////////////
+// Ninja Shuttle
+/datum/shuttle/autodock/multi/ninja
+	name = "Ninja"
+	warmup_time = 8
+	move_time = 60
+	can_cloak = TRUE
+	cloaked = TRUE
+	current_location = "ninja_base"
+	landmark_transition = "ninja_transit"
+	shuttle_area = /area/shuttle/ninja
+	destination_tags = list(
+		"ninja_base",
+		"aerostat_northeast",
+		"beach_e",
+		"beach_nw",
+		"tether_solars_ne",
+		"tether_solars_sw",
+		"tether_mine_nw",
+		"tether_space_NE",
+		"tether_space_SE",
+		"tether_space_SW",
+		"tether_dockarm_d1a3" //Inside of left dockarm
+		)
+	docking_controller_tag = "ninja_shuttle"
+	announcer = "Automated Traffic Control"
+	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
+	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
+	move_direction = NORTH
+
+//////////////////////////////////////////////////////////////
+// Skipjack
+/datum/shuttle/autodock/multi/heist
+	name = "Skipjack"
+	warmup_time = 8
+	move_time = 60
+	can_cloak = TRUE
+	cloaked = TRUE
+	current_location = "skipjack_base"
+	landmark_transition = "skipjack_transit"
+	shuttle_area = /area/shuttle/skipjack
+	destination_tags = list(
+		"skipjack_base",
+		"aerostat_south",
+		"beach_e",
+		"beach_nw",
+		"tether_solars_ne",
+		"tether_solars_sw",
+		"tether_mine_nw",
+		"tether_space_NE",
+		"tether_space_SE",
+		"tether_space_SW",
+		"tether_dockarm_d1l" //End of left dockarm
+		)
+	//docking_controller_tag = ??? doesn't have one?
+	announcer = "Automated Traffic Control"
+	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
+	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
+	move_direction = NORTH
+
+//////////////////////////////////////////////////////////////
+// ERT Shuttle
+/datum/shuttle/autodock/multi/specialops
+	name = "NDV Phantom"
+	can_cloak = TRUE
+	cloaked = FALSE
+	warmup_time = 8
+	move_time = 60
+	current_location = "specops_base"
+	landmark_transition = "specops_transit"
+	shuttle_area = /area/shuttle/specops/centcom
+	destination_tags = list(
+		"specops_base",
+		"aerostat_south",
+		"beach_e",
+		"beach_nw",
+		"tether_solars_ne",
+		"tether_solars_sw",
+		"tether_mine_nw",
+		"tether_space_NE",
+		"tether_space_SE",
+		"tether_space_SW",
+		"tether_dockarm_d1l" //End of left dockarm
+		)
+	docking_controller_tag = "ert1_control"
+	announcer = "Automated Traffic Control"
+	arrival_message = "Attention. An NT support vessel is approaching Virgo-3B."
+	departure_message = "Attention. A NT support vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
+	move_direction = WEST
 
 //////////////////////////////////////////////////////////////
 // RogueMiner "Belter: Shuttle
 
-/datum/shuttle/ferry/belter
+/datum/shuttle/autodock/ferry/belter
 	name = "Belter"
-	location = 0
+	location = FERRY_LOCATION_STATION
 	warmup_time = 5
 	move_time = 30
-	area_station = /area/shuttle/belter/station
-	area_offsite = /area/shuttle/belter/belt/zone1
-	area_transition = /area/shuttle/belter/transit
+	shuttle_area = /area/shuttle/belter
+	landmark_station = "belter_station"
+	landmark_offsite = "belter_zone1"
+	landmark_transition = "belter_transit"
 	docking_controller_tag = "belter_docking"
-	dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
-	dock_target_offsite = "belter_nodocking"
+	move_direction = EAST
 
-/datum/shuttle/ferry/belter/New()
-	move_time = move_time + rand(-5, 5)
+/datum/shuttle/autodock/ferry/belter/New()
+	move_time = move_time + rand(-5 SECONDS, 5 SECONDS)
 	..()
 
-
 //////////////////////////////////////////////////////////////
-// CC Lewdship shuttle
-/*
-/datum/shuttle/ferry/cruiser_shuttle
-	name = "Cruiser Shuttle"
-	location = 1
-	warmup_time = 10	//want some warmup time so people can cancel.
-	area_offsite = /area/shuttle/cruiser/cruiser
-	area_station = /area/shuttle/cruiser/station
-	docking_controller_tag = "cruiser_shuttle"
-	dock_target_station = "d1a1_dock"
-	dock_target_offsite = "cruiser_shuttle_bay"
-*/
+// Surface Mining Outpost Shuttle
+
+/datum/shuttle/autodock/ferry/surface_mining_outpost
+	name = "Mining Outpost"
+	location = FERRY_LOCATION_STATION
+	warmup_time = 5
+	shuttle_area = /area/shuttle/mining_outpost
+	landmark_station = "mining_station"
+	landmark_offsite = "mining_outpost"
+	docking_controller_tag = "mining_docking"
+	move_direction = NORTH
+
+/////Virgo Flyer/////
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/ccboat
+	name = "Virgo Flyer control console"
+	shuttle_tag = "Virgo Flyer"
+	req_one_access = list(access_pilot)
+
+/obj/effect/overmap/visitable/ship/landable/ccboat
+	name = "NTV Virgo Flyer"
+	desc = "A small shuttle from Central Command."
+	vessel_mass = 1000
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "Virgo Flyer"
+	known = TRUE
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/ccboat
+	name = "Central Command Shuttlepad"
+	base_area = /area/shuttle/centcom/ccbay
+	base_turf = /turf/simulated/floor/reinforced
+	landmark_tag = "cc_shuttlepad"
+	docking_controller = "cc_landing_pad"
+	shuttle_type = /datum/shuttle/autodock/overmap/ccboat
+
+/datum/shuttle/autodock/overmap/ccboat
+	name = "Virgo Flyer"
+	current_location = "cc_shuttlepad"
+	docking_controller_tag = "ccboat" 
+	shuttle_area = /area/shuttle/ccboat
+	fuel_consumption = 0
+	defer_initialisation = TRUE
+
+/area/shuttle/ccboat
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "yelwhitri"
+	name = "Virgo Flyer"
+	requires_power = 0
+
+/area/shuttle/centcom/ccbay
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "bluwhisqu"
+	name = "Central Command Shuttle Bay"
+	requires_power = 0
+	dynamic_lighting = 0

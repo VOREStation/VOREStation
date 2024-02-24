@@ -1,4 +1,4 @@
-/obj/effect/plant/HasProximity(var/atom/movable/AM)
+/obj/effect/plant/HasProximity(turf/T, atom/movable/AM, old_loc)
 
 	if(!is_mature() || seed.get_trait(TRAIT_SPREAD) != 2)
 		return
@@ -13,6 +13,14 @@
 		spawn(1)
 			entangle(M)
 
+/obj/effect/plant/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(seed.get_trait(TRAIT_SPREAD)==2)
+		if(isturf(old_loc))
+			unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
+		if(isturf(loc))
+			sense_proximity(callback = /atom/proc/HasProximity)
+
 /obj/effect/plant/attack_hand(var/mob/user)
 	manual_unbuckle(user)
 
@@ -20,12 +28,8 @@
 	manual_unbuckle(user)
 
 /obj/effect/plant/Crossed(atom/movable/O)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = O
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(O.is_incorporeal())
+		return
 	if(isliving(O))
 		trodden_on(O)
 
@@ -45,8 +49,7 @@
 
 /obj/effect/plant/proc/unbuckle()
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			if(L.buckled == src)
 				L.buckled = null
 				L.anchored = initial(L.anchored)
@@ -60,16 +63,15 @@
 		if(seed)
 			chance = round(100/(20*seed.get_trait(TRAIT_POTENCY)/100))
 		if(prob(chance))
-			for(var/A in buckled_mobs)
-				var/mob/living/L = A
+			for(var/mob/living/L as anything in buckled_mobs)
 				if(!(user in buckled_mobs))
 					L.visible_message(\
-					"<span class='notice'>\The [user] frees \the [L] from \the [src].</span>",\
-					"<span class='notice'>\The [user] frees you from \the [src].</span>",\
+					"<b>\The [user]</b> frees \the [L] from \the [src].",\
+					"<b>\The [user]</b> frees you from \the [src].",\
 					"<span class='warning'>You hear shredding and ripping.</span>")
 				else
 					L.visible_message(\
-					"<span class='notice'>\The [L] struggles free of \the [src].</span>",\
+					"<b>\The [L]</b> struggles free of \the [src].",\
 					"<span class='notice'>You untangle \the [src] from around yourself.</span>",\
 					"<span class='warning'>You hear shredding and ripping.</span>")
 				unbuckle()

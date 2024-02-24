@@ -1,25 +1,27 @@
 /turf/simulated/wall
 	name = "wall"
-	desc = "A huge chunk of metal used to seperate rooms."
+	desc = "A huge chunk of metal used to separate rooms."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "generic"
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
+	var/icon/wall_masks = 'icons/turf/wall_masks.dmi'
 	var/damage = 0
 	var/damage_overlay = 0
 	var/global/damage_overlays[16]
 	var/active
 	var/can_open = 0
-	var/material/girder_material
-	var/material/material
-	var/material/reinf_material
+	var/datum/material/girder_material
+	var/datum/material/material
+	var/datum/material/reinf_material
 	var/last_state
 	var/construction_stage
 
+	// There's basically always going to be wall connections, making this lazy doesn't seem like it'd help much unless you wanted to make it bitflags instead.
 	var/list/wall_connections = list("0", "0", "0", "0")
 
 // Walls always hide the stuff below them.
@@ -27,8 +29,8 @@
 	for(var/obj/O in src)
 		O.hide(1)
 
-/turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype, var/girdertype)
-	..(newloc)
+/turf/simulated/wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
+	. = ..()
 	icon_state = "blank"
 	if(!materialtype)
 		materialtype = DEFAULT_WALL_MATERIAL
@@ -43,8 +45,10 @@
 
 /turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturfs, src)
-	dismantle_wall(null,null,1)
-	..()
+	return ..()
+
+/turf/simulated/wall/examine_icon()
+	return icon(icon=initial(icon), icon_state=initial(icon_state))
 
 /turf/simulated/wall/process()
 	// Calling parent will kill processing
@@ -120,21 +124,21 @@
 
 //Appearance
 /turf/simulated/wall/examine(mob/user)
-	. = ..(user)
+	. = ..()
 
 	if(!damage)
-		to_chat(user, "<span class='notice'>It looks fully intact.</span>")
+		. += "<span class='notice'>It looks fully intact.</span>"
 	else
 		var/dam = damage / material.integrity
 		if(dam <= 0.3)
-			to_chat(user, "<span class='warning'>It looks slightly damaged.</span>")
+			. += "<span class='warning'>It looks slightly damaged.</span>"
 		else if(dam <= 0.6)
-			to_chat(user, "<span class='warning'>It looks moderately damaged.</span>")
+			. += "<span class='warning'>It looks moderately damaged.</span>"
 		else
-			to_chat(user, "<span class='danger'>It looks heavily damaged.</span>")
+			. += "<span class='danger'>It looks heavily damaged.</span>"
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		to_chat(user, "<span class='warning'>There is fungus growing on [src].</span>")
+		. += "<span class='warning'>There is fungus growing on [src].</span>"
 
 //Damage
 
@@ -231,10 +235,25 @@
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/simulated/wall/proc/rot()
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		return
+		return FALSE
+
+	// Wall-rot can't go onto walls that are surrounded in all four cardinal directions.
+	// Because of spores, or something. It's actually to avoid the pain that is removing wallrot surrounded by
+	// four r-walls.
+	var/at_least_one_open_turf = FALSE
+	for(var/direction in GLOB.cardinal)
+		var/turf/T = get_step(src, direction)
+		if(!T.check_density())
+			at_least_one_open_turf = TRUE
+			break
+
+	if(!at_least_one_open_turf)
+		return FALSE
+
 	var/number_rots = rand(2,3)
 	for(var/i=0, i<number_rots, i++)
 		new/obj/effect/overlay/wallrot(src)
+	return TRUE
 
 /turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)
@@ -249,8 +268,8 @@
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
+	O.anchored = TRUE
+	O.density = TRUE
 	O.plane = ABOVE_PLANE
 
 	if(girder_material.integrity >= 150 && !girder_material.is_brittle()) //Strong girders will remain in place when a wall is melted.
@@ -287,6 +306,9 @@
 			for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
 				D.ignite(temperature/4)
 
+/turf/simulated/wall/can_engrave()
+	return (material && material.hardness >= 10 && material.hardness <= 100)
+
 /turf/simulated/wall/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
 	if(material.integrity > 1000) // Don't decon things like elevatorium.
 		return FALSE
@@ -310,3 +332,10 @@
 		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
 		return TRUE
 	return FALSE
+
+/turf/simulated/wall/AltClick(mob/user)
+	if(isliving(user))
+		var/mob/living/livingUser = user
+		if(try_graffiti(livingUser, livingUser.get_active_hand()))
+			return
+	. = ..()

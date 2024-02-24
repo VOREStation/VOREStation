@@ -1,5 +1,10 @@
 /datum/power/shadekin
 
+/mob/living/carbon/human/is_incorporeal()
+	if(ability_flags & AB_PHASE_SHIFTED) //Shadekin
+		return TRUE
+	return ..()
+
 /////////////////////
 ///  PHASE SHIFT  ///
 /////////////////////
@@ -28,6 +33,30 @@
 
 	var/ability_cost = 100
 
+	var/darkness = 1
+	var/turf/T = get_turf(src)
+	if(!T)
+		to_chat(src,"<span class='warning'>You can't use that here!</span>")
+		return FALSE
+
+	if(ability_flags & AB_PHASE_SHIFTING)
+		return FALSE
+
+	var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+	darkness = 1-brightness //Invert
+
+	var/watcher = 0
+	for(var/mob/living/carbon/human/watchers in oview(7,src ))	// If we can see them...
+		if(watchers in oviewers(7,src))	// And they can see us...
+			if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/weapon/holder))	// And they are alive and not being held by someone...
+				watcher++	// They are watching us!
+
+	ability_cost = CLAMP(ability_cost/(0.01+darkness*2),50, 80)//This allows for 1 watcher in full light
+	if(watcher>0)
+		ability_cost = ability_cost + ( 15 * watcher )
+	if(!(ability_flags & AB_PHASE_SHIFTED))
+		log_debug("[src] attempted to shift with [watcher] visible Carbons with a  cost of [ability_cost] in a darkness level of [darkness]")
+
 	var/datum/species/shadekin/SK = species
 	if(!istype(SK))
 		to_chat(src, "<span class='warning'>Only a shadekin can use that!</span>")
@@ -43,7 +72,6 @@
 		shadekin_adjust_energy(-ability_cost)
 	playsound(src, 'sound/effects/stealthoff.ogg', 75, 1)
 
-	var/turf/T = get_turf(src)
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,"<span class='warning'>You can't use that here!</span>")
 		return FALSE
@@ -62,12 +90,13 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
-		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		ability_flags |= AB_PHASE_SHIFTING
+		mouse_opacity = 1
+		name = get_visible_name()
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
-		//overlays.Cut()
+		//cut_overlays()
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
 		incorporeal_move = initial(incorporeal_move)
@@ -83,15 +112,18 @@
 		sleep(5) //The duration of the TP animation
 		canmove = original_canmove
 		alpha = initial(alpha)
+		remove_modifiers_of_type(/datum/modifier/shadekin_phase_vision)
 
 		//Potential phase-in vore
 		if(can_be_drop_pred) //Toggleable in vore panel
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,"<span class='vwarning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+
+		ability_flags &= ~AB_PHASE_SHIFTING
 
 		//Affect nearby lights
 		var/destroy_lights = 0
@@ -108,20 +140,22 @@
 	//Shifting out
 	else
 		ability_flags |= AB_PHASE_SHIFTED
+		ability_flags |= AB_PHASE_SHIFTING
+		mouse_opacity = 0
 		custom_emote(1,"phases out!")
-		name = "Something"
+		name = get_visible_name()
 
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
 		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
 		phaseanim.dir = dir
 		alpha = 0
+		add_modifier(/datum/modifier/shadekin_phase_vision)
 		sleep(5)
 		invisibility = INVISIBILITY_LEVEL_TWO
 		see_invisible = INVISIBILITY_LEVEL_TWO
-		//overlays.Cut()
+		//cut_overlays()
 		update_icon()
 		alpha = 127
 
@@ -129,47 +163,11 @@
 		incorporeal_move = TRUE
 		density = FALSE
 		force_max_speed = TRUE
+		ability_flags &= ~AB_PHASE_SHIFTING
 
-/mob/living/carbon/human/UnarmedAttack()
-	if(shadekin_phasing_check())
-		return FALSE	//Nope.
-
-	. = ..()
-
-/mob/living/carbon/human/can_fall()
-	if(shadekin_phasing_check())
-		return FALSE	//Nope!
-
-	return ..()
-
-/mob/living/carbon/human/zMove(direction)
-	if(shadekin_phasing_check())
-		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-		if(destination)
-			forceMove(destination)
-		return TRUE		//Yup.
-
-	return ..()
-
-/mob/proc/shadekin_phasing_check()
-	var/mob/living/simple_mob/shadekin/s_SK = src
-	if(istype(s_SK))
-		if(s_SK.ability_flags & AB_PHASE_SHIFTED)
-			return TRUE
-	var/mob/living/carbon/human/h_SK = src
-	if(istype(h_SK))
-		if(h_SK.ability_flags & AB_PHASE_SHIFTED)
-			return TRUE
-	return FALSE
-
-/*
-/mob/living/carbon/human/MouseDrop_T(atom/dropping, mob/user)
-	if(ability_flags & AB_PHASE_SHIFTED)
-		return FALSE	//Nope!
-
-	return ..()
-*/
-
+/datum/modifier/shadekin_phase_vision
+	name = "Shadekin Phase Vision"
+	vision_flags = SEE_THRU
 
 //////////////////////////
 ///  REGENERATE OTHER  ///
@@ -209,7 +207,7 @@
 		to_chat(src,"<span class='warning'>Nobody nearby to mend!</span>")
 		return FALSE
 
-	var/mob/living/target = input(src,"Pick someone to mend:","Mend Other") as null|anything in targets
+	var/mob/living/target = tgui_input_list(src,"Pick someone to mend:","Mend Other", targets)
 	if(!target)
 		return FALSE
 

@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/trinary
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST
-	use_power = 0
+	use_power = USE_POWER_OFF
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 
 	var/mirrored = FALSE
@@ -52,7 +52,7 @@
 		update_icon()
 
 /obj/machinery/atmospherics/trinary/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
@@ -62,7 +62,7 @@
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+			"<b>\The [user]</b> unfastens \the [src].", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()

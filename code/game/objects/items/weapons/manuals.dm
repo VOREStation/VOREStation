@@ -9,6 +9,7 @@
 /obj/item/weapon/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
+	item_state = "book3"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Station Repairs and Construction"
 
@@ -30,6 +31,7 @@
 /obj/item/weapon/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
 	icon_state ="bookParticleAccelerator"
+	item_state = "book15"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Particle Accelerator User's Guide"
 
@@ -77,6 +79,7 @@
 /obj/item/weapon/book/manual/supermatter_engine
 	name = "Supermatter Engine Operating Manual"
 	icon_state = "bookSupermatter"
+	item_state = "book15"
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
 
@@ -98,7 +101,7 @@
 				<br>
 				<h2>OPERATING PRINCIPLES</h2>
 				<br>
-				<li>The supermatter crystal serves as the fundamental power source of the engine. Upon being charged, it begins to emit large amounts of heat and radiation, as well and oxygen and phoron gas. As oxygen accelerates the reaction and reacts with phoron to start a fire, it must be filtered out. It's recommended to filter out all gases besides nitrogen for standard operation. </li>
+				<li>The supermatter crystal serves as the fundamental power source of the engine. Upon being charged, it begins to emit large amounts of heat and radiation, as well and oxygen and phoron gas. As oxygen accelerates the reaction and reacts with phoron to start a fire, it must be filtered out. It's recommended to filter out all gases besides phoron for standard operation. </li>
 				<br>
 				<li>Gas in the reactor chamber housing the supermatter is circulated through the reactor loop, which passes through the filters and thermoelectric generators. The thermoelectric generators transfer heat from the reactor loop to the colder radiator loop, thereby generating power. Additional power is generated from internal turbines in the circulators.</li>
 				<br>
@@ -117,13 +120,15 @@
 				<br>
 				<h2>STANDARD STARTUP PROCEDURE</h2>
 				<ol>
-				<li>Fill reactor loop and radiator loop with three (3) standard canisters of nitrogen gas each.</li>
-				<li>Fill the waste handling radiator loop with one (1) standard canister of carbon dioxide gas.</li>
+				<li>Fill reactor loop and radiator loop with two (2) standard canisters (1871.75 moles, 20 celsius) of phoron gas each.</li>
+				<li>Fill the waste handling radiator loop with one (1) standard canister (1871.75 as well) of carbon dioxide gas.</li>
+				<li>You can confirm your canisters got enough gas in them by using your PDA's "Gas Scanner" feature, you must enable it and press your PDA against the canister.</li>
 				<li>Enable both the high power gas pumps near the thermo-electric generators and maximize the desired output.</li>
-				<li>Enable both the omni-filters and ensure they are set to filter nitrogen back into the system.</li>
+				<li>Enable both the omni-filters and ensure they are set to filter phoron back into the system.</li>
 				<li>Enable the gas pump from the filters to waste handling and maximize the desired output.</li>
 				<li>Close the monitoring room blast doors and open the reactor blast doors,</li>
-				<li>Fire 8-9 pulses from emitter at supermatter crystal. The expected power output is around a megawatt. NOTE: It will take a few minutes to heat up.</li>
+				<li>Fire 12-16 pulses from emitter at supermatter crystal. The expected power output is around a megawatt. NOTE: It will take a few minutes to heat up.</li>
+				<li>You can confirm desired power levels by checking the computer in the minotoring room, "Supermatter Monitoring". You want 300 EPR, more is safe but no higher than 700</li>
 				<li>Close the reactor blast doors and keep the monitoring room blast doors closed to prevent radiation leaking.</li>
 				</ol>
 				<br>
@@ -131,7 +136,7 @@
 				<ol>
 				<li>Ensure that radiation protection and meson goggles are worn at all times while working in the engine room.</li>
 				<li>Ensure that reactor and radiator loops are undamaged and unobstructed.</li>
-				<li>Ensure that, in a standard setup, only nitrogen is being filtered back into the system. Do not allow exhaust pressure to exceed 4500 kPa.</li>
+				<li>Ensure that, in a standard setup, only phoron is being filtered back into the system. Do not allow exhaust pressure to exceed 4500 kPa.</li>
 				<li>Ensure that engine room Area Power Controller (APC) and engine Superconducting Magnetic Energy Storage unit (SMES) are properly charged.</li>
 				<li>Ensure that reactor temperature does not exceed 5000K. In event of reactor temperature exceeding 5000K, see EMERGENCY COOLING PROCEDURE.</li>
 				<li>In event of imminent and/or unavoidable delamination, see EJECTION PROCEDURE.</li>
@@ -160,6 +165,7 @@
 /obj/item/weapon/book/manual/tesla_engine
 	name = "Tesla Operating Manual"
 	icon_state ="bookTesla"
+	item_state = "book15"
 	author = "Engineering Encyclopedia"
 	title = "Tesla Engine User's Guide"
 	dat = {"<html>
@@ -229,6 +235,7 @@
 /obj/item/weapon/book/manual/rust_engine
 	name = "R-UST Operating Manual"
 	icon_state = "bookSupermatter"
+	item_state = "book15"
 	author = "Cindy Crawfish"
 	title = "R-UST Operating Manual"
 
@@ -269,6 +276,7 @@
 /obj/item/weapon/book/manual/engineering_hacking
 	name = "Hacking"
 	icon_state ="bookHacking"
+	item_state = "book2"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Hacking"
 
@@ -291,6 +299,7 @@
 /obj/item/weapon/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
 	icon_state ="bookEngineeringSingularitySafety"
+	item_state = "book15"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Singularity Safety in Special Circumstances"
 
@@ -310,7 +319,7 @@
 
 				<h2>Power outage</h2>
 
-				A power problem has made the entire station lose power? Could be station-wide wiring problems or syndicate power sinks. In any case follow these steps:
+				A power problem has made the entire station lose power? Could be station-wide wiring problems or illegal power sinks. In any case follow these steps:
 
 				<ol>
 					<li><b><font color='red'>PANIC!</font></b></li>
@@ -343,6 +352,7 @@
 /obj/item/weapon/book/manual/hydroponics_pod_people
 	name = "The Diona Harvest - From Seed to Market"
 	icon_state ="bookHydroponicsPodPeople"
+	item_state = "book5"
 	author = "Farmer John"
 	title = "The Diona Harvest - From Seed to Market"
 
@@ -379,10 +389,11 @@
 
 
 /obj/item/weapon/book/manual/medical_cloning
-	name = "Cloning Techniques of the 26th Century"
+	name = "Cloning Techniques of the 24th Century"
 	icon_state ="bookCloning"
+	item_state = "book9"
 	author = "Medical Journal, volume 3"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "Cloning Techniques of the 26th Century"
+	title = "Cloning Techniques of the 24th Century"
 
 	dat = {"<html>
 				<head>
@@ -474,6 +485,7 @@
 /obj/item/weapon/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
 	icon_state ="book"
+	item_state = "book"
 	author = "Randall Varn, Einstein Engines Senior Mechanic"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "APLU \"Ripley\" Construction and Operation Manual"
 
@@ -551,6 +563,7 @@
 /obj/item/weapon/book/manual/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
+	item_state = "book7"
 	author = "Dr. L. Ight"
 	title = "Research and Development 101"
 
@@ -616,10 +629,28 @@
 			</html>
 			"}
 
+/obj/item/weapon/book/manual/robotics_manual
+	name = "Guide to Robotics"
+	icon_state ="evabook"
+	item_state = "book3"
+	author = "Simple Robotics"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
+	title = "Guide to Robotics"
+
+/obj/item/weapon/book/manual/robotics_manual/New()
+	..()
+	dat = {"
+		<html><head>
+		</head>
+		<body>
+		<iframe width='100%' height='97%' src="[config.wikiurl]Guide_to_Robotics&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		</body>
+		</html>
+		"}
 
 /obj/item/weapon/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"
 	icon_state = "borgbook"
+	item_state = "book1"
 	author = "XISC"
 	title = "Cyborgs for Dummies"
 
@@ -826,6 +857,7 @@
 	name = "Corporate Regulations"
 	desc = "A set of corporate guidelines for keeping law and order on privately-owned space stations."
 	icon_state = "bookSpaceLaw"
+	item_state = "book13"
 	author = "The Company"
 	title = "Corporate Regulations"
 
@@ -850,6 +882,7 @@
 	name = "Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
+	item_state = "book12"
 	author = "Medical Department"
 	title = "Medical Diagnostics Manual"
 
@@ -897,6 +930,7 @@
 /obj/item/weapon/book/manual/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
+	item_state = "book3"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
 
@@ -918,6 +952,7 @@
 /obj/item/weapon/book/manual/chef_recipes
 	name = "Chef Recipes"
 	icon_state = "cooked_book"
+	item_state = "book16"
 	author = "Victoria Ponsonby"
 	title = "Chef Recipes"
 
@@ -978,6 +1013,7 @@
 	name = "Barman Recipes"
 	desc = "For the enterprising drink server."
 	icon_state = "barbook"
+	item_state = "book14"
 	author = "Sir John Rose"
 	title = "Barman Recipes"
 
@@ -1033,6 +1069,7 @@
 /obj/item/weapon/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
 	icon_state ="bookDetective"
+	item_state = "book8"
 	author = "The Company"
 	title = "The Film Noir: Proper Procedures for Investigations"
 
@@ -1076,7 +1113,8 @@
 /obj/item/weapon/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"
-	author = "Syndicate"
+	item_state = "book8"
+	author = "Stealth Assault Enterprises"
 	title = "Fission Mailed: Nuclear Sabotage 101"
 
 	dat = {"<html>
@@ -1092,7 +1130,7 @@
 				</head>
 				<body>
 				<h1>Nuclear Explosives 101</h1>
-				Hello and thank you for choosing the Syndicate for your nuclear information needs. Today's crash course will deal with the operation of a Nuclear Fission Device.<br><br>
+				Hello and thank you for choosing Stealth Assault Enterprises for your nuclear information needs. Today's crash course will deal with the operation of a Nuclear Fission Device.<br><br>
 
 				First and foremost, DO NOT TOUCH ANYTHING UNTIL THE BOMB IS IN PLACE. Pressing any button on the compacted bomb will cause it to extend and bolt itself into place. If this is done, to unbolt it, one must completely log in, which at this time may not be possible.<br>
 
@@ -1108,7 +1146,7 @@
 
 				You now have activated the device. To deactivate the buttons at anytime, for example when you've already prepped the bomb for detonation, remove the authentication disk OR press R on the keypad.<br><br>
 				Now the bomb CAN ONLY be detonated using the timer. Manual detonation is not an option. Toggle off the SAFETY.<br>
-				<b>Note</b>: You wouldn't believe how many Syndicate Operatives with doctorates have forgotten this step.<br><br>
+				<b>Note</b>: You wouldn't believe how many SAARE Operatives with doctorates have forgotten this step.<br><br>
 
 				So use the - - and + + to set a detonation time between 5 seconds and 10 minutes. Then press the timer toggle button to start the countdown. Now remove the authentication disk so that the buttons deactivate.<br>
 				<b>Note</b>: THE BOMB IS STILL SET AND WILL DETONATE<br><br>
@@ -1117,7 +1155,7 @@
 
 				Remember the order:<br>
 				<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br><br>
-				Intelligence Analysts believe that normal corporate procedure is for the Colony Director to secure the nuclear authentication disk.<br><br>
+				Intelligence Analysts believe that normal corporate procedure is for the Site Manager to secure the nuclear authentication disk.<br><br>
 
 				Good luck!
 				</body>
@@ -1127,6 +1165,7 @@
 /obj/item/weapon/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "pipingbook"
+	item_state = "book3"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "Pipes and You: Getting To Know Your Scary Tools"
 	dat = {"<html>
@@ -1235,6 +1274,7 @@
 /obj/item/weapon/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	icon_state = "evabook"
+	item_state = "book14"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	dat = {"<html>
@@ -1356,3 +1396,447 @@
 				</body>
 			</html>
 			"}
+
+/obj/item/weapon/book/manual/virology
+	name = "Sneezes and Coughs: A Guide To Virology, 1st Edition"
+	icon_state = "bookvirology"
+	item_state = "book5"
+	author = "James Simpson, Chief Virologist"
+	title = "Sneezes and Coughs: A Guide To Virology, 1st Edition"
+	dat = {"<html>
+				<head>
+				<style>
+				h1 {font-size: 21px; margin: 15px 0px 5px;}
+				h2 {font-size: 15px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				b {font-size: 12px}
+				body {font-size: 13px; font-family: Verdana;}
+				table {font-family: arial, sans-serif;
+						border-collapse: collapse;
+						width: 50%;
+						font-size: 13px;}
+				td, th {border: 1px solid #000000;
+						text-align: left;
+						padding: 8px;}
+				tr:nth-child(even) {background-color: #dddddd;}
+				padding {padding-bottom: 50px;}
+				</style>
+				</head>
+				<body>
+				<h1>A Guide to Virology, 1st Edition</h1>
+				Welcome to virology! <br><br>
+
+				A virologist spends much of their time isolated in the virology department fiddling with deadly and annoying plagues. This guide will get you on the right path to properly<br>
+				creating and curing the worst of the worst.<br><br>
+
+				<h2>Anatomy of a Virus</h2>
+				Before you jump in to making the next Black Death, you need to understand what's what. When you pop a tray into the disease analyzer you'll get a paper listing quite a few<br>
+				things about that virus!<br><br>
+
+				<b>Antigens</b><br>
+				The first thing you might notice on this analysis is the listed antigens of a virus. This, essentially, is what you need for cures. When a patient develops an antibody that<br>
+				matches a disease's antigen, they'll be immune to the virus.<br><br>
+
+				<b>Transmission</b><br>
+				This will list one of three methods of transmission: airborne, contact, or blood. Airborne viruses will spread through the air, meaning if a patient is coughing or sneezing<br>
+				it will spread quicker. Contactviruses need some sort of, well, contact. Blood on the floor, mucus, and vomit should all be cleaned up. Blood-transmission viruses will only<br>
+				spread through actual blood contact, meaning an injection of the virus would be necessary to spread it.<br><br>
+
+				<b>Species</b><br>
+				Not all viruses are compatible with all species! This will list off what can be infected by a particular virus. This can be changed through splicing. In rare cases you will<br>
+				get a virus that has infected crewmembers but cannot infect your lab monkeys. In these cases, you will likely have to splice different species data to safely make a cure.<br><br>
+
+				<b>Symptoms</b><br>
+				This lists what all the virus does, along with the strength of the symptoms and their aggressiveness. A full list of symptoms and their stages can be found below.<br><br>
+
+				<h2>Protection</h2>
+				First off, any good virologist needs to gear up!<br><br>
+				Your virology lab should have the following:
+				<ul>
+					<li>Two (2) Level-3 Bio Hoods</li>
+					<li>Two (2) Level-3 Bio Suits</li>
+					<li>Two (2) sets of sealed internals</li>
+					<li>One (1) box of sterile masks</li>
+					<li>One (1) box of latex gloves</li>
+				</ul><br>
+				<b>Make sure to gear up appropriately and take precautions to not bring the virus out of the lab!</b><br><br>
+				What needs to be worn varies from race to race, as some species cannot be affected by a virus, but<br>
+				precautions should always be taken to prevent accidentally carrying the virus out of containment.<br><br>
+
+				<h2>Machinery</h2>
+				These are the types of machines that you will be expected to use in this department. Study them, know them, and make sure you use them correctly!<br><br>
+
+				<b>Antibody Scanner</b><br>
+				A device similar to a health analyzer, when scanned over a patient it will tell you any present antibodies in their bloodstream.<br><br>
+
+				<b>Pathogenic Isolator</b><br>
+				This device can be loaded with blood samples via a syringe. It will tell you if there is a present viral pathogen, and if so it can isolate the pathogen,<br>
+				producing a virus dish for further research. This is the primary means of creating virus dishes.<br><br>
+
+				<b>Pathogenic Incubator</b><br>
+				One of the most important machines, you'll be sitting here a lot. Virus trays you produce will start small, and you will need to grow them to get anywhere.<br>
+				Load it with virus food (diluted milk, found in a wall mounted dispenser nearby) as well as a virus dish and turn it on. It will slowly grow the virus<br>
+				for analysis, splicing, or whatever other use you might find for it. It can also inject the virus into other chemicals (i.e. blood) which will allow you<br>
+				to artificially infect a blood sample to infect test subjects.<br><br>
+
+				Additionally, it can irradiate a virus dish to cause mutation. This randomly alters the syndromes, allowing you to collect new data.<br><br>
+
+				<b>Disease Analyser</b><br>
+				Virus dishes may be placed into this machine after it has been incubated sufficiently. It will create a reading of the virus' symptoms, species targeted,<br>
+				associated antibodies, and so on. It will also update the disease into the digital database, allowing it to be detected via Medical HUD or health analyzer.<br><br>
+
+				<b>Isolation Centrifuge</b><br>
+				Inserting a vial of blood into this machine will allow it to take a present pathogen or antibody, turning it into a pure virus or pure cure for your use.<br>
+				It will automatically detect if either are in the blood sample, so it is useful for determining if a sample is infected. The sample will be reusable if creating<br>
+				more of the virus, but will be expended upon creating antibodies.<br><br>
+
+				<b>Disease Splicer</b><br>
+				As it's name implied, this machine is for splicing the disease symptoms and creating new viruses. Insert an analyzed virus sample to take a symptom which can<br>
+				then be saved on a GNA disk (created by the machine), or use an existing disk on the machine to load up a symptom and splice it in.<br><br>
+
+				<h2>Syndromes</h2>
+				While curing patients is the obvious side to virology, there's more you can do! For a variety of reasons you may wish to engineer your own virus through mutations<br>
+				and splicing. Keep in mind that infecting the whole station with a deadly virus is generally frowned upon in most societies, and even in an antagonistic role simply<br>
+				infecting everyone with a very deadly virus is not ideal.<br><br>
+
+				<b>Obtaining a Sample</b><br>
+				The first step to making your own virus is to find a virus to start tinkering with. There are two ways of doing this: grabbing the pre-spawned virus dish from the<br>
+				freezer create in your laboratory, or taking a blood sample from an infected patient that you haven't cured yet and running it through the Pathogenic Isolator to<br>
+				produce a virus dish.<br><br>
+
+				In either case, you'll then need to incubate the virus in the Pathogenic Incubator until it is of sufficient size for you to work with, and ideally also run it<br>
+				through the Disease Analyzer to get an idea of what it does. This will also keep the rest of Medical from getting on your case about not giving them the ability to<br>
+				detect viral outbreaks without you, and will help prevent public lynchings if someone sneezes.<br><br>
+
+				Once that's all done, you're ready to start the real work.<br><br>
+
+				<b>Obtaining a Sample</b><br>
+				Sometimes you just need to infect somebody. Usually, this is because you're doing some splicing work and want to make sure that you'll have some copies of a virus<br>
+				in reserve for future study. Fortunately, the process of deliberately infecting patients, as well as creating backups of your viruses, is actually very simple.<br><br>
+
+				If you have a virus dish and wish to infect a patient, place the dish into the <b>Pathogenic Incubator</b> along with a beaker full of blood. Ideally, this is the<br>
+				patient's (or test monkey's) blood, though anyone's will do in a pinch - just be aware of the possibility of blood rejection, and be ready to deal with it accordingly.<br>
+				The incubator can inject a sample of the virus into the blood, which you can then inject into the patient to infect them. Alternatively, once a blood sample is infected<br>
+				you may place it in either the <b>Pathogenic Isolator</b> or <b>Isolation Centrifuge</b> to make as many samples of that virus you need without destroying the sample.<br>
+				No infections necessary!<br><br>
+
+				<b>Splicing</b><br>
+				To understand splicing, you must know that every virus has 4 GNA strands, each of which is tied to one of the syndromes that it can manifest. Each syndrome, and thus each<br>
+				strand, is ranked in order of its appearance when symptoms begin to manifest in a patient, and higher-ranked (and thus slower to appear) syndromes are likely to be more<br>
+				powerful than lower-ranked ones. (1) is the lowest, first symptom to manifest, and (4) is the highest, final symptom to manifest.<br><br>
+
+				The Disease Splicer will allow you to examine and manipulate a virus' GNA strands to create a virus with any syndromes that you want.<br><br>
+
+				The splicer has main three functions which allow you to modify viruses and define which GNA strands they contain. The first of these functions is the splicing function,<br>
+				which copies a GNA strand from an inserted virus tray to the disease splicer buffer. This is done by selecting the desired GNA strand under "Reverse Engineering".<br>
+				Doing so will destroy the virus tray in the process, so be sure that you have more samples of the virus on hand if you want to preserve it.<br><br>
+
+				The disease splicer’s second function is to copy whatever strand it has stored in its buffer to a disk the machine creates. These disks can be re-inserted into<br>
+				the disease splicer later, making their stored GNA strand immediately available for use. Unlike virus trays, disks can be reused without destroying them.<br><br>
+
+				The final function of the disease splicer is to copy over a GNA strand of its loaded virus dish with the corresponding GNA strand that is currently stored in<br>
+				its buffer. This effectively allows you to give a virus any set of symptoms you want, so long as it follows the rules of the ranking. A rank (1) symptom can fill<br>
+				any slot, while a (3) can only fill 3 and up, and a (4) can only be in the fourth slot.<br><br>
+
+				<b>Mutating</b><br>
+				Sometimes you just don't have any of the symptoms you want. Fortunately, mutating a virus dish is very simple. Simply place a dish in the <b>Pathogenic Incubator</b><br>
+				to get started and click 'add radiation'. This will fill up the radiation bar with each press. When the machine is on, this bar will slowly tick down as the radiation<br>
+				is applied to the sample. For any significant mutation the radiation should be over 500k, meaning at least half the bar. When a mutation occurs -- and multiple<br>
+				mutations can occur in a single sample -- there will be a ping from the machine. Once it's done growing and mutating, throw it into the analyzer and see what you got!<br><br>
+
+				With these functions in mind, the process in order for you to develop your own virus is as follows:
+				<ol>
+					<li>Create lots of virus sample dishes.</li>
+					<li>If the virus dishes you have already created don't contain the syndromes that you want in<br>
+					your custom virus, irradiate them in the Pathogenic Incubator until they do.</li>
+					<li>Create backup dishes of your new viruses.</li>
+					<li>Strip the GNA strands that you want from your virus dishes, saving each one onto a disk.</li>
+					<li>Load a new virus dish into the Disease Splicer.</li>
+					<li>Copy over the virus dish's GNA strands with your disks.</li>
+					<li>Once you have your final product, you can use the Pathogenic Incubator to create a beaker<br>
+					of blood containing the virus. Congratulations! You are now officially a bioweapon<br>
+					manufacturer.</li>
+				</ol>
+
+				<h2>Curing</h2>
+				Curing a virus is relatively simple, but the below will leave you without a sample to work with. If this is a concern, see 'obtaining a sample' above. Alternatively to<br>
+				the below, spacecillin can be used in a pinch to attempt to treat a virus if no virologist is present and someone decided to roll around in mucus. However this is not<br>
+				guaranteed to work, and can in fact simply make the virus more resistant to spacecillin.<br><br>
+
+				<b>Quarantine</b><br>
+				If you or a crew member becomes infected by a virus, your first concern should be to isolate them as quickly as possible to prevent the disease from spreading. Ideally,<br>
+				this means getting the patient back to Virology and into a holding cell, but failing that, it's important to get them into an isolated room, shut the door, and keep anyone<br>
+				else from entering. It is also important to clean up any blood, vomit, or mucus left behind by the patient, as it may spread the virus as well.<br><br>
+
+				<b>Antibodies</b><br>
+				Now that your patient is safely hidden away where they can't infect people without your permission, you want to cure them. The basic idea behind that is to get them to start<br>
+				synthesizing antibodies.<br><br>
+
+				Antibodies are produced by living organisms that have started to fight off a virus in their bloodstream. An organism that has produced antibodies is effectively<br>
+				immune to any virus that is weak to those antibodies, which are generally denoted by a short string of letters (say, "KM" or similar) to let you know which viruses they<br>
+				are effective against. Even better, once an organism has synthesized antibodies for itself, you can take a blood sample and use that to create more antibodies, which you<br>
+				can then inject into other people to cure the virus in them, or even to prevent them from catching it in the first place. And you can take blood samples from those people<br>
+				to make even more antibodies.<br><br>
+
+				The issue is that, most of the time, a patient's immune system is not powerful enough to create antibodies on its own (space plagues are nasty things), so you have to do that<br>
+				for them. You do that by injecting them with Radium.<br><br>
+
+				Since Radium is radioactive, this is obviously not something that you want to do to your actual patients. It'll cause major toxin damage when an antibody is<br>
+				made and quickly lead to organ failure. You get around this by using monkeys, which you can get from the box of monkey cubes very handily left on the desk in Virology for<br>
+				this very purpose.<br><br>
+
+				So the process of curing diseases is, really, quite simple. Find an infected patient. Make a monkey (ideally, strap this monkey to a bed in an isolation cell to make the<br>
+				rest of this process easier). Take a blood sample from the infected patient, then inject it into the monkey to infect the monkey. Inject the monkey with Radium. Use the antibody<br>
+				scanner on the monkey every few seconds until it says that the monkey has begun producing antibodies, then take a blood sample (or two or three or four) from the<br>
+				monkey. Put the blood sample(s) into a vial, then put the vial into the isolation centrifuge and isolate the antibodies. Voila: a bottle of virus cure. Inject it into as many<br>
+				people as you like, then throw the (likely dead) monkey into the disposals chute to eject its disease-ridden body into space and clean the isolation cell. Or, if you're on<br>
+				the ball and wish to be conservative with your limited monkey cubes, save the monkey, too.<br><br>
+
+				Congratulations! You have now cured a disease.<br><br>
+
+				The important thing to remember is that anyone injected with antibodies becomes a source of those antibodies for the future. You can take a sample of their blood<br>
+				and put it into the isolation centrifuge just like you did with the monkey's to produce more antibodies if you ever run out. For this reason, and because you might have<br>
+				gotten infected yourself in the process of synthesizing a cure, most Virologists will inject themselves with any antibodies they produce.<br><br>
+
+				<h2>Syndromes</h2>
+				Below are the possible syndromes of a virus and the stages they can appear at. A stage covers that stage and higher, so a stage 1 syndrome can appear at stage 4.<br>
+				A stage 4 syndrome, however, cannot appear any earlier than stage 4.<br><br>
+
+				<table>
+				<caption> <b>Syndromes</b> </caption>
+				<tr>
+				<th scope="col"> Stage</th>
+				<th scope="col"> Name</th>
+				<th scope="col" class="unsortable"> Effects
+				</th></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Sneezing </td>
+				<td> Makes the patient sneeze. <b>Spreads airborne disease!</b>
+				</td></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Mucus Buildup </td>
+				<td> Makes the patient's throat fill with mucus.
+				</td></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Salivary Gland Stimulation </td>
+				<td> Makes the patient drool. <b>Spreads the disease!</b>
+				</td></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Involuntary Twitching </td>
+				<td> Makes the patient twitch.
+				</td></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Headache </td>
+				<td> Gives the patient a headache.
+				</td></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Mlemington's Syndrome </td>
+				<td> Makes the patient 'mlem' uncontrollably.
+				</td></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Spyndrome </td>
+				<td> Makes the patient spin uncontrollably.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Involuntary Vocalization </td>
+				<td> Makes the patient scream.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Vomiting </td>
+				<td> Makes the patient vomit. <b>Spreads the disease!</b>
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Excessive Sleepiness </td>
+				<td> Makes the patient drowsy.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Narcolepsy </td>
+				<td> Makes the patient pass out at random.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Vision Loss </td>
+				<td> Causes partial blindness.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Severe Cough </td>
+				<td> Causes coughing. <b>Spreads airborne disease!</b>
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Digestive Inefficiency </td>
+				<td> Makes the patient always hungry.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Reduced Circulation </td>
+				<td> Makes the patient shiver.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Hair Loss </td>
+				<td> Causes the patient's hair to fall out.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Overactive Adrenal Gland </td>
+				<td> Makes the patient jittery, but also faster.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Tinnitus </td>
+				<td> Causes ringing in the patient's ears.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Lingual Dissocation </td>
+				<td> Scrambles the patients language center of their brain.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Hyperacidity </td>
+				<td> Causes small amounts of toxin damage.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Nervous Motor Instability </td>
+				<td> Makes the patient shaky.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Pineal Gland Decalcification </td>
+				<td> Gives the patient telepathy.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Neurodegeneration </td>
+				<td> Causes brain damage.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Hallucination </td>
+				<td> Causes hallucinations.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Hearing Loss </td>
+				<td> A less severe hearing damage.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Topographical Cretinism </td>
+				<td> Makes the patient incapable of walking straight.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Uncontrolled Laughter </td>
+				<td> Causes the patient to laugh uncontrollably.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> DNA Degradation </td>
+				<td> Causes genetic damage.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Phantom Aches </td>
+				<td> Causes groaning.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Chemical Synthesis </td>
+				<td> Causes the synthesis of a certain chemical in the patient's bloodstream.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Genetic Chameleonism </td>
+				<td> Prevents the patient from experiencing organ rejection.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Mass Revectoring </td>
+				<td> Causes the patient to suddenly change size.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Flipponov's Disease </td>
+				<td> Causes the patient to uncontrollably do a flip.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Gibbingtons </td>
+				<td> Gibs the patients slowly.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Radian's Syndrome </td>
+				<td> Irradiates the patient from the inside.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Deafness </td>
+				<td> Causes complete deafness.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Genome Regression </td>
+				<td> Turns the patient into the primitive form of their species.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Windpipe Contraction </td>
+				<td> Causes the patient to involuntarily hold their breath.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Autoimmune Response </td>
+				<td> Adds toxins to the patient's bloodstream.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Catastrophic DNA Degeneration </td>
+				<td> Causes genetic damage and scrambles the patient's genes.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Limb Paralysis </td>
+				<td> Temporary loss of use in the patient's individual arms and legs.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Organ Shutdown </td>
+				<td> Slowly causes internal organ damage at random.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Hyperaccelerated Aging </td>
+				<td> Ages the patient, causing external damage.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Brittle Bones </td>
+				<td> Causes bones to break more easily.
+				</td></tr>
+				<tr>
+				<td> 4 </td>
+				<td> Organic Ignition </td>
+				<td> Slowly causes the patient to burst into flames.
+				</td></tr></table>
+				<br>
+				</body>
+			</html>
+				"}

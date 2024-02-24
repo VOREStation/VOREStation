@@ -8,9 +8,7 @@
 
 /mob/living/silicon/robot/syndicate/New()
 	if(!cell)
-		cell = new /obj/item/weapon/cell(src)
-		cell.maxcharge = 25000
-		cell.charge = 25000
+		cell = new /obj/item/weapon/cell/robot_syndi(src)
 
 	..()
 
@@ -18,11 +16,11 @@
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 
 	laws = new /datum/ai_laws/syndicate_override
-	overlays.Cut()
+	cut_overlays()
 	init_id()
 	new /obj/item/weapon/robot_module/robot/syndicate(src)
 
 	radio.keyslot = new /obj/item/device/encryptionkey/syndicate(radio)
 	radio.recalculateChannels()
 
-	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)

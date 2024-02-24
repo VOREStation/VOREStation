@@ -1,14 +1,12 @@
 //node1, air1, network1 correspond to input
 //node2, air2, network2 correspond to output
-
-#define ADIABATIC_EXPONENT 0.667 //Actually adiabatic exponent - 1.
-
 /obj/machinery/atmospherics/binary/circulator
 	name = "circulator"
 	desc = "A gas circulator turbine and heat exchanger."
-	icon = 'icons/obj/pipes.dmi'
-	icon_state = "circ-off"
-	anchored = 0
+	icon = 'icons/obj/power.dmi'
+	icon_state = "circ-unassembled"
+	anchored = FALSE
+	unacidable = TRUE
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 
 	var/kinetic_efficiency = 0.04 //combined kinetic and kinetic-to-electric efficiency
@@ -22,8 +20,9 @@
 	var/last_stored_energy_transferred = 0
 	var/volume_capacity_used = 0
 	var/stored_energy = 0
+	var/temperature_overlay
 
-	density = 1
+	density = TRUE
 
 /obj/machinery/atmospherics/binary/circulator/New()
 	..()
@@ -76,20 +75,24 @@
 		update_icon()
 
 /obj/machinery/atmospherics/binary/circulator/update_icon()
-	if(stat & (BROKEN|NOPOWER) || !anchored)
-		icon_state = "circ-p"
-	else if(last_pressure_delta > 0 && recent_moles_transferred > 0)
-		if(last_pressure_delta > 5*ONE_ATMOSPHERE)
-			icon_state = "circ-run"
+	icon_state = anchored ? "circ-assembled" : "circ-unassembled"
+	cut_overlays()
+	if (stat & (BROKEN|NOPOWER) || !anchored)
+		return 1
+	if (last_pressure_delta > 0 && recent_moles_transferred > 0)
+		if (temperature_overlay)
+			add_overlay(temperature_overlay)
+		if (last_pressure_delta > 5*ONE_ATMOSPHERE)
+			add_overlay("circ-run")
 		else
-			icon_state = "circ-slow"
+			add_overlay("circ-slow")
 	else
-		icon_state = "circ-off"
+		add_overlay("circ-off")
 
 	return 1
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 75, 1)
 		anchored = !anchored
 		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
@@ -97,6 +100,7 @@
 					"You hear a ratchet.")
 
 		if(anchored)
+			temperature_overlay = null
 			if(dir & (NORTH|SOUTH))
 				initialize_directions = NORTH|SOUTH
 			else if(dir & (EAST|WEST))

@@ -18,8 +18,22 @@
 	var/datum/pipe_network/network
 
 	var/on = 0
-	use_power = 0
+	use_power = USE_POWER_OFF
 	level = 1
+
+/obj/machinery/atmospherics/portables_connector/fuel
+	icon_state = "map_connector-fuel"
+	pipe_state = "connector-fuel"
+	icon_connect_type = "-fuel"
+	pipe_flags = PIPING_ONE_PER_TURF
+	connect_types = CONNECT_TYPE_FUEL
+
+/obj/machinery/atmospherics/portables_connector/aux
+	icon_state = "map_connector-aux"
+	pipe_state = "connector-aux"
+	icon_connect_type = "-aux"
+	pipe_flags = PIPING_ONE_PER_TURF
+	connect_types = CONNECT_TYPE_AUX
 
 /obj/machinery/atmospherics/portables_connector/init_dir()
 	initialize_directions = dir
@@ -33,7 +47,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		add_underlay(T, node, dir)
+		add_underlay(T, node, dir, node?.icon_connect_type)
 
 /obj/machinery/atmospherics/portables_connector/hide(var/i)
 	update_underlays()
@@ -133,7 +147,7 @@
 
 
 /obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (connected_device)
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], dettach \the [connected_device] first.</span>")
@@ -148,7 +162,7 @@
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+			"<b>\The [user]</b> unfastens \the [src].", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()

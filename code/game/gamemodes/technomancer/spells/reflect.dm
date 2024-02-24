@@ -21,13 +21,12 @@
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
-	to_chat(owner, "<span class='notice'>Your shield will expire in 3 seconds!</span>")
-	spawn(5 SECONDS)
-		if(src)
-			to_chat(owner, "<span class='danger'>Your shield expires!</span>")
-			qdel(src)
+	to_chat(owner, "<span class='notice'>Your shield will expire in 5 seconds!</span>")
+	QDEL_IN(src, 5 SECONDS)
 
 /obj/item/weapon/spell/reflect/Destroy()
+	if(owner)
+		to_chat(owner, "<span class='danger'>Your shield expires!</span>")
 	spark_system = null
 	return ..()
 
@@ -61,9 +60,9 @@
 					P.damage = P.damage * 1.5
 
 				spark_system.start()
-				playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 				// now send a log so that admins don't think they're shooting themselves on purpose.
-				log_and_message_admins("[user] reflected [attacker]'s attack back at them.")
+				add_attack_logs(user,attacker,"Reflected [attacker]'s attack")
 
 				if(!reflecting)
 					reflecting = 1
@@ -81,9 +80,9 @@
 				on the same side, and hits you!</span>")
 
 				spark_system.start()
-				playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 
-				log_and_message_admins("[user] reflected [attacker]'s attack back at them.")
+				add_attack_logs(user,attacker,"Reflected [attacker]'s attack")
 
 				if(!reflecting)
 					reflecting = 1

@@ -65,7 +65,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	backpack = /obj/item/weapon/storage/backpack/chemistry
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/chem
-	id_type = /obj/item/weapon/card/id/medical
+	sports_bag = /obj/item/weapon/storage/backpack/sport/chem
+	id_type = /obj/item/weapon/card/id/medical/chemist
 	pda_type = /obj/item/device/pda/chemist
 
 /decl/hierarchy/outfit/job/medical/geneticist
@@ -75,7 +76,7 @@
 	backpack = /obj/item/weapon/storage/backpack/genetics
 	r_pocket = /obj/item/device/flashlight/pen
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/gen
-	id_type = /obj/item/weapon/card/id/medical
+	id_type = /obj/item/weapon/card/id/medical/geneticist
 	pda_type = /obj/item/device/pda/geneticist
 
 /decl/hierarchy/outfit/job/medical/psychiatrist
@@ -83,7 +84,7 @@
 	uniform = /obj/item/clothing/under/rank/psych
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/laceup
-	id_type = /obj/item/weapon/card/id/medical
+	id_type = /obj/item/weapon/card/id/medical/psych
 
 /decl/hierarchy/outfit/job/medical/psychiatrist/psychologist
 	name = OUTFIT_JOB_NAME("Psychologist")
@@ -91,16 +92,16 @@
 
 /decl/hierarchy/outfit/job/medical/paramedic
 	name = OUTFIT_JOB_NAME("Paramedic")
-	uniform = /obj/item/clothing/under/rank/medical/scrubs/black
+	uniform = /obj/item/clothing/under/rank/medical/paramedic
 	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	l_hand = /obj/item/weapon/storage/firstaid/regular
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
-	id_type = /obj/item/weapon/card/id/medical
+	id_type = /obj/item/weapon/card/id/medical/emt
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 /decl/hierarchy/outfit/job/medical/paramedic/emt
 	name = OUTFIT_JOB_NAME("Emergency Medical Technician")
-	uniform = /obj/item/clothing/under/rank/medical/paramedic
+	uniform = /obj/item/clothing/under/rank/medical/paramedic_alt
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/emt

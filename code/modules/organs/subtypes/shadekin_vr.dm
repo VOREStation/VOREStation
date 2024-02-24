@@ -4,11 +4,11 @@
 /obj/item/organ/external/groin/crewkin
 	min_broken_damage = 20
 
-/obj/item/organ/external/head/vr/crewkin
+/obj/item/organ/external/head/crewkin
 	min_broken_damage = 15
 
-	eye_icons_vr = 'icons/mob/human_face_vr.dmi'
-	eye_icon_vr = "eyes_shadekin_station"
+	eye_icon_location = 'icons/mob/human_face_vr.dmi'
+	eye_icon = "eyes_shadekin_station"
 
 /obj/item/organ/external/arm/crewkin
 	min_broken_damage = 15

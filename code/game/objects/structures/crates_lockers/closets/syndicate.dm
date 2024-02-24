@@ -1,9 +1,7 @@
 /obj/structure/closet/syndicate
 	name = "armory closet"
 	desc = "Why is this here?"
-	icon_state = "syndicate"
-	icon_closed = "syndicate"
-	icon_opened = "syndicateopen"
+	closet_appearance = /decl/closet_appearance/tactical/alt
 
 /obj/structure/closet/syndicate/personal
 	desc = "It's a storage unit for operative gear."
@@ -118,7 +116,6 @@
 
 	for(var/i = 0, i<2, i++)
 		for(var/res in resources)
-			var/obj/item/stack/R = new res(src)
-			R.amount = R.max_amount
+			new res(src, -1)
 
 	return ..()

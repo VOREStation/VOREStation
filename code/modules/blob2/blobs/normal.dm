@@ -20,3 +20,12 @@
 		name = "[overmind.blob_type.name]"
 	else
 		name = "inert [base_name]"
+
+/obj/structure/blob/normal/pulsed()
+	..()
+
+	if(prob(30))
+		adjust_scale((rand(10, 13) / 10), (rand(10, 13) / 10))
+
+	else
+		adjust_scale(1)

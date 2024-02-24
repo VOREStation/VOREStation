@@ -3,10 +3,18 @@
 	set category = "Abilities"
 
 	// Sanity is mostly handled in chimera_regenerate()
-
-	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
-	if(confirm == "Yes")
-		chimera_regenerate()
+	if(stat == DEAD)
+		var/confirm = tgui_alert(usr, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
+	else if (quickcheckuninjured())
+		var/confirm = tgui_alert(usr, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and match your appearance to your character slot.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
+	else
+		var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
 
 /mob/living/carbon/human/proc/chimera_regenerate()
 	//If they're already regenerating
@@ -21,33 +29,40 @@
 		to_chat(src, "You can't use that ability again so soon!")
 		return
 
-	var/nutrition_used = nutrition * 0.5
-	var/time = (240+960/(1 + nutrition_used/75))
+	var/time = min(900, (120+780/(1 + nutrition/100))) //capped at 15 mins, roughly 6 minutes at 250 (yellow) nutrition, 4.1 minutes at 500 (grey), cannot be below 2 mins
+	if (quickcheckuninjured()) //if you're completely uninjured, then you get a speedymode - check health first for quickness
+		time = 30
 
 	//Clicked regen while dead.
 	if(stat == DEAD)
 
-		//Has nutrition and dead, allow regen.
-		if(hasnutriment())
-			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+		//reviving from dead takes extra nutriment to be provided from outside OR takes twice as long and consumes extra at the end
+		if(!hasnutriment())
+			time = time*2
 
-			//Scary spawnerization.
-			revive_ready = REVIVING_NOW
-			spawn(time SECONDS)
-				// Was dead, now not dead.
-				if(stat != DEAD)
-					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
-					revive_ready = REVIVING_READY //reset their cooldown
+		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
-				// Was dead, still dead.
-				else
-					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
-					verbs |= /mob/living/carbon/human/proc/hatch
-					revive_ready = REVIVING_DONE
+		//Scary spawnerization.
+		revive_ready = REVIVING_NOW
+		revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		spawn(time SECONDS)
+			// check to see if they've been fixed by outside forces in the meantime such as defibbing
+			if(stat != DEAD)
+				to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
+				revive_ready = REVIVING_READY //reset their cooldown
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
-		//Dead until nutrition injected.
-		else
-			to_chat(src, "<span class='warning'>Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain.</span>")
+			// Was dead, still dead.
+			else
+				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
+				verbs |= /mob/living/carbon/human/proc/hatch
+				revive_ready = REVIVING_DONE
+				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+
 
 	//Clicked regen while NOT dead
 	else
@@ -55,24 +70,21 @@
 
 		//Waiting for regen after being alive
 		revive_ready = REVIVING_NOW
+		revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		spawn(time SECONDS)
 
-			//If they're still alive after regenning.
-			if(stat != DEAD)
+			//Slightly different flavour messages
+			if(stat != DEAD || hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				verbs |= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_DONE
-
-			//Was alive, now dead
-			else if(hasnutriment())
-				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				verbs |= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_DONE
-
-			//Dead until nutrition injected.
 			else
-				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
-				revive_ready = REVIVING_READY //reset their cooldown
+				to_chat(src, "<span class='warning'>Consciousness begins to stir as your battered body struggles to recover from its ordeal..</span>")
+			verbs |= /mob/living/carbon/human/proc/hatch
+			revive_ready = REVIVING_DONE
+			src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+			clear_alert("regen")
+			throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
@@ -81,6 +93,16 @@
 		return TRUE
 	else return FALSE
 
+/mob/living/carbon/human/proc/quickcheckuninjured()
+	if (getBruteLoss() || getFireLoss() || getHalLoss() || getToxLoss() || getOxyLoss() || getBrainLoss()) //fails if they have any of the main damage types
+		return FALSE
+	for (var/obj/item/organ/O in organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
+		if (O.is_damaged() || O.status)
+			return FALSE
+	for (var/obj/item/organ/O in internal_organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
+		if (O.is_damaged() || O.status)
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
@@ -91,57 +113,70 @@
 		verbs -= /mob/living/carbon/human/proc/hatch
 		return
 
-	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 
 		//Dead when hatching
 		if(stat == DEAD)
-			//Check again for nutriment (necessary?)
-			if(hasnutriment())
-				chimera_hatch()
-				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
-				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
-				return
-
-			//Don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
-			else
-				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
-				verbs -= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_READY //reset their cooldown they can try again when they're given a kickstart
+			var/sickness_duration = 10 MINUTES
+			//Reviving from ded takes extra nutrition - if it isn't provided from outside sources, it comes from you
+			if(!hasnutriment())
+				nutrition=nutrition * 0.75
+				sickness_duration = 20 MINUTES
+			chimera_hatch()
+			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
+			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
+			visible_message("<span class='warning'><p><font size=4>The former corpse staggers to its feet, all its former wounds having vanished...</font></p></span>") //Bloody hell...
+			clear_alert("hatch")
+			return
 
 		//Alive when hatching
 		else
 			chimera_hatch()
-			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+
+			visible_message("<span class='warning'><p><font size=4>[src] rises to \his feet.</font></p></span>") //Bloody hell...
+			clear_alert("hatch")
 
 /mob/living/carbon/human/proc/chimera_hatch()
 	verbs -= /mob/living/carbon/human/proc/hatch
 	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
-
 	//Modify and record values (half nutrition and braindamage)
-	var/old_nutrition = nutrition * 0.5
-	var/braindamage = (brainloss * 0.5) //Can only heal half brain damage.
-
+	var/old_nutrition = nutrition
+	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
+	var/uninjured=quickcheckuninjured()
 	//I did have special snowflake code, but this is easier.
 	revive()
 	mutations.Remove(HUSK)
-	nutrition = old_nutrition
 	setBrainLoss(braindamage)
 
-	//Drop everything
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+	if(!uninjured)
+		nutrition = old_nutrition * 0.5
+		//Drop everything
+		for(var/obj/item/W in src)
+			drop_from_inventory(W)
+		//Visual effects
+		var/T = get_turf(src)
+		var/blood_color = species.blood_color
+		var/flesh_color = species.flesh_color
+		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
+		visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
+	else //lower cost for doing a quick cosmetic revive
+		nutrition = old_nutrition * 0.9
 
 	//Unfreeze some things
 	does_not_breathe = FALSE
 	update_canmove()
 	weakened = 2
 
-	//Visual effects
-	var/T = get_turf(src)
-	new /obj/effect/gibspawner/human/xenochimera(T)
+	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
-	revive_ready = world.time + 1 HOUR //set the cooldown
+/datum/modifier/resleeving_sickness/chimera //near identical to the regular version, just with different flavortexts
+	name = "imperfect regeneration"
+	desc = "You feel rather weak and unfocused, having just regrown your body not so long ago."
+
+	on_created_text = "<span class='warning'><font size='3'>You feel weak and unsteady, that regeneration having been rougher than most.</font></span>"
+	on_expired_text = "<span class='notice'><font size='3'>You feel your strength and focus return to you.</font></span>"
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
@@ -250,7 +285,7 @@
 					//Strange audio
 					//to_chat(src, "Strange Audio")
 					switch(rand(1,12))
-						if(1) src << 'sound/machines/airlock.ogg'
+						if(1) src << 'sound/machines/door/old_airlock.ogg'
 						if(2)
 							if(prob(50))src << 'sound/effects/Explosion1.ogg'
 							else src << 'sound/effects/Explosion2.ogg'
@@ -259,7 +294,7 @@
 						if(5) src << 'sound/effects/Glassbr2.ogg'
 						if(6) src << 'sound/effects/Glassbr3.ogg'
 						if(7) src << 'sound/machines/twobeep.ogg'
-						if(8) src << 'sound/machines/windowdoor.ogg'
+						if(8) src << 'sound/machines/door/windowdoor.ogg'
 						if(9)
 							//To make it more realistic, I added two gunshots (enough to kill)
 							src << 'sound/weapons/Gunshot1.ogg'
@@ -354,8 +389,6 @@
 	set desc = "Bites prey and drains them of a significant portion of blood, feeding you in the process. You may only do this once per minute."
 	set category = "Abilities"
 
-	if(last_special > world.time)
-		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		to_chat(src, "You cannot bite anyone in your current state!")
@@ -365,9 +398,27 @@
 	for(var/mob/living/carbon/human/M in view(1,src))
 		if(!istype(M,/mob/living/silicon) && Adjacent(M))
 			choices += M
-	choices -= src
 
-	var/mob/living/carbon/human/B = input(src,"Who do you wish to bite?") as null|anything in choices
+
+	var/mob/living/carbon/human/B = tgui_input_list(src, "Who do you wish to bite? Select yourself to bring up configuration for privacy and bleeding. \
+	Beware! Configuration resets on new round!", "Suck Blood", choices)
+
+	if(B == src) //We are using this to minimize the amount of pop-ups or buttons.
+		var/control_options = list("always loud", "pop-up", "intents", "always subtle")
+		src.species.bloodsucker_controlmode = tgui_input_list(src,"Choose your preferred control of blood sucking. \
+		You can only cause bleeding wounds with pop up and intents modes. Choosing intents prints controls to chat.", "Configure Bloodsuck", control_options, "always loud")
+		if(src.species.bloodsucker_controlmode == "intents") //We are printing to chat for better readability
+			to_chat(src, SPAN_NOTICE("You've chosen to use intents for blood draining. \n \
+			HELP - Loud, No Bleeding \n \
+			DISARM - Subtle, Causes bleeding \n \
+			GRAB - Subtle, No Bleeding \n \
+			HARM - Loud, Causes Bleeding"))
+		return
+
+	if(last_special > world.time)
+		to_chat(src, "You cannot suck blood so quickly in a row!")
+		return
+
 
 	if(!B || !src || src.stat) return
 
@@ -379,22 +430,79 @@
 		to_chat(src, "You cannot bite in your current state.")
 		return
 	if(B.vessel.total_volume <= 0 || B.isSynthetic()) //Do they have any blood in the first place, and are they synthetic?
-		to_chat(src, "<font color='red'>There appears to be no blood in this prey...</font>")
+		to_chat(src, span_red("There appears to be no blood in this prey..."))
 		return
 
 	last_special = world.time + 600
-	src.visible_message("<font color='red'><b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b></font>")
+
+	var/control_pref = src.species.bloodsucker_controlmode
+	var/noise = TRUE
+	var/bleed = FALSE
+
+	switch(control_pref)
+		if("always subtle")
+			noise = FALSE
+		if("pop-up")
+			if(tgui_alert(src, "Do you want to be subtle?", "Privacy", list("Yes", "No")) == "Yes")
+				noise = FALSE
+			if(tgui_alert(src, "Do you want your target to keep bleeding?", "Continue Bleeding", list("Yes", "No")) == "Yes" )
+				bleed = TRUE
+		if("intents")
+			/*
+			Logic is, with "Help", we are taking our time but it's pretty obvious..
+			With "disarm", we rush the act, letting it keep bleeding
+			"HURT" is self-evidently loud and bleedy
+			"Grab" is subtle because we keep our prey tight and close.
+			*/
+			switch(src.a_intent)
+				//if(I_HELP) uses default values. Added as a comment for clarity
+				if(I_DISARM)
+					noise = FALSE
+					bleed = TRUE
+				if(I_GRAB)
+					noise = FALSE
+				if(I_HURT)
+					bleed =TRUE
+
+
+
+
+	if(noise)
+		src.visible_message(span_red("<b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b>"))
+	else
+		src.visible_message(span_red("<i>[src] moves their head next to [B]'s neck, seemingly looking for something!</i>"), range = 1)
+
+	if(bleed) //Due to possibility of missing/misclick and missing the bleeding cues, we are warning the scene members of BLEEDING being on
+		to_chat(src, SPAN_WARNING("This is going to cause [B] to keep bleeding!"))
+		to_chat(B, SPAN_DANGER("You are going to keep bleeding from this bite!"))
 
 	if(do_after(src, 300, B)) //Thrirty seconds.
 		if(!Adjacent(B)) return
-		src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>")
-		B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
-		B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
-		src.nutrition += 400
-		sleep(50)
-		B.drip(1)
-		sleep(50)
-		B.drip(1)
+		if(noise)
+			src.visible_message(span_red("<b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b>"))
+		else
+			src.visible_message(span_red("<i>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</i>"), range = 1)
+		if(bleed)
+			B.apply_damage(10, BRUTE, BP_HEAD, blocked = 0, soaked = 0, sharp = TRUE, edge = FALSE)
+			var/obj/item/organ/external/E = B.get_organ(BP_HEAD)
+			if(!(E.status & ORGAN_BLEEDING))
+				E.status |= ORGAN_BLEEDING //If 10 points of piercing didn't make the organ bleed, we are making it bleed.
+
+
+		else
+			B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
+
+
+		if(!noise && !bleed) //If we're quiet and careful, there should be no blood to serve as evidence
+			B.remove_blood(82) //Removing in one go since we dont want splatter
+			adjust_nutrition(410) //We drink it all, not letting any go to waste!
+		else //Otherwise, we're letting blood drop to the floor
+			B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
+			adjust_nutrition(400)
+			sleep(50)
+			B.drip(1)
+			sleep(50)
+			B.drip(1)
 
 
 //Welcome to the adapted changeling absorb code.
@@ -566,7 +674,7 @@
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
-	if(!istype(T) || T.isSynthetic())
+	if(!istype(T))
 		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
 		return
 
@@ -670,7 +778,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -685,7 +793,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -700,7 +808,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -717,21 +825,21 @@
 		return //Silent, because can_shred does messages.
 
 	//Let them pick any of the target's external organs
-	var/obj/item/organ/external/T_ext = input(src,"What do you wish to severely damage?") as null|anything in T.organs //D for destroy.
+	var/obj/item/organ/external/T_ext = tgui_input_list(src, "What do you wish to severely damage?", "Organ Choice", T.organs) //D for destroy.
 	if(!T_ext) //Picking something here is critical.
 		return
 	if(T_ext.vital)
-		if(alert("Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...",,"Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//Any internal organ, if there are any
-	var/obj/item/organ/internal/T_int = input(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in T_ext.internal_organs
+	var/obj/item/organ/internal/T_int = tgui_input_list(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'", "Organ Choice", T_ext.internal_organs)
 	if(T_int && T_int.vital)
-		if(alert("Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...",,"Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//And a belly, if they want
-	var/obj/belly/B = input(src,"Do you wish to swallow the organ if you tear if out? If not, click 'cancel'") as null|anything in vore_organs
+	var/obj/belly/B = tgui_input_list(src,"To where do you wish to swallow the organ if you tear if out? If not at all, click 'cancel'", "Organ Choice", vore_organs)
 
 	if(can_shred(T) != T)
 		to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
@@ -790,7 +898,7 @@
 
 /mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"
-	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
+	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall."
 	set category = "Abilities"
 
 	var/mob/living/carbon/human/C = src
@@ -803,13 +911,24 @@
 	if(C.nutrition < 25 && !C.flying) //Don't have any food in you?" You can't fly.
 		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
 		return
-	if(C.nutrition > 1000 && !C.flying)
-		to_chat(C, "<span class='notice'>You have eaten too much to fly! You need to lose some nutrition.</span>")
-		return
 
 	C.flying = !C.flying
 	update_floating()
 	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")
+
+/mob/living/
+	var/flight_vore = FALSE
+
+/mob/living/proc/flying_vore_toggle()
+	set name = "Toggle Flight Vore"
+	set desc = "Allows you to engage in voracious misadventures while flying."
+	set category = "Abilities"
+
+	flight_vore = !flight_vore
+	if(flight_vore)
+		to_chat(src, "You have allowed for flight vore! Bumping into characters while flying will now trigger dropnoms! Unless prefs don't match.. then you will take a tumble!")
+	else
+		to_chat(src, "Flight vore disabled! You will no longer engage dropnoms while in flight.")
 
 //Proc to stop inertial_drift. Exchange nutrition in order to stop gliding around.
 /mob/living/proc/start_wings_hovering()
@@ -835,12 +954,12 @@
 		return
 
 	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
-		C.anchored = 1 //This is the only way to stop the inertial_drift.
-		C.nutrition -= 25
+		C.anchored = TRUE //This is the only way to stop the inertial_drift.
+		C.adjust_nutrition(-25)
 		update_floating()
 		to_chat(C, "<span class='notice'>You hover in place.</span>")
 		spawn(6) //.6 seconds.
-			C.anchored = 0
+			C.anchored = FALSE
 	else
 		return
 
@@ -850,3 +969,563 @@
 	set category = "Abilities"
 	pass_flags ^= PASSTABLE //I dunno what this fancy ^= is but Aronai gave it to me.
 	to_chat(src, "You [pass_flags&PASSTABLE ? "will" : "will NOT"] move over tables/railings/trays!")
+
+/mob/living/carbon/human/proc/check_silk_amount()
+	set name = "Check Silk Amount"
+	set category = "Abilities"
+
+	if(species.is_weaver)
+		to_chat(src, "Your silk reserves are at [species.silk_reserve]/[species.silk_max_reserve].")
+	else
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+
+/mob/living/carbon/human/proc/toggle_silk_production()
+	set name = "Toggle Silk Production"
+	set category = "Abilities"
+
+	if(species.is_weaver)
+		species.silk_production = !(species.silk_production)
+		to_chat(src, "You are [species.silk_production ? "now" : "no longer"] producing silk.")
+	else
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+
+/mob/living/carbon/human/proc/weave_structure()
+	set name = "Weave Structure"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	var/choice
+	var/datum/weaver_recipe/structure/desired_result
+	var/finalized = "No"
+
+	while(finalized == "No" && src.client)
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_structures)
+		desired_result  = weavable_structures[choice]
+		if(!desired_result || !istype(desired_result))
+			return
+
+		if(choice)
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
+
+	if(!desired_result || !istype(desired_result))
+		return
+
+	if(desired_result.cost > species.silk_reserve)
+		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		return
+
+	if(stat)
+		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		return
+
+	if(locate(desired_result.result_type) in src.loc)
+		to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+		return
+
+	if(!isturf(src.loc))
+		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		return
+
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
+		if(desired_result.cost > species.silk_reserve)
+			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			return
+
+		if(locate(desired_result.result_type) in src.loc)
+			to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+			return
+
+		if(!isturf(src.loc))
+			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			return
+
+		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
+
+		//new desired_result.result_type(src.loc)
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = species.silk_color
+
+
+/mob/living/carbon/human/proc/weave_item()
+	set name = "Weave Item"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		return
+
+	var/choice
+	var/datum/weaver_recipe/item/desired_result
+	var/finalized = "No"
+
+	while(finalized == "No" && src.client)
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_items)
+		desired_result  = weavable_items[choice]
+		if(!desired_result || !istype(desired_result))
+			return
+
+		if(choice)
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
+
+	if(!desired_result || !istype(desired_result))
+		return
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	if(desired_result.cost > species.silk_reserve)
+		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		return
+
+	if(stat)
+		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		return
+
+	if(!isturf(src.loc))
+		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		return
+
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
+		if(desired_result.cost > species.silk_reserve)
+			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			return
+
+		if(!isturf(src.loc))
+			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			return
+
+		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
+
+		//new desired_result.result_type(src.loc)
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = species.silk_color
+
+/mob/living/carbon/human/proc/set_silk_color()
+	set name = "Set Silk Color"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	var/new_silk_color = input(usr, "Pick a color for your woven products:","Silk Color", species.silk_color) as null|color
+	if(new_silk_color)
+		species.silk_color = new_silk_color
+
+/mob/living/carbon/human/proc/toggle_eye_glow()
+	set name = "Toggle Eye Glowing"
+	set category = "Abilities"
+
+	species.has_glowing_eyes = !species.has_glowing_eyes
+	update_eyes()
+	to_chat(src, "Your eyes [species.has_glowing_eyes ? "are now" : "are no longer"] glowing.")
+
+
+
+/mob/living/carbon/human/proc/enter_cocoon()
+	set name = "Spin Cocoon"
+	set category = "Abilities"
+	if(!isturf(loc))
+		to_chat(src, "You don't have enough space to spin a cocoon!")
+		return
+
+	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
+		var/obj/item/weapon/storage/vore_egg/bugcocoon/C = new(loc)
+		forceMove(C)
+		transforming = TRUE
+		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
+		V.tgui_interact(src)
+
+		var/mob_holder_type = src.holder_type || /obj/item/weapon/holder
+		C.w_class = src.size_multiplier * 4 //Egg size and weight scaled to match occupant.
+		var/obj/item/weapon/holder/H = new mob_holder_type(C, src)
+		C.max_storage_space = H.w_class
+		C.icon_scale_x = 0.25 * C.w_class
+		C.icon_scale_y = 0.25 * C.w_class
+		C.update_transform()
+		//egg_contents -= src
+		C.contents -= src
+
+/mob/living/carbon/human/proc/water_stealth()
+	set name = "Dive under water / Resurface"
+	set desc = "Dive under water, allowing for you to be stealthy and move faster."
+	set category = "Abilities"
+
+	if(last_special > world.time)
+		return
+	last_special = world.time + 50 //No spamming!
+
+	if(has_modifier_of_type(/datum/modifier/underwater_stealth))
+		to_chat(src, "You resurface!")
+		remove_modifiers_of_type(/datum/modifier/underwater_stealth)
+		return
+
+	if(!isturf(loc)) //We have no turf.
+		to_chat(src, "There is no water for you to dive into!")
+		return
+
+	if(istype(src.loc, /turf/simulated/floor/water))
+		var/turf/simulated/floor/water/water_floor = src.loc
+		if(water_floor.depth >= 1) //Is it deep enough?
+			add_modifier(/datum/modifier/underwater_stealth) //No duration. It'll remove itself when they exit the water!
+			to_chat(src, "You dive into the water!")
+			visible_message("[src] dives into the water!")
+		else
+			to_chat(src, "The water here is not deep enough to dive into!")
+			return
+
+	else
+		to_chat(src, "There is no water for you to dive into!")
+		return
+
+/mob/living/carbon/human/proc/underwater_devour()
+	set name = "Devour From Water"
+	set desc = "Grab something in the water with you and devour them with your selected stomach."
+	set category = "Abilities"
+
+	if(last_special > world.time)
+		return
+	last_special = world.time + 50 //No spamming!
+
+	if(stat == DEAD || paralysis || weakened || stunned)
+		to_chat(src, "<span class='notice'>You cannot do that while in your current state.</span>")
+		return
+
+	if(!(src.vore_selected))
+		to_chat(src, "<span class='notice'>No selected belly found.</span>")
+		return
+
+
+	if(!has_modifier_of_type(/datum/modifier/underwater_stealth))
+		to_chat(src, "You must be underwater to do this!!")
+		return
+
+	var/list/targets = list() //Shameless copy and paste. If it ain't broke don't fix it!
+
+	for(var/turf/T in range(1, src))
+		if(istype(T, /turf/simulated/floor/water))
+			for(var/mob/living/L in T)
+				if(L == src) //no eating yourself. 1984.
+					continue
+				if(L.devourable && L.can_be_drop_prey)
+					targets += L
+
+	if(!(targets.len))
+		to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+		return
+
+	var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+	if(!target)
+		return
+
+	to_chat(target, "<span class='critical'>Something begins to circle around you in the water!</span>") //Dun dun...
+	var/starting_loc = target.loc
+
+	if(do_after(src, 50))
+		if(target.loc != starting_loc)
+			to_chat(target, "<span class='warning'>You got away from whatever that was...</span>")
+			to_chat(src, "<span class='notice'>They got away.</span>")
+			return
+		if(target.buckled) //how are you buckled in the water?!
+			target.buckled.unbuckle_mob()
+		target.visible_message("<span class='vwarning'>\The [target] suddenly disappears, being dragged into the water!</span>",\
+			"<span class='vdanger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
+		to_chat(src, "<span class='vnotice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
+		target.forceMove(src.vore_selected)
+
+/mob/living/carbon/human/proc/toggle_pain_module()
+	set name = "Toggle pain simulation."
+	set desc = "Turn on your pain simulation for that organic experience! Or turn it off for repairs, or if it's too much."
+	set category = "Abilities"
+
+	if(synth_cosmetic_pain)
+		to_chat(src, "<span class='notice'> You turn off your pain simulators.</span>")
+	else
+		to_chat(src, "<span class='danger'> You turn on your pain simulators </span>")
+
+	synth_cosmetic_pain = !synth_cosmetic_pain
+
+//This is the 'long vore' ability. Also known as "Grab Prey with appendage" or "Long Predatorial Reach". Or simply "Tongue Vore"
+//It involves projectiles (which means it can be VV'd onto a gun for shenanigans)
+//It can also be recolored via the proc, which persists between rounds.
+
+/mob/living/proc/long_vore() // Allows the user to tongue grab a creature in range. Made a /living proc so frogs can frog you.
+	set name = "Grab Prey With Appendage"
+	set category = "Abilities"
+	set desc = "Grab a target with any of your appendages!"
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		return
+
+	last_special = world.time + 10 //Anti-spam.
+
+	if (!istype(src, /mob/living))
+		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		return
+
+	var/choice = tgui_alert(src, "Do you wish to change the color of your appendage, use it, or change its functionality?", "Selection List", list("Use it", "Color", "Functionality"))
+
+	if(choice == "Color") //Easy way to set color so we don't bloat up the menu with even more buttons.
+		var/new_color = input(usr, "Choose a color to set your appendage to!", "", appendage_color) as color|null
+		if(new_color)
+			appendage_color = new_color
+	if(choice == "Functionality") //Easy way to set color so we don't bloat up the menu with even more buttons.
+		var/choice2 = tgui_alert(usr, "Choose if you want to be pulled to the target or pull them to you!", "Functionality Setting", list("Pull target to self", "Pull self to target"))
+		if(choice2 == "Pull target to self")
+			appendage_alt_setting = 0
+		else
+			appendage_alt_setting = 1
+	else
+		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
+
+		for(var/mob/living/L in range(5, src))
+			if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+				continue
+			if(L == src) //no eating yourself. 1984.
+				continue
+			if(L.devourable && L.throw_vore && (L.can_be_drop_pred || L.can_be_drop_prey))
+				targets += L
+
+		if(!(targets.len))
+			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			return
+
+		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+		if(!target)
+			return
+
+		if(!istype(target, /mob/living)) //Safety.
+			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			return
+
+		if (get_dist(src,target) >= 6)
+			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			return
+
+		visible_message("<span class='vnotice'>\The [src] attempts to snatch up [target]!</span>", \
+						"<span class='vnotice'>You attempt to snatch up [target]!</span>" )
+		playsound(src, 'sound/vore/sunesound/pred/schlorp.ogg', 25)
+
+		//Code to shoot the beam here.
+		var/obj/item/projectile/beam/appendage/appendage_attack = new /obj/item/projectile/beam/appendage(get_turf(loc))
+		appendage_attack.launch_projectile(target, BP_TORSO, src) //Send it.
+		last_special = world.time + 100 //Cooldown for successful strike.
+
+
+
+
+/obj/item/projectile/beam/appendage //The tongue projecitle.
+	name = "appendage"
+	icon_state = "laser"
+	nodamage = 1
+	damage = 0
+	eyeblur = 0
+	check_armour = "bullet" //Not really needed, but whatever.
+	can_miss = FALSE //Let's not miss our tongue!
+	fire_sound = 'sound/effects/slime_squish.ogg'
+	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
+	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
+	excavation_amount = 0
+	hitscan_light_intensity = 0
+	hitscan_light_range = 0
+	muzzle_flash_intensity = 0
+	muzzle_flash_range = 0
+	impact_light_intensity = 0
+	impact_light_range  = 0
+	light_range = 0 //No your tongue can not glow...For now.
+	light_power = 0
+	light_on = 0 //NO LIGHT
+	combustion = FALSE //No, your tongue can't set the room on fire.
+	pass_flags = PASSTABLE
+
+	muzzle_type = /obj/effect/projectile/muzzle/appendage
+	tracer_type = /obj/effect/projectile/tracer/appendage
+	impact_type = /obj/effect/projectile/impact/appendage
+
+/obj/item/projectile/beam/appendage/generate_hitscan_tracers()
+	if(firer) //This neat little code block allows for C O L O R A B L E tongues! Correction: 'Appendages'
+		if(istype(firer,/mob/living))
+			var/mob/living/originator = firer
+			color = originator.appendage_color
+	..()
+
+/obj/item/projectile/beam/appendage/on_hit(var/atom/target)
+	if(target == firer) //NO EATING YOURSELF
+		return
+	if(istype(target, /mob/living))
+		var/mob/living/M = target
+		var/throw_range = get_dist(firer,M)
+		if(istype(firer, /mob/living)) //Let's check for any alt settings. Such as: User selected to be thrown at target.
+			var/mob/living/F = firer
+			if(F.appendage_alt_setting == 1)
+				F.throw_at(M, throw_range, firer.throw_speed, F) //Firer thrown at target.
+				F.update_icon()
+				return
+		if(istype(M))
+			M.throw_at(firer, throw_range, M.throw_speed, firer) //Fun fact: living things have a throw_speed of 2.
+			M.update_icon()
+			return
+		else //Anything that isn't a /living
+			return
+	if(istype(target, /obj/item/)) //We hit an object? Pull it. This can only happen via admin shenanigans such as a gun being VV'd with this projectile.
+		var/obj/item/hit_object = target
+		if(hit_object.density || hit_object.anchored)
+			if(istype(firer, /mob/living))
+				var/mob/living/originator = firer
+				originator.Weaken(2) //If you hit something dense or anchored, fall flat on your face.
+				originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
+								"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+				playsound(originator, "punch", 25, 1, -1)
+			return
+		else
+			hit_object.throw_at(firer, throw_range, hit_object.throw_speed, firer)
+	if(istype(target, /turf/simulated/wall) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/window)) //This can happen normally due to odd terrain. For some reason, it seems to not actually interact with walls.
+		if(istype(firer, /mob/living))
+			var/mob/living/originator = firer
+			originator.Weaken(2) //Hit a wall? Whoops!
+			originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
+							"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+			playsound(originator, "punch", 25, 1, -1)
+			return
+		else
+			return
+
+
+
+/obj/effect/projectile/muzzle/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "muzzle_appendage"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00"
+
+/obj/effect/projectile/tracer/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "appendage_beam"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00" //Doesn't matter. Not used.
+
+/obj/effect/projectile/impact/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "impact_appendage_combined"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00"
+//LONG VORE ABILITY END
+
+/obj/item/weapon/gun/energy/gun/tongue //This is the 'tongue' gun for admin memery.
+	name = "tongue"
+	desc = "A tongue that can be used to grab things."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "synthtongue"
+	item_state = "gun"
+	fire_delay = null
+	force = 0
+	fire_delay = 1 //Adminspawn. No delay.
+	charge_cost = 0 //This is an adminspawn gun...No reason to force it to have a charge state.
+
+	projectile_type = /obj/item/projectile/beam/appendage
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
+	modifystate = null
+
+
+	firemodes = list(
+		list(mode_name="vore", projectile_type=/obj/item/projectile/beam/appendage, modifystate=null, fire_sound='sound/vore/sunesound/pred/schlorp.ogg', charge_cost = 0),)
+
+/obj/item/weapon/gun/energy/gun/tongue/update_icon() //No updating the icon.
+	icon_state = "synthtongue"
+	return
+
+/obj/item/weapon/gun/energy/bfgtaser/tongue
+	name = "9000-series Ball Tongue Taser"
+	desc = "A banned riot control device."
+	slot_flags = SLOT_BELT|SLOT_BACK
+	projectile_type = /obj/item/projectile/bullet/BFGtaser/tongue
+	fire_delay = 20
+	w_class = ITEMSIZE_LARGE
+	one_handed_penalty = 90 // The thing's heavy and huge.
+	accuracy = 45
+	charge_cost = 2400 //yes, this bad boy empties an entire weapon cell in one shot. What of it?
+
+/obj/item/projectile/bullet/BFGtaser/tongue
+	name = "tongue ball"
+	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
+	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
+	zaptype = /obj/item/projectile/beam/appendage
+
+/mob/living/proc/target_lunge() //The leaper leap, but usable as an ability
+	set name = "Lunge At Prey"
+	set category = "Abilities"
+	set desc = "Dive atop your prey and gobble them up!"
+
+	var/leap_warmup = 1 SECOND //Easy to modify
+	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		return
+
+	last_special = world.time + 10 //Anti-spam.
+
+	if (!istype(src, /mob/living))
+		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		return
+
+	else
+		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
+
+		for(var/mob/living/L in range(5, src))
+			if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+				continue
+			if(L == src) //no eating yourself. 1984.
+				continue
+			if(L.devourable && L.throw_vore && (L.can_be_drop_pred || L.can_be_drop_prey))
+				targets += L
+
+		if(!(targets.len))
+			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			return
+
+		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+		if(!target)
+			return
+
+		if(!istype(target, /mob/living)) //Safety.
+			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			return
+
+		if (get_dist(src,target) >= 6)
+			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			return
+
+		visible_message(span("warning","\The [src] rears back, ready to lunge!"))
+		to_chat(target, span("danger","\The [src] focuses on you!"))
+		// Telegraph, since getting stunned suddenly feels bad.
+		do_windup_animation(target, leap_warmup)
+		sleep(leap_warmup) // For the telegraphing.
+
+		if(target.z != z)	//Make sure you haven't disappeared to somewhere we can't go
+			return FALSE
+
+		// Do the actual leap.
+		status_flags |= LEAPING // Lets us pass over everything.
+		visible_message(span("critical","\The [src] leaps at \the [target]!"))
+		throw_at(get_step(target, get_turf(src)), 7, 1, src)
+		playsound(src, leap_sound, 75, 1)
+
+		sleep(5) // For the throw to complete.
+
+		if(status_flags & LEAPING)
+			status_flags &= ~LEAPING // Revert special passage ability.
+
+		if(Adjacent(target))	//We leapt at them but we didn't manage to hit them, let's see if we're next to them
+			target.Weaken(2)	//get knocked down, idiot

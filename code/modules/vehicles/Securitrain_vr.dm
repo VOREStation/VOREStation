@@ -23,7 +23,7 @@
 
 	var/car_limit = 0	//how many cars an engine can pull before performance degrades. This should be 0 to prevent trailers from unhitching.
 	active_engines = 1
-	var/obj/item/weapon/key/key	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
+	var/obj/item/weapon/key/key
 	var/key_type = /obj/item/weapon/key/security
 	var/siren = 0 //This is for eventually getting the siren sprite to work.
 
@@ -39,7 +39,7 @@
 	desc = "A trolly designed to transport security personnel or prisoners."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "paddy_trailer"
-	anchored = 0
+	anchored = FALSE
 	passenger_allowed = 1
 	locked = 0
 
@@ -62,9 +62,9 @@
 /obj/vehicle/train/security/engine/New()
 	..()
 	cell = new /obj/item/weapon/cell/high(src)
-	key = new key_type(src)	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
+	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
-	overlays += I
+	add_overlay(I)
 	turn_off()	//so engine verbs are correctly set
 
 /obj/vehicle/train/security/engine/Move(var/turf/destination)
@@ -91,7 +91,7 @@
 		..()
 
 /obj/vehicle/train/security/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, key_type))	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
+	if(istype(W, key_type))
 		if(!key)
 			user.drop_item()
 			W.forceMove(src)
@@ -166,28 +166,28 @@
 	else
 		verbs += /obj/vehicle/train/security/engine/verb/stop_engine
 
-/obj/vehicle/train/security/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/security/RunOver(var/mob/living/M)
 	var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
 
-	H.apply_effects(5, 5)
+	M.apply_effects(5, 5)
 	for(var/i = 0, i < rand(1,3), i++)
-		H.apply_damage(rand(1,5), BRUTE, pick(parts))
+		M.apply_damage(rand(1,5), BRUTE, pick(parts))
 
-/obj/vehicle/train/security/trolley/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/security/trolley/RunOver(var/mob/living/M)
 	..()
-	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
-/obj/vehicle/train/security/engine/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/security/engine/RunOver(var/mob/living/M)
 	..()
 
 	if(is_train_head() && istype(load, /mob/living/carbon/human))
 		var/mob/living/carbon/human/D = load
-		to_chat(D, "<span class='danger'>You ran over \the [H]!</span>"
-		visible_message("<span class='danger'>\The [src] ran over \the [H]!</span>")
-		add_attack_logs(D,H,"Ran over with [src.name]")
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey]), driven by [D.name] ([D.ckey])</font>")
+		to_chat(D, "<span class='danger'>You ran over \the [M]!</span>"
+		visible_message("<span class='danger'>\The [src] ran over \the [M]!</span>")
+		add_attack_logs(D,M,"Ran over with [src.name]")
+		attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey]), driven by [D.name] ([D.ckey])")]")
 	else
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
+		attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
 
 //-------------------------------------------
@@ -207,14 +207,11 @@
 		return ..()
 
 /obj/vehicle/train/security/engine/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(!istype(usr, /mob/living/carbon/human))
-		return
-
-	to_chat(user, "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition.")
-	to_chat(user, "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%")
+	. = ..()
+	if(Adjacent(user))
+		. += "The power light is [on ? "on" : "off"]."
+		. += "There are[key ? "" : " no"] keys in the ignition."
+		. += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
 
 /obj/vehicle/train/security/engine/verb/start_engine()
 	set name = "Start engine"
@@ -322,7 +319,7 @@
 		C.pixel_y += load_offset_y
 		C.layer = layer
 
-		overlays += C
+		add_overlay(C)
 
 		//we can set these back now since we have already cloned the icon into the overlay
 		C.pixel_x = initial(C.pixel_x)
@@ -335,7 +332,7 @@
 		load = dummy_load.actual_load
 		dummy_load.actual_load = null
 		qdel(dummy_load)
-		overlays.Cut()
+		cut_overlays()
 	..()
 
 //-------------------------------------------
@@ -387,6 +384,6 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 	else
-		anchored = 1
+		anchored = TRUE

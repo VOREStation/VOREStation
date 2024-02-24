@@ -7,7 +7,12 @@
 	set src = usr.contents
 
 	if(wearer && (wearer.back == src || wearer.belt == src))
-		ui_interact(usr)
+		tgui_interact(usr)
+
+// So the UI button clicks come here
+/obj/item/weapon/rig/ui_action_click()
+	if(usr == wearer && (wearer.back == src || wearer.belt == src))
+		tgui_interact(usr)
 
 /obj/item/weapon/rig/verb/toggle_vision()
 
@@ -214,15 +219,15 @@
 		if(module.selectable)
 			selectable |= module
 
-	var/obj/item/rig_module/module = input("Which module do you wish to select?") as null|anything in selectable
+	var/obj/item/rig_module/module = tgui_input_list(usr, "Which module do you wish to select?", "Select Module", selectable)
 
 	if(!istype(module))
 		selected_module = null
-		to_chat(usr, "<font color='blue'><b>Primary system is now: deselected.</b></font>")
+		to_chat(usr, span_blue("<b>Primary system is now: deselected.</b>"))
 		return
 
 	selected_module = module
-	to_chat(usr, "<font color='blue'><b>Primary system is now: [selected_module.interface_name].</b></font>")
+	to_chat(usr, span_blue("<b>Primary system is now: [selected_module.interface_name].</b>"))
 
 /obj/item/weapon/rig/verb/toggle_module()
 
@@ -250,16 +255,16 @@
 		if(module.toggleable)
 			selectable |= module
 
-	var/obj/item/rig_module/module = input("Which module do you wish to toggle?") as null|anything in selectable
+	var/obj/item/rig_module/module = tgui_input_list(usr, "Which module do you wish to toggle?", "Toggle Module", selectable)
 
 	if(!istype(module))
 		return
 
 	if(module.active)
-		to_chat(usr, "<font color='blue'><b>You attempt to deactivate \the [module.interface_name].</b></font>")
+		to_chat(usr, span_blue("<b>You attempt to deactivate \the [module.interface_name].</b>"))
 		module.deactivate()
 	else
-		to_chat(usr, "<font color='blue'><b>You attempt to activate \the [module.interface_name].</b></font>")
+		to_chat(usr, span_blue("<b>You attempt to activate \the [module.interface_name].</b>"))
 		module.activate()
 
 /obj/item/weapon/rig/verb/engage_module()
@@ -288,10 +293,10 @@
 		if(module.usable)
 			selectable |= module
 
-	var/obj/item/rig_module/module = input("Which module do you wish to engage?") as null|anything in selectable
+	var/obj/item/rig_module/module = tgui_input_list(usr, "Which module do you wish to engage?", "Engage Module", selectable)
 
 	if(!istype(module))
 		return
 
-	to_chat(usr, "<font color='blue'><b>You attempt to engage the [module.interface_name].</b></font>")
+	to_chat(usr, span_blue("<b>You attempt to engage the [module.interface_name].</b>"))
 	module.engage()

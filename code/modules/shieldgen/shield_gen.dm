@@ -7,7 +7,7 @@
 	var/field_radius = 3
 	var/max_field_radius = 150
 	var/list/field = list()
-	density = 1
+	density = TRUE
 	var/locked = 0
 	var/average_field_strength = 0
 	var/strengthen_rate = 0.2
@@ -22,7 +22,9 @@
 	var/time_since_fail = 100
 	var/energy_conversion_rate = 0.0006	//how many renwicks per watt?  Higher numbers equals more effiency.
 	var/z_range = 0 // How far 'up and or down' to extend the shield to, in z-levels.  Only works on MultiZ supported z-levels.
-	use_power = 0	//doesn't use APC power
+	use_power = USE_POWER_OFF	//doesn't use APC power
+	interact_offline = TRUE // don't check stat & NOPOWER|BROKEN for our UI. We check BROKEN ourselves.
+	var/id //for button usage
 
 /obj/machinery/shield_gen/advanced
 	name = "advanced bubble shield generator"
@@ -58,16 +60,16 @@
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = W
-		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
+		if((access_captain in C.access) || (access_security in C.access) || (access_engine in C.access))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			to_chat(user, "<font color='red'>Access denied.</font>")
-	else if(W.is_wrench())
+			to_chat(user, span_red("Access denied."))
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
-		src.visible_message("<font color='blue'>[bicon(src)] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].</font>")
+		src.visible_message(span_blue("\icon[src][bicon(src)] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user]."))
 
 		if(active)
 			toggle()
@@ -94,59 +96,49 @@
 /obj/machinery/shield_gen/attack_hand(mob/user)
 	if(stat & (BROKEN))
 		return
-	interact(user)
+	tgui_interact(user)
 
-/obj/machinery/shield_gen/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
-			user.unset_machine()
-			user << browse(null, "window=shield_generator")
-			return
-	var/t = "<B>Shield Generator Control Console</B><BR><br>"
-	if(locked)
-		t += "<i>Swipe your ID card to begin.</i>"
-	else
-		t += "[capacitors.len ? "<font color=green>Charge capacitor(s) connected.</font>" : "<font color=red>Unable to locate charge capacitor!</font>"]<br>"
-		var/i = 0
-		for(var/obj/machinery/shield_capacitor/capacitor in capacitors)
-			i++
-			t += "Capacitor #[i]: [capacitor.active ? "<font color=green>Online.</font>" : "<font color=red>Offline.</font>"] \
-			Charge: [round(capacitor.stored_charge/1000, 0.1)] kJ ([100 * round(capacitor.stored_charge/capacitor.max_charge, 0.01)]%) \
-			Status: [capacitor.time_since_fail > 2 ? "<font color=green>OK.</font>" : "<font color=red>Discharging!</font>"]<br>"
-		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
-		t += "Field Status: [time_since_fail > 2 ? "<font color=green>Stable</font>" : "<font color=red>Unstable</font>"]<br>"
-		t += "Coverage Radius (restart required): \
-		<a href='?src=\ref[src];change_radius=-50'>---</a> \
-		<a href='?src=\ref[src];change_radius=-5'>--</a> \
-		<a href='?src=\ref[src];change_radius=-1'>-</a> \
-		[field_radius] m \
-		<a href='?src=\ref[src];change_radius=1'>+</a> \
-		<a href='?src=\ref[src];change_radius=5'>++</a> \
-		<a href='?src=\ref[src];change_radius=50'>+++</a><br>"
-		if(HasAbove(src.z) || HasBelow(src.z)) // Won't show up on maps lacking MultiZ support.
-			t += "Vertical Shielding (restart required): \
-			<a href='?src=\ref[src];z_range=-1'>-</a> \
-			[z_range] Vertical Range \
-			<a href='?src=\ref[src];z_range=1'>+</a><br>"
-		t += "Overall Field Strength: [round(average_field_strength, 0.01)] Renwick ([target_field_strength ? round(100 * average_field_strength / target_field_strength, 0.1) : "NA"]%)<br>"
-		t += "Upkeep Power: [format_SI(round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate), "W")]<br>"
-		t += "Charge Rate: <a href='?src=\ref[src];strengthen_rate=-0.1'>--</a> \
-		[strengthen_rate] Renwick/s \
-		<a href='?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
-		t += "Shield Generation Power: [format_SI(round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate), "W")]<br>"
-		t += "Maximum Field Strength: \
-		<a href='?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
-		<a href='?src=\ref[src];target_field_strength=-5'>--</a> \
-		<a href='?src=\ref[src];target_field_strength=-1'>-</a> \
-		[target_field_strength] Renwick \
-		<a href='?src=\ref[src];target_field_strength=1'>+</a> \
-		<a href='?src=\ref[src];target_field_strength=5'>++</a> \
-		<a href='?src=\ref[src];target_field_strength=10'>\[max\]</a><br>"
-	t += "<hr>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> "
-	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=shield_generator;size=500x400")
-	user.set_machine(src)
+/obj/machinery/shield_gen/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShieldGenerator", name)
+		ui.open()
+
+/obj/machinery/shield_gen/tgui_status(mob/user)
+	if(stat & BROKEN)
+		return STATUS_CLOSE
+	return ..()
+
+/obj/machinery/shield_gen/tgui_data(mob/user)
+	var/list/lockedData = list()
+
+	if(!locked)
+		var/list/caps = list()
+		for(var/obj/machinery/shield_capacitor/C in capacitors)
+			caps.Add(list(list(
+				"active" = C.active,
+				"stored_charge" = C.stored_charge,
+				"max_charge" = C.max_charge,
+				"failing" = (C.time_since_fail <= 2),
+			)))
+		lockedData["capacitors"] = caps
+
+		lockedData["active"] = active
+		lockedData["failing"] = (time_since_fail <= 2)
+		lockedData["radius"] = field_radius
+		lockedData["max_radius"] = max_field_radius
+		lockedData["z_range"] = z_range
+		lockedData["max_z_range"] = 10
+		lockedData["average_field_strength"] = average_field_strength
+		lockedData["target_field_strength"] = target_field_strength
+		lockedData["max_field_strength"] = max_field_strength
+		lockedData["shields"] = LAZYLEN(field)
+		lockedData["upkeep"] = round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate)
+		lockedData["strengthen_rate"] = strengthen_rate
+		lockedData["max_strengthen_rate"] = max_strengthen_rate
+		lockedData["gen_power"] = round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)
+
+	return list("locked" = locked, "lockedData" = lockedData)
 
 /obj/machinery/shield_gen/process()
 	if (!anchored && active)
@@ -205,30 +197,32 @@
 	else
 		average_field_strength = 0
 
-/obj/machinery/shield_gen/Topic(href, href_list[])
-	..()
-	if( href_list["close"] )
-		usr << browse(null, "window=shield_generator")
-		usr.unset_machine()
-		return
-	else if( href_list["toggle"] )
-		if (!active && !anchored)
-			to_chat(usr, "<font color='red'>The [src] needs to be firmly secured to the floor first.</font>")
-			return
-		toggle()
-	else if( href_list["change_radius"] )
-		field_radius = between(0, field_radius + text2num(href_list["change_radius"]), max_field_radius)
-	else if( href_list["strengthen_rate"] )
-		strengthen_rate = between(0,  strengthen_rate + text2num(href_list["strengthen_rate"]), max_strengthen_rate)
-	else if( href_list["target_field_strength"] )
-		target_field_strength = between(1, target_field_strength + text2num(href_list["target_field_strength"]), max_field_strength)
-	else if( href_list["z_range"] )
-		z_range = between(0, z_range + text2num(href_list["z_range"]), 10) // Max is extending ten z-levels up and down.  Probably too big of a number but it shouldn't matter.
+/obj/machinery/shield_gen/tgui_act(action, params)
+	if(..())
+		return TRUE
 
-	updateDialog()
+	switch(action)
+		if("toggle")
+			if (!active && !anchored)
+				to_chat(usr, span_red("The [src] needs to be firmly secured to the floor first."))
+				return
+			toggle()
+			. = TRUE
+		if("change_radius")
+			field_radius = clamp(text2num(params["val"]), 0, max_field_radius)
+			. = TRUE
+		if("strengthen_rate")
+			strengthen_rate = clamp(text2num(params["val"]), 0, max_strengthen_rate)
+			. = TRUE
+		if("target_field_strength")
+			target_field_strength = clamp(text2num(params["val"]), 1, max_field_strength)
+			. = TRUE
+		if("z_range")
+			z_range = clamp(text2num(params["val"]), 0, 10)
+			. = TRUE
+
 
 /obj/machinery/shield_gen/ex_act(var/severity)
-
 	if(active)
 		toggle()
 	return ..()
@@ -248,7 +242,7 @@
 		covered_turfs = null
 
 		for(var/mob/M in view(5,src))
-			to_chat(M, "[bicon(src)] You hear heavy droning start up.")
+			to_chat(M, "\icon[src][bicon(src)] You hear heavy droning start up.")
 		for(var/obj/effect/energy_field/E in field) // Update the icons here to ensure all the shields have been made already.
 			E.update_icon()
 	else
@@ -258,7 +252,7 @@
 			qdel(D)
 
 		for(var/mob/M in view(5,src))
-			to_chat(M, "[bicon(src)] You hear heavy droning fade out.")
+			to_chat(M, "\icon[src][bicon(src)] You hear heavy droning fade out.")
 
 /obj/machinery/shield_gen/update_icon()
 	if(stat & BROKEN)

@@ -6,8 +6,8 @@ var/global/list/rad_collectors = list()
 	desc = "A device which uses Hawking Radiation and phoron to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	req_access = list(access_engine_equip)
 //	use_power = 0
 	var/obj/item/weapon/tank/phoron/P = null
@@ -54,30 +54,30 @@ var/global/list/rad_collectors = list()
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["phoron"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
-			to_chat(user, "<font color='red'>The controls are locked!</font>")
+			to_chat(user, span_red("The controls are locked!"))
 			return
 
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/tank/phoron))
 		if(!src.anchored)
-			to_chat(user, "<font color='red'>The [src] needs to be secured to the floor first.</font>")
+			to_chat(user, span_red("The [src] needs to be secured to the floor first."))
 			return 1
 		if(src.P)
-			to_chat(user, "<font color='red'>There's already a phoron tank loaded.</font>")
+			to_chat(user, span_red("There's already a phoron tank loaded."))
 			return 1
 		user.drop_item()
 		src.P = W
 		W.loc = src
 		update_icons()
 		return 1
-	else if(W.is_crowbar())
+	else if(W.has_tool_quality(TOOL_CROWBAR))
 		if(P && !src.locked)
 			eject()
 			return 1
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(P)
-			to_chat(user, "<font color='blue'>Remove the phoron tank first.</font>")
+			to_chat(user, span_blue("Remove the phoron tank first."))
 			return 1
 		playsound(src, W.usesound, 75, 1)
 		src.anchored = !src.anchored
@@ -96,16 +96,16 @@ var/global/list/rad_collectors = list()
 				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				to_chat(user, "<font color='red'>The controls can only be locked when the [src] is active.</font>")
+				to_chat(user, span_red("The controls can only be locked when the [src] is active."))
 		else
-			to_chat(user, "<font color='red'>Access denied!</font>")
+			to_chat(user, span_red("Access denied!"))
 		return 1
 	return ..()
 
 /obj/machinery/power/rad_collector/examine(mob/user)
-	if (..(user, 3))
-		to_chat(user, "The meter indicates that \the [src] is collecting [last_power] W.")
-		return 1
+	. = ..()
+	if(get_dist(user, src) <= 3)
+		. += "The meter indicates that it is collecting [last_power] W."
 
 /obj/machinery/power/rad_collector/ex_act(severity)
 	switch(severity)
@@ -138,13 +138,13 @@ var/global/list/rad_collectors = list()
 
 
 /obj/machinery/power/rad_collector/proc/update_icons()
-	overlays.Cut()
+	cut_overlays()
 	if(P)
-		overlays += image('icons/obj/singularity.dmi', "ptank")
+		add_overlay("ptank")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		overlays += image('icons/obj/singularity.dmi', "on")
+		add_overlay("on")
 
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
@@ -157,4 +157,3 @@ var/global/list/rad_collectors = list()
 		flick("ca_deactive", src)
 	update_icons()
 	return
-

@@ -15,6 +15,7 @@
 	var/dead_state = 0
 	var/last_update = 0
 	var/last_notification
+	var/do_notify = TRUE
 
 	//Backend
 	var/ckey = ""
@@ -23,7 +24,8 @@
 	var/cryo_at = 0
 	var/languages = list()
 	var/mind_oocnotes = ""
-
+	var/mind_ooclikes = ""
+	var/mind_oocdislikes = ""
 	var/nif_path
 	var/nif_durability
 	var/list/nif_software
@@ -31,7 +33,7 @@
 
 	var/one_time = FALSE
 
-/datum/transhuman/mind_record/New(var/datum/mind/mind, var/mob/living/carbon/human/M, var/add_to_db = TRUE, var/one_time = FALSE)
+/datum/transhuman/mind_record/New(var/datum/mind/mind, var/mob/living/carbon/human/M, var/add_to_db = TRUE, var/one_time = FALSE, var/database_key)
 	ASSERT(mind)
 
 	src.one_time = one_time
@@ -62,7 +64,7 @@
 	last_update = world.time
 
 	if(add_to_db)
-		SStranscore.add_backup(src)
+		SStranscore.add_backup(src, database_key = database_key)
 
 /////// Body Record ///////
 /datum/transhuman/body_record
@@ -77,6 +79,8 @@
 	var/speciesname
 	var/bodygender
 	var/body_oocnotes
+	var/body_ooclikes
+	var/body_oocdislikes
 	var/list/limb_data = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)
 	var/list/organ_data = list(O_HEART, O_EYES, O_LUNGS, O_BRAIN)
 	var/list/genetic_modifiers = list()
@@ -84,6 +88,7 @@
 	var/sizemult
 	var/weight
 	var/aflags
+	var/breath_type = "oxygen"
 
 /datum/transhuman/body_record/New(var/copyfrom, var/add_to_db = 0, var/ckeylock = 0)
 	..()
@@ -100,7 +105,7 @@
 	organ_data.Cut()
 	return QDEL_HINT_HARDDEL // For now at least there is no easy way to clear references to this in machines etc.
 
-/datum/transhuman/body_record/proc/init_from_mob(var/mob/living/carbon/human/M, var/add_to_db = 0, var/ckeylock = 0)
+/datum/transhuman/body_record/proc/init_from_mob(var/mob/living/carbon/human/M, var/add_to_db = 0, var/ckeylock = 0, var/database_key)
 	ASSERT(!QDELETED(M))
 	ASSERT(istype(M))
 
@@ -120,6 +125,7 @@
 	sizemult = M.size_multiplier
 	weight = M.weight
 	aflags = M.appearance_flags
+	breath_type = M.species.breath_type
 
 	//Probably should
 	M.dna.check_integrity()
@@ -179,13 +185,12 @@
 		organ_data[org] = I.robotic
 
 	//Genetic modifiers
-	for(var/modifier in M.modifiers)
-		var/datum/modifier/mod = modifier
+	for(var/datum/modifier/mod as anything in M.modifiers)
 		if(mod.flags & MODIFIER_GENETIC)
 			genetic_modifiers.Add(mod.type)
 
 	if(add_to_db)
-		SStranscore.add_body(src)
+		SStranscore.add_body(src, database_key = database_key)
 
 
 /**

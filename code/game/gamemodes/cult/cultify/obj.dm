@@ -48,9 +48,9 @@
 /obj/machinery/atmospherics/cultify()
 	if(src.invisibility != INVISIBILITY_MAXIMUM)
 		src.invisibility = INVISIBILITY_MAXIMUM
-		density = 0
+		density = FALSE
 
-/obj/machinery/cooker/cultify()
+/obj/machinery/appliance/cooker/cultify()
 	new /obj/structure/cult/talisman(loc)
 	qdel(src)
 
@@ -65,7 +65,7 @@
 /obj/machinery/door/cultify()
 	if(invisibility != INVISIBILITY_MAXIMUM)
 		invisibility = INVISIBILITY_MAXIMUM
-		density = 0
+		density = FALSE
 		anim(target = src, a_icon = 'icons/effects/effects.dmi', a_icon_state = "breakdoor", sleeptime = 10)
 		qdel(src)
 

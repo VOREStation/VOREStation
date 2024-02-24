@@ -21,7 +21,7 @@
 /mob/living/simple_mob/mechanical/infectionbot
 	name = "Strange robot"
 	desc = "You get the feeling you should run."
-	icon = 'icons/mob/vagrant_vr.dmi'
+	icon = 'icons/mob/vore.dmi'
 	icon_state = "vagrant"
 	icon_living = "vagrant"
 	icon_dead = "vagrant"
@@ -29,7 +29,7 @@
 
 	maxHealth = 65
 	health = 40
-	movement_cooldown = 4
+	movement_cooldown = 1
 
 	response_help = "pets the"
 	response_disarm = "gently pushes aside the"

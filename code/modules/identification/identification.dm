@@ -97,8 +97,7 @@
 		return "unidentified object"
 
 	var/list/new_name = list()
-	for(var/i in naming_lists)
-		var/list/current_list = i
+	for(var/list/current_list as anything in naming_lists)
 		new_name += pick(current_list)
 	return new_name.Join(" ")
 
@@ -117,7 +116,7 @@
 /datum/identification/hypo
 	naming_lists = list(
 		list("unidentified", "unknown", "unmarked", "blank", "refilled", "custom", "modified", "questionable", "suspicious"),
-		list("hypospray", "autoinjector")
+		list("autoinjector")
 	)
 	unidentified_desc = "An autoinjector that does not give any indication towards what is inside. \
 	The case is also sealed tight and the liquids contained cannot be removed except by injecting it into someone. \

@@ -22,7 +22,7 @@
 
 /obj/item/weapon/disk/xenobio/attack_self(var/mob/user as mob)
 	if(genes.len)
-		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", "No", "Yes")
+		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
 			to_chat(user, "You wipe the disk data.")
 			name = initial(name)
@@ -40,9 +40,9 @@
 		new /obj/item/weapon/disk/xenobio(src)
 
 /obj/machinery/xenobio
-	density = 1
-	anchored = 1
-	use_power = 1
+	density = TRUE
+	anchored = TRUE
+	use_power = USE_POWER_IDLE
 
 	var/obj/item/weapon/disk/xenobio/loaded_disk //Currently loaded data disk.
 
@@ -102,20 +102,20 @@
 	in_use = 0
 	if(failed_task)
 		failed_task = 0
-		visible_message("[bicon(src)] [src] pings unhappily, flashing a red warning light.")
+		visible_message("\icon[src][bicon(src)] [src] pings unhappily, flashing a red warning light.")
 	else
-		visible_message("[bicon(src)] [src] pings happily.")
+		visible_message("\icon[src][bicon(src)] [src] pings happily.")
 
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
 			loaded_disk.forceMove(get_turf(src))
-			visible_message("[bicon(src)] [src] beeps and spits out [loaded_disk].")
+			visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 
 /obj/machinery/xenobio/extractor
 	name = "biological product destructive analyzer"
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "traitcopier"
 	circuit = /obj/item/weapon/circuitboard/bioproddestanalyzer
 
@@ -123,16 +123,9 @@
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/xenobio/extractor/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	RefreshParts()
+/obj/machinery/xenobio/extractor/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
@@ -190,7 +183,7 @@
 /obj/machinery/xenobio/proc/eject_disk()
 	if(!loaded_disk) return
 	loaded_disk.forceMove(loc)
-	visible_message("[bicon(src)] [src] beeps and spits out [loaded_disk].")
+	visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
 	loaded_disk = null
 
 /obj/machinery/xenobio/extractor/Topic(href, href_list)
@@ -202,7 +195,7 @@
 		if(!product) return
 
 		product.forceMove(get_turf(src))
-		visible_message("[bicon(src)] [src] beeps and spits out [product].")
+		visible_message("\icon[src][bicon(src)] [src] beeps and spits out [product].")
 		product = null
 
 	if(href_list["eject_disk"])
@@ -265,16 +258,9 @@
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 
-/obj/machinery/xenobio/editor/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	RefreshParts()
+/obj/machinery/xenobio/editor/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/xenobio/editor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/grab))

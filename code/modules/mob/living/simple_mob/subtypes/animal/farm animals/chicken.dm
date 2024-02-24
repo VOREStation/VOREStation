@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	name = "chicken"
 	desc = "Hopefully the eggs are good this season."
 	tt_desc = "E Gallus gallus"
-	icon_state = "chicken"
+	icon_state = "chicken_white"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"
 
@@ -18,14 +18,16 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = list("kicked")
+	attacktext = list("pecked")
 
-	has_langs = list("Bird")
+	organ_names = /decl/mob_organ_names/chicken
+
+	has_langs = list(LANGUAGE_ANIMAL)
 
 	say_list_type = /datum/say_list/chicken
 
-	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 4
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
 
 	var/eggsleft = 0
 	var/body_color
@@ -50,12 +52,12 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = O
 		if(G.seed && G.seed.kitchen_tag == "wheat")
 			if(!stat && eggsleft < 8)
-				user.visible_message("<font color='blue'>[user] feeds [O] to [name]! It clucks happily.</font>","<font color='blue'>You feed [O] to [name]! It clucks happily.</font>")
+				user.visible_message(span_blue("[user] feeds [O] to [name]! It clucks happily."),span_blue("You feed [O] to [name]! It clucks happily."))
 				user.drop_item()
 				qdel(O)
 				eggsleft += rand(1, 4)
 			else
-				to_chat(user, "<font color='blue'>[name] doesn't seem hungry!</font>")
+				to_chat(user, span_blue("[name] doesn't seem hungry!"))
 		else
 			to_chat(user, "[name] doesn't seem interested in that.")
 	else
@@ -120,12 +122,12 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	response_harm   = "kicks"
 	attacktext = list("kicked")
 
-	has_langs = list("Bird")
+	has_langs = list(LANGUAGE_ANIMAL)
 
 	say_list_type = /datum/say_list/chick
 
 	meat_amount = 1
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
 
 	var/amount_grown = 0
 
@@ -141,7 +143,12 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	if(!stat)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-			new /mob/living/simple_mob/animal/passive/chicken(src.loc)
+		//VOREStation Edit Begin
+			var/mob/living/simple_mob/animal/passive/chicken/C = new (src.loc)
+			C.ghostjoin = 1
+			C.ghostjoin_icon()
+			active_ghost_pods |= C
+		//VOREStation Edit End
 			qdel(src)
 
 // Say Lists
@@ -154,3 +161,6 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	speak = list("Cherp.","Cherp?","Chirrup.","Cheep!")
 	emote_hear = list("cheeps")
 	emote_see = list("pecks at the ground","flaps its tiny wings")
+
+/decl/mob_organ_names/chicken
+	hit_zones = list("head", "body", "left wing", "right wing", "left leg", "right leg", "tendies")

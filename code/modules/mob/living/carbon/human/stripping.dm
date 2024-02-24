@@ -58,14 +58,22 @@
 	var/stripping
 	var/obj/item/held = user.get_active_hand()
 	if(!istype(held) || is_robot_module(held))
+		stripping = TRUE
+	else
+		var/obj/item/weapon/holder/holder = held
+		if(istype(holder) && src == holder.held_mob)
+			stripping = TRUE
+		else
+			var/obj/item/weapon/grab/grab = held
+			if(istype(grab) && grab.affecting == src)
+				stripping = TRUE
+		
+	if(stripping)
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
 		if(!target_slot.canremove)
 			to_chat(user, "<span class='warning'>You cannot remove \the [src]'s [target_slot.name].</span>")
 			return
-		stripping = 1
-
-	if(stripping)
 		visible_message("<span class='danger'>\The [user] is trying to remove \the [src]'s [target_slot.name]!</span>")
 	else
 		if(slot_to_strip == slot_wear_mask && istype(held, /obj/item/weapon/grenade))
@@ -76,8 +84,14 @@
 	if(!do_after(user,HUMAN_STRIP_DELAY,src))
 		return
 
-	if(!stripping && user.get_active_hand() != held)
-		return
+	if(!stripping)
+		if(user.get_active_hand() != held)
+			return
+		var/obj/item/weapon/holder/mobheld = held
+		if(istype(mobheld)&&mobheld.held_mob==src)
+			to_chat(user, "<span class='warning'>You can't put someone on themselves! Stop trying to break reality!</span>")
+			return
+
 
 	if(stripping)
 		add_attack_logs(user,src,"Removed equipment from slot [target_slot]")

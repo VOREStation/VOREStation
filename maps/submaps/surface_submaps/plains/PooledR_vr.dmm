@@ -37,21 +37,21 @@
 /turf/template_noop,
 /area/submap/PooledR)
 "j" = (
-/turf/simulated/floor/outdoors/rocks,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/submap/PooledR)
 "k" = (
 /obj/structure/flora/ausbushes,
 /turf/template_noop,
 /area/submap/PooledR)
 "l" = (
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/PooledR)
 "m" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/template_noop,
 /area/submap/PooledR)
 "n" = (
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/virgo3b,
 /area/submap/PooledR)
 
 (1,1,1) = {"

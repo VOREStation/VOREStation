@@ -22,4 +22,4 @@
 // Container sizes.  Note that different containers can hold a maximum ITEMSIZE.
 #define INVENTORY_STANDARD_SPACE	ITEMSIZE_COST_NORMAL * 7 // 28
 #define INVENTORY_DUFFLEBAG_SPACE	ITEMSIZE_COST_NORMAL * 9 // 36
-#define INVENTORY_BOX_SPACE			ITEMSIZE_COST_SMALL * 4 // 8
+#define INVENTORY_BOX_SPACE			ITEMSIZE_COST_SMALL * 7 // 14

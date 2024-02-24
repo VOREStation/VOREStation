@@ -21,6 +21,27 @@
 /*
  * Text sanitization
  */
+// Can be used almost the same way as normal input for text
+/proc/clean_input(Message, Title, Default, mob/user=usr)
+	var/txt = input(user, Message, Title, Default) as text | null
+	if(txt)
+		return html_encode(txt)
+
+//Simply removes < and > and limits the length of the message
+/proc/strip_html_simple(var/t,var/limit=MAX_MESSAGE_LEN)
+	var/list/strip_chars = list("<",">")
+	t = copytext(t,1,limit)
+	for(var/char in strip_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + copytext(t, index+1)
+			index = findtext(t, char)
+	return t
+
+//Runs byond's sanitization proc along-side strip_html_simple
+//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
+/proc/adminscrub(var/t,var/limit=MAX_MESSAGE_LEN)
+	return copytext((html_encode(strip_html_simple(t))),1,limit)
 
 //Used for preprocessing entered text
 /proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
@@ -31,10 +52,12 @@
 		input = copytext(input,1,max_length)
 
 	if(extra)
-		input = replace_characters(input, list("\n"=" ","\t"=" "))
+		var/temp_input = replace_characters(input, list("\n"="  ","\t"=" "))//one character is replaced by two
+		if(length(input) < (length(temp_input) - 6))//6 is the number of linebreaks allowed per message
+			input = replace_characters(temp_input,list("  "=" "))//replace again, this time the double spaces with single ones
 
 	if(encode)
-		// The below \ escapes have a space inserted to attempt to enable Travis auto-checking of span class usage. Please do not remove the space.
+		// The below \ escapes have a space inserted to attempt to enable CI auto-checking of span class usage. Please do not remove the space.
 		//In addition to processing html, html_encode removes byond formatting codes like "\ red", "\ i" and other.
 		//It is important to avoid double-encode text, it can "break" quotes and some other characters.
 		//Also, keep in mind that escaped characters don't work in the interface (window titles, lower left corner of the main window, etc.)
@@ -138,6 +161,19 @@
 /proc/sanitize_old(var/t,var/list/repl_chars = list("\n"="#","\t"="#"))
 	return html_encode(replace_characters(t,repl_chars))
 
+
+//Removes a few problematic characters
+/proc/sanitize_simple(t,list/repl_chars = list("\n"="#","\t"="#"))
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index + length(char))
+			index = findtext(t, char, index + length(char))
+	return t
+
+/proc/sanitize_filename(t)
+	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
 /*
  * Text searches
  */
@@ -219,6 +255,10 @@
 /proc/capitalize(var/t as text)
 	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
 
+//Returns a unicode string with the first element of the string capitalized.
+/proc/capitalize_utf(var/t as text)
+	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
+
 //This proc strips html properly, remove < > and all text between
 //for complete text sanitizing should be used sanitize()
 /proc/strip_html_properly(var/input)
@@ -285,7 +325,7 @@
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
-proc/TextPreview(var/string,var/len=40)
+/proc/TextPreview(var/string,var/len=40)
 	if(length(string) <= len)
 		if(!length(string))
 			return "\[...\]"
@@ -309,7 +349,14 @@ proc/TextPreview(var/string,var/len=40)
 	if(!text_tag_cache[tagname])
 		var/icon/tag = icon(text_tag_icons, tagname)
 		text_tag_cache[tagname] = bicon(tag, TRUE, "text_tag")
+	if(!C.tgui_panel.is_ready() || C.tgui_panel.oldchat)
+		return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 	return text_tag_cache[tagname]
+
+/proc/create_text_tag_old(var/tagname, var/tagdesc = tagname, var/client/C = null)
+	if(!(C && C.is_preference_enabled(/datum/client_preference/chat_tags)))
+		return tagdesc
+	return "<IMG src='\ref[text_tag_icons]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 
 /proc/contains_az09(var/input)
 	for(var/i=1, i<=length(input), i++)
@@ -372,6 +419,58 @@ proc/TextPreview(var/string,var/len=40)
 	t = replacetext(t, "\[redlogo\]", "<img src = redntlogo.png>")
 	t = replacetext(t, "\[sglogo\]", "<img src = sglogo.png>")
 	t = replacetext(t, "\[editorbr\]", "")
+	return t
+
+//pencode translation to html for tags exclusive to digital files (currently email, nanoword, report editor fields,
+//modular scanner data and txt file printing) and prints from them
+/proc/digitalPencode2html(var/text)
+	text = replacetext(text, "\[pre\]", "<pre>")
+	text = replacetext(text, "\[/pre\]", "</pre>")
+	text = replacetext(text, "\[fontred\]", "<font color=\"red\">") //</font> to pass html tag integrity unit test
+	text = replacetext(text, "\[fontblue\]", "<font color=\"blue\">")//</font> to pass html tag integrity unit test
+	text = replacetext(text, "\[fontgreen\]", "<font color=\"green\">")
+	text = replacetext(text, "\[/font\]", "</font>")
+	text = replacetext(text, "\[redacted\]", "<span class=\"redacted\">R E D A C T E D</span>")
+	return pencode2html(text)
+
+//Will kill most formatting; not recommended.
+/proc/html2pencode(t)
+	t = replacetext(t, "<pre>", "\[pre\]")
+	t = replacetext(t, "</pre>", "\[/pre\]")
+	t = replacetext(t, "<font color=\"red\">", "\[fontred\]")//</font> to pass html tag integrity unit test
+	t = replacetext(t, "<font color=\"blue\">", "\[fontblue\]")//</font> to pass html tag integrity unit test
+	t = replacetext(t, "<font color=\"green\">", "\[fontgreen\]")
+	t = replacetext(t, "</font>", "\[/font\]")
+	t = replacetext(t, "<BR>", "\[br\]")
+	t = replacetext(t, "<br>", "\[br\]")
+	t = replacetext(t, "<B>", "\[b\]")
+	t = replacetext(t, "</B>", "\[/b\]")
+	t = replacetext(t, "<I>", "\[i\]")
+	t = replacetext(t, "</I>", "\[/i\]")
+	t = replacetext(t, "<U>", "\[u\]")
+	t = replacetext(t, "</U>", "\[/u\]")
+	t = replacetext(t, "<center>", "\[center\]")
+	t = replacetext(t, "</center>", "\[/center\]")
+	t = replacetext(t, "<H1>", "\[h1\]")
+	t = replacetext(t, "</H1>", "\[/h1\]")
+	t = replacetext(t, "<H2>", "\[h2\]")
+	t = replacetext(t, "</H2>", "\[/h2\]")
+	t = replacetext(t, "<H3>", "\[h3\]")
+	t = replacetext(t, "</H3>", "\[/h3\]")
+	t = replacetext(t, "<li>", "\[*\]")
+	t = replacetext(t, "<HR>", "\[hr\]")
+	t = replacetext(t, "<ul>", "\[list\]")
+	t = replacetext(t, "</ul>", "\[/list\]")
+	t = replacetext(t, "<table>", "\[grid\]")
+	t = replacetext(t, "</table>", "\[/grid\]")
+	t = replacetext(t, "<tr>", "\[row\]")
+	t = replacetext(t, "<td>", "\[cell\]")
+	t = replacetext(t, "<img src = ntlogo.png>", "\[logo\]")
+	t = replacetext(t, "<img src = redntlogo.png>", "\[redlogo\]")
+	t = replacetext(t, "<img src = sglogo.png>", "\[sglogo\]")
+	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
+	t = replacetext(t, "<span class=\"redacted\">R E D A C T E D</span>", "\[redacted\]")
+	t = strip_html_properly(t)
 	return t
 
 // Random password generator
@@ -441,3 +540,75 @@ proc/TextPreview(var/string,var/len=40)
 
 
 #define gender2text(gender) capitalize(gender)
+
+/**
+ * Used to get a properly sanitized input. Returns null if cancel is pressed.
+ *
+ * Arguments
+ ** user - Target of the input prompt.
+ ** message - The text inside of the prompt.
+ ** title - The window title of the prompt.
+ ** max_length - If you intend to impose a length limit - default is 1024.
+ ** no_trim - Prevents the input from being trimmed if you intend to parse newlines or whitespace.
+*/
+/proc/stripped_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
+	var/user_input = input(user, message, title, default) as text|null
+	if(isnull(user_input)) // User pressed cancel
+		return
+	if(no_trim)
+		return copytext(html_encode(user_input), 1, max_length)
+	else
+		return trim(html_encode(user_input), max_length) //trim is "outside" because html_encode can expand single symbols into multiple symbols (such as turning < into &lt;)
+
+/**
+ * Used to get a properly sanitized input in a larger box. Works very similarly to stripped_input.
+ *
+ * Arguments
+ ** user - Target of the input prompt.
+ ** message - The text inside of the prompt.
+ ** title - The window title of the prompt.
+ ** max_length - If you intend to impose a length limit - default is 1024.
+ ** no_trim - Prevents the input from being trimmed if you intend to parse newlines or whitespace.
+*/
+/proc/stripped_multiline_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
+	var/user_input = input(user, message, title, default) as message|null
+	if(isnull(user_input)) // User pressed cancel
+		return
+	if(no_trim)
+		return copytext(html_encode(user_input), 1, max_length)
+	else
+		return trim(html_encode(user_input), max_length)
+
+//Adds 'char' ahead of 'text' until there are 'count' characters total
+/proc/add_leading(text, count, char = " ")
+	text = "[text]"
+	var/charcount = count - length_char(text)
+	var/list/chars_to_add[max(charcount + 1, 0)]
+	return jointext(chars_to_add, char) + text
+
+//Adds 'char' behind 'text' until there are 'count' characters total
+/proc/add_trailing(text, count, char = " ")
+	text = "[text]"
+	var/charcount = count - length_char(text)
+	var/list/chars_to_add[max(charcount + 1, 0)]
+	return text + jointext(chars_to_add, char)
+
+//Readds quotes and apostrophes to HTML-encoded strings
+/proc/readd_quotes(var/t)
+	var/list/repl_chars = list("&#34;" = "\"","&#39;" = "'")
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+5)
+			index = findtext(t, char)
+	return t
+
+// Rips out paper HTML but tries to keep it semi-readable.
+/proc/paper_html_to_plaintext(paper_text)
+	paper_text = replacetext(paper_text, "<hr>", "-----")
+	paper_text = replacetext(paper_text, "<li>", "- ") // This makes ordered lists turn into unordered but fixing that is too much effort.
+	paper_text = replacetext(paper_text, "</li>", "\n")
+	paper_text = replacetext(paper_text, "<p>", "\n")
+	paper_text = replacetext(paper_text, "<br>", "\n")
+	paper_text = strip_html_properly(paper_text) // Get rid of everything else entirely.
+	return paper_text

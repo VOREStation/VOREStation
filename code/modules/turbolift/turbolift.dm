@@ -14,7 +14,8 @@
 	var/fire_mode = FALSE								// Flag to indicate firefighter mode is active.
 
 	var/tmp/moving_upwards
-	var/tmp/busy
+	var/tmp/busy_state									// Used for controller processing.
+	var/tmp/next_process								// world.time process() should next do something
 
 /datum/turbolift/proc/emergency_stop()
 	cancel_pending_floors()
@@ -27,7 +28,7 @@
 	priority_mode = TRUE
 	cancel_pending_floors()
 	update_ext_panel_icons()
-	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>")
+	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>", runemessage = "BUZZ")
 	spawn(time)
 		priority_mode = FALSE
 		update_ext_panel_icons()
@@ -97,7 +98,42 @@
 			door.close()
 	return
 
+#define LIFT_MOVING    1	// Lift will try moving.
+#define LIFT_WAITING_A 2	// Waiting 15ds after arrival to announce, then goto LIFT_WAITING_B
+#define LIFT_WAITING_B 3	// Waiting floor_wait_delay after announcement before potentially moving again.
+
+/datum/turbolift/process()
+	if(world.time < next_process)
+		return
+	switch(busy_state)
+		if(LIFT_MOVING)
+			if(!do_move())
+				if(target_floor)
+					// TODO - This logic copied from old processor.  Would be better to have error states.
+					target_floor.ext_panel.reset()
+					target_floor = null
+				return PROCESS_KILL
+			else if(!next_process)
+				log_debug("Turbolift [src] do_move() returned 1 but next_process = null; busy_state=[busy_state]")
+				return PROCESS_KILL
+		if(LIFT_WAITING_A)
+			var/area/turbolift/origin = locate(current_floor.area_ref)
+			control_panel_interior.visible_message("<b>The elevator</b> announces, \"[origin.lift_announce_str]\"")
+			next_process = world.time + floor_wait_delay
+			busy_state = LIFT_WAITING_B
+		if(LIFT_WAITING_B)
+			if(queued_floors.len)
+				busy_state = LIFT_MOVING
+			else
+				busy_state = null
+				return PROCESS_KILL
+		else
+			log_debug("Turbolift [src] process() called with unknown busy_state='[busy_state]'")
+			return PROCESS_KILL
+
+// Called by process when in LIFT_MOVING
 /datum/turbolift/proc/do_move()
+	next_process = null
 
 	var/current_floor_index = floors.Find(current_floor)
 
@@ -116,29 +152,30 @@
 		if(!doors_closing)
 			close_doors()
 			doors_closing = 1
+			next_process = world.time + 1 SECOND // Wait for doors to close
 			return 1
 		else // We failed to close the doors - probably, someone is blocking them; stop trying to move
 			doors_closing = 0
 			if(!fire_mode)
 				open_doors()
-			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.")
-			playsound(control_panel_interior.loc, "sound/machines/buzz-two.ogg", 50, 1)
+			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.", runemessage = "BUZZ")
+			playsound(control_panel_interior, "sound/machines/buzz-two.ogg", 50, 1)
 			return 0
 
 	doors_closing = 0 // The doors weren't open, so they are done closing
+
+	GLOB.turbo_lift_floors_moved_roundstat++
 
 	var/area/turbolift/origin = locate(current_floor.area_ref)
 
 	if(target_floor == current_floor)
 
-		playsound(control_panel_interior.loc, origin.arrival_sound, 50, 1)
+		playsound(control_panel_interior, origin.arrival_sound, 50, 1)
 		target_floor.arrived(src)
 		target_floor = null
 
-		sleep(15)
-		control_panel_interior.visible_message("<b>The elevator</b> announces, \"[origin.lift_announce_str]\"")
-		sleep(floor_wait_delay)
-
+		next_process = world.time + 15
+		busy_state = LIFT_WAITING_A
 		return 1
 
 	// Work out where we're headed.
@@ -155,12 +192,10 @@
 
 	for(var/turf/T in destination)
 		for(var/atom/movable/AM in T)
-			if(istype(AM, /mob/living))
+			if(istype(AM, /mob/living) && !(AM.is_incorporeal()))
 				var/mob/living/M = AM
 				M.gib()
-			else if(istype(AM, /mob/zshadow))
-				AM.Destroy()		//prevent deleting shadow without deleting shadow's shadows
-			else if(AM.simulated && !(istype(AM, /mob/observer)))
+			else if(AM.simulated && !(istype(AM, /mob/observer)) && !(AM.is_incorporeal()))
 				qdel(AM)
 
 	origin.move_contents_to(destination)
@@ -171,15 +206,21 @@
 	current_floor = next_floor
 	control_panel_interior.visible_message("The elevator [moving_upwards ? "rises" : "descends"] smoothly.")
 
-	return (next_floor.delay_time || move_delay || 30)
+	next_process = world.time + (next_floor.delay_time || move_delay)
+	return 1
 
 /datum/turbolift/proc/queue_move_to(var/datum/turbolift_floor/floor)
 	if(!floor || !(floor in floors) || (floor in queued_floors))
 		return // STOP PRESSING THE BUTTON.
 	floor.pending_move(src)
 	queued_floors |= floor
-	turbolift_controller.lift_is_moving(src)
+	busy_state = LIFT_MOVING
+	START_PROCESSING(SSprocessing, src)
 
 // TODO: dummy machine ('lift mechanism') in powered area for functionality/blackout checks.
 /datum/turbolift/proc/is_functional()
 	return 1
+
+#undef LIFT_MOVING
+#undef LIFT_WAITING_A
+#undef LIFT_WAITING_B

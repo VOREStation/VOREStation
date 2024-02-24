@@ -1,81 +1,84 @@
 /datum/wires/mines
-	wire_count = 6
-	random = 1
+	wire_count = 7
+	randomize = TRUE
 	holder_type = /obj/effect/mine
+	proper_name = "Explosive Wires"
 
-#define WIRE_DETONATE 	1
-#define WIRE_TIMED_DET 	2
-#define WIRE_DISARM	4
-#define WIRE_DUMMY_1	8
-#define WIRE_DUMMY_2	16
-#define WIRE_BADDISARM	32
+/datum/wires/mines/New(atom/_holder)
+	wires = list(WIRE_EXPLODE, WIRE_EXPLODE_DELAY, WIRE_DISARM, WIRE_BADDISARM)
+	return ..()
+#define WIRE_TRAP		64
 
-/datum/wires/mines/GetInteractWindow()
+/datum/wires/mines/get_status()
 	. = ..()
-	. += "<br>\n["Warning: detonation may occur even with proper equipment."]"
-	return .
+	. += "\[Warning: detonation may occur even with proper equipment.]"
 
 /datum/wires/mines/proc/explode()
 	return
 
-/datum/wires/mines/UpdateCut(var/index, var/mended)
+/datum/wires/mines/on_cut(wire, mend)
 	var/obj/effect/mine/C = holder
 
-	switch(index)
-		if(WIRE_DETONATE)
-			C.visible_message("[bicon(C)] *BEEE-*", "[bicon(C)] *BEEE-*")
+	switch(wire)
+		if(WIRE_EXPLODE)
+			C.visible_message("\icon[C][bicon(C)] *BEEE-*", "\icon[C][bicon(C)] *BEEE-*")
 			C.explode()
 
-		if(WIRE_TIMED_DET)
-			C.visible_message("[bicon(C)] *BEEE-*", "[bicon(C)] *BEEE-*")
+		if(WIRE_EXPLODE_DELAY)
+			C.visible_message("\icon[C][bicon(C)] *BEEE-*", "\icon[C][bicon(C)] *BEEE-*")
 			C.explode()
 
 		if(WIRE_DISARM)
-			C.visible_message("[bicon(C)] *click!*", "[bicon(C)] *click!*")
-			new C.mineitemtype(get_turf(C))
+			C.visible_message("\icon[C][bicon(C)] *click!*", "\icon[C][bicon(C)] *click!*")
+			var/obj/effect/mine/MI = new C.mineitemtype(get_turf(C))
+
+			if(C.trap)
+				MI.trap = C.trap
+				C.trap = null
+				MI.trap.forceMove(MI)
+
 			spawn(0)
 				qdel(C)
-				return
-
-		if(WIRE_DUMMY_1)
-			return
-
-
-		if(WIRE_DUMMY_2)
-			return
 
 		if(WIRE_BADDISARM)
-			C.visible_message("[bicon(C)] *BEEPBEEPBEEP*", "[bicon(C)] *BEEPBEEPBEEP*")
+			C.visible_message("\icon[C][bicon(C)] *BEEPBEEPBEEP*", "\icon[C][bicon(C)] *BEEPBEEPBEEP*")
 			spawn(20)
 				C.explode()
-	return
 
-/datum/wires/mines/UpdatePulsed(var/index)
+		if(WIRE_TRAP)
+			C.visible_message("\icon[C][bicon(C)] *click!*", "\icon[C][bicon(C)] *click!*")
+
+			if(mend)
+				C.visible_message("\icon[C][bicon(C)] - The mine recalibrates[C.camo_net ? ", revealing \the [C.trap] inside." : "."]")
+
+				C.alpha = 255
+
+	..()
+
+/datum/wires/mines/on_pulse(wire)
 	var/obj/effect/mine/C = holder
-	if(IsIndexCut(index))
+	if(is_cut(wire))
 		return
-	switch(index)
-		if(WIRE_DETONATE)
-			C.visible_message("[bicon(C)] *beep*", "[bicon(C)] *beep*")
+	switch(wire)
+		if(WIRE_EXPLODE)
+			C.visible_message("\icon[C][bicon(C)] *beep*", "\icon[C][bicon(C)] *beep*")
 
-		if(WIRE_TIMED_DET)
-			C.visible_message("[bicon(C)] *BEEPBEEPBEEP*", "[bicon(C)] *BEEPBEEPBEEP*")
+		if(WIRE_EXPLODE_DELAY)
+			C.visible_message("\icon[C][bicon(C)] *BEEPBEEPBEEP*", "\icon[C][bicon(C)] *BEEPBEEPBEEP*")
 			spawn(20)
 				C.explode()
 
 		if(WIRE_DISARM)
-			C.visible_message("[bicon(C)] *ping*", "[bicon(C)] *ping*")
-
-		if(WIRE_DUMMY_1)
-			C.visible_message("[bicon(C)] *ping*", "[bicon(C)] *ping*")
-
-		if(WIRE_DUMMY_2)
-			C.visible_message("[bicon(C)] *beep*", "[bicon(C)] *beep*")
+			C.visible_message("\icon[C][bicon(C)] *ping*", "\icon[C][bicon(C)] *ping*")
 
 		if(WIRE_BADDISARM)
-			C.visible_message("[bicon(C)] *ping*", "[bicon(C)] *ping*")
-	return
+			C.visible_message("\icon[C][bicon(C)] *ping*", "\icon[C][bicon(C)] *ping*")
 
-/datum/wires/mines/CanUse(var/mob/living/L)
+		if(WIRE_TRAP)
+			C.visible_message("\icon[C][bicon(C)] *ping*", "\icon[C][bicon(C)] *ping*")
+
+	..()
+
+/datum/wires/mines/interactable(mob/user)
 	var/obj/effect/mine/M = holder
 	return M.panel_open

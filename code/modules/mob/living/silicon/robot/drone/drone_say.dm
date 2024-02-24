@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/drone/say(var/message)
+/mob/living/silicon/robot/drone/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	if(local_transmit)
 		if (src.client)
 			if(client.prefs.muted & MUTE_IC)
@@ -36,4 +36,4 @@
 				if(M.client)
 					to_chat(M, "<b>[src]</b> transmits, \"[message]\"")
 		return 1
-	return ..(message, 0)
+	return ..()

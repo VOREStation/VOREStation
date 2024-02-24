@@ -6,7 +6,7 @@
 	item_state = "pen"
 	var/pointer_icon_state
 	slot_flags = SLOT_BELT
-	matter = list("glass" = 500,"metal" = 500)
+	matter = list(MAT_GLASS = 500, MAT_STEEL = 500)
 	w_class = 2 //Increased to 2, because diodes are w_class 2. Conservation of matter.
 	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
 	var/turf/pointer_loc
@@ -54,7 +54,7 @@
 		else
 			to_chat(user, "<span class='notice'>[src] already has a diode.</span>")
 
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(diode)
 			to_chat(user, "<span class='notice'>You remove the [diode.name] from the [src].</span>")
 			diode.loc = get_turf(src.loc)

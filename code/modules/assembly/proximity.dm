@@ -3,8 +3,7 @@
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 800, "glass" = 200, "waste" = 50)
-	flags = PROXMOVE
+	matter = list(MAT_STEEL = 800, MAT_GLASS = 200)
 	wires = WIRE_PULSE
 
 	secured = 0
@@ -16,11 +15,11 @@
 	var/range = 2
 
 /obj/item/device/assembly/prox_sensor/activate()
-	if(!..())	return 0//Cooldown check
+	if(!..())
+		return FALSE
 	timing = !timing
 	update_icon()
-	return 0
-
+	return FALSE
 
 /obj/item/device/assembly/prox_sensor/toggle_secure()
 	secured = !secured
@@ -33,29 +32,22 @@
 	update_icon()
 	return secured
 
-
-/obj/item/device/assembly/prox_sensor/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/device/assembly/prox_sensor/HasProximity(turf/T, atom/movable/AM, old_loc)
 	if(!istype(AM))
 		log_debug("DEBUG: HasProximity called with [AM] on [src] ([usr]).")
 		return
-	if (istype(AM, /obj/effect/beam))	return
-	if (!isobserver(AM) && AM.move_speed < 12)	sense()
-	return
-
+	if (istype(AM, /obj/effect/beam))
+		return
+	if (!isobserver(AM) && AM.move_speed < 12)
+		sense()
 
 /obj/item/device/assembly/prox_sensor/proc/sense()
+	if((!holder && !secured) || !scanning || !process_cooldown())
+		return FALSE
 	var/turf/mainloc = get_turf(src)
-//		if(scanning && cooldown <= 0)
-//			mainloc.visible_message("[bicon(src)] *boop* *boop*", "*boop* *boop*")
-	if((!holder && !secured)||(!scanning)||(cooldown > 0))	return 0
 	pulse(0)
 	if(!holder)
-		mainloc.visible_message("[bicon(src)] *beep* *beep*", "*beep* *beep*")
-	cooldown = 2
-	spawn(10)
-		process_cooldown()
-	return
-
+		mainloc.visible_message("\icon[src][bicon(src)] *beep* *beep*", "*beep* *beep*")
 
 /obj/item/device/assembly/prox_sensor/process()
 	if(scanning)
@@ -69,93 +61,83 @@
 	if(timing && time <= 0)
 		timing = 0
 		toggle_scan()
-		time = 10
-	return
-
+		time = initial(time)
 
 /obj/item/device/assembly/prox_sensor/dropped()
-	spawn(0)
-		sense()
-		return
-	return
-
+	sense()
 
 /obj/item/device/assembly/prox_sensor/proc/toggle_scan()
-	if(!secured)	return 0
+	if(!secured)
+		return FALSE
 	scanning = !scanning
 	update_icon()
-	return
-
 
 /obj/item/device/assembly/prox_sensor/update_icon()
-	overlays.Cut()
-	attached_overlays = list()
+	cut_overlays()
+	LAZYCLEARLIST(attached_overlays)
 	if(timing)
-		overlays += "prox_timing"
-		attached_overlays += "prox_timing"
+		add_overlay("prox_timing")
+		LAZYADD(attached_overlays, "prox_timing")
 	if(scanning)
-		overlays += "prox_scanning"
-		attached_overlays += "prox_scanning"
+		add_overlay("prox_scanning")
+		LAZYADD(attached_overlays, "prox_scanning")
 	if(holder)
 		holder.update_icon()
 	if(holder && istype(holder.loc,/obj/item/weapon/grenade/chem_grenade))
 		var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
 		grenade.primed(scanning)
-	return
 
-
-/obj/item/device/assembly/prox_sensor/Move()
-	..()
+/obj/item/device/assembly/prox_sensor/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(isturf(old_loc))
+		unsense_proximity(range = range, callback = /atom/proc/HasProximity, center = old_loc)
+	if(isturf(loc))
+		sense_proximity(range = range, callback = /atom/proc/HasProximity)
 	sense()
-	return
 
-
-/obj/item/device/assembly/prox_sensor/interact(mob/user as mob)//TODO: Change this to the wires thingy
+/obj/item/device/assembly/prox_sensor/tgui_interact(mob/user, datum/tgui/ui)
 	if(!secured)
-		user.show_message("<font color='red'>The [name] is unsecured!</font>")
-		return 0
-	var/second = time % 60
-	var/minute = (time - second) / 60
-	var/dat = text("<TT><B>Proximity Sensor</B>\n[] []:[]\n<A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>\n</TT>", (timing ? text("<A href='?src=\ref[];time=0'>Arming</A>", src) : text("<A href='?src=\ref[];time=1'>Not Arming</A>", src)), minute, second, src, src, src, src)
-	dat += text("<BR>Range: <A href='?src=\ref[];range=-1'>-</A> [] <A href='?src=\ref[];range=1'>+</A>", src, range, src)
-	dat += "<BR><A href='?src=\ref[src];scanning=1'>[scanning?"Armed":"Unarmed"]</A> (Movement sensor active when armed!)"
-	dat += "<BR><BR><A href='?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<BR><BR><A href='?src=\ref[src];close=1'>Close</A>"
-	user << browse(dat, "window=prox")
-	onclose(user, "prox")
-	return
+		to_chat(user, "<span class='warning'>[src] is unsecured!</span>")
+		return FALSE
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AssemblyProx", name)
+		ui.open()
 
+/obj/item/device/assembly/prox_sensor/tgui_data(mob/user)
+	var/list/data = ..()
 
-/obj/item/device/assembly/prox_sensor/Topic(href, href_list, state = deep_inventory_state)
-	if(..()) return 1
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=prox")
-		onclose(usr, "prox")
-		return
+	data["time"] = time * 10
+	data["timing"] = timing
+	data["range"] = range
+	data["maxRange"] = 5
+	data["scanning"] = scanning
 
-	if(href_list["scanning"])
-		toggle_scan()
+	return data
 
-	if(href_list["time"])
-		timing = text2num(href_list["time"])
-		update_icon()
+/obj/item/device/assembly/prox_sensor/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
 
-	if(href_list["tp"])
-		var/tp = text2num(href_list["tp"])
-		time += tp
-		time = min(max(round(time), 0), 600)
-
-	if(href_list["range"])
-		var/r = text2num(href_list["range"])
-		range += r
-		range = min(max(range, 1), 5)
-
-	if(href_list["close"])
-		usr << browse(null, "window=prox")
-		return
-
-	if(usr)
-		attack_self(usr)
-
-
-	return
+	switch(action)
+		if("scanning")
+			toggle_scan()
+			return TRUE
+		if("timing")
+			timing = !timing
+			update_icon()
+			return TRUE
+		if("set_time")
+			var/real_new_time = 0
+			var/new_time = params["time"]
+			var/list/L = splittext(new_time, ":")
+			if(LAZYLEN(L))
+				for(var/i in 1 to LAZYLEN(L))
+					real_new_time += text2num(L[i]) * (60 ** (LAZYLEN(L) - i))
+			else
+				real_new_time = text2num(new_time)
+			time = clamp(real_new_time, 0, 600)
+			return TRUE
+		if("range")
+			range = clamp(params["range"], 1, 5)
+			return TRUE

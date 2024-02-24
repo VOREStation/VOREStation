@@ -5,7 +5,9 @@
 /obj/item/weapon/implant/language
 	name = "GalCom language implant"
 	desc = "An implant allowing someone to speak the range of frequencies used in Galactic Common, as well as produce any phonemes that they usually cannot. Only helps with producing sounds, not understanding them."
+	known_implant = TRUE
 	var/list/languages = list(LANGUAGE_GALCOM)	// List of languages that this assists with
+	initialize_loc = BP_HEAD
 
 /obj/item/weapon/implant/language/post_implant(mob/M)	// Amends the mob's voice organ, then deletes itself
 	if(ishuman(M))

@@ -2,7 +2,7 @@
 	name = "canister"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
-	density = 1
+	density = TRUE
 	var/health = 100.0
 	w_class = ITEMSIZE_HUGE
 
@@ -18,7 +18,7 @@
 	pressure_resistance = 7 * ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
 	volume = 1000
-	use_power = 0
+	use_power = USE_POWER_OFF
 	interact_offline = 1 // Allows this to be used when not in powered area.
 	var/release_log = ""
 	var/update_flag = 0
@@ -26,7 +26,7 @@
 /obj/machinery/portable_atmospherics/canister/drain_power()
 	return -1
 
-/obj/machinery/portable_atmospherics/canister/sleeping_agent
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "Canister: \[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
@@ -88,7 +88,7 @@
 	name = "Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
-/obj/machinery/portable_atmospherics/canister/empty/sleeping_agent
+/obj/machinery/portable_atmospherics/canister/empty/nitrous_oxide
 	name = "Canister \[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
@@ -141,20 +141,20 @@ update_flag
 	if(check_change()) //Returns 1 if no change needed to icons.
 		return
 
-	src.overlays = 0
+	cut_overlays()
 
 	if(update_flag & 1)
-		overlays += "can-open"
+		add_overlay("can-open")
 	if(update_flag & 2)
-		overlays += "can-connector"
+		add_overlay("can-connector")
 	if(update_flag & 4)
-		overlays += "can-o0"
+		add_overlay("can-o0")
 	if(update_flag & 8)
-		overlays += "can-o1"
+		add_overlay("can-o1")
 	else if(update_flag & 16)
-		overlays += "can-o2"
+		add_overlay("can-o2")
 	else if(update_flag & 32)
-		overlays += "can-o3"
+		add_overlay("can-o3")
 	return
 
 /obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -171,8 +171,8 @@ update_flag
 		location.assume_air(air_contents)
 
 		src.destroyed = 1
-		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
-		src.density = 0
+		playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
+		src.density = FALSE
 		update_icon()
 
 		if (src.holding)
@@ -239,7 +239,23 @@ update_flag
 	..()
 
 /obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(!W.is_wrench() && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
+	if(W.has_tool_quality(TOOL_WELDER)) //Vorestart: Deconstructable Canisters
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		if(!WT.remove_fuel(0, user))
+			to_chat(user, "The welding tool must be on to complete this task.")
+			return
+		if(air_contents.return_pressure() > 1 && !destroyed) // Empty or broken cans are able to be deconstructed
+			to_chat(user, "<span class ='warning'>\The [src]'s internal pressure is too high! Empty the canister before attempting to weld it apart.</span>")
+			return
+		playsound(src, WT.usesound, 50, 1)
+		if(do_after(user, 20 * WT.toolspeed))
+			if(!src || !WT.isOn()) return
+			to_chat(user, "<span class='notice'>You deconstruct the [src].</span>")
+			new /obj/item/stack/material/steel( src.loc, 10)
+			qdel(src)
+			return
+	//Voreend
+	if(!W.has_tool_quality(TOOL_WRENCH) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
 		visible_message("<span class='warning'>\The [user] hits \the [src] with \a [W]!</span>")
 		src.health -= W.force
 		src.add_fingerprint(user)
@@ -260,110 +276,113 @@ update_flag
 
 	..()
 
-	SSnanoui.update_uis(src) // Update all NanoUIs attached to src
+	SStgui.update_uis(src) // Update all NanoUIs attached to src
 
 /obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
 /obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user as mob)
-	return src.ui_interact(user)
+	return tgui_interact(user)
 
-/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	if (src.destroyed)
+/obj/machinery/portable_atmospherics/canister/tgui_state(mob/user)
+	return GLOB.tgui_physical_state
+
+/obj/machinery/portable_atmospherics/canister/tgui_interact(mob/user, datum/tgui/ui)
+	if(destroyed)
 		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Canister", name)
+		ui.open()
 
-	// this is the data which will be sent to the ui
-	var/data[0]
-	data["name"] = name
-	data["canLabel"] = can_label ? 1 : 0
-	data["portConnected"] = connected_port ? 1 : 0
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
+/obj/machinery/portable_atmospherics/canister/tgui_data(mob/user)
+	var/list/data = list()
+	data["can_relabel"] = can_label ? 1 : 0
+	data["connected"] = connected_port ? 1 : 0
+	data["pressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
 	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
+	data["defaultReleasePressure"] = round(initial(release_pressure))
 	data["minReleasePressure"] = round(ONE_ATMOSPHERE/10)
 	data["maxReleasePressure"] = round(10*ONE_ATMOSPHERE)
 	data["valveOpen"] = valve_open ? 1 : 0
 
-	data["hasHoldingTank"] = holding ? 1 : 0
-	if (holding)
-		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
+	if(holding)
+		data["holding"] = list()
+		data["holding"]["name"] = holding.name
+		data["holding"]["pressure"] = round(holding.air_contents.return_pressure())
+	else
+		data["holding"] = null
 
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "canister.tmpl", "Canister", 480, 400)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+	return data
 
-/obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
+/obj/machinery/portable_atmospherics/canister/tgui_act(action, params)
+	if(..())
+		return TRUE
 
-	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict. // yeah but without SOME sort of Topic check any dick can mess with them via exploits as he pleases -walter0o
-	//First comment might be outdated.
-	if (!istype(src.loc, /turf))
-		return 0
-
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr)) // exploit protection -walter0o
-		usr << browse(null, "window=canister")
-		onclose(usr, "canister")
-		return
-
-	if(href_list["toggle"])
-		if (valve_open)
-			if (holding)
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+	switch(action)
+		if("relabel")
+			if(can_label)
+				var/list/colors = list(\
+					"\[N2O\]" = "redws", \
+					"\[N2\]" = "red", \
+					"\[O2\]" = "blue", \
+					"\[Phoron\]" = "orangeps", \
+					"\[CO2\]" = "black", \
+					"\[Air\]" = "grey", \
+					"\[CAUTION\]" = "yellow", \
+				)
+				var/label = tgui_input_list(usr, "Choose canister label", "Gas canister", colors)
+				if(label)
+					canister_color = colors[label]
+					icon_state = colors[label]
+					name = "Canister: [label]"
+		if("pressure")
+			var/pressure = params["pressure"]
+			if(pressure == "reset")
+				pressure = initial(release_pressure)
+				. = TRUE
+			else if(pressure == "min")
+				pressure = ONE_ATMOSPHERE/10
+				. = TRUE
+			else if(pressure == "max")
+				pressure = 10*ONE_ATMOSPHERE
+				. = TRUE
+			else if(pressure == "input")
+				pressure = tgui_input_number(usr, "New release pressure ([ONE_ATMOSPHERE/10]-[10*ONE_ATMOSPHERE] kPa):", name, release_pressure, 10*ONE_ATMOSPHERE, ONE_ATMOSPHERE/10)
+				if(!isnull(pressure) && !..())
+					. = TRUE
+			else if(text2num(pressure) != null)
+				pressure = text2num(pressure)
+				. = TRUE
+			if(.)
+				release_pressure = clamp(round(pressure), ONE_ATMOSPHERE/10, 10*ONE_ATMOSPHERE)
+		if("valve")
+			if(valve_open)
+				if(holding)
+					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+				else
+					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
 			else
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
-		else
-			if (holding)
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
-			else
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
-				log_open()
-		valve_open = !valve_open
+				if(holding)
+					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
+				else
+					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
+					log_open()
+			valve_open = !valve_open
+			. = TRUE
+		if("eject")
+			if(holding)
+				if(valve_open)
+					valve_open = 0
+					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+				if(istype(holding, /obj/item/weapon/tank))
+					holding.manipulated_by = usr.real_name
+				holding.loc = loc
+				holding = null
+			. = TRUE
 
-	if (href_list["remove_tank"])
-		if(holding)
-			if (valve_open)
-				valve_open = 0
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
-			if(istype(holding, /obj/item/weapon/tank))
-				holding.manipulated_by = usr.real_name
-			holding.loc = loc
-			holding = null
-
-	if (href_list["pressure_adj"])
-		var/diff = text2num(href_list["pressure_adj"])
-		if(diff > 0)
-			release_pressure = min(10*ONE_ATMOSPHERE, release_pressure+diff)
-		else
-			release_pressure = max(ONE_ATMOSPHERE/10, release_pressure+diff)
-
-	if (href_list["relabel"])
-		if (can_label)
-			var/list/colors = list(\
-				"\[N2O\]" = "redws", \
-				"\[N2\]" = "red", \
-				"\[O2\]" = "blue", \
-				"\[Phoron\]" = "orangeps", \
-				"\[CO2\]" = "black", \
-				"\[Air\]" = "grey", \
-				"\[CAUTION\]" = "yellow", \
-			)
-			var/label = input("Choose canister label", "Gas canister") as null|anything in colors
-			if (label)
-				src.canister_color = colors[label]
-				src.icon_state = colors[label]
-				src.name = "Canister: [label]"
-
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	update_icon()
-
-	return 1
 
 /obj/machinery/portable_atmospherics/canister/phoron/New()
 	..()
@@ -387,24 +406,21 @@ update_flag
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide/New()
 	..()
 
-	air_contents.adjust_gas("sleeping_agent", MolesForPressure())
+	air_contents.adjust_gas("nitrous_oxide", MolesForPressure())
 	src.update_icon()
 	return 1
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
-	..()
-	air_contents.gas["sleeping_agent"] = 9*4000
-	spawn(10)
-		var/turf/simulated/location = src.loc
-		if (istype(src.loc))
-			while (!location.air)
-				sleep(10)
-			location.assume_air(air_contents)
-			air_contents = new
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide/roomfiller/Initialize()
+	. = ..()
+	air_contents.gas["nitrous_oxide"] = 9*4000
+	var/turf/simulated/location = src.loc
+	if (istype(src.loc))
+		location.assume_air(air_contents)
+		air_contents = new
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()

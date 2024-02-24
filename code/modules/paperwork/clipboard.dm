@@ -1,7 +1,7 @@
 /obj/item/weapon/clipboard
 	name = "clipboard"
 	desc = "Used to clip paper to, for an on-the-go writing board."
-	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "clipboard"
 	item_state = "clipboard"
 	throwforce = 0
@@ -34,13 +34,13 @@
 			return
 
 /obj/item/weapon/clipboard/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(toppaper)
-		overlays += toppaper.icon_state
-		overlays += toppaper.overlays
+		add_overlay(toppaper.icon_state)
+		add_overlay(toppaper.overlays)
 	if(haspen)
-		overlays += "clipboard_pen"
-	overlays += "clipboard_over"
+		add_overlay("clipboard_pen")
+	add_overlay("clipboard_over")
 	return
 
 /obj/item/weapon/clipboard/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -58,6 +58,13 @@
 		update_icon()
 
 	return
+
+/obj/item/weapon/clipboard/afterattack(turf/T as turf, mob/user as mob)
+	for(var/obj/item/weapon/paper/P in T)
+		P.loc = src
+		toppaper = P
+		update_icon()
+		to_chat(user, "<span class='notice'>You clip the [P] onto \the [src].</span>")
 
 /obj/item/weapon/clipboard/attack_self(mob/user as mob)
 	var/dat = "<title>Clipboard</title>"

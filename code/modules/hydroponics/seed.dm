@@ -1,6 +1,6 @@
 /datum/plantgene
 	var/genetype    // Label used when applying trait.
-	var/list/values // Values to copy into the target seed datum.
+	var/list/list/values // Values to copy into the target seed datum.
 
 /datum/seed
 	//Tracking.
@@ -104,7 +104,7 @@
 			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/3))
 			R.add_reagent(rid,injecting)
 
-	var/datum/effect/effect/system/smoke_spread/chem/spores/S = new(name)
+	var/datum/effect/effect/system/smoke_spread/chem/spores/S = new(src)
 	S.attach(T)
 	S.set_up(R, round(get_trait(TRAIT_POTENCY)/4), 0, T)
 	S.start()
@@ -140,7 +140,7 @@
 
 		if(affecting)
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your [affecting.name] greedily!</span>")
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, "Thorns", sharp=1, edge=has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, "Thorns", sharp = TRUE, edge=has_edge)
 		else
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your flesh greedily!</span>")
 			target.adjustBruteLoss(damage)
@@ -149,7 +149,7 @@
 		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
 		if(affecting)
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your [affecting.name]!</span>")
-			target.apply_damage(damage, BRUTE, target_limb, blocked, "Thorns", sharp=1, edge=has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, "Thorns", sharp = TRUE, edge=has_edge)
 		else
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your flesh!</span>")
 			target.adjustBruteLoss(damage)
@@ -170,9 +170,11 @@
 
 		if(!body_coverage)
 			return
-		if (fruit)
+
+		var/obj/item/organ/external/E = target.get_organ(target.hand ? BP_L_HAND : BP_R_HAND)
+		if(istype(E) && E.robotic < ORGAN_ROBOT && fruit)
 			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/5))
-			to_chat(target, "<span class='danger'>You are stung by \the [fruit]!</span>")
+			to_chat(target, SPAN_DANGER("You are stung by \the [fruit]!"))
 			for(var/chem in chems)
 				target.reagents.add_reagent(chem,injecting)
 				if (fruit.reagents)
@@ -188,7 +190,12 @@
 				var/clr
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				splat.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
+				//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
+				var/blight = get_trait(TRAIT_BIOLUM)
+				if(blight >= 5)
+					blight = 5
+				splat.set_light(blight, 0.5, l_color = clr)
+				//VOREStation Edit End
 			var/flesh_colour = get_trait(TRAIT_FLESH_COLOUR)
 			if(!flesh_colour) flesh_colour = get_trait(TRAIT_PRODUCT_COLOUR)
 			if(flesh_colour) splat.color = get_trait(TRAIT_PRODUCT_COLOUR)
@@ -229,6 +236,7 @@
 		open_turfs |= origin_turf
 
 		// Flood fill to get affected turfs.
+		// NOTE: Halfass bugfix implemented using air_blocked() but this really should be redone completely ~Leshana
 		while(open_turfs.len)
 			var/turf/T = pick(open_turfs)
 			open_turfs -= T
@@ -246,11 +254,11 @@
 				var/no_los
 				var/turf/last_turf = origin_turf
 				for(var/turf/target_turf in getline(origin_turf,neighbor))
-					if(!last_turf.Enter(target_turf) || target_turf.density)
+					if(air_master.air_blocked(last_turf, target_turf))
 						no_los = 1
 						break
 					last_turf = target_turf
-				if(!no_los && !origin_turf.Enter(neighbor))
+				if(!no_los && air_master.air_blocked(origin_turf, neighbor))
 					no_los = 1
 				if(no_los)
 					closed_turfs |= neighbor
@@ -406,13 +414,13 @@
 
 	roundstart = 0
 	mysterious = 1
-	seed_noun = pick("spores","nodes","cuttings","seeds")
+	seed_noun = pick("spores","nodes","cuttings","seeds","pits")
 
 	set_trait(TRAIT_POTENCY,rand(5,30),200,0)
-	set_trait(TRAIT_PRODUCT_ICON,pick(plant_controller.accessible_product_sprites))
-	set_trait(TRAIT_PLANT_ICON,pick(plant_controller.accessible_plant_sprites))
-	set_trait(TRAIT_PLANT_COLOUR,"#[get_random_colour(0,75,190)]")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#[get_random_colour(0,75,190)]")
+	set_trait(TRAIT_PRODUCT_ICON,pick(SSplants.accessible_product_sprites))
+	set_trait(TRAIT_PLANT_ICON,pick(SSplants.accessible_plant_sprites))
+	set_trait(TRAIT_PLANT_COLOUR,get_random_colour(0,75,190))
+	set_trait(TRAIT_PRODUCT_COLOUR,get_random_colour(0,75,190))
 	update_growth_stages()
 
 	if(prob(20))
@@ -540,7 +548,7 @@
 
 	if(prob(5))
 		set_trait(TRAIT_BIOLUM,1)
-		set_trait(TRAIT_BIOLUM_COLOUR,"#[get_random_colour(0,75,190)]")
+		set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
 
 	if(prob(3))
 		set_trait(TRAIT_SPORING,1)
@@ -568,7 +576,7 @@
 
 	if(!degree || get_trait(TRAIT_IMMUTABLE) > 0) return
 
-	source_turf.visible_message("<span class='notice'>\The [display_name] quivers!</span>")
+	source_turf.visible_message("<b>\The [display_name]</b> quivers!")
 
 	//This looks like shit, but it's a lot easier to read/change this way.
 	var/total_mutations = rand(1,1+degree)
@@ -605,7 +613,7 @@
 				if(prob(degree*5))
 					set_trait(TRAIT_CARNIVOROUS,     get_trait(TRAIT_CARNIVOROUS)+rand(-degree,degree),2, 0)
 					if(get_trait(TRAIT_CARNIVOROUS))
-						source_turf.visible_message("<span class='notice'>\The [display_name] shudders hungrily.</span>")
+						source_turf.visible_message("<b>\The [display_name]</b> shudders hungrily.")
 			if(6)
 				set_trait(TRAIT_WEED_TOLERANCE,      get_trait(TRAIT_WEED_TOLERANCE)+(rand(-2,2)*degree),10, 0)
 				if(prob(degree*5))
@@ -626,7 +634,7 @@
 				set_trait(TRAIT_POTENCY,             get_trait(TRAIT_POTENCY)+(rand(-20,20)*degree),200, 0)
 				if(prob(degree*5))
 					set_trait(TRAIT_SPREAD,          get_trait(TRAIT_SPREAD)+rand(-1,1),2, 0)
-					source_turf.visible_message("<span class='notice'>\The [display_name] spasms visibly, shifting in the tray.</span>")
+					source_turf.visible_message("<b>\The [display_name]</b> spasms visibly, shifting in the tray.")
 				if(prob(degree*3))
 					set_trait(TRAIT_SPORING,        !get_trait(TRAIT_SPORING))
 			if(9)
@@ -644,9 +652,9 @@
 				if(prob(degree*2))
 					set_trait(TRAIT_BIOLUM,         !get_trait(TRAIT_BIOLUM))
 					if(get_trait(TRAIT_BIOLUM))
-						source_turf.visible_message("<span class='notice'>\The [display_name] begins to glow!</span>")
+						source_turf.visible_message("<b>\The [display_name]</b> begins to glow!")
 						if(prob(degree*2))
-							set_trait(TRAIT_BIOLUM_COLOUR,"#[get_random_colour(0,75,190)]")
+							set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
 							source_turf.visible_message("<span class='notice'>\The [display_name]'s glow </span><font color='[get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")
 					else
 						source_turf.visible_message("<span class='notice'>\The [display_name]'s glow dims...</span>")
@@ -694,11 +702,11 @@
 				for(var/gas in exude_gasses)
 					exude_gasses[gas] = max(1,round(exude_gasses[gas]*0.8))
 
-			set_trait(TRAIT_BENEFICIAL_REAG, gene.values["[TRAIT_BENEFICIAL_REAG]"].Copy())
+			set_trait(TRAIT_BENEFICIAL_REAG, gene.values["[TRAIT_BENEFICIAL_REAG]"]?.Copy() || list())
 
-			set_trait(TRAIT_MUTAGENIC_REAG, gene.values["[TRAIT_MUTAGENIC_REAG]"].Copy())
+			set_trait(TRAIT_MUTAGENIC_REAG, gene.values["[TRAIT_MUTAGENIC_REAG]"]?.Copy() || list())
 
-			set_trait(TRAIT_TOXIC_REAG, gene.values["[TRAIT_TOXIC_REAG]"].Copy())
+			set_trait(TRAIT_TOXIC_REAG, gene.values["[TRAIT_TOXIC_REAG]"]?.Copy() || list())
 
 			gene.values["[TRAIT_EXUDE_GASSES]"] = null
 			gene.values["[TRAIT_CHEMS]"] = null
@@ -734,9 +742,9 @@
 		if(GENE_BIOCHEMISTRY)
 			P.values["[TRAIT_CHEMS]"] =        chems
 			P.values["[TRAIT_EXUDE_GASSES]"] = exude_gasses
-			traits_to_copy = list(TRAIT_POTENCY, TRAIT_SPORING, TRAIT_BENEFICIAL_REAG, TRAIT_MUTAGENIC_REAG, TRAIT_TOXIC_REAG)
+			traits_to_copy = list(TRAIT_POTENCY, TRAIT_BENEFICIAL_REAG, TRAIT_MUTAGENIC_REAG, TRAIT_TOXIC_REAG)
 		if(GENE_OUTPUT)
-			traits_to_copy = list(TRAIT_PRODUCES_POWER,TRAIT_BIOLUM)
+			traits_to_copy = list(TRAIT_PRODUCES_POWER,TRAIT_BIOLUM,TRAIT_SPORING)
 		if(GENE_ATMOSPHERE)
 			traits_to_copy = list(TRAIT_HEAT_TOLERANCE,TRAIT_LOWKPA_TOLERANCE,TRAIT_HIGHKPA_TOLERANCE)
 		if(GENE_HARDINESS)
@@ -784,13 +792,13 @@
 			to_chat(user, "<span class='danger'>You fail to harvest anything useful.</span>")
 	else
 		if(istype(user))
-			to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
+			to_chat(user, "<span class='filter_notice'>You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].</span>")
 
 		//This may be a new line. Update the global if it is.
-		if(name == "new line" || !(name in plant_controller.seeds))
-			uid = plant_controller.seeds.len + 1
+		if(name == "new line" || !(name in SSplants.seeds))
+			uid = SSplants.seeds.len + 1
 			name = "[uid]"
-			plant_controller.seeds[name] = src
+			SSplants.seeds[name] = src
 
 		if(harvest_sample)
 			var/obj/item/seeds/seeds = new(get_turf(user))
@@ -818,12 +826,10 @@
 				product = new has_item_product(get_turf(user))
 			else
 				product = new /obj/item/weapon/reagent_containers/food/snacks/grown(get_turf(user),name)
-			if(get_trait(TRAIT_PRODUCT_COLOUR))
-				if(!istype(product, /mob))
-					product.color = get_trait(TRAIT_PRODUCT_COLOUR)
-					if(istype(product,/obj/item/weapon/reagent_containers/food))
-						var/obj/item/weapon/reagent_containers/food/food = product
-						food.filling_color = get_trait(TRAIT_PRODUCT_COLOUR)
+			if (get_trait(TRAIT_PRODUCT_COLOUR))
+				if (istype(product,/obj/item/weapon/reagent_containers/food))
+					var/obj/item/weapon/reagent_containers/food/food = product
+					food.filling_color = get_trait(TRAIT_PRODUCT_COLOUR)
 
 			if(mysterious)
 				product.name += "?"
@@ -833,8 +839,12 @@
 				var/clr
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				product.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
-
+				//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
+				var/blight = get_trait(TRAIT_BIOLUM)
+				if(blight >= 5)
+					blight = 5
+				product.set_light(blight, 0.5, l_color = clr)
+				//VOREStation Edit End
 			if(get_trait(TRAIT_STINGS))
 				product.force = 1
 
@@ -876,6 +886,6 @@
 
 /datum/seed/proc/update_growth_stages()
 	if(get_trait(TRAIT_PLANT_ICON))
-		growth_stages = plant_controller.plant_sprites[get_trait(TRAIT_PLANT_ICON)]
+		growth_stages = SSplants.plant_sprites[get_trait(TRAIT_PLANT_ICON)]
 	else
 		growth_stages = 0

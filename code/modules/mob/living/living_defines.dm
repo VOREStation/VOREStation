@@ -15,8 +15,11 @@
 	var/toxloss = 0.0	//Toxic damage caused by being poisoned or radiated
 	var/fireloss = 0.0	//Burn damage caused by being way too hot, too cold or burnt.
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
-	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
+	var/brainloss = 0	//Thought-scrambly damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+
+	var/nutrition = 400
+	var/max_nutrition = MAX_NUTRITION
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
@@ -52,7 +55,8 @@
 
 	var/image/dsoverlay = null //Overlay used for darksight eye adjustments
 
-	var/glow_toggle = 0					// If they're glowing!
+	var/glow_toggle = FALSE					// If they're glowing!
+	var/glow_override = FALSE				// Ignore the manual toggle
 	var/glow_range = 2
 	var/glow_intensity = null
 	var/glow_color = "#FFFFFF"			// The color they're glowing!
@@ -69,3 +73,12 @@
 	var/looking_elsewhere = FALSE //If the mob's view has been relocated to somewhere else, like via a camera or with binocs
 
 	var/image/selected_image = null // Used for buildmode AI control stuff.
+
+	var/allow_self_surgery = FALSE	// Used to determine if the mob can perform surgery on itself.
+
+
+	var/tail_alt = 0
+	var/flying = 0				// Allows flight
+	var/inventory_panel_type = /datum/inventory_panel
+	var/datum/inventory_panel/inventory_panel
+	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown.

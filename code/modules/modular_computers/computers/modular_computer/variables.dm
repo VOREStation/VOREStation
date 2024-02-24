@@ -6,6 +6,7 @@
 
 	var/enabled = 0											// Whether the computer is turned on.
 	var/screen_on = 1										// Whether the computer is active/opened/it's screen is on.
+	var/device_theme = "ntos"								// Sets the theme for the main menu, hardware config, and file browser apps. Overridden by certain non-NT devices.
 	var/datum/computer_file/program/active_program = null	// A currently active program running on the computer.
 	var/hardware_flag = 0									// A flag that describes this device type
 	var/last_power_usage = 0								// Last tick power usage of this computer
@@ -23,6 +24,8 @@
 	// If you create a program which is limited to Laptops and Consoles you don't have to add it's icon_state overlay for Tablets too, for example.
 
 	icon = null												// This thing isn't meant to be used on it's own. Subtypes should supply their own icon.
+	blocks_emissive = FALSE
+	var/overlay_icon = null									// Icon file used for overlays
 	icon_state = null
 	center_of_mass = null									// No pixelshifting by placing on tables, etc.
 	randpixel = 0											// And no random pixelshifting on-creation either.
@@ -51,3 +54,11 @@
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/portable_drive		// Portable data storage
 	var/obj/item/weapon/computer_hardware/ai_slot/ai_slot							// AI slot, an intellicard housing that allows modifications of AIs.
 	var/obj/item/weapon/computer_hardware/tesla_link/tesla_link						// Tesla Link, Allows remote charging from nearest APC.
+
+	var/modifiable = TRUE	// can't be modified or damaged if false
+
+	var/stores_pen = FALSE
+	var/obj/item/weapon/pen/stored_pen
+
+	var/interact_sounds
+	var/interact_sound_volume = 40

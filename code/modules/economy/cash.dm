@@ -1,12 +1,13 @@
 /obj/item/weapon/spacecash
 	name = "0 Thaler"
+	var/initial_name = "Thaler"
 	desc = "It's worth 0 Thalers."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/economy.dmi'
 	icon_state = "spacecash1"
 	opacity = 0
-	density = 0
-	anchored = 0.0
+	density = FALSE
+	anchored = FALSE
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1
@@ -15,6 +16,8 @@
 	var/access = list()
 	access = access_crate_cash
 	var/worth = 0
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 /obj/item/weapon/spacecash/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/spacecash))
@@ -29,36 +32,36 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(SC)
 			h_user.put_in_hands(SC)
-		to_chat(user, "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>")
+		to_chat(user, "<span class='notice'>You combine the [initial_name]s to a bundle of [SC.worth] [initial_name]s.</span>")
 		qdel(src)
 
 /obj/item/weapon/spacecash/update_icon()
-	overlays.Cut()
-	name = "[worth] Thaler\s"
-	if(worth in list(1000,500,200,100,50,20,10,1))
+	cut_overlays()
+	name = "[worth] [initial_name]\s"
+	if(worth in list(1000,500,200,100,50,20,10,5,1))
 		icon_state = "spacecash[worth]"
-		desc = "It's worth [worth] Thalers."
+		desc = "It's worth [worth] [initial_name]s."
 		return
 	var/sum = src.worth
 	var/num = 0
-	for(var/i in list(1000,500,200,100,50,20,10,1))
+	for(var/i in list(1000,500,200,100,50,20,10,5,1))
 		while(sum >= i && num < 50)
 			sum -= i
 			num++
-			var/image/banknote = image('icons/obj/items.dmi', "spacecash[i]")
+			var/image/banknote = image('icons/obj/economy.dmi', "spacecash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
-			src.overlays += banknote
+			add_overlay(banknote)
 	if(num == 0) // Less than one thaler, let's just make it look like 1 for ease
-		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
+		var/image/banknote = image('icons/obj/economy.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
-		src.overlays += banknote
-	src.desc = "They are worth [worth] Thalers."
+		add_overlay(banknote)
+	src.desc = "They are worth [worth] [initial_name]s."
 
 /obj/item/weapon/spacecash/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
 	worth += adjust_worth
@@ -77,7 +80,7 @@
 	return worth
 
 /obj/item/weapon/spacecash/attack_self()
-	var/amount = input(usr, "How many Thalers do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+	var/amount = tgui_input_number(usr, "How many [initial_name]s do you want to take? (0 to [src.worth])", "Take Money", 20, src.worth)
 	if(!src || QDELETED(src))
 		return
 	amount = round(CLAMP(amount, 0, src.worth))
@@ -93,8 +96,14 @@
 /obj/item/weapon/spacecash/c1
 	name = "1 Thaler"
 	icon_state = "spacecash1"
-	desc = "It's worth 1 credit."
+	desc = "It's worth 1 Thaler."
 	worth = 1
+
+/obj/item/weapon/spacecash/c5
+	name = "5 Thaler"
+	icon_state = "spacecash5"
+	desc = "It's worth 5 Thalers."
+	worth = 5
 
 /obj/item/weapon/spacecash/c10
 	name = "10 Thaler"
@@ -138,7 +147,7 @@
 	desc = "It's worth 1000 Thalers."
 	worth = 1000
 
-proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
+/proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/weapon/spacecash/SC = new (spawnloc)
 
 	SC.set_worth(sum)
@@ -148,14 +157,18 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 
 /obj/item/weapon/spacecash/ewallet
 	name = "charge card"
+	initial_name = "charge card"
 	icon_state = "efundcard"
 	desc = "A card that holds an amount of money."
+	drop_sound = 'sound/items/drop/card.ogg'
+	pickup_sound = 'sound/items/pickup/card.ogg'
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
-	attack_self() return  //Don't act
-	attackby()    return  //like actual
-	update_icon() return  //space cash
+
+/obj/item/weapon/spacecash/ewallet/attack_self() return  //Don't act
+/obj/item/weapon/spacecash/ewallet/attackby()    return  //like actual
+/obj/item/weapon/spacecash/ewallet/update_icon() return  //space cash
 
 /obj/item/weapon/spacecash/ewallet/examine(mob/user)
-	..(user)
-	if (!(user in view(2)) && user!=src.loc) return
-	to_chat(user, "<font color='blue'>Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth].</font>")
+	. = ..()
+	if(Adjacent(user))
+		. += "<span class='notice'>Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth].</span>"

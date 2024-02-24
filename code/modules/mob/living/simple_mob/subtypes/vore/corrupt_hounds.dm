@@ -29,8 +29,8 @@
 	movement_sound = 'sound/effects/houndstep.ogg'
 	see_in_dark = 8
 
-	melee_damage_lower = 5
-	melee_damage_upper = 10 //makes it so 4 max dmg hits don't instakill you.
+	melee_damage_lower = 10
+	melee_damage_upper = 20
 	grab_resist = 100
 
 	response_help = "pets"
@@ -71,7 +71,7 @@
 	vore_stomach_name = "fuel processor"
 	vore_stomach_flavor = "You have ended up in the fuel processor of this corrupted machine. This place was definitely not designed with safety and comfort in mind. The heated and cramped surroundings oozing potent fluids all over your form, eager to do nothing less than breaking you apart to fuel its rampage for the next few days... hours... minutes? Oh dear..."
 
-	loot_list = list(/obj/item/borg/upgrade/syndicate = 6, /obj/item/borg/upgrade/vtec = 6, /obj/item/weapon/material/knife/ritual = 6, /obj/item/weapon/disk/nifsoft/compliance = 6)
+	loot_list = list(/obj/item/borg/upgrade/basic/syndicate = 6, /obj/item/borg/upgrade/basic/vtec = 6, /obj/item/weapon/material/knife/ritual = 6, /obj/item/weapon/disk/nifsoft/compliance = 6)
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi
 	name = "corrupt corrupt hound"
@@ -120,6 +120,50 @@
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/init_vore()
+	..()
+	var/obj/belly/B = vore_selected
+	B.name = "fuel processor"
+	B.desc = "Uttering distorted growls and fragmented voice clips all the while, the corrupted hound gulps the rest of your squirming figure past its jaws... which snap shut with an audible click of metal on metal. Your trip down its slickly lubricated, rubbery gullet is a tight and efficient one... and once you spill out into the machine's fuel processor, your weight making it sag slightly, hot-and-thick slime begins oozing all over your form. Only time will tell if you're destined to become fuel for its next bout of rampaging... be it days, hours, or just mere minutes..."
+
+	B.emote_lists[DM_HOLD] = list(
+		"Abruptly, your corrupt captor takes off at an unsteady gallop, sloshing and swaying your snugly kneading surroundings as it pursues something unseen.",
+		"A distorted, potentially content-sounding growl rumbles in through the all-encompassing, soft rubber, drowned out by the occasional gllrsh.",
+		"The corrupt hound takes a brief moment to lie down and rest its actuators, pressing and squishing its hanging belly down against the floor as it pants robotically.",
+		"A juicy slosh fills your senses as the slick rubber walls squeeze inwards, wrapping you up utterly in a strange, claustrophobic type of hug.",
+		"Over time, the constant kneading and massaging the processor's synth-flesh gives you, along with its humid warmth, relaxes the strength right out of your muscles.",
+		"'MIn3 m1NE, Al1 MInE', the corrupted canine growls, over and over, as its synthetic stomach possessively clenches and grips at your ooze-coated figure, the stretchy walls hesitant to let go again.")
+
+	B.emote_lists[DM_DIGEST] = list(
+		"Your rubbery surroundings suddenly pitch all about as the corrupted hound takes off at an uneven gallop, hunting future prey while processing its current intake of meat!",
+		"A muffled, garbled howl, a victorious and maddened sound, pierces through the thick, flexible walls that work incessantly to churn you down!",
+		"The mechanical canine's panting occasionally turns into a sordid belch, more and more breatheable air escaping that already acidic, dizziness-inducing chamber!",
+		"The all-encapsulating, rubber-like walls churning over you momentarily let up on their assault, only to clench and squeeze inwards twice as intensely afterwards!",
+		"The longer you spend stewing away in the pool of hot, clingy juices surrounding you, the weaker and weaker you seem to feel!",
+		"'FU3L mE A1RE@Dy, S0 sO SORrY!?', your corrupted captor growls as its synthetic innards begin oozing more potent juices, grinding down into your body with increasing fervor!")
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi/init_vore()
+	..()
+	var/obj/belly/B = vore_selected
+	B.name = "fuel processor"
+	B.desc = "The twice-corrupted hound takes a moment to lather over the rest of your figure in heated, slimy synth-slobber before gulping you the rest of the way down its lubricated, rubbery throat. After a short string of slick-sounding, autonomous swallows, you spill out into its awaiting processor, your body immediately making its synth-flesh sag down slightly... and, as an oddly distorted rumble vibrates into the chamber, so too does a slowly accumulating pool of hot, viscous ooze. Only time will tell if whatever extra programming the hound has will spare you from being processed..."
+
+	B.emote_lists[DM_HOLD] = list(
+		"Suddenly, your corrupted captor yowls robotically before bounding off at an unsteady gallop, its repeated footfalls vigorously sloshing and swinging its hammock-like stomach.",
+		"A distorted growl breaks away into an oddly content-sounding purring, the sound rumbling inwards through your all-encompassing, soft rubber trappings.",
+		"The extra-corrupted hound flops over onto its side with a muted clank, the initial jostle drowned out in a following, snug clench as it curls up to nuzzle its metal snout into its belly-bulge.",
+		"The pool of warm, slick fluids surrounding you wetly slosh inwards as the hound's synthetic belly walls squeeze you, nearly smothering you in a strange, almost affectionate 'hug'.",
+		"With time, the hound's staticky rumbling, the constant inward kneading of its processor's synth-flesh, and the humid warmth filling the chamber all combine to relax the strength right out of you.",
+		"'SO s0FT, CUDD1E Me', the twice-corrupted hound growl-purrs, the soft rubber lining of its synthetic stomach snugly clenching to and vibrating over your oozed-up figure in a voracious cuddle of its own design.")
+
+	B.emote_lists[DM_DIGEST] = list(
+		"Your rubbery confines suddenly toss and tumble you about, the twice-corrupted hound unevenly galloping off in search of more edible cuddle partners as its current one processes away!",
+		"A harsh, high-pitched attempt of a bark escapes your captor, a cheerily mad sound, as its thick, flexible stomach walls relentlessly churn you down!",
+		"The mechanical canine's content panting cuts away into a pleased 'rurr...' before being interrupted by a reverberating, acrid belch, yet more breatheable air slipping away!",
+		"The all-encapsulating, rubber-like walls churning over you seem to feel softer than before, though, on the outside, the broken hound's belly slowly rounds out!",
+		"The longer you spend stewing away in the pool of hot, clingy juices, constantly rumbled into by the hound's attempted purr, the weaker and more distracted you feel!",
+		"'I FEEL SOFT. Y*U FEEL SOFT', the twice-corrupted canine states as its plush, rubbery interior grinds down over your curled-up body, squeezing inwards more and more easily with each repetition!")
 
 /datum/say_list/corrupthound
 	speak = list("AG##¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")

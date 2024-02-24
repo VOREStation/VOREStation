@@ -39,7 +39,7 @@
 		size += gun.w_class
 		gun.forceMove(src)
 		to_chat(user, "<span class='notice'>You slide \the [gun] into the firing mechanism.</span>")
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	else
 		..()
 
@@ -48,7 +48,7 @@
 		installed_gun.forceMove(get_turf(src))
 		to_chat(user, "<span class='notice'>You slide \the [installed_gun] out of the firing mechanism.</span>")
 		size = initial(size)
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
 	else
 		to_chat(user, "<span class='notice'>There's no weapon to remove from the mechanism.</span>")
@@ -106,7 +106,7 @@
 	icon_state = "locomotion"
 	extended_desc = "The circuit accepts a 'dir' number as a direction to move towards.<br>\
 	Pulsing the 'step towards dir' activator pin will cause the machine to move a meter in that direction, assuming it is not \
-	being held, or anchored in some way.  It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
+	being held, or anchored in some way.  It should be noted that the ability to move is dependent on the type of assembly that this circuit inhabits."
 	w_class = ITEMSIZE_NORMAL
 	complexity = 20
 //	size = 5

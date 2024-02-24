@@ -15,8 +15,8 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 	icon_state = "vclamp[open]"
 
 /obj/machinery/atmospherics/valve/shutoff/examine(var/mob/user)
-	..()
-	to_chat(user, "The automatic shutoff circuit is [close_on_leaks ? "enabled" : "disabled"].")
+	. = ..()
+	. += "The automatic shutoff circuit is [close_on_leaks ? "enabled" : "disabled"]."
 
 /obj/machinery/atmospherics/valve/shutoff/Initialize()
 	. = ..()
@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 
 // Breadth-first search for any leaking pipes that we can directly see
 /obj/machinery/atmospherics/valve/shutoff/proc/find_leaks()
-	var/obj/machinery/atmospherics/list/search = list()
+	var/list/obj/machinery/atmospherics/search = list()
 
 	// We're the leak!
 	if(!node1 || !node2)

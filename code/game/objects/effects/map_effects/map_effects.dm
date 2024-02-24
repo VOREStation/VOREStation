@@ -10,7 +10,8 @@
 	var/proximity_needed = 12			// How many tiles a mob with a client must be for this to run.
 	var/ignore_ghosts = FALSE			// If true, ghosts won't satisfy the above requirement.
 	var/ignore_afk = TRUE				// If true, AFK people (5 minutes) won't satisfy it as well.
-	var/retry_delay = 3 SECONDS			// How long until we check for players again.
+	var/retry_delay = 5 SECONDS			// How long until we check for players again.
+	var/next_attempt = 0				// Next time we're going to do ACTUAL WORK
 
 /obj/effect/map_effect/ex_act()
 	return
@@ -25,36 +26,32 @@
 /obj/effect/map_effect/interval
 	var/interval_lower_bound = 5 SECONDS // Lower number for how often the map_effect will trigger.
 	var/interval_upper_bound = 5 SECONDS // Higher number for above.
-	var/halt = FALSE // Set to true to stop the loop when it reaches the next iteration.
 
 /obj/effect/map_effect/interval/Initialize()
-	handle_interval_delay()
-	return ..()
-
+	. = ..()
+	START_PROCESSING(SSobj, src)
+	
 /obj/effect/map_effect/interval/Destroy()
-	halt = TRUE // Shouldn't need it to GC but just in case.
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-// Override this for the specific thing to do. Be sure to call parent to keep looping.
+// Override this for the specific thing to do.
 /obj/effect/map_effect/interval/proc/trigger()
-	handle_interval_delay()
+	return
 
 // Handles the delay and making sure it doesn't run when it would be bad.
-/obj/effect/map_effect/interval/proc/handle_interval_delay()
-	// Check to see if we're useful first.
-	if(halt)
-		return // Do not pass .(), do not recursively collect 200 thaler.
-
-	if(!always_run && !check_for_player_proximity(src, proximity_needed, ignore_ghosts, ignore_afk))
-		spawn(retry_delay) // Maybe someday we'll have fancy TG timers/schedulers.
-			if(!QDELETED(src))
-				.()
+/obj/effect/map_effect/interval/process()
+	//Not yet!
+	if(world.time < next_attempt)
 		return
-
-	var/next_interval = rand(interval_lower_bound, interval_upper_bound)
-	spawn(next_interval)
-		if(!QDELETED(src))
-			trigger()
+	
+	// Check to see if we're useful first.
+	if(!always_run && !check_for_player_proximity(src, proximity_needed, ignore_ghosts, ignore_afk))
+		next_attempt = world.time + retry_delay
+	// Hey there's someone nearby.
+	else
+		next_attempt = world.time + rand(interval_lower_bound, interval_upper_bound)
+		trigger()
 
 // Helper proc to optimize the use of effects by making sure they do not run if nobody is around to perceive it.
 /proc/check_for_player_proximity(var/atom/proximity_to, var/radius = 12, var/ignore_ghosts = FALSE, var/ignore_afk = TRUE)

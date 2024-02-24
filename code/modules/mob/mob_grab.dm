@@ -34,6 +34,7 @@
 	abstract = 1
 	item_state = "nothing"
 	w_class = ITEMSIZE_HUGE
+	destroy_on_drop = TRUE	//VOREStation Edit
 
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)
@@ -174,12 +175,13 @@
 				assailant.visible_message("<span class='warning'>[assailant] covers [affecting]'s eyes!</span>")
 			if(affecting.eye_blind < 3)
 				affecting.Blind(3)
-		//TFF 12/8/19 VoreStation Addition Start
+		//VOREStation Edit
 		if(BP_HEAD)
 			if(force_down)
-				if(announce)
-					assailant.visible_message("<span class='warning'>[assailant] sits on [target]'s head!</span>")
-		//VoreStation Addition End
+				if(user.a_intent == I_HELP)
+					if(announce)
+						assailant.visible_message("<span class='warning'>[assailant] sits on [target]'s face!</span>")
+		//VOREStation Edit End
 
 /obj/item/weapon/grab/attack_self()
 	return s_click(hud)
@@ -239,8 +241,6 @@
 		return
 	if(state == GRAB_UPGRADING)
 		return
-	if(!assailant.canClick())
-		return
 	if(world.time < (last_action + UPGRADE_COOLDOWN))
 		return
 	if(!assailant.canmove || assailant.lying)
@@ -263,6 +263,7 @@
 		state = GRAB_AGGRESSIVE
 		icon_state = "grabbed1"
 		hud.icon_state = "reinforce1"
+		add_attack_logs(assailant, affecting, "Aggressively grabbed", FALSE) // Not important enough to notify admins, but still helpful.
 	else if(state < GRAB_NECK)
 		if(isslime(affecting))
 			to_chat(assailant, "<span class='notice'>You squeeze [affecting], but nothing interesting happens.</span>")

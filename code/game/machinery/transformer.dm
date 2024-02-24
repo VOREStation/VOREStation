@@ -4,8 +4,8 @@
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = MOB_LAYER+1 // Overhead
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/transform_dead = 0
 	var/transform_standing = 0
 
@@ -28,14 +28,14 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(!transform_dead && H.stat == DEAD)
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return
-	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+	playsound(src, 'sound/items/Welder.ogg', 50, 1)
 	use_power(5000) // Use a lot of power.
 	var/mob/living/silicon/robot = H.Robotize()
 	robot.SetLockDown()
 	spawn(50) // So he can't jump out the gate right away.
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+		playsound(src, 'sound/machines/ping.ogg', 50, 0)
 		if(robot)
 			robot.SetLockDown(0)
 

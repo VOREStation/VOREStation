@@ -54,22 +54,22 @@ In short:
 
 
 /datum/universal_state/hell/proc/AreaSet()
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 
-		A.updateicon()
+		A.update_icon()
 
 /datum/universal_state/hell/OverlayAndAmbientSet()
 	spawn(0)
 		for(var/datum/lighting_corner/L in world)
 			L.update_lumcount(1, 0, 0)
 
-		for(var/turf/space/T in turfs)
+		for(var/turf/space/T in world)
 			OnTurfChange(T)
 
 /datum/universal_state/hell/proc/MiscSet()
-	for(var/turf/simulated/floor/T in turfs)
+	for(var/turf/simulated/floor/T in world)
 		if(!T.holy && prob(1))
 			new /obj/effect/gateway/active/cult(T)
 
@@ -78,7 +78,7 @@ In short:
 			alm.ex_act(2)
 
 /datum/universal_state/hell/proc/APCSet()
-	for (var/obj/machinery/power/apc/APC in machines)
+	for (var/obj/machinery/power/apc/APC in GLOB.apcs)
 		if (!(APC.stat & BROKEN) && !APC.is_critical)
 			APC.emagged = 1
 			APC.queue_icon_update()

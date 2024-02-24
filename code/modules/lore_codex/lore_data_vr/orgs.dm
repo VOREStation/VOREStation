@@ -27,13 +27,17 @@
 	the biggest and most influential of them all.  Some people also categorize the different TSCs into 'major' and 'minor' TSCs."
 	desired_type = /datum/lore/organization/tsc
 
+/datum/lore/codex/category/auto_org/other
+	name = "Other Factions"
+	auto_keywords = list("KHI","SDF","Smuggler","Smugglers","Pirate","Pirates")
+	desired_type = /datum/lore/organization/other
+
 /datum/lore/codex/category/auto_org/gov
 	name = "Governments"
 	auto_keywords = list("Gov","Government","Governments")
 	desired_type = /datum/lore/organization/gov
 
-
 /datum/lore/codex/category/auto_org/mil
-	name = "Militaries"
+	name = "Military Forces & PMCs"
 	auto_keywords = list("Mil","Military", "Militaries")
 	desired_type = /datum/lore/organization/mil

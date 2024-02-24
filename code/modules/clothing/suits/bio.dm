@@ -86,9 +86,9 @@
 /obj/item/clothing/head/bio_hood/cmo
 	icon_state = "bio_cmo"
 
-//Plague Dr mask can be found in clothing/masks/gasmask.dm
+//Plague Dr mask can be found in clothing/masks/gasmask.dm. Golden can be found in labcoat.dm.
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
-	name = "Plague doctor suit"
+	name = "plague doctor suit"
 	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
 	icon_state = "plaguedoctor"
 	item_state_slots = list(slot_r_hand_str = "bio", slot_l_hand_str = "bio")

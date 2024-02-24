@@ -8,17 +8,20 @@
 	desc = "A solar directional tracker."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "tracker"
-	anchored = 1
-	density = 1
-	use_power = 0
+	anchored = TRUE
+	density = TRUE
+	use_power = USE_POWER_OFF
+	var/glass_type = /obj/item/stack/material/glass
 
 	var/id = 0
 	var/sun_angle = 0		// sun angle as set by sun datum
 	var/obj/machinery/power/solar_control/control = null
+	var/SOLAR_MAX_DIST = 40		//VOREStation Addition
 
-/obj/machinery/power/tracker/New(var/turf/loc, var/obj/item/solar_assembly/S)
-	..(loc)
-	Make(S)
+
+/obj/machinery/power/tracker/Initialize(mapload, glass_type)
+	. = ..()
+	update_icon()
 	connect_to_network()
 
 /obj/machinery/power/tracker/Destroy()
@@ -38,15 +41,6 @@
 		control.connected_tracker = null
 	control = null
 
-/obj/machinery/power/tracker/proc/Make(var/obj/item/solar_assembly/S)
-	if(!S)
-		S = new /obj/item/solar_assembly(src)
-		S.glass_type = /obj/item/stack/material/glass
-		S.tracker = 1
-		S.anchored = 1
-	S.loc = src
-	update_icon()
-
 //updates the tracker icon and the facing angle for the control computer
 /obj/machinery/power/tracker/proc/set_angle(var/angle)
 	sun_angle = angle
@@ -59,15 +53,15 @@
 
 /obj/machinery/power/tracker/attackby(var/obj/item/weapon/W, var/mob/user)
 
-	if(W.is_crowbar())
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+	if(W.has_tool_quality(TOOL_CROWBAR))
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message("<span class='notice'>[user] begins to take the glass off the solar tracker.</span>")
 		if(do_after(user, 50))
-			var/obj/item/solar_assembly/S = locate() in src
-			if(S)
-				S.loc = src.loc
-				S.give_glass()
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			var/obj/item/solar_assembly/S = new(loc)
+			S.tracker = TRUE
+			S.anchored = TRUE
+			new glass_type(loc, 2)
+			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='notice'>[user] takes the glass off the tracker.</span>")
 			qdel(src)
 		return

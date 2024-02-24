@@ -1,6 +1,6 @@
 /obj/structure/cult
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/cult.dmi'
 
 /obj/structure/cult/cultify()
@@ -34,7 +34,7 @@
 	var/last_activation = 0
 
 /obj/structure/cult/pylon/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/cult/pylon/attack_hand(mob/M as mob)
@@ -57,9 +57,9 @@
 		if(prob(1+ damage * 5))
 			visible_message("<span class='danger'>[shatter_message]</span>")
 			STOP_PROCESSING(SSobj, src)
-			playsound(get_turf(src),shatter_sound, 75, 1)
+			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
@@ -73,28 +73,28 @@
 				)
 			STOP_PROCESSING(SSobj, src)
 			user.do_attack_animation(src)
-			playsound(get_turf(src),shatter_sound, 75, 1)
+			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 		else
 			to_chat(user, "You hit \the [src]!")
-			playsound(get_turf(src),impact_sound, 75, 1)
+			playsound(src,impact_sound, 75, 1)
 	else
 		if(prob(damage * 2))
 			to_chat(user, "You pulverize what was left of \the [src]!")
 			qdel(src)
 		else
 			to_chat(user, "You hit \the [src]!")
-		playsound(get_turf(src),impact_sound, 75, 1)
+		playsound(src,impact_sound, 75, 1)
 
 /obj/structure/cult/pylon/proc/repair(mob/user as mob)
 	if(isbroken)
 		START_PROCESSING(SSobj, src)
 		to_chat(user, "You repair \the [src].")
 		isbroken = 0
-		density = 1
+		density = TRUE
 		icon_state = initial(icon_state)
 		set_light(5)
 
@@ -127,26 +127,10 @@
 	desc = "You're pretty sure that abyss is staring back."
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "hole"
-	density = 1
-	unacidable = 1
-	anchored = 1.0
+	density = TRUE
+	unacidable = TRUE
+	anchored = TRUE
 	var/spawnable = null
-
-/obj/effect/gateway/Bumped(mob/M as mob|obj)
-	spawn(0)
-		return
-	return
-
-/obj/effect/gateway/Crossed(AM as mob|obj)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
-	spawn(0)
-		return
-	return
 
 /obj/effect/gateway/active
 	light_range=5
@@ -169,19 +153,18 @@
 /obj/effect/gateway/active/cult/cultify()
 	return
 
-/obj/effect/gateway/active/New()
-	spawn(rand(30,60) SECONDS)
+/obj/effect/gateway/active/Initialize()
+	addtimer(CALLBACK(src, PROC_REF(spawn_and_qdel)), rand(30, 60) SECONDS)
+
+/obj/effect/gateway/active/proc/spawn_and_qdel()
+	if(LAZYLEN(spawnable))
 		var/t = pick(spawnable)
-		new t(src.loc)
-		qdel(src)
+		new t(get_turf(src))
+	qdel(src)
 
 /obj/effect/gateway/active/Crossed(var/atom/A)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = A
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(A.is_incorporeal())
+		return
 	if(!istype(A, /mob/living))
 		return
 

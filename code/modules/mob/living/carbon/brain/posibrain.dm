@@ -16,7 +16,7 @@
 /obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
-		to_chat(user, "<font color='blue'>You carefully locate the manual activation switch and start the positronic brain's boot process.</font>")
+		to_chat(user, span_blue("You carefully locate the manual activation switch and start the positronic brain's boot process."))
 		icon_state = "posibrain-searching"
 		src.searching = 1
 		src.request_player()
@@ -35,9 +35,9 @@
 /obj/item/device/mmi/digital/posibrain/proc/question(var/client/C)
 	spawn(0)
 		if(!C)	return
-		var/response = alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", "Yes", "No", "Never for this round")
+		var/response = tgui_alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", list("Yes", "No", "Never for this round"))
 		if(response == "Yes")
-			response = alert(C, "Are you sure you want to play as a positronic brain?", "Positronic brain request", "Yes", "No")
+			response = tgui_alert(C, "Are you sure you want to play as a positronic brain?", "Positronic brain request", list("Yes", "No"))
 		if(!C || brainmob.key || 0 == searching)	return		//handle logouts that happen whilst the alert is waiting for a response, and responses issued after a brain has been located.
 		if(response == "Yes")
 			transfer_personality(C.mob)
@@ -68,7 +68,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The positronic brain beeps as it loads a personality.</font>")
+		M.show_message(span_blue("The positronic brain beeps as it loads a personality."))
 	playsound(src, 'sound/misc/boobeebeep.ogg', 50, 1)
 	icon_state = "posibrain-occupied"
 
@@ -82,27 +82,8 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?</font>")
+		M.show_message(span_blue("The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?"))
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
-
-/obj/item/device/mmi/digital/posibrain/examine(mob/user)
-	if(!..(user))
-		return
-
-	var/msg = "<span class='info'>*---------*</span>\nThis is [bicon(src)] \a <EM>[src]</EM>!\n[desc]\n"
-	msg += "<span class='warning'>"
-
-	if(src.brainmob && src.brainmob.key)
-		switch(src.brainmob.stat)
-			if(CONSCIOUS)
-				if(!src.brainmob.client)	msg += "It appears to be in stand-by mode.\n" //afk
-			if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
-			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	else
-		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	msg += "</span><span class='info'>*---------*</span>"
-	to_chat(user,msg)
-	return
 
 /obj/item/device/mmi/digital/posibrain/emp_act(severity)
 	if(!src.brainmob)

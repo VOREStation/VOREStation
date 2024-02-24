@@ -9,11 +9,8 @@
 	throw_range = 4
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
-
-	suicide_act(mob/user)
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
-		to_chat(viewers(user),"<span class='danger'>[user] is impaling [T.himself] with the [src.name]! It looks like [T.he] [T.is] trying to commit suicide.</span>")
-		return (BRUTELOSS|FIRELOSS)
+	drop_sound = 'sound/items/drop/sword.ogg'
+	pickup_sound = 'sound/items/pickup/sword.ogg'
 
 /obj/item/weapon/nullrod/attack(mob/M as mob, mob/living/user as mob) //Paste from old-code to decult with a null rod.
 
@@ -22,7 +19,7 @@
 	user.setClickCooldown(user.get_attack_speed(src))
 	user.do_attack_animation(M)
 
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='danger'>You don't have the dexterity to do this!</span>")
 		return
 
@@ -92,13 +89,12 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 
-	density = 1
+	density = TRUE
 	opacity = 0
 	mouse_opacity = 1
-	anchored = 0
+	anchored = FALSE
 
-	can_buckle = 1
-	buckle_movable = 1
+	can_buckle = TRUE
 	buckle_lying = 0
 	buckle_dir = SOUTH
 
@@ -120,18 +116,6 @@
 /obj/effect/energy_net/process()
 	if(!has_buckled_mobs())
 		qdel(src)
-
-/obj/effect/energy_net/Move()
-	..()
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/occupant = A
-			occupant.buckled = null
-			occupant.forceMove(src.loc)
-			occupant.buckled = src
-			if (occupant && (src.loc != occupant.loc))
-				unbuckle_mob(occupant)
-				qdel(src)
 
 /obj/effect/energy_net/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	user.setClickCooldown(user.get_attack_speed())

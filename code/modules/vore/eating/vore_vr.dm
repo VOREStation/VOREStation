@@ -19,8 +19,6 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 -Aro <3 */
 
-#define VORE_VERSION	2	//This is a Define so you don't have to worry about magic numbers.
-
 //
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
@@ -45,15 +43,61 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Actual preferences
 	var/digestable = TRUE
 	var/devourable = TRUE
+	var/absorbable = TRUE
 	var/feeding = TRUE
-	var/absorbable = TRUE	//TFF 14/12/19 - choose whether allowing absorbing
-	var/digest_leave_remains = FALSE
-	var/allowmobvore = TRUE
-	var/list/belly_prefs = list()
-	var/vore_taste = "nothing in particular"
-	var/permit_healbelly = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
+	var/allow_inbelly_spawning = FALSE
+	var/allow_spontaneous_tf = FALSE
+	var/digest_leave_remains = FALSE
+	var/allowmobvore = TRUE
+	var/permit_healbelly = TRUE
+	var/noisy = FALSE
+	var/eating_privacy_global = FALSE //Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
+
+	// These are 'modifier' prefs, do nothing on their own but pair with drop_prey/drop_pred settings.
+	var/drop_vore = TRUE
+	var/stumble_vore = TRUE
+	var/slip_vore = TRUE
+	var/throw_vore = TRUE
+	var/food_vore = TRUE
+
+	var/resizable = TRUE
+	var/show_vore_fx = TRUE
+	var/step_mechanics_pref = FALSE
+	var/pickup_pref = TRUE
+
+	var/list/belly_prefs = list()
+	var/vore_taste = "nothing in particular"
+	var/vore_smell = "nothing in particular"
+
+	var/selective_preference = DM_DEFAULT
+
+
+	var/nutrition_message_visible = TRUE
+	var/list/nutrition_messages = list(
+							"They are starving! You can hear their stomach snarling from across the room!",
+							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach.",
+							"",
+							"They have a stuffed belly, bloated fat and round from eating too much.",
+							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
+							"They are sporting a large, round, sagging stomach. It contains at least their body weight worth of glorping slush.",
+							"They are engorged with a huge stomach that sags and wobbles as they move. They must have consumed at least twice their body weight. It looks incredibly soft.",
+							"Their stomach is firmly packed with digesting slop. They must have eaten at least a few times worth their body weight! It looks hard for them to stand, and their gut jiggles when they move.",
+							"They are so absolutely stuffed that you aren't sure how it's possible for them to move. They can't seem to swell any bigger. The surface of their belly looks sorely strained!",
+							"They are utterly filled to the point where it's hard to even imagine them moving, much less comprehend it when they do. Their gut is swollen to monumental sizes and amount of food they consumed must be insane.")
+	var/weight_message_visible = TRUE
+	var/list/weight_messages = list(
+							"They are terribly lithe and frail!",
+							"They have a very slender frame.",
+							"They have a lightweight, athletic build.",
+							"They have a healthy, average body.",
+							"They have a thick, curvy physique.",
+							"They have a plush, chubby figure.",
+							"They have an especially plump body with a round potbelly and large hips.",
+							"They have a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs.",
+							"They are incredibly obese. Their massive potbelly sags over their waistline while their fat ass would probably require two chairs to sit down comfortably!",
+							"They are so morbidly obese, you wonder how they can even stand, let alone waddle around the station. They can't get any fatter without being immobilized.")
 
 	//Mechanically required
 	var/path
@@ -70,7 +114,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 //
 //	Check if an object is capable of eating things, based on vore_organs
 //
-/proc/is_vore_predator(var/mob/living/O)
+/proc/is_vore_predator(mob/living/O)
 	if(istype(O,/mob/living))
 		if(O.vore_organs.len > 0)
 			return TRUE
@@ -87,8 +131,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 //
 // Save/Load Vore Preferences
 //
-/datum/vore_preferences/proc/load_path(ckey,slot,filename="character",ext="json")
-	if(!ckey || !slot)	return
+/datum/vore_preferences/proc/load_path(ckey, slot, filename="character", ext="json")
+	if(!ckey || !slot)
+		return
 	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/vore/[filename][slot].[ext]"
 
 
@@ -102,7 +147,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	load_path(client_ckey,slot)
 
-	if(!path) return FALSE //Path couldn't be set?
+	if(!path)
+		return FALSE //Path couldn't be set?
 	if(!fexists(path)) //Never saved before
 		save_vore() //Make the file first
 		return TRUE
@@ -116,21 +162,42 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	digestable = json_from_file["digestable"]
 	devourable = json_from_file["devourable"]
+	resizable = json_from_file["resizable"]
 	feeding = json_from_file["feeding"]
-	absorbable = json_from_file["absorbable"]	//TFF 14/12/19 - choose whether allowing absorbing
+	absorbable = json_from_file["absorbable"]
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
+	vore_smell = json_from_file["vore_smell"]
 	permit_healbelly = json_from_file["permit_healbelly"]
+	noisy = json_from_file["noisy"]
+	selective_preference = json_from_file["selective_preference"]
+	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
+	allow_inbelly_spawning = json_from_file["allow_inbelly_spawning"]
+	allow_spontaneous_tf = json_from_file["allow_spontaneous_tf"]
+	step_mechanics_pref = json_from_file["step_mechanics_pref"]
+	pickup_pref = json_from_file["pickup_pref"]
 	belly_prefs = json_from_file["belly_prefs"]
+	drop_vore = json_from_file["drop_vore"]
+	slip_vore = json_from_file["slip_vore"]
+	food_vore = json_from_file["food_vore"]
+	throw_vore = json_from_file["throw_vore"]
+	stumble_vore = json_from_file["stumble_vore"]
+	nutrition_message_visible = json_from_file["nutrition_message_visible"]
+	nutrition_messages = json_from_file["nutrition_messages"]
+	weight_message_visible = json_from_file["weight_message_visible"]
+	weight_messages = json_from_file["weight_messages"]
+	eating_privacy_global = json_from_file["eating_privacy_global"]
 
 	//Quick sanitize
 	if(isnull(digestable))
 		digestable = TRUE
 	if(isnull(devourable))
 		devourable = TRUE
+	if(isnull(resizable))
+		resizable = TRUE
 	if(isnull(feeding))
 		feeding = TRUE
 	if(isnull(absorbable))
@@ -141,32 +208,112 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		allowmobvore = TRUE
 	if(isnull(permit_healbelly))
 		permit_healbelly = TRUE
+	if(isnull(selective_preference))
+		selective_preference = DM_DEFAULT
+	if (isnull(noisy))
+		noisy = FALSE
+	if(isnull(show_vore_fx))
+		show_vore_fx = TRUE
 	if(isnull(can_be_drop_prey))
 		can_be_drop_prey = FALSE
 	if(isnull(can_be_drop_pred))
 		can_be_drop_pred = FALSE
+	if(isnull(allow_inbelly_spawning))
+		allow_inbelly_spawning = FALSE
+	if(isnull(allow_spontaneous_tf))
+		allow_spontaneous_tf = FALSE
+	if(isnull(step_mechanics_pref))
+		step_mechanics_pref = TRUE
+	if(isnull(pickup_pref))
+		pickup_pref = TRUE
 	if(isnull(belly_prefs))
 		belly_prefs = list()
+	if(isnull(drop_vore))
+		drop_vore = TRUE
+	if(isnull(slip_vore))
+		slip_vore = TRUE
+	if(isnull(throw_vore))
+		throw_vore = TRUE
+	if(isnull(stumble_vore))
+		stumble_vore = TRUE
+	if(isnull(food_vore))
+		food_vore = TRUE
+	if(isnull(nutrition_message_visible))
+		nutrition_message_visible = TRUE
+	if(isnull(weight_message_visible))
+		weight_message_visible = TRUE
+	if(isnull(eating_privacy_global))
+		eating_privacy_global = FALSE
+	if(isnull(nutrition_messages))
+		nutrition_messages = list(
+							"They are starving! You can hear their stomach snarling from across the room!",
+							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach.",
+							"",
+							"They have a stuffed belly, bloated fat and round from eating too much.",
+							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
+							"They are sporting a large, round, sagging stomach. It contains at least their body weight worth of glorping slush.",
+							"They are engorged with a huge stomach that sags and wobbles as they move. They must have consumed at least twice their body weight. It looks incredibly soft.",
+							"Their stomach is firmly packed with digesting slop. They must have eaten at least a few times worth their body weight! It looks hard for them to stand, and their gut jiggles when they move.",
+							"They are so absolutely stuffed that you aren't sure how it's possible for them to move. They can't seem to swell any bigger. The surface of their belly looks sorely strained!",
+							"They are utterly filled to the point where it's hard to even imagine them moving, much less comprehend it when they do. Their gut is swollen to monumental sizes and amount of food they consumed must be insane.")
+	else if(nutrition_messages.len < 10)
+		while(nutrition_messages.len < 10)
+			nutrition_messages.Add("")
+	if(isnull(weight_messages))
+		weight_messages = list(
+							"They are terribly lithe and frail!",
+							"They have a very slender frame.",
+							"They have a lightweight, athletic build.",
+							"They have a healthy, average body.",
+							"They have a thick, curvy physique.",
+							"They have a plush, chubby figure.",
+							"They have an especially plump body with a round potbelly and large hips.",
+							"They have a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs.",
+							"They are incredibly obese. Their massive potbelly sags over their waistline while their fat ass would probably require two chairs to sit down comfortably!",
+							"They are so morbidly obese, you wonder how they can even stand, let alone waddle around the station. They can't get any fatter without being immobilized.")
+	else if(weight_messages.len < 10)
+		while(weight_messages.len < 10)
+			weight_messages.Add("")
 
 	return TRUE
 
 /datum/vore_preferences/proc/save_vore()
-	if(!path)				return FALSE
+	if(!path)
+		return FALSE
 
 	var/version = VORE_VERSION	//For "good times" use in the future
 	var/list/settings_list = list(
 			"version"				= version,
 			"digestable"			= digestable,
 			"devourable"			= devourable,
+			"resizable"				= resizable,
 			"absorbable"			= absorbable,
 			"feeding"				= feeding,
 			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,
 			"vore_taste"			= vore_taste,
+			"vore_smell"			= vore_smell,
 			"permit_healbelly"		= permit_healbelly,
+			"noisy" 				= noisy,
+			"selective_preference"	= selective_preference,
+			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
+			"allow_inbelly_spawning"= allow_inbelly_spawning,
+			"allow_spontaneous_tf"	= allow_spontaneous_tf,
+			"step_mechanics_pref"	= step_mechanics_pref,
+			"pickup_pref"			= pickup_pref,
 			"belly_prefs"			= belly_prefs,
+			"drop_vore"				= drop_vore,
+			"slip_vore"				= slip_vore,
+			"stumble_vore"			= stumble_vore,
+			"throw_vore" 			= throw_vore,
+			"food_vore" 			= food_vore,
+			"nutrition_message_visible"	= nutrition_message_visible,
+			"nutrition_messages"		= nutrition_messages,
+			"weight_message_visible"	= weight_message_visible,
+			"weight_messages"			= weight_messages,
+			"eating_privacy_global"		= eating_privacy_global,
 		)
 
 	//List to JSON
@@ -176,14 +323,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		return FALSE
 
 	//Write it out
-#ifdef RUST_G
-	call(RUST_G, "file_write")(json_to_file, path)
-#else
-	// Fall back to using old format if we are not using rust-g
-	if(fexists(path))
-		fdel(path) //Byond only supports APPENDING to files, not replacing.
-	text2file(json_to_file, path)
-#endif
+	rustg_file_write(json_to_file, path)
+
 	if(!fexists(path))
 		log_debug("Saving: [path] failed file write")
 		return FALSE

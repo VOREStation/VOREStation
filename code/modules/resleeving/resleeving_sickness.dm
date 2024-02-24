@@ -16,8 +16,8 @@
 	accuracy_dispersion	= 20					// 20% less precise.
 
 /datum/modifier/faux_resleeving_sickness
-	name = "resleeving sickness"
-	desc = "You feel somewhat weak and unfocused, having been sleeved not so long ago."
+	name = "resleeving sickness (vore)"
+	desc = "You feel somewhat weak and unfocused, having been sleeved not so long ago. (OOC: No real penalty for vore-related deaths)"
 	stacks = MODIFIER_STACK_EXTEND
 
 	on_created_text = "<span class='warning'>You feel slightly weak and unfocused.</span>"
@@ -37,12 +37,11 @@
 		return TRUE
 
 /datum/modifier/gory_devourment/on_applied()
-	if(holder.ckey)
-		if(holder.mind)
-			cached_mind = holder.mind
-	return
+	cached_mind = holder.mind
+	return ..()
 
 /datum/modifier/gory_devourment/on_expire()
 	if(holder.stat == DEAD)
-		cached_mind.vore_death = TRUE
-	return
+		cached_mind?.vore_death = TRUE
+	cached_mind = null //Don't keep a hardref
+	return ..()

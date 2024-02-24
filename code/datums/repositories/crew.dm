@@ -24,7 +24,8 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/tracked = scan()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
-		if((C) && (C.has_sensor) && (pos) && (pos.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(is_jammed(C)))
+		var/area/B = pos?.loc //VOREStation Add: No sensor in Dorm
+		if((C.has_sensor) && (pos?.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(B.block_suit_sensors) && !(is_jammed(C)) && !(is_vore_jammed(C))) //VOREStation Edit
 			if(istype(C.loc, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = C.loc
 				if(H.w_uniform != C)
@@ -38,9 +39,10 @@ var/global/datum/repository/crew/crew_repository = new()
 				crewmemberData["assignment"] = H.get_assignment(if_no_id="Unknown", if_no_job="No Job")
 
 				if(C.sensor_mode >= SUIT_SENSOR_BINARY)
-					crewmemberData["dead"] = H.stat > UNCONSCIOUS
+					crewmemberData["dead"] = H.stat == DEAD
 
 				if(C.sensor_mode >= SUIT_SENSOR_VITAL)
+					crewmemberData["stat"] = H.stat
 					crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
 					crewmemberData["tox"] = round(H.getToxLoss(), 1)
 					crewmemberData["fire"] = round(H.getFireLoss(), 1)
@@ -48,10 +50,11 @@ var/global/datum/repository/crew/crew_repository = new()
 
 				if(C.sensor_mode >= SUIT_SENSOR_TRACKING)
 					var/area/A = get_area(H)
-					crewmemberData["area"] = sanitize(A.name)
+					crewmemberData["area"] = sanitize(A.get_name())
 					crewmemberData["x"] = pos.x
 					crewmemberData["y"] = pos.y
-					crewmemberData["z"] = pos.z
+					crewmemberData["realZ"] = pos.z
+					crewmemberData["z"] = using_map.get_zlevel_name(pos.z)
 
 				crewmembers[++crewmembers.len] = crewmemberData
 

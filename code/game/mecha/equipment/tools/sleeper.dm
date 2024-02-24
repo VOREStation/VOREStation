@@ -7,21 +7,14 @@
 	energy_drain = 20
 	range = MELEE
 	equip_cooldown = 30
+	mech_flags = EXOSUIT_MODULE_MEDICAL
 	var/mob/living/carbon/human/occupant = null
-	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 5
 	required_type = list(/obj/mecha/medical)
 	salvageable = 0
 	allow_duplicate = TRUE
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/New()
-	..()
-	pr_mech_sleeper = new /datum/global_iterator/mech_sleeper(list(src),0)
-	pr_mech_sleeper.set_delay(equip_cooldown)
-	return
-
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/Destroy()
-	qdel(pr_mech_sleeper)
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
 	return ..()
@@ -51,7 +44,7 @@
 		if(chassis.loc!=C || target.loc!=T)
 			return
 		if(occupant)
-			occupant_message("<font color=\"red\"><B>The sleeper is already occupied!</B></font>")
+			occupant_message(span_red("<B>The sleeper is already occupied!</B>"))
 			return
 		target.forceMove(src)
 		occupant = target
@@ -62,9 +55,9 @@
 			target.client.perspective = EYE_PERSPECTIVE
 			target.client.eye = chassis
 		*/
-		set_ready_state(0)
-		pr_mech_sleeper.start()
-		occupant_message("<font color='blue'>[target] successfully loaded into [src]. Life support functions engaged.</font>")
+		set_ready_state(FALSE)
+		START_PROCESSING(SSprocessing, src)
+		occupant_message(span_blue("[target] successfully loaded into [src]. Life support functions engaged."))
 		chassis.visible_message("[chassis] loads [target] into [src].")
 		log_message("[target] loaded. Life support functions engaged.")
 	return
@@ -83,15 +76,15 @@
 	*/
 	occupant.Stasis(0)
 	occupant = null
-	pr_mech_sleeper.stop()
-	set_ready_state(1)
+	STOP_PROCESSING(SSprocessing, src)
+	set_ready_state(TRUE)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/detach()
 	if(occupant)
 		occupant_message("Unable to detach [src] - equipment occupied.")
 		return
-	pr_mech_sleeper.stop()
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/get_equip_info()
@@ -217,18 +210,17 @@
 		return
 	go_out()//and release him from the eternal prison.
 
-/datum/global_iterator/mech_sleeper
-
-/datum/global_iterator/mech_sleeper/process(var/obj/item/mecha_parts/mecha_equipment/tool/sleeper/S)
-	if(!S.chassis)
-		S.set_ready_state(1)
-		return stop()
-	if(!S.chassis.has_charge(S.energy_drain))
-		S.set_ready_state(1)
-		S.log_message("Deactivated.")
-		S.occupant_message("[src] deactivated - no power.")
-		return stop()
-	var/mob/living/carbon/M = S.occupant
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper/process()
+	..()
+	if(!chassis)
+		set_ready_state(TRUE)
+		return PROCESS_KILL
+	if(!chassis.has_charge(energy_drain))
+		set_ready_state(TRUE)
+		log_message("Deactivated.")
+		occupant_message("[src] deactivated - no power.")
+		return PROCESS_KILL
+	var/mob/living/carbon/M = occupant
 	if(!M)
 		return
 	if(M.health > 0)
@@ -242,6 +234,6 @@
 	M.Stun(2)
 	if(M.reagents.get_reagent_amount("inaprovaline") < 5)
 		M.reagents.add_reagent("inaprovaline", 5)
-	S.chassis.use_power(S.energy_drain)
-	S.update_equip_info()
+	chassis.use_power(energy_drain)
+	update_equip_info()
 	return

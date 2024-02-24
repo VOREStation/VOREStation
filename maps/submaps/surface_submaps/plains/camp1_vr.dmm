@@ -8,34 +8,36 @@
 "c" = (
 /obj/structure/grille/rustic,
 /obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
 /area/submap/camp1)
 "d" = (
 /obj/structure/bed/padded,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/camp1)
 "e" = (
 /obj/item/device/flashlight/lantern,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/camp1)
 "f" = (
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/camp1)
 "g" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/camp1)
 "h" = (
 /obj/structure/simple_door/sifwood,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/camp1)
@@ -45,7 +47,7 @@
 /obj/item/stack/rods{
 	amount = 17
 	},
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/camp1)
@@ -57,10 +59,10 @@
 /area/template_noop)
 "k" = (
 /obj/structure/table/bench/wooden,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/camp1)
 "l" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/camp1)
 "m" = (
 /obj/item/weapon/material/knife/machete/hatchet,
@@ -68,11 +70,11 @@
 /area/template_noop)
 "n" = (
 /obj/item/weapon/flame/lighter,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/camp1)
 "y" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/camp1)
