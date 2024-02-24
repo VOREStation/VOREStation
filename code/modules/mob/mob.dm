@@ -2,6 +2,7 @@
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
+	player_list -= src
 	unset_machine()
 	if(hud_used) //ChompEDIT - fix hard qdels
 		QDEL_NULL(hud_used) //ChompEDIT - fix hard qdels
@@ -73,11 +74,11 @@
 	zone_sel = null
 
 /mob/Initialize()
-	mob_list |= src //ChompEDIT - qdel refs
+	mob_list += src
 	if(stat == DEAD)
-		dead_mob_list |= src //ChompEDIT - qdel refs
+		dead_mob_list += src
 	else
-		living_mob_list |= src //ChompEDIT - qdel refs
+		living_mob_list += src
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
