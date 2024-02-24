@@ -24,7 +24,8 @@
 		ManualFollow(A)
 	// Otherwise jump
 	else
-		following = null
+		if(following) //ChompEDIT - qdel refs
+			stop_following() //ChompEDIT - qdel refs
 		forceMove(get_turf(A))
 
 /mob/observer/dead/ClickOn(var/atom/A, var/params)
