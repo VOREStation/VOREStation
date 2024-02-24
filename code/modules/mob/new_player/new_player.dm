@@ -21,7 +21,7 @@
 	var/created_for
 
 /mob/new_player/New()
-	mob_list += src
+	mob_list |= src //ChompEDIT - refs
 	verbs |= /mob/proc/insidePanel
 	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
 
@@ -29,12 +29,6 @@
 /mob/new_player/Destroy()
 	if(panel)
 		QDEL_NULL(panel)
-	if(created_for)
-		created_for = null
-
-	//From code/modules/mob/new_player/login.dm
-	if(my_client)
-		my_client = null
 	. = ..()
 //ChompEDIT END
 

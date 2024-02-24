@@ -138,7 +138,7 @@
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
-	observer_mob_list += src
+	observer_mob_list |= src //ChompEDIT - qdel refs
 	..()
 
 /mob/observer/dead/Topic(href, href_list)
