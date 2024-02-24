@@ -53,26 +53,32 @@
 		if(MOVABLE_LIGHT_DIRECTIONAL)
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, starts_on = light_on)
 
+//ChompEDIT START - qdel refs - copy some methods from tg
 /atom/movable/Destroy()
-	for(var/atom/movable/AM in contents)
-		QDEL_NULL(AM) //CHOMPEdit - fix hard qdels
-
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
 
-	moveToNullspace()
-
-	vis_contents.Cut()
-	for(var/atom/movable/A as anything in vis_locs)
-		A.vis_contents -= src
-
-	if(pulledby)
+	if(pulledby) //stop_pulling is on /mob for some reason
 		pulledby.stop_pulling()
 
 	if(orbiting)
 		stop_orbit()
+
 	QDEL_NULL(riding_datum) //VOREStation Add
+
 	. = ..()
+
+	for(var/m in contents)
+		qdel(m)
+
+	moveToNullspace()
+
+	vis_locs = null //clears this atom out of all viscontents
+
+	// Checking length(vis_contents) before cutting has significant speed benefits
+	if (length(vis_contents))
+		vis_contents.Cut()
+//ChompEDIT END
 
 /atom/movable/vv_edit_var(var_name, var_value)
 	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.

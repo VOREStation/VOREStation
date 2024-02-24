@@ -21,7 +21,6 @@
 
 /obj/screen/plane_master/augmented/Destroy()
 	my_mob = null
-	src.moveToNullspace() //ChompEDIT - qdel refs - this likes to stay in contents.
 	return ..()
 
 /obj/screen/plane_master/augmented/set_visibility(var/want = FALSE)
