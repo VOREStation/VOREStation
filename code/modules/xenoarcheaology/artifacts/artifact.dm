@@ -21,7 +21,6 @@
 		if(!QDELETED(arti_mstr))
 			qdel(arti_mstr)
 	. = ..()
-//ChompEDIT END
 
 /obj/machinery/artifact/New()
 	..()

@@ -68,7 +68,6 @@
 		var/obj/item/device/radio/intercom/my_machine = loc
 		my_machine.circuit = null
 	. = ..()
-//ChompEDIT END
 
 /obj/item/weapon/circuitboard/keycard_auth
 	name = T_BOARD("keycard authenticator")

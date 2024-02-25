@@ -19,7 +19,7 @@
 	if(plane_holder)
 		QDEL_NULL(plane_holder)
 
-	if(pulling) //ChompEDIT - this seems to not be done so we do it here just incase.
+	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
 	previewing_belly = null
@@ -29,7 +29,6 @@
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
 		QDEL_NULL(vorePanel)
-	//ChompEDIT block End
 
 
 	if(mind)
@@ -37,9 +36,7 @@
 			mind.current = null
 		if(mind.original == src)
 			mind.original = null
-	//ChompEDIT block END
 
-	//ChompEDIT end
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW
 
@@ -1238,7 +1235,7 @@
 		if(src in holder.exploit_addons)
 			holder.exploit_addons -= src
 	. = ..()
-//ChompEDIT END
+
 
 /client/proc/check_has_body_select()
 	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)

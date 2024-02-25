@@ -152,7 +152,6 @@
 	if(istype(loc, /obj/item/ammo_casing))
 		my_case = loc
 	. = ..()
-//ChompEDIT END
 
 /obj/item/projectile/proc/Range()
 	range--
@@ -240,7 +239,7 @@
 			after_move()
 		if(can_hit_target(original, permutated))
 			Bump(original)
-	if(!hitscanning && !forcemoved && trajectory) //CHOMPEdit - runtime, add trajectory to if
+	if(!hitscanning && !forcemoved && trajectory)
 		pixel_x = trajectory.return_px() - trajectory.mpx * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		pixel_y = trajectory.return_py() - trajectory.mpy * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 1, flags = ANIMATION_END_NOW)
@@ -468,16 +467,16 @@
 			impacted_mobs.Cut()
 		impacted_mobs = null
 
-	trajectory = null //ChompEDIT ease the GC
-	beam_index = null //ChompEDIT ease the GC
-	beam_components = null //ChompEDIT ease the GC
+	trajectory = null
+	beam_index = null
+	beam_components = null
 
 
 	if(my_case)
 		if(my_case.BB == src)
 			my_case.BB = null
 			my_case = null
-	//ChompEDIT END
+
 	return ..()
 
 /obj/item/projectile/proc/cleanup_beam_segments()

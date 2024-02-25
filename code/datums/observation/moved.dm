@@ -30,7 +30,7 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 ********************/
 /atom/movable/Entered(var/atom/movable/am, atom/old_loc)
 	. = ..()
-	am.RegisterSignal(src,COMSIG_OBSERVER_MOVED, /atom/movable/proc/recursive_move, override = TRUE) //ChompEDIT, this causes runtimes without override = true
+	am.RegisterSignal(src,COMSIG_OBSERVER_MOVED, /atom/movable/proc/recursive_move, override = TRUE)
 
 /atom/movable/Exited(var/atom/movable/am, atom/old_loc)
 	. = ..()

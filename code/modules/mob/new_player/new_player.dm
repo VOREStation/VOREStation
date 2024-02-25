@@ -30,7 +30,6 @@
 	if(panel)
 		QDEL_NULL(panel)
 	. = ..()
-//ChompEDIT END
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr

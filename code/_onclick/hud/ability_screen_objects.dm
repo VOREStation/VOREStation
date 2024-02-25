@@ -188,7 +188,7 @@
 	..()
 	if(ability_master)
 		QDEL_NULL(ability_master)
-//ChompEDIT END
+
 
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//
