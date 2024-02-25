@@ -468,12 +468,15 @@
 			impacted_mobs.Cut()
 		impacted_mobs = null
 
-	qdel(trajectory)
+	trajectory = null //ChompEDIT ease the GC
+	beam_index = null //ChompEDIT ease the GC
+	beam_components = null //ChompEDIT ease the GC
 
 	//ChompEDIT START - qdel refs
 	if(my_case)
 		if(my_case.BB == src)
 			my_case.BB = null
+			my_case = null
 	//ChompEDIT END
 	return ..()
 
