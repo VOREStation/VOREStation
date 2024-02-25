@@ -22,8 +22,6 @@
 	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
-	previewing_belly = null
-
 	vore_selected = null
 	if(vore_organs)
 		QDEL_NULL_LIST(vore_organs)
