@@ -7,12 +7,10 @@
 	img.override = TRUE
 	add_alt_appearance("animals", img, displayTo = alt_farmanimals)
 
-/* //ChompEDIT STart - fix hard qdels - move overrides to code/modules/mob/living/carbon/human.dm
 /mob/living/carbon/human/Destroy()
 	alt_farmanimals -= src
 
 	. = ..()
-*/ //ChompEDIT End
 
 /mob/living/carbon/human/get_digestion_nutrition_modifier()
 	return species.digestion_nutrition_modifier

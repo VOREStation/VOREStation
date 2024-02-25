@@ -240,7 +240,7 @@
 			after_move()
 		if(can_hit_target(original, permutated))
 			Bump(original)
-	if(!hitscanning && !forcemoved)
+	if(!hitscanning && !forcemoved && trajectory) //CHOMPEdit - runtime, add trajectory to if
 		pixel_x = trajectory.return_px() - trajectory.mpx * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		pixel_y = trajectory.return_py() - trajectory.mpy * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 1, flags = ANIMATION_END_NOW)

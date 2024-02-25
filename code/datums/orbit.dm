@@ -105,19 +105,19 @@
 
 /atom/movable/proc/stop_orbit()
 	SpinAnimation(0,0)
-	QDEL_NULL(orbiting) //CHOMPEdit - fix hard qdels
+	QDEL_NULL(orbiting) //CHOMPEdit - qdel refs
 
 /atom/Destroy(force = FALSE)
+	. = ..()
 	if (orbiters)
 		for(var/datum/orbit/O as anything in orbiters)
 			if (O.orbiter)
 				O.orbiter.stop_orbit()
-	. = ..()
 
 /atom/movable/Destroy(force = FALSE)
+	. = ..()
 	if (orbiting)
 		stop_orbit()
-	. = ..()
 
 /*
 /atom/movable/proc/transfer_observers_to(atom/movable/target)

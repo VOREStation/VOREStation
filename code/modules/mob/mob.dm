@@ -4,14 +4,13 @@
 	living_mob_list -= src
 	player_list -= src
 	unset_machine()
-	if(hud_used) //ChompEDIT - fix hard qdels
-		QDEL_NULL(hud_used) //ChompEDIT - fix hard qdels
+	QDEL_NULL(hud_used) //ChompEDIT - fix hard qdels
 	clear_fullscreen()
 	if(client)
 		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
 			qdel(spell_master)
 		remove_screen_obj_references()
-		client.screen = list()
+		client.screen.Cut()
 	if(mind && mind.current == src)
 		spellremove(src)
 	ghostize()
@@ -20,10 +19,7 @@
 	if(plane_holder)
 		QDEL_NULL(plane_holder)
 
-	if(ability_master)
-		QDEL_NULL(ability_master)
-
-	if(pulling)
+	if(pulling) //ChompEDIT - this seems to not be done so we do it here just incase.
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
 	previewing_belly = null
@@ -37,22 +33,10 @@
 
 	//ChompEDIT block START - qdel refs - handle /datum/mind
 	if(mind)
-		// First remove the self references for qdel
 		if(mind.current == src)
 			mind.current = null
 		if(mind.original == src)
 			mind.original = null
-		// Then figure out if we null or qdel
-		if(istype(src, /mob/new_player)) //NEW_PLAYERS have vestigial minds that can be deleted.
-			//make sure that the mind datum is fully dereferenced before actually trying to delete it, just incase a valid mob/living mind somehow got here
-			if(!mind.current && !mind.original) //are we dereferenced
-				if(mind in ticker.minds) //check the ticker for a datum/mind reference
-					ticker.minds.RemoveAll(mind)
-				QDEL_NULL(mind) //mind blown
-			else //We have a mind but it's still referenced to something else....
-				mind = null //mind changed. don't delete, leave in just incase
-		else // Anything NOT a NEWPLAYER minds need to be dereferenced, BUT we don't qdel the mind. This leaves a sort of log in ticker.minds of a player's activity, and this we want to keep. If it's not in the ticker, it self deletes.
-			mind = null
 	//ChompEDIT block END
 
 	//ChompEDIT end
