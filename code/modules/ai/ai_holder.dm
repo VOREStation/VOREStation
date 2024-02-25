@@ -26,7 +26,7 @@
 		if(ai_holder.faction_friends && ai_holder.faction_friends.len) //This list is shared amongst the faction
 			ai_holder.faction_friends -= src
 			ai_holder.faction_friends = null
-		QDEL_NULL(ai_holder) //ChompEDIT - fix hard qdels
+		QDEL_NULL(ai_holder)
 	return ..()
 
 /mob/living/Login()

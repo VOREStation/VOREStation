@@ -12,7 +12,7 @@
 
 	var/being_used = 0
 
-//ChompEDIT START - qdel refs
+
 /obj/machinery/artifact/Destroy()
 	if(artifact_master)
 		var/datum/component/artifact_master/arti_mstr = artifact_master

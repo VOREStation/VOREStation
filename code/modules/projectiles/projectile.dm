@@ -145,9 +145,9 @@
 	var/hud_state = "unknown" // What HUD state we use when we have ammunition.
 	var/hud_state_empty = "unknown" // The empty state. DON'T USE _FLASH IN THE NAME OF THE EMPTY STATE STRING, THAT IS ADDED BY THE CODE.
 
-	var/obj/item/ammo_casing/my_case = null //ChompEDIT - qdel refs. Ref to the case that created this projectile.
+	var/obj/item/ammo_casing/my_case = null
 
-//ChompEDIT START - qdel refs
+
 /obj/item/projectile/New()
 	if(istype(loc, /obj/item/ammo_casing))
 		my_case = loc
@@ -472,7 +472,7 @@
 	beam_index = null //ChompEDIT ease the GC
 	beam_components = null //ChompEDIT ease the GC
 
-	//ChompEDIT START - qdel refs
+
 	if(my_case)
 		if(my_case.BB == src)
 			my_case.BB = null

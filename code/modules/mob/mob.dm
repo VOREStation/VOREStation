@@ -4,7 +4,7 @@
 	living_mob_list -= src
 	player_list -= src
 	unset_machine()
-	QDEL_NULL(hud_used) //ChompEDIT - fix hard qdels
+	QDEL_NULL(hud_used)
 	clear_fullscreen()
 	if(client)
 		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
@@ -31,7 +31,7 @@
 		QDEL_NULL(vorePanel)
 	//ChompEDIT block End
 
-	//ChompEDIT block START - qdel refs - handle /datum/mind
+
 	if(mind)
 		if(mind.current == src)
 			mind.current = null
@@ -1231,7 +1231,7 @@
 		var/exploitmsg = html_decode("\n" + "Has " + I.name + ".")
 		exploit_record += exploitmsg
 
-//ChompEDIT START - fix hard qdels - qdelling exploitable objects need to wipe their reference if they are deleted
+
 /obj/Destroy()
 	if(istype(src.loc, /mob))
 		var/mob/holder = src.loc

@@ -15,7 +15,7 @@
 	..()
 
 /obj/item/clothing/suit/storage/hooded/Destroy()
-	QDEL_NULL(hood) //ChompEDIT - qdel refs
+	QDEL_NULL(hood)
 	return ..()
 
 /obj/item/clothing/suit/storage/hooded/proc/MakeHood()
@@ -34,7 +34,7 @@
 /obj/item/clothing/suit/storage/hooded/proc/RemoveHood()
 	hood_up = FALSE
 	update_icon()
-	if(hood) //ChompEDIT - qdel refs
+	if(hood)
 		hood.canremove = TRUE // This shouldn't matter anyways but just incase.
 		if(ishuman(hood.loc))
 			var/mob/living/carbon/H = hood.loc

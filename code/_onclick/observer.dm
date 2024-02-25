@@ -24,8 +24,8 @@
 		ManualFollow(A)
 	// Otherwise jump
 	else
-		if(following) //ChompEDIT - qdel refs
-			stop_following() //ChompEDIT - qdel refs
+		if(following)
+			stop_following()
 		forceMove(get_turf(A))
 
 /mob/observer/dead/ClickOn(var/atom/A, var/params)
@@ -69,9 +69,9 @@
 
 // VOREStation Edit Begin
 
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob) 
-	if(awaygate) 
-		if(user.client.holder) 
+/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
+	if(awaygate)
+		if(user.client.holder)
 			user.loc = awaygate.loc
 		else if(active)
 			user.loc = awaygate.loc

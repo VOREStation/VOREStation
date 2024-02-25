@@ -62,7 +62,7 @@
 	board_type = new /datum/frame/frame_types/intercom
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
-//ChompEDIT START - qdel refs
+
 /obj/item/weapon/circuitboard/intercom/Destroy()
 	if(istype(loc, /obj/item/device/radio/intercom))
 		var/obj/item/device/radio/intercom/my_machine = loc

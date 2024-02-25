@@ -61,11 +61,11 @@
 	for(var/organ in organs)
 		qdel(organ)
 	*/
-	if(nif) //ChompEDIT - fix hard qdels
-		QDEL_NULL(nif)	//VOREStation Add //ChompEDIT - fix hard qdels
+	if(nif)
+		QDEL_NULL(nif)	//VOREStation Add
 	worn_clothing.Cut()
 
-	//ChompEDIT start - fix hard qdels - Handle code/modules/organs/blood.dm destroys
+
 	if(vessel)
 		QDEL_NULL(vessel)
 	//ChompEDIT End
