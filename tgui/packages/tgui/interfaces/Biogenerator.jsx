@@ -1,6 +1,7 @@
 import { createSearch } from 'common/string';
+import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -13,13 +14,29 @@ import {
 import { Window } from '../layouts';
 
 const sortTypes = {
-  Alphabetical: (a, b) => a - b,
+  Alphabetical: (a, b) => a.name > b.name,
   'By availability': (a, b) => -(a.affordable - b.affordable),
   'By price': (a, b) => a.price - b.price,
 };
 
 export const Biogenerator = (props) => {
   const { act, data } = useBackend();
+  const [searchText, setSearchText] = useState('');
+  const [sortOrder, setSortOrder] = useState('Alphabetical');
+  const [descending, setDescending] = useState(false);
+
+  function handleSearchText(value) {
+    setSearchText(value);
+  }
+
+  function handleSortOrder(value) {
+    setSortOrder(value);
+  }
+
+  function handleDescending(value) {
+    setDescending(value);
+  }
+
   return (
     <Window width={400} height={450}>
       <Window.Content className="Layout__content--flexColumn" scrollable>
@@ -43,8 +60,22 @@ export const Biogenerator = (props) => {
                 Eject Beaker
               </Button>
             </Section>
-            <BiogeneratorSearch />
-            <BiogeneratorItems />
+            <BiogeneratorSearch
+              searchText={searchText}
+              sortOrder={sortOrder}
+              descending={descending}
+              onSearchText={handleSearchText}
+              onSortOrder={handleSortOrder}
+              onDescending={handleDescending}
+            />
+            <BiogeneratorItems
+              searchText={searchText}
+              sortOrder={sortOrder}
+              descending={descending}
+              onSearchText={handleSearchText}
+              onSortOrder={handleSortOrder}
+              onDescending={handleDescending}
+            />
           </>
         )}
       </Window.Content>
@@ -56,10 +87,7 @@ const BiogeneratorItems = (props) => {
   const { act, data } = useBackend();
   const { points, items } = data;
   // Search thingies
-  const [searchText, _setSearchText] = useLocalState('search', '');
-  const [sortOrder, _setSortOrder] = useLocalState('sort', 'Alphabetical');
-  const [descending, _setDescending] = useLocalState('descending', false);
-  const searcher = createSearch(searchText, (item) => {
+  const searcher = createSearch(props.searchText, (item) => {
     return item[0];
   });
 
@@ -71,11 +99,11 @@ const BiogeneratorItems = (props) => {
         kv2[1].affordable = points >= kv2[1].price / data.build_eff;
         return kv2[1];
       })
-      .sort(sortTypes[sortOrder]);
+      .sort(sortTypes[props.sortOrder]);
     if (items_in_cat.length === 0) {
       return;
     }
-    if (descending) {
+    if (props.descending) {
       items_in_cat = items_in_cat.reverse();
     }
 
@@ -102,36 +130,34 @@ const BiogeneratorItems = (props) => {
 };
 
 const BiogeneratorSearch = (props) => {
-  const [_searchText, setSearchText] = useLocalState('search', '');
-  const [_sortOrder, setSortOrder] = useLocalState('sort', '');
-  const [descending, setDescending] = useLocalState('descending', false);
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
         <Flex.Item grow="1" mr="0.5rem">
           <Input
             placeholder="Search by item name.."
+            value={props.searchText}
             width="100%"
-            onInput={(_e, value) => setSearchText(value)}
+            onInput={(_e, value) => props.onSearchText(value)}
           />
         </Flex.Item>
         <Flex.Item basis="30%">
           <Dropdown
-            selected="Alphabetical"
+            selected={props.sortOrder}
             options={Object.keys(sortTypes)}
             width="100%"
             lineHeight="19px"
-            onSelected={(v) => setSortOrder(v)}
+            onSelected={(v) => props.onSortOrder(v)}
           />
         </Flex.Item>
         <Flex.Item>
           <Button
-            icon={descending ? 'arrow-down' : 'arrow-up'}
+            icon={props.descending ? 'arrow-down' : 'arrow-up'}
             height="19px"
-            tooltip={descending ? 'Descending order' : 'Ascending order'}
+            tooltip={props.descending ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
-            onClick={() => setDescending(!descending)}
+            onClick={() => props.onDescending(!props.descending)}
           />
         </Flex.Item>
       </Flex>
@@ -149,9 +175,9 @@ const canBuyItem = (item, data) => {
   return true;
 };
 
-const BiogeneratorItemsCategory = (properties) => {
+const BiogeneratorItemsCategory = (props) => {
   const { act, data } = useBackend();
-  const { title, items, ...rest } = properties;
+  const { title, items, ...rest } = props;
   return (
     <Collapsible open title={title} {...rest}>
       {items.map((item) => (

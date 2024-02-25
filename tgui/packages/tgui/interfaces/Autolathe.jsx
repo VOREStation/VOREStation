@@ -62,6 +62,7 @@ export const Autolathe = (props) => {
           <Input
             fluid
             placeholder="Search for..."
+            value={searchText}
             onInput={(e, v) => setSearchText(v)}
             mb={1}
           />

@@ -64,26 +64,26 @@
 
 	item_list = list()
 	item_list["Food Items"] = list(
-		BIOGEN_REAGENT("10 milk", "milk", 10, 20),
-		BIOGEN_REAGENT("50 milk", "milk", 50, 95),
-		BIOGEN_REAGENT("10 Cream", "cream", 10, 30),
-		BIOGEN_REAGENT("50 Cream", "cream", 50, 120),
+		BIOGEN_REAGENT("Milk x10", "milk", 10, 20),
+		BIOGEN_REAGENT("Milk x50", "milk", 50, 95),
+		BIOGEN_REAGENT("Cream x10", "cream", 10, 30),
+		BIOGEN_REAGENT("Cream x50", "cream", 50, 120),
 		BIOGEN_ITEM("Slab of meat", /obj/item/weapon/reagent_containers/food/snacks/meat, 1, 50),
-		BIOGEN_ITEM("5 slabs of meat", /obj/item/weapon/reagent_containers/food/snacks/meat, 5, 250),
+		BIOGEN_ITEM("Slabs of meat x5", /obj/item/weapon/reagent_containers/food/snacks/meat, 5, 250),
 	)
 	item_list["Cooking Ingredients"] = list(
-		BIOGEN_REAGENT("10 Universal Enzyme", "enzyme", 10, 30),
-		BIOGEN_REAGENT("50 Universal Enzyme", "enzyme", 50, 120),
+		BIOGEN_REAGENT("Universal Enzyme x10", "enzyme", 10, 30),
+		BIOGEN_REAGENT("Universal Enzyme x50", "enzyme", 50, 120),
 		BIOGEN_ITEM("Nutri-spread", /obj/item/weapon/reagent_containers/food/snacks/spreads, 1, 30),
-		BIOGEN_ITEM("5 nutri-spread", /obj/item/weapon/reagent_containers/food/snacks/spreads, 5, 120),
+		BIOGEN_ITEM("Nutri-spread x5", /obj/item/weapon/reagent_containers/food/snacks/spreads, 5, 120),
 	)
 	item_list["Gardening Nutrients"] = list(
 		BIOGEN_ITEM("E-Z-Nutrient", /obj/item/weapon/reagent_containers/glass/bottle/eznutrient, 1, 60),
-		BIOGEN_ITEM("5 E-Z-Nutrient", /obj/item/weapon/reagent_containers/glass/bottle/eznutrient, 5, 300),
+		BIOGEN_ITEM("E-Z-Nutrient x5", /obj/item/weapon/reagent_containers/glass/bottle/eznutrient, 5, 300),
 		BIOGEN_ITEM("Left 4 Zed", /obj/item/weapon/reagent_containers/glass/bottle/left4zed, 1, 120),
-		BIOGEN_ITEM("5 Left 4 Zed", /obj/item/weapon/reagent_containers/glass/bottle/left4zed, 5, 600),
+		BIOGEN_ITEM("Left 4 Zed x5", /obj/item/weapon/reagent_containers/glass/bottle/left4zed, 5, 600),
 		BIOGEN_ITEM("Robust Harvest", /obj/item/weapon/reagent_containers/glass/bottle/robustharvest, 1, 150),
-		BIOGEN_ITEM("5 Robust Harvest", /obj/item/weapon/reagent_containers/glass/bottle/robustharvest, 5, 750),
+		BIOGEN_ITEM("Robust Harvest x5", /obj/item/weapon/reagent_containers/glass/bottle/robustharvest, 5, 750),
 	)
 	item_list["Leather Products"] = list(
 		BIOGEN_ITEM("Wallet", /obj/item/weapon/storage/wallet, 1, 100),
@@ -100,8 +100,8 @@
 		BIOGEN_ITEM("Leather Jacket", /obj/item/clothing/suit/storage/toggle/brown_jacket, 1, 500),
 		BIOGEN_ITEM("Winter Coat", /obj/item/clothing/suit/storage/hooded/wintercoat, 1, 500),
 		//VOREStation Edit - Algae for oxygen generator
-		BIOGEN_ITEM("4 Algae Sheets", /obj/item/stack/material/algae, 4, 400),
-		BIOGEN_ITEM("50 Algae Sheets", /obj/item/stack/material/algae, 50, 5000),
+		BIOGEN_ITEM("Algae Sheets x4", /obj/item/stack/material/algae, 4, 400),
+		BIOGEN_ITEM("Algae Sheets x50", /obj/item/stack/material/algae, 50, 5000),
 	)
 
 /obj/machinery/biogenerator/tgui_static_data(mob/user)

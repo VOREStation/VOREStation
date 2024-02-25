@@ -736,7 +736,7 @@
 			var/env = params["env"]
 
 			var/name = params["var"]
-			var/value = tgui_input_number(usr, "New [name] for [env]:", name, TLV[env][name], round_value = FALSE)
+			var/value = tgui_input_number(usr, "New [name] for [env]:", name, TLV[env][name], min_value=-1, round_value = FALSE)
 			if(!isnull(value) && !..())
 				if(value < 0)
 					TLV[env][name] = -1

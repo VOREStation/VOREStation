@@ -474,6 +474,7 @@ const PartLists = (props) => {
             <Input
               fluid
               placeholder="Search for..."
+              value={searchText}
               onInput={(e, v) => setSearchText(v)}
             />
           </Flex.Item>

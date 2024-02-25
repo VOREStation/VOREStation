@@ -81,6 +81,21 @@ const createReconnectedNode = () => {
   return node;
 };
 
+const getChatTimestamp = (message) => {
+  let stamp = '';
+  if (message.createdAt && !message.hasTimestamp) {
+    const dateTime = new Date(message.createdAt);
+    stamp =
+      '[' +
+      dateTime.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }) +
+      ']&nbsp;';
+  }
+  return stamp;
+};
+
 const handleImageError = (e) => {
   setTimeout(() => {
     /** @type {HTMLImageElement} */
@@ -131,6 +146,7 @@ class ChatRenderer {
     this.page = null;
     this.events = new EventEmitter();
     // Adjustables
+    this.prependTimestamps = false;
     this.visibleMessageLimit = 2500;
     this.combineMessageLimit = 5;
     this.combineIntervalLimit = 5;
@@ -385,6 +401,7 @@ class ChatRenderer {
     logLimit,
     storedTypes,
     roundId,
+    prependTimestamps,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
@@ -394,6 +411,7 @@ class ChatRenderer {
     this.logLimit = logLimit;
     this.storedTypes = storedTypes;
     this.roundId = roundId;
+    this.prependTimestamps = prependTimestamps;
   }
 
   getCombinableMessage(predicate) {
@@ -456,11 +474,15 @@ class ChatRenderer {
         node = createMessageNode();
         // Payload is plain text
         if (message.text) {
-          node.textContent = message.text;
+          node.textContent = this.prependTimestamps
+            ? getChatTimestamp(message) + message.text
+            : message.text;
         }
         // Payload is HTML
         else if (message.html) {
-          node.innerHTML = message.html;
+          node.innerHTML = this.prependTimestamps
+            ? getChatTimestamp(message) + message.html
+            : message.html;
         } else {
           logger.error('Error: message is missing text payload', message);
         }

@@ -87,8 +87,14 @@ export const SettingsPanel = (props) => {
 };
 
 export const SettingsGeneral = (props) => {
-  const { theme, fontFamily, fontSize, lineHeight, showReconnectWarning } =
-    useSelector(selectSettings);
+  const {
+    theme,
+    fontFamily,
+    fontSize,
+    lineHeight,
+    showReconnectWarning,
+    prependTimestamps,
+  } = useSelector(selectSettings);
   const dispatch = useDispatch();
   const [freeFont, setFreeFont] = useState(false);
   return (
@@ -96,6 +102,7 @@ export const SettingsGeneral = (props) => {
       <LabeledList>
         <LabeledList.Item label="Theme">
           <Dropdown
+            width="175px"
             selected={theme}
             options={THEMES}
             onSelected={(value) =>
@@ -112,6 +119,7 @@ export const SettingsGeneral = (props) => {
             <Stack.Item>
               {(!freeFont && (
                 <Dropdown
+                  width="175px"
                   selected={fontFamily}
                   options={FONTS}
                   onSelected={(value) =>
@@ -199,6 +207,29 @@ export const SettingsGeneral = (props) => {
               )
             }
           />
+        </LabeledList.Item>
+        <LabeledList.Item label="Enable chat timestamps">
+          <Button.Checkbox
+            checked={prependTimestamps}
+            content=""
+            tooltip="Enabling this will prepend timestamps to all messages."
+            mr="5px"
+            onClick={() =>
+              dispatch(
+                updateSettings({
+                  prependTimestamps: !prependTimestamps,
+                }),
+              )
+            }
+          />
+          <Box inline>
+            <Button icon="check" onClick={() => dispatch(rebuildChat())}>
+              Apply now
+            </Button>
+            <Box inline fontSize="0.9em" ml={1} color="label">
+              Can freeze the chat for a while.
+            </Box>
+          </Box>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -592,7 +623,7 @@ const TextHighlightSettings = (props) => {
   const highlightSettings = useSelector(selectHighlightSettings);
   const dispatch = useDispatch();
   return (
-    <Section fill scrollable height="200px">
+    <Section fill scrollable height="235px">
       <Section p={0}>
         <Flex direction="column">
           {highlightSettings.map((id, i) => (

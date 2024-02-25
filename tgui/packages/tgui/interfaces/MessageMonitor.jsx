@@ -378,7 +378,7 @@ const MessageMonitorAdmin = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Recipient">
           <Dropdown
-            value={customrecepient}
+            selected={customrecepient}
             options={recipientOptions}
             width="100%"
             mb={-0.7}

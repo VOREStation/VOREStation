@@ -1,7 +1,8 @@
 import { classes } from 'common/react';
 import { capitalize } from 'common/string';
+import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -55,7 +56,7 @@ const digestModeToPreyMode = {
 export const VorePanel = (props) => {
   const { act, data } = useBackend();
 
-  const [tabIndex, setTabIndex] = useLocalState('panelTabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const tabs = [];
 
@@ -211,7 +212,7 @@ const VoreSelectedBelly = (props) => {
   const { belly } = props;
   const { contents } = belly;
 
-  const [tabIndex, setTabIndex] = useLocalState('bellyTabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const tabs = [];
 
