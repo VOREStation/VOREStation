@@ -1,7 +1,8 @@
 import { sortBy } from 'common/collections';
 import { flow } from 'common/fp';
+import { useState } from 'react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Box, Button, Icon, NanoMap, Table, Tabs } from '../components';
 import { Window } from '../layouts';
 
@@ -28,10 +29,26 @@ const getStatColor = (cm) => {
 };
 
 export const CrewMonitor = () => {
+  const [tabIndex, setTabIndex] = useState(0);
+  const [zoom, setZoom] = useState(1);
+
+  function handleTabIndex(value) {
+    setTabIndex(value);
+  }
+
+  function handleZoom(value) {
+    setZoom(value);
+  }
+
   return (
     <Window width={800} height={600}>
       <Window.Content>
-        <CrewMonitorContent />
+        <CrewMonitorContent
+          tabIndex={tabIndex}
+          zoom={zoom}
+          onTabIndex={handleTabIndex}
+          onZoom={handleZoom}
+        />
       </Window.Content>
     </Window>
   );
@@ -39,7 +56,6 @@ export const CrewMonitor = () => {
 
 export const CrewMonitorContent = (props) => {
   const { act, data, config } = useBackend();
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
 
   const crew = flow([
     sortBy((cm) => cm.name),
@@ -48,11 +64,9 @@ export const CrewMonitorContent = (props) => {
     sortBy((cm) => cm?.realZ),
   ])(data.crewmembers || []);
 
-  const [zoom, setZoom] = useLocalState('zoom', 1);
-
   let body;
   // Data view
-  if (tabIndex === 0) {
+  if (props.tabIndex === 0) {
     body = (
       <Table>
         <Table.Row header>
@@ -115,11 +129,11 @@ export const CrewMonitorContent = (props) => {
         ))}
       </Table>
     );
-  } else if (tabIndex === 1) {
+  } else if (props.tabIndex === 1) {
     // Please note, if you ever change the zoom values,
     // you MUST update styles/components/Tooltip.scss
     // and change the @for scss to match.
-    body = <CrewMonitorMapView />;
+    body = <CrewMonitorMapView zoom={props.zoom} onZoom={props.onZoom} />;
   } else {
     body = 'ERROR';
   }
@@ -129,15 +143,15 @@ export const CrewMonitorContent = (props) => {
       <Tabs>
         <Tabs.Tab
           key="DataView"
-          selected={0 === tabIndex}
-          onClick={() => setTabIndex(0)}
+          selected={0 === props.tabIndex}
+          onClick={() => props.onTabIndex(0)}
         >
           <Icon name="table" /> Data View
         </Tabs.Tab>
         <Tabs.Tab
           key="MapView"
-          selected={1 === tabIndex}
-          onClick={() => setTabIndex(1)}
+          selected={1 === props.tabIndex}
+          onClick={() => props.onTabIndex(1)}
         >
           <Icon name="map-marked-alt" /> Map View
         </Tabs.Tab>
@@ -149,10 +163,9 @@ export const CrewMonitorContent = (props) => {
 
 const CrewMonitorMapView = (props) => {
   const { act, config, data } = useBackend();
-  const [zoom, setZoom] = useLocalState('zoom', 1);
   return (
     <Box height="526px" mb="0.5rem" overflow="hidden">
-      <NanoMap onZoom={(v) => setZoom(v)}>
+      <NanoMap onZoom={(v) => props.onZoom(v)}>
         {data.crewmembers
           .filter(
             (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel,
@@ -162,7 +175,7 @@ const CrewMonitorMapView = (props) => {
               key={cm.ref}
               x={cm.x}
               y={cm.y}
-              zoom={zoom}
+              zoom={props.zoom}
               icon="circle"
               tooltip={cm.name + ' (' + cm.assignment + ')'}
               color={getStatColor(cm)}

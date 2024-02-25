@@ -151,8 +151,15 @@ const CharacterDirectoryList = (props) => {
 
   const { directory } = data;
 
-  const [sortId, _setSortId] = useState('name');
-  const [sortOrder, _setSortOrder] = useState('name');
+  const [sortId, setSortId] = useState('name');
+  const [sortOrder, setSortOrder] = useState('name');
+
+  function handleSortId(value) {
+    setSortId(value);
+  }
+  function handleSortOrder(value) {
+    setSortOrder(value);
+  }
 
   return (
     <Section
@@ -163,10 +170,42 @@ const CharacterDirectoryList = (props) => {
     >
       <Table>
         <Table.Row bold>
-          <SortButton id="name">Name</SortButton>
-          <SortButton id="species">Species</SortButton>
-          <SortButton id="tag">Vore Tag</SortButton>
-          <SortButton id="erptag">ERP Tag</SortButton>
+          <SortButton
+            id="name"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onSortId={handleSortId}
+            onSortOrder={handleSortOrder}
+          >
+            Name
+          </SortButton>
+          <SortButton
+            id="species"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onSortId={handleSortId}
+            onSortOrder={handleSortOrder}
+          >
+            Species
+          </SortButton>
+          <SortButton
+            id="tag"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onSortId={handleSortId}
+            onSortOrder={handleSortOrder}
+          >
+            Vore Tag
+          </SortButton>
+          <SortButton
+            id="erptag"
+            sortId={sortId}
+            sortOrder={sortOrder}
+            onSortId={handleSortId}
+            onSortOrder={handleSortOrder}
+          >
+            ERP Tag
+          </SortButton>
           <Table.Cell collapsing textAlign="right">
             View
           </Table.Cell>
@@ -204,26 +243,27 @@ const SortButton = (props) => {
   const { id, children } = props;
 
   // Hey, same keys mean same data~
-  const [sortId, setSortId] = useState('name');
-  const [sortOrder, setSortOrder] = useState('name');
 
   return (
     <Table.Cell collapsing>
       <Button
         width="100%"
-        color={sortId !== id && 'transparent'}
+        color={props.sortId !== id && 'transparent'}
         onClick={() => {
-          if (sortId === id) {
-            setSortOrder(!sortOrder);
+          if (props.sortId === id) {
+            props.onSortOrder(!props.sortOrder);
           } else {
-            setSortId(id);
-            setSortOrder(true);
+            props.onSortId(id);
+            props.onSortOrder(true);
           }
         }}
       >
         {children}
-        {sortId === id && (
-          <Icon name={sortOrder ? 'sort-up' : 'sort-down'} ml="0.25rem;" />
+        {props.sortId === id && (
+          <Icon
+            name={props.sortOrder ? 'sort-up' : 'sort-down'}
+            ml="0.25rem;"
+          />
         )}
       </Button>
     </Table.Cell>

@@ -119,13 +119,31 @@ export const CameraConsoleContent = (props) => {
         />
       </Flex.Item>
       <Flex.Item>
-        <Dropdown
-          mb={1}
-          width="177px"
-          displayText={networkFilter || 'No Filter'}
-          options={allNetworks}
-          onSelected={(value) => setNetworkFilter(value)}
-        />
+        <Flex>
+          <Flex.Item>
+            <Dropdown
+              mb={1}
+              width={networkFilter ? '155px' : '177px'}
+              displayText={networkFilter || 'No Filter'}
+              options={allNetworks}
+              onSelected={(value) => setNetworkFilter(value)}
+            />
+          </Flex.Item>
+          {networkFilter ? (
+            <Flex.Item>
+              <Button
+                width="22px"
+                icon="undo"
+                color="red"
+                onClick={() => {
+                  setNetworkFilter('');
+                }}
+              />
+            </Flex.Item>
+          ) : (
+            ''
+          )}
+        </Flex>
       </Flex.Item>
       <Flex.Item height="100%">
         <Section fill scrollable>

@@ -61,13 +61,17 @@ const AccountTerminalContent = (props) => {
         >
           New Account
         </Tabs.Tab>
-        <Tabs.Tab
-          disabled={creating_new_account}
-          icon="print"
-          onClick={() => act('print')}
-        >
-          Print
-        </Tabs.Tab>
+        {!creating_new_account ? (
+          <Tabs.Tab
+            disabled={creating_new_account}
+            icon="print"
+            onClick={() => act('print')}
+          >
+            Print
+          </Tabs.Tab>
+        ) : (
+          ''
+        )}
       </Tabs>
       {(creating_new_account && <NewAccountView />) ||
         (detailed_account_view && <DetailedView />) || <ListView />}
