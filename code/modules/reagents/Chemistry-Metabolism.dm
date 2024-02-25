@@ -3,13 +3,6 @@
 	var/metabolism_speed = 1	// Multiplicative, 1 is full speed, 0.5 is half, etc.
 	var/mob/living/carbon/parent
 
-//ChompEDIT start - fix hard qdels
-/datum/reagents/metabolism/Destroy()
-	if(parent)
-		parent = null
-	. = ..()
-//ChompEDIT END
-
 /datum/reagents/metabolism/New(var/max = 100, mob/living/carbon/parent_mob, var/met_class = null)
 	..(max, parent_mob)
 
