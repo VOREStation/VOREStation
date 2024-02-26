@@ -41,7 +41,7 @@
 	var/ricochets_max = 2
 	var/ricochet_chance = 30
 	var/can_miss = TRUE
-	var/bump_targets = TRUE //Should we bump and/or attack objects we hit? Used only for 'raytraces' e.g. subtype /trace
+	var/bump_targets = TRUE //Should we bump and/or attack objects we hit? Used only for 'raytraces' e.g. subtype /test
 
 	//Hitscan
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
@@ -666,7 +666,9 @@
 	return 1
 
 /obj/item/projectile/proc/check_fire(atom/target as mob, mob/living/user as mob)  //Checks if you can hit them or not.
-	check_trajectory(target, user, pass_flags, flags)
+	if(target in check_trajectory(target, user, pass_flags, flags))
+		return TRUE
+	return FALSE
 
 /obj/item/projectile/CanPass()
 	return TRUE

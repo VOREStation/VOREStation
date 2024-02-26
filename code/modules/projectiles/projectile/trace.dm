@@ -14,7 +14,9 @@
 	return trace.launch_projectile(target) //Test it!
 
 /obj/item/projectile/proc/_check_fire(atom/target as mob, var/mob/living/user as mob)  //Checks if you can hit them or not.
-	check_trajectory(target, user, pass_flags, flags)
+	if(target in check_trajectory(target, user, pass_flags, flags))
+		return TRUE
+	return FALSE
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
