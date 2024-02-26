@@ -715,9 +715,6 @@
 		var/datum/component/artifact_master/arti_mstr = GetComponent(/datum/component/artifact_master)
 		arti_mstr.RemoveComponent()
 		if(!QDELETED(arti_mstr))
-			arti_mstr.holder = null
-			arti_mstr.parent = null
 			qdel(arti_mstr)
-	if(loc)
-		src.moveToNullspace() //get it out of inventories
+
 	. = ..()

@@ -41,6 +41,7 @@
 	var/ricochets_max = 2
 	var/ricochet_chance = 30
 	var/can_miss = TRUE
+	var/bump_targets = TRUE //Should we bump and/or attack objects we hit? Used only for 'raytraces' e.g. subtype /trace
 
 	//Hitscan
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
@@ -328,7 +329,8 @@
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
 	//If no angle needs to resolve it from xo/yo!
 	if(direct_target)
-		direct_target.bullet_act(src, def_zone)
+		if(bump_targets)
+			direct_target.bullet_act(src, def_zone)
 		qdel(src)
 		return
 	if(isnum(angle))
@@ -582,25 +584,31 @@
 					var/shield_chance = min(80, (30 * (M.mob_size / 10)))	//Small mobs have a harder time keeping a dead body as a shield than a human-sized one. Unathi would have an easier job, if they are made to be SIZE_LARGE in the future. -Mech
 					if(prob(shield_chance))
 						visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
-						if(Bump(G.affecting))
-							return
+						if(bump_targets)
+							if(Bump(G.affecting))
+								return
 					else
 						visible_message("<span class='danger'>\The [M] tries to use [G.affecting] as a shield, but fails!</span>")
 				else
 					visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
-					if(Bump(G.affecting))
-						return //If Bump() returns 0 (keep going) then we continue on to attack M.
+					if(bump_targets)
+						if(Bump(G.affecting))
+							return //If Bump() returns 0 (keep going) then we continue on to attack M.
 
-			passthrough = !attack_mob(M, distance)
+			if(bump_targets)
+				passthrough = !attack_mob(M, distance)
+			else
+				passthrough = 1 //Projectiles that don't bump (raytraces) always pass through
 		else
 			passthrough = 1 //so ghosts don't stop bullets
 	else
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
-		if(isturf(A))
-			for(var/obj/O in A)
-				O.bullet_act(src)
-			for(var/mob/living/M in A)
-				attack_mob(M, distance)
+		if(bump_targets) // only attack/act a turf's contents if our projectile is not a raytrace
+			if(isturf(A))
+				for(var/obj/O in A)
+					O.bullet_act(src)
+				for(var/mob/living/M in A)
+					attack_mob(M, distance)
 
 	//penetrating projectiles can pass through things that otherwise would not let them
 	if(!passthrough && penetrating > 0)
@@ -615,7 +623,7 @@
 		trajectory_ignore_forcemove = FALSE
 		return FALSE
 
-	if(A)
+	if(A && bump_targets)
 		on_impact(A)
 	qdel(src)
 	return TRUE

@@ -747,15 +747,15 @@
 	return
 
 /obj/structure/disposalholder/Destroy()
-	//QDEL_NULL(gas)
-	var/turf/qdelloc = get_turf(src)
-	if(qdelloc)
-		if(contents) //dump out our contents
+	QDEL_NULL(gas)
+	if(contents.len)
+		var/turf/qdelloc = get_turf(src)
+		if(qdelloc)
 			for(var/atom/movable/AM in contents)
 				AM.loc = qdelloc
-	else
-		if(contents)
+		else
 			log_and_message_admins("A disposal holder was deleted with contents in nullspace") //ideally, this should never happen
+
 	active = 0
 	return ..()
 
