@@ -56,6 +56,7 @@
 #ifdef REFERENCE_TRACKING
 	var/tmp/running_find_references
 	var/tmp/last_find_references = 0
+	var/tmp/find_references_on_destroy = FALSE //set this to true on an item to have it find refs after
 	#ifdef REFERENCE_TRACKING_DEBUG
 	///Stores info about where refs are found, used for sanity checks and testing
 	var/list/found_refs
@@ -113,6 +114,14 @@
 
 	tag = null
 	SStgui.close_uis(src)
+
+	#ifdef REFERENCE_TRACKING
+	if(find_references_on_destroy)
+		return QDEL_HINT_FINDREFERENCE
+	if(SSgarbage.find_reference_on_fail_global_toggle)
+		return QDEL_HINT_IFFAIL_FINDREFERENCE
+	#endif
+
 	return QDEL_HINT_QUEUE
 
 /**

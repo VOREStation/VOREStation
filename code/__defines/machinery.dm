@@ -154,17 +154,17 @@ if (!(DATUM.datum_flags & DF_ISPROCESSING)) {\
 #define STOP_PROCESSING_IN_LIST(DATUM, LIST) LIST.Remove(DATUM);DATUM.datum_flags &= ~DF_ISPROCESSING
 
 // Note - I would prefer these be defined machines.dm, but some are used prior in file order. ~Leshana
-#define START_MACHINE_PROCESSING(Datum) START_PROCESSING_IN_LIST(Datum, global.processing_machines)
-#define STOP_MACHINE_PROCESSING(Datum) STOP_PROCESSING_IN_LIST(Datum, global.processing_machines)
+#define START_MACHINE_PROCESSING(Datum) START_PROCESSING_IN_LIST(Datum, SSmachines.processing_machines)
+#define STOP_MACHINE_PROCESSING(Datum) STOP_PROCESSING_IN_LIST(Datum, SSmachines.processing_machines)
 
-#define START_PROCESSING_PIPENET(Datum) START_PROCESSING_IN_LIST(Datum, global.pipe_networks)
-#define STOP_PROCESSING_PIPENET(Datum) STOP_PROCESSING_IN_LIST(Datum, global.pipe_networks)
+#define START_PROCESSING_PIPENET(Datum) START_PROCESSING_IN_LIST(Datum, SSmachines.networks)
+#define STOP_PROCESSING_PIPENET(Datum) STOP_PROCESSING_IN_LIST(Datum, SSmachines.networks)
 
-#define START_PROCESSING_POWERNET(Datum) START_PROCESSING_IN_LIST(Datum, global.powernets)
-#define STOP_PROCESSING_POWERNET(Datum) STOP_PROCESSING_IN_LIST(Datum, global.powernets)
+#define START_PROCESSING_POWERNET(Datum) START_PROCESSING_IN_LIST(Datum, SSmachines.powernets)
+#define STOP_PROCESSING_POWERNET(Datum) STOP_PROCESSING_IN_LIST(Datum, SSmachines.powernets)
 
-#define START_PROCESSING_POWER_OBJECT(Datum) START_PROCESSING_IN_LIST(Datum, global.processing_power_items)
-#define STOP_PROCESSING_POWER_OBJECT(Datum) STOP_PROCESSING_IN_LIST(Datum, global.processing_power_items)
+#define START_PROCESSING_POWER_OBJECT(Datum) START_PROCESSING_IN_LIST(Datum, SSmachines.powerobjs)
+#define STOP_PROCESSING_POWER_OBJECT(Datum) STOP_PROCESSING_IN_LIST(Datum, SSmachines.powerobjs)
 
 // Computer login types
 #define LOGIN_TYPE_NORMAL 1
