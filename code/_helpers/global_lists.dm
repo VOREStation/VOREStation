@@ -355,5 +355,4 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	GLOB.legacy_globals["visual_nets"] = visual_nets
 	GLOB.legacy_globals["cameranet"] = cameranet
 	GLOB.legacy_globals["cultnet"] = cultnet
-	GLOB.legacy_globals["item_tf_spawnpoints"] = item_tf_spawnpoints
 	GLOB.legacy_globals["existing_solargrubs"] = existing_solargrubs
