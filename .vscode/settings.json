@@ -9,7 +9,7 @@
         "**/.pnp.*": true
     },
     "workbench.editorAssociations": {
-        "*.dmi": "imagePreview.previewEditor"
+        "*.dmi": "dmiEditor.dmiEditor"
     },
     "editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"
