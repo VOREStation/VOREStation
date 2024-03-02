@@ -1,6 +1,6 @@
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
-var/global/list/machines                 = list()	// ALL Machines, wether processing or not.
+var/global/list/machines                 = SSmachines.all_machines //I would upgrade all instances of global.machines to SSmachines.all_machines but it's used in so many places and a search returns so many matches for 'machines' that isn't a use of the global...
 
 var/global/list/active_diseases          = list()
 var/global/list/hud_icon_reference       = list()
