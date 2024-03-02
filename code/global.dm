@@ -1,8 +1,7 @@
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
 var/global/list/machines                 = list()	// ALL Machines, wether processing or not.
-var/global/list/processing_machines      = list()	// TODO - Move into SSmachines
-var/global/list/processing_power_items   = list()	// TODO - Move into SSmachines
+
 var/global/list/active_diseases          = list()
 var/global/list/hud_icon_reference       = list()
 
@@ -90,8 +89,6 @@ var/list/combatlog = list()
 var/list/IClog     = list()
 var/list/OOClog    = list()
 var/list/adminlog  = list()
-
-var/list/powernets = list()	// TODO - Move into SSmachines
 
 var/Debug2 = 0
 var/datum/debug/debugobj
