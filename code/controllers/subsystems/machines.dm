@@ -33,7 +33,6 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Initialize(timeofday)
 	makepowernets()
 	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
-	machines = all_machines //stupid god damn globals
 	setup_atmos_machinery(all_machines)
 	fire()
 	..()
