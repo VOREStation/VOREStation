@@ -18,6 +18,8 @@
 	var/fieldsactive = 0
 	var/burst_time = 50
 	var/fieldlimit = 3
+	var/spreadmode = 0
+	var/cascading  = 0
 
 /obj/item/resonator/upgraded
 	name = "upgraded resonator"
@@ -30,20 +32,28 @@
 	var/turf/T = get_turf(target)
 	if(locate(/obj/effect/resonance) in T)
 		return
-	if(fieldsactive < fieldlimit)
+
+	if((!spreadmode && fieldsactive < fieldlimit) || (spreadmode && !cascading) )
 		playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
-		new /obj/effect/resonance(T, creator, burst_time)
+		new /obj/effect/resonance(T, WEAKREF(creator), burst_time, spreadmode, fieldlimit, get_cardinal_dir(src, T))
 		fieldsactive++
+		cascading = TRUE
 		spawn(burst_time)
 			fieldsactive--
+			cascading = FALSE
 
 /obj/item/resonator/attack_self(mob/user)
-	if(burst_time == 50)
-		burst_time = 30
-		to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 3 seconds.</span>")
-	else
-		burst_time = 50
-		to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 5 seconds.</span>")
+	switch(tgui_alert(user, "Change Detonation Time or toggle Cascading?","Setting", list("Toggle Cascade", "Resonance Time")))
+		if("Resonance Time")
+			if(burst_time == 50)
+				burst_time = 30
+				to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 3 seconds.</span>")
+			else
+				burst_time = 50
+				to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 5 seconds.</span>")
+		if("Toggle Cascade")
+			spreadmode = !spreadmode
+			to_chat(user, span_info("You have [(spreadmode ? "enabled" : "disabled")] the resonance cascade mode."))
 
 /obj/item/resonator/afterattack(atom/target, mob/user, proximity_flag)
 	if(proximity_flag)
@@ -61,11 +71,30 @@
 	mouse_opacity = 0
 	var/resonance_damage = 20
 
-/obj/effect/resonance/Initialize(mapload, var/creator = null, var/timetoburst)
+
+/obj/effect/resonance/Initialize(mapload, var/creator = null, var/timetoburst, var/spread, var/fields, var/origin_dir, var/depth = 0)
 	. = ..()
 	// Start small and grow to big size as we are about to burst
 	transform = matrix()*0.75
 	animate(src, transform = matrix()*1.5, time = timetoburst)
+	//Spread if requested
+	if(spread)
+		fields--
+		var/new_dir = turn(origin_dir, 90)
+		var/new_fields = fields
+		for(var/i=0, i<=2, i++) //We place cascade the resonance by 3 entries each time in a "T shape" around the original resonance
+			if(fields > 0)
+				switch(i)
+					if(0)
+						new_dir = origin_dir
+					if(1)
+						new_dir = turn(origin_dir, 90)
+					if(2)
+						new_dir = turn(origin_dir, -90)
+				var/turf/T = get_step(get_turf(src), new_dir)
+				new_fields = fields - 2  - (i*3) - depth
+				fields--
+				new /obj/effect/resonance(T, WEAKREF(creator), timetoburst, spread, new_fields, get_cardinal_dir(src, T), depth++)
 	// Queue the actual bursting
 	spawn(timetoburst)
 		if(!QDELETED(src))
@@ -90,7 +119,7 @@
 	if(environment.temperature < 250)
 		name = "strong resonance field"
 		resonance_damage = 50
-	
+
 	for(var/mob/living/L in src.loc)
 		if(creator)
 			add_attack_logs(creator, L, "used a resonator field on")

@@ -26,6 +26,7 @@ SUBSYSTEM_DEF(garbage)
 	var/list/queues
 	#ifdef REFERENCE_TRACKING
 	var/list/reference_find_on_fail = list()
+	var/find_reference_on_fail_global_toggle = FALSE
 	#endif
 
 
