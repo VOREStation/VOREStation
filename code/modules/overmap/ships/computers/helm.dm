@@ -217,13 +217,13 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("speedlimit")
-			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000)
+			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000, round_value = FALSE)
 			if(newlimit)
 				speedlimit = CLAMP(newlimit/1000, 0, 100)
 			. = TRUE
 
 		if("accellimit")
-			var/newlimit = tgui_input_number(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000)
+			var/newlimit = tgui_input_number(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000, round_value = FALSE)
 			if(newlimit)
 				accellimit = max(newlimit/1000, 0)
 			. = TRUE
