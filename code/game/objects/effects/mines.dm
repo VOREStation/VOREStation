@@ -288,7 +288,7 @@
 	name = "mine"
 	desc = "A small explosive mine with 'HE' and a grenade symbol on the side."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "uglymine"
+	icon_state = "landmine"
 	var/countdown = 10
 	var/minetype = /obj/effect/mine		//This MUST be an /obj/effect/mine type, or it'll runtime.
 

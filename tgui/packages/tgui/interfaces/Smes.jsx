@@ -38,7 +38,7 @@ export const Smes = (props) => {
   const outputState =
     (outputting && 'good') || (charge > 0 && 'average') || 'bad';
   return (
-    <Window width={340} height={350}>
+    <Window width={400} height={350}>
       <Window.Content>
         <Section title="Stored Energy">
           <ProgressBar
@@ -49,7 +49,7 @@ export const Smes = (props) => {
               bad: [-Infinity, 0.15],
             }}
           >
-            {round(charge / (1000 * 60), 1)} kWh /{' '}
+            {round(charge / (1000 * 60), 1)} kWh /
             {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
           </ProgressBar>
         </Section>

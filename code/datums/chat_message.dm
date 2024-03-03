@@ -51,6 +51,9 @@ var/list/runechat_image_cache = list()
 	/// If we are currently processing animation and cleanup at EOL
 	var/ending_life
 
+	/// deletion timer
+	var/timer_delete
+
 /**
   * Constructs a chat message overlay
   *
@@ -72,11 +75,14 @@ var/list/runechat_image_cache = list()
 	generate_image(text, target, owner, extra_classes, lifespan)
 
 /datum/chatmessage/Destroy()
-	if(owned_by)
+	if(timer_delete)
+		deltimer(timer_delete)
+		timer_delete = null
+	if(!QDELETED(owned_by))
 		UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
 		LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
 		owned_by.images.Remove(message)
-	if(message_loc)
+	if(!QDELETED(message_loc))
 		UnregisterSignal(message_loc, COMSIG_PARENT_QDELETING)
 	owned_by = null
 	message_loc = null
@@ -219,8 +225,7 @@ var/list/runechat_image_cache = list()
 		return
 	ending_life = TRUE
 	animate(message, alpha = 0, time = fadetime, flags = ANIMATION_PARALLEL)
-	spawn(fadetime)
-		qdel(src)
+	timer_delete = QDEL_IN(src, fadetime)
 
 /**
   * Creates a message overlay at a defined location for a given speaker
