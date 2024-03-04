@@ -33,14 +33,61 @@
 	if(locate(/obj/effect/resonance) in T)
 		return
 
-	if((!spreadmode && fieldsactive < fieldlimit) || (spreadmode && !cascading) )
-		playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
-		new /obj/effect/resonance(T, WEAKREF(creator), burst_time, spreadmode, fieldlimit, get_cardinal_dir(src, T))
-		fieldsactive++
+	if(fieldsactive > fieldlimit || cascading)
+		to_chat(creator, span_warning("You've exceeded the field limit! Wait for them to dissipate."))
+		return
+	if(spreadmode)
+		//log_debug("Starting cascade...")
 		cascading = TRUE
+		var/depth = 0
+		var/fields = 0
+		if(depth == 0)
+			//log_debug("Creating resonance at the target spot.")
+			playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
+			new /obj/effect/resonance(T, WEAKREF(creator), burst_time)
+			fields++
+			depth++
+		var/origin_dir = get_cardinal_dir(creator, T)
+		var/dir
+		while(fields < fieldlimit)
+			for(var/i=0, i<=2, i++)
+				//log_debug("Fields are [fields], doing [i] iteration of subloop")
+				if(fields >= fieldlimit)
+					//log_debug("[fields] exceeded fieldlimit, exiting procedure.")
+					sleep(burst_time)
+					cascading = FALSE
+					return
+				switch(i) //Using a switch statement rather than (-90 + i * 90) to favour going straight ahead
+					if(0)
+						dir = origin_dir
+					if(1)
+						dir = turn(origin_dir, 90)
+					if(2)
+						dir = turn(origin_dir, -90)
+				var/turf/newT = T
+				for(var/step = 1, step<=depth, step++)
+					//log_debug("Taking a step until [depth] steps taken.")
+					var/turf/oldT = newT
+					newT = get_step(oldT, dir)
+					if(step == depth)
+						new /obj/effect/resonance(newT, WEAKREF(creator), burst_time)
+						fields++
+						if(depth > 1 && fields < fieldlimit) //Works until 15 fieldlimit.
+							oldT = newT
+							dir = turn(dir, (i == 2 ? 135 : -135))
+							newT = get_step(oldT, dir)
+							new /obj/effect/resonance(newT, WEAKREF(creator), burst_time)
+							fields++
+			depth++
+
+
+
+	else
+		playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
+		new /obj/effect/resonance(T, WEAKREF(creator), burst_time)
+		fieldsactive++
 		spawn(burst_time)
 			fieldsactive--
-			cascading = FALSE
 
 /obj/item/resonator/attack_self(mob/user)
 	switch(tgui_alert(user, "Change Detonation Time or toggle Cascading?","Setting", list("Toggle Cascade", "Resonance Time")))
@@ -72,29 +119,11 @@
 	var/resonance_damage = 20
 
 
-/obj/effect/resonance/Initialize(mapload, var/creator = null, var/timetoburst, var/spread, var/fields, var/origin_dir, var/depth = 0)
+/obj/effect/resonance/Initialize(mapload, var/creator = null, var/timetoburst)
 	. = ..()
 	// Start small and grow to big size as we are about to burst
 	transform = matrix()*0.75
 	animate(src, transform = matrix()*1.5, time = timetoburst)
-	//Spread if requested
-	if(spread)
-		fields--
-		var/new_dir = turn(origin_dir, 90)
-		var/new_fields = fields
-		for(var/i=0, i<=2, i++) //We place cascade the resonance by 3 entries each time in a "T shape" around the original resonance
-			if(fields > 0)
-				switch(i)
-					if(0)
-						new_dir = origin_dir
-					if(1)
-						new_dir = turn(origin_dir, 90)
-					if(2)
-						new_dir = turn(origin_dir, -90)
-				var/turf/T = get_step(get_turf(src), new_dir)
-				new_fields = fields - 2  - (i*3) - depth
-				fields--
-				new /obj/effect/resonance(T, WEAKREF(creator), timetoburst, spread, new_fields, get_cardinal_dir(src, T), depth++)
 	// Queue the actual bursting
 	spawn(timetoburst)
 		if(!QDELETED(src))
