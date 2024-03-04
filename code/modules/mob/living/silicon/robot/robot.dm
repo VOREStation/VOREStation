@@ -806,14 +806,14 @@
 
 	return
 
-/mob/living/silicon/robot/proc/module_reset()
+/mob/living/silicon/robot/proc/module_reset(var/notify = TRUE)
 	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
 	hud_used.update_robot_modules_display(TRUE)
 	modtype = initial(modtype)
 	hands.icon_state = get_hud_module_icon()
-
-	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
+	if(notify)
+		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
 	module.Destroy()
 	module = null
@@ -1468,8 +1468,10 @@
 		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
 		if(T && T.upgraded_capacity)
 			return T
-		else
+		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+		else
+			return FALSE
 	if(given_type == /obj/item/borg/upgrade/advanced/jetpack)
 		return has_upgrade_module(/obj/item/weapon/tank/jetpack/carbondioxide)
 	if(given_type == /obj/item/borg/upgrade/advanced/advhealth)
@@ -1488,14 +1490,18 @@
 		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
 		if(T && T.compactor)
 			return T
+		else if(!T)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
 		else
-			return ""
+			return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/tasercooler)
 		var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = has_upgrade_module(/obj/item/weapon/gun/energy/taser/mounted/cyborg)
 		if(T && T.recharge_time <= 2)
 			return T
+		else if(!T)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
 		else
-			return ""
+			return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/weapon/storage/part_replacer/adv)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)

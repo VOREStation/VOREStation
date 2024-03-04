@@ -1,7 +1,8 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-
 /* This is all basically stolen from routes.js. */
 import { routingError } from '../routes';
 
@@ -43,14 +44,18 @@ export const Pda = (props) => {
 
   let App = getPdaApp(app.template);
 
-  const [settingsMode, setSettingsMode] = useLocalState('settingsMode', false);
+  const [settingsMode, setSettingsMode] = useState(false);
+
+  function handleSettingsMode(value) {
+    setSettingsMode(value);
+  }
 
   return (
     <Window width={580} height={670} theme={useRetro ? 'pda-retro' : null}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}
-          setSettingsMode={setSettingsMode}
+          onSettingsMode={handleSettingsMode}
         />
         {(settingsMode && <PDASettings />) || (
           <Section
@@ -60,12 +65,13 @@ export const Pda = (props) => {
                 {app.name}
               </Box>
             }
-            p={1}>
+            p={1}
+          >
             <App />
           </Section>
         )}
         <Box mb={8} />
-        <PDAFooter setSettingsMode={setSettingsMode} />
+        <PDAFooter onSettingsMode={handleSettingsMode} />
       </Window.Content>
     </Window>
   );
@@ -73,8 +79,6 @@ export const Pda = (props) => {
 
 const PDAHeader = (props) => {
   const { act, data } = useBackend();
-
-  const { settingsMode, setSettingsMode } = props;
 
   const { idInserted, idLink, cartridge_name, stationTime } = data;
 
@@ -96,8 +100,8 @@ const PDAHeader = (props) => {
         </Flex.Item>
         <Flex.Item>
           <Button
-            selected={settingsMode}
-            onClick={() => setSettingsMode(!settingsMode)}
+            selected={props.settingsMode}
+            onClick={() => props.onSettingsMode(!props.settingsMode)}
             icon="cog"
           />
           <Button onClick={() => act('Retro')} icon="adjust" />
@@ -156,8 +160,6 @@ const PDASettings = (props) => {
 const PDAFooter = (props) => {
   const { act, data } = useBackend();
 
-  const { setSettingsMode } = props;
-
   const { app, useRetro } = data;
 
   return (
@@ -166,7 +168,8 @@ const PDAFooter = (props) => {
       bottom="0%"
       left="0%"
       right="0%"
-      backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}>
+      backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}
+    >
       <Flex>
         <Flex.Item basis="33%">
           <Button
@@ -190,7 +193,7 @@ const PDAFooter = (props) => {
             mb={0}
             fontSize={1.7}
             onClick={() => {
-              setSettingsMode(false);
+              props.onSettingsMode(false);
               act('Home');
             }}
           />

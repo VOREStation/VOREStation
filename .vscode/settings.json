@@ -1,7 +1,7 @@
 {
     "eslint.nodePath": "./tgui/.yarn/sdks",
     "eslint.workingDirectories": ["./tgui"],
-    "prettier.prettierPath": "./tgui/.yarn/sdks/prettier/index.js",
+    "prettier.prettierPath": "./tgui/.yarn/sdks/prettier/index.cjs",
     "typescript.tsdk": "./tgui/.yarn/sdks/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true,
     "search.exclude": {
@@ -9,8 +9,11 @@
         "**/.pnp.*": true
     },
     "workbench.editorAssociations": {
-        "*.dmi": "imagePreview.previewEditor"
+        "*.dmi": "dmiEditor.dmiEditor"
     },
+    "editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
     "files.eol": "\n",
     "files.encoding": "utf8",
     "files.insertFinalNewline": true,
@@ -24,7 +27,7 @@
     ],
     "tgstationTestExplorer.project.resultsType": "json",
     "[dm]": {
-        "files.eol": "\r\n",
+        "files.eol": "\n",
         "editor.detectIndentation": false,
         "editor.insertSpaces": false
     },

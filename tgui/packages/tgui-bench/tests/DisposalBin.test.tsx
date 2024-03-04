@@ -1,8 +1,7 @@
-import { configureStore } from 'tgui/store';
-
-import { DisposalBin } from 'tgui/interfaces/DisposalBin';
 import { backendUpdate, setGlobalStore } from 'tgui/backend';
+import { DisposalBin } from 'tgui/interfaces/DisposalBin';
 import { createRenderer } from 'tgui/renderer';
+import { configureStore } from 'tgui/store';
 
 const store = configureStore({ sideEffects: false });
 
@@ -12,7 +11,7 @@ const renderUi = createRenderer((dataJson: string) => {
   store.dispatch(
     backendUpdate({
       data: Byond.parseJson(dataJson),
-    })
+    }),
   );
   return <DisposalBin />;
 });

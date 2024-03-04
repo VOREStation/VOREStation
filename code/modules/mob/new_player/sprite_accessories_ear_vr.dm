@@ -164,6 +164,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/dangles_robot
+	name = "synth dangle antennae, colorable"
+	desc = ""
+	icon_state = "dangleantennae_robot"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/oni_h1
 	name = "oni horns"
 	desc = ""

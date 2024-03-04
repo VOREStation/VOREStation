@@ -33,7 +33,7 @@
 			to_chat(user, "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.</span>")
 			return
 		if(io.io_type != selected_io.io_type)
-			to_chat(user, "<span class='warning'>Those two types of channels are incompatible.  The first is a [selected_io.io_type], \
+			to_chat(user, "<span class='warning'>Those two types of channels are incompatible. The first is a [selected_io.io_type], \
 			while the second is a [io.io_type].</span>")
 			return
 		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
@@ -106,7 +106,7 @@
 /obj/item/device/integrated_electronics/debugger
 	name = "circuit debugger"
 	desc = "This small tool allows one working with custom machinery to directly set data to a specific pin, useful for writing \
-	settings to specific circuits, or for debugging purposes.  It can also pulse activation pins."
+	settings to specific circuits, or for debugging purposes. It can also pulse activation pins."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
 	icon_state = "debugger"
 	w_class = 2
@@ -129,13 +129,13 @@
 				to_chat(user, "<span class='notice'>You set \the [src]'s memory to \"[new_data]\".</span>")
 		if("number")
 			accepting_refs = 0
-			new_data = tgui_input_number(usr, "Now type in a number.","[src] number writing")
+			new_data = tgui_input_number(usr, "Now type in a number.","[src] number writing", min_value=-INFINITY, round_value=FALSE)
 			if(isnum(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				data_to_write = new_data
 				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [new_data].</span>")
 		if("ref")
 			accepting_refs = 1
-			to_chat(user, "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
+			to_chat(user, "<span class='notice'>You turn \the [src]'s ref scanner on. Slide it across \
 			an object for a ref of that object to save it in memory.</span>")
 		if("null")
 			data_to_write = null
@@ -145,7 +145,7 @@
 	if(accepting_refs && proximity)
 		data_to_write = WEAKREF(target)
 		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
-		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
+		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\]. The ref scanner is \
 		now off.</span>")
 		accepting_refs = 0
 
@@ -206,7 +206,7 @@
 			to_chat(user, "<span class='warning'>Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless.</span>")
 			return
 		if(io.io_type != selected_io.io_type)
-			to_chat(user, "<span class='warning'>Those two types of channels are incompatible.  The first is a [selected_io.io_type], \
+			to_chat(user, "<span class='warning'>Those two types of channels are incompatible. The first is a [selected_io.io_type], \
 			while the second is a [io.io_type].</span>")
 			return
 		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
@@ -246,7 +246,7 @@
 	if(accepting_refs && toolmode == MULTITOOL_MODE_INTCIRCUITS && proximity)
 		weakref_wiring = WEAKREF(target)
 		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
-		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
+		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\]. The ref scanner is \
 		now off.</span>")
 		accepting_refs = 0
 

@@ -25,12 +25,17 @@
 	store_per_type = TRUE
 	target_type = /obj/machinery/smartfridge/sheets
 
+	var/min_retained = 75	//minimum percentage of current stock for retention
+	var/max_retained = 80	//maximum percentage of current stock for retention
 	var/stacks_go_missing = FALSE // Variable rate depletion of stacks inter-round
+	var/minimum_storage_reserve = FALSE	// ...but still try to maintain a minimum reserve?
 
 /datum/persistent/storage/smartfridge/sheet_storage/lossy
 	name = "sheet storage lossy"
-	max_storage = 250
+	min_storage = 20	//if the amount is at or below this, don't cull
+	max_storage = 500	//if the amount is above this, cull it to this amount THEN do math
 	stacks_go_missing = TRUE
+	minimum_storage_reserve = TRUE
 
 /datum/persistent/storage/smartfridge/sheet_storage/variable_max
 	name = "variable max storage"
@@ -65,8 +70,10 @@
 
 		// Delete some stacks if we want
 		if(stacks_go_missing)
-			var/fuzzy = rand(55,65)*0.01 // loss of 35-45% with rounding down
-			count = round(count*fuzzy)
+			var/fuzzy = rand(min_retained,max_retained)*0.01 // loss of 35-45% with rounding down
+			if(!minimum_storage_reserve || (count > min_storage && minimum_storage_reserve))
+				count = round(count*fuzzy)
+
 			if(count <= 0)
 				continue
 

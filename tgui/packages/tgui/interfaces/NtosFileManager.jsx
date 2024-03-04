@@ -1,7 +1,7 @@
 /* eslint react/no-danger: "off" */
-import { Fragment } from 'react';
+
 import { useBackend } from '../backend';
-import { Button, Section, Table, Flex } from '../components';
+import { Button, Flex, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosFileManager = (props) => {
@@ -39,7 +39,8 @@ export const NtosFileManager = (props) => {
                   onClick={() => act('PRG_closefile')}
                 />
               </>
-            }>
+            }
+          >
             {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
              * It should be safe enough to support pencode in this way.
              */}

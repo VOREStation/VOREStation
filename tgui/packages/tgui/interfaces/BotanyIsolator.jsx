@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section, NoticeBox } from '../components';
+import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
 export const BotanyIsolator = (props) => {
@@ -43,7 +43,8 @@ export const BotanyIsolator = (props) => {
                       <Button
                         mb={-1}
                         icon="download"
-                        onClick={() => act('get_gene', { get_gene: mask.tag })}>
+                        onClick={() => act('get_gene', { get_gene: mask.tag })}
+                      >
                         Extract
                       </Button>
                     </LabeledList.Item>

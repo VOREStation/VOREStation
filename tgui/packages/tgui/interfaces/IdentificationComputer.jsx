@@ -1,9 +1,19 @@
 import { sortBy } from 'common/collections';
-import { Fragment } from 'react';
-import { useBackend } from '../backend';
-import { Box, Button, Flex, Input, LabeledList, Section, Table, Tabs } from '../components';
-import { Window } from '../layouts';
 import { decodeHtmlEntities } from 'common/string';
+import { Fragment } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  LabeledList,
+  Section,
+  Table,
+  Tabs,
+} from '../components';
+import { Window } from '../layouts';
 import { CrewManifestContent } from './CrewManifest';
 
 export const IdentificationComputer = () => {
@@ -39,14 +49,16 @@ export const IdentificationComputerContent = (props) => {
           <Tabs.Tab
             icon="home"
             selected={mode === 0}
-            onClick={() => act('mode', { 'mode_target': 0 })}>
+            onClick={() => act('mode', { mode_target: 0 })}
+          >
             Access Modification
           </Tabs.Tab>
         )}
         <Tabs.Tab
           icon="home"
           selected={mode === 1}
-          onClick={() => act('mode', { 'mode_target': 1 })}>
+          onClick={() => act('mode', { mode_target: 1 })}
+        >
           Crew Manifest
         </Tabs.Tab>
         {!ntos ||
@@ -56,7 +68,8 @@ export const IdentificationComputerContent = (props) => {
               icon="print"
               onClick={() => act('print')}
               disabled={!mode && !has_modify}
-              color="">
+              color=""
+            >
               Print
             </Tabs.Tab>
           ))}
@@ -164,8 +177,9 @@ export const IdentificationComputerAccessModification = (props) => {
                           key={job.job}
                           selected={job.job === id_rank}
                           onClick={() =>
-                            act('assign', { 'assign_target': job.job })
-                          }>
+                            act('assign', { assign_target: job.job })
+                          }
+                        >
                           {decodeHtmlEntities(job.display_name)}
                         </Button>
                       ))}
@@ -181,9 +195,8 @@ export const IdentificationComputerAccessModification = (props) => {
                 </Table.Cell>
                 <Table.Cell>
                   <Button
-                    onClick={() =>
-                      act('assign', { 'assign_target': 'Custom' })
-                    }>
+                    onClick={() => act('assign', { assign_target: 'Custom' })}
+                  >
                     Custom
                   </Button>
                 </Table.Cell>
@@ -202,7 +215,8 @@ export const IdentificationComputerAccessModification = (props) => {
                         access_target: access.ref,
                         allowed: access.allowed,
                       })
-                    }>
+                    }
+                  >
                     {decodeHtmlEntities(access.desc)}
                   </Button>
                 </Box>
@@ -241,7 +255,8 @@ export const IdentificationComputerRegions = (props) => {
                       access_target: access.ref,
                       allowed: access.allowed,
                     })
-                  }>
+                  }
+                >
                   {decodeHtmlEntities(access.desc)}
                 </Button>
               </Box>

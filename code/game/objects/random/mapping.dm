@@ -140,7 +140,7 @@
 	name = "Random Land Mine"
 	desc = "This is a random land mine."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "uglymine"
+	icon_state = "landmine"
 	spawn_nothing_percentage = 25
 
 /obj/random/landmine/item_to_spawn()

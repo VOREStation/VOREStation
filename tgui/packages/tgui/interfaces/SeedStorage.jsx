@@ -1,8 +1,9 @@
-import { useBackend } from '../backend';
-import { Button, Flex, LabeledList, Section, Collapsible } from '../components';
-import { Window } from '../layouts';
-import { toTitleCase } from 'common/string';
 import { sortBy } from 'common/collections';
+import { toTitleCase } from 'common/string';
+
+import { useBackend } from '../backend';
+import { Button, Collapsible, Flex, LabeledList, Section } from '../components';
+import { Window } from '../layouts';
 
 export const SeedStorage = (props) => {
   const { act, data } = useBackend();
@@ -35,7 +36,8 @@ export const SeedStorage = (props) => {
                 <Button
                   fluid
                   icon="download"
-                  onClick={() => act('vend', { id: seed.id })}>
+                  onClick={() => act('vend', { id: seed.id })}
+                >
                   Vend
                 </Button>
               </Flex.Item>
@@ -43,7 +45,8 @@ export const SeedStorage = (props) => {
                 <Button
                   fluid
                   icon="trash"
-                  onClick={() => act('purge', { id: seed.id })}>
+                  onClick={() => act('purge', { id: seed.id })}
+                >
                   Purge
                 </Button>
               </Flex.Item>

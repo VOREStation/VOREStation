@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -21,7 +22,8 @@ export const AssemblyInfrared = (props) => {
                 icon="power-off"
                 fluid
                 selected={on}
-                onClick={() => act('state')}>
+                onClick={() => act('state')}
+              >
                 {on ? 'On' : 'Off'}
               </Button>
             </LabeledList.Item>
@@ -30,7 +32,8 @@ export const AssemblyInfrared = (props) => {
                 icon="eye"
                 fluid
                 selected={visible}
-                onClick={() => act('visible')}>
+                onClick={() => act('visible')}
+              >
                 {visible ? 'Able to be seen' : 'Invisible'}
               </Button>
             </LabeledList.Item>

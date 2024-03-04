@@ -1,6 +1,7 @@
 import { Component, createRef } from 'react';
+
 import { resolveAsset } from '../assets';
-import { Box } from './Box';
+import { Image } from './Image';
 
 export enum BodyZone {
   Head = 'head',
@@ -84,9 +85,9 @@ export class BodyZoneSelector extends Component<
           width: `${32 * scale}px`,
           height: `${32 * scale}px`,
           position: 'relative',
-        }}>
-        <Box
-          as="img"
+        }}
+      >
+        <Image
           src={resolveAsset(`body_zones.base_${theme}.png`)}
           onClick={() => {
             const onClick = this.props.onClick;
@@ -119,8 +120,7 @@ export class BodyZoneSelector extends Component<
         />
 
         {selectedZone && (
-          <Box
-            as="img"
+          <Image
             src={resolveAsset(`body_zones.${selectedZone}.png`)}
             style={{
               pointerEvents: 'none',
@@ -132,11 +132,10 @@ export class BodyZoneSelector extends Component<
         )}
 
         {hoverZone && hoverZone !== selectedZone && (
-          <Box
-            as="img"
+          <Image
             src={resolveAsset(`body_zones.${hoverZone}.png`)}
             style={{
-              opacity: 0.5,
+              opacity: '0.5',
               pointerEvents: 'none',
               position: 'absolute',
               width: `${32 * scale}px`,

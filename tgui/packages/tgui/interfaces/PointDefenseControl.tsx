@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -31,10 +32,12 @@ export const PointDefenseControl = (props) => {
                   <Button
                     selected={pd.active}
                     icon="power-off"
-                    onClick={() => act('toggle_active', { target: pd.ref })}>
+                    onClick={() => act('toggle_active', { target: pd.ref })}
+                  >
                     {pd.active ? 'Online' : 'Offline'}
                   </Button>
-                }>
+                }
+              >
                 <LabeledList>
                   <LabeledList.Item label="Effective range">
                     {pd.effective_range}

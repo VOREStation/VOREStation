@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section, Dropdown } from '../components';
+import { Box, Button, Dropdown, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const DroneConsole = (props) => {
@@ -21,7 +20,8 @@ export const DroneConsole = (props) => {
               content={fabPower ? 'Enabled' : 'Disabled'}
               onClick={() => act('toggle_fab')}
             />
-          }>
+          }
+        >
           {!fabricator ? (
             <Box color="bad">
               Fabricator not detected.
@@ -69,7 +69,8 @@ export const DroneConsole = (props) => {
                         onClick={() => act('shutdown', { ref: drone.ref })}
                       />
                     </>
-                  }>
+                  }
+                >
                   <LabeledList>
                     <LabeledList.Item label="Location">
                       {drone.loc}

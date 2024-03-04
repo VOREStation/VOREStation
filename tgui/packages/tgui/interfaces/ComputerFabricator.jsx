@@ -1,4 +1,5 @@
 import { multiline } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Box, Button, Grid, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
@@ -86,7 +87,8 @@ const CfStep2 = (props) => {
         <Box bold color="good">
           {data.totalprice}₮
         </Box>
-      }>
+      }
+    >
       <Table>
         <Table.Row>
           <Table.Cell bold position="relative">

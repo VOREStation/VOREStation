@@ -1,8 +1,16 @@
-import { Fragment } from 'react';
+import { decodeHtmlEntities, toTitleCase } from 'common/string';
+
 import { useBackend } from '../backend';
-import { Box, Button, Modal, LabeledList, ProgressBar, Section, NoticeBox } from '../components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  Modal,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
-import { toTitleCase, decodeHtmlEntities } from 'common/string';
 
 export const MechaControlConsole = (props) => {
   const { act, data } = useBackend();
@@ -18,7 +26,8 @@ export const MechaControlConsole = (props) => {
               title="Log"
               buttons={
                 <Button icon="window-close" onClick={() => act('clear_log')} />
-              }>
+              }
+            >
               {stored_data.map((data) => (
                 <Box key={data.time}>
                   <Box color="label">
@@ -40,12 +49,14 @@ export const MechaControlConsole = (props) => {
                 <>
                   <Button
                     icon="comment"
-                    onClick={() => act('send_message', { mt: beacon.ref })}>
+                    onClick={() => act('send_message', { mt: beacon.ref })}
+                  >
                     Message
                   </Button>
                   <Button
                     icon="eye"
-                    onClick={() => act('get_log', { mt: beacon.ref })}>
+                    onClick={() => act('get_log', { mt: beacon.ref })}
+                  >
                     View Log
                   </Button>
                   <Button.Confirm
@@ -55,7 +66,8 @@ export const MechaControlConsole = (props) => {
                     onClick={() => act('shock', { mt: beacon.ref })}
                   />
                 </>
-              }>
+              }
+            >
               <LabeledList>
                 <LabeledList.Item label="Health">
                   <ProgressBar

@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
@@ -36,7 +35,8 @@ export const Turbolift = (props) => {
                 onClick={() => act('emergency_stop')}
               />
             </>
-          }>
+          }
+        >
           {!fire_mode || (
             <Section
               className="Section--elevator--fire"

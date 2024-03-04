@@ -1,8 +1,8 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
-import { Fragment } from 'react';
 import { Box, Button, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
-import { BooleanLike } from 'common/react';
 
 const getStatusText = (port) => {
   if (port.input) {
@@ -57,7 +57,8 @@ export const OmniMixer = (props) => {
                 onClick={() => act('configure')}
               />
             </>
-          }>
+          }
+        >
           <Table>
             <Table.Row header>
               <Table.Cell textAlign="center">Port</Table.Cell>
@@ -120,8 +121,8 @@ const PortRow = (props) => {
             icon="compress-arrows-alt"
             onClick={() =>
               act('switch_mode', {
-                'mode': port.input ? 'none' : 'in',
-                'dir': port.dir,
+                mode: port.input ? 'none' : 'in',
+                dir: port.dir,
               })
             }
           />
@@ -137,8 +138,8 @@ const PortRow = (props) => {
             icon="expand-arrows-alt"
             onClick={() =>
               act('switch_mode', {
-                'mode': 'out',
-                'dir': port.dir,
+                mode: 'out',
+                dir: port.dir,
               })
             }
           />
@@ -156,7 +157,7 @@ const PortRow = (props) => {
               content={!port.input ? '-' : port.concentration * 100 + ' %'}
               onClick={() =>
                 act('switch_con', {
-                  'dir': port.dir,
+                  dir: port.dir,
                 })
               }
             />
@@ -169,7 +170,7 @@ const PortRow = (props) => {
               content={port.f_type || 'None'}
               onClick={() =>
                 act('switch_conlock', {
-                  'dir': port.dir,
+                  dir: port.dir,
                 })
               }
             />

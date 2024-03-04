@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -48,7 +47,8 @@ export const Wires = (props) => {
                       }
                     />
                   </>
-                }>
+                }
+              >
                 {!!wire.wire && <i>({wire.wire})</i>}
               </LabeledList.Item>
             ))}

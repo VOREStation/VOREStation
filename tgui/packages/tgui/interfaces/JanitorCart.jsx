@@ -20,7 +20,8 @@ export const JanitorCart = (props) => {
           style={{
             border: mybag ? null : '2px solid grey',
           }}
-          onClick={() => act('bag')}>
+          onClick={() => act('bag')}
+        >
           <JanicartIcon iconkey="mybag" />
         </Button>
         <Button
@@ -33,7 +34,8 @@ export const JanitorCart = (props) => {
           style={{
             border: mybucket ? null : '2px solid grey',
           }}
-          onClick={() => act('bucket')}>
+          onClick={() => act('bucket')}
+        >
           <JanicartIcon iconkey="mybucket" />
         </Button>
         <Button
@@ -46,7 +48,8 @@ export const JanitorCart = (props) => {
           style={{
             border: mymop ? null : '2px solid grey',
           }}
-          onClick={() => act('mop')}>
+          onClick={() => act('mop')}
+        >
           <JanicartIcon iconkey="mymop" />
         </Button>
         <Button
@@ -59,7 +62,8 @@ export const JanitorCart = (props) => {
           style={{
             border: myspray ? null : '2px solid grey',
           }}
-          onClick={() => act('spray')}>
+          onClick={() => act('spray')}
+        >
           <JanicartIcon iconkey="myspray" />
         </Button>
         <Button
@@ -72,7 +76,8 @@ export const JanitorCart = (props) => {
           style={{
             border: myreplacer ? null : '2px solid grey',
           }}
-          onClick={() => act('replacer')}>
+          onClick={() => act('replacer')}
+        >
           <JanicartIcon iconkey="myreplacer" />
         </Button>
         <Button
@@ -85,7 +90,8 @@ export const JanitorCart = (props) => {
           style={{
             border: signs ? null : '2px solid grey',
           }}
-          onClick={() => act('sign')}>
+          onClick={() => act('sign')}
+        >
           <JanicartIcon iconkey="signs" />
         </Button>
       </Window.Content>
@@ -94,12 +100,12 @@ export const JanitorCart = (props) => {
 };
 
 const iconkeysToIcons = {
-  'mybag': 'trash',
-  'mybucket': 'fill',
-  'mymop': 'broom',
-  'myspray': 'spray-can',
-  'myreplacer': 'lightbulb',
-  'signs': 'sign',
+  mybag: 'trash',
+  mybucket: 'fill',
+  mymop: 'broom',
+  myspray: 'spray-can',
+  myreplacer: 'lightbulb',
+  signs: 'sign',
 };
 
 const JanicartIcon = (props) => {

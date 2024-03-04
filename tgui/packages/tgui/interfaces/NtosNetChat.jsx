@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Icon, Input, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
@@ -28,7 +27,8 @@ export const NtosNetChat = (props) => {
                 verticalAlign="top"
                 style={{
                   width: '200px',
-                }}>
+                }}
+              >
                 <Box height="560px" overflowY="scroll">
                   <Button.Input
                     fluid
@@ -111,7 +111,8 @@ export const NtosNetChat = (props) => {
                 verticalAlign="top"
                 style={{
                   width: '150px',
-                }}>
+                }}
+              >
                 <Box height="465px" overflowY="scroll">
                   {clients.map((client) => (
                     <Box key={client.name}>{client.name}</Box>

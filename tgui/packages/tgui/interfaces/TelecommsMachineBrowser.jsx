@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, LabeledList, Section } from '../components';
+import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
 export const TelecommsMachineBrowser = (props) => {
@@ -14,7 +13,8 @@ export const TelecommsMachineBrowser = (props) => {
         {temp ? (
           <NoticeBox
             danger={temp.color === 'bad'}
-            warning={temp.color !== 'bad'}>
+            warning={temp.color !== 'bad'}
+          >
             <Box display="inline-box" verticalAlign="middle">
               {temp.text}
             </Box>
@@ -45,7 +45,8 @@ export const TelecommsMachineBrowser = (props) => {
                     onClick={() => act('release')}
                   />
                 </>
-              }>
+              }
+            >
               <Button
                 content={network}
                 icon="pen"
@@ -94,7 +95,8 @@ const TelecommsBrowser = (props) => {
             onClick={() => act('mainmenu')}
           />
         )
-      }>
+      }
+    >
       <Box color="label">
         <u>Linked entities</u>
       </Box>
@@ -103,7 +105,8 @@ const TelecommsBrowser = (props) => {
           list.map((machine) => (
             <LabeledList.Item
               key={machine.id}
-              label={machine.name + ' (' + machine.id + ')'}>
+              label={machine.name + ' (' + machine.id + ')'}
+            >
               <Button
                 content="View"
                 icon="eye"

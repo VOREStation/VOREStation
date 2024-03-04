@@ -1,9 +1,16 @@
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Fragment } from 'react';
-import { Button, Box, Section, LabeledList, NumberInput, Icon } from '../components';
 import { round } from 'common/math';
-import { formatSiUnit, formatPower } from '../format';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  NumberInput,
+  Section,
+} from '../components';
+import { formatPower, formatSiUnit } from '../format';
+import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
 export const ShieldGenerator = (props) => {
@@ -74,7 +81,7 @@ const ShieldGeneratorContent = (props) => {
             {(target_field_strength &&
               round(
                 (100 * average_field_strength) / target_field_strength,
-                1
+                1,
               )) ||
               'NA'}
             %)
@@ -132,7 +139,8 @@ const ShieldGeneratorContent = (props) => {
             selected={active}
             onClick={() => act('toggle')}
           />
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item label="Coverage Radius">
             <NumberInput

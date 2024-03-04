@@ -493,7 +493,14 @@
 /obj/item/clothing/accessory/collar/shock/bluespace/relaymove(var/mob/living/user,var/direction)
 	return //For some reason equipping this item was triggering this proc, putting the wearer inside of the collars belly for some reason.
 
-/obj/item/clothing/accessory/collar/shock/bluespace/attackby(var/obj/item/device/assembly/signaler/component, mob/user as mob)
+/obj/item/clothing/accessory/collar/shock/bluespace/attackby(var/obj/item/component, mob/user as mob)
+	if (component.has_tool_quality(TOOL_WRENCH))
+		to_chat(user, "<span class='notice'>You crack the bluespace crystal [src].</span>")
+		var/turf/T = get_turf(src)
+		new /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning(T)
+		user.drop_from_inventory(src)
+		qdel(src)
+		return
 	if (!istype(component,/obj/item/device/assembly/signaler))
 		..()
 		return
@@ -517,7 +524,14 @@
 	target_size = 1
 	on = 1
 
-/obj/item/clothing/accessory/collar/shock/bluespace/modified/attackby(var/obj/item/device/assembly/signaler/component, mob/user as mob)
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/attackby(var/obj/item/component, mob/user as mob)
+	if (component.has_tool_quality(TOOL_WRENCH))
+		to_chat(user, "<span class='notice'>You crack the bluespace crystal [src], the attached signaler disconnects.</span>")
+		var/turf/T = get_turf(src)
+		new /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning(T)
+		user.drop_from_inventory(src)
+		qdel(src)
+		return
 	if (!istype(component,/obj/item/device/assembly/signaler))
 		..()
 		return
@@ -618,6 +632,141 @@
 			last_activated = world.time
 			H.resize(original_size, ignore_prefs = FALSE)
 			original_size = null
+			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
+			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			s.set_up(3, 1, M)
+			s.start()
+	return
+
+//bluespace collar malfunctioning (random size)
+
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning
+	name = "Bluespace collar"
+	desc = "A collar that can manipulate the size of the wearer, and can be modified when unequiped. It has a crack on the crystal."
+	icon_state = "collar_size_malf"
+	item_state = "collar_size"
+	overlay_state = "collar_size"
+	target_size = 1
+	on = 1
+	var/currently_shrinking = 0
+
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attackby(var/obj/item/component, mob/user as mob)
+	if (!istype(component,/obj/item/device/assembly/signaler))
+		..()
+		return
+	to_chat(user, "<span class='notice'>The signaler doesn't respond to the connection attempt [src].</span>")
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attack_self(mob/user as mob, flag1)
+	if(!istype(user, /mob/living/carbon/human))
+		return
+	user.set_machine(src)
+	var/dat = {"<TT>
+			<B>Frequency/Code</B> for collar:<BR>
+			Frequency:
+			<A href='byond://?src=\ref[src];freq=-10'>-</A>
+			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
+			<A href='byond://?src=\ref[src];freq=2'>+</A>
+			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+
+			Code:
+			<A href='byond://?src=\ref[src];code=-5'>-</A>
+			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
+			<A href='byond://?src=\ref[src];code=1'>+</A>
+			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
+
+			Tag:
+			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
+
+			Size:
+			Input Disabled!<BR>
+			</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/Topic(href, href_list)
+	if(usr.stat || usr.restrained())
+		return
+	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+		usr.set_machine(src)
+		if(href_list["freq"])
+			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
+			set_frequency(new_frequency)
+		if(href_list["tag"])
+			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
+			if(!str || !length(str))
+				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+				name = initial(name)
+				desc = initial(desc)
+			else
+				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+				name = initial(name) + " ([str])"
+				desc = initial(desc) + " The tag says \"[str]\"."
+		else
+			if(href_list["code"])
+				code += text2num(href_list["code"])
+				code = round(code)
+				code = min(100, code)
+				code = max(1, code)
+		if(!( master ))
+			if(istype(loc, /mob))
+				attack_self(loc)
+			else
+				for(var/mob/M in viewers(1, src))
+					if(M.client)
+						attack_self(M)
+		else
+			if(istype(master.loc, /mob))
+				attack_self(master.loc)
+			else
+				for(var/mob/M in viewers(1, master))
+					if(M.client)
+						attack_self(M)
+	else
+		usr << browse(null, "window=radio")
+		return
+	return
+
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/receive_signal(datum/signal/signal)
+	if(!signal)
+		return
+	target_size =  (rand(25,200)) /100
+	if(on)
+		var/mob/M = null
+		if(ismob(loc))
+			M = loc
+		if(ismob(loc.loc))
+			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
+		var/mob/living/carbon/human/H = M
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H.resizable)
+			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			return
+		if (target_size < 0.25)
+			H.visible_message("<span class='warning'>The collar on [H] flickers, but fizzles out.</span>","<span class='notice'>Your collar flickers, but is not powerful enough to shrink you that small.</span>")
+			return
+		if(currently_shrinking == 0)
+			if(!(world.time - last_activated > 10 SECONDS))
+				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				return
+			last_activated = world.time
+			original_size = H.size_multiplier
+			currently_shrinking = 1
+			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
+			s.set_up(3, 1, M)
+			s.start()
+		else if(currently_shrinking == 1)
+			if(original_size == null)
+				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				return
+			last_activated = world.time
+			H.resize(original_size, ignore_prefs = FALSE)
+			original_size = null
+			currently_shrinking = 0
 			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")

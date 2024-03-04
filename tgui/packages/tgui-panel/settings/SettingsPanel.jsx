@@ -5,15 +5,49 @@
  */
 
 import { toFixed } from 'common/math';
-import { useLocalState } from 'tgui/backend';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'tgui/backend';
-import { Box, Button, ColorBox, Divider, Dropdown, Flex, Input, LabeledList, NumberInput, Section, Stack, Tabs, TextArea } from 'tgui/components';
+import {
+  Box,
+  Button,
+  Collapsible,
+  ColorBox,
+  Divider,
+  Dropdown,
+  Flex,
+  Input,
+  LabeledList,
+  NumberInput,
+  Section,
+  Stack,
+  Tabs,
+  TextArea,
+} from 'tgui/components';
+
 import { ChatPageSettings } from '../chat';
-import { rebuildChat, saveChatToDisk, purgeChatMessageArchive } from '../chat/actions';
+import {
+  purgeChatMessageArchive,
+  rebuildChat,
+  saveChatToDisk,
+} from '../chat/actions';
+import { MESSAGE_TYPES } from '../chat/constants';
+import { useGame } from '../game';
 import { THEMES } from '../themes';
-import { changeSettingsTab, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from './actions';
-import { SETTINGS_TABS, FONTS, MAX_HIGHLIGHT_SETTINGS } from './constants';
-import { selectActiveTab, selectSettings, selectHighlightSettings, selectHighlightSettingById } from './selectors';
+import {
+  addHighlightSetting,
+  changeSettingsTab,
+  removeHighlightSetting,
+  updateHighlightSetting,
+  updateSettings,
+  updateToggle,
+} from './actions';
+import { FONTS, MAX_HIGHLIGHT_SETTINGS, SETTINGS_TABS } from './constants';
+import {
+  selectActiveTab,
+  selectHighlightSettingById,
+  selectHighlightSettings,
+  selectSettings,
+} from './selectors';
 
 export const SettingsPanel = (props) => {
   const activeTab = useSelector(selectActiveTab);
@@ -31,9 +65,10 @@ export const SettingsPanel = (props) => {
                   dispatch(
                     changeSettingsTab({
                       tabId: tab.id,
-                    })
+                    }),
                   )
-                }>
+                }
+              >
                 {tab.name}
               </Tabs.Tab>
             ))}
@@ -52,22 +87,29 @@ export const SettingsPanel = (props) => {
 };
 
 export const SettingsGeneral = (props) => {
-  const { theme, fontFamily, fontSize, lineHeight, showReconnectWarning } =
-    useSelector(selectSettings);
+  const {
+    theme,
+    fontFamily,
+    fontSize,
+    lineHeight,
+    showReconnectWarning,
+    prependTimestamps,
+  } = useSelector(selectSettings);
   const dispatch = useDispatch();
-  const [freeFont, setFreeFont] = useLocalState('freeFont', false);
+  const [freeFont, setFreeFont] = useState(false);
   return (
     <Section>
       <LabeledList>
         <LabeledList.Item label="Theme">
           <Dropdown
+            width="175px"
             selected={theme}
             options={THEMES}
             onSelected={(value) =>
               dispatch(
                 updateSettings({
                   theme: value,
-                })
+                }),
               )
             }
           />
@@ -77,13 +119,14 @@ export const SettingsGeneral = (props) => {
             <Stack.Item>
               {(!freeFont && (
                 <Dropdown
+                  width="175px"
                   selected={fontFamily}
                   options={FONTS}
                   onSelected={(value) =>
                     dispatch(
                       updateSettings({
                         fontFamily: value,
-                      })
+                      }),
                     )
                   }
                 />
@@ -94,7 +137,7 @@ export const SettingsGeneral = (props) => {
                     dispatch(
                       updateSettings({
                         fontFamily: value,
-                      })
+                      }),
                     )
                   }
                 />
@@ -127,7 +170,7 @@ export const SettingsGeneral = (props) => {
               dispatch(
                 updateSettings({
                   fontSize: value,
-                })
+                }),
               )
             }
           />
@@ -145,7 +188,7 @@ export const SettingsGeneral = (props) => {
               dispatch(
                 updateSettings({
                   lineHeight: value,
-                })
+                }),
               )
             }
           />
@@ -160,10 +203,33 @@ export const SettingsGeneral = (props) => {
               dispatch(
                 updateSettings({
                   showReconnectWarning: !showReconnectWarning,
-                })
+                }),
               )
             }
           />
+        </LabeledList.Item>
+        <LabeledList.Item label="Enable chat timestamps">
+          <Button.Checkbox
+            checked={prependTimestamps}
+            content=""
+            tooltip="Enabling this will prepend timestamps to all messages."
+            mr="5px"
+            onClick={() =>
+              dispatch(
+                updateSettings({
+                  prependTimestamps: !prependTimestamps,
+                }),
+              )
+            }
+          />
+          <Box inline>
+            <Button icon="check" onClick={() => dispatch(rebuildChat())}>
+              Apply now
+            </Button>
+            <Box inline fontSize="0.9em" ml={1} color="label">
+              Can freeze the chat for a while.
+            </Box>
+          </Box>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -177,6 +243,7 @@ export const MessageLimits = (props) => {
     persistentMessageLimit,
     combineMessageLimit,
     combineIntervalLimit,
+    saveInterval,
   } = useSelector(selectSettings);
   return (
     <Section>
@@ -194,17 +261,25 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   visibleMessageLimit: value,
-                })
+                }),
               )
             }
           />
+          &nbsp;
+          {visibleMessageLimit >= 5000 ? (
+            <Box inline fontSize="0.9em" color="red">
+              Impacts performance!
+            </Box>
+          ) : (
+            ''
+          )}
         </LabeledList.Item>
-        <LabeledList.Item label="Amount of visually persistent lines 500-10000 (Default: 1000)">
+        <LabeledList.Item label="Amount of visually persistent lines 0-10000 (Default: 1000)">
           <NumberInput
             width="5em"
             step={100}
             stepPixelSize={2}
-            minValue={500}
+            minValue={0}
             maxValue={10000}
             value={persistentMessageLimit}
             format={(value) => toFixed(value)}
@@ -212,12 +287,20 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   persistentMessageLimit: value,
-                })
+                }),
               )
             }
           />
+          &nbsp;
+          {persistentMessageLimit >= 2500 ? (
+            <Box inline fontSize="0.9em" color="red">
+              Delays initialization!
+            </Box>
+          ) : (
+            ''
+          )}
         </LabeledList.Item>
-        <LabeledList.Item label="Amount of different lines in between to combine 0-10 (Default: 5)">
+        <LabeledList.Item label="Amount of different lines in-between to combine 0-10 (Default: 5)">
           <NumberInput
             width="5em"
             step={1}
@@ -230,7 +313,7 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   combineMessageLimit: value,
-                })
+                }),
               )
             }
           />
@@ -249,10 +332,37 @@ export const MessageLimits = (props) => {
               dispatch(
                 updateSettings({
                   combineIntervalLimit: value,
-                })
+                }),
               )
             }
           />
+        </LabeledList.Item>
+        <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={5}
+            minValue={1}
+            maxValue={10}
+            value={saveInterval}
+            unit="s"
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  saveInterval: value,
+                }),
+              )
+            }
+          />
+          &nbsp;
+          {saveInterval <= 3 ? (
+            <Box inline fontSize="0.9em" color="red">
+              Warning, experimental! Might crash!
+            </Box>
+          ) : (
+            ''
+          )}
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -261,34 +371,205 @@ export const MessageLimits = (props) => {
 
 export const ExportTab = (props) => {
   const dispatch = useDispatch();
-  const { logRetainDays, logLineCount, totalStoredMessages } =
-    useSelector(selectSettings);
-  const [purgeConfirm, setPurgeConfirm] = useLocalState('purgeConfirm', 0);
+  const game = useGame();
+  const {
+    storedRounds,
+    exportStart,
+    exportEnd,
+    logRetainRounds,
+    logEnable,
+    logLineCount,
+    logLimit,
+    totalStoredMessages,
+    storedTypes,
+  } = useSelector(selectSettings);
+  const [purgeConfirm, setPurgeConfirm] = useState(0);
+  const [logConfirm, setLogConfirm] = useState(0);
   return (
     <Section>
-      <LabeledList>
-        {/* FIXME: Implement this later on
-        <LabeledList.Item label="Days to retain logs (-1 = inf.)">
-          <Input
-            width="5em"
-            monospace
-            value={logRetainDays}
-            onInput={(e, value) =>
+      <Flex align="baseline">
+        {logEnable ? (
+          logConfirm ? (
+            <Button
+              icon="ban"
+              color="red"
+              onClick={() => {
+                dispatch(
+                  updateSettings({
+                    logEnable: false,
+                  }),
+                );
+                setLogConfirm(false);
+              }}
+            >
+              Disable?
+            </Button>
+          ) : (
+            <Button
+              icon="ban"
+              color="red"
+              onClick={() => {
+                setLogConfirm(true);
+                setTimeout(() => {
+                  setLogConfirm(false);
+                }, 5000);
+              }}
+            >
+              Disable logging
+            </Button>
+          )
+        ) : (
+          <Button
+            icon="download"
+            color="green"
+            onClick={() => {
               dispatch(
                 updateSettings({
-                  logRetainDays: value,
-                })
+                  logEnable: true,
+                }),
+              );
+            }}
+          >
+            Enable logging
+          </Button>
+        )}
+        <Flex.Item grow={1} />
+        <Flex.Item color="label">Round ID:&nbsp;</Flex.Item>
+        <Flex.Item color={game.roundId ? '' : 'red'}>
+          {game.roundId ? game.roundId : 'ERROR'}
+        </Flex.Item>
+      </Flex>
+      {logEnable ? (
+        <>
+          <LabeledList>
+            <LabeledList.Item label="Amount of rounds to log (1 to 8)">
+              <NumberInput
+                width="5em"
+                step={1}
+                stepPixelSize={10}
+                minValue={1}
+                maxValue={8}
+                value={logRetainRounds}
+                format={(value) => toFixed(value)}
+                onDrag={(e, value) =>
+                  dispatch(
+                    updateSettings({
+                      logRetainRounds: value,
+                    }),
+                  )
+                }
+              />
+              &nbsp;
+              {logRetainRounds > 3 ? (
+                <Box inline fontSize="0.9em" color="red">
+                  Warning, might crash!
+                </Box>
+              ) : (
+                ''
+              )}
+            </LabeledList.Item>
+            <LabeledList.Item label="Hardlimit for the log archive (0 = inf. to 50000)">
+              <NumberInput
+                width="5em"
+                step={500}
+                stepPixelSize={10}
+                minValue={0}
+                maxValue={50000}
+                value={logLimit}
+                format={(value) => toFixed(value)}
+                onDrag={(e, value) =>
+                  dispatch(
+                    updateSettings({
+                      logLimit: value,
+                    }),
+                  )
+                }
+              />
+              &nbsp;
+              {logLimit > 0 ? (
+                <Box
+                  inline
+                  fontSize="0.9em"
+                  color={logLimit > 10000 ? 'red' : 'label'}
+                >
+                  {logLimit > 15000
+                    ? 'Warning, might crash! Takes priority above round retention.'
+                    : 'Takes priority above round retention.'}
+                </Box>
+              ) : (
+                ''
+              )}
+            </LabeledList.Item>
+          </LabeledList>
+          <Section>
+            <Collapsible mt={1} color="transparent" title="Messages to log">
+              {MESSAGE_TYPES.map((typeDef) => (
+                <Button.Checkbox
+                  key={typeDef.type}
+                  checked={storedTypes[typeDef.type]}
+                  onClick={() =>
+                    dispatch(
+                      updateToggle({
+                        type: typeDef.type,
+                      }),
+                    )
+                  }
+                >
+                  {typeDef.name}
+                </Button.Checkbox>
+              ))}
+            </Collapsible>
+          </Section>
+        </>
+      ) : (
+        ''
+      )}
+      <LabeledList>
+        <LabeledList.Item label="Export round start (0 = curr.) / end (0 = dis.)">
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={10}
+            minValue={0}
+            maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
+            value={exportStart}
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  exportStart: value,
+                }),
               )
             }
           />
+          <NumberInput
+            width="5em"
+            step={1}
+            stepPixelSize={10}
+            minValue={exportStart === 0 ? 0 : exportStart + 1}
+            maxValue={storedRounds}
+            value={exportEnd}
+            format={(value) => toFixed(value)}
+            onDrag={(e, value) =>
+              dispatch(
+                updateSettings({
+                  exportEnd: value,
+                }),
+              )
+            }
+          />
+          &nbsp;
+          <Box inline fontSize="0.9em" color="label">
+            Stored Rounds:&nbsp;
+          </Box>
+          <Box inline>{storedRounds}</Box>
         </LabeledList.Item>
-        */}
-        <LabeledList.Item label="Amount of lines to export (-1 = inf.)">
+        <LabeledList.Item label="Amount of lines to export (0 = inf.)">
           <NumberInput
             width="5em"
             step={100}
-            stepPixelSize={2}
-            minValue={-1}
+            stepPixelSize={10}
+            minValue={0}
             maxValue={50000}
             value={logLineCount}
             format={(value) => toFixed(value)}
@@ -296,7 +577,7 @@ export const ExportTab = (props) => {
               dispatch(
                 updateSettings({
                   logLineCount: value,
-                })
+                }),
               )
             }
           />
@@ -316,7 +597,8 @@ export const ExportTab = (props) => {
           onClick={() => {
             dispatch(purgeChatMessageArchive());
             setPurgeConfirm(2);
-          }}>
+          }}
+        >
           {purgeConfirm > 1 ? 'Purged!' : 'Are you sure?'}
         </Button>
       ) : (
@@ -328,7 +610,8 @@ export const ExportTab = (props) => {
             setTimeout(() => {
               setPurgeConfirm(false);
             }, 5000);
-          }}>
+          }}
+        >
           Purge message archive
         </Button>
       )}
@@ -340,7 +623,7 @@ const TextHighlightSettings = (props) => {
   const highlightSettings = useSelector(selectHighlightSettings);
   const dispatch = useDispatch();
   return (
-    <Section fill scrollable height="200px">
+    <Section fill scrollable height="235px">
       <Section p={0}>
         <Flex direction="column">
           {highlightSettings.map((id, i) => (
@@ -402,7 +685,7 @@ const TextHighlightSetting = (props) => {
               dispatch(
                 removeHighlightSetting({
                   id: id,
-                })
+                }),
               )
             }
           />
@@ -418,7 +701,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   highlightBlacklist: !highlightBlacklist,
-                })
+                }),
               )
             }
           />
@@ -434,7 +717,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   highlightWholeMessage: !highlightWholeMessage,
-                })
+                }),
               )
             }
           />
@@ -450,7 +733,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   matchWord: !matchWord,
-                })
+                }),
               )
             }
           />
@@ -465,7 +748,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   matchCase: !matchCase,
-                })
+                }),
               )
             }
           />
@@ -482,7 +765,7 @@ const TextHighlightSetting = (props) => {
                 updateHighlightSetting({
                   id: id,
                   highlightColor: value,
-                })
+                }),
               )
             }
           />
@@ -497,7 +780,7 @@ const TextHighlightSetting = (props) => {
             updateHighlightSetting({
               id: id,
               highlightText: value,
-            })
+            }),
           )
         }
       />
@@ -511,7 +794,7 @@ const TextHighlightSetting = (props) => {
               updateHighlightSetting({
                 id: id,
                 blacklistText: value,
-              })
+              }),
             )
           }
         />

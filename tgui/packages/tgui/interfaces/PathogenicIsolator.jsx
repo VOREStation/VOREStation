@@ -1,7 +1,19 @@
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
-import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
-import { Box, Button, Flex, NoticeBox, LabeledList, Section, Tabs } from '../components';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Tabs,
+} from '../components';
+import {
+  ComplexModal,
+  modalRegisterBodyOverride,
+} from '../interfaces/common/ComplexModal';
 import { Window } from '../layouts';
 
 const virusModalBodyOverride = (modal) => {
@@ -25,7 +37,8 @@ const virusModalBodyOverride = (modal) => {
           />
           <Button icon="times" color="red" onClick={() => act('modal_close')} />
         </>
-      }>
+      }
+    >
       <Box mx="0.5rem">
         <LabeledList>
           <LabeledList.Item label="Spread">
@@ -74,7 +87,7 @@ export const PathogenicIsolator = (props) => {
 
   const { isolating } = data;
 
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   let tab = null;
   if (tabIndex === 0) {
@@ -127,7 +140,8 @@ const PathogenicIsolatorTabHome = (props) => {
             onClick={() => act('eject')}
           />
         </>
-      }>
+      }
+    >
       {(pathogen_pool.length &&
         pathogen_pool.map((pathogen) => (
           <Section key={pathogen.unique_id}>
@@ -184,14 +198,16 @@ const PathogenicIsolatorTabDatabase = (props) => {
           disabled={!can_print}
           onClick={() => act('print', { type: 'virus_list' })}
         />
-      }>
+      }
+    >
       {(database.length &&
         database.map((entry) => (
           <Button
             key={entry.name}
             fluid
             icon="search"
-            onClick={() => act('view_entry', { vir: entry.record })}>
+            onClick={() => act('view_entry', { vir: entry.record })}
+          >
             {entry.name}
           </Button>
         ))) || <Box color="average">The viral database is empty.</Box>}

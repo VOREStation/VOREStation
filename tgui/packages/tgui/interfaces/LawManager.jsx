@@ -1,6 +1,13 @@
-import { Fragment } from 'react';
 import { useBackend, useSharedState } from '../backend';
-import { Button, LabeledList, Section, Tabs, NoticeBox, Table, Input } from '../components';
+import {
+  Button,
+  Input,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Table,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
 
 export const LawManager = (props) => {
@@ -191,7 +198,8 @@ const LawManagerLaws = (props) => {
               <Table.Cell>
                 <Button
                   icon="pen"
-                  onClick={() => act('change_supplied_law_position')}>
+                  onClick={() => act('change_supplied_law_position')}
+                >
                   {supplied_law_position}
                 </Button>
               </Table.Cell>
@@ -243,7 +251,8 @@ const LawsTable = (props) => {
                   selected={law.state}
                   onClick={() =>
                     act('state_law', { ref: law.ref, state_law: !law.state })
-                  }>
+                  }
+                >
                   {law.state ? 'Yes' : 'No'}
                 </Button>
               </Table.Cell>
@@ -255,7 +264,8 @@ const LawsTable = (props) => {
                   <Button
                     disabled={law.zero && !isAdmin}
                     icon="pen"
-                    onClick={() => act('edit_law', { edit_law: law.ref })}>
+                    onClick={() => act('edit_law', { edit_law: law.ref })}
+                  >
                     Edit
                   </Button>
                 </Table.Cell>
@@ -264,7 +274,8 @@ const LawsTable = (props) => {
                     disabled={law.zero && !isAdmin}
                     color="bad"
                     icon="trash"
-                    onClick={() => act('delete_law', { delete_law: law.ref })}>
+                    onClick={() => act('delete_law', { delete_law: law.ref })}
+                  >
                     Delete
                   </Button>
                 </Table.Cell>
@@ -301,18 +312,21 @@ const LawManagerLawSets = (props) => {
                   icon="sync"
                   onClick={() =>
                     act('transfer_laws', { transfer_laws: laws.ref })
-                  }>
+                  }
+                >
                   Load Laws
                 </Button>
                 <Button
                   icon="volume-up"
                   onClick={() =>
                     act('state_law_set', { state_law_set: laws.ref })
-                  }>
+                  }
+                >
                   State Laws
                 </Button>
               </>
-            }>
+            }
+          >
             {(laws.laws.has_ion_laws && (
               <LawsTable
                 noButtons

@@ -1,37 +1,49 @@
-import { capitalize } from 'common/string';
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, Collapsible, Icon, LabeledList, NoticeBox, Section, Tabs, Divider } from '../components';
-import { Window } from '../layouts';
 import { classes } from 'common/react';
+import { capitalize } from 'common/string';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Collapsible,
+  Divider,
+  Flex,
+  Icon,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Tabs,
+} from '../components';
+import { Window } from '../layouts';
 
 const stats = [null, 'average', 'bad'];
 
 const digestModeToColor = {
-  'Hold': null,
-  'Digest': 'red',
-  'Absorb': 'purple',
-  'Unabsorb': 'purple',
-  'Drain': 'orange',
-  'Selective': 'orange',
-  'Shrink': 'teal',
-  'Grow': 'teal',
+  Hold: null,
+  Digest: 'red',
+  Absorb: 'purple',
+  Unabsorb: 'purple',
+  Drain: 'orange',
+  Selective: 'orange',
+  Shrink: 'teal',
+  Grow: 'teal',
   'Size Steal': 'teal',
-  'Heal': 'green',
+  Heal: 'green',
   'Encase In Egg': 'blue',
 };
 
 const digestModeToPreyMode = {
-  'Hold': 'being held.',
-  'Digest': 'being digested.',
-  'Absorb': 'being absorbed.',
-  'Unabsorb': 'being unabsorbed.',
-  'Drain': 'being drained.',
-  'Selective': 'being processed.',
-  'Shrink': 'being shrunken.',
-  'Grow': 'being grown.',
+  Hold: 'being held.',
+  Digest: 'being digested.',
+  Absorb: 'being absorbed.',
+  Unabsorb: 'being unabsorbed.',
+  Drain: 'being drained.',
+  Selective: 'being processed.',
+  Shrink: 'being shrunken.',
+  Grow: 'being grown.',
   'Size Steal': 'having your size stolen.',
-  'Heal': 'being healed.',
+  Heal: 'being healed.',
   'Encase In Egg': 'being encased in an egg.',
 };
 
@@ -44,7 +56,7 @@ const digestModeToPreyMode = {
 export const VorePanel = (props) => {
   const { act, data } = useBackend();
 
-  const [tabIndex, setTabIndex] = useLocalState('panelTabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const tabs = [];
 
@@ -164,13 +176,15 @@ const VoreBellySelectionAndCustomization = (props) => {
                 key={belly.name}
                 selected={belly.selected}
                 textColor={digestModeToColor[belly.digest_mode]}
-                onClick={() => act('bellypick', { bellypick: belly.ref })}>
+                onClick={() => act('bellypick', { bellypick: belly.ref })}
+              >
                 <Box
                   inline
                   textColor={
                     (belly.selected && digestModeToColor[belly.digest_mode]) ||
                     null
-                  }>
+                  }
+                >
                   {belly.name} ({belly.contents})
                 </Box>
               </Tabs.Tab>
@@ -198,7 +212,7 @@ const VoreSelectedBelly = (props) => {
   const { belly } = props;
   const { contents } = belly;
 
-  const [tabIndex, setTabIndex] = useLocalState('bellyTabIndex', 0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const tabs = [];
 
@@ -271,7 +285,8 @@ const VoreSelectedBellyControls = (props) => {
               onClick={() => act('move_belly', { dir: 1 })}
             />
           </>
-        }>
+        }
+      >
         <Button
           onClick={() => act('set_attribute', { attribute: 'b_name' })}
           content={belly_name}
@@ -328,7 +343,8 @@ const VoreSelectedBellyDescriptions = (props) => {
             onClick={() => act('set_attribute', { attribute: 'b_desc' })}
             icon="pen"
           />
-        }>
+        }
+      >
         {desc}
       </LabeledList.Item>
       <LabeledList.Item
@@ -340,7 +356,8 @@ const VoreSelectedBellyDescriptions = (props) => {
             }
             icon="pen"
           />
-        }>
+        }
+      >
         {absorbed_desc}
       </LabeledList.Item>
       <LabeledList.Item label="Vore Verb">
@@ -1049,7 +1066,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 attribute: 'b_fullscreen_color',
                 val: null,
               })
-            }>
+            }
+          >
             Select Primary Color
           </Button>
           <Box
@@ -1064,7 +1082,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 attribute: 'b_fullscreen_color_secondary',
                 val: null,
               })
-            }>
+            }
+          >
             Select Secondary Color
           </Button>
           <Box
@@ -1079,7 +1098,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 attribute: 'b_fullscreen_color_trinary',
                 val: null,
               })
-            }>
+            }
+          >
             Select Trinary Color
           </Button>
           <LabeledList.Item label="Enable Coloration">
@@ -1132,11 +1152,12 @@ const VoreSelectedBellyVisuals = (props) => {
             selected={belly_fullscreen === '' || belly_fullscreen === null}
             onClick={() =>
               act('set_attribute', { attribute: 'b_fullscreen', val: null })
-            }>
+            }
+          >
             Disabled
           </Button>
-          {Object.keys(possible_fullscreens).map((key) => (
-            <span style={{ width: '256px' }}>
+          {Object.keys(possible_fullscreens).map((key, index) => (
+            <span key={index} style={{ width: '256px' }}>
               <Button
                 key={key}
                 width="256px"
@@ -1144,7 +1165,8 @@ const VoreSelectedBellyVisuals = (props) => {
                 selected={key === belly_fullscreen}
                 onClick={() =>
                   act('set_attribute', { attribute: 'b_fullscreen', val: key })
-                }>
+                }
+              >
                 <Box
                   className={classes(['vore240x240', key])}
                   style={{
@@ -1176,7 +1198,8 @@ const VoreSelectedBellyInteractions = (props) => {
           selected={escapable}
           content={escapable ? 'Interactions On' : 'Interactions Off'}
         />
-      }>
+      }
+    >
       {escapable ? (
         <LabeledList>
           <LabeledList.Item label="Escape Chance">
@@ -1286,7 +1309,8 @@ const VoreContentsPanel = (props) => {
           textAlign="center"
           fluid
           mb={1}
-          onClick={() => act('pick_from_outside', { 'pickall': true })}>
+          onClick={() => act('pick_from_outside', { pickall: true })}
+        >
           All
         </Button>
       )) ||
@@ -1307,11 +1331,12 @@ const VoreContentsPanel = (props) => {
                   act(
                     thing.outside ? 'pick_from_outside' : 'pick_from_inside',
                     {
-                      'pick': thing.ref,
-                      'belly': belly,
-                    }
+                      pick: thing.ref,
+                      belly: belly,
+                    },
                   )
-                }>
+                }
+              >
                 <img
                   src={'data:image/jpeg;base64, ' + thing.icon}
                   width="64px"
@@ -1339,11 +1364,12 @@ const VoreContentsPanel = (props) => {
                   act(
                     thing.outside ? 'pick_from_outside' : 'pick_from_inside',
                     {
-                      'pick': thing.ref,
-                      'belly': belly,
-                    }
+                      pick: thing.ref,
+                      belly: belly,
+                    },
                   )
-                }>
+                }
+              >
                 Interact
               </Button>
             </LabeledList.Item>
@@ -1747,10 +1773,12 @@ const VoreUserPreferences = (props) => {
         <Button
           icon="eye"
           selected={show_pictures}
-          onClick={() => act('show_pictures')}>
+          onClick={() => act('show_pictures')}
+        >
           Contents Preference: {show_pictures ? 'Show Pictures' : 'Show List'}
         </Button>
-      }>
+      }
+    >
       <Flex spacing={1} wrap="wrap" justify="center">
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.digestion} />

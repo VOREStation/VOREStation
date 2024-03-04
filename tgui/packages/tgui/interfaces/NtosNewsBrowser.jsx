@@ -1,9 +1,14 @@
 /* eslint react/no-danger: "off" */
-import { useBackend } from '../backend';
-import { Button, LabeledList, ProgressBar, Section, NoticeBox } from '../components';
-import { NtosWindow } from '../layouts';
 import { resolveAsset } from '../assets';
-import { Fragment } from 'react';
+import { useBackend } from '../backend';
+import {
+  Button,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+} from '../components';
+import { NtosWindow } from '../layouts';
 
 export const NtosNewsBrowser = (props) => {
   const { act, data } = useBackend();
@@ -56,7 +61,8 @@ const SelectedArticle = (props) => {
             Close
           </Button>
         </>
-      }>
+      }
+    >
       {!!cover && <img src={resolveAsset(cover)} />}
       {/* News articles are written in premade .html files and cannot be edited by players, so it should be
        * safe enough to use dangerouslySetInnerHTML here.
@@ -77,10 +83,12 @@ const ViewArticles = (props) => {
       buttons={
         <Button.Checkbox
           onClick={() => act('PRG_toggle_archived')}
-          checked={showing_archived}>
+          checked={showing_archived}
+        >
           Show Archived
         </Button.Checkbox>
-      }>
+      }
+    >
       <LabeledList>
         {(all_articles.length &&
           all_articles.map((article) => (
@@ -92,7 +100,8 @@ const ViewArticles = (props) => {
                   icon="download"
                   onClick={() => act('PRG_openarticle', { uid: article.uid })}
                 />
-              }>
+              }
+            >
               {article.size} GQ
             </LabeledList.Item>
           ))) || (
@@ -119,7 +128,8 @@ const ArticleDownloading = (props) => {
             color="good"
             minValue={0}
             value={download_progress}
-            maxValue={download_maxprogress}>
+            maxValue={download_maxprogress}
+          >
             {download_progress} / {download_maxprogress} GQ
           </ProgressBar>
         </LabeledList.Item>

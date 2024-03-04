@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -43,7 +42,8 @@ const DiseaseSplicerVirusDish = (props) => {
           disabled={!dish_inserted}
           onClick={() => act('eject')}
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Growth Density">
           <ProgressBar

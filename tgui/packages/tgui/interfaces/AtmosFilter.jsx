@@ -1,5 +1,12 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section, AnimatedNumber, Box } from '../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const AtmosFilter = (props) => {

@@ -1,10 +1,21 @@
 import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
-import { pureComponentHooks } from 'common/react';
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Chart, ColorBox, Flex, Icon, LabeledList, ProgressBar, Section, Table } from '../components';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Chart,
+  ColorBox,
+  Flex,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Table,
+} from '../components';
 import { Window } from '../layouts';
 
 const PEAK_DRAW = 500000;
@@ -62,7 +73,8 @@ export const PowerMonitorContent = (props) => {
           icon="undo"
           onClick={() => act('refresh')}
         />
-      }>
+      }
+    >
       {body}
     </Section>
   );
@@ -72,7 +84,7 @@ export const PowerMonitorFocus = (props) => {
   const { act, data } = useBackend();
   const { focus } = props;
   const { history } = focus;
-  const [sortByField, setSortByField] = useLocalState('sortByField', null);
+  const [sortByField, setSortByField] = useState(null);
   const supply = history.supply[history.supply.length - 1] || 0;
   const demand = history.demand[history.demand.length - 1] || 0;
   const supplyData = history.supply.map((value, i) => [i, value]);
@@ -90,7 +102,7 @@ export const PowerMonitorFocus = (props) => {
     sortByField === 'draw' &&
       sortBy(
         (area) => -powerRank(area.load),
-        (area) => -parseFloat(area.load)
+        (area) => -parseFloat(area.load),
       ),
     sortByField === 'problems' &&
       sortBy(
@@ -98,7 +110,7 @@ export const PowerMonitorFocus = (props) => {
         (area) => area.lgt,
         (area) => area.env,
         (area) => area.charge,
-        (area) => area.name
+        (area) => area.name,
       ),
   ])(focus.areas);
   return (
@@ -122,7 +134,8 @@ export const PowerMonitorFocus = (props) => {
                   value={supply}
                   minValue={0}
                   maxValue={maxValue}
-                  color="teal">
+                  color="teal"
+                >
                   {toFixed(supply / 1000) + ' kW'}
                 </ProgressBar>
               </LabeledList.Item>
@@ -131,7 +144,8 @@ export const PowerMonitorFocus = (props) => {
                   value={demand}
                   minValue={0}
                   maxValue={maxValue}
-                  color="pink">
+                  color="pink"
+                >
                   {toFixed(demand / 1000) + ' kW'}
                 </ProgressBar>
               </LabeledList.Item>
@@ -254,8 +268,6 @@ export const AreaCharge = (props) => {
   );
 };
 
-AreaCharge.defaultHooks = pureComponentHooks;
-
 const AreaStatusColorBox = (props) => {
   const { status } = props;
   const power = Boolean(status & 2);
@@ -269,5 +281,3 @@ const AreaStatusColorBox = (props) => {
     />
   );
 };
-
-AreaStatusColorBox.defaultHooks = pureComponentHooks;

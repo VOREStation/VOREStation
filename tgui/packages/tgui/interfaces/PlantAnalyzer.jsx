@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -52,7 +51,8 @@ const PlantAnalyzerContent = (props) => {
             onClick={() => act('close')}
           />
         </>
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Plant Name">
           {seed.name}#{seed.uid}

@@ -51,6 +51,9 @@ var/list/runechat_image_cache = list()
 	/// If we are currently processing animation and cleanup at EOL
 	var/ending_life
 
+	/// deletion timer
+	var/timer_delete
+
 /**
   * Constructs a chat message overlay
   *
@@ -72,11 +75,14 @@ var/list/runechat_image_cache = list()
 	generate_image(text, target, owner, extra_classes, lifespan)
 
 /datum/chatmessage/Destroy()
-	if(owned_by)
+	if(timer_delete)
+		deltimer(timer_delete)
+		timer_delete = null
+	if(!QDELETED(owned_by))
 		UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
 		LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
 		owned_by.images.Remove(message)
-	if(message_loc)
+	if(!QDELETED(message_loc))
 		UnregisterSignal(message_loc, COMSIG_PARENT_QDELETING)
 	owned_by = null
 	message_loc = null
@@ -219,8 +225,7 @@ var/list/runechat_image_cache = list()
 		return
 	ending_life = TRUE
 	animate(message, alpha = 0, time = fadetime, flags = ANIMATION_PARALLEL)
-	spawn(fadetime)
-		qdel(src)
+	timer_delete = QDEL_IN(src, fadetime)
 
 /**
   * Creates a message overlay at a defined location for a given speaker
@@ -327,6 +332,11 @@ var/list/runechat_image_cache = list()
 		if(5)
 			return rgb(c,m,x)
 
+#undef CM_COLOR_SAT_MIN
+#undef CM_COLOR_SAT_MAX
+#undef CM_COLOR_LUM_MIN
+#undef CM_COLOR_LUM_MAX
+
 /atom/proc/runechat_message(message, range = world.view, italics, list/classes = list(), audible = TRUE, list/specific_viewers)
 	var/hearing_mobs
 	if(islist(specific_viewers))
@@ -369,3 +379,22 @@ var/list/runechat_image_cache = list()
 	if(istype(loc, /obj/item/weapon/holder))
 		return loc
 	return ..()
+
+#undef CHAT_MESSAGE_SPAWN_TIME
+#undef CHAT_MESSAGE_LIFESPAN
+#undef CHAT_MESSAGE_EOL_FADE
+#undef CHAT_MESSAGE_EXP_DECAY
+#undef CHAT_MESSAGE_HEIGHT_DECAY
+#undef CHAT_MESSAGE_APPROX_LHEIGHT
+
+#undef CHAT_MESSAGE_WIDTH
+#undef CHAT_MESSAGE_EXT_WIDTH
+#undef CHAT_MESSAGE_LENGTH
+#undef CHAT_MESSAGE_EXT_LENGTH
+
+#undef CHAT_MESSAGE_MOB
+#undef CHAT_MESSAGE_OBJ
+#undef WXH_TO_HEIGHT
+
+#undef CHAT_RUNE_EMOTE
+#undef CHAT_RUNE_RADIO

@@ -6,12 +6,27 @@
 
 import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
-import { createLogger } from 'tgui/logging';
-import { IMAGE_RETRY_DELAY, IMAGE_RETRY_LIMIT, IMAGE_RETRY_MESSAGE_AGE, MESSAGE_PRUNE_INTERVAL, MESSAGE_TYPES, MESSAGE_TYPE_INTERNAL, MESSAGE_TYPE_UNKNOWN } from './constants';
 import { render } from 'react-dom';
-import { canPageAcceptType, createMessage, isSameMessage, serializeMessage } from './model';
-import { highlightNode, linkifyNode } from './replaceInTextNode';
+import { createLogger } from 'tgui/logging';
+
 import { Tooltip } from '../../tgui/components';
+import {
+  IMAGE_RETRY_DELAY,
+  IMAGE_RETRY_LIMIT,
+  IMAGE_RETRY_MESSAGE_AGE,
+  MESSAGE_PRUNE_INTERVAL,
+  MESSAGE_TYPE_INTERNAL,
+  MESSAGE_TYPE_UNKNOWN,
+  MESSAGE_TYPES,
+} from './constants';
+import {
+  canPageAcceptType,
+  canStoreType,
+  createMessage,
+  isSameMessage,
+  serializeMessage,
+} from './model';
+import { highlightNode, linkifyNode } from './replaceInTextNode';
 
 const logger = createLogger('chatRenderer');
 
@@ -27,8 +42,8 @@ export const TGUI_CHAT_COMPONENTS = {
 // List of injectable attibute names mapped to their proper prop
 // We need this because attibutes don't support lowercase names
 export const TGUI_CHAT_ATTRIBUTES_TO_PROPS = {
-  'position': 'position',
-  'content': 'content',
+  position: 'position',
+  content: 'content',
 };
 
 const findNearestScrollableParent = (startingNode) => {
@@ -64,6 +79,21 @@ const createReconnectedNode = () => {
   const node = document.createElement('div');
   node.className = 'Chat__reconnected';
   return node;
+};
+
+const getChatTimestamp = (message) => {
+  let stamp = '';
+  if (message.createdAt && !message.hasTimestamp) {
+    const dateTime = new Date(message.createdAt);
+    stamp =
+      '[' +
+      dateTime.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }) +
+      ']&nbsp;';
+  }
+  return stamp;
 };
 
 const handleImageError = (e) => {
@@ -116,10 +146,15 @@ class ChatRenderer {
     this.page = null;
     this.events = new EventEmitter();
     // Adjustables
+    this.prependTimestamps = false;
     this.visibleMessageLimit = 2500;
     this.combineMessageLimit = 5;
     this.combineIntervalLimit = 5;
-    this.exportLimit = -1;
+    this.exportLimit = 0;
+    this.logLimit = 0;
+    this.logEnable = true;
+    this.roundId = null;
+    this.storedTypes = {};
     // Scroll handler
     /** @type {HTMLElement} */
     this.scrollNode = null;
@@ -213,7 +248,7 @@ class ChatRenderer {
             // Must be alphanumeric (with some punctuation)
             allowedRegex.test(str) &&
             // Reset lastIndex so it does not mess up the next word
-            ((allowedRegex.lastIndex = 0) || true)
+            ((allowedRegex.lastIndex = 0) || true),
         );
       let highlightWords;
       let highlightRegex;
@@ -232,7 +267,7 @@ class ChatRenderer {
             // Must be alphanumeric (with some punctuation)
             allowedRegex.test(str) &&
             // Reset lastIndex so it does not mess up the next word
-            ((allowedRegex.lastIndex = 0) || true)
+            ((allowedRegex.lastIndex = 0) || true),
         );
       let blacklistWords;
       let blacklistregex;
@@ -302,7 +337,7 @@ class ChatRenderer {
           highlightRegex = new RegExp('(' + regexStr + ')', flags);
         } else {
           const pattern = `${matchWord ? '\\b' : ''}(${highlightWords.join(
-            '|'
+            '|',
           )})${matchWord ? '\\b' : ''}`;
           highlightRegex = new RegExp(pattern, flags);
         }
@@ -361,12 +396,22 @@ class ChatRenderer {
     visibleMessageLimit,
     combineMessageLimit,
     combineIntervalLimit,
-    exportLimit
+    exportLimit,
+    logEnable,
+    logLimit,
+    storedTypes,
+    roundId,
+    prependTimestamps,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
     this.combineIntervalLimit = combineIntervalLimit;
     this.exportLimit = exportLimit;
+    this.logEnable = logEnable;
+    this.logLimit = logLimit;
+    this.storedTypes = storedTypes;
+    this.roundId = roundId;
+    this.prependTimestamps = prependTimestamps;
   }
 
   getCombinableMessage(predicate) {
@@ -429,11 +474,15 @@ class ChatRenderer {
         node = createMessageNode();
         // Payload is plain text
         if (message.text) {
-          node.textContent = message.text;
+          node.textContent = this.prependTimestamps
+            ? getChatTimestamp(message) + message.text
+            : message.text;
         }
         // Payload is HTML
         else if (message.html) {
-          node.innerHTML = message.html;
+          node.innerHTML = this.prependTimestamps
+            ? getChatTimestamp(message) + message.html
+            : message.html;
         } else {
           logger.error('Error: message is missing text payload', message);
         }
@@ -485,7 +534,7 @@ class ChatRenderer {
             <Element {...outputProps}>
               <span dangerouslySetInnerHTML={oldHtml} />
             </Element>,
-            childNode
+            childNode,
           );
           /* eslint-enable react/no-danger */
         }
@@ -504,7 +553,7 @@ class ChatRenderer {
                 node,
                 parser.highlightRegex,
                 parser.highlightWords,
-                (text) => createHighlightNode(text, parser.highlightColor)
+                (text) => createHighlightNode(text, parser.highlightColor),
               );
               if (highlighted && parser.highlightWholeMessage) {
                 node.className += ' ChatMessage--highlighted';
@@ -537,7 +586,7 @@ class ChatRenderer {
           !Byond.IS_LTE_IE8 &&
           MESSAGE_TYPES.find(
             (typeDef) =>
-              typeDef.selector && node.querySelector(typeDef.selector)
+              typeDef.selector && node.querySelector(typeDef.selector),
           );
         message.type = typeDef?.type || MESSAGE_TYPE_UNKNOWN;
       }
@@ -548,7 +597,26 @@ class ChatRenderer {
       countByType[message.type] += 1;
       // TODO: Detect duplicates
       this.messages.push(message);
-      if (doArchive) {
+      if (
+        doArchive &&
+        this.logEnable &&
+        this.storedTypes &&
+        canStoreType(this.storedTypes, message.type)
+      ) {
+        message.roundId = this.roundId;
+        if (
+          this.logLimit > 0 &&
+          this.archivedMessages.length >= this.logLimit + 1
+        ) {
+          this.archivedMessages = this.archivedMessages.slice(
+            -(this.logLimit - 1),
+          );
+        } else if (
+          this.logLimit > 0 &&
+          this.archivedMessages.length >= this.logLimit
+        ) {
+          this.archivedMessages.shift();
+        }
         this.archivedMessages.push(serializeMessage(message, true)); // TODO: Actually having a better message archiving maybe for exports?
       }
       if (canPageAcceptType(this.page, message.type)) {
@@ -598,7 +666,7 @@ class ChatRenderer {
         // Remove pruned messages from the message array
 
         this.messages = this.messages.filter(
-          (message) => message.node !== 'pruned'
+          (message) => message.node !== 'pruned',
         );
         logger.log(`pruned ${fromIndex} visible messages`);
       }
@@ -607,7 +675,7 @@ class ChatRenderer {
     {
       const fromIndex = Math.max(
         0,
-        this.messages.length - this.persistentMessageLimit
+        this.messages.length - this.persistentMessageLimit,
       );
       if (fromIndex > 0) {
         this.messages = this.messages.slice(fromIndex);
@@ -637,7 +705,7 @@ class ChatRenderer {
     });
   }
 
-  saveToDisk(logLineCount) {
+  saveToDisk(logLineCount, startLine = 0, endLine = 0) {
     // Allow only on IE11
     if (Byond.IS_LTE_IE10) {
       return;
@@ -659,7 +727,16 @@ class ChatRenderer {
     let messagesHtml = '';
 
     let tmpMsgArray = [];
-    if (logLineCount > 0) {
+    if (startLine || endLine) {
+      if (!endLine) {
+        tmpMsgArray = this.archivedMessages.slice(startLine);
+      } else {
+        tmpMsgArray = this.archivedMessages.slice(startLine, endLine);
+      }
+      if (logLineCount > 0) {
+        tmpMsgArray = tmpMsgArray.slice(-logLineCount);
+      }
+    } else if (logLineCount > 0) {
       tmpMsgArray = this.archivedMessages.slice(-logLineCount);
     } else {
       tmpMsgArray = this.archivedMessages;

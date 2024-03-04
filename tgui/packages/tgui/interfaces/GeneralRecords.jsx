@@ -1,14 +1,23 @@
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Icon, Input, LabeledList, Section, Tabs } from '../components';
-import { ComplexModal, modalOpen } from './common/ComplexModal';
+import { filter } from 'common/collections';
+import { flow } from 'common/fp';
+import { createSearch } from 'common/string';
+import { useState } from 'react';
+
+import { useBackend } from '../backend';
+import {
+  Box,
+  Button,
+  Icon,
+  Input,
+  LabeledList,
+  Section,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
+import { ComplexModal, modalOpen } from './common/ComplexModal';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
-import { createSearch } from 'common/string';
-import { filter } from 'common/collections';
-import { flow } from 'common/fp';
 
 const doEdit = (field) => {
   modalOpen('edit', {
@@ -79,7 +88,7 @@ const selectRecords = (records, searchText = '') => {
 const GeneralRecordsList = (_properties) => {
   const { act, data } = useBackend();
 
-  const [searchText, setSearchText] = useLocalState('searchText', '');
+  const [searchText, setSearchText] = useState('');
 
   const records = selectRecords(data.records, searchText);
   return (
@@ -226,7 +235,8 @@ const GeneralRecordsViewGeneral = (_properties) => {
               key={i}
               display="inline-block"
               textAlign="center"
-              color="label">
+              color="label"
+            >
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -251,13 +261,15 @@ const GeneralRecordsNavigation = (_properties) => {
     <Tabs>
       <Tabs.Tab
         selected={screen === 2}
-        onClick={() => act('screen', { screen: 2 })}>
+        onClick={() => act('screen', { screen: 2 })}
+      >
         <Icon name="list" />
         List Records
       </Tabs.Tab>
       <Tabs.Tab
         selected={screen === 3}
-        onClick={() => act('screen', { screen: 3 })}>
+        onClick={() => act('screen', { screen: 3 })}
+      >
         <Icon name="wrench" />
         Record Maintenance
       </Tabs.Tab>

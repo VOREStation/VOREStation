@@ -1,9 +1,16 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Dimmer, Icon, LabeledList, ProgressBar, Section } from '../components';
+import {
+  Box,
+  Button,
+  Dimmer,
+  Icon,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
-import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 import { FullscreenNotice } from './common/FullscreenNotice';
+import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 export const APC = (props) => {
   const { act, data } = useBackend();
@@ -103,7 +110,8 @@ const ApcContent = (props) => {
                 disabled={locked}
                 onClick={() => act('breaker')}
               />
-            }>
+            }
+          >
             [ {externalPowerStatus.externalPowerText} ]
           </LabeledList.Item>
           <LabeledList.Item label="Power Cell">
@@ -120,7 +128,8 @@ const ApcContent = (props) => {
                 disabled={locked}
                 onClick={() => act('charge')}
               />
-            }>
+            }
+          >
             [ {chargingStatus.chargingText} ]
           </LabeledList.Item>
         </LabeledList>
@@ -138,7 +147,8 @@ const ApcContent = (props) => {
                     <Box
                       inline
                       mx={2}
-                      color={channel.status >= 2 ? 'good' : 'bad'}>
+                      color={channel.status >= 2 ? 'good' : 'bad'}
+                    >
                       {channel.status >= 2 ? 'On' : 'Off'}
                     </Box>
                     <Button
@@ -166,7 +176,8 @@ const ApcContent = (props) => {
                       onClick={() => act('channel', topicParams.off)}
                     />
                   </>
-                }>
+                }
+              >
                 {channel.powerLoad} W
               </LabeledList.Item>
             );
@@ -192,7 +203,8 @@ const ApcContent = (props) => {
               onClick={() => act('overload')}
             />
           )
-        }>
+        }
+      >
         <LabeledList>
           <LabeledList.Item
             label="Cover Lock"

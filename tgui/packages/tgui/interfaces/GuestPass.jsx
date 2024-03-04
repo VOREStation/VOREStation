@@ -1,5 +1,6 @@
 /* eslint react/no-danger: "off" */
 import { sortBy } from 'common/collections';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -23,7 +24,8 @@ export const GuestPass = (props) => {
                 selected
                 onClick={() => act('mode', { mode: 0 })}
               />
-            }>
+            }
+          >
             <Button
               icon="print"
               content="Print"
@@ -48,7 +50,8 @@ export const GuestPass = (props) => {
                 content="Activity Log"
                 onClick={() => act('mode', { mode: 1 })}
               />
-            }>
+            }
+          >
             <LabeledList>
               <LabeledList.Item label="Issuing ID">
                 <Button

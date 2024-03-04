@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Slider, Section } from '../components';
+import { Box, Button, Flex, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
 export const GeneralAtmoControl = (props) => {
@@ -77,13 +76,13 @@ const AtmoSensor = (props) => {
   let labeledListContents = [];
   if (pressure) {
     labeledListContents.push(
-      <LabeledList.Item label="Pressure">{pressure} kPa</LabeledList.Item>
+      <LabeledList.Item label="Pressure">{pressure} kPa</LabeledList.Item>,
     );
   }
 
   if (temperature) {
     labeledListContents.push(
-      <LabeledList.Item label="Temperature">{temperature} K</LabeledList.Item>
+      <LabeledList.Item label="Temperature">{temperature} K</LabeledList.Item>,
     );
   }
 
@@ -98,7 +97,7 @@ const AtmoSensor = (props) => {
           ) : null}
           {phoron ? <Flex.Item>({phoron}% TX)</Flex.Item> : null}
         </Flex>
-      </LabeledList.Item>
+      </LabeledList.Item>,
     );
   }
 
@@ -130,20 +129,20 @@ const AtmoControlTankCore = (props) => {
   }
 
   const inputActions = {
-    'power': () => act('in_toggle_injector'),
-    'apply': () => act('in_set_flowrate'),
-    'refresh': () => act('in_refresh_status'),
-    'slider': (e, val) =>
+    power: () => act('in_toggle_injector'),
+    apply: () => act('in_set_flowrate'),
+    refresh: () => act('in_refresh_status'),
+    slider: (e, val) =>
       act('adj_input_flow_rate', {
-        'adj_input_flow_rate': val,
+        adj_input_flow_rate: val,
       }),
   };
 
   const outputActions = {
-    'power': () => act('out_toggle_power'),
-    'apply': () => act('out_set_pressure'),
-    'refresh': () => act('out_refresh_status'),
-    'slider': (e, val) => act('adj_pressure', { 'adj_pressure': val }),
+    power: () => act('out_toggle_power'),
+    apply: () => act('out_set_pressure'),
+    refresh: () => act('out_refresh_status'),
+    slider: (e, val) => act('adj_pressure', { adj_pressure: val }),
   };
 
   return (
@@ -203,7 +202,8 @@ const AtmoControlTankCoreControl = (props) => {
             onClick={() => actions.power()}
           />
         </>
-      }>
+      }
+    >
       <LabeledList>
         {(info && (
           <LabeledList.Item label={name}>
@@ -228,7 +228,8 @@ const AtmoControlTankCoreControl = (props) => {
               disabled={!info}
               onClick={() => actions.apply()}
             />
-          }>
+          }
+        >
           <Slider
             mt="0.4em"
             animated
@@ -237,7 +238,8 @@ const AtmoControlTankCoreControl = (props) => {
             stepPixelSize={1 / (maxSliderValue / 500)}
             value={sliderControl}
             fillValue={sliderFill ? sliderFill : 0}
-            onChange={(e, val) => actions.slider(e, val)}>
+            onChange={(e, val) => actions.slider(e, val)}
+          >
             {sliderFill ? sliderFill : 'UNK'} {unit} / {sliderControl} {unit}
           </Slider>
         </LabeledList.Item>
@@ -274,7 +276,8 @@ const AtmoControlFuel = (props) => {
             disabled={automation || !device_info}
           />
         </>
-      }>
+      }
+    >
       {device_info ? (
         <LabeledList>
           <LabeledList.Item label="Status">

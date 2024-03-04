@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -47,7 +46,8 @@ export const Microwave = (props) => {
                     Eject
                   </Button>
                 </>
-              }>
+              }
+            >
               <LabeledList>
                 {items.map((item) => (
                   <LabeledList.Item key={item.name} label={item.name}>

@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Box, Icon, LabeledList, Section } from '../components';
+import { Box, Button, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
@@ -36,7 +36,8 @@ const NTNetRelayContent = (props) => {
           content={'Relay ' + (enabled ? 'On' : 'Off')}
           onClick={() => act('toggle')}
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Network Buffer Status">
           {dos_overload} / {dos_capacity} GQ

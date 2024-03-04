@@ -1,7 +1,6 @@
-import { Window } from '../layouts';
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
 import { Box, LabeledList, ProgressBar, Section } from '../components';
+import { Window } from '../layouts';
 
 export const ResleevingPod = (model) => {
   const { data } = useBackend();
@@ -37,7 +36,8 @@ export const ResleevingPod = (model) => {
                         average: [0.25, 0.5],
                         bad: [-Infinity, 0.25],
                       }}
-                      value={health / maxHealth}>
+                      value={health / maxHealth}
+                    >
                       {health}%
                     </ProgressBar>
                   )}

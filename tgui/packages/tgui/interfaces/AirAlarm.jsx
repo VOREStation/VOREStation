@@ -1,14 +1,22 @@
 import { toFixed } from 'common/math';
-import { Fragment } from 'react';
-import { useBackend, useLocalState } from '../backend';
+import { Fragment, useState } from 'react';
+
+import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
-import { getGasLabel, getGasColor } from '../constants';
+import { getGasColor, getGasLabel } from '../constants';
 import { Window } from '../layouts';
+import { Scrubber, Vent } from './common/AtmosControls';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
-import { Vent, Scrubber } from './common/AtmosControls';
 
 export const AirAlarm = (props) => {
   const { act, data } = useBackend();
+
+  const [screen, setScreen] = useState('');
+
+  function handleSetScreen(value) {
+    setScreen(value);
+  }
+
   const locked = data.locked && !data.siliconUser && !data.remoteUser;
   return (
     <Window width={440} height={650}>
@@ -16,7 +24,9 @@ export const AirAlarm = (props) => {
         <InterfaceLockNoticeBox />
         <AirAlarmStatus />
         <AirAlarmUnlockedControl />
-        {!locked && <AirAlarmControl />}
+        {!locked && (
+          <AirAlarmControl screen={screen} onScreen={handleSetScreen} />
+        )}
       </Window.Content>
     </Window>
   );
@@ -25,7 +35,7 @@ export const AirAlarm = (props) => {
 const AirAlarmStatus = (props) => {
   const { data } = useBackend();
   const entries = (data.environment_data || []).filter(
-    (entry) => entry.value >= 0.01
+    (entry) => entry.value >= 0.01,
   );
   const dangerMap = {
     0: {
@@ -53,7 +63,8 @@ const AirAlarmStatus = (props) => {
                 <LabeledList.Item
                   key={entry.name}
                   label={getGasLabel(entry.name)}
-                  color={status.color}>
+                  color={status.color}
+                >
                   {toFixed(entry.value, 2)}
                   {entry.unit}
                 </LabeledList.Item>
@@ -64,7 +75,8 @@ const AirAlarmStatus = (props) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Area status"
-              color={data.atmos_alarm || data.fire_alarm ? 'bad' : 'good'}>
+              color={data.atmos_alarm || data.fire_alarm ? 'bad' : 'good'}
+            >
               {(data.atmos_alarm && 'Atmosphere Alarm') ||
                 (data.fire_alarm && 'Fire Alarm') ||
                 'Nominal'}
@@ -95,17 +107,17 @@ const AirAlarmUnlockedControl = (props) => {
           <Button
             selected={rcon === 1}
             content="Off"
-            onClick={() => act('rcon', { 'rcon': 1 })}
+            onClick={() => act('rcon', { rcon: 1 })}
           />
           <Button
             selected={rcon === 2}
             content="Auto"
-            onClick={() => act('rcon', { 'rcon': 2 })}
+            onClick={() => act('rcon', { rcon: 2 })}
           />
           <Button
             selected={rcon === 3}
             content="On"
-            onClick={() => act('rcon', { 'rcon': 3 })}
+            onClick={() => act('rcon', { rcon: 3 })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Thermostat">
@@ -143,22 +155,22 @@ const AIR_ALARM_ROUTES = {
 };
 
 const AirAlarmControl = (props) => {
-  const [screen, setScreen] = useLocalState('screen');
-  const route = AIR_ALARM_ROUTES[screen] || AIR_ALARM_ROUTES.home;
+  const route = AIR_ALARM_ROUTES[props.screen] || AIR_ALARM_ROUTES.home;
   const Component = route.component();
   return (
     <Section
       title={route.title}
       buttons={
-        screen && (
+        props.screen && (
           <Button
             icon="arrow-left"
             content="Back"
-            onClick={() => setScreen()}
+            onClick={() => props.onScreen()}
           />
         )
-      }>
-      <Component />
+      }
+    >
+      <Component onScreen={props.onScreen} />
     </Section>
   );
 };
@@ -168,7 +180,6 @@ const AirAlarmControl = (props) => {
 
 const AirAlarmControlHome = (props) => {
   const { act, data } = useBackend();
-  const [screen, setScreen] = useLocalState('screen');
   const { mode, atmos_alarm } = data;
   return (
     <>
@@ -193,25 +204,25 @@ const AirAlarmControlHome = (props) => {
       <Button
         icon="sign-out-alt"
         content="Vent Controls"
-        onClick={() => setScreen('vents')}
+        onClick={() => props.onScreen('vents')}
       />
       <Box mt={1} />
       <Button
         icon="filter"
         content="Scrubber Controls"
-        onClick={() => setScreen('scrubbers')}
+        onClick={() => props.onScreen('scrubbers')}
       />
       <Box mt={1} />
       <Button
         icon="cog"
         content="Operating Mode"
-        onClick={() => setScreen('modes')}
+        onClick={() => props.onScreen('modes')}
       />
       <Box mt={1} />
       <Button
         icon="chart-bar"
         content="Alarm Thresholds"
-        onClick={() => setScreen('thresholds')}
+        onClick={() => props.onScreen('thresholds')}
       />
     </>
   );

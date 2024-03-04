@@ -1,8 +1,7 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section, NumberInput } from '../components';
-import { TemporaryNotice } from './common/TemporaryNotice';
+import { Box, Button, LabeledList, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
+import { TemporaryNotice } from './common/TemporaryNotice';
 
 export const TelecommsMultitoolMenu = (props) => {
   const { act, data } = useBackend();
@@ -61,7 +60,8 @@ const TelecommsMultitoolMenuStatus = (props) => {
           content={on ? 'On' : 'Off'}
           onClick={() => act('toggle')}
         />
-      }>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Identification String">
           <Button icon="pen" content={id} onClick={() => act('id')} />
@@ -219,7 +219,8 @@ const TelecommsMultitoolMenuPolymorphicOptions = (props) => {
         ) : null}
         {use_broadcast_range || use_receive_range ? (
           <LabeledList.Item
-            label={(use_broadcast_range ? 'Broadcast' : 'Receive') + ' Range'}>
+            label={(use_broadcast_range ? 'Broadcast' : 'Receive') + ' Range'}
+          >
             <NumberInput
               value={range}
               minValue={minRange}

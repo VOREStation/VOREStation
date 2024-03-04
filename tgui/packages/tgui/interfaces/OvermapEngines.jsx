@@ -1,6 +1,13 @@
-import { Fragment } from 'react';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Section, AnimatedNumber, Collapsible } from '../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  Collapsible,
+  Flex,
+  LabeledList,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const OvermapEngines = (props) => {
@@ -29,7 +36,8 @@ export const OvermapEnginesContent = (props) => {
             <Button
               icon="power-off"
               selected={global_state}
-              onClick={() => act('global_toggle')}>
+              onClick={() => act('global_toggle')}
+            >
               {global_state ? 'Shut All Engines Down' : 'Start All Engines'}
             </Button>
           </LabeledList.Item>
@@ -68,7 +76,8 @@ export const OvermapEnginesContent = (props) => {
                   // "Engine " + (i + 1)
                   //   + " | Thrust: " + engine.eng_thrust
                   //   + " | Limit: " + engine.eng_thrust_limiter + "%"
-                }>
+                }
+              >
                 <Section width="127%">
                   <LabeledList>
                     <LabeledList.Item label="Type">
@@ -82,18 +91,23 @@ export const OvermapEnginesContent = (props) => {
                               ? 'good'
                               : 'average'
                             : 'bad'
-                        }>
+                        }
+                      >
                         {engine.eng_on
                           ? engine.eng_on === 1
                             ? 'Online'
                             : 'Booting'
                           : 'Offline'}
                       </Box>
-                      {engine.eng_status.map((status) => {
+                      {engine.eng_status.map((status, index) => {
                         if (Array.isArray(status)) {
-                          return <Box color={status[1]}>{status[0]}</Box>;
+                          return (
+                            <Box key={index} color={status[1]}>
+                              {status[0]}
+                            </Box>
+                          );
                         } else {
-                          return <Box>{status}</Box>;
+                          return <Box key={index}>{status}</Box>;
                         }
                       })}
                     </LabeledList.Item>
@@ -113,7 +127,8 @@ export const OvermapEnginesContent = (props) => {
                       <Button
                         onClick={() =>
                           act('set_limit', { engine: engine.eng_reference })
-                        }>
+                        }
+                      >
                         {engine.eng_thrust_limiter}%
                       </Button>
                       <Button
@@ -139,7 +154,8 @@ export const OvermapEnginesContent = (props) => {
                 icon="power-off"
                 onClick={() =>
                   act('toggle_engine', { engine: engine.eng_reference })
-                }>
+                }
+              >
                 {engine.eng_on
                   ? engine.eng_on === 1
                     ? 'Shutoff'

@@ -23,10 +23,17 @@ SUBSYSTEM_DEF(machines)
 
 	var/list/current_run = list()
 
+	var/list/all_machines = list()
+
+	var/list/networks = list()
+	var/list/processing_machines = list()
+	var/list/powernets = list()
+	var/list/powerobjs = list()
+
 /datum/controller/subsystem/machines/Initialize(timeofday)
 	makepowernets()
 	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
-	setup_atmos_machinery(global.machines)
+	setup_atmos_machinery(all_machines)
 	fire()
 	..()
 
@@ -83,24 +90,24 @@ SUBSYSTEM_DEF(machines)
 	msg += "PN:[round(cost_powernets,1)]|"
 	msg += "PO:[round(cost_power_objects,1)]"
 	msg += "} "
-	msg += "PI:[global.pipe_networks.len]|"
-	msg += "MC:[global.processing_machines.len]|"
-	msg += "PN:[global.powernets.len]|"
-	msg += "PO:[global.processing_power_items.len]|"
-	msg += "MC/MS:[round((cost ? global.processing_machines.len/cost_machinery : 0),0.1)]"
+	msg += "PI:[SSmachines.networks.len]|"
+	msg += "MC:[SSmachines.processing_machines.len]|"
+	msg += "PN:[SSmachines.powernets.len]|"
+	msg += "PO:[SSmachines.powerobjs.len]|"
+	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
 	..(jointext(msg, null))
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
 	if (!resumed)
-		src.current_run = global.pipe_networks.Copy()
+		src.current_run = networks.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/datum/pipe_network/PN = current_run[current_run.len]
 		current_run.len--
-		if(QDELETED(PN))
-			global.pipe_networks.Remove(PN)
+		if(!PN)
+			networks.Remove(PN)
 			DISABLE_BITFIELD(PN?.datum_flags, DF_ISPROCESSING)
 		else
 			PN.process(wait)
@@ -109,30 +116,30 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
-		src.current_run = global.processing_machines.Copy()
+		src.current_run = processing_machines.Copy()
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/obj/machinery/M = current_run[current_run.len]
 		current_run.len--
-		if(QDELETED(M) || (M.process(wait) == PROCESS_KILL))
-			global.processing_machines.Remove(M)
+		if(!M || (M.process(wait) == PROCESS_KILL))
+			processing_machines.Remove(M)
 			DISABLE_BITFIELD(M?.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/machines/proc/process_powernets(resumed = 0)
 	if (!resumed)
-		src.current_run = global.powernets.Copy()
+		src.current_run = powernets.Copy()
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/datum/powernet/PN = current_run[current_run.len]
 		current_run.len--
-		if(QDELETED(PN))
-			global.powernets.Remove(PN)
+		if(!PN)
+			powernets.Remove(PN)
 			DISABLE_BITFIELD(PN?.datum_flags, DF_ISPROCESSING)
 		else
 			PN.reset(wait)
@@ -143,36 +150,42 @@ SUBSYSTEM_DEF(machines)
 // Currently only used by powersinks. These items get priority processed before machinery
 /datum/controller/subsystem/machines/proc/process_power_objects(resumed = 0)
 	if (!resumed)
-		src.current_run = global.processing_power_items.Copy()
+		src.current_run = powerobjs.Copy()
 
 	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/obj/item/I = current_run[current_run.len]
 		current_run.len--
-		if(QDELETED(I) || (I.pwr_drain(wait) == PROCESS_KILL))
-			global.processing_power_items.Remove(I)
+		if(!I || (I.pwr_drain(wait) == PROCESS_KILL))
+			powerobjs.Remove(I)
 			DISABLE_BITFIELD(I?.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/machines/Recover()
-	for(var/datum/D as anything in global.pipe_networks)
+	for(var/datum/D as anything in SSmachines.networks)
 		if(!istype(D, /datum/pipe_network))
-			error("Found wrong type during SSmachinery recovery: list=global.pipe_networks, item=[D], type=[D?.type]")
-			global.pipe_networks -= D
-	for(var/datum/D as anything in global.processing_machines)
+			error("Found wrong type during SSmachinery recovery: list=SSmachines.networks, item=[D], type=[D?.type]")
+			SSmachines.networks -= D
+	for(var/datum/D as anything in SSmachines.processing_machines)
 		if(!istype(D, /obj/machinery))
-			error("Found wrong type during SSmachinery recovery: list=global.processing_machines, item=[D], type=[D?.type]")
-			global.processing_machines -= D
-	for(var/datum/D as anything in global.powernets)
+			error("Found wrong type during SSmachinery recovery: list=SSmachines.machines, item=[D], type=[D?.type]")
+			SSmachines.processing_machines -= D
+	for(var/datum/D as anything in SSmachines.powernets)
 		if(!istype(D, /datum/powernet))
-			error("Found wrong type during SSmachinery recovery: list=global.powernets, item=[D], type=[D?.type]")
-			global.powernets -= D
-	for(var/datum/D as anything in global.processing_power_items)
+			error("Found wrong type during SSmachinery recovery: list=SSmachines.powernets, item=[D], type=[D?.type]")
+			SSmachines.powernets -= D
+	for(var/datum/D as anything in SSmachines.powerobjs)
 		if(!istype(D, /obj/item))
-			error("Found wrong type during SSmachinery recovery: list=global.processing_power_items, item=[D], type=[D?.type]")
-			global.processing_power_items -= D
+			error("Found wrong type during SSmachinery recovery: list=SSmachines.powerobjs, item=[D], type=[D?.type]")
+			SSmachines.powerobjs -= D
+
+	all_machines = SSmachines.all_machines
+	networks = SSmachines.networks
+	processing_machines = SSmachines.processing_machines
+	powernets = SSmachines.powernets
+	powerobjs = SSmachines.powerobjs
 
 #undef SSMACHINES_PIPENETS
 #undef SSMACHINES_MACHINERY
