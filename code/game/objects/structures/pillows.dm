@@ -183,3 +183,78 @@
 /obj/structure/bed/pillowpilefront/orange
 	icon_state = "pillowpile_large_orange_overlay"
 	sourcepillow = "/obj/item/weapon/bedsheet/pillow/orange"
+
+//crafting
+
+/datum/crafting_recipe/pillowpink
+	name = "pillow (pink)"
+	result = /obj/item/weapon/bedsheet/pillow
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/pillowteal
+	name = "pillow (teal)"
+	result = /obj/item/weapon/bedsheet/pillow/teal
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/pillowwhite
+	name = "pillow (white)"
+	result = /obj/item/weapon/bedsheet/pillow/white
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/pillowblack
+	name = "pillow (black)"
+	result = /obj/item/weapon/bedsheet/pillow/black
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/pillowgreen
+	name = "pillow (green)"
+	result = /obj/item/weapon/bedsheet/pillow/green
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/pillowyellow
+	name = "pillow (yellow)"
+	result = /obj/item/weapon/bedsheet/pillow/yellow
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/pillowred
+	name = "pillow (red)"
+	result = /obj/item/weapon/bedsheet/pillow/red
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/pilloworange
+	name = "pillow (orange)"
+	result = /obj/item/weapon/bedsheet/pillow/orange
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 6)
+	)
+	time = 60
+	category = CAT_MISC
+
