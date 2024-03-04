@@ -159,11 +159,17 @@
 	update_icon(1)
 
 /obj/item/weapon/rig/Destroy()
-	for(var/obj/item/piece in list(gloves,boots,helmet,chest))
+	for(var/obj/item/piece in list(gloves,boots,helmet,chest,cell,air_supply))
 		var/mob/living/M = piece.loc
 		if(istype(M))
 			M.drop_from_inventory(piece)
 		qdel(piece)
+	gloves = null
+	boots = null
+	helmet = null
+	chest = null
+	cell = null
+	air_supply = null
 	STOP_PROCESSING(SSobj, src)
 	qdel(wires)
 	wires = null
