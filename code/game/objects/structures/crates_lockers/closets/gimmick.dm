@@ -6,6 +6,7 @@
 
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'
+	vore_sound = 'sound/effects/woodhit.ogg'
 
 /obj/structure/closet/acloset
 	name = "strange closet"
@@ -82,3 +83,16 @@
 	icon = 'icons/obj/closets/abductor.dmi'
 	anchored = TRUE
 	closet_appearance = null // special icons
+
+/obj/structure/closet/tent
+	name = "tent"
+	desc = "An old fashioned tent that can easily fit a couple of people."
+	icon = 'icons/obj/closets/tent.dmi'
+	closet_appearance = null
+	anchored = 1
+	open_sound = 'sound/effects/rustle3.ogg'
+	close_sound = 'sound/effects/rustle4.ogg'
+	vore_sound = 'sound/effects/rustle1.ogg'
+
+/obj/structure/closet/tent/B
+	icon = 'icons/obj/closets/tentB.dmi'
