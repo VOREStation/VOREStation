@@ -813,7 +813,7 @@
 	modtype = initial(modtype)
 	hands.icon_state = get_hud_module_icon()
 	if(notify)
-	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
+		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
 	module.Destroy()
 	module = null
