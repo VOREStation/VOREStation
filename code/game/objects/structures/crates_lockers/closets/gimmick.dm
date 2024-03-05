@@ -96,3 +96,21 @@
 
 /obj/structure/closet/tent/B
 	icon = 'icons/obj/closets/tentB.dmi'
+
+/datum/crafting_recipe/tent
+	name = "tent (green)"
+	result = /obj/structure/closet/tent
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 10)
+	)
+	time = 60
+	category = CAT_MISC
+
+/datum/crafting_recipe/tentb
+	name = "tent (tan)"
+	result = /obj/structure/closet/tent/B
+	reqs = list(
+		list(/obj/item/stack/material/cloth = 10)
+	)
+	time = 60
+	category = CAT_MISC
