@@ -106,3 +106,68 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Snack planets crate"
+
+/datum/supply_pack/recreation/pinkpillows
+	name = "Pink Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/tealpillows
+	name = "Teal Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow/teal = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/whitepillows
+	name = "White Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow/white = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/blackpillows
+	name = "Black Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow/black = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/redpillows
+	name = "Red Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow/red = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/greenpillows
+	name = "Green Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow/green = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/orangepillows
+	name = "Orange Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow/orange = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/yellowpillows
+	name = "Yellow Pillow Crate"
+	contains = list(
+		/obj/item/weapon/bedsheet/pillow/yellow = 6
+	)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+
