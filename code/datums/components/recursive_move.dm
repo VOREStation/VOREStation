@@ -9,7 +9,7 @@
 	var/list/parents = list()
 	var/noparents = FALSE
 
-/datum/component/recursive_move/Initialize()
+/datum/component/recursive_move/RegisterWithParent()
 	. = ..()
 	holder = parent
 	setup_parents()

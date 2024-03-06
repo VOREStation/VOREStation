@@ -55,6 +55,7 @@
 		user.set_machine(src)
 		user.reset_view(linked)
 	user.set_viewsize(world.view + extra_view)
+	user.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
