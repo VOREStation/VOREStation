@@ -549,8 +549,11 @@
 
 /obj/structure/closet/verb/hidden_vore()
 	set src in oview(1)
-	set category = "Abilities"
+	set category = "Object"
 	set name = "Vore Occupants"
+
+	if(!istype(usr, /mob/living)) //no ghosts
+		return
 
 	if(!(usr in src.contents))
 		to_chat(usr, "<span class='warning'>You need to be inside \the [src] to do this.</span>")
