@@ -6,6 +6,7 @@
 	var/sensorpref = 5			//Set character's suit sensor level
 	var/capture_crystal = 1	//Whether or not someone is able to be caught with capture crystals
 	var/auto_backup_implant = FALSE //Whether someone starts with a backup implant or not.
+	var/borg_petting = TRUE //Whether someone can be petted as a borg or not.
 
 	var/job_talon_high = 0
 	var/job_talon_med = 0

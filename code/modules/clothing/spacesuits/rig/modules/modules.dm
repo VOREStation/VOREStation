@@ -135,6 +135,11 @@
 	stat_modules +=	new/stat_rig_module/select(src)
 	stat_modules +=	new/stat_rig_module/charge(src)
 
+/obj/item/rig_module/Destroy(force, ...)
+	QDEL_NULL_LIST(stat_modules)
+	. = ..()
+
+
 // Called when the module is installed into a suit.
 /obj/item/rig_module/proc/installed(var/obj/item/weapon/rig/new_holder)
 	holder = new_holder
@@ -259,6 +264,10 @@
 /stat_rig_module/New(var/obj/item/rig_module/module)
 	..()
 	src.module = module
+
+/stat_rig_module/Destroy()
+	module = null
+	. = ..()
 
 /stat_rig_module/proc/AddHref(var/list/href_list)
 	return

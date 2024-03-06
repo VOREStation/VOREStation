@@ -102,7 +102,8 @@ start	the index of the first element in the range that is	not already known to b
 	if(start <= lo)
 		start = lo + 1
 
-	for(,start < hi, ++start)
+	var/list/L = src.L
+	for(start in start to hi - 1)
 		var/pivot = fetchElement(L,start)
 
 		//set left and right to the index where pivot belongs
@@ -626,20 +627,17 @@ reverse a descending sequence without violating stability.
 	var/val2 = fetchElement(L,cursor2)
 
 	while(1)
-		if(call(cmp)(val1,val2) < 0)
+		if(call(cmp)(val1,val2) <= 0)
 			if(++cursor1 >= end1)
 				break
 			val1 = fetchElement(L,cursor1)
 		else
 			moveElement(L,cursor2,cursor1)
 
-			++cursor2
 			if(++cursor2 >= end2)
 				break
 			++end1
 			++cursor1
-			//if(++cursor1 >= end1)
-			//	break
 
 			val2 = fetchElement(L,cursor2)
 

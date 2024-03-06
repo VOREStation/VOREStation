@@ -110,13 +110,13 @@
 	icon_state = "bluenew"
 
 /area/surface/outside/river/faxalven
-	name = "Fax�lven River"
+	name = "Faxälven River"
 
 /area/surface/outside/river/indalsalven
-	name = "Indals�lven River"
+	name = "Indalsälven River"
 
 /area/surface/outside/river/svartan
-	name = "Svart�n River"
+	name = "Svartån River"
 
 /area/surface/outside/lake/romsele
 	name = "Romsele Lake"

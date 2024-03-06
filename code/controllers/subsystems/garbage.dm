@@ -54,6 +54,7 @@ SUBSYSTEM_DEF(garbage)
 	//Should we save found refs. Used for unit testing
 	var/should_save_refs = FALSE
 	#endif
+	var/find_reference_on_fail_global_toggle = FALSE
 	#endif
 
 

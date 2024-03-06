@@ -457,7 +457,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Uninstall a piece of software
 /obj/item/device/nif/proc/uninstall(var/datum/nifsoft/old_soft)
-	var/datum/nifsoft/NS = nifsofts[old_soft.list_pos]
+	var/datum/nifsoft/NS
+	if(nifsofts)
+		NS = nifsofts[old_soft.list_pos]
+
 	if(!NS || NS != old_soft)
 		return FALSE //what??
 

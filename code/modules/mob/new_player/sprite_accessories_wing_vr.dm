@@ -375,3 +375,18 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "pterodactyl_wing_membrane"
+
+/datum/sprite_accessory/wing/kaiju_spines_a
+	name = "kaiju spines A, colorable"
+	desc = ""
+	icon_state = "kaiju_spikes_a"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/kaiju_spines_a_glow
+	name = "kaiju spines A, colorable, glow"
+	desc = ""
+	icon_state = "kaiju_spikes_a"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "kaiju_spikes_a_glow"

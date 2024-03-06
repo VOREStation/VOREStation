@@ -9,6 +9,7 @@
 	entry_decay_weight = 0
 	// // // //
 
+	var/min_storage = 0
 	var/max_storage = 0
 	var/store_per_type = FALSE // If true, will store up to max_storage for each type stored
 	var/target_type = null // Path of the thing that this expects to put stuff into

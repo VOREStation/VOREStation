@@ -304,3 +304,7 @@
 		if(PREF_FBP_SOFTWARE)
 			return 150
 	return S.max_age // welp
+
+#undef PREF_FBP_CYBORG
+#undef PREF_FBP_POSI
+#undef PREF_FBP_SOFTWARE
