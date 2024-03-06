@@ -1,6 +1,7 @@
 /mob/living/silicon/robot/syndicate
 	lawupdate = 0
 	scrambledcodes = 1
+	emagged = 1
 	icon_state = "securityrobot"
 	modtype = "Security"
 	lawchannel = "State"
