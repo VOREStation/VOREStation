@@ -420,6 +420,7 @@
 	real_name = brainmob.real_name	//And the OTHER name
 
 	forceMove(get_turf(parent_human))
+	parent_human.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(parent_human, COMSIG_OBSERVER_MOVED, /mob/observer/eye/ar_soul/proc/human_moved)
 
 	//Time to play dressup

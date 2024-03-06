@@ -739,6 +739,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		H.set_viewsize(viewsize)
 		zoom = 1
+		H.AddComponent(/datum/component/recursive_move)
 		RegisterSignal(H, COMSIG_OBSERVER_MOVED, PROC_REF(zoom), override = TRUE)
 
 		var/tilesize = 32

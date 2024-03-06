@@ -112,6 +112,7 @@
 			user.client.images |= holomap_datum.station_map
 
 			watching_mob = user
+			watching_mob.AddComponent(/datum/component/recursive_move)
 			RegisterSignal(watching_mob, COMSIG_OBSERVER_MOVED, /obj/machinery/station_map/proc/checkPosition)
 			//GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			RegisterSignal(watching_mob, COMSIG_OBSERVER_DESTROYED, /obj/machinery/station_map/proc/stopWatching)

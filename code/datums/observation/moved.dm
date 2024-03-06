@@ -28,6 +28,7 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 /********************
 * Movement Handling *
 ********************/
+/*
 /atom/movable/Entered(var/atom/movable/am, atom/old_loc)
 	. = ..()
 	am.RegisterSignal(src,COMSIG_OBSERVER_MOVED, /atom/movable/proc/recursive_move, override = TRUE)
@@ -35,7 +36,7 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 /atom/movable/Exited(var/atom/movable/am, atom/old_loc)
 	. = ..()
 	am.UnregisterSignal(src,COMSIG_OBSERVER_MOVED)
-
+*/
 // Entered() typically lifts the moved event, but in the case of null-space we'll have to handle it.
 /atom/movable/Move()
 	var/old_loc = loc

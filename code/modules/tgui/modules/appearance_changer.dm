@@ -65,6 +65,7 @@
 
 	owner = H
 	if(owner)
+		owner.AddComponent(/datum/component/recursive_move)
 		RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 	check_whitelist = check_species_whitelist
 	whitelist = species_whitelist

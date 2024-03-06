@@ -350,6 +350,7 @@
 	comm.visible_message("<span class='danger'>[icon2html(src,viewers(src))] New video connection from [comm].</span>")
 	update_active_camera_screen()
 	RegisterSignal(video_source, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
+	video_source.AddComponent(/datum/component/recursive_move)
 	update_icon()
 
 // Proc: end_video()

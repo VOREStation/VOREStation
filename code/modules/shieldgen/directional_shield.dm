@@ -102,6 +102,7 @@
 	START_PROCESSING(SSobj, src)
 	if(always_on)
 		create_shields()
+	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(moved_event))
 	return ..()
 

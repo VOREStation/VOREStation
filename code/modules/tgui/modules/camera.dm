@@ -144,6 +144,7 @@
 		if(active_camera)
 			UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
 		active_camera = C
+		active_camera.AddComponent(/datum/component/recursive_move)
 		RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 		update_active_camera_screen()
@@ -171,6 +172,7 @@
 				if(active_camera)
 					UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
 				active_camera = target
+				active_camera.AddComponent(/datum/component/recursive_move)
 				RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 				playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 				update_active_camera_screen()

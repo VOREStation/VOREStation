@@ -38,6 +38,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>You activate the P.A.T. module.</span>")
+	H.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(H, COMSIG_OBSERVER_MOVED, /obj/item/rig_module/pat_module/proc/boop)
 
 /obj/item/rig_module/pat_module/deactivate()

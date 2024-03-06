@@ -46,6 +46,7 @@ var/list/GPS_list = list()
 	if(istype(loc, /mob))
 		holder = loc
 		RegisterSignal(holder, COMSIG_OBSERVER_MOVED, PROC_REF(update_compass), override = TRUE)
+		holder.AddComponent(/datum/component/recursive_move)
 		//GLOB.dir_set_event.register(holder, src, PROC_REF(update_compass))
 
 	if(holder && tracking)

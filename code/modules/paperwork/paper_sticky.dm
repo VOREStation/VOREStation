@@ -97,6 +97,7 @@
 
 /obj/item/weapon/paper/sticky/Initialize()
 	. = ..()
+	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/weapon/paper/sticky/proc/reset_persistence_tracking)
 
 /obj/item/weapon/paper/sticky/proc/reset_persistence_tracking()
