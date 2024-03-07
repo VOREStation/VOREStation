@@ -81,6 +81,7 @@ export const SettingsPanel = (props) => {
         {activeTab === 'export' && <ExportTab />}
         {activeTab === 'chatPage' && <ChatPageSettings />}
         {activeTab === 'textHighlight' && <TextHighlightSettings />}
+        {activeTab === 'adminSettings' && <AdminSettings />}
       </Stack.Item>
     </Stack>
   );
@@ -802,5 +803,31 @@ const TextHighlightSetting = (props) => {
         ''
       )}
     </Flex.Item>
+  );
+};
+
+export const AdminSettings = (props) => {
+  const dispatch = useDispatch();
+  const { hideImportantInAdminTab } = useSelector(selectSettings);
+  return (
+    <Section>
+      <LabeledList>
+        <LabeledList.Item label="Hide Important messages in admin only tabs">
+          <Button.Checkbox
+            checked={hideImportantInAdminTab}
+            content=""
+            tooltip="Enabling this will hide all important messages in admin filter exclusive tabs."
+            mr="5px"
+            onClick={() =>
+              dispatch(
+                updateSettings({
+                  hideImportantInAdminTab: !hideImportantInAdminTab,
+                }),
+              )
+            }
+          />
+        </LabeledList.Item>
+      </LabeledList>
+    </Section>
   );
 };
