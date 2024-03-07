@@ -43,14 +43,17 @@
 					var/list/all_modules = robot.module.modules
 					all_modules += robot.module.emag
 					while(TRUE)
-						var/add_item = tgui_input_list(usr, "Please select the module to add", "Modules", all_modules)
-						if(!istype(add_item, /obj/item/))
+						var/add_item_select = tgui_input_list(usr, "Please select the module to add", "Modules", all_modules)//ChompEDIT
+						if(!istype(add_item_select, /obj/item/))//ChompEDIT
 							break
+						var/obj/item/add_item = add_item_select//ChompEDIT
 						robot.module.emag.Remove(add_item)
 						robot.module.modules.Remove(add_item)
 						robot.module.contents.Remove(add_item)
 						target.module.modules.Add(add_item)
 						target.module.contents.Add(add_item)
+						spawn(0) //ChompEDIT Must be after to allow the movement to finish
+							SEND_SIGNAL(add_item, COMSIG_OBSERVER_MOVED)//ChompEDIT - report the movement since setting loc doesn't call Move or Moved
 						target.hud_used.update_robot_modules_display()
 						to_chat(usr, "<span class='danger'>You added \"[add_item]\" to [target].</span>")
 						if(istype(add_item, /obj/item/stack/))
