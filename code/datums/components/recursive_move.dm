@@ -16,11 +16,18 @@
 	RegisterSignal(holder, COMSIG_PARENT_QDELETING, PROC_REF(on_holder_qdel))
 
 /datum/component/recursive_move/proc/setup_parents()
-	var/atom/movable/cur_parent = holder.loc
-	while(istype(cur_parent))
+	if(length(parents)) // safety check just incase this was called without clearing
+		reset_parents()
+	var/atom/movable/cur_parent = holder?.loc // first loc could be null
+	var/recursion = 0 // safety check
+	while(istype(cur_parent) && (recursion < 64))
+		recursion++
 		parents += cur_parent
 		RegisterSignal(cur_parent, COMSIG_ATOM_EXITED, PROC_REF(heirarchy_changed))
 		RegisterSignal(cur_parent, COMSIG_PARENT_QDELETING, PROC_REF(on_qdel))
+		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself
+			break
+
 		cur_parent = cur_parent.loc
 
 	if(length(parents))
@@ -30,14 +37,17 @@
 	//If we have no parents of type atom/movable then we wait to see if that changes, checking every time our holder moves.
 	if(!length(parents) && !noparents)
 		noparents = TRUE
-		RegisterSignal(parent, COMSIG_ATOM_ENTERING, PROC_REF(setup_parents))
+		RegisterSignal(holder, COMSIG_ATOM_ENTERING, PROC_REF(setup_parents))
 
 	if(length(parents) && noparents)
 		noparents = FALSE
-		UnregisterSignal(parent, COMSIG_ATOM_ENTERING)
+		UnregisterSignal(holder, COMSIG_ATOM_ENTERING)
 
 
 /datum/component/recursive_move/proc/unregister_signals()
+	if(noparents) // safety check
+		noparents = FALSE
+		UnregisterSignal(holder, COMSIG_ATOM_ENTERING)
 	if(!length(parents))
 		return
 	for(var/atom/movable/cur_parent in parents)
@@ -64,14 +74,12 @@
 /datum/component/recursive_move/proc/on_qdel()
 	reset_parents()
 	noparents = TRUE
-	RegisterSignal(parent, COMSIG_ATOM_ENTERING, PROC_REF(setup_parents))
+	RegisterSignal(holder, COMSIG_ATOM_ENTERING, PROC_REF(setup_parents))
 
 /datum/component/recursive_move/proc/on_holder_qdel()
-	if(noparents)
-		UnregisterSignal(holder, COMSIG_ATOM_ENTERING)
 	UnregisterSignal(holder, COMSIG_PARENT_QDELETING)
-	holder = null
 	reset_parents()
+	holder = null
 	qdel(src)
 
 /datum/component/recursive_move/Destroy()
