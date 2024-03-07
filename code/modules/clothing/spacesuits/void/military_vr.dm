@@ -40,7 +40,7 @@
 	name = "\improper Ace's ODST Helmet"
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "rig0-odst_ace"
-	desc = "Etched under the inner visor is the phrase <i>\"Don�t let your past define you; let it mold you into the person you want to be.\"</i>"
+	desc = "Etched under the inner visor is the phrase <i>\"Don't let your past define you; let it mold you into the person you want to be.\"</i>"
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'*/
 
@@ -55,4 +55,3 @@
 	species_restricted = null
 	breach_threshold = 16 //Extra Thicc
 	resilience = 0.05 //Military Armor
-
