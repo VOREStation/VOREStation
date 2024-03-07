@@ -23,12 +23,16 @@
 	var/atom/movable/cur_parent = holder?.loc // first loc could be null
 	var/recursion = 0 // safety check
 	while(istype(cur_parent) && (recursion < 64))
+		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself
+			parents.Cut()
+			break
+		if(cur_parent in parents) //safety check incase of circular contents. (A inside B, B inside C, C inside A)
+			parents.Cut()
+			break
 		recursion++
 		parents += cur_parent
 		RegisterSignal(cur_parent, COMSIG_ATOM_EXITED, PROC_REF(heirarchy_changed))
 		RegisterSignal(cur_parent, COMSIG_PARENT_QDELETING, PROC_REF(on_qdel))
-		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself
-			break
 
 		cur_parent = cur_parent.loc
 
