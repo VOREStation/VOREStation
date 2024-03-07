@@ -21,13 +21,13 @@
 	if(length(parents)) // safety check just incase this was called without clearing
 		reset_parents()
 	var/atom/movable/cur_parent = holder?.loc // first loc could be null
-	var/recursion = 0 // safety check
+	var/recursion = 0 // safety check - max iterations
 	while(istype(cur_parent) && (recursion < 64))
-		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself
-			parents.Cut()
+		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
+			reset_parents()
 			break
-		if(cur_parent in parents) //safety check incase of circular contents. (A inside B, B inside C, C inside A)
-			parents.Cut()
+		if(cur_parent in parents) //safety check incase of circular contents. (A inside B, B inside C, C inside A), cancel
+			reset_parents()
 			break
 		recursion++
 		parents += cur_parent
@@ -35,6 +35,10 @@
 		RegisterSignal(cur_parent, COMSIG_PARENT_QDELETING, PROC_REF(on_qdel))
 
 		cur_parent = cur_parent.loc
+
+	if(recursion >= 64) // If we escaped due to iteration limit, cancel
+		reset_parents()
+		parents.Cut()
 
 	if(length(parents))
 		//Only need to watch top parent for movement. Everything is covered by Exited
