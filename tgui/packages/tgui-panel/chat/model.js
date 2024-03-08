@@ -16,6 +16,7 @@ export const typeIsImportant = (type) => {
   for (let typeDef of MESSAGE_TYPES) {
     if (typeDef.type === type && !!typeDef.important) {
       isImportant = true;
+      break;
     }
   }
   return isImportant;
@@ -30,6 +31,7 @@ export const adminPageOnly = (page) => {
       !(!!typeDef.important || !!typeDef.admin)
     ) {
       adminTab = false;
+      break;
     }
     if (page.acceptedTypes[typeDef.type] && !typeDef.important) {
       checked++;
