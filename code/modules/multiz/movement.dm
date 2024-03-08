@@ -58,9 +58,14 @@
 				to_chat(src, "<span class='warning'>You stopped swimming downwards.</span>")
 				return 0
 
-		else if(!destination.CanZPass(src, direction))
+		else if(!destination.CanZPass(src, direction)) // one for the down and non-special case
 			to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
 			return 0
+
+	else if(!destination.CanZPass(src, direction)) // and one for up
+		to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
+		return 0
+
 
 	var/area/area = get_area(src)
 	if(area.has_gravity() && !can_overcome_gravity())
