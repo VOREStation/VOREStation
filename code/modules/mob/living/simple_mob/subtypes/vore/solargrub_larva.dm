@@ -143,7 +143,7 @@ var/global/list/grub_machine_overlays = list()
 	sparks.start()
 	if(machine_effect)
 		QDEL_NULL(machine_effect)
-	ai_holder.target = null
+	ai_holder.remove_target()
 	powermachine.draining = 1
 	spawn(30)
 		set_AI_busy(FALSE)
