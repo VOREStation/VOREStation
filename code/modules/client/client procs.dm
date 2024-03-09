@@ -271,19 +271,30 @@
 	//DISCONNECT//
 	//////////////
 /client/Del()
+	if(!gc_destroyed)
+		gc_destroyed = world.time
+		if (!QDELING(src))
+			stack_trace("Client does not purport to be QDELING, this is going to cause bugs in other places!")
+
+		GLOB.ahelp_tickets.ClientLogout(src)
+		GLOB.mhelp_tickets.ClientLogout(src)
+
+		// Yes this is the same as what's found in qdel(). Yes it does need to be here
+		// Get off my back
+		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
+		Destroy() //Clean up signals and timers.
+	return ..()
+
+/client/Destroy()
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
 	if (mentorholder)
 		mentorholder.owner = null
 		GLOB.mentors -= src
-	GLOB.ahelp_tickets.ClientLogout(src)
-	GLOB.mhelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
-	return ..()
 
-/client/Destroy()
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 

@@ -26,7 +26,7 @@
 	if(message)
 		audible_message("[icon2html(src, user.client)] \The [src.name] states, \"[message]\"", runemessage = "synthesized speech")
 		if(ismob(loc))
-			loc.audible_message("", runemessage = "\[TTS Voice\] [message]")
+			loc.runechat_message("\[TTS Voice\] [message]")
 
 /obj/item/device/text_to_speech/AltClick(mob/user) // QOL Change
 	attack_self(user)

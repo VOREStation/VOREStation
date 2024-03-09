@@ -124,6 +124,8 @@ I think I covered everything.
 	var/small_icon = 'icons/mob/bigdragon_small.dmi'
 	var/small_icon_state = "dragon_small"
 	var/flames
+	var/firebreathtimer
+	var/chargetimer
 
 	tame_items = list(
 	/obj/item/weapon/coin/gold = 100,
@@ -262,6 +264,10 @@ I think I covered everything.
 
 /mob/living/simple_mob/vore/bigdragon/runechat_y_offset(width, height)
 	return (..()*size_multiplier) + 40
+
+/mob/living/simple_mob/vore/bigdragon/death()
+	. = ..()
+	canceltimers()
 
 ///
 ///		Verbs
@@ -766,10 +772,14 @@ I think I covered everything.
 
 	do_windup_animation(A, charge_warmup)
 	//callbacks are more reliable than byond's process scheduler
-	addtimer(CALLBACK(src, PROC_REF(chargeend), A), charge_warmup)
+	chargetimer = addtimer(CALLBACK(src, PROC_REF(chargeend), A), charge_warmup, TIMER_STOPPABLE)
 
 
 /mob/living/simple_mob/vore/bigdragon/proc/chargeend(var/atom/A, var/explicit = 0, var/gentle = 0)
+	//make sure our target still exists and is on a turf
+	if(QDELETED(A) || !isturf(get_turf(A)))
+		set_AI_busy(FALSE)
+		return
 	status_flags |= LEAPING
 	flying  = 1		//So we can thunk into things
 	hovering = 1	// So we don't hurt ourselves running off cliffs
@@ -804,10 +814,14 @@ I think I covered everything.
 		set_AI_busy(TRUE)
 	flames = 1
 	build_icons()
-	addtimer(CALLBACK(src, PROC_REF(firebreathend), A), charge_warmup)
+	firebreathtimer = addtimer(CALLBACK(src, PROC_REF(firebreathend), A), charge_warmup, TIMER_STOPPABLE)
 	playsound(src, "sound/magic/Fireball.ogg", 50, 1)
 
 /mob/living/simple_mob/vore/bigdragon/proc/firebreathend(var/atom/A)
+	//make sure our target still exists and is on a turf
+	if(QDELETED(A) || !isturf(get_turf(A)))
+		set_AI_busy(FALSE)
+		return
 	var/obj/item/projectile/P = new /obj/item/projectile/bullet/dragon(get_turf(src))
 	src.visible_message("<span class='danger'>\The [src] spews fire at \the [A]!</span>")
 	playsound(src, "sound/weapons/Flamer.ogg", 50, 1)
@@ -890,6 +904,9 @@ I think I covered everything.
 	norange = 1		//Don't start fires while friendly
 	vore_selected = gut2 //Just incase it eats someone right after being tamed
 	ai_holder = new /datum/ai_holder/simple_mob/healbelly/retaliate/dragon(src)
+
+	//Cancel any charges or firebreaths winding up
+	canceltimers()
 
 /datum/ai_holder/simple_mob/healbelly
 	intelligence_level = 3
@@ -1035,6 +1052,17 @@ I think I covered everything.
 	ai_holder = D
 	vore_selected = gut1
 	D.give_target(attacker)
+
+/mob/living/simple_mob/vore/bigdragon/proc/canceltimers()
+	//Cancel any charges or firebreaths winding up
+	if(firebreathtimer)
+		deltimer(firebreathtimer)
+		firebreathtimer = null
+	if(chargetimer)
+		deltimer(chargetimer)
+		chargetimer = null
+	//re-enable the AI
+	set_AI_busy(FALSE)
 
 //Smack people it warns
 /datum/ai_holder/simple_mob/healbelly/retaliate/dragon/proc/dissuade(var/chump)
