@@ -20,11 +20,13 @@ import {
   MESSAGE_TYPES,
 } from './constants';
 import {
+  adminPageOnly,
   canPageAcceptType,
   canStoreType,
   createMessage,
   isSameMessage,
   serializeMessage,
+  typeIsImportant,
 } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
 
@@ -155,6 +157,7 @@ class ChatRenderer {
     this.logEnable = true;
     this.roundId = null;
     this.storedTypes = {};
+    this.hideImportantInAdminTab = false;
     // Scroll handler
     /** @type {HTMLElement} */
     this.scrollNode = null;
@@ -366,6 +369,30 @@ class ChatRenderer {
     this.scrollNode.scrollTop = this.scrollNode.scrollHeight;
   }
 
+  setVisualChatLimits(
+    visibleMessageLimit,
+    combineMessageLimit,
+    combineIntervalLimit,
+    exportLimit,
+    logEnable,
+    logLimit,
+    storedTypes,
+    roundId,
+    prependTimestamps,
+    hideImportantInAdminTab,
+  ) {
+    this.visibleMessageLimit = visibleMessageLimit;
+    this.combineMessageLimit = combineMessageLimit;
+    this.combineIntervalLimit = combineIntervalLimit;
+    this.exportLimit = exportLimit;
+    this.logEnable = logEnable;
+    this.logLimit = logLimit;
+    this.storedTypes = storedTypes;
+    this.roundId = roundId;
+    this.prependTimestamps = prependTimestamps;
+    this.hideImportantInAdminTab = hideImportantInAdminTab;
+  }
+
   changePage(page) {
     if (!this.isReady()) {
       this.page = page;
@@ -380,7 +407,14 @@ class ChatRenderer {
     const fragment = document.createDocumentFragment();
     let node;
     for (let message of this.messages) {
-      if (canPageAcceptType(page, message.type)) {
+      if (
+        canPageAcceptType(page, message.type) &&
+        !(
+          adminPageOnly(page) &&
+          typeIsImportant(message.type) &&
+          this.hideImportantInAdminTab
+        )
+      ) {
         node = message.node;
         fragment.appendChild(node);
         this.visibleMessages.push(message);
@@ -390,28 +424,6 @@ class ChatRenderer {
       this.rootNode.appendChild(fragment);
       node.scrollIntoView();
     }
-  }
-
-  setVisualChatLimits(
-    visibleMessageLimit,
-    combineMessageLimit,
-    combineIntervalLimit,
-    exportLimit,
-    logEnable,
-    logLimit,
-    storedTypes,
-    roundId,
-    prependTimestamps,
-  ) {
-    this.visibleMessageLimit = visibleMessageLimit;
-    this.combineMessageLimit = combineMessageLimit;
-    this.combineIntervalLimit = combineIntervalLimit;
-    this.exportLimit = exportLimit;
-    this.logEnable = logEnable;
-    this.logLimit = logLimit;
-    this.storedTypes = storedTypes;
-    this.roundId = roundId;
-    this.prependTimestamps = prependTimestamps;
   }
 
   getCombinableMessage(predicate) {
@@ -619,7 +631,14 @@ class ChatRenderer {
         }
         this.archivedMessages.push(serializeMessage(message, true)); // TODO: Actually having a better message archiving maybe for exports?
       }
-      if (canPageAcceptType(this.page, message.type)) {
+      if (
+        canPageAcceptType(this.page, message.type) &&
+        !(
+          adminPageOnly(this.page) &&
+          typeIsImportant(message.type) &&
+          this.hideImportantInAdminTab
+        )
+      ) {
         fragment.appendChild(node);
         this.visibleMessages.push(message);
       }

@@ -10,6 +10,10 @@ export const SETTINGS_TABS = [
     name: 'General',
   },
   {
+    id: 'adminSettings',
+    name: 'Admin',
+  },
+  {
     id: 'limits',
     name: 'Visual Limits',
   },

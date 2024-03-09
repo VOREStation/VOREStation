@@ -58,6 +58,7 @@ const initialState = {
   lastId: null,
   initialized: false,
   storedTypes: {},
+  hideImportantInAdminTab: false,
 };
 
 export const settingsReducer = (state = initialState, action) => {
