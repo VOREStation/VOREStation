@@ -473,6 +473,70 @@
 	icon_state = "sash"
 	slot = ACCESSORY_SLOT_OVER
 
+/obj/item/clothing/accessory/wristband
+	name = "wristband"
+	desc = "A simple plastic wristband."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/wristbandcollection
+	name = "wristband collection"
+	desc = "A mix of colourable plastic wristbands."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_collection"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/wristbandcollection/pink
+	name = "wristband collection"
+	desc = "A mix of colourable plastic wristbands."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_collection2"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/wristbandcollection/les
+	name = "wristband collection"
+	desc = "A mix of colourable plastic wristbands."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_collection3"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/wristbandcollection/trans
+	name = "wristband collection"
+	desc = "A mix of colourable plastic wristbands."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_collection4"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/wristbandcollection/bi
+	name = "wristband collection"
+	desc = "A mix of colourable plastic wristbands."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_collection5"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/wristbandcollection/ace
+	name = "wristband collection"
+	desc = "A mix of colourable plastic wristbands."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_collection6"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
+
+
 //Gaiter scarves
 /obj/item/clothing/accessory/gaiter
 	name = "red neck gaiter"
