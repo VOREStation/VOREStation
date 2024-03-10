@@ -166,6 +166,7 @@ export const chatMiddleware = (store) => {
       settings.storedTypes,
       game.roundId,
       settings.prependTimestamps,
+      settings.hideImportantInAdminTab,
     );
     // Load the chat once settings are loaded
     if (!initialized && settings.initialized) {
