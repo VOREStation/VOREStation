@@ -55,14 +55,13 @@
 		user.set_machine(src)
 		user.reset_view(linked)
 	user.set_viewsize(world.view + extra_view)
-	user.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
+	GLOB.moved_event.register(user, src, /datum/tgui_module/ship/proc/unlook)
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
 	user.reset_view()
 	user.set_viewsize() // reset to default
-	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+	GLOB.moved_event.unregister(user, src, /datum/tgui_module/ship/proc/unlook)
 	LAZYREMOVE(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/viewing_overmap(mob/user)

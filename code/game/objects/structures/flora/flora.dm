@@ -300,7 +300,7 @@
 		user.drop_from_inventory(I, src)
 		I.forceMove(src)
 		stored_item = I
-		src.visible_message("[icon2html(src,viewers(src))] [icon2html(I,viewers(src))] [user] places [I] into [src].")
+		src.visible_message("\icon[src][bicon(src)] \icon[I][bicon(I)] [user] places [I] into [src].")
 		return
 	else
 		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
@@ -311,7 +311,7 @@
 		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")
 	else
 		if(do_after(user, 10))
-			to_chat(user, "<span class='filter_notice'>You find [icon2html(stored_item, user.client)] [stored_item] in [src]!</span>")
+			to_chat(user, "<span class='filter_notice'>You find \icon[stored_item][bicon(stored_item)] [stored_item] in [src]!</span>")
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 	..()
@@ -684,3 +684,4 @@
 
 /obj/structure/flora/underwater/grass4
 	icon_state = "grass-4"
+

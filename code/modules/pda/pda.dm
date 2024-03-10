@@ -112,7 +112,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		S = 'sound/machines/twobeep.ogg'
 	playsound(loc, S, 50, 1)
 	for(var/mob/O in hearers(3, loc))
-		O.show_message(text("[icon2html(src, O.client)] *[ttone]*"))
+		O.show_message(text("\icon[src][bicon(src)] *[ttone]*"))
 
 /obj/item/device/pda/proc/set_ringtone()
 	var/t = tgui_input_text(usr, "Please enter new ringtone", name, ttone)
@@ -145,7 +145,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			model_name = "Thinktronic 5230 Personal Data Assistant"
 		if(2)
 			icon = 'icons/obj/pda_slim.dmi'
-			model_name = "Ward-Takahashi SlimFitï¿½ Personal Data Assistant"
+			model_name = "Ward-Takahashi SlimFit™ Personal Data Assistant"
 		if(3)
 			icon = 'icons/obj/pda_old.dmi'
 			model_name = "Thinktronic 5120 Personal Data Assistant"
@@ -172,7 +172,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			)
 		if(7)
 			icon = 'icons/obj/pda_slider.dmi'			//VOREStation edit
-			model_name = "Sliderï¿½ Personal Data Assistant"
+			model_name = "Slider® Personal Data Assistant"
 		if(8)
 			icon = 'icons/obj/pda_vintage.dmi'
 			model_name = "\[ERR:INVALID_MANUFACTURER_ID\] Personal Data Assistant"

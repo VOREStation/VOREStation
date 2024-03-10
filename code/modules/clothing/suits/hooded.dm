@@ -15,7 +15,7 @@
 	..()
 
 /obj/item/clothing/suit/storage/hooded/Destroy()
-	QDEL_NULL(hood)
+	qdel(hood)
 	return ..()
 
 /obj/item/clothing/suit/storage/hooded/proc/MakeHood()
@@ -34,13 +34,12 @@
 /obj/item/clothing/suit/storage/hooded/proc/RemoveHood()
 	hood_up = FALSE
 	update_icon()
-	if(hood)
-		hood.canremove = TRUE // This shouldn't matter anyways but just incase.
-		if(ishuman(hood.loc))
-			var/mob/living/carbon/H = hood.loc
-			H.unEquip(hood, 1)
-			H.update_inv_wear_suit()
-		hood.forceMove(src)
+	hood.canremove = TRUE // This shouldn't matter anyways but just incase.
+	if(ishuman(hood.loc))
+		var/mob/living/carbon/H = hood.loc
+		H.unEquip(hood, 1)
+		H.update_inv_wear_suit()
+	hood.forceMove(src)
 
 /obj/item/clothing/suit/storage/hooded/dropped()
 	RemoveHood()

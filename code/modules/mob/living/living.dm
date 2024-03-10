@@ -50,17 +50,14 @@
 			B.owner = tf_mob_holder
 			tf_mob_holder.vore_organs |= B
 			vore_organs -= B
+
 	if(tf_mob_holder)
 		tf_mob_holder = null
 	//VOREStation Addition End
-	if(hud_list) //prune out images in hud_list
-		for(var/item in hud_list)
-			if(item)
-				item = null
-	if(selected_image)
-		selected_image = null
-	//QDEL_NULL(vorePanel) //VOREStation Add commented and moved to /mob
-	//QDEL_LIST_NULL(vore_organs) //VOREStation Add commented and moved to /mob
+
+	qdel(selected_image)
+	QDEL_NULL(vorePanel) //VOREStation Add
+	QDEL_LIST_NULL(vore_organs) //VOREStation Add
 	temp_language_sources = null //VOREStation Add
 	temp_languages = null //VOREStation Add
 
@@ -1297,7 +1294,7 @@
 /datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
 	var/mob/owner = user
 	if(owner.client?.prefs)
-		INVOKE_ASYNC(owner.client.prefs, TYPE_PROC_REF(/datum/preferences, ShowChoices), owner)
+		INVOKE_ASYNC(owner.client.prefs, /datum/preferences/proc/ShowChoices, owner)
 
 /**
  * Screen object for vore panel

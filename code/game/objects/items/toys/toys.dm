@@ -716,7 +716,7 @@
 	if(stored_item && opened && !searching)
 		searching = TRUE
 		if(do_after(user, 10))
-			to_chat(user, "You find [icon2html(stored_item, user.client)] [stored_item] in [src]!")
+			to_chat(user, "You find \icon[stored_item] [stored_item] in [src]!")
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 			searching = FALSE
@@ -813,7 +813,7 @@
 	if(stored_item && opened && !searching)
 		searching = TRUE
 		if(do_after(user, 10))
-			to_chat(user, "You find [icon2html(stored_item, user.client)] [stored_item] in [src]!")
+			to_chat(user, "You find \icon[stored_item] [stored_item] in [src]!")
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 			searching = FALSE

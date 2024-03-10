@@ -254,6 +254,9 @@
 	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
+	if(!(L in check_trajectory(L, src)))	//check if we have true line of sight
+		return TURRET_NOT_TARGET
+
 	if(L.lying)		//Don't need to stun-lock the players
 		return TURRET_NOT_TARGET
 
@@ -723,6 +726,9 @@
 	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
+	if(!(L in check_trajectory(L, src)))	//check if we have true line of sight
+		return TURRET_NOT_TARGET
+
 	if(emagged)		// If emagged not even the dead get a rest
 		return L.stat ? TURRET_SECONDARY_TARGET : TURRET_PRIORITY_TARGET
 
@@ -835,14 +841,13 @@
 	if(disabled)
 		return FALSE
 	if(target)
-		if(target in check_trajectory(target, src))	//Finally, check if we can actually hit the target
-			last_target = target
-			popUp()				//pop the turret up if it's not already up.
-			set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
-			playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
-			spawn()
-				shootAt(target)
-			return TRUE
+		last_target = target
+		popUp()				//pop the turret up if it's not already up.
+		set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
+		playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
+		spawn()
+			shootAt(target)
+		return TRUE
 	return FALSE
 
 /obj/machinery/porta_turret/proc/shootAt(var/mob/living/target)

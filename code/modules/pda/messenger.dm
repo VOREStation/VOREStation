@@ -181,7 +181,7 @@
 
 		SStgui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
 		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", usr)
-		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
+		to_chat(U, "\icon[pda][bicon(pda)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
 		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
 

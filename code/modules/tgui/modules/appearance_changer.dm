@@ -65,14 +65,13 @@
 
 	owner = H
 	if(owner)
-		owner.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
+		GLOB.moved_event.register(owner, src, PROC_REF(update_active_camera_screen))
 	check_whitelist = check_species_whitelist
 	whitelist = species_whitelist
 	blacklist = species_blacklist
 
 /datum/tgui_module/appearance_changer/Destroy()
-	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+	GLOB.moved_event.unregister(owner, src, PROC_REF(update_active_camera_screen))
 	last_camera_turf = null
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)

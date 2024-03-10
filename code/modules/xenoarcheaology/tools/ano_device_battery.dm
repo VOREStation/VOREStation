@@ -103,7 +103,7 @@
 		if("startup")
 			if(inserted_battery && inserted_battery.battery_effect && (inserted_battery.stored_charge > 0))
 				activated = TRUE
-				visible_message(span_blue("[icon2html(src,viewers(src))] [src] whirrs."), span_blue("[icon2html(src,viewers(src))]You hear something whirr."))
+				visible_message(span_blue("\icon[src][bicon(src)] [src] whirrs."), span_blue("\icon[src][bicon(src)]You hear something whirr."))
 				if(!inserted_battery.battery_effect.activated)
 					inserted_battery.battery_effect.ToggleActivate(1)
 				time_end = world.time + duration
@@ -146,9 +146,9 @@
 					if(interval > 0)
 						//apply the touch effect to the holder
 						if(holder)
-							to_chat(holder, "the [icon2html(src,holder.client)] [src] held by [holder] shudders in your grasp.")
+							to_chat(holder, "the \icon[src][bicon(src)] [src] held by [holder] shudders in your grasp.")
 						else
-							src.loc.visible_message("the [icon2html(src,viewers(src))] [src] shudders.")
+							src.loc.visible_message("the \icon[src][bicon(src)] [src] shudders.")
 
 						//consume power
 						inserted_battery.use_power(energy_consumed_on_touch)
@@ -175,13 +175,13 @@
 
 			//work out if we need to shutdown
 			if(inserted_battery.stored_charge <= 0)
-				src.loc.visible_message(span_blue("[icon2html(src,viewers(src))] [src] buzzes."), span_blue("[icon2html(src,viewers(src))] You hear something buzz."))
+				src.loc.visible_message(span_blue("\icon[src][bicon(src)] [src] buzzes."), span_blue("\icon[src][bicon(src)] You hear something buzz."))
 				shutdown_emission()
 			else if(world.time > time_end)
-				src.loc.visible_message(span_blue("[icon2html(src,viewers(src))] [src] chimes."), span_blue("[icon2html(src,viewers(src))] You hear something chime."))
+				src.loc.visible_message(span_blue("\icon[src][bicon(src)] [src] chimes."), span_blue("\icon[src][bicon(src)] You hear something chime."))
 				shutdown_emission()
 		else
-			src.visible_message(span_blue("[icon2html(src,viewers(src))] [src] buzzes."), span_blue("[icon2html(src,viewers(src))] You hear something buzz."))
+			src.visible_message(span_blue("\icon[src][bicon(src)] [src] buzzes."), span_blue("\icon[src][bicon(src)] You hear something buzz."))
 			shutdown_emission()
 		last_process = world.time
 

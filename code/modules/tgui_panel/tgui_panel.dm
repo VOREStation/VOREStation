@@ -48,8 +48,8 @@
 		assets = list(
 			get_asset_datum(/datum/asset/simple/tgui_panel),
 		))
-	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/fontawesome))
-	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/tgfont))
+	window.send_asset(get_asset_datum(/datum/asset/simple/fontawesome))
+	window.send_asset(get_asset_datum(/datum/asset/simple/tgfont))
 	window.send_asset(get_asset_datum(/datum/asset/spritesheet/chat))
 	// Other setup
 	request_telemetry()

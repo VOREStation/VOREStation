@@ -536,13 +536,6 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 			CRASH("get_dummy_savefile failed to create a dummy savefile: '[error]'")
 		return get_dummy_savefile(from_failure = TRUE)
 
-
-/// Generate a filename for this asset
-/// The same asset will always lead to the same asset name
-/// (Generated names do not include file extention.)
-/proc/generate_asset_name(file)
-	return "asset.[md5(fcopy_rsc(file))]"
-
 /**
  * Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
  * exporting it as text, and then parsing the base64 from that.
@@ -662,12 +655,12 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 			//var/name = SANITIZE_FILENAME("[generate_asset_name(thing)].png")
 			var/name = "[generate_asset_name(thing)].png"
 			if (!SSassets.cache[name])
-				SSassets.transport.register_asset(name, thing)
+				register_asset(name, thing)
 			for (var/thing2 in targets)
-				SSassets.transport.send_assets(thing2, name)
+				send_asset(thing2, name)
 			if(sourceonly)
-				return SSassets.transport.get_asset_url(name)
-			return "<img class='[extra_classes] icon icon-misc' src='[SSassets.transport.get_asset_url(name)]'>"
+				return get_asset_url(name)
+			return "<img class='[extra_classes] icon icon-misc' src='[get_asset_url(name)]'>"
 
 		//its either an atom, image, or mutable_appearance, we want its icon var
 		icon2collapse = thing.icon
@@ -704,12 +697,12 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 	key = "[name_and_ref[3]].png"
 
 	if(!SSassets.cache[key])
-		SSassets.transport.register_asset(key, rsc_ref, file_hash, icon_path)
+		register_asset(key, rsc_ref, file_hash, icon_path)
 	for (var/client_target in targets)
-		SSassets.transport.send_assets(client_target, key)
+		send_asset(client_target, key)
 	if(sourceonly)
-		return SSassets.transport.get_asset_url(key)
-	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
+		return get_asset_url(key)
+	return "<img class='[extra_classes] icon icon-[icon_state]' src='[get_asset_url(key)]'>"
 
 /proc/icon2base64html(target, var/custom_classes = "")
 	if (!target)

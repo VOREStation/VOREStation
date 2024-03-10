@@ -399,7 +399,9 @@
 			active = TRUE
 		else									//Shoot, it didn't work and now it's mad!!!
 			S.ai_holder.go_wake()
-			S.ai_holder.give_target(user, urgent = TRUE)
+			S.ai_holder.target = user
+			S.ai_holder.track_target_position()
+			S.ai_holder.set_stance(STANCE_FIGHT)
 			user.visible_message("\The [src] bonks into \the [S], angering it!")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")

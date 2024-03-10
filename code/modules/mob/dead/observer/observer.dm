@@ -460,8 +460,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(target != src)
 		if(following && following == target)
 			return
-		if(following)
-			src.stop_following()
 		following = target
 		to_chat(src, "<span class='notice'>Now following [target]</span>")
 		if(ismob(target))

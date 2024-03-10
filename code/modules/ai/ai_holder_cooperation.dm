@@ -18,9 +18,8 @@
 		build_faction_friends()
 
 /datum/ai_holder/Destroy()
-	if(faction_friends)
-		if(faction_friends.len) //This list is shared amongst the faction
-			faction_friends -= src
+	if(faction_friends.len) //This list is shared amongst the faction
+		faction_friends -= src
 	return ..()
 
 // Handles everything about that list.
@@ -115,3 +114,4 @@
 		add_attacker(their_target) // We won't wait and 'warn' them while they're stabbing our ally
 	set_follow(friend, 10 SECONDS)
 	ai_log("help_requested() : Exiting.", AI_LOG_DEBUG)
+

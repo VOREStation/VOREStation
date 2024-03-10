@@ -7,7 +7,6 @@
 //			/mob/equipper:  The mob that equipped the item.
 //			/obj/item/item: The equipped item.
 //			slot:           The slot equipped to.
-/*
 GLOBAL_DATUM_INIT(mob_equipped_event, /decl/observ/mob_equipped, new)
 
 /decl/observ/mob_equipped
@@ -28,13 +27,12 @@ GLOBAL_DATUM_INIT(item_equipped_event, /decl/observ/item_equipped, new)
 /decl/observ/item_equipped
 	name = "Item Equipped"
 	expected_type = /obj/item
-*/
-//Deprecated in favor of comsigs
+
 /********************
 * Equipped Handling *
 ********************/
 
 /obj/item/equipped(var/mob/user, var/slot)
 	. = ..()
-	SEND_SIGNAL(user, COMSIG_OBSERVER_MOB_EQUIPPED, src, slot)
-	SEND_SIGNAL(src, COMSIG_OBSERVER_ITEM_EQUIPPED, user, slot)
+	GLOB.mob_equipped_event.raise_event(user, src, slot)
+	GLOB.item_equipped_event.raise_event(src, user, slot)

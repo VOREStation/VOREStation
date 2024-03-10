@@ -12,16 +12,6 @@
 
 	var/being_used = 0
 
-
-/obj/machinery/artifact/Destroy()
-	if(artifact_master)
-		var/datum/component/artifact_master/arti_mstr = artifact_master
-		arti_mstr.RemoveComponent()
-		artifact_master = null
-		if(!QDELETED(arti_mstr))
-			qdel(arti_mstr)
-	. = ..()
-
 /obj/machinery/artifact/New()
 	..()
 

@@ -259,14 +259,14 @@
 		return
 
 	if (src.active)
-		user.visible_message(span_blue("[icon2html(src,viewers(src))] [user] deactivated the shield generator."), \
-			span_blue("[icon2html(src,user.client)] You deactivate the shield generator."), \
+		user.visible_message(span_blue("\icon[src][bicon(src)] [user] deactivated the shield generator."), \
+			span_blue("\icon[src][bicon(src)] You deactivate the shield generator."), \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message(span_blue("[icon2html(src,viewers(src))] [user] activated the shield generator."), \
-				span_blue("[icon2html(src, user.client)] You activate the shield generator."), \
+			user.visible_message(span_blue("\icon[src][bicon(src)] [user] activated the shield generator."), \
+				span_blue("\icon[src][bicon(src)] You activate the shield generator."), \
 				"You hear heavy droning.")
 			src.shields_up()
 		else

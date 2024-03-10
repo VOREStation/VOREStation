@@ -71,7 +71,7 @@
 // Spawn a single gnat at given location.
 /datum/event/gnat_migration/proc/spawn_one_gnat(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/gnat(loc)
-	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_gnat_destruction))
+	GLOB.destroyed_event.register(M, src, PROC_REF(on_gnat_destruction))
 	spawned_gnat.Add(M)
 	return M
 
@@ -85,7 +85,7 @@
 // If gnat is bomphed, remove it from the list.
 /datum/event/gnat_migration/proc/on_gnat_destruction(var/mob/M)
 	spawned_gnat -= M
-	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
+	GLOB.destroyed_event.unregister(M, src, PROC_REF(on_gnat_destruction))
 
 /datum/event/gnat_migration/end()
 	. = ..()

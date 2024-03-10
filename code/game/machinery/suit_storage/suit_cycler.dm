@@ -477,7 +477,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 /obj/machinery/suit_cycler/proc/finished_job()
 	var/turf/T = get_turf(src)
-	T.visible_message("[icon2html(src,viewers(src))]<span class='notice'>The [src] beeps several times.</span>")
+	T.visible_message("\icon[src][bicon(src)]<span class='notice'>The [src] beeps several times.</span>")
 	icon_state = initial(icon_state)
 	active = 0
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
@@ -543,5 +543,5 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	if(target_species.can_refit_to(helmet, suit, suit?.helmet))
 		target_species.do_refit_to(helmet, suit, suit?.helmet)
 	else
-		visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
+		visible_message("\icon[src][bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
 		return

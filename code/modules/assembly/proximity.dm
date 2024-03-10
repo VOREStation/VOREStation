@@ -47,7 +47,7 @@
 	var/turf/mainloc = get_turf(src)
 	pulse(0)
 	if(!holder)
-		mainloc.visible_message("[icon2html(src,viewers(src))] *beep* *beep*", "*beep* *beep*")
+		mainloc.visible_message("\icon[src][bicon(src)] *beep* *beep*", "*beep* *beep*")
 
 /obj/item/device/assembly/prox_sensor/process()
 	if(scanning)

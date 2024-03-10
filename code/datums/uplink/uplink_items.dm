@@ -130,7 +130,7 @@ var/datum/uplink/uplink = new()
 
 /datum/uplink_item/item/log_icon()
 	var/obj/I = path
-	return "[bicon(I)]"
+	return "\icon[I][bicon(I)]"
 
 /********************************
 *                           	*
@@ -144,7 +144,7 @@ var/datum/uplink/uplink = new()
 	if(!default_abstract_uplink_icon)
 		default_abstract_uplink_icon = image('icons/obj/pda.dmi', "pda-syn")
 
-	return "[bicon(default_abstract_uplink_icon)]"
+	return "\icon[default_abstract_uplink_icon][bicon(default_abstract_uplink_icon)]"
 
 /*
  * Crated goods.
@@ -174,7 +174,7 @@ var/datum/uplink/uplink = new()
 
 /datum/uplink_item/crated/log_icon()
 	var/obj/I = crate_path
-	return "[bicon(I)]"
+	return "\icon[I]"
 
 /****************
 * Support procs *

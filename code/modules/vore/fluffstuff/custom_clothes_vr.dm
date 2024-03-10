@@ -2097,14 +2097,14 @@ Departamental Swimsuits, for general use
 		translocator_unequip(translocator, user)
 		T.forceMove(src)
 		translocator = T
-		user.show_message("[icon2html(src, user.client)]*click!*")
+		user.show_message("\icon[src][bicon(src)]*click!*")
 		playsound(src, 'sound/machines/click.ogg', 30, 1)
 
 /obj/item/clothing/head/fluff/nikki/proc/translocator_unequip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
 	if (translocator)
 		if (user)
 			user.put_in_hands(T)
-			user.show_message("[icon2html(src, user.client)]*click!*")
+			user.show_message("\icon[src][bicon(src)]*click!*")
 		else
 			translocator.forceMove(get_turf(src))
 		translocator = null

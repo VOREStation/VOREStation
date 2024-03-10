@@ -181,12 +181,11 @@ LINEN BINS
 		. += "There are [amount] bed sheets in the bin."
 
 /obj/structure/bedsheetbin/update_icon()
-	if(amount == 0)
-		icon_state = "linenbin-empty"
-	else if(amount <= (amount / 2))
-		icon_state = "linenbin-half"
-	else
-		icon_state = "linenbin-full"
+	switch(amount)
+		if(0)				icon_state = "linenbin-empty"
+		if(1 to amount / 2)	icon_state = "linenbin-half"
+		else				icon_state = "linenbin-full"
+
 
 /obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/bedsheet))

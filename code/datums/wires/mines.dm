@@ -21,15 +21,15 @@
 
 	switch(wire)
 		if(WIRE_EXPLODE)
-			C.visible_message("[icon2html(C,viewers(holder))] *BEEE-*", "[icon2html(C,viewers(holder))] *BEEE-*")
+			C.visible_message("\icon[C][bicon(C)] *BEEE-*", "\icon[C][bicon(C)] *BEEE-*")
 			C.explode()
 
 		if(WIRE_EXPLODE_DELAY)
-			C.visible_message("[icon2html(C,viewers(holder))] *BEEE-*", "[icon2html(C,viewers(holder))] *BEEE-*")
+			C.visible_message("\icon[C][bicon(C)] *BEEE-*", "\icon[C][bicon(C)] *BEEE-*")
 			C.explode()
 
 		if(WIRE_DISARM)
-			C.visible_message("[icon2html(C,viewers(holder))] *click!*", "[icon2html(C,viewers(holder))] *click!*")
+			C.visible_message("\icon[C][bicon(C)] *click!*", "\icon[C][bicon(C)] *click!*")
 			var/obj/effect/mine/MI = new C.mineitemtype(get_turf(C))
 
 			if(C.trap)
@@ -41,15 +41,15 @@
 				qdel(C)
 
 		if(WIRE_BADDISARM)
-			C.visible_message("[icon2html(C,viewers(holder))] *BEEPBEEPBEEP*", "[icon2html(C,viewers(holder))] *BEEPBEEPBEEP*")
+			C.visible_message("\icon[C][bicon(C)] *BEEPBEEPBEEP*", "\icon[C][bicon(C)] *BEEPBEEPBEEP*")
 			spawn(20)
 				C.explode()
 
 		if(WIRE_TRAP)
-			C.visible_message("[icon2html(C,viewers(holder))] *click!*", "[icon2html(C,viewers(holder))] *click!*")
+			C.visible_message("\icon[C][bicon(C)] *click!*", "\icon[C][bicon(C)] *click!*")
 
 			if(mend)
-				C.visible_message("[icon2html(C,viewers(holder))] - The mine recalibrates[C.camo_net ? ", revealing \the [C.trap] inside." : "."]")
+				C.visible_message("\icon[C][bicon(C)] - The mine recalibrates[C.camo_net ? ", revealing \the [C.trap] inside." : "."]")
 
 				C.alpha = 255
 
@@ -61,21 +61,21 @@
 		return
 	switch(wire)
 		if(WIRE_EXPLODE)
-			C.visible_message("[icon2html(C,viewers(holder))] *beep*", "[icon2html(C,viewers(holder))] *beep*")
+			C.visible_message("\icon[C][bicon(C)] *beep*", "\icon[C][bicon(C)] *beep*")
 
 		if(WIRE_EXPLODE_DELAY)
-			C.visible_message("[icon2html(C,viewers(holder))] *BEEPBEEPBEEP*", "[icon2html(C,viewers(holder))] *BEEPBEEPBEEP*")
+			C.visible_message("\icon[C][bicon(C)] *BEEPBEEPBEEP*", "\icon[C][bicon(C)] *BEEPBEEPBEEP*")
 			spawn(20)
 				C.explode()
 
 		if(WIRE_DISARM)
-			C.visible_message("[icon2html(C,viewers(holder))] *ping*", "[icon2html(C,viewers(holder))] *ping*")
+			C.visible_message("\icon[C][bicon(C)] *ping*", "\icon[C][bicon(C)] *ping*")
 
 		if(WIRE_BADDISARM)
-			C.visible_message("[icon2html(C,viewers(holder))] *ping*", "[icon2html(C,viewers(holder))] *ping*")
+			C.visible_message("\icon[C][bicon(C)] *ping*", "\icon[C][bicon(C)] *ping*")
 
 		if(WIRE_TRAP)
-			C.visible_message("[icon2html(C,viewers(holder))] *ping*", "[icon2html(C,viewers(holder))] *ping*")
+			C.visible_message("\icon[C][bicon(C)] *ping*", "\icon[C][bicon(C)] *ping*")
 
 	..()
 

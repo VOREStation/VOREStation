@@ -86,7 +86,7 @@
 /obj/item/weapon/blobcore_chunk/attack_self(var/mob/user)
 	if(blob_type && world.time > active_ability_cooldown + last_active_use)
 		last_active_use = world.time
-		to_chat(user, "<span class='alien'>[icon2html(src, user.client)] \The [src] gesticulates.</span>")
+		to_chat(user, "<span class='alien'>\icon [src] \The [src] gesticulates.</span>")
 		blob_type.on_chunk_use(src, user)
 	else
 		to_chat(user, "<span class='notice'>\The [src] doesn't seem to respond.</span>")

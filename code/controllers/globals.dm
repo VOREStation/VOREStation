@@ -62,5 +62,3 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		var/end_tick = world.time
 		if(end_tick - start_tick)
 			warning("Global [replacetext("[I]", "InitGlobal", "")] slept during initialization!")
-
-	populate_legacy_globals()

@@ -44,7 +44,7 @@
 		return 0
 	pulse(0)
 	if(!holder)
-		visible_message("[icon2html(src,viewers(src))] *beep* *beep*", "*beep* *beep*")
+		visible_message("\icon[src][bicon(src)] *beep* *beep*", "*beep* *beep*")
 
 /obj/item/device/assembly/timer/process()
 	if(timing && time-- <= 0)

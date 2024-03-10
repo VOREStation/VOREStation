@@ -77,31 +77,23 @@ SUBSYSTEM_DEF(overlays)
 	var/list/result = list()
 	var/icon/icon = subject.icon
 	for (var/atom/entry as anything in sources)
-		AppearanceListEntry(entry, result, icon)
+		if (!entry)
+			continue
+		else if (istext(entry))
+			result += GetStateAppearance(icon, entry)
+		else if (isicon(entry))
+			result += GetIconAppearance(entry)
+		else
+			if (isloc(entry))
+				if (entry.flags & OVERLAY_QUEUED)
+					entry.ImmediateOverlayUpdate()
+			if (!ispath(entry))
+				result += entry.appearance
+			else
+				var/image/image = entry
+				result += image.appearance
 	return result
 
-//Fixes runtime with overlays present in 515
-/datum/controller/subsystem/overlays/proc/AppearanceListEntry(var/atom/entry,var/list/result,var/icon/icon)
-	if (!entry)
-		return
-	else if(islist(entry))
-		var/list/entry_list = entry
-		for(var/entry_item in entry_list)
-			AppearanceListEntry(entry_item)
-	else if (istext(entry))
-		result += GetStateAppearance(icon, entry)
-	else if (isicon(entry))
-		result += GetIconAppearance(entry)
-	else
-		if (isloc(entry))
-			if (entry.flags & OVERLAY_QUEUED)
-				entry.ImmediateOverlayUpdate()
-		if (!ispath(entry))
-			if(entry.appearance)
-				result += entry.appearance
-		else
-			var/image/image = entry
-			result += image.appearance
 
 /// Enqueues the atom for an overlay update if not already queued
 /atom/proc/QueueOverlayUpdate()
