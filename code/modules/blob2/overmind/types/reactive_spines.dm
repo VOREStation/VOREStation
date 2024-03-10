@@ -55,11 +55,5 @@
 	return
 
 /datum/blob_type/reactive_spines/chunk_setup(obj/item/weapon/blobcore_chunk/B)
-	B.RegisterSignal(SSmobs, COMSIG_OBSERVER_GLOBALMOVED, /obj/item/weapon/blobcore_chunk/proc/call_chunk_unique)
+	GLOB.moved_event.register_global(B, /obj/item/weapon/blobcore_chunk/proc/call_chunk_unique)
 	return
-
-//I'm putting this here so everybody knows that it's this shitty code that is why that comsig exists.
-//I'm just reimplementing the way it worked before but with comsigs. I don't have the patience to refactor this.
-/mob/living/Moved()
-	. = ..()
-	SEND_SIGNAL(SSmobs, COMSIG_OBSERVER_GLOBALMOVED)

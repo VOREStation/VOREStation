@@ -779,20 +779,3 @@
 	#define ELEMENT_CONFLICT_FOUND	(1<<0)
 //From reagents touch_x.
 #define COMSIG_REAGENTS_TOUCH "reagent_touch"
-
-
-//Moved observer stuff to DCS
-#define COMSIG_OBSERVER_MOVED "observer_move"
-#define COMSIG_OBSERVER_DESTROYED "observer_destroyed"
-#define COMSIG_OBSERVER_SHUTTLE_ADDED "observer_shuttle_added"
-#define COMSIG_OBSERVER_SHUTTLE_PRE_MOVE "observer_shuttle_premove"
-#define COMSIG_OBSERVER_SHUTTLE_MOVED "observer_shuttle_moved"
-#define COMSIG_OBSERVER_TURF_ENTERED "observer_turf_entered"
-#define COMSIG_OBSERVER_TURF_EXITED "observer_turf_exited"
-#define COMSIG_OBSERVER_Z_MOVED "observer_z_moved"
-#define COMSIG_OBSERVER_MOB_EQUIPPED "observer_mob_equipped"
-#define COMSIG_OBSERVER_ITEM_EQUIPPED "observer_item_equipped"
-#define COMSIG_OBSERVER_MOB_UNEQUIPPED "observer_mob_unequipped"
-#define COMSIG_OBSERVER_ITEM_UNEQUIPPED "observer_item_unequipped"
-#define COMSIG_OBSERVER_APC "observer_apc"
-#define COMSIG_OBSERVER_GLOBALMOVED "observer_global_move"

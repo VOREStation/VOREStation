@@ -77,8 +77,7 @@
 /obj/item/shield_projector/rectangle/mecha/Initialize()
 	. = ..()
 	my_mech = loc
-	RegisterSignal(my_mech, COMSIG_OBSERVER_MOVED, /obj/item/shield_projector/proc/update_shield_positions)
-	my_mech.AddComponent(/datum/component/recursive_move)
+	GLOB.moved_event.register(my_mech, src, /obj/item/shield_projector/proc/update_shield_positions)
 	update_shift(my_mech)
 
 /obj/item/shield_projector/rectangle/mecha/proc/update_shift(atom/movable/mech)
@@ -89,7 +88,7 @@
 	shift_y = round(y_dif, 1)
 
 /obj/item/shield_projector/rectangle/mecha/Destroy()
-	UnregisterSignal(my_mech, COMSIG_OBSERVER_MOVED)
+	GLOB.moved_event.unregister(my_mech, src, /obj/item/shield_projector/proc/update_shield_positions)
 	my_mech = null
 	..()
 

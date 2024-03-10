@@ -187,7 +187,7 @@
 /datum/ai_holder/simple_mob/humanoid/hostile/post_ranged_attack(atom/A)
 	//Pick a random turf to step into
 	var/turf/T = get_step(holder, pick(alldirs))
-	if((A in check_trajectory(A, T))) // Can we even hit them from there?
+	if(check_trajectory(A, T)) // Can we even hit them from there?
 		holder.IMove(T)
 		holder.face_atom(A)
 
@@ -197,3 +197,4 @@
 
 /datum/ai_holder/simple_mob/passive/speedy
 	base_wander_delay = 1
+

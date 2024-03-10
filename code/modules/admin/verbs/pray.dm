@@ -17,7 +17,7 @@
 				return
 
 	var/icon/cross = icon('icons/obj/storage.dmi',"bible")
-	var/msg = "<span class='filter_pray'>" + span_blue("[icon2html(cross, GLOB.admins)] <b>" + span_purple("PRAY: ") + "[key_name(src, 1)] [ADMIN_QUE(src)] [ADMIN_PP(src)] [ADMIN_VV(src)] [ADMIN_SM(src)] ([admin_jump_link(src, src)]) [ADMIN_CA(src)] [ADMIN_SC(src)] [ADMIN_SMITE(src)]:</b> [raw_msg]") + "</span>"
+	var/msg = "<span class='filter_pray'>" + span_blue("\icon[cross][bicon(cross)] <b>" + span_purple("PRAY: ") + "[key_name(src, 1)] [ADMIN_QUE(src)] [ADMIN_PP(src)] [ADMIN_VV(src)] [ADMIN_SM(src)] ([admin_jump_link(src, src)]) [ADMIN_CA(src)] [ADMIN_SC(src)] [ADMIN_SMITE(src)]:</b> [raw_msg]") + "</span>"
 
 	for(var/client/C in GLOB.admins)
 		if(R_ADMIN|R_EVENT & C.holder.rights)

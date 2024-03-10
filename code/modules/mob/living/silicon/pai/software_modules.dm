@@ -491,7 +491,7 @@
 				spawn(0)
 					R.send_signal("ACTIVATE")
 				for(var/mob/O in hearers(1, R.loc))
-					O.show_message("[icon2html(R,O.client)] *beep* *beep*", 3, "*beep* *beep*", 2)
+					O.show_message("\icon[R][bicon(R)] *beep* *beep*", 3, "*beep* *beep*", 2)
 			if("freq")
 				var/frequency = unformat_frequency(params["freq"])
 				frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)

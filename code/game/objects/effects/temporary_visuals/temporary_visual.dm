@@ -13,7 +13,7 @@
 	. = ..()
 	if(randomdir)
 		dir = pick(list(NORTH, SOUTH, EAST, WEST))
-	timerid = QDEL_IN_STOPPABLE(src, duration)
+	timerid = QDEL_IN(src, duration)
 
 /obj/effect/temp_visual/Destroy()
 	. = ..()
@@ -35,3 +35,4 @@
 	if(set_dir)
 		dir = set_dir
 	. = ..()
+

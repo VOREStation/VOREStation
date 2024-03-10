@@ -10,8 +10,8 @@
 	icon_state = "shuttle_nosprite"
 
 /obj/effect/overmap/visitable/ship/landable/Destroy()
-	UnregisterSignal(SSshuttles.shuttles[shuttle], COMSIG_OBSERVER_SHUTTLE_PRE_MOVE)
-	UnregisterSignal(SSshuttles.shuttles[shuttle], COMSIG_OBSERVER_SHUTTLE_MOVED)
+	GLOB.shuttle_pre_move_event.unregister(SSshuttles.shuttles[shuttle], src)
+	GLOB.shuttle_moved_event.unregister(SSshuttles.shuttles[shuttle], src)
 	return ..()
 
 /obj/effect/overmap/visitable/ship/landable/can_burn()
@@ -71,8 +71,8 @@
 	if(istype(shuttle_datum,/datum/shuttle/autodock/overmap))
 		var/datum/shuttle/autodock/overmap/oms = shuttle_datum
 		oms.myship = src
-	RegisterSignal(shuttle_datum, COMSIG_OBSERVER_SHUTTLE_PRE_MOVE, PROC_REF(pre_shuttle_jump))
-	RegisterSignal(shuttle_datum, COMSIG_OBSERVER_SHUTTLE_MOVED, PROC_REF(on_shuttle_jump))
+	GLOB.shuttle_pre_move_event.register(shuttle_datum, src, PROC_REF(pre_shuttle_jump))
+	GLOB.shuttle_moved_event.register(shuttle_datum, src, PROC_REF(on_shuttle_jump))
 	on_landing(landmark, shuttle_datum.current_location) // We "land" at round start to properly place ourselves on the overmap.
 
 
@@ -123,11 +123,11 @@
 	core_landmark = master
 	name = _name
 	landmark_tag = master.shuttle_name + _name
-	RegisterSignal(master, COMSIG_OBSERVER_DESTROYED, /datum/proc/qdel_self)
+	GLOB.destroyed_event.register(master, src, /datum/proc/qdel_self)
 	. = ..()
 
 /obj/effect/shuttle_landmark/visiting_shuttle/Destroy()
-	UnregisterSignal(core_landmark, COMSIG_OBSERVER_DESTROYED)
+	GLOB.destroyed_event.unregister(core_landmark, src)
 	LAZYREMOVE(core_landmark.visitors, src)
 	core_landmark = null
 	. = ..()
@@ -144,11 +144,11 @@
 
 /obj/effect/shuttle_landmark/visiting_shuttle/shuttle_arrived(datum/shuttle/shuttle)
 	LAZYSET(core_landmark.visitors, src, shuttle)
-	RegisterSignal(shuttle, COMSIG_OBSERVER_SHUTTLE_MOVED, PROC_REF(shuttle_left))
+	GLOB.shuttle_moved_event.register(shuttle, src, PROC_REF(shuttle_left))
 
 /obj/effect/shuttle_landmark/visiting_shuttle/proc/shuttle_left(datum/shuttle/shuttle, obj/effect/shuttle_landmark/old_landmark, obj/effect/shuttle_landmark/new_landmark)
 	if(old_landmark == src)
-		UnregisterSignal(shuttle, COMSIG_OBSERVER_SHUTTLE_MOVED)
+		GLOB.shuttle_moved_event.unregister(shuttle, src)
 		LAZYREMOVE(core_landmark.visitors, src)
 
 //
@@ -160,7 +160,7 @@
 		return
 	if(into == landmark)
 		setup_overmap_location() // They're coming boys, better actually exist!
-		UnregisterSignal(SSshuttles.shuttles[shuttle], COMSIG_OBSERVER_SHUTTLE_PRE_MOVE)
+		GLOB.shuttle_pre_move_event.unregister(SSshuttles.shuttles[shuttle], src)
 
 /obj/effect/overmap/visitable/ship/landable/proc/on_shuttle_jump(datum/shuttle/given_shuttle, obj/effect/shuttle_landmark/from, obj/effect/shuttle_landmark/into)
 	if(given_shuttle != SSshuttles.shuttles[shuttle])

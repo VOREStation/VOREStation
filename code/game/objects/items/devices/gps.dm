@@ -38,16 +38,15 @@ var/list/GPS_list = list()
 /obj/item/device/gps/proc/update_holder()
 
 	if(holder && loc != holder)
-		UnregisterSignal(holder, COMSIG_OBSERVER_MOVED)
-		//GLOB.dir_set_event.unregister(holder, src)
+		GLOB.moved_event.unregister(holder, src)
+		GLOB.dir_set_event.unregister(holder, src)
 		holder.client?.screen -= compass
 		holder = null
 
 	if(istype(loc, /mob))
 		holder = loc
-		RegisterSignal(holder, COMSIG_OBSERVER_MOVED, PROC_REF(update_compass), override = TRUE)
-		holder.AddComponent(/datum/component/recursive_move)
-		//GLOB.dir_set_event.register(holder, src, PROC_REF(update_compass))
+		GLOB.moved_event.register(holder, src, PROC_REF(update_compass))
+		GLOB.dir_set_event.register(holder, src, PROC_REF(update_compass))
 
 	if(holder && tracking)
 		if(!is_in_processing_list)

@@ -118,7 +118,6 @@
 	holder = null
 	for(var/datum/artifact_effect/AE in my_effects)
 		AE.master = null
-		my_effects -= AE
 		qdel(AE)
 
 	STOP_PROCESSING(SSobj,src)

@@ -258,26 +258,29 @@
 /datum/asset/spritesheet/pipes
 	name = "pipes"
 
-/datum/asset/spritesheet/pipes/create_spritesheets()
+/datum/asset/spritesheet/pipes/register()
 	for(var/each in list('icons/obj/pipe-item.dmi', 'icons/obj/pipes/disposal.dmi'))
 		InsertAll("", each, global.alldirs)
+	..()
 
 //VOREStation Add
 /datum/asset/spritesheet/vore
 	name = "vore"
 
-/datum/asset/spritesheet/vore/create_spritesheets()
+/datum/asset/spritesheet/vore/register()
 	var/icon/downscaled = icon('icons/mob/screen_full_vore.dmi')
 	downscaled.Scale(240, 240)
 	InsertAll("", downscaled)
+	..()
 
 /datum/asset/spritesheet/vore_colorized //This should be getting loaded in the TGUI vore panel but the game refuses to do so, for some reason. It only loads the vore spritesheet.
 	name = "colorizedvore"
 
-/datum/asset/spritesheet/vore_colorized/create_spritesheets()
+/datum/asset/spritesheet/vore_colorized/register()
 	var/icon/downscaledVC = icon('icons/mob/screen_full_colorized_vore.dmi')
 	downscaledVC.Scale(240, 240)
 	InsertAll("", downscaledVC)
+	..()
 
 //VOREStation Add End
 
@@ -343,7 +346,7 @@
 /datum/asset/spritesheet/vending
 	name = "vending"
 
-/datum/asset/spritesheet/vending/create_spritesheets()
+/datum/asset/spritesheet/vending/register()
 	populate_vending_products()
 	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
@@ -381,6 +384,7 @@
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
+	return ..()
 
 // this is cursed but necessary or else vending product icons can be missing
 // basically, if there's any vending machines that aren't already mapped in, our register() will not know
@@ -438,10 +442,10 @@
 		assets["bottle-[i].png"] = icon('icons/obj/chemical.dmi', "bottle-[i]")
 
 	for(var/asset_name in assets)
-		SSassets.transport.register_asset(asset_name, assets[asset_name])
+		register_asset(asset_name, assets[asset_name])
 
 /datum/asset/chem_master/send(client)
-	SSassets.transport.send_assets(client, assets, verify)
+	send_asset_list(client, assets, verify)
 
 //Cloning pod sprites for UIs
 /datum/asset/cloning
@@ -453,10 +457,10 @@
 	assets["pod_cloning.gif"] = icon('icons/obj/cloning.dmi', "pod_cloning")
 	assets["pod_mess.gif"] = icon('icons/obj/cloning.dmi', "pod_mess")
 	for(var/asset_name in assets)
-		SSassets.transport.register_asset(asset_name, assets[asset_name])
+		register_asset(asset_name, assets[asset_name])
 
 /datum/asset/cloning/send(client)
-	SSassets.transport.send_assets(client, assets, verify)
+	send_asset_list(client, assets, verify)
 
 // VOREStation Add
 /datum/asset/cloning/resleeving
@@ -467,14 +471,15 @@
 	assets["synthprinter.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_0")
 	assets["synthprinter_working.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_1")
 	for(var/asset_name in assets)
-		SSassets.transport.register_asset(asset_name, assets[asset_name])
+		register_asset(asset_name, assets[asset_name])
 // VOREStation Add End
 
 /datum/asset/spritesheet/sheetmaterials
 	name = "sheetmaterials"
 
-/datum/asset/spritesheet/sheetmaterials/create_spritesheets()
+/datum/asset/spritesheet/sheetmaterials/register()
 	InsertAll("", 'icons/obj/stacks.dmi')
+	..()
 
 // Nanomaps
 /datum/asset/simple/nanomaps

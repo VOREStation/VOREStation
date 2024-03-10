@@ -110,7 +110,10 @@
 			))
 	else
 		window.send_message("ping")
-	send_assets()
+	window.send_asset(get_asset_datum(/datum/asset/simple/fontawesome))
+	window.send_asset(get_asset_datum(/datum/asset/simple/tgfont))
+	for(var/datum/asset/asset in src_object.ui_assets(user))
+		window.send_asset(asset)
 	window.send_message("update", get_payload(
 		with_data = TRUE,
 		with_static_data = TRUE))
@@ -119,17 +122,6 @@
 	SStgui.on_open(src)
 
 	return TRUE
-
-
-/datum/tgui/proc/send_assets()
-	var/flush_queue = window.send_asset(get_asset_datum(
-		/datum/asset/simple/namespaced/fontawesome))
-	flush_queue |= window.send_asset(get_asset_datum(
-		/datum/asset/simple/namespaced/tgfont))
-	for(var/datum/asset/asset in src_object.ui_assets(user))
-		flush_queue |= window.send_asset(asset)
-	if (flush_queue)
-		user.client.browse_queue_flush()
 
 /**
  * public

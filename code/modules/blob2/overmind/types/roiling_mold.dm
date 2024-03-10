@@ -28,7 +28,7 @@
 		return
 	var/mob/living/L = locate() in (view(world.view + 3, get_turf(B)) - view(2,get_turf(B)) - previous_targets)	// No adjacent mobs.
 
-	if(!(L in check_trajectory(L, B, PASSTABLE)))
+	if(!check_trajectory(L, B, PASSTABLE))
 		if(!LAZYLEN(previous_targets))
 			previous_targets = list()
 
@@ -53,12 +53,12 @@
 		if(istype(user) && user == L)
 			continue
 
-		if(!(L in check_trajectory(L, B, PASSTABLE)))	// Can't fire at things on the other side of walls / windows.
+		if(!check_trajectory(L, B, PASSTABLE))	// Can't fire at things on the other side of walls / windows.
 			continue
 
 		var/obj/item/projectile/P = new spore_projectile(get_turf(B))
 
-		user.visible_message("<span class='danger'>[icon2html(B,viewers(user))] \The [B] discharges energy toward \the [L]!</span>")
+		user.visible_message("<span class='danger'>\icon [B] \The [B] discharges energy toward \the [L]!</span>")
 		P.launch_projectile(L, BP_TORSO, user)
 
 	return

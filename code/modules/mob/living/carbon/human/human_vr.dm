@@ -7,6 +7,7 @@
 	img.override = TRUE
 	add_alt_appearance("animals", img, displayTo = alt_farmanimals)
 
+
 /mob/living/carbon/human/Destroy()
 	alt_farmanimals -= src
 
@@ -17,3 +18,4 @@
 
 /mob/living/carbon/human/get_digestion_efficiency_modifier()
 	return species.digestion_efficiency
+

@@ -87,21 +87,16 @@
 
 	if(parent && parent.children)
 		parent.children -= src
-		parent = null
 
 	if(children)
 		for(var/obj/item/organ/external/C in children)
-			children -= C
-			C.parent = null
 			qdel(C)
 
 	if(internal_organs)
 		for(var/obj/item/organ/O in internal_organs)
-			internal_organs -= O
 			qdel(O)
 
 	if(splinted && splinted.loc == src)
-		splinted.loc = null
 		qdel(splinted)
 	splinted = null
 

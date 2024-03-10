@@ -224,7 +224,9 @@
 			return
 		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow!</span>")
 		if(prob(5))
-			ai_holder.give_target(M, urgent = TRUE)
+			ai_holder.target = M
+			ai_holder.track_target_position()
+			ai_holder.set_stance(STANCE_FIGHT)
 	else
 		return ..()
 
@@ -451,7 +453,9 @@
 			return
 		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow, frantically pressing at the buttons [M] so carelessly pushed!</span>")
 		if(prob(5))
-			ai_holder.give_target(M, urgent = TRUE)
+			ai_holder.target = M
+			ai_holder.track_target_position()
+			ai_holder.set_stance(STANCE_FIGHT)
 	else
 		return ..()
 
@@ -551,7 +555,9 @@
 			return
 		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow!</span>")
 		if(prob(5))
-			ai_holder.give_target(M, urgent = TRUE)
+			ai_holder.target = M
+			ai_holder.track_target_position()
+			ai_holder.set_stance(STANCE_FIGHT)
 	else
 		return ..()
 

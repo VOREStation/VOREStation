@@ -1,5 +1,4 @@
 /datum/asset/simple/jquery
-	legacy = TRUE
 	assets = list(
-		"jquery.min.js" = 'html/jquery/jquery.min.js',
+		"jquery.min.js"            = 'code/modules/tooltip/jquery.min.js',
 	)

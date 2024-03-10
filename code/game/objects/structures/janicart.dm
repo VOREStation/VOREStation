@@ -119,9 +119,9 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	. = ..(user)
 	if(istype(mybucket))
 		var/contains = mybucket.reagents.total_volume
-		. += "[icon2html(src, user.client)] The bucket contains [contains] unit\s of liquid!"
+		. += "\icon[src][bicon(src)] The bucket contains [contains] unit\s of liquid!"
 	else
-		. += "[icon2html(src, user.client)] There is no bucket mounted on it!"
+		. += "\icon[src][bicon(src)] There is no bucket mounted on it!"
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)

@@ -98,7 +98,7 @@
 	pulse(0)
 	QDEL_LIST_NULL(i_beams) //They will get recreated next process() if the situation is still appropriate
 	if(!holder)
-		visible_message("[icon2html(src,viewers(src))] *beep* *beep*")
+		visible_message("\icon[src][bicon(src)] *beep* *beep*")
 
 /obj/item/device/assembly/infra/tgui_interact(mob/user, datum/tgui/ui)
 	if(!secured)

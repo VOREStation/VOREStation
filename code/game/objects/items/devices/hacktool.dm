@@ -71,12 +71,12 @@
 		to_chat(user, "<span class='warning'>You are already hacking!</span>")
 		return 0
 	if(!is_type_in_list(target, supported_types))
-		to_chat(user, "[icon2html(src, user.client)] <span class='warning'>Unable to hack this target, invalid target type.</span>")
+		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Unable to hack this target, invalid target type.</span>")
 		return 0
 
 	var/obj/machinery/door/airlock/D = target
 	if(D.security_level > max_level)
-		to_chat(user, "[icon2html(src, user.client)] <span class='warning'>Target's electronic security is too complex.</span>")
+		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Target's electronic security is too complex.</span>")
 		return 0
 
 	var/found = known_targets.Find(D)
