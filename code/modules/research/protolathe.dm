@@ -75,7 +75,7 @@
 		update_icon()
 	else
 		if(busy)
-			visible_message("<span class='notice'>\icon [src] flashes: insufficient materials: [getLackingMaterials(D)].</span>")
+			visible_message("<span class='notice'>[icon2html(src,viewers(src))] flashes: insufficient materials: [getLackingMaterials(D)].</span>")
 			busy = 0
 			update_icon()
 
@@ -270,7 +270,7 @@
 
 	// Reduce our amount stored
 	materials[matstring] -= ejected * S.perunit
-	
+
 	// Recurse if we have enough left for more sheets
 	if(recursive && materials[matstring] >= S.perunit)
 		eject_materials(matstring, -1)

@@ -78,8 +78,7 @@
 	if(stored_blob)
 		stored_blob.drop_l_hand()
 		stored_blob.drop_r_hand()
-		stored_blob = null
-		qdel(stored_blob)
+		QDEL_NULL(stored_blob)
 	return ..()
 
 /mob/living/simple_mob/slime/promethean/Stat()
