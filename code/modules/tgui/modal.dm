@@ -146,6 +146,13 @@ GLOBAL_LIST(tgui_modals)
 	var/datum/tgui_modal/input/bento/modal = new(id, text, delegate, arguments, value, choices)
 	return tgui_modal_new(source, modal)
 
+//Bento but spritesheet edition
+/datum/proc/tgui_modal_bento_spritesheet(datum/source = src, id, text = "Default modal message", delegate, arguments, value, choices)
+	ASSERT(length(id))
+
+	var/datum/tgui_modal/input/bento/spritesheet/modal = new(id, text, delegate, arguments, value, choices)
+	return tgui_modal_new(source, modal)
+
 /**
   * Opens a yes/no TGUI modal
   *
@@ -338,6 +345,10 @@ GLOBAL_LIST(tgui_modals)
 /datum/tgui_modal/input/bento/to_data()
 	. = ..()
 	.["choices"] = choices
+
+//Bento modal but takes spritesheet classes as choices
+/datum/tgui_modal/input/bento/spritesheet
+	modal_type = "bentospritesheet"
 
 /**
   * Boolean modal - has yes/no buttons that do different actions depending on which is pressed

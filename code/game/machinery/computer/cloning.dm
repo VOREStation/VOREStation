@@ -125,7 +125,7 @@
 
 /obj/machinery/computer/cloning/resleeving/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/cloning)
+		get_asset_datum(/datum/asset/simple/cloning)
 	)
 
 /obj/machinery/computer/cloning/tgui_interact(mob/user, datum/tgui/ui = null)

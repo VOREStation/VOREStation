@@ -343,14 +343,25 @@ const ChemMasterProductionChemical = (props) => {
           <div
             style={{
               display: 'inline-block',
-              width: '16px;',
+              width: '16px',
               height: '16px',
-              verticalAlign: 'middle;',
-              background: 'url(pill' + data.pillsprite + '.png)',
+              verticalAlign: 'middle',
               backgroundSize: '200%',
               backgroundPosition: 'left -10px bottom -6px',
             }}
-          />
+          >
+            <Box
+              className={classes([
+                'chem_master32x32',
+                'pill' + data.pillsprite,
+              ])}
+              style={{
+                bottom: '10px',
+                right: '10px',
+                position: 'relative',
+              }}
+            />
+          </div>
           Style
         </Button>
       </LabeledList.Item>
@@ -388,11 +399,22 @@ const ChemMasterProductionChemical = (props) => {
               width: '16px',
               height: '16px',
               verticalAlign: 'middle',
-              background: 'url(bottle-' + data.bottlesprite + '.png)',
               backgroundSize: '200%',
               backgroundPosition: 'left -10px bottom -6px',
             }}
-          />
+          >
+            <Box
+              className={classes([
+                'chem_master32x32',
+                'bottle-' + data.bottlesprite,
+              ])}
+              style={{
+                bottom: '10px',
+                right: '10px',
+                position: 'relative',
+              }}
+            />
+          </div>
           Style
         </Button>
       </LabeledList.Item>

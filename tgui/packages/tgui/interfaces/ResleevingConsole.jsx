@@ -1,5 +1,6 @@
 import { round } from 'common/math';
 
+import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
   Box,
@@ -355,7 +356,7 @@ const ResleevingConsolePodGrowers = (props) => {
           mr="0.5rem"
         >
           <img
-            src={'pod_' + pod.status + '.gif'}
+            src={resolveAsset('pod_' + pod.status + '.gif')}
             style={{
               width: '100%',
               '-ms-interpolation-mode': 'nearest-neighbor',
@@ -391,7 +392,9 @@ const ResleevingConsolePodSleevers = (props) => {
           mr="0.5rem"
         >
           <img
-            src={'sleeve_' + (pod.occupied ? 'occupied' : 'empty') + '.gif'}
+            src={resolveAsset(
+              'sleeve_' + (pod.occupied ? 'occupied' : 'empty') + '.gif',
+            )}
             style={{
               width: '100%',
               '-ms-interpolation-mode': 'nearest-neighbor',
@@ -471,7 +474,9 @@ const ResleevingConsolePodSpods = (props) => {
           mr="0.5rem"
         >
           <img
-            src={'synthprinter' + (pod.busy ? '_working' : '') + '.gif'}
+            src={resolveAsset(
+              'synthprinter' + (pod.busy ? '_working' : '') + '.gif',
+            )}
             style={{
               width: '100%',
               '-ms-interpolation-mode': 'nearest-neighbor',

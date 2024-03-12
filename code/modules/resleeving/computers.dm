@@ -123,8 +123,8 @@
 
 /obj/machinery/computer/transhuman/resleeving/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/cloning),
-		get_asset_datum(/datum/asset/cloning/resleeving),
+		get_asset_datum(/datum/asset/simple/cloning),
+		get_asset_datum(/datum/asset/simple/cloning/resleeving),
 	)
 
 /obj/machinery/computer/transhuman/resleeving/tgui_interact(mob/user, datum/tgui/ui = null)
@@ -139,7 +139,7 @@
 /obj/machinery/computer/transhuman/resleeving/tgui_data(mob/user)
 	var/data[0]
 	data["menu"] = menu
-	
+
 	var/list/temppods[0]
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
 		var/status = "idle"
@@ -184,7 +184,7 @@
 	data["selected_pod"] = "\ref[selected_pod]"
 	data["selected_printer"] = "\ref[selected_printer]"
 	data["selected_sleever"] = "\ref[selected_sleever]"
-	
+
 	var/bodyrecords_list_ui[0]
 	for(var/N in our_db.body_scans)
 		var/datum/transhuman/body_record/BR = our_db.body_scans[N]
