@@ -266,7 +266,7 @@
 	icon_sprite_tag = "deer"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
-	loaf_offset = 6
+	loaf_offset = 7
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -282,6 +282,17 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their hoof, forcing you down to the ground!"
+
+/datum/sprite_accessory/tail/taur/deer/fatdeer
+	name = "Fat Deer (Dual-color Taur)"
+	icon_state = "fatdeer_s"
+	extra_overlay = "fatdeer_markings"
+
+/datum/sprite_accessory/tail/taur/deer/deer_wag
+	name = "Deer vwag (Dual-color, Taur, Fat)"
+	icon_state = "deer_s"
+	ani_state = "fatdeer_s"
+	extra_overlay_w = "fatdeer_markings"
 
 /datum/sprite_accessory/tail/taur/lizard
 	name = "Lizard (Taur)"
