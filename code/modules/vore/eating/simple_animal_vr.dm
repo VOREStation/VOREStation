@@ -79,7 +79,7 @@
 				update_icon()
 				set_AI_busy(FALSE)
 			else if(!ai_holder.target) // no using this to clear a retaliate mob's target
-				ai_holder.target = user //just because you're not tasty doesn't mean you get off the hook. A swat for a swat.
+				ai_holder.give_target(user) //just because you're not tasty doesn't mean you get off the hook. A swat for a swat.
 				//AttackTarget() //VOREStation AI Temporary Removal
 				//LoseTarget() // only make one attempt at an attack rather than going into full rage mode
 		else

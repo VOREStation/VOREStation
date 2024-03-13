@@ -64,16 +64,16 @@ var
 	Class: operator
 	See <Binary Operators> and <Unary Operators> for subtypes.
 */
-/node/expression/operator
+/node/expression/op
 	var/node/expression/exp
 	var/tmp/name
 	var/tmp/precedence
 
-/node/expression/operator/New()
+/node/expression/op/New()
 	.=..()
 	if(!src.name) src.name="[src.type]"
 
-/node/expression/operator/ToString()
+/node/expression/op/ToString()
 	return "operator: [name]"
 
 /*

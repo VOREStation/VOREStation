@@ -55,7 +55,7 @@
 	var/obj/item/slime_extract/T = holder.my_atom
 	T.uses--
 	if(T.uses <= 0)
-		T.visible_message("\icon[T][bicon(T)]<b>\The [T]</b> goes inert.")
+		T.visible_message("[icon2html(T,viewers(T))]<b>\The [T]</b> goes inert.")
 		T.name = "inert [initial(T.name)]"
 
 
@@ -988,6 +988,3 @@
 /decl/chemical_reaction/instant/slime/rainbow_unity/on_reaction(var/datum/reagents/holder)
 	new /obj/item/slimepotion/unity(get_turf(holder.my_atom))
 	..()
-
-
-

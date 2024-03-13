@@ -5,7 +5,7 @@
 //
 //		Arguments that the called proc should expect:
 //			/area: The area experiencing the power change
-
+/*
 GLOBAL_DATUM_INIT(apc_event, /decl/observ/area_power_change, new)
 
 /decl/observ/area_power_change
@@ -15,7 +15,9 @@ GLOBAL_DATUM_INIT(apc_event, /decl/observ/area_power_change, new)
 /********************
 * Movement Handling *
 ********************/
+*/
+//Deprecated in favor of comsigs
 
 /area/power_change()
 	. = ..()
-	GLOB.apc_event.raise_event(src)
+	SEND_SIGNAL(src,COMSIG_OBSERVER_APC)

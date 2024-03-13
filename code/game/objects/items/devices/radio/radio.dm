@@ -496,7 +496,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 				distance = 99
 			else
 				distance = jamming["distance"]
-			to_chat(M, "<span class='danger'>\icon[src][bicon(src)] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
+			to_chat(M, "<span class='danger'>[icon2html(src, M.client)] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
 			return FALSE
 
 		// First, we want to generate a new radio signal

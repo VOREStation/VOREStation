@@ -1,8 +1,3 @@
-#if DM_VERSION >= 515
-#error PLEASE MAKE SURE THAT 515 IS PROPERLY TESTED AND WORKS. ESPECIALLY THE SAVE-FILES HAVE TO WORK.
-#error Additionally: Make sure that the GitHub Workflow was updated to BYOND 515 as well.
-#endif
-
 // These defines are from __513_compatibility.dm -- Please Sort
 #define CLAMP(CLVALUE, CLMIN, CLMAX) clamp(CLVALUE, CLMIN, CLMAX)
 #define TAN(x) tan(x)

@@ -25,8 +25,8 @@
 
 /obj/item/weapon/gun/energy/sizegun/New()
 	..()
-	verbs += PROC_REF(select_size)
-	verbs += PROC_REF(spin_dial)
+	verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
+	verbs += /obj/item/weapon/gun/energy/sizegun/proc/spin_dial
 
 /obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()

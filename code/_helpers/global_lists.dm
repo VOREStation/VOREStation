@@ -327,3 +327,32 @@ GLOBAL_LIST_EMPTY(mannequins)
 */
 //Hexidecimal numbers
 var/global/list/hexNums = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+
+// Many global vars aren't GLOB type. This puts them there to be more easily inspected.
+GLOBAL_LIST_EMPTY(legacy_globals)
+
+/proc/populate_legacy_globals()
+	//Note: these lists cannot be changed to a new list anywhere in code!
+	//If they are, these will cause the old list to stay around!
+	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
+	GLOB.legacy_globals["player_list"] = player_list
+	GLOB.legacy_globals["mob_list"] = mob_list
+	GLOB.legacy_globals["human_mob_list"] = human_mob_list
+	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
+	GLOB.legacy_globals["ai_list"] = ai_list
+	GLOB.legacy_globals["living_mob_list"] = living_mob_list
+	GLOB.legacy_globals["dead_mob_list"] = dead_mob_list
+	GLOB.legacy_globals["observer_mob_list"] = observer_mob_list
+	GLOB.legacy_globals["listening_objects"] = listening_objects
+	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
+	GLOB.legacy_globals["cable_list"] = cable_list
+	GLOB.legacy_globals["landmarks_list"] = landmarks_list
+	GLOB.legacy_globals["event_triggers"] = event_triggers
+	GLOB.legacy_globals["side_effects"] = side_effects
+	GLOB.legacy_globals["mechas_list"] = mechas_list
+	GLOB.legacy_globals["mannequins_"] = mannequins_
+	//visual nets
+	GLOB.legacy_globals["visual_nets"] = visual_nets
+	GLOB.legacy_globals["cameranet"] = cameranet
+	GLOB.legacy_globals["cultnet"] = cultnet
+	GLOB.legacy_globals["existing_solargrubs"] = existing_solargrubs

@@ -38,7 +38,8 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>You activate the P.A.T. module.</span>")
-	GLOB.moved_event.register(H, src, /obj/item/rig_module/pat_module/proc/boop)
+	H.AddComponent(/datum/component/recursive_move)
+	RegisterSignal(H, COMSIG_OBSERVER_MOVED, /obj/item/rig_module/pat_module/proc/boop)
 
 /obj/item/rig_module/pat_module/deactivate()
 	if(!..())
@@ -46,7 +47,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>Your disable the P.A.T. module.</span>")
-	GLOB.moved_event.unregister(H, src)
+	UnregisterSignal(H, COMSIG_OBSERVER_MOVED)
 
 /obj/item/rig_module/pat_module/proc/boop(var/mob/living/carbon/human/user,var/turf/To,var/turf/Tn)
 	if(!istype(user) || !istype(To) || !istype(Tn))

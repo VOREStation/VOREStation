@@ -86,7 +86,7 @@
 // Spawn a single fish at given location.
 /datum/event/spacefish_migration/proc/spawn_one_fish(var/loc)
 	var/mob/living/simple_mob/animal/M = new fish_type(loc)
-	GLOB.destroyed_event.register(M, src, PROC_REF(on_fish_destruction))
+	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_fish_destruction))
 	spawned_fish.Add(M)
 	return M
 
@@ -100,7 +100,7 @@
 // If fish is bomphed, remove it from the list.
 /datum/event/spacefish_migration/proc/on_fish_destruction(var/mob/M)
 	spawned_fish -= M
-	GLOB.destroyed_event.unregister(M, src, PROC_REF(on_fish_destruction))
+	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 
 /datum/event/spacefish_migration/end()
 	. = ..()

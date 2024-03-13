@@ -57,7 +57,7 @@
 			C.light_disabled = !C.light_disabled
 
 		if(WIRE_CAM_ALARM)
-			C.visible_message("\icon[C][bicon(C)] *beep*", "\icon[C][bicon(C)] *beep*")
+			C.visible_message("[icon2html(C,viewers(holder))] *beep*", "[icon2html(C,viewers(holder))] *beep*")
 	..()
 
 /datum/wires/camera/proc/CanDeconstruct()

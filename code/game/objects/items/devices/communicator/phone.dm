@@ -39,15 +39,15 @@
 	comm.voice_requests.Remove(src)
 
 	if(user)
-		comm.visible_message("<span class='notice'>\icon[src][bicon(src)] Connecting to [src].</span>")
-		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Attempting to call [comm].</span>")
+		comm.visible_message("<span class='notice'>[icon2html(src,viewers(src))] Connecting to [src].</span>")
+		to_chat(user, "<span class='notice'>[icon2html(src,user.client)] Attempting to call [comm].</span>")
 		sleep(10)
-		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Dialing internally from [station_name()], [system_name()].</span>")
+		to_chat(user, "<span class='notice'>[icon2html(src,user.client)] Dialing internally from [station_name()], [system_name()].</span>")
 		sleep(20) //If they don't have an exonet something is very wrong and we want a runtime.
-		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Connection re-routed to [comm] at [comm.exonet.address].</span>")
+		to_chat(user, "<span class='notice'>[icon2html(src,user.client)] Connection re-routed to [comm] at [comm.exonet.address].</span>")
 		sleep(40)
-		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Connection to [comm] at [comm.exonet.address] established.</span>")
-		comm.visible_message("<span class='notice'>\icon[src][bicon(src)] Connection to [src] at [exonet.address] established.</span>")
+		to_chat(user, "<span class='notice'>[icon2html(src,user.client)] Connection to [comm] at [comm.exonet.address] established.</span>")
+		comm.visible_message("<span class='notice'>[icon2html(src,viewers(src))] Connection to [src] at [exonet.address] established.</span>")
 		sleep(20)
 
 	src.add_communicating(comm)
@@ -86,28 +86,28 @@
 
 	//Now for some connection fluff.
 	if(user)
-		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Connecting to [candidate].</span>")
-	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Attempting to call [src].</span>")
+		to_chat(user, "<span class='notice'>[icon2html(src,user.client)] Connecting to [candidate].</span>")
+	to_chat(new_voice, "<span class='notice'>[icon2html(src,new_voice.client)] Attempting to call [src].</span>")
 	sleep(10)
-	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Dialing to [station_name()], Kara Subsystem, [system_name()].</span>")
+	to_chat(new_voice, "<span class='notice'>[icon2html(src,new_voice.client)] Dialing to [station_name()], Kara Subsystem, [system_name()].</span>")
 	sleep(20)
-	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Connecting to [station_name()] telecommunications array.</span>")
+	to_chat(new_voice, "<span class='notice'>[icon2html(src,new_voice.client)] Connecting to [station_name()] telecommunications array.</span>")
 	sleep(40)
-	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Connection to [station_name()] telecommunications array established.  Redirecting signal to [src].</span>")
+	to_chat(new_voice, "<span class='notice'>[icon2html(src,new_voice.client)] Connection to [station_name()] telecommunications array established.  Redirecting signal to [src].</span>")
 	sleep(20)
 
 	//We're connected, no need to hide everything.
 	new_voice.client.screen.Remove(blackness)
 	qdel(blackness)
 
-	to_chat(new_voice, "<span class='notice'>\icon[src][bicon(src)] Connection to [src] established.</span>")
+	to_chat(new_voice, "<span class='notice'>[icon2html(src,new_voice.client)] Connection to [src] established.</span>")
 	to_chat(new_voice, "<b>To talk to the person on the other end of the call, just talk normally.</b>")
 	to_chat(new_voice, "<b>If you want to end the call, use the 'Hang Up' verb.  The other person can also hang up at any time.</b>")
 	to_chat(new_voice, "<b>Remember, your character does not know anything you've learned from observing!</b>")
 	if(new_voice.mind)
 		new_voice.mind.assigned_role = "Disembodied Voice"
 	if(user)
-		to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Your communicator is now connected to [candidate]'s communicator.</span>")
+		to_chat(user, "<span class='notice'>[icon2html(src,new_voice.client)] Your communicator is now connected to [candidate]'s communicator.</span>")
 
 // Proc: close_connection()
 // Parameters: 3 (user - the user who initiated the disconnect, target - the mob or device being disconnected, reason - string shown when disconnected)
@@ -120,8 +120,8 @@
 	for(var/mob/living/voice/voice in voice_mobs) //Handle ghost-callers
 		if(target && voice != target) //If no target is inputted, it deletes all of them.
 			continue
-		to_chat(voice, "<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
-		visible_message("<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
+		to_chat(voice, "<span class='danger'>[icon2html(src,voice.client)] [reason].</span>")
+		visible_message("<span class='danger'>[icon2html(src,viewers(src))] [reason].</span>")
 		voice_mobs.Remove(voice)
 		qdel(voice)
 		update_icon()
@@ -131,8 +131,8 @@
 			continue
 		src.del_communicating(comm)
 		comm.del_communicating(src)
-		comm.visible_message("<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
-		visible_message("<span class='danger'>\icon[src][bicon(src)] [reason].</span>")
+		comm.visible_message("<span class='danger'>[icon2html(src,viewers(src))] [reason].</span>")
+		visible_message("<span class='danger'>[icon2html(src,viewers(src))] [reason].</span>")
 		if(comm.camera && video_source == comm.camera) //We hung up on the person on video
 			end_video()
 		if(camera && comm.video_source == camera) //We hung up on them while they were watching us
@@ -163,7 +163,7 @@
 	if(ringer)
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
-			O.show_message(text("\icon[src][bicon(src)] *beep*"))
+			O.show_message(text("[icon2html(src,O.client)] *beep*"))
 
 	alert_called = 1
 	update_icon()
@@ -174,7 +174,7 @@
 		L = loc
 
 	if(L)
-		to_chat(L, "<span class='notice'>\icon[src][bicon(src)] Communications request from [who].</span>")
+		to_chat(L, "<span class='notice'>[icon2html(src,L.client)] Communications request from [who].</span>")
 
 // Proc: del_request()
 // Parameters: 1 (candidate - the ghost or communicator to be declined)
@@ -197,13 +197,13 @@
 		us = loc
 
 	if(us)
-		to_chat(us, "<span class='notice'>\icon[src][bicon(src)] Declined request.</span>")
+		to_chat(us, "<span class='notice'>[icon2html(src,us.client)] Declined request.</span>")
 
 // Proc: see_emote()
 // Parameters: 2 (M - the mob the emote originated from, text - the emote's contents)
 // Description: Relays the emote to all linked communicators.
 /obj/item/device/communicator/see_emote(mob/living/M, text)
-	var/rendered = "\icon[src][bicon(src)] <span class='message'>[text]</span>"
+
 	for(var/obj/item/device/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
@@ -216,7 +216,7 @@
 			var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
 			mobs_to_relay = in_range["mobs"]
 		//VOREStation Edit End
-
+		var/rendered = "[icon2html(src,mobs_to_relay)] <span class='message'>[text]</span>"
 		for(var/mob/mob in mobs_to_relay) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
 			var/dst = get_dist(get_turf(mob),get_turf(comm))
 			if(dst <= video_range)
@@ -250,20 +250,20 @@
 			var/message = combined["formatted"]
 			var/name_used = M.GetVoice()
 			var/rendered = null
-			rendered = "<span class='game say'>\icon[src][bicon(src)] <span class='name'>[name_used]</span> [message]</span>"
+			rendered = "<span class='game say'>[icon2html(src,mobs_to_relay)] <span class='name'>[name_used]</span> [message]</span>"
 			mob.show_message(rendered, 2)
 
 // Proc: show_message()
 // Parameters: 4 (msg - the message, type - number to determine if message is visible or audible, alt - unknown, alt_type - unknown)
 // Description: Relays the message to all linked communicators.
 /obj/item/device/communicator/show_message(msg, type, alt, alt_type)
-	var/rendered = "\icon[src][bicon(src)] <span class='message'>[msg]</span>"
+
 	for(var/obj/item/device/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
 		var/list/mobs_to_relay = in_range["mobs"]
-
+		var/rendered = "[icon2html(src, mobs_to_relay)] <span class='message'>[msg]</span>"
 		for(var/mob/mob in mobs_to_relay)
 			mob.show_message(rendered)
 	..()
@@ -339,28 +339,29 @@
 		return
 
 	if(!(src in comm.communicating) || !comm.camera) //You called someone with a broken communicator or one that's fake or yourself or something
-		to_chat(user, "<span class='danger'>\icon[src][bicon(src)]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>")
+		to_chat(user, "<span class='danger'>[icon2html(src, user.client)]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>")
 		return
 
-	to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Attempting to start video over existing call.</span>")
+	to_chat(user, "<span class='notice'>[icon2html(src, user.client)] Attempting to start video over existing call.</span>")
 	sleep(30)
-	to_chat(user, "<span class='notice'>\icon[src][bicon(src)] Please wait...</span>")
+	to_chat(user, "<span class='notice'>[icon2html(src, user.client)] Please wait...</span>")
 
 	video_source = comm.camera
-	comm.visible_message("<span class='danger'>\icon[src][bicon(src)] New video connection from [comm].</span>")
+	comm.visible_message("<span class='danger'>[icon2html(src,viewers(src))] New video connection from [comm].</span>")
 	update_active_camera_screen()
-	GLOB.moved_event.register(video_source, src, PROC_REF(update_active_camera_screen))
+	RegisterSignal(video_source, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
+	video_source.AddComponent(/datum/component/recursive_move)
 	update_icon()
 
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
 /obj/item/device/communicator/proc/end_video(var/reason)
-	GLOB.moved_event.unregister(video_source, src, PROC_REF(update_active_camera_screen))
+	UnregisterSignal(video_source, COMSIG_OBSERVER_MOVED)
 	show_static()
 	video_source = null
 
-	. = "<span class='danger'>\icon[src][bicon(src)] [reason ? reason : "Video session ended"].</span>"
+	. = "<span class='danger'>[bicon(src)] [reason ? reason : "Video session ended"].</span>"
 
 	visible_message(.)
 	update_icon()

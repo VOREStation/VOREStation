@@ -291,7 +291,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	return FALSE
 
 GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
-/proc/bicon(var/obj, var/use_class = 1, var/custom_classes = "")
+/proc/icon2html(var/obj, var/use_class = 1, var/custom_classes = "")
 	var/class = use_class ? "class='icon misc [custom_classes]'" : null
 	if(!obj)
 		return

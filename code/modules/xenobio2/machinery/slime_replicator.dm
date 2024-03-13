@@ -57,7 +57,7 @@
 
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
-		src.visible_message("\icon[src][bicon(src)] [src] pings unhappily.")
+		src.visible_message("[icon2html(src,viewers(src))] [src] pings unhappily.")
 	else if(inuse)
 		return
 
@@ -140,4 +140,3 @@
 							/obj/item/weapon/stock_parts/matter_bin = 1,
 							/obj/item/weapon/stock_parts/micro_laser = 1
 							)
-

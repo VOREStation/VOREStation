@@ -94,7 +94,7 @@
 							break
 
 				if(!beamtarget_exists && GetAnomalySusceptibility(L) >= 0.5)
-					carrier.visible_message("<span class='danger'>\icon [B] \The [B] lashes out at \the [L]!</span>")
+					carrier.visible_message("<span class='danger'>[icon2html(B,viewers(carrier))] \The [B] lashes out at \the [L]!</span>")
 					var/datum/beam/drain_beam = carrier.Beam(L, icon_state = "drain_life", time = 10 SECONDS)
 					active_beams |= drain_beam
 					spawn(9 SECONDS)

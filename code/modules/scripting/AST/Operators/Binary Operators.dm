@@ -7,7 +7,7 @@
 	Class: binary
 	Represents a binary operator in the AST. A binary operator takes two operands (ie x and y) and returns a value.
 */
-/node/expression/operator/binary
+/node/expression/op/binary
 	var/node/expression/exp2
 
 ////////// Comparison Operators //////////
@@ -16,7 +16,7 @@
 	Returns true if x = y.
 */
 //
-/node/expression/operator/binary/Equal
+/node/expression/op/binary/Equal
 	precedence=OOP_EQUAL
 
 /*
@@ -24,7 +24,7 @@
 	Returns true if x and y aren't equal.
 */
 //
-/node/expression/operator/binary/NotEqual
+/node/expression/op/binary/NotEqual
 	precedence=OOP_EQUAL
 
 /*
@@ -32,7 +32,7 @@
 	Returns true if x > y.
 */
 //
-/node/expression/operator/binary/Greater
+/node/expression/op/binary/Greater
 	precedence=OOP_COMPARE
 
 /*
@@ -40,7 +40,7 @@
 	Returns true if x < y.
 */
 //
-/node/expression/operator/binary/Less
+/node/expression/op/binary/Less
 	precedence=OOP_COMPARE
 
 /*
@@ -48,7 +48,7 @@
 	Returns true if x >= y.
 */
 //
-/node/expression/operator/binary/GreaterOrEqual
+/node/expression/op/binary/GreaterOrEqual
 	precedence=OOP_COMPARE
 
 /*
@@ -56,7 +56,7 @@
 	Returns true if x <= y.
 */
 //
-/node/expression/operator/binary/LessOrEqual
+/node/expression/op/binary/LessOrEqual
 	precedence=OOP_COMPARE
 
 
@@ -67,7 +67,7 @@
 	Returns true if x and y are true.
 */
 //
-/node/expression/operator/binary/LogicalAnd
+/node/expression/op/binary/LogicalAnd
 	precedence=OOP_AND
 
 /*
@@ -75,7 +75,7 @@
 	Returns true if x, y, or both are true.
 */
 //
-/node/expression/operator/binary/LogicalOr
+/node/expression/op/binary/LogicalOr
 	precedence=OOP_OR
 
 /*
@@ -83,7 +83,7 @@
 	Returns true if either x or y but not both are true.
 */
 //
-/node/expression/operator/binary/LogicalXor					//Not implemented in nS
+/node/expression/op/binary/LogicalXor					//Not implemented in nS
 	precedence=OOP_OR
 
 
@@ -97,7 +97,7 @@
 	011 & 110 = 010
 */
 //
-/node/expression/operator/binary/BitwiseAnd
+/node/expression/op/binary/BitwiseAnd
 	precedence=OOP_BIT
 
 /*
@@ -108,7 +108,7 @@
 	011 | 110 = 111
 */
 //
-/node/expression/operator/binary/BitwiseOr
+/node/expression/op/binary/BitwiseOr
 	precedence=OOP_BIT
 
 /*
@@ -119,7 +119,7 @@
 	011 xor 110 = 101
 */
 //
-/node/expression/operator/binary/BitwiseXor
+/node/expression/op/binary/BitwiseXor
 	precedence=OOP_BIT
 
 
@@ -130,7 +130,7 @@
 	Returns the sum of x and y.
 */
 //
-/node/expression/operator/binary/Add
+/node/expression/op/binary/Add
 	precedence=OOP_ADD
 
 /*
@@ -138,7 +138,7 @@
 	Returns the difference of x and y.
 */
 //
-/node/expression/operator/binary/Subtract
+/node/expression/op/binary/Subtract
 	precedence=OOP_ADD
 
 /*
@@ -146,7 +146,7 @@
 	Returns the product of x and y.
 */
 //
-/node/expression/operator/binary/Multiply
+/node/expression/op/binary/Multiply
 	precedence=OOP_MULTIPLY
 
 /*
@@ -154,7 +154,7 @@
 	Returns the quotient of x and y.
 */
 //
-/node/expression/operator/binary/Divide
+/node/expression/op/binary/Divide
 	precedence=OOP_MULTIPLY
 
 /*
@@ -162,7 +162,7 @@
 	Returns x raised to the power of y.
 */
 //
-/node/expression/operator/binary/Power
+/node/expression/op/binary/Power
 	precedence=OOP_POW
 
 /*
@@ -170,5 +170,5 @@
 	Returns the remainder of x / y.
 */
 //
-/node/expression/operator/binary/Modulo
+/node/expression/op/binary/Modulo
 	precedence=OOP_MULTIPLY

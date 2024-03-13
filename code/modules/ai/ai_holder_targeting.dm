@@ -82,6 +82,8 @@
 
 	target = new_target
 
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_target))
+
 	if(target != null)
 		lose_target_time = 0
 		track_target_position()
@@ -189,6 +191,7 @@
 	ai_log("lose_target() : Entering.", AI_LOG_TRACE)
 	if(target)
 		ai_log("lose_target() : Had a target, setting to null and LTT.", AI_LOG_DEBUG)
+		UnregisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_target))
 		target = null
 		lose_target_time = world.time
 
@@ -204,6 +207,7 @@
 /datum/ai_holder/proc/remove_target()
 	ai_log("remove_target() : Entering.", AI_LOG_TRACE)
 	if(target)
+		UnregisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(remove_target))
 		target = null
 
 	lose_target_time = 0

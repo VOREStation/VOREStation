@@ -119,7 +119,7 @@
 		var/list/seen = viewers(4, T)
 		for(var/mob/M in seen)
 			if(M.client)
-				M.show_message("<span class='notice'>\icon[container][bicon(container)] [mix_message]</span>", 1)
+				M.show_message("<span class='notice'>[icon2html(container,M.client)] [mix_message]</span>", 1)
 		playsound(T, reaction_sound, 80, 1)
 
 //obtains any special data that will be provided to the reaction products

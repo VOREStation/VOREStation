@@ -30,7 +30,7 @@
 	Proc: Precedence
 	Compares two operators, decides which is higher in the order of operations, and returns <SHIFT> or <REDUCE>.
 */
-/n_Parser/nS_Parser/proc/Precedence(node/expression/operator/top, node/expression/operator/input)
+/n_Parser/nS_Parser/proc/Precedence(node/expression/op/top, node/expression/op/input)
 	if(istype(top))
 		top=top.precedence
 	if(istype(input))
@@ -88,7 +88,7 @@ See Also:
 - <GetBinaryOperator()>
 - <GetUnaryOperator()>
 */
-/n_Parser/nS_Parser/proc/GetOperator(O, type=/node/expression/operator, L[])
+/n_Parser/nS_Parser/proc/GetOperator(O, type=/node/expression/op, L[])
 	if(istype(O, type)) return O		//O is already the desired type
 	if(istype(O, /token)) O=O:value //sets O to text
 	if(istext(O))										//sets O to path
@@ -108,7 +108,7 @@ See Also:
 - <GetUnaryOperator()>
 */
 /n_Parser/nS_Parser/proc/GetBinaryOperator(O)
-	return GetOperator(O, /node/expression/operator/binary, options.binary_operators)
+	return GetOperator(O, /node/expression/op/binary, options.binary_operators)
 
 /*
 Proc: GetUnaryOperator
@@ -120,7 +120,7 @@ See Also:
 - <GetBinaryOperator()>
 */
 /n_Parser/nS_Parser/proc/GetUnaryOperator(O)
-	return GetOperator(O, /node/expression/operator/unary,  options.unary_operators)
+	return GetOperator(O, /node/expression/op/unary,  options.unary_operators)
 
 /*
 Proc: Reduce
@@ -128,15 +128,15 @@ Takes the operator on top of the opr stack and assigns its operand(s). Then this
 of the val stack.
 */
 /n_Parser/nS_Parser/proc/Reduce(stack/opr, stack/val)
-	var/node/expression/operator/O=opr.Pop()
+	var/node/expression/op/O=opr.Pop()
 	if(!O) return
 	if(!istype(O))
 		errors+=new/scriptError("Error reducing expression - invalid operator.")
 		return
 	//Take O and assign its operands, popping one or two values from the val stack
 	//depending on whether O is a binary or unary operator.
-	if(istype(O, /node/expression/operator/binary))
-		var/node/expression/operator/binary/B=O
+	if(istype(O, /node/expression/op/binary))
+		var/node/expression/op/binary/B=O
 		B.exp2=val.Pop()
 		B.exp =val.Pop()
 		val.Push(B)
@@ -203,7 +203,7 @@ See Also:
 				continue
 			val.Push(ParseParenExpression())
 		else if(istype(curToken, /token/symbol))												//Operator found.
-			var/node/expression/operator/curOperator											//Figure out whether it is unary or binary and get a new instance.
+			var/node/expression/op/curOperator											//Figure out whether it is unary or binary and get a new instance.
 			if(src.expecting==OPERATOR)
 				curOperator=GetBinaryOperator(curToken)
 				if(!curOperator)
@@ -297,7 +297,7 @@ See Also:
 /n_Parser/nS_Parser/proc/ParseParenExpression()
 	if(!CheckToken("(", /token/symbol))
 		return
-	return new/node/expression/operator/unary/group(ParseExpression(list(")")))
+	return new/node/expression/op/unary/group(ParseExpression(list(")")))
 
 /*
 Proc: ParseParamExpression

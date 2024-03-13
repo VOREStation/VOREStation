@@ -163,7 +163,7 @@
 			removeFromQueue(1)
 		update_icon()
 	else if(busy)
-		visible_message("<span class='notice'>\icon [src] flashes: insufficient materials: [getLackingMaterials(D)].</span>")
+		visible_message("<span class='notice'>[icon2html(src,viewers(src))] flashes: insufficient materials: [getLackingMaterials(D)].</span>")
 		busy = 0
 		update_use_power(USE_POWER_IDLE)
 		update_icon()
@@ -279,7 +279,7 @@
 		var/datum/category_item/partslathe/current = queue[1]
 		data["building"] = current.name
 		data["buildPercent"] = (progress / current.time * 100)
-	
+
 	data["error"] = null
 	if(queue.len > 0 && !canBuild(queue[1]))
 		data["error"] = getLackingMaterials(queue[1])

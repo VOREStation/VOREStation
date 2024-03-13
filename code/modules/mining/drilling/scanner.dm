@@ -51,7 +51,7 @@
 
 			if(ore_type) metals[ore_type] += T.resources[metal]
 
-	var/message = "\icon[src][bicon(src)] <span class='notice'>The scanner beeps and displays a readout.</span>"
+	var/message = "[icon2html(src, user.client)] <span class='notice'>The scanner beeps and displays a readout.</span>"
 
 	for(var/ore_type in metals)
 		var/result = "no sign"

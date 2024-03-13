@@ -54,7 +54,7 @@
 		var/list/options = list("[holder_atom] seems to be listening intently to [source]...",\
 			"[holder_atom] seems to be focusing on [source]...",\
 			"[holder_atom] seems to turn it's attention to [source]...")
-		holder_atom.loc.visible_message(span_blue("\icon[holder_atom][bicon(holder_atom)] [pick(options)]"))
+		holder_atom.loc.visible_message(span_blue("[icon2html(holder_atom,viewers(holder_atom.loc))] [pick(options)]"))
 
 	if(prob(20))
 		spawn(2)
@@ -111,5 +111,5 @@
 	var/list/listening = viewers(holder_atom)
 
 	for(var/mob/M in listening)
-		to_chat(M, "\icon[holder_atom][bicon(holder_atom)] <b>[holder_atom]</b> reverberates, \"[span_blue(msg)]\"")
+		to_chat(M, "[icon2html(holder_atom,M.client)] <b>[holder_atom]</b> reverberates, \"[span_blue(msg)]\"")
 	last_talk_time = world.time

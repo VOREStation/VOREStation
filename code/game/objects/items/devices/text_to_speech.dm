@@ -24,7 +24,7 @@
 
 	var/message = sanitize(tgui_input_text(user,"Choose a message to relay to those around you."))
 	if(message)
-		audible_message("\icon[src][bicon(src)] \The [src.name] states, \"[message]\"", runemessage = "synthesized speech")
+		audible_message("[icon2html(src, user.client)] \The [src.name] states, \"[message]\"", runemessage = "synthesized speech")
 		if(ismob(loc))
 			loc.runechat_message("\[TTS Voice\] [message]")
 
