@@ -52,8 +52,8 @@ class PaintCanvas extends Component {
     const y_size = this.props.value[0].length;
     const x_scale = this.canvasRef.current.width / x_size;
     const y_scale = this.canvasRef.current.height / y_size;
-    const x = Math.floor(event.offsetX / x_scale) + 1;
-    const y = Math.floor(event.offsetY / y_scale) + 1;
+    const x = Math.floor(event.nativeEvent.offsetX / x_scale) + 1;
+    const y = Math.floor(event.nativeEvent.offsetY / y_scale) + 1;
     this.onCVClick(x, y);
   }
 
