@@ -160,7 +160,6 @@ export const chatMiddleware = (store) => {
       settings.visibleMessageLimit,
       settings.combineMessageLimit,
       settings.combineIntervalLimit,
-      settings.logLineCount,
       settings.logEnable,
       settings.logLimit,
       settings.storedTypes,
@@ -266,6 +265,10 @@ export const chatMiddleware = (store) => {
       // Save chat as soon as possible
       saveChatToStorage(store);
       return next(action);
+    }
+    if (type === 'saveToDiskCommand') {
+      chatRenderer.saveToDisk(settings.logLineCount);
+      return;
     }
     if (type === saveChatToDisk.type) {
       chatRenderer.saveToDisk(
