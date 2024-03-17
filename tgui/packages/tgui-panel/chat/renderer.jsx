@@ -152,7 +152,6 @@ class ChatRenderer {
     this.visibleMessageLimit = 2500;
     this.combineMessageLimit = 5;
     this.combineIntervalLimit = 5;
-    this.exportLimit = 0;
     this.logLimit = 0;
     this.logEnable = true;
     this.roundId = null;
@@ -373,7 +372,6 @@ class ChatRenderer {
     visibleMessageLimit,
     combineMessageLimit,
     combineIntervalLimit,
-    exportLimit,
     logEnable,
     logLimit,
     storedTypes,
@@ -384,7 +382,6 @@ class ChatRenderer {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
     this.combineIntervalLimit = combineIntervalLimit;
-    this.exportLimit = exportLimit;
     this.logEnable = logEnable;
     this.logLimit = logLimit;
     this.storedTypes = storedTypes;
@@ -497,15 +494,6 @@ class ChatRenderer {
             : message.html;
         } else {
           logger.error('Error: message is missing text payload', message);
-        }
-        // Get our commands we might want to send to chat
-        const commands = node.querySelectorAll('[data-command]');
-        if (commands.length) {
-          const command = commands[0].getAttribute('data-command');
-          if (command === '$do_export') {
-            this.saveToDisk(this.exportLimit);
-          }
-          return; // We do not want those logged or shown!
         }
         // Get all nodes in this message that want to be rendered like jsx
         const nodes = node.querySelectorAll('[data-component]');

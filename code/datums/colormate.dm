@@ -1,10 +1,5 @@
-/obj/machinery/gear_painter
-	name = "Color Mate"
-	desc = "A machine to give your apparel a fresh new color!"
-	icon = 'icons/obj/vending_vr.dmi'
-	icon_state = "colormate"
-	density = TRUE
-	anchored = TRUE
+/datum/ColorMate
+	var/name = "colouring"
 	var/atom/movable/inserted
 	var/activecolor = "#FFFFFF"
 	var/list/color_matrix_last
@@ -14,8 +9,6 @@
 	var/build_sat = 1
 	var/build_val = 1
 
-	/// Allow holder'd mobs
-	var/allow_mobs = TRUE
 	/// Minimum lightness for normal mode
 	var/minimum_normal_lightness = 50
 	/// Minimum lightness for matrix mode, tested using 4 test colors of full red, green, blue, white.
@@ -25,111 +18,32 @@
 	/// Temporary messages
 	var/temp
 
-	var/list/allowed_types = list(
-		/obj/item/clothing,
-		/obj/item/weapon/storage/backpack,
-		/obj/item/weapon/storage/belt,
-		/obj/item/toy
-	)
-
-/obj/machinery/gear_painter/Initialize(mapload)
-	. = ..()
+/datum/ColorMate/New(mob/user)
 	color_matrix_last = list(
 		1, 0, 0,
 		0, 1, 0,
 		0, 0, 1,
 		0, 0, 0,
 	)
-
-/obj/machinery/gear_painter/update_icon()
-	if(panel_open)
-		icon_state = "colormate_open"
-	else if(inoperable())
-		icon_state = "colormate_off"
-	else if(inserted)
-		icon_state = "colormate_active"
-	else
-		icon_state = "colormate"
-
-/obj/machinery/gear_painter/Destroy()
-	if(inserted) //please i beg you do not drop nulls
-		inserted.forceMove(drop_location())
-	return ..()
-
-/obj/machinery/gear_painter/attackby(obj/item/I, mob/living/user)
-	if(inserted)
-		to_chat(user, SPAN_WARNING("The machine is already loaded."))
-		return
-	if(default_deconstruction_screwdriver(user, I))
-		return
-	if(default_deconstruction_crowbar(user, I))
-		return
-	if(default_unfasten_wrench(user, I, 40))
-		return
-
-	if(is_type_in_list(I, allowed_types) && !inoperable())
-		user.visible_message("<span class='notice'>[user] inserts \the [I] into the Color Mate receptable.</span>")
-		user.drop_from_inventory(I)
-		I.forceMove(src)
-		inserted = I
-		SStgui.update_uis(src)
-
-	else
-		return ..()
-
-/obj/machinery/gear_painter/attack_hand(mob/user)
-	if(..())
-		return
-	tgui_interact(user)
-
-/obj/machinery/gear_painter/tgui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "ColorMate", name)
-		ui.open()
-
-/obj/machinery/gear_painter/proc/insert_mob(mob/victim, mob/user)
-	if(inserted)
-		return
-	if(user)
-		visible_message(SPAN_WARNING("[user] stuffs [victim] into [src]!"))
-	inserted = victim
-	inserted.forceMove(src)
-
-/obj/machinery/gear_painter/AllowDrop()
-	return FALSE
-
-// /obj/machinery/gear_painter/handle_atom_del(atom/movable/AM)
-// 	if(AM == inserted)
-// 		inserted = null
-// 	return ..()
-
-/obj/machinery/gear_painter/AltClick(mob/user)
-	. = ..()
-	drop_item()
-
-/obj/machinery/gear_painter/proc/drop_item()
-	if(!oview(1,src))
-		return
-	if(!inserted)
-		return
-	to_chat(usr, SPAN_NOTICE("You remove [inserted] from [src]"))
-	inserted.forceMove(drop_location())
-	var/mob/living/user = usr
 	if(istype(user))
-		user.put_in_hands(inserted)
-	inserted = null
-	update_icon()
-	SStgui.update_uis(src)
+		inserted = user
+	. = ..()
 
-/obj/machinery/gear_painter/tgui_interact(mob/user, datum/tgui/ui)
+/datum/ColorMate/Destroy()
+	inserted = null
+	. = ..()
+
+/datum/ColorMate/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ColorMate", src.name)
 		ui.set_autoupdate(FALSE) //This might be a bit intensive, better to not update it every few ticks
 		ui.open()
 
-/obj/machinery/gear_painter/tgui_data(mob/user)
+/datum/ColorMate/tgui_state(mob/user)
+	return GLOB.tgui_conscious_state
+
+/datum/ColorMate/tgui_data()
 	. = list()
 	.["activemode"] = active_mode
 	.["matrixcolors"] = list(
@@ -159,7 +73,7 @@
 	else
 		.["item"] = null
 
-/obj/machinery/gear_painter/tgui_act(action, params)
+/datum/ColorMate/tgui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -169,18 +83,23 @@
 				active_mode = text2num(params["mode"])
 				return TRUE
 			if("choose_color")
-				var/chosen_color = input(usr, "Choose a color: ", "ColorMate colour picking", activecolor) as color|null
+				var/chosen_color = input(inserted, "Choose a color: ", "ColorMate colour picking", activecolor) as color|null
 				if(chosen_color)
 					activecolor = chosen_color
 				return TRUE
 			if("paint")
-				do_paint(usr)
+				do_paint(inserted)
 				temp = "Painted Successfully!"
-				return TRUE
+				if(istype(inserted, /mob/living/simple_mob))
+					var/mob/living/simple_mob/M = inserted
+					M.has_recoloured = TRUE
+				if(istype(inserted, /mob/living/silicon/robot))
+					var/mob/living/silicon/robot/R = inserted
+					R.has_recoloured = TRUE
+				Destroy()
 			if("drop")
 				temp = ""
-				drop_item()
-				return TRUE
+				Destroy()
 			if("clear")
 				inserted.remove_atom_colour(FIXED_COLOUR_PRIORITY)
 				playsound(src, 'sound/effects/spray3.ogg', 50, 1)
@@ -199,8 +118,7 @@
 				build_val = clamp(text2num(params["buildval"]), -10, 10)
 				return TRUE
 
-
-/obj/machinery/gear_painter/proc/do_paint(mob/user)
+/datum/ColorMate/proc/do_paint(mob/user)
 	var/color_to_use
 	switch(active_mode)
 		if(COLORMATE_TINT)
@@ -230,9 +148,8 @@
 	playsound(src, 'sound/effects/spray3.ogg', 50, 1)
 	return TRUE
 
-
 /// Produces the preview image of the item, used in the UI, the way the color is not stacking is a sin.
-/obj/machinery/gear_painter/proc/build_preview()
+/datum/ColorMate/proc/build_preview()
 	if(inserted) //sanity
 		var/list/cm
 		switch(active_mode)
@@ -273,7 +190,7 @@
 
 		. = preview
 
-/obj/machinery/gear_painter/proc/check_valid_color(list/cm, mob/user)
+/datum/ColorMate/proc/check_valid_color(list/cm, mob/user)
 	if(!islist(cm))		// normal
 		var/list/HSV = ReadHSV(RGBtoHSV(cm))
 		if(HSV[3] < minimum_normal_lightness)
