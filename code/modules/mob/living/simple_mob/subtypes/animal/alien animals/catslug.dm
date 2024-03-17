@@ -1025,6 +1025,41 @@
 /datum/say_list/catslug/custom/cryptslug
 	speak = list("I have a lot of nasty friends.", "Do not test me.", "I shall rise again!", "How dare you step foot in my domain?", "Dare you indluge in dark desires?", "I am become death, one day.", "Foul creature!", "I used to think my life was a tragedy, but now I realize it's kind of okay actually.")
 
+//jungle slug
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/exploslug
+	name = "Explorer Pawdiana"
+	desc = "A green-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one is adorned with an explorers hat and vest."
+	tt_desc = "Mollusca Felis Exploris"
+	icon_state = "exploslug"
+	icon_living = "exploslug"
+	icon_rest = "exploslug_rest"
+	icon_dead = "exploslug_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/exploslug)
+	say_list_type = /datum/say_list/catslug/custom/exploslug
+
+/datum/category_item/catalogue/fauna/catslug/custom/exploslug
+	name = "Alien Wildlife - Catslug - Explorer Pawdiana"
+	desc = "Found in the depths of an arugably magical jungle, Pawdiana\
+	is a catslug who spends their days treking through the dense foliage \
+	of the dangerous wild. Always seen within \
+	their fancy explorers kit, they are always ready to brave \
+	the hazards of unknown lands. \
+	\
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/say_list/catslug/custom/exploslug
+	speak = list("Fortune and porls, kid. Fortune and porls.", "Lizards, why'd it have to be lizards.", "That thingy is an important artifact. It belongs in a museum!", "Everything lost is meant to be found. By me.", "I swear I've seen that stone before...", "I should have packed more jellyfishes.", "I better get back before nightfall!", "A comfy bed? Hah! I sleep under the stars!")
+
 
 //=============================
 //Admin-spawn only catslugs end
