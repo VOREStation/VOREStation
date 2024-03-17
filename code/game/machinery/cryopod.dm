@@ -473,70 +473,74 @@
 		SStranscore.leave_round(to_despawn)
 	//VOREStation Edit End - Resleeving.
 
-	//Handle job slot/tater cleanup.
-	var/job = to_despawn.mind.assigned_role
-	job_master.FreeRole(job)
-	to_despawn.mind.assigned_role = null
+		// Everything below should only be applicable to a cliented living/carbon/human.
+		// All living/carbon/humans should have minds.
 
-	if(to_despawn.mind.objectives.len)
-		qdel(to_despawn.mind.objectives)
-		to_despawn.mind.special_role = null
+		//Handle job slot/tater cleanup.
+		var/job = to_despawn.mind.assigned_role
+		job_master.FreeRole(job)
+		to_despawn.mind.assigned_role = null
 
-	//else
-		//if(ticker.mode.name == "AutoTraitor")
-			//var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode
-			//current_mode.possible_traitors.Remove(to_despawn)
+		if(to_despawn.mind.objectives.len)
+			qdel(to_despawn.mind.objectives)
+			to_despawn.mind.special_role = null
 
-	// Delete them from datacore.
+		//else
+			//if(ticker.mode.name == "AutoTraitor")
+				//var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode
+				//current_mode.possible_traitors.Remove(to_despawn)
 
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
-	for(var/datum/data/record/R in data_core.medical)
-		if((R.fields["name"] == to_despawn.real_name))
-			qdel(R)
-	for(var/datum/data/record/T in data_core.security)
-		if((T.fields["name"] == to_despawn.real_name))
-			qdel(T)
-	for(var/datum/data/record/G in data_core.general)
-		if((G.fields["name"] == to_despawn.real_name))
-			qdel(G)
+		// Delete them from datacore.
 
-	// Also check the hidden version of each datacore, if they're an offmap role.
-	var/datum/job/J = SSjob.get_job(job)
-	if(J?.offmap_spawn)
-		for(var/datum/data/record/R in data_core.hidden_general)
+		if(PDA_Manifest.len)
+			PDA_Manifest.Cut()
+		for(var/datum/data/record/R in data_core.medical)
 			if((R.fields["name"] == to_despawn.real_name))
 				qdel(R)
-		for(var/datum/data/record/T in data_core.hidden_security)
+		for(var/datum/data/record/T in data_core.security)
 			if((T.fields["name"] == to_despawn.real_name))
 				qdel(T)
-		for(var/datum/data/record/G in data_core.hidden_medical)
+		for(var/datum/data/record/G in data_core.general)
 			if((G.fields["name"] == to_despawn.real_name))
 				qdel(G)
 
-	icon_state = base_icon_state
+		// Also check the hidden version of each datacore, if they're an offmap role.
+		var/datum/job/J = SSjob.get_job(job)
+		if(J?.offmap_spawn)
+			for(var/datum/data/record/R in data_core.hidden_general)
+				if((R.fields["name"] == to_despawn.real_name))
+					qdel(R)
+			for(var/datum/data/record/T in data_core.hidden_security)
+				if((T.fields["name"] == to_despawn.real_name))
+					qdel(T)
+			for(var/datum/data/record/G in data_core.hidden_medical)
+				if((G.fields["name"] == to_despawn.real_name))
+					qdel(G)
 
-	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
+		icon_state = base_icon_state
+
+		//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
 
-	//Make an announcement and log the person entering storage.
-	control_computer.frozen_crew += "[to_despawn.real_name], [to_despawn.mind.role_alt_title] - [stationtime2text()]"
-	control_computer._admin_logs += "[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) at [stationtime2text()]"
-	log_and_message_admins("[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) entered cryostorage.")
+		//Make an announcement and log the person entering storage.
+		control_computer.frozen_crew += "[to_despawn.real_name], [to_despawn.mind.role_alt_title] - [stationtime2text()]"
+		control_computer._admin_logs += "[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) at [stationtime2text()]"
+		log_and_message_admins("[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) entered cryostorage.")
 
-	//VOREStation Edit Start
-	var/depart_announce = TRUE
-	var/departing_job = to_despawn.mind.role_alt_title
+		//VOREStation Edit Start
+		var/depart_announce = TRUE
+		var/departing_job = to_despawn.mind.role_alt_title
 
 
-	if(istype(to_despawn, /mob/living/dominated_brain))
-		depart_announce = FALSE
+		if(istype(to_despawn, /mob/living/dominated_brain))
+			depart_announce = FALSE
 
-	if(depart_announce)
-		announce.autosay("[to_despawn.real_name][departing_job ? ", [departing_job], " : " "][on_store_message]", "[on_store_name]", announce_channel, using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
-		visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2]</span>", 3)
+		if(depart_announce)
+			announce.autosay("[to_despawn.real_name][departing_job ? ", [departing_job], " : " "][on_store_message]", "[on_store_name]", announce_channel, using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
+			visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2]</span>", 3)
 
-	//VOREStation Edit End
+
+		//VOREStation Edit End
 
 	//VOREStation Edit begin: Dont delete mobs-in-mobs
 	if(to_despawn.client && to_despawn.stat<2)

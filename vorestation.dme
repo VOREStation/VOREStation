@@ -33,6 +33,7 @@
 #include "code\__defines\admin_vr.dm"
 #include "code\__defines\appearance.dm"
 #include "code\__defines\atmos.dm"
+#include "code\__defines\atoms_movable.dm"
 #include "code\__defines\belly_modes_vr.dm"
 #include "code\__defines\callbacks.dm"
 #include "code\__defines\chat.dm"
@@ -96,6 +97,7 @@
 #include "code\__defines\subsystems.dm"
 #include "code\__defines\supply.dm"
 #include "code\__defines\targeting.dm"
+#include "code\__defines\text.dm"
 #include "code\__defines\tgs.config.dm"
 #include "code\__defines\tgs.dm"
 #include "code\__defines\tgui.dm"
@@ -4301,6 +4303,6 @@
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\tether\tether.dm"
+#include "maps\stellar_delight\stellar_delight.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

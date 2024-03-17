@@ -160,12 +160,12 @@ export const chatMiddleware = (store) => {
       settings.visibleMessageLimit,
       settings.combineMessageLimit,
       settings.combineIntervalLimit,
-      settings.logLineCount,
       settings.logEnable,
       settings.logLimit,
       settings.storedTypes,
       game.roundId,
       settings.prependTimestamps,
+      settings.hideImportantInAdminTab,
     );
     // Load the chat once settings are loaded
     if (!initialized && settings.initialized) {
@@ -265,6 +265,10 @@ export const chatMiddleware = (store) => {
       // Save chat as soon as possible
       saveChatToStorage(store);
       return next(action);
+    }
+    if (type === 'saveToDiskCommand') {
+      chatRenderer.saveToDisk(settings.logLineCount);
+      return;
     }
     if (type === saveChatToDisk.type) {
       chatRenderer.saveToDisk(
