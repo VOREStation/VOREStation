@@ -21,7 +21,7 @@
 	// Grill is faster to heat and setup than the rest.
 	optimal_temp = 120 + T0C
 	min_temp = 60 + T0C
-	resistance = 8 KILOWATTS // Very fast to heat up.
+	resistance = 2 KILOWATTS // Very fast to heat up.
 
 	max_contents = 3 // Arbitrary number, 3 grill 'racks'
 	container_type = /obj/item/weapon/reagent_containers/cooking_container/grill
