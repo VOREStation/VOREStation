@@ -12,6 +12,14 @@
 		if(user.z != src.z)	return
 		user.forceMove(pick(latejoin))
 
+/obj/structure/signpostwood
+	name = "signpost"
+	desc = "It's a signpost that tells you things!"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "signpostwood"
+	anchored = TRUE
+	density = TRUE
+
 /obj/effect/mark
 		var/mark = ""
 		icon = 'icons/misc/mark.dmi'
