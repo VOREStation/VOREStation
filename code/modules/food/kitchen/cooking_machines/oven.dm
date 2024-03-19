@@ -13,7 +13,7 @@
 	heating_power = 6 KILOWATTS
 	//Based on a double deck electric convection oven
 
-	resistance = 12 KILOWATTS // Approx. 12 minutes to heat up.
+	resistance = 2 KILOWATTS // Approx. 2 minutes to heat up.
 	idle_power_usage = 2 KILOWATTS
 	//uses ~30% power to stay warm
 	optimal_power = 0.8 // Oven cooks .2 faster than the default speed.

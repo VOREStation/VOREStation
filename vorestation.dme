@@ -139,7 +139,7 @@
 #include "code\_helpers\global_lists.dm"
 #include "code\_helpers\global_lists_vr.dm"
 #include "code\_helpers\icons.dm"
-#include "code\_helpers\icons_ch.dm"
+#include "code\_helpers\icons_procs.dm"
 #include "code\_helpers\icons_vr.dm"
 #include "code\_helpers\lighting.dm"
 #include "code\_helpers\logging.dm"

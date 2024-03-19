@@ -5,7 +5,7 @@
 	var/optimal_power = 0.6 //cooking power at 100% - This variable determines the MAXIMUM increase in do_cooking_ticks, once math goes through. If you want ticks of 0.5, set it to 0.5, etc.
 
 	var/loss = 1	//Temp lost per proc when equalising
-	var/resistance = 32000	//Resistance to heating. combines with heating power to determine how long heating takes. 32k by default.
+	var/resistance = 1200	//Resistance to heating. combines with heating power to determine how long heating takes. 32k by default.
 
 	var/light_x = 0
 	var/light_y = 0
