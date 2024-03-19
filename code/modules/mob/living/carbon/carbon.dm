@@ -549,7 +549,7 @@
 			if(src.wear_mask.clean_blood())
 				src.update_inv_wear_mask(0)
 
-/mob/living/carbon/proc/food_preference(var/allergen_type)
+/mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
 
 	if(allergen_type in species.food_preference)
 		return species.food_preference_bonus
