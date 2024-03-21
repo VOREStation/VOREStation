@@ -758,7 +758,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/capslug)
 	holder_type = /obj/item/weapon/holder/catslug/custom/capslug
 	say_list_type = /datum/say_list/catslug/custom/capslug
-	myid_access = list(access_maint_tunnels)		//The all_station_access part below adds onto this.
+	myid_access = list(access_heads, access_keycard_auth)		//Same access as a bridge secretary.
 
 /datum/say_list/catslug/custom/capslug
 	speak = list("How open big glass box with shiny inside?.", "What is that?", "Respect my authority!", "What are you doing?", "How did you get here?", "Fax for yellow-shirts!", "WAOW!", "Why is that console blinking and clicking?", "Do we need to call for ERT?", "Have been called comdom before, not sure why they thought I was a balloon.")
@@ -773,7 +773,6 @@
 	mob_radio.ks2type = /obj/item/device/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
 	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/heads/captain(mob_radio)
 	mob_radio.recalculateChannels(1)
-	myid.access |= get_all_station_access()
 
 //=============================================================================
 //Admin-spawn only catslugs below - Expect overpowered things & silliness below
