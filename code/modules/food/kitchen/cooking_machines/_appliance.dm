@@ -41,6 +41,7 @@
 	var/container_type = null
 
 	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
+	var/food_safety = FALSE	//RS ADD - If true, the appliance automatically ejects food instead of burning it
 
 /obj/machinery/appliance/Initialize()
 	. = ..()
@@ -354,7 +355,7 @@
 	//Rescaling cooking work to avoid insanely long times for large things
 	var/buffer = CI.max_cookwork
 	CI.max_cookwork = 0
-	var/multiplier = 1
+	var/multiplier = 0.35
 	var/step = 4
 	while (buffer > step)
 		buffer -= step
@@ -404,7 +405,10 @@
 		finish_cooking(CI)
 
 	else if (!CI.burned && CI.cookwork > min(CI.max_cookwork * CI.overcook_mult, CI.max_cookwork + 30))
-		burn_food(CI)
+		if(!food_safety)
+			burn_food(CI)
+		else
+			eject(CI, null)
 
 	// Gotta hurt.
 	for(var/obj/item/weapon/holder/H in CI.container.contents)
@@ -644,7 +648,15 @@
 		delete = 0
 	else//If the container is empty OR contains more than one thing, then we must extract the container
 		thing = CI.container
-	if (!user || !user.put_in_hands(thing))
+
+	if (user)
+		if(!user.put_in_hands(thing))
+			thing.forceMove(get_turf(src))
+	else if(istype(thing, /obj/item/weapon/reagent_containers/cooking_container))
+		var/obj/item/weapon/reagent_containers/cooking_container/cc = thing
+		cc.do_empty()
+		delete = 0
+	else
 		thing.forceMove(get_turf(src))
 
 	if (delete)
@@ -652,7 +664,13 @@
 		qdel(CI)
 	else
 		CI.reset()//reset instead of deleting if the container is left inside
-	user.visible_message("<span class='notice'>\The [user] remove \the [thing] from \the [src].</span>")
+
+	if(user)
+		user.visible_message("<span class='notice'>\The [user] remove \the [thing] from \the [src].</span>")
+	else
+		src.visible_message("<b>\The [src]</b> pings as it automatically ejects its contents!")
+		if(cooked_sound)
+			playsound(get_turf(src), cooked_sound, 50, 1)
 
 /obj/machinery/appliance/proc/cook_mob(var/mob/living/victim, var/mob/user)
 	return
@@ -782,3 +800,16 @@
 	heating_power = initial(heating_power) + cap_rating * 25
 	cooking_power = cooking_coeff * (1 + (scan_rating + cap_rating) / 20) // 100% eff. becomes 120%, 140%, 160% w/ better parts, thus rewarding upgrading the appliances during your shift.
 	// to_world("RefreshParts returned cooking power of [cooking_power] during this step.") // Debug lines, uncomment if you need to test.
+
+
+/obj/machinery/appliance/verb/toggle_safety()
+	set name = "Toggle Safety"
+	set desc = "Toggles whether the appliance automatically ejects food when it starts to burn."
+	set category = "Object"
+	set src in view(1)
+
+	if(!isliving(usr))
+		return
+
+	food_safety = !food_safety
+	to_chat(usr, "<span class = 'notice'>You flip \the [src]'s safe mode switch. Safe mode is now [food_safety ? "on" : "off"].</span>")

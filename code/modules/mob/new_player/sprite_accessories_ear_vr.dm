@@ -303,10 +303,28 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "kittyinner"
 
+/datum/sprite_accessory/ears/catbig
+	name = "cat, big, colorable"
+	desc = ""
+	icon_state = "catbig"
+	extra_overlay = "catbig-inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+
 /datum/sprite_accessory/ears/bunnyhc
 	name = "bunny, colorable"
 	desc = ""
 	icon_state = "bunny"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/hare
+	name = "hare, colorable"
+	desc = ""
+	icon_state = "hare"
+	extra_overlay = "hare-inner"
+	extra_overlay2 = "hare-tips"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -344,6 +362,14 @@
 	name = "deer ears"
 	desc = ""
 	icon_state = "deer"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/deeralt
+	name = "deer ears, alt"
+	desc = ""
+	icon_state = "deer_alt"
+	extra_overlay = "deer_alt-inner"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -470,6 +496,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "fox-inner"
+
+/datum/sprite_accessory/ears/dog_floppy
+	name = "floppy dog ears, colorable"
+	desc = ""
+	icon_state = "dog_flop"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/bunny_floppy
 	name = "floopy bunny ears (colorable)"
