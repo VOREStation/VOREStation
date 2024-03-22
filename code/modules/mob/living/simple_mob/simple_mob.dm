@@ -177,6 +177,7 @@
 	var/has_recoloured = FALSE
 	var/hunting_cooldown = 0
 	var/hasthermals = TRUE
+	var/isthermal = 0
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
@@ -376,3 +377,14 @@
 	else if(hunting_cooldown + 5 MINUTES > world.time)
 		to_chat(usr, "You must wait for a while before using this again.")
 
+/mob/living/simple_mob/proc/hunting_vision_plus()
+	set name = "Thermal vision toggle"
+	set category = "Abilities"
+	set desc = "Uses you natural predatory instincts to seek out prey even through walls, or your natural survival instincts to spot predators from a distance."
+
+	if(!isthermal)
+		to_chat(usr, "You can sense other creatures by focusing carefully on your surroundings.")
+		sight |= SEE_MOBS
+	else
+		to_chat(usr, "You stop sensing creatures beyond the walls.")
+		sight -= SEE_MOBS
