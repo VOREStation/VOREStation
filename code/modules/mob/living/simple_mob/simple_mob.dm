@@ -222,6 +222,7 @@
 /mob/living/simple_mob/Login()
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
+	verbs |= /mob/living/simple_mob/proc/hunting_vision //So that maint preds can see prey through walls, to make it easier to find them.
 
 /mob/living/simple_mob/SelfMove(turf/n, direct, movetime)
 	var/turf/old_turf = get_turf(src)
@@ -354,3 +355,24 @@
 		recolour.tgui_interact(usr)
 		return
 	to_chat(usr, "You've already recoloured yourself once. You are only allowed to recolour yourself once during a around.")
+
+//Thermal vision adding
+
+/mob/living/simple_mob
+	var/hunting_cooldown = 0
+
+/mob/living/simple_mob/proc/hunting_vision()
+	set name = "Track Prey Through Walls"
+	set category = "Abilities"
+	set desc = "Uses you natural predatory instincts to seek out prey even through walls, or your natural survival instincts to spot predators from a distance."
+
+	if(hunting_cooldown + 5 MINUTES < world.time)
+		to_chat(usr, "You can sense other creatures by focusing carefully on your surroundings.")
+		sight |= SEE_MOBS
+		hunting_cooldown = world.time
+		spawn(600)
+			to_chat(usr, "Your concentration wears off.")
+			sight -= SEE_MOBS
+	else if(hunting_cooldown + 5 MINUTES > world.time)
+		to_chat(usr, "You must wait for a while before using this again.")
+
