@@ -175,6 +175,8 @@
 	// VOREStation Add End
 
 	var/has_recoloured = FALSE
+	var/hunting_cooldown = 0
+	var/hasthermals = TRUE
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
@@ -222,7 +224,8 @@
 /mob/living/simple_mob/Login()
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
-	verbs |= /mob/living/simple_mob/proc/hunting_vision //So that maint preds can see prey through walls, to make it easier to find them.
+	if(hasthermals)
+		verbs |= /mob/living/simple_mob/proc/hunting_vision //So that maint preds can see prey through walls, to make it easier to find them.
 
 /mob/living/simple_mob/SelfMove(turf/n, direct, movetime)
 	var/turf/old_turf = get_turf(src)
@@ -357,9 +360,6 @@
 	to_chat(usr, "You've already recoloured yourself once. You are only allowed to recolour yourself once during a around.")
 
 //Thermal vision adding
-
-/mob/living/simple_mob
-	var/hunting_cooldown = 0
 
 /mob/living/simple_mob/proc/hunting_vision()
 	set name = "Track Prey Through Walls"
