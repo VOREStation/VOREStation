@@ -699,7 +699,8 @@ const ResearchConsoleConstructor = (props) => {
 const ResearchConsoleSettings = (props) => {
   const { act, data } = useBackend();
 
-  const { sync, linked_destroy, linked_imprinter, linked_lathe } = data.info;
+  const { is_public, sync, linked_destroy, linked_imprinter, linked_lathe } =
+    data.info;
 
   return (
     <Section title="Settings">
@@ -721,20 +722,21 @@ const ResearchConsoleSettings = (props) => {
       </Tabs>
       {(props.settingsTab === 0 && (
         <Box>
-          {(sync && (
-            <>
-              <Button fluid icon="sync" onClick={() => act('sync')}>
-                Sync Database with Network
+          {!is_public &&
+            ((sync && (
+              <>
+                <Button fluid icon="sync" onClick={() => act('sync')}>
+                  Sync Database with Network
+                </Button>
+                <Button fluid icon="unlink" onClick={() => act('togglesync')}>
+                  Disconnect from Research Network
+                </Button>
+              </>
+            )) || (
+              <Button fluid icon="link" onClick={() => act('togglesync')}>
+                Connect to Research Network
               </Button>
-              <Button fluid icon="unlink" onClick={() => act('togglesync')}>
-                Disconnect from Research Network
-              </Button>
-            </>
-          )) || (
-            <Button fluid icon="link" onClick={() => act('togglesync')}>
-              Connect to Research Network
-            </Button>
-          )}
+            ))}
           <Button fluid icon="lock" onClick={() => act('lock')}>
             Lock Console
           </Button>
