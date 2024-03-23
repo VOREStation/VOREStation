@@ -222,6 +222,8 @@
 				if(M)
 					if(isobserver(M))
 						message = "<span class='emote'><B>[src]</B> ([ghost_follow_link(src, M)]) [input]</span>"
+					if(usr && usr.client && M && !(get_z(usr) == get_z(M)))
+						message = "<span class='multizsay'>[message]</span>"
 					M.show_message(message, m_type)
 					M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
 
