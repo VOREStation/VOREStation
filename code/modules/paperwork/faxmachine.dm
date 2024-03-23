@@ -26,6 +26,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	var/sendcooldown = 0 // to avoid spamming fax messages
 	var/department = "Unknown" // our department
 	var/destination = null // the department we're sending to
+	var/talon = 0 // So that the talon can access their own crew roles for the request
 
 /obj/machinery/photocopier/faxmachine/New()
 	allfaxes += src
@@ -85,12 +86,18 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	var/list/jobs = list()
 	for(var/datum/department/dept as anything in SSjob.get_all_department_datums())
-		if(!dept.assignable || dept.centcom_only)
-			continue
-		for(var/job in SSjob.get_job_titles_in_department(dept.name))
-			var/datum/job/J = SSjob.get_job(job)
-			if(J.requestable)
-				jobs |= job
+		if(!src.talon)
+			if(!dept.assignable || dept.centcom_only)
+				continue
+			for(var/job in SSjob.get_job_titles_in_department(dept.name))
+				var/datum/job/J = SSjob.get_job(job)
+				if(J.requestable)
+					jobs |= job
+		else
+			for(var/job in SSjob.get_job_titles_in_department(dept.name))
+				var/datum/job/J = SSjob.get_job(job)
+				if(J.offmap_spawn)
+					jobs |= job
 
 	var/role = tgui_input_list(L, "Pick the job to request.", "Job Request", jobs)
 	if(!role)
@@ -131,8 +138,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			ping_name = "Expedition"
 		if(DEPARTMENT_SYNTHETIC)
 			ping_name = "Silicon"
-		//if(DEPARTMENT_TALON)
-		//	ping_name = "Offmap"
+		if(DEPARTMENT_TALON)
+			ping_name = "Offmap"
 	if(!ping_name)
 		to_chat(L, "<span class='warning'>Selected job cannot be requested for \[ERRORUNKNOWNDEPT] reason. Please report this to system administrator.</span>")
 		return
@@ -503,3 +510,4 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 			query_string += "&reason=[url_encode(reason)]"
 			query_string += "&job=[url_encode(jobname)]"
 			world.Export("[config.chat_webhook_url]?[query_string]")
+

@@ -23,3 +23,4 @@
 /decl/hierarchy/outfit/job/assistant/entrepreneur
 	id_type = /obj/item/weapon/card/id/civilian/entrepreneur
 	l_hand = /obj/item/device/ticket_printer/train
+

@@ -11,6 +11,7 @@
 #define MESSAGE_TYPE_SYSTEM "system"
 #define MESSAGE_TYPE_LOCALCHAT "localchat"
 #define MESSAGE_TYPE_NPCEMOTE "npcemote"
+#define MESSAGE_TYPE_MULTIZCHAT "multizsay"
 #define MESSAGE_TYPE_PLOCALCHAT "plocalchat"
 #define MESSAGE_TYPE_HIVEMIND "hivemind"
 #define MESSAGE_TYPE_RADIO "radio"
