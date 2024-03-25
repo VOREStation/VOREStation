@@ -323,8 +323,8 @@ const ResearchConsoleDisk = (props) => {
       />
       <DataDisk
         disk={d_disk}
-        saveDialog={SaveDialogDesign}
-        onSaveDialog={onSaveDialogDesign}
+        saveDialog={props.saveDialogDesign}
+        onSaveDialog={props.onSaveDialogDesign}
       />
     </Section>
   );
