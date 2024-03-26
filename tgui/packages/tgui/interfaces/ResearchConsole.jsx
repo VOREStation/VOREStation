@@ -1,5 +1,5 @@
 import { toTitleCase } from 'common/string';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import { useBackend, useSharedState } from '../backend';
 import {
@@ -618,7 +618,6 @@ const ResearchConsoleConstructor = (props) => {
         (props.protoTab === 2 && (
           <LabeledList>
             {mats.map((mat) => {
-              const [ejectAmt, setEjectAmt] = useState(0);
               return (
                 <LabeledList.Item
                   label={toTitleCase(mat.name)}
@@ -628,18 +627,26 @@ const ResearchConsoleConstructor = (props) => {
                       <NumberInput
                         minValue={0}
                         width="100px"
-                        value={ejectAmt}
+                        value={props.matsStates[mat.name] || 0}
                         maxValue={mat.sheets}
-                        onDrag={(e, val) => setEjectAmt(val)}
+                        onDrag={(e, val) =>
+                          props.onMatsState({
+                            ...props.matsStates,
+                            [mat.name]: val,
+                          })
+                        }
                       />
                       <Button
                         icon="eject"
                         disabled={!mat.removable}
                         onClick={() => {
-                          setEjectAmt(0);
+                          props.onMatsState({
+                            ...props.matsStates,
+                            [mat.name]: 0,
+                          });
                           act(ejectSheetAction, {
                             [ejectSheetAction]: mat.name,
-                            amount: ejectAmt,
+                            amount: props.matsStates[mat.name] || 0,
                           });
                         }}
                       >
@@ -838,6 +845,12 @@ export const ResearchConsole = (props) => {
     false,
   );
 
+  const [matsStates, setMatsState] = useState({});
+
+  useEffect(() => {
+    setMatsState({});
+  }, [menu]);
+
   let allTabsDisabled = false;
   if (busy_msg || locked) {
     allTabsDisabled = true;
@@ -871,7 +884,9 @@ export const ResearchConsole = (props) => {
             <ResearchConsoleConstructor
               name="Protolathe"
               protoTab={protoTab}
+              matsStates={matsStates}
               onProtoTab={setProtoTab}
+              onMatsState={setMatsState}
             />
           ) : (
             ''
@@ -880,7 +895,9 @@ export const ResearchConsole = (props) => {
             <ResearchConsoleConstructor
               name="Circuit Imprinter"
               protoTab={protoTab}
+              matsStates={matsStates}
               onProtoTab={setProtoTab}
+              onMatsState={setMatsState}
             />
           )) ||
           (menu === 2 && (
