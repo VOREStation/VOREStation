@@ -824,6 +824,8 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			if(ourtarget.absorbable)
 				process_options += "Absorb"
 
+			process_options += "Knockout" //Can't think of any mechanical prefs that would restrict this. Even if they are already asleep, you may want to make it permanent.
+
 			if(process_options.len)
 				process_options += "Cancel"
 			else
@@ -879,6 +881,16 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 						var/n = 0 - ourtarget.nutrition
 						ourtarget.adjust_nutrition(n)
 					b.absorb_living(ourtarget)
+				if("Knockout")
+					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly make you unconscious, you will be unable until ejected from the pred. Is this something you are okay with happening to you?","Instant Knockout", list("No", "Yes")) != "Yes")
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] declined your knockout attempt.</span>")
+						to_chat(ourtarget, "<span class= 'vwarning'>You declined the knockout attempt.</span>")
+						return
+					if(ourtarget.loc != b)
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is no longer in \the [b].</span>")
+						return
+					ourtarget.AdjustSleeping(500000)
+					to_chat(ourtarget, "<span class= 'vwarning'>\The [usr] has put you to sleep, you will remain unconscious until ejected from the belly.</span>")
 				if("Cancel")
 					return
 		if("Health Check")

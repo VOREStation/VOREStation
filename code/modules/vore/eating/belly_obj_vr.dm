@@ -614,6 +614,12 @@
 						absorbed_count++
 				Pred.bloodstr.trans_to(Prey, Pred.reagents.total_volume / absorbed_count)
 
+	//Makes it so that if prey are heavily asleep, they will wake up shortly after release
+	if(isliving(M))
+		var/mob/living/ML = M
+		if(ML.stat)
+			ML.SetSleeping(min(ML.sleeping,20))
+
 	//Clean up our own business
 	if(!ishuman(owner))
 		owner.update_icons()
