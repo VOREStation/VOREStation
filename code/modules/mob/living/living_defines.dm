@@ -82,3 +82,4 @@
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
 	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown.
+	var/tiredness = 0					//For vore draining

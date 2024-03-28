@@ -1245,6 +1245,11 @@
 			Paralyse(10)
 			setHalLoss(species.total_health - 1)
 
+		if(tiredness) //tiredness for vore drain
+			tiredness = (tiredness - 1)
+			if(tiredness >= 100)
+				Sleeping(5)
+
 		if(paralysis || sleeping)
 			blinded = 1
 			set_stat(UNCONSCIOUS)
@@ -1428,6 +1433,21 @@
 			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
+
+		//tiredness for drain vore
+		if(tiredness)
+			var/severity = 0
+			switch(tiredness)
+				if(10 to 20)		severity = 1
+				if(20 to 30)		severity = 2
+				if(30 to 45)		severity = 3
+				if(45 to 60)		severity = 4
+				if(60 to 75)		severity = 5
+				if(75 to 90)		severity = 6
+				if(90 to INFINITY)	severity = 7
+			overlay_fullscreen("tired", /obj/screen/fullscreen/oxy, severity)
+		else
+			clear_fullscreen("tired")
 
 		if(healths)
 			if (chem_effects[CE_PAINKILLER] > 100)
