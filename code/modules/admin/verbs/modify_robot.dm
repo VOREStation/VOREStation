@@ -50,7 +50,7 @@
 					var/list/all_modules = robot.module.modules
 					all_modules += robot.module.emag
 					while(TRUE)
-						var/add_item_select = tgui_input_list(usr, "Please select the module to add", "Modules", all_modules)//ChompEDIT
+						var/add_item_select = tgui_input_list(usr, "Please select the module to add", "Modules", all_modules)
 						if(!istype(add_item_select, /obj/item/))
 							break
 						var/obj/item/add_item = add_item_select
