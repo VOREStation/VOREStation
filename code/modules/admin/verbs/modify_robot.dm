@@ -12,8 +12,8 @@
 	if(!target.module)
 		if(tgui_alert(usr, "This robot has not yet selected a module. Would you like to toggle combat module override?","Confirm",list("Yes","No"))!="Yes")
 			return
-			target.crisis_override = !target.crisis_override
-			to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
+		target.crisis_override = !target.crisis_override
+		to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
 		return
 
 	if(!target.module.modules)
