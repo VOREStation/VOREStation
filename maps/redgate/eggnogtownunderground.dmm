@@ -397,12 +397,6 @@
 /obj/structure/simple_door/silver,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/eggnogtown/hotspring)
-"mP" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 5
-	},
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
 "mQ" = (
 /obj/structure/bonfire/permanent,
 /obj/structure/railing,
@@ -637,22 +631,6 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/hotspring)
-"xJ" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 9
-	},
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
-"yc" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
-"yi" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
-	},
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
 "yK" = (
 /obj/machinery/light/small/torch{
 	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
@@ -699,10 +677,6 @@
 	name = "hotspring";
 	temperature = 310
 	},
-/area/redgate/eggnogtown/underground)
-"BO" = (
-/obj/machinery/telecomms/relay/preset/station,
-/turf/simulated/floor/reinforced,
 /area/redgate/eggnogtown/underground)
 "Ce" = (
 /turf/simulated/wall/iron,
@@ -799,14 +773,6 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
-"HO" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Access";
-	req_one_access = list()
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/eggnogtown/underground)
 "HU" = (
 /obj/machinery/light/small/torch{
 	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
@@ -923,15 +889,6 @@
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/hotsprings)
-"MT" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
 "Oa" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
@@ -975,12 +932,6 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/hotspring)
-"OW" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
 "Pb" = (
 /obj/item/weapon/bedsheet/piratedouble,
 /obj/structure/bed/double/padded,
@@ -1017,21 +968,6 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
-"RC" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
-"RU" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
-/turf/simulated/floor/reinforced,
-/area/redgate/eggnogtown/underground)
 "RX" = (
 /obj/effect/mist,
 /obj/effect/map_effect/interval/effect_emitter/smoke/mist,
@@ -1040,9 +976,6 @@
 	temperature = 310
 	},
 /area/redgate/eggnogtown/hotsprings)
-"SR" = (
-/turf/simulated/wall/shull,
-/area/redgate/eggnogtown/underground)
 "Tx" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/device/flashlight/lamp/green,
@@ -7931,11 +7864,11 @@ ab
 ab
 ab
 ab
-SR
-SR
-SR
-SR
-SR
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -8073,11 +8006,11 @@ ab
 ab
 ab
 ab
-SR
-xJ
-RC
-RU
-SR
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -8215,11 +8148,11 @@ ab
 ab
 ab
 ab
-SR
-OW
-BO
-yc
-HO
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -8357,11 +8290,11 @@ ab
 ab
 ab
 ab
-SR
-mP
-MT
-yi
-SR
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -8499,11 +8432,11 @@ ab
 ab
 ab
 ab
-SR
-SR
-SR
-SR
-SR
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
