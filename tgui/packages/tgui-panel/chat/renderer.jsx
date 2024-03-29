@@ -71,14 +71,19 @@ const createHighlightNode = (text, color) => {
   return node;
 };
 
-const createMessageNode = (interleave, color) => {
+const createMessageNode = () => {
   const node = document.createElement('div');
+  node.className = 'ChatMessage';
+  return node;
+};
+
+const interleaveMessage = (node, interleave, color) => {
   if (interleave) {
-    node.className = 'ChatMessage';
     node.setAttribute('style', 'background-color:' + color);
     node.setAttribute('display', 'block');
   } else {
-    node.className = 'ChatMessage';
+    node.removeAttribute('style');
+    node.removeAttribute('display');
   }
   return node;
 };
@@ -426,6 +431,12 @@ class ChatRenderer {
         )
       ) {
         node = message.node;
+        node = interleaveMessage(
+          node,
+          this.interleaveEnabled && this.interleave,
+          this.interleaveColor,
+        );
+        this.interleave = !this.interleave;
         fragment.appendChild(node);
         this.visibleMessages.push(message);
       }
@@ -493,11 +504,7 @@ class ChatRenderer {
       }
       // Create message node
       else {
-        node = createMessageNode(
-          this.interleaveEnabled && this.interleave,
-          this.interleaveColor,
-        );
-        this.interleave = !this.interleave;
+        node = createMessageNode();
         // Payload is plain text
         if (message.text) {
           node.textContent = this.prependTimestamps
@@ -644,6 +651,12 @@ class ChatRenderer {
           this.hideImportantInAdminTab
         )
       ) {
+        node = interleaveMessage(
+          node,
+          this.interleaveEnabled && this.interleave,
+          this.interleaveColor,
+        );
+        this.interleave = !this.interleave;
         fragment.appendChild(node);
         this.visibleMessages.push(message);
       }
