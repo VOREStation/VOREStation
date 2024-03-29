@@ -799,14 +799,6 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
-"HO" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Access";
-	req_one_access = list()
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/eggnogtown/underground)
 "HU" = (
 /obj/machinery/light/small/torch{
 	desc = "A small lighting fixture designed to look like a torch held in a wall sconce.";
@@ -8219,7 +8211,7 @@ SR
 OW
 BO
 yc
-HO
+SR
 ab
 ab
 ab
