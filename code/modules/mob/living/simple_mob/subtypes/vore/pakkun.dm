@@ -6,7 +6,8 @@
 	or even borne out of hunger, but more of a form of playfighting among packmates. Some colonies are known to keep domesticated specimens as a form of pest control \
 	despite the occasional accidents that can occur as a result of staff becoming overly friendly and triggering their playfighting instincts. \
 	More mature specimens are identifiable by a greener tint to their skin, and eventually the development of frills \
-	around their neck and along the backs of their heads."
+	around their neck and along the backs of their heads. Other regional subspecies are known to exist, some with a more aggressive temperament than others. \
+	While they can be mildly hazardous to the unprepared explorer, they are primarily ambush predators and will rarely attack if you maintain eye contact."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/vore/pakkun
@@ -109,7 +110,13 @@
 			our_targets -= list_target
 			continue
 		var/mob/living/L = list_target
-		if(!(L.can_be_drop_prey && L.throw_vore && L.allowmobvore))
+		if(!(L.can_be_drop_prey && L.throw_vore && L.allowmobvore && !L.buckled))
+			our_targets -= list_target
+			continue
+		if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x)) //eliminate targets facing the pakkun's direction
+			our_targets -= list_target
+			continue
+		if(abs(holder.x - L.x)>6 || abs(holder.y - L.y)>6) //finally, pakkuns on the very very edge of the screen won't target you
 			our_targets -= list_target
 			continue
 	if(istype(holder, /mob/living/simple_mob))
