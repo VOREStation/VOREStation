@@ -1321,6 +1321,13 @@
 	character_name = list("Bradley Khatibi")
 
 //  V CKEYS
+
+/datum/gear/fluff/valkhorns
+	path = /obj/item/clothing/ears/earring/fluff/valkhorns
+	display_name = "Valkaerie's Horns"
+	ckeywhitelist = list("valkaerie")
+	character_name = list("Valkaerie Stoze")
+
 /datum/gear/fluff/verie_suit
 	path = /obj/item/clothing/under/fluff/verie
 	display_name = "Verie's Salacious Suit"

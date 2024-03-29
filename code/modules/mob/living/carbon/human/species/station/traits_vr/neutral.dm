@@ -199,6 +199,7 @@
 /datum/trait/neutral/trashcan/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.verbs |= /mob/living/proc/eat_trash
+	H.verbs |= /mob/living/proc/toggle_trash_catching //Ported from chompstation
 
 /datum/trait/neutral/gem_eater
 	name = "Expensive Taste"
