@@ -33,7 +33,7 @@
 		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
-	var/trash_catching = FALSE				//Toggle for trash throw vore. ChompEdit
+	var/trash_catching = FALSE				//Toggle for trash throw vore from chompstation
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -868,7 +868,7 @@
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
 
-/mob/living/proc/toggle_trash_catching() //ChompEdit
+/mob/living/proc/toggle_trash_catching() //Ported from chompstation
 	set name = "Toggle Trash Catching"
 	set category = "Abilities"
 	set desc = "Toggle Trash Eater throw vore abilities."
