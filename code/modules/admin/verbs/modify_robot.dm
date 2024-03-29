@@ -6,14 +6,21 @@
 	if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT|R_EVENT))
 		return
 
-	if(!istype(target) || !target.module)
+	if(!istype(target))
+		return
+
+	if(!target.module)
+		if(tgui_alert(usr, "This robot has not yet selected a module. Would you like to toggle combat module override?","Confirm",list("Yes","No"))!="Yes")
+			return
+		target.crisis_override = !target.crisis_override
+		to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
 		return
 
 	if(!target.module.modules)
 		return
 
 	var/list/modification_options = list(MODIFIY_ROBOT_MODULE_ADD,MODIFIY_ROBOT_MODULE_REMOVE, MODIFIY_ROBOT_APPLY_UPGRADE, MODIFIY_ROBOT_SUPP_ADD, MODIFIY_ROBOT_SUPP_REMOVE, MODIFIY_ROBOT_RADIOC_ADD, MODIFIY_ROBOT_RADIOC_REMOVE,
-		MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE, MODIFIY_ROBOT_SWAP_MODULE, MODIFIY_ROBOT_RESET_MODULE, MODIFIY_ROBOT_TOGGLE_ERT, MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
+		MODIFIY_ROBOT_COMP_ADD, MODIFIY_ROBOT_COMP_REMOVE, MODIFIY_ROBOT_SWAP_MODULE, MODIFIY_ROBOT_RESET_MODULE, MODIFIY_ROBOT_TOGGLE_ERT, MODIFIY_ROBOT_TOGGLE_STATION_ACCESS, MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
 
 	while(TRUE)
 		var/modification_choice = tgui_input_list(usr, "Select if you want to add or remove a module to/from [target]","Choice", modification_options)
@@ -43,9 +50,10 @@
 					var/list/all_modules = robot.module.modules
 					all_modules += robot.module.emag
 					while(TRUE)
-						var/add_item = tgui_input_list(usr, "Please select the module to add", "Modules", all_modules)
-						if(!istype(add_item, /obj/item/))
+						var/add_item_select = tgui_input_list(usr, "Please select the module to add", "Modules", all_modules)
+						if(!istype(add_item_select, /obj/item/))
 							break
+						var/obj/item/add_item = add_item_select
 						robot.module.emag.Remove(add_item)
 						robot.module.modules.Remove(add_item)
 						robot.module.contents.Remove(add_item)
@@ -117,7 +125,7 @@
 					if(!selected_module_upgrade || selected_module_upgrade == "Cancel")
 						break
 					if(selected_module_upgrade == "Reset Module")
-						if(tgui_alert(usr, "Are you sure that you want to install [selected_module_upgrade] and reset the robot's module?","Confirm",list("Yes","No"))=="No")
+						if(tgui_alert(usr, "Are you sure that you want to install [selected_module_upgrade] and reset the robot's module?","Confirm",list("Yes","No"))!="Yes")
 							continue
 					var/new_upgrade = upgrades[capitalize(selected_module_upgrade)]
 					upgrades.Remove(selected_module_upgrade)
@@ -293,23 +301,33 @@
 				target.hands.icon_state = target.get_hud_module_icon()
 				target.hud_used.update_robot_modules_display()
 			if(MODIFIY_ROBOT_RESET_MODULE)
-				if(tgui_alert(usr, "Are you sure that you want to reset the entire module?","Confirm",list("Yes","No"))=="No")
+				if(tgui_alert(usr, "Are you sure that you want to reset the entire module?","Confirm",list("Yes","No"))!="Yes")
 					continue
 				target.module_reset(FALSE)
 				to_chat(usr, "<span class='danger'>You resetted [target]'s module selection.</span>")
 			if(MODIFIY_ROBOT_TOGGLE_ERT)
 				target.crisis_override = !target.crisis_override
 				to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
-				if(tgui_alert(usr, "Do you want to reset the module as well to allow selection?","Confirm",list("Yes","No"))=="No")
+				if(tgui_alert(usr, "Do you want to reset the module as well to allow selection?","Confirm",list("Yes","No"))!="Yes")
 					continue
 				target.module_reset(FALSE)
+			if(MODIFIY_ROBOT_TOGGLE_STATION_ACCESS)
+				if(target?.idcard?.access)
+					var/obj/item/weapon/card/id/synthetic/card = target.idcard
+					if(access_synth in card.access)
+						card.access -= get_all_station_access()
+						card.access -= access_synth
+						to_chat(usr, "<span class='danger'>You revoke station access from [target].</span>")
+					else
+						card.access |= get_all_station_access()
+						card.access |= access_synth
+						to_chat(usr, "<span class='danger'>You grant station access to [target].</span>")
 			if(MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
-				for(var/obj in target.contents)
-					if(istype(obj, /obj/item/weapon/card/id/synthetic))
-						var/obj/item/weapon/card/id/synthetic/card = obj
-						if(access_cent_specops in card.access)
-							card.access -= get_all_centcom_access()
-							to_chat(usr, "<span class='danger'>You revoke central access from [target].</span>")
-						else
-							card.access += get_all_centcom_access()
-							to_chat(usr, "<span class='danger'>You grant central access to [target].</span>")
+				if(target?.idcard?.access)
+					var/obj/item/weapon/card/id/synthetic/card = target.idcard
+					if(access_cent_specops in card.access)
+						card.access -= get_all_centcom_access()
+						to_chat(usr, "<span class='danger'>You revoke central access from [target].</span>")
+					else
+						card.access |= get_all_centcom_access()
+						to_chat(usr, "<span class='danger'>You grant central access to [target].</span>")
