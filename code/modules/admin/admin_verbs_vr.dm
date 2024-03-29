@@ -126,7 +126,7 @@
 	set desc = "Makes it so new robots/simple_mobs spawn with a verb to recolour themselves for this round. You must set them separately."
 	set category = "Server"
 
-	if(!check_rights(R_SERVER))
+	if(!check_rights(R_ADMIN|R_EVENT|R_FUN))
 		return
 
 	var/which = tgui_alert(usr, "Which do you want to toggle?", "Choose Recolour Toggle", list("Robot", "Simple Mob"))
