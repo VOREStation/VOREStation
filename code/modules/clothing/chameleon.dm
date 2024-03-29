@@ -264,7 +264,7 @@
 
 /obj/item/clothing/mask/chameleon
 	name = "gas mask"
-	icon_state = "gas_alt"
+	icon_state = "gas_old"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -277,7 +277,7 @@
 /obj/item/clothing/mask/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "gas mask"
 	desc = "It's a gas mask."
-	icon_state = "gas_alt"
+	icon_state = "gas_old"
 	update_icon()
 	update_clothing_icon()
 
