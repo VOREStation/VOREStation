@@ -71,9 +71,15 @@ const createHighlightNode = (text, color) => {
   return node;
 };
 
-const createMessageNode = () => {
+const createMessageNode = (interleave, color) => {
   const node = document.createElement('div');
-  node.className = 'ChatMessage';
+  if (interleave) {
+    node.className = 'ChatMessage';
+    node.setAttribute('style', 'background-color:' + color);
+    node.setAttribute('display', 'block');
+  } else {
+    node.className = 'ChatMessage';
+  }
   return node;
 };
 
@@ -156,6 +162,9 @@ class ChatRenderer {
     this.logEnable = true;
     this.roundId = null;
     this.storedTypes = {};
+    this.interleave = false;
+    this.interleaveEnabled = false;
+    this.interleaveColor = '#909090';
     this.hideImportantInAdminTab = false;
     // Scroll handler
     /** @type {HTMLElement} */
@@ -378,6 +387,8 @@ class ChatRenderer {
     roundId,
     prependTimestamps,
     hideImportantInAdminTab,
+    interleaveEnabled,
+    interleaveColor,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
@@ -388,6 +399,8 @@ class ChatRenderer {
     this.roundId = roundId;
     this.prependTimestamps = prependTimestamps;
     this.hideImportantInAdminTab = hideImportantInAdminTab;
+    this.interleaveEnabled = interleaveEnabled;
+    this.interleaveColor = interleaveColor;
   }
 
   changePage(page) {
@@ -480,7 +493,11 @@ class ChatRenderer {
       }
       // Create message node
       else {
-        node = createMessageNode();
+        node = createMessageNode(
+          this.interleaveEnabled && this.interleave,
+          this.interleaveColor,
+        );
+        this.interleave = !this.interleave;
         // Payload is plain text
         if (message.text) {
           node.textContent = this.prependTimestamps
