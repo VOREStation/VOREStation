@@ -115,6 +115,10 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"aH" = (
+/obj/machinery/telecomms/relay/preset/station,
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "ba" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/chemical_dispenser/bar_alc/full,
@@ -224,6 +228,15 @@
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/hotsprings)
+"fN" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "fV" = (
 /obj/structure/closet/walllocker{
 	dir = 1;
@@ -328,6 +341,9 @@
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/hotsprings)
+"kc" = (
+/turf/simulated/wall/shull,
+/area/redgate/eggnogtown/underground)
 "kA" = (
 /turf/simulated/wall/iron,
 /area/redgate/eggnogtown/underground)
@@ -419,6 +435,12 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/hotspring)
+"oz" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "pn" = (
 /obj/structure/bed/chair/bay/comfy/red{
 	dir = 1
@@ -435,6 +457,12 @@
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/hotsprings)
+"qe" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "qr" = (
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled/dark{
@@ -513,6 +541,12 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"tm" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "tI" = (
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
@@ -714,6 +748,14 @@
 	temperature = 303.15
 	},
 /area/redgate/eggnogtown/hotsprings)
+"Gn" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Access";
+	req_one_access = list()
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/redgate/eggnogtown/underground)
 "Gq" = (
 /obj/structure/bed/chair/bay/comfy/red,
 /turf/simulated/floor/plating/eris/under{
@@ -807,6 +849,12 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"LP" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "Mb" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled{
@@ -930,6 +978,12 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/vibeout)
+"Sz" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "Tx" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/device/flashlight/lamp/green,
@@ -1039,6 +1093,10 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/houserhomestead/basement)
+"XU" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "XV" = (
 /obj/structure/table/steel,
 /obj/machinery/chemical_dispenser/bar_alc/full{
@@ -1048,6 +1106,15 @@
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/houserhomestead/basement)
+"Yt" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/redgate/eggnogtown/underground)
 "YF" = (
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled{
@@ -7536,11 +7603,11 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+kc
+kc
+kc
+kc
+kc
 aa
 ab
 ab
@@ -7678,11 +7745,11 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+kc
+LP
+fN
+oz
+kc
 aa
 ab
 ab
@@ -7820,11 +7887,11 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+kc
+qe
+aH
+XU
+Gn
 aa
 aa
 ab
@@ -7962,11 +8029,11 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+kc
+tm
+Yt
+Sz
+kc
 aa
 aa
 ab
@@ -8104,11 +8171,11 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+kc
+kc
+kc
+kc
+kc
 aa
 aa
 ab
