@@ -72,6 +72,20 @@
 	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
 	value = CATALOGUER_REWARD_HARD
 
+/mob/living/simple_mob/vore/stalker/PounceTarget(var/mob/living/M, var/successrate = 100)
+	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
+	if(prob(successrate)) // pounce success!
+		M.Weaken(5)
+		M.visible_message("<span class='danger'>\The [src] pounces on \the [M]!</span>!")
+	else // pounce misses!
+		M.visible_message("<span class='danger'>\The [src] attempts to pounce \the [M] but misses!</span>!")
+		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+
+	if(will_eat(M) && (!M.canmove || vore_standing_too)) //if they're edible then eat them too
+		return EatTarget(M)
+	else
+		return //just leave them
+
 //AI
 
 /datum/ai_holder/simple_mob/vore/stalker
@@ -146,6 +160,7 @@
 					if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x))
 						if(!L.stat) //If the prey is weakened in any way, don't run
 							step_away(holder, L, 8)
+							holder.face_atom(L)
 				return FALSE
 		//VOREStation add start
 		else if(forgive_resting && !isbelly(holder.loc))	//Doing it this way so we only think about the other conditions if the var is actually set
