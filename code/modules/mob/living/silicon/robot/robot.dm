@@ -1258,7 +1258,8 @@
 	icon_selected = 1
 	icon_selection_tries = 0
 	sprite_type = robot_species
-	update_hud()
+	if(hands)
+		update_hud()
 	to_chat(src, "<span class='filter_notice'>Your icon has been set. You now require a module reset to change it.</span>")
 
 /mob/living/silicon/robot/proc/set_default_module_icon()
