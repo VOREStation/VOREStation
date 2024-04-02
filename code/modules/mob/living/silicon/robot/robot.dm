@@ -64,6 +64,9 @@
 	var/sleeper_state = 0 // 0 for empty, 1 for normal, 2 for mediborg-healthy
 	var/scrubbing = FALSE //Floor cleaning enabled
 
+	// Subtype limited modules or admin restrictions
+	var/list/restrict_modules_to = list()
+
 	// Components are basically robot organs.
 	var/list/components = list()
 
@@ -322,15 +325,21 @@
 	var/list/modules = list()
 	//VOREStatation Edit Start: shell restrictions
 	if(shell)
-		modules.Add(shell_module_types)
+		if(restrict_modules_to.len > 0)
+			modules.Add(restrict_modules_to)
+		else
+			modules.Add(shell_module_types)
 	else
-		modules.Add(robot_module_types)
-		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
-			to_chat(src, span_red("Crisis mode active. Combat module available."))
-			modules |= emergency_module_types
-		for(var/module_name in whitelisted_module_types)
-			if(is_borg_whitelisted(src, module_name))
-				modules |= module_name
+		if(restrict_modules_to.len > 0)
+			modules.Add(restrict_modules_to)
+		else
+			modules.Add(robot_module_types)
+			if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
+				to_chat(src, span_red("Crisis mode active. Combat module available."))
+				modules |= emergency_module_types
+			for(var/module_name in whitelisted_module_types)
+				if(is_borg_whitelisted(src, module_name))
+					modules |= module_name
 	//VOREStatation Edit End: shell restrictions
 	modtype = tgui_input_list(usr, "Please, select a module!", "Robot module", modules)
 
@@ -1249,6 +1258,8 @@
 	icon_selected = 1
 	icon_selection_tries = 0
 	sprite_type = robot_species
+	if(hands)
+		update_hud()
 	to_chat(src, "<span class='filter_notice'>Your icon has been set. You now require a module reset to change it.</span>")
 
 /mob/living/silicon/robot/proc/set_default_module_icon()
