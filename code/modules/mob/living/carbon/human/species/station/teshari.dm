@@ -162,7 +162,8 @@
 
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
+	if(!(H.client?.prefs?.shoe_hater))
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 /*
 /datum/species/teshari/handle_falling(mob/living/carbon/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
 
