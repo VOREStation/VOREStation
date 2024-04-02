@@ -88,7 +88,6 @@
 				if(vore_fullness)
 					icon_state = "[icon_living]-2"
 					update_transform()
-					return 0
 		else if(stat >= DEAD && (vore_icons & SA_ICON_DEAD))
 			icon_state = "[icon_dead]-[vore_fullness]"
 		else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
@@ -97,7 +96,6 @@
 				if(vore_fullness)
 					icon_state = "[icon_living]-2"
 					update_transform()
-					return 0
 		if(vore_eyes && voremob_awake) //Update eye layer if applicable.
 			remove_eyes()
 			add_eyes()
