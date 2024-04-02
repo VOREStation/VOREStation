@@ -61,7 +61,11 @@
 								  "Scel (Purple)" = /mob/living/simple_mob/vore/scel/purple,
 								  "Scel (Red)" = /mob/living/simple_mob/vore/scel/red,
 								  "Scel (Green)" = /mob/living/simple_mob/vore/scel/green,
-								  "Cave Stalker" = /mob/living/simple_mob/vore/stalker
+								  "Cave Stalker" = /mob/living/simple_mob/vore/stalker,
+								  "Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
+								  "Scrubble" = /mob/living/simple_mob/vore/scrubble,
+								  "Sonadile" = /mob/living/simple_mob/vore/sonadile,
+								  "kururak" = /mob/living/simple_mob/animal/sif/kururak
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
