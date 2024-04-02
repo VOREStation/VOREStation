@@ -3042,7 +3042,6 @@
 #include "code\modules\mob\living\silicon\robot\robot_movement.dm"
 #include "code\modules\mob\living\silicon\robot\robot_remote_control.dm"
 #include "code\modules\mob\living\silicon\robot\robot_vr.dm"
-#include "code\modules\mob\living\silicon\robot\syndicate.dm"
 #include "code\modules\mob\living\silicon\robot\dogborg\dog_modules_vr.dm"
 #include "code\modules\mob\living\silicon\robot\dogborg\dog_sleeper_vr.dm"
 #include "code\modules\mob\living\silicon\robot\drone\drone.dm"

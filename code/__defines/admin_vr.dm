@@ -16,5 +16,7 @@
 #define MODIFIY_ROBOT_SWAP_MODULE	"Swap a Robot Module"
 #define MODIFIY_ROBOT_RESET_MODULE	"Fully Reset Robot Module"
 #define MODIFIY_ROBOT_TOGGLE_ERT	"Toggle ERT Module Overwrite"
+#define MODIFIY_ROBOT_LIMIT_MODULES_ADD	"Restrict Modules to"
+#define MODIFIY_ROBOT_LIMIT_MODULES_REMOVE	"Remove from restricted Modules"
 #define MODIFIY_ROBOT_TOGGLE_STATION_ACCESS "Toggle All Station Access Codes"
 #define MODIFIY_ROBOT_TOGGLE_CENT_ACCESS	"Toggle Central Access Codes"
