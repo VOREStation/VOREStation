@@ -1,8 +1,8 @@
 /mob/living/simple_mob/vore/scrubble
-	name = "Cave Stalker"
-	desc = "A strange slim creature that lurks in the dark. It's features could be described as a mix of feline and canine, but it's most notable alien property is the second set of forelegs. Additionally, it has a series of boney blue spikes running down it's spine, a similarly hard tip to it's tail and dark blue fangs hanging from it's snout."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/stalker)
-	tt_desc = "Canidfelanis"
+	name = "Scrubble"
+	desc = "A small skittish animal with some features resembling rodents and foxes. Usually seen coated with beige and brown fur, the scrubble has four ears that pivot quickly, two long fluffy tails and dark red eyes."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/scrubble)
+	tt_desc = "vuldentia"
 	icon = 'icons/mob/vore.dmi'
 	icon_dead = "scrubble-dead"
 	icon_living = "scrubble"
@@ -14,9 +14,9 @@
 	response_disarm = "shoves"
 	response_harm = "attacks"
 	movement_cooldown = 0
-	harm_intent_damage = 7
-	melee_damage_lower = 3
-	melee_damage_upper = 10
+	harm_intent_damage = 2
+	melee_damage_lower = 1
+	melee_damage_upper = 4
 	maxHealth = 50
 	attacktext = list("bites")
 	see_in_dark = 8
@@ -42,29 +42,29 @@
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
-	B.desc = "The lithe creature spends only minimal time with you pinned beneath it, before it's jaws stretch wide ahead of your face. The slightly blue hued interior squelches tightly over your head as the stalker's teeth prod against you, threatening to become much more of a danger if you put up too much of a fight. However, the process is quick, your body is efficiently squeezed through that tight gullet, contractions dragging you effortlessly towards the creature's gut. The stomach swells and hangs beneath the animal, swaying like a hammock under the newfound weight. The walls wrap incredibly tightly around you, compressing you tightly into a small ball as it grinds caustic juices over you."
+	B.desc = "Despite the small size of the scrubble, it seems to have a lot of energy behind it. The critter dives atop you in a panic, it's maw quickly engulfing your head as it's paws flail scrabble against you, hot slobber slathering across your tightly trapped face. It takes a little repositioning to get itself in the right position, but soon the creature is gulping its way down your entire body. Somehow it manages to squeeze you completely into a gut that should rightly be far too small for anything but a mouse, bundling up your body into a tight ball as the walls around you clench in tightly to keep you nice and compact. The sounds of burbling and glorping echo through the intensely tight space as the stomach lining grinds in thick oozes against your skin, pressure so high that you can barely move a muscle."
 	B.mode_flags = DM_FLAG_THICKBELLY
 	B.belly_fullscreen = "yet_another_tumby"
-	B.digest_brute = 2
-	B.digest_burn = 2
-	B.digest_oxy = 1
+	B.digest_brute = 1
+	B.digest_burn = 1
+	B.digest_oxy = 0
 	B.digestchance = 100
 	B.absorbchance = 0
-	B.escapechance = 5
+	B.escapechance = 15
 	B.selective_preference = DM_DIGEST
 	B.escape_stun = 5
 
 /datum/say_list/scrubble
-	emote_hear = list("hisses","growls","chuffs")
-	emote_see = list("watches you carefully","scratches at the ground","whips it's tail","paces")
+	emote_hear = list("yips","squeaks","chirps")
+	emote_see = list("looks around frantically","sniffs at the air","wafts its tails","flickers its four ears")
 
 /datum/category_item/catalogue/fauna/scrubble
-	name = "Extra-Realspace Fauna - Cave Stalker"
-	desc = "Classification: Canidfelanis\
+	name = "Extra-Realspace Fauna - Scrubble"
+	desc = "Classification: Vuldentia\
 	<br><br>\
-	Cave Stalker's an unusual alien animal found at a number of redgate locations, suspected to have originated from locations other than those that they are found at. \
-	They are carnivorous and highly aggressive beasts that spend the majority of their time skulking in dark locations with long lines of sight, they're known to spend a lot of time stalking their prey to assess their vulnerability. \
-	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
+	The Scrubble is a small creature found in redgate locations that has properties resembling those of rodents and vulpines. \
+	Primarily a scavanger, the scrubble is known to eat all sorts of organic material, whether it's vegetable or meat, but generally does not hunt on its own. Largely defenseless against larger creature, the scrubble is certainly a prey species. \
+	Their geneneral behaviour supports this, as they will heavily avoid interaction with any other species that approach it, usually darting away rapidly and keeping a distance. However, they have been known to act defensively should they be completely cornered."
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/scrubble/PounceTarget(var/mob/living/M, var/successrate = 100)

@@ -2,9 +2,9 @@
 
 /mob/living/simple_mob/vore/mantrap
 	name = "Mantrap"
-	desc = "A strange slim creature that lurks in the dark. It's features could be described as a mix of feline and canine, but it's most notable alien property is the second set of forelegs. Additionally, it has a series of boney blue spikes running down it's spine, a similarly hard tip to it's tail and dark blue fangs hanging from it's snout."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/stalker)
-	tt_desc = "Canidfelanis"
+	desc = "This massive plant lays in wait in the brush, and can be very difficult to spot. When laying open on the ground, the trap mechanism resembles a massive saw-toothed maw."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/mantrap)
+	tt_desc = "Dionaea Humanis"
 	icon = 'icons/mob/vore.dmi'
 	icon_dead = "flytrap-dead"
 	icon_living = "flytrap"
@@ -40,10 +40,11 @@
 /mob/living/simple_mob/vore/mantrap/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
-	B.name = "stomach"
-	B.desc = "The lithe creature spends only minimal time with you pinned beneath it, before it's jaws stretch wide ahead of your face. The slightly blue hued interior squelches tightly over your head as the stalker's teeth prod against you, threatening to become much more of a danger if you put up too much of a fight. However, the process is quick, your body is efficiently squeezed through that tight gullet, contractions dragging you effortlessly towards the creature's gut. The stomach swells and hangs beneath the animal, swaying like a hammock under the newfound weight. The walls wrap incredibly tightly around you, compressing you tightly into a small ball as it grinds caustic juices over you."
+	B.name = "trap"
+	B.desc = "As you step onto the large leaves of the mantrap, they suddenly shoot up and snap shut around you, encasing you in a fleshy-feeling gut. The saw-toothed spikes around the edge of the leaves interlock with one another and exerts a tremendous pressure on your body. Copious volumes of fluids begin to seep in from the walls themselves, rapidly coating your body and pooling around you, all of your movements only seem to speed up this process.."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.belly_fullscreen = "destination_tumby"
+	B.belly_fullscreen_color = "#02a802"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1
@@ -54,12 +55,11 @@
 	B.escape_stun = 10
 
 /datum/category_item/catalogue/fauna/mantrap
-	name = "Extra-Realspace Fauna - Cave Stalker"
-	desc = "Classification: Canidfelanis\
+	name = "Extra-Realspace Flora - Mantrap"
+	desc = "Classification: Dionaea Humanis\
 	<br><br>\
-	Cave Stalker's an unusual alien animal found at a number of redgate locations, suspected to have originated from locations other than those that they are found at. \
-	They are carnivorous and highly aggressive beasts that spend the majority of their time skulking in dark locations with long lines of sight, they're known to spend a lot of time stalking their prey to assess their vulnerability. \
-	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
+	The mantrap is a rare carnivorous plant found in redgate locations. The main component of which is a pair of large fan-shaped leaves with serrated dagger like edges, which act as it's main predation mechanism. \
+	Despite its size, it is a patient predator that will lay in wait for multiple months before claiming a meal. Whilst it is able to rapidly digest creatures of significant sizes, its metabolism is slow and the nutrients it prey provides can sustain it for a long period of time."
 	value = CATALOGUER_REWARD_HARD
 
 /datum/ai_holder/simple_mob/passive/mantrap
@@ -83,9 +83,9 @@
 
 /mob/living/simple_mob/vore/pitcher
 	name = "Pitcher Plant"
-	desc = "A strange slim creature that lurks in the dark. It's features could be described as a mix of feline and canine, but it's most notable alien property is the second set of forelegs. Additionally, it has a series of boney blue spikes running down it's spine, a similarly hard tip to it's tail and dark blue fangs hanging from it's snout."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/stalker)
-	tt_desc = "Canidfelanis"
+	desc = "This large pitcher plant looks big enough to fit an entire person, with a little stretching. Long tendrils rest at the entrance."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/pitcher)
+	tt_desc = "Nepenthes Titanis"
 	icon = 'icons/mob/vore.dmi'
 	icon_dead = "pitcher-dead"
 	icon_living = "pitcher"
@@ -128,12 +128,13 @@
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
-	B.desc = "The lithe creature spends only minimal time with you pinned beneath it, before it's jaws stretch wide ahead of your face. The slightly blue hued interior squelches tightly over your head as the stalker's teeth prod against you, threatening to become much more of a danger if you put up too much of a fight. However, the process is quick, your body is efficiently squeezed through that tight gullet, contractions dragging you effortlessly towards the creature's gut. The stomach swells and hangs beneath the animal, swaying like a hammock under the newfound weight. The walls wrap incredibly tightly around you, compressing you tightly into a small ball as it grinds caustic juices over you."
+	B.desc = "Walking a little too close to the pitcher plant, you trigger its trap mechanism and a tendril shoots out towards you. Wrapping around your body, you are rapidly dragged into the open mouth of the plant, stuffing your entire body into a fleshy, green stomach filled with a pool of some sort of tingling liquid. The lid of the plant slams down over the mouth, making it far more difficult to escape, all whilst that pool steadily seems to be filling up."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
-	B.digest_brute = 2
-	B.digest_burn = 2
-	B.digest_oxy = 1
+	B.belly_fullscreen = "destination_tumby"
+	B.belly_fullscreen_color = "#02a802"
+	B.digest_brute = 1
+	B.digest_burn = 1
+	B.digest_oxy = 0
 	B.digestchance = 100
 	B.absorbchance = 0
 	B.escapechance = 10
@@ -141,12 +142,12 @@
 	B.escape_stun = 10
 
 /datum/category_item/catalogue/fauna/pitcher
-	name = "Extra-Realspace Fauna - Cave Stalker"
-	desc = "Classification: Canidfelanis\
+	name = "Extra-Realspace Flora - Titan Pitcher Plant"
+	desc = "Classification: Nepenthes Titanis\
 	<br><br>\
-	Cave Stalker's an unusual alien animal found at a number of redgate locations, suspected to have originated from locations other than those that they are found at. \
-	They are carnivorous and highly aggressive beasts that spend the majority of their time skulking in dark locations with long lines of sight, they're known to spend a lot of time stalking their prey to assess their vulnerability. \
-	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
+	The titan pitcher plant is a rare carnivorous plant found in redgate locations. Unlike typical pitfall type pitcher plants that we are familiar with in realspace, these variants are far more aggressive. \
+	When their defense mechanisms are triggered, by sensing vibrations through their extensive root systems, long tendrils emerge from the mouth of these plants to ensnare living creatures nearby. These creatures are dragged into the stomach-like bell shaped cavity of the plant and the rigid leaf closes as a lid. \
+	Despite the size of these plants, they are perfectly capable of trapping an adult human and should be treated with heavy caution. More typically, they predate on small mammals and reptiles in their local ecological environment."
 	value = CATALOGUER_REWARD_HARD
 
 /datum/ai_holder/simple_mob/vore/pitcher

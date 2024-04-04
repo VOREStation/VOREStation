@@ -1,8 +1,8 @@
 /mob/living/simple_mob/vore/sonadile
 	name = "Sonadile"
-	desc = "A strange slim creature that lurks in the dark. It's features could be described as a mix of feline and canine, but it's most notable alien property is the second set of forelegs. Additionally, it has a series of boney blue spikes running down it's spine, a similarly hard tip to it's tail and dark blue fangs hanging from it's snout."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/stalker)
-	tt_desc = "Crocodylidae "
+	desc = "A tall, oddly proportioned bipedal reptile. Whilst its body is fairly large on its own, the incredibly long neck brings its height up to near 14 feet tall. Covered in green scales with a yellow underbelly, with a long thin tail, short legs and stubby arms. It has orange frills down its spine and the eyes are an odd grey colour, it doesn't appear to be able to see very well."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/sonadile)
+	tt_desc = "Crocodylidae"
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_dead = "sonadile-dead"
 	icon_living = "sonadile"
@@ -47,7 +47,7 @@
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
-	B.desc = "The lithe creature spends only minimal time with you pinned beneath it, before it's jaws stretch wide ahead of your face. The slightly blue hued interior squelches tightly over your head as the stalker's teeth prod against you, threatening to become much more of a danger if you put up too much of a fight. However, the process is quick, your body is efficiently squeezed through that tight gullet, contractions dragging you effortlessly towards the creature's gut. The stomach swells and hangs beneath the animal, swaying like a hammock under the newfound weight. The walls wrap incredibly tightly around you, compressing you tightly into a small ball as it grinds caustic juices over you."
+	B.desc = "The creature's huge maw drops down over your body, the long neck preventing it from barely having to shift its torso at all. The jaws quickly travel down you, slathering you in a drool as you're quickly stuffed through the flexible muscle of the throat. In a matter of seconds you are effortlessly lifted from the ground, your entire figure now reduced to a bulge within the neck of the beast, your feet soon vanishing into its mouth with a visceral gulp. The journey down is a long and slow one, the gullet squeezing you steadily along with heavy rippling contractions, the sonadile is quite content that you're heading in the right direction. With every inch, the world around you grows louder with the sound of a heartbeat and the gutteral grumbles of your upcoming destination. Before long you are squeezed down through a tight fleshy valve and deposited in the stomach of the reptile, walls immediately bearing down on you from every direction to ensure that you're tightly confined with little room to move. Hot, humid and slick with all manner of thick and thin liquids, this place isn't treating you any different from whatever else this animal likes to eat."
 	B.mode_flags = DM_FLAG_THICKBELLY
 	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 2
@@ -60,16 +60,16 @@
 	B.escape_stun = 5
 
 /datum/say_list/sonadile
-	emote_hear = list("hisses","growls","chuffs")
-	emote_see = list("watches you carefully","scratches at the ground","whips it's tail","paces")
+	emote_hear = list("warbles","roars","yawns")
+	emote_see = list("stumbles about clumsily","slowly pans its head around","extends and shakes its frills","lashes its tail against the ground")
 
 /datum/category_item/catalogue/fauna/sonadile
-	name = "Extra-Realspace Fauna - Cave Stalker"
-	desc = "Classification: Canidfelanis\
+	name = "Extra-Realspace Fauna - Sonadile"
+	desc = "Classification: Crocodylidae\
 	<br><br>\
-	Cave Stalker's an unusual alien animal found at a number of redgate locations, suspected to have originated from locations other than those that they are found at. \
-	They are carnivorous and highly aggressive beasts that spend the majority of their time skulking in dark locations with long lines of sight, they're known to spend a lot of time stalking their prey to assess their vulnerability. \
-	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
+	The Sonadile is named as such due to it's vague resemblence to crocodilian animals and its enhanced ability to hunt purely through sound. \
+	Frequently found in dark and damp spaces, the sonadile seems to have little problem moving about despite its unusual size and shape, and generally is seen walking on two legs. Relatively docile when left in the quiet, researchers should be warned that it is quick to attack those who speak out loud. \
+	Whilst not entirely blind, it appears to have difficulty discerning differences between shapes and movement, but once it hears something that it interprets as prey, it attempts to swallow the creature whole and alive, lashing its head forward on the massively long neck."
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/sonadile/update_icon()

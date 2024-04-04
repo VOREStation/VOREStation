@@ -1,7 +1,7 @@
 /mob/living/simple_mob/vore/devil
 	name = "Statue of Temptation"
 	desc = "A tall statue made of red-tinted metal in the shape of some sort of demon or devil."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/stalker)
+	catalogue_data = list(/datum/category_item/catalogue/fauna/devil)
 	tt_desc = "Metal Statue"
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_dead = "devil-dead"
@@ -27,7 +27,6 @@
 	see_in_dark = 8
 	minbodytemp = 0
 	ai_holder_type = /datum/ai_holder/simple_mob/vore/devil
-	say_list_type = /datum/say_list/devil
 
 	vore_bump_chance = 25
 	vore_digest_chance = 50
@@ -47,9 +46,9 @@
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
-	B.desc = "The lithe creature spends only minimal time with you pinned beneath it, before it's jaws stretch wide ahead of your face. The slightly blue hued interior squelches tightly over your head as the stalker's teeth prod against you, threatening to become much more of a danger if you put up too much of a fight. However, the process is quick, your body is efficiently squeezed through that tight gullet, contractions dragging you effortlessly towards the creature's gut. The stomach swells and hangs beneath the animal, swaying like a hammock under the newfound weight. The walls wrap incredibly tightly around you, compressing you tightly into a small ball as it grinds caustic juices over you."
+	B.desc = "It turns out that this was not just any old statue, but some form of android waiting for its chance to ambush you. The moment that it laid its hands on you, your fate was decided. The jaws of the machine parted, if you could call them that, and immediately enveloped your head. The inside was hot and slick, but dry. The textures were startlingly realistic, the base was clearly a tongue, the top palate of the mouth was hard but somewhat pliable. Not that you had time to admire it before the rest of your body was stuffed inside. Through a short passage down through a rubbery tube of a gullet, mechanical contractions squeezing you down from behind, you're quickly deposited in something much resembling a stomach. Amid the sounds of mechanical whirrs, you can heard glorping, gurgling and burbling from unknown sources. The walls wrap firmly around your body, deliberately dramping you up into the smallest space that the machine can crush you into, whilst the synthetic lining around you ripples across your hunched up form. You can even see yourself, the gut itself is backlit by some eerie red glow, just enough to tell exactly what is happening to you. It doesn't help that you can see the drooling fluids glistening in the dim light."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.belly_fullscreen = "a_synth_flesh_mono_hole"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1
@@ -59,17 +58,13 @@
 	B.selective_preference = DM_DIGEST
 	B.escape_stun = 5
 
-/datum/say_list/devil
-	emote_hear = list("hisses","growls","chuffs")
-	emote_see = list("watches you carefully","scratches at the ground","whips it's tail","paces")
-
 /datum/category_item/catalogue/fauna/devil
-	name = "Extra-Realspace Fauna - Cave Stalker"
-	desc = "Classification: Canidfelanis\
+	name = "Extra-Realspace Machine - Statue of Temptation"
+	desc = "Classification: Synthetic Lifeform\
 	<br><br>\
-	Cave Stalker's an unusual alien animal found at a number of redgate locations, suspected to have originated from locations other than those that they are found at. \
-	They are carnivorous and highly aggressive beasts that spend the majority of their time skulking in dark locations with long lines of sight, they're known to spend a lot of time stalking their prey to assess their vulnerability. \
-	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
+	The origin of this machine is not well understood, neither is its purpose nor whether it is sapient. However, we have been able to study a little about their behaviour. \
+	These creatures seem to disquise themselves as statues, making no movement what so ever when being directly observed. There is little to suggest they move at all when there is nobody present either. \
+	However, when lifeforms exist nearby, these oddly curvaceous devils spring to life, lighting up and attempting to devour all living things. We assume they reduce their targets to biofuel to sustain themselves, but they have been known to break their disguise when attacked to defend themselves."
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/devil/PounceTarget(var/mob/living/M, var/successrate = 100)
