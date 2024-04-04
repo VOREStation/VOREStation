@@ -46,6 +46,10 @@
 								  "Frost Giant Spider" = /mob/living/simple_mob/animal/giant_spider/frost,
 								  "Nurse Giant Spider" = /mob/living/simple_mob/animal/giant_spider/nurse/eggless,
 								  "Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless,
+								  "Red Dragon" = /mob/living/simple_mob/vore/aggressive/dragon,
+								  "Phoron Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/virgo3b,
+								  "Space Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/space,
+								  "Crypt Drake" = /mob/living/simple_mob/vore/cryptdrake,
 								  "Weretiger" = /mob/living/simple_mob/vore/weretiger,
 								  "Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
 								  "Squirrel" = /mob/living/simple_mob/vore/squirrel/big,
@@ -65,7 +69,8 @@
 								  "Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
 								  "Scrubble" = /mob/living/simple_mob/vore/scrubble,
 								  "Sonadile" = /mob/living/simple_mob/vore/sonadile,
-								  "kururak" = /mob/living/simple_mob/animal/sif/kururak
+								  "kururak" = /mob/living/simple_mob/animal/sif/kururak,
+								  "Statue of Temptation" = /mob/living/simple_mob/vore/devil
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
