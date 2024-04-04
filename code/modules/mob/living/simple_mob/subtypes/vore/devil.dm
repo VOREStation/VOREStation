@@ -1,14 +1,14 @@
-/mob/living/simple_mob/vore/stalker
-	name = "Cave Stalker"
-	desc = "A strange slim creature that lurks in the dark. It's features could be described as a mix of feline and canine, but it's most notable alien property is the second set of forelegs. Additionally, it has a series of boney blue spikes running down it's spine, a similarly hard tip to it's tail and dark blue fangs hanging from it's snout."
+/mob/living/simple_mob/vore/devil
+	name = "Statue of Temptation"
+	desc = "A tall statue made of red-tinted metal in the shape of some sort of demon or devil."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/stalker)
-	tt_desc = "Canidfelanis"
-	icon = 'icons/mob/vore64x32.dmi'
-	icon_dead = "stalker-dead"
-	icon_living = "stalker"
-	icon_state = "stalker"
-	icon_rest = "stalker-rest"
-	faction = "stalker"
+	tt_desc = "Metal Statue"
+	icon = 'icons/mob/vore64x64.dmi'
+	icon_dead = "devil-dead"
+	icon_living = "devil"
+	icon_state = "devil"
+	icon_rest = "devil"
+	faction = "devil"
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16
@@ -26,8 +26,8 @@
 	attacktext = list("bites")
 	see_in_dark = 8
 	minbodytemp = 0
-	ai_holder_type = /datum/ai_holder/simple_mob/vore/stalker
-	say_list_type = /datum/say_list/stalker
+	ai_holder_type = /datum/ai_holder/simple_mob/vore/devil
+	say_list_type = /datum/say_list/devil
 
 	vore_bump_chance = 25
 	vore_digest_chance = 50
@@ -43,7 +43,7 @@
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "pounces on"
 
-/mob/living/simple_mob/vore/stalker/init_vore()
+/mob/living/simple_mob/vore/devil/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -59,11 +59,11 @@
 	B.selective_preference = DM_DIGEST
 	B.escape_stun = 5
 
-/datum/say_list/stalker
+/datum/say_list/devil
 	emote_hear = list("hisses","growls","chuffs")
 	emote_see = list("watches you carefully","scratches at the ground","whips it's tail","paces")
 
-/datum/category_item/catalogue/fauna/stalker
+/datum/category_item/catalogue/fauna/devil
 	name = "Extra-Realspace Fauna - Cave Stalker"
 	desc = "Classification: Canidfelanis\
 	<br><br>\
@@ -72,7 +72,7 @@
 	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/vore/stalker/PounceTarget(var/mob/living/M, var/successrate = 100)
+/mob/living/simple_mob/vore/devil/PounceTarget(var/mob/living/M, var/successrate = 100)
 	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
@@ -88,37 +88,24 @@
 
 //AI
 
-/datum/ai_holder/simple_mob/vore/stalker
-	can_flee = TRUE
-	vision_range = 15 //They rush you from off-screen, but easily countered if you are aware
-	var/watched = 0
+/datum/ai_holder/simple_mob/vore/devil
+	wander = FALSE
 
-/datum/ai_holder/simple_mob/vore/stalker/proc/check_witness(list/possible_targets, has_targets_list)
+/datum/ai_holder/simple_mob/vore/devil/proc/check_witness(list/possible_targets, has_targets_list)
 	if(!has_targets_list)
 		possible_targets = list_targets()
-
 	for(var/mob/living/L in possible_targets)
-		var/distance = get_dist(holder, L)
-		if(!check_attacker(L) && !L.stat && distance <= 9) //Stop approaching just off screen if they're looking in your direction
+		if(!check_attacker(L) && !L.stat) //If that person is awake and hasn't attacked the mob.
 			if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x)) //stop attacking if they look at you
-				set_stance(STANCE_IDLE)
-				if(!watched)
-					watched = 1
-					spawn(40) //run away if they keep staring
-						watched = 0
-						if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x) && distance <= 8)
-							if(!L.stat) //If the prey is weakened in any way, don't run
-								step_away(holder, L, 8) //Flee if they stare at you within normal view range
-								holder.face_atom(L)
 				return TRUE
 	return FALSE
 
-/datum/ai_holder/simple_mob/vore/stalker/find_target(list/possible_targets, has_targets_list)
+/datum/ai_holder/simple_mob/vore/devil/find_target(list/possible_targets, has_targets_list)
 	if(!vore_hostile)
 		return ..()
 	if(!isanimal(holder))	//Only simplemobs have the vars we need
 		return ..()
-	var/mob/living/simple_mob/H = holder
+	var/mob/living/simple_mob/vore/H = holder
 	if(H.vore_fullness >= H.vore_capacity)	//Don't beat people up if we're full
 		return ..()
 	ai_log("find_target() : Entered.", AI_LOG_TRACE)
@@ -128,6 +115,9 @@
 		possible_targets = list_targets()
 	var/list/valid_mobs = list()
 	for(var/mob/living/possible_target in possible_targets)
+//		if(check_witness())
+//			set_stance(STANCE_IDLE)
+//			continue
 		if(!can_attack(possible_target))
 			continue
 		. |= possible_target
@@ -138,22 +128,32 @@
 
 	var/new_target
 	if(valid_mobs.len)
+		if(H.icon_state != "devil_target" || H.icon_state != "devil_target-1")
+			H.icon_living = "devil_target"
+			H.update_icon()
 		new_target = pick(valid_mobs)
 	else if(hostile)
+		if(H.icon_state != "devil_target" || H.icon_state != "devil_target-1")
+			H.icon_living = "devil_target"
+			H.update_icon()
 		new_target = pick(.)
 	if(!new_target)
+		if(H.icon_state == "devil_target" || H.icon_state == "devil_target-1")
+			H.icon_living = "devil"
+			H.update_icon()
 		return null
 	give_target(new_target)
 	return new_target
 
-/datum/ai_holder/simple_mob/vore/stalker/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/vore/devil/can_attack(atom/movable/the_target, var/vision_required = TRUE)
 	ai_log("can_attack() : Entering.", AI_LOG_TRACE)
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE
 	if(!belly_attack)
 		if(isbelly(holder.loc))
 			return FALSE
-	if(check_witness())
+	if(check_witness()) //If anyone is looking, cancel the attack
+		set_stance(STANCE_IDLE)
 		return FALSE
 	if(isliving(the_target))
 		var/mob/living/L = the_target
@@ -178,13 +178,8 @@
 					return FALSE
 //		if(!check_attacker(L))
 //			if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x)) //stop attacking if they look at you
-//				set_stance(STANCE_IDLE)
-//				spawn(40) //run away if they keep staring
-//					if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x))
-//						if(!L.stat) //If the prey is weakened in any way, don't run
-//							step_away(holder, L, 8)
-//							holder.face_atom(L)
-				return FALSE
+				set_stance(STANCE_IDLE)
+//				return FALSE
 		//VOREStation add start
 		else if(forgive_resting && !isbelly(holder.loc))	//Doing it this way so we only think about the other conditions if the var is actually set
 			if((holder.health == holder.maxHealth) && !hostile && (L.resting || L.weakened || L.stunned))	//If our health is full, no one is fighting us, we can forgive
@@ -220,7 +215,7 @@
 
 	return TRUE
 
-/datum/ai_holder/simple_mob/vore/stalker/engage_target()
+/datum/ai_holder/simple_mob/vore/devil/engage_target()
 	ai_log("engage_target() : Entering.", AI_LOG_DEBUG)
 
 	// Can we still see them?
