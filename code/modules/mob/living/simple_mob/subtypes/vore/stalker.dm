@@ -184,7 +184,7 @@
 //						if(!L.stat) //If the prey is weakened in any way, don't run
 //							step_away(holder, L, 8)
 //							holder.face_atom(L)
-				return FALSE
+//				return FALSE
 		//VOREStation add start
 		else if(forgive_resting && !isbelly(holder.loc))	//Doing it this way so we only think about the other conditions if the var is actually set
 			if((holder.health == holder.maxHealth) && !hostile && (L.resting || L.weakened || L.stunned))	//If our health is full, no one is fighting us, we can forgive
