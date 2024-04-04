@@ -313,7 +313,7 @@
 
 
 		if("freq")
-			var/newfreq = tgui_input_number(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, null, 9999)
+			var/newfreq = tgui_input_number(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, max_value=9999)
 			if(newfreq && canAccess(usr))
 				if(findtext(num2text(newfreq), "."))
 					newfreq *= 10 // shift the decimal one place
