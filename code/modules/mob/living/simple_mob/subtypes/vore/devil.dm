@@ -178,7 +178,7 @@
 					return FALSE
 //		if(!check_attacker(L))
 //			if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x)) //stop attacking if they look at you
-				set_stance(STANCE_IDLE)
+//				set_stance(STANCE_IDLE)
 //				return FALSE
 		//VOREStation add start
 		else if(forgive_resting && !isbelly(holder.loc))	//Doing it this way so we only think about the other conditions if the var is actually set
