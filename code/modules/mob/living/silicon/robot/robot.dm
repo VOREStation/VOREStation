@@ -117,6 +117,7 @@
 	)
 
 	var/has_recoloured = FALSE
+	var/vtec_active = FALSE
 
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
@@ -533,12 +534,9 @@
 /mob/living/silicon/robot/proc/toggle_vtec()
 	set name = "Toggle VTEC"
 	set category = "Abilities"
-	if(speed == -1)
-		to_chat(src, "<span class='filter_notice'>VTEC module disabled.</span>")
-		speed = 0
-	else
-		to_chat(src, "<span class='filter_notice'>VTEC module enabled.</span>")
-		speed = -1
+	vtec_active = !vtec_active
+	hud_used.toggle_vtec_control()
+	to_chat(src, "<span class='filter_notice'>VTEC module [vtec_active  ? "enabled" : "disabled"].</span>")
 
 // update the status screen display
 /mob/living/silicon/robot/Stat()

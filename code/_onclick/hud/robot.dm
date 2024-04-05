@@ -217,6 +217,32 @@ var/obj/screen/robot_inventory
 		client.screen += HUD.adding + HUD.other
 		client.screen += client.void
 
+/datum/hud/proc/toggle_vtec_control()
+	if(!isrobot(mymob))
+		return
+
+	var/mob/living/silicon/robot/R = mymob
+	if(!control_vtec)
+		var/obj/screen/using = new /obj/screen()
+		using.name = "control_vtec"
+		using.icon = ui_style
+		using.screen_loc = ui_vtec_control
+		using.color = ui_color
+		using.alpha = ui_alpha
+		control_vtec = using
+	if(R.vtec_active)
+		if(R.speed == 0)
+			control_vtec.icon_state = "speed_0"
+		else if(R.speed == -0.5)
+			control_vtec.icon_state = "speed_1"
+		else if(R.speed == -1)
+			control_vtec.icon_state = "speed_2"
+		R.m_intent = "run"
+		R.hud_used.move_intent.icon_state = "running"
+		R.client.screen += control_vtec
+	else
+		R.client.screen -= control_vtec
+		R.speed = 0
 
 /datum/hud/proc/toggle_show_robot_modules()
 	if(!isrobot(mymob))
