@@ -25,7 +25,7 @@ var/obj/screen/robot_inventory
 	using.color = HUD.ui_color
 	using.alpha = HUD.ui_alpha
 	using.icon_state = "radio"
-	using.screen_loc = ui_movi
+	using.screen_loc = ui_borg_radio
 	using.layer = HUD_LAYER
 	adding += using
 
@@ -80,6 +80,17 @@ var/obj/screen/robot_inventory
 	using.layer = HUD_LAYER
 	adding += using
 	HUD.action_intent = using
+
+	//Move intent (walk/run)
+	using = new /obj/screen()
+	using.name = "mov_intent"
+	using.icon = HUD.ui_style
+	using.icon_state = (m_intent == "run" ? "running" : "walking")
+	using.screen_loc = ui_movi
+	using.color = HUD.ui_color
+	using.alpha = HUD.ui_alpha
+	HUD.adding += using
+	HUD.move_intent = using
 
 //Health
 	healths = new /obj/screen()
@@ -276,7 +287,7 @@ var/obj/screen/robot_inventory
 	else
 		//Modules display is hidden
 		//r.client.screen -= robot_inventory	//"store" icon
-		for(var/atom/A in r.module.modules)
+		for(var/atom/A in r.module?.modules)
 			if(r.client && (A != r.module_state_1) && (A != r.module_state_2) && (A != r.module_state_3) )
 				//Module is not currently active
 				r.client.screen -= A

@@ -88,6 +88,8 @@
 				"rad"		= 100
 				)
 
+	glow_override = TRUE
+
 /mob/living/simple_mob/vore/oregrub/lava
 	name = "mature lavagrub"
 	desc = "A mature, rocky lavagrub"

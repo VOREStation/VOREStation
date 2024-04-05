@@ -53,6 +53,8 @@ List of things solar grubs should be able to do:
 	var/shock_chance = 10 // Beware
 	var/tracked = FALSE
 
+	glow_override = TRUE
+
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
 
