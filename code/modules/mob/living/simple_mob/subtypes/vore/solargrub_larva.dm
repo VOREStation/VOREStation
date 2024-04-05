@@ -188,7 +188,7 @@ var/global/list/grub_machine_overlays = list()
 	if(. == 0 && !is_dead())
 		set_light(1.5, 1, COLOR_YELLOW)
 		return 1
-	else if(isdead())
+	else if(is_dead())
 		glow_override = FALSE
 
 
