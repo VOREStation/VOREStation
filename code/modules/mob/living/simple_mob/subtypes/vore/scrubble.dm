@@ -117,14 +117,14 @@
 /datum/ai_holder/simple_mob/hostile/scrubble/find_target(list/possible_targets, has_targets_list)
 	if(!isanimal(holder))	//Only simplemobs have the vars we need
 		return ..()
-	. = list()
+	var/list/L = list()
 	if(!has_targets_list)
 		possible_targets = list_targets()
 	var/list/valid_mobs = list()
 	for(var/mob/living/possible_target in possible_targets)
 		if(!can_attack(possible_target))
 			continue
-		. |= possible_target
+		L |= possible_target
 		if(!isliving(possible_target))
 			continue
 		if(vore_check(possible_target))
@@ -133,8 +133,8 @@
 	var/new_target
 	if(valid_mobs.len)
 		new_target = pick(valid_mobs)
-	else if(hostile)
-		new_target = pick(.)
+	else if(hostile && L.len)
+		new_target = pick(L)
 	if(!new_target)
 		return null
 	give_target(new_target)
