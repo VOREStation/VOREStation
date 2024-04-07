@@ -1077,6 +1077,96 @@
 	name = "Fantasy house"
 	icon_state = "green"
 
+//WELCOME TO THE JUNGLE
+
+/area/redgate/jungle
+	name = "Jungle"
+	icon_state = "red"
+	requires_power = 0
+
+/area/redgate/jungle/aboveground
+	name = "Jungle"
+	icon_state = "red"
+
+/area/redgate/jungle/temple
+	name = "Jungle temple"
+	icon_state = "yellow"
+
+/area/redgate/jungle/westcaves
+	name = "Jungle west caves"
+	icon_state = "yellow"
+
+/area/redgate/jungle/eastcaves
+	name = "Jungle east caves"
+	icon_state = "yellow"
+
+/area/redgate/jungle/southcaves
+	name = "Jungle south caves"
+	icon_state = "yellow"
+
+/area/redgate/jungle/deepforest
+	name = "Jungle deep forest"
+	icon_state = "yellow"
+
+/area/redgate/jungle/facilitynw
+	name = "Jungle facility north-west"
+	icon_state = "yellow"
+	lightswitch = 0
+
+/area/redgate/jungle/facilityne
+	name = "Jungle facility north-east"
+	icon_state = "yellow"
+	lightswitch = 0
+
+/area/redgate/jungle/facilitysw
+	name = "Jungle facility south-west"
+	icon_state = "yellow"
+	lightswitch = 0
+
+/area/redgate/jungle/facilityse
+	name = "Jungle facility south-east"
+	icon_state = "yellow"
+	lightswitch = 0
+
+/area/redgate/jungle/underwaterwest
+	name = "Jungle underwater west"
+	icon_state = "purple"
+	forced_ambience = list('sound/effects/underwater.ogg')
+
+/area/redgate/jungle/underwaterswamp
+	name = "Jungle underwater swamp"
+	icon_state = "purple"
+	forced_ambience = list('sound/effects/underwater.ogg')
+
+/area/redgate/jungle/underwaterpong
+	name = "Jungle underwater pond"
+	icon_state = "purple"
+	forced_ambience = list('sound/effects/underwater.ogg')
+
+/area/redgate/jungle/underwatercave
+	name = "Jungle underwater cave"
+	icon_state = "yellow"
+
+/area/redgate/jungle/underwatercaveswamp
+	name = "Jungle underwater swamp cave"
+	icon_state = "yellow"
+
+/area/redgate/jungle/underwatercavepond
+	name = "Jungle underwater pond cave"
+	icon_state = "yellow"
+
+/area/redgate/jungle/murderroom
+	name = "Jungle trophy room"
+	icon_state = "yellow"
+
+/area/redgate/jungle/facilitybar
+	name = "Jungle facility bar"
+	icon_state = "yellow"
+
+/area/redgate/jungle/facilitycasino
+	name = "Jungle facility casino"
+	icon_state = "yellow"
+
 //HIIIIGHWAY TO THE! LASER-DOME!
 /area/redgate/laserdome
 	name = "Laserdome Safe Zone"

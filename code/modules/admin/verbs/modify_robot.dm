@@ -10,11 +10,42 @@
 		return
 
 	if(!target.module)
-		if(tgui_alert(usr, "This robot has not yet selected a module. Would you like to toggle combat module override?","Confirm",list("Yes","No"))!="Yes")
-			return
-		target.crisis_override = !target.crisis_override
-		to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
-		return
+		var/list/pre_modification_options = list(MODIFIY_ROBOT_TOGGLE_ERT, MODIFIY_ROBOT_LIMIT_MODULES_ADD, MODIFIY_ROBOT_LIMIT_MODULES_REMOVE)
+		while(TRUE)
+			var/pre_modification_choice = tgui_input_list(usr, "Which pre module selection edits would you like to perform form [target]","Choice", pre_modification_options)
+			if(!pre_modification_choice || pre_modification_choice == "Cancel")
+				return
+			switch(pre_modification_choice)
+				if(MODIFIY_ROBOT_TOGGLE_ERT)
+					if(tgui_alert(usr, "This robot has not yet selected a module. Would you like to toggle combat module override?","Confirm",list("Yes","No"))!="Yes")
+						continue
+					target.crisis_override = !target.crisis_override
+					to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
+					continue
+				if(MODIFIY_ROBOT_LIMIT_MODULES_ADD)
+					if(target.restrict_modules_to.len)
+						to_chat(usr, "<span class='warning'>[target]'s modules are already restricted. For details you can use the remove verb to show all active restrictions.</span>")
+					var/list/possible_options = list()
+					for(var/entry in robot_modules)
+						if(!target.restrict_modules_to.Find(entry))
+							possible_options += entry
+					while(TRUE)
+						var/selected_type = tgui_input_list(usr, "Please select the module type to add to the robot's restrictions. This will limit the module choices to the added types only.", "Module types", possible_options)
+						if(!selected_type || selected_type == "Cancel")
+							break
+						possible_options -= selected_type
+						target.restrict_modules_to += selected_type
+						to_chat(usr, "<span class='danger'>You added [selected_type] to [target]'s possible modules list.</span>")
+					continue
+				if(MODIFIY_ROBOT_LIMIT_MODULES_REMOVE)
+					while(TRUE)
+						var/selected_type = tgui_input_list(usr, "Please select the module type to remove. Removing all module types here will allow default station module selection.", "Module types", target.restrict_modules_to)
+						if(!selected_type || selected_type == "Cancel")
+							to_chat(usr, "<span class='danger'>[target] uses the default module list without special restrictions.</span>")
+							break
+						target.restrict_modules_to -= selected_type
+						to_chat(usr, "<span class='danger'>You removed [selected_type] from [target]'s possible modules list.</span>")
+					continue
 
 	if(!target.module.modules)
 		return

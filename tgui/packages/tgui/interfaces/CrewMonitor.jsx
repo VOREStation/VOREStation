@@ -165,7 +165,7 @@ const CrewMonitorMapView = (props) => {
   const { act, config, data } = useBackend();
   return (
     <Box height="526px" mb="0.5rem" overflow="hidden">
-      <NanoMap onZoom={(v) => props.onZoom(v)}>
+      <NanoMap zoomScale={data.zoomScale} onZoom={(v) => props.onZoom(v)}>
         {data.crewmembers
           .filter(
             (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel,
