@@ -242,20 +242,3 @@
 	icon_state = "scel_red"
 	icon_rest = "scel_red-rest"
 	random_skin = 0
-
-/mob/living/simple_mob/vore/scel/handle_light()
-	if(glow_override)
-		return FALSE
-
-	if(instability >= TECHNOMANCER_INSTABILITY_MIN_GLOW)
-		var/distance = round(sqrt(instability / 2))
-		if(distance)
-			set_light(distance, distance * 4, l_color = "#660066")
-			return TRUE
-
-	else if(glow_toggle)
-		set_light(glow_range, glow_intensity, glow_color)
-
-	else
-		set_light(0)
-		return FALSE

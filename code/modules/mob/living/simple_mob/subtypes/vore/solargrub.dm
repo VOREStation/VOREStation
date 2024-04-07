@@ -53,6 +53,8 @@ List of things solar grubs should be able to do:
 	var/shock_chance = 10 // Beware
 	var/tracked = FALSE
 
+	glow_override = TRUE
+
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
 
@@ -138,6 +140,8 @@ List of things solar grubs should be able to do:
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_YELLOW)
 		return 1
+	else if(is_dead())
+		glow_override = FALSE
 
 /mob/living/simple_mob/vore/solargrub/init_vore()
 	..()
