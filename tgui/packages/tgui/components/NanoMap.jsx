@@ -15,8 +15,6 @@ const pauseEvent = (e) => {
   return false;
 };
 
-const zoomScale = 280;
-
 export class NanoMap extends Component {
   constructor(props) {
     super(props);
@@ -78,8 +76,8 @@ export class NanoMap extends Component {
     };
 
     this.handleOnClick = (e) => {
-      let byondX = e.offsetX / this.state.zoom / zoomScale;
-      let byondY = 1 - e.offsetY / this.state.zoom / zoomScale; // Byond origin is bottom left, this is top left
+      let byondX = e.offsetX / this.state.zoom / this.props.zoomScale;
+      let byondY = 1 - e.offsetY / this.state.zoom / this.props.zoomScale; // Byond origin is bottom left, this is top left
 
       e.byondX = byondX;
       e.byondY = byondY;
@@ -127,7 +125,7 @@ export class NanoMap extends Component {
 
     const mapUrl = config.map + '_nanomap_z' + config.mapZLevel + '.png';
     // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
-    const mapSize = zoomScale * zoom + 'px';
+    const mapSize = this.props.zoomScale * zoom + 'px';
     const newStyle = {
       width: mapSize,
       height: mapSize,
