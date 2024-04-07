@@ -98,8 +98,8 @@
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
 	var/charge_percent = 0
-		if(maxcharge > 0)
-			charge_percent = 100.0*charge/maxcharge
+	if(maxcharge > 0)
+		charge_percent = 100.0*charge/maxcharge
 	return charge_percent
 
 /obj/item/weapon/cell/proc/fully_charged()
