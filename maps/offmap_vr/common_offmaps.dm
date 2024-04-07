@@ -337,6 +337,19 @@
 	desc = "A world made up almost entirely of water, sprinkled with obscure marble structures."
 	mappath = 'maps/redgate/falls/falls.dmm'
 
+/datum/map_template/common_lateload/redgate/jungle
+	name = "Redgate - Jungle"
+	desc = "A fantasy town full of low tech stuff."
+	mappath = 'maps/redgate/jungle.dmm'
+
+/datum/map_template/common_lateload/redgate/jungle_underground
+	name = "Redgate - Jungle Underground"
+	desc = "A fantasy dungeon with lots of monsters and loot."
+	mappath = 'maps/redgate/jungle_underground.dmm'
+
+/obj/effect/landmark/map_data/jungle
+	height = 2
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
