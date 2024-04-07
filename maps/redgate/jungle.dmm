@@ -680,13 +680,6 @@
 /obj/item/weapon/material/fishing_rod/modern/strong,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
-"hs" = (
-/obj/structure/lattice{
-	color = "#c2864e";
-	name = branches
-	},
-/turf/simulated/open,
-/area/redgate/jungle/aboveground)
 "hA" = (
 /obj/structure/table/gold,
 /obj/random/potion_base,
@@ -22807,7 +22800,7 @@ kA
 kA
 kA
 kA
-hs
+kA
 kA
 kA
 kA
@@ -22947,11 +22940,11 @@ kA
 kA
 kA
 kA
-hs
-hs
-hs
-hs
-hs
+kA
+kA
+kA
+kA
+kA
 kA
 kA
 kA
@@ -23091,7 +23084,7 @@ kA
 kA
 kA
 kA
-hs
+kA
 kA
 kA
 kA
@@ -23230,13 +23223,13 @@ kA
 kA
 kA
 kA
-hs
-hs
-hs
-hs
-hs
-hs
-hs
+kA
+kA
+kA
+kA
+kA
+kA
+kA
 kA
 kA
 kA
@@ -23375,7 +23368,7 @@ kA
 kA
 kA
 kA
-hs
+kA
 kA
 kA
 kA
@@ -23515,11 +23508,11 @@ kA
 kA
 kA
 kA
-hs
-hs
-hs
-hs
-hs
+kA
+kA
+kA
+kA
+kA
 kA
 kA
 kA
@@ -23659,7 +23652,7 @@ kA
 kA
 kA
 kA
-hs
+kA
 kA
 kA
 kA
