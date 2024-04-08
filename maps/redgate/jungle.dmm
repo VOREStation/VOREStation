@@ -462,7 +462,9 @@
 	icon_scale_x = 2;
 	icon_scale_y = 2
 	},
-/mob/living/simple_mob/vore/bigdragon/friendly,
+/mob/living/simple_mob/vore/bigdragon/friendly{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/eastcaves)
 "fb" = (
@@ -1311,7 +1313,9 @@
 /turf/simulated/wall/tgmc/chigusa,
 /area/redgate/jungle/temple)
 "pN" = (
-/mob/living/simple_mob/vore/aggressive/dragon/space,
+/mob/living/simple_mob/vore/aggressive/dragon/space{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1326,7 +1330,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/jungle/westcaves)
 "pT" = (
-/mob/living/simple_mob/vore/raptor/yellow,
+/mob/living/simple_mob/vore/raptor/yellow{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/southcaves)
 "pU" = (
@@ -1504,7 +1510,9 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/redgate/jungle/temple)
 "rl" = (
-/mob/living/simple_mob/vore/squirrel/big,
+/mob/living/simple_mob/vore/squirrel/big{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "rr" = (
@@ -1748,10 +1756,8 @@
 /turf/simulated/floor/weird_things/dark,
 /area/redgate/jungle/southcaves)
 "vi" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/signpostwood{
-	desc = "Mainly-prey leaning switch ahead. Semi-paragraph posts. Primary kinks focused on bad ends and harder ERP/Vore themes. Hard vore/digestion, unwillingness/non-con, fights/physical violence etc. Open to OV/CV/TV/BV/UB and absorption/merging/goo style vore. Bone/trophy-play greatly welcomed.";
-	pixel_y = 16
+/mob/living/simple_mob/vore/squirrel{
+	ghostjoin = 1
 	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
@@ -2018,15 +2024,18 @@
 /obj/structure/prop/rock/waterflat{
 	density = 0
 	},
-/mob/living/simple_mob/vore/horse/kelpie,
+/mob/living/simple_mob/vore/horse/kelpie{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/water{
 	depth = 0
 	},
 /area/redgate/jungle/aboveground)
 "xQ" = (
-/obj/structure/signpostwood{
-	desc = "pred, dom/top tiger girl, rougher kinks, non-con & hv focus, ov & cv okay.";
-	pixel_y = 16
+/mob/living/simple_mob/vore/rabbit{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	ghostjoin = 1;
+	vore_bump_chance = 1
 	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
@@ -2067,9 +2076,15 @@
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/eastcaves)
 "yr" = (
-/obj/structure/signpostwood{
-	desc = "Danger west and north, safer east and south.";
-	pixel_y = 16
+/mob/living/simple_mob/vore/wolf/direwolf{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	faction = "sif";
+	ghostjoin = 1;
+	melee_damage_lower = 2;
+	melee_damage_upper = 5;
+	vore_bump_chance = 25;
+	vore_pounce_chance = 50;
+	vore_pounce_maxhealth = 100
 	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
@@ -2148,13 +2163,6 @@
 /area/redgate/jungle/aboveground)
 "zp" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/redgate/jungle/aboveground)
-"zq" = (
-/obj/structure/signpostwood{
-	desc = "BEWARE OF RIVER DRAGON! Exclusively predator, OV, AV, UB and CV all enjoyed in equal measure. Will do willing or unwilling as well as digestion or endo. Digestion will be exclusively melty. Hypnosis is on the table should it be desired. I will not do scat or watersports, nor will I do hard vore. NO MALE CHARACTERS, unless willing to be genderTF'd to female.";
-	pixel_y = 16
-	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "zr" = (
@@ -3273,13 +3281,6 @@
 /obj/item/weapon/coin/gold,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/temple)
-"MW" = (
-/obj/structure/signpostwood{
-	desc = "Warning! Digestion! Siren's known to devour passers-by!";
-	pixel_y = 16
-	},
-/turf/simulated/floor/outdoors/grass/forest,
-/area/redgate/jungle/aboveground)
 "Nc" = (
 /obj/item/weapon/bone/skull/unknown,
 /turf/simulated/floor/outdoors/grass/forest,
@@ -3395,15 +3396,9 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
-"OC" = (
-/obj/structure/signpostwood{
-	desc = "Endo-lean raptor pred: willing/unwilling";
-	pixel_y = 16
-	},
-/turf/simulated/floor/outdoors/grass/forest,
-/area/redgate/jungle/aboveground)
 "OE" = (
 /mob/living/simple_mob/vore/greatwolf{
+	ghostjoin = 1;
 	melee_damage_lower = 4;
 	melee_damage_upper = 8;
 	vore_pounce_chance = 50
@@ -3605,13 +3600,6 @@
 "QL" = (
 /turf/simulated/floor/lava,
 /area/redgate/jungle/temple)
-"QN" = (
-/obj/structure/signpostwood{
-	desc = "Giant arachne pred/ERP dom-pref, unwilling preferred";
-	pixel_y = 16
-	},
-/turf/simulated/floor/outdoors/grass/forest,
-/area/redgate/jungle/aboveground)
 "QP" = (
 /turf/simulated/wall/wood,
 /area/redgate/jungle/westcaves)
@@ -4147,7 +4135,7 @@
 /turf/simulated/shuttle/floor/purple,
 /area/redgate/jungle/temple)
 "XT" = (
-/obj/structure/prop/statue/statue2,
+/obj/structure/prop/statue,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
 "XX" = (
@@ -4288,13 +4276,6 @@
 /obj/random/fantasy_item/better,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
-"ZE" = (
-/obj/structure/signpostwood{
-	desc = "Subby Endo/Absorb Pred! Loves Willing vibes, exhib, and multiprey!";
-	pixel_y = 16
-	},
-/turf/simulated/floor/outdoors/grass/forest,
-/area/redgate/jungle/aboveground)
 "ZJ" = (
 /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel,
 /turf/simulated/floor/outdoors/grass/forest,
@@ -5966,7 +5947,7 @@ zU
 zU
 zU
 zU
-MW
+zU
 Ru
 Zp
 Zp
@@ -6047,7 +6028,7 @@ qV
 zU
 Ff
 Vi
-vi
+Vi
 zU
 zU
 zU
@@ -8613,67 +8594,67 @@ wP
 IM
 wP
 zJ
+zU
+zU
+zU
+zU
+zU
+zU
+zU
+zU
+zU
+zU
+zU
+zU
+ef
+zU
+zU
+zU
+zU
+zU
+zU
+Dh
+zU
+zU
+ef
+zU
+zU
+vQ
+zU
+zU
+zU
+zU
+Dh
+zU
+Yi
+yE
+zU
+zU
+yE
+zU
+zU
+zU
+dT
+dT
+zU
+zU
+zU
+zU
+yE
+zU
+zU
+zU
+zU
+zU
+zU
+Dh
+Yi
+Zp
+Zp
+zU
+zU
+vQ
 xQ
-zU
-zU
-zU
-zU
-zU
-zU
-zU
-zU
-zU
-zU
-zU
-ef
-zU
-zU
-zU
-zU
-zU
-zU
-Dh
-zU
-zU
-ef
-zU
-zU
-vQ
-zU
-zU
-zU
-zU
-Dh
-zU
-Yi
-yE
-zU
-zU
-yE
-zU
-zU
-zU
-dT
-dT
-zU
-zU
-zU
-zU
-yE
-zU
-zU
-zU
-zU
-zU
-zU
-Dh
-Yi
-Zp
-Zp
-zU
-zU
-vQ
-Wk
 zU
 zU
 zU
@@ -9500,7 +9481,7 @@ zJ
 zJ
 zJ
 zU
-yr
+zU
 CM
 CM
 CM
@@ -10783,7 +10764,7 @@ CM
 CM
 CM
 CM
-yr
+zU
 dT
 zU
 zU
@@ -12975,7 +12956,7 @@ zU
 zU
 zU
 zU
-xj
+yr
 yE
 zU
 zU
@@ -16009,7 +15990,7 @@ zU
 zU
 zU
 Dh
-Kp
+vi
 zU
 zU
 vQ
@@ -17470,7 +17451,7 @@ zU
 zU
 zU
 zU
-ZE
+zU
 zU
 zU
 zU
@@ -18499,7 +18480,7 @@ zU
 zU
 zU
 zU
-OC
+zU
 iW
 iW
 iW
@@ -20424,7 +20405,7 @@ zU
 zU
 vQ
 zU
-zq
+zU
 zU
 uO
 uO
@@ -22106,7 +22087,7 @@ zU
 ef
 zU
 zU
-QN
+zU
 IB
 IB
 uO
