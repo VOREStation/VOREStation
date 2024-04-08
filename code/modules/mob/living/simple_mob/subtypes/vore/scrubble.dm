@@ -37,12 +37,14 @@
 	vore_default_mode = DM_DIGEST
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "pounces on"
+	vore_pounce_falloff = 0 //Always eat someone at full health
+	vore_standing_too = 1
 
 /mob/living/simple_mob/vore/scrubble/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
-	B.desc = "Despite the small size of the scrubble, it seems to have a lot of energy behind it. The critter dives atop you in a panic, it's maw quickly engulfing your head as it's paws flail scrabble against you, hot slobber slathering across your tightly trapped face. It takes a little repositioning to get itself in the right position, but soon the creature is gulping its way down your entire body. Somehow it manages to squeeze you completely into a gut that should rightly be far too small for anything but a mouse, bundling up your body into a tight ball as the walls around you clench in tightly to keep you nice and compact. The sounds of burbling and glorping echo through the intensely tight space as the stomach lining grinds in thick oozes against your skin, pressure so high that you can barely move a muscle."
+	B.desc = "Despite the small size of the scrubble, it seems to have a lot of energy behind it. The critter dives atop you in a panic, its maw quickly engulfing your head as its paws flail scrabble against you, hot slobber slathering across your tightly trapped face. It takes a little repositioning to get itself in the right position, but soon the creature is gulping its way down your entire body. Somehow it manages to squeeze you completely into a gut that should rightly be far too small for anything but a mouse, bundling up your body into a tight ball as the walls around you clench in tightly to keep you nice and compact. The sounds of burbling and glorping echo through the intensely tight space as the stomach lining grinds in thick oozes against your skin, pressure so high that you can barely move a muscle."
 	B.mode_flags = DM_FLAG_THICKBELLY
 	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 1
@@ -68,7 +70,7 @@
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/scrubble/PounceTarget(var/mob/living/M, var/successrate = 100)
-	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
+	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
 		M.visible_message("<span class='danger'>\The [src] pounces on \the [M]!</span>!")
@@ -105,7 +107,7 @@
 	var/mob/living/L = target
 	var/distance = get_dist(holder, target)
 	if(distance <= 1)
-		if(L.devourable && L.allowmobvore && (H.vore_fullness < H.vore_capacity))
+		if(H.will_eat(L) && H.CanPounceTarget(L))
 			H.face_atom(L)
 			H.PounceTarget(L)
 			return
