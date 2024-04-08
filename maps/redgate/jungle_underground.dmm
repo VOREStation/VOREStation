@@ -1217,7 +1217,9 @@
 	},
 /area/redgate/jungle/underwatercaveswamp)
 "ov" = (
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilitynw)
 "ow" = (
 /obj/structure/table/steel_reinforced,
@@ -1509,7 +1511,9 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilityse)
 "sy" = (
 /obj/random/underdark,
@@ -3195,7 +3199,9 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilityse)
 "MN" = (
 /obj/random/trash,
@@ -3993,7 +3999,9 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilityse)
 "Wo" = (
 /obj/structure/railing/grey{
