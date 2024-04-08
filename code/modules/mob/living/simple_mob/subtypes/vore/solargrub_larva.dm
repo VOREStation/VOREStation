@@ -51,6 +51,8 @@ var/global/list/grub_machine_overlays = list()
 
 	ai_holder_type = /datum/ai_holder/simple_mob/solargrub_larva
 
+	glow_override = TRUE
+
 /mob/living/simple_mob/animal/solargrub_larva/New()
 	..()
 	existing_solargrubs += src
@@ -186,6 +188,8 @@ var/global/list/grub_machine_overlays = list()
 	if(. == 0 && !is_dead())
 		set_light(1.5, 1, COLOR_YELLOW)
 		return 1
+	else if(is_dead())
+		glow_override = FALSE
 
 
 /obj/machinery/abstract_grub_machine

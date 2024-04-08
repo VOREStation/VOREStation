@@ -16,7 +16,7 @@ Pipelines + Other Objects -> Pipe network
 	power_channel = ENVIRON
 	var/nodealert = 0
 	var/power_rating //the maximum amount of power the machine can use to do work, affects how powerful the machine is, in Watts
-	
+
 	unacidable = TRUE
 	layer = ATMOS_LAYER
 	plane = PLATING_PLANE
@@ -171,6 +171,9 @@ Pipelines + Other Objects -> Pipe network
 	if(construction_type)
 		var/obj/item/pipe/I = new construction_type(loc, null, null, src)
 		I.setPipingLayer(piping_layer)
+		if(istype(I, /obj/item/pipe/trinary/flippable))
+			var/obj/item/pipe/trinary/flippable/flip = I
+			flip.icon_state = "[flip.icon_state][flip.mirrored ? "m" : ""]"
 		transfer_fingerprints_to(I)
 	qdel(src)
 

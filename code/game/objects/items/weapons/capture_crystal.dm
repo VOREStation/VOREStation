@@ -844,7 +844,13 @@
 		list(/mob/living/simple_mob/vore/sheep),
 		list(/mob/living/simple_mob/vore/weretiger),
 		list(/mob/living/simple_mob/vore/alienanimals/skeleton),
-		list(/mob/living/simple_mob/vore/alienanimals/dustjumper)
+		list(/mob/living/simple_mob/vore/alienanimals/dustjumper),
+		list(/mob/living/simple_mob/vore/cryptdrake),
+		list(/mob/living/simple_mob/vore/stalker),
+		list(/mob/living/simple_mob/vore/horse/kelpie),
+		list(/mob/living/simple_mob/vore/scrubble),
+		list(/mob/living/simple_mob/vore/sonadile),
+		list(/mob/living/simple_mob/vore/devil)
 		)
 
 /obj/item/capture_crystal/random/Initialize()

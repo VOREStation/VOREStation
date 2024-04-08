@@ -77,6 +77,17 @@ const createMessageNode = () => {
   return node;
 };
 
+const interleaveMessage = (node, interleave, color) => {
+  if (interleave) {
+    node.setAttribute('style', 'background-color:' + color);
+    node.setAttribute('display', 'block');
+  } else {
+    node.removeAttribute('style');
+    node.removeAttribute('display');
+  }
+  return node;
+};
+
 const createReconnectedNode = () => {
   const node = document.createElement('div');
   node.className = 'Chat__reconnected';
@@ -156,6 +167,9 @@ class ChatRenderer {
     this.logEnable = true;
     this.roundId = null;
     this.storedTypes = {};
+    this.interleave = false;
+    this.interleaveEnabled = false;
+    this.interleaveColor = '#909090';
     this.hideImportantInAdminTab = false;
     // Scroll handler
     /** @type {HTMLElement} */
@@ -378,6 +392,8 @@ class ChatRenderer {
     roundId,
     prependTimestamps,
     hideImportantInAdminTab,
+    interleaveEnabled,
+    interleaveColor,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
@@ -388,6 +404,8 @@ class ChatRenderer {
     this.roundId = roundId;
     this.prependTimestamps = prependTimestamps;
     this.hideImportantInAdminTab = hideImportantInAdminTab;
+    this.interleaveEnabled = interleaveEnabled;
+    this.interleaveColor = interleaveColor;
   }
 
   changePage(page) {
@@ -413,6 +431,12 @@ class ChatRenderer {
         )
       ) {
         node = message.node;
+        node = interleaveMessage(
+          node,
+          this.interleaveEnabled && this.interleave,
+          this.interleaveColor,
+        );
+        this.interleave = !this.interleave;
         fragment.appendChild(node);
         this.visibleMessages.push(message);
       }
@@ -627,6 +651,12 @@ class ChatRenderer {
           this.hideImportantInAdminTab
         )
       ) {
+        node = interleaveMessage(
+          node,
+          this.interleaveEnabled && this.interleave,
+          this.interleaveColor,
+        );
+        this.interleave = !this.interleave;
         fragment.appendChild(node);
         this.visibleMessages.push(message);
       }

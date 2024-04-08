@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	var/shell = FALSE
 	var/deployed = FALSE
 	var/mob/living/silicon/ai/mainframe = null
+	var/first_transfer = TRUE
 
 // Premade AI shell, for roundstart shells.
 /mob/living/silicon/robot/ai_shell/Initialize()
@@ -89,6 +90,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	if(message)
 		to_chat(src, span("notice", message))
 	mind.transfer_to(mainframe)
+	src.copy_vore_prefs_to_mob(mainframe)
 	deployed = FALSE
 	update_icon()
 	mainframe.teleop = null

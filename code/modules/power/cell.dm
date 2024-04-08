@@ -83,7 +83,9 @@
 /obj/item/weapon/cell/update_icon()
 	if(!standard_overlays)
 		return
-	var/ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
+	var/ratio = 0
+	if(maxcharge > 0)
+		ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
 	var/new_state = "[icon_state]_[ratio]"
 	if(new_state != last_overlay_state)
 		cut_overlay(last_overlay_state)
@@ -95,7 +97,10 @@
 #undef OVERLAY_EMPTY
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
-	return 100.0*charge/maxcharge
+	var/charge_percent = 0
+	if(maxcharge > 0)
+		charge_percent = 100.0*charge/maxcharge
+	return charge_percent
 
 /obj/item/weapon/cell/proc/fully_charged()
 	return (charge == maxcharge)

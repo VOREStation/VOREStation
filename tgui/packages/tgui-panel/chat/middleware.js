@@ -166,6 +166,8 @@ export const chatMiddleware = (store) => {
       game.roundId,
       settings.prependTimestamps,
       settings.hideImportantInAdminTab,
+      settings.interleave,
+      settings.interleaveColor,
     );
     // Load the chat once settings are loaded
     if (!initialized && settings.initialized) {
