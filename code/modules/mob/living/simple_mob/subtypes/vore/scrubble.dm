@@ -68,7 +68,7 @@
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/scrubble/PounceTarget(var/mob/living/M, var/successrate = 100)
-	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
+	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
 		M.visible_message("<span class='danger'>\The [src] pounces on \the [M]!</span>!")
@@ -105,7 +105,7 @@
 	var/mob/living/L = target
 	var/distance = get_dist(holder, target)
 	if(distance <= 1)
-		if(L.devourable && L.allowmobvore && (H.vore_fullness < H.vore_capacity))
+		if(H.will_eat(L) && H.CanPounceTarget(L))
 			H.face_atom(L)
 			H.PounceTarget(L)
 			return
@@ -113,6 +113,19 @@
 	ai_log("flee_from_target() : Stepping away.", AI_LOG_TRACE)
 	step_away(holder, target, 7)
 	ai_log("flee_from_target() : Exiting.", AI_LOG_DEBUG)
+
+/mob/living/simple_mob/vore/scrubble/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
+	if(!M.canmove || issilicon(M) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
+		return FALSE
+	if(!prob(vore_pounce_chance) || !will_eat(M)) //mob doesn't want to pounce
+		return FALSE
+	if(vore_standing_too) //100% chance of hitting people we can eat on the spot
+		return 100
+	var/TargetHealthPercent = (M.health/M.getMaxHealth())*100 //now we start looking at the target itself
+	if (TargetHealthPercent > vore_pounce_maxhealth) //target is too healthy to pounce
+		return FALSE
+	else
+		return 100 //Changed for scrubbles, they will pounce someone at full health.
 
 /datum/ai_holder/simple_mob/hostile/scrubble/find_target(list/possible_targets, has_targets_list)
 	if(!isanimal(holder))	//Only simplemobs have the vars we need
