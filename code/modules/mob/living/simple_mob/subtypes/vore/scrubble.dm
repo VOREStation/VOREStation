@@ -38,6 +38,7 @@
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "pounces on"
 	vore_pounce_falloff = 0 //Always eat someone at full health
+	vore_standing_too = 1
 
 /mob/living/simple_mob/vore/scrubble/init_vore()
 	..()
