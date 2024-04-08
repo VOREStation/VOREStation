@@ -462,7 +462,9 @@
 	icon_scale_x = 2;
 	icon_scale_y = 2
 	},
-/mob/living/simple_mob/vore/bigdragon/friendly,
+/mob/living/simple_mob/vore/bigdragon/friendly{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/eastcaves)
 "fb" = (
@@ -685,6 +687,14 @@
 /obj/random/potion_base,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
+"hC" = (
+/mob/living/simple_mob/vore/rabbit{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	ghostjoin = 1;
+	vore_bump_chance = 1
+	},
+/turf/simulated/floor/outdoors/grass/forest,
+/area/redgate/jungle/aboveground)
 "hG" = (
 /turf/simulated/floor/outdoors/rocks,
 /area/redgate/jungle/aboveground)
@@ -1311,7 +1321,9 @@
 /turf/simulated/wall/tgmc/chigusa,
 /area/redgate/jungle/temple)
 "pN" = (
-/mob/living/simple_mob/vore/aggressive/dragon/space,
+/mob/living/simple_mob/vore/aggressive/dragon/space{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1326,7 +1338,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/jungle/westcaves)
 "pT" = (
-/mob/living/simple_mob/vore/raptor/yellow,
+/mob/living/simple_mob/vore/raptor/yellow{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/southcaves)
 "pU" = (
@@ -1504,7 +1518,9 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/redgate/jungle/temple)
 "rl" = (
-/mob/living/simple_mob/vore/squirrel/big,
+/mob/living/simple_mob/vore/squirrel/big{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "rr" = (
@@ -2018,7 +2034,9 @@
 /obj/structure/prop/rock/waterflat{
 	density = 0
 	},
-/mob/living/simple_mob/vore/horse/kelpie,
+/mob/living/simple_mob/vore/horse/kelpie{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/water{
 	depth = 0
 	},
@@ -2223,6 +2241,12 @@
 	outdoors = -1
 	},
 /area/redgate/jungle/eastcaves)
+"Aj" = (
+/mob/living/simple_mob/vore/squirrel{
+	ghostjoin = 1
+	},
+/turf/simulated/floor/outdoors/grass/forest,
+/area/redgate/jungle/aboveground)
 "Ao" = (
 /obj/structure/flora/log2,
 /turf/simulated/floor/water/deep,
@@ -3010,6 +3034,19 @@
 /obj/item/stack/material/steel,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
+"Kg" = (
+/mob/living/simple_mob/vore/wolf/direwolf{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	faction = "sif";
+	ghostjoin = 1;
+	melee_damage_lower = 2;
+	melee_damage_upper = 5;
+	vore_bump_chance = 25;
+	vore_pounce_chance = 50;
+	vore_pounce_maxhealth = 100
+	},
+/turf/simulated/floor/outdoors/grass/forest,
+/area/redgate/jungle/aboveground)
 "Ki" = (
 /turf/simulated/floor/water,
 /area/redgate/jungle/eastcaves)
@@ -3404,6 +3441,7 @@
 /area/redgate/jungle/aboveground)
 "OE" = (
 /mob/living/simple_mob/vore/greatwolf{
+	ghostjoin = 1;
 	melee_damage_lower = 4;
 	melee_damage_upper = 8;
 	vore_pounce_chance = 50
@@ -4147,7 +4185,7 @@
 /turf/simulated/shuttle/floor/purple,
 /area/redgate/jungle/temple)
 "XT" = (
-/obj/structure/prop/statue/statue2,
+/obj/structure/prop/statue,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
 "XX" = (
@@ -8673,7 +8711,7 @@ Zp
 zU
 zU
 vQ
-Wk
+hC
 zU
 zU
 zU
@@ -12975,7 +13013,7 @@ zU
 zU
 zU
 zU
-xj
+Kg
 yE
 zU
 zU
@@ -16009,7 +16047,7 @@ zU
 zU
 zU
 Dh
-Kp
+Aj
 zU
 zU
 vQ

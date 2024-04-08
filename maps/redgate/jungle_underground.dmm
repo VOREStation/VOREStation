@@ -2219,6 +2219,12 @@
 /obj/effect/fake_sun/underwater,
 /turf/simulated/mineral/ignore_cavegen,
 /area/redgate/jungle/facilitysw)
+"Bx" = (
+/mob/living/simple_mob/vore/scrubble{
+	ghostjoin = 1
+	},
+/turf/simulated/floor,
+/area/redgate/jungle/facilitysw)
 "By" = (
 /obj/random/multiple/random_size_crate/no_weapons/nofail,
 /turf/simulated/floor,
@@ -3318,6 +3324,12 @@
 	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
+"Oc" = (
+/mob/living/simple_mob/vore/sonadile{
+	ghostjoin = 1
+	},
+/turf/simulated/floor,
+/area/redgate/jungle/facilitynw)
 "Oo" = (
 /obj/structure/prop/rock/small,
 /turf/simulated/mineral/floor/ignore_cavegen{
@@ -3480,7 +3492,9 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "PM" = (
-/mob/living/simple_mob/vore/stalker,
+/mob/living/simple_mob/vore/stalker{
+	ghostjoin = 1
+	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "PN" = (
@@ -3917,6 +3931,19 @@
 	},
 /turf/simulated/floor/lava,
 /area/redgate/jungle/facilityse)
+"Vs" = (
+/mob/living/simple_mob/vore/aggressive/panther{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	ghostjoin = 1;
+	melee_damage_lower = 2;
+	melee_damage_upper = 5;
+	vore_pounce_chance = 50;
+	vore_pounce_maxhealth = 100
+	},
+/turf/simulated/floor/outdoors/grass/forest{
+	outdoors = -1
+	},
+/area/redgate/jungle/deepforest)
 "Vt" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor,
@@ -10273,7 +10300,7 @@ cq
 oY
 cq
 cq
-ey
+Oc
 cq
 cq
 cq
@@ -13862,7 +13889,7 @@ iR
 VG
 VG
 VG
-oT
+Bx
 iR
 iR
 iR
@@ -21602,7 +21629,7 @@ LP
 OS
 BV
 Bo
-TN
+Vs
 Ct
 BV
 Bo
