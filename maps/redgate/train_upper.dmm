@@ -1965,7 +1965,9 @@
 /turf/simulated/shuttle/floor/white,
 /area/redgate/train/medbay)
 "DB" = (
-/mob/living/simple_mob/vore/wolftaur,
+/mob/living/simple_mob/vore/wolftaur{
+	ghostjoin = 1
+	},
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/dining)
 "DF" = (
@@ -2177,6 +2179,12 @@
 	outdoors = 1
 	},
 /area/redgate/train/helipad)
+"Gu" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/hull{
+	outdoors = 1
+	},
+/area/redgate/train/roof)
 "Gv" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/redgate/train/seclobby)
@@ -8013,7 +8021,7 @@ LU
 LU
 LU
 LU
-LU
+Gu
 LU
 Uz
 LU

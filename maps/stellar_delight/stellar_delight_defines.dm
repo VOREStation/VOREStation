@@ -168,7 +168,7 @@
 		)
 
 	lateload_redgate = list(
-/*		list("Redgate - Teppi Ranch"),
+		list("Redgate - Teppi Ranch"),
 		list("Redgate - Innland"),
 //		list("Redgate - Abandoned Island"),	//This will come back later
 		list("Redgate - Dark Adventure"),
@@ -180,7 +180,7 @@
 		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level"),
 		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town"),
 		list("Redgate - Laserdome"),
-		list("Redgate - Cascading Falls"),*/
+		list("Redgate - Cascading Falls"),
 		list("Redgate - Jungle Underground", "Redgate - Jungle")
 		)
 

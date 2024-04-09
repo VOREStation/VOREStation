@@ -160,3 +160,15 @@
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce
 	announce_prob = 0
+
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate //For ghostpods placed in the redgate that aren't spawned via an event
+	name = "creature hole"
+	desc = "Looks like some creature dug is hiding in the redgate..."
+	announce_prob = 0
+	icon_state = "redgate_hole"
+	icon_state_opened = "redgate_hole"
+
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate/Initialize()
+	..()
+	if(!(src in active_ghost_pods))
+		active_ghost_pods += src

@@ -16,10 +16,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "am" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/obj/machinery/light/small{
-	dir = 1
-	},
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ax" = (
@@ -271,10 +268,6 @@
 /obj/machinery/light/floortube,
 /turf/simulated/floor/redgrid/animated,
 /area/redgate/jungle/facilitybar)
-"de" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/turf/simulated/floor,
-/area/redgate/jungle/facilitynw)
 "df" = (
 /obj/structure/mirror{
 	dir = 1;
@@ -531,10 +524,6 @@
 	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
-"fF" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/turf/simulated/floor,
-/area/redgate/jungle/facilityne)
 "fN" = (
 /obj/structure/casino_table/blackjack_l{
 	dir = 1
@@ -1777,10 +1766,6 @@
 	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
-"vj" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/turf/simulated/floor,
-/area/redgate/jungle/facilityse)
 "vq" = (
 /obj/item/weapon/folder,
 /turf/simulated/floor,
@@ -8635,7 +8620,7 @@ cq
 CE
 Pi
 CE
-de
+cq
 cq
 hx
 VG
@@ -9899,7 +9884,7 @@ hx
 hx
 hx
 Mx
-cq
+am
 cq
 cq
 cq
@@ -10441,7 +10426,7 @@ Pe
 hx
 hx
 hx
-am
+dI
 cq
 ov
 ov
@@ -15489,7 +15474,7 @@ Bh
 Bh
 Bh
 ux
-vj
+yd
 yd
 yd
 yd
@@ -22815,7 +22800,7 @@ Nb
 iE
 iE
 iE
-fF
+iE
 iE
 hv
 iE
