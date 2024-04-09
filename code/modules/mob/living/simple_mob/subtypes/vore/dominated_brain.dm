@@ -293,7 +293,7 @@
 			if(db.ckey == db.pred_ckey)
 				to_chat(src, "<span class='notice'>You ease off of your control, releasing \the [db].</span>")
 				to_chat(db, "<span class='notice'>You feel the alien presence fade, and restore control of your body to you of their own will...</span>")
-				if(db.was_mob==1) //CHOMPEdit start - clean up if the dominated body was a playerless mob
+				if(db.was_mob==1) //clean up if the dominated body was a playerless mob
 					db.pred_ckey=null
 					db.ckey=null
 					db.restore_control()
