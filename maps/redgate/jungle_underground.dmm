@@ -119,7 +119,11 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "bE" = (
-/turf/simulated/mineral/floor,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilityse)
 "bG" = (
 /obj/structure/railing/grey{
@@ -652,7 +656,11 @@
 /area/redgate/jungle/facilityne)
 "hj" = (
 /obj/structure/stairs/spawner/east,
-/turf/simulated/mineral/floor,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilityse)
 "hq" = (
 /obj/random/crate,
