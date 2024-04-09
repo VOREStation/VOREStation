@@ -1841,7 +1841,9 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "lP" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/royalslug,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/royalslug{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "lR" = (
@@ -4956,6 +4958,10 @@
 "EK" = (
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/paladinhouse)
+"EL" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/outdoors/mud,
+/area/redgate/fantasy/streets)
 "EO" = (
 /obj/structure/closet/walllocker/wooden/east,
 /obj/item/weapon/potion_base/alkahest,
@@ -5562,7 +5568,9 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "IL" = (
-/mob/living/simple_mob/vore/pakkun/fire,
+/mob/living/simple_mob/vore/pakkun/fire{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "IM" = (
@@ -6071,7 +6079,9 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
 "LZ" = (
-/mob/living/simple_mob/vore/alienanimals/teppi,
+/mob/living/simple_mob/vore/alienanimals/teppi{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "Ma" = (
@@ -11050,7 +11060,7 @@ Wt
 Gl
 Gl
 Gl
-Gl
+EL
 Wt
 QZ
 Js

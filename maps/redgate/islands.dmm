@@ -520,6 +520,12 @@
 "ok" = (
 /turf/unsimulated/wall/planetary/normal/virgo4,
 /area/redgate/islands/ocean)
+"oC" = (
+/mob/living/simple_mob/vore/alienanimals/teppi{
+	ghostjoin = 1
+	},
+/turf/simulated/floor/outdoors/grass,
+/area/redgate/islands/ocean)
 "oF" = (
 /obj/machinery/telecomms/server,
 /turf/simulated/floor/tiled/dark,
@@ -924,6 +930,11 @@
 "Bq" = (
 /obj/structure/flora/tree/palm,
 /turf/simulated/floor/beach/sand/desert/outdoors,
+/area/redgate/islands/ocean)
+"Bw" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/outdoors/grass/heavy,
 /area/redgate/islands/ocean)
 "By" = (
 /obj/structure/ladder/updown,
@@ -1678,7 +1689,9 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/fishing)
 "Yv" = (
-/mob/living/simple_mob/vore/pakkun/fire,
+/mob/living/simple_mob/vore/pakkun/fire{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/redgate/islands/ocean)
 "YD" = (
@@ -4015,7 +4028,7 @@ sB
 sB
 Ch
 BV
-yi
+Bw
 wy
 wy
 MJ
@@ -15337,7 +15350,7 @@ nx
 nb
 nb
 nb
-VU
+oC
 nb
 nb
 nb

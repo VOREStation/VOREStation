@@ -2321,6 +2321,10 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/theatre)
+"dly" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/outdoors/sidewalk/slab/city,
+/area/redgate/city/streets)
 "dlH" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor/wood,
@@ -8158,6 +8162,7 @@
 "kPJ" = (
 /mob/living/simple_mob/vore/fennec/huge{
 	autodoom = 0;
+	ghostjoin = 1;
 	vore_bump_chance = 25;
 	vore_pounce_chance = 50
 	},
@@ -9545,7 +9550,9 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "mCK" = (
-/mob/living/simple_mob/vore/pakkun,
+/mob/living/simple_mob/vore/pakkun{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/city/waterworks)
 "mEd" = (
@@ -12512,7 +12519,9 @@
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/redgate/city/altevian)
 "qoV" = (
-/mob/living/simple_mob/vore/weretiger,
+/mob/living/simple_mob/vore/weretiger{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/wood,
 /area/redgate/city/weretiger)
 "qpj" = (
@@ -13972,7 +13981,9 @@
 /obj/machinery/conveyor{
 	dir = 8
 	},
-/mob/living/simple_mob/vore/aggressive/deathclaw,
+/mob/living/simple_mob/vore/aggressive/deathclaw{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/concrete,
 /area/redgate/city/conveyors)
 "snw" = (
@@ -14614,7 +14625,9 @@
 /turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/redgate/city/warehouse)
 "tbc" = (
-/mob/living/simple_mob/vore/vore_hostile/leaper,
+/mob/living/simple_mob/vore/vore_hostile/leaper{
+	ghostjoin = 1
+	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -18605,7 +18618,7 @@ nqa
 nqa
 nqa
 nqa
-nqa
+dly
 bMg
 dex
 mgj
@@ -29951,7 +29964,7 @@ ktL
 hVY
 xGA
 nqa
-nqa
+dly
 nqa
 aAP
 vZW
