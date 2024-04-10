@@ -36,6 +36,7 @@
  * public
  *
  * Static Data to be sent to the UI.
+ *
  * Static data differs from normal data in that it's large data that should be
  * sent infrequently. This is implemented optionally for heavy uis that would
  * be sending a lot of redundant data frequently. Gets squished into one
@@ -64,6 +65,17 @@
 		ui = SStgui.get_open_ui(user, src)
 	if(ui)
 		ui.send_full_update()
+
+/**
+ * public
+ *
+ * Will force an update on static data for all viewers.
+ * Should be done manually whenever something happens to
+ * change static data.
+ */
+/datum/proc/update_static_data_for_all_viewers()
+	for (var/datum/tgui/window as anything in open_uis)
+		window.send_full_update()
 
 /**
  * public
@@ -130,7 +142,6 @@
  * Associative list of JSON-encoded shared states that were set by
  * tgui clients.
  */
-
 /datum/var/list/tgui_shared_states
 
 /**
@@ -194,8 +205,7 @@
 	// Name the verb, and hide it from the user panel.
 	set name = "uiclose"
 	set hidden = TRUE
-
-	var/mob/user = src && src.mob
+	var/mob/user = src?.mob
 	if(!user)
 		return
 	// Close all tgui datums based on window_id.

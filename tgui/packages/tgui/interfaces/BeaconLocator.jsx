@@ -1,6 +1,14 @@
-import { toFixed, round } from 'common/math';
+import { round, toFixed } from 'common/math';
+
 import { useBackend } from '../backend';
-import { Box, Button, Icon, LabeledList, NumberInput, Section } from '../components';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  NumberInput,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 export const BeaconLocator = (props) => {
@@ -26,7 +34,8 @@ export const BeaconLocator = (props) => {
             mb={1}
             fluid
             icon="broadcast-tower"
-            onClick={() => act('reset_tracking')}>
+            onClick={() => act('reset_tracking')}
+          >
             Reset tracker
           </Button>
           <LabeledList>

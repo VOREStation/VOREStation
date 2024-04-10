@@ -4,25 +4,47 @@
  * @license MIT
  */
 
-import DOMPurify from 'dompurify';
 import { storage } from 'common/storage';
-import { loadSettings, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from '../settings/actions';
+import DOMPurify from 'dompurify';
+
+import { selectGame } from '../game/selectors';
+import {
+  addHighlightSetting,
+  loadSettings,
+  removeHighlightSetting,
+  updateHighlightSetting,
+  updateSettings,
+} from '../settings/actions';
 import { selectSettings } from '../settings/selectors';
-import { addChatPage, changeChatPage, changeScrollTracking, loadChat, rebuildChat, moveChatPageLeft, moveChatPageRight, removeChatPage, saveChatToDisk, purgeChatMessageArchive, toggleAcceptedType, updateMessageCount } from './actions';
-import { MESSAGE_SAVE_INTERVAL } from './constants';
+import {
+  addChatPage,
+  changeChatPage,
+  changeScrollTracking,
+  loadChat,
+  moveChatPageLeft,
+  moveChatPageRight,
+  purgeChatMessageArchive,
+  rebuildChat,
+  removeChatPage,
+  saveChatToDisk,
+  toggleAcceptedType,
+  updateMessageCount,
+} from './actions';
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
 
 // List of blacklisted tags
 const FORBID_TAGS = ['a', 'iframe', 'link', 'video'];
+let storedRounds = [];
+let storedLines = [];
 
 const saveChatToStorage = async (store) => {
   const state = selectChat(store.getState());
   const settings = selectSettings(store.getState());
   const fromIndex = Math.max(
     0,
-    chatRenderer.messages.length - settings.persistentMessageLimit
+    chatRenderer.messages.length - settings.persistentMessageLimit,
   );
   const messages = chatRenderer.messages
     .slice(fromIndex)
@@ -31,7 +53,7 @@ const saveChatToStorage = async (store) => {
   storage.set('chat-messages', messages);
   storage.set(
     'chat-messages-archive',
-    chatRenderer.archivedMessages.map((message) => serializeMessage(message))
+    chatRenderer.archivedMessages.map((message) => serializeMessage(message)),
   ); // FIXME: Better chat history
 };
 
@@ -65,32 +87,49 @@ const loadChatFromStorage = async (store) => {
     });
   }
   if (archivedMessages) {
-    chatRenderer.archivedMessages = archivedMessages;
-
-    /* FIXME Implement this later on
+    for (let archivedMessage of archivedMessages) {
+      if (archivedMessage.html) {
+        archivedMessage.html = DOMPurify.sanitize(archivedMessage.html, {
+          FORBID_TAGS,
+        });
+      }
+    }
     const settings = selectSettings(store.getState());
-    const filteredMessages = [];
 
     // Checks if the setting is actually set or set to -1 (infinite)
     // Otherwise make it grow infinitely
-    if (settings.logRetainDays || settings.logRetainDays === -1) {
-      const limit = new Date();
-      limit.setDate(limit.getMinutes() - settings.logRetainDays);
+    if (settings.logRetainRounds) {
+      storedRounds = [];
+      storedLines = [];
+      let oldId = null;
+      let currentLine = 0;
+      settings.storedRounds = 0;
+      settings.exportStart = 0;
+      settings.exportEnd = 0;
 
       for (let message of archivedMessages) {
-        const timestamp = new Date(message.createdAt);
-        timestamp.setDate(timestamp.getMinutes() - settings.logRetainDays);
-
-        if (timestamp.getDate() < limit.getDate()) {
-          filteredMessages.push(message);
+        const currentId = message.roundId;
+        if (currentId !== oldId) {
+          const round = currentId;
+          const line = currentLine;
+          storedRounds.push(round);
+          storedLines.push(line);
+          oldId = currentId;
+          currentLine++;
         }
       }
-
-      archivedMessages.length = 0;
+      if (storedRounds.length > settings.logRetainRounds) {
+        chatRenderer.archivedMessages = archivedMessages.slice(
+          storedLines[storedRounds.length - settings.logRetainRounds],
+        );
+        settings.storedRounds = settings.logRetainRounds;
+      } else {
+        chatRenderer.archivedMessages = archivedMessages;
+      }
+      settings.lastId = oldId;
+    } else {
+      chatRenderer.archivedMessages = archivedMessages;
     }
-
-    chatRenderer.archivedMessages = filteredMessages;
-    */
   }
   store.dispatch(loadChat(state));
 };
@@ -111,21 +150,31 @@ export const chatMiddleware = (store) => {
   chatRenderer.events.on('scrollTrackingChanged', (scrollTracking) => {
     store.dispatch(changeScrollTracking(scrollTracking));
   });
-  setInterval(() => {
-    saveChatToStorage(store);
-  }, MESSAGE_SAVE_INTERVAL);
   return (next) => (action) => {
     const { type, payload } = action;
     const settings = selectSettings(store.getState());
+    const game = selectGame(store.getState());
     settings.totalStoredMessages = chatRenderer.getStoredMessages();
+    settings.storedRounds = storedRounds.length;
     chatRenderer.setVisualChatLimits(
       settings.visibleMessageLimit,
       settings.combineMessageLimit,
       settings.combineIntervalLimit,
-      settings.logLineCount
+      settings.logEnable,
+      settings.logLimit,
+      settings.storedTypes,
+      game.roundId,
+      settings.prependTimestamps,
+      settings.hideImportantInAdminTab,
+      settings.interleave,
+      settings.interleaveColor,
     );
-    if (!initialized) {
+    // Load the chat once settings are loaded
+    if (!initialized && settings.initialized) {
       initialized = true;
+      setInterval(() => {
+        saveChatToStorage(store);
+      }, settings.saveInterval * 1000);
       loadChatFromStorage(store);
     }
     if (type === 'chat/message') {
@@ -166,6 +215,11 @@ export const chatMiddleware = (store) => {
       chatRenderer.processBatch([payload_obj.content], {
         doArchive: true,
       });
+      if (game.roundId !== settings.lastId) {
+        storedRounds.push(game.roundId);
+        storedLines.push(settings.totalStoredMessages - 1);
+        settings.lastId = game.roundId;
+      }
       return;
     }
     if (type === loadChat.type) {
@@ -204,7 +258,7 @@ export const chatMiddleware = (store) => {
       next(action);
       chatRenderer.setHighlight(
         settings.highlightSettings,
-        settings.highlightSettingById
+        settings.highlightSettingById,
       );
 
       return;
@@ -214,12 +268,26 @@ export const chatMiddleware = (store) => {
       saveChatToStorage(store);
       return next(action);
     }
-    if (type === saveChatToDisk.type) {
+    if (type === 'saveToDiskCommand') {
       chatRenderer.saveToDisk(settings.logLineCount);
+      return;
+    }
+    if (type === saveChatToDisk.type) {
+      chatRenderer.saveToDisk(
+        settings.logLineCount,
+        storedLines[storedLines.length - settings.exportEnd],
+        storedLines[storedLines.length - settings.exportStart],
+      );
       return;
     }
     if (type === purgeChatMessageArchive.type) {
       chatRenderer.purgeMessageArchive();
+      storedRounds = [];
+      storedLines = [];
+      settings.lastId = null;
+      settings.storedRounds = 0;
+      settings.exportStart = 0;
+      settings.exportEnd = 0;
       return;
     }
     return next(action);

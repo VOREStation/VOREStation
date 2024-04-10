@@ -5,10 +5,18 @@
  */
 
 import { storage } from 'common/storage';
+
 import { setClientTheme } from '../themes';
-import { loadSettings, updateSettings, addHighlightSetting, removeHighlightSetting, updateHighlightSetting } from './actions';
-import { selectSettings } from './selectors';
+import {
+  addHighlightSetting,
+  loadSettings,
+  removeHighlightSetting,
+  updateHighlightSetting,
+  updateSettings,
+  updateToggle,
+} from './actions';
 import { FONTS_DISABLED } from './constants';
+import { selectSettings } from './selectors';
 
 let overrideRule = null;
 let overrideFontFamily = null;
@@ -56,6 +64,7 @@ export const settingsMiddleware = (store) => {
       });
     }
     if (
+      type === updateToggle.type ||
       type === updateSettings.type ||
       type === loadSettings.type ||
       type === addHighlightSetting.type ||

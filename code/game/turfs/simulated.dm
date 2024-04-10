@@ -66,6 +66,8 @@
 	levelupdate()
 	if(climbable)
 		verbs += /turf/simulated/proc/climb_wall
+	if(is_outdoors())	//VOREStation edit - quick fix for a planetary lighting issue
+		SSplanets.addTurf(src)
 
 /turf/simulated/examine(mob/user)
 	. = ..()

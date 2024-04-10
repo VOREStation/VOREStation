@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, ProgressBar, LabeledList, Box, Section } from '../components';
+import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const AICard = (props) => {
@@ -18,7 +18,7 @@ export const AICard = (props) => {
 
   if (has_ai === 0) {
     return (
-      <Window width={600} height={470} resizable>
+      <Window width={600} height={470}>
         <Window.Content>
           <Section title="Stored AI">
             <Box>
@@ -49,7 +49,7 @@ export const AICard = (props) => {
     }
 
     return (
-      <Window width={600} height={470} resizable>
+      <Window width={600} height={470}>
         <Window.Content scrollable>
           <Section title="Stored AI">
             <Box bold display="inline-block">

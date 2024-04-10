@@ -92,3 +92,9 @@ Talon hats
 /datum/gear/head/tiny_tophat
 	display_name = "tiny tophat"
 	path = /obj/item/clothing/head/tinytophat
+
+//Replikant hat
+
+/datum/gear/head/eulrhat
+	display_name = "Sleek side cap"
+	path = /obj/item/clothing/head/eulrhat

@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList } from '../../components';
 
@@ -35,7 +34,7 @@ export const OvermapPanControls = (props) => {
   const { disabled, actToDo, selected = (val) => false } = props;
 
   return (
-    <Fragment>
+    <>
       <Box>
         <Button
           disabled={disabled}
@@ -100,6 +99,6 @@ export const OvermapPanControls = (props) => {
           iconRotation={-45}
         />
       </Box>
-    </Fragment>
+    </>
   );
 };

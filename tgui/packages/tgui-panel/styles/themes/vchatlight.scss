@@ -7,23 +7,23 @@
 @use 'sass:meta';
 
 @use '~tgui/styles/colors.scss' with (
-   $primary: #ffffff,
-   $bg-lightness: -25%,
-   $fg-lightness: -10%,
-   $label: #3b3b3b,
-   // Makes button look actually grey due to weird maths.
-   $grey: #ffffff,
-   // Commenting out color maps will adjust all colors based on the lightness
-   // settings above, but will add extra 10KB to the theme.
-   // $fg-map-keys: (),
-   // $bg-map-keys: (),
- );
+  $primary: #ffffff,
+  $bg-lightness: -25%,
+  $fg-lightness: -10%,
+  $label: #3b3b3b,
+  // Makes button look actually grey due to weird maths.
+  $grey: #ffffff,
+  // Commenting out color maps will adjust all colors based on the lightness
+  // settings above, but will add extra 10KB to the theme.
+  // $fg-map-keys: (),
+  // $bg-map-keys: (),
+);
 @use '~tgui/styles/base.scss' with (
-   $color-fg: #000000,
-   $color-bg: #eeeeee,
-   $color-bg-section: #ffffff,
-   $color-bg-grad-spread: 0%,
- );
+  $color-fg: #000000,
+  $color-bg: #eeeeee,
+  $color-bg-section: #ffffff,
+  $color-bg-grad-spread: 0%
+);
 
 // A fat warning to anyone who wants to use this: this only half works.
 // It was made almost purely for the nuke ui, and requires a good amount of manual hacks to get it working as intended.

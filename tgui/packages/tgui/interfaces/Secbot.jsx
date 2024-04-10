@@ -27,16 +27,19 @@ export const Secbot = (props) => {
             <Button icon="power-off" selected={on} onClick={() => act('power')}>
               {on ? 'On' : 'Off'}
             </Button>
-          }>
+          }
+        >
           <LabeledList>
             <LabeledList.Item
               label="Maintenance Panel"
-              color={open ? 'bad' : 'good'}>
+              color={open ? 'bad' : 'good'}
+            >
               {open ? 'Open' : 'Closed'}
             </LabeledList.Item>
             <LabeledList.Item
               label="Behavior Controls"
-              color={locked ? 'good' : 'bad'}>
+              color={locked ? 'good' : 'bad'}
+            >
               {locked ? 'Locked' : 'Unlocked'}
             </LabeledList.Item>
           </LabeledList>
@@ -48,7 +51,8 @@ export const Secbot = (props) => {
                 <Button
                   icon={idcheck ? 'toggle-on' : 'toggle-off'}
                   selected={idcheck}
-                  onClick={() => act('idcheck')}>
+                  onClick={() => act('idcheck')}
+                >
                   {idcheck ? 'Yes' : 'No'}
                 </Button>
               </LabeledList.Item>
@@ -56,7 +60,8 @@ export const Secbot = (props) => {
                 <Button
                   icon={check_records ? 'toggle-on' : 'toggle-off'}
                   selected={check_records}
-                  onClick={() => act('ignorerec')}>
+                  onClick={() => act('ignorerec')}
+                >
                   {check_records ? 'Yes' : 'No'}
                 </Button>
               </LabeledList.Item>
@@ -64,7 +69,8 @@ export const Secbot = (props) => {
                 <Button
                   icon={check_arrest ? 'toggle-on' : 'toggle-off'}
                   selected={check_arrest}
-                  onClick={() => act('ignorearr')}>
+                  onClick={() => act('ignorearr')}
+                >
                   {check_arrest ? 'Yes' : 'No'}
                 </Button>
               </LabeledList.Item>
@@ -72,7 +78,8 @@ export const Secbot = (props) => {
                 <Button
                   icon={arrest_type ? 'toggle-on' : 'toggle-off'}
                   selected={arrest_type}
-                  onClick={() => act('switchmode')}>
+                  onClick={() => act('switchmode')}
+                >
                   {arrest_type ? 'Detain' : 'Arrest'}
                 </Button>
               </LabeledList.Item>
@@ -80,7 +87,8 @@ export const Secbot = (props) => {
                 <Button
                   icon={declare_arrests ? 'toggle-on' : 'toggle-off'}
                   selected={declare_arrests}
-                  onClick={() => act('declarearrests')}>
+                  onClick={() => act('declarearrests')}
+                >
                   {declare_arrests ? 'Yes' : 'No'}
                 </Button>
               </LabeledList.Item>
@@ -89,7 +97,8 @@ export const Secbot = (props) => {
                   <Button
                     icon={patrol ? 'toggle-on' : 'toggle-off'}
                     selected={patrol}
-                    onClick={() => act('patrol')}>
+                    onClick={() => act('patrol')}
+                  >
                     {patrol ? 'Yes' : 'No'}
                   </Button>
                 </LabeledList.Item>

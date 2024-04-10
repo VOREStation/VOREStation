@@ -49,6 +49,7 @@
 	if(!locked && !busy_msg)
 		data["info"] = list(
 			"sync" = sync,
+			"is_public" = is_public,
 		)
 
 		data["info"]["linked_destroy"] = list("present" = FALSE)
@@ -638,3 +639,5 @@
 				PR.icon_state = "paper_words"
 				PR.forceMove(loc)
 				busy_msg = null
+
+#undef ENTRIES_PER_RDPAGE

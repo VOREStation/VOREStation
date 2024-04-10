@@ -5,82 +5,97 @@
  */
 
 import { canRender, classes } from 'common/react';
-import { Component, createRef, InfernoNode, RefObject } from 'inferno';
+import { forwardRef, ReactNode, RefObject, useEffect } from 'react';
+
 import { addScrollableNode, removeScrollableNode } from '../events';
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 
-interface SectionProps extends BoxProps {
-  className?: string;
-  title?: string | InfernoElement<string>;
-  buttons?: InfernoNode;
-  fill?: boolean;
-  fitted?: boolean;
-  scrollable?: boolean;
-  scrollableHorizontal?: boolean;
+type Props = Partial<{
+  /** Buttons to render aside the section title. */
+  buttons: ReactNode;
+  /** If true, fills all available vertical space. */
+  fill: boolean;
+  /** If true, removes all section padding. */
+  fitted: boolean;
+  /** Shows or hides the scrollbar. */
+  scrollable: boolean;
+  /** Shows or hides the horizontal scrollbar. */
+  scrollableHorizontal: boolean;
+  /** Title of the section. */
+  title: ReactNode;
+  /** @member Callback function for the `scroll` event */
+  onScroll: ((this: GlobalEventHandlers, ev: Event) => any) | null;
+
   flexGrow?: boolean; // VOREStation Addition
   noTopPadding?: boolean; // VOREStation Addition
   stretchContents?: boolean; // VOREStation Addition
-  /** @deprecated This property no longer works, please remove it. */
-  level?: never;
-  /** @deprecated Please use `scrollable` property */
-  overflowY?: never;
-  /** @member Allows external control of scrolling. */
-  scrollableRef?: RefObject<HTMLDivElement>;
-  /** @member Callback function for the `scroll` event */
-  onScroll?: (this: GlobalEventHandlers, ev: Event) => any;
-}
+}> &
+  BoxProps;
 
-export class Section extends Component<SectionProps> {
-  scrollableRef: RefObject<HTMLDivElement>;
-  scrollable: boolean;
-  onScroll?: (this: GlobalEventHandlers, ev: Event) => any;
-  scrollableHorizontal: boolean;
-
-  constructor(props) {
-    super(props);
-    this.scrollableRef = props.scrollableRef || createRef();
-    this.scrollable = props.scrollable;
-    this.onScroll = props.onScroll;
-    this.scrollableHorizontal = props.scrollableHorizontal;
-  }
-
-  componentDidMount() {
-    if (this.scrollable || this.scrollableHorizontal) {
-      addScrollableNode(this.scrollableRef.current as HTMLElement);
-      if (this.onScroll && this.scrollableRef.current) {
-        this.scrollableRef.current.onscroll = this.onScroll;
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.scrollable || this.scrollableHorizontal) {
-      removeScrollableNode(this.scrollableRef.current as HTMLElement);
-    }
-  }
-
-  render() {
+/**
+ * ## Section
+ * Section is a surface that displays content and actions on a single topic.
+ *
+ * They should be easy to scan for relevant and actionable information.
+ * Elements, like text and images, should be placed in them in a way that
+ * clearly indicates hierarchy.
+ *
+ * Sections can now be nested, and will automatically font size of the
+ * header according to their nesting level. Previously this was done via `level`
+ * prop, but now it is automatically calculated.
+ *
+ * Section can also be titled to clearly define its purpose.
+ *
+ * ```tsx
+ * <Section title="Cargo">Here you can order supply crates.</Section>
+ * ```
+ *
+ * If you want to have a button on the right side of an section title
+ * (for example, to perform some sort of action), there is a way to do that:
+ *
+ * ```tsx
+ * <Section title="Cargo" buttons={<Button>Send shuttle</Button>}>
+ *   Here you can order supply crates.
+ * </Section>
+ * ```
+ */
+export const Section = forwardRef(
+  (props: Props, forwardedRef: RefObject<HTMLDivElement>) => {
     const {
-      className,
-      title,
       buttons,
+      children,
+      className,
       fill,
       fitted,
+      onScroll,
       scrollable,
       scrollableHorizontal,
+      title,
       flexGrow, // VOREStation Addition
       noTopPadding, // VOREStation Addition
       stretchContents, // VOREStation Addition
-      children,
-      onScroll,
       ...rest
-    } = this.props;
+    } = props;
+
     const hasTitle = canRender(title) || canRender(buttons);
+
+    /** We want to be able to scroll on hover, but using focus will steal it from inputs */
+    useEffect(() => {
+      if (!forwardedRef?.current) return;
+      if (!scrollable && !scrollableHorizontal) return;
+
+      addScrollableNode(forwardedRef.current);
+
+      return () => {
+        if (!forwardedRef?.current) return;
+        removeScrollableNode(forwardedRef.current!);
+      };
+    }, []);
+
     return (
       <div
         className={classes([
           'Section',
-          Byond.IS_LTE_IE8 && 'Section--iefix',
           fill && 'Section--fill',
           fitted && 'Section--fitted',
           scrollable && 'Section--scrollable',
@@ -89,7 +104,8 @@ export class Section extends Component<SectionProps> {
           className,
           computeBoxClassName(rest),
         ])}
-        {...computeBoxProps(rest)}>
+        {...computeBoxProps(rest)}
+      >
         {hasTitle && (
           <div className="Section__title">
             <span className="Section__titleText">{title}</span>
@@ -97,20 +113,21 @@ export class Section extends Component<SectionProps> {
           </div>
         )}
         <div className="Section__rest">
-          {/* Vorestation Edit Start */}
           <div
-            ref={this.scrollableRef}
-            onScroll={onScroll}
             className={classes([
               'Section__content',
-              !!stretchContents && 'Section__content--stretchContents',
-              !!noTopPadding && 'Section__content--noTopPadding',
-            ])}>
+              !!stretchContents && 'Section__content--stretchContents', // VOREStation Addition
+              !!noTopPadding && 'Section__content--noTopPadding', // VOREStation Addition
+            ])}
+            onScroll={onScroll}
+            // For posterity: the forwarded ref needs to be here specifically
+            // to actually let things interact with the scrolling.
+            ref={forwardedRef}
+          >
             {children}
           </div>
-          {/* Vorestation Edit End */}
         </div>
       </div>
     );
-  }
-}
+  },
+);

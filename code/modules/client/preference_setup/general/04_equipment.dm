@@ -13,6 +13,7 @@
 	S["pdachoice"]	>> pref.pdachoice
 	S["communicator_visibility"]	>> pref.communicator_visibility
 	S["ringtone"]	>> pref.ringtone
+	S["shoe_hater"] >> pref.shoe_hater	//RS ADD
 
 /datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
 	S["all_underwear"] << pref.all_underwear
@@ -21,6 +22,7 @@
 	S["pdachoice"]	<< pref.pdachoice
 	S["communicator_visibility"]	<< pref.communicator_visibility
 	S["ringtone"]	<< pref.ringtone
+	S["shoe_hater"] << pref.shoe_hater	//RS ADD
 
 var/global/list/valid_ringtones = list(
 		"beep",
@@ -120,6 +122,7 @@ var/global/list/valid_ringtones = list(
 	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 	. += "Ringtone (leave blank for job default): <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
+	. += "Spawn With Shoes:<a href='?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>" //RS Addition
 
 	return jointext(.,null)
 
@@ -188,5 +191,10 @@ var/global/list/valid_ringtones = list(
 		else
 			pref.ringtone = choice
 		return TOPIC_REFRESH
+	else if(href_list["toggle_shoes"])	//RS ADD START
+		if(CanUseTopic(user))
+			pref.shoe_hater = !pref.shoe_hater
+			return TOPIC_REFRESH
+			//RS ADD END
 
 	return ..()

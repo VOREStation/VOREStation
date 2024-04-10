@@ -2299,6 +2299,10 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/islands/divingbay)
+"TC" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/islands/piratecave)
 "TH" = (
 /obj/structure/table/rack/steel,
 /obj/random/projectile/scrapped_ionrifle,
@@ -18879,7 +18883,7 @@ aS
 aS
 RT
 Vu
-Vu
+TC
 Vu
 OA
 Fe

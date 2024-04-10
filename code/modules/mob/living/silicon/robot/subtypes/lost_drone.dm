@@ -7,6 +7,7 @@
 	braintype = "Drone"
 	idcard_type = /obj/item/weapon/card/id
 	icon_selected = FALSE
+	restrict_modules_to = list("Lost")
 
 /mob/living/silicon/robot/lost/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)

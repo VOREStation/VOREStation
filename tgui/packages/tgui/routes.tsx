@@ -4,14 +4,13 @@
  * @license MIT
  */
 
-import { Icon, Section, Stack } from './components';
-
-import { Window } from './layouts';
 import { useBackend } from './backend';
+import { Icon, Section, Stack } from './components';
+import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces');
 
-const routingError =
+export const routingError =
   (type: 'notFound' | 'missingExport', name: string) => () => {
     return (
       <Window>

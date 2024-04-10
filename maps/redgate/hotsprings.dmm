@@ -510,6 +510,15 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/redgate/hotsprings/redgate)
+"nb" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/outdoors/dirt{
+	nitrogen = 93.7835;
+	outdoors = -1;
+	oxygen = 20.7263;
+	temperature = 243.15
+	},
+/area/redgate/hotsprings/eastcave)
 "nd" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled/steel,
@@ -680,6 +689,15 @@
 "rs" = (
 /turf/simulated/floor/carpet/sblucarpet,
 /area/redgate/hotsprings/house/dorm1)
+"rU" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/outdoors/dirt{
+	nitrogen = 93.7835;
+	outdoors = -1;
+	oxygen = 20.7263;
+	temperature = 243.15
+	},
+/area/redgate/hotsprings/westcave)
 "sd" = (
 /obj/structure/prop/rock/crystal_dust,
 /turf/simulated/floor/outdoors/ice{
@@ -915,6 +933,16 @@
 "vZ" = (
 /obj/structure/bed/chair/sofa/bench/right{
 	dir = 1
+	},
+/turf/simulated/floor/outdoors/snow{
+	nitrogen = 93.7835;
+	oxygen = 20.7263;
+	temperature = 243.15
+	},
+/area/redgate/hotsprings/outdoors)
+"wE" = (
+/mob/living/simple_mob/vore/greatwolf{
+	ghostjoin = 1
 	},
 /turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
@@ -4496,7 +4524,7 @@ Ya
 Ya
 Ya
 Ya
-Td
+wE
 Ya
 Ya
 Ya
@@ -10206,7 +10234,7 @@ zv
 ea
 ea
 tg
-tg
+rU
 tg
 ea
 ea
@@ -15895,7 +15923,7 @@ qQ
 qQ
 qQ
 un
-Jq
+nb
 Jq
 qQ
 qQ

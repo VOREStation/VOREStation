@@ -57,7 +57,7 @@
 
 	if(AH)
 		message_admins("<span class='pm'>[key_name_admin(src)] has started replying to [key_name(C, 0, 0)]'s admin help.</span>")
-	var/msg = tgui_input_text(src,"Message:", "Private message to [key_name(C, 0, 0)]")
+	var/msg = tgui_input_text(src,"Message:", "Private message to [key_name(C, 0, 0)]", multiline = TRUE)
 	if (!msg)
 		message_admins("<span class='pm'>[key_name_admin(src)] has cancelled their reply to [key_name(C, 0, 0)]'s admin help.</span>")
 		return
@@ -92,7 +92,7 @@
 		if(!ircreplyamount)	//to prevent people from spamming irc
 			return
 		if(!msg)
-			msg = tgui_input_text(src,"Message:", "Private message to Administrator")
+			msg = tgui_input_text(src,"Message:", "Private message to Administrator", multiline = TRUE)
 
 		if(!msg)
 			return
@@ -112,7 +112,7 @@
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			msg = tgui_input_text(src,"Message:", "Private message to [key_name(recipient, 0, 0)]")
+			msg = tgui_input_text(src,"Message:", "Private message to [key_name(recipient, 0, 0)]", multiline = TRUE)
 
 			if(!msg)
 				return
@@ -188,7 +188,7 @@
 					spawn()	//so we don't hold the caller proc up
 						var/sender = src
 						var/sendername = key
-						var/reply = tgui_input_text(recipient, msg,"Admin PM from-[sendername]", "")	//show message and await a reply
+						var/reply = tgui_input_text(recipient, msg,"Admin PM from-[sendername]", "", multiline = TRUE)	//show message and await a reply
 						if(recipient && reply)
 							if(sender)
 								recipient.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them

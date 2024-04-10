@@ -5,20 +5,22 @@
 /datum/category_item/player_setup_item/vore/misc/load_character(var/savefile/S)
 	S["show_in_directory"]		>> pref.show_in_directory
 	S["directory_tag"]			>> pref.directory_tag
-	S["directory_erptag"]			>> pref.directory_erptag
+	S["directory_erptag"]		>> pref.directory_erptag
 	S["directory_ad"]			>> pref.directory_ad
 	S["sensorpref"]				>> pref.sensorpref
 	S["capture_crystal"]		>> pref.capture_crystal
 	S["auto_backup_implant"]	>> pref.auto_backup_implant
+	S["borg_petting"]			>> pref.borg_petting
 
 /datum/category_item/player_setup_item/vore/misc/save_character(var/savefile/S)
 	S["show_in_directory"]		<< pref.show_in_directory
 	S["directory_tag"]			<< pref.directory_tag
-	S["directory_erptag"]			<< pref.directory_erptag
+	S["directory_erptag"]		<< pref.directory_erptag
 	S["directory_ad"]			<< pref.directory_ad
 	S["sensorpref"]				<< pref.sensorpref
 	S["capture_crystal"]		<< pref.capture_crystal
 	S["auto_backup_implant"]	<< pref.auto_backup_implant
+	S["borg_petting"]			<< pref.borg_petting
 
 /datum/category_item/player_setup_item/vore/misc/copy_to_mob(var/mob/living/carbon/human/character)
 	if(pref.sensorpref > 5 || pref.sensorpref < 1)
@@ -29,10 +31,11 @@
 /datum/category_item/player_setup_item/vore/misc/sanitize_character()
 	pref.show_in_directory		= sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
 	pref.directory_tag			= sanitize_inlist(pref.directory_tag, GLOB.char_directory_tags, initial(pref.directory_tag))
-	pref.directory_erptag			= sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
+	pref.directory_erptag		= sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
 	pref.sensorpref				= sanitize_integer(pref.sensorpref, 1, sensorpreflist.len, initial(pref.sensorpref))
 	pref.capture_crystal		= sanitize_integer(pref.capture_crystal, 0, 1, initial(pref.capture_crystal))
-	pref.auto_backup_implant		= sanitize_integer(pref.auto_backup_implant, 0, 1, initial(pref.auto_backup_implant))
+	pref.auto_backup_implant	= sanitize_integer(pref.auto_backup_implant, 0, 1, initial(pref.auto_backup_implant))
+	pref.borg_petting			= sanitize_integer(pref.borg_petting, 0, 1, initial(pref.borg_petting))
 
 /datum/category_item/player_setup_item/vore/misc/content(var/mob/user)
 	. += "<br>"
@@ -43,6 +46,7 @@
 	. += "<b>Suit Sensors Preference:</b> <a [pref.sensorpref ? "" : ""] href='?src=\ref[src];toggle_sensor_setting=1'><b>[sensorpreflist[pref.sensorpref]]</b></a><br>"
 	. += "<b>Capture Crystal Preference:</b> <a [pref.capture_crystal ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_capture_crystal=1'><b>[pref.capture_crystal ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Spawn With Backup Implant:</b> <a [pref.auto_backup_implant ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_implant=1'><b>[pref.auto_backup_implant ? "Yes" : "No"]</b></a><br>"
+	. += "<b>Allow petting as robot:</b> <a [pref.borg_petting ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_borg_petting=1'><b>[pref.borg_petting ? "Yes" : "No"]</b></a><br>"
 
 /datum/category_item/player_setup_item/vore/misc/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_show_in_directory"])
@@ -76,5 +80,8 @@
 		return TOPIC_REFRESH
 	else if(href_list["toggle_implant"])
 		pref.auto_backup_implant = pref.auto_backup_implant ? 0 : 1;
+		return TOPIC_REFRESH
+	else if(href_list["toggle_borg_petting"])
+		pref.borg_petting = pref.borg_petting ? 0 : 1;
 		return TOPIC_REFRESH
 	return ..();

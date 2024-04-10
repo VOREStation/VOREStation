@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import { useBackend } from '../backend';
-import { Stack, Tabs, Section, Box } from '../components';
+import { Box, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 type data = {
@@ -39,7 +39,8 @@ export const TraitSelection = (props) => {
               <Tabs.Tab
                 key={name}
                 selected={name === selection}
-                onClick={() => act('select_trait', { name })}>
+                onClick={() => act('select_trait', { name })}
+              >
                 <Box inline>{name}</Box>
               </Tabs.Tab>
             ))}
@@ -64,7 +65,7 @@ export const TraitDescription = (props) => {
   const { descriptions, categories, tutorials } = data;
 
   return (
-    <Section StackWrap>
+    <Section>
       <b>Name:</b> {name}
       <br />
       <b>Category:</b> {categories[name]}

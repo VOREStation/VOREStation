@@ -1,7 +1,6 @@
-import { Window } from '../layouts';
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, LabeledList, ProgressBar, Section } from '../components';
+import { Window } from '../layouts';
 
 export const ResleevingPod = (model) => {
   const { data } = useBackend();
@@ -22,7 +21,7 @@ export const ResleevingPod = (model) => {
       <Window.Content>
         <Section title="Occupant">
           {occupied ? (
-            <Fragment>
+            <>
               <LabeledList>
                 <LabeledList.Item label="Name">{name}</LabeledList.Item>
                 <LabeledList.Item label="Health">
@@ -37,7 +36,8 @@ export const ResleevingPod = (model) => {
                         average: [0.25, 0.5],
                         bad: [-Infinity, 0.25],
                       }}
-                      value={health / maxHealth}>
+                      value={health / maxHealth}
+                    >
                       {health}%
                     </ProgressBar>
                   )}
@@ -57,13 +57,13 @@ export const ResleevingPod = (model) => {
                 <Box color="average" mt={3}>
                   Warning: Resleeving Sickness detected.
                   {initialSick ? (
-                    <Fragment>
+                    <>
                       {' '}
                       Motion Sickness also detected. Please allow the newly
                       resleeved person a moment to get their bearings. This
                       warning will disappear when Motion Sickness is no longer
                       detected.
-                    </Fragment>
+                    </>
                   ) : (
                     ''
                   )}
@@ -71,7 +71,7 @@ export const ResleevingPod = (model) => {
               ) : (
                 ''
               )}
-            </Fragment>
+            </>
           ) : (
             <Box bold m={1}>
               Unoccupied.

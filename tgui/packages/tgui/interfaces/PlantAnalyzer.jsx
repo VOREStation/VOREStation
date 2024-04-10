@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -17,7 +16,7 @@ export const PlantAnalyzer = (props) => {
 
   // Resizable just in case the calculatedHeight fails
   return (
-    <Window width={400} height={calculatedHeight} resizable>
+    <Window width={400} height={calculatedHeight}>
       <Window.Content scrollable>
         <PlantAnalyzerContent />
       </Window.Content>
@@ -42,7 +41,7 @@ const PlantAnalyzerContent = (props) => {
     <Section
       title="Plant Information"
       buttons={
-        <Fragment>
+        <>
           <Button icon="print" onClick={() => act('print')}>
             Print Report
           </Button>
@@ -51,8 +50,9 @@ const PlantAnalyzerContent = (props) => {
             color="red"
             onClick={() => act('close')}
           />
-        </Fragment>
-      }>
+        </>
+      }
+    >
       <LabeledList>
         <LabeledList.Item label="Plant Name">
           {seed.name}#{seed.uid}

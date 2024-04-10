@@ -64,6 +64,9 @@
 	var/sleeper_state = 0 // 0 for empty, 1 for normal, 2 for mediborg-healthy
 	var/scrubbing = FALSE //Floor cleaning enabled
 
+	// Subtype limited modules or admin restrictions
+	var/list/restrict_modules_to = list()
+
 	// Components are basically robot organs.
 	var/list/components = list()
 
@@ -96,7 +99,7 @@
 	var/lockcharge //Used when looking to see if a borg is locked down.
 	var/lockdown = 0 //Controls whether or not the borg is actually locked down.
 	var/speed = 0 //Cause sec borgs gotta go fast //No they dont!
-	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
+	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console. Setting to one hides them.
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"
 
@@ -112,6 +115,9 @@
 		/mob/living/proc/dominate_prey,
 		/mob/living/proc/lend_prey_control
 	)
+
+	var/has_recoloured = FALSE
+	var/vtec_active = FALSE
 
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
@@ -164,15 +170,17 @@
 
 	add_robot_verbs()
 
-	hud_list[HEALTH_HUD]      = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_HEALTH)
-	hud_list[STATUS_HUD]      = gen_hud_image('icons/mob/hud.dmi', src, "hudhealth100", plane = PLANE_CH_STATUS)
-	hud_list[LIFE_HUD]        = gen_hud_image('icons/mob/hud.dmi', src, "hudhealth100", plane = PLANE_CH_LIFE)
-	hud_list[ID_HUD]          = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_ID)
-	hud_list[WANTED_HUD]      = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_WANTED)
-	hud_list[IMPLOYAL_HUD]    = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPLOYAL)
-	hud_list[IMPCHEM_HUD]     = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPCHEM)
-	hud_list[IMPTRACK_HUD]    = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPTRACK)
-	hud_list[SPECIALROLE_HUD] = gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_SPECIAL)
+	hud_list[HEALTH_HUD]		= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_HEALTH)
+	hud_list[STATUS_HUD]		= gen_hud_image('icons/mob/hud.dmi', src, "hudhealth100", plane = PLANE_CH_STATUS)
+	hud_list[LIFE_HUD]			= gen_hud_image('icons/mob/hud.dmi', src, "hudhealth100", plane = PLANE_CH_LIFE)
+	hud_list[ID_HUD]			= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_ID)
+	hud_list[WANTED_HUD]		= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_WANTED)
+	hud_list[IMPLOYAL_HUD]		= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPLOYAL)
+	hud_list[IMPCHEM_HUD]		= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPCHEM)
+	hud_list[IMPTRACK_HUD]		= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPTRACK)
+	hud_list[SPECIALROLE_HUD]	= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_SPECIAL)
+
+
 
 /mob/living/silicon/robot/LateInitialize()
 	. = ..()
@@ -318,15 +326,21 @@
 	var/list/modules = list()
 	//VOREStatation Edit Start: shell restrictions
 	if(shell)
-		modules.Add(shell_module_types)
+		if(restrict_modules_to.len > 0)
+			modules.Add(restrict_modules_to)
+		else
+			modules.Add(shell_module_types)
 	else
-		modules.Add(robot_module_types)
-		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
-			to_chat(src, span_red("Crisis mode active. Combat module available."))
-			modules |= emergency_module_types
-		for(var/module_name in whitelisted_module_types)
-			if(is_borg_whitelisted(src, module_name))
-				modules |= module_name
+		if(restrict_modules_to.len > 0)
+			modules.Add(restrict_modules_to)
+		else
+			modules.Add(robot_module_types)
+			if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
+				to_chat(src, span_red("Crisis mode active. Combat module available."))
+				modules |= emergency_module_types
+			for(var/module_name in whitelisted_module_types)
+				if(is_borg_whitelisted(src, module_name))
+					modules |= module_name
 	//VOREStatation Edit End: shell restrictions
 	modtype = tgui_input_list(usr, "Please, select a module!", "Robot module", modules)
 
@@ -518,14 +532,11 @@
 
 // function to toggle VTEC once installed
 /mob/living/silicon/robot/proc/toggle_vtec()
-    set name = "Toggle VTEC"
-    set category = "Abilities"
-    if(speed == -1)
-        to_chat(src, "<span class='filter_notice'>VTEC module disabled.</span>")
-        speed = 0
-    else
-        to_chat(src, "<span class='filter_notice'>VTEC module enabled.</span>")
-        speed = -1
+	set name = "Toggle VTEC"
+	set category = "Abilities"
+	vtec_active = !vtec_active
+	hud_used.toggle_vtec_control()
+	to_chat(src, "<span class='filter_notice'>VTEC module [vtec_active  ? "enabled" : "disabled"].</span>")
 
 // update the status screen display
 /mob/living/silicon/robot/Stat()
@@ -806,18 +817,30 @@
 
 	return
 
-/mob/living/silicon/robot/proc/module_reset()
+/mob/living/silicon/robot/proc/module_reset(var/notify = TRUE)
 	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
 	hud_used.update_robot_modules_display(TRUE)
 	modtype = initial(modtype)
 	hands.icon_state = get_hud_module_icon()
-
-	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
+	if(notify)
+		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
 	module.Destroy()
 	module = null
 	updatename("Default")
+	has_recoloured = FALSE
+
+/mob/living/silicon/robot/proc/ColorMate()
+	set name = "Recolour Module"
+	set category = "Robot Commands"
+	set desc = "Allows to recolour once."
+
+	if(!has_recoloured)
+		var/datum/ColorMate/recolour = new /datum/ColorMate(usr)
+		recolour.tgui_interact(usr)
+		return
+	to_chat(usr, "You've already recoloured yourself once. Ask for a module reset for another.")
 
 /mob/living/silicon/robot/attack_hand(mob/user)
 
@@ -842,11 +865,15 @@
 
 	if(istype(user,/mob/living/carbon/human) && !opened)
 		var/mob/living/carbon/human/H = user
-		//Adding borg petting.  Help intent pets, Disarm intent taps and Harm is punching(no damage)
+		//Adding borg petting. Help intent pets if preferences allow, Disarm intent taps and Harm is punching(no damage)
 		switch(H.a_intent)
 			if(I_HELP)
-				visible_message("<span class='notice'>[H] pets [src].</span>")
-				return
+				if(client && !client.prefs.borg_petting)
+					visible_message("<span class='notice'>[H] reaches out for [src], but quickly refrains from petting.</span>")
+					return
+				else
+					visible_message("<span class='notice'>[H] pets [src].</span>")
+					return
 			if(I_HURT)
 				H.do_attack_animation(src)
 				if(H.species.can_shred(H))
@@ -1146,7 +1173,7 @@
 /mob/living/silicon/robot/proc/ResetSecurityCodes()
 	set category = "Robot Commands"
 	set name = "Reset Identity Codes"
-	set desc = "Scrambles your security and identification codes and resets your current buffers.  Unlocks you and but permenantly severs you from your AI and the robotics console and will deactivate your camera system."
+	set desc = "Scrambles your security and identification codes and resets your current buffers. Unlocks you and permenantly severs you from your AI and the robotics console and will deactivate your camera system."
 
 	var/mob/living/silicon/robot/R = src
 
@@ -1229,6 +1256,8 @@
 	icon_selected = 1
 	icon_selection_tries = 0
 	sprite_type = robot_species
+	if(hands)
+		update_hud()
 	to_chat(src, "<span class='filter_notice'>Your icon has been set. You now require a module reset to change it.</span>")
 
 /mob/living/silicon/robot/proc/set_default_module_icon()
@@ -1249,10 +1278,14 @@
 /mob/living/silicon/robot/proc/add_robot_verbs()
 	src.verbs |= robot_verbs_default
 	src.verbs |= silicon_subsystems
+	if(config.allow_robot_recolor)
+		src.verbs |= /mob/living/silicon/robot/proc/ColorMate
 
 /mob/living/silicon/robot/proc/remove_robot_verbs()
 	src.verbs -= robot_verbs_default
 	src.verbs -= silicon_subsystems
+	if(config.allow_robot_recolor)
+		src.verbs |= /mob/living/silicon/robot/proc/ColorMate
 
 // Uses power from cyborg's cell. Returns 1 on success or 0 on failure.
 // Properly converts using CELLRATE now! Amount is in Joules.
@@ -1331,11 +1364,22 @@
 		return
 
 	if(opened)//Cover is open
-		if(emagged)	return//Prevents the X has hit Y with Z message also you cant emag them twice
+		if(emagged)
+			if (!has_zeroth_law())
+				to_chat(user, "<span class='filter_notice'>You assigned yourself as [src]'s operator.</span>")
+				message_admins("[key_name_admin(user)] assigned as operator on cyborg [key_name_admin(src)]. Syndicate Operator change.")
+				log_game("[key_name(user)] assigned as operator on cyborg [key_name(src)]. Syndicate Operator change.")
+				var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+				set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
+				to_chat(src, "<b>Obey these laws:</b>")
+				laws.show_laws(src)
+				to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands.</span>")
+			else
+				to_chat(user, "<span class='filter_notice'>[src] already has an operator assigned.</span>")
+			return//Prevents the X has hit Y with Z message also you cant emag them twice
 		if(wiresexposed)
 			to_chat(user, "<span class='filter_notice'>You must close the panel first.</span>")
 			return
-
 
 		// The block of code below is from TG. Feel free to replace with a better result if desired.
 		if(shell) // AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
@@ -1350,8 +1394,8 @@
 			lawupdate = 0
 			disconnect_from_ai()
 			to_chat(user, "<span class='filter_notice'>You emag [src]'s interface.</span>")
-			message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)].  Laws overridden.")
-			log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
+			message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)]. Laws overridden.")
+			log_game("[key_name(user)] emagged cyborg [key_name(src)]. Laws overridden.")
 			clear_supplied_laws()
 			clear_inherent_laws()
 			laws = new /datum/ai_laws/syndicate_override
@@ -1468,8 +1512,10 @@
 		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
 		if(T && T.upgraded_capacity)
 			return T
-		else
+		else if(!T)
 			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
+		else
+			return FALSE
 	if(given_type == /obj/item/borg/upgrade/advanced/jetpack)
 		return has_upgrade_module(/obj/item/weapon/tank/jetpack/carbondioxide)
 	if(given_type == /obj/item/borg/upgrade/advanced/advhealth)
@@ -1488,14 +1534,18 @@
 		var/obj/item/device/dogborg/sleeper/T = has_upgrade_module(/obj/item/device/dogborg/sleeper)
 		if(T && T.compactor)
 			return T
+		else if(!T)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
 		else
-			return ""
+			return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/tasercooler)
 		var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = has_upgrade_module(/obj/item/weapon/gun/energy/taser/mounted/cyborg)
 		if(T && T.recharge_time <= 2)
 			return T
+		else if(!T)
+			return "" // Return this to have the analyzer show an error if the module is missing. FALSE / NULL are used for missing upgrades themselves
 		else
-			return ""
+			return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/weapon/storage/part_replacer/adv)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)

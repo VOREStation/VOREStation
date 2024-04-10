@@ -191,6 +191,10 @@
 	if(stat)
 		return 0
 
+	// prevent picking up items while being in them
+	if(istype(A, /obj/item) && A == loc)
+		return 0
+
 	return 1
 
 /*

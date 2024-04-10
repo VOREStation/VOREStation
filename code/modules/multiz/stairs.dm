@@ -214,11 +214,15 @@
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(top))
 
+		var/atom/movable/P = null
+		if(L.pulling && !L.pulling.anchored)
+			P = L.pulling
+			P.forceMove(get_turf(L))
+
 		L.forceMove(get_turf(top))
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
-		if(L.pulling && !L.pulling.anchored)
-			var/atom/movable/P = L.pulling
+		if(P)
 			P.forceMove(get_turf(top))
 			L.continue_pulling(P)
 

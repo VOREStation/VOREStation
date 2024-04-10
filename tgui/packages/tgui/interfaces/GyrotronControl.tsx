@@ -1,10 +1,11 @@
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Button, Section, Table, Knob } from '../components';
 import { BooleanLike } from 'common/react';
 
+import { useBackend } from '../backend';
+import { Button, Knob, Section, Table } from '../components';
+import { Window } from '../layouts';
+
 export const GyrotronControl = () => (
-  <Window width={627} height={700} resizable>
+  <Window width={627} height={700}>
     <Window.Content>
       <GyrotronControlContent />
     </Window.Content>
@@ -39,7 +40,8 @@ export const GyrotronControlContent = (props) => {
           content={'Set Tag'}
           onClick={() => act('set_tag')}
         />
-      }>
+      }
+    >
       <Table>
         <Table.Row header>
           <Table.Cell>Name</Table.Cell>

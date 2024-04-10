@@ -370,12 +370,18 @@ img.icon.bigicon {
 .say,
 .emote,
 .emotesubtle,
+.multizsay,
 .npcemote,
 .npcsay,
 .infoplain,
 .oocplain,
 .warningplain,
-.chatexport {
+.chatexport,
+.body {
+}
+
+.hivemind {
+  font-style: italic;
 }
 
 .nif {
@@ -396,6 +402,7 @@ img.icon.bigicon {
 }
 
 .binarysay {
+  font-style: italic;
   color: #1e90ff;
 }
 

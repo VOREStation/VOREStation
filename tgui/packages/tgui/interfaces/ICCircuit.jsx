@@ -1,9 +1,9 @@
-import { Fragment } from 'inferno';
+import { decodeHtmlEntities } from 'common/string';
+
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
-import { Window } from '../layouts';
-import { decodeHtmlEntities } from 'common/string';
 import { formatPower } from '../format';
+import { Window } from '../layouts';
 
 export const ICCircuit = (props) => {
   const { act, data } = useBackend();
@@ -28,12 +28,13 @@ export const ICCircuit = (props) => {
         <Section
           title="Stats"
           buttons={
-            <Fragment>
+            <>
               <Button onClick={() => act('rename')}>Rename</Button>
               <Button onClick={() => act('scan')}>Scan with Device</Button>
               <Button onClick={() => act('remove')}>Remove</Button>
-            </Fragment>
-          }>
+            </>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Complexity">{complexity}</LabeledList.Item>
             {(power_draw_idle && (
@@ -68,7 +69,8 @@ export const ICCircuit = (props) => {
                   : inputs.length || outputs.length
                     ? '45%'
                     : '100%'
-              }>
+              }
+            >
               <Section title={displayed_name} mb={1}>
                 <Box>{desc}</Box>
               </Section>
@@ -124,7 +126,8 @@ const ICLinkDisplay = (props) => {
   return pin.linked.map((link) => (
     <Box inline key={link.ref}>
       <Button
-        onClick={() => act('pin_unwire', { pin: pin.ref, link: link.ref })}>
+        onClick={() => act('pin_unwire', { pin: pin.ref, link: link.ref })}
+      >
         {link.name}
       </Button>
       @&nbsp;

@@ -1,24 +1,27 @@
+/obj/item/weapon/melee/dogborg/jaws
+	icon = 'icons/mob/dogborg_vr.dmi'
+	hitsound = 'sound/weapons/bite.ogg'
+	throwforce = 0
+	w_class = ITEMSIZE_NORMAL
+	pry = 1
+	tool_qualities = list(TOOL_CROWBAR)
+
 /obj/item/weapon/melee/dogborg/jaws/big
 	name = "combat jaws"
-	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "jaws"
 	desc = "The jaws of the law."
-	force = 10
-	throwforce = 0
-	hitsound = 'sound/weapons/bite.ogg'
+	force = 25
+	armor_penetration = 25
+	defend_chance = 15
 	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
-	w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/melee/dogborg/jaws/small
 	name = "puppy jaws"
-	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "smalljaws"
 	desc = "The jaws of a small dog."
-	force = 5
-	throwforce = 0
-	hitsound = 'sound/weapons/bite.ogg'
+	force = 10
+	defend_chance = 5
 	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
-	w_class = ITEMSIZE_NORMAL
 	var/emagged = 0
 
 /obj/item/weapon/melee/dogborg/jaws/small/attack_self(mob/user)
@@ -27,24 +30,20 @@
 		emagged = !emagged
 		if(emagged)
 			name = "combat jaws"
-			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "jaws"
 			desc = "The jaws of the law."
-			force = 10
-			throwforce = 0
-			hitsound = 'sound/weapons/bite.ogg'
+			force = 25
+			armor_penetration = 25
+			defend_chance = 15
 			attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
-			w_class = ITEMSIZE_NORMAL
 		else
 			name = "puppy jaws"
-			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "smalljaws"
 			desc = "The jaws of a small dog."
-			force = 5
-			throwforce = 0
-			hitsound = 'sound/weapons/bite.ogg'
+			force = 10
+			armor_penetration = 0
+			defend_chance = 5
 			attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
-			w_class = ITEMSIZE_NORMAL
 		update_icon()
 
 // Baton chompers

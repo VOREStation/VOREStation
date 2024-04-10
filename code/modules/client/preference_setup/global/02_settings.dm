@@ -91,7 +91,7 @@
 		preference = list(preference)
 	for(var/p in preference)
 		var/datum/client_preference/cp = get_client_preference(p)
-		if(!prefs || !cp || !(cp.key in prefs.preferences_enabled))
+		if(!prefs || !cp || !istype(cp, /datum/client_preference) || !(cp.key in prefs.preferences_enabled))
 			return FALSE
 	return TRUE
 

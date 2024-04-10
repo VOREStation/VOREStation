@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section, NoticeBox } from '../components';
+import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
 export const BotanyEditor = (props) => {
@@ -9,7 +9,7 @@ export const BotanyEditor = (props) => {
 
   if (activity) {
     return (
-      <Window width={470} height={500} resizable>
+      <Window width={470} height={500}>
         <Window.Content scrollable>
           <NoticeBox info>Scanning...</NoticeBox>
         </Window.Content>
@@ -18,7 +18,7 @@ export const BotanyEditor = (props) => {
   }
 
   return (
-    <Window width={470} height={500} resizable>
+    <Window width={470} height={500}>
       <Window.Content scrollable>
         <Section title="Buffered Genetic Data">
           {(disk && (

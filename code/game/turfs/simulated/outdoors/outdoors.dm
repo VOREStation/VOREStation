@@ -60,11 +60,12 @@ var/list/turf_edge_cache = list()
 			return
 
 	. = ..()
-
+/*	VOREStation remove - handled by parent
 /turf/simulated/floor/Initialize(mapload)
 	if(is_outdoors())
 		SSplanets.addTurf(src)
 	. = ..()
+*/
 
 /turf/simulated/floor/Destroy()
 	if(is_outdoors())

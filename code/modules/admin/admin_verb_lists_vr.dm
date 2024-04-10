@@ -130,7 +130,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/make_mentor,
 	/client/proc/unmake_mentor,
 	/client/proc/removetickets,
-	/client/proc/delbook
+	/client/proc/delbook,
+	/client/proc/toggle_spawning_with_recolour
 	)
 
 var/list/admin_verbs_ban = list(
@@ -173,7 +174,8 @@ var/list/admin_verbs_fun = list(
 	/client/proc/narrate_mob,	//VOREStation Add
 	/client/proc/narrate_mob_args, //VOREStation Add
 	/client/proc/getPlayerStatus, //VORESTation Add
-	/client/proc/manage_event_triggers
+	/client/proc/manage_event_triggers,
+	/client/proc/fake_pdaconvos
 
 	)
 
@@ -516,6 +518,7 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/check_ai_laws,                     //shows AI and borg laws,
 	/client/proc/rename_silicon,            //properly renames silicons,
 	/client/proc/manage_silicon_laws,       // Allows viewing and editing silicon laws. ,
+	/client/proc/modify_robot,
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,                        //admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
 	/client/proc/dsay,                                      //talk in deadchat using our ckey/fakekey,
@@ -558,7 +561,8 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/toggle_random_events,
-	/client/proc/modify_server_news
+	/client/proc/modify_server_news,
+	/client/proc/toggle_spawning_with_recolour
 
 )
 
