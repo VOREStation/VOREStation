@@ -3,11 +3,11 @@
 // Used when a target is out of sight or invisible.
 /datum/ai_holder/proc/engage_unseen_enemy()
 	ai_log("engage_unseen_enemy() : Entering.", AI_LOG_TRACE)
-	
+
 	// Also handled in strategic updates but handling it here allows for more fine resolution timeouts
 	if((lose_target_time+lose_target_timeout) <= world.time)
 		return find_target()
-		
+
 	// Lets do some last things before giving up.
 	if(conserve_ammo || !holder.ICheckRangedAttack(target_last_seen_turf))
 		// We conserve ammo (or can't shoot) so walk closer
@@ -29,7 +29,7 @@
 	on_engagement(T)
 	if(firing_lanes && !test_projectile_safety(T))
 		step_rand(holder)
-		holder.face_atom(T)
+		holder?.face_atom(T)
 		return ATTACK_FAILED
 
 	return ranged_attack(T)
@@ -60,7 +60,7 @@
 		/obj/structure/stairs/top,
 		/obj/structure/stairs/bottom
 	)
-	
+
 	if(intelligence_level >= AI_SMART)
 		possible_escape_types += /obj/structure/ladder
 
@@ -69,18 +69,18 @@
 			continue // Not something they could have escaped through
 		if(turn(holder.dir, 180) & get_dir(get_turf(holder), get_turf(A)))
 			continue // Surely, they couldn't have escaped *behind* us!
-		
+
 		if(istype(A, /obj/machinery/door))
 			var/obj/machinery/door/D = A
 			if(D.glass) // Surely, they couldn't hide behind a transparent door!
 				continue
 			if(D.density && intelligence_level < AI_SMART) // Surely, they couldn't have escaped through a *closed* door
 				continue
-		
+
 		var/dist = get_dist(holder, A)
 		if(dist == closest_dist)
 			closest_escape += A
-		
+
 		else if(dist < closest_dist)
 			closest_escape.Cut()
 			closest_escape += A
@@ -89,5 +89,3 @@
 	if(closest_escape.len)
 		return pick(closest_escape)
 	return null
-
-	
