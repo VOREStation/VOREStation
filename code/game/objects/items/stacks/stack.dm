@@ -42,12 +42,6 @@
 			else
 				starting_amount = 1
 		set_amount(starting_amount, TRUE)
-	//VOREstaton Edit: Items stack with others when initialized
-	var/obj/item/stack/stackable = locate(src) in loc
-	if(stackable)
-		if(istype(stackable, src.type) && can_merge(stackable)) // Sanity so we don't try to merge non-stacks.
-			merge(stackable)
-	//VOREstation Edit End
 	update_icon()
 
 /obj/item/stack/Destroy()
