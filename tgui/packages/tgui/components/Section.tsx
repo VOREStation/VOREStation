@@ -78,21 +78,21 @@ export const Section = (props: Props) => {
     stretchContents, // VOREStation Addition
     ...rest
   } = props;
-  const currentRef = useRef(null);
+  const node = useRef(null);
 
   const hasTitle = canRender(title) || canRender(buttons);
 
   /** We want to be able to scroll on hover, but using focus will steal it from inputs */
   useEffect(() => {
-    if (!currentRef?.current) return;
+    if (!node?.current) return;
     if (!scrollable && !scrollableHorizontal) return;
-    let observerRefValue = currentRef.current;
+    const self = node.current;
 
-    addScrollableNode(observerRefValue);
+    addScrollableNode(self);
 
     return () => {
-      if (!observerRefValue) return;
-      removeScrollableNode(observerRefValue!);
+      if (!self) return;
+      removeScrollableNode(self!);
     };
   }, []);
 
@@ -127,7 +127,7 @@ export const Section = (props: Props) => {
           onScroll={onScroll}
           // For posterity: the forwarded ref needs to be here specifically
           // to actually let things interact with the scrolling.
-          ref={currentRef}
+          ref={node}
         >
           {children}
         </div>
