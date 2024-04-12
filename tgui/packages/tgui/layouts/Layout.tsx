@@ -5,6 +5,7 @@
  */
 
 import { classes } from 'common/react';
+import { useEffect, useRef } from 'react';
 
 import { computeBoxClassName, computeBoxProps } from '../components/Box';
 import { addScrollableNode, removeScrollableNode } from '../events';
@@ -24,9 +25,31 @@ export const Layout = (props) => {
 };
 
 const LayoutContent = (props) => {
-  const { className, scrollable, children, ...rest } = props;
+  const {
+    className,
+    scrollable,
+    children,
+    scrollableHorizontal,
+    container_id,
+    ...rest
+  } = props;
+  const currentRef = useRef(null);
+
+  useEffect(() => {
+    if (!currentRef?.current) return;
+    if (!scrollable) return;
+    addScrollableNode(currentRef.current);
+
+    return () => {
+      if (!currentRef?.current) return;
+      removeScrollableNode(currentRef.current!);
+    };
+  }, []);
+
   return (
     <div
+      ref={currentRef}
+      id={container_id || ''}
       className={classes([
         'Layout__content',
         scrollable && 'Layout__content--scrollable',
@@ -38,11 +61,6 @@ const LayoutContent = (props) => {
       {children}
     </div>
   );
-};
-
-LayoutContent.defaultHooks = {
-  onComponentDidMount: (node) => addScrollableNode(node),
-  onComponentWillUnmount: (node) => removeScrollableNode(node),
 };
 
 Layout.Content = LayoutContent;
