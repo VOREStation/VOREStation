@@ -42,7 +42,7 @@ const LayoutContent = (props) => {
 
     return () => {
       if (!currentRef?.current) return;
-      removeScrollableNode(currentRef.current!);
+      removeScrollableNode(currentRef.current);
     };
   }, []);
 
