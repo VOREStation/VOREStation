@@ -38,11 +38,12 @@ const LayoutContent = (props) => {
   useEffect(() => {
     if (!currentRef?.current) return;
     if (!scrollable) return;
-    addScrollableNode(currentRef.current);
+    let observerRefValue = currentRef.current;
+    addScrollableNode(observerRefValue);
 
     return () => {
-      if (!currentRef?.current) return;
-      removeScrollableNode(currentRef.current);
+      if (!observerRefValue) return;
+      removeScrollableNode(observerRefValue!);
     };
   }, []);
 

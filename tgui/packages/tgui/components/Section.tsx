@@ -86,12 +86,13 @@ export const Section = (props: Props) => {
   useEffect(() => {
     if (!currentRef?.current) return;
     if (!scrollable && !scrollableHorizontal) return;
+    let observerRefValue = currentRef.current;
 
-    addScrollableNode(currentRef.current);
+    addScrollableNode(observerRefValue);
 
     return () => {
-      if (!currentRef?.current) return;
-      removeScrollableNode(currentRef.current!);
+      if (!observerRefValue) return;
+      removeScrollableNode(observerRefValue!);
     };
   }, []);
 
