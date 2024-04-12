@@ -7,11 +7,21 @@
 import { classes } from 'common/react';
 import { useEffect, useRef } from 'react';
 
-import { computeBoxClassName, computeBoxProps } from '../components/Box';
+import {
+  BoxProps,
+  computeBoxClassName,
+  computeBoxProps,
+} from '../components/Box';
 import { addScrollableNode, removeScrollableNode } from '../events';
 
-export const Layout = (props) => {
+type Props = Partial<{
+  theme: string;
+}> &
+  BoxProps;
+
+export function Layout(props: Props) {
   const { className, theme = 'nanotrasen', children, ...rest } = props;
+
   return (
     <div className={'theme-' + theme}>
       <div
@@ -22,46 +32,44 @@ export const Layout = (props) => {
       </div>
     </div>
   );
-};
+}
 
-const LayoutContent = (props) => {
-  const {
-    className,
-    scrollable,
-    children,
-    scrollableHorizontal,
-    container_id,
-    ...rest
-  } = props;
-  const currentRef = useRef(null);
+type ContentProps = Partial<{
+  scrollable: boolean;
+}> &
+  BoxProps;
+
+function LayoutContent(props: ContentProps) {
+  const { className, scrollable, children, ...rest } = props;
+  const node = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!currentRef?.current) return;
-    if (!scrollable) return;
-    let observerRefValue = currentRef.current;
-    addScrollableNode(observerRefValue);
+    const self = node.current;
 
+    if (self && scrollable) {
+      addScrollableNode(self);
+    }
     return () => {
-      if (!observerRefValue) return;
-      removeScrollableNode(observerRefValue!);
+      if (self && scrollable) {
+        removeScrollableNode(self);
+      }
     };
   }, []);
 
   return (
     <div
-      ref={currentRef}
-      id={container_id || ''}
       className={classes([
         'Layout__content',
         scrollable && 'Layout__content--scrollable',
         className,
         computeBoxClassName(rest),
       ])}
+      ref={node}
       {...computeBoxProps(rest)}
     >
       {children}
     </div>
   );
-};
+}
 
 Layout.Content = LayoutContent;
