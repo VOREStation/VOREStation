@@ -37,12 +37,10 @@
 
 /obj/machinery/door/get_description_interaction()
 	var/list/results = list()
-	if(!repairing && (health < maxhealth) && !(stat & BROKEN))
-		results += "[desc_panel_image("metal sheet")]to start repairing damage (May require different material type)."
-	if(repairing && density)
-		results += "[desc_panel_image("welder")]to finish repairs."
-		results += "[desc_panel_image("crowbar")]to undo adding sheets for repairs."
-
+	//VOREstation Edit: Removing material requirements
+	if((health < maxhealth) && !(stat & BROKEN))
+		results += "[desc_panel_image("welder")]to start repairing damage."
+	//VOREstation Edit End
 	return results
 
 /obj/machinery/door/airlock/get_description_interaction()

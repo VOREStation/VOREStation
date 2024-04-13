@@ -16,10 +16,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "am" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/obj/machinery/light/small{
-	dir = 1
-	},
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ax" = (
@@ -70,7 +67,11 @@
 /obj/item/clothing/under/dress/gothic,
 /obj/random/fantasy_item/better,
 /obj/random/potion_ingredient,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "bc" = (
 /obj/structure/table/standard,
@@ -115,7 +116,11 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "bE" = (
-/turf/simulated/mineral/floor,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilityse)
 "bG" = (
 /obj/structure/railing/grey{
@@ -242,7 +247,11 @@
 /area/redgate/jungle/facilitynw)
 "cW" = (
 /obj/item/weapon/bone/leg,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "cY" = (
 /obj/structure/bed/chair/wood/wings,
@@ -259,10 +268,6 @@
 /obj/machinery/light/floortube,
 /turf/simulated/floor/redgrid/animated,
 /area/redgate/jungle/facilitybar)
-"de" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/turf/simulated/floor,
-/area/redgate/jungle/facilitynw)
 "df" = (
 /obj/structure/mirror{
 	dir = 1;
@@ -519,10 +524,6 @@
 	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
-"fF" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/turf/simulated/floor,
-/area/redgate/jungle/facilityne)
 "fN" = (
 /obj/structure/casino_table/blackjack_l{
 	dir = 1
@@ -644,7 +645,11 @@
 /area/redgate/jungle/facilityne)
 "hj" = (
 /obj/structure/stairs/spawner/east,
-/turf/simulated/mineral/floor,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilityse)
 "hq" = (
 /obj/random/crate,
@@ -682,7 +687,11 @@
 /area/redgate/jungle/facilitysw)
 "hH" = (
 /obj/structure/bonfire/permanent,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercave)
 "hL" = (
 /obj/structure/bed/chair/backed_red{
@@ -793,7 +802,11 @@
 /turf/simulated/floor/tiled,
 /area/redgate/jungle/facilitynw)
 "jB" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilitysw)
 "jF" = (
 /obj/item/broken_device/random,
@@ -1026,7 +1039,11 @@
 /area/redgate/jungle/facilitycasino)
 "mK" = (
 /obj/item/weapon/bone/arm,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "mM" = (
 /obj/structure/table/steel_reinforced,
@@ -1038,7 +1055,11 @@
 	color = "#009914";
 	name = "grassy bed"
 	},
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercaveswamp)
 "mS" = (
 /turf/simulated/floor/bmarble,
@@ -1109,7 +1130,11 @@
 /area/redgate/jungle/facilityse)
 "nE" = (
 /obj/structure/stairs/spawner/north,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilitynw)
 "nI" = (
 /obj/machinery/vending/medical,
@@ -1182,10 +1207,16 @@
 /obj/item/weapon/material/fishing_net,
 /obj/random/fantasy_item,
 /obj/random/potion_ingredient,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercaveswamp)
 "ov" = (
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilitynw)
 "ow" = (
 /obj/structure/table/steel_reinforced,
@@ -1477,11 +1508,17 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilityse)
 "sy" = (
 /obj/random/underdark,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilitysw)
 "sA" = (
 /obj/item/weapon/bone,
@@ -1517,7 +1554,11 @@
 /area/redgate/jungle/facilityse)
 "tc" = (
 /obj/structure/prop/rock/sharp,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercave)
 "tf" = (
 /obj/item/weapon/mine/stun,
@@ -1603,7 +1644,11 @@
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercaveswamp)
 "tQ" = (
 /obj/structure/table/steel_reinforced,
@@ -1632,7 +1677,11 @@
 /area/redgate/jungle/facilitycasino)
 "ue" = (
 /obj/structure/closet/walllocker/medical/east,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilitynw)
 "uf" = (
 /obj/random/tank,
@@ -1717,10 +1766,6 @@
 	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
-"vj" = (
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce,
-/turf/simulated/floor,
-/area/redgate/jungle/facilityse)
 "vq" = (
 /obj/item/weapon/folder,
 /turf/simulated/floor,
@@ -2129,7 +2174,11 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Bf" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilityne)
 "Bh" = (
 /turf/simulated/wall,
@@ -2162,6 +2211,12 @@
 "Bw" = (
 /obj/effect/fake_sun/underwater,
 /turf/simulated/mineral/ignore_cavegen,
+/area/redgate/jungle/facilitysw)
+"Bx" = (
+/mob/living/simple_mob/vore/scrubble{
+	ghostjoin = 1
+	},
+/turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "By" = (
 /obj/random/multiple/random_size_crate/no_weapons/nofail,
@@ -2759,7 +2814,11 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "Ie" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercaveswamp)
 "If" = (
 /obj/structure/railing/grey{
@@ -3139,7 +3198,9 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilityse)
 "MN" = (
 /obj/random/trash,
@@ -3176,7 +3237,11 @@
 /area/redgate/jungle/facilitynw)
 "Nd" = (
 /obj/random/fantasy_item,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercave)
 "Nh" = (
 /obj/machinery/vending/desatti,
@@ -3252,9 +3317,19 @@
 	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
+"Oc" = (
+/mob/living/simple_mob/vore/sonadile{
+	ghostjoin = 1
+	},
+/turf/simulated/floor,
+/area/redgate/jungle/facilitynw)
 "Oo" = (
 /obj/structure/prop/rock/small,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "Oq" = (
 /mob/living/simple_mob/vore/stalker,
@@ -3280,7 +3355,11 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "OJ" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "OK" = (
 /obj/random/miniature,
@@ -3373,7 +3452,11 @@
 /obj/machinery/door/airlock/angled_bay/double{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilityne)
 "Pt" = (
 /obj/structure/loot_pile/surface/bones,
@@ -3402,7 +3485,9 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "PM" = (
-/mob/living/simple_mob/vore/stalker,
+/mob/living/simple_mob/vore/stalker{
+	ghostjoin = 1
+	},
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "PN" = (
@@ -3484,7 +3569,11 @@
 /area/redgate/jungle/facilityne)
 "QC" = (
 /obj/structure/prop/rock/sharp,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "QH" = (
 /obj/machinery/door/airlock/angled_bay/double{
@@ -3615,7 +3704,11 @@
 /area/redgate/jungle/facilityne)
 "Ss" = (
 /obj/structure/prop/rock/round,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercave)
 "Sv" = (
 /obj/machinery/light/small,
@@ -3668,7 +3761,11 @@
 /area/redgate/jungle/facilitycasino)
 "SY" = (
 /obj/structure/prop/rock/flat,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "Te" = (
 /obj/machinery/light/small{
@@ -3827,6 +3924,19 @@
 	},
 /turf/simulated/floor/lava,
 /area/redgate/jungle/facilityse)
+"Vs" = (
+/mob/living/simple_mob/vore/aggressive/panther{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	ghostjoin = 1;
+	melee_damage_lower = 2;
+	melee_damage_upper = 5;
+	vore_pounce_chance = 50;
+	vore_pounce_maxhealth = 100
+	},
+/turf/simulated/floor/outdoors/grass/forest{
+	outdoors = -1
+	},
+/area/redgate/jungle/deepforest)
 "Vt" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor,
@@ -3882,7 +3992,11 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "VS" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilitynw)
 "VW" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -3905,7 +4019,9 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/water/contaminated,
+/turf/simulated/floor/water/contaminated{
+	outdoors = -1
+	},
 /area/redgate/jungle/facilityse)
 "Wo" = (
 /obj/structure/railing/grey{
@@ -4050,7 +4166,11 @@
 /area/redgate/jungle/facilitysw)
 "Yy" = (
 /obj/structure/loot_pile/surface/bones,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "Yz" = (
 /obj/structure/railing/grey{
@@ -4105,7 +4225,11 @@
 /area/redgate/jungle/facilitybar)
 "Zo" = (
 /obj/random/outcrop,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/facilitysw)
 "Zy" = (
 /obj/structure/railing/grey,
@@ -4125,11 +4249,19 @@
 /area/redgate/jungle/facilitynw)
 "ZI" = (
 /obj/structure/loot_pile/surface/bones,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercaveswamp)
 "ZJ" = (
 /obj/item/weapon/bone/ribs,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercavepond)
 "ZM" = (
 /obj/structure/reagent_dispensers/he3,
@@ -4141,7 +4273,11 @@
 /turf/simulated/floor/carpet/blue,
 /area/redgate/jungle/facilityse)
 "ZR" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 293.15
+	},
 /area/redgate/jungle/underwatercave)
 "ZU" = (
 /obj/structure/table/steel_reinforced,
@@ -8484,7 +8620,7 @@ cq
 CE
 Pi
 CE
-de
+cq
 cq
 hx
 VG
@@ -9748,7 +9884,7 @@ hx
 hx
 hx
 Mx
-cq
+am
 cq
 cq
 cq
@@ -10157,7 +10293,7 @@ cq
 oY
 cq
 cq
-ey
+Oc
 cq
 cq
 cq
@@ -10290,7 +10426,7 @@ Pe
 hx
 hx
 hx
-am
+dI
 cq
 ov
 ov
@@ -13746,7 +13882,7 @@ iR
 VG
 VG
 VG
-oT
+Bx
 iR
 iR
 iR
@@ -15338,7 +15474,7 @@ Bh
 Bh
 Bh
 ux
-vj
+yd
 yd
 yd
 yd
@@ -21486,7 +21622,7 @@ LP
 OS
 BV
 Bo
-TN
+Vs
 Ct
 BV
 Bo
@@ -22664,7 +22800,7 @@ Nb
 iE
 iE
 iE
-fF
+iE
 iE
 hv
 iE

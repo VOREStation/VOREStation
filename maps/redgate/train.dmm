@@ -286,7 +286,9 @@
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/viewing)
 "fM" = (
-/mob/living/simple_mob/vore/alienanimals/teppi,
+/mob/living/simple_mob/vore/alienanimals/teppi{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/outdoors/newdirt,
 /area/redgate/train/teppi)
 "fN" = (
@@ -1044,6 +1046,10 @@
 "sY" = (
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/seating)
+"td" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/shuttle/floor/black,
+/area/redgate/train/storage)
 "tg" = (
 /obj/structure/table/marble,
 /obj/item/weapon/reagent_containers/glass/rag,
@@ -1796,6 +1802,7 @@
 "EL" = (
 /mob/living/simple_mob/vore/alienanimals/catslug{
 	color = "#6b0024";
+	ghostjoin = 1;
 	name = "stowaway"
 	},
 /turf/simulated/shuttle/floor/skipjack{
@@ -17456,7 +17463,7 @@ yz
 AX
 AX
 dz
-lH
+td
 yz
 yz
 lH
