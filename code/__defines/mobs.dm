@@ -27,6 +27,7 @@
 #define BORGTHERM 0x2
 #define BORGXRAY  0x4
 #define BORGMATERIAL  0x8
+#define BORGANOMALOUS  0x10
 
 #define STANCE_ATTACK    11 // Backwards compatability
 #define STANCE_ATTACKING 12 // Ditto

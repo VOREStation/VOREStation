@@ -470,6 +470,8 @@
 		if(H.species.lightweight == 1)
 			H.Weaken(3)
 			return
+		if(H.get_species() == SPECIES_SHADEKIN && (H.ability_flags & AB_PHASE_SHIFTED))
+			cell.charge -= 1000
 	var/armor_block = run_armor_check(T, "melee")
 	var/armor_soak = get_armor_soak(T, "melee")
 	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
