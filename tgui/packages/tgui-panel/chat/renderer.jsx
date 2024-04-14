@@ -216,7 +216,7 @@ class ChatRenderer {
       this.scrollToBottom();
     });
     // Flush the queue
-    this.tryFlushQueue(true);
+    this.tryFlushQueue();
   }
 
   onStateLoaded() {

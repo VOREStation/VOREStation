@@ -84,6 +84,7 @@
 	if(istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
+			L.upgrade(C, user)
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))

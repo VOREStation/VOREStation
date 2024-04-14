@@ -140,7 +140,7 @@
 
 		if(affecting)
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your [affecting.name] greedily!</span>")
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, "Thorns", sharp = TRUE, edge=has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
 		else
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your flesh greedily!</span>")
 			target.adjustBruteLoss(damage)
@@ -149,7 +149,7 @@
 		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
 		if(affecting)
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your [affecting.name]!</span>")
-			target.apply_damage(damage, BRUTE, target_limb, blocked, "Thorns", sharp = TRUE, edge=has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
 		else
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your flesh!</span>")
 			target.adjustBruteLoss(damage)

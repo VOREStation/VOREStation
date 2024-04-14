@@ -2815,6 +2815,10 @@
 /obj/item/clothing/shoes/sandal,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
+"Ih" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/redgate/jungle/aboveground)
 "Ii" = (
 /turf/simulated/floor/bmarble,
 /area/redgate/jungle/temple)
@@ -3359,7 +3363,9 @@
 	},
 /area/redgate/jungle/temple)
 "Om" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/exploslug,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/exploslug{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -10703,7 +10709,7 @@ zU
 zU
 vQ
 Yi
-zU
+Ih
 zU
 zU
 Yi

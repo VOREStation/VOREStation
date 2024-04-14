@@ -81,14 +81,16 @@ const BodyDesignerBodyRecords = (props) => {
         />
       }
     >
-      {bodyrecords.map((record) => (
-        <Button
-          icon="eye"
-          key={record.name}
-          content={record.name}
-          onClick={() => act('view_brec', { view_brec: record.recref })}
-        />
-      ))}
+      {bodyrecords
+        ? bodyrecords.map((record) => (
+            <Button
+              icon="eye"
+              key={record.name}
+              content={record.name}
+              onClick={() => act('view_brec', { view_brec: record.recref })}
+            />
+          ))
+        : ''}
     </Section>
   );
 };

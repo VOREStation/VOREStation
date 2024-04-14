@@ -227,6 +227,12 @@
 /obj/item/instrument/violin/golden,
 /turf/simulated/mineral/floor/dirt,
 /area/redgate/fantasy/caves)
+"ft" = (
+/mob/living/simple_mob/vore/bat{
+	ghostjoin = 1
+	},
+/turf/simulated/floor/wmarble,
+/area/redgate/fantasy/dungeon)
 "fB" = (
 /obj/item/weapon/bluespace_crystal,
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
@@ -820,6 +826,10 @@
 "rS" = (
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/castle)
+"rW" = (
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
+/area/redgate/fantasy/caves)
 "sa" = (
 /obj/structure/table/marble,
 /obj/item/weapon/pen/crayon/red{
@@ -1409,7 +1419,8 @@
 "CY" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/cryptslug{
-	faction = "vampire"
+	faction = "vampire";
+	ghostjoin = 1
 	},
 /turf/simulated/floor/bmarble,
 /area/redgate/fantasy/dungeon)
@@ -1629,7 +1640,9 @@
 /turf/simulated/floor/cult,
 /area/redgate/fantasy/dungeon)
 "Hz" = (
-/mob/living/simple_mob/vore/bigdragon/friendly,
+/mob/living/simple_mob/vore/bigdragon/friendly{
+	ghostjoin = 1
+	},
 /turf/simulated/mineral/floor/dirt,
 /area/redgate/fantasy/caves)
 "HB" = (
@@ -1758,6 +1771,12 @@
 "JL" = (
 /obj/random/multiple/ore_pile,
 /turf/simulated/floor/wmarble,
+/area/redgate/fantasy/dungeon)
+"JS" = (
+/mob/living/simple_mob/vore/vore_hostile/leaper{
+	ghostjoin = 1
+	},
+/turf/simulated/floor/flesh,
 /area/redgate/fantasy/dungeon)
 "Ka" = (
 /obj/structure/reagent_dispensers/beerkeg/wood,
@@ -2099,7 +2118,9 @@
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "Rk" = (
-/mob/living/simple_mob/vore/cryptdrake,
+/mob/living/simple_mob/vore/cryptdrake{
+	ghostjoin = 1
+	},
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "Ry" = (
@@ -9597,7 +9618,7 @@ ac
 tV
 qY
 tV
-tV
+rW
 tV
 TD
 tV
@@ -16145,7 +16166,7 @@ cK
 cK
 cK
 cK
-uT
+ft
 cK
 cK
 cK
@@ -19005,7 +19026,7 @@ lK
 Ux
 Ux
 Ux
-oT
+JS
 Ux
 Zp
 kn
