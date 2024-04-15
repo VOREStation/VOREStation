@@ -1175,7 +1175,7 @@
 	if(client)
 		if(a_intent == I_HELP || client.prefs.throwmode_loud)
 			src.visible_message("<span class='notice'>[src] relaxes from their ready stance.</span>","<span class='notice'>You relax from your ready stance.</span>")
-	if(src.throw_icon) //in case we don't have the HUD and we use the hotkey
+	if(src.throw_icon && !issilicon(src)) //in case we don't have the HUD and we use the hotkey. Silicon use this for something else. Do not overwrite their HUD icon
 		src.throw_icon.icon_state = "act_throw_off"
 
 /mob/proc/throw_mode_on()
