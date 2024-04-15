@@ -1186,7 +1186,7 @@
 				src.visible_message("<span class='warning'>[src] winds up to throw [get_active_hand()]!</span>","<span class='notice'>You wind up to throw [get_active_hand()].</span>")
 			else
 				src.visible_message("<span class='warning'>[src] looks ready to catch anything thrown at them!</span>","<span class='notice'>You get ready to catch anything thrown at you.</span>")
-	if(src.throw_icon)
+	if(src.throw_icon && !issilicon(src)) // Silicon use this for something else. Do not overwrite their HUD icon
 		src.throw_icon.icon_state = "act_throw_on"
 
 /mob/proc/isSynthetic()
