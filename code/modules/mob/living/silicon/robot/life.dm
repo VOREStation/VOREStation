@@ -190,7 +190,7 @@
 		fullbright = TRUE
 	else if (src.sight_mode & BORGANOMALOUS)
 		src.see_in_dark = 8
-		src.see_invisible = INVISIBILITY_LEVEL_TWO
+		src.see_invisible = INVISIBILITY_SHADEKIN
 		fullbright = TRUE
 	else if (!seedarkness)
 		src.sight &= ~SEE_MOBS
