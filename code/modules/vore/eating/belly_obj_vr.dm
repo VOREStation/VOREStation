@@ -651,7 +651,7 @@
 			privacy_volume = 25
 
 	//Print notifications/sound if necessary
-	if(!silent)
+	if(!silent && !isobserver(M))
 		owner.visible_message("<span class='vnotice'>[span_green("<b>[owner] [release_verb] [M] from their [lowertext(name)]!</b>")]</span>",range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
