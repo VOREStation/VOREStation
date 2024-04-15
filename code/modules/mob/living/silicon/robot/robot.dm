@@ -1311,7 +1311,7 @@
 	if(!cell)
 		return FALSE
 
-	// Power cell is empty.
+	// Power cell does not have sufficient charge to remain above the power limit.
 	if(cell.charge - (amount + lower_limit) <= 0)
 		return FALSE
 
