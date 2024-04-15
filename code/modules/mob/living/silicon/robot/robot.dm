@@ -1312,7 +1312,7 @@
 		return FALSE
 
 	// Power cell is empty.
-	if(cell.charge - lower_limit <= 0)
+	if(cell.charge - (amount + lower_limit) <= 0)
 		return FALSE
 
 	cell.charge -= amount
