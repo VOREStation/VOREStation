@@ -263,12 +263,14 @@
 		if(pounce)
 			pounce.name = "bluespace pounce"
 			pounce.icon_state = "bluespace_pounce"
+			pounce.bluespace = TRUE
 	else
 		var/obj/item/weapon/dogborg/pounce/pounce = has_upgrade_module(/obj/item/weapon/dogborg/pounce)
 		if(pounce)
 			pounce.name = initial(pounce.name)
 			pounce.icon_state = initial(pounce.icon_state)
 			pounce.desc = initial(pounce.desc)
+			pounce.bluespace = initial(pounce.bluespace)
 
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
 	W.loc = get_turf(src)

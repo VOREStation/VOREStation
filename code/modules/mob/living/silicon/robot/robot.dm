@@ -1304,6 +1304,20 @@
 		return 1
 	return 0
 
+// Function to directly drain power from the robot's cell, allows to set a minimum level beneath which
+// abilities can no longer be used
+/mob/living/silicon/robot/proc/use_direct_power(var/amount = 0, var/lower_limit = 0)
+	// No cell inserted
+	if(!cell)
+		return FALSE
+
+	// Power cell is empty.
+	if(cell.charge - lower_limit <= 0)
+		return FALSE
+
+	cell.charge -= amount
+	return TRUE
+
 /mob/living/silicon/robot/binarycheck()
 	if(get_restraining_bolt())
 		return FALSE
