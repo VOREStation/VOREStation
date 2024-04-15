@@ -442,6 +442,8 @@
 
 	if(!T || !src || src.stat) return
 
+	if(get_dist(get_turf(T), get_turf(src)) > leap_distance) return
+
 	if(ishuman(T))
 		var/mob/living/carbon/human/H = T
 		if(H.get_species() == SPECIES_SHADEKIN && (H.ability_flags & AB_PHASE_SHIFTED))
@@ -450,8 +452,6 @@
 	if(!use_direct_power(power_cost, minimum_power - power_cost))
 		to_chat(src, span_warning("Warning, low power detected. Aborting action."))
 		return
-
-	if(get_dist(get_turf(T), get_turf(src)) > leap_distance) return
 
 	if(last_special > world.time)
 		return
