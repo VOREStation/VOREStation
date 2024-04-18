@@ -2061,6 +2061,7 @@
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\masks\miscellaneous_vr.dm"
 #include "code\modules\clothing\masks\shiny_vr.dm"
+#include "code\modules\clothing\masks\tesh_synth_facemask.dm"
 #include "code\modules\clothing\masks\voice.dm"
 #include "code\modules\clothing\rings\material.dm"
 #include "code\modules\clothing\rings\rings.dm"

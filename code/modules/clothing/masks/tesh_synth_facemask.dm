@@ -56,7 +56,7 @@
 		visor_state = "Neutral" //This does nothing at the moment, but it's there incase anyone wants to add more states.
 		//Maybe a verb that sets an emote override here
 		if(lstat == DEAD)
-			visorstate = DEAD
+			visor_state = DEAD
 		update_icon()
 
 
