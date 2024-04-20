@@ -337,6 +337,7 @@
 /datum/alt_title/lawyer
 	title = "Lawyer"
 	title_blurb = "A Lawyer is knowledgable in various legal systems, including station's operations. They can try to offer their legal counsel, although nobody is really obliged to listen."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/personal_secretary
 
 /datum/alt_title/private_eye
 	title = "Private Eye"
@@ -345,6 +346,7 @@
 /datum/alt_title/bodyguard
 	title = "Bodyguard"
 	title_blurb = "A Bodyguard offers service of personal protection. They may not be allowed any weapons, but their own body is weapon enough."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/bodyguard
 
 /datum/alt_title/personal_physician
 	title = "Personal Physician"
@@ -353,6 +355,7 @@
 /datum/alt_title/dentist
 	title = "Dentist"
 	title_blurb = "A Dentist is a doctor that specializes in oral care. Company may not recognize them as a proper doctor, but surely their customers will."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/dentist
 
 /datum/alt_title/fitness_instructor
 	title = "Fitness Instructor"
@@ -385,6 +388,7 @@
 /datum/alt_title/personal_secretary
 	title = "Personal Secretary"
 	title_blurb = "A Personal Secretary offers services of general assistance. Although it's doubtful anyone will ever actually need those."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/personal_secretary
 
 /datum/alt_title/stylist
 	title = "Stylist"
@@ -397,6 +401,7 @@
 /datum/alt_title/fortune_teller
 	title = "Fortune Teller"
 	title_blurb = "A Fortune Teller peers into the future, and offers these visions to others. Occasionally those visions may even come true!"
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/fortune_teller
 
 /datum/alt_title/spirit_healer
 	title = "Spirit Healer"

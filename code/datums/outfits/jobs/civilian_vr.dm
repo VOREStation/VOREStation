@@ -24,3 +24,17 @@
 	id_type = /obj/item/weapon/card/id/civilian/entrepreneur
 	l_hand = /obj/item/device/ticket_printer/train
 
+/decl/hierarchy/outfit/job/assistant/entrepreneur/bodyguard
+	glasses = /obj/item/clothing/glasses/sunglasses
+	l_pocket = /obj/item/weapon/reagent_containers/spray/pepper
+
+/decl/hierarchy/outfit/job/assistant/entrepreneur/dentist
+	l_hand = /obj/item/weapon/storage/box/dentist
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat
+
+/decl/hierarchy/outfit/job/assistant/entrepreneur/personal_secretary
+	r_hand = /obj/item/weapon/clipboard
+	l_pocket = /obj/item/weapon/pen/fountain3
+
+/decl/hierarchy/outfit/job/assistant/entrepreneur/fortune_teller
+	l_hand = /obj/item/weapon/storage/box/fortune_teller
