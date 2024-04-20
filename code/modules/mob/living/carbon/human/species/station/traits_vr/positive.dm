@@ -6,8 +6,8 @@
 	desc = "Allows you to move faster on average than baseline."
 	cost = 4
 	var_changes = list("slowdown" = -0.5)
-	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJ, SPECIES_DIONA, SPECIES_UNATHI) //Either not applicable or buffs ruin species flavour/balance
-	custom_only = FALSE
+//	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJ, SPECIES_DIONA, SPECIES_UNATHI) //Either not applicable or buffs ruin species flavour/balance
+//	custom_only = FALSE //Keeping these in comments in case we decide to open them up in future, so the species are already organised.
 
 /datum/trait/positive/hardy
 	name = "Hardy"
