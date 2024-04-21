@@ -2265,6 +2265,7 @@
 #include "code\modules\emotes\definitions\visible_vr.dm"
 #include "code\modules\entopics_vr\alternate_appearance.dm"
 #include "code\modules\entopics_vr\entopics.dm"
+#include "code\modules\entrepreneur\entrepreneur_items.dm"
 #include "code\modules\error_handler\_defines.dm"
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"

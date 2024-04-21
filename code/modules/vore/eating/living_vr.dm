@@ -968,6 +968,8 @@
 			I	= stack
 			nom	= refined_taste[O.default_type]
 			M	= name_to_material[O.default_type]
+	else if(istype(I, /obj/item/weapon/entrepreneur/crystal))
+		nom = list("nutrition" = 100,  "remark" = "The crytal was particularly brittle and not difficult to break apart, but the inside was incredibly flavoursome. Though devoid of any actual healing power, it seems to be very nutritious!", "WTF" = FALSE)
 
 	if(nom) //Ravenous 1-4, snackage confirmed. Clear for chowdown, over.
 		playsound(src, 'sound/items/eatfood.ogg', rand(10,50), 1)
