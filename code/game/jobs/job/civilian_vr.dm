@@ -342,6 +342,7 @@
 /datum/alt_title/private_eye
 	title = "Private Eye"
 	title_blurb = "A Private Eye is a detective that has no credentials or equipment. But if someone wants something found without security's knowledge, they are the one to go to."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/private_eye
 
 /datum/alt_title/bodyguard
 	title = "Bodyguard"
@@ -351,6 +352,7 @@
 /datum/alt_title/personal_physician
 	title = "Personal Physician"
 	title_blurb = "A Personal Physicial is a doctor dedicated less to Hippocratic Oath and more to the moneymaking grind. Their license may be expired, but the grindset never will be."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/personal_physician
 
 /datum/alt_title/dentist
 	title = "Dentist"
@@ -360,30 +362,37 @@
 /datum/alt_title/fitness_instructor
 	title = "Fitness Instructor"
 	title_blurb = "A Fitness Instructor dedicates themselves to improving the health of the crew through physical activity, and boy, do they need the help."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/fitness_instructor
 
 /datum/alt_title/yoga_teacher
 	title = "Yoga Teacher"
 	title_blurb = "A Yoga Teacher is similar to fitness instructor, but rather than turning the round bodies into firm ones, they focus on helping people find balance and harmony."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/yoga_teacher
 
 /datum/alt_title/masseuse
 	title = "Masseuse"
 	title_blurb = "A Masseuse is master of physical therapy and working others' bodies with their hands."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/masseuse
 
 /datum/alt_title/tradesperson
 	title = "Tradesperson"
 	title_blurb = "A Tradesperson is someone attempting to make money via the most obvious act of all - buying and selling. Now if only customs allowed you to bring your goods along..."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/tradesperson
 
 /datum/alt_title/streamer
 	title = "Streamer"
 	title_blurb = "A Streamer is here to entertain. Not the crew! Their audience across exonet!"
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/streamer
 
 /datum/alt_title/influencer
 	title = "Influencer"
 	title_blurb = "An Influencer has lucked out with some exonet following, and was given permission to go onstation to provide free exposure. Don't let it go to your head."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/influencer
 
 /datum/alt_title/paranormal_investigator
 	title = "Paranormal Investigator"
 	title_blurb = "A Paranormal Investigator looks beyond what is accepted by modern science, and searches for the true unknown. Aliens, alternate dimensions, ghosts... The truth is out there!"
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/paranormal_investigator
 
 /datum/alt_title/personal_secretary
 	title = "Personal Secretary"
@@ -393,10 +402,12 @@
 /datum/alt_title/stylist
 	title = "Stylist"
 	title_blurb = "A Stylist offers fashion advice, as well as helps with adjusting appearance of the crew to better suit their beauty standards."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/stylist
 
 /datum/alt_title/fisher
 	title = "Fisher"
 	title_blurb = "A Fisher is a capable angler, who is good at obtaining large amounts of marine goods. Whether you generously give them to station or attempt to make a quick thaler by selling, it's up to you!"
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/fisher
 
 /datum/alt_title/fortune_teller
 	title = "Fortune Teller"
@@ -406,6 +417,4 @@
 /datum/alt_title/spirit_healer
 	title = "Spirit Healer"
 	title_blurb = "A Spirit Healer offers alternative forms of medicine. Rituals, magic rocks, seances... It totally works. What's that about placebo?"
-
-
-
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/spirit_healer

@@ -348,11 +348,12 @@
 
 /obj/item/weapon/entrepreneur/spirit_board
 	name = "spirit board"
-	desc = "A wooden board with an alphabet at numbers on it, used to contact the dead. You need to use a glass to contact the spirit world. (It can be alt-clicked to decide the next letter in the sequence)."
+	desc = "A wooden board with an alphabet at numbers on it, used to contact the dead. You need to use a glass to contact the spirit world. (It can be alt-clicked to decide the next letter in the sequence. This item does not canonise ghosts/souls in this setting, it's just a bit of fun!)"
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "spirit_board"
 	var/list/possible_results = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Yes","No","1","2","3","4","5","6","7","8","9","0","Nothing")
 	var/next_result = 0
+	var/ghost_enabled = 1
 
 /obj/item/weapon/entrepreneur/spirit_board/attackby(obj/item/weapon/reagent_containers/food/drinks/W as obj, mob/living/user as mob)
 	if(!istype(user))
@@ -371,9 +372,20 @@
 	next_result = 0
 
 /obj/item/weapon/entrepreneur/spirit_board/AltClick(mob/living/carbon/user)
-	if(!istype(user) && !is_admin(user)) //admins can be cheeky
+	if(!istype(user)) //admins can be cheeky
 		return 0
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
+
+/obj/item/weapon/entrepreneur/spirit_board/attack_ghost(var/mob/observer/dead/user)
+	if(!ghost_enabled)
+		return
+	if(jobban_isbanned(user, "GhostRoles"))
+		to_chat(user, "<span class='warning'>You cannot interact with this board because you are banned from playing ghost roles.</span>")
+		return
+	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
+	if(!is_admin(user)) //admins can bypass this for event stuff
+		if(prob(25))
+			next_result = 0 //25% chance for the ghost to fail to manipulate the board
 
 // Spirit Healer stuff
 
@@ -419,9 +431,43 @@
 	if(anchored)
 		anchored = 0
 		src.visible_message("<span class='notice'>[user] turns the breaks off on the [src]!</span>")
-	if(!anchored)
+	else if(!anchored)
 		anchored = 1
 		src.visible_message("<span class='notice'>[user] turns the breaks on for the [src]!</span>")
+
+/obj/structure/bed/roller/massage/buckle_mob(mob/living/M)
+	..()
+	M.set_dir(1)
+
+//Magnifying glass
+
+/obj/item/weapon/entrepreneur/magnifying_glass
+	name = "magnifying glass"
+	desc = "A curved lense for looking at things a little closer."
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "magnifying_glass"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/entrepreneur/magnifying_glass/afterattack(atom/T, mob/living/user as mob)
+	if(!T.desc)
+		return
+	user.visible_message("<span class='notice'>\The [user] examines the \the [T] with \the [src]!</span>")
+	to_chat(user, "<FONT size=4>[T.desc]</FONT>")
+
+// Streamer and influencer
+
+/obj/item/device/tvcamera/streamer
+	name = "streamer camera drone"
+	channel = "Virgo Live Stream"
+
+/obj/item/device/camera/selfie
+	name = "selfie stick"
+	desc = "A long stick with a camera on the end, designed for taking pictures of one's self, but could awkwardly be turned to take pictures of other things too!"
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "selfie"
+	item_state = "selfie"
+	icon_on = "selfie"
+	icon_off = "selfie_off"
 
 // Containers
 
@@ -438,3 +484,46 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "dentist"
 	starts_with = list(/obj/item/weapon/entrepreneur/dentist_mirror, /obj/item/weapon/entrepreneur/dentist_probe, /obj/item/weapon/entrepreneur/dentist_sickle, /obj/item/weapon/entrepreneur/dentist_scaler, /obj/item/device/flashlight/pen, /obj/item/device/ticket_printer/train)
+
+/obj/item/weapon/storage/box/fitness_trainer
+	name = "exercise kit"
+	desc = "A kit containing everything that a fitness trainer needs."
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "fitness_trainer"
+	starts_with = list(/obj/item/weapon/bedsheet/pillow/exercise, /obj/item/weapon/entrepreneur/dumbbell, /obj/item/weapon/entrepreneur/dumbbell, /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar, /obj/item/device/ticket_printer/train)
+
+/obj/item/weapon/storage/box/yoga_teacher
+	name = "yoga kit"
+	desc = "A kit containing everything that a yoga teacher needs."
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "yoga_teacher"
+	starts_with = list(/obj/item/weapon/bedsheet/pillow/exercise, /obj/item/weapon/bedsheet/pillow/exercise, /obj/item/weapon/reagent_containers/food/snacks/fruitbar, /obj/item/device/ticket_printer/train)
+
+/obj/item/weapon/storage/box/paranormal_investigator
+	name = "ghost hunting kit"
+	desc = "A kit containing everything that a paranormal investigator needs."
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "paranormal_investigator"
+	starts_with = list(/obj/item/weapon/entrepreneur/emf, /obj/item/weapon/entrepreneur/spirit_board, /obj/item/weapon/reagent_containers/food/drinks/glass2/shot, /obj/item/device/ticket_printer/train)
+
+/obj/item/weapon/storage/box/spirit_healer
+	name = "exercise kit"
+	desc = "A kit containing everything that a spirit healer needs."
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "spirit_healer"
+	starts_with = list(/obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/reagent_containers/glass/bottle/essential_oil, /obj/item/device/ticket_printer/train)
+
+/obj/item/weapon/storage/box/private_investigator
+	name = "investigator kit"
+	desc = "A kit containing everything that a private eye needs."
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "private_investigator"
+	starts_with = list(/obj/item/device/taperecorder, /obj/item/device/tape, /obj/item/device/tape, /obj/item/device/camera, /obj/item/sticky_pad, /obj/item/weapon/entrepreneur/magnifying_glass, /obj/item/device/ticket_printer/train)
+
+/obj/item/weapon/storage/box/stylist
+	name = "stylist kit"
+	desc = "A kit containing everything that a stylist needs."
+	icon = 'icons/obj/entrepreneur.dmi'
+	icon_state = "stylist"
+	starts_with = list(/obj/item/weapon/makeover, /obj/item/weapon/lipstick/random, /obj/item/weapon/nailpolish,  /obj/item/weapon/nailpolish_remover, /obj/item/weapon/haircomb, /obj/item/clothing/head/hairnet, /obj/item/device/ticket_printer/train)
+
