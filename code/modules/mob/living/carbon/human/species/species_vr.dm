@@ -101,20 +101,15 @@
 
 	return new_copy
 
+//We REALLY don't need to go through every variable. Doing so makes this lag like hell on 515
 /datum/species/proc/copy_variables(var/datum/species/S, var/list/whitelist)
 	//List of variables to ignore, trying to copy type will runtime.
-	var/list/blacklist = list("type", "loc", "client", "ckey")
+	//var/list/blacklist = list("type", "loc", "client", "ckey")
 	//Makes thorough copy of species datum.
-	for(var/i in vars)
+	for(var/i in whitelist)
 		if(!(i in S.vars)) //Don't copy incompatible vars.
 			continue
 		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
-			if(i in blacklist)
-				continue
-			if(whitelist)//If whitelist is provided, only vars in the list will be copied.
-				if(i in whitelist)
-					S.vars[i] = vars[i]
-				continue
 			S.vars[i] = vars[i]
 
 /datum/species/get_bodytype()

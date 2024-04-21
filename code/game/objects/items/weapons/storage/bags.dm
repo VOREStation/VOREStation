@@ -206,14 +206,16 @@
 /obj/item/weapon/storage/bag/ore/equipped(mob/user)
 	..()
 	if(user.get_inventory_slot(src) == slot_wear_suit || slot_l_hand || slot_l_hand || slot_belt) //Basically every place they can go. Makes sure it doesn't unregister if moved to other slots.
-		GLOB.moved_event.register(user, src, /obj/item/weapon/storage/bag/ore/proc/autoload, user)
+		user.AddComponent(/datum/component/recursive_move)
+		RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/item/weapon/storage/bag/ore/proc/autoload, user, override = TRUE)
 
 /obj/item/weapon/storage/bag/ore/dropped(mob/user)
 	..()
 	if(user.get_inventory_slot(src) == slot_wear_suit || slot_l_hand || slot_l_hand || slot_belt) //See above. This should really be a define.
-		GLOB.moved_event.register(user, src, /obj/item/weapon/storage/bag/ore/proc/autoload, user)
+		user.AddComponent(/datum/component/recursive_move)
+		RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/item/weapon/storage/bag/ore/proc/autoload, user, override = TRUE)
 	else
-		GLOB.moved_event.unregister(user, src)
+		UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
 
 /obj/item/weapon/storage/bag/ore/proc/autoload(mob/user)
 	var/obj/item/weapon/ore/O = locate() in get_turf(src)

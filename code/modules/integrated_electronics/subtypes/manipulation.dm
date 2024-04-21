@@ -188,14 +188,14 @@
 // These procs do not relocate the grenade, that's the callers responsibility
 /obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/weapon/grenade/G)
 	attached_grenade = G
-	GLOB.destroyed_event.register(attached_grenade, src, /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade)
+	RegisterSignal(attached_grenade, COMSIG_OBSERVER_DESTROYED, /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade)
 	size += G.w_class
 	desc += " \An [attached_grenade] is attached to it!"
 
 /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
 	if(!attached_grenade)
 		return
-	GLOB.destroyed_event.unregister(attached_grenade, src, /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade)
+	UnregisterSignal(attached_grenade, COMSIG_OBSERVER_DESTROYED)
 	attached_grenade = null
 	size = initial(size)
 	desc = initial(desc)

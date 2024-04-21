@@ -2,17 +2,39 @@ SUBSYSTEM_DEF(assets)
 	name = "Assets"
 	init_order = INIT_ORDER_ASSETS
 	flags = SS_NO_FIRE
-	var/list/cache = list()
+	var/list/datum/asset_cache_item/cache = list()
 	var/list/preload = list()
+	var/datum/asset_transport/transport = new()
 
-/datum/controller/subsystem/assets/Initialize(timeofday)
-	for(var/typepath in typesof(/datum/asset))
-		var/datum/asset/A = typepath
-		if (typepath != initial(A._abstract))
-			get_asset_datum(typepath)
+/datum/controller/subsystem/assets/proc/OnConfigLoad()
+	var/newtransporttype = /datum/asset_transport
+	switch (config.asset_transport)
+		if ("webroot")
+			newtransporttype = /datum/asset_transport/webroot
 
-	preload = cache.Copy() //don't preload assets generated during the round
+	if (newtransporttype == transport.type)
+		return
 
-	for(var/client/C in GLOB.clients)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(getFilesSlow), C, preload, FALSE), 10)
-	return ..()
+	var/datum/asset_transport/newtransport = new newtransporttype ()
+	if (newtransport.validate_config())
+		transport = newtransport
+	transport.Load()
+
+
+
+/datum/controller/subsystem/assets/Initialize()
+	OnConfigLoad()
+
+	for(var/type in typesof(/datum/asset))
+		var/datum/asset/A = type
+		if (type != initial(A._abstract))
+			load_asset_datum(type)
+
+	transport.Initialize(cache)
+
+	subsystem_initialized = TRUE
+	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/assets/Recover()
+	cache = SSassets.cache
+	preload = SSassets.preload

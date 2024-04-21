@@ -34,7 +34,7 @@
 			L = get(pda, /mob/living/silicon)
 
 		if(L)
-			to_chat(L, "\icon[pda][bicon(pda)] [message]")
+			to_chat(L, "[icon2html(pda,L.client)] [message]")
 			SStgui.update_user_uis(L, pda) // Update the receiving user's PDA UI so that they can see the new message
 
 	if(!notify_silent)
