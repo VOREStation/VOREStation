@@ -1304,6 +1304,20 @@
 		return 1
 	return 0
 
+// Function to directly drain power from the robot's cell, allows to set a minimum level beneath which
+// abilities can no longer be used
+/mob/living/silicon/robot/proc/use_direct_power(var/amount = 0, var/lower_limit = 0)
+	// No cell inserted
+	if(!cell)
+		return FALSE
+
+	// Power cell does not have sufficient charge to remain above the power limit.
+	if(cell.charge - (amount + lower_limit) <= 0)
+		return FALSE
+
+	cell.charge -= amount
+	return TRUE
+
 /mob/living/silicon/robot/binarycheck()
 	if(get_restraining_bolt())
 		return FALSE
@@ -1444,7 +1458,7 @@
 		G.drop_item_nm()
 
 /mob/living/silicon/robot/disable_spoiler_vision()
-	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY)) // Whyyyyyyyy have seperate defines.
+	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY|BORGANOMALOUS)) // Whyyyyyyyy have seperate defines.
 		var/i = 0
 		// Borg inventory code is very . . interesting and as such, unequiping a specific item requires jumping through some (for) loops.
 		var/current_selection_index = get_selected_module() // Will be 0 if nothing is selected.
@@ -1452,7 +1466,7 @@
 			i++
 			if(istype(thing, /obj/item/borg/sight))
 				var/obj/item/borg/sight/S = thing
-				if(S.sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY))
+				if(S.sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY|BORGANOMALOUS))
 					select_module(i)
 					uneq_active()
 
@@ -1558,6 +1572,16 @@
 /mob/living/silicon/robot/proc/has_no_prod_upgrade(var/given_type)
 	if(given_type == /obj/item/borg/upgrade/no_prod/toygun)
 		return has_upgrade_module(/obj/item/weapon/gun/projectile/cyborgtoy)
+	if(given_type == /obj/item/borg/upgrade/no_prod/vision_xray)
+		return has_upgrade_module(/obj/item/borg/sight/xray)
+	if(given_type == /obj/item/borg/upgrade/no_prod/vision_thermal)
+		return has_upgrade_module(/obj/item/borg/sight/thermal)
+	if(given_type == /obj/item/borg/upgrade/no_prod/vision_meson)
+		return has_upgrade_module(/obj/item/borg/sight/meson)
+	if(given_type == /obj/item/borg/upgrade/no_prod/vision_material)
+		return has_upgrade_module(/obj/item/borg/sight/material)
+	if(given_type == /obj/item/borg/upgrade/no_prod/vision_anomalous)
+		return has_upgrade_module(/obj/item/borg/sight/anomalous)
 	return null
 
 /mob/living/silicon/robot/proc/has_upgrade(var/given_type)

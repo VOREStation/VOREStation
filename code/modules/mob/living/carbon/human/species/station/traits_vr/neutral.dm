@@ -52,6 +52,8 @@
 	autohiss_exempt = list(LANGUAGE_UNATHI))
 
 	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_zaddat)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_ZADDAT)
 
 /datum/trait/neutral/autohiss_tajaran
 	name = "Autohiss (Tajaran)"
@@ -63,6 +65,8 @@
 		),
 	autohiss_exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI,LANGUAGE_ALAI))
 	excludes = list(/datum/trait/neutral/autohiss_unathi, /datum/trait/neutral/autohiss_zaddat)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_ZADDAT)
 
 /datum/trait/neutral/autohiss_zaddat
 	name = "Autohiss (Zaddat)"
@@ -81,6 +85,8 @@
 		),
 	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
 	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_unathi)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_ZADDAT)
 
 /datum/trait/neutral/bloodsucker
 	name = "Bloodsucker, Obligate"

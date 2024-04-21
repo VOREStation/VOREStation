@@ -188,6 +188,10 @@
 		src.see_in_dark = 8
 		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
 		fullbright = TRUE
+	else if (src.sight_mode & BORGANOMALOUS)
+		src.see_in_dark = 8
+		src.see_invisible = INVISIBILITY_SHADEKIN
+		fullbright = TRUE
 	else if (!seedarkness)
 		src.sight &= ~SEE_MOBS
 		src.sight &= ~SEE_TURFS
