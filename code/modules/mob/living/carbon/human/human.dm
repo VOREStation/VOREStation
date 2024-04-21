@@ -57,10 +57,17 @@
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
+	/* //Chomp REMOVE - this is done on mob/living/Destroy
 	for(var/organ in organs)
 		qdel(organ)
-	QDEL_NULL(nif)	//VOREStation Add
+	*/
+	if(nif)
+		QDEL_NULL(nif)	//VOREStation Add
 	worn_clothing.Cut()
+
+
+	if(vessel)
+		QDEL_NULL(vessel)
 	return ..()
 
 /mob/living/carbon/human/Stat()
