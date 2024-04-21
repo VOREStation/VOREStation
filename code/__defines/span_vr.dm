@@ -52,6 +52,12 @@
 
 #define span_reflex_shoot(str) ("<span class='reflex_shoot'>" + str + "</span>")
 
+/* Vore messages */
+
+#define span_vdanger(str) ("<span class='vdanger'>" + str + "</span>")
+#define span_vwarning(str) ("<span class='vwarning'>" + str + "</span>")
+#define span_vnotice(str) ("<span class='vnotice'>" + str + "</span>")
+
 /* Languages */
 
 #define span_alien(str) ("<span class='alien'>" + str + "</span>")

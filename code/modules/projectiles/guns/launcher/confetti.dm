@@ -76,26 +76,22 @@
 		var/choice = tgui_alert(usr, "Load the Party Canon with?", "Change What?", list("Confetti","Banana Peel","Cream Pie"))
 		if(!choice)
 			return
+		if(istype(usr,/mob/living/silicon/robot))
+			var/mob/living/silicon/robot/R = usr
+			if(!R.use_direct_power(200, 400))
+				to_chat(R, span_warning("Warning, low power detected. Aborting action."))
+				return
 		playsound(src, 'sound/effects/pop.ogg', 50, 0)
 		switch(choice)
 			if("Confetti")
 				chambered = new /obj/item/weapon/grenade/confetti/party_ball
 				to_chat(usr, span_blue("Confetti loaded."))
-				if(istype(usr,/mob/living/silicon/robot))
-					var/mob/living/silicon/robot/R = usr
-					R.cell.charge -= 200
 			if("Banana Peel")
 				chambered = new /obj/item/weapon/bananapeel
 				to_chat(usr, span_blue("Banana peel loaded."))
-				if(istype(usr,/mob/living/silicon/robot))
-					var/mob/living/silicon/robot/R = usr
-					R.cell.charge -= 200
 			if("Cream Pie")
 				chambered = new /obj/item/weapon/reagent_containers/food/snacks/pie
 				to_chat(usr, span_blue("Banana cream pie loaded."))
-				if(istype(usr,/mob/living/silicon/robot))
-					var/mob/living/silicon/robot/R = usr
-					R.cell.charge -= 200
 	else
 		to_chat(usr, span_red("The [src] is already loaded!"))
 
