@@ -72,6 +72,7 @@
 /datum/tgui_panel/proc/on_message(type, payload)
 	if(type == "ready")
 		broken = FALSE
+		// window.send_message("connected", list("round_id" = GLOB.round_id)) // Sends the round ID to the chat, requires round IDs
 		window.send_message("update", list(
 			"config" = list(
 				"client" = list(

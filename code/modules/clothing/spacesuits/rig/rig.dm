@@ -610,6 +610,7 @@
 			species_icon = sprite_sheets[wearer.species.get_bodytype(wearer)]
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
+	chest.cut_overlays()
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)

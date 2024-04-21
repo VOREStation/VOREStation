@@ -101,6 +101,24 @@
 	icon_state = "bunny"
 	do_colouration = 1
 
+/datum/sprite_accessory/tail/rabbit
+    name = "rabbit, colourable (vwag)"
+    desc = ""
+    icon_state = "rabbit"
+    do_colouration = TRUE
+    color_blend_mode = ICON_MULTIPLY
+    ani_state = "rabbit_w"
+
+/datum/sprite_accessory/tail/rabbitalt
+    name = "rabbit, dual color (vwag)"
+    desc = ""
+    icon_state = "rabbitalt"
+    extra_overlay = "rabbitalt-tips"
+    do_colouration = TRUE
+    color_blend_mode = ICON_MULTIPLY
+    ani_state = "rabbitalt_w"
+    extra_overlay_w = "rabbitalt-tips_w"
+
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
 	desc = ""
@@ -428,6 +446,19 @@
 	extra_overlay = "tigertail_mark"
 	extra_overlay_w = "tigertail_mark_w"
 
+/datum/sprite_accessory/tail/tigeralt
+	name = "tiger tail, alt (vwag)"
+	desc = ""
+	icon_state = "tigeralt"
+	extra_overlay = "tigeralt-tips"
+	extra_overlay2 = "tigeralt-tips2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "tigeralt_w"
+	extra_overlay_w = "tigeralt-tips_w"
+	extra_overlay2_w = "tigeralt-tips2_w"
+
+
 /datum/sprite_accessory/tail/vulp_new
 	name = "new vulp tail (vwag)"
 	desc = ""
@@ -498,6 +529,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "deertail_mark"
+
+/datum/sprite_accessory/tail/deeralt
+	name = "deer alt, colorable (vwag)"
+	desc = ""
+	icon_state = "deeralt"
+	ani_state = "deeralt_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/tesh_feathered
 	name = "Teshari tail"

@@ -64,10 +64,10 @@
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
 		if(1)
-			new /obj/item/stack/rods(src.loc)
+			new /obj/item/stack/rods(src.loc, 2) //VOREstation Edit: Conservation of mass
 			qdel(src)
 		if(2)
-			new /obj/item/stack/rods(src.loc)
+			new /obj/item/stack/rods(src.loc, 2) //VOREstation Edit: Conservation of mass
 			qdel(src)
 
 /obj/structure/catwalk/attack_robot(var/mob/user)
@@ -77,11 +77,12 @@
 /obj/structure/catwalk/proc/deconstruct(mob/user)
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	to_chat(user, "<span class='notice'>Slicing \the [src] joints ...</span>")
-	new /obj/item/stack/rods(src.loc)
-	new /obj/item/stack/rods(src.loc)
 	//Lattice would delete itself, but let's save ourselves a new obj
-	if(isspace(loc) || isopenspace(loc))
+	if(isopenspace(loc) && user.a_intent == I_HELP)
 		new /obj/structure/lattice/(src.loc)
+		new /obj/item/stack/rods(src.loc, 1)
+	else
+		new /obj/item/stack/rods(src.loc, 2)
 	if(plated_tile)
 		new plated_tile(src.loc)
 	qdel(src)

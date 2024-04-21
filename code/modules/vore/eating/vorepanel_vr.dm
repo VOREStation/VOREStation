@@ -225,6 +225,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			"belly_mob_mult" = selected.belly_mob_mult,
 			"belly_item_mult" = selected.belly_item_mult,
 			"belly_overall_mult" = selected.belly_overall_mult,
+			"drainmode" = selected.drainmode,
 
 		)
 
@@ -823,6 +824,8 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			if(ourtarget.absorbable)
 				process_options += "Absorb"
 
+			process_options += "Knockout" //Can't think of any mechanical prefs that would restrict this. Even if they are already asleep, you may want to make it permanent.
+
 			if(process_options.len)
 				process_options += "Cancel"
 			else
@@ -878,6 +881,16 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 						var/n = 0 - ourtarget.nutrition
 						ourtarget.adjust_nutrition(n)
 					b.absorb_living(ourtarget)
+				if("Knockout")
+					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly make you unconscious, you will be unable until ejected from the pred. Is this something you are okay with happening to you?","Instant Knockout", list("No", "Yes")) != "Yes")
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] declined your knockout attempt.</span>")
+						to_chat(ourtarget, "<span class= 'vwarning'>You declined the knockout attempt.</span>")
+						return
+					if(ourtarget.loc != b)
+						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is no longer in \the [b].</span>")
+						return
+					ourtarget.AdjustSleeping(500000)
+					to_chat(ourtarget, "<span class= 'vwarning'>\The [usr] has put you to sleep, you will remain unconscious until ejected from the belly.</span>")
 				if("Cancel")
 					return
 		if("Health Check")
@@ -1502,6 +1515,14 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			var/new_new_damage = CLAMP(new_damage, 0, 6)
 			host.vore_selected.digest_clone = new_new_damage
 			. = TRUE
+		if("b_drainmode")
+			var/list/menu_list = host.vore_selected.drainmodes.Copy()
+			var/new_drainmode = tgui_input_list(usr, "Choose Mode (currently [host.vore_selected.digest_mode])", "Mode Choice", menu_list)
+			if(!new_drainmode)
+				return FALSE
+
+			host.vore_selected.drainmode = new_drainmode
+			host.vore_selected.updateVRPanels()
 		if("b_emoteactive")
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
 			. = TRUE

@@ -8,6 +8,7 @@
 	idcard_type = /obj/item/weapon/card/id
 	icon_selected = FALSE
 	can_be_antagged = FALSE
+	restrict_modules_to = list("Gravekeeper")
 
 /mob/living/silicon/robot/gravekeeper/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)

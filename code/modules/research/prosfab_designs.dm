@@ -520,6 +520,31 @@
 	id = "borg_hound_cyborg_blaster"
 	build_path = /obj/item/borg/upgrade/no_prod/toygun
 
+/datum/design/item/prosfab/robot_upgrade/no_prod/vision_xray
+	name = "X-ray vision"
+	id = "borg_hound_vision_xray"
+	build_path = /obj/item/borg/upgrade/no_prod/vision_xray
+
+/datum/design/item/prosfab/robot_upgrade/no_prod/vision_thermal
+	name = "Thermal vision"
+	id = "borg_hound_vision_thermal"
+	build_path = /obj/item/borg/upgrade/no_prod/vision_thermal
+
+/datum/design/item/prosfab/robot_upgrade/no_prod/vision_meson
+	name = "Meson vision"
+	id = "borg_hound_vision_meson"
+	build_path = /obj/item/borg/upgrade/no_prod/vision_meson
+
+/datum/design/item/prosfab/robot_upgrade/no_prod/vision_material
+	name = "Material vision"
+	id = "borg_hound_vision_material"
+	build_path = /obj/item/borg/upgrade/no_prod/vision_material
+
+/datum/design/item/prosfab/robot_upgrade/no_prod/vision_anomalous
+	name = "Anomalous vision"
+	id = "borg_hound_vision_anomalous"
+	build_path = /obj/item/borg/upgrade/no_prod/vision_anomalous
+
 // Synthmorph Bags.
 
 /datum/design/item/prosfab/synthmorphbag

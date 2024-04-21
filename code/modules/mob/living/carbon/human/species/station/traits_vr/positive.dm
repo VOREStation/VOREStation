@@ -6,24 +6,32 @@
 	desc = "Allows you to move faster on average than baseline."
 	cost = 4
 	var_changes = list("slowdown" = -0.5)
+//	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJ, SPECIES_DIONA, SPECIES_UNATHI) //Either not applicable or buffs ruin species flavour/balance
+//	custom_only = FALSE //Keeping these in comments in case we decide to open them up in future, so the species are already organised.
 
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
 	cost = 1
 	var_changes = list("item_slowdown_mod" = 0.5)
+	custom_only = FALSE
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN) //Either not applicable or buffs are too strong
 
 /datum/trait/positive/hardy_plus
 	name = "Hardy, Major"
 	desc = "Allows you to carry heavy equipment with almost no slowdown."
 	cost = 2
 	var_changes = list("item_slowdown_mod" = 0.25)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN) //Either not applicable or buffs are too strong
+	custom_only = FALSE
 
 /datum/trait/positive/endurance_high
 	name = "High Endurance"
 	desc = "Increases your maximum total hitpoints to 125"
 	cost = 4
 	var_changes = list("total_health" = 125)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_SHADEKIN_CREW) //Either not applicable or buffs are too strong
 
 /datum/trait/positive/endurance_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -46,12 +54,16 @@
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
 	var_changes = list("darksight" = 5, "flash_mod" = 1.1)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJARAN, SPECIES_SHADEKIN_CREW, SPECIES_SHADEKIN, SPECIES_XENOHYBRID, SPECIES_VULPKANIN, SPECIES_XENO, SPECIES_XENOCHIMERA, SPECIES_VASILISSAN, SPECIES_WEREBEAST) //These species already have strong darksight by default.
 
 /datum/trait/positive/darksight_plus
 	name = "Darksight, Major"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
 	var_changes = list("darksight" = 8, "flash_mod" = 1.2)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJARAN, SPECIES_SHADEKIN_CREW, SPECIES_SHADEKIN, SPECIES_XENOHYBRID, SPECIES_VULPKANIN, SPECIES_XENO, SPECIES_XENOCHIMERA, SPECIES_VASILISSAN, SPECIES_WEREBEAST) //These species already have strong darksight by default.
 
 /datum/trait/positive/melee_attack
 	name = "Special Attack: Sharp Melee" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
@@ -76,6 +88,8 @@
 	desc = "Adds 15% resistance to brute damage sources."
 	cost = 2
 	var_changes = list("brute_mod" = 0.85)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_XENOCHIMERA, SPECIES_VASILISSAN, SPECIES_WEREBEAST) //Most of these are already this resistant or stronger, or it'd be way too much of a boost for tesh.
 
 /datum/trait/positive/brute_resist
 	name = "Brute Resist"
@@ -211,6 +225,7 @@
 	var_changes = list("trauma_mod" = 0.85)
 	excludes = list(/datum/trait/negative/neural_hypersensitivity)
 	can_take = ORGANICS
+	custom_only = FALSE
 
 /datum/trait/positive/throw_resistance
 	name = "Firm Body"

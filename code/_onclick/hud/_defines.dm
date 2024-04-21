@@ -58,9 +58,11 @@
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,SOUTH:5" //alternative intent switcher for when the interface is hidden (F12)
 
-#define ui_borg_pull "EAST-3:24,SOUTH+1:7"
-#define ui_borg_module "EAST-2:26,SOUTH+1:7"
-#define ui_borg_panel "EAST-1:28,SOUTH+1:7"
+#define ui_borg_pull "EAST-4:24,SOUTH+1:7" //borgs
+#define ui_borg_radio "EAST-2:26,SOUTH+1:7" //borgs
+#define ui_borg_panel "EAST-1:28,SOUTH+1:7" //borgs
+#define ui_borg_module "EAST-3:24,SOUTH+1:5"//borgs
+#define ui_vtec_control "EAST-3:24,SOUTH:5"//borgs
 
 #define ui_ai_core "SOUTH:6,WEST:16"
 #define ui_ai_camera_list "SOUTH:6,WEST+1:16"

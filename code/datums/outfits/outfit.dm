@@ -127,7 +127,8 @@ var/list/outfits_decls_by_type_
 	if(gloves)
 		H.equip_to_slot_or_del(new gloves(H),slot_gloves)
 	if(shoes)
-		H.equip_to_slot_or_del(new shoes(H),slot_shoes)
+		if(!(H.client?.prefs?.shoe_hater))	//RS ADD
+			H.equip_to_slot_or_del(new shoes(H),slot_shoes)
 	if(mask)
 		H.equip_to_slot_or_del(new mask(H),slot_wear_mask)
 	if(head)

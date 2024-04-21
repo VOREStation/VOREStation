@@ -111,11 +111,11 @@ export const OmniFilter = (props) => {
               {config ? (
                 <Button
                   icon="wrench"
-                  content={set_flow_rate / 10 + ' L/s'}
+                  content={set_flow_rate + ' L/s'}
                   onClick={() => act('set_flow_rate')}
                 />
               ) : (
-                set_flow_rate / 10 + ' L/s'
+                set_flow_rate + ' L/s'
               )}
             </LabeledList.Item>
           </LabeledList>

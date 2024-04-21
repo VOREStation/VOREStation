@@ -2726,3 +2726,13 @@ Departamental Swimsuits, for general use
 	icon_state = "bigroundglasses"
 	slot_flags = SLOT_EYES | SLOT_EARS
 	glasses_layer_above = TRUE
+
+//valkaerie: Valkaerie Stoze
+
+/obj/item/clothing/ears/earring/fluff/valkhorns
+	name = "valkaerie's horns"
+	desc = "Curled horns that look that they shouldn't really be pulled off!"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "valkhorns"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "valkhorns_onmob"

@@ -27,13 +27,10 @@
 		var/newlevel = 	round(charging.percent() * 4.0 / 99)
 		//to_world("nl: [newlevel]")
 
-		if(chargelevel != newlevel)
+		cut_overlays()
+		add_overlay("ccharger-o[newlevel]")
 
-			cut_overlays()
-			add_overlay("ccharger-o[newlevel]")
-
-			chargelevel = newlevel
-
+		chargelevel = newlevel
 		add_overlay(image(charging.icon, charging.icon_state))
 		add_overlay("ccharger-[charging.connector_type]-on")
 
@@ -126,10 +123,11 @@
 		return
 
 	if(charging && !charging.fully_charged())
+		var/newlevel = 	round(charging.percent() * 4.0 / 99)
 		charging.give(efficiency*CELLRATE)
 		update_use_power(USE_POWER_ACTIVE)
-
-		update_icon()
+		if(chargelevel != newlevel)
+			update_icon()
 	else
 		update_use_power(USE_POWER_IDLE)
 

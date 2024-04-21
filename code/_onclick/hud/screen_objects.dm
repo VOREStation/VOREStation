@@ -272,6 +272,19 @@
 				var/mob/living/L = usr
 				L.resist()
 
+		if("control_vtec")
+			if(isrobot(usr))
+				var/mob/living/silicon/robot/R = usr
+				if(R.speed == 0 && R.vtec_active)
+					R.speed = -0.5
+					R.hud_used.control_vtec.icon_state = "speed_1"
+				else if(R.speed == -0.5 && R.vtec_active)
+					R.speed = -1
+					R.hud_used.control_vtec.icon_state = "speed_2"
+				else
+					R.speed = 0
+					R.hud_used.control_vtec.icon_state = "speed_0"
+
 		if("mov_intent")
 			if(isliving(usr))
 				if(iscarbon(usr))

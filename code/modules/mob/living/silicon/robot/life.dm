@@ -188,6 +188,10 @@
 		src.see_in_dark = 8
 		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
 		fullbright = TRUE
+	else if (src.sight_mode & BORGANOMALOUS)
+		src.see_in_dark = 8
+		src.see_invisible = INVISIBILITY_SHADEKIN
+		fullbright = TRUE
 	else if (!seedarkness)
 		src.sight &= ~SEE_MOBS
 		src.sight &= ~SEE_TURFS
@@ -369,8 +373,8 @@
 		IgniteMob()
 
 /mob/living/silicon/robot/handle_light()
-	. = ..()
-	if(. == FALSE) // If no other light sources are on.
-		if(lights_on)
-			set_light(integrated_light_power, 1, "#FFFFFF")
-			return TRUE
+	if(lights_on)
+		set_light(integrated_light_power, 1, "#FFFFFF")
+		return TRUE
+	else
+		. = ..()

@@ -59,6 +59,8 @@ const initialState = {
   initialized: false,
   storedTypes: {},
   hideImportantInAdminTab: false,
+  interleave: false,
+  interleaveColor: '#909090',
 };
 
 export const settingsReducer = (state = initialState, action) => {

@@ -60,8 +60,16 @@ const Tab = (props: TabProps) => {
     leftSlot,
     rightSlot,
     children,
+    onClick,
     ...rest
   } = props;
+
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e);
+      e.target.blur();
+    }
+  };
 
   return (
     <div
@@ -73,6 +81,7 @@ const Tab = (props: TabProps) => {
         className,
         computeBoxClassName(rest),
       ])}
+      onClick={handleClick}
       {...computeBoxProps(rest)}
     >
       {(canRender(leftSlot) && <div className="Tab__left">{leftSlot}</div>) ||

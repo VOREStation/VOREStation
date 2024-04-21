@@ -145,6 +145,8 @@
 		message = "<span class='game say'>[message]</span>"
 		if(speaker && !speaker.client)
 			message = "<span class='npcsay'>[message]</span>"
+		else if(speaker && !(get_z(src) == get_z(speaker)))
+			message = "<span class='multizsay'>[message]</span>"
 		to_chat(src, message)
 	else if(teleop)
 		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
@@ -159,6 +161,8 @@
 		message = "<span class='game say'>[message]</span>"
 		if(speaker && !speaker.client)
 			message = "<span class='npcsay'>[message]</span>"
+		else if(speaker && !(get_z(src) == get_z(speaker)))
+			message = "<span class='multizsay'>[message]</span>"
 		to_chat(src, message)
 	else if(teleop)
 		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
@@ -333,4 +337,6 @@
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> [message]</span>"
 	if(!speaker.client)
 		rendered = "<span class='npcsay'>[rendered]</span>"
+	else if(speaker && !(get_z(src) == get_z(speaker)))
+		rendered = "<span class='multizsay'>[message]</span>"
 	to_chat(src, rendered)
