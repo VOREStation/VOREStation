@@ -240,6 +240,7 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/wallet,
 				/obj/item/weapon/storage/vore_egg,
 				/obj/item/weapon/bikehorn/tinytether,
+				/obj/item/weapon/entrepreneur,
 				/obj/item/capture_crystal,
 				/obj/item/roulette_ball,
 				/obj/item/pizzabox

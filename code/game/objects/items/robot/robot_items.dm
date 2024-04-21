@@ -36,6 +36,8 @@
 /obj/item/borg/sight/xray
 	name = "\proper x-ray vision"
 	sight_mode = BORGXRAY
+	icon_state = "night"
+	icon = 'icons/inventory/eyes/item.dmi'
 
 
 /obj/item/borg/sight/thermal
@@ -55,6 +57,12 @@
 	name = "\proper material scanner vision"
 	sight_mode = BORGMATERIAL
 	icon_state = "material"
+	icon = 'icons/inventory/eyes/item.dmi'
+
+/obj/item/borg/sight/anomalous
+	name = "\proper anomaly vision"
+	sight_mode = BORGANOMALOUS
+	icon_state = "denight"
 	icon = 'icons/inventory/eyes/item.dmi'
 
 /obj/item/borg/sight/hud
