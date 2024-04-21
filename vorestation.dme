@@ -4296,7 +4296,7 @@
 #include "maps\expedition_vr\beach\submaps\mountains.dm"
 #include "maps\expedition_vr\beach\submaps\mountains_areas.dm"
 #include "maps\gateway_archive_vr\blackmarketpackers.dm"
-#include "maps\tether\tether.dm"
+#include "maps\stellar_delight\stellar_delight.dm"
 #include "maps\redgate\fantasy_items.dm"
 #include "maps\redgate\falls\atoll_decals.dm"
 #include "maps\redgate\falls\atoll_objs.dm"
