@@ -2,20 +2,42 @@
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
+	player_list -= src
 	unset_machine()
-	qdel(hud_used)
+	QDEL_NULL(hud_used)
 	clear_fullscreen()
 	if(client)
 		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
 			qdel(spell_master)
 		remove_screen_obj_references()
-		client.screen = list()
+		client.screen.Cut()
 	if(mind && mind.current == src)
 		spellremove(src)
 	ghostize()
-	QDEL_NULL(plane_holder)
-	..()
-	return QDEL_HINT_HARDDEL_NOW
+	if(focus)
+		focus = null
+	if(plane_holder)
+		QDEL_NULL(plane_holder)
+
+	if(pulling)
+		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
+
+	vore_selected = null
+	if(vore_organs)
+		QDEL_NULL_LIST(vore_organs)
+	if(vorePanel)
+		QDEL_NULL(vorePanel)
+
+
+	if(mind)
+		if(mind.current == src)
+			mind.current = null
+		if(mind.original == src)
+			mind.original = null
+
+	. = ..()
+	update_client_z(null)
+	//return QDEL_HINT_HARDDEL_NOW
 
 /mob/proc/remove_screen_obj_references()
 	hands = null
@@ -42,7 +64,9 @@
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
-	return ..()
+	update_transform() // Some mobs may start bigger or smaller than normal.
+	. = ..()
+	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	var/time = say_timestamp()
@@ -1212,6 +1236,15 @@
 		var/mob/exploited = exploit_for.resolve()
 		exploited?.exploit_addons -= src
 		exploit_for = null
+	. = ..()
+
+
+
+/obj/Destroy()
+	if(istype(src.loc, /mob))
+		var/mob/holder = src.loc
+		if(src in holder.exploit_addons)
+			holder.exploit_addons -= src
 	. = ..()
 
 

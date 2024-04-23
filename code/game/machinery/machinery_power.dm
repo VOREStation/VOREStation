@@ -73,14 +73,18 @@
 // Do not do power stuff in New/Initialize until after ..()
 /obj/machinery/Initialize()
 	. = ..()
+	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(update_power_on_move))
+	AddComponent(/datum/component/recursive_move)
 	var/power = POWER_CONSUMPTION
 	REPORT_POWER_CONSUMPTION_CHANGE(0, power)
 	power_init_complete = TRUE
 
 // Or in Destroy at all, but especially after the ..().
 /obj/machinery/Destroy()
+	/*
 	if(ismovable(loc))
-		GLOB.moved_event.unregister(loc, src, PROC_REF(update_power_on_move)) // Unregister just in case
+		UnregisterSignal(loc, COMSIG_OBSERVER_MOVED) // Unregister just in case
+	*/
 	var/power = POWER_CONSUMPTION
 	REPORT_POWER_CONSUMPTION_CHANGE(power, 0)
 	. = ..()
@@ -90,10 +94,12 @@
 /obj/machinery/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	update_power_on_move(src, old_loc, loc)
-	if(ismovable(loc)) // Register for recursive movement (if the thing we're inside moves)
-		GLOB.moved_event.register(loc, src, PROC_REF(update_power_on_move))
+	/* No
 	if(ismovable(old_loc)) // Unregister recursive movement.
-		GLOB.moved_event.unregister(old_loc, src, PROC_REF(update_power_on_move))
+		UnregisterSignal(old_loc, COMSIG_OBSERVER_MOVED)
+	if(ismovable(loc)) // Register for recursive movement (if the thing we're inside moves)
+		RegisterSignal(loc, COMSIG_OBSERVER_MOVED, PROC_REF(update_power_on_move), override = TRUE)
+	*/
 
 /obj/machinery/proc/update_power_on_move(atom/movable/mover, atom/old_loc, atom/new_loc)
 	var/area/old_area = get_area(old_loc)
