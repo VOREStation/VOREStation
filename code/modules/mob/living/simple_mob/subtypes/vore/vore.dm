@@ -40,6 +40,7 @@
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore
 	slip_vore = client.prefs_vr.slip_vore
+	digest_pain = client.prefs_vr.digest_pain
 
 	resizable = client.prefs_vr.resizable
 	show_vore_fx = client.prefs_vr.show_vore_fx
