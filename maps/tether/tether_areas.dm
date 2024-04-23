@@ -493,6 +493,16 @@
 /area/tether/surfacebase/entertainment/stage
 	name = "\improper Entertainment Stage"
 
+/area/tether/surfacebase/entrepreneur
+	name = "\improper Shared Office"
+	icon_state = "entertainment"
+
+/area/tether/surfacebase/entrepreneur/session
+	name = "\improper Shared Office Session Room"
+
+/area/tether/surfacebase/entrepreneur/meeting
+	name = "\improper Shared Office Meeting Room"
+
 /area/tether/surfacebase/funny/clownoffice
 	name = "\improper Clown's Office"
 	icon_state = "library"
