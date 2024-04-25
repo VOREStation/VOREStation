@@ -16586,12 +16586,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
-"aCc" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/grey/border,
-/obj/effect/landmark/start/entrepreneur,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
 "aCd" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -17479,7 +17473,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aDL" = (
@@ -17558,7 +17551,6 @@
 /obj/structure/table/bench/standard,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/grey/border,
-/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aDU" = (
@@ -17982,7 +17974,6 @@
 /obj/effect/floor_decal/corner/grey/border,
 /obj/machinery/light/small,
 /obj/structure/table/bench/standard,
-/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aEO" = (
@@ -53733,7 +53724,7 @@ aSX
 aTG
 aSo
 arm
-aCc
+bcT
 aVf
 aUs
 aUu

@@ -2676,6 +2676,12 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level1/centsquare)
 "fQ" = (
@@ -3392,9 +3398,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "hv" = (
-/obj/effect/landmark/start/entrepreneur,
-/turf/simulated/floor/tiled,
-/area/groundbase/civilian/apparel)
+/turf/simulated/wall,
+/area/groundbase/civilian/entrepreneur)
 "hw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -6531,7 +6536,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "og" = (
@@ -6668,6 +6672,14 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
+"ow" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/item/device/tape,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "ox" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -6736,6 +6748,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/office)
+"oE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "oF" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 6
@@ -6902,6 +6929,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/morgue)
+"oW" = (
+/obj/structure/table/hardwoodtable,
+/obj/effect/floor_decal/spline/fancy/wood,
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "oX" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -6959,6 +6991,12 @@
 "pc" = (
 /turf/simulated/floor/outdoors/grass/seasonal/dark/lowsnow,
 /area/groundbase/unexplored/outdoors)
+"pd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "pe" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -7307,6 +7345,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/warden)
+"pZ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "qa" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/security/iaa1)
@@ -7419,6 +7463,22 @@
 "qp" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/office)
+"qq" = (
+/obj/machinery/door/airlock{
+	id_tag = "session_room";
+	name = "Session Room"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "qr" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
@@ -7550,6 +7610,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
+"qH" = (
+/obj/structure/bed/chair/office/light,
+/obj/machinery/alarm,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "qI" = (
 /obj/structure/bed/chair/sofa/bench/right{
 	dir = 8
@@ -7769,6 +7834,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
+"ri" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
+/area/groundbase/level1/westspur)
 "rj" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/circuitboard/rdserver{
@@ -8192,6 +8272,23 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
+"si" = (
+/obj/structure/closet/walllocker_double/misc_civ/south{
+	name = "vanity"
+	},
+/obj/item/weapon/reagent_containers/glass/bottle/essential_oil,
+/obj/item/weapon/entrepreneur/crystal,
+/obj/item/weapon/entrepreneur/crystal,
+/obj/item/weapon/entrepreneur/crystal,
+/obj/item/weapon/entrepreneur/crystal,
+/obj/item/weapon/entrepreneur/crystal,
+/obj/item/weapon/makeover,
+/obj/item/weapon/lipstick/random,
+/obj/item/weapon/lipstick/random,
+/obj/item/weapon/nailpolish_remover,
+/obj/item/weapon/nailpolish,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "sj" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -8898,6 +8995,22 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level1/centsquare)
+"tQ" = (
+/obj/structure/closet/walllocker_double/misc_civ/north{
+	name = "streamer equipment"
+	},
+/obj/item/device/tvcamera/streamer,
+/obj/item/device/camera/selfie,
+/obj/item/device/camera_film,
+/obj/item/device/camera_film,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
+"tR" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "tS" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/gun/energy/laser{
@@ -9241,6 +9354,9 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/civilian/bar)
+"uE" = (
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "uF" = (
 /obj/structure/table/bench/padded,
 /obj/machinery/light,
@@ -10014,6 +10130,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or1)
+"wD" = (
+/obj/structure/reagent_dispensers/water_cooler/full,
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "wE" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -10040,6 +10164,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
+"wH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "wI" = (
 /obj/item/weapon/storage/backpack/parachute{
 	pixel_x = 4;
@@ -10219,6 +10355,13 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/civilian/gateway)
+"wW" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "wX" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -10349,6 +10492,14 @@
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/groundbase/level1/southwestspur)
+"xl" = (
+/obj/structure/table/hardwoodtable,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/obj/item/weapon/clipboard,
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "xm" = (
 /obj/effect/floor_decal/industrial/danger,
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
@@ -10467,6 +10618,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/hall)
+"xv" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	nightshift_setting = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "xw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -10545,6 +10711,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
+"xG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "xH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -10841,6 +11022,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
+"yt" = (
+/obj/structure/flora/pottedplant/flower,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "yu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -11065,6 +11250,13 @@
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/groundbase/security/iaa2)
+"yT" = (
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "yU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -11212,6 +11404,9 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/groundbase/engineering/techstorage)
+"zm" = (
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "zn" = (
 /obj/structure/stairs/spawner/north,
 /turf/simulated/floor/outdoors/sidewalk,
@@ -11312,6 +11507,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/command/tcomms/foyer)
+"zA" = (
+/obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "zB" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -11402,6 +11602,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/iaa1)
+"zL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "zM" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -11422,6 +11634,17 @@
 /obj/structure/closet/firecloset/full,
 /turf/simulated/floor,
 /area/maintenance/groundbase/trashpit)
+"zO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "zP" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/mensrestroom)
@@ -11695,6 +11918,30 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/trashpit)
+"Aw" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/groundbase/civilian/entrepreneur)
+"Ax" = (
+/obj/machinery/door/airlock/glass{
+	name = "Shared Office Space"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/entrepreneur)
 "Ay" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -11846,6 +12093,13 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/foodplace)
+"AR" = (
+/obj/structure/table/hardwoodtable,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
@@ -12751,6 +13005,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
+"Da" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 8;
+	id = "session_room";
+	pixel_x = 27;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "Db" = (
 /turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/level1/southeastspur)
@@ -12779,6 +13045,17 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
+"Df" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	nightshift_setting = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/alarm,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "Dg" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13355,6 +13632,18 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"Ew" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Ex" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/reset,
@@ -13599,6 +13888,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
+"Fd" = (
+/obj/machinery/button/remote/airlock{
+	dir = 8;
+	id = "meeting_room";
+	pixel_x = 27;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "Fe" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -13724,6 +14022,19 @@
 /obj/effect/landmark/start/engineer,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
+"Fs" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Ft" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/effect/landmark/start/hos,
@@ -13863,6 +14174,12 @@
 	name = "impassable rock"
 	},
 /area/groundbase/level1/nw)
+"FM" = (
+/obj/structure/table/hardwoodtable,
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/item/weapon/clipboard,
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "FN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -13992,6 +14309,15 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/carpet/bcarpet,
 /area/groundbase/security/briefing)
+"Gd" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/weapon/paper_bin,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Ge" = (
 /obj/structure/bed/chair/sofa/bench/left{
 	dir = 8
@@ -14607,6 +14933,24 @@
 	name = "impassable rock"
 	},
 /area/groundbase/level1/southeastspur)
+"HA" = (
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "HB" = (
 /obj/structure/sign/double/barsign{
 	pixel_y = -32
@@ -14958,6 +15302,12 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
+"Iq" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Ir" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/gun/energy/ionrifle/pistol,
@@ -15156,6 +15506,22 @@
 	dir = 6
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
+/area/groundbase/level1/centsquare)
+"IL" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/junction,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level1/centsquare)
 "IM" = (
 /obj/structure/sign/painting/public{
@@ -15538,6 +15904,21 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/resleeving)
+"JK" = (
+/obj/structure/closet{
+	name = "meeting room closet"
+	},
+/obj/item/weapon/entrepreneur/emf,
+/obj/item/weapon/entrepreneur/spirit_board,
+/obj/item/weapon/entrepreneur/crystal_ball,
+/obj/item/weapon/entrepreneur/horoscope,
+/obj/item/weapon/entrepreneur/magnifying_glass,
+/obj/item/device/camera,
+/obj/item/device/taperecorder,
+/obj/item/device/tape,
+/obj/item/sticky_pad/random,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "JL" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -15625,6 +16006,21 @@
 /obj/item/weapon/shield/riot,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
+"JV" = (
+/obj/structure/closet/walllocker_double/misc_civ/south{
+	name = "dentistry tools"
+	},
+/obj/item/device/flashlight/pen,
+/obj/item/weapon/entrepreneur/dentist_mirror,
+/obj/item/weapon/entrepreneur/dentist_probe,
+/obj/item/weapon/entrepreneur/dentist_scaler,
+/obj/item/weapon/entrepreneur/dentist_sickle,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "JW" = (
 /obj/structure/sign/directions/evac{
 	dir = 1;
@@ -15809,6 +16205,26 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
+"Kk" = (
+/obj/structure/closet/walllocker_double/misc_civ/west{
+	name = "Office Supplies"
+	},
+/obj/item/weapon/folder,
+/obj/item/weapon/folder,
+/obj/item/weapon/folder,
+/obj/item/weapon/folder,
+/obj/item/weapon/folder,
+/obj/item/weapon/pen,
+/obj/item/weapon/pen,
+/obj/item/weapon/pen,
+/obj/item/weapon/pen,
+/obj/item/weapon/stamp/accepted,
+/obj/item/weapon/stamp/denied,
+/obj/item/weapon/tape_roll,
+/obj/item/weapon/tape_roll,
+/obj/item/sticky_pad/random,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "Kl" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/circuitboard/algae_farm{
@@ -15840,6 +16256,21 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
+"Kp" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
+/area/groundbase/level1/centsquare)
 "Kq" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/highsecurity{
@@ -15913,6 +16344,22 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
+"Kz" = (
+/obj/machinery/door/airlock{
+	id_tag = "meeting_room";
+	name = "Meeting Room"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "KA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -16116,6 +16563,22 @@
 	outdoors = 0
 	},
 /area/groundbase/level1/eastspur)
+"Lc" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Ld" = (
 /obj/structure/table/steel_reinforced,
 /obj/structure/cable/yellow{
@@ -16372,6 +16835,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
+"LE" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/item/device/flashlight/lamp/green,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "LF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -16775,6 +17246,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/ce)
+"MB" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "MC" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -17406,10 +17881,23 @@
 /obj/effect/landmark/start/intern,
 /turf/simulated/floor/outdoors/newdirt_nograss,
 /area/groundbase/level1/centsquare)
+"Od" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Oe" = (
 /obj/effect/landmark/start/hos,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"Of" = (
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "Og" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -17699,6 +18187,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
+"OV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "OW" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -18259,6 +18754,18 @@
 "Qr" = (
 /turf/simulated/floor/tiled/dark,
 /area/security/range)
+"Qs" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/paper_bin,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Qt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -18384,6 +18891,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
+"QG" = (
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "QH" = (
 /obj/structure/table/reinforced,
 /obj/item/device/sleevemate,
@@ -18864,6 +19374,18 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/medcargo)
+"RN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "RO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/light{
@@ -18871,6 +19393,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/eva)
+"RP" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/item/weapon/paper_bin,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "RQ" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -18891,15 +19424,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level1/centsquare)
 "RS" = (
@@ -19039,6 +19568,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/outdoors/sidewalk,
 /area/groundbase/level1/centsquare)
+"Sk" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "Sl" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -19291,6 +19825,15 @@
 	outdoors = 0
 	},
 /area/groundbase/security/halls)
+"SL" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/weapon/paper_bin,
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/machinery/alarm{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "SM" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -19354,6 +19897,13 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/chamber)
+"SU" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "SV" = (
 /obj/effect/map_effect/portal/line/side_a,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -19426,6 +19976,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
+"Td" = (
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur/meeting)
 "Te" = (
 /obj/machinery/shower{
 	dir = 8
@@ -19765,6 +20321,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
+"TP" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "TQ" = (
 /obj/machinery/computer/aifixer,
 /turf/simulated/floor/bluegrid,
@@ -19958,6 +20529,26 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halls)
+"Un" = (
+/obj/structure/closet/walllocker_double/misc_civ/north{
+	name = "office equipment"
+	},
+/obj/item/weapon/storage/briefcase{
+	pixel_x = -2;
+	pixel_y = -5
+	},
+/obj/item/weapon/storage/briefcase{
+	pixel_x = -2;
+	pixel_y = -5
+	},
+/obj/item/weapon/storage/briefcase{
+	pixel_x = -2;
+	pixel_y = -5
+	},
+/obj/item/weapon/storage/toolbox/brass,
+/obj/item/device/measuring_tape,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "Up" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	dir = 1
@@ -20049,6 +20640,9 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
+"UB" = (
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "UC" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -20161,11 +20755,34 @@
 "UQ" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/morgue)
+"UR" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	nightshift_setting = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/bed/chair/office/light,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "US" = (
 /obj/structure/bed/chair/sofa/bench,
 /obj/effect/landmark/start/visitor,
 /turf/simulated/floor/outdoors/newdirt_nograss,
 /area/groundbase/level1/centsquare)
+"UT" = (
+/obj/structure/closet{
+	name = "session equipment"
+	},
+/obj/item/roller/massage,
+/obj/item/weapon/bedsheet/pillow/exercise,
+/obj/item/weapon/bedsheet/pillow/exercise,
+/obj/item/weapon/entrepreneur/dumbbell,
+/obj/item/weapon/entrepreneur/dumbbell,
+/obj/item/clothing/under/pants/yogapants,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "UU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -20273,6 +20890,18 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/engineering/lobby)
+"Vj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "Vk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -20492,6 +21121,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
+"VJ" = (
+/obj/machinery/photocopier{
+	pixel_y = 8
+	},
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/groundbase/civilian/entrepreneur)
 "VK" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -21302,6 +21941,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
+"Xy" = (
+/turf/simulated/wall,
+/area/groundbase/civilian/entrepreneur/meeting)
 "Xz" = (
 /obj/structure/table/reinforced,
 /obj/random/tech_supply,
@@ -21396,6 +22038,12 @@
 /obj/random/coin/sometimes,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
+"XM" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/glass/bottle/essential_oil,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "XN" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/command/ai/hall)
@@ -21595,6 +22243,16 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level1/northspur)
+"Yn" = (
+/obj/structure/bed/chair/office/dark,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 24
+	},
+/obj/effect/landmark/start/entrepreneur,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "Yo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -21708,6 +22366,15 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level1/southwestspur)
+"YB" = (
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/entrepreneur)
 "YC" = (
 /turf/simulated/floor/outdoors/newdirt,
 /area/groundbase/level1/centsquare)
@@ -22076,6 +22743,9 @@
 /obj/machinery/light,
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/robot)
+"Zv" = (
+/turf/simulated/wall,
+/area/groundbase/civilian/entrepreneur/session)
 "Zw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -22235,6 +22905,10 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/holodeck/alphadeck)
+"ZQ" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/entrepreneur/session)
 "ZR" = (
 /turf/simulated/floor/outdoors/sidewalk/side,
 /area/groundbase/level1/northspur)
@@ -27625,9 +28299,9 @@ ce
 Bk
 Bk
 Bk
-Bk
-Bk
-Bk
+ce
+ce
+ce
 ce
 ce
 ce
@@ -27767,16 +28441,16 @@ Bk
 Bk
 Bk
 Bk
-Bk
 ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
-AZ
+Xy
+Xy
+Xy
+Xy
+Xy
+Zv
+Zv
+Zv
+Zv
 AZ
 AZ
 cB
@@ -27908,17 +28582,17 @@ Bk
 Bk
 Bk
 Bk
-Bk
-Bk
-Bk
 ce
 ce
-ce
-ce
-ce
-AZ
-AZ
-AZ
+Xy
+Of
+SU
+Td
+Xy
+UT
+yT
+JV
+Zv
 AZ
 AZ
 cB
@@ -28052,15 +28726,15 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
-AZ
+Xy
+zm
+ow
+LE
+Xy
+qH
+QG
+si
+Zv
 AZ
 AZ
 OL
@@ -28194,15 +28868,15 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
-AZ
+Xy
+Df
+oE
+pd
+Xy
+UR
+tR
+ZQ
+Zv
 AZ
 AZ
 AZ
@@ -28336,15 +29010,15 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
-AZ
+Xy
+JK
+RN
+Fd
+Xy
+XM
+zL
+Da
+Zv
 AZ
 AZ
 AZ
@@ -28476,17 +29150,17 @@ Bk
 Bk
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
-AZ
+hv
+hv
+Xy
+Xy
+Kz
+Xy
+Xy
+Zv
+qq
+Zv
+Zv
 AZ
 AZ
 cB
@@ -28618,16 +29292,16 @@ Bk
 Bk
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
+hv
+VJ
+Kk
+pZ
+wH
+xv
+HA
+zO
+Vj
+hv
 AZ
 AZ
 AZ
@@ -28760,16 +29434,16 @@ Bk
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
+hv
+wD
+UB
+UB
+Gd
+OV
+Fs
+RP
+UB
+hv
 AZ
 XP
 RF
@@ -28902,16 +29576,16 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-ce
-AZ
-AZ
+hv
+hv
+hv
+Yn
+xl
+uE
+Ew
+oW
+wW
+hv
 tN
 pm
 VW
@@ -29046,14 +29720,14 @@ AZ
 AZ
 AZ
 AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
+hv
+Un
+Od
+MB
+Lc
+Sk
+YB
+hv
 tN
 eT
 sy
@@ -29188,14 +29862,14 @@ AZ
 AZ
 AZ
 AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
+hv
+zA
+AR
+uE
+TP
+FM
+wW
+hv
 AZ
 rs
 JW
@@ -29330,14 +30004,14 @@ AZ
 Eb
 Eb
 AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-AZ
-cB
+hv
+tQ
+Qs
+Iq
+xG
+SL
+yt
+hv
 cB
 cB
 cB
@@ -29472,14 +30146,14 @@ Eb
 Nv
 Nv
 Eb
-Eb
-cB
-cB
-cB
-cB
-cB
-cB
-cB
+hv
+Aw
+hv
+hv
+Ax
+hv
+Aw
+hv
 cB
 cB
 cB
@@ -29618,7 +30292,7 @@ Nv
 Nv
 Nv
 QD
-QD
+ri
 QD
 QD
 QD
@@ -29760,7 +30434,7 @@ Nv
 Nv
 Nv
 Nv
-QD
+ri
 QD
 cB
 QD
@@ -29902,7 +30576,7 @@ Dt
 Dt
 Eb
 Eb
-Eb
+Kp
 Eb
 cB
 cB
@@ -30044,7 +30718,7 @@ lq
 Dt
 rD
 fP
-Uj
+IL
 Uj
 Uj
 Uj
@@ -33005,7 +33679,7 @@ vi
 Yx
 hr
 pi
-hv
+Pb
 vP
 ye
 CD
@@ -33431,7 +34105,7 @@ hr
 hr
 hr
 bL
-hv
+Pb
 rG
 BS
 zj
@@ -33715,7 +34389,7 @@ qE
 qE
 dk
 Vb
-hv
+Pb
 ll
 ye
 CD

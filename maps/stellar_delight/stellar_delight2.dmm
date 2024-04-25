@@ -3785,13 +3785,6 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portfore)
-"hP" = (
-/obj/structure/bed/chair/bay/comfy/brown{
-	dir = 1
-	},
-/obj/effect/landmark/start/entrepreneur,
-/turf/simulated/floor/carpet,
-/area/crew_quarters/recreation_area)
 "hQ" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/surgery,
@@ -3879,7 +3872,6 @@
 	pixel_y = -32
 	},
 /obj/structure/table/bench/steel,
-/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "ib" = (
@@ -3898,7 +3890,6 @@
 /area/crew_quarters/bar)
 "id" = (
 /obj/structure/table/bench/steel,
-/obj/effect/landmark/start/entrepreneur,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "ie" = (
@@ -33100,7 +33091,7 @@ Dl
 UX
 UX
 UX
-hP
+vS
 mt
 mt
 mt
@@ -33668,7 +33659,7 @@ Dl
 UX
 UX
 UX
-hP
+vS
 mt
 mt
 mt

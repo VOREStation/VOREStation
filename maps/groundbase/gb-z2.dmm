@@ -11373,6 +11373,12 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"FZ" = (
+/turf/simulated/floor{
+	edge_blending_priority = -1;
+	outdoors = 1
+	},
+/area/groundbase/level2/westspur)
 "Ga" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -25506,7 +25512,7 @@ bY
 bY
 bY
 bY
-eN
+FZ
 eN
 eN
 eN
@@ -25641,14 +25647,14 @@ eN
 eN
 eN
 eN
-eN
-eN
-eN
-eN
-eN
-eN
-eN
-eN
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
 eN
 eN
 eN
