@@ -429,6 +429,17 @@
 	lightswitch = 1
 	forbid_events = TRUE
 
+/area/groundbase/civilian/entrepreneur
+	name = "\improper Shared Office"
+	icon_state = "entertainment"
+
+/area/groundbase/civilian/entrepreneur/session
+	name = "\improper Shared Office Session Room"
+
+/area/groundbase/civilian/entrepreneur/meeting
+	name = "\improper Shared Office Meeting Room"
+
+
 /area/groundbase/exploration
 	name = "Exploration"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
