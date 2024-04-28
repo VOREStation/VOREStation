@@ -8124,6 +8124,9 @@
 	pixel_x = -10;
 	pixel_y = -22
 	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "BV" = (
@@ -8143,9 +8146,6 @@
 /obj/item/weapon/storage/firstaid/adv{
 	pixel_x = 2;
 	pixel_y = 5
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
 	},
 /obj/structure/closet/walllocker_double/medical/south,
 /turf/simulated/floor/tiled/white,
