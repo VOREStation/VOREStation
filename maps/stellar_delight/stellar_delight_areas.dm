@@ -307,3 +307,7 @@
 	name = "Deck Two Exterior"
 /area/stellardelight/deck3/exterior
 	name = "Deck Three Exterior"
+
+/area/stellardelight/deck1/entrepreneur
+	name = "\improper Shared Office"
+	icon_state = "entertainment"
