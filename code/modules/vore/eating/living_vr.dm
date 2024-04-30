@@ -92,6 +92,7 @@
 	//Handle case: /obj/item/weapon/grab
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
+		var/mob/living/carbon/victim = G.affecting
 
 		//Has to be aggressive grab, has to be living click-er and non-silicon grabbed
 		if(G.state >= GRAB_AGGRESSIVE && (isliving(user) && !issilicon(G.affecting)))
@@ -101,6 +102,8 @@
 
 			///// If user clicked on themselves
 			if(src == G.assailant && is_vore_predator(src))
+				if(istype(victim) && !victim.client && !victim.ai_holder)
+					log_and_message_admins("[key_name_admin(src)] attempted to eat [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 				if(feed_grabbed_to_self(src, G.affecting))
 					qdel(G)
 					return TRUE
@@ -109,6 +112,8 @@
 
 			///// If user clicked on their grabbed target
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
+				if(istype(victim) && !victim.client && !victim.ai_holder) //Check whether the victim is: A carbon mob, has no client, but has a ckey. This should indicate an SSD player.
+					log_and_message_admins("[key_name_admin(attacker)] attempted to force feed themselves to [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 				if(!G.affecting.feeding)
 					to_chat(user, "<span class='vnotice'>[G.affecting] isn't willing to be fed.</span>")
 					log_and_message_admins("[key_name_admin(src)] attempted to feed themselves to [key_name_admin(G.affecting)] against their prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
@@ -122,6 +127,12 @@
 
 			///// If user clicked on anyone else but their grabbed target
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
+				if(istype(victim) && !victim.client && !victim.ai_holder)
+					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(G.affecting)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+				var/mob/living/carbon/victim_fed = src
+				if(istype(victim_fed) && !victim_fed.client && !victim_fed.ai_holder)
+					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(src)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+
 				if(!feeding)
 					to_chat(user, "<span class='vnotice'>[src] isn't willing to be fed.</span>")
 					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against predator's prefs ([src ? ADMIN_JMP(src) : "null"])")
@@ -623,6 +634,13 @@
 		belly.nom_mob(prey, user)
 
 	user.update_icon()
+
+	var/mob/living/carbon/victim = prey // Check for afk vore
+	if(istype(victim) && !victim.client && !victim.ai_holder)
+		log_and_message_admins("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the prey was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
+	var/mob/living/carbon/victim_pred = pred // Check for afk vore
+	if(istype(victim_pred) && !victim_pred.client && !victim_pred.ai_holder)
+		log_and_message_admins("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the pred was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
 
 	// Inform Admins
 	if(pred == user)
