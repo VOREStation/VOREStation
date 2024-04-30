@@ -563,7 +563,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_y" = 1.09)
-	excludes = list(/datum/trait/neutral/tall, /datum/trait/neutral/short, /datum/trait/neutral/shorter)
+	excludes = list(/datum/trait/neutral/tall, /datum/trait/neutral/tallest, /datum/trait/neutral/short, /datum/trait/neutral/shorter, /datum/trait/neutral/shortest)
 
 /datum/trait/neutral/taller/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -576,9 +576,22 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_y" = 1.05)
-	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/short, /datum/trait/neutral/shorter)
+	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tallest, /datum/trait/neutral/short, /datum/trait/neutral/shorter, /datum/trait/neutral/shortest)
 
 /datum/trait/neutral/tall/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.update_transform()
+
+/datum/trait/neutral/tallest
+	name = "Tall, Major"
+	desc = "Your body is way taller than average."
+	sort = TRAIT_SORT_BODYTYPE
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("icon_scale_y" = 1.15)
+	excludes = list(/datum/trait/neutral/tall, /datum/trait/neutral/taller, /datum/trait/neutral/short, /datum/trait/neutral/shorter, /datum/trait/neutral/shortest)
+
+/datum/trait/neutral/tallest/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.update_transform()
 
@@ -589,7 +602,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_y" = 0.95)
-	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tall, /datum/trait/neutral/shorter)
+	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tall, /datum/trait/neutral/tallest, /datum/trait/neutral/shorter, /datum/trait/neutral/shortest)
 
 /datum/trait/neutral/short/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -602,9 +615,22 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_y" = 0.915)
-	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tall, /datum/trait/neutral/short)
+	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tall, /datum/trait/neutral/tallest, /datum/trait/neutral/short, /datum/trait/neutral/shortest)
 
 /datum/trait/neutral/shorter/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.update_transform()
+
+/datum/trait/neutral/shortest
+	name = "Short, Major"
+	desc = "Your body is way shorter than average."
+	sort = TRAIT_SORT_BODYTYPE
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("icon_scale_y" = 0.85)
+	excludes = list(/datum/trait/neutral/taller, /datum/trait/neutral/tall, /datum/trait/neutral/tallest, /datum/trait/neutral/short, /datum/trait/neutral/shorter)
+
+/datum/trait/neutral/shortest/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.update_transform()
 
@@ -707,12 +733,26 @@
 	custom_only = FALSE
 	var_changes = list("micro_size_mod" = -0.15)
 
+/datum/trait/neutral/micro_size_down_plus
+	name = "Light Frame, Major"
+	desc = "You are considered much smaller than you are for micro interactions."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("micro_size_mod" = -0.30)
+
 /datum/trait/neutral/micro_size_up
 	name = "Heavy Frame"
 	desc = "You are considered bigger than you are for micro interactions."
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("micro_size_mod" = 0.15)
+
+/datum/trait/neutral/micro_size_up_plus
+	name = "Heavy Frame, Major"
+	desc = "You are considered much bigger than you are for micro interactions."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("micro_size_mod" = 0.30)
 
 /datum/trait/neutral/digestion_value_up
 	name = "Highly Filling"
