@@ -2155,6 +2155,7 @@
 #include "code\modules\clothing\suits\aliens\vox.dm"
 #include "code\modules\clothing\under\altevian_vr.dm"
 #include "code\modules\clothing\under\color.dm"
+#include "code\modules\clothing\under\eva_bodysuits.dm"
 #include "code\modules\clothing\under\imperial_vr.dm"
 #include "code\modules\clothing\under\miscellaneous.dm"
 #include "code\modules\clothing\under\miscellaneous_vr.dm"
