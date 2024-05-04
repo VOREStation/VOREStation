@@ -41,11 +41,11 @@
 	field_type = /obj/structure/atmospheric_retention_field/impassable
 
 /obj/machinery/atmospheric_field_generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_crowbar() && isactive)
+	if(W.has_tool_quality(TOOL_CROWBAR) && isactive)
 		if(!src) return
 		to_chat(user, "<span class='warning'>You can't open the ARF-G whilst it's running!</span>")
 		return
-	if(W.is_crowbar() && !isactive)
+	if(W.has_tool_quality(TOOL_CROWBAR) && !isactive)
 		if(!src) return
 		to_chat(user, "<span class='notice'>You [hatch_open? "close" : "open"] \the [src]'s access hatch.</span>")
 		hatch_open = !hatch_open
@@ -53,21 +53,21 @@
 		if(alwaysactive && wires_intact)
 			generate_field()
 		return
-	if(hatch_open && W.is_multitool())
+	if(hatch_open && W.has_tool_quality(TOOL_MULTITOOL))
 		if(!src) return
 		to_chat(user, "<span class='notice'>You toggle \the [src]'s activation behavior to [alwaysactive? "emergency" : "always-on"].</span>")
 		alwaysactive = !alwaysactive
 		update_icon()
 		return
-	if(hatch_open && W.is_wirecutter())
+	if(hatch_open && W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!src) return
 		to_chat(user, "<span class='warning'>You [wires_intact? "cut" : "mend"] \the [src]'s wires!</span>")
 		wires_intact = !wires_intact
 		update_icon()
 		return
-	if(hatch_open && istype(W,/obj/item/weapon/weldingtool))
+	if(hatch_open && W.has_tool_quality(TOOL_WELDER))
 		if(!src) return
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(!WT.isOn()) return
 		if(WT.get_fuel() < 5) // uses up 5 fuel.
 			to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")

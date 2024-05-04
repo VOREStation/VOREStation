@@ -17,6 +17,7 @@
 	species_language = LANGUAGE_SAGARU
 	color_mult = 1
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
+	digi_allowed = TRUE
 
 	min_age = 18
 	max_age = 80
@@ -86,6 +87,7 @@
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/carbon/human/proc/water_stealth, /mob/living/carbon/human/proc/underwater_devour)
 	min_age = 18
 	max_age = 80
+	digi_allowed = TRUE
 
 	blurb = "The Akula are a species of amphibious humanoids like the Skrell, but have an appearance very similar to that of a shark. \
 	They were first discovered as a primitive race of underwater dwelling tribal creatures by the Skrell. At first they were not believed \
@@ -138,6 +140,7 @@
 		/mob/living/carbon/human/proc/tie_hair)
 	min_age = 18
 	max_age = 80
+	digi_allowed = TRUE
 
 	blurb = "Nevreans are a race of avian and dinosaur-like creatures living on Tal. They belong to a group of races that hails from Eltus, \
 	in the Vilous system. Unlike sergals whom they share a star system with, their species is a very peaceful one. They possess remarkable \
@@ -180,17 +183,17 @@
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds,
 		/mob/living/proc/shred_limb,
 		/mob/living/carbon/human/proc/tie_hair)
+	digi_allowed = TRUE
 
 	min_age = 18
 	max_age = 80
 
-	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
-	and the other with longer fur that is a bit more vibrant. The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that \
-	is where most of their settlements are located. The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be \
-	hired by the Trans-Stellar Corporations. The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or \
-	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
-	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to \
-	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
+	blurb = "The fennec-like, blue-blooded Zorren are native to Virgo 4/Menhir and are descendants of a precursor species \
+			that is thought to be responsible for the near-collapse of the biosphere of the planet. \
+			With societies organised around hierarchal caste systems (such as the Royal Zorren) or freedom and strength (such as the Free Tribe Zorren), \
+			they now slowly recover from their previous hubris and aim to revitalize their planet. While many Zorren live in pre-industrial conditions by necessity, \
+			they are an interstellar species known for their pride and stubbornness and doggedly hold out on a Deathworld of their own creation. \
+			As local species, they hold moderate sway on local corporations and are hired by NT and other companies, although they find \"Outlander\" culture deeply weird."
 	wikilink="https://wiki.vore-station.net/Zorren"
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren)
@@ -202,6 +205,8 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 	blood_color = "#240bc4"
+	blood_reagents = "copper"
+	reagent_tag = IS_ZORREN
 	color_mult = 1
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
@@ -236,6 +241,7 @@
 	color_mult = 1
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds,
 		/mob/living/carbon/human/proc/tie_hair)
+	digi_allowed = TRUE
 
 	wikilink="https://wiki.vore-station.net/Backstory#Vulpkanin"
 
@@ -319,6 +325,8 @@
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	wikilink="https://wiki.vore-station.net/Tajaran"
 	agility = 90
+	can_climb = TRUE
+	climbing_delay = 1.00 //Cats are good climbers.
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -387,7 +395,7 @@
 	tail_animation = 'icons/mob/species/vox/tail.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
 	color_mult = 1
-	
+
 	descriptors = list(
 		/datum/mob_descriptor/vox_markings = 0
 		)
@@ -408,6 +416,7 @@
 	color_mult = 1
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	inherent_verbs = list(/mob/living/proc/flying_toggle,/mob/living/proc/flying_vore_toggle,/mob/living/proc/start_wings_hovering,/mob/living/carbon/human/proc/tie_hair)
+	digi_allowed = TRUE
 
 	min_age = 18
 	max_age = 80
@@ -449,6 +458,7 @@
 	taken to calling these creatures 'Shadekin', and the name has generally stuck and spread. "		//TODO: Something more fitting for black-eyes
 	wikilink = "https://wiki.vore-station.net/Shadekin"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
+	digi_allowed = TRUE
 
 	language = LANGUAGE_SHADEKIN
 	name_language = LANGUAGE_SHADEKIN
@@ -558,6 +568,7 @@
 	name_language = LANGUAGE_TERMINUS
 	species_language = LANGUAGE_TERMINUS
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds,/mob/living/proc/shred_limb,/mob/living/carbon/human/proc/tie_hair)
+	digi_allowed = TRUE
 
 	min_age = 18
 	max_age = 80
@@ -589,6 +600,7 @@
 	darksight = 4 //Better hunters in the dark.
 	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
 	num_alternate_languages = 3
+	digi_allowed = TRUE
 
 	min_age = 18
 	max_age = 80
@@ -628,6 +640,7 @@
 	name_language = null
 	color_mult = 1
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
+	digi_allowed = TRUE
 
 	min_age = 18
 	max_age = 80

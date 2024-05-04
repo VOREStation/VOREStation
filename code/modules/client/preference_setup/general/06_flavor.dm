@@ -12,7 +12,7 @@
 	S["flavor_texts_hands"]		>> pref.flavor_texts["hands"]
 	S["flavor_texts_legs"]		>> pref.flavor_texts["legs"]
 	S["flavor_texts_feet"]		>> pref.flavor_texts["feet"]
-
+	S["custom_link"]			>> pref.custom_link
 	//Flavour text for robots.
 	S["flavour_texts_robot_Default"] >> pref.flavour_texts_robot["Default"]
 	for(var/module in robot_module_types)
@@ -28,6 +28,7 @@
 	S["flavor_texts_hands"]		<< pref.flavor_texts["hands"]
 	S["flavor_texts_legs"]		<< pref.flavor_texts["legs"]
 	S["flavor_texts_feet"]		<< pref.flavor_texts["feet"]
+	S["custom_link"]			<< pref.custom_link
 
 	S["flavour_texts_robot_Default"] << pref.flavour_texts_robot["Default"]
 	for(var/module in robot_module_types)
@@ -48,11 +49,15 @@
 	character.flavor_texts["legs"]		= pref.flavor_texts["legs"]
 	character.flavor_texts["feet"]		= pref.flavor_texts["feet"]
 	character.ooc_notes 				= pref.metadata //VOREStation Add
+	character.ooc_notes_likes			= pref.metadata_likes
+	character.ooc_notes_dislikes		= pref.metadata_dislikes
+	character.custom_link				= pref.custom_link
 
 /datum/category_item/player_setup_item/general/flavor/content(var/mob/user)
 	. += "<b>Flavor:</b><br>"
 	. += "<a href='?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
 	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
+	. += "<a href='?src=\ref[src];custom_link=1'>Set Custom Link</a><br/>"
 
 /datum/category_item/player_setup_item/general/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["flavor_text"])
@@ -82,6 +87,14 @@
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 		SetFlavourTextRobot(user)
 		return TOPIC_HANDLED
+	else if(href_list["custom_link"])
+		var/new_link = strip_html_simple(tgui_input_text(usr, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
+		if(new_link && CanUseTopic(usr))
+			if(length(new_link) > 100)
+				to_chat(usr, "<span class = 'warning'>Your entry is too long, it must be 100 characters or less.</span>")
+				return
+			pref.custom_link = new_link
+			log_admin("[usr]/[usr.ckey] set their custom link to [pref.custom_link]")
 
 	return ..()
 

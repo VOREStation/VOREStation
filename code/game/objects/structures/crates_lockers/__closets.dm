@@ -40,6 +40,7 @@
 	var/is_animating_door = FALSE
 	/// Our visual object for the closet door, if we're animating
 	var/obj/effect/overlay/closet_door/door_obj
+	var/vore_sound = 'sound/effects/metalscrape2.ogg'
 
 /obj/structure/closet/Initialize()
 	..()
@@ -271,7 +272,7 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		if(opened)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
@@ -291,8 +292,8 @@
 			return 0
 		if(istype(W,/obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(W.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/WT = W.get_welder()
 			if(!WT.remove_fuel(0,user))
 				if(!WT.isOn())
 					return
@@ -326,8 +327,8 @@
 	else if(seal_tool)
 		if(istype(W, seal_tool))
 			var/obj/item/weapon/S = W
-			if(istype(S, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = S
+			if(S.has_tool_quality(TOOL_WELDER))
+				var/obj/item/weapon/weldingtool/WT = S.get_welder()
 				if(!WT.remove_fuel(0,user))
 					if(!WT.isOn())
 						return
@@ -526,7 +527,7 @@
 			animate(door_obj, transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag, flags = ANIMATION_END_NOW)
 		else
 			animate(transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag)
-	addtimer(CALLBACK(src, .proc/end_door_animation,closing), closet_appearance.door_anim_time, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(end_door_animation), closing), closet_appearance.door_anim_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/structure/closet/proc/end_door_animation(closing = FALSE)
 	is_animating_door = FALSE
@@ -543,3 +544,49 @@
 	M.Multiply(matrix(cos(angle), 0, 0, -sin(angle) * closet_appearance.door_anim_squish, 1, 0))
 	M.Translate(closet_appearance.door_hinge, 0)
 	return M
+
+//verb to eat people in the same closet as yourself
+
+/obj/structure/closet/verb/hidden_vore()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Vore Occupants"
+
+	if(!istype(usr, /mob/living)) //no ghosts
+		return
+
+	if(!(usr in src.contents))
+		to_chat(usr, "<span class='warning'>You need to be inside \the [src] to do this.</span>")
+		return
+
+	var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
+
+	for(var/mob/living/L in src.contents)
+		if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+			continue
+		if(L == usr) //no eating yourself. 1984.
+			continue
+		if(L.devourable)
+			targets += L
+
+	if(targets == 0)
+		to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+		return
+
+	var/mob/living/target = tgui_input_list(usr, "Please select a target.", "Victim", targets)
+
+	if(!target)
+		return
+
+	if(!istype(target, /mob/living)) //Safety.
+		to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+		return
+
+	if (get_dist(src,target) >= 1 || get_dist(src,usr) >= 1) //in case they leave the locker
+		to_chat(src, "<span class='warning'>You are no longer both in \the [src].</span>")
+		return
+
+	playsound(src, vore_sound, 25)
+
+	var/mob/living/M = usr
+	M.perform_the_nom(usr,target,usr,usr.vore_selected,1)

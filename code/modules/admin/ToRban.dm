@@ -54,10 +54,10 @@
 			if(config)
 				if(config.ToRban)
 					config.ToRban = 0
-					message_admins("<font color='red'>ToR banning disabled.</font>")
+					message_admins(span_red("ToR banning disabled."))
 				else
 					config.ToRban = 1
-					message_admins("<font colot='green'>ToR banning enabled.</font>")
+					message_admins(span_green("ToR banning enabled."))
 		if("show")
 			var/savefile/F = new(TORFILE)
 			var/dat
@@ -80,7 +80,7 @@
 			var/input = tgui_input_text(src,"Please input an IP address to search for:","Find ToR ban",null)
 			if(input)
 				if(ToRban_isbanned(input))
-					to_chat(src, "<span class='filter_adminlog'><font color='green'><b>Address is a known ToR address</b></font></span>")
+					to_chat(src, "<span class='filter_adminlog'>[span_orange("<b>Address is a known ToR address</b>")]</span>")
 				else
 					to_chat(src, "<span class='filter_adminlog danger'>Address is not a known ToR address</span>")
 	return

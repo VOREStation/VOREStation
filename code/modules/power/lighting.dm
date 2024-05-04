@@ -103,7 +103,7 @@ var/global/list/light_type_cache = list()
 			add_fingerprint(user)
 		return
 
-	if (W.is_wrench())
+	if (W.has_tool_quality(TOOL_WRENCH))
 		if (src.stage == 1)
 			playsound(src, W.usesound, 75, 1)
 			to_chat(usr, "You begin deconstructing [src].")
@@ -122,7 +122,7 @@ var/global/list/light_type_cache = list()
 			to_chat(usr, "You have to unscrew the case first.")
 			return
 
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if (src.stage != 2) return
 		src.stage = 1
 		src.update_icon()
@@ -142,7 +142,7 @@ var/global/list/light_type_cache = list()
 				"You add wires to [src].")
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if (src.stage == 2)
 			src.stage = 3
 			src.update_icon()
@@ -647,7 +647,7 @@ var/global/list/light_type_cache = list()
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
-		if(W.is_screwdriver()) //If it's a screwdriver open it.
+		if(W.has_tool_quality(TOOL_SCREWDRIVER)) //If it's a screwdriver open it.
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
@@ -665,7 +665,7 @@ var/global/list/light_type_cache = list()
 				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
 /obj/machinery/light/flamp/attackby(obj/item/W, mob/user)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
@@ -678,7 +678,7 @@ var/global/list/light_type_cache = list()
 			return
 
 	else
-		if(W.is_screwdriver())
+		if(W.has_tool_quality(TOOL_SCREWDRIVER))
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] removes [src]'s lamp shade.", \
 				"You remove [src]'s lamp shade.", "You hear a noise.")
@@ -777,7 +777,7 @@ var/global/list/light_type_cache = list()
 		if(H.species.can_shred(H))
 			user.setClickCooldown(user.get_attack_speed())
 			for(var/mob/M in viewers(src))
-				M.show_message("<font color='red'>[user.name] smashed the light!</font>", 3, "You hear a tinkle of breaking glass", 2)
+				M.show_message(span_red("[user.name] smashed the light!"), 3, "You hear a tinkle of breaking glass", 2)
 			broken()
 			return
 
@@ -1106,7 +1106,7 @@ var/global/list/light_type_cache = list()
 					brightness_range = new_range
 
 			if("Normal Brightness")
-				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_brightness_power])", "", init_brightness_power, init_brightness_power, 0.01, 0)
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_brightness_power])", "", init_brightness_power, init_brightness_power, 0.01, round_value=FALSE)
 				if(new_power)
 					brightness_power = new_power
 
@@ -1121,7 +1121,7 @@ var/global/list/light_type_cache = list()
 					nightshift_range = new_range
 
 			if("Nightshift Brightness")
-				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_nightshift_power])", "", init_nightshift_power, init_nightshift_power, 0.01)
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_nightshift_power])", "", init_nightshift_power, init_nightshift_power, 0.01, round_value=FALSE)
 				if(new_power)
 					nightshift_power = new_power
 
@@ -1165,7 +1165,7 @@ var/global/list/light_type_cache = list()
 
 /obj/item/weapon/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message("<font color='red'>[name] shatters.</font>","<font color='red'> You hear a small glass object shatter.</font>")
+		src.visible_message(span_red("[name] shatters."),span_red("You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = TRUE

@@ -1,4 +1,6 @@
 /mob/living/carbon/human/GetAltName()
+	if(ability_flags & AB_PHASE_SHIFTED)
+		return ""
 	if(name != GetVoice())
 		return " (as [get_id_name("Unknown")])"
 

@@ -55,10 +55,10 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 // hide the object if turf is intact
 /obj/machinery/navbeacon/hide(var/intact)
 	invisibility = intact ? 101 : 0
-	updateicon()
+	update_icon()
 
 // update the icon_state
-/obj/machinery/navbeacon/proc/updateicon()
+/obj/machinery/navbeacon/update_icon()
 	var/state="navbeacon[open]"
 
 	if(invisibility)
@@ -72,12 +72,12 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 	if(!T.is_plating())
 		return		// prevent intraction when T-scanner revealed
 
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		open = !open
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
 
-		updateicon()
+		update_icon()
 
 	else if(I.GetID())
 		if(open)

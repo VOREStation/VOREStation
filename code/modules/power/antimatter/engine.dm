@@ -42,7 +42,7 @@
 
 	if(istype(F, /obj/item/weapon/fuel/H))
 		if(injecting)
-			to_chat(user, "Theres already a fuel rod in the injector!")
+			to_chat(user, "There's already a fuel rod in the injector!")
 			return
 		to_chat(user, "You insert the rod into the injector")
 		injecting = 1
@@ -55,7 +55,7 @@
 
 	if(istype(F, /obj/item/weapon/fuel/antiH))
 		if(injecting)
-			to_chat(user, "Theres already a fuel rod in the injector!")
+			to_chat(user, "There's already a fuel rod in the injector!")
 			return
 		to_chat(user, "You insert the rod into the injector")
 		injecting = 1
@@ -109,7 +109,7 @@
 			antiH_fuel = residual_matter
 
 	for(var/mob/M in hearers(src, null))
-		M.show_message(text("<font color='red'>You hear a loud bang!</font>"))
+		M.show_message(span_red(text("You hear a loud bang!")))
 
 	//Q = k x (delta T)
 
@@ -161,7 +161,7 @@
 
 		if(energy > convert2energy(8e-12))	//TOO MUCH ENERGY
 			for(var/mob/M in hearers(src, null))
-				M.show_message(text("<font color='red'>You hear a loud whirring!</font>"))
+				M.show_message(span_red(text("You hear a loud whirring!")))
 			sleep(20)
 
 			//Q = k x (delta T)
@@ -180,7 +180,7 @@
 
 			if(energy > convert2energy(8e-12))	//FAR TOO MUCH ENERGY STILL
 				for(var/mob/M in hearers(src, null))
-					M.show_message(text("<font color='red'><big>BANG!</big></font>"))
+					M.show_message(span_red(text("<big>BANG!</big>")))
 				new /obj/effect/bhole(src.loc)
 
 		else	//this amount of energy is okay so it does the proper output thing

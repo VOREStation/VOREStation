@@ -24,8 +24,8 @@
 								  "Voracious Lizard" = /mob/living/simple_mob/vore/aggressive/dino,
 								  "Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 								  "Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
-								  "Jelly Blob" = /mob/living/simple_mob/animal/space/jelly,
-								  "Wolf" = /mob/living/simple_mob/animal/wolf,
+								  "Jelly Blob" = /mob/living/simple_mob/vore/jelly,
+								  "Wolf" = /mob/living/simple_mob/vore/wolf,
 								  "Juvenile Solargrub" = /mob/living/simple_mob/vore/solargrub,
 								  "Sect Queen" = /mob/living/simple_mob/vore/sect_queen,
 								  "Sect Drone" = /mob/living/simple_mob/vore/sect_drone,
@@ -33,9 +33,9 @@
 								  "Panther" = /mob/living/simple_mob/vore/aggressive/panther,
 								  "Giant Snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
 								  "Deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
-								  "Otie" = /mob/living/simple_mob/otie,
-								  "Mutated Otie" =/mob/living/simple_mob/otie/feral,
-								  "Red Otie" = /mob/living/simple_mob/otie/red,
+								  "Otie" = /mob/living/simple_mob/vore/otie,
+								  "Mutated Otie" =/mob/living/simple_mob/vore/otie/feral,
+								  "Red Otie" = /mob/living/simple_mob/vore/otie/red,
 								  "Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound,
 								  "Corrupt Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi,
 								  "Hunter Giant Spider" = /mob/living/simple_mob/animal/giant_spider/hunter,
@@ -46,9 +46,31 @@
 								  "Frost Giant Spider" = /mob/living/simple_mob/animal/giant_spider/frost,
 								  "Nurse Giant Spider" = /mob/living/simple_mob/animal/giant_spider/nurse/eggless,
 								  "Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless,
+								  "Red Dragon" = /mob/living/simple_mob/vore/aggressive/dragon,
+								  "Phoron Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/virgo3b,
+								  "Space Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/space,
+								  "Crypt Drake" = /mob/living/simple_mob/vore/cryptdrake,
 								  "Weretiger" = /mob/living/simple_mob/vore/weretiger,
 								  "Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
-								  "Squirrel" = /mob/living/simple_mob/vore/squirrel/big
+								  "Squirrel" = /mob/living/simple_mob/vore/squirrel/big,
+								  "Pakkun" =/mob/living/simple_mob/vore/pakkun,
+								  "Snapdragon" =/mob/living/simple_mob/vore/pakkun/snapdragon,
+								  "Sand pakkun" = /mob/living/simple_mob/vore/pakkun/sand,
+								  "Fire pakkun" = /mob/living/simple_mob/vore/pakkun/fire,
+								  "Amethyst pakkun" = /mob/living/simple_mob/vore/pakkun/purple,
+								  "Raptor" = /mob/living/simple_mob/vore/raptor,
+								  "Giant Bat" = /mob/living/simple_mob/vore/bat,
+								  "Scel (Orange)" = /mob/living/simple_mob/vore/scel/orange,
+								  "Scel (Blue)" = /mob/living/simple_mob/vore/scel/blue,
+								  "Scel (Purple)" = /mob/living/simple_mob/vore/scel/purple,
+								  "Scel (Red)" = /mob/living/simple_mob/vore/scel/red,
+								  "Scel (Green)" = /mob/living/simple_mob/vore/scel/green,
+								  "Cave Stalker" = /mob/living/simple_mob/vore/stalker,
+								  "Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
+								  "Scrubble" = /mob/living/simple_mob/vore/scrubble,
+								  "Sonadile" = /mob/living/simple_mob/vore/sonadile,
+								  "kururak" = /mob/living/simple_mob/animal/sif/kururak,
+								  "Statue of Temptation" = /mob/living/simple_mob/vore/devil
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
@@ -59,6 +81,10 @@
 	if(jobban_isbanned(M, "GhostRoles"))
 		to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
 		reset_ghostpod()
+		return
+
+	//No OOC notes
+	if (not_has_ooc_text(M))
 		return
 
 	while(finalized == "No" && M.client)
@@ -89,6 +115,7 @@
 	to_chat(M, "<span class='warning'>You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind.</span>")
 	newPred.ckey = M.ckey
 	newPred.visible_message("<span class='warning'>[newPred] emerges from somewhere!</span>")
+	log_and_message_admins("successfully entered \a [src] and became a [newPred].")
 	qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/no_announce
@@ -109,7 +136,12 @@
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/create_occupant(var/mob/M)
 	..()
-	var/mob/living/simple_mob/vore/hostile/morph/newMorph = new /mob/living/simple_mob/vore/hostile/morph(get_turf(src))
+
+	//No OOC notes
+	if (not_has_ooc_text(M))
+		return
+
+	var/mob/living/simple_mob/vore/morph/newMorph = new /mob/living/simple_mob/vore/morph(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(newMorph)
 	to_chat(M, "<span class='notice'>You are a <b>Morph</b>, somehow having gotten aboard the station in your wandering. \
@@ -123,7 +155,20 @@
 
 	newMorph.ckey = M.ckey
 	newMorph.visible_message("<span class='warning'>A morph appears to crawl out of somewhere.</span>")
+	log_and_message_admins("successfully entered \a [src] and became a Morph.")
 	qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce
 	announce_prob = 0
+
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate //For ghostpods placed in the redgate that aren't spawned via an event
+	name = "creature hole"
+	desc = "Looks like some creature dug is hiding in the redgate..."
+	announce_prob = 0
+	icon_state = "redgate_hole"
+	icon_state_opened = "redgate_hole"
+
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate/Initialize()
+	..()
+	if(!(src in active_ghost_pods))
+		active_ghost_pods += src

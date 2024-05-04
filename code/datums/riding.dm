@@ -112,7 +112,7 @@
 		to_chat(user, "<span class='warning'>You'll need [key_name] in one of your hands to move \the [ridden].</span>")
 
 /datum/riding/proc/Unbuckle(atom/movable/M)
-//	addtimer(CALLBACK(ridden, /atom/movable/.proc/unbuckle_mob, M), 0, TIMER_UNIQUE)
+//	addtimer(CALLBACK(ridden, TYPE_PROC_REF(/atom/movable, unbuckle_mob), M), 0, TIMER_UNIQUE)
 	spawn(0)
 	// On /tg/ this uses the fancy CALLBACK system. Not entirely sure why they needed to do so with a duration of 0,
 	// so if there is a reason, this should replicate it close enough. Hopefully.
@@ -142,7 +142,10 @@
 	var/turf/next = get_step(ridden, direction)
 	var/turf/current = get_turf(ridden)
 
-	if(istype(next, /turf/simulated/floor/water) || istype(current, /turf/simulated/floor/water)) //We can move from land to water, or water to land, but not from land to land
+	if(istype(current, /turf/simulated/floor/water/underwater)) //don't work at the bottom of the ocean!
+		to_chat(user, "<span class='warning'>The boat has sunk!</span>")
+		return FALSE
+	else if(istype(next, /turf/simulated/floor/water) || istype(current, /turf/simulated/floor/water)) //We can move from land to water, or water to land, but not from land to land
 		..()
 	else
 		to_chat(user, "<span class='warning'>Boats don't go on land!</span>")

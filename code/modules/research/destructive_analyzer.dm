@@ -110,7 +110,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			qdel(B)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		rped_recycler_ready = FALSE
-		addtimer(CALLBACK(src, .proc/rped_ready), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(rped_ready)), 5 SECONDS)
 		to_chat(user, "<span class='notice'>You deconstruct all the parts of rating [lowest_rating] in [replacer] with [src].</span>")
 		return 1
 	else

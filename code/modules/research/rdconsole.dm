@@ -44,6 +44,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	var/id = 0			//ID of the computer (for server restrictions).
 	var/sync = 1		//If sync = 0, it doesn't show up on Server Control Console
+	var/is_public = FALSE //Above mentions the option for public consoles. But for that, we need to remove the sync tab from the console entirely
 
 	req_access = list(access_research)	//Data and setting manipulation requires scientist access.
 
@@ -143,7 +144,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		to_chat(user, "<span class='notice'>You you disable the security protocols.</span>")
+		to_chat(user, "<span class='notice'>You disable the security protocols.</span>")
 		return 1
 
 /obj/machinery/computer/rdconsole/proc/GetResearchLevelsInfo()

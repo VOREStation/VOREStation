@@ -51,13 +51,13 @@
 		return
 
 	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
-		to_chat(usr, "<span class='filter_adminlog'><font color='red'>You do not have permission to do this!</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("You do not have permission to do this!")]</span>")
 		return
 
 	establish_db_connection()
 
 	if(!dbcon.IsConnected())
-		to_chat(usr, "<span class='filter_adminlog'><font color='red'>Failed to establish database connection</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Failed to establish database connection")]</span>")
 		return
 
 	if(!adm_ckey || !new_rank)
@@ -85,14 +85,14 @@
 		insert_query.Execute()
 		var/DBQuery/log_query = dbcon.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added new admin [adm_ckey] to rank [new_rank]');")
 		log_query.Execute()
-		to_chat(usr, "<span class='filter_adminlog'><font color='blue'>New admin added.</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_blue("New admin added.")]</span>")
 	else
 		if(!isnull(admin_id) && isnum(admin_id))
 			var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `erro_admin` SET rank = '[new_rank]' WHERE id = [admin_id]")
 			insert_query.Execute()
 			var/DBQuery/log_query = dbcon.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Edited the rank of [adm_ckey] to [new_rank]');")
 			log_query.Execute()
-			to_chat(usr, "<span class='filter_adminlog'><font color='blue'>Admin rank changed.</font></span>")
+			to_chat(usr, "<span class='filter_adminlog'>[span_blue("Admin rank changed.")]</span>")
 
 /datum/admins/proc/log_admin_permission_modification(var/adm_ckey, var/new_permission)
 	if(config.admin_legacy_system)	return
@@ -101,12 +101,12 @@
 		return
 
 	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
-		to_chat(usr, "<span class='filter_adminlog'><font color='red'>You do not have permission to do this!</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red(">You do not have permission to do this!")]</span>")
 		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		to_chat(usr, "<span class='filter_adminlog'><font color='red'>Failed to establish database connection</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_red("Failed to establish database connection!")]</span>")
 		return
 
 	if(!adm_ckey || !new_permission)
@@ -140,10 +140,10 @@
 		insert_query.Execute()
 		var/DBQuery/log_query = dbcon.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Removed permission [rights2text(new_permission)] (flag = [new_permission]) to admin [adm_ckey]');")
 		log_query.Execute()
-		to_chat(usr, "<span class='filter_adminlog'><font color='blue'>Permission removed.</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_blue("Permission removed.")]</span>")
 	else //This admin doesn't have this permission, so we are adding it.
 		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `erro_admin` SET flags = '[admin_rights | new_permission]' WHERE id = [admin_id]")
 		insert_query.Execute()
 		var/DBQuery/log_query = dbcon.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added permission [rights2text(new_permission)] (flag = [new_permission]) to admin [adm_ckey]')")
 		log_query.Execute()
-		to_chat(usr, "<span class='filter_adminlog'><font color='blue'>Permission added.</font></span>")
+		to_chat(usr, "<span class='filter_adminlog'>[span_blue("Permission added.")]</span>")

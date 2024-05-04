@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
@@ -10,8 +11,8 @@ type Data = {
   valve: BooleanLike;
 };
 
-export const TransferValve = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const TransferValve = (props) => {
+  const { act, data } = useBackend<Data>();
   const { tank_one, tank_two, attached_device, valve } = data;
   return (
     <Window>
@@ -39,7 +40,8 @@ export const TransferValve = (props, context) => {
               disabled={!attached_device}
               onClick={() => act('device')}
             />
-          }>
+          }
+        >
           <LabeledList>
             {attached_device ? (
               <LabeledList.Item label="Attachment">
@@ -59,7 +61,12 @@ export const TransferValve = (props, context) => {
           <LabeledList>
             {tank_one ? (
               <LabeledList.Item label="Attachment">
-                <Button icon="eject" content={tank_one} disabled={!tank_one} onClick={() => act('tankone')} />
+                <Button
+                  icon="eject"
+                  content={tank_one}
+                  disabled={!tank_one}
+                  onClick={() => act('tankone')}
+                />
               </LabeledList.Item>
             ) : (
               <NoticeBox textAlign="center">Attach Tank</NoticeBox>
@@ -70,7 +77,12 @@ export const TransferValve = (props, context) => {
           <LabeledList>
             {tank_two ? (
               <LabeledList.Item label="Attachment">
-                <Button icon="eject" content={tank_two} disabled={!tank_two} onClick={() => act('tanktwo')} />
+                <Button
+                  icon="eject"
+                  content={tank_two}
+                  disabled={!tank_two}
+                  onClick={() => act('tanktwo')}
+                />
               </LabeledList.Item>
             ) : (
               <NoticeBox textAlign="center">Attach Tank</NoticeBox>

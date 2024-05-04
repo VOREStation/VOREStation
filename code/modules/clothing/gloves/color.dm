@@ -91,3 +91,9 @@
 	name = "fingerless gloves"
 	icon_state = "fingerlessgloves"
 	fingerprint_chance = 100
+
+/obj/item/clothing/gloves/fingerless_recolourable
+	desc = "A pair of gloves that don't actually cover the fingers."
+	name = "fingerless gloves"
+	icon_state = "fingerlessgloves_rc"
+	fingerprint_chance = 100

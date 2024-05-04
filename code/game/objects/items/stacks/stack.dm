@@ -17,7 +17,7 @@
 	center_of_mass = null
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
-	VAR_PROTECTED/amount = 1
+	var/amount = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/stacktype //determines whether different stack types can merge
 	var/build_type = null //used when directly applied to a turf
@@ -208,7 +208,7 @@
 
 					var/mattermult = istype(Ob, /obj/item) ? min(2000, 400 * Ob.w_class) : 2000
 
-					Ob.matter[recipe.use_material] = mattermult / produced * required
+					Ob.matter[recipe.matter_material] = mattermult / produced * required
 
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)

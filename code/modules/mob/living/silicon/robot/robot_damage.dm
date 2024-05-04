@@ -76,14 +76,12 @@
 			var/absorb_burn = burn*shield.shield_level
 			var/cost = (absorb_brute+absorb_burn) * 25
 
-			cell.charge -= cost
-			if(cell.charge <= 0)
-				cell.charge = 0
-				to_chat(src, "<span class='filter_warning'><font color='red'>Your shield has overloaded!</font></span>")
+			if(!use_direct_power(cost, 200))
+				to_chat(src, "<span class='filter_warning'>[span_red("Your shield has overloaded!")]</span>")
 			else
 				brute -= absorb_brute
 				burn -= absorb_burn
-				to_chat(src, "<span class='filter_combat'><font color='red'>Your shield absorbs some of the impact!</font></span>")
+				to_chat(src, "<span class='filter_combat'>[span_red("Your shield absorbs some of the impact!")]</span>")
 
 	if(!emp)
 		var/datum/robot_component/armour/A = get_armour()
@@ -123,14 +121,12 @@
 			var/absorb_burn = burn*shield.shield_level
 			var/cost = (absorb_brute+absorb_burn) * 25
 
-			cell.charge -= cost
-			if(cell.charge <= 0)
-				cell.charge = 0
-				to_chat(src, "<span class='filter_warning'><font color='red'>Your shield has overloaded!</font></span>")
+			if(!use_direct_power(cost, 200))
+				to_chat(src, "<span class='filter_warning'>[span_red("Your shield has overloaded!")]</span>")
 			else
 				brute -= absorb_brute
 				burn -= absorb_burn
-				to_chat(src, "<span class='filter_combat'><font color='red'>Your shield absorbs some of the impact!</font></span>")
+				to_chat(src, "<span class='filter_combat'>[span_red("Your shield absorbs some of the impact!")]</span>")
 
 	var/datum/robot_component/armour/A = get_armour()
 	if(A)

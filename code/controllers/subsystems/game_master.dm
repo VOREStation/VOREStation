@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(game_master)
 /datum/controller/subsystem/game_master/proc/pre_event_checks(quiet = FALSE)
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		if(!quiet)
-			log_game_master("Unable to start event: Ticker is nonexistant, or the game is not ongoing.")
+			log_game_master("Unable to start event: Ticker is nonexistent, or the game is not ongoing.")
 		return FALSE
 	if(GM.ignore_time_restrictions)
 		return TRUE
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(game_master)
 	if(check_rights(R_ADMIN|R_EVENT|R_DEBUG))
 		SSgame_master.interact(usr)
 	else
-		to_chat(usr, span("warning", "You do not have sufficent rights to view the GM panel, sorry."))
+		to_chat(usr, span("warning", "You do not have sufficient rights to view the GM panel, sorry."))
 
 /datum/controller/subsystem/game_master/proc/interact(var/client/user)
 	if(!user)

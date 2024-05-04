@@ -15,6 +15,7 @@
 	var/mob_wander_distance = 3
 	var/mob_hostile = 0
 	var/mob_retaliate = 0
+	var/mob_ghostjoin = 0 //Should be a number between 0 and 100, dictates the probability of that mob being ghost joinable.
 
 /obj/random/mob/item_to_spawn()
 	return pick(prob(10);/mob/living/simple_mob/animal/passive/lizard,
@@ -62,7 +63,9 @@
 	if(mob_faction)
 		M.faction = mob_faction
 
-
+	if(mob_ghostjoin)
+		if(prob(mob_ghostjoin))
+			M.ghostjoin = 1
 
 /obj/random/mob/sif
 	name = "Random Sif Animal"
@@ -132,8 +135,7 @@
 	mob_wander_distance = 4
 
 /obj/random/mob/spider/item_to_spawn()
-	return pick(prob(22);/mob/living/simple_mob/animal/giant_spider/nurse,
-				prob(33);/mob/living/simple_mob/animal/giant_spider/hunter,
+	return pick(prob(33);/mob/living/simple_mob/animal/giant_spider/hunter,
 				prob(45);/mob/living/simple_mob/animal/giant_spider)
 
 /obj/random/mob/spider/nurse

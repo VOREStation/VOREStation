@@ -1,4 +1,5 @@
 import { toFixed } from 'common/math';
+
 import { useBackend } from '../backend';
 import { Button, Grid, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
@@ -20,8 +21,8 @@ type Data = {
   maxFrequency: number;
 };
 
-export const SignalerContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const SignalerContent = (props) => {
+  const { act, data } = useBackend<Data>();
   const { code, frequency, minFrequency, maxFrequency } = data;
   return (
     <Section>

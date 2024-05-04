@@ -239,6 +239,26 @@
 	name = "sleek overalls"
 	desc = "A set of modern pleather reinforced overalls."
 	icon_state = "overalls_sleek"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+
+/obj/item/clothing/under/overalls/service
+	name = "workman overalls"
+	desc = "The very image of a working man. Not that you're probably doing work."
+	icon_state = "mechanic_over"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/overalls/frontier
+	name = "frontier overalls"
+	desc = "Simple denim overalls. A popular style among frontier colonists, when paired with a flannel."
+	icon_state = "frontier_over"
+	worn_state = "frontier_over"
+
+/obj/item/clothing/under/overalls/rustler
+	name = "rustler overalls"
+	desc = "A rugged pair of overalls for rustling cattle out on the frontier."
+	icon_state = "rustler_over"
+	worn_state = "rustler_over"
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
@@ -613,6 +633,16 @@
 	desc = "Just looking at this makes you want to sing."
 	icon_state = "ysing"
 
+/obj/item/clothing/under/dress/tabard
+	name = "white tabard-dress"
+	desc = "A gold-trimmed white tabard-dress with a large V-shaped boob window. For when you want to show off your hips and look classy at the same time."
+	icon_state = "white_tabard"
+
+/obj/item/clothing/under/dress/tabard/black
+	name = "black tabard-dress"
+	desc = "A gold-trimmed black tabard-dress with a large circular boob window. For when you want to show off your hips and look classy at the same time."
+	icon_state = "black_tabard"
+
 /*
  * Wedding Stuff
  */
@@ -951,6 +981,11 @@
 	desc = "Jean shorts and a black halter top. Perfect for casual Fridays!"
 	icon_state = "haltertop"
 
+/obj/item/clothing/under/tanktop
+	name = "tank top"
+	desc = "The most versatile top ever created."
+	icon_state = "tanktop"
+
 /obj/item/clothing/under/rippedpunk
 	name = "ripped punk jeans"
 	desc = "Black ripped jeans and a fishnet top. How punk."
@@ -1073,6 +1108,21 @@
 	desc = "A rather skimpy cow patterned swimsuit."
 	icon_state = "swim_cow"
 
+/obj/item/clothing/under/swimsuit/highclass
+    name = "high class swimsuit"
+    desc = "An elegant swimsuit with a white bikini top and black bikini bottom. Thin black silk drapes down the back and goes to the upper thighs, and authentic gold rings hold the top together at the bust and back."
+    icon_state = "swim_highclass"
+
+/obj/item/clothing/under/swimsuit/risque
+    name = "risque swimsuit"
+    desc = "This fits a bit too snug in all the right places. Comes with a collar, for inscrutable reasons."
+    icon_state = "swim_risque"
+
+/obj/item/clothing/under/swimsuit/streamlined
+    name = "streamlined swimsuit"
+    desc = "An all white one-piece that maintains modesty without sacrificing class."
+    icon_state = "swim_stream"
+
 /obj/item/clothing/under/wetsuit
 	name = "wetsuit"
 	desc = "For when you need to scuba dive your way into an enemy base."
@@ -1165,6 +1215,11 @@
 	name = "hazard cohesion suit"
 	desc = "An orange cohesion suit with yellow hazard stripes intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
 	icon_state = "cohesionsuit_hazard"
+
+/obj/item/clothing/under/vampirehunter
+	name = "18th century outfit"
+	desc = "A flashy, if rather stiff set of ancient-styled slacks and tabard. The unyielding nature of the clothes often make one walk stiffly, but with divine purpose."
+	icon_state = "belmont"
 
 //Ranger uniforms
 //On-mob sprites go in icons\mob\uniform.dmi with the format "white_ranger_uniform_s" - with 'white' replaced with green, cyan, etc... of course! Note the _s - this is not optional.
@@ -1521,3 +1576,132 @@
 	name = "green crop-top christmas suit"
 	desc = "A simple green christmas suit that doesn't quite looks like Mrs Claus'. Smells minty!"
 	icon_state = "christmascroppedgreen"
+
+//leotards
+/obj/item/clothing/under/leotard
+    name = "black leotard"
+    desc = "A black leotard with a piece of semi-transparent cloth near the bust. Perfect for showing off cleavage. Bunny ears not included."
+    icon_state = "leotard"
+
+/obj/item/clothing/under/leotardcolor
+    name = "colored leotard"
+    desc = "A colorable leotard with a piece of semi-transparent cloth near the bust. Perfect for showing off cleavage. Bunny ears not included."
+    icon_state = "leotard_color"
+
+//skinsuits
+/obj/item/clothing/under/skinsuit
+	name = "skinsuit"
+	desc = "Similar to other form-fitting latex bodysuits in design and function, skinsuits typically feature integrated hardpoints around common wear areas."
+	icon_state = "skinsuit"
+
+/obj/item/clothing/under/skinsuit/gray
+    name = "gray skinsuit"
+    icon_state = "skinsuit_g"
+
+/obj/item/clothing/under/skinsuit/leotard
+    name = "leotard skinsuit"
+    desc = "The skinsuit's leotard variant has long since eclipsed its initial function as a breathable undersuit for submersible hardsuits. Although still utilized in this role, it has become rather fashionable to wear outside of deep water operations."
+    icon_state = "skinsuitleo"
+
+
+/obj/item/clothing/under/skinsuit/leotard/gray
+    name = "gray leotard skinsuit"
+    icon_state = "skinsuitleo_g"
+
+/obj/item/clothing/under/skinsuit/fem
+	name = "feminine skinsuit"
+	desc = "Similar to other form-fitting latex bodysuits in design and function, skinsuits typically feature integrated hardpoints around common wear areas."
+	icon_state = "skinsuitfem"
+
+/obj/item/clothing/under/skinsuit/fem/gray
+    name = "feminine gray skinsuit"
+    icon_state = "skinsuitfem_g"
+
+/obj/item/clothing/under/skinsuit/fem/leotard
+    name = "feminine leotard skinsuit"
+    desc = "The skinsuit's leotard variant has long since eclipsed its initial function as a breathable undersuit for submersible hardsuits. Although still utilized in this role, it has become rather fashionable to wear outside of deep water operations."
+    icon_state = "skinsuitfemleo"
+
+/obj/item/clothing/under/skinsuit/fem/leotard/gray
+    name = "feminine gray leotard skinsuit"
+    icon_state = "skinsuitfemleo_g"
+
+//baggy turtlenecks
+/obj/item/clothing/under/turtlebaggy
+	name = "cream baggy turtleneck (cream)"
+	desc = "A cozy knit turtleneck. It's too baggy and comfortable to be tactical."
+	icon_state = "bb_turtle"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+
+/obj/item/clothing/under/turtlebaggy/cream_fem
+    name = "feminine cream baggy turtleneck"
+    icon_state = "bb_turtle_fem"
+
+
+/obj/item/clothing/under/turtlebaggy/purple
+    name = "purple baggy turtleneck"
+    icon_state = "bb_turtlepur"
+
+
+/obj/item/clothing/under/turtlebaggy/purple_fem
+    name = "feminine purple baggy turtleneck"
+    icon_state = "bb_turtlepur_fem"
+
+
+/obj/item/clothing/under/turtlebaggy/red
+    name = "red baggy turtleneck"
+    icon_state = "bb_turtlered"
+
+
+/obj/item/clothing/under/turtlebaggy/red_fem
+    name = "feminine red baggy turtleneck"
+    icon_state = "bb_turtlered_fem"
+
+
+/obj/item/clothing/under/turtlebaggy/blue
+    name = "blue baggy turtleneck"
+    icon_state = "bb_turtleblu"
+
+
+/obj/item/clothing/under/turtlebaggy/blue_fem
+    name = "feminine blue baggy turtleneck"
+    icon_state = "bb_turtleblu_fem"
+
+
+/obj/item/clothing/under/turtlebaggy/green
+    name = "green baggy turtleneck"
+    icon_state = "bb_turtlegrn"
+
+
+/obj/item/clothing/under/turtlebaggy/green_fem
+    name = "feminine green baggy turtleneck"
+    icon_state = "bb_turtlegrn_fem"
+
+
+/obj/item/clothing/under/turtlebaggy/black
+    name = "black baggy turtleneck"
+    icon_state = "bb_turtleblk"
+
+
+/obj/item/clothing/under/turtlebaggy/black_fem
+    name = "feminine black baggy turtleneck"
+    icon_state = "bb_turtleblk_fem"
+
+//half-moon outfit
+/obj/item/clothing/under/half_moon
+    name = "half moon outfit"
+    desc = "This eminently fashionable outfit consists of a tailored latex leotard and daringly cut white shorts. Paired with plunging off-color stockings, it's to die for."
+    icon_state = "half_moon"
+
+//fiend clothes
+/obj/item/clothing/under/fiendsuit
+    name = "fiendish suit"
+    desc = "A red and black suit befitting someone from the dark pits themselves… Or someone way too edgy."
+    icon_state = "fiendsuit"
+
+
+/obj/item/clothing/under/fienddress
+    name = "fiendish dress"
+    desc = "A red and black dress befitting someone from the dark pits themselves… Or someone way too edgy."
+    icon_state = "fienddress"

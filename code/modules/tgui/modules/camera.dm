@@ -34,7 +34,7 @@
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
-	
+
 	cam_plane_masters = get_tgui_plane_masters()
 
 	for(var/obj/screen/instance as anything in cam_plane_masters)
@@ -68,7 +68,7 @@
 
 /datum/tgui_module/camera/Destroy()
 	if(active_camera)
-		GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+		UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
 	active_camera = null
 	last_camera_turf = null
 	qdel(cam_screen)
@@ -80,8 +80,10 @@
 /datum/tgui_module/camera/tgui_interact(mob/user, datum/tgui/ui = null)
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
+	var/turf/newturf = get_turf(active_camera)
+	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use())
+	if(!active_camera?.can_use() || B.block_tracking)
 		show_camera_static()
 	if(!ui)
 		var/user_ref = REF(user)
@@ -131,7 +133,7 @@
 /datum/tgui_module/camera/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	if(action && !issilicon(usr))
 		playsound(tgui_host(), "terminal_type", 50, 1)
 
@@ -140,9 +142,10 @@
 		var/list/cameras = get_available_cameras(usr)
 		var/obj/machinery/camera/C = cameras["[ckey(c_tag)]"]
 		if(active_camera)
-			GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+			UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
 		active_camera = C
-		GLOB.moved_event.register(active_camera, src, .proc/update_active_camera_screen)
+		active_camera.AddComponent(/datum/component/recursive_move)
+		RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 		update_active_camera_screen()
 		return TRUE
@@ -167,23 +170,25 @@
 
 			if(target)
 				if(active_camera)
-					GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+					UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
 				active_camera = target
-				GLOB.moved_event.register(active_camera, src, .proc/update_active_camera_screen)
+				active_camera.AddComponent(/datum/component/recursive_move)
+				RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 				playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 				update_active_camera_screen()
 				. = TRUE
 
 /datum/tgui_module/camera/proc/update_active_camera_screen()
+	var/turf/newturf = get_turf(active_camera)
+	var/area/B = newturf?.loc // No cam tracking in dorms!
 	// Show static if can't use the camera
-	if(!active_camera?.can_use())
+	if(!active_camera?.can_use() || B.block_tracking)
 		show_camera_static()
 		return TRUE
 
 	// If we're not forcing an update for some reason and the cameras are in the same location,
 	// we don't need to update anything.
 	// Most security cameras will end here as they're not moving.
-	var/turf/newturf = get_turf(active_camera)
 	if(newturf == last_camera_turf)
 		return
 
@@ -273,7 +278,7 @@
 	// Turn off the console
 	if(length(concurrent_users) == 0 && is_living)
 		if(active_camera)
-			GLOB.moved_event.unregister(active_camera, src, .proc/update_active_camera_screen)
+			UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
 		active_camera = null
 		playsound(tgui_host(), 'sound/machines/terminal_off.ogg', 25, FALSE)
 
@@ -298,4 +303,3 @@
 
 /datum/tgui_module/camera/bigscreen/tgui_state(mob/user)
 	return GLOB.tgui_physical_state_bigscreen
-	

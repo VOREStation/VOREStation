@@ -12,7 +12,7 @@
 
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
-		if(R.module.type == /obj/item/weapon/robot_module/robot/janitor/scrubpup) // You can now feed the trash borg yay.
+		if(R.module.type == /obj/item/weapon/robot_module/robot/janitor) // You can now feed the trash borg yay.
 			playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 			user.drop_item()
 			forceMove(R.vore_selected)
@@ -96,3 +96,13 @@
 	name = "\improper Prepackaged Meal Tray"
 	icon = 'icons/obj/trash_vr.dmi'
 	icon_state = "altevian_pack_taco-trash"
+
+/obj/item/trash/ratpackcake
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_cake-trash"
+
+/obj/item/trash/ratpackmeat
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_meat-trash"

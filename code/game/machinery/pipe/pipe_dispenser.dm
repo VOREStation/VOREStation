@@ -78,11 +78,11 @@
 		if("p_layer")
 			p_layer = text2num(params["p_layer"])
 		if("dispense_pipe")
-			if(!wait)				
+			if(!wait)
 				var/datum/pipe_recipe/recipe = locate(params["ref"])
 				if(!istype(recipe))
 					return
-				
+
 				var/target_dir = NORTH
 				if(params["bent"])
 					target_dir = NORTHEAST
@@ -116,7 +116,7 @@
 		user.drop_item()
 		qdel(W)
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if (unwrenched==0)
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")

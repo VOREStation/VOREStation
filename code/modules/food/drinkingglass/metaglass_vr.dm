@@ -239,3 +239,7 @@
 	glass_icon_state = "burnout"
 	glass_center_of_mass = list("x"=16, "y"=8)
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
+/datum/reagent/ethanol/manager_summoner
+	glass_icon_state = "manager_summoner"
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'

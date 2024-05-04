@@ -8,16 +8,15 @@
 /datum/sprite_accessory/tail
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/tails_vr.dmi'
+	var/offset_x = 0
+	var/offset_y = 0
+	var/mob_offset_x = 0
+	var/mob_offset_y = 0
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 	var/list/lower_layer_dirs = list(SOUTH)
 	var/icon_loaf = null
-
-/datum/sprite_accessory/tail/New()
-	. = ..()
-	if(clip_mask_icon && clip_mask_state)
-		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
 
 // Species-unique tails
 
@@ -101,6 +100,24 @@
 	desc = ""
 	icon_state = "bunny"
 	do_colouration = 1
+
+/datum/sprite_accessory/tail/rabbit
+    name = "rabbit, colourable (vwag)"
+    desc = ""
+    icon_state = "rabbit"
+    do_colouration = TRUE
+    color_blend_mode = ICON_MULTIPLY
+    ani_state = "rabbit_w"
+
+/datum/sprite_accessory/tail/rabbitalt
+    name = "rabbit, dual color (vwag)"
+    desc = ""
+    icon_state = "rabbitalt"
+    extra_overlay = "rabbitalt-tips"
+    do_colouration = TRUE
+    color_blend_mode = ICON_MULTIPLY
+    ani_state = "rabbitalt_w"
+    extra_overlay_w = "rabbitalt-tips_w"
 
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
@@ -347,6 +364,26 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "ringtail_mark"
 
+/datum/sprite_accessory/tail/ringtailwag
+	name = "ringtail (vwag)"
+	desc = ""
+	icon_state = "wah"
+	ani_state = "wah_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wah-stripes"
+	extra_overlay_w = "wah-stripes_w"
+
+/datum/sprite_accessory/tail/raccoon
+	name = "raccoon tail (vwag)"
+	desc = ""
+	icon_state = "raccoon"
+	ani_state = "raccoon_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "raccoon-stripes"
+	extra_overlay_w = "raccoon-stripes_w"
+
 /datum/sprite_accessory/tail/holly
 	name = "tigress tail (Holly)"
 	desc = ""
@@ -408,6 +445,19 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tigertail_mark"
 	extra_overlay_w = "tigertail_mark_w"
+
+/datum/sprite_accessory/tail/tigeralt
+	name = "tiger tail, alt (vwag)"
+	desc = ""
+	icon_state = "tigeralt"
+	extra_overlay = "tigeralt-tips"
+	extra_overlay2 = "tigeralt-tips2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "tigeralt_w"
+	extra_overlay_w = "tigeralt-tips_w"
+	extra_overlay2_w = "tigeralt-tips2_w"
+
 
 /datum/sprite_accessory/tail/vulp_new
 	name = "new vulp tail (vwag)"
@@ -479,6 +529,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "deertail_mark"
+
+/datum/sprite_accessory/tail/deeralt
+	name = "deer alt, colorable (vwag)"
+	desc = ""
+	icon_state = "deeralt"
+	ani_state = "deeralt_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/tesh_feathered
 	name = "Teshari tail"
@@ -1337,10 +1395,17 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/kara //SatinIsle fluff item
+	name = "Pterokara Tail"
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "kara_tail"
+	ckeys_allowed = list("satinisle")
+
 //LONG TAILS ARE NOT TAUR BUTTS >:O
 /datum/sprite_accessory/tail/longtail
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/taurs_vr.dmi'
+	offset_x = -16
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
@@ -1368,3 +1433,94 @@
 	name = "heart-bolt-shaped tail, dual color"
 	icon_state = "zaprat_heart_s"
 	extra_overlay = "zaprat_heart_markings"
+
+/datum/sprite_accessory/tail/satyrtail
+	name = "goat legs with tail, colorable"
+	desc = ""
+	icon_state = "satyr"
+	color_blend_mode = ICON_MULTIPLY
+	do_colouration = 1
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
+	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
+	extra_overlay = "horse" //I can't believe this works.
+
+/datum/sprite_accessory/tail/turkey //Would have been a really good thing for Thanksgiving probably but I'm not going to wait that long.
+	name = "turkey"
+	desc = ""
+	icon_state = "turkey"
+
+/datum/sprite_accessory/tail/shark_markings
+	name = "akula tail, colorable, tail and fins"
+	desc = ""
+	icon_state = "sharktail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "sharktail_markings"
+
+/datum/sprite_accessory/tail/shark_stripes
+	name = "akula tail, colorable, stripe"
+	desc = ""
+	icon_state = "sharktail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "sharktail_stripemarkings"
+
+/datum/sprite_accessory/tail/shark_tips
+	name = "akula tail, colorable, tips"
+	desc = ""
+	icon_state = "sharktail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "sharktail_tipmarkings"
+
+/datum/sprite_accessory/tail/narrow_tail
+	name = "feathered narrow tail, colorable"
+	desc = ""
+	icon_state = "narrowtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/narrow_tail2
+	name = "feathered narrow tail, 2 colors"
+	desc = ""
+	icon_state = "narrowtail_2color"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "narrowtail_2color-1"
+
+
+// Dino Tails
+
+/datum/sprite_accessory/tail/clubtail
+	name = "dino clubtail, colorable"
+	desc = ""
+	icon_state = "clubtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "clubtail-1"
+
+/datum/sprite_accessory/tail/spiketail
+	name = "dino spiketail, colorable"
+	desc = ""
+	icon_state = "spiketail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "spiketail-1"
+
+/datum/sprite_accessory/tail/longtail/kaiju_tail_a_long
+	name = "Kaiju tail A, dual color"
+	icon = 'icons/mob/vore/taurs_vr.dmi'
+	icon_state = "kaiju_long_a"
+	extra_overlay = "kaiju_long_a_spikes"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/longtail/kaiju_tail_a_long_glow
+	name = "Kaiju tail A, dual color, glow"
+	icon = 'icons/mob/vore/taurs_vr.dmi'
+	icon_state = "kaiju_long_a"
+	extra_overlay = "kaiju_long_a_spikes"
+	extra_overlay2 = "kaiju_long_a_spikes_glow"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

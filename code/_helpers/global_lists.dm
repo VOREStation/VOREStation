@@ -14,6 +14,7 @@ var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently t
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/landmarks_list = list()				//list of all landmarks created
+var/global/list/event_triggers = list()				//Associative list of creator_ckey:list(landmark references) for event triggers
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
@@ -53,7 +54,7 @@ var/datum/category_collection/underwear/global_underwear = new()
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag", "Strapless Satchel") //VOREStation edit
-var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound", "Slider")
+var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound","Slider", "Vintage")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 // Visual nets
@@ -206,7 +207,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.all_species[S.name] = S
 
 	//Shakey shakey shake
-	sortTim(GLOB.all_species, /proc/cmp_species, associative = TRUE)
+	sortTim(GLOB.all_species, GLOBAL_PROC_REF(cmp_species), associative = TRUE)
 
 	//Split up the rest
 	for(var/speciesname in GLOB.all_species)
@@ -238,7 +239,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/oretype in paths)
 		var/ore/OD = new oretype()
 		GLOB.ore_data[OD.name] = OD
-	
+
 	paths = subtypesof(/datum/alloy)
 	for(var/alloytype in paths)
 		GLOB.alloy_data += new alloytype()
@@ -310,7 +311,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 /proc/init_crafting_recipes(list/crafting_recipes)
 	for(var/path in subtypesof(/datum/crafting_recipe))
 		var/datum/crafting_recipe/recipe = new path()
-		recipe.reqs = sortList(recipe.reqs, /proc/cmp_crafting_req_priority)
+		recipe.reqs = sortList(recipe.reqs, GLOBAL_PROC_REF(cmp_crafting_req_priority))
 		crafting_recipes += recipe
 	return crafting_recipes
 /* // Uncomment to debug chemical reaction list.
@@ -326,3 +327,32 @@ GLOBAL_LIST_EMPTY(mannequins)
 */
 //Hexidecimal numbers
 var/global/list/hexNums = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+
+// Many global vars aren't GLOB type. This puts them there to be more easily inspected.
+GLOBAL_LIST_EMPTY(legacy_globals)
+
+/proc/populate_legacy_globals()
+	//Note: these lists cannot be changed to a new list anywhere in code!
+	//If they are, these will cause the old list to stay around!
+	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
+	GLOB.legacy_globals["player_list"] = player_list
+	GLOB.legacy_globals["mob_list"] = mob_list
+	GLOB.legacy_globals["human_mob_list"] = human_mob_list
+	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
+	GLOB.legacy_globals["ai_list"] = ai_list
+	GLOB.legacy_globals["living_mob_list"] = living_mob_list
+	GLOB.legacy_globals["dead_mob_list"] = dead_mob_list
+	GLOB.legacy_globals["observer_mob_list"] = observer_mob_list
+	GLOB.legacy_globals["listening_objects"] = listening_objects
+	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
+	GLOB.legacy_globals["cable_list"] = cable_list
+	GLOB.legacy_globals["landmarks_list"] = landmarks_list
+	GLOB.legacy_globals["event_triggers"] = event_triggers
+	GLOB.legacy_globals["side_effects"] = side_effects
+	GLOB.legacy_globals["mechas_list"] = mechas_list
+	GLOB.legacy_globals["mannequins_"] = mannequins_
+	//visual nets
+	GLOB.legacy_globals["visual_nets"] = visual_nets
+	GLOB.legacy_globals["cameranet"] = cameranet
+	GLOB.legacy_globals["cultnet"] = cultnet
+	GLOB.legacy_globals["existing_solargrubs"] = existing_solargrubs

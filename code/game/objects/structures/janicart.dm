@@ -119,9 +119,9 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	. = ..(user)
 	if(istype(mybucket))
 		var/contains = mybucket.reagents.total_volume
-		. += "\icon[src][bicon(src)] The bucket contains [contains] unit\s of liquid!"
+		. += "[icon2html(src, user.client)] The bucket contains [contains] unit\s of liquid!"
 	else
-		. += "\icon[src][bicon(src)] There is no bucket mounted on it!"
+		. += "[icon2html(src, user.client)] There is no bucket mounted on it!"
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)
@@ -176,7 +176,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		//This prevents dumb stuff like splashing the cart with the contents of a container, after putting said container into trash
 
 	else if (!has_items)
-		if (I.is_wrench())
+		if (I.has_tool_quality(TOOL_WRENCH))
 			if (do_after(user, 5 SECONDS, src))
 				dismantle(user)
 			return

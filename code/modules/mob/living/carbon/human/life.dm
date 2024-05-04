@@ -199,7 +199,7 @@
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
-			to_chat(src, "<font color='red'>You have a seizure!</font>")
+			to_chat(src, span_red("You have a seizure!"))
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
@@ -435,7 +435,7 @@
 				if(prob(50) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 					spawn vomit()
 				if(!paralysis && prob(30) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
-					to_chat(src, "<font color='Critical'>You have a seizure!</font>")
+					to_chat(src, "<span class='critical'>You have a seizure!</span>")
 					Paralyse(10)
 					make_jittery(1000)
 					if(!lying)
@@ -495,7 +495,7 @@
 					drop_item()
 			if(accumulated_rads > 700) // (12Gy)
 				if(!paralysis && prob(1) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //1 in 1000 chance per tick.
-					to_chat(src, "<font color='Critical'>You have a seizure!</font>")
+					to_chat(src, "<span class='critical'>You have a seizure!</span>")
 					Paralyse(10)
 					make_jittery(1000)
 					if(!lying)
@@ -1245,6 +1245,11 @@
 			Paralyse(10)
 			setHalLoss(species.total_health - 1)
 
+		if(tiredness) //tiredness for vore drain
+			tiredness = (tiredness - 1)
+			if(tiredness >= 100)
+				Sleeping(5)
+
 		if(paralysis || sleeping)
 			blinded = 1
 			set_stat(UNCONSCIOUS)
@@ -1429,6 +1434,21 @@
 		else
 			clear_fullscreen("brute")
 
+		//tiredness for drain vore
+		if(tiredness)
+			var/severity = 0
+			switch(tiredness)
+				if(10 to 20)		severity = 1
+				if(20 to 30)		severity = 2
+				if(30 to 45)		severity = 3
+				if(45 to 60)		severity = 4
+				if(60 to 75)		severity = 5
+				if(75 to 90)		severity = 6
+				if(90 to INFINITY)	severity = 7
+			overlay_fullscreen("tired", /obj/screen/fullscreen/oxy, severity)
+		else
+			clear_fullscreen("tired")
+
 		if(healths)
 			if (chem_effects[CE_PAINKILLER] > 100)
 				healths.icon_state = "health_numb"
@@ -1528,7 +1548,9 @@
 
 		if(!isbelly(loc)) //VOREStation Add - Belly fullscreens safety
 			clear_fullscreen("belly")
-			//clear_fullscreen("belly2") //For multilayered stomachs. Not currently implemented.
+			clear_fullscreen("belly2")
+			clear_fullscreen("belly3")
+			clear_fullscreen("belly4")
 
 		if(config.welder_vision)
 			var/found_welder

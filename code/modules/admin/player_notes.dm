@@ -37,7 +37,7 @@
 	infos += P
 	info << infos
 
-	message_admins("<font color='blue'>[key_name_admin(user)] has edited [key]'s notes.</font>")
+	message_admins(span_blue("[key_name_admin(user)] has edited [key]'s notes."))
 	log_admin("[key_name(user)] has edited [key]'s notes.")
 	admin_action_message(P.author, key, "added note on", note, 0) //VOREStation Add
 	del(info) // savefile, so NOT qdel
@@ -62,7 +62,7 @@
 	infos.Remove(item)
 	info << infos
 
-	message_admins("<font color='blue'>[key_name_admin(usr)] deleted one of [key]'s notes.</font>")
+	message_admins(span_blue("[key_name_admin(usr)] deleted one of [key]'s notes."))
 	log_admin("[key_name(usr)] deleted one of [key]'s notes.")
 	admin_action_message(usr.key, key, "deleted note on", "\[Note gone\]", 0) //VOREStation Add
 	qdel(info)

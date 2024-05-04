@@ -10,5 +10,7 @@ GLOBAL_LIST_INIT(hair_gradients, list(
 	"Reflected (Inverted)" = "reflected_inverse",
 	"Reflected High" = "reflected_high",
 	"Reflected High (Inverted)" = "reflected_inverse_high",
-	"Wavy" = "wavy"
+	"Wavy" = "wavy",
+	"Striped" = "striped",
+	"Striped (Vertical)" = "striped_vertical"
 	))

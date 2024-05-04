@@ -80,6 +80,52 @@
 	icon_state = "helmet_firefighter_ce"
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE + 10000
 
+/obj/item/clothing/head/hardhat/old
+	name = "classic hard hat"
+	icon_state = "hardhat0_old_yellow"
+	light_overlay = "hardhat_light_old"
+
+/obj/item/clothing/head/hardhat/orange/old
+	name = "classic orange hard hat"
+	icon_state = "hardhat0_old_orange"
+	light_overlay = "hardhat_light_old"
+
+/obj/item/clothing/head/hardhat/white/old
+	name = "classic sleek hard hat"
+	icon_state = "hardhat0_old_white"
+	light_overlay = "hardhat_light_old"
+
+/obj/item/clothing/head/hardhat/dblue/old
+	name = "classic blue hard hat"
+	icon_state = "hardhat0_old_dblue"
+	light_overlay = "hardhat_light_old"
+
+/obj/item/clothing/head/hardhat/red/old
+	name = "classic fire helmet"
+	icon_state = "hardhat0_old_red"
+	light_overlay = "hardhat_light_old"
+
+/obj/item/clothing/head/hardhat/firefighter/old
+	name = "classic firefighter helmet"
+	icon_state = "helmet_firefighter_old"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi'
+		)
+
+/obj/item/clothing/head/hardhat/firefighter/atmos/old
+	name = "classic atmospheric firefighter helmet"
+	icon_state = "atmos_fire_old"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi'
+		)
+
+/obj/item/clothing/head/hardhat/firefighter/chief/old
+	name = "classic chief firefighter helmet"
+	icon_state = "helmet_firefighter_ce_old"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi'
+		)
+
 /*
  * Ranger Hats
  */

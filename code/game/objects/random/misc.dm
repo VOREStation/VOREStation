@@ -25,8 +25,8 @@
 
 /obj/random/tool/powermaint/item_to_spawn()
 	return pick(prob(320);/obj/random/tool,
-				prob(1);/obj/item/weapon/tool/screwdriver/power,
-				prob(1);/obj/item/weapon/tool/wirecutters/power,
+				prob(1);/obj/item/weapon/tool/transforming/powerdrill,
+				prob(1);/obj/item/weapon/tool/transforming/jawsoflife,
 				prob(15);/obj/item/weapon/weldingtool/electric,
 				prob(5);/obj/item/weapon/weldingtool/experimental)
 
@@ -36,8 +36,8 @@
 	icon_state = "tool_2"
 
 /obj/random/tool/power/item_to_spawn()
-	return pick(/obj/item/weapon/tool/screwdriver/power,
-				/obj/item/weapon/tool/wirecutters/power,
+	return pick(/obj/item/weapon/tool/transforming/powerdrill,
+				/obj/item/weapon/tool/transforming/jawsoflife,
 				/obj/item/weapon/weldingtool/electric,
 				/obj/item/weapon/weldingtool/experimental)
 
@@ -78,6 +78,15 @@
 				prob(9);/obj/item/weapon/cell/super,
 				prob(1);/obj/item/weapon/cell/hyper)
 
+/obj/random/powercell/device
+	name = "random device powercell"
+	desc = "This is a random device powercell."
+	icon_state = "random_device"
+
+/obj/random/powercell/device/item_to_spawn()
+	return pick(prob(80);/obj/item/weapon/cell/device,
+				prob(10);/obj/item/weapon/cell/device/hyper,
+				prob(10);/obj/item/weapon/cell/device/empproof)
 
 /obj/random/bomb_supply
 	name = "bomb supply"
@@ -206,7 +215,7 @@
 				prob(1);/obj/item/weapon/storage/pill_bottle/dermaline,
 				prob(1);/obj/item/weapon/storage/pill_bottle/dexalin_plus,
 				prob(1);/obj/item/weapon/storage/pill_bottle/bicaridine,
-				prob(1);/obj/item/weapon/storage/pill_bottle/iron)
+				prob(1);/obj/item/weapon/storage/pill_bottle/blood_regen)
 
 /obj/random/medical/lite
 	name = "Random Medicine"
@@ -276,6 +285,7 @@
 /obj/random/cash/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(12);/obj/item/weapon/spacecash/c1,
+				prob(10);/obj/item/weapon/spacecash/c5,
 				prob(8);/obj/item/weapon/spacecash/c10,
 				prob(4);/obj/item/weapon/spacecash/c20,
 				prob(1);/obj/item/weapon/spacecash/c50,
@@ -538,6 +548,9 @@
 				/obj/item/pizzabox/vegetable,
 				/obj/item/pizzabox/pineapple)
 
+/obj/random/pizzabox/supplypack
+	drop_get_turf = FALSE
+
 /obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
@@ -748,6 +761,7 @@
 				/obj/item/toy/plushie/nukeplushie,
 				/obj/item/toy/plushie/otter,
 				/obj/item/toy/plushie/vox,
+				/obj/item/toy/plushie/shark,
 				pick(list(/obj/item/toy/plushie/borgplushie/drake/sec,
 							/obj/item/toy/plushie/borgplushie/drake/med,
 							/obj/item/toy/plushie/borgplushie/drake/sci,
@@ -1091,3 +1105,32 @@
 				/obj/item/weapon/storage/box/donkpockets/honk,
 				/obj/item/weapon/storage/box/donkpockets/gondola,
 				/obj/item/weapon/storage/box/donkpockets/berry)
+
+/obj/random/bluespace
+	name = "Random Bluespace Item"
+	desc = "This is a random Bluespace item."
+	icon_state = "bluespace"
+
+/obj/random/bluespace/item_to_spawn()
+	return pick(
+		prob(20);/obj/item/weapon/gun/energy/sizegun,
+		prob(20);/obj/item/device/slow_sizegun,
+		prob(20);/obj/item/clothing/accessory/collar/shock/bluespace,
+		prob(4);/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
+		prob(4);/obj/item/device/bodysnatcher,
+		prob(10);/obj/item/clothing/under/hyperfiber,
+		prob(10);/obj/item/clothing/under/hyperfiber/bluespace,
+		prob(20);/obj/item/weapon/implant/sizecontrol,
+		prob(2);/obj/item/weapon/storage/bag/ore/holding,
+		prob(2);/obj/item/weapon/storage/backpack/holding,
+		prob(2);/obj/item/weapon/storage/backpack/holding/duffle,
+		prob(2);/obj/item/weapon/storage/bag/trash/holding,
+		prob(2);/obj/item/weapon/storage/pouch/holding,
+		prob(2);/obj/item/weapon/storage/belt/medical/holding,
+		prob(2);/obj/item/weapon/storage/belt/utility/holding,
+		prob(2);/obj/item/device/perfect_tele,
+		prob(8);/obj/item/capture_crystal/random,
+		prob(10);/obj/item/weapon/bluespace_harpoon,
+		prob(10);/obj/item/weapon/bluespace_crystal,
+		prob(1);/obj/item/clothing/glasses/graviton
+	)

@@ -116,7 +116,7 @@
 
 				@param time: 		time to sleep in deciseconds (1/10th second)
 	*/
-	interpreter.SetProc("sleep", /proc/delay)
+	interpreter.SetProc("sleep", GLOBAL_PROC_REF(delay))
 
 	/*
 		-> Replaces a string with another string
@@ -127,7 +127,7 @@
 				@param replacestring: 	the string to replace the substring with
 
 	*/
-	interpreter.SetProc("replace", /proc/string_replacetext)
+	interpreter.SetProc("replace", GLOBAL_PROC_REF(string_replacetext))
 
 	/*
 		-> Locates an element/substring inside of a list or string
@@ -139,7 +139,7 @@
 				@param end:			the position to end in
 
 	*/
-	interpreter.SetProc("find", /proc/smartfind)
+	interpreter.SetProc("find", GLOBAL_PROC_REF(smartfind))
 
 	/*
 		-> Finds the length of a string or list
@@ -148,42 +148,42 @@
 				@param container: the list or container to measure
 
 	*/
-	interpreter.SetProc("length", /proc/smartlength)
+	interpreter.SetProc("length", GLOBAL_PROC_REF(smartlength))
 
 	/* -- Clone functions, carried from default BYOND procs --- */
 
 	// vector namespace
-	interpreter.SetProc("vector", /proc/n_list)
-	interpreter.SetProc("at", /proc/n_listpos)
-	interpreter.SetProc("copy", /proc/n_listcopy)
-	interpreter.SetProc("push_back", /proc/n_listadd)
-	interpreter.SetProc("remove", /proc/n_listremove)
-	interpreter.SetProc("cut", /proc/n_listcut)
-	interpreter.SetProc("swap", /proc/n_listswap)
-	interpreter.SetProc("insert", /proc/n_listinsert)
+	interpreter.SetProc("vector", GLOBAL_PROC_REF(n_list))
+	interpreter.SetProc("at", GLOBAL_PROC_REF(n_listpos))
+	interpreter.SetProc("copy", GLOBAL_PROC_REF(n_listcopy))
+	interpreter.SetProc("push_back", GLOBAL_PROC_REF(n_listadd))
+	interpreter.SetProc("remove", GLOBAL_PROC_REF(n_listremove))
+	interpreter.SetProc("cut", GLOBAL_PROC_REF(n_listcut))
+	interpreter.SetProc("swap", GLOBAL_PROC_REF(n_listswap))
+	interpreter.SetProc("insert", GLOBAL_PROC_REF(n_listinsert))
 
-	interpreter.SetProc("pick", /proc/n_pick)
-	interpreter.SetProc("prob", /proc/prob_chance)
-	interpreter.SetProc("substr", /proc/docopytext)
+	interpreter.SetProc("pick", GLOBAL_PROC_REF(n_pick))
+	interpreter.SetProc("prob", GLOBAL_PROC_REF(prob_chance))
+	interpreter.SetProc("substr", GLOBAL_PROC_REF(docopytext))
 
 	// Donkie~
 	// Strings
-	interpreter.SetProc("lower", /proc/n_lower)
-	interpreter.SetProc("upper", /proc/n_upper)
-	interpreter.SetProc("explode", /proc/string_explode)
-	interpreter.SetProc("repeat", /proc/n_repeat)
-	interpreter.SetProc("reverse", /proc/n_reverse)
-	interpreter.SetProc("tonum", /proc/n_str2num)
+	interpreter.SetProc("lower", GLOBAL_PROC_REF(n_lower))
+	interpreter.SetProc("upper", GLOBAL_PROC_REF(n_upper))
+	interpreter.SetProc("explode", GLOBAL_PROC_REF(string_explode))
+	interpreter.SetProc("repeat", GLOBAL_PROC_REF(n_repeat))
+	interpreter.SetProc("reverse", GLOBAL_PROC_REF(n_reverse))
+	interpreter.SetProc("tonum", GLOBAL_PROC_REF(n_str2num))
 
 	// Numbers
-	interpreter.SetProc("tostring", /proc/n_num2str)
-	interpreter.SetProc("sqrt", /proc/n_sqrt)
-	interpreter.SetProc("abs", /proc/n_abs)
-	interpreter.SetProc("floor", /proc/n_floor)
-	interpreter.SetProc("ceil", /proc/n_ceil)
-	interpreter.SetProc("round", /proc/n_round)
-	interpreter.SetProc("clamp", /proc/n_clamp)
-	interpreter.SetProc("inrange", /proc/n_inrange)
+	interpreter.SetProc("tostring", GLOBAL_PROC_REF(n_num2str))
+	interpreter.SetProc("sqrt", GLOBAL_PROC_REF(n_sqrt))
+	interpreter.SetProc("abs", GLOBAL_PROC_REF(n_abs))
+	interpreter.SetProc("floor", GLOBAL_PROC_REF(n_floor))
+	interpreter.SetProc("ceil", GLOBAL_PROC_REF(n_ceil))
+	interpreter.SetProc("round", GLOBAL_PROC_REF(n_round))
+	interpreter.SetProc("clamp", GLOBAL_PROC_REF(n_clamp))
+	interpreter.SetProc("inrange", GLOBAL_PROC_REF(n_inrange))
 	// End of Donkie~
 
 
@@ -278,4 +278,3 @@
 	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
 	if(!pass)
 		S.relay_information(newsign, /obj/machinery/telecomms/broadcaster) // send this simple message to broadcasters
-

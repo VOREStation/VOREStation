@@ -139,3 +139,177 @@
 	M.adjust_nutrition(-20 * removed)
 	if(M.weight < 500)
 		M.weight += 0.3
+
+/datum/reagent/polymorph
+	name = "Transforitine"
+	id = "polymorph"
+	description = "A chemical that instantly transforms the consumer into another creature."
+	taste_description = "luck"
+	reagent_state = LIQUID
+	color = "#a754de"
+	scannable = 1
+	var/tf_type = /mob/living/simple_mob/animal/passive/mouse
+	var/tf_possible_types = list(
+		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
+		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
+		"giant rat" = /mob/living/simple_mob/vore/aggressive/rat,
+		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
+		"woof" = /mob/living/simple_mob/vore/woof,
+		"corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
+		"cat" = /mob/living/simple_mob/animal/passive/cat,
+		"chicken" = /mob/living/simple_mob/animal/passive/chicken,
+		"cow" = /mob/living/simple_mob/animal/passive/cow,
+		"lizard" = /mob/living/simple_mob/animal/passive/lizard,
+		"rabbit" = /mob/living/simple_mob/vore/rabbit,
+		"fox" = /mob/living/simple_mob/animal/passive/fox,
+		"fennec" = /mob/living/simple_mob/vore/fennec,
+		"cute fennec" = /mob/living/simple_mob/animal/passive/fennec,
+		"fennix" = /mob/living/simple_mob/vore/fennix,
+		"red panda" = /mob/living/simple_mob/vore/redpanda,
+		"opossum" = /mob/living/simple_mob/animal/passive/opossum,
+		"horse" = /mob/living/simple_mob/vore/horse,
+		"goose" = /mob/living/simple_mob/animal/space/goose,
+		"sheep" = /mob/living/simple_mob/vore/sheep,
+		"space bumblebee" = /mob/living/simple_mob/vore/bee,
+		"space bear" = /mob/living/simple_mob/animal/space/bear,
+		"voracious lizard" = /mob/living/simple_mob/vore/aggressive/dino,
+		"giant frog" = /mob/living/simple_mob/vore/aggressive/frog,
+		"jelly blob" = /mob/living/simple_mob/vore/jelly,
+		"wolf" = /mob/living/simple_mob/vore/wolf,
+		"direwolf" = /mob/living/simple_mob/vore/wolf/direwolf,
+		"great wolf" = /mob/living/simple_mob/vore/greatwolf,
+		"sect queen" = /mob/living/simple_mob/vore/sect_queen,
+		"sect drone" = /mob/living/simple_mob/vore/sect_drone,
+		"panther" = /mob/living/simple_mob/vore/aggressive/panther,
+		"giant snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
+		"deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
+		"otie" = /mob/living/simple_mob/vore/otie,
+		"mutated otie" =/mob/living/simple_mob/vore/otie/feral,
+		"red otie" = /mob/living/simple_mob/vore/otie/red,
+		"defanged xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
+		"catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
+		"monkey" = /mob/living/carbon/human/monkey,
+		"wolpin" = /mob/living/carbon/human/wolpin,
+		"sparra" = /mob/living/carbon/human/sparram,
+		"saru" = /mob/living/carbon/human/sergallingm,
+		"sobaka" = /mob/living/carbon/human/sharkm,
+		"farwa" = /mob/living/carbon/human/farwa,
+		"neaera" = /mob/living/carbon/human/neaera,
+		"stok" = /mob/living/carbon/human/stok,
+		"weretiger" = /mob/living/simple_mob/vore/weretiger,
+		"dragon" = /mob/living/simple_mob/vore/bigdragon/friendly,
+		"leopardmander" = /mob/living/simple_mob/vore/leopardmander
+		)
+
+/datum/reagent/polymorph/affect_blood(var/mob/living/carbon/target, var/removed)
+	var/mob/living/M = target
+	log_debug("polymorph start")
+	if(!istype(M))
+		log_debug("polymorph istype")
+		return
+	if(M.tf_mob_holder)
+		log_debug("polymorph tf_holder")
+		var/mob/living/ourmob = M.tf_mob_holder
+		if(ourmob.ai_holder)
+			log_debug("polymorph ai")
+			var/datum/ai_holder/our_AI = ourmob.ai_holder
+			our_AI.set_stance(STANCE_IDLE)
+		M.tf_mob_holder = null
+		ourmob.ckey = M.ckey
+		var/turf/get_dat_turf = get_turf(target)
+		ourmob.loc = get_dat_turf
+		ourmob.forceMove(get_dat_turf)
+		ourmob.vore_selected = M.vore_selected
+		M.vore_selected = null
+		for(var/obj/belly/B as anything in M.vore_organs)
+			log_debug("polymorph belly")
+			B.loc = ourmob
+			B.forceMove(ourmob)
+			B.owner = ourmob
+			M.vore_organs -= B
+			ourmob.vore_organs += B
+
+		ourmob.Life(1)
+		if(ishuman(M))
+			log_debug("polymorph human")
+			for(var/obj/item/W in M)
+				log_debug("polymorph items")
+				if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif))
+					log_debug("polymorph implants")
+					continue
+				M.drop_from_inventory(W)
+
+		qdel(target)
+		return
+	else
+		log_debug("polymorph else")
+		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
+			log_debug("polymorph dead")
+			return
+		log_debug("polymorph not dead")
+		var/mob/living/new_mob = spawn_mob(M)
+		new_mob.faction = M.faction
+
+		if(new_mob && isliving(new_mob))
+			log_debug("polymorph new_mob")
+			for(var/obj/belly/B as anything in new_mob.vore_organs)
+				log_debug("polymorph new_mob belly")
+				new_mob.vore_organs -= B
+				qdel(B)
+			new_mob.vore_organs = list()
+			new_mob.name = M.name
+			new_mob.real_name = M.real_name
+			for(var/lang in M.languages)
+				new_mob.languages |= lang
+			M.copy_vore_prefs_to_mob(new_mob)
+			new_mob.vore_selected = M.vore_selected
+			if(ishuman(M))
+				log_debug("polymorph ishuman part2")
+				var/mob/living/carbon/human/H = M
+				if(ishuman(new_mob))
+					log_debug("polymorph ishuman(newmob)")
+					var/mob/living/carbon/human/N = new_mob
+					N.gender = H.gender
+					N.identifying_gender = H.identifying_gender
+				else
+					log_debug("polymorph gender else")
+					new_mob.gender = H.gender
+			else
+				log_debug("polymorph gender else 2")
+				new_mob.gender = M.gender
+				if(ishuman(new_mob))
+					var/mob/living/carbon/human/N = new_mob
+					N.identifying_gender = M.gender
+
+			for(var/obj/belly/B as anything in M.vore_organs)
+				B.loc = new_mob
+				B.forceMove(new_mob)
+				B.owner = new_mob
+				M.vore_organs -= B
+				new_mob.vore_organs += B
+
+			new_mob.ckey = M.ckey
+			if(M.ai_holder && new_mob.ai_holder)
+				var/datum/ai_holder/old_AI = M.ai_holder
+				old_AI.set_stance(STANCE_SLEEP)
+				var/datum/ai_holder/new_AI = new_mob.ai_holder
+				new_AI.hostile = old_AI.hostile
+				new_AI.retaliate = old_AI.retaliate
+			M.loc = new_mob
+			M.forceMove(new_mob)
+			new_mob.tf_mob_holder = M
+	target.bloodstr.clear_reagents() //Got to clear all reagents to make sure mobs don't keep spawning.
+	target.ingested.clear_reagents()
+	target.touching.clear_reagents()
+
+/datum/reagent/polymorph/proc/spawn_mob(var/mob/living/target)
+	log_debug("polymorph proc spawn mob")
+	var/choice = pick(tf_possible_types)
+	tf_type = tf_possible_types[choice]
+	log_debug("polymorph [tf_type]")
+	if(!ispath(tf_type))
+		log_debug("polymorph tf_type fail")
+		return
+	log_debug("polymorph tf_type pass")
+	var/new_mob = new tf_type(get_turf(target))
+	return new_mob

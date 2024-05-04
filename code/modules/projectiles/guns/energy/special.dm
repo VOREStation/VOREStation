@@ -76,7 +76,7 @@
 		else
 			to_chat(user, "<span class='notice'>[src] already has a laser.</span>")
 
-	else if(W.is_screwdriver())
+	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(emitter)
 			to_chat(user, "<span class='notice'>You remove the [emitter.name] from the [src].</span>")
 			emitter.loc = get_turf(src.loc)

@@ -10,7 +10,7 @@
 			recharging = null
 
 		if(length(stored_atoms))
-			for(var/weakref/stored_ref in stored_atoms)
+			for(var/datum/weakref/stored_ref in stored_atoms)
 				var/atom/movable/dropping = stored_ref.resolve()
 				if(istype(dropping) && !QDELETED(dropping) && dropping.loc == src)
 					dropping.dropInto(loc)
@@ -67,18 +67,18 @@
 /mob/living/silicon/robot/platform/proc/store_atom(var/atom/movable/storing, var/mob/user)
 	if(istype(storing))
 		storing.forceMove(src)
-		LAZYDISTINCTADD(stored_atoms, weakref(storing))
+		LAZYDISTINCTADD(stored_atoms, WEAKREF(storing))
 
 /mob/living/silicon/robot/platform/proc/drop_stored_atom(var/atom/movable/ejecting, var/mob/user)
 
 	if(!ejecting && length(stored_atoms))
-		var/weakref/stored_ref = stored_atoms[1]
+		var/datum/weakref/stored_ref = stored_atoms[1]
 		if(!istype(stored_ref))
 			LAZYREMOVE(stored_atoms, stored_ref)
 		else
 			ejecting = stored_ref?.resolve()
 
-	LAZYREMOVE(stored_atoms, weakref(ejecting))
+	LAZYREMOVE(stored_atoms, WEAKREF(ejecting))
 	if(istype(ejecting) && !QDELETED(ejecting) && ejecting.loc == src)
 		ejecting.dropInto(loc)
 		if(user == src)
@@ -90,11 +90,11 @@
 	if(isrobot(user) && user.Adjacent(src))
 		return try_remove_cargo(user)
 	return ..()
-	
+
 /mob/living/silicon/robot/platform/proc/try_remove_cargo(var/mob/user)
 	if(!length(stored_atoms) || !istype(user))
 		return FALSE
-	var/weakref/remove_ref = stored_atoms[length(stored_atoms)]
+	var/datum/weakref/remove_ref = stored_atoms[length(stored_atoms)]
 	var/atom/movable/removing = remove_ref?.resolve()
 	if(!istype(removing) || QDELETED(removing) || removing.loc != src)
 		LAZYREMOVE(stored_atoms, remove_ref)

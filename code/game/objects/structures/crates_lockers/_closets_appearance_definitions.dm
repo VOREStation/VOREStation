@@ -1441,6 +1441,10 @@
 	decals = null
 	color = COLOR_OFF_WHITE
 
+/decl/closet_appearance/wall_double/wooden
+	decals = null
+	color = WOOD_COLOR_RICH
+
 /decl/closet_appearance/wall_double/medical
 	decals = null
 	color = COLOR_OFF_WHITE
@@ -1577,6 +1581,15 @@
 
 /decl/closet_appearance/wall_double/generic_civ
 	color = COLOR_DARK_BLUE_GRAY
+
+/decl/closet_appearance/wall_double/casino
+	color = COLOR_GRAY20
+	decals = null
+	extra_decals = list(
+		"stripe_outer" = COLOR_GOLD,
+		"stripe_inner" = COLOR_ORANGE,
+		"thaler" = COLOR_GREEN
+	)
 
 // Carts
 /decl/closet_appearance/cart

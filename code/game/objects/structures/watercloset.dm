@@ -44,7 +44,7 @@
 	icon_state = "[initial(icon_state)][open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(I.is_crowbar())
+	if(I.has_tool_quality(TOOL_CROWBAR))
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		playsound(src, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(do_after(user, 30))
@@ -124,7 +124,6 @@
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 
-
 /obj/structure/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal."
@@ -201,7 +200,7 @@
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		var/newtemp = tgui_input_list(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", temperature_settings)
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
 		playsound(src, I.usesound, 50, 1)
@@ -297,6 +296,91 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
+
+//Admin spawn duckies
+
+/obj/item/weapon/bikehorn/rubberducky/red
+	name = "rubber ducky"
+	desc = "From the depths of hell it arose, feathers glistening with crimson, a honk that struck fear into all men."	//thanks doohl
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_red"
+	honk_sound = 'sound/effects/adminhelp.ogg'
+	var/honk_count = 0
+
+/obj/item/weapon/bikehorn/rubberducky/red/attack_self(mob/user as mob)
+	if(honk_count >= 3)
+		var/turf/epicenter = src.loc
+		explosion(epicenter, 0, 0, 1, 3)
+		qdel(src)
+		return
+	else if(spam_flag == 0)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		src.add_fingerprint(user)
+		honk_count ++
+		spawn(20)
+			spam_flag = 0
+	return
+
+/obj/item/weapon/bikehorn/rubberducky/blue
+	name = "rubber ducky"
+	desc = "The see me rollin', they hatin'."	//thanks doohl
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_blue"
+	honk_sound = 'sound/effects/bubbles.ogg'
+	var/honk_count = 0
+
+/obj/item/weapon/bikehorn/rubberducky/blue/attack_self(mob/user as mob)
+	if(spam_flag == 0)
+		var/turf/simulated/whereweare = get_turf(src)
+		whereweare.wet_floor(2)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		src.add_fingerprint(user)
+		spawn(20)
+			spam_flag = 0
+	return
+
+/obj/item/weapon/bikehorn/rubberducky/white
+	name = "rubber ducky"
+	desc = "It's so full of energy, such a happy little guy, I just wanna give him a squeeze."	//thanks doohl
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_white"
+	honk_sound = 'sound/effects/lightningshock.ogg'
+	var/honk_count = 0
+
+/obj/item/weapon/bikehorn/rubberducky/white/attack_self(mob/user as mob)
+	if(spam_flag == 0)
+		lightning_strike(get_turf(src), 1)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		src.add_fingerprint(user)
+		spawn(20)
+			spam_flag = 0 //leaving this in incase it doesn't qdel somehow
+		qdel(src)
+	return
+
+/obj/item/weapon/grenade/anti_photon/rubberducky/black
+	desc = "Good work NanoTrasen Employee, you struck fear within the Syndicate."
+	name = "rubber ducky"
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_black"
+	det_time = 20
+
+/obj/item/weapon/grenade/anti_photon/rubberducky/black/detonate()
+	playsound(src, 'sound/voice/quack.ogg', 50, 1, 5)
+	set_light(10, -10, "#FFFFFF")
+
+	var/extra_delay = rand(0,90)
+
+	spawn(extra_delay)
+		spawn(200)
+			if(prob(10+extra_delay))
+				set_light(10, 10, "#[num2hex(rand(64,255))][num2hex(rand(64,255))][num2hex(rand(64,255))]")
+		spawn(210)
+			..()
+			playsound(src, 'sound/voice/quack.ogg', 50, 1, 5)
+			qdel(src)
 
 /obj/structure/sink
 	name = "sink"

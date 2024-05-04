@@ -40,7 +40,9 @@
 
 	say_list_type = /datum/say_list/mouse
 
-	var/body_color //brown, gray and white, leave blank for random
+	hasthermals = FALSE
+
+	var/body_color //brown, gray, white and black, leave blank for random
 
 /mob/living/simple_mob/animal/passive/mouse/New()
 	..()
@@ -53,7 +55,7 @@
 	real_name = name
 
 	if(!body_color)
-		body_color = pick( list("brown","gray","white") )
+		body_color = pick( list("brown","gray","white","black") )
 	icon_state = "mouse_[body_color]"
 	item_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
@@ -79,7 +81,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M.visible_message("<font color='blue'>\icon[src][bicon(src)] Squeek!</font>")
+			M.visible_message(span_blue("[icon2html(src,viewers(src))] Squeek!"))
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 

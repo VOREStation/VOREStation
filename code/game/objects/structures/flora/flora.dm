@@ -300,7 +300,7 @@
 		user.drop_from_inventory(I, src)
 		I.forceMove(src)
 		stored_item = I
-		src.visible_message("\icon[src][bicon(src)] \icon[I][bicon(I)] [user] places [I] into [src].")
+		src.visible_message("[icon2html(src,viewers(src))] [icon2html(I,viewers(src))] [user] places [I] into [src].")
 		return
 	else
 		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
@@ -311,7 +311,7 @@
 		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")
 	else
 		if(do_after(user, 10))
-			to_chat(user, "<span class='filter_notice'>You find \icon[stored_item][bicon(stored_item)] [stored_item] in [src]!</span>")
+			to_chat(user, "<span class='filter_notice'>You find [icon2html(stored_item, user.client)] [stored_item] in [src]!</span>")
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 	..()
@@ -640,3 +640,47 @@
 
 /obj/structure/flora/sif/frostbelle/get_harvestable_desc()
 	return "<span class='notice'>\The [src] seems to be budding.</span>"
+
+//Start of underwater plants
+
+/obj/structure/flora/underwater
+	name = "underwater plant"
+	desc = "A plant that thrives deep under water."
+	icon = 'icons/obj/flora/underwaterflora.dmi'
+	icon_state = "plant-1"
+
+/obj/structure/flora/underwater/plant1
+	icon_state = "plant-1"
+
+/obj/structure/flora/underwater/plant2
+	icon_state = "plant-2"
+
+/obj/structure/flora/underwater/plant3
+	icon_state = "plant-3"
+
+/obj/structure/flora/underwater/plant4
+	icon_state = "plant-4"
+
+/obj/structure/flora/underwater/plant5
+	icon_state = "plant-5"
+
+/obj/structure/flora/underwater/seaweed1
+	icon_state = "seaweed-1"
+
+/obj/structure/flora/underwater/seaweed2
+	icon_state = "seaweed-2"
+
+/obj/structure/flora/underwater/seaweed3
+	icon_state = "seaweed-3"
+
+/obj/structure/flora/underwater/grass1
+	icon_state = "grass-1"
+
+/obj/structure/flora/underwater/grass2
+	icon_state = "grass-2"
+
+/obj/structure/flora/underwater/grass3
+	icon_state = "grass-3"
+
+/obj/structure/flora/underwater/grass4
+	icon_state = "grass-4"

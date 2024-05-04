@@ -35,7 +35,7 @@
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		add_fingerprint(user)
 		disable = !disable
 		if(disable)
@@ -107,7 +107,7 @@
 			flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		add_fingerprint(user)
 		anchored = !anchored
 
@@ -115,7 +115,7 @@
 			user.show_message(text("<span class='warning'>[src] can now be moved.</span>"))
 			cut_overlays()
 			unsense_proximity(callback = /atom/proc/HasProximity)
-			
+
 		else if(anchored)
 			user.show_message(text("<span class='warning'>[src] is now secured.</span>"))
 			add_overlay("[base_state]-s")

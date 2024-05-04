@@ -6,6 +6,7 @@
 	var/sensorpref = 5			//Set character's suit sensor level
 	var/capture_crystal = 1	//Whether or not someone is able to be caught with capture crystals
 	var/auto_backup_implant = FALSE //Whether someone starts with a backup implant or not.
+	var/borg_petting = TRUE //Whether someone can be petted as a borg or not.
 
 	var/job_talon_high = 0
 	var/job_talon_med = 0
@@ -87,6 +88,21 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TWhisubtleVis") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_ghost_privacyvision()
+	set name = "Toggle Ghost Private Eyes/ears"
+	set category = "Preferences"
+	set desc = "Toggles your ability to see subtles/whispers. Overrides admin status. Respects Ghost Privacy"
+
+	var/pref_path = /datum/client_preference/ghost_see_whisubtle
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "As a ghost, you will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear subtles/whispers made by players.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TGhostSeeWhisSubtle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_capture_crystal()
 	set name = "Toggle Catchable"

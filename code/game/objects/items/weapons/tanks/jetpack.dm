@@ -104,6 +104,16 @@
 	. = ..()
 	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
+/obj/item/weapon/tank/jetpack/breaker
+	name = "CSC industrial jetpack"
+	desc = "A JetFast EVA thruster pack. A warning label clearly states \'WARNING: CONTAINS VOLATILE REACTION MASS TOXIC TO MOST LIFEFORMS. NOT TO BE USED WITH CLOSED CYCLE BREATHING SYSTEMS.\'"
+	icon_state = "jetpack-breaker"
+	item_state_slots = list(slot_r_hand_str = "jetpack", slot_l_hand_str = "jetpack")
+
+/obj/item/weapon/tank/jetpack/breaker/Initialize()
+	. = ..()
+	air_contents.adjust_gas("volatile_fuel", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+
 /obj/item/weapon/tank/jetpack/carbondioxide
 	name = "jetpack (carbon dioxide)"
 	desc = "A tank of compressed carbon dioxide for use as propulsion in zero-gravity areas. Painted black to indicate that it should not be used as a source for internals."

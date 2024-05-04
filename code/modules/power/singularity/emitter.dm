@@ -30,7 +30,6 @@
 
 	var/integrity = 80
 
-
 /obj/machinery/power/emitter/verb/rotate_clockwise()
 	set name = "Rotate Emitter Clockwise"
 	set category = "Object"
@@ -40,6 +39,17 @@
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
+	return 1
+
+/obj/machinery/power/emitter/verb/rotate_counterclockwise()
+	set name = "Rotate Emitter Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is fastened to the floor!")
+		return 0
+	src.set_dir(turn(src.dir, 90))
 	return 1
 
 /obj/machinery/power/emitter/Initialize()
@@ -148,7 +158,7 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		if(active)
 			to_chat(user, "Turn off [src] first.")
 			return
@@ -173,8 +183,8 @@
 		update_icon() // VOREStation Add
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(active)
 			to_chat(user, "Turn off [src] first.")
 			return
@@ -272,6 +282,13 @@
 
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
+	switch(state)
+		if(0)
+			. += "<span class='warning'>It is not secured in place!</span>"
+		if(1)
+			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
+		if(2)
+			. += "<span class='notice'>It has been bolted down securely and welded down into place.</span>"
 	var/integrity_percentage = round((integrity / initial(integrity)) * 100)
 	switch(integrity_percentage)
 		if(0 to 30)
@@ -279,7 +296,7 @@
 		if(31 to 70)
 			. += "<span class='danger'>It is damaged.</span>"
 		if(77 to 99)
-			. += "<span class='warning'It is slightly damaged.</span>"
+			. += "<span class='warning'>It is slightly damaged.</span>"
 
 //R-UST port
 /obj/machinery/power/emitter/proc/get_initial_fire_delay()

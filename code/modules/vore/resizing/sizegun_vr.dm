@@ -25,11 +25,20 @@
 
 /obj/item/weapon/gun/energy/sizegun/New()
 	..()
-	verbs += .proc/select_size
+	verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
+	verbs += /obj/item/weapon/gun/energy/sizegun/proc/spin_dial
 
 /obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
 	select_size()
+
+/obj/item/weapon/gun/energy/sizegun/proc/spin_dial()
+	set name = "Spin Size Dial"
+	set category = "Object"
+	set src in view(1)
+
+	size_set_to = (rand(25,200)) /100
+	usr.visible_message("<span class='warning'>\The [usr] spins the size dial to a random value!</span>","<span class='notice'>You spin the dial to a random value!</span>")
 
 /obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
 	. = ..()
@@ -155,8 +164,8 @@
 				M.visible_message("<span class='warning'>\The [H]'s bracelet flashes and absorbs the beam!</span>","<span class='notice'>Your bracelet flashes and absorbs the beam!</span>")
 				return
 		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
-			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
-		M.updateicon()
+			to_chat(M, span_blue("The beam fires into your body, changing your size!"))
+		M.update_icon()
 		return
 	return 1
 
@@ -175,8 +184,8 @@
 
 		M.resize(set_size, uncapped = TRUE, ignore_prefs = TRUE) // Always ignores prefs, caution is advisable
 
-		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
-		M.updateicon()
+		to_chat(M, span_blue("The beam fires into your body, changing your size!"))
+		M.update_icon()
 		return
 	return 1
 

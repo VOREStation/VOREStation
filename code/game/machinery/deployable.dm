@@ -47,7 +47,7 @@ Deployable items
 				visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
 				return
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(health < maxhealth)
 			health = maxhealth
 			emagged = 0

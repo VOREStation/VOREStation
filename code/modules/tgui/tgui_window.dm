@@ -1,4 +1,4 @@
-/**
+/*!
  * Copyright (c) 2020 Aleksej Komarov
  * SPDX-License-Identifier: MIT
  */
@@ -24,6 +24,19 @@
 	var/initial_inline_html
 	var/initial_inline_js
 	var/initial_inline_css
+	var/mouse_event_macro_set = FALSE
+
+	/**
+	 * Static list used to map in macros that will then emit execute events to the tgui window
+	 * A small disclaimer though I'm no tech wiz: I don't think it's possible to map in right or middle
+	 * clicks in the current state, as they're keywords rather than modifiers.
+	 */
+	var/static/list/byondToTguiEventMap = list(
+		"MouseDown" = "byond/mousedown",
+		"MouseUp" = "byond/mouseup",
+		"Ctrl" = "byond/ctrldown",
+		"Ctrl+UP" = "byond/ctrlup",
+	)
 
 /**
  * public
@@ -164,8 +177,8 @@
  * Acquire the window lock. Pool will not be able to provide this window
  * to other UIs for the duration of the lock.
  *
- * Can be given an optional tgui datum, which will hook its on_message
- * callback into the message stream.
+ * Can be given an optional tgui datum, which will be automatically
+ * subscribed to incoming messages via the on_message proc.
  *
  * optional ui /datum/tgui
  */
@@ -174,6 +187,8 @@
 	locked_by = ui
 
 /**
+ * public
+ *
  * Release the window lock.
  */
 /datum/tgui_window/proc/release_lock()
@@ -215,6 +230,8 @@
 /datum/tgui_window/proc/close(can_be_suspended = TRUE, logout = FALSE)
 	if(!client)
 		return
+	if(mouse_event_macro_set)
+		remove_mouse_macro()
 	if(can_be_suspended && can_be_suspended())
 		#ifdef TGUI_DEBUGGING
 		log_tgui(client, "[id]/close: suspending")
@@ -364,7 +381,7 @@
 	// If not locked, handle these message types
 	switch(type)
 		if("ping")
-			send_message("pingReply", payload)
+			send_message("ping/reply", payload)
 		if("suspend")
 			close(can_be_suspended = TRUE)
 		if("close")
@@ -377,3 +394,37 @@
 			// Resend the assets
 			for(var/asset in sent_assets)
 				send_asset(asset)
+		if("chat/resend")
+			SSchat.handle_resend(client, payload)
+
+/datum/tgui_window/vv_edit_var(var_name, var_value)
+	return var_name != NAMEOF(src, id) && ..()
+
+
+/datum/tgui_window/proc/set_mouse_macro()
+	if(mouse_event_macro_set)
+		return
+
+	for(var/mouseMacro in byondToTguiEventMap)
+		var/command_template = ".output CONTROL PAYLOAD"
+		var/event_message = TGUI_CREATE_MESSAGE(byondToTguiEventMap[mouseMacro], null)
+		var target_control = is_browser \
+			? "[id]:update" \
+			: "[id].browser:update"
+		var/with_id = replacetext(command_template, "CONTROL", target_control)
+		var/full_command = replacetext(with_id, "PAYLOAD", event_message)
+
+		var/list/params = list()
+		params["parent"] = "default" //Technically this is external to tgui but whatever
+		params["name"] = mouseMacro
+		params["command"] = full_command
+
+		winset(client, "[mouseMacro]Window[id]Macro", params)
+	mouse_event_macro_set = TRUE
+
+/datum/tgui_window/proc/remove_mouse_macro()
+	if(!mouse_event_macro_set)
+		stack_trace("Unsetting mouse macro on tgui window that has none")
+	for(var/mouseMacro in byondToTguiEventMap)
+		winset(client, null, "[mouseMacro]Window[id]Macro.parent=null")
+	mouse_event_macro_set = FALSE

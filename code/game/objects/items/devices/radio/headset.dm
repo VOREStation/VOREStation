@@ -224,13 +224,13 @@
 
 /obj/item/device/radio/headset/heads/hos
 	name = "head of security's headset"
-	desc = "The headset of the hardass who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
 /obj/item/device/radio/headset/heads/hos/alt
 	name = "head of security's bowman headset"
-	desc = "The headset of the hardass who protects your worthless lifes."
+	desc = "The headset of the hardass who protects your worthless lives."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
@@ -336,10 +336,10 @@
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
-	if(!(W.is_screwdriver() || istype(W, /obj/item/device/encryptionkey)))
+	if(!(W.has_tool_quality(TOOL_SCREWDRIVER) || istype(W, /obj/item/device/encryptionkey)))
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(keyslot1 || keyslot2)
 
 

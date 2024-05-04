@@ -1,5 +1,5 @@
 import { BooleanLike } from 'common/react';
-import { Fragment } from 'inferno';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -12,8 +12,8 @@ type Data = {
   suspension_field: BooleanLike;
 };
 
-export const XenoarchSuspension = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const XenoarchSuspension = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { cell, cellCharge, cellMaxCharge, locked, suspension_field } = data;
 
@@ -23,12 +23,21 @@ export const XenoarchSuspension = (props, context) => {
         <Section
           title={'Triple-phase S.F.G. MK III "Reliant"'}
           buttons={
-            <Button icon={locked ? 'lock' : 'lock-open'} selected={!locked} onClick={() => act('lock')}>
+            <Button
+              icon={locked ? 'lock' : 'lock-open'}
+              selected={!locked}
+              onClick={() => act('lock')}
+            >
               {locked ? 'Locked' : 'Unlocked'}
             </Button>
-          }>
-          {(locked && <Box color="bad">This interface is locked. Swipe an ID card to unlock it.</Box>) || (
-            <Fragment>
+          }
+        >
+          {(locked && (
+            <Box color="bad">
+              This interface is locked. Swipe an ID card to unlock it.
+            </Box>
+          )) || (
+            <>
               <LabeledList>
                 <LabeledList.Item label="Cell Charge">
                   {(cell && (
@@ -44,10 +53,18 @@ export const XenoarchSuspension = (props, context) => {
                   )) || <Box color="bad">No cell inserted.</Box>}
                 </LabeledList.Item>
               </LabeledList>
-              <Button fluid mt={1} icon="meteor" selected={suspension_field} onClick={() => act('toggle_field')}>
-                {suspension_field ? 'Disengage Suspension Field' : 'Engage Suspension Field'}
+              <Button
+                fluid
+                mt={1}
+                icon="meteor"
+                selected={suspension_field}
+                onClick={() => act('toggle_field')}
+              >
+                {suspension_field
+                  ? 'Disengage Suspension Field'
+                  : 'Engage Suspension Field'}
               </Button>
-            </Fragment>
+            </>
           )}
         </Section>
       </Window.Content>

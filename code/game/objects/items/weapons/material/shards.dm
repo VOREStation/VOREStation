@@ -47,10 +47,10 @@
 		alpha = 255
 
 /obj/item/weapon/material/shard/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool) && material.shard_can_repair)
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER) && material.shard_can_repair)
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		if(WT.remove_fuel(0, user))
-			material.place_sheet(loc)
+			material.place_sheet(loc, 1)
 			qdel(src)
 			return
 	return ..()

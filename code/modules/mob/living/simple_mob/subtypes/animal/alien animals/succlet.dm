@@ -121,7 +121,8 @@
 			for(var/turf/T in view(world.view, get_turf(src)))	//No, so let's pick a turf to travel to
 				if(isturf(T))
 					mylist |= T
-			succlet_move(pick(mylist))
+			if(mylist.len)
+				succlet_move(pick(mylist))
 	succlet_last_health = health	//The succlet will try to move if it has taken damage
 
 /mob/living/simple_mob/vore/alienanimals/succlet/death(gibbed, deathmessage = "shrieks in agony as it is eradicated from reality.")

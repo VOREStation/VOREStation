@@ -159,11 +159,17 @@
 	update_icon(1)
 
 /obj/item/weapon/rig/Destroy()
-	for(var/obj/item/piece in list(gloves,boots,helmet,chest))
+	for(var/obj/item/piece in list(gloves,boots,helmet,chest,cell,air_supply))
 		var/mob/living/M = piece.loc
 		if(istype(M))
 			M.drop_from_inventory(piece)
 		qdel(piece)
+	gloves = null
+	boots = null
+	helmet = null
+	chest = null
+	cell = null
+	air_supply = null
 	STOP_PROCESSING(SSobj, src)
 	qdel(wires)
 	wires = null
@@ -171,13 +177,13 @@
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/rig/examine()
+/obj/item/weapon/rig/examine(mob/user)
 	. = ..()
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			. += "\icon[piece][bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+			. += "[icon2html(piece, user.client)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
 
 	if(src.loc == usr)
 		. += "The access panel is [locked? "locked" : "unlocked"]."
@@ -604,6 +610,7 @@
 			species_icon = sprite_sheets[wearer.species.get_bodytype(wearer)]
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
+	chest.cut_overlays()
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)

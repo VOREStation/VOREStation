@@ -20,6 +20,7 @@
 	var/selects_bodytype = SELECTS_BODYTYPE_FALSE // Allows the species to choose from body types like custom species can, affecting suit fitting and etcetera as you would expect.
 
 	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
+	var/bloodsucker_controlmode = "always loud" //Allows selecting between bloodsucker control modes. Always Loud corresponds to original implementation.
 
 	var/is_weaver = FALSE
 	var/silk_production = FALSE
@@ -37,7 +38,12 @@
 	var/micro_size_mod = 0		// How different is our size for interactions that involve us being small?
 	var/macro_size_mod = 0		// How different is our size for interactions that involve us being big?
 	var/digestion_nutrition_modifier = 1
+	var/center_offset = 0.5
+	var/can_climb = FALSE
+	var/climbing_delay = 1.5	// We climb with a quarter delay
 
+	var/list/food_preference = list() //RS edit
+	var/food_preference_bonus = 0
 
 /datum/species/proc/give_numbing_bite() //Holy SHIT this is hacky, but it works. Updating a mob's attacks mid game is insane.
 	unarmed_attacks = list()
@@ -47,16 +53,17 @@
 
 /datum/species/create_organs(var/mob/living/carbon/human/H)
 	if(H.nif)
-		var/type = H.nif.type
+		/*var/type = H.nif.type
 		var/durability = H.nif.durability
 		var/list/nifsofts = H.nif.nifsofts
-		var/list/nif_savedata = H.nif.save_data.Copy()
+		var/list/nif_savedata = H.nif.save_data.Copy()*/
 		..()
-
-		var/obj/item/device/nif/nif = new type(H,durability,nif_savedata)
-		nif.nifsofts = nifsofts
+		H.nif = null //A previous call during the rejuvenation path deleted it, so we no longer should have it here
+		/*var/obj/item/device/nif/nif = new type(H,durability,nif_savedata)
+		nif.nifsofts = nifsofts*/
 	else
 		..()
+
 /datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
 	ASSERT(src)
 	ASSERT(istype(H))
@@ -94,20 +101,15 @@
 
 	return new_copy
 
+//We REALLY don't need to go through every variable. Doing so makes this lag like hell on 515
 /datum/species/proc/copy_variables(var/datum/species/S, var/list/whitelist)
 	//List of variables to ignore, trying to copy type will runtime.
-	var/list/blacklist = list("type", "loc", "client", "ckey")
+	//var/list/blacklist = list("type", "loc", "client", "ckey")
 	//Makes thorough copy of species datum.
-	for(var/i in vars)
+	for(var/i in whitelist)
 		if(!(i in S.vars)) //Don't copy incompatible vars.
 			continue
 		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
-			if(i in blacklist)
-				continue
-			if(whitelist)//If whitelist is provided, only vars in the list will be copied.
-				if(i in whitelist)
-					S.vars[i] = vars[i]
-				continue
 			S.vars[i] = vars[i]
 
 /datum/species/get_bodytype()

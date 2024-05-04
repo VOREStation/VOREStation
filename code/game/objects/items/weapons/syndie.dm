@@ -50,7 +50,7 @@
 	icon_state = "c-4[size]_1"
 	playsound(src, 'sound/weapons/armbomb.ogg', 75, 1)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("\icon[src][bicon(src)] <span class = 'warning'> The [src.name] beeps! </span>")
+		O.show_message("[icon2html(src, O.client)] <span class = 'warning'> The [src.name] beeps! </span>")
 	sleep(50)
 	explosion(get_turf(src), devastate, heavy_impact, light_impact, flash_range)
 	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
@@ -106,7 +106,7 @@
 
 
 /obj/item/weapon/flame/lighter/zippo/c4detonator/attackby(obj/item/weapon/W, mob/user as mob)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		detonator_mode = !detonator_mode
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You unscrew the top panel of \the [src] revealing a button.</span>")

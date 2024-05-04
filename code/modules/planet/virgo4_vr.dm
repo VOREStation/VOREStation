@@ -588,7 +588,6 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/confetti
 	name = "confetti"
-	icon = 'icons/effects/weather_vr.dmi'
 	icon_state = "confetti"
 
 	transition_chances = list(

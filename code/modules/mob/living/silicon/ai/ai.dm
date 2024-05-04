@@ -212,6 +212,8 @@ var/list/ai_verbs_default = list(
 		var/meta_info = client.prefs.metadata
 		if (meta_info)
 			ooc_notes = meta_info
+			ooc_notes_likes = client.prefs.metadata_likes
+			ooc_notes_dislikes = client.prefs.metadata_dislikes
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
@@ -276,7 +278,7 @@ var/list/ai_verbs_default = list(
 			selected_sprite = new/datum/ai_icon("Custom", "[src.ckey]-ai", "4", "[ckey]-ai-crash", "#FFFFFF", "#FFFFFF", "#FFFFFF")
 		else
 			selected_sprite = default_ai_icon
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/ai/pointed(atom/A as mob|obj|turf in view())
 	set popup_menu = 0
@@ -351,7 +353,7 @@ var/list/ai_verbs_default = list(
 	if (!custom_sprite)
 		var/new_sprite = tgui_input_list(usr, "Select an icon!", "AI", ai_icons)
 		if(new_sprite) selected_sprite = new_sprite
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/ai/var/message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_announcement()
@@ -473,7 +475,7 @@ var/list/ai_verbs_default = list(
 		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
-			to_chat(src, "<span class='filter_warning'><font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font></span>")
+			to_chat(src, "<span class='filter_warning'>[span_red("System error. Cannot locate [html_decode(href_list["trackname"])].")]</span>")
 		return
 
 	if(href_list["trackbot"])
@@ -761,7 +763,7 @@ var/list/ai_verbs_default = list(
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(user == deployed_shell)
 			to_chat(user, "<span class='notice'>The shell's subsystems resist your efforts to tamper with your bolts.</span>")
 			return
@@ -884,7 +886,7 @@ var/list/ai_verbs_default = list(
 		return
 	..()
 
-/mob/living/silicon/ai/updateicon()
+/mob/living/silicon/ai/update_icon()
 	if(!selected_sprite) selected_sprite = default_ai_icon
 
 	if(stat == DEAD)

@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -11,13 +12,13 @@ type Data = {
   current_emotion: string;
 };
 
-export const pAIInterface = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const pAIInterface = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { bought, not_bought, available_ram, emotions, current_emotion } = data;
 
   return (
-    <Window width={450} height={600} resizable>
+    <Window width={450} height={600}>
       <Window.Content scrollable>
         <Section title="Emotion">
           {emotions.map((emote) => (
@@ -25,7 +26,7 @@ export const pAIInterface = (props, context) => {
               key={emote.id}
               content={emote.name}
               selected={emote.id === current_emotion}
-              onClick={() => act('image', { 'image': emote.id })}
+              onClick={() => act('image', { image: emote.id })}
             />
           ))}
         </Section>
@@ -37,7 +38,7 @@ export const pAIInterface = (props, context) => {
                   key={app.id}
                   content={app.name}
                   selected={app.on}
-                  onClick={() => act('software', { 'software': app.id })}
+                  onClick={() => act('software', { software: app.id })}
                 />
               ))}
             </LabeledList.Item>
@@ -48,7 +49,7 @@ export const pAIInterface = (props, context) => {
                   key={app.id}
                   content={app.name + ' (' + app.ram + ')'}
                   disabled={app.ram > available_ram}
-                  onClick={() => act('purchase', { 'purchase': app.id })}
+                  onClick={() => act('purchase', { purchase: app.id })}
                 />
               ))}
             </LabeledList.Item>

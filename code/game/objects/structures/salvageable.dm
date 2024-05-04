@@ -1,5 +1,5 @@
 /obj/structure/salvageable
-	name = "broken macninery"
+	name = "broken machinery"
 	desc = "Broken beyond repair, but looks like you can still salvage something from this if you had a prying implement."
 	icon = 'icons/obj/salvageable.dmi'
 	density = TRUE
@@ -14,7 +14,7 @@
 	return
 
 /obj/structure/salvageable/attackby(obj/item/I, mob/user)
-	if(I.is_crowbar())
+	if(I.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, I.usesound, 50, 1)
 		var/actual_time = I.toolspeed * 170
 		user.visible_message( \

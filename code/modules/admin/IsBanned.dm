@@ -7,13 +7,13 @@
 	//Guest Checking
 	if(!config.guests_allowed && IsGuestKey(key))
 		log_adminwarn("Failed Login: [key] - Guests not allowed")
-		message_admins("<font color='blue'>Failed Login: [key] - Guests not allowed</font>")
+		message_admins(span_blue("Failed Login: [key] - Guests not allowed"))
 		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
 
 	//check if the IP address is a known TOR node
 	if(config && config.ToRban && ToRban_isbanned(address))
 		log_adminwarn("Failed Login: [src] - Banned: ToR")
-		message_admins("<font color='blue'>Failed Login: [src] - Banned: ToR</font>")
+		message_admins(span_blue("Failed Login: [src] - Banned: ToR"))
 		//ban their computer_id and ckey for posterity
 		AddBan(ckey(key), computer_id, "Use of ToR", "Automated Ban", 0, 0)
 		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [config.banappeals]")
@@ -25,7 +25,7 @@
 		. = CheckBan( ckey(key), computer_id, address )
 		if(.)
 			log_adminwarn("Failed Login: [key] [computer_id] [address] - Banned [.["reason"]]")
-			message_admins("<font color='blue'>Failed Login: [key] id:[computer_id] ip:[address] - Banned [.["reason"]]</font>")
+			message_admins(span_blue("Failed Login: [key] id:[computer_id] ip:[address] - Banned [.["reason"]]"))
 			return .
 
 		return ..()	//default pager ban stuff
@@ -46,11 +46,15 @@
 		var/cidquery = ""
 		if(address)
 			failedip = 0
-			ipquery = " OR ip = '[address]' "
+			ipquery = " OR ip = '[sanitizeSQL(address)]' "
 
 		if(computer_id)
 			failedcid = 0
-			cidquery = " OR computerid = '[computer_id]' "
+			if(isnum(text2num(computer_id)))
+				cidquery = " OR computerid = '[computer_id]' "
+			else
+				log_misc("Key [ckeytext] cid not checked. Non-Numeric: [computer_id]")
+				failedcid = 1
 
 		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
 
@@ -81,4 +85,3 @@
 			message_admins("[key] has logged in with a blank ip in the ban check.")
 		return ..()	//default pager ban stuff
 #endif
-

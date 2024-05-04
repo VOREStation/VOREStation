@@ -188,6 +188,19 @@
 		qdel(overlay_layer)
 		overlay_layer = null
 
+/obj/machinery/light/lamppost
+	icon = 'icons/obj/lighting32x64.dmi'
+	icon_state = "lamppost1"
+	base_state = "lamppost"
+	desc = "A tall lampost that extends over an area"
+	light_type = /obj/item/weapon/light/bulb
+	shows_alerts = FALSE
+	anchored = TRUE
+	plane = ABOVE_MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+	construct_type = null
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
+	overlay_above_everything = TRUE
 
 /*
 /obj/machinery/light_construct/bigfloorlamp
@@ -209,3 +222,27 @@
 		if(3)
 			icon_state = "big_flamp-empty"
 */
+
+/obj/item/weapon/light/bulb/torch
+	brightness_range = 6
+	color = "#fabf87"
+	brightness_color = "#fabf87"
+	init_brightness_range = 6
+
+/obj/machinery/light/small/torch
+	icon = 'icons/obj/lighting_vr.dmi'
+	name = "wall torch"
+	icon_state = "torch1"
+	base_state = "torch"
+	desc = "A small torch held in a wall sconce."
+	light_type = /obj/item/weapon/light/bulb/torch
+	shows_alerts = FALSE
+	anchored = TRUE
+	plane = ABOVE_MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+	construct_type = null
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
+	overlay_above_everything = TRUE
+
+/obj/machinery/light/small/torch/attackby()
+	return

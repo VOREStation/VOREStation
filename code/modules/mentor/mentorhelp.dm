@@ -224,7 +224,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 	AddInteraction("<font color='purple'>Reopened by [usr.ckey]</font>")
 	if(initiator)
-		to_chat(initiator, "<span class='filter_adminlog'><font color='purple'>Ticket [TicketHref("#[id]")] was reopened by [usr.ckey].</font></span>")
+		to_chat(initiator, "<span class='filter_adminlog'>[span_purple("Ticket [TicketHref("#[id]")] was reopened by [usr.ckey].")]</span>")
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [usr.ckey].</span>"
 	message_mentors(msg)
 	log_admin(msg)
@@ -249,9 +249,9 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	state = AHELP_RESOLVED
 	GLOB.mhelp_tickets.ListInsert(src)
 
-	AddInteraction("<span class='filter_adminlog'><font color='green'>Resolved by [usr.ckey].</font></span>")
+	AddInteraction("<span class='filter_adminlog'>[span_green("Resolved by [usr.ckey].")]</span>")
 	if(initiator)
-		to_chat(initiator, "<span class='filter_adminlog'><font color='green'>Ticket [TicketHref("#[id]")] was marked resolved by [usr.ckey].</font></span>")
+		to_chat(initiator, "<span class='filter_adminlog'>[span_green("Ticket [TicketHref("#[id]")] was marked resolved by [usr.ckey].")]</span>")
 	if(!silent)
 		feedback_inc("mhelp_resolve")
 		var/msg = "Ticket [TicketHref("#[id]")] resolved by [usr.ckey]"
@@ -428,6 +428,25 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 	if(!msg)
 		return
+
+	// Making sure there's actually a mentor or admin who can respond.
+	var/list/admins = get_admin_counts()
+	var/list/activeAdmins = admins["present"]
+	var/list/mentors = GLOB.mentors
+	if(!mentors.len && !activeAdmins.len)
+		var/choice = tgui_alert(usr, "There are no active admins or mentors online. Would you like to make an ahelp instead, so that staff is notified of your issue? \
+		Alternatively, you may go to the discord yourself and repeat your question in #cadet-academy. Please note, if choosing the later, do not include current-round information.",
+		"Send to discord?", list("Admin-help!", "Still mentorhelp!", "Cancel"))
+		if(choice == "Admin-help!")
+			usr.client.adminhelp(msg)
+			src.verbs -= /client/verb/mentorhelp
+			spawn(1200)
+				src.verbs += /client/verb/mentorhelp // 2 minute cd to prevent abusing this to spam admins.
+			return
+		else if(choice == "Cancel")
+			return
+
+
 
 	//remove out adminhelp verb temporarily to prevent spamming of admins.
 	src.verbs -= /client/verb/mentorhelp

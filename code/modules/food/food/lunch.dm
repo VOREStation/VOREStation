@@ -25,7 +25,11 @@ var/list/lunchables_lunches_ = list(/obj/item/weapon/reagent_containers/food/sna
                                   /obj/item/weapon/reagent_containers/food/snacks/locust_cooked,
                                   /obj/item/weapon/reagent_containers/food/snacks/spicedmeatbun,
                                   /obj/item/weapon/reagent_containers/food/snacks/quicheslice/filled,
-                                  /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose)
+                                  /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,
+                                  /obj/item/weapon/reagent_containers/food/snacks/packaged/sausageroll,
+                                  /obj/item/weapon/reagent_containers/food/snacks/packaged/pasty,
+                                  /obj/item/weapon/reagent_containers/food/snacks/packaged/scotchegg,
+                                  /obj/item/weapon/reagent_containers/food/snacks/packaged/porkpie)
 
 var/list/lunchables_snacks_ = list(/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly,
                                    /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly,
@@ -74,7 +78,11 @@ var/list/lunchables_snacks_ = list(/obj/item/weapon/reagent_containers/food/snac
                                    /obj/item/weapon/reagent_containers/food/snacks/packaged/lunacake,
                                    /obj/item/weapon/reagent_containers/food/snacks/packaged/darklunacake,
                                    /obj/item/weapon/reagent_containers/food/snacks/packaged/mochicake,
-                                   /obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie
+                                   /obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie,
+                                   /obj/item/weapon/storage/box/jaffacake,
+                                   /obj/item/weapon/storage/box/winegum,
+                                   /obj/item/weapon/storage/box/custardcream,
+                                   /obj/item/weapon/storage/box/bourbon
                                    )
 
 var/list/lunchables_drinks_ = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
@@ -96,7 +104,15 @@ var/list/lunchables_drinks_ = list(/obj/item/weapon/reagent_containers/food/drin
                                    /obj/item/weapon/reagent_containers/food/drinks/cans/sarsaparilla,
                                    /obj/item/weapon/reagent_containers/food/drinks/cans/straw_cola,
                                    /obj/item/weapon/reagent_containers/food/drinks/cans/apple_cola,
-                                   /obj/item/weapon/reagent_containers/food/drinks/cans/lemon_cola
+                                   /obj/item/weapon/reagent_containers/food/drinks/cans/lemon_cola,
+                                   /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_peach,
+					               /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_pear,
+					               /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_cherry,
+					               /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_melon,
+					               /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_banana,
+					               /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_rose,
+					               /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_lemon,
+					               /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_fruit
                                    )
 
 // This default list is a bit different, it contains items we don't want

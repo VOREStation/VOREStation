@@ -81,12 +81,12 @@
 		return
 	if(default_part_replacement(user, W))
 		return
-	if (!panel_open && W.is_wrench())
+	if (!panel_open && W.has_tool_quality(TOOL_WRENCH))
 		P_type_t = tgui_input_list(usr, "Choose pipe type", "Pipe type", Pipes)
 		P_type = Pipes[P_type_t]
 		user.visible_message("<span class='notice'>[user] has set \the [src] to manufacture [P_type_t].</span>", "<span class='notice'>You set \the [src] to manufacture [P_type_t].</span>")
 		return
-	if(!panel_open && W.is_crowbar())
+	if(!panel_open && W.has_tool_quality(TOOL_CROWBAR))
 		a_dis = !a_dis
 		user.visible_message("<span class='notice'>[user] has [!a_dis?"de":""]activated auto-dismantling.</span>", "<span class='notice'>You [!a_dis?"de":""]activate auto-dismantling.</span>")
 		return

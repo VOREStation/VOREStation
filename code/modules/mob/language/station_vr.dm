@@ -89,7 +89,7 @@
 	speech_verb = "mars"
 	ask_verb = "mars"
 	exclaim_verb = "MARS"
-	colour = "changeling"
+	colour = "shadekin"
 	key = "M"
 	machine_understands = FALSE
 	flags = WHITELISTED | HIVEMIND

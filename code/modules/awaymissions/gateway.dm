@@ -44,12 +44,12 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 
 	update_icon()
 	wait = world.time + config.gateway_delay	//+ thirty minutes default
-	
+
 	if(GLOB.gateway_away)
 		awaygate = GLOB.gateway_away
 	else
 		awaygate = locate(/obj/machinery/gateway/centeraway)
-	
+
 	. = ..()
 	density = TRUE //VOREStation Add
 
@@ -167,7 +167,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 		if(dest)
 			M.forceMove(dest.loc)
 			M.set_dir(SOUTH)
-			//VOREStation Addition Start: Mcguffin time!			
+			//VOREStation Addition Start: Mcguffin time!
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(H.client)
@@ -177,7 +177,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 			//VOREStation Addition Start: Abduction!
 			if(istype(M, /mob/living) && dest.abductor)
 				var/mob/living/L = M
-				if(L.nutrition > 500) 
+				if(L.nutrition > 500)
 					L.nutrition = 500 //If the aim is to negate people overpreparing, then they shouldn't be able to stuff themselves full of food either.
 				//Situations to get the mob out of
 				if(L.buckled)
@@ -225,7 +225,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 
 /obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
-		if(!awaygate)	
+		if(!awaygate)
 			if(GLOB.gateway_away)
 				awaygate = GLOB.gateway_away
 			else
@@ -235,7 +235,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 				return
 			to_chat(user, "<span class='notice'><b>Startup programming successful!</b></span>: A destination in another point of space and time has been detected.")
 		else
-			to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")
+			to_chat(user, span_black("The gate is already calibrated, there is no work for you to do here."))
 			return
 
 /////////////////////////////////////Away////////////////////////
@@ -257,9 +257,9 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 		warning("[src] at [x],[y],[z] appears to be an additional away-gateway")
 	else
 		GLOB.gateway_away = src
-	
+
 	update_icon()
-	
+
 	if(GLOB.gateway_station)
 		stationgate = GLOB.gateway_station
 	else
@@ -338,7 +338,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 	if(istype(M, /mob/living/carbon))
 		for(var/obj/item/weapon/implant/exile/E in M)//Checking that there is an exile implant in the contents
 			if(E.imp_in == M)//Checking that it's actually implanted vs just in their pocket
-				to_chat(M, "<font color='black'>The station gate has detected your exile implant and is blocking your entry.</font>")
+				to_chat(M, span_black("The station gate has detected your exile implant and is blocking your entry."))
 				return
 	M.forceMove(get_step(stationgate.loc, SOUTH))
 	M.set_dir(SOUTH)
@@ -349,7 +349,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 /obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
 		if(calibrated && stationgate)
-			to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")
+			to_chat(user, span_black("The gate is already calibrated, there is no work for you to do here."))
 			return
 		else
 			// VOREStation Add
@@ -362,6 +362,6 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 				return
 			// VOREStation Add End
 			else
-				to_chat(user, "<font color='blue'><b>Recalibration successful!</b>:</font><font color='black'> This gate's systems have been fine tuned. Travel to this gate will now be on target.</font>")
+				to_chat(user, span_blue("<b>Recalibration successful!</b>:") + span_black(" This gate's systems have been fine tuned. Travel to this gate will now be on target."))
 				calibrated = 1
 				return

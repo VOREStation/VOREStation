@@ -23,6 +23,7 @@
 	female_cough_sounds = list('sound/effects/mob_effects/tesharicougha.ogg','sound/effects/mob_effects/tesharicoughb.ogg')
 	male_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
 	female_sneeze_sound = 'sound/effects/mob_effects/tesharisneeze.ogg'
+	center_offset = 0
 
 	blood_color = "#D514F7"
 	flesh_color = "#5F7BB0"
@@ -161,7 +162,8 @@
 
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
+	if(!(H.client?.prefs?.shoe_hater))
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 /*
 /datum/species/teshari/handle_falling(mob/living/carbon/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
 

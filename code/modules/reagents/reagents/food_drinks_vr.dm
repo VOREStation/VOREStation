@@ -31,29 +31,6 @@
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
 
-/datum/reagent/ethanol/deathbell
-	name = "Deathbell"
-	id = "deathbell"
-	description = "A successful experiment to make the most alcoholic thing possible."
-	taste_description = "your brains smashed out by a smooth brick of hard, ice cold alcohol"
-	color = "#9f6aff"
-	taste_mult = 5
-	strength = 10
-	adj_temp = 10
-	targ_temp = 330
-
-	glass_name = "Deathbell"
-	glass_desc = "The perfect blend of the most alcoholic things a bartender can get their hands on."
-
-/datum/reagent/ethanol/deathbell/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-
-	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
-		if(dose * strength >= strength) // Early warning
-			M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
-		if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
-			M.slurring = max(M.slurring, 30)
-
 /datum/reagent/ethanol/burnout
 	name = "Burnout"
 	id = "burnout"
@@ -102,6 +79,40 @@
 
 	glass_name = "Monster Tamer"
 	glass_desc = "This looks like a vaguely-alcoholic slurry of meat. Gross."
+
+/datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+
+	if(!(M.isSynthetic()))
+		if(M.species.organic_food_coeff) //it's still food!
+			switch(alien)
+				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+				if(IS_SKRELL)
+					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
+				if(IS_TESHARI)
+					M.adjust_nutrition(alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
+				if(IS_UNATHI)
+					M.adjust_nutrition(alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
+					//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
+				//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
+				else
+					M.adjust_nutrition(alt_nutriment_factor * removed)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (H.feral <=0) //check if they're unferalled
+					H.feral = 0
+					to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
+					log_and_message_admins("is no longer feral.", H)
+
+/datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SKRELL)
+		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
+	if(M.species.organic_food_coeff)
+		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
+			M.adjust_nutrition(alt_nutriment_factor * removed)
 
 /datum/reagent/ethanol/pink_russian
 	name = "Pink Russian"
@@ -158,51 +169,11 @@
 	glass_name = "Mudslide"
 	glass_desc = "A richly coloured drink, comes with a chocolate garnish!"
 
-/datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-
-	if(!(M.isSynthetic()))
-		if(M.species.organic_food_coeff) //it's still food!
-			switch(alien)
-				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
-				if(IS_SKRELL)
-					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
-				if(IS_TESHARI)
-					M.adjust_nutrition(alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
-				if(IS_UNATHI)
-					M.adjust_nutrition(alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
-					//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
-				//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
-				else
-					M.adjust_nutrition(alt_nutriment_factor * removed)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-				if (H.feral <=0) //check if they're unferalled
-					H.feral = 0
-					to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
-					log_and_message_admins("is no longer feral.", H)
-
-/datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(alien == IS_SKRELL)
-		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
-	if(M.species.organic_food_coeff)
-		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
-			M.adjust_nutrition(alt_nutriment_factor * removed)
-
-/datum/reagent/nutriment/magicdust/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	playsound(M, 'sound/items/hooh.ogg', 50, 1, -1)
-	if(prob(5))
-		to_chat(M, "<span class='warning'>You feel like you've been gnomed...</span>")
-
 /datum/reagent/ethanol/galacticpanic
 	name = "Galactic Panic Attack"
 	id = "galacticpanic"
 	description = "The absolute worst thing you could ever put in your body."
-	taste_description = "an entire galaxy collasping in on itself."
+	taste_description = "an entire galaxy collasping in on itself"
 	strength = 10
 	druggy = 50
 	halluci = 30
@@ -229,31 +200,29 @@
 	name = "Space Bulldog"
 	id = "bulldog"
 	description = "An inventive kahlua recipe."
-	taste_description = "fizzy, creamy, soda and coffee hell."
+	taste_description = "fizzy, creamy, soda and coffee hell"
 	strength = 30
 	color = "#d3785d"
 
 	glass_name = "Space Bulldog"
 	glass_desc = "It looks like someone poured cola in a cup of coffee."
 
-
 /datum/reagent/ethanol/sbagliato
 	name = "Negroni Sbagliato"
 	id = "sbagliato"
 	description = "A drink invented because a bartender was too drunk."
-	taste_description = "sweet bubbly wine and vermouth."
+	taste_description = "sweet bubbly wine and vermouth"
 	strength = 30
 	color = "#d3785d"
 
 	glass_name = "Negroni Sbagliato"
 	glass_desc = "Bubbles constantly pop up to the surface with a quiet fizz."
 
-
 /datum/reagent/ethanol/italiancrisis
 	name = "Italian Crisis"
 	id = "italiancrisis"
 	description = "This drink was concocted by a madwoman, causing the Italian Crisis of 2123."
-	taste_description = "cola, fruit, fizz, coffee, and cream swirled together in an old boot."
+	taste_description = "cola, fruit, fizz, coffee, and cream swirled together in an old boot"
 	strength = 20
 	druggy = 0
 	halluci = 0
@@ -267,7 +236,7 @@
 	name = "Sweet Rush"
 	id = "sugarrush"
 	description = "A favorite drink amongst poor bartenders living in Neo Detroit."
-	taste_description = "sweet bubblegum vodka."
+	taste_description = "sweet bubblegum vodka"
 	strength = 30
 	color = "#d3785d"
 
@@ -278,7 +247,7 @@
 	name = "Lotus"
 	id = "lotus"
 	description = "The result of making one mistake after another and trying to cover it up with sugar."
-	taste_description = "rich, sweet fruit and even more sugar."
+	taste_description = "rich, sweet fruit and even more sugar"
 	strength = 25
 	color = "#d3785d"
 
@@ -289,7 +258,7 @@
 	name = "Dumb Shroom Juice"
 	id = "shroomjuice"
 	description = "The mushroom farmer didn't sort through their stock very well."
-	taste_description = "sweet and sour citrus with a savory kick."
+	taste_description = "sweet and sour citrus with a savory kick"
 	strength = 100
 	druggy = 30
 	halluci = 30
@@ -303,7 +272,7 @@
 	name = "Russian Roulette"
 	id = "russianroulette"
 	description = "The perfect drink for wagering your liver on a game of cards."
-	taste_description = "coffee, vodka, cream, and a hot metal slug."
+	taste_description = "coffee, vodka, cream, and a hot metal slug"
 	strength = 30
 	var/adj_dizzy = 30
 	color = "#d3785d"
@@ -321,7 +290,7 @@
 	name = "The Love Maker"
 	id = "lovemaker"
 	description = "A drink said to help one find true love."
-	taste_description = "sweet fruit and honey."
+	taste_description = "sweet fruit and honey"
 	strength = 30
 	druggy = 0
 	halluci = 0
@@ -337,7 +306,7 @@
 	name = "Honey Shot"
 	id = "honeyshot"
 	description = "The perfect drink for bees."
-	taste_description = "sweet tart grenadine flavored with honey."
+	taste_description = "sweet tart grenadine flavored with honey"
 	strength = 40
 	var/adj_dizzy = 10
 	color = "#d3785d"
@@ -349,7 +318,7 @@
 	name = "Appletini"
 	id = "appletini"
 	description = "A classic cocktail using every grandma's favorite fruit."
-	taste_description = "green sour apple with a hint of alcohol."
+	taste_description = "green sour apple with a hint of alcohol"
 	strength = 45
 	color = "#d3785d"
 
@@ -360,7 +329,7 @@
 	name = "Glowing Appletini"
 	id = "glowingappletini"
 	description = "A new nuclear take on a pre-modern classic!"
-	taste_description = "overwhelmingly sour apples powered by a nuclear fission reactor."
+	taste_description = "overwhelmingly sour apples powered by a nuclear fission reactor"
 	strength = 30
 	druggy = 20
 	var/adj_dizzy = 20
@@ -373,7 +342,7 @@
 	name = "Slow Comfortable Screw Against the Wall"
 	id = "scsatw"
 	description = "The screwdriver's bigger cousin."
-	taste_description = "smooth, savory booze and tangy orange juice."
+	taste_description = "smooth, savory booze and tangy orange juice"
 	strength = 30
 	druggy = 0
 	halluci = 0
@@ -387,7 +356,7 @@
 	name = "Choccy Milk"
 	id = "choccymilk"
 	description = "Coco and milk, a timeless classic."
-	taste_description = "sophisticated bittersweet chocolate mixed with silky, creamy, whole milk."
+	taste_description = "sophisticated bittersweet chocolate mixed with silky, creamy, whole milk"
 	color = "#d3785d"
 
 	glass_name = "Choccy Milk"
@@ -397,7 +366,7 @@
 	name = "Red Space Flush"
 	id = "redspaceflush"
 	description = "A drink made by imbueing the essence of redspace into the spirits."
-	taste_description = "whiskey and rum strung out through a hellish dimensional rift."
+	taste_description = "whiskey and rum strung out through a hellish dimensional rift"
 	strength = 30
 	druggy = 10
 	var/adj_dizzy = 10
@@ -410,7 +379,7 @@
 	name = "Graveyard"
 	id = "graveyard"
 	description = "The result of taking a cup and filling it with all the drinks at the fountain."
-	taste_description = "sugar and fizz."
+	taste_description = "sugar and fizz"
 	color = "#d3785d"
 
 	glass_name = "Graveyard"
@@ -420,18 +389,29 @@
 	name = "Giant Beer"
 	id = "bigbeer"
 	description = "Bars in Neo Detroit started to sell this drink when the city put mandatory drink limits in 2289."
-	taste_description = "beer, but bigger."
+	taste_description = "beer, but bigger"
 	strength = 40
 	color = "#d3785d"
 
 	glass_name = "Giant Beer"
 	glass_desc = "The Neo Detroit beer and ale cocktail, perfect for your average drunk."
 
+/datum/reagent/ethanol/manager_summoner
+	name = "Manager Summoner"
+	id = "manager_summoner"
+	description = "A horrifying cocktail for those who desperately want feel above their peers."
+	taste_description = "bitter and sweet, with a hint of superiority"
+	strength = 30
+	color = "#c9716b"
+
+	glass_name = "Manager Summoner"
+	glass_desc = "The dreaded red juice of those who insist on taking advantage of minor positions of power to make the lives of bar staff unbearable."
+
 /datum/reagent/drink/sweettea
 	name = "Sweet Tea"
 	id = "sweettea"
 	description = "Tea that is sweetened with some form of sweetener."
-	taste_description = "tea that is sweet."
+	taste_description = "tea that is sweet"
 	color = "#d3785d"
 
 	glass_name = "Sweet Tea"
@@ -441,7 +421,7 @@
 	name = "Unsweetened Tea"
 	id = "unsweettea"
 	description = "A sick experiment to take the sweetness out of tea after sugar has been added resulted in this."
-	taste_description = "bland, slightly bitter, discount black tea."
+	taste_description = "bland, slightly bitter, discount black tea"
 	strength = 80
 	druggy = 10
 	color = "#d3785d"
@@ -453,7 +433,7 @@
 	name = "Hair of the Rat"
 	id = "hairoftherat"
 	description = "A meatier version of the monster tamer, complete with extra meat."
-	taste_description = "meat, whiskey, ground meat, and more meat."
+	taste_description = "meat, whiskey, ground meat, and more meat"
 	strength = 45
 	color = "#d3785d"
 	metabolism = REM * 3.5 // about right for mixing nutriment and ethanol.
@@ -461,7 +441,7 @@
 	//using a new variable instead of nutriment_factor so we can call ..() without that adding nutrition for us without taking factors for protein into account
 
 	glass_name = "Hair of the Rat"
-	glass_desc = "The alcohol equivelant of saying your burger isn't cooked rare enough."
+	glass_desc = "The alcoholic equivalent of saying your burger isn't cooked rare enough."
 
 /datum/reagent/ethanol/hairoftherat/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -585,3 +565,219 @@
 	color = "#a6898d"
 
 ////////////////END BrainzSnax Reagents////////////////
+
+/datum/reagent/nutriment/protein_powder
+	name = "Protein Powder"
+	id = "protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement."
+	taste_description = "powdery protein"
+	color = "#f4e6dd"
+
+/datum/reagent/nutriment/protein_shake
+	name = "Protein Shake"
+	id = "protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement."
+	taste_description = "pure protein"
+	color = "#ebd8cb"
+
+/datum/reagent/nutriment/protein_powder/vanilla
+	name = "Vanilla Protein Powder"
+	id = "vanilla_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added vanilla flavoring."
+	taste_description = "powdery vanilla"
+	color = "#fff7d2"
+
+/datum/reagent/nutriment/protein_shake/vanilla
+	name = "Vanilla Protein Shake"
+	id = "vanilla_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added vanilla flavoring."
+	taste_description = "vanilla"
+	color = "#faefbc"
+
+/datum/reagent/nutriment/protein_powder/banana
+	name = "Banana Protein Powder"
+	id = "banana_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added banana flavoring."
+	taste_description = "powdery banana"
+	color = "#faefbc"
+
+/datum/reagent/nutriment/protein_shake/banana
+	name = "Banana Protein Powder"
+	id = "banana_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added banana flavoring."
+	taste_description = "banana"
+	color = "#e6daa1"
+
+/datum/reagent/nutriment/protein_powder/chocolate
+	name = "Chocolate Protein Powder"
+	id = "chocolate_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added chocolate flavoring."
+	taste_description = "powdery chocolate"
+	color = "#865b3e"
+
+/datum/reagent/nutriment/protein_shake/chocolate
+	name = "Chocolate Protein Shake"
+	id = "chocolate_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added chocolate flavoring."
+	taste_description = "chocolate"
+	color = "#644730"
+
+/datum/reagent/nutriment/protein_powder/strawberry
+	name = "Strawberry Protein Powder"
+	id = "strawberry_protein_powder"
+	description = "Pure, powdered protein commonly used as a meal supplement. This one has added strawberry flavoring."
+	taste_description = "powdery strawberry"
+	color = "#eba1a1"
+
+/datum/reagent/nutriment/protein_shake/strawberry
+	name = "Strawberry Protein Shake"
+	id = "strawberry_protein_shake"
+	description = "A mixture of water and protein commonly used as a meal supplement. This one has added strawberry flavoring."
+	taste_description = "strawberry"
+	color = "#e28585"
+
+//SOUPS. Don't use the base soup reagent.
+/datum/reagent/drink/soup
+	name = "Soup"
+	id = "generic_soup"
+	description = "An indistinct soupy mass of nominal goodness, but questionable flavour."
+	taste_description = "upsettingly bland soup"
+	color = "#9a9a9a"
+	nutrition = 30	//same as base nutriment
+
+/datum/reagent/drink/soup/tomato
+	name = "Tomato Soup"
+	id = "tomato_soup"
+	description = "A thick and creamy tomato soup. Delicious! Definitely not ketchup."
+	taste_description = "rich, creamy tomato"
+	color = "#e4612d"
+	allergen_type = ALLERGEN_FRUIT //tomatoes are fruit, etc. etc.
+
+/datum/reagent/drink/soup/mushroom
+	name = "Cream of Mushroom Soup"
+	id = "mushroom_soup"
+	description = "A rich, earthy mushroom soup."
+	taste_description = "earthy mushrooms"
+	color = "#a59a83"
+	allergen_type = ALLERGEN_FUNGI //shrooms!
+
+/datum/reagent/drink/soup/chicken
+	name = "Cream of Chicken Soup"
+	id = "chicken_soup"
+	description = "A fairly thick, warming chicken-based soup."
+	taste_description = "savoury chicken goodness"
+	color = "#d4c574"
+	allergen_type = ALLERGEN_MEAT //plain ol' chimken
+
+/datum/reagent/drink/soup/chicken_noodle
+	name = "Chicken Noodle Soup"
+	id = "chicken_noodle_soup"
+	description = "A thin chicken broth with added noodles. If you're lucky there might be some chunks of chicken and veggies in there! Maybe."
+	taste_description = "savoury chicken-noodle goodness"
+	color = "#a27a41"
+	allergen_type = ALLERGEN_MEAT|ALLERGEN_GRAINS|ALLERGEN_VEGETABLE //chicken + grain-based noodles + veggie chunks
+
+/datum/reagent/drink/soup/onion
+	name = "Onion Soup"
+	id = "onion_soup"
+	description = "A humble staple of humanity throughout the centuries."
+	taste_description = "caramelized onions"
+	color = "#5d3918"
+	allergen_type = ALLERGEN_VEGETABLE //onions are veg, right?
+
+/datum/reagent/drink/soup/vegetable
+	name = "Vegetable Soup"
+	id = "vegetable_soup"
+	description = "A mix of various kinds of tasty vegetables, in soup format!"
+	taste_description = "mixed vegetables"
+	color = "#824005"
+	allergen_type = ALLERGEN_VEGETABLE //mixed veg
+
+/datum/reagent/drink/soup/beet
+	name = "Beet Soup"
+	id = "beet_soup"
+	description = "A hearty mix of tomatoes and beets, with a meat stock base."
+	taste_description = "sour tomatoes and some killer beets"
+	color = "#471b1c"
+	allergen_type = ALLERGEN_MEAT|ALLERGEN_FRUIT|ALLERGEN_VEGETABLE //meat stock, tomatoes, and beets
+
+/datum/reagent/drink/soup/hot_and_sour
+	name = "Hot & Sour Soup"
+	id = "hot_n_sour_soup"
+	description = "A spicy tofu-based soup."
+	taste_description = "spicy, sour tofu"
+	color = "#5f1b06"
+	allergen_type = ALLERGEN_BEANS|ALLERGEN_VEGETABLE|ALLERGEN_FUNGI //tofu is soy-based, ergo, beans. base recipe also uses cabbage and mushroom.
+
+/////////Energy Drinks/////////
+
+/datum/reagent/drink/coffee/nukie
+
+	name = "Nukie"
+	id = "nukie"
+	description = "An extremely concentrated caffinated drink."
+	color = "#102838"
+	adj_temp = 0
+	adj_dizzy = 0
+	adj_drowsy = -5
+	adj_sleepy = -10
+
+	glass_name = "nukie"
+	glass_desc = "A drink to perk you up and refresh you!"
+	overdose = 30
+
+	taste_description = "flavourless energy"
+
+/datum/reagent/drink/coffee/nukie/peach
+	name = "Nukie Peach"
+	id = "nukie_peach"
+	color = "#ffc76e"
+	taste_description = "battery acid with a hint of artificial peach"
+
+/datum/reagent/drink/coffee/nukie/pear
+	name = "Nukie Pear"
+	id = "nukie_pear"
+	color = "#d4c03d"
+	taste_description = "electrostimulation with a hint of artificial pear"
+
+/datum/reagent/drink/coffee/nukie/cherry
+	name = "Nukie Cherry"
+	id = "nukie_cherry"
+	color = "#b00707"
+	taste_description = "the rapid acceleration of tooth decay with a hint of artificial cherry"
+
+/datum/reagent/drink/coffee/nukie/melon
+	name = "Nukie Melon"
+	id = "nukie_melon"
+	color = "#00bf06"
+	taste_description = "something is crawling under your skin with a hint of artificial melon"
+
+/datum/reagent/drink/coffee/nukie/banana
+	name = "Nukie Banana"
+	id = "nukie_banana"
+	color = "#ffee00"
+	taste_description = "imminent cardiac arrest with a hint of something that doesn't really taste like banana at all but is clearly intending to be banana"
+
+/datum/reagent/drink/coffee/nukie/rose
+	name = "Nukie Rose"
+	id = "nukie_rose"
+	color = "#ff7df4"
+	taste_description = "paint stripper, space cleaner and some sort of cheap perfume"
+
+/datum/reagent/drink/coffee/nukie/lemon
+	name = "Nukie Lemon"
+	id = "nukie_lemon"
+	color = "#c3ff00"
+	taste_description = "something that once resembled lemon mixed thoroughly with literal toxic waste"
+
+/datum/reagent/drink/coffee/nukie/fruit
+	name = "Nukie Fruit"
+	id = "nukie_fruit"
+	color = "#b300ff"
+	taste_description = "the colour purple"
+
+/datum/reagent/drink/coffee/nukie/special
+	name = "Nukie Limited Edition"
+	id = "nukie_special"
+	color = "#ffffff"
+	taste_description = "sitting in your college dorm one week before your exams start, staring at a screen without anything particularly interesting on, knowing that you should really be studying, but you can put it off for another day right? Plus your friends are gonna be getting on soon and there's an event starting that you need to prep for"

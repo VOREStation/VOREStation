@@ -103,7 +103,7 @@
 	..()
 
 /obj/item/device/assembly_holder/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!a_left || !a_right)
 			to_chat(user, "<span class='warning'> BUG:Assembly part missing, please report this!</span>")
 			return
@@ -151,7 +151,7 @@
 	if(!D)
 		return 0
 	if(!secured)
-		visible_message("\icon[src][bicon(src)] *beep* *beep*", "*beep* *beep*")
+		visible_message("[icon2html(src,viewers(src))] *beep* *beep*", "*beep* *beep*")
 	if((normal) && (a_right) && (a_left))
 		if(a_right != D)
 			a_right.pulsed(0)

@@ -1,5 +1,5 @@
 import { BooleanLike } from 'common/react';
-import { Fragment } from 'inferno';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -16,8 +16,8 @@ type Data = {
   safety: BooleanLike;
 };
 
-export const MuleBot = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const MuleBot = (props) => {
+  const { act, data } = useBackend<Data>();
   const { suffix, load, hatch } = data;
   return (
     <Window width={350} height={500}>
@@ -27,7 +27,15 @@ export const MuleBot = (props, context) => {
             <LabeledList.Item label="ID">{suffix}</LabeledList.Item>
             <LabeledList.Item
               label="Current Load"
-              buttons={<Button icon="eject" content="Unload Now" disabled={!load} onClick={() => act('unload')} />}>
+              buttons={
+                <Button
+                  icon="eject"
+                  content="Unload Now"
+                  disabled={!load}
+                  onClick={() => act('unload')}
+                />
+              }
+            >
               {load ? load : 'None.'}
             </LabeledList.Item>
           </LabeledList>
@@ -38,8 +46,8 @@ export const MuleBot = (props, context) => {
   );
 };
 
-const MuleBotClosed = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const MuleBotClosed = (props) => {
+  const { act, data } = useBackend<Data>();
   const { power, locked, issilicon, auto_return, crates_only } = data;
 
   return (
@@ -53,38 +61,68 @@ const MuleBotClosed = (props, context) => {
           disabled={locked && !issilicon}
           onClick={() => act('power')}
         />
-      }>
+      }
+    >
       {locked && !issilicon ? (
         <Box color="bad">This interface is currently locked.</Box>
       ) : (
-        <Fragment>
-          <Button fluid icon="stop" content="Stop" onClick={() => act('stop')} />
-          <Button fluid icon="truck-monster" content="Proceed" onClick={() => act('go')} />
-          <Button fluid icon="home" content="Return Home" onClick={() => act('home')} />
-          <Button fluid icon="map-marker-alt" content="Set Destination" onClick={() => act('destination')} />
-          <Button fluid icon="cog" content="Set Home" onClick={() => act('sethome')} />
+        <>
+          <Button
+            fluid
+            icon="stop"
+            content="Stop"
+            onClick={() => act('stop')}
+          />
+          <Button
+            fluid
+            icon="truck-monster"
+            content="Proceed"
+            onClick={() => act('go')}
+          />
+          <Button
+            fluid
+            icon="home"
+            content="Return Home"
+            onClick={() => act('home')}
+          />
+          <Button
+            fluid
+            icon="map-marker-alt"
+            content="Set Destination"
+            onClick={() => act('destination')}
+          />
+          <Button
+            fluid
+            icon="cog"
+            content="Set Home"
+            onClick={() => act('sethome')}
+          />
           <Button
             fluid
             icon="home"
             selected={auto_return}
-            content={'Auto Return Home: ' + (auto_return ? 'Enabled' : 'Disabled')}
+            content={
+              'Auto Return Home: ' + (auto_return ? 'Enabled' : 'Disabled')
+            }
             onClick={() => act('autoret')}
           />
           <Button
             fluid
             icon="biking"
             selected={!crates_only}
-            content={'Non-standard Cargo: ' + (crates_only ? 'Disabled' : 'Enabled')}
+            content={
+              'Non-standard Cargo: ' + (crates_only ? 'Disabled' : 'Enabled')
+            }
             onClick={() => act('cargotypes')}
           />
-        </Fragment>
+        </>
       )}
     </Section>
   );
 };
 
-const MuleBotOpen = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const MuleBotOpen = (props) => {
+  const { act, data } = useBackend<Data>();
   const { safety } = data;
 
   return (

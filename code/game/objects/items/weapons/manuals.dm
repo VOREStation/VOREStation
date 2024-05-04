@@ -101,7 +101,7 @@
 				<br>
 				<h2>OPERATING PRINCIPLES</h2>
 				<br>
-				<li>The supermatter crystal serves as the fundamental power source of the engine. Upon being charged, it begins to emit large amounts of heat and radiation, as well and oxygen and phoron gas. As oxygen accelerates the reaction and reacts with phoron to start a fire, it must be filtered out. It's recommended to filter out all gases besides nitrogen for standard operation. </li>
+				<li>The supermatter crystal serves as the fundamental power source of the engine. Upon being charged, it begins to emit large amounts of heat and radiation, as well and oxygen and phoron gas. As oxygen accelerates the reaction and reacts with phoron to start a fire, it must be filtered out. It's recommended to filter out all gases besides phoron for standard operation. </li>
 				<br>
 				<li>Gas in the reactor chamber housing the supermatter is circulated through the reactor loop, which passes through the filters and thermoelectric generators. The thermoelectric generators transfer heat from the reactor loop to the colder radiator loop, thereby generating power. Additional power is generated from internal turbines in the circulators.</li>
 				<br>
@@ -120,13 +120,15 @@
 				<br>
 				<h2>STANDARD STARTUP PROCEDURE</h2>
 				<ol>
-				<li>Fill reactor loop and radiator loop with three (3) standard canisters of nitrogen gas each.</li>
-				<li>Fill the waste handling radiator loop with one (1) standard canister of carbon dioxide gas.</li>
+				<li>Fill reactor loop and radiator loop with two (2) standard canisters (1871.75 moles, 20 celsius) of phoron gas each.</li>
+				<li>Fill the waste handling radiator loop with one (1) standard canister (1871.75 as well) of carbon dioxide gas.</li>
+				<li>You can confirm your canisters got enough gas in them by using your PDA's "Gas Scanner" feature, you must enable it and press your PDA against the canister.</li>
 				<li>Enable both the high power gas pumps near the thermo-electric generators and maximize the desired output.</li>
-				<li>Enable both the omni-filters and ensure they are set to filter nitrogen back into the system.</li>
+				<li>Enable both the omni-filters and ensure they are set to filter phoron back into the system.</li>
 				<li>Enable the gas pump from the filters to waste handling and maximize the desired output.</li>
 				<li>Close the monitoring room blast doors and open the reactor blast doors,</li>
-				<li>Fire 8-9 pulses from emitter at supermatter crystal. The expected power output is around a megawatt. NOTE: It will take a few minutes to heat up.</li>
+				<li>Fire 12-16 pulses from emitter at supermatter crystal. The expected power output is around a megawatt. NOTE: It will take a few minutes to heat up.</li>
+				<li>You can confirm desired power levels by checking the computer in the minotoring room, "Supermatter Monitoring". You want 300 EPR, more is safe but no higher than 700</li>
 				<li>Close the reactor blast doors and keep the monitoring room blast doors closed to prevent radiation leaking.</li>
 				</ol>
 				<br>
@@ -134,7 +136,7 @@
 				<ol>
 				<li>Ensure that radiation protection and meson goggles are worn at all times while working in the engine room.</li>
 				<li>Ensure that reactor and radiator loops are undamaged and unobstructed.</li>
-				<li>Ensure that, in a standard setup, only nitrogen is being filtered back into the system. Do not allow exhaust pressure to exceed 4500 kPa.</li>
+				<li>Ensure that, in a standard setup, only phoron is being filtered back into the system. Do not allow exhaust pressure to exceed 4500 kPa.</li>
 				<li>Ensure that engine room Area Power Controller (APC) and engine Superconducting Magnetic Energy Storage unit (SMES) are properly charged.</li>
 				<li>Ensure that reactor temperature does not exceed 5000K. In event of reactor temperature exceeding 5000K, see EMERGENCY COOLING PROCEDURE.</li>
 				<li>In event of imminent and/or unavoidable delamination, see EJECTION PROCEDURE.</li>

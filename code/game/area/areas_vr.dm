@@ -2,11 +2,14 @@
 	var/enter_message
 	var/exit_message
 	var/limit_mob_size = TRUE //If mob size is limited in the area.
-	var/block_suit_sensors = FALSE //If mob size is limited in the area.
+	var/block_suit_sensors = FALSE //If suit sensors are blocked in the area.
+	var/block_tracking = FALSE //If camera tracking is blocked in the area.
 	var/turf/ceiling_type
 
 	// Size of the area in open turfs, only calculated for indoors areas.
 	var/areasize = 0
+
+	var/no_comms = FALSE	//When true, blocks radios from working in the area
 
 /area/Entered(var/atom/movable/AM, oldLoc)
 	. = ..()

@@ -65,13 +65,14 @@
 
 	owner = H
 	if(owner)
-		GLOB.moved_event.register(owner, src, .proc/update_active_camera_screen)
+		owner.AddComponent(/datum/component/recursive_move)
+		RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 	check_whitelist = check_species_whitelist
 	whitelist = species_whitelist
 	blacklist = species_blacklist
 
 /datum/tgui_module/appearance_changer/Destroy()
-	GLOB.moved_event.unregister(owner, src, .proc/update_active_camera_screen)
+	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 	last_camera_turf = null
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)
@@ -408,7 +409,7 @@
 		var/list/markings_data[0]
 		markings = target.get_prioritised_markings()
 		for (var/marking in markings)
-			markings_data[++markings_data.len] = list("marking_name" = marking, "marking_color" = markings[marking])
+			markings_data[++markings_data.len] = list("marking_name" = marking, "marking_color" = markings[marking]["color"] ? markings[marking]["color"] : "#000000") //too tired to add in another submenu for bodyparts here
 		data["markings"] = markings_data
 		// VOREStation Add End
 

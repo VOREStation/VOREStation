@@ -319,3 +319,74 @@
 	icon_state = "sectdrone_wing"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/kara //SatinIsle Fluff Item
+	name = "Pterokara wings"
+	desc = ""
+	icon = 'icons/mob/vore/wings_vr.dmi'
+	icon_state = "feathered_kara"
+	ckeys_allowed = list("satinisle")
+
+/datum/sprite_accessory/wing/winglets //smol wingarms at the elbow
+	name = "feathered winglets"
+	desc = ""
+	icon_state = "winglets"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/wingarms_speckles
+	name = "wingarms, speckled"
+	desc = ""
+	icon_state = "wingarms_speckles"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wingarms_speckles-speckles"
+
+/datum/sprite_accessory/wing/wingarms_2tone
+	name = "wingarms, 2 colors"
+	desc = ""
+	icon_state = "wingarms_2tone"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wingarms_2tone-1"
+
+/datum/sprite_accessory/wing/feather2_speckles
+	name = "large feathered wings, speckled"
+	desc = ""
+	icon_state = "feather2_speckles"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "feather2_speckles-speckles"
+
+/datum/sprite_accessory/wing/feather2_tricolor
+	name = "large feathered wings, tricolor"
+	desc = ""
+	icon_state = "feather2_tricolor"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "feather2_tricolor-1"
+	extra_overlay2 = "feather2_tricolor-2"
+
+// dino wings
+/datum/sprite_accessory/wing/pterodactyl_wings
+	name = "pterodactyl wings"
+	desc = ""
+	icon_state = "pterodactyl_wing_frame"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "pterodactyl_wing_membrane"
+
+/datum/sprite_accessory/wing/kaiju_spines_a
+	name = "kaiju spines A, colorable"
+	desc = ""
+	icon_state = "kaiju_spikes_a"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/kaiju_spines_a_glow
+	name = "kaiju spines A, colorable, glow"
+	desc = ""
+	icon_state = "kaiju_spikes_a"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "kaiju_spikes_a_glow"

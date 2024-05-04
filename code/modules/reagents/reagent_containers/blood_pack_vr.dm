@@ -6,7 +6,7 @@
 			switch(reagents.get_master_reagent_id())
 				if("blood")
 					user.show_message("<span class='warning'>You sink your fangs into \the [src] and suck the blood out of it!</span>")
-					user.visible_message("<font color='red'>[user] sinks their fangs into \the [src] and drains it!</font>")
+					user.visible_message(span_red("[user] sinks their fangs into \the [src] and drains it!"))
 					user.adjust_nutrition(remove_volume*5)
 					reagents.remove_reagent(reagent_to_remove, remove_volume)
 					update_icon()

@@ -9,7 +9,7 @@
 	var/list/known_targets
 	var/list/supported_types
 	var/datum/tgui_state/default/must_hack/hack_state
-	
+
 /obj/item/device/multitool/hacktool/override
 	hackspeed = 0.75
 	max_level = 5
@@ -31,7 +31,7 @@
 	return ..()
 
 /obj/item/device/multitool/hacktool/attackby(var/obj/item/W, var/mob/user)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		in_hack_mode = !in_hack_mode
 		playsound(src, W.usesound, 50, 1)
 	else
@@ -71,14 +71,14 @@
 		to_chat(user, "<span class='warning'>You are already hacking!</span>")
 		return 0
 	if(!is_type_in_list(target, supported_types))
-		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Unable to hack this target, invalid target type.</span>")
+		to_chat(user, "[icon2html(src, user.client)] <span class='warning'>Unable to hack this target, invalid target type.</span>")
 		return 0
 
 	var/obj/machinery/door/airlock/D = target
 	if(D.security_level > max_level)
-		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Target's electronic security is too complex.</span>")
+		to_chat(user, "[icon2html(src, user.client)] <span class='warning'>Target's electronic security is too complex.</span>")
 		return 0
-		
+
 	var/found = known_targets.Find(D)
 	if(found)
 		known_targets.Swap(1, found)	// Move the last hacked item first

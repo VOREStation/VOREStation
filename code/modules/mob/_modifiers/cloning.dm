@@ -27,7 +27,7 @@
 
 // Prevents cloning, actual effect is on the cloning machine
 /datum/modifier/no_clone
-	name = "Cloning Incompatability"
+	name = "Cloning Incompatibility"
 	desc = "For whatever reason, you cannot be cloned."
 
 	//WIP, but these may never be seen anyway, so *shrug
@@ -39,8 +39,8 @@
 
 // Prevents borging (specifically the MMI part), actual effect is on the MMI.
 /datum/modifier/no_borg
-	name = "Cybernetic Incompatability"
-	desc = "For whatever reason, your brain is incompatable with direct cybernetic interfaces, such as the MMI."
+	name = "Cybernetic Incompatibility"
+	desc = "For whatever reason, your brain is incompatible with direct cybernetic interfaces, such as the MMI."
 
 	flags = MODIFIER_GENETIC
 

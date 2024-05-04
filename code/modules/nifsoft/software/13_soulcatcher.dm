@@ -72,11 +72,15 @@
 /datum/nifsoft/soulcatcher/proc/notify_into(var/message)
 	var/sound = nif.good_sound
 
-	to_chat(nif.human,"<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+	to_chat(nif.human,
+			type = MESSAGE_TYPE_NIF,
+			html = "<span class='nif'><b>\[[icon2html(nif.big_icon, nif.human)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
 	nif.human << sound
 
 	for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
-		to_chat(CS,"<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+		to_chat(CS,
+				type = MESSAGE_TYPE_NIF,
+				html = "<span class='nif'><b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
 		CS << sound
 
 /datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
@@ -88,9 +92,13 @@
 
 	//Not AR Projecting
 	else
-		to_chat(nif.human,"<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+		to_chat(nif.human,
+				type = MESSAGE_TYPE_NIF,
+				html = "<span class='nif'><b>\[[icon2html(nif.big_icon, nif.human.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
-			to_chat(CS,"<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+			to_chat(CS,
+					type = MESSAGE_TYPE_NIF,
+					html = "<span class='nif'><b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 
 	log_nsay(message,nif.human.real_name,sender)
 
@@ -103,9 +111,13 @@
 
 	//Not AR Projecting
 	else
-		to_chat(nif.human,"<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+		to_chat(nif.human,
+				type = MESSAGE_TYPE_NIF,
+				html = "<span class='nif'><b>\[[icon2html(nif.big_icon,nif.human.client)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
-			to_chat(CS,"<span class='nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+			to_chat(CS,
+					type = MESSAGE_TYPE_NIF,
+					html = "<span class='nif'><b>\[[icon2html(nif.big_icon,CS.client)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 
 	log_nme(message,nif.human.real_name,sender)
 
@@ -228,6 +240,8 @@
 		var/mob/living/carbon/human/H = M
 		brainmob.dna = H.dna
 		brainmob.ooc_notes = H.ooc_notes
+		brainmob.ooc_notes_likes = H.ooc_notes_likes
+		brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
 		brainmob.timeofhostdeath = H.timeofdeath
 		SStranscore.m_backup(brainmob.mind,0) //It does ONE, so medical will hear about it.
 
@@ -406,7 +420,8 @@
 	real_name = brainmob.real_name	//And the OTHER name
 
 	forceMove(get_turf(parent_human))
-	GLOB.moved_event.register(parent_human, src, /mob/observer/eye/ar_soul/proc/human_moved)
+	parent_human.AddComponent(/datum/component/recursive_move)
+	RegisterSignal(parent_human, COMSIG_OBSERVER_MOVED, /mob/observer/eye/ar_soul/proc/human_moved)
 
 	//Time to play dressup
 	if(brainmob.client.prefs)
@@ -421,7 +436,7 @@
 
 /mob/observer/eye/ar_soul/Destroy()
 	if(parent_human) //It's POSSIBLE they've been deleted before the NIF somehow
-		GLOB.moved_event.unregister(parent_human, src)
+		UnregisterSignal(parent_human, COMSIG_OBSERVER_MOVED)
 		parent_human = null
 	return ..()
 

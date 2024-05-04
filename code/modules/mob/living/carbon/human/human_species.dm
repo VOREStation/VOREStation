@@ -25,6 +25,7 @@
 /mob/living/carbon/human/dummy/mannequin/autoequip
 	icon = 'icons/mob/human_races/r_human.dmi'
 	icon_state = "preview"
+	var/autorotate = TRUE
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/Initialize()
 	icon = null
@@ -32,7 +33,8 @@
 	. = ..()
 
 	dress_up()
-	turntable()
+	if(autorotate)
+		turntable()
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/proc/dress_up()
 	set waitfor = FALSE
@@ -119,14 +121,26 @@
 /mob/living/carbon/human/zaddat/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_ZADDAT)
 
+/mob/living/carbon/human/monkey
+	low_sorting_priority = TRUE
+
 /mob/living/carbon/human/monkey/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY)
+
+/mob/living/carbon/human/farwa
+	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/farwa/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_TAJ)
 
+/mob/living/carbon/human/neaera
+	low_sorting_priority = TRUE
+
 /mob/living/carbon/human/neaera/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_SKRELL)
+
+/mob/living/carbon/human/stok
+	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/stok/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_UNATHI)

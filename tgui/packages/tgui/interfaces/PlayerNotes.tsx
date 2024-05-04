@@ -9,8 +9,8 @@ type Data = {
   ckeys: { name: string; desc: string }[];
 };
 
-export const PlayerNotes = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const PlayerNotes = (props) => {
+  const { act, data } = useBackend<Data>();
   const { device_theme, filter, pages, ckeys } = data;
 
   const runCallback = (cb) => {
@@ -18,7 +18,12 @@ export const PlayerNotes = (props, context) => {
   };
 
   return (
-    <Window title={'Player Notes'} theme={device_theme} width={400} height={500} resizable>
+    <Window
+      title={'Player Notes'}
+      theme={device_theme}
+      width={400}
+      height={500}
+    >
       <Window.Content scrollable>
         <Section title="Player notes">
           <Button icon="filter" onClick={() => act('filter_player_notes')}>
@@ -37,7 +42,11 @@ export const PlayerNotes = (props, context) => {
             }
           />
           <Divider vertical />
-          <Button color="green" content={filter} onClick={() => act('clear_player_info_filter')} />
+          <Button
+            color="green"
+            content={filter}
+            onClick={() => act('clear_player_info_filter')}
+          />
           <Divider />
           <Table>
             {ckeys.map((ckey) => (
@@ -52,7 +61,8 @@ export const PlayerNotes = (props, context) => {
                       act('show_player_info', {
                         name: ckey.name,
                       })
-                    }>
+                    }
+                  >
                     {ckey.name}
                   </Button>
                 </Table.Cell>
@@ -70,9 +80,10 @@ export const PlayerNotes = (props, context) => {
                     act('set_page', {
                       index: i,
                     })
-                  }>
+                  }
+                >
                   {i}
-                </Button>
+                </Button>,
               );
             }
             return row;

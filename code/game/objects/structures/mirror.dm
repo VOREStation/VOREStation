@@ -50,7 +50,7 @@
 	..()
 
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		if(!glass)
 			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20 * I.toolspeed))
@@ -58,7 +58,7 @@
 				new /obj/item/frame/mirror( src.loc )
 				qdel(src)
 		return
-	if(I.is_wrench())
+	if(I.has_tool_quality(TOOL_WRENCH))
 		if(shattered && glass)
 			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 			icon_state = "mirror_frame"

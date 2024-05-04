@@ -65,7 +65,8 @@
 		return ..()
 
 /obj/item/weapon/storage/laundry_basket/dropped(mob/user as mob)
-	QDEL_NULL(linked)
+	if(linked)
+		QDEL_NULL(linked)
 	return ..()
 
 /obj/item/weapon/storage/laundry_basket/show_to(mob/user as mob)
@@ -82,6 +83,6 @@
 	use_to_pickup = FALSE
 
 /obj/item/weapon/storage/laundry_basket/offhand/dropped(mob/user as mob)
-	user.drop_from_inventory(linked)
+	if(user.isEquipped(linked))
+		user.drop_from_inventory(linked)
 	return
-

@@ -18,7 +18,7 @@
 		frame_types_wall = construction_frame_wall
 
 /obj/item/frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		new refund_type(get_turf(src.loc), refund_amt)
 		qdel(src)
 		return

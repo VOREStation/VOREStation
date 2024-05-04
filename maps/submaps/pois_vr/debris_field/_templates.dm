@@ -211,6 +211,11 @@
 	mappath = 'ship_sci_overrun.dmm'
 	cost = 35
 	allow_duplicates = FALSE
+/datum/map_template/debrisfield/phoron_tanker
+	name = "Betrayed Phoron Tanker"
+	mappath = 'ship_tanker_betrayed.dmm'
+	cost = 35
+	allow_duplicates = FALSE
 
 /datum/map_template/debrisfield/ship_tourist_overrun
 	name = "Overrun private yacht"
@@ -289,6 +294,13 @@
 /datum/map_template/debrisfield/blasted_sdf
 	name = "Blasted SDF Corvette"
 	mappath = 'maps/offmap_vr/om_ships/sdf_corvette_wreck.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+	discard_prob = 25
+
+/datum/map_template/debrisfield/phoron_tanker
+	name = "Betrayed Phoron Tanker"
+	mappath = 'ship_tanker_betrayed.dmm'
 	cost = 35
 	allow_duplicates = FALSE
 	discard_prob = 25

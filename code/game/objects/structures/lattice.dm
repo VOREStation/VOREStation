@@ -55,26 +55,21 @@
 
 /obj/structure/lattice/attackby(obj/item/C as obj, mob/user as mob)
 
-	if (istype(C, /obj/item/stack/tile/floor))
+	if(istype(C, /obj/item/stack/tile/floor))
 		var/turf/T = get_turf(src)
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
-	if (istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
+	if(C.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = C.get_welder()
 		if(WT.welding == 1)
 			if(WT.remove_fuel(0, user))
 				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
-			new /obj/item/stack/rods(src.loc)
+			new /obj/item/stack/rods(src.loc, 1) //VOREstation Edit: Return the same amount of rods used to build this.
 			qdel(src)
 		return
-	if (istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		if(R.use(2))
-			to_chat(user, "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>")
-			if(do_after(user, 5 SECONDS))
-				src.alpha = 0 // Note: I don't know why this is set, Eris did it, just trusting for now. ~Leshana
-				new /obj/structure/catwalk(src.loc)
-				qdel(src)
+	if(istype(C, /obj/item/stack/rods)) //VOREstation Edit: Modernizes upgrading lattices into catwalks.
+		upgrade(C, user)
+		//VOREstation Edit End
 		return
 	return
 
@@ -95,3 +90,11 @@
 
 		icon_state = "lattice[dir_sum]"
 		return
+
+//Vorestation Edit: Moves upgrading lattices to their own proc for other stuff to call. Also makes them instant.
+/obj/structure/lattice/proc/upgrade(obj/item/stack/rods/R, mob/user)
+	to_chat(user, "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>")
+	R.use(1)
+	src.alpha = 0 // Note: I don't know why this is set, Eris did it, just trusting for now. ~Leshana
+	new /obj/structure/catwalk(src.loc)
+	qdel(src)

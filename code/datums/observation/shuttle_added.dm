@@ -5,12 +5,14 @@
 //
 //		Arguments that the called proc should expect:
 //			/datum/shuttle/shuttle: the new shuttle
-
+/*
 GLOBAL_DATUM_INIT(shuttle_added, /decl/observ/shuttle_added, new)
 
 /decl/observ/shuttle_added
 	name = "Shuttle Added"
 	expected_type = /datum/shuttle
+*/
+//Deprecated in favor of comsigs
 
 /*****************************
 *  Shuttle Added Handling *
@@ -19,4 +21,4 @@ GLOBAL_DATUM_INIT(shuttle_added, /decl/observ/shuttle_added, new)
 /datum/controller/subsystem/shuttles/initialize_shuttle()
 	. = ..()
 	if(.)
-		GLOB.shuttle_added.raise_event(.)
+		SEND_SIGNAL(SSshuttles,COMSIG_OBSERVER_SHUTTLE_ADDED,.)

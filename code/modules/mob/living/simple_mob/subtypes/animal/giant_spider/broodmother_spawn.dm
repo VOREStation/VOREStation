@@ -10,7 +10,7 @@
 /mob/living/simple_mob/animal/giant_spider/frost/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/frost/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -28,7 +28,7 @@
 /mob/living/simple_mob/animal/giant_spider/electric/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/electric/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -43,7 +43,7 @@
 /mob/living/simple_mob/animal/giant_spider/hunter/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/hunter/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -58,7 +58,7 @@
 /mob/living/simple_mob/animal/giant_spider/lurker/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/lurker/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -74,7 +74,7 @@
 /mob/living/simple_mob/animal/giant_spider/nurse/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/nurse/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -89,7 +89,7 @@
 /mob/living/simple_mob/animal/giant_spider/pepper/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/pepper/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -107,7 +107,7 @@
 /mob/living/simple_mob/animal/giant_spider/thermic/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/thermic/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -122,7 +122,7 @@
 /mob/living/simple_mob/animal/giant_spider/tunneler/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/tunneler/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -139,7 +139,7 @@
 /mob/living/simple_mob/animal/giant_spider/webslinger/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/webslinger/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
@@ -157,7 +157,7 @@
 /mob/living/simple_mob/animal/giant_spider/broodling/Initialize()
 	. = ..()
 	adjust_scale(0.75)
-	addtimer(CALLBACK(src, .proc/death), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/broodling/death()
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)

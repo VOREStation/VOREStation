@@ -94,12 +94,12 @@
 		return
 	if(istype(W, /obj/item/weapon/rcd)) // To stop us from hitting the grille when building windows, because grilles don't let parent handle it properly.
 		return FALSE
-	else if(W.is_wirecutter())
+	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!shock(user, 100))
 			playsound(src, W.usesound, 100, 1)
 			new /obj/item/stack/rods(get_turf(src), destroyed ? 1 : 2)
 			qdel(src)
-	else if((W.is_screwdriver()) && (istype(loc, /turf/simulated) || anchored))
+	else if((W.has_tool_quality(TOOL_SCREWDRIVER)) && (istype(loc, /turf/simulated) || anchored))
 		if(!shock(user, 90))
 			playsound(src, W.usesound, 100, 1)
 			anchored = !anchored

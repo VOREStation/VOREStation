@@ -21,7 +21,7 @@
 
 /obj/item/clothing/suit/storage/apron/altevian
 	name = "Multi-purpose Crafters' Pride"
-	desc = "An apron designed by the space faring species that can hold an array of tools and other trinkets. It's made with a high-quality material."
+	desc = "An apron designed by rodent-like spacers who take pride in their work. It's made with high-quality material."
 	icon_state = "apron_altevian"
 	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
 

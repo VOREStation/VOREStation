@@ -37,7 +37,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 /obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/device/radio/R)
 	if(!istype(R))
 		return
-	linked_radios_weakrefs |= weakref(R)
+	linked_radios_weakrefs |= WEAKREF(R)
 
 /obj/machinery/telecomms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// Don't broadcast rejected signals
@@ -66,7 +66,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
 
 		var/list/forced_radios
-		for(var/weakref/wr in linked_radios_weakrefs)
+		for(var/datum/weakref/wr in linked_radios_weakrefs)
 			var/obj/item/device/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
@@ -149,7 +149,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 /obj/machinery/telecomms/allinone/proc/link_radio(var/obj/item/device/radio/R)
 	if(!istype(R))
 		return
-	linked_radios_weakrefs |= weakref(R)
+	linked_radios_weakrefs |= WEAKREF(R)
 
 /obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
 
@@ -197,7 +197,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/datum/radio_frequency/connection = signal.data["connection"]
 
 		var/list/forced_radios
-		for(var/weakref/wr in linked_radios_weakrefs)
+		for(var/datum/weakref/wr in linked_radios_weakrefs)
 			var/obj/item/device/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
@@ -255,7 +255,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/datum/radio_frequency/connection = signal.data["connection"]
 
 		var/list/forced_radios
-		for(var/weakref/wr in linked_radios_weakrefs)
+		for(var/datum/weakref/wr in linked_radios_weakrefs)
 			var/obj/item/device/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
@@ -455,7 +455,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(data == DATA_ANTAG) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
 		var/part_a = "<span class='[frequency_span_class(display_freq)]'>"
-		var/part_b = "\icon[radio][bicon(radio)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
+		var/part_b = "[icon2html(radio, heard_masked + heard_normal + heard_voice + heard_garbled + heard_gibberish)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
 
 		// --- Some more pre-message formatting ---
 		var/part_c = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
@@ -658,7 +658,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// Create a radio headset for the sole purpose of using its icon
 		var/obj/item/device/radio/headset/radio = new
 
-		var/part_b = "</span><b>\icon[radio][bicon(radio)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b>[icon2html(radio, heard_normal + heard_garbled + heard_gibberish)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_blackbox_b = "</span><b> \[[freq_text]\]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
@@ -761,4 +761,3 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//to_world_log("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
 
 	return signal
-

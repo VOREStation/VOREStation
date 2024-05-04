@@ -55,7 +55,7 @@
 
 		for(var/modifier_type in B.brainmob.modifiers)	//Can't be shoved in an MMI.
 			if(istype(modifier_type, /datum/modifier/no_borg))
-				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatable.</span>")
+				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatible.</span>")
 				return
 
 		user.visible_message("<b>\The [user]</b> sticks \a [O] into \the [src].")
@@ -210,7 +210,7 @@
 				. += "<span class='deadsay'>It appears to be completely inactive.</span>"
 	else
 		. += "<span class='deadsay'>It appears to be completely inactive.</span>"
-		
+
 /obj/item/device/mmi/digital/emp_act(severity)
 	if(!src.brainmob)
 		return
@@ -237,7 +237,7 @@
 /obj/item/device/mmi/digital/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
-		to_chat(user, "<font color='blue'>You carefully locate the manual activation switch and start the [src]'s boot process.</font>")
+		to_chat(user, span_blue("You carefully locate the manual activation switch and start the [src]'s boot process."))
 		request_player()
 
 /obj/item/device/mmi/digital/proc/request_player()
@@ -261,7 +261,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
+		M.show_message(span_blue("\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 /obj/item/device/mmi/digital/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a synthetic brain now.")
@@ -279,7 +279,7 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message("<font color='blue'>\The [src] chimes quietly.</font>")
+		M.show_message(span_blue("\The [src] chimes quietly."))
 
 /obj/item/device/mmi/digital/robot
 	name = "robotic intelligence circuit"

@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -8,8 +9,8 @@ type Data = {
   electronic_warfare: BooleanLike;
 };
 
-export const AgentCard = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const AgentCard = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { entries, electronic_warfare } = data;
 
@@ -21,7 +22,10 @@ export const AgentCard = (props, context) => {
             {entries.map((a) => (
               <Table.Row key={a.name}>
                 <Table.Cell>
-                  <Button onClick={() => act(a.name.toLowerCase().replace(/ /g, ''))} icon="cog" />
+                  <Button
+                    onClick={() => act(a.name.toLowerCase().replace(/ /g, ''))}
+                    icon="cog"
+                  />
                 </Table.Cell>
                 <Table.Cell>{a.name}</Table.Cell>
                 <Table.Cell>{a.value}</Table.Cell>

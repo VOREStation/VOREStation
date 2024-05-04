@@ -63,11 +63,11 @@
 		if(!check_rights(NONE))
 			return
 		var/list/names = list()
-		var/list/componentsubtypes = sortTim(subtypesof(/datum/component), /proc/cmp_typepaths_asc)
+		var/list/componentsubtypes = sortTim(subtypesof(/datum/component), GLOBAL_PROC_REF(cmp_typepaths_asc))
 		names += "---Components---"
 		names += componentsubtypes
 		names += "---Elements---"
-		names += sortTim(subtypesof(/datum/element), /proc/cmp_typepaths_asc)
+		names += sortTim(subtypesof(/datum/element), GLOBAL_PROC_REF(cmp_typepaths_asc))
 		var/result = tgui_input_list(usr, "Choose a component/element to add:", "Add Component/Element", names)
 		if(!usr || !result || result == "---Components---" || result == "---Elements---")
 			return

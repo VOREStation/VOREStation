@@ -38,7 +38,7 @@
 /datum/supply_pack/recreation/donksoftborg
 	name = "Donk-Soft Cyborg Blaster Crate"
 	contains = list(
-			/obj/item/borg/upgrade/toygun = 2,
+			/obj/item/borg/upgrade/no_prod/toygun = 2,
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/allico

@@ -823,7 +823,7 @@
 /area/submap/cave/qShuttle)
 "ck" = (
 /obj/structure/table/steel,
-/obj/item/weapon/tool/crowbar/power,
+/obj/item/weapon/tool/transforming/jawsoflife,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cl" = (

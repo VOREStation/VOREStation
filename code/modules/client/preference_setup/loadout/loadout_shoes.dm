@@ -252,3 +252,15 @@
 /datum/gear/shoes/circuitry
 	display_name = "boots, circuitry (empty)"
 	path = /obj/item/clothing/shoes/circuitry
+
+/datum/gear/shoes/ballet
+	display_name = "pointe shoes"
+	path = /obj/item/clothing/shoes/ballet
+
+/datum/gear/shoes/ballet/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/shoes/halfmoon
+	display_name = "half moon boots"
+	path = /obj/item/clothing/shoes/boots/half_moon

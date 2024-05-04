@@ -1,8 +1,8 @@
 /obj/machinery/mecha_part_fabricator
 	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
-	icon_state = "mechfab-idle"
+	icon_state = "mechfab"
 	name = "Exosuit Fabricator"
-	desc = "A machine used for construction of mechas."
+	desc = "A machine used for the construction of mechas."
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -138,6 +138,12 @@
 			var/module_types = initial(U.module_flags)
 			sub_category = list()
 			if(module_types)
+				if(module_types & BORG_UTILITY)
+					sub_category += "All Cyborgs - Utility"
+				if(module_types & BORG_BASIC)
+					sub_category += "All Cyborgs - Basic"
+				if(module_types & BORG_ADVANCED)
+					sub_category += "All Cyborgs - Advanced"
 				if(module_types & BORG_MODULE_SECURITY)
 					sub_category += "Security"
 				if(module_types & BORG_MODULE_MINER)
@@ -150,9 +156,16 @@
 					sub_category += "Engineering"
 				if(module_types & BORG_MODULE_SCIENCE)
 					sub_category += "Science"
-
+				if(module_types & BORG_MODULE_SERVICE)
+					sub_category += "Service"
+				if(module_types & BORG_MODULE_CLERIC)
+					sub_category += "Cleric"
+				if(module_types & BORG_MODULE_COMBAT)
+					sub_category += "Combat"
+				if(module_types & BORG_MODULE_EXPLO)
+					sub_category += "Exploration"
 			else
-				sub_category += "All Cyborgs"
+				sub_category += "This shouldn't be here, bother a dev!"
 		// Else check if this design builds a piece of exosuit equipment.
 		else if(built_item in typesof(/obj/item/mecha_parts/mecha_equipment))
 			var/obj/item/mecha_parts/mecha_equipment/E = built_item
@@ -213,7 +226,7 @@
   * Adds the overlay to show the fab working and sets active power usage settings.
   */
 /obj/machinery/mecha_part_fabricator/proc/on_start_printing()
-	add_overlay("fab-active")
+	add_overlay("[icon_state]-active")
 	use_power = USE_POWER_ACTIVE
 
 /**
@@ -222,7 +235,7 @@
   * Removes the overlay to show the fab working and sets idle power usage settings. Additionally resets the description and turns off queue processing.
   */
 /obj/machinery/mecha_part_fabricator/proc/on_finish_printing()
-	cut_overlay("fab-active")
+	cut_overlay("[icon_state]-active")
 	use_power = USE_POWER_IDLE
 	desc = initial(desc)
 	process_queue = FALSE
@@ -632,11 +645,9 @@
 			if(S && S.get_amount() >= 1)
 				var/count = 0
 				flick("[loading_icon_state]", src)
-				// yess hacky but whatever
+				// yess hacky but whatever //even more hacky now, but at least it works
 				if(loading_icon_state == "mechfab-idle")
-					add_overlay("mechfab-load-metal")
-					spawn(10)
-						cut_overlays("mechfab-load-metal")
+					flick("mechfab-load-metal", src)
 				while(materials[S.material.name] + amnt <= res_max_amount && S.get_amount() >= 1)
 					materials[S.material.name] += amnt
 					S.use(1)
@@ -653,20 +664,20 @@
 	switch(emagged)
 		if(0)
 			emagged = 0.5
-			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
+			visible_message("[icon2html(src,viewers(src))] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
 			sleep(10)
-			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"Attempting auto-repair\"")
+			visible_message("[icon2html(src,viewers(src))] <b>[src]</b> beeps: \"Attempting auto-repair\"")
 			sleep(15)
-			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
+			visible_message("[icon2html(src,viewers(src))] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
 			sleep(30)
-			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"User DB truncated. Please contact your [using_map.company_name] system operator for future assistance.\"")
+			visible_message("[icon2html(src,viewers(src))] <b>[src]</b> beeps: \"User DB truncated. Please contact your [using_map.company_name] system operator for future assistance.\"")
 			req_access = null
 			emagged = 1
 			return 1
 		if(0.5)
-			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
+			visible_message("[icon2html(src,viewers(src))] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
 		if(1)
-			visible_message("\icon[src][bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
+			visible_message("[icon2html(src,viewers(src))] <b>[src]</b> beeps: \"No records in User DB\"")
 
 /obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 	var/recursive = amount == -1 ? TRUE : FALSE

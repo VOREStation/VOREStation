@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 /obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
 
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message("<span class='notice'>[user] begins to take the glass off the solar panel.</span>")
 		if(do_after(user, 50))
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		return 0  //if there's no SSsun.sun or the panel is not linked to a solar control computer, no need to proceed
 	if(!powernet || powernet != control.powernet)
 		return 0 // We aren't connected to the controller
-	if(obscured) 
+	if(obscured)
 		return 0 //get no light from the SSsun.sun, so don't generate power
 	return GLOB.solar_gen_rate * sunfrac
 
@@ -207,13 +207,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if (!isturf(loc))
 		return 0
 	if(!anchored)
-		if(W.is_wrench())
+		if(W.has_tool_quality(TOOL_WRENCH))
 			anchored = TRUE
 			user.visible_message("<span class='notice'>[user] wrenches the solar assembly into place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1
 	else
-		if(W.is_wrench())
+		if(W.has_tool_quality(TOOL_WRENCH))
 			anchored = FALSE
 			user.visible_message("<span class='notice'>[user] unwrenches the solar assembly from it's place.</span>")
 			playsound(src, W.usesound, 75, 1)
@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			user.visible_message("<span class='notice'>[user] inserts the electronics into the solar assembly.</span>")
 			return 1
 	else
-		if(W.is_crowbar())
+		if(W.has_tool_quality(TOOL_CROWBAR))
 			new /obj/item/weapon/tracker_electronics(src.loc)
 			tracker = 0
 			user.visible_message("<span class='notice'>[user] takes out the electronics from the solar assembly.</span>")
@@ -267,7 +267,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/targetdir = 0		// target angle in manual tracking (since it updates every game minute)
 	var/track = 0			// 0= off  1=timed  2=auto (tracker)
 	var/trackrate = 600		// 300-900 seconds
-	var/nexttime = 0		// time for a panel to rotate of 1� in manual tracking
+	var/nexttime = 0		// time for a panel to rotate of 1° in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/needs_panel_check	// Powernet has been updated, need to check if panels are still connected.
 	var/connected_power		// Sum of power supplied by connected panels.
@@ -412,11 +412,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 	return data
 
 /obj/machinery/power/solar_control/attackby(obj/item/I, user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
-				to_chat(user, "<font color='blue'>The broken glass falls out.</font>")
+				to_chat(user, span_blue("The broken glass falls out."))
 				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
@@ -428,7 +428,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, "<font color='blue'>You disconnect the monitor.</font>")
+				to_chat(user, span_blue("You disconnect the monitor."))
 				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
@@ -451,9 +451,9 @@ GLOBAL_LIST_EMPTY(solars_list)
 			connected_tracker.unset_control()
 
 	if(track==1 && trackrate) //manual tracking and set a rotation speed
-		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1�...
+		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1°...
 			targetdir = (targetdir + trackrate/abs(trackrate) + 360) % 360 	//... do it
-			nexttime += 36000/abs(trackrate) //reset the counter for the next 1�
+			nexttime += 36000/abs(trackrate) //reset the counter for the next 1°
 
 	if(needs_panel_check)
 		for(var/obj/machinery/power/solar/S in connected_panels)

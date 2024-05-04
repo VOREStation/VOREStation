@@ -27,7 +27,7 @@
 		B.target_turf = pick(RANGE_TURFS(1, holder))
 		B.blood_DNA = list()
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		M.vessel.remove_reagent("blood",rand(10,30))
+		M.remove_blood(rand(10,30))
 
 /datum/artifact_effect/vampire/DoEffectTouch(var/mob/user)
 	bloodcall(user)
@@ -83,7 +83,7 @@
 
 	if(charges >= 0.1)
 		if(prob(5))
-			holder.visible_message("<span class='alien'>\icon[holder] \The [holder] gleams a bloody red!</span>")
+			holder.visible_message("<span class='alien'>[icon2html(holder,viewers(holder))] \The [holder] gleams a bloody red!</span>")
 			charges -= 0.1
 
 /datum/artifact_effect/vampire/DoEffectPulse()

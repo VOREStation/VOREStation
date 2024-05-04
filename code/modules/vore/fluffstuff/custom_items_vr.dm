@@ -1188,7 +1188,7 @@
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	suit_type = "probably not magical"
-	icon_state = "nikki"
+	icon_state = "nikkicape"
 	w_class = ITEMSIZE_SMALL // It is after all only a necklace
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0) // this isn't armor, it's a dorky frickin cape
 	siemens_coefficient = 0.9
@@ -1518,7 +1518,7 @@
 	item_icons = list(slot_l_hand_str = 'icons/vore/custom_items_left_hand_vr.dmi', slot_r_hand_str = 'icons/vore/custom_items_right_hand_vr.dmi')
 	icon_state = "kyuholotar"
 
-//Pandora029 - Seona Young
+//Pandora029 - Shona Young
 /obj/item/toy/plushie/fluff/seona_mofuorb
 	name = "comically oversized fox-orb plushie"
 	desc = "A humongous & adorable Largo© brand stuffed-toy that resembles a mix of slime and absurdly fluffy fox. It's colored white largely, with the tips of it's fox-like ears and tail transitioning to a nice pink-ish color. Comes complete with reactive expressions, according to the label."
@@ -1531,7 +1531,7 @@
 	if(stored_item && opened && !searching)
 		searching = TRUE
 		if(do_after(user, 10))
-			to_chat(user, "You find \icon[stored_item] [stored_item] in [src]!")
+			to_chat(user, "You find [icon2html(stored_item, user.client)] [stored_item] in [src]!")
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 			searching = FALSE

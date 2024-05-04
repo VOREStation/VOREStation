@@ -1,13 +1,13 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, Slider, Section } from '../components';
+import { Button, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
   volume_channels: { key; val: number }[];
 };
 
-export const VolumePanel = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const VolumePanel = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { volume_channels } = data;
 
@@ -23,9 +23,15 @@ export const VolumePanel = (props, context) => {
                   minValue={0}
                   maxValue={200}
                   value={volume_channels[key] * 100}
-                  onChange={(e, val) => act('adjust_volume', { channel: key, vol: val / 100 })}
+                  onChange={(e, val) =>
+                    act('adjust_volume', { channel: key, vol: val / 100 })
+                  }
                 />
-                <Button ml={1} icon="undo" onClick={() => act('adjust_volume', { channel: key, vol: 1 })} />
+                <Button
+                  ml={1}
+                  icon="undo"
+                  onClick={() => act('adjust_volume', { channel: key, vol: 1 })}
+                />
               </LabeledList.Item>
             ))}
           </LabeledList>

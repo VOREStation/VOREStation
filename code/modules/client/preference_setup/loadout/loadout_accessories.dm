@@ -349,3 +349,27 @@
 /datum/gear/accessory/pressbadge
 	display_name = "freelance press pass"
 	path = /obj/item/clothing/accessory/badge/press/independent
+
+/datum/gear/accessory/wristband
+	display_name = "wristband (recolourable)"
+	path = /obj/item/clothing/accessory/wristband
+
+/datum/gear/accessory/wristband/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/wristband_collection
+	display_name = "wristbands (selection)"
+	path = /obj/item/clothing/accessory/wristbandcollection
+
+/datum/gear/accessory/wristband_collection/New()
+	..()
+	var/list/wristband_lists = list(
+	"Green, Blue and Yellow" = /obj/item/clothing/accessory/wristbandcollection,
+	"Pink, Black and Red" = /obj/item/clothing/accessory/wristbandcollection/pink,
+	"Red and Orange" = /obj/item/clothing/accessory/wristbandcollection/les,
+	"White, Pink and Blue" = /obj/item/clothing/accessory/wristbandcollection/trans,
+	"Blue, Purple and Pink" = /obj/item/clothing/accessory/wristbandcollection/bi,
+	"Black, White and Grey" = /obj/item/clothing/accessory/wristbandcollection/ace
+	)
+	gear_tweaks += new/datum/gear_tweak/path(wristband_lists)

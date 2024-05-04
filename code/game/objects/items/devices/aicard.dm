@@ -71,7 +71,7 @@
 		if("wipe")
 			msg_admin_attack("[key_name_admin(user)] wiped [key_name_admin(AI)] with \the [src].")
 			add_attack_logs(user,carded_ai,"Purged from AI Card")
-			INVOKE_ASYNC(src, .proc/wipe_ai)
+			INVOKE_ASYNC(src, PROC_REF(wipe_ai))
 		if("radio")
 			carded_ai.aiRadio.disabledAi = !carded_ai.aiRadio.disabledAi
 			to_chat(carded_ai, "<span class='warning'>Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!</span>")
@@ -83,7 +83,7 @@
 			if(carded_ai.control_disabled && carded_ai.deployed_shell)
 				carded_ai.disconnect_shell("Disconnecting from remote shell due to [src] wireless access interface being disabled.")
 			update_icon()
-	
+
 	return TRUE
 
 /obj/item/device/aicard/update_icon()

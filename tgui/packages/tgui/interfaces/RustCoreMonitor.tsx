@@ -1,10 +1,11 @@
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Button, Section, Table, Knob } from '../components';
 import { BooleanLike } from 'common/react';
 
+import { useBackend } from '../backend';
+import { Button, Knob, Section, Table } from '../components';
+import { Window } from '../layouts';
+
 export const RustCoreMonitor = () => (
-  <Window width={627} height={700} resizable>
+  <Window width={627} height={700}>
     <Window.Content>
       <RustCoreMonitorContent />
     </Window.Content>
@@ -27,13 +28,22 @@ type Data = {
   }[];
 };
 
-export const RustCoreMonitorContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const RustCoreMonitorContent = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { cores } = data;
 
   return (
-    <Section title="Cores" buttons={<Button icon="pencil-alt" content={'Set Tag'} onClick={() => act('set_tag')} />}>
+    <Section
+      title="Cores"
+      buttons={
+        <Button
+          icon="pencil-alt"
+          content={'Set Tag'}
+          onClick={() => act('set_tag')}
+        />
+      }
+    >
       <Table>
         <Table.Row header>
           <Table.Cell>Name</Table.Cell>

@@ -402,8 +402,8 @@
 /area/centcom/specops)
 "bc" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
+/obj/item/weapon/storage/pill_bottle/blood_regen,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
@@ -2394,6 +2394,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/control)
+"hK" = (
+/obj/machinery/item_bank{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "hL" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Special Operations";
@@ -2718,7 +2724,6 @@
 /area/centcom/command)
 "iU" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -4050,6 +4055,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
+"of" = (
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/item_bank{
+	dir = 8;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/living)
 "oj" = (
 /obj/structure/bed/chair/sofa/bench/left{
 	dir = 4;
@@ -8381,7 +8397,6 @@
 /area/centcom/living)
 "HH" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 30
 	},
 /turf/simulated/floor/lino,
@@ -9647,7 +9662,7 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 10
 	},
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "KJ" = (
@@ -14087,7 +14102,6 @@
 /area/centcom/main_hall)
 "VK" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -29072,7 +29086,7 @@ vu
 Zy
 Zy
 Zy
-Zy
+of
 Zy
 Zy
 Zy
@@ -33734,7 +33748,7 @@ Ll
 OA
 Xf
 as
-VH
+hK
 VH
 VH
 VH

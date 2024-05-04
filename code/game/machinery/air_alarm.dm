@@ -74,6 +74,7 @@
 
 	/// Keys are things like temperature and certain gasses. Values are lists, which contain, in order:
 	/// red warning minimum value, yellow warning minimum value, yellow warning maximum value, red warning maximum value
+	/// Use code\defines\gases.dm as reference for id/name. Please keep it consistent
 	var/list/TLV = list()
 	var/list/trace_gas = list("nitrous_oxide", "volatile_fuel") //list of other gases that this air alarm is able to detect
 
@@ -108,7 +109,7 @@
 	. = ..()
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
 	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
-	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
+	TLV["carbon_dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
 	TLV["phoron"] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
@@ -146,7 +147,7 @@
 	// breathable air according to human/Life()
 	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
 	TLV["nitrogen"] =		list(0, 0, 135, 140) // Partial pressure, kpa
-	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
+	TLV["carbon_dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
 	TLV["phoron"] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
@@ -273,7 +274,7 @@
 	pressure_dangerlevel = TEST_TLV_VALUES // not local because it's used in process()
 	LOAD_TLV_VALUES(TLV["oxygen"], environment.gas["oxygen"]*partial_pressure)
 	var/oxygen_dangerlevel = TEST_TLV_VALUES
-	LOAD_TLV_VALUES(TLV["carbon dioxide"], environment.gas["carbon_dioxide"]*partial_pressure)
+	LOAD_TLV_VALUES(TLV["carbon_dioxide"], environment.gas["carbon_dioxide"]*partial_pressure)
 	var/co2_dangerlevel = TEST_TLV_VALUES
 	LOAD_TLV_VALUES(TLV["phoron"], environment.gas["phoron"]*partial_pressure)
 	var/phoron_dangerlevel = TEST_TLV_VALUES
@@ -620,9 +621,9 @@
 					list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]),
 					list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]),
 					list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]),
-					list("name" = "Toxin"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]),
+					list("name" = "Phoron"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]),
 					list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]),
-					list("name" = "Fuel",			"command" = "fuel_scrub","val" = info["filter_fuel"])
+					list("name" = "Volatile Fuel",	"command" = "fuel_scrub","val" = info["filter_fuel"])
 				)
 			))
 		data["scrubbers"] = scrubbers
@@ -641,7 +642,7 @@
 		var/list/selected
 		var/list/thresholds = list()
 
-		var/list/gas_names = list("oxygen", "carbon dioxide", "phoron", "other")
+		var/list/gas_names = list("oxygen", "carbon_dioxide", "phoron", "other")	//Gas ids made to match code\defines\gases.dm
 		for(var/g in gas_names)
 			thresholds[++thresholds.len] = list("name" = g, "settings" = list())
 			selected = TLV[g]
@@ -681,7 +682,7 @@
 		var/list/selected = TLV["temperature"]
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
-		var/input_temperature = tgui_input_number(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C, max_temperature, min_temperature)
+		var/input_temperature = tgui_input_number(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C, max_temperature, min_temperature, round_value = FALSE)
 		if(isnum(input_temperature))
 			if(input_temperature > max_temperature || input_temperature < min_temperature)
 				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
@@ -735,7 +736,7 @@
 			var/env = params["env"]
 
 			var/name = params["var"]
-			var/value = tgui_input_number(usr, "New [name] for [env]:", name, TLV[env][name])
+			var/value = tgui_input_number(usr, "New [name] for [env]:", name, TLV[env][name], min_value=-1, round_value = FALSE)
 			if(!isnull(value) && !..())
 				if(value < 0)
 					TLV[env][name] = -1

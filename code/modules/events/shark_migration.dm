@@ -49,6 +49,8 @@
 	// Okay we did *not* have any landmarks, so lets do our best!
 	var/i = 1
 	while (i <= num_groups)
+		if(!affecting_z.len)
+			return
 		var/Z = pick(affecting_z)
 		var/group_size = rand(group_size_min, group_size_max)
 		var/turf/map_center = locate(round(world.maxx/2), round(world.maxy/2), Z)
@@ -69,7 +71,7 @@
 // Spawn a single shark at given location.
 /datum/event/shark_migration/proc/spawn_one_shark(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/shark/event(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_shark_destruction)
+	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_shark_destruction))
 	spawned_shark.Add(M)
 	return M
 
@@ -83,7 +85,7 @@
 // If shark is bomphed, remove it from the list.
 /datum/event/shark_migration/proc/on_shark_destruction(var/mob/M)
 	spawned_shark -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_shark_destruction)
+	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 
 /datum/event/shark_migration/end()
 	. = ..()

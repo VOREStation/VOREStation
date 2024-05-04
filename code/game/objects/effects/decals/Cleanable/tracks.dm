@@ -202,3 +202,5 @@ var/global/list/image/fluidtrack_cache=list()
 	gender = PLURAL
 	random_icon_states = null
 	amount = 0
+
+#undef TRACKS_CRUSTIFY_TIME

@@ -56,8 +56,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/passive/tindalos),
 		list(/mob/living/simple_mob/animal/passive/yithian),
 		list(
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/wolf = 10,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5,
 			/mob/living/simple_mob/vore/greatwolf = 1,
 			/mob/living/simple_mob/vore/greatwolf/black = 1,
 			/mob/living/simple_mob/vore/greatwolf/grey = 1
@@ -75,10 +75,10 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/space/bear/brown
 			),
 		list(
-			/mob/living/simple_mob/otie/feral,
-			/mob/living/simple_mob/otie/feral/chubby,
-			/mob/living/simple_mob/otie/red,
-			/mob/living/simple_mob/otie/red/chubby
+			/mob/living/simple_mob/vore/otie/feral,
+			/mob/living/simple_mob/vore/otie/feral/chubby,
+			/mob/living/simple_mob/vore/otie/red,
+			/mob/living/simple_mob/vore/otie/red/chubby
 			),
 		list(/mob/living/simple_mob/animal/sif/diyaab),
 		list(/mob/living/simple_mob/animal/sif/duck),
@@ -104,7 +104,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/sif/siffet),
 		list(/mob/living/simple_mob/animal/sif/tymisian),
 		list(
-			/mob/living/simple_mob/animal/giant_spider/nurse = 10,
 			/mob/living/simple_mob/animal/giant_spider/electric = 5,
 			/mob/living/simple_mob/animal/giant_spider/frost = 5,
 			/mob/living/simple_mob/animal/giant_spider/hunter = 10,
@@ -144,7 +143,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/space/carp/large/huge = 5
 			),
 		list(/mob/living/simple_mob/animal/space/goose),
-		list(/mob/living/simple_mob/animal/space/jelly),
+		list(/mob/living/simple_mob/vore/jelly),
 		list(/mob/living/simple_mob/animal/space/tree),
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound = 10,
@@ -245,12 +244,12 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/mechanical/wahlem),
 		list(/mob/living/simple_mob/animal/passive/fox/syndicate),
 		list(/mob/living/simple_mob/animal/passive/fox),
-		list(/mob/living/simple_mob/animal/space/jelly),
+		list(/mob/living/simple_mob/vore/jelly),
 		list(
-			/mob/living/simple_mob/otie/feral,
-			/mob/living/simple_mob/otie/feral/chubby,
-			/mob/living/simple_mob/otie/red,
-			/mob/living/simple_mob/otie/red/chubby
+			/mob/living/simple_mob/vore/otie/feral,
+			/mob/living/simple_mob/vore/otie/feral/chubby,
+			/mob/living/simple_mob/vore/otie/red,
+			/mob/living/simple_mob/vore/otie/red/chubby
 			),
 		list(
 			/mob/living/simple_mob/shadekin/blue = 100,
@@ -377,8 +376,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/passive/tindalos) = 10,
 		list(/mob/living/simple_mob/animal/passive/yithian) = 10,
 		list(
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/wolf = 10,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5,
 			/mob/living/simple_mob/vore/greatwolf = 1,
 			/mob/living/simple_mob/vore/greatwolf/black = 1,
 			/mob/living/simple_mob/vore/greatwolf/grey = 1
@@ -396,10 +395,10 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/space/bear/brown
 			) = 1,
 		list(
-			/mob/living/simple_mob/otie/feral = 50,
-			/mob/living/simple_mob/otie/feral/chubby = 10,
-			/mob/living/simple_mob/otie/red = 5,
-			/mob/living/simple_mob/otie/red/chubby = 1
+			/mob/living/simple_mob/vore/otie/feral = 50,
+			/mob/living/simple_mob/vore/otie/feral/chubby = 10,
+			/mob/living/simple_mob/vore/otie/red = 5,
+			/mob/living/simple_mob/vore/otie/red/chubby = 1
 			) = 5,
 		list(/mob/living/simple_mob/vore/aggressive/rat) = 15,
 		list(/mob/living/simple_mob/animal/sif/diyaab) = 5,
@@ -448,7 +447,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 
 	possible_mob_types = list(
 		list(
-			/mob/living/simple_mob/animal/giant_spider/nurse = 10,
 			/mob/living/simple_mob/animal/giant_spider/electric = 5,
 			/mob/living/simple_mob/animal/giant_spider/frost = 5,
 			/mob/living/simple_mob/animal/giant_spider/hunter = 10,
@@ -466,8 +464,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/shadekin/purple = 10
 			) = 1,
 		list(
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/wolf = 10,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5,
 			/mob/living/simple_mob/vore/greatwolf = 1,
 			/mob/living/simple_mob/vore/greatwolf/black = 1,
 			/mob/living/simple_mob/vore/greatwolf/grey = 1
@@ -501,13 +499,13 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/space/carp/large/huge = 5
 			) = 50,
 		list(/mob/living/simple_mob/animal/space/goose) = 50,
-		list(/mob/living/simple_mob/animal/space/jelly) = 40,
+		list(/mob/living/simple_mob/vore/jelly) = 40,
 		list(/mob/living/simple_mob/animal/space/tree) = 15,
 		list(
-			/mob/living/simple_mob/otie/feral = 50,
-			/mob/living/simple_mob/otie/feral/chubby = 10,
-			/mob/living/simple_mob/otie/red = 5,
-			/mob/living/simple_mob/otie/red/chubby = 1
+			/mob/living/simple_mob/vore/otie/feral = 50,
+			/mob/living/simple_mob/vore/otie/feral/chubby = 10,
+			/mob/living/simple_mob/vore/otie/red = 5,
+			/mob/living/simple_mob/vore/otie/red/chubby = 1
 			) = 40,
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound = 10,
@@ -717,17 +715,17 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 
 	possible_mob_types = list(
 		list(
-			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5,
 			/mob/living/simple_mob/vore/greatwolf = 1,
 			/mob/living/simple_mob/vore/greatwolf/black = 1,
 			/mob/living/simple_mob/vore/greatwolf/grey = 1
 			) = 100,
-		list(/mob/living/simple_mob/animal/space/jelly) = 70,
+		list(/mob/living/simple_mob/vore/jelly) = 70,
 		list(
-			/mob/living/simple_mob/otie/feral,
-			/mob/living/simple_mob/otie/feral/chubby,
-			/mob/living/simple_mob/otie/red,
-			/mob/living/simple_mob/otie/red/chubby
+			/mob/living/simple_mob/vore/otie/feral,
+			/mob/living/simple_mob/vore/otie/feral/chubby,
+			/mob/living/simple_mob/vore/otie/red,
+			/mob/living/simple_mob/vore/otie/red/chubby
 			) = 50,
 		list(
 			/mob/living/simple_mob/shadekin/blue = 100,
@@ -752,11 +750,18 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/vore/aggressive/rat) = 100,
 		list(/mob/living/simple_mob/vore/bee) = 100,
 		list(/mob/living/simple_mob/vore/catgirl) = 100,
+		list(/mob/living/simple_mob/vore/wolftaur) = 100,
 		list(/mob/living/simple_mob/vore/cookiegirl) = 100,
 		list(/mob/living/simple_mob/vore/fennec) = 100,
 		list(/mob/living/simple_mob/vore/fennix) = 50,
 		list(/mob/living/simple_mob/vore/hippo) = 70,
 		list(/mob/living/simple_mob/vore/horse) = 100,
+		list(/mob/living/simple_mob/vore/raptor) = 100,
+		list(/mob/living/simple_mob/vore/succubus) = 100,
+		list(/mob/living/simple_mob/vore/vampire) = 50,
+		list(/mob/living/simple_mob/vore/vampire/queen) = 1,
+		list(/mob/living/simple_mob/vore/bat) = 50,
+		list(/mob/living/simple_mob/vore/scel) = 10,
 		list(
 			/mob/living/simple_mob/vore/lamia,
 			/mob/living/simple_mob/vore/lamia/albino,
@@ -1013,6 +1018,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 	overwrite_hostility = 1
 	mob_hostile = 0
 	mob_retaliate = 0
+	mob_ghostjoin = 25 //25% chance to be ghost joinable
 
 /obj/random/mob/semirandom_mob_spawner/vore/passive/b
 	mob_faction = "pasvoreb"
@@ -1025,6 +1031,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 	overwrite_hostility = 1
 	mob_hostile = 0
 	mob_retaliate = 1
+	mob_ghostjoin = 25 //25% chance to be ghost joinable
 
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b
 	mob_faction = "retvoreb"

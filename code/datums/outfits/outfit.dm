@@ -127,7 +127,8 @@ var/list/outfits_decls_by_type_
 	if(gloves)
 		H.equip_to_slot_or_del(new gloves(H),slot_gloves)
 	if(shoes)
-		H.equip_to_slot_or_del(new shoes(H),slot_shoes)
+		if(!(H.client?.prefs?.shoe_hater))	//RS ADD
+			H.equip_to_slot_or_del(new shoes(H),slot_shoes)
 	if(mask)
 		H.equip_to_slot_or_del(new mask(H),slot_wear_mask)
 	if(head)
@@ -182,6 +183,8 @@ var/list/outfits_decls_by_type_
 		pda.ownjob = assignment
 		pda.ownrank = rank
 		pda.name = "PDA-[H.real_name] ([assignment])"
+		if(H.client.prefs.ringtone) // if null we use the job default
+			pda.ttone = H.client.prefs.ringtone
 		return pda
 
 /decl/hierarchy/outfit/dd_SortValue()

@@ -13,7 +13,7 @@
 	heating_power = 6 KILOWATTS
 	//Based on a double deck electric convection oven
 
-	resistance = 12 KILOWATTS // Approx. 12 minutes to heat up.
+	resistance = 2 KILOWATTS // Approx. 2 minutes to heat up.
 	idle_power_usage = 2 KILOWATTS
 	//uses ~30% power to stay warm
 	optimal_power = 0.8 // Oven cooks .2 faster than the default speed.
@@ -110,7 +110,7 @@
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
 	// check if someone's trying to manipulate the machine
 
-	if(I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/weapon/storage/part_replacer))
+	if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/weapon/storage/part_replacer))
 		return TRUE
 	else
 		return FALSE

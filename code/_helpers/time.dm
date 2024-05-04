@@ -1,31 +1,7 @@
-#define MILISECOND * 0.01
-#define MILLISECONDS * 0.01
-
-#define SECOND *10
-#define SECONDS *10
-
-#define MINUTE *600
-#define MINUTES *600
-
-#define HOUR *36000
-#define HOURS *36000
-
-#define DAY *864000
-#define DAYS *864000
-
 #define TimeOfGame (get_game_time())
 #define TimeOfTick (TICK_USAGE*0.01*world.tick_lag)
 
-#define TICK *world.tick_lag
-#define TICKS *world.tick_lag
-
-#define DS2TICKS(DS) ((DS)/world.tick_lag)	// Convert deciseconds to ticks
-#define TICKS2DS(T) ((T) TICKS) 				// Convert ticks to deciseconds
 #define DS2NEARESTTICK(DS) TICKS2DS(-round(-(DS2TICKS(DS))))
-
-#define MS2DS(T) ((T) MILLISECONDS)
-
-#define DS2MS(T) ((T) * 100)
 
 var/world_startup_time
 

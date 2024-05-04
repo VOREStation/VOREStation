@@ -272,6 +272,19 @@
 				var/mob/living/L = usr
 				L.resist()
 
+		if("control_vtec")
+			if(isrobot(usr))
+				var/mob/living/silicon/robot/R = usr
+				if(R.speed == 0 && R.vtec_active)
+					R.speed = -0.5
+					R.hud_used.control_vtec.icon_state = "speed_1"
+				else if(R.speed == -0.5 && R.vtec_active)
+					R.speed = -1
+					R.hud_used.control_vtec.icon_state = "speed_2"
+				else
+					R.speed = 0
+					R.hud_used.control_vtec.icon_state = "speed_0"
+
 		if("mov_intent")
 			if(isliving(usr))
 				if(iscarbon(usr))
@@ -454,6 +467,37 @@
 		if("drop")
 			if(usr.client)
 				usr.client.drop_item()
+		if("autowhisper")
+			if(isliving(usr))
+				var/mob/living/u = usr
+				u.toggle_autowhisper()
+		if("autowhisper mode")
+			if(isliving(usr))
+				var/mob/living/u = usr
+				u.autowhisper_mode()
+		if("check known languages")
+			usr.check_languages()
+		if("set pose")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/u = usr
+				u.pose()
+			else if (issilicon(usr))
+				var/mob/living/silicon/u = usr
+				u.pose()
+		if("move upwards")
+			usr.up()
+		if("move downwards")
+			usr.down()
+
+		if("use held item on self")
+			var/obj/screen/useself/s = src
+			if(ishuman(usr))
+				var/mob/living/carbon/human/u = usr
+				var/obj/item/i = u.get_active_hand()
+				if(i)
+					s.can_use(u,i)
+				else
+					to_chat(usr, "<span class='notice'>You're not holding anything to use. You need to have something in your active hand to use it.</span>")
 
 		if("module")
 			if(isrobot(usr))

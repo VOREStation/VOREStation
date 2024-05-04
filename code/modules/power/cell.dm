@@ -25,6 +25,7 @@
 	var/self_recharge = FALSE // If true, the cell will recharge itself.
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
+	var/connector_type = "standard" //What connector sprite to use when in a cell charger, null if no connectors
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	drop_sound = 'sound/items/drop/component.ogg'
@@ -82,7 +83,9 @@
 /obj/item/weapon/cell/update_icon()
 	if(!standard_overlays)
 		return
-	var/ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
+	var/ratio = 0
+	if(maxcharge > 0)
+		ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
 	var/new_state = "[icon_state]_[ratio]"
 	if(new_state != last_overlay_state)
 		cut_overlay(last_overlay_state)
@@ -94,7 +97,10 @@
 #undef OVERLAY_EMPTY
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
-	return 100.0*charge/maxcharge
+	var/charge_percent = 0
+	if(maxcharge > 0)
+		charge_percent = 100.0*charge/maxcharge
+	return charge_percent
 
 /obj/item/weapon/cell/proc/fully_charged()
 	return (charge == maxcharge)
@@ -232,30 +238,17 @@
 	return
 
 /obj/item/weapon/cell/proc/get_electrocute_damage()
-	switch (charge)
-/*		if (9000 to INFINITY)
-			return min(rand(90,150),rand(90,150))
-		if (2500 to 9000-1)
-			return min(rand(70,145),rand(70,145))
-		if (1750 to 2500-1)
-			return min(rand(35,110),rand(35,110))
-		if (1500 to 1750-1)
-			return min(rand(30,100),rand(30,100))
-		if (750 to 1500-1)
-			return min(rand(25,90),rand(25,90))
-		if (250 to 750-1)
-			return min(rand(20,80),rand(20,80))
-		if (100 to 250-1)
-			return min(rand(20,65),rand(20,65))*/
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000-1)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000-1)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000-1)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000-1)
-			return min(rand(10,20),rand(10,20))
-		else
-			return 0
+	//1kW = 5
+	//10kW = 24
+	//100kW = 45
+	//250kW = 53
+	//1MW = 66
+	//10MW = 88
+	//100MW = 110
+	//1GW = 132
+	if(charge >= 1000)
+		var/damage = log(1.1,charge)
+		damage = damage - (log(1.1,damage)*1.5)
+		return round(damage)
+	else
+		return 0

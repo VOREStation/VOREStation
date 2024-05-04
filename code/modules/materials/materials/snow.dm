@@ -30,6 +30,7 @@
 	flags = MATERIAL_BRITTLE
 	stack_type = /obj/item/stack/material/snowbrick
 	icon_base = "stone"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_stone"
 	icon_colour = "#D8FDFF"
 	integrity = 50

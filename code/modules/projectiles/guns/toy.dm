@@ -263,7 +263,7 @@
  */
 /obj/item/weapon/gun/energy/lasertag
 	name = "laser tag gun"
-	desc = "Standard issue weapon of the Imperial Guard"
+	desc = "Standard issue weapon of the Imperial Guard."
 	icon = 'icons/obj/gun_toy.dmi'
 	item_state = "omnitag"
 	item_state = "retro"
@@ -286,6 +286,12 @@
 	item_state = "bluetag"
 	projectile_type = /obj/item/projectile/beam/lasertag/blue
 	required_vest = /obj/item/clothing/suit/bluetag
+	fire_delay = 10
+
+	firemodes = list(
+		list(mode_name="instagib rules", fire_delay=10, projectile_type=/obj/item/projectile/beam/lasertag/blue, charge_cost = 240),
+		list(mode_name="multi-hit rules", fire_delay=5, projectile_type=/obj/item/projectile/beam/lasertag/blue/multihit, charge_cost = 120),
+		)
 
 /obj/item/weapon/gun/energy/lasertag/blue/sub
 	name = "Brigader Sidearm"
@@ -298,6 +304,12 @@
 	item_state = "redtag"
 	projectile_type = /obj/item/projectile/beam/lasertag/red
 	required_vest = /obj/item/clothing/suit/redtag
+	fire_delay = 10
+
+	firemodes = list(
+		list(mode_name="instagib rules", fire_delay=12, projectile_type=/obj/item/projectile/beam/lasertag/red, charge_cost = 240),
+		list(mode_name="multi-hit rules", fire_delay=5, projectile_type=/obj/item/projectile/beam/lasertag/red/multihit, charge_cost = 120),
+		)
 
 /obj/item/weapon/gun/energy/lasertag/red/dom
 	name = "Mu'tu'bi sidearm"

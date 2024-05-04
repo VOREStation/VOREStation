@@ -44,7 +44,7 @@
 		if(isanimal(bound_mob))
 			. += "<span class = 'notice'>[bound_mob.health / bound_mob.maxHealth * 100]%</span>"
 		if(bound_mob.ooc_notes)
-			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a>"
+			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 		. += "<span class='deptradio'><a href='?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 
 //Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.
@@ -249,8 +249,8 @@
 
 //Make it so the crystal knows if its mob references get deleted to make sure things get cleaned up
 /obj/item/capture_crystal/proc/knowyoursignals(mob/living/M, mob/living/U)
-	RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/mob_was_deleted, TRUE)
-	RegisterSignal(U, COMSIG_PARENT_QDELETING, .proc/owner_was_deleted, TRUE)
+	RegisterSignal(M, COMSIG_PARENT_QDELETING, PROC_REF(mob_was_deleted), TRUE)
+	RegisterSignal(U, COMSIG_PARENT_QDELETING, PROC_REF(owner_was_deleted), TRUE)
 
 //The basic capture command does most of the registration work.
 /obj/item/capture_crystal/proc/capture(mob/living/M, mob/living/U)
@@ -399,9 +399,7 @@
 			active = TRUE
 		else									//Shoot, it didn't work and now it's mad!!!
 			S.ai_holder.go_wake()
-			S.ai_holder.target = user
-			S.ai_holder.track_target_position()
-			S.ai_holder.set_stance(STANCE_FIGHT)
+			S.ai_holder.give_target(user, urgent = TRUE)
 			user.visible_message("\The [src] bonks into \the [S], angering it!")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
@@ -590,8 +588,8 @@
 		list(/mob/living/simple_mob/animal/passive/tindalos),
 		list(/mob/living/simple_mob/animal/passive/yithian),
 		list(
-			/mob/living/simple_mob/animal/wolf,
-			/mob/living/simple_mob/animal/wolf/direwolf
+			/mob/living/simple_mob/vore/wolf,
+			/mob/living/simple_mob/vore/wolf/direwolf
 			),
 		list(/mob/living/simple_mob/vore/rabbit),
 		list(/mob/living/simple_mob/vore/redpanda),
@@ -606,10 +604,10 @@
 			/mob/living/simple_mob/animal/space/bear/brown
 			),
 		list(
-			/mob/living/simple_mob/otie/feral,
-			/mob/living/simple_mob/otie/feral/chubby,
-			/mob/living/simple_mob/otie/red,
-			/mob/living/simple_mob/otie/red/chubby
+			/mob/living/simple_mob/vore/otie/feral,
+			/mob/living/simple_mob/vore/otie/feral/chubby,
+			/mob/living/simple_mob/vore/otie/red,
+			/mob/living/simple_mob/vore/otie/red/chubby
 			),
 		list(/mob/living/simple_mob/animal/sif/diyaab),
 		list(/mob/living/simple_mob/animal/sif/duck),
@@ -635,7 +633,6 @@
 		list(/mob/living/simple_mob/animal/sif/siffet),
 		list(/mob/living/simple_mob/animal/sif/tymisian),
 		list(
-			/mob/living/simple_mob/animal/giant_spider/nurse = 10,
 			/mob/living/simple_mob/animal/giant_spider/electric = 5,
 			/mob/living/simple_mob/animal/giant_spider/frost = 5,
 			/mob/living/simple_mob/animal/giant_spider/hunter = 10,
@@ -648,8 +645,8 @@
 			/mob/living/simple_mob/animal/giant_spider/webslinger = 5,
 			/mob/living/simple_mob/animal/giant_spider/broodmother = 1),
 		list(
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/wolf = 10,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5,
 			/mob/living/simple_mob/vore/greatwolf = 1,
 			/mob/living/simple_mob/vore/greatwolf/black = 1,
 			/mob/living/simple_mob/vore/greatwolf/grey = 1
@@ -682,7 +679,7 @@
 			/mob/living/simple_mob/animal/space/carp/large/huge = 5
 			),
 		list(/mob/living/simple_mob/animal/space/goose),
-		list(/mob/living/simple_mob/animal/space/jelly),
+		list(/mob/living/simple_mob/vore/jelly),
 		list(/mob/living/simple_mob/animal/space/tree),
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound = 10,
@@ -783,13 +780,13 @@
 		list(/mob/living/simple_mob/mechanical/wahlem),
 		list(/mob/living/simple_mob/animal/passive/fox/syndicate),
 		list(/mob/living/simple_mob/animal/passive/fox),
-		list(/mob/living/simple_mob/animal/wolf/direwolf),
-		list(/mob/living/simple_mob/animal/space/jelly),
+		list(/mob/living/simple_mob/vore/wolf/direwolf),
+		list(/mob/living/simple_mob/vore/jelly),
 		list(
-			/mob/living/simple_mob/otie/feral,
-			/mob/living/simple_mob/otie/feral/chubby,
-			/mob/living/simple_mob/otie/red,
-			/mob/living/simple_mob/otie/red/chubby
+			/mob/living/simple_mob/vore/otie/feral,
+			/mob/living/simple_mob/vore/otie/feral/chubby,
+			/mob/living/simple_mob/vore/otie/red,
+			/mob/living/simple_mob/vore/otie/red/chubby
 			),
 		list(
 			/mob/living/simple_mob/shadekin/blue = 100,
@@ -845,7 +842,13 @@
 		list(/mob/living/simple_mob/vore/sheep),
 		list(/mob/living/simple_mob/vore/weretiger),
 		list(/mob/living/simple_mob/vore/alienanimals/skeleton),
-		list(/mob/living/simple_mob/vore/alienanimals/dustjumper)
+		list(/mob/living/simple_mob/vore/alienanimals/dustjumper),
+		list(/mob/living/simple_mob/vore/cryptdrake),
+		list(/mob/living/simple_mob/vore/stalker),
+		list(/mob/living/simple_mob/vore/horse/kelpie),
+		list(/mob/living/simple_mob/vore/scrubble),
+		list(/mob/living/simple_mob/vore/sonadile),
+		list(/mob/living/simple_mob/vore/devil)
 		)
 
 /obj/item/capture_crystal/random/Initialize()

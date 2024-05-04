@@ -33,7 +33,7 @@
 	mount_offset_x = 0
 
 	say_list_type = /datum/say_list/sheep
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/edible
 
 //	var/harvestable_wool = TRUE			//Relating to wool growth and shearing down below.
 //	var/wool_growth = 0

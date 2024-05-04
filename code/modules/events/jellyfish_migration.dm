@@ -49,6 +49,8 @@
 	// Okay we did *not* have any landmarks, so lets do our best!
 	var/i = 1
 	while (i <= num_groups)
+		if(!affecting_z.len)
+			return
 		var/Z = pick(affecting_z)
 		var/group_size = rand(group_size_min, group_size_max)
 		var/turf/map_center = locate(round(world.maxx/2), round(world.maxy/2), Z)
@@ -69,7 +71,7 @@
 // Spawn a single jellyfish at given location.
 /datum/event/jellyfish_migration/proc/spawn_one_jellyfish(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/vore/alienanimals/space_jellyfish(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_jellyfish_destruction)
+	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_jellyfish_destruction))
 	spawned_jellyfish.Add(M)
 	return M
 
@@ -83,7 +85,7 @@
 // If jellyfish is bomphed, remove it from the list.
 /datum/event/jellyfish_migration/proc/on_jellyfish_destruction(var/mob/M)
 	spawned_jellyfish -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_jellyfish_destruction)
+	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 
 /datum/event/jellyfish_migration/end()
 	. = ..()

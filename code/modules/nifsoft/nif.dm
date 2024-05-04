@@ -220,7 +220,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Attackby proc, for maintenance
 /obj/item/device/nif/attackby(obj/item/weapon/W, mob/user as mob)
-	if(open == 0 && W.is_screwdriver())
+	if(open == 0 && W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(do_after(user, 4 SECONDS, src) && open == 0)
 			user.visible_message("[user] unscrews and pries open \the [src].","<span class='notice'>You unscrew and pry open \the [src].</span>")
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -246,7 +246,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].</span>")
 			open = 3
 			update_icon()
-	else if(open == 3 && W.is_screwdriver())
+	else if(open == 3 && W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(do_after(user, 3 SECONDS, src) && open == 3)
 			user.visible_message("[user] closes up \the [src].","<span class='notice'>You re-seal \the [src] for use once more.</span>")
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -383,7 +383,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	last_notification = message // TGUI Hook
 
-	to_chat(human,"<span class='filter_nif'><b>\[\icon[src.big_icon][bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"</span>")
+	to_chat(human,"<span class='filter_nif'><b>\[[icon2html(src.big_icon, human.client)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"</span>")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 	if(alert)
 		human << bad_sound
@@ -457,7 +457,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //Uninstall a piece of software
 /obj/item/device/nif/proc/uninstall(var/datum/nifsoft/old_soft)
-	var/datum/nifsoft/NS = nifsofts[old_soft.list_pos]
+	var/datum/nifsoft/NS
+	if(nifsofts)
+		NS = nifsofts[old_soft.list_pos]
+
 	if(!NS || NS != old_soft)
 		return FALSE //what??
 

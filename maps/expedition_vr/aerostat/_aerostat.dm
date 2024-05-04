@@ -139,7 +139,7 @@
 	prob_fall = 30
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/jelly = 6,
+		/mob/living/simple_mob/vore/jelly = 6,
 		/mob/living/simple_mob/mechanical/viscerator = 6,
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
 		/mob/living/simple_mob/vore/oregrub = 2,
@@ -282,22 +282,22 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 	ambience = null
 
 /area/offmap/aerostat/surface/outpost/backroom
-	name = "V4 Outpost - Research Area"
+	name = "V2 Outpost - Research Area"
 /area/offmap/aerostat/surface/outpost/hallway
-	name = "V4 Outpost - Hallway"
+	name = "V2 Outpost - Hallway"
 /area/offmap/aerostat/surface/outpost/cafe
-	name = "V4 Outpost - Cafe"
+	name = "V2 Outpost - Cafe"
 /area/offmap/aerostat/surface/outpost/park
-	name = "V4 Outpost - Park"
+	name = "V2 Outpost - Park"
 /area/offmap/aerostat/surface/outpost/officerone
-	name = "V4 Outpost - Officer's Quarters 1"
+	name = "V2 Outpost - Officer's Quarters 1"
 /area/offmap/aerostat/surface/outpost/officertwo
-	name = "V4 Outpost - Officer's Quarters 2"
+	name = "V2 Outpost - Officer's Quarters 2"
 /area/offmap/aerostat/surface/outpost/barracks
-	name = "V4 Outpost - Barracks"
+	name = "V2 Outpost - Barracks"
 /area/offmap/aerostat/surface/outpost/airlock
-	name = "V4 Outpost - Airlock"
+	name = "V2 Outpost - Airlock"
 /area/offmap/aerostat/surface/outpost/powerroom
-	name = "V4 Outpost - Power Room"
+	name = "V2 Outpost - Power Room"
 /area/offmap/aerostat/surface/outpost/guardpost
-	name = "V4 Outpost - Guard Post"
+	name = "V2 Outpost - Guard Post"

@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Slider, Section, LabeledList } from '../components';
+import { LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 import { PortableBasicInfo } from './common/PortableAtmos';
 
@@ -9,8 +9,8 @@ type Data = {
   maxrate: number;
 };
 
-export const PortableScrubber = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const PortableScrubber = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { rate, minrate, maxrate } = data;
 

@@ -190,9 +190,9 @@
 			buildstate++
 			update_icon()
 			return
-	else if(istype(W,/obj/item/weapon/weldingtool))
+	else if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/T = W.get_welder()
 		if(buildstate == 1)
-			var/obj/item/weapon/weldingtool/T = W
 			if(T.remove_fuel(0,user))
 				if(!src || !T.isOn()) return
 				playsound(src, W.usesound, 100, 1)
@@ -200,7 +200,6 @@
 				buildstate++
 				update_icon()
 		if(buildstate == 3)
-			var/obj/item/weapon/weldingtool/T = W
 			if(T.remove_fuel(0,user))
 				if(!src || !T.isOn()) return
 				playsound(src, W.usesound, 100, 1)
@@ -208,7 +207,6 @@
 				buildstate++
 				update_icon()
 		if(buildstate == 5)
-			var/obj/item/weapon/weldingtool/T = W
 			if(T.remove_fuel(0,user))
 				if(!src || !T.isOn()) return
 				playsound(src, W.usesound, 100, 1)

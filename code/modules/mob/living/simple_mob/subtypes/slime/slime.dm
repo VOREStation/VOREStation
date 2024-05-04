@@ -140,6 +140,7 @@ var/list/_slime_default_emotes = list(
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
 		var/image/I = image('icons/inventory/head/mob.dmi', src, hat_state)
 		I.pixel_y = -7 // Slimes are small.
+		I.color = hat.color
 		I.appearance_flags = RESET_COLOR | KEEP_APART
 		I.blend_mode = BLEND_OVERLAY
 		add_overlay(I)

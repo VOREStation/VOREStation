@@ -389,8 +389,6 @@
 	set desc = "Bites prey and drains them of a significant portion of blood, feeding you in the process. You may only do this once per minute."
 	set category = "Abilities"
 
-	if(last_special > world.time)
-		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		to_chat(src, "You cannot bite anyone in your current state!")
@@ -400,9 +398,27 @@
 	for(var/mob/living/carbon/human/M in view(1,src))
 		if(!istype(M,/mob/living/silicon) && Adjacent(M))
 			choices += M
-	choices -= src
 
-	var/mob/living/carbon/human/B = tgui_input_list(src, "Who do you wish to bite?", "Suck Blood", choices)
+
+	var/mob/living/carbon/human/B = tgui_input_list(src, "Who do you wish to bite? Select yourself to bring up configuration for privacy and bleeding. \
+	Beware! Configuration resets on new round!", "Suck Blood", choices)
+
+	if(B == src) //We are using this to minimize the amount of pop-ups or buttons.
+		var/control_options = list("always loud", "pop-up", "intents", "always subtle")
+		src.species.bloodsucker_controlmode = tgui_input_list(src,"Choose your preferred control of blood sucking. \
+		You can only cause bleeding wounds with pop up and intents modes. Choosing intents prints controls to chat.", "Configure Bloodsuck", control_options, "always loud")
+		if(src.species.bloodsucker_controlmode == "intents") //We are printing to chat for better readability
+			to_chat(src, SPAN_NOTICE("You've chosen to use intents for blood draining. \n \
+			HELP - Loud, No Bleeding \n \
+			DISARM - Subtle, Causes bleeding \n \
+			GRAB - Subtle, No Bleeding \n \
+			HARM - Loud, Causes Bleeding"))
+		return
+
+	if(last_special > world.time)
+		to_chat(src, "You cannot suck blood so quickly in a row!")
+		return
+
 
 	if(!B || !src || src.stat) return
 
@@ -414,22 +430,79 @@
 		to_chat(src, "You cannot bite in your current state.")
 		return
 	if(B.vessel.total_volume <= 0 || B.isSynthetic()) //Do they have any blood in the first place, and are they synthetic?
-		to_chat(src, "<font color='red'>There appears to be no blood in this prey...</font>")
+		to_chat(src, span_red("There appears to be no blood in this prey..."))
 		return
 
 	last_special = world.time + 600
-	src.visible_message("<font color='red'><b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b></font>")
+
+	var/control_pref = src.species.bloodsucker_controlmode
+	var/noise = TRUE
+	var/bleed = FALSE
+
+	switch(control_pref)
+		if("always subtle")
+			noise = FALSE
+		if("pop-up")
+			if(tgui_alert(src, "Do you want to be subtle?", "Privacy", list("Yes", "No")) == "Yes")
+				noise = FALSE
+			if(tgui_alert(src, "Do you want your target to keep bleeding?", "Continue Bleeding", list("Yes", "No")) == "Yes" )
+				bleed = TRUE
+		if("intents")
+			/*
+			Logic is, with "Help", we are taking our time but it's pretty obvious..
+			With "disarm", we rush the act, letting it keep bleeding
+			"HURT" is self-evidently loud and bleedy
+			"Grab" is subtle because we keep our prey tight and close.
+			*/
+			switch(src.a_intent)
+				//if(I_HELP) uses default values. Added as a comment for clarity
+				if(I_DISARM)
+					noise = FALSE
+					bleed = TRUE
+				if(I_GRAB)
+					noise = FALSE
+				if(I_HURT)
+					bleed =TRUE
+
+
+
+
+	if(noise)
+		src.visible_message(span_red("<b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b>"))
+	else
+		src.visible_message(span_red("<i>[src] moves their head next to [B]'s neck, seemingly looking for something!</i>"), range = 1)
+
+	if(bleed) //Due to possibility of missing/misclick and missing the bleeding cues, we are warning the scene members of BLEEDING being on
+		to_chat(src, SPAN_WARNING("This is going to cause [B] to keep bleeding!"))
+		to_chat(B, SPAN_DANGER("You are going to keep bleeding from this bite!"))
 
 	if(do_after(src, 300, B)) //Thrirty seconds.
 		if(!Adjacent(B)) return
-		src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>")
-		B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
-		B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
-		adjust_nutrition(400)
-		sleep(50)
-		B.drip(1)
-		sleep(50)
-		B.drip(1)
+		if(noise)
+			src.visible_message(span_red("<b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b>"))
+		else
+			src.visible_message(span_red("<i>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</i>"), range = 1)
+		if(bleed)
+			B.apply_damage(10, BRUTE, BP_HEAD, blocked = 0, soaked = 0, sharp = TRUE, edge = FALSE)
+			var/obj/item/organ/external/E = B.get_organ(BP_HEAD)
+			if(!(E.status & ORGAN_BLEEDING))
+				E.status |= ORGAN_BLEEDING //If 10 points of piercing didn't make the organ bleed, we are making it bleed.
+
+
+		else
+			B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
+
+
+		if(!noise && !bleed) //If we're quiet and careful, there should be no blood to serve as evidence
+			B.remove_blood(82) //Removing in one go since we dont want splatter
+			adjust_nutrition(410) //We drink it all, not letting any go to waste!
+		else //Otherwise, we're letting blood drop to the floor
+			B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
+			adjust_nutrition(400)
+			sleep(50)
+			B.drip(1)
+			sleep(50)
+			B.drip(1)
 
 
 //Welcome to the adapted changeling absorb code.
@@ -1159,9 +1232,9 @@
 			return
 		if(target.buckled) //how are you buckled in the water?!
 			target.buckled.unbuckle_mob()
-		target.visible_message("<span class='warning'>\The [target] suddenly disappears, being dragged into the water!</span>",\
-			"<span class='danger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
-		to_chat(src, "<span class='notice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
+		target.visible_message("<span class='vwarning'>\The [target] suddenly disappears, being dragged into the water!</span>",\
+			"<span class='vdanger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
+		to_chat(src, "<span class='vnotice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
 		target.forceMove(src.vore_selected)
 
 /mob/living/carbon/human/proc/toggle_pain_module()
@@ -1235,8 +1308,8 @@
 			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
 			return
 
-		visible_message("<span class='notice'>\The [src] attempts to snatch up [target]!</span>", \
-						"<span class='notice'>You attempt to snatch up [target]!</span>" )
+		visible_message("<span class='vnotice'>\The [src] attempts to snatch up [target]!</span>", \
+						"<span class='vnotice'>You attempt to snatch up [target]!</span>" )
 		playsound(src, 'sound/vore/sunesound/pred/schlorp.ogg', 25)
 
 		//Code to shoot the beam here.
@@ -1292,11 +1365,11 @@
 			var/mob/living/F = firer
 			if(F.appendage_alt_setting == 1)
 				F.throw_at(M, throw_range, firer.throw_speed, F) //Firer thrown at target.
-				F.updateicon()
+				F.update_icon()
 				return
 		if(istype(M))
 			M.throw_at(firer, throw_range, M.throw_speed, firer) //Fun fact: living things have a throw_speed of 2.
-			M.updateicon()
+			M.update_icon()
 			return
 		else //Anything that isn't a /living
 			return
@@ -1387,3 +1460,72 @@
 	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
 	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
 	zaptype = /obj/item/projectile/beam/appendage
+
+/mob/living/proc/target_lunge() //The leaper leap, but usable as an ability
+	set name = "Lunge At Prey"
+	set category = "Abilities"
+	set desc = "Dive atop your prey and gobble them up!"
+
+	var/leap_warmup = 1 SECOND //Easy to modify
+	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		return
+
+	last_special = world.time + 10 //Anti-spam.
+
+	if (!istype(src, /mob/living))
+		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		return
+
+	else
+		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
+
+		for(var/mob/living/L in range(5, src))
+			if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+				continue
+			if(L == src) //no eating yourself. 1984.
+				continue
+			if(L.devourable && L.throw_vore && (L.can_be_drop_pred || L.can_be_drop_prey))
+				targets += L
+
+		if(!(targets.len))
+			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			return
+
+		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+		if(!target)
+			return
+
+		if(!istype(target, /mob/living)) //Safety.
+			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			return
+
+		if (get_dist(src,target) >= 6)
+			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			return
+
+		visible_message(span("warning","\The [src] rears back, ready to lunge!"))
+		to_chat(target, span("danger","\The [src] focuses on you!"))
+		// Telegraph, since getting stunned suddenly feels bad.
+		do_windup_animation(target, leap_warmup)
+		sleep(leap_warmup) // For the telegraphing.
+
+		if(target.z != z)	//Make sure you haven't disappeared to somewhere we can't go
+			return FALSE
+
+		// Do the actual leap.
+		status_flags |= LEAPING // Lets us pass over everything.
+		visible_message(span("critical","\The [src] leaps at \the [target]!"))
+		throw_at(get_step(target, get_turf(src)), 7, 1, src)
+		playsound(src, leap_sound, 75, 1)
+
+		sleep(5) // For the throw to complete.
+
+		if(status_flags & LEAPING)
+			status_flags &= ~LEAPING // Revert special passage ability.
+
+		if(Adjacent(target))	//We leapt at them but we didn't manage to hit them, let's see if we're next to them
+			target.Weaken(2)	//get knocked down, idiot

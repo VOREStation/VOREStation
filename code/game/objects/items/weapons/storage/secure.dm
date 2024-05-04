@@ -43,7 +43,7 @@
 			playsound(src, "sparks", 50, 1)
 			return
 
-		if (W.is_screwdriver())
+		if (W.has_tool_quality(TOOL_SCREWDRIVER))
 			if (do_after(user, 20 * W.toolspeed))
 				src.open =! src.open
 				playsound(src, W.usesound, 50, 1)

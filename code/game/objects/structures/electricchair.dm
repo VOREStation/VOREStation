@@ -12,7 +12,7 @@
 	return
 
 /obj/structure/bed/chair/e_chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
 		playsound(src, W.usesound, 50, 1)
 		C.set_dir(dir)
@@ -58,7 +58,7 @@
 		return
 	A.use_power_oneoff(5000, EQUIP)
 	var/light = A.power_light
-	A.updateicon()
+	A.update_icon()
 
 	flick("echair1", src)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -74,5 +74,5 @@
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
 
 	A.power_light = light
-	A.updateicon()
+	A.update_icon()
 	return

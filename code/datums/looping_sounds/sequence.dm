@@ -54,7 +54,7 @@
 /datum/looping_sound/sequence/sound_loop(starttime)
 	iterate_on_sequence()
 
-	timerid = addtimer(CALLBACK(src, .proc/sound_loop, world.time), next_iteration_delay, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), next_iteration_delay, TIMER_STOPPABLE)
 
 #define MORSE_DOT	"*" // Yes this is an asterisk but its easier to see on a computer compared to a period.
 #define MORSE_DASH	"-"
@@ -156,7 +156,7 @@
 		return spaces_between_words
 
 	if(!(letter in morse_alphabet))
-		CRASH("Encountered invalid character in morse sequence \"[letter]\".")
+		CRASH("Encountered invalid character in Morse sequence \"[letter]\".")
 
 	// So I heard you like sequences...
 	// Play a sequence of sounds while inside the current iteration of the outer sequence.

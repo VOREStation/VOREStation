@@ -15,7 +15,7 @@
 		return
 
 	if(istype(W,mcguffin_type) && !calibrated)
-		to_chat(user, "<span class='emote'>As the device nears the gateway, mechanical clunks and whirrs can be heard. <br><font color='blue'><b>Configuration successful! </b></font><br>This gate's systems have been fine tuned. Travel to this gate will now be on target.</span>")
+		to_chat(user, "<span class='emote'>As the device nears the gateway, mechanical clunks and whirrs can be heard. <br>[span_blue("<b>Configuration successful! </b>")]<br>This gate's systems have been fine tuned. Travel to this gate will now be on target.</span>")
 		calibrated = 1
 		return
 	else
@@ -39,7 +39,7 @@
 
 /obj/machinery/gateway/centeraway/proc/entrydetect()
     return
-                
+
 /obj/machinery/gateway/centeraway/mcguffin/entrydetect()
     if(key)
         return
@@ -47,9 +47,9 @@
     var/list/spawners = list()
     for(var/obj/effect/landmark/mcguffin_spawner/sp in world)
         spawners += sp
-    
+
     var/obj/effect/landmark/mcguffin_spawner/the_cool_one = pick(spawners)
-    
+
     var/atom/destination = get_turf(the_cool_one)
     var/obj/structure/closet/CL = locate() in destination
     if(CL)

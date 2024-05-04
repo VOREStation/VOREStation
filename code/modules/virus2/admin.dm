@@ -150,7 +150,7 @@
 				if(!infectee.species || !(infectee.species.get_bodytype() in species))
 					infectee = null
 		if("ichance")
-			var/I = tgui_input_number(usr, "Input infection chance", "Infection Chance", infectionchance)
+			var/I = tgui_input_number(usr, "Input infection chance", "Infection Chance", infectionchance, 100)
 			if(!I) return
 			infectionchance = I
 		if("stype")
@@ -172,13 +172,13 @@
 			else if(href_list["reset"])
 				antigens = list()
 		if("resistance")
-			var/S = tgui_input_number(usr, "Input % resistance to antibiotics", "Resistance", resistance)
+			var/S = tgui_input_number(usr, "Input % resistance to antibiotics", "Resistance", resistance, 100)
 			if(!S) return
 			resistance = S
 		if("infectee")
 			var/list/candidates = list()
 			for(var/mob/living/carbon/G in living_mob_list)
-				if(G.stat != DEAD && G.species)
+				if(G.stat != DEAD && G.species && !isbelly(G.loc))
 					if(G.species.get_bodytype() in species)
 						candidates["[G.name][G.client ? "" : " (no client)"]"] = G
 					else

@@ -61,7 +61,7 @@
 
 	switch(action)
 		if("make_copy")
-			addtimer(CALLBACK(src, .proc/copy_operation, usr), 0)
+			addtimer(CALLBACK(src, PROC_REF(copy_operation), usr), 0)
 			. = TRUE
 		if("remove")
 			if(copyitem)
@@ -166,7 +166,7 @@
 			to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
 			flick("photocopier_notoner", src)
 			playsound(loc, 'sound/machines/buzz-two.ogg', 75, 1)
-	else if(O.is_wrench())
+	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
@@ -230,7 +230,7 @@
 		toner--
 	if(toner == 0)
 		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
+		visible_message("<span class='notice'>A [span_red("red")] light on \the [src] flashes, indicating that it is out of toner.</span>")
 	return c
 
 

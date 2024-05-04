@@ -1,8 +1,8 @@
-/decl/poster/vore_1
-	icon_state = "sbsposter1"
-	name = "Best Girl Pip"
-	desc = "A poster of the official NT Best Girl Mascot, Pip"
-/decl/poster/vore_2
+/decl/poster/lewd
+	desc = "You shouldn't see this."
+	listing_name = "N/A"
+
+/decl/poster/lewd/vore_2
 	icon_state = "sbsposter2"
 	name = "AroButt"
 	desc = "A lewd view of KHI's cutest fops."
@@ -18,18 +18,10 @@
 	icon_state = "sbsposter5"
 	name = "The Inn"
 	desc = "A poster of a certain black-eyed shadekin."
-/decl/poster/vore_6
+/decl/poster/lewd/vore_6
 	icon_state = "sbsposter6"
 	name = "Mawletta"
 	desc = "The best view in the system."
-/decl/poster/vore_8
-	icon_state = "sbsposter8"
-	name = "Shitty Timbs"
-	desc = "A special edition, brand deal, Shitty Tim Concert Poster."
-/decl/poster/vore_9
-	icon_state = "sbsposter9"
-	name = "Shitty Tim"
-	desc = "A Shitty Tim concert poster."
 /decl/poster/vore_11
 	icon_state = "sbsposter11"
 	name = "Fear"
@@ -98,7 +90,7 @@
 	icon_state = "sbsposter16"
 	name = "Borgar"
 	desc = "What do you want from Space McDonalds?"
-/decl/poster/vore_28
+/decl/poster/lewd/vore_28
 	icon_state = "sbsposter17"
 	name = "DiveIn"
 	desc = "A limited edition holographic poster that seems to feature subliminal suggestions and conditioning."

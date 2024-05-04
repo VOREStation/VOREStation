@@ -38,6 +38,7 @@
 		<option value='?_src_=vars;[HrefToken()];mob_player_panel=\ref[src]'>Show player panel</option>
 		<option>---</option>
 		<option value='?_src_=vars;[HrefToken()];give_modifier=\ref[src]'>Give Modifier</option>
+		<option value='?_src_=vars;[HrefToken()];give_wound_internal=\ref[src]'>Give Internal Bleeding</option>
 		<option value='?_src_=vars;[HrefToken()];give_spell=\ref[src]'>Give Spell</option>
 		<option value='?_src_=vars;[HrefToken()];give_disease2=\ref[src]'>Give Disease</option>
 		<option value='?_src_=vars;[HrefToken()];give_disease=\ref[src]'>Give TG-style Disease</option>
@@ -48,6 +49,7 @@
 		<option value='?_src_=vars;[HrefToken()];make_skeleton=\ref[src]'>Make 2spooky</option>
 
 		<option value='?_src_=vars;[HrefToken()];direct_control=\ref[src]'>Assume Direct Control</option>
+		<option value='?_src_=vars;[HrefToken()];give_ai=\ref[src]'>Enable/Modify A.I</option>
 		<option value='?_src_=vars;[HrefToken()];drop_everything=\ref[src]'>Drop Everything</option>
 
 		<option value='?_src_=vars;[HrefToken()];regenerateicons=\ref[src]'>Regenerate Icons</option>
@@ -82,6 +84,11 @@
 	return ..() + {"
 		<option value='?_src_=vars;[HrefToken()];explode=\ref[src]'>Trigger explosion</option>
 		<option value='?_src_=vars;[HrefToken()];emp=\ref[src]'>Trigger EM pulse</option>
+		"}
+
+/obj/item/device/pda/get_view_variables_options()
+	return ..() + {"
+		<option value='?_src_=vars;[HrefToken()];fakepdapropconvo=\ref[src]'>Add Fake Prop Conversation</option>
 		"}
 
 /datum/proc/get_variables()

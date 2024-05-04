@@ -102,7 +102,7 @@
 		return
 
 /obj/item/clothing/mask/gas/sechailer/attackby(obj/item/I, mob/user)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(aggressiveness)
 			if(1)
 				to_chat(user, "<span class='notice'>You set the aggressiveness restrictor to the second position.</span>")
@@ -122,11 +122,11 @@
 				phrase = 1
 			if(5)
 				to_chat(user, "<span class='warning'>You adjust the restrictor but nothing happens, probably because its broken.</span>")
-	if(I.is_wirecutter())
+	if(I.has_tool_quality(TOOL_WIRECUTTER))
 		if(aggressiveness != 5)
 			to_chat(user, "<span class='warning'>You broke it!</span>")
 			aggressiveness = 5
-	if(I.is_crowbar())
+	if(I.has_tool_quality(TOOL_CROWBAR))
 		if(!hailer)
 			to_chat(user, "<span class='warning'>This mask has an integrated hailer, you can't remove it!</span>")
 		else
@@ -155,11 +155,11 @@
 	if(cooldown < world.time - 35) // A cooldown, to stop people being jerks
 		if(!safety)
 			message = "FUCK YOUR CUNT YOU SHIT EATING COCKSUCKER MAN EAT A DONG FUCKING ASS RAMMING SHIT FUCK EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS OF FUCK AND DO SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FUCK ASS WANKER FROM THE DEPTHS OF SHIT."
-			usr.visible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[message]</b></font>")
+			usr.visible_message("[usr]'s Compli-o-Nator: [span_red("<font size='4'><b>[message]</b></font>")]")
 			playsound(src, 'sound/voice/binsult.ogg', 50, 0, 4) //Future sound channel = something like SFX
 			cooldown = world.time
 			return
 
-		usr.visible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[message]</b></font>")
+		usr.visible_message("[usr]'s Compli-o-Nator: [span_red("<font size='4'><b>[message]</b></font>")]")
 		playsound(src, "sound/voice/complionator/[key].ogg", 50, 0, 4) //future sound channel = something like SFX
 		cooldown = world.time

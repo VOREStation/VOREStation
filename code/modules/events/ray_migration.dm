@@ -49,6 +49,8 @@
 	// Okay we did *not* have any landmarks, so lets do our best!
 	var/i = 1
 	while (i <= num_groups)
+		if(!affecting_z.len)
+			return
 		var/Z = pick(affecting_z)
 		var/group_size = rand(group_size_min, group_size_max)
 		var/turf/map_center = locate(round(world.maxx/2), round(world.maxy/2), Z)
@@ -69,7 +71,7 @@
 // Spawn a single ray at given location.
 /datum/event/ray_migration/proc/spawn_one_ray(var/loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/ray(loc)
-	GLOB.destroyed_event.register(M, src, .proc/on_ray_destruction)
+	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_ray_destruction))
 	spawned_ray.Add(M)
 	return M
 
@@ -83,7 +85,7 @@
 // If ray is bomphed, remove it from the list.
 /datum/event/ray_migration/proc/on_ray_destruction(var/mob/M)
 	spawned_ray -= M
-	GLOB.destroyed_event.unregister(M, src, .proc/on_ray_destruction)
+	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 
 /datum/event/ray_migration/end()
 	. = ..()

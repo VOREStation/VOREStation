@@ -67,7 +67,7 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/proc/remove_padding()
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 		padding_material = null
 	update_icon()
 
@@ -104,13 +104,13 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/proc/dismantle()
 	if(material)
-		material.place_sheet(get_turf(src))
+		material.place_sheet(get_turf(src), 1)
 	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+		padding_material.place_sheet(get_turf(src), 1)
 	qdel(src)
 
 /obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		dismantle()
 		qdel(src)
@@ -140,7 +140,7 @@ var/global/list/stool_cache = list() //haha stool
 		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
-	else if (W.is_wirecutter())
+	else if (W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!padding_material)
 			to_chat(user, "\The [src] has no padding to remove.")
 			return

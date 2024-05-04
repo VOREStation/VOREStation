@@ -190,6 +190,7 @@
 	desc = "A pair of winter boots, with metal bracing attached to assist in climbing rocky terrain."
 	icon_state = "climbing_boots"
 	rock_climbing = TRUE
+	//Climbing delay with boots is 1
 
 /obj/item/clothing/shoes/boots/tactical
 	name = "tactical boots"
@@ -251,3 +252,8 @@
 	name = "yellow performer's boots"
 	desc = "These boots were made for dancing."
 	icon_state = "ysing"
+
+/obj/item/clothing/shoes/boots/half_moon
+    name = "half moon boots"
+    desc = "Flexible and tight, these boots ensure the wearer will be leaving a solid impression without sacrificing mobility."
+    icon_state = "half_moon"

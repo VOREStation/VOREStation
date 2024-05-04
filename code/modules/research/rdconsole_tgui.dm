@@ -49,6 +49,7 @@
 	if(!locked && !busy_msg)
 		data["info"] = list(
 			"sync" = sync,
+			"is_public" = is_public,
 		)
 
 		data["info"]["linked_destroy"] = list("present" = FALSE)
@@ -242,7 +243,7 @@
 			"chem_list" = chem_list,
 		)))
 
-	data = sortTim(data, /proc/cmp_designs_rdconsole, FALSE)
+	data = sortTim(data, GLOBAL_PROC_REF(cmp_designs_rdconsole), FALSE)
 	if(LAZYLEN(data) > ENTRIES_PER_RDPAGE)
 		var/first_index = clamp(ENTRIES_PER_RDPAGE * page, 1, LAZYLEN(data))
 		var/last_index  = min((ENTRIES_PER_RDPAGE * page) + ENTRIES_PER_RDPAGE, LAZYLEN(data) + 1)
@@ -280,7 +281,7 @@
 			"chem_list" = chem_list,
 		)))
 
-	data = sortTim(data, /proc/cmp_designs_rdconsole, FALSE)
+	data = sortTim(data, GLOBAL_PROC_REF(cmp_designs_rdconsole), FALSE)
 	if(LAZYLEN(data) > ENTRIES_PER_RDPAGE)
 		var/first_index = clamp(ENTRIES_PER_RDPAGE * page, 1, LAZYLEN(data))
 		var/last_index  = min((ENTRIES_PER_RDPAGE * page) + ENTRIES_PER_RDPAGE, LAZYLEN(data) + 1)
@@ -303,7 +304,7 @@
 				"id" = D.id,
 			)))
 
-	data = sortTim(data, /proc/cmp_designs_rdconsole, FALSE)
+	data = sortTim(data, GLOBAL_PROC_REF(cmp_designs_rdconsole), FALSE)
 	if(LAZYLEN(data) > ENTRIES_PER_RDPAGE)
 		var/first_index = clamp(ENTRIES_PER_RDPAGE * page, 1, LAZYLEN(data))
 		var/last_index  = clamp((ENTRIES_PER_RDPAGE * page) + ENTRIES_PER_RDPAGE, 1, LAZYLEN(data) + 1)
@@ -638,3 +639,5 @@
 				PR.icon_state = "paper_words"
 				PR.forceMove(loc)
 				busy_msg = null
+
+#undef ENTRIES_PER_RDPAGE

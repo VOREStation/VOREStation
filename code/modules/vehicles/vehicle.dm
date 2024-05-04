@@ -92,26 +92,26 @@
 	if(istype(W, /obj/item/weapon/hand_labeler))
 		return
 	if(mechanical)
-		if(W.is_screwdriver())
+		if(W.has_tool_quality(TOOL_SCREWDRIVER))
 			if(!locked)
 				open = !open
 				update_icon()
 				to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 				playsound(src, W.usesound, 50, 1)
-		else if(W.is_crowbar() && cell && open)
+		else if(W.has_tool_quality(TOOL_CROWBAR) && cell && open)
 			remove_cell(user)
 
 		else if(istype(W, /obj/item/weapon/cell) && !cell && open)
 			insert_cell(W, user)
-		else if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/T = W
+		else if(W.has_tool_quality(TOOL_WELDER))
+			var/obj/item/weapon/weldingtool/T = W.get_welder()
 			if(T.welding)
 				if(health < maxhealth)
 					if(open)
 						health = min(maxhealth, health+10)
 						user.setClickCooldown(user.get_attack_speed(W))
 						playsound(src, T.usesound, 50, 1)
-						user.visible_message("<font color='red'>[user] repairs [src]!</font>","<font color='blue'> You repair [src]!</font>")
+						user.visible_message(span_red("[user] repairs [src]!"),span_blue("You repair [src]!"))
 					else
 						to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 				else
@@ -226,7 +226,7 @@
 		return TRUE
 
 /obj/vehicle/proc/explode()
-	src.visible_message("<font color='red'><B>[src] blows apart!</B></font>", 1)
+	src.visible_message(span_red("<B>[src] blows apart!</B>"), 1)
 	var/turf/Tsec = get_turf(src)
 
 	//stuns people who are thrown off a train that has been blown up
@@ -375,8 +375,13 @@
 	load.forceMove(dest)
 	load.set_dir(get_dir(loc, dest))
 	load.anchored = FALSE		//we can only load non-anchored items, so it makes sense to set this to false
-	load.pixel_x = initial(load.pixel_x)
-	load.pixel_y = initial(load.pixel_y)
+	if(ismob(load))
+		var/mob/L = load
+		L.pixel_x = L.default_pixel_x
+		L.pixel_y = L.default_pixel_y
+	else
+		load.pixel_x = initial(load.pixel_x)
+		load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)
 
 	if(ismob(load))
@@ -397,7 +402,7 @@
 	if(!damage)
 		return
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+	user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
 	user.do_attack_animation(src)
 	src.health -= damage
 	if(mechanical && prob(10))

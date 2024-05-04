@@ -78,7 +78,7 @@
 		var/list/waypoints = S.get_waypoints(name)
 		for(var/obj/effect/shuttle_landmark/LZ in waypoints)
 			if(LZ.is_valid(src))
-				res["[waypoints[LZ]] - [LZ.name]"] = LZ	
+				res["[waypoints[LZ]] - [LZ.name]"] = LZ
 	return res
 
 /datum/shuttle/autodock/overmap/get_location_name()
@@ -167,7 +167,7 @@
 	..()
 
 /obj/structure/fuel_port/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		if(opened)
 			to_chat(user, "<spawn class='notice'>You tightly shut \the [src] door.")
 			playsound(src, 'sound/effects/locker_close.ogg', 25, 0, -3)

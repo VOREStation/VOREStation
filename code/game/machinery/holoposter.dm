@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	. = ..()
 	set_rand_sprite()
 	GLOB.holoposters += src
-	mytimer = addtimer(CALLBACK(src, .proc/set_rand_sprite), 30 MINUTES + rand(0, 5 MINUTES), TIMER_STOPPABLE | TIMER_LOOP)
+	mytimer = addtimer(CALLBACK(src, PROC_REF(set_rand_sprite)), 30 MINUTES + rand(0, 5 MINUTES), TIMER_STOPPABLE | TIMER_LOOP)
 
 /obj/machinery/holoposter/Destroy()
 	GLOB.holoposters -= src
@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	src.add_fingerprint(user)
 	if(stat & (NOPOWER))
 		return
-	if (W.is_multitool())
+	if (W.has_tool_quality(TOOL_MULTITOOL))
 		playsound(src, 'sound/items/penclick.ogg', 60, 1)
 		icon_state = tgui_input_list(usr, "Available Posters", "Holographic Poster", postertypes + "random")
 		if(!Adjacent(user))
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 			stat &= ~BROKEN
 			icon_forced = FALSE
 			if(!mytimer)
-				mytimer = addtimer(CALLBACK(src, .proc/set_rand_sprite), 30 MINUTES + rand(0, 5 MINUTES), TIMER_STOPPABLE | TIMER_LOOP)
+				mytimer = addtimer(CALLBACK(src, PROC_REF(set_rand_sprite)), 30 MINUTES + rand(0, 5 MINUTES), TIMER_STOPPABLE | TIMER_LOOP)
 			set_rand_sprite()
 			return
 		icon_forced = TRUE
@@ -114,4 +114,3 @@ GLOBAL_LIST_EMPTY(holoposters)
 /obj/machinery/holoposter/emp_act()
 	stat |= BROKEN
 	update_icon()
-

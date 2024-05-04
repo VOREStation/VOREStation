@@ -15,11 +15,19 @@
 	var/mode = 1;
 	var/advscan = 0
 	var/showadvscan = 1
+	var/guide = FALSE
 
 /obj/item/device/healthanalyzer/New()
 	if(advscan >= 1)
 		verbs += /obj/item/device/healthanalyzer/proc/toggle_adv
 	..()
+
+/obj/item/device/healthanalyzer/examine(mob/user)
+	. = ..()
+	if(guide)
+		. += "<span class='notice'>Guidance is currently enabled.</span>"
+	else
+		. += "<span class='notice'>Guidance is currently disabled.</span>"
 
 /obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
@@ -51,11 +59,11 @@
 	if (!ishuman(M) || M.isSynthetic())
 		//these sensors are designed for organic life
 		dat += "<span class='notice'>Analyzing Results for ERROR:\n\tOverall Status: ERROR<br>"
-		dat += "\tKey: <font color='cyan'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font><br>"
-		dat += "\tDamage Specifics: <font color='cyan'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font><br>"
+		dat += "\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
+		dat += "\tDamage Specifics: [span_cyan("?")] - [span_green("?")] - [span_orange("?")] - [span_red("?")]<br>"
 		dat += "Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span><br>"
 		dat += "<span class='warning'>Warning: Blood Level ERROR: --% --cl.</span> <span class='notice'>Type: ERROR</span><br>"
-		dat += "<span class='notice'>Subject's pulse: <font color='red'>-- bpm.</font></span>"
+		dat += "<span class='notice'>Subject's pulse: [span_red("-- bpm.")]</span>"
 		user.show_message(dat, 1)
 		return
 
@@ -70,8 +78,8 @@
 		dat += "<span class='notice'>Overall Status: dead</span><br>"
 	else
 		dat += 	"<span class='notice'>Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round((M.health/M.getMaxHealth())*100) ]% healthy"]<br>"
-	dat += 		"\tKey: <font color='cyan'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font><br>"
-	dat += 		"\tDamage Specifics: <font color='cyan'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font><br>"
+	dat += 		"\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
+	dat += 		"\tDamage Specifics: [span_cyan("[OX]")] - [span_green("[TX]")] - [span_orange("[BU]")] - [span_red("[BR]")]<br>"
 	dat +=		"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span><br>"
 	//VOREStation edit/addition starts
 	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
@@ -91,14 +99,14 @@
 				else
 					dat += "<span class='notice'>     [capitalize(org.name)]: [(org.brute_dam > 0) ? "<span class='warning'>[org.brute_dam]</span>" : 0]"
 					dat += "[(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":""] - "
-					dat += "[(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0]</span><br>"
+					dat += "[(org.burn_dam > 0) ? "[span_orange("[org.burn_dam]")]" : 0]</span><br>"
 		else
 			dat += "<span class='notice'>    Limbs are OK.</span><br>"
 
-	OX = M.getOxyLoss() > 50 ? 	 "<font color='cyan'><b>Severe oxygen deprivation detected</b></font>" 		: 	"Subject bloodstream oxygen level normal"
-	TX = M.getToxLoss() > 50 ? 	 "<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
-	BU = M.getFireLoss() > 50 ?  "<font color='#FFA500'><b>Severe burn damage detected</b></font>" 			:	"Subject burn injury status O.K"
-	BR = M.getBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical damage detected</b></font>" 		: 	"Subject brute-force injury status O.K"
+	OX = M.getOxyLoss() > 50 ? 	 "[span_cyan("<b>Severe oxygen deprivation detected</b>")]" 			: 	"Subject bloodstream oxygen level normal"
+	TX = M.getToxLoss() > 50 ? 	 "[span_green("<b>Dangerous amount of toxins detected</b>")]" 	: 	"Subject bloodstream toxin level minimal"
+	BU = M.getFireLoss() > 50 ?  "[span_orange("<b>Severe burn damage detected</b>")]" 			:	"Subject burn injury status O.K"
+	BR = M.getBruteLoss() > 50 ? "[span_red("<b>Severe anatomical damage detected</b>")]"		 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		"<span class='warning'>Severe oxygen deprivation detected</span>" 	: 	"Subject bloodstream oxygen level normal"
 	dat += "[OX] | [TX] | [BU] | [BR]<br>"
@@ -222,7 +230,7 @@
 		dat += "<span class='warning'>Severe brain damage detected. Subject likely to have a traumatic brain injury.</span><br>"
 	else if (M.getBrainLoss() >= 10)
 		dat += "<span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span><br>"
-	else if (M.getBrainLoss() >= 1 && advscan >= 2 && showadvscan == 1)
+	else if (M.getBrainLoss() >= 1)
 		dat += "<span class='warning'>Minor brain damage detected.</span><br>"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -242,6 +250,26 @@
 		var/fracture_dat = ""	// All the fractures
 		var/infection_dat = ""	// All the infections
 		var/ib_dat = ""			// All the IB
+		var/int_damage_acc = 0  // For internal organs
+		for(var/obj/item/organ/internal/i in H.internal_organs)
+			if(!i || i.robotic >= ORGAN_ROBOT || istype(i, /obj/item/organ/internal/brain))
+				continue 		// not there or robotic or brain which is handled separately
+			if(i.damage || i.status & ORGAN_DEAD)
+				int_damage_acc += (i.damage + ((i.status & ORGAN_DEAD) ? 30 : 0))
+				if(advscan >= 2 && showadvscan == 1)
+					if(advscan >= 3)
+						var/dam_adj
+						if(i.damage >= i.min_broken_damage || i.status & ORGAN_DEAD)
+							dam_adj = "Severe"
+						else if(i.damage >= i.min_bruised_damage)
+							dam_adj = "Moderate"
+						else
+							dam_adj = "Mild"
+						dat += "<span class='warning'>[dam_adj] damage detected to subject's [i.name].</span><br>"
+					else
+						dat += "<span class='warning'>Damage detected to subject's [i.name].</span><br>"
+		if(int_damage_acc >= 1 && (advscan < 2 || !showadvscan))
+			dat += "<span class='warning'>Damage detected to subject's internal organs.</span><br>"
 		for(var/obj/item/organ/external/e in H.organs)
 			if(!e)
 				continue
@@ -276,14 +304,15 @@
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
+			var/blood_reagent = H.species.blood_reagents
 			if(blood_volume <= H.species.blood_volume*H.species.blood_level_danger)
-				dat += "<span class='danger'><i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]</i></span><br>"
+				dat += "<span class='danger'><i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i></span><br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_warning)
-				dat += "<span class='danger'><i>Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]</i></span><br>"
+				dat += "<span class='danger'><i>Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i></span><br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_safe)
-				dat += "<span class='danger'>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span><br>"
+				dat += "<span class='danger'>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</span><br>"
 			else
-				dat += "<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span><br>"
+				dat += "<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</span><br>"
 		dat += "<span class='notice'>Subject's pulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span><br>" // VORE Edit: Missed a linebreak here.
 		if(istype(H.species, /datum/species/xenochimera)) // VOREStation Edit Start: Visible feedback for medmains on Xenochimera.
 			if(H.stat == DEAD && H.revive_ready == REVIVING_READY && !H.hasnutriment())
@@ -298,6 +327,8 @@
 				dat += "<span class='notice'>Subject is a Xenochimera. Treat accordingly.</span>"
 		// VOREStation Edit End
 	user.show_message(dat, 1)
+	if(guide)
+		guide(M, user)
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"

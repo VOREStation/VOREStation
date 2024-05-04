@@ -5,13 +5,21 @@
 /mob/living/simple_mob
 	var/nameset
 	var/limit_renames = TRUE
+	var/copy_prefs_to_mob = TRUE
 
 /mob/living/simple_mob/Login()
 	. = ..()
 	verbs |= /mob/living/simple_mob/proc/set_name
 	verbs |= /mob/living/simple_mob/proc/set_desc
 
+	if(copy_prefs_to_mob)
+		login_prefs()
+
+/mob/living/proc/login_prefs()
+
 	ooc_notes = client.prefs.metadata
+	ooc_notes_likes = client.prefs.metadata_likes
+	ooc_notes_dislikes = client.prefs.metadata_dislikes
 	digestable = client.prefs_vr.digestable
 	devourable = client.prefs_vr.devourable
 	absorbable = client.prefs_vr.absorbable
@@ -19,6 +27,7 @@
 	can_be_drop_prey = client.prefs_vr.can_be_drop_prey
 	can_be_drop_pred = client.prefs_vr.can_be_drop_pred
 	throw_vore = client.prefs_vr.throw_vore
+	food_vore = client.prefs_vr.food_vore
 	allow_inbelly_spawning = client.prefs_vr.allow_inbelly_spawning
 	allow_spontaneous_tf = client.prefs_vr.allow_spontaneous_tf
 	digest_leave_remains = client.prefs_vr.digest_leave_remains
@@ -26,8 +35,7 @@
 	permit_healbelly = client.prefs_vr.permit_healbelly
 	noisy = client.prefs_vr.noisy
 	selective_preference = client.prefs_vr.selective_preference
-	appendage_color = client.prefs_vr.appendage_color
-	appendage_alt_setting = client.prefs_vr.appendage_alt_setting
+	eating_privacy_global = client.prefs_vr.eating_privacy_global
 
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore
@@ -37,7 +45,6 @@
 	show_vore_fx = client.prefs_vr.show_vore_fx
 	step_mechanics_pref = client.prefs_vr.step_mechanics_pref
 	pickup_pref = client.prefs_vr.pickup_pref
-
 
 /mob/living/simple_mob/proc/set_name()
 	set name = "Set Name"

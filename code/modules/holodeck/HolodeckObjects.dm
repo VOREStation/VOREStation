@@ -154,7 +154,7 @@
 	var/damage = rand(0, 9)
 	if(!damage)
 		playsound(target, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-		target.visible_message("<font color='red'><B>[user] has attempted to punch [target]!</B></font>")
+		target.visible_message(span_red("<B>[user] has attempted to punch [target]!</B>"))
 		return TRUE
 	var/obj/item/organ/external/affecting = target.get_organ(ran_zone(user.zone_sel.selecting))
 	var/armor_block = target.run_armor_check(affecting, "melee")
@@ -165,14 +165,14 @@
 
 	playsound(target, "punch", 25, 1, -1)
 
-	target.visible_message("<font color='red'><B>[user] has punched [target]!</B></font>")
+	target.visible_message(span_red("<B>[user] has punched [target]!</B>"))
 
 	if(armor_soak >= damage)
 		return TRUE
 
 	target.apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
 	if(damage >= 9)
-		target.visible_message("<font color='red'><B>[user] has weakened [target]!</B></font>")
+		target.visible_message(span_red("<B>[user] has weakened [target]!</B>"))
 		target.apply_effect(4, WEAKEN, armor_block)
 
 	return TRUE
@@ -206,11 +206,11 @@
 
 	if(W.flags & NOBLUDGEON) return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
-	else if(W.is_crowbar() && reinf && state <= 1)
+	else if(W.has_tool_quality(TOOL_CROWBAR) && reinf && state <= 1)
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't pry it!</span>")
-	else if(W.is_wrench() && !anchored && (!state || !reinf))
+	else if(W.has_tool_quality(TOOL_WRENCH) && !anchored && (!state || !reinf))
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't dismantle it!</span>")
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
@@ -239,7 +239,7 @@
 	if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
 		var/aforce = I.force
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
-		visible_message("<font color='red'><B>[src] was hit by [I].</B></font>")
+		visible_message(span_red("<B>[src] was hit by [I].</B>"))
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return
@@ -267,12 +267,12 @@
 	qdel(src)
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 //VOREStation Add
 /obj/structure/bed/holobed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 //VOREStation Add End

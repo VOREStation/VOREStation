@@ -1,6 +1,6 @@
 #ifdef REFERENCE_TRACKING
 
-/datum/proc/find_references(skip_alert)
+/datum/proc/find_references(skip_alert = TRUE)
 	running_find_references = type
 	if(usr?.client)
 		if(usr.client.running_find_references)
@@ -28,7 +28,11 @@
 
 	//Time to search the whole game for our ref
 	DoSearchVar(GLOB, "GLOB") //globals
-	log_reftracker("Finished searching globals")
+	log_reftracker("Finished searching GLOB")
+
+	for(var/thing in global.vars)
+		DoSearchVar(thing, "Global variable -> [nameof(thing)]", search_time = starting_time)
+	log_reftracker("Finished searching global.vars")
 
 	for(var/datum/thing in world) //atoms (don't beleive its lies)
 		DoSearchVar(thing, "World -> [thing.type]", search_time = starting_time)

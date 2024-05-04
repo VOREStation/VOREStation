@@ -20,7 +20,7 @@
 	},
 /area/submap/LeopardmanderDen)
 "bj" = (
-/obj/item/weapon/ore/bluespace_crystal,
+/obj/item/weapon/bluespace_crystal,
 /turf/simulated/floor/outdoors/grass/sif,
 /area/submap/LeopardmanderDen)
 "bO" = (
@@ -246,7 +246,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "sN" = (
-/mob/living/simple_mob/otie/red/chubby{
+/mob/living/simple_mob/vore/otie/red/chubby{
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. What an absolute unit. It has a collar around one of its ankles that reads 'Tawny'.";
 	name = "Tawny"
 	},

@@ -938,7 +938,7 @@
 	dir = 1;
 	pixel_y = 24
 	},
-/mob/living/simple_mob/otie/red/chubby/cocoa,
+/mob/living/simple_mob/vore/otie/red/chubby/cocoa,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "bP" = (
@@ -3866,6 +3866,14 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
+"ia" = (
+/obj/machinery/computer/ship/navigation/telescreen{
+	pixel_x = -32;
+	pixel_y = -32
+	},
+/obj/structure/table/bench/steel,
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/crew_quarters/recreation_area)
 "ib" = (
 /obj/machinery/power/grounding_rod,
 /obj/structure/cable/yellow{
@@ -3880,6 +3888,10 @@
 /obj/effect/landmark/start/visitor,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
+"id" = (
+/obj/structure/table/bench/steel,
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/crew_quarters/recreation_area)
 "ie" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck2/portsolars)
@@ -5274,7 +5286,6 @@
 /obj/structure/closet/secure_closet/captains,
 /obj/item/clothing/glasses/omnihud/all,
 /obj/item/weapon/disk/nuclear,
-/obj/item/weapon/paper/dockingcodes/sd,
 /obj/item/device/retail_scanner/command,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
@@ -8302,8 +8313,6 @@
 /area/crew_quarters/captain)
 "rO" = (
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/weapon/shovel/spade,
-/obj/item/weapon/storage/belt/utility,
 /obj/item/stack/material/sandstone{
 	amount = 5
 	},
@@ -15332,6 +15341,8 @@
 /obj/structure/sign/poster{
 	dir = 8
 	},
+/obj/item/device/healthanalyzer/guide,
+/obj/item/device/healthanalyzer/guide,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "HN" = (
@@ -19423,14 +19434,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/exterior)
-"QJ" = (
-/obj/machinery/computer/ship/navigation/telescreen{
-	pixel_x = -32;
-	pixel_y = -32
-	},
-/obj/structure/table/bench/steel,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/crew_quarters/recreation_area)
 "QK" = (
 /obj/machinery/atmospherics/omni/mixer{
 	name = "Air Mixer";
@@ -19662,10 +19665,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
-"Ri" = (
-/obj/structure/table/bench/steel,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/crew_quarters/recreation_area)
 "Rj" = (
 /obj/effect/floor_decal/milspec/color/blue/half{
 	dir = 4
@@ -32383,7 +32382,7 @@ De
 QZ
 Ho
 aE
-QJ
+ia
 WR
 nt
 Rq
@@ -34229,7 +34228,7 @@ cC
 iO
 mt
 lO
-Ri
+id
 sH
 nt
 Rq

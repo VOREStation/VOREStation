@@ -53,7 +53,7 @@
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
-		//VOREStation Block Edit Start
+
 		if(holder.rights & R_EVENT) //Retired Admins
 			ooc_style = "event_manager"
 		if(holder.rights & R_ADMIN && !(holder.rights & R_BAN)) //Game Masters
@@ -62,7 +62,8 @@
 			ooc_style = "developer"
 		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
 			ooc_style = "admin"
-		//VOREStation Block Edit End
+
+	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
 
 	for(var/client/target in GLOB.clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
@@ -76,7 +77,7 @@
 					else
 						display_name = holder.fakekey
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				to_chat(target, "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+				to_chat(target, "<span class='ooc'><font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></font></span>")
 			else
 				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>")
 
@@ -149,12 +150,12 @@
 		display_name = holder.fakekey
 	if(mob.stat != DEAD)
 		display_name = mob.name
-	//VOREStation Add - Resleeving shenanigan prevention
+
 	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		if(H.original_player && H.original_player != H.ckey) //In a body not their own
 			display_name = "[H.mind.name] (as [H.name])"
-	//VOREStation Add End
+
 
 	// Everyone in normal viewing range of the LOOC
 	for(var/mob/viewer in m_viewers)
@@ -170,6 +171,8 @@
 		if(!(admin in receivers) && admin.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
 			r_receivers |= admin
 
+	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
+
 	// Send a message
 	for(var/client/target in receivers)
 		var/admin_stuff = ""
@@ -177,12 +180,12 @@
 		if(target in GLOB.admins)
 			admin_stuff += "/([key])"
 
-		to_chat(target, "<span class='ooc looc'>" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, "<span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 
-		to_chat(target, "<span class='ooc looc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, "<span class='rlooc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
 
 /mob/proc/get_looc_source()
 	return src

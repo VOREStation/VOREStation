@@ -5,7 +5,7 @@
 	love to nip and bite at things, as well as sniffing around. They seem to mark their territory by way of scent-marking/urinating on things."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/wolf
+/mob/living/simple_mob/vore/wolf
 	name = "grey wolf"
 	desc = "My, what big jaws it has!"
 	tt_desc = "Canis lupus"
@@ -34,12 +34,12 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
 
 // Activate Noms!
-/mob/living/simple_mob/animal/wolf
+/mob/living/simple_mob/vore/wolf
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
 // Space edition, stronger and bitier
-/mob/living/simple_mob/animal/wolf/space
+/mob/living/simple_mob/vore/wolf/space
 	name = "space wolf"
 	tt_desc = "Canis lupus aetherius"
 
@@ -63,10 +63,10 @@
 	minbodytemp = 0
 	maxbodytemp = 700
 
-/mob/living/simple_mob/animal/wolf/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/vore/wolf/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
-/mob/living/simple_mob/animal/wolf/direwolf
+/mob/living/simple_mob/vore/wolf/direwolf
 	name = "dire wolf"
 	desc = "The biggest and baddest wolf around."
 	tt_desc = "Canis maxdirus"
@@ -96,7 +96,7 @@
 	buckle_lying = FALSE
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_mob/animal/wolf/direwolf/Login()
+/mob/living/simple_mob/vore/wolf/direwolf/Login()
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
@@ -104,10 +104,10 @@
 	verbs |= /mob/living/proc/toggle_rider_reins
 	movement_cooldown = -1
 
-/mob/living/simple_mob/animal/wolf/direwolf/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/wolf/direwolf/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
-/mob/living/simple_mob/animal/wolf/direwolf/dog
+/mob/living/simple_mob/vore/wolf/direwolf/dog
 	name = "large dog"
 	desc = "The biggest and goodest dog around."
 	tt_desc = "Canis maxdirus familiaris"
@@ -116,7 +116,7 @@
 	icon_state = "diredog"
 	icon_rest = "diredog_rest"
 
-/mob/living/simple_mob/animal/wolf/direwolf/dog/sec
+/mob/living/simple_mob/vore/wolf/direwolf/dog/sec
 	name = "large guard dog"
 	desc = "The biggest and goodest guard dog around."
 	icon_dead = "diredogs-dead"
@@ -124,7 +124,7 @@
 	icon_state = "diredogs"
 	icon_rest = "diredogs_rest"
 
-/mob/living/simple_mob/animal/wolf/direwolf/sec
+/mob/living/simple_mob/vore/wolf/direwolf/sec
 	name = "dire guard wolf"
 	desc = "The biggest and baddest guard wolf around."
 	icon_dead = "direwolfs-dead"
@@ -132,7 +132,7 @@
 	icon_state = "direwolfs"
 	icon_rest = "direwolfs_rest"
 
-/mob/living/simple_mob/animal/wolf/direwolf/rykka
+/mob/living/simple_mob/vore/wolf/direwolf/rykka
 	name = "Rykka"
 	desc = "This big canine looks like a GSD. It has a collar tagged, 'Bitch'"
 	tt_desc = "Canidae"
@@ -166,7 +166,7 @@
 	vore_stomach_name = "Gut"
 	vore_stomach_flavor = "A black-and-purple veined gut, pulsing warmly around you. Loud gurgles sound around you as the gut squishes inwards and attempts to crush you - Rykka seems intent on digesting you, like the meat you are."
 
-/mob/living/simple_mob/animal/wolf/direwolf/andrews
+/mob/living/simple_mob/vore/wolf/direwolf/andrews
 	name = "andrewsarchus"
 	desc = "That's one massive mean-looking piece of long extinct megafauna."
 	tt_desc = "Andrewsarchus mongoliensis"

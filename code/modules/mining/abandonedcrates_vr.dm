@@ -41,7 +41,7 @@
 			list(/obj/item/toy/syndicateballoon, 3) = 2,
 			list(/obj/item/clothing/suit/ianshirt, 3) = 2,
 			list(/obj/item/clothing/head/bearpelt, 4) = 2,
-			list(/obj/item/weapon/archaeological_find, 3) = 2,
+			//list(/obj/item/weapon/archaeological_find, 3) = 2, //ChompREMOVE - causes runtimes
 			list(pick(subtypesof(/obj/item/toy/mecha)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/figure)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/plushie)), 4) = 2,
@@ -99,7 +99,8 @@
 			list(pick(/obj/item/weapon/grenade/spawnergrenade/spesscarp, /obj/item/weapon/grenade/spawnergrenade/spider, /obj/item/weapon/grenade/explosive/frag), 7) = 1,
 			list(/obj/item/weapon/grenade/flashbang/clusterbang, 7) = 1,
 			list(/obj/item/weapon/card/emag, 11) = 1,
-			list(/obj/item/weapon/melee/shock_maul, 11) = 5,
+			list(/obj/item/weapon/melee/shock_maul, 11) = 3,
+			list(/obj/item/clothing/suit/storage/vest/martian_miner, 4) = 6,
 			list(/obj/item/weapon/storage/backpack/sport/hyd/catchemall, 11) = 1
 			))
 		var/path = choice[1]

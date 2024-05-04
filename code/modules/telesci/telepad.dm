@@ -14,7 +14,7 @@
 /obj/machinery/telepad/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/ore/bluespace_crystal(src)
+	component_parts += new /obj/item/weapon/bluespace_crystal(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)

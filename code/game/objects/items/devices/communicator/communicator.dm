@@ -106,7 +106,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	setup_tgui_camera()
 
 	//This is a pretty terrible way of doing this.
-	addtimer(CALLBACK(src, .proc/register_to_holder), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(register_to_holder)), 5 SECONDS)
 
 // Proc: register_to_holder()
 // Parameters: None
@@ -302,7 +302,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/Destroy()
 	for(var/mob/living/voice/voice in contents)
 		voice_mobs.Remove(voice)
-		to_chat(voice, "<span class='danger'>\icon[src][bicon(src)] Connection timed out with remote host.</span>")
+		to_chat(voice, "<span class='danger'>[icon2html(src, voice.client)] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
 
@@ -377,3 +377,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	icon_state = initial(icon_state)
 
+#undef HOMETAB
+#undef PHONTAB
+#undef CONTTAB
+#undef MESSTAB
+#undef NEWSTAB
+#undef NOTETAB
+#undef WTHRTAB
+#undef MANITAB
+#undef SETTTAB

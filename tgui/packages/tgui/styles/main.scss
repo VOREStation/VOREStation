@@ -11,8 +11,10 @@
 
 // Atomic classes
 @include meta.load-css('./atomic/candystripe.scss');
+@include meta.load-css('./atomic/centered-image.scss');
 @include meta.load-css('./atomic/color.scss');
 @include meta.load-css('./atomic/debug-layout.scss');
+@include meta.load-css('./atomic/fit-text.scss');
 @include meta.load-css('./atomic/links.scss');
 @include meta.load-css('./atomic/outline.scss');
 @include meta.load-css('./atomic/text.scss');
@@ -21,6 +23,7 @@
 @include meta.load-css('./components/BlockQuote.scss');
 @include meta.load-css('./components/Button.scss');
 @include meta.load-css('./components/ColorBox.scss');
+@include meta.load-css('./components/Dialog.scss');
 @include meta.load-css('./components/Dimmer.scss');
 @include meta.load-css('./components/Divider.scss');
 @include meta.load-css('./components/Dropdown.scss');
@@ -29,6 +32,7 @@
 @include meta.load-css('./components/Input.scss');
 @include meta.load-css('./components/Knob.scss');
 @include meta.load-css('./components/LabeledList.scss');
+@include meta.load-css('./components/MenuBar.scss');
 @include meta.load-css('./components/Modal.scss');
 @include meta.load-css('./components/NanoMap.scss');
 @include meta.load-css('./components/NoticeBox.scss');
@@ -68,6 +72,8 @@
 @include meta.load-css('./layouts/NtosWindow.scss');
 @include meta.load-css('./layouts/TitleBar.scss');
 @include meta.load-css('./layouts/Window.scss');
+
+@include meta.load-css('highlight.js/scss/github-dark.scss');
 
 // NT Theme
 .Layout__content {

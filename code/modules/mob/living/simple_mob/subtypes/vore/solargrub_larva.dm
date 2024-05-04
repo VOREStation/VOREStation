@@ -51,6 +51,8 @@ var/global/list/grub_machine_overlays = list()
 
 	ai_holder_type = /datum/ai_holder/simple_mob/solargrub_larva
 
+	glow_override = TRUE
+
 /mob/living/simple_mob/animal/solargrub_larva/New()
 	..()
 	existing_solargrubs += src
@@ -143,7 +145,7 @@ var/global/list/grub_machine_overlays = list()
 	sparks.start()
 	if(machine_effect)
 		QDEL_NULL(machine_effect)
-	ai_holder.target = null
+	ai_holder.remove_target()
 	powermachine.draining = 1
 	spawn(30)
 		set_AI_busy(FALSE)
@@ -175,6 +177,7 @@ var/global/list/grub_machine_overlays = list()
 /mob/living/simple_mob/animal/solargrub_larva/proc/expand_grub()
 	eject_from_machine()
 	visible_message("<span class='warning'>\The [src] suddenly balloons in size!</span>")
+	log_game("A larva has matured into a grub in area [src.loc.name] ([src.x],[src.y],[src.z]")
 	var/mob/living/simple_mob/vore/solargrub/adult = new(get_turf(src))
 	adult.tracked = tracked
 //	grub.power_drained = power_drained //TODO
@@ -185,6 +188,8 @@ var/global/list/grub_machine_overlays = list()
 	if(. == 0 && !is_dead())
 		set_light(1.5, 1, COLOR_YELLOW)
 		return 1
+	else if(is_dead())
+		glow_override = FALSE
 
 
 /obj/machinery/abstract_grub_machine

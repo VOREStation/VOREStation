@@ -5,10 +5,10 @@
 */
 
 // What each index means:
-#define DNA_OFF_LOWERBOUND 0
-#define DNA_OFF_UPPERBOUND 1
-#define DNA_ON_LOWERBOUND  2
-#define DNA_ON_UPPERBOUND  3
+#define DNA_OFF_LOWERBOUND 1
+#define DNA_OFF_UPPERBOUND 2
+#define DNA_ON_LOWERBOUND  3
+#define DNA_ON_UPPERBOUND  4
 
 // Define block bounds (off-low,off-high,on-low,on-high)
 // Used in setupgame.dm
@@ -120,6 +120,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/custom_exclaim
 	var/list/custom_heat = list()
 	var/list/custom_cold = list()
+	var/digitigrade = 0 //0, Not FALSE, for future use as indicator for digitigrade types
 	// VOREStation
 
 	// New stuff
@@ -148,6 +149,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	new_dna.custom_exclaim=custom_exclaim //VOREStaton Edit
 	new_dna.custom_heat=custom_heat //VOREStation Edit
 	new_dna.custom_cold=custom_cold //VOREStation Edit
+	new_dna.digitigrade=src.digitigrade //VOREStation Edit
 	var/list/body_markings_genetic = (body_markings - body_marking_nopersist_list)
 	new_dna.body_markings=body_markings_genetic.Copy()
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
@@ -222,6 +224,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	src.custom_exclaim = character.custom_exclaim
 	src.custom_heat = character.custom_heat
 	src.custom_cold = character.custom_cold
+	src.digitigrade = character.digitigrade
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)

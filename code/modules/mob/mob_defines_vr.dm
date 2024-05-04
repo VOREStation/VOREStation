@@ -9,6 +9,7 @@
 
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/accumulated_rads = 0 	// For radiation stuff.
+	var/faction_bump_vore = FALSE	// Don't bump nom mobs of the same faction
 
 /mob/drop_location()
 	if(temporary_form)

@@ -127,7 +127,7 @@
 	battery_lock = 1 // In exchange for balance, you cannot remove the battery. Also there's no sprite for that and I fucking suck at sprites. -Ace
 
 	projectile_type = /obj/item/projectile/beam/stun/med
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2) // Illegal tech cuz Space Nazis
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	modifystate = "ep08stun"
 
 	firemodes = list(

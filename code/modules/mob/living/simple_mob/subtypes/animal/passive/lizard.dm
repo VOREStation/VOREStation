@@ -3,9 +3,9 @@
 	desc = "A cute, tiny lizard."
 	tt_desc = "E Anolis cuvieri"
 
-	icon_state = "lizard"
-	icon_living = "lizard"
-	icon_dead = "lizard_dead"
+	icon_state = "lizard_green"
+	icon_living = "lizard_green"
+	icon_dead = "lizard_green_dead"
 
 	health = 5
 	maxHealth = 5
@@ -25,6 +25,25 @@
 
 	meat_amount = 1
 
+	var/body_color			// Green, red, orange, yellow or cyan. Keep blank for random (including rare redblue)
+
+/mob/living/simple_mob/animal/passive/lizard/Initialize()
+	.=..()
+
+	if(!body_color)
+		if(rand(1,1000) == 1)
+			body_color = "redblue"
+		else
+			body_color = pick(list("green","red","orange","yellow","cyan"))
+	icon_state = "lizard_[body_color]"
+	item_state = "lizard_[body_color]"
+	icon_living = "lizard_[body_color]"
+	icon_dead = "lizard_[body_color]_dead"
+	if(body_color == "redblue")
+		desc = "A cute, tiny, red lizard with distinctive blueish markings on its tiny limbs. Seems rare!"
+	else
+		desc = "A cute, tiny, [body_color] lizard."
+
 /mob/living/simple_mob/animal/passive/lizard/large
 	desc = "A cute, big lizard."
 	maxHealth = 20
@@ -38,7 +57,6 @@
 /mob/living/simple_mob/animal/passive/lizard/large/Initialize()
 	. = ..()
 	adjust_scale(rand(12, 20) / 10)
-
 /mob/living/simple_mob/animal/passive/lizard/large/defensive
 	maxHealth = 30
 	health = 30

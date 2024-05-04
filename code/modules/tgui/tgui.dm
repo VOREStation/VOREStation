@@ -1,7 +1,6 @@
-/**
- * tgui
- *
- * /tg/station user interface library
+/*!
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
  */
 
 /**
@@ -12,7 +11,7 @@
 	var/mob/user
 	/// The object which owns the UI.
 	var/datum/src_object
-	/// The title of te UI.
+	/// The title of the UI.
 	var/title
 	/// The window_id for browse() and onclose().
 	var/datum/tgui_window/window
@@ -38,6 +37,8 @@
 	var/datum/tgui_state/state = null
 	/// Rate limit client refreshes to prevent DoS.
 	COOLDOWN_DECLARE(refresh_cooldown)
+	/// Are byond mouse events beyond the window passed in to the ui
+	var/mouse_hooked = FALSE
 	/// The map z-level to display.
 	var/map_z_level = 1
 	/// The Parent UI
@@ -75,22 +76,29 @@
 	if(ui_x && ui_y)
 		src.window_size = list(ui_x, ui_y)
 
+/datum/tgui/Destroy()
+	user = null
+	src_object = null
+	return ..()
+
 /**
  * public
  *
  * Open this UI (and initialize it with data).
+ *
+ * return bool - TRUE if a new pooled window is opened, FALSE in all other situations including if a new pooled window didn't open because one already exists.
  */
 /datum/tgui/proc/open()
-	if(!user.client)
-		return null
+	if(!user?.client)
+		return FALSE
 	if(window)
-		return null
+		return FALSE
 	process_status()
 	if(status < STATUS_UPDATE)
-		return null
+		return FALSE
 	window = SStgui.request_pooled_window(user)
 	if(!window)
-		return null
+		return FALSE
 	opened_at = world.time
 	window.acquire_lock(src)
 	if(!window.is_ready())
@@ -102,19 +110,33 @@
 			))
 	else
 		window.send_message("ping")
-	window.send_asset(get_asset_datum(/datum/asset/simple/fontawesome))
-	window.send_asset(get_asset_datum(/datum/asset/simple/tgfont))
-	for(var/datum/asset/asset in src_object.ui_assets(user))
-		window.send_asset(asset)
+	send_assets()
 	window.send_message("update", get_payload(
 		with_data = TRUE,
 		with_static_data = TRUE))
+	if(mouse_hooked)
+		window.set_mouse_macro()
 	SStgui.on_open(src)
+
+	return TRUE
+
+
+/datum/tgui/proc/send_assets()
+	var/flush_queue = window.send_asset(get_asset_datum(
+		/datum/asset/simple/namespaced/fontawesome))
+	flush_queue |= window.send_asset(get_asset_datum(
+		/datum/asset/simple/namespaced/tgfont))
+	for(var/datum/asset/asset in src_object.ui_assets(user))
+		flush_queue |= window.send_asset(asset)
+	if (flush_queue)
+		user.client.browse_queue_flush()
 
 /**
  * public
  *
- * Close the UI, and all its children.
+ * Close the UI.
+ *
+ * optional can_be_suspended bool
  */
 /datum/tgui/proc/close(can_be_suspended = TRUE, logout = FALSE)
 	if(closing)
@@ -143,10 +165,21 @@
  *
  * Enable/disable auto-updating of the UI.
  *
- * required autoupdate bool Enable/disable auto-updating.
+ * required value bool Enable/disable auto-updating.
  */
 /datum/tgui/proc/set_autoupdate(autoupdate)
 	src.autoupdate = autoupdate
+
+/**
+ * public
+ *
+ * Enable/disable passing through byond mouse events to the window
+ *
+ * required value bool Enable/disable hooking.
+ */
+/datum/tgui/proc/set_mouse_hook(value)
+	src.mouse_hooked = value
+	//Handle unhooking/hooking on already open windows ?
 
 /**
  * public
@@ -164,6 +197,8 @@
  * Makes an asset available to use in tgui.
  *
  * required asset datum/asset
+ *
+ * return bool - true if an asset was actually sent
  */
 /datum/tgui/proc/send_asset(datum/asset/asset)
 	if(!window)
@@ -179,11 +214,11 @@
  * optional force bool Send an update even if UI is not interactive.
  */
 /datum/tgui/proc/send_full_update(custom_data, force)
-	if(!user.client || !initialized || closing)
+	if(!user?.client || !initialized || closing)
 		return
 	//if(!COOLDOWN_FINISHED(src, refresh_cooldown))
 		//refreshing = TRUE
-		//addtimer(CALLBACK(src, .proc/send_full_update), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
+		//addtimer(CALLBACK(src, PROC_REF(send_full_update)), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
 		//return
 	//refreshing = FALSE
 	var/should_update_data = force || status >= STATUS_UPDATE
@@ -202,7 +237,7 @@
  * optional force bool Send an update even if UI is not interactive.
  */
 /datum/tgui/proc/send_update(custom_data, force)
-	if(!user.client || !initialized || closing)
+	if(!user?.client || !initialized || closing)
 		return
 	var/should_update_data = force || status >= STATUS_UPDATE
 	window.send_message("update", get_payload(
@@ -239,7 +274,6 @@
 		),
 		"user" = list(
 			"name" = "[user]",
-			"ckey" = "[user.ckey]",
 			"observer" = isobserver(user),
 		),
 	)
@@ -269,14 +303,12 @@
 		return
 	// Validate ping
 	if(!initialized && world.time - opened_at > TGUI_PING_TIMEOUT)
-		// #ifdef TGUI_DEBUGGING // Always log zombie windows
 		log_tgui(user, \
 			"Error: Zombie window detected, killing it with fire.\n" \
 			+ "window_id: [window.id]\n" \
 			+ "opened_at: [opened_at]\n" \
 			+ "world.time: [world.time]")
 		close(can_be_suspended = FALSE)
-		// #endif
 		return
 	// Update through a normal call to ui_interact
 	if(status != STATUS_DISABLED && (autoupdate || force))
@@ -297,7 +329,8 @@
  */
 /datum/tgui/proc/process_status()
 	var/prev_status = status
-	status = src_object.tgui_status(user, state)
+	if(src_object)
+		status = src_object.tgui_status(user, state)
 	if(parent_ui)
 		status = min(status, parent_ui.status)
 	return prev_status != status
@@ -308,9 +341,7 @@
 /**
  * private
  *
- * Handle clicks from the UI.
- * Call the src_object's ui_act() if status is UI_INTERACTIVE.
- * If the src_object's ui_act() returns 1, update all UIs attacked to it.
+ * Callback for handling incoming tgui messages.
  */
 /datum/tgui/proc/on_message(type, list/payload, list/href_list)
 	// Pass act type messages to tgui_act
@@ -329,7 +360,7 @@
 			if(initialized)
 				send_full_update()
 			initialized = TRUE
-		if("pingReply")
+		if("ping/reply")
 			initialized = TRUE
 		if("suspend")
 			close(can_be_suspended = TRUE)

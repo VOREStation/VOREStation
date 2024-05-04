@@ -59,7 +59,7 @@
 			if("Description")
 				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
-					to_chat(user, "<font color='red'>Invalid text.</font>")
+					to_chat(user, span_red("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -171,7 +171,7 @@
 			if("Description")
 				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
-					to_chat(user, "<font color='red'>Invalid text.</font>")
+					to_chat(user, span_red("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -236,12 +236,12 @@
 		return
 	if(target.anchored)
 		return
-	if(target in user)
+	if(!isturf(target.loc)) //no wrapping things inside other things, just breaks things, put it on the ground first.
 		return
 	if(user in target) //no wrapping closets that you are inside - it's not physically possible
 		return
 
-	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
+	user.attack_log += text("\[[time_stamp()]\] [span_blue("Has used [src.name] on \ref[target]")]")
 
 
 	if (istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target,/obj/item/weapon/storage/box)))
@@ -305,7 +305,7 @@
 		else if(src.amount < 3)
 			to_chat(user, "<span class='warning'>You need more paper.</span>")
 	else
-		to_chat(user, "<font color='blue'>The object you are trying to wrap is unsuitable for the sorting machinery!</font>")
+		to_chat(user, span_blue("The object you are trying to wrap is unsuitable for the sorting machinery!"))
 	if (src.amount <= 0)
 		new /obj/item/weapon/c_tube( src.loc )
 		qdel(src)
@@ -315,7 +315,7 @@
 /obj/item/weapon/packageWrap/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 0)
-		. += "<font color='blue'>There are [amount] units of package wrap left!</font>"
+		. += span_blue("There are [amount] units of package wrap left!")
 
 /obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
@@ -366,7 +366,7 @@
 	switch(action)
 		if("set_tag")
 			var/new_tag = params["tag"]
-			if(!(new_tag in GLOB.tagger_locations))	
+			if(!(new_tag in GLOB.tagger_locations))
 				return FALSE
 			currTag = new_tag
 			. = TRUE
@@ -437,13 +437,13 @@
 	if(!I || !user)
 		return
 
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		c_mode = !c_mode
 		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "You [c_mode ? "remove" : "attach"] the screws around the power connection.")
 		return
-	if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
-		var/obj/item/weapon/weldingtool/W = I
+	if(I.has_tool_quality(TOOL_WELDER) && c_mode==1)
+		var/obj/item/weapon/weldingtool/W = I.get_welder()
 		if(!W.remove_fuel(0,user))
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return

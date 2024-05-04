@@ -1,13 +1,4 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-
-/datum/asset/simple/tgui
-	// keep_local_name = TRUE
-	assets = list(
-		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
-		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
-	)
-
-
 /datum/asset/simple/headers
 	assets = list(
 		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
@@ -154,11 +145,6 @@
 // 		/datum/asset/simple/fontawesome
 // 	)
 
-/datum/asset/simple/jquery
-	assets = list(
-		"jquery.min.js"            = 'code/modules/tooltip/jquery.min.js',
-	)
-
 // /datum/asset/simple/goonchat
 // 	assets = list(
 // 		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
@@ -166,24 +152,6 @@
 // 		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
 // 		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css',
 // 	)
-
-/datum/asset/simple/fontawesome
-	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
-		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
-		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
-	)
-
-/datum/asset/simple/tgfont
-	assets = list(
-		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
-		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
-		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css"),
-	)
-
 
 // /datum/asset/spritesheet/goonchat
 // 	name = "chat"
@@ -290,29 +258,26 @@
 /datum/asset/spritesheet/pipes
 	name = "pipes"
 
-/datum/asset/spritesheet/pipes/register()
+/datum/asset/spritesheet/pipes/create_spritesheets()
 	for(var/each in list('icons/obj/pipe-item.dmi', 'icons/obj/pipes/disposal.dmi'))
 		InsertAll("", each, global.alldirs)
-	..()
 
 //VOREStation Add
 /datum/asset/spritesheet/vore
 	name = "vore"
 
-/datum/asset/spritesheet/vore/register()
+/datum/asset/spritesheet/vore/create_spritesheets()
 	var/icon/downscaled = icon('icons/mob/screen_full_vore.dmi')
 	downscaled.Scale(240, 240)
 	InsertAll("", downscaled)
-	..()
 
 /datum/asset/spritesheet/vore_colorized //This should be getting loaded in the TGUI vore panel but the game refuses to do so, for some reason. It only loads the vore spritesheet.
 	name = "colorizedvore"
 
-/datum/asset/spritesheet/vore_colorized/register()
+/datum/asset/spritesheet/vore_colorized/create_spritesheets()
 	var/icon/downscaledVC = icon('icons/mob/screen_full_colorized_vore.dmi')
 	downscaledVC.Scale(240, 240)
 	InsertAll("", downscaledVC)
-	..()
 
 //VOREStation Add End
 
@@ -378,7 +343,7 @@
 /datum/asset/spritesheet/vending
 	name = "vending"
 
-/datum/asset/spritesheet/vending/register()
+/datum/asset/spritesheet/vending/create_spritesheets()
 	populate_vending_products()
 	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
@@ -416,7 +381,6 @@
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
-	return ..()
 
 // this is cursed but necessary or else vending product icons can be missing
 // basically, if there's any vending machines that aren't already mapped in, our register() will not know
@@ -474,10 +438,10 @@
 		assets["bottle-[i].png"] = icon('icons/obj/chemical.dmi', "bottle-[i]")
 
 	for(var/asset_name in assets)
-		register_asset(asset_name, assets[asset_name])
+		SSassets.transport.register_asset(asset_name, assets[asset_name])
 
 /datum/asset/chem_master/send(client)
-	send_asset_list(client, assets, verify)
+	SSassets.transport.send_assets(client, assets, verify)
 
 //Cloning pod sprites for UIs
 /datum/asset/cloning
@@ -489,10 +453,10 @@
 	assets["pod_cloning.gif"] = icon('icons/obj/cloning.dmi', "pod_cloning")
 	assets["pod_mess.gif"] = icon('icons/obj/cloning.dmi', "pod_mess")
 	for(var/asset_name in assets)
-		register_asset(asset_name, assets[asset_name])
+		SSassets.transport.register_asset(asset_name, assets[asset_name])
 
 /datum/asset/cloning/send(client)
-	send_asset_list(client, assets, verify)
+	SSassets.transport.send_assets(client, assets, verify)
 
 // VOREStation Add
 /datum/asset/cloning/resleeving
@@ -503,15 +467,14 @@
 	assets["synthprinter.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_0")
 	assets["synthprinter_working.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_1")
 	for(var/asset_name in assets)
-		register_asset(asset_name, assets[asset_name])
+		SSassets.transport.register_asset(asset_name, assets[asset_name])
 // VOREStation Add End
 
 /datum/asset/spritesheet/sheetmaterials
 	name = "sheetmaterials"
 
-/datum/asset/spritesheet/sheetmaterials/register()
+/datum/asset/spritesheet/sheetmaterials/create_spritesheets()
 	InsertAll("", 'icons/obj/stacks.dmi')
-	..()
 
 // Nanomaps
 /datum/asset/simple/nanomaps

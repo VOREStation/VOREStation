@@ -58,10 +58,10 @@
 	if(!M.isSynthetic())
 		if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we'll be ok!
 			M.heal_organ_damage(0.5 * removed, 0)
-			M.adjust_nutrition((nutriment_factor * removed) * M.species.organic_food_coeff)
+			M.adjust_nutrition(((nutriment_factor + M.food_preference(allergen_type)) * removed) * M.species.organic_food_coeff) //RS edit
 			M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 	else
-		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+		M.adjust_nutrition(((nutriment_factor + M.food_preference(allergen_type)) * removed) * M.species.synthetic_food_coeff) //RS edit
 
 	//VOREStation Edits Stop
 
@@ -957,7 +957,8 @@
 
 /datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!(M.species.allergens & allergen_type))
-		M.adjust_nutrition(nutrition * removed)
+		var/bonus = M.food_preference(allergen_type)
+		M.adjust_nutrition((nutrition + bonus) * removed) //RS edit
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.AdjustSleeping(adj_sleepy)
@@ -2556,7 +2557,7 @@
 /datum/reagent/ethanol/ale
 	name = "Ale"
 	id = "ale"
-	description = "A dark alchoholic beverage made by malted barley and yeast."
+	description = "A dark alcoholic beverage made by malted barley and yeast."
 	taste_description = "hearty barley ale"
 	color = "#4C3100"
 	strength = 50
@@ -2585,6 +2586,7 @@
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		if(alien == IS_DIONA)
 			return
+		M.adjust_nutrition((M.food_preference(allergen_type) / 2) * removed) //RS edit
 		M.jitteriness = max(M.jitteriness - 3, 0)
 
 /datum/reagent/ethanol/beer/lite
@@ -3742,7 +3744,7 @@
 /datum/reagent/ethanol/vodkatonic
 	name = "Vodka and Tonic"
 	id = "vodkatonic"
-	description = "For when a gin and tonic isn't russian enough."
+	description = "For when a gin and tonic isn't Russian enough."
 	taste_description = "tart bitterness"
 	color = "#0064C8" // rgb: 0, 100, 200
 	strength = 15
@@ -4376,7 +4378,7 @@
 /datum/reagent/ethanol/holywine
 	name = "Angel Ichor"
 	id = "holywine"
-	description = "A premium alchoholic beverage made from distilled angel blood."
+	description = "A premium alcoholic beverage made from distilled angel blood."
 	taste_description = "wings in a glass, and a hint of grape"
 	color = "#C4921E"
 	strength = 20
@@ -4537,6 +4539,12 @@
 	reagent_state = LIQUID
 	nutriment_factor = 40 //very filling
 	color = "#d169b2"
+
+/datum/reagent/nutriment/magicdust/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	playsound(M, 'sound/items/hooh.ogg', 50, 1, -1)
+	if(prob(5))
+		to_chat(M, "<span class='warning'>You feel like you've been gnomed...</span>")
 
 /datum/reagent/drink/soda/kompot
 	name = "Kompot"

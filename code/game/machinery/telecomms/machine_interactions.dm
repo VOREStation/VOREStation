@@ -313,13 +313,13 @@
 
 
 		if("freq")
-			var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
+			var/newfreq = tgui_input_number(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, max_value=9999)
 			if(newfreq && canAccess(usr))
 				if(findtext(num2text(newfreq), "."))
 					newfreq *= 10 // shift the decimal one place
 				if(!(newfreq in freq_listening) && newfreq < 10000)
 					freq_listening.Add(newfreq)
-					set_temp("-% New frequency filter assigned: \"[newfreq] GHz\" %-", "average")
+					set_temp("-% New frequency filter assigned: \"[newfreq/10] GHz\" %-", "average")
 				. = TRUE
 
 		if("delete")

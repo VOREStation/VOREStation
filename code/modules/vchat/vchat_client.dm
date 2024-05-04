@@ -263,6 +263,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	if(!cid && !ip && !ckey)
 		return
 
+	if(cid && !isnum(cid) && !(cid == ""))
+		log_and_message_admins("[key_name(owner)] - bancheck with invalid cid! ([cid])")
+
+	if(ip && !findtext(ip, new/regex(@"^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$")) && !(ip == ""))
+		log_and_message_admins("[key_name(owner)] - bancheck with invalid ip! ([ip])")
+
 	var/list/ban = world.IsBanned(key = ckey, address = ip, computer_id = cid)
 	if(ban)
 		log_and_message_admins("[key_name(owner)] has a cookie from a banned account! (Cookie: [ckey], [ip], [cid])")
@@ -285,7 +291,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	return FALSE
 
 GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
-/proc/bicon(var/obj, var/use_class = 1, var/custom_classes = "")
+/proc/icon2html(var/obj, var/use_class = 1, var/custom_classes = "")
 	var/class = use_class ? "class='icon misc [custom_classes]'" : null
 	if(!obj)
 		return
@@ -310,7 +316,7 @@ GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 		base64 = icon2base64(A.examine_icon(), key)
 		GLOB.bicon_cache[key] = base64
 		if(changes_often)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/expire_bicon_cache, key), 50 SECONDS, TIMER_UNIQUE)
+			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(expire_bicon_cache), key), 50 SECONDS, TIMER_UNIQUE)
 
 	// May add a class to the img tag created by bicon
 	if(use_class)

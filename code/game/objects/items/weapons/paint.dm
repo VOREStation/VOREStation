@@ -26,8 +26,8 @@ var/global/list/cached_icons = list()
 	else
 		return ..()
 
-/obj/item/weapon/reagent_containers/glass/paint/New()
-	..()
+/obj/item/weapon/reagent_containers/glass/paint/Initialize()
+	.=..()
 	if(paint_type)
 		reagents.add_reagent("paint", volume, paint_type)
 

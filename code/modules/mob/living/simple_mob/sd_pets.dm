@@ -104,7 +104,7 @@
 	value = CATALOGUER_REWARD_TRIVIAL	//Worth less points since it lives on the ship
 
 
-/mob/living/simple_mob/otie/red/chubby/cocoa
+/mob/living/simple_mob/vore/otie/red/chubby/cocoa
 	name = "Cocoa"
 	desc = "A good boi, eats the scraps when you're not looking."
 	devourable = 0
@@ -113,7 +113,7 @@
 	mob_bump_flag = 32
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/otie/cocoa
 	catalogue_data = list(/datum/category_item/catalogue/fauna/otie/cocoa)
-	
+
 
 /datum/ai_holder/simple_mob/melee/evasive/otie/cocoa
 	hostile = 0

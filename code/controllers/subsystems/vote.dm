@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(vote)
 					else
 						factor = 1.4
 				choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-				to_world("<font color='purple'>Crew Transfer Factor: [factor]</font>")
+				to_world(span_purple("Crew Transfer Factor: [factor]"))
 				greatest_votes = max(choices["Initiate Crew Transfer"], choices["Extend the Shift"]) //VOREStation Edit
 
 	. = list() // Get all options with that many votes and return them in a list
@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(vote)
 		if(mode == VOTE_ADD_ANTAGONIST)
 			antag_add_failed = 1
 	log_vote(text)
-	to_chat(world, "<font color='purple'>[text]</font>")
+	to_chat(world, span_purple("[text]"))
 
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(vote)
 	if(mode == VOTE_GAMEMODE) //fire this even if the vote fails.
 		if(!round_progressing)
 			round_progressing = 1
-			to_world("<font color='red'><b>The round will start soon.</b></font>")
+			to_world(span_red("<b>The round will start soon.</b>"))
 
 	if(restart)
 		to_world("World restarting due to vote...")
@@ -252,14 +252,14 @@ SUBSYSTEM_DEF(vote)
 
 		log_vote(text)
 
-		to_world("<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.</font>")
+		to_world(span_purple("<b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote."))
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 		if(mode == VOTE_GAMEMODE && round_progressing)
 			gamemode_vote_called = TRUE
 			round_progressing = 0
-			to_world("<font color='red'><b>Round start has been delayed.</b></font>")
+			to_world(span_red("<b>Round start has been delayed.</b>"))
 
 		time_remaining = round(config.vote_period / 10)
 		return 1
@@ -308,13 +308,13 @@ SUBSYSTEM_DEF(vote)
 		if(admin || config.allow_vote_restart)
 			. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
 		else
-			. += "<font color='grey'>Restart (Disallowed)</font>"
+			. += span_gray("Restart (Disallowed)")
 		. += "</li><li>"
 
 		if(admin || config.allow_vote_restart)
 			. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 		else
-			. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
+			. += span_gray("Crew Transfer (Disallowed)")
 
 		if(admin)
 			. += "\t(<a href='?src=\ref[src];[HrefToken()];vote=toggle_restart'>[config.allow_vote_restart ? "Allowed" : "Disallowed"]</a>)"
@@ -323,7 +323,7 @@ SUBSYSTEM_DEF(vote)
 		if(admin || config.allow_vote_mode)
 			. += "<a href='?src=\ref[src];vote=gamemode'>GameMode</a>"
 		else
-			. += "<font color='grey'>GameMode (Disallowed)</font>"
+			. += span_gray("GameMode (Disallowed)")
 
 		if(admin)
 			. += "\t(<a href='?src=\ref[src];[HrefToken()];vote=toggle_gamemode'>[config.allow_vote_mode ? "Allowed" : "Disallowed"]</a>)"
@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(vote)
 		if(!antag_add_failed && config.allow_extra_antags)
 			. += "<a href='?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
 		else
-			. += "<font color='grey'>Add Antagonist (Disallowed)</font>"
+			. += span_gray("Add Antagonist (Disallowed)")
 		. += "</li>"
 
 		if(admin)

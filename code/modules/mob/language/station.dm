@@ -20,6 +20,7 @@
 	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses low frequency waves for slow communication at long ranges."
 	key = "w"
 	machine_understands = 0
+	colour = "say_quote_italics"
 	flags = WHITELISTED | HIVEMIND // RESTRICTED would make this completely unavailable from character select
 
 /datum/language/unathi

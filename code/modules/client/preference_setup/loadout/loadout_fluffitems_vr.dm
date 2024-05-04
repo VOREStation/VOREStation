@@ -472,6 +472,20 @@
 	ckeywhitelist = list("fuackwit422")
 	character_name = list("Zera Livanne")
 
+/datum/gear/fluff/zera_cloak
+	path = /obj/item/clothing/head/fluff/zerahat
+	display_name = "Grand Purple Hat"
+	slot = slot_head
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
+
+/datum/gear/fluff/zera_hat
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak
+	display_name = "Grand Purple Cloak"
+	slot = slot_wear_suit
+	ckeywhitelist = list("fuackwit422")
+	character_name = list("Zera Livanne")
+
 
 //  G CKEYS
 
@@ -500,6 +514,24 @@
 	display_name = "Amaryll's Claws"
 	ckeywhitelist = list("hunterbirk")
 	character_name = list("Amaryll")
+
+/datum/gear/fluff/aria_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Aria's Distinguished Conduct Medal"
+	ckeywhitelist = list("hunterbirk")
+	character_name = list("Aria Blue")
+
+/datum/gear/fluff/elizabeth_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Elizabeth's Distinguished Conduct Medal"
+	ckeywhitelist = list("hunterbirk")
+	character_name = list("Elizabeth Bayou")
+
+/datum/gear/fluff/mercury_vopal_ring
+	path = /obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
+	display_name = "Mercury's Mate Ring"
+	ckeywhitelist = list("haloren")
+	character_name = list("Mercury")
 
 //  I CKEYS
 /datum/gear/fluff/ruda_badge
@@ -877,13 +909,13 @@
 	path = /obj/item/clothing/under/fluff/foxoflightsuit/
 	display_name = "padded flightsuit"
 	ckeywhitelist = list("pandora029")
-	character_name = list("Seona Young")
+	character_name = list("Shona Young")
 
 /datum/gear/fluff/seona_big_plushie
 	path = /obj/item/toy/plushie/fluff/seona_mofuorb
 	display_name = "comically oversized fox plushie"
 	ckeywhitelist = list("pandora029")
-	character_name = list("Seona Young")
+	character_name = list("Shona Young")
 
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
@@ -1192,6 +1224,13 @@
 	ckeywhitelist = list("suicidalpickles")
 	character_name = list("Silent Stripes")
 
+/datum/gear/fluff/parrizjacket
+    path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/parrizjacket
+    display_name = "pink crop bomber"
+    slot = slot_wear_suit
+    ckeywhitelist = list("satinisle")
+    character_name = list("Parriz Tavakdavi")
+
 //  T CKEYS
 /datum/gear/fluff/ascian_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity/tabiranth
@@ -1248,6 +1287,12 @@
 	character_name = list("Lucky")
 	allowed_roles = list("Chaplain")
 
+/datum/gear/fluff/lovec_gasmask
+	path = /obj/item/clothing/mask/gas/explorer
+	display_name = "Explorer's Gas Mask"
+	ckeywhitelist = list("thenewmeta")
+	character_name = list("Lovec")
+
 /datum/gear/fluff/monty_balaclava
 	path = /obj/item/clothing/mask/balaclava
 	display_name = "Monty's Balaclava"
@@ -1276,6 +1321,13 @@
 	character_name = list("Bradley Khatibi")
 
 //  V CKEYS
+
+/datum/gear/fluff/valkhorns
+	path = /obj/item/clothing/ears/earring/fluff/valkhorns
+	display_name = "Valkaerie's Horns"
+	ckeywhitelist = list("valkaerie")
+	character_name = list("Valkaerie Stoze")
+
 /datum/gear/fluff/verie_suit
 	path = /obj/item/clothing/under/fluff/verie
 	display_name = "Verie's Salacious Suit"
@@ -1397,15 +1449,27 @@
 
 /datum/gear/fluff/harmony_id
 	path = /obj/item/weapon/card/id/event/polymorphic/itg
-	display_name = "Harmony's ITG-ID card"
+	display_name = "ITG-ID card"
 	ckeywhitelist = list("verysoft")
-	character_name = list("Harmony")
+	character_name = null
 
-/datum/gear/fluff/shinerunner_id
-	path = /obj/item/weapon/card/id/event/polymorphic/itg
-	display_name = "Shine-Runner's ITG-ID card"
+/datum/gear/fluff/dessa_hat
+	path = /obj/item/clothing/head/fluff/giantbow/dessa
+	display_name = "Dessa's Giant Bow"
+	slot = slot_head
 	ckeywhitelist = list("verysoft")
-	character_name = list("Shine-Runner")
+	character_name = list("Dessa Ton")
+
+/datum/gear/fluff/dessa_hat/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/fluff/casey_glasses
+	path = /obj/item/clothing/glasses/big_round
+	display_name = "Big Round Glasses"
+	slot = slot_glasses
+	ckeywhitelist = list("verysoft")
+	character_name = null
 
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer

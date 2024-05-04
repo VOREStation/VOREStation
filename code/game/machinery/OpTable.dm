@@ -1,7 +1,7 @@
 /obj/machinery/optable
 	name = "Operating Table"
 	desc = "Used for advanced medical procedures."
-	icon = 'icons/obj/surgery.dmi'
+	icon = 'icons/obj/surgery_vr.dmi'
 	icon_state = "table2-idle"
 	density = TRUE
 	anchored = TRUE
@@ -100,12 +100,12 @@
 
 	if(!Adjacent(target) || !Adjacent(user))
 		return ..()
-	
+
 	if(user.incapacitated() || !check_table(target, user))
 		return ..()
 
 	take_victim(target, user)
-	
+
 /obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
 	set category = "Object"

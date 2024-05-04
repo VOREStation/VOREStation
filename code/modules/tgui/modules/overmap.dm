@@ -11,7 +11,7 @@
 
 /datum/tgui_module/ship/Destroy()
 	if(LAZYLEN(viewers))
-		for(var/weakref/W in viewers)
+		for(var/datum/weakref/W in viewers)
 			var/M = W.resolve()
 			if(M)
 				unlook(M)
@@ -55,17 +55,18 @@
 		user.set_machine(src)
 		user.reset_view(linked)
 	user.set_viewsize(world.view + extra_view)
-	GLOB.moved_event.register(user, src, /datum/tgui_module/ship/proc/unlook)
-	LAZYDISTINCTADD(viewers, weakref(user))
+	user.AddComponent(/datum/component/recursive_move)
+	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
+	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
 	user.reset_view()
 	user.set_viewsize() // reset to default
-	GLOB.moved_event.unregister(user, src, /datum/tgui_module/ship/proc/unlook)
-	LAZYREMOVE(viewers, weakref(user))
+	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+	LAZYREMOVE(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/viewing_overmap(mob/user)
-	return (weakref(user) in viewers)
+	return (WEAKREF(user) in viewers)
 
 /datum/tgui_module/ship/check_eye(var/mob/user)
 	if(!get_dist(user, tgui_host()) > 1 || user.blinded || !linked)
@@ -320,8 +321,8 @@
 					R.fields["x"] = linked.x
 					R.fields["y"] = linked.y
 				if("new")
-					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x)
-					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y)
+					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x, world.maxx, 1)
+					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y, world.maxy, 1)
 					R.fields["x"] = CLAMP(newx, 1, world.maxx)
 					R.fields["y"] = CLAMP(newy, 1, world.maxy)
 			known_sectors[sec_name] = R
@@ -336,12 +337,12 @@
 
 		if("setcoord")
 			if(params["setx"])
-				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx)
+				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx, world.maxx, 1)
 				if(newx)
 					dx = CLAMP(newx, 1, world.maxx)
 
 			if(params["sety"])
-				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy)
+				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy, world.maxy, 1)
 				if(newy)
 					dy = CLAMP(newy, 1, world.maxy)
 			. = TRUE
@@ -357,7 +358,7 @@
 			. = TRUE
 
 		if("speedlimit")
-			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000)
+			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000)
 			if(newlimit)
 				speedlimit = CLAMP(newlimit/1000, 0, 100)
 			. = TRUE
@@ -438,7 +439,7 @@
 		/* END ENGINES */
 		/* SENSORS */
 		if("range")
-			var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range)
+			var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range, world.view, round_value = FALSE)
 			if(nrange)
 				sensors.set_range(CLAMP(nrange, 1, world.view))
 			. = TRUE

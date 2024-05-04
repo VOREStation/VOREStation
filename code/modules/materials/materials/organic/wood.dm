@@ -71,6 +71,7 @@
 	stack_type = /obj/item/stack/material/wood/hard
 	icon_colour = "#42291a"
 	icon_base = "stone"
+	table_icon_base = "stone"
 	icon_reinf = "reinf_stone"
 	integrity = 65	//a bit stronger than regular wood
 	hardness = 20
@@ -78,6 +79,7 @@
 
 /datum/material/wood/hardwood/generate_recipes()
 	..()
+	recipes += new /datum/stack_recipe("parquet wood floor tile", /obj/item/stack/tile/wood/parquet, 1, 4, 20, pass_stack_color = FALSE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
 		if(r_recipe.title == "wood floor tile")
 			recipes -= r_recipe

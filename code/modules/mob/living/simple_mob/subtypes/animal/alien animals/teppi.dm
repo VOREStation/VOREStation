@@ -160,6 +160,10 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	vore_default_contamination_flavor = "Wet"
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
+	vore_bump_chance = 5
+	vore_pounce_chance = 35
+	vore_pounce_falloff = 0
+	vore_standing_too = TRUE
 
 /mob/living/simple_mob/vore/alienanimals/teppi/init_vore()
 	..()
@@ -848,17 +852,17 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		affinity[person.real_name] = -100	//Don't hold a grudge though.
 
 /datum/say_list/teppi
-	speak = list("Gyooh~", "Gyuuuh!", "Gyuh?", "Gyaah...", "Iuuuuhh.", "Uoounh!", "GyoooOOOOoooh!", "Gyoh~", "Gyouh~")
+	speak = list("Gyooh~", "Gyuuuh!", "Gyuh?", "Gyaah...", "Iuuuuhh.", "Uoounh!", "GyoooOOOOoooh!", "Gyoh~", "Gyouh~","Gyuuuuh...", "Rrrr...", "Uuah~", "Groh!")
 	emote_hear = list("puffs", "huffs", "rumbles", "gyoohs","pants", "snoofs")
 	emote_see = list("sways its tail", "stretches", "yawns", "turns their head")
-	say_maybe_target = list("Gyuuh?")
+	say_maybe_target = list("Gyuuh?", "Rrrr!")
 	say_got_target = list("GYOOOHHHH!!!")
 
 /datum/say_list/teppibaby
-	speak = list("Gyooh~", "Gyuuuh!", "Gyuh?", "Gyaah...", "Iuuuuhh.", "Uoounh!", "GyoooOOOOoooh!", "Gyoh~", "Gyouh~", "Yip!")
+	speak = list("Gyooh~", "Gyuuuh!", "Gyuh?", "Gyaah...", "Iuuuuhh.", "Uoounh!", "GyoooOOOOoooh!", "Gyoh~", "Gyouh~","Gyuuuuh...", "Rrrr...", "Uuah~", "Groh!", "Yip!")
 	emote_hear = list("puffs", "huffs", "rumbles", "gyoohs","pants", "snoofs", "yips")
 	emote_see = list("sways its tail", "stretches", "yawns", "turns their head")
-	say_maybe_target = list("Gyuuh?")
+	say_maybe_target = list("Gyuuh?", "Rrrr!")
 	say_got_target = list("GYOOOHHHH!!!")
 
 

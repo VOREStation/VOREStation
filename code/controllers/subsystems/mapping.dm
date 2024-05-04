@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/deffo_load = using_map.lateload_z_levels
 	var/list/maybe_load = using_map.lateload_gateway
 	var/list/also_load = using_map.lateload_overmap
-
+	var/list/redgate_load = using_map.lateload_redgate
 
 	for(var/list/maplist in deffo_load)
 		if(!islist(maplist))
@@ -89,6 +89,7 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Lateload Z level \"[mapname]\" is not a valid map!")
 				continue
+			admin_notice("Lateload: [MT]", R_DEBUG)
 			MT.load_new_z(centered = FALSE)
 			CHECK_TICK
 
@@ -111,6 +112,7 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
+				admin_notice("Gateway: [MT]", R_DEBUG)
 				MT.load_new_z(centered = FALSE)
 
 	if(LAZYLEN(also_load)) //Just copied from gateway picking, this is so we can have a kind of OM map version of the same concept.
@@ -132,6 +134,29 @@ SUBSYSTEM_DEF(mapping)
 			if(!istype(MT))
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
+				admin_notice("OM Adventure: [MT]", R_DEBUG)
+				MT.load_new_z(centered = FALSE)
+
+	if(LAZYLEN(redgate_load))
+		var/picklist = pick(redgate_load)
+
+		if(!picklist) //No lateload maps at all
+			return
+
+		if(!islist(picklist)) //So you can have a 'chain' of z-levels that make up one away mission
+			error("Randompick Z level [picklist] is not a list! Must be in a list!")
+			return
+
+		for(var/map in picklist)
+			if(islist(map))
+				// TRIPLE NEST. In this situation we pick one at random from the choices in the list.
+				//This allows a sort of a1,a2,a3,b1,b2,b3,c1,c2,c3 setup where it picks one 'a', one 'b', one 'c'
+				map = pick(map)
+			var/datum/map_template/MT = map_templates[map]
+			if(!istype(MT))
+				error("Randompick Z level \"[map]\" is not a valid map!")
+			else
+				admin_notice("Redgate: [MT]", R_DEBUG)
 				MT.load_new_z(centered = FALSE)
 
 

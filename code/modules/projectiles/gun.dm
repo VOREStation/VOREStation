@@ -79,6 +79,8 @@
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 
+	var/reload_time = 1		//Base reload time in seconds
+
 	//aiming system stuff
 	var/keep_aim = 1 	//1 for keep shooting until aim is lowered
 						//0 for one bullet after tarrget moves and aim is lowered
@@ -280,7 +282,7 @@
 		verbs += /obj/item/weapon/gun/verb/allow_dna
 		return
 
-	if(A.is_screwdriver())
+	if(A.has_tool_quality(TOOL_SCREWDRIVER))
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			to_chat(user, "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>")
 			playsound(src, A.usesound, 50, 1)
@@ -521,7 +523,7 @@
 		return 2
 	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
 	//on the other side of a window if it makes a difference. Or if they run behind a window, too bad.
-	if(check_trajectory(target, user))
+	if(target in check_trajectory(target, user))
 		return 1 // Magic numbers are fun.
 
 //called if there was no projectile to shoot
@@ -700,9 +702,9 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = 1
-	M.visible_message("<font color='red'>[user] sticks their gun in their mouth, ready to pull the trigger...</font>")
+	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 40))
-		M.visible_message("<font color='blue'>[user] decided life was worth living</font>")
+		M.visible_message(span_blue("[user] decided life was worth living"))
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()

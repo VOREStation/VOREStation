@@ -8,13 +8,15 @@
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
 #define INVISIBILITY_LEVEL_TWO            45
+#define INVISIBILITY_SHADEKIN			  55
 #define INVISIBILITY_OBSERVER             60
 #define INVISIBILITY_EYE		          61
 
 #define SEE_INVISIBLE_LIVING              25
-#define SEE_INVISIBLE_NOLIGHTING 15
+#define SEE_INVISIBLE_NOLIGHTING		  15
 #define SEE_INVISIBLE_LEVEL_ONE           35
 #define SEE_INVISIBLE_LEVEL_TWO           45
+#define SEE_INVISIBILITY_SHADEKIN         55
 #define SEE_INVISIBLE_CULT		          60
 #define SEE_INVISIBLE_OBSERVER            61
 
@@ -278,6 +280,7 @@ var/global/list/##LIST_NAME = list();\
 #define IS_CROWBAR			"crowbar"
 #define IS_WIRECUTTER		"wirecutter"
 #define IS_WRENCH			"wrench"
+#define IS_WELDER			"welder"
 
 
 // Diagonal movement

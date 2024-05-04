@@ -24,11 +24,11 @@
 
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
-	if(W.is_screwdriver() && !inuse)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) && !inuse)
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(W.is_crowbar())
+	if(W.has_tool_quality(TOOL_CROWBAR))
 		default_deconstruction_crowbar(user, W)
 		return
 
@@ -57,7 +57,7 @@
 
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
-		src.visible_message("\icon[src][bicon(src)] [src] pings unhappily.")
+		src.visible_message("[icon2html(src,viewers(src))] [src] pings unhappily.")
 	else if(inuse)
 		return
 
@@ -140,4 +140,3 @@
 							/obj/item/weapon/stock_parts/matter_bin = 1,
 							/obj/item/weapon/stock_parts/micro_laser = 1
 							)
-

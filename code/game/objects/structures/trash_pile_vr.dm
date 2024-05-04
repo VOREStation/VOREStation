@@ -242,6 +242,7 @@
 					prob(2);/obj/item/toy/tennis/cyan,
 					prob(2);/obj/item/toy/tennis/blue,
 					prob(2);/obj/item/toy/tennis/purple,
+					prob(1);/obj/item/toy/baseball,
 					prob(1);/obj/item/weapon/storage/box/brainzsnax,
 					prob(1);/obj/item/weapon/storage/box/brainzsnax/red,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
@@ -279,6 +280,7 @@
 					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
 					prob(4);/obj/item/weapon/gun/energy/sizegun,
 					prob(4);/obj/item/device/slow_sizegun,
+					prob(4);/obj/item/clothing/accessory/collar/shock/bluespace,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,
@@ -310,7 +312,8 @@
 					prob(1);/obj/item/capture_crystal,
 					prob(1);/obj/item/device/perfect_tele/one_beacon,
 					prob(1);/obj/item/clothing/gloves/bluespace,
-					prob(1);/obj/item/weapon/gun/energy/mouseray)
+					prob(1);/obj/item/weapon/gun/energy/mouseray,
+					prob(1);/obj/item/clothing/accessory/collar/shock/bluespace/modified)
 
 	var/obj/item/I = new path()
 	return I

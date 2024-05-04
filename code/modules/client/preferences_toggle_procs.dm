@@ -367,17 +367,37 @@
 	feedback_add_details("admin_verb","THInstm") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_vchat()
-	set name = "Toggle VChat"
+	set name = "Toggle TGChat"
 	set category = "Preferences"
-	set desc = "Toggles VChat. Reloading VChat and/or reconnecting required to affect changes."
+	set desc = "Toggles TGChat. Reloading TGChat and/or reconnecting required to affect changes."
 
 	var/pref_path = /datum/client_preference/vchat_enable
 	toggle_preference(pref_path)
 	SScharacter_setup.queue_preferences_save(prefs)
 
-	to_chat(src, "You have toggled VChat [is_preference_enabled(pref_path) ? "on" : "off"]. \
-		You will have to reload VChat and/or reconnect to the server for these changes to take place. \
-		VChat message persistence is not guaranteed if you change this again before the start of the next round.")
+	to_chat(src, "You have toggled TGChat [is_preference_enabled(pref_path) ? "on" : "off"]. \
+		You will have to reload TGChat and/or reconnect to the server for these changes to take place. \
+		TGChat message persistence is not guaranteed if you change this again before the start of the next round.")
+
+/client/verb/toggle_chat_timestamps()
+	set name = "Toggle Chat Timestamps"
+	set category = "Preferences"
+	set desc = "Toggles whether or not messages in chat will display timestamps. Enabling this will not add timestamps to messages that have already been sent."
+
+	prefs.chat_timestamp = !prefs.chat_timestamp	//There is no preference datum for tgui input lock, nor for any TGUI prefs.
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, span_notice("You have toggled chat timestamps: [prefs.chat_timestamp ? "ON" : "OFF"]."))
+
+/client/verb/toggle_throwmode_messages()
+	set name = "Toggle Throw Mode Messages"
+	set category = "Preferences"
+	set desc = "Toggles whether or not activating throw mode (hotkey: R) will announce you're preparing to throw your current handheld item, or catch an incoming item if your hand is empty."
+
+	prefs.throwmode_loud = !prefs.throwmode_loud	//There is no preference datum for tgui input lock, nor for any TGUI prefs.
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, span_notice("You have toggled throw mode messages: [prefs.throwmode_loud ? "ON" : "OFF"]."))
 
 /client/verb/toggle_status_indicators()
 	set name = "Toggle Status Indicators"
@@ -457,6 +477,19 @@
 	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/subtle_sounds)) ? "hear" : "not hear"] subtle sounds.")
 
 	feedback_add_details("admin_verb","TSubtleSounds")
+
+/client/verb/toggle_vore_health_bars()
+	set name = "Toggle Vore Health Bars"
+	set category = "Preferences"
+	set desc = "Toggle the display of vore related health bars"
+
+	var/pref_path = /datum/client_preference/vore_health_bars
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "Vore related health bars - [(is_preference_enabled(/datum/client_preference/vore_health_bars)) ? "Enabled" : "Disabled"]")
+
+	feedback_add_details("admin_verb","TVoreHealthBars")
 
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()

@@ -14,8 +14,8 @@ export const meta = {
 
 const TAB_RANGE = ['Tab #1', 'Tab #2', 'Tab #3', 'Tab #4'];
 
-const Story = (props, context) => {
-  const [tabProps, setTabProps] = useLocalState(context, 'tabProps', {});
+const Story = (props) => {
+  const [tabProps, setTabProps] = useLocalState('tabProps', {});
   return (
     <>
       <Section>
@@ -93,25 +93,40 @@ const Story = (props, context) => {
         <TabsPrefab />
         Some text
       </Section>
-      <Section>Section-less tabs appear the same as tabs in a fitted section:</Section>
+      <Section>
+        Section-less tabs appear the same as tabs in a fitted section:
+      </Section>
       <TabsPrefab />
     </>
   );
 };
 
-const TabsPrefab = (props, context) => {
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
-  const [tabProps] = useLocalState(context, 'tabProps', {});
+const TabsPrefab = (props) => {
+  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
+  const [tabProps] = useLocalState('tabProps', {});
   return (
-    <Tabs vertical={tabProps.vertical} fluid={tabProps.fluid} textAlign={tabProps.centered && 'center'}>
+    <Tabs
+      vertical={tabProps.vertical}
+      fluid={tabProps.fluid}
+      textAlign={tabProps.centered && 'center'}
+    >
       {TAB_RANGE.map((text, i) => (
         <Tabs.Tab
           key={i}
           selected={i === tabIndex}
           icon={tabProps.icon && 'info-circle'}
-          leftSlot={tabProps.leftSlot && <Button circular compact color="transparent" icon="times" />}
-          rightSlot={tabProps.rightSlot && <Button circular compact color="transparent" icon="times" />}
-          onClick={() => setTabIndex(i)}>
+          leftSlot={
+            tabProps.leftSlot && (
+              <Button circular compact color="transparent" icon="times" />
+            )
+          }
+          rightSlot={
+            tabProps.rightSlot && (
+              <Button circular compact color="transparent" icon="times" />
+            )
+          }
+          onClick={() => setTabIndex(i)}
+        >
           {text}
         </Tabs.Tab>
       ))}

@@ -335,7 +335,7 @@
 			failure_probability = 0
 
 		// Crowbar - Disassemble the SMES.
-		if(W.is_crowbar())
+		if(W.has_tool_quality(TOOL_CROWBAR))
 			if (terminals.len)
 				to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 				return
@@ -348,7 +348,7 @@
 					total_system_failure(failure_probability, user)
 					return
 
-				to_chat(user, "<font color='red'>You have disassembled the SMES cell!</font>")
+				to_chat(user, span_red("You have disassembled the SMES cell!"))
 				dismantle()
 				return
 
@@ -367,4 +367,4 @@
 				W.loc = src
 				recalc_coils()
 			else
-				to_chat(user, "<font color='red'>You can't insert more coils into this SMES unit!</font>")
+				to_chat(user, span_red("You can't insert more coils into this SMES unit!"))

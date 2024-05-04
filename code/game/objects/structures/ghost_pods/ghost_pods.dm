@@ -73,13 +73,13 @@
 
 /obj/structure/ghost_pod/automatic/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/trigger), delay_to_self_open)
+	addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_self_open)
 
 /obj/structure/ghost_pod/automatic/trigger()
 	. = ..()
 	if(. == FALSE) // If we failed to get a volunteer, try again later if allowed to.
 		if(delay_to_try_again)
-			addtimer(CALLBACK(src, .proc/trigger), delay_to_try_again)
+			addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
 
 // This type is triggered by a ghost clicking on it, as opposed to a living player.  A ghost query type isn't needed.
 /obj/structure/ghost_pod/ghost_activated
@@ -90,6 +90,11 @@
 	if(jobban_isbanned(user, "GhostRoles"))
 		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
 		return
+
+	//No OOC notes
+	if (not_has_ooc_text(user))
+		return
+
 	//VOREStation Add End
 	if(used)
 		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")

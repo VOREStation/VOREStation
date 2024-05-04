@@ -80,6 +80,7 @@
 	desc = "This glowing blue badge marks the holder as THE LAW."
 	icon_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
+	var/valid_access = list(access_security) //Default access is security, to be overriden or expanded as desired
 
 /obj/item/clothing/accessory/badge/holo/cord
 	icon_state = "holobadge-cord"
@@ -111,10 +112,14 @@
 			var/obj/item/device/pda/pda = O
 			id_card = pda.id
 
-		if(access_security in id_card.access || emagged)
-			to_chat(user, "You imprint your ID details onto the badge.")
-			set_name(user.real_name)
-		else
+		var/found = FALSE
+		for(var/access in valid_access)
+			if(access in id_card.access || emagged)
+				to_chat(user, "You imprint your ID details onto the badge.")
+				set_name(user.real_name)
+				found = TRUE
+				break
+		if(!found)
 			to_chat(user, "[src] rejects your insufficient access rights.")
 		return
 	..()
@@ -157,6 +162,7 @@
 	desc = "This badge marks the holder as an investigative agent."
 	icon_state = "invbadge"
 	badge_string = "Corporate Investigator"
+	valid_access = list(access_security, access_lawyer)	//Permitting both sec and IAA!
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/sheriff

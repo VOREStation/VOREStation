@@ -318,6 +318,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/machinery/photocopier/faxmachine/talon
 	department = "ITV Talon"
 	desc = "The ship's fax machine! It's a safe assumption that most of the departments listed aren't on your ship, since the ship only has one."
+	talon = 1
 
 /obj/item/clothing/head/helmet/space/void/captain/talon
 	name = "talon captain's voidsuit helmet"

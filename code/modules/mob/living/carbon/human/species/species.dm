@@ -32,8 +32,8 @@
 	var/tail_animation										// If set, the icon to obtain tail animation states from.
 	var/tail_hair
 
-	var/icon_scale_x = 1										// Makes the icon wider/thinner.
-	var/icon_scale_y = 1										// Makes the icon taller/shorter.
+	var/icon_scale_x = DEFAULT_ICON_SCALE_X										// Makes the icon wider/thinner.
+	var/icon_scale_y = DEFAULT_ICON_SCALE_Y										// Makes the icon taller/shorter.
 
 	var/race_key = 0										// Used for mob icon cache string.
 	var/icon/icon_template									// Used for mob icon generation for non-32x32 species.
@@ -42,6 +42,7 @@
 	var/virus_immune
 	var/short_sighted										// Permanent weldervision.
 	var/blood_name = "blood"								// Name for the species' blood.
+	var/blood_reagents = "iron"								// Reagent(s) that restore lost blood. goes by reagent IDs.
 	var/blood_volume = 560									// Initial blood volume.
 	var/bloodloss_rate = 1									// Multiplier for how fast a species bleeds out. Higher = Faster
 	var/blood_level_safe = 0.85								//"Safe" blood level; above this, you're OK
@@ -59,6 +60,9 @@
 
 	var/min_age = 17
 	var/max_age = 70
+
+	var/icodigi = 'icons/mob/human_races/r_digi.dmi'
+	var/digi_allowed = FALSE
 
 	// Language/culture vars.
 	var/default_language = LANGUAGE_GALCOM					// Default language is used when 'say' is used without modifiers.
@@ -133,6 +137,7 @@
 	var/poison_type = "phoron"								// Poisonous air.
 	var/exhale_type = "carbon_dioxide"						// Exhaled gas type.
 	var/water_breather = FALSE
+	var/bad_swimmer = FALSE
 
 	var/body_temperature = 310.15							// Species will try to stabilize at this temperature. (also affects temperature processing)
 
@@ -376,15 +381,17 @@
 		if((organ in H.organs) || (organ in H.internal_organs))
 			qdel(organ)
 
-	if(H.organs)									H.organs.Cut()
-	if(H.internal_organs)				 H.internal_organs.Cut()
-	if(H.organs_by_name)					H.organs_by_name.Cut()
-	if(H.internal_organs_by_name) H.internal_organs_by_name.Cut()
+	if(H.organs)					H.organs.Cut()
+	if(H.internal_organs)			H.internal_organs.Cut()
+	if(H.organs_by_name)			H.organs_by_name.Cut()
+	if(H.internal_organs_by_name) 	H.internal_organs_by_name.Cut()
+	if(H.bad_external_organs)		H.bad_external_organs.Cut()
 
 	H.organs = list()
 	H.internal_organs = list()
 	H.organs_by_name = list()
 	H.internal_organs_by_name = list()
+	H.bad_external_organs = list()
 
 	for(var/limb_type in has_limbs)
 		var/list/organ_data = has_limbs[limb_type]
@@ -403,6 +410,11 @@
 			O.organ_tag = organ_tag
 		H.internal_organs_by_name[organ_tag] = O
 
+	// set butcherable meats from species
+	for(var/obj/item/organ/O in H.organs)
+		O.set_initial_meat()
+	for(var/obj/item/organ/O in H.internal_organs)
+		O.set_initial_meat()
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
@@ -509,6 +521,10 @@
 /datum/species/proc/can_breathe_water()
 	return water_breather
 
+// Called when standing on a water tile.
+/datum/species/proc/is_bad_swimmer()
+	return bad_swimmer
+
 // Impliments different trails for species depending on if they're wearing shoes.
 /datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)
 	if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
@@ -566,4 +582,3 @@
 
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
 	return
-

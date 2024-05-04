@@ -257,7 +257,7 @@
 
 	// Observer pattern pre-move
 	var/old_location = current_location
-	GLOB.shuttle_pre_move_event.raise_event(src, old_location, destination)
+	SEND_SIGNAL(src, COMSIG_OBSERVER_SHUTTLE_PRE_MOVE, old_location, destination)
 	current_location.shuttle_departed(src)
 
 	if(debug_logging)
@@ -273,7 +273,7 @@
 
 	// Observer pattern post-move
 	destination.shuttle_arrived(src)
-	GLOB.shuttle_moved_event.raise_event(src, old_location, destination)
+	SEND_SIGNAL(src, COMSIG_OBSERVER_SHUTTLE_MOVED, old_location, destination)
 
 	return TRUE
 
@@ -332,10 +332,10 @@
 			for(var/mob/living/M in A)
 				spawn(0)
 					if(M.buckled)
-						to_chat(M, "<font color='red'>Sudden acceleration presses you into \the [M.buckled]!</font>")
+						to_chat(M, span_red("Sudden acceleration presses you into \the [M.buckled]!"))
 						shake_camera(M, 3, 1)
 					else
-						to_chat(M, "<font color='red'>The floor lurches beneath you!</font>")
+						to_chat(M, span_red("The floor lurches beneath you!"))
 						shake_camera(M, 10, 1)
 						// TODO - tossing?
 						//M.visible_message("<span class='warning'>[M.name] is tossed around by the sudden acceleration!</span>")

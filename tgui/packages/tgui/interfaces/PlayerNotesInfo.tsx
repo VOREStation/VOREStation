@@ -9,11 +9,16 @@ type Data = {
   entries: { author: string; date: string; comment: string }[];
 };
 
-export const PlayerNotesInfo = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const PlayerNotesInfo = (props) => {
+  const { act, data } = useBackend<Data>();
   const { device_theme, age, ckey, entries } = data;
   return (
-    <Window title={`Info on ${ckey}`} theme={device_theme} width={400} height={500} resizable>
+    <Window
+      title={`Info on ${ckey}`}
+      theme={device_theme}
+      width={400}
+      height={500}
+    >
       <Window.Content scrollable>
         <Section title={`Player age: ${age}`}>
           <Table>
@@ -23,7 +28,8 @@ export const PlayerNotesInfo = (props, context) => {
                 <Table.Cell collapsing={false}>
                   <Divider />
                   <Box>
-                    Written by {entry.author} on <span color="blue">{entry.date}</span>
+                    Written by {entry.author} on{' '}
+                    <span color="blue">{entry.date}</span>
                     <br />
                     <span color="green">&quot;{entry.comment}&quot;</span>
                   </Box>
@@ -34,7 +40,8 @@ export const PlayerNotesInfo = (props, context) => {
                         ckey: ckey,
                         index: index + 1,
                       })
-                    }>
+                    }
+                  >
                     Remove
                   </Button>
                 </Table.Cell>
@@ -48,7 +55,8 @@ export const PlayerNotesInfo = (props, context) => {
             act('add_player_info', {
               ckey: ckey,
             })
-          }>
+          }
+        >
           Add Comment
         </Button>
       </Window.Content>

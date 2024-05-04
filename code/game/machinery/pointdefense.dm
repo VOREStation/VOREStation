@@ -93,7 +93,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	return data
 
 /obj/machinery/pointdefense_control/attackby(var/obj/item/W, var/mob/user)
-	if(W?.is_multitool())
+	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
@@ -134,7 +134,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/last_shot = 0
 	var/kill_range = 18
 	var/rotation_speed = 0.25 SECONDS  //How quickly we turn to face threats
-	var/weakref/engaging = null // The meteor we're shooting at
+	var/datum/weakref/engaging = null // The meteor we're shooting at
 	var/id_tag = null
 
 /obj/machinery/power/pointdefense/Initialize()
@@ -211,7 +211,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			return PDC
 
 /obj/machinery/power/pointdefense/attackby(var/obj/item/W, var/mob/user)
-	if(W?.is_multitool())
+	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
@@ -235,7 +235,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			return FALSE
 	return TRUE
 
-/obj/machinery/power/pointdefense/proc/Shoot(var/weakref/target)
+/obj/machinery/power/pointdefense/proc/Shoot(var/datum/weakref/target)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
 		engaging = null
@@ -244,12 +244,12 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/Angle = round(Get_Angle(src,M))
 	var/matrix/rot_matrix = matrix()
 	rot_matrix.Turn(Angle)
-	addtimer(CALLBACK(src, .proc/finish_shot, target), rotation_speed)
+	addtimer(CALLBACK(src, PROC_REF(finish_shot), target), rotation_speed)
 	animate(src, transform = rot_matrix, rotation_speed, easing = SINE_EASING)
 
 	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
-/obj/machinery/power/pointdefense/proc/finish_shot(var/weakref/target)
+/obj/machinery/power/pointdefense/proc/finish_shot(var/datum/weakref/target)
 
 	var/obj/machinery/pointdefense_control/PC = get_controller()
 	engaging = null
@@ -300,7 +300,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 
 	// Compile list of known targets
 	var/list/existing_targets = list()
-	for(var/weakref/WR in PC.targets)
+	for(var/datum/weakref/WR in PC.targets)
 		var/obj/effect/meteor/M = WR.resolve()
 		existing_targets += M
 
@@ -308,7 +308,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/list/potential_targets = GLOB.meteor_list.Copy() - existing_targets
 	for(var/obj/effect/meteor/M in potential_targets)
 		if(targeting_check(M))
-			var/weakref/target = weakref(M)
+			var/datum/weakref/target = WEAKREF(M)
 			PC.targets += target
 			engaging = target
 			Shoot(target)
@@ -317,7 +317,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	// Then, focus fire on existing targets
 	for(var/obj/effect/meteor/M in existing_targets)
 		if(targeting_check(M))
-			var/weakref/target = weakref(M)
+			var/datum/weakref/target = WEAKREF(M)
 			engaging = target
 			Shoot(target)
 			return

@@ -81,7 +81,7 @@
 		else
 			to_chat(user, "<span class='notice'>This cable coil appears to be empty.</span>")
 		return
-	else if(W.is_wirecutter())
+	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!string_attached)
 			..()
 			return

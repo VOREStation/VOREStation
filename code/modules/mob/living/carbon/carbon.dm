@@ -18,13 +18,11 @@
 		germ_level++
 
 /mob/living/carbon/Destroy()
-	qdel(ingested)
-	qdel(touching)
+	QDEL_NULL(ingested)
+	QDEL_NULL(touching)
 	// We don't qdel(bloodstr) because it's the same as qdel(reagents)
-	for(var/guts in internal_organs)
-		qdel(guts)
-	for(var/food in stomach_contents)
-		qdel(food)
+	bloodstr = null
+	QDEL_NULL_LIST(stomach_contents)
 	return ..()
 
 /mob/living/carbon/rejuvenate()
@@ -80,7 +78,7 @@
 		M.loc = src.loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
-				N.show_message(text("<font color='red'><B>[M] bursts out of [src]!</B></font>"), 2)
+				N.show_message(span_red(text("<B>[M] bursts out of [src]!</B>")), 2)
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
@@ -91,7 +89,7 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			to_chat(H, "<font color='red'>You can't use your [temp.name]</font>")
+			to_chat(H, span_red("You can't use your [temp.name]"))
 			return
 
 	return
@@ -400,7 +398,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		to_chat(usr, "<font color='red'>You are already sleeping</font>")
+		to_chat(usr, span_red("You are already sleeping"))
 		return
 	if(tgui_alert(src,"You sure you want to sleep for a while?","Sleep",list("Yes","No")) == "Yes")
 		usr.AdjustSleeping(20)
@@ -548,3 +546,9 @@
 		if(src.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
 			if(src.wear_mask.clean_blood())
 				src.update_inv_wear_mask(0)
+
+/mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
+
+	if(allergen_type in species.food_preference)
+		return species.food_preference_bonus
+	return 0

@@ -18,6 +18,8 @@
 		else
 			ammo = projectile_gun.contents[1]
 		P = ammo.BB
+	if(!P)
+		return "no"
 	switch(P.damage)
 		if(0)
 			return "no"
@@ -57,6 +59,8 @@
 		else
 			ammo = projectile_gun.contents[1]
 		P = ammo.BB
+	if(!P)
+		return "no"
 	switch(P.armor_penetration)
 		if(0)
 			return "cannot pierce armor"

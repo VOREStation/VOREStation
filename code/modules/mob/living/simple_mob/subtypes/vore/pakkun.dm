@@ -6,7 +6,8 @@
 	or even borne out of hunger, but more of a form of playfighting among packmates. Some colonies are known to keep domesticated specimens as a form of pest control \
 	despite the occasional accidents that can occur as a result of staff becoming overly friendly and triggering their playfighting instincts. \
 	More mature specimens are identifiable by a greener tint to their skin, and eventually the development of frills \
-	around their neck and along the backs of their heads."
+	around their neck and along the backs of their heads. Other regional subspecies are known to exist, some with a more aggressive temperament than others. \
+	While they can be mildly hazardous to the unprepared explorer, they are primarily ambush predators and will rarely attack if you maintain eye contact."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/vore/pakkun
@@ -49,10 +50,13 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/pakkun
 	vore_default_mode = DM_SELECT
 
-	var/extra_posessive = FALSE					// Enable if you want their tummy hugs to be inescapable
+	var/extra_possessive = FALSE					// Enable if you want their tummy hugs to be inescapable
 	var/autorest_cooldown = 100
 
 	nom_mob = TRUE
+
+	maxHealth = 100
+	health = 100
 
 /mob/living/simple_mob/vore/pakkun/Life()
 	. = ..()
@@ -106,7 +110,13 @@
 			our_targets -= list_target
 			continue
 		var/mob/living/L = list_target
-		if(!(L.can_be_drop_prey && L.throw_vore && L.allowmobvore))
+		if(!(L.can_be_drop_prey && L.throw_vore && L.allowmobvore && !L.buckled))
+			our_targets -= list_target
+			continue
+		if((L.dir == 1 && holder.y >= L.y) || (L.dir == 2 && holder.y <= L.y) || (L.dir == 4 && holder.x >= L.x) || (L.dir == 8 && holder.x <= L.x)) //eliminate targets facing the pakkun's direction
+			our_targets -= list_target
+			continue
+		if(abs(holder.x - L.x)>6 || abs(holder.y - L.y)>6) //finally, pakkuns on the very very edge of the screen won't target you
 			our_targets -= list_target
 			continue
 	if(istype(holder, /mob/living/simple_mob))
@@ -128,9 +138,9 @@
 		return FALSE
 
 /mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
-	if(pred && !extra_posessive && !(LAZYFIND(prey_excludes, target)))
+	if(pred && !extra_possessive && !(LAZYFIND(prey_excludes, target)))
 		LAZYSET(prey_excludes, target, world.time)
-		addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(target)), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(target)), 5 MINUTES)
 	if(ai_holder)
 		ai_holder.remove_target()
 
@@ -155,11 +165,11 @@
         for(var/mob/living/L in living_mobs(0))
             if(!(LAZYFIND(prey_excludes, L)))
                 LAZYSET(prey_excludes, L, world.time)
-                addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(L)), 5 MINUTES)
+                addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(L)), 5 MINUTES)
     else
         ..()
 
-//a palette-swapped version that's a bit tougher and bossier, in JRPG tradition
+//a palette-swapped version that's a bit bossier, in JRPG tradition
 
 /mob/living/simple_mob/vore/pakkun/snapdragon
 	name = "snapdragon"
@@ -169,13 +179,51 @@
 	icon_state = "snapdragon"
 	icon_rest = "snapdragon-rest"
 
-	extra_posessive = TRUE //you're gonna get KEPT, at least the first time you go in
-	maxHealth = 100
-	health = 100
+	extra_possessive = TRUE //you're gonna get KEPT, at least the first time you go in
 
 /mob/living/simple_mob/vore/pakkun/snapdragon/on_throw_vore_special(var/pred, var/mob/living/target)
 	..()
-	extra_posessive = !extra_posessive //toggle their possessiveness on and off every time they eat someone
+	extra_possessive = !extra_possessive //toggle their possessiveness on and off every time they eat someone
+
+//an even greedier pallete-swap
+
+/mob/living/simple_mob/vore/pakkun/sand
+	name = "sand pakkun"
+	desc = "A small, yellow, bipedal reptile. Its head and jaws are rather large in proportion to its body."
+	icon_dead = "pakkunyellow-dead"
+	icon_living = "pakkunyellow"
+	icon_state = "pakkunyellow"
+	icon_rest = "pakkunyellow-rest"
+
+	extra_possessive = TRUE // won't let its prey go if it's awake, luckily, see below.
+
+/mob/living/simple_mob/vore/pakkun/sand/on_throw_vore_special(var/pred, var/mob/living/target)
+	..()
+	autorest_cooldown = 0 // Sand pakkuns, also known as napdragons, like to curl up for an small sleemp after eating. This is your chance to escape.
+
+//use this one sparingly because it is absolutely turbolethal to anyone who has digestion turned on.
+
+/mob/living/simple_mob/vore/pakkun/fire
+	name = "fire pakkun"
+	desc = "A small, red, bipedal reptile. Its head and jaws are rather large in proportion to its body."
+	icon_dead = "pakkunred-dead"
+	icon_living = "pakkunred"
+	icon_state = "pakkunred"
+	icon_rest = "pakkunred-rest"
+
+	extra_possessive = TRUE // yeah this one just... doesn't. It doesn't even have any fancy behaviours. Hope it gets tired or you get saved.
+
+// this one's like a standard blue pakkun in terms of eating behaviour, but wanders a lot more quickly
+
+/mob/living/simple_mob/vore/pakkun/purple
+	name = "amethyst pakkun"
+	desc = "A small, purple, bipedal reptile. Its head and jaws are rather large in proportion to its body."
+	icon_dead = "pakkunpurp-dead"
+	icon_living = "pakkunpurp"
+	icon_state = "pakkunpurp"
+	icon_rest = "pakkunpurp-rest"
+
+	movement_cooldown = -2
 
 // (mostly) friendly pet version
 

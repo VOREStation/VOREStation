@@ -21,7 +21,7 @@
 	integrated_object_type = /obj/item/weapon/gun/energy/laser/mounted/augment
 
 /obj/item/organ/internal/augment/armmounted/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_FOREARM)
 				organ_tag = O_AUG_R_FOREARM
@@ -66,7 +66,7 @@
 	integrated_object_type = /obj/item/weapon/portable_scanner
 
 /obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_HAND)
 				organ_tag = O_AUG_R_HAND
@@ -110,7 +110,7 @@
 	integrated_object_type = null
 
 /obj/item/organ/internal/augment/armmounted/shoulder/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_UPPERARM)
 				organ_tag = O_AUG_R_UPPERARM

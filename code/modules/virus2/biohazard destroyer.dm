@@ -17,4 +17,4 @@
 	I.loc = src.loc
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message("\icon[src][bicon(src)] <font color='blue'>The [src.name] beeps.</font>", 2)
+		O.show_message(span_blue("[icon2html(src, O.client)] The [src.name] beeps."), 2)

@@ -125,7 +125,7 @@
 
 	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the \icon[src][bicon(src)] [src]</font>")
+			to_chat(O, "<font color='red'>[M] triggered the [icon2html(src)] [src]</font>")
 		triggered = 1
 		call(src,triggerproc)(M)
 
@@ -208,8 +208,8 @@
 			/mob/living/simple_mob/humanoid/merc/melee = 100,
 			/mob/living/simple_mob/humanoid/merc/ranged = 50,
 			/mob/living/simple_mob/humanoid/merc/ranged/space = 5,
-			/mob/living/simple_mob/otie/feral = 10,
-			/mob/living/simple_mob/otie/feral/chubby = 5
+			/mob/living/simple_mob/vore/otie/feral = 10,
+			/mob/living/simple_mob/vore/otie/feral/chubby = 5
 			),
 
 		list(
@@ -224,8 +224,8 @@
 		list(
 			/mob/living/simple_mob/humanoid/pirate = 100,
 			/mob/living/simple_mob/humanoid/pirate/ranged = 50,
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 5
+			/mob/living/simple_mob/vore/wolf = 10,
+			/mob/living/simple_mob/vore/wolf/direwolf = 5
 			)
 
 	)

@@ -89,14 +89,12 @@
 "w" = (
 /obj/machinery/power/port_gen/pacman/super,
 /obj/structure/cable/yellow{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating/external,
 /area/submap/cave/digsite)
 "x" = (
 /obj/structure/cable/yellow{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating/external,

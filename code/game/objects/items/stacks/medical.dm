@@ -263,6 +263,12 @@
 			affecting.salve()
 			playsound(src, pick(apply_sounds), 25)
 
+/obj/item/stack/medical/ointment/simple
+	name = "ointment paste"
+	desc = "A simple thick paste used to salve burns."
+	singular_name = "old-ointment"
+	icon_state = "old-ointment"
+
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"

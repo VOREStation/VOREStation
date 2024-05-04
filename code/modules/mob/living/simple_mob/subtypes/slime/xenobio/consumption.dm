@@ -65,7 +65,7 @@
 
 		else
 			var/list/feedback = list(
-				"This subject is incompatable",
+				"This subject is incompatible",
 				"This subject does not have a life energy",
 				"This subject is empty",
 				"I am not satisfied",

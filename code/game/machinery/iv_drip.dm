@@ -66,7 +66,7 @@
 		update_icon()
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You start to dismantle the IV drip.</span>")
 		if(do_after(user, 15))

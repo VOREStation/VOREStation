@@ -15,6 +15,7 @@
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
 	can_ride = TRUE			//whether we're real rideable taur or just in that category
+	offset_x = -16
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
 	//duplicate all the messages, and it starts getting awkward. These are singletons, anyway!
@@ -265,7 +266,7 @@
 	icon_sprite_tag = "deer"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
-	loaf_offset = 6
+	loaf_offset = 7
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -281,6 +282,17 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their hoof, forcing you down to the ground!"
+
+/datum/sprite_accessory/tail/taur/deer/fatdeer
+	name = "Fat Deer (Dual-color Taur)"
+	icon_state = "fatdeer_s"
+	extra_overlay = "fatdeer_markings"
+
+/datum/sprite_accessory/tail/taur/deer/deer_wag
+	name = "Deer vwag (Dual-color, Taur, Fat)"
+	icon_state = "deer_s"
+	ani_state = "fatdeer_s"
+	extra_overlay_w = "fatdeer_markings"
 
 /datum/sprite_accessory/tail/taur/lizard
 	name = "Lizard (Taur)"
@@ -488,6 +500,30 @@
 	extra_overlay_w = "fatsynthfeline_markings"
 	extra_overlay2_w = "fatsynthfeline_glow"
 
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi
+	name = "Synthetic chassis - agile (Taur)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi_fat
+	name = "Synthetic chassis - agile (Taur, Fat)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_fat_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
+/datum/sprite_accessory/tail/taur/synthetic/syntheticagi_wag
+	name = "Synthetic chassis - agile (Taur, Fat vwag)"
+	icon_state = "synthtaur1_s"
+	extra_overlay = "synthtaur1_markings"
+	extra_overlay2 = "synthtaur1_glow"
+	ani_state = "synthtaur1_s"
+	extra_overlay_w = "synthtaur1_fat_markings"
+	extra_overlay2_w = "synthtaur1_glow"
+	clip_mask_state = "taur_clip_mask_synthtaur1"
+
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"
 	icon_state = "slug_s"
@@ -657,6 +693,45 @@
 	msg_prey_stepunder = "You jump over %prey's thick tail."
 	msg_owner_stepunder = "%owner bounds over your tail."
 
+/datum/sprite_accessory/tail/taur/altmermaid
+	name = "Mermaid Alt. (Taur)"
+	icon_state = "altmermaid_s"
+	can_ride = 0
+	icon_sprite_tag = "altmermaid"
+
+	msg_owner_help_walk = "You carefully slither around %prey."
+	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
+
+	msg_owner_help_run = "You carefully slither around %prey."
+	msg_prey_help_run = "%owner's huge tail slithers past beside you!"
+
+	msg_owner_disarm_run = "Your tail slides over %prey, pushing them down to the ground!"
+	msg_prey_disarm_run = "%owner's tail slides over you, forcing you down to the ground!"
+
+	msg_owner_disarm_walk = "You push down on %prey with your tail, pinning them down under you!"
+	msg_prey_disarm_walk = "%owner pushes down on you with their tail, pinning you down below them!"
+
+	msg_owner_harm_run = "Your heavy tail carelessly slides past %prey, crushing them!"
+	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their heavy tail!"
+
+	msg_owner_harm_walk = "Your heavy tail slowly and methodically slides down upon %prey, crushing against the floor below!"
+	msg_prey_harm_walk = "%owner's thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below!"
+
+	msg_owner_grab_success = "You slither over %prey with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight confines of your tail!"
+	msg_prey_grab_success = "%owner slithers over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight confines of their tail!"
+
+	msg_owner_grab_fail = "You squish %prey under your large, thick tail, forcing them onto the ground!"
+	msg_prey_grab_fail = "%owner pins you under their large, thick tail, forcing you onto the ground!"
+
+	msg_prey_stepunder = "You jump over %prey's thick tail."
+	msg_owner_stepunder = "%owner bounds over your tail."
+
+/datum/sprite_accessory/tail/taur/altmermaid/marked
+	name = "Mermaid Koi (Taur)"
+	icon_state = "altmermaid_s"
+	extra_overlay = "altmermaid_markings"
+	extra_overlay2 = "altmermaid_markings2"
+
 /datum/sprite_accessory/tail/taur/pawcow // this grabs suit sprites from the normal cow, the outline is the same
 	name = "Cow w/ paws (Taur)"
 	icon_state = "pawcow_s"
@@ -690,6 +765,14 @@
 	hide_body_parts = null
 	clip_mask_icon = null
 	clip_mask_state = null
+
+//grallstonefist: Ranihrönn Skrolk
+/datum/sprite_accessory/tail/taur/altmermaid/orcamermaid
+	name = "Mermaid Orca (Taur)"
+	icon_state = "orcamermaid_s"
+	can_ride = 1
+	do_colouration = 0
+	ckeys_allowed = list("grallstonefist")
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
@@ -962,3 +1045,30 @@
 	name = "Naga (Taur, Fat, dual color)"
 	icon_state = "fatnaga_s"
 	extra_overlay = "fatnaga_markings"
+	suit_sprites = null
+
+/datum/sprite_accessory/tail/taur/fox
+	name = "Fox (Taur, 3-color)"
+	icon_state = "fox"
+	extra_overlay = "fox_markings"
+	extra_overlay2 = "fox_markings2"
+	can_loaf = TRUE
+	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
+	loaf_offset = 4
+
+/datum/sprite_accessory/tail/taur/kitsune
+	name = "Kitsune (Taur)"
+	icon_state = "kitsune"
+
+/*
+/datum/sprite_accessory/tail/taur/teppi			// Mostly used as example/template/test subject as to how you use the 'big' taur sprites. Pls give it better icons before uncommenting...
+	name = "Teppi (Taur)"
+	icon_state = "teppi_s"
+	clip_mask_icon = 'icons/mob/vore/taurs128x64_vr.dmi'
+	icon = 'icons/mob/vore/taurs128x64_vr.dmi'
+	clip_mask_state = "taur_clip_mask_teppi"
+	icon_sprite_tag = "teppi"
+	offset_x = -32
+	offset_y = -11
+	mob_offset_y = 11
+*/

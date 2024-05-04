@@ -57,10 +57,17 @@
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
+	/* //Chomp REMOVE - this is done on mob/living/Destroy
 	for(var/organ in organs)
 		qdel(organ)
-	QDEL_NULL(nif)	//VOREStation Add
+	*/
+	if(nif)
+		QDEL_NULL(nif)	//VOREStation Add
 	worn_clothing.Cut()
+
+
+	if(vessel)
+		QDEL_NULL(vessel)
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -266,6 +273,8 @@
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
+	if(ability_flags & AB_PHASE_SHIFTED)
+		return "Something"	// Something
 	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
 	if( head && (head.flags_inv&HIDEFACE) )
@@ -369,7 +378,7 @@
 												U.handle_regular_hud_updates()
 
 			if(!modified)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["secrecord"])
 		if(hasHUD(usr,"security"))
@@ -399,7 +408,7 @@
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["secrecordComment"])
 		if(hasHUD(usr,"security"))
@@ -426,7 +435,7 @@
 								to_chat(usr, "<span class='filter_notice'><a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a></span>")
 
 			if(!read)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["secrecordadd"])
 		if(hasHUD(usr,"security"))
@@ -488,7 +497,7 @@
 											U.handle_regular_hud_updates()
 
 			if(!modified)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["medrecord"])
 		if(hasHUD(usr,"medical"))
@@ -506,7 +515,7 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/list/medical_hud_text = list()
-								medical_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]"
+								medical_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]	<b>Blood Basis:</b> [R.fields["blood_reagent"]]"
 								medical_hud_text += "<b>Species:</b> [R.fields["species"]]"
 								medical_hud_text += "<b>DNA:</b> [R.fields["b_dna"]]"
 								medical_hud_text += "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]"
@@ -519,7 +528,7 @@
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["medrecordComment"])
 		if(hasHUD(usr,"medical"))
@@ -546,7 +555,7 @@
 								to_chat(usr, "<span class='filter_notice'><a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a></span>")
 
 			if(!read)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["medrecordadd"])
 		if(hasHUD(usr,"medical"))
@@ -605,7 +614,7 @@
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["emprecordComment"])
 		if(hasHUD(usr,"best"))
@@ -632,7 +641,7 @@
 								to_chat(usr, "<span class='filter_notice'><a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a></span>")
 
 			if(!read)
-				to_chat(usr, "<span class='filter_notice'><font color='red'>Unable to locate a data core entry for this person.</font></span>")
+				to_chat(usr, "<span class='filter_notice'>[span_red("Unable to locate a data core entry for this person.")]</span>")
 
 	if (href_list["emprecordadd"])
 		if(hasHUD(usr,"best"))
@@ -796,7 +805,7 @@
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!src.xylophone)
 		var/datum/gender/T = gender_datums[get_visible_gender()]
-		visible_message("<span class='filter_notice'><font color='red'>\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.</font></span>","<span class='notice'>You begin to play a spooky refrain on your ribcage.</span>","<span class='filter_notice'><font color='red'>You hear a spooky xylophone melody.</font></span>")
+		visible_message("<span class='filter_notice'>[span_red("\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.")]</span>","<span class='notice'>You begin to play a spooky refrain on your ribcage.</span>","<span class='filter_notice'>[span_red("You hear a spooky xylophone melody.")]</span>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(src, song, 50, 1, -1)
 		xylophone = 1
@@ -887,7 +896,7 @@
 	regenerate_icons()
 	check_dna()
 	var/datum/gender/T = gender_datums[get_visible_gender()]
-	visible_message("<span class='notice'>\The [src] morphs and changes [T.his] appearance!</span>", "<span class='notice'>You change your appearance!</span>", "<span class='filter_notice'><font color='red'>Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!</font></span>")
+	visible_message("<span class='notice'>\The [src] morphs and changes [T.his] appearance!</span>", "<span class='notice'>You change your appearance!</span>", "<span class='filter_notice'>[span_red("Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")]</span>")
 
 /mob/living/carbon/human/proc/remotesay()
 	set name = "Project mind"
@@ -910,10 +919,10 @@
 
 	var/say = sanitize(tgui_input_text(usr, "What do you wish to say?"))
 	if(mRemotetalk in target.mutations)
-		target.show_message("<span class='filter_say'><font color='blue'>You hear [src.real_name]'s voice: [say]</font></span>")
+		target.show_message("<span class='filter_say'>[span_blue("You hear [src.real_name]'s voice: [say]")]</span>")
 	else
-		target.show_message("<span class='filter_say'><font color='blue'>You hear a voice that seems to echo around the room: [say]</font></span>")
-	usr.show_message("<span class='filter_say'><font color='blue'>You project your mind into [target.real_name]: [say]</font></span>")
+		target.show_message("<span class='filter_say'>[span_blue("You hear a voice that seems to echo around the room: [say]")]</span>")
+	usr.show_message("<span class='filter_say'>[span_blue("You project your mind into [target.real_name]: [say]")]</span>")
 	log_say("(TPATH to [key_name(target)]) [say]",src)
 	for(var/mob/observer/dead/G in mob_list)
 		G.show_message("<span class='filter_say'><i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i></span>")
@@ -1209,7 +1218,7 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	if(species.icon_scale_x != 1 || species.icon_scale_y != 1)
+	if(species.icon_scale_x != DEFAULT_ICON_SCALE_X || species.icon_scale_y != DEFAULT_ICON_SCALE_Y)
 		update_transform()
 
 	if(example)						//VOREStation Edit begin
@@ -1245,6 +1254,8 @@
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor //VOREStation Add
 
+	center_offset = species.center_offset
+
 	if(LAZYLEN(descriptors))
 		descriptors = null
 
@@ -1261,7 +1272,7 @@
 			vessel.maximum_volume = species.blood_volume
 			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
 		else if(vessel.total_volume > species.blood_volume)
-			vessel.remove_reagent("blood", vessel.total_volume - species.blood_volume)
+			vessel.remove_reagent("blood",vessel.total_volume - species.blood_volume) //This one should stay remove_reagent to work even lack of a O_heart
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
 		species.update_attack_types() //VOREStation Edit - Required for any trait that updates unarmed_types in setup.
@@ -1731,7 +1742,7 @@
 			if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
 				bloodtrail = 0	//Most of it's gone already, just leave it be
 			else
-				vessel.remove_reagent("blood", 1)
+				remove_blood(1)
 		if(bloodtrail)
 			if(istype(loc, /turf/simulated))
 				var/turf/T = loc

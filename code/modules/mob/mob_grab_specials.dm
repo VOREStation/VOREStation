@@ -1,4 +1,3 @@
-
 /obj/item/weapon/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
 
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
@@ -163,12 +162,12 @@
 
 	if(can_eat)
 		var/mob/living/carbon/attacker = user
-		user.visible_message("<span class='danger'>[user] is attempting to devour [target]!</span>")
+		user.visible_message("<span class='vdanger'>[user] is attempting to devour [target]!</span>")
 		if(can_eat == 2)
 			if(!do_mob(user, target)||!do_after(user, 30)) return
 		else
 			if(!do_mob(user, target)||!do_after(user, 70)) return
-		user.visible_message("<span class='danger'>[user] devours [target]!</span>")
+		user.visible_message("<span class='vdanger'>[user] devours [target]!</span>")
 		target.loc = user
 		attacker.stomach_contents.Add(target)
 		qdel(src)

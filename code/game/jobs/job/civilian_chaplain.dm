@@ -34,7 +34,7 @@
 	if(!B || !I)
 		return
 
-	INVOKE_ASYNC(src, .proc/religion_prompts, H, B, I)
+	INVOKE_ASYNC(src, PROC_REF(religion_prompts), H, B, I)
 
 /datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/weapon/storage/bible/B, obj/item/weapon/card/id/I)
 	var/religion_name = "Unitarianism"

@@ -118,8 +118,6 @@
 /area/template_noop)
 "pj" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -224,7 +222,6 @@
 /area/template_noop)
 "BS" = (
 /obj/structure/cable{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central7{
@@ -429,8 +426,6 @@
 /area/template_noop)
 "Ul" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/cap/hidden/supply,

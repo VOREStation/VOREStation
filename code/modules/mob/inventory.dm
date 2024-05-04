@@ -56,7 +56,7 @@ var/list/slot_equipment_priority = list( \
 
 		else
 			if(!disable_warning)
-				to_chat(src, "<font color='red'>You are unable to equip that.</font>") //Only print if del_on_fail is false
+				to_chat(src, span_red("You are unable to equip that.")) //Only print if del_on_fail is false
 		return 0
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.

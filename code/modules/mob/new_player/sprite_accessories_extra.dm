@@ -362,11 +362,72 @@
 	icon_state = "btone"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
 
+/datum/sprite_accessory/marking/vr/body_tone_rarm
+	name = "Body toning (right arm)"
+	icon_state = "btone"
+	body_parts = list(BP_R_ARM,BP_R_HAND)
+
+/datum/sprite_accessory/marking/vr/body_tone_larm
+	name = "Body toning (left arm)"
+	icon_state = "btone"
+	body_parts = list(BP_L_ARM,BP_L_HAND)
+
+/datum/sprite_accessory/marking/vr/body_tone_rleg
+	name = "Body toning (right leg)"
+	icon_state = "btone"
+	body_parts = list(BP_R_FOOT,BP_R_LEG)
+
+/datum/sprite_accessory/marking/vr/body_tone_lleg
+	name = "Body toning (left leg)"
+	icon_state = "btone"
+	body_parts = list(BP_L_FOOT,BP_L_LEG)
+
+/datum/sprite_accessory/marking/vr/body_tone_torso
+	name = "Body toning (torso)"
+	icon_state = "btone"
+	body_parts = list(BP_GROIN,BP_TORSO)
+
 /datum/sprite_accessory/marking/vr/gloss
 	name = "Full body gloss"
 	icon_state = "gloss"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/gloss_head
+	name = "Body gloss (head)"
+	icon_state = "gloss"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/gloss_rarm
+	name = "Body gloss (right arm)"
+	icon_state = "gloss"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_ARM,BP_R_HAND)
+
+/datum/sprite_accessory/marking/vr/gloss_larm
+	name = "Body gloss (left arm)"
+	icon_state = "gloss"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_L_HAND)
+
+/datum/sprite_accessory/marking/vr/gloss_rleg
+	name = "Body gloss (right leg)"
+	icon_state = "gloss"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_FOOT,BP_R_LEG)
+
+/datum/sprite_accessory/marking/vr/gloss_lleg
+	name = "Body gloss (left leg)"
+	icon_state = "gloss"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_L_LEG)
+
+/datum/sprite_accessory/marking/vr/gloss_torso
+	name = "Body gloss (torso)"
+	icon_state = "gloss"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_GROIN,BP_TORSO)
 
 /datum/sprite_accessory/marking/vr/eboop_panels
 	name = "Eggnerd FBP panels"
