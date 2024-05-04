@@ -292,7 +292,7 @@ department tags
 **************/
 /obj/item/clothing/accessory/solgov/department
 	name = "department insignia"
-	desc = "Insignia denoting assignment to a department. These appear blank."
+	desc = "Insignia denoting assignment to a department."
 	icon_state = "dept_exped"
 	on_rolled = list("down" = "none", "rolled" = "dept_exped_sleeves")
 	slot = ACCESSORY_SLOT_DEPT
@@ -300,7 +300,7 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/command
 	name = "command insignia"
-	desc = "Insignia denoting assignment to the command department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the command department."
 	color = "#e5ea4f"
 
 /obj/item/clothing/accessory/solgov/department/command/service
@@ -312,17 +312,15 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/command/fleet
 	icon_state = "dept_fleet"
-	desc = "Insignia denoting assignment to the command department. These fit Fleet uniforms."
 	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/command/army
 	icon_state = "dept_army"
-	desc = "Insignia denoting assignment to the command department. These fit Marine uniforms."
 	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/engineering
 	name = "engineering insignia"
-	desc = "Insignia denoting assignment to the engineering department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the engineering department."
 	color = "#ff7f00"
 
 /obj/item/clothing/accessory/solgov/department/engineering/service
@@ -333,17 +331,15 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/engineering/fleet
 	icon_state = "dept_fleet"
-	desc = "Insignia denoting assignment to the engineering department. These fit Fleet uniforms."
 	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/engineering/army
 	icon_state = "dept_army"
-	desc = "Insignia denoting assignment to the engineering department. These fit Marine uniforms."
 	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/security
 	name = "security insignia"
-	desc = "Insignia denoting assignment to the security department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the security department."
 	color = "#bf0000"
 
 /obj/item/clothing/accessory/solgov/department/security/service
@@ -355,17 +351,15 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/security/fleet
 	icon_state = "dept_fleet"
-	desc = "Insignia denoting assignment to the security department. These fit Fleet uniforms."
 	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/security/army
 	icon_state = "dept_army"
-	desc = "Insignia denoting assignment to the security department. These fit Marine uniforms."
 	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/medical
 	name = "medical insignia"
-	desc = "Insignia denoting assignment to the medical department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the medical department."
 	color = "#4c9ce4"
 
 /obj/item/clothing/accessory/solgov/department/medical/service
@@ -378,17 +372,15 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/medical/fleet
 	icon_state = "dept_fleet"
-	desc = "Insignia denoting assignment to the medical department. These fit Fleet uniforms."
 	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/medical/army
 	icon_state = "dept_army"
-	desc = "Insignia denoting assignment to the medical department. These fit Marine uniforms."
 	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/supply
 	name = "supply insignia"
-	desc = "Insignia denoting assignment to the supply department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the supply department."
 	color = "#bb9042"
 
 /obj/item/clothing/accessory/solgov/department/supply/service
@@ -400,17 +392,15 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/supply/fleet
 	icon_state = "dept_fleet"
-	desc = "Insignia denoting assignment to the supply department. These fit Fleet uniforms."
 	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/supply/army
 	icon_state = "dept_army"
-	desc = "Insignia denoting assignment to the supply department. These fit Marine uniforms."
 	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/service
 	name = "service insignia"
-	desc = "Insignia denoting assignment to the service department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the service department."
 	color = "#6eaa2c"
 
 /obj/item/clothing/accessory/solgov/department/service/service
@@ -422,17 +412,15 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/service/fleet
 	icon_state = "dept_fleet"
-	desc = "Insignia denoting assignment to the service department. These fit Fleet uniforms."
 	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/service/army
 	icon_state = "dept_army"
-	desc = "Insignia denoting assignment to the service department. These fit Marine uniforms."
 	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/exploration
 	name = "exploration insignia"
-	desc = "Insignia denoting assignment to the exploration department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the exploration department."
 	color = "#68099e"
 
 /obj/item/clothing/accessory/solgov/department/exploration/service
@@ -443,17 +431,15 @@ department tags
 
 /obj/item/clothing/accessory/solgov/department/exploration/fleet
 	icon_state = "dept_fleet"
-	desc = "Insignia denoting assignment to the exploration department. These fit Fleet uniforms."
 	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/exploration/army
 	icon_state = "dept_army"
-	desc = "Insignia denoting assignment to the exploration department. These fit Marine uniforms."
 	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/research
 	name = "research insignia"
-	desc = "Insignia denoting assignment to the research department. These fit Expeditionary Corps uniforms."
+	desc = "Insignia denoting assignment to the research department."
 	color = "#68099e"
 
 /obj/item/clothing/accessory/solgov/department/research/service
@@ -462,6 +448,14 @@ department tags
 /obj/item/clothing/accessory/solgov/department/research/jumper
 	icon_state = "dept_exped_jumper"
 	color = "#916f8d"
+
+/obj/item/clothing/accessory/solgov/department/research/fleet
+	icon_state = "dept_fleet"
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+
+/obj/item/clothing/accessory/solgov/department/research/army
+	icon_state = "dept_army"
+	on_rolled = list("down" = "none")
 
 /*********
 ranks - ec
