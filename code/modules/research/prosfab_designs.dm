@@ -512,7 +512,7 @@
 
 // Section for quick access for admins, events and such, but can't be produced.
 
-/datum/design/item/prosfab/robot_upgrade/no_prod/cyborgtoy
+/datum/design/item/prosfab/robot_upgrade/no_prod
 	category = list()		// We simply do not sort them in
 
 /datum/design/item/prosfab/robot_upgrade/no_prod/cyborgtoy
