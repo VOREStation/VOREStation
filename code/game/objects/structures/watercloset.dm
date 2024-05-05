@@ -296,6 +296,18 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
+	var/honk_text = 0
+
+/obj/item/weapon/bikehorn/rubberducky/attack_self(mob/user as mob)
+	if(spam_flag == 0)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+		src.add_fingerprint(user)
+		spawn(20)
+			spam_flag = 0
+	return
 
 //Admin spawn duckies
 
@@ -317,6 +329,8 @@
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
 		src.add_fingerprint(user)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
 		honk_count ++
 		spawn(20)
 			spam_flag = 0
@@ -336,6 +350,100 @@
 		whereweare.wet_floor(2)
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+		src.add_fingerprint(user)
+		spawn(20)
+			spam_flag = 0
+	return
+
+/obj/item/weapon/bikehorn/rubberducky/pink
+	name = "rubber ducky"
+	desc = "It's extra squishy!"
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_pink"
+	honk_sound = 'sound/vore/sunesound/pred/insertion_01.ogg'
+	var/honk_count = 0
+
+/obj/item/weapon/bikehorn/rubberducky/pink/attack_self(mob/user as mob)
+	if(spam_flag == 0)
+		if(!user.devourable)
+			to_chat(user, "<span class='vnotice'>You can't bring yourself to squeeze it...</span>")
+			return
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+		src.add_fingerprint(user)
+		user.drop_item()
+		user.forceMove(src)
+		to_chat(user, "<span class='vnotice'>You have been swallowed alive by the rubber ducky. Your entire body compacted up and squeezed into the tiny space that makes up the oddly realistic and not at all rubbery stomach. The walls themselves are kneading over you, grinding some sort of fluids into your trapped body. You can even hear the sound of bodily functions echoing around you...</span>")
+		spawn(20)
+			spam_flag = 0
+	return
+
+/obj/item/weapon/bikehorn/rubberducky/pink/container_resist(var/mob/living/escapee)
+	escapee.forceMove(get_turf(src))
+	to_chat(escapee, "<span class='vnotice'>You managed to crawl out of the rubber ducky!</span>")
+
+/obj/item/weapon/bikehorn/rubberducky/grey
+	name = "rubber ducky"
+	desc = "There's something otherworldly about this particular duck..."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_grey"
+	honk_sound = 'sound/effects/ghost.ogg'
+	var/honk_count = 0
+
+/obj/item/weapon/bikehorn/rubberducky/grey/attack_self(mob/user as mob)
+	if(spam_flag == 0)
+		for(var/obj/machinery/light/L in machines)
+			if(L.z != user.z || get_dist(user,L) > 10)
+				continue
+			else
+				L.flicker(10)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+		src.add_fingerprint(user)
+		user.drop_item()
+		var/turf/T = locate(rand(1, 140), rand(1, 140), user.z)
+		src.forceMove(T)
+	return
+
+/obj/item/weapon/bikehorn/rubberducky/green
+	name = "rubber ducky"
+	desc = "Like a true Nature’s child, we were born, born to be wild."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_green"
+	honk_sound = 'sound/arcade/mana.ogg'
+	var/honk_count = 0
+	var/list/flora = list(/obj/structure/flora/ausbushes,
+						/obj/structure/flora/ausbushes/reedbush,
+						/obj/structure/flora/ausbushes/leafybush,
+						/obj/structure/flora/ausbushes/palebush,
+						/obj/structure/flora/ausbushes/stalkybush,
+						/obj/structure/flora/ausbushes/grassybush,
+						/obj/structure/flora/ausbushes/fernybush,
+						/obj/structure/flora/ausbushes/sunnybush,
+						/obj/structure/flora/ausbushes/genericbush,
+						/obj/structure/flora/ausbushes/pointybush,
+						/obj/structure/flora/ausbushes/lavendergrass,
+						/obj/structure/flora/ausbushes/ywflowers,
+						/obj/structure/flora/ausbushes/brflowers,
+						/obj/structure/flora/ausbushes/ppflowers,
+						/obj/structure/flora/ausbushes/sparsegrass,
+						/obj/structure/flora/ausbushes/fullgrass)
+
+/obj/item/weapon/bikehorn/rubberducky/green/attack_self(mob/user as mob)
+	if(spam_flag == 0)
+		var/turf/simulated/whereweare = get_turf(src)
+		var/obj/P = pick(flora)
+		new P(whereweare)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
 		src.add_fingerprint(user)
 		spawn(20)
 			spam_flag = 0
@@ -354,6 +462,8 @@
 		lightning_strike(get_turf(src), 1)
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
 		src.add_fingerprint(user)
 		spawn(20)
 			spam_flag = 0 //leaving this in incase it doesn't qdel somehow
@@ -366,6 +476,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_black"
 	det_time = 20
+	var/honk_text = 0
 
 /obj/item/weapon/grenade/anti_photon/rubberducky/black/detonate()
 	playsound(src, 'sound/voice/quack.ogg', 50, 1, 5)
@@ -380,6 +491,8 @@
 		spawn(210)
 			..()
 			playsound(src, 'sound/voice/quack.ogg', 50, 1, 5)
+			if(honk_text)
+				audible_message(span_maroon("[honk_text]"))
 			qdel(src)
 
 /obj/structure/sink
