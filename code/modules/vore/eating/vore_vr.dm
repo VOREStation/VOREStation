@@ -62,6 +62,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/throw_vore = TRUE
 	var/food_vore = TRUE
 
+	var/digest_pain = TRUE
+
 	var/resizable = TRUE
 	var/show_vore_fx = TRUE
 	var/step_mechanics_pref = FALSE
@@ -185,6 +187,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	food_vore = json_from_file["food_vore"]
 	throw_vore = json_from_file["throw_vore"]
 	stumble_vore = json_from_file["stumble_vore"]
+	digest_pain = json_from_file["digest_pain"]
 	nutrition_message_visible = json_from_file["nutrition_message_visible"]
 	nutrition_messages = json_from_file["nutrition_messages"]
 	weight_message_visible = json_from_file["weight_message_visible"]
@@ -238,6 +241,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		stumble_vore = TRUE
 	if(isnull(food_vore))
 		food_vore = TRUE
+	if(isnull(digest_pain))
+		digest_pain = TRUE
 	if(isnull(nutrition_message_visible))
 		nutrition_message_visible = TRUE
 	if(isnull(weight_message_visible))
@@ -309,6 +314,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"stumble_vore"			= stumble_vore,
 			"throw_vore" 			= throw_vore,
 			"food_vore" 			= food_vore,
+			"digest_pain"			= digest_pain,
 			"nutrition_message_visible"	= nutrition_message_visible,
 			"nutrition_messages"		= nutrition_messages,
 			"weight_message_visible"	= weight_message_visible,

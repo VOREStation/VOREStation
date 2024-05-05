@@ -19,6 +19,7 @@
 	var/drop_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/throw_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/food_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/digest_pain = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
 	var/allow_spontaneous_tf = FALSE	// Obviously.
