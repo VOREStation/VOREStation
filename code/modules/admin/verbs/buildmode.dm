@@ -7,8 +7,9 @@
 #define BUILDMODE_CONTENTS 	7
 #define BUILDMODE_LIGHTS 	8
 #define BUILDMODE_AI 		9
+#define BUILDMODE_DROP 		10
 
-#define LAST_BUILDMODE		9
+#define LAST_BUILDMODE		10
 
 /proc/togglebuildmode(mob/M as mob in player_list)
 	set name = "Toggle Build Mode"
@@ -171,6 +172,16 @@
 							Right Mouse Button + shift on tile     = Command selected mobs to reposition to tile (will not be interrupted by enemies)<br>\
 							Right Mouse Button + alt on obj/turfs  = Command selected mobs to attack obj/turf<br>\
 							***********************************************************</span>")
+
+		if(BUILDMODE_DROP)
+			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+							Right Mouse Button on buildmode button = Set object type<br>\
+							Middle Mouse Button on buildmode button= On/Off object type saying<br>\
+							Middle Mouse Button on turf/obj        = Capture object type<br>\
+							Left Mouse Button on turf/obj          = Drop objects safely<br>\
+							Right Mouse Button                     = Drop objects unsafely<br>\
+							Mouse Button + ctrl                    = Copy object type<br><br>\
+							***********************************************************</span>")
 	return 1
 
 /obj/effect/bmode/buildquit
@@ -315,6 +326,8 @@
 						var/input = input(usr, "New light color.","Light Maker",3) as null|color
 						if(input)
 							new_light_color = input
+			if(BUILDMODE_DROP)
+				objholder = get_path_from_partial_text()
 	return 1
 
 /proc/build_click(var/mob/user, buildmode, params, var/obj/object)
@@ -636,6 +649,27 @@
 					orderimage.plane = PLANE_BUILDMODE
 					flick_overlay(orderimage, list(user.client), 8, TRUE)
 					return
+
+
+		if(BUILDMODE_DROP)
+			if(ispath(holder.buildmode.objholder,/turf))
+				to_chat(user, "<span class='warning'>Cannot use turfs with this mode.</span>")
+				return
+			if(pa.Find("left") && !pa.Find("ctrl"))
+				if(ispath(holder.buildmode.objholder))
+					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
+					FE.crushing = FALSE
+			else if(pa.Find("right"))
+				if(ispath(holder.buildmode.objholder))
+					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
+					FE.crushing = TRUE
+			else if(pa.Find("ctrl"))
+				holder.buildmode.objholder = object.type
+				to_chat(user, "<span class='notice'>[object]([object.type]) copied to buildmode.</span>")
+			if(pa.Find("middle"))
+				holder.buildmode.objholder = text2path("[object.type]")
+				if(holder.buildmode.objsay)
+					to_chat(usr, "[object.type]")
 
 /proc/build_drag(var/client/user, buildmode, var/atom/fromatom, var/atom/toatom, var/atom/fromloc, var/atom/toloc, var/fromcontrol, var/tocontrol, params)
 	var/obj/effect/bmode/buildholder/holder = null
