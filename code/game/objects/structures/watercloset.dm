@@ -295,6 +295,11 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
+	item_state = "rubberducky"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
 	var/honk_text = 0
 
@@ -316,6 +321,11 @@
 	desc = "From the depths of hell it arose, feathers glistening with crimson, a honk that struck fear into all men."	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_red"
+	item_state = "rubberducky_red"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	honk_sound = 'sound/effects/adminhelp.ogg'
 	var/honk_count = 0
 
@@ -341,6 +351,11 @@
 	desc = "The see me rollin', they hatin'."	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_blue"
+	item_state = "rubberducky_blue"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	honk_sound = 'sound/effects/bubbles.ogg'
 	var/honk_count = 0
 
@@ -362,6 +377,11 @@
 	desc = "It's extra squishy!"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_pink"
+	item_state = "rubberducky_pink"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	honk_sound = 'sound/vore/sunesound/pred/insertion_01.ogg'
 	var/honk_count = 0
 
@@ -391,6 +411,11 @@
 	desc = "There's something otherworldly about this particular duck..."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_grey"
+	item_state = "rubberducky_grey"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	honk_sound = 'sound/effects/ghost.ogg'
 	var/honk_count = 0
 
@@ -416,6 +441,11 @@
 	desc = "Like a true Nature’s child, we were born, born to be wild."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_green"
+	item_state = "rubberducky_green"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	honk_sound = 'sound/arcade/mana.ogg'
 	var/honk_count = 0
 	var/list/flora = list(/obj/structure/flora/ausbushes,
@@ -454,6 +484,11 @@
 	desc = "It's so full of energy, such a happy little guy, I just wanna give him a squeeze."	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_white"
+	item_state = "rubberducky_white"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	honk_sound = 'sound/effects/lightningshock.ogg'
 	var/honk_count = 0
 
@@ -475,6 +510,11 @@
 	name = "rubber ducky"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky_black"
+	item_state = "rubberducky_black"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+	)
 	det_time = 20
 	var/honk_text = 0
 
