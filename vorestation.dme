@@ -2266,6 +2266,7 @@
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\error_handler\~defines.dm"
 #include "code\modules\eventkit\event_machinery.dm"
+#include "code\modules\eventkit\generic_objects\generic_item.dm"
 #include "code\modules\eventkit\generic_objects\generic_structure.dm"
 #include "code\modules\eventkit\gm_interfaces\fake_pda_conversations.dm"
 #include "code\modules\eventkit\gm_interfaces\mob_spawner.dm"
