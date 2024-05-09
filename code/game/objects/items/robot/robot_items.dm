@@ -59,6 +59,12 @@
 	icon_state = "material"
 	icon = 'icons/inventory/eyes/item.dmi'
 
+/obj/item/borg/sight/janitor
+	name = "\proper contaminant detector vision"
+	sight_mode = BORGJAN
+	icon_state = "janhud"
+	icon = 'icons/inventory/eyes/item.dmi'
+
 /obj/item/borg/sight/anomalous
 	name = "\proper anomaly vision"
 	sight_mode = BORGANOMALOUS
