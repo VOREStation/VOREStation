@@ -485,7 +485,8 @@
 		/obj/item/taperoll,
 		/obj/item/weapon/reagent_containers/spray,
 		/obj/item/weapon/soap,
-		/obj/item/device/lightreplacer //VOREStation edit
+		/obj/item/device/lightreplacer,
+		/obj/item/clothing/glasses/hud/janitor
 		)
 
 /obj/item/weapon/storage/belt/archaeology
