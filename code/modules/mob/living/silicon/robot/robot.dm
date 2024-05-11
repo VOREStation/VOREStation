@@ -952,6 +952,8 @@
 		return
 
 	cut_overlays()
+	if(typing)
+		add_overlay(typing_indicator, TRUE)
 
 	icon			= sprite_datum.sprite_icon
 	icon_state		= sprite_datum.sprite_icon_state
