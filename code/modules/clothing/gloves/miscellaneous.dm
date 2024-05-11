@@ -203,12 +203,6 @@
 	icon_state = "wristwatch_survival"
 
 	var/obj/item/device/gps/gps = null
-	var/is_in_processing_list = FALSE
-
-/obj/item/clothing/gloves/watch/survival/Initialize()
-	. = ..()
-
-	GPS_list += src
 
 /obj/item/clothing/gloves/watch/survival/examine(mob/user)
 	. = ..()
@@ -233,20 +227,3 @@
 	if(Adjacent(user))
 		gps.tracking = !gps.tracking
 		to_chat(user,"<span class='notice'>You turn the micro beacon [gps.tracking ? "on" : "off"].</span>")
-		if(!is_in_processing_list)
-			is_in_processing_list = TRUE
-			START_PROCESSING(SSobj, src)
-		else
-			is_in_processing_list = FALSE
-			STOP_PROCESSING(SSobj, src)
-
-/obj/item/clothing/gloves/watch/survival/process()
-	if(!gps.tracking)
-		is_in_processing_list = FALSE
-		return PROCESS_KILL
-
-/obj/item/clothing/gloves/watch/survival/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	is_in_processing_list = FALSE
-	GPS_list -= src
-	. = ..()
