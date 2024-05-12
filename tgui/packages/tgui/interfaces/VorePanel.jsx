@@ -856,8 +856,9 @@ const VoreSelectedBellyOptions = (props) => {
           <LabeledList.Item label="Digest Suffocation Damage">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_oxy_dmg' })}
-              content={digest_oxy}
-            />
+            >
+              {digest_oxy}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Digest Toxins Damage">
             <Button

@@ -199,7 +199,6 @@ export const SettingsGeneral = (props) => {
         <LabeledList.Item label="Enable disconnection/afk warning">
           <Button.Checkbox
             checked={showReconnectWarning}
-            content=""
             tooltip="Unchecking this will disable the red afk/reconnection warning bar at the bottom of the chat."
             mr="5px"
             onClick={() =>
@@ -214,7 +213,6 @@ export const SettingsGeneral = (props) => {
         <LabeledList.Item label="Interleave messages">
           <Button.Checkbox
             checked={interleave}
-            content=""
             tooltip="Enabling this will interleave messages."
             mr="5px"
             onClick={() =>
@@ -245,7 +243,6 @@ export const SettingsGeneral = (props) => {
         <LabeledList.Item label="Enable chat timestamps">
           <Button.Checkbox
             checked={prependTimestamps}
-            content=""
             tooltip="Enabling this will prepend timestamps to all messages."
             mr="5px"
             onClick={() =>
@@ -848,7 +845,6 @@ export const AdminSettings = (props) => {
         <LabeledList.Item label="Hide Important messages in admin only tabs">
           <Button.Checkbox
             checked={hideImportantInAdminTab}
-            content=""
             tooltip="Enabling this will hide all important messages in admin filter exclusive tabs."
             mr="5px"
             onClick={() =>

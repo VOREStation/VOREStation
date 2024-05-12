@@ -26,9 +26,10 @@ export const ExonetNode = (props) => {
             <Button
               icon="power-off"
               selected={on}
-              content={'Power ' + (on ? 'On' : 'Off')}
               onClick={() => act('toggle_power')}
-            />
+            >
+              {'Power ' + (on ? 'On' : 'Off')}
+            </Button>
           }
         >
           <LabeledList>
@@ -36,25 +37,28 @@ export const ExonetNode = (props) => {
               <Button
                 icon="power-off"
                 selected={allowPDAs}
-                content={allowPDAs ? 'Open' : 'Closed'}
                 onClick={() => act('toggle_PDA_port')}
-              />
+              >
+                {allowPDAs ? 'Open' : 'Closed'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Incoming Communicators">
               <Button
                 icon="power-off"
                 selected={allowCommunicators}
-                content={allowCommunicators ? 'Open' : 'Closed'}
                 onClick={() => act('toggle_communicator_port')}
-              />
+              >
+                {allowCommunicators ? 'Open' : 'Closed'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Incoming Newscaster Content">
               <Button
                 icon="power-off"
                 selected={allowNewscasters}
-                content={allowNewscasters ? 'Open' : 'Closed'}
                 onClick={() => act('toggle_newscaster_port')}
-              />
+              >
+                {allowNewscasters ? 'Open' : 'Closed'}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>

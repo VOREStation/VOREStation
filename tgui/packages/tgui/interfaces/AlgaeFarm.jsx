@@ -41,10 +41,11 @@ export const AlgaeFarm = (props) => {
           buttons={
             <Button
               icon="power-off"
-              content="Processing"
               selected={usePower === 2}
               onClick={() => act('toggle')}
-            />
+            >
+              Processing
+            </Button>
           }
         >
           <LabeledList>
@@ -69,13 +70,14 @@ export const AlgaeFarm = (props) => {
                 </ProgressBar>
                 <Button
                   ml={1}
-                  content="Eject"
                   onClick={() =>
                     act('ejectMaterial', {
                       mat: material.name,
                     })
                   }
-                />
+                >
+                  Eject
+                </Button>
               </LabeledList.Item>
             ))}
           </LabeledList>

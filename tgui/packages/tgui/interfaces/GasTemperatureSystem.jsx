@@ -34,10 +34,11 @@ export const GasTemperatureSystem = (props) => {
           buttons={
             <Button
               icon="power-off"
-              content={on ? 'On' : 'Off'}
               selected={on}
               onClick={() => act('toggleStatus')}
-            />
+            >
+              {on ? 'On' : 'Off'}
+            </Button>
           }
         >
           <LabeledControls>

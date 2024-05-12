@@ -161,7 +161,6 @@ const CasinoPrizeDispenserItemsCategory = (props) => {
             {item.name}
           </Box>
           <Button
-            content={item.price.toLocaleString('en-US')}
             width="15%"
             textAlign="center"
             style={{
@@ -175,7 +174,9 @@ const CasinoPrizeDispenserItemsCategory = (props) => {
                 restriction: item.restriction,
               })
             }
-          />
+          >
+            {item.price.toLocaleString('en-US')}
+          </Button>
           <Box
             style={{
               clear: 'both',
