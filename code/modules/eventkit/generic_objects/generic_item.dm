@@ -1,39 +1,33 @@
-/obj/structure/generic_structure
+/obj/item/generic_item
 	name = "unusual object"
 	desc = "An unusual object of some sort."
-	icon = 'icons/obj/props/decor.dmi'
-	icon_state = "bsb_off"
-	anchored = 1
-	density = 1
-	climbable = 0
-	breakable = 0
+	icon = 'icons/obj/props/items.dmi'
+	icon_state = "old_handheld"
 	var/on = 0
-	var/icon_state_off = "bsb_off"
-	var/icon_state_on = "bsb_on"
-	var/wrenchable = 0
+	var/icon_state_off = "old_handheld"
+	var/icon_state_on = "old_handheld_on"
 	var/activatable_hand = 1
 	var/togglable = 1
-	var/text_activated = "The strucutre turns on."
-	var/text_deactivated = "The structure turns off."
+	var/text_activated = "The item turns on."
+	var/text_deactivated = "The item turns off."
 	var/effect = 0
 	var/object = 0
 	var/sound_activated = 0
 	var/delay_time = 0
-	var/icon_on = 0
 	var/icon_off = 0
+	var/icon_on = 0
 
-/obj/structure/generic_structure/attack_hand(mob/user)
+/obj/item/generic_item/attack_self(mob/user)
 	if(activatable_hand)
 		if(!on)
 			if(delay_time)
 				if(!do_after(user, delay_time, src, exclusive = TASK_USER_EXCLUSIVE))
 					return 0
 			on = 1
-			icon_state = icon_state_on
 			if(icon_on)
 				icon = icon_on
 			else
-				icon = 'icons/obj/props/decor.dmi'
+				icon = 'icons/obj/props/items.dmi'
 			icon_state = icon_state_on
 			src.visible_message("<span class='notice'>[text_activated]</span>")
 			update_icon()
@@ -43,13 +37,13 @@
 				s.start()
 			if(effect == 2)
 				for(var/obj/machinery/light/L in machines)
-					if(L.z != src.z || get_dist(src,L) > 10)
+					if(L.z != user.z || get_dist(user,L) > 10)
 						continue
 					else
 						L.flicker(10)
 			if(effect == 3)
-				for (var/mob/O in viewers(src, null))
-					if(get_dist(src, O) > 3)
+				for (var/mob/O in viewers(user, null))
+					if(get_dist(user, O) > 3)
 						continue
 
 					var/flash_time = 10
@@ -75,7 +69,7 @@
 							L.flash_eyes()
 					O.Weaken(flash_time)
 			if(effect == 4)
-				var/atom/o = new object(get_turf(src))
+				var/atom/o = new object(get_turf(user))
 				src.visible_message("<span class='notice'>[src] has produced [o]!</span>")
 			if(sound_activated)
 				playsound(src, sound_activated, 50, 1)
@@ -88,103 +82,61 @@
 			if(icon_off)
 				icon = icon_off
 			else
-				icon = 'icons/obj/props/decor.dmi'
+				icon = 'icons/obj/props/items.dmi'
 			src.visible_message("<span class='notice'>[text_deactivated]</span>")
 			update_icon()
 	return ..()
 
-/obj/structure/generic_structure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(wrenchable && W.has_tool_quality(TOOL_WRENCH))
-		add_fingerprint(user)
-		anchored = !anchored
-		to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
-
-/client/proc/generic_structure()
+/client/proc/generic_item()
 	set category = "EventKit"
-	set name = "Spawn Generic Structure"
-	set desc = "Spawn a customisable structure with a range of different options."
+	set name = "Spawn Generic Item"
+	set desc = "Spawn a customisable item with a range of different options."
 
-	var/s_wrenchable = 0
-	var/s_anchored = 0
-	var/s_density = 0
 	var/s_activatable = 0
 	var/s_togglable = 0
 	var/s_icon_state_on = 0
+	var/s_icon = 0
+	var/s_icon2 = 0
 	var/s_delay = 0
 	var/s_text_activated = 0
 	var/s_text_deactivated = 0
 	var/s_effect = 0
 	var/s_sound = 0
 	var/s_object = 0
-	var/s_icon = 0
-	var/s_icon2 = 0
-	var/list/icon_state_options = list("bsb_off",
-										"bsb_on",
-										"bsc",
-										"bsc_dust",
-										"biosyphon",
-										"von_krabin",
-										"last_shelter",
-										"complicator",
-										"random_radio",
-										"nt_pedestal0_old",
-										"nt_pedestal1_old",
-										"nt_reader_off",
-										"nt_reader_on",
-										"nt_biocan",
-										"nt_optable-idle",
-										"nt_optable-active",
-										"nt_obelisk",
-										"nt_obelisk_on",
-										"nt_cruciforge",
-										"nt_cruciforge_start",
-										"nt_cruciforge_work",
-										"nt_solidifier",
-										"nt_solidifier_on",
-										"artwork_statue_1",
-										"artwork_statue_2",
-										"artwork_statue_3",
-										"artwork_statue_4",
-										"artwork_statue_5",
-										"artwork_statue",
-										"dominator",
-										"dominator-broken",
-										"gel_cocoon",
-										"tank_broken",
-										"tank_larva",
-										"stump",
-										"conduit_off",
-										"conduit_spin",
-										"core_empty",
-										"core_inactive",
-										"core_active",
-										"tradebeacon",
-										"tradebeacon_active",
-										"tradebeacon_sending",
-										"treadebeacon_sending_active",
-										"smelter",
-										"smelter-process",
-										"sorter",
-										"sorter-process",
-										"stamper",
-										"stamper_on",
-										"tgmc_console1",
-										"tgmc_console1_on",
-										"tgmc_console2",
-										"tgmc_console2_on",
-										"tgmc_console3",
-										"tgmc_console3_on",
-										"tgmc_console4",
-										"tgmc_console4_on",
-										"tgmc_console5",
-										"tgmc_console5_on",
-										"tgmc_sentry",
-										"minirocket_pod",
-										"ob_warhead_1",
-										"ob_warhead_2",
-										"ob_warhead_3",
-										"ob_warhead_4",
-										"angel",
+	var/list/icon_state_options = list("old_handheld",
+										"old_handheld_on",
+										"switch",
+										"switch_on",
+										"chalice",
+										"staffofnothing",
+										"staffofchange",
+										"staffofanimation",
+										"staffofchaos",
+										"scroll_rolledup",
+										"scroll_blank",
+										"scroll_text",
+										"scroll_textseal",
+										"scroll_rolledupseal",
+										"revolver",
+										"universal_id",
+										"universal_id_glow",
+										"partypopper",
+										"partypopper_e",
+										"screwdriver",
+										"screwdriver_glow",
+										"crystal",
+										"crystal_red",
+										"old_phone",
+										"old_phone_on",
+										"flash",
+										"flash_red",
+										"flash_burnt",
+										"techball_green",
+										"techball_yellow",
+										"techball_red",
+										"techball_blue",
+										"fleshorb",
+										"fleshorb_moving",
 										"Upload Own Sprite")
 	var/list/sound_options = list('sound/effects/alert.ogg',
 								'sound/effects/bamf.ogg',
@@ -222,29 +174,8 @@
 	if(!holder)
 		return
 
-	var/s_name = tgui_input_text(src, "Structure Name:", "Name")
-	var/s_desc = tgui_input_text(src, "Structure Description:", "Description")
-	var/check_anchored = tgui_alert(src, "Start anchored?", "anchored", list("Yes", "No", "Cancel"))
-	if(check_anchored == "Cancel")
-		return
-	if(check_anchored == "No")
-		s_anchored = 0
-	if(check_anchored == "Yes")
-		s_anchored = 1
-	var/check_density = tgui_alert(src, "Start dense?", "density", list("Yes", "No", "Cancel"))
-	if(check_density == "Cancel")
-		return
-	if(check_density == "No")
-		s_density = 0
-	if(check_density == "Yes")
-		s_density = 1
-	var/check_wrenchable = tgui_alert(src, "Allow it to be fastened and unfastened with a wrench?", "wrenchable", list("Yes", "No", "Cancel"))
-	if(check_wrenchable == "Cancel")
-		return
-	if(check_wrenchable == "No")
-		s_wrenchable = 0
-	if(check_wrenchable == "Yes")
-		s_wrenchable = 1
+	var/s_name = tgui_input_text(src, "Item Name:", "Name")
+	var/s_desc = tgui_input_text(src, "Item Description:", "Description")
 	var/s_icon_state_off = tgui_input_list(src, "Choose starting icon state:", "icon_state_off", icon_state_options)
 	if(s_icon_state_off == "Upload Own Sprite")
 		s_icon = input(usr, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
@@ -289,14 +220,11 @@
 			s_sound = tgui_input_list(src, "Choose a sound to play on activation:", "Sound", sound_options)
 
 	var/spawnloc = get_turf(src.mob)
-	var/obj/structure/generic_structure/P = new(spawnloc)
+	var/obj/item/generic_item/P = new(spawnloc)
 	P.name = s_name
 	P.desc = s_desc
-	P.anchored = s_anchored
-	P.density = s_density
 	P.icon_state_off = s_icon_state_off
 	P.icon_state_on = s_icon_state_on
-	P.wrenchable = s_wrenchable
 	P.activatable_hand = s_activatable
 	P.togglable = s_togglable
 	P.text_activated = s_text_activated
@@ -311,29 +239,3 @@
 	if(s_icon)
 		P.icon = s_icon
 	P.update_icon()
-
-/client/proc/get_path_from_partial_text(default_path)
-	var/desired_path = tgui_input_text(usr, "Enter full or partial typepath.","Typepath","[default_path]")
-
-	if(!desired_path)	//VOREStation Add - If you don't give it anything it builds a list of every possible thing in the game and crashes your client.
-		return			//VOREStation Add - And the main way for it to do that is to push the cancel button, which should just do nothing. :U
-
-	var/list/types = typesof(/atom)
-	var/list/matches = list()
-
-	for(var/path in types)
-		if(findtext("[path]", desired_path))
-			matches += path
-
-	if(matches.len==0)
-		tgui_alert_async(usr, "No results found.  Sorry.")
-		return
-
-	var/result = null
-
-	if(matches.len==1)
-		result = matches[1]
-	else
-		result = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches, strict_modern = TRUE)
-	return result
-
