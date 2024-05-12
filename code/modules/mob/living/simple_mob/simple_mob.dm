@@ -174,6 +174,11 @@
 	var/injury_enrages = FALSE				// Do injuries enrage (aka strengthen) our mob? If yes, we'll interpret how hurt we are differently.
 	// VOREStation Add End
 
+	var/has_recoloured = FALSE
+	var/hunting_cooldown = 0
+	var/hasthermals = TRUE
+	var/isthermal = 0
+
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
 	health = maxHealth
@@ -192,6 +197,10 @@
 
 	if(organ_names)
 		organ_names = GET_DECL(organ_names)
+
+	if(config.allow_simple_mob_recolor)
+		verbs |= /mob/living/simple_mob/proc/ColorMate
+
 
 	return ..()
 
@@ -216,6 +225,8 @@
 /mob/living/simple_mob/Login()
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
+	if(hasthermals)
+		verbs |= /mob/living/simple_mob/proc/hunting_vision //So that maint preds can see prey through walls, to make it easier to find them.
 
 /mob/living/simple_mob/SelfMove(turf/n, direct, movetime)
 	var/turf/old_turf = get_turf(src)
@@ -337,3 +348,43 @@
 	. = ..() 							// Calling parent here, actually updating our mob on how hurt we are.
 
 // VOREStation Add End
+
+/mob/living/simple_mob/proc/ColorMate()
+	set name = "Recolour"
+	set category = "Abilities"
+	set desc = "Allows to recolour once."
+
+	if(!has_recoloured)
+		var/datum/ColorMate/recolour = new /datum/ColorMate(usr)
+		recolour.tgui_interact(usr)
+		return
+	to_chat(usr, "You've already recoloured yourself once. You are only allowed to recolour yourself once during a around.")
+
+//Thermal vision adding
+
+/mob/living/simple_mob/proc/hunting_vision()
+	set name = "Track Prey Through Walls"
+	set category = "Abilities"
+	set desc = "Uses you natural predatory instincts to seek out prey even through walls, or your natural survival instincts to spot predators from a distance."
+
+	if(hunting_cooldown + 5 MINUTES < world.time)
+		to_chat(usr, "You can sense other creatures by focusing carefully on your surroundings.")
+		sight |= SEE_MOBS
+		hunting_cooldown = world.time
+		spawn(600)
+			to_chat(usr, "Your concentration wears off.")
+			sight -= SEE_MOBS
+	else if(hunting_cooldown + 5 MINUTES > world.time)
+		to_chat(usr, "You must wait for a while before using this again.")
+
+/mob/living/simple_mob/proc/hunting_vision_plus()
+	set name = "Thermal vision toggle"
+	set category = "Abilities"
+	set desc = "Uses you natural predatory instincts to seek out prey even through walls, or your natural survival instincts to spot predators from a distance."
+
+	if(!isthermal)
+		to_chat(usr, "You can sense other creatures by focusing carefully on your surroundings.")
+		sight |= SEE_MOBS
+	else
+		to_chat(usr, "You stop sensing creatures beyond the walls.")
+		sight -= SEE_MOBS

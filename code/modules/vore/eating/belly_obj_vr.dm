@@ -68,9 +68,11 @@
 	//Actual full digest modes
 	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_SELECT,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
-	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY)
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY, "Spare Prosthetics" = DM_FLAG_SPARELIMB)
 	//Item related modes
 	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST)
+	//drain modes
+	var/tmp/static/list/drainmodes = list(DR_NORMAL,DR_SLEEP,DR_FAKE,DR_WEIGHT)
 
 	//List of slots that stripping handles strips
 	var/tmp/static/list/slots = list(slot_back,slot_handcuffed,slot_l_store,slot_r_store,slot_wear_mask,slot_l_hand,slot_r_hand,slot_wear_id,slot_glasses,slot_gloves,slot_head,slot_shoes,slot_belt,slot_wear_suit,slot_w_uniform,slot_s_store,slot_l_ear,slot_r_ear)
@@ -79,6 +81,7 @@
 	var/tmp/digest_mode = DM_HOLD				// Current mode the belly is set to from digest_modes (+transform_modes if human)
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
+	var/tmp/drainmode = DR_NORMAL				// Simply drains the prey then does nothing.
 
 	// Don't forget to watch your commas at the end of each line if you change these.
 	var/list/struggle_messages_outside = list(
@@ -339,6 +342,7 @@
 	"belly_mob_mult",
 	"belly_item_mult",
 	"belly_overall_mult",
+	"drainmode",
 	)
 
 	if (save_digest_mode == 1)
@@ -359,18 +363,31 @@
 	STOP_PROCESSING(SSbellies, src)
 	owner?.vore_organs?.Remove(src)
 	owner = null
+	for(var/mob/observer/G in src)
+		G.forceMove(get_turf(src)) //ported from CHOMPStation PR#7132
 	return ..()
 
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
+
+	if(istype(thing, /mob/observer)) //Ports CHOMPStation PR#3072
+		if(desc) //Ports CHOMPStation PR#4772
+			//Allow ghosts see where they are if they're still getting squished along inside.
+			var/formatted_desc
+			formatted_desc = replacetext(desc, "%belly", lowertext(name)) //replace with this belly's name
+			formatted_desc = replacetext(formatted_desc, "%pred", owner) //replace with this belly's owner
+			formatted_desc = replacetext(formatted_desc, "%prey", thing) //replace with whatever mob entered into this belly
+			to_chat(thing, "<span class='notice'><B>[formatted_desc]</B></span>")
+
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
 
 	//Generic entered message
-	to_chat(owner,"<span class='vnotice'>[thing] slides into your [lowertext(name)].</span>")
+	if(!istype(thing, /mob/observer))	//Don't have ghosts announce they're reentering the belly on death
+		to_chat(owner,"<span class='vnotice'>[thing] slides into your [lowertext(name)].</span>")
 
 	//Sound w/ antispam flag setting
-	if(vore_sound && !recent_sound)
+	if(vore_sound && !recent_sound && !istype(thing, /mob/observer))
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_vore_sounds[vore_sound]
@@ -525,6 +542,8 @@
 	for(var/atom/movable/AM as anything in contents)
 		if(isliving(AM))
 			var/mob/living/L = AM
+			if(L.stat)
+				L.SetSleeping(min(L.sleeping,20))
 			if(L.absorbed && !include_absorbed)
 				continue
 		count += release_specific_contents(AM, silent = TRUE)
@@ -610,6 +629,12 @@
 						absorbed_count++
 				Pred.bloodstr.trans_to(Prey, Pred.reagents.total_volume / absorbed_count)
 
+	//Makes it so that if prey are heavily asleep, they will wake up shortly after release
+	if(isliving(M))
+		var/mob/living/ML = M
+		if(ML.stat)
+			ML.SetSleeping(min(ML.sleeping,20))
+
 	//Clean up our own business
 	if(!ishuman(owner))
 		owner.update_icons()
@@ -627,7 +652,7 @@
 			privacy_volume = 25
 
 	//Print notifications/sound if necessary
-	if(!silent)
+	if(!silent && !isobserver(M))
 		owner.visible_message("<span class='vnotice'>[span_green("<b>[owner] [release_verb] [M] from their [lowertext(name)]!</b>")]</span>",range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
@@ -687,6 +712,15 @@
 	for(var/mob/living/L in contents)
 		living_count++
 
+	var/count_total = contents.len
+	for(var/mob/observer/C in contents)
+		count_total-- //Exclude any ghosts from %count
+
+	var/list/vore_contents = list()
+	for(var/G in contents)
+		if(!isobserver(G))
+			vore_contents += G //Exclude any ghosts from %prey
+
 	for(var/mob/living/P in contents)
 		if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
 			total_bulge += P.size_multiplier
@@ -696,9 +730,9 @@
 
 	formatted_message = replacetext(raw_message, "%belly", lowertext(name))
 	formatted_message = replacetext(formatted_message, "%pred", owner)
-	formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+	formatted_message = replacetext(formatted_message, "%prey", english_list(vore_contents))
 	formatted_message = replacetext(formatted_message, "%countprey", living_count)
-	formatted_message = replacetext(formatted_message, "%count", contents.len)
+	formatted_message = replacetext(formatted_message, "%count", count_total)
 
 	return(span_red("<i>[formatted_message]</i>"))
 
@@ -1008,7 +1042,9 @@
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
-	M.ghostize() // Make sure they're out, so we can copy attack logs and such.
+	var/mob/observer/G = M.ghostize() //Ports CHOMPStation PR#3074 Make sure they're out, so we can copy attack logs and such.
+	if(G)
+		G.forceMove(src)
 	qdel(M)
 
 // Handle a mob being absorbed
@@ -1624,7 +1660,7 @@
 	if(!(content in src) || !istype(target))
 		return
 	content.forceMove(target)
-	if(ismob(content))
+	if(ismob(content) && !isobserver(content))
 		var/mob/ourmob = content
 		ourmob.reset_view(owner)
 	if(isitem(content))

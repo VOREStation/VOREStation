@@ -198,7 +198,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				screen = RCS_SENTPASS
 				message_log += list(list("Message sent to [recipient]", "[message]"))
 			else
-				audible_message(text("\icon[src][bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
+				audible_message(text("[icon2html(src,viewers(src))] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
 			. = TRUE
 
 		//Handle printing

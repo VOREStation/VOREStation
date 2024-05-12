@@ -177,13 +177,13 @@
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/rig/examine()
+/obj/item/weapon/rig/examine(mob/user)
 	. = ..()
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			. += "\icon[piece][bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+			. += "[icon2html(piece, user.client)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
 
 	if(src.loc == usr)
 		. += "The access panel is [locked? "locked" : "unlocked"]."
@@ -610,6 +610,7 @@
 			species_icon = sprite_sheets[wearer.species.get_bodytype(wearer)]
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
+	chest.cut_overlays()
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)

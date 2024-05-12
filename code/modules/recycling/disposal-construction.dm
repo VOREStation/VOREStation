@@ -25,15 +25,15 @@
 	// Disposals handle "bent"/"corner" strangely, handle this specially.
 	if(ptype == DISPOSAL_PIPE_STRAIGHT && (dir in cornerdirs))
 		ptype = DISPOSAL_PIPE_CORNER
-		switch(dir)
-			if(NORTHWEST)
-				dir = WEST
-			if(NORTHEAST)
-				dir = NORTH
-			if(SOUTHWEST)
-				dir = SOUTH
-			if(SOUTHEAST)
-				dir = EAST
+	switch(dir)
+		if(NORTHWEST)
+			dir = WEST
+		if(NORTHEAST)
+			dir = NORTH
+		if(SOUTHWEST)
+			dir = SOUTH
+		if(SOUTHEAST)
+			dir = EAST
 
 	switch(ptype)
 		if(DISPOSAL_PIPE_BIN, DISPOSAL_PIPE_OUTLET, DISPOSAL_PIPE_CHUTE)

@@ -193,6 +193,7 @@ var/global/list/image/splatter_cache=list()
 
 	icon = blood
 	cut_overlays()
+	add_overlay(janhud)
 	add_overlay(giblets)
 
 /obj/effect/decal/cleanable/blood/gibs/up

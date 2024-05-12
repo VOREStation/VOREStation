@@ -723,6 +723,7 @@ const VoreSelectedBellyOptions = (props) => {
     belly_mob_mult,
     belly_item_mult,
     belly_overall_mult,
+    drainmode,
   } = belly;
 
   return (
@@ -868,6 +869,12 @@ const VoreSelectedBellyOptions = (props) => {
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_clone_dmg' })}
               content={digest_clone}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Drain Finishing Mode">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_drainmode' })}
+              content={drainmode}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Shrink/Grow Size">
@@ -1405,6 +1412,7 @@ const VoreUserPreferences = (props) => {
     slip_vore,
     throw_vore,
     food_vore,
+    digest_pain,
     nutrition_message_visible,
     weight_message_visible,
     eating_privacy_global,
@@ -1596,6 +1604,21 @@ const VoreUserPreferences = (props) => {
       content: {
         enabled: 'Food Vore Enabled',
         disabled: 'Food Vore Disabled',
+      },
+    },
+    toggle_digest_pain: {
+      action: 'toggle_digest_pain',
+      test: digest_pain,
+      tooltip: {
+        main:
+          'Allows for pain messages to show when being digested. ' +
+          ' Can be toggled off to disable pain messages.',
+        enable: 'Click here to allow for digestion pain.',
+        disable: 'Click here to disable digestion pain.',
+      },
+      content: {
+        enabled: 'Digestion Pain Enabled',
+        disabled: 'Digestion Pain Disabled',
       },
     },
     inbelly_spawning: {
@@ -1823,15 +1846,18 @@ const VoreUserPreferences = (props) => {
           <VoreUserPreferenceItem spec={preferences.toggle_food_vore} />
         </Flex.Item>
         <Flex.Item basis="32%" grow={1}>
+          <VoreUserPreferenceItem spec={preferences.toggle_digest_pain} />
+        </Flex.Item>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.inbelly_spawning} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.noisy} />
         </Flex.Item>
-        <Flex.Item basis="32%">
+        <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem spec={preferences.resize} />
         </Flex.Item>
-        <Flex.Item basis="32%" grow={1}>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.steppref}
             tooltipPosition="top"
@@ -1843,13 +1869,13 @@ const VoreUserPreferences = (props) => {
             tooltipPosition="top"
           />
         </Flex.Item>
-        <Flex.Item basis="32%">
+        <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem
             spec={preferences.remains}
             tooltipPosition="top"
           />
         </Flex.Item>
-        <Flex.Item basis="32%" grow={1}>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.pickuppref}
             tooltipPosition="top"
@@ -1858,7 +1884,7 @@ const VoreUserPreferences = (props) => {
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.spontaneous_tf} />
         </Flex.Item>
-        <Flex.Item basis="32%">
+        <Flex.Item basis="32%" grow={1}>
           <Button
             fluid
             content="Selective Mode Preference"

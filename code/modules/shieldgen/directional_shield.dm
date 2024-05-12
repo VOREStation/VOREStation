@@ -100,15 +100,20 @@
 
 /obj/item/shield_projector/Initialize()
 	START_PROCESSING(SSobj, src)
+	AddComponent(/datum/component/recursive_move)
+	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(moved_event))
+	//ChompEDIT START - shields on init
 	if(always_on)
-		create_shields()
-	GLOB.moved_event.register(src, src, PROC_REF(moved_event))
+		spawn(0)
+			if(!QDELETED(src))
+				create_shields()
+	//ChompEDIT END
 	return ..()
 
 /obj/item/shield_projector/Destroy()
 	destroy_shields()
 	STOP_PROCESSING(SSobj, src)
-	GLOB.moved_event.unregister(src, src, PROC_REF(moved_event))
+	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
 	return ..()
 
 /obj/item/shield_projector/proc/moved_event()

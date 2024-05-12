@@ -122,25 +122,6 @@ Talon jumpsuit
 	)
 	gear_tweaks += new/datum/gear_tweak/path(dresses)
 
-// undersuits
-/datum/gear/uniform/undersuit
-	display_name = "undersuit selection"
-	path = /obj/item/clothing/under/undersuit/
-
-/datum/gear/uniform/undersuit/New()
-	..()
-	var/list/suits = list()
-	var/list/blacklisted_types = list(/obj/item/clothing/under/undersuit/sec,
-									  /obj/item/clothing/under/undersuit/sec/hos,
-									  /obj/item/clothing/under/undersuit/hazard,
-									  /obj/item/clothing/under/undersuit/command,
-									  /obj/item/clothing/under/undersuit/centcom)
-	for(var/obj/item/clothing/under/undersuit/undersuit_type as anything in typesof(/obj/item/clothing/under/undersuit))
-		if(undersuit_type in blacklisted_types)
-			continue
-		suits[initial(undersuit_type.name)] = undersuit_type
-	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(suits))
-
 //Altevian Uniforms
 /datum/gear/uniform/altevian
 	description = "A comfortable set of clothing for people to handle their day to day work around the fleets with little to no discomfort."

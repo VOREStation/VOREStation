@@ -257,6 +257,13 @@
 /mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(istype(AM,/obj/))
 		var/obj/O = AM
+		if(stat != DEAD && istype(O,/obj/item) && trash_catching && vore_selected) //ported from chompstation
+			var/obj/item/I = O
+			if(adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
+				visible_message("<span class='warning'>[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!</span>")
+				I.throwing = 0
+				I.forceMove(vore_selected)
+				return
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
@@ -329,6 +336,8 @@
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
 		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
+			if(!vore_selected)
+				return
 			vore_selected.nom_mob(thrown_mob) //Eat them!!!
 			visible_message("<span class='vwarning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
 			if(thrown_mob.loc != vore_selected)
@@ -339,7 +348,9 @@
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
-		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore)) //Pred thrown into prey.
+		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore) && thrown_mob.vore_selected) //Pred thrown into prey.
+			if(!thrown_mob.vore_selected)
+				return
 			visible_message("<span class='vwarning'>[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!</span>")
 			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
 			if(src.loc != thrown_mob.vore_selected)
@@ -359,7 +370,9 @@
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
-	src.take_organ_damage(speed*5)
+	src.take_organ_damage(12)	// used to be 5 * speed. That's a default of 25 and I dont see anything ever changing the "speed" value.
+	//src.Weaken(3)				// That is absurdly high so im just setting it to a flat 12 with a bit of stun ontop. //Stun is too dangerous
+	playsound(src, get_sfx("punch"), 50) //ouch sound
 
 /mob/living/proc/near_wall(var/direction,var/distance=1)
 	var/turf/T = get_step(get_turf(src),direction)

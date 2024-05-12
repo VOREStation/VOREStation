@@ -276,7 +276,6 @@
 	sprite_icon_state = "newmeka"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
-	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/service/mmeka
@@ -284,7 +283,6 @@
 	sprite_icon_state = "mmeka"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
-	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/service/fmeka
@@ -292,7 +290,6 @@
 	sprite_icon_state = "fmeka"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
-	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/service/k4t

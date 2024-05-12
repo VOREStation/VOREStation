@@ -24,6 +24,7 @@ export const MESSAGE_TYPE_INTERNAL = 'internal';
 export const MESSAGE_TYPE_SYSTEM = 'system';
 export const MESSAGE_TYPE_LOCALCHAT = 'localchat';
 export const MESSAGE_TYPE_NPCEMOTE = 'npcemote';
+export const MESSAGE_TYPE_MULTIZCHAT = 'multizsay';
 export const MESSAGE_TYPE_PLOCALCHAT = 'plocalchat';
 export const MESSAGE_TYPE_VORE = 'vore';
 export const MESSAGE_TYPE_HIVEMIND = 'hivemind';
@@ -63,6 +64,12 @@ export const MESSAGE_TYPES = [
     name: 'NPC Emotes / Says',
     description: 'In-character emotes and says from NPCs',
     selector: '.npcemote, .npcsay',
+  },
+  {
+    type: MESSAGE_TYPE_MULTIZCHAT,
+    name: 'MultiZ Emotes / Says',
+    description: 'In-character emotes and says from levels above/below',
+    selector: '.multizsay',
   },
   {
     type: MESSAGE_TYPE_LOCALCHAT,

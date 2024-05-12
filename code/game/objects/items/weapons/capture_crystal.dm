@@ -399,9 +399,7 @@
 			active = TRUE
 		else									//Shoot, it didn't work and now it's mad!!!
 			S.ai_holder.go_wake()
-			S.ai_holder.target = user
-			S.ai_holder.track_target_position()
-			S.ai_holder.set_stance(STANCE_FIGHT)
+			S.ai_holder.give_target(user, urgent = TRUE)
 			user.visible_message("\The [src] bonks into \the [S], angering it!")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
@@ -844,7 +842,13 @@
 		list(/mob/living/simple_mob/vore/sheep),
 		list(/mob/living/simple_mob/vore/weretiger),
 		list(/mob/living/simple_mob/vore/alienanimals/skeleton),
-		list(/mob/living/simple_mob/vore/alienanimals/dustjumper)
+		list(/mob/living/simple_mob/vore/alienanimals/dustjumper),
+		list(/mob/living/simple_mob/vore/cryptdrake),
+		list(/mob/living/simple_mob/vore/stalker),
+		list(/mob/living/simple_mob/vore/horse/kelpie),
+		list(/mob/living/simple_mob/vore/scrubble),
+		list(/mob/living/simple_mob/vore/sonadile),
+		list(/mob/living/simple_mob/vore/devil)
 		)
 
 /obj/item/capture_crystal/random/Initialize()

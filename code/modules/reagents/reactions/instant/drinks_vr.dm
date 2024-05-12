@@ -232,3 +232,10 @@
 	result = "strawberry_protein_shake"
 	required_reagents = list("water" = 5, "strawberry_protein_powder" = 1)
 	result_amount = 5
+
+/decl/chemical_reaction/instant/drinks/manager_summoner
+	name = "Manager Summoner"
+	id = "manager_summoner"
+	result = "manager_summoner"
+	required_reagents = list("margarita" = 1, "redwine" = 1, "essential_oil" = 1)
+	result_amount = 3

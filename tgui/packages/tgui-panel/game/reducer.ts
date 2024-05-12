@@ -17,12 +17,20 @@ const initialState = {
 };
 
 export const gameReducer = (state = initialState, action) => {
-  const { type, meta } = action;
+  const { type, meta, payload } = action;
   if (type === 'roundrestart') {
     return {
       ...state,
       roundRestartedAt: meta.now,
     };
+  }
+  if (type === 'connected') {
+    if (state.roundId !== payload.round_id) {
+      return {
+        ...state,
+        roundId: payload.round_id,
+      };
+    }
   }
   if (type === connectionLost.type) {
     return {

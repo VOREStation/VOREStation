@@ -78,8 +78,7 @@
 	if(stored_blob)
 		stored_blob.drop_l_hand()
 		stored_blob.drop_r_hand()
-		stored_blob = null
-		qdel(stored_blob)
+		QDEL_NULL(stored_blob)
 	return ..()
 
 /mob/living/simple_mob/slime/promethean/Stat()
@@ -403,7 +402,8 @@
 		blob.rad_glow = CLAMP(radiation,0,250)
 		set_light(0)
 		blob.set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), blob.color)
-		blob.handle_light()
+	else
+		blob.set_light(0)
 	if(has_hat)
 		blob.hat = new_hat
 		new_hat.forceMove(src)

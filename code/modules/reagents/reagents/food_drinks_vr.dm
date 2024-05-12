@@ -396,6 +396,17 @@
 	glass_name = "Giant Beer"
 	glass_desc = "The Neo Detroit beer and ale cocktail, perfect for your average drunk."
 
+/datum/reagent/ethanol/manager_summoner
+	name = "Manager Summoner"
+	id = "manager_summoner"
+	description = "A horrifying cocktail for those who desperately want feel above their peers."
+	taste_description = "bitter and sweet, with a hint of superiority"
+	strength = 30
+	color = "#c9716b"
+
+	glass_name = "Manager Summoner"
+	glass_desc = "The dreaded red juice of those who insist on taking advantage of minor positions of power to make the lives of bar staff unbearable."
+
 /datum/reagent/drink/sweettea
 	name = "Sweet Tea"
 	id = "sweettea"

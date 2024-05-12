@@ -40,6 +40,8 @@
 
 	say_list_type = /datum/say_list/mouse
 
+	hasthermals = FALSE
+
 	var/body_color //brown, gray, white and black, leave blank for random
 
 /mob/living/simple_mob/animal/passive/mouse/New()
@@ -79,7 +81,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M.visible_message(span_blue("\icon[src][bicon(src)] Squeek!"))
+			M.visible_message(span_blue("[icon2html(src,viewers(src))] Squeek!"))
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 

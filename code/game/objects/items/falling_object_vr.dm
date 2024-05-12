@@ -31,6 +31,14 @@
 	qdel(src)
 
 /atom/movable/proc/end_fall(var/crushing = FALSE)
+	if(istype(src, /mob/living))
+		var/mob/living/L = src
+		if(L.vore_selected && L.can_be_drop_pred && L.drop_vore)
+			for(var/mob/living/P in loc)
+				if(P.can_be_drop_prey && P.drop_vore)
+					L.feed_grabbed_to_self_falling_nom(L,P)
+					L.visible_message("<span class='vdanger'>\The [L] falls right onto \the [P]!</span>")
+
 	if(crushing)
 		for(var/atom/movable/AM in loc)
 			if(AM != src)

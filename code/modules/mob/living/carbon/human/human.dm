@@ -57,10 +57,17 @@
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
+	/* //Chomp REMOVE - this is done on mob/living/Destroy
 	for(var/organ in organs)
 		qdel(organ)
-	QDEL_NULL(nif)	//VOREStation Add
+	*/
+	if(nif)
+		QDEL_NULL(nif)	//VOREStation Add
 	worn_clothing.Cut()
+
+
+	if(vessel)
+		QDEL_NULL(vessel)
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -1211,7 +1218,7 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	if(species.icon_scale_x != 1 || species.icon_scale_y != 1)
+	if(species.icon_scale_x != DEFAULT_ICON_SCALE_X || species.icon_scale_y != DEFAULT_ICON_SCALE_Y)
 		update_transform()
 
 	if(example)						//VOREStation Edit begin
@@ -1615,6 +1622,12 @@
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
+	//RS ADD START
+	if(!digest_pain && (isbelly(src.loc) || istype(src.loc, /turf/simulated/floor/water/digestive_enzymes)))
+		var/obj/belly/b = src.loc
+		if(b.digest_mode == DM_DIGEST || b.digest_mode == DM_SELECT)
+			return FALSE
+	//RS ADD END
 	for(var/datum/modifier/M in modifiers)
 		if(M.pain_immunity == TRUE)
 			return 0

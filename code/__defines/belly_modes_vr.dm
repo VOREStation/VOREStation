@@ -21,6 +21,7 @@
 #define DM_FLAG_AFFECTWORN		0x10
 #define DM_FLAG_JAMSENSORS		0x20
 #define DM_FLAG_FORCEPSAY		0x40
+#define DM_FLAG_SPARELIMB		0x80
 
 //Item related modes
 #define IM_HOLD									"Hold"
@@ -36,3 +37,9 @@
 #define MIN_NUTRITION_TO_GAIN	450	// Above this amount you will gain weight
 #define MAX_NUTRITION_TO_LOSE	50	// Below this amount you will lose weight
 // #define WEIGHT_PER_NUTRITION	0.0285 // Tuned so 1050 (nutrition for average mob) = 30 lbs
+
+// Drain modes
+#define DR_NORMAL								"Normal"
+#define DR_SLEEP 								"Sleep"
+#define DR_FAKE									"False Sleep"
+#define DR_WEIGHT								"Weight Drain"

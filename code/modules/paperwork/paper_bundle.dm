@@ -163,6 +163,8 @@
 				page--
 				playsound(src, "pageturn", 50, 1)
 		if(href_list["remove"])
+			if(!pages.len)
+				return
 			var/obj/item/weapon/W = pages[page]
 			usr.put_in_hands(W)
 			pages.Remove(pages[page])

@@ -237,7 +237,7 @@
 	cut_overlays()
 
 	if(!hose_overlay)
-		hose_overlay = new icon(icon, "[icon_state]+hose")
+		hose_overlay = new/icon(icon, "[icon_state]+hose")
 
 	if(InputSocket.get_pairing())
 		add_overlay(hose_overlay)

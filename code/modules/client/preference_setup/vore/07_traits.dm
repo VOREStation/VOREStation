@@ -607,6 +607,8 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 						break varconflict
 
 					for(var/V in instance.var_changes)
+						if(V == "flags")
+							continue
 						if(V in instance_test.var_changes)
 							conflict = instance_test.name
 							break varconflict
