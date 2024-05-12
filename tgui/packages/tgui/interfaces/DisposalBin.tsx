@@ -63,14 +63,14 @@ export const DisposalBin = (props) => {
                 icon="toggle-off"
                 disabled={isAI || panel_open}
                 content="Disengaged"
-                selected={flushing ? null : 'selected'}
+                selected={flushing ? null : true}
                 onClick={() => act('disengageHandle')}
               />
               <Button
                 icon="toggle-on"
                 disabled={isAI || panel_open}
                 content="Engaged"
-                selected={flushing ? 'selected' : null}
+                selected={flushing ? true : null}
                 onClick={() => act('engageHandle')}
               />
             </LabeledList.Item>
@@ -79,14 +79,14 @@ export const DisposalBin = (props) => {
                 icon="toggle-off"
                 disabled={mode === -1}
                 content="Off"
-                selected={mode ? null : 'selected'}
+                selected={mode ? null : true}
                 onClick={() => act('pumpOff')}
               />
               <Button
                 icon="toggle-on"
                 disabled={mode === -1}
                 content="On"
-                selected={mode ? 'selected' : null}
+                selected={mode ? true : null}
                 onClick={() => act('pumpOn')}
               />
             </LabeledList.Item>

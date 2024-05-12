@@ -1330,9 +1330,9 @@ const VoreContentsPanel = (props) => {
                 width="64px"
                 color={thing.absorbed ? 'purple' : stats[thing.stat]}
                 style={{
-                  'vertical-align': 'middle',
-                  'margin-right': '5px',
-                  'border-radius': '20px',
+                  verticalAlign: 'middle',
+                  marginRight: '5px',
+                  borderRadius: '20px',
                 }}
                 onClick={() =>
                   act(

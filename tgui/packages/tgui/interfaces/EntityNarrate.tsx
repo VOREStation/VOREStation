@@ -79,7 +79,6 @@ export const EntitySelection = (props) => {
           buttons={
             <Button
               selected={selection_mode}
-              fill
               content="Multi-Selection"
               onClick={() => act('change_mode_multi')}
             />

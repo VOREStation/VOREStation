@@ -250,7 +250,6 @@ const GeneralMobSettings = (props) => {
               buttons={
                 <Button
                   selected={data.use_custom_ai}
-                  fill
                   content="Use Custom AI"
                   onClick={() => act('toggle_custom_ai')}
                 />
@@ -345,7 +344,6 @@ const GeneralMobSettings = (props) => {
         </Flex>
       </Section>
       <Button
-        fill
         content="Spawn"
         color="teal"
         onClick={() =>

@@ -219,7 +219,7 @@ export const Communicator = (props) => {
                     >
                       <Button
                         style={{
-                          'border-radius': '10%',
+                          borderRadius: '10%',
                           border: '1px solid #000',
                         }}
                         width="64px"
