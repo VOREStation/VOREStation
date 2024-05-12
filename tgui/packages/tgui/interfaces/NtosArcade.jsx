@@ -88,24 +88,27 @@ export const NtosArcade = (props) => {
               tooltipPosition="top"
               disabled={data.GameActive === 0 || data.PauseState === 1}
               onClick={() => act('Attack')}
-              content="Attack!"
-            />
+            >
+              Attack!
+            </Button>
             <Button
               icon="band-aid"
               tooltip="Heal yourself!"
               tooltipPosition="top"
               disabled={data.GameActive === 0 || data.PauseState === 1}
               onClick={() => act('Heal')}
-              content="Heal!"
-            />
+            >
+              Heal!
+            </Button>
             <Button
               icon="magic"
               tooltip="Recharge your magic!"
               tooltipPosition="top"
               disabled={data.GameActive === 0 || data.PauseState === 1}
               onClick={() => act('Recharge_Power')}
-              content="Recharge!"
-            />
+            >
+              Recharge!
+            </Button>
           </Box>
           <Box>
             <Button
@@ -114,16 +117,18 @@ export const NtosArcade = (props) => {
               tooltipPosition="top"
               disabled={data.GameActive === 1}
               onClick={() => act('Start_Game')}
-              content="Begin Game"
-            />
+            >
+              Begin Game
+            </Button>
             <Button
               icon="ticket-alt"
               tooltip="Claim at your local Arcade Computer for Prizes!"
               tooltipPosition="top"
               disabled={data.GameActive === 1}
               onClick={() => act('Dispense_Tickets')}
-              content="Claim Tickets"
-            />
+            >
+              Claim Tickets
+            </Button>
           </Box>
           <Box color={data.TicketCount >= 1 ? 'good' : 'normal'}>
             Earned Tickets: {data.TicketCount}

@@ -29,30 +29,34 @@ export const NoticeBoard = (props) => {
                   {(notice.isphoto && (
                     <Button
                       icon="image"
-                      content="Look"
                       onClick={() => act('look', { ref: notice.ref })}
-                    />
+                    >
+                      Look
+                    </Button>
                   )) ||
                     (notice.ispaper && (
                       <>
                         <Button
                           icon="sticky-note"
-                          content="Read"
                           onClick={() => act('read', { ref: notice.ref })}
-                        />
+                        >
+                          Read
+                        </Button>
                         <Button
                           icon="pen"
-                          content="Write"
                           onClick={() => act('write', { ref: notice.ref })}
-                        />
+                        >
+                          Write
+                        </Button>
                       </>
                     )) ||
                     'Unknown Entity'}
                   <Button
                     icon="minus-circle"
-                    content="Remove"
                     onClick={() => act('remove', { ref: notice.ref })}
-                  />
+                  >
+                    Remove
+                  </Button>
                 </LabeledList.Item>
               ))}
             </LabeledList>

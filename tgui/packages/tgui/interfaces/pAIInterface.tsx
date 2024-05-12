@@ -24,10 +24,11 @@ export const pAIInterface = (props) => {
           {emotions.map((emote) => (
             <Button
               key={emote.id}
-              content={emote.name}
               selected={emote.id === current_emotion}
               onClick={() => act('image', { image: emote.id })}
-            />
+            >
+              {emote.name}
+            </Button>
           ))}
         </Section>
         <Section title={'Software (Available RAM: ' + available_ram + ')'}>
@@ -36,10 +37,11 @@ export const pAIInterface = (props) => {
               {bought.map((app) => (
                 <Button
                   key={app.id}
-                  content={app.name}
                   selected={app.on}
                   onClick={() => act('software', { software: app.id })}
-                />
+                >
+                  {app.name}
+                </Button>
               ))}
             </LabeledList.Item>
             <LabeledList.Divider />
@@ -47,10 +49,11 @@ export const pAIInterface = (props) => {
               {not_bought.map((app) => (
                 <Button
                   key={app.id}
-                  content={app.name + ' (' + app.ram + ')'}
                   disabled={app.ram > available_ram}
                   onClick={() => act('purchase', { purchase: app.id })}
-                />
+                >
+                  {app.name + ' (' + app.ram + ')'}
+                </Button>
               ))}
             </LabeledList.Item>
           </LabeledList>

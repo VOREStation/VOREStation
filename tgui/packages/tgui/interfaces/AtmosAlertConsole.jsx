@@ -18,7 +18,6 @@ export const AtmosAlertConsole = (props) => {
               <li key={alert.name}>
                 <Button
                   icon="times"
-                  x
                   color="bad"
                   onClick={() => act('clear', { ref: alert.ref })}
                 >
