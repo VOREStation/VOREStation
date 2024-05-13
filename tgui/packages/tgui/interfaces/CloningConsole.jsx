@@ -1,5 +1,6 @@
 import { round } from 'common/math';
 
+import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
   Box,
@@ -307,7 +308,7 @@ const CloningConsoleMain = (props) => {
                 mr="0.5rem"
               >
                 <img
-                  src={'pod_' + pod.status + '.gif'}
+                  src={resolveAsset('pod_' + pod.status + '.gif')}
                   style={{
                     width: '100%',
                     '-ms-interpolation-mode': 'nearest-neighbor',
