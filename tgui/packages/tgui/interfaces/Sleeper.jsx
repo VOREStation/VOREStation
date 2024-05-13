@@ -89,17 +89,16 @@ const SleeperOccupant = (props) => {
           <Button
             icon={auto_eject_dead ? 'toggle-on' : 'toggle-off'}
             selected={auto_eject_dead}
-            content={auto_eject_dead ? 'On' : 'Off'}
             onClick={() =>
               act('auto_eject_dead_' + (auto_eject_dead ? 'off' : 'on'))
             }
-          />
-          <Button
-            icon="user-slash"
-            content="Eject"
-            onClick={() => act('ejectify')}
-          />
-          <Button content={stasis} onClick={() => act('changestasis')} />
+          >
+            {auto_eject_dead ? 'On' : 'Off'}
+          </Button>
+          <Button icon="user-slash" onClick={() => act('ejectify')}>
+            Eject
+          </Button>
+          <Button onClick={() => act('changestasis')}>{stasis}</Button>
         </>
       }
     >
@@ -197,15 +196,17 @@ const SleeperDialysisPump = (props) => {
             disabled={!isBeakerLoaded || beakerFreeSpace <= 0}
             selected={canDialysis}
             icon={canDialysis ? 'toggle-on' : 'toggle-off'}
-            content={canDialysis ? 'Active' : 'Inactive'}
             onClick={() => act(actToDo)}
-          />
+          >
+            {canDialysis ? 'Active' : 'Inactive'}
+          </Button>
           <Button
             disabled={!isBeakerLoaded}
             icon="eject"
-            content="Eject"
             onClick={() => act('removebeaker')}
-          />
+          >
+            Eject
+          </Button>
         </>
       }
     >
@@ -286,7 +287,6 @@ const SleeperChemicals = (props) => {
                       occupant.stat === 2
                     }
                     icon="syringe"
-                    content={a}
                     mb="0"
                     height="19px"
                     onClick={() =>
@@ -295,7 +295,9 @@ const SleeperChemicals = (props) => {
                         amount: a,
                       })
                     }
-                  />
+                  >
+                    {a}
+                  </Button>
                 ))}
               </Flex>
             </Section>
@@ -318,11 +320,9 @@ const SleeperEmpty = (props) => {
           No occupant detected.
           {(isBeakerLoaded && (
             <Box>
-              <Button
-                icon="eject"
-                content="Remove Beaker"
-                onClick={() => act('removebeaker')}
-              />
+              <Button icon="eject" onClick={() => act('removebeaker')}>
+                Remove Beaker
+              </Button>
             </Box>
           )) ||
             null}

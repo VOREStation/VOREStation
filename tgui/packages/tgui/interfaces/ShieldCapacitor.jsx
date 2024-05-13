@@ -33,9 +33,10 @@ export const ShieldCapacitor = (props) => {
             <Button
               icon="power-off"
               selected={active}
-              content={active ? 'Online' : 'Offline'}
               onClick={() => act('toggle')}
-            />
+            >
+              {active ? 'Online' : 'Offline'}
+            </Button>
           }
         >
           <LabeledList>

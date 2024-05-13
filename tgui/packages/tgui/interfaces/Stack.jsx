@@ -83,14 +83,15 @@ const Multipliers = (props) => {
     if (maxM >= multiplier) {
       finalResult.push(
         <Button
-          content={multiplier * recipe.res_amount + 'x'}
           onClick={() =>
             act('make', {
               ref: recipe.ref,
               multiplier: multiplier,
             })
           }
-        />,
+        >
+          {multiplier * recipe.res_amount + 'x'}
+        </Button>,
       );
     }
   }
@@ -98,14 +99,15 @@ const Multipliers = (props) => {
   if (multipliers.indexOf(maxM) === -1) {
     finalResult.push(
       <Button
-        content={maxM * recipe.res_amount + 'x'}
         onClick={() =>
           act('make', {
             ref: recipe.ref,
             multiplier: maxM,
           })
         }
-      />,
+      >
+        {maxM * recipe.res_amount + 'x'}
+      </Button>,
     );
   }
 
@@ -142,14 +144,15 @@ const Recipe = (props) => {
               fluid
               disabled={!maxMultiplier}
               icon="wrench"
-              content={buttonName}
               onClick={() =>
                 act('make', {
                   ref: recipe.ref,
                   multiplier: 1,
                 })
               }
-            />
+            >
+              {buttonName}
+            </Button>
           </Table.Cell>
           {max_res_amount > 1 && maxMultiplier > 1 && (
             <Table.Cell collapsing>

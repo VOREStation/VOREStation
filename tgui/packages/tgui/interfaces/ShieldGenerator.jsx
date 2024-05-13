@@ -135,10 +135,11 @@ const ShieldGeneratorContent = (props) => {
         buttons={
           <Button
             icon="power-off"
-            content={active ? 'Online' : 'Offline'}
             selected={active}
             onClick={() => act('toggle')}
-          />
+          >
+            {active ? 'Online' : 'Offline'}
+          </Button>
         }
       >
         <LabeledList>

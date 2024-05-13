@@ -165,11 +165,12 @@ const ResearchServerData = (props) => {
                 icon="trash"
                 confirmIcon="trash"
                 color="red"
-                content="Reset"
                 onClick={() =>
                   act('reset_tech', { server: server.ref, tech: tech.id })
                 }
-              />
+              >
+                Reset
+              </Button.Confirm>
             }
           />
         ))}
@@ -184,11 +185,12 @@ const ResearchServerData = (props) => {
                 icon="trash"
                 confirmIcon="trash"
                 color="red"
-                content="Delete"
                 onClick={() =>
                   act('reset_design', { server: server.ref, design: design.id })
                 }
-              />
+              >
+                Delete
+              </Button.Confirm>
             }
           />
         ))}
@@ -215,18 +217,17 @@ const ResearchServerTransfer = (props) => {
           <Button.Confirm
             fluid
             color="bad"
-            content={
-              <Box>
-                Transfer from {server.name} To {newserver.name}
-              </Box>
-            }
             onClick={() =>
               act('transfer_data', {
                 server: server.ref,
                 target: newserver.ref,
               })
             }
-          />
+          >
+            <Box>
+              Transfer from {server.name} To {newserver.name}
+            </Box>
+          </Button.Confirm>
         </Box>
       ))}
     </Section>

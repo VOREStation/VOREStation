@@ -21,7 +21,6 @@ const NukeKeypad = (props) => {
                 bold
                 key={key}
                 mb="6px"
-                content={key}
                 textAlign="center"
                 fontSize="40px"
                 height="50px"
@@ -33,7 +32,9 @@ const NukeKeypad = (props) => {
                   (code === 'ERROR' && key !== 'R' && 1)
                 }
                 onClick={() => act('type', { digit: key })}
-              />
+              >
+                {key}
+              </Button>
             ))}
           </Table.Cell>
         ))}
