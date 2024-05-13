@@ -194,7 +194,8 @@ var/list/admin_verbs_spawn = list(
 	/client/proc/map_template_upload,
 	/client/proc/map_template_load_on_new_z,
 	/client/proc/eventkit_open_mob_spawner,
-	/client/proc/generic_structure //VOREStation Add
+	/client/proc/generic_structure, //VOREStation Add
+	/client/proc/generic_item //VOREStation Add
 	)
 
 var/list/admin_verbs_server = list(

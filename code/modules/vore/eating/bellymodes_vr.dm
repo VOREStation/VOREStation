@@ -248,7 +248,11 @@
 			items_preserved |= I
 		if(IM_DIGEST_FOOD)
 			if(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I, /obj/item/organ))
-				did_an_item = digest_item(I)
+				var/obj/item/organ/R = I
+				if(istype(R) && R.robotic >= ORGAN_ROBOT)
+					items_preserved |= I
+				else
+					did_an_item = digest_item(I)
 			else
 				items_preserved |= I
 		if(IM_DIGEST)
@@ -289,6 +293,13 @@
 	var/personal_nutrition_modifier = M.get_digestion_nutrition_modifier()
 	var/pred_digestion_efficiency = owner.get_digestion_efficiency_modifier()
 
+	if(ishuman(M) && (mode_flags & DM_FLAG_SPARELIMB) && M.digest_leave_remains)
+		var/mob/living/carbon/human/H = M
+		var/list/detachable_limbs = H.get_modular_limbs(return_first_found = FALSE, validate_proc = /obj/item/organ/external/proc/can_remove_modular_limb)
+		for(var/obj/item/organ/external/E in detachable_limbs)
+			if(H.species.name != SPECIES_PROTEAN)
+				E.removed(H)
+				E.dropInto(src)
 	if((mode_flags & DM_FLAG_LEAVEREMAINS) && M.digest_leave_remains)
 		handle_remains_leaving(M)
 	digestion_death(M)

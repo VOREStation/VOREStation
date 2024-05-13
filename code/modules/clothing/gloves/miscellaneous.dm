@@ -172,3 +172,58 @@
 	name = "water wings"
 	desc = "Swim aids designed to help a wearer float in water and learn to swim."
 	icon_state = "waterwings"
+
+/obj/item/clothing/gloves/watch
+	name = "wristwatch"
+	desc = "A cheap plastic quartz-based wristwatch. Painfully archaic by modern standards, but there's something charming about it all the same."
+	icon_state = "wristwatch_basic"
+	siemens_coefficient = 1
+	gender = "neuter"
+
+/obj/item/clothing/gloves/watch/examine(mob/user)
+	. = ..()
+
+	if(Adjacent(user))
+		. += "<span class='notice'>The current station time is [stationtime2text()].</span>"
+
+/obj/item/clothing/gloves/watch/silver
+	name = "silver wristwatch"
+	desc = "A humble silver (or maybe chrome) plated wristwatch. It's quite archaic, but nonetheless classy in its own way."
+	icon_state = "wristwatch_silver"
+
+/obj/item/clothing/gloves/watch/gold
+	name = "gold wristwatch"
+	desc = "A very fancy gold-plated wristwatch. For when you want to casually show off just how wealthy you are. It even tells the time!"
+	icon_state = "wristwatch_gold"
+
+/obj/item/clothing/gloves/watch/survival
+	name = "survival watch"
+	desc = "An overengineered wristwatch that purports to be both space and water proof, and includes a compass, micro GPS beacon, and temperature and pressure sensors. The beacon is off by default, and can only transmit its location: it cannot scan for other signals."
+	description_fluff = "Hold ALT whilst left-clicking on the survival watch to toggle the status of its micro-beacon."
+	icon_state = "wristwatch_survival"
+
+	var/obj/item/device/gps/gps = null
+
+/obj/item/clothing/gloves/watch/survival/examine(mob/user)
+	. = ..()
+
+	if(Adjacent(user) && src.loc == user)
+		. += "<span class='notice'>You are currently facing [dir2text(user.dir)]. The micro beacon is [gps.tracking ? "on" : "off"].</span>"
+		var/TB = src.loc.loc
+		if(istype(TB, /turf/simulated))	//no point returning atmospheric data from unsimulated tiles (they don't track pressure anyway, only temperature)
+			var/turf/simulated/T = TB
+			var/datum/gas_mixture/env = T.return_air()
+			. += "<span class='notice'>Pressure: [env.return_pressure()]kPa / Temperature: [env.temperature]K </span>"
+
+/obj/item/clothing/gloves/watch/survival/New()
+	gps = new/obj/item/device/gps/watch(src)
+
+/obj/item/device/gps/watch
+	gps_tag = "SRV-WTCH"
+
+/obj/item/clothing/gloves/watch/survival/AltClick(mob/user)
+	. = ..()
+
+	if(Adjacent(user))
+		gps.tracking = !gps.tracking
+		to_chat(user,"<span class='notice'>You turn the micro beacon [gps.tracking ? "on" : "off"].</span>")

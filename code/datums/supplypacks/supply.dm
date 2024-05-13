@@ -57,6 +57,7 @@
 			/obj/item/weapon/reagent_containers/spray/cleaner,
 			/obj/item/weapon/reagent_containers/glass/rag,
 			/obj/item/weapon/grenade/chem_grenade/cleaner = 3,
+			/obj/item/clothing/glasses/hud/janitor,
 			/obj/structure/mopbucket
 			)
 	cost = 10

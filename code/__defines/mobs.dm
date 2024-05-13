@@ -28,6 +28,7 @@
 #define BORGXRAY  0x4
 #define BORGMATERIAL  0x8
 #define BORGANOMALOUS  0x10
+#define BORGJAN  0x20
 
 #define STANCE_ATTACK    11 // Backwards compatability
 #define STANCE_ATTACKING 12 // Ditto
@@ -401,18 +402,19 @@
 #define VIS_ADMIN3			20
 
 #define VIS_MESONS			21
+#define VIS_JANHUD			22
 
-#define VIS_TURFS			22
-#define VIS_OBJS			23
-#define VIS_MOBS		    24
+#define VIS_TURFS			23
+#define VIS_OBJS			24
+#define VIS_MOBS		    25
 
-#define VIS_BUILDMODE		25
+#define VIS_BUILDMODE		26
 
-#define VIS_CLOAKED			26
+#define VIS_CLOAKED			27
 
-#define VIS_STATUS			27
+#define VIS_STATUS			28
 
-#define VIS_COUNT			27 //Must be highest number from above.
+#define VIS_COUNT			28 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100
