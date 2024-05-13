@@ -1,5 +1,6 @@
 import { Component } from 'react';
 
+import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Slider, Tooltip } from '.';
 
@@ -123,7 +124,9 @@ export class NanoMap extends Component {
     const { dragging, offsetX, offsetY, zoom = 1 } = this.state;
     const { children } = this.props;
 
-    const mapUrl = config.map + '_nanomap_z' + config.mapZLevel + '.png';
+    const mapUrl = resolveAsset(
+      config.map + '_nanomap_z' + config.mapZLevel + '.png',
+    );
     // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
     const mapSize = this.props.zoomScale * zoom + 'px';
     const newStyle = {

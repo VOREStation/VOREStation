@@ -80,7 +80,7 @@
 /obj/item/modular_computer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("PC_exit")
 			kill_program()
