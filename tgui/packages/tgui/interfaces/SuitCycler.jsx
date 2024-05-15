@@ -76,7 +76,9 @@ const SuitCyclerContent = (props) => {
       <Section
         title="Storage"
         buttons={
-          <Button icon="lock" content="Lock" onClick={() => act('lock')} />
+          <Button icon="lock" onClick={() => act('lock')}>
+            Lock
+          </Button>
         }
       >
         {!!(occupied && safeties) && (
@@ -87,44 +89,45 @@ const SuitCyclerContent = (props) => {
               fluid
               icon="eject"
               color="red"
-              content="Eject Entity"
               onClick={() => act('eject_guy')}
-            />
+            >
+              Eject Entity
+            </Button>
           </NoticeBox>
         )}
         <LabeledList>
           <LabeledList.Item label="Helmet">
             <Button
               icon={helmet ? 'square' : 'square-o'}
-              content={helmet || 'Empty'}
               disabled={!helmet}
               onClick={() =>
                 act('dispense', {
                   item: 'helmet',
                 })
               }
-            />
+            >
+              {helmet || 'Empty'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Suit">
             <Button
               icon={suit ? 'square' : 'square-o'}
-              content={suit || 'Empty'}
               disabled={!suit}
               onClick={() =>
                 act('dispense', {
                   item: 'suit',
                 })
               }
-            />
+            >
+              {suit || 'Empty'}
+            </Button>
           </LabeledList.Item>
           {can_repair && damage ? (
             <LabeledList.Item label="Suit Damage">
               {damage}
-              <Button
-                icon="wrench"
-                content="Repair"
-                onClick={() => act('repair_suit')}
-              />
+              <Button icon="wrench" onClick={() => act('repair_suit')}>
+                Repair
+              </Button>
             </LabeledList.Item>
           ) : null}
         </LabeledList>
@@ -156,12 +159,9 @@ const SuitCyclerContent = (props) => {
             />
           </LabeledList.Item>
         </LabeledList>
-        <Button
-          mt={1}
-          fluid
-          content="Customize"
-          onClick={() => act('apply_paintjob')}
-        />
+        <Button mt={1} fluid onClick={() => act('apply_paintjob')}>
+          Customize
+        </Button>
       </Section>
       <Section title="UV Decontamination">
         <LabeledList>
@@ -212,10 +212,11 @@ const SuitCyclerLocked = (props) => {
       <Box>
         <Button
           icon="unlock"
-          content="[Unlock]"
           disabled={!userHasAccess}
           onClick={() => act('lock')}
-        />
+        >
+          [Unlock]
+        </Button>
       </Box>
     </Section>
   );

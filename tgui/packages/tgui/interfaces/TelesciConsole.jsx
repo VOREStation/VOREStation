@@ -62,14 +62,15 @@ export const TelesciConsoleContent = (props) => {
           icon="eject"
           disabled={!insertedGps}
           onClick={() => act('ejectGPS')}
-          content="Eject GPS"
-        />
+        >
+          Eject GPS
+        </Button>
       }
     >
       <NoticeBox info>
         {(cooldown && (
           <Box>
-            Telepad is recharging. Please wait{' '}
+            Telepad is recharging. Please wait
             <AnimatedNumber value={cooldown} /> seconds.
           </Box>
         )) || <Box>{tempMsg}</Box>}
@@ -103,31 +104,23 @@ export const TelesciConsoleContent = (props) => {
             <Button
               key={z}
               icon="check-circle"
-              content={z}
               selected={currentZ === z}
               onClick={() => act('setz', { setz: z })}
-            />
+            >
+              {z}
+            </Button>
           ))}
         </LabeledList.Item>
         <LabeledList.Item label="Controls">
-          <Button
-            icon="share"
-            iconRotation={-90}
-            onClick={() => act('send')}
-            content="Send"
-          />
-          <Button
-            icon="share"
-            iconRotation={90}
-            onClick={() => act('receive')}
-            content="Receive"
-          />
-          <Button
-            icon="sync"
-            iconRotation={90}
-            onClick={() => act('recal')}
-            content="Recalibrate"
-          />
+          <Button icon="share" iconRotation={-90} onClick={() => act('send')}>
+            Send
+          </Button>
+          <Button icon="share" iconRotation={90} onClick={() => act('receive')}>
+            Receive
+          </Button>
+          <Button icon="sync" iconRotation={90} onClick={() => act('recal')}>
+            Recalibrate
+          </Button>
         </LabeledList.Item>
       </LabeledList>
       {(lastTeleData && (

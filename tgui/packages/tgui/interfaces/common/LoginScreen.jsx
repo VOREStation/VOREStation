@@ -37,45 +37,45 @@ export const LoginScreen = (_properties) => {
       </Box>
       <Box color="label" my="1rem">
         ID:
-        <Button
-          icon="id-card"
-          content={scan ? scan : '----------'}
-          ml="0.5rem"
-          onClick={() => act('scan')}
-        />
+        <Button icon="id-card" ml="0.5rem" onClick={() => act('scan')}>
+          {scan ? scan : '----------'}
+        </Button>
       </Box>
       <Button
         icon="sign-in-alt"
         disabled={!scan}
-        content="Login"
         onClick={() =>
           act('login', {
             login_type: 1,
           })
         }
-      />
+      >
+        Login
+      </Button>
 
       {!!isAI && (
         <Button
           icon="sign-in-alt"
-          content="Login as AI"
           onClick={() =>
             act('login', {
               login_type: 2,
             })
           }
-        />
+        >
+          Login as AI
+        </Button>
       )}
       {!!isRobot && (
         <Button
           icon="sign-in-alt"
-          content="Login as Cyborg"
           onClick={() =>
             act('login', {
               login_type: 3,
             })
           }
-        />
+        >
+          Login as Cyborg
+        </Button>
       )}
       <Box>
         <SpecialMachineInteraction specialType={machineType} />
@@ -99,7 +99,6 @@ export const SpecialMachineInteraction = (_properties) => {
     return (
       <Button
         position="relative"
-        content="Send Automated Fax Request"
         bottom="152px"
         left="188px"
         icon="share-square"
@@ -107,7 +106,9 @@ export const SpecialMachineInteraction = (_properties) => {
         tooltip={
           "Automated Fax Requests do not require staff to post on discord, but won't ping the related roles."
         }
-      />
+      >
+        Send Automated Fax Request
+      </Button>
     );
   }
 };

@@ -148,14 +148,15 @@ export const SettingsGeneral = (props) => {
             </Stack.Item>
             <Stack.Item>
               <Button
-                content="Custom font"
                 icon={freeFont ? 'lock-open' : 'lock'}
                 color={freeFont ? 'good' : 'bad'}
                 ml={1}
                 onClick={() => {
                   setFreeFont(!freeFont);
                 }}
-              />
+              >
+                Custom font
+              </Button>
             </Stack.Item>
           </Stack>
         </LabeledList.Item>
@@ -669,11 +670,12 @@ const TextHighlightSettings = (props) => {
               <Button
                 color="transparent"
                 icon="plus"
-                content="Add Highlight Setting"
                 onClick={() => {
                   dispatch(addHighlightSetting());
                 }}
-              />
+              >
+                Add Highlight Setting
+              </Button>
             </Flex.Item>
           )}
         </Flex>
@@ -709,7 +711,6 @@ const TextHighlightSetting = (props) => {
       <Flex mb={1} color="label" align="baseline">
         <Flex.Item grow>
           <Button
-            content="Delete"
             color="transparent"
             icon="times"
             onClick={() =>
@@ -719,12 +720,13 @@ const TextHighlightSetting = (props) => {
                 }),
               )
             }
-          />
+          >
+            Delete
+          </Button>
         </Flex.Item>
         <Flex.Item>
           <Button.Checkbox
             checked={highlightBlacklist}
-            content="Highlight Blacklist"
             tooltip="If this option is selected, you can blacklist senders not to highlight their messages."
             mr="5px"
             onClick={() =>
@@ -735,12 +737,13 @@ const TextHighlightSetting = (props) => {
                 }),
               )
             }
-          />
+          >
+            Highlight Blacklist
+          </Button.Checkbox>
         </Flex.Item>
         <Flex.Item>
           <Button.Checkbox
             checked={highlightWholeMessage}
-            content="Whole Message"
             tooltip="If this option is selected, the entire message will be highlighted in yellow."
             mr="5px"
             onClick={() =>
@@ -751,11 +754,12 @@ const TextHighlightSetting = (props) => {
                 }),
               )
             }
-          />
+          >
+            Whole Message
+          </Button.Checkbox>
         </Flex.Item>
         <Flex.Item>
           <Button.Checkbox
-            content="Exact"
             checked={matchWord}
             tooltipPosition="bottom-start"
             tooltip="If this option is selected, only exact matches (no extra letters before or after) will trigger. Not compatible with punctuation. Overriden if regex is used."
@@ -767,11 +771,12 @@ const TextHighlightSetting = (props) => {
                 }),
               )
             }
-          />
+          >
+            Exact
+          </Button.Checkbox>
         </Flex.Item>
         <Flex.Item>
           <Button.Checkbox
-            content="Case"
             tooltip="If this option is selected, the highlight will be case-sensitive."
             checked={matchCase}
             onClick={() =>
@@ -782,7 +787,9 @@ const TextHighlightSetting = (props) => {
                 }),
               )
             }
-          />
+          >
+            Case
+          </Button.Checkbox>
         </Flex.Item>
         <Flex.Item shrink={0}>
           <ColorBox mr={1} color={highlightColor} />

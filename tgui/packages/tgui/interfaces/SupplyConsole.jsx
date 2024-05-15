@@ -33,10 +33,11 @@ const viewCrateContents = (modal) => {
       buttons={
         <Button
           icon="shopping-cart"
-          content={'Buy - ' + cost + ' points'}
           disabled={cost > supply_points}
           onClick={() => act('request_crate', { ref: ref })}
-        />
+        >
+          {'Buy - ' + cost + ' points'}
+        </Button>
       }
     >
       <Section
@@ -81,9 +82,10 @@ const SupplyConsoleShuttleStatus = (props) => {
       shuttle_buttons = (
         <Button
           icon="rocket"
-          content="Send Away"
           onClick={() => act('send_shuttle', { mode: 'send_away' })}
-        />
+        >
+          Send Away
+        </Button>
       );
     } else if (
       shuttle.launch === 2 &&
@@ -92,17 +94,19 @@ const SupplyConsoleShuttleStatus = (props) => {
       shuttle_buttons = (
         <Button
           icon="ban"
-          content="Cancel Launch"
           onClick={() => act('send_shuttle', { mode: 'cancel_shuttle' })}
-        />
+        >
+          Cancel Launch
+        </Button>
       );
     } else if (shuttle.launch === 1 && shuttle.mode === 5) {
       shuttle_buttons = (
         <Button
           icon="rocket"
-          content="Send Shuttle"
           onClick={() => act('send_shuttle', { mode: 'send_to_station' })}
-        />
+        >
+          Send Shuttle
+        </Button>
       );
     }
     if (shuttle.force) {
@@ -127,11 +131,12 @@ const SupplyConsoleShuttleStatus = (props) => {
                 {showShuttleForce ? (
                   <Button
                     icon="exclamation-triangle"
-                    content="Force Launch"
                     onClick={() =>
                       act('send_shuttle', { mode: 'force_shuttle' })
                     }
-                  />
+                  >
+                    Force Launch
+                  </Button>
                 ) : null}
               </>
             }
@@ -230,10 +235,11 @@ const SupplyConsoleMenuOrder = (props) => {
               <Button
                 key={category}
                 fluid
-                content={category}
                 selected={category === activeCategory}
                 onClick={() => setActiveCategory(category)}
-              />
+              >
+                {category}
+              </Button>
             ))}
           </Section>
         </Stack.Item>
@@ -247,26 +253,29 @@ const SupplyConsoleMenuOrder = (props) => {
                       fluid
                       icon="shopping-cart"
                       ellipsis
-                      content={pack.name}
                       color={pack.cost > supply_points ? 'red' : null}
                       onClick={() => act('request_crate', { ref: pack.ref })}
-                    />
+                    >
+                      {pack.name}
+                    </Button>
                   </Stack.Item>
                   <Stack.Item>
                     <Button
-                      content="#"
                       color={pack.cost > supply_points ? 'red' : null}
                       onClick={() =>
                         act('request_crate_multi', { ref: pack.ref })
                       }
-                    />
+                    >
+                      #
+                    </Button>
                   </Stack.Item>
                   <Stack.Item>
                     <Button
-                      content="C"
                       color={pack.cost > supply_points ? 'red' : null}
                       onClick={() => act('view_crate', { crate: pack.ref })}
-                    />
+                    >
+                      C
+                    </Button>
                   </Stack.Item>
                   <Stack.Item grow={1}>{pack.cost} points</Stack.Item>
                 </Stack>
@@ -284,7 +293,9 @@ const SupplyConsoleMenuOrder = (props) => {
                   <Button
                     fluid
                     color="green"
-                    content={"Buy - " + pack.cost + " points"} />
+                  >
+                    {"Buy - " + pack.cost + " points"}
+                  </Button>
                 </center>
               </Collapsible>
             ))} */}
@@ -317,9 +328,10 @@ const SupplyConsoleMenuOrderList = (props) => {
           fluid
           color="red"
           icon="trash"
-          content="Clear all requests"
           onClick={() => act('clear_all_requests')}
-        />
+        >
+          Clear all requests
+        </Button>
       ) : null}
       {displayedOrders.map((order, i) => (
         <Section
@@ -330,9 +342,10 @@ const SupplyConsoleMenuOrderList = (props) => {
               <Button
                 color="red"
                 icon="trash"
-                content="Delete Record"
                 onClick={() => act('delete_order', { ref: order.ref })}
-              />
+              >
+                Delete Record
+              </Button>
             ) : null
           }
         >
@@ -346,7 +359,6 @@ const SupplyConsoleMenuOrderList = (props) => {
                     order_auth ? (
                       <Button
                         icon="pen"
-                        content="Edit"
                         onClick={() => {
                           act('edit_order_value', {
                             ref: order.ref,
@@ -354,7 +366,9 @@ const SupplyConsoleMenuOrderList = (props) => {
                             default: field.entry,
                           });
                         }}
-                      />
+                      >
+                        Edit
+                      </Button>
                     ) : null
                   }
                 >
@@ -370,15 +384,17 @@ const SupplyConsoleMenuOrderList = (props) => {
             <>
               <Button
                 icon="check"
-                content="Approve"
                 disabled={order.cost > supply_points}
                 onClick={() => act('approve_order', { ref: order.ref })}
-              />
+              >
+                Approve
+              </Button>
               <Button
                 icon="times"
-                content="Deny"
                 onClick={() => act('deny_order', { ref: order.ref })}
-              />
+              >
+                Deny
+              </Button>
             </>
           ) : null}
         </Section>
@@ -408,7 +424,6 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                   order_auth ? (
                     <Button
                       icon="pen"
-                      content="Edit"
                       onClick={() =>
                         act('export_edit', {
                           ref: r.ref,
@@ -416,7 +431,9 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                           default: title.entry,
                         })
                       }
-                    />
+                    >
+                      Edit
+                    </Button>
                   ) : null
                 }
               >
@@ -437,7 +454,6 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                       <>
                         <Button
                           icon="pen"
-                          content="Edit"
                           onClick={() =>
                             act('export_edit_field', {
                               ref: r.ref,
@@ -446,18 +462,21 @@ const SupplyConsoleMenuHistoryExport = (props) => {
                               default: item.object,
                             })
                           }
-                        />
+                        >
+                          Edit
+                        </Button>
                         <Button
                           icon="trash"
                           color="red"
-                          content="Delete"
                           onClick={() =>
                             act('export_delete_field', {
                               ref: r.ref,
                               index: i + 1,
                             })
                           }
-                        />
+                        >
+                          Delete
+                        </Button>
                       </>
                     ) : null
                   }
@@ -472,14 +491,16 @@ const SupplyConsoleMenuHistoryExport = (props) => {
               <Button
                 mt={1}
                 icon="plus"
-                content="Add Item To Record"
                 onClick={() => act('export_add_field', { ref: r.ref })}
-              />
+              >
+                Add Item To Record
+              </Button>
               <Button
                 icon="trash"
-                content="Delete Record"
                 onClick={() => act('export_delete', { ref: r.ref })}
-              />
+              >
+                Delete Record
+              </Button>
             </>
           ) : null}
         </Section>

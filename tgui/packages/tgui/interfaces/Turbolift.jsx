@@ -17,23 +17,23 @@ export const Turbolift = (props) => {
             <>
               <Button
                 icon={doors_open ? 'door-open' : 'door-closed'}
-                content={
-                  doors_open
-                    ? fire_mode
-                      ? 'Close Doors (SAFETY OFF)'
-                      : 'Doors Open'
-                    : 'Doors Closed'
-                }
                 selected={doors_open && !fire_mode}
                 color={fire_mode ? 'red' : null}
                 onClick={() => act('toggle_doors')}
-              />
+              >
+                {doors_open
+                  ? fire_mode
+                    ? 'Close Doors (SAFETY OFF)'
+                    : 'Doors Open'
+                  : 'Doors Closed'}
+              </Button>
               <Button
                 icon="exclamation-triangle"
                 color="bad"
-                content="Emergency Stop"
                 onClick={() => act('emergency_stop')}
-              />
+              >
+                Emergency Stop
+              </Button>
             </>
           }
         >
