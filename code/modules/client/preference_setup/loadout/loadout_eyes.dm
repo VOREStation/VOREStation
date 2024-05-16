@@ -105,6 +105,15 @@
 	display_name = "Medical HUD Aviators, prescription (Medical)"
 	path = /obj/item/clothing/glasses/hud/health/aviator/prescription
 
+/datum/gear/eyes/janitor
+	display_name = "Contaminant HUD (Janitor)"
+	path = /obj/item/clothing/glasses/hud/janitor
+	allowed_roles = list("Janitor")
+
+/datum/gear/eyes/janitor/prescriptionjan
+	display_name = "Contaminant HUD, prescription (Janitor)"
+	path = /obj/item/clothing/glasses/hud/janitor/prescription
+
 /datum/gear/eyes/meson
 	display_name = "Optical Meson Scanners (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson

@@ -130,6 +130,7 @@ var/global/list/image/fluidtrack_cache=list()
 
 /obj/effect/decal/cleanable/blood/tracks/update_icon()
 	cut_overlays()
+	add_overlay(janhud)
 	color = "#FFFFFF"
 	var/truedir=0
 

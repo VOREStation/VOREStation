@@ -85,10 +85,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
 /obj/item/device/pda/CtrlClick()
-	if(issilicon(usr))
-		return
-
-	if(can_use(usr))
+	if(can_use(usr) && !issilicon(usr))
 		remove_pen()
 		return
 	..()

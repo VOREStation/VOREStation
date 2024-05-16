@@ -100,3 +100,18 @@
 /datum/gear/gloves/circuitry
 	display_name = "gloves, circuitry (empty)"
 	path = /obj/item/clothing/gloves/circuitry
+
+/datum/gear/gloves/watch
+	display_name = "wristwatch selector"
+	description = "Pick from a range of wristwatches."
+	path = /obj/item/clothing/gloves/watch
+
+/datum/gear/gloves/watch/New()
+	..()
+	var/list/selector_watches = list(
+		"plain plastic"=/obj/item/clothing/gloves/watch,
+		"silver"=/obj/item/clothing/gloves/watch/silver,
+		"gold"=/obj/item/clothing/gloves/watch/gold,
+		"survival"=/obj/item/clothing/gloves/watch/survival
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_watches))

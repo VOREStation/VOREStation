@@ -40,6 +40,7 @@
 	plane_masters[VIS_ADMIN3] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
 
 	plane_masters[VIS_MESONS]		= new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+	plane_masters[VIS_JANHUD]		= new /obj/screen/plane_master{plane = PLANE_JANHUD} 			//Meson-specific things like open ceilings.
 
 	plane_masters[VIS_BUILDMODE]	= new /obj/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
 
@@ -113,7 +114,7 @@
 			alter_values(SP, values)
 
 
-	
+
 
 ////////////////////
 // The Plane Master
