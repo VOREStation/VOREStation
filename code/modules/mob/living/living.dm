@@ -121,6 +121,19 @@
 		else
 			to_chat(src, span_blue("You are not injured enough to succumb to death!"))
 
+/mob/living/verb/toggle_afk()
+	set name = "Toggle AFK"
+	set category = "IC"
+	set desc = "Mark yourself as Away From Keyboard, or clear that status!"
+	if(away_from_keyboard)
+		remove_status_indicator("afk")
+		to_chat(src, "<span class='notice'>You are no longer marked as AFK.</span>")
+		away_from_keyboard = FALSE
+	else
+		add_status_indicator("afk")
+		to_chat(src, "<span class='notice'>You are now marked as AFK.</span>")
+		away_from_keyboard = TRUE
+
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
