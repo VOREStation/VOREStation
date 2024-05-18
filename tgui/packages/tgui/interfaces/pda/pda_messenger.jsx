@@ -66,8 +66,9 @@ const ActiveConversation = (props) => {
       <Button
         icon="comment"
         onClick={() => act('Message', { target: active_conversation })}
-        content="Reply"
-      />
+      >
+        Reply
+      </Button>
       <Section
         style={{
           height: '97%',
@@ -91,8 +92,9 @@ const ActiveConversation = (props) => {
       <Button
         icon="comment"
         onClick={() => act('Message', { target: active_conversation })}
-        content="Reply"
-      />
+      >
+        Reply
+      </Button>
     </Section>
   );
 
@@ -116,8 +118,9 @@ const ActiveConversation = (props) => {
         <Button
           icon="comment"
           onClick={() => act('Message', { target: active_conversation })}
-          content="Reply"
-        />
+        >
+          Reply
+        </Button>
         <Section
           style={{
             height: '97%',
@@ -140,8 +143,9 @@ const ActiveConversation = (props) => {
         <Button
           icon="comment"
           onClick={() => act('Message', { target: active_conversation })}
-          content="Reply"
-        />
+        >
+          Reply
+        </Button>
       </Section>
     );
   }
@@ -245,22 +249,24 @@ const PDAList = (props) => {
         <Box key={pda.Reference}>
           <Button
             icon="arrow-circle-down"
-            content={pda.Name}
             onClick={() => act(msgAct, { target: pda.Reference })}
-          />
+          >
+            {pda.Name}
+          </Button>
           {!!charges &&
             plugins.map((plugin) => (
               <Button
                 key={plugin.ref}
                 icon={plugin.icon}
-                content={plugin.name}
                 onClick={() =>
                   act('Messenger Plugin', {
                     plugin: plugin.ref,
                     target: pda.Reference,
                   })
                 }
-              />
+              >
+                {plugin.name}
+              </Button>
             ))}
         </Box>
       ))}

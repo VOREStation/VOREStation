@@ -174,11 +174,9 @@ const GeneralMobSettings = (props) => {
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
-            <Button
-              fluid
-              content={data.path || 'Select Path'}
-              onClick={(val) => act('select_path')}
-            />
+            <Button fluid onClick={(val) => act('select_path')}>
+              {data.path || 'Select Path'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Spawn Amount">
             <NumberInput
@@ -224,10 +222,11 @@ const GeneralMobSettings = (props) => {
                     onChange={(e, val) => props.onZ(val)}
                   />
                   <Button.Checkbox
-                    content="Lock coords to self"
                     checked={data.loc_lock}
                     onClick={() => act('loc_lock')}
-                  />
+                  >
+                    Lock coords to self
+                  </Button.Checkbox>
                 </LabeledList.Item>
                 <LabeledList.Item label="Spawn Radius (WIP)">
                   <NumberInput
@@ -250,33 +249,27 @@ const GeneralMobSettings = (props) => {
               buttons={
                 <Button
                   selected={data.use_custom_ai}
-                  fill
-                  content="Use Custom AI"
                   onClick={() => act('toggle_custom_ai')}
-                />
+                >
+                  Use Custom AI
+                </Button>
               }
             >
               <LabeledList>
                 <LabeledList.Item>
-                  <Button
-                    fluid
-                    content={data.ai_type || 'Choose AI Type'}
-                    onClick={(val) => act('set_ai_path')}
-                  />
+                  <Button fluid onClick={(val) => act('set_ai_path')}>
+                    {data.ai_type || 'Choose AI Type'}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item>
-                  <Button
-                    fluid
-                    content={data.faction || 'Set Faction'}
-                    onClick={(val) => act('set_faction')}
-                  />
+                  <Button fluid onClick={(val) => act('set_faction')}>
+                    {data.faction || 'Set Faction'}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item>
-                  <Button
-                    fluid
-                    content={data.intent || 'Set Intent'}
-                    onClick={(val) => act('set_intent')}
-                  />
+                  <Button fluid onClick={(val) => act('set_intent')}>
+                    {data.intent || 'Set Intent'}
+                  </Button>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
@@ -345,8 +338,6 @@ const GeneralMobSettings = (props) => {
         </Flex>
       </Section>
       <Button
-        fill
-        content="Spawn"
         color="teal"
         onClick={() =>
           act('start_spawn', {
@@ -365,7 +356,9 @@ const GeneralMobSettings = (props) => {
             radius: props.radius,
           })
         }
-      />
+      >
+        Spawn
+      </Button>
     </>
   );
 };

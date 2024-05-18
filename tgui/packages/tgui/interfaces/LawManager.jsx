@@ -97,12 +97,13 @@ const LawManagerLaws = (props) => {
             {channels.map((chan) => (
               <Button
                 key={chan.channel}
-                content={chan.channel}
                 selected={channel === chan.channel}
                 onClick={() =>
                   act('law_channel', { law_channel: chan.channel })
                 }
-              />
+              >
+                {chan.channel}
+              </Button>
             ))}
           </LabeledList.Item>
           <LabeledList.Item label="State Laws">

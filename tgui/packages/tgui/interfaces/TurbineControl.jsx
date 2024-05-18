@@ -33,11 +33,9 @@ export const TurbineControl = (props) => {
               {(broken && (
                 <Box color="bad">
                   Setup is broken
-                  <Button
-                    icon="sync"
-                    onClick={() => act('reconnect')}
-                    content="Reconnect"
-                  />
+                  <Button icon="sync" onClick={() => act('reconnect')}>
+                    Reconnect
+                  </Button>
                 </Box>
               )) || (
                 <Box color={online ? 'good' : 'bad'}>
@@ -57,9 +55,10 @@ export const TurbineControl = (props) => {
                   <Box>
                     <Button.Checkbox
                       checked={online}
-                      content="Compressor Power"
                       onClick={() => act(online ? 'power-off' : 'power-on')}
-                    />
+                    >
+                      Compressor Power
+                    </Button.Checkbox>
                   </Box>
                 )}
             </LabeledList.Item>
@@ -67,8 +66,9 @@ export const TurbineControl = (props) => {
               <Button.Checkbox
                 checked={door_status}
                 onClick={() => act('doors')}
-                content={door_status ? 'Closed' : 'Open'}
-              />
+              >
+                {door_status ? 'Closed' : 'Open'}
+              </Button.Checkbox>
             </LabeledList.Item>
           </LabeledList>
         </Section>

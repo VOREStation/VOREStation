@@ -18,10 +18,11 @@ export const AtmosAlertConsole = (props) => {
               <li key={alert.name}>
                 <Button
                   icon="times"
-                  content={alert.name}
                   color="bad"
                   onClick={() => act('clear', { ref: alert.ref })}
-                />
+                >
+                  {alert.name}
+                </Button>
               </li>
             ))}
             {minorAlerts.length === 0 && (
@@ -31,10 +32,11 @@ export const AtmosAlertConsole = (props) => {
               <li key={alert.name}>
                 <Button
                   icon="times"
-                  content={alert.name}
                   color="average"
                   onClick={() => act('clear', { ref: alert.ref })}
-                />
+                >
+                  {alert.name}
+                </Button>
               </li>
             ))}
           </ul>

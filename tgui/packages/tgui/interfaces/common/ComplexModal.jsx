@@ -76,12 +76,9 @@ export const ComplexModal = (props) => {
   let modalOnEnter;
   let modalBody;
   let modalFooter = (
-    <Button
-      icon="arrow-left"
-      content="Cancel"
-      color="grey"
-      onClick={() => modalClose()}
-    />
+    <Button icon="arrow-left" color="grey" onClick={() => modalClose()}>
+      Cancel
+    </Button>
   );
 
   // Different contents depending on the type
@@ -105,20 +102,18 @@ export const ComplexModal = (props) => {
     );
     modalFooter = (
       <Box mt="0.5rem">
-        <Button
-          icon="arrow-left"
-          content="Cancel"
-          color="grey"
-          onClick={() => modalClose()}
-        />
+        <Button icon="arrow-left" color="grey" onClick={() => modalClose()}>
+          Cancel
+        </Button>
         <Button
           icon="check"
-          content={'Confirm'}
           color="good"
           float="right"
           m="0"
           onClick={() => modalAnswer(id, curValue)}
-        />
+        >
+          Confirm
+        </Button>
         <Box clear="both" />
       </Box>
     );
@@ -171,20 +166,22 @@ export const ComplexModal = (props) => {
       <Box mt="0.5rem">
         <Button
           icon="times"
-          content={data.modal.no_text}
           color="bad"
           float="left"
           mb="0"
           onClick={() => modalAnswer(id, 0)}
-        />
+        >
+          {data.modal.no_text}
+        </Button>
         <Button
           icon="check"
-          content={data.modal.yes_text}
           color="good"
           float="right"
           m="0"
           onClick={() => modalAnswer(id, 1)}
-        />
+        >
+          {data.modal.yes_text}
+        </Button>
         <Box clear="both" />
       </Box>
     );

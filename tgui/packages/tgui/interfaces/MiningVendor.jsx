@@ -162,7 +162,6 @@ const MiningVendorItemsCategory = (props) => {
           </Box>
           <Button
             disabled={!data.has_id || data.id.points < item.price}
-            content={item.price.toLocaleString('en-US')}
             width="15%"
             textAlign="center"
             style={{
@@ -174,7 +173,9 @@ const MiningVendorItemsCategory = (props) => {
                 name: item.name,
               })
             }
-          />
+          >
+            {item.price.toLocaleString('en-US')}
+          </Button>
           <Box
             style={{
               clear: 'both',

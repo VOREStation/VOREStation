@@ -44,7 +44,6 @@ export const SmartVend = (props) => {
                   </Table.Cell>
                   <Table.Cell collapsing>
                     <Button
-                      content="1"
                       disabled={value.amount < 1}
                       onClick={() =>
                         act('Release', {
@@ -52,9 +51,10 @@ export const SmartVend = (props) => {
                           amount: 1,
                         })
                       }
-                    />
+                    >
+                      1
+                    </Button>
                     <Button
-                      content="5"
                       disabled={value.amount < 5}
                       onClick={() =>
                         act('Release', {
@@ -62,9 +62,10 @@ export const SmartVend = (props) => {
                           amount: 5,
                         })
                       }
-                    />
+                    >
+                      5
+                    </Button>
                     <Button
-                      content="25"
                       disabled={value.amount < 25}
                       onClick={() =>
                         act('Release', {
@@ -72,9 +73,10 @@ export const SmartVend = (props) => {
                           amount: 25,
                         })
                       }
-                    />
+                    >
+                      25
+                    </Button>
                     <Button
-                      content="50"
                       disabled={value.amount < 50}
                       onClick={() =>
                         act('Release', {
@@ -82,18 +84,20 @@ export const SmartVend = (props) => {
                           amount: 50,
                         })
                       }
-                    />
+                    >
+                      50
+                    </Button>
                     <Button
-                      content="Custom"
                       disabled={value.amount < 1}
                       onClick={() =>
                         act('Release', {
                           index: value.index,
                         })
                       }
-                    />
+                    >
+                      Custom
+                    </Button>
                     <Button
-                      content="All"
                       disabled={value.amount < 1}
                       onClick={() =>
                         act('Release', {
@@ -101,7 +105,9 @@ export const SmartVend = (props) => {
                           amount: value.amount,
                         })
                       }
-                    />
+                    >
+                      All
+                    </Button>
                   </Table.Cell>
                 </Table.Row>
               ))(data.contents)}

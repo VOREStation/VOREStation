@@ -35,11 +35,9 @@ export const GyrotronControlContent = (props) => {
     <Section
       title="Gyrotrons"
       buttons={
-        <Button
-          icon="pencil-alt"
-          content={'Set Tag'}
-          onClick={() => act('set_tag')}
-        />
+        <Button icon="pencil-alt" onClick={() => act('set_tag')}>
+          Set Tag
+        </Button>
       }
     >
       <Table>
@@ -59,7 +57,6 @@ export const GyrotronControlContent = (props) => {
             <Table.Cell>
               <Button
                 icon="power-off"
-                content={gyro.active ? 'Online' : 'Offline'}
                 selected={gyro.active}
                 disabled={!gyro.deployed}
                 onClick={() =>
@@ -67,7 +64,9 @@ export const GyrotronControlContent = (props) => {
                     gyro: gyro.ref,
                   })
                 }
-              />
+              >
+                {gyro.active ? 'Online' : 'Offline'}
+              </Button>
             </Table.Cell>
             <Table.Cell>
               <Knob

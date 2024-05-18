@@ -45,16 +45,18 @@ export const ShuttleList = (props) => {
               <Table.Cell collapsing>
                 <Button
                   m={0}
-                  content="JMP"
                   onClick={() => act('adminobserve', { ref: shuttle.ref })}
-                />
+                >
+                  JMP
+                </Button>
               </Table.Cell>
               <Table.Cell collapsing>
                 <Button
                   m={0}
-                  content="Fly"
                   onClick={() => act('classicmove', { ref: shuttle.ref })}
-                />
+                >
+                  Fly
+                </Button>
               </Table.Cell>
               <Table.Cell>{shuttle.name}</Table.Cell>
               <Table.Cell>{shuttle.current_location}</Table.Cell>
@@ -70,16 +72,16 @@ export const ShuttleList = (props) => {
           ).map((ship) => (
             <Table.Row key={ship.ref}>
               <Table.Cell collapsing>
-                <Button
-                  content="JMP"
-                  onClick={() => act('adminobserve', { ref: ship.ref })}
-                />
+                <Button onClick={() => act('adminobserve', { ref: ship.ref })}>
+                  JMP
+                </Button>
               </Table.Cell>
               <Table.Cell collapsing>
                 <Button
-                  content="Control"
                   onClick={() => act('overmap_control', { ref: ship.ref })}
-                />
+                >
+                  Control
+                </Button>
               </Table.Cell>
               <Table.Cell>{ship.name}</Table.Cell>
             </Table.Row>

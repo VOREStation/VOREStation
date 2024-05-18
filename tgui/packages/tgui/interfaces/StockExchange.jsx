@@ -43,18 +43,20 @@ const StockExchangeStockList = (props) => {
   return (
     <Box>
       <span>
-        Welcome, <b>{stationName} Cargo Department</b> |{' '}
+        Welcome, <b>{stationName} Cargo Department</b> |
       </span>
       <span>
         <b>Credits:</b> {balance}
       </span>
       <br />
       <b>View mode: </b>
-      <Button content={viewMode} onClick={() => act('stocks_cycle_view')} />
+      <Button onClick={() => act('stocks_cycle_view')}>{viewMode}</Button>
       <br />
 
       <b>Stock Transaction Log: </b>
-      <Button icon="list" content="Check" onClick={() => act('stocks_check')} />
+      <Button icon="list" onClick={() => act('stocks_check')}>
+        Check
+      </Button>
       <br />
       <b>This is a work in progress. Certain features may not be available.</b>
 
@@ -104,13 +106,15 @@ const StockExchangeFullView = (props) => {
               />
               <br />
               <Button
-                content="A"
                 onClick={() => act('stocks_archive', { share: stock.REF })}
-              />
+              >
+                A
+              </Button>
               <Button
-                content="H"
                 onClick={() => act('stocks_history', { share: stock.REF })}
-              />
+              >
+                H
+              </Button>
               <br />
             </Table.Cell>
           </Table.Row>
@@ -134,11 +138,10 @@ const StockExchangeCompactView = (props) => {
           <br />
           <b>Unified shares</b> {stock.Unification} ago.
           <br />
-          <b>Current value per share:</b> {stock.Value} |{' '}
-          <Button
-            content="View history"
-            onClick={() => act('stocks_history', { share: stock.REF })}
-          />
+          <b>Current value per share:</b> {stock.Value} |
+          <Button onClick={() => act('stocks_history', { share: stock.REF })}>
+            View history
+          </Button>
           <br />
           You currently own <b>{stock.Owned}</b> shares in this company.
           <br />
@@ -148,15 +151,13 @@ const StockExchangeCompactView = (props) => {
             <span>You cannot buy or sell shares in a bankrupt company!</span>
           ) : (
             <span>
-              <Button
-                content="Buy shares"
-                onClick={() => act('stocks_buy', { share: stock.REF })}
-              />{' '}
-              |{' '}
-              <Button
-                content="Sell shares"
-                onClick={() => act('stocks_sell', { share: stock.REF })}
-              />
+              <Button onClick={() => act('stocks_buy', { share: stock.REF })}>
+                Buy shares
+              </Button>
+              |
+              <Button onClick={() => act('stocks_sell', { share: stock.REF })}>
+                Sell shares
+              </Button>
             </span>
           )}
           <br />
@@ -164,10 +165,9 @@ const StockExchangeCompactView = (props) => {
           <br />
           <i>{stock.Products}</i>
           <br />
-          <Button
-            content="View news archives"
-            onClick={() => act('stocks_archive', { share: stock.REF })}
-          />{' '}
+          <Button onClick={() => act('stocks_archive', { share: stock.REF })}>
+            View news archives
+          </Button>
           {/* [news ? " <span style='color:red'>(updated)</span>" : null] */}
           <Divider />
         </Box>
@@ -186,33 +186,33 @@ const StockExchangeLogs = (props) => {
     <Box>
       <h2>Stock Transaction Logs</h2>
       <br />
-      <Button content="Go back" onClick={() => act('stocks_backbutton')} />
+      <Button onClick={() => act('stocks_backbutton')}>Go back</Button>
       <Divider />
       <div>
         {logs.map((log) => (
           <Box key={log.time}>
             {log.type !== 'borrow' ? (
               <div>
-                {log.time} | <b>{log.user_name}</b>{' '}
+                {log.time} | <b>{log.user_name}</b>
                 {log.type === 'transaction_bought' ? (
                   <span>bought</span>
                 ) : (
                   <span>sold</span>
-                )}{' '}
-                <b>{log.stocks}</b> stocks at {log.shareprice} a share for{' '}
-                <b>{log.money}</b> total credits{' '}
+                )}
+                <b>{log.stocks}</b> stocks at {log.shareprice} a share for
+                <b>{log.money}</b> total credits
                 {log.type === 'transaction_bought' ? (
                   <span>in</span>
                 ) : (
                   <span>from</span>
-                )}{' '}
+                )}
                 <b>{log.company_name}</b>.
                 <br />
               </div>
             ) : (
               <div>
-                {log.time} | <b>{log.user_name}</b> borrowed <b>{log.stocks}</b>{' '}
-                stocks with a deposit of <b>{log.money}</b> credits in{' '}
+                {log.time} | <b>{log.user_name}</b> borrowed <b>{log.stocks}</b>
+                stocks with a deposit of <b>{log.money}</b> credits in
                 <b>{log.company_name}</b>.<br />
               </div>
             )}
@@ -232,7 +232,7 @@ const StockExchangeArchive = (props) => {
   return (
     <Box>
       <h2>News feed for {name}</h2>
-      <Button content="Go back" onClick={() => act('stocks_backbutton')} />
+      <Button onClick={() => act('stocks_backbutton')}>Go back</Button>
       <h3>Events</h3>
       <Divider />
       <div>
@@ -258,7 +258,7 @@ const StockExchangeArchive = (props) => {
               <i>{article.subtitle}</i>
               <br />
               {article.article}
-              <br />- {article.author}, {article.spacetime} (via{' '}
+              <br />- {article.author}, {article.spacetime} (via
               <i>{article.outlet}</i>)
             </div>
             <Divider />
@@ -276,7 +276,7 @@ const StockExchangeGraph = (props) => {
 
   return (
     <Box>
-      <Button content="Go back" onClick={() => act('stocks_backbutton')} />
+      <Button onClick={() => act('stocks_backbutton')}>Go back</Button>
       <Divider />
       <Section position="relative" height="100%">
         <Chart.Line

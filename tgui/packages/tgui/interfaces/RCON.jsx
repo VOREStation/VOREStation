@@ -325,7 +325,6 @@ const RCONBreakerList = (props) => {
               buttons={
                 <Button
                   icon="power-off"
-                  content={breaker.enabled ? 'Enabled' : 'Disabled'}
                   selected={breaker.enabled}
                   color={breaker.enabled ? null : 'bad'}
                   onClick={() =>
@@ -333,7 +332,9 @@ const RCONBreakerList = (props) => {
                       breaker: breaker.RCON_tag,
                     })
                   }
-                />
+                >
+                  {breaker.enabled ? 'Enabled' : 'Disabled'}
+                </Button>
               }
             />
           ))

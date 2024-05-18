@@ -103,12 +103,13 @@ const OvermapAutopilot = (props) => {
           <Button.Confirm
             mt={1}
             color="bad"
-            content="Unlock Autopilot"
             confirmContent="ACCEPT RISKS?"
             icon="exclamation-triangle"
             confirmIcon="exclamation-triangle"
             onClick={() => act('apilot_lock')}
-          />
+          >
+            Unlock Autopilot
+          </Button.Confirm>
         </Box>
       </fieldset>
     );
@@ -203,7 +204,7 @@ const OvermapNavComputer = (props) => {
           </Button>
         </Flex.Item>
       </Flex>
-      <Section mt={1} scrollable height="130px">
+      <Section mt={1} scrollable fill height="130px">
         <Table>
           <Table.Row header>
             <Table.Cell>Name</Table.Cell>

@@ -37,11 +37,9 @@ export const RustCoreMonitorContent = (props) => {
     <Section
       title="Cores"
       buttons={
-        <Button
-          icon="pencil-alt"
-          content={'Set Tag'}
-          onClick={() => act('set_tag')}
-        />
+        <Button icon="pencil-alt" onClick={() => act('set_tag')}>
+          Set Tag
+        </Button>
       }
     >
       <Table>
@@ -64,7 +62,6 @@ export const RustCoreMonitorContent = (props) => {
             <Table.Cell>
               <Button
                 icon="power-off"
-                content={core.has_field ? 'Online' : 'Offline'}
                 selected={core.has_field}
                 disabled={!core.core_operational}
                 onClick={() =>
@@ -72,12 +69,13 @@ export const RustCoreMonitorContent = (props) => {
                     core: core.ref,
                   })
                 }
-              />
+              >
+                {core.has_field ? 'Online' : 'Offline'}
+              </Button>
             </Table.Cell>
             <Table.Cell>
               <Button
                 icon="power-off"
-                content={core.reactant_dump ? 'Dump' : 'Maintain'}
                 selected={core.has_field}
                 disabled={!core.core_operational}
                 onClick={() =>
@@ -85,7 +83,9 @@ export const RustCoreMonitorContent = (props) => {
                     core: core.ref,
                   })
                 }
-              />
+              >
+                {core.reactant_dump ? 'Dump' : 'Maintain'}
+              </Button>
             </Table.Cell>
             <Table.Cell>{core.field_instability}</Table.Cell>
             <Table.Cell>{core.field_temperature}</Table.Cell>

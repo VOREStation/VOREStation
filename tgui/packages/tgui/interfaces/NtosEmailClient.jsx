@@ -284,10 +284,11 @@ const NtosEmailClientAddressBook = (props) => {
       {accounts.map((acc) => (
         <Button
           key={acc.login}
-          content={acc.login}
           fluid
           onClick={() => act('set_recipient', { set_recipient: acc.login })}
-        />
+        >
+          {acc.login}
+        </Button>
       ))}
     </Section>
   );
@@ -401,11 +402,9 @@ const NtosEmailClientError = (props) => {
     <Section
       title="Notification"
       buttons={
-        <Button
-          icon="arrow-left"
-          content="Return"
-          onClick={() => act('reset')}
-        />
+        <Button icon="arrow-left" onClick={() => act('reset')}>
+          Return
+        </Button>
       }
     >
       <Box color="bad">{error}</Box>

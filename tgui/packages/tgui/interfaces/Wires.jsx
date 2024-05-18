@@ -23,29 +23,32 @@ export const Wires = (props) => {
                 buttons={
                   <>
                     <Button
-                      content={wire.cut ? 'Mend' : 'Cut'}
                       onClick={() =>
                         act('cut', {
                           wire: wire.color,
                         })
                       }
-                    />
+                    >
+                      {wire.cut ? 'Mend' : 'Cut'}
+                    </Button>
                     <Button
-                      content="Pulse"
                       onClick={() =>
                         act('pulse', {
                           wire: wire.color,
                         })
                       }
-                    />
+                    >
+                      Pulse
+                    </Button>
                     <Button
-                      content={wire.attached ? 'Detach' : 'Attach'}
                       onClick={() =>
                         act('attach', {
                           wire: wire.color,
                         })
                       }
-                    />
+                    >
+                      {wire.attached ? 'Detach' : 'Attach'}
+                    </Button>
                   </>
                 }
               >

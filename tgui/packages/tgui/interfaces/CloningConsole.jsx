@@ -62,63 +62,66 @@ const viewRecordModalBodyOverride = (modal) => {
           <Button.Confirm
             disabled={!data.disk}
             icon="arrow-circle-down"
-            content="Import"
             onClick={() =>
               act('disk', {
                 option: 'load',
               })
             }
-          />
+          >
+            Import
+          </Button.Confirm>
           <Button
             disabled={!data.disk}
             icon="arrow-circle-up"
-            content="Export UI"
             onClick={() =>
               act('disk', {
                 option: 'save',
                 savetype: 'ui',
               })
             }
-          />
+          >
+            Export UI
+          </Button>
           <Button
             disabled={!data.disk}
             icon="arrow-circle-up"
-            content="Export UI and UE"
             onClick={() =>
               act('disk', {
                 option: 'save',
                 savetype: 'ue',
               })
             }
-          />
+          >
+            Export UI and UE
+          </Button>
           <Button
             disabled={!data.disk}
             icon="arrow-circle-up"
-            content="Export SE"
             onClick={() =>
               act('disk', {
                 option: 'save',
                 savetype: 'se',
               })
             }
-          />
+          >
+            Export SE
+          </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Actions">
           <Button
             disabled={!data.podready}
             icon="user-plus"
-            content="Clone"
             onClick={() =>
               act('clone', {
                 ref: activerecord,
               })
             }
-          />
-          <Button
-            icon="trash"
-            content="Delete"
-            onClick={() => act('del_rec')}
-          />
+          >
+            Clone
+          </Button>
+          <Button icon="trash" onClick={() => act('del_rec')}>
+            Delete
+          </Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -215,15 +218,17 @@ const CloningConsoleMain = (props) => {
               disabled={!occupant}
               selected={isLocked}
               icon={isLocked ? 'toggle-on' : 'toggle-off'}
-              content={isLocked ? 'Engaged' : 'Disengaged'}
               onClick={() => act('lock')}
-            />
+            >
+              {isLocked ? 'Engaged' : 'Disengaged'}
+            </Button>
             <Button
               disabled={isLocked || !occupant}
               icon="user-slash"
-              content="Eject Occupant"
               onClick={() => act('eject')}
-            />
+            >
+              Eject Occupant
+            </Button>
           </>
         }
       >
@@ -242,20 +247,22 @@ const CloningConsoleMain = (props) => {
             <LabeledList.Item label="Scan Mode">
               <Button
                 icon={scan_mode ? 'brain' : 'male'}
-                content={scan_mode ? 'Brain' : 'Body'}
                 onClick={() => act('toggle_mode')}
-              />
+              >
+                {scan_mode ? 'Brain' : 'Body'}
+              </Button>
             </LabeledList.Item>
           )}
         </LabeledList>
         <Button
           disabled={!occupant || loading}
           icon="user"
-          content="Scan Occupant"
           mt="0.5rem"
           mb="0"
           onClick={() => act('scan')}
-        />
+        >
+          Scan Occupant
+        </Button>
       </Section>
       <Section title="Pods" level="2">
         {numberofpods ? (
@@ -288,14 +295,15 @@ const CloningConsoleMain = (props) => {
                 <Button
                   selected={selected_pod === pod.pod}
                   icon={selected_pod === pod.pod && 'check'}
-                  content="Select"
                   mt="0.5rem"
                   onClick={() =>
                     act('selectpod', {
                       ref: pod.pod,
                     })
                   }
-                />
+                >
+                  Select
+                </Button>
               );
             }
 
@@ -353,13 +361,14 @@ const CloningConsoleRecords = (props) => {
           key={i}
           icon="user"
           mb="0.5rem"
-          content={record.realname}
           onClick={() =>
             act('view_rec', {
               ref: record.record,
             })
           }
-        />
+        >
+          {record.realname}
+        </Button>
       ))}
     </Box>
   );
@@ -404,25 +413,27 @@ const CloningConsoleStatus = (props) => {
               <Button
                 selected={autoprocess}
                 icon={autoprocess ? 'toggle-on' : 'toggle-off'}
-                content={autoprocess ? 'Enabled' : 'Disabled'}
                 onClick={() =>
                   act('autoprocess', {
                     on: autoprocess ? 0 : 1,
                   })
                 }
-              />
+              >
+                {autoprocess ? 'Enabled' : 'Disabled'}
+              </Button>
             </>
           )}
           <Button
             disabled={!disk}
             icon="eject"
-            content="Eject Disk"
             onClick={() =>
               act('disk', {
                 option: 'eject',
               })
             }
-          />
+          >
+            Eject Disk
+          </Button>
         </>
       }
     >

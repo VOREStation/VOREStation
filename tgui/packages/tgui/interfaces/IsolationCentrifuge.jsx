@@ -56,19 +56,21 @@ export const IsolationCentrifuge = (props) => {
                   <Button
                     fluid
                     icon="print"
-                    content="Print"
                     disabled={!antibodies && !pathogens.length}
                     onClick={() => act('print')}
-                  />
+                  >
+                    Print
+                  </Button>
                 </Flex.Item>
                 <Flex.Item grow={1}>
                   <Button
                     fluid
                     icon="eject"
-                    content="Eject Vial"
                     disabled={!sample_inserted}
                     onClick={() => act('sample')}
-                  />
+                  >
+                    Eject Vial
+                  </Button>
                 </Flex.Item>
               </Flex>
               {blood_sample}
@@ -78,11 +80,9 @@ export const IsolationCentrifuge = (props) => {
                 <LabeledList>
                   {antibodies && !is_antibody_sample ? (
                     <LabeledList.Item label="Isolate Antibodies">
-                      <Button
-                        icon="pen"
-                        content={antibodies}
-                        onClick={() => act('antibody')}
-                      />
+                      <Button icon="pen" onClick={() => act('antibody')}>
+                        {antibodies}
+                      </Button>
                     </LabeledList.Item>
                   ) : null}
                   {pathogens.length ? (
@@ -91,11 +91,12 @@ export const IsolationCentrifuge = (props) => {
                         <Button
                           key={virus.name}
                           icon="pen"
-                          content={virus.name}
                           onClick={() =>
                             act('isolate', { isolate: virus.reference })
                           }
-                        />
+                        >
+                          {virus.name}
+                        </Button>
                       ))}
                     </LabeledList.Item>
                   ) : null}

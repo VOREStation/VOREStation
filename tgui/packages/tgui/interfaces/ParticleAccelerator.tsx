@@ -21,11 +21,9 @@ export const ParticleAccelerator = (props) => {
             <LabeledList.Item
               label="Status"
               buttons={
-                <Button
-                  icon={'sync'}
-                  content={'Run Scan'}
-                  onClick={() => act('scan')}
-                />
+                <Button icon={'sync'} onClick={() => act('scan')}>
+                  Run Scan
+                </Button>
               }
             >
               <Box color={assembled ? 'good' : 'bad'}>
@@ -41,11 +39,12 @@ export const ParticleAccelerator = (props) => {
             <LabeledList.Item label="Power">
               <Button
                 icon={power ? 'power-off' : 'times'}
-                content={power ? 'On' : 'Off'}
                 selected={power}
                 disabled={!assembled}
                 onClick={() => act('power')}
-              />
+              >
+                {power ? 'On' : 'Off'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Particle Strength">
               <Button
