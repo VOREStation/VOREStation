@@ -35,7 +35,7 @@
 	icon_state = "sign_event_red"
 
 /obj/structure/signevent/yellow
-	icon_state = "sign_event_yellow
+	icon_state = "sign_event_yellow"
 
 /obj/effect/mark
 		var/mark = ""
