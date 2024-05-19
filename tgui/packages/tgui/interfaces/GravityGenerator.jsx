@@ -26,14 +26,15 @@ export const GravityGenerator = (props) => {
               icon="exclamation-triangle"
               confirmIcon="exclamation-triangle"
               color="red"
-              content="Toggle Breaker"
               confirmContent={
                 breaker
                   ? 'This will disable gravity!'
                   : 'This will enable gravity!'
               }
               onClick={() => act('gentoggle')}
-            />
+            >
+              Toggle Breaker
+            </Button.Confirm>
           }
         >
           <LabeledList>

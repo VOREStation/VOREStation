@@ -77,13 +77,14 @@ const SelectionSection = (props) => {
                 <Button.Checkbox
                   checked={mode & tool.bitmask}
                   fluid
-                  content={tool.name}
                   onClick={() =>
                     act('mode', {
                       mode: tool.bitmask,
                     })
                   }
-                />
+                >
+                  {tool.name}
+                </Button.Checkbox>
               </Stack.Item>
             ))}
           </Stack>
@@ -122,13 +123,14 @@ const LayerSection = (props) => {
             <Stack.Item my={0} key={layer}>
               <Button.Checkbox
                 checked={pipe_layers[layer] === piping_layer}
-                content={layer}
                 onClick={() =>
                   act('piping_layer', {
                     piping_layer: pipe_layers[layer],
                   })
                 }
-              />
+              >
+                {layer}
+              </Button.Checkbox>
             </Stack.Item>
           ))}
         </Stack>
@@ -196,7 +198,6 @@ const PipeTypeSection = (props) => {
           fluid
           ellipsis
           checked={recipe.selected}
-          content={recipe.pipe_name}
           title={recipe.pipe_name}
           onClick={() =>
             act('pipe_type', {
@@ -204,7 +205,9 @@ const PipeTypeSection = (props) => {
               category: shownCategory.cat_name,
             })
           }
-        />
+        >
+          {recipe.pipe_name}
+        </Button.Checkbox>
       ))}
     </Section>
   );

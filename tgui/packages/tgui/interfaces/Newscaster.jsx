@@ -498,11 +498,12 @@ const NewscasterViewSelected = (props) => {
               color="bad"
               icon="ban"
               confirmIcon="ban"
-              content="Issue D-Notice"
               onClick={() =>
                 act('toggle_d_notice', { ref: viewing_channel.ref })
               }
-            />
+            >
+              Issue D-Notice
+            </Button.Confirm>
           )}
           <Button
             icon="undo"
@@ -520,13 +521,14 @@ const NewscasterViewSelected = (props) => {
               color="bad"
               icon="strikethrough"
               confirmIcon="strikethrough"
-              content={decodeHtmlEntities(viewing_channel.author)}
               tooltip="Censor?"
               confirmContent="Censor Author"
               onClick={() =>
                 act('censor_channel_author', { ref: viewing_channel.ref })
               }
-            />
+            >
+              {decodeHtmlEntities(viewing_channel.author)}
+            </Button.Confirm>
           )) || <Box>{decodeHtmlEntities(viewing_channel.author)}</Box>}
         </LabeledList.Item>
       </LabeledList>
@@ -558,20 +560,22 @@ const NewscasterViewSelected = (props) => {
                   color="bad"
                   icon="strikethrough"
                   confirmIcon="strikethrough"
-                  content="Censor Story"
                   onClick={() =>
                     act('censor_channel_story_body', { ref: message.ref })
                   }
-                />
+                >
+                  Censor Story
+                </Button.Confirm>
                 <Button.Confirm
                   color="bad"
                   icon="strikethrough"
                   confirmIcon="strikethrough"
-                  content="Censor Author"
                   onClick={() =>
                     act('censor_channel_story_author', { ref: message.ref })
                   }
-                />
+                >
+                  Censor Author
+                </Button.Confirm>
               </>
             )}
           </Section>

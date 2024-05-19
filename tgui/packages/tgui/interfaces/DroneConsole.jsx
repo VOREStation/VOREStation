@@ -17,19 +17,18 @@ export const DroneConsole = (props) => {
               disabled={!fabricator}
               selected={fabPower}
               icon="power-off"
-              content={fabPower ? 'Enabled' : 'Disabled'}
               onClick={() => act('toggle_fab')}
-            />
+            >
+              {fabPower ? 'Enabled' : 'Disabled'}
+            </Button>
           }
         >
           {!fabricator ? (
             <Box color="bad">
               Fabricator not detected.
-              <Button
-                icon="sync"
-                content="Search for Fabricator"
-                onClick={() => act('search_fab')}
-              />
+              <Button icon="sync" onClick={() => act('search_fab')}>
+                Search for Fabricator
+              </Button>
             </Box>
           ) : (
             <Box color="good">Linked.</Box>
@@ -42,11 +41,9 @@ export const DroneConsole = (props) => {
             width="100%"
             onSelected={(val) => act('set_dcall_area', { area: val })}
           />
-          <Button
-            icon="share-square"
-            content="Send Ping"
-            onClick={() => act('ping')}
-          />
+          <Button icon="share-square" onClick={() => act('ping')}>
+            Send Ping
+          </Button>
         </Section>
         <Section title="Maintenance Units">
           {drones && drones.length ? (
@@ -59,15 +56,17 @@ export const DroneConsole = (props) => {
                     <>
                       <Button
                         icon="sync"
-                        content="Resync"
                         onClick={() => act('resync', { ref: drone.ref })}
-                      />
+                      >
+                        Resync
+                      </Button>
                       <Button.Confirm
                         icon="exclamation-triangle"
                         color="red"
-                        content="Shutdown"
                         onClick={() => act('shutdown', { ref: drone.ref })}
-                      />
+                      >
+                        Shutdown
+                      </Button.Confirm>
                     </>
                   }
                 >

@@ -17,9 +17,10 @@ export const DestinationTagger = (props) => {
                 <Button
                   icon={currTag === tag ? 'check-square-o' : 'square-o'}
                   selected={currTag === tag}
-                  content={tag}
                   onClick={() => act('set_tag', { tag: tag })}
-                />
+                >
+                  {tag}
+                </Button>
               </Flex.Item>
             ))}
           </Flex>

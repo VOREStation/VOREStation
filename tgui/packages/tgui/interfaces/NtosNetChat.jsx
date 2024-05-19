@@ -32,18 +32,18 @@ export const NtosNetChat = (props) => {
                 <Box height="560px" overflowY="scroll">
                   <Button.Input
                     fluid
-                    content="New Channel..."
                     onCommit={(e, value) =>
                       act('PRG_newchannel', {
                         new_channel_name: value,
                       })
                     }
-                  />
+                  >
+                    New Channel...
+                  </Button.Input>
                   {all_channels.map((channel) => (
                     <Button
                       fluid
                       key={channel.chan}
-                      content={channel.chan}
                       selected={channel.id === active_channel}
                       color="transparent"
                       onClick={() =>
@@ -51,28 +51,32 @@ export const NtosNetChat = (props) => {
                           id: channel.id,
                         })
                       }
-                    />
+                    >
+                      {channel.chan}
+                    </Button>
                   ))}
                 </Box>
                 <Button.Input
                   fluid
                   mt={1}
-                  content={username + '...'}
                   currentValue={username}
                   onCommit={(e, value) =>
                     act('PRG_changename', {
                       new_name: value,
                     })
                   }
-                />
+                >
+                  {username + '...'}
+                </Button.Input>
                 {!!can_admin && (
                   <Button
                     fluid
                     bold
-                    content={'ADMIN MODE: ' + (adminmode ? 'ON' : 'OFF')}
                     color={adminmode ? 'bad' : 'good'}
                     onClick={() => act('PRG_toggleadmin')}
-                  />
+                  >
+                    {'ADMIN MODE: ' + (adminmode ? 'ON' : 'OFF')}
+                  </Button>
                 )}
               </Table.Cell>
               <Table.Cell>
@@ -122,46 +126,51 @@ export const NtosNetChat = (props) => {
                   <>
                     <Button.Input
                       fluid
-                      content="Save log..."
                       defaultValue="new_log"
                       onCommit={(e, value) =>
                         act('PRG_savelog', {
                           log_name: value,
                         })
                       }
-                    />
+                    >
+                      Save log...
+                    </Button.Input>
                     <Button.Confirm
                       fluid
-                      content="Leave Channel"
                       onClick={() => act('PRG_leavechannel')}
-                    />
+                    >
+                      Leave Channel
+                    </Button.Confirm>
                   </>
                 )}
                 {!!is_operator && authed && (
                   <>
                     <Button.Confirm
                       fluid
-                      content="Delete Channel"
                       onClick={() => act('PRG_deletechannel')}
-                    />
+                    >
+                      Delete Channel
+                    </Button.Confirm>
                     <Button.Input
                       fluid
-                      content="Rename Channel..."
                       onCommit={(e, value) =>
                         act('PRG_renamechannel', {
                           new_name: value,
                         })
                       }
-                    />
+                    >
+                      Rename Channel...
+                    </Button.Input>
                     <Button.Input
                       fluid
-                      content="Set Password..."
                       onCommit={(e, value) =>
                         act('PRG_setpassword', {
                           new_password: value,
                         })
                       }
-                    />
+                    >
+                      Set Password...
+                    </Button.Input>
                   </>
                 )}
               </Table.Cell>

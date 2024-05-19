@@ -35,12 +35,13 @@ export const AtmosControlContent = (props) => {
         {sortedAlarms.map((alarm) => (
           <Button
             key={alarm.name}
-            content={alarm.name}
             color={
               alarm.danger === 2 ? 'bad' : alarm.danger === 1 ? 'average' : ''
             }
             onClick={() => act('alarm', { alarm: alarm.ref })}
-          />
+          >
+            {alarm.name}
+          </Button>
         ))}
       </Section>
     );

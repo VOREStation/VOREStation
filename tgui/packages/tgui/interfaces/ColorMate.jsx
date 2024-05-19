@@ -88,24 +88,15 @@ export const ColorMate = (props, context) => {
               <center>Coloring: {item.name}</center>
               <Table mt={1}>
                 <Table.Cell width="33%">
-                  <Button
-                    fluid
-                    content="Paint"
-                    icon="fill"
-                    onClick={() => act('paint')}
-                  />
-                  <Button
-                    fluid
-                    content="Clear"
-                    icon="eraser"
-                    onClick={() => act('clear')}
-                  />
-                  <Button
-                    fluid
-                    content="Eject"
-                    icon="eject"
-                    onClick={() => act('drop')}
-                  />
+                  <Button fluid icon="fill" onClick={() => act('paint')}>
+                    Paint
+                  </Button>
+                  <Button fluid icon="eraser" onClick={() => act('clear')}>
+                    Clear
+                  </Button>
+                  <Button fluid icon="eject" onClick={() => act('drop')}>
+                    Eject
+                  </Button>
                 </Table.Cell>
                 <Table.Cell width="66%">
                   {activemode === 1 ? (
@@ -130,12 +121,9 @@ export const ColorMate = (props, context) => {
 export const ColorMateTint = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Button
-      fluid
-      content="Select new color"
-      icon="paint-brush"
-      onClick={() => act('choose_color')}
-    />
+    <Button fluid icon="paint-brush" onClick={() => act('choose_color')}>
+      Select new color
+    </Button>
   );
 };
 

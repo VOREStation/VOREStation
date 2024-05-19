@@ -194,7 +194,6 @@ const BiogeneratorItemsCategory = (props) => {
           </Box>
           <Button
             disabled={!canBuyItem(item, data)}
-            content={(item.price / data.build_eff).toLocaleString('en-US')}
             width="15%"
             textAlign="center"
             style={{
@@ -206,7 +205,9 @@ const BiogeneratorItemsCategory = (props) => {
                 name: item.name,
               })
             }
-          />
+          >
+            {(item.price / data.build_eff).toLocaleString('en-US')}
+          </Button>
           <Box
             style={{
               clear: 'both',

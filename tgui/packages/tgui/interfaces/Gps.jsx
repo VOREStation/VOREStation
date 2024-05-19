@@ -44,35 +44,36 @@ export const Gps = (props) => {
           buttons={
             <Button
               icon="power-off"
-              content={power ? 'On' : 'Off'}
               selected={power}
               onClick={() => act('power')}
-            />
+            >
+              {power ? 'On' : 'Off'}
+            </Button>
           }
         >
           <LabeledList>
             <LabeledList.Item label="Tag">
-              <Button
-                icon="pencil-alt"
-                content={tag}
-                onClick={() => act('rename')}
-              />
+              <Button icon="pencil-alt" onClick={() => act('rename')}>
+                {tag}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Scan Mode">
               <Button
                 icon={updating ? 'unlock' : 'lock'}
-                content={updating ? 'AUTO' : 'MANUAL'}
                 color={!updating && 'bad'}
                 onClick={() => act('updating')}
-              />
+              >
+                {updating ? 'AUTO' : 'MANUAL'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Range">
               <Button
                 icon="sync"
-                content={globalmode ? 'MAXIMUM' : 'LOCAL'}
                 selected={!globalmode}
                 onClick={() => act('globalmode')}
-              />
+              >
+                {globalmode ? 'MAXIMUM' : 'LOCAL'}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>

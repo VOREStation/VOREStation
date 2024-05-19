@@ -164,11 +164,12 @@ const ShuttleControlConsoleMulti = (props) => {
             null}
           <LabeledList.Item label="Current Destination">
             <Button
-              content={props.destination_name}
               icon="taxi"
               disabled={!can_pick}
               onClick={() => act('pick')}
-            />
+            >
+              {props.destination_name}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       </Section>

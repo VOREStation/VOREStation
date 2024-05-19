@@ -38,10 +38,11 @@ export const NtosNetMonitor = (props) => {
           buttons={
             <Button.Confirm
               icon={ntnetstatus ? 'power-off' : 'times'}
-              content={ntnetstatus ? 'ENABLED' : 'DISABLED'}
               selected={ntnetstatus}
               onClick={() => act('toggleWireless')}
-            />
+            >
+              {ntnetstatus ? 'ENABLED' : 'DISABLED'}
+            </Button.Confirm>
           }
         >
           {ntnetrelays ? (
@@ -61,10 +62,11 @@ export const NtosNetMonitor = (props) => {
               buttons={
                 <Button
                   icon={config_softwaredownload ? 'power-off' : 'times'}
-                  content={config_softwaredownload ? 'ENABLED' : 'DISABLED'}
                   selected={config_softwaredownload}
                   onClick={() => act('toggle_function', { id: '1' })}
-                />
+                >
+                  {config_softwaredownload ? 'ENABLED' : 'DISABLED'}
+                </Button>
               }
             />
             <LabeledList.Item
@@ -72,10 +74,11 @@ export const NtosNetMonitor = (props) => {
               buttons={
                 <Button
                   icon={config_peertopeer ? 'power-off' : 'times'}
-                  content={config_peertopeer ? 'ENABLED' : 'DISABLED'}
                   selected={config_peertopeer}
                   onClick={() => act('toggle_function', { id: '2' })}
-                />
+                >
+                  {config_peertopeer ? 'ENABLED' : 'DISABLED'}
+                </Button>
               }
             />
             <LabeledList.Item
@@ -83,10 +86,11 @@ export const NtosNetMonitor = (props) => {
               buttons={
                 <Button
                   icon={config_communication ? 'power-off' : 'times'}
-                  content={config_communication ? 'ENABLED' : 'DISABLED'}
                   selected={config_communication}
                   onClick={() => act('toggle_function', { id: '3' })}
-                />
+                >
+                  {config_communication ? 'ENABLED' : 'DISABLED'}
+                </Button>
               }
             />
             <LabeledList.Item
@@ -94,10 +98,11 @@ export const NtosNetMonitor = (props) => {
               buttons={
                 <Button
                   icon={config_systemcontrol ? 'power-off' : 'times'}
-                  content={config_systemcontrol ? 'ENABLED' : 'DISABLED'}
                   selected={config_systemcontrol}
                   onClick={() => act('toggle_function', { id: '4' })}
-                />
+                >
+                  {config_systemcontrol ? 'ENABLED' : 'DISABLED'}
+                </Button>
               }
             />
           </LabeledList>
@@ -134,16 +139,18 @@ export const NtosNetMonitor = (props) => {
                 <>
                   <Button
                     icon={idsstatus ? 'power-off' : 'times'}
-                    content={idsstatus ? 'ENABLED' : 'DISABLED'}
                     selected={idsstatus}
                     onClick={() => act('toggleIDS')}
-                  />
+                  >
+                    {idsstatus ? 'ENABLED' : 'DISABLED'}
+                  </Button>
                   <Button
                     icon="sync"
-                    content="Reset"
                     color="bad"
                     onClick={() => act('resetIDS')}
-                  />
+                  >
+                    Reset
+                  </Button>
                 </>
               }
             />
@@ -168,11 +175,9 @@ export const NtosNetMonitor = (props) => {
             title="System Log"
             level={2}
             buttons={
-              <Button.Confirm
-                icon="trash"
-                content="Clear Logs"
-                onClick={() => act('purgelogs')}
-              />
+              <Button.Confirm icon="trash" onClick={() => act('purgelogs')}>
+                Clear Logs
+              </Button.Confirm>
             }
           >
             {ntnetlogs.map((log) => (

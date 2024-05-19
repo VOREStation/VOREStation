@@ -106,25 +106,27 @@ const AirAlarmUnlockedControl = (props) => {
         <LabeledList.Item label="Remote Control">
           <Button
             selected={rcon === 1}
-            content="Off"
             onClick={() => act('rcon', { rcon: 1 })}
-          />
+          >
+            Off
+          </Button>
           <Button
             selected={rcon === 2}
-            content="Auto"
             onClick={() => act('rcon', { rcon: 2 })}
-          />
+          >
+            Auto
+          </Button>
           <Button
             selected={rcon === 3}
-            content="On"
             onClick={() => act('rcon', { rcon: 3 })}
-          />
+          >
+            On
+          </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Thermostat">
-          <Button
-            content={target_temperature}
-            onClick={() => act('temperature')}
-          />
+          <Button onClick={() => act('temperature')}>
+            {target_temperature}
+          </Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -162,11 +164,9 @@ const AirAlarmControl = (props) => {
       title={route.title}
       buttons={
         props.screen && (
-          <Button
-            icon="arrow-left"
-            content="Back"
-            onClick={() => props.onScreen()}
-          />
+          <Button icon="arrow-left" onClick={() => props.onScreen()}>
+            Back
+          </Button>
         )
       }
     >
@@ -186,44 +186,38 @@ const AirAlarmControlHome = (props) => {
       <Button
         icon={atmos_alarm ? 'exclamation-triangle' : 'exclamation'}
         color={atmos_alarm && 'caution'}
-        content="Area Atmosphere Alarm"
         onClick={() => act(atmos_alarm ? 'reset' : 'alarm')}
-      />
+      >
+        Area Atmosphere Alarm
+      </Button>
       <Box mt={1} />
       <Button
         icon={mode === 3 ? 'exclamation-triangle' : 'exclamation'}
         color={mode === 3 && 'danger'}
-        content="Panic Siphon"
         onClick={() =>
           act('mode', {
             mode: mode === 3 ? 1 : 3,
           })
         }
-      />
+      >
+        Panic Siphon
+      </Button>
       <Box mt={2} />
-      <Button
-        icon="sign-out-alt"
-        content="Vent Controls"
-        onClick={() => props.onScreen('vents')}
-      />
+      <Button icon="sign-out-alt" onClick={() => props.onScreen('vents')}>
+        Vent Controls
+      </Button>
       <Box mt={1} />
-      <Button
-        icon="filter"
-        content="Scrubber Controls"
-        onClick={() => props.onScreen('scrubbers')}
-      />
+      <Button icon="filter" onClick={() => props.onScreen('scrubbers')}>
+        Scrubber Controls
+      </Button>
       <Box mt={1} />
-      <Button
-        icon="cog"
-        content="Operating Mode"
-        onClick={() => props.onScreen('modes')}
-      />
+      <Button icon="cog" onClick={() => props.onScreen('modes')}>
+        Operating Mode
+      </Button>
       <Box mt={1} />
-      <Button
-        icon="chart-bar"
-        content="Alarm Thresholds"
-        onClick={() => props.onScreen('thresholds')}
-      />
+      <Button icon="chart-bar" onClick={() => props.onScreen('thresholds')}>
+        Alarm Thresholds
+      </Button>
     </>
   );
 };
@@ -269,9 +263,10 @@ const AirAlarmControlModes = (props) => {
         icon={mode.selected ? 'check-square-o' : 'square-o'}
         selected={mode.selected}
         color={mode.selected && mode.danger && 'danger'}
-        content={mode.name}
         onClick={() => act('mode', { mode: mode.mode })}
-      />
+      >
+        {mode.name}
+      </Button>
       <Box mt={1} />
     </Fragment>
   ));
@@ -305,14 +300,15 @@ const AirAlarmControlThresholds = (props) => {
             {threshold.settings.map((setting) => (
               <td key={setting.val}>
                 <Button
-                  content={toFixed(setting.selected, 2)}
                   onClick={() =>
                     act('threshold', {
                       env: setting.env,
                       var: setting.val,
                     })
                   }
-                />
+                >
+                  {toFixed(setting.selected, 2)}
+                </Button>
               </td>
             ))}
           </tr>

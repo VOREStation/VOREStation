@@ -77,11 +77,12 @@ const CommunicationsConsoleMain = (props) => {
       <Button
         key={slevel.name}
         icon={slevel.icon}
-        content={slevel.name}
         disabled={!authenticated}
         selected={slevel.id === security_level}
         onClick={() => act('newalertlevel', { level: slevel.id })}
-      />
+      >
+        {slevel.name}
+      </Button>
     );
   });
 
@@ -92,35 +93,39 @@ const CommunicationsConsoleMain = (props) => {
           <LabeledList.Item label="Announcement">
             <Button
               icon="bullhorn"
-              content={announceText}
               disabled={!authmax || msg_cooldown > 0}
               onClick={() => act('announce')}
-            />
+            >
+              {announceText}
+            </Button>
           </LabeledList.Item>
           {(!!emagged && (
             <LabeledList.Item label="Transmit">
               <Button
                 icon="broadcast-tower"
                 color="red"
-                content={ccMessageText}
                 disabled={!authmax || cc_cooldown > 0}
                 onClick={() => act('MessageSyndicate')}
-              />
+              >
+                {ccMessageText}
+              </Button>
               <Button
                 icon="sync-alt"
-                content="Reset Relays"
                 disabled={!authmax}
                 onClick={() => act('RestoreBackup')}
-              />
+              >
+                Reset Relays
+              </Button>
             </LabeledList.Item>
           )) || (
             <LabeledList.Item label="Transmit">
               <Button
                 icon="broadcast-tower"
-                content={ccMessageText}
                 disabled={!authmax || cc_cooldown > 0}
                 onClick={() => act('MessageCentCom')}
-              />
+              >
+                {ccMessageText}
+              </Button>
             </LabeledList.Item>
           )}
         </LabeledList>
@@ -136,27 +141,30 @@ const CommunicationsConsoleMain = (props) => {
           <LabeledList.Item label="Displays">
             <Button
               icon="tv"
-              content="Change Status Displays"
               disabled={!authenticated}
               onClick={() => act('status')}
-            />
+            >
+              Change Status Displays
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Incoming Messages">
             <Button
               icon="folder-open"
-              content={reportText}
               disabled={!authenticated}
               onClick={() => act('messagelist')}
-            />
+            >
+              {reportText}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Misc">
             <Button
               icon="microphone"
-              content={!atcsquelch ? 'ATC Relay Enabled' : 'ATC Relay Disabled'}
               disabled={!authenticated}
               selected={atcsquelch}
               onClick={() => act('toggleatc')}
-            />
+            >
+              {!atcsquelch ? 'ATC Relay Enabled' : 'ATC Relay Disabled'}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       </Section>
@@ -194,11 +202,10 @@ const CommunicationsConsoleAuth = (props) => {
               <Button
                 icon={authenticated ? 'sign-out-alt' : 'id-card'}
                 selected={authenticated}
-                content={
-                  authenticated ? 'Log Out (' + authReadable + ')' : 'Log In'
-                }
                 onClick={() => act('auth')}
-              />
+              >
+                {authenticated ? 'Log Out (' + authReadable + ')' : 'Log In'}
+              </Button>
             </LabeledList.Item>
           )}
         </LabeledList>
@@ -212,20 +219,22 @@ const CommunicationsConsoleAuth = (props) => {
             <LabeledList.Item label="Options">
               <Button
                 icon="rocket"
-                content="Call Shuttle"
                 disabled={!authenticated}
                 onClick={() => act('callshuttle')}
-              />
+              >
+                Call Shuttle
+              </Button>
             </LabeledList.Item>
           )}
           {!!esc_recallable && (
             <LabeledList.Item label="Options">
               <Button
                 icon="times"
-                content="Recall Shuttle"
                 disabled={!authenticated || is_ai}
                 onClick={() => act('cancelshuttle')}
-              />
+              >
+                Recall Shuttle
+              </Button>
             </LabeledList.Item>
           )}
         </LabeledList>
@@ -247,10 +256,11 @@ const CommunicationsConsoleMessage = (props) => {
         buttons={
           <Button
             icon="times"
-            content="Return To Message List"
             disabled={!authenticated}
             onClick={() => act('messagelist')}
-          />
+          >
+            Return To Message List
+          </Button>
         }
       >
         <Box>{message_current.contents}</Box>
@@ -263,19 +273,21 @@ const CommunicationsConsoleMessage = (props) => {
       <LabeledList.Item key={m.id} label={m.title}>
         <Button
           icon="eye"
-          content="View"
           disabled={
             !authenticated ||
             (message_current && message_current.title === m.title)
           }
           onClick={() => act('messagelist', { msgid: m.id })}
-        />
+        >
+          View
+        </Button>
         <Button
           icon="times"
-          content="Delete"
           disabled={!authenticated || !message_deletion_allowed}
           onClick={() => act('delmessage', { msgid: m.id })}
-        />
+        >
+          Delete
+        </Button>
       </LabeledList.Item>
     );
   });
@@ -284,11 +296,9 @@ const CommunicationsConsoleMessage = (props) => {
     <Section
       title="Messages Received"
       buttons={
-        <Button
-          icon="arrow-circle-left"
-          content="Back To Main Menu"
-          onClick={() => act('main')}
-        />
+        <Button icon="arrow-circle-left" onClick={() => act('main')}>
+          Back To Main Menu
+        </Button>
       }
     >
       <LabeledList>
@@ -311,22 +321,21 @@ const CommunicationsConsoleStatusDisplay = (props) => {
     return (
       <Button
         key={pb.name}
-        content={pb.label}
         selected={pb.name === stat_display.type}
         disabled={!authenticated}
         onClick={() => act('setstat', { statdisp: pb.name })}
-      />
+      >
+        {pb.label}
+      </Button>
     );
   });
   return (
     <Section
       title="Modify Status Screens"
       buttons={
-        <Button
-          icon="arrow-circle-left"
-          content="Back To Main Menu"
-          onClick={() => act('main')}
-        />
+        <Button icon="arrow-circle-left" onClick={() => act('main')}>
+          Back To Main Menu
+        </Button>
       }
     >
       <LabeledList>
@@ -334,18 +343,20 @@ const CommunicationsConsoleStatusDisplay = (props) => {
         <LabeledList.Item label="Message Line 1">
           <Button
             icon="pencil-alt"
-            content={stat_display.line_1}
             disabled={!authenticated}
             onClick={() => act('setmsg1')}
-          />
+          >
+            {stat_display.line_1}
+          </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Message Line 2">
           <Button
             icon="pencil-alt"
-            content={stat_display.line_2}
             disabled={!authenticated}
             onClick={() => act('setmsg2')}
-          />
+          >
+            {stat_display.line_2}
+          </Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>

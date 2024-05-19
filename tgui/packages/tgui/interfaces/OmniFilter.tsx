@@ -39,11 +39,12 @@ export const OmniFilter = (props) => {
             <>
               <Button
                 icon="power-off"
-                content={power ? 'On' : 'Off'}
                 selected={power}
                 disabled={config}
                 onClick={() => act('power')}
-              />
+              >
+                {power ? 'On' : 'Off'}
+              </Button>
               <Button
                 icon="wrench"
                 selected={config}
@@ -59,7 +60,6 @@ export const OmniFilter = (props) => {
                   {config ? (
                     <>
                       <Button
-                        content="IN"
                         selected={port.input}
                         icon="compress-arrows-alt"
                         onClick={() =>
@@ -68,9 +68,10 @@ export const OmniFilter = (props) => {
                             dir: port.dir,
                           })
                         }
-                      />
+                      >
+                        IN
+                      </Button>
                       <Button
-                        content="OUT"
                         selected={port.output}
                         icon="expand-arrows-alt"
                         onClick={() =>
@@ -79,18 +80,21 @@ export const OmniFilter = (props) => {
                             dir: port.dir,
                           })
                         }
-                      />
+                      >
+                        OUT
+                      </Button>
                       <Button
                         icon="wrench"
                         disabled={port.input || port.output}
-                        content={port.f_type || 'None'}
                         onClick={() =>
                           act('switch_filter', {
                             mode: port.f_type,
                             dir: port.dir,
                           })
                         }
-                      />
+                      >
+                        {port.f_type || 'None'}
+                      </Button>
                     </>
                   ) : (
                     getStatusText(port)
@@ -109,11 +113,9 @@ export const OmniFilter = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="Flow Rate Limit">
               {config ? (
-                <Button
-                  icon="wrench"
-                  content={set_flow_rate + ' L/s'}
-                  onClick={() => act('set_flow_rate')}
-                />
+                <Button icon="wrench" onClick={() => act('set_flow_rate')}>
+                  {set_flow_rate + ' L/s'}
+                </Button>
               ) : (
                 set_flow_rate + ' L/s'
               )}

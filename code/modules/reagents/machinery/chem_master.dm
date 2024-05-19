@@ -83,7 +83,7 @@
 
 /obj/machinery/chem_master/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/chem_master),
+		get_asset_datum(/datum/asset/spritesheet/chem_master),
 	)
 
 /obj/machinery/chem_master/tgui_interact(mob/user, datum/tgui/ui = null)
@@ -209,8 +209,8 @@
 				if("change_pill_style")
 					var/list/choices = list()
 					for(var/i = 1 to MAX_PILL_SPRITE)
-						choices += "pill[i].png"
-					tgui_modal_bento(src, id, "Please select the new style for pills:", null, arguments, pillsprite, choices)
+						choices += "chem_master32x32 pill[i]"
+					tgui_modal_bento_spritesheet(src, id, "Please select the new style for pills:", null, arguments, pillsprite, choices)
 				if("create_patch")
 					if(condi || !reagents.total_volume)
 						return
@@ -244,8 +244,8 @@
 				if("change_bottle_style")
 					var/list/choices = list()
 					for(var/i = 1 to MAX_BOTTLE_SPRITE)
-						choices += "bottle-[i].png"
-					tgui_modal_bento(src, id, "Please select the new style for bottles:", null, arguments, bottlesprite, choices)
+						choices += "chem_master32x32 bottle-[i]"
+					tgui_modal_bento_spritesheet(src, id, "Please select the new style for bottles:", null, arguments, bottlesprite, choices)
 				else
 					return FALSE
 		if(TGUI_MODAL_ANSWER)

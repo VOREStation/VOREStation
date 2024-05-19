@@ -61,10 +61,11 @@ export const MechaControlConsole = (props) => {
                   </Button>
                   <Button.Confirm
                     color="red"
-                    content="EMP"
                     icon="bomb"
                     onClick={() => act('shock', { mt: beacon.ref })}
-                  />
+                  >
+                    EMP
+                  </Button.Confirm>
                 </>
               }
             >

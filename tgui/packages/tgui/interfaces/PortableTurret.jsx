@@ -30,21 +30,23 @@ export const PortableTurret = (props) => {
             <LabeledList.Item label="Status">
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
                 selected={on}
                 disabled={locked}
                 onClick={() => act('power')}
-              />
+              >
+                {on ? 'On' : 'Off'}
+              </Button>
             </LabeledList.Item>
             {!!lethal_is_configurable && (
               <LabeledList.Item label="Lethals">
                 <Button
                   icon={lethal ? 'exclamation-triangle' : 'times'}
-                  content={lethal ? 'On' : 'Off'}
                   color={lethal ? 'bad' : ''}
                   disabled={locked}
                   onClick={() => act('lethal')}
-                />
+                >
+                  {lethal ? 'On' : 'Off'}
+                </Button>
               </LabeledList.Item>
             )}
           </LabeledList>
@@ -55,61 +57,69 @@ export const PortableTurret = (props) => {
               <Button.Checkbox
                 fluid
                 checked={neutralize_criminals}
-                content="Wanted Criminals"
                 disabled={locked}
                 onClick={() => act('autharrest')}
-              />
+              >
+                Wanted Criminals
+              </Button.Checkbox>
               <Button.Checkbox
                 fluid
                 checked={neutralize_norecord}
-                content="No Sec Record"
                 disabled={locked}
                 onClick={() => act('authnorecord')}
-              />
+              >
+                No Sec Record
+              </Button.Checkbox>
               <Button.Checkbox
                 fluid
                 checked={check_weapons}
-                content="Unauthorized Weapons"
                 disabled={locked}
                 onClick={() => act('authweapon')}
-              />
+              >
+                Unauthorized Weapons
+              </Button.Checkbox>
               <Button.Checkbox
                 fluid
                 checked={neutralize_noaccess}
-                content="Unauthorized Access"
                 disabled={locked}
                 onClick={() => act('authaccess')}
-              />
+              >
+                Unauthorized Access
+              </Button.Checkbox>
             </Section>
             <Section title="Other Targets">
               <Button.Checkbox
                 fluid
                 checked={neutralize_unidentified}
-                content="Unidentified Lifesigns (Xenos, Animals, Etc)"
                 disabled={locked}
                 onClick={() => act('authxeno')}
-              />
+              >
+                Unidentified Lifesigns (Xenos, Animals, Etc)
+              </Button.Checkbox>
               <Button.Checkbox
                 fluid
                 checked={neutralize_nonsynth}
-                content="All Non-Synthetics"
                 disabled={locked}
                 onClick={() => act('authsynth')}
-              />
+              >
+                All Non-Synthetics
+              </Button.Checkbox>
               <Button.Checkbox
                 fluid
                 checked={neutralize_down}
-                content="Downed Targets"
                 disabled={locked}
                 onClick={() => act('authdown')}
-              />
+              >
+                Downed Targets
+              </Button.Checkbox>
               <Button.Checkbox
                 fluid
                 checked={neutralize_all}
-                content="All Entities"
                 disabled={locked}
                 onClick={() => act('authall')}
-              />
+              >
+                All Entities
+              </Button.Checkbox>
             </Section>
           </>
         )}

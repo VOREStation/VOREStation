@@ -426,49 +426,32 @@
 // 	..()
 
 //Pill sprites for UIs
-/datum/asset/chem_master
-	var/assets = list()
-	var/verify = FALSE
+/datum/asset/spritesheet/chem_master
+	name = "chem_master"
 
-/datum/asset/chem_master/register()
+/datum/asset/spritesheet/chem_master/create_spritesheets()
 	for(var/i = 1 to 24)
-		assets["pill[i].png"] = icon('icons/obj/chemical.dmi', "pill[i]")
+		Insert("pill[i]", 'icons/obj/chemical.dmi', "pill[i]")
 
 	for(var/i = 1 to 4)
-		assets["bottle-[i].png"] = icon('icons/obj/chemical.dmi', "bottle-[i]")
+		Insert("bottle-[i]", 'icons/obj/chemical.dmi', "bottle-[i]")
 
-	for(var/asset_name in assets)
-		SSassets.transport.register_asset(asset_name, assets[asset_name])
-
-/datum/asset/chem_master/send(client)
-	SSassets.transport.send_assets(client, assets, verify)
 
 //Cloning pod sprites for UIs
-/datum/asset/cloning
-	var/assets = list()
-	var/verify = FALSE
-
-/datum/asset/cloning/register()
-	assets["pod_idle.gif"] = icon('icons/obj/cloning.dmi', "pod_idle")
-	assets["pod_cloning.gif"] = icon('icons/obj/cloning.dmi', "pod_cloning")
-	assets["pod_mess.gif"] = icon('icons/obj/cloning.dmi', "pod_mess")
-	for(var/asset_name in assets)
-		SSassets.transport.register_asset(asset_name, assets[asset_name])
-
-/datum/asset/cloning/send(client)
-	SSassets.transport.send_assets(client, assets, verify)
+/datum/asset/simple/cloning
+	assets = list(
+		"pod_idle.gif" = 'icons/UI_Icons/synthprinter.gif',
+		"pod_cloning.gif" = 'icons/UI_Icons/synthprinter_working.gif',
+	)
 
 // VOREStation Add
-/datum/asset/cloning/resleeving
-/datum/asset/cloning/resleeving/register()
-	// This intentionally does not call the parent. Duplicate assets are not allowed.
-	assets["sleeve_empty.gif"] = icon('icons/obj/machines/implantchair.dmi', "implantchair")
-	assets["sleeve_occupied.gif"] = icon('icons/obj/machines/implantchair.dmi', "implantchair_on")
-	assets["synthprinter.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_0")
-	assets["synthprinter_working.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_1")
-	for(var/asset_name in assets)
-		SSassets.transport.register_asset(asset_name, assets[asset_name])
-// VOREStation Add End
+/datum/asset/simple/cloning/resleeving
+	assets = list(
+		"sleeve_empty.gif" = 'icons/UI_Icons/sleeve_empty.gif',
+		"sleeve_occupied.gif" = 'icons/UI_Icons/sleeve_occupied.gif',
+		"synthprinter.gif" = 'icons/UI_Icons/synthprinter.gif',
+		"synthprinter_working.gif" = 'icons/UI_Icons/synthprinter_working.gif',
+	)
 
 /datum/asset/spritesheet/sheetmaterials
 	name = "sheetmaterials"

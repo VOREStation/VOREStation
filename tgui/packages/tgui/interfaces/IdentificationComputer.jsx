@@ -112,21 +112,15 @@ export const IdentificationComputerAccessModification = (props) => {
       )}
       <LabeledList>
         <LabeledList.Item label="Target Identitity">
-          <Button
-            icon="eject"
-            fluid
-            content={target_name}
-            onClick={() => act('modify')}
-          />
+          <Button icon="eject" fluid onClick={() => act('modify')}>
+            {target_name}
+          </Button>
         </LabeledList.Item>
         {!ntos && (
           <LabeledList.Item label="Authorized Identitity">
-            <Button
-              icon="eject"
-              fluid
-              content={scan_name}
-              onClick={() => act('scan')}
-            />
+            <Button icon="eject" fluid onClick={() => act('scan')}>
+              {scan_name}
+            </Button>
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -154,12 +148,13 @@ export const IdentificationComputerAccessModification = (props) => {
                   icon="exclamation-triangle"
                   confirmIcon="fire"
                   fluid
-                  content={'Dismiss ' + target_owner}
                   confirmContent={
                     'You are dismissing ' + target_owner + ', confirm?'
                   }
                   onClick={() => act('terminate')}
-                />
+                >
+                  {'Dismiss ' + target_owner}
+                </Button.Confirm>
               </LabeledList.Item>
             </LabeledList>
           </Section>

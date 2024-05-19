@@ -224,10 +224,11 @@ const AppearanceChangerSpecies = (props) => {
       {sortedSpecies.map((spec) => (
         <Button
           key={spec.specimen}
-          content={spec.specimen}
           selected={specimen === spec.specimen}
           onClick={() => act('race', { race: spec.specimen })}
-        />
+        >
+          {spec.specimen}
+        </Button>
       ))}
     </Section>
   );
@@ -246,9 +247,10 @@ const AppearanceChangerGender = (props) => {
             <Button
               key={g.gender_key}
               selected={g.gender_key === gender}
-              content={g.gender_name}
               onClick={() => act('gender', { gender: g.gender_key })}
-            />
+            >
+              {g.gender_name}
+            </Button>
           ))}
         </LabeledList.Item>
         <LabeledList.Item label="Gender Identity">
@@ -256,9 +258,10 @@ const AppearanceChangerGender = (props) => {
             <Button
               key={g.gender_key}
               selected={g.gender_key === gender_id}
-              content={g.gender_name}
               onClick={() => act('gender_id', { gender_id: g.gender_key })}
-            />
+            >
+              {g.gender_name}
+            </Button>
           ))}
         </LabeledList.Item>
       </LabeledList>
@@ -292,83 +295,64 @@ const AppearanceChangerColors = (props) => {
       {change_eye_color ? (
         <Box>
           <ColorBox color={eye_color} mr={1} />
-          <Button content="Change Eye Color" onClick={() => act('eye_color')} />
+          <Button onClick={() => act('eye_color')}>Change Eye Color</Button>
         </Box>
       ) : null}
       {change_skin_tone ? (
         <Box>
-          <Button content="Change Skin Tone" onClick={() => act('skin_tone')} />
+          <Button onClick={() => act('skin_tone')}>Change Skin Tone</Button>
         </Box>
       ) : null}
       {change_skin_color ? (
         <Box>
           <ColorBox color={skin_color} mr={1} />
-          <Button
-            content="Change Skin Color"
-            onClick={() => act('skin_color')}
-          />
+          <Button onClick={() => act('skin_color')}>Change Skin Color</Button>
         </Box>
       ) : null}
       {change_hair_color ? (
         <>
           <Box>
             <ColorBox color={hair_color} mr={1} />
-            <Button
-              content="Change Hair Color"
-              onClick={() => act('hair_color')}
-            />
+            <Button onClick={() => act('hair_color')}>Change Hair Color</Button>
           </Box>
           <Box>
             <ColorBox color={ears_color} mr={1} />
-            <Button
-              content="Change Ears Color"
-              onClick={() => act('ears_color')}
-            />
+            <Button onClick={() => act('ears_color')}>Change Ears Color</Button>
           </Box>
           <Box>
             <ColorBox color={ears2_color} mr={1} />
-            <Button
-              content="Change Secondary Ears Color"
-              onClick={() => act('ears2_color')}
-            />
+            <Button onClick={() => act('ears2_color')}>
+              Change Secondary Ears Color
+            </Button>
           </Box>
           <Box>
             <ColorBox color={tail_color} mr={1} />
-            <Button
-              content="Change Tail Color"
-              onClick={() => act('tail_color')}
-            />
+            <Button onClick={() => act('tail_color')}>Change Tail Color</Button>
           </Box>
           <Box>
             <ColorBox color={tail2_color} mr={1} />
-            <Button
-              content="Change Secondary Tail Color"
-              onClick={() => act('tail2_color')}
-            />
+            <Button onClick={() => act('tail2_color')}>
+              Change Secondary Tail Color
+            </Button>
           </Box>
           <Box>
             <ColorBox color={wing_color} mr={1} />
-            <Button
-              content="Change Wing Color"
-              onClick={() => act('wing_color')}
-            />
+            <Button onClick={() => act('wing_color')}>Change Wing Color</Button>
           </Box>
           <Box>
             <ColorBox color={wing2_color} mr={1} />
-            <Button
-              content="Change Secondary Wing Color"
-              onClick={() => act('wing2_color')}
-            />
+            <Button onClick={() => act('wing2_color')}>
+              Change Secondary Wing Color
+            </Button>
           </Box>
         </>
       ) : null}
       {change_facial_hair_color ? (
         <Box>
           <ColorBox color={facial_hair_color} mr={1} />
-          <Button
-            content="Change Facial Hair Color"
-            onClick={() => act('facial_hair_color')}
-          />
+          <Button onClick={() => act('facial_hair_color')}>
+            Change Facial Hair Color
+          </Button>
         </Box>
       ) : null}
     </Section>
@@ -387,8 +371,9 @@ const AppearanceChangerHair = (props) => {
           key={hair.hairstyle}
           onClick={() => act('hair', { hair: hair.hairstyle })}
           selected={hair.hairstyle === hair_style}
-          content={hair.hairstyle}
-        />
+        >
+          {hair.hairstyle}
+        </Button>
       ))}
     </Section>
   );
@@ -408,8 +393,9 @@ const AppearanceChangerFacialHair = (props) => {
             act('facial_hair', { facial_hair: hair.facialhairstyle })
           }
           selected={hair.facialhairstyle === facial_hair_style}
-          content={hair.facialhairstyle}
-        />
+        >
+          {hair.facialhairstyle}
+        </Button>
       ))}
     </Section>
   );
@@ -425,15 +411,17 @@ const AppearanceChangerEars = (props) => {
       <Button
         onClick={() => act('ear', { clear: true })}
         selected={ear_style === null}
-        content="-- Not Set --"
-      />
+      >
+        -- Not Set --
+      </Button>
       {sortBy((e) => e.name.toLowerCase())(ear_styles).map((ear) => (
         <Button
           key={ear.instance}
           onClick={() => act('ear', { ref: ear.instance })}
           selected={ear.name === ear_style}
-          content={ear.name}
-        />
+        >
+          {ear.name}
+        </Button>
       ))}
     </Section>
   );
@@ -449,15 +437,17 @@ const AppearanceChangerTails = (props) => {
       <Button
         onClick={() => act('tail', { clear: true })}
         selected={tail_style === null}
-        content="-- Not Set --"
-      />
+      >
+        -- Not Set --
+      </Button>
       {sortBy((e) => e.name.toLowerCase())(tail_styles).map((tail) => (
         <Button
           key={tail.instance}
           onClick={() => act('tail', { ref: tail.instance })}
           selected={tail.name === tail_style}
-          content={tail.name}
-        />
+        >
+          {tail.name}
+        </Button>
       ))}
     </Section>
   );
@@ -473,15 +463,17 @@ const AppearanceChangerWings = (props) => {
       <Button
         onClick={() => act('wing', { clear: true })}
         selected={wing_style === null}
-        content="-- Not Set --"
-      />
+      >
+        -- Not Set --
+      </Button>
       {sortBy((e) => e.name.toLowerCase())(wing_styles).map((wing) => (
         <Button
           key={wing.instance}
           onClick={() => act('wing', { ref: wing.instance })}
           selected={wing.name === wing_style}
-          content={wing.name}
-        />
+        >
+          {wing.name}
+        </Button>
       ))}
     </Section>
   );
@@ -495,31 +487,34 @@ const AppearanceChangerMarkings = (props) => {
   return (
     <Section title="Markings" fill scrollable>
       <Box>
-        <Button
-          content="Add Marking"
-          onClick={() => act('marking', { todo: 1, name: 'na' })}
-        />
+        <Button onClick={() => act('marking', { todo: 1, name: 'na' })}>
+          Add Marking
+        </Button>
       </Box>
       <LabeledList>
         {markings.map((m) => (
           <LabeledList.Item key={m.marking_name} label={m.marking_name}>
             <ColorBox color={m.marking_color} mr={1} />
             <Button
-              content="Change Color"
               onClick={() => act('marking', { todo: 4, name: m.marking_name })}
-            />
+            >
+              Change Color
+            </Button>
             <Button
-              content="-"
               onClick={() => act('marking', { todo: 0, name: m.marking_name })}
-            />
+            >
+              -
+            </Button>
             <Button
-              content="Move down"
               onClick={() => act('marking', { todo: 3, name: m.marking_name })}
-            />
+            >
+              Move down
+            </Button>
             <Button
-              content="Move up"
               onClick={() => act('marking', { todo: 2, name: m.marking_name })}
-            />
+            >
+              Move up
+            </Button>
           </LabeledList.Item>
         ))}
       </LabeledList>

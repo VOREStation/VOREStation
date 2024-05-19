@@ -74,15 +74,17 @@ export const PersonalCrafting = (props) => {
           buttons={
             <>
               <Button.Checkbox
-                content="Compact"
                 checked={display_compact}
                 onClick={() => act('toggle_compact')}
-              />
+              >
+                Compact
+              </Button.Checkbox>
               <Button.Checkbox
-                content="Craftable Only"
                 checked={display_craftable_only}
                 onClick={() => act('toggle_recipes')}
-              />
+              >
+                Craftable Only
+              </Button.Checkbox>
             </>
           }
         >
@@ -134,7 +136,6 @@ const CraftingList = (props) => {
           buttons={
             <Button
               icon="cog"
-              content="Craft"
               disabled={!craftability[craftable.ref]}
               tooltip={
                 craftable.tool_text && 'Tools needed: ' + craftable.tool_text
@@ -145,7 +146,9 @@ const CraftingList = (props) => {
                   recipe: craftable.ref,
                 })
               }
-            />
+            >
+              Craft
+            </Button>
           }
         >
           {craftable.req_text}
@@ -161,14 +164,15 @@ const CraftingList = (props) => {
         buttons={
           <Button
             icon="cog"
-            content="Craft"
             disabled={!craftability[craftable.ref]}
             onClick={() =>
               act('make', {
                 recipe: craftable.ref,
               })
             }
-          />
+          >
+            Craft
+          </Button>
         }
       >
         <LabeledList>

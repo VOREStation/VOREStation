@@ -67,15 +67,17 @@ const DNAModifierOccupant = (props) => {
             disabled={!hasOccupant}
             selected={locked}
             icon={locked ? 'toggle-on' : 'toggle-off'}
-            content={locked ? 'Engaged' : 'Disengaged'}
             onClick={() => act('toggleLock')}
-          />
+          >
+            {locked ? 'Engaged' : 'Disengaged'}
+          </Button>
           <Button
             disabled={!hasOccupant || locked}
             icon="user-slash"
-            content="Eject"
             onClick={() => act('ejectOccupant')}
-          />
+          >
+            Eject
+          </Button>
         </>
       }
     >
@@ -238,10 +240,11 @@ const DNAModifierMainUI = (props) => {
       </LabeledList>
       <Button
         icon="radiation"
-        content="Irradiate Block"
         mt="0.5rem"
         onClick={() => act('pulseUIRadiation')}
-      />
+      >
+        Irradiate Block
+      </Button>
     </Section>
   );
 };
@@ -258,11 +261,9 @@ const DNAModifierMainSE = (props) => {
         blockSize={dnaBlockSize}
         action="selectSEBlock"
       />
-      <Button
-        icon="radiation"
-        content="Irradiate Block"
-        onClick={() => act('pulseSERadiation')}
-      />
+      <Button icon="radiation" onClick={() => act('pulseSERadiation')}>
+        Irradiate Block
+      </Button>
     </Section>
   );
 };
@@ -299,12 +300,13 @@ const DNAModifierMainRadiationEmitter = (props) => {
       </LabeledList>
       <Button
         icon="radiation"
-        content="Pulse Radiation"
         tooltip="Mutates a random block of either the occupant's UI or SE."
         tooltipPosition="top"
         mt="0.5rem"
         onClick={() => act('pulseRadiation')}
-      />
+      >
+        Pulse Radiation
+      </Button>
     </Section>
   );
 };
@@ -347,29 +349,30 @@ const DNAModifierMainBuffersElement = (props) => {
             <Button.Confirm
               disabled={!buffer.data}
               icon="trash"
-              content="Clear"
               onClick={() =>
                 act('bufferOption', {
                   option: 'clear',
                   id: id,
                 })
               }
-            />
+            >
+              Clear
+            </Button.Confirm>
             <Button
               disabled={!buffer.data}
               icon="pen"
-              content="Rename"
               onClick={() =>
                 act('bufferOption', {
                   option: 'changeLabel',
                   id: id,
                 })
               }
-            />
+            >
+              Rename
+            </Button>
             <Button
               disabled={!buffer.data || !data.hasDisk}
               icon="save"
-              content="Export"
               tooltip="Exports this buffer to the currently loaded data disk."
               tooltipPosition="bottom-end"
               onClick={() =>
@@ -378,7 +381,9 @@ const DNAModifierMainBuffersElement = (props) => {
                   id: id,
                 })
               }
-            />
+            >
+              Export
+            </Button>
           </>
         }
       >
@@ -386,7 +391,6 @@ const DNAModifierMainBuffersElement = (props) => {
           <LabeledList.Item label="Write">
             <Button
               icon="arrow-circle-down"
-              content="Subject U.I"
               mb="0"
               onClick={() =>
                 act('bufferOption', {
@@ -394,10 +398,11 @@ const DNAModifierMainBuffersElement = (props) => {
                   id: id,
                 })
               }
-            />
+            >
+              Subject U.I
+            </Button>
             <Button
               icon="arrow-circle-down"
-              content="Subject U.I and U.E."
               mb="0"
               onClick={() =>
                 act('bufferOption', {
@@ -405,10 +410,11 @@ const DNAModifierMainBuffersElement = (props) => {
                   id: id,
                 })
               }
-            />
+            >
+              Subject U.I and U.E.
+            </Button>
             <Button
               icon="arrow-circle-down"
-              content="Subject S.E."
               mb="0"
               onClick={() =>
                 act('bufferOption', {
@@ -416,11 +422,12 @@ const DNAModifierMainBuffersElement = (props) => {
                   id: id,
                 })
               }
-            />
+            >
+              Subject S.E.
+            </Button>
             <Button
               disabled={!data.hasDisk || !data.disk.data}
               icon="arrow-circle-down"
-              content="From Disk"
               mb="0"
               onClick={() =>
                 act('bufferOption', {
@@ -428,7 +435,9 @@ const DNAModifierMainBuffersElement = (props) => {
                   id: id,
                 })
               }
-            />
+            >
+              From Disk
+            </Button>
           </LabeledList.Item>
           {!!buffer.data && (
             <>
@@ -446,7 +455,6 @@ const DNAModifierMainBuffersElement = (props) => {
                   disabled={!isInjectorReady}
                   icon={isInjectorReady ? 'syringe' : 'spinner'}
                   iconSpin={!isInjectorReady}
-                  content="Injector"
                   mb="0"
                   onClick={() =>
                     act('bufferOption', {
@@ -454,12 +462,13 @@ const DNAModifierMainBuffersElement = (props) => {
                       id: id,
                     })
                   }
-                />
+                >
+                  Injector
+                </Button>
                 <Button
                   disabled={!isInjectorReady}
                   icon={isInjectorReady ? 'syringe' : 'spinner'}
                   iconSpin={!isInjectorReady}
-                  content="Block Injector"
                   mb="0"
                   onClick={() =>
                     act('bufferOption', {
@@ -468,10 +477,11 @@ const DNAModifierMainBuffersElement = (props) => {
                       block: 1,
                     })
                   }
-                />
+                >
+                  Block Injector
+                </Button>
                 <Button
                   icon="user"
-                  content="Subject"
                   mb="0"
                   onClick={() =>
                     act('bufferOption', {
@@ -479,7 +489,9 @@ const DNAModifierMainBuffersElement = (props) => {
                       id: id,
                     })
                   }
-                />
+                >
+                  Subject
+                </Button>
               </LabeledList.Item>
             </>
           )}
@@ -506,15 +518,17 @@ const DNAModifierMainBuffersDisk = (props) => {
           <Button.Confirm
             disabled={!hasDisk || !disk.data}
             icon="trash"
-            content="Wipe"
             onClick={() => act('wipeDisk')}
-          />
+          >
+            Wipe
+          </Button.Confirm>
           <Button
             disabled={!hasDisk}
             icon="eject"
-            content="Eject"
             onClick={() => act('ejectDisk')}
-          />
+          >
+            Eject
+          </Button>
         </>
       }
     >
@@ -557,9 +571,10 @@ const DNAModifierMainRejuvenators = (props) => {
         <Button
           disabled={!isBeakerLoaded}
           icon="eject"
-          content="Eject"
           onClick={() => act('ejectBeaker')}
-        />
+        >
+          Eject
+        </Button>
       }
     >
       {isBeakerLoaded ? (
@@ -570,24 +585,26 @@ const DNAModifierMainRejuvenators = (props) => {
                 key={i}
                 disabled={a > beakerVolume}
                 icon="syringe"
-                content={a}
                 onClick={() =>
                   act('injectRejuvenators', {
                     amount: a,
                   })
                 }
-              />
+              >
+                {a}
+              </Button>
             ))}
             <Button
               disabled={beakerVolume <= 0}
               icon="syringe"
-              content="All"
               onClick={() =>
                 act('injectRejuvenators', {
                   amount: beakerVolume,
                 })
               }
-            />
+            >
+              All
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Beaker">
             <Box mb="0.5rem">{beakerLabel ? beakerLabel : 'No label'}</Box>
@@ -650,7 +667,6 @@ const DNAModifierBlocks = (props) => {
           selected={
             selectedBlock === realBlock && selectedSubblock === realSubblock
           }
-          content={characters[block + subblock]}
           mb="0"
           onClick={() =>
             act(action, {
@@ -658,7 +674,9 @@ const DNAModifierBlocks = (props) => {
               subblock: realSubblock,
             })
           }
-        />,
+        >
+          {characters[block + subblock]}
+        </Button>,
       );
     }
     dnaBlocks.push(

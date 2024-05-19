@@ -12,10 +12,11 @@ export const AtmosMixer = (props) => {
             <LabeledList.Item label="Power">
               <Button
                 icon={data.on ? 'power-off' : 'times'}
-                content={data.on ? 'On' : 'Off'}
                 selected={data.on}
                 onClick={() => act('power')}
-              />
+              >
+                {data.on ? 'On' : 'Off'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Output Pressure">
               <NumberInput
@@ -35,14 +36,15 @@ export const AtmosMixer = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
                 disabled={data.set_pressure === data.max_pressure}
                 onClick={() =>
                   act('pressure', {
                     pressure: 'max',
                   })
                 }
-              />
+              >
+                Max
+              </Button>
             </LabeledList.Item>
             <LabeledList.Divider size={1} />
             <LabeledList.Item color="label">
