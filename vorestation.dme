@@ -591,6 +591,7 @@
 #include "code\game\antagonist\outsider\wizard.dm"
 #include "code\game\antagonist\station\changeling.dm"
 #include "code\game\antagonist\station\cultist.dm"
+#include "code\game\antagonist\station\event.dm"
 #include "code\game\antagonist\station\highlander.dm"
 #include "code\game\antagonist\station\infiltrator.dm"
 #include "code\game\antagonist\station\loyalist.dm"
