@@ -107,7 +107,7 @@
 /obj/item/device/assembly/prox_sensor/tgui_data(mob/user)
 	var/list/data = ..()
 
-	data["time"] = time * 10
+	data["time"] = time
 	data["timing"] = timing
 	data["range"] = range
 	data["maxRange"] = 5
@@ -135,7 +135,7 @@
 				for(var/i in 1 to LAZYLEN(L))
 					real_new_time += text2num(L[i]) * (60 ** (LAZYLEN(L) - i))
 			else
-				real_new_time = text2num(new_time)
+				real_new_time = text2num(new_time * 10)
 			time = clamp(real_new_time, 0, 600)
 			return TRUE
 		if("range")
