@@ -30,11 +30,12 @@ export const Holodeck = (props) => {
               key={prog}
               color={restrictedPrograms.indexOf(prog) !== -1 ? 'bad' : null}
               icon="eye"
-              content={prog}
               selected={currentProgram === prog}
               fluid
               onClick={() => act('program', { program: prog })}
-            />
+            >
+              {prog}
+            </Button>
           ))}
         </Section>
         {!!isSilicon && (

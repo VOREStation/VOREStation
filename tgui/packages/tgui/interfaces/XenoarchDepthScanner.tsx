@@ -31,9 +31,10 @@ export const XenoarchDepthScanner = (props) => {
                 color="bad"
                 icon="trash"
                 confirmIcon="trash"
-                content="Delete Entry"
                 onClick={() => act('clear', { index: current.index })}
-              />
+              >
+                Delete Entry
+              </Button.Confirm>
             }
           >
             <LabeledList>
@@ -64,9 +65,10 @@ export const XenoarchDepthScanner = (props) => {
               color="red"
               icon="trash"
               confirmIcon="trash"
-              content="Delete All"
               onClick={() => act('clear')}
-            />
+            >
+              Delete All
+            </Button.Confirm>
           }
         >
           {(positive_locations.length &&

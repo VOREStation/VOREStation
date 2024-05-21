@@ -23,11 +23,9 @@ export const pAIDirectives = (props) => {
               {(master && (
                 <Box>
                   {master} ({dna})
-                  <Button
-                    icon="syringe"
-                    content="Request Sample"
-                    onClick={() => act('getdna')}
-                  />
+                  <Button icon="syringe" onClick={() => act('getdna')}>
+                    Request Sample
+                  </Button>
                 </Box>
               )) || <Box>None</Box>}
             </LabeledList.Item>

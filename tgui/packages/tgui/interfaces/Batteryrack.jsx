@@ -44,33 +44,35 @@ export const Batteryrack = (props) => {
               <AnimatedNumber value={output_load} /> / {transfer_max} W
             </LabeledList.Item>
             <LabeledList.Item label="Control Panel">
+              <Button selected={mode === 0} onClick={() => act('disable')}>
+                OFF
+              </Button>
               <Button
-                content="OFF"
-                selected={mode === 0}
-                onClick={() => act('disable')}
-              />
-              <Button
-                content="OUT"
                 selected={mode === 1}
                 onClick={() => act('enable', { enable: 1 })}
-              />
+              >
+                OUT
+              </Button>
               <Button
-                content="IN"
                 selected={mode === 2}
                 onClick={() => act('enable', { enable: 2 })}
-              />
+              >
+                IN
+              </Button>
               <Button
-                content="IN/OUT"
                 selected={mode === 3}
                 onClick={() => act('enable', { enable: 3 })}
-              />
+              >
+                IN/OUT
+              </Button>
               {(equalise && (
                 <Button
-                  content="EQ"
                   color={blink_tick ? 'red' : 'yellow'}
                   onClick={() => act('equaliseoff')}
-                />
-              )) || <Button content="EQ" onClick={() => act('equaliseon')} />}
+                >
+                  EQ
+                </Button>
+              )) || <Button onClick={() => act('equaliseon')}>EQ</Button>}
             </LabeledList.Item>
           </LabeledList>
         </Section>

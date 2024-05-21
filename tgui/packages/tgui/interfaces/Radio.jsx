@@ -90,9 +90,10 @@ export const Radio = (props) => {
                   <Button
                     icon="bullhorn"
                     selected={subspace}
-                    content={`Subspace Tx ${subspace ? 'ON' : 'OFF'}`}
                     onClick={() => act('subspace')}
-                  />
+                  >
+                    {`Subspace Tx ${subspace ? 'ON' : 'OFF'}`}
+                  </Button>
                 </Box>
               )}
               {!!subspaceSwitchable && (
@@ -100,9 +101,10 @@ export const Radio = (props) => {
                   <Button
                     icon={loudspeaker ? 'volume-up' : 'volume-mute'}
                     selected={loudspeaker}
-                    content="Loudspeaker"
                     onClick={() => act('toggleLoudspeaker')}
-                  />
+                  >
+                    Loudspeaker
+                  </Button>
                 </Box>
               )}
             </LabeledList.Item>
@@ -140,23 +142,25 @@ export const Radio = (props) => {
                               : 'square-o'
                           }
                           selected={!channel.sec_channel_listen}
-                          content={!channel.sec_channel_listen ? 'On' : 'Off'}
                           onClick={() =>
                             act('channel', {
                               channel: channel.chan,
                             })
                           }
-                        />
+                        >
+                          {!channel.sec_channel_listen ? 'On' : 'Off'}
+                        </Button>
                       ) : (
                         <Button
-                          content="Switch"
                           selected={channel.chan === rawfreq}
                           onClick={() =>
                             act('specFreq', {
                               channel: channel.chan,
                             })
                           }
-                        />
+                        >
+                          Switch
+                        </Button>
                       )}
                     </LabeledList.Item>
                   );

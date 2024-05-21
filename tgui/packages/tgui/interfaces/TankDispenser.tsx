@@ -20,10 +20,11 @@ export const TankDispenser = (props) => {
               buttons={
                 <Button
                   icon={plasma ? 'square' : 'square-o'}
-                  content="Dispense"
                   disabled={!plasma}
                   onClick={() => act('plasma')}
-                />
+                >
+                  Dispense
+                </Button>
               }
             >
               {plasma}
@@ -33,10 +34,11 @@ export const TankDispenser = (props) => {
               buttons={
                 <Button
                   icon={oxygen ? 'square' : 'square-o'}
-                  content="Dispense"
                   disabled={!oxygen}
                   onClick={() => act('oxygen')}
-                />
+                >
+                  Dispense
+                </Button>
               }
             >
               {oxygen}

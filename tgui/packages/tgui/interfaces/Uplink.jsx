@@ -83,11 +83,9 @@ const ExploitableInformation = (props) => {
       title="Exploitable Information"
       buttons={
         exploit && (
-          <Button
-            icon="undo"
-            content="Back"
-            onClick={() => act('view_exploits', { id: 0 })}
-          />
+          <Button icon="undo" onClick={() => act('view_exploits', { id: 0 })}>
+            Back
+          </Button>
         )
       }
     >
@@ -137,9 +135,10 @@ const ExploitableInformation = (props) => {
             key={record.id}
             icon="eye"
             fluid
-            content={record.name}
             onClick={() => act('view_exploits', { id: record.id })}
-          />
+          >
+            {record.name}
+          </Button>
         ))}
     </Section>
   );
@@ -183,11 +182,14 @@ export const GenericUplink = (props) => {
           />
           <Button
             icon={compactMode ? 'list' : 'info'}
-            content={compactMode ? 'Compact' : 'Detailed'}
             onClick={() => act('compact_toggle')}
-          />
+          >
+            {compactMode ? 'Compact' : 'Detailed'}
+          </Button>
           {!!lockable && (
-            <Button icon="lock" content="Lock" onClick={() => act('lock')} />
+            <Button icon="lock" onClick={() => act('lock')}>
+              Lock
+            </Button>
           )}
         </>
       }
@@ -253,7 +255,6 @@ const ItemList = (props) => {
             <Table.Cell collapsing textAlign="right">
               <Button
                 fluid
-                content={formatMoney(item.cost) + ' ' + currencySymbol}
                 disabled={item.disabled}
                 tooltip={item.desc}
                 tooltipPosition="left"
@@ -264,7 +265,9 @@ const ItemList = (props) => {
                     ref: item.ref,
                   })
                 }
-              />
+              >
+                {formatMoney(item.cost) + ' ' + currencySymbol}
+              </Button>
             </Table.Cell>
           </Table.Row>
         ))}
@@ -278,7 +281,6 @@ const ItemList = (props) => {
       level={2}
       buttons={
         <Button
-          content={item.cost + ' ' + currencySymbol}
           disabled={item.disabled}
           onmouseover={() => setHoveredItem(item)}
           onmouseout={() => setHoveredItem({})}
@@ -287,7 +289,9 @@ const ItemList = (props) => {
               ref: item.ref,
             })
           }
-        />
+        >
+          {item.cost + ' ' + currencySymbol}
+        </Button>
       }
     >
       {decodeHtmlEntities(item.desc)}

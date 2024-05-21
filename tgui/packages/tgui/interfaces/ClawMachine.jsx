@@ -15,7 +15,7 @@ export const ClawMachine = (props) => {
         <b>Pay to Play!</b> <br /> <hr />
         {instructions}
         <br /> <hr /> <br />
-        <Button content="Start" onClick={() => act('newgame')} />
+        <Button onClick={() => act('newgame')}>Start</Button>
       </Box>
     );
   } else if (gameStatus === 'CLAWMACHINE_END') {
@@ -25,7 +25,7 @@ export const ClawMachine = (props) => {
         <b>Thank you for playing!</b> <br /> <hr />
         {winscreen}
         <br /> <hr /> <br />
-        <Button content="Close" onClick={() => act('return')} />
+        <Button onClick={() => act('return')}>Close</Button>
       </Box>
     );
   } else if (gameStatus === 'CLAWMACHINE_ON') {
@@ -49,12 +49,12 @@ export const ClawMachine = (props) => {
           <br /> <hr /> <br />
           {instructions}
           <br /> <br /> <hr /> <br /> <br />
-          <Button content="Up" onClick={() => act('pointless')} />
+          <Button onClick={() => act('pointless')}>Up</Button>
           <br /> <br />
-          <Button content="Left" onClick={() => act('pointless')} />
-          <Button content="Right" onClick={() => act('pointless')} />
+          <Button onClick={() => act('pointless')}>Left</Button>
+          <Button onClick={() => act('pointless')}>Right</Button>
           <br /> <br />
-          <Button content="Down" onClick={() => act('pointless')} />
+          <Button onClick={() => act('pointless')}>Down</Button>
         </Box>
       </Window.Content>
     );

@@ -21,12 +21,13 @@ export const MiningUser = (props) => {
           </Box>
           <Button
             icon="eject"
-            content="Eject ID"
             style={{
               float: 'right',
             }}
             onClick={() => act('logoff')}
-          />
+          >
+            Eject ID
+          </Button>
           <Box
             style={{
               clear: 'both',

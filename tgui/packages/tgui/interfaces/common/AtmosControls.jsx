@@ -27,21 +27,21 @@ export const Vent = (props) => {
         <Button
           icon={power ? 'power-off' : 'times'}
           selected={power}
-          content={power ? 'On' : 'Off'}
           onClick={() =>
             act('power', {
               id_tag,
               val: Number(!power),
             })
           }
-        />
+        >
+          {power ? 'On' : 'Off'}
+        </Button>
       }
     >
       <LabeledList>
         <LabeledList.Item label="Mode">
           <Button
             icon="sign-in-alt"
-            content={direction !== 'siphon' ? 'Pressurizing' : 'Siphoning'}
             color={direction === 'siphon' && 'danger'}
             onClick={() =>
               act('direction', {
@@ -49,12 +49,13 @@ export const Vent = (props) => {
                 val: Number(direction === 'siphon'),
               })
             }
-          />
+          >
+            {direction !== 'siphon' ? 'Pressurizing' : 'Siphoning'}
+          </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Pressure Regulator">
           <Button
             icon="sign-in-alt"
-            content="Internal"
             selected={incheck}
             onClick={() =>
               act('incheck', {
@@ -62,10 +63,11 @@ export const Vent = (props) => {
                 val: checks,
               })
             }
-          />
+          >
+            Internal
+          </Button>
           <Button
             icon="sign-out-alt"
-            content="External"
             selected={excheck}
             onClick={() =>
               act('excheck', {
@@ -73,7 +75,9 @@ export const Vent = (props) => {
                 val: checks,
               })
             }
-          />
+          >
+            External
+          </Button>
         </LabeledList.Item>
         {!!incheck && (
           <LabeledList.Item label="Internal Target">
@@ -94,13 +98,14 @@ export const Vent = (props) => {
             <Button
               icon="undo"
               disabled={intdefault}
-              content="Reset"
               onClick={() =>
                 act('reset_internal_pressure', {
                   id_tag,
                 })
               }
-            />
+            >
+              Reset
+            </Button>
           </LabeledList.Item>
         )}
         {!!excheck && (
@@ -122,13 +127,14 @@ export const Vent = (props) => {
             <Button
               icon="undo"
               disabled={extdefault}
-              content="Reset"
               onClick={() =>
                 act('reset_external_pressure', {
                   id_tag,
                 })
               }
-            />
+            >
+              Reset
+            </Button>
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -147,7 +153,6 @@ export const Scrubber = (props) => {
       buttons={
         <Button
           icon={power ? 'power-off' : 'times'}
-          content={power ? 'On' : 'Off'}
           selected={power}
           onClick={() =>
             act('power', {
@@ -155,7 +160,9 @@ export const Scrubber = (props) => {
               val: Number(!power),
             })
           }
-        />
+        >
+          {power ? 'On' : 'Off'}
+        </Button>
       }
     >
       <LabeledList>
@@ -163,14 +170,15 @@ export const Scrubber = (props) => {
           <Button
             icon={scrubbing ? 'filter' : 'sign-in-alt'}
             color={scrubbing || 'danger'}
-            content={scrubbing ? 'Scrubbing' : 'Siphoning'}
             onClick={() =>
               act('scrubbing', {
                 id_tag,
                 val: Number(!scrubbing),
               })
             }
-          />
+          >
+            {scrubbing ? 'Scrubbing' : 'Siphoning'}
+          </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Filters">
           {(scrubbing &&
@@ -178,7 +186,6 @@ export const Scrubber = (props) => {
               <Button
                 key={filter.name}
                 icon={filter.val ? 'check-square-o' : 'square-o'}
-                content={filter.name}
                 title={filter.name}
                 selected={filter.val}
                 onClick={() =>
@@ -187,7 +194,9 @@ export const Scrubber = (props) => {
                     val: !filter.val,
                   })
                 }
-              />
+              >
+                {filter.name}
+              </Button>
             ))) ||
             'N/A'}
         </LabeledList.Item>

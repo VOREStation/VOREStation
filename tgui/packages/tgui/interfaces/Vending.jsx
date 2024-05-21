@@ -59,13 +59,14 @@ const VendingRow = (props) => {
           icon={product.price ? 'credit-card' : 'download'}
           iconSpin={actively_vending === product.name}
           disabled={product.amount === 0}
-          content={product.price ? 'Buy (' + product.price + '₮)' : 'Vend'}
           onClick={() =>
             act('vend', {
               vend: product.key,
             })
           }
-        />
+        >
+          {product.price ? 'Buy (' + product.price + '₮)' : 'Vend'}
+        </Button>
       </Table.Cell>
     </Table.Row>
   );
@@ -133,11 +134,9 @@ export const VendingProducts = (props) => {
         <Section
           title={coin + ' deposited'}
           buttons={
-            <Button
-              icon="eject"
-              content="Eject Coin"
-              onClick={() => act('remove_coin')}
-            />
+            <Button icon="eject" onClick={() => act('remove_coin')}>
+              Eject Coin
+            </Button>
           }
         />
       )}
@@ -156,10 +155,11 @@ export const VendingMaintenance = (props) => {
         buttons={
           <Button
             icon={speaker ? 'volume-up' : 'volume-off'}
-            content={speaker ? 'Enabled' : 'Disabled'}
             selected={speaker}
             onClick={() => act('togglevoice')}
-          />
+          >
+            {speaker ? 'Enabled' : 'Disabled'}
+          </Button>
         }
       />
     </Section>

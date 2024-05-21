@@ -80,9 +80,10 @@ export const pda_medical = (props) => {
           key={record.ref}
           icon="eye"
           fluid
-          content={record.Name}
           onClick={() => act('Records', { target: record.ref })}
-        />
+        >
+          {record.Name}
+        </Button>
       ))}
     </Section>
   );

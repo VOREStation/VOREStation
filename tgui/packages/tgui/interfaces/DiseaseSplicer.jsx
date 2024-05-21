@@ -38,10 +38,11 @@ const DiseaseSplicerVirusDish = (props) => {
       buttons={
         <Button
           icon="eject"
-          content="Eject Dish"
           disabled={!dish_inserted}
           onClick={() => act('eject')}
-        />
+        >
+          Eject Dish
+        </Button>
       }
     >
       <LabeledList>
@@ -84,16 +85,15 @@ const DiseaseSplicerVirusDish = (props) => {
             {effects.map((e) => (
               <Button
                 key={e.stage}
-                content={e.stage}
                 icon="exchange-alt"
                 onClick={() => act('grab', { grab: e.reference })}
-              />
+              >
+                {e.stage}
+              </Button>
             ))}
-            <Button
-              content="Species"
-              icon="exchange-alt"
-              onClick={() => act('affected_species')}
-            />
+            <Button icon="exchange-alt" onClick={() => act('affected_species')}>
+              Species
+            </Button>
           </Section>
         </>
       )}
@@ -133,45 +133,51 @@ const DiseaseSplicerStorage = (props) => {
       <Button
         mt={1}
         icon="save"
-        content="Save To Disk"
         disabled={!buffer && !species_buffer}
         onClick={() => act('disk')}
-      />
+      >
+        Save To Disk
+      </Button>
       {buffer ? (
         <Box>
           <Button
             icon="pen"
-            content="Splice #1"
             disabled={buffer.stage > 1}
             onClick={() => act('splice', { splice: 1 })}
-          />
+          >
+            Splice #1
+          </Button>
           <Button
             icon="pen"
-            content="Splice #2"
             disabled={buffer.stage > 2}
             onClick={() => act('splice', { splice: 2 })}
-          />
+          >
+            Splice #2
+          </Button>
           <Button
             icon="pen"
-            content="Splice #3"
             disabled={buffer.stage > 3}
             onClick={() => act('splice', { splice: 3 })}
-          />
+          >
+            Splice #3
+          </Button>
           <Button
             icon="pen"
-            content="Splice #4"
             disabled={buffer.stage > 4}
             onClick={() => act('splice', { splice: 4 })}
-          />
+          >
+            Splice #4
+          </Button>
         </Box>
       ) : species_buffer ? (
         <Box>
           <Button
             icon="pen"
-            content="Splice Species"
             disabled={!species_buffer || info}
             onClick={() => act('splice', { splice: 5 })}
-          />
+          >
+            Splice Species
+          </Button>
         </Box>
       ) : null}
     </Section>

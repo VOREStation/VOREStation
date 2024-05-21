@@ -21,11 +21,12 @@ export const LoginInfo = (_properties) => {
       </Box>
       <Button
         icon="sign-out-alt"
-        content="Logout and Eject ID"
         color="good"
         float="right"
         onClick={() => act('logout')}
-      />
+      >
+        Logout and Eject ID
+      </Button>
       <Box clear="both" />
     </NoticeBox>
   );

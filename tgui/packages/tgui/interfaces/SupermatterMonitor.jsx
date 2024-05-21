@@ -43,7 +43,9 @@ const SupermatterMonitorList = (props) => {
     <Section
       title="Supermatters Detected"
       buttons={
-        <Button content="Refresh" icon="sync" onClick={() => act('refresh')} />
+        <Button icon="sync" onClick={() => act('refresh')}>
+          Refresh
+        </Button>
       }
     >
       <Flex wrap="wrap">
@@ -57,9 +59,10 @@ const SupermatterMonitorList = (props) => {
                 <LabeledList.Item label="Options">
                   <Button
                     icon="eye"
-                    content="View Details"
                     onClick={() => act('set', { set: sm.uid })}
-                  />
+                  >
+                    View Details
+                  </Button>
                 </LabeledList.Item>
               </LabeledList>
             </Section>
@@ -91,11 +94,9 @@ const SupermatterMonitorActive = (props) => {
     <Section
       title={toTitleCase(SM_area)}
       buttons={
-        <Button
-          icon="arrow-left"
-          content="Return to Menu"
-          onClick={() => act('clear')}
-        />
+        <Button icon="arrow-left" onClick={() => act('clear')}>
+          Return to Menu
+        </Button>
       }
     >
       <LabeledList>

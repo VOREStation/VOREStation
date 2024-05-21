@@ -30,11 +30,12 @@ const virusModalBodyOverride = (modal) => {
           <Button
             disabled={!can_print}
             icon="print"
-            content="Print"
             onClick={() =>
               act('print', { type: 'virus_record', vir: virus.record })
             }
-          />
+          >
+            Print
+          </Button>
           <Button icon="times" color="red" onClick={() => act('modal_close')} />
         </>
       }
@@ -129,16 +130,18 @@ const PathogenicIsolatorTabHome = (props) => {
         <>
           <Button
             icon="print"
-            content="Print"
             disabled={!can_print}
             onClick={() => act('print', { type: 'patient_diagnosis' })}
-          />
+          >
+            Print
+          </Button>
           <Button
             icon="eject"
-            content="Eject Syringe"
             disabled={!syringe_inserted}
             onClick={() => act('eject')}
-          />
+          >
+            Eject Syringe
+          </Button>
         </>
       }
     >
@@ -154,17 +157,19 @@ const PathogenicIsolatorTabHome = (props) => {
                 <Flex.Item>
                   <Button
                     icon="virus"
-                    content="Isolate"
                     onClick={() =>
                       act('isolate', { isolate: pathogen.reference })
                     }
-                  />
+                  >
+                    Isolate
+                  </Button>
                   <Button
                     icon="search"
-                    content="Database"
                     disabled={!pathogen.is_in_database}
                     onClick={() => act('view_entry', { vir: pathogen.record })}
-                  />
+                  >
+                    Database
+                  </Button>
                 </Flex.Item>
               </Flex>
             </Box>
@@ -194,10 +199,11 @@ const PathogenicIsolatorTabDatabase = (props) => {
       buttons={
         <Button
           icon="print"
-          content="Print"
           disabled={!can_print}
           onClick={() => act('print', { type: 'virus_list' })}
-        />
+        >
+          Print
+        </Button>
       }
     >
       {(database.length &&

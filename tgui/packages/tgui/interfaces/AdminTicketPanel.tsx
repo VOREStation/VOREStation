@@ -44,12 +44,10 @@ export const AdminTicketPanel = (props) => {
           title={'Ticket #' + id}
           buttons={
             <Box nowrap>
-              <Button
-                icon="pen"
-                content="Rename Ticket"
-                onClick={() => act('retitle')}
-              />{' '}
-              <Button content="Legacy UI" onClick={() => act('legacy')} />
+              <Button icon="pen" onClick={() => act('retitle')}>
+                Rename Ticket
+              </Button>
+              <Button onClick={() => act('legacy')}>Legacy UI</Button>
             </Box>
           }
         >
@@ -67,7 +65,7 @@ export const AdminTicketPanel = (props) => {
               <LabeledList.Item label="Closed At">
                 {closed_at_date} ({Math.round((closed_at / 600) * 10) / 10}{' '}
                 minutes ago.){' '}
-                <Button content="Reopen" onClick={() => act('reopen')} />
+                <Button onClick={() => act('reopen')}>Reopen</Button>
               </LabeledList.Item>
             )}
             <LabeledList.Item label="Actions">

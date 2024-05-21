@@ -76,16 +76,15 @@ const SecurityRecordsList = (_properties) => {
             icon="user"
             mb="0.5rem"
             color={record.color}
-            content={
-              record.id +
+            onClick={() => act('d_rec', { d_rec: record.ref })}
+          >
+            {record.id +
               ': ' +
               record.name +
               ' (Criminal Status: ' +
               record.criminal +
-              ')'
-            }
-            onClick={() => act('d_rec', { d_rec: record.ref })}
-          />
+              ')'}
+          </Button>
         ))}
       </Box>
     </>
@@ -96,20 +95,17 @@ const SecurityRecordsMaintenance = (_properties) => {
   const { act } = useBackend();
   return (
     <>
-      <Button icon="download" content="Backup to Disk" disabled />
+      <Button icon="download" disabled>
+        Backup to Disk
+      </Button>
       <br />
-      <Button
-        icon="upload"
-        content="Upload from Disk"
-        my="0.5rem"
-        disabled
-      />{' '}
+      <Button icon="upload" my="0.5rem" disabled>
+        Upload from Disk
+      </Button>
       <br />
-      <Button.Confirm
-        icon="trash"
-        content="Delete All Security Records"
-        onClick={() => act('del_all')}
-      />
+      <Button.Confirm icon="trash" onClick={() => act('del_all')}>
+        Delete All Security Records
+      </Button.Confirm>
     </>
   );
 };
@@ -129,32 +125,36 @@ const SecurityRecordsView = (_properties) => {
         <Button.Confirm
           icon="trash"
           disabled={!!security.empty}
-          content="Delete Security Record"
           color="bad"
           onClick={() => act('del_r')}
-        />
+        >
+          Delete Security Record
+        </Button.Confirm>
         <Button.Confirm
           icon="trash"
           disabled={!!security.empty}
-          content="Delete Record (All)"
           color="bad"
           onClick={() => act('del_r_2')}
-        />
+        >
+          Delete Record (All)
+        </Button.Confirm>
         <Button
           icon={printing ? 'spinner' : 'print'}
           disabled={printing}
           iconSpin={!!printing}
-          content="Print Entry"
           ml="0.5rem"
           onClick={() => act('print_p')}
-        />
+        >
+          Print Entry
+        </Button>
         <br />
         <Button
           icon="arrow-left"
-          content="Back"
           mt="0.5rem"
           onClick={() => act('screen', { screen: 2 })}
-        />
+        >
+          Back
+        </Button>
       </Section>
     </>
   );
@@ -219,12 +219,9 @@ const SecurityRecordsViewSecurity = (_properties) => {
     return (
       <Box color="bad">
         Security records lost!
-        <Button
-          icon="pen"
-          content="New Record"
-          ml="0.5rem"
-          onClick={() => act('new')}
-        />
+        <Button icon="pen" ml="0.5rem" onClick={() => act('new')}>
+          New Record
+        </Button>
       </Box>
     );
   }
@@ -268,12 +265,13 @@ const SecurityRecordsViewSecurity = (_properties) => {
 
         <Button
           icon="comment"
-          content="Add Entry"
           color="good"
           mt="0.5rem"
           mb="0"
           onClick={() => modalOpen('add_c')}
-        />
+        >
+          Add Entry
+        </Button>
       </Section>
     </>
   );

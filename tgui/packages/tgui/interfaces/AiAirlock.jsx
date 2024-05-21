@@ -34,9 +34,10 @@ export const AiAirlock = (props) => {
                 <Button
                   icon="lightbulb-o"
                   disabled={!data.power.main}
-                  content="Disrupt"
                   onClick={() => act('disrupt-main')}
-                />
+                >
+                  Disrupt
+                </Button>
               }
             >
               {data.power.main ? 'Online' : 'Offline'}{' '}
@@ -52,9 +53,10 @@ export const AiAirlock = (props) => {
                 <Button
                   icon="lightbulb-o"
                   disabled={!data.power.backup}
-                  content="Disrupt"
                   onClick={() => act('disrupt-backup')}
-                />
+                >
+                  Disrupt
+                </Button>
               }
             >
               {data.power.backup ? 'Online' : 'Offline'}{' '}
@@ -71,21 +73,24 @@ export const AiAirlock = (props) => {
                   <Button
                     icon="wrench"
                     disabled={!(data.wires.shock && data.shock === 0)}
-                    content="Restore"
                     onClick={() => act('shock-restore')}
-                  />
+                  >
+                    Restore
+                  </Button>
                   <Button
                     icon="bolt"
                     disabled={!data.wires.shock}
-                    content="Temporary"
                     onClick={() => act('shock-temp')}
-                  />
+                  >
+                    Temporary
+                  </Button>
                   <Button
                     icon="bolt"
                     disabled={!data.wires.shock}
-                    content="Permanent"
                     onClick={() => act('shock-perm')}
-                  />
+                  >
+                    Permanent
+                  </Button>
                 </>
               }
             >
@@ -104,11 +109,12 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon={data.id_scanner ? 'power-off' : 'times'}
-                  content={data.id_scanner ? 'Enabled' : 'Disabled'}
                   selected={data.id_scanner}
                   disabled={!data.wires.id_scanner}
                   onClick={() => act('idscan-toggle')}
-                />
+                >
+                  {data.id_scanner ? 'Enabled' : 'Disabled'}
+                </Button>
               }
             >
               {!data.wires.id_scanner && '[Wires have been cut!]'}
@@ -120,11 +126,12 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon={data.locked ? 'lock' : 'unlock'}
-                  content={data.locked ? 'Lowered' : 'Raised'}
                   selected={data.locked}
                   disabled={!data.wires.bolts}
                   onClick={() => act('bolt-toggle')}
-                />
+                >
+                  {data.locked ? 'Lowered' : 'Raised'}
+                </Button>
               }
             >
               {!data.wires.bolts && '[Wires have been cut!]'}
@@ -135,11 +142,12 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon={data.lights ? 'power-off' : 'times'}
-                  content={data.lights ? 'Enabled' : 'Disabled'}
                   selected={data.lights}
                   disabled={!data.wires.lights}
                   onClick={() => act('light-toggle')}
-                />
+                >
+                  {data.lights ? 'Enabled' : 'Disabled'}
+                </Button>
               }
             >
               {!data.wires.lights && '[Wires have been cut!]'}
@@ -150,11 +158,12 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon={data.safe ? 'power-off' : 'times'}
-                  content={data.safe ? 'Enabled' : 'Disabled'}
                   selected={data.safe}
                   disabled={!data.wires.safe}
                   onClick={() => act('safe-toggle')}
-                />
+                >
+                  {data.safe ? 'Enabled' : 'Disabled'}
+                </Button>
               }
             >
               {!data.wires.safe && '[Wires have been cut!]'}
@@ -165,11 +174,12 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon={data.speed ? 'power-off' : 'times'}
-                  content={data.speed ? 'Enabled' : 'Disabled'}
                   selected={data.speed}
                   disabled={!data.wires.timing}
                   onClick={() => act('speed-toggle')}
-                />
+                >
+                  {data.speed ? 'Enabled' : 'Disabled'}
+                </Button>
               }
             >
               {!data.wires.timing && '[Wires have been cut!]'}
@@ -181,11 +191,12 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon={data.opened ? 'sign-out-alt' : 'sign-in-alt'}
-                  content={data.opened ? 'Open' : 'Closed'}
                   selected={data.opened}
                   disabled={data.locked || data.welded}
                   onClick={() => act('open-close')}
-                />
+                >
+                  {data.opened ? 'Open' : 'Closed'}
+                </Button>
               }
             >
               {!!(data.locked || data.welded) && (

@@ -32,26 +32,23 @@ export const TelecommsMachineBrowser = (props) => {
               label="Current Network"
               buttons={
                 <>
-                  <Button
-                    icon="search"
-                    content="Probe Network"
-                    onClick={() => act('scan')}
-                  />
+                  <Button icon="search" onClick={() => act('scan')}>
+                    Probe Network
+                  </Button>
                   <Button
                     color="bad"
                     icon="exclamation-triangle"
-                    content="Flush Buffer"
                     disabled={machinelist.length === 0}
                     onClick={() => act('release')}
-                  />
+                  >
+                    Flush Buffer
+                  </Button>
                 </>
               }
             >
-              <Button
-                content={network}
-                icon="pen"
-                onClick={() => act('network')}
-              />
+              <Button icon="pen" onClick={() => act('network')}>
+                {network}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -67,11 +64,9 @@ export const TelecommsMachineBrowser = (props) => {
           />
         ) : (
           <Section title="No Devices Found">
-            <Button
-              icon="search"
-              content="Probe Network"
-              onClick={() => act('scan')}
-            />
+            <Button icon="search" onClick={() => act('scan')}>
+              Probe Network
+            </Button>
           </Section>
         )}
       </Window.Content>
@@ -89,11 +84,9 @@ const TelecommsBrowser = (props) => {
       title={title}
       buttons={
         showBack && (
-          <Button
-            icon="undo"
-            content="Back to Main Menu"
-            onClick={() => act('mainmenu')}
-          />
+          <Button icon="undo" onClick={() => act('mainmenu')}>
+            Back to Main Menu
+          </Button>
         )
       }
     >
@@ -108,10 +101,11 @@ const TelecommsBrowser = (props) => {
               label={machine.name + ' (' + machine.id + ')'}
             >
               <Button
-                content="View"
                 icon="eye"
                 onClick={() => act('view', { id: machine.id })}
-              />
+              >
+                View
+              </Button>
             </LabeledList.Item>
           ))
         ) : (

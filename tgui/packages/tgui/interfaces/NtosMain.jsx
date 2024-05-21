@@ -62,10 +62,11 @@ export const NtosMain = (props) => {
           buttons={
             <Button
               icon="eject"
-              content="Eject ID"
               disabled={!login.IDName}
               onClick={() => act('PC_Eject_Disk', { name: 'ID' })}
-            />
+            >
+              Eject ID
+            </Button>
           }
         >
           <Table>
@@ -83,9 +84,10 @@ export const NtosMain = (props) => {
                       fluid
                       color="transparent"
                       icon="eject"
-                      content={device}
                       onClick={() => act('PC_Eject_Disk', { name: device })}
-                    />
+                    >
+                      {device}
+                    </Button>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -101,13 +103,14 @@ export const NtosMain = (props) => {
                     fluid
                     color="transparent"
                     icon={PROGRAM_ICONS[program.name] || 'window-maximize-o'}
-                    content={program.desc}
                     onClick={() =>
                       act('PC_runprogram', {
                         name: program.name,
                       })
                     }
-                  />
+                  >
+                    {program.desc}
+                  </Button>
                 </Table.Cell>
                 <Table.Cell collapsing width="18px">
                   {!!program.running && (

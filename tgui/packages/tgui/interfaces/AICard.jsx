@@ -94,18 +94,20 @@ export const AICard = (props) => {
               <LabeledList.Item label="Wireless Activity">
                 <Button
                   icon={wireless ? 'check' : 'times'}
-                  content={wireless ? 'Enabled' : 'Disabled'}
                   color={wireless ? 'green' : 'red'}
                   onClick={() => act('wireless')}
-                />
+                >
+                  {wireless ? 'Enabled' : 'Disabled'}
+                </Button>
               </LabeledList.Item>
               <LabeledList.Item label="Subspace Transceiver">
                 <Button
                   icon={radio ? 'check' : 'times'}
-                  content={radio ? 'Enabled' : 'Disabled'}
                   color={radio ? 'green' : 'red'}
                   onClick={() => act('radio')}
-                />
+                >
+                  {radio ? 'Enabled' : 'Disabled'}
+                </Button>
               </LabeledList.Item>
               <LabeledList.Item label="AI Power">
                 <Button.Confirm
@@ -113,9 +115,10 @@ export const AICard = (props) => {
                   confirmIcon="radiation"
                   disabled={flushing || integrity === 0}
                   confirmColor="red"
-                  content="Shutdown"
                   onClick={() => act('wipe')}
-                />
+                >
+                  Shutdown
+                </Button.Confirm>
               </LabeledList.Item>
             </LabeledList>
           </Section>

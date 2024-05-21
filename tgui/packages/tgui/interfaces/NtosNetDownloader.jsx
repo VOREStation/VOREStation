@@ -30,7 +30,7 @@ export const NtosNetDownloader = (props) => {
         {!!error && (
           <NoticeBox>
             <Box mb={1}>{error}</Box>
-            <Button content="Reset" onClick={() => act('PRG_reseterror')} />
+            <Button onClick={() => act('PRG_reseterror')}>Reset</Button>
           </NoticeBox>
         )}
         <Section>
@@ -114,14 +114,15 @@ const Program = (props) => {
               <Button
                 fluid
                 icon="download"
-                content="Download"
                 disabled={program.size > disk_free}
                 onClick={() =>
                   act('PRG_downloadfile', {
                     filename: program.filename,
                   })
                 }
-              />
+              >
+                Download
+              </Button>
             )}
         </Flex.Item>
       </Flex>

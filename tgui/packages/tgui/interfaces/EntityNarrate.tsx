@@ -79,10 +79,10 @@ export const EntitySelection = (props) => {
           buttons={
             <Button
               selected={selection_mode}
-              fill
-              content="Multi-Selection"
               onClick={() => act('change_mode_multi')}
-            />
+            >
+              Multi-Selection
+            </Button>
           }
         >
           <Tabs vertical>
@@ -146,8 +146,9 @@ export const ModeSelector = (props) => {
               ? 'Click here to disable subtle mode'
               : 'Click here to enable subtle mode')
           }
-          content={privacy_select ? 'Currently: Subtle' : 'Currently: Loud'}
-        />
+        >
+          {privacy_select ? 'Currently: Subtle' : 'Currently: Loud'}
+        </Button>
       </Flex.Item>
       <Flex.Item grow>
         <Button
@@ -161,8 +162,9 @@ export const ModeSelector = (props) => {
               ? 'Click here to emote visibly.'
               : 'Click here to talk audiably.')
           }
-          content={mode_select ? 'Currently: Emoting' : 'Currently: Talking'}
-        />
+        >
+          {mode_select ? 'Currently: Emoting' : 'Currently: Talking'}
+        </Button>
       </Flex.Item>
     </Flex>
   );
@@ -175,10 +177,9 @@ export const NarrationInput = (props) => {
     <Section
       title="Narration Text"
       buttons={
-        <Button
-          onClick={() => act('narrate', { message: narration })}
-          content="Send Narration"
-        />
+        <Button onClick={() => act('narrate', { message: narration })}>
+          Send Narration
+        </Button>
       }
     >
       <Flex>

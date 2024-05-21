@@ -111,13 +111,14 @@ export const CrewMonitorContent = (props) => {
                   <Button
                     fluid
                     icon="location-arrow"
-                    content={cm.area + ' (' + cm.x + ', ' + cm.y + ')'}
                     onClick={() =>
                       act('track', {
                         track: cm.ref,
                       })
                     }
-                  />
+                  >
+                    {cm.area + ' (' + cm.x + ', ' + cm.y + ')'}
+                  </Button>
                 ) : (
                   cm.area + ' (' + cm.x + ', ' + cm.y + ', ' + cm.z + ')'
                 )

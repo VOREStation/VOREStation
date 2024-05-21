@@ -41,26 +41,23 @@ export const TelecommsLogBrowser = (props) => {
               label="Current Network"
               buttons={
                 <>
-                  <Button
-                    icon="search"
-                    content="Refresh"
-                    onClick={() => act('scan')}
-                  />
+                  <Button icon="search" onClick={() => act('scan')}>
+                    Refresh
+                  </Button>
                   <Button
                     color="bad"
                     icon="exclamation-triangle"
-                    content="Flush Buffer"
                     disabled={servers.length === 0}
                     onClick={() => act('release')}
-                  />
+                  >
+                    Flush Buffer
+                  </Button>
                 </>
               }
             >
-              <Button
-                content={network}
-                icon="pen"
-                onClick={() => act('network')}
-              />
+              <Button icon="pen" onClick={() => act('network')}>
+                {network}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -86,12 +83,9 @@ const TelecommsServerSelection = (props) => {
     return (
       <Section title="Detected Telecommunications Servers">
         <Box color="bad">No servers detected.</Box>
-        <Button
-          fluid
-          content="Scan"
-          icon="search"
-          onClick={() => act('scan')}
-        />
+        <Button fluid icon="search" onClick={() => act('scan')}>
+          Scan
+        </Button>
       </Section>
     );
   }
@@ -104,11 +98,9 @@ const TelecommsServerSelection = (props) => {
             key={server.id}
             label={server.name + ' (' + server.id + ')'}
           >
-            <Button
-              content="View"
-              icon="eye"
-              onClick={() => act('view', { id: server.id })}
-            />
+            <Button icon="eye" onClick={() => act('view', { id: server.id })}>
+              View
+            </Button>
           </LabeledList.Item>
         ))}
       </LabeledList>
@@ -124,7 +116,9 @@ const TelecommsSelectedServer = (props) => {
     <Section
       title={'Server (' + server.id + ')'}
       buttons={
-        <Button content="Return" icon="undo" onClick={() => act('mainmenu')} />
+        <Button icon="undo" onClick={() => act('mainmenu')}>
+          Return
+        </Button>
       }
     >
       <LabeledList>
