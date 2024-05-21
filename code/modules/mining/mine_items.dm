@@ -20,7 +20,7 @@
 	item_state = "pickaxe"
 	w_class = ITEMSIZE_LARGE
 	matter = list(MAT_STEEL = 2500)
-	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
+	var/digspeed = 36 //moving the delay to an item var so R&D can make improved picks. --NEO
 	var/sand_dig = FALSE // does this thing dig sand?
 	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
@@ -35,7 +35,7 @@
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
-	digspeed = 30
+	digspeed = 27
 	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
 
@@ -43,7 +43,7 @@
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
-	digspeed = 20
+	digspeed = 18
 	origin_tech = list(TECH_MATERIAL = 4)
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
@@ -52,7 +52,7 @@
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
-	digspeed = 10
+	digspeed = 9
 	origin_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 4)
 	desc = "A pickaxe with a diamond pick head."
 	drill_verb = "picking"
@@ -63,7 +63,7 @@
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "drill"
 	item_state = "jackhammer"
-	digspeed = 35 //Only slighty better than a pickaxe
+	digspeed = 30 //Only slighty better than a pickaxe
 	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 1, TECH_POWER = 2, TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 3750)
@@ -74,7 +74,7 @@
 	name = "advanced mining drill" // Can dig sand as well!
 	icon_state = "advdrill"
 	item_state = "jackhammer"
-	digspeed = 30
+	digspeed = 27
 	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	matter = list(MAT_STEEL = 4000, MAT_PLASTEEL = 2500)
@@ -85,7 +85,7 @@
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
-	digspeed = 5 //Digs through walls, girders, and can dig up sand
+	digspeed = 4 //Digs through walls, girders, and can dig up sand
 	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	matter = list(MAT_STEEL = 4500, MAT_PLASTEEL = 3000, MAT_DIAMONDS = 1000)
@@ -96,19 +96,21 @@
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
-	digspeed = 20 //faster than drill, but cannot dig
+	digspeed = 18 //faster than drill, but cannot dig
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
+	destroy_artefacts = TRUE
 
 /obj/item/weapon/pickaxe/borgdrill
 	name = "jackhammer"
 	icon_state = "borg_pick"
 	item_state = "jackhammer"
-	digspeed = 15
+	digspeed = 13
 	sand_dig = TRUE
 	desc = "Cracks rocks with a hardened pneumatic bit."
 	drill_verb = "hammering"
+	destroy_artefacts = TRUE
 
 /obj/item/weapon/pickaxe/plasmacutter
 	name = "plasma cutter"
@@ -117,7 +119,7 @@
 	item_state = "plasmacutter"
 	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
 	damtype = "fire"
-	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire
+	digspeed = 18 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	matter = list(MAT_STEEL = 3000, MAT_PLASTEEL = 1500, MAT_DIAMONDS = 500, MAT_PHORON = 500)
 	drill_verb = "cutting"
@@ -133,7 +135,7 @@
 
 /obj/item/weapon/shovel
 	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
+	desc = "A large tool for digging and moving dirt. Alt click to switch modes."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
@@ -147,6 +149,12 @@
 	sharp = FALSE
 	edge = TRUE
 	var/digspeed = 40
+	var/grave_mode = FALSE
+
+/obj/item/weapon/shovel/AltClick(mob/user)
+	grave_mode = !grave_mode
+	to_chat(user, span_notice("You'll now dig [grave_mode ? "out graves" : "for loot"]."))
+	. = ..()
 
 /obj/item/weapon/shovel/wood
 	icon_state = "whiteshovel"

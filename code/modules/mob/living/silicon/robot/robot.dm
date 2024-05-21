@@ -119,6 +119,12 @@
 	var/has_recoloured = FALSE
 	var/vtec_active = FALSE
 
+	// Riding Stuff
+	max_buckled_mobs = 1 //Yeehaw
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
+
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
@@ -180,6 +186,7 @@
 	hud_list[IMPTRACK_HUD]		= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_IMPTRACK)
 	hud_list[SPECIALROLE_HUD]	= gen_hud_image('icons/mob/hud.dmi', src, "hudblank", plane = PLANE_CH_SPECIAL)
 
+	riding_datum = new /datum/riding/dogborg(src)
 
 
 /mob/living/silicon/robot/LateInitialize()
@@ -843,71 +850,79 @@
 	to_chat(usr, "You've already recoloured yourself once. Ask for a module reset for another.")
 
 /mob/living/silicon/robot/attack_hand(mob/user)
+	if(LAZYLEN(buckled_mobs))
+		//We're getting off!
+		if(user in buckled_mobs)
+			riding_datum.force_dismount(user)
+		//We're kicking everyone off!
+		if(user == src)
+			for(var/rider in buckled_mobs)
+				riding_datum.force_dismount(rider)
+	else
+		add_fingerprint(user)
 
-	add_fingerprint(user)
+		if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
+			var/datum/robot_component/cell_component = components["power cell"]
+			if(cell)
+				cell.update_icon()
+				cell.add_fingerprint(user)
+				user.put_in_active_hand(cell)
+				to_chat(user, "<span class='filter_notice'>You remove \the [cell].</span>")
+				cell = null
+				cell_component.wrapped = null
+				cell_component.installed = 0
+				update_icon()
+			else if(cell_component.installed == -1)
+				cell_component.installed = 0
+				var/obj/item/broken_device = cell_component.wrapped
+				to_chat(user, "<span class='filter_notice'>You remove \the [broken_device].</span>")
+				user.put_in_active_hand(broken_device)
 
-	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
-		var/datum/robot_component/cell_component = components["power cell"]
-		if(cell)
-			cell.update_icon()
-			cell.add_fingerprint(user)
-			user.put_in_active_hand(cell)
-			to_chat(user, "<span class='filter_notice'>You remove \the [cell].</span>")
-			cell = null
-			cell_component.wrapped = null
-			cell_component.installed = 0
-			update_icon()
-		else if(cell_component.installed == -1)
-			cell_component.installed = 0
-			var/obj/item/broken_device = cell_component.wrapped
-			to_chat(user, "<span class='filter_notice'>You remove \the [broken_device].</span>")
-			user.put_in_active_hand(broken_device)
-
-	if(istype(user,/mob/living/carbon/human) && !opened)
-		var/mob/living/carbon/human/H = user
-		//Adding borg petting. Help intent pets if preferences allow, Disarm intent taps and Harm is punching(no damage)
-		switch(H.a_intent)
-			if(I_HELP)
-				if(client && !client.prefs.borg_petting)
-					visible_message("<span class='notice'>[H] reaches out for [src], but quickly refrains from petting.</span>")
+		if(istype(user,/mob/living/carbon/human) && !opened)
+			var/mob/living/carbon/human/H = user
+			//Adding borg petting. Help intent pets if preferences allow, Disarm intent taps and Harm is punching(no damage)
+			switch(H.a_intent)
+				if(I_HELP)
+					if(client && !client.prefs.borg_petting)
+						visible_message("<span class='notice'>[H] reaches out for [src], but quickly refrains from petting.</span>")
+						return
+					else
+						visible_message("<span class='notice'>[H] pets [src].</span>")
+						return
+				if(I_HURT)
+					H.do_attack_animation(src)
+					if(H.species.can_shred(H))
+						attack_generic(H, rand(30,50), "slashed")
+						return
+					else
+						playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
+						visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
+						return
+				if(I_DISARM)
+					H.do_attack_animation(src)
+					playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
+					visible_message("<span class='warning'>[H] taps [src].</span>")
 					return
-				else
-					visible_message("<span class='notice'>[H] pets [src].</span>")
-					return
-			if(I_HURT)
-				H.do_attack_animation(src)
-				if(H.species.can_shred(H))
-					attack_generic(H, rand(30,50), "slashed")
-					return
-				else
-					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
-					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
-					return
-			if(I_DISARM)
-				H.do_attack_animation(src)
-				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
-				visible_message("<span class='warning'>[H] taps [src].</span>")
-				return
-			if(I_GRAB)
-				if(is_vore_predator(H) && H.devourable && src.feeding && src.devourable)
-					var/switchy = tgui_alert(H, "Do you wish to eat [src] or feed yourself to them?", "Feed or Eat",list("Nevermind!", "Eat","Feed"))
-					switch(switchy)
-						if("Nevermind!")
-							return
-						if("Eat")
+				if(I_GRAB)
+					if(is_vore_predator(H) && H.devourable && src.feeding && src.devourable)
+						var/switchy = tgui_alert(H, "Do you wish to eat [src] or feed yourself to them?", "Feed or Eat",list("Nevermind!", "Eat","Feed"))
+						switch(switchy)
+							if("Nevermind!")
+								return
+							if("Eat")
+								feed_grabbed_to_self(H, src)
+								return
+							if("Feed")
+								H.feed_self_to_grabbed(H, src)
+								return
+					if(is_vore_predator(H) && src.devourable)
+						if(tgui_alert(H, "Do you wish to eat [src]?", "Eat?",list("Nevermind!", "Yes!")) == "Yes!")
 							feed_grabbed_to_self(H, src)
 							return
-						if("Feed")
+					if(H.devourable && src.feeding)
+						if(tgui_alert(H, "Do you wish to feed yourself to [src]?", "Feed?",list("Nevermind!", "Yes!")) == "Yes!")
 							H.feed_self_to_grabbed(H, src)
 							return
-				if(is_vore_predator(H) && src.devourable)
-					if(tgui_alert(H, "Do you wish to eat [src]?", "Eat?",list("Nevermind!", "Yes!")) == "Yes!")
-						feed_grabbed_to_self(H, src)
-						return
-				if(H.devourable && src.feeding)
-					if(tgui_alert(H, "Do you wish to feed yourself to [src]?", "Feed?",list("Nevermind!", "Yes!")) == "Yes!")
-						H.feed_self_to_grabbed(H, src)
-						return
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
@@ -1275,6 +1290,9 @@
 	to_chat(usr, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
 	toggle_sensor_mode()
 
+/mob/living/silicon/robot/proc/repick_laws()
+	return
+
 /mob/living/silicon/robot/proc/add_robot_verbs()
 	src.verbs |= robot_verbs_default
 	src.verbs |= silicon_subsystems
@@ -1498,6 +1516,103 @@
 	rest_style = tgui_alert(src, "Select resting pose", "Resting Pose", sprite_datum.rest_sprite_options)
 	if(!rest_style)
 		rest_style = "Default"
+
+/mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in living_mobs(1))
+	set name = "Robot Nom"
+	set category = "IC"
+	set desc = "Allows you to eat someone."
+
+	if (stat != CONSCIOUS)
+		return
+	return feed_grabbed_to_self(src,T)
+
+//RIDING
+/datum/riding/dogborg
+	keytype = /obj/item/weapon/material/twohanded/riding_crop // Crack!
+	nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
+	key_name = "a riding crop"		// What the 'keys' for the thing being rided on would be called.
+	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
+
+/datum/riding/dogborg/handle_vehicle_layer()
+	ridden.layer = initial(ridden.layer)
+
+/datum/riding/dogborg/ride_check(mob/living/M)
+	var/mob/living/L = ridden
+	if(L.stat)
+		force_dismount(M)
+		return FALSE
+	return TRUE
+
+/datum/riding/dogborg/force_dismount(mob/M)
+	. =..()
+	ridden.visible_message("<span class='notice'>[M] stops riding [ridden]!</span>")
+
+//Hoooo boy.
+/datum/riding/dogborg/get_offsets(pass_index) // list(dir = x, y, layer)
+	var/mob/living/L = ridden
+	var/scale = L.size_multiplier
+	var/scale_difference = (L.size_multiplier - rider_size) * 10
+
+	var/list/values = list(
+		"[NORTH]" = list(0, 10*scale + scale_difference, ABOVE_MOB_LAYER),
+		"[SOUTH]" = list(0, 10*scale + scale_difference, BELOW_MOB_LAYER),
+		"[EAST]" = list(-5*scale, 10*scale + scale_difference, ABOVE_MOB_LAYER),
+		"[WEST]" = list(5*scale, 10*scale + scale_difference, ABOVE_MOB_LAYER))
+
+	return values
+
+/mob/living/silicon/robot/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
+	if(forced)
+		return ..() // Skip our checks
+	if(lying)
+		return FALSE
+	if(!ishuman(M))
+		return FALSE
+	if(M in buckled_mobs)
+		return FALSE
+	if(M.size_multiplier > size_multiplier * 1.2)
+		to_chat(src, "<span class='warning'>This isn't a pony show! You need to be bigger for them to ride.</span>")
+		return FALSE
+
+	var/mob/living/carbon/human/H = M
+
+	if(istaurtail(H.tail_style))
+		to_chat(src, "<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
+		return FALSE
+	if(M.loc != src.loc)
+		if(M.Adjacent(src))
+			M.forceMove(get_turf(src))
+
+	. = ..()
+	if(.)
+		riding_datum.rider_size = M.size_multiplier
+		buckled_mobs[M] = "riding"
+
+/mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.
+	return
+
+/mob/living/silicon/robot/proc/robot_mount(var/mob/living/M in living_mobs(1))
+	set name = "Robot Mount/Dismount"
+	set category = "Abilities"
+	set desc = "Let people ride on you."
+
+	if(LAZYLEN(buckled_mobs))
+		for(var/rider in buckled_mobs)
+			riding_datum.force_dismount(rider)
+		return
+	if (stat != CONSCIOUS)
+		return
+	if(!can_buckle || !istype(M) || !M.Adjacent(src) || M.buckled)
+		return
+	if(buckle_mob(M))
+		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+
+/mob/living/silicon/robot/onTransitZ(old_z, new_z)
+	if(shell)
+		if(deployed && using_map.ai_shell_restricted && !(new_z in using_map.ai_shell_allowed_levels))
+			to_chat(src, "<span class='warning'>Your connection with the shell is suddenly interrupted!</span>")
+			undeploy()
+	..()
 
 // Those basic ones require quite detailled checks on the robot's vars to see if they are installed!
 /mob/living/silicon/robot/proc/has_basic_upgrade(var/given_type)
