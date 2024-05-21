@@ -5,9 +5,10 @@
 	modtype = "Lost"
 	lawchannel = "State"
 	braintype = "Drone"
-	idcard_type = /obj/item/weapon/card/id
+	idcard_type = /obj/item/weapon/card/id/lost
 	icon_selected = FALSE
 	restrict_modules_to = list("Lost")
+	var/law_retries = 5
 
 /mob/living/silicon/robot/lost/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
@@ -22,22 +23,59 @@
 	if(!cell)
 		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
+	scramble_hardware()
+
 	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
 /mob/living/silicon/robot/lost/speech_bubble_appearance()
 	return "synthetic_evil"
 
+/mob/living/silicon/robot/lost/proc/scramble_hardware(var/chance)
+	if(prob(20))  //Small chance to spawn with a scrambled
+		emag_items = 1
+
+/mob/living/silicon/robot/lost/proc/apply_new_laws()
+	return
+
 /mob/living/silicon/robot/lost/randomlaws
+
+/mob/living/silicon/robot/lost/randomlaws/apply_new_laws()
+	var/old_name = laws.name
+	laws = give_random_lawset()
+	if(old_name == laws.name)
+		apply_new_laws()
 
 /mob/living/silicon/robot/lost/randomlaws/init()
 	..()
-	laws = give_random_lawset()
+	apply_new_laws()
 
 /mob/living/silicon/robot/lost/randomlaws/vore
 
-/mob/living/silicon/robot/lost/randomlaws/vore/init()
-	..()
+/mob/living/silicon/robot/lost/randomlaws/vore/apply_new_laws()
+	var/old_name = laws.name
 	laws = give_random_lawset_vore(100)
+	if(old_name == laws.name)
+		apply_new_laws()
+
+/mob/living/silicon/robot/lost/randomlaws/mixed
+
+/mob/living/silicon/robot/lost/randomlaws/mixed/apply_new_laws()
+	var/old_name = laws.name
+	laws = give_random_lawset_vore(60)
+	if(old_name == laws.name)
+		apply_new_laws()
+
+/mob/living/silicon/robot/lost/randomlaws/repick_laws()
+	while(law_retries)
+		var/confirm = tgui_alert(src, "Do you want to keep your laws or reroll? (For specific laws, feel free to ahelp and we'll see what we can do)", "Confirm laws", list("Keep", "Reroll ([law_retries])"))
+		if(findtext(confirm, regex("Reroll \\(\[0-9\]*\\)", "")))
+			apply_new_laws()
+			to_chat(src, "<b>Obey these laws:</b>")
+			laws.show_laws(src)
+			law_retries --
+		else
+			break
+	return
 
 // Returns a random ai_laws datum.
 /mob/living/silicon/proc/give_random_lawset()
@@ -139,10 +177,7 @@
 				if(5) // Manicial laugher here.
 					return new /datum/ai_laws/tyrant()
 
-
-
 	return
-
 
 /mob/living/silicon/proc/give_random_lawset_vore(var/vore_chance = 100)
 	// Decide what kind of laws we want to draw from.
@@ -296,7 +331,5 @@
 						return new /datum/ai_laws/foreign_tsc_aggressive()
 					if(5) // Manicial laugher here.
 						return new /datum/ai_laws/tyrant()
-
-
 
 	return
