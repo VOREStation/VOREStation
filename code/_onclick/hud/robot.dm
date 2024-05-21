@@ -289,11 +289,11 @@ var/obj/screen/robot_inventory
 		if(r.emagged || r.emag_items)
 			for(var/obj/O in r.module.emag)
 				if(!(O in r.module.modules))
-					r.module.modules.Add(r.module.emag)
+					r.module.modules.Add(O)
 		else
 			for(var/obj/O in r.module.emag)
 				if(O in r.module.modules)
-					r.module.modules.Remove(r.module.emag)
+					r.module.modules.Remove(O)
 
 		for(var/atom/movable/A in r.module.modules)
 			if(r.client && (A != r.module_state_1) && (A != r.module_state_2) && (A != r.module_state_3) )
