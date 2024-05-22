@@ -1,7 +1,7 @@
 import { multiline } from 'common/string';
 
 import { useBackend } from '../backend';
-import { Box, Button, Grid, Section, Table, Tooltip } from '../components';
+import { Box, Button, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
 
 export const ComputerFabricator = (props) => {
@@ -13,13 +13,9 @@ export const ComputerFabricator = (props) => {
           Your perfect device, only three steps away...
         </Section>
         {data.state !== 0 && (
-          <Button
-            fluid
-            mb={1}
-            icon="circle"
-            content="Clear Order"
-            onClick={() => act('clean_order')}
-          />
+          <Button fluid mb={1} icon="circle" onClick={() => act('clean_order')}>
+            Clear Order
+          </Button>
         )}
         {data.state === 0 && <CfStep1 />}
         {data.state === 1 && <CfStep2 />}
@@ -40,38 +36,42 @@ const CfStep1 = (props) => {
         Choose your Device
       </Box>
       <Box mt={3}>
-        <Grid width="100%">
-          <Grid.Column>
-            <Button
-              fluid
-              icon="laptop"
-              content="Laptop"
-              textAlign="center"
-              fontSize="30px"
-              lineHeight={2}
-              onClick={() =>
-                act('pick_device', {
-                  pick: '1',
-                })
-              }
-            />
-          </Grid.Column>
-          <Grid.Column>
-            <Button
-              fluid
-              icon="tablet-alt"
-              content="Tablet"
-              textAlign="center"
-              fontSize="30px"
-              lineHeight={2}
-              onClick={() =>
-                act('pick_device', {
-                  pick: '2',
-                })
-              }
-            />
-          </Grid.Column>
-        </Grid>
+        <Table width="100%">
+          <Table.Row>
+            <Table.Cell>
+              <Button
+                fluid
+                icon="laptop"
+                textAlign="center"
+                fontSize="30px"
+                lineHeight={2}
+                onClick={() =>
+                  act('pick_device', {
+                    pick: '1',
+                  })
+                }
+              >
+                Laptop
+              </Button>
+            </Table.Cell>
+            <Table.Cell>
+              <Button
+                fluid
+                icon="tablet-alt"
+                textAlign="center"
+                fontSize="30px"
+                lineHeight={2}
+                onClick={() =>
+                  act('pick_device', {
+                    pick: '2',
+                  })
+                }
+              >
+                Tablet
+              </Button>
+            </Table.Cell>
+          </Table.Row>
+        </Table>
       </Box>
     </Section>
   );
@@ -103,36 +103,39 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Standard"
               selected={data.hw_battery === 1}
               onClick={() =>
                 act('hw_battery', {
                   battery: '1',
                 })
               }
-            />
+            >
+              Standard
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Upgraded"
               selected={data.hw_battery === 2}
               onClick={() =>
                 act('hw_battery', {
                   battery: '2',
                 })
               }
-            />
+            >
+              Upgraded
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Advanced"
               selected={data.hw_battery === 3}
               onClick={() =>
                 act('hw_battery', {
                   battery: '3',
                 })
               }
-            />
+            >
+              Advanced
+            </Button>
           </Table.Cell>
         </Table.Row>
         <Table.Row>
@@ -148,36 +151,39 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Standard"
               selected={data.hw_disk === 1}
               onClick={() =>
                 act('hw_disk', {
                   disk: '1',
                 })
               }
-            />
+            >
+              Standard
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Upgraded"
               selected={data.hw_disk === 2}
               onClick={() =>
                 act('hw_disk', {
                   disk: '2',
                 })
               }
-            />
+            >
+              Upgraded
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Advanced"
               selected={data.hw_disk === 3}
               onClick={() =>
                 act('hw_disk', {
                   disk: '3',
                 })
               }
-            />
+            >
+              Advanced
+            </Button>
           </Table.Cell>
         </Table.Row>
         <Table.Row>
@@ -195,36 +201,39 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="None"
               selected={data.hw_netcard === 0}
               onClick={() =>
                 act('hw_netcard', {
                   netcard: '0',
                 })
               }
-            />
+            >
+              None
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Standard"
               selected={data.hw_netcard === 1}
               onClick={() =>
                 act('hw_netcard', {
                   netcard: '1',
                 })
               }
-            />
+            >
+              Standard
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Advanced"
               selected={data.hw_netcard === 2}
               onClick={() =>
                 act('hw_netcard', {
                   netcard: '2',
                 })
               }
-            />
+            >
+              Advanced
+            </Button>
           </Table.Cell>
         </Table.Row>
         <Table.Row>
@@ -242,25 +251,27 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="None"
               selected={data.hw_nanoprint === 0}
               onClick={() =>
                 act('hw_nanoprint', {
                   print: '0',
                 })
               }
-            />
+            >
+              None
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Standard"
               selected={data.hw_nanoprint === 1}
               onClick={() =>
                 act('hw_nanoprint', {
                   print: '1',
                 })
               }
-            />
+            >
+              Standard
+            </Button>
           </Table.Cell>
         </Table.Row>
         <Table.Row>
@@ -279,25 +290,27 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="None"
               selected={data.hw_card === 0}
               onClick={() =>
                 act('hw_card', {
                   card: '0',
                 })
               }
-            />
+            >
+              None
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Standard"
               selected={data.hw_card === 1}
               onClick={() =>
                 act('hw_card', {
                   card: '1',
                 })
               }
-            />
+            >
+              Standard
+            </Button>
           </Table.Cell>
         </Table.Row>
         {data.devtype !== 2 && (
@@ -316,25 +329,27 @@ const CfStep2 = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Button
-                content="Standard"
                 selected={data.hw_cpu === 1}
                 onClick={() =>
                   act('hw_cpu', {
                     cpu: '1',
                   })
                 }
-              />
+              >
+                Standard
+              </Button>
             </Table.Cell>
             <Table.Cell>
               <Button
-                content="Advanced"
                 selected={data.hw_cpu === 2}
                 onClick={() =>
                   act('hw_cpu', {
                     cpu: '2',
                   })
                 }
-              />
+              >
+                Advanced
+              </Button>
             </Table.Cell>
           </Table.Row>
         )}
@@ -353,38 +368,41 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="None"
               selected={data.hw_tesla === 0}
               onClick={() =>
                 act('hw_tesla', {
                   tesla: '0',
                 })
               }
-            />
+            >
+              None
+            </Button>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Standard"
               selected={data.hw_tesla === 1}
               onClick={() =>
                 act('hw_tesla', {
                   tesla: '1',
                 })
               }
-            />
+            >
+              Standard
+            </Button>
           </Table.Cell>
         </Table.Row>
       </Table>
       <Button
         fluid
         mt={3}
-        content="Confirm Order"
         color="good"
         textAlign="center"
         fontSize="18px"
         lineHeight={2}
         onClick={() => act('confirm_order')}
-      />
+      >
+        Confirm Order
+      </Button>
     </Section>
   );
 };

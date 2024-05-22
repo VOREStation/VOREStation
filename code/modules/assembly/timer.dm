@@ -73,7 +73,7 @@
 
 /obj/item/device/assembly/timer/tgui_data(mob/user)
 	var/list/data = ..()
-	data["time"] = time * 10
+	data["time"] = time
 	data["timing"] = timing
 	return data
 
@@ -94,6 +94,6 @@
 				for(var/i in 1 to LAZYLEN(L))
 					real_new_time += text2num(L[i]) * (60 ** (LAZYLEN(L) - i))
 			else
-				real_new_time = text2num(new_time)
+				real_new_time = text2num(new_time * 10)
 			time = clamp(real_new_time, 0, 600)
 			return TRUE

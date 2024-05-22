@@ -33,9 +33,10 @@ export const Tank = (props) => {
                 icon={connected ? 'air-freshener' : 'lock-open'}
                 selected={connected}
                 disabled={!maskConnected}
-                content="Mask Release Valve"
                 onClick={() => act('toggle')}
-              />
+              >
+                Mask Release Valve
+              </Button>
             )
           }
         >
@@ -93,7 +94,6 @@ export const Tank = (props) => {
               />
               <Button
                 icon="undo"
-                content=""
                 disabled={releasePressure === defaultReleasePressure}
                 onClick={() =>
                   act('pressure', {

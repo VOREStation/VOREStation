@@ -91,8 +91,9 @@ const PDAHeader = (props) => {
               icon="eject"
               color="transparent"
               onClick={() => act('Authenticate')}
-              content={idLink}
-            />
+            >
+              {idLink}
+            </Button>
           </Flex.Item>
         )}
         <Flex.Item grow={1} textAlign="center" bold>
@@ -120,36 +121,31 @@ const PDASettings = (props) => {
     <Section title="Settings">
       <LabeledList>
         <LabeledList.Item label="R.E.T.R.O Mode">
-          <Button
-            icon="cog"
-            content={'Retro Theme'}
-            onClick={() => act('Retro')}
-          />
+          <Button icon="cog" onClick={() => act('Retro')}>
+            Retro Theme
+          </Button>
         </LabeledList.Item>
         <LabeledList.Item label="Touch Sounds">
           <Button
             icon="cog"
             selected={!touch_silent}
-            content={touch_silent ? 'Disabled' : 'Enabled'}
             onClick={() => act('TouchSounds')}
-          />
+          >
+            {touch_silent ? 'Disabled' : 'Enabled'}
+          </Button>
         </LabeledList.Item>
         {!!cartridge_name && (
           <LabeledList.Item label="Cartridge">
-            <Button
-              icon="eject"
-              onClick={() => act('Eject')}
-              content={cartridge_name}
-            />
+            <Button icon="eject" onClick={() => act('Eject')}>
+              {cartridge_name}
+            </Button>
           </LabeledList.Item>
         )}
         {!!idInserted && (
           <LabeledList.Item label="ID Card">
-            <Button
-              icon="eject"
-              onClick={() => act('Authenticate')}
-              content={idLink}
-            />
+            <Button icon="eject" onClick={() => act('Authenticate')}>
+              {idLink}
+            </Button>
           </LabeledList.Item>
         )}
       </LabeledList>

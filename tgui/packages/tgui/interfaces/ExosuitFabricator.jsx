@@ -221,10 +221,7 @@ export const ExosuitFabricator = (props) => {
                   overflowY="auto"
                   title="Categories"
                   buttons={
-                    <Button
-                      content="R&D Sync"
-                      onClick={() => act('sync_rnd')}
-                    />
+                    <Button onClick={() => act('sync_rnd')}>R&D Sync</Button>
                   }
                 >
                   <PartSets />
@@ -516,14 +513,15 @@ const PartCategory = (props) => {
           <Button
             disabled={!parts.length}
             color="good"
-            content="Queue All"
             icon="plus-circle"
             onClick={() =>
               act('add_queue_set', {
                 part_list: parts.map((part) => part.id),
               })
             }
-          />
+          >
+            Queue All
+          </Button>
         }
       >
         {!parts.length && placeholder}
@@ -616,23 +614,26 @@ const Queue = (props) => {
                 disabled={!queue.length}
                 color="bad"
                 icon="minus-circle"
-                content="Clear Queue"
                 onClick={() => act('clear_queue')}
-              />
+              >
+                Clear Queue
+              </Button.Confirm>
               {(!!isProcessingQueue && (
                 <Button
                   disabled={!queue.length}
-                  content="Stop"
                   icon="stop"
                   onClick={() => act('stop_queue')}
-                />
+                >
+                  Stop
+                </Button>
               )) || (
                 <Button
                   disabled={!queue.length}
-                  content="Build Queue"
                   icon="play"
                   onClick={() => act('build_queue')}
-                />
+                >
+                  Build Queue
+                </Button>
               )}
             </>
           }

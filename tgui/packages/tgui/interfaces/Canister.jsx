@@ -37,9 +37,10 @@ export const Canister = (props) => {
             <Button
               icon="pencil-alt"
               disabled={!can_relabel}
-              content="Relabel"
               onClick={() => act('relabel')}
-            />
+            >
+              Relabel
+            </Button>
           }
         >
           <LabeledControls>
@@ -106,9 +107,10 @@ export const Canister = (props) => {
                 lineHeight={2}
                 fontSize="11px"
                 color={valveOpen ? (holding ? 'caution' : 'danger') : null}
-                content={valveOpen ? 'Open' : 'Closed'}
                 onClick={() => act('valve')}
-              />
+              >
+                {valveOpen ? 'Open' : 'Closed'}
+              </Button>
             </LabeledControls.Item>
             <LabeledControls.Item mr={1} label="Port">
               <Box position="relative">
@@ -132,9 +134,10 @@ export const Canister = (props) => {
               <Button
                 icon="eject"
                 color={valveOpen && 'danger'}
-                content="Eject"
                 onClick={() => act('eject')}
-              />
+              >
+                Eject
+              </Button>
             )
           }
         >

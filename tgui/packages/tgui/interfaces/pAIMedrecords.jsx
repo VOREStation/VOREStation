@@ -14,9 +14,10 @@ export const pAIMedrecords = (props) => {
           {records.map((record) => (
             <Button
               key={record.ref}
-              content={record.name}
               onClick={() => act('select', { select: record.ref })}
-            />
+            >
+              {record.name}
+            </Button>
           ))}
         </Section>
         {(general || medical) && (

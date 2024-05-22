@@ -36,7 +36,6 @@ export const ShutoffMonitorContent = (props) => {
             <Table.Cell>
               <Button
                 icon="power-off"
-                content={valve.open ? 'Opened' : 'Closed'}
                 selected={valve.open}
                 disabled={!valve.enabled}
                 onClick={() =>
@@ -44,17 +43,20 @@ export const ShutoffMonitorContent = (props) => {
                     valve: valve.ref,
                   })
                 }
-              />
+              >
+                {valve.open ? 'Opened' : 'Closed'}
+              </Button>
               <Button
                 icon="power-off"
-                content={valve.enabled ? 'Auto' : 'Manual'}
                 selected={valve.enabled}
                 onClick={() =>
                   act('toggle_enable', {
                     valve: valve.ref,
                   })
                 }
-              />
+              >
+                {valve.enabled ? 'Auto' : 'Manual'}
+              </Button>
             </Table.Cell>
           </Table.Row>
         ))}

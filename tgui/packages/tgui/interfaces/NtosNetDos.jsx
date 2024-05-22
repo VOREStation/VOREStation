@@ -21,12 +21,9 @@ export const NtosNetDosContent = (props) => {
     return (
       <>
         <NoticeBox>{error}</NoticeBox>
-        <Button
-          fluid
-          content="Reset"
-          textAlign="center"
-          onClick={() => act('PRG_reset')}
-        />
+        <Button fluid textAlign="center" onClick={() => act('PRG_reset')}>
+          Reset
+        </Button>
       </>
     );
   }
@@ -69,27 +66,29 @@ export const NtosNetDosContent = (props) => {
           {relays.map((relay) => (
             <Button
               key={relay.id}
-              content={relay.id}
               selected={focus === relay.id}
               onClick={() =>
                 act('PRG_target_relay', {
                   targid: relay.id,
                 })
               }
-            />
+            >
+              {relay.id}
+            </Button>
           ))}
         </LabeledList.Item>
       </LabeledList>
       <Button
         fluid
         bold
-        content="EXECUTE"
         color="bad"
         textAlign="center"
         disabled={!focus}
         mt={1}
         onClick={() => act('PRG_execute')}
-      />
+      >
+        EXECUTE
+      </Button>
     </Section>
   );
 };

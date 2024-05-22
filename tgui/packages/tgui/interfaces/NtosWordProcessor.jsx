@@ -26,11 +26,9 @@ export const NtosWordProcessor = (props) => {
             Additional Information: {error}
             Please try again. If the problem persists, contact your system
             administrator for assistance.
-            <Button
-              icon="arrow-left"
-              content="Back to menu"
-              onClick={() => act('PRG_backtomenu')}
-            />
+            <Button icon="arrow-left" onClick={() => act('PRG_backtomenu')}>
+              Back to menu
+            </Button>
           </Box>
         )) ||
           (browsing && (
@@ -39,9 +37,10 @@ export const NtosWordProcessor = (props) => {
               buttons={
                 <Button
                   icon="arrow-left"
-                  content="Back to editor"
                   onClick={() => act('PRG_closebrowser')}
-                />
+                >
+                  Back to editor
+                </Button>
               }
             >
               <Section title="Available documents (local)" level={2}>

@@ -50,24 +50,26 @@ const viewMindRecordModalBodyOverride = (modal) => {
           <Button
             disabled={!can_sleeve_active}
             icon="user-plus"
-            content="Sleeve"
             onClick={() =>
               act('sleeve', {
                 ref: activerecord,
                 mode: 1,
               })
             }
-          />
+          >
+            Sleeve
+          </Button>
           <Button
             icon="user-plus"
-            content="Card"
             onClick={() =>
               act('sleeve', {
                 ref: activerecord,
                 mode: 2,
               })
             }
-          />
+          >
+            Card
+          </Button>
         </LabeledList.Item>
         <LabeledList.Item label="OOC Notes">
           <Section
@@ -124,13 +126,14 @@ const viewBodyRecordModalBodyOverride = (modal) => {
           <Button
             disabled={!can_grow_active}
             icon="user-plus"
-            content={synthetic ? 'Build' : 'Grow'}
             onClick={() =>
               act('create', {
                 ref: activerecord,
               })
             }
-          />
+          >
+            {synthetic ? 'Build' : 'Grow'}
+          </Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -259,22 +262,20 @@ const ResleevingConsoleDiskPrep = (props) => {
         emergencies!
       </Box>
       <Box mt={4}>
-        <Button
-          icon="eject"
-          content="Eject Disk"
-          color="good"
-          onClick={() => act('ejectdisk')}
-        />
+        <Button icon="eject" color="good" onClick={() => act('ejectdisk')}>
+          Eject Disk
+        </Button>
       </Box>
       <Box mt={4}>
         <Button.Confirm
           icon="exclamation-triangle"
           confirmIcon="exclamation-triangle"
-          content="Core Dump"
           confirmContent="Disable Transcore?"
           color="bad"
           onClick={() => act('coredump')}
-        />
+        >
+          Core Dump
+        </Button.Confirm>
       </Box>
     </Dimmer>
   );
@@ -336,14 +337,15 @@ const ResleevingConsolePodGrowers = (props) => {
           <Button
             selected={selected_pod === pod.pod}
             icon={selected_pod === pod.pod && 'check'}
-            content="Select"
             mt={spods && spods.length ? '2rem' : '0.5rem'}
             onClick={() =>
               act('selectpod', {
                 ref: pod.pod,
               })
             }
-          />
+          >
+            Select
+          </Button>
         );
       }
 
@@ -404,14 +406,15 @@ const ResleevingConsolePodSleevers = (props) => {
           <Button
             selected={selected_sleever === pod.sleever}
             icon={selected_sleever === pod.sleever && 'check'}
-            content="Select"
             mt={spods && spods.length ? '3rem' : '1.5rem'}
             onClick={() =>
               act('selectsleever', {
                 ref: pod.sleever,
               })
             }
-          />
+          >
+            Select
+          </Button>
         </Box>
       );
     });
@@ -454,14 +457,15 @@ const ResleevingConsolePodSpods = (props) => {
           <Button
             selected={selected_printer === pod.spod}
             icon={selected_printer === pod.spod && 'check'}
-            content="Select"
             mt="0.5rem"
             onClick={() =>
               act('selectprinter', {
                 ref: pod.spod,
               })
             }
-          />
+          >
+            Select
+          </Button>
         );
       }
 
@@ -523,13 +527,14 @@ const ResleevingConsoleRecords = (props) => {
           key={i}
           icon="user"
           mb="0.5rem"
-          content={record.name}
           onClick={() =>
             act(actToDo, {
               ref: record.recref,
             })
           }
-        />
+        >
+          {record.name}
+        </Button>
       ))}
     </Box>
   );

@@ -37,10 +37,11 @@ const NewsTargetFeed = (props) => {
       level={2}
       buttons={
         <Button
-          content="Back"
           icon="chevron-up"
           onClick={() => act('newsfeed', { newsfeed: null })}
-        />
+        >
+          Back
+        </Button>
       }
     >
       {(target_feed.messages.length &&
@@ -81,8 +82,9 @@ const NewsFeed = (props) => {
                     ml={1}
                     icon="chevron-up"
                     onClick={() => act('newsfeed', { newsfeed: news.index })}
-                    content="Go to"
-                  />
+                  >
+                    Go to
+                  </Button>
                 </h5>
                 - {decodeHtmlEntities(news.body)}
                 {!!news.img && (
@@ -110,8 +112,9 @@ const NewsFeed = (props) => {
             fluid
             icon="chevron-up"
             onClick={() => act('newsfeed', { newsfeed: feed.index })}
-            content={feed.name}
-          />
+          >
+            {feed.name}
+          </Button>
         ))}
       </Section>
     </>

@@ -16,10 +16,11 @@ export const pda_main_menu = (props) => {
           <LabeledList.Item label="ID">
             <Button
               icon="sync"
-              content="Update PDA Info"
               disabled={!idInserted}
               onClick={() => act('UpdateInfo')}
-            />
+            >
+              Update PDA Info
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       </Box>
@@ -39,9 +40,10 @@ export const pda_main_menu = (props) => {
                       icon={app.ref in notifying ? app.notify_icon : app.icon}
                       iconSpin={app.ref in notifying}
                       color={app.ref in notifying ? 'red' : 'transparent'}
-                      content={app.name}
                       onClick={() => act('StartProgram', { program: app.ref })}
-                    />
+                    >
+                      {app.name}
+                    </Button>
                   ))}
                 </LabeledList.Item>
               );
@@ -51,18 +53,12 @@ export const pda_main_menu = (props) => {
       </Section>
       {!!pai && (
         <Section level={2} title="pAI">
-          <Button
-            fluid
-            icon="cog"
-            content="Configuration"
-            onClick={() => act('pai', { option: 1 })}
-          />
-          <Button
-            fluid
-            icon="eject"
-            content="Eject pAI"
-            onClick={() => act('pai', { option: 2 })}
-          />
+          <Button fluid icon="cog" onClick={() => act('pai', { option: 1 })}>
+            Configuration
+          </Button>
+          <Button fluid icon="eject" onClick={() => act('pai', { option: 2 })}>
+            Eject pAI
+          </Button>
         </Section>
       )}
     </>

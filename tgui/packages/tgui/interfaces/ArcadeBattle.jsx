@@ -87,13 +87,9 @@ export const ArcadeBattle = (props) => {
             </Flex.Item>
           </Flex>
           {(gameOver && (
-            <Button
-              fluid
-              mt={1}
-              color="green"
-              content="New Game"
-              onClick={() => act('newgame')}
-            />
+            <Button fluid mt={1} color="green" onClick={() => act('newgame')}>
+              New Game
+            </Button>
           )) || (
             <Flex mt={2} justify="space-between" spacing={1}>
               <Flex.Item grow={1}>
@@ -103,8 +99,9 @@ export const ArcadeBattle = (props) => {
                   tooltip="Go in for the kill!"
                   tooltipPosition="top"
                   onClick={() => act('attack')}
-                  content="Attack!"
-                />
+                >
+                  Attack!
+                </Button>
               </Flex.Item>
               <Flex.Item grow={1}>
                 <Button
@@ -113,8 +110,9 @@ export const ArcadeBattle = (props) => {
                   tooltip="Heal yourself!"
                   tooltipPosition="top"
                   onClick={() => act('heal')}
-                  content="Heal!"
-                />
+                >
+                  Heal!
+                </Button>
               </Flex.Item>
               <Flex.Item grow={1}>
                 <Button
@@ -123,8 +121,9 @@ export const ArcadeBattle = (props) => {
                   tooltip="Recharge your magic!"
                   tooltipPosition="top"
                   onClick={() => act('charge')}
-                  content="Recharge!"
-                />
+                >
+                  Recharge!
+                </Button>
               </Flex.Item>
             </Flex>
           )}

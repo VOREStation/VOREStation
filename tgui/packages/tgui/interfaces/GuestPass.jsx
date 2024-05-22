@@ -20,19 +20,16 @@ export const GuestPass = (props) => {
             buttons={
               <Button
                 icon="scroll"
-                content="Activity Log"
                 selected
                 onClick={() => act('mode', { mode: 0 })}
-              />
+              >
+                Activity Log
+              </Button>
             }
           >
-            <Button
-              icon="print"
-              content="Print"
-              onClick={() => act('print')}
-              fluid
-              mb={1}
-            />
+            <Button icon="print" onClick={() => act('print')} fluid mb={1}>
+              Print
+            </Button>
             <Section level={2} title="Logs">
               {/* These are internally generated only. */}
               {(log.length &&
@@ -45,44 +42,39 @@ export const GuestPass = (props) => {
           <Section
             title={'Guest pass terminal #' + uid}
             buttons={
-              <Button
-                icon="scroll"
-                content="Activity Log"
-                onClick={() => act('mode', { mode: 1 })}
-              />
+              <Button icon="scroll" onClick={() => act('mode', { mode: 1 })}>
+                Activity Log
+              </Button>
             }
           >
             <LabeledList>
               <LabeledList.Item label="Issuing ID">
-                <Button
-                  content={giver || 'Insert ID'}
-                  onClick={() => act('id')}
-                />
+                <Button onClick={() => act('id')}>
+                  {giver || 'Insert ID'}
+                </Button>
               </LabeledList.Item>
               <LabeledList.Item label="Issued To">
-                <Button content={giveName} onClick={() => act('giv_name')} />
+                <Button onClick={() => act('giv_name')}>{giveName}</Button>
               </LabeledList.Item>
               <LabeledList.Item label="Reason">
-                <Button content={reason} onClick={() => act('reason')} />
+                <Button onClick={() => act('reason')}>{reason}</Button>
               </LabeledList.Item>
               <LabeledList.Item label="Duration (minutes)">
-                <Button content={duration} onClick={() => act('duration')} />
+                <Button onClick={() => act('duration')}>{duration}</Button>
               </LabeledList.Item>
             </LabeledList>
-            <Button.Confirm
-              icon="check"
-              fluid
-              content="Issue Pass"
-              onClick={() => act('issue')}
-            />
+            <Button.Confirm icon="check" fluid onClick={() => act('issue')}>
+              Issue Pass
+            </Button.Confirm>
             <Section title="Access" level={2}>
               {sortBy((a) => a.area_name)(area).map((a) => (
                 <Button.Checkbox
                   checked={a.on}
-                  content={a.area_name}
                   key={a.area}
                   onClick={() => act('access', { access: a.area })}
-                />
+                >
+                  {a.area_name}
+                </Button.Checkbox>
               ))}
             </Section>
           </Section>

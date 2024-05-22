@@ -62,41 +62,46 @@ export const DisposalBin = (props) => {
               <Button
                 icon="toggle-off"
                 disabled={isAI || panel_open}
-                content="Disengaged"
-                selected={flushing ? null : 'selected'}
+                selected={flushing ? null : true}
                 onClick={() => act('disengageHandle')}
-              />
+              >
+                Disengaged
+              </Button>
               <Button
                 icon="toggle-on"
                 disabled={isAI || panel_open}
-                content="Engaged"
-                selected={flushing ? 'selected' : null}
+                selected={flushing ? true : null}
                 onClick={() => act('engageHandle')}
-              />
+              >
+                Engaged
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Power">
               <Button
                 icon="toggle-off"
                 disabled={mode === -1}
-                content="Off"
-                selected={mode ? null : 'selected'}
+                selected={mode ? null : true}
                 onClick={() => act('pumpOff')}
-              />
+              >
+                Off
+              </Button>
               <Button
                 icon="toggle-on"
                 disabled={mode === -1}
-                content="On"
-                selected={mode ? 'selected' : null}
+                selected={mode ? true : null}
                 onClick={() => act('pumpOn')}
-              />
+              >
+                On
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Eject">
               <Button
                 icon="sign-out-alt"
                 disabled={isAI}
-                content="Eject Contents"
                 onClick={() => act('eject')}
-              />
+              >
+                Eject Contents
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>

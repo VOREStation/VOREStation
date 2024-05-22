@@ -157,7 +157,9 @@ const MessageMonitorLogin = (props) => {
         />
       </Box>
       {!!isMalfAI && (
-        <Button icon="terminal" content="Hack" onClick={() => act('hack')} />
+        <Button icon="terminal" onClick={() => act('hack')}>
+          Hack
+        </Button>
       )}
       <Box color="label">
         Please authenticate with the server in order to show additional options.
@@ -243,17 +245,16 @@ const MessageMonitorMain = (props) => {
       title="Main Menu"
       buttons={
         <>
-          <Button
-            icon="link"
-            content="Server Link"
-            onClick={() => act('find')}
-          />
+          <Button icon="link" onClick={() => act('find')}>
+            Server Link
+          </Button>
           <Button
             icon="power-off"
-            content={'Server ' + (linkedServer.active ? 'Enabled' : 'Disabled')}
             selected={linkedServer.active}
             onClick={() => act('active')}
-          />
+          >
+            {'Server ' + (linkedServer.active ? 'Enabled' : 'Disabled')}
+          </Button>
         </>
       }
     >
@@ -262,24 +263,23 @@ const MessageMonitorMain = (props) => {
           <Box color="good">Good</Box>
         </LabeledList.Item>
       </LabeledList>
-      <Button
-        mt={1}
-        icon="key"
-        content="Set Custom Key"
-        onClick={() => act('pass')}
-      />
+      <Button mt={1} icon="key" onClick={() => act('pass')}>
+        Set Custom Key
+      </Button>
       <Button.Confirm
         color="red"
         confirmIcon="exclamation-triangle"
         icon="exclamation-triangle"
-        content="Clear Message Logs"
-      />
+      >
+        Clear Message Logs
+      </Button.Confirm>
       <Button.Confirm
         color="red"
         confirmIcon="exclamation-triangle"
         icon="exclamation-triangle"
-        content="Clear Request Logs"
-      />
+      >
+        Clear Request Logs
+      </Button.Confirm>
     </Section>
   );
 };
@@ -297,9 +297,10 @@ const MessageMonitorLogs = (props) => {
           color="red"
           icon="trash"
           confirmIcon="trash"
-          content="Delete All"
           onClick={() => act(pda ? 'del_pda' : 'del_rc')}
-        />
+        >
+          Delete All
+        </Button.Confirm>
       }
     >
       <Flex wrap="wrap">
@@ -398,12 +399,9 @@ const MessageMonitorAdmin = (props) => {
           />
         </LabeledList.Item>
       </LabeledList>
-      <Button
-        fluid
-        icon="comment"
-        content="Send Message"
-        onClick={() => act('send_message')}
-      />
+      <Button fluid icon="comment" onClick={() => act('send_message')}>
+        Send Message
+      </Button>
     </Section>
   );
 };
@@ -424,20 +422,19 @@ const MessageMonitorSpamFilter = (props) => {
               <Button
                 icon="trash"
                 color="bad"
-                content="Delete"
                 onClick={() => act('deltoken', { deltoken: spam.index })}
-              />
+              >
+                Delete
+              </Button>
             }
           >
             {spam.token}
           </LabeledList.Item>
         ))}
       </LabeledList>
-      <Button
-        icon="plus"
-        content="Add New Entry"
-        onClick={() => act('addtoken')}
-      />
+      <Button icon="plus" onClick={() => act('addtoken')}>
+        Add New Entry
+      </Button>
     </Section>
   );
 };

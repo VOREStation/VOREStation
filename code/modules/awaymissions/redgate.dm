@@ -1167,6 +1167,250 @@
 	name = "Jungle facility casino"
 	icon_state = "yellow"
 
+//Facility locations
+
+/area/redgate/facility
+	name = "Facility"
+	icon_state = "red"
+	requires_power = 0
+
+/area/redgate/facility/ne
+	name = "Facility - North East"
+
+/area/redgate/facility/nw
+	name = "Facility - North West"
+
+/area/redgate/facility/sw
+	name = "Facility - South West"
+
+/area/redgate/facility/se
+	name = "Facility - South East"
+
+/area/redgate/facility/medbay
+	name = "Facility - Medbay"
+	icon_state = "yellow"
+
+/area/redgate/facility/securitylobby
+	name = "Facility - Security Lobby"
+	icon_state = "yellow"
+
+/area/redgate/facility/security
+	name = "Facility - Security"
+	icon_state = "yellow"
+
+/area/redgate/facility/tram
+	name = "Facility - Tram"
+	icon_state = "yellow"
+
+/area/redgate/facility/entrance
+	name = "Facility - Entrance"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab1
+	name = "Facility - Lab 1"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab2
+	name = "Facility - Lab 2"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab3
+	name = "Facility - Lab 3"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab4
+	name = "Facility - Lab 4"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab5
+	name = "Facility - Lab 5"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab6
+	name = "Facility - Lab 6"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab7
+	name = "Facility - Lab 7"
+	icon_state = "yellow"
+
+/area/redgate/facility/lab8
+	name = "Facility - Lab 8"
+	icon_state = "yellow"
+
+/area/redgate/facility/cell1
+	name = "Facility - Cell 1"
+	icon_state = "green"
+
+/area/redgate/facility/cell2
+	name = "Facility - Cell 2"
+	icon_state = "green"
+
+/area/redgate/facility/cell3
+	name = "Facility - Cell 3"
+	icon_state = "green"
+
+/area/redgate/facility/cell4
+	name = "Facility - Cell 4"
+	icon_state = "green"
+
+/area/redgate/facility/cell5
+	name = "Facility - Cell 5"
+	icon_state = "green"
+
+/area/redgate/facility/cell6
+	name = "Facility - Cell 6"
+	icon_state = "green"
+
+/area/redgate/facility/cell7
+	name = "Facility - Cell 7"
+	icon_state = "green"
+
+/area/redgate/facility/cell8
+	name = "Facility - Cell 8"
+	icon_state = "green"
+
+/area/redgate/facility/cell9
+	name = "Facility - Cell 9"
+	icon_state = "green"
+
+/area/redgate/facility/cell10
+	name = "Facility - Cell 10"
+	icon_state = "green"
+
+/area/redgate/facility/cell11
+	name = "Facility - Cell 11"
+	icon_state = "green"
+
+/area/redgate/facility/cell12
+	name = "Facility - Cell 12"
+	icon_state = "green"
+
+/area/redgate/facility/cell13
+	name = "Facility - Cell 13"
+	icon_state = "green"
+
+/area/redgate/facility/cell14
+	name = "Facility - Cell 14"
+	icon_state = "green"
+
+/area/redgate/facility/cell15
+	name = "Facility - Cell 15"
+	icon_state = "green"
+
+/area/redgate/facility/cell16
+	name = "Facility - Cell 16"
+	icon_state = "green"
+
+/area/redgate/facility/cell17
+	name = "Facility - Cell 17"
+	icon_state = "green"
+
+/area/redgate/facility/cell18
+	name = "Facility - Cell 18"
+	icon_state = "green"
+
+/area/redgate/facility/cell19
+	name = "Facility - Cell 19"
+	icon_state = "green"
+
+/area/redgate/facility/cell20
+	name = "Facility - Cell 20"
+	icon_state = "green"
+
+/area/redgate/facility/cell21
+	name = "Facility - Cell 21"
+	icon_state = "green"
+
+/area/redgate/facility/cell22
+	name = "Facility - Cell 22"
+	icon_state = "green"
+
+/area/redgate/facility/cell23
+	name = "Facility - Cell 23"
+	icon_state = "green"
+
+/area/redgate/facility/cell24
+	name = "Facility - Cell 24"
+	icon_state = "green"
+
+/area/redgate/facility/cell25
+	name = "Facility - Cell 25"
+	icon_state = "green"
+
+/area/redgate/facility/cell26
+	name = "Facility - Cell 26"
+	icon_state = "green"
+
+/area/redgate/facility/cell27
+	name = "Facility - Cell 28"
+	icon_state = "green"
+
+/area/redgate/facility/cell29
+	name = "Facility - Cell 29"
+	icon_state = "green"
+
+/area/redgate/facility/office1
+	name = "Facility - Office 1"
+	icon_state = "green"
+
+/area/redgate/facility/office2
+	name = "Facility - Office 2"
+	icon_state = "green"
+
+/area/redgate/facility/office3
+	name = "Facility - Office 3"
+	icon_state = "green"
+
+/area/redgate/facility/office4
+	name = "Facility - Office 4"
+	icon_state = "green"
+
+/area/redgate/facility/office5
+	name = "Facility - Office 5"
+	icon_state = "green"
+
+/area/redgate/facility/office6
+	name = "Facility - Office 6"
+	icon_state = "green"
+
+/area/redgate/facility/office7
+	name = "Facility - Office 7"
+	icon_state = "green"
+
+/area/redgate/facility/office8
+	name = "Facility - Office 8"
+	icon_state = "green"
+
+/area/redgate/facility/office9
+	name = "Facility - Office 9"
+	icon_state = "green"
+
+/area/redgate/facility/office10
+	name = "Facility - Office 10"
+	icon_state = "green"
+
+/area/redgate/facility/office11
+	name = "Facility - Office 11"
+	icon_state = "green"
+
+/area/redgate/facility/office12
+	name = "Facility - Office 12"
+	icon_state = "green"
+
+/area/redgate/facility/office13
+	name = "Facility - Office 13"
+	icon_state = "green"
+
+/area/redgate/facility/office14
+	name = "Facility - Office 14"
+	icon_state = "green"
+
+/area/redgate/facility/office15
+	name = "Facility - Office 15"
+	icon_state = "green"
+
+
 //HIIIIGHWAY TO THE! LASER-DOME!
 /area/redgate/laserdome
 	name = "Laserdome Safe Zone"

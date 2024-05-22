@@ -30,8 +30,8 @@ export const AssemblyTimer = (props) => {
                 fluid
                 value={time / 10}
                 minValue={0}
-                maxValue={600}
-                format={(val) => formatTime(round(val))}
+                maxValue={60}
+                format={(val) => formatTime(round(val * 10))}
                 onDrag={(e, val) => act('set_time', { time: val })}
               />
             </LabeledList.Item>

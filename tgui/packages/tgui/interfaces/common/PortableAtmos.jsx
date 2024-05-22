@@ -28,10 +28,11 @@ export const PortableBasicInfo = (props) => {
         buttons={
           <Button
             icon={on ? 'power-off' : 'times'}
-            content={on ? 'On' : 'Off'}
             selected={on}
             onClick={() => act('power')}
-          />
+          >
+            {on ? 'On' : 'Off'}
+          </Button>
         }
       >
         <LabeledList>
@@ -63,12 +64,9 @@ export const PortableBasicInfo = (props) => {
         title="Holding Tank"
         minHeight="82px"
         buttons={
-          <Button
-            icon="eject"
-            content="Eject"
-            disabled={!holding}
-            onClick={() => act('eject')}
-          />
+          <Button icon="eject" disabled={!holding} onClick={() => act('eject')}>
+            Eject
+          </Button>
         }
       >
         {holding ? (

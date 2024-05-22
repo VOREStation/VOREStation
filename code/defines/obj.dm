@@ -20,6 +20,23 @@
 	anchored = TRUE
 	density = TRUE
 
+/obj/structure/signevent //Designed for scene events for people to put their OOC notes on BEFORE going into a room with them.
+	name = "sign"
+	desc = "It's a sign that tells you things!"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "sign_event_green"
+	anchored = TRUE
+	density = FALSE
+
+/obj/structure/signevent/blue
+	icon_state = "sign_event_blue"
+
+/obj/structure/signevent/red
+	icon_state = "sign_event_red"
+
+/obj/structure/signevent/yellow
+	icon_state = "sign_event_yellow"
+
 /obj/effect/mark
 		var/mark = ""
 		icon = 'icons/misc/mark.dmi'
