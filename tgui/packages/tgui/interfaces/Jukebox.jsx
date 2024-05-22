@@ -54,6 +54,14 @@ export const Jukebox = (props) => {
   const [newGenre, setNewGenre] = useState('Admin');
   const [newSecret, setNewSecret] = useState(false);
   const [newLobby, setNewLobby] = useState(false);
+  const [unlockGenre, setUnlockGenre] = useState(false);
+
+  function handleUnlockGenre() {
+    if (unlockGenre) {
+      setNewGenre('Admin');
+    }
+    setUnlockGenre(!unlockGenre);
+  }
 
   return (
     <Window width={450} height={600}>
@@ -251,11 +259,26 @@ export const Jukebox = (props) => {
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Genre">
-                    <Input
-                      width="100%"
-                      value={newGenre}
-                      onChange={(e, val) => setNewGenre(val)}
-                    />
+                    <Flex>
+                      <Flex.Item grow={1}>
+                        {unlockGenre ? (
+                          <Input
+                            width="100%"
+                            value={newGenre}
+                            onChange={(e, val) => setNewGenre(val)}
+                          />
+                        ) : (
+                          <Box>{newGenre}</Box>
+                        )}
+                      </Flex.Item>
+                      <Flex.Item>
+                        <Button.Checkbox
+                          icon={unlockGenre ? 'lock-open' : 'lock'}
+                          color={unlockGenre ? 'good' : 'bad'}
+                          onClick={(e, val) => handleUnlockGenre()}
+                        />
+                      </Flex.Item>
+                    </Flex>
                   </LabeledList.Item>
                   <LabeledList.Item label="Secret">
                     <Button.Checkbox
