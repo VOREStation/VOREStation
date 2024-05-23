@@ -85,6 +85,10 @@ GLOBAL_LIST_EMPTY(apcs)
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 24 : -24)
 	pixel_y = (dir & 3) ? (dir == 1 ? 20 : -20) : 0
 
+/obj/machinery/power/apc/hyper/graveyard
+	req_access = list(access_lost)
+	alarms_hidden = TRUE
+
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
@@ -1363,6 +1367,19 @@ GLOBAL_LIST_EMPTY(apcs)
 		L.nightshift_mode(new_state)
 		L.update() //For some reason it gets hung up on updating the overlay for the light fixture somewhere down the line. This fixes it.
 		CHECK_TICK
+
+/obj/machinery/power/apc/proc/update_area()
+	var/area/NA = get_area(src)
+	if(!(NA == area))
+		if(area.apc == src)
+			area.apc = null
+		NA.apc = src
+		area = NA
+		name = "[area.name] APC"
+	update()
+
+/obj/machinery/power/apc/get_cell()
+	return cell
 
 #undef APC_UPDATE_ICON_COOLDOWN
 
