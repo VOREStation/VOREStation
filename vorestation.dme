@@ -3571,7 +3571,6 @@
 #include "code\modules\player_tips_vr\player_tips_controller_vr.dm"
 #include "code\modules\player_tips_vr\player_tips_list_vr.dm"
 #include "code\modules\power\apc.dm"
-#include "code\modules\power\apc_vr.dm"
 #include "code\modules\power\batteryrack.dm"
 #include "code\modules\power\batteryrack_vr.dm"
 #include "code\modules\power\breaker_box.dm"
