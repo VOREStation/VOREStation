@@ -394,6 +394,13 @@ var/list/_client_preferences_by_type
 	enabled_description = "Extended"
 	disabled_description = "Default"
 
+/datum/client_preference/auto_afk
+	description = "Automatic AFK Status"
+	key = "AUTO_AFK"
+	enabled_by_default = TRUE
+	enabled_description = "Automatic"
+	disabled_description = "Manual Only"
+
 
 /********************
 * Staff Preferences *
