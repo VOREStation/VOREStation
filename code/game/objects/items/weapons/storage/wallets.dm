@@ -37,7 +37,8 @@
 		/obj/item/clothing/accessory/permit,
 		/obj/item/clothing/accessory/badge,
 		/obj/item/weapon/makeover,
-		/obj/item/pizzavoucher //VOREStation edit
+		/obj/item/pizzavoucher,
+		/obj/item/weapon/card_fluff
 		)
 	slot_flags = SLOT_ID
 

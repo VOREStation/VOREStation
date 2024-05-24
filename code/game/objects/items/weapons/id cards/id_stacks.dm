@@ -3,146 +3,288 @@
 // Please make sure that only the relevant sprite_stacks_xxx.file is included, if more are made.
 
 /obj/item/weapon/card
-	icon = 'icons/obj/card_new.dmi' // These are redefined here so that changing sprites is as easy as clicking the checkbox.
-	base_icon = 'icons/obj/card_new.dmi'
+	icon = 'icons/obj/card_new_vr.dmi' // These are redefined here so that changing sprites is as easy as clicking the checkbox.
+	base_icon = 'icons/obj/card_new_vr.dmi'
 
 	// New sprite stacks can be defined here. You could theoretically change icon-states as well but right now this file compiles before station_ids.dm so those wouldn't be affected.
-  
-/*
+
+//IDs
+
+/obj/item/weapon/card/id
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n")
+
 /obj/item/weapon/card/id/generic
+	name = "Generic ID"
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-silhouette", "clip")
 
-// CENTCOM
+//Central
+
 /obj/item/weapon/card/id/centcom
-	initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n", "pips-gold")
+	name = "Central Command ID"
+	initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n", "pips-white", "stripe-gold")
 
 /obj/item/weapon/card/id/centcom/vip
-	initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n", "pips-gold")
+	name = "VIP ID"
+	initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n", "pips-gold", "stripe-gold")
+
+//ERT
 
 /obj/item/weapon/card/id/centcom/ERT
-	initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n", "pips-red", "stripe-red")
+	name = "Emergency Responder ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-red", "stripe-red")
 
-// GENERIC COMMAND
+/obj/item/weapon/card/id/centcom/ERT/medic
+	name = "Emergency Medical Responder ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-medblu", "stripe-medblu")
+
+/obj/item/weapon/card/id/centcom/ERT/commander
+	name = "Emergency Response Commander ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-gold", "stripe-gold")
+
+/obj/item/weapon/card/id/centcom/ERT/engineer
+	name = "Emergency Engineering Responder ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-orange", "stripe-orange")
+
+/obj/item/weapon/card/id/centcom/ERT/janitor
+	name = "Emergency Cleanup Responder ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-purple", "stripe-purple")
+
+//Silver
+
 /obj/item/weapon/card/id/silver
-	initial_sprite_stack = list("base-stamp-silver", "top-mime", "stamp-n-generic")
+	name = "Silver ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n")
 
 /obj/item/weapon/card/id/silver/secretary
+	name = "Secretary's ID"
 	initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n")
 
 /obj/item/weapon/card/id/silver/hop
-	initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n", "stripe-white")
+	name = "Head of Personnel ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-gold")
 
-// MEDICAL
+//Gold
+
+/obj/item/weapon/card/id/gold
+	name = "Gold ID"
+	initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n")
+
+/obj/item/weapon/card/id/gold/captain
+	name = "Captain's ID"
+	initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n", "pips-gold")
+
+/obj/item/weapon/card/id/gold/captain/spare
+	name = "Spare ID"
+	initial_sprite_stack = list("base-stamp-gold", "top-gold", "stamp-n")
+
+//Medical
+
 /obj/item/weapon/card/id/medical
+	name = "Medical ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n")
 
 /obj/item/weapon/card/id/medical/chemist
-	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "pips-orange")
+	name = "Chemist's ID"
+	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-orange")
 
 /obj/item/weapon/card/id/medical/geneticist
-	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "pips-purple")
+	name = "Geneticist's ID"
+	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-purple")
 
 /obj/item/weapon/card/id/medical/psych
-	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "pips-purple")
+	name = "Psychologist's ID"
+	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-brown")
+
+/obj/item/weapon/card/id/medical/virologist
+	name = "Virologist's ID"
+	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-green")
 
 /obj/item/weapon/card/id/medical/emt
-	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "pips-blue")
+	name = "Emergency Medical Technician's ID"
+	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-blue")
 
 /obj/item/weapon/card/id/medical/head
-	initial_sprite_stack = list("base-stamp-silver", "top-medblu", "stamp-n", "stripe-gold")
+	name = "Chief Medical Officer's ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-medblu", "stamp-n", "pips-gold")
 
-/obj/item/weapon/card/id/medical/sar
-	initial_sprite_stack = list("base-stamp", "top-darkgreen", "stamp-n", "pips-medblu")
+//Security
 
-// SECURITY
 /obj/item/weapon/card/id/security
+	name = "Security ID"
 	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n")
 
 /obj/item/weapon/card/id/security/detective
-	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n", "pips-brown")
+	name = "Detective's ID"
+	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n", "stripe-brown")
 
 /obj/item/weapon/card/id/security/warden
-	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n", "pips-white")
+	name = "Warden's ID"
+	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n", "stripe-white")
 
 /obj/item/weapon/card/id/security/head
-	initial_sprite_stack = list("base-stamp-silver", "top-red", "stamp-n", "stripe-gold")
+	name = "Head of Security's ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-red", "stamp-n", "pips-gold")
 
-// ENGINEERING
+//Engineering
+
 /obj/item/weapon/card/id/engineering
+	name = "Engineering ID"
 	initial_sprite_stack = list("base-stamp", "top-orange", "stamp-n")
 
 /obj/item/weapon/card/id/engineering/atmos
-	initial_sprite_stack = list("base-stamp", "top-orange", "pips-medblu", "stamp-n")
+	name = "Atmospherics ID"
+	initial_sprite_stack = list("base-stamp", "top-orange", "stripe-medblu", "stamp-n")
 
 /obj/item/weapon/card/id/engineering/head
-	initial_sprite_stack = list("base-stamp-silver", "top-orange", "stamp-n", "stripe-gold")
+	name = "Chief Engineer's ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-orange", "stamp-n", "pips-gold")
 
-// SCIENCE
+//Science
+
 /obj/item/weapon/card/id/science
+	name = "Science ID"
 	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n")
 
 /obj/item/weapon/card/id/science/roboticist
-	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "pips-orange")
+	name = "Roboticist's ID"
+	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "stripe-brown")
 
-/obj/item/weapon/card/id/science/explorer
-	initial_sprite_stack = list("base-stamp", "top-darkgreen", "stamp-n")
+/obj/item/weapon/card/id/science/xenobiologist
+	name = "Xenobiologist's ID"
+	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "stripe-orange")
+
+/obj/item/weapon/card/id/science/xenobotanist
+	name = "Xenobotanist's ID"
+	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "stripe-green")
 
 /obj/item/weapon/card/id/science/head
-	initial_sprite_stack = list("base-stamp-silver", "top-purple", "stamp-n", "stripe-gold")
+	name = "Research Director's ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-purple", "stamp-n", "pips-gold")
 
-/obj/item/weapon/card/id/science/head/pathfinder
-	initial_sprite_stack = list("base-stamp-silver", "top-blue", "dept-exploration", "stamp-n", "pips-gold")
+//Cargo
 
-// CARGO
 /obj/item/weapon/card/id/cargo
+	name = "Cargo ID"
 	initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n")
 
 /obj/item/weapon/card/id/cargo/miner
-	initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n", "pips-purple")
+	name = "Miner's ID"
+	initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n", "stripe-purple")
 
 /obj/item/weapon/card/id/cargo/head
-	initial_sprite_stack = list("base-stamp-silver", "top-brown", "stamp-n", "pips-gold")
+	name = "Quartermaster's ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-brown", "stamp-n", "pips-white")
 
-// CIVLIAN
+//Civilian
+
 /obj/item/weapon/card/id/civilian
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n")
+	name = "Civilian ID"
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n")
 
 /obj/item/weapon/card/id/civilian/chaplain
-	initial_sprite_stack = list("base-stamp-silver", "top-dark", "stamp-cross", "pips-white")
-
-/obj/item/weapon/card/id/civilian/internal_affairs
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n")
-
-/obj/item/weapon/card/id/civilian/botanist
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-brown")
-
-/obj/item/weapon/card/id/civilian/bartender
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-dark")
-
-/obj/item/weapon/card/id/civilian/chef
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-white")		
-
-/obj/item/weapon/card/id/civilian/janitor
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-purple")
+	name = "Chaplain's ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-cross", "stripe-white")
 
 /obj/item/weapon/card/id/civilian/journalist
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n")
+	name = "Journalist's ID"
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-red")
+
+/obj/item/weapon/card/id/civilian/pilot
+	name = "Pilot's ID"
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-olive")
+
+/obj/item/weapon/card/id/civilian/entertainer
+	name = "Entertainer's ID"
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-brown")
+
+/obj/item/weapon/card/id/civilian/entrepreneur
+	name = "Entrepreneur's ID"
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-gold")
 
 /obj/item/weapon/card/id/civilian/clown
+	name = "Clown's ID"
 	initial_sprite_stack = list("base-stamp", "top-rainbow", "stamp-n")
 
 /obj/item/weapon/card/id/civilian/mime
+	name = "Mime's ID"
 	initial_sprite_stack = list("base-stamp", "top-white", "stamp-n", "stripe-black")
 
-/obj/item/weapon/card/id/civilian/pilot
-	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "pips-blue")
+/obj/item/weapon/card/id/civilian/internal_affairs
+	name = "Internal Affairs ID"
+	initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n", "stripe-black")
 
-/obj/item/weapon/card/id/civilian/head
-	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "stripe-white")
+//Service
+
+/obj/item/weapon/card/id/civilian/service
+	name = "Service ID"
+	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n")
+
+/obj/item/weapon/card/id/civilian/service/botanist
+	name = "Botanist's ID"
+	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-darkgreen")
+
+/obj/item/weapon/card/id/civilian/service/bartender
+	name = "Bartender's ID"
+	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-black")
+
+/obj/item/weapon/card/id/civilian/service/chef
+	name = "Chef's ID"
+	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-white")
+
+/obj/item/weapon/card/id/civilian/service/janitor
+	name = "Janitor's ID"
+	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-purple")
+
+//Exploration
+
+/obj/item/weapon/card/id/exploration
+	name = "Exploration ID"
+	initial_sprite_stack = list("base-stamp", "top-olive", "stamp-n")
+
+/obj/item/weapon/card/id/exploration/fm
+	name = "Field Medic's ID"
+	initial_sprite_stack = list("base-stamp", "top-olive", "stamp-n", "stripe-medblu")
+
+/obj/item/weapon/card/id/exploration/head
+	name = "Pathfinder's ID"
+	initial_sprite_stack = list("base-stamp-silver", "top-olive", "stamp-n", "pips-white")
+
+//Talon
+
+/obj/item/weapon/card/id/talon
+	name = "Talon ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette")
+
+/obj/item/weapon/card/id/talon/doctor
+	name = "Talon Medical ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-medblu", "stripe-medblu")
+
+/obj/item/weapon/card/id/talon/engineer
+	name = "Talon Engineering ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-orange", "stripe-orange")
+
+/obj/item/weapon/card/id/talon/officer
+	name = "Talon Security ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-red", "stripe-red")
+
+/obj/item/weapon/card/id/talon/pilot
+	name = "Talon Pilot ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-purple", "stripe-purple")
+
+/obj/item/weapon/card/id/talon/miner
+	name = "Talon Mining ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-brown", "stripe-brown")
+
+/obj/item/weapon/card/id/talon/captain
+	name = "Talon Captain ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-gold", "stripe-gold")
+
+//Antags
 
 /obj/item/weapon/card/id/syndicate
+	name = "Syndicate ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s")
 
 /obj/item/weapon/card/id/syndicate/officer
+	name = "Syndicate Officer ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s", "pips-gold", "stripe-gold")
-*/
