@@ -157,6 +157,7 @@
 
 	var/can_be_antagged = FALSE // To prevent pAIs/mice/etc from getting antag in autotraitor and future auto- modes. Uses inheritance instead of a bunch of typechecks.
 	var/away_from_keyboard = FALSE	//are we at, or away, from our keyboard?
+	var/manual_afk = FALSE			//did we set afk manually or was it automatic?
 
 //Generic list for proc holders. Only way I can see to enable certain verbs/procs. Should be modified if needed.
 	var/proc_holder_list[] = list()//Right now unused.

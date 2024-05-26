@@ -129,10 +129,12 @@
 		remove_status_indicator("afk")
 		to_chat(src, "<span class='notice'>You are no longer marked as AFK.</span>")
 		away_from_keyboard = FALSE
+		manual_afk = FALSE
 	else
 		add_status_indicator("afk")
 		to_chat(src, "<span class='notice'>You are now marked as AFK.</span>")
 		away_from_keyboard = TRUE
+		manual_afk = TRUE
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
