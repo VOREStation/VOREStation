@@ -37,6 +37,17 @@
 
 		. = 1
 
+		if(client)
+			var/idle_limit = 10 MINUTES
+			if(client.inactivity >= idle_limit && !away_from_keyboard && src.is_preference_enabled(/datum/client_preference/auto_afk))	//if we're not already afk and we've been idle too long, and we have automarking enabled... then automark it
+				add_status_indicator("afk")
+				to_chat(src, "<span class='notice'>You have been idle for too long, and automatically marked as AFK.</span>")
+				away_from_keyboard = TRUE
+			else if(away_from_keyboard && client.inactivity < idle_limit && !manual_afk) //if we're afk but we do something AND we weren't manually flagged as afk, unmark it
+				remove_status_indicator("afk")
+				to_chat(src, "<span class='notice'>You have been automatically un-marked as AFK.</span>")
+				away_from_keyboard = FALSE
+
 	//Chemicals in the body, this is moved over here so that blood can be added after death
 	handle_chemicals_in_body()
 

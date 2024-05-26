@@ -246,3 +246,18 @@
 
 /obj/machinery/light/small/torch/attackby()
 	return
+
+/obj/machinery/light/broken
+	icon_state = "tube-broken"
+
+/obj/machinery/light/broken/Initialize()
+	. = ..()
+	broken()
+
+/obj/machinery/light/broken/small
+	icon_state = "bulb-broken"
+
+/obj/machinery/light/broken/small/Initialize()
+	. = ..()
+	broken()
+
