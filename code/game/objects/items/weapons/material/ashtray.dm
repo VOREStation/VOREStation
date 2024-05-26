@@ -7,6 +7,7 @@ var/global/list/ashtray_cache = list()
 	randpixel = 5
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
+	w_class = ITEMSIZE_SMALL
 	var/image/base_image
 	var/max_butts = 10
 

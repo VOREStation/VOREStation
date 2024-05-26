@@ -50,3 +50,10 @@
 	desc = "A red banner hanging from a stand."
 	icon_state = "pinkbanner_stand"
 	density = FALSE
+
+/obj/structure/prop/fantasy/shinto
+	name = "shinto arch"
+	desc = "A tall red wooden shinto style archway."
+	icon = 'icons/obj/props/decor96x96.dmi'
+	icon_state = "shinto"
+	density = FALSE

@@ -195,6 +195,7 @@
 	for(var/datum/track/T in getTracksList())
 		tgui_tracks.Add(list(T.toTguiList()))
 	data["tracks"] = tgui_tracks
+	data["admin"] = is_admin(user)
 
 	return data
 
@@ -243,6 +244,13 @@
 			else
 				StartPlaying()
 			return TRUE
+		if("add_new_track")
+			SSmedia_tracks.add_track(usr, params["url"], params["title"], text2num(params["duration"]) * 10, params["artist"], params["genre"], text2num(params["secret"]), text2num(params["lobby"]))
+		if("remove_new_track")
+			var/datum/track/track_to_remove = locate(params["ref"]) in getTracksList()
+			if(track_to_remove == current_track && playing)
+				StopPlaying()
+			SSmedia_tracks.remove_track(usr, track_to_remove)
 
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)

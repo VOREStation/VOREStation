@@ -163,3 +163,14 @@
 	toggle_preference(pref_path)
 
 	to_chat(src, "The cooldown between pain messages for minor (under 20/5 injury. Multi-limb injuries are still faster) is now [ (is_preference_enabled(pref_path)) ? "extended" : "default"].")
+
+/client/verb/toggle_automatic_afk()
+	set name = "Toggle Automatic AFK"
+	set category = "Preferences"
+	set desc = "When enabled, causes you to be automatically marked as AFK if you are idle for too long."
+
+	var/pref_path = /datum/client_preference/auto_afk
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "not"] be automatically marked as AFK if you are idle for ten minutes or more.")

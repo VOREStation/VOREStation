@@ -44,6 +44,7 @@
 #define BE_CORGI		0x80000
 #define BE_CURSEDSWORD	0x100000
 #define BE_SURVIVOR		0x200000
+#define BE_EVENT		0x400000
 //VOREStation Add End
 
 var/list/be_special_flags = list(
@@ -114,6 +115,7 @@ var/list/be_special_flags = list(
 #define MODE_THUG "thug"
 #define MODE_STOWAWAY "stowaway"
 #define MODE_SURVIVOR "Shipwreck Survivor"
+#define MODE_EVENT "Event Character"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 120
 
