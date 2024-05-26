@@ -782,6 +782,12 @@
 			to_chat(src, "<span class='warning'>\The [pocketpal] doesn't allow you to eat it.</span>")
 			return
 
+	if(istype(I, /obj/item/weapon/book))
+		var/obj/item/weapon/book/book = I
+		if(book.carved)
+			to_chat(src, "<span class='warning'>\The [book] is not worth eating without the filling.</span>")
+			return
+
 	if(is_type_in_list(I,edible_trash) | adminbus_trash)
 		if(I.hidden_uplink)
 			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
@@ -841,6 +847,8 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and funny looks.</span>")
 		else if(istype(I,/obj/item/weapon/paper))
 			to_chat(src, "<span class='notice'>You can taste the dry flavor of bureaucracy.</span>")
+		else if(istype(I,/obj/item/weapon/book))
+			to_chat(src, "<span class='notice'>You can taste the dry flavor of knowledge.</span>")
 		else if(istype(I,/obj/item/weapon/dice) || istype(I,/obj/item/roulette_ball))
 			to_chat(src, "<span class='notice'>You can taste the bitter flavor of cheating.</span>")
 		else if(istype(I,/obj/item/weapon/lipstick))
