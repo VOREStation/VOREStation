@@ -11,6 +11,7 @@
 /obj/belly
 	name = "belly"							// Name of this location
 	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
+	var/message_mode = FALSE				// If all options for messages are shown
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/release_verb = "expels"				// Verb for releasing something from a stomach
@@ -252,6 +253,7 @@
 	"name",
 	"desc",
 	"absorbed_desc",
+	"message_mode",
 	"vore_sound",
 	"vore_verb",
 	"release_verb",
@@ -1702,6 +1704,7 @@
 	//// Non-object variables
 	dupe.name = name
 	dupe.desc = desc
+	dupe.message_mode = message_mode
 	dupe.absorbed_desc = absorbed_desc
 	dupe.vore_sound = vore_sound
 	dupe.vore_verb = vore_verb

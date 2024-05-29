@@ -51,6 +51,7 @@
 					addons.Add(flag_name)
 			belly_data["addons"] = addons
 			belly_data["item_mode"] = B.item_digest_mode
+			belly_data["message_mode"] = B.message_mode
 
 			// Messages
 			belly_data["struggle_messages_outside"] = list()
