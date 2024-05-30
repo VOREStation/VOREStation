@@ -1310,11 +1310,14 @@
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
 "cP" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
-/area/medical/medbay)
+/area/bridge)
 "cQ" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -1415,17 +1418,16 @@
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
 "df" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/dropper,
 /turf/simulated/floor/tiled,
-/area/medical/medbay)
+/area/bridge)
 "dg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2740,6 +2742,8 @@
 	layer = 3.3;
 	pixel_y = 32
 	},
+/obj/machinery/chemical_dispenser/full,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "gj" = (
@@ -2751,6 +2755,8 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "gk" = (
@@ -3603,6 +3609,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
+"ni" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/syringes,
+/obj/item/weapon/reagent_containers/dropper,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "nk" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -5276,6 +5288,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engine_room)
+"Fg" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/bridge)
 "FA" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 8
@@ -5367,6 +5385,8 @@
 /area/space)
 "GC" = (
 /obj/machinery/camera/network/civilian,
+/obj/machinery/chemical_dispenser/biochemistry/full,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "GM" = (
@@ -8723,7 +8743,7 @@ gY
 aa
 aa
 fY
-gf
+cP
 gf
 gf
 gf
@@ -8825,7 +8845,7 @@ gY
 aa
 aa
 fY
-gh
+df
 gf
 gq
 gf
@@ -8928,7 +8948,7 @@ aa
 aa
 fY
 gi
-gf
+Fg
 gr
 gf
 gf
@@ -9132,7 +9152,7 @@ aa
 aa
 fY
 gj
-gf
+ni
 gr
 gf
 gf
@@ -10736,7 +10756,7 @@ cO
 de
 dr
 dF
-cP
+et
 eb
 du
 cM
@@ -10832,10 +10852,10 @@ cz
 cA
 cc
 cH
-cP
-cP
-cP
-df
+et
+et
+et
+eA
 ds
 du
 cM
@@ -11451,7 +11471,7 @@ dh
 cM
 dG
 dF
-cP
+et
 en
 cM
 cM
