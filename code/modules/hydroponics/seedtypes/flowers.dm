@@ -65,7 +65,7 @@
 	set_trait(TRAIT_MATURATION,7)
 	set_trait(TRAIT_PRODUCTION,5)
 	set_trait(TRAIT_YIELD,5)
-	set_trait(TRAIT_PRODUCT_ICON,"flower6")
+	set_trait(TRAIT_PRODUCT_ICON,"lavender")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#B57EDC")
 	set_trait(TRAIT_PLANT_COLOUR,"#6B8C5E")
 	set_trait(TRAIT_PLANT_ICON,"flower4")
