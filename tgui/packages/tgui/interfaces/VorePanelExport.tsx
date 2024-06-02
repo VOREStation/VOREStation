@@ -66,6 +66,7 @@ type Belly = {
   // General Information
   name: string;
   desc: string;
+  message_mode: BooleanLike;
   absorbed_desc: string;
   vore_verb: string;
   release_verb: string;
@@ -181,6 +182,7 @@ const generateBellyString = (belly: Belly, index: number) => {
     // General Information
     name,
     desc,
+    message_mode,
     absorbed_desc,
     vore_verb,
     release_verb,
@@ -324,6 +326,7 @@ const generateBellyString = (belly: Belly, index: number) => {
   result += '<hr>';
 
   result += '<b>== Messages ==</b><br>';
+  result +='Show All Interactive Messages: ' + (message_mode ? '<span style="color: green;">Yes' : '<span style="color: red;">No') + '</span><br>';
   result += '<div role="messagesTabpanel">'; // Start Div messagesTabpanel
   result += '<div class="row"><div class="col-4">';
   result += '<div class="list-group" id="messagesList" role="messagesTablist">';

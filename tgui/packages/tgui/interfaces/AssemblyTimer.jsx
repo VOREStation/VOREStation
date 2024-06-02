@@ -28,9 +28,9 @@ export const AssemblyTimer = (props) => {
               <NumberInput
                 animated
                 fluid
-                value={time / 10}
+                value={time}
                 minValue={0}
-                maxValue={60}
+                maxValue={600}
                 format={(val) => formatTime(round(val * 10))}
                 onDrag={(e, val) => act('set_time', { time: val })}
               />
