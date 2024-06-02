@@ -53,7 +53,7 @@
 
 	if(extra)
 		var/temp_input = replace_characters(input, list("\n"="  ","\t"=" "))//one character is replaced by two
-		if(length(input) < (length(temp_input) - 6))//6 is the number of linebreaks allowed per message
+		if(length(input) < (length(temp_input) - 19))//6 is the number of linebreaks allowed per message
 			input = replace_characters(temp_input,list("  "=" "))//replace again, this time the double spaces with single ones
 
 	if(encode)
