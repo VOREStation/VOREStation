@@ -94,6 +94,6 @@
 				for(var/i in 1 to LAZYLEN(L))
 					real_new_time += text2num(L[i]) * (60 ** (LAZYLEN(L) - i))
 			else
-				real_new_time = text2num(new_time * 10)
+				real_new_time = text2num(new_time)
 			time = clamp(real_new_time, 0, 600)
 			return TRUE
