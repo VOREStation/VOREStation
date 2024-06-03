@@ -351,6 +351,11 @@
 /obj/effect/landmark/map_data/jungle
 	height = 2
 
+/datum/map_template/common_lateload/redgate/facility
+	name = "Redgate - Facility"
+	desc = "A facility full of unusual experiments."
+	mappath = 'maps/redgate/facility.dmm'
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
