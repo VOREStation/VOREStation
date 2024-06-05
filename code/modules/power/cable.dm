@@ -998,3 +998,5 @@ var/list/possible_cable_coil_colours = list(
 	else
 		..()
 	return
+
+#undef MAXCOIL

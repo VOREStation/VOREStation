@@ -314,3 +314,6 @@
 		if (EB.energy > 0)
 			EB.energy -= min(EB.energy, max(10, round(EB.energy * 0.05)))
 	// VOREStation Edit End
+
+#undef TESLA_DEFAULT_POWER
+#undef TESLA_MINI_POWER
