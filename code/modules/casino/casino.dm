@@ -529,9 +529,9 @@
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
 		interval = tgui_input_number(usr, "Put the desired interval (1-1000)", "Set Interval", null, 1000, 1)
 		if(interval>1000 || interval<1)
-			usr << "<span class='notice'>Invalid interval.</span>"
+			to_chat(usr, span_notice("Invalid interval."))
 			return
-		usr << "<span class='notice'>You set the interval to [interval]</span>"
+		to_chat(usr, span_notice("You set the interval to [interval]"))
 	return
 
 //
