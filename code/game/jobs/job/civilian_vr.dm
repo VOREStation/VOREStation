@@ -106,6 +106,9 @@
 /datum/alt_title/excavator
 	title = "Excavator"
 
+/datum/job/mining/get_request_reasons()
+	return list("Assembling expedition team")
+
 
 /datum/job/janitor //Lots of janitor substations on station.
 	total_positions = 3
