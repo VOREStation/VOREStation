@@ -173,3 +173,4 @@
 
 #undef MORSE_DOT
 #undef MORSE_DASH
+#undef MORSE_BASE_DELAY

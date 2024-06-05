@@ -6,7 +6,7 @@
 // status values shared between lighting fixtures and items
 #define LIGHT_OK 0
 #define LIGHT_EMPTY 1
-#define LIGHT_BROKEN 2
+//# define LIGHT_BROKEN 2 Moved to global
 #define LIGHT_BURNED 3
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
 #define LIGHTING_POWER_FACTOR 2		//5W per luminosity * range		//VOREStation Edit: why the fuck are lights eating so much power, 2W per thing
@@ -1179,3 +1179,10 @@ var/global/list/light_type_cache = list()
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lampshade"
 	w_class = ITEMSIZE_TINY
+
+#undef LIGHT_OK
+#undef LIGHT_EMPTY
+#undef LIGHT_BURNED
+#undef LIGHT_BULB_TEMPERATURE
+#undef LIGHTING_POWER_FACTOR
+#undef LIGHT_EMERGENCY_POWER_USE

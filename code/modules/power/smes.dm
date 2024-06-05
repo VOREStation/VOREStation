@@ -3,8 +3,8 @@
 
 GLOBAL_LIST_EMPTY(smeses)
 
-#define SMESMAXCHARGELEVEL 250000
-#define SMESMAXOUTPUT 250000
+//# define SMESMAXCHARGELEVEL 250000 Unused
+//# define SMESMAXOUTPUT 250000 Unused
 
 /obj/machinery/power/smes
 	name = "power storage unit"
