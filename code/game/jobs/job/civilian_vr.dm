@@ -239,6 +239,9 @@
 /datum/alt_title/helmsman
 	title = "Helmsman"
 
+/datum/job/pilot/get_request_reasons()
+	return list("Assembling expedition team")
+
 //////////////////////////////////
 //			Entertainer
 //////////////////////////////////
