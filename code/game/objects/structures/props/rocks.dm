@@ -60,3 +60,23 @@
 	name = "crystal dust"
 	icon = 'icons/obj/props/decor.dmi'
 	icon_state = "bsc_dust"
+
+/obj/structure/prop/rock/ice
+	icon_state = "ice2"
+
+/obj/structure/prop/rock/ice/spike
+	icon_state = "ice1"
+
+/obj/structure/prop/rock/ice/flat
+	icon_state = "ice3"
+
+/obj/structure/prop/rock/ice/round
+	icon_state = "ice4"
+
+/obj/structure/prop/rock/ice/small
+	name = "small rocks"
+	icon_state = "icesmall1"
+	density = FALSE
+
+/obj/structure/prop/rock/ice/small/alt
+	icon_state = "icesmall2"

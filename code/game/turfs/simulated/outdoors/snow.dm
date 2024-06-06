@@ -80,3 +80,17 @@
 	desc = "Looks slippery."
 	movement_cost = 4
 	edge_blending_priority = 0
+
+// Extra cold variants
+
+/turf/simulated/floor/outdoors/snow/v5
+	temperature = 150
+	oxygen = 8
+	nitrogen = 17
+	carbon_dioxide = 75
+
+/turf/simulated/floor/outdoors/ice/v5
+	temperature = 150
+	oxygen = 8
+	nitrogen = 17
+	carbon_dioxide = 75
