@@ -29,14 +29,6 @@
  *  /datum/recipe/proc/check_items(var/obj/container as obj)
  *
  * */
- 
-// Recipe type defines. Used to determine what machine makes them.
-#define MICROWAVE			0x1
-#define FRYER				0x2
-#define OVEN				0x4
-#define GRILL				0x8
-#define CANDYMAKER			0x10
-#define CEREALMAKER			0x20
 
 /datum/recipe
 	var/list/reagents		// Example: = list("berryjuice" = 5) // do not list same reagent twice
@@ -50,8 +42,7 @@
 	var/result				// Example: = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
 	var/result_quantity = 1 // Number of instances of result that are created.
 	var/time = 100			// 1/10 part of second
-	
-	#define RECIPE_REAGENT_REPLACE		0 //Reagents in the ingredients are discarded.
+
 	//Only the reagents present in the result at compiletime are used
 	#define RECIPE_REAGENT_MAX	1 //The result will contain the maximum of each reagent present between the two pools. Compiletime result, and sum of ingredients
 	#define RECIPE_REAGENT_MIN 2 //As above, but the minimum, ignoring zero values.
@@ -74,7 +65,7 @@
 /datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents, var/exact = FALSE)
 	if(!reagents || !reagents.len)
 		return TRUE
-	
+
 	if(!avail_reagents)
 		return FALSE
 
@@ -86,7 +77,7 @@
 				. = FALSE
 		else
 			return FALSE
-	
+
 	if((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
 		return FALSE
 	return .
@@ -117,7 +108,7 @@
 /datum/recipe/proc/check_items(var/obj/container as obj, var/exact = FALSE)
 	if(!items || !items.len)
 		return TRUE
-	
+
 	. = TRUE
 	if(items && items.len)
 		var/list/checklist = list()
@@ -332,3 +323,7 @@
 
 
 /datum/recipe/proc/after_cook(obj/container) // Called When the Microwave is finished.
+
+#undef RECIPE_REAGENT_MAX
+#undef RECIPE_REAGENT_MIN
+#undef RECIPE_REAGENT_SUM

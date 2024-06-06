@@ -14,6 +14,7 @@
 
 	var/accept_drinking = 0
 	var/amount = 30
+	var/max_catriges = 30
 
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
@@ -28,7 +29,7 @@
 
 /obj/machinery/chemical_dispenser/examine(mob/user)
 	. = ..()
-	. += "It has [cartridges.len] cartridges installed, and has space for [DISPENSER_MAX_CARTRIDGES - cartridges.len] more."
+	. += "It has [cartridges.len] cartridges installed, and has space for [max_catriges  - cartridges.len] more."
 
 /obj/machinery/chemical_dispenser/verb/rotate_clockwise()
 	set name = "Rotate Dispenser Clockwise"
@@ -47,7 +48,7 @@
 			to_chat(user, "<span class='warning'>\The [C] will not fit in \the [src]!</span>")
 		return
 
-	if(cartridges.len >= DISPENSER_MAX_CARTRIDGES)
+	if(cartridges.len >= max_catriges)
 		if(user)
 			to_chat(user, "<span class='warning'>\The [src] does not have any slots open for \the [C] to fit into!</span>")
 		return
