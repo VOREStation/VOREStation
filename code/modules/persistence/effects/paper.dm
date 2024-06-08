@@ -18,7 +18,7 @@
 	paper.info = token["message"]
 	paper.name = token["title"]
 	if(!paper.name)
-		paper.name = "Unknown"
+		paper.name = "No Title"
 	paper.last_modified_ckey = token["author"]
 	paper.age = token["age"]+1
 	if(requires_noticeboard)
