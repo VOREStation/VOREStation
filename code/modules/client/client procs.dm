@@ -210,21 +210,10 @@
 	if(prefs)
 		prefs.selecting_slots = FALSE
 
-	// Initialize tgui panel
-	tgui_panel.initialize()
-
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
 
-	if(custom_event_msg && custom_event_msg != "")
-		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
-		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
-		to_chat(src, "<br>")
-
-	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
-		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
 
 	if(holder)
 		add_admin_verbs()
@@ -241,6 +230,23 @@
 	log_client_to_db()
 
 	send_resources()
+
+	// Initialize tgui panel
+	spawn(5)
+		tgui_panel.initialize(force=TRUE)
+
+		if(custom_event_msg && custom_event_msg != "")
+			to_chat(src, "<h1 class='alert'>Custom Event</h1>")
+			to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
+			to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
+			to_chat(src, "<br>")
+
+		if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
+			to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
+
+
+
+
 
 	if(!void)
 		void = new()
