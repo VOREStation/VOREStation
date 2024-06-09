@@ -255,9 +255,14 @@
 	else
 		to_chat(src, "<span class='notice'>You need to disable a module first!</span>")
 		return
-	after_equip()
+	after_equip(O)
 
-/mob/living/silicon/robot/proc/after_equip()
+/mob/living/silicon/robot/proc/after_equip(var/obj/item/O)
+	if(istype(O, /obj/item/device/gps))
+		var/obj/item/device/gps/tracker = O
+		if(tracker.tracking)
+			tracker.tracking = FALSE
+			tracker.toggle_tracking()
 	if(sight_mode & BORGANOMALOUS)
 		var/obj/item/weapon/dogborg/pounce/pounce = has_upgrade_module(/obj/item/weapon/dogborg/pounce)
 		if(pounce)

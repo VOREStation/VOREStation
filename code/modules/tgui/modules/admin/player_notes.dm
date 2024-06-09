@@ -329,3 +329,5 @@
 			if("filter")
 				PlayerNotesFilterLegacy()
 		return
+
+#undef PLAYER_NOTES_ENTRIES_PER_PAGE

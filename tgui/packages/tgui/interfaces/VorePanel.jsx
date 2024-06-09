@@ -342,6 +342,7 @@ const VoreSelectedBellyDescriptions = (props) => {
     message_mode,
     escapable,
     interacts,
+    emote_active,
   } = belly;
 
   return (
@@ -448,10 +449,14 @@ const VoreSelectedBellyDescriptions = (props) => {
           mode={mode}
         />
       )}
-      <VoreSelectedBellyDescriptionsIdle
-        message_mode={message_mode}
-        mode={mode}
-      />
+      {emote_active ? (
+        <VoreSelectedBellyDescriptionsIdle
+          message_mode={message_mode}
+          mode={mode}
+        />
+      ) : (
+        ''
+      )}
       <LabeledList.Item label="Reset Messages">
         <Button
           color="red"

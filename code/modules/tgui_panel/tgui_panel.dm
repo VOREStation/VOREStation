@@ -48,6 +48,7 @@
 		assets = list(
 			get_asset_datum(/datum/asset/simple/tgui_panel),
 		))
+	window.reinitialize() // Workaround for an early init fail...
 	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/fontawesome))
 	window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/tgfont))
 	window.send_asset(get_asset_datum(/datum/asset/spritesheet/chat))

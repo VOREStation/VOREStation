@@ -1,5 +1,3 @@
-#define I_SINGULO "singulo"
-
 /atom/proc/singularity_act()
 	return
 

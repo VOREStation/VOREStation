@@ -13,7 +13,7 @@
 	var/number_pages = 0
 
 /datum/tgui_module/rcon/proc/filter_smeslist(var/page)
-	number_pages = known_SMESs.len / SMES_PER_PAGE 
+	number_pages = known_SMESs.len / SMES_PER_PAGE
 
 	if(number_pages != round(number_pages))
 		number_pages = round(number_pages) + 1
@@ -136,7 +136,9 @@
 
 /datum/tgui_module/rcon/ntos
 	ntos = TRUE
-	
+
 /datum/tgui_module/rcon/robot
 /datum/tgui_module/rcon/robot/tgui_state(mob/user)
 	return GLOB.tgui_self_state
+
+#undef SMES_PER_PAGE

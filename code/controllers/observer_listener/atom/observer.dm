@@ -1,5 +1,3 @@
-#define OBSERVER_EVENT_DESTROY "OnDestroy"
-
 /atom
 	var/list/observer_events
 
