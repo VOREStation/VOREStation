@@ -79,6 +79,8 @@
 
 	..()
 
+#undef WIRE_TRAP
+
 /datum/wires/mines/interactable(mob/user)
 	var/obj/effect/mine/M = holder
 	return M.panel_open

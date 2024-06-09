@@ -61,6 +61,11 @@
 			return TELECOMMS_RECEPTION_RECEIVER
 	return TELECOMMS_RECEPTION_NONE
 
+#undef TELECOMMS_RECEPTION_NONE
+#undef TELECOMMS_RECEPTION_SENDER
+#undef TELECOMMS_RECEPTION_RECEIVER
+#undef TELECOMMS_RECEPTION_BOTH
+
 /proc/get_reception(var/atom/sender, var/receiver, var/message = "", var/do_sleep = 1)
 	var/datum/reception/reception = new
 

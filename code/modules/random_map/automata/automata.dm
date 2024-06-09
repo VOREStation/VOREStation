@@ -1,4 +1,3 @@
-#define CELL_ALIVE(VAL) (VAL == cell_live_value)
 #define KILL_CELL(CELL, NEXT_MAP) NEXT_MAP[CELL] = cell_dead_value;
 #define REVIVE_CELL(CELL, NEXT_MAP) NEXT_MAP[CELL] = cell_live_value;
 

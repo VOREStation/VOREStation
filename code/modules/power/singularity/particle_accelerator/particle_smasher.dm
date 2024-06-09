@@ -417,3 +417,6 @@
 	required_atmos_temp_min = 400
 	required_atmos_temp_max = 20000
 	probability = 20
+
+#undef PS_RESULT_STACK
+#undef PS_RESULT_ITEM

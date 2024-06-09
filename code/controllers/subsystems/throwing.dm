@@ -208,3 +208,6 @@ SUBSYSTEM_DEF(throwing)
 	if(hit_thing)
 		finalize(hit=TRUE, t_target=hit_thing)
 		return TRUE
+
+#undef MAX_THROWING_DIST
+#undef MAX_TICKS_TO_MAKE_UP
