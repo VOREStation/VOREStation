@@ -29,7 +29,7 @@
 
 /obj/machinery/chemical_dispenser/examine(mob/user)
 	. = ..()
-	. += "It has [cartridges.len] cartridges installed, and has space for [max_catriges  - cartridges.len] more."
+	. += "It has [cartridges.len] cartridges installed, and has space for [max_catriges - cartridges.len] more."
 
 /obj/machinery/chemical_dispenser/verb/rotate_clockwise()
 	set name = "Rotate Dispenser Clockwise"
