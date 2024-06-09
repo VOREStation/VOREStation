@@ -233,7 +233,7 @@
 
 	// Initialize tgui panel
 	spawn(5)
-		tgui_panel.initialize(force=TRUE)
+		tgui_panel.initialize()
 
 		if(custom_event_msg && custom_event_msg != "")
 			to_chat(src, "<h1 class='alert'>Custom Event</h1>")
