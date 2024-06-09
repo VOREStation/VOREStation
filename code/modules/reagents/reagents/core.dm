@@ -156,6 +156,7 @@
 	..()
 
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
+
 /datum/reagent/water
 	name = "Water"
 	id = "water"
@@ -249,6 +250,8 @@
 		M.visible_message("<span class='warning'>[M]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
 	..()
 */  //VOREStation Edit End.
+
+#undef WATER_LATENT_HEAT
 
 /datum/reagent/fuel
 	name = "Welding fuel"

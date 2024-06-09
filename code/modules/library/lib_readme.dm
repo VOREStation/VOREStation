@@ -6,11 +6,11 @@
 
 // Deprecated! See global.dm for new SQL config vars -- TLE
 /*
-#define SQL_ADDRESS ""
-#define SQL_DB ""
-#define SQL_PORT "3306"
-#define SQL_LOGIN ""
-#define SQL_PASS ""
+# define SQL_ADDRESS ""
+# define SQL_DB ""
+# define SQL_PORT "3306"
+# define SQL_LOGIN ""
+# define SQL_PASS ""
 */
 
 //*******************************

@@ -1,5 +1,3 @@
-#define SAVE_RESET -1
-
 var/list/preferences_datums = list()
 
 /datum/preferences

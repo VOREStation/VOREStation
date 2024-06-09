@@ -376,3 +376,5 @@
 		prey_body.forceMove(parent_morph.vore_selected)
 		log_and_message_admins("[key_name_admin(prey_body)] and [key_name_admin(parent_morph)] have been returned to their original bodies. [get_area(src)] - [COORD(src)].")
 	qdel(src)
+
+#undef MORPH_COOLDOWN

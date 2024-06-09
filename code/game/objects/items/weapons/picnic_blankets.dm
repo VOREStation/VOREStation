@@ -119,3 +119,6 @@
 	unfold()
 	if(unfoldable)
 		verbs -= /obj/structure/picnic_blanket_deployed/verb/fold_up
+
+#undef CENTER
+#undef SIDE

@@ -366,3 +366,5 @@
 
 /datum/data/function/proc/display()
 	return
+
+#undef HEAT_CAPACITY_HUMAN

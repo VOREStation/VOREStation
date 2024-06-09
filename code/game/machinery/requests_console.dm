@@ -1,11 +1,6 @@
 /******************** Requests Console ********************/
 /** Originally written by errorage, updated by: Carn, needs more work though. I just added some security fixes */
 
-//Request Console Department Types
-#define RC_ASSIST 1		//Request Assistance
-#define RC_SUPPLY 2		//Request Supplies
-#define RC_INFO   4		//Relay Info
-
 //Request Console Screens
 #define RCS_MAINMENU 0	// Main menu
 #define RCS_RQASSIST 1	// Request supplies
@@ -289,3 +284,13 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	announcement.announcer = ""
 	if(mainmenu)
 		screen = RCS_MAINMENU
+
+#undef RCS_MAINMENU
+#undef RCS_RQASSIST
+#undef RCS_RQSUPPLY
+#undef RCS_SENDINFO
+#undef RCS_SENTPASS
+#undef RCS_SENTFAIL
+#undef RCS_VIEWMSGS
+#undef RCS_MESSAUTH
+#undef RCS_ANNOUNCE

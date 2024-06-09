@@ -610,3 +610,10 @@
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.emote_into(sane_message,src,null)
+
+#undef NIF_SC_CATCHING_ME
+#undef NIF_SC_CATCHING_OTHERS
+#undef NIF_SC_ALLOW_EARS
+#undef NIF_SC_ALLOW_EYES
+#undef NIF_SC_BACKUPS
+#undef NIF_SC_PROJECTING

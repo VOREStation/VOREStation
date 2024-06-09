@@ -1,8 +1,4 @@
 #define ALL_SPELLS "All"
-#define OFFENSIVE_SPELLS "Offensive"
-#define DEFENSIVE_SPELLS "Defensive"
-#define UTILITY_SPELLS "Utility"
-#define SUPPORT_SPELLS "Support"
 
 var/list/all_technomancer_spells = subtypesof(/datum/technomancer/spell)
 var/list/all_technomancer_equipment = subtypesof(/datum/technomancer/equipment)
@@ -385,3 +381,5 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 				qdel(AM)
 				return
 	to_chat(user, "<span class='warn'>\The [src] is unable to refund \the [AM].</span>")
+
+#undef ALL_SPELLS

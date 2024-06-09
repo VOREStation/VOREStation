@@ -669,3 +669,5 @@ var/list/global/tank_gauge_cache = list()
 		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
 		sense_proximity(callback = /atom/proc/HasProximity)
+
+#undef TANK_IDEAL_PRESSURE
