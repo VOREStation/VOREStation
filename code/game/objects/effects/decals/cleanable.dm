@@ -12,7 +12,7 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	var/generic_filth = FALSE
 	var/age = 0
 	var/list/random_icon_states = list()
-	var/list/janhud = list()
+	var/obj/effect/decal/jan_hud/jan_icon = null
 
 /obj/effect/decal/cleanable/Initialize(var/mapload, var/_age)
 	if(!isnull(_age))
@@ -21,13 +21,12 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 		src.icon_state = pick(src.random_icon_states)
 	if(!mapload || !config.persistence_ignore_mapload)
 		SSpersistence.track_value(src, /datum/persistent/filth)
-	janhud += gen_hud_image(ingame_hud, src, "janhud[rand(1,9)]", plane = PLANE_JANHUD)
-	add_overlay(janhud)
+	jan_icon = new/obj/effect/decal/jan_hud(src.loc)
 	. = ..()
 
 /obj/effect/decal/cleanable/Destroy()
 	SSpersistence.forget_value(src, /datum/persistent/filth)
-	cut_overlays()
+	qdel(jan_icon)
 	. = ..()
 
 /obj/effect/decal/cleanable/clean_blood(var/ignore = 0)
@@ -40,3 +39,14 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	if (random_icon_states && length(src.random_icon_states) > 0)
 		src.icon_state = pick(src.random_icon_states)
 	..()
+
+/obj/effect/decal/jan_hud
+	plane = PLANE_JANHUD
+	layer = BELOW_MOB_LAYER
+	vis_flags = VIS_HIDE
+	persist_storable = FALSE
+	icon = 'icons/mob/hud.dmi'
+	mouse_opacity = 0
+
+/obj/effect/decal/jan_hud/Initialize()
+	src.icon_state = "janhud[rand(1,9)]"
