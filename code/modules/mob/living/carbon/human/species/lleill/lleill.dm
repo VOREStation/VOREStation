@@ -79,7 +79,9 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
 		/mob/living/proc/set_size,
-		/mob/living/carbon/human/proc/lleill_invisibility)
+		/mob/living/carbon/human/proc/lleill_invisibility,
+		/mob/living/carbon/human/proc/lleill_transmute,
+		/mob/living/carbon/human/proc/lleill_rings)
 
 	//organs, going with just the basics for now
 
@@ -119,9 +121,9 @@
 	return valid_transform_species
 
 /datum/species/lleill/get_icobase(var/mob/living/carbon/human/H, var/get_deform)
+	if(!H) return ..(null, get_deform)
 	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
-	if(!H || !S) return ..(null, get_deform)
-	if(S.type == src.type) return ..(H, get_deform)
+	if(!S || S.type == src.type) return ..(H, get_deform)
 	return S.get_icobase(H,get_deform)
 
 /datum/species/lleill/get_race_key(var/mob/living/carbon/human/H)
@@ -136,29 +138,41 @@
 /datum/species/lleill/get_blood_mask(var/mob/living/carbon/human/H)
 	if(!H) return ..()
 	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
-	return S.get_blood_mask(H)
+	if(!S || S.name == src.name)
+		return ..()
+	return S?.get_blood_mask(H)
 
 /datum/species/lleill/get_damage_mask(var/mob/living/carbon/human/H)
 	if(!H) return ..()
 	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
-	return S.get_damage_mask(H)
+	if(!S || S.name == src.name)
+		return ..()
+	return S?.get_damage_mask(H)
 
 /datum/species/lleill/get_damage_overlays(var/mob/living/carbon/human/H)
 	if(!H) return ..()
 	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
-	return S.get_damage_overlays(H)
+	if(!S || S.name == src.name)
+		return ..()
+	return S?.get_damage_overlays(H)
 
 /datum/species/lleill/get_tail(var/mob/living/carbon/human/H)
 	if(!H) return ..()
 	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
-	return S.get_tail(H)
+	if(!S || S.name == src.name)
+		return ..()
+	return S?.get_tail(H)
 
 /datum/species/lleill/get_tail_animation(var/mob/living/carbon/human/H)
 	if(!H) return ..()
 	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
-	return S.get_tail_animation(H)
+	if(!S || S.name == src.name)
+		return ..()
+	return S?.get_tail_animation(H)
 
 /datum/species/lleill/get_tail_hair(var/mob/living/carbon/human/H)
 	if(!H) return ..()
 	var/datum/species/S = GLOB.all_species[wrapped_species_by_ref["\ref[H]"]]
-	return S.get_tail_hair(H)
+	if(!S || S.name == src.name)
+		return ..()
+	return S?.get_tail_hair(H)
