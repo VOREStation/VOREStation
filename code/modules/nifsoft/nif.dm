@@ -332,7 +332,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		if(1.0 to INFINITY)
 			stat = NIF_WORKING
 			owner = human.mind.name
-			ckey = H.ckey
+			ckey = human.ckey
 			name = initial(name) + " ([owner])"
 			if(comm)
 				var/saved_name = save_data["commlink_name"]
