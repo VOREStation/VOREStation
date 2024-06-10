@@ -209,9 +209,6 @@
 		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return
 
-	if(!(H.ckey == nif.ckey))
-		return
-
 	if(!prefs)
 		prefs = prep_for_persist(H)
 
@@ -220,6 +217,9 @@
 		return
 
 	var/obj/item/device/nif/nif = H.nif
+
+	if(!(H.ckey == nif.ckey))
+		return
 
 	//If they have one, and if it's not installing without an owner, because
 	//Someone who joins and immediately leaves again (wrong job choice, maybe)
