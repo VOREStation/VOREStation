@@ -35,6 +35,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/list/nifsofts[TOTAL_NIF_SOFTWARE]	// All our nifsofts
 	var/tmp/list/nifsofts_life = list()			// Ones that want to be talked to on life()
 	var/owner									// Owner character name
+	var/ckey									// Account associated with the nif
 	var/examine_msg								//Message shown on examine.
 
 	var/tmp/vision_flags = 0		// Flags implants set for faster lookups
@@ -155,6 +156,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 				return
 			if(H.mind)
 				owner = H.mind.name
+				ckey = H.ckey
 			implant(H)
 		return TRUE
 
@@ -330,6 +332,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		if(1.0 to INFINITY)
 			stat = NIF_WORKING
 			owner = human.mind.name
+			ckey = H.ckey
 			name = initial(name) + " ([owner])"
 			if(comm)
 				var/saved_name = save_data["commlink_name"]

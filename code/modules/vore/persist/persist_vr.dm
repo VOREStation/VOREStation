@@ -209,6 +209,9 @@
 		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return
 
+	if(!(H.ckey == nif.ckey))
+		return
+
 	if(!prefs)
 		prefs = prep_for_persist(H)
 
