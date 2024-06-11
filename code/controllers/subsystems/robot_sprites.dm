@@ -1,5 +1,3 @@
-#define DEFAULT_ROBOT_SPRITE_NAME "M-USE NanoTrasen"
-
 SUBSYSTEM_DEF(robot_sprites)
 	name = "Robot Sprites"
 	init_order = INIT_ORDER_ROBOT_SPRITES

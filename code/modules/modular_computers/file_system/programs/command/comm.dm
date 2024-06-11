@@ -1,8 +1,3 @@
-#define STATE_DEFAULT	1
-#define STATE_MESSAGELIST	2
-#define STATE_VIEWMESSAGE	3
-#define STATE_STATUSDISPLAY	4
-#define STATE_ALERT_LEVEL	5
 /datum/computer_file/program/comm
 	filename = "comm"
 	filedesc = "Command and Communications Program"

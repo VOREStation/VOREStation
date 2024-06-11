@@ -270,3 +270,8 @@
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded
 	cell = /obj/item/weapon/cell/apc
 	capacitor = /obj/item/weapon/stock_parts/capacitor
+
+#undef GEN_STARTING
+#undef GEN_OFF
+#undef GEN_IDLE
+#undef GEN_ACTIVE

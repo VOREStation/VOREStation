@@ -30,6 +30,10 @@
 	if(environment.temperature > HEATMODE_TEMP - 30)
 		. = TRUE
 
+#undef LAVALAND_EQUIPMENT_EFFECT_PRESSURE
+#undef HEATMODE_ATMOSPHERE
+#undef HEATMODE_TEMP
+
 /proc/offsite_environment_check(turf/simulated/T)
 	. = TRUE
 	if(!istype(T))
@@ -342,7 +346,6 @@
 		M.GetDrilled(TRUE)
 	var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 	K.color = color
-
 
 //Modkits
 /obj/item/borg/upgrade/modkit
@@ -732,3 +735,7 @@
 
 /obj/item/borg/upgrade/modkit/tracer/adjustable/attack_self(mob/user)
 	bolt_color = input(user,"","Choose Color",bolt_color) as color|null
+
+#undef KA_ENVIRO_TYPE_COLD
+#undef KA_ENVIRO_TYPE_HOT
+#undef KA_ENVIRO_TYPE_OFFSITE

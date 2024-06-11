@@ -836,7 +836,7 @@
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	module.Destroy()
+	qdel(module)
 	module = null
 	updatename("Default")
 	has_recoloured = FALSE

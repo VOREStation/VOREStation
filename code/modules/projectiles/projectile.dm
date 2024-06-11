@@ -852,3 +852,6 @@
 		if(silenced)
 			volume = 5
 		playsound(A, hitsound_wall, volume, 1, -1)
+
+#undef MOVES_HITSCAN
+#undef MUZZLE_EFFECT_PIXEL_INCREMENT

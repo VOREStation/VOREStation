@@ -271,3 +271,4 @@ Reads a comment and outputs the type of comment
 		if(comm == 2)
 			errors+=new/scriptError/UnterminatedComment()
 
+#undef COL

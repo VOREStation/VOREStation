@@ -1,5 +1,3 @@
-#define PROCESS_ACCURACY 10
-
 /****************************************************
 				INTERNAL ORGANS DEFINES
 ****************************************************/
@@ -61,4 +59,3 @@
 	if(. >= 3 && antibiotics < ANTIBIO_OD)	//INFECTION_LEVEL_THREE
 		if (prob(50))
 			take_damage(1,silent=prob(15))
-

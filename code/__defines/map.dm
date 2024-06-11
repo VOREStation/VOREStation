@@ -13,3 +13,5 @@
 
 // Misc map defines.
 #define SUBMAP_MAP_EDGE_PAD 8 // Automatically created submaps are forbidden from being this close to the main map's edge.	//VOREStation Edit
+
+#define CELL_ALIVE(VAL) (VAL == cell_live_value)

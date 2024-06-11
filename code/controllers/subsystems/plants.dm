@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(plants)
 
 	// Caching
 	var/list/currentrun = src.currentrun
-	
+
 	while(currentrun.len)
 		var/obj/effect/plant/P = currentrun[currentrun.len]
 		--currentrun.len
@@ -158,3 +158,5 @@ SUBSYSTEM_DEF(plants)
 
 	for(var/mask in SSplants.gene_tag_masks)
 		to_chat(usr, "[mask]: [SSplants.gene_tag_masks[mask]]")
+
+#undef PLANT_TICK_TIME
