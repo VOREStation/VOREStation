@@ -1,0 +1,1 @@
+#define MOB_WATER_LAYER			36

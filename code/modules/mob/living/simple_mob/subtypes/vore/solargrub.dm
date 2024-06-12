@@ -15,8 +15,6 @@ List of things solar grubs should be able to do:
 	Therefore, if you see the grubs, kill them while they're small, or things might escalate." // TODO: PORT SOLAR MOTHS - Rykka
 	value = CATALOGUER_REWARD_EASY
 
-#define SINK_POWER 1
-
 /mob/living/simple_mob/vore/solargrub
 	name = "juvenile solargrub"
 	desc = "A young sparkling solargrub"

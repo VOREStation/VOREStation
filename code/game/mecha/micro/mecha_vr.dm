@@ -45,3 +45,5 @@
 /obj/item/weapon/circuitboard/mecha/weasel/main
 		name = T_BOARD_MICRO_MECHA("Weasel central control")
 		icon_state = "mainboard"
+
+#undef T_BOARD_MICRO_MECHA

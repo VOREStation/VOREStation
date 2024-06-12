@@ -385,3 +385,9 @@
 			continue
 
 	..(severity)
+
+#undef GENERAL_RECORD_LIST
+#undef GENERAL_RECORD_MAINT
+#undef GENERAL_RECORD_DATA
+
+#undef FIELD

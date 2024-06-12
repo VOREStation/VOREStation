@@ -75,6 +75,9 @@
 			C.remove_network(category)
 	notify_listeners(alarm, was_raised)
 
+#undef ALARM_RAISED
+#undef ALARM_CLEARED
+
 /datum/alarm_handler/proc/get_alarm_severity_for_origin(var/atom/origin)
 	if(!origin)
 		return

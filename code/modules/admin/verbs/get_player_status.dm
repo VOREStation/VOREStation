@@ -42,3 +42,5 @@
 
 	message += "#### Over all, there are [players] eligible players, of which [inactives] were hidden due to inactivity.  ####"
 	to_chat(usr, SPAN_NOTICE(message))
+
+#undef INACTIVITY_CAP
