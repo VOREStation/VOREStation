@@ -282,9 +282,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//Firsties
 	if(!install_done)
 		if(human.mind.name == owner)
+			owner_key = human.ckey
 			install_done = world.time + 1 MINUTE
 			notify("Welcome back, [owner]! Performing quick-calibration...")
 		else if(!owner)
+			owner_key = human.ckey
 			install_done = world.time + 35 MINUTES
 			notify("Adapting to new user...")
 			sleep(5 SECONDS)
@@ -332,7 +334,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		if(1.0 to INFINITY)
 			stat = NIF_WORKING
 			owner = human.mind.name
-			owner_key = human.ckey
 			name = initial(name) + " ([owner])"
 			if(comm)
 				var/saved_name = save_data["commlink_name"]
