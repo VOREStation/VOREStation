@@ -218,6 +218,9 @@
 
 	var/obj/item/device/nif/nif = H.nif
 
+	if(H.ckey != nif.owner_key)
+		return
+
 	//If they have one, and if it's not installing without an owner, because
 	//Someone who joins and immediately leaves again (wrong job choice, maybe)
 	//should keep it even though it was probably doing the quick-calibrate, and their
