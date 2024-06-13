@@ -218,7 +218,7 @@
 
 	var/obj/item/device/nif/nif = H.nif
 
-	if(H.ckey != nif.owner_key)
+	if(nif && H.ckey != nif.owner_key)
 		return
 
 	//If they have one, and if it's not installing without an owner, because
