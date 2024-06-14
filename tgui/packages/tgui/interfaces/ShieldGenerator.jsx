@@ -77,14 +77,13 @@ const ShieldGeneratorContent = (props) => {
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Overall Field Strength">
-            {toFixed(average_field_strength, 2)} Renwick (
-            {(target_field_strength &&
-              toFixed(
-                (100 * average_field_strength) / target_field_strength,
-                1,
-              )) ||
-              'NA'}
-            %)
+            {toFixed(average_field_strength, 2) +
+              ' Renwick (' +
+              (target_field_strength &&
+                toFixed(
+                  (100 * average_field_strength) / target_field_strength,
+                  1,
+                ) + '%)') || 'NA)'}
           </LabeledList.Item>
           <LabeledList.Item label="Upkeep Power">
             {formatPower(upkeep)}
@@ -107,9 +106,13 @@ const ShieldGeneratorContent = (props) => {
                     )}
                     <LabeledList>
                       <LabeledList.Item label="Charge">
-                        {formatSiUnit(cap.stored_charge, 0, 'J')} (
-                        {100 * toFixed(cap.stored_charge / cap.max_charge, 2)}
-                        %)
+                        {formatSiUnit(cap.stored_charge, 0, 'J') +
+                          ' (' +
+                          toFixed(
+                            100 * (cap.stored_charge / cap.max_charge),
+                            2,
+                          ) +
+                          '%)'}
                       </LabeledList.Item>
                       <LabeledList.Item label="Status">
                         {cap.failing ? (

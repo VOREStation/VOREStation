@@ -94,8 +94,8 @@ const Program = (props) => {
               maxValue={downloadsize}
               value={downloadcompletion}
             >
-              {toFixed((downloadcompletion / downloadsize) * 100, 1)}%&nbsp;(
-              {downloadspeed}GQ/s)
+              {toFixed((downloadcompletion / downloadsize) * 100, 1)}%&nbsp;
+              {'(' + downloadspeed + 'GQ/s)'}
             </ProgressBar>
           )) ||
             (downloads_queue.indexOf(program.filename) !== -1 && (

@@ -59,14 +59,18 @@ export const AdminTicketPanel = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="State">{State[state]}</LabeledList.Item>
             {State[state] === State.open ? (
-              <LabeledList.Item label="Opened At">
-                {opened_at_date} ({toFixed(opened_at / 600)}
-                minutes ago.)
+              <LabeledList.Item label="Opened At: ">
+                {opened_at_date +
+                  ' (' +
+                  toFixed(opened_at / 600) +
+                  ' minutes ago.)'}
               </LabeledList.Item>
             ) : (
-              <LabeledList.Item label="Closed At">
-                {closed_at_date} ({toFixed(closed_at / 600)}
-                minutes ago.)
+              <LabeledList.Item label="Closed At: ">
+                {closed_at_date +
+                  ' (' +
+                  toFixed(closed_at / 600) +
+                  ' minutes ago.)'}
                 <Button onClick={() => act('reopen')}>Reopen</Button>
               </LabeledList.Item>
             )}
