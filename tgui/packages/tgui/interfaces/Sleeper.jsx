@@ -115,7 +115,7 @@ const SleeperOccupant = (props) => {
               bad: [-Infinity, 0],
             }}
           >
-            {toFixed(occupant.health, 0)}
+            {toFixed(occupant.health)}
           </ProgressBar>
         </LabeledList.Item>
         <LabeledList.Item label="Status" color={stats[occupant.stat][0]}>
@@ -128,8 +128,8 @@ const SleeperOccupant = (props) => {
             value={occupant.bodyTemperature / occupant.maxTemp}
             color={tempColors[occupant.temperatureSuitability + 3]}
           >
-            {toFixed(occupant.btCelsius, 0)}&deg;C,
-            {toFixed(occupant.btFaren, 0)}&deg;F
+            {toFixed(occupant.btCelsius)}&deg;C,
+            {toFixed(occupant.btFaren)}&deg;F
           </ProgressBar>
         </LabeledList.Item>
         {!!occupant.hasBlood && (
