@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -112,7 +112,7 @@ const OperatingComputerPatient = (props) => {
                 value={occupant[d[1]] / 100}
                 ranges={damageRange}
               >
-                {round(occupant[d[1]])}
+                {toFixed(occupant[d[1]])}
               </ProgressBar>
             </LabeledList.Item>
           ))}
@@ -123,7 +123,8 @@ const OperatingComputerPatient = (props) => {
               value={occupant.bodyTemperature / occupant.maxTemp}
               color={tempColors[occupant.temperatureSuitability + 3]}
             >
-              {round(occupant.btCelsius)}&deg;C, {round(occupant.btFaren)}&deg;F
+              {toFixed(occupant.btCelsius)}&deg;C, {toFixed(occupant.btFaren)}
+              &deg;F
             </ProgressBar>
           </LabeledList.Item>
           {!!occupant.hasBlood && (

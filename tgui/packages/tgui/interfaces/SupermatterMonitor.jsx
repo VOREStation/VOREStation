@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 import { toTitleCase } from 'common/string';
 
 import { useBackend } from '../backend';
@@ -122,7 +122,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => round(val, 2) + ' MeV/cm³'}
+              format={(val) => toFixed(val, 2) + ' MeV/cm³'}
               value={SM_power}
             />
           </Box>
@@ -136,7 +136,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => round(val, 2) + ' K'}
+              format={(val) => toFixed(val, 2) + ' K'}
               value={SM_ambienttemp}
             />
           </Box>
@@ -150,7 +150,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => round(val, 2) + ' kPa'}
+              format={(val) => toFixed(val, 2) + ' kPa'}
               value={SM_ambientpressure}
             />
           </Box>
@@ -159,7 +159,7 @@ const SupermatterMonitorActive = (props) => {
           <Box
             color={(SM_EPR > 4 && 'bad') || (SM_EPR > 1 && 'average') || 'good'}
           >
-            <AnimatedNumber format={(val) => round(val, 2)} value={SM_EPR} />
+            <AnimatedNumber format={(val) => toFixed(val, 2)} value={SM_EPR} />
           </Box>
         </LabeledList.Item>
         <LabeledList.Item label="Gas Composition">

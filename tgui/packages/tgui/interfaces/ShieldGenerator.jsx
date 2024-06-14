@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -77,9 +77,9 @@ const ShieldGeneratorContent = (props) => {
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Overall Field Strength">
-            {round(average_field_strength, 2)} Renwick (
+            {toFixed(average_field_strength, 2)} Renwick (
             {(target_field_strength &&
-              round(
+              toFixed(
                 (100 * average_field_strength) / target_field_strength,
                 1,
               )) ||
@@ -108,7 +108,7 @@ const ShieldGeneratorContent = (props) => {
                     <LabeledList>
                       <LabeledList.Item label="Charge">
                         {formatSiUnit(cap.stored_charge, 0, 'J')} (
-                        {100 * round(cap.stored_charge / cap.max_charge, 2)}
+                        {100 * toFixed(cap.stored_charge / cap.max_charge, 2)}
                         %)
                       </LabeledList.Item>
                       <LabeledList.Item label="Status">
@@ -173,7 +173,7 @@ const ShieldGeneratorContent = (props) => {
               step={0.1}
               maxValue={max_strengthen_rate}
               value={strengthen_rate}
-              format={(val) => round(val, 1)}
+              format={(val) => toFixed(val, 1)}
               unit="Renwick/s"
               onDrag={(e, val) => act('strengthen_rate', { val: val })}
             />

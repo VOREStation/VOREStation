@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
@@ -323,7 +323,7 @@ const ResleevingConsolePodGrowers = (props) => {
             }}
             mt="0.5rem"
           >
-            <Box textAlign="center">{round(pod.progress, 0) + '%'}</Box>
+            <Box textAlign="center">{toFixed(pod.progress) + '%'}</Box>
           </ProgressBar>
         );
       } else if (pod.status === 'mess') {
@@ -443,7 +443,7 @@ const ResleevingConsolePodSpods = (props) => {
             }}
             mt="0.5rem"
           >
-            <Box textAlign="center">{round(pod.progress, 0) + '%'}</Box>
+            <Box textAlign="center">{toFixed(pod.progress) + '%'}</Box>
           </ProgressBar>
         );
       } else if (pod.status === 'mess') {

@@ -1,4 +1,6 @@
 /* eslint react/no-danger: "off" */
+import { toFixed } from 'common/math';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -57,12 +59,12 @@ export const MentorTicketPanel = (props) => {
             <LabeledList.Item label="State">{State[state]}</LabeledList.Item>
             {State[state] === State.open ? (
               <LabeledList.Item label="Opened At">
-                {opened_at_date} ({Math.round((opened_at / 600) * 10) / 10}
+                {opened_at_date} ({toFixed(opened_at / 600)}
                 minutes ago.)
               </LabeledList.Item>
             ) : (
               <LabeledList.Item label="Closed At">
-                {closed_at_date} ({Math.round((closed_at / 600) * 10) / 10}
+                {closed_at_date} ({toFixed(closed_at / 600)}
                 minutes ago.)
                 <Button onClick={() => act('reopen')}>Reopen</Button>
               </LabeledList.Item>

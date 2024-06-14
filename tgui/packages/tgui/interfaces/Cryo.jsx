@@ -1,3 +1,5 @@
+import { toFixed } from 'common/math';
+
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
@@ -83,7 +85,10 @@ const CryoContent = (props) => {
                 value={occupant.health / occupant.maxHealth}
                 color={occupant.health > 0 ? 'good' : 'average'}
               >
-                <AnimatedNumber value={Math.round(occupant.health)} />
+                <AnimatedNumber
+                  value={occupant.health}
+                  format={(value) => toFixed(value)}
+                />
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
@@ -93,8 +98,10 @@ const CryoContent = (props) => {
               {statNames[occupant.stat][1]}
             </LabeledList.Item>
             <LabeledList.Item label="Temperature">
-              <AnimatedNumber value={Math.round(occupant.bodyTemperature)} />
-              {' K'}
+              <AnimatedNumber
+                value={occupant.bodyTemperature}
+                format={(value) => toFixed(value) + ' K'}
+              />
             </LabeledList.Item>
             <LabeledList.Divider />
             {damageTypes.map((damageType) => (
@@ -104,7 +111,8 @@ const CryoContent = (props) => {
                   ranges={{ bad: [0.01, Infinity] }}
                 >
                   <AnimatedNumber
-                    value={Math.round(occupant[damageType.type])}
+                    value={occupant[damageType.type]}
+                    format={(value) => toFixed(value)}
                   />
                 </ProgressBar>
               </LabeledList.Item>
@@ -165,7 +173,7 @@ const CryoBeaker = (props) => {
           {beakerVolume ? (
             <AnimatedNumber
               value={beakerVolume}
-              format={(v) => Math.round(v) + ' units remaining'}
+              format={(v) => toFixed(v) + ' units remaining'}
             />
           ) : (
             'Beaker is empty'

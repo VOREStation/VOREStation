@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -94,7 +94,7 @@ const Program = (props) => {
               maxValue={downloadsize}
               value={downloadcompletion}
             >
-              {round((downloadcompletion / downloadsize) * 100, 1)}%&nbsp;(
+              {toFixed((downloadcompletion / downloadsize) * 100, 1)}%&nbsp;(
               {downloadspeed}GQ/s)
             </ProgressBar>
           )) ||
