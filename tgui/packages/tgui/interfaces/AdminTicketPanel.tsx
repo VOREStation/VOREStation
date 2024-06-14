@@ -69,7 +69,7 @@ export const AdminTicketPanel = (props) => {
               <LabeledList.Item label="Closed At">
                 {closed_at_date +
                   ' (' +
-                  toFixed(round((opened_at / 600) * 10, 0) / 10, 1) +
+                  toFixed(round((closed_at / 600) * 10, 0) / 10, 1) +
                   ' minutes ago.)'}
                 <Button onClick={() => act('reopen')}>Reopen</Button>
               </LabeledList.Item>
