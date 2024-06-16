@@ -251,3 +251,5 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/mapped/Destroy()
 	virus2.Cut()
 	return ..()
+
+#undef DRYING_TIME

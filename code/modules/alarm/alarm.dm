@@ -43,6 +43,8 @@
 			AS.duration = 0
 			AS.end_time = world.time + ALARM_RESET_DELAY
 
+#undef ALARM_RESET_DELAY
+
 /datum/alarm/proc/set_source_data(var/atom/source, var/duration, var/severity, var/hidden)
 	var/datum/alarm_source/AS = sources_assoc[source]
 	if(!AS)

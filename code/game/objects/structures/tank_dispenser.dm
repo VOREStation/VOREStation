@@ -96,6 +96,7 @@
 	to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
 	update_icon()
 
+#undef TANK_DISPENSER_CAPACITY
 
 /obj/structure/dispenser/tgui_act(action, params)
 	if(..())
