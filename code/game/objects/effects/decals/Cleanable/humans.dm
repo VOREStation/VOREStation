@@ -193,7 +193,6 @@ var/global/list/image/splatter_cache=list()
 
 	icon = blood
 	cut_overlays()
-	add_overlay(janhud)
 	add_overlay(giblets)
 
 /obj/effect/decal/cleanable/blood/gibs/up
@@ -252,3 +251,5 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/mapped/Destroy()
 	virus2.Cut()
 	return ..()
+
+#undef DRYING_TIME

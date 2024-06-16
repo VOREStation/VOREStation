@@ -172,3 +172,10 @@ dmm_suite{
 			}
 		}
 	}
+
+#undef DMM_IGNORE_AREAS
+#undef DMM_IGNORE_TURFS
+#undef DMM_IGNORE_OBJS
+#undef DMM_IGNORE_NPCS
+#undef DMM_IGNORE_PLAYERS
+#undef DMM_IGNORE_MOBS

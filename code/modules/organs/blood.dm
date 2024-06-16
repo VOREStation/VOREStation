@@ -429,3 +429,5 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	B.fluorescent  = 0
 	B.invisibility = 0
 	return B
+
+#undef BLOOD_MINIMUM_STOP_PROCESS

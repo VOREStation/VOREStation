@@ -1,0 +1,3 @@
+
+#define MAX_VOICE_FREQ 70000
+#define MIN_VOICE_FREQ 15000

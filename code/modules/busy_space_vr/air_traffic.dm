@@ -461,3 +461,6 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	msg(full_closure,"[prefix] [shipname]")
 	return
 */
+
+#undef MIN_MSG_DELAY
+#undef MAX_MSG_DELAY

@@ -320,3 +320,10 @@
 			RefreshParts()
 			update_maxcharge()
 			return TRUE
+
+#undef PSU_OFFLINE
+#undef PSU_OUTPUT
+#undef PSU_INPUT
+#undef PSU_AUTO
+
+#undef PSU_MAXCELLS

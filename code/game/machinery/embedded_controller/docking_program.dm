@@ -307,3 +307,5 @@
 #undef MODE_NONE
 #undef MODE_SERVER
 #undef MODE_CLIENT
+
+#undef MESSAGE_RESEND_TIME

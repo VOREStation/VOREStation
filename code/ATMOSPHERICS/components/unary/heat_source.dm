@@ -160,3 +160,5 @@
 	. = ..()
 	if(panel_open)
 		. += "The maintenance hatch is open."
+
+#undef HEATER_PERF_MULT

@@ -15,7 +15,7 @@
 	title = "Captain"
 
 /datum/job/captain/get_request_reasons()
-	return list("Training crew")
+	return list("Training crew", "Assembling expedition team")
 
 /datum/job/hop
 	disallow_jobhop = TRUE
@@ -53,7 +53,7 @@
 	title = "First Mate"
 
 /datum/job/hop/get_request_reasons()
-	return list("ID modification", "Training crew")
+	return list("ID modification", "Training crew", "Assembling expedition team")
 
 
 /datum/job/secretary

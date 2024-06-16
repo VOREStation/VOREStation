@@ -1,0 +1,1 @@
+#define DEFAULT_ROBOT_SPRITE_NAME "M-USE NanoTrasen"

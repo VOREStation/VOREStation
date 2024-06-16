@@ -196,6 +196,10 @@
 	if((. = ..()))
 		update()
 
+#undef OFF
+#undef FORWARDS
+#undef BACKWARDS
+
 // the conveyor control switch
 //
 //

@@ -3,8 +3,6 @@
 #define WEIGHT_MAX 500
 #define WEIGHT_CHANGE_MIN 0
 #define WEIGHT_CHANGE_MAX 100
-#define MAX_VOICE_FREQ 70000
-#define MIN_VOICE_FREQ 15000
 
 // Define a place to save in character setup
 /datum/preferences
@@ -252,3 +250,8 @@
 			SEND_SOUND(user, S)
 
 	return ..();
+
+#undef WEIGHT_MIN
+#undef WEIGHT_MAX
+#undef WEIGHT_CHANGE_MIN
+#undef WEIGHT_CHANGE_MAX

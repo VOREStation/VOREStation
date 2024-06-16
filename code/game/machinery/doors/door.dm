@@ -1,6 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define DOOR_REPAIR_AMOUNT 50	//amount of health regained per stack amount used
-
 /obj/machinery/door
 	name = "Door"
 	desc = "It opens and closes."

@@ -723,3 +723,23 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 
 /turf/simulated/floor/outdoors/grass/forest/virgo3c/notrees
 	tree_chance = 0
+
+#undef VIRGO3C_ONE_ATMOSPHERE
+#undef VIRGO3C_AVG_TEMP
+
+#undef VIRGO3C_PER_N2
+#undef VIRGO3C_PER_O2
+#undef VIRGO3C_PER_N2O
+#undef VIRGO3C_PER_CO2
+#undef VIRGO3C_PER_PHORON
+
+#undef VIRGO3C_MOL_PER_TURF
+#undef VIRGO3C_MOL_N2
+#undef VIRGO3C_MOL_O2
+#undef VIRGO3C_MOL_N2O
+#undef VIRGO3C_MOL_CO2
+#undef VIRGO3C_MOL_PHORON
+
+#undef VIRGO3C_SET_ATMOS
+#undef VIRGO3C_TURF_CREATE
+#undef VIRGO3C_TURF_CREATE_UN

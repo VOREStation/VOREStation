@@ -2,7 +2,7 @@
 // If emp_act() takes more than defined deciseconds (1/10 seconds) an admin message and log is created.
 // I do not recommend having this uncommented on main server, it probably causes a bit more lag, espicially with larger EMPs.
 
-// #define EMPDEBUG 10
+// # define EMPDEBUG 10
 
 /proc/empulse(turf/epicenter, first_range, second_range, third_range, fourth_range, log=0)
 	if(!epicenter) return
