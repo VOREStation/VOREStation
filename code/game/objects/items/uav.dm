@@ -365,4 +365,5 @@
 
 #undef UAV_OFF
 #undef UAV_ON
+#undef UAV_PAIRING
 #undef UAV_PACKED

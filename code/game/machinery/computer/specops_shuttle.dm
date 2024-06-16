@@ -329,3 +329,8 @@ var/specops_shuttle_timeleft = 0
 	add_fingerprint(usr)
 	updateUsrDialog()
 	return
+
+#undef SPECOPS_MOVETIME
+#undef SPECOPS_STATION_AREATYPE
+#undef SPECOPS_DOCK_AREATYPE
+#undef SPECOPS_RETURN_DELAY

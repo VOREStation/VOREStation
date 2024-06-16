@@ -1,4 +1,4 @@
-//#define AMAP
+//# define AMAP
 /obj/machinery/computer/security/verb/station_map()
 	set name = ".map"
 	set category = "Object"

@@ -35,6 +35,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/list/nifsofts[TOTAL_NIF_SOFTWARE]	// All our nifsofts
 	var/tmp/list/nifsofts_life = list()			// Ones that want to be talked to on life()
 	var/owner									// Owner character name
+	var/owner_key								// Account associated with the nif
 	var/examine_msg								//Message shown on examine.
 
 	var/tmp/vision_flags = 0		// Flags implants set for faster lookups
@@ -155,6 +156,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 				return
 			if(H.mind)
 				owner = H.mind.name
+				owner_key = H.ckey
 			implant(H)
 		return TRUE
 
@@ -280,9 +282,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//Firsties
 	if(!install_done)
 		if(human.mind.name == owner)
+			owner_key = human.ckey
 			install_done = world.time + 1 MINUTE
 			notify("Welcome back, [owner]! Performing quick-calibration...")
 		else if(!owner)
+			owner_key = human.ckey
 			install_done = world.time + 35 MINUTES
 			notify("Adapting to new user...")
 			sleep(5 SECONDS)

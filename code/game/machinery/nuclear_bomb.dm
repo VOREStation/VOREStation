@@ -410,6 +410,8 @@ var/bomb_set
 				return
 	return
 
+#undef NUKERANGE
+
 /obj/item/weapon/disk/nuclear/New()
 	..()
 	nuke_disks |= src

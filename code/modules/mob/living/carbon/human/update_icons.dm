@@ -95,7 +95,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define TAIL_UPPER_LAYER_ALT	33		//Modified tail-sprite layer. Tend to be larger.
 #define MODIFIER_EFFECTS_LAYER	34		//Effects drawn by modifiers
 #define FIRE_LAYER				35		//'Mob on fire' overlay layer
-#define MOB_WATER_LAYER			36		//'Mob submerged' overlay layer
+// # define MOB_WATER_LAYER			36		//'Mob submerged' overlay layer // Moved to global defines
 #define TARGETED_LAYER			37		//'Aimed at' overlay layer
 #define TOTAL_LAYERS			37		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
@@ -1396,6 +1396,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 //Human Overlays Indexes/////////
 #undef MUTATIONS_LAYER
 #undef SKIN_LAYER
+#undef BLOOD_LAYER
 #undef MOB_DAM_LAYER
 #undef SURGERY_LAYER
 #undef UNDERWEAR_LAYER
@@ -1408,19 +1409,24 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #undef SUIT_LAYER
 #undef TAIL_UPPER_LAYER
 #undef TAIL_LOWER_LAYER
+#undef WING_LOWER_LAYER
 #undef GLASSES_LAYER
 #undef BELT_LAYER_ALT
 #undef SUIT_STORE_LAYER
 #undef BACK_LAYER
 #undef HAIR_LAYER
+#undef HAIR_ACCESSORY_LAYER
 #undef EARS_LAYER
 #undef EYES_LAYER
 #undef FACEMASK_LAYER
+#undef GLASSES_LAYER_ALT
 #undef HEAD_LAYER
 #undef HANDCUFF_LAYER
 #undef LEGCUFF_LAYER
 #undef L_HAND_LAYER
 #undef R_HAND_LAYER
+#undef WING_LAYER
+#undef TAIL_UPPER_LAYER_ALT
 #undef MODIFIER_EFFECTS_LAYER
 #undef FIRE_LAYER
 #undef WATER_LAYER

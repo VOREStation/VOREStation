@@ -454,3 +454,9 @@
 		new /obj/item/weapon/disk/body_record(src)
 
 #undef MOB_HEX_COLOR
+
+#undef MENU_MAIN
+#undef MENU_BODYRECORDS
+#undef MENU_STOCKRECORDS
+#undef MENU_SPECIFICRECORD
+#undef MENU_OOCNOTES

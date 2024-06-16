@@ -317,3 +317,6 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	QDEL_NULL(menu)
 	GLOB.radial_menus -= uniqueid
 	return answer
+
+#undef NEXT_PAGE_ID
+#undef DEFAULT_CHECK_DELAY

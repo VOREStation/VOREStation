@@ -168,9 +168,6 @@ Example: USING PROCCALL = BLOCKING, SELECT = FORCE_NULLS, PRIORITY = HIGH SELECT
 #define SDQL2_STATE_SWITCHING 5
 #define SDQL2_STATE_HALTING 6
 
-#define SDQL2_VALID_OPTION_TYPES list("proccall", "select", "priority", "autogc")
-#define SDQL2_VALID_OPTION_VALUES list("async", "blocking", "force_nulls", "skip_nulls", "high", "normal", "keep_alive")
-
 #define SDQL2_OPTION_SELECT_OUTPUT_SKIP_NULLS			(1<<0)
 #define SDQL2_OPTION_BLOCKING_CALLS						(1<<1)
 #define SDQL2_OPTION_HIGH_PRIORITY						(1<<2)		//High priority SDQL query, allow using almost all of the tick.

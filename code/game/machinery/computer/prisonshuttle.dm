@@ -213,3 +213,7 @@ var/prison_shuttle_timeleft = 0
 		hacked = 1
 		to_chat(user, "<span class='notice'>You disable the lock.</span>")
 		return 1
+
+#undef PRISON_MOVETIME
+#undef PRISON_STATION_AREATYPE
+#undef PRISON_DOCK_AREATYPE

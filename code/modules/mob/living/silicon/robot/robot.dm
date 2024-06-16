@@ -1704,3 +1704,5 @@
 
 /mob/living/silicon/robot/proc/has_upgrade(var/given_type)
 	return (has_basic_upgrade(given_type) || has_advanced_upgrade(given_type) || has_restricted_upgrade(given_type) || has_no_prod_upgrade(given_type))
+
+#undef CYBORG_POWER_USAGE_MULTIPLIER

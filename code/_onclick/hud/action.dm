@@ -3,12 +3,6 @@
 #define AB_INNATE 3
 #define AB_GENERIC 4
 
-#define AB_CHECK_RESTRAINED 1
-#define AB_CHECK_STUNNED 2
-#define AB_CHECK_LYING 4
-#define AB_CHECK_ALIVE 8
-#define AB_CHECK_INSIDE 16
-
 
 /datum/action
 	var/name = "Generic Action"
@@ -227,3 +221,8 @@
 
 /datum/action/innate/
 	action_type = AB_INNATE
+
+#undef AB_ITEM
+#undef AB_SPELL
+#undef AB_INNATE
+#undef AB_GENERIC
