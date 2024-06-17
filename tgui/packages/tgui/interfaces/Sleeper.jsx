@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -115,7 +115,7 @@ const SleeperOccupant = (props) => {
               bad: [-Infinity, 0],
             }}
           >
-            {round(occupant.health, 0)}
+            {toFixed(occupant.health)}
           </ProgressBar>
         </LabeledList.Item>
         <LabeledList.Item label="Status" color={stats[occupant.stat][0]}>
@@ -128,8 +128,8 @@ const SleeperOccupant = (props) => {
             value={occupant.bodyTemperature / occupant.maxTemp}
             color={tempColors[occupant.temperatureSuitability + 3]}
           >
-            {round(occupant.btCelsius, 0)}&deg;C,
-            {round(occupant.btFaren, 0)}&deg;F
+            {toFixed(occupant.btCelsius)}&deg;C,
+            {toFixed(occupant.btFaren)}&deg;F
           </ProgressBar>
         </LabeledList.Item>
         {!!occupant.hasBlood && (
@@ -173,7 +173,7 @@ const SleeperDamage = (props) => {
               value={occupant[d[1]] / 100}
               ranges={damageRange}
             >
-              {round(occupant[d[1]], 0)}
+              {toFixed(occupant[d[1]])}
             </ProgressBar>
           </LabeledList.Item>
         ))}

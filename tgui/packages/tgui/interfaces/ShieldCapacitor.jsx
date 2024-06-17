@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { round, toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -51,12 +51,11 @@ export const ShieldCapacitor = (props) => {
               <AnimatedNumber
                 value={stored_charge}
                 format={(val) => formatSiUnit(val, 0, 'J')}
-              />{' '}
-              (
+              />
               <AnimatedNumber
                 value={100 * round(stored_charge / max_charge, 1)}
+                format={(value) => ' (' + toFixed(value, 1) + '%)'}
               />
-              %)
             </LabeledList.Item>
             <LabeledList.Item label="Charge Rate">
               <NumberInput

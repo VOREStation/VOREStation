@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -74,7 +74,7 @@ export const PortableGenerator = (props) => {
                 maxValue={data.temperature_max + 30}
                 color={data.temperature_overheat ? 'bad' : 'good'}
               >
-                {round(data.temperature_current)}&deg;C
+                {toFixed(data.temperature_current)}&deg;C
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
