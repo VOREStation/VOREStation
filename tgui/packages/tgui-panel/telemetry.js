@@ -36,7 +36,7 @@ export const telemetryMiddleware = (store) => {
       Byond.sendMessage('telemetry', { connections });
       return;
     }
-    //For whatever reason we didn't get the telemetry, re-request
+    // For whatever reason we didn't get the telemetry, re-request
     if (type === 'testTelemetryCommand') {
       setTimeout(() => {
         if (!telemetry) {
