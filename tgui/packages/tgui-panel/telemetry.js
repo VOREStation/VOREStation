@@ -36,6 +36,13 @@ export const telemetryMiddleware = (store) => {
       Byond.sendMessage('telemetry', { connections });
       return;
     }
+    if (type === 'testTelemetryCommand') {
+      if (!telemetry) {
+        setTimeout(() => {
+          Byond.sendMessage('ready');
+        }, 500);
+      }
+    }
     // Keep telemetry up to date
     if (type === 'backend/update') {
       next(action);
