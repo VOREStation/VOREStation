@@ -293,7 +293,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			notify("Adjoining optic [human.isSynthetic() ? "interface" : "nerve"], please be patient.",TRUE)
 		else
 			notify("You are not an authorized user for this device. Please contact [owner].",TRUE)
-			unimplant()
+			unimplant(human)
 			stat = NIF_TEMPFAIL
 			return FALSE
 
