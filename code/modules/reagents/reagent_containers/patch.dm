@@ -40,7 +40,7 @@
 			to_chat(H, "<span class='notice'>\The [src] is placed on your [affecting].</span>")
 			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
-				reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)
+				reagents.trans_to_mob(M, reagents.total_volume, CHEM_BLOOD) //CHEM_TOUCH
 			qdel(src)
 			return 1
 
@@ -74,7 +74,7 @@
 		M.drop_from_inventory(src) //icon update
 
 		if(reagents.total_volume)
-			reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_BLOOD)	//CHEM_TOUCH
 		qdel(src)
 
 		return 1
