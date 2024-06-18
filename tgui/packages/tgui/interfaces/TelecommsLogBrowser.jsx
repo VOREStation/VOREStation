@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -124,7 +124,7 @@ const TelecommsSelectedServer = (props) => {
       <LabeledList>
         <LabeledList.Item label="Total Recorded Traffic">
           {server.totalTraffic >= 1024
-            ? round(server.totalTraffic / 1024) + ' Terrabytes'
+            ? toFixed(server.totalTraffic / 1024) + ' Terrabytes'
             : server.totalTraffic + ' Gigabytes'}
         </LabeledList.Item>
       </LabeledList>

@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import { Box, Flex, LabeledList, ProgressBar, Section } from '../components';
@@ -66,19 +66,19 @@ const TEGCirculator = (props) => {
           {formatPower(output)}
         </LabeledList.Item>
         <LabeledList.Item label="Flow Capacity">
-          {round(flowCapacity, 2)}%
+          {toFixed(flowCapacity, 2)}%
         </LabeledList.Item>
         <LabeledList.Item label="Inlet Pressure">
           {formatSiUnit(inletPressure * 1000, 0, 'Pa')}
         </LabeledList.Item>
         <LabeledList.Item label="Inlet Temperature">
-          {round(inletTemperature, 2)} K
+          {toFixed(inletTemperature, 2)} K
         </LabeledList.Item>
         <LabeledList.Item label="Outlet Pressure">
           {formatSiUnit(outletPressure * 1000, 0, 'Pa')}
         </LabeledList.Item>
         <LabeledList.Item label="Outlet Temperature">
-          {round(outletTemperature, 2)} K
+          {toFixed(outletTemperature, 2)} K
         </LabeledList.Item>
       </LabeledList>
     </Section>
