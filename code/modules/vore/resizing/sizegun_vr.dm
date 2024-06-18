@@ -139,8 +139,12 @@
 
 	if(backfire)
 		if(prob(50))
-			to_chat(user, "<span class='notice'>\The [src] backfires!</span>")
+			to_chat(user, "<span class='notice'>\The [src] backfires and consumes its entire charge!</span>")
 			Fire(user, user)
+			power_supply.charge = 0
+			var/mob/living/M = loc // TGMC Ammo HUD
+			if(istype(M)) // TGMC Ammo HUD
+				M?.hud_used.update_ammo_hud(M, src)
 			return
 		else
 			return ..()
@@ -150,8 +154,12 @@
 /obj/item/weapon/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
 	if(backfire)
 		if(prob(50))
-			to_chat(user, "<span class='notice'>\The [src] backfires!</span>")
+			to_chat(user, "<span class='notice'>\The [src] backfires and consumes its entire charge!</span>")
 			Fire(user, user)
+			power_supply.charge = 0
+			var/mob/living/M = loc // TGMC Ammo HUD
+			if(istype(M)) // TGMC Ammo HUD
+				M?.hud_used.update_ammo_hud(M, src)
 			return
 		else
 			return ..()
