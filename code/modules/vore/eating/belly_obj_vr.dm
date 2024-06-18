@@ -380,7 +380,10 @@
 	"count_absorbed_prey_for_sprite",
 	"resist_triggers_animation",
 	"size_factor_for_sprite",
-	"belly_sprite_to_affect"
+	"belly_sprite_to_affect",
+	"health_impacts_size",
+	"count_items_for_sprite",
+	"item_multiplier"
 	)
 
 	if (save_digest_mode == 1)
@@ -1807,6 +1810,9 @@
 	dupe.resist_triggers_animation = resist_triggers_animation
 	dupe.size_factor_for_sprite = size_factor_for_sprite
 	dupe.belly_sprite_to_affect = belly_sprite_to_affect
+	dupe.health_impacts_size = health_impacts_size
+	dupe.count_items_for_sprite = count_items_for_sprite
+	dupe.item_multiplier = item_multiplier
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

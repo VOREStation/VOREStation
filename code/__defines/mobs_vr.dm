@@ -7,7 +7,9 @@
 
 #define VIS_AUGMENTED		32
 
-#define VIS_COUNT			32
+#define VIS_CH_STOMACH		33
+
+#define VIS_COUNT			33
 
 //Protean organs
 #define O_ORCH		"orchestrator"
