@@ -69,7 +69,7 @@
 
 	var/vore_sprite_flags = DM_FLAG_VORESPRITE_ARTICLE
 	var/tmp/static/list/vore_sprite_flag_list= list(
-		"Undergarment addition" = DM_FLAG_VORESPRITE_ARTICLE,
+		"Normal Belly Sprite" = DM_FLAG_VORESPRITE_ARTICLE,
 		//"Tail adjustment" = DM_FLAG_VORESPRITE_TAIL,
 		//"Marking addition" = DM_FLAG_VORESPRITE_MARKING
 		)

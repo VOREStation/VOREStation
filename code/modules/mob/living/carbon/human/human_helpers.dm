@@ -192,6 +192,15 @@
 		compiled_vis |= VIS_CH_VANTAG
 	//VOREStation Add End
 
+	//Vore Stomach addition start. This goes here.
+	if(stomach_vision && !(VIS_CH_STOMACH in vis_enabled))
+		plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
+		compiled_vis += VIS_CH_STOMACH
+	else if(!stomach_vision && (VIS_CH_STOMACH in vis_enabled))
+		plane_holder.set_vis(VIS_CH_STOMACH,FALSE)
+		compiled_vis -= VIS_CH_STOMACH
+	//Vore Stomach addition end
+
 	if(!compiled_vis.len && !vis_enabled.len)
 		return //Nothin' doin'.
 
