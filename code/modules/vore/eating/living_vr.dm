@@ -34,6 +34,10 @@
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
 	var/trash_catching = FALSE				//Toggle for trash throw vore from chompstation
+	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
+	var/trait_injection_selected = null			//RSEdit: What trait reagent you're injecting.
+	var/trait_injection_amount = 5				//RSEdit: How much you're injecting with traits.
+	var/trait_injection_verb = "bites"			//RSEdit: Which fluffy manner you're doing the injecting.
 
 //
 // Hook for generic creation of stuff on new creatures

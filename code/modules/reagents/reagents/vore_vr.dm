@@ -186,3 +186,72 @@
 				H.change_gender_identity(PLURAL)
 				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now of mixed gender.</span>",
 								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became of mixed gender.</span>")
+
+/datum/reagent/drugs/rainbow_toxin /// Replaces Space Drugs.
+	name = "Rainbow Toxin"
+	id = "rainbowtoxin"
+	description = "Known for providing a euphoric high, this psychoactive drug is often injected into unknowing prey by serpents and other fanged beasts. Highly valuable and frequently sought after by hypno-enthusiasts and party-goers."
+	taste_description = "mixed euphoria"
+	taste_mult = 0.8 //You ARE going to taste this!
+	scannable = 1	//Sure! If you manage to milk a snake for some of this, go ahead and scan it and mass produce it. Your local club will love you!
+
+/datum/reagent/drugs/rainbow_toxin/affect_blood(mob/living/carbon/M, var/alien, var/removed)
+	..()
+	var/drug_strength = 20
+	M.druggy = max(M.druggy, drug_strength)
+
+/datum/reagent/drugs/bliss/overdose(var/mob/living/M as mob)
+	if(prob_proc == TRUE && prob(20))
+		M.hallucination = max(M.hallucination, 5)
+		prob_proc = FALSE
+	M.adjustBrainLoss(0.25*REM) //Too much isn't good for your long term health...
+	M.adjustToxLoss(0.01*REM)	//Enough that it'll make your HUD dummy update, but not enough that you'll vomit mid scene. (Sorry emetophiliacs!)
+	..()
+
+/datum/reagent/paralysis_toxin
+	name = "Tetrodotoxin"
+	id = "paralysistoxin"
+	description = "A commonly found, potent"
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#37007f"
+	metabolism = REM * 0.25
+	overdose = REAGENTS_OVERDOSE
+	scannable = 0 //YOU ARE NOT SCANNING THE FUNNY PARALYSIS TOXIN. NO. BAD. STAY AWAY.
+
+/datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.paralysis < 10) //Let's not leave them PERMA paralyzed, after all.
+		M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
+
+/datum/reagent/pain_toxin
+	name = "Tetrodotoxin"
+	id = "paralysistoxin"
+	description = "A commonly found, potent"
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#37007f"
+	metabolism = REM * 0.25
+	overdose = REAGENTS_OVERDOSE
+	scannable = 0 //YOU ARE NOT SCANNING THE FUNNY PARALYSIS TOXIN. NO. BAD. STAY AWAY.
+
+/datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.paralysis < 10) //Let's not leave them PERMA paralyzed, after all.
+		M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
+
+/datum/reagent/pain_enzyme
+	name = "Pain Enzyme"
+	id = "painenzyme"
+	description = "Some sort of organic painkiller."
+	taste_description = "sourness"
+	reagent_state = LIQUID
+	color = "#800080"
+	metabolism = 0.1 //Lasts up to 50 seconds if you give 5 units.
+	mrate_static = TRUE
+	overdose = 100 //There is no OD. You already are taking the worst of it.
+	scannable = 0 //Let's not have medical mechs able to make an extremely strong organic painkiller
+
+/datum/reagent/pain_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_PAINKILLER, -200)
+	if(prob(0.01)) //1 in 10000 chance per tick. Extremely rare.
+		to_chat(M,"<span class='warning'>Your body feels numb as a light, tingly sensation spreads throughout it, like some odd warmth.</span>")
+	//Not noted here, but a movement debuff of 1.5 is handed out in human_movement.dm when numbing_enzyme is in a person's bloodstream!
