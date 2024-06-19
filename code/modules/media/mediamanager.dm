@@ -59,7 +59,7 @@
 	set_new_volume(usr)
 
 /client/proc/set_new_volume(var/mob/user)
-	if(!QDELETED(src.media) || !istype(src.media))
+	if(QDELETED(src.media) || !istype(src.media))
 		to_chat(user, "<span class='warning'>You have no media datum to change, if you're not in the lobby tell an admin.</span>")
 		return
 	var/value = input(usr, "Choose your Jukebox volume.", "Jukebox volume", media.volume)
