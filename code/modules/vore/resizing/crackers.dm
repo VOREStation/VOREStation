@@ -152,6 +152,13 @@
 	body_parts_covered = 0
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/head/paper_crown/Initialize()
+	var/list/styles = list("paper_crown_blue","paper_crown_green","paper_crown_yellow","paper_crown_red","paper_crown_pink")
+	var/style = pick(styles)
+	icon_state = style
+	item_state = style
+	..()
+
 /obj/item/weapon/paper/cracker_joke
 	name = "joke"
 	icon_state = "joke"
