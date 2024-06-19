@@ -1581,7 +1581,7 @@
 		var/output = {"<B>Chemical Refresher!</B><HR>
 					<B>Options for venoms</B><BR>
 					<BR>
-					<B>Size Chemnicals</B><BR>
+					<B>Size Chemicals</B><BR>
 					Microcillin: Will make someone shrink. <br>
 					Macrocillin: Will make someone grow. <br>
 					Normalcillin: Will make someone normal size. <br>
