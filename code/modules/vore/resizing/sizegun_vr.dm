@@ -15,6 +15,7 @@
 	origin_tech = list(TECH_BLUESPACE = 4)
 	modifystate = "sizegun-shrink"
 	battery_lock = 1
+	var/backfire = 0
 	var/size_set_to = 1
 	firemodes = list(
 		list(mode_name		= "select size",
@@ -133,6 +134,54 @@
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
+/obj/item/weapon/gun/energy/sizegun/afterattack(atom/A, mob/living/user, adjacent, params)
+	if(adjacent) return //A is adjacent, is the user, or is on the user's person
+
+	if(backfire)
+		if(prob(50))
+			to_chat(user, "<span class='notice'>\The [src] backfires and consumes its entire charge!</span>")
+			Fire(user, user)
+			power_supply.charge = 0
+			var/mob/living/M = loc // TGMC Ammo HUD
+			if(istype(M)) // TGMC Ammo HUD
+				M?.hud_used.update_ammo_hud(M, src)
+			return
+		else
+			return ..()
+	else
+		return ..()
+
+/obj/item/weapon/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
+	if(backfire)
+		if(prob(50))
+			to_chat(user, "<span class='notice'>\The [src] backfires and consumes its entire charge!</span>")
+			Fire(user, user)
+			power_supply.charge = 0
+			var/mob/living/M = loc // TGMC Ammo HUD
+			if(istype(M)) // TGMC Ammo HUD
+				M?.hud_used.update_ammo_hud(M, src)
+			return
+		else
+			return ..()
+	else
+		return ..()
+
+
+/obj/item/weapon/gun/energy/sizegun/attackby(var/obj/item/A as obj, mob/user as mob)
+	if(A.has_tool_quality(TOOL_WIRECUTTER))
+		if(backfire)
+			to_chat(user, "<span class='warning'>You repair the damage to the \the [src].</span>")
+			backfire = 0
+			name = "size gun"
+		else
+			to_chat(user, "<span class='warning'>You snip a wire on \the [src], making it less reliable.</span>")
+			backfire = 1
+			name = "unstable size gun"
+	..()
+
+/obj/item/weapon/gun/energy/sizegun/backfire
+	name = "unstable size gun"
+	backfire = 1
 
 /obj/item/weapon/gun/energy/sizegun/mounted
 	name = "mounted size gun"
