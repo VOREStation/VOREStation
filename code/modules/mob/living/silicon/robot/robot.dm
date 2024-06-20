@@ -427,7 +427,7 @@
 	set category = "Robot Commands"
 
 	if(custom_name)
-		to_chat(usr, "You can't pick another custom name. Go ask for a name change.")
+		to_chat(usr, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
 		return 0
 
 	spawn(0)

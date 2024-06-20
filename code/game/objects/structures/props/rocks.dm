@@ -80,3 +80,28 @@
 
 /obj/structure/prop/rock/ice/small/alt
 	icon_state = "icesmall2"
+
+// glamour things for whitespace
+/obj/structure/prop/rock/glamour
+	name = "glamour"
+	icon = 'icons/obj/glamour.dmi'
+	icon_state = "pillar_1"
+
+/obj/structure/prop/rock/glamour/double
+	icon_state = "pillar_3"
+
+/obj/structure/prop/rock/glamour/triple
+	icon_state = "pillar_2"
+
+/obj/structure/prop/rock/glamour/small
+	icon_state = "gems_1"
+	density = FALSE
+
+/obj/structure/prop/rock/glamour/small/alt1
+	icon_state = "gems_2"
+
+/obj/structure/prop/rock/glamour/small/alt2
+	icon_state = "gems_3"
+
+/obj/structure/prop/rock/glamour/small/alt3
+	icon_state = "gems_4"

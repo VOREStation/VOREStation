@@ -57,6 +57,7 @@ const initialState = {
   exportEnd: 0,
   lastId: null,
   initialized: false,
+  firstLoad: false,
   storedTypes: {},
   hideImportantInAdminTab: false,
   interleave: false,
@@ -82,6 +83,7 @@ export const settingsReducer = (state = initialState, action) => {
   if (type === loadSettings.type) {
     // Validate version and/or migrate state
     if (!payload?.version) {
+      state.firstLoad = true;
       return state;
     }
 

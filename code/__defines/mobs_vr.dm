@@ -33,6 +33,7 @@
 #define SPECIES_ZORREN_HIGH		"Zorren"
 #define SPECIES_CUSTOM			"Custom Species"
 #define SPECIES_TAJARAN			"Tajara"
+#define SPECIES_LLEILL			"Lleill"
 //monkey species
 #define SPECIES_MONKEY_AKULA		"Sobaka"
 #define SPECIES_MONKEY_NEVREAN		"Sparra"
