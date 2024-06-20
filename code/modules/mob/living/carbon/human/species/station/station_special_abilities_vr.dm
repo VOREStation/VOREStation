@@ -1542,10 +1542,6 @@
 
 	last_special = world.time + 10 //Anti-spam.
 
-	if (!istype(src, /mob/living))
-		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
-		return
-
 	var/list/choices = list("Inject")
 
 	if(trait_injection_reagents.len > 1) //Should never happen, but who knows!
@@ -1603,7 +1599,8 @@
 					<B>Side Notes</B><BR>
 					You can select a value of 0 to inject nothing! <br>
 					Overdose threshold for most chemicals is 30 units. <br>
-					Exceptions to OD is: (Numbing Enzyme:20)
+					Exceptions to OD is: (Numbing Enzyme:20)<br>
+					You can also bite synthetics, but due to how synths work, they won't have anything injected into them.
 					<br>
 					"}
 		usr << browse(output,"window=chemicalrefresher")
@@ -1635,9 +1632,10 @@
 			to_chat(src, "<span class='warning'>That won't work on that kind of creature! (Only works on crew/monkeys)</span>")
 			return
 
+
+		var/synth = 0
 		if(target.isSynthetic())
-			to_chat(src, "<span class='notice'>There's no getting past that outer shell.</span>")
-			return
+			synth = 1
 
 		if(!trait_injection_selected)
 			to_chat(src, "<span class='notice'>You need to select a reagent.</span>")
@@ -1649,7 +1647,7 @@
 
 		if(do_after(src, 50, target)) //A decent enough timer.
 			add_attack_logs(src,target,"Injection trait ([trait_injection_selected], [trait_injection_amount])")
-			if(target.reagents && (trait_injection_amount > 0))
+			if(target.reagents && (trait_injection_amount > 0) && !synth)
 				target.reagents.add_reagent(trait_injection_selected, trait_injection_amount)
 			var/ourmsg = "<span class='warning'>[usr] [trait_injection_verb] [target] "
 			switch(zone_sel.selecting)
