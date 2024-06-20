@@ -21,10 +21,11 @@ export const PortablePump = (props) => {
           buttons={
             <Button
               icon={direction ? 'sign-in-alt' : 'sign-out-alt'}
-              content={direction ? 'In' : 'Out'}
               selected={direction}
               onClick={() => act('direction')}
-            />
+            >
+              {direction ? 'In' : 'Out'}
+            </Button>
           }
         >
           <LabeledList>

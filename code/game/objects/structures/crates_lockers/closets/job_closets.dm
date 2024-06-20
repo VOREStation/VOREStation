@@ -80,7 +80,8 @@
 		/obj/item/device/lightreplacer,
 		/obj/item/weapon/storage/bag/trash,
 		/obj/item/weapon/storage/belt/janitor,
-		/obj/item/clothing/shoes/galoshes
+		/obj/item/clothing/shoes/galoshes,
+		/obj/item/clothing/glasses/hud/janitor
 		)
 
 /*

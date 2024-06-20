@@ -41,3 +41,18 @@
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
+
+/obj/item/clothing/glasses/hud/janitor
+	name = "Contaminant Detector HUD"
+	desc = "A heads-up display that scans the environment for contaminations."
+	icon_state = "janhud"
+	item_state_slots = list(slot_r_hand_str = "headset", slot_l_hand_str = "headset")
+	body_parts_covered = 0
+	enables_planes = list(VIS_JANHUD)
+
+/obj/item/clothing/glasses/hud/janitor/prescription
+	name = "Prescription Contaminant Detector HUD"
+	desc = "A heads-up display that scans the environment for contaminations."
+	prescription = 1
+	icon_state = "janhudpresc"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")

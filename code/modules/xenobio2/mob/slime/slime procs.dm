@@ -126,3 +126,7 @@ Slime specific procs go here.
 		GenerateChild()
 	else
 		GenerateAdult()
+
+#undef SHINYOVERLAY
+#undef LIGHTOVERLAY
+#undef MAXOVERLAY

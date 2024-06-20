@@ -8,6 +8,8 @@
 	// Override the DreamSeeker macro with the borg version!
 	client.set_hotkeys_macro("borgmacro", "borghotkeymode")
 
+	repick_laws()
+
 	// Forces synths to select an icon relevant to their module
 	if(!icon_selected)
 		icon_selection_tries = SSrobot_sprites.get_module_sprites_len(modtype, src) + 1

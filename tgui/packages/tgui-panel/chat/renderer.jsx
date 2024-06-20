@@ -88,6 +88,11 @@ const interleaveMessage = (node, interleave, color) => {
   return node;
 };
 
+const stripNewLineFlood = (text) => {
+  text = text.replace(/((\n)\2{2})\2+/g, '$1');
+  return text;
+};
+
 const createReconnectedNode = () => {
   const node = document.createElement('div');
   node.className = 'Chat__reconnected';
@@ -507,12 +512,14 @@ class ChatRenderer {
         node = createMessageNode();
         // Payload is plain text
         if (message.text) {
+          message.text = stripNewLineFlood(message.text); // Do not allow more than 3 new lines in a row
           node.textContent = this.prependTimestamps
             ? getChatTimestamp(message) + message.text
             : message.text;
         }
         // Payload is HTML
         else if (message.html) {
+          message.html = stripNewLineFlood(message.html); // Do not allow more than 3 new lines in a row
           node.innerHTML = this.prependTimestamps
             ? getChatTimestamp(message) + message.html
             : message.html;

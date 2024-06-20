@@ -76,7 +76,7 @@
 					var/obj/item/weapon/robot_module/robot/robot_type = new module_type(robot)
 					robot.emag_items = 1
 					if(!istype(robot_type, /obj/item/weapon/robot_module/robot/))
-						robot.Destroy()
+						qdel(robot)
 						break
 					var/list/all_modules = robot.module.modules
 					all_modules += robot.module.emag
@@ -134,7 +134,7 @@
 									target.module.synths.Add(item_with_matter.plastic)
 								else
 									item_with_matter.plastic = target.module.synths[found]
-					robot.Destroy()
+					qdel(robot)
 			if(MODIFIY_ROBOT_MODULE_REMOVE)
 				while(TRUE)
 					var/list/active_modules = target.module.modules
@@ -326,7 +326,7 @@
 				target.hud_used.update_robot_modules_display(TRUE)
 				target.modtype = initial(target.modtype)
 				target.module.Reset(target)
-				target.module.Destroy()
+				qdel(target.module)
 				target.modtype = selected_module
 				var/module_type = robot_modules[selected_module]
 				target.transform_with_anim()

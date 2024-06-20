@@ -1058,3 +1058,12 @@
 	extra_overlay2 = "zorgoia_fluff_top"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lleill
+	name = "Lleill tail"
+	desc = ""
+	icon = 'icons/mob/species/lleill/tail.dmi'
+	icon_state = "tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tail_marking"

@@ -64,34 +64,35 @@ const RIGSuitStatus = (props) => {
 
   const SealButton = (
     <Button
-      content={
-        'Suit ' +
-        (sealing ? 'seals working...' : sealed ? 'is Active' : 'is Inactive')
-      }
       icon={sealing ? 'redo' : sealed ? 'power-off' : 'lock-open'}
       iconSpin={sealing}
       disabled={sealing}
       selected={sealed}
       onClick={() => act('toggle_seals')}
-    />
+    >
+      {'Suit ' +
+        (sealing ? 'seals working...' : sealed ? 'is Active' : 'is Inactive')}
+    </Button>
   );
 
   const CoolingButton = (
     <Button
-      content={'Suit Cooling ' + (cooling ? 'is Active' : 'is Inactive')}
       icon={'power-off'}
       selected={cooling}
       onClick={() => act('toggle_cooling')}
-    />
+    >
+      {'Suit Cooling ' + (cooling ? 'is Active' : 'is Inactive')}
+    </Button>
   );
 
   const AIButton = (
     <Button
-      content={'AI Control ' + (aioverride ? 'Enabled' : 'Disabled')}
       selected={aioverride}
       icon="robot"
       onClick={() => act('toggle_ai_control')}
-    />
+    >
+      {'AI Control ' + (aioverride ? 'Enabled' : 'Disabled')}
+    </Button>
   );
 
   return (
@@ -126,9 +127,10 @@ const RIGSuitStatus = (props) => {
           ) : (
             <Button
               icon={coverlock ? 'lock' : 'lock-open'}
-              content={coverlock ? 'Locked' : 'Unlocked'}
               onClick={() => act('toggle_suit_lock')}
-            />
+            >
+              {coverlock ? 'Locked' : 'Unlocked'}
+            </Button>
           )}
         </LabeledList.Item>
       </LabeledList>
@@ -161,11 +163,12 @@ const RIGSuitHardware = (props) => {
           buttons={
             <Button
               icon={helmetDeployed ? 'sign-out-alt' : 'sign-in-alt'}
-              content={helmetDeployed ? 'Deployed' : 'Deploy'}
               disabled={sealing}
               selected={helmetDeployed}
               onClick={() => act('toggle_piece', { piece: 'helmet' })}
-            />
+            >
+              {helmetDeployed ? 'Deployed' : 'Deploy'}
+            </Button>
           }
         >
           {helmet ? capitalize(helmet) : 'ERROR'}
@@ -175,11 +178,12 @@ const RIGSuitHardware = (props) => {
           buttons={
             <Button
               icon={gauntletsDeployed ? 'sign-out-alt' : 'sign-in-alt'}
-              content={gauntletsDeployed ? 'Deployed' : 'Deploy'}
               disabled={sealing}
               selected={gauntletsDeployed}
               onClick={() => act('toggle_piece', { piece: 'gauntlets' })}
-            />
+            >
+              {gauntletsDeployed ? 'Deployed' : 'Deploy'}
+            </Button>
           }
         >
           {gauntlets ? capitalize(gauntlets) : 'ERROR'}
@@ -189,11 +193,12 @@ const RIGSuitHardware = (props) => {
           buttons={
             <Button
               icon={bootsDeployed ? 'sign-out-alt' : 'sign-in-alt'}
-              content={bootsDeployed ? 'Deployed' : 'Deploy'}
               disabled={sealing}
               selected={bootsDeployed}
               onClick={() => act('toggle_piece', { piece: 'boots' })}
-            />
+            >
+              {bootsDeployed ? 'Deployed' : 'Deploy'}
+            </Button>
           }
         >
           {boots ? capitalize(boots) : 'ERROR'}
@@ -203,11 +208,12 @@ const RIGSuitHardware = (props) => {
           buttons={
             <Button
               icon={chestDeployed ? 'sign-out-alt' : 'sign-in-alt'}
-              content={chestDeployed ? 'Deployed' : 'Deploy'}
               disabled={sealing}
               selected={chestDeployed}
               onClick={() => act('toggle_piece', { piece: 'chest' })}
-            />
+            >
+              {chestDeployed ? 'Deployed' : 'Deploy'}
+            </Button>
           }
         >
           {chest ? capitalize(chest) : 'ERROR'}
@@ -256,9 +262,6 @@ const RIGSuitModules = (props) => {
                 {module.can_select ? (
                   <Button
                     selected={module.name === primarysystem}
-                    content={
-                      module.name === primarysystem ? 'Selected' : 'Select'
-                    }
                     icon="arrow-circle-right"
                     onClick={() =>
                       act('interact_module', {
@@ -266,11 +269,12 @@ const RIGSuitModules = (props) => {
                         module_mode: 'select',
                       })
                     }
-                  />
+                  >
+                    {module.name === primarysystem ? 'Selected' : 'Select'}
+                  </Button>
                 ) : null}
                 {module.can_use ? (
                   <Button
-                    content={module.engagestring}
                     icon="arrow-circle-down"
                     onClick={() =>
                       act('interact_module', {
@@ -278,16 +282,13 @@ const RIGSuitModules = (props) => {
                         module_mode: 'engage',
                       })
                     }
-                  />
+                  >
+                    {module.engagestring}
+                  </Button>
                 ) : null}
                 {module.can_toggle ? (
                   <Button
                     selected={module.is_active}
-                    content={
-                      module.is_active
-                        ? module.deactivatestring
-                        : module.activatestring
-                    }
                     icon="arrow-circle-down"
                     onClick={() =>
                       act('interact_module', {
@@ -295,7 +296,11 @@ const RIGSuitModules = (props) => {
                         module_mode: 'toggle',
                       })
                     }
-                  />
+                  >
+                    {module.is_active
+                      ? module.deactivatestring
+                      : module.activatestring}
+                  </Button>
                 ) : null}
               </>
             }

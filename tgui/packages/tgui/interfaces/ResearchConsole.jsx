@@ -140,11 +140,9 @@ const TechDisk = (props) => {
       <Section
         title="Load Technology to Disk"
         buttons={
-          <Button
-            icon="arrow-left"
-            content="Back"
-            onClick={() => props.onSaveDialog(false)}
-          />
+          <Button icon="arrow-left" onClick={() => props.onSaveDialog(false)}>
+            Back
+          </Button>
         }
       >
         <LabeledList>
@@ -224,11 +222,9 @@ const DataDisk = (props) => {
         }
         buttons={
           <>
-            <Button
-              icon="arrow-left"
-              content="Back"
-              onClick={() => props.onSaveDialog(false)}
-            />
+            <Button icon="arrow-left" onClick={() => props.onSaveDialog(false)}>
+              Back
+            </Button>
             {<PaginationChevrons target={'design_page'} /> || null}
           </>
         }

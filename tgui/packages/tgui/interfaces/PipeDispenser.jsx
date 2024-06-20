@@ -24,13 +24,14 @@ export const PipeDispenser = (props) => {
                   key={layerName}
                   fluid
                   checked={pipe_layers[layerName] === p_layer}
-                  content={layerName}
                   onClick={() =>
                     act('p_layer', {
                       p_layer: pipe_layers[layerName],
                     })
                   }
-                />
+                >
+                  {layerName}
+                </Button.Checkbox>
               ))}
             </Box>
           </Section>
@@ -54,7 +55,6 @@ export const PipeDispenser = (props) => {
               key={recipe.pipe_name}
               fluid
               ellipsis
-              content={recipe.pipe_name}
               title={recipe.pipe_name}
               onClick={() =>
                 act('dispense_pipe', {
@@ -63,7 +63,9 @@ export const PipeDispenser = (props) => {
                   category: shownCategory.cat_name,
                 })
               }
-            />
+            >
+              {recipe.pipe_name}
+            </Button>
           ))}
         </Section>
       </Window.Content>

@@ -1,25 +1,8 @@
-#define MECHA_INT_FIRE 1
-#define MECHA_INT_TEMP_CONTROL 2
-#define MECHA_INT_SHORT_CIRCUIT 4
-#define MECHA_INT_TANK_BREACH 8
-#define MECHA_INT_CONTROL_LOST 16
-
-#define MECHA_PROC_MOVEMENT 1
-#define MECHA_PROC_DAMAGE   2
-#define MECHA_PROC_INT_TEMP 4
-
-#define MELEE 1
-#define RANGED 2
-
 #define MECHA_OPERATING     0
 #define MECHA_BOLTS_SECURED 1
 #define MECHA_PANEL_LOOSE   2
 #define MECHA_CELL_OPEN     3
 #define MECHA_CELL_OUT      4
-
-#define MECH_FACTION_NT "nano"
-#define MECH_FACTION_SYNDI "syndi"
-#define MECH_FACTION_NONE "none"
 
 /obj/mecha
 	name = "Mecha"
@@ -2911,3 +2894,9 @@
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 
 	return ..()
+
+#undef MECHA_OPERATING
+#undef MECHA_BOLTS_SECURED
+#undef MECHA_PANEL_LOOSE
+#undef MECHA_CELL_OPEN
+#undef MECHA_CELL_OUT

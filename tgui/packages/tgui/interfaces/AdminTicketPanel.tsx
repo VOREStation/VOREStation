@@ -1,4 +1,6 @@
 /* eslint react/no-danger: "off" */
+import { round, toFixed } from 'common/math';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
@@ -44,12 +46,10 @@ export const AdminTicketPanel = (props) => {
           title={'Ticket #' + id}
           buttons={
             <Box nowrap>
-              <Button
-                icon="pen"
-                content="Rename Ticket"
-                onClick={() => act('retitle')}
-              />{' '}
-              <Button content="Legacy UI" onClick={() => act('legacy')} />
+              <Button icon="pen" onClick={() => act('retitle')}>
+                Rename Ticket
+              </Button>
+              <Button onClick={() => act('legacy')}>Legacy UI</Button>
             </Box>
           }
         >
@@ -60,14 +60,18 @@ export const AdminTicketPanel = (props) => {
             <LabeledList.Item label="State">{State[state]}</LabeledList.Item>
             {State[state] === State.open ? (
               <LabeledList.Item label="Opened At">
-                {opened_at_date} ({Math.round((opened_at / 600) * 10) / 10}{' '}
-                minutes ago.)
+                {opened_at_date +
+                  ' (' +
+                  toFixed(round((opened_at / 600) * 10, 0) / 10, 1) +
+                  ' minutes ago.)'}
               </LabeledList.Item>
             ) : (
               <LabeledList.Item label="Closed At">
-                {closed_at_date} ({Math.round((closed_at / 600) * 10) / 10}{' '}
-                minutes ago.){' '}
-                <Button content="Reopen" onClick={() => act('reopen')} />
+                {closed_at_date +
+                  ' (' +
+                  toFixed(round((closed_at / 600) * 10, 0) / 10, 1) +
+                  ' minutes ago.)'}
+                <Button onClick={() => act('reopen')}>Reopen</Button>
               </LabeledList.Item>
             )}
             <LabeledList.Item label="Actions">

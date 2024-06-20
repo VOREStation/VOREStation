@@ -2,9 +2,6 @@
 #define NEUTRAL_MODE 2
 #define NEGATIVE_MODE 3
 
-#define ORGANICS	1
-#define SYNTHETICS	2
-
 var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","silver","gold","slimejelly")	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
 
 /datum/preferences

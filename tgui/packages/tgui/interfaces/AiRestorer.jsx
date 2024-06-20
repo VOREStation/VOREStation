@@ -38,10 +38,11 @@ export const AiRestorerContent = (props) => {
         <Button
           fluid
           icon="eject"
-          content={AI_present ? name : '----------'}
           disabled={!AI_present}
           onClick={() => act('PRG_eject')}
-        />
+        >
+          {AI_present ? name : '----------'}
+        </Button>
       )}
       {!!AI_present && (
         <Section
@@ -74,11 +75,12 @@ export const AiRestorerContent = (props) => {
           <Button
             fluid
             icon="plus"
-            content="Begin Reconstruction"
             disabled={restoring}
             mt={1}
             onClick={() => act('PRG_beginReconstruction')}
-          />
+          >
+            Begin Reconstruction
+          </Button>
           <Section title="Laws" level={2}>
             {laws.map((law) => (
               <Box key={law} className="candystripe">

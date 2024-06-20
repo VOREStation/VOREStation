@@ -26,21 +26,21 @@ export const BodyDesigner = (props) => {
           <Box>
             <Button
               icon="save"
-              content="Save To Disk"
               onClick={() => act('savetodisk')}
               disabled={!activeBodyRecord}
-            />
+            >
+              Save To Disk
+            </Button>
             <Button
               icon="save"
-              content="Load From Disk"
               onClick={() => act('loadfromdisk')}
               disabled={!diskStored}
-            />
-            <Button
-              icon="eject"
-              content="Eject"
-              onClick={() => act('ejectdisk')}
-            />
+            >
+              Load From Disk
+            </Button>
+            <Button icon="eject" onClick={() => act('ejectdisk')}>
+              Eject
+            </Button>
           </Box>
         ) : null}
         {body}
@@ -53,16 +53,12 @@ const BodyDesignerMain = (props) => {
   const { act, data } = useBackend();
   return (
     <Section title="Database Functions">
-      <Button
-        icon="eye"
-        content="View Individual Body Records"
-        onClick={() => act('menu', { menu: 'Body Records' })}
-      />
-      <Button
-        icon="eye"
-        content="View Stock Body Records"
-        onClick={() => act('menu', { menu: 'Stock Records' })}
-      />
+      <Button icon="eye" onClick={() => act('menu', { menu: 'Body Records' })}>
+        View Individual Body Records
+      </Button>
+      <Button icon="eye" onClick={() => act('menu', { menu: 'Stock Records' })}>
+        View Stock Body Records
+      </Button>
     </Section>
   );
 };
@@ -74,11 +70,9 @@ const BodyDesignerBodyRecords = (props) => {
     <Section
       title="Body Records"
       buttons={
-        <Button
-          icon="arrow-left"
-          content="Back"
-          onClick={() => act('menu', { menu: 'Main' })}
-        />
+        <Button icon="arrow-left" onClick={() => act('menu', { menu: 'Main' })}>
+          Back
+        </Button>
       }
     >
       {bodyrecords
@@ -86,9 +80,10 @@ const BodyDesignerBodyRecords = (props) => {
             <Button
               icon="eye"
               key={record.name}
-              content={record.name}
               onClick={() => act('view_brec', { view_brec: record.recref })}
-            />
+            >
+              {record.name}
+            </Button>
           ))
         : ''}
     </Section>
@@ -102,20 +97,19 @@ const BodyDesignerStockRecords = (props) => {
     <Section
       title="Stock Records"
       buttons={
-        <Button
-          icon="arrow-left"
-          content="Back"
-          onClick={() => act('menu', { menu: 'Main' })}
-        />
+        <Button icon="arrow-left" onClick={() => act('menu', { menu: 'Main' })}>
+          Back
+        </Button>
       }
     >
       {stock_bodyrecords.map((record) => (
         <Button
           icon="eye"
           key={record}
-          content={record}
           onClick={() => act('view_stock_brec', { view_stock_brec: record })}
-        />
+        >
+          {record}
+        </Button>
       ))}
     </Section>
   );
@@ -132,9 +126,10 @@ const BodyDesignerSpecificRecord = (props) => {
           buttons={
             <Button
               icon="arrow-left"
-              content="Back"
               onClick={() => act('menu', { menu: 'Main' })}
-            />
+            >
+              Back
+            </Button>
           }
         >
           <LabeledList>
@@ -147,14 +142,15 @@ const BodyDesignerSpecificRecord = (props) => {
             <LabeledList.Item label="Bio. Sex">
               <Button
                 icon="pen"
-                content={capitalize(activeBodyRecord.gender)}
                 onClick={() =>
                   act('href_conversion', {
                     target_href: 'bio_gender',
                     target_value: 1,
                   })
                 }
-              />
+              >
+                {capitalize(activeBodyRecord.gender)}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Synthetic">
               {activeBodyRecord.synthetic}
@@ -164,10 +160,11 @@ const BodyDesignerSpecificRecord = (props) => {
               <Button
                 ml={1}
                 icon="eye"
-                content="View OOC Notes"
                 disabled={!activeBodyRecord.booc}
                 onClick={() => act('boocnotes')}
-              />
+              >
+                View OOC Notes
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -190,14 +187,15 @@ const BodyDesignerSpecificRecord = (props) => {
             <LabeledList.Item label="Scale">
               <Button
                 icon="pen"
-                content={activeBodyRecord.scale}
                 onClick={() =>
                   act('href_conversion', {
                     target_href: 'size_multiplier',
                     target_value: 1,
                   })
                 }
-              />
+              >
+                {activeBodyRecord.scale}
+              </Button>
             </LabeledList.Item>
             {Object.keys(activeBodyRecord.styles).map((key) => {
               const style = activeBodyRecord.styles[key];
@@ -206,27 +204,29 @@ const BodyDesignerSpecificRecord = (props) => {
                   {style.styleHref ? (
                     <Button
                       icon="pen"
-                      content={style.style}
                       onClick={() =>
                         act('href_conversion', {
                           target_href: style.styleHref,
                           target_value: 1,
                         })
                       }
-                    />
+                    >
+                      {style.style}
+                    </Button>
                   ) : null}
                   {style.colorHref ? (
                     <Box>
                       <Button
                         icon="pen"
-                        content={style.color}
                         onClick={() =>
                           act('href_conversion', {
                             target_href: style.colorHref,
                             target_value: 1,
                           })
                         }
-                      />
+                      >
+                        {style.color}
+                      </Button>
                       <ColorBox
                         verticalAlign="top"
                         width="32px"
@@ -242,14 +242,15 @@ const BodyDesignerSpecificRecord = (props) => {
                     <Box>
                       <Button
                         icon="pen"
-                        content={style.color2}
                         onClick={() =>
                           act('href_conversion', {
                             target_href: style.colorHref2,
                             target_value: 1,
                           })
                         }
-                      />
+                      >
+                        {style.color2}
+                      </Button>
                       <ColorBox
                         verticalAlign="top"
                         width="32px"
@@ -267,14 +268,15 @@ const BodyDesignerSpecificRecord = (props) => {
             <LabeledList.Item label="Body Markings">
               <Button
                 icon="plus"
-                content="Add Marking"
                 onClick={() =>
                   act('href_conversion', {
                     target_href: 'marking_style',
                     target_value: 1,
                   })
                 }
-              />
+              >
+                Add Marking
+              </Button>
               <Flex wrap="wrap" justify="center" align="center">
                 {Object.keys(activeBodyRecord.markings).map((key) => {
                   const marking = activeBodyRecord.markings[key];
@@ -299,14 +301,15 @@ const BodyDesignerSpecificRecord = (props) => {
                           <Button
                             fluid
                             backgroundColor={marking}
-                            content={key}
                             onClick={() =>
                               act('href_conversion', {
                                 target_href: 'marking_color',
                                 target_value: key,
                               })
                             }
-                          />
+                          >
+                            {key}
+                          </Button>
                         </Flex.Item>
                       </Flex>
                     </Flex.Item>
@@ -334,9 +337,10 @@ const BodyDesignerOOCNotes = (props) => {
       buttons={
         <Button
           icon="arrow-left"
-          content="Back"
           onClick={() => act('menu', { menu: 'Specific Record' })}
-        />
+        >
+          Back
+        </Button>
       }
       style={{ 'word-break': 'break-all' }}
     >

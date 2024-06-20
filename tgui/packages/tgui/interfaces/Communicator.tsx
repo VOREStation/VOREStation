@@ -163,11 +163,12 @@ export const Communicator = (props) => {
   let buttonArray = validCharacters.map((char) => (
     <Button
       key={char}
-      content={char}
       fontSize={2}
       fluid
       onClick={() => act('add_hex', { add_hex: char })}
-    />
+    >
+      {char}
+    </Button>
   ));
 
   let finalArray: any[] = [];
@@ -219,7 +220,7 @@ export const Communicator = (props) => {
                     >
                       <Button
                         style={{
-                          'border-radius': '10%',
+                          borderRadius: '10%',
                           border: '1px solid #000',
                         }}
                         width="64px"
@@ -340,15 +341,11 @@ export const Communicator = (props) => {
                     <Section title="Connection Management" mt={2}>
                       <LabeledList>
                         <LabeledList.Item label="Camera Mode">
-                          <Button
-                            fluid
-                            content={
-                              selfie_mode
-                                ? 'Front-facing Camera'
-                                : 'Rear-facing Camera'
-                            }
-                            onClick={() => act('selfie_mode')}
-                          />
+                          <Button fluid onClick={() => act('selfie_mode')}>
+                            {selfie_mode
+                              ? 'Front-facing Camera'
+                              : 'Rear-facing Camera'}
+                          </Button>
                         </LabeledList.Item>
                       </LabeledList>
                       <Section title="External Connections">
@@ -362,13 +359,14 @@ export const Communicator = (props) => {
                                 <Button
                                   icon="times"
                                   color="bad"
-                                  content="Disconnect"
                                   onClick={() =>
                                     act('disconnect', {
                                       disconnect: mob.true_name,
                                     })
                                   }
-                                />
+                                >
+                                  Disconnect
+                                </Button>
                               </LabeledList.Item>
                             ))}
                           </LabeledList>
@@ -386,35 +384,38 @@ export const Communicator = (props) => {
                                   <Button
                                     icon="times"
                                     color="bad"
-                                    content="Disconnect"
                                     onClick={() =>
                                       act('disconnect', {
                                         disconnect: comm.true_name,
                                       })
                                     }
-                                  />
+                                  >
+                                    Disconnect
+                                  </Button>
                                   {(video_comm === null && (
                                     <Button
                                       icon="camera"
-                                      content="Start Video"
                                       onClick={() =>
                                         act('startvideo', {
                                           startvideo: comm.ref,
                                         })
                                       }
-                                    />
+                                    >
+                                      Start Video
+                                    </Button>
                                   )) ||
                                     (phone_video_comm === comm.ref && (
                                       <Button
                                         icon="times"
                                         color="bad"
-                                        content="Stop Video"
                                         onClick={() =>
                                           act('endvideo', {
                                             endvideo: comm.true_name,
                                           })
                                         }
-                                      />
+                                      >
+                                        Stop Video
+                                      </Button>
                                     ))}
                                 </Table.Cell>
                               </Table.Row>
@@ -434,18 +435,20 @@ export const Communicator = (props) => {
                                 <Box>
                                   <Button
                                     icon="signal"
-                                    content="Accept"
                                     onClick={() =>
                                       act('dial', { dial: request.address })
                                     }
-                                  />
+                                  >
+                                    Accept
+                                  </Button>
                                   <Button
                                     icon="times"
-                                    content="Decline"
                                     onClick={() =>
                                       act('decline', { decline: request.ref })
                                     }
-                                  />
+                                  >
+                                    Decline
+                                  </Button>
                                 </Box>
                               </LabeledList.Item>
                             ))}
@@ -467,8 +470,9 @@ export const Communicator = (props) => {
                                     onClick={() => {
                                       act('copy', { copy: invite.address });
                                     }}
-                                    content="Copy"
-                                  />
+                                  >
+                                    Copy
+                                  </Button>
                                 </Box>
                               </LabeledList.Item>
                             ))}
@@ -507,8 +511,9 @@ export const Communicator = (props) => {
                                       switch_tab: MESSSUBTAB,
                                     });
                                   }}
-                                  content="View Conversation"
-                                />
+                                >
+                                  View Conversation
+                                </Button>
                               </Box>
                             </Table.Cell>
                           </Table.Row>
@@ -523,8 +528,9 @@ export const Communicator = (props) => {
                           onClick={() =>
                             act('switch_tab', { switch_tab: CONTTAB })
                           }
-                          content="Contacts"
-                        />
+                        >
+                          Contacts
+                        </Button>
                       </Box>
                     )}
                   </Section>
@@ -589,8 +595,9 @@ export const Communicator = (props) => {
                         onClick={() =>
                           act('message', { message: targetAddress })
                         }
-                        content="Message"
-                      />
+                      >
+                        Message
+                      </Button>
                     </Section>
                   ) : (
                     <Section
@@ -660,8 +667,9 @@ export const Communicator = (props) => {
                         onClick={() =>
                           act('message', { message: targetAddress })
                         }
-                        content="Message"
-                      />
+                      >
+                        Message
+                      </Button>
                     </Section>
                   ))) ||
                 (currentTab === NEWSTAB && (
@@ -680,12 +688,13 @@ export const Communicator = (props) => {
                           }
                           buttons={
                             <Button
-                              content="Back"
                               icon="chevron-up"
                               onClick={() =>
                                 act('newsfeed', { newsfeed: null })
                               }
-                            />
+                            >
+                              Back
+                            </Button>
                           }
                         >
                           {target_feed.messages.map((message) => (
@@ -723,8 +732,9 @@ export const Communicator = (props) => {
                                           newsfeed: news.index,
                                         })
                                       }
-                                      content="Go to"
-                                    />
+                                    >
+                                      Go to
+                                    </Button>
                                   </h5>
                                   - {decodeHtmlEntities(news.body)}
                                   {!!news.img && (
@@ -754,8 +764,9 @@ export const Communicator = (props) => {
                                 onClick={() =>
                                   act('newsfeed', { newsfeed: feed.index })
                                 }
-                                content={feed.name}
-                              />
+                              >
+                                {feed.name}
+                              </Button>
                             ))}
                           </Section>
                         </>
@@ -768,11 +779,9 @@ export const Communicator = (props) => {
                     height="100%"
                     stretchContents
                     buttons={
-                      <Button
-                        icon="pen"
-                        onClick={() => act('edit')}
-                        content="Edit Notes"
-                      />
+                      <Button icon="pen" onClick={() => act('edit')}>
+                        Edit Notes
+                      </Button>
                     }
                   >
                     <Section
@@ -794,23 +803,16 @@ export const Communicator = (props) => {
                   <Section title="Settings">
                     <LabeledList>
                       <LabeledList.Item label="Owner">
-                        <Button
-                          icon="pen"
-                          fluid
-                          content={decodeHtmlEntities(owner)}
-                          onClick={() => act('rename')}
-                        />
+                        <Button icon="pen" fluid onClick={() => act('rename')}>
+                          {decodeHtmlEntities(owner)}
+                        </Button>
                       </LabeledList.Item>
                       <LabeledList.Item label="Camera Mode">
-                        <Button
-                          fluid
-                          content={
-                            selfie_mode
-                              ? 'Front-facing Camera'
-                              : 'Rear-facing Camera'
-                          }
-                          onClick={() => act('selfie_mode')}
-                        />
+                        <Button fluid onClick={() => act('selfie_mode')}>
+                          {selfie_mode
+                            ? 'Front-facing Camera'
+                            : 'Rear-facing Camera'}
+                        </Button>
                       </LabeledList.Item>
                       <LabeledList.Item label="Occupation">
                         {decodeHtmlEntities(occupation)}
@@ -830,27 +832,25 @@ export const Communicator = (props) => {
                           checked={visible}
                           selected={visible}
                           fluid
-                          content={
-                            visible
-                              ? 'This device can be seen by other devices.'
-                              : 'This device is invisible to other devices.'
-                          }
                           onClick={() => act('toggle_visibility')}
-                        />
+                        >
+                          {visible
+                            ? 'This device can be seen by other devices.'
+                            : 'This device is invisible to other devices.'}
+                        </Button.Checkbox>
                       </LabeledList.Item>
                       <LabeledList.Item label="Ringer">
                         <Button.Checkbox
                           checked={ring}
                           selected={ring}
                           fluid
-                          content={ring ? 'Ringer on.' : 'Ringer off.'}
                           onClick={() => act('toggle_ringer')}
-                        />
-                        <Button
-                          fluid
-                          content="Set Ringer Tone"
-                          onClick={() => act('set_ringer_tone')}
-                        />
+                        >
+                          {ring ? 'Ringer on.' : 'Ringer off.'}
+                        </Button.Checkbox>
+                        <Button fluid onClick={() => act('set_ringer_tone')}>
+                          Set Ringer Tone
+                        </Button>
                       </LabeledList.Item>
                     </LabeledList>
                   </Section>
@@ -1130,8 +1130,9 @@ const ContactsTab = (props) => {
                       act('copy', { copy: device.address });
                       act('switch_tab', { switch_tab: PHONTAB });
                     }}
-                    content="Copy"
-                  />
+                  >
+                    Copy
+                  </Button>
                   <Button
                     icon="phone"
                     onClick={() => {
@@ -1139,8 +1140,9 @@ const ContactsTab = (props) => {
                       act('copy', { copy: device.address });
                       act('switch_tab', { switch_tab: PHONTAB });
                     }}
-                    content="Call"
-                  />
+                  >
+                    Call
+                  </Button>
                   <Button
                     icon="comment-alt"
                     onClick={() => {
@@ -1148,8 +1150,9 @@ const ContactsTab = (props) => {
                       act('copy_name', { copy_name: device.name });
                       act('switch_tab', { switch_tab: MESSSUBTAB });
                     }}
-                    content="Msg"
-                  />
+                  >
+                    Msg
+                  </Button>
                 </Box>
               </Table.Cell>
             </Table.Row>

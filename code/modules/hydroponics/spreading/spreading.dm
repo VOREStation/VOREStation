@@ -317,3 +317,6 @@
 
 /obj/effect/plant/proc/is_mature()
 	return (health >= (max_health/3) && world.time > mature_time)
+
+#undef DEFAULT_SEED
+#undef VINE_GROWTH_STAGES

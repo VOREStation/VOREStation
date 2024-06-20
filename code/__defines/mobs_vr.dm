@@ -33,6 +33,7 @@
 #define SPECIES_ZORREN_HIGH		"Zorren"
 #define SPECIES_CUSTOM			"Custom Species"
 #define SPECIES_TAJARAN			"Tajara"
+#define SPECIES_LLEILL			"Lleill"
 //monkey species
 #define SPECIES_MONKEY_AKULA		"Sobaka"
 #define SPECIES_MONKEY_NEVREAN		"Sparra"
@@ -54,3 +55,6 @@
 #define MARKING_NONDIGI_ONLY 		(1 << 0)
 #define MARKING_DIGITIGRADE_ONLY 	(1 << 1)
 #define MARKING_ALL_LEGS 			MARKING_NONDIGI_ONLY|MARKING_DIGITIGRADE_ONLY
+
+//Grabs
+#define UPGRADE_COOLDOWN	40

@@ -71,3 +71,6 @@
 		if (FF.plasma_temperature <= MINIMUM_PLASMA_TEMPERATURE)
 			icon_state = "mag_trap0"
 	return
+
+#undef ENERGY_PER_K
+#undef MINIMUM_PLASMA_TEMPERATURE

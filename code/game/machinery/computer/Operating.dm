@@ -310,3 +310,5 @@
 			// Please for the love of all that is holy, someone make surgery steps
 			// have names so I don't have to do this stupid pretty_type shit.
 			. += "[pretty_type(S)]: [english_list(allowed_tools_by_name)]"
+
+#undef OP_COMPUTER_COOLDOWN

@@ -1619,6 +1619,7 @@
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/belt/janitor = 5,
 		/obj/item/clothing/shoes/galoshes = 5,
+		/obj/item/clothing/glasses/hud/janitor = 5,
 		/obj/item/weapon/cartridge/janitor = 5
 	)
 	req_log_access = access_hop

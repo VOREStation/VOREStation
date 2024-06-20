@@ -189,18 +189,20 @@ const AtmoControlTankCoreControl = (props) => {
       buttons={
         <>
           <Button
-            content="Refresh"
             icon="sync"
             disabled={!info}
             onClick={() => actions.refresh()}
-          />
+          >
+            Refresh
+          </Button>
           <Button
-            content="Power"
             icon="power-off"
             selected={info ? info.power : false}
             disabled={!info}
             onClick={() => actions.power()}
-          />
+          >
+            Power
+          </Button>
         </>
       }
     >
@@ -212,22 +214,21 @@ const AtmoControlTankCoreControl = (props) => {
         )) || (
           <LabeledList.Item>
             <Box color="bad">ERROR: Cannot Find {name} Port</Box>
-            <Button
-              icon="search"
-              content="Search"
-              onClick={() => actions.refresh()}
-            />
+            <Button icon="search" onClick={() => actions.refresh()}>
+              Search
+            </Button>
           </LabeledList.Item>
         )}
         <LabeledList.Item
           label={limitName}
           buttons={
             <Button
-              content="Apply"
               icon="edit"
               disabled={!info}
               onClick={() => actions.apply()}
-            />
+            >
+              Apply
+            </Button>
           }
         >
           <Slider
@@ -259,22 +260,22 @@ const AtmoControlFuel = (props) => {
         <>
           <Button
             icon="syringe"
-            content="Inject"
             onClick={() => act('injection')}
             disabled={automation || !device_info}
-          />
-          <Button
-            icon="sync"
-            content="Refresh"
-            onClick={() => act('refresh_status')}
-          />
+          >
+            Inject
+          </Button>
+          <Button icon="sync" onClick={() => act('refresh_status')}>
+            Refresh
+          </Button>
           <Button
             icon="power-off"
-            content="Injector Power"
             onClick={() => act('toggle_injector')}
             selected={device_info ? device_info.power : false}
             disabled={automation || !device_info}
-          />
+          >
+            Injector Power
+          </Button>
         </>
       }
     >
@@ -289,20 +290,19 @@ const AtmoControlFuel = (props) => {
           <LabeledList.Item label="Automated Fuel Injection">
             <Button
               icon="robot"
-              content={automation ? 'Engaged' : 'Disengaged'}
               selected={automation}
               onClick={() => act('toggle_automation')}
-            />
+            >
+              {automation ? 'Engaged' : 'Disengaged'}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       ) : (
         <>
           <Box color="bad">ERROR: Cannot Find Device</Box>
-          <Button
-            icon="search"
-            content="Search"
-            onClick={() => act('refresh_status')}
-          />
+          <Button icon="search" onClick={() => act('refresh_status')}>
+            Search
+          </Button>
         </>
       )}
     </Section>

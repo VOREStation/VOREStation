@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -195,22 +195,34 @@ const BodyScannerMainOccupant = (props) => {
           {stats[occupant.stat][1]}
         </LabeledList.Item>
         <LabeledList.Item label="Temperature">
-          <AnimatedNumber value={round(occupant.bodyTempC, 0)} />
+          <AnimatedNumber
+            value={occupant.bodyTempC}
+            format={(value) => toFixed(value)}
+          />
           &deg;C,&nbsp;
-          <AnimatedNumber value={round(occupant.bodyTempF, 0)} />
+          <AnimatedNumber
+            value={occupant.bodyTempF}
+            format={(value) => toFixed(value)}
+          />
           &deg;F
         </LabeledList.Item>
         <LabeledList.Item label="Blood Volume">
-          <AnimatedNumber value={round(occupant.blood.volume, 0)} />{' '}
+          <AnimatedNumber
+            value={occupant.blood.volume}
+            format={(value) => toFixed(value)}
+          />
           units&nbsp;(
-          <AnimatedNumber value={round(occupant.blood.percent, 0)} />
+          <AnimatedNumber
+            value={occupant.blood.percent}
+            format={(value) => toFixed(value)}
+          />
           %)
         </LabeledList.Item>
         {/* VOREStation Add */}
         <LabeledList.Item label="Weight">
-          {round(data.occupant.weight) +
+          {toFixed(data.occupant.weight) +
             'lbs, ' +
-            round(data.occupant.weight / 2.20463) +
+            toFixed(data.occupant.weight / 2.20463) +
             'kgs'}
         </LabeledList.Item>
         {/* VOREStation Add End */}
@@ -350,7 +362,7 @@ const BodyScannerMainDamageBar = (props) => {
       mb={!!props.marginBottom && '0.5rem'}
       ranges={damageRange}
     >
-      {round(props.value, 0)}
+      {toFixed(props.value)}
     </ProgressBar>
   );
 };
@@ -387,19 +399,19 @@ const BodyScannerMainOrgansExternal = (props) => {
                   {!!o.bruteLoss && (
                     <Box inline position="relative">
                       <Icon name="bone" />
-                      {round(o.bruteLoss, 0)}&nbsp;
+                      {toFixed(o.bruteLoss)}&nbsp;
                       <Tooltip position="top" content="Brute damage" />
                     </Box>
                   )}
                   {!!o.fireLoss && (
                     <Box inline position="relative">
                       <Icon name="fire" />
-                      {round(o.fireLoss, 0)}
+                      {toFixed(o.fireLoss)}
                       <Tooltip position="top" content="Burn damage" />
                     </Box>
                   )}
                 </Box>
-                <Box inline>{round(o.totalLoss, 0)}</Box>
+                <Box inline>{toFixed(o.totalLoss)}</Box>
               </ProgressBar>
             </Table.Cell>
             <Table.Cell textAlign="right" width="33%">
@@ -460,7 +472,7 @@ const BodyScannerMainOrgansInternal = (props) => {
                 mt={i > 0 && '0.5rem'}
                 ranges={damageRange}
               >
-                {round(o.damage, 0)}
+                {toFixed(o.damage)}
               </ProgressBar>
             </Table.Cell>
             <Table.Cell textAlign="right" width="33%">

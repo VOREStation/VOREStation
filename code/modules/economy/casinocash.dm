@@ -17,7 +17,7 @@
 		else
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 
-		user << "<span class='info'>You insert [I] into [src].</span>"
+		to_chat(user, span_info("You insert [I] into [src]."))
 		spawn_casinochips(round(I:worth/5), src.loc)
 		src.attack_hand(user)
 		qdel(I)
@@ -29,7 +29,7 @@
 		else
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 
-		user << "<span class='info'>You insert [I] into [src].</span>"
+		to_chat(user, span_info("You insert [I] into [src]."))
 		spawn_money(round(I:worth*5), src.loc)
 		src.attack_hand(user)
 		qdel(I)
@@ -64,7 +64,7 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(SC)
 			h_user.put_in_hands(SC)
-		user << "<span class='notice'>You combine the casino chips to a stack of [SC.worth] casino credits.</span>"
+		to_chat(user, span_notice("You combine the casino chips to a stack of [SC.worth] casino credits."))
 		qdel(src)
 
 /obj/item/weapon/spacecasinocash/update_icon()

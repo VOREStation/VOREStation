@@ -161,6 +161,7 @@ What is the naming convention for planes or layers?
 #define PLANE_CH_STATUS_OOC		24 //OOC status hud for spooks
 
 #define PLANE_MESONS			30 //Stuff seen with mesons, like open ceilings. This is 30 for downstreams.
+#define PLANE_JANHUD			31 //Stuff seen with janiHUD. Mostly highlight of dirt.
 
 #define PLANE_ADMIN2			33 //Purely for shenanigans (above lighting)
 

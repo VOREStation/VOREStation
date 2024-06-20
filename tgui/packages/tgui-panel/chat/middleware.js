@@ -170,7 +170,7 @@ export const chatMiddleware = (store) => {
       settings.interleaveColor,
     );
     // Load the chat once settings are loaded
-    if (!initialized && settings.initialized) {
+    if (!initialized && (settings.initialized || settings.firstLoad)) {
       initialized = true;
       setInterval(() => {
         saveChatToStorage(store);

@@ -33,9 +33,10 @@ const NTNetRelayContent = (props) => {
         <Button
           icon="power-off"
           selected={enabled}
-          content={'Relay ' + (enabled ? 'On' : 'Off')}
           onClick={() => act('toggle')}
-        />
+        >
+          {'Relay ' + (enabled ? 'On' : 'Off')}
+        </Button>
       }
     >
       <LabeledList>
@@ -43,11 +44,9 @@ const NTNetRelayContent = (props) => {
           {dos_overload} / {dos_capacity} GQ
         </LabeledList.Item>
         <LabeledList.Item label="Options">
-          <Button
-            icon="exclamation-triangle"
-            content="Purge network blacklist"
-            onClick={() => act('purge')}
-          />
+          <Button icon="exclamation-triangle" onClick={() => act('purge')}>
+            Purge network blacklist
+          </Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -80,11 +79,9 @@ const NTNetRelayCrash = (props) => {
         <b> CAUTION - Data loss may occur </b>
       </Box>
       <Box>
-        <Button
-          icon="exclamation-triangle"
-          content="Purge buffered traffic"
-          onClick={() => act('restart')}
-        />
+        <Button icon="exclamation-triangle" onClick={() => act('restart')}>
+          Purge buffered traffic
+        </Button>
       </Box>
     </FullscreenNotice>
   );

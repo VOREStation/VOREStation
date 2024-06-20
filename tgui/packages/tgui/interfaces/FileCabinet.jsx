@@ -21,9 +21,10 @@ export const FileCabinet = (props) => {
               key={item.ref}
               fluid
               icon="file"
-              content={item.name}
               onClick={() => act('retrieve', { ref: item.ref })}
-            />
+            >
+              {item.name}
+            </Button>
           ))}
         </Section>
       </Window.Content>

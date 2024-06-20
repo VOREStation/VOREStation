@@ -30,10 +30,11 @@ export const MuleBot = (props) => {
               buttons={
                 <Button
                   icon="eject"
-                  content="Unload Now"
                   disabled={!load}
                   onClick={() => act('unload')}
-                />
+                >
+                  Unload Now
+                </Button>
               }
             >
               {load ? load : 'None.'}
@@ -56,65 +57,53 @@ const MuleBotClosed = (props) => {
       buttons={
         <Button
           icon="power-off"
-          content={power ? 'On' : 'Off'}
           selected={power}
           disabled={locked && !issilicon}
           onClick={() => act('power')}
-        />
+        >
+          {power ? 'On' : 'Off'}
+        </Button>
       }
     >
       {locked && !issilicon ? (
         <Box color="bad">This interface is currently locked.</Box>
       ) : (
         <>
-          <Button
-            fluid
-            icon="stop"
-            content="Stop"
-            onClick={() => act('stop')}
-          />
-          <Button
-            fluid
-            icon="truck-monster"
-            content="Proceed"
-            onClick={() => act('go')}
-          />
-          <Button
-            fluid
-            icon="home"
-            content="Return Home"
-            onClick={() => act('home')}
-          />
+          <Button fluid icon="stop" onClick={() => act('stop')}>
+            Stop
+          </Button>
+          <Button fluid icon="truck-monster" onClick={() => act('go')}>
+            Proceed
+          </Button>
+          <Button fluid icon="home" onClick={() => act('home')}>
+            Return Home
+          </Button>
           <Button
             fluid
             icon="map-marker-alt"
-            content="Set Destination"
             onClick={() => act('destination')}
-          />
-          <Button
-            fluid
-            icon="cog"
-            content="Set Home"
-            onClick={() => act('sethome')}
-          />
+          >
+            Set Destination
+          </Button>
+          <Button fluid icon="cog" onClick={() => act('sethome')}>
+            Set Home
+          </Button>
           <Button
             fluid
             icon="home"
             selected={auto_return}
-            content={
-              'Auto Return Home: ' + (auto_return ? 'Enabled' : 'Disabled')
-            }
             onClick={() => act('autoret')}
-          />
+          >
+            {'Auto Return Home: ' + (auto_return ? 'Enabled' : 'Disabled')}
+          </Button>
           <Button
             fluid
             icon="biking"
             selected={!crates_only}
-            content={
-              'Non-standard Cargo: ' + (crates_only ? 'Disabled' : 'Enabled')
-            }
             onClick={() => act('cargotypes')}
-          />
+          >
+            {'Non-standard Cargo: ' + (crates_only ? 'Disabled' : 'Enabled')}
+          </Button>
         </>
       )}
     </Section>
@@ -131,9 +120,10 @@ const MuleBotOpen = (props) => {
         fluid
         icon="skull-crossbones"
         color={safety ? 'green' : 'red'}
-        content={'Safety: ' + (safety ? 'Engaged' : 'Disengaged (DANGER)')}
         onClick={() => act('safety')}
-      />
+      >
+        {'Safety: ' + (safety ? 'Engaged' : 'Disengaged (DANGER)')}
+      </Button>
     </Section>
   );
 };

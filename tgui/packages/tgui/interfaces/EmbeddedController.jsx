@@ -173,15 +173,17 @@ const StandardControls = (props) => {
         <Button
           disabled={data.airlock_disabled}
           icon="arrow-left"
-          content="Cycle to Exterior"
           onClick={() => act('cycle_ext')}
-        />
+        >
+          Cycle to Exterior
+        </Button>
         <Button
           disabled={data.airlock_disabled}
           icon="arrow-right"
-          content="Cycle to Interior"
           onClick={() => act('cycle_int')}
-        />
+        >
+          Cycle to Interior
+        </Button>
       </Box>
       <Box>
         <Button.Confirm
@@ -189,17 +191,19 @@ const StandardControls = (props) => {
           color={externalForceSafe ? '' : 'bad'}
           icon="exclamation-triangle"
           confirmIcon="exclamation-triangle"
-          content="Force Exterior Door"
           onClick={() => act('force_ext')}
-        />
+        >
+          Force Exterior Door
+        </Button.Confirm>
         <Button.Confirm
           disabled={data.airlock_disabled}
           color={internalForceSafe ? '' : 'bad'}
           icon="exclamation-triangle"
           confirmIcon="exclamation-triangle"
-          content="Force Interior Door"
           onClick={() => act('force_int')}
-        />
+        >
+          Force Interior Door
+        </Button.Confirm>
       </Box>
     </>
   );
@@ -268,17 +272,19 @@ const EscapePodControls = (props) => {
       <Button
         disabled={!data.override_enabled}
         icon="exclamation-triangle"
-        content="Force Exterior Door"
         color={data.docking_status !== 'docked' ? 'bad' : ''}
         onClick={() => act('force_door')}
-      />
+      >
+        Force Exterior Door
+      </Button>
       <Button
         selected={data.override_enabled}
         color={data.docking_status !== 'docked' ? 'bad' : 'average'}
         icon="exclamation-triangle"
-        content="Override"
         onClick={() => act('toggle_override')}
-      />
+      >
+        Override
+      </Button>
     </Box>
   );
 };
@@ -363,21 +369,22 @@ const AirlockConsoleAdvanced = (props) => {
       <Section title="Controls">
         <StandardControls />
         <Box>
-          <Button icon="sync" content="Purge" onClick={() => act('purge')} />
-          <Button
-            icon="lock-open"
-            content="Secure"
-            onClick={() => act('secure')}
-          />
+          <Button icon="sync" onClick={() => act('purge')}>
+            Purge
+          </Button>
+          <Button icon="lock-open" onClick={() => act('secure')}>
+            Secure
+          </Button>
         </Box>
         <Box>
           <Button
             disabled={!data.processing}
             icon="ban"
             color="bad"
-            content="Abort"
             onClick={() => act('abort')}
-          />
+          >
+            Abort
+          </Button>
         </Box>
       </Section>
     </>
@@ -421,9 +428,10 @@ const AirlockConsoleSimple = (props) => {
             disabled={!data.processing}
             icon="ban"
             color="bad"
-            content="Abort"
             onClick={() => act('abort')}
-          />
+          >
+            Abort
+          </Button>
         </Box>
       </Section>
     </>
@@ -477,9 +485,10 @@ const AirlockConsolePhoron = (props) => {
             disabled={!data.processing}
             icon="ban"
             color="bad"
-            content="Abort"
             onClick={() => act('abort')}
-          />
+          >
+            Abort
+          </Button>
         </Box>
       </Section>
     </>
@@ -521,9 +530,10 @@ const AirlockConsoleDocking = (props) => {
             <Button
               icon="exclamation-triangle"
               color={data.override_enabled ? 'red' : ''}
-              content="Override"
               onClick={() => act('toggle_override')}
-            />
+            >
+              Override
+            </Button>
           ) : null
         }
       >
@@ -537,9 +547,10 @@ const AirlockConsoleDocking = (props) => {
             disabled={!data.processing}
             icon="ban"
             color="bad"
-            content="Abort"
             onClick={() => act('abort')}
-          />
+          >
+            Abort
+          </Button>
         </Box>
       </Section>
     </>
@@ -574,15 +585,17 @@ const DockingConsoleSimple = (props) => {
           <Button
             icon="exclamation-triangle"
             disabled={!data.override_enabled}
-            content="Force exterior door"
             onClick={() => act('force_door')}
-          />
+          >
+            Force exterior door
+          </Button>
           <Button
             icon="exclamation-triangle"
             color={data.override_enabled ? 'red' : ''}
-            content="Override"
             onClick={() => act('toggle_override')}
-          />
+          >
+            Override
+          </Button>
         </>
       }
     >
@@ -660,19 +673,21 @@ const DoorAccessConsole = (props) => {
           {/* Interior Button */}
           <Button
             icon={interiorOpen ? 'arrow-left' : 'exclamation-triangle'}
-            content={interiorOpen ? 'Cycle To Exterior' : 'Lock Exterior Door'}
             onClick={() => {
               act(interiorOpen ? 'cycle_ext_door' : 'force_ext');
             }}
-          />
+          >
+            {interiorOpen ? 'Cycle To Exterior' : 'Lock Exterior Door'}
+          </Button>
           {/* Exterior Button */}
           <Button
             icon={exteriorOpen ? 'arrow-right' : 'exclamation-triangle'}
-            content={exteriorOpen ? 'Cycle To Interior' : 'Lock Interior Door'}
             onClick={() => {
               act(exteriorOpen ? 'cycle_int_door' : 'force_int');
             }}
-          />
+          >
+            {exteriorOpen ? 'Cycle To Interior' : 'Lock Interior Door'}
+          </Button>
         </>
       }
     >
@@ -705,16 +720,18 @@ const EscapePodConsole = (props) => {
             icon="exclamation-triangle"
             disabled={data.armed}
             color={data.armed ? 'bad' : 'average'}
-            content="ARM"
             onClick={() => act('manual_arm')}
-          />
+          >
+            ARM
+          </Button>
           <Button
             icon="exclamation-triangle"
             disabled={!data.can_force}
             color="bad"
-            content="MANUAL EJECT"
             onClick={() => act('force_launch')}
-          />
+          >
+            MANUAL EJECT
+          </Button>
         </Box>
       </Section>
     </>

@@ -32,14 +32,15 @@ export const StationAlertConsoleContent = (props) => {
                   <Button
                     key={camera.name}
                     disabled={camera.deact}
-                    content={camera.name + (camera.deact ? ' (deactived)' : '')}
                     icon="video"
                     onClick={() =>
                       act('switchTo', {
                         camera: camera.camera,
                       })
                     }
-                  />
+                  >
+                    {camera.name + (camera.deact ? ' (deactived)' : '')}
+                  </Button>
                 ))}
               </Section>
             );

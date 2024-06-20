@@ -6,7 +6,6 @@
 // 0.95 is 14 ticks.
 #define TECHNOMANCER_INSTABILITY_MIN_DECAY			0.1 	// Minimum removed every Life() tick, always.
 #define TECHNOMANCER_INSTABILITY_PRECISION			0.1 	// Instability is rounded to this.
-#define TECHNOMANCER_INSTABILITY_MIN_GLOW			10		// When above this number, the entity starts glowing, affecting others.
 
 
 /mob/living
@@ -288,3 +287,6 @@
 			to_chat(src, "<span class='cult'><font size='4'>The purple glow makes you feel strange...</font></span>")
 	adjust_instability(amount)
 
+#undef TECHNOMANCER_INSTABILITY_DECAY
+#undef TECHNOMANCER_INSTABILITY_MIN_DECAY
+#undef TECHNOMANCER_INSTABILITY_PRECISION

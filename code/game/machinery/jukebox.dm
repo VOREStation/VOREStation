@@ -3,11 +3,6 @@
 // Rewritten by Leshana from existing Polaris code, merging in D2K5 and N3X15 work
 //
 
-#define JUKEMODE_NEXT        1 // Advance to next song in the track list
-#define JUKEMODE_RANDOM      2 // Not shuffle, randomly picks next each time.
-#define JUKEMODE_REPEAT_SONG 3 // Play the same song over and over
-#define JUKEMODE_PLAY_ONCE   4 // Play, then stop.
-
 /obj/machinery/media/jukebox
 	name = "space jukebox"
 	desc = "Filled with songs both past and present!"
@@ -195,6 +190,7 @@
 	for(var/datum/track/T in getTracksList())
 		tgui_tracks.Add(list(T.toTguiList()))
 	data["tracks"] = tgui_tracks
+	data["admin"] = is_admin(user)
 
 	return data
 
@@ -243,6 +239,13 @@
 			else
 				StartPlaying()
 			return TRUE
+		if("add_new_track")
+			SSmedia_tracks.add_track(usr, params["url"], params["title"], text2num(params["duration"]) * 10, params["artist"], params["genre"], text2num(params["secret"]), text2num(params["lobby"]))
+		if("remove_new_track")
+			var/datum/track/track_to_remove = locate(params["ref"]) in getTracksList()
+			if(track_to_remove == current_track && playing)
+				StopPlaying()
+			SSmedia_tracks.remove_track(usr, track_to_remove)
 
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)

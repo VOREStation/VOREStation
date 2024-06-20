@@ -24,7 +24,7 @@
 	title = "Head Scientist"
 
 /datum/job/rd/get_request_reasons()
-	return list("Repairs needed", "Training crew")
+	return list("Repairs needed", "Training crew", "Assembling expedition team")
 
 
 /datum/job/scientist
@@ -67,6 +67,8 @@
 	title_blurb = "A Circuit Programmer is a Scientist whose expertise is working with integrated circuits. They are familar with the workings and programming of those devices. \
 				   They work to create various useful devices using the capabilities of integrated circuitry."
 
+/datum/job/scientist/get_request_reasons()
+	return list("Assembling expedition team")
 
 /datum/job/xenobiologist
 	spawn_positions = 3

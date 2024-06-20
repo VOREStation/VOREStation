@@ -98,10 +98,9 @@ export const Canvas = (props) => {
           />
           <Box>
             {!data.finalized && (
-              <Button.Confirm
-                onClick={() => act('finalize')}
-                content="Finalize"
-              />
+              <Button.Confirm onClick={() => act('finalize')}>
+                Finalize
+              </Button.Confirm>
             )}
             &nbsp;{data.name}
           </Box>

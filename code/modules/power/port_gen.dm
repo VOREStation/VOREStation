@@ -417,3 +417,7 @@
 	//no special effects, but the explosion is pretty big (same as a supermatter shard).
 	explosion(src.loc, 3, 6, 12, 16, 1)
 	qdel(src)
+
+
+#undef TEMPERATURE_DIVISOR
+#undef TEMPERATURE_CHANGE_MAX

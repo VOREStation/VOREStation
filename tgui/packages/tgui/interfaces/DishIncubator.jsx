@@ -37,22 +37,16 @@ export const DishIncubator = (props) => {
         <Section
           title="Environmental Conditions"
           buttons={
-            <Button
-              icon="power-off"
-              selected={on}
-              content={on ? 'On' : 'Off'}
-              onClick={() => act('power')}
-            />
+            <Button icon="power-off" selected={on} onClick={() => act('power')}>
+              {on ? 'On' : 'Off'}
+            </Button>
           }
         >
           <Flex spacing={1} mb={1}>
             <Flex.Item grow={1}>
-              <Button
-                fluid
-                icon="radiation"
-                content="Add Radiation"
-                onClick={() => act('rad')}
-              />
+              <Button fluid icon="radiation" onClick={() => act('rad')}>
+                Add Radiation
+              </Button>
             </Flex.Item>
             <Flex.Item grow={1}>
               <Button.Confirm
@@ -60,10 +54,11 @@ export const DishIncubator = (props) => {
                 color="red"
                 icon="trash"
                 confirmIcon="trash"
-                content="Flush System"
                 disabled={!system_in_use}
                 onClick={() => act('flush')}
-              />
+              >
+                Flush System
+              </Button.Confirm>
             </Flex.Item>
           </Flex>
           <LabeledList>
@@ -111,16 +106,18 @@ export const DishIncubator = (props) => {
             <>
               <Button
                 icon="eject"
-                content={'Eject ' + (can_breed_virus ? 'Vial' : 'Chemicals')}
                 disabled={!chemicals_inserted}
                 onClick={() => act('ejectchem')}
-              />
+              >
+                {'Eject ' + (can_breed_virus ? 'Vial' : 'Chemicals')}
+              </Button>
               <Button
                 icon="virus"
-                content="Breed Virus"
                 disabled={!can_breed_virus}
                 onClick={() => act('virus')}
-              />
+              >
+                Breed Virus
+              </Button>
             </>
           }
         >
@@ -160,10 +157,11 @@ export const DishIncubator = (props) => {
           buttons={
             <Button
               icon="eject"
-              content="Eject Dish"
               disabled={!dish_inserted}
               onClick={() => act('ejectdish')}
-            />
+            >
+              Eject Dish
+            </Button>
           }
         >
           {dish_inserted ? (

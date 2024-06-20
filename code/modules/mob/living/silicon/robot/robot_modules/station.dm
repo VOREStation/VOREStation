@@ -514,6 +514,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/mop(src)
 	src.modules += new /obj/item/pupscrubber(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/borg/sight/janitor(src)
 	var/obj/item/weapon/reagent_containers/spray/LS = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag += LS
 	LS.reagents.add_reagent("lube", 250)

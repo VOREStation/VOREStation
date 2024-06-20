@@ -20,10 +20,11 @@ export const AtmosFilter = (props) => {
             <LabeledList.Item label="Power">
               <Button
                 icon={data.on ? 'power-off' : 'times'}
-                content={data.on ? 'On' : 'Off'}
                 selected={data.on}
                 onClick={() => act('power')}
-              />
+              >
+                {data.on ? 'On' : 'Off'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Transfer Rate">
               <Box inline mr={1}>
@@ -48,27 +49,29 @@ export const AtmosFilter = (props) => {
               <Button
                 ml={1}
                 icon="plus"
-                content="Max"
                 disabled={data.rate === data.max_rate}
                 onClick={() =>
                   act('rate', {
                     rate: 'max',
                   })
                 }
-              />
+              >
+                Max
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Filter">
               {filterTypes.map((filter) => (
                 <Button
                   key={filter.name}
                   selected={filter.selected}
-                  content={filter.name}
                   onClick={() =>
                     act('filter', {
                       filterset: filter.f_type,
                     })
                   }
-                />
+                >
+                  {filter.name}
+                </Button>
               ))}
             </LabeledList.Item>
           </LabeledList>

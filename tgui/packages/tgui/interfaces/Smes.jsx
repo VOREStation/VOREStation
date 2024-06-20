@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -49,8 +49,12 @@ export const Smes = (props) => {
               bad: [-Infinity, 0.15],
             }}
           >
-            {round(charge / (1000 * 60), 1)} kWh /
-            {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
+            {toFixed(charge / (1000 * 60), 1) +
+              ' kWh / ' +
+              toFixed(capacity / (1000 * 60)) +
+              ' kWh (' +
+              capacityPercent +
+              '%)'}
           </ProgressBar>
         </Section>
         <Section title="Input">

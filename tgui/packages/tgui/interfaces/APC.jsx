@@ -104,12 +104,13 @@ const ApcContent = (props) => {
             buttons={
               <Button
                 icon={data.isOperating ? 'power-off' : 'times'}
-                content={data.isOperating ? 'On' : 'Off'}
                 selected={data.isOperating && !locked}
                 color={data.isOperating ? '' : 'bad'}
                 disabled={locked}
                 onClick={() => act('breaker')}
-              />
+              >
+                {data.isOperating ? 'On' : 'Off'}
+              </Button>
             }
           >
             [ {externalPowerStatus.externalPowerText} ]
@@ -123,11 +124,12 @@ const ApcContent = (props) => {
             buttons={
               <Button
                 icon={data.chargeMode ? 'sync' : 'times'}
-                content={data.chargeMode ? 'Auto' : 'Off'}
                 selected={data.chargeMode}
                 disabled={locked}
                 onClick={() => act('charge')}
-              />
+              >
+                {data.chargeMode ? 'Auto' : 'Off'}
+              </Button>
             }
           >
             [ {chargingStatus.chargingText} ]
@@ -153,28 +155,31 @@ const ApcContent = (props) => {
                     </Box>
                     <Button
                       icon="sync"
-                      content="Auto"
                       selected={
                         !locked &&
                         (channel.status === 1 || channel.status === 3)
                       }
                       disabled={locked}
                       onClick={() => act('channel', topicParams.auto)}
-                    />
+                    >
+                      Auto
+                    </Button>
                     <Button
                       icon="power-off"
-                      content="On"
                       selected={!locked && channel.status === 2}
                       disabled={locked}
                       onClick={() => act('channel', topicParams.on)}
-                    />
+                    >
+                      On
+                    </Button>
                     <Button
                       icon="times"
-                      content="Off"
                       selected={!locked && channel.status === 0}
                       disabled={locked}
                       onClick={() => act('channel', topicParams.off)}
-                    />
+                    >
+                      Off
+                    </Button>
                   </>
                 }
               >
@@ -197,11 +202,9 @@ const ApcContent = (props) => {
         title="Misc"
         buttons={
           !!data.siliconUser && (
-            <Button
-              icon="lightbulb-o"
-              content="Overload"
-              onClick={() => act('overload')}
-            />
+            <Button icon="lightbulb-o" onClick={() => act('overload')}>
+              Overload
+            </Button>
           )
         }
       >
@@ -211,11 +214,12 @@ const ApcContent = (props) => {
             buttons={
               <Button
                 icon={data.coverLocked ? 'lock' : 'unlock'}
-                content={data.coverLocked ? 'Engaged' : 'Disengaged'}
                 selected={data.coverLocked}
                 disabled={locked}
                 onClick={() => act('cover')}
-              />
+              >
+                {data.coverLocked ? 'Engaged' : 'Disengaged'}
+              </Button>
             }
           />
           <LabeledList.Item
@@ -224,34 +228,37 @@ const ApcContent = (props) => {
               <>
                 <Button
                   icon="lightbulb-o"
-                  content="Disabled"
                   selected={data.nightshiftSetting === 2}
                   onClick={() =>
                     act('nightshift', {
                       nightshift: 2,
                     })
                   }
-                />
+                >
+                  Disabled
+                </Button>
                 <Button
                   icon="lightbulb-o"
-                  content="Automatic"
                   selected={data.nightshiftSetting === 1}
                   onClick={() =>
                     act('nightshift', {
                       nightshift: 1,
                     })
                   }
-                />
+                >
+                  Automatic
+                </Button>
                 <Button
                   icon="lightbulb-o"
-                  content="Enabled"
                   selected={data.nightshiftSetting === 3}
                   onClick={() =>
                     act('nightshift', {
                       nightshift: 3,
                     })
                   }
-                />
+                >
+                  Enabled
+                </Button>
               </>
             }
           />
@@ -260,10 +267,11 @@ const ApcContent = (props) => {
             buttons={
               <Button
                 icon="lightbulb-o"
-                content={data.emergencyLights ? 'Enabled' : 'Disabled'}
                 selected={data.emergencyLights}
                 onClick={() => act('emergency_lighting')}
-              />
+              >
+                {data.emergencyLights ? 'Enabled' : 'Disabled'}
+              </Button>
             }
           />
         </LabeledList>
@@ -294,12 +302,9 @@ const ApcFailure = (props) => {
   const { data, act } = useBackend();
 
   let rebootOptions = (
-    <Button
-      icon="repeat"
-      content="Restart Now"
-      color="good"
-      onClick={() => act('reboot')}
-    />
+    <Button icon="repeat" color="good" onClick={() => act('reboot')}>
+      Restart Now
+    </Button>
   );
 
   if (data.locked && !data.siliconUser) {

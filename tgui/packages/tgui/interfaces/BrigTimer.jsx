@@ -8,7 +8,7 @@ import { Window } from '../layouts';
 export const BrigTimer = (props) => {
   const { act, data } = useBackend();
   return (
-    <Window width={300} height={138}>
+    <Window width={400} height={138}>
       <Window.Content scrollable>
         <Section
           title="Cell Timer"
@@ -16,17 +16,19 @@ export const BrigTimer = (props) => {
             <>
               <Button
                 icon="clock-o"
-                content={data.timing ? 'Stop' : 'Start'}
                 selected={data.timing}
                 onClick={() => act(data.timing ? 'stop' : 'start')}
-              />
+              >
+                {data.timing ? 'Stop' : 'Start'}
+              </Button>
               {(data.flash_found && (
                 <Button
                   icon="lightbulb-o"
-                  content={data.flash_charging ? 'Recharging' : 'Flash'}
                   disabled={data.flash_charging}
                   onClick={() => act('flash')}
-                />
+                >
+                  {data.flash_charging ? 'Recharging' : 'Flash'}
+                </Button>
               )) ||
                 null}
             </>
@@ -38,7 +40,7 @@ export const BrigTimer = (props) => {
             value={data.time_left / 10}
             minValue={0}
             maxValue={data.max_time_left / 10}
-            format={(val) => formatTime(round(val))}
+            format={(val) => formatTime(round(val * 10))}
             onDrag={(e, val) => act('time', { time: val })}
           />
           <Flex mt={1}>
@@ -46,25 +48,28 @@ export const BrigTimer = (props) => {
               <Button
                 fluid
                 icon="hourglass-start"
-                content={'Add ' + formatTime(data.preset_short / 10)}
                 onClick={() => act('preset', { preset: 'short' })}
-              />
+              >
+                {'Add ' + formatTime(data.preset_short)}
+              </Button>
             </Flex.Item>
             <Flex.Item grow={1}>
               <Button
                 fluid
                 icon="hourglass-start"
-                content={'Add ' + formatTime(data.preset_medium / 10)}
                 onClick={() => act('preset', { preset: 'medium' })}
-              />
+              >
+                {'Add ' + formatTime(data.preset_medium)}
+              </Button>
             </Flex.Item>
             <Flex.Item grow={1}>
               <Button
                 fluid
                 icon="hourglass-start"
-                content={'Add ' + formatTime(data.preset_long / 10)}
                 onClick={() => act('preset', { preset: 'long' })}
-              />
+              >
+                {'Add ' + formatTime(data.preset_long)}
+              </Button>
             </Flex.Item>
           </Flex>
         </Section>

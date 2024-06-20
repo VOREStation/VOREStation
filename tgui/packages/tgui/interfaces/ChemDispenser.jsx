@@ -30,14 +30,15 @@ const ChemDispenserSettings = (properties) => {
               key={i}
               textAlign="center"
               selected={amount === a}
-              content={a + 'u'}
               m="0"
               onClick={() =>
                 act('amount', {
                   amount: a,
                 })
               }
-            />
+            >
+              {a + 'u'}
+            </Button>
           ))}
         </LabeledList.Item>
         <LabeledList.Item label="Custom Amount">
@@ -79,13 +80,14 @@ const ChemDispenserChemicals = (properties) => {
               width="100%"
               height="100%"
               align="flex-start"
-              content={c.title + ' (' + c.amount + ')'}
               onClick={() =>
                 act('dispense', {
                   reagent: c.id,
                 })
               }
-            />
+            >
+              {c.title + ' (' + c.amount + ')'}
+            </Button>
           </Flex.Item>
         ))}
         {flexFillers.map((_, i) => (
@@ -118,10 +120,11 @@ const ChemDispenserBeaker = (properties) => {
           )}
           <Button
             icon="eject"
-            content="Eject"
             disabled={!isBeakerLoaded}
             onClick={() => act('ejectBeaker')}
-          />
+          >
+            Eject
+          </Button>
         </Box>
       }
     >
@@ -131,7 +134,6 @@ const ChemDispenserBeaker = (properties) => {
         buttons={(chemical) => (
           <>
             <Button
-              content="Isolate"
               icon="compress-arrows-alt"
               onClick={() =>
                 act('remove', {
@@ -139,28 +141,32 @@ const ChemDispenserBeaker = (properties) => {
                   amount: -1,
                 })
               }
-            />
+            >
+              Isolate
+            </Button>
             {removeAmounts.map((a, i) => (
               <Button
                 key={i}
-                content={a}
                 onClick={() =>
                   act('remove', {
                     reagent: chemical.id,
                     amount: a,
                   })
                 }
-              />
+              >
+                {a}
+              </Button>
             ))}
             <Button
-              content="ALL"
               onClick={() =>
                 act('remove', {
                   reagent: chemical.id,
                   amount: chemical.volume,
                 })
               }
-            />
+            >
+              ALL
+            </Button>
           </>
         )}
       />

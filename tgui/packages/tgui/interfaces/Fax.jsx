@@ -70,19 +70,14 @@ export const FaxContent = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item label="Sending To">
-              <Button
-                icon="map-marker-alt"
-                content={destination}
-                onClick={() => act('dept')}
-              />
+              <Button icon="map-marker-alt" onClick={() => act('dept')}>
+                {destination}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
-          <Button
-            icon="share-square"
-            onClick={() => act('send')}
-            content="Send"
-            fluid
-          />
+          <Button icon="share-square" onClick={() => act('send')} fluid>
+            Send
+          </Button>
         </Box>
       )) || <Box mt={1}>Please insert item to transmit.</Box>}
       <AutomatedStaffRequest />
@@ -101,12 +96,9 @@ const RemoveItem = (props) => {
 
   return (
     <Box>
-      <Button
-        fluid
-        icon="eject"
-        onClick={() => act('remove')}
-        content="Remove Item"
-      />
+      <Button fluid icon="eject" onClick={() => act('remove')}>
+        Remove Item
+      </Button>
     </Box>
   );
 };
@@ -137,9 +129,10 @@ const AutomatedStaffRequest = (props) => {
           <Button
             icon="share-square"
             onClick={() => act('send_automated_staff_request')}
-            content="Send Automated Staff Request"
             fluid
-          />
+          >
+            Send Automated Staff Request
+          </Button>
         </Box>
       </Box>
     );

@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 import { capitalize } from 'common/string';
 import { useState } from 'react';
 
@@ -141,8 +141,12 @@ const SMESItem = (props) => {
                 bad: [-Infinity, 0.15],
               }}
             >
-              {round(charge / (1000 * 60), 1)} kWh /{' '}
-              {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
+              {toFixed(charge / (1000 * 60), 1) +
+                'kWh / ' +
+                toFixed(capacity / (1000 * 60)) +
+                'kWh (' +
+                capacityPercent +
+                '%)'}
             </ProgressBar>
           </Stack.Item>
         </Stack>
@@ -325,7 +329,6 @@ const RCONBreakerList = (props) => {
               buttons={
                 <Button
                   icon="power-off"
-                  content={breaker.enabled ? 'Enabled' : 'Disabled'}
                   selected={breaker.enabled}
                   color={breaker.enabled ? null : 'bad'}
                   onClick={() =>
@@ -333,7 +336,9 @@ const RCONBreakerList = (props) => {
                       breaker: breaker.RCON_tag,
                     })
                   }
-                />
+                >
+                  {breaker.enabled ? 'Enabled' : 'Disabled'}
+                </Button>
               }
             />
           ))

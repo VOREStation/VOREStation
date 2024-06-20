@@ -40,31 +40,31 @@ export const GasPump = (props) => {
         <Section
           title="Controls"
           buttons={
-            <Button
-              icon="power-off"
-              content={on ? 'On' : 'Off'}
-              selected={on}
-              onClick={() => act('power')}
-            />
+            <Button icon="power-off" selected={on} onClick={() => act('power')}>
+              {on ? 'On' : 'Off'}
+            </Button>
           }
         >
           <LabeledControls>
             <LabeledControls.Item>
               <Button
                 icon="compress-arrows-alt"
-                content="MIN"
                 onClick={() => act('set_press', { press: 'min' })}
-              />
+              >
+                MIN
+              </Button>
               <Button
                 icon="expand-arrows-alt"
-                content="MAX"
                 onClick={() => act('set_press', { press: 'max' })}
-              />
+              >
+                MAX
+              </Button>
               <Button
                 icon="wrench"
-                content="SET"
                 onClick={() => act('set_press', { press: 'set' })}
-              />
+              >
+                SET
+              </Button>
             </LabeledControls.Item>
             <LabeledControls.Item label="Desired Output Pressure">
               {pressure_set / 100} kPa

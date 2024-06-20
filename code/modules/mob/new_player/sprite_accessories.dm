@@ -668,6 +668,21 @@
 	icon_state = "hair_glossy"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/gloomyshort
+	name = "Gloomy Bangs, Short"
+	icon_state = "hair_gloomy_short"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/gloomymedium
+	name = "Gloomy Bangs, Medium"
+	icon_state = "hair_gloomy_medium"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/gloomylong
+	name = "Gloomy Bangs, Long"
+	icon_state = "hair_gloomy_long"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/halfbang
 	name = "Half-banged Hair"
 	icon_state = "hair_halfbang"
