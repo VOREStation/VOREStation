@@ -214,7 +214,7 @@
 /datum/reagent/paralysis_toxin
 	name = "Tetrodotoxin"
 	id = "paralysistoxin"
-	description = "A commonly found, potent"
+	description = "A potent toxin commonly found in a plethora of species. When exposed to the toxin, causes extreme, paralysis for a prolonged period, with only essential functions of the body being unhindered. Commonly used by covert operatives and used as a crowd control tool."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#37007f"
@@ -229,7 +229,7 @@
 /datum/reagent/pain_enzyme
 	name = "Pain Enzyme"
 	id = "painenzyme"
-	description = "Some sort of organic painkiller."
+	description = "An enzyme found in a variety of species. When exposed to the toxin, will cause severe, agonizing pain. The effects can last for hours depending on the dose. Only known cure is an equally strong painkiller or dialysis."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#04b8fa" //Light blue in honor of Perry.
