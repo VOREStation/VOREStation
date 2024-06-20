@@ -1402,8 +1402,9 @@ const VoreSelectedBellyVisuals = (props) => {
                 }
                 icon={affects_voresprite ? 'toggle-on' : 'toggle-off'}
                 selected={affects_voresprite}
-                content={affects_voresprite ? 'Yes' : 'No'}
-              />
+              >
+                {affects_voresprite ? 'Yes' : 'No'}
+              </Button>
             </LabeledList.Item>
             {affects_voresprite ? (
               <span>
@@ -1427,8 +1428,9 @@ const VoreSelectedBellyVisuals = (props) => {
                     }
                     icon={absorbed_voresprite ? 'toggle-on' : 'toggle-off'}
                     selected={absorbed_voresprite}
-                    content={absorbed_voresprite ? 'Yes' : 'No'}
-                  />
+                  >
+                    {absorbed_voresprite ? 'Yes' : 'No'}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Absorbed Multiplier">
                   <Button
@@ -1437,8 +1439,9 @@ const VoreSelectedBellyVisuals = (props) => {
                         attribute: 'b_absorbed_multiplier',
                       })
                     }
-                    content={absorbed_multiplier}
-                  />
+                  >
+                    {absorbed_multiplier}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Count items for vore sprites">
                   <Button
@@ -1449,16 +1452,18 @@ const VoreSelectedBellyVisuals = (props) => {
                     }
                     icon={item_voresprite ? 'toggle-on' : 'toggle-off'}
                     selected={item_voresprite}
-                    content={item_voresprite ? 'Yes' : 'No'}
-                  />
+                  >
+                    {item_voresprite ? 'Yes' : 'No'}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Items Multiplier">
                   <Button
                     onClick={() =>
                       act('set_attribute', { attribute: 'b_item_multiplier' })
                     }
-                    content={item_multiplier}
-                  />
+                  >
+                    {item_multiplier}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Prey health affects vore sprites">
                   <Button
@@ -1469,8 +1474,9 @@ const VoreSelectedBellyVisuals = (props) => {
                     }
                     icon={health_voresprite ? 'toggle-on' : 'toggle-off'}
                     selected={health_voresprite}
-                    content={health_voresprite ? 'Yes' : 'No'}
-                  />
+                  >
+                    {health_voresprite ? 'Yes' : 'No'}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Animation when prey resist">
                   <Button
@@ -1479,8 +1485,9 @@ const VoreSelectedBellyVisuals = (props) => {
                     }
                     icon={resist_animation ? 'toggle-on' : 'toggle-off'}
                     selected={resist_animation}
-                    content={resist_animation ? 'Yes' : 'No'}
-                  />
+                  >
+                    {resist_animation ? 'Yes' : 'No'}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item label="Vore Sprite Size Factor">
                   <Button
@@ -1489,8 +1496,9 @@ const VoreSelectedBellyVisuals = (props) => {
                         attribute: 'b_size_factor_sprites',
                       })
                     }
-                    content={voresprite_size_factor}
-                  />
+                  >
+                    {voresprite_size_factor}
+                  </Button>
                 </LabeledList.Item>
                 {belly_sprite_option_shown ? (
                   <LabeledList.Item label="Belly Sprite to affect">
@@ -1500,8 +1508,9 @@ const VoreSelectedBellyVisuals = (props) => {
                           attribute: 'b_belly_sprite_to_affect',
                         })
                       }
-                      content={belly_sprite_to_affect}
-                    />
+                    >
+                      {belly_sprite_to_affect}
+                    </Button>
                   </LabeledList.Item>
                 ) : (
                   ''
@@ -1516,8 +1525,9 @@ const VoreSelectedBellyVisuals = (props) => {
                             attribute: 'b_undergarment_choice',
                           })
                         }
-                        content={undergarment_chosen}
-                      />
+                      >
+                        {undergarment_chosen}
+                      </Button>
                     </LabeledList.Item>
                     <LabeledList.Item label="Undergarment if none equipped">
                       <Button
@@ -1526,8 +1536,9 @@ const VoreSelectedBellyVisuals = (props) => {
                             attribute: 'b_undergarment_if_none',
                           })
                         }
-                        content={undergarment_if_none}
-                      />
+                      >
+                        {undergarment_if_none}
+                      </Button>
                     </LabeledList.Item>
                   </div>
                 ) : (
@@ -1542,8 +1553,9 @@ const VoreSelectedBellyVisuals = (props) => {
                           attribute: 'b_tail_to_change_to',
                         })
                       }
-                      content={tail_to_change_to}
-                    />
+                    >
+                      {tail_to_change_to}
+                    </Button>
                   </LabeledList.Item>
                 ) : (
                   ''
@@ -2440,11 +2452,9 @@ const VoreUserPreferences = (props) => {
             <VoreUserPreferenceItem spec={preferences.examine_weight} />
           </Flex.Item>
           <Flex.Item basis="50%">
-            <Button
-              fluid
-              content="Vore Sprite Color"
-              onClick={() => act('set_vs_color')}
-            />
+            <Button fluid onClick={() => act('set_vs_color')}>
+              Vore Sprite Color
+            </Button>
           </Flex.Item>
         </Flex>
       </Section>
