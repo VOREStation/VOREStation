@@ -12,6 +12,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_cracker.dmi',
 		)
 	item_state = "blue"
+	var/rigged = 0 //So that they can be rigged by varedits to go one way or the other. positive values mean holder always wins, negative values mean target always wins.
 	var/list/prizes = list("shrinking","growing","drugged","invisibility","knocked over","teleport","wealth")
 	var/list/jokes = list(
 						"When is a boat just like snow? When it’s adrift.",
@@ -53,12 +54,21 @@
 	var/joke = pick(jokes)
 	var/mob/living/carbon/human/winner
 	var/mob/living/carbon/human/loser
-	if(prob(50))
-		winner = user
-		loser = target
+	if(!rigged)
+		if(prob(50))
+			winner = user
+			loser = target
+		else
+			winner = target
+			loser = user
 	else
-		winner = target
-		loser = user
+		if(rigged > 0)
+			winner = user
+			loser = target
+		else
+			winner = target
+			loser = user
+
 	var/spawnloc = get_turf(winner)
 
 	winner.visible_message("<span class='notice'>\The [winner] wins the cracker prize!</span>","<span class='notice'>You win the cracker prize!</span>")
