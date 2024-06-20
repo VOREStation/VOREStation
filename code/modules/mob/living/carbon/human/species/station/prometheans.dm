@@ -61,7 +61,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	item_slowdown_mod = 1.33
 	throwforce_absorb_threshold = 10
 
-	chem_strength_alcohol = 2
+	chem_strength_alcohol = 0.5
 
 	cloning_modifier = /datum/modifier/cloning_sickness/promethean
 
