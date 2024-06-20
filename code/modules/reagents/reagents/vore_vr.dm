@@ -187,6 +187,9 @@
 				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now of mixed gender.</span>",
 								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became of mixed gender.</span>")
 
+
+////////////////////////// Misc Drugs //////////////////////////
+
 /datum/reagent/drugs/rainbow_toxin /// Replaces Space Drugs.
 	name = "Rainbow Toxin"
 	id = "rainbowtoxin"
@@ -219,24 +222,9 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 0 //YOU ARE NOT SCANNING THE FUNNY PARALYSIS TOXIN. NO. BAD. STAY AWAY.
 
-/datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.paralysis < 10) //Let's not leave them PERMA paralyzed, after all.
-		M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
-
-/datum/reagent/pain_toxin
-	name = "Tetrodotoxin"
-	id = "paralysistoxin"
-	description = "A commonly found, potent"
-	taste_description = "bitterness"
-	reagent_state = LIQUID
-	color = "#37007f"
-	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
-	scannable = 0 //YOU ARE NOT SCANNING THE FUNNY PARALYSIS TOXIN. NO. BAD. STAY AWAY.
-
-/datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.paralysis < 10) //Let's not leave them PERMA paralyzed, after all.
-		M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
+/datum/reagent/paralysis_toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.weakened < 50) //Let's not leave them PERMA stuck, after all.
+		M.AdjustWeakened(5) //Stand in for paralyze so you can still talk/emote/see
 
 /datum/reagent/pain_enzyme
 	name = "Pain Enzyme"
@@ -244,11 +232,11 @@
 	description = "Some sort of organic painkiller."
 	taste_description = "sourness"
 	reagent_state = LIQUID
-	color = "#800080"
+	color = "#04b8fa" //Light blue in honor of Perry.
 	metabolism = 0.1 //Lasts up to 50 seconds if you give 5 units.
 	mrate_static = TRUE
 	overdose = 100 //There is no OD. You already are taking the worst of it.
-	scannable = 0 //Let's not have medical mechs able to make an extremely strong organic painkiller
+	scannable = 0 //Let's not have medical mechs able to make an extremely strong 'I hit you you fall down in agony' chem.
 
 /datum/reagent/pain_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, -200)

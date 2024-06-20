@@ -1567,12 +1567,12 @@
 		return
 	if(choice == "Change amount")
 		var/amount_choice = tgui_input_number(usr, "How much of the reagent do you want to inject? (Up to 5 units) (Can select 0 for a bite that doesn't inject venom!)", "How much?", trait_injection_amount, 5, 0)
-		if(amount_choice)
+		if(amount_choice >= 0)
 			trait_injection_amount = amount_choice
 		to_chat(src, "<span class='notice'>You prepare to inject [trait_injection_amount] units of [trait_injection_selected ? "[trait_injection_selected]" : "...nothing. Select a reagent before trying to inject anything."]</span>")
 		return
 	if(choice == "Change verb")
-		var/verb_choice = tgui_input_text(usr, "Choose the percieved manner of injection, such as 'bite' or 'sting', don't be misleading or abusive.", "How are you injecting?", trait_injection_verb, max_length = 60) //Whoaa there cowboy don't put a novel in there.
+		var/verb_choice = tgui_input_text(usr, "Choose the percieved manner of injection, such as 'bites' or 'stings', don't be misleading or abusive. This will show up in game as ('X' 'Verb' 'Y'. Example: X bites Y.)", "How are you injecting?", trait_injection_verb, max_length = 60) //Whoaa there cowboy don't put a novel in there.
 		if(verb_choice)
 			trait_injection_verb = verb_choice
 		to_chat(src, "<span class='notice'>You will [trait_injection_verb] your targets.</span>")
