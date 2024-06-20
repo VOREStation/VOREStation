@@ -256,6 +256,8 @@
 	P.weight_message_visible = src.weight_message_visible
 	P.weight_messages = src.weight_messages
 
+	P.vore_sprite_color = istype(src, /mob/living/carbon/human) ? src:vore_sprite_color : null
+
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
@@ -305,6 +307,10 @@
 	nutrition_messages = P.nutrition_messages
 	weight_message_visible = P.weight_message_visible
 	weight_messages = P.weight_messages
+
+
+	if (istype(src, /mob/living/carbon/human))
+		src:vore_sprite_color = P.vore_sprite_color
 
 	if(bellies)
 		if(isliving(src))
