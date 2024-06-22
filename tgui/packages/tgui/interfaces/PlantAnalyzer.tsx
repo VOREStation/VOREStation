@@ -1,17 +1,36 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  no_seed: BooleanLike;
+  seed: {
+    name: string;
+    uid: number;
+    endurance: string;
+    yield: string;
+    maturation_time: string;
+    production_time: string;
+    potency: string;
+    trait_info: string[];
+  };
+  reagents: { name: string; volume: number }[];
+};
+
 export const PlantAnalyzer = (props) => {
-  const { data } = useBackend();
+  const { data } = useBackend<Data>();
+
+  const { seed, reagents } = data;
 
   let calculatedHeight = 250;
-  if (data.seed) {
-    calculatedHeight += 18 * data.seed.trait_info.length;
+  if (seed) {
+    calculatedHeight += 18 * seed.trait_info.length;
   }
-  if (data.reagents && data.reagents.length) {
+  if (reagents && reagents.length) {
     calculatedHeight += 55;
-    calculatedHeight += 20 * data.reagents.length;
+    calculatedHeight += 20 * reagents.length;
   }
 
   // Resizable just in case the calculatedHeight fails
@@ -25,7 +44,7 @@ export const PlantAnalyzer = (props) => {
 };
 
 const PlantAnalyzerContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { no_seed, seed, reagents } = data;
 
@@ -68,7 +87,7 @@ const PlantAnalyzerContent = (props) => {
         <LabeledList.Item label="Potency">{seed.potency}</LabeledList.Item>
       </LabeledList>
       {(reagents.length && (
-        <Section level={2} title="Plant Reagents">
+        <Section title="Plant Reagents">
           <LabeledList>
             {reagents.map((r) => (
               <LabeledList.Item key={r.name} label={r.name}>
@@ -79,7 +98,7 @@ const PlantAnalyzerContent = (props) => {
         </Section>
       )) ||
         null}
-      <Section level={2} title="Other Data">
+      <Section title="Other Data">
         {seed.trait_info.map((trait) => (
           <Box color="label" key={trait} mb={0.4}>
             {trait}

@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
 
 import { useBackend } from '../backend';
@@ -12,10 +13,23 @@ import {
 import { Window } from '../layouts';
 import { MiningUser } from './common/Mining';
 
-export const MiningOreProcessingConsole = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  unclaimedPoints: number;
+  ores: {
+    ore: string;
+    name: string;
+    amount: number;
+    processing: number;
+  }[];
+  showAllOres: BooleanLike;
+  power: BooleanLike;
+  speed: BooleanLike;
+};
 
-  const { unclaimedPoints, ores, showAllOres, power, speed } = data;
+export const MiningOreProcessingConsole = (props) => {
+  const { act, data } = useBackend<Data>();
+
+  const { unclaimedPoints, power, speed } = data;
 
   return (
     <Window width={400} height={500}>
@@ -113,8 +127,8 @@ const oreSorter = (a, b) => {
 };
 
 const MOPCOres = (props) => {
-  const { act, data } = useBackend();
-  const { ores, showAllOres, power } = data;
+  const { act, data } = useBackend<Data>();
+  const { ores, showAllOres } = data;
   return (
     <Section
       title="Ore Processing Controls"
@@ -141,7 +155,8 @@ const MOPCOres = (props) => {
                     (ore.processing === 0 && 'red') ||
                     (ore.processing === 1 && 'green') ||
                     (ore.processing === 2 && 'blue') ||
-                    (ore.processing === 3 && 'yellow')
+                    (ore.processing === 3 && 'yellow') ||
+                    undefined
                   }
                   options={processingOptions}
                   selected={processingOptions[ore.processing]}

@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
@@ -5,8 +6,24 @@ import { Box, Button, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 import { ICON_BY_CATEGORY_NAME } from './RapidPipeDispenser';
 
+type Data = {
+  disposals: BooleanLike;
+  p_layer: number;
+  pipe_layers: {
+    Regular: number;
+    Supply: number;
+    Scrubber: number;
+    Fuel: number;
+    Aux: number;
+  }[];
+  categories: {
+    cat_name: string;
+    recipes: { pipe_name: string; ref: string; bent: BooleanLike }[];
+  }[];
+};
+
 export const PipeDispenser = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { disposals, p_layer, pipe_layers, categories = [] } = data;
 
   const [categoryName, setCategoryName] = useState('categoryName');
@@ -38,9 +55,8 @@ export const PipeDispenser = (props) => {
         )}
         <Section title="Pipes">
           <Tabs>
-            {categories.map((category, i) => (
+            {categories.map((category) => (
               <Tabs.Tab
-                fluid
                 key={category.cat_name}
                 icon={ICON_BY_CATEGORY_NAME[category.cat_name]}
                 selected={category.cat_name === shownCategory.cat_name}
@@ -55,7 +71,6 @@ export const PipeDispenser = (props) => {
               key={recipe.pipe_name}
               fluid
               ellipsis
-              title={recipe.pipe_name}
               onClick={() =>
                 act('dispense_pipe', {
                   ref: recipe.ref,

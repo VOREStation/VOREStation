@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../../backend';
 import {
   AnimatedNumber,
@@ -8,8 +10,18 @@ import {
   Section,
 } from '../../components';
 
+type Data = {
+  connected: BooleanLike;
+  holding: { name: string; pressure: number };
+  on: BooleanLike;
+  pressure: number;
+  powerDraw: number;
+  cellCharge: number;
+  cellMaxCharge: number;
+};
+
 export const PortableBasicInfo = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     connected,

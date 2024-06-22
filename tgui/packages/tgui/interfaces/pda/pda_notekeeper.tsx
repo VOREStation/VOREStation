@@ -2,8 +2,10 @@
 import { useBackend } from '../../backend';
 import { Box, Button, Section, Table } from '../../components';
 
+type Data = { note: string; notename: string };
+
 export const pda_notekeeper = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { note, notename } = data;
 

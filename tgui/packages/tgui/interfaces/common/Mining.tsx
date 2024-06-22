@@ -1,8 +1,10 @@
 import { useBackend } from '../../backend';
 import { Box, Button, NoticeBox } from '../../components';
 
+type Data = { has_id: boolean; id: { name: string; points: number } };
+
 export const MiningUser = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { insertIdText } = props;
   const { has_id, id } = data;
   return (
@@ -10,7 +12,7 @@ export const MiningUser = (props) => {
       {has_id ? (
         <>
           <Box
-            display="inline-block"
+            inline
             verticalAlign="middle"
             style={{
               float: 'left',

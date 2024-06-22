@@ -14,10 +14,19 @@ import {
 import { Window } from '../layouts';
 import { MiningUser } from './common/Mining';
 
+type Data = {
+  has_id: boolean;
+  id: { id: string; points: number };
+  items: { [key: string]: sortable[] };
+};
+
+type sortable = { name: string; affordable: number; price: number };
+
 const sortTypes = {
-  Alphabetical: (a, b) => a.name > b.name,
-  'By availability': (a, b) => -(a.affordable - b.affordable),
-  'By price': (a, b) => a.price - b.price,
+  Alphabetical: (a: sortable, b: sortable) => a.name > b.name,
+  'By availability': (a: sortable, b: sortable) =>
+    -(a.affordable - b.affordable),
+  'By price': (a: sortable, b: sortable) => a.price - b.price,
 };
 
 export const MiningVendor = (props) => {
@@ -25,15 +34,15 @@ export const MiningVendor = (props) => {
   const [sortOrder, setSortOrder] = useState('Alphabetical');
   const [descending, setDescending] = useState(false);
 
-  function handleSearchText(value) {
+  function handleSearchText(value: string) {
     setSearchText(value);
   }
 
-  function handleSortOrder(value) {
+  function handleSortOrder(value: string) {
     setSortOrder(value);
   }
 
-  function handleDescending(value) {
+  function handleDescending(value: boolean) {
     setDescending(value);
   }
 
@@ -63,7 +72,7 @@ export const MiningVendor = (props) => {
 };
 
 const MiningVendorItems = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { has_id, id, items } = data;
   // Search thingies
   const searcher = createSearch(props.searchText, (item) => {
@@ -75,7 +84,7 @@ const MiningVendorItems = (props) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {
-        kv2[1].affordable = has_id && id.points >= kv2[1].price;
+        kv2[1].affordable = +(has_id && id.points >= kv2[1].price);
         return kv2[1];
       })
       .sort(sortTypes[props.sortOrder]);
@@ -121,7 +130,7 @@ const MiningVendorSearch = (props) => {
         </Flex.Item>
         <Flex.Item basis="30%">
           <Dropdown
-            selected="Alphabetical"
+            selected={props.sortOrder}
             options={Object.keys(sortTypes)}
             width="100%"
             lineHeight="19px"
@@ -144,14 +153,17 @@ const MiningVendorSearch = (props) => {
 };
 
 const MiningVendorItemsCategory = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
+
+  const { has_id, id } = data;
+
   const { title, items, ...rest } = props;
   return (
     <Collapsible open title={title} {...rest}>
       {items.map((item) => (
         <Box key={item.name}>
           <Box
-            display="inline-block"
+            inline
             verticalAlign="middle"
             lineHeight="20px"
             style={{
@@ -161,7 +173,7 @@ const MiningVendorItemsCategory = (props) => {
             {item.name}
           </Box>
           <Button
-            disabled={!data.has_id || data.id.points < item.price}
+            disabled={!has_id || id.points < item.price}
             width="15%"
             textAlign="center"
             style={{

@@ -1,27 +1,75 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-const dangerMap = {
-  2: {
-    color: 'good',
-    localStatusText: 'Optimal',
-  },
-  1: {
-    color: 'average',
-    localStatusText: 'Caution',
-  },
-  0: {
-    color: 'bad',
-    localStatusText: 'Offline',
-  },
+type Data = {
+  power: {
+    main: number;
+    main_timeleft: number;
+    backup: number;
+    backup_timeleft: number;
+  };
+  wires: {
+    main_1: BooleanLike;
+    main_2: BooleanLike;
+    backup_1: BooleanLike;
+    backup_2: BooleanLike;
+    shock: BooleanLike;
+    id_scanner: BooleanLike;
+    bolts: BooleanLike;
+    lights: BooleanLike;
+    safe: BooleanLike;
+    timing: BooleanLike;
+  };
+  shock: number;
+  shock_timeleft: number;
+  id_scanner: BooleanLike;
+  lights: BooleanLike;
+  locked: BooleanLike;
+  safe: BooleanLike;
+  speed: BooleanLike;
+  opened: BooleanLike;
+  welded: BooleanLike;
 };
 
+const dangerMap: { [key: number]: { color: string; localStatusText: string } } =
+  {
+    2: {
+      color: 'good',
+      localStatusText: 'Optimal',
+    },
+    1: {
+      color: 'average',
+      localStatusText: 'Caution',
+    },
+    0: {
+      color: 'bad',
+      localStatusText: 'Offline',
+    },
+  };
+
 export const AiAirlock = (props) => {
-  const { act, data } = useBackend();
-  const statusMain = dangerMap[data.power.main] || dangerMap[0];
-  const statusBackup = dangerMap[data.power.backup] || dangerMap[0];
-  const statusElectrify = dangerMap[data.shock] || dangerMap[0];
+  const { act, data } = useBackend<Data>();
+
+  const {
+    power,
+    wires,
+    shock,
+    shock_timeleft,
+    id_scanner,
+    lights,
+    locked,
+    safe,
+    speed,
+    opened,
+    welded,
+  } = data;
+
+  const statusMain = dangerMap[power.main] || dangerMap[0];
+  const statusBackup = dangerMap[power.backup] || dangerMap[0];
+  const statusElectrify = dangerMap[shock] || dangerMap[0];
   return (
     <Window width={500} height={390}>
       <Window.Content>
@@ -33,18 +81,16 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon="lightbulb-o"
-                  disabled={!data.power.main}
+                  disabled={!power.main}
                   onClick={() => act('disrupt-main')}
                 >
                   Disrupt
                 </Button>
               }
             >
-              {data.power.main ? 'Online' : 'Offline'}{' '}
-              {((!data.wires.main_1 || !data.wires.main_2) &&
-                '[Wires have been cut!]') ||
-                (data.power.main_timeleft > 0 &&
-                  `[${data.power.main_timeleft}s]`)}
+              {power.main ? 'Online' : 'Offline'}{' '}
+              {((!wires.main_1 || !wires.main_2) && '[Wires have been cut!]') ||
+                (power.main_timeleft > 0 && `[${power.main_timeleft}s]`)}
             </LabeledList.Item>
             <LabeledList.Item
               label="Backup"
@@ -52,18 +98,17 @@ export const AiAirlock = (props) => {
               buttons={
                 <Button
                   icon="lightbulb-o"
-                  disabled={!data.power.backup}
+                  disabled={!power.backup}
                   onClick={() => act('disrupt-backup')}
                 >
                   Disrupt
                 </Button>
               }
             >
-              {data.power.backup ? 'Online' : 'Offline'}{' '}
-              {((!data.wires.backup_1 || !data.wires.backup_2) &&
+              {power.backup ? 'Online' : 'Offline'}{' '}
+              {((!wires.backup_1 || !wires.backup_2) &&
                 '[Wires have been cut!]') ||
-                (data.power.backup_timeleft > 0 &&
-                  `[${data.power.backup_timeleft}s]`)}
+                (power.backup_timeleft > 0 && `[${power.backup_timeleft}s]`)}
             </LabeledList.Item>
             <LabeledList.Item
               label="Electrify"
@@ -72,21 +117,21 @@ export const AiAirlock = (props) => {
                 <>
                   <Button
                     icon="wrench"
-                    disabled={!(data.wires.shock && data.shock === 0)}
+                    disabled={!(wires.shock && shock === 0)}
                     onClick={() => act('shock-restore')}
                   >
                     Restore
                   </Button>
                   <Button
                     icon="bolt"
-                    disabled={!data.wires.shock}
+                    disabled={!wires.shock}
                     onClick={() => act('shock-temp')}
                   >
                     Temporary
                   </Button>
                   <Button
                     icon="bolt"
-                    disabled={!data.wires.shock}
+                    disabled={!wires.shock}
                     onClick={() => act('shock-perm')}
                   >
                     Permanent
@@ -94,10 +139,10 @@ export const AiAirlock = (props) => {
                 </>
               }
             >
-              {data.shock === 2 ? 'Safe' : 'Electrified'}{' '}
-              {(!data.wires.shock && '[Wires have been cut!]') ||
-                (data.shock_timeleft > 0 && `[${data.shock_timeleft}s]`) ||
-                (data.shock_timeleft === -1 && '[Permanent]')}
+              {shock === 2 ? 'Safe' : 'Electrified'}{' '}
+              {(!wires.shock && '[Wires have been cut!]') ||
+                (shock_timeleft > 0 && `[${shock_timeleft}s]`) ||
+                (shock_timeleft === -1 && '[Permanent]')}
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -108,16 +153,16 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
-                  icon={data.id_scanner ? 'power-off' : 'times'}
-                  selected={data.id_scanner}
-                  disabled={!data.wires.id_scanner}
+                  icon={id_scanner ? 'power-off' : 'times'}
+                  selected={id_scanner}
+                  disabled={!wires.id_scanner}
                   onClick={() => act('idscan-toggle')}
                 >
-                  {data.id_scanner ? 'Enabled' : 'Disabled'}
+                  {id_scanner ? 'Enabled' : 'Disabled'}
                 </Button>
               }
             >
-              {!data.wires.id_scanner && '[Wires have been cut!]'}
+              {!wires.id_scanner && '[Wires have been cut!]'}
             </LabeledList.Item>
             <LabeledList.Divider />
             <LabeledList.Item
@@ -125,64 +170,64 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
-                  icon={data.locked ? 'lock' : 'unlock'}
-                  selected={data.locked}
-                  disabled={!data.wires.bolts}
+                  icon={locked ? 'lock' : 'unlock'}
+                  selected={locked}
+                  disabled={!wires.bolts}
                   onClick={() => act('bolt-toggle')}
                 >
-                  {data.locked ? 'Lowered' : 'Raised'}
+                  {locked ? 'Lowered' : 'Raised'}
                 </Button>
               }
             >
-              {!data.wires.bolts && '[Wires have been cut!]'}
+              {!wires.bolts && '[Wires have been cut!]'}
             </LabeledList.Item>
             <LabeledList.Item
               label="Door Bolt Lights"
               color="bad"
               buttons={
                 <Button
-                  icon={data.lights ? 'power-off' : 'times'}
-                  selected={data.lights}
-                  disabled={!data.wires.lights}
+                  icon={lights ? 'power-off' : 'times'}
+                  selected={lights}
+                  disabled={!wires.lights}
                   onClick={() => act('light-toggle')}
                 >
-                  {data.lights ? 'Enabled' : 'Disabled'}
+                  {lights ? 'Enabled' : 'Disabled'}
                 </Button>
               }
             >
-              {!data.wires.lights && '[Wires have been cut!]'}
+              {!wires.lights && '[Wires have been cut!]'}
             </LabeledList.Item>
             <LabeledList.Item
               label="Door Force Sensors"
               color="bad"
               buttons={
                 <Button
-                  icon={data.safe ? 'power-off' : 'times'}
-                  selected={data.safe}
-                  disabled={!data.wires.safe}
+                  icon={safe ? 'power-off' : 'times'}
+                  selected={safe}
+                  disabled={!wires.safe}
                   onClick={() => act('safe-toggle')}
                 >
-                  {data.safe ? 'Enabled' : 'Disabled'}
+                  {safe ? 'Enabled' : 'Disabled'}
                 </Button>
               }
             >
-              {!data.wires.safe && '[Wires have been cut!]'}
+              {!wires.safe && '[Wires have been cut!]'}
             </LabeledList.Item>
             <LabeledList.Item
               label="Door Timing Safety"
               color="bad"
               buttons={
                 <Button
-                  icon={data.speed ? 'power-off' : 'times'}
-                  selected={data.speed}
-                  disabled={!data.wires.timing}
+                  icon={speed ? 'power-off' : 'times'}
+                  selected={speed}
+                  disabled={!wires.timing}
                   onClick={() => act('speed-toggle')}
                 >
-                  {data.speed ? 'Enabled' : 'Disabled'}
+                  {speed ? 'Enabled' : 'Disabled'}
                 </Button>
               }
             >
-              {!data.wires.timing && '[Wires have been cut!]'}
+              {!wires.timing && '[Wires have been cut!]'}
             </LabeledList.Item>
             <LabeledList.Divider />
             <LabeledList.Item
@@ -190,20 +235,20 @@ export const AiAirlock = (props) => {
               color="bad"
               buttons={
                 <Button
-                  icon={data.opened ? 'sign-out-alt' : 'sign-in-alt'}
-                  selected={data.opened}
-                  disabled={data.locked || data.welded}
+                  icon={opened ? 'sign-out-alt' : 'sign-in-alt'}
+                  selected={opened}
+                  disabled={locked || welded}
                   onClick={() => act('open-close')}
                 >
-                  {data.opened ? 'Open' : 'Closed'}
+                  {opened ? 'Open' : 'Closed'}
                 </Button>
               }
             >
-              {!!(data.locked || data.welded) && (
+              {!!(locked || welded) && (
                 <span>
-                  [Door is {data.locked ? 'bolted' : ''}
-                  {data.locked && data.welded ? ' and ' : ''}
-                  {data.welded ? 'welded' : ''}!]
+                  [Door is {locked ? 'bolted' : ''}
+                  {locked && welded ? ' and ' : ''}
+                  {welded ? 'welded' : ''}!]
                 </span>
               )}
             </LabeledList.Item>

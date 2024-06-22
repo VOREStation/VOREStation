@@ -1,10 +1,20 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 import { PortableBasicInfo } from './common/PortableAtmos';
 
+type Data = {
+  direction: BooleanLike;
+  target_pressure: number;
+  default_pressure: number;
+  min_pressure: number;
+  max_pressure: number;
+};
+
 export const PortablePump = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     direction,
     target_pressure,

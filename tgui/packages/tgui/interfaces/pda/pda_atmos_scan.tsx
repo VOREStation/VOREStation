@@ -4,6 +4,20 @@ import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from '../../backend';
 import { Box, LabeledList } from '../../components';
 
+type Data = {
+  aircontents: aircontent[];
+};
+
+type aircontent = {
+  val: string;
+  units: string;
+  entry: string;
+  bad_low: number;
+  poor_low: number;
+  poor_high: number;
+  bad_high: number;
+};
+
 const getItemColor = (value, min2, min1, max1, max2) => {
   if (value < min2) {
     return 'bad';
@@ -18,7 +32,7 @@ const getItemColor = (value, min2, min1, max1, max2) => {
 };
 
 export const pda_atmos_scan = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { aircontents } = data;
 
@@ -26,7 +40,7 @@ export const pda_atmos_scan = (props) => {
     <Box>
       <LabeledList>
         {filter(
-          (i) =>
+          (i: aircontent) =>
             i.val !== '0' ||
             i.entry === 'Pressure' ||
             i.entry === 'Temperature',

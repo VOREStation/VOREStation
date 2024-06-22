@@ -1,9 +1,27 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  locked: BooleanLike;
+  on: BooleanLike;
+  lethal: BooleanLike;
+  lethal_is_configurable: BooleanLike;
+  targetting_is_configurable: BooleanLike;
+  check_weapons: BooleanLike;
+  neutralize_noaccess: BooleanLike;
+  neutralize_norecord: BooleanLike;
+  neutralize_criminals: BooleanLike;
+  neutralize_all: BooleanLike;
+  neutralize_nonsynth: BooleanLike;
+  neutralize_unidentified: BooleanLike;
+  neutralize_down: BooleanLike;
+};
+
 export const PortableTurret = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     locked,
     on,
