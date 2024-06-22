@@ -17,7 +17,7 @@ import { MiningUser } from './common/Mining';
 type Data = {
   has_id: boolean;
   id: { id: string; points: number };
-  items: { [key: string]: sortable[] };
+  items: Record<string, sortable[]>;
 };
 
 type sortable = { name: string; affordable: number; price: number };
@@ -75,7 +75,7 @@ const MiningVendorItems = (props) => {
   const { act, data } = useBackend<Data>();
   const { has_id, id, items } = data;
   // Search thingies
-  const searcher = createSearch(props.searchText, (item) => {
+  const searcher = createSearch(props.searchText, (item: sortable) => {
     return item[0];
   });
 

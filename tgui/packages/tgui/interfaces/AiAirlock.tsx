@@ -34,21 +34,20 @@ type Data = {
   welded: BooleanLike;
 };
 
-const dangerMap: { [key: number]: { color: string; localStatusText: string } } =
-  {
-    2: {
-      color: 'good',
-      localStatusText: 'Optimal',
-    },
-    1: {
-      color: 'average',
-      localStatusText: 'Caution',
-    },
-    0: {
-      color: 'bad',
-      localStatusText: 'Offline',
-    },
-  };
+const dangerMap: Record<number, { color: string; localStatusText: string }> = {
+  2: {
+    color: 'good',
+    localStatusText: 'Optimal',
+  },
+  1: {
+    color: 'average',
+    localStatusText: 'Caution',
+  },
+  0: {
+    color: 'bad',
+    localStatusText: 'Offline',
+  },
+};
 
 export const AiAirlock = (props) => {
   const { act, data } = useBackend<Data>();
