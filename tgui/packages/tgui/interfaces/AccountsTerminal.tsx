@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend, useSharedState } from '../backend';
 import {
   Box,
@@ -10,8 +12,36 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  id_inserted: BooleanLike;
+  id_card: string;
+  access_level: number;
+  machine_id: string;
+  creating_new_account: BooleanLike;
+  detailed_account_view: boolean;
+  station_account_number: number;
+  account_number: number | null;
+  owner_name: string | null;
+  money: number | null;
+  suspended: BooleanLike;
+  transactions: {
+    date: string;
+    time: string;
+    target_name: string;
+    purpose: string;
+    amount: number;
+    source_terminal: string;
+  }[];
+  accounts: {
+    account_number: number;
+    owner_name: string;
+    suspended: string;
+    account_index: number;
+  }[];
+};
+
 export const AccountsTerminal = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { id_inserted, id_card, access_level, machine_id } = data;
 
@@ -41,7 +71,7 @@ export const AccountsTerminal = (props) => {
 };
 
 const AccountTerminalContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { creating_new_account, detailed_account_view } = data;
 
@@ -56,18 +86,14 @@ const AccountTerminalContent = (props) => {
           Home
         </Tabs.Tab>
         <Tabs.Tab
-          selected={creating_new_account}
+          selected={!!creating_new_account}
           icon="cog"
           onClick={() => act('create_account')}
         >
           New Account
         </Tabs.Tab>
         {!creating_new_account ? (
-          <Tabs.Tab
-            disabled={creating_new_account}
-            icon="print"
-            onClick={() => act('print')}
-          >
+          <Tabs.Tab icon="print" onClick={() => act('print')}>
             Print
           </Tabs.Tab>
         ) : (
@@ -81,13 +107,13 @@ const AccountTerminalContent = (props) => {
 };
 
 const NewAccountView = (props) => {
-  const { act } = useBackend();
+  const { act } = useBackend<Data>();
 
   const [holder, setHolder] = useSharedState('holder', '');
   const [newMoney, setMoney] = useSharedState('money', '');
 
   return (
-    <Section title="Create Account" level={2}>
+    <Section title="Create Account">
       <LabeledList>
         <LabeledList.Item label="Account Holder">
           <Input value={holder} fluid onInput={(e, val) => setHolder(val)} />
@@ -115,7 +141,7 @@ const NewAccountView = (props) => {
 };
 
 const DetailedView = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     access_level,
@@ -130,7 +156,6 @@ const DetailedView = (props) => {
   return (
     <Section
       title="Account Details"
-      level={2}
       buttons={
         <Button
           icon="ban"
@@ -151,7 +176,7 @@ const DetailedView = (props) => {
           {suspended ? 'SUSPENDED' : 'Active'}
         </LabeledList.Item>
       </LabeledList>
-      <Section title="CentCom Administrator" level={2} mt={1}>
+      <Section title="CentCom Administrator" mt={1}>
         <LabeledList>
           <LabeledList.Item label="Payroll">
             <Button.Confirm
@@ -169,7 +194,7 @@ const DetailedView = (props) => {
         </LabeledList>
       </Section>
       {access_level >= 2 && (
-        <Section title="Silent Funds Transfer" level={2}>
+        <Section title="Silent Funds Transfer">
           <Button icon="plus" onClick={() => act('add_funds')}>
             Add Funds
           </Button>
@@ -178,7 +203,7 @@ const DetailedView = (props) => {
           </Button>
         </Section>
       )}
-      <Section title="Transactions" level={2} mt={1}>
+      <Section title="Transactions" mt={1}>
         <Table>
           <Table.Row header>
             <Table.Cell>Timestamp</Table.Cell>
@@ -205,18 +230,18 @@ const DetailedView = (props) => {
 };
 
 const ListView = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { accounts } = data;
 
   return (
-    <Section title="NanoTrasen Accounts" level={2}>
+    <Section title="NanoTrasen Accounts">
       {(accounts.length && (
         <LabeledList>
           {accounts.map((acc) => (
             <LabeledList.Item
               label={acc.owner_name + acc.suspended}
-              color={acc.suspended ? 'bad' : null}
+              color={acc.suspended ? 'bad' : undefined}
               key={acc.account_index}
             >
               <Button

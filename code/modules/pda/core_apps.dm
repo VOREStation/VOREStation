@@ -293,7 +293,7 @@
 					"message_type" = FM.message_type,
 					"time_stamp" = FM.time_stamp,
 					"caption" = FM.caption,
-					"index" = index,
+					"index" = index
 				)
 				if(FM.img)
 					msgdata["img"] = icon2base64(FM.img)

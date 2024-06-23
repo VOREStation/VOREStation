@@ -1,11 +1,26 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  name: string;
+  has_ai: BooleanLike;
+  integrity: number;
+  backup_capacitor: number;
+  flushing: BooleanLike;
+  has_laws: BooleanLike;
+  laws: string[];
+  wireless: BooleanLike;
+  radio: BooleanLike;
+};
+
 export const AICard = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
+    name,
     has_ai,
     integrity,
     backup_capacitor,
@@ -16,7 +31,7 @@ export const AICard = (props) => {
     radio,
   } = data;
 
-  if (has_ai === 0) {
+  if (!has_ai) {
     return (
       <Window width={600} height={470}>
         <Window.Content>
@@ -29,7 +44,7 @@ export const AICard = (props) => {
       </Window>
     );
   } else {
-    let integrityColor = null; // Handles changing color of the integrity bar
+    let integrityColor: string | undefined; // Handles changing color of the integrity bar
     if (integrity >= 75) {
       integrityColor = 'green';
     } else if (integrity >= 25) {
@@ -38,7 +53,7 @@ export const AICard = (props) => {
       integrityColor = 'red';
     }
 
-    let powerColor = null;
+    let powerColor: string | undefined;
     if (backup_capacitor >= 75) {
       powerColor = 'green';
     }
@@ -52,7 +67,7 @@ export const AICard = (props) => {
       <Window width={600} height={470}>
         <Window.Content scrollable>
           <Section title="Stored AI">
-            <Box bold display="inline-block">
+            <Box bold inline>
               <h3>{name}</h3>
             </Box>
             <Box>
@@ -77,7 +92,7 @@ export const AICard = (props) => {
             {(!!has_laws && (
               <Box>
                 {laws.map((value, key) => (
-                  <Box key={key} display="inline-block">
+                  <Box key={key} inline>
                     {value}
                   </Box>
                 ))}
