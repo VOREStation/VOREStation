@@ -69,6 +69,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/step_mechanics_pref = FALSE
 	var/pickup_pref = TRUE
 
+	var/vore_sprite_color = list("stomach" = "#000", "taur belly" = "#000")
+
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
 	var/vore_smell = "nothing in particular"
@@ -193,6 +195,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	weight_message_visible = json_from_file["weight_message_visible"]
 	weight_messages = json_from_file["weight_messages"]
 	eating_privacy_global = json_from_file["eating_privacy_global"]
+	vore_sprite_color = json_from_file["vore_sprite_color"]
 
 	//Quick sanitize
 	if(isnull(digestable))
@@ -279,7 +282,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	else if(weight_messages.len < 10)
 		while(weight_messages.len < 10)
 			weight_messages.Add("")
-
+	if(isnull(vore_sprite_color))
+		vore_sprite_color = list("stomach" = "#000", "taur belly" = "#000")
 	return TRUE
 
 /datum/vore_preferences/proc/save_vore()
@@ -320,6 +324,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"weight_message_visible"	= weight_message_visible,
 			"weight_messages"			= weight_messages,
 			"eating_privacy_global"		= eating_privacy_global,
+			"vore_sprite_color"		= vore_sprite_color,
 		)
 
 	//List to JSON

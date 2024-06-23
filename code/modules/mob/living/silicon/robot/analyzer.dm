@@ -56,8 +56,8 @@
 				user.show_message("\t Damage Specifics: [span_orange("[BU]")] - [span_red("[BR]")]")
 				if(M.tod && M.stat == DEAD)
 					user.show_message(span_blue("Time of Disable: [M.tod]"))
-				var/mob/living/silicon/robot/H = M
-				var/obj/item/weapon/cell/cell = H.get_cell()
+				var/mob/living/silicon/robot/R = M
+				var/obj/item/weapon/cell/cell = R.get_cell()
 				if(cell)
 					var/cell_charge = round(cell.percent())
 					var/cell_text
@@ -72,7 +72,7 @@
 					else
 						cell_text = span_red("<b>[cell_charge]</b>")
 					user.show_message("\t Power Cell Status: [span_blue("[capitalize(cell.name)]")] at [cell_text]% charge")
-				var/list/damaged = H.get_damaged_components(1,1,1)
+				var/list/damaged = R.get_damaged_components(1,1,1)
 				user.show_message(span_blue("Localized Damage:"),1)
 				if(length(damaged)>0)
 					for(var/datum/robot_component/org in damaged)
@@ -85,12 +85,12 @@
 						(org.powered)	?	"Power ON"		:	"[span_red("Power OFF")]")),1)
 				else
 					user.show_message(span_blue("\t Components are OK."),1)
-				if(H.emagged && prob(5))
+				if(R.emagged && prob(5))
 					user.show_message(span_red("\t ERROR: INTERNAL SYSTEMS COMPROMISED"),1)
 				user.show_message(span_blue("Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"), 1)
 			else
-				var/mob/living/silicon/robot/H = M
-				var/obj/item/weapon/cell/cell = H.get_cell()
+				var/mob/living/silicon/robot/R = M
+				var/obj/item/weapon/cell/cell = R.get_cell()
 				user.show_message(span_blue("Upgrade Analyzing Results for [M]:"))
 				if(cell)
 					user.show_message("\t Power Cell Details: [span_blue("[capitalize(cell.name)]")] with a capacity of [cell.maxcharge] at [round(cell.percent())]% charge")
@@ -98,12 +98,12 @@
 				for(var/datum/design/item/prosfab/robot_upgrade/utility/upgrade)
 					var/obj/item/borg/upgrade/utility/upgrade_type = initial(upgrade.build_path)
 					var/needs_module = initial(upgrade_type.require_module)
-					if((!H.module && needs_module) || !initial(upgrade.name) || (H.stat != DEAD && initial(upgrade.name) == "Emergency Restart Module"))
+					if((!R.module && needs_module) || !initial(upgrade.name) || (R.stat != DEAD && (upgrade_type == /obj/item/borg/upgrade/utility/restart)) || (isshell(R) && (upgrade_type == /obj/item/borg/upgrade/utility/rename)))
 						continue
 					if(show_title)
 						user.show_message("\t Utility Modules, used for modifying purposes:")
 						show_title = FALSE
-					if(H.stat == DEAD)
+					if(R.stat == DEAD)
 						if(initial(upgrade.name) == "Emergency Restart Module")
 							user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_green("Usable")]"))
 					else
@@ -112,55 +112,55 @@
 				for(var/datum/design/item/prosfab/robot_upgrade/basic/upgrade)
 					var/obj/item/borg/upgrade/basic/upgrade_type = initial(upgrade.build_path)
 					var/needs_module = initial(upgrade_type.require_module)
-					if((!H.module && needs_module) || !initial(upgrade.name) || H.stat == DEAD)
+					if((!R.module && needs_module) || !initial(upgrade.name) || R.stat == DEAD)
 						continue
 					if(show_title)
 						user.show_message("\t Basic Modules, used for direct upgrade purposes:")
 						show_title = FALSE
-					if(H.has_basic_upgrade(initial(upgrade.build_path)) == "")
+					if(R.has_basic_upgrade(initial(upgrade.build_path)) == "")
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
 					else
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [H.has_basic_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_basic_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/advanced/upgrade)
 					var/obj/item/borg/upgrade/advanced/upgrade_type = initial(upgrade.build_path)
 					var/needs_module = initial(upgrade_type.require_module)
-					if((!H.module && needs_module) || !initial(upgrade.name) || H.stat == DEAD)
+					if((!R.module && needs_module) || !initial(upgrade.name) || R.stat == DEAD)
 						continue
 					if(show_title)
 						user.show_message("\t Advanced Modules, used for module upgrade purposes:")
 						show_title = FALSE
-					if(H.has_advanced_upgrade(initial(upgrade.build_path)) == "")
+					if(R.has_advanced_upgrade(initial(upgrade.build_path)) == "")
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
 					else
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [H.has_advanced_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_advanced_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
 					var/obj/item/borg/upgrade/restricted/upgrade_type = initial(upgrade.build_path)
 					var/needs_module = initial(upgrade_type.require_module)
-					if((!H.module && needs_module) || !initial(upgrade.name) || !H.supports_upgrade(initial(upgrade.build_path)) || H.stat == DEAD)
+					if((!R.module && needs_module) || !initial(upgrade.name) || !R.supports_upgrade(initial(upgrade.build_path)) || R.stat == DEAD)
 						continue
 					if(show_title)
 						user.show_message("\t Restricted Modules, used for module upgrade purposes on specific chassis:")
 						show_title = FALSE
-					if(H.has_restricted_upgrade(initial(upgrade.build_path)) == "")
+					if(R.has_restricted_upgrade(initial(upgrade.build_path)) == "")
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
 					else
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [H.has_restricted_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_restricted_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
 				for(var/datum/design/item/prosfab/robot_upgrade/no_prod/upgrade)
 					var/obj/item/borg/upgrade/no_prod/upgrade_type = initial(upgrade.build_path)
 					var/needs_module = initial(upgrade_type.require_module)
 					var/hidden = initial(upgrade_type.hidden_from_scan)
-					if((!H.module && needs_module) || !initial(upgrade.name) || hidden || H.stat == DEAD)
+					if((!R.module && needs_module) || !initial(upgrade.name) || hidden || R.stat == DEAD)
 						continue
 					if(show_title)
 						user.show_message("\t Special Modules, used for recreation purposes:")
 						show_title = FALSE
-					if(H.has_no_prod_upgrade(initial(upgrade.build_path)) == "")
+					if(R.has_no_prod_upgrade(initial(upgrade.build_path)) == "")
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
 					else
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [H.has_no_prod_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_no_prod_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 
 		if("prosthetics")
 

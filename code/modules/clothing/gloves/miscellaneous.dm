@@ -210,6 +210,13 @@
 	if(Adjacent(user) && src.loc == user)
 		. += "<span class='notice'>You are currently facing [dir2text(user.dir)]. The micro beacon is [gps.tracking ? "on" : "off"].</span>"
 		var/TB = src.loc.loc
+		if(istype(TB, /turf/))	//no point returning light level if we're not on a turf (might be *in* someone!)
+			var/turf/TL = TB
+			var/light_level = TL.get_lumcount()
+			if(light_level)
+				. += "<span class='notice'>Light Level: [TL.get_lumcount()]</span>"
+			else
+				. += "<span class='notice'>It's too dark to see the light level!</span>"
 		if(istype(TB, /turf/simulated))	//no point returning atmospheric data from unsimulated tiles (they don't track pressure anyway, only temperature)
 			var/turf/simulated/T = TB
 			var/datum/gas_mixture/env = T.return_air()

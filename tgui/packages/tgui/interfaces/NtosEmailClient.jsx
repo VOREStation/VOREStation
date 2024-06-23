@@ -1,5 +1,5 @@
 /* eslint react/no-danger: "off" */
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -54,8 +54,12 @@ const NtosEmailClientDownloading = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Progress">
           <ProgressBar color="good" value={down_progress} maxValue={down_size}>
-            {down_progress}/{down_size} (
-            {round((down_progress / down_size) * 100, 1)}%)
+            {down_progress +
+              '/' +
+              down_size +
+              ' (' +
+              toFixed((down_progress / down_size) * 100, 1) +
+              '%)'}
           </ProgressBar>
         </LabeledList.Item>
       </LabeledList>

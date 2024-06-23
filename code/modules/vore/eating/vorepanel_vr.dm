@@ -227,7 +227,23 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			"belly_item_mult" = selected.belly_item_mult,
 			"belly_overall_mult" = selected.belly_overall_mult,
 			"drainmode" = selected.drainmode,
-
+			"affects_voresprite" = selected.affects_vore_sprites,
+			"absorbed_voresprite" = selected.count_absorbed_prey_for_sprite,
+			"absorbed_multiplier" = selected.absorbed_multiplier,
+			"liquid_voresprite" = selected.count_liquid_for_sprite,
+			"liquid_multiplier" = selected.liquid_multiplier,
+			"item_voresprite" = selected.count_items_for_sprite,
+			"item_multiplier" = selected.item_multiplier,
+			"health_voresprite" = selected.health_impacts_size,
+			"resist_animation" = selected.resist_triggers_animation,
+			"voresprite_size_factor" = selected.size_factor_for_sprite,
+			"belly_sprite_to_affect" = selected.belly_sprite_to_affect,
+			"belly_sprite_option_shown" = istype(host, /mob/living/carbon/human) ? (LAZYLEN(host:vore_icon_bellies) >= 1 ? TRUE : FALSE) : FALSE, // TODO: FIX THIS (It won't be fixed)
+			"tail_option_shown" = istype(host, /mob/living/carbon/human),
+			"tail_to_change_to" = selected.tail_to_change_to,
+			"tail_colouration" = selected.tail_colouration,
+			"tail_extra_overlay" = selected.tail_extra_overlay,
+			"tail_extra_overlay2" = selected.tail_extra_overlay2
 		)
 
 		var/list/addons = list()
@@ -235,6 +251,13 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			if(selected.mode_flags & selected.mode_flag_list[flag_name])
 				addons.Add(flag_name)
 		selected_list["addons"] = addons
+
+		var/list/vs_flags = list()
+		for(var/flag_name in selected.vore_sprite_flag_list)
+			if(selected.vore_sprite_flags & selected.vore_sprite_flag_list[flag_name])
+				vs_flags.Add(flag_name)
+		selected_list["vore_sprite_flags"] = vs_flags
+
 
 		selected_list["egg_type"] = selected.egg_type
 		selected_list["contaminates"] = selected.contaminates
@@ -609,6 +632,20 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.weight_message_visible = !host.weight_message_visible
 			unsaved_changes = TRUE
 			return TRUE
+		if("set_vs_color")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/belly_choice = tgui_input_list(usr, "Which vore sprite are you going to edit the color of?", "Vore Sprite Color", hhost.vore_icon_bellies)
+				var/newcolor = input(usr, "Choose a color.", "", hhost.vore_sprite_color[belly_choice]) as color|null
+				if(newcolor)
+					hhost.vore_sprite_color[belly_choice] = newcolor
+					var/multiply = tgui_input_list(usr, "Set the color to be applied multiplicatively or additively? Currently in [hhost.vore_sprite_multiply[belly_choice] ? "Multiply" : "Add"]", "Vore Sprite Color", list("Multiply", "Add"))
+					if(multiply == "Multiply")
+						hhost.vore_sprite_multiply[belly_choice] = TRUE
+					else if(multiply == "Add")
+						hhost.vore_sprite_multiply[belly_choice] = FALSE
+					hhost.update_icons_body()
+				return TRUE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)
 	var/atom/movable/target = locate(params["pick"])
@@ -1680,6 +1717,98 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			qdel(host.vore_selected)
 			host.vore_selected = host.vore_organs[1]
 			. = TRUE
-
+		if("b_belly_sprite_to_affect")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/belly_choice = tgui_input_list(usr, "Which belly sprite do you want your [lowertext(hhost.vore_selected.name)] to affect?","Select Region", hhost.vore_icon_bellies)
+				if(!belly_choice) //They cancelled, no changes
+					return FALSE
+				else
+					hhost.vore_selected.belly_sprite_to_affect = belly_choice
+					hhost.update_fullness()
+				. = TRUE
+		if("b_affects_vore_sprites")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				hhost.vore_selected.affects_vore_sprites = !hhost.vore_selected.affects_vore_sprites
+				hhost.update_fullness()
+				. = TRUE
+		if("b_count_absorbed_prey_for_sprites")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				hhost.vore_selected.count_absorbed_prey_for_sprite = !hhost.vore_selected.count_absorbed_prey_for_sprite
+				hhost.update_fullness()
+				. = TRUE
+		if("b_absorbed_multiplier")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/absorbed_multiplier_input = input(user, "Set the impact absorbed prey's size have on your vore sprite. 1 means no scaling, 0.5 means absorbed prey count half as much, 2 means absorbed prey count double. (Range from 0.1 - 3)", "Absorbed Multiplier") as num|null
+				if(!isnull(absorbed_multiplier_input))
+					hhost.vore_selected.absorbed_multiplier = CLAMP(absorbed_multiplier_input, 0.1, 3)
+					hhost.update_fullness()
+				. = TRUE
+		if("b_count_items_for_sprites")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				hhost.vore_selected.count_items_for_sprite = !hhost.vore_selected.count_items_for_sprite
+				hhost.update_fullness()
+				. = TRUE
+		if("b_item_multiplier")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/item_multiplier_input = input(user, "Set the impact items will have on your vore sprite. 1 means a belly with 8 normal-sized items will count as 1 normal sized prey-thing's worth, 0.5 means items count half as much, 2 means items count double. (Range from 0.1 - 10)", "Item Multiplier") as num|null
+				if(!isnull(item_multiplier_input))
+					hhost.vore_selected.item_multiplier = CLAMP(item_multiplier_input, 0.1, 10)
+					hhost.update_fullness()
+				. = TRUE
+		if("b_health_impacts_size")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				hhost.vore_selected.health_impacts_size = !hhost.vore_selected.health_impacts_size
+				hhost.update_fullness()
+				. = TRUE
+		if("b_resist_animation")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				hhost.vore_selected.resist_triggers_animation = !hhost.vore_selected.resist_triggers_animation
+				. = TRUE
+		if("b_size_factor_sprites")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/size_factor_input = input(user, "Set the impact all belly content's collective size has on your vore sprite. 1 means no scaling, 0.5 means content counts half as much, 2 means contents count double. (Range from 0.1 - 3)", "Size Factor") as num|null
+				if(!isnull(size_factor_input))
+					hhost.vore_selected.size_factor_for_sprite = CLAMP(size_factor_input, 0.1, 3)
+					hhost.update_fullness()
+				. = TRUE
+		if("b_tail_to_change_to")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/tail_choice = tgui_input_list(usr, "Which tail sprite do you want to use when your [lowertext(host.vore_selected.name)] is filled?","Select Sprite", global.tail_styles_list)
+				if(!tail_choice) //They cancelled, no changes
+					return FALSE
+				else
+					hhost.vore_selected.tail_to_change_to = tail_choice
+				. = TRUE
+		if("b_tail_color")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/newcolor = input(usr, "Choose tail color.", "", hhost.vore_selected.tail_colouration) as color|null
+				if(newcolor)
+					hhost.vore_selected.tail_colouration = newcolor
+				. = TRUE
+		if("b_tail_color2")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/newcolor = input(usr, "Choose tail secondary color.", "", hhost.vore_selected.tail_extra_overlay) as color|null
+				if(newcolor)
+					hhost.vore_selected.tail_extra_overlay = newcolor
+				. = TRUE
+		if("b_tail_color3")
+			if (istype(host, /mob/living/carbon/human))
+				var/mob/living/carbon/human/hhost = host
+				var/newcolor = input(usr, "Choose tail tertiary color.", "", hhost.vore_selected.tail_extra_overlay2) as color|null
+				if(newcolor)
+					hhost.vore_selected.tail_extra_overlay2 = newcolor
+				. = TRUE
 	if(.)
 		unsaved_changes = TRUE

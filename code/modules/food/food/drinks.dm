@@ -179,7 +179,16 @@
 	return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/self_feed_message(var/mob/user)
-	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
+	if(amount_per_transfer_from_this == volume)	//I wanted to use a switch, but switch statements can't use vars and the maximum volume of containers varies
+		to_chat(user, "<span class='notice'>You knock back the entire [src] in one go!</span>")
+	else if(amount_per_transfer_from_this <= 4)	//below the standard 5
+		to_chat(user, "<span class='notice'>You take a modest sip from \the [src].</span>")
+	else if(amount_per_transfer_from_this <= 10)	//the standard five to a bit more
+		to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
+	else if(amount_per_transfer_from_this <= 30)
+		to_chat(user, "<span class='notice'>You take a long drag from \the [src].</span>")
+	else	//default message as a fallback
+		to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
 /obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(src, 'sound/items/drink.ogg', rand(10, 50), 1)

@@ -8,6 +8,12 @@
 //
 // Parent type of all the various "belly" varieties.
 //
+
+#define DM_FLAG_VORESPRITE_TAIL     0x2
+#define DM_FLAG_VORESPRITE_MARKING  0x4
+#define DM_FLAG_VORESPRITE_ARTICLE	0x8
+
+
 /obj/belly
 	name = "belly"							// Name of this location
 	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
@@ -59,6 +65,30 @@
 	var/belly_mob_mult = 1		//Multiplier for how filling mob types are in borg bellies
 	var/belly_item_mult = 1 	//Multiplier for how filling items are in borg borg bellies. Items are also weighted on item size
 	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
+
+
+	var/vore_sprite_flags = DM_FLAG_VORESPRITE_ARTICLE
+	var/tmp/static/list/vore_sprite_flag_list= list(
+		"Normal Belly Sprite" = DM_FLAG_VORESPRITE_ARTICLE,
+		//"Tail adjustment" = DM_FLAG_VORESPRITE_TAIL,
+		//"Marking addition" = DM_FLAG_VORESPRITE_MARKING
+		)
+	var/affects_vore_sprites = FALSE
+	var/count_absorbed_prey_for_sprite = TRUE
+	var/absorbed_multiplier = 1
+	var/count_liquid_for_sprite = FALSE
+	var/liquid_multiplier = 1
+	var/count_items_for_sprite = FALSE
+	var/item_multiplier = 1
+	var/health_impacts_size = TRUE
+	var/resist_triggers_animation = TRUE
+	var/size_factor_for_sprite = 1
+	var/belly_sprite_to_affect = "stomach"
+	var/datum/sprite_accessory/tail/tail_to_change_to = FALSE
+	var/tail_colouration = FALSE
+	var/tail_extra_overlay = FALSE
+	var/tail_extra_overlay2 = FALSE
+	var/undergarment_chosen = "Underwear, bottom"
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -345,6 +375,15 @@
 	"belly_item_mult",
 	"belly_overall_mult",
 	"drainmode",
+	"vore_sprite_flags",
+	"affects_vore_sprites",
+	"count_absorbed_prey_for_sprite",
+	"resist_triggers_animation",
+	"size_factor_for_sprite",
+	"belly_sprite_to_affect",
+	"health_impacts_size",
+	"count_items_for_sprite",
+	"item_multiplier"
 	)
 
 	if (save_digest_mode == 1)
@@ -426,6 +465,10 @@
 		if(M.ai_holder)
 			M.ai_holder.handle_eaten()
 
+		if (istype(owner, /mob/living/carbon/human))
+			var/mob/living/carbon/human/hum = owner
+			hum.update_fullness()
+
 	// Intended for simple mobs
 	if(!owner.client && autotransferlocation && autotransferchance > 0)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/belly, check_autotransfer), thing, autotransferlocation), autotransferwait)
@@ -444,6 +487,10 @@
 				L.toggle_hud_vis()
 		if((L.stat != DEAD) && L.ai_holder)
 			L.ai_holder.go_wake()
+	if (istype(owner, /mob/living/carbon/human))
+		var/mob/living/carbon/human/hum = owner
+		hum.update_fullness()
+
 
 /obj/belly/proc/vore_fx(mob/living/L)
 	if(!istype(L))
@@ -1757,6 +1804,15 @@
 	dupe.belly_mob_mult = belly_mob_mult
 	dupe.belly_item_mult = belly_item_mult
 	dupe.belly_overall_mult	= belly_overall_mult
+	dupe.vore_sprite_flags = vore_sprite_flags
+	dupe.affects_vore_sprites = affects_vore_sprites
+	dupe.count_absorbed_prey_for_sprite = count_absorbed_prey_for_sprite
+	dupe.resist_triggers_animation = resist_triggers_animation
+	dupe.size_factor_for_sprite = size_factor_for_sprite
+	dupe.belly_sprite_to_affect = belly_sprite_to_affect
+	dupe.health_impacts_size = health_impacts_size
+	dupe.count_items_for_sprite = count_items_for_sprite
+	dupe.item_multiplier = item_multiplier
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
@@ -1955,3 +2011,38 @@
 
 /obj/belly/container_resist(mob/M)
 	return relay_resist(M)
+
+/obj/belly/proc/GetFullnessFromBelly()
+	if(!affects_vore_sprites)
+		return 0
+	var/belly_fullness = 0
+	for(var/mob/living/M in src)
+		if(count_absorbed_prey_for_sprite || !M.absorbed)
+			var/fullness_to_add = M.size_multiplier
+			fullness_to_add *= M.mob_size / 20
+			if(M.absorbed)
+				fullness_to_add *= absorbed_multiplier
+			if(health_impacts_size)
+				fullness_to_add *= M.health / M.getMaxHealth()
+			belly_fullness += fullness_to_add
+	if(count_liquid_for_sprite)
+		belly_fullness += (reagents.total_volume / 100) * liquid_multiplier
+	if(count_items_for_sprite)
+		for(var/obj/item/I in src)
+			var/fullness_to_add = 0
+			if(I.w_class == ITEMSIZE_TINY)
+				fullness_to_add = ITEMSIZE_COST_TINY
+			else if(I.w_class == ITEMSIZE_SMALL)
+				fullness_to_add = ITEMSIZE_COST_SMALL
+			else if(I.w_class == ITEMSIZE_NORMAL)
+				fullness_to_add = ITEMSIZE_COST_NORMAL
+			else if(I.w_class == ITEMSIZE_LARGE)
+				fullness_to_add = ITEMSIZE_COST_LARGE
+			else if(I.w_class == ITEMSIZE_HUGE)
+				fullness_to_add = ITEMSIZE_COST_HUGE
+			else
+				fullness_to_add = ITEMSIZE_COST_NO_CONTAINER
+			fullness_to_add /= 32
+			belly_fullness += fullness_to_add * item_multiplier
+	belly_fullness *= size_factor_for_sprite
+	return belly_fullness
