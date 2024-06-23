@@ -19,13 +19,13 @@ import {
   AppearanceChangerWings,
 } from './AppearanceChangerBody';
 import {
-  AppearanceChangerFacialHair,
-  AppearanceChangerHair,
-} from './AppearanceChangerDetails';
-import {
   AppearanceChangerColors,
   AppearanceChangerMarkings,
-} from './AppearanceChangerMarkings';
+} from './AppearanceChangerDetails';
+import {
+  AppearanceChangerFacialHair,
+  AppearanceChangerHair,
+} from './AppearanceChangerHairs';
 import { Data } from './types';
 
 export const AppearanceChanger = (props) => {
