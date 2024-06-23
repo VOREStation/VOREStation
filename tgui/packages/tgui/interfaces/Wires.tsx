@@ -1,11 +1,25 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Wires = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  wires: {
+    seen_color: string;
+    color_name: string;
+    color: string;
+    wire: string | null;
+    cut: BooleanLike;
+    attached: BooleanLike;
+  }[];
+  status: string[];
+};
 
-  const wires = data.wires || [];
+export const Wires = (props) => {
+  const { act, data } = useBackend<Data>();
+
+  const { wires = [] } = data;
   const statuses = data.status || [];
 
   return (

@@ -5,8 +5,26 @@ import { Box, Flex, LabeledList, ProgressBar, Section } from '../components';
 import { formatPower, formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  totalOutput: number;
+  maxTotalOutput: number;
+  thermalOutput: number;
+  primary: circulator;
+  secondary: circulator;
+};
+
+type circulator = {
+  dir: string;
+  output: number;
+  flowCapacity: number;
+  inletPressure: number;
+  inletTemperature: number;
+  outletPressure: number;
+  outletTemperature: number;
+};
+
 export const TEGenerator = (props) => {
-  const { data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { totalOutput, maxTotalOutput, thermalOutput, primary, secondary } =
     data;
@@ -46,7 +64,7 @@ export const TEGenerator = (props) => {
   );
 };
 
-const TEGCirculator = (props) => {
+const TEGCirculator = (props: { name: string; values: circulator }) => {
   const { name, values } = props;
 
   const {

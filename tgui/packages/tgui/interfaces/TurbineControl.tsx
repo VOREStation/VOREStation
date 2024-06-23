@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
@@ -9,11 +11,22 @@ import {
 import { formatPower } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  connected: BooleanLike;
+  compressor_broke: BooleanLike;
+  turbine_broke: BooleanLike;
+  broken: BooleanLike;
+  door_status: BooleanLike;
+  online: BooleanLike;
+  power: number;
+  rpm: number;
+  temp: number;
+};
+
 export const TurbineControl = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
-    connected,
     compressor_broke,
     turbine_broke,
     broken,

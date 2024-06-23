@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Button,
@@ -8,8 +10,19 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  connected: BooleanLike;
+  showToggle: BooleanLike;
+  maskConnected: BooleanLike;
+  tankPressure: number;
+  releasePressure: number;
+  defaultReleasePressure: number;
+  minReleasePressure: number;
+  maxReleasePressure: number;
+};
+
 export const Tank = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     connected,
@@ -72,7 +85,7 @@ export const Tank = (props) => {
               />
               <NumberInput
                 animated
-                value={parseFloat(releasePressure)}
+                value={releasePressure}
                 width="65px"
                 unit="kPa"
                 minValue={minReleasePressure}
