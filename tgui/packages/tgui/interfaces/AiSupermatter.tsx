@@ -1,13 +1,21 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Icon, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
-export const AiSupermatter = (props) => {
-  const { data } = useBackend();
+type Data = {
+  detonating: BooleanLike;
+  integrity_percentage: number;
+  ambient_temp: number;
+  ambient_pressure: number;
+};
 
-  const { integrity_percentage, ambient_temp, ambient_pressure, detonating } =
-    data;
+export const AiSupermatter = (props) => {
+  const { data } = useBackend<Data>();
+
+  const { detonating } = data;
 
   let body = <AiSupermatterContent />;
   if (detonating) {
@@ -38,7 +46,7 @@ const AiSupermatterDetonation = (props) => (
 );
 
 const AiSupermatterContent = (props) => {
-  const { data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { integrity_percentage, ambient_temp, ambient_pressure } = data;
 

@@ -12,8 +12,28 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  usePower: number;
+  materials: {
+    name: string;
+    display: string;
+    qty: number;
+    max: number;
+    percent: number;
+  }[];
+  last_flow_rate: number;
+  last_power_draw: number;
+  inputDir: string;
+  outputDir: string;
+  input: gas;
+  output: gas;
+  errorText: string | null;
+};
+
+type gas = { pressure: number; name: string; percent: number; moles: number };
+
 export const AlgaeFarm = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     usePower,
     materials,
@@ -30,8 +50,8 @@ export const AlgaeFarm = (props) => {
     <Window width={500} height={300}>
       <Window.Content>
         {errorText && (
-          <NoticeBox warning>
-            <Box display="inline-block" verticalAlign="middle">
+          <NoticeBox danger>
+            <Box inline verticalAlign="middle">
               {errorText}
             </Box>
           </NoticeBox>

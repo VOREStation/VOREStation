@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -8,6 +10,17 @@ import {
   Section,
 } from '../components';
 import { Window } from '../layouts';
+
+type Data = {
+  AI_present: boolean;
+  error: string | null;
+  name: string;
+  laws: string[];
+  isDead: boolean;
+  restoring: BooleanLike;
+  health: number;
+  ejectable: boolean;
+};
 
 export const AiRestorer = () => {
   return (
@@ -20,7 +33,7 @@ export const AiRestorer = () => {
 };
 
 export const AiRestorerContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     AI_present,
     error,
@@ -81,7 +94,7 @@ export const AiRestorerContent = (props) => {
           >
             Begin Reconstruction
           </Button>
-          <Section title="Laws" level={2}>
+          <Section title="Laws">
             {laws.map((law) => (
               <Box key={law} className="candystripe">
                 {law}
