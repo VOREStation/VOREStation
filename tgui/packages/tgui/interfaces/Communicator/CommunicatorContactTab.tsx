@@ -3,10 +3,7 @@ import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from '../../backend';
 import { Box, Button, Section, Table } from '../../components';
 import { MESSSUBTAB, PHONTAB } from './constants';
-
-type ContactsTabData = {
-  knownDevices: { address: string; name: string }[];
-};
+import { ContactsTabData } from './types';
 
 export const CommunicatorContactTab = (props) => {
   const { act, data } = useBackend<ContactsTabData>();

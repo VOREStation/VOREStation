@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
 import { Button, Section } from '../../components';
-import { Data } from './constants';
+import { Data } from './types';
 
 export const CommunicatorNoteTab = (props) => {
   const { act, data } = useBackend<Data>();

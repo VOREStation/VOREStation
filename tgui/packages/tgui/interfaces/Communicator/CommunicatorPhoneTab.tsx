@@ -11,7 +11,8 @@ import {
   Section,
   Table,
 } from '../../components';
-import { Data, MESSTAB } from './constants';
+import { MESSTAB } from './constants';
+import { Data } from './types';
 
 export const CommunicatorPhoneTab = (props) => {
   const { act, data } = useBackend<Data>();

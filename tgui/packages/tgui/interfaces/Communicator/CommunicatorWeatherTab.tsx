@@ -3,33 +3,7 @@ import { decodeHtmlEntities, toTitleCase } from 'common/string';
 
 import { useBackend } from '../../backend';
 import { Box, LabeledList, Section } from '../../components';
-
-type WeatherTabData = {
-  aircontents: AirContent[];
-  weather: Weather[];
-};
-
-type AirContent = {
-  entry: string;
-  val;
-  bad_low: number;
-  poor_low: number;
-  poor_high: number;
-  bad_high: number;
-  units;
-};
-
-type Weather = {
-  Planet: string;
-  Time: string;
-  Weather: string;
-  Temperature;
-  High;
-  Low;
-  WindDir;
-  WindSpeed;
-  Forecast: string;
-};
+import { AirContent, WeatherTabData } from './types';
 
 export const CommunicatorWeatherTab = (props) => {
   const { act, data } = useBackend<WeatherTabData>();

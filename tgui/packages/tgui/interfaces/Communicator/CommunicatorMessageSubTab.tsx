@@ -2,7 +2,7 @@ import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
-import { Data } from './constants';
+import { Data } from './types';
 
 export const CommunicatorMessageSubTab = (props: {
   clipboardMode: boolean;

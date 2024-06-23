@@ -2,7 +2,7 @@ import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
-import { Data } from './constants';
+import { Data } from './types';
 
 export const CommunicatorSettingsTab = (props) => {
   const { act, data } = useBackend<Data>();

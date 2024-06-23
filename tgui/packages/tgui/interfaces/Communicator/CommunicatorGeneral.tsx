@@ -2,7 +2,8 @@ import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
 import { Box, Button, ByondUi, Flex, Icon, Section } from '../../components';
-import { Data, HOMETAB } from './constants';
+import { HOMETAB } from './constants';
+import { Data } from './types';
 
 export const TemplateError = (props: { currentTab: number }) => {
   return (
