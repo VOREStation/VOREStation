@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { canRender, classes } from 'common/react';
+import { BooleanLike, canRender, classes } from 'common/react';
 import { PropsWithChildren, ReactNode } from 'react';
 
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
@@ -23,6 +23,7 @@ type TabProps = Partial<{
   className: string;
   color: string;
   icon: string;
+  iconSpin: BooleanLike; // Vorestation Add
   leftSlot: ReactNode;
   onClick: (e?) => void;
   rightSlot: ReactNode;
@@ -57,6 +58,7 @@ const Tab = (props: TabProps) => {
     selected,
     color,
     icon,
+    iconSpin, // Vorestation Add
     leftSlot,
     rightSlot,
     children,
@@ -87,7 +89,7 @@ const Tab = (props: TabProps) => {
       {(canRender(leftSlot) && <div className="Tab__left">{leftSlot}</div>) ||
         (!!icon && (
           <div className="Tab__left">
-            <Icon name={icon} />
+            <Icon name={icon} spin={iconSpin} />
           </div>
         ))}
       <div className="Tab__text">{children}</div>
