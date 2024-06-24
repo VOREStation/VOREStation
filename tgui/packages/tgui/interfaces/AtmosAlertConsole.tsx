@@ -2,19 +2,24 @@ import { useBackend } from '../backend';
 import { Button, Section } from '../components';
 import { Window } from '../layouts';
 
+type alarm = { name: string; ref: string };
+
+type Data = { priority_alarms: alarm[]; minor_alarms: alarm[] };
+
 export const AtmosAlertConsole = (props) => {
-  const { act, data } = useBackend();
-  const priorityAlerts = data.priority_alarms || [];
-  const minorAlerts = data.minor_alarms || [];
+  const { act, data } = useBackend<Data>();
+
+  const { priority_alarms = [], minor_alarms = [] } = data;
+
   return (
     <Window width={350} height={300}>
       <Window.Content scrollable>
         <Section title="Alarms">
           <ul>
-            {priorityAlerts.length === 0 && (
+            {priority_alarms.length === 0 && (
               <li className="color-good">No Priority Alerts</li>
             )}
-            {priorityAlerts.map((alert) => (
+            {priority_alarms.map((alert) => (
               <li key={alert.name}>
                 <Button
                   icon="times"
@@ -25,10 +30,10 @@ export const AtmosAlertConsole = (props) => {
                 </Button>
               </li>
             ))}
-            {minorAlerts.length === 0 && (
+            {minor_alarms.length === 0 && (
               <li className="color-good">No Minor Alerts</li>
             )}
-            {minorAlerts.map((alert) => (
+            {minor_alarms.map((alert) => (
               <li key={alert.name}>
                 <Button
                   icon="times"

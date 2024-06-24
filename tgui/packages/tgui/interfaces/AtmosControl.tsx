@@ -4,8 +4,20 @@ import { useState } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Icon, NanoMap, Section, Tabs } from '../components';
 import { Window } from '../layouts';
-import { createLogger } from '../logging';
-const logger = createLogger('fuck');
+
+type alarm = {
+  name: string;
+  ref: string;
+  danger: number;
+  x: number;
+  y: number;
+  z: number;
+};
+
+type Data = {
+  alarms: alarm[];
+  zoomScale: number;
+};
 
 export const AtmosControl = (props) => {
   return (
@@ -18,9 +30,9 @@ export const AtmosControl = (props) => {
 };
 
 export const AtmosControlContent = (props) => {
-  const { act, data, config } = useBackend();
+  const { act, data, config } = useBackend<Data>();
 
-  let sortedAlarms = sortBy((alarm) => alarm.name)(data.alarms || []);
+  let sortedAlarms = sortBy((alarm: alarm) => alarm.name)(data.alarms || []);
 
   // sortedAlarms = sortedAlarms.slice(1, 3);
 

@@ -5,8 +5,10 @@ import { Button, LabeledList, NumberInput, Section } from '../components';
 import { formatTime } from '../format';
 import { Window } from '../layouts';
 
+type Data = { timing: number; time: number };
+
 export const AssemblyTimer = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { timing, time } = data;
   return (
     <Window>
@@ -31,8 +33,10 @@ export const AssemblyTimer = (props) => {
                 value={time}
                 minValue={0}
                 maxValue={600}
-                format={(val) => formatTime(round(val * 10))}
-                onDrag={(e, val) => act('set_time', { time: val })}
+                format={(val: number) => formatTime(round(val * 10, 0))}
+                onDrag={(e: Function, val: string) =>
+                  act('set_time', { time: val })
+                }
               />
             </LabeledList.Item>
           </LabeledList>

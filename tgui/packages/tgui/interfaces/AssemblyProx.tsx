@@ -1,12 +1,21 @@
 import { round } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import { Button, LabeledList, NumberInput, Section } from '../components';
 import { formatTime } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  timing: number;
+  time: number;
+  range: number;
+  maxRange: number;
+  scanning: BooleanLike;
+};
+
 export const AssemblyProx = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { timing, time, range, maxRange, scanning } = data;
   return (
     <Window>
@@ -31,8 +40,10 @@ export const AssemblyProx = (props) => {
                 value={time}
                 minValue={0}
                 maxValue={600}
-                format={(val) => formatTime(round(val * 10))}
-                onDrag={(e, val) => act('set_time', { time: val })}
+                format={(val: number) => formatTime(round(val * 10, 0))}
+                onDrag={(e: Function, val: string) =>
+                  act('set_time', { time: val })
+                }
               />
             </LabeledList.Item>
           </LabeledList>
@@ -44,7 +55,9 @@ export const AssemblyProx = (props) => {
                 minValue={1}
                 value={range}
                 maxValue={maxRange}
-                onDrag={(e, val) => act('range', { range: val })}
+                onDrag={(e: Function, val: string) =>
+                  act('range', { range: val })
+                }
               />
             </LabeledList.Item>
             <LabeledList.Item label="Armed">

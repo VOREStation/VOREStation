@@ -22,3 +22,11 @@ export type single_scrubber = {
   panic: BooleanLike;
   filters: { name: string; command: string; val: BooleanLike }[];
 };
+
+export type mat = {
+  name: string;
+  ref: string;
+  amount: number;
+  sheets: number;
+  removable: BooleanLike;
+};

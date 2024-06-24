@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { createSearch } from 'common/string';
 import { useState } from 'react';
 
@@ -13,48 +14,66 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type sortable = {
+  name: string;
+  affordable: number;
+  price: number;
+  reagent: BooleanLike;
+};
+type Data = {
+  items: Record<string, sortable[]>;
+  build_eff: number;
+  points: number;
+  processing: BooleanLike;
+  beaker: boolean;
+};
+
 const sortTypes = {
-  Alphabetical: (a, b) => a.name > b.name,
-  'By availability': (a, b) => -(a.affordable - b.affordable),
-  'By price': (a, b) => a.price - b.price,
+  Alphabetical: (a: sortable, b: sortable) => a.name > b.name,
+  'By availability': (a: sortable, b: sortable) =>
+    -(a.affordable - b.affordable),
+  'By price': (a: sortable, b: sortable) => a.price - b.price,
 };
 
 export const Biogenerator = (props) => {
-  const { act, data } = useBackend();
-  const [searchText, setSearchText] = useState('');
-  const [sortOrder, setSortOrder] = useState('Alphabetical');
-  const [descending, setDescending] = useState(false);
+  const { act, data } = useBackend<Data>();
 
-  function handleSearchText(value) {
+  const { processing, points, beaker } = data;
+
+  const [searchText, setSearchText] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState<string>('Alphabetical');
+  const [descending, setDescending] = useState<boolean>(false);
+
+  function handleSearchText(value: string) {
     setSearchText(value);
   }
 
-  function handleSortOrder(value) {
+  function handleSortOrder(value: string) {
     setSortOrder(value);
   }
 
-  function handleDescending(value) {
+  function handleDescending(value: boolean) {
     setDescending(value);
   }
 
   return (
     <Window width={400} height={450}>
       <Window.Content className="Layout__content--flexColumn" scrollable>
-        {(data.processing && (
+        {(processing && (
           <Section title="Processing">
             The biogenerator is processing reagents!
           </Section>
         )) || (
           <>
             <Section>
-              {data.points} points available.
+              {points} points available.
               <Button ml={1} icon="blender" onClick={() => act('activate')}>
                 Activate
               </Button>
               <Button
                 ml={1}
                 icon="eject"
-                disabled={!data.beaker}
+                disabled={!beaker}
                 onClick={() => act('detach')}
               >
                 Eject Beaker
@@ -72,9 +91,6 @@ export const Biogenerator = (props) => {
               searchText={searchText}
               sortOrder={sortOrder}
               descending={descending}
-              onSearchText={handleSearchText}
-              onSortOrder={handleSortOrder}
-              onDescending={handleDescending}
             />
           </>
         )}
@@ -83,20 +99,24 @@ export const Biogenerator = (props) => {
   );
 };
 
-const BiogeneratorItems = (props) => {
-  const { act, data } = useBackend();
-  const { points, items } = data;
+const BiogeneratorItems = (props: {
+  searchText: string;
+  sortOrder: string;
+  descending: boolean;
+}) => {
+  const { act, data } = useBackend<Data>();
+  const { points, items = [], build_eff, beaker } = data;
   // Search thingies
-  const searcher = createSearch(props.searchText, (item) => {
+  const searcher = createSearch(props.searchText, (item: sortable) => {
     return item[0];
   });
 
   let has_contents = false;
-  let contents = Object.entries(items).map((kv, _i) => {
+  let contents = Object.entries(items).map((kv) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {
-        kv2[1].affordable = points >= kv2[1].price / data.build_eff;
+        kv2[1].affordable = +(points >= kv2[1].price / build_eff);
         return kv2[1];
       })
       .sort(sortTypes[props.sortOrder]);
@@ -113,6 +133,8 @@ const BiogeneratorItems = (props) => {
         key={kv[0]}
         title={kv[0]}
         items={items_in_cat}
+        build_eff={build_eff}
+        beaker={beaker}
       />
     );
   });
@@ -129,7 +151,14 @@ const BiogeneratorItems = (props) => {
   );
 };
 
-const BiogeneratorSearch = (props) => {
+const BiogeneratorSearch = (props: {
+  searchText: string;
+  sortOrder: string;
+  descending: boolean;
+  onSearchText: Function;
+  onSortOrder: Function;
+  onDescending: Function;
+}) => {
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
@@ -138,7 +167,7 @@ const BiogeneratorSearch = (props) => {
             placeholder="Search by item name.."
             value={props.searchText}
             width="100%"
-            onInput={(_e, value) => props.onSearchText(value)}
+            onInput={(e: Function, value: string) => props.onSearchText(value)}
           />
         </Flex.Item>
         <Flex.Item basis="30%">
@@ -165,25 +194,31 @@ const BiogeneratorSearch = (props) => {
   );
 };
 
-const canBuyItem = (item, data) => {
+const canBuyItem = (item: sortable, beaker: BooleanLike) => {
   if (!item.affordable) {
     return false;
   }
-  if (item.reagent && !data.beaker) {
+  if (item.reagent && !beaker) {
     return false;
   }
   return true;
 };
 
-const BiogeneratorItemsCategory = (props) => {
+const BiogeneratorItemsCategory = (props: {
+  key: string;
+  title: string;
+  items: sortable[];
+  build_eff: number;
+  beaker: BooleanLike;
+}) => {
   const { act, data } = useBackend();
-  const { title, items, ...rest } = props;
+  const { title, items, build_eff, beaker, ...rest } = props;
   return (
     <Collapsible open title={title} {...rest}>
       {items.map((item) => (
         <Box key={item.name}>
           <Box
-            display="inline-block"
+            inline
             verticalAlign="middle"
             lineHeight="20px"
             style={{
@@ -193,7 +228,7 @@ const BiogeneratorItemsCategory = (props) => {
             {item.name}
           </Box>
           <Button
-            disabled={!canBuyItem(item, data)}
+            disabled={!canBuyItem(item, beaker)}
             width="15%"
             textAlign="center"
             style={{
@@ -206,7 +241,7 @@ const BiogeneratorItemsCategory = (props) => {
               })
             }
           >
-            {(item.price / data.build_eff).toLocaleString('en-US')}
+            {(item.price / build_eff).toLocaleString('en-US')}
           </Button>
           <Box
             style={{

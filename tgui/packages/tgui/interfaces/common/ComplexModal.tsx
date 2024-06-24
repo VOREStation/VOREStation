@@ -131,11 +131,19 @@ export const ComplexModal = (props) => {
         <Button
           icon="check"
           color="good"
+          style={{
+            float: 'right',
+          }}
           m="0"
           onClick={() => modalAnswer(id, curValue, {})}
         >
           Confirm
         </Button>
+        <Box
+          style={{
+            clear: 'both',
+          }}
+        />
       </Box>
     );
   } else if (type === 'choice') {
@@ -188,6 +196,9 @@ export const ComplexModal = (props) => {
         <Button
           icon="times"
           color="bad"
+          style={{
+            float: 'left',
+          }}
           mb="0"
           onClick={() => modalAnswer(id, '0', {})}
         >
@@ -196,11 +207,19 @@ export const ComplexModal = (props) => {
         <Button
           icon="check"
           color="good"
+          style={{
+            float: 'right',
+          }}
           m="0"
           onClick={() => modalAnswer(id, '1', {})}
         >
           {modal.yes_text}
         </Button>
+        <Box
+          style={{
+            clear: 'both',
+          }}
+        />
       </Box>
     );
   }

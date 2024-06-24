@@ -387,7 +387,7 @@
  * @file
  * @copyright 2020 Aleksej Komarov
  * @license MIT
- */function fi(){return fi=Object.assign||function(l){for(var v=1;v<arguments.length;v++){var C=arguments[v];for(var P in C)Object.prototype.hasOwnProperty.call(C,P)&&(l[P]=C[P])}return l},fi.apply(this,arguments)}function ua(l,v){if(l==null)return{};var C={},P=Object.keys(l),x,$;for($=0;$<P.length;$++)x=P[$],!(v.indexOf(x)>=0)&&(C[x]=l[x]);return C}function kr(l){var v=l.className,C=l.color,P=l.info,x=l.success,$=l.danger,q=ua(l,["className","color","info","success","danger"]);return(0,r.jsx)(w.az,fi({className:(0,D.Ly)(["NoticeBox",C&&"NoticeBox--color--"+C,P&&"NoticeBox--type--info",x&&"NoticeBox--type--success",$&&"NoticeBox--type--danger",v])},q))}/**
+ */function fi(){return fi=Object.assign||function(l){for(var v=1;v<arguments.length;v++){var C=arguments[v];for(var P in C)Object.prototype.hasOwnProperty.call(C,P)&&(l[P]=C[P])}return l},fi.apply(this,arguments)}function ua(l,v){if(l==null)return{};var C={},P=Object.keys(l),x,$;for($=0;$<P.length;$++)x=P[$],!(v.indexOf(x)>=0)&&(C[x]=l[x]);return C}function kr(l){var v=l.className,C=l.color,P=l.info,x=l.success,$=l.danger,q=l.warning,X=ua(l,["className","color","info","success","danger","warning"]);return(0,r.jsx)(w.az,fi({className:(0,D.Ly)(["NoticeBox",C&&"NoticeBox--color--"+C,P&&"NoticeBox--type--info",x&&"NoticeBox--type--success",q&&"NoticeBox--type--warning ",$&&"NoticeBox--type--danger",v])},X))}/**
  * @file
  * @copyright 2020 Aleksej Komarov
  * @license MIT

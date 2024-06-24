@@ -92,7 +92,7 @@ export const ColorMate = (props) => {
                 <Table.Cell width="33%">
                   <Button fluid icon="fill" onClick={() => act('paint')}>
                     Paint
-                    </Button>
+                  </Button>
                   <Button fluid icon="eraser" onClick={() => act('clear')}>
                     Clear
                   </Button>
@@ -124,7 +124,7 @@ export const ColorMateTint = (props) => {
   const { act, data } = useBackend();
   return (
     <Button fluid icon="paint-brush" onClick={() => act('choose_color')}>
-    Select new color
+      Select new color
     </Button>
   );
 };

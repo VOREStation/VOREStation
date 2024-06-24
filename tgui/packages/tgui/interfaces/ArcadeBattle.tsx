@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,18 +11,27 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  name: string;
+  temp: string;
+  enemyAction: string;
+  enemyName: string;
+  playerHP: number;
+  playerMP: number;
+  enemyHP: number;
+  gameOver: BooleanLike;
+};
+
 export const ArcadeBattle = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
-    name,
     temp,
     enemyAction,
     enemyName,
     playerHP,
     playerMP,
     enemyHP,
-    enemyMP,
     gameOver,
   } = data;
 

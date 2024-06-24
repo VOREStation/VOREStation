@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
 import { useState } from 'react';
 
@@ -5,10 +6,24 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const AreaScrubberControl = (props) => {
-  const { act, data } = useBackend();
+type scrubber = {
+  id: string;
+  name: string;
+  on: BooleanLike;
+  pressure: number;
+  flow_rate: number;
+  load: number;
+  area: string;
+};
 
-  const [showArea, setShowArea] = useState(false);
+type Data = {
+  scrubbers: scrubber[];
+};
+
+export const AreaScrubberControl = (props) => {
+  const { act, data } = useBackend<Data>();
+
+  const [showArea, setShowArea] = useState<boolean>(false);
 
   const { scrubbers } = data;
 
@@ -83,7 +98,7 @@ export const AreaScrubberControl = (props) => {
   );
 };
 
-const BigScrubber = (props) => {
+const BigScrubber = (props: { scrubber: scrubber; showArea: boolean }) => {
   const { act } = useBackend();
 
   const { scrubber, showArea } = props;

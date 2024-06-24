@@ -21,9 +21,21 @@ export const LoginInfo = (_properties) => {
       <Box inline verticalAlign="middle">
         Logged in as: {authenticated} ({rank})
       </Box>
-      <Button icon="sign-out-alt" color="good" onClick={() => act('logout')}>
+      <Button
+        icon="sign-out-alt"
+        color="good"
+        style={{
+          float: 'right',
+        }}
+        onClick={() => act('logout')}
+      >
         Logout and Eject ID
       </Button>
+      <Box
+        style={{
+          clear: 'both',
+        }}
+      />
     </NoticeBox>
   );
 };

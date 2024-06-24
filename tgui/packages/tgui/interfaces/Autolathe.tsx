@@ -1,21 +1,23 @@
 import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
+import { BooleanLike } from 'common/react';
 import { createSearch, toTitleCase } from 'common/string';
 
 import { useBackend, useSharedState } from '../backend';
 import { Box, Button, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
+import { mat } from './common/CommonTypes';
 import { Materials } from './ExosuitFabricator';
 
-const canBeMade = (recipe, materials, mult = 1) => {
+const canBeMade = (recipe, materials, mult: number = 1) => {
   if (recipe.requirements === null) {
     return true;
   }
 
-  let recipeRequiredMaterials = Object.keys(recipe.requirements);
+  let recipeRequiredMaterials: string[] = Object.keys(recipe.requirements);
 
   for (let mat_id of recipeRequiredMaterials) {
-    let material = materials.find((val) => val.name === mat_id);
+    let material = materials.find((val: mat) => val.name === mat_id);
     if (!material) {
       continue; // yes, if we cannot find the material, we just ignore it :V
     }
@@ -26,9 +28,26 @@ const canBeMade = (recipe, materials, mult = 1) => {
 
   return true;
 };
+type Data = {
+  recipes: recipe[];
+  categories: string[];
+  busy: string;
+  materials: mat[];
+};
+
+type recipe = {
+  category: string;
+  name: string;
+  ref: string;
+  requirements: Record<string, number>;
+  hidden: BooleanLike;
+  coeff_applies: BooleanLike;
+  is_stack: BooleanLike;
+};
 
 export const Autolathe = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
+
   const { recipes, busy, materials, categories } = data;
 
   const [category, setCategory] = useSharedState('category', 0);
@@ -37,9 +56,9 @@ export const Autolathe = (props) => {
   const testSearch = createSearch(searchText, (recipe) => recipe.name);
 
   const recipesToShow = flow([
-    filter((recipe) => recipe.category === categories[category]),
+    filter((recipe: recipe) => recipe.category === categories[category]),
     searchText && filter(testSearch),
-    sortBy((recipe) => recipe.name.toLowerCase()),
+    sortBy((recipe: recipe) => recipe.name.toLowerCase()),
   ])(recipes);
 
   return (
@@ -63,7 +82,7 @@ export const Autolathe = (props) => {
             fluid
             placeholder="Search for..."
             value={searchText}
-            onInput={(e, v) => setSearchText(v)}
+            onInput={(e: Function, v: string) => setSearchText(v)}
             mb={1}
           />
           {recipesToShow.map((recipe) => (

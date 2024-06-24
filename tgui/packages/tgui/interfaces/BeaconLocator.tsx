@@ -11,8 +11,16 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  scan_ticks: number;
+  degrees: number | null;
+  rawfreq: number;
+  minFrequency: number;
+  maxFrequency: number;
+};
+
 export const BeaconLocator = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { scan_ticks, degrees, rawfreq, minFrequency, maxFrequency } = data;
 
@@ -49,9 +57,9 @@ export const BeaconLocator = (props) => {
                 maxValue={maxFrequency / 10}
                 value={rawfreq / 10}
                 format={(value) => toFixed(value, 1)}
-                onDrag={(e, value) =>
+                onDrag={(e: Function, value: number) =>
                   act('setFrequency', {
-                    freq: round(value * 10),
+                    freq: round(value * 10, 0),
                   })
                 }
               />

@@ -50,7 +50,7 @@ export const AlgaeFarm = (props) => {
     <Window width={500} height={300}>
       <Window.Content>
         {errorText && (
-          <NoticeBox danger>
+          <NoticeBox warning>
             <Box inline verticalAlign="middle">
               {errorText}
             </Box>

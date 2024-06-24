@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
@@ -10,8 +12,25 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  mode: number;
+  transfer_max: number;
+  output_load: number;
+  input_load: number;
+  equalise: BooleanLike;
+  blink_tick: BooleanLike;
+  cells_max: number;
+  cells_cur: number;
+  cells_list: {
+    slot: number;
+    used: BooleanLike;
+    percentage: number;
+    id: number;
+  }[];
+};
+
 export const Batteryrack = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     mode,
@@ -20,8 +39,6 @@ export const Batteryrack = (props) => {
     input_load,
     equalise,
     blink_tick,
-    cells_max,
-    cells_cur,
     cells_list,
   } = data;
 
