@@ -5,12 +5,10 @@ import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  geneMasks: { tag: string; gene_mask: string };
   activity: BooleanLike;
   degradation: number;
   disk: BooleanLike;
   loaded: string | number;
-  hasGenetics: BooleanLike;
   sourceName: string;
   locus: string[];
 };

@@ -1,4 +1,5 @@
-import { Component, createRef } from 'react';
+import { BooleanLike } from 'common/react';
+import { Component, createRef, RefObject } from 'react';
 
 import { useBackend } from '../backend';
 import { Box, Button } from '../components';
@@ -6,7 +7,17 @@ import { Window } from '../layouts';
 
 const PX_PER_UNIT = 24;
 
-class PaintCanvas extends Component {
+type PaintCanvasProps = Partial<{
+  onCanvasClick: (x: number, y: number) => void;
+  value: string[][];
+  dotsize: number;
+  res: number;
+}>;
+
+class PaintCanvas extends Component<PaintCanvasProps> {
+  canvasRef: RefObject<HTMLCanvasElement>;
+  onCVClick: (x: number, y: number) => void;
+
   constructor(props) {
     super(props);
     this.canvasRef = createRef();
@@ -21,16 +32,20 @@ class PaintCanvas extends Component {
     this.drawCanvas(this.props);
   }
 
-  drawCanvas(propSource) {
-    const ctx = this.canvasRef.current.getContext('2d');
+  drawCanvas(propSource: PaintCanvasProps) {
+    const canvas = this.canvasRef.current!;
+    const ctx = canvas.getContext('2d')!;
     const grid = propSource.value;
+    if (!grid) {
+      return;
+    }
     const x_size = grid.length;
     if (!x_size) {
       return;
     }
     const y_size = grid[0].length;
-    const x_scale = Math.round(this.canvasRef.current.width / x_size);
-    const y_scale = Math.round(this.canvasRef.current.height / y_size);
+    const x_scale = Math.round(canvas.width / x_size);
+    const y_scale = Math.round(canvas.height / y_size);
     ctx.save();
     ctx.scale(x_scale, y_scale);
     for (let x = 0; x < grid.length; x++) {
@@ -44,14 +59,19 @@ class PaintCanvas extends Component {
     ctx.restore();
   }
 
-  clickwrapper(event) {
-    const x_size = this.props.value.length;
+  clickwrapper(event: React.MouseEvent) {
+    const value = this.props.value;
+    if (!value) {
+      return;
+    }
+    const x_size = value.length;
     if (!x_size) {
       return;
     }
     const y_size = this.props.value[0].length;
-    const x_scale = this.canvasRef.current.width / x_size;
-    const y_scale = this.canvasRef.current.height / y_size;
+    const canvas = this.canvasRef.current!;
+    const x_scale = canvas.width / x_size;
+    const y_scale = canvas.height / y_size;
     const x = Math.floor(event.nativeEvent.offsetX / x_scale) + 1;
     const y = Math.floor(event.nativeEvent.offsetY / y_scale) + 1;
     this.onCVClick(x, y);
@@ -80,8 +100,15 @@ const getImageSize = (value) => {
   return [width, height];
 };
 
+type Data = {
+  grid: string[][];
+  name: string;
+  finalized: BooleanLike;
+};
+
 export const Canvas = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
+
   const dotsize = PX_PER_UNIT;
   const [width, height] = getImageSize(data.grid);
   return (

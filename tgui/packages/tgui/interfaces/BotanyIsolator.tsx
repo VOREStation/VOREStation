@@ -1,9 +1,21 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  geneMasks: { tag: string; mask: string }[];
+  activity: BooleanLike;
+  degradation: number;
+  disk: BooleanLike;
+  loaded: string | number;
+  hasGenetics: BooleanLike;
+  sourceName: string;
+};
+
 export const BotanyIsolator = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     geneMasks,

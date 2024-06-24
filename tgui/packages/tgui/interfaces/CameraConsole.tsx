@@ -1,6 +1,6 @@
 import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
-import { classes } from 'common/react';
+import { BooleanLike, classes } from 'common/react';
 import { createSearch } from 'common/string';
 import { useState } from 'react';
 
@@ -8,11 +8,25 @@ import { useBackend } from '../backend';
 import { Button, ByondUi, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 
+type activeCamera = { name: string; status: BooleanLike };
+
+type camera = { name: string; networks: string[] };
+
+type Data = {
+  activeCamera: activeCamera;
+  mapRef: string;
+  cameras: camera[];
+  allNetworks: string[];
+};
+
 /**
  * Returns previous and next camera names relative to the currently
  * active camera.
  */
-export const prevNextCamera = (cameras, activeCamera) => {
+export const prevNextCamera = (
+  cameras: camera[],
+  activeCamera: activeCamera,
+) => {
   if (!activeCamera) {
     return [];
   }
@@ -22,32 +36,43 @@ export const prevNextCamera = (cameras, activeCamera) => {
   return [cameras[index - 1]?.name, cameras[index + 1]?.name];
 };
 
+function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+  return value !== null && value !== undefined;
+}
+
 /**
  * Camera selector.
  *
  * Filters cameras, applies search terms and sorts the alphabetically.
  */
-export const selectCameras = (cameras, searchText = '', networkFilter = '') => {
-  const testSearch = createSearch(searchText, (camera) => camera.name);
+export const selectCameras = (
+  cameras: camera[],
+  searchText: string = '',
+  networkFilter: string = '',
+) => {
+  const testSearch = createSearch(searchText, (camera: camera) => camera.name);
   return flow([
     // Null camera filter
-    filter((camera) => camera?.name),
+    filter((camera: camera) => notEmpty(camera?.name)),
     // Optional search term
     searchText && filter(testSearch),
     // Optional network filter
     networkFilter &&
-      filter((camera) => camera.networks.includes(networkFilter)),
+      filter((camera: camera) => camera.networks.includes(networkFilter)),
     // Slightly expensive, but way better than sorting in BYOND
-    sortBy((camera) => camera.name),
+    sortBy((camera: camera) => camera.name),
   ])(cameras);
 };
 
 export const CameraConsole = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { mapRef, activeCamera } = data;
-  const cameras = selectCameras(data.cameras);
-  const [prevCameraName, nextCameraName] = prevNextCamera(
-    cameras,
+
+  const { cameras } = data;
+
+  const selected_cameras: camera[] = selectCameras(cameras);
+  const [prevCameraName, nextCameraName]: string[] = prevNextCamera(
+    selected_cameras,
     activeCamera,
   );
   return (
@@ -101,12 +126,16 @@ export const CameraConsole = (props) => {
 };
 
 export const CameraConsoleContent = (props) => {
-  const { act, data } = useBackend();
-  const [searchText, setSearchText] = useState('');
-  const [networkFilter, setNetworkFilter] = useState('');
-  const { activeCamera, allNetworks } = data;
+  const { act, data } = useBackend<Data>();
+  const [searchText, setSearchText] = useState<string>('');
+  const [networkFilter, setNetworkFilter] = useState<string>('');
+  const { activeCamera, allNetworks, cameras } = data;
   allNetworks.sort();
-  const cameras = selectCameras(data.cameras, searchText, networkFilter);
+  const selected_cameras: camera[] = selectCameras(
+    cameras,
+    searchText,
+    networkFilter,
+  );
   return (
     <Flex direction={'column'} height="100%">
       <Flex.Item>
@@ -115,7 +144,7 @@ export const CameraConsoleContent = (props) => {
           fluid
           mt={1}
           placeholder="Search for a camera"
-          onInput={(e, value) => setSearchText(value)}
+          onInput={(e: Event, value: string) => setSearchText(value)}
         />
       </Flex.Item>
       <Flex.Item>
@@ -147,7 +176,7 @@ export const CameraConsoleContent = (props) => {
       </Flex.Item>
       <Flex.Item height="100%">
         <Section fill scrollable>
-          {cameras.map((camera) => (
+          {selected_cameras.map((camera) => (
             // We're not using the component here because performance
             // would be absolutely abysmal (50+ ms for each re-render).
             <div

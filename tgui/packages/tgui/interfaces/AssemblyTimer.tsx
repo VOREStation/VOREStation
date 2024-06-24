@@ -34,7 +34,7 @@ export const AssemblyTimer = (props) => {
                 minValue={0}
                 maxValue={600}
                 format={(val: number) => formatTime(round(val * 10, 0))}
-                onDrag={(e: Function, val: string) =>
+                onDrag={(e: Event, val: string) =>
                   act('set_time', { time: val })
                 }
               />

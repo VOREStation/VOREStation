@@ -167,7 +167,7 @@ const BiogeneratorSearch = (props: {
             placeholder="Search by item name.."
             value={props.searchText}
             width="100%"
-            onInput={(e: Function, value: string) => props.onSearchText(value)}
+            onInput={(e: Event, value: string) => props.onSearchText(value)}
           />
         </Flex.Item>
         <Flex.Item basis="30%">

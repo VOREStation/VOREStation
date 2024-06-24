@@ -1,4 +1,5 @@
 import { toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import {
@@ -15,8 +16,20 @@ import {
 import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  connected: BooleanLike;
+  can_relabel: BooleanLike;
+  pressure: number;
+  releasePressure: number;
+  defaultReleasePressure: number;
+  minReleasePressure: number;
+  maxReleasePressure: number;
+  valveOpen: BooleanLike;
+  holding: { name: string; pressure: number } | null;
+};
+
 export const Canister = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     connected,
     can_relabel,
@@ -66,7 +79,7 @@ export const Canister = (props) => {
                   minValue={minReleasePressure}
                   maxValue={maxReleasePressure}
                   stepPixelSize={1}
-                  onDrag={(e, value) =>
+                  onDrag={(e: Event, value: number) =>
                     act('pressure', {
                       pressure: value,
                     })
