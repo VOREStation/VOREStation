@@ -2,8 +2,15 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  wintick: number;
+  instructions: string;
+  gameStatus: string;
+  winscreen: string;
+};
+
 export const ClawMachine = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { wintick, instructions, gameStatus, winscreen } = data;
 
   let body;
@@ -39,7 +46,7 @@ export const ClawMachine = (props) => {
                 average: [1, 7],
                 good: [8, Infinity],
               }}
-              value={data.wintick}
+              value={wintick}
               minValue={0}
               maxValue={10}
             />
