@@ -13,26 +13,36 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  items: Record<string, sortable[]>;
+};
+
+type sortable = {
+  name: string;
+  affordable: number;
+  price: number;
+  restriction: string;
+};
+
 const sortTypes = {
-  Alphabetical: (a, b) => a.name > b.name,
-  'By availability': (a, b) => -(a.affordable - b.affordable),
-  'By price': (a, b) => a.price - b.price,
+  Alphabetical: (a: sortable, b: sortable) => a.name > b.name,
+  'By price': (a: sortable, b: sortable) => a.price - b.price,
 };
 
 export const CasinoPrizeDispenser = () => {
-  const [searchText, setSearchText] = useState('');
-  const [sortOrder, setSortOrder] = useState('Alphabetical');
-  const [descending, setDescending] = useState(false);
+  const [searchText, setSearchText] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState<string>('Alphabetical');
+  const [descending, setDescending] = useState<boolean>(false);
 
-  function handleSearchText(value) {
+  function handleSearchText(value: string) {
     setSearchText(value);
   }
 
-  function handleSortOrder(value) {
+  function handleSortOrder(value: string) {
     setSortOrder(value);
   }
 
-  function handleDescending(value) {
+  function handleDescending(value: boolean) {
     setDescending(value);
   }
 
@@ -52,9 +62,6 @@ export const CasinoPrizeDispenser = () => {
             searchText={searchText}
             sortOrder={sortOrder}
             descending={descending}
-            onSearchText={handleSearchText}
-            onSortOrder={handleSortOrder}
-            onDescending={handleDescending}
           />
         </>
       </Window.Content>
@@ -98,19 +105,18 @@ const CasinoPrizeDispenserSearch = (props) => {
 };
 
 const CasinoPrizeDispenserItems = (props) => {
-  const { act, data } = useBackend();
-  const { points, items } = data;
+  const { act, data } = useBackend<Data>();
+  const { items } = data;
   // Search thingies
   const searcher = createSearch(props.searchText, (item) => {
     return item[0];
   });
 
   let has_contents = false;
-  let contents = Object.entries(items).map((kv, _i) => {
+  let contents = Object.entries(items).map((kv) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {
-        kv2[1].affordable = points >= kv2[1].price;
         return kv2[1];
       })
       .sort(sortTypes[props.sortOrder]);
@@ -143,15 +149,19 @@ const CasinoPrizeDispenserItems = (props) => {
   );
 };
 
-const CasinoPrizeDispenserItemsCategory = (props) => {
-  const { act, data } = useBackend();
+const CasinoPrizeDispenserItemsCategory = (props: {
+  key: string;
+  title: string;
+  items: sortable[];
+}) => {
+  const { act } = useBackend();
   const { title, items, ...rest } = props;
   return (
     <Collapsible open title={title} {...rest}>
       {items.map((item) => (
         <Box key={item.name}>
           <Box
-            display="inline-block"
+            inline
             verticalAlign="middle"
             lineHeight="20px"
             style={{

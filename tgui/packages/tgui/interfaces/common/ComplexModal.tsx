@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useBackend } from '../../backend';
 import { Box, Button, Dropdown, Flex, Input, Modal } from '../../components';
 
@@ -96,9 +98,9 @@ export const ComplexModal = (props) => {
 
   const { id, text, type } = modal;
 
-  let modalOnEnter;
-  let modalBody;
-  let modalFooter = (
+  let modalOnEnter: Function | undefined;
+  let modalBody: React.JSX.Element | undefined;
+  let modalFooter: React.JSX.Element = (
     <Button icon="arrow-left" color="grey" onClick={() => modalClose(null)}>
       Cancel
     </Button>
@@ -109,7 +111,7 @@ export const ComplexModal = (props) => {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
     let curValue = modal.value;
-    modalOnEnter = (e) => modalAnswer(id, curValue, {});
+    modalOnEnter = (e: Event) => modalAnswer(id, curValue, {});
     modalBody = (
       <Input
         value={modal.value}

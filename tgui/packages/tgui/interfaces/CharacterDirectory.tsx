@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { BooleanLike } from 'common/react';
+import { ReactNode, useState } from 'react';
 
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 
-const getTagColor = (tag) => {
+const getTagColor = (tag: string) => {
   switch (tag) {
     case 'Unset':
       return 'label';
@@ -23,19 +24,36 @@ const getTagColor = (tag) => {
   }
 };
 
+type Data = {
+  personalVisibility: BooleanLike;
+  personalTag: string;
+  personalErpTag: string;
+  directory: character[];
+};
+
+type character = {
+  name: string;
+  species: string;
+  ooc_notes: string;
+  tag: string;
+  erptag: string;
+  character_ad: string;
+  flavor_text: string;
+};
+
 export const CharacterDirectory = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { personalVisibility, personalTag, personalErpTag } = data;
 
-  const [overlay, setOverlay] = useState(null);
-  const [overwritePrefs, setOverwritePrefs] = useState(false);
+  const [overlay, setOverlay] = useState<character | null>(null);
+  const [overwritePrefs, setOverwritePrefs] = useState<boolean>(false);
 
-  function handleOverlay(value) {
+  function handleOverlay(value: character | null) {
     setOverlay(value);
   }
 
   return (
-    <Window width={640} height={480} resizeable>
+    <Window width={640} height={480}>
       <Window.Content scrollable>
         {(overlay && (
           <ViewCharacter overlay={overlay} onOverlay={handleOverlay} />
@@ -119,29 +137,29 @@ const ViewCharacter = (props) => {
         </Button>
       }
     >
-      <Section level={2} title="Species">
+      <Section title="Species">
         <Box>{props.overlay.species}</Box>
       </Section>
-      <Section level={2} title="Vore Tag">
+      <Section title="Vore Tag">
         <Box p={1} backgroundColor={getTagColor(props.overlay.tag)}>
           {props.overlay.tag}
         </Box>
       </Section>
-      <Section level={2} title="ERP Tag">
+      <Section title="ERP Tag">
         <Box>{props.overlay.erptag}</Box>
       </Section>
-      <Section level={2} title="Character Ad">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
+      <Section title="Character Ad">
+        <Box style={{ wordBreak: 'break-all' }} preserveWhitespace>
           {props.overlay.character_ad || 'Unset.'}
         </Box>
       </Section>
-      <Section level={2} title="OOC Notes">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
+      <Section title="OOC Notes">
+        <Box style={{ wordBreak: 'break-all' }} preserveWhitespace>
           {props.overlay.ooc_notes || 'Unset.'}
         </Box>
       </Section>
-      <Section level={2} title="Flavor Text">
-        <Box style={{ 'word-break': 'break-all' }} preserveWhitespace>
+      <Section title="Flavor Text">
+        <Box style={{ wordBreak: 'break-all' }} preserveWhitespace>
           {props.overlay.flavor_text || 'Unset.'}
         </Box>
       </Section>
@@ -150,17 +168,17 @@ const ViewCharacter = (props) => {
 };
 
 const CharacterDirectoryList = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { directory } = data;
 
-  const [sortId, setSortId] = useState('name');
-  const [sortOrder, setSortOrder] = useState('name');
+  const [sortId, setSortId] = useState<string>('name');
+  const [sortOrder, setSortOrder] = useState<string>('name');
 
-  function handleSortId(value) {
+  function handleSortId(value: string) {
     setSortId(value);
   }
-  function handleSortOrder(value) {
+  function handleSortOrder(value: string) {
     setSortOrder(value);
   }
 
@@ -243,9 +261,14 @@ const CharacterDirectoryList = (props) => {
   );
 };
 
-const SortButton = (props) => {
-  const { act, data } = useBackend();
-
+const SortButton = (props: {
+  id: string;
+  sortId: string;
+  sortOrder: string;
+  onSortId: Function;
+  onSortOrder: Function;
+  children: ReactNode | string;
+}) => {
   const { id, children } = props;
 
   // Hey, same keys mean same data~

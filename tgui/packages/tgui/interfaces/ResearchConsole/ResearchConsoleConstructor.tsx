@@ -134,7 +134,7 @@ export const ResearchConsoleConstructor = (props: {
           Chem Storage
         </Tabs.Tab>
       </Tabs>
-      {tab[protoTab] || <Box>Error</Box>}
+      {tab[protoTab] || <Box textColor="red">Error</Box>}
     </Section>
   );
 };

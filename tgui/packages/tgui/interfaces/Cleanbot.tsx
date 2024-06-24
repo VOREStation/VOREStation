@@ -1,9 +1,27 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  on: BooleanLike;
+  open: BooleanLike;
+  locked: BooleanLike;
+  patrol: BooleanLike;
+  vocal: BooleanLike;
+  wet_floors: BooleanLike;
+  spray_blood: BooleanLike;
+  version: string;
+  blood: BooleanLike;
+  rgbpanel: BooleanLike;
+  red_switch: BooleanLike;
+  green_switch: BooleanLike;
+  blue_switch: BooleanLike;
+};
+
 export const Cleanbot = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     on,
@@ -11,7 +29,6 @@ export const Cleanbot = (props) => {
     locked,
     version,
     blood,
-    patrol,
     vocal,
     wet_floors,
     spray_blood,

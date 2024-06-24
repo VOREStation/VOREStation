@@ -62,16 +62,17 @@ export const MiningVendor = (props) => {
           searchText={searchText}
           sortOrder={sortOrder}
           descending={descending}
-          onSearchText={handleSearchText}
-          onSortOrder={handleSortOrder}
-          onDescending={handleDescending}
         />
       </Window.Content>
     </Window>
   );
 };
 
-const MiningVendorItems = (props) => {
+const MiningVendorItems = (props: {
+  searchText: string;
+  sortOrder: string;
+  descending: boolean;
+}) => {
   const { act, data } = useBackend<Data>();
   const { has_id, id, items } = data;
   // Search thingies
@@ -117,13 +118,21 @@ const MiningVendorItems = (props) => {
   );
 };
 
-const MiningVendorSearch = (props) => {
+const MiningVendorSearch = (props: {
+  searchText: string;
+  sortOrder: string;
+  descending: boolean;
+  onSearchText: Function;
+  onSortOrder: Function;
+  onDescending: Function;
+}) => {
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
         <Flex.Item grow="1" mr="0.5rem">
           <Input
             placeholder="Search by item name.."
+            value={props.searchText}
             width="100%"
             onInput={(_e, value) => props.onSearchText(value)}
           />
@@ -152,7 +161,11 @@ const MiningVendorSearch = (props) => {
   );
 };
 
-const MiningVendorItemsCategory = (props) => {
+const MiningVendorItemsCategory = (props: {
+  key: string;
+  title: string;
+  items: sortable[];
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { has_id, id } = data;
