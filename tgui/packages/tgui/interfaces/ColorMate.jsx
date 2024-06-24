@@ -13,8 +13,8 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
-export const ColorMate = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ColorMate = (props) => {
+  const { act, data } = useBackend();
   const { activemode, temp } = data;
   const item = data.item || [];
   return (
@@ -22,7 +22,7 @@ export const ColorMate = (props, context) => {
       <Window.Content overflow="auto">
         <Section>
           {temp ? <NoticeBox>{temp}</NoticeBox> : null}
-          {Object.keys(item).length ? (
+          {item && Object.keys(item).length ? (
             <>
               <Table>
                 <Table.Cell width="50%">
@@ -92,7 +92,7 @@ export const ColorMate = (props, context) => {
                 <Table.Cell width="33%">
                   <Button fluid icon="fill" onClick={() => act('paint')}>
                     Paint
-                  </Button>
+                    </Button>
                   <Button fluid icon="eraser" onClick={() => act('clear')}>
                     Clear
                   </Button>
@@ -120,23 +120,23 @@ export const ColorMate = (props, context) => {
   );
 };
 
-export const ColorMateTint = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ColorMateTint = (props) => {
+  const { act, data } = useBackend();
   return (
     <Button fluid icon="paint-brush" onClick={() => act('choose_color')}>
-      Select new color
+    Select new color
     </Button>
   );
 };
 
-export const ColorMateMatrix = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ColorMateMatrix = (props) => {
+  const { act, data } = useBackend();
   const matrixcolors = data.matrixcolors || [];
   return (
     <Table>
       <Table.Cell>
         <Table.Row>
-          RR:{' '}
+          RR:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -153,7 +153,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          GR:{' '}
+          GR:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -170,7 +170,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          BR:{' '}
+          BR:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -189,7 +189,7 @@ export const ColorMateMatrix = (props, context) => {
       </Table.Cell>
       <Table.Cell>
         <Table.Row>
-          RG:{' '}
+          RG:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -206,7 +206,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          GG:{' '}
+          GG:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -223,7 +223,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          BG:{' '}
+          BG:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -242,7 +242,7 @@ export const ColorMateMatrix = (props, context) => {
       </Table.Cell>
       <Table.Cell>
         <Table.Row>
-          RB:{' '}
+          RB:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -259,7 +259,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          GB:{' '}
+          GB:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -276,7 +276,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          BB:{' '}
+          BB:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -295,7 +295,7 @@ export const ColorMateMatrix = (props, context) => {
       </Table.Cell>
       <Table.Cell>
         <Table.Row>
-          CR:{' '}
+          CR:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -312,7 +312,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          CG:{' '}
+          CG:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -329,7 +329,7 @@ export const ColorMateMatrix = (props, context) => {
           />
         </Table.Row>
         <Table.Row>
-          CB:{' '}
+          CB:
           <NumberInput
             width="50px"
             minValue={-10}
@@ -357,8 +357,8 @@ export const ColorMateMatrix = (props, context) => {
   );
 };
 
-export const ColorMateHSV = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ColorMateHSV = (props) => {
+  const { act, data } = useBackend();
   const { buildhue, buildsat, buildval } = data;
   return (
     <Table>
