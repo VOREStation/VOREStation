@@ -222,6 +222,8 @@
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes
 
+	var/vore_belly_default_variant = "H"
+
 	// Determines the organs that the species spawns with and
 	var/list/has_organ = list(								// which required-organ checks are conducted.
 		O_HEART =		/obj/item/organ/internal/heart,
