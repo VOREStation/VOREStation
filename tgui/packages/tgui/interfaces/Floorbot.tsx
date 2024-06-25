@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
@@ -8,8 +10,21 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  on: BooleanLike;
+  open: BooleanLike;
+  locked: BooleanLike;
+  vocal: BooleanLike;
+  amount: number;
+  possible_bmode: string[];
+  improvefloors: BooleanLike;
+  eattiles: BooleanLike;
+  maketiles: BooleanLike;
+  bmode: string;
+};
+
 export const Floorbot = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     on,
@@ -96,8 +111,7 @@ export const Floorbot = (props) => {
                 <Dropdown
                   over
                   width="100%"
-                  placeholder="Disabled"
-                  selected={bmode}
+                  selected={bmode ? bmode : 'Disabled'}
                   options={possible_bmode}
                   onSelected={(val) => act('bridgemode', { dir: val })}
                 />

@@ -1,15 +1,30 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 
+type Data = {
+  scan: string | null;
+  authenticated: string | null;
+  rank: string;
+  isAI: BooleanLike;
+  isRobot: BooleanLike;
+  adminDepartments: string[];
+  bossName: string;
+  copyItem: string;
+  cooldown: number;
+  destination: string;
+};
+
 export const Fax = (props) => {
-  const { data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { authenticated, copyItem } = data;
 
-  let variableHeight = 340;
+  let variableHeight: number = 340;
   if (copyItem) {
     variableHeight = 358;
   }
@@ -37,10 +52,9 @@ export const Fax = (props) => {
 };
 
 export const FaxContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
-  const { bossName, copyItem, cooldown, destination, adminDepartments } = data;
-  const staffRequestDepartment = new Set(adminDepartments);
+  const { bossName, copyItem, cooldown, destination } = data;
 
   return (
     <Section>
@@ -86,7 +100,7 @@ export const FaxContent = (props) => {
 };
 
 const RemoveItem = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { copyItem } = data;
 
@@ -104,10 +118,10 @@ const RemoveItem = (props) => {
 };
 
 const AutomatedStaffRequest = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { adminDepartments, destination, copyItem } = data;
-  const staffRequestDepartment = new Set(adminDepartments);
+  const staffRequestDepartment: Set<string> = new Set(adminDepartments);
 
   let flexiblePadding = '1rem';
   if (copyItem) {

@@ -1,3 +1,6 @@
+import { toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
@@ -9,8 +12,16 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  on: BooleanLike;
+  pressure_set: number;
+  last_flow_rate: number;
+  last_power_draw: number;
+  max_power_draw: number;
+};
+
 export const GasPump = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { on, pressure_set, last_flow_rate, last_power_draw, max_power_draw } =
     data;
@@ -21,7 +32,10 @@ export const GasPump = (props) => {
         <Section title="Status">
           <LabeledList>
             <LabeledList.Item label="Flow Rate">
-              <AnimatedNumber value={last_flow_rate / 10} /> L/s
+              <AnimatedNumber
+                value={last_flow_rate / 10}
+                format={(value) => toFixed(value, 1) + ' L/s'}
+              />
             </LabeledList.Item>
             <LabeledList.Item label="Load">
               <ProgressBar
@@ -46,7 +60,7 @@ export const GasPump = (props) => {
           }
         >
           <LabeledControls>
-            <LabeledControls.Item>
+            <LabeledControls.Item label="">
               <Button
                 icon="compress-arrows-alt"
                 onClick={() => act('set_press', { press: 'min' })}
@@ -67,7 +81,7 @@ export const GasPump = (props) => {
               </Button>
             </LabeledControls.Item>
             <LabeledControls.Item label="Desired Output Pressure">
-              {pressure_set / 100} kPa
+              {toFixed(pressure_set / 100, 2)} kPa
             </LabeledControls.Item>
           </LabeledControls>
         </Section>

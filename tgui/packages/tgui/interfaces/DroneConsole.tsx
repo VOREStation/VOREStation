@@ -1,9 +1,26 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Dropdown, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  drones: {
+    name: string;
+    active: BooleanLike;
+    charge: number;
+    maxCharge: number;
+    loc: string;
+    ref: string;
+  }[];
+  fabricator: string;
+  fabPower: BooleanLike;
+  areas: string[];
+  selected_area: string;
+};
+
 export const DroneConsole = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { drones, areas, selected_area, fabricator, fabPower } = data;
 
@@ -36,7 +53,7 @@ export const DroneConsole = (props) => {
         </Section>
         <Section title="Request Drone">
           <Dropdown
-            options={areas ? areas.sort() : null}
+            options={areas ? areas.sort() : []}
             selected={selected_area}
             width="100%"
             onSelected={(val) => act('set_dcall_area', { area: val })}

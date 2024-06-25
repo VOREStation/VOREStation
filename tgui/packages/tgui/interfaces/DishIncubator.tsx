@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -10,8 +12,26 @@ import {
 import { formatCommaNumber } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  chemicals_inserted: BooleanLike;
+  dish_inserted: BooleanLike;
+  food_supply: number;
+  radiation: number;
+  toxins: number;
+  on: BooleanLike;
+  system_in_use: BooleanLike;
+  chemical_volume: number;
+  max_chemical_volume: number;
+  virus: string | null;
+  growth: number;
+  infection_rate: number;
+  analysed: BooleanLike;
+  can_breed_virus: BooleanLike;
+  blood_already_infected: string | null;
+};
+
 export const DishIncubator = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     on,

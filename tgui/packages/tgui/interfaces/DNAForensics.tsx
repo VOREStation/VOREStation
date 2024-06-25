@@ -1,9 +1,18 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  scan_progress: number;
+  scanning: BooleanLike;
+  bloodsamp: string;
+  bloodsamp_desc: string;
+};
+
 export const DNAForensics = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { scan_progress, scanning, bloodsamp, bloodsamp_desc } = data;
   return (
     <Window width={540} height={326}>

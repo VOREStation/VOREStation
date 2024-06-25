@@ -2,8 +2,13 @@ import { useBackend } from '../backend';
 import { Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  currTag: string;
+  taggerLocs: string[];
+};
+
 export const DestinationTagger = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { currTag, taggerLocs } = data;
 

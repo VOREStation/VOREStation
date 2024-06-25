@@ -1,4 +1,5 @@
 import { toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import {
@@ -12,8 +13,19 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  on: BooleanLike;
+  gasPressure: number;
+  gasTemperature: number;
+  minGasTemperature: number;
+  maxGasTemperature: number;
+  targetGasTemperature: number;
+  powerSetting: number;
+  gasTemperatureClass: string;
+};
+
 export const GasTemperatureSystem = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     on,
@@ -27,7 +39,7 @@ export const GasTemperatureSystem = (props) => {
   } = data;
 
   return (
-    <Window width={270} height={270} resizeable>
+    <Window width={270} height={270}>
       <Window.Content>
         <Section
           title="Controls"
