@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
@@ -9,8 +11,22 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  temperature: number;
+  optimalTemp: number;
+  temperatureEnough: BooleanLike;
+  efficiency: number;
+  containersRemovable: BooleanLike;
+  our_contents: {
+    empty: BooleanLike;
+    progress: number;
+    progressText: string;
+    container: string | null;
+  }[];
+};
+
 export const CookingAppliance = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     temperature,
