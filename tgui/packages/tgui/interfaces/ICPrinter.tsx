@@ -1,4 +1,5 @@
 import { filter, sortBy } from 'common/collections';
+import { BooleanLike } from 'common/react';
 
 import { useBackend, useSharedState } from '../backend';
 import {
@@ -12,19 +13,31 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
-export const ICPrinter = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  categories: category[];
+  metal: number;
+  max_metal: number;
+  metal_per_sheet: number;
+  debug: BooleanLike;
+  upgraded: BooleanLike;
+  can_clone: BooleanLike;
+  assembly_to_clone: string;
+};
 
-  const {
-    metal,
-    max_metal,
-    metal_per_sheet,
-    debug,
-    upgraded,
-    can_clone,
-    assembly_to_clone,
-    categories,
-  } = data;
+type category = { name: string; items: item[] };
+
+type item = {
+  name: string;
+  desc: string;
+  can_build: BooleanLike;
+  cost: number;
+  path: string;
+};
+
+export const ICPrinter = (props) => {
+  const { data } = useBackend<Data>();
+
+  const { metal, max_metal, metal_per_sheet, upgraded, can_clone } = data;
 
   return (
     <Window width={600} height={630}>
@@ -54,7 +67,7 @@ export const ICPrinter = (props) => {
   );
 };
 
-const canBuild = (item, data) => {
+function canBuild(item: item, data: Data) {
   if (!item.can_build) {
     return false;
   }
@@ -64,28 +77,28 @@ const canBuild = (item, data) => {
   }
 
   return true;
-};
+}
 
 const ICPrinterCategories = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
-  const { categories, debug } = data;
+  const { categories } = data;
 
-  const [categoryTarget, setcategoryTarget] = useSharedState(
+  const [categoryTarget, setcategoryTarget] = useSharedState<string>(
     'categoryTarget',
-    null,
+    '',
   );
 
-  const selectedCategory = filter((cat) => cat.name === categoryTarget)(
-    categories,
-  )[0];
+  const selectedCategory = filter(
+    (cat: category) => cat.name === categoryTarget,
+  )(categories)[0];
 
   return (
     <Section title="Circuits">
       <Stack fill>
         <Stack.Item mr={2}>
           <Tabs vertical>
-            {sortBy((cat) => cat.name)(categories).map((cat) => (
+            {sortBy((cat: category) => cat.name)(categories).map((cat) => (
               <Tabs.Tab
                 selected={categoryTarget === cat.name}
                 onClick={() => setcategoryTarget(cat.name)}
@@ -97,10 +110,10 @@ const ICPrinterCategories = (props) => {
           </Tabs>
         </Stack.Item>
         <Stack.Item>
-          {(selectedCategory && (
+          {selectedCategory ? (
             <Section>
               <LabeledList>
-                {sortBy((item) => item.name)(selectedCategory.items).map(
+                {sortBy((item: item) => item.name)(selectedCategory.items).map(
                   (item) => (
                     <LabeledList.Item
                       key={item.name}
@@ -122,8 +135,9 @@ const ICPrinterCategories = (props) => {
                 )}
               </LabeledList>
             </Section>
-          )) ||
-            'No category selected.'}
+          ) : (
+            <Box>No category selected.</Box>
+          )}
         </Stack.Item>
       </Stack>
     </Section>

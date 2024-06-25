@@ -1,10 +1,22 @@
 import { useBackend } from '../backend';
-import { Box, Flex, Icon, LabeledList, Section } from '../components';
+import { Box, Flex, Icon, Image, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 import { RankIcon } from './common/RankIcon';
 
+type Data = {
+  registered_name: string;
+  sex: string;
+  species: string;
+  age: string | number;
+  assignment: string;
+  fingerprint_hash: string;
+  blood_type: string;
+  dna_hash: string;
+  photo_front: string;
+};
+
 export const IDCard = (props) => {
-  const { data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const {
     registered_name,
@@ -18,7 +30,10 @@ export const IDCard = (props) => {
     photo_front,
   } = data;
 
-  const dataIter = [
+  const dataIter: {
+    name: string;
+    val: string | number;
+  }[] = [
     { name: 'Sex', val: sex },
     { name: 'Species', val: species },
     { name: 'Age', val: age },
@@ -43,12 +58,11 @@ export const IDCard = (props) => {
                 }}
               >
                 {(photo_front && (
-                  <img
-                    src={photo_front.substr(1, photo_front.length - 1)}
+                  <Image
+                    src={photo_front.substring(1, photo_front.length - 1)}
                     style={{
                       width: '300px',
-                      'margin-left': '-94px',
-                      '-ms-interpolation-mode': 'nearest-neighbor',
+                      marginLeft: '-94px',
                     }}
                   />
                 )) || <Icon name="user" size={8} ml={1.5} mt={2.5} />}
@@ -74,7 +88,7 @@ export const IDCard = (props) => {
             </Flex.Item>
             <Flex.Item>
               <Box textAlign="center">
-                <RankIcon rank={assignment} />
+                <RankIcon color="" rank={assignment} />
               </Box>
             </Flex.Item>
             <Flex.Item>

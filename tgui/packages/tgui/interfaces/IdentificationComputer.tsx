@@ -1,4 +1,5 @@
 import { sortBy } from 'common/collections';
+import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'react';
 
@@ -16,6 +17,40 @@ import {
 import { Window } from '../layouts';
 import { CrewManifestContent } from './CrewManifest';
 
+type Data = {
+  manifest: { cat: string; elems: manifestEntry[] }[];
+  station_name: string;
+  mode: BooleanLike;
+  printing: BooleanLike;
+  have_id_slot: BooleanLike;
+  have_printer: BooleanLike;
+  target_name: string;
+  target_owner: string;
+  target_rank: string;
+  scan_name: string;
+  authenticated: BooleanLike;
+  has_modify: BooleanLike;
+  account_number: number | null;
+  centcom_access: BooleanLike;
+  all_centcom_access: access[];
+  regions: region[];
+  id_rank: string;
+  departments: {
+    department_name: string;
+    jobs: { display_name: string; target_rank: string; job: string }[];
+  }[];
+};
+
+type manifestEntry = { name: string; rank: string; active: string };
+
+type region = { name: string; accesses: access[] };
+
+type access = {
+  desc: string;
+  ref: string;
+  allowed: BooleanLike;
+};
+
 export const IdentificationComputer = () => {
   return (
     <Window width={600} height={700}>
@@ -27,14 +62,16 @@ export const IdentificationComputer = () => {
 };
 
 export const IdentificationComputerContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { ntos } = props;
 
-  const { mode, has_modify, printing } = data;
+  const { mode, has_modify, printing, have_id_slot, have_printer } = data;
 
-  let body = <IdentificationComputerAccessModification ntos={ntos} />;
-  if (ntos && !data.have_id_slot) {
+  let body: React.JSX.Element = (
+    <IdentificationComputerAccessModification ntos={ntos} />
+  );
+  if (ntos && !have_id_slot) {
     body = <CrewManifestContent />;
   } else if (printing) {
     body = <IdentificationComputerPrinting />;
@@ -45,7 +82,7 @@ export const IdentificationComputerContent = (props) => {
   return (
     <>
       <Tabs>
-        {(!ntos || !!data.have_id_slot) && (
+        {(!ntos || !!have_id_slot) && (
           <Tabs.Tab
             icon="home"
             selected={mode === 0}
@@ -62,13 +99,14 @@ export const IdentificationComputerContent = (props) => {
           Crew Manifest
         </Tabs.Tab>
         {!ntos ||
-          (!!data.have_printer && (
+          (!!have_printer && (
             <Tabs.Tab
-              float="right"
+              style={{
+                float: 'right',
+              }}
               icon="print"
-              onClick={() => act('print')}
-              disabled={!mode && !has_modify}
-              color=""
+              onClick={() => (mode || has_modify) && act('print')}
+              color={!mode && !has_modify ? 'transparent' : ''}
             >
               Print
             </Tabs.Tab>
@@ -83,8 +121,10 @@ export const IdentificationComputerPrinting = (props) => {
   return <Section title="Printing">Please wait...</Section>;
 };
 
-export const IdentificationComputerAccessModification = (props) => {
-  const { act, data } = useBackend();
+export const IdentificationComputerAccessModification = (props: {
+  ntos: boolean;
+}) => {
+  const { act, data } = useBackend<Data>();
 
   const { ntos } = props;
 
@@ -98,7 +138,6 @@ export const IdentificationComputerAccessModification = (props) => {
     account_number,
     centcom_access,
     all_centcom_access,
-    regions,
     id_rank,
     departments,
   } = data;
@@ -126,7 +165,7 @@ export const IdentificationComputerAccessModification = (props) => {
       </LabeledList>
       {!!authenticated && !!has_modify && (
         <>
-          <Section title="Details" level={2}>
+          <Section title="Details">
             <LabeledList>
               <LabeledList.Item label="Registered Name">
                 <Input
@@ -158,7 +197,7 @@ export const IdentificationComputerAccessModification = (props) => {
               </LabeledList.Item>
             </LabeledList>
           </Section>
-          <Section title="Assignment" level={2}>
+          <Section title="Assignment">
             <Table>
               {departments.map((dept) => (
                 <Fragment key={dept.department_name}>
@@ -199,7 +238,7 @@ export const IdentificationComputerAccessModification = (props) => {
             </Table>
           </Section>
           {(!!centcom_access && (
-            <Section title="Central Command" level={2}>
+            <Section title="Central Command">
               {all_centcom_access.map((access) => (
                 <Box key={access.ref}>
                   <Button
@@ -218,7 +257,7 @@ export const IdentificationComputerAccessModification = (props) => {
               ))}
             </Section>
           )) || (
-            <Section title={station_name} level={2}>
+            <Section title={station_name}>
               <IdentificationComputerRegions actName="access" />
             </Section>
           )}
@@ -228,8 +267,8 @@ export const IdentificationComputerAccessModification = (props) => {
   );
 };
 
-export const IdentificationComputerRegions = (props) => {
-  const { act, data } = useBackend();
+export const IdentificationComputerRegions = (props: { actName: string }) => {
+  const { act, data } = useBackend<Data>();
 
   const { actName } = props;
 
@@ -237,10 +276,10 @@ export const IdentificationComputerRegions = (props) => {
 
   return (
     <Flex wrap="wrap" spacing={1}>
-      {sortBy((r) => r.name)(regions).map((region) => (
+      {sortBy((r: region) => r.name)(regions).map((region) => (
         <Flex.Item mb={1} basis="content" grow={1} key={region.name}>
           <Section title={region.name} height="100%">
-            {sortBy((a) => a.desc)(region.accesses).map((access) => (
+            {sortBy((a: access) => a.desc)(region.accesses).map((access) => (
               <Box key={access.ref}>
                 <Button
                   fluid

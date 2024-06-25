@@ -1,9 +1,21 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  supportedPrograms: string[];
+  restrictedPrograms: string[];
+  currentProgram: string;
+  isSilicon: BooleanLike;
+  safetyDisabled: BooleanLike;
+  emagged: BooleanLike;
+  gravity: BooleanLike;
+};
+
 export const Holodeck = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     supportedPrograms,

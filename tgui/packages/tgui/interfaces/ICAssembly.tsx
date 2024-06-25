@@ -12,8 +12,22 @@ import {
 import { formatPower } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  total_parts: number;
+  max_components: number;
+  total_complexity: number;
+  max_complexity: number;
+  battery_charge: number;
+  battery_max: number;
+  net_power: number;
+  unremovable_circuits: circuit[];
+  removable_circuits: circuit[];
+};
+
+type circuit = { name: string; ref: string };
+
 export const ICAssembly = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const {
     total_parts,
@@ -117,7 +131,7 @@ export const ICAssembly = (props) => {
   );
 };
 
-const ICAssemblyCircuits = (props) => {
+const ICAssemblyCircuits = (props: { title: string; circuits: circuit[] }) => {
   const { act } = useBackend();
 
   const { title, circuits } = props;

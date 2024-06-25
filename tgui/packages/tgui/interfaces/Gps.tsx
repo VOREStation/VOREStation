@@ -1,6 +1,9 @@
+// Currently not used!
+
 import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { clamp } from 'common/math';
+import { BooleanLike } from 'common/react';
 import { vecLength, vecSubtract } from 'common/vector';
 
 import { useBackend } from '../backend';
@@ -9,31 +12,44 @@ import { Window } from '../layouts';
 
 const coordsToVec = (coords) => map(parseFloat)(coords.split(', '));
 
+type Data = {
+  currentArea: string;
+  power: BooleanLike;
+  tag: string;
+  updating: BooleanLike;
+  currentCoords: string; // "x, y, z"
+  globalmode: BooleanLike;
+  signals: signal[];
+};
+
+type signal = {
+  entrytag: string;
+  coords: string;
+  dist: number;
+  degrees: number;
+};
+
 export const Gps = (props) => {
-  const { act, data } = useBackend();
-  const {
-    currentArea,
-    currentCoords,
-    currentCoordsText,
-    globalmode,
-    power,
-    tag,
-    updating,
-  } = data;
+  const { act, data } = useBackend<Data>();
+  const { currentArea, currentCoords, globalmode, power, tag, updating } = data;
   const signals = flow([
-    map((signal, index) => {
+    map((signal: signal, index) => {
       // Calculate distance to the target. BYOND distance is capped to 127,
       // that's why we roll our own calculations here.
       const dist =
         signal.dist &&
-        Math.round(vecLength(vecSubtract(currentCoords, signal.coords)));
+        Math.round(
+          vecLength(
+            vecSubtract(coordsToVec(currentCoords), coordsToVec(signal.coords)),
+          ),
+        );
       return { ...signal, dist, index };
     }),
     sortBy(
       // Signals with distance metric go first
-      (signal) => signal.dist === undefined,
+      (signal: signal) => signal.dist === undefined,
       // Sort alphabetically
-      (signal) => signal.entrytag,
+      (signal: signal) => signal.entrytag,
     ),
   ])(data.signals || []);
   return (
@@ -81,7 +97,7 @@ export const Gps = (props) => {
           <>
             <Section title="Current Location">
               <Box fontSize="18px">
-                {currentArea} ({currentCoordsText})
+                {currentArea} ({currentCoords})
               </Box>
             </Section>
             <Section title="Detected Signals">
@@ -116,7 +132,7 @@ export const Gps = (props) => {
                       )}
                       {signal.dist !== undefined && signal.dist + 'm'}
                     </Table.Cell>
-                    <Table.Cell collapsing>{signal.coordsText}</Table.Cell>
+                    <Table.Cell collapsing>{signal.coords}</Table.Cell>
                   </Table.Row>
                 ))}
               </Table>

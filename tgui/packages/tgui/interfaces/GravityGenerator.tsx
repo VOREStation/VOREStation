@@ -1,11 +1,21 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const GravityGenerator = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  breaker: BooleanLike;
+  charge_count: number;
+  charging_state: number;
+  on: BooleanLike;
+  operational: BooleanLike;
+};
 
-  const { breaker, charge_count, charging_state, on, operational } = data;
+export const GravityGenerator = (props) => {
+  const { act, data } = useBackend<Data>();
+
+  const { breaker, charge_count } = data;
 
   let genstatus = 'Offline';
   if (breaker && charge_count < 100) {

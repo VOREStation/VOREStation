@@ -1,15 +1,29 @@
 /* eslint react/no-danger: "off" */
 import { sortBy } from 'common/collections';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-export const GuestPass = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  access: number[] | null;
+  area: area[];
+  giver: string | null;
+  giveName: string;
+  reason: String;
+  duration: number;
+  mode: BooleanLike;
+  log: string[];
+  uid: number;
+};
 
-  const { access, area, giver, giveName, reason, duration, mode, log, uid } =
-    data;
+type area = { area: string; area_name: string; on: BooleanLike };
+
+export const GuestPass = (props) => {
+  const { act, data } = useBackend<Data>();
+
+  const { area, giver, giveName, reason, duration, mode, log, uid } = data;
 
   return (
     <Window width={500} height={520}>
@@ -30,7 +44,7 @@ export const GuestPass = (props) => {
             <Button icon="print" onClick={() => act('print')} fluid mb={1}>
               Print
             </Button>
-            <Section level={2} title="Logs">
+            <Section title="Logs">
               {/* These are internally generated only. */}
               {(log.length &&
                 log.map((l) => (
@@ -66,8 +80,8 @@ export const GuestPass = (props) => {
             <Button.Confirm icon="check" fluid onClick={() => act('issue')}>
               Issue Pass
             </Button.Confirm>
-            <Section title="Access" level={2}>
-              {sortBy((a) => a.area_name)(area).map((a) => (
+            <Section title="Access">
+              {sortBy((a: area) => a.area_name)(area).map((a) => (
                 <Button.Checkbox
                   checked={a.on}
                   key={a.area}

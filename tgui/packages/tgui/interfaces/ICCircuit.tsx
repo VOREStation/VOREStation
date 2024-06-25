@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../backend';
@@ -5,14 +6,48 @@ import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { formatPower } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  name: string;
+  desc: string;
+  displayed_name: string;
+  removable: BooleanLike;
+  complexity: number;
+  power_draw_idle: number;
+  power_draw_per_use: number;
+  extended_desc: string | null;
+  inputs: pin[];
+  outputs: pin[];
+  activators: activator[];
+};
+
+type pin = {
+  type: string;
+  name: string;
+  data: string;
+  ref: string;
+  linked: link[];
+};
+
+type activator = {
+  ref: string;
+  name: string;
+  pulse_out: string;
+  linked: link[];
+};
+
+type link = {
+  ref: string;
+  name: string;
+  holder_ref: string;
+  holder_name: string;
+};
+
 export const ICCircuit = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
-    name,
     desc,
     displayed_name,
-    removable,
     complexity,
     power_draw_idle,
     power_draw_per_use,
@@ -23,7 +58,7 @@ export const ICCircuit = (props) => {
   } = data;
 
   return (
-    <Window width={600} height={400} resizable title={displayed_name}>
+    <Window width={600} height={400} title={displayed_name}>
       <Window.Content scrollable>
         <Section
           title="Stats"
@@ -100,7 +135,7 @@ export const ICCircuit = (props) => {
   );
 };
 
-const ICIODisplay = (props) => {
+const ICIODisplay = (props: { list: pin[] }) => {
   const { act } = useBackend();
 
   const { list } = props;
@@ -118,7 +153,7 @@ const ICIODisplay = (props) => {
   ));
 };
 
-const ICLinkDisplay = (props) => {
+const ICLinkDisplay = (props: { pin: activator | pin }) => {
   const { act } = useBackend();
 
   const { pin } = props;

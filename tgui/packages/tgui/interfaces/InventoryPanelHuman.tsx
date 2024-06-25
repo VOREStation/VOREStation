@@ -1,14 +1,35 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  slots: slot[];
+  specialSlots: slot[];
+  internals: string;
+  internalsValid: BooleanLike;
+  sensors: BooleanLike;
+  handcuffed: BooleanLike;
+  handcuffedParams: { slot: number };
+  legcuffed: BooleanLike;
+  legcuffedParams: { slot: number };
+  accessory: BooleanLike;
+};
+
+type slot = {
+  name: string;
+  item: string;
+  act: string;
+  params: { slot: number };
+};
+
 export const InventoryPanelHuman = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     slots,
     specialSlots,
-    internals,
     internalsValid,
     sensors,
     handcuffed,

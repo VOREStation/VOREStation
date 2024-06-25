@@ -4,8 +4,10 @@ import { useBackend } from '../backend';
 import { Button, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = { detail_color: string; color_list: Record<string, string> };
+
 export const ICDetailer = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { detail_color, color_list } = data;
 
@@ -29,10 +31,10 @@ export const ICDetailer = (props) => {
                 color_list[key] === detail_color
                   ? {
                       border: '4px solid black',
-                      'border-radius': 0,
+                      borderRadius: '0',
                     }
                   : {
-                      'border-radius': 0,
+                      borderRadius: '0',
                     }
               }
               backgroundColor={color_list[key]}

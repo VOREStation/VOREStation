@@ -1,11 +1,23 @@
+import { BooleanLike } from 'common/react';
 import { Component } from 'react';
 
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  simulating: BooleanLike;
+  mode: number;
+  tank1: string;
+  tank1ref: string;
+  tank2: string;
+  tank2ref: string;
+  canister: string | null;
+  sim_canister_output: number;
+};
+
 export const BombTester = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     simulating,
@@ -96,7 +108,7 @@ export const BombTester = (props) => {
                     minValue={0}
                     value={sim_canister_output}
                     maxValue={1013.25}
-                    onDrag={(e, val) =>
+                    onDrag={(e: Event, val: number) =>
                       act('set_can_pressure', { pressure: val })
                     }
                   />
@@ -120,16 +132,26 @@ export const BombTester = (props) => {
   );
 };
 
+type stateType = {
+  reverseX: boolean;
+  reverseY: boolean;
+  x: number;
+  y: number;
+};
+
 class BombTesterSimulation extends Component {
+  process: NodeJS.Timeout;
+  state: stateType;
+
   constructor(props) {
     super(props);
 
-    const BOUND_X = 340;
-    const BOUND_Y = 205;
-    const MOVEMENT_SPEED = 2;
+    const BOUND_X: number = 340;
+    const BOUND_Y: number = 205;
+    const MOVEMENT_SPEED: number = 2;
 
-    let startRight = Math.random() > 0.5;
-    let startBottom = Math.random() > 0.5;
+    let startRight: boolean = Math.random() > 0.5;
+    let startBottom: boolean = Math.random() > 0.5;
 
     this.state = {
       x: startRight ? BOUND_X : 0,
@@ -139,7 +161,7 @@ class BombTesterSimulation extends Component {
     };
 
     this.process = setInterval(() => {
-      this.setState((prevState) => {
+      this.setState((prevState: stateType) => {
         const state = { ...prevState };
         if (state.reverseX) {
           if (state.x - MOVEMENT_SPEED < -5) {

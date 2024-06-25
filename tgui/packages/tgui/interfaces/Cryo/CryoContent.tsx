@@ -1,6 +1,6 @@
 import { toFixed } from 'common/math';
 
-import { useBackend } from '../backend';
+import { useBackend } from '../../backend';
 import {
   AnimatedNumber,
   Box,
@@ -10,50 +10,15 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from '../../components';
+import { Data } from './types';
 
-const damageTypes = [
-  {
-    label: 'Resp.',
-    type: 'oxyLoss',
-  },
-  {
-    label: 'Toxin',
-    type: 'toxLoss',
-  },
-  {
-    label: 'Brute',
-    type: 'bruteLoss',
-  },
-  {
-    label: 'Burn',
-    type: 'fireLoss',
-  },
-];
-
-const statNames = [
-  ['good', 'Conscious'],
-  ['average', 'Unconscious'],
-  ['bad', 'DEAD'],
-];
-
-export const Cryo = (props) => {
-  return (
-    <Window width={520} height={470} resizeable>
-      <Window.Content className="Layout__content--flexColumn">
-        <CryoContent />
-      </Window.Content>
-    </Window>
-  );
-};
-
-const CryoContent = (props) => {
-  const { act, data } = useBackend();
+export const CryoContent = (props) => {
+  const { act, data } = useBackend<Data>();
   const {
     isOperating,
     hasOccupant,
-    occupant = [],
+    occupant,
     cellTemperature,
     cellTemperatureStatus,
     isBeakerLoaded,
@@ -62,7 +27,7 @@ const CryoContent = (props) => {
     <>
       <Section
         title="Occupant"
-        flexGrow="1"
+        flexGrow
         buttons={
           <Button
             icon="user-slash"
@@ -80,8 +45,8 @@ const CryoContent = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="Health">
               <ProgressBar
-                min={occupant.health}
-                max={occupant.maxHealth}
+                minValue={occupant.health}
+                maxValue={occupant.maxHealth}
                 value={occupant.health / occupant.maxHealth}
                 color={occupant.health > 0 ? 'good' : 'average'}
               >
@@ -104,8 +69,8 @@ const CryoContent = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Divider />
-            {damageTypes.map((damageType) => (
-              <LabeledList.Item key={damageType.id} label={damageType.label}>
+            {damageTypes.map((damageType, i) => (
+              <LabeledList.Item key={i} label={damageType.label}>
                 <ProgressBar
                   value={occupant[damageType.type] / 100}
                   ranges={{ bad: [0.01, Infinity] }}
@@ -121,7 +86,7 @@ const CryoContent = (props) => {
         ) : (
           <Flex height="100%" textAlign="center">
             <Flex.Item grow="1" align="center" color="label">
-              <Icon name="user-slash" mb="0.5rem" size="5" />
+              <Icon name="user-slash" mb="0.5rem" size={5} />
               <br />
               No occupant detected.
             </Flex.Item>
@@ -163,7 +128,7 @@ const CryoContent = (props) => {
 };
 
 const CryoBeaker = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { isBeakerLoaded, beakerLabel, beakerVolume } = data;
   if (isBeakerLoaded) {
     return (
