@@ -1,9 +1,19 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  antibodies: string | null;
+  pathogens: { name: string; spread_type: string; reference: string }[];
+  is_antibody_sample: BooleanLike;
+  busy: string | null;
+  sample_inserted: BooleanLike;
+};
+
 export const IsolationCentrifuge = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { busy, antibodies, pathogens, is_antibody_sample, sample_inserted } =
     data;
@@ -18,9 +28,7 @@ export const IsolationCentrifuge = (props) => {
     } else {
       blood_sample = (
         <>
-          {antibodies ? (
-            <Section title="Antibodies">{antibodies}</Section>
-          ) : null}
+          {antibodies ? <Section title="Antibodies">{antibodies}</Section> : ''}
           {pathogens.length ? (
             <Section title="Pathogens">
               <LabeledList>
@@ -31,7 +39,9 @@ export const IsolationCentrifuge = (props) => {
                 ))}
               </LabeledList>
             </Section>
-          ) : null}
+          ) : (
+            ''
+          )}
         </>
       );
     }
@@ -84,7 +94,9 @@ export const IsolationCentrifuge = (props) => {
                         {antibodies}
                       </Button>
                     </LabeledList.Item>
-                  ) : null}
+                  ) : (
+                    ''
+                  )}
                   {pathogens.length ? (
                     <LabeledList.Item label="Isolate Strain">
                       {pathogens.map((virus) => (
@@ -99,10 +111,14 @@ export const IsolationCentrifuge = (props) => {
                         </Button>
                       ))}
                     </LabeledList.Item>
-                  ) : null}
+                  ) : (
+                    ''
+                  )}
                 </LabeledList>
               </Section>
-            ) : null}
+            ) : (
+              ''
+            )}
           </>
         )}
       </Window.Content>

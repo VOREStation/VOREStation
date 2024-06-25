@@ -1,9 +1,18 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  broken: BooleanLike;
+  operating: BooleanLike;
+  dirty: BooleanLike;
+  items: { name: string; amt: number; extra: string }[];
+};
+
 export const Microwave = (props) => {
-  const { act, config, data } = useBackend();
+  const { act, config, data } = useBackend<Data>();
 
   const { broken, operating, dirty, items } = data;
 
@@ -35,7 +44,6 @@ export const Microwave = (props) => {
           )) ||
           (items.length && (
             <Section
-              level={1}
               title="Ingredients"
               buttons={
                 <>

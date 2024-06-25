@@ -10,8 +10,13 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  stacktypes: { type: string; amt: number }[];
+  stackingAmt: number;
+};
+
 export const MiningStackingConsole = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { stacktypes, stackingAmt } = data;
 

@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
@@ -11,8 +13,31 @@ import {
 } from '../components';
 import { NtosWindow } from '../layouts';
 
+type Data = {
+  Hitpoints: number;
+  PlayerHitpoints: number;
+  PlayerMP: number;
+  TicketCount: number;
+  GameActive: BooleanLike;
+  PauseState: BooleanLike;
+  Status: string;
+  BossID: string;
+};
+
 export const NtosArcade = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
+
+  const {
+    PlayerHitpoints,
+    PlayerMP,
+    PauseState,
+    Status,
+    Hitpoints,
+    BossID,
+    GameActive,
+    TicketCount,
+  } = data;
+
   return (
     <NtosWindow width={450} height={350}>
       <NtosWindow.Content>
@@ -25,7 +50,7 @@ export const NtosArcade = (props) => {
                   <LabeledList>
                     <LabeledList.Item label="Player Health">
                       <ProgressBar
-                        value={data.PlayerHitpoints}
+                        value={PlayerHitpoints}
                         minValue={0}
                         maxValue={30}
                         ranges={{
@@ -35,12 +60,12 @@ export const NtosArcade = (props) => {
                           bad: [-Infinity, 10],
                         }}
                       >
-                        {data.PlayerHitpoints}HP
+                        {PlayerHitpoints}HP
                       </ProgressBar>
                     </LabeledList.Item>
                     <LabeledList.Item label="Player Magic">
                       <ProgressBar
-                        value={data.PlayerMP}
+                        value={PlayerMP}
                         minValue={0}
                         maxValue={10}
                         ranges={{
@@ -49,22 +74,20 @@ export const NtosArcade = (props) => {
                           bad: [-Infinity, 3],
                         }}
                       >
-                        {data.PlayerMP}MP
+                        {PlayerMP}MP
                       </ProgressBar>
                     </LabeledList.Item>
                   </LabeledList>
                   <Box my={1} mx={4} />
                   <Section
-                    backgroundColor={
-                      data.PauseState === 1 ? '#1b3622' : '#471915'
-                    }
+                    backgroundColor={PauseState === 1 ? '#1b3622' : '#471915'}
                   >
-                    {data.Status}
+                    {Status}
                   </Section>
                 </Table.Cell>
                 <Table.Cell>
                   <ProgressBar
-                    value={data.Hitpoints}
+                    value={Hitpoints}
                     minValue={0}
                     maxValue={45}
                     ranges={{
@@ -73,12 +96,12 @@ export const NtosArcade = (props) => {
                       bad: [-Infinity, 5],
                     }}
                   >
-                    <AnimatedNumber value={data.Hitpoints} />
+                    <AnimatedNumber value={Hitpoints} />
                     HP
                   </ProgressBar>
                   <Box m={1} />
                   <Section inline width="156px" textAlign="center">
-                    <img src={resolveAsset(data.BossID)} />
+                    <img src={resolveAsset(BossID)} />
                   </Section>
                 </Table.Cell>
               </Table.Row>
@@ -88,7 +111,7 @@ export const NtosArcade = (props) => {
               icon="fist-raised"
               tooltip="Go in for the kill!"
               tooltipPosition="top"
-              disabled={data.GameActive === 0 || data.PauseState === 1}
+              disabled={GameActive === 0 || PauseState === 1}
               onClick={() => act('Attack')}
             >
               Attack!
@@ -97,7 +120,7 @@ export const NtosArcade = (props) => {
               icon="band-aid"
               tooltip="Heal yourself!"
               tooltipPosition="top"
-              disabled={data.GameActive === 0 || data.PauseState === 1}
+              disabled={GameActive === 0 || PauseState === 1}
               onClick={() => act('Heal')}
             >
               Heal!
@@ -106,7 +129,7 @@ export const NtosArcade = (props) => {
               icon="magic"
               tooltip="Recharge your magic!"
               tooltipPosition="top"
-              disabled={data.GameActive === 0 || data.PauseState === 1}
+              disabled={GameActive === 0 || PauseState === 1}
               onClick={() => act('Recharge_Power')}
             >
               Recharge!
@@ -117,7 +140,7 @@ export const NtosArcade = (props) => {
               icon="sync-alt"
               tooltip="One more game couldn't hurt."
               tooltipPosition="top"
-              disabled={data.GameActive === 1}
+              disabled={GameActive === 1}
               onClick={() => act('Start_Game')}
             >
               Begin Game
@@ -126,14 +149,14 @@ export const NtosArcade = (props) => {
               icon="ticket-alt"
               tooltip="Claim at your local Arcade Computer for Prizes!"
               tooltipPosition="top"
-              disabled={data.GameActive === 1}
+              disabled={GameActive === 1}
               onClick={() => act('Dispense_Tickets')}
             >
               Claim Tickets
             </Button>
           </Box>
-          <Box color={data.TicketCount >= 1 ? 'good' : 'normal'}>
-            Earned Tickets: {data.TicketCount}
+          <Box color={TicketCount >= 1 ? 'good' : 'normal'}>
+            Earned Tickets: {TicketCount}
           </Box>
         </Section>
       </NtosWindow.Content>

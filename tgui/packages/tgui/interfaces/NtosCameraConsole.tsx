@@ -1,51 +1,19 @@
-import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { createSearch } from 'common/string';
 import { useBackend } from '../backend';
 import { Button, ByondUi } from '../components';
 import { NtosWindow } from '../layouts';
-import { CameraConsoleContent } from './CameraConsole';
-
-/**
- * Returns previous and next camera names relative to the currently
- * active camera.
- */
-export const prevNextCamera = (cameras, activeCamera) => {
-  if (!activeCamera) {
-    return [];
-  }
-  const index = cameras.findIndex(
-    (camera) => camera.name === activeCamera.name,
-  );
-  return [cameras[index - 1]?.name, cameras[index + 1]?.name];
-};
-
-/**
- * Camera selector.
- *
- * Filters cameras, applies search terms and sorts the alphabetically.
- */
-export const selectCameras = (cameras, searchText = '', networkFilter = '') => {
-  const testSearch = createSearch(searchText, (camera) => camera.name);
-  return flow([
-    // Null camera filter
-    filter((camera) => camera?.name),
-    // Optional search term
-    searchText && filter(testSearch),
-    // Optional network filter
-    networkFilter &&
-      filter((camera) => camera.networks.includes(networkFilter)),
-    // Slightly expensive, but way better than sorting in BYOND
-    sortBy((camera) => camera.name),
-  ])(cameras);
-};
+import {
+  CameraConsoleContent,
+  Data,
+  prevNextCamera,
+  selectCameras,
+} from './CameraConsole';
 
 export const NtosCameraConsole = (props) => {
-  const { act, data } = useBackend();
-  const { mapRef, activeCamera } = data;
-  const cameras = selectCameras(data.cameras);
+  const { act, data } = useBackend<Data>();
+  const { mapRef, activeCamera, cameras } = data;
+  const selected_cameras = selectCameras(cameras);
   const [prevCameraName, nextCameraName] = prevNextCamera(
-    cameras,
+    selected_cameras,
     activeCamera,
   );
   return (

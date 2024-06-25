@@ -12,7 +12,7 @@ type activeCamera = { name: string; status: BooleanLike };
 
 type camera = { name: string; networks: string[] };
 
-type Data = {
+export type Data = {
   activeCamera: activeCamera;
   mapRef: string;
   cameras: camera[];

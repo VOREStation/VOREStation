@@ -1,4 +1,5 @@
 import { round, toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 import { capitalize } from 'common/string';
 import { useState } from 'react';
 
@@ -19,8 +20,28 @@ import {
 import { formatTime } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  playing: BooleanLike;
+  loop_mode: number;
+  volume: number;
+  current_track_ref: string | null;
+  current_track: track;
+  current_genre: string;
+  percent: number;
+  tracks: track[];
+  admin: BooleanLike;
+};
+
+type track = {
+  ref: string;
+  title: string;
+  artist: string;
+  genre: string;
+  duration: number;
+};
+
 export const Jukebox = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     playing,
@@ -47,14 +68,14 @@ export const Jukebox = (props) => {
 
   let true_genre = playing && (current_genre || 'Uncategorized');
 
-  const [newTitle, setNewTitle] = useState('Unknown');
-  const [newUrl, setNewUrl] = useState('');
-  const [newDuration, setNewDuration] = useState(0);
-  const [newArtist, setNewArtist] = useState('Unknown');
-  const [newGenre, setNewGenre] = useState('Admin');
-  const [newSecret, setNewSecret] = useState(false);
-  const [newLobby, setNewLobby] = useState(false);
-  const [unlockGenre, setUnlockGenre] = useState(false);
+  const [newTitle, setNewTitle] = useState<string>('Unknown');
+  const [newUrl, setNewUrl] = useState<string>('');
+  const [newDuration, setNewDuration] = useState<number>(0);
+  const [newArtist, setNewArtist] = useState<string>('Unknown');
+  const [newGenre, setNewGenre] = useState<string>('Admin');
+  const [newSecret, setNewSecret] = useState<boolean>(false);
+  const [newLobby, setNewLobby] = useState<boolean>(false);
+  const [unlockGenre, setUnlockGenre] = useState<boolean>(false);
 
   function handleUnlockGenre() {
     if (unlockGenre) {
@@ -156,7 +177,7 @@ export const Jukebox = (props) => {
                       color={true_genre === genre ? 'green' : 'default'}
                       child_mt={0}
                     >
-                      <div style={{ 'margin-left': '1em' }}>
+                      <div style={{ marginLeft: '1em' }}>
                         {genre_songs[genre].map((track) => (
                           <Button
                             fluid
@@ -190,7 +211,7 @@ export const Jukebox = (props) => {
                           color={true_genre === genre ? 'green' : 'default'}
                           child_mt={0}
                         >
-                          <div style={{ 'margin-left': '1em' }}>
+                          <div style={{ marginLeft: '1em' }}>
                             {genre_songs[genre].map((track) => (
                               <Flex key={track.ref}>
                                 <Flex.Item grow={1}>
@@ -232,14 +253,14 @@ export const Jukebox = (props) => {
                     <Input
                       width="100%"
                       value={newTitle}
-                      onChange={(e, val) => setNewTitle(val)}
+                      onChange={(e: Event, val: string) => setNewTitle(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="URL">
                     <Input
                       width="100%"
                       value={newUrl}
-                      onChange={(e, val) => setNewUrl(val)}
+                      onChange={(e: Event, val: string) => setNewUrl(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Playtime">
@@ -247,15 +268,15 @@ export const Jukebox = (props) => {
                       value={newDuration}
                       minValue={0}
                       maxValue={3600}
-                      onChange={(e, val) => setNewDuration(val)}
-                      format={(val) => formatTime(round(val * 10))}
+                      onChange={(e: Event, val: number) => setNewDuration(val)}
+                      format={(val) => formatTime(round(val * 10, 0))}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Artist">
                     <Input
                       width="100%"
                       value={newArtist}
-                      onChange={(e, val) => setNewArtist(val)}
+                      onChange={(e: Event, val: string) => setNewArtist(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Genre">
@@ -265,7 +286,9 @@ export const Jukebox = (props) => {
                           <Input
                             width="100%"
                             value={newGenre}
-                            onChange={(e, val) => setNewGenre(val)}
+                            onChange={(e: Event, val: string) =>
+                              setNewGenre(val)
+                            }
                           />
                         ) : (
                           <Box>{newGenre}</Box>
@@ -275,7 +298,7 @@ export const Jukebox = (props) => {
                         <Button.Checkbox
                           icon={unlockGenre ? 'lock-open' : 'lock'}
                           color={unlockGenre ? 'good' : 'bad'}
-                          onClick={(e, val) => handleUnlockGenre()}
+                          onClick={() => handleUnlockGenre()}
                         />
                       </Flex.Item>
                     </Flex>
@@ -283,13 +306,13 @@ export const Jukebox = (props) => {
                   <LabeledList.Item label="Secret">
                     <Button.Checkbox
                       checked={newSecret}
-                      onClick={(e, val) => setNewSecret(!newSecret)}
+                      onClick={() => setNewSecret(!newSecret)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Lobby">
                     <Button.Checkbox
                       checked={newLobby}
-                      onClick={(e, val) => setNewLobby(!newLobby)}
+                      onClick={() => setNewLobby(!newLobby)}
                     />
                   </LabeledList.Item>
                 </LabeledList>

@@ -1,14 +1,23 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
+type Data = {
+  enabled: BooleanLike;
+  dos_capacity: number;
+  dos_overload: number;
+  dos_crashed: BooleanLike;
+};
+
 export const NTNetRelay = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
-  const { dos_crashed, enabled, dos_overload, dos_capacity } = data;
+  const { dos_crashed } = data;
 
-  let body = <NTNetRelayContent />;
+  let body: React.JSX.Element = <NTNetRelayContent />;
 
   if (dos_crashed) {
     body = <NTNetRelayCrash />;
@@ -22,9 +31,9 @@ export const NTNetRelay = (props) => {
 };
 
 const NTNetRelayContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
-  const { dos_crashed, enabled, dos_overload, dos_capacity } = data;
+  const { enabled, dos_overload, dos_capacity } = data;
 
   return (
     <Section
@@ -54,7 +63,7 @@ const NTNetRelayContent = (props) => {
 };
 
 const NTNetRelayCrash = (props) => {
-  const { act, data } = useBackend();
+  const { act } = useBackend();
 
   return (
     <FullscreenNotice title="ERROR">

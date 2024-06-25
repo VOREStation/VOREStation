@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend, useSharedState } from '../backend';
 import {
   Button,
@@ -10,16 +12,63 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  ion_law_nr: string;
+  ion_law: string;
+  zeroth_law: string;
+  inherent_law: string;
+  supplied_law: string;
+  supplied_law_position: number;
+  zeroth_laws: law[];
+  ion_laws: law[];
+  inherent_laws: law[];
+  supplied_laws: law[];
+  has_zeroth_laws: number;
+  has_ion_laws: number;
+  has_inherent_laws: number;
+  has_supplied_laws: number;
+  isAI: BooleanLike;
+  isMalf: BooleanLike;
+  isSlaved: BooleanLike;
+  isAdmin: BooleanLike;
+  channel: string;
+  channels: { channel: string }[];
+  law_sets: law_pack[];
+};
+
+type law_pack = {
+  name: string;
+  header: string;
+  ref: string;
+  laws: {
+    zeroth_laws: law[];
+    has_zeroth_laws: number;
+    ion_laws: law[];
+    has_ion_laws: number;
+    inherent_laws: law[];
+    has_inherent_laws: number;
+    supplied_laws: law[];
+    has_supplied_laws: number;
+  };
+};
+
+type law = {
+  law: string;
+  index: number;
+  state: number;
+  ref: string;
+  zero: boolean; // Local UI var
+};
+
 export const LawManager = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { isSlaved } = data;
 
   return (
     <Window width={800} height={600}>
       <Window.Content scrollable>
-        {(isSlaved && <NoticeBox info>Law-synced to {isSlaved}</NoticeBox>) ||
-          null}
+        {isSlaved ? <NoticeBox info>Law-synced to {isSlaved}</NoticeBox> : ''}
         <LawManagerContent />
       </Window.Content>
     </Window>
@@ -27,7 +76,12 @@ export const LawManager = (props) => {
 };
 
 const LawManagerContent = (props) => {
-  const [tabIndex, setTabIndex] = useSharedState('lawsTabIndex', 0);
+  const [tabIndex, setTabIndex] = useSharedState<number>('lawsTabIndex', 0);
+
+  const tab: React.JSX.Element[] = [];
+
+  tab[0] = <LawManagerLaws />;
+  tab[1] = <LawManagerLawSets />;
 
   return (
     <>
@@ -39,14 +93,13 @@ const LawManagerContent = (props) => {
           Law Sets
         </Tabs.Tab>
       </Tabs>
-      {(tabIndex === 0 && <LawManagerLaws />) || null}
-      {(tabIndex === 1 && <LawManagerLawSets />) || null}
+      {tab[tabIndex]}
     </>
   );
 };
 
 const LawManagerLaws = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     ion_law_nr,
@@ -79,19 +132,22 @@ const LawManagerLaws = (props) => {
 
   return (
     <Section>
-      {(has_ion_laws && (
+      {has_ion_laws ? (
         <LawsTable laws={ion_laws} title={ion_law_nr + ' Laws:'} mt={-2} />
-      )) ||
-        null}
-      {((has_zeroth_laws || has_inherent_laws) && (
+      ) : (
+        ''
+      )}
+      {has_zeroth_laws || has_inherent_laws ? (
         <LawsTable laws={allLaws} title="Inherent Laws" mt={-2} />
-      )) ||
-        null}
-      {(has_supplied_laws && (
+      ) : (
+        ''
+      )}
+      {has_supplied_laws ? (
         <LawsTable laws={supplied_laws} title="Supplied Laws" mt={-2} />
-      )) ||
-        null}
-      <Section level={2} title="Controls" mt={-2}>
+      ) : (
+        ''
+      )}
+      <Section title="Controls" mt={-2}>
         <LabeledList>
           <LabeledList.Item label="Statement Channel">
             {channels.map((chan) => (
@@ -111,18 +167,19 @@ const LawManagerLaws = (props) => {
               State Laws
             </Button>
           </LabeledList.Item>
-          {(isAI && (
+          {isAI ? (
             <LabeledList.Item label="Law Notification">
               <Button icon="exclamation" onClick={() => act('notify_laws')}>
                 Notify
               </Button>
             </LabeledList.Item>
-          )) ||
-            null}
+          ) : (
+            ''
+          )}
         </LabeledList>
       </Section>
-      {(isMalf && (
-        <Section level={2} title="Add Laws" mt={-2}>
+      {isMalf ? (
+        <Section title="Add Laws" mt={-2}>
           <Table>
             <Table.Row header>
               <Table.Cell collapsing>Type</Table.Cell>
@@ -130,14 +187,14 @@ const LawManagerLaws = (props) => {
               <Table.Cell collapsing>Index</Table.Cell>
               <Table.Cell collapsing>Add</Table.Cell>
             </Table.Row>
-            {(isAdmin && !has_zeroth_laws && (
+            {isAdmin && !has_zeroth_laws ? (
               <Table.Row>
                 <Table.Cell collapsing>Zero</Table.Cell>
                 <Table.Cell>
                   <Input
                     value={zeroth_law}
                     fluid
-                    onChange={(e, val) =>
+                    onChange={(e: Event, val: string) =>
                       act('change_zeroth_law', { val: val })
                     }
                   />
@@ -149,15 +206,18 @@ const LawManagerLaws = (props) => {
                   </Button>
                 </Table.Cell>
               </Table.Row>
-            )) ||
-              null}
+            ) : (
+              ''
+            )}
             <Table.Row>
               <Table.Cell collapsing>Ion</Table.Cell>
               <Table.Cell>
                 <Input
                   value={ion_law}
                   fluid
-                  onChange={(e, val) => act('change_ion_law', { val: val })}
+                  onChange={(e: Event, val: string) =>
+                    act('change_ion_law', { val: val })
+                  }
                 />
               </Table.Cell>
               <Table.Cell>N/A</Table.Cell>
@@ -173,7 +233,7 @@ const LawManagerLaws = (props) => {
                 <Input
                   value={inherent_law}
                   fluid
-                  onChange={(e, val) =>
+                  onChange={(e: Event, val: string) =>
                     act('change_inherent_law', { val: val })
                   }
                 />
@@ -191,7 +251,7 @@ const LawManagerLaws = (props) => {
                 <Input
                   value={supplied_law}
                   fluid
-                  onChange={(e, val) =>
+                  onChange={(e: Event, val: string) =>
                     act('change_supplied_law', { val: val })
                   }
                 />
@@ -212,39 +272,47 @@ const LawManagerLaws = (props) => {
             </Table.Row>
           </Table>
         </Section>
-      )) ||
-        null}
+      ) : (
+        ''
+      )}
     </Section>
   );
 };
 
-const LawsTable = (props) => {
-  const { act, data } = useBackend();
+const LawsTable = (props: {
+  title: string;
+  noButtons?: BooleanLike;
+  [rest: string]: any;
+}) => {
+  const { act, data } = useBackend<Data>();
 
   const { isMalf, isAdmin } = data;
 
   const { laws, title, noButtons, ...rest } = props;
 
   return (
-    <Section level={2} title={title} {...rest}>
+    <Section title={title} {...rest}>
       <Table>
         <Table.Row header>
           <Table.Cell collapsing>Index</Table.Cell>
           <Table.Cell>Law</Table.Cell>
-          {(!noButtons && <Table.Cell collapsing>State</Table.Cell>) || null}
-          {(isMalf && !noButtons && (
+          {!noButtons ? <Table.Cell collapsing>State</Table.Cell> : ''}
+          {isMalf && !noButtons ? (
             <>
               <Table.Cell collapsing>Edit</Table.Cell>
               <Table.Cell collapsing>Delete</Table.Cell>
             </>
-          )) ||
-            null}
+          ) : (
+            ''
+          )}
         </Table.Row>
-        {laws.map((law) => (
+        {laws.map((law: law) => (
           <Table.Row key={law.index}>
             <Table.Cell collapsing>{law.index}.</Table.Cell>
-            <Table.Cell color={law.zero ? 'bad' : null}>{law.law}</Table.Cell>
-            {(!noButtons && (
+            <Table.Cell color={law.zero ? 'bad' : undefined}>
+              {law.law}
+            </Table.Cell>
+            {!noButtons ? (
               <Table.Cell collapsing>
                 <Button
                   fluid
@@ -257,9 +325,10 @@ const LawsTable = (props) => {
                   {law.state ? 'Yes' : 'No'}
                 </Button>
               </Table.Cell>
-            )) ||
-              null}
-            {(isMalf && !noButtons && (
+            ) : (
+              ''
+            )}
+            {isMalf && !noButtons ? (
               <>
                 <Table.Cell collapsing>
                   <Button
@@ -281,8 +350,9 @@ const LawsTable = (props) => {
                   </Button>
                 </Table.Cell>
               </>
-            )) ||
-              null}
+            ) : (
+              ''
+            )}
           </Table.Row>
         ))}
       </Table>
@@ -291,9 +361,9 @@ const LawsTable = (props) => {
 };
 
 const LawManagerLawSets = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
-  const { isMalf, law_sets } = data;
+  const { isMalf, law_sets, ion_law_nr } = data;
 
   return (
     <>
@@ -301,60 +371,63 @@ const LawManagerLawSets = (props) => {
         Remember: Stating laws other than those currently loaded may be grounds
         for decommissioning! - NanoTrasen
       </NoticeBox>
-      {(law_sets.length &&
-        law_sets.map((laws) => (
-          <Section
-            key={laws.name}
-            title={laws.name}
-            buttons={
-              <>
-                <Button
-                  disabled={!isMalf}
-                  icon="sync"
-                  onClick={() =>
-                    act('transfer_laws', { transfer_laws: laws.ref })
-                  }
-                >
-                  Load Laws
-                </Button>
-                <Button
-                  icon="volume-up"
-                  onClick={() =>
-                    act('state_law_set', { state_law_set: laws.ref })
-                  }
-                >
-                  State Laws
-                </Button>
-              </>
-            }
-          >
-            {(laws.laws.has_ion_laws && (
-              <LawsTable
-                noButtons
-                laws={laws.laws.ion_laws}
-                title={laws.laws.ion_law_nr + ' Laws:'}
-              />
-            )) ||
-              null}
-            {((laws.laws.has_zeroth_laws || laws.laws.has_inherent_laws) && (
-              <LawsTable
-                noButtons
-                laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)}
-                title={laws.header}
-              />
-            )) ||
-              null}
-            {(laws.laws.has_supplied_laws && (
-              <LawsTable
-                noButtons
-                laws={laws.laws.supplied_laws}
-                title="Supplied Laws"
-              />
-            )) ||
-              null}
-          </Section>
-        ))) ||
-        null}
+      {law_sets.length
+        ? law_sets.map((laws) => (
+            <Section
+              key={laws.name}
+              title={laws.name}
+              buttons={
+                <>
+                  <Button
+                    disabled={!isMalf}
+                    icon="sync"
+                    onClick={() =>
+                      act('transfer_laws', { transfer_laws: laws.ref })
+                    }
+                  >
+                    Load Laws
+                  </Button>
+                  <Button
+                    icon="volume-up"
+                    onClick={() =>
+                      act('state_law_set', { state_law_set: laws.ref })
+                    }
+                  >
+                    State Laws
+                  </Button>
+                </>
+              }
+            >
+              {laws.laws.has_ion_laws ? (
+                <LawsTable
+                  noButtons
+                  laws={laws.laws.ion_laws}
+                  title={ion_law_nr + ' Laws:'}
+                />
+              ) : (
+                ''
+              )}
+              {laws.laws.has_zeroth_laws || laws.laws.has_inherent_laws ? (
+                <LawsTable
+                  noButtons
+                  laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)}
+                  title={laws.header}
+                />
+              ) : (
+                ''
+              )}
+              {laws.laws.has_supplied_laws ? (
+                <LawsTable
+                  noButtons
+                  laws={laws.laws.supplied_laws}
+                  title="Supplied Laws"
+                />
+              ) : (
+                ''
+              )}
+            </Section>
+          ))
+        : ''}
     </>
   );
 };

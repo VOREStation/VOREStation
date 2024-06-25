@@ -1,9 +1,18 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  supportedPrograms: string[];
+  currentProgram: string;
+  immersion: BooleanLike;
+  gravity: BooleanLike;
+};
+
 export const LookingGlass = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { supportedPrograms, currentProgram, immersion, gravity } = data;
 

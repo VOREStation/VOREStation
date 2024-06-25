@@ -12,17 +12,37 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  beacons: {
+    ref: string;
+    charge: string;
+    name: string;
+    health: number;
+    maxHealth: number;
+    cell: string;
+    cellCharge: number;
+    cellMaxCharge: number;
+    airtank: number;
+    pilot: string;
+    location: string;
+    active: string | null;
+    cargoUsed: number;
+    cargoMax: number;
+  }[];
+  stored_data: { time: string; year: number; message: string }[];
+};
+
 export const MechaControlConsole = (props) => {
-  const { act, data } = useBackend();
-  const { beacons, stored_data } = data;
+  const { act, data } = useBackend<Data>();
+  const { beacons = [], stored_data = [] } = data;
   return (
     <Window width={600} height={600}>
       <Window.Content scrollable>
-        {(stored_data.length && (
+        {stored_data.length ? (
           <Modal>
             <Section
               height="400px"
-              style={{ 'overflow-y': 'auto' }}
+              style={{ overflowY: 'auto' }}
               title="Log"
               buttons={
                 <Button icon="window-close" onClick={() => act('clear_log')} />
@@ -38,8 +58,9 @@ export const MechaControlConsole = (props) => {
               ))}
             </Section>
           </Modal>
-        )) ||
-          null}
+        ) : (
+          ''
+        )}
         {(beacons.length &&
           beacons.map((beacon) => (
             <Section
@@ -112,7 +133,7 @@ export const MechaControlConsole = (props) => {
                 <LabeledList.Item label="Active Equipment">
                   {beacon.active || 'None'}
                 </LabeledList.Item>
-                {(beacon.cargoMax && (
+                {beacon.cargoMax ? (
                   <LabeledList.Item label="Cargo Space">
                     <ProgressBar
                       ranges={{
@@ -127,8 +148,9 @@ export const MechaControlConsole = (props) => {
                       maxValue={beacon.cargoMax}
                     />
                   </LabeledList.Item>
-                )) ||
-                  null}
+                ) : (
+                  ''
+                )}
               </LabeledList>
             </Section>
           ))) || <NoticeBox>No mecha beacons found.</NoticeBox>}

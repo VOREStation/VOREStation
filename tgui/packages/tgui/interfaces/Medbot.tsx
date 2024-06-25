@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,8 +11,25 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  on: BooleanLike;
+  open: BooleanLike;
+  beaker: BooleanLike;
+  beaker_total: number;
+  beaker_max: number;
+  locked: BooleanLike;
+  heal_threshold: number | null;
+  heal_threshold_max: number;
+  injection_amount_min: number;
+  injection_amount: number | null;
+  injection_amount_max: number;
+  use_beaker: BooleanLike;
+  declare_treatment: BooleanLike;
+  vocal: BooleanLike;
+};
+
 export const Medbot = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     on,
@@ -82,7 +101,9 @@ export const Medbot = (props) => {
                   minValue={0}
                   maxValue={heal_threshold_max}
                   value={heal_threshold}
-                  onDrag={(e, val) => act('adj_threshold', { val: val })}
+                  onDrag={(e: Event, val: number) =>
+                    act('adj_threshold', { val: val })
+                  }
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Injection Amount">
@@ -91,7 +112,9 @@ export const Medbot = (props) => {
                   minValue={injection_amount_min}
                   maxValue={injection_amount_max}
                   value={injection_amount}
-                  onDrag={(e, val) => act('adj_inject', { val: val })}
+                  onDrag={(e: Event, val: number) =>
+                    act('adj_inject', { val: val })
+                  }
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Reagent Source">

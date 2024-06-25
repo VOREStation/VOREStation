@@ -28,7 +28,6 @@ export const MentorTicketPanel = (props) => {
   const { act, data } = useBackend<Data>();
   const {
     id,
-    title,
     name,
     state,
     opened_at,

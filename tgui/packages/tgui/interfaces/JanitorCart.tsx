@@ -1,11 +1,21 @@
 import { useBackend } from '../backend';
-import { Button, Icon } from '../components';
+import { Button, Icon, Image } from '../components';
 import { Window } from '../layouts';
 
-export const JanitorCart = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  mybag: string | null;
+  mybucket: string | null;
+  mymop: string | null;
+  myspray: string | null;
+  myreplacer: string | null;
+  signs: string | null;
+  icons: Record<string, string>;
+};
 
-  const { mybag, mybucket, mymop, myspray, myreplacer, signs, icons } = data;
+export const JanitorCart = (props) => {
+  const { act, data } = useBackend<Data>();
+
+  const { mybag, mybucket, mymop, myspray, myreplacer, signs } = data;
 
   return (
     <Window width={210} height={180}>
@@ -18,7 +28,7 @@ export const JanitorCart = (props) => {
           tooltipPosition="bottom-end"
           color={mybag ? 'grey' : 'transparent'}
           style={{
-            border: mybag ? null : '2px solid grey',
+            border: mybag ? undefined : '2px solid grey',
           }}
           onClick={() => act('bag')}
         >
@@ -32,7 +42,7 @@ export const JanitorCart = (props) => {
           tooltipPosition="bottom"
           color={mybucket ? 'grey' : 'transparent'}
           style={{
-            border: mybucket ? null : '2px solid grey',
+            border: mybucket ? undefined : '2px solid grey',
           }}
           onClick={() => act('bucket')}
         >
@@ -46,7 +56,7 @@ export const JanitorCart = (props) => {
           tooltipPosition="bottom-end"
           color={mymop ? 'grey' : 'transparent'}
           style={{
-            border: mymop ? null : '2px solid grey',
+            border: mymop ? undefined : '2px solid grey',
           }}
           onClick={() => act('mop')}
         >
@@ -60,7 +70,7 @@ export const JanitorCart = (props) => {
           tooltipPosition="top-end"
           color={myspray ? 'grey' : 'transparent'}
           style={{
-            border: myspray ? null : '2px solid grey',
+            border: myspray ? undefined : '2px solid grey',
           }}
           onClick={() => act('spray')}
         >
@@ -74,7 +84,7 @@ export const JanitorCart = (props) => {
           tooltipPosition="top"
           color={myreplacer ? 'grey' : 'transparent'}
           style={{
-            border: myreplacer ? null : '2px solid grey',
+            border: myreplacer ? undefined : '2px solid grey',
           }}
           onClick={() => act('replacer')}
         >
@@ -88,7 +98,7 @@ export const JanitorCart = (props) => {
           tooltipPosition="top-start"
           color={signs ? 'grey' : 'transparent'}
           style={{
-            border: signs ? null : '2px solid grey',
+            border: signs ? undefined : '2px solid grey',
           }}
           onClick={() => act('sign')}
         >
@@ -99,7 +109,7 @@ export const JanitorCart = (props) => {
   );
 };
 
-const iconkeysToIcons = {
+const iconkeysToIcons: Record<string, string> = {
   mybag: 'trash',
   mybucket: 'fill',
   mymop: 'broom',
@@ -108,8 +118,8 @@ const iconkeysToIcons = {
   signs: 'sign',
 };
 
-const JanicartIcon = (props) => {
-  const { data } = useBackend();
+const JanicartIcon = (props: { iconkey: string }) => {
+  const { data } = useBackend<Data>();
 
   const { iconkey } = props;
 
@@ -117,17 +127,16 @@ const JanicartIcon = (props) => {
 
   if (iconkey in icons) {
     return (
-      <img
+      <Image
         src={icons[iconkey].substr(1, icons[iconkey].length - 1)}
         style={{
           position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
+          left: '0',
+          right: '0',
+          top: '0',
+          bottom: '0',
           width: '64px',
           height: '64px',
-          '-ms-interpolation-mode': 'nearest-neighbor',
         }}
       />
     );
@@ -138,9 +147,9 @@ const JanicartIcon = (props) => {
       style={{
         position: 'absolute',
         left: '4px',
-        right: 0,
+        right: '0',
         top: '20px',
-        bottom: 0,
+        bottom: '0',
         width: '64px',
         height: '64px',
       }}
