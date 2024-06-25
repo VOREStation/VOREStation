@@ -1,15 +1,28 @@
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, Section, Tabs } from '../components';
+import { Box, NoticeBox, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 
+export type Data = {
+  real_name: string;
+  allow_items: BooleanLike;
+  crew: string[];
+  items: string[];
+};
+
 export const CryoStorage = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { real_name, allow_items } = data;
 
   const [tab, setTab] = useState(0);
+
+  const tabs: React.JSX.Element[] = [];
+
+  tabs[0] = <CryoStorageCrew />;
+  tabs[1] = allow_items ? <CryoStorageItems /> : <CryoStorageDefaultError />;
 
   return (
     <Window width={400} height={600}>
@@ -25,15 +38,14 @@ export const CryoStorage = (props) => {
           )}
         </Tabs>
         <NoticeBox info>Welcome, {real_name}.</NoticeBox>
-        {tab === 0 && <CryoStorageCrew />}
-        {!!allow_items && tab === 1 && <CryoStorageItems />}
+        {tabs[tab]}
       </Window.Content>
     </Window>
   );
 };
 
 export const CryoStorageCrew = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { crew } = data;
 
@@ -50,7 +62,29 @@ export const CryoStorageCrew = (props) => {
 };
 
 export const CryoStorageItems = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
+
+  const { items } = data;
+
+  return (
+    <Section title="Stored Items">
+      {(items.length &&
+        items.map((item) => (
+          <Box color="label" key={item}>
+            {item}
+          </Box>
+        ))) || <Box color="average">No items stored.</Box>}
+    </Section>
+  );
+};
+
+export const CryoStorageDefaultError = (props) => {
+  return <Box textColor="red">Disabled</Box>;
+};
+
+/* Unused here
+export const CryoStorageItems = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { items } = data;
 
@@ -76,3 +110,4 @@ export const CryoStorageItems = (props) => {
     </Section>
   );
 };
+*/

@@ -1,9 +1,24 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  dish_inserted: BooleanLike;
+  buffer: { name: string; stage: number } | null;
+  species_buffer: string | null;
+  busy: string | null;
+  growth: number;
+  effects:
+    | { name: string; stage: number; reference: string; badness: number }[]
+    | null;
+  info: string;
+  affected_species: string[] | null;
+};
+
 export const DiseaseSplicer = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { busy } = data;
 
@@ -28,7 +43,7 @@ export const DiseaseSplicer = (props) => {
 };
 
 const DiseaseSplicerVirusDish = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { dish_inserted, effects, info, growth, affected_species } = data;
 
@@ -60,12 +75,12 @@ const DiseaseSplicerVirusDish = (props) => {
         </LabeledList.Item>
       </LabeledList>
       {info ? (
-        <Section level={2}>
+        <Section>
           <Box color="bad">{info}</Box>
         </Section>
       ) : (
         <>
-          <Section level={2} title="Symptoms">
+          <Section title="Symptoms">
             {(effects &&
               effects.map((effect) => (
                 <Box color="label" key={effect.stage}>
@@ -74,23 +89,25 @@ const DiseaseSplicerVirusDish = (props) => {
                 </Box>
               ))) || <Box>No virus sample loaded.</Box>}
           </Section>
-          <Section level={2} title="Affected Species" color="label">
-            {!affected_species || !affected_species.length ? 'None' : null}
-            {affected_species.sort().join(', ')}
+          <Section title="Affected Species" color="label">
+            {!affected_species || !affected_species.length
+              ? 'None'
+              : affected_species.sort().join(', ')}
           </Section>
-          <Section level={2} title="Reverse Engineering">
+          <Section title="Reverse Engineering">
             <Box color="bad" mb={1}>
               <i>CAUTION: Reverse engineering will destroy the viral sample.</i>
             </Box>
-            {effects.map((e) => (
-              <Button
-                key={e.stage}
-                icon="exchange-alt"
-                onClick={() => act('grab', { grab: e.reference })}
-              >
-                {e.stage}
-              </Button>
-            ))}
+            {effects &&
+              effects.map((e) => (
+                <Button
+                  key={e.stage}
+                  icon="exchange-alt"
+                  onClick={() => act('grab', { grab: e.reference })}
+                >
+                  {e.stage}
+                </Button>
+              ))}
             <Button icon="exchange-alt" onClick={() => act('affected_species')}>
               Species
             </Button>
@@ -102,18 +119,9 @@ const DiseaseSplicerVirusDish = (props) => {
 };
 
 const DiseaseSplicerStorage = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
-  const {
-    dish_inserted,
-    buffer,
-    species_buffer,
-    effects,
-    info,
-    growth,
-    affected_species,
-    busy,
-  } = data;
+  const { buffer, species_buffer, info } = data;
 
   return (
     <Section title="Storage">
@@ -173,7 +181,7 @@ const DiseaseSplicerStorage = (props) => {
         <Box>
           <Button
             icon="pen"
-            disabled={!species_buffer || info}
+            disabled={!species_buffer || !!info}
             onClick={() => act('splice', { splice: 5 })}
           >
             Splice Species
