@@ -43,6 +43,49 @@ export const ResearchConsole = (props) => {
     allTabsDisabled = true;
   }
 
+  const tab: React.JSX.Element[] = [];
+
+  tab[0] = (
+    <ResearchConsoleConstructor
+      name="Protolathe"
+      protoTab={protoTab}
+      matsStates={matsStates}
+      onProtoTab={setProtoTab}
+      onMatsState={setMatsState}
+    />
+  );
+  tab[1] = (
+    <ResearchConsoleConstructor
+      name="Circuit Imprinter"
+      protoTab={protoTab}
+      matsStates={matsStates}
+      onProtoTab={setProtoTab}
+      onMatsState={setMatsState}
+    />
+  );
+
+  tab[2] = <ResearchConsoleDestructiveAnalyzer name="Circuit Imprinter" />;
+
+  tab[3] = (
+    <ResearchConsoleSettings
+      settingsTab={settingsTab}
+      onSettingsTab={setSettingsTab}
+    />
+  );
+
+  tab[4] = <ResearchConsoleViewResearch />;
+
+  tab[5] = <ResearchConsoleViewDesigns />;
+
+  tab[6] = (
+    <ResearchConsoleDisk
+      saveDialogTech={saveDialogTech}
+      saveDialogDesign={saveDialogDesign}
+      onSaveDialogTech={setSaveDialogTech}
+      onSaveDialogDesign={setSaveDialogDesign}
+    />
+  );
+
   return (
     <Window width={850} height={630}>
       <Window.Content scrollable>
@@ -66,45 +109,7 @@ export const ResearchConsole = (props) => {
               </Button>
             </Section>
           )) ||
-          (menu === 0 ? (
-            <ResearchConsoleConstructor
-              name="Protolathe"
-              protoTab={protoTab}
-              matsStates={matsStates}
-              onProtoTab={setProtoTab}
-              onMatsState={setMatsState}
-            />
-          ) : (
-            ''
-          )) ||
-          (menu === 1 && (
-            <ResearchConsoleConstructor
-              name="Circuit Imprinter"
-              protoTab={protoTab}
-              matsStates={matsStates}
-              onProtoTab={setProtoTab}
-              onMatsState={setMatsState}
-            />
-          )) ||
-          (menu === 2 && (
-            <ResearchConsoleDestructiveAnalyzer name="Circuit Imprinter" />
-          )) ||
-          (menu === 3 && (
-            <ResearchConsoleSettings
-              settingsTab={settingsTab}
-              onSettingsTab={setSettingsTab}
-            />
-          )) ||
-          (menu === 4 && <ResearchConsoleViewResearch />) ||
-          (menu === 5 && <ResearchConsoleViewDesigns />) ||
-          (menu === 6 && (
-            <ResearchConsoleDisk
-              saveDialogTech={saveDialogTech}
-              saveDialogDesign={saveDialogDesign}
-              onSaveDialogTech={setSaveDialogTech}
-              onSaveDialogDesign={setSaveDialogDesign}
-            />
-          ))}
+          tab[menu]}
       </Window.Content>
     </Window>
   );
