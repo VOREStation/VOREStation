@@ -194,7 +194,7 @@ const LawManagerLaws = (props) => {
                   <Input
                     value={zeroth_law}
                     fluid
-                    onChange={(e: Event, val: string) =>
+                    onChange={(e, val: string) =>
                       act('change_zeroth_law', { val: val })
                     }
                   />
@@ -215,7 +215,7 @@ const LawManagerLaws = (props) => {
                 <Input
                   value={ion_law}
                   fluid
-                  onChange={(e: Event, val: string) =>
+                  onChange={(e, val: string) =>
                     act('change_ion_law', { val: val })
                   }
                 />
@@ -233,7 +233,7 @@ const LawManagerLaws = (props) => {
                 <Input
                   value={inherent_law}
                   fluid
-                  onChange={(e: Event, val: string) =>
+                  onChange={(e, val: string) =>
                     act('change_inherent_law', { val: val })
                   }
                 />
@@ -251,7 +251,7 @@ const LawManagerLaws = (props) => {
                 <Input
                   value={supplied_law}
                   fluid
-                  onChange={(e: Event, val: string) =>
+                  onChange={(e, val: string) =>
                     act('change_supplied_law', { val: val })
                   }
                 />

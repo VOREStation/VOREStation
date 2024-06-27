@@ -41,9 +41,7 @@ export const AssemblyProx = (props) => {
                 minValue={0}
                 maxValue={600}
                 format={(val: number) => formatTime(round(val * 10, 0))}
-                onDrag={(e: Event, val: string) =>
-                  act('set_time', { time: val })
-                }
+                onDrag={(e, val: string) => act('set_time', { time: val })}
               />
             </LabeledList.Item>
           </LabeledList>
@@ -55,7 +53,7 @@ export const AssemblyProx = (props) => {
                 minValue={1}
                 value={range}
                 maxValue={maxRange}
-                onDrag={(e: Event, val: string) => act('range', { range: val })}
+                onDrag={(e, val: string) => act('range', { range: val })}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Armed">

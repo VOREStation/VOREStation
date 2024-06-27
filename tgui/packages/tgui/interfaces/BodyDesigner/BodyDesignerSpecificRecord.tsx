@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 
-import { useBackend } from '../backend';
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -9,115 +9,15 @@ import {
   Flex,
   LabeledList,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from '../../components';
+import { activeBodyRecord } from './types';
 
-export const BodyDesigner = (props) => {
-  const { act, data } = useBackend();
-
-  const { menu, disk, diskStored, activeBodyRecord } = data;
-
-  let body = MenuToTemplate[menu];
-
-  return (
-    <Window width={400} height={650}>
-      <Window.Content>
-        {disk ? (
-          <Box>
-            <Button
-              icon="save"
-              onClick={() => act('savetodisk')}
-              disabled={!activeBodyRecord}
-            >
-              Save To Disk
-            </Button>
-            <Button
-              icon="save"
-              onClick={() => act('loadfromdisk')}
-              disabled={!diskStored}
-            >
-              Load From Disk
-            </Button>
-            <Button icon="eject" onClick={() => act('ejectdisk')}>
-              Eject
-            </Button>
-          </Box>
-        ) : null}
-        {body}
-      </Window.Content>
-    </Window>
-  );
-};
-
-const BodyDesignerMain = (props) => {
-  const { act, data } = useBackend();
-  return (
-    <Section title="Database Functions">
-      <Button icon="eye" onClick={() => act('menu', { menu: 'Body Records' })}>
-        View Individual Body Records
-      </Button>
-      <Button icon="eye" onClick={() => act('menu', { menu: 'Stock Records' })}>
-        View Stock Body Records
-      </Button>
-    </Section>
-  );
-};
-
-const BodyDesignerBodyRecords = (props) => {
-  const { act, data } = useBackend();
-  const { bodyrecords } = data;
-  return (
-    <Section
-      title="Body Records"
-      buttons={
-        <Button icon="arrow-left" onClick={() => act('menu', { menu: 'Main' })}>
-          Back
-        </Button>
-      }
-    >
-      {bodyrecords
-        ? bodyrecords.map((record) => (
-            <Button
-              icon="eye"
-              key={record.name}
-              onClick={() => act('view_brec', { view_brec: record.recref })}
-            >
-              {record.name}
-            </Button>
-          ))
-        : ''}
-    </Section>
-  );
-};
-
-const BodyDesignerStockRecords = (props) => {
-  const { act, data } = useBackend();
-  const { stock_bodyrecords } = data;
-  return (
-    <Section
-      title="Stock Records"
-      buttons={
-        <Button icon="arrow-left" onClick={() => act('menu', { menu: 'Main' })}>
-          Back
-        </Button>
-      }
-    >
-      {stock_bodyrecords.map((record) => (
-        <Button
-          icon="eye"
-          key={record}
-          onClick={() => act('view_stock_brec', { view_stock_brec: record })}
-        >
-          {record}
-        </Button>
-      ))}
-    </Section>
-  );
-};
-
-const BodyDesignerSpecificRecord = (props) => {
-  const { act, data } = useBackend();
-  const { activeBodyRecord, mapRef } = data;
+export const BodyDesignerSpecificRecord = (props: {
+  activeBodyRecord: activeBodyRecord;
+  mapRef: string;
+}) => {
+  const { act } = useBackend();
+  const { activeBodyRecord, mapRef } = props;
   return activeBodyRecord ? (
     <Flex direction="column">
       <Flex.Item basis="165px">
@@ -324,36 +224,4 @@ const BodyDesignerSpecificRecord = (props) => {
   ) : (
     <Box color="bad">ERROR: Record Not Found!</Box>
   );
-};
-
-const BodyDesignerOOCNotes = (props) => {
-  const { act, data } = useBackend();
-  const { activeBodyRecord } = data;
-  return (
-    <Section
-      title="Body OOC Notes (This is OOC!)"
-      height="100%"
-      scrollable
-      buttons={
-        <Button
-          icon="arrow-left"
-          onClick={() => act('menu', { menu: 'Specific Record' })}
-        >
-          Back
-        </Button>
-      }
-      style={{ 'word-break': 'break-all' }}
-    >
-      {(activeBodyRecord && activeBodyRecord.booc) ||
-        'ERROR: Body record not found!'}
-    </Section>
-  );
-};
-
-const MenuToTemplate = {
-  Main: <BodyDesignerMain />,
-  'Body Records': <BodyDesignerBodyRecords />,
-  'Stock Records': <BodyDesignerStockRecords />,
-  'Specific Record': <BodyDesignerSpecificRecord />,
-  'OOC Notes': <BodyDesignerOOCNotes />,
 };

@@ -111,7 +111,7 @@ export const ComplexModal = (props) => {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
     let curValue = modal.value;
-    modalOnEnter = (e: Event) => modalAnswer(id, curValue, {});
+    modalOnEnter = (e) => modalAnswer(id, curValue, {});
     modalBody = (
       <Input
         value={modal.value}

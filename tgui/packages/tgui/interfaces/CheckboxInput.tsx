@@ -97,7 +97,7 @@ export const CheckboxInput = (props) => {
               <Input
                 fluid
                 value={searchQuery}
-                onInput={(e: Event, value: string) => setSearchQuery(value)}
+                onInput={(e, value: string) => setSearchQuery(value)}
               />
             </Stack.Item>
           </Stack>

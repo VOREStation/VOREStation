@@ -108,7 +108,7 @@ export const BombTester = (props) => {
                     minValue={0}
                     value={sim_canister_output}
                     maxValue={1013.25}
-                    onDrag={(e: Event, val: number) =>
+                    onDrag={(e, val: number) =>
                       act('set_can_pressure', { pressure: val })
                     }
                   />

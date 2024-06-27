@@ -29,7 +29,7 @@ export const ColorMateHSV = (props) => {
             step={1}
             value={buildhue}
             format={(value: number) => toFixed(value)}
-            onDrag={(e: Event, value: number) =>
+            onDrag={(e, value: number) =>
               act('set_hue', {
                 buildhue: value,
               })
@@ -46,7 +46,7 @@ export const ColorMateHSV = (props) => {
             step={0.01}
             value={buildsat}
             format={(value: number) => toFixed(value, 2)}
-            onDrag={(e: Event, value: number) =>
+            onDrag={(e, value: number) =>
               act('set_sat', {
                 buildsat: value,
               })
@@ -63,7 +63,7 @@ export const ColorMateHSV = (props) => {
             step={0.01}
             value={buildval}
             format={(value: number) => toFixed(value, 2)}
-            onDrag={(e: Event, value: number) =>
+            onDrag={(e, value: number) =>
               act('set_val', {
                 buildval: value,
               })

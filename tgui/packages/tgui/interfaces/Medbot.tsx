@@ -101,7 +101,7 @@ export const Medbot = (props) => {
                   minValue={0}
                   maxValue={heal_threshold_max}
                   value={heal_threshold}
-                  onDrag={(e: Event, val: number) =>
+                  onDrag={(e, val: number) =>
                     act('adj_threshold', { val: val })
                   }
                 />
@@ -112,9 +112,7 @@ export const Medbot = (props) => {
                   minValue={injection_amount_min}
                   maxValue={injection_amount_max}
                   value={injection_amount}
-                  onDrag={(e: Event, val: number) =>
-                    act('adj_inject', { val: val })
-                  }
+                  onDrag={(e, val: number) => act('adj_inject', { val: val })}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Reagent Source">

@@ -65,7 +65,7 @@ export const BrigTimer = (props) => {
             minValue={0}
             maxValue={max_time_left / 10}
             format={(val: number) => formatTime(round(val * 10, 0))}
-            onDrag={(e: Event, val: number) => act('time', { time: val })}
+            onDrag={(e, val: number) => act('time', { time: val })}
           />
           <Flex mt={1}>
             <Flex.Item grow={1}>

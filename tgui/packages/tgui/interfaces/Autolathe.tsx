@@ -82,7 +82,7 @@ export const Autolathe = (props) => {
             fluid
             placeholder="Search for..."
             value={searchText}
-            onInput={(e: Event, v: string) => setSearchText(v)}
+            onInput={(e, v: string) => setSearchText(v)}
             mb={1}
           />
           {recipesToShow.map((recipe) => (

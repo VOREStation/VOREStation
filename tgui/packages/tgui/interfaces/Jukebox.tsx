@@ -253,14 +253,14 @@ export const Jukebox = (props) => {
                     <Input
                       width="100%"
                       value={newTitle}
-                      onChange={(e: Event, val: string) => setNewTitle(val)}
+                      onChange={(e, val: string) => setNewTitle(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="URL">
                     <Input
                       width="100%"
                       value={newUrl}
-                      onChange={(e: Event, val: string) => setNewUrl(val)}
+                      onChange={(e, val: string) => setNewUrl(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Playtime">
@@ -268,7 +268,7 @@ export const Jukebox = (props) => {
                       value={newDuration}
                       minValue={0}
                       maxValue={3600}
-                      onChange={(e: Event, val: number) => setNewDuration(val)}
+                      onChange={(e, val: number) => setNewDuration(val)}
                       format={(val) => formatTime(round(val * 10, 0))}
                     />
                   </LabeledList.Item>
@@ -276,7 +276,7 @@ export const Jukebox = (props) => {
                     <Input
                       width="100%"
                       value={newArtist}
-                      onChange={(e: Event, val: string) => setNewArtist(val)}
+                      onChange={(e, val: string) => setNewArtist(val)}
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Genre">
@@ -286,9 +286,7 @@ export const Jukebox = (props) => {
                           <Input
                             width="100%"
                             value={newGenre}
-                            onChange={(e: Event, val: string) =>
-                              setNewGenre(val)
-                            }
+                            onChange={(e, val: string) => setNewGenre(val)}
                           />
                         ) : (
                           <Box>{newGenre}</Box>

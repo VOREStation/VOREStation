@@ -190,7 +190,7 @@ const GeneralMobSettings = (props: {
             <Input
               fluid
               value={data.path_name}
-              onChange={(e: Event, val: string) => props.onName(val)}
+              onChange={(e, val: string) => props.onName(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
@@ -203,7 +203,7 @@ const GeneralMobSettings = (props: {
               value={props.amount}
               minValue={0}
               maxValue={256}
-              onChange={(e: Event, val: number) => props.onAmount(val)}
+              onChange={(e, val: number) => props.onAmount(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label={'Size (' + props.sizeMultiplier + '%)'}>
@@ -212,7 +212,7 @@ const GeneralMobSettings = (props: {
               minValue={50}
               maxValue={200}
               unit="%"
-              onChange={(e: Event, val: number) => props.onSizeMultiplier(val)}
+              onChange={(e, val: number) => props.onSizeMultiplier(val)}
             />
           </LabeledList.Item>
         </LabeledList>
@@ -227,19 +227,19 @@ const GeneralMobSettings = (props: {
                     value={data.loc_lock ? data.loc_x : props.x}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e: Event, val: number) => props.onX(val)}
+                    onChange={(e, val: number) => props.onX(val)}
                   />
                   <NumberInput
                     value={data.loc_lock ? data.loc_y : props.y}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e: Event, val: number) => props.onY(val)}
+                    onChange={(e, val: number) => props.onY(val)}
                   />
                   <NumberInput
                     value={data.loc_lock ? data.loc_z : props.z}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e: Event, val: number) => props.onZ(val)}
+                    onChange={(e, val: number) => props.onZ(val)}
                   />
                   <Button.Checkbox
                     checked={data.loc_lock}
@@ -254,7 +254,7 @@ const GeneralMobSettings = (props: {
                     disabled
                     minValue={0}
                     maxValue={256}
-                    onChange={(e: Event, val: number) => props.onRadius(val)}
+                    onChange={(e, val: number) => props.onRadius(val)}
                   />
                 </LabeledList.Item>
               </LabeledList>
@@ -300,17 +300,13 @@ const GeneralMobSettings = (props: {
                     <LabeledList.Item label="Max Health">
                       <NumberInput
                         value={data.max_health}
-                        onChange={(e: Event, val: number) =>
-                          props.onMaxHealth(val)
-                        }
+                        onChange={(e, val: number) => props.onMaxHealth(val)}
                       />
                     </LabeledList.Item>
                     <LabeledList.Item label="Health">
                       <NumberInput
                         value={data.health}
-                        onChange={(e: Event, val: number) =>
-                          props.onHealth(val)
-                        }
+                        onChange={(e, val: number) => props.onHealth(val)}
                       />
                     </LabeledList.Item>
                     <br />
@@ -322,7 +318,7 @@ const GeneralMobSettings = (props: {
                     <LabeledList.Item label="Melee Damage (Lower)">
                       <NumberInput
                         value={data.melee_damage_lower}
-                        onChange={(e: Event, val: number) =>
+                        onChange={(e, val: number) =>
                           props.onMeleeDamageLower(val)
                         }
                       />
@@ -330,7 +326,7 @@ const GeneralMobSettings = (props: {
                     <LabeledList.Item label="Melee Damage (Upper)">
                       <NumberInput
                         value={data.melee_damage_upper}
-                        onChange={(e: Event, val: number) =>
+                        onChange={(e, val: number) =>
                           props.onMeleeDamageUpper(val)
                         }
                       />
@@ -350,7 +346,7 @@ const GeneralMobSettings = (props: {
             <br />
             <TextArea
               height={'18rem'}
-              onChange={(e: Event, val: string) => props.onDesc(val)}
+              onChange={(e, val: string) => props.onDesc(val)}
               value={data.desc}
             />
           </Flex.Item>
@@ -360,7 +356,7 @@ const GeneralMobSettings = (props: {
             <TextArea
               height={'18rem'}
               value={data.flavor_text}
-              onChange={(e: Event, val: string) => props.onFlavor(val)}
+              onChange={(e, val: string) => props.onFlavor(val)}
             />
           </Flex.Item>
         </Flex>

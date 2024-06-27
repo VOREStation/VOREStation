@@ -185,9 +185,7 @@ export const MessageMonitorAdmin = (props) => {
             fluid
             mb={0.5}
             value={custommessage}
-            onChange={(e: Event, val: string) =>
-              act('set_message', { val: val })
-            }
+            onChange={(e, val: string) => act('set_message', { val: val })}
           />
         </LabeledList.Item>
       </LabeledList>

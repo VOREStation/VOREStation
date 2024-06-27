@@ -23,7 +23,7 @@ export const ResearchConsoleBuildMenu = (props) => {
         fluid
         placeholder="Search for..."
         value={data.search}
-        onInput={(e: Event, v: string) => act('search', { search: v })}
+        onInput={(e, v: string) => act('search', { search: v })}
         mb={1}
       />
       {designs && designs.length ? (
