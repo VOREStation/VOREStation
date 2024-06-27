@@ -8,7 +8,7 @@ import { useBackend } from '../backend';
 import { Button, ByondUi, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 
-type activeCamera = { name: string; status: BooleanLike };
+type activeCamera = { name: string; status: BooleanLike } | null;
 
 type camera = { name: string; networks: string[] };
 

@@ -25,8 +25,8 @@ type Data = {
   loop_mode: number;
   volume: number;
   current_track_ref: string | null;
-  current_track: track;
-  current_genre: string;
+  current_track: track | null;
+  current_genre: string | null;
   percent: number;
   tracks: track[];
   admin: BooleanLike;

@@ -44,7 +44,7 @@ export type Data = {
 
   // NEWSTAB
   feeds: { index: number; name: string }[];
-  target_feed: { name: string; author: string; messages: NewsMessage[] };
+  target_feed: { name: string; author: string; messages: NewsMessage[] } | null;
   latest_news: NewsMessage[];
 
   // NOTETAB

@@ -15,7 +15,7 @@ import { Data, mat } from './types';
 export const ResearchConsole = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { busy_msg, locked } = data;
+  const { busy_msg, locked, info, imprinter_designs, lathe_designs } = data;
 
   const [menu, setMenu] = useSharedState<number>('rdmenu', 0);
   const [protoTab, setProtoTab] = useSharedState<number>('protoTab', 0);
@@ -48,6 +48,8 @@ export const ResearchConsole = (props) => {
   tab[0] = (
     <ResearchConsoleConstructor
       name="Protolathe"
+      linked={info!.linked_lathe}
+      designs={lathe_designs}
       protoTab={protoTab}
       matsStates={matsStates}
       onProtoTab={setProtoTab}
@@ -57,6 +59,8 @@ export const ResearchConsole = (props) => {
   tab[1] = (
     <ResearchConsoleConstructor
       name="Circuit Imprinter"
+      linked={info!.linked_imprinter}
+      designs={imprinter_designs}
       protoTab={protoTab}
       matsStates={matsStates}
       onProtoTab={setProtoTab}
@@ -64,10 +68,16 @@ export const ResearchConsole = (props) => {
     />
   );
 
-  tab[2] = <ResearchConsoleDestructiveAnalyzer name="Circuit Imprinter" />;
+  tab[2] = (
+    <ResearchConsoleDestructiveAnalyzer
+      name="Destructive Analyzer"
+      linked_destroy={info!.linked_destroy}
+    />
+  );
 
   tab[3] = (
     <ResearchConsoleSettings
+      info={info!}
       settingsTab={settingsTab}
       onSettingsTab={setSettingsTab}
     />
@@ -83,6 +93,8 @@ export const ResearchConsole = (props) => {
       saveDialogDesign={saveDialogDesign}
       onSaveDialogTech={setSaveDialogTech}
       onSaveDialogDesign={setSaveDialogDesign}
+      d_disk={info!.d_disk}
+      t_disk={info!.t_disk}
     />
   );
 

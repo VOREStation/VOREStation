@@ -10,27 +10,7 @@ export type Data = {
   search: string | null;
   builder_page: number;
   design_page: number;
-  info: {
-    sync: BooleanLike;
-    is_public: BooleanLike;
-    linked_destroy: destroyer;
-    linked_lathe: modularDevice;
-    linked_imprinter: modularDevice;
-    t_disk: {
-      present: BooleanLike;
-      stored: BooleanLike;
-      name: string | undefined;
-      level: number | undefined;
-      desc: string | undefined;
-    };
-    d_disk: {
-      present: BooleanLike;
-      stored: BooleanLike;
-      name: string | undefined;
-      build_type: number | undefined;
-      materials: Record<string, number>[];
-    };
-  };
+  info: info | null;
 };
 
 export type menue = { name: string; icon: string }[];
@@ -68,3 +48,29 @@ export type mat = {
 };
 
 export type reagent = { name: string; id: string; volume: number };
+
+export type info = {
+  sync: BooleanLike;
+  is_public: BooleanLike;
+  linked_destroy: destroyer;
+  linked_lathe: modularDevice;
+  linked_imprinter: modularDevice;
+  t_disk: t_disk;
+  d_disk: d_disk;
+};
+
+export type d_disk = {
+  present: BooleanLike;
+  stored: BooleanLike;
+  name: string | undefined;
+  build_type: number | undefined;
+  materials: Record<string, number>[] | undefined;
+};
+
+export type t_disk = {
+  present: BooleanLike;
+  stored: BooleanLike;
+  name: string | undefined;
+  level: number | undefined;
+  desc: string | undefined;
+};

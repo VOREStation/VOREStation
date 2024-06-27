@@ -12,7 +12,7 @@ import {
 
 type Data = {
   connected: BooleanLike;
-  holding: { name: string; pressure: number };
+  holding: { name: string; pressure: number } | null;
   on: BooleanLike;
   pressure: number;
   powerDraw: number;

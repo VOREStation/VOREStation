@@ -2,18 +2,19 @@ import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section, Tabs } from '../../components';
-import { Data, destroyer, modularDevice } from './types';
+import { Data, destroyer, info, modularDevice } from './types';
 
 export const ResearchConsoleSettings = (props: {
+  info: info;
   settingsTab: number;
   onSettingsTab: Function;
 }) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
+
+  const { settingsTab, onSettingsTab, info } = props;
 
   const { is_public, sync, linked_destroy, linked_imprinter, linked_lathe } =
-    data.info;
-
-  const { settingsTab, onSettingsTab } = props;
+    info;
 
   const tab: React.JSX.Element[] = [];
 

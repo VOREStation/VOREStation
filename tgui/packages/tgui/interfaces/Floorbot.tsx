@@ -20,7 +20,7 @@ type Data = {
   improvefloors: BooleanLike;
   eattiles: BooleanLike;
   maketiles: BooleanLike;
-  bmode: string;
+  bmode: string | null;
 };
 
 export const Floorbot = (props) => {

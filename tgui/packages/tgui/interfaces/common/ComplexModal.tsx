@@ -11,7 +11,7 @@ let bodyOverrides = {};
  * @param {string} id The identifier of the modal
  * @param {object=} args The arguments to pass to the modal
  */
-export const modalOpen = (id, args) => {
+export const modalOpen = (id, args = {}) => {
   const { act, data } = useBackend<Data>();
 
   const { modal } = data;

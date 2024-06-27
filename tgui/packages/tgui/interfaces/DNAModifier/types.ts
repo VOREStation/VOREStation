@@ -19,16 +19,16 @@ export type Data = {
   selectedUITarget: number;
   selectedUITargetHex: string;
   occupant: {
-    name: string;
-    stat: number;
-    isViableSubject: BooleanLike;
-    health: number;
-    maxHealth: number;
-    minHealth: number;
-    uniqueEnzymes: string;
-    uniqueIdentity: string;
-    structuralEnzymes: string;
-    radiationLevel: number;
+    name: string | null;
+    stat: number | null;
+    isViableSubject: BooleanLike | null;
+    health: number | null;
+    maxHealth: number | null;
+    minHealth: number | null;
+    uniqueEnzymes: string | null;
+    uniqueIdentity: string | null;
+    structuralEnzymes: string | null;
+    radiationLevel: number | null;
   };
   isBeakerLoaded: BooleanLike;
   beakerLabel: string | null;

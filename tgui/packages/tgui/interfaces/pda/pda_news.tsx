@@ -6,7 +6,7 @@ import { Box, Button, Section } from '../../components';
 
 type Data = {
   feeds: feed[];
-  target_feed: feed;
+  target_feed: feed | null;
   latest_news: {
     channel: string;
     author: string;
@@ -50,15 +50,17 @@ export const pda_news = (props) => {
           Error: No newsfeeds available. Please try again later.
         </Box>
       )) ||
-        (target_feed && <NewsTargetFeed />) || <NewsFeed />}
+        (target_feed && <NewsTargetFeed target_feed={target_feed} />) || (
+          <NewsFeed />
+        )}
     </Box>
   );
 };
 
-const NewsTargetFeed = (props) => {
-  const { act, data } = useBackend<Data>();
+const NewsTargetFeed = (props: { target_feed: feed }) => {
+  const { act } = useBackend();
 
-  const { target_feed } = data;
+  const { target_feed } = props;
 
   return (
     <Section

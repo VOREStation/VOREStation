@@ -52,7 +52,7 @@ export const DNAModifierOccupant = (props: { isDNAInvalid: BooleanLike }) => {
                 <ProgressBar
                   minValue={0}
                   maxValue={1}
-                  value={occupant.health / occupant.maxHealth}
+                  value={occupant.health! / occupant.maxHealth!}
                   ranges={{
                     good: [0.5, Infinity],
                     average: [0, 0.5],
@@ -60,8 +60,8 @@ export const DNAModifierOccupant = (props: { isDNAInvalid: BooleanLike }) => {
                   }}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Status" color={stats[occupant.stat][0]}>
-                {stats[occupant.stat][1]}
+              <LabeledList.Item label="Status" color={stats[occupant.stat!][0]}>
+                {stats[occupant.stat!][1]}
               </LabeledList.Item>
               <LabeledList.Divider />
             </LabeledList>
@@ -78,7 +78,7 @@ export const DNAModifierOccupant = (props: { isDNAInvalid: BooleanLike }) => {
                 <ProgressBar
                   minValue={0}
                   maxValue={1}
-                  value={occupant.radiationLevel / 100}
+                  value={occupant.radiationLevel! / 100}
                   color="average"
                 />
               </LabeledList.Item>

@@ -2,7 +2,7 @@ import { useBackend } from '../../backend';
 import { Box, Button, Input, LabeledList, Section } from '../../components';
 import { paginationTitle } from './constants';
 import { PaginationChevrons } from './ResearchConsoleBuildMenu';
-import { Data } from './types';
+import { d_disk, Data, t_disk } from './types';
 
 export const TechDisk = (props) => {
   const { act, data } = useBackend<Data>();
@@ -184,10 +184,10 @@ export const ResearchConsoleDisk = (props: {
   saveDialogDesign: boolean;
   onSaveDialogTech: Function;
   onSaveDialogDesign: Function;
+  d_disk: d_disk;
+  t_disk: t_disk;
 }) => {
-  const { act, data } = useBackend<Data>();
-
-  const { d_disk, t_disk } = data.info;
+  const { d_disk, t_disk } = props;
 
   const {
     saveDialogTech,

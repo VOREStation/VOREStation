@@ -24,8 +24,8 @@ type Data = {
   printing: BooleanLike;
   have_id_slot: BooleanLike;
   have_printer: BooleanLike;
-  target_name: string;
-  target_owner: string;
+  target_name: string | null;
+  target_owner: string | null;
   target_rank: string;
   scan_name: string;
   authenticated: BooleanLike;
@@ -33,8 +33,8 @@ type Data = {
   account_number: number | null;
   centcom_access: BooleanLike;
   all_centcom_access: access[];
-  regions: region[];
-  id_rank: string;
+  regions: region[] | null;
+  id_rank: string | null;
   departments: {
     department_name: string;
     jobs: { display_name: string; target_rank: string; job: string }[];
@@ -276,28 +276,29 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
 
   return (
     <Flex wrap="wrap" spacing={1}>
-      {sortBy((r: region) => r.name)(regions).map((region) => (
-        <Flex.Item mb={1} basis="content" grow={1} key={region.name}>
-          <Section title={region.name} height="100%">
-            {sortBy((a: access) => a.desc)(region.accesses).map((access) => (
-              <Box key={access.ref}>
-                <Button
-                  fluid
-                  selected={access.allowed}
-                  onClick={() =>
-                    act(actName, {
-                      access_target: access.ref,
-                      allowed: access.allowed,
-                    })
-                  }
-                >
-                  {decodeHtmlEntities(access.desc)}
-                </Button>
-              </Box>
-            ))}
-          </Section>
-        </Flex.Item>
-      ))}
+      {regions &&
+        sortBy((r: region) => r.name)(regions).map((region) => (
+          <Flex.Item mb={1} basis="content" grow={1} key={region.name}>
+            <Section title={region.name} height="100%">
+              {sortBy((a: access) => a.desc)(region.accesses).map((access) => (
+                <Box key={access.ref}>
+                  <Button
+                    fluid
+                    selected={access.allowed}
+                    onClick={() =>
+                      act(actName, {
+                        access_target: access.ref,
+                        allowed: access.allowed,
+                      })
+                    }
+                  >
+                    {decodeHtmlEntities(access.desc)}
+                  </Button>
+                </Box>
+              ))}
+            </Section>
+          </Flex.Item>
+        ))}
     </Flex>
   );
 };

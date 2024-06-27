@@ -18,6 +18,8 @@ import { Data, design, mat, modularDevice } from './types';
 /* Lathe + Circuit Imprinter all in one */
 export const ResearchConsoleConstructor = (props: {
   name: string;
+  linked: modularDevice;
+  designs: design[];
   protoTab: number;
   matsStates: mat[];
   onProtoTab: Function;
@@ -25,18 +27,15 @@ export const ResearchConsoleConstructor = (props: {
 }) => {
   const { act, data } = useBackend<Data>();
 
-  const { name, matsStates, onMatsState, protoTab, onProtoTab } = props;
-
-  let linked: modularDevice;
-  let designs: design[];
-
-  if (name === 'Protolathe') {
-    linked = data.info.linked_lathe;
-    designs = data.lathe_designs;
-  } else {
-    linked = data.info.linked_imprinter;
-    designs = data.imprinter_designs;
-  }
+  const {
+    name,
+    matsStates,
+    onMatsState,
+    protoTab,
+    onProtoTab,
+    linked,
+    designs,
+  } = props;
 
   if (!linked || !linked.present) {
     return <Section title={name}>No {name} found.</Section>;

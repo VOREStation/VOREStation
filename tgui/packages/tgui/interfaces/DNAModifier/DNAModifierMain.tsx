@@ -99,7 +99,7 @@ const DNAModifierMainUI = (props) => {
   return (
     <Section title="Modify Unique Identifier">
       <DNAModifierBlocks
-        dnaString={occupant.uniqueIdentity}
+        dnaString={occupant.uniqueIdentity || ''}
         selectedBlock={selectedUIBlock}
         selectedSubblock={selectedUISubBlock}
         blockSize={dnaBlockSize}
@@ -137,7 +137,7 @@ const DNAModifierMainSE = (props) => {
   return (
     <Section title="Modify Structural Enzymes">
       <DNAModifierBlocks
-        dnaString={occupant.structuralEnzymes}
+        dnaString={occupant.structuralEnzymes || ''}
         selectedBlock={selectedSEBlock}
         selectedSubblock={selectedSESubBlock}
         blockSize={dnaBlockSize}

@@ -1,24 +1,23 @@
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
-import { Data } from './types';
+import { Data, destroyer } from './types';
 
-export const ResearchConsoleDestructiveAnalyzer = (props) => {
+export const ResearchConsoleDestructiveAnalyzer = (props: {
+  name: string;
+  linked_destroy: destroyer;
+}) => {
   const { act, data } = useBackend<Data>();
 
-  const { linked_destroy } = data.info;
+  const { linked_destroy, name } = props;
 
   if (!linked_destroy.present) {
-    return (
-      <Section title="Destructive Analyzer">
-        No destructive analyzer found.
-      </Section>
-    );
+    return <Section title={name}>No destructive analyzer found.</Section>;
   }
 
   const { loaded_item, origin_tech } = linked_destroy;
 
   return (
-    <Section title="Destructive Analyzer">
+    <Section title={name}>
       {(loaded_item && (
         <Box>
           <LabeledList>
