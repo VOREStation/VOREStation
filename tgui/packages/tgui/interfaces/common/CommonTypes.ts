@@ -30,3 +30,10 @@ export type mat = {
   sheets: number;
   removable: BooleanLike;
 };
+
+export type tgui_construction = {
+  key: string;
+  background: string;
+  icon: string;
+  foreground: string;
+}[];

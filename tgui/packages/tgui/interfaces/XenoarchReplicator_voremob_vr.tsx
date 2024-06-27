@@ -1,9 +1,14 @@
 import { useBackend } from '../backend';
 import { Button } from '../components';
 import { Window } from '../layouts';
+import { tgui_construction } from './common/CommonTypes';
 
-export const XenoarchReplicator_clothing_vr = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  tgui_construction: tgui_construction;
+};
+
+export const XenoarchReplicator_voremob_vr = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const { tgui_construction } = data;
 
