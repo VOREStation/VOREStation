@@ -95,7 +95,7 @@ export const CloningConsoleMain = (props) => {
               podAction = (
                 <ProgressBar
                   minValue={0}
-                  maxValue={100}
+                  maxValue={1}
                   value={pod.progress / 100}
                   ranges={{
                     good: [0.75, Infinity],

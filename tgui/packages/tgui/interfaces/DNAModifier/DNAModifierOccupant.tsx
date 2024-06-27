@@ -50,8 +50,8 @@ export const DNAModifierOccupant = (props: { isDNAInvalid: BooleanLike }) => {
               <LabeledList.Item label="Name">{occupant.name}</LabeledList.Item>
               <LabeledList.Item label="Health">
                 <ProgressBar
-                  minValue={occupant.minHealth}
-                  maxValue={occupant.maxHealth}
+                  minValue={0}
+                  maxValue={1}
                   value={occupant.health / occupant.maxHealth}
                   ranges={{
                     good: [0.5, Infinity],
@@ -77,7 +77,7 @@ export const DNAModifierOccupant = (props: { isDNAInvalid: BooleanLike }) => {
               <LabeledList.Item label="Radiation">
                 <ProgressBar
                   minValue={0}
-                  maxValue={100}
+                  maxValue={1}
                   value={occupant.radiationLevel / 100}
                   color="average"
                 />
