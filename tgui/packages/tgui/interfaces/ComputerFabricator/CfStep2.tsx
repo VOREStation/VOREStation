@@ -1,91 +1,31 @@
 import { multiline } from 'common/string';
 
-import { useBackend } from '../backend';
-import { Box, Button, Section, Table, Tooltip } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from '../../backend';
+import { Box, Button, Section, Table, Tooltip } from '../../components';
+import { Data } from './types';
 
-export const ComputerFabricator = (props) => {
-  const { act, data } = useBackend();
-  return (
-    <Window title="Personal Computer Vendor" width={500} height={420}>
-      <Window.Content>
-        <Section italic fontSize="20px">
-          Your perfect device, only three steps away...
-        </Section>
-        {data.state !== 0 && (
-          <Button fluid mb={1} icon="circle" onClick={() => act('clean_order')}>
-            Clear Order
-          </Button>
-        )}
-        {data.state === 0 && <CfStep1 />}
-        {data.state === 1 && <CfStep2 />}
-        {data.state === 2 && <CfStep3 />}
-        {data.state === 3 && <CfStep4 />}
-      </Window.Content>
-    </Window>
-  );
-};
+export const CfStep2 = (props) => {
+  const { act, data } = useBackend<Data>();
 
-// This had a pretty gross backend so this was unfortunately one of the
-// best ways of doing it.
-const CfStep1 = (props) => {
-  const { act, data } = useBackend();
-  return (
-    <Section title="Step 1" minHeight="306px">
-      <Box mt={5} bold textAlign="center" fontSize="40px">
-        Choose your Device
-      </Box>
-      <Box mt={3}>
-        <Table width="100%">
-          <Table.Row>
-            <Table.Cell>
-              <Button
-                fluid
-                icon="laptop"
-                textAlign="center"
-                fontSize="30px"
-                lineHeight={2}
-                onClick={() =>
-                  act('pick_device', {
-                    pick: '1',
-                  })
-                }
-              >
-                Laptop
-              </Button>
-            </Table.Cell>
-            <Table.Cell>
-              <Button
-                fluid
-                icon="tablet-alt"
-                textAlign="center"
-                fontSize="30px"
-                lineHeight={2}
-                onClick={() =>
-                  act('pick_device', {
-                    pick: '2',
-                  })
-                }
-              >
-                Tablet
-              </Button>
-            </Table.Cell>
-          </Table.Row>
-        </Table>
-      </Box>
-    </Section>
-  );
-};
+  const {
+    totalprice,
+    hw_battery,
+    hw_disk,
+    hw_netcard,
+    hw_nanoprint,
+    hw_card,
+    devtype,
+    hw_cpu,
+    hw_tesla,
+  } = data;
 
-const CfStep2 = (props) => {
-  const { act, data } = useBackend();
   return (
     <Section
       title="Step 2: Customize your device"
       minHeight="282px"
       buttons={
         <Box bold color="good">
-          {data.totalprice}₮
+          {totalprice}₮
         </Box>
       }
     >
@@ -103,7 +43,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_battery === 1}
+              selected={hw_battery === 1}
               onClick={() =>
                 act('hw_battery', {
                   battery: '1',
@@ -115,7 +55,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_battery === 2}
+              selected={hw_battery === 2}
               onClick={() =>
                 act('hw_battery', {
                   battery: '2',
@@ -127,7 +67,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_battery === 3}
+              selected={hw_battery === 3}
               onClick={() =>
                 act('hw_battery', {
                   battery: '3',
@@ -151,7 +91,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_disk === 1}
+              selected={hw_disk === 1}
               onClick={() =>
                 act('hw_disk', {
                   disk: '1',
@@ -163,7 +103,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_disk === 2}
+              selected={hw_disk === 2}
               onClick={() =>
                 act('hw_disk', {
                   disk: '2',
@@ -175,7 +115,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_disk === 3}
+              selected={hw_disk === 3}
               onClick={() =>
                 act('hw_disk', {
                   disk: '3',
@@ -201,7 +141,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_netcard === 0}
+              selected={hw_netcard === 0}
               onClick={() =>
                 act('hw_netcard', {
                   netcard: '0',
@@ -213,7 +153,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_netcard === 1}
+              selected={hw_netcard === 1}
               onClick={() =>
                 act('hw_netcard', {
                   netcard: '1',
@@ -225,7 +165,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_netcard === 2}
+              selected={hw_netcard === 2}
               onClick={() =>
                 act('hw_netcard', {
                   netcard: '2',
@@ -251,7 +191,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_nanoprint === 0}
+              selected={hw_nanoprint === 0}
               onClick={() =>
                 act('hw_nanoprint', {
                   print: '0',
@@ -263,7 +203,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_nanoprint === 1}
+              selected={hw_nanoprint === 1}
               onClick={() =>
                 act('hw_nanoprint', {
                   print: '1',
@@ -290,7 +230,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_card === 0}
+              selected={hw_card === 0}
               onClick={() =>
                 act('hw_card', {
                   card: '0',
@@ -302,7 +242,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_card === 1}
+              selected={hw_card === 1}
               onClick={() =>
                 act('hw_card', {
                   card: '1',
@@ -313,7 +253,7 @@ const CfStep2 = (props) => {
             </Button>
           </Table.Cell>
         </Table.Row>
-        {data.devtype !== 2 && (
+        {devtype !== 2 && (
           <Table.Row>
             <Table.Cell bold position="relative">
               Processor Unit:
@@ -329,7 +269,7 @@ const CfStep2 = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Button
-                selected={data.hw_cpu === 1}
+                selected={hw_cpu === 1}
                 onClick={() =>
                   act('hw_cpu', {
                     cpu: '1',
@@ -341,7 +281,7 @@ const CfStep2 = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Button
-                selected={data.hw_cpu === 2}
+                selected={hw_cpu === 2}
                 onClick={() =>
                   act('hw_cpu', {
                     cpu: '2',
@@ -368,7 +308,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_tesla === 0}
+              selected={hw_tesla === 0}
               onClick={() =>
                 act('hw_tesla', {
                   tesla: '0',
@@ -380,7 +320,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              selected={data.hw_tesla === 1}
+              selected={hw_tesla === 1}
               onClick={() =>
                 act('hw_tesla', {
                   tesla: '1',
@@ -403,38 +343,6 @@ const CfStep2 = (props) => {
       >
         Confirm Order
       </Button>
-    </Section>
-  );
-};
-
-const CfStep3 = (props) => {
-  const { act, data } = useBackend();
-  return (
-    <Section title="Step 3: Payment" minHeight="282px">
-      <Box italic textAlign="center" fontSize="20px">
-        Your device is ready for fabrication...
-      </Box>
-      <Box bold mt={2} textAlign="center" fontSize="16px">
-        <Box inline>Please swipe your ID now to authorize payment of:</Box>
-        &nbsp;
-        <Box inline color="good">
-          {data.totalprice}₮
-        </Box>
-      </Box>
-    </Section>
-  );
-};
-
-const CfStep4 = (props) => {
-  return (
-    <Section minHeight="282px">
-      <Box bold textAlign="center" fontSize="28px" mt={10}>
-        Thank you for your purchase!
-      </Box>
-      <Box italic mt={1} textAlign="center">
-        If you experience any difficulties with your new device, please contact
-        your local network administrator.
-      </Box>
     </Section>
   );
 };

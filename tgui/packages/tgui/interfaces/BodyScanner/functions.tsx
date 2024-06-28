@@ -29,7 +29,7 @@ export function reduceOrganStatus(
     : null;
 }
 
-export function germStatus(i: number) {
+export function germStatus(i: number): string {
   if (i > 100) {
     if (i < 300) {
       return 'mild infection';
