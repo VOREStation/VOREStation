@@ -1,4 +1,3 @@
-
 /datum/tgui_module/appearance_changer
 	name = "Appearance Editor"
 	tgui_id = "AppearanceChanger"
@@ -63,6 +62,9 @@
 	cam_background.del_on_map_removal = FALSE
 	update_active_camera_screen()
 
+	if(customize_usr)
+		if(ishuman(usr))
+			H = usr
 	owner = H
 	if(owner)
 		owner.AddComponent(/datum/component/recursive_move)
@@ -184,8 +186,8 @@
 					instance = null
 				if(!istype(instance) && !params["clear"])
 					return FALSE
-				owner.ear_style = instance
-				owner.update_hair()
+				target.ear_style = instance
+				target.update_hair()
 				update_dna()
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
@@ -197,7 +199,7 @@
 					target.g_ears = hex2num(copytext(new_hair, 4, 6))
 					target.b_ears = hex2num(copytext(new_hair, 6, 8))
 					update_dna()
-					owner.update_hair()
+					target.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("ears2_color")
@@ -208,7 +210,7 @@
 					target.g_ears2 = hex2num(copytext(new_hair, 4, 6))
 					target.b_ears2 = hex2num(copytext(new_hair, 6, 8))
 					update_dna()
-					owner.update_hair()
+					target.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("tail")
@@ -218,8 +220,8 @@
 					instance = null
 				if(!istype(instance) && !params["clear"])
 					return FALSE
-				owner.tail_style = instance
-				owner.update_tail_showing()
+				target.tail_style = instance
+				target.update_tail_showing()
 				update_dna()
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
@@ -231,7 +233,7 @@
 					target.g_tail = hex2num(copytext(new_hair, 4, 6))
 					target.b_tail = hex2num(copytext(new_hair, 6, 8))
 					update_dna()
-					owner.update_tail_showing()
+					target.update_tail_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("tail2_color")
@@ -242,7 +244,7 @@
 					target.g_tail2 = hex2num(copytext(new_hair, 4, 6))
 					target.b_tail2 = hex2num(copytext(new_hair, 6, 8))
 					update_dna()
-					owner.update_tail_showing()
+					target.update_tail_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("wing")
@@ -252,8 +254,8 @@
 					instance = null
 				if(!istype(instance) && !params["clear"])
 					return FALSE
-				owner.wing_style = instance
-				owner.update_wing_showing()
+				target.wing_style = instance
+				target.update_wing_showing()
 				update_dna()
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
@@ -265,7 +267,7 @@
 					target.g_wing = hex2num(copytext(new_hair, 4, 6))
 					target.b_wing = hex2num(copytext(new_hair, 6, 8))
 					update_dna()
-					owner.update_wing_showing()
+					target.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("wing2_color")
@@ -276,7 +278,7 @@
 					target.g_wing2 = hex2num(copytext(new_hair, 4, 6))
 					target.b_wing2 = hex2num(copytext(new_hair, 6, 8))
 					update_dna()
-					owner.update_wing_showing()
+					target.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("marking")

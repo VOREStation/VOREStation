@@ -152,7 +152,7 @@
 	var/chemicals[0]
 	for(var/label in cartridges)
 		var/obj/item/weapon/reagent_containers/chem_disp_cartridge/C = cartridges[label]
-		chemicals.Add(list(list("title" = label, "id" = label, "amount" = C.reagents.total_volume))) // list in a list because Byond merges the first list...
+		chemicals.Add(list(list("name" = label, "id" = label, "volume" = C.reagents.total_volume))) // list in a list because Byond merges the first list...
 	data["chemicals"] = chemicals
 	return data
 

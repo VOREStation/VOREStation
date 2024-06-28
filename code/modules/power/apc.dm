@@ -805,7 +805,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		"emagged" = emagged,
 		"isOperating" = operating,
 		"externalPower" = main_status,
-		"powerCellStatus" = cell ? cell.percent() : null,
+		"powerCellStatus" = cell ? cell.percent() : 0,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
 		"totalLoad" = round(lastused_total),

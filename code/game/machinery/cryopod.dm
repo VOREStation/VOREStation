@@ -86,7 +86,7 @@
 /obj/machinery/computer/cryopod/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CryoStorageVr", storage_name) // VOREStation Edit - Use our own template for our custom data
+		ui = new(user, src, "CryoStorage", storage_name) // VOREStation Edit - Use our own template for our custom data
 		ui.open()
 
 /obj/machinery/computer/cryopod/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)

@@ -15,6 +15,7 @@
 	var/cleaning = 0
 	var/wet_floors = 0
 	var/spray_blood = 0
+	var/blood = 1
 	var/list/target_types = list()
 
 /mob/living/bot/cleanbot/New()
@@ -138,7 +139,8 @@
 			if(prob(20))
 				custom_emote(2, "begins to clean up \the [loc]")
 			if(do_after(src, cleantime * cTimeMult))
-				clean_blood()
+				if(blood)
+					clean_blood()
 				if(istype(loc, /turf/simulated))
 					var/turf/simulated/T = loc
 					T.dirt = 0
@@ -186,6 +188,7 @@
 	data["on"] = on
 	data["open"] = open
 	data["locked"] = locked
+	data["blood"] = blood
 
 	data["patrol"] = will_patrol
 	data["vocal"] = vocal
@@ -206,6 +209,9 @@
 				turn_off()
 			else
 				turn_on()
+			. = TRUE
+		if("blood")
+			blood = !blood
 			. = TRUE
 		if("patrol")
 			will_patrol = !will_patrol
