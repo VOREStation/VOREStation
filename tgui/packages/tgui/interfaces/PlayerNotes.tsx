@@ -34,19 +34,18 @@ export const PlayerNotes = (props) => {
           </Button>
           <Divider />
           <Button.Input
-            content="CKEY to Open"
             onCommit={(e, value) =>
               act('show_player_info', {
                 name: value,
               })
             }
-          />
+          >
+            CKEY to Open
+          </Button.Input>
           <Divider vertical />
-          <Button
-            color="green"
-            content={filter}
-            onClick={() => act('clear_player_info_filter')}
-          />
+          <Button color="green" onClick={() => act('clear_player_info_filter')}>
+            {filter}
+          </Button>
           <Divider />
           <Table>
             {ckeys.map((ckey) => (
@@ -56,7 +55,6 @@ export const PlayerNotes = (props) => {
                     fluid
                     color="transparent"
                     icon={'user'}
-                    content={ckey.desc}
                     onClick={() =>
                       act('show_player_info', {
                         name: ckey.name,

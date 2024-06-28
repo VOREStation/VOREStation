@@ -291,6 +291,14 @@
 	base_reagent = /obj/item/weapon/potion_base/ichor
 	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/truepolymorph
 
+/obj/item/weapon/potion_material/glamour_shard
+	name = "glamour_shard"
+	desc = "A shard of hardened white crystal that seems to change shapes as you hold it."
+	icon = 'icons/obj/chemical_potionreagents.dmi'
+	icon_state = "glamour_shard"
+	base_reagent = /obj/item/weapon/potion_base/aqua_regia
+	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/glamour
+
 //base ingredients
 
 /obj/item/weapon/potion_base/aqua_regia

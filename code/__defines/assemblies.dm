@@ -1,0 +1,2 @@
+#define IC_COMPONENTS_BASE		20
+#define IC_COMPLEXITY_BASE		60

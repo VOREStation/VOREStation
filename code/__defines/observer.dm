@@ -1,0 +1,1 @@
+#define OBSERVER_EVENT_DESTROY "OnDestroy"

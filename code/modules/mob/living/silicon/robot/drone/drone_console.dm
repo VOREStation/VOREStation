@@ -42,7 +42,7 @@
 		//VOREStation Edit - multiz lol
 		if(D.foreign_droid)
 			continue
-				
+
 		drones.Add(list(list(
 			"name" = D.real_name,
 			"active" = D.stat != 2,
@@ -56,7 +56,10 @@
 	data["fabricator"] = dronefab
 	data["fabPower"] = dronefab?.produce_drones
 
-	data["areas"] = GLOB.tagger_locations
+	var/list/areas = list()
+	for(var/area in GLOB.tagger_locations)
+		areas += area
+	data["areas"] = areas
 	data["selected_area"] = "[drone_call_area]"
 
 	return data

@@ -162,3 +162,109 @@
 		burnt_out = TRUE
 
 	return 1
+
+/// FLUFF PERMIT
+
+/obj/item/weapon/card_fluff
+	name = "fluff card"
+	desc = "A tiny plaque of plastic. Purely decorative?"
+	description_fluff = "This permit was not issued by any branch of NanoTrasen, and as such it is not formally recognized at any NanoTrasen-operated installations. The bearer is not - under any circumstances - entitled to ownership of any items or allowed to perform any acts that would normally be restricted or illegal for their current position, regardless of what they or this permit may claim."
+	icon = 'icons/obj/card_fluff.dmi'
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_EARS
+
+	var/list/initial_sprite_stack = list("")
+	var/base_icon = 'icons/obj/card_fluff.dmi'
+	var/list/sprite_stack = list("")
+
+	drop_sound = 'sound/items/drop/card.ogg'
+	pickup_sound = 'sound/items/pickup/card.ogg'
+
+/obj/item/weapon/card_fluff/proc/reset_icon()
+	sprite_stack = list("")
+	update_icon()
+
+/obj/item/weapon/card_fluff/update_icon()
+	if(!sprite_stack || !istype(sprite_stack) || sprite_stack == list(""))
+		icon = base_icon
+		icon_state = initial(icon_state)
+
+	var/icon/I = null
+	for(var/iconstate in sprite_stack)
+		if(!iconstate)
+			iconstate = icon_state
+		if(I)
+			var/icon/IC = new(base_icon, iconstate)
+			I.Blend(IC, ICON_OVERLAY)
+		else
+			I = new/icon(base_icon, iconstate)
+	if(I)
+		icon = I
+
+/obj/item/weapon/card_fluff/attack_self()
+
+	var/choice = tgui_input_list(usr, "What element would you like to customize?", "Customize Card", list("Band","Stamp","Reset"))
+	if(!choice) return
+
+	if(choice == "Band")
+		var/bandchoice = tgui_input_list(usr, "Select colour", "Band colour", list("red","orange","green","dark green","medical blue","dark blue","purple","tan","pink","gold","white","black"))
+		if(!bandchoice) return
+
+		if(bandchoice == "red")
+			sprite_stack.Add("bar-red")
+		else if(bandchoice == "orange")
+			sprite_stack.Add("bar-orange")
+		else if(bandchoice == "green")
+			sprite_stack.Add("bar-green")
+		else if(bandchoice == "dark green")
+			sprite_stack.Add("bar-darkgreen")
+		else if(bandchoice == "medical blue")
+			sprite_stack.Add("bar-medblue")
+		else if(bandchoice == "dark blue")
+			sprite_stack.Add("bar-blue")
+		else if(bandchoice == "purple")
+			sprite_stack.Add("bar-purple")
+		else if(bandchoice == "ran")
+			sprite_stack.Add("bar-tan")
+		else if(bandchoice == "pink")
+			sprite_stack.Add("bar-pink")
+		else if(bandchoice == "gold")
+			sprite_stack.Add("bar-gold")
+		else if(bandchoice == "white")
+			sprite_stack.Add("bar-white")
+		else if(bandchoice == "black")
+			sprite_stack.Add("bar-black")
+
+		update_icon()
+		return
+	else if(choice == "Stamp")
+		var/stampchoice = tgui_input_list(usr, "Select image", "Stamp image", list("ship","cross","big ears","shield","circle-cross","target","smile","frown","peace","exclamation"))
+		if(!stampchoice) return
+
+		if(stampchoice == "ship")
+			sprite_stack.Add("stamp-starship")
+		else if(stampchoice == "cross")
+			sprite_stack.Add("stamp-cross")
+		else if(stampchoice == "big ears")
+			sprite_stack.Add("stamp-bigears")	//get 'em outta the caption, wiseguy!!
+		else if(stampchoice == "shield")
+			sprite_stack.Add("stamp-shield")
+		else if(stampchoice == "circle-cross")
+			sprite_stack.Add("stamp-circlecross")
+		else if(stampchoice == "target")
+			sprite_stack.Add("stamp-target")
+		else if(stampchoice == "smile")
+			sprite_stack.Add("stamp-smile")
+		else if(stampchoice == "frown")
+			sprite_stack.Add("stamp-frown")
+		else if(stampchoice == "peace")
+			sprite_stack.Add("stamp-peace")
+		else if(stampchoice == "exclamation")
+			sprite_stack.Add("stamp-exclaim")
+
+		update_icon()
+		return
+	else if(choice == "Reset")
+		reset_icon()
+		return
+	return

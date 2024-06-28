@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -30,7 +30,7 @@ export const NtosNetDownloader = (props) => {
         {!!error && (
           <NoticeBox>
             <Box mb={1}>{error}</Box>
-            <Button content="Reset" onClick={() => act('PRG_reseterror')} />
+            <Button onClick={() => act('PRG_reseterror')}>Reset</Button>
           </NoticeBox>
         )}
         <Section>
@@ -94,8 +94,8 @@ const Program = (props) => {
               maxValue={downloadsize}
               value={downloadcompletion}
             >
-              {round((downloadcompletion / downloadsize) * 100, 1)}%&nbsp;(
-              {downloadspeed}GQ/s)
+              {toFixed((downloadcompletion / downloadsize) * 100, 1)}%&nbsp;
+              {'(' + downloadspeed + 'GQ/s)'}
             </ProgressBar>
           )) ||
             (downloads_queue.indexOf(program.filename) !== -1 && (
@@ -114,14 +114,15 @@ const Program = (props) => {
               <Button
                 fluid
                 icon="download"
-                content="Download"
                 disabled={program.size > disk_free}
                 onClick={() =>
                   act('PRG_downloadfile', {
                     filename: program.filename,
                   })
                 }
-              />
+              >
+                Download
+              </Button>
             )}
         </Flex.Item>
       </Flex>

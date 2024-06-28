@@ -99,45 +99,48 @@
 	set name = "Take Image"
 	set desc = "Takes an image"
 
-	aiCamera.toggle_camera_mode()
+	if(aiCamera)
+		aiCamera.toggle_camera_mode()
 
 /mob/living/silicon/ai/proc/view_images()
 	set category = "AI Commands"
 	set name = "View Images"
 	set desc = "View images"
 
-	aiCamera.viewpictures()
+	if(aiCamera)
+		aiCamera.viewpictures()
 
-/obj/item/device/camera/siliconcam/ai_camera/verb/delete_images()
+/mob/living/silicon/ai/proc/delete_images()
 	set category = "AI Commands"
 	set name = "Delete Image"
 	set desc = "Delete image"
-	set src in usr
 
-	deletepicture()
+	if(aiCamera)
+		aiCamera.deletepicture()
 
-/obj/item/device/camera/siliconcam/robot_camera/verb/take_image()
+/mob/living/silicon/robot/proc/take_image()
 	set category ="Robot Commands"
 	set name = "Take Image"
 	set desc = "Takes an image"
-	set src in usr
-	toggle_camera_mode()
 
-/obj/item/device/camera/siliconcam/robot_camera/verb/view_images()
+	if(aiCamera)
+		aiCamera.toggle_camera_mode()
+
+/mob/living/silicon/robot/proc/view_images()
 	set category ="Robot Commands"
 	set name = "View Images"
 	set desc = "View images"
-	set src in usr
 
-	viewpictures()
+	if(aiCamera)
+		aiCamera.viewpictures()
 
-/obj/item/device/camera/siliconcam/robot_camera/verb/delete_images()
+/mob/living/silicon/robot/proc/delete_images()
 	set category = "Robot Commands"
 	set name = "Delete Image"
 	set desc = "Delete a local image"
-	set src in usr
 
-	deletepicture(src)
+	if(aiCamera)
+		aiCamera.deletepicture()
 
 /obj/item/device/camera/siliconcam/proc/getsource()
 	if(istype(src.loc, /mob/living/silicon/ai))

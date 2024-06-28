@@ -23,21 +23,15 @@ export const NtosFileManager = (props) => {
             title={'Viewing File ' + filename}
             buttons={
               <>
-                <Button
-                  icon="pen"
-                  content="Edit"
-                  onClick={() => act('PRG_edit')}
-                />
-                <Button
-                  icon="print"
-                  content="Print"
-                  onClick={() => act('PRG_printfile')}
-                />
-                <Button
-                  icon="times"
-                  content="Close"
-                  onClick={() => act('PRG_closefile')}
-                />
+                <Button icon="pen" onClick={() => act('PRG_edit')}>
+                  Edit
+                </Button>
+                <Button icon="print" onClick={() => act('PRG_printfile')}>
+                  Print
+                </Button>
+                <Button icon="times" onClick={() => act('PRG_closefile')}>
+                  Close
+                </Button>
               </>
             }
           >
@@ -137,12 +131,13 @@ const FileTable = (props) => {
               <>
                 <Button.Input
                   width="80%"
-                  content={file.name}
                   currentValue={file.name}
                   tooltip="Rename"
                   onCommit={(e, value) => onRename(file.uid, value)}
-                />
-                <Button content="Open" onClick={() => onOpen(file.uid)} />
+                >
+                  {file.name}
+                </Button.Input>
+                <Button onClick={() => onOpen(file.uid)}>Open</Button>
               </>
             ) : (
               file.name

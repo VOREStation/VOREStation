@@ -68,7 +68,6 @@ export const NtosConfiguration = (props) => {
                 <>
                   {!component.critical && (
                     <Button.Checkbox
-                      content="Enabled"
                       checked={component.enabled}
                       mr={1}
                       onClick={() =>
@@ -76,7 +75,9 @@ export const NtosConfiguration = (props) => {
                           name: component.name,
                         })
                       }
-                    />
+                    >
+                      Enabled
+                    </Button.Checkbox>
                   )}
                   <Box inline bold mr={1}>
                     Power Usage: {component.powerusage}W

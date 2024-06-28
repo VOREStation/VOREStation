@@ -53,10 +53,11 @@ export const PowerMonitorContent = (props) => {
           <Table.Row key={sensor.name}>
             <Table.Cell>
               <Button
-                content={sensor.name}
                 icon={sensor.alarm ? 'bell' : 'sign-in-alt'}
                 onClick={() => act('setsensor', { id: sensor.name })}
-              />
+              >
+                {sensor.name}
+              </Button>
             </Table.Cell>
           </Table.Row>
         ))}
@@ -68,11 +69,9 @@ export const PowerMonitorContent = (props) => {
     <Section
       title="No active sensor. Listing all."
       buttons={
-        <Button
-          content="Scan For Sensors"
-          icon="undo"
-          onClick={() => act('refresh')}
-        />
+        <Button icon="undo" onClick={() => act('refresh')}>
+          Scan For Sensors
+        </Button>
       }
     >
       {body}
@@ -118,11 +117,9 @@ export const PowerMonitorFocus = (props) => {
       <Section
         title={focus.name}
         buttons={
-          <Button
-            icon="sign-out-alt"
-            content="Back To Main"
-            onClick={() => act('clear')}
-          />
+          <Button icon="sign-out-alt" onClick={() => act('clear')}>
+            Back To Main
+          </Button>
         }
       />
       <Flex mx={-0.5} mb={1}>
@@ -180,26 +177,30 @@ export const PowerMonitorFocus = (props) => {
           </Box>
           <Button.Checkbox
             checked={sortByField === 'name'}
-            content="Name"
             onClick={() => setSortByField(sortByField !== 'name' && 'name')}
-          />
+          >
+            Name
+          </Button.Checkbox>
           <Button.Checkbox
             checked={sortByField === 'charge'}
-            content="Charge"
             onClick={() => setSortByField(sortByField !== 'charge' && 'charge')}
-          />
+          >
+            Charge
+          </Button.Checkbox>
           <Button.Checkbox
             checked={sortByField === 'draw'}
-            content="Draw"
             onClick={() => setSortByField(sortByField !== 'draw' && 'draw')}
-          />
+          >
+            Draw
+          </Button.Checkbox>
           <Button.Checkbox
             checked={sortByField === 'problems'}
-            content="Problems"
             onClick={() =>
               setSortByField(sortByField !== 'problems' && 'problems')
             }
-          />
+          >
+            Problems
+          </Button.Checkbox>
         </Box>
         <Table>
           <Table.Row header>

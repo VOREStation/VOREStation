@@ -46,11 +46,12 @@ export const OmniMixer = (props) => {
             <>
               <Button
                 icon="power-off"
-                content={power ? 'On' : 'Off'}
                 selected={power}
                 disabled={config}
                 onClick={() => act('power')}
-              />
+              >
+                {power ? 'On' : 'Off'}
+              </Button>
               <Button
                 icon="wrench"
                 selected={config}
@@ -89,11 +90,9 @@ export const OmniMixer = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="Flow Rate Limit">
               {config ? (
-                <Button
-                  icon="wrench"
-                  content={set_flow_rate + ' L/s'}
-                  onClick={() => act('set_flow_rate')}
-                />
+                <Button icon="wrench" onClick={() => act('set_flow_rate')}>
+                  {set_flow_rate + ' L/s'}
+                </Button>
               ) : (
                 set_flow_rate + ' L/s'
               )}
@@ -115,7 +114,6 @@ const PortRow = (props) => {
       <Table.Cell textAlign="center">
         {config ? (
           <Button
-            content="IN"
             selected={port.input}
             disabled={port.output}
             icon="compress-arrows-alt"
@@ -125,7 +123,9 @@ const PortRow = (props) => {
                 dir: port.dir,
               })
             }
-          />
+          >
+            IN
+          </Button>
         ) : (
           getStatusText(port)
         )}
@@ -133,7 +133,6 @@ const PortRow = (props) => {
       <Table.Cell textAlign="center">
         {config ? (
           <Button
-            content="OUT"
             selected={port.output}
             icon="expand-arrows-alt"
             onClick={() =>
@@ -142,7 +141,9 @@ const PortRow = (props) => {
                 dir: port.dir,
               })
             }
-          />
+          >
+            OUT
+          </Button>
         ) : (
           port.concentration * 100 + '%'
         )}
@@ -154,26 +155,28 @@ const PortRow = (props) => {
               width="100%"
               icon="wrench"
               disabled={!port.input}
-              content={!port.input ? '-' : port.concentration * 100 + ' %'}
               onClick={() =>
                 act('switch_con', {
                   dir: port.dir,
                 })
               }
-            />
+            >
+              {!port.input ? '-' : port.concentration * 100 + ' %'}
+            </Button>
           </Table.Cell>
           <Table.Cell textAlign="center">
             <Button
               icon={port.con_lock ? 'lock' : 'lock-open'}
               disabled={!port.input}
               selected={port.con_lock}
-              content={port.f_type || 'None'}
               onClick={() =>
                 act('switch_conlock', {
                   dir: port.dir,
                 })
               }
-            />
+            >
+              {port.f_type || 'None'}
+            </Button>
           </Table.Cell>
         </>
       ) : null}

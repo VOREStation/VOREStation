@@ -62,10 +62,14 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/throw_vore = TRUE
 	var/food_vore = TRUE
 
+	var/digest_pain = TRUE
+
 	var/resizable = TRUE
 	var/show_vore_fx = TRUE
 	var/step_mechanics_pref = FALSE
 	var/pickup_pref = TRUE
+
+	var/vore_sprite_color = list("stomach" = "#000", "taur belly" = "#000")
 
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
@@ -185,11 +189,13 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	food_vore = json_from_file["food_vore"]
 	throw_vore = json_from_file["throw_vore"]
 	stumble_vore = json_from_file["stumble_vore"]
+	digest_pain = json_from_file["digest_pain"]
 	nutrition_message_visible = json_from_file["nutrition_message_visible"]
 	nutrition_messages = json_from_file["nutrition_messages"]
 	weight_message_visible = json_from_file["weight_message_visible"]
 	weight_messages = json_from_file["weight_messages"]
 	eating_privacy_global = json_from_file["eating_privacy_global"]
+	vore_sprite_color = json_from_file["vore_sprite_color"]
 
 	//Quick sanitize
 	if(isnull(digestable))
@@ -238,6 +244,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		stumble_vore = TRUE
 	if(isnull(food_vore))
 		food_vore = TRUE
+	if(isnull(digest_pain))
+		digest_pain = TRUE
 	if(isnull(nutrition_message_visible))
 		nutrition_message_visible = TRUE
 	if(isnull(weight_message_visible))
@@ -274,7 +282,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	else if(weight_messages.len < 10)
 		while(weight_messages.len < 10)
 			weight_messages.Add("")
-
+	if(isnull(vore_sprite_color))
+		vore_sprite_color = list("stomach" = "#000", "taur belly" = "#000")
 	return TRUE
 
 /datum/vore_preferences/proc/save_vore()
@@ -309,11 +318,13 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"stumble_vore"			= stumble_vore,
 			"throw_vore" 			= throw_vore,
 			"food_vore" 			= food_vore,
+			"digest_pain"			= digest_pain,
 			"nutrition_message_visible"	= nutrition_message_visible,
 			"nutrition_messages"		= nutrition_messages,
 			"weight_message_visible"	= weight_message_visible,
 			"weight_messages"			= weight_messages,
 			"eating_privacy_global"		= eating_privacy_global,
+			"vore_sprite_color"		= vore_sprite_color,
 		)
 
 	//List to JSON

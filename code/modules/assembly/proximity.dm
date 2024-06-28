@@ -107,7 +107,7 @@
 /obj/item/device/assembly/prox_sensor/tgui_data(mob/user)
 	var/list/data = ..()
 
-	data["time"] = time * 10
+	data["time"] = time
 	data["timing"] = timing
 	data["range"] = range
 	data["maxRange"] = 5

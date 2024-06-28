@@ -85,6 +85,10 @@ GLOBAL_LIST_EMPTY(apcs)
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 24 : -24)
 	pixel_y = (dir & 3) ? (dir == 1 ? 20 : -20) : 0
 
+/obj/machinery/power/apc/hyper/graveyard
+	req_access = list(access_lost)
+	alarms_hidden = TRUE
+
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
@@ -801,7 +805,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		"emagged" = emagged,
 		"isOperating" = operating,
 		"externalPower" = main_status,
-		"powerCellStatus" = cell ? cell.percent() : null,
+		"powerCellStatus" = cell ? cell.percent() : 0,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
 		"totalLoad" = round(lastused_total),
@@ -1364,6 +1368,45 @@ GLOBAL_LIST_EMPTY(apcs)
 		L.update() //For some reason it gets hung up on updating the overlay for the light fixture somewhere down the line. This fixes it.
 		CHECK_TICK
 
+/obj/machinery/power/apc/proc/update_area()
+	var/area/NA = get_area(src)
+	if(!(NA == area))
+		if(area.apc == src)
+			area.apc = null
+		NA.apc = src
+		area = NA
+		name = "[area.name] APC"
+	update()
+
+/obj/machinery/power/apc/get_cell()
+	return cell
+
+#undef CRITICAL_APC_EMP_PROTECTION
+
+#undef UPDATE_CELL_IN
+#undef UPDATE_OPENED1
+#undef UPDATE_OPENED2
+#undef UPDATE_MAINT
+#undef UPDATE_BROKE
+#undef UPDATE_BLUESCREEN
+#undef UPDATE_WIREEXP
+#undef UPDATE_ALLGOOD
+
+#undef APC_UPOVERLAY_CHARGEING0
+#undef APC_UPOVERLAY_CHARGEING1
+#undef APC_UPOVERLAY_CHARGEING2
+#undef APC_UPOVERLAY_EQUIPMENT0
+#undef APC_UPOVERLAY_EQUIPMENT1
+#undef APC_UPOVERLAY_EQUIPMENT2
+#undef APC_UPOVERLAY_LIGHTING0
+#undef APC_UPOVERLAY_LIGHTING1
+#undef APC_UPOVERLAY_LIGHTING2
+#undef APC_UPOVERLAY_ENVIRON0
+#undef APC_UPOVERLAY_ENVIRON1
+#undef APC_UPOVERLAY_ENVIRON2
+#undef APC_UPOVERLAY_LOCKED
+#undef APC_UPOVERLAY_OPERATING
+
 #undef APC_UPDATE_ICON_COOLDOWN
 
 #undef APC_EXTERNAL_POWER_NOTCONNECTED
@@ -1373,3 +1416,12 @@ GLOBAL_LIST_EMPTY(apcs)
 #undef APC_HAS_ELECTRONICS_NONE
 #undef APC_HAS_ELECTRONICS_WIRED
 #undef APC_HAS_ELECTRONICS_SECURED
+
+#undef POWERCHAN_OFF
+#undef POWERCHAN_OFF_AUTO
+#undef POWERCHAN_ON
+#undef POWERCHAN_ON_AUTO
+
+#undef NIGHTSHIFT_AUTO
+#undef NIGHTSHIFT_NEVER
+#undef NIGHTSHIFT_ALWAYS

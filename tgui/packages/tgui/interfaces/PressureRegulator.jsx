@@ -37,10 +37,11 @@ export const PressureRegulator = (props) => {
           buttons={
             <Button
               icon="power-off"
-              content={on ? 'Unlocked' : 'Closed'}
               selected={on}
               onClick={() => act('toggle_valve')}
-            />
+            >
+              {on ? 'Unlocked' : 'Closed'}
+            </Button>
           }
         >
           <LabeledList>
@@ -50,22 +51,25 @@ export const PressureRegulator = (props) => {
                 <>
                   <Button
                     icon="power-off"
-                    content="Off"
                     selected={regulate_mode === 0}
                     onClick={() => act('regulate_mode', { mode: 'off' })}
-                  />
+                  >
+                    Off
+                  </Button>
                   <Button
                     icon="compress-arrows-alt"
-                    content="Input"
                     selected={regulate_mode === 1}
                     onClick={() => act('regulate_mode', { mode: 'input' })}
-                  />
+                  >
+                    Input
+                  </Button>
                   <Button
                     icon="expand-arrows-alt"
-                    content="Output"
                     selected={regulate_mode === 2}
                     onClick={() => act('regulate_mode', { mode: 'output' })}
-                  />
+                  >
+                    Output
+                  </Button>
                 </>
               }
             />
@@ -75,19 +79,22 @@ export const PressureRegulator = (props) => {
                 <>
                   <Button
                     icon="compress-arrows-alt"
-                    content="MIN"
                     onClick={() => act('set_press', { press: 'min' })}
-                  />
+                  >
+                    MIN
+                  </Button>
                   <Button
                     icon="expand-arrows-alt"
-                    content="MAX"
                     onClick={() => act('set_press', { press: 'max' })}
-                  />
+                  >
+                    MAX
+                  </Button>
                   <Button
                     icon="wrench"
-                    content="SET"
                     onClick={() => act('set_press', { press: 'set' })}
-                  />
+                  >
+                    SET
+                  </Button>
                 </>
               }
             >
@@ -99,19 +106,22 @@ export const PressureRegulator = (props) => {
                 <>
                   <Button
                     icon="compress-arrows-alt"
-                    content="MIN"
                     onClick={() => act('set_flow_rate', { press: 'min' })}
-                  />
+                  >
+                    MIN
+                  </Button>
                   <Button
                     icon="expand-arrows-alt"
-                    content="MAX"
                     onClick={() => act('set_flow_rate', { press: 'max' })}
-                  />
+                  >
+                    MAX
+                  </Button>
                   <Button
                     icon="wrench"
-                    content="SET"
                     onClick={() => act('set_flow_rate', { press: 'set' })}
-                  />
+                  >
+                    SET
+                  </Button>
                 </>
               }
             >

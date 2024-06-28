@@ -308,3 +308,8 @@ See Also:
 */
 /n_Parser/nS_Parser/proc/ParseParamExpression()
 	return ParseExpression(list(",", ")"))
+
+#undef OPERATOR
+#undef VALUE
+#undef SHIFT
+#undef REDUCE

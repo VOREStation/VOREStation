@@ -314,7 +314,9 @@
 	// Compile all the newscasts
 	for(var/datum/feed_channel/channel in news_network.network_channels)
 		if(!channel.censored)
+			var/index = 0
 			for(var/datum/feed_message/FM in channel.messages)
+				index++
 				var/body = replacetext(FM.body, "\n", "<br>")
 				news[++news.len] = list(
 							"channel" = channel.channel_name,
@@ -324,7 +326,8 @@
 							"time_stamp" = FM.time_stamp,
 							"has_image" = (FM.img != null),
 							"caption" = FM.caption,
-							"time" = FM.post_time
+							"time" = FM.post_time,
+							"index" = index
 							)
 
 	// Cut out all but the youngest three

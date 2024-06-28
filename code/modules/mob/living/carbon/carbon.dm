@@ -393,16 +393,6 @@
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
-/mob/living/carbon/verb/mob_sleep()
-	set name = "Sleep"
-	set category = "IC"
-
-	if(usr.sleeping)
-		to_chat(usr, span_red("You are already sleeping"))
-		return
-	if(tgui_alert(src,"You sure you want to sleep for a while?","Sleep",list("Yes","No")) == "Yes")
-		usr.AdjustSleeping(20)
-
 /mob/living/carbon/Bump(atom/A)
 	if(now_pushing)
 		return

@@ -21,6 +21,7 @@
 #define DM_FLAG_AFFECTWORN		0x10
 #define DM_FLAG_JAMSENSORS		0x20
 #define DM_FLAG_FORCEPSAY		0x40
+#define DM_FLAG_SPARELIMB		0x80
 
 //Item related modes
 #define IM_HOLD									"Hold"

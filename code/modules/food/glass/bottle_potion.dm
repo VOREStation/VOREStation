@@ -112,6 +112,11 @@
 	desc = "A small green bottle containing some strange purple liquid that claims to transform the drinker."
 	prefill = list("polymorph" = 1)
 
+/obj/item/weapon/reagent_containers/glass/bottle/potion/glamour
+	name = "glamour potion"
+	desc = "A small white potion, the perfectly white liquid inside moves in an almost gaseous manner, yet appears to produce reflections perfectly."
+	prefill = list("glamour" = 1)
+
 //Failed potions
 
 /obj/item/weapon/reagent_containers/glass/bottle/potion/plain

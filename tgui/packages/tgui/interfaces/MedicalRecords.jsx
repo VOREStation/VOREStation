@@ -149,9 +149,10 @@ const MedicalRecordsList = (_properties) => {
             key={i}
             icon="user"
             mb="0.5rem"
-            content={record.id + ': ' + record.name}
             onClick={() => act('d_rec', { d_rec: record.ref })}
-          />
+          >
+            {record.id + ': ' + record.name}
+          </Button>
         ))}
       </Box>
     </>
@@ -162,20 +163,17 @@ const MedicalRecordsMaintenance = (_properties) => {
   const { act } = useBackend();
   return (
     <>
-      <Button icon="download" content="Backup to Disk" disabled />
+      <Button icon="download" disabled>
+        Backup to Disk
+      </Button>
       <br />
-      <Button
-        icon="upload"
-        content="Upload from Disk"
-        my="0.5rem"
-        disabled
-      />{' '}
+      <Button icon="upload" my="0.5rem" disabled>
+        Upload from Disk
+      </Button>
       <br />
-      <Button.Confirm
-        icon="trash"
-        content="Delete All Medical Records"
-        onClick={() => act('del_all')}
-      />
+      <Button.Confirm icon="trash" onClick={() => act('del_all')}>
+        Delete All Medical Records
+      </Button.Confirm>
     </>
   );
 };
@@ -195,25 +193,28 @@ const MedicalRecordsView = (_properties) => {
         <Button.Confirm
           icon="trash"
           disabled={!!medical.empty}
-          content="Delete Medical Record"
           color="bad"
           onClick={() => act('del_r')}
-        />
+        >
+          Delete Medical Record
+        </Button.Confirm>
         <Button
           icon={printing ? 'spinner' : 'print'}
           disabled={printing}
           iconSpin={!!printing}
-          content="Print Entry"
           ml="0.5rem"
           onClick={() => act('print_p')}
-        />
+        >
+          Print Entry
+        </Button>
         <br />
         <Button
           icon="arrow-left"
-          content="Back"
           mt="0.5rem"
           onClick={() => act('screen', { screen: 2 })}
-        />
+        >
+          Back
+        </Button>
       </Section>
     </>
   );
@@ -274,12 +275,9 @@ const MedicalRecordsViewMedical = (_properties) => {
     return (
       <Box color="bad">
         Medical records lost!
-        <Button
-          icon="pen"
-          content="New Record"
-          ml="0.5rem"
-          onClick={() => act('new')}
-        />
+        <Button icon="pen" ml="0.5rem" onClick={() => act('new')}>
+          New Record
+        </Button>
       </Box>
     );
   }
@@ -323,12 +321,13 @@ const MedicalRecordsViewMedical = (_properties) => {
 
         <Button
           icon="comment-medical"
-          content="Add Entry"
           color="good"
           mt="0.5rem"
           mb="0"
           onClick={() => modalOpen('add_c')}
-        />
+        >
+          Add Entry
+        </Button>
       </Section>
     </>
   );
@@ -342,10 +341,11 @@ const MedicalRecordsViruses = (_properties) => {
     <Fragment key={i}>
       <Button
         icon="flask"
-        content={vir.name}
         mb="0.5rem"
         onClick={() => act('vir', { vir: vir.D })}
-      />
+      >
+        {vir.name}
+      </Button>
       <br />
     </Fragment>
   ));

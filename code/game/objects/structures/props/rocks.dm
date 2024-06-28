@@ -60,3 +60,48 @@
 	name = "crystal dust"
 	icon = 'icons/obj/props/decor.dmi'
 	icon_state = "bsc_dust"
+
+/obj/structure/prop/rock/ice
+	icon_state = "ice2"
+
+/obj/structure/prop/rock/ice/spike
+	icon_state = "ice1"
+
+/obj/structure/prop/rock/ice/flat
+	icon_state = "ice3"
+
+/obj/structure/prop/rock/ice/round
+	icon_state = "ice4"
+
+/obj/structure/prop/rock/ice/small
+	name = "small rocks"
+	icon_state = "icesmall1"
+	density = FALSE
+
+/obj/structure/prop/rock/ice/small/alt
+	icon_state = "icesmall2"
+
+// glamour things for whitespace
+/obj/structure/prop/rock/glamour
+	name = "glamour"
+	icon = 'icons/obj/glamour.dmi'
+	icon_state = "pillar_1"
+
+/obj/structure/prop/rock/glamour/double
+	icon_state = "pillar_3"
+
+/obj/structure/prop/rock/glamour/triple
+	icon_state = "pillar_2"
+
+/obj/structure/prop/rock/glamour/small
+	icon_state = "gems_1"
+	density = FALSE
+
+/obj/structure/prop/rock/glamour/small/alt1
+	icon_state = "gems_2"
+
+/obj/structure/prop/rock/glamour/small/alt2
+	icon_state = "gems_3"
+
+/obj/structure/prop/rock/glamour/small/alt3
+	icon_state = "gems_4"

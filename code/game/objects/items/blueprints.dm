@@ -5,10 +5,6 @@
 	icon_state = "blueprints"
 	attack_verb = list("attacked", "bapped", "hit")
 	preserve_item = 1
-	var/const/AREA_ERRNONE = 0
-	var/const/AREA_STATION = 1
-	var/const/AREA_SPACE =   2
-	var/const/AREA_SPECIAL = 3
 
 	var/const/BORDER_ERROR = 0
 	var/const/BORDER_NONE = 1

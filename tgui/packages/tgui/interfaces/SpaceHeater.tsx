@@ -51,17 +51,13 @@ export const SpaceHeater = (props) => {
             </LabeledControls.Item>
             <LabeledControls.Item label="Cell">
               {cell ? (
-                <Button
-                  icon="eject"
-                  content="Eject Cell"
-                  onClick={() => act('cellremove')}
-                />
+                <Button icon="eject" onClick={() => act('cellremove')}>
+                  Eject Cell
+                </Button>
               ) : (
-                <Button
-                  icon="car-battery"
-                  content="Insert Cell"
-                  onClick={() => act('cellinstall')}
-                />
+                <Button icon="car-battery" onClick={() => act('cellinstall')}>
+                  Insert Cell
+                </Button>
               )}
             </LabeledControls.Item>
           </LabeledControls>

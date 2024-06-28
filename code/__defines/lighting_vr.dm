@@ -6,3 +6,8 @@
 //Fake ambient occlusion filter
 #undef AMBIENT_OCCLUSION
 #define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-1, size=2, offset=2, color="#04080F55") //VOREStation Edit for prettier visuals.
+
+#define LIGHT_OK 0
+#define LIGHT_EMPTY 1
+#define LIGHT_BROKEN 2
+#define LIGHT_BURNED 3

@@ -9,3 +9,5 @@
 	icon = 'icons/inventory/face/item_vr.dmi'
 	icon_state = "lace_mask"
 	icon_override = 'icons/inventory/face/mob_vr.dmi'
+	item_flags = FLEXIBLEMATERIAL
+	w_class = ITEMSIZE_SMALL

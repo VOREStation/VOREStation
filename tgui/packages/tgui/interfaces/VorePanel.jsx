@@ -72,21 +72,20 @@ export const VorePanel = (props) => {
             <Flex>
               <Flex.Item basis="90%">Warning: Unsaved Changes!</Flex.Item>
               <Flex.Item>
-                <Button
-                  content="Save Prefs"
-                  icon="save"
-                  onClick={() => act('saveprefs')}
-                />
+                <Button icon="save" onClick={() => act('saveprefs')}>
+                  Save Prefs
+                </Button>
               </Flex.Item>
               <Flex.Item>
                 <Button
-                  content="Save Prefs & Export Selected Belly"
                   icon="download"
                   onClick={() => {
                     act('saveprefs');
                     act('exportpanel');
                   }}
-                />
+                >
+                  Save Prefs & Export Selected Belly
+                </Button>
               </Flex.Item>
             </Flex>
           </NoticeBox>
@@ -287,17 +286,17 @@ const VoreSelectedBellyControls = (props) => {
           </>
         }
       >
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_name' })}
-          content={belly_name}
-        />
+        <Button onClick={() => act('set_attribute', { attribute: 'b_name' })}>
+          {belly_name}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Mode">
         <Button
           color={digestModeToColor[mode]}
           onClick={() => act('set_attribute', { attribute: 'b_mode' })}
-          content={mode}
-        />
+        >
+          {mode}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Mode Addons">
         {(addons.length && addons.join(', ')) || 'None'}
@@ -310,8 +309,9 @@ const VoreSelectedBellyControls = (props) => {
       <LabeledList.Item label="Item Mode">
         <Button
           onClick={() => act('set_attribute', { attribute: 'b_item_mode' })}
-          content={item_mode}
-        />
+        >
+          {item_mode}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item basis="100%" mt={1}>
         <Button.Confirm
@@ -319,10 +319,11 @@ const VoreSelectedBellyControls = (props) => {
           icon="exclamation-triangle"
           confirmIcon="trash"
           color="red"
-          content="Delete Belly"
           confirmContent="This is irreversable!"
           onClick={() => act('set_attribute', { attribute: 'b_del' })}
-        />
+        >
+          Delete Belly
+        </Button.Confirm>
       </LabeledList.Item>
     </LabeledList>
   );
@@ -332,7 +333,17 @@ const VoreSelectedBellyDescriptions = (props) => {
   const { act } = useBackend();
 
   const { belly } = props;
-  const { verb, release_verb, desc, absorbed_desc } = belly;
+  const {
+    verb,
+    release_verb,
+    desc,
+    absorbed_desc,
+    mode,
+    message_mode,
+    escapable,
+    interacts,
+    emote_active,
+  } = belly;
 
   return (
     <LabeledList>
@@ -361,279 +372,540 @@ const VoreSelectedBellyDescriptions = (props) => {
         {absorbed_desc}
       </LabeledList.Item>
       <LabeledList.Item label="Vore Verb">
-        <Button
-          onClick={() => act('set_attribute', { attribute: 'b_verb' })}
-          content={verb}
-        />
+        <Button onClick={() => act('set_attribute', { attribute: 'b_verb' })}>
+          {verb}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Release Verb">
         <Button
           onClick={() => act('set_attribute', { attribute: 'b_release_verb' })}
-          content={release_verb}
-        />
+        >
+          {release_verb}
+        </Button>
+      </LabeledList.Item>
+      <LabeledList.Item label="Show All Messages">
+        <Button
+          onClick={() =>
+            act('set_attribute', {
+              attribute: 'b_message_mode',
+            })
+          }
+          icon={message_mode ? 'toggle-on' : 'toggle-off'}
+          selected={message_mode}
+        >
+          {message_mode ? 'True' : 'False'}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Examine Messages">
         <Button
           onClick={() =>
             act('set_attribute', { attribute: 'b_msgs', msgtype: 'em' })
           }
-          content="Examine Message (when full)"
-        />
+        >
+          Examine Message (when full)
+        </Button>
         <Button
           onClick={() =>
             act('set_attribute', { attribute: 'b_msgs', msgtype: 'ema' })
           }
-          content="Examine Message (with absorbed victims)"
-        />
+        >
+          Examine Message (with absorbed victims)
+        </Button>
       </LabeledList.Item>
-      <LabeledList.Item label="Struggle Messages">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'smo' })
-          }
-          content="Struggle Message (outside)"
+      {message_mode || escapable ? (
+        <>
+          <VoreSelectedBellyDescriptionsStruggle />
+          <VoreSelectedBellyDescriptionsEscape
+            message_mode={message_mode}
+            interacts={interacts}
+          />
+          {(message_mode ||
+            !!interacts.transferlocation ||
+            !!interacts.transferlocation_secondary) && (
+            <VoreSelectedBellyDescriptionsTransfer
+              message_mode={message_mode}
+              interacts={interacts}
+            />
+          )}
+          {(message_mode ||
+            interacts.digestchance > 0 ||
+            interacts.absorbchance > 0) && (
+            <VoreSelectedBellyDescriptionsInteractionChance
+              message_mode={message_mode}
+              interacts={interacts}
+            />
+          )}
+        </>
+      ) : (
+        ''
+      )}
+      {(message_mode ||
+        mode === 'Digest' ||
+        mode === 'Selective' ||
+        mode === 'Absorb' ||
+        mode === 'Unabsorb') && (
+        <VoreSelectedBellyDescriptionsBellymode
+          message_mode={message_mode}
+          mode={mode}
         />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'smi' })
-          }
-          content="Struggle Message (inside)"
+      )}
+      {emote_active ? (
+        <VoreSelectedBellyDescriptionsIdle
+          message_mode={message_mode}
+          mode={mode}
         />
+      ) : (
+        ''
+      )}
+      <LabeledList.Item label="Reset Messages">
         <Button
+          color="red"
           onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'asmo' })
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'reset' })
           }
-          content="Absorbed Struggle Message (outside)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'asmi' })
-          }
-          content="Absorbed Struggle Message (inside)"
-        />
+        >
+          Reset Messages
+        </Button>
       </LabeledList.Item>
-      <LabeledList.Item label="Escape Messages">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escap' })
-          }
-          content="Escape Attempt Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escao' })
-          }
-          content="Escape Attempt Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escp' })
-          }
-          content="Escape Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'esco' })
-          }
-          content="Escape Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escout' })
-          }
-          content="Escape Message (outside)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escip' })
-          }
-          content="Escape Item Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escio' })
-          }
-          content="Escape Item Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'esciout' })
-          }
-          content="Escape Item Message (outside)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfp' })
-          }
-          content="Escape Fail Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfo' })
-          }
-          content="Escape Fail Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescap' })
-          }
-          content="Absorbed Escape Attempt Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescao' })
-          }
-          content="Absorbed Escape Attempt Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescp' })
-          }
-          content="Absorbed Escape Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aesco' })
-          }
-          content="Absorbed Escape Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescout' })
-          }
-          content="Absorbed Escape Message (outside)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfp' })
-          }
-          content="Absorbed Escape Fail Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfo' })
-          }
-          content="Absorbed Escape Fail Message (to you)"
-        />
-      </LabeledList.Item>
-      <LabeledList.Item label="Transfer Messages">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnspp' })
-          }
-          content="Primary Transfer Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnspo' })
-          }
-          content="Primary Transfer Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnssp' })
-          }
-          content="Secondary Transfer Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnsso' })
-          }
-          content="Secondary Transfer Message (to you)"
-        />
-      </LabeledList.Item>
-      <LabeledList.Item label="Interaction Chance Messages">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmodp' })
-          }
-          content="Interaction Chance Digest Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmodo' })
-          }
-          content="Interaction Chance Digest Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmoap' })
-          }
-          content="Interaction Chance Absorb Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmoao' })
-          }
-          content="Interaction Chance Absorb Message (to you)"
-        />
-      </LabeledList.Item>
-      <LabeledList.Item label="Bellymode Messages">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'dmp' })
-          }
-          content="Digest Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'dmo' })
-          }
-          content="Digest Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'amp' })
-          }
-          content="Absorb Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'amo' })
-          }
-          content="Absorb Message (to you)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'uamp' })
-          }
-          content="Unabsorb Message (to prey)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'uamo' })
-          }
-          content="Unabsorb Message (to you)"
-        />
-      </LabeledList.Item>
-      <LabeledList.Item label="Idle Messages">
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_hold' })
-          }
-          content="Idle Messages (Hold)"
-        />
+    </LabeledList>
+  );
+};
+
+const VoreSelectedBellyDescriptionsStruggle = (props) => {
+  const { act } = useBackend();
+
+  return (
+    <LabeledList.Item label="Struggle Messages">
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'smo' })
+        }
+      >
+        Struggle Message (outside)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'smi' })
+        }
+      >
+        Struggle Message (inside)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'asmo' })
+        }
+      >
+        Absorbed Struggle Message (outside)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'asmi' })
+        }
+      >
+        Absorbed Struggle Message (inside)
+      </Button>
+    </LabeledList.Item>
+  );
+};
+
+const VoreSelectedBellyDescriptionsEscape = (props) => {
+  const { act } = useBackend();
+
+  const { message_mode, interacts } = props;
+
+  return (
+    <LabeledList.Item label="Escape Messages">
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'escap' })
+        }
+      >
+        Escape Attempt Message (to prey)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'escao' })
+        }
+      >
+        Escape Attempt Message (to you)
+      </Button>
+      {(message_mode || interacts.escapechance > 0) && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'escp',
+              })
+            }
+          >
+            Escape Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'esco',
+              })
+            }
+          >
+            Escape Message (to you)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'escout',
+              })
+            }
+          >
+            Escape Message (outside)
+          </Button>
+        </>
+      )}
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'escip' })
+        }
+      >
+        Escape Item Message (to prey)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'escio' })
+        }
+      >
+        Escape Item Message (to you)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', {
+            attribute: 'b_msgs',
+            msgtype: 'esciout',
+          })
+        }
+      >
+        Escape Item Message (outside)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfp' })
+        }
+      >
+        Escape Fail Message (to prey)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfo' })
+        }
+      >
+        Escape Fail Message (to you)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescap' })
+        }
+      >
+        Absorbed Escape Attempt Message (to prey)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescao' })
+        }
+      >
+        Absorbed Escape Attempt Message (to you)
+      </Button>
+      {(message_mode || interacts.escapechance_absorbed > 0) && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'aescp',
+              })
+            }
+          >
+            Absorbed Escape Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'aesco',
+              })
+            }
+          >
+            Absorbed Escape Message (to you)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'aescout',
+              })
+            }
+          >
+            Absorbed Escape Message (outside)
+          </Button>
+        </>
+      )}
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfp' })
+        }
+      >
+        Absorbed Escape Fail Message (to prey)
+      </Button>
+      <Button
+        onClick={() =>
+          act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfo' })
+        }
+      >
+        Absorbed Escape Fail Message (to you)
+      </Button>
+    </LabeledList.Item>
+  );
+};
+
+const VoreSelectedBellyDescriptionsTransfer = (props) => {
+  const { act } = useBackend();
+
+  const { message_mode, interacts } = props;
+
+  return (
+    <LabeledList.Item label="Transfer Messages">
+      {(message_mode || !!interacts.transferlocation) && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'trnspp',
+              })
+            }
+          >
+            Primary Transfer Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'trnspo',
+              })
+            }
+          >
+            Primary Transfer Message (to you)
+          </Button>
+        </>
+      )}
+      {(message_mode || !!interacts.transferlocation_secondary) && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'trnssp',
+              })
+            }
+          >
+            Secondary Transfer Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'trnsso',
+              })
+            }
+          >
+            Secondary Transfer Message (to you)
+          </Button>
+        </>
+      )}
+    </LabeledList.Item>
+  );
+};
+
+const VoreSelectedBellyDescriptionsInteractionChance = (props) => {
+  const { act } = useBackend();
+
+  const { message_mode, interacts } = props;
+
+  return (
+    <LabeledList.Item label="Interaction Chance Messages">
+      {(message_mode || interacts.digestchance > 0) && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'stmodp',
+              })
+            }
+          >
+            Interaction Chance Digest Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'stmodo',
+              })
+            }
+          >
+            Interaction Chance Digest Message (to you)
+          </Button>
+        </>
+      )}
+      {(message_mode || interacts.absorbchance > 0) && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'stmoap',
+              })
+            }
+          >
+            Interaction Chance Absorb Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'stmoao',
+              })
+            }
+          >
+            Interaction Chance Absorb Message (to you)
+          </Button>
+        </>
+      )}
+    </LabeledList.Item>
+  );
+};
+
+const VoreSelectedBellyDescriptionsBellymode = (props) => {
+  const { act } = useBackend();
+
+  const { message_mode, mode } = props;
+
+  return (
+    <LabeledList.Item label="Bellymode Messages">
+      {(message_mode || mode === 'Digest' || mode === 'Selective') && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_msgs', msgtype: 'dmp' })
+            }
+          >
+            Digest Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_msgs', msgtype: 'dmo' })
+            }
+          >
+            Digest Message (to you)
+          </Button>
+        </>
+      )}
+      {(message_mode || mode === 'Absorb' || mode === 'Selective') && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_msgs', msgtype: 'amp' })
+            }
+          >
+            Absorb Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_msgs', msgtype: 'amo' })
+            }
+          >
+            Absorb Message (to you)
+          </Button>
+        </>
+      )}
+      {(message_mode || mode === 'Unabsorb') && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_msgs', msgtype: 'uamp' })
+            }
+          >
+            Unabsorb Message (to prey)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', { attribute: 'b_msgs', msgtype: 'uamo' })
+            }
+          >
+            Unabsorb Message (to you)
+          </Button>
+        </>
+      )}
+    </LabeledList.Item>
+  );
+};
+
+const VoreSelectedBellyDescriptionsIdle = (props) => {
+  const { act } = useBackend();
+
+  const { message_mode, mode } = props;
+
+  return (
+    <LabeledList.Item label="Idle Messages">
+      {(message_mode || mode === 'Hold' || mode === 'Selective') && (
+        <>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'im_hold',
+              })
+            }
+          >
+            Idle Messages (Hold)
+          </Button>
+          <Button
+            onClick={() =>
+              act('set_attribute', {
+                attribute: 'b_msgs',
+                msgtype: 'im_holdabsorbed',
+              })
+            }
+          >
+            Idle Messages (Hold Absorbed)
+          </Button>
+        </>
+      )}
+      {(message_mode || mode === 'Digest' || mode === 'Selective') && (
         <Button
           onClick={() =>
             act('set_attribute', {
               attribute: 'b_msgs',
-              msgtype: 'im_holdabsorbed',
+              msgtype: 'im_digest',
             })
           }
-          content="Idle Messages (Hold Absorbed)"
-        />
+        >
+          Idle Messages (Digest)
+        </Button>
+      )}
+      {(message_mode || mode === 'Absorb' || mode === 'Selective') && (
         <Button
           onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_digest' })
+            act('set_attribute', {
+              attribute: 'b_msgs',
+              msgtype: 'im_absorb',
+            })
           }
-          content="Idle Messages (Digest)"
-        />
-        <Button
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_absorb' })
-          }
-          content="Idle Messages (Absorb)"
-        />
+        >
+          Idle Messages (Absorb)
+        </Button>
+      )}
+      {(message_mode || mode === 'Unabsorb') && (
         <Button
           onClick={() =>
             act('set_attribute', {
@@ -641,55 +913,68 @@ const VoreSelectedBellyDescriptions = (props) => {
               msgtype: 'im_unabsorb',
             })
           }
-          content="Idle Messages (Unabsorb)"
-        />
+        >
+          Idle Messages (Unabsorb)
+        </Button>
+      )}
+      {(message_mode || mode === 'Drain' || mode === 'Selective') && (
         <Button
           onClick={() =>
             act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_drain' })
           }
-          content="Idle Messages (Drain)"
-        />
+        >
+          Idle Messages (Drain)
+        </Button>
+      )}
+      {(message_mode || mode === 'Heal') && (
         <Button
           onClick={() =>
             act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_heal' })
           }
-          content="Idle Messages (Heal)"
-        />
+        >
+          Idle Messages (Heal)
+        </Button>
+      )}
+      {(message_mode || mode === 'Size Steal') && (
         <Button
           onClick={() =>
             act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_steal' })
           }
-          content="Idle Messages (Size Steal)"
-        />
+        >
+          Idle Messages (Size Steal)
+        </Button>
+      )}
+      {(message_mode || mode === 'Shrink') && (
         <Button
           onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_shrink' })
+            act('set_attribute', {
+              attribute: 'b_msgs',
+              msgtype: 'im_shrink',
+            })
           }
-          content="Idle Messages (Shrink)"
-        />
+        >
+          Idle Messages (Shrink)
+        </Button>
+      )}
+      {(message_mode || mode === 'Grow') && (
         <Button
           onClick={() =>
             act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_grow' })
           }
-          content="Idle Messages (Grow)"
-        />
+        >
+          Idle Messages (Grow)
+        </Button>
+      )}
+      {(message_mode || mode === 'Encase In Egg') && (
         <Button
           onClick={() =>
             act('set_attribute', { attribute: 'b_msgs', msgtype: 'im_egg' })
           }
-          content="Idle Messages (Encase In Egg)"
-        />
-      </LabeledList.Item>
-      <LabeledList.Item label="Reset Messages">
-        <Button
-          color="red"
-          onClick={() =>
-            act('set_attribute', { attribute: 'b_msgs', msgtype: 'reset' })
-          }
-          content="Reset Messages"
-        />
-      </LabeledList.Item>
-    </LabeledList>
+        >
+          Idle Messages (Encase In Egg)
+        </Button>
+      )}
+    </LabeledList.Item>
   );
 };
 
@@ -735,8 +1020,9 @@ const VoreSelectedBellyOptions = (props) => {
               onClick={() => act('set_attribute', { attribute: 'b_tastes' })}
               icon={can_taste ? 'toggle-on' : 'toggle-off'}
               selected={can_taste}
-              content={can_taste ? 'Yes' : 'No'}
-            />
+            >
+              {can_taste ? 'Yes' : 'No'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Contaminates">
             <Button
@@ -745,8 +1031,9 @@ const VoreSelectedBellyOptions = (props) => {
               }
               icon={contaminates ? 'toggle-on' : 'toggle-off'}
               selected={contaminates}
-              content={contaminates ? 'Yes' : 'No'}
-            />
+            >
+              {contaminates ? 'Yes' : 'No'}
+            </Button>
           </LabeledList.Item>
           {(contaminates && (
             <>
@@ -758,8 +1045,9 @@ const VoreSelectedBellyOptions = (props) => {
                     })
                   }
                   icon="pen"
-                  content={contaminate_flavor}
-                />
+                >
+                  {contaminate_flavor}
+                </Button>
               </LabeledList.Item>
               <LabeledList.Item label="Contamination Color">
                 <Button
@@ -767,8 +1055,9 @@ const VoreSelectedBellyOptions = (props) => {
                     act('set_attribute', { attribute: 'b_contamination_color' })
                   }
                   icon="pen"
-                  content={capitalize(contaminate_color)}
-                />
+                >
+                  {capitalize(contaminate_color)}
+                </Button>
               </LabeledList.Item>
             </>
           )) ||
@@ -778,16 +1067,18 @@ const VoreSelectedBellyOptions = (props) => {
               onClick={() =>
                 act('set_attribute', { attribute: 'b_nutritionpercent' })
               }
-              content={nutrition_percent + '%'}
-            />
+            >
+              {nutrition_percent + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Required Examine Size">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_bulge_size' })
               }
-              content={bulge_size * 100 + '%'}
-            />
+            >
+              {bulge_size * 100 + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Display Absorbed Examines">
             <Button
@@ -798,16 +1089,18 @@ const VoreSelectedBellyOptions = (props) => {
               }
               icon={display_absorbed_examine ? 'toggle-on' : 'toggle-off'}
               selected={display_absorbed_examine}
-              content={display_absorbed_examine ? 'True' : 'False'}
-            />
+            >
+              {display_absorbed_examine ? 'True' : 'False'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Toggle Vore Privacy">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_eating_privacy' })
               }
-              content={capitalize(eating_privacy_local)}
-            />
+            >
+              {capitalize(eating_privacy_local)}
+            </Button>
           </LabeledList.Item>
 
           <LabeledList.Item label="Save Digest Mode">
@@ -817,8 +1110,9 @@ const VoreSelectedBellyOptions = (props) => {
               }
               icon={save_digest_mode ? 'toggle-on' : 'toggle-off'}
               selected={save_digest_mode}
-              content={save_digest_mode ? 'True' : 'False'}
-            />
+            >
+              {save_digest_mode ? 'True' : 'False'}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
         <VoreSelectedMobTypeBellyButtons belly={belly} />
@@ -832,65 +1126,75 @@ const VoreSelectedBellyOptions = (props) => {
               }
               icon={emote_active ? 'toggle-on' : 'toggle-off'}
               selected={emote_active}
-              content={emote_active ? 'Active' : 'Inactive'}
-            />
+            >
+              {emote_active ? 'Active' : 'Inactive'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Idle Emote Delay">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_emotetime' })}
-              content={emote_time + ' seconds'}
-            />
+            >
+              {emote_time + ' seconds'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Digest Brute Damage">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_brute_dmg' })}
-              content={digest_brute}
-            />
+            >
+              {digest_brute}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Digest Burn Damage">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_burn_dmg' })}
-              content={digest_burn}
-            />
+            >
+              {digest_burn}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Digest Suffocation Damage">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_oxy_dmg' })}
-              content={digest_oxy}
-            />
+            >
+              {digest_oxy}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Digest Toxins Damage">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_tox_dmg' })}
-              content={digest_tox}
-            />
+            >
+              {digest_tox}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Digest Clone Damage">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_clone_dmg' })}
-              content={digest_clone}
-            />
+            >
+              {digest_clone}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Drain Finishing Mode">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_drainmode' })}
-              content={drainmode}
-            />
+            >
+              {drainmode}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Shrink/Grow Size">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_grow_shrink' })
               }
-              content={shrink_grow_size * 100 + '%'}
-            />
+            >
+              {shrink_grow_size * 100 + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Egg Type">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_egg_type' })}
               icon="pen"
-              content={capitalize(egg_type)}
-            />
+            >
+              {capitalize(egg_type)}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Selective Mode Preference">
             <Button
@@ -899,8 +1203,9 @@ const VoreSelectedBellyOptions = (props) => {
                   attribute: 'b_selective_mode_pref_toggle',
                 })
               }
-              content={capitalize(selective_preference)}
-            />
+            >
+              {capitalize(selective_preference)}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       </Flex.Item>
@@ -929,24 +1234,27 @@ const VoreSelectedMobTypeBellyButtons = (props) => {
               onClick={() =>
                 act('set_attribute', { attribute: 'b_silicon_belly' })
               }
-              content={capitalize(silicon_belly_overlay_preference)}
-            />
+            >
+              {capitalize(silicon_belly_overlay_preference)}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Mob Vorebelly Size Mult">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_belly_mob_mult' })
               }
-              content={belly_mob_mult}
-            />
+            >
+              {belly_mob_mult}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Item Vorebelly Size Mult">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_belly_item_mult' })
               }
-              content={belly_item_mult}
-            />
+            >
+              {belly_item_mult}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Belly Size Multiplier">
             <Button
@@ -955,8 +1263,9 @@ const VoreSelectedMobTypeBellyButtons = (props) => {
                   attribute: 'b_belly_overall_mult',
                 })
               }
-              content={belly_overall_mult}
-            />
+            >
+              {belly_overall_mult}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       </Section>
@@ -993,16 +1302,18 @@ const VoreSelectedBellySounds = (props) => {
               onClick={() => act('set_attribute', { attribute: 'b_wetness' })}
               icon={is_wet ? 'toggle-on' : 'toggle-off'}
               selected={is_wet}
-              content={is_wet ? 'Yes' : 'No'}
-            />
+            >
+              {is_wet ? 'Yes' : 'No'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Internal Loop">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_wetloop' })}
               icon={wet_loop ? 'toggle-on' : 'toggle-off'}
               selected={wet_loop}
-              content={wet_loop ? 'Yes' : 'No'}
-            />
+            >
+              {wet_loop ? 'Yes' : 'No'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Use Fancy Sounds">
             <Button
@@ -1011,14 +1322,16 @@ const VoreSelectedBellySounds = (props) => {
               }
               icon={fancy ? 'toggle-on' : 'toggle-off'}
               selected={fancy}
-              content={fancy ? 'Yes' : 'No'}
-            />
+            >
+              {fancy ? 'Yes' : 'No'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Vore Sound">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_sound' })}
-              content={sound}
-            />
+            >
+              {sound}
+            </Button>
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_soundtest' })}
               icon="volume-up"
@@ -1027,8 +1340,9 @@ const VoreSelectedBellySounds = (props) => {
           <LabeledList.Item label="Release Sound">
             <Button
               onClick={() => act('set_attribute', { attribute: 'b_release' })}
-              content={release_sound}
-            />
+            >
+              {release_sound}
+            </Button>
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_releasesoundtest' })
@@ -1055,10 +1369,204 @@ const VoreSelectedBellyVisuals = (props) => {
     belly_fullscreen_color_trinary,
     mapRef,
     colorization_enabled,
+    vore_sprite_flags,
+    affects_voresprite,
+    absorbed_voresprite,
+    absorbed_multiplier,
+    item_voresprite,
+    item_multiplier,
+    health_voresprite,
+    resist_animation,
+    voresprite_size_factor,
+    belly_sprite_option_shown,
+    belly_sprite_to_affect,
+    undergarment_chosen,
+    undergarment_if_none,
+    undergarment_color,
+    tail_option_shown,
+    tail_to_change_to,
+    tail_colouration,
+    tail_extra_overlay,
+    tail_extra_overlay2,
   } = belly;
 
   return (
     <>
+      <Section title="Vore Sprites">
+        <Flex direction="row">
+          <LabeledList>
+            <LabeledList.Item label="Affect Vore Sprites">
+              <Button
+                onClick={() =>
+                  act('set_attribute', { attribute: 'b_affects_vore_sprites' })
+                }
+                icon={affects_voresprite ? 'toggle-on' : 'toggle-off'}
+                selected={affects_voresprite}
+              >
+                {affects_voresprite ? 'Yes' : 'No'}
+              </Button>
+            </LabeledList.Item>
+            {affects_voresprite ? (
+              <span>
+                <LabeledList.Item label="Vore Sprite Mode">
+                  {(vore_sprite_flags.length && vore_sprite_flags.join(', ')) ||
+                    'None'}
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', { attribute: 'b_vore_sprite_flags' })
+                    }
+                    ml={1}
+                    icon="plus"
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Count Absorbed prey for vore sprites">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', {
+                        attribute: 'b_count_absorbed_prey_for_sprites',
+                      })
+                    }
+                    icon={absorbed_voresprite ? 'toggle-on' : 'toggle-off'}
+                    selected={absorbed_voresprite}
+                  >
+                    {absorbed_voresprite ? 'Yes' : 'No'}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Absorbed Multiplier">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', {
+                        attribute: 'b_absorbed_multiplier',
+                      })
+                    }
+                  >
+                    {absorbed_multiplier}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Count items for vore sprites">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', {
+                        attribute: 'b_count_items_for_sprites',
+                      })
+                    }
+                    icon={item_voresprite ? 'toggle-on' : 'toggle-off'}
+                    selected={item_voresprite}
+                  >
+                    {item_voresprite ? 'Yes' : 'No'}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Items Multiplier">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', { attribute: 'b_item_multiplier' })
+                    }
+                  >
+                    {item_multiplier}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Prey health affects vore sprites">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', {
+                        attribute: 'b_health_impacts_size',
+                      })
+                    }
+                    icon={health_voresprite ? 'toggle-on' : 'toggle-off'}
+                    selected={health_voresprite}
+                  >
+                    {health_voresprite ? 'Yes' : 'No'}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Animation when prey resist">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', { attribute: 'b_resist_animation' })
+                    }
+                    icon={resist_animation ? 'toggle-on' : 'toggle-off'}
+                    selected={resist_animation}
+                  >
+                    {resist_animation ? 'Yes' : 'No'}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Vore Sprite Size Factor">
+                  <Button
+                    onClick={() =>
+                      act('set_attribute', {
+                        attribute: 'b_size_factor_sprites',
+                      })
+                    }
+                  >
+                    {voresprite_size_factor}
+                  </Button>
+                </LabeledList.Item>
+                {belly_sprite_option_shown ? (
+                  <LabeledList.Item label="Belly Sprite to affect">
+                    <Button
+                      onClick={() =>
+                        act('set_attribute', {
+                          attribute: 'b_belly_sprite_to_affect',
+                        })
+                      }
+                    >
+                      {belly_sprite_to_affect}
+                    </Button>
+                  </LabeledList.Item>
+                ) : (
+                  ''
+                )}
+                {tail_option_shown &&
+                vore_sprite_flags.includes('Undergarment addition') ? (
+                  <div>
+                    <LabeledList.Item label="Undergarment type to affect">
+                      <Button
+                        onClick={() =>
+                          act('set_attribute', {
+                            attribute: 'b_undergarment_choice',
+                          })
+                        }
+                      >
+                        {undergarment_chosen}
+                      </Button>
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Undergarment if none equipped">
+                      <Button
+                        onClick={() =>
+                          act('set_attribute', {
+                            attribute: 'b_undergarment_if_none',
+                          })
+                        }
+                      >
+                        {undergarment_if_none}
+                      </Button>
+                    </LabeledList.Item>
+                  </div>
+                ) : (
+                  ''
+                )}
+                {tail_option_shown &&
+                vore_sprite_flags.includes('Tail adjustment') ? (
+                  <LabeledList.Item label="Tail to change to">
+                    <Button
+                      onClick={() =>
+                        act('set_attribute', {
+                          attribute: 'b_tail_to_change_to',
+                        })
+                      }
+                    >
+                      {tail_to_change_to}
+                    </Button>
+                  </LabeledList.Item>
+                ) : (
+                  ''
+                )}
+              </span>
+            ) : (
+              ''
+            )}
+          </LabeledList>
+        </Flex>
+      </Section>
       <Section title="Belly Fullscreens Preview and Coloring">
         <Flex direction="row">
           <Box
@@ -1116,24 +1624,27 @@ const VoreSelectedBellyVisuals = (props) => {
               }
               icon={colorization_enabled ? 'toggle-on' : 'toggle-off'}
               selected={colorization_enabled}
-              content={colorization_enabled ? 'Yes' : 'No'}
-            />
+            >
+              {colorization_enabled ? 'Yes' : 'No'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Preview Belly">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_preview_belly' })
               }
-              content={'Preview'}
-            />
+            >
+              Preview
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Clear Preview">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_clear_preview' })
               }
-              content={'Clear'}
-            />
+            >
+              Clear
+            </Button>
           </LabeledList.Item>
         </Flex>
       </Section>
@@ -1147,8 +1658,9 @@ const VoreSelectedBellyVisuals = (props) => {
                 }
                 icon={disable_hud ? 'toggle-on' : 'toggle-off'}
                 selected={disable_hud}
-                content={disable_hud ? 'Yes' : 'No'}
-              />
+              >
+                {disable_hud ? 'Yes' : 'No'}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -1203,98 +1715,104 @@ const VoreSelectedBellyInteractions = (props) => {
           onClick={() => act('set_attribute', { attribute: 'b_escapable' })}
           icon={escapable ? 'toggle-on' : 'toggle-off'}
           selected={escapable}
-          content={escapable ? 'Interactions On' : 'Interactions Off'}
-        />
+        >
+          {escapable ? 'Interactions On' : 'Interactions Off'}
+        </Button>
       }
     >
       {escapable ? (
         <LabeledList>
           <LabeledList.Item label="Escape Chance">
             <Button
-              content={interacts.escapechance + '%'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_escapechance' })
               }
-            />
+            >
+              {interacts.escapechance + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Absorbed Escape Chance">
             <Button
-              content={interacts.escapechance_absorbed + '%'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_escapechance_absorbed' })
               }
-            />
+            >
+              {interacts.escapechance_absorbed + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Escape Time">
             <Button
-              content={interacts.escapetime / 10 + 's'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_escapetime' })
               }
-            />
+            >
+              {interacts.escapetime / 10 + 's'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Divider />
           <LabeledList.Item label="Transfer Chance">
             <Button
-              content={interacts.transferchance + '%'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_transferchance' })
               }
-            />
+            >
+              {interacts.transferchance + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Transfer Location">
             <Button
-              content={
-                interacts.transferlocation
-                  ? interacts.transferlocation
-                  : 'Disabled'
-              }
               onClick={() =>
                 act('set_attribute', { attribute: 'b_transferlocation' })
               }
-            />
+            >
+              {interacts.transferlocation
+                ? interacts.transferlocation
+                : 'Disabled'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Divider />
           <LabeledList.Item label="Secondary Transfer Chance">
             <Button
-              content={interacts.transferchance_secondary + '%'}
               onClick={() =>
                 act('set_attribute', {
                   attribute: 'b_transferchance_secondary',
                 })
               }
-            />
+            >
+              {interacts.transferchance_secondary + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Secondary Transfer Location">
             <Button
-              content={
-                interacts.transferlocation_secondary
-                  ? interacts.transferlocation_secondary
-                  : 'Disabled'
-              }
               onClick={() =>
                 act('set_attribute', {
                   attribute: 'b_transferlocation_secondary',
                 })
               }
-            />
+            >
+              {interacts.transferlocation_secondary
+                ? interacts.transferlocation_secondary
+                : 'Disabled'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Divider />
           <LabeledList.Item label="Absorb Chance">
             <Button
-              content={interacts.absorbchance + '%'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_absorbchance' })
               }
-            />
+            >
+              {interacts.absorbchance + '%'}
+            </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Digest Chance">
             <Button
-              content={interacts.digestchance + '%'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_digestchance' })
               }
-            />
+            >
+              {interacts.digestchance + '%'}
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       ) : (
@@ -1330,9 +1848,9 @@ const VoreContentsPanel = (props) => {
                 width="64px"
                 color={thing.absorbed ? 'purple' : stats[thing.stat]}
                 style={{
-                  'vertical-align': 'middle',
-                  'margin-right': '5px',
-                  'border-radius': '20px',
+                  verticalAlign: 'middle',
+                  marginRight: '5px',
+                  borderRadius: '20px',
                 }}
                 onClick={() =>
                   act(
@@ -1412,6 +1930,7 @@ const VoreUserPreferences = (props) => {
     slip_vore,
     throw_vore,
     food_vore,
+    digest_pain,
     nutrition_message_visible,
     weight_message_visible,
     eating_privacy_global,
@@ -1603,6 +2122,21 @@ const VoreUserPreferences = (props) => {
       content: {
         enabled: 'Food Vore Enabled',
         disabled: 'Food Vore Disabled',
+      },
+    },
+    toggle_digest_pain: {
+      action: 'toggle_digest_pain',
+      test: digest_pain,
+      tooltip: {
+        main:
+          'Allows for pain messages to show when being digested. ' +
+          ' Can be toggled off to disable pain messages.',
+        enable: 'Click here to allow for digestion pain.',
+        disable: 'Click here to disable digestion pain.',
+      },
+      content: {
+        enabled: 'Digestion Pain Enabled',
+        disabled: 'Digestion Pain Disabled',
       },
     },
     inbelly_spawning: {
@@ -1830,15 +2364,18 @@ const VoreUserPreferences = (props) => {
           <VoreUserPreferenceItem spec={preferences.toggle_food_vore} />
         </Flex.Item>
         <Flex.Item basis="32%" grow={1}>
+          <VoreUserPreferenceItem spec={preferences.toggle_digest_pain} />
+        </Flex.Item>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.inbelly_spawning} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.noisy} />
         </Flex.Item>
-        <Flex.Item basis="32%">
+        <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem spec={preferences.resize} />
         </Flex.Item>
-        <Flex.Item basis="32%" grow={1}>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.steppref}
             tooltipPosition="top"
@@ -1850,13 +2387,13 @@ const VoreUserPreferences = (props) => {
             tooltipPosition="top"
           />
         </Flex.Item>
-        <Flex.Item basis="32%">
+        <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem
             spec={preferences.remains}
             tooltipPosition="top"
           />
         </Flex.Item>
-        <Flex.Item basis="32%" grow={1}>
+        <Flex.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.pickuppref}
             tooltipPosition="top"
@@ -1865,12 +2402,10 @@ const VoreUserPreferences = (props) => {
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.spontaneous_tf} />
         </Flex.Item>
-        <Flex.Item basis="32%">
-          <Button
-            fluid
-            content="Selective Mode Preference"
-            onClick={() => act('switch_selective_mode_pref')}
-          />
+        <Flex.Item basis="32%" grow={1}>
+          <Button fluid onClick={() => act('switch_selective_mode_pref')}>
+            Selective Mode Preference
+          </Button>
         </Flex.Item>
         <Flex.Item basis="32%" grow={3}>
           <VoreUserPreferenceItem spec={preferences.eating_privacy_global} />
@@ -1879,40 +2414,36 @@ const VoreUserPreferences = (props) => {
       <Section title="Aesthetic Preferences">
         <Flex spacing={1} wrap="wrap" justify="center">
           <Flex.Item basis="50%" grow={1}>
-            <Button
-              fluid
-              content="Set Taste"
-              icon="grin-tongue"
-              onClick={() => act('setflavor')}
-            />
+            <Button fluid icon="grin-tongue" onClick={() => act('setflavor')}>
+              Set Taste
+            </Button>
           </Flex.Item>
           <Flex.Item basis="50%">
-            <Button
-              fluid
-              content="Set Smell"
-              icon="wind"
-              onClick={() => act('setsmell')}
-            />
+            <Button fluid icon="wind" onClick={() => act('setsmell')}>
+              Set Smell
+            </Button>
           </Flex.Item>
           <Flex.Item basis="50%" grow={1}>
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_msgs', msgtype: 'en' })
               }
-              content="Set Nutrition Examine Message"
               icon="flask"
               fluid
-            />
+            >
+              Set Nutrition Examine Message
+            </Button>
           </Flex.Item>
           <Flex.Item basis="50%">
             <Button
               onClick={() =>
                 act('set_attribute', { attribute: 'b_msgs', msgtype: 'ew' })
               }
-              content="Set Weight Examine Message"
               icon="weight-hanging"
               fluid
-            />
+            >
+              Set Weight Examine Message
+            </Button>
           </Flex.Item>
           <Flex.Item basis="50%" grow={1}>
             <VoreUserPreferenceItem spec={preferences.examine_nutrition} />
@@ -1920,26 +2451,25 @@ const VoreUserPreferences = (props) => {
           <Flex.Item basis="50%">
             <VoreUserPreferenceItem spec={preferences.examine_weight} />
           </Flex.Item>
+          <Flex.Item basis="50%">
+            <Button fluid onClick={() => act('set_vs_color')}>
+              Vore Sprite Color
+            </Button>
+          </Flex.Item>
         </Flex>
       </Section>
       <Divider />
       <Section>
         <Flex spacing={1}>
           <Flex.Item basis="49%">
-            <Button
-              fluid
-              content="Save Prefs"
-              icon="save"
-              onClick={() => act('saveprefs')}
-            />
+            <Button fluid icon="save" onClick={() => act('saveprefs')}>
+              Save Prefs
+            </Button>
           </Flex.Item>
           <Flex.Item basis="49%" grow={1}>
-            <Button
-              fluid
-              content="Reload Prefs"
-              icon="undo"
-              onClick={() => act('reloadprefs')}
-            />
+            <Button fluid icon="undo" onClick={() => act('reloadprefs')}>
+              Reload Prefs
+            </Button>
           </Flex.Item>
         </Flex>
       </Section>
@@ -1960,8 +2490,9 @@ const VoreUserPreferenceItem = (props) => {
       selected={test}
       fluid
       tooltip={tooltip.main + ' ' + (test ? tooltip.disable : tooltip.enable)}
-      content={test ? content.enabled : content.disabled}
       {...rest}
-    />
+    >
+      {test ? content.enabled : content.disabled}
+    </Button>
   );
 };

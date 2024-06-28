@@ -180,6 +180,25 @@
 	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target)
 	user.put_in_active_hand(B)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/verb/spin_bottle()
+	set name = "Spin The Bottle"
+	set category = "Object"
+	set src in view(1)
+
+	if(isobserver(usr) || usr.stat)
+		return
+
+	if(!isturf(src.loc))
+		to_chat(usr, "<span class='notice'>\The [src] needs to be on the floor to spin.</span>")
+		return
+
+	var/spin_rotation = (rand(0,359))
+	usr.visible_message("<span class='warning'>\The [usr] spins \the [src]!</span>","<span class='notice'>You spin \the [src]!</span>")
+	SpinAnimation(3,10)
+	spawn(30)
+		icon_rotation = spin_rotation
+		update_transform()
+
 //Keeping this here for now, I'll ask if I should keep it here.
 /obj/item/weapon/broken_bottle
 	name = "Broken Bottle"

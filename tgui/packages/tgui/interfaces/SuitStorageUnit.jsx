@@ -45,16 +45,18 @@ const SuitStorageUnitContent = (props) => {
           {!open && (
             <Button
               icon={locked ? 'unlock' : 'lock'}
-              content={locked ? 'Unlock' : 'Lock'}
               onClick={() => act('lock')}
-            />
+            >
+              {locked ? 'Unlock' : 'Lock'}
+            </Button>
           )}
           {!locked && (
             <Button
               icon={open ? 'sign-out-alt' : 'sign-in-alt'}
-              content={open ? 'Close' : 'Open'}
               onClick={() => act('door')}
-            />
+            >
+              {open ? 'Close' : 'Open'}
+            </Button>
           )}
         </>
       }
@@ -67,9 +69,10 @@ const SuitStorageUnitContent = (props) => {
             fluid
             icon="eject"
             color="red"
-            content="Eject Entity"
             onClick={() => act('eject_guy')}
-          />
+          >
+            Eject Entity
+          </Button>
         </NoticeBox>
       )}
       {(locked && (
@@ -83,49 +86,53 @@ const SuitStorageUnitContent = (props) => {
             <LabeledList.Item label="Helmet">
               <Button
                 icon={helmet ? 'square' : 'square-o'}
-                content={helmet || 'Empty'}
                 disabled={!helmet}
                 onClick={() =>
                   act('dispense', {
                     item: 'helmet',
                   })
                 }
-              />
+              >
+                {helmet || 'Empty'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Suit">
               <Button
                 icon={suit ? 'square' : 'square-o'}
-                content={suit || 'Empty'}
                 disabled={!suit}
                 onClick={() =>
                   act('dispense', {
                     item: 'suit',
                   })
                 }
-              />
+              >
+                {suit || 'Empty'}
+              </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Mask">
               <Button
                 icon={mask ? 'square' : 'square-o'}
-                content={mask || 'Empty'}
                 disabled={!mask}
                 onClick={() =>
                   act('dispense', {
                     item: 'mask',
                   })
                 }
-              />
+              >
+                {mask || 'Empty'}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         )) || (
           <Button
             fluid
             icon="recycle"
-            content="Decontaminate"
             disabled={occupied && safeties}
             textAlign="center"
             onClick={() => act('uv')}
-          />
+          >
+            Decontaminate
+          </Button>
         )}
     </Section>
   );

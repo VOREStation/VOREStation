@@ -73,7 +73,7 @@
 
 /obj/item/device/assembly/timer/tgui_data(mob/user)
 	var/list/data = ..()
-	data["time"] = time * 10
+	data["time"] = time
 	data["timing"] = timing
 	return data
 

@@ -23,11 +23,9 @@ export const pAIDoorjack = (props) => {
               {(machine && <Box color="good">Connected</Box>) ||
                 (cable && <Box color="average">Extended</Box>) || (
                   <Box>
-                    <Button
-                      icon="ethernet"
-                      content="Retracted"
-                      onClick={() => act('cable')}
-                    />
+                    <Button icon="ethernet" onClick={() => act('cable')}>
+                      Retracted
+                    </Button>
                   </Box>
                 )}
             </LabeledList.Item>
@@ -54,11 +52,9 @@ export const pAIDoorjack = (props) => {
                     />
                   </Box>
                 )) || (
-                  <Button
-                    icon="virus"
-                    content="Start"
-                    onClick={() => act('jack')}
-                  />
+                  <Button icon="virus" onClick={() => act('jack')}>
+                    Start
+                  </Button>
                 )}
               </LabeledList.Item>
             )) ||

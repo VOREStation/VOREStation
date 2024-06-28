@@ -17,19 +17,17 @@ export const RoboticsControlConsole = (props) => {
       <Window.Content scrollable>
         {!!show_detonate_all && (
           <Section title="Emergency Self Destruct">
-            <Button
-              icon={safety ? 'lock' : 'unlock'}
-              content={safety ? 'Disable Safety' : 'Enable Safety'}
-              selected={safety}
-              onClick={() => act('arm', {})}
-            />
+            <Button icon={safety ? 'lock' : 'unlock'} selected={safety}>
+              {safety ? 'Disable Safety' : 'Enable Safety'}
+            </Button>
             <Button
               icon="bomb"
               disabled={safety}
-              content="Destroy ALL Cyborgs"
               color="bad"
               onClick={() => act('nuke', {})}
-            />
+            >
+              Destroy ALL Cyborgs
+            </Button>
           </Section>
         )}
         <Cyborgs cyborgs={cyborgs} can_hack={can_hack} />
@@ -56,29 +54,30 @@ const Cyborgs = (props) => {
             {!!cyborg.hackable && !cyborg.emagged && (
               <Button
                 icon="terminal"
-                content="Hack"
                 color="bad"
                 onClick={() =>
                   act('hackbot', {
                     ref: cyborg.ref,
                   })
                 }
-              />
+              >
+                Hack
+              </Button>
             )}
             <Button.Confirm
               icon={cyborg.locked_down ? 'unlock' : 'lock'}
               color={cyborg.locked_down ? 'good' : 'default'}
-              content={cyborg.locked_down ? 'Release' : 'Lockdown'}
               disabled={!data.auth}
               onClick={() =>
                 act('stopbot', {
                   ref: cyborg.ref,
                 })
               }
-            />
+            >
+              {cyborg.locked_down ? 'Release' : 'Lockdown'}
+            </Button.Confirm>
             <Button.Confirm
               icon="bomb"
-              content="Detonate"
               disabled={!data.auth}
               color="bad"
               onClick={() =>
@@ -86,7 +85,9 @@ const Cyborgs = (props) => {
                   ref: cyborg.ref,
                 })
               }
-            />
+            >
+              Detonate
+            </Button.Confirm>
           </>
         }
       >

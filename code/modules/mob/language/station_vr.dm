@@ -143,6 +143,21 @@
 /datum/language/echosong/scramble(var/input, var/list/known_languages)
 	return stars(input)
 
+/datum/language/lleill
+	name = LANGUAGE_LLEILL
+	desc = "An ancient, gutteral language involving a lot of spitting."
+	speech_verb = "speaks"
+	ask_verb = "ponders"
+	exclaim_verb = "calls"
+	colour = "echosong"
+	key = "L"
+	syllables = list(
+		"llyn", "bren", "gwyn", "gwyr", "ddys", "dath", "llio", "cym", "ddrai", "ffyr", "lle", "dy", "eto", "uno", "dydno", "llego", "bryth", "ffair",
+		"ynys", "ed", "fore", "oe", "hen", "wladd", "ty", "nha", "dwy", "mae", "dros", "pob", "ia", "wyll", "gwdd", "fi"
+	)
+	machine_understands = FALSE
+	flags = WHITELISTED
+
 /datum/language/echosong/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
 	log_say("(INAUDIBLE) [message]", speaker)
 	speaker.say_signlang(format_message(message), pick(signlang_verb), pick(signlang_verb_understood), src, 2)

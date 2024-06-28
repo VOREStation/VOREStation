@@ -479,3 +479,7 @@
 		if(!in_range(src, user) && loc != user)
 			return
 		created_name = t
+
+#undef SECBOT_WAIT_TIME
+#undef SECBOT_THREAT_ARREST
+#undef SECBOT_THREAT_ATTACK

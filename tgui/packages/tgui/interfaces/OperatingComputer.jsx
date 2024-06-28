@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -112,7 +112,7 @@ const OperatingComputerPatient = (props) => {
                 value={occupant[d[1]] / 100}
                 ranges={damageRange}
               >
-                {round(occupant[d[1]])}
+                {toFixed(occupant[d[1]])}
               </ProgressBar>
             </LabeledList.Item>
           ))}
@@ -123,7 +123,8 @@ const OperatingComputerPatient = (props) => {
               value={occupant.bodyTemperature / occupant.maxTemp}
               color={tempColors[occupant.temperatureSuitability + 3]}
             >
-              {round(occupant.btCelsius)}&deg;C, {round(occupant.btFaren)}&deg;F
+              {toFixed(occupant.btCelsius)}&deg;C, {toFixed(occupant.btFaren)}
+              &deg;F
             </ProgressBar>
           </LabeledList.Item>
           {!!occupant.hasBlood && (
@@ -196,17 +197,19 @@ const OperatingComputerOptions = (props) => {
         <Button
           selected={verbose}
           icon={verbose ? 'toggle-on' : 'toggle-off'}
-          content={verbose ? 'On' : 'Off'}
           onClick={() => act(verbose ? 'verboseOff' : 'verboseOn')}
-        />
+        >
+          {verbose ? 'On' : 'Off'}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Health Announcer">
         <Button
           selected={health}
           icon={health ? 'toggle-on' : 'toggle-off'}
-          content={health ? 'On' : 'Off'}
           onClick={() => act(health ? 'healthOff' : 'healthOn')}
-        />
+        >
+          {health ? 'On' : 'Off'}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Health Announcer Threshold">
         <Knob
@@ -228,9 +231,10 @@ const OperatingComputerOptions = (props) => {
         <Button
           selected={oxy}
           icon={oxy ? 'toggle-on' : 'toggle-off'}
-          content={oxy ? 'On' : 'Off'}
           onClick={() => act(oxy ? 'oxyOff' : 'oxyOn')}
-        />
+        >
+          {oxy ? 'On' : 'Off'}
+        </Button>
       </LabeledList.Item>
       <LabeledList.Item label="Oxygen Alarm Threshold">
         <Knob
@@ -251,9 +255,10 @@ const OperatingComputerOptions = (props) => {
         <Button
           selected={crit}
           icon={crit ? 'toggle-on' : 'toggle-off'}
-          content={crit ? 'On' : 'Off'}
           onClick={() => act(crit ? 'critOff' : 'critOn')}
-        />
+        >
+          {crit ? 'On' : 'Off'}
+        </Button>
       </LabeledList.Item>
     </LabeledList>
   );

@@ -34,6 +34,10 @@
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
 	var/trash_catching = FALSE				//Toggle for trash throw vore from chompstation
+	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
+	var/trait_injection_selected = null			//RSEdit: What trait reagent you're injecting.
+	var/trait_injection_amount = 5				//RSEdit: How much you're injecting with traits.
+	var/trait_injection_verb = "bites"			//RSEdit: Which fluffy manner you're doing the injecting.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -247,6 +251,7 @@
 	P.slip_vore = src.slip_vore
 	P.throw_vore = src.throw_vore
 	P.food_vore = src.food_vore
+	P.digest_pain = src.digest_pain
 	P.stumble_vore = src.stumble_vore
 	P.eating_privacy_global = src.eating_privacy_global
 
@@ -254,6 +259,8 @@
 	P.nutrition_messages = src.nutrition_messages
 	P.weight_message_visible = src.weight_message_visible
 	P.weight_messages = src.weight_messages
+
+	P.vore_sprite_color = istype(src, /mob/living/carbon/human) ? src:vore_sprite_color : null
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
@@ -297,12 +304,17 @@
 	throw_vore = P.throw_vore
 	stumble_vore = P.stumble_vore
 	food_vore = P.food_vore
+	digest_pain = P.digest_pain
 	eating_privacy_global = P.eating_privacy_global
 
 	nutrition_message_visible = P.nutrition_message_visible
 	nutrition_messages = P.nutrition_messages
 	weight_message_visible = P.weight_message_visible
 	weight_messages = P.weight_messages
+
+
+	if (istype(src, /mob/living/carbon/human))
+		src:vore_sprite_color = P.vore_sprite_color
 
 	if(bellies)
 		if(isliving(src))
@@ -780,6 +792,12 @@
 			to_chat(src, "<span class='warning'>\The [pocketpal] doesn't allow you to eat it.</span>")
 			return
 
+	if(istype(I, /obj/item/weapon/book))
+		var/obj/item/weapon/book/book = I
+		if(book.carved)
+			to_chat(src, "<span class='warning'>\The [book] is not worth eating without the filling.</span>")
+			return
+
 	if(is_type_in_list(I,edible_trash) | adminbus_trash)
 		if(I.hidden_uplink)
 			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
@@ -839,6 +857,8 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and funny looks.</span>")
 		else if(istype(I,/obj/item/weapon/paper))
 			to_chat(src, "<span class='notice'>You can taste the dry flavor of bureaucracy.</span>")
+		else if(istype(I,/obj/item/weapon/book))
+			to_chat(src, "<span class='notice'>You can taste the dry flavor of knowledge.</span>")
 		else if(istype(I,/obj/item/weapon/dice) || istype(I,/obj/item/roulette_ball))
 			to_chat(src, "<span class='notice'>You can taste the bitter flavor of cheating.</span>")
 		else if(istype(I,/obj/item/weapon/lipstick))

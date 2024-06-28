@@ -94,7 +94,9 @@ const GeneralRecordsList = (_properties) => {
   return (
     <>
       <Box mb="0.2rem">
-        <Button icon="pen" content="New Record" onClick={() => act('new')} />
+        <Button icon="pen" onClick={() => act('new')}>
+          New Record
+        </Button>
       </Box>
       <Input
         fluid
@@ -107,9 +109,10 @@ const GeneralRecordsList = (_properties) => {
             key={i}
             icon="user"
             mb="0.5rem"
-            content={record.id + ': ' + record.name}
             onClick={() => act('d_rec', { d_rec: record.ref })}
-          />
+          >
+            {record.id + ': ' + record.name}
+          </Button>
         ))}
       </Box>
     </>
@@ -119,11 +122,9 @@ const GeneralRecordsList = (_properties) => {
 const GeneralRecordsMaintenance = (_properties) => {
   const { act } = useBackend();
   return (
-    <Button.Confirm
-      icon="trash"
-      content="Delete All Employment Records"
-      onClick={() => act('del_all')}
-    />
+    <Button.Confirm icon="trash" onClick={() => act('del_all')}>
+      Delete All Employment Records
+    </Button.Confirm>
   );
 };
 
@@ -139,25 +140,28 @@ const GeneralRecordsView = (_properties) => {
         <Button.Confirm
           icon="trash"
           disabled={!!general.empty}
-          content="Delete Employment Record"
           color="bad"
           onClick={() => act('del_r')}
-        />
+        >
+          Delete Employment Record
+        </Button.Confirm>
         <Button
           icon={printing ? 'spinner' : 'print'}
           disabled={printing}
           iconSpin={!!printing}
-          content="Print Entry"
           ml="0.5rem"
           onClick={() => act('print_p')}
-        />
+        >
+          Print Entry
+        </Button>
         <br />
         <Button
           icon="arrow-left"
-          content="Back"
           mt="0.5rem"
           onClick={() => act('screen', { screen: 2 })}
-        />
+        >
+          Back
+        </Button>
       </Section>
     </>
   );
@@ -170,12 +174,9 @@ const GeneralRecordsViewGeneral = (_properties) => {
     return (
       <Box color="bad">
         General record lost!
-        <Button
-          icon="pen"
-          content="New Record"
-          ml="0.5rem"
-          onClick={() => act('new')}
-        />
+        <Button icon="pen" ml="0.5rem" onClick={() => act('new')}>
+          New Record
+        </Button>
       </Box>
     );
   }
@@ -220,12 +221,13 @@ const GeneralRecordsViewGeneral = (_properties) => {
 
           <Button
             icon="comment"
-            content="Add Entry"
             color="good"
             mt="0.5rem"
             mb="0"
             onClick={() => modalOpen('add_c')}
-          />
+          >
+            Add Entry
+          </Button>
         </Section>
       </Box>
       <Box width="50%" float="right" textAlign="right">

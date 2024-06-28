@@ -102,6 +102,5 @@ Also includes Life and New
 	..()
 
 /mob/living/simple_mob/xeno/Destroy()
-	traitdat.Destroy()	//Let's clean up after ourselves.
-	traitdat = null
+	QDEL_NULL(traitdat)
 	..()

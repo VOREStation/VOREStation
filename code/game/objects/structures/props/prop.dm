@@ -52,6 +52,13 @@
 	icon_state = "ship_memorial"
 	bound_width = 64
 
+/obj/structure/prop/big_skeleton
+	name = "large skeleton"
+	desc = "Whatever it is, it doesn't look too healthy."
+	icon = 'icons/obj/props/decor96x96.dmi'
+	icon_state = "big_skeleton"
+	density = 0
+
 /**
  *
  Notes on change_state

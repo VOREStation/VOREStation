@@ -1,10 +1,5 @@
 #define DNA_BLOCK_SIZE 3
 
-// Buffer datatype flags.
-#define DNA2_BUF_UI 1
-#define DNA2_BUF_UE 2
-#define DNA2_BUF_SE 4
-
 #define PAGE_UI "ui"
 #define PAGE_SE "se"
 #define PAGE_BUFFER "buffer"
@@ -792,6 +787,7 @@
 		else
 			return FALSE
 
+#undef DNA_BLOCK_SIZE
 
 #undef PAGE_UI
 #undef PAGE_SE

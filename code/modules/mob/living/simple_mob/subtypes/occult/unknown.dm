@@ -345,3 +345,11 @@
 	intelligence_level = AI_SMART
 	vision_range = 9
 	closest_distance = 4
+
+#undef GA_ADS
+#undef GA_CALLDOWN
+#undef GA_SPEEDUP
+#undef GA_ILLUSION
+#undef GA_BULLETHELL
+#undef GA_LINES
+#undef GA_CONFUSION
