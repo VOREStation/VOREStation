@@ -74,11 +74,6 @@ export const EmbeddedController = (props) => {
   const { data } = useBackend<Data>();
   const { internalTemplateName } = data;
 
-  function handleUploadImage(ev) {
-    alert(ev);
-  }
-
-  handleUploadImage(internalTemplateName);
   /** ***************************************************************************\
   *                                 ROUTES                                       *
   \******************************************************************************/
