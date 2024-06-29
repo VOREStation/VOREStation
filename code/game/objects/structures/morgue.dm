@@ -227,8 +227,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 			if (!( A.anchored ))
 				A.forceMove(src)
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-		//src.connected = null
-		qdel(src.connected)
+		qdel_null(connected)
 	else if (src.locked == 0)
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		src.connected = new /obj/structure/m_tray/c_tray( src.loc )
@@ -242,8 +241,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 				A.forceMove(src.connected.loc)
 			src.connected.icon_state = "cremat"
 		else
-			//src.connected = null
-			qdel(src.connected)
+			qdel_null(connected)
 	src.add_fingerprint(user)
 	update()
 
