@@ -262,6 +262,8 @@ type BackendState<TData> = {
     status: number;
     interface: string;
     refreshing: boolean;
+    map: string; // Vorestation Add
+    mapZLevel: number; // Vorestation Add
     window: {
       key: string;
       size: [number, number];

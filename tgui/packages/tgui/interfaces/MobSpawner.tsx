@@ -46,77 +46,77 @@ type Data = {
 };
 
 export const MobSpawner = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
 
-  const [tabIndex, setTabIndex] = useState(0);
-  const [radius, setRadius] = useState(0);
-  const [forceUpdate, renderData] = useState();
-  const [x, setX] = useState(data.initial_x);
-  const [y, setY] = useState(data.initial_y);
-  const [z, setZ] = useState(data.initial_z);
-  const [sizeMultiplier, setSizeMultiplier] = useState(100);
-  const [amount, setAmount] = useState(1);
+  const [tabIndex, setTabIndex] = useState<number>(0);
+  const [radius, setRadius] = useState<number>(0);
+  const [forceUpdate, renderData] = useState<any>();
+  const [x, setX] = useState<number>(data.initial_x);
+  const [y, setY] = useState<number>(data.initial_y);
+  const [z, setZ] = useState<number>(data.initial_z);
+  const [sizeMultiplier, setSizeMultiplier] = useState<number>(100);
+  const [amount, setAmount] = useState<number>(1);
 
-  function handleHealth(value) {
+  function handleHealth(value: number) {
     data.health = value;
     renderData(value);
   }
 
-  function handleMaxHealth(value) {
+  function handleMaxHealth(value: number) {
     data.max_health = value;
     renderData(value);
   }
 
-  function handleMeleeDamageLower(value) {
+  function handleMeleeDamageLower(value: number) {
     data.melee_damage_lower = value;
     renderData(value);
   }
 
-  function handleMeleeDamageupper(value) {
+  function handleMeleeDamageupper(value: number) {
     data.melee_damage_upper = value;
     renderData(value);
   }
 
-  function handleName(value) {
+  function handleName(value: string) {
     data.path_name = value;
     renderData(value);
   }
 
-  function handleDesc(value) {
+  function handleDesc(value: string) {
     data.desc = value;
     renderData(value);
   }
 
-  function handleFlavor(value) {
+  function handleFlavor(value: string) {
     data.flavor_text = value;
     renderData(value);
   }
 
-  function handleRadius(value) {
+  function handleRadius(value: number) {
     setRadius(value);
   }
 
-  function handleX(value) {
+  function handleX(value: number) {
     setX(value);
   }
 
-  function handleY(value) {
+  function handleY(value: number) {
     setY(value);
   }
 
-  function handleZ(value) {
+  function handleZ(value: number) {
     setZ(value);
   }
 
-  function handleSizeMultiplier(value) {
+  function handleSizeMultiplier(value: number) {
     setSizeMultiplier(value);
   }
 
-  function handleAmount(value) {
+  function handleAmount(value: number) {
     setAmount(value);
   }
 
-  const tabs: any = [];
+  const tabs: React.JSX.Element[] = [];
 
   tabs[0] = (
     <GeneralMobSettings
@@ -130,7 +130,7 @@ export const MobSpawner = (props) => {
       onHealth={handleHealth}
       onMaxHealth={handleMaxHealth}
       onMeleeDamageLower={handleMeleeDamageLower}
-      onMeleeDamageupper={handleMeleeDamageupper}
+      onMeleeDamageUpper={handleMeleeDamageupper}
       onName={handleName}
       onDesc={handleDesc}
       onFlavor={handleFlavor}
@@ -160,7 +160,27 @@ export const MobSpawner = (props) => {
   );
 };
 
-const GeneralMobSettings = (props) => {
+const GeneralMobSettings = (props: {
+  radius: number;
+  x: number;
+  y: number;
+  z: number;
+  sizeMultiplier: number;
+  amount: number;
+  onRadius: Function;
+  onHealth: Function;
+  onMaxHealth: Function;
+  onMeleeDamageLower: Function;
+  onMeleeDamageUpper: Function;
+  onName: Function;
+  onDesc: Function;
+  onFlavor: Function;
+  onX: Function;
+  onY: Function;
+  onZ: Function;
+  onSizeMultiplier: Function;
+  onAmount: Function;
+}) => {
   const { act, data } = useBackend<Data>();
   return (
     <>
@@ -170,7 +190,7 @@ const GeneralMobSettings = (props) => {
             <Input
               fluid
               value={data.path_name}
-              onChange={(e, val) => props.onName(val)}
+              onChange={(e, val: string) => props.onName(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
@@ -183,7 +203,7 @@ const GeneralMobSettings = (props) => {
               value={props.amount}
               minValue={0}
               maxValue={256}
-              onChange={(e, val) => props.onAmount(val)}
+              onChange={(e, val: number) => props.onAmount(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label={'Size (' + props.sizeMultiplier + '%)'}>
@@ -192,7 +212,7 @@ const GeneralMobSettings = (props) => {
               minValue={50}
               maxValue={200}
               unit="%"
-              onChange={(e, val) => props.onSizeMultiplier(val)}
+              onChange={(e, val: number) => props.onSizeMultiplier(val)}
             />
           </LabeledList.Item>
         </LabeledList>
@@ -207,19 +227,19 @@ const GeneralMobSettings = (props) => {
                     value={data.loc_lock ? data.loc_x : props.x}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => props.onX(val)}
+                    onChange={(e, val: number) => props.onX(val)}
                   />
                   <NumberInput
                     value={data.loc_lock ? data.loc_y : props.y}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => props.onY(val)}
+                    onChange={(e, val: number) => props.onY(val)}
                   />
                   <NumberInput
                     value={data.loc_lock ? data.loc_z : props.z}
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => props.onZ(val)}
+                    onChange={(e, val: number) => props.onZ(val)}
                   />
                   <Button.Checkbox
                     checked={data.loc_lock}
@@ -234,7 +254,7 @@ const GeneralMobSettings = (props) => {
                     disabled
                     minValue={0}
                     maxValue={256}
-                    onChange={(e, val) => props.onRadius(val)}
+                    onChange={(e, val: number) => props.onRadius(val)}
                   />
                 </LabeledList.Item>
               </LabeledList>
@@ -280,13 +300,13 @@ const GeneralMobSettings = (props) => {
                     <LabeledList.Item label="Max Health">
                       <NumberInput
                         value={data.max_health}
-                        onChange={(e, val) => props.onMaxHealth(val)}
+                        onChange={(e, val: number) => props.onMaxHealth(val)}
                       />
                     </LabeledList.Item>
                     <LabeledList.Item label="Health">
                       <NumberInput
                         value={data.health}
-                        onChange={(e, val) => props.onHealth(val)}
+                        onChange={(e, val: number) => props.onHealth(val)}
                       />
                     </LabeledList.Item>
                     <br />
@@ -298,13 +318,17 @@ const GeneralMobSettings = (props) => {
                     <LabeledList.Item label="Melee Damage (Lower)">
                       <NumberInput
                         value={data.melee_damage_lower}
-                        onChange={(e, val) => props.onMeleeDamageLower(val)}
+                        onChange={(e, val: number) =>
+                          props.onMeleeDamageLower(val)
+                        }
                       />
                     </LabeledList.Item>
                     <LabeledList.Item label="Melee Damage (Upper)">
                       <NumberInput
                         value={data.melee_damage_upper}
-                        onChange={(e, val) => props.onMeleeDamageUpper(val)}
+                        onChange={(e, val: number) =>
+                          props.onMeleeDamageUpper(val)
+                        }
                       />
                     </LabeledList.Item>
                   </>
@@ -322,7 +346,7 @@ const GeneralMobSettings = (props) => {
             <br />
             <TextArea
               height={'18rem'}
-              onChange={(e, val) => props.onDesc(val)}
+              onChange={(e, val: string) => props.onDesc(val)}
               value={data.desc}
             />
           </Flex.Item>
@@ -332,7 +356,7 @@ const GeneralMobSettings = (props) => {
             <TextArea
               height={'18rem'}
               value={data.flavor_text}
-              onChange={(e, val) => props.onFlavor(val)}
+              onChange={(e, val: string) => props.onFlavor(val)}
             />
           </Flex.Item>
         </Flex>
@@ -364,8 +388,6 @@ const GeneralMobSettings = (props) => {
 };
 
 const VoreMobSettings = (props) => {
-  const { act, data } = useBackend<Data>();
-
   return (
     <Section title="WIP">
       This Tab is still under construction!

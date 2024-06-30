@@ -82,7 +82,7 @@
 			if(dish.growth >= 50)
 				var/list/effects[0]
 				for (var/datum/disease2/effectholder/e in dish.virus2.effects)
-					effects.Add(list(list("name" = (dish.analysed ? e.effect.name : "Unknown"), "stage" = (e.stage), "reference" = "\ref[e]")))
+					effects.Add(list(list("name" = (dish.analysed ? e.effect.name : "Unknown"), "stage" = (e.stage), "reference" = "\ref[e]"), "badness" = e.effect.badness))
 				data["effects"] = effects
 			else
 				data["info"] = "Insufficient cell growth for gene splicing."
@@ -191,4 +191,3 @@
 		if("disk")
 			burning = 10
 			. = TRUE
-

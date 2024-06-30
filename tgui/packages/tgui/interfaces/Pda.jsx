@@ -6,12 +6,12 @@ import { Window } from '../layouts';
 /* This is all basically stolen from routes.js. */
 import { routingError } from '../routes';
 
-const requirePdaInterface = require.context('./pda', false, /\.jsx$/);
+const requirePdaInterface = require.context('./pda', false, /\.tsx$/);
 
 const getPdaApp = (name) => {
   let appModule;
   try {
-    appModule = requirePdaInterface(`./${name}.jsx`);
+    appModule = requirePdaInterface(`./${name}.tsx`);
   } catch (err) {
     if (err.code === 'MODULE_NOT_FOUND') {
       return routingError('notFound', name);

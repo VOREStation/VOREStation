@@ -10,9 +10,9 @@ type Data = {
     id: string;
     active: BooleanLike;
     ref: string;
-    effective_range;
-    reaction_wheel_delay;
-    recharge_time;
+    effective_range: string;
+    reaction_wheel_delay: string;
+    recharge_time: string;
   }[];
 };
 

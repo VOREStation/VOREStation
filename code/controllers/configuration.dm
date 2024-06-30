@@ -1015,6 +1015,12 @@ var/list/gamemode_cache = list()
 				if("asset_cdn_url")
 					config.asset_cdn_url = value
 
+				if("allow_robot_recolor")
+					config.allow_robot_recolor = TRUE
+
+				if("allow_simple_mob_recolor")
+					config.allow_simple_mob_recolor = TRUE
+
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
@@ -1083,10 +1089,6 @@ var/list/gamemode_cache = list()
 
 				if("loadout_whitelist")
 					config.loadout_whitelist = text2num(value)
-				if("allow_robot_recolor")
-					config.allow_robot_recolor = 1
-				if("allow_simple_mob_recolor")
-					config.allow_simple_mob_recolor = 1
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
