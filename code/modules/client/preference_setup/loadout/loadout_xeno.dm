@@ -554,16 +554,19 @@
 	display_name = "warden belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/wrdn
 	allowed_roles = list("Head of Security","Warden")
+	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/beltcloak/jani
 	display_name = "janitor belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/jani
 	allowed_roles = list("Janitor")
+	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/beltcloak/cmd
 	display_name = "command belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command
 	allowed_roles = list("Site Manager","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
+	sort_category = "Xenowear"
 
 /datum/gear/suit/cloak_hood
 	display_name = "hooded cloak selection (Teshari)"

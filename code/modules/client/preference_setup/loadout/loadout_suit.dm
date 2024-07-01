@@ -144,6 +144,7 @@
 	display_name = "labcoat selection, cmo"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	allowed_roles = list("Chief Medical Officer")
+	show_roles = FALSE
 
 /datum/gear/suit/labcoat_cmo/New()
 	..()
@@ -163,6 +164,7 @@
 	display_name = "labcoat, research director"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/rd
 	allowed_roles = list("Research Director")
+	show_roles = FALSE
 
 /datum/gear/suit/miscellaneous/labcoat
 	display_name = "plague doctor's coat"
@@ -254,42 +256,49 @@
 	display_name = "cloak, head of security"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hos
 	allowed_roles = list("Head of Security")
+	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_cmo
 	display_name = "cloak, chief medical officer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cmo
 	allowed_roles = list("Chief Medical Officer")
+	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_ce
 	display_name = "cloak, chief engineer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/ce
 	allowed_roles = list("Chief Engineer")
+	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_rd
 	display_name = "cloak, research director"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/rd
 	allowed_roles = list("Research Director")
+	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_qm
 	display_name = "cloak, quartermaster"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/qm
 	allowed_roles = list("Quartermaster")
+	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_captain
 	display_name = "cloak, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/captain
 	allowed_roles = list("Site Manager")
+	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_hop
 	display_name = "cloak, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop
 	allowed_roles = list("Head of Personnel")
+	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/cloak_custom //A colorable cloak
@@ -344,7 +353,7 @@
 	path = /obj/item/clothing/suit/suspenders
 
 /datum/gear/suit/forensics
-	display_name = "forensics uniform selection (Detective)"
+	display_name = "forensics uniform selection"
 	path = /obj/item/clothing/suit/storage/forensics/red/long
 	allowed_roles = list("Detective")
 
@@ -362,11 +371,13 @@
 	display_name = "coat, quartermaster"
 	path = /obj/item/clothing/suit/storage/qm
 	allowed_roles = list("Quartermaster")
+	show_roles = FALSE
 
 /datum/gear/suit/cargo_coat
 	display_name = "coat, cargo tech"
 	path = /obj/item/clothing/suit/storage/cargo
 	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
+	show_roles = FALSE
 
 // winter coats go here
 /datum/gear/suit/wintercoat
@@ -377,116 +388,139 @@
 	display_name = "winter coat, site manager"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/captain
 	allowed_roles = list("Site Manager")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/hop
 	display_name = "winter coat, head of personnel"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hop
 	allowed_roles = list("Head of Personnel")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/security
 	display_name = "winter coat, security"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security
 	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/security/hos
 	display_name = "winter coat, head of security"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security/hos
 	allowed_roles = list("Head of Security")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical
 	display_name = "winter coat, medical"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/alt
 	display_name = "winter coat, medical alt"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/viro
 	display_name = "winter coat, virologist"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/viro
 	allowed_roles = list("Medical Doctor","Chief Medical Officer")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/para
 	display_name = "winter coat, paramedic"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/para
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/chemist
 	display_name = "winter coat, chemist"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist
 	allowed_roles = list("Chief Medical Officer","Chemist")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/cmo
 	display_name = "winter coat, chief medical officer"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/cmo
 	allowed_roles = list("Chief Medical Officer")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/sar
 	display_name = "winter coat, search and rescue"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
 	allowed_roles = list("Chief Medical Officer","Paramedic")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science
 	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science/robotics
 	display_name = "winter coat, robotics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science/robotics
 	allowed_roles = list("Research Director", "Roboticist")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science/rd
 	display_name = "winter coat, research director"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science/rd
 	allowed_roles = list("Research Director")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering
 	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/engineering/atmos
 	display_name = "winter coat, atmospherics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
 	allowed_roles = list("Chief Engineer", "Atmospheric Technician")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/engineering/ce
 	display_name = "winter coat, chief engineer"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce
 	allowed_roles = list("Chief Engineer")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/hydro
 	display_name = "winter coat, hydroponics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hydro
 	allowed_roles = list("Botanist", "Xenobotanist")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/cargo
 	display_name = "winter coat, cargo"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
 	allowed_roles = list("Quartermaster","Cargo Technician")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/miner
 	display_name = "winter coat, mining"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/miner
 	allowed_roles = list("Shaft Miner")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/cargo/qm
 	display_name = "winter coat, quartermaster"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cargo/qm
 	allowed_roles = list("Quartermaster")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/bar
 	display_name = "winter coat, bartender"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/bar
 	allowed_roles = list("Bartender")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/janitor
 	display_name = "winter coat, janitor"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/janitor
 	allowed_roles = list("Janitor")
+	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/aformal
 	display_name = "winter coat, assistant formal"
@@ -613,31 +647,37 @@
 	display_name = "snowsuit, command"
 	path = /obj/item/clothing/suit/storage/snowsuit/command
 	allowed_roles = list("Site Manager","Research Director","Head of Personnel","Head of Security","Chief Engineer","Command Secretary")
+	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/security
 	display_name = "snowsuit, security"
 	path = /obj/item/clothing/suit/storage/snowsuit/security
 	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/medical
 	display_name = "snowsuit, medical"
 	path = /obj/item/clothing/suit/storage/snowsuit/medical
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Search and Rescue")
+	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/science
 	display_name = "snowsuit, science"
 	path = /obj/item/clothing/suit/storage/snowsuit/science
 	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/engineering
 	display_name = "snowsuit, engineering"
 	path = /obj/item/clothing/suit/storage/snowsuit/engineering
 	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/cargo
 	display_name = "snowsuit, supply"
 	path = /obj/item/clothing/suit/storage/snowsuit/cargo
 	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
+	show_roles = FALSE
 
 /datum/gear/suit/miscellaneous/cardigan
 	display_name = "cardigan, colorable"
@@ -651,6 +691,7 @@
 	display_name = "command dress jacket"
 	path = /obj/item/clothing/suit/storage/toggle/cmddressjacket
 	allowed_roles = list("Site Manager", "Head of Personnel", "Command Secretary")
+	show_roles = FALSE
 
 /datum/gear/suit/miscellaneous/kimono
 	display_name = "traditional kimono, colorable"
