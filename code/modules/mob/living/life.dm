@@ -139,6 +139,7 @@
 	handle_drugged()
 	handle_slurring()
 	handle_confused()
+	handle_sleeping()
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
@@ -298,8 +299,10 @@
 	if(stat != DEAD && toggled_sleeping)
 		Sleeping(2)
 	if(sleeping)
+		set_stat(UNCONSCIOUS)
 		AdjustSleeping(-1)
 		throw_alert("asleep", /obj/screen/alert/asleep)
 	else
+		set_stat(CONSCIOUS)
 		clear_alert("asleep")
 	return sleeping
