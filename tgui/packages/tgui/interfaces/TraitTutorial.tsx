@@ -6,9 +6,9 @@ import { Window } from '../layouts';
 type data = {
   namae: string;
   names: string[];
-  descriptions: { key: string; val: string }[];
-  categories: { key: string; val: string }[];
-  tutorials: { key: string; val: string }[];
+  descriptions: Record<string, string>[];
+  categories: Record<string, string>[];
+  tutorials: Record<string, string>[];
   selection: string;
 };
 

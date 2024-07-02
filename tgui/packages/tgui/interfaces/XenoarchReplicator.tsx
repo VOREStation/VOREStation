@@ -1,9 +1,10 @@
 import { useBackend } from '../backend';
 import { Button } from '../components';
 import { Window } from '../layouts';
+import { tgui_construction } from './common/CommonTypes';
 
 type Data = {
-  tgui_construction: { key; background; icon; foreground }[];
+  tgui_construction: tgui_construction;
 };
 
 export const XenoarchReplicator = (props) => {
