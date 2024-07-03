@@ -155,6 +155,7 @@ seagha - Vox
 seiga - Vox
 selter - Protean
 sepulchre - Vox
+sharplight - Protean
 shirosenshi - Xenochimera
 silvertalismen - Diona
 silvertalismen - Vox
