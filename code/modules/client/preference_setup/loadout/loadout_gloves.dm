@@ -52,7 +52,7 @@
 	cost = 3
 
 /datum/gear/gloves/forensic
-	display_name = "gloves, forensic (Detective)"
+	display_name = "gloves, forensic"
 	path = /obj/item/clothing/gloves/forensic
 	allowed_roles = list("Detective")
 
