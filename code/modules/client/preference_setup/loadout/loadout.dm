@@ -155,17 +155,17 @@ var/list/gear_datums = list()
 	. += "<tr><td colspan=3><hr></td></tr>"
 	for(var/gear_name in LC.gear)
 		var/datum/gear/G = LC.gear[gear_name]
-		//VOREStation Edit Start
 		if(preference_mob && preference_mob.client)
 			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
 				continue
 			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
 				continue
-		//VOREStation Edit End
 		var/ticked = (G.display_name in pref.gear)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		. += "<td><font size=2><i>[G.description]</i></font></td></tr>"
+		if(G.show_roles && G.allowed_roles)
+			. += "<td colspan=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted to: [list2text(G.allowed_roles,", ")]</td>"
 		if(ticked)
 			. += "<tr><td colspan=3>"
 			for(var/datum/gear_tweak/tweak in G.gear_tweaks)
@@ -252,6 +252,7 @@ var/list/gear_datums = list()
 	var/cost = 1           //Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
 	var/slot               //Slot to equip to.
 	var/list/allowed_roles //Roles that can spawn with this item.
+	var/show_roles = TRUE	//Show the role restrictions on this item?
 	var/whitelisted        //Term to check the whitelist for..
 	var/sort_category = "General"
 	var/list/gear_tweaks = list() //List of datums which will alter the item after it has been spawned.

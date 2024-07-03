@@ -3,6 +3,6 @@
 #define PLANE_CH_STATUS_R			27 //Right-side status icon
 #define PLANE_CH_BACKUP				28 //Backup implant
 #define PLANE_CH_VANTAG				29 //Vore Antag hud
-#define PLANE_CH_STOMACH			30 //Stomach Plane
+#define PLANE_CH_STOMACH			-11 //Stomach Plane
 
 #define PLANE_AUGMENTED				40 //Augmented-reality plane
