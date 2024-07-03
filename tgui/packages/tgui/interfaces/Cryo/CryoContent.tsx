@@ -11,10 +11,7 @@ import {
   ProgressBar,
   Section,
 } from '../../components';
-import {
-  damageTypes,
-  statNames,
-} from './constants';
+import { damageTypes, statNames } from './constants';
 import { Data } from './types';
 
 export const CryoContent = (props) => {
