@@ -21,27 +21,27 @@
 	path = /obj/item/clothing/glasses/omnihud/prescription
 
 /datum/gear/eyes/arglasses/sec
-	display_name = "AR-S glasses (Sec)"
+	display_name = "AR-Security glasses"
 	path = /obj/item/clothing/glasses/omnihud/sec
 	allowed_roles = list("Security Officer","Head of Security","Warden","Detective")
 
 /datum/gear/eyes/arglasses/sci
-	display_name = "AR-R glasses (Sci)"
+	display_name = "AR-Research glasses"
 	path = /obj/item/clothing/glasses/omnihud/rnd
 	allowed_roles = list("Research Director","Scientist","Xenobiologist","Xenobotanist","Roboticist")
 
 /datum/gear/eyes/arglasses/eng
-	display_name = "AR-E glasses (Eng)"
+	display_name = "AR-Engineering glasses"
 	path = /obj/item/clothing/glasses/omnihud/eng
 	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician")
 
 /datum/gear/eyes/arglasses/med
-	display_name = "AR-M glasses (Medical)"
+	display_name = "AR-Medical glasses"
 	path = /obj/item/clothing/glasses/omnihud/med
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/eyes/arglasses/all
-	display_name = "AR-B glasses (SM, HoP)"
+	display_name = "AR-Command glasses"
 	path = /obj/item/clothing/glasses/omnihud/all
 	cost = 2
 	allowed_roles = list("Site Manager","Head of Personnel")
@@ -55,7 +55,7 @@
 	path = /obj/item/clothing/glasses/fluff/science_proper
 
 /datum/gear/eyes/meson/retinal
-	display_name = "retinal projector, meson (Eng, Sci, Explo)"
+	display_name = "retinal projector, meson"
 	path = /obj/item/clothing/glasses/omnihud/eng/meson
 
 /datum/gear/eyes/security/secpatch
@@ -67,7 +67,7 @@
 	path = /obj/item/clothing/glasses/hud/security/eyepatch2
 
 /datum/gear/eyes/security/tac_sec_visor
-	display_name = "Tactical AR visor (Security)"
+	display_name = "Tactical AR visor"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis
 
 /datum/gear/eyes/medical/medpatch

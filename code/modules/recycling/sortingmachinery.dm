@@ -348,11 +348,23 @@
 		ui = new(user, src, "DestinationTagger", name)
 		ui.open()
 
+/obj/item/device/destTagger/tgui_static_data(mob/user)
+	var/list/data = ..()
+	var/list/taggers = list()
+	var/list/tagger_levels = list()
+	for(var/tag in GLOB.tagger_locations)
+		var/z_level = GLOB.tagger_locations[tag]
+		taggers += list(list("tag" = tag, "level" = z_level))
+		tagger_levels += list(list("z" = z_level, "location" = using_map.get_zlevel_name(z_level)))
+	data["taggerLevels"] = tagger_levels
+	data["taggerLocs"] = taggers
+
+	return data
+
 /obj/item/device/destTagger/tgui_data(mob/user, datum/tgui/ui)
 	var/list/data = ..()
 
 	data["currTag"] = currTag
-	data["taggerLocs"] = GLOB.tagger_locations
 
 	return data
 

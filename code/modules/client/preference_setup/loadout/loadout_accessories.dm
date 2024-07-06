@@ -75,7 +75,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(wcoats))
 
 /datum/gear/accessory/holster
-	display_name = "holster selection (Security, CD, HoP)"
+	display_name = "holster selection"
 	path = /obj/item/clothing/accessory/holster
 	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 

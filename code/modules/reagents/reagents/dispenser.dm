@@ -113,7 +113,7 @@
 	if(issmall(M))
 		removed *= 2
 
-	var/strength_mod = 3 * M.species.chem_strength_alcohol //Alcohol is 3x stronger when injected into the veins.
+	var/strength_mod = 3 //Alcohol is 3x stronger when injected into the veins.
 	if(!strength_mod)
 		return
 
@@ -121,19 +121,19 @@
 		M.add_chemical_effect(CE_ALCOHOL, 1)
 		var/effective_dose = dose * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
 
-		if(effective_dose >= strength) // Early warning
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol)) // Early warning
 			M.make_dizzy(18) // It is decreased at the speed of 3 per tick
-		if(effective_dose >= strength * 2) // Slurring
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 2) // Slurring
 			M.slurring = max(M.slurring, 90)
-		if(effective_dose >= strength * 3) // Confusion - walking in random directions
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 3) // Confusion - walking in random directions
 			M.Confuse(60)
-		if(effective_dose >= strength * 4) // Blurry vision
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 4) // Blurry vision
 			M.eye_blurry = max(M.eye_blurry, 30)
-		if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 5) // Drowsyness - periodically falling asleep
 			M.drowsyness = max(M.drowsyness, 60)
-		if(effective_dose >= strength * 6) // Toxic dose
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 6) // Toxic dose
 			M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity*3)
-		if(effective_dose >= strength * 7) // Pass out
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 7) // Pass out
 			M.Paralyse(60)
 			M.Sleeping(90)
 
@@ -160,26 +160,26 @@
 	if(M.isSynthetic() && M.nutrition < 500 && M.species.robo_ethanol_proc)
 		M.adjust_nutrition(round(max(0,ep_base_power - strength) * removed)/ep_final_mod)	//the stronger it is, the more juice you gain
 
-	var/effective_dose = dose * M.species.chem_strength_alcohol
+	var/effective_dose = dose
 	if(!effective_dose)
 		return
 
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		M.add_chemical_effect(CE_ALCOHOL, 1)
 
-		if(effective_dose >= strength) // Early warning
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol)) // Early warning
 			M.make_dizzy(6) // It is decreased at the speed of 3 per tick
-		if(effective_dose >= strength * 2) // Slurring
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 2) // Slurring
 			M.slurring = max(M.slurring, 30)
-		if(effective_dose >= strength * 3) // Confusion - walking in random directions
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 3) // Confusion - walking in random directions
 			M.Confuse(20)
-		if(effective_dose >= strength * 4) // Blurry vision
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 4) // Blurry vision
 			M.eye_blurry = max(M.eye_blurry, 10)
-		if(effective_dose >= strength * 5) // Drowsyness - periodically falling asleep
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 5) // Drowsyness - periodically falling asleep
 			M.drowsyness = max(M.drowsyness, 20)
-		if(effective_dose >= strength * 6) // Toxic dose
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 6) // Toxic dose
 			M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
-		if(effective_dose >= strength * 7) // Pass out
+		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 7) // Pass out
 			M.Paralyse(20)
 			M.Sleeping(30)
 
