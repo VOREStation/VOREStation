@@ -17698,15 +17698,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
-"Lz" = (
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	door_color = "#333333";
-	name = "Auxiliary EVA Equipment Room";
-	req_one_access = list(18,19,43);
-	stripe_color = "#5a19a8"
-	},
-/turf/simulated/floor,
-/area/maintenance/stellardelight/deck1/exploration)
 "LA" = (
 /obj/structure/cable/pink{
 	icon_state = "1-8"
@@ -31602,7 +31593,7 @@ Ua
 Ua
 Ua
 Ec
-Lz
+vT
 pC
 HG
 LO
