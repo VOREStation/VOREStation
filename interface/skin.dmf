@@ -721,6 +721,12 @@ macro "hotkeymode"
 		name = "U"
 		command = "Rest"
 	elem
+		name = "SHIFT+U"
+		command = "Rest-Left"
+	elem
+		name = "CTRL+U"
+		command = "Rest-Right"
+	elem
 		name = "B"
 		command = "Resist"
 	elem

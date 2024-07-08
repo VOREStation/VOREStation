@@ -161,11 +161,19 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			update_tail_showing()
 			M.Scale(desired_scale_x, desired_scale_y)
 		else
-			var/randn = rand(1, 2)
-			if(randn <= 1) // randomly choose a rotation
-				M.Turn(-90)
+			if(rest_dir)
+				if(rest_dir < 0)
+					M.Turn(-90)
+					rest_dir = 0
+				else
+					M.Turn(90)
+					rest_dir = 0
 			else
-				M.Turn(90)
+				var/randn = rand(1, 2)
+				if(randn <= 1) // randomly choose a rotation
+					M.Turn(-90)
+				else
+					M.Turn(90)
 			if(species.icon_height == 64)
 				M.Translate(13,-22)
 			else

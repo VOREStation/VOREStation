@@ -2,7 +2,7 @@ import { BooleanLike } from 'common/react';
 
 export type Data = {
   menu: number;
-  scanner: string;
+  scanner: string | null;
   numberofpods: number | null;
   pods: {
     pod: string;
