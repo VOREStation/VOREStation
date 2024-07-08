@@ -18,7 +18,8 @@
 		/obj/item/weapon/reagent_containers/spray/plantbgone,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,
 		/obj/item/clothing/shoes/boots/winter/hydro,
-		/obj/item/weapon/storage/belt/hydro)
+		/obj/item/weapon/storage/belt/hydro,
+		/obj/item/weapon/material/fishing_net/butterfly_net)
 
 /obj/structure/closet/secure_closet/hydroponics/Initialize()
 	if(prob(50))

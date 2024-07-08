@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useBackend, useSharedState } from '../../backend';
-import { Button, Section, Tabs } from '../../components';
+import { Box, Button, Section, Tabs } from '../../components';
 import { Window } from '../../layouts';
 import { menus } from './constants';
 import { ResearchConsoleConstructor } from './ResearchConsoleConstructor';
@@ -45,58 +45,59 @@ export const ResearchConsole = (props) => {
 
   const tab: React.JSX.Element[] = [];
 
-  tab[0] = (
+  tab[0] = (info && (
     <ResearchConsoleConstructor
       name="Protolathe"
-      linked={info!.linked_lathe}
+      linked={info.linked_lathe}
       designs={lathe_designs}
       protoTab={protoTab}
       matsStates={matsStates}
       onProtoTab={setProtoTab}
       onMatsState={setMatsState}
     />
-  );
-  tab[1] = (
+  )) || <Box />;
+
+  tab[1] = (info && (
     <ResearchConsoleConstructor
       name="Circuit Imprinter"
-      linked={info!.linked_imprinter}
+      linked={info.linked_imprinter}
       designs={imprinter_designs}
       protoTab={protoTab}
       matsStates={matsStates}
       onProtoTab={setProtoTab}
       onMatsState={setMatsState}
     />
-  );
+  )) || <Box />;
 
-  tab[2] = (
+  tab[2] = (info && (
     <ResearchConsoleDestructiveAnalyzer
       name="Destructive Analyzer"
-      linked_destroy={info!.linked_destroy}
+      linked_destroy={info.linked_destroy}
     />
-  );
+  )) || <Box />;
 
-  tab[3] = (
+  tab[3] = (info && (
     <ResearchConsoleSettings
-      info={info!}
+      info={info}
       settingsTab={settingsTab}
       onSettingsTab={setSettingsTab}
     />
-  );
+  )) || <Box />;
 
   tab[4] = <ResearchConsoleViewResearch />;
 
   tab[5] = <ResearchConsoleViewDesigns />;
 
-  tab[6] = (
+  tab[6] = (info && (
     <ResearchConsoleDisk
       saveDialogTech={saveDialogTech}
       saveDialogDesign={saveDialogDesign}
       onSaveDialogTech={setSaveDialogTech}
       onSaveDialogDesign={setSaveDialogDesign}
-      d_disk={info!.d_disk}
-      t_disk={info!.t_disk}
+      d_disk={info.d_disk}
+      t_disk={info.t_disk}
     />
-  );
+  )) || <Box />;
 
   return (
     <Window width={850} height={630}>
