@@ -53,6 +53,17 @@
 			suit.accessories -= A
 			update_inv_w_uniform()
 			return
+		if("underwear")
+			var/datum/category_group/underwear/UWC = tgui_input_list(user, "Choose underwear. (Do not do this without OOC permission from the other player)", "Show/hide underwear", global_underwear.categories)
+			if(!UWC) return
+			var/datum/category_item/underwear/UWI = all_underwear[UWC.name]
+			if(!UWI || UWI.name == "None")
+				to_chat(user, "<span class='notice'>\The [src] does not have [UWC.gender==PLURAL ? "[UWC.display_name]" : "a [UWC.display_name]"].</span>")
+				return
+			hide_underwear[UWC.name] = !hide_underwear[UWC.name]
+			update_underwear(1)
+			visible_message("<span class='danger'>\The [user] [hide_underwear[UWC.name] ? "takes off" : "puts on"] \the [src]'s [UWC.display_name].</span>")
+			return
 
 	// Are we placing or stripping?
 	var/stripping
@@ -67,7 +78,7 @@
 			var/obj/item/weapon/grab/grab = held
 			if(istype(grab) && grab.affecting == src)
 				stripping = TRUE
-		
+
 	if(stripping)
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
