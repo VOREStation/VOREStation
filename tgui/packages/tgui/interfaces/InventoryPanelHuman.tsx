@@ -90,7 +90,7 @@ export const InventoryPanelHuman = (props) => {
           </Button>
           <Button
             fluid
-            icon="unlink"
+            icon="socks"
             onClick={() => act('targetSlot', { slot: 'underwear' })}
           >
             Remove or Replace Underwear

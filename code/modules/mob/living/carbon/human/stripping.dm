@@ -62,7 +62,7 @@
 				return
 			hide_underwear[UWC.name] = !hide_underwear[UWC.name]
 			update_underwear(1)
-			visible_message(src, "<span class='danger'>\The [user] [hide_underwear[UWC.name] ? "takes off" : "puts on"] \the [src]'s [UWC.display_name].</span>")
+			visible_message("<span class='danger'>\The [user] [hide_underwear[UWC.name] ? "takes off" : "puts on"] \the [src]'s [UWC.display_name].</span>")
 			return
 
 	// Are we placing or stripping?
