@@ -17,6 +17,8 @@
 	male_sneeze_sound = list('sound/effects/mob_effects/tesharisneeze.ogg','sound/effects/mob_effects/tesharisneezeb.ogg')
 	female_sneeze_sound = list('sound/effects/mob_effects/tesharisneeze.ogg','sound/effects/mob_effects/tesharisneezeb.ogg')
 
+	vore_belly_default_variant = "T" //Teshari belly sprite
+
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/proc/hide,
