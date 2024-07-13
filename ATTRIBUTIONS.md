@@ -67,3 +67,9 @@
 **URL:** [Website](https://rogue-star.net/)<br>
 **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>
 **Notes:** Permission to use assets also given in writing. These new icon-states are modifications of existing icon-states.<br>
+<br>
+**Folder:** `sound/vore/sunesound`<br>
+**Title:** Vore Sounds<br>
+**Creator:** Poojawa (https://github.com/VOREStation/VOREStation/pull/6052)<br>
+**License:** [General License](sound/vore/sunesound/LICENSE.txt)<br>
+**Notes:** Permission to use assets also given in writing. All files under this folder is NOT licensed under CC3. Seek separate permission before copying/using.<br>
