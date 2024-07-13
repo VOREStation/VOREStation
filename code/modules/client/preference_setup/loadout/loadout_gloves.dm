@@ -65,7 +65,8 @@
 	..()
 	var/list/selector_uniforms = list(
 		"black"=/obj/item/clothing/gloves/fingerless,
-		"recolourable white"=/obj/item/clothing/gloves/fingerless_recolourable
+		"black, alt" =/obj/item/clothing/gloves/fingerless/alt,
+		"recolourable white"=/obj/item/clothing/gloves/fingerless_recolourable,
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 	gear_tweaks += gear_tweak_free_color_choice

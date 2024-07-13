@@ -95,6 +95,9 @@
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	species_restricted = null
 
+/obj/item/clothing/shoes/boots/jackboots/recolorable
+	icon_state = "boots_recolor"
+
 /obj/item/clothing/shoes/boots/workboots
 	name = "workboots"
 	desc = "A pair of steel-toed work boots designed for use in industrial settings. Safety first."
