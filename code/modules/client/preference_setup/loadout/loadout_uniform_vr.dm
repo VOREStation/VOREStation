@@ -177,6 +177,7 @@ Talon jumpsuit
 	"puffy skirt"=/obj/item/clothing/under/skirt/colorable/puffy,
 	"skater skirt"=/obj/item/clothing/under/skirt/colorable/skater,
 	"pleated skirt"=/obj/item/clothing/under/skirt/colorable/pleated,
+	"pleated skirt, alt"=/obj/item/clothing/under/skirt/colorable/pleated/alt,
 	"pencil skirt"=/obj/item/clothing/under/skirt/colorable/pencil,
 	"plaid skirt"=/obj/item/clothing/under/skirt/colorable/plaid,
 	"tube skirt"=/obj/item/clothing/under/skirt/colorable/tube,
