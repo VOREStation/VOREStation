@@ -7,7 +7,7 @@ import { useBackend, useSharedState } from '../backend';
 import { Box, Button, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 import { mat } from './common/CommonTypes';
-import { Materials } from './ExosuitFabricator';
+import { Materials } from './ExosuitFabricator/Material';
 
 const canBeMade = (recipe, materials, mult: number = 1) => {
   if (recipe.requirements === null) {

@@ -4,7 +4,7 @@ import { useBackend } from '../../backend';
 import { Box, Button, Icon } from '../../components';
 import { FullscreenNotice } from './FullscreenNotice';
 
-type machine = { machineType: string };
+type machine = { machineType?: string };
 type Data = { scan: BooleanLike; isAI: BooleanLike; isRobot: BooleanLike };
 
 /**
@@ -28,12 +28,12 @@ type Data = { scan: BooleanLike; isAI: BooleanLike; isRobot: BooleanLike };
  * You will have to handle the AI login case in the same action.
  * The normal login button is only available when `scan` is not null.
  * The AI and robot login buttons are only visible if the user is one
- * @param {object} _properties
+ * @param {object} props
  */
-export const LoginScreen = (_properties: machine) => {
+export const LoginScreen = (props: machine) => {
   const { act, data } = useBackend<Data>();
   const { scan, isAI, isRobot } = data;
-  const { machineType } = _properties;
+  const { machineType } = props;
   return (
     <FullscreenNotice title="Welcome">
       <Box fontSize="1.5rem" bold>
@@ -95,9 +95,9 @@ export const LoginScreen = (_properties: machine) => {
  * specialType definitions are defined in LoginScreen.js SpecialMachineInteraction
  * currently supported: "Fax"
  */
-export const SpecialMachineInteraction = (_properties: machine) => {
+export const SpecialMachineInteraction = (props: machine) => {
   const { act } = useBackend();
-  const { machineType } = _properties;
+  const { machineType } = props;
   if (!machineType) {
     return null;
   } else if (machineType === 'Fax') {

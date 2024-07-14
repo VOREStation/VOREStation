@@ -5,7 +5,7 @@ export type Data = {
   customrecepient: string;
   customjob: string;
   custommessage: string;
-  temp: string | null;
+  temp: { color: string; text: string } | null;
   hacking: BooleanLike;
   emag: BooleanLike;
   auth: BooleanLike;

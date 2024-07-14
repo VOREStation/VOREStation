@@ -15,10 +15,10 @@ type Data = { temp: { style: string; text: string } };
  * - `text` — The text to display
  *
  * Allows clearing the notice through the `cleartemp` TGUI act
- * @param {object} _properties
+ * @param {object} props
  */
-export const TemporaryNotice = (_properties) => {
-  const { decode } = _properties;
+export const TemporaryNotice = (props) => {
+  const { decode } = props;
   const { act, data } = useBackend<Data>();
   const { temp } = data;
   if (!temp) {

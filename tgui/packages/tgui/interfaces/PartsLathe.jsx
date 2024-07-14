@@ -10,7 +10,7 @@ import {
   Section,
 } from '../components';
 import { Window } from '../layouts';
-import { Materials } from './ExosuitFabricator';
+import { Materials } from './ExosuitFabricator/Material';
 
 export const PartsLathe = (props) => {
   const { act, data } = useBackend();

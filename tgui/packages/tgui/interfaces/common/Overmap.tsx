@@ -1,4 +1,5 @@
 import { toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList } from '../../components';
@@ -38,7 +39,11 @@ export const OvermapFlightData = (props) => {
   );
 };
 
-export const OvermapPanControls = (props) => {
+export const OvermapPanControls = (props: {
+  disabled?: BooleanLike;
+  actToDo: string;
+  selected?: (val: number) => boolean;
+}) => {
   const { act } = useBackend();
 
   const { disabled, actToDo, selected = (val) => false } = props;

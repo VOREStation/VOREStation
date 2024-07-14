@@ -1,0 +1,46 @@
+import { BooleanLike } from 'common/react';
+
+export type Data = {
+  primarysystem: string | null;
+  ai: BooleanLike;
+  cooling: BooleanLike;
+  sealed: BooleanLike;
+  sealing: BooleanLike;
+  helmet: string;
+  gauntlets: string;
+  boots: string;
+  chest: string;
+  helmetDeployed: BooleanLike;
+  gauntletsDeployed: BooleanLike;
+  bootsDeployed: BooleanLike;
+  chestDeployed: BooleanLike;
+  charge: number;
+  maxcharge: number;
+  chargestatus: number;
+  emagged: BooleanLike;
+  coverlock: BooleanLike;
+  interfacelock: BooleanLike;
+  aicontrol: BooleanLike;
+  aioverride: BooleanLike;
+  securitycheck: BooleanLike;
+  malf: BooleanLike;
+  modules: {
+    index: number;
+    name: string;
+    desc: string;
+    can_use: BooleanLike;
+    can_select: BooleanLike;
+    can_toggle: BooleanLike;
+    is_active: BooleanLike;
+    engagecost: number;
+    activecost: number;
+    passivecost: number;
+    engagestring: string;
+    activatestring: string;
+    deactivatestring: string;
+    damage: number;
+    charges: { caption: string; index: string }[];
+    realchargetype: string;
+    chargetype: string;
+  }[];
+};

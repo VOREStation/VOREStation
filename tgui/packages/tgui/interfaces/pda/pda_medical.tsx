@@ -1,28 +1,11 @@
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
-import { GeneralRecord, RecordList } from './pda_types';
+import { GeneralRecord, MedicalRecord, RecordList } from './pda_types';
 
 type Data = {
   records: {
     general: GeneralRecord;
-    medical: {
-      id: string;
-      name: string;
-      species: string;
-      b_type: string;
-      b_dna: string;
-      id_gender: string;
-      brain_type: string;
-      mi_dis: string;
-      mi_dis_d: string;
-      ma_dis: string;
-      ma_dis_d: string;
-      alg: string;
-      alg_d: string;
-      cdi: string;
-      cdi_d: string;
-      notes: string;
-    };
+    medical: MedicalRecord;
   };
   recordsList: RecordList;
 };
@@ -108,7 +91,7 @@ export const pda_medical = (props) => {
           fluid
           onClick={() => act('Records', { target: record.ref })}
         >
-          {record.Name}
+          {record.name}
         </Button>
       ))}
     </Section>
