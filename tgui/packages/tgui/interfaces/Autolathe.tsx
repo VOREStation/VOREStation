@@ -53,7 +53,7 @@ export const Autolathe = (props) => {
   const [category, setCategory] = useSharedState('category', 0);
   const [searchText, setSearchText] = useSharedState('search_text', '');
 
-  const testSearch = createSearch(searchText, (recipe) => recipe.name);
+  const testSearch = createSearch(searchText, (recipe: recipe) => recipe.name);
 
   const recipesToShow = flow([
     filter((recipe: recipe) => recipe.category === categories[category]),

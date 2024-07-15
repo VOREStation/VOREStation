@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../backend';
@@ -12,8 +13,31 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  scanned_item: string;
+  scanned_item_desc: string;
+  last_scan_data: string;
+  scan_progress: number;
+  scanning: BooleanLike;
+  scanner_seal_integrity: number;
+  scanner_rpm: number;
+  scanner_temperature: number;
+  coolant_usage_rate: number;
+  coolant_usage_max: number;
+  unused_coolant_abs: number;
+  unused_coolant_per: number;
+  coolant_purity: number;
+  optimal_wavelength: number;
+  maser_wavelength: number;
+  maser_wavelength_max: number;
+  maser_efficiency: number;
+  radiation: number;
+  t_left_radspike: number;
+  rad_shield_on: BooleanLike;
+};
+
 export const XenoarchSpectrometer = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     scanned_item,
@@ -121,9 +145,11 @@ export const XenoarchSpectrometer = (props) => {
                 fillValue={optimal_wavelength}
                 minValue={1}
                 maxValue={maser_wavelength_max}
-                format={(val) => val + ' MHz'}
+                format={(val: number) => val + ' MHz'}
                 step={10}
-                onDrag={(e, val) => act('maserWavelength', { wavelength: val })}
+                onDrag={(e, val: number) =>
+                  act('maserWavelength', { wavelength: val })
+                }
               />
             </LabeledList.Item>
           </LabeledList>
@@ -209,8 +235,10 @@ export const XenoarchSpectrometer = (props) => {
                 value={coolant_usage_rate}
                 maxValue={coolant_usage_max}
                 stepPixelSize={50}
-                format={(val) => val + ' u/s'}
-                onDrag={(e, val) => act('coolantRate', { coolant: val })}
+                format={(val: number) => val + ' u/s'}
+                onDrag={(e, val: number) =>
+                  act('coolantRate', { coolant: val })
+                }
               />
             </LabeledList.Item>
             <LabeledList.Item label="Coolant Purity">

@@ -1,15 +1,30 @@
 import { BooleanLike } from 'common/react';
 
 export type Data = {
+  amounts: number[];
   hasOccupant: BooleanLike;
   occupant: occupant;
-  verbose: BooleanLike;
-  oxyAlarm: number;
-  choice: BooleanLike;
-  health: BooleanLike;
-  crit: BooleanLike;
-  healthAlarm: BooleanLike;
-  oxy: BooleanLike;
+  maxchem: number;
+  minhealth: number;
+  dialysis: BooleanLike;
+  stomachpumping: BooleanLike;
+  auto_eject_dead: BooleanLike;
+  isBeakerLoaded: BooleanLike;
+  beakerMaxSpace: number;
+  beakerFreeSpace: number;
+  stasis: string;
+  chemicals: chemical[];
+};
+
+type chemical = {
+  title: string;
+  id: number;
+  commands: { chemical: number };
+  occ_amount: number;
+  pretty_amount: number;
+  injectable: BooleanLike;
+  overdosing: BooleanLike;
+  od_warning: BooleanLike;
 };
 
 export type occupant = {
@@ -34,5 +49,4 @@ export type occupant = {
   bloodMax: number | undefined;
   bloodPercent: number | undefined;
   bloodType: string | undefined;
-  surgery: { name: string; currentStage: string; nextSteps: string[] }[] | null;
 };

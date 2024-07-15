@@ -1,6 +1,6 @@
 import { filter } from 'common/collections';
 import { flow } from 'common/fp';
-import { classes } from 'common/react';
+import { BooleanLike, classes } from 'common/react';
 import { createSearch } from 'common/string';
 import { useState } from 'react';
 
@@ -16,8 +16,32 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
-const VendingRow = (props) => {
-  const { act, data } = useBackend();
+type Data = {
+  chargesMoney: BooleanLike;
+  products: product[];
+  coin: string | BooleanLike;
+  actively_vending: string | null;
+  panel: BooleanLike;
+  speaker: BooleanLike;
+  guestNotice: string;
+  userMoney: number;
+  user: { name: string; job: string };
+};
+
+type product = {
+  key: number;
+  name: string;
+  desc: string;
+  price: number;
+  color: string;
+  isatom: BooleanLike;
+  path: string;
+  amount: number;
+  max_amount: number; // Not used?
+};
+
+const VendingRow = (props: { product: product }) => {
+  const { act, data } = useBackend<Data>();
   const { actively_vending } = data;
   const { product } = props;
   return (
@@ -27,8 +51,7 @@ const VendingRow = (props) => {
           <span
             className={classes(['vending32x32', product.path])}
             style={{
-              'vertical-align': 'middle',
-              'horizontal-align': 'middle',
+              verticalAlign: 'middle',
             }}
           />
         )) ||
@@ -73,11 +96,11 @@ const VendingRow = (props) => {
 };
 
 export const Vending = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
   const { panel } = data;
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState<string>('');
 
-  function handleSearchText(value) {
+  function handleSearchText(value: string) {
     setSearchText(value);
   }
 
@@ -91,8 +114,11 @@ export const Vending = (props) => {
   );
 };
 
-export const VendingProducts = (props) => {
-  const { act, data } = useBackend();
+export const VendingProducts = (props: {
+  searchText: string;
+  onSearch: Function;
+}) => {
+  const { act, data } = useBackend<Data>();
   const { coin, chargesMoney, user, userMoney, guestNotice, products } = data;
 
   // Just in case we still have undefined values in the list
@@ -120,13 +146,13 @@ export const VendingProducts = (props) => {
             <Input
               fluid
               placeholder="Search for products..."
-              onInput={(e, value) => props.onSearch(value)}
+              onInput={(e, value: string) => props.onSearch(value)}
             />
           </Table.Cell>
         </Table>
         <Table>
-          {myproducts.map((product) => (
-            <VendingRow key={product} product={product} />
+          {myproducts.map((product, i) => (
+            <VendingRow key={i} product={product} />
           ))}
         </Table>
       </Section>
@@ -145,7 +171,7 @@ export const VendingProducts = (props) => {
 };
 
 export const VendingMaintenance = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { speaker } = data;
 
   return (
@@ -169,9 +195,11 @@ export const VendingMaintenance = (props) => {
 /**
  * Search box
  */
-export const prepareSearch = (products, searchText = '') => {
-  const testSearch =
-    createSearch < ProductRecord > (searchText, (product) => product.name);
+export const prepareSearch = (products: product[], searchText: string = '') => {
+  const testSearch = createSearch(
+    searchText,
+    (product: product) => product.name,
+  );
   return flow([
     // Optional search term
     searchText && filter(testSearch),

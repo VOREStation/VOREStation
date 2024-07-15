@@ -1,6 +1,20 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, Section, Table } from '../components';
 import { Window } from '../layouts';
+
+type Data = {
+  valves: {
+    name: string;
+    enabled: BooleanLike;
+    open: BooleanLike;
+    x: number;
+    y: number;
+    z: number;
+    ref: string;
+  }[];
+};
 
 export const ShutoffMonitor = (props) => (
   <Window width={627} height={700}>
@@ -11,7 +25,7 @@ export const ShutoffMonitor = (props) => (
 );
 
 export const ShutoffMonitorContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { valves } = data;
 

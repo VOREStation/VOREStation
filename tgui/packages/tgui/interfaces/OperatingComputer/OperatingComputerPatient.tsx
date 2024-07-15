@@ -56,7 +56,7 @@ export const OperatingComputerPatient = (props: { occupant: occupant }) => {
                 <ProgressBar
                   minValue={0}
                   maxValue={1}
-                  value={occupant.bloodLevel / occupant.bloodMax}
+                  value={occupant.bloodLevel! / occupant.bloodMax!}
                   ranges={{
                     bad: [-Infinity, 0.6],
                     average: [0.6, 0.9],
