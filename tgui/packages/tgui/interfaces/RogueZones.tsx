@@ -1,9 +1,25 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  timeout_percent: number;
+  diffstep: number;
+  difficulty: string;
+  occupied: BooleanLike;
+  scanning: BooleanLike;
+  updated: BooleanLike;
+  debug: BooleanLike;
+  shuttle_location: string;
+  shuttle_at_station: BooleanLike;
+  scan_ready: BooleanLike;
+  can_recall_shuttle: BooleanLike;
+};
+
 export const RogueZones = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     timeout_percent,
     diffstep,

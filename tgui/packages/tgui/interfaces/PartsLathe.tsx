@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
 
 import { useBackend } from '../backend';
@@ -11,11 +12,23 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 import { Materials } from './ExosuitFabricator/Material';
+import { material } from './ExosuitFabricator/types';
+
+type Data = {
+  panelOpen: BooleanLike;
+  materials: material[];
+  copyBoard: string | null;
+  copyBoardReqComponents: { name: string; qty: number }[] | null;
+  queue: string[];
+  building: string | null;
+  buildPercent: number | null;
+  error: string | null;
+  recipies: { name: string; type: string }[];
+};
 
 export const PartsLathe = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
-    panelOpen,
     copyBoard,
     copyBoardReqComponents,
     queue,
@@ -28,7 +41,7 @@ export const PartsLathe = (props) => {
     <Window width={500} height={500}>
       <Window.Content scrollable>
         {(error && <NoticeBox danger>Missing Materials: {error}</NoticeBox>) ||
-          null}
+          ''}
         <Section title="Materials">
           <Materials displayAllMat />
         </Section>
@@ -39,12 +52,16 @@ export const PartsLathe = (props) => {
                 {toTitleCase(building)}
               </LabeledList.Item>
               <LabeledList.Item label="Progress">
-                <ProgressBar color="good" value={buildPercent} maxValue={100} />
+                <ProgressBar
+                  color="good"
+                  value={buildPercent!}
+                  maxValue={100}
+                />
               </LabeledList.Item>
             </LabeledList>
           </Section>
         )) ||
-          null}
+          ''}
         {copyBoard && (
           <Section title="Circuit Reader">
             <LabeledList>
@@ -87,7 +104,7 @@ export const PartsLathe = (props) => {
                     Cancel
                   </Button>
                 )) ||
-                  null}
+                  ''}
               </Box>
             ))) || <NoticeBox info>Queue Empty</NoticeBox>}
         </Section>

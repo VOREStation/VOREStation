@@ -1,9 +1,22 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { AnimatedNumber, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  on: BooleanLike;
+  pressure_set: number;
+  max_pressure: number;
+  input_pressure: number;
+  output_pressure: number;
+  regulate_mode: number;
+  set_flow_rate: number;
+  last_flow_rate: number;
+};
+
 export const PressureRegulator = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     on,

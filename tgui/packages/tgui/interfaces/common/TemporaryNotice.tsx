@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
@@ -17,7 +18,7 @@ type Data = { temp: { style: string; text: string } };
  * Allows clearing the notice through the `cleartemp` TGUI act
  * @param {object} props
  */
-export const TemporaryNotice = (props) => {
+export const TemporaryNotice = (props: { decode?: BooleanLike }) => {
   const { decode } = props;
   const { act, data } = useBackend<Data>();
   const { temp } = data;

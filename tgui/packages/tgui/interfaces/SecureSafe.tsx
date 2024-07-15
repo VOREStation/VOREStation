@@ -1,14 +1,26 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Flex, NoticeBox, Section, Table } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  locked: BooleanLike;
+  code: string;
+  emagged: BooleanLike;
+  l_setshort: BooleanLike;
+  l_set: BooleanLike;
+};
+
 const NukeKeypad = (props) => {
-  const { act, data } = useBackend();
-  const keypadKeys = [
+  const { act, data } = useBackend<Data>();
+
+  const keypadKeys: string[][] = [
     ['1', '4', '7', 'R'],
     ['2', '5', '8', '0'],
     ['3', '6', '9', 'E'],
   ];
+
   const { locked, l_setshort, code, emagged } = data;
   return (
     <Box width="185px">
@@ -44,27 +56,27 @@ const NukeKeypad = (props) => {
 };
 
 export const SecureSafe = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { code, l_setshort, l_set, emagged, locked } = data;
 
-  let new_code = !(!!l_set || !!l_setshort);
+  let new_code: boolean = !(!!l_set || !!l_setshort);
 
   return (
     <Window width={250} height={380}>
       <Window.Content>
         <Box m="6px">
           {new_code && (
-            <NoticeBox textAlign="center" info={1}>
+            <NoticeBox textAlign="center" info>
               ENTER NEW 5-DIGIT PASSCODE.
             </NoticeBox>
           )}
           {!!emagged && (
-            <NoticeBox textAlign="center" danger={1}>
+            <NoticeBox textAlign="center" danger>
               LOCKING SYSTEM ERROR - 1701
             </NoticeBox>
           )}
           {!!l_setshort && (
-            <NoticeBox textAlign="center" danger={1}>
+            <NoticeBox textAlign="center" danger>
               ALERT: MEMORY SYSTEM ERROR - 6040 201
             </NoticeBox>
           )}

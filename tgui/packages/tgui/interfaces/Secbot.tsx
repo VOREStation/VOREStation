@@ -1,9 +1,24 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  on: BooleanLike;
+  open: BooleanLike;
+  locked: BooleanLike;
+  idcheck: BooleanLike;
+  check_records: BooleanLike;
+  check_arrest: BooleanLike;
+  arrest_type: BooleanLike;
+  declare_arrests: BooleanLike;
+  bot_patrolling: BooleanLike;
+  patrol: BooleanLike;
+};
+
 export const Secbot = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     on,

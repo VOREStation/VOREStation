@@ -1,12 +1,36 @@
 import { round, toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NumberInput, Section } from '../components';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
 
+type Data = {
+  rawfreq: number;
+  listening: BooleanLike;
+  broadcasting: BooleanLike;
+  subspace: BooleanLike;
+  subspaceSwitchable: BooleanLike;
+  loudspeaker: BooleanLike;
+  mic_cut: BooleanLike;
+  spk_cut: BooleanLike;
+  chan_list:
+    | {
+        chan: number;
+        display_name: string;
+        secure_channel: BooleanLike;
+        sec_channel_listen: BooleanLike;
+        freq: number;
+      }[]
+    | null;
+  useSyndMode: BooleanLike;
+  minFrequency: number;
+  maxFrequency: number;
+};
+
 export const Radio = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     rawfreq,
     minFrequency,
@@ -27,7 +51,7 @@ export const Radio = (props) => {
   );
 
   // Calculate window height
-  let height = 156;
+  let height: number = 156;
   if (chan_list && chan_list.length > 0) {
     height += chan_list.length * 28 + 6;
   } else {
@@ -37,12 +61,7 @@ export const Radio = (props) => {
     height += 38;
   }
   return (
-    <Window
-      width={310}
-      height={height}
-      resizable
-      theme={useSyndMode ? 'syndicate' : ''}
-    >
+    <Window width={310} height={height} theme={useSyndMode ? 'syndicate' : ''}>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -55,10 +74,10 @@ export const Radio = (props) => {
                 minValue={minFrequency / 10}
                 maxValue={maxFrequency / 10}
                 value={rawfreq / 10}
-                format={(value) => toFixed(value, 1)}
-                onDrag={(e, value) =>
+                format={(value: number) => toFixed(value, 1)}
+                onDrag={(e, value: number) =>
                   act('setFrequency', {
-                    freq: round(value * 10),
+                    freq: round(value * 10, 0),
                   })
                 }
               />

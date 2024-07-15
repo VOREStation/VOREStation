@@ -1,9 +1,17 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Section, Table } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  locked: BooleanLike;
+  chemImplants: { host: string; units: string; ref: string }[];
+  trackImplants: { host: string; ref: string; id: string; loc: string }[];
+};
+
 export const PrisonerManagement = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { locked, chemImplants, trackImplants } = data;
   return (
     <Window width={500} height={400}>

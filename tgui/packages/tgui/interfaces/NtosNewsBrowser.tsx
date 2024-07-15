@@ -1,4 +1,6 @@
 /* eslint react/no-danger: "off" */
+import { BooleanLike } from 'common/react';
+
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
@@ -10,8 +12,25 @@ import {
 } from '../components';
 import { NtosWindow } from '../layouts';
 
+type Data = {
+  message: string;
+  showing_archived: BooleanLike;
+  download: {
+    download_progress: number;
+    download_maxprogress: number;
+    download_rate: number;
+  } | null;
+  article: { title: string; cover: string; content: string } | null;
+  all_articles: {
+    name: string;
+    size: number;
+    uid: number;
+    archived: BooleanLike;
+  }[];
+};
+
 export const NtosNewsBrowser = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { article, download, message } = data;
 
@@ -39,7 +58,7 @@ export const NtosNewsBrowser = (props) => {
 };
 
 const SelectedArticle = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { article } = data;
 
@@ -73,7 +92,7 @@ const SelectedArticle = (props) => {
 };
 
 const ViewArticles = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { showing_archived, all_articles } = data;
 
@@ -115,10 +134,10 @@ const ViewArticles = (props) => {
 };
 
 const ArticleDownloading = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { download_progress, download_maxprogress, download_rate } =
-    data.download;
+    data.download!;
 
   return (
     <Section title="Downloading...">

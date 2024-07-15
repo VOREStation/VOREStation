@@ -1,9 +1,27 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, Icon, Input, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
 
+type Data = {
+  can_admin: BooleanLike;
+  all_channels: {
+    chan: string;
+    id: number | null;
+  }[];
+  active_channel: number | null;
+  username: string;
+  adminmode: BooleanLike;
+  title: string | undefined;
+  authed: BooleanLike;
+  clients: { name: string }[] | [];
+  messages: { msg: string }[] | [];
+  is_operator: BooleanLike;
+};
+
 export const NtosNetChat = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     can_admin,
     adminmode,
@@ -15,8 +33,8 @@ export const NtosNetChat = (props) => {
     clients = [],
     messages = [],
   } = data;
-  const in_channel = active_channel !== null;
-  const authorized = authed || adminmode;
+  const in_channel: boolean = active_channel !== null;
+  const authorized: BooleanLike = authed || adminmode;
   return (
     <NtosWindow width={900} height={675}>
       <NtosWindow.Content>

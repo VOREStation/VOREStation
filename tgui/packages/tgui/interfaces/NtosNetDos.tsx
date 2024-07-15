@@ -1,6 +1,18 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { NtosWindow } from '../layouts';
+
+type Data = {
+  error: string;
+  target: BooleanLike;
+  speed: number;
+  overload: number;
+  capacity: number;
+  relays: { id: number }[];
+  focus: number | null;
+};
 
 export const NtosNetDos = () => {
   return (
@@ -13,7 +25,7 @@ export const NtosNetDos = () => {
 };
 
 export const NtosNetDosContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { relays = [], focus, target, speed, overload, capacity, error } = data;
 
@@ -28,7 +40,7 @@ export const NtosNetDosContent = (props) => {
     );
   }
 
-  const generate10String = (length) => {
+  const generate10String = (length: number): string => {
     let outString = '';
     const factor = overload / capacity;
     while (outString.length < length) {

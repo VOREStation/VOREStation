@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,8 +11,19 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  has_item: BooleanLike;
+  isAI: BooleanLike;
+  can_AI_print: BooleanLike;
+  has_toner: BooleanLike;
+  current_toner: number;
+  max_toner: number;
+  num_copies: number;
+  max_copies: number;
+};
+
 export const Photocopier = (props) => {
-  const { data } = useBackend();
+  const { data } = useBackend<Data>();
   const { isAI, has_toner, has_item } = data;
 
   return (
@@ -37,11 +50,11 @@ export const Photocopier = (props) => {
 };
 
 const Toner = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
   const { max_toner, current_toner } = data;
 
-  const average_toner = max_toner * 0.66;
-  const bad_toner = max_toner * 0.33;
+  const average_toner: number = max_toner * 0.66;
+  const bad_toner: number = max_toner * 0.33;
 
   return (
     <Section title="Toner">
@@ -60,8 +73,8 @@ const Toner = (props) => {
 };
 
 const Options = (props) => {
-  const { act, data } = useBackend();
-  const { num_copies, has_enough_toner } = data;
+  const { act, data } = useBackend<Data>();
+  const { num_copies } = data;
 
   return (
     <Section title="Options">
@@ -111,7 +124,7 @@ const Options = (props) => {
 };
 
 const AIOptions = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { can_AI_print } = data;
 
   return (
