@@ -1,222 +1,19 @@
 import { toTitleCase } from 'common/string';
 
-import { useBackend } from '../backend';
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
-
-/* Helpers */
-const getDockingStatus = (docking_status, docking_override) => {
-  let main = 'ERROR';
-  let color = 'bad';
-  let showsOverride = false;
-  if (docking_status === 'docked') {
-    main = 'DOCKED';
-    color = 'good';
-  } else if (docking_status === 'docking') {
-    main = 'DOCKING';
-    color = 'average';
-    showsOverride = true;
-  } else if (docking_status === 'undocking') {
-    main = 'UNDOCKING';
-    color = 'average';
-    showsOverride = true;
-  } else if (docking_status === 'undocked') {
-    main = 'UNDOCKED';
-    color = '#676767';
-  }
-
-  if (showsOverride && docking_override) {
-    main = main + '-MANUAL';
-  }
-
-  return <Box color={color}>{main}</Box>;
-};
-
-/* Templates */
-const ShuttleControlSharedShuttleStatus = (props) => {
-  const { act, data } = useBackend();
-  const { engineName = 'Bluespace Drive' } = props;
-  const {
-    shuttle_status,
-    shuttle_state,
-    has_docking,
-    docking_status,
-    docking_override,
-    docking_codes,
-  } = data;
-  return (
-    <Section title="Shuttle Status">
-      <Box color="label" mb={1}>
-        {shuttle_status}
-      </Box>
-      <LabeledList>
-        <LabeledList.Item label={engineName}>
-          {(shuttle_state === 'idle' && (
-            <Box color="#676767" bold>
-              IDLE
-            </Box>
-          )) ||
-            (shuttle_state === 'warmup' && (
-              <Box color="#336699">SPINNING UP</Box>
-            )) ||
-            (shuttle_state === 'in_transit' && (
-              <Box color="#336699">ENGAGED</Box>
-            )) || <Box color="bad">ERROR</Box>}
-        </LabeledList.Item>
-        {(has_docking && (
-          <>
-            <LabeledList.Item label="Docking Status">
-              {getDockingStatus(docking_status, docking_override)}
-            </LabeledList.Item>
-            <LabeledList.Item label="Docking Codes">
-              <Button icon="pen" onClick={() => act('set_codes')}>
-                {docking_codes || 'Not Set'}
-              </Button>
-            </LabeledList.Item>
-          </>
-        )) ||
-          null}
-      </LabeledList>
-    </Section>
-  );
-};
-
-const ShuttleControlSharedShuttleControls = (props) => {
-  const { act, data } = useBackend();
-
-  const { can_launch, can_cancel, can_force } = data;
-
-  return (
-    <Section title="Controls">
-      <Flex spacing={1}>
-        <Flex.Item grow={1}>
-          <Button
-            onClick={() => act('move')}
-            disabled={!can_launch}
-            icon="rocket"
-            fluid
-          >
-            Launch Shuttle
-          </Button>
-        </Flex.Item>
-        <Flex.Item grow={1}>
-          <Button
-            onClick={() => act('cancel')}
-            disabled={!can_cancel}
-            icon="ban"
-            fluid
-          >
-            Cancel Launch
-          </Button>
-        </Flex.Item>
-        <Flex.Item grow={1}>
-          <Button
-            onClick={() => act('force')}
-            color="bad"
-            disabled={!can_force}
-            icon="exclamation-triangle"
-            fluid
-          >
-            Force Launch
-          </Button>
-        </Flex.Item>
-      </Flex>
-    </Section>
-  );
-};
-
-const ShuttleControlConsoleDefault = (props) => {
-  const { act, data } = useBackend();
-  return (
-    <>
-      <ShuttleControlSharedShuttleStatus />
-      <ShuttleControlSharedShuttleControls />
-    </>
-  );
-};
-
-const ShuttleControlConsoleMulti = (props) => {
-  const { act, data } = useBackend();
-  const { can_cloak, can_pick, legit, cloaked } = data;
-  return (
-    <>
-      <ShuttleControlSharedShuttleStatus />
-      <Section title="Multishuttle Controls">
-        <LabeledList>
-          {(can_cloak && (
-            <LabeledList.Item label={legit ? 'ATC Inhibitor' : 'Cloaking'}>
-              <Button
-                selected={cloaked}
-                icon={cloaked ? 'eye' : 'eye-o'}
-                onClick={() => act('toggle_cloaked')}
-              >
-                {cloaked ? 'Enabled' : 'Disabled'}
-              </Button>
-            </LabeledList.Item>
-          )) ||
-            null}
-          <LabeledList.Item label="Current Destination">
-            <Button
-              icon="taxi"
-              disabled={!can_pick}
-              onClick={() => act('pick')}
-            >
-              {props.destination_name}
-            </Button>
-          </LabeledList.Item>
-        </LabeledList>
-      </Section>
-      <ShuttleControlSharedShuttleControls />
-    </>
-  );
-};
-
-const ShuttleControlConsoleExploration = (props) => {
-  const { act, data } = useBackend();
-  const { can_pick, destination_name, fuel_usage, fuel_span, remaining_fuel } =
-    data;
-  return (
-    <>
-      <ShuttleControlSharedShuttleStatus engineName="Engines" />
-      <Section title="Jump Controls">
-        <LabeledList>
-          <LabeledList.Item label="Current Destination">
-            <Button
-              icon="taxi"
-              disabled={!can_pick}
-              onClick={() => act('pick')}
-            >
-              {destination_name}
-            </Button>
-          </LabeledList.Item>
-          {(fuel_usage && (
-            <>
-              <LabeledList.Item label="Est. Delta-V Budget" color={fuel_span}>
-                {remaining_fuel} m/s
-              </LabeledList.Item>
-              <LabeledList.Item label="Avg. Delta-V Per Maneuver">
-                {fuel_usage} m/s
-              </LabeledList.Item>
-            </>
-          )) ||
-            null}
-        </LabeledList>
-      </Section>
-      <ShuttleControlSharedShuttleControls />
-    </>
-  );
-};
+} from '../../components';
+import { getDockingStatus } from './functions';
+import { Data } from './types';
 
 /* Ugh. Just ugh. */
-const ShuttleControlConsoleWeb = (props) => {
-  const { act, data } = useBackend();
+export const ShuttleControlConsoleWeb = (props) => {
+  const { act, data } = useBackend<Data>();
 
   const {
     autopilot,
@@ -250,7 +47,7 @@ const ShuttleControlConsoleWeb = (props) => {
           </Box>
         </Section>
       )) ||
-        null}
+        ''}
       <Section
         title="Shuttle Status"
         buttons={
@@ -259,7 +56,7 @@ const ShuttleControlConsoleWeb = (props) => {
               Rename
             </Button>
           )) ||
-          null
+          ''
         }
       >
         <LabeledList>
@@ -314,7 +111,7 @@ const ShuttleControlConsoleWeb = (props) => {
                   </Box>
                 </LabeledList.Item>
               )) ||
-                null}
+                ''}
               {(can_cloak && (
                 <LabeledList.Item label="Cloaking">
                   <Button
@@ -326,7 +123,7 @@ const ShuttleControlConsoleWeb = (props) => {
                   </Button>
                 </LabeledList.Item>
               )) ||
-                null}
+                ''}
               {(can_autopilot && (
                 <LabeledList.Item label="Autopilot">
                   <Button
@@ -338,16 +135,16 @@ const ShuttleControlConsoleWeb = (props) => {
                   </Button>
                 </LabeledList.Item>
               )) ||
-                null}
+                ''}
             </>
           )) ||
-            null}
+            ''}
         </LabeledList>
         {(!is_moving && (
-          <Section level={2} title="Available Destinations">
+          <Section title="Available Destinations">
             <LabeledList>
-              {(routes.length &&
-                routes.map((route) => (
+              {(routes!.length &&
+                routes!.map((route) => (
                   <LabeledList.Item label={route.name} key={route.name}>
                     <Button
                       icon="rocket"
@@ -364,7 +161,7 @@ const ShuttleControlConsoleWeb = (props) => {
             </LabeledList>
           </Section>
         )) ||
-          null}
+          ''}
       </Section>
       {(is_in_transit && (
         <Section title="Transit ETA">
@@ -374,7 +171,7 @@ const ShuttleControlConsoleWeb = (props) => {
                 color="good"
                 minValue={0}
                 maxValue={100}
-                value={travel_progress}
+                value={travel_progress!}
               >
                 {time_left}s
               </ProgressBar>
@@ -382,12 +179,12 @@ const ShuttleControlConsoleWeb = (props) => {
           </LabeledList>
         </Section>
       )) ||
-        null}
-      {(Object.keys(doors).length && (
+        ''}
+      {(Object.keys(doors!).length && (
         <Section title="Hatch Status">
           <LabeledList>
-            {Object.keys(doors).map((key) => {
-              let door = doors[key];
+            {Object.keys(doors!).map((key) => {
+              const door = doors![key];
               return (
                 <LabeledList.Item label={key} key={key}>
                   {(door.open && (
@@ -415,12 +212,12 @@ const ShuttleControlConsoleWeb = (props) => {
           </LabeledList>
         </Section>
       )) ||
-        null}
-      {(Object.keys(sensors).length && (
+        ''}
+      {(Object.keys(sensors!).length && (
         <Section title="Sensors">
           <LabeledList>
-            {Object.keys(sensors).map((key, index) => {
-              let sensor = sensors[key];
+            {Object.keys(sensors!).map((key, index) => {
+              const sensor = sensors![key];
               if (sensor.reading !== -1) {
                 return (
                   <LabeledList.Item key={index} label={key} color="bad">
@@ -454,7 +251,7 @@ const ShuttleControlConsoleWeb = (props) => {
                         {sensor.other}%
                       </LabeledList.Item>
                     )) ||
-                      null}
+                      ''}
                   </LabeledList>
                 </LabeledList.Item>
               );
@@ -462,33 +259,7 @@ const ShuttleControlConsoleWeb = (props) => {
           </LabeledList>
         </Section>
       )) ||
-        null}
+        ''}
     </>
-  );
-};
-
-export const ShuttleControl = (props) => {
-  const { act, data } = useBackend();
-  const { subtemplate, destination_name } = data;
-  return (
-    <Window
-      width={470}
-      height={subtemplate === 'ShuttleControlConsoleWeb' ? 560 : 370}
-    >
-      <Window.Content>
-        {(subtemplate === 'ShuttleControlConsoleDefault' && (
-          <ShuttleControlConsoleDefault />
-        )) ||
-          (subtemplate === 'ShuttleControlConsoleMulti' && (
-            <ShuttleControlConsoleMulti destination_name={destination_name} />
-          )) ||
-          (subtemplate === 'ShuttleControlConsoleExploration' && (
-            <ShuttleControlConsoleExploration />
-          )) ||
-          (subtemplate === 'ShuttleControlConsoleWeb' && (
-            <ShuttleControlConsoleWeb />
-          ))}
-      </Window.Content>
-    </Window>
   );
 };

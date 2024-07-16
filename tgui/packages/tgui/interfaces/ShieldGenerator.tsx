@@ -1,4 +1,5 @@
 import { toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import {
@@ -13,8 +14,36 @@ import { formatPower, formatSiUnit } from '../format';
 import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
+type Data = {
+  locked: BooleanLike;
+  lockedData: {
+    capacitors: capacitor[];
+    active: BooleanLike;
+    failing: BooleanLike;
+    radius: number;
+    max_radius: number;
+    z_range: number;
+    max_z_range: number;
+    average_field_strength: number;
+    target_field_strength: number;
+    max_field_strength: number;
+    shields: number;
+    upkeep: number;
+    strengthen_rate: number;
+    max_strengthen_rate: number;
+    gen_power: number;
+  };
+};
+
+type capacitor = {
+  active: BooleanLike;
+  stored_charge: number;
+  max_charge: number;
+  failing: BooleanLike;
+};
+
 export const ShieldGenerator = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { locked } = data;
 
@@ -44,7 +73,7 @@ const ShieldGeneratorLocked = (props) => (
 );
 
 const ShieldGeneratorContent = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     capacitors,
@@ -154,7 +183,7 @@ const ShieldGeneratorContent = (props) => {
               maxValue={max_radius}
               value={radius}
               unit="m"
-              onDrag={(e, val) => act('change_radius', { val: val })}
+              onDrag={(e, val: number) => act('change_radius', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Vertical Shielding">
@@ -165,7 +194,7 @@ const ShieldGeneratorContent = (props) => {
               maxValue={max_z_range}
               value={z_range}
               unit="vertical range"
-              onDrag={(e, val) => act('z_range', { val: val })}
+              onDrag={(e, val: number) => act('z_range', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Charge Rate">
@@ -176,9 +205,9 @@ const ShieldGeneratorContent = (props) => {
               step={0.1}
               maxValue={max_strengthen_rate}
               value={strengthen_rate}
-              format={(val) => toFixed(val, 1)}
+              format={(val: number) => toFixed(val, 1)}
               unit="Renwick/s"
-              onDrag={(e, val) => act('strengthen_rate', { val: val })}
+              onDrag={(e, val: number) => act('strengthen_rate', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Maximum Field Strength">
@@ -189,7 +218,9 @@ const ShieldGeneratorContent = (props) => {
               maxValue={max_field_strength}
               value={target_field_strength}
               unit="Renwick"
-              onDrag={(e, val) => act('target_field_strength', { val: val })}
+              onDrag={(e, val: number) =>
+                act('target_field_strength', { val: val })
+              }
             />
           </LabeledList.Item>
         </LabeledList>

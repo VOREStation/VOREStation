@@ -1,4 +1,5 @@
 import { round, toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import {
@@ -12,8 +13,17 @@ import {
 import { formatPower, formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
+type Data = {
+  active: BooleanLike;
+  time_since_fail: number;
+  stored_charge: number;
+  max_charge: number;
+  charge_rate: number;
+  max_charge_rate: number;
+};
+
 export const ShieldCapacitor = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const {
     active,
@@ -64,8 +74,8 @@ export const ShieldCapacitor = (props) => {
                 stepPixelSize={0.2}
                 minValue={10000}
                 maxValue={max_charge_rate}
-                format={(val) => formatPower(val)}
-                onDrag={(e, val) => act('charge_rate', { rate: val })}
+                format={(val: number) => formatPower(val)}
+                onDrag={(e, val: number) => act('charge_rate', { rate: val })}
               />
             </LabeledList.Item>
           </LabeledList>

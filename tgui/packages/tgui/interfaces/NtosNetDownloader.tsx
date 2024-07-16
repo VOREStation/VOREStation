@@ -1,4 +1,5 @@
 import { toFixed } from 'common/math';
+import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../backend';
 import {
@@ -13,8 +14,34 @@ import {
 } from '../components';
 import { NtosWindow } from '../layouts';
 
+type Data = {
+  PC_device_theme: string;
+  downloading: BooleanLike;
+  error: string | BooleanLike;
+  downloadname: string | undefined;
+  downloaddesc: string | undefined;
+  downloadsize: number | undefined;
+  downloadspeed: number | undefined;
+  downloadcompletion: number | undefined;
+  disk_size: number;
+  disk_used: number;
+  hackedavailable: BooleanLike;
+  hacked_programs: program[];
+  downloadable_programs: program[];
+  downloads_queue: string[];
+};
+
+type program = {
+  filename: string;
+  filedesc: string;
+  fileinfo: string;
+  compatibility: string;
+  size: number;
+  icon: string;
+};
+
 export const NtosNetDownloader = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     PC_device_theme,
     disk_size,
@@ -63,14 +90,13 @@ export const NtosNetDownloader = (props) => {
   );
 };
 
-const Program = (props) => {
+const Program = (props: { program: program }) => {
   const { program } = props;
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     disk_size,
     disk_used,
     downloadcompletion,
-    downloading,
     downloadname,
     downloadsize,
     downloadspeed,
@@ -92,9 +118,9 @@ const Program = (props) => {
               color="green"
               minValue={0}
               maxValue={downloadsize}
-              value={downloadcompletion}
+              value={downloadcompletion!}
             >
-              {toFixed((downloadcompletion / downloadsize) * 100, 1)}%&nbsp;
+              {toFixed((downloadcompletion! / downloadsize!) * 100, 1)}%&nbsp;
               {'(' + downloadspeed + 'GQ/s)'}
             </ProgressBar>
           )) ||

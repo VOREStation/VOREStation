@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
@@ -6,10 +7,28 @@ import { Window } from '../layouts';
 /* This is all basically stolen from routes.js. */
 import { routingError } from '../routes';
 
+type Data = {
+  owner: string;
+  ownjob: string;
+  idInserted: BooleanLike;
+  idLink: string;
+  useRetro: BooleanLike;
+  touch_silent: BooleanLike;
+  cartridge_name: string;
+  stationTime: string;
+  app: {
+    name: string;
+    icon: string;
+    template: string;
+    has_back: BooleanLike;
+    is_home: string | undefined;
+  };
+};
+
 const requirePdaInterface = require.context('./pda', false, /\.tsx$/);
 
-const getPdaApp = (name) => {
-  let appModule;
+function getPdaApp(name: string) {
+  let appModule: __WebpackModuleApi.RequireContext;
   try {
     appModule = requirePdaInterface(`./${name}.tsx`);
   } catch (err) {
@@ -18,15 +37,15 @@ const getPdaApp = (name) => {
     }
     throw err;
   }
-  const Component = appModule[name];
+  const Component: () => React.JSX.Element = appModule[name];
   if (!Component) {
     return routingError('missingExport', name);
   }
   return Component;
-};
+}
 
 export const Pda = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { app, owner, useRetro } = data;
 
@@ -44,14 +63,14 @@ export const Pda = (props) => {
 
   let App = getPdaApp(app.template);
 
-  const [settingsMode, setSettingsMode] = useState(false);
+  const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
 
-  function handleSettingsMode(value) {
+  function handleSettingsMode(value: BooleanLike) {
     setSettingsMode(value);
   }
 
   return (
-    <Window width={580} height={670} theme={useRetro ? 'pda-retro' : null}>
+    <Window width={580} height={670} theme={useRetro ? 'pda-retro' : undefined}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}
@@ -77,10 +96,13 @@ export const Pda = (props) => {
   );
 };
 
-const PDAHeader = (props) => {
-  const { act, data } = useBackend();
+const PDAHeader = (props: {
+  settingsMode: BooleanLike;
+  onSettingsMode: Function;
+}) => {
+  const { act, data } = useBackend<Data>();
 
-  const { idInserted, idLink, cartridge_name, stationTime } = data;
+  const { idInserted, idLink, stationTime } = data;
 
   return (
     <Box mb={1}>
@@ -113,7 +135,7 @@ const PDAHeader = (props) => {
 };
 
 const PDASettings = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
   const { idInserted, idLink, cartridge_name, touch_silent } = data;
 
@@ -153,8 +175,8 @@ const PDASettings = (props) => {
   );
 };
 
-const PDAFooter = (props) => {
-  const { act, data } = useBackend();
+const PDAFooter = (props: { onSettingsMode: Function }) => {
+  const { act, data } = useBackend<Data>();
 
   const { app, useRetro } = data;
 

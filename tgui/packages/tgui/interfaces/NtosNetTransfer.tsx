@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,8 +11,33 @@ import {
 } from '../components';
 import { NtosWindow } from '../layouts';
 
+type Data = {
+  error: string;
+  downloading: BooleanLike;
+  download_size: number | undefined;
+  download_progress: number | undefined;
+  download_netspeed: number | undefined;
+  download_name: string | undefined;
+  uploading: BooleanLike;
+  upload_uid: number | undefined;
+  upload_clients: number | undefined;
+  upload_haspassword: BooleanLike;
+  upload_filename: string | undefined;
+  upload_filelist: uploadFile[] | [];
+  servers: server[] | [];
+};
+
+type server = {
+  uid: number;
+  filename: string;
+  size: number;
+  haspassword: BooleanLike;
+};
+
+type uploadFile = { uid: number; filename: string; size: number };
+
 export const NtosNetTransfer = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { error, downloading, uploading, upload_filelist } = data;
 
@@ -34,7 +61,7 @@ export const NtosNetTransfer = (props) => {
 };
 
 const P2PError = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { error } = data;
   return (
     <Section
@@ -51,7 +78,7 @@ const P2PError = (props) => {
 };
 
 const P2PDownload = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { download_name, download_progress, download_size, download_netspeed } =
     data;
   return (
@@ -61,7 +88,7 @@ const P2PDownload = (props) => {
           {download_name}
         </LabeledList.Item>
         <LabeledList.Item label="Progress">
-          <ProgressBar value={download_progress} maxValue={download_size}>
+          <ProgressBar value={download_progress!} maxValue={download_size}>
             {download_progress} / {download_size} GQ
           </ProgressBar>
         </LabeledList.Item>
@@ -79,7 +106,7 @@ const P2PDownload = (props) => {
 };
 
 const P2PUpload = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { upload_clients, upload_filename, upload_haspassword } = data;
   return (
     <Section title="Server enabled">
@@ -107,7 +134,7 @@ const P2PUpload = (props) => {
 };
 
 const P2PUploadServer = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { upload_filelist } = data;
   return (
     <Section
@@ -121,8 +148,8 @@ const P2PUploadServer = (props) => {
       <Button fluid icon="lock" onClick={() => act('PRG_setpassword')}>
         Set Password
       </Button>
-      <Section title="Pick file to serve." level={2}>
-        {upload_filelist.map((file) => (
+      <Section title="Pick file to serve.">
+        {upload_filelist.map((file: uploadFile) => (
           <Button
             key={file.uid}
             fluid
@@ -138,7 +165,7 @@ const P2PUploadServer = (props) => {
 };
 
 const P2PAvailable = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { servers } = data;
   return (
     <Section
@@ -151,7 +178,7 @@ const P2PAvailable = (props) => {
     >
       {(servers.length && (
         <LabeledList>
-          {servers.map((server) => (
+          {servers.map((server: server) => (
             <LabeledList.Item label={server.uid} key={server.uid}>
               {!!server.haspassword && <Icon name="lock" mr={1} />}
               {server.filename}&nbsp; ({server.size}GQ)&nbsp;

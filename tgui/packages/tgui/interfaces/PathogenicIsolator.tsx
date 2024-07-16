@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
@@ -10,19 +11,53 @@ import {
   Section,
   Tabs,
 } from '../components';
-import {
-  ComplexModal,
-  modalRegisterBodyOverride,
-} from '../interfaces/common/ComplexModal';
 import { Window } from '../layouts';
+import { ComplexModal, modalRegisterBodyOverride } from './common/ComplexModal';
 
-const virusModalBodyOverride = (modal) => {
-  const { act, data } = useBackend();
+type Data = {
+  syringe_inserted: BooleanLike;
+  isolating: BooleanLike;
+  pathogen_pool:
+    | {
+        name: string;
+        dna: string;
+        unique_id: number;
+        reference: string;
+        is_in_database: BooleanLike;
+        record: string;
+      }[]
+    | [];
+  can_print: BooleanLike;
+  database: {
+    name: string;
+    record: string;
+  }[];
+  modal: modalData;
+};
+
+type modalData = {
+  name: string;
+  spreadtype: string;
+  antigen: string;
+  rate: number;
+  resistance: number;
+  species: string;
+  ref: string;
+  symptoms: {
+    stage: number;
+    name: string;
+    strength: string;
+    aggressiveness: string;
+  }[];
+  record: string;
+};
+
+const virusModalBodyOverride = (modal: { args: modalData }) => {
+  const { act, data } = useBackend<Data>();
   const { can_print } = data;
   const virus = modal.args;
   return (
     <Section
-      level={2}
       m="-1rem"
       title={virus.name || 'Virus'}
       buttons={
@@ -43,7 +78,7 @@ const virusModalBodyOverride = (modal) => {
       <Box mx="0.5rem">
         <LabeledList>
           <LabeledList.Item label="Spread">
-            {virus.spread_text} Transmission
+            {virus.spreadtype} Transmission
           </LabeledList.Item>
           <LabeledList.Item label="Possible cure">
             {virus.antigen}
@@ -84,18 +119,15 @@ const virusModalBodyOverride = (modal) => {
 };
 
 export const PathogenicIsolator = (props) => {
-  const { act, data } = useBackend();
+  const { data } = useBackend<Data>();
 
   const { isolating } = data;
 
   const [tabIndex, setTabIndex] = useState(0);
 
-  let tab = null;
-  if (tabIndex === 0) {
-    tab = <PathogenicIsolatorTabHome />;
-  } else if (tabIndex === 1) {
-    tab = <PathogenicIsolatorTabDatabase />;
-  }
+  const tab: React.JSX.Element[] = [];
+  tab[0] = <PathogenicIsolatorTabHome />;
+  tab[1] = <PathogenicIsolatorTabDatabase />;
 
   modalRegisterBodyOverride('virus', virusModalBodyOverride);
   return (
@@ -105,7 +137,7 @@ export const PathogenicIsolator = (props) => {
         {(isolating && (
           <NoticeBox warning>The Isolator is currently isolating...</NoticeBox>
         )) ||
-          null}
+          ''}
         <Tabs>
           <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
             Home
@@ -114,14 +146,14 @@ export const PathogenicIsolator = (props) => {
             Database
           </Tabs.Tab>
         </Tabs>
-        {tab}
+        {tab[tabIndex] || ''}
       </Window.Content>
     </Window>
   );
 };
 
 const PathogenicIsolatorTabHome = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { syringe_inserted, pathogen_pool, can_print } = data;
   return (
     <Section
@@ -191,7 +223,7 @@ const PathogenicIsolatorTabHome = (props) => {
 };
 
 const PathogenicIsolatorTabDatabase = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { database, can_print } = data;
   return (
     <Section

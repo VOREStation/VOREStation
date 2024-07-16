@@ -1,3 +1,4 @@
+import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
@@ -12,13 +13,35 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  busy: BooleanLike;
+  category: string;
+  subcategory: string;
+  display_craftable_only: BooleanLike;
+  display_compact: BooleanLike;
+  craftability: Record<string, number>;
+  crafting_recipes: Record<string, recipe[]>;
+};
+
+type recipe = {
+  name: string;
+  ref: string;
+  req_text: string;
+  catalyst_text: string;
+  tool_text: string;
+  has_subcats: BooleanLike;
+};
+
+type uiRecipe = Required<recipe & { category: string }>;
+
 export const PersonalCrafting = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { busy, display_craftable_only, display_compact } = data;
   const crafting_recipes = data.crafting_recipes || {};
   // Sort everything into flat categories
-  const categories = [];
-  const recipes = [];
+  const categories: { name: string; category: string; subcategory?: string }[] =
+    [];
+  const recipes: uiRecipe[] = [];
   for (let category of Object.keys(crafting_recipes)) {
     const subcategories = crafting_recipes[category];
     if ('has_subcats' in subcategories) {
@@ -118,9 +141,9 @@ export const PersonalCrafting = (props) => {
   );
 };
 
-const CraftingList = (props) => {
+const CraftingList = (props: { craftables: uiRecipe[] }) => {
   const { craftables = [] } = props;
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { craftability = {}, display_compact, display_craftable_only } = data;
   return craftables.map((craftable) => {
     if (display_craftable_only && !craftability[craftable.ref]) {
@@ -160,7 +183,6 @@ const CraftingList = (props) => {
       <Section
         key={craftable.name}
         title={craftable.name}
-        level={2}
         buttons={
           <Button
             icon="cog"

@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import { Button, ColorBox, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
@@ -20,8 +22,26 @@ const PROGRAM_ICONS = {
   shipping: 'tags',
 };
 
+type Data = {
+  device_theme: string;
+  login: user;
+  removable_media: string[];
+  programs: {
+    name: string;
+    desc: string;
+    icon: string;
+    running: BooleanLike;
+    autorun: BooleanLike;
+  }[];
+  has_light: BooleanLike;
+  light_on: BooleanLike;
+  comp_light_color: BooleanLike;
+};
+
+type user = { IDName: string | undefined; IDJob: string | undefined };
+
 export const NtosMain = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     device_theme,
     programs = [],
@@ -29,7 +49,7 @@ export const NtosMain = (props) => {
     light_on,
     comp_light_color,
     removable_media = [],
-    login = [],
+    login = {} as user,
   } = data;
   return (
     <NtosWindow

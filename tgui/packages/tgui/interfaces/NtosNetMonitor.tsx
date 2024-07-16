@@ -1,3 +1,5 @@
+import { BooleanLike } from 'common/react';
+
 import { useBackend } from '../backend';
 import {
   Box,
@@ -9,8 +11,24 @@ import {
 } from '../components';
 import { NtosWindow } from '../layouts';
 
+type Data = {
+  ntnetstatus: BooleanLike;
+  ntnetrelays: number;
+  idsstatus: BooleanLike;
+  idsalarm: BooleanLike;
+  config_softwaredownload: BooleanLike;
+  config_peertopeer: BooleanLike;
+  config_communication: BooleanLike;
+  config_systemcontrol: BooleanLike;
+  ntnetlogs: { entry: string }[] | [];
+  minlogs: number;
+  maxlogs: number;
+  banned_nids: number[];
+  ntnetmaxlogs: number;
+};
+
 export const NtosNetMonitor = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const {
     ntnetrelays,
     ntnetstatus,
@@ -111,7 +129,7 @@ export const NtosNetMonitor = (props) => {
           {!!idsalarm && (
             <>
               <NoticeBox>NETWORK INCURSION DETECTED</NoticeBox>
-              <Box italics>
+              <Box italic>
                 Abnormal activity has been detected in the network. Check system
                 logs for more information
               </Box>
@@ -162,7 +180,7 @@ export const NtosNetMonitor = (props) => {
                   minValue={minlogs}
                   maxValue={maxlogs}
                   width="39px"
-                  onChange={(e, value) =>
+                  onChange={(e, value: number) =>
                     act('updatemaxlogs', {
                       new_number: value,
                     })
@@ -173,7 +191,6 @@ export const NtosNetMonitor = (props) => {
           </LabeledList>
           <Section
             title="System Log"
-            level={2}
             buttons={
               <Button.Confirm icon="trash" onClick={() => act('purgelogs')}>
                 Clear Logs

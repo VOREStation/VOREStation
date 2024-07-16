@@ -5,12 +5,36 @@ import { useBackend } from '../backend';
 import { Button, Collapsible, Flex, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+type Data = {
+  scanner: string[];
+  seeds: seed[];
+};
+
+type seed = {
+  name: string;
+  uid: string;
+  amount: number;
+  id: number;
+  traits: {
+    Endurance: string;
+    Yield: string;
+    Production: string;
+    Potency: string;
+    'Repeat Harvest': string;
+    'Ideal Heat': string;
+    'Ideal Light': string;
+    'Nutrient Consumption': string;
+    'Water Consumption': string;
+    notes: string;
+  };
+};
+
 export const SeedStorage = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
 
-  const { scanner, seeds } = data;
+  const { seeds } = data;
 
-  const sortedSeeds = sortBy((seed) => seed.name.toLowerCase())(seeds);
+  const sortedSeeds = sortBy((seed: seed) => seed.name.toLowerCase())(seeds);
 
   return (
     <Window width={600} height={760}>
