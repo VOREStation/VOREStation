@@ -802,7 +802,7 @@
 /datum/reagent/drink/coffee/nukie/mega/sight
 	name = "Nukie Mega Plum"
 	id = "nukie_mega_sight"
-	color = "#ffc76e"
+	color = "#f4fc03"
 	taste_description = "seeing beyond the margins of this world"
 
 /datum/reagent/drink/coffee/nukie/mega/sight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -821,7 +821,7 @@
 /datum/reagent/drink/coffee/nukie/mega/heart //Heals you pretty damn well but damages your heart
 	name = "Nukie Mega Juice"
 	id = "nukie_mega_heart"
-	color = "#ffc76e"
+	color = "#fc03e7"
 	taste_description = "the end is rapidly approaching, yet remains forever far"
 
 /datum/reagent/drink/coffee/nukie/mega/heart/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -842,7 +842,7 @@
 /datum/reagent/drink/coffee/nukie/mega/nega //Makes you both jittery and sleepy
 	name = "Nukie Nega"
 	id = "nukie_mega_sleep"
-	color = "#ffc76e"
+	color = "#00dded"
 	taste_description = "the void encompassing you"
 	adj_drowsy = 0
 	adj_sleepy = 0
@@ -856,7 +856,7 @@
 /datum/reagent/drink/coffee/nukie/mega/shock //Rapidly fills you up and even repairs your NIF, unless you don't have one in which case you'll be confused.
 	name = "Nukie Mega Shock"
 	id = "nukie_mega_shock"
-	color = "#ffc76e"
+	color = "#ede500"
 	taste_description = "a thousand volts running down your spine"
 
 /datum/reagent/drink/coffee/nukie/mega/shock/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -877,7 +877,7 @@
 /datum/reagent/drink/coffee/nukie/mega/fast //Like hyperzine, but instead of overdosing, it occassionally burns you
 	name = "Nukie Mega Rapid"
 	id = "nukie_mega_fast"
-	color = "#ffc76e"
+	color = "#000000"
 	taste_description = "more, more, now, quick, get yourself some more, don't stop"
 
 /datum/reagent/drink/coffee/nukie/mega/fast/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -890,7 +890,7 @@
 /datum/reagent/drink/coffee/nukie/mega/high //Simultaneously makes you high and hungry
 	name = "Nukie Mega Sky"
 	id = "nukie_mega_high"
-	color = "#ffc76e"
+	color = "#fafafa"
 	taste_description = "moreishness, you could really go for a proper snack right now"
 
 /datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -933,7 +933,7 @@
 /datum/reagent/drink/coffee/nukie/mega/shrink //Basically microcillin but for ingesting
 	name = "Nukie Mega Shrink"
 	id = "nukie_mega_shrink"
-	color = "#ffc76e"
+	color = "#15ff00"
 	taste_description = "a plastic bag floating gently on the breeze"
 
 /datum/reagent/drink/coffee/nukie/mega/shrink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -943,7 +943,7 @@
 /datum/reagent/drink/coffee/nukie/mega/grow //Basically macrocillin but for ingesting
 	name = "Nukie Mega Growth"
 	id = "nukie_mega_growth"
-	color = "#ffc76e"
+	color = "#90ed87"
 	taste_description = "absurd hugeness"
 
 /datum/reagent/drink/coffee/nukie/mega/grow/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
