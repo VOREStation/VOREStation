@@ -17,7 +17,7 @@ import { Window } from '../layouts';
 // Common power multiplier
 const POWER_MUL: number = 1e3;
 
-type Data = {
+export type smes = {
   capacity: number;
   capacityPercent: number;
   charge: number;
@@ -34,6 +34,8 @@ type Data = {
   outputLevelMax: number;
   outputUsed: number;
 };
+
+type Data = smes;
 
 export const Smes = (props) => {
   const { act, data } = useBackend<Data>();
