@@ -171,6 +171,13 @@
 	var/list/slots = list(slot_glasses,slot_head)
 	var/list/compiled_vis = list()
 
+	if(CE_DARKSIGHT in chem_effects) //Putting this near the beginning so it can be overwritten by equipment
+		plane_holder.set_vis(VIS_FULLBRIGHT,TRUE)
+		compiled_vis += VIS_FULLBRIGHT
+	else
+		plane_holder.set_vis(VIS_FULLBRIGHT,FALSE)
+		compiled_vis -= VIS_FULLBRIGHT
+
 	for(var/slot in slots)
 		var/obj/item/clothing/O = get_equipped_item(slot) //Change this type if you move the vision stuff to item or something.
 		if(istype(O) && O.enables_planes && (slot in O.plane_slots))
