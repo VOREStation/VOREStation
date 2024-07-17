@@ -104,6 +104,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/device/pda,
 				prob(3);/obj/item/device/radio/headset,
 				/* VOREStation Edit Start */
+				prob(3);/obj/item/weapon/toy/monster_bait,
 				prob(2);/obj/item/toy/tennis,
 				prob(2);/obj/item/toy/tennis/red,
 				prob(2);/obj/item/toy/tennis/yellow,
