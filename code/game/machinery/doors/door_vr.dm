@@ -54,6 +54,7 @@
 		var/obj/item/stack/stack = I
 		var/amount_given = amount_needed - reinforcing
 		var/mats_given = stack.get_amount()
+		var/singular_name = stack.singular_name
 		if(reinforcing && amount_given <= 0)
 			to_chat(user, "<span class='warning'>You must weld or remove \the plasteel from \the [src] before you can add anything else.</span>")
 		else
@@ -65,7 +66,7 @@
 					reinforcing += mats_given
 					amount_given = mats_given
 		if(amount_given)
-			to_chat(user, "<span class='notice'>You fit [amount_given] [stack.singular_name]\s on \the [src].</span>")
+			to_chat(user, "<span class='notice'>You fit [amount_given] [singular_name]\s on \the [src].</span>")
 
 		return TRUE
 
