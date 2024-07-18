@@ -2,9 +2,7 @@ import { useBackend } from '../../backend';
 import { Button, LabeledList, Section } from '../../components';
 import { modalBBodyData } from './types';
 
-export const viewBodyRecordModalBodyOverride = (modal: {
-  args: modalBBodyData;
-}) => {
+export const viewBodyRecordModalBodyOverride = (modal: modalBBodyData) => {
   const { act } = useBackend();
   const {
     activerecord,

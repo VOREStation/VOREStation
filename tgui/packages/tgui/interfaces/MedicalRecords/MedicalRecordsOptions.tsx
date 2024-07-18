@@ -1,33 +1,47 @@
 import { useBackend } from '../../backend';
 import { Button, Icon, Section, Tabs } from '../../components';
-import { GeneralRecordsViewGeneral } from './GeneralRecordsViewGeneral';
+import { MedicalRecordsViewGeneral } from './MedicalRecordsViewGeneral';
+import { MedicalRecordsViewMedical } from './MedicalRecordsViewMedical';
 import { Data } from './types';
 
-export const GeneralRecordsMaintenance = (props) => {
+export const MedicalRecordsMaintenance = (props) => {
   const { act } = useBackend();
   return (
-    <Button.Confirm icon="trash" onClick={() => act('del_all')}>
-      Delete All Employment Records
-    </Button.Confirm>
+    <>
+      <Button icon="download" disabled>
+        Backup to Disk
+      </Button>
+      <br />
+      <Button icon="upload" my="0.5rem" disabled>
+        Upload from Disk
+      </Button>
+      <br />
+      <Button.Confirm icon="trash" onClick={() => act('del_all')}>
+        Delete All Medical Records
+      </Button.Confirm>
+    </>
   );
 };
 
-export const GeneralRecordsView = (props) => {
+export const MedicalRecordsView = (props) => {
   const { act, data } = useBackend<Data>();
-  const { general, printing } = data;
+  const { medical, printing } = data;
   return (
     <>
       <Section title="General Data" mt="-6px">
-        <GeneralRecordsViewGeneral />
+        <MedicalRecordsViewGeneral />
+      </Section>
+      <Section title="Medical Data">
+        <MedicalRecordsViewMedical />
       </Section>
       <Section title="Actions">
         <Button.Confirm
           icon="trash"
-          disabled={!!general!.empty}
+          disabled={!!medical!.empty}
           color="bad"
           onClick={() => act('del_r')}
         >
-          Delete Employment Record
+          Delete Medical Record
         </Button.Confirm>
         <Button
           icon={printing ? 'spinner' : 'print'}
@@ -51,7 +65,7 @@ export const GeneralRecordsView = (props) => {
   );
 };
 
-export const GeneralRecordsNavigation = (props) => {
+export const MedicalRecordsNavigation = (props) => {
   const { act, data } = useBackend<Data>();
   const { screen } = data;
   return (
@@ -62,6 +76,20 @@ export const GeneralRecordsNavigation = (props) => {
       >
         <Icon name="list" />
         List Records
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={screen === 5}
+        onClick={() => act('screen', { screen: 5 })}
+      >
+        <Icon name="database" />
+        Virus Database
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={screen === 6}
+        onClick={() => act('screen', { screen: 6 })}
+      >
+        <Icon name="plus-square" />
+        Medbot Tracking
       </Tabs.Tab>
       <Tabs.Tab
         selected={screen === 3}

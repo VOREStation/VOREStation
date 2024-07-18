@@ -2,7 +2,7 @@ import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
-import { modalOpen } from '.././common/ComplexModal';
+import { modalOpen } from '../common/ComplexModal';
 
 export const ChemMasterCustomization = (props: {
   loaded_pill_bottle: BooleanLike;

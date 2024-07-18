@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
 import { Button } from '../../components';
-import { modalOpen } from '.././common/ComplexModal';
+import { modalOpen } from '../common/ComplexModal';
 
 export const ChemMasterProductionCondiment = (props) => {
   const { act } = useBackend();

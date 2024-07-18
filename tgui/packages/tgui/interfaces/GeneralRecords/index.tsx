@@ -1,9 +1,9 @@
 import { useBackend } from '../../backend';
 import { Section } from '../../components';
 import { Window } from '../../layouts';
-import { LoginScreen } from '.././common/LoginScreen';
 import { ComplexModal } from '../common/ComplexModal';
 import { LoginInfo } from '../common/LoginInfo';
+import { LoginScreen } from '../common/LoginScreen';
 import { TemporaryNotice } from '../common/TemporaryNotice';
 import { GeneralRecordsList } from './GeneralRecordsList';
 import {

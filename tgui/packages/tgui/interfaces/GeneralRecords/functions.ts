@@ -2,7 +2,7 @@ import { filter } from 'common/collections';
 import { flow } from 'common/fp';
 import { createSearch } from 'common/string';
 
-import { modalOpen } from '.././common/ComplexModal';
+import { modalOpen } from '../common/ComplexModal';
 import { field, record } from './types';
 
 export function doEdit(field: field) {

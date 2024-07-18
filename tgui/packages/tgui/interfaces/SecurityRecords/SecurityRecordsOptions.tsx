@@ -1,33 +1,55 @@
 import { useBackend } from '../../backend';
-import { Button, Icon, Section, Tabs } from '../../components';
-import { GeneralRecordsViewGeneral } from './GeneralRecordsViewGeneral';
+import { Button, Section, Tabs } from '../../components';
+import { SecurityRecordsViewGeneral } from './SecurityRecordsViewGeneral';
+import { SecurityRecordsViewSecurity } from './SecurityRecordsViewSecurity';
 import { Data } from './types';
 
-export const GeneralRecordsMaintenance = (props) => {
+export const SecurityRecordsMaintenance = (props) => {
   const { act } = useBackend();
   return (
-    <Button.Confirm icon="trash" onClick={() => act('del_all')}>
-      Delete All Employment Records
-    </Button.Confirm>
+    <>
+      <Button icon="download" disabled>
+        Backup to Disk
+      </Button>
+      <br />
+      <Button icon="upload" my="0.5rem" disabled>
+        Upload from Disk
+      </Button>
+      <br />
+      <Button.Confirm icon="trash" onClick={() => act('del_all')}>
+        Delete All Security Records
+      </Button.Confirm>
+    </>
   );
 };
 
-export const GeneralRecordsView = (props) => {
+export const SecurityRecordsView = (props) => {
   const { act, data } = useBackend<Data>();
-  const { general, printing } = data;
+  const { security, printing } = data;
   return (
     <>
       <Section title="General Data" mt="-6px">
-        <GeneralRecordsViewGeneral />
+        <SecurityRecordsViewGeneral />
+      </Section>
+      <Section title="Security Data">
+        <SecurityRecordsViewSecurity />
       </Section>
       <Section title="Actions">
         <Button.Confirm
           icon="trash"
-          disabled={!!general!.empty}
+          disabled={!!security!.empty}
           color="bad"
           onClick={() => act('del_r')}
         >
-          Delete Employment Record
+          Delete Security Record
+        </Button.Confirm>
+        <Button.Confirm
+          icon="trash"
+          disabled={!!security!.empty}
+          color="bad"
+          onClick={() => act('del_r_2')}
+        >
+          Delete Record (All)
         </Button.Confirm>
         <Button
           icon={printing ? 'spinner' : 'print'}
@@ -51,23 +73,23 @@ export const GeneralRecordsView = (props) => {
   );
 };
 
-export const GeneralRecordsNavigation = (props) => {
+export const SecurityRecordsNavigation = (props) => {
   const { act, data } = useBackend<Data>();
   const { screen } = data;
   return (
     <Tabs>
       <Tabs.Tab
         selected={screen === 2}
+        icon="list"
         onClick={() => act('screen', { screen: 2 })}
       >
-        <Icon name="list" />
         List Records
       </Tabs.Tab>
       <Tabs.Tab
+        icon="wrench"
         selected={screen === 3}
         onClick={() => act('screen', { screen: 3 })}
       >
-        <Icon name="wrench" />
         Record Maintenance
       </Tabs.Tab>
     </Tabs>

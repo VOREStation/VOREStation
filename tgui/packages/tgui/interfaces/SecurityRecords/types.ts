@@ -1,5 +1,7 @@
 import { BooleanLike } from 'common/react';
 
+import { field } from '../GeneralRecords/types';
+
 export type Data = {
   temp: { color: string; text: string } | null;
   scan: string | null;
@@ -15,17 +17,30 @@ export type Data = {
         fields: field[] | undefined;
         photos: string[] | undefined;
         has_photos: BooleanLike;
-        skills: string[] | undefined;
+        empty: BooleanLike;
+      }
+    | undefined;
+  security:
+    | {
+        fields: field[] | undefined;
         comments: { header: string; text: string }[] | undefined;
         empty: BooleanLike;
       }
     | undefined;
+  modal: modalData;
 };
 
-export type record = { ref: string; id: string; name: string; b_dna: string };
+type record = {
+  ref: string;
+  id: string;
+  name: string;
+  color: string;
+  criminal: string;
+};
 
-export type field = {
-  field: string;
-  value: string | number;
-  edit: string | null;
+export type modalData = {
+  id: string;
+  text: string;
+  args: {};
+  modal_type: string;
 };

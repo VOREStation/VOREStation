@@ -1,7 +1,7 @@
 import { useSharedState } from '../../backend';
 import { Box } from '../../components';
 import { Window } from '../../layouts';
-import { TemporaryNotice } from '.././common/TemporaryNotice';
+import { TemporaryNotice } from '../common/TemporaryNotice';
 import {
   NEWSCASTER_SCREEN_MAIN,
   NEWSCASTER_SCREEN_NEWCHANNEL,

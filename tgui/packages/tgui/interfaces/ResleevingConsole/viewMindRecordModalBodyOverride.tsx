@@ -2,9 +2,7 @@ import { useBackend } from '../../backend';
 import { Button, LabeledList, Section } from '../../components';
 import { modalMindData } from './types';
 
-export const viewMindRecordModalBodyOverride = (modal: {
-  args: modalMindData;
-}) => {
+export const viewMindRecordModalBodyOverride = (modal: modalMindData) => {
   const { act } = useBackend();
   const {
     activerecord,

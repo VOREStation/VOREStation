@@ -3,7 +3,7 @@ import { Window } from '../../layouts';
 import {
   ComplexModal,
   modalRegisterBodyOverride,
-} from '.././common/ComplexModal';
+} from '../common/ComplexModal';
 import { analyzeModalBodyOverride } from './ChemMasterAnalyzeModalBodyOverride';
 import { ChemMasterBeaker } from './ChemMasterBeaker';
 import { ChemMasterBuffer } from './ChemMasterBuffer';

@@ -38,22 +38,32 @@ type pod = {
 };
 
 export type modalBBodyData = {
-  activerecord: string;
-  realname: string;
-  species: string;
-  sex: string;
-  mind_compat: string;
-  synthetic: BooleanLike;
-  oocnotes: string;
-  can_grow_active: BooleanLike;
+  id: string;
+  text: string;
+  args: {
+    activerecord: string;
+    realname: string;
+    species: string;
+    sex: string;
+    mind_compat: string;
+    synthetic: BooleanLike;
+    oocnotes: string;
+    can_grow_active: BooleanLike;
+  };
+  modal_type: string;
 };
 
 export type modalMindData = {
-  activerecord: string;
-  realname: string;
-  obviously_dead: string;
-  oocnotes: string;
-  can_sleeve_active: BooleanLike;
+  id: string;
+  text: string;
+  args: {
+    activerecord: string;
+    realname: string;
+    obviously_dead: string;
+    oocnotes: string;
+    can_sleeve_active: BooleanLike;
+  };
+  modal_type: string;
 };
 
 export type record = { name: string; recref: string };

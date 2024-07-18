@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
 import { Box, Button, Image, LabeledList, Section } from '../../components';
-import { modalOpen } from '.././common/ComplexModal';
+import { modalOpen } from '../common/ComplexModal';
 import { doEdit } from './functions';
 import { Data } from './types';
 
@@ -30,10 +30,14 @@ export const GeneralRecordsViewGeneral = (props) => {
             <LabeledList.Item key={i} label={field.field}>
               <Box height="20px" inline>
                 {field.value}
+                {!!field.edit && (
+                  <Button
+                    icon="pen"
+                    ml="0.5rem"
+                    onClick={() => doEdit(field)}
+                  />
+                )}
               </Box>
-              {!!field.edit && (
-                <Button icon="pen" ml="0.5rem" onClick={() => doEdit(field)} />
-              )}
             </LabeledList.Item>
           ))}
         </LabeledList>

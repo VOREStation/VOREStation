@@ -13,6 +13,7 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 import { ComplexModal, modalRegisterBodyOverride } from './common/ComplexModal';
+import { modalData } from './MedicalRecords/types';
 
 type Data = {
   syringe_inserted: BooleanLike;
@@ -35,24 +36,7 @@ type Data = {
   modal: modalData;
 };
 
-type modalData = {
-  name: string;
-  spreadtype: string;
-  antigen: string;
-  rate: number;
-  resistance: number;
-  species: string;
-  ref: string;
-  symptoms: {
-    stage: number;
-    name: string;
-    strength: string;
-    aggressiveness: string;
-  }[];
-  record: string;
-};
-
-const virusModalBodyOverride = (modal: { args: modalData }) => {
+const virusModalBodyOverride = (modal: modalData) => {
   const { act, data } = useBackend<Data>();
   const { can_print } = data;
   const virus = modal.args;

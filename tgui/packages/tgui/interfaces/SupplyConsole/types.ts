@@ -14,6 +14,8 @@ export type Data = {
 };
 
 export type modalData = {
+  id: string;
+  text: string;
   args: {
     name: string;
     cost: number;
@@ -21,6 +23,7 @@ export type modalData = {
     ref: string;
     random: number;
   };
+  modal_type: string;
 };
 
 export type supplyPack = {
