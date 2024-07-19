@@ -1,7 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section } from '../../components';
+import { Box, Button, Image, LabeledList, Section } from '../../components';
 import { NEWSCASTER_SCREEN_VIEWLIST } from './constants';
 import { Data } from './types';
 
@@ -87,7 +87,7 @@ export const NewscasterViewSelected = (props: { setScreen: Function }) => {
             - {decodeHtmlEntities(message.body)}
             {!!message.img && (
               <Box>
-                <img src={'data:image/png;base64,' + message.img} />
+                <Image src={'data:image/png;base64,' + message.img} />
                 {decodeHtmlEntities(message.caption) || null}
               </Box>
             )}

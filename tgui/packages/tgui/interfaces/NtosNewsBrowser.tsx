@@ -5,6 +5,7 @@ import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import {
   Button,
+  Image,
   LabeledList,
   NoticeBox,
   ProgressBar,
@@ -82,7 +83,7 @@ const SelectedArticle = (props) => {
         </>
       }
     >
-      {!!cover && <img src={resolveAsset(cover)} />}
+      {!!cover && <Image src={resolveAsset(cover)} />}
       {/* News articles are written in premade .html files and cannot be edited by players, so it should be
        * safe enough to use dangerouslySetInnerHTML here.
        */}

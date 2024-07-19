@@ -1,7 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section } from '../../components';
+import { Box, Button, Image, LabeledList, Section } from '../../components';
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
 import { Data } from './types';
 
@@ -50,7 +50,7 @@ export const NewscasterViewWanted = (props: { setScreen: Function }) => {
             {decodeHtmlEntities(wanted_issue.desc)}
           </LabeledList.Item>
           <LabeledList.Item label="Photo">
-            {(wanted_issue.img && <img src={wanted_issue.img} />) || 'None'}
+            {(wanted_issue.img && <Image src={wanted_issue.img} />) || 'None'}
           </LabeledList.Item>
         </LabeledList>
       </Box>

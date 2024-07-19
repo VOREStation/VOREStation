@@ -1,7 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Section } from '../../components';
+import { Box, Button, Image, Section } from '../../components';
 import { Data } from './types';
 
 export const CommunicatorNewsTab = (props) => {
@@ -37,7 +37,7 @@ export const CommunicatorNewsTab = (props) => {
                 - {decodeHtmlEntities(message.body)}
                 {!!message.img && (
                   <Box>
-                    <img src={'data:image/png;base64,' + message.img} />
+                    <Image src={'data:image/png;base64,' + message.img} />
                     {decodeHtmlEntities(message.caption) || null}
                   </Box>
                 )}
