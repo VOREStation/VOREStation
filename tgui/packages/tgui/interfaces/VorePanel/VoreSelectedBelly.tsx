@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { Tabs } from '../../components';
 import { hostMob, selectedData } from './types';
 import { VoreContentsPanel } from './VoreContentsPanel';
-import { VoreSelectedBellyControls } from './VoreSelectedBellyControls';
-import { VoreSelectedBellyDescriptions } from './VoreSelectedBellyDescriptions';
-import { VoreSelectedBellyInteractions } from './VoreSelectedBellyInteractions';
-import { VoreSelectedBellyOptions } from './VoreSelectedBellyOptions';
-import { VoreSelectedBellySounds } from './VoreSelectedBellySounds';
-import { VoreSelectedBellyVisuals } from './VoreSelectedBellyVisuals';
+import { VoreSelectedBellyControls } from './VoreSelectedBellyTabs/VoreSelectedBellyControls';
+import { VoreSelectedBellyDescriptions } from './VoreSelectedBellyTabs/VoreSelectedBellyDescriptions';
+import { VoreSelectedBellyInteractions } from './VoreSelectedBellyTabs/VoreSelectedBellyInteractions';
+import { VoreSelectedBellyOptions } from './VoreSelectedBellyTabs/VoreSelectedBellyOptions';
+import { VoreSelectedBellySounds } from './VoreSelectedBellyTabs/VoreSelectedBellySounds';
+import { VoreSelectedBellyVisuals } from './VoreSelectedBellyTabs/VoreSelectedBellyVisuals';
 
 /**
  * Subtemplate of VoreBellySelectionAndCustomization

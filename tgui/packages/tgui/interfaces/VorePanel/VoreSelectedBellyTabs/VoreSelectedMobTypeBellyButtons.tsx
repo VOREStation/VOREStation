@@ -1,8 +1,8 @@
 import { capitalize } from 'common/string';
 
-import { useBackend } from '../../backend';
-import { Button, LabeledList, Section } from '../../components';
-import { hostMob, selectedData } from './types';
+import { useBackend } from '../../../backend';
+import { Button, LabeledList, Section } from '../../../components';
+import { hostMob, selectedData } from '../types';
 
 export const VoreSelectedMobTypeBellyButtons = (props: {
   belly: selectedData;

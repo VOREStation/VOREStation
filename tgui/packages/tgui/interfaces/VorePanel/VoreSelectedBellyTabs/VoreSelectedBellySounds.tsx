@@ -1,6 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, Flex, LabeledList } from '../../components';
-import { selectedData } from './types';
+import { useBackend } from '../../../backend';
+import { Button, Flex, LabeledList } from '../../../components';
+import { selectedData } from '../types';
 
 export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
   const { act } = useBackend();

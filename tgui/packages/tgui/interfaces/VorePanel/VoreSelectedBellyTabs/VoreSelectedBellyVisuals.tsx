@@ -1,8 +1,8 @@
 import { classes } from 'common/react';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, LabeledList, Section } from '../../components';
-import { selectedData } from './types';
+import { useBackend } from '../../../backend';
+import { Box, Button, Flex, LabeledList, Section } from '../../../components';
+import { selectedData } from '../types';
 
 export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
   const { act } = useBackend();

@@ -1,12 +1,12 @@
-import { useBackend } from '../../backend';
-import { Button, LabeledList } from '../../components';
-import { selectedData } from './types';
-import { VoreSelectedBellyDescriptionsBellymode } from './VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsBellymode';
-import { VoreSelectedBellyDescriptionsEscape } from './VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsEscape';
-import { VoreSelectedBellyDescriptionsIdle } from './VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsIdle';
-import { VoreSelectedBellyDescriptionsInteractionChance } from './VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsInteractionChance';
-import { VoreSelectedBellyDescriptionsStruggle } from './VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsStruggle';
-import { VoreSelectedBellyDescriptionsTransfer } from './VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsTransfer';
+import { useBackend } from '../../../backend';
+import { Button, LabeledList } from '../../../components';
+import { selectedData } from '../types';
+import { VoreSelectedBellyDescriptionsBellymode } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsBellymode';
+import { VoreSelectedBellyDescriptionsEscape } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsEscape';
+import { VoreSelectedBellyDescriptionsIdle } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsIdle';
+import { VoreSelectedBellyDescriptionsInteractionChance } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsInteractionChance';
+import { VoreSelectedBellyDescriptionsStruggle } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsStruggle';
+import { VoreSelectedBellyDescriptionsTransfer } from '../VoreSelectedBellyDescriptionTexts/VoreSelectedBellyDescriptionsTransfer';
 
 export const VoreSelectedBellyDescriptions = (props: {
   belly: selectedData;
