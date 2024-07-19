@@ -51,7 +51,7 @@ export const VoreUserPreferencesAesthetic = (props: {
           <VoreUserPreferenceItem spec={preferences.examine_weight} />
         </Flex.Item>
         <Flex.Item basis="50%">
-          <Button fluid onClick={() => act('set_vs_color')}>
+          <Button fluid onClick={() => act('set_vs_color')} icon="palette">
             Vore Sprite Color
           </Button>
         </Flex.Item>
