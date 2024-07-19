@@ -105,7 +105,7 @@
 		client.prefs.lastlorenews = GLOB.news_data.newsindex
 		SScharacter_setup.queue_preferences_save(client.prefs)
 
-	panel = new(src, "Welcome","Welcome", 210, 300, src) // VOREStation Edit
+	panel = new(src, "Welcome","Welcome", 210, 320, src) // VOREStation Edit
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
 	panel.open()
