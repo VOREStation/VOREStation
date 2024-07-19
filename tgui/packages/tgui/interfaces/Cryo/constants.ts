@@ -1,4 +1,4 @@
-const damageTypes: { label: string; type: string }[] = [
+export const damageTypes: { label: string; type: string }[] = [
   {
     label: 'Resp.',
     type: 'oxyLoss',
@@ -17,7 +17,7 @@ const damageTypes: { label: string; type: string }[] = [
   },
 ];
 
-const statNames: string[][] = [
+export const statNames: string[][] = [
   ['good', 'Conscious'],
   ['average', 'Unconscious'],
   ['bad', 'DEAD'],

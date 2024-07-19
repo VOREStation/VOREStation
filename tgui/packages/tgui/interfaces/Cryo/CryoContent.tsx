@@ -11,6 +11,7 @@ import {
   ProgressBar,
   Section,
 } from '../../components';
+import { damageTypes, statNames } from './constants';
 import { Data } from './types';
 
 export const CryoContent = (props) => {
@@ -45,8 +46,8 @@ export const CryoContent = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="Health">
               <ProgressBar
-                minValue={occupant.health}
-                maxValue={occupant.maxHealth}
+                minValue={0}
+                maxValue={1}
                 value={occupant.health / occupant.maxHealth}
                 color={occupant.health > 0 ? 'good' : 'average'}
               >

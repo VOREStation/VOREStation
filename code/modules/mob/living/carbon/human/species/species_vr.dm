@@ -45,6 +45,9 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
+/datum/species/unathi
+	vore_belly_default_variant = "L"
+
 /datum/species/proc/give_numbing_bite() //Holy SHIT this is hacky, but it works. Updating a mob's attacks mid game is insane.
 	unarmed_attacks = list()
 	unarmed_types += /datum/unarmed_attack/bite/sharp/numbing
@@ -114,3 +117,11 @@
 
 /datum/species/get_bodytype()
 	return base_species
+
+/datum/species/proc/update_vore_belly_def_variant()
+	// Determine the actual vore_belly_default_variant, if the base species in the VORE tab is set
+	switch (base_species)
+		if("Teshari")
+			vore_belly_default_variant = "T"
+		if("Unathi")
+			vore_belly_default_variant = "L"

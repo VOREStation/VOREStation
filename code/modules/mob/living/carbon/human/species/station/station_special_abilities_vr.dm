@@ -148,6 +148,7 @@
 	revive()
 	mutations.Remove(HUSK)
 	setBrainLoss(braindamage)
+	species.update_vore_belly_def_variant()
 
 	if(!uninjured)
 		nutrition = old_nutrition * 0.5

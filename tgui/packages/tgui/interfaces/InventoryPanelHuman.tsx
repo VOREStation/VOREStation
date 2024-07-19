@@ -88,6 +88,13 @@ export const InventoryPanelHuman = (props) => {
           >
             Empty Pockets
           </Button>
+          <Button
+            fluid
+            icon="socks"
+            onClick={() => act('targetSlot', { slot: 'underwear' })}
+          >
+            Remove or Replace Underwear
+          </Button>
           {(internalsValid && (
             <Button
               fluid

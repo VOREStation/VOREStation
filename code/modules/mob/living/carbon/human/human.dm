@@ -32,6 +32,8 @@
 	var/active_regen_delay = 300
 	var/list/teleporters = list() //Used for lleill abilities
 
+	var/rest_dir = 0					//To lay down in a specific direction
+
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)
 		dna = new /datum/dna(null)
@@ -1288,6 +1290,7 @@
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
 		species.update_attack_types() //VOREStation Edit - Required for any trait that updates unarmed_types in setup.
+		species.update_vore_belly_def_variant()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	update_hud()
@@ -1805,3 +1808,19 @@
 	vore_fullness = min(vore_capacity, vore_fullness)
 	update_vore_belly_sprite()
 	update_vore_tail_sprite()
+
+/mob/living/carbon/human/verb/lay_down_left()
+	set name = "Rest-Left"
+
+	rest_dir = -1
+	resting = !resting
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
+	update_canmove()
+
+/mob/living/carbon/human/verb/lay_down_right()
+	set name = "Rest-Right"
+
+	rest_dir = 1
+	resting = !resting
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
+	update_canmove()

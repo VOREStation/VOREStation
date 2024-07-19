@@ -728,14 +728,7 @@
 /turf/simulated/shuttle/wall,
 /area/redgate/jungle/westcaves)
 "ik" = (
-/mob/living/simple_mob/vore/demon{
-	ai_holder_type = /datum/ai_holder/simple_mob/vore;
-	harm_intent_damage = 8;
-	health = 300;
-	melee_damage_lower = 5;
-	melee_damage_upper = 2;
-	vore_pounce_chance = 50
-	},
+/mob/living/simple_mob/vore/devil,
 /turf/simulated/floor/gorefloor,
 /area/redgate/jungle/temple)
 "il" = (
@@ -3510,13 +3503,6 @@
 	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
-"PG" = (
-/mob/living/simple_mob/vore/demon/engorge{
-	ai_holder_type = /datum/ai_holder/simple_mob/vore;
-	vore_pounce_chance = 50
-	},
-/turf/simulated/floor/gorefloor2,
-/area/redgate/jungle/temple)
 "PK" = (
 /obj/item/weapon/bedsheet/pillow,
 /turf/simulated/mineral/floor/cave,
@@ -9402,7 +9388,7 @@ Ji
 Ji
 pL
 GT
-ik
+GT
 GT
 GT
 rI
@@ -9545,7 +9531,7 @@ Ji
 ue
 GT
 GT
-GT
+ik
 GT
 rI
 rI
@@ -9689,7 +9675,7 @@ GT
 GT
 GT
 rI
-PG
+rI
 rI
 pL
 pL
