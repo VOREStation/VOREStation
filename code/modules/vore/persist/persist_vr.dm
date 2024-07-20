@@ -130,7 +130,7 @@
 	prefs.f_style	= character.f_style
 	prefs.b_type	= character.b_type
 
-// Saves mob's current custom species, ears, tail, wing and digilegs state to prefs
+// Saves mob's current custom species, ears, tail, wings and digitigrade legs state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/vore/ears/copy_to_mob() ~Leshana
 /proc/apply_ears_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
 	if(character.ear_style) prefs.ear_style = character.ear_style.name

@@ -369,7 +369,6 @@
 	// We don't actually dress them! This is a medical machine, handle the nakedness DOCTOR!
 
 	H.regenerate_icons()
-	H.update_hair()
 	return 0 // Success!
 
 // HORROR SHOW BELOW
