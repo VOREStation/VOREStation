@@ -27,6 +27,7 @@
 							/obj/item/toy/nuke										= 2,
 							/obj/item/toy/minigibber								= 2,
 							/obj/item/toy/toy_xeno									= 2,
+							/obj/item/weapon/toy/monster_bait						= 2,
 							/obj/item/toy/russian_revolver							= 1,
 							/obj/item/toy/russian_revolver/trick_revolver			= 1,
 							/obj/item/toy/chainsaw									= 1,
