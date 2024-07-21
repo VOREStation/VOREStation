@@ -114,7 +114,8 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/toy/baseball,
 				prob(1);/obj/item/pizzavoucher,
 				prob(5);/obj/item/weapon/material/fishing_net/butterfly_net,
-				prob(2);/obj/item/weapon/cracker
+				prob(2);/obj/item/weapon/cracker,
+				prob(5);/obj/random/mega_nukies
 				/* VOREStation Edit End */
 				)
 
