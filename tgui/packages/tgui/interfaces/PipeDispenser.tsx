@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useBackend } from '../backend';
 import { Box, Button, Section, Tabs } from '../components';
 import { Window } from '../layouts';
-import { ICON_BY_CATEGORY_NAME } from './RapidPipeDispenser';
+import { ICON_BY_CATEGORY_NAME } from './RapidPipeDispenser/constants';
 
 type Data = {
   disposals: BooleanLike;

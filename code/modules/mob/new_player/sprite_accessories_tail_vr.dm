@@ -1027,6 +1027,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/tail_smooth_dual
+	name = "Smooth Lizard Tail, dual color"
+	desc = ""
+	icon_state = "tail_smooth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tail_smooth_markings"
+
 /datum/sprite_accessory/tail/fennec_tail
 	name = "Fennec tail"
 	desc = ""

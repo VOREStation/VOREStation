@@ -38,6 +38,7 @@
 #define CE_SLOWDOWN "goslow" // Slowdown
 #define CE_ANTACID "nopuke" // Don't puke.
 #define CE_ALLERGEN "allergyreaction" // Self explanatory
+#define CE_DARKSIGHT "darksight" // Gives perfect vision in dark
 
 #define REAGENTS_PER_SHEET 20
 

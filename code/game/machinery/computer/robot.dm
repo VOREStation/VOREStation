@@ -144,6 +144,7 @@
 			module = R.module ? R.module.name : "No Module Detected",
 			synchronization = R.connected_ai,
 			is_hacked =  R.connected_ai && R.emagged,
+			emagged = R.emagged,
 			hackable = can_hack(user, R),
 		)
 		data["cyborgs"] += list(cyborg_data)

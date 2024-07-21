@@ -110,7 +110,7 @@
 
 /obj/item/weapon/material/fishing_net/butterfly_net
 	name = "butterfly net"
-	desc = "A butterfly net."
+	desc = "A butterfly net, it can be used to catch small critters, such as butterflies, but perhaps also friends?"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "butterfly_net"
 	item_state = "butterfly_net"

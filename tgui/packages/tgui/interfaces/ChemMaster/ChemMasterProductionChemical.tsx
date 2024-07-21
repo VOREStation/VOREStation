@@ -1,6 +1,6 @@
 import { classes } from '../../.././common/react';
 import { Box, Button, LabeledList } from '../../components';
-import { modalOpen } from '.././common/ComplexModal';
+import { modalOpen } from '../common/ComplexModal';
 
 export const ChemMasterProductionChemical = (props: {
   pillsprite: string;

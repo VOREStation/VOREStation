@@ -113,7 +113,9 @@ export const BodyDesignerSpecificRecord = (props: {
                     >
                       {style.style}
                     </Button>
-                  ) : null}
+                  ) : (
+                    ''
+                  )}
                   {style.colorHref ? (
                     <Box>
                       <Button
@@ -137,7 +139,9 @@ export const BodyDesignerSpecificRecord = (props: {
                         }}
                       />
                     </Box>
-                  ) : null}
+                  ) : (
+                    ''
+                  )}
                   {style.colorHref2 ? (
                     <Box>
                       <Button
@@ -161,10 +165,25 @@ export const BodyDesignerSpecificRecord = (props: {
                         }}
                       />
                     </Box>
-                  ) : null}
+                  ) : (
+                    ''
+                  )}
                 </LabeledList.Item>
               );
             })}
+            <LabeledList.Item label="Digitigrade">
+              <Button
+                icon="pen"
+                onClick={() =>
+                  act('href_conversion', {
+                    target_href: 'digitigrade',
+                    target_value: 1,
+                  })
+                }
+              >
+                {activeBodyRecord.digitigrade ? 'Yes' : 'No'}
+              </Button>
+            </LabeledList.Item>
             <LabeledList.Item label="Body Markings">
               <Button
                 icon="plus"

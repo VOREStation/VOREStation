@@ -65,6 +65,7 @@
 	..()
 	var/list/selector_uniforms = list(
 		"black"=/obj/item/clothing/gloves/fingerless,
+		"black, alt" =/obj/item/clothing/gloves/fingerless/alt,
 		"recolourable white"=/obj/item/clothing/gloves/fingerless_recolourable
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))

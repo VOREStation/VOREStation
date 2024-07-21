@@ -465,6 +465,11 @@
 	item_state = "skirt_pleated"
 	worn_state = "skirt_pleated"
 
+/obj/item/clothing/under/skirt/colorable/pleated/alt
+	icon_state = "skirt_pleated_alt"
+	item_state = "skirt_pleated_alt"
+	worn_state = "skirt_pleated_alt"
+
 /obj/item/clothing/under/skirt/colorable/pencil
 	name = "pencil skirt"
 	desc = "A short skirt that's almost as thin as a pencil. Almost."

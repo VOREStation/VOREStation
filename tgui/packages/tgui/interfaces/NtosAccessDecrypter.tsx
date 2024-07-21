@@ -10,7 +10,7 @@ type Data = {
   running: BooleanLike;
   rate: number;
   factor: number;
-  regions: [];
+  regions: string[];
 };
 
 export const NtosAccessDecrypter = (props) => {

@@ -104,6 +104,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/device/pda,
 				prob(3);/obj/item/device/radio/headset,
 				/* VOREStation Edit Start */
+				prob(3);/obj/item/weapon/toy/monster_bait,
 				prob(2);/obj/item/toy/tennis,
 				prob(2);/obj/item/toy/tennis/red,
 				prob(2);/obj/item/toy/tennis/yellow,
@@ -114,7 +115,8 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/toy/baseball,
 				prob(1);/obj/item/pizzavoucher,
 				prob(5);/obj/item/weapon/material/fishing_net/butterfly_net,
-				prob(2);/obj/item/weapon/cracker
+				prob(2);/obj/item/weapon/cracker,
+				prob(5);/obj/random/mega_nukies
 				/* VOREStation Edit End */
 				)
 
