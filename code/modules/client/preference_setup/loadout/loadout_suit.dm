@@ -66,6 +66,7 @@
 
 /datum/gear/suit/mil
 	display_name = "military jacket selection"
+	description = "Pick from a modest range of military surplus jackets. They even have some pocket space!"
 	path = /obj/item/clothing/suit/storage/miljacket
 
 /datum/gear/suit/mil/New()
