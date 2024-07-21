@@ -196,6 +196,7 @@
 		var/datum/preferences/designer/P = new()
 		apply_markings_to_prefs(mannequin, P)
 		data["activeBodyRecord"]["markings"] = P.body_markings
+		data["activeBodyRecord"]["digitigrade"] = mannequin.digitigrade
 
 	data["menu"] = menu
 	data["temp"] = temp
@@ -283,7 +284,6 @@
 /obj/machinery/computer/transhuman/designer/proc/update_preview_icon()
 	if(!mannequin)
 		mannequin = new ()
-
 	mannequin.delete_inventory(TRUE)
 	update_preview_mob(mannequin)
 	mannequin.ImmediateOverlayUpdate()
@@ -356,6 +356,14 @@
 	H.UpdateAppearance() // Update all appearance stuff from the DNA record
 	H.sync_organ_dna() // Do this because sprites depend on DNA-gender of organs (chest etc)
 	H.resize(active_br.sizemult, FALSE)
+
+	// Emissiive...
+	if(H.ear_style)
+		H.ear_style.em_block = FALSE
+	if(H.tail_style)
+		H.tail_style.em_block = FALSE
+	if(H.wing_style)
+		H.wing_style.em_block = FALSE
 
 	// And as for clothing...
 	// We don't actually dress them! This is a medical machine, handle the nakedness DOCTOR!

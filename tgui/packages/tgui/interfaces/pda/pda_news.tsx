@@ -2,7 +2,7 @@ import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Section } from '../../components';
+import { Box, Button, Image, Section } from '../../components';
 
 type Data = {
   feeds: feed[];
@@ -84,7 +84,7 @@ const NewsTargetFeed = (props: { target_feed: feed }) => {
             - {decodeHtmlEntities(message.body)}
             {!!message.img && (
               <Box>
-                <img src={'data:image/png;base64,' + message.img} />
+                <Image src={'data:image/png;base64,' + message.img} />
                 {decodeHtmlEntities(message.caption) || null}
               </Box>
             )}

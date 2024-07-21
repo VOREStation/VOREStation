@@ -817,7 +817,8 @@
 				/obj/item/toy/mecha/seraph,
 				/obj/item/toy/mecha/mauler,
 				/obj/item/toy/mecha/odysseus,
-				/obj/item/toy/mecha/phazon)
+				/obj/item/toy/mecha/phazon,
+				/obj/item/weapon/toy/monster_bait)
 
 /obj/random/mouseremains
 	name = "random mouseremains"

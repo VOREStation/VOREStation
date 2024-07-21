@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
-import { BeakerContents } from '.././common/BeakerContents';
+import { BeakerContents } from '../common/BeakerContents';
 import { removeAmounts } from './constants';
 import { Data } from './types';
 

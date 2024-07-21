@@ -1,22 +1,11 @@
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, Section } from '../../components';
-import { GeneralRecord, RecordList } from './pda_types';
+import { GeneralRecord, RecordList, SecurityRecord } from './pda_types';
 
 type Data = {
   records: {
     general: GeneralRecord;
-    security: {
-      name: string;
-      species: string;
-      id: string;
-      brain_type: string;
-      criminal: string;
-      mi_crim: string;
-      mi_crim_d: string;
-      ma_crim: string;
-      ma_crim_d: string;
-      notes: string;
-    };
+    security: SecurityRecord;
   };
   recordsList: RecordList;
 };
@@ -92,7 +81,7 @@ export const pda_security = (props) => {
           fluid
           onClick={() => act('Records', { target: record.ref })}
         >
-          {record.Name}
+          {record.name}
         </Button>
       ))}
     </Section>

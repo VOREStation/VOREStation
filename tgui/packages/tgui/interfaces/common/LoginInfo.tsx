@@ -8,9 +8,9 @@ type Data = { authenticated: string; rank: string };
  * `authenticated` and `rank` data fields if they exist.
  *
  * Also gives an option to log off (calls `logout` TGUI action)
- * @param {object} _properties
+ * @param {object} props
  */
-export const LoginInfo = (_properties) => {
+export const LoginInfo = (props) => {
   const { act, data } = useBackend<Data>();
   const { authenticated, rank } = data;
   if (!data) {

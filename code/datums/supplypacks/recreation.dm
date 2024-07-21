@@ -137,3 +137,12 @@
 			/obj/machinery/porta_turret/lasertag/blue,
 			/obj/machinery/porta_turret/lasertag/red
 			)
+
+/datum/supply_pack/recreation/monster_bait
+	name = "Monster Bait Toy"
+	cost = 5
+	containername = "monster bait crate"
+	containertype = /obj/structure/closet/crate/allico
+	contains = list(
+			/obj/item/weapon/toy/monster_bait
+			)
