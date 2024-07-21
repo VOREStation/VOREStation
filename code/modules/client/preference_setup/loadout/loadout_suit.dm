@@ -330,6 +330,15 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(ranger_ponchos)
 
+/datum/gear/suit/neo_ranger //colorable ranger poncho
+	display_name = "ranger poncho, colorable"
+	path = /obj/item/clothing/accessory/poncho/roles/neo_ranger
+	cost = 1
+
+/datum/gear/suit/neo_ranger/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/suit/unathi_robe
 	display_name = "roughspun robe"
 	path = /obj/item/clothing/suit/unathi/robe
@@ -775,7 +784,15 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(hoodedcloaks)
 
-//nerdy shirt
+//oversized shirts
 /datum/gear/suit/nerdshirt
     display_name = "nerdy shirt"
     path = /obj/item/clothing/suit/nerdshirt
+
+/datum/gear/suit/ianshirt
+    display_name = "worn corgi shirt"
+    path = /obj/item/clothing/suit/ianshirt
+
+/datum/gear/suit/wornshirt
+    display_name = "worn shirt"
+    path = /obj/item/clothing/suit/wornshirt

@@ -596,6 +596,19 @@
 	)
 	gear_tweaks += list(new/datum/gear_tweak/path(turtlebaggys))
 
+//colorable sweaters
+/datum/gear/uniform/bigsweaters
+	display_name = "sweater selection, colorable"
+	path = /obj/item/clothing/under/bigsweater
+
+/datum/gear/uniform/bigsweaters/New()
+	..()
+	var/list/bigsweaters = list(
+	"cableknit sweater"=/obj/item/clothing/under/bigsweater,
+	"keyhole sweater"=/obj/item/clothing/under/bigsweater/keyhole
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(bigsweaters), gear_tweak_free_color_choice)
+
 //half-moon outfit
 /datum/gear/uniform/halfmoon
     display_name = "half moon outfit"

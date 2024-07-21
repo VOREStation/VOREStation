@@ -415,3 +415,18 @@
 /datum/gear/head/giantbow/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+
+/datum/gear/head/bows
+	display_name = "hair bow selection, colorable"
+	path = /obj/item/clothing/head/bow
+
+/datum/gear/head/bows/New()
+	..()
+	var/list/bows = list(
+	"large bow"=/obj/item/clothing/head/bow,
+	"small bow"=/obj/item/clothing/head/bow/small,
+	"back bow"=/obj/item/clothing/head/bow/back,
+	"sweet bow"=/obj/item/clothing/head/bow/sweet
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(bows), gear_tweak_free_color_choice)

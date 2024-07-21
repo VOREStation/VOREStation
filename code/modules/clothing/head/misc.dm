@@ -563,3 +563,26 @@
 	icon_state = "redtag"
 	flags_inv = HIDEEARS|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EYES
+
+//hair bows
+
+/obj/item/clothing/head/bow
+	name = "large bow"
+	desc = "A large bow that you can place on top of your head."
+	icon_state = "large_bow"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/bow/small
+	name = "small bow"
+	desc = "A small compact bow that you can place on the side of your hair."
+	icon_state = "small_bow"
+
+/obj/item/clothing/head/bow/back
+	name = "back bow"
+	desc = "A large bow that you can place on the back of your head."
+	icon_state = "back_bow"
+
+/obj/item/clothing/head/bow/sweet
+	name = "sweet bow"
+	desc = "A sweet bow that you can place on the back of your head."
+	icon_state = "sweet_bow"

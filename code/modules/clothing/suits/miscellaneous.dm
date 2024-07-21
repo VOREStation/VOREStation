@@ -320,7 +320,7 @@
 			H.drop_from_inventory(H.handcuffed)
 
 /obj/item/clothing/suit/ianshirt
-	name = "worn shirt"
+	name = "worn corgi shirt"
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
 	icon_state = "ianshirt"
 	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat") //placeholder -S2-
@@ -332,6 +332,11 @@
 	name = "nerdy shirt"
 	desc = "A comfy white t-shirt with a picture of a cartoon hedgehog on it. Although clean, it still seems like the wearer should be embarrassed for owning it."
 	icon_state = "nerdshirt"
+
+/obj/item/clothing/suit/wornshirt
+	name = "worn shirt"
+	desc = "A worn out (or perhaps just baggy), curiously comfortable t-shirt."
+	icon_state = "wornshirt"
 
 /*
  * Kimonos
