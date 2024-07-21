@@ -109,6 +109,9 @@
 		/mob/living/silicon/robot/proc/sensor_mode,
 		/mob/living/silicon/robot/proc/robot_checklaws,
 		/mob/living/silicon/robot/proc/robot_mount,
+		/mob/living/silicon/robot/proc/take_image,
+		/mob/living/silicon/robot/proc/view_images,
+		/mob/living/silicon/robot/proc/delete_images,
 		/mob/living/proc/toggle_rider_reins,
 		/mob/living/proc/vertical_nom,
 		/mob/living/proc/shred_limb,
@@ -424,7 +427,7 @@
 	set category = "Robot Commands"
 
 	if(custom_name)
-		to_chat(usr, "You can't pick another custom name. Go ask for a name change.")
+		to_chat(usr, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
 		return 0
 
 	spawn(0)
@@ -833,7 +836,7 @@
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	module.Destroy()
+	qdel(module)
 	module = null
 	updatename("Default")
 	has_recoloured = FALSE
@@ -1701,3 +1704,5 @@
 
 /mob/living/silicon/robot/proc/has_upgrade(var/given_type)
 	return (has_basic_upgrade(given_type) || has_advanced_upgrade(given_type) || has_restricted_upgrade(given_type) || has_no_prod_upgrade(given_type))
+
+#undef CYBORG_POWER_USAGE_MULTIPLIER

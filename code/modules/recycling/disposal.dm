@@ -1265,7 +1265,7 @@
 /obj/structure/disposalpipe/tagger/New()
 	. = ..()
 	dpdir = dir | turn(dir, 180)
-	if(sort_tag) GLOB.tagger_locations |= sort_tag
+	if(sort_tag) GLOB.tagger_locations |= list("[sort_tag]" = get_z(src))
 	updatename()
 	updatedesc()
 	update()
@@ -1331,7 +1331,7 @@
 
 /obj/structure/disposalpipe/sortjunction/New()
 	. = ..()
-	if(sortType) GLOB.tagger_locations |= sortType
+	if(sortType) GLOB.tagger_locations |= list("[sortType]" = get_z(src))
 
 	updatedir()
 	updatename()
@@ -1646,3 +1646,7 @@
 		dirs = alldirs.Copy()
 
 	src.streak(dirs)
+
+#undef SEND_PRESSURE
+#undef PRESSURE_TANK_VOLUME
+#undef PUMP_MAX_FLOW_RATE

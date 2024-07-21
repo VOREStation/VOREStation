@@ -486,7 +486,6 @@ var/global/list/PDA_Manifest = list()
 	R.fields["ma_crim"]		= "None"
 	R.fields["ma_crim_d"]	= "No major crime convictions."
 	R.fields["notes"]		= "No notes."
-	R.fields["notes"] = "No notes."
 	if(hidden)
 		hidden_security += R
 	else

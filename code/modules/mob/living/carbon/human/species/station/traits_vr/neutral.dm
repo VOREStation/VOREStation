@@ -143,6 +143,45 @@
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_finalize
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
 
+/datum/trait/neutral/venom_bite
+	name = "Venomous Injection"
+	desc = "Allows for injecting prey through one method or another to inject them with a variety of chemicals with varying effects!"
+	tutorial = "This trait allows you to bite prey with varying effects! <br> \
+		Options for venoms: <br> \
+		=====Size Chemicals ===== <br> \
+		Microcillin: Will make someone shrink. (This is 1% per 0.01 units. So 1 unit = 100% size change) <br> \
+		Macrocillin: Will make someone grow. (This is 1% per 0.01 units. So 1 unit = 100% size change) <br> \
+		Normalcillin: Will make someone normal size. (This is 1% per 0.01 units. So 1 unit = 100% size change) Stops at 100% size. <br> \
+		===== Gender Chemicals ===== <br> \
+		Androrovir: Will transform someone's sex to male. <br> \
+		Gynorovir: Will transform someone's sex to female. <br> \
+		Androgynorovir: Will transform someone's sex to pleural. <br> \
+		===== Special Chemicals ===== <br> \
+		Stoxin: Will make someone drowsy. <br> \
+		Rainbow Toxin: Will make someone see rainbows. <br> \
+		Paralysis Toxin: Will make someone paralyzed. <br> \
+		Numbing Enzyme: Will make someone unable to feel pain. <br> \
+		Pain Enzyme: Will make someone feel pain, amplifieed <br> \
+		===== Side Notes ===== <br> \
+		You aren't required to inject anything if you prefer to just use it as a normal bite!"
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/venom_bite/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.verbs |= /mob/living/proc/injection
+	H.trait_injection_reagents += "microcillin"		// get small
+	H.trait_injection_reagents += "macrocillin"		// get BIG
+	H.trait_injection_reagents += "normalcillin"	// normal
+	H.trait_injection_reagents += "numbenzyme"		// no feelings
+	H.trait_injection_reagents += "androrovir" 		// -> MALE
+	H.trait_injection_reagents += "gynorovir" 		// -> FEMALE
+	H.trait_injection_reagents += "androgynorovir" 	// -> PLURAL
+	H.trait_injection_reagents += "stoxin"			// night night chem
+	H.trait_injection_reagents += "rainbowtoxin" 	// Funny flashing lights.
+	H.trait_injection_reagents += "paralysistoxin" 	// Paralysis!
+	H.trait_injection_reagents += "painenzyme"		// Pain INCREASER
+
 /datum/trait/neutral/long_vore
 	name = "Long Predatorial Reach"
 	desc = "Makes you able to use an unspecified appendage to grab creatures."
@@ -482,21 +521,21 @@
 	desc = "The only way you can hold a drink is if it's in your own two hands, and even then you'd best not inhale too deeply near it. Alcohol hits you three times as hard as they do other people."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("chem_strength_alcohol" = 3)
+	var_changes = list("chem_strength_alcohol" = 0.33)
 
 /datum/trait/neutral/alcohol_intolerance_basic
 	name = "Liver of Lilies"
 	desc = "You have a hard time with alcohol. Maybe you just never took to it, or maybe it doesn't agree with your system... either way, alcohol hits you twice as hard."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("chem_strength_alcohol" = 2)
+	var_changes = list("chem_strength_alcohol" = 0.5)
 
 /datum/trait/neutral/alcohol_intolerance_slight
 	name = "Liver of Tulips"
 	desc = "You are what some might call 'a bit of a lightweight', but you can still keep your drinks down... most of the time. Alcohol hits you fifty percent harder."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("chem_strength_alcohol" = 1.5)
+	var_changes = list("chem_strength_alcohol" = 0.75)
 
 /datum/trait/neutral/alcohol_tolerance_reset
 	name = "Liver of Unremarkableness"
@@ -511,21 +550,21 @@
 	desc = "You can hold drinks much better than those lily-livered land-lubbers! Arr! Alcohol's effects on you are reduced by about a quarter."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("chem_strength_alcohol" = 0.75)
+	var_changes = list("chem_strength_alcohol" = 1.25)
 
 /datum/trait/neutral/alcohol_tolerance_advanced
 	name = "Liver of Steel"
 	desc = "Drinks tremble before your might! You can hold your alcohol twice as well as those blue-bellied barnacle boilers! Alcohol has just half the effect on you as it does on others."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("chem_strength_alcohol" = 0.5)
+	var_changes = list("chem_strength_alcohol" = 2)
 
 /datum/trait/neutral/alcohol_immunity
 	name = "Liver of Durasteel"
 	desc = "You've drunk so much that most booze doesn't even faze you. It takes something like a Pan-Galactic or a pint of Deathbell for you to even get slightly buzzed."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("chem_strength_alcohol" = 0.25)
+	var_changes = list("chem_strength_alcohol" = 4)
 // Alcohol Traits End Here.
 
 /datum/trait/neutral/colorblind/mono

@@ -13,3 +13,5 @@
 #define MULTILINGUAL_OFF				3
 
 #define MULTILINGUAL_MODE_MAX			4
+
+#define SAVE_RESET -1

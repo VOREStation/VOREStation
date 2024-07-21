@@ -12,8 +12,8 @@ type Data = {
 type Shuttle = {
   ref: string;
   name: string;
-  current_location;
-  status;
+  current_location: string;
+  status: number;
 };
 
 type OvermapShip = {

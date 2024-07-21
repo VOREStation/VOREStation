@@ -1580,6 +1580,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	. += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
 	. += new /obj/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
 	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
+	. += new /obj/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
 	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
 	//VOREStation Add End
 /proc/CallAsync(datum/source, proctype, list/arguments)

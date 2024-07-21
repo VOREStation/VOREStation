@@ -325,7 +325,7 @@
 					var/obj/S = new Mat.stack_type
 					dormant_reactant_quantities[particle] -= 20
 					S.throw_at_random(FALSE, 7, 3)
-				
+
 				else
 					dormant_reactant_quantities[particle] = 0
 
@@ -684,5 +684,6 @@
 	return
 
 #undef FUSION_HEAT_CAP
+#undef FUSION_ENERGY_PER_K
 #undef FUSION_MAX_ENVIRO_HEAT
 #undef PLASMA_TEMP_RADIATION_DIVISIOR

@@ -23,7 +23,7 @@
 	if(!cell)
 		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
-	scramble_hardware()
+	scramble_hardware(20)
 
 	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
@@ -31,7 +31,7 @@
 	return "synthetic_evil"
 
 /mob/living/silicon/robot/lost/proc/scramble_hardware(var/chance)
-	if(prob(20))  //Small chance to spawn with a scrambled
+	if(prob(chance))  //Small chance to spawn with a scrambled
 		emag_items = 1
 
 /mob/living/silicon/robot/lost/proc/apply_new_laws()

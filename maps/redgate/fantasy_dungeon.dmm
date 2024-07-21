@@ -559,10 +559,7 @@
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "me" = (
-/mob/living/simple_mob/vore/demon/engorge{
-	ai_holder_type = /datum/ai_holder/simple_mob/vore;
-	vore_pounce_chance = 50
-	},
+/mob/living/simple_mob/vore/sonadile,
 /turf/simulated/floor/cult,
 /area/redgate/fantasy/dungeon)
 "ml" = (
@@ -1625,14 +1622,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/ratbasement)
 "Hn" = (
-/mob/living/simple_mob/vore/demon{
-	ai_holder_type = /datum/ai_holder/simple_mob/vore;
-	harm_intent_damage = 8;
-	health = 300;
-	melee_damage_lower = 5;
-	melee_damage_upper = 2;
-	vore_pounce_chance = 50
-	},
+/mob/living/simple_mob/vore/devil,
 /turf/simulated/floor/cult,
 /area/redgate/fantasy/dungeon)
 "Hx" = (
@@ -11776,7 +11766,7 @@ kn
 jI
 ah
 ah
-Hn
+ah
 ah
 Xp
 hR
@@ -12346,7 +12336,7 @@ ah
 ah
 ah
 ah
-Hn
+ah
 ah
 kn
 kn

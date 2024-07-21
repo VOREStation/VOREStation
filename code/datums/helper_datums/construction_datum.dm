@@ -1,7 +1,3 @@
-#define FORWARD -1
-#define BACKWARD 1
-
-
 // As of August 4th, 2018, these datums are only used in Mech construction.
 /datum/construction
 	var/list/steps

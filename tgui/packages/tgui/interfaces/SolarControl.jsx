@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../backend';
 import {
@@ -116,7 +116,7 @@ export const SolarControl = (props) => {
                   value={array_angle}
                   format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
-                    return Math.abs(round(rate)) + sign;
+                    return toFixed(Math.abs(rate)) + sign;
                   }}
                   onDrag={(e, value) => act('azimuth', { value })}
                 />
@@ -131,7 +131,7 @@ export const SolarControl = (props) => {
                   value={rotation_rate}
                   format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
-                    return Math.abs(round(rate)) + sign;
+                    return toFixed(Math.abs(rate)) + sign;
                   }}
                   onDrag={(e, value) => act('azimuth_rate', { value })}
                 />

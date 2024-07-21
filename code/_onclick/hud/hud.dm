@@ -507,3 +507,5 @@ var/list/global_huds = list(
 /datum/hud/proc/update_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
 	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
 	ammo_hud?.update_hud(user, G)
+
+#undef MAX_AMMO_HUD_POSSIBLE

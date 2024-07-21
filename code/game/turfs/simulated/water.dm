@@ -263,3 +263,14 @@ var/list/shoreline_icon_cache = list()
 			to_chat(L, "<span class='warning'>You get drenched in blood from entering \the [src]!</span>")
 	AM.water_act(5)
 	..()
+
+/turf/simulated/floor/water/glamour
+	name = "glamour"
+	desc = "A body of glamour.  It seems shallow enough to walk through, if needed."
+	icon = 'icons/turf/flooring/glamour.dmi'
+	icon_state = "water"
+	water_icon = 'icons/turf/flooring/glamour.dmi'
+	water_state = "water"
+	under_state = "glamour"
+	reagent_type = "water"
+

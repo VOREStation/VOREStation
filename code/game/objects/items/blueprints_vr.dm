@@ -55,14 +55,6 @@
 /area/submap/casino_event
 	name = "\improper Space Casino"
 
-
-
-//TG blueprints.
-#define AREA_ERRNONE 0
-#define AREA_STATION 1
-#define AREA_SPACE 2
-#define AREA_SPECIAL 3
-
 /obj/item/areaeditor
 	name = "area modification item"
 	icon = 'icons/obj/items.dmi'

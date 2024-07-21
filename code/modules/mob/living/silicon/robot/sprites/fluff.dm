@@ -110,3 +110,5 @@
 
 	whitelist_ckey = "lunarfleet"
 	whitelist_charname = "Clea-Nor"
+
+#undef CUSTOM_BORGSPRITE

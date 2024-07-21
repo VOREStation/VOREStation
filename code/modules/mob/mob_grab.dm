@@ -1,4 +1,3 @@
-#define UPGRADE_COOLDOWN	40
 #define UPGRADE_KILL_TIMER	100
 
 ///Process_Grab()
@@ -415,3 +414,5 @@
 	qdel(hud)
 	hud = null
 	return ..()
+
+#undef UPGRADE_KILL_TIMER

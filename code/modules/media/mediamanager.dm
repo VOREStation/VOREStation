@@ -59,7 +59,7 @@
 	set_new_volume(usr)
 
 /client/proc/set_new_volume(var/mob/user)
-	if(!QDELETED(src.media) || !istype(src.media))
+	if(QDELETED(src.media) || !istype(src.media))
 		to_chat(user, "<span class='warning'>You have no media datum to change, if you're not in the lobby tell an admin.</span>")
 		return
 	var/value = input(usr, "Choose your Jukebox volume.", "Jukebox volume", media.volume)
@@ -179,3 +179,9 @@
 		targetVolume = M.volume
 		//MP_DEBUG("Found audio source: [M.media_url] @ [(world.time - start_time) / 10]s.")
 	push_music(targetURL, targetStartTime, targetVolume)
+
+
+#ifdef DEBUG_MEDIAPLAYER
+#undef DEBUG_MEDIAPLAYER
+#undef MP_DEBUG
+#endif

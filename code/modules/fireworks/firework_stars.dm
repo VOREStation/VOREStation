@@ -146,3 +146,5 @@
 		return "You see a [pick(firework_adjectives)] explosion of [current_color] sparks in the sky!"
 	else
 		return "You see a [pick(firework_adjectives)] explosion of [current_color] sparks in the sky, forming into shape of [current_shape]!"
+
+#undef T_FIREWORK_WEATHER_STAR

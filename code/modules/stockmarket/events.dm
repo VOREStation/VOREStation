@@ -231,3 +231,5 @@
 		article += "[tname] has a prior history of similar misdeeds and we're confident the charges will stand. For investors, now would be an ideal time to %sell%"
 	A.article = A.detokenize(article, company.industry.tokens)
 	return A
+
+#undef TIME_MULTIPLIER

@@ -159,3 +159,5 @@
 		var/datum/chunk/chunk = cameranet.getCameraChunk(x, y, z)
 		usr.client.debug_variables(chunk)
 */
+
+#undef CHUNK_SIZE

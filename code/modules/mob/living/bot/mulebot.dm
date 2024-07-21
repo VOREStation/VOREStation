@@ -331,3 +331,11 @@
 		AM.layer = initial(AM.layer)
 		AM.pixel_y = initial(AM.pixel_y)
 	busy = 0
+
+#undef MULE_IDLE
+#undef MULE_MOVING
+#undef MULE_UNLOAD
+#undef MULE_LOST
+#undef MULE_CALC_MIN
+#undef MULE_CALC_MAX
+#undef MULE_PATH_DONE

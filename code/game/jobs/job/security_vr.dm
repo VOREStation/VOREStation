@@ -17,7 +17,7 @@
 	title = "Security Manager"
 
 /datum/job/hos/get_request_reasons()
-	return list("Wildlife management", "Forensic investigation", "Training crew")
+	return list("Wildlife management", "Forensic investigation", "Training crew", "Assembling expedition team")
 
 
 /datum/job/warden
@@ -72,4 +72,4 @@
 	title = "Security Contractor"
 
 /datum/job/officer/get_request_reasons()
-	return list("Wildlife management")
+	return list("Wildlife management", "Assembling expedition team")

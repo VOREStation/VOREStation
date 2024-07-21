@@ -292,3 +292,9 @@
 #undef FONT_COLOR
 #undef FONT_STYLE
 #undef CHARS_PER_LINE
+
+#undef MAX_TIMER
+
+#undef PRESET_SHORT
+#undef PRESET_MEDIUM
+#undef PRESET_LONG
