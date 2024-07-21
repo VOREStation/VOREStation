@@ -218,7 +218,7 @@ export const ShuttleControlConsoleWeb = (props) => {
           <LabeledList>
             {Object.keys(sensors!).map((key, index) => {
               const sensor = sensors![key];
-              if (sensor.reading !== -1) {
+              if (!sensor.reading) {
                 return (
                   <LabeledList.Item key={index} label={key} color="bad">
                     Unable to get sensor air reading.
