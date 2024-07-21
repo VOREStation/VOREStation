@@ -366,3 +366,21 @@
 				prob(10);/obj/item/device/perfect_tele/magic,
 				prob(10);/obj/item/weapon/reagent_containers/glass/bottle/potion/truepolymorph
 				)
+
+/obj/random/mega_nukies
+	name = "random mega nukie"
+	desc = "A random mega nukie."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "nukie_mega_high"
+	spawn_nothing_percentage = 0
+
+/obj/random/mega_nukies/item_to_spawn()
+	return pick(prob(5);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sight,
+				prob(2);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_heart,
+				prob(5);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sleep,
+				prob(5);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shock,
+				prob(5);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_fast,
+				prob(5);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_high,
+				prob(10);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shrink,
+				prob(10);/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_grow
+				)

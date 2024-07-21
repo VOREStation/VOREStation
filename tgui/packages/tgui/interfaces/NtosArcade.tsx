@@ -6,6 +6,7 @@ import {
   AnimatedNumber,
   Box,
   Button,
+  Image,
   LabeledList,
   ProgressBar,
   Section,
@@ -101,7 +102,7 @@ export const NtosArcade = (props) => {
                   </ProgressBar>
                   <Box m={1} />
                   <Section inline width="156px" textAlign="center">
-                    <img src={resolveAsset(BossID)} />
+                    <Image src={resolveAsset(BossID)} />
                   </Section>
                 </Table.Cell>
               </Table.Row>

@@ -1688,6 +1688,24 @@
     name = "feminine black baggy turtleneck"
     icon_state = "bb_turtleblk_fem"
 
+//more big sweaters
+
+/obj/item/clothing/under/bigsweater
+	name = "cableknit sweater"
+	desc = "Why trade style for comfort?"
+	icon_state = "cableknit"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+/obj/item/clothing/under/bigsweater/keyhole
+	icon_state = "keyhole"
+
+/obj/item/clothing/under/keyhole
+	name = "cableknit sweater"
+	desc = "Why trade style for comfort?."
+	icon_state = "cableknit"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+
 //half-moon outfit
 /obj/item/clothing/under/half_moon
     name = "half moon outfit"

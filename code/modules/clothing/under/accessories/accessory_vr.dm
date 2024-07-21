@@ -1153,3 +1153,31 @@
 	desc = "Barely more than a pair of long stirrup sleeves joined by a turtleneck. Has decorative red accents."
 	icon_state = "gestaltjacket"
 	item_state = "gestaltjacket"
+
+//Neo Ranger Poncho
+
+/obj/item/clothing/accessory/poncho/roles/neo_ranger
+	name = "ranger poncho"
+	desc = "Aim for the Heart, Ramon."
+	icon_state = "neo_ranger"
+	item_state = "neo_ranger"
+	action_button_name = "Adjust Poncho"
+
+/obj/item/clothing/accessory/poncho/roles/neo_ranger/update_clothing_icon()
+	. = ..()
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_wear_suit()
+
+/obj/item/clothing/accessory/poncho/roles/neo_ranger/attack_self(mob/user as mob)
+	if(src.icon_state == initial(icon_state))
+		src.icon_state = "[icon_state]_open"
+		src.item_state = "[item_state]_open"
+		flags_inv = HIDETIE|HIDEHOLSTER
+		to_chat(user, "You adjust your poncho.")
+	else
+		src.icon_state = initial(icon_state)
+		src.item_state = initial(item_state)
+		flags_inv = HIDEHOLSTER
+		to_chat(user, "You adjust your poncho.")
+	update_clothing_icon()

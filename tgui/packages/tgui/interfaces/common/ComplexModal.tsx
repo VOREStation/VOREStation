@@ -1,7 +1,15 @@
 import React from 'react';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Dropdown, Flex, Input, Modal } from '../../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Flex,
+  Image,
+  Input,
+  Modal,
+} from '../../components';
 
 type Data = { modal: { id: string; args: {}; text: string; type: string } };
 let bodyOverrides = {};
@@ -171,7 +179,7 @@ export const ComplexModal = (props) => {
               selected={i + 1 === parseInt(modal.value, 10)}
               onClick={() => modalAnswer(id, (i + 1).toString(), {})}
             >
-              <img src={c} />
+              <Image src={c} />
             </Button>
           </Flex.Item>
         ))}

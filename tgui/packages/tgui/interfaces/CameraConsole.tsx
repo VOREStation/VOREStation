@@ -10,7 +10,7 @@ import { Window } from '../layouts';
 
 type activeCamera = { name: string; status: BooleanLike } | null;
 
-type camera = { name: string; networks: string[] };
+export type camera = { name: string; networks: string[] };
 
 export type Data = {
   activeCamera: activeCamera;

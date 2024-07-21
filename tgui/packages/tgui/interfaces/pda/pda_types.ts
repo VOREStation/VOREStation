@@ -27,4 +27,36 @@ export type GeneralRecord = {
   notes: string;
 };
 
-export type RecordList = { Name: string; ref: string }[];
+export type MedicalRecord = {
+  id: string;
+  name: string;
+  species: string;
+  b_type: string;
+  b_dna: string;
+  id_gender: string;
+  brain_type: string;
+  mi_dis: string;
+  mi_dis_d: string;
+  ma_dis: string;
+  ma_dis_d: string;
+  alg: string;
+  alg_d: string;
+  cdi: string;
+  cdi_d: string;
+  notes: string;
+};
+
+export type SecurityRecord = {
+  name: string;
+  species: string;
+  id: string;
+  brain_type: string;
+  criminal: string;
+  mi_crim: string;
+  mi_crim_d: string;
+  ma_crim: string;
+  ma_crim_d: string;
+  notes: string;
+};
+
+export type RecordList = { name: string; ref: string }[];

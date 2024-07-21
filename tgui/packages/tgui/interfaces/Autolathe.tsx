@@ -7,7 +7,7 @@ import { useBackend, useSharedState } from '../backend';
 import { Box, Button, Dropdown, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 import { mat } from './common/CommonTypes';
-import { Materials } from './ExosuitFabricator';
+import { Materials } from './ExosuitFabricator/Material';
 
 const canBeMade = (recipe, materials, mult: number = 1) => {
   if (recipe.requirements === null) {
@@ -53,7 +53,7 @@ export const Autolathe = (props) => {
   const [category, setCategory] = useSharedState('category', 0);
   const [searchText, setSearchText] = useSharedState('search_text', '');
 
-  const testSearch = createSearch(searchText, (recipe) => recipe.name);
+  const testSearch = createSearch(searchText, (recipe: recipe) => recipe.name);
 
   const recipesToShow = flow([
     filter((recipe: recipe) => recipe.category === categories[category]),

@@ -781,3 +781,171 @@
 	id = "nukie_special"
 	color = "#ffffff"
 	taste_description = "sitting in your college dorm one week before your exams start, staring at a screen without anything particularly interesting on, knowing that you should really be studying, but you can put it off for another day right? Plus your friends are gonna be getting on soon and there's an event starting that you need to prep for"
+
+/datum/reagent/drink/coffee/nukie/mega
+
+	name = "Mega Nukie"
+	id = "nukie_mega"
+	description = "An extremely dangerously concentrated caffinated drink."
+	color = "#102838"
+	adj_temp = 0
+	adj_dizzy = 0
+	adj_drowsy = -5
+	adj_sleepy = -10
+
+	glass_name = "nukie"
+	glass_desc = "A drink that might just explode your heart!"
+	overdose = 5
+
+	taste_description = "flavourless energy"
+
+/datum/reagent/drink/coffee/nukie/mega/sight
+	name = "Nukie Mega Plum"
+	id = "nukie_mega_sight"
+	color = "#f4fc03"
+	taste_description = "seeing beyond the margins of this world"
+
+/datum/reagent/drink/coffee/nukie/mega/sight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(prob(1))
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
+			if(istype(E))
+				if(E.robotic >= ORGAN_ROBOT)
+					return
+				if(E.damage < 100)
+					E.damage = max(E.damage + 1 * removed, 0)
+	M.add_chemical_effect(CE_DARKSIGHT, 1)
+
+/datum/reagent/drink/coffee/nukie/mega/heart //Heals you pretty damn well but damages your heart
+	name = "Nukie Mega Juice"
+	id = "nukie_mega_heart"
+	color = "#fc03e7"
+	taste_description = "the end is rapidly approaching, yet remains forever far"
+
+/datum/reagent/drink/coffee/nukie/mega/heart/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1 * M.species.chem_strength_heal
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(6 * removed * chem_effective, 6 * removed * chem_effective) //VOREStation Edit
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_HEART)))
+				continue
+			if(I.damage < 100 && prob(10))
+				I.damage = max(I.damage + 0.2 * removed, 0)
+	..()
+
+/datum/reagent/drink/coffee/nukie/mega/nega //Makes you both jittery and sleepy
+	name = "Nukie Nega"
+	id = "nukie_mega_sleep"
+	color = "#00dded"
+	taste_description = "the void encompassing you"
+	adj_drowsy = 0
+	adj_sleepy = 0
+	var/adj_tiredness = 5
+
+/datum/reagent/drink/coffee/nukie/mega/nega/affect_ingest(var/mob/living/carbon/human/M)
+	if(M.tiredness < 105)
+		M.tiredness = (M.tiredness + adj_tiredness)
+	..()
+
+/datum/reagent/drink/coffee/nukie/mega/shock //Rapidly fills you up and even repairs your NIF, unless you don't have one in which case you'll be confused.
+	name = "Nukie Mega Shock"
+	id = "nukie_mega_shock"
+	color = "#ede500"
+	taste_description = "a thousand volts running down your spine"
+
+/datum/reagent/drink/coffee/nukie/mega/shock/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.nif)
+			var/obj/item/device/nif/nif = H.nif //L o c a l
+			if(nif.stat == NIF_TEMPFAIL)
+				nif.stat = NIF_INSTALLING
+			nif.repair(removed)
+		else if(prob(5))
+			M.confused = max(M.confused, 20)
+			M.emote(pick("shudders", "seems lost", "blanks for a moment"))
+	M.adjust_nutrition(4 * removed)
+
+
+/datum/reagent/drink/coffee/nukie/mega/fast //Like hyperzine, but instead of overdosing, it occassionally burns you
+	name = "Nukie Mega Rapid"
+	id = "nukie_mega_fast"
+	color = "#000000"
+	taste_description = "more, more, now, quick, get yourself some more, don't stop"
+
+/datum/reagent/drink/coffee/nukie/mega/fast/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(prob(1))
+		M.visible_message("<span class='danger'>\The [M] sizzles!</span>")
+		M.adjustFireLoss(5)
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+
+/datum/reagent/drink/coffee/nukie/mega/high //Simultaneously makes you high and hungry
+	name = "Nukie Mega Sky"
+	id = "nukie_mega_high"
+	color = "#fafafa"
+	taste_description = "moreishness, you could really go for a proper snack right now"
+
+/datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	var/threshold = 1 * M.species.chem_strength_tox
+	if(alien == IS_SKRELL)
+		threshold = 1.2
+
+	if(alien == IS_SLIME)
+		threshold = 0.8
+
+	M.druggy = max(M.druggy, 30)
+	M.adjust_nutrition(-10 * removed)
+
+	var/drug_strength = 20
+	var/effective_dose = dose
+	if(issmall(M)) effective_dose *= 2
+	if(effective_dose < 1 * threshold)
+		M.apply_effect(3, STUTTER)
+		M.make_dizzy(5)
+		if(prob(3))
+			M.emote(pick("twitch", "giggle"))
+	else if(effective_dose < 2 * threshold)
+		M.apply_effect(3, STUTTER)
+		M.make_jittery(5)
+		M.make_dizzy(5)
+		M.druggy = max(M.druggy, 35)
+		M.hallucination = max(M.hallucination, drug_strength * threshold)
+		if(prob(5))
+			M.emote(pick("twitch", "giggle"))
+	else
+		M.apply_effect(3, STUTTER)
+		M.make_jittery(10)
+		M.make_dizzy(10)
+		M.druggy = max(M.druggy, 40)
+		M.hallucination = max(M.hallucination, drug_strength * threshold)
+		if(prob(10))
+			M.emote(pick("twitch", "giggle"))
+
+/datum/reagent/drink/coffee/nukie/mega/shrink //Basically microcillin but for ingesting
+	name = "Nukie Mega Shrink"
+	id = "nukie_mega_shrink"
+	color = "#15ff00"
+	taste_description = "a plastic bag floating gently on the breeze"
+
+/datum/reagent/drink/coffee/nukie/mega/shrink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.resize((M.size_multiplier - 0.01), uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
+
+/datum/reagent/drink/coffee/nukie/mega/grow //Basically macrocillin but for ingesting
+	name = "Nukie Mega Growth"
+	id = "nukie_mega_growth"
+	color = "#90ed87"
+	taste_description = "absurd hugeness"
+
+/datum/reagent/drink/coffee/nukie/mega/grow/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.resize((M.size_multiplier + 0.01), uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)

@@ -37,6 +37,14 @@
 	display_name = "jackboots. thigh-length"
 	path = /obj/item/clothing/shoes/boots/jackboots/thigh
 
+/datum/gear/shoes/colorboots
+	display_name = "jackboots, recolorable"
+	path = /obj/item/clothing/shoes/boots/jackboots/recolorable
+
+/datum/gear/shoes/colorboots/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/shoes/workboots
 	display_name = "workboots"
 	path = /obj/item/clothing/shoes/boots/workboots
@@ -264,3 +272,11 @@
 /datum/gear/shoes/halfmoon
 	display_name = "half moon boots"
 	path = /obj/item/clothing/shoes/boots/half_moon
+
+/datum/gear/shoes/sandals
+	display_name = "sandals, colorable"
+	path = /obj/item/clothing/shoes/sandals
+
+/datum/gear/shoes/sandals/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice

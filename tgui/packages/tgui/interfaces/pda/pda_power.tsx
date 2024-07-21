@@ -1,8 +1,5 @@
-import { useBackend } from '../../backend';
-import { PowerMonitorContent } from '../PowerMonitor';
+import { PowerMonitorContent } from '../PowerMonitor/PowerMonitorContent';
 
 export const pda_power = (props) => {
-  const { act, data } = useBackend();
-
   return <PowerMonitorContent />;
 };

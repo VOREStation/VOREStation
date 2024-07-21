@@ -48,6 +48,11 @@
 
 	wizard_garb = 1
 
+/obj/item/clothing/shoes/sandals
+	desc = "A pair of simple sandals."
+	name = "sandals"
+	icon_state = "sandals_recolor"
+
 /obj/item/clothing/shoes/flipflop
 	name = "flip flops"
 	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
