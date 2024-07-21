@@ -2,8 +2,8 @@ import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
-import { BeakerContents } from '.././common/BeakerContents';
-import { modalOpen } from '.././common/ComplexModal';
+import { BeakerContents } from '../common/BeakerContents';
+import { modalOpen } from '../common/ComplexModal';
 import { transferAmounts } from './constants';
 import { reagent } from './types';
 

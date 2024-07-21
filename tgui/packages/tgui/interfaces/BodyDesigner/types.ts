@@ -28,6 +28,7 @@ export type activeBodyRecord = {
   locked: string;
   scale: string;
   booc: string;
+  digitigrade: BooleanLike;
   styles: {
     Ears: colourableStyle;
     Tail: colourableStyle;
