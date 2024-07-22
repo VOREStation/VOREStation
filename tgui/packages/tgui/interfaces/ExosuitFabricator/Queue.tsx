@@ -16,6 +16,8 @@ export const Queue = (props: {
 
   const { queueMaterials, missingMaterials, textColors } = props;
 
+  const disabled: Boolean = !queue || !queue.length;
+
   return (
     <Flex height="100%" width="100%" direction="column">
       <Flex.Item height={0} grow={1}>
@@ -26,7 +28,7 @@ export const Queue = (props: {
           buttons={
             <>
               <Button.Confirm
-                disabled={!length}
+                disabled={disabled}
                 color="bad"
                 icon="minus-circle"
                 onClick={() => act('clear_queue')}
@@ -35,7 +37,7 @@ export const Queue = (props: {
               </Button.Confirm>
               {(!!isProcessingQueue && (
                 <Button
-                  disabled={!length}
+                  disabled={disabled}
                   icon="stop"
                   onClick={() => act('stop_queue')}
                 >
@@ -43,7 +45,7 @@ export const Queue = (props: {
                 </Button>
               )) || (
                 <Button
-                  disabled={!length}
+                  disabled={disabled}
                   icon="play"
                   onClick={() => act('build_queue')}
                 >
@@ -63,7 +65,7 @@ export const Queue = (props: {
           </Flex>
         </Section>
       </Flex.Item>
-      {!!length && (
+      {!disabled && (
         <Flex.Item mt={1}>
           <Section title="Material Cost">
             <QueueMaterials
