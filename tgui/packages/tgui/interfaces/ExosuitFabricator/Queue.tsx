@@ -16,7 +16,7 @@ export const Queue = (props: {
 
   const { queueMaterials, missingMaterials, textColors } = props;
 
-  const disabled: Boolean = !queue || !queue.length;
+  const disabled: boolean = !queue || !queue.length;
 
   return (
     <Flex height="100%" width="100%" direction="column">
