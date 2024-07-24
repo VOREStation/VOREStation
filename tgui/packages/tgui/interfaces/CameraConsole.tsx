@@ -153,6 +153,7 @@ export const CameraConsoleContent = (props) => {
             <Dropdown
               mb={1}
               width={networkFilter ? '155px' : '177px'}
+              selected={networkFilter}
               displayText={networkFilter || 'No Filter'}
               options={allNetworks}
               onSelected={(value) => setNetworkFilter(value)}

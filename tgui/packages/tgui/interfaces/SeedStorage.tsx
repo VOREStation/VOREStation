@@ -34,7 +34,7 @@ export const SeedStorage = (props) => {
 
   const { seeds } = data;
 
-  const sortedSeeds = sortBy((seed: seed) => seed.name.toLowerCase())(seeds);
+  const sortedSeeds = sortBy(seeds, (seed: seed) => seed.name.toLowerCase());
 
   return (
     <Window width={600} height={760}>

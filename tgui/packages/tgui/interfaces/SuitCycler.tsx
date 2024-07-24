@@ -192,10 +192,11 @@ const SuitCyclerContent = (props: {
             <NumberInput
               width="50px"
               value={uv_level}
+              step={1}
               minValue={1}
               maxValue={max_uv_level}
               stepPixelSize={30}
-              onChange={(e, val: number) => act('radlevel', { radlevel: val })}
+              onChange={(val: number) => act('radlevel', { radlevel: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Decontaminate">

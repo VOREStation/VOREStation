@@ -61,11 +61,12 @@ export const BrigTimer = (props) => {
           <NumberInput
             animated
             fluid
+            step={1}
             value={time_left / 10}
             minValue={0}
             maxValue={max_time_left / 10}
             format={(val: number) => formatTime(round(val * 10, 0))}
-            onDrag={(e, val: number) => act('time', { time: val })}
+            onDrag={(val: number) => act('time', { time: val })}
           />
           <Flex mt={1}>
             <Flex.Item grow={1}>

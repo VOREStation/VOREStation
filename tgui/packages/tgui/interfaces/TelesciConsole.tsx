@@ -99,33 +99,33 @@ export const TelesciConsoleContent = (props) => {
         <LabeledList.Item label="Bearing">
           <NumberInput
             fluid
-            value={rotation}
+            value={rotation!}
             format={(v) => v + '°'}
             step={1}
             minValue={-900}
             maxValue={900}
-            onDrag={(e, val) => act('setrotation', { val: val })}
+            onDrag={(val) => act('setrotation', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Distance">
           <NumberInput
             fluid
-            value={distance}
+            value={distance!}
             format={(v) => v + '/' + maxAllowedDistance + ' m'}
             minValue={0}
-            maxValue={maxAllowedDistance}
+            maxValue={maxAllowedDistance!}
             step={1}
             stepPixelSize={4}
-            onDrag={(e, val) => act('setdistance', { val: val })}
+            onDrag={(val) => act('setdistance', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Sector">
           {sectorOptions &&
-            sortBy((v) => Number(v))(sectorOptions).map((z: number) => (
+            sortBy(sectorOptions, (v) => v).map((z) => (
               <Button
                 key={z}
                 icon="check-circle"
-                selected={currentZ === z}
+                selected={currentZ === Number(z)}
                 onClick={() => act('setz', { setz: z })}
               >
                 {z}

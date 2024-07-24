@@ -188,7 +188,7 @@ export const SettingsGeneral = (props) => {
             maxValue={5}
             value={lineHeight}
             format={(value) => toFixed(value, 2)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   lineHeight: value,
@@ -289,7 +289,7 @@ export const MessageLimits = (props) => {
             maxValue={10000}
             value={visibleMessageLimit}
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   visibleMessageLimit: value,
@@ -315,7 +315,7 @@ export const MessageLimits = (props) => {
             maxValue={10000}
             value={persistentMessageLimit}
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   persistentMessageLimit: value,
@@ -341,7 +341,7 @@ export const MessageLimits = (props) => {
             maxValue={10}
             value={combineMessageLimit}
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   combineMessageLimit: value,
@@ -360,7 +360,7 @@ export const MessageLimits = (props) => {
             value={combineIntervalLimit}
             unit="s"
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   combineIntervalLimit: value,
@@ -379,7 +379,7 @@ export const MessageLimits = (props) => {
             value={saveInterval}
             unit="s"
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   saveInterval: value,
@@ -483,7 +483,7 @@ export const ExportTab = (props) => {
                 maxValue={8}
                 value={logRetainRounds}
                 format={(value) => toFixed(value)}
-                onDrag={(e, value) =>
+                onDrag={(value) =>
                   dispatch(
                     updateSettings({
                       logRetainRounds: value,
@@ -509,7 +509,7 @@ export const ExportTab = (props) => {
                 maxValue={50000}
                 value={logLimit}
                 format={(value) => toFixed(value)}
-                onDrag={(e, value) =>
+                onDrag={(value) =>
                   dispatch(
                     updateSettings({
                       logLimit: value,
@@ -566,7 +566,7 @@ export const ExportTab = (props) => {
             maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
             value={exportStart}
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   exportStart: value,
@@ -582,7 +582,7 @@ export const ExportTab = (props) => {
             maxValue={storedRounds}
             value={exportEnd}
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   exportEnd: value,
@@ -605,7 +605,7 @@ export const ExportTab = (props) => {
             maxValue={50000}
             value={logLineCount}
             format={(value) => toFixed(value)}
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               dispatch(
                 updateSettings({
                   logLineCount: value,

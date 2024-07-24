@@ -40,7 +40,7 @@ export const ShuttleList = (props) => {
     <Section noTopPadding>
       <Section title="Classic Shuttles">
         <Table>
-          {sortBy((f: Shuttle) => f.name)(shuttles).map((shuttle) => (
+          {sortBy(shuttles, (f: Shuttle) => f.name).map((shuttle) => (
             <Table.Row key={shuttle.ref}>
               <Table.Cell collapsing>
                 <Button
@@ -67,8 +67,9 @@ export const ShuttleList = (props) => {
       </Section>
       <Section title="Overmap Ships">
         <Table>
-          {sortBy((f: OvermapShip) => f.name?.toLowerCase() || f.name || f.ref)(
+          {sortBy(
             overmap_ships,
+            (f: OvermapShip) => f.name?.toLowerCase() || f.name || f.ref,
           ).map((ship) => (
             <Table.Row key={ship.ref}>
               <Table.Cell collapsing>

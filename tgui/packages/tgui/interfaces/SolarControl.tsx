@@ -131,7 +131,7 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return toFixed(Math.abs(rate)) + sign;
                   }}
-                  onDrag={(e, value) => act('azimuth', { value })}
+                  onDrag={(value) => act('azimuth', { value })}
                 />
               )}
               {tracking_state === 1 && (
@@ -146,7 +146,7 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return toFixed(Math.abs(rate)) + sign;
                   }}
-                  onDrag={(e, value) => act('azimuth_rate', { value })}
+                  onDrag={(value) => act('azimuth_rate', { value })}
                 />
               )}
               {tracking_state === 2 && (

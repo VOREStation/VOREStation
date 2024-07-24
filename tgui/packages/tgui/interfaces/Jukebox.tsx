@@ -265,10 +265,11 @@ export const Jukebox = (props) => {
                   </LabeledList.Item>
                   <LabeledList.Item label="Playtime">
                     <NumberInput
+                      step={1}
                       value={newDuration}
                       minValue={0}
                       maxValue={3600}
-                      onChange={(e, val: number) => setNewDuration(val)}
+                      onChange={(val: number) => setNewDuration(val)}
                       format={(val) => formatTime(round(val * 10, 0))}
                     />
                   </LabeledList.Item>

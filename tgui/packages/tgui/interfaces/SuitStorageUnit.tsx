@@ -20,7 +20,7 @@ type Data = {
   open: BooleanLike;
   safeties: BooleanLike;
   uv_active: BooleanLike;
-  uv_super: BooleanLike;
+  uv_super: number;
   helmet: string | null;
   suit: string | null;
   mask: string | null;
