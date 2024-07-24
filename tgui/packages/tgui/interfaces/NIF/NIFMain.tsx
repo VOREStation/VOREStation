@@ -81,9 +81,10 @@ export const NIFMain = (props) => {
                 <Button
                   fluid
                   selected={module.active}
-                  content={module.stat_text}
                   onClick={() => act('toggle_module', { module: module.ref })}
-                />
+                >
+                  {module.stat_text}
+                </Button>
               )) || <Box>{module.stat_text}</Box>}
             </LabeledList.Item>
           ))}
