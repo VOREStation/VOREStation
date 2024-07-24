@@ -33,6 +33,11 @@
 
 	//Specific abilities
 
+	var/lleill_energy = 200
+	var/lleill_energy_max = 200
+
+	var/ring_cooldown = 0
+
 	darksight = 10 //Can see in dark
 
 	burn_mod = 0.25 //Very resistant to fire
@@ -81,7 +86,8 @@
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/lleill_invisibility,
 		/mob/living/carbon/human/proc/lleill_transmute,
-		/mob/living/carbon/human/proc/lleill_rings)
+		/mob/living/carbon/human/proc/lleill_rings,
+		/mob/living/carbon/human/proc/lleill_contact)
 
 	//organs, going with just the basics for now
 

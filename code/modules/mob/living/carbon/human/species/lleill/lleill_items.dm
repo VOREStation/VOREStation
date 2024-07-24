@@ -139,6 +139,8 @@
 			return
 
 		var/mob/living/carbon/human/chosen_target = tgui_input_list(user, "Which target do you wish to create a homunculus of?", "homunculus", targets)
+		if(!chosen_target)
+			return
 
 		var/spawnloc = get_turf(user)
 		var/mob/living/simple_mob/homunculus/H = new(spawnloc)
@@ -193,6 +195,42 @@
 	var/area/A = get_area(src)
 	area_name = A.name
 	name = "[area_name] glamour ring"
+
+/obj/structure/glamour_ring/attack_hand(mob/living/M as mob)
+
+	var/mob/living/carbon/human/L = connected_mob
+	var/datum/species/lleill/LL = L.species
+
+	var/m_action
+	if(M == L)
+		m_action= tgui_alert(M, "Do you want to destroy the ring, or restore energy?", "Destroy ring", list("Yes", "No", "Restore Energy"))
+	else
+		m_action= tgui_alert(M, "Do you want to destroy the ring, the owner of it may be aware that you have done this?", "Destroy ring", list("Yes", "No"))
+
+	if(m_action == "No")
+		return
+
+	if(m_action == "Yes")
+		to_chat(M, "<span class='warning'>You begin to break the lines of the glamour ring.</span>")
+		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+			to_chat(M, "<span class='warning'>You leave the glamour ring alone.</span>")
+			return
+		to_chat(M, "<span class='warning'>You have destroyed \the [src].</span>")
+		src.visible_message("<b>\The [M]</b> has broken apart \the [src].")
+		if(M != connected_mob && connected_mob)
+			to_chat(connected_mob, "<span class='warning'>\The [src] has been destroyed by \the [M].</span>")
+		if(istype(LL))
+			L.teleporters -= src
+		qdel(src)
+
+	if(m_action == "Restore Energy")
+		if(LL.ring_cooldown + 10 MINUTES > world.time)
+			to_chat(M, "<span class='warning'>You must wait a while before drawing energy from the glamour again.</span>")
+			return
+		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+			to_chat(M, "<span class='warning'>You stop drawing energy.</span>")
+			return
+		LL.lleill_energy = min((LL.lleill_energy + 75),LL.lleill_energy_max)
 
 //Glamour Floor
 //Glamour Wall
