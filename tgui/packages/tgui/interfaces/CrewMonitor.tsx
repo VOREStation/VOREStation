@@ -92,10 +92,10 @@ export const CrewMonitorContent = (props: {
   const { crewmembers = [] } = data;
 
   const crew: crewmember[] = flow([
-    sortBy((cm: crewmember) => cm.name),
-    sortBy((cm: crewmember) => cm?.x),
-    sortBy((cm: crewmember) => cm?.y),
-    sortBy((cm: crewmember) => cm?.realZ),
+    (crewmembers: crewmember[]) => sortBy(crewmembers, (cm) => cm.name),
+    (crewmembers: crewmember[]) => sortBy(crewmembers, (cm) => cm?.x),
+    (crewmembers: crewmember[]) => sortBy(crewmembers, (cm) => cm?.y),
+    (crewmembers: crewmember[]) => sortBy(crewmembers, (cm) => cm?.realZ),
   ])(crewmembers);
 
   const tab: React.JSX.Element[] = [];

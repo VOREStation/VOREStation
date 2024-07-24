@@ -201,7 +201,8 @@ export const prepareSearch = (products: product[], searchText: string = '') => {
     (product: product) => product.name,
   );
   return flow([
-    // Optional search term
-    searchText && filter(testSearch),
+    (products: product[]) =>
+      // Optional search term
+      searchText && filter(products, testSearch),
   ])(products);
 };

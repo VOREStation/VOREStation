@@ -33,8 +33,8 @@ export const Gps = (props) => {
   const { act, data } = useBackend<Data>();
   const { currentArea, currentCoords, globalmode, power, tag, updating } = data;
   const signals = flow([
-    (signals) =>
-      map(signals, (signal: signal, index) => {
+    (signals: signal[]) =>
+      map(signals, (signal, index) => {
         // Calculate distance to the target. BYOND distance is capped to 127,
         // that's why we roll our own calculations here.
         const dist =
@@ -49,13 +49,13 @@ export const Gps = (props) => {
           );
         return { ...signal, dist, index };
       }),
-    (signals) =>
+    (signals: signal[]) =>
       sortBy(
         signals,
         // Signals with distance metric go first
-        (signal: signal) => signal.dist === undefined,
+        (signal) => signal.dist === undefined,
         // Sort alphabetically
-        (signal: signal) => signal.entrytag,
+        (signal) => signal.entrytag,
       ),
   ])(data.signals || []);
   return (

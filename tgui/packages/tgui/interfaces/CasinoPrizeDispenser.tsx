@@ -51,7 +51,6 @@ export const CasinoPrizeDispenser = () => {
       <Window.Content className="Layout__content--flexColumn" scrollable>
         <>
           <CasinoPrizeDispenserSearch
-            searchText={searchText}
             sortOrder={sortOrder}
             descending={descending}
             onSearchText={handleSearchText}
@@ -69,7 +68,13 @@ export const CasinoPrizeDispenser = () => {
   );
 };
 
-const CasinoPrizeDispenserSearch = (props) => {
+const CasinoPrizeDispenserSearch = (props: {
+  sortOrder: string;
+  descending: boolean;
+  onSearchText: Function;
+  onSortOrder: Function;
+  onDescending: Function;
+}) => {
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
@@ -104,7 +109,11 @@ const CasinoPrizeDispenserSearch = (props) => {
   );
 };
 
-const CasinoPrizeDispenserItems = (props) => {
+const CasinoPrizeDispenserItems = (props: {
+  searchText: string;
+  sortOrder: string;
+  descending: boolean;
+}) => {
   const { act, data } = useBackend<Data>();
   const { items } = data;
   // Search thingies
