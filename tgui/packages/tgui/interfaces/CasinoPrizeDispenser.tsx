@@ -117,9 +117,12 @@ const CasinoPrizeDispenserItems = (props: {
   const { act, data } = useBackend<Data>();
   const { items } = data;
   // Search thingies
-  const searcher = createSearch(props.searchText, (item) => {
-    return item[0];
-  });
+  const searcher = createSearch(
+    props.searchText,
+    (item: [string, sortable]) => {
+      return item[0];
+    },
+  );
 
   let has_contents = false;
   let contents = Object.entries(items).map((kv) => {

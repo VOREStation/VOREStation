@@ -40,11 +40,12 @@ export const pda_atmos_scan = (props) => {
     <Box>
       <LabeledList>
         {filter(
+          aircontents,
           (i: aircontent) =>
             i.val !== '0' ||
             i.entry === 'Pressure' ||
             i.entry === 'Temperature',
-        )(aircontents).map((item) => (
+        ).map((item) => (
           <LabeledList.Item
             key={item.entry}
             label={item.entry}

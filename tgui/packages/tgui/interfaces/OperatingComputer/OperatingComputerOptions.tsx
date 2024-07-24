@@ -28,10 +28,10 @@ export const OperatingComputerOptions = (props) => {
       <LabeledList.Item label="Health Announcer Threshold">
         <Knob
           bipolar
-          minValue="-100"
-          maxValue="100"
+          minValue={-100}
+          maxValue={100}
           value={healthAlarm}
-          stepPixelSize="5"
+          stepPixelSize={5}
           ml="0"
           format={(val) => val + '%'}
           onChange={(e, val: number) =>
@@ -53,10 +53,10 @@ export const OperatingComputerOptions = (props) => {
       <LabeledList.Item label="Oxygen Alarm Threshold">
         <Knob
           bipolar
-          minValue="-100"
-          maxValue="100"
+          minValue={-100}
+          maxValue={100}
           value={oxyAlarm}
-          stepPixelSize="5"
+          stepPixelSize={5}
           ml="0"
           onChange={(e, val: number) =>
             act('oxy_adj', {
