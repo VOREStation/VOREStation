@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import { isEscape, KEY } from 'common/keys';
 import { clamp } from 'common/math';
 import { BooleanLike, classes } from 'common/react';
 import { Component, createRef, MouseEventHandler, RefObject } from 'react';
@@ -285,7 +286,7 @@ export class NumberInput extends Component<Props, State> {
             }
           }}
           onKeyDown={(e) => {
-            if (e.keyCode === 13) {
+            if (e.key === KEY.Enter) {
               // prettier-ignore
               const event = e.target;
               const value = clamp(
@@ -312,7 +313,7 @@ export class NumberInput extends Component<Props, State> {
               }
               return;
             }
-            if (e.keyCode === 27) {
+            if (isEscape(e.key)) {
               this.setState({
                 editing: false,
               });
