@@ -55,7 +55,7 @@ export const Autolathe = (props) => {
 
   const testSearch = createSearch(searchText, (recipe: recipe) => recipe.name);
 
-  const recipesToShow = flow([
+  const recipesToShow: recipe[] = flow([
     (recipes: recipe[]) =>
       filter(recipes, (recipe) => recipe.category === categories[category]),
     (recipes: recipe[]) => {
@@ -79,6 +79,7 @@ export const Autolathe = (props) => {
           title="Recipes"
           buttons={
             <Dropdown
+              autoScroll={false}
               width="190px"
               options={categories}
               selected={categories[category]}

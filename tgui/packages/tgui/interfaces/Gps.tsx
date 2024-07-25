@@ -32,7 +32,7 @@ type signal = {
 export const Gps = (props) => {
   const { act, data } = useBackend<Data>();
   const { currentArea, currentCoords, globalmode, power, tag, updating } = data;
-  const signals = flow([
+  const signals: signal[] = flow([
     (signals: signal[]) =>
       map(signals, (signal, index) => {
         // Calculate distance to the target. BYOND distance is capped to 127,
@@ -113,9 +113,9 @@ export const Gps = (props) => {
                   <Table.Cell collapsing content="Direction" />
                   <Table.Cell collapsing content="Coordinates" />
                 </Table.Row>
-                {signals.map((signal) => (
+                {signals.map((signal, index) => (
                   <Table.Row
-                    key={signal.entrytag + signal.coords + signal.index}
+                    key={signal.entrytag + signal.coords + index}
                     className="candystripe"
                   >
                     <Table.Cell bold color="label">

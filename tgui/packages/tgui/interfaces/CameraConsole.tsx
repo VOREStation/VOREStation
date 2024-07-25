@@ -165,6 +165,7 @@ export const CameraConsoleContent = (props) => {
         <Flex>
           <Flex.Item>
             <Dropdown
+              autoScroll={false}
               mb={1}
               width={networkFilter ? '155px' : '177px'}
               selected={networkFilter}

@@ -87,6 +87,7 @@ const CasinoPrizeDispenserSearch = (props: {
         </Flex.Item>
         <Flex.Item basis="30%">
           <Dropdown
+            autoScroll={false}
             selected={props.sortOrder}
             options={Object.keys(sortTypes)}
             width="100%"

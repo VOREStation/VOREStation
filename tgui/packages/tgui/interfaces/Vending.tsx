@@ -195,7 +195,10 @@ export const VendingMaintenance = (props) => {
 /**
  * Search box
  */
-export const prepareSearch = (products: product[], searchText: string = '') => {
+export const prepareSearch = (
+  products: product[],
+  searchText: string = '',
+): product[] => {
   const testSearch = createSearch(
     searchText,
     (product: product) => product.name,

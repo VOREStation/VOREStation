@@ -160,6 +160,7 @@ const SuitCyclerContent = (props: {
         <LabeledList>
           <LabeledList.Item label="Target Paintjob">
             <Dropdown
+              autoScroll={false}
               width="150px"
               options={departments}
               selected={props.selectedDepartment}
@@ -171,6 +172,7 @@ const SuitCyclerContent = (props: {
           </LabeledList.Item>
           <LabeledList.Item label="Target Species">
             <Dropdown
+              autoScroll={false}
               width="150px"
               maxHeight="160px"
               options={species}

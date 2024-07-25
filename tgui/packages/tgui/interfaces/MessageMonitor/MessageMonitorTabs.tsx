@@ -169,6 +169,7 @@ export const MessageMonitorAdmin = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Recipient">
           <Dropdown
+            autoScroll={false}
             selected={customrecepient}
             options={recipientOptions}
             width="100%"

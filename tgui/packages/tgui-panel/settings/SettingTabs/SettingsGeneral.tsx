@@ -37,6 +37,7 @@ export const SettingsGeneral = (props) => {
       <LabeledList>
         <LabeledList.Item label="Theme">
           <Dropdown
+            autoScroll={false}
             width="175px"
             selected={theme}
             options={THEMES}
@@ -54,6 +55,7 @@ export const SettingsGeneral = (props) => {
             <Stack.Item>
               {(!freeFont && (
                 <Dropdown
+                  autoScroll={false}
                   width="175px"
                   selected={fontFamily}
                   options={FONTS}

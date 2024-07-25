@@ -13,7 +13,7 @@ export const SupplyConsoleMenuOrder = (props) => {
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const viewingPacks = flow([
+  const viewingPacks: supplyPack[] = flow([
     (supply_packs: supplyPack[]) =>
       filter(supply_packs, (val) => val.group === activeCategory),
     (supply_packs: supplyPack[]) =>
