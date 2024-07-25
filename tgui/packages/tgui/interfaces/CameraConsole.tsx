@@ -49,19 +49,30 @@ export const selectCameras = (
   cameras: camera[],
   searchText: string = '',
   networkFilter: string = '',
-) => {
+): camera[] => {
   const testSearch = createSearch(searchText, (camera: camera) => camera.name);
   return flow([
     (cameras: camera[]) =>
       // Null camera filter
       filter(cameras, (camera) => notEmpty(camera?.name)),
-    (cameras: camera[]) =>
+    (cameras: camera[]) => {
       // Optional search term
-      searchText && filter(cameras, testSearch),
-    (cameras: camera[]) =>
+      if (!searchText) {
+        return cameras;
+      } else {
+        return filter(cameras, testSearch);
+      }
+    },
+    (cameras: camera[]) => {
       // Optional network filter
-      networkFilter &&
-      filter(cameras, (camera) => camera.networks.includes(networkFilter)),
+      if (!networkFilter) {
+        return cameras;
+      } else {
+        return filter(cameras, (camera) =>
+          camera.networks.includes(networkFilter),
+        );
+      }
+    },
     // Slightly expensive, but way better than sorting in BYOND
     (cameras: camera[]) => sortBy(cameras, (camera) => camera.name),
   ])(cameras);

@@ -58,7 +58,13 @@ export const Autolathe = (props) => {
   const recipesToShow = flow([
     (recipes: recipe[]) =>
       filter(recipes, (recipe) => recipe.category === categories[category]),
-    (recipes: recipe[]) => searchText && filter(recipes, testSearch),
+    (recipes: recipe[]) => {
+      if (!searchText) {
+        return recipes;
+      } else {
+        return filter(recipes, testSearch);
+      }
+    },
     (recipes: recipe[]) =>
       sortBy(recipes, (recipe) => recipe.name.toLowerCase()),
   ])(recipes);

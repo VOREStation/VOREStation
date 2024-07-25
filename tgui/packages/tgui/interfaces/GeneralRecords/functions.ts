@@ -22,12 +22,16 @@ export function selectRecords(records: record[], searchText = ''): record[] {
   const idSearch = createSearch(searchText, (record: record) => record.id);
   const dnaSearch = createSearch(searchText, (record: record) => record.b_dna);
   const fl: record[] = flow([
-    (records: record[]) =>
+    (records: record[]) => {
       // Optional search term
-      searchText &&
-      filter(records, (record) => {
-        return nameSearch(record) || idSearch(record) || dnaSearch(record);
-      }),
+      if (!searchText) {
+        return records;
+      } else {
+        return filter(records, (record) => {
+          return nameSearch(record) || idSearch(record) || dnaSearch(record);
+        });
+      }
+    },
   ])(records);
   return fl;
 }

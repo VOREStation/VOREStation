@@ -41,27 +41,45 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
         // Generate a unique id
         id: area.name + i,
       })),
-    (areas: area[]) =>
-      sortByField === 'name' && sortBy(areas, (area) => area.name),
-    (areas: area[]) =>
-      sortByField === 'charge' && sortBy(areas, (area) => -area.charge),
-    (areas: area[]) =>
-      sortByField === 'draw' &&
-      sortBy(
-        areas,
-        (area) => -powerRank(area.load),
-        (area) => -parseFloat(area.load),
-      ),
-    (areas: area[]) =>
-      sortByField === 'problems' &&
-      sortBy(
-        areas,
-        (area) => area.eqp,
-        (area) => area.lgt,
-        (area) => area.env,
-        (area) => area.charge,
-        (area) => area.name,
-      ),
+    (areas: area[]) => {
+      if (sortByField !== 'name') {
+        return areas;
+      } else {
+        return sortBy(areas, (area) => area.name);
+      }
+    },
+    (areas: area[]) => {
+      if (sortByField !== 'charge') {
+        return areas;
+      } else {
+        return sortBy(areas, (area) => -area.charge);
+      }
+    },
+    (areas: area[]) => {
+      if (sortByField !== 'draw') {
+        return areas;
+      } else {
+        return sortBy(
+          areas,
+          (area) => -powerRank(area.load),
+          (area) => -parseFloat(area.load),
+        );
+      }
+    },
+    (areas: area[]) => {
+      if (sortByField !== 'problems') {
+        return areas;
+      } else {
+        return sortBy(
+          areas,
+          (area) => area.eqp,
+          (area) => area.lgt,
+          (area) => area.env,
+          (area) => area.charge,
+          (area) => area.name,
+        );
+      }
+    },
   ])(focus.areas);
   return (
     <>
