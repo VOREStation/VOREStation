@@ -90,9 +90,9 @@ export class NumberInput extends Component<Props, State> {
     };
 
     this.handleDragStart = (e) => {
-      const { value } = this.props;
+      const { value, disabled } = this.props;
       const { editing } = this.state;
-      if (editing) {
+      if (disabled || editing) {
         return;
       }
       document.body.style['pointer-events'] = 'none';
@@ -203,6 +203,7 @@ export class NumberInput extends Component<Props, State> {
       width,
       lineHeight,
       fontSize,
+      disabled,
       format,
       onChange,
       onDrag,
@@ -286,6 +287,9 @@ export class NumberInput extends Component<Props, State> {
             }
           }}
           onKeyDown={(e) => {
+            if (disabled) {
+              return;
+            }
             if (e.key === KEY.Enter) {
               // prettier-ignore
               const event = e.target;
