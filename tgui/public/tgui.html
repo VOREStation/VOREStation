@@ -344,6 +344,9 @@
   Byond.loadCss = function (url, sync) {
     loadAsset({ url: url, sync: sync, type: 'css' });
   };
+
+  // Icon cache
+  Byond.iconRefMap = {};
 })();
 
 // Error handling
@@ -351,12 +354,6 @@
 
 window.onerror = function (msg, url, line, col, error) {
   window.onerror.errorCount = (window.onerror.errorCount || 0) + 1;
-  // Send fallback command
-  Byond.topic({
-    tgui: 1,
-    window_id: window.__windowId__,
-    type: 'fallback',
-  });
   // Proper stacktrace
   var stack = error && error.stack;
   // Ghetto stacktrace
