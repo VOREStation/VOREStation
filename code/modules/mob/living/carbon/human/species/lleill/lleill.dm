@@ -89,7 +89,8 @@
 		/mob/living/carbon/human/proc/lleill_invisibility,
 		/mob/living/carbon/human/proc/lleill_transmute,
 		/mob/living/carbon/human/proc/lleill_rings,
-		/mob/living/carbon/human/proc/lleill_contact)
+		/mob/living/carbon/human/proc/lleill_contact,
+		/mob/living/carbon/human/proc/lleill_alchemy)
 
 	//organs, going with just the basics for now
 

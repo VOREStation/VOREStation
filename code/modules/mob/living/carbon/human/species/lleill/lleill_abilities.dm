@@ -321,3 +321,50 @@
 		chosen_target.remove_blood(40) //removes enough blood to make them feel a bit woozy, mostly just for flavour
 		chosen_target.eye_blurry += 20
 		to_chat(chosen_target, "<span class='warning'>You feel considerably weakened for the moment.</span>")
+
+/mob/living/carbon/human/proc/lleill_alchemy()
+	set name = "Alchemy (25)"
+	set desc = "Convert a potion material into a potion without the use of a base or alembic."
+	set category = "Abilities"
+
+	var/energy_cost = 25
+
+	var/datum/species/lleill/LL = species
+
+	if(!istype(LL))
+		to_chat(src, "<span class='warning'>Only a lleill can use that!</span>")
+		return
+
+	if(LL.lleill_energy < energy_cost)
+		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+		return
+
+	if(stat)
+		to_chat(src, "<span class='warning'>You can't go do that when weakened like this.</span>")
+		return
+
+	var/obj/item/weapon/potion_material/I = get_active_hand()
+	if(!I)
+		to_chat(src, "<span class='warning'>You have no item in your active hand.</span>")
+		return
+
+	if(!istype(I))
+		to_chat(src, "<span class='warning'>\The [I] is not a potion material.</span>")
+		return
+	var/obj/item/weapon/reagent_containers/glass/bottle/potion/transmute_product = I.product_potion
+
+	if(!get_active_hand(I))
+		to_chat(src, "<span class='warning'>The item is no longer in your hands.</span>")
+		return
+	else
+		visible_message("<b>\The [src]</b> begins to change the form of \the [I].")
+		if(!do_after(usr, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
+			visible_message("<b>\The [src]</b> leaves \the [I] in its original form.")
+			return 0
+		visible_message("<b>\The [src]</b> transmutes \the [I] into \the [transmute_product.name].")
+		drop_item(I)
+		qdel(I)
+		var/spawnloc = get_turf(usr)
+		var/obj/item/N = new transmute_product(spawnloc)
+		put_in_active_hand(N)
+		LL.lleill_energy -= energy_cost
