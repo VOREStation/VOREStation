@@ -30,10 +30,14 @@
 			to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
 			return
 		cloak()
+		block_hud = 1
+		hud_updateflag = 1
 		to_chat(src, "<span class='warning'>Your fur shimmers and shifts around you, hiding you from the naked eye.</span>")
 		LL.lleill_energy -= energy_cost
 	else
 		uncloak()
+		block_hud = 0
+		hud_updateflag = 1
 		to_chat(src, "<span class='warning'>The brustling of your fur settles down and you become visible once again.</span>")
 
 /mob/living/carbon/human/proc/lleill_select_shape()
@@ -98,13 +102,15 @@
 	set category = "Abilities"
 
 	var/list/transmute_list = list(
-		/obj/item/weapon/potion_material/glamour_transparent,
-		/obj/item/weapon/potion_material/glamour_shrinking,
-		/obj/item/weapon/potion_material/glamour_twinkling,
-		/obj/item/weapon/potion_material/glamour_shard,
-		/obj/item/capture_crystal/glamour,
-		/obj/item/glamour_face,
-		/obj/item/device/universal_translator/glamour
+		"Transparent Glamour" = /obj/item/weapon/potion_material/glamour_transparent,
+		"Shrinking Glamour" = /obj/item/weapon/potion_material/glamour_shrinking,
+		"Twinkling Glamour" = /obj/item/weapon/potion_material/glamour_twinkling,
+		"Glamour Shard" = /obj/item/weapon/potion_material/glamour_shard,
+		"Glamour Cell" = /obj/item/capture_crystal/glamour,
+		"Face of Glamour" = /obj/item/glamour_face,
+		"Speaking Glamour" = /obj/item/device/universal_translator/glamour,
+		"Glamour Bubble" = /obj/item/clothing/mask/gas/glamour,
+		"Pocket of Glamour" = /obj/item/clothing/under/permit/glamour
 		)
 
 	var/energy_cost = 50
@@ -128,7 +134,13 @@
 		to_chat(src, "<span class='warning'>You have no item in your active hand.</span>")
 		return
 
-	var/obj/item/transmute_product = tgui_input_list(src, "Choose an glamour to transmute the item into:", "Transmutation", transmute_list)
+	var/choice = tgui_input_list(src, "Choose a glamour to transmute the item into:", "Transmutation", transmute_list)
+
+	if(!choice)
+		return
+	var/obj/item/transmute_product = transmute_list[choice]
+
+
 	if(!get_active_hand(I))
 		to_chat(src, "<span class='warning'>The item is no longer in your hands.</span>")
 		return

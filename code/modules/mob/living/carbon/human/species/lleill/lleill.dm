@@ -48,6 +48,8 @@
 	warning_high_pressure = 300
 	hazard_high_pressure = 10000 //Can be killed by pressure but you're going to need a hell of a lot
 
+	minimum_breath_pressure = 0 //Doesn't gasp and lungs shouldn't pop
+
 	cold_level_1 = -1	//Safe in space
 	cold_level_2 = -1
 	cold_level_3 = -1

@@ -177,6 +177,43 @@
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "translator"
 
+/obj/item/device/universal_translator/glamour/hear_talk(mob/M, list/message_pieces, verb)
+	if(!listening || !istype(M))
+		return
+
+	//Show the "I heard something" animation.
+	if(mult_icons)
+		flick("[initial(icon_state)]2",src)
+
+	//Handheld or pocket only.
+	if(!isliving(loc))
+		return
+
+	var/mob/living/L = loc
+	if(visual && ((L.sdisabilities & BLIND) || L.eye_blind))
+		return
+	if(audio && ((L.sdisabilities & DEAF) || L.ear_deaf))
+		return
+
+	// Using two for loops kinda sucks, but I think it's more efficient
+	// to shortcut past string building if we're just going to discard the string
+	// anyways.
+	if(user_understands(M, L, message_pieces))
+		return
+
+	var/new_message = ""
+
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking.flags & NONVERBAL)
+			continue
+
+		new_message += (S.message + " ")
+
+	if(!L.say_understands(null, langset))
+		new_message = langset.scramble(new_message)
+
+	to_chat(L, "<span class='filter_say'><i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\"</span>")
+
 //Teleporter ring
 
 /obj/structure/glamour_ring
@@ -231,6 +268,23 @@
 			to_chat(M, "<span class='warning'>You stop drawing energy.</span>")
 			return
 		LL.lleill_energy = min((LL.lleill_energy + 75),LL.lleill_energy_max)
+
+//Glamour Helm
+
+/obj/item/clothing/mask/gas/glamour
+	desc = "A bubble-like helmet of glamour that can protect your face from the atmosphere, or lack thereof, outside."
+	name = "glamour bubble"
+	icon = 'icons/obj/glamour.dmi'
+	icon_state = "bubble"
+	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | ALLOW_SURVIVALFOOD | INFINITE_AIR
+
+//Glamour Pockets
+
+/obj/item/clothing/under/permit/glamour
+	name = "pocket of glamour"
+	desc = "A small crystal of glamour that is capable of storing small items inside of it."
+	icon = 'icons/obj/glamour.dmi'
+	icon_state = "pocket"
 
 //Glamour Floor
 //Glamour Wall
