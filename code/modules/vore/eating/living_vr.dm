@@ -82,8 +82,8 @@
 
 /mob/living/init_vore()
 	if(no_vore)
-		return
-	..()
+		return FALSE
+	return ..()
 
 //
 // Hide vore organs in contents
