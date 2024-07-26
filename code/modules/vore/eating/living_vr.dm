@@ -52,6 +52,9 @@
 	return TRUE
 
 /mob/proc/init_vore()
+	if(no_vore)
+		return FALSE
+
 	//Something else made organs, meanwhile.
 	if(LAZYLEN(vore_organs))
 		return TRUE
