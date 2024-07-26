@@ -52,9 +52,6 @@
 	return TRUE
 
 /mob/proc/init_vore()
-	if(no_vore)
-		return FALSE
-
 	//Something else made organs, meanwhile.
 	if(LAZYLEN(vore_organs))
 		return TRUE
@@ -82,6 +79,11 @@
 			if(istype(H.species,/datum/species/monkey))
 				allow_spontaneous_tf = TRUE
 		return TRUE
+
+/mob/living/init_vore()
+	if(no_vore)
+		return
+	..()
 
 //
 // Hide vore organs in contents
