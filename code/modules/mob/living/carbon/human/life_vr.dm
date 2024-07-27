@@ -21,6 +21,8 @@
 		var/image/other_status = hud_list[STATUS_HUD]
 		var/image/status_r = grab_hud(STATUS_R_HUD)
 		status_r.icon_state = other_status.icon_state
+		if(block_hud)
+			status_r.icon_state = "hudblank"
 		apply_hud(STATUS_R_HUD, status_r)
 
 	//Our custom health bar HUD
@@ -28,6 +30,8 @@
 		var/image/other_health = hud_list[HEALTH_HUD]
 		var/image/health_us = grab_hud(HEALTH_VR_HUD)
 		health_us.icon_state = other_health.icon_state
+		if(block_hud)
+			health_us.icon_state = "hudblank"
 		apply_hud(HEALTH_VR_HUD, health_us)
 
 	//Backup implant hud status
@@ -46,7 +50,8 @@
 						holder.icon_state = "hud_backup_nobody"
 					else
 						holder.icon_state = "hud_backup_norm"
-
+		if(block_hud)
+			holder.icon_state = "hudblank"
 		apply_hud(BACKUP_HUD, holder)
 
 	//VOREStation Antag Hud
@@ -55,6 +60,8 @@
 		if(vantag_pref)
 			vantag.icon_state = vantag_pref
 		else
+			vantag.icon_state = "hudblank"
+		if(block_hud)
 			vantag.icon_state = "hudblank"
 		apply_hud(VANTAG_HUD, vantag)
 

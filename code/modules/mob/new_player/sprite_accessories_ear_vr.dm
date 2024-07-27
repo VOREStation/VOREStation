@@ -40,6 +40,15 @@
 	extra_overlay = "lleill-antlers"
 	species_allowed = list(SPECIES_LLEILL)
 
+/datum/sprite_accessory/ears/lleill/curled
+	name = "Lleill Ears Curled, colorable"
+	icon_state = "lleill2"
+	extra_overlay = "lleill2-antlers"
+
+/datum/sprite_accessory/ears/lleill/tall
+	name = "Lleill Ears Tall, colorable"
+	icon_state = "lleill3"
+	extra_overlay = "lleill3-antlers"
 
 // Ears avaliable to anyone
 

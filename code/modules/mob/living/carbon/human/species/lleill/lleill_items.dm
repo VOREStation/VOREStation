@@ -139,6 +139,8 @@
 			return
 
 		var/mob/living/carbon/human/chosen_target = tgui_input_list(user, "Which target do you wish to create a homunculus of?", "homunculus", targets)
+		if(!chosen_target)
+			return
 
 		var/spawnloc = get_turf(user)
 		var/mob/living/simple_mob/homunculus/H = new(spawnloc)
@@ -175,6 +177,43 @@
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "translator"
 
+/obj/item/device/universal_translator/glamour/hear_talk(mob/M, list/message_pieces, verb)
+	if(!listening || !istype(M))
+		return
+
+	//Show the "I heard something" animation.
+	if(mult_icons)
+		flick("[initial(icon_state)]2",src)
+
+	//Handheld or pocket only.
+	if(!isliving(loc))
+		return
+
+	var/mob/living/L = loc
+	if(visual && ((L.sdisabilities & BLIND) || L.eye_blind))
+		return
+	if(audio && ((L.sdisabilities & DEAF) || L.ear_deaf))
+		return
+
+	// Using two for loops kinda sucks, but I think it's more efficient
+	// to shortcut past string building if we're just going to discard the string
+	// anyways.
+	if(user_understands(M, L, message_pieces))
+		return
+
+	var/new_message = ""
+
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking.flags & NONVERBAL)
+			continue
+
+		new_message += (S.message + " ")
+
+	if(!L.say_understands(null, langset))
+		new_message = langset.scramble(new_message)
+
+	to_chat(L, "<span class='filter_say'><i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\"</span>")
+
 //Teleporter ring
 
 /obj/structure/glamour_ring
@@ -193,6 +232,59 @@
 	var/area/A = get_area(src)
 	area_name = A.name
 	name = "[area_name] glamour ring"
+
+/obj/structure/glamour_ring/attack_hand(mob/living/M as mob)
+
+	var/mob/living/carbon/human/L = connected_mob
+	var/datum/species/lleill/LL = L.species
+
+	var/m_action
+	if(M == L)
+		m_action= tgui_alert(M, "Do you want to destroy the ring, or restore energy?", "Destroy ring", list("Yes", "No", "Restore Energy"))
+	else
+		m_action= tgui_alert(M, "Do you want to destroy the ring, the owner of it may be aware that you have done this?", "Destroy ring", list("Yes", "No"))
+
+	if(m_action == "No")
+		return
+
+	if(m_action == "Yes")
+		to_chat(M, "<span class='warning'>You begin to break the lines of the glamour ring.</span>")
+		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+			to_chat(M, "<span class='warning'>You leave the glamour ring alone.</span>")
+			return
+		to_chat(M, "<span class='warning'>You have destroyed \the [src].</span>")
+		src.visible_message("<b>\The [M]</b> has broken apart \the [src].")
+		if(M != connected_mob && connected_mob)
+			to_chat(connected_mob, "<span class='warning'>\The [src] has been destroyed by \the [M].</span>")
+		if(istype(LL))
+			L.teleporters -= src
+		qdel(src)
+
+	if(m_action == "Restore Energy")
+		if(LL.ring_cooldown + 10 MINUTES > world.time)
+			to_chat(M, "<span class='warning'>You must wait a while before drawing energy from the glamour again.</span>")
+			return
+		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+			to_chat(M, "<span class='warning'>You stop drawing energy.</span>")
+			return
+		LL.lleill_energy = min((LL.lleill_energy + 75),LL.lleill_energy_max)
+
+//Glamour Helm
+
+/obj/item/clothing/mask/gas/glamour
+	desc = "A bubble-like helmet of glamour that can protect your face from the atmosphere, or lack thereof, outside."
+	name = "glamour bubble"
+	icon = 'icons/obj/glamour.dmi'
+	icon_state = "bubble"
+	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | ALLOW_SURVIVALFOOD | INFINITE_AIR
+
+//Glamour Pockets
+
+/obj/item/clothing/under/permit/glamour
+	name = "pocket of glamour"
+	desc = "A small crystal of glamour that is capable of storing small items inside of it."
+	icon = 'icons/obj/glamour.dmi'
+	icon_state = "pocket"
 
 //Glamour Floor
 //Glamour Wall
