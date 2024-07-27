@@ -150,6 +150,7 @@ const MOPCOres = (props) => {
               label={toTitleCase(ore.name)}
               buttons={
                 <Dropdown
+                  autoScroll={false}
                   width="120px"
                   color={
                     (ore.processing === 0 && 'red') ||

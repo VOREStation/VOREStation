@@ -292,7 +292,7 @@
 	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/truepolymorph
 
 /obj/item/weapon/potion_material/glamour_shard
-	name = "glamour_shard"
+	name = "glamour shard"
 	desc = "A shard of hardened white crystal that seems to change shapes as you hold it."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "glamour_shard"

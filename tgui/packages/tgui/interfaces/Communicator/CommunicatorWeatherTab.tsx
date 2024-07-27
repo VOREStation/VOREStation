@@ -17,11 +17,12 @@ export const CommunicatorWeatherTab = (props) => {
       <Section title="Current Conditions">
         <LabeledList>
           {filter(
+            aircontents,
             (i: AirContent) =>
               i.val !== '0' ||
               i.entry === 'Pressure' ||
               i.entry === 'Temperature',
-          )(aircontents).map((item: AirContent) => (
+          ).map((item: AirContent) => (
             <LabeledList.Item
               key={item.entry}
               label={item.entry}

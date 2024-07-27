@@ -33,6 +33,11 @@
 
 	//Specific abilities
 
+	var/lleill_energy = 200
+	var/lleill_energy_max = 200
+
+	var/ring_cooldown = 0
+
 	darksight = 10 //Can see in dark
 
 	burn_mod = 0.25 //Very resistant to fire
@@ -42,6 +47,8 @@
 	hazard_low_pressure = -1
 	warning_high_pressure = 300
 	hazard_high_pressure = 10000 //Can be killed by pressure but you're going to need a hell of a lot
+
+	minimum_breath_pressure = 0 //Doesn't gasp and lungs shouldn't pop
 
 	cold_level_1 = -1	//Safe in space
 	cold_level_2 = -1
@@ -81,7 +88,9 @@
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/lleill_invisibility,
 		/mob/living/carbon/human/proc/lleill_transmute,
-		/mob/living/carbon/human/proc/lleill_rings)
+		/mob/living/carbon/human/proc/lleill_rings,
+		/mob/living/carbon/human/proc/lleill_contact,
+		/mob/living/carbon/human/proc/lleill_alchemy)
 
 	//organs, going with just the basics for now
 

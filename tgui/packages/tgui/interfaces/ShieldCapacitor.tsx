@@ -75,7 +75,7 @@ export const ShieldCapacitor = (props) => {
                 minValue={10000}
                 maxValue={max_charge_rate}
                 format={(val: number) => formatPower(val)}
-                onDrag={(e, val: number) => act('charge_rate', { rate: val })}
+                onDrag={(val: number) => act('charge_rate', { rate: val })}
               />
             </LabeledList.Item>
           </LabeledList>

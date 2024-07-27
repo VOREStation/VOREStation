@@ -14,7 +14,7 @@ import {
 import { formatMoney } from '../../format';
 import { MAX_SEARCH_RESULTS } from './constants';
 import { ItemList } from './ItemList';
-import { Data } from './types';
+import { Data, item } from './types';
 
 export const GenericUplink = (props: {
   currencyAmount: number;
@@ -28,7 +28,7 @@ export const GenericUplink = (props: {
 
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(categories[0]?.name);
-  const testSearch = createSearch(searchText, (item) => {
+  const testSearch = createSearch(searchText, (item: item) => {
     return item.name + item.desc;
   });
   const items =

@@ -109,6 +109,7 @@ export const Floorbot = (props) => {
               </LabeledList.Item>
               <LabeledList.Item label="Bridge Mode">
                 <Dropdown
+                  autoScroll={false}
                   over
                   width="100%"
                   selected={bmode ? bmode : 'Disabled'}

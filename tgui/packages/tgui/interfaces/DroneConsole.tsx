@@ -53,6 +53,7 @@ export const DroneConsole = (props) => {
         </Section>
         <Section title="Request Drone">
           <Dropdown
+            autoScroll={false}
             options={areas ? areas.sort() : []}
             selected={selected_area}
             width="100%"

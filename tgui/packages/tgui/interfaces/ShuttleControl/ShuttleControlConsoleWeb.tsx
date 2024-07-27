@@ -76,7 +76,7 @@ export const ShuttleControlConsoleWeb = (props) => {
           {(!is_moving && (
             <>
               <LabeledList.Item label="Current Location">
-                {toTitleCase(shuttle_location)}
+                {toTitleCase(shuttle_location!)}
               </LabeledList.Item>
               {(!skip_docking && (
                 <LabeledList.Item

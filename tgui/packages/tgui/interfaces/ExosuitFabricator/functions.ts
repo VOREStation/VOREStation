@@ -112,7 +112,7 @@ export function searchFilter(
     });
   });
 
-  searchResults = uniqBy((part: part) => part.name)(searchResults);
+  searchResults = uniqBy(searchResults, (part: part) => part.name);
 
   return searchResults;
 }
@@ -120,7 +120,7 @@ export function searchFilter(
 export function getFirstValidPartSet(
   sets: string[],
   buildableParts: Record<string, part[]> | [],
-) {
+): string | null {
   for (let set of sets) {
     if (buildableParts[set]) {
       return set;

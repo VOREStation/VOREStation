@@ -76,9 +76,12 @@ const MiningVendorItems = (props: {
   const { act, data } = useBackend<Data>();
   const { has_id, id, items } = data;
   // Search thingies
-  const searcher = createSearch(props.searchText, (item: sortable) => {
-    return item[0];
-  });
+  const searcher = createSearch(
+    props.searchText,
+    (item: [string, sortable]) => {
+      return item[0];
+    },
+  );
 
   let has_contents = false;
   let contents = Object.entries(items).map((kv, _i) => {
@@ -139,6 +142,7 @@ const MiningVendorSearch = (props: {
         </Flex.Item>
         <Flex.Item basis="30%">
           <Dropdown
+            autoScroll={false}
             selected={props.sortOrder}
             options={Object.keys(sortTypes)}
             width="100%"

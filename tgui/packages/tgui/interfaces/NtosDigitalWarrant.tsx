@@ -64,8 +64,9 @@ const WarrantList = (props) => {
 
   const { allwarrants = [] } = data;
 
-  const ourWarrants = filter((w: warrant) => w.arrestsearch === type)(
+  const ourWarrants = filter(
     allwarrants,
+    (w: warrant) => w.arrestsearch === type,
   );
 
   return (

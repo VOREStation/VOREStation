@@ -50,7 +50,7 @@ export const AtmosMixer = (props) => {
                 minValue={0}
                 maxValue={max_pressure}
                 step={10}
-                onChange={(e, value: number) =>
+                onChange={(value: number) =>
                   act('pressure', {
                     pressure: value,
                   })
@@ -79,10 +79,11 @@ export const AtmosMixer = (props) => {
                 value={node1_concentration}
                 unit="%"
                 width="60px"
+                step={1}
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(e, value: number) =>
+                onDrag={(value: number) =>
                   act('node1', {
                     concentration: value,
                   })
@@ -95,10 +96,11 @@ export const AtmosMixer = (props) => {
                 value={node2_concentration}
                 unit="%"
                 width="60px"
+                step={1}
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(e, value: number) =>
+                onDrag={(value: number) =>
                   act('node2', {
                     concentration: value,
                   })
