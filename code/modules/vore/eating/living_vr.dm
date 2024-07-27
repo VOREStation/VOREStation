@@ -45,7 +45,7 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	spawn(2 SECONDS)
-		if(M)
+		if(!QDELETED(M))
 			M.init_vore()
 
 	//return TRUE to hook-caller
@@ -79,6 +79,11 @@
 			if(istype(H.species,/datum/species/monkey))
 				allow_spontaneous_tf = TRUE
 		return TRUE
+
+/mob/living/init_vore()
+	if(no_vore)
+		return FALSE
+	return ..()
 
 //
 // Hide vore organs in contents
