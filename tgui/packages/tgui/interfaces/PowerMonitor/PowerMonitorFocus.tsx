@@ -35,26 +35,51 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
   );
   // Process area data
   const areas: area[] = flow([
-    map((area: area, i) => ({
-      ...area,
-      // Generate a unique id
-      id: area.name + i,
-    })),
-    sortByField === 'name' && sortBy((area: area) => area.name),
-    sortByField === 'charge' && sortBy((area: area) => -area.charge),
-    sortByField === 'draw' &&
-      sortBy(
-        (area: area) => -powerRank(area.load),
-        (area: area) => -parseFloat(area.load),
-      ),
-    sortByField === 'problems' &&
-      sortBy(
-        (area: area) => area.eqp,
-        (area: area) => area.lgt,
-        (area: area) => area.env,
-        (area: area) => area.charge,
-        (area: area) => area.name,
-      ),
+    (areas: area[]) =>
+      map(areas, (area, i) => ({
+        ...area,
+        // Generate a unique id
+        id: area.name + i,
+      })),
+    (areas: area[]) => {
+      if (sortByField !== 'name') {
+        return areas;
+      } else {
+        return sortBy(areas, (area) => area.name);
+      }
+    },
+    (areas: area[]) => {
+      if (sortByField !== 'charge') {
+        return areas;
+      } else {
+        return sortBy(areas, (area) => -area.charge);
+      }
+    },
+    (areas: area[]) => {
+      if (sortByField !== 'draw') {
+        return areas;
+      } else {
+        return sortBy(
+          areas,
+          (area) => -powerRank(area.load),
+          (area) => -parseFloat(area.load),
+        );
+      }
+    },
+    (areas: area[]) => {
+      if (sortByField !== 'problems') {
+        return areas;
+      } else {
+        return sortBy(
+          areas,
+          (area) => area.eqp,
+          (area) => area.lgt,
+          (area) => area.env,
+          (area) => area.charge,
+          (area) => area.name,
+        );
+      }
+    },
   ])(focus.areas);
   return (
     <>

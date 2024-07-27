@@ -28,11 +28,12 @@ export const MiningStackingConsole = (props) => {
             <LabeledList.Item label="Stacking">
               <NumberInput
                 fluid
+                step={1}
                 value={stackingAmt}
                 minValue={1}
                 maxValue={50}
                 stepPixelSize={5}
-                onChange={(e, val) => act('change_stack', { amt: val })}
+                onChange={(val) => act('change_stack', { amt: val })}
               />
             </LabeledList.Item>
             <LabeledList.Divider />

@@ -195,13 +195,22 @@ export const VendingMaintenance = (props) => {
 /**
  * Search box
  */
-export const prepareSearch = (products: product[], searchText: string = '') => {
+export const prepareSearch = (
+  products: product[],
+  searchText: string = '',
+): product[] => {
   const testSearch = createSearch(
     searchText,
     (product: product) => product.name,
   );
   return flow([
-    // Optional search term
-    searchText && filter(testSearch),
+    (products: product[]) => {
+      // Optional search term
+      if (!searchText) {
+        return products;
+      } else {
+        return filter(products, testSearch);
+      }
+    },
   ])(products);
 };

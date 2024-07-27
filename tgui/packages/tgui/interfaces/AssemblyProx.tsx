@@ -37,11 +37,12 @@ export const AssemblyProx = (props) => {
               <NumberInput
                 animated
                 fluid
+                step={1}
                 value={time}
                 minValue={0}
                 maxValue={600}
                 format={(val: number) => formatTime(round(val * 10, 0))}
-                onDrag={(e, val: string) => act('set_time', { time: val })}
+                onDrag={(val: number) => act('set_time', { time: val })}
               />
             </LabeledList.Item>
           </LabeledList>
@@ -50,10 +51,11 @@ export const AssemblyProx = (props) => {
           <LabeledList>
             <LabeledList.Item label="Range">
               <NumberInput
+                step={1}
                 minValue={1}
                 value={range}
                 maxValue={maxRange}
-                onDrag={(e, val: string) => act('range', { range: val })}
+                onDrag={(val: number) => act('range', { range: val })}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Armed">

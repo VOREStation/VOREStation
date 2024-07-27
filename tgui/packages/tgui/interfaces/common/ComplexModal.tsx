@@ -163,6 +163,7 @@ export const ComplexModal = (props) => {
         : modal.choices;
     modalBody = (
       <Dropdown
+        autoScroll={false}
         options={realChoices}
         selected={modal.value}
         width="100%"

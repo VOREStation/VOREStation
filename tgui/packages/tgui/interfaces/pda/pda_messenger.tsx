@@ -95,8 +95,9 @@ const ActiveConversation = (props) => {
           overflowY: 'auto',
         }}
       >
-        {filter((im: message) => im.target === active_conversation)(
+        {filter(
           messages,
+          (im: message) => im.target === active_conversation,
         ).map((im, i, filterArr) => (
           <Box textAlign={im.sent ? 'right' : 'left'} mb={1} key={i}>
             <Box
@@ -146,8 +147,9 @@ const ActiveConversation = (props) => {
             overflowY: 'auto',
           }}
         >
-          {filter((im: message) => im.target === active_conversation)(
+          {filter(
             messages,
+            (im: message) => im.target === active_conversation,
           ).map((im, i) => (
             <Box
               key={i}

@@ -179,22 +179,24 @@ const ShieldGeneratorContent = (props) => {
             <NumberInput
               fluid
               stepPixelSize={6}
+              step={1}
               minValue={0}
               maxValue={max_radius}
               value={radius}
               unit="m"
-              onDrag={(e, val: number) => act('change_radius', { val: val })}
+              onDrag={(val: number) => act('change_radius', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Vertical Shielding">
             <NumberInput
               fluid
               stepPixelSize={12}
+              step={1}
               minValue={0}
               maxValue={max_z_range}
               value={z_range}
               unit="vertical range"
-              onDrag={(e, val: number) => act('z_range', { val: val })}
+              onDrag={(val: number) => act('z_range', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Charge Rate">
@@ -207,18 +209,19 @@ const ShieldGeneratorContent = (props) => {
               value={strengthen_rate}
               format={(val: number) => toFixed(val, 1)}
               unit="Renwick/s"
-              onDrag={(e, val: number) => act('strengthen_rate', { val: val })}
+              onDrag={(val: number) => act('strengthen_rate', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Maximum Field Strength">
             <NumberInput
               fluid
               stepPixelSize={12}
+              step={1}
               minValue={1}
               maxValue={max_field_strength}
               value={target_field_strength}
               unit="Renwick"
-              onDrag={(e, val: number) =>
+              onDrag={(val: number) =>
                 act('target_field_strength', { val: val })
               }
             />

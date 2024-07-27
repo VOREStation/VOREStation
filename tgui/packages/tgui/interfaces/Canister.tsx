@@ -71,7 +71,7 @@ export const Canister = (props) => {
             <LabeledControls.Item label="Regulator">
               <Box position="relative" left="-8px">
                 <Knob
-                  forcedInputWidth="60px"
+                  width="60px"
                   size={1.25}
                   color={!!valveOpen && 'yellow'}
                   value={releasePressure}

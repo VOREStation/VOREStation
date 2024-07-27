@@ -49,18 +49,32 @@ export const selectCameras = (
   cameras: camera[],
   searchText: string = '',
   networkFilter: string = '',
-) => {
+): camera[] => {
   const testSearch = createSearch(searchText, (camera: camera) => camera.name);
   return flow([
-    // Null camera filter
-    filter((camera: camera) => notEmpty(camera?.name)),
-    // Optional search term
-    searchText && filter(testSearch),
-    // Optional network filter
-    networkFilter &&
-      filter((camera: camera) => camera.networks.includes(networkFilter)),
+    (cameras: camera[]) =>
+      // Null camera filter
+      filter(cameras, (camera) => notEmpty(camera?.name)),
+    (cameras: camera[]) => {
+      // Optional search term
+      if (!searchText) {
+        return cameras;
+      } else {
+        return filter(cameras, testSearch);
+      }
+    },
+    (cameras: camera[]) => {
+      // Optional network filter
+      if (!networkFilter) {
+        return cameras;
+      } else {
+        return filter(cameras, (camera) =>
+          camera.networks.includes(networkFilter),
+        );
+      }
+    },
     // Slightly expensive, but way better than sorting in BYOND
-    sortBy((camera: camera) => camera.name),
+    (cameras: camera[]) => sortBy(cameras, (camera) => camera.name),
   ])(cameras);
 };
 
@@ -151,8 +165,10 @@ export const CameraConsoleContent = (props) => {
         <Flex>
           <Flex.Item>
             <Dropdown
+              autoScroll={false}
               mb={1}
               width={networkFilter ? '155px' : '177px'}
+              selected={networkFilter}
               displayText={networkFilter || 'No Filter'}
               options={allNetworks}
               onSelected={(value) => setNetworkFilter(value)}

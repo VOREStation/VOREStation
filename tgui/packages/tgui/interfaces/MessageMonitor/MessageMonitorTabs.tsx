@@ -122,7 +122,7 @@ export const MessageMonitorLogs = (props: {
                     label="Verification"
                     color={log.id_auth === 'Unauthenticated' ? 'bad' : 'good'}
                   >
-                    {decodeHtmlEntities(log.id_auth)}
+                    {!!log.id_auth && decodeHtmlEntities(log.id_auth)}
                   </LabeledList.Item>
                   <LabeledList.Item label="Stamp">{log.stamp}</LabeledList.Item>
                 </LabeledList>
@@ -169,6 +169,7 @@ export const MessageMonitorAdmin = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Recipient">
           <Dropdown
+            autoScroll={false}
             selected={customrecepient}
             options={recipientOptions}
             width="100%"

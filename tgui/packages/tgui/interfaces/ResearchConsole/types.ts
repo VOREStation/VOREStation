@@ -7,7 +7,7 @@ export type Data = {
   imprinter_designs: design[];
   locked: BooleanLike;
   busy_msg: string | null;
-  search: string | null;
+  search: string | undefined;
   builder_page: number;
   design_page: number;
   info: info | null;

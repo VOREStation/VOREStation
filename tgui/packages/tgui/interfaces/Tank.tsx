@@ -85,12 +85,13 @@ export const Tank = (props) => {
               />
               <NumberInput
                 animated
+                step={1}
                 value={releasePressure}
                 width="65px"
                 unit="kPa"
                 minValue={minReleasePressure}
                 maxValue={maxReleasePressure}
-                onChange={(e, value) =>
+                onChange={(value) =>
                   act('pressure', {
                     pressure: value,
                   })

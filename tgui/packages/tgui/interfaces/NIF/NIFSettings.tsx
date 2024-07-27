@@ -13,6 +13,7 @@ export const NIFSettings = (props) => {
         <Flex>
           <Flex.Item grow={1}>
             <Dropdown
+              autoScroll={false}
               width="100%"
               selected={theme || 'default'}
               options={valid_themes}
