@@ -90,15 +90,16 @@ const ICPrinterCategories = (props) => {
   );
 
   const selectedCategory = filter(
+    categories,
     (cat: category) => cat.name === categoryTarget,
-  )(categories)[0];
+  )[0];
 
   return (
     <Section title="Circuits">
       <Stack fill>
         <Stack.Item mr={2}>
           <Tabs vertical>
-            {sortBy((cat: category) => cat.name)(categories).map((cat) => (
+            {sortBy(categories, (cat: category) => cat.name).map((cat) => (
               <Tabs.Tab
                 selected={categoryTarget === cat.name}
                 onClick={() => setcategoryTarget(cat.name)}
@@ -113,7 +114,7 @@ const ICPrinterCategories = (props) => {
           {selectedCategory ? (
             <Section>
               <LabeledList>
-                {sortBy((item: item) => item.name)(selectedCategory.items).map(
+                {sortBy(selectedCategory.items, (item: item) => item.name).map(
                   (item) => (
                     <LabeledList.Item
                       key={item.name}

@@ -106,11 +106,12 @@ export const ResearchConsoleConstructorMats = (props: {
             buttons={
               <>
                 <NumberInput
+                  step={1}
                   minValue={0}
                   width="100px"
                   value={props.matsStates[mat.name] || 0}
                   maxValue={mat.sheets}
-                  onDrag={(e, val: number) =>
+                  onDrag={(val: number) =>
                     props.onMatsState({
                       ...props.matsStates,
                       [mat.name]: val,

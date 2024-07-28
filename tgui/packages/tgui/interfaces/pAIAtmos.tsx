@@ -49,11 +49,12 @@ export const pAIAtmos = (props) => {
         <Section>
           <LabeledList>
             {filter(
+              aircontents,
               (i: aircontent) =>
                 i.val !== '0' ||
                 i.entry === 'Pressure' ||
                 i.entry === 'Temperature',
-            )(aircontents).map((item: aircontent) => (
+            ).map((item: aircontent) => (
               <LabeledList.Item
                 key={item.entry}
                 label={item.entry}

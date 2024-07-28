@@ -355,8 +355,8 @@ const NtosEmailClientNewMessage = (props) => {
   const { act, data } = useBackend<Data>();
 
   const {
-    msg_title,
-    msg_recipient,
+    msg_title = '',
+    msg_recipient = '',
     msg_body,
     msg_hasattachment,
     msg_attachment_filename,
@@ -379,7 +379,7 @@ const NtosEmailClientNewMessage = (props) => {
         <LabeledList.Item label="Title">
           <Input
             fluid
-            value={msg_title}
+            value={msg_title!}
             onInput={(e, val: string) => act('edit_title', { val: val })}
           />
         </LabeledList.Item>
@@ -388,7 +388,7 @@ const NtosEmailClientNewMessage = (props) => {
             <Flex.Item grow={1}>
               <Input
                 fluid
-                value={msg_recipient}
+                value={msg_recipient!}
                 onInput={(e, val: string) =>
                   act('edit_recipient', { val: val })
                 }
@@ -472,7 +472,7 @@ const NtosEmailClientError = (props: { error: string }) => {
 const NtosEmailClientLogin = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { stored_login, stored_password } = data;
+  const { stored_login = '', stored_password = '' } = data;
 
   return (
     <Section title="Please Log In">
@@ -480,14 +480,14 @@ const NtosEmailClientLogin = (props) => {
         <LabeledList.Item label="Email address">
           <Input
             fluid
-            value={stored_login}
+            value={stored_login!}
             onInput={(e, val: string) => act('edit_login', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Password">
           <Input
             fluid
-            value={stored_password}
+            value={stored_password!}
             onInput={(e, val: string) => act('edit_password', { val: val })}
           />
         </LabeledList.Item>

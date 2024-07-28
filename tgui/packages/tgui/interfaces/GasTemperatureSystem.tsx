@@ -56,9 +56,9 @@ export const GasTemperatureSystem = (props) => {
           <LabeledControls>
             <LabeledControls.Item label="Power Level">
               <Knob
-                minValue="0"
-                maxValue="100"
-                stepPixelSize="1"
+                minValue={0}
+                maxValue={100}
+                stepPixelSize={1}
                 value={powerSetting}
                 onChange={(e, val) => act('setPower', { value: val })}
               />

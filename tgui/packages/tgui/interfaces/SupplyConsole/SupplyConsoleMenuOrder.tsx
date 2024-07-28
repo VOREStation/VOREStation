@@ -13,11 +13,14 @@ export const SupplyConsoleMenuOrder = (props) => {
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const viewingPacks = flow([
-    filter((val: supplyPack) => val.group === activeCategory),
-    filter((val: supplyPack) => !val.contraband || !!contraband),
-    sortBy((val: supplyPack) => val.name),
-    sortBy((val: supplyPack) => val.cost > supply_points),
+  const viewingPacks: supplyPack[] = flow([
+    (supply_packs: supplyPack[]) =>
+      filter(supply_packs, (val) => val.group === activeCategory),
+    (supply_packs: supplyPack[]) =>
+      filter(supply_packs, (val) => !val.contraband || !!contraband),
+    (supply_packs: supplyPack[]) => sortBy(supply_packs, (val) => val.name),
+    (supply_packs: supplyPack[]) =>
+      sortBy(supply_packs, (val) => val.cost > supply_points),
   ])(supply_packs);
 
   // const viewingPacks = sortBy(val => val.name)(supply_packs).filter(val => val.group === activeCategory);

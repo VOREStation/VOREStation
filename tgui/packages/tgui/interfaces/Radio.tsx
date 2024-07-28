@@ -75,7 +75,7 @@ export const Radio = (props) => {
                 maxValue={maxFrequency / 10}
                 value={rawfreq / 10}
                 format={(value: number) => toFixed(value, 1)}
-                onDrag={(e, value: number) =>
+                onDrag={(value: number) =>
                   act('setFrequency', {
                     freq: round(value * 10, 0),
                   })

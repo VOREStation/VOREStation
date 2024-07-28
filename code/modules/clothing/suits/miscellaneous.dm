@@ -534,6 +534,13 @@
 	item_state_slots = list(slot_r_hand_str = "suit_olive", slot_l_hand_str = "suit_olive")
 	flags_inv = HIDEHOLSTER
 
+/obj/item/clothing/suit/storage/miljacket/patchless
+	name = "military jacket, patchless"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable. This one has had all patches and badges removed."
+	icon_state = "militaryjacket_nopatch"
+	item_state_slots = list(slot_r_hand_str = "suit_olive", slot_l_hand_str = "suit_olive")
+	flags_inv = HIDEHOLSTER
+
 /obj/item/clothing/suit/storage/miljacket/green
 	name = "green military jacket"
 	desc = "A dark but rather high-saturation green canvas jacket. Feels sturdy, yet comfortable."
@@ -548,12 +555,22 @@
 	item_state_slots = list(slot_r_hand_str = "suit_orange", slot_l_hand_str = "suit_orange")
 	flags_inv = HIDEHOLSTER
 
+/obj/item/clothing/suit/storage/miljacket/tan/patchless
+	name = "tan military jacket, patchless"
+	desc = "A canvas jacket styled after classical American military garb. The patches have been stripped off. By a sandstorm, perhaps."
+	icon_state = "militaryjacket_tan_nopatch"
+
 /obj/item/clothing/suit/storage/miljacket/grey
 	name = "grey military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable. This one's in urban grey."
 	icon_state = "militaryjacket_grey"
 	item_state_slots = list(slot_r_hand_str = "suit_grey", slot_l_hand_str = "suit_grey")
 	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/miljacket/grey/patchless
+	name = "grey military jacket, patchless"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable. Feels even greyer without the patches, somehow."
+	icon_state = "militaryjacket_grey_nopatch"
 
 /obj/item/clothing/suit/storage/miljacket/navy
 	name = "navy military jacket"
@@ -562,6 +579,11 @@
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	flags_inv = HIDEHOLSTER
 
+/obj/item/clothing/suit/storage/miljacket/navy/patchless
+	name = "navy military jacket, patchless"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable. All navy, no patches."
+	icon_state = "militaryjacket_navy_nopatch"
+
 /obj/item/clothing/suit/storage/miljacket/black
 	name = "black military jacket"
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable. Now in tactical black."
@@ -569,12 +591,22 @@
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 	flags_inv = HIDEHOLSTER
 
+/obj/item/clothing/suit/storage/miljacket/black/patchless
+	name = "black military jacket, patchless"
+	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable. Tactical black, and tactfully patchless."
+	icon_state = "militaryjacket_black_nopatch"
+
 /obj/item/clothing/suit/storage/miljacket/white
 	name = "white military jacket"
 	desc = "A white canvas jacket. Don't wear this for walks in the snow, it won't keep you warm - it'll just make it harder to find your frozen corpse."
 	icon_state = "militaryjacket_white"
 	item_state_slots = list(slot_r_hand_str = "med_dep_jacket", slot_l_hand_str = "med_dep_jacket")
 	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/miljacket/white/patchless
+	name = "white military jacket, patchless"
+	desc = "A canvas jacket styled after classical American military garb. Now with the patches removed, so they won't give you away in the frozen landscape."
+	icon_state = "militaryjacket_white_nopatch"
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"

@@ -1,9 +1,10 @@
 import { round } from 'common/math';
 
 import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section } from '../components';
+import { Button, LabeledList, Section } from '../components';
 import { formatTime } from '../format';
 import { Window } from '../layouts';
+import { NumberInputModal } from './NumberInputModal';
 
 type Data = { timing: number; time: number };
 
@@ -27,14 +28,15 @@ export const AssemblyTimer = (props) => {
                 </Button>
               }
             >
-              <NumberInput
+              <NumberInputModal
                 animated
                 fluid
+                step={1}
                 value={time}
                 minValue={0}
                 maxValue={600}
                 format={(val: number) => formatTime(round(val * 10, 0))}
-                onDrag={(e, val: string) => act('set_time', { time: val })}
+                onDrag={(val: number) => act('set_time', { time: val })}
               />
             </LabeledList.Item>
           </LabeledList>

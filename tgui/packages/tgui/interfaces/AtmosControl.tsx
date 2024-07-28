@@ -32,7 +32,7 @@ export const AtmosControl = (props) => {
 export const AtmosControlContent = (props) => {
   const { act, data, config } = useBackend<Data>();
 
-  let sortedAlarms = sortBy((alarm: alarm) => alarm.name)(data.alarms || []);
+  let sortedAlarms = sortBy(data.alarms || [], (alarm: alarm) => alarm.name);
 
   // sortedAlarms = sortedAlarms.slice(1, 3);
 

@@ -1067,3 +1067,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tail_marking"
+
+/datum/sprite_accessory/tail/lleill/large
+	name = "Lleill tail, Large"
+	icon_state = "tail2"
+	extra_overlay = "tail2_marking"
+
+/datum/sprite_accessory/tail/lleill/small
+	name = "Lleill tail, Small"
+	icon_state = "tail3"
+	extra_overlay = "tail3_marking"

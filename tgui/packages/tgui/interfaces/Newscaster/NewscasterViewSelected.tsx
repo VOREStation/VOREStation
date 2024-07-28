@@ -88,7 +88,8 @@ export const NewscasterViewSelected = (props: { setScreen: Function }) => {
             {!!message.img && (
               <Box>
                 <Image src={'data:image/png;base64,' + message.img} />
-                {decodeHtmlEntities(message.caption) || null}
+                {(!!message.caption && decodeHtmlEntities(message.caption)) ||
+                  null}
               </Box>
             )}
             <Box color="grey">
