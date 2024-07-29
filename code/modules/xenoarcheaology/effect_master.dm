@@ -13,7 +13,7 @@
 			var/obj/item/I = src
 			var/list/new_tech
 			if(I.origin_tech)
-				new_tech = origin_tech.Copy()
+				new_tech = I.origin_tech.Copy()
 			else
 				new_tech = list()
 			if(prob(50))
