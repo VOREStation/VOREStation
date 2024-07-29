@@ -11,11 +11,15 @@
 		AddComponent(/datum/component/artifact_master)
 		if(istype(src, /obj/item))
 			var/obj/item/I = src
-			LAZYINITLIST(I.origin_tech)
-			if(prob(50))
-				I.origin_tech[TECH_PRECURSOR] += 1
+			var/list/new_tech
+			if(I.origin_tech)
+				new_tech = origin_tech.Copy()
 			else
-				I.origin_tech[TECH_ARCANE] += 1
+				new_tech = list()
+			if(prob(50))
+				new_tech[TECH_PRECURSOR] += 1
+			else
+				new_tech[TECH_ARCANE] += 1
 			var/rand_tech = pick(\
 				TECH_MATERIAL,\
 				TECH_ENGINEERING,\
@@ -28,7 +32,8 @@
 				TECH_DATA,\
 				TECH_ILLEGAL\
 				)
-			LAZYSET(I.origin_tech, rand_tech, rand(4,7))
+			LAZYSET(new_tech, rand_tech, rand(4,7))
+			I.origin_tech = new_tech
 
 /datum/component/artifact_master
 	var/atom/holder
