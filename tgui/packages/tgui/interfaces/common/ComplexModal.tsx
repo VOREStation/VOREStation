@@ -1,4 +1,4 @@
-import React from 'react';
+import { KeyboardEvent } from 'react';
 
 import { useBackend } from '../../backend';
 import {
@@ -106,7 +106,7 @@ export const ComplexModal = (props) => {
 
   const { id, text, type } = modal;
 
-  let modalOnEnter: Function | undefined;
+  let modalOnEnter: ((e: KeyboardEvent<HTMLDivElement>) => void) | undefined;
   let modalBody: React.JSX.Element | undefined;
   let modalFooter: React.JSX.Element = (
     <Button icon="arrow-left" color="grey" onClick={() => modalClose(null)}>
@@ -122,6 +122,7 @@ export const ComplexModal = (props) => {
     modalOnEnter = (e) => modalAnswer(id, curValue, {});
     modalBody = (
       <Input
+        key={id}
         value={modal.value}
         placeholder="ENTER to submit"
         width="100%"
