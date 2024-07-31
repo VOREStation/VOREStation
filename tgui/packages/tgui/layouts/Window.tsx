@@ -50,36 +50,35 @@ export const Window = (props: Props) => {
   } = props;
 
   const { config, suspended } = useBackend();
-  if (suspended) {
-    return;
-  }
   const { debugLayout = false } = useDebug();
 
   useEffect(() => {
-    const updateGeometry = () => {
-      const options = {
-        ...config.window,
-        size: DEFAULT_SIZE,
+    if (!suspended) {
+      const updateGeometry = () => {
+        const options = {
+          ...config.window,
+          size: DEFAULT_SIZE,
+        };
+
+        if (width && height) {
+          options.size = [width, height];
+        }
+        if (config.window?.key) {
+          setWindowKey(config.window.key);
+        }
+        recallWindowGeometry(options);
       };
 
-      if (width && height) {
-        options.size = [width, height];
-      }
-      if (config.window?.key) {
-        setWindowKey(config.window.key);
-      }
-      recallWindowGeometry(options);
-    };
+      Byond.winset(Byond.windowId, {
+        'can-close': Boolean(canClose),
+      });
+      logger.log('mounting');
+      updateGeometry();
 
-    Byond.winset(Byond.windowId, {
-      'can-close': Boolean(canClose),
-    });
-    logger.log('mounting');
-    updateGeometry();
-
-    return () => {
-      logger.log('unmounting');
-    };
+      return () => {
+        logger.log('unmounting');
+      };
+    }
   }, [width, height]);
 
   const dispatch = globalStore.dispatch;
@@ -92,7 +91,7 @@ export const Window = (props: Props) => {
       ? config.status < UI_DISABLED
       : config.status < UI_INTERACTIVE);
 
-  return (
+  return suspended ? null : (
     <Layout className="Window" theme={theme}>
       <TitleBar
         className="Window__titleBar"
