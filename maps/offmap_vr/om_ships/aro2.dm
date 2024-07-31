@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/aro2
 	name = "OM Ship - Aronai 2.0 (New Z)"
 	desc = "It's Aronai! As a spaceship."
-	mappath = 'aro2.dmm'
+	mappath = "maps/offmap_vr/om_ships/aro2.dmm"
 
 /area/aro2
 	requires_power = 1

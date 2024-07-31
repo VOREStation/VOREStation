@@ -102,16 +102,6 @@
 	description = "A small cabin; turned into a shelter capsule. Includes dorm amenities, and a nice dinner."
 	mappath = "maps/submaps/shelters/shelter_cab.dmm"
 
-/datum/map_template/shelter/zeta
-	name = "Shelter Zeta"
-	shelter_id = "shelter_zeta"
-	description = "An small dropship with a massive number of equipment, \
-		weapons, and supplies. Contains exterior weapons, point defense, \
-		a shield generator, and extremely advanced technology. It is \
-		unknown who manufactued a vessel like this, as it is beyond the \
-		technology level of most contemporary powers."
-	mappath = "maps/offmap_vr/om_ships/shelter_6.dmm"
-
 /datum/map_template/shelter/phi
 	name = "Shelter Phi"
 	shelter_id = "shelter_phi"

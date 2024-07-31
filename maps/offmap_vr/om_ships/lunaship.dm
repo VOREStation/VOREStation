@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/lunaship
 	name = "OM Ship - LUNA"
 	desc = "It's LUNA! As a spaceship."
-	mappath = 'lunaship.dmm'
+	mappath = "maps/offmap_vr/om_ships/lunaship.dmm"
 
 /area/lunaship
 	requires_power = 1
