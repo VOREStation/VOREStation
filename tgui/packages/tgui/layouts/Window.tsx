@@ -50,6 +50,9 @@ export const Window = (props: Props) => {
   } = props;
 
   const { config, suspended } = useBackend();
+  if (suspended) {
+    return;
+  }
   const { debugLayout = false } = useDebug();
 
   useEffect(() => {
@@ -89,7 +92,7 @@ export const Window = (props: Props) => {
       ? config.status < UI_DISABLED
       : config.status < UI_INTERACTIVE);
 
-  return suspended ? null : (
+  return (
     <Layout className="Window" theme={theme}>
       <TitleBar
         className="Window__titleBar"
