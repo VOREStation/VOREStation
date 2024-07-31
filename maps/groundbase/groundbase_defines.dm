@@ -404,7 +404,7 @@
 /datum/map_template/gb_lateload/gb_centcom
 	name = "Groundbase - Central Command"
 	desc = "Central Command lives here!"
-	mappath = 'gb-centcomm.dmm'
+	mappath = "maps/groundbase/gb-centcomm.dmm"
 
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_centcom
 
@@ -420,7 +420,7 @@
 /datum/map_template/gb_lateload/gb_misc
 	name = "Groundbase - Misc"
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
-	mappath = 'gb-misc.dmm'
+	mappath = "maps/groundbase/gb-misc.dmm"
 
 	associated_map_datum = /datum/map_z_level/gb_lateload/misc
 
@@ -433,7 +433,7 @@
 /datum/map_template/gb_lateload/mining
 	name = "V3c Underground"
 	desc = "The caves underneath the survace of Virgo 3C"
-	mappath = 'maps/groundbase/gb-mining.dmm'
+	mappath = "maps/groundbase/gb-mining.dmm"
 
 	associated_map_datum = /datum/map_z_level/gb_lateload/mining
 
@@ -453,7 +453,7 @@
 /datum/map_template/common_lateload/away_aerostat
 	name = "Remmi Aerostat - Z1 Aerostat"
 	desc = "The Virgo 2 Aerostat away mission."
-	mappath = 'maps/expedition_vr/aerostat/aerostat.dmm'
+	mappath = "maps/expedition_vr/aerostat/aerostat.dmm"
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
 
 ////////////////////////////////////////////////////////////////////////
@@ -508,28 +508,28 @@
 /datum/map_template/gb_lateload/wilds/north/type1
 	name = "Northern Wilds 1"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/northwilds/northwilds1.dmm'
+	mappath = "maps/groundbase/northwilds/northwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_north_wilds
 /datum/map_template/gb_lateload/wilds/north/type2
 	name = "Northern Wilds 2"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/northwilds/northwilds2.dmm'
+	mappath = "maps/groundbase/northwilds/northwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_north_wilds
 
 /datum/map_template/gb_lateload/wilds/south/type1
 	name = "Southern Wilds 1"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/southwilds/southwilds1.dmm'
+	mappath = "maps/groundbase/southwilds/southwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
 /datum/map_template/gb_lateload/wilds/south/type2
 	name = "Southern Wilds 2"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/southwilds/southwilds2.dmm'
+	mappath = "maps/groundbase/southwilds/southwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
 /datum/map_template/gb_lateload/wilds/south/type3
 	name = "Southern Wilds 3"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/southwilds/southwilds3.dmm'
+	mappath = "maps/groundbase/southwilds/southwilds3.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
 /datum/map_template/gb_lateload/wilds/south/type3/on_map_loaded(z)
 	. = ..()
@@ -541,23 +541,23 @@
 /datum/map_template/gb_lateload/wilds/east/type1
 	name = "Eastern Wilds 1"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/eastwilds/eastwilds1.dmm'
+	mappath = "maps/groundbase/eastwilds/eastwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_east_wilds
 /datum/map_template/gb_lateload/wilds/east/type2
 	name = "Eastern Wilds 2"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/eastwilds/eastwilds2.dmm'
+	mappath = "maps/groundbase/eastwilds/eastwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_east_wilds
 
 /datum/map_template/gb_lateload/wilds/west/type1
 	name = "Western Wilds 1"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/westwilds/westwilds1.dmm'
+	mappath = "maps/groundbase/westwilds/westwilds1.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_west_wilds
 /datum/map_template/gb_lateload/wilds/west/type2
 	name = "Western Wilds 2"
 	desc = "Wilderness"
-	mappath = 'maps/groundbase/westwilds/westwilds2.dmm'
+	mappath = "maps/groundbase/westwilds/westwilds2.dmm"
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_west_wilds
 
 /*
