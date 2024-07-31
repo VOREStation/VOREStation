@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/escapepod
 	name = "OM Ship - Escape Pod"
 	desc = "An escape pod."
-	mappath = 'shelter_5.dmm'
+	mappath = "maps/offmap_vr/om_ships/shelter_5.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)
