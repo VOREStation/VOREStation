@@ -31,3 +31,5 @@ temp.dmi
 
 node_modules/
 package-lock.json
+#ignore tracy dll
+prof.dll
