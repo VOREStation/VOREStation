@@ -33620,6 +33620,9 @@
 	id_tag = "southciv_airlock_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/structure/sign/warning/internals_required{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/topairlock)
 "bhZ" = (
@@ -33925,6 +33928,9 @@
 	name = "Surface EVA"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
+/obj/structure/sign/warning/cold{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/topairlock)
 "biv" = (
@@ -34001,15 +34007,15 @@
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/topairlock)
 "biC" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
-	},
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/topairlock)
