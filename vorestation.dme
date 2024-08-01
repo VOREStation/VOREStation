@@ -24,6 +24,7 @@
 #include "code\world.dm"
 #include "code\__defines\__globals.dm"
 #include "code\__defines\_compile_options.dm"
+#include "code\__defines\_init.dm"
 #include "code\__defines\_lists.dm"
 #include "code\__defines\_planes+layers.dm"
 #include "code\__defines\_planes+layers_vr.dm"
