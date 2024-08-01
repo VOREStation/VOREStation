@@ -25,7 +25,8 @@
 		name = rename
 
 /datum/map_template/proc/preload_size(path, orientation = 0)
-	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
+	var/datum/bapi_parsed_map/map = load_map_bapi(path, 1, 1, 1, crop_map=FALSE, measure_only=TRUE, orientation=orientation)
+	var/list/bounds = map.parsed_bounds
 	if(bounds)
 		if(orientation & (90 | 270))
 			width = bounds[MAP_MAXY]
@@ -88,7 +89,8 @@
 		x = round((world.maxx - width)/2)
 		y = round((world.maxy - height)/2)
 
-	var/list/bounds = SSmapping.maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
+	var/datum/bapi_parsed_map/map = load_map_bapi(mappath, x, y, no_changeturf = TRUE, orientation=orientation)
+	var/list/bounds = map.parsed_bounds
 	if(!bounds)
 		return FALSE
 
@@ -114,7 +116,8 @@
 	if(annihilate)
 		annihilate_bounds(old_T, centered, orientation)
 
-	var/list/bounds = SSmapping.maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
+	var/datum/bapi_parsed_map/map = load_map_bapi(mappath, T.x, T.y, T.z, crop_map = TRUE, orientation = orientation)
+	var/list/bounds = map.parsed_bounds
 	if(!bounds)
 		return
 
@@ -306,3 +309,10 @@
 	else
 		admin_notice("Submaps loaded.", R_DEBUG)
 	admin_notice("Loaded: [english_list(pretty_submap_list)]", R_DEBUG)
+
+/area/template_noop
+	name = "Area Passthrough"
+
+/turf/template_noop
+	name = "Turf Passthrough"
+	icon_state = "template_void"
