@@ -25,7 +25,7 @@
 #include "Manor1.dmm"
 #include "Epod3.dmm"
 #include "Epod4.dmm"
-#include "ButcherShack.dmm"
+#include "butchershack.dmm"
 #endif
 
 /datum/map_template/virgo2

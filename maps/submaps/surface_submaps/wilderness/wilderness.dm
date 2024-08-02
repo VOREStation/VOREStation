@@ -31,7 +31,7 @@
 #include "Manor1.dmm"
 #include "Epod3.dmm"
 #include "Epod4.dmm"
-#include "ButcherShack.dmm"
+#include "butchershack.dmm"
 #include "Chapel.dmm"
 #include "Shelter.dmm"
 #include "derelictengine.dmm"
@@ -275,7 +275,7 @@
 /datum/map_template/surface/wilderness/normal/ButcherShack
 	name = "Butcher Shack"
 	desc = "An old, bloody butcher's shack. Get your meat here!"
-	mappath = "maps/submaps/surface_submaps/wilderness/ButcherShack.dmm"
+	mappath = "maps/submaps/surface_submaps/wilderness/butchershack.dmm"
 	cost = 5
 
 /datum/map_template/surface/wilderness/deep/Chapel1
