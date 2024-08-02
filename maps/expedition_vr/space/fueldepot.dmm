@@ -144,36 +144,27 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "aq" = (
-/obj/machinery/power/solar,
-/obj/structure/cable{
-	icon_state = "0-4"
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 4;
+	start_pressure = 30000
 	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 9
-	},
-/turf/simulated/shuttle/plating/airless,
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "ar" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/effect/floor_decal/industrial/warning/dust{
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 1
 	},
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "as" = (
-/obj/machinery/power/solar,
-/obj/structure/cable{
-	icon_state = "0-8"
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 8;
+	start_pressure = 30000
 	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 5
-	},
-/turf/simulated/shuttle/plating/airless,
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "at" = (
 /obj/machinery/power/solar,
@@ -231,15 +222,8 @@
 /turf/space,
 /area/space)
 "aD" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/manifold4w/visible,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "aE" = (
@@ -265,63 +249,54 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "aI" = (
-/obj/machinery/power/solar,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 10
-	},
-/turf/simulated/shuttle/plating/airless,
-/area/tether_away/fueldepot)
+/obj/structure/grille,
+/obj/structure/lattice,
+/turf/space,
+/area/space)
 "aJ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/visible/universal{
+	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
+/obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "aK" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/tether_away/fueldepot)
+/obj/structure/lattice,
+/turf/space,
+/area/space)
 "aL" = (
-/obj/structure/cable{
-	icon_state = "2-4"
+/obj/structure/railing{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/tether_away/fueldepot)
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/space,
+/area/space)
 "aM" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/power/pointdefense{
+	id_tag = "depot_pd"
 	},
 /obj/structure/cable{
-	icon_state = "1-8"
+	icon_state = "0-4"
 	},
-/obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "aN" = (
-/obj/machinery/power/solar,
-/obj/structure/cable{
-	icon_state = "0-8"
+/obj/machinery/vending/sovietsoda{
+	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 6
-	},
-/turf/simulated/shuttle/plating/airless,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "aO" = (
-/obj/machinery/power/tracker,
-/obj/structure/cable,
-/turf/simulated/shuttle/plating/airless,
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "aP" = (
 /obj/structure/cable{
@@ -412,10 +387,11 @@
 /area/tether_away/fueldepot)
 "aX" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
 /obj/structure/cable{
-	icon_state = "1-8"
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
@@ -448,8 +424,8 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bc" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
@@ -511,6 +487,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "bl" = (
@@ -534,26 +511,25 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bn" = (
-/obj/machinery/atmospherics/pipe/tank/phoron/full{
-	dir = 4;
-	start_pressure = 30000
-	},
 /obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "bo" = (
-/obj/machinery/atmospherics/pipe/manifold/visible{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
 	},
 /obj/structure/catwalk,
+/obj/machinery/light/floortube,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bp" = (
-/obj/machinery/atmospherics/pipe/tank/phoron/full{
-	dir = 8;
-	start_pressure = 30000
-	},
 /obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "bq" = (
@@ -568,8 +544,8 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "br" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel{
+	dir = 1
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
@@ -675,13 +651,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/fuel{
 	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/shuttle/plating/airless,
-/area/tether_away/fueldepot)
-"bC" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
-	dir = 1
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
@@ -1093,12 +1062,8 @@
 /area/tether_away/fueldepot)
 "cy" = (
 /obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "2-8"
 	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "cz" = (
@@ -1203,6 +1168,15 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"da" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "es" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1220,10 +1194,21 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "ft" = (
-/obj/machinery/atmospherics/pipe/manifold/visible{
+/obj/machinery/atmospherics/pipe/manifold4w/visible/fuel,
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"gH" = (
+/obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
-/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"hM" = (
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "ja" = (
@@ -1231,6 +1216,56 @@
 /obj/structure/table/rack/steel,
 /obj/item/weapon/tool/crowbar/red,
 /obj/item/weapon/tool/wrench,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"jY" = (
+/obj/machinery/power/solar,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"kN" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"lJ" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"lM" = (
+/obj/machinery/vending/foodfast{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"ne" = (
+/obj/machinery/power/solar,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 10
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"nL" = (
+/obj/machinery/power/solar,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "om" = (
@@ -1244,8 +1279,51 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "ow" = (
-/obj/machinery/vending/weeb,
+/obj/machinery/power/pointdefense{
+	id_tag = "depot_pd"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"oS" = (
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"pd" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"pA" = (
+/obj/machinery/vending/fitness{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"qE" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/floor_decal/industrial/warning/dust,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"qI" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 10
+	},
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "rE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/aux{
@@ -1256,6 +1334,68 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/fuel,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"tR" = (
+/obj/machinery/power/solar,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"vm" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"wa" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel,
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"xn" = (
+/obj/effect/floor_decal/industrial/warning/dust/corner,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"xt" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"Bd" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "BA" = (
@@ -1271,6 +1411,12 @@
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"Cz" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
 "DC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel{
 	dir = 8
@@ -1285,14 +1431,51 @@
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"Fd" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"Fe" = (
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/machinery/power/tracker,
+/obj/structure/cable,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "FK" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/random/powercell,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "Gh" = (
-/obj/machinery/vending/fitness,
+/obj/machinery/light_switch{
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"Gv" = (
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"GK" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"HA" = (
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/fueldepot)
+"IO" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "IR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/aux{
@@ -1304,29 +1487,111 @@
 	},
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"KS" = (
+/obj/machinery/power/solar,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"Lu" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"LZ" = (
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "Nq" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/random/tool,
 /obj/random/tool,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
+"NX" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "OG" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"OW" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"PD" = (
+/obj/machinery/power/solar,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"Qa" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "Qg" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
-"QY" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
+"Qk" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"QG" = (
+/obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
-/obj/structure/catwalk,
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"QY" = (
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug,
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"RC" = (
+/obj/structure/railing,
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"UJ" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/vending/weeb,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "Vy" = (
 /obj/structure/cable{
@@ -1335,14 +1600,53 @@
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"VA" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "depot_pd"
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"Wp" = (
+/obj/machinery/vending/tool,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"WH" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"WI" = (
+/obj/effect/floor_decal/industrial/warning/dust,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"Xi" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
 "XR" = (
-/obj/machinery/vending/foodfast{
-	dir = 0
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "Ys" = (
 /obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"YT" = (
+/obj/machinery/pointdefense_control{
+	id_tag = "depot_pd"
+	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 
@@ -9380,9 +9684,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+aK
+aK
+aM
 aa
 aa
 aa
@@ -9522,9 +9826,9 @@ aa
 aa
 aa
 aa
+aK
 aa
-aa
-aa
+IO
 aa
 aa
 aa
@@ -9643,30 +9947,30 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ay
+aI
+aI
+aI
+aI
+aI
+aI
+aK
+aK
+RC
 bz
 bN
-aC
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+pd
+aK
+aK
+aK
+WH
+at
+at
+at
+at
+at
+tR
+NX
+Lu
 aa
 aa
 aa
@@ -9783,14 +10087,14 @@ aa
 aa
 aa
 aa
+aM
+aa
+aK
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+aK
 aa
 aa
 ay
@@ -9800,13 +10104,13 @@ aC
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+da
+cw
+cw
+cw
+cw
+cw
+qE
 aa
 aa
 aa
@@ -9925,15 +10229,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cy
+GK
+aF
+aF
+aF
+aF
+aF
+aF
+aK
 aa
 ay
 bz
@@ -9942,13 +10246,13 @@ aC
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+QG
+nL
+aE
+aE
+aE
+aE
+PD
 aa
 aa
 aa
@@ -10065,17 +10369,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aI
+aK
+aF
+xn
+Qa
+Qa
+Qa
+Qa
+Qa
+oS
+aK
 aa
 ay
 bz
@@ -10084,13 +10388,13 @@ aC
 aa
 aa
 aa
+xt
+Fe
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+HA
+HA
 aa
 aa
 aa
@@ -10207,16 +10511,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aq
-at
-at
-at
 aI
 aa
+aF
+WI
+aq
+aq
+aq
+aq
+aG
+Bd
 aF
 aF
 aF
@@ -10225,14 +10529,14 @@ bN
 aF
 aF
 aF
-aa
-aq
+aK
+QG
+KS
 at
 at
 at
-aI
-aa
-aa
+at
+ne
 aa
 aa
 aa
@@ -10349,10 +10653,10 @@ aa
 aa
 aa
 aa
+aI
 aa
-aa
-aa
-aa
+aF
+hM
 ar
 aD
 aD
@@ -10372,9 +10676,9 @@ cs
 cw
 cw
 cw
-cy
-aa
-aa
+cw
+cw
+qE
 aa
 aa
 aa
@@ -10491,20 +10795,20 @@ aa
 aa
 aa
 aa
+aI
 aa
-aa
-aa
-aa
+aF
+WI
 as
-aE
-aE
-aE
-aK
-aP
-aP
+as
+as
+as
+aG
+Xi
+kN
 aX
 bk
-bA
+wa
 bO
 aP
 aP
@@ -10514,9 +10818,9 @@ ct
 aE
 aE
 aE
-aN
-aa
-aa
+aE
+aE
+PD
 aa
 aa
 aa
@@ -10633,16 +10937,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aI
+aK
+aF
+LZ
+gH
+gH
+gH
+qI
 aG
-aa
+aK
 aF
 aY
 bl
@@ -10651,14 +10955,14 @@ bN
 aG
 OG
 aF
-aa
+aK
 aG
 aa
+aK
 aa
 aa
 aa
-aa
-aa
+aK
 aa
 aa
 aa
@@ -10775,12 +11079,12 @@ aa
 aa
 aa
 aa
+aK
 aa
-aa
-aa
-aa
-aa
-aa
+aK
+aK
+aF
+aF
 aF
 aF
 aG
@@ -10800,7 +11104,7 @@ aF
 aa
 aa
 aa
-aa
+aK
 aa
 aa
 aa
@@ -10917,7 +11221,7 @@ aa
 aw
 aw
 aw
-aa
+aK
 aa
 aa
 aa
@@ -10942,7 +11246,7 @@ aF
 aa
 aa
 aa
-aa
+aK
 aa
 aa
 aw
@@ -11059,7 +11363,7 @@ au
 ad
 ah
 ja
-ax
+aL
 aw
 aw
 aw
@@ -11072,7 +11376,7 @@ aG
 aR
 bn
 bn
-aj
+bn
 bQ
 ap
 ap
@@ -11084,7 +11388,7 @@ aF
 aw
 aw
 aw
-aw
+Qk
 aw
 au
 cz
@@ -11215,7 +11519,7 @@ aS
 bc
 bo
 QY
-rE
+bQ
 cc
 cn
 aU
@@ -11356,7 +11660,7 @@ ap
 cp
 br
 ft
-bC
+ft
 rE
 cc
 cn
@@ -11498,7 +11802,7 @@ aG
 bq
 bp
 bp
-aj
+bp
 bW
 cd
 cd
@@ -11510,7 +11814,7 @@ aF
 av
 av
 av
-av
+OW
 av
 az
 ja
@@ -11636,7 +11940,7 @@ aa
 aF
 FK
 aG
-aG
+YT
 aV
 bD
 bD
@@ -11652,7 +11956,7 @@ aF
 aa
 aa
 aa
-aa
+aK
 aa
 aa
 av
@@ -11773,8 +12077,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+aK
+aF
 aF
 aF
 aG
@@ -11794,7 +12098,7 @@ aF
 aa
 aa
 aa
-aa
+aK
 aa
 aa
 aa
@@ -11915,12 +12219,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+aF
+Wp
 aG
-aa
+aG
+aG
+aG
 aF
 Gh
 aG
@@ -11929,14 +12233,14 @@ IR
 aG
 XR
 aF
-aa
+aK
 aG
 aa
+aK
 aa
 aa
 aa
-aa
-aa
+aK
 aa
 aa
 aa
@@ -12057,11 +12361,11 @@ aa
 aa
 aa
 aa
-aq
-at
-at
-at
-aL
+aF
+UJ
+aP
+aP
+aP
 aP
 aP
 aP
@@ -12076,9 +12380,9 @@ cu
 at
 at
 at
-aI
-aa
-aa
+at
+at
+ne
 aa
 aa
 aa
@@ -12199,14 +12503,14 @@ aa
 aa
 aa
 aa
-ar
-aD
-aD
-aD
-aM
-aa
 aF
-ow
+Cz
+aG
+aG
+aG
+aG
+aF
+aG
 bs
 bz
 bN
@@ -12218,9 +12522,9 @@ cv
 cw
 cw
 cw
-cy
-aa
-aa
+cw
+cw
+qE
 aa
 aa
 aa
@@ -12339,14 +12643,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-as
-aE
-aE
-aE
+aK
+aK
+Fd
+ct
+Gv
+lM
 aN
-aa
+pA
 aF
 aF
 aF
@@ -12355,14 +12659,14 @@ bN
 aF
 aF
 aF
-aa
-as
+aK
+QG
+nL
 aE
 aE
 aE
-aN
-aa
-aa
+aE
+PD
 aa
 aa
 aa
@@ -12481,15 +12785,15 @@ aa
 aa
 aa
 aa
+aK
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+IO
+aK
+aF
+aF
+aF
+aF
+aF
 aa
 ay
 bz
@@ -12498,13 +12802,13 @@ aC
 aa
 aa
 aa
+QG
+WI
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+HA
+HA
 aa
 aa
 aa
@@ -12623,9 +12927,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ow
+NX
+Lu
 aa
 aa
 aa
@@ -12640,13 +12944,13 @@ aC
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+QG
+KS
+at
+at
+at
+at
+ne
 aa
 aa
 aa
@@ -12782,13 +13086,13 @@ aC
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+vm
+cw
+cw
+cw
+cw
+cw
+qE
 aa
 aa
 aa
@@ -12920,19 +13224,19 @@ aa
 ay
 bz
 bN
-aC
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+pd
+aK
+aK
+aK
+lJ
+aE
+aE
+aE
+aE
+aE
+jY
+NX
+GK
 aa
 aa
 aa
@@ -13072,9 +13376,9 @@ aa
 aa
 aa
 aa
+aK
 aa
-aa
-aa
+IO
 aa
 aa
 aa
@@ -13214,9 +13518,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+aK
+aK
+VA
 aa
 aa
 aa
