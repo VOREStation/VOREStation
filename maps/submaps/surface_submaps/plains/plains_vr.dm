@@ -87,7 +87,6 @@
 	desc = "A bunch of marker beacons, scattered in a strange pattern."
 	mappath = 'maps/submaps/surface_submaps/plains/beacons.dmm'
 	cost = 5
-	fixed_orientation = TRUE
 
 /datum/map_template/surface/plains/Epod
 	name = "Emergency Pod"

@@ -121,7 +121,6 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 	z_upper = INFINITY,
 	place_on_top = FALSE,
 	new_z = FALSE,
-	orientation = 0,
 )
 	if(isfile(dmm_file))
 		log_debug("bapi-dmm was passed a file instead of a path string: [dmm_file]")
@@ -142,7 +141,7 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 	var/datum/bapi_parsed_map/parsed_map = GLOB.cached_maps[dmm_file]
 	parsed_map = parsed_map.copy()
 	if(!measure_only && !isnull(parsed_map.bounds))
-		parsed_map.load(x_offset, y_offset, z_offset, crop_map, no_changeturf, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z, orientation)
+		parsed_map.load(x_offset, y_offset, z_offset, crop_map, no_changeturf, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z)
 	return parsed_map
 
 /datum/bapi_parsed_map/New(tfile)
@@ -191,10 +190,9 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 	z_upper = INFINITY,
 	place_on_top = FALSE,
 	new_z = FALSE,
-	orientation = 0,
 )
 	Master.StartLoadingMap()
-	. = _load_impl(x_offset, y_offset, z_offset, crop_map, no_changeturf, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z, orientation)
+	. = _load_impl(x_offset, y_offset, z_offset, crop_map, no_changeturf, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z)
 	Master.StopLoadingMap()
 
 /datum/bapi_parsed_map/proc/_load_impl(
@@ -211,7 +209,6 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 	z_upper = INFINITY,
 	place_on_top = FALSE,
 	new_z = FALSE,
-	orientation = 0,
 )
 	PRIVATE_PROC(TRUE)
 	SSatoms.map_loader_begin(REF(src))
@@ -231,8 +228,7 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 		z_lower,
 		z_upper,
 		place_on_top,
-		new_z,
-		orientation
+		new_z
 	)
 
 	if(!resume_key)

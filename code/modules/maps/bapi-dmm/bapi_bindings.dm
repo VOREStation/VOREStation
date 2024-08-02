@@ -18,9 +18,9 @@
 	return call_ext(BAPI_DMM_READER, "byond:_bapidmm_parse_map_blocking_ffi")(dmm_file, map_datum)
 
 /proc/_bapidmm_load_map_buffered(parsed_map, x_offset, y_offset, z_offset, crop_map, no_changeturf, x_lower,
-x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z, orientation)
+x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z)
 	return call_ext(BAPI_DMM_READER, "byond:_bapidmm_load_map_buffered_ffi")(parsed_map, x_offset, y_offset, z_offset, crop_map, no_changeturf, x_lower,
-x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z, orientation)
+x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z)
 
 /proc/_bapidmm_work_commandbuffer(parsed_map, resume_key)
 	return call_ext(BAPI_DMM_READER, "byond:_bapidmm_work_commandbuffer_ffi")(parsed_map, resume_key)

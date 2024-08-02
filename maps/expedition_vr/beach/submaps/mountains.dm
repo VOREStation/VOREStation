@@ -343,14 +343,12 @@
 	desc = "A long stretch of lava underground, almost river-like, with a small crystal research outpost on the side."
 	mappath = 'maps/expedition_vr/beach/submaps/lava_trench.dmm'
 	cost = 20
-	fixed_orientation = TRUE
 
 /datum/map_template/surface/mountains/normal/crashedmedshuttle //VOREStation Edit
 	name = "Crashed Med Shuttle"
 	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
 	mappath = 'maps/expedition_vr/beach/submaps/CrashedMedShuttle1.dmm'
 	cost = 20
-	fixed_orientation = TRUE
 
 /datum/map_template/surface/mountains/normal/excavation1 //VOREStation Edit
 	name = "Excavation Site"
@@ -363,7 +361,6 @@
 	desc = "A strange section of the caves that seems twist and turn in ways that shouldn't be physically possible."
 	mappath = 'maps/expedition_vr/beach/submaps/spatial_anomaly.dmm'
 	cost = 20
-	fixed_orientation = TRUE
 
 /datum/map_template/surface/mountains/normal/Speakeasy //VOREStation add
 	name = "Speakeasy"
@@ -371,4 +368,3 @@
 	mappath = 'maps/expedition_vr/beach/submaps/speakeasy_vr.dmm'
 	cost = 10
 	allow_duplicates = FALSE
-
