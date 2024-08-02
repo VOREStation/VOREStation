@@ -124,10 +124,10 @@ macro "borghotkeymode"
 		command = "a-intent left"
 	elem
 		name = "5"
-		command = ".me"
+		command = "Me-verb"
 	elem
 		name = "6"
-		command = ".Subtle"
+		command = "Subtle-verb"
 	elem
 		name = "A"
 		command = "KeyDown A"
@@ -178,7 +178,7 @@ macro "borghotkeymode"
 		command = "KeyUp S"
 	elem
 		name = "T"
-		command = ".say"
+		command = "Say-verb"
 	elem "w_key"
 		name = "W"
 		command = "KeyDown W"
@@ -193,10 +193,10 @@ macro "borghotkeymode"
 		command = ".northeast"
 	elem
 		name = "Y"
-		command = ".Whisper"
+		command = "Whisper-verb"
 	elem
 		name = "CTRL+Y"
-		command = ".Whisper"
+		command = "Whisper-verb"
 	elem
 		name = "Z"
 		command = "Activate-Held-Object"
@@ -244,10 +244,10 @@ macro "borghotkeymode"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = ".say"
+		command = "Say-verb"
 	elem
 		name = "F4"
-		command = ".me"
+		command = "Me-verb"
 	elem
 		name = "F5"
 		command = "asay"
@@ -474,10 +474,10 @@ macro "macro"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = ".say"
+		command = "Say-verb"
 	elem
 		name = "F4"
-		command = ".me"
+		command = "Me-verb"
 	elem
 		name = "F5"
 		command = "asay"
@@ -626,10 +626,10 @@ macro "hotkeymode"
 		command = "a-intent harm"
 	elem
 		name = "5"
-		command = ".me"
+		command = "Me-verb"
 	elem
 		name = "6"
-		command = ".Subtle"
+		command = "Subtle-verb"
 	elem
 		name = "A"
 		command = "KeyDown A"
@@ -692,7 +692,7 @@ macro "hotkeymode"
 		command = "KeyUp S"
 	elem
 		name = "T"
-		command = ".say"
+		command = "Say-verb"
 	elem "w_key"
 		name = "W"
 		command = "KeyDown W"
@@ -707,10 +707,10 @@ macro "hotkeymode"
 		command = ".northeast"
 	elem
 		name = "Y"
-		command = ".Whisper"
+		command = "Whisper-verb"
 	elem
 		name = "CTRL+Y"
-		command = ".Whisper"
+		command = "Whisper-verb"
 	elem
 		name = "Z"
 		command = "Activate-Held-Object"
@@ -767,10 +767,10 @@ macro "hotkeymode"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = ".say"
+		command = "Say-verb"
 	elem
 		name = "F4"
-		command = ".me"
+		command = "Me-verb"
 	elem
 		name = "F5"
 		command = "asay"
@@ -991,10 +991,10 @@ macro "borgmacro"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = ".say"
+		command = "Say-verb"
 	elem
 		name = "F4"
-		command = ".me"
+		command = "Me-verb"
 	elem
 		name = "F5"
 		command = "asay"
@@ -1226,6 +1226,15 @@ window "mainwindow"
 		type = BROWSER
 		pos = 0,0
 		size = 999x999
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		is-visible = false
+		saved-params = ""
+	elem "commandbar_spy"
+		type = BROWSER
+		is-default = false
+		pos = 0,0
+		size = 200x200
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		is-visible = false
@@ -1562,3 +1571,22 @@ window "text_editor"
 		border = line
 		saved-params = ""
 		multi-line = true
+
+window "tgui_say"
+	elem "tgui_say"
+		type = MAIN
+		pos = 410,400
+		size = 360x30
+		anchor1 = 50,50
+		anchor2 = 50,50
+		is-visible = false
+		saved-params = ""
+		statusbar = false
+		can-minimize = false
+	elem "browser"
+		type = BROWSER
+		pos = 0,0
+		size = 360x30
+		anchor1 = 0,0
+		anchor2 = 0,0
+		saved-params = ""
