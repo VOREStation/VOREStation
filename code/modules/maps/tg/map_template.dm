@@ -85,7 +85,7 @@
 		y = round((world.maxy - height)/2)
 
 	var/datum/bapi_parsed_map/map = load_map_bapi(mappath, x, y, no_changeturf = TRUE)
-	var/list/bounds = map.parsed_bounds
+	var/list/bounds = map.bounds
 	if(!bounds)
 		return FALSE
 
@@ -112,7 +112,7 @@
 		annihilate_bounds(old_T, centered)
 
 	var/datum/bapi_parsed_map/map = load_map_bapi(mappath, T.x, T.y, T.z, crop_map = TRUE)
-	var/list/bounds = map.parsed_bounds
+	var/list/bounds = map.bounds
 	if(!bounds)
 		return
 
