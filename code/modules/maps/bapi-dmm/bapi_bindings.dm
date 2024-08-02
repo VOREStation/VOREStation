@@ -5,6 +5,10 @@
 
 /proc/__detect_bapi_dmm_reader()
 	if (world.system_type == UNIX)
+		if(fexists("./libbapi_dmm_reader.so"))
+			// No need for LD_LIBRARY_PATH badness.
+			return __bapi_dmm_reader = "./libbapi_dmm_reader.so"
+		// It's not in the current directory, so try others
 		return __bapi_dmm_reader = "libbapi_dmm_reader"
 	else
 		return __bapi_dmm_reader = "bapi_dmm_reader"
