@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/tabiranth
 	name = "OM Ship - Tabiranth"
 	desc = "A prototype deployable assault shuttle."
-	mappath = 'shelter_6.dmm'
+	mappath = "maps/offmap_vr/om_ships/shelter_6.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)

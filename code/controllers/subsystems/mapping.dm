@@ -176,4 +176,5 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/Shutdown()
 	// Force bapi to drop it's cached maps on server shutdown.
 	_bapidmm_clear_map_data()
+	fdel("data/baked_dmm_files/")
 // VOREStation Edit End

@@ -131,6 +131,10 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 			rustg_file_write(text, path)
 		dmm_file = path
 
+	if(!fexists(dmm_file))
+		stack_trace("Invalid map path: [dmm_file]")
+		return
+
 	if(!(dmm_file in GLOB.cached_maps))
 		GLOB.cached_maps[dmm_file] = new /datum/bapi_parsed_map(dmm_file)
 
