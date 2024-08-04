@@ -597,6 +597,14 @@
 		winset(usr, "mainwindow", "is-maximized=false")
 		winset(usr, "mainwindow", "on-size=attempt_auto_fit_viewport") // The attempt_auto_fit_viewport() proc is not implemented yet
 
+/client/verb/toggle_verb_panel()
+	set name = "Toggle Verbs"
+	set category = "OOC"
+
+	show_verb_panel = !show_verb_panel
+
+	to_chat(usr, "Your verbs are now [show_verb_panel ? "on" : "off. To turn them back on, type 'toggle-verbs' into the command bar."].")
+
 /*
 /client/verb/toggle_status_bar()
 	set name = "Toggle Status Bar"
