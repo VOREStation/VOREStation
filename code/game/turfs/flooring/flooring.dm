@@ -428,6 +428,7 @@ var/list/flooring_types
 /decl/flooring/tiling/new_tile/techmaint
 	icon_base = "techmaint"
 	build_type = /obj/item/stack/tile/floor/techmaint
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 
 /decl/flooring/tiling/new_tile/monofloor
 	icon_base = "monofloor"
@@ -437,6 +438,8 @@ var/list/flooring_types
 
 /decl/flooring/tiling/new_tile/steel_grid
 	icon_base = "steel_grid"
+	build_type = /obj/item/stack/tile/floor/steelgrip
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 
 /decl/flooring/tiling/new_tile/steel_ridged
 	icon_base = "steel_ridged"

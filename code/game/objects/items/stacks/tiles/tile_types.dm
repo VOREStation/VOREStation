@@ -257,6 +257,12 @@
 	icon_state = "techtile_maint"
 	no_variants = FALSE
 
+/obj/item/stack/tile/floor/steelgrip
+	name = "steel hi-grip tile"
+	singular_name = "steel hi-grip tile"
+	icon_state = "steeltile_grip"
+	no_variants = FALSE
+
 /obj/item/stack/tile/floor/steel_dirty
 	name = "steel floor tile"
 	singular_name = "steel floor tile"

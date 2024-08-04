@@ -79,7 +79,13 @@
 		new /datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("cannon frame", /obj/item/weapon/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
-		new /datum/stack_recipe("regular floor tile", /obj/item/stack/tile/floor, 1, 4, 20, recycle_material = "[name]"),
+		new /datum/stack_recipe_list("floor tiles", list(
+			new /datum/stack_recipe("regular floor tile", /obj/item/stack/tile/floor, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("steel hi-grip tile", /obj/item/stack/tile/floor/steelgrip, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("techfloor tile", /obj/item/stack/tile/floor/techgrey, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("techfloor grid tile", /obj/item/stack/tile/floor/techgrid, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("techmaint floor tile", /obj/item/stack/tile/floor/techmaint, 1, 4, 20, recycle_material = "[name]"),
+			)),
 			//Eris Floor tiles- Normal
 		new /datum/stack_recipe_list("eris floors-normal", list(
 			new /datum/stack_recipe("floor tile", /obj/item/stack/tile/floor/eris/steel, 1, 4, 20, recycle_material = "[name]"),
