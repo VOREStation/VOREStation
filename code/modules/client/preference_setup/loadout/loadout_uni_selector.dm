@@ -22,8 +22,8 @@
 
 /datum/gear/uniform/site_manager_selector
 	display_name = "Command - Site Manager's Uniforms"
-	description = "Select from a range of outfits available to all Site Managers."
-	allowed_roles = list("Site Manager")
+	description = "Select from a range of outfits available to all Site Managers, and Talon Captains."
+	allowed_roles = list("Site Manager","Talon Captain")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_captain
 	sort_category = "Uniforms"
@@ -84,8 +84,8 @@
 
 /datum/gear/uniform/pilot_uniform_selector
 	display_name = "Civilian - Pilot's Uniforms"
-	description = "Select from a range of outfits available to all Pilots."
-	allowed_roles = list("Pilot")
+	description = "Select from a range of outfits available to all Pilots (including those on the Talon)."
+	allowed_roles = list("Pilot","Talon Pilot")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_pilot
 	sort_category = "Uniforms"
@@ -94,6 +94,8 @@
 /datum/gear/uniform/pilot_uniform_selector/New()
 	..()
 	var/list/selector_uniforms = list(
+		"standard pilot's uniform"=/obj/item/clothing/under/rank/pilot1/no_webbing,
+		"navy pilot's uniform"=/obj/item/clothing/under/rank/pilot2,
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_pilot,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_pilot_skirt,
 		"Major Bill's flightsuit"=/obj/item/clothing/under/mbill_flight,
@@ -188,7 +190,7 @@
 /datum/gear/uniform/security_selector
 	display_name = "Security - Basic Uniforms"
 	description = "Select from a range of outfits available to all Security personnel."
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer","Talon Guard")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/security/corp
 	sort_category = "Uniforms"
@@ -374,7 +376,7 @@
 /datum/gear/uniform/cargo_miner_selector
 	display_name = "Cargo - Miner's Uniforms"
 	description = "Select from a range of outfits available to all Mining personnel."
-	allowed_roles = list("Shaft Miner","Quartermaster")
+	allowed_roles = list("Shaft Miner","Quartermaster","Talon Miner")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_miner
 	sort_category = "Uniforms"
@@ -418,7 +420,7 @@
 /datum/gear/uniform/engineer_selector
 	display_name = "Engineering - Basic Uniforms"
 	description = "Select from a range of outfits available to all Engineering personnel."
-	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician")
+	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician","Talon Engineer")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_engi
 	sort_category = "Uniforms"
@@ -466,7 +468,7 @@
 /datum/gear/uniform/medical_selector
 	display_name = "Medical - Basic Uniforms"
 	description = "Select from a range of outfits available to all Medical personnel."
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Talon Doctor")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_med
 	sort_category = "Uniforms"
@@ -519,7 +521,7 @@
 /datum/gear/uniform/paramedic_selector
 	display_name = "Medical - Paramedic's Uniforms"
 	description = "Select from a range of outfits available to all Paramedics."
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic","Talon Doctor")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/paramedunidark
 	sort_category = "Uniforms"

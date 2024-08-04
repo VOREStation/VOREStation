@@ -129,6 +129,7 @@
 	vessel_mass = 1000
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "SDF Corvette Wreck"
+	known = FALSE
 
 /obj/effect/overmap/visitable/ship/landable/sdf_cutter
 	name = "SDF Cutter"

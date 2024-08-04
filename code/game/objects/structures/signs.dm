@@ -1002,8 +1002,8 @@
 
 /obj/structure/sign/atmos_plasma
 	icon = 'icons/obj/decals_vr.dmi'
-	name = "Plasma warning sign"
-	desc = "WARNING! Plasma flow tube. Ensure the flow is disengaged before working."
+	name = "Phoron warning sign"
+	desc = "WARNING! Phoron flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_plasma"
 
 /obj/structure/sign/atmos_n2

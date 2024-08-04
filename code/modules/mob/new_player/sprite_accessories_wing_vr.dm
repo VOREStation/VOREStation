@@ -367,6 +367,16 @@
 	extra_overlay = "feather2_tricolor-1"
 	extra_overlay2 = "feather2_tricolor-2"
 
+/datum/sprite_accessory/wing/speckled_tricolor
+	name = "large speckled leather wings, tricolor"
+	desc = ""
+	// not ckey locked, just couldn't think of a better icon state name
+	icon_state = "shadow_tricolor"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "shadow_tricolor-1"
+	extra_overlay2 = "shadow_tricolor-2"
+
 // dino wings
 /datum/sprite_accessory/wing/pterodactyl_wings
 	name = "pterodactyl wings"

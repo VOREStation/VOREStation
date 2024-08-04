@@ -975,6 +975,8 @@
 					/obj/item/clothing/under/utility = 5,
 					/obj/item/clothing/under/utility/grey = 5,
 					/obj/item/clothing/under/utility/blue = 5,
+					/obj/item/clothing/under/utility/tan = 5,
+					/obj/item/clothing/under/utility/green = 5,
 					/obj/item/clothing/under/fluff/v_nanovest = 5,
 					/obj/item/clothing/under/dress/westernbustle = 5,
 					/obj/item/clothing/under/wedding/bride_white = 5,
@@ -1153,6 +1155,8 @@
 					/obj/item/clothing/under/utility = 50,
 					/obj/item/clothing/under/utility/grey = 50,
 					/obj/item/clothing/under/utility/blue = 50,
+					/obj/item/clothing/under/utility/tan = 50,
+					/obj/item/clothing/under/utility/green = 50,
 					/obj/item/clothing/under/fluff/v_nanovest = 50,
 					/obj/item/clothing/under/dress/westernbustle = 50,
 					/obj/item/clothing/under/wedding/bride_white = 50,
@@ -1215,7 +1219,7 @@
 /obj/machinery/vending/loadout/overwear
 	name = "Big D's Best"
 	desc = "A special vendor using compressed matter cartridges to store large amounts of overwear!"
-	product_ads = "Dress your best! It's what big D would want.;Overwear for all occasions!;Big D has what you need if what you need is some form of jacket!;Need a new hoodie? Bid D has you covered.;Big D says you need a new suit!;Big D smiles when he sees you in one of his coats!"
+	product_ads = "Dress your best! It's what Big D would want.;Overwear for all occasions!;Big D has what you need if what you need is some form of jacket!;Need a new hoodie? Big D has you covered.;Big D says you need a new suit!;Big D smiles when he sees you in one of his coats!"
 	icon_state = "suit"
 	vend_delay = 16
 	products = list(/obj/item/clothing/suit/storage/apron = 5,
@@ -1274,6 +1278,17 @@
 					/obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless = 5,
 					/obj/item/clothing/suit/storage/miljacket = 5,
 					/obj/item/clothing/suit/storage/miljacket/alt = 5,
+					/obj/item/clothing/suit/storage/miljacket/patchless = 5,
+					/obj/item/clothing/suit/storage/miljacket/tan = 5,
+					/obj/item/clothing/suit/storage/miljacket/tan/patchless = 5,
+					/obj/item/clothing/suit/storage/miljacket/grey = 5,
+					/obj/item/clothing/suit/storage/miljacket/grey/patchless = 5,
+					/obj/item/clothing/suit/storage/miljacket/navy = 5,
+					/obj/item/clothing/suit/storage/miljacket/navy/patchless = 5,
+					/obj/item/clothing/suit/storage/miljacket/black = 5,
+					/obj/item/clothing/suit/storage/miljacket/black/patchless = 5,
+					/obj/item/clothing/suit/storage/miljacket/white = 5,
+					/obj/item/clothing/suit/storage/miljacket/white/patchless = 5,
 					/obj/item/clothing/suit/storage/miljacket/green = 5,
 					/obj/item/clothing/suit/storage/apron/overalls = 5,
 					/obj/item/clothing/suit/storage/toggle/peacoat = 5,
@@ -1366,6 +1381,17 @@
 					/obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless = 100,
 					/obj/item/clothing/suit/storage/miljacket = 100,
 					/obj/item/clothing/suit/storage/miljacket/alt = 100,
+					/obj/item/clothing/suit/storage/miljacket/patchless = 100,
+					/obj/item/clothing/suit/storage/miljacket/tan = 100,
+					/obj/item/clothing/suit/storage/miljacket/tan/patchless = 100,
+					/obj/item/clothing/suit/storage/miljacket/grey = 100,
+					/obj/item/clothing/suit/storage/miljacket/grey/patchless = 100,
+					/obj/item/clothing/suit/storage/miljacket/navy = 100,
+					/obj/item/clothing/suit/storage/miljacket/navy/patchless = 100,
+					/obj/item/clothing/suit/storage/miljacket/black = 100,
+					/obj/item/clothing/suit/storage/miljacket/black/patchless = 100,
+					/obj/item/clothing/suit/storage/miljacket/white = 100,
+					/obj/item/clothing/suit/storage/miljacket/white/patchless = 100,
 					/obj/item/clothing/suit/storage/miljacket/green = 100,
 					/obj/item/clothing/suit/storage/apron/overalls = 100,
 					/obj/item/clothing/suit/storage/toggle/peacoat = 100,
