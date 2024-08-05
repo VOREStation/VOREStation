@@ -18,7 +18,9 @@
 	var/ourbar = ""
 	var/obj/belly/ourbelly = src.loc
 	var/which_var = "Health"
-	if(ourbelly.digest_mode == "Absorb" || ourbelly.digest_mode == "Drain")
+	var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
+	var/digest_mode = ourbelly.digest_mode == DM_SELECT ? DM_S.get_selective_mode(ourbelly, src) : ourbelly.digest_mode
+	if(digest_mode == DM_ABSORB || digest_mode == DM_DRAIN)
 		ourpercent = round(((nutrition - 100) / 500) * 100)
 		which_var = "Nutrition"	//It's secretly also a nutrition bar depending on your digest mode
 
@@ -78,18 +80,18 @@
 		ourbar = "[ourbar] - [span_red("<b>DEAD</b>")]"
 	if(absorbed)
 		ourbar = span_purple("[ourbar] - ABSORBED")	//Absorb is a little funny, I didn't want it to say 'absorbing ABSORBED' so we did it different
-	else if(ourpercent > 99 && ourbelly.digest_mode == DM_HEAL)
-		ourbar = span_green("<b>[ourbar] - [ourbelly.digest_mode]ed</b>")
+	else if(ourpercent > 99 && digest_mode == DM_HEAL)
+		ourbar = span_green("<b>[ourbar] - [digest_mode]ed</b>")
 	else if(ourpercent > 75)
-		ourbar = span_green("[ourbar] - [ourbelly.digest_mode]ing")
+		ourbar = span_green("[ourbar] - [digest_mode]ing")
 	else if(ourpercent > 50)
-		ourbar = span_yellow("[ourbar] - [ourbelly.digest_mode]ing")
+		ourbar = span_yellow("[ourbar] - [digest_mode]ing")
 	else if(ourpercent > 25)
-		ourbar = span_orange("[ourbar] - [ourbelly.digest_mode]ing")
+		ourbar = span_orange("[ourbar] - [digest_mode]ing")
 	else if(ourpercent > 0)
-		ourbar = span_red("[ourbar] - [ourbelly.digest_mode]ing")
+		ourbar = span_red("[ourbar] - [digest_mode]ing")
 	else
-		ourbar = span_red("<b>[ourbar] - [ourbelly.digest_mode]ed</b>")
+		ourbar = span_red("<b>[ourbar] - [digest_mode]ed</b>")
 
 	if(onExamine)
 		to_chat(reciever,"<span class='notice'>[ourbar]</span>")
@@ -109,7 +111,9 @@
 			if(!isliving(thing))
 				continue
 			if(!belly_announce)
-				to_chat(src, "<span class='notice'>[b.digest_mode] - Within [b.name]:</span>")	//We only want to announce the belly if we found something
+				var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
+				var/digest_mode = b.digest_mode == DM_SELECT ? DM_S.get_selective_mode(b, thing) : b.digest_mode
+				to_chat(src, "<span class='notice'>[digest_mode] - Within [b.name]:</span>")	//We only want to announce the belly if we found something
 				belly_announce = TRUE
 			var/mob/living/ourmob = thing
 			ourmob.chat_healthbar(src, TRUE, TRUE)
