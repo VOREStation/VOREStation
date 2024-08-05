@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(supply)
 	var/points_per_slip = 2
 	var/points_per_money = 0.02 // 1 point for $50
 	//control
-	var/ordernum
+	var/ordernum = 0						// Start at zero, it's per-shift tracking
 	var/list/shoppinglist = list()			// Approved orders
 	var/list/supply_pack = list()			// All supply packs
 	var/list/exported_crates = list()		// Crates sent from the station
@@ -25,8 +25,6 @@ SUBSYSTEM_DEF(supply)
 	var/datum/shuttle/autodock/ferry/supply/shuttle
 
 /datum/controller/subsystem/supply/Initialize()
-	ordernum = rand(1,9000)
-
 	// build master supply list
 	for(var/typepath in subtypesof(/datum/supply_pack))
 		var/datum/supply_pack/P = new typepath()
@@ -186,34 +184,37 @@ SUBSYSTEM_DEF(supply)
 		var/datum/supply_pack/SP = SO.object
 		shopping_log += "[SP.name];"
 
-		var/obj/A = new SP.containertype(pickedloc)
-		A.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
+		var/obj/A
+		if(SP.containertype)
+			A = new SP.containertype(pickedloc)
+			A.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
+			if(SP.access)
+				if(isnum(SP.access))
+					A.req_access = list(SP.access)
+				else if(islist(SP.access) && SP.one_access)
+					var/list/L = SP.access // access var is a plain var, we need a list
+					A.req_one_access = L.Copy()
+					LAZYCLEARLIST(A.req_access)
+				else if(islist(SP.access) && !SP.one_access)
+					var/list/L = SP.access
+					A.req_access = L.Copy()
+					LAZYCLEARLIST(A.req_one_access)
+				else
+					log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
 
 		//supply manifest generation begin
 		var/obj/item/weapon/paper/manifest/slip
 		if(!SP.contraband)
-			slip = new /obj/item/weapon/paper/manifest(A)
+			if(A)
+				slip = new /obj/item/weapon/paper/manifest(A)
+			else
+				slip = new /obj/item/weapon/paper/manifest(pickedloc)
 			slip.is_copy = 0
 			slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 			slip.info +="Order #[SO.ordernum]<br>"
 			slip.info +="Destination: [station_name()]<br>"
 			slip.info +="[orderedamount] PACKAGES IN THIS SHIPMENT<br>"
 			slip.info +="CONTENTS:<br><ul>"
-
-		//spawn the stuff, finish generating the manifest while you're at it
-		if(SP.access)
-			if(isnum(SP.access))
-				A.req_access = list(SP.access)
-			else if(islist(SP.access) && SP.one_access)
-				var/list/L = SP.access // access var is a plain var, we need a list
-				A.req_one_access = L.Copy()
-				LAZYCLEARLIST(A.req_access)
-			else if(islist(SP.access) && !SP.one_access)
-				var/list/L = SP.access
-				A.req_access = L.Copy()
-				LAZYCLEARLIST(A.req_one_access)
-			else
-				log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
 
 		var/list/contains
 		if(istype(SP,/datum/supply_pack/randomised))
@@ -231,7 +232,12 @@ SUBSYSTEM_DEF(supply)
 
 			var/number_of_items = max(1, contains[typepath])
 			for(var/j = 1 to number_of_items)
-				var/atom/B2 = new typepath(A)
+				var/atom/B2
+				if(A)
+					B2 = new typepath(A)
+				else
+					B2 = new typepath(pickedloc)
+
 				if(slip)
 					slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
