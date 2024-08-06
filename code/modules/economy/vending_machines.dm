@@ -1506,6 +1506,7 @@
 		/obj/item/clothing/under/rank/neo_engi = 5,
 		/obj/item/clothing/under/rank/neo_engi_skirt = 5,
 		/obj/item/clothing/under/rank/neo_engi_gorka = 5,
+		/obj/item/clothing/accessory/armband/engine = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_engi_dep = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering = 5,
 		/obj/item/clothing/shoes/boots/winter/engineering = 5,
@@ -1529,6 +1530,7 @@
 		/obj/item/clothing/mask/bandana/gold = 5,
 		/obj/item/clothing/under/rank/neo_atmos = 5,
 		/obj/item/clothing/under/rank/neo_atmos_skirt = 5,
+		/obj/item/clothing/accessory/armband/engine = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos = 5,
 		/obj/item/clothing/shoes/boots/winter/atmos = 5
 	)
