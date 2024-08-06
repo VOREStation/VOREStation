@@ -6,6 +6,10 @@
 "c" = (
 /turf/simulated/floor/outdoors/grass/forest,
 /area/om_adventure/grasscave/unexplored)
+"e" = (
+/obj/effect/shuttle_landmark/premade/om_adventure/grasscave/center_alt,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/om_adventure/grasscave/explored)
 "n" = (
 /obj/effect/shuttle_landmark/premade/om_adventure/grasscave/southeast,
 /turf/simulated/floor/outdoors/grass/forest,
@@ -25,6 +29,10 @@
 /area/om_adventure/grasscave/explored)
 "C" = (
 /turf/unsimulated/wall/dark,
+/area/om_adventure/grasscave)
+"I" = (
+/obj/effect/shuttle_landmark/premade/om_adventure/grasscave/southeast_alt,
+/turf/simulated/floor/outdoors/grass/forest,
 /area/om_adventure/grasscave)
 "N" = (
 /turf/simulated/floor/outdoors/grass/forest,
@@ -9907,7 +9915,7 @@ u
 u
 u
 u
-u
+e
 u
 u
 u
@@ -12793,7 +12801,7 @@ N
 N
 N
 N
-N
+I
 N
 N
 N

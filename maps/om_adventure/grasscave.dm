@@ -20,12 +20,20 @@
 
 
 /obj/effect/shuttle_landmark/premade/om_adventure/grasscave/center
-	name = "Anomaly - Center"
+	name = "Anomaly - Center Alpha"
 	landmark_tag = "om-grasscave-center"
 
+/obj/effect/shuttle_landmark/premade/om_adventure/grasscave/center_alt
+	name = "Anomaly - Center Beta"
+	landmark_tag = "om-grasscave-center2"
+
 /obj/effect/shuttle_landmark/premade/om_adventure/grasscave/southeast
-	name = "Anomaly - Southeast"
+	name = "Anomaly - Southeast Alpha"
 	landmark_tag = "om-grasscave-southeast"
+
+/obj/effect/shuttle_landmark/premade/om_adventure/grasscave/southeast_alt
+	name = "Anomaly - Southeast Beta"
+	landmark_tag = "om-grasscave-southeast2"
 
 
 /area/om_adventure/grasscave
@@ -46,7 +54,7 @@
 /area/om_adventure/grasscave/rocks
 
 /obj/effect/overmap/visitable/simplemob/spacewhale/grasscave
-	initial_generic_waypoints = list("om-grasscave-center", "om-grasscave-southeast")
+	initial_generic_waypoints = list("om-grasscave-center", "om-grasscave-center2", "om-grasscave-southeast", "om-grasscave-southeast2")
 
 /turf/simulated/mineral/omadventure/make_ore(var/rare_ore)
 	if(mineral)
