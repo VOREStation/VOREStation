@@ -337,6 +337,11 @@
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> [message]</span>"
 	if(!speaker.client)
 		rendered = "<span class='npcsay'>[rendered]</span>"
-	else if(speaker && !(get_z(src) == get_z(speaker)))
-		rendered = "<span class='multizsay'>[message]</span>"
+	else
+		if(istype(speaker, /mob/living/silicon/ai))
+			var/mob/living/silicon/ai/source = speaker
+			if(!(get_z(src) == get_z(source.holo)))
+				rendered = "<span class='multizsay'>[rendered]</span>"
+		else if(!(get_z(src) == get_z(speaker)))
+			rendered = "<span class='multizsay'>[rendered]</span>"
 	to_chat(src, rendered)
