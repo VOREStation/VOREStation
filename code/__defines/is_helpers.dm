@@ -62,6 +62,8 @@
 //#define isturf(D)		istype(D, /turf)	//Built in
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)		istype(A, /turf/space)
+#define isopenturf(A)	istype(A, /turf/simulated/open) || istype(A, /turf/space)
+#define isnonsolidturf(A)	istype(A, /turf/simulated/open) || istype(A, /turf/space) || istype(A, /turf/simulated/floor/water) || istype(A, /turf/simulated/floor/lava)
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)
 
 #define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)
