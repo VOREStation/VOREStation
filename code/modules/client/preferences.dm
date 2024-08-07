@@ -32,7 +32,6 @@ var/list/preferences_datums = list()
 	var/obfuscate_key = FALSE
 	var/obfuscate_job = FALSE
 	var/chat_timestamp = FALSE
-	var/throwmode_loud = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
