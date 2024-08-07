@@ -233,6 +233,7 @@
     name = "winter cloak hood"
     desc = "A hood attached to a winter cloak."
     icon_state = "winter_cloakhood"
+    icon_override = "icons/inventory/head/mob_vr.dmi"
 
 /obj/item/clothing/head/hood/cloak/asymmetric
     name = "asymmetric cloak hood"
