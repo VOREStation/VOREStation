@@ -797,3 +797,7 @@
 /datum/gear/suit/wornshirt
     display_name = "worn shirt"
     path = /obj/item/clothing/suit/wornshirt
+
+/datum/gear/suit/bomber_pilot
+	display_name = "bomber jacket, pilot"
+	path = /obj/item/clothing/suit/storage/toggle/bomber/pilot

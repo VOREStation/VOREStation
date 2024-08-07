@@ -20,7 +20,7 @@
 
 	unknown_name = "unknown ship"
 	unknown_state = "ship"
-	known = FALSE // Ships start 'unknown' on the map and require scanning
+	known = TRUE // Ships start known by default because most of them should be transmitting ID codes at all times
 
 	var/vessel_mass = 10000             //tonnes, arbitrary number, affects acceleration provided by engines
 	var/vessel_size = SHIP_SIZE_LARGE	//arbitrary number, affects how likely are we to evade meteors
