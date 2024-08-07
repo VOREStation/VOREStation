@@ -6,7 +6,7 @@
 /datum/map_template/om_ships/event_autonomous_drone
 	name = "OM Ship - Cargo Drone"
 	desc = "A small cargo hauler"
-	mappath = 'event_autonomous_drone.dmm'
+	mappath = "maps/submaps/admin_use_vr/event_autonomous_drone.dmm"
 	annihilate = TRUE
 
 /datum/shuttle/autodock/overmap/event_autonomous_drone
