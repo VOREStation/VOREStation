@@ -19,8 +19,8 @@
 		if(!isturf(T))
 			to_chat(user,"<span class='warning'>You cannot activate the beacon when you are not on a turf!</span>")
 			return
-		else if(isopenturf(T))
-			to_chat(user,"<span class='warning'>You cannot activate the beacon when you are not on solid ground!</span>")
+		else if(isnonsolidturf(T))
+			to_chat(user,"<span class='warning'>You cannot activate the beacon when you are not on sufficiently solid ground!</span>")
 			return
 		else
 			var/answer = tgui_alert(user, "Would you like to activate this personal emergency beacon?","\The [src]", list("Yes", "No"))
