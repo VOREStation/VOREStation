@@ -307,7 +307,7 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	. += "</ul>"
 
 	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
-	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
+	. += "<a href='?src=\ref[src];blood_color=1'>Set Color <font color='[pref.blood_color]'>&#9899;</font></a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
 	. += "<b>Blood Reagent: </b>"	//Wanna be copper-based? Go ahead.
 	. += "<a href='?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
