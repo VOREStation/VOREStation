@@ -13,7 +13,7 @@ export type Data = {
   beakerCurrentVolume: number | null;
   beakerMaxVolume: number | null;
   chemicals: reagent[];
-  recipes: { [key: string]: Recipe[] };
+  recipes: Record<string, Recipe[]>;
   recordingRecipe: Recipe[];
 };
 
