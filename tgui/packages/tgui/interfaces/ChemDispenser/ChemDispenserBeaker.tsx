@@ -11,12 +11,24 @@ export const ChemDispenserBeaker = (props) => {
     beakerCurrentVolume,
     beakerMaxVolume,
     beakerContents = [],
+    recipes,
+    recordingRecipe,
   } = data;
+
+  const recording = !!recordingRecipe;
+  const recordedContents =
+    recording &&
+    recordingRecipe.map((r) => ({
+      id: r.id,
+      name: r.id.replace(/_/, ' '),
+      volume: r.amount,
+    }));
+
   return (
     <Section
-      title="Beaker"
-      flex="content"
-      minHeight="25%"
+      title={recording ? 'Virtual Beaker' : 'Beaker'}
+      fill
+      scrollable
       buttons={
         <Box>
           {!!isBeakerLoaded && (
@@ -35,12 +47,13 @@ export const ChemDispenserBeaker = (props) => {
       }
     >
       <BeakerContents
-        beakerLoaded={isBeakerLoaded}
-        beakerContents={beakerContents}
+        beakerLoaded={recordedContents || isBeakerLoaded}
+        beakerContents={recordedContents || beakerContents}
         buttons={(chemical) => (
           <>
             <Button
               icon="compress-arrows-alt"
+              disabled={recording}
               onClick={() =>
                 act('remove', {
                   reagent: chemical.id,
@@ -53,6 +66,7 @@ export const ChemDispenserBeaker = (props) => {
             {removeAmounts.map((a, i) => (
               <Button
                 key={i}
+                disabled={recording}
                 onClick={() =>
                   act('remove', {
                     reagent: chemical.id,
@@ -64,6 +78,7 @@ export const ChemDispenserBeaker = (props) => {
               </Button>
             ))}
             <Button
+              disabled={recording}
               onClick={() =>
                 act('remove', {
                   reagent: chemical.id,
