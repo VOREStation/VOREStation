@@ -6,6 +6,7 @@
 	set name = "Subtle"
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey)"
+	set hidden = 1
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "Speech is currently admin-disabled.")
@@ -18,7 +19,7 @@
 	if(!message)
 		return
 
-	set_typing_indicator(FALSE)
+	client?.stop_thinking()
 	if(use_me)
 		usr.emote_vr("me",4,message)
 	else
@@ -40,7 +41,7 @@
 	if(!message)
 		return
 
-	set_typing_indicator(FALSE)
+	client?.stop_thinking()
 	if(use_me)
 		usr.emote_vr("me",4,message,TRUE)
 	else

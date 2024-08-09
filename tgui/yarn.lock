@@ -1453,6 +1453,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-dom@npm:^18.2.24":
+  version: 18.3.0
+  resolution: "@types/react-dom@npm:18.3.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:*":
+  version: 18.3.3
+  resolution: "@types/react@npm:18.3.3"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/fe455f805c5da13b89964c3d68060cebd43e73ec15001a68b34634604a78140e6fc202f3f61679b9d809dde6d7a7c2cb3ed51e0fd1462557911db09879b55114
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:^18.2.74":
   version: 18.3.2
   resolution: "@types/react@npm:18.3.2"
@@ -8273,6 +8292,20 @@ __metadata:
     regenerator-runtime: "npm:^0.14.1"
     terser: "npm:^5.30.2"
     unfetch: "npm:^5.0.0"
+  languageName: unknown
+  linkType: soft
+
+"tgui-say@workspace:packages/tgui-say":
+  version: 0.0.0-use.local
+  resolution: "tgui-say@workspace:packages/tgui-say"
+  dependencies:
+    "@types/react": "npm:^18.2.74"
+    "@types/react-dom": "npm:^18.2.24"
+    common: "workspace:*"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    tgui: "workspace:*"
+    tgui-polyfill: "workspace:*"
   languageName: unknown
   linkType: soft
 
