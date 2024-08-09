@@ -127,3 +127,22 @@
 
 	src.set_dir(turn(src.dir, 270))
 	return
+
+//VOREstation edit: counter-clockwise rotation
+/obj/structure/gravemarker/verb/rotate_counterclockwise()
+	set name = "Rotate Grave Marker Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if(anchored)
+		return
+
+	if(!usr || !isturf(usr.loc))
+		return
+	if(usr.stat || usr.restrained())
+		return
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+		return
+
+	src.set_dir(turn(src.dir, 90))
+	return

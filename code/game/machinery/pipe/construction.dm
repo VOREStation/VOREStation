@@ -132,6 +132,19 @@ Buildable meters
 	src.set_dir(turn(src.dir, 270))
 	fixdir()
 
+//VOREstation edit: counter-clockwise rotation
+/obj/item/pipe/verb/rotate_counterclockwise()
+	set category = "Object"
+	set name = "Rotate Pipe Counter-Clockwise"
+	set src in view(1)
+
+	if ( usr.stat || usr.restrained() || !usr.canmove )
+		return
+
+	src.set_dir(turn(src.dir, 90))
+	fixdir()
+//VOREstation edit end
+
 // Don't let pulling a pipe straighten it out.
 /obj/item/pipe/binary/bendable/Move()
 	var/old_bent = !IS_CARDINAL(dir)

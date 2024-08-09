@@ -136,6 +136,23 @@
 	src.set_dir(turn(src.dir, 270))
 	update()
 
+//VOREstation edit: counter-clockwise rotation
+/obj/structure/disposalconstruct/verb/rotate_counterclockwise()
+	set category = "Object"
+	set name = "Rotate Pipe Counter-Clockwise"
+	set src in view(1)
+
+	if(usr.stat)
+		return
+
+	if(anchored)
+		to_chat(usr, "You must unfasten the pipe before rotating it.")
+		return
+
+	src.set_dir(turn(src.dir, 90))
+	update()
+//VOREstation edit end
+
 /obj/structure/disposalconstruct/verb/flip()
 	set category = "Object"
 	set name = "Flip Pipe"

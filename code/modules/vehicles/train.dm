@@ -38,6 +38,8 @@
 		unattach()
 
 /obj/vehicle/train/Bump(atom/Obstacle)
+	if(istype(Obstacle,/obj/structure/stairs)) // VOREstation edit - Stair support for towing vehicles
+		return ..()
 	if(!istype(Obstacle, /atom/movable))
 		return
 	var/atom/movable/A = Obstacle

@@ -19,7 +19,7 @@
 	description_antag = ""
 	allowed_magazines = list(/obj/item/ammo_magazine/cell_mag/combat/prototype)
 
-	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4, TECH_MAGNETS = 3)
+	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4, TECH_MAGNET = 3)
 
 
 // The Magazine //
@@ -39,7 +39,7 @@
 	max_ammo = 2
 	x_offset = 6
 	catalogue_data = null
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_MAGNETS = 2)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 
 
 // The Pack //

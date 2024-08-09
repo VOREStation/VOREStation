@@ -359,6 +359,19 @@
 	src.set_dir(turn(src.dir, 270))
 	return 1
 
+//VOREstation edit: counter-clockwise rotation
+/obj/structure/reagent_dispensers/water_cooler/verb/rotate_counterclockwise()
+	set name = "Rotate Cooler Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is fastened to the floor!")
+		return 0
+	src.set_dir(turn(src.dir, 90))
+	return 1
+//VOREstation edit end
+
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WRENCH))
 		src.add_fingerprint(user)
@@ -522,4 +535,3 @@
 /obj/structure/reagent_dispensers/bloodbarrel/Initialize()
 	. = ..()
 	reagents.add_reagent("blood", 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
-

@@ -139,6 +139,15 @@
 
 	set_dir(turn(dir, 270))
 
+//VOREstation edit: counter-clockwise rotation
+/obj/item/device/assembly/infra/verb/rotate_counterclockwise()
+	set name = "Rotate Infrared Laser Counter-Clockwise"
+	set category = "Object"
+	set src in usr
+
+	set_dir(turn(dir, 90))
+//VOREstation edit end
+
 /***************************IBeam*********************************/
 
 /obj/effect/beam/i_beam

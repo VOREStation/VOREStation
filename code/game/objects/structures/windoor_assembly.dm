@@ -290,6 +290,27 @@
 	update_icon()
 	return
 
+//VOREstation edit: counter-clockwise rotation
+/obj/structure/windoor_assembly/verb/rotate_counterclockwise()
+	set name = "Rotate Windoor Assembly Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.anchored)
+		to_chat(usr,"It is fastened to the floor; therefore, you can't rotate it!")
+		return 0
+	if(src.state != "01")
+		update_nearby_tiles(need_rebuild=1) //Compel updates before
+
+	src.set_dir(turn(src.dir, 90))
+
+	if(src.state != "01")
+		update_nearby_tiles(need_rebuild=1)
+
+	update_icon()
+	return
+//VOREstation edit end
+
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
 	set name = "Flip Windoor Assembly"
