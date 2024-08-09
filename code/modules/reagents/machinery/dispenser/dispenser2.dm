@@ -42,6 +42,19 @@
 	src.set_dir(turn(src.dir, 270))
 	return 1
 
+//VOREstation edit: counter-clockwise rotation
+/obj/machinery/chemical_dispenser/verb/rotate_counterclockwise()
+	set name = "Rotate Dispenser Counter-Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is fastened down!")
+		return 0
+	src.set_dir(turn(src.dir, 90))
+	return 1
+//VOREstation edit end
+
 /obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/weapon/reagent_containers/chem_disp_cartridge/C, mob/user)
 	if(!istype(C))
 		if(user)

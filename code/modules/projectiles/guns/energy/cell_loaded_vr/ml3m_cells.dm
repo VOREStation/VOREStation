@@ -4,7 +4,7 @@
 	desc = "A miniature nanite fabricator for a medigun."
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/vey_med)
 	icon_state = "ml3m_batt"
-	origin_tech = list(TECH_BIO = 2, TECH_MATERIAL = 1, TECH_MAGNETS = 2)
+	origin_tech = list(TECH_BIO = 2, TECH_MATERIAL = 1, TECH_MAGNET = 2)
 
 /obj/item/projectile/beam/medical_cell
 	name = "\improper healing beam"

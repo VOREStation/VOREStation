@@ -56,8 +56,10 @@
 
 /obj/item/weapon/virusdish/attackby(var/obj/item/weapon/W as obj,var/mob/living/carbon/user as mob)
 	if(istype(W,/obj/item/weapon/hand_labeler) || istype(W,/obj/item/weapon/reagent_containers/syringe))
-		return
-	..()
+		//VOREstation edit - Actually functional virus dishes
+		// Originally this returns, THEN calls ..() instead of returning the value of ..()
+		return ..()
+		//VOREstation edit end
 	if(prob(50))
 		to_chat(user, "<span class='danger'>\The [src] shatters!</span>")
 		if(virus2.infectionchance > 0)
