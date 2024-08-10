@@ -160,6 +160,7 @@ const SuitCyclerContent = (props: {
         <LabeledList>
           <LabeledList.Item label="Target Paintjob">
             <Dropdown
+              autoScroll={false}
               width="150px"
               options={departments}
               selected={props.selectedDepartment}
@@ -171,6 +172,7 @@ const SuitCyclerContent = (props: {
           </LabeledList.Item>
           <LabeledList.Item label="Target Species">
             <Dropdown
+              autoScroll={false}
               width="150px"
               maxHeight="160px"
               options={species}
@@ -192,10 +194,11 @@ const SuitCyclerContent = (props: {
             <NumberInput
               width="50px"
               value={uv_level}
+              step={1}
               minValue={1}
               maxValue={max_uv_level}
               stepPixelSize={30}
-              onChange={(e, val: number) => act('radlevel', { radlevel: val })}
+              onChange={(val: number) => act('radlevel', { radlevel: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Decontaminate">

@@ -8,7 +8,7 @@ export const AppearanceChangerSpecies = (props) => {
   const { act, data } = useBackend<Data>();
   const { species, specimen } = data;
 
-  const sortedSpecies = sortBy((val: species) => val.specimen)(species || []);
+  const sortedSpecies = sortBy(species || [], (val: species) => val.specimen);
 
   return (
     <Section title="Species" fill scrollable>
@@ -73,7 +73,7 @@ export const AppearanceChangerEars = (props) => {
       >
         -- Not Set --
       </Button>
-      {sortBy((e: styles) => e.name.toLowerCase())(ear_styles).map((ear) => (
+      {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map((ear) => (
         <Button
           key={ear.instance}
           onClick={() => act('ear', { ref: ear.instance })}
@@ -99,7 +99,7 @@ export const AppearanceChangerTails = (props) => {
       >
         -- Not Set --
       </Button>
-      {sortBy((e: styles) => e.name.toLowerCase())(tail_styles).map((tail) => (
+      {sortBy(tail_styles, (e: styles) => e.name.toLowerCase()).map((tail) => (
         <Button
           key={tail.instance}
           onClick={() => act('tail', { ref: tail.instance })}
@@ -125,7 +125,7 @@ export const AppearanceChangerWings = (props) => {
       >
         -- Not Set --
       </Button>
-      {sortBy((e: styles) => e.name.toLowerCase())(wing_styles).map((wing) => (
+      {sortBy(wing_styles, (e: styles) => e.name.toLowerCase()).map((wing) => (
         <Button
           key={wing.instance}
           onClick={() => act('wing', { ref: wing.instance })}

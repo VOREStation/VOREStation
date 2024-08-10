@@ -45,7 +45,7 @@ export const DiseaseSplicer = (props) => {
 const DiseaseSplicerVirusDish = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { dish_inserted, effects, info, growth, affected_species } = data;
+  const { dish_inserted, effects = [], info, growth, affected_species } = data;
 
   return (
     <Section
@@ -81,13 +81,16 @@ const DiseaseSplicerVirusDish = (props) => {
       ) : (
         <>
           <Section title="Symptoms">
-            {(effects &&
-              effects.map((effect) => (
+            {effects!.length > 0 ? (
+              effects!.map((effect) => (
                 <Box color="label" key={effect.stage}>
                   ({effect.stage}) {effect.name}{' '}
                   {effect.badness > 1 ? 'Dangerous!' : null}
                 </Box>
-              ))) || <Box>No virus sample loaded.</Box>}
+              ))
+            ) : (
+              <Box>No virus sample loaded.</Box>
+            )}
           </Section>
           <Section title="Affected Species" color="label">
             {!affected_species || !affected_species.length
@@ -98,8 +101,8 @@ const DiseaseSplicerVirusDish = (props) => {
             <Box color="bad" mb={1}>
               <i>CAUTION: Reverse engineering will destroy the viral sample.</i>
             </Box>
-            {effects &&
-              effects.map((e) => (
+            {!!effects!.length &&
+              effects!.map((e) => (
                 <Button
                   key={e.stage}
                   icon="exchange-alt"

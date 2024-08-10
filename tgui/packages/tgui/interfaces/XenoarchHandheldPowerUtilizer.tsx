@@ -76,11 +76,12 @@ export const XenoarchHandheldPowerUtilizer = (props) => {
                 <NumberInput
                   unit="s"
                   fluid
+                  step={1}
                   minValue={0}
-                  value={duration}
+                  value={duration!}
                   stepPixelSize={4}
                   maxValue={30}
-                  onDrag={(e, val: number) =>
+                  onDrag={(val: number) =>
                     act('changeduration', { duration: val * 10 })
                   }
                 />
@@ -89,11 +90,12 @@ export const XenoarchHandheldPowerUtilizer = (props) => {
                 <NumberInput
                   unit="s"
                   fluid
+                  step={1}
                   minValue={0}
-                  value={interval}
+                  value={interval!}
                   stepPixelSize={10}
                   maxValue={10}
-                  onDrag={(e, val: number) =>
+                  onDrag={(val: number) =>
                     act('changeinterval', { interval: val * 10 })
                   }
                 />

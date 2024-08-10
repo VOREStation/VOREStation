@@ -176,11 +176,12 @@ export const NtosNetMonitor = (props) => {
               label="Max Log Count"
               buttons={
                 <NumberInput
+                  step={1}
                   value={ntnetmaxlogs}
                   minValue={minlogs}
                   maxValue={maxlogs}
                   width="39px"
-                  onChange={(e, value: number) =>
+                  onChange={(value: number) =>
                     act('updatemaxlogs', {
                       new_number: value,
                     })

@@ -43,12 +43,18 @@
 	if(target == user)
 		to_chat(user, "<span class='notice'>You can't pull \the [src] by yourself, that would just be sad!</span>")
 		return
+	to_chat(user, "<span class='notice'>You offer \the [src] to \the [target] to pull and wait to see how whether they do.</span>")
 	var/check_pull = tgui_alert(target, "\The [user] is offering to pull \the [src] with you, do you want to pull it?", "Pull Cracker", list("Yes", "No"))
 	if(check_pull == "No")
 		to_chat(user, "<span class='notice'>\The [target] chose not to pull \the [src]!</span>")
 		return
 	if(!adjacent)
 		to_chat(user, "<span class='notice'>\The [target] is not standing close enough to pull \the [src]!</span>")
+		return
+	var/obj/item/check_hand = user.get_active_hand()
+	if(check_hand != src)
+		to_chat(user, "<span class='notice'>\The [src] is no longer in-hand!</span>")
+		to_chat(target, "<span class='notice'>\The [src] is no longer in-hand!</span>")
 		return
 	var/prize = pick(prizes)
 	var/joke = pick(jokes)

@@ -14,7 +14,7 @@ export const FileCabinet = (props) => {
   const { contents } = data;
 
   // Wow, the filing cabinets sort themselves in 2320.
-  const sortedContents = sortBy((val: content) => val.name)(contents || []);
+  const sortedContents = sortBy(contents || [], (val: content) => val.name);
 
   return (
     <Window width={350} height={300}>

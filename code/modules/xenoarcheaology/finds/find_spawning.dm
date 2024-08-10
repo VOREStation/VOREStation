@@ -687,9 +687,14 @@
 
 		if(talkative)
 			new_item.talking_atom = new(new_item)
-			LAZYINITLIST(new_item.origin_tech)
-			new_item.origin_tech[TECH_ARCANE] += 1
-			new_item.origin_tech[TECH_PRECURSOR] += 1
+			var/list/new_tech
+			if(new_item.origin_tech)
+				new_tech = new_item.origin_tech.Copy()
+			else
+				new_tech = list()
+			new_tech[TECH_ARCANE] += 1
+			new_tech[TECH_PRECURSOR] += 1
+			new_item.origin_tech = new_tech
 
 		if(become_anomalous)
 			new_item.become_anomalous()
@@ -702,9 +707,14 @@
 
 	else if(talkative)
 		src.talking_atom = new(src)
-		LAZYINITLIST(origin_tech)
-		origin_tech[TECH_ARCANE] += 1
-		origin_tech[TECH_PRECURSOR] += 1
+		var/list/new_tech
+		if(origin_tech)
+			new_tech = origin_tech.Copy()
+		else
+			new_tech = list()
+		new_tech[TECH_ARCANE] += 1
+		new_tech[TECH_PRECURSOR] += 1
+		origin_tech = new_tech
 
 	if(become_anomalous)
 		become_anomalous()

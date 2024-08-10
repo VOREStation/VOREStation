@@ -131,11 +131,11 @@ export const IdentificationComputerAccessModification = (props: {
   const {
     station_name,
     target_name,
-    target_owner,
+    target_owner = '',
     scan_name,
     authenticated,
     has_modify,
-    account_number,
+    account_number = '',
     centcom_access,
     all_centcom_access,
     id_rank,
@@ -169,14 +169,14 @@ export const IdentificationComputerAccessModification = (props: {
             <LabeledList>
               <LabeledList.Item label="Registered Name">
                 <Input
-                  value={target_owner}
+                  value={target_owner!}
                   fluid
                   onInput={(e, val) => act('reg', { reg: val })}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Account Number">
                 <Input
-                  value={account_number}
+                  value={account_number!}
                   fluid
                   onInput={(e, val) => act('account', { account: val })}
                 />
@@ -277,10 +277,10 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
   return (
     <Flex wrap="wrap" spacing={1}>
       {regions &&
-        sortBy((r: region) => r.name)(regions).map((region) => (
+        sortBy(regions, (r) => r.name).map((region) => (
           <Flex.Item mb={1} basis="content" grow={1} key={region.name}>
             <Section title={region.name} height="100%">
-              {sortBy((a: access) => a.desc)(region.accesses).map((access) => (
+              {sortBy(region.accesses, (a) => a.desc).map((access) => (
                 <Box key={access.ref}>
                   <Button
                     fluid

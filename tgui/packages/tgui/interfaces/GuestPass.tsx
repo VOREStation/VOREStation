@@ -81,7 +81,7 @@ export const GuestPass = (props) => {
               Issue Pass
             </Button.Confirm>
             <Section title="Access">
-              {sortBy((a: area) => a.area_name)(area).map((a) => (
+              {sortBy(area, (a: area) => a.area_name).map((a) => (
                 <Button.Checkbox
                   checked={a.on}
                   key={a.area}

@@ -195,7 +195,7 @@ const ResearchServerData = (props: { server: server }) => {
         ))}
       </Section>
       <Section title="Designs">
-        {filter((design: techDes) => !!design.name)(server.designs).map(
+        {filter(server.designs, (design: techDes) => !!design.name).map(
           (design) => (
             <LabeledList.Item
               label={design.name}

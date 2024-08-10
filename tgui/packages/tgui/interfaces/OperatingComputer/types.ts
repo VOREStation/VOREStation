@@ -8,7 +8,7 @@ export type Data = {
   choice: BooleanLike;
   health: BooleanLike;
   crit: BooleanLike;
-  healthAlarm: BooleanLike;
+  healthAlarm: number;
   oxy: BooleanLike;
 };
 

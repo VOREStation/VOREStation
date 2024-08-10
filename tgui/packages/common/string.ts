@@ -5,192 +5,169 @@
  */
 
 /**
- * Removes excess whitespace and indentation from the string.
+ * Creates a search terms matcher. Returns true if given string matches the search text.
+ *
+ * @example
+ * ```tsx
+ * type Thing = { id: string; name: string };
+ *
+ * const objects = [
+ *   { id: '123', name: 'Test' },
+ *   { id: '456', name: 'Test' },
+ * ];
+ *
+ * const search = createSearch('123', (obj: Thing) => obj.id);
+ *
+ * objects.filter(search); // returns [{ id: '123', name: 'Test' }]
+ * ```
  */
-export const multiline = (str) => {
-  if (Array.isArray(str)) {
-    // Small stub to allow usage as a template tag
-    return multiline(str.join(''));
-  }
-  const lines = str.split('\n');
-  // Determine base indentation
-  let minIndent;
-  for (let line of lines) {
-    for (let indent = 0; indent < line.length; indent++) {
-      const char = line[indent];
-      if (char !== ' ') {
-        if (minIndent === undefined || indent < minIndent) {
-          minIndent = indent;
-        }
-        break;
-      }
-    }
-  }
-  if (!minIndent) {
-    minIndent = 0;
-  }
-  // Remove this base indentation and trim the resulting string
-  // from both ends.
-  return lines
-    .map((line) => line.substr(minIndent).trimRight())
-    .join('\n')
-    .trim();
-};
-
-/**
- * Creates a glob pattern matcher.
- *
- * Matches strings with wildcards.
- *
- * Example: createGlobPattern('*@domain')('user@domain') === true
- */
-export const createGlobPattern = (pattern) => {
-  const escapeString = (str) => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
-  // prettier-ignore
-  const regex = new RegExp('^'
-    + pattern.split(/\*+/).map(escapeString).join('.*')
-    + '$');
-  return (str) => regex.test(str);
-};
-
-/**
- * Creates a search terms matcher.
- *
- * Returns true if given string matches the search text.
- *
- * @template T
- * @param {string} searchText
- * @param {(obj: T) => string} stringifier
- * @returns {(obj: T) => boolean}
- */
-export const createSearch = (searchText, stringifier) => {
+export function createSearch<TObj>(
+  searchText: string,
+  stringifier = (obj: TObj) => JSON.stringify(obj),
+): (obj: TObj) => boolean {
   const preparedSearchText = searchText.toLowerCase().trim();
+
   return (obj) => {
     if (!preparedSearchText) {
       return true;
     }
-    const str = stringifier ? stringifier(obj) : obj;
+    const str = stringifier(obj);
     if (!str) {
       return false;
     }
     return str.toLowerCase().includes(preparedSearchText);
   };
-};
+}
 
 /**
  * Capitalizes a word and lowercases the rest.
- * @param {string} str
- * @returns {string} capitalized string
  *
- * @example capitalize('heLLo') === 'Hello'
+ * @example
+ * ```tsx
+ * capitalize('heLLo') // Hello
+ * ```
  */
-export const capitalize = (str) => {
-  // Handle array
-  if (Array.isArray(str)) {
-    return str.map(capitalize);
-  }
-  // Handle string
+export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-};
+}
 
 /**
  * Similar to capitalize, this takes a string and replaces all first letters
  * of any words.
  *
- * @param {string} str
- * @return {string} The string with the first letters capitalized.
- *
- * @example capitalizeAll('heLLo woRLd') === 'HeLLo WoRLd'
+ * @example
+ * ```tsx
+ * capitalizeAll('heLLo woRLd') // 'HeLLo WoRLd'
+ * ```
  */
-export const capitalizeAll = (str) => {
+export function capitalizeAll(str: string): string {
   return str.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
-};
+}
 
 /**
- * Capitalizes only the first letter of the str.
+ * Capitalizes only the first letter of the str, leaving others untouched.
  *
- * @param {string} str
- * @return {string} capitalized string
- *
- * @example capitalizeFirst('heLLo woRLd') === 'HeLLo woRLd'
+ * @example
+ * ```tsx
+ * capitalizeFirst('heLLo woRLd') // 'HeLLo woRLd'
+ * ```
  */
-export const capitalizeFirst = (str) => {
+export function capitalizeFirst(str: string): string {
   return str.replace(/^\w/, (letter) => letter.toUpperCase());
-};
+}
 
-export const toTitleCase = (str) => {
-  // Handle array
-  if (Array.isArray(str)) {
-    return str.map(toTitleCase);
-  }
-  // Pass non-string
-  if (typeof str !== 'string') {
-    return str;
-  }
-  // Handle string
-  const WORDS_UPPER = ['Id', 'Tv'];
-  // prettier-ignore
-  const WORDS_LOWER = [
-    'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In',
-    'Into', 'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',
-  ];
+const WORDS_UPPER = ['Id', 'Tv'] as const;
+
+const WORDS_LOWER = [
+  'A',
+  'An',
+  'And',
+  'As',
+  'At',
+  'But',
+  'By',
+  'For',
+  'For',
+  'From',
+  'In',
+  'Into',
+  'Near',
+  'Nor',
+  'Of',
+  'On',
+  'Onto',
+  'Or',
+  'The',
+  'To',
+  'With',
+] as const;
+
+/**
+ * Converts a string to title case.
+ *
+ * @example
+ * ```tsx
+ * toTitleCase('a tale of two cities') // 'A Tale of Two Cities'
+ * ```
+ */
+export function toTitleCase(str: string): string {
+  if (!str) return str;
+
   let currentStr = str.replace(/([^\W_]+[^\s-]*) */g, (str) => {
-    return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+    return capitalize(str);
   });
+
   for (let word of WORDS_LOWER) {
     const regex = new RegExp('\\s' + word + '\\s', 'g');
     currentStr = currentStr.replace(regex, (str) => str.toLowerCase());
   }
+
   for (let word of WORDS_UPPER) {
     const regex = new RegExp('\\b' + word + '\\b', 'g');
     currentStr = currentStr.replace(regex, (str) => str.toLowerCase());
   }
+
   return currentStr;
-};
+}
+
+const TRANSLATE_REGEX = /&(nbsp|amp|quot|lt|gt|apos);/g;
+const TRANSLATIONS = {
+  amp: '&',
+  apos: "'",
+  gt: '>',
+  lt: '<',
+  nbsp: ' ',
+  quot: '"',
+} as const;
 
 /**
- * Decodes HTML entities, and removes unnecessary HTML tags.
+ * Decodes HTML entities and removes unnecessary HTML tags.
  *
- * @param  {String} str Encoded HTML string
- * @return {String} Decoded HTML string
+ * @example
+ * ```tsx
+ * decodeHtmlEntities('&amp;') // returns '&'
+ * decodeHtmlEntities('&lt;') // returns '<'
+ * ```
  */
-export const decodeHtmlEntities = (str) => {
-  if (!str) {
-    return str;
-  }
-  const translate_re = /&(nbsp|amp|quot|lt|gt|apos);/g;
-  const translate = {
-    nbsp: ' ',
-    amp: '&',
-    quot: '"',
-    lt: '<',
-    gt: '>',
-    apos: "'",
-  };
-  // prettier-ignore
-  return str
-    // Newline tags
-    .replace(/<br>/gi, '\n')
-    .replace(/<\/?[a-z0-9-_]+[^>]*>/gi, '')
-    // Basic entities
-    .replace(translate_re, (match, entity) => translate[entity])
-    // Decimal entities
-    .replace(/&#?([0-9]+);/gi, (match, numStr) => {
-      const num = parseInt(numStr, 10);
-      return String.fromCharCode(num);
-    })
-    // Hex entities
-    .replace(/&#x?([0-9a-f]+);/gi, (match, numStr) => {
-      const num = parseInt(numStr, 16);
-      return String.fromCharCode(num);
-    });
-};
+export function decodeHtmlEntities(str: string): string {
+  if (!str) return str;
 
-/**
- * Converts an object into a query string,
- */
-// prettier-ignore
-export const buildQueryString = obj => Object.keys(obj)
-  .map(key => encodeURIComponent(key)
-    + '=' + encodeURIComponent(obj[key]))
-  .join('&');
+  return (
+    str
+      // Newline tags
+      .replace(/<br>/gi, '\n')
+      .replace(/<\/?[a-z0-9-_]+[^>]*>/gi, '')
+      // Basic entities
+      .replace(TRANSLATE_REGEX, (match, entity) => TRANSLATIONS[entity])
+      // Decimal entities
+      .replace(/&#?([0-9]+);/gi, (match, numStr) => {
+        const num = parseInt(numStr, 10);
+        return String.fromCharCode(num);
+      })
+      // Hex entities
+      .replace(/&#x?([0-9a-f]+);/gi, (match, numStr) => {
+        const num = parseInt(numStr, 16);
+        return String.fromCharCode(num);
+      })
+  );
+}

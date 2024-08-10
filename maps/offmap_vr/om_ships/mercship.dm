@@ -74,6 +74,7 @@
 	vessel_size = SHIP_SIZE_SMALL
 	initial_generic_waypoints = list("carrier_fore", "carrier_aft", "carrier_port", "carrier_starboard", "base_dock")
 	initial_restricted_waypoints = list("Carrier's Ship's Boat" = list("omship_spawn_mercboat"))
+	known = FALSE
 
 	unowned_areas = list(/area/shuttle/mercboat)
 

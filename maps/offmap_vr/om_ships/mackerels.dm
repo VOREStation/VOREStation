@@ -39,43 +39,43 @@
 	annihilate = TRUE
 
 // The shuttle's area(s)
-/area/shuttle/mackerel_sh	
+/area/shuttle/mackerel_sh
 	name = "\improper Mackerel Stationhopper"
 	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
-	
-/area/shuttle/mackerel_lc	
+
+/area/shuttle/mackerel_lc
 	name = "\improper Mackerel Light Cargo"
 	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
-	
-/area/shuttle/mackerel_hc	
+
+/area/shuttle/mackerel_hc
 	name = "\improper Mackerel Heavy Cargo"
 	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
-	
-/area/shuttle/mackerel_hc_skel	
+
+/area/shuttle/mackerel_hc_skel
 	name = "\improper Mackerel Heavy Cargo Spartan"
 	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
-	
+
 /area/shuttle/mackerel_hc_skel_cockpit
 	name = "\improper Mackerel Heavy Cargo Cockpit"
 	icon_state = "purple"
 	requires_power = 1
 	has_gravity = 0
-	
+
 /area/shuttle/mackerel_hc_skel_eng
 	name = "\improper Mackerel Heavy Cargo Engineering"
 	icon_state = "yellow"
 	requires_power = 1
 	has_gravity = 0
-	
-/area/shuttle/mackerel_lc_wreck	
+
+/area/shuttle/mackerel_lc_wreck
 	name = "\improper Wrecked Mackerel Light Cargo"
 	icon_state = "green"
 	requires_power = 1
@@ -239,3 +239,4 @@
 	vessel_mass = 1000
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Mackerel Light Cargo II"
+	known = FALSE

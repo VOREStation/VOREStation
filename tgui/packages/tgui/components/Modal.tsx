@@ -4,24 +4,30 @@
  * @license MIT
  */
 
+import { KEY } from 'common/keys';
 import { classes } from 'common/react';
+import { KeyboardEvent, KeyboardEventHandler } from 'react';
 
-import { computeBoxClassName, computeBoxProps } from './Box';
+import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 import { Dimmer } from './Dimmer';
 
-export const Modal = (props) => {
+export function Modal(
+  props: BoxProps & {
+    onEnter?: ((e: KeyboardEvent<HTMLInputElement>) => void) | undefined;
+  },
+) {
   const { className, children, onEnter, ...rest } = props;
   // VOREStation Addition start
-  let handleKeyDown;
+  let handleKeyDown: KeyboardEventHandler<HTMLDivElement> | undefined;
   if (onEnter) {
-    handleKeyDown = (e) => {
-      let key = e.which || e.keyCode;
-      if (key === 13) {
+    handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === KEY.Enter) {
         onEnter(e);
       }
     };
   }
   // VOREStation Addition end
+
   return (
     <Dimmer onKeyDown={handleKeyDown} /* VOREStation edit */>
       <div
@@ -32,4 +38,4 @@ export const Modal = (props) => {
       </div>
     </Dimmer>
   );
-};
+}
