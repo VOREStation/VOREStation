@@ -140,6 +140,15 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	SStgui.update_uis(src)
 	return
 
+/obj/machinery/computer/rdconsole/dismantle()
+	if(linked_destroy)
+		linked_destroy.linked_console = null
+	if(linked_lathe)
+		linked_lathe.linked_console = null
+	if(linked_imprinter)
+		linked_imprinter.linked_console = null
+	..()
+
 /obj/machinery/computer/rdconsole/emp_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
