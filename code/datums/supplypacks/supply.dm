@@ -176,6 +176,7 @@
 					/obj/item/weapon/material/knife/tacknife/survival,
 					/obj/item/weapon/material/knife/machete,
 			 		/obj/item/clothing/accessory/holster/machete,
+					/obj/item/clothing/gloves/watch/survival
 					)
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
@@ -199,9 +200,38 @@
 					/obj/item/weapon/material/knife/tacknife/survival,
 					/obj/item/clothing/head/pilot_vr,
 					/obj/item/clothing/under/rank/pilot1,
-					/obj/item/clothing/suit/storage/toggle/bomber/pilot
+					/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked,
+					/obj/item/clothing/gloves/watch/survival
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Pilot equipment"
 	access = access_pilot
+
+/datum/supply_pack/pathfindergear
+	name="Away Team Leader gear"
+	contains = list (
+					/obj/item/device/cataloguer/compact/pathfinder,
+					/obj/item/device/geiger,
+					/obj/item/clothing/suit/storage/hooded/explorer,
+					/obj/item/device/flashlight/glowstick,
+					/obj/item/device/flashlight,
+					/obj/item/stack/marker_beacon/thirty,
+					/obj/item/weapon/storage/belt/explorer/pathfinder,
+					/obj/item/clothing/mask/gas/explorer,
+					/obj/item/weapon/cartridge/explorer,
+			 		/obj/item/device/gps/explorer,
+			 		/obj/item/clothing/under/explorer,
+			 		/obj/item/device/radio/headset/pathfinder,
+			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/weapon/material/knife/tacknife/survival,
+					/obj/item/weapon/material/knife/machete/deluxe,
+			 		/obj/item/clothing/accessory/holster/machete,
+					/obj/item/weapon/storage/box/explorerkeys,
+					/obj/item/device/mapping_unit,
+					/obj/item/clothing/gloves/watch/survival
+					)
+	cost=75
+	containertype = /obj/structure/closet/crate/secure/xion
+	containername = "Away Team Leader equipment"
+	access = list(access_explorer)

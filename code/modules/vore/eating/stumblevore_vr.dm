@@ -14,14 +14,14 @@
 /mob/living/Bump(atom/movable/AM)
 	//. = ..()
 	if(istype(AM, /mob/living))
-		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying && flight_vore)
+		if(buckled != AM && (((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying && flight_vore))
 			AM.stumble_into(src)
 	return ..()
 // Because flips toggle density
 /mob/living/Crossed(var/atom/movable/AM)
 	if(istype(AM, /mob/living) && isturf(loc) && AM != src)
 		var/mob/living/AMV = AM
-		if(((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent=="run") || AMV.flying && AMV.flight_vore)
+		if(AMV.buckled != src && (((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent=="run") || AMV.flying && AMV.flight_vore))
 			stumble_into(AMV)
 	..()
 
