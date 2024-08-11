@@ -1335,6 +1335,11 @@
 	var/sound/struggle_snuggle
 	var/sound/struggle_rustle = sound(get_sfx("rustle"))
 
+	if(resist_triggers_animation && affects_vore_sprites)
+		var/mob/living/carbon/human/O = owner
+		if(istype(O))
+			O.vore_belly_animation()
+
 	if(is_wet)
 		if(!fancy_vore)
 			struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
