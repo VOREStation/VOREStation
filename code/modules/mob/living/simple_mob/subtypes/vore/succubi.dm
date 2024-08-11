@@ -47,7 +47,7 @@
 	vore_standing_too = 1
 	vore_ignores_undigestable = 0
 	vore_default_mode = DM_DRAIN // They just want to drain you!
-	vore_digest_chance = 25 // But don't you dare try to escape...
+	vore_digest_chance = 0 // But don't you dare try to escape...
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /datum/say_list/succubus
@@ -65,9 +65,54 @@
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1
-	B.digestchance = 25
+	B.selectchance = 25
+	B.digestchance = 0
 	B.absorbchance = 0
 	B.escapechance = 15
-	B.selective_preference = DM_DRAIN
+	B.selective_preference = DM_DIGEST
 	B.escape_stun = 5
+	B.transferlocation_absorb = "curves"
 
+	var/obj/belly/curves = new /obj/belly(src)
+	curves.immutable = TRUE
+	curves.name = "curves"
+	curves.desc = "Your entire being is cast adrift, no longer tight as it was in the succubus's gut but still inexorably bound, a sensation of warmth surrounding your entire being - it's pleasantly comfortable, relaxing even, as though lulling you, tempting you into simply allowing yourself to drift off. It's difficult to focus on yourself at all, any sense of your own position having abandoned you - instead, you can simply feel an odd, gentle sensation of being occasionally rubbed, stroked, squeezed, your captor eager to enjoy her prize. Even trying to move seems to elicit a satisfied chuckle, almost as though she knows that, at least on some level, some part of you wanted to give yourself to her - and she seemingly has little intention of giving you back."
+	curves.digest_mode = DM_HOLD // like, shes got you already, doesn't need to get you more
+	curves.mode_flags = DM_FLAG_FORCEPSAY
+	curves.escapable = TRUE // good luck
+	curves.escapechance = 40 // high chance of STARTING a successful escape attempt
+	curves.escapechance_absorbed = 5 // m i n e
+	curves.vore_verb = "soak"
+	curves.count_absorbed_prey_for_sprite = FALSE
+	curves.absorbed_struggle_messages_inside = list(
+		"You try and push free from %pred's %belly, but can't seem to will yourself to move.",
+		"Your fruitless mental struggles only cause %pred to chuckle lightly.",
+		"You can't make any progress freeing yourself from %pred's %belly.")
+	curves.escape_attempt_absorbed_messages_owner = list(
+		"%prey is attempting to free themselves from your %belly!")
+
+	curves.escape_attempt_absorbed_messages_prey = list(
+		"You try to force yourself out of %pred's %belly.",
+		"You strain and push, attempting to reach out of %pred's %belly.",
+		"You work up the will to try and force yourself free of %pred's clutches.")
+
+	curves.escape_absorbed_messages_owner = list(
+		"%prey forces themselves free of your %belly!")
+
+	curves.escape_absorbed_messages_prey = list(
+		"You finally manage to wrest yourself free from %pred's %belly, re-asserting your more usual form.",
+		"You heave and push, eventually spilling out from %pred's %belly, eliciting an amused smile from your former captor.")
+
+	curves.escape_absorbed_messages_outside = list(
+		"%prey suddenly forces themselves free of %pred's %belly!")
+
+	curves.escape_fail_absorbed_messages_owner = list(
+		"%prey's attempt to escape form your %belly has failed!")
+
+	curves.escape_fail_absorbed_messages_prey = list(
+		"Before you manage to reach freedom, you feel yourself getting dragged back into %pred's %belly!",
+		"%pred laughs lightly, simply pressing your wrigging form back into her %belly before you get anywhere.",
+		"%pred gently rubs a finger over her %belly, the gentle pressure breaking your concentration and sending you sinking back into her form.",
+		"Try as you might, you barely make an impression before %pred simply clenches with the most minimal effort, binding you back into her %belly.",
+		"Unfortunately, %pred seems to have absolutely no intention of letting you go, and your futile effort goes nowhere.",
+		"Strain as you might, you can't keep up the effort long enough before you sink back into %pred's %belly.")

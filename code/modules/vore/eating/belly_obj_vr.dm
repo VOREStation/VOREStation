@@ -32,6 +32,7 @@
 	var/immutable = FALSE					// Prevents this belly from being deleted
 	var/escapable = FALSE					// Belly can be resisted out of at any time
 	var/escapetime = 10 SECONDS				// Deciseconds, how long to escape this belly
+	var/selectchance = 0					// % Chance of stomach switching to selective mode if prey struggles
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
@@ -47,6 +48,7 @@
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
 	var/transferlocation_secondary			// Secondary location that prey is released to.
+	var/transferlocation_absorb				// Location that prey is moved to if they get absorbed.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
 	var/mode_flags = 0						// Stripping, numbing, etc.
 	var/fancy_vore = FALSE					// Using the new sounds?
@@ -219,6 +221,12 @@
 
 	var/list/absorb_chance_messages_prey = list(
 		"In response to your struggling, %pred's %belly begins to cling more tightly...")
+
+	var/list/select_chance_messages_owner = list(
+		"You feel your %belly beginning to become active!")
+
+	var/list/select_chance_messages_prey = list(
+		"In response to your struggling, %pred's %belly begins to get more active...")
 
 	var/list/digest_messages_owner = list(
 		"You feel %prey's body succumb to your digestive system, which breaks it apart into soft slurry.",
@@ -1156,7 +1164,6 @@
 			if(Mm.absorbed)
 				absorb_living(Mm)
 
-
 	if(absorbed_desc)
 		//Replace placeholder vars
 		var/formatted_abs_desc
@@ -1169,6 +1176,19 @@
 	owner.updateVRPanel()
 	if(isanimal(owner))
 		owner.update_icon()
+	// Finally, if they're to be sent to a special pudge belly, send them there
+	if(transferlocation_absorb)
+		var/obj/belly/dest_belly
+		for(var/obj/belly/B as anything in owner.vore_organs)
+			if(B.name == transferlocation_absorb)
+				dest_belly = B
+				break
+		if(!dest_belly)
+			to_chat(owner, "<span class='vwarning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had its transfer location cleared as a precaution.</span>")
+			transferlocation_absorb = null
+			return
+
+		transfer_contents(M, dest_belly)
 
 // Handle a mob being unabsorbed
 /obj/belly/proc/unabsorb_living(mob/living/M)
@@ -1534,7 +1554,7 @@
 			digest_mode = DM_ABSORB
 			return
 
-		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
+		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Then, let's see if it should run the digest chance.
 			var/digest_chance_owner_message = pick(digest_chance_messages_owner)
 			var/digest_chance_prey_message = pick(digest_chance_messages_prey)
 
@@ -1557,6 +1577,28 @@
 			to_chat(owner, digest_chance_owner_message)
 			digest_mode = DM_DIGEST
 			return
+		else if(prob(selectchance) && digest_mode != DM_SELECT) //Finally, let's see if it should run the selective mode chance.
+			var/select_chance_owner_message = pick(select_chance_messages_owner)
+			var/select_chance_prey_message = pick(select_chance_messages_prey)
+
+			select_chance_owner_message = replacetext(select_chance_owner_message, "%pred", owner)
+			select_chance_owner_message = replacetext(select_chance_owner_message, "%prey", R)
+			select_chance_owner_message = replacetext(select_chance_owner_message, "%belly", lowertext(name))
+			select_chance_owner_message = replacetext(select_chance_owner_message, "%countprey", living_count)
+			select_chance_owner_message = replacetext(select_chance_owner_message, "%count", contents.len)
+
+			select_chance_prey_message = replacetext(select_chance_prey_message, "%pred", owner)
+			select_chance_prey_message = replacetext(select_chance_prey_message, "%prey", R)
+			select_chance_prey_message = replacetext(select_chance_prey_message, "%belly", lowertext(name))
+			select_chance_prey_message = replacetext(select_chance_prey_message, "%countprey", living_count)
+			select_chance_prey_message = replacetext(select_chance_prey_message, "%count", contents.len)
+
+			select_chance_owner_message = "<span class='vwarning'>[select_chance_owner_message]</span>"
+			select_chance_prey_message = "<span class='vwarning'>[select_chance_prey_message]</span>"
+
+			to_chat(R, select_chance_prey_message)
+			to_chat(owner, select_chance_owner_message)
+			digest_mode = DM_SELECT
 
 		else //Nothing interesting happened.
 			to_chat(R, struggle_user_message)
