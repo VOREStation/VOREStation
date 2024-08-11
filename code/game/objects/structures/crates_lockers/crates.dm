@@ -97,6 +97,8 @@
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
 			return
+		if(istype(W, /obj/item/weapon/grab)) //VOREstation edit: we don't want to drop grabs into the crate
+			return
 		user.drop_item()
 		if(W)
 			W.forceMove(src.loc)

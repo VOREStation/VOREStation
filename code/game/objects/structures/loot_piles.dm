@@ -93,6 +93,14 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 			else // Welp.
 				loot = produce_common_item()
 
+			//VOREstation edit - Randomized map objects were put in loot piles, so handle them...
+			if(istype(loot,/obj/random))
+				var/obj/random/randy = loot
+				var/new_I = randy.spawn_item()
+				qdel(loot)
+				loot = new_I // swap it
+			//VOREstation edit end
+
 			if(loot)
 				searched_by |= user.ckey
 				loot.forceMove(get_turf(src))
