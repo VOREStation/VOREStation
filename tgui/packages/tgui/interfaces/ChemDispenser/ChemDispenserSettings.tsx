@@ -7,7 +7,7 @@ export const ChemDispenserSettings = (props) => {
   const { act, data } = useBackend<Data>();
   const { amount } = data;
   return (
-    <Section title="Settings" flex="content">
+    <Section title="Settings" fill>
       <LabeledList>
         <LabeledList.Item label="Dispense" verticalAlign="middle">
           {dispenseAmounts.map((a, i) => (

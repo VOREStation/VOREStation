@@ -60,8 +60,12 @@
 		return
 
 	// Decent chance to overload lighting circuit.
-	if(prob(3 * severity))
-		T.overload_lighting()
+	if(prob(8 * severity))	//over double the original chance (3), because it's now only a one-in-four to blow the lights out entirely
+		if(prob(75))	//flicker 'em
+			for(var/obj/machinery/light/L in T.area)
+				L.flicker(15)
+		else	//blast 'em!
+			T.overload_lighting()
 
 	// Relatively small chance to emag the apc as apc_damage event does.
 	if(prob(0.2 * severity))

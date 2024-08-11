@@ -219,10 +219,6 @@
 
 	var/get_rig_stats = 0 //Moved from computer.dm
 
-	var/typing
-	var/obj/effect/decal/typing_indicator
-	var/obj/effect/decal/typing_indicator_active
-	var/cur_typing_indicator
 	var/custom_speech_bubble = "default"
 
 	var/low_priority = FALSE //Skip processing life() if there's just no players on this Z-level

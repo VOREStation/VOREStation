@@ -335,3 +335,7 @@ Talon winter coat
 /datum/gear/suit/bladerunnercoat
 	display_name = "leather coat, massive"
 	path = /obj/item/clothing/suit/storage/bladerunner
+
+/datum/gear/suit/martianminer
+	display_name = "martian miner's coat, basic"
+	path = /obj/item/clothing/suit/storage/vest/martian_miner

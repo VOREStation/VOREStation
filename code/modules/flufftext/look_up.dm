@@ -17,7 +17,7 @@
 		return
 
 	else // They're outside and hopefully on a planet.
-		if(!(T.z in SSplanets.z_to_planet) || !(SSplanets.z_to_planet[T.z]))
+		if(T.z <= 0 || SSplanets.z_to_planet.len < T.z || !(SSplanets.z_to_planet[T.z])) //VOREstation edit - removed broken in list check; use length limit instead.
 			to_chat(usr, span("warning", "You appear to be outside, but not on a planet... Something is wrong."))
 			return
 		var/datum/planet/P = SSplanets.z_to_planet[T.z]
@@ -62,4 +62,3 @@
 					to_chat(usr, "[P.moon_name] is not visible. It must be a new moon.")
 				else
 					to_chat(usr, "[P.moon_name] appears to currently be a [P.moon_phase].")
-

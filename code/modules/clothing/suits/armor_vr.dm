@@ -173,6 +173,10 @@
 // martian miner coat
 /obj/item/clothing/suit/storage/vest/martian_miner
 	name = "martian miner's coat"
-	desc = "A sturdy, rugged coat once favoured by miners on Mars. These coats became strongly associated with early Martian Independence movements as a result, and remain moderately popular amongst members of the Third Ares Confederation."
+	desc = "A sturdy, rugged coat once favoured by miners on Mars. These coats became strongly associated with early Martian Independence movements as a result, and so remain moderately popular amongst members of the Third Ares Confederation to this day."
 	icon_state = "martian_miner"
+
+/obj/item/clothing/suit/storage/vest/martian_miner/reinforced
+	name = "reinforced martian miner's coat"
+	desc = "A sturdy, rugged coat once favoured by miners on Mars. These coats became strongly associated with early Martian Independence movements as a result, and so remain moderately popular amongst members of the Third Ares Confederation to this day. This one appears to have been discreetly lined with a hardened polymesh substrate, rendering it more resilient to physical damage."
 	armor = list(melee = 25, bullet = 15, laser = 15, energy = 0, bomb = 25, bio = 0, rad = 0)
