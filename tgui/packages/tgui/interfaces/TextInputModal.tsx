@@ -22,7 +22,7 @@ export const sanitizeMultiline = (toSanitize: string) => {
 };
 
 export const removeAllSkiplines = (toSanitize: string) => {
-  return toSanitize.replace(/[\r\n]+/, '');
+  return toSanitize.replace(/[\r\n]+/, ' ');
 };
 
 export const TextInputModal = (props) => {
