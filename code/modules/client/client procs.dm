@@ -127,6 +127,9 @@
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
 		return
 
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
+
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
 		if("mentorholder")	hsrc = (check_rights(R_ADMIN, 0) ? holder : mentorholder)
@@ -179,6 +182,8 @@
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
+	tgui_say = new(src, "tgui_say")
+	initialize_commandbar_spy()
 	tgui_panel = new(src, "browseroutput")
 
 	GLOB.ahelp_tickets.ClientLogin(src)
@@ -211,6 +216,7 @@
 		prefs.selecting_slots = FALSE
 
 	// Initialize tgui panel
+	tgui_say.initialize()
 	tgui_panel.initialize()
 
 	connection_time = world.time
