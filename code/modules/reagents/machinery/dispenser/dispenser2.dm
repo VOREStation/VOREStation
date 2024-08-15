@@ -284,9 +284,10 @@
 						break
 			else
 				recording_recipe += chemicals_to_dispense
-
 			. = TRUE
-
+		if("remove_recipe")
+			saved_recipes -= params["recipe"]
+			. = TRUE
 
 /obj/machinery/chemical_dispenser/attack_ghost(mob/user)
 	if(stat & BROKEN)
