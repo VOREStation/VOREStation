@@ -17,10 +17,14 @@ export enum LINE_LENGTHS {
  * Displays the name in the left button, tags a css class.
  */
 export const RADIO_PREFIXES = {
-  ':b ': '010',
+  ':a ': 'EVA',
+  ',b ': '010',
   ':c ': 'Cmd',
   ':e ': 'Eng',
+  ':g ': 'Cas',
   ':h ': 'Dept',
+  ':i ': 'Int',
+  ':k ': 'ERT',
   ':m ': 'Med',
   ':n ': 'Sci',
   ':p ': 'AI',
@@ -28,5 +32,6 @@ export const RADIO_PREFIXES = {
   ':t ': 'Merc',
   ':u ': 'Sup',
   ':v ': 'Srv',
+  ':x ': 'Rai',
   ':y ': 'ITV',
 } as const;

@@ -7,11 +7,12 @@ $lightBorder: #bbbbbb;
 $lightHover: #eaeaea;
 
 $_channel_map: (
-  // Radio
+  // Radio (EVA, Cas, Int use default color)
   '010': #1e90ff,
   'Cmd': #57b8f0,
   'Eng': #fcdf03,
   'Dept': #1ecc43,
+  'ERT': #5c5c8a,
   'Med': #57f09e,
   'Sci': #c68cfa,
   'AI': #d65d95,
@@ -19,6 +20,7 @@ $_channel_map: (
   'Merc': #8f4a4b,
   'Sup': #b88646,
   'Srv': #6ca729,
+  'Rai': #8f4a4b,
   'ITV': #8a8a8a,
   // Modes
   'LOOC': #3a9696,
