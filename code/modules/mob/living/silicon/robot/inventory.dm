@@ -277,7 +277,7 @@
 			pounce.desc = initial(pounce.desc)
 			pounce.bluespace = initial(pounce.bluespace)
 
-/mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.#
+/mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
 	W.forceMove(get_turf(src))
 	return 1
 
