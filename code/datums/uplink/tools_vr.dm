@@ -144,3 +144,8 @@
 	name = "Capture Crystal (Ultra)"
 	item_cost = 50
 	path = /obj/item/capture_crystal/ultra
+
+/datum/uplink_item/item/tools/armoredgloves
+	name = "Reinforced Insulated Gloves"
+	item_cost = 5
+	path = /obj/item/clothing/gloves/heavy_engineer
