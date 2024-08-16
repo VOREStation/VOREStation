@@ -210,11 +210,12 @@
 	icon_state = "firstaid"
 
 /obj/random/tetheraid/item_to_spawn()
-	return pick(prob(4);/obj/item/weapon/storage/firstaid/regular,
-				prob(3);/obj/item/weapon/storage/firstaid/toxin,
-				prob(3);/obj/item/weapon/storage/firstaid/o2,
-				prob(2);/obj/item/weapon/storage/firstaid/adv,
-				prob(3);/obj/item/weapon/storage/firstaid/fire)
+	return pick(prob(10);/obj/item/weapon/storage/firstaid/regular,
+				prob(8);/obj/item/weapon/storage/firstaid/toxin,
+				prob(8);/obj/item/weapon/storage/firstaid/o2,
+				prob(5);/obj/item/weapon/storage/firstaid/adv,
+				prob(8);/obj/item/weapon/storage/firstaid/fire,
+				prob(1);/obj/item/device/denecrotizer/medical)
 
 //Override from maintenance.dm to prevent combat kits from spawning in Tether maintenance
 /obj/random/maintenance/item_to_spawn()
