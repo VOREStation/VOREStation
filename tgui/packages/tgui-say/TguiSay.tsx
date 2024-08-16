@@ -247,9 +247,9 @@ export class TguiSay extends Component<{}, State> {
       case KEY.PageUp:
       case KEY.PageDown:
         // Allow moving between lines if there are newlines
-        if (currentValue?.includes('\n')) {
+        /* if (currentValue?.includes('\n')) {
           break;
-        }
+        } */
         event.preventDefault();
         this.handleArrowKeys(event.key);
         break;
