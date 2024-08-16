@@ -3719,7 +3719,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/rust,
 /obj/random/maintenance/research,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/random/maintenance/engineering,
 /obj/random/soap,
 /obj/effect/decal/cleanable/dirt,
@@ -7836,7 +7836,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/structure/table/borosilicate,
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
@@ -9855,7 +9855,7 @@
 /area/offmap/aerostat/inside/xenoarch)
 "Lg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/random/maintenance/research,
 /obj/structure/sign/painting/public{
 	pixel_x = -30
@@ -10388,7 +10388,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/item/weapon/storage/firstaid,
 /obj/structure/cable{
 	icon_state = "1-2"
