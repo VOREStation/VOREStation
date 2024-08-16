@@ -1063,9 +1063,10 @@
 /area/shuttle/tabiranth)
 "bl" = (
 /obj/machinery/power/smes/buildable/hybrid{
-	input_level = 200000;
-	output_level = 200000;
-	recharge_rate = 20000
+	cur_coils = 4;
+	input_level = 500000;
+	output_level = 500000;
+	recharge_rate = 40000
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
