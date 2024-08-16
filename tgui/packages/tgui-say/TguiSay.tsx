@@ -75,10 +75,10 @@ export class TguiSay extends Component<{}, State> {
     Byond.subscribeTo('open', this.handleOpen);
   }
 
-  handleArrowKeys(direction: KEY.Up | KEY.Down) {
+  handleArrowKeys(direction: KEY.PageUp | KEY.PageDown) {
     const currentValue = this.innerRef.current?.value;
 
-    if (direction === KEY.Up) {
+    if (direction === KEY.PageUp) {
       if (this.chatHistory.isAtLatest() && currentValue) {
         // Save current message to temp history if at the most recent message
         this.chatHistory.saveTemp(currentValue);
@@ -244,12 +244,12 @@ export class TguiSay extends Component<{}, State> {
   handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
     const currentValue = this.innerRef.current?.value;
     switch (event.key) {
-      case KEY.Up:
-      case KEY.Down:
+      case KEY.PageUp:
+      case KEY.PageDown:
         // Allow moving between lines if there are newlines
-        if (currentValue?.includes('\n')) {
+        /* if (currentValue?.includes('\n')) {
           break;
-        }
+        } */
         event.preventDefault();
         this.handleArrowKeys(event.key);
         break;
