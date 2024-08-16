@@ -970,6 +970,8 @@
 		return
 
 	cut_overlays()
+	add_overlay(active_thinking_indicator)
+	add_overlay(active_typing_indicator)
 
 	icon			= sprite_datum.sprite_icon
 	icon_state		= sprite_datum.sprite_icon_state
