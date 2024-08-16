@@ -24,6 +24,18 @@
 					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/device/glasses_kit = 1,  /obj/item/weapon/storage/quickdraw/syringe_case = 4)
 	..()
 
+/obj/machinery/vending/wallmed1/New()
+	products += list(/obj/item/bodybag/cryobag = 2)
+	..()
+
+/obj/machinery/vending/wallmed2/New()
+	products += list(/obj/item/bodybag/cryobag = 3)
+	..()
+
+/obj/machinery/vending/wallmed1/public/New()
+	products += list(/obj/item/bodybag/cryobag = 4)
+	..()
+
 // Food Machines (for event/away maps)
 
 //I want this not just as part of the zoo. ;v
