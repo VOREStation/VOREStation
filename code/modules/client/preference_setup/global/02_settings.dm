@@ -6,21 +6,21 @@
 	name = "Settings"
 	sort_order = 2
 
-/datum/category_item/player_setup_item/player_global/settings/load_preferences(var/savefile/S)
-	S["lastchangelog"]        >> pref.lastchangelog
-	S["lastnews"]             >> pref.lastnews
-	S["lastlorenews"]         >> pref.lastlorenews
-	S["default_slot"]	      >> pref.default_slot
-	S["preferences"]          >> pref.preferences_enabled
-	S["preferences_disabled"] >> pref.preferences_disabled
+/datum/category_item/player_setup_item/player_global/settings/load_preferences(datum/json_savefile/savefile)
+	pref.lastchangelog			= savefile.get_entry("lastchangelog")
+	pref.lastnews				= savefile.get_entry("lastnews")
+	pref.lastlorenews			= savefile.get_entry("lastlorenews")
+	pref.default_slot			= savefile.get_entry("default_slot")
+	pref.preferences_enabled	= savefile.get_entry("preferences")
+	pref.preferences_disabled	= savefile.get_entry("preferences_disabled")
 
-/datum/category_item/player_setup_item/player_global/settings/save_preferences(var/savefile/S)
-	S["lastchangelog"]        << pref.lastchangelog
-	S["lastnews"]             << pref.lastnews
-	S["lastlorenews"]         << pref.lastlorenews
-	S["default_slot"]         << pref.default_slot
-	S["preferences"]          << pref.preferences_enabled
-	S["preferences_disabled"] << pref.preferences_disabled
+/datum/category_item/player_setup_item/player_global/settings/save_preferences(datum/json_savefile/savefile)
+	savefile.set_entry("lastchangelog",			pref.lastchangelog)
+	savefile.set_entry("lastnews",				pref.lastnews)
+	savefile.set_entry("lastlorenews",			pref.lastlorenews)
+	savefile.set_entry("default_slot",			pref.default_slot)
+	savefile.set_entry("preferences",			pref.preferences_enabled)
+	savefile.set_entry("preferences_disabled",	pref.preferences_disabled)
 
 /datum/category_item/player_setup_item/player_global/settings/sanitize_preferences()
 	// Ensure our preferences are lists.

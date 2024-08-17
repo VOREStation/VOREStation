@@ -9,15 +9,15 @@
 	name = "NIF Data"
 	sort_order = 8
 
-/datum/category_item/player_setup_item/vore/nif/load_character(var/savefile/S)
-	S["nif_path"]		>> pref.nif_path
-	S["nif_durability"]	>> pref.nif_durability
-	S["nif_savedata"]	>> pref.nif_savedata
+/datum/category_item/player_setup_item/vore/nif/load_character(list/save_data)
+	pref.nif_path		= save_data["nif_path"]
+	pref.nif_durability	= save_data["nif_durability"]
+	pref.nif_savedata	= save_data["nif_savedata"]
 
-/datum/category_item/player_setup_item/vore/nif/save_character(var/savefile/S)
-	S["nif_path"]		<< pref.nif_path
-	S["nif_durability"]	<< pref.nif_durability
-	S["nif_savedata"]	<< pref.nif_savedata
+/datum/category_item/player_setup_item/vore/nif/save_character(list/save_data)
+	save_data["nif_path"]		= pref.nif_path
+	save_data["nif_durability"]	= pref.nif_durability
+	save_data["nif_savedata"]	= pref.nif_savedata
 
 /datum/category_item/player_setup_item/vore/nif/sanitize_character()
 	if(pref.nif_path && !ispath(pref.nif_path))		//We have at least a text string that should be a path.

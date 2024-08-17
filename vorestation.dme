@@ -384,6 +384,7 @@
 #include "code\datums\ghost_query.dm"
 #include "code\datums\ghost_query_vr.dm"
 #include "code\datums\hierarchy.dm"
+#include "code\datums\json_savefile.dm"
 #include "code\datums\mind.dm"
 #include "code\datums\mind_vr.dm"
 #include "code\datums\mixed.dm"
