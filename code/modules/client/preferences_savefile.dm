@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	12
+#define SAVEFILE_VERSION_MAX	13
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -37,9 +37,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 /datum/preferences/proc/update_preferences(current_version, datum/json_savefile/S)
 	// Migration from BYOND savefiles to JSON: Important milemark.
-	if(current_version < 11)
-		// Do Nothing
-		return
+	// if(current_version < 11)
+
+	// Migration for client preferences
+	if(current_version < 13)
+		migration_13_preferences(S)
 
 
 /datum/preferences/proc/update_character(current_version, list/save_data)
@@ -86,6 +88,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		fcopy(savefile.path, bacpath) //byond helpfully lets you use a savefile for the first arg.
 		return FALSE
 
+	apply_all_client_preferences()
+
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		var/bacpath = "[path].updatebac" //todo: if the savefile version is higher then the server, check the backup, and give the player a prompt to load the backup
@@ -126,6 +130,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	savefile.set_entry("version", SAVEFILE_VERSION_MAX) //updates (or failing that the sanity checks) will ensure data is not invalid at load. Assume up-to-date
 
 	player_setup.save_preferences(savefile)
+
+	for(var/preference_type in GLOB.preference_entries)
+		var/datum/preference/preference = GLOB.preference_entries[preference_type]
+		if(preference.savefile_identifier != PREFERENCE_PLAYER)
+			continue
+
+		if(!(preference.type in recently_updated_keys))
+			continue
+
+		recently_updated_keys -= preference.type
+
+		if(preference_type in value_cache)
+			write_preference(preference, preference.pref_serialize(value_cache[preference_type]))
+
 	savefile.save()
 
 	return TRUE
@@ -164,10 +182,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update == -2) //fatal, can't load any data
 		return FALSE
 
-	//try to fix any outdated data if necessary
-	//preference updating will handle saving the updated data for us.
-	if(needs_update >= 0 || needs_update == -3)
-		update_character(needs_update, save_data) //needs_update == savefile_version if we need an update (positive integer
+	// Read everything into cache (pre-migrations, as migrations should have access to deserialized data)
+	// Uses priority order as some values may rely on others for creating default values
+	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if(preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
+
+		value_cache -= preference.type
+		read_preference(preference.type)
 
 	// It has to be a list or load_character freaks out
 	if(!save_data)
@@ -175,8 +197,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	else
 		player_setup.load_character(save_data)
 
-	clear_character_previews()
+	//try to fix any outdated data if necessary
+	//preference updating will handle saving the updated data for us.
+	if(needs_update >= 0 || needs_update == -3)
+		update_character(needs_update, save_data) //needs_update == savefile_version if we need an update (positive integer
 
+	clear_character_previews()
 	return TRUE
 
 /datum/preferences/proc/save_character()

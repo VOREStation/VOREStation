@@ -184,6 +184,9 @@ var/list/preferences_datums = list()
 /datum/preferences/New(client/C)
 	client = C
 
+	for(var/middleware_type in subtypesof(/datum/preference_middleware))
+		middleware += new middleware_type(src)
+
 	if(istype(C)) // IS_CLIENT_OR_MOCK
 		client_ckey = C.ckey
 		load_and_save = !IsGuestKey(C.key)
@@ -212,13 +215,18 @@ var/list/preferences_datums = list()
 	real_name = random_name(identifying_gender,species)
 	b_type = RANDOM_BLOOD_TYPE
 
+	if(client)
+		apply_all_client_preferences()
+
 	if(!loaded_preferences_successfully)
 		save_preferences()
 	save_character() // Save random character
 
 /datum/preferences/Destroy()
-	. = ..()
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
+	QDEL_NULL(middleware)
+	value_cache = null
+	return ..()
 
 /datum/preferences/proc/ZeroSkills(var/forced = 0)
 	for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
@@ -421,6 +429,12 @@ var/list/preferences_datums = list()
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
+
+	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if(preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
+
+		preference.apply_to_human(character, read_preference(preference.type))
 
 	// VOREStation Edit - Sync up all their organs and species one final time
 	character.force_update_organs()
