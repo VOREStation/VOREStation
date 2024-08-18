@@ -710,9 +710,9 @@
 /area/redgate/train/dining)
 "lp" = (
 /obj/structure/closet/walllocker_double/medical/east,
-/obj/random/tetheraid,
-/obj/random/tetheraid,
-/obj/random/tetheraid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
 /obj/item/clothing/gloves/sterile/nitrile,
 /obj/item/clothing/gloves/sterile/nitrile,
 /obj/item/weapon/storage/belt/medical,
