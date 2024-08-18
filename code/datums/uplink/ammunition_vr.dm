@@ -3,6 +3,12 @@
 *************/
 /datum/uplink_item/item/ammo/cell
 	name = "Weapon cell"
+	item_cost = 10
+
+/datum/uplink_item/item/ammo/cell/box
+	name = "Weapon cell box"
+	path = /obj/item/weapon/storage/box/weapon_cells
+	item_cost = 70
 
 /datum/uplink_item/item/ammo/highcell
 	name = "High capacity cell"

@@ -63,14 +63,19 @@
 /obj/item/device/fbp_backup_cell,
 /obj/item/device/fbp_backup_cell,
 /obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/antitox,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/o2,
 /obj/item/weapon/storage/firstaid/adv,
 /obj/item/weapon/storage/firstaid/regular,
+/obj/item/device/healthanalyzer,
 /obj/item/modular_computer/laptop/preset/custom_loadout/rugged,
 /obj/item/weapon/storage/box/survival/comp{
 	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
 	},
 /obj/item/weapon/storage/box/survival/space,
+/obj/item/clothing/gloves/watch/survival,
+/obj/item/device/emergency_beacon,
 /obj/item/weapon/extinguisher/mini,
 /obj/item/device/radio{
 	icon_state = "walkietalkiebay";
@@ -100,8 +105,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky,
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin,
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin,
-/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie,
-/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie,
+/obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie,
+/obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie,
 /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
 /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
 /obj/item/weapon/reagent_containers/food/snacks/tastybread,

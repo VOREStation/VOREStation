@@ -1005,6 +1005,8 @@
 /obj/item/weapon/surgical/scalpel/manager,
 /obj/item/weapon/surgical/circular_saw/manager,
 /obj/item/weapon/surgical/circular_saw/manager,
+/obj/item/device/denecrotizer/medical,
+/obj/item/device/denecrotizer/medical,
 /obj/item/stack/nanopaste,
 /obj/item/stack/nanopaste,
 /turf/simulated/floor/tiled/techfloor,
@@ -2604,14 +2606,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
-"nY" = (
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "braun_blast_shields";
-	name = "Blast Shield"
-	},
-/turf/space,
-/area/space)
 "ob" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
@@ -2881,11 +2875,11 @@
 "pv" = (
 /obj/structure/table/rack/steel,
 /obj/effect/floor_decal/industrial/outline/grey,
-/obj/item/clothing/gloves/yellow{
+/obj/item/clothing/gloves/heavy_engineer{
 	pixel_y = -3
 	},
-/obj/item/clothing/gloves/yellow,
-/obj/item/clothing/gloves/yellow{
+/obj/item/clothing/gloves/heavy_engineer,
+/obj/item/clothing/gloves/heavy_engineer{
 	pixel_y = 3
 	},
 /obj/item/weapon/storage/backpack/ert/engineer{
@@ -2895,13 +2889,13 @@
 /obj/item/weapon/storage/backpack/ert/engineer{
 	pixel_y = 3
 	},
-/obj/item/clothing/gloves/yellow{
+/obj/item/clothing/gloves/heavy_engineer{
 	pixel_y = 6
 	},
-/obj/item/clothing/gloves/yellow{
+/obj/item/clothing/gloves/heavy_engineer{
 	pixel_y = 9
 	},
-/obj/item/clothing/gloves/yellow{
+/obj/item/clothing/gloves/heavy_engineer{
 	pixel_y = 12
 	},
 /obj/item/weapon/storage/backpack/ert/engineer{
@@ -4959,6 +4953,22 @@
 /obj/item/clothing/accessory/storage/brown_vest{
 	pixel_y = 6
 	},
+/obj/item/clothing/accessory/storage/bluespace{
+	pixel_y = -4
+	},
+/obj/item/clothing/accessory/storage/bluespace{
+	pixel_y = -2
+	},
+/obj/item/clothing/accessory/storage/bluespace,
+/obj/item/clothing/accessory/storage/bluespace{
+	pixel_y = 2
+	},
+/obj/item/clothing/accessory/storage/bluespace{
+	pixel_y = 4
+	},
+/obj/item/clothing/accessory/storage/bluespace{
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "Ao" = (
@@ -6004,6 +6014,16 @@
 /obj/structure/closet/crate{
 	dir = 2
 	},
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_st)
@@ -20062,7 +20082,7 @@ yz
 yz
 yz
 yz
-nY
+yz
 yY
 ap
 WH
