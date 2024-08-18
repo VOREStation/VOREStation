@@ -4172,7 +4172,7 @@
 /area/redgate/city/waterworks)
 "fEr" = (
 /obj/structure/table/glass,
-/obj/random/tetheraid,
+/obj/random/firstaid,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "fEG" = (
@@ -17937,7 +17937,7 @@
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
-/obj/random/tetheraid,
+/obj/random/firstaid,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "xwF" = (
@@ -18193,8 +18193,8 @@
 /area/redgate/city/gym)
 "xUz" = (
 /obj/structure/table/rack,
-/obj/random/tetheraid,
-/obj/random/tetheraid,
+/obj/random/firstaid,
+/obj/random/firstaid,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/redgate/city/hospital)
 "xVb" = (

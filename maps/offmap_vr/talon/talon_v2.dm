@@ -898,7 +898,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/xion //XION SUIT
 			),
 			prob(10);list(
-				/obj/random/firstaid,
+				/obj/random/tetheraid,
 				/obj/random/medical,
 				/obj/random/medical,
 				/obj/random/medical,
@@ -907,10 +907,10 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/freezer/veymed //VM GRABBAG
 			),
 			prob(10);list(
-				/obj/random/firstaid,
-				/obj/random/firstaid,
-				/obj/random/firstaid,
-				/obj/random/firstaid,
+				/obj/random/tetheraid,
+				/obj/random/tetheraid,
+				/obj/random/tetheraid,
+				/obj/random/tetheraid,
 				/obj/random/unidentified_medicine/fresh_medicine,
 				/obj/random/unidentified_medicine/fresh_medicine,
 				/obj/structure/closet/crate/freezer/veymed //VM FAKS
@@ -931,7 +931,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/xion //XION SUPPLY
 			),
 			prob(10);list(
-				/obj/random/firstaid,
+				/obj/random/tetheraid,
 				/obj/random/medical,
 				/obj/random/medical/pillbottle,
 				/obj/random/medical/pillbottle,

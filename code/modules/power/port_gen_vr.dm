@@ -7,6 +7,33 @@
 	power_gen = 50000 //watts
 	anchored = TRUE
 
+//Port Start, RS PR #484
+/obj/machinery/power/port_gen/pacman/super/potato/Destroy()
+	. = ..()
+	cut_overlays() // sanity checks
+	set_light(0)
+
+/obj/machinery/power/port_gen/pacman/super/potato/update_icon()
+	cut_overlays()
+	set_light(0)
+	//if there was an unexploded broken state, this is where it would go. + return
+	if(active && !overheating)
+		icon_state = "potatoon"
+		var/mutable_appearance/reactorglow = mutable_appearance(icon, "eggrad", alpha = 90) //v.faint glow for reasons. the reasons being it's producing radiation as per code
+		add_overlay(reactorglow)
+		set_light(l_range = 2, l_power = 2, l_color = "#A8B0F8")
+		return
+	else if(overheating)	//The warp core is overloading, Captain!
+		icon_state = "potatodanger"	//show that it's angry, even when it's off. something something subroutine. Visual feedback!
+		if(active)	//but only glow if it's also still on, since the reaction is ongoing.
+			var/mutable_appearance/reactorglow = mutable_appearance(icon, "eggrad", alpha = 190) //more intense glow, lightings
+			add_overlay(reactorglow)
+			set_light(l_range = 5, l_power = 4, l_color = "#A8B0F8")
+		return
+	else	//off and it isn't angry, so we just vibe as 'off'
+		icon_state = initial(icon_state)
+//Port Emd, RS PR #484
+
 // Circuits for the RTGs below
 /obj/item/weapon/circuitboard/machine/rtg
 	name = T_BOARD("radioisotope TEG")

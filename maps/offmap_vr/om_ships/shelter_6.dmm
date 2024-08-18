@@ -79,6 +79,12 @@
 /obj/item/weapon/material/knife/machete,
 /obj/item/weapon/material/knife/machete,
 /obj/item/weapon/material/knife/machete,
+/obj/item/clothing/accessory/storage/bluespace,
+/obj/item/clothing/accessory/storage/bluespace,
+/obj/item/clothing/accessory/storage/bluespace,
+/obj/item/clothing/accessory/storage/bluespace,
+/obj/item/clothing/accessory/storage/bluespace,
+/obj/item/clothing/accessory/storage/bluespace,
 /obj/item/weapon/melee/energy/sword,
 /obj/item/weapon/melee/energy/sword,
 /obj/item/weapon/melee/energy/sword,
@@ -190,6 +196,10 @@
 /obj/item/clothing/suit/space/void/responseteam/security,
 /obj/item/clothing/suit/space/void/responseteam/security,
 /obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/baron,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/baron,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/baron,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/baron,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "af" = (
@@ -306,46 +316,17 @@
 /obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
 /obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
 /obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/gun/energy/locked/frontier/rifle/unlocked,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
+/obj/item/weapon/storage/box/weapon_cells,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "ah" = (
@@ -886,6 +867,8 @@
 /obj/item/device/healthanalyzer/phasic,
 /obj/item/device/healthanalyzer/phasic,
 /obj/item/device/healthanalyzer/phasic,
+/obj/item/device/denecrotizer/medical,
+/obj/item/device/denecrotizer/medical,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
@@ -1080,9 +1063,10 @@
 /area/shuttle/tabiranth)
 "bl" = (
 /obj/machinery/power/smes/buildable/hybrid{
-	input_level = 200000;
-	output_level = 200000;
-	recharge_rate = 20000
+	cur_coils = 4;
+	input_level = 500000;
+	output_level = 500000;
+	recharge_rate = 40000
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
@@ -1366,6 +1350,10 @@
 /obj/item/weapon/storage/belt/utility/chief/full,
 /obj/item/weapon/storage/belt/utility/chief/full,
 /obj/item/weapon/storage/belt/utility/chief/full,
+/obj/item/clothing/gloves/heavy_engineer,
+/obj/item/clothing/gloves/heavy_engineer,
+/obj/item/clothing/gloves/heavy_engineer,
+/obj/item/clothing/gloves/heavy_engineer,
 /obj/item/weapon/storage/belt/security/tactical,
 /obj/item/weapon/storage/belt/security/tactical,
 /obj/item/weapon/storage/belt/security/tactical,
@@ -1374,6 +1362,10 @@
 /obj/item/weapon/storage/belt/medical/emt,
 /obj/item/weapon/storage/belt/medical/emt,
 /obj/item/weapon/storage/belt/medical/emt,
+/obj/item/weapon/storage/belt/explorer/pathfinder,
+/obj/item/weapon/storage/belt/explorer/pathfinder,
+/obj/item/weapon/storage/belt/explorer/pathfinder,
+/obj/item/weapon/storage/belt/explorer/pathfinder,
 /obj/item/weapon/storage/backpack/ert/commander,
 /obj/item/weapon/storage/backpack/ert/engineer,
 /obj/item/weapon/storage/backpack/ert/engineer,
@@ -1433,6 +1425,15 @@
 /obj/item/device/binoculars,
 /obj/item/device/binoculars,
 /obj/item/device/binoculars,
+/obj/item/clothing/gloves/watch/survival,
+/obj/item/clothing/gloves/watch/survival,
+/obj/item/clothing/gloves/watch/survival,
+/obj/item/clothing/gloves/watch/survival,
+/obj/item/device/mapping_unit/ert,
+/obj/item/device/holomap_beacon/ert,
+/obj/item/device/holomap_beacon/ert,
+/obj/item/device/holomap_beacon/ert,
+/obj/item/device/holomap_beacon/ert,
 /obj/item/clothing/mask/gas/half,
 /obj/item/clothing/mask/gas/half,
 /obj/item/clothing/mask/gas/half,
@@ -1493,7 +1494,6 @@
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/clothing/suit/space/void/refurb/officer,
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "bK" = (
@@ -1549,14 +1549,7 @@
 /obj/machinery/mech_recharger{
 	icon = 'icons/turf/shuttle_alien_blue.dmi'
 	},
-/obj/mecha/combat/fighter/baron/loaded{
-	ground_capable = 1;
-	health = 600;
-	maxhealth = 600;
-	name = "Duke";
-	desc = "A heavily modified Baron-class fighter from the commonwealth. It has been retrofitted with heavier armor and additional maneuvering thrusters. Can be used in atmospheric operations.";
-	starting_components = list(/obj/item/mecha_parts/component/hull/lightweight,/obj/item/mecha_parts/component/actuator/hispeed,/obj/item/mecha_parts/component/armor/military,/obj/item/mecha_parts/component/gas/reinforced,/obj/item/mecha_parts/component/electrical)
-	},
+/obj/mecha/combat/fighter/baron/loaded,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "bP" = (
@@ -1575,10 +1568,16 @@
 /obj/item/clothing/head/helmet/space/void/security/fluff/hos,
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/item/clothing/suit/space/void/captain,
+/obj/item/clothing/head/helmet/space/void/refurb/officer,
+/obj/item/clothing/suit/space/void/refurb/officer,
+/obj/item/device/survivalcapsule/popcabin,
+/obj/item/device/survivalcapsule/popcabin,
 /obj/item/weapon/tank/oxygen/yellow,
 /obj/item/weapon/tank/oxygen/yellow,
 /obj/item/weapon/tank/oxygen/yellow,
 /obj/item/weapon/tank/oxygen/yellow,
+/obj/item/weapon/tank/vox,
+/obj/item/weapon/tank/vox,
 /obj/item/weapon/tank/vox,
 /obj/item/weapon/tank/vox,
 /obj/item/rig_module/chem_dispenser/injector/advanced,
@@ -1601,6 +1600,7 @@
 /obj/item/clothing/accessory/holster/machete,
 /obj/item/weapon/storage/firstaid/combat,
 /obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
 /obj/item/weapon/storage/toolbox/syndicate/powertools,
 /obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy{
 	name = "Super Heavy Demolitions kit"
@@ -1826,14 +1826,13 @@
 /obj/item/ammo_magazine/m762/ap,
 /obj/item/ammo_magazine/ammo_box/b145,
 /obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/weapon/cell/infinite,
+/obj/item/device/nif/authentic,
 /obj/item/modular_computer/laptop/preset/custom_loadout/hybrid,
 /obj/item/modular_computer/laptop/preset/custom_loadout/hybrid,
 /obj/item/modular_computer/tablet/preset/custom_loadout/hybrid,
 /obj/item/device/perfect_tele/alien,
 /obj/item/device/perfect_tele/frontier/staff,
-/obj/effect/floor_decal/techfloor{
-	dir = 9
-	},
 /obj/item/weapon/inducer/hybrid,
 /obj/item/weapon/cell/device/weapon/recharge/alien/hybrid,
 /obj/item/weapon/cell/device/weapon/recharge/alien/hybrid,
@@ -1843,7 +1842,45 @@
 /obj/item/weapon/circuitboard/machine/abductor/core/hybrid,
 /obj/item/weapon/gun/magnetic/railgun/automatic,
 /obj/item/weapon/gun/magnetic/railgun/automatic,
+/obj/item/weapon/grenade/spawnergrenade/casino,
+/obj/item/weapon/grenade/spawnergrenade/casino/penguin,
+/obj/item/weapon/grenade/spawnergrenade/casino/chicken,
+/obj/item/weapon/grenade/spawnergrenade/casino/cow,
+/obj/item/weapon/grenade/spawnergrenade/casino/corgi,
+/obj/item/weapon/grenade/spawnergrenade/casino/fox,
+/obj/item/weapon/grenade/spawnergrenade/casino/fennec,
+/obj/item/weapon/grenade/spawnergrenade/casino/snake,
+/obj/item/weapon/grenade/spawnergrenade/casino/redpanda,
+/obj/item/weapon/grenade/spawnergrenade/casino/snake,
+/obj/item/weapon/grenade/spawnergrenade/casino/otie,
+/obj/item/weapon/grenade/spawnergrenade/casino/goldcrest,
+/obj/item/weapon/grenade/spawnergrenade/casino/gygax,
+/obj/item/weapon/grenade/spawnergrenade/casino/gygax/mining,
+/obj/item/weapon/grenade/spawnergrenade/casino/gygax/firefighter,
+/obj/item/weapon/grenade/spawnergrenade/casino/gygax/Odysseus,
+/obj/item/weapon/grenade/spawnergrenade/casino/gygax/shuttlepod,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/gunpod,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/baron,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/scoralis,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/allure,
+/obj/item/weapon/grenade/spawnergrenade/casino/fighter/pinnace,
+/obj/item/weapon/bluespace_harpoon,
+/obj/item/weapon/stock_parts/scanning_module/hyper,
+/obj/item/device/cataloguer/compact/pathfinder,
+/obj/item/capture_crystal/basic,
+/obj/item/capture_crystal/basic,
+/obj/item/capture_crystal/basic,
+/obj/item/capture_crystal/basic,
+/obj/item/capture_crystal/great,
+/obj/item/capture_crystal/great,
+/obj/item/capture_crystal/ultra,
+/obj/item/capture_crystal/ultra,
+/obj/item/device/denecrotizer,
+/obj/item/device/denecrotizer,
 /obj/effect/floor_decal/industrial/loading,
+/obj/effect/floor_decal/techfloor{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/tabiranth)
 

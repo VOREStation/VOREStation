@@ -4341,7 +4341,7 @@
 #include "maps\southern_cross\items\clothing\sc_accessory.dm"
 #include "maps\southern_cross\items\clothing\sc_suit.dm"
 #include "maps\southern_cross\items\clothing\sc_under.dm"
-#include "maps\stellar_delight\stellar_delight.dm"
+#include "maps\tether\tether.dm"
 #include "maps\submaps\_helpers.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\admin_use_vr\event_autonomous_drone.dm"

@@ -110,6 +110,7 @@
 	pixel_y = 4
 	},
 /obj/item/weapon/flame/lighter/random,
+/obj/item/weapon/storage/firstaid/regular,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "t" = (
