@@ -1163,6 +1163,9 @@
 
 /obj/item/weapon/toy/monster_bait/afterattack(var/atom/A, var/mob/user)
 	var/mob/living/simple_mob/M = A
+	if(M.z != user.z || get_dist(user,M) > 1)
+		to_chat(user, "<span class='notice'>You need to stand right next to \the [M] to bait it.</span>")
+		return
 	if(!istype(M))
 		return
 	if(!M.vore_active)
