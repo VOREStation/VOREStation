@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Section } from '../../components';
+import { Box, Button, Flex, Section } from '../../components';
 import { Data } from './types';
 
 export const ChemDispenserRecipes = (props) => {
@@ -77,14 +77,26 @@ export const ChemDispenserRecipes = (props) => {
       )}
       {recipeData.length
         ? recipeData.map((recipe) => (
-            <Button
-              key={recipe}
-              fluid
-              icon="flask"
-              onClick={() => act('dispense_recipe', { recipe })}
-            >
-              {recipe}
-            </Button>
+            <Flex key={recipe}>
+              <Flex.Item grow={1}>
+                <Button
+                  fluid
+                  icon="flask"
+                  onClick={() => act('dispense_recipe', { recipe })}
+                >
+                  {recipe}
+                </Button>
+              </Flex.Item>
+              <Flex.Item>
+                <Button.Confirm
+                  icon="trash"
+                  confirmIcon="triangle-exclamation"
+                  confirmContent={''}
+                  color="bad"
+                  onClick={() => act('remove_recipe', { recipe })}
+                />
+              </Flex.Item>
+            </Flex>
           ))
         : 'No Recipes.'}
     </Section>

@@ -24,6 +24,7 @@
 /obj/item/device/fbp_backup_cell,
 /obj/item/device/fbp_backup_cell,
 /obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/weapon/storage/firstaid/regular,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "e" = (

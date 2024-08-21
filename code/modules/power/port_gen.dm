@@ -222,6 +222,7 @@
 		overheat()
 	else if (overheating > 0)
 		overheating--
+		update_icon() //Port RS PR #484
 
 /obj/machinery/power/port_gen/pacman/handleInactive()
 	var/cooling_temperature = 20
@@ -239,6 +240,7 @@
 
 	if(overheating)
 		overheating--
+		update_icon() //Port RS PR #484
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	overheating++

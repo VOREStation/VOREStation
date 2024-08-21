@@ -344,7 +344,7 @@
 		/obj/item/device/survivalcapsule/luxury = 20,
 		/obj/item/device/survivalcapsule/luxurybar = 15,
 		/obj/item/device/survivalcapsule/popcabin = 20,
-		/obj/item/device/survivalcapsule/escapepod = 5
+		/obj/item/device/perfect_tele/frontier/unknown/one = 1
 		)
 	prices = list(
 		/obj/item/capture_crystal/basic = 6,
@@ -371,7 +371,7 @@
 		/obj/item/device/survivalcapsule/luxury = 20,
 		/obj/item/device/survivalcapsule/luxurybar = 25,
 		/obj/item/device/survivalcapsule/popcabin = 10,
-		/obj/item/device/survivalcapsule/escapepod = 30
+		/obj/item/device/perfect_tele/frontier/unknown/one = 30
 		)
 	multiple = list(
 		/obj/item/capture_crystal/basic = 10,

@@ -48,3 +48,9 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 3
 	drop_sound = 'sound/items/drop/ammobox.ogg'
 	pickup_sound = 'sound/items/pickup/ammobox.ogg'
+
+/obj/item/weapon/storage/box/weapon_cells
+	name = "box of weapon cells"
+	desc = "A box full of weapon power cells. For all your portable energy storage needs."
+	icon_state = "secbox"
+	starts_with = list(/obj/item/weapon/cell/device/weapon = 7)

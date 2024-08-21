@@ -278,7 +278,7 @@
 			pounce.bluespace = initial(pounce.bluespace)
 
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
-	W.loc = get_turf(src)
+	W.forceMove(get_turf(src))
 	return 1
 
 /mob/living/silicon/robot/is_holding_item_of_type(typepath)
