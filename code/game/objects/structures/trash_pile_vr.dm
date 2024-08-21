@@ -158,6 +158,14 @@
 				else if(luck <= chance_alpha+chance_beta+chance_gamma)
 					I = produce_gamma_item()
 
+				//VOREstation edit - Randomized map objects were put in loot piles, so handle them...
+				if(istype(I,/obj/random))
+					var/obj/random/randy = I
+					var/new_I = randy.spawn_item()
+					qdel(I)
+					I = new_I // swap it
+				//VOREstation edit end
+
 				//We either have an item to hand over or we don't, at this point!
 				if(I)
 					searchedby += user.ckey

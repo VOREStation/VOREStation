@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
+
 import { useBackend } from '../../backend';
-import { Button, Flex, Section } from '../../components';
+import { Button, Flex, Icon, Section, Tooltip } from '../../components';
 import { Data } from './types';
 
 export const ChemDispenserChemicals = (props) => {
@@ -13,6 +15,7 @@ export const ChemDispenserChemicals = (props) => {
     <Section
       title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
       flexGrow
+      buttons={<RecordingBlinker />}
     >
       <Flex direction="row" wrap="wrap" height="100%" align="flex-start">
         {chemicals.map((c, i) => (
@@ -37,5 +40,31 @@ export const ChemDispenserChemicals = (props) => {
         ))}
       </Flex>
     </Section>
+  );
+};
+
+const RecordingBlinker = (props) => {
+  const { data } = useBackend<Data>();
+  const recording = !!data.recordingRecipe;
+
+  const [blink, setBlink] = useState(false);
+
+  useEffect(() => {
+    if (recording) {
+      const intervalId = setInterval(() => {
+        setBlink((v) => !v);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+  }, [recording]);
+
+  if (!recording) {
+    return null;
+  }
+
+  return (
+    <Tooltip content="Recording in progress">
+      <Icon mt={0.7} color="bad" name={blink ? 'circle-o' : 'circle'} />
+    </Tooltip>
   );
 };

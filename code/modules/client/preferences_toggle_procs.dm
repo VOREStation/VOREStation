@@ -389,16 +389,6 @@
 
 	to_chat(src, span_notice("You have toggled chat timestamps: [prefs.chat_timestamp ? "ON" : "OFF"]."))
 
-/client/verb/toggle_throwmode_messages()
-	set name = "Toggle Throw Mode Messages"
-	set category = "Preferences"
-	set desc = "Toggles whether or not activating throw mode (hotkey: R) will announce you're preparing to throw your current handheld item, or catch an incoming item if your hand is empty."
-
-	prefs.throwmode_loud = !prefs.throwmode_loud	//There is no preference datum for tgui input lock, nor for any TGUI prefs.
-	SScharacter_setup.queue_preferences_save(prefs)
-
-	to_chat(src, span_notice("You have toggled throw mode messages: [prefs.throwmode_loud ? "ON" : "OFF"]."))
-
 /client/verb/toggle_status_indicators()
 	set name = "Toggle Status Indicators"
 	set category = "Preferences"

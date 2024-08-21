@@ -3169,7 +3169,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/jungle/facilitynw)
 "MA" = (
-/obj/random/tetheraid,
+/obj/random/firstaid,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "MD" = (
