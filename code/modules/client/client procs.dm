@@ -274,7 +274,7 @@
 			alert = TRUE
 		if(alert)
 			for(var/client/X in GLOB.admins)
-				if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+				if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 					X << 'sound/effects/tones/newplayerping.ogg'
 				window_flash(X)
 		//VOREStation Edit end.

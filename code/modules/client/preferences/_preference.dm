@@ -277,6 +277,10 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	value_cache[preference_type] = value
 	return value
 
+/// Read a /datum/preference type and return its value.
+/mob/proc/read_preference(preference_type)
+	return client?.prefs?.read_preference(preference_type)
+
 /// Set a /datum/preference entry.
 /// Returns TRUE for a successful preference application.
 /// Returns FALSE if it is invalid.
