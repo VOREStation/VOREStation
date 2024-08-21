@@ -238,7 +238,7 @@
 					/obj/item/device/mapping_unit,
 					/obj/item/clothing/gloves/watch/survival
 					)
-	cost=75
+	cost = 75
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Away Team Leader equipment"
 	access = list(access_explorer)

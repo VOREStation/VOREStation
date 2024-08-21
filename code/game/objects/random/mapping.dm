@@ -167,6 +167,38 @@
 				prob(10);/obj/effect/decal/remains/posi
 				)
 
+/obj/random/nukies_can_legal
+	name = "Random Legal Nukies Can"
+	desc = "This is a random can of (legal) Nukies Energy Drink."
+
+/obj/random/nukies_can_legal/item_to_spawn()
+	return pick(/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_peach,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_pear,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_cherry,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_melon,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_banana,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_rose,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_lemon,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_fruit,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_special)
+
+/obj/random/desatti_snacks
+	name = "Random Desatti Snacks"
+	desc = "This is a random Desatti Catering snack."
+
+/obj/random/desatti_snacks/item_to_spawn()
+	return pick(/obj/item/weapon/storage/box/jaffacake,
+				/obj/item/weapon/storage/box/winegum,
+				/obj/item/weapon/storage/box/saucer,
+				/obj/item/weapon/storage/box/shrimpsandbananas,
+				/obj/item/weapon/storage/box/rhubarbcustard,
+				/obj/item/weapon/storage/box/custardcream,
+				/obj/item/weapon/storage/box/bourbon,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/sausageroll,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/pasty,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/scotchegg,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/porkpie)
+
 /obj/random_multi/single_item/captains_spare_id
 	name = "Multi Point - Captain's Spare"
 	id = "Captain's spare id"
@@ -825,6 +857,12 @@
 				/obj/item/clothing/mask/breath,
 				/obj/structure/closet/crate/xion //XION SUIT
 			),
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/salvagecorp_shipbreaker,
+				/obj/item/clothing/head/helmet/space/void/salvagecorp_shipbreaker,
+				/obj/item/weapon/tank/jetpack/breaker,
+				/obj/structure/closet/crate/coyote_salvage //CSC SUIT
+			),
 			prob(10);list(
 				/obj/random/firstaid,
 				/obj/random/medical,
@@ -935,6 +973,24 @@
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
+			),
+			prob(5);list(
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/structure/closet/crate/nukies // NUKIES DRANKS
+			),
+			prob(5);list(
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/structure/closet/crate/desatti //DESATTI SNACKI
 			),
 			prob(2);list(
 				/obj/item/weapon/tank/phoron/pressurized,
@@ -1104,6 +1160,12 @@
 				/obj/item/clothing/mask/breath,
 				/obj/structure/closet/crate/xion //XION SUIT
 			),
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/salvagecorp_shipbreaker,
+				/obj/item/clothing/head/helmet/space/void/salvagecorp_shipbreaker,
+				/obj/item/weapon/tank/jetpack/breaker,
+				/obj/structure/closet/crate/coyote_salvage //CSC SUIT
+			),
 			prob(10);list(
 				/obj/random/firstaid,
 				/obj/random/medical,
@@ -1214,6 +1276,24 @@
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
+			),
+			prob(5);list(
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/structure/closet/crate/nukies // NUKIES DRANKS
+			),
+			prob(5);list(
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/structure/closet/crate/desatti //DESATTI SNACKI
 			),
 			prob(2);list(
 				/obj/item/weapon/tank/phoron/pressurized,
@@ -1786,6 +1866,12 @@
 				/obj/item/clothing/mask/breath,
 				/obj/structure/closet/crate/xion //XION SUIT
 			),
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/salvagecorp_shipbreaker,
+				/obj/item/clothing/head/helmet/space/void/salvagecorp_shipbreaker,
+				/obj/item/weapon/tank/jetpack/breaker,
+				/obj/structure/closet/crate/coyote_salvage //CSC SUIT
+			),
 			prob(10);list(
 				/obj/random/firstaid,
 				/obj/random/medical,
@@ -1888,6 +1974,24 @@
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
+			),
+			prob(5);list(
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/random/nukies_can_legal,
+				/obj/structure/closet/crate/nukies // NUKIES DRANKS
+			),
+			prob(5);list(
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/random/desatti_snacks,
+				/obj/structure/closet/crate/desatti //DESATTI SNACKI
 			),
 			prob(2);list(
 				/obj/item/weapon/tank/phoron/pressurized,
