@@ -1,0 +1,58 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"c" = (
+/obj/random/research_sample_type2,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/template_noop)
+"d" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/template_noop)
+"i" = (
+/obj/random/research_sample_type3,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/template_noop)
+"C" = (
+/obj/random/research_sample_type1,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/template_noop)
+"Z" = (
+/turf/simulated/mineral/ignore_mapgen/virgo2,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+Z
+Z
+Z
+a
+"}
+(2,1,1) = {"
+Z
+i
+d
+C
+Z
+"}
+(3,1,1) = {"
+Z
+d
+d
+d
+Z
+"}
+(4,1,1) = {"
+Z
+d
+c
+d
+Z
+"}
+(5,1,1) = {"
+a
+Z
+Z
+Z
+a
+"}

@@ -26,6 +26,8 @@
 #include "Epod3.dmm"
 #include "Epod4.dmm"
 #include "ButcherShack.dmm"
+#include "RareSample.dmm"
+#include "SamplePocket.dmm"
 #endif
 
 /datum/map_template/virgo2
@@ -55,6 +57,20 @@
 	name = "Rocky1"
 	desc = "DununanununanununuNAnana"
 	mappath = 'Rocky1.dmm'
+	allow_duplicates = TRUE
+	cost = 5
+
+/datum/map_template/virgo2/RareSample
+	name = "Rocky1"
+	desc = "Ooh, shiny!"	//a single rare sample, sitting in the open
+	mappath = 'RareSample.dmm'
+	allow_duplicates = TRUE
+	cost = 5
+
+/datum/map_template/virgo2/SamplePocket
+	name = "Sampleroid"
+	desc = "What's in the (rock)box?"	//one common/uncommon, one uncommon/rare, and one any grade
+	mappath = 'SamplePocket.dmm'
 	allow_duplicates = TRUE
 	cost = 5
 

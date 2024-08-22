@@ -38,6 +38,16 @@
 	mappath = 'guardedloot_hard.dmm'
 	cost = 15
 
+/datum/map_template/underdark/guardedsample_normal
+	name = "Underdark Guarded Sample Normal" //2x common-or-uncommon
+	mappath = 'guardedsample_normal.dmm'
+	cost = 10
+
+/datum/map_template/underdark/guardedsample_hard
+	name = "Underdark Guarded Sample Hard"	//uncommon-or-rare
+	mappath = 'guardedsample_hard.dmm'
+	cost = 15
+
 /datum/map_template/underdark/blaster
 	name = "Underdark Blaster"
 	mappath = 'blaster.dmm'
