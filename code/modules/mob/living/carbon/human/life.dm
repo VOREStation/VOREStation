@@ -12,31 +12,13 @@
 #define COLD_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 200K point
 #define COLD_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 120K point
 
-//Note that gas heat damage is only applied once every FOUR ticks.
-#define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
-#define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
-#define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
-
-#define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
-#define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
-#define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
-
-#define COLD_ALERT_SEVERITY_LOW         1 // Constants passed to the cold and heat alerts.
-#define COLD_ALERT_SEVERITY_MODERATE    2
-#define COLD_ALERT_SEVERITY_MAX         3
-#define ENVIRONMENT_COMFORT_MARKER_COLD 1
-
-#define HOT_ALERT_SEVERITY_LOW          1
-#define HOT_ALERT_SEVERITY_MODERATE     2
-#define HOT_ALERT_SEVERITY_MAX          3
-#define ENVIRONMENT_COMFORT_MARKER_HOT  2
-
 #define RADIATION_SPEED_COEFFICIENT 0.1
 #define HUMAN_COMBUSTION_TEMP 524 //524k is the sustained combustion temperature of human fat
 
 /mob/living/carbon/human
 	var/in_stasis = 0
 	var/heartbeat = 0
+	var/chemical_darksight = 0
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0
@@ -554,6 +536,11 @@
 		adjustOxyLoss(2)//If you are suiciding, you should die a little bit faster
 		suiciding--
 		return 0
+
+	if(wear_mask && (wear_mask.item_flags & INFINITE_AIR))
+		failed_last_breath = 0
+		adjustOxyLoss(-5)
+		return
 
 	if(does_not_breathe)
 		failed_last_breath = 0
@@ -1180,6 +1167,13 @@
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
 		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 	// VOREStation Edit End
+
+	if((CE_DARKSIGHT in chem_effects) && chemical_darksight == 0)
+		recalculate_vis()
+		chemical_darksight = 1
+	if(!(CE_DARKSIGHT in chem_effects) && chemical_darksight == 1)
+		recalculate_vis()
+		chemical_darksight = 0
 
 	// TODO: stomach and bloodstream organ.
 	if(!isSynthetic())
@@ -1983,6 +1977,8 @@
 			holder.icon_state = "-100" 	// X_X
 		else
 			holder.icon_state = RoundHealth((health-config.health_threshold_crit)/(getMaxHealth()-config.health_threshold_crit)*100)
+		if(block_hud)
+			holder.icon_state = "hudblank"
 		apply_hud(HEALTH_HUD, holder)
 
 	if (BITTEST(hud_updateflag, LIFE_HUD))
@@ -1993,6 +1989,8 @@
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
+		if(block_hud)
+			holder.icon_state = "hudblank"
 		apply_hud(LIFE_HUD, holder)
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
@@ -2024,6 +2022,9 @@
 				holder2.icon_state = "hudill"
 			else
 				holder2.icon_state = "hudhealthy"
+		if(block_hud)
+			holder.icon_state = "hudblank"
+			holder2.icon_state = "hudblank"
 
 		apply_hud(STATUS_HUD, holder)
 		apply_hud(STATUS_HUD_OOC, holder2)
@@ -2039,6 +2040,8 @@
 		else
 			holder.icon_state = "hudunknown"
 
+		if(block_hud)
+			holder.icon_state = "hudblank"
 		apply_hud(ID_HUD, holder)
 
 	if (BITTEST(hud_updateflag, WANTED_HUD))
@@ -2065,7 +2068,8 @@
 					else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
 						holder.icon_state = "hudreleased"
 						break
-
+		if(block_hud)
+			holder.icon_state = "hudblank"
 		apply_hud(WANTED_HUD, holder)
 
 	if (  BITTEST(hud_updateflag, IMPLOYAL_HUD) \
@@ -2147,3 +2151,14 @@
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS
+
+#undef HEAT_DAMAGE_LEVEL_1
+#undef HEAT_DAMAGE_LEVEL_2
+#undef HEAT_DAMAGE_LEVEL_3
+
+#undef COLD_DAMAGE_LEVEL_1
+#undef COLD_DAMAGE_LEVEL_2
+#undef COLD_DAMAGE_LEVEL_3
+
+#undef RADIATION_SPEED_COEFFICIENT
+#undef HUMAN_COMBUSTION_TEMP

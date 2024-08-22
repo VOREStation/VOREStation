@@ -307,3 +307,6 @@ S     - The scope the variable resides in. If it is null, a scope with the varia
 	//TODO: check for invalid name
 	S.variables["[name]"] = value
 
+#undef RETURNING
+#undef BREAKING
+#undef CONTINUING

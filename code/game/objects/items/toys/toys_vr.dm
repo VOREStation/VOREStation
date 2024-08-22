@@ -1151,3 +1151,28 @@
 /obj/item/weapon/toy/snowglobe/rascalspass
 	desc = "Depicts a nanotrasen facility on a temperate world."
 	icon_state = "smolrascalspass"
+
+//Monster bait for triggering vore interactions without being hostile
+
+/obj/item/weapon/toy/monster_bait
+	name = "bait toy"
+	desc = "A cute little fluffy wiggly worm toy dangling from the end of a stick. Be careful what you wave this in front of!"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "monster_bait"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/toy/monster_bait/afterattack(var/atom/A, var/mob/user)
+	var/mob/living/simple_mob/M = A
+	if(M.z != user.z || get_dist(user,M) > 1)
+		to_chat(user, "<span class='notice'>You need to stand right next to \the [M] to bait it.</span>")
+		return
+	if(!istype(M))
+		return
+	if(!M.vore_active)
+		to_chat(user, "<span class='notice'>\The [M] doesn't seem interested in \the [src].</span>")
+		return
+	if(M.stat)
+		to_chat(user, "<span class='notice'>\The [M] doesn't look like it's any condition to do that.</span>")
+		return
+	user.visible_message("<span class='danger'>\The [user] waves \the [src] in front of the [M]!</span>!")
+	M.PounceTarget(user,100)

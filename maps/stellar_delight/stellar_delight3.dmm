@@ -1194,7 +1194,7 @@
 /area/maintenance/stellardelight/deck3/starboardcent)
 "ed" = (
 /obj/structure/closet,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
 "eg" = (
@@ -4709,7 +4709,7 @@
 /area/stellardelight/deck3/exterior)
 "qM" = (
 /obj/structure/table/steel,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "qN" = (
@@ -6516,7 +6516,7 @@
 /area/stellardelight/deck3/starboarddock)
 "xE" = (
 /obj/structure/closet,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /obj/random/maintenance,
 /obj/random/maintenance/cargo,
 /obj/random/maintenance/cargo,

@@ -93,7 +93,7 @@
 	if(portal_type == "Weird Green")
 		portal_icon_selection = "type-b-portal"
 	if(portal_type == "Pulsing")
-		var/portal_subtype = tgui_alert(user, "Which subtype would you prefer?", "Subtype Selection", list("Blue","Red","Blue/Red Mix", "Yellow"))
+		var/portal_subtype = tgui_alert(user, "Which subtype would you prefer?", "Subtype Selection", list("Blue","Red","Blue/Red Mix", "Yellow", "White"))
 		if(portal_subtype == "Blue")
 			portal_icon_selection = "type-c-blue-portal"
 		if(portal_subtype == "Red")
@@ -102,6 +102,8 @@
 			portal_icon_selection = "type-c-mix-portal"
 		if(portal_subtype == "Yellow")
 			portal_icon_selection = "type-c-yellow-portal"
+		if(portal_subtype == "White")
+			portal_icon_selection = "type-c-white-portal"
 	return portal_icon_selection
 
 /obj/structure/portal_event/proc/teleport(atom/movable/M as mob|obj)

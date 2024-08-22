@@ -1131,6 +1131,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
 	},
+/obj/structure/sign/warning/cold{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
 "acb" = (
@@ -8297,6 +8300,9 @@
 	id_tag = "civ_airlock_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/structure/sign/warning/internals_required{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva/external)
 "aot" = (
@@ -9414,9 +9420,6 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
-	},
-/obj/machinery/newscaster{
-	pixel_x = 28
 	},
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva)
@@ -15763,6 +15766,9 @@
 /obj/structure/railing{
 	dir = 8
 	},
+/obj/structure/sign/warning/internals_required{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/lowernortheva)
 "aAC" = (
@@ -18510,28 +18516,18 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aFJ" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
+/obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/obj/effect/floor_decal/steeldecal/steel_decals_central1,
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Surface EVA"
 	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 8
+/obj/structure/sign/warning/cold{
+	pixel_y = -32
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/closet/hydrant{
-	pixel_x = -32
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hallway)
+/turf/simulated/floor/tiled/monotile,
+/area/storage/surface_eva)
 "aFK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -19745,6 +19741,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
+/obj/structure/closet/hydrant{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aHO" = (
@@ -20141,6 +20140,9 @@
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aIC" = (
@@ -20584,9 +20586,6 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/obj/machinery/camera/network/research{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	icon_state = "1-4"
 	},
@@ -20981,6 +20980,9 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/structure/sign/warning/cold{
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
@@ -29950,6 +29952,9 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/light,
+/obj/structure/sign/warning/internals_required{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/external)
 "bcV" = (
@@ -31184,6 +31189,13 @@
 /obj/item/weapon/mop,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
+"dPY" = (
+/obj/structure/table/rack,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/suit/storage/hooded/wintercoat/science,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/turf/simulated/floor/tiled/techfloor,
+/area/rnd/hallway)
 "dQn" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -36001,6 +36013,10 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
+"qYH" = (
+/obj/machinery/washing_machine,
+/turf/simulated/floor/tiled/techfloor,
+/area/rnd/hallway)
 "raS" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -42880,7 +42896,7 @@ aiA
 agU
 agU
 apc
-apS
+aFJ
 agU
 aqU
 aah
@@ -43762,10 +43778,10 @@ abN
 xgQ
 ofS
 awn
-aah
-aah
-aah
-aah
+awn
+awn
+awn
+awn
 aKL
 aLn
 aLY
@@ -43904,9 +43920,9 @@ abN
 lMf
 aGX
 awn
-awn
-awn
-awn
+qYH
+dPY
+dPY
 awn
 aKL
 aLo
@@ -44046,7 +44062,7 @@ abN
 lwN
 icB
 aFI
-aFJ
+aFK
 aFK
 aJr
 aJX

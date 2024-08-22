@@ -49,7 +49,13 @@ var/global/list/image/splatter_cache=list()
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
-	addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount+1))
+
+//VOREstation edit - Moved timer call to Init, and made it not call on mapload
+/obj/effect/decal/cleanable/blood/Initialize(var/mapload, var/_age)
+	. = ..()
+	if(!mapload)
+		addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount+1))
+//VOREstation edit end
 
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = get_random_colour(1)
@@ -193,7 +199,6 @@ var/global/list/image/splatter_cache=list()
 
 	icon = blood
 	cut_overlays()
-	add_overlay(janhud)
 	add_overlay(giblets)
 
 /obj/effect/decal/cleanable/blood/gibs/up
@@ -252,3 +257,5 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/mapped/Destroy()
 	virus2.Cut()
 	return ..()
+
+#undef DRYING_TIME

@@ -138,7 +138,7 @@
 	else
 		for(var/datum/data/record/R as anything in sortRecord(data_core.general))
 			if(R)
-				records += list(list(Name = R.fields["name"], "ref" = "\ref[R]"))
+				records += list(list(name = R.fields["name"], "ref" = "\ref[R]"))
 		data["recordsList"] = records
 		data["records"] = null
 		return null
@@ -229,7 +229,7 @@
 	for(var/datum/supply_order/SO as anything in SSsupply.shoppinglist)
 
 		supplyOrderCount++
-		supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.ordered_by, "Comment" = html_encode(SO.comment))
+		supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.approved_by, "Comment" = html_encode(SO.comment))
 
 	supplyData["approved"] = supplyOrderData
 	supplyData["approved_count"] = supplyOrderCount

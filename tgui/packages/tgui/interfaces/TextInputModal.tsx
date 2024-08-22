@@ -1,4 +1,4 @@
-import { KEY } from 'common/keys';
+import { isEscape, KEY } from 'common/keys';
 import { KeyboardEvent, useState } from 'react';
 
 import { useBackend } from '../backend';
@@ -22,7 +22,7 @@ export const sanitizeMultiline = (toSanitize: string) => {
 };
 
 export const removeAllSkiplines = (toSanitize: string) => {
-  return toSanitize.replace(/[\r\n]+/, '');
+  return toSanitize.replace(/[\r\n]+/, ' ');
 };
 
 export const TextInputModal = (props) => {
@@ -67,7 +67,7 @@ export const TextInputModal = (props) => {
           ) {
             act('submit', { entry: input });
           }
-          if (event.key === KEY.Escape) {
+          if (isEscape(event.key)) {
             act('cancel');
           }
         }}

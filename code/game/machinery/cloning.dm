@@ -23,7 +23,6 @@
 			break
 	return selected
 
-#define CLONE_BIOMASS 30 //VOREstation Edit
 #define MINIMUM_HEAL_LEVEL 40
 
 /obj/machinery/clonepod
@@ -478,6 +477,8 @@
 		if(!healthstring)
 			healthstring = "ERROR"
 		return healthstring
+
+#undef MINIMUM_HEAL_LEVEL
 
 //Disk stuff.
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.

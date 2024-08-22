@@ -415,3 +415,33 @@
 /datum/gear/head/giantbow/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/head/bows
+	display_name = "hair bow selection, colorable"
+	path = /obj/item/clothing/head/bow
+
+/datum/gear/head/bows/New()
+	..()
+	var/list/bows = list(
+	"large bow"=/obj/item/clothing/head/bow,
+	"small bow"=/obj/item/clothing/head/bow/small,
+	"back bow"=/obj/item/clothing/head/bow/back,
+	"sweet bow"=/obj/item/clothing/head/bow/sweet
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(bows), gear_tweak_free_color_choice)
+
+/datum/gear/head/pilot
+	display_name = "pilot helmets selection"
+	description = "Your choice of four hard-wearing head-protecting helmets for pilots."
+	path = /obj/item/clothing/head/pilot_vr
+	allowed_roles = list("Pilot", "Talon Pilot")
+
+/datum/gear/head/pilot/New()
+	..()
+	var/list/selector_uniforms = list(
+		"pilot helmet, standard"=/obj/item/clothing/head/pilot_vr,
+		"pilot helmet, alt"=/obj/item/clothing/head/pilot_vr/alt,
+		"pilot helmet, ITV Talon"=/obj/item/clothing/head/pilot_vr/talon,
+		"pilot helmet, major bill's transport"=/obj/item/clothing/head/pilot_vr/mbill
+	)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))

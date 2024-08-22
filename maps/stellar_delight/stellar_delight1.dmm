@@ -15656,13 +15656,6 @@
 /turf/simulated/floor,
 /area/stellardelight/deck1/explobriefing)
 "Hf" = (
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	dir = 4;
-	door_color = "#333333";
-	name = "Auxiliary EVA Equipment Room";
-	req_one_access = list(18,19,43);
-	stripe_color = "#5a19a8"
-	},
 /obj/structure/cable/green{
 	color = "#42038a";
 	icon_state = "1-2"
@@ -15671,6 +15664,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/angled_bay/hatch{
+	door_color = "#333333";
+	name = "Auxiliary EVA Equipment";
+	req_one_access = list(18,19,43);
+	stripe_color = "#5a19a8"
+	},
 /turf/simulated/floor,
 /area/stellardelight/deck1/exploequipment)
 "Hg" = (

@@ -480,3 +480,8 @@ log transactions
 		human_user.put_in_hands(E)
 	E.worth = sum
 	E.owner_name = authenticated_account.owner_name
+
+#undef NO_SCREEN
+#undef CHANGE_SECURITY_LEVEL
+#undef TRANSFER_FUNDS
+#undef VIEW_TRANSACTION_LOGS

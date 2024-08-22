@@ -17,7 +17,7 @@
 	/// Length of time (ds) to animate the door transform
 	var/door_anim_time = 2.0
 	/// Amount to 'squish' the full width of the door by
-	var/door_anim_squish = 0.30
+	var/door_anim_squish = 0.730
 	/// Virtual angle at which the door is opened to (136 by default, so not a full 180)
 	var/door_anim_angle = 136
 	/// Offset for the door hinge location from centerline
@@ -1810,4 +1810,136 @@
 		"stripe_vertical_left_full" = COLOR_BEASTY_BROWN,
 		"stripe_vertical_right_full" = COLOR_BEASTY_BROWN,
 		"cargo_upper" = COLOR_CLOSET_GOLD
+	)
+
+/decl/closet_appearance/wall_double/autolok
+	color = COLOR_GRAY20
+	decals = null
+	extra_decals = list(
+		"stripe_outer" = COLOR_BLUE_GRAY,
+		"stripe_inner" = COLOR_OFF_WHITE
+	)
+
+//TALON
+
+/decl/closet_appearance/secure_closet/talon
+	color = COLOR_GRAY80
+	decals = list(
+		"lower_holes"
+	)
+
+/decl/closet_appearance/secure_closet/talon/engineer
+	extra_decals = list(
+		"stripes_horizontal" = COLOR_BEASTY_BROWN
+	)
+
+/decl/closet_appearance/secure_closet/talon/guard
+	extra_decals = list(
+		"stripes_horizontal" = COLOR_NT_RED
+	)
+
+/decl/closet_appearance/secure_closet/talon/pilot
+	extra_decals = list(
+		"stripes_horizontal" = COLOR_PURPLE
+	)
+
+/decl/closet_appearance/secure_closet/talon/doctor
+	extra_decals = list(
+		"stripes_horizontal" = COLOR_SKY_BLUE
+	)
+
+/decl/closet_appearance/secure_closet/talon/miner
+	extra_decals = list(
+		"stripes_horizontal" = COLOR_BEASTY_BROWN
+	)
+
+/decl/closet_appearance/secure_closet/talon/captain
+	extra_decals = list(
+		"stripes_horizontal" = COLOR_GOLD
+	)
+
+//END TALON
+
+/decl/closet_appearance/secure_closet/nanotrasen
+	color = COLOR_BOTTLE_GREEN
+	decals = list(
+		"lower_holes"
+	)
+
+/decl/closet_appearance/secure_closet/nanotrasen/security
+	extra_decals = list(
+		"stripe_vertical_mid_full" = COLOR_NAVY_BLUE,
+		"nanotrasen" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/secure_closet/nanotrasen/warden
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_NAVY_BLUE,
+		"stripe_vertical_right_full" = COLOR_NAVY_BLUE,
+		"nanotrasen" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/secure_closet/nanotrasen/commander
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_NAVY_BLUE,
+		"stripe_vertical_mid_full" = COLOR_GOLD,
+		"stripe_vertical_right_full" = COLOR_NAVY_BLUE,
+		"nanotrasen" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/secure_closet/expedition
+	color = COLOR_OLIVE
+	decals = list(
+		"lower_side_vent"
+	)
+
+/decl/closet_appearance/secure_closet/expedition/pilot
+	extra_decals = list(
+		"stripe_vertical_mid_full" = COLOR_DARK_ORANGE,
+		"exped" = COLOR_DARK_ORANGE
+	)
+
+/decl/closet_appearance/secure_closet/expedition/sar
+	extra_decals = list(
+		"stripe_vertical_mid_full" = COLOR_SAN_MARINO_BLUE,
+		"exped" = COLOR_SAN_MARINO_BLUE
+	)
+
+/decl/closet_appearance/secure_closet/expedition/explorer
+	extra_decals = list(
+		"stripe_vertical_mid_full" = COLOR_GRAY40,
+		"exped" = COLOR_GRAY40
+	)
+
+/decl/closet_appearance/secure_closet/expedition/pathfinder
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_GRAY20,
+		"stripe_vertical_right_full" = COLOR_GRAY20,
+		"exped" = COLOR_GRAY20
+	)
+
+/decl/closet_appearance/crate/fennec
+	base_icon =  'icons/obj/closets/bases/fencrate_vr.dmi'
+	decal_icon = 'icons/obj/closets/decals/crate.dmi'
+	color = "#ffffff"
+
+/decl/closet_appearance/crate/coyotesalvage
+	color = COLOR_GOLD
+	extra_decals = list(
+		"full_lid" = COLOR_BLACK,
+		"crate_stripe_left" = COLOR_WALL_GUNMETAL,
+		"crate_stripe_right" = COLOR_WALL_GUNMETAL
+	)
+
+/decl/closet_appearance/crate/nukies
+	color = COLOR_NUKIES_GREEN
+	extra_decals = list(
+		"lid_stripes" = COLOR_NUKIES_YELLOW,
+		"hazard" = COLOR_NUKIES_YELLOW
+	)
+
+/decl/closet_appearance/crate/desatti
+	color = COLOR_DESATTI_PRPLOW
+	extra_decals = list(
+		"lid_stripes" = COLOR_DESATTI_PRPHI
 	)

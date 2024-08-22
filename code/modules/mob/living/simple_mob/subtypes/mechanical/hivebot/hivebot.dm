@@ -1,7 +1,3 @@
-// Hivebots are tuned towards how many default lasers are needed to kill them.
-// As such, if laser damage is ever changed, you should change this define.
-#define LASERS_TO_KILL * 40
-
 /mob/living/simple_mob/mechanical/hivebot
 	name = "hivebot"
 	desc = "A robot. It appears to be somewhat resilient, but lacks a true weapon."

@@ -5,6 +5,7 @@
 	display_name = "DEPT - BLANK's Uniforms"
 	description = "Select from a range of outfits available to all BLANK personnel."
 	allowed_roles = list("")
+	show_roles = FALSE
 	path =
 	slot = slot_w_uniform
 	sort_category = "Uniforms"
@@ -21,8 +22,9 @@
 
 /datum/gear/uniform/site_manager_selector
 	display_name = "Command - Site Manager's Uniforms"
-	description = "Select from a range of outfits available to all Site Managers."
-	allowed_roles = list("Site Manager")
+	description = "Select from a range of outfits available to all Site Managers, and Talon Captains."
+	allowed_roles = list("Site Manager","Talon Captain")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_captain
 	sort_category = "Uniforms"
 	cost = 1
@@ -52,6 +54,7 @@
 	display_name = "Command - Head of Personnel's Uniforms"
 	description = "Select from a range of outfits available to all Heads of Personnel."
 	allowed_roles = list("Head of Personnel")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_hop
 	sort_category = "Uniforms"
 	cost = 1
@@ -81,8 +84,9 @@
 
 /datum/gear/uniform/pilot_uniform_selector
 	display_name = "Civilian - Pilot's Uniforms"
-	description = "Select from a range of outfits available to all Pilots."
-	allowed_roles = list("Pilot")
+	description = "Select from a range of outfits available to all Pilots (including those on the Talon)."
+	allowed_roles = list("Pilot","Talon Pilot")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_pilot
 	sort_category = "Uniforms"
 	cost = 1
@@ -90,6 +94,8 @@
 /datum/gear/uniform/pilot_uniform_selector/New()
 	..()
 	var/list/selector_uniforms = list(
+		"standard pilot's uniform"=/obj/item/clothing/under/rank/pilot1/no_webbing,
+		"navy pilot's uniform"=/obj/item/clothing/under/rank/pilot2,
 		"TG&C jumpsuit"=/obj/item/clothing/under/rank/neo_pilot,
 		"TG&C jumpskirt"=/obj/item/clothing/under/rank/neo_pilot_skirt,
 		"Major Bill's flightsuit"=/obj/item/clothing/under/mbill_flight,
@@ -101,6 +107,7 @@
 	display_name = "Civilian - Janitor's Uniforms"
 	description = "Select from a range of outfits available to all Janitorial personnel."
 	allowed_roles = list("Janitor")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_janitor
 	sort_category = "Uniforms"
 	cost = 1
@@ -183,7 +190,8 @@
 /datum/gear/uniform/security_selector
 	display_name = "Security - Basic Uniforms"
 	description = "Select from a range of outfits available to all Security personnel."
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer","Talon Guard")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/security/corp
 	sort_category = "Uniforms"
 	cost = 1
@@ -229,6 +237,7 @@
 	display_name = "Security - Warden's Uniforms"
 	description = "Select from a range of outfits available to Wardens."
 	allowed_roles = list("Head of Security","Warden")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/warden/corp
 	sort_category = "Uniforms"
 	cost = 1
@@ -250,6 +259,7 @@
 	display_name = "Security - Detective's Uniforms"
 	description = "Select from a range of outfits available to all Detectives."
 	allowed_roles = list("Head of Security","Detective")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/det/corporate
 	sort_category = "Uniforms"
 	cost = 1
@@ -266,6 +276,7 @@
 	display_name = "Security - Head's Uniforms"
 	description = "Select from a range of outfits available to all Heads of Security."
 	allowed_roles = list("Head of Security")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/head_of_security/corp
 	sort_category = "Uniforms"
 	cost = 1
@@ -305,6 +316,7 @@
 	display_name = "Cargo - Quartermaster's Uniforms"
 	description = "Select from a range of outfits available to all Quartermasters."
 	allowed_roles = list("Quartermaster")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/cargo/jeans
 	sort_category = "Uniforms"
 	cost = 1
@@ -336,6 +348,7 @@
 	display_name = "Cargo - Basic Uniforms"
 	description = "Select from a range of outfits available to all Cargo personnel."
 	allowed_roles = list("Cargo Technician","Shaft Miner","Quartermaster")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/cargotech/jeans
 	sort_category = "Uniforms"
 	cost = 1
@@ -363,7 +376,8 @@
 /datum/gear/uniform/cargo_miner_selector
 	display_name = "Cargo - Miner's Uniforms"
 	description = "Select from a range of outfits available to all Mining personnel."
-	allowed_roles = list("Shaft Miner","Quartermaster")
+	allowed_roles = list("Shaft Miner","Quartermaster","Talon Miner")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_miner
 	sort_category = "Uniforms"
 	cost = 1
@@ -382,6 +396,7 @@
 	display_name = "Engineering - Chief Engineer's Uniforms"
 	description = "Select from a range of outfits available to all Chief Engineers."
 	allowed_roles = list("Chief Engineer")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_chiefengi
 	sort_category = "Uniforms"
 	cost = 1
@@ -405,7 +420,8 @@
 /datum/gear/uniform/engineer_selector
 	display_name = "Engineering - Basic Uniforms"
 	description = "Select from a range of outfits available to all Engineering personnel."
-	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician")
+	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician","Talon Engineer")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_engi
 	sort_category = "Uniforms"
 	cost = 1
@@ -433,6 +449,7 @@
 	display_name = "Engineering - Atmos Tech's Uniforms"
 	description = "Select from a range of outfits available to all Atmospherics Technicians."
 	allowed_roles = list("Chief Engineer","Atmospheric Technician")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/atmospheric_technician/skirt
 	sort_category = "Uniforms"
 	cost = 1
@@ -451,7 +468,8 @@
 /datum/gear/uniform/medical_selector
 	display_name = "Medical - Basic Uniforms"
 	description = "Select from a range of outfits available to all Medical personnel."
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Talon Doctor")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_med
 	sort_category = "Uniforms"
 	cost = 1
@@ -484,6 +502,7 @@
 	display_name = "Medical - Chemist's Uniforms"
 	description = "Select from a range of outfits available to all Chemists."
 	allowed_roles = list("Chief Medical Officer","Chemist")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_chem
 	sort_category = "Uniforms"
 	cost = 1
@@ -502,7 +521,8 @@
 /datum/gear/uniform/paramedic_selector
 	display_name = "Medical - Paramedic's Uniforms"
 	description = "Select from a range of outfits available to all Paramedics."
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic","Talon Doctor")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/paramedunidark
 	sort_category = "Uniforms"
 	cost = 1
@@ -525,6 +545,7 @@
 	display_name = "Medical - Chief Medical Officer's Uniforms"
 	description = "Select from a range of outfits available to all Chief Medical Officers."
 	allowed_roles = list("Chief Medical Officer")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_cmo
 	sort_category = "Uniforms"
 	cost = 2
@@ -553,6 +574,7 @@
 	display_name = "Science - Research Director's Uniforms"
 	description = "Select from a range of outfits available to all Research Directors."
 	allowed_roles = list("Research Director")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_rd_suit
 	sort_category = "Uniforms"
 	cost = 1
@@ -578,6 +600,7 @@
 	display_name = "Science - Basic Uniforms"
 	description = "Select from a range of outfits available to all Science personnel."
 	allowed_roles = list("Scientist","Research Director","Roboticist","Xenobiologist","Xenobotanist")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_science
 	sort_category = "Uniforms"
 	cost = 1
@@ -602,6 +625,7 @@
 	display_name = "Science - Roboticist's Uniforms"
 	description = "Select from a range of outfits available to all Roboticists."
 	allowed_roles = list("Research Director","Roboticist")
+	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_robo
 	sort_category = "Uniforms"
 	cost = 1

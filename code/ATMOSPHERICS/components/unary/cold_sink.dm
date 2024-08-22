@@ -87,7 +87,7 @@
 /obj/machinery/atmospherics/unary/freezer/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	. = TRUE
 	switch(action)
 		if("toggleStatus")
@@ -173,3 +173,5 @@
 	. = ..()
 	if(panel_open)
 		. += "The maintenance hatch is open."
+
+#undef FREEZER_PERF_MULT

@@ -16,6 +16,7 @@ aruis - Protean
 aruis - Xenochimera
 ashburndracki - Protean
 athena14 - Xenochimera
+athena14 - Protean
 auraribbon - Black-Eyed Shadekin
 azmodan412 - Xenochimera
 beyondmylife - Protean
@@ -36,6 +37,7 @@ comradenitro - Protean
 coolcrow420 - Black-Eyed Shadekin
 crossexonar - Protean
 cryohydra - Protean
+ctrz - Protean
 cubejackal - Black-Eyed Shadekin
 detectivegoogle - Protean
 digi5 - Protean
@@ -155,6 +157,7 @@ seagha - Vox
 seiga - Vox
 selter - Protean
 sepulchre - Vox
+sharplight - Protean
 shirosenshi - Xenochimera
 silvertalismen - Diona
 silvertalismen - Vox

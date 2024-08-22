@@ -268,6 +268,7 @@
 		cell["slot"] = cell_index + 1
 		cell["used"] = 1
 		cell["percentage"] = round(C.percent(), 0.01)
+		cell["name"] = C.name
 		cell["id"] = C.c_uid
 		cell_index++
 		cells += list(cell)
@@ -320,3 +321,10 @@
 			RefreshParts()
 			update_maxcharge()
 			return TRUE
+
+#undef PSU_OFFLINE
+#undef PSU_OUTPUT
+#undef PSU_INPUT
+#undef PSU_AUTO
+
+#undef PSU_MAXCELLS

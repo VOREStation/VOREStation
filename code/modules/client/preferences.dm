@@ -1,5 +1,3 @@
-#define SAVE_RESET -1
-
 var/list/preferences_datums = list()
 
 /datum/preferences
@@ -34,7 +32,6 @@ var/list/preferences_datums = list()
 	var/obfuscate_key = FALSE
 	var/obfuscate_job = FALSE
 	var/chat_timestamp = FALSE
-	var/throwmode_loud = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
@@ -292,7 +289,7 @@ var/list/preferences_datums = list()
 	popup.open(FALSE) // Skip registring onclose on the browser pane
 	onclose(user, "preferences_window", src) // We want to register on the window itself
 
-/datum/preferences/proc/update_character_previews(mutable_appearance/MA)
+/datum/preferences/proc/update_character_previews(var/mob/living/carbon/human/mannequin)
 	if(!client)
 		return
 
@@ -321,8 +318,11 @@ var/list/preferences_datums = list()
 			O.pref = src
 			LAZYSET(char_render_holders, "[D]", O)
 			client.screen |= O
+		mannequin.set_dir(D)
+		mannequin.update_tail_showing()
+		mannequin.ImmediateOverlayUpdate()
+		var/mutable_appearance/MA = new(mannequin)
 		O.appearance = MA
-		O.dir = D
 		O.screen_loc = preview_screen_locs["[D]"]
 
 /datum/preferences/proc/show_character_previews()

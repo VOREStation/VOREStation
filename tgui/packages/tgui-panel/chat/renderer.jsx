@@ -6,7 +6,7 @@
 
 import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { createLogger } from 'tgui/logging';
 
 import { Tooltip } from '../../tgui/components';
@@ -86,6 +86,11 @@ const interleaveMessage = (node, interleave, color) => {
     node.removeAttribute('display');
   }
   return node;
+};
+
+const stripNewLineFlood = (text) => {
+  text = text.replace(/((\n)\2{2})\2+/g, '$1');
+  return text;
 };
 
 const createReconnectedNode = () => {
@@ -212,7 +217,7 @@ class ChatRenderer {
     // Find scrollable parent
     this.scrollNode = findNearestScrollableParent(this.rootNode);
     this.scrollNode.addEventListener('scroll', this.handleScroll);
-    setImmediate(() => {
+    setTimeout(() => {
       this.scrollToBottom();
     });
     // Flush the queue
@@ -507,12 +512,14 @@ class ChatRenderer {
         node = createMessageNode();
         // Payload is plain text
         if (message.text) {
+          message.text = stripNewLineFlood(message.text); // Do not allow more than 3 new lines in a row
           node.textContent = this.prependTimestamps
             ? getChatTimestamp(message) + message.text
             : message.text;
         }
         // Payload is HTML
         else if (message.html) {
+          message.html = stripNewLineFlood(message.html); // Do not allow more than 3 new lines in a row
           node.innerHTML = this.prependTimestamps
             ? getChatTimestamp(message) + message.html
             : message.html;
@@ -553,8 +560,11 @@ class ChatRenderer {
             childNode.removeChild(childNode.firstChild);
           }
           const Element = TGUI_CHAT_COMPONENTS[targetName];
+
+          const reactRoot = createRoot(childNode);
+
           /* eslint-disable react/no-danger */
-          render(
+          reactRoot.render(
             <Element {...outputProps}>
               <span dangerouslySetInnerHTML={oldHtml} />
             </Element>,
@@ -603,15 +613,9 @@ class ChatRenderer {
       message.node = node;
       // Query all possible selectors to find out the message type
       if (!message.type) {
-        // IE8: Does not support querySelector on elements that
-        // are not yet in the document.
-
-        const typeDef =
-          !Byond.IS_LTE_IE8 &&
-          MESSAGE_TYPES.find(
-            (typeDef) =>
-              typeDef.selector && node.querySelector(typeDef.selector),
-          );
+        const typeDef = MESSAGE_TYPES.find(
+          (typeDef) => typeDef.selector && node.querySelector(typeDef.selector),
+        );
         message.type = typeDef?.type || MESSAGE_TYPE_UNKNOWN;
       }
       updateMessageBadge(message);
@@ -669,7 +673,7 @@ class ChatRenderer {
         this.rootNode.appendChild(fragment);
       }
       if (this.scrollTracking) {
-        setImmediate(() => this.scrollToBottom());
+        setTimeout(() => this.scrollToBottom());
       }
     }
     // Notify listeners that we have processed the batch
@@ -743,10 +747,6 @@ class ChatRenderer {
   }
 
   saveToDisk(logLineCount, startLine = 0, endLine = 0) {
-    // Allow only on IE11
-    if (Byond.IS_LTE_IE10) {
-      return;
-    }
     // Compile currently loaded stylesheets as CSS text
     let cssText = '';
     const styleSheets = document.styleSheets;

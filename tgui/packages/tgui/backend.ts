@@ -185,7 +185,7 @@ export const backendMiddleware = (store) => {
       Byond.winset(Byond.windowId, {
         'is-visible': false,
       });
-      setImmediate(() => focusMap());
+      setTimeout(() => focusMap());
     }
 
     if (type === 'backend/update') {
@@ -215,7 +215,7 @@ export const backendMiddleware = (store) => {
       setupDrag();
       // We schedule this for the next tick here because resizing and unhiding
       // during the same tick will flash with a white background.
-      setImmediate(() => {
+      setTimeout(() => {
         perf.mark('resume/start');
         // Doublecheck if we are not re-suspended.
         const { suspended } = selectBackend(store.getState());
@@ -262,6 +262,8 @@ type BackendState<TData> = {
     status: number;
     interface: string;
     refreshing: boolean;
+    map: string; // Vorestation Add
+    mapZLevel: number; // Vorestation Add
     window: {
       key: string;
       size: [number, number];
@@ -282,10 +284,6 @@ type BackendState<TData> = {
   shared: Record<string, any>;
   suspending: boolean;
   suspended: boolean;
-  debug?: {
-    debugLayout: boolean;
-    kitchenSink: boolean;
-  };
 };
 
 /**

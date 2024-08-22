@@ -37,6 +37,7 @@ Notes:
 	var/showing = 0
 	var/queueHide = 0
 	var/init = 0
+	var/atom/last_target
 
 
 /datum/tooltip/New(client/C)
@@ -50,7 +51,15 @@ Notes:
 
 /datum/tooltip/proc/show(atom/movable/thing, params = null, title = null, content = null, theme = "default", special = "none")
 	if (!thing || !params || (!title && !content) || !owner || !isnum(world.icon_size))
-		return 0
+		return FALSE
+
+	if (!isnull(last_target))
+		UnregisterSignal(last_target, COMSIG_PARENT_QDELETING)
+
+	RegisterSignal(thing, COMSIG_PARENT_QDELETING, PROC_REF(on_target_qdel))
+
+	last_target = thing
+
 	if (!init)
 		//Initialize some vars
 		init = 1
@@ -71,8 +80,6 @@ Notes:
 	title = replacetext(title, "\improper", "")
 
 	//Make our dumb param object
-	if(params[1] != "i") //Byond Bug: http://www.byond.com/forum/?post=2352648
-		params = "icon-x=16;icon-y=16;[params]" //Put in some placeholders
 	params = {"{ "cursor": "[params]", "screenLoc": "[thing.screen_loc]" }"}
 
 	//Send stuff to the tooltip
@@ -84,41 +91,48 @@ Notes:
 	if (queueHide)
 		hide()
 
-	return 1
+	return TRUE
 
 
 /datum/tooltip/proc/hide()
+	queueHide = showing ? TRUE : FALSE
+
 	if (queueHide)
-		addtimer(CALLBACK(src, PROC_REF(do_hide)), 1)
+		addtimer(CALLBACK(src, PROC_REF(do_hide)), 0.1 SECONDS)
 	else
 		do_hide()
 
-	queueHide = showing ? TRUE : FALSE
-
 	return TRUE
+
+/datum/tooltip/proc/on_target_qdel()
+	SIGNAL_HANDLER
+
+	INVOKE_ASYNC(src, PROC_REF(hide))
+	last_target = null
 
 /datum/tooltip/proc/do_hide()
 	winshow(owner, control, FALSE)
 
-/* TG SPECIFIC CODE */
-
+/datum/tooltip/Destroy(force)
+	last_target = null
+	return ..()
 
 //Open a tooltip for user, at a location based on params
 //Theme is a CSS class in tooltip.html, by default this wrapper chooses a CSS class based on the user's UI_style (Midnight, Plasmafire, Retro, etc)
 //Includes sanity.checks
 /proc/openToolTip(mob/user = null, atom/movable/tip_src = null, params = null, title = "", content = "", theme = "")
-	if(istype(user))
-		if(user.client && user.client.tooltips)
-			if(!theme && user.client.prefs && user.client.prefs.tooltipstyle)
-				theme = lowertext(user.client.prefs.tooltipstyle)
-			if(!theme)
-				theme = "midnight"
-			user.client.tooltips.show(tip_src, params, title, content, theme)
-
+	if(!istype(user) || !user.client?.tooltips)
+		return
+	var/ui_style = user.client?.prefs?.tooltipstyle
+	if(!theme && ui_style)
+		theme = lowertext(ui_style)
+	if(!theme)
+		theme = "midnight"
+	user.client.tooltips.show(tip_src, params, title, content, theme)
 
 //Arbitrarily close a user's tooltip
 //Includes sanity checks.
 /proc/closeToolTip(mob/user)
-	if(istype(user))
-		if(user.client && user.client.tooltips)
-			user.client.tooltips.hide()
+	if(!istype(user) || !user.client?.tooltips)
+		return
+	user.client.tooltips.hide()

@@ -6,11 +6,11 @@ import { NtosWindow } from '../layouts';
 import { IdentificationComputerRegions } from './IdentificationComputer';
 
 type Data = {
-  message: string;
+  message: string | null;
   running: BooleanLike;
   rate: number;
   factor: number;
-  regions: [];
+  regions: string[];
 };
 
 export const NtosAccessDecrypter = (props) => {

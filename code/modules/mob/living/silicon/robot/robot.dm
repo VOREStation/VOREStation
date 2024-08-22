@@ -427,7 +427,7 @@
 	set category = "Robot Commands"
 
 	if(custom_name)
-		to_chat(usr, "You can't pick another custom name. Go ask for a name change.")
+		to_chat(usr, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
 		return 0
 
 	spawn(0)
@@ -836,7 +836,7 @@
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	module.Destroy()
+	qdel(module)
 	module = null
 	updatename("Default")
 	has_recoloured = FALSE
@@ -970,6 +970,8 @@
 		return
 
 	cut_overlays()
+	add_overlay(active_thinking_indicator)
+	add_overlay(active_typing_indicator)
 
 	icon			= sprite_datum.sprite_icon
 	icon_state		= sprite_datum.sprite_icon_state
@@ -1704,3 +1706,5 @@
 
 /mob/living/silicon/robot/proc/has_upgrade(var/given_type)
 	return (has_basic_upgrade(given_type) || has_advanced_upgrade(given_type) || has_restricted_upgrade(given_type) || has_no_prod_upgrade(given_type))
+
+#undef CYBORG_POWER_USAGE_MULTIPLIER

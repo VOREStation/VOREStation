@@ -5,7 +5,8 @@
  */
 
 import { useBackend } from './backend';
-import { Icon, Section, Stack } from './components';
+import { useDebug } from './debug';
+import { LoadingScreen } from './interfaces/common/LoadingToolbox';
 import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces');
@@ -44,14 +45,7 @@ const RefreshingWindow = () => {
   return (
     <Window title="Loading">
       <Window.Content>
-        <Section fill>
-          <Stack align="center" fill justify="center" vertical>
-            <Stack.Item>
-              <Icon color="blue" name="toolbox" spin size={4} />
-            </Stack.Item>
-            <Stack.Item>Please wait...</Stack.Item>
-          </Stack>
-        </Section>
+        <LoadingScreen />
       </Window.Content>
     </Window>
   );
@@ -59,7 +53,9 @@ const RefreshingWindow = () => {
 
 // Get the component for the current route
 export const getRoutedComponent = () => {
-  const { suspended, config, debug } = useBackend();
+  const { suspended, config } = useBackend();
+  const { kitchenSink = false } = useDebug();
+
   if (suspended) {
     return SuspendedWindow;
   }
@@ -68,10 +64,11 @@ export const getRoutedComponent = () => {
   }
   if (process.env.NODE_ENV !== 'production') {
     // Show a kitchen sink
-    if (debug?.kitchenSink) {
+    if (kitchenSink) {
       return require('./debug').KitchenSink;
     }
   }
+
   const name = config?.interface;
   const interfacePathBuilders = [
     (name: string) => `./${name}.tsx`,

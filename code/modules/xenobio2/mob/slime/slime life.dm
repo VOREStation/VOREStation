@@ -53,3 +53,6 @@ Slime specific life events go here.
 		return 0 //Everything worked okay
 
 	return 	//xeno/Life() returned 0.
+
+#undef HAPPYLEVEL
+#undef ANGRYLEVEL

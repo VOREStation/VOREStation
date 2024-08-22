@@ -135,27 +135,26 @@
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Shaft miner equipment"
 	access = access_mining
-/* //VOREStation Edit - Pointless on Tether.
+
+/* //No longer supported on our current maps, as it requires specialized dropoff beacons and the pathfinding doesn't work well on multi-z
+//plus we have the destination tagger
 /datum/supply_pack/supply/mule
 	name = "Mulebot Crate"
 	contains = list()
 	cost = 20
 	containertype = /obj/structure/largecrate/animal/mulebot
 	containername = "Mulebot Crate"
-*/ //VOREStation Edit
+*/
+
 /datum/supply_pack/supply/cargotrain
 	name = "Cargo Train Tug"
 	contains = list(/obj/vehicle/train/engine)
 	cost = 35
-	containertype = /obj/structure/closet/crate/large/xion
-	containername = "Cargo Train Tug Crate"
 
 /datum/supply_pack/supply/cargotrailer
 	name = "Cargo Train Trolley"
 	contains = list(/obj/vehicle/train/trolley)
 	cost = 15
-	containertype = /obj/structure/closet/crate/large/xion
-	containername = "Cargo Train Trolley Crate"
 
 /datum/supply_pack/explorergear
 	name="Away Team gear"
@@ -176,6 +175,7 @@
 					/obj/item/weapon/material/knife/tacknife/survival,
 					/obj/item/weapon/material/knife/machete,
 			 		/obj/item/clothing/accessory/holster/machete,
+					/obj/item/clothing/gloves/watch/survival
 					)
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
@@ -199,9 +199,46 @@
 					/obj/item/weapon/material/knife/tacknife/survival,
 					/obj/item/clothing/head/pilot_vr,
 					/obj/item/clothing/under/rank/pilot1,
-					/obj/item/clothing/suit/storage/toggle/bomber/pilot
+					/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked,
+					/obj/item/clothing/gloves/watch/survival
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Pilot equipment"
 	access = access_pilot
+
+/datum/supply_pack/supply/foodcubes
+	name = "Emergency food cubes"
+	contains = list(
+				/obj/machinery/vending/emergencyfood/filled = 1)
+	cost = 75
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "food cubes"
+
+/datum/supply_pack/pathfindergear
+	name="Away Team Leader gear"
+	contains = list (
+					/obj/item/device/cataloguer/compact/pathfinder,
+					/obj/item/device/geiger,
+					/obj/item/clothing/suit/storage/hooded/explorer,
+					/obj/item/device/flashlight/glowstick,
+					/obj/item/device/flashlight,
+					/obj/item/stack/marker_beacon/thirty,
+					/obj/item/weapon/storage/belt/explorer/pathfinder,
+					/obj/item/clothing/mask/gas/explorer,
+					/obj/item/weapon/cartridge/explorer,
+			 		/obj/item/device/gps/explorer,
+			 		/obj/item/clothing/under/explorer,
+			 		/obj/item/device/radio/headset/pathfinder,
+			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/weapon/material/knife/tacknife/survival,
+					/obj/item/weapon/material/knife/machete/deluxe,
+			 		/obj/item/clothing/accessory/holster/machete,
+					/obj/item/weapon/storage/box/explorerkeys,
+					/obj/item/device/mapping_unit,
+					/obj/item/clothing/gloves/watch/survival
+					)
+	cost = 75
+	containertype = /obj/structure/closet/crate/secure/xion
+	containername = "Away Team Leader equipment"
+	access = list(access_explorer)

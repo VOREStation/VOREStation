@@ -805,7 +805,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		"emagged" = emagged,
 		"isOperating" = operating,
 		"externalPower" = main_status,
-		"powerCellStatus" = cell ? cell.percent() : null,
+		"powerCellStatus" = cell ? cell.percent() : 0,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
 		"totalLoad" = round(lastused_total),
@@ -1381,6 +1381,32 @@ GLOBAL_LIST_EMPTY(apcs)
 /obj/machinery/power/apc/get_cell()
 	return cell
 
+#undef CRITICAL_APC_EMP_PROTECTION
+
+#undef UPDATE_CELL_IN
+#undef UPDATE_OPENED1
+#undef UPDATE_OPENED2
+#undef UPDATE_MAINT
+#undef UPDATE_BROKE
+#undef UPDATE_BLUESCREEN
+#undef UPDATE_WIREEXP
+#undef UPDATE_ALLGOOD
+
+#undef APC_UPOVERLAY_CHARGEING0
+#undef APC_UPOVERLAY_CHARGEING1
+#undef APC_UPOVERLAY_CHARGEING2
+#undef APC_UPOVERLAY_EQUIPMENT0
+#undef APC_UPOVERLAY_EQUIPMENT1
+#undef APC_UPOVERLAY_EQUIPMENT2
+#undef APC_UPOVERLAY_LIGHTING0
+#undef APC_UPOVERLAY_LIGHTING1
+#undef APC_UPOVERLAY_LIGHTING2
+#undef APC_UPOVERLAY_ENVIRON0
+#undef APC_UPOVERLAY_ENVIRON1
+#undef APC_UPOVERLAY_ENVIRON2
+#undef APC_UPOVERLAY_LOCKED
+#undef APC_UPOVERLAY_OPERATING
+
 #undef APC_UPDATE_ICON_COOLDOWN
 
 #undef APC_EXTERNAL_POWER_NOTCONNECTED
@@ -1390,3 +1416,12 @@ GLOBAL_LIST_EMPTY(apcs)
 #undef APC_HAS_ELECTRONICS_NONE
 #undef APC_HAS_ELECTRONICS_WIRED
 #undef APC_HAS_ELECTRONICS_SECURED
+
+#undef POWERCHAN_OFF
+#undef POWERCHAN_OFF_AUTO
+#undef POWERCHAN_ON
+#undef POWERCHAN_ON_AUTO
+
+#undef NIGHTSHIFT_AUTO
+#undef NIGHTSHIFT_NEVER
+#undef NIGHTSHIFT_ALWAYS

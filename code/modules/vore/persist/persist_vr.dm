@@ -130,15 +130,41 @@
 	prefs.f_style	= character.f_style
 	prefs.b_type	= character.b_type
 
-// Saves mob's current custom species, ears, and tail state to prefs
+// Saves mob's current custom species, ears, tail, wings and digitigrade legs state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/vore/ears/copy_to_mob() ~Leshana
 /proc/apply_ears_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
-	if(character.ear_style) prefs.ear_style = character.ear_style.type
-	if(character.tail_style) prefs.tail_style = character.tail_style.type
+	if(character.ear_style) prefs.ear_style = character.ear_style.name
+	if(character.tail_style) prefs.tail_style = character.tail_style.name
+	if(character.wing_style) prefs.wing_style = character.wing_style.name
+	prefs.r_ears			= character.r_ears
+	prefs.g_ears			= character.g_ears
+	prefs.b_ears			= character.b_ears
+	prefs.r_ears2			= character.r_ears2
+	prefs.g_ears2			= character.g_ears2
+	prefs.b_ears2			= character.b_ears2
+	prefs.r_ears3			= character.r_ears3
+	prefs.g_ears3			= character.g_ears3
+	prefs.b_ears3			= character.b_ears3
 	prefs.r_tail			= character.r_tail
 	prefs.b_tail			= character.b_tail
 	prefs.g_tail			= character.g_tail
+	prefs.r_tail2			= character.r_tail2
+	prefs.b_tail2			= character.b_tail2
+	prefs.g_tail2			= character.g_tail2
+	prefs.r_tail3			= character.r_tail3
+	prefs.b_tail3			= character.b_tail3
+	prefs.g_tail3			= character.g_tail3
+	prefs.r_wing			= character.r_wing
+	prefs.b_wing			= character.b_wing
+	prefs.g_wing			= character.g_wing
+	prefs.r_wing2			= character.r_wing2
+	prefs.b_wing2			= character.b_wing2
+	prefs.g_wing2			= character.g_wing2
+	prefs.r_wing3			= character.r_wing3
+	prefs.b_wing3			= character.b_wing3
+	prefs.g_wing3			= character.g_wing3
 	prefs.custom_species	= character.custom_species
+	prefs.digitigrade		= character.digitigrade
 
 // Saves mob's current organ state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
@@ -217,6 +243,9 @@
 		return
 
 	var/obj/item/device/nif/nif = H.nif
+
+	if(nif && H.ckey != nif.owner_key)
+		return
 
 	//If they have one, and if it's not installing without an owner, because
 	//Someone who joins and immediately leaves again (wrong job choice, maybe)

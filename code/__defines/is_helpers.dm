@@ -51,6 +51,7 @@
 #define issilicon(A)	istype(A, /mob/living/silicon)
 #define isAI(A)			istype(A, /mob/living/silicon/ai)
 #define isrobot(A)		istype(A, /mob/living/silicon/robot)
+#define isshell(A)		istype(A, /mob/living/silicon/robot/ai_shell)
 #define ispAI(A)		istype(A, /mob/living/silicon/pai)
 
 #define isbot(A)		istype(A, /mob/living/bot)
@@ -61,6 +62,8 @@
 //#define isturf(D)		istype(D, /turf)	//Built in
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)		istype(A, /turf/space)
+#define isopenturf(A)	istype(A, /turf/simulated/open) || istype(A, /turf/space)
+#define isnonsolidturf(A)	istype(A, /turf/simulated/open) || istype(A, /turf/space) || istype(A, /turf/simulated/floor/water) || istype(A, /turf/simulated/floor/lava)
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)
 
 #define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)

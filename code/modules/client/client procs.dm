@@ -5,7 +5,7 @@
 #define MIN_CLIENT_VERSION	0		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
 									//I would just like the code ready should it ever need to be used.
 
-//#define TOPIC_DEBUGGING 1
+//# define TOPIC_DEBUGGING 1
 
 	/*
 	When somebody clicks a link in game, this Topic is called first.
@@ -127,6 +127,9 @@
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
 		return
 
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
+
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
 		if("mentorholder")	hsrc = (check_rights(R_ADMIN, 0) ? holder : mentorholder)
@@ -179,6 +182,8 @@
 	GLOB.directory[ckey] = src
 
 	// Instantiate tgui panel
+	tgui_say = new(src, "tgui_say")
+	initialize_commandbar_spy()
 	tgui_panel = new(src, "browseroutput")
 
 	GLOB.ahelp_tickets.ClientLogin(src)
@@ -211,6 +216,7 @@
 		prefs.selecting_slots = FALSE
 
 	// Initialize tgui panel
+	tgui_say.initialize()
 	tgui_panel.initialize()
 
 	connection_time = world.time
@@ -596,6 +602,14 @@
 		winset(usr, "mainwindow", "can-resize=true")
 		winset(usr, "mainwindow", "is-maximized=false")
 		winset(usr, "mainwindow", "on-size=attempt_auto_fit_viewport") // The attempt_auto_fit_viewport() proc is not implemented yet
+
+/client/verb/toggle_verb_panel()
+	set name = "Toggle Verbs"
+	set category = "OOC"
+
+	show_verb_panel = !show_verb_panel
+
+	to_chat(usr, "Your verbs are now [show_verb_panel ? "on" : "off. To turn them back on, type 'toggle-verbs' into the command bar."].")
 
 /*
 /client/verb/toggle_status_bar()

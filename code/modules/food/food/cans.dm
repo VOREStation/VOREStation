@@ -549,3 +549,94 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_special/Initialize()
 	. = ..()
 	reagents.add_reagent("nukie_special", 60)
+
+/////////////////////////MEGA NUKIES/////////////////////////
+//Rare loot energy drinks with special properties, for the funnies.
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sight
+	name = "\improper Nukies Mega - Plum Peeper"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_sight"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sight/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_sight", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_heart
+	name = "\improper Nukies Mega - Juice Pumper"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_heart"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_heart/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_heart", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sleep
+	name = "\improper Nukies Nega - Vibrating Nights"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_sleep"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sleep/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_sleep", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shock
+	name = "\improper Nukies Mega - Jolt Railer"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_strong"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shock/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_shock", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_fast
+	name = "\improper Nukies Mega - Rapid Rager"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_fast"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_fast/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_fast", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_high
+	name = "\improper Nukies Mega - Diamond Sky"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_high"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_high/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_high", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shrink
+	name = "\improper Nukies Mega - Shrinking Flower"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_shrink"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shrink/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_shrink", 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_grow
+	name = "\improper Nukies Mega - Growing Geyser"
+	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
+	icon_state = "nukie_mega_grow"
+	center_of_mass = list("x"=16, "y"=8)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_grow/Initialize()
+	. = ..()
+	reagents.add_reagent("nukie_mega_growth", 60)

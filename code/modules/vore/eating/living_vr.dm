@@ -34,6 +34,10 @@
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
 	var/trash_catching = FALSE				//Toggle for trash throw vore from chompstation
+	var/list/trait_injection_reagents = list()	//List of all the reagents allowed to be used for injection via venom bite
+	var/trait_injection_selected = null			//RSEdit: What trait reagent you're injecting.
+	var/trait_injection_amount = 5				//RSEdit: How much you're injecting with traits.
+	var/trait_injection_verb = "bites"			//RSEdit: Which fluffy manner you're doing the injecting.
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -41,7 +45,7 @@
 /hook/living_new/proc/vore_setup(mob/living/M)
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	spawn(2 SECONDS)
-		if(M)
+		if(!QDELETED(M))
 			M.init_vore()
 
 	//return TRUE to hook-caller
@@ -75,6 +79,11 @@
 			if(istype(H.species,/datum/species/monkey))
 				allow_spontaneous_tf = TRUE
 		return TRUE
+
+/mob/living/init_vore()
+	if(no_vore)
+		return FALSE
+	return ..()
 
 //
 // Hide vore organs in contents
@@ -256,6 +265,8 @@
 	P.weight_message_visible = src.weight_message_visible
 	P.weight_messages = src.weight_messages
 
+	P.vore_sprite_color = istype(src, /mob/living/carbon/human) ? src:vore_sprite_color : null
+
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
@@ -305,6 +316,10 @@
 	nutrition_messages = P.nutrition_messages
 	weight_message_visible = P.weight_message_visible
 	weight_messages = P.weight_messages
+
+
+	if (istype(src, /mob/living/carbon/human))
+		src:vore_sprite_color = P.vore_sprite_color
 
 	if(bellies)
 		if(isliving(src))
@@ -515,6 +530,14 @@
 	else if(istype(loc, /obj/item/weapon/holder/micro) && (istype(loc.loc, /obj/machinery/microwave)))
 		forceMove(get_turf(src))
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of a microwave.")
+
+	//You are in food and for some reason can't resist out
+	else if(istype(loc, /obj/item/weapon/reagent_containers/food))
+		var/obj/item/weapon/reagent_containers/food/F = src.loc
+		if(F.food_inserted_micros)
+			F.food_inserted_micros -= src
+		src.forceMove(get_turf(F))
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of a food item.")
 
 	//Don't appear to be in a vore situation
 	else
