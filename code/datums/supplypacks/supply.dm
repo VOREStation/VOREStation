@@ -135,27 +135,26 @@
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Shaft miner equipment"
 	access = access_mining
-/* //VOREStation Edit - Pointless on Tether.
+
+/* //No longer supported on our current maps, as it requires specialized dropoff beacons and the pathfinding doesn't work well on multi-z
+//plus we have the destination tagger
 /datum/supply_pack/supply/mule
 	name = "Mulebot Crate"
 	contains = list()
 	cost = 20
 	containertype = /obj/structure/largecrate/animal/mulebot
 	containername = "Mulebot Crate"
-*/ //VOREStation Edit
+*/
+
 /datum/supply_pack/supply/cargotrain
 	name = "Cargo Train Tug"
 	contains = list(/obj/vehicle/train/engine)
 	cost = 35
-	containertype = /obj/structure/closet/crate/large/xion
-	containername = "Cargo Train Tug Crate"
 
 /datum/supply_pack/supply/cargotrailer
 	name = "Cargo Train Trolley"
 	contains = list(/obj/vehicle/train/trolley)
 	cost = 15
-	containertype = /obj/structure/closet/crate/large/xion
-	containername = "Cargo Train Trolley Crate"
 
 /datum/supply_pack/explorergear
 	name="Away Team gear"
@@ -208,6 +207,14 @@
 	containername = "Pilot equipment"
 	access = access_pilot
 
+/datum/supply_pack/supply/foodcubes
+	name = "Emergency food cubes"
+	contains = list(
+				/obj/machinery/vending/emergencyfood/filled = 1)
+	cost = 75
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "food cubes"
+
 /datum/supply_pack/pathfindergear
 	name="Away Team Leader gear"
 	contains = list (
@@ -231,7 +238,7 @@
 					/obj/item/device/mapping_unit,
 					/obj/item/clothing/gloves/watch/survival
 					)
-	cost=75
+	cost = 75
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Away Team Leader equipment"
 	access = list(access_explorer)
