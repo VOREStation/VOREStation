@@ -40,7 +40,7 @@
 			if(2)	//ring
 				name_suffix = "[pick("ring","band","torus","circuit","halo","hoop")]"
 			if(3)	//red stone
-				name_suffix = "[pick("gem","crystal","jewel","stone","bauble","rock","star")]"
+				name_suffix = "[pick("gem","crystal","jewel","stone","bauble","rock")]"
 			if(4)	//circuit scrap
 				name_suffix = "[pick("circuit","board","scrap","junk","object","device")]"
 			if(5)	//crystal star
@@ -137,14 +137,12 @@
 			to_chat(user, "<span class='notice'>\The [src] seems to have [origin_tech[1]] properties?</span>")
 
 /obj/item/weapon/research_sample/common
-	icon_state = null
 	tech_level = 2 //2~3
 	rand_level = 1
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/common)
 
 /obj/item/weapon/research_sample/uncommon
-	icon_state = null
 	tech_level = 4 //4~6
 	rand_level = 2
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL)
@@ -160,7 +158,6 @@
 	resource_list	= list(/obj/item/weapon/ore/phoron,/obj/item/weapon/ore/silver,/obj/item/weapon/ore/gold,/obj/item/weapon/ore/osmium,/obj/item/weapon/ore/diamond)
 
 /obj/item/weapon/research_sample/rare
-	icon_state = null
 	tech_level = 6 //6~8
 	rand_level = 2
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL,TECH_ARCANE,TECH_PRECURSOR)
@@ -241,8 +238,8 @@
 	icon_state = "sample_spawner1"
 
 /obj/random/research_sample_type1/item_to_spawn()
-	return pick(prob(60);/obj/item/weapon/research_sample/common,
-				prob(25);/obj/item/weapon/research_sample/uncommon,
+	return pick(prob(50);/obj/item/weapon/research_sample/common,
+				prob(35);/obj/item/weapon/research_sample/uncommon,
 				prob(15);/obj/item/weapon/research_sample/rare)
 
 /obj/random/research_sample_type2
