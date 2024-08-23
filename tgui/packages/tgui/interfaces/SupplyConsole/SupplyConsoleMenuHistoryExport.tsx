@@ -11,7 +11,7 @@ export const SupplyConsoleMenuHistoryExport = (props) => {
   }
 
   return (
-    <Section>
+    <Section scrollable fill height="290px">
       {receipts.map((r, ri) => (
         <Section key={ri}>
           <LabeledList>
