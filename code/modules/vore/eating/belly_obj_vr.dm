@@ -934,7 +934,7 @@
 
 	var/list/raw_list
 
-	if(findtext(raw_text, regex(delim, "")))
+	if(findtext(raw_text, delim))
 		raw_list = splittext(html_encode(raw_text), delim)
 	else
 		raw_list = list(raw_text)
