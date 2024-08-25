@@ -3286,6 +3286,7 @@
 #include "code\modules\mob\living\simple_mob\subtypes\vore\jelly.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\lamia.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\leopardmander.dm"
+#include "code\modules\mob\living\simple_mob\subtypes\vore\meowl.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\mimic.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\oregrub.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\otie.dm"
