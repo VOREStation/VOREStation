@@ -932,22 +932,32 @@
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
-	var/list/raw_list = splittext(html_encode(raw_text),delim)
+	var/list/raw_list
+
+	if(findtext(raw_text, regex("\n\n", "")))
+		raw_list = splittext(html_encode(raw_text), delim)
+	else
+		raw_list = list(raw_text)
 	if(raw_list.len > 10)
 		raw_list.Cut(11)
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
-		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")) //160 is fudged value due to htmlencoding increasing the size
-			raw_list.Cut(i,i)
+		if(type == "em" || type == "ema")
+			if(length(raw_list[i]) > 260 || length(raw_list[i]) < 10)
+				raw_list.Cut(i, i + 1)
+				log_debug("[owner] tried to set [lowertext(name)] examine message with >260 or <10 char message")
+				continue
+		else if (type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
+			if(length(raw_list[i]) > 510 || length(raw_list[i]) < 10)
+				raw_list.Cut(i, i + 1)
+				log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
+				continue
+		else if(length(raw_list[i]) > 160 || length(raw_list[i]) < 10) //160 is fudged value due to htmlencoding increasing the size
+			raw_list.Cut(i, i + 1)
 			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
-		else if((type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
-			raw_list.Cut(i,i)
-			log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
-		else if((type == "em" || type == "ema") && (length(raw_list[i]) > 260 || length(raw_list[i]) < 10))
-			raw_list.Cut(i,i)
-			log_debug("[owner] tried to set [lowertext(name)] examine message with >260 or <10 char message")
-		else
+			continue
+		if(length(raw_list[i]) > 0)
 			raw_list[i] = readd_quotes(raw_list[i])
 			//Also fix % sign for var replacement
 			raw_list[i] = replacetext(raw_list[i],"&#37;","%")
