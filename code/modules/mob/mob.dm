@@ -743,7 +743,8 @@
 						SS.stat_entry()
 
 			if(statpanel("Tickets"))
-				GLOB.ahelp_tickets.stat_entry()
+				if(check_rights(R_ADMIN|R_SERVER,FALSE)) //Prevents non-staff from opening the list of ahelp tickets
+					GLOB.ahelp_tickets.stat_entry()
 
 
 			if(length(GLOB.sdql2_queries))

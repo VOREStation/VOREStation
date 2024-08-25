@@ -786,6 +786,14 @@
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
 
+/datum/gear/fluff/zharritool
+	path = /obj/item/weapon/tool/transforming/altevian
+	display_name = "Zharri's Custom Omni-Tool"
+	description = "A Hull Systems Omni-Tool capable of temporarily shrinking to handheld sizes for even the most delicate work."
+	ckeywhitelist = list("lewzharri")
+	character_name = list ("Kovgam Zharri")
+	allowed_roles = list("Roboticist","Engineer","Scientist","Xenobiologist","Xenobotanist","Research Director")
+
 //  M CKEYS
 /datum/gear/fluff/phi_box
 	path = /obj/item/weapon/storage/box/fluff/phi

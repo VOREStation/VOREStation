@@ -53,6 +53,21 @@
 	mappath = 'asteroids10.dmm'
 	cost = 2
 
+/datum/map_template/debrisfield/sampleroid1	//2 common/uncommon samples
+	name = "Samples Rock 1"
+	mappath = 'sample_asteroid1.dmm'
+	cost = 5
+
+/datum/map_template/debrisfield/sampleroid2 //cluster of 3 commons
+	name = "Samples Rock 2"
+	mappath = 'sample_asteroid2.dmm'
+	cost = 5
+
+/datum/map_template/debrisfield/sampleroid3	//single rare surrounded by rock
+	name = "Samples Rock 3"
+	mappath = 'sample_asteroid3.dmm'
+	cost = 5
+
 /datum/map_template/debrisfield/carp_asteroids1
 	name = "Carp Asteroids 1"
 	mappath = 'carp_asteroids1.dmm'

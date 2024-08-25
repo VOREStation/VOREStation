@@ -440,6 +440,18 @@
 	desc = "A sterile crate marked with the logo of Zeng-Hu Pharmaceuticals."
 	closet_appearance = /decl/closet_appearance/crate/zenghu
 
+/obj/structure/closet/crate/coyote_salvage
+	desc = "A supply crate marked with Coyote Salvage Corp colours."
+	closet_appearance = /decl/closet_appearance/crate/coyotesalvage
+
+/obj/structure/closet/crate/nukies
+	desc = "A luridly-coloured supply crate with Nukies! branding. Is it legal to have this here?"
+	closet_appearance = /decl/closet_appearance/crate/nukies
+
+/obj/structure/closet/crate/desatti
+	desc = "A strikingly-coloured supply crate with Desatti Catering branding."
+	closet_appearance = /decl/closet_appearance/crate/desatti
+
 // Brands/subsidiaries
 
 /obj/structure/closet/crate/allico

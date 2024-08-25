@@ -75,7 +75,7 @@
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 	vore_capacity = 1
 	swallowTime = 50
-	vore_ignores_undigestable = TRUE
+	vore_ignores_undigestable = FALSE
 	vore_default_mode = DM_SELECT
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to devour"
