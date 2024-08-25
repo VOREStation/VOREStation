@@ -1,0 +1,123 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/random/research_sample_type2,
+/turf/simulated/floor/flesh{
+	base_icon = 'icons/turf/stomach_vr.dmi'
+	},
+/area/om_adventure/poi/fleshtear3)
+"s" = (
+/mob/living/simple_mob/creature{
+	faction = "spookyland"
+	},
+/turf/simulated/floor/flesh{
+	base_icon = 'icons/turf/stomach_vr.dmi'
+	},
+/area/om_adventure/poi/fleshtear3)
+"Q" = (
+/turf/simulated/floor/flesh{
+	base_icon = 'icons/turf/stomach_vr.dmi'
+	},
+/area/om_adventure/poi/fleshtear3)
+
+(1,1,1) = {"
+a
+a
+Q
+Q
+Q
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+Q
+a
+a
+Q
+s
+Q
+Q
+a
+"}
+(3,1,1) = {"
+Q
+Q
+b
+a
+Q
+Q
+a
+Q
+a
+"}
+(4,1,1) = {"
+Q
+a
+Q
+Q
+Q
+Q
+a
+Q
+Q
+"}
+(5,1,1) = {"
+s
+a
+a
+a
+Q
+b
+a
+Q
+Q
+"}
+(6,1,1) = {"
+Q
+a
+Q
+Q
+Q
+a
+a
+a
+Q
+"}
+(7,1,1) = {"
+Q
+Q
+a
+b
+Q
+Q
+a
+Q
+Q
+"}
+(8,1,1) = {"
+a
+Q
+Q
+a
+Q
+Q
+s
+Q
+Q
+"}
+(9,1,1) = {"
+a
+a
+Q
+Q
+a
+Q
+Q
+Q
+a
+"}
