@@ -438,7 +438,7 @@
 		organ.applied_pressure = null
 
 		if(user == src)
-			user.visible_message("\<span class='filter_notice'>The [user] stops applying pressure to [TU.his] [organ.name]!</span>", "<span class='filter_notice'>You stop applying pressure to your [organ]!</span>")
+			user.visible_message("<span class='filter_notice'>\The [user] stops applying pressure to [TU.his] [organ.name]!</span>", "<span class='filter_notice'>You stop applying pressure to your [organ]!</span>")
 		else
 			user.visible_message("<span class='filter_notice'>\The [user] stops applying pressure to [src]'s [organ.name]!</span>", "<span class='filter_notice'>You stop applying pressure to [src]'s [organ.name]!</span>")
 
