@@ -38,13 +38,8 @@
 		preference = list(preference)
 
 	for(var/p in preference)
-		if(ispath(p, /datum/client_preference))
-			if(!client.is_preference_enabled(p))
-				return FALSE
-
-		else if(ispath(p, /datum/preference))
-			if(!read_preference(p))
-				return FALSE
+		if(!read_preference(p))
+			return FALSE
 
 	return TRUE
 

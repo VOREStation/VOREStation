@@ -7,7 +7,6 @@ import { Window } from '../../layouts';
 import { GamePreferencesSelectedPage, PreferencesMenuData } from './data';
 import { GamePreferencesPage } from './GamePreferencesPage';
 // import { KeybindingsPage } from './KeybindingsPage';
-import { PageButton } from './PageButton';
 
 export const GamePreferenceWindow = (props: {
   startingPage?: GamePreferencesSelectedPage;
@@ -35,7 +34,7 @@ export const GamePreferenceWindow = (props: {
     <Window title="Game Preferences" width={920} height={770}>
       <Window.Content>
         <Stack vertical fill>
-          <Stack.Item>
+          {/* <Stack.Item>
             <Stack fill>
               <Stack.Item grow>
                 <PageButton
@@ -57,9 +56,9 @@ export const GamePreferenceWindow = (props: {
                 </PageButton>
               </Stack.Item>
             </Stack>
-          </Stack.Item>
+          </Stack.Item> */}
 
-          <Stack.Divider />
+          {/* <Stack.Divider /> */}
 
           <Stack.Item grow shrink basis="1px">
             {pageContents}

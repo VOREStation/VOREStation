@@ -1,8 +1,8 @@
 import { binaryInsertWith, sortBy } from 'common/collections';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { useBackend } from '../../backend';
-import { Box, Flex, Tooltip } from '../../components';
+import { Box, Button, Flex, Input, Section, Tooltip } from '../../components';
 import { PreferencesMenuData } from './data';
 import features from './preferences/features';
 import { FeatureValueInput } from './preferences/features/base';
@@ -94,18 +94,56 @@ export const GamePreferencesPage = (props) => {
     );
   }
 
-  const gamePreferenceEntries: [string, ReactNode][] = sortByName(
-    Object.entries(gamePreferences),
-  ).map(([category, preferences]) => {
-    return [category, preferences.map((entry) => entry.children)];
-  });
+  const [search, setSearch] = useState<string>('');
+  const [searchVisible, setSearchVisible] = useState(false);
+
+  // For some reason, typescript thinks that this call to filter() can change the shape of the array
+  const gamePreferenceEntries: any = sortByName(Object.entries(gamePreferences))
+    .map(([category, preferences]) => {
+      return [
+        category,
+        preferences
+          .filter(
+            (entry) =>
+              !search ||
+              entry.name.toLowerCase().includes(search.toLowerCase()),
+          )
+          .map((entry) => entry.children),
+      ];
+    })
+    .filter(([category, prefs]) => prefs.length !== 0);
 
   return (
-    <TabbedMenu
-      categoryEntries={gamePreferenceEntries}
-      contentProps={{
-        fontSize: 1.5,
-      }}
-    />
+    <>
+      {!gamePreferenceEntries.length && (
+        <Section title="No Results">No results found.</Section>
+      )}
+      <Box position="absolute" right={4} top={4} style={{ zIndex: '100' }}>
+        {searchVisible && (
+          <Input
+            width={16}
+            value={search}
+            onInput={(e, val) => setSearch(val)}
+            onChange={(e, val) => setSearch(val)}
+          />
+        )}
+        <Button
+          selected={searchVisible}
+          icon="magnifying-glass"
+          tooltip="Search"
+          tooltipPosition="bottom"
+          onClick={() => {
+            setSearchVisible(!searchVisible);
+            setSearch('');
+          }}
+        />
+      </Box>
+      <TabbedMenu
+        categoryEntries={gamePreferenceEntries}
+        contentProps={{
+          fontSize: 1.5,
+        }}
+      />
+    </>
   );
 };
