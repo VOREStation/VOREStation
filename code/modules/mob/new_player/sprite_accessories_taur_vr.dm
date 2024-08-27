@@ -930,7 +930,7 @@
 	name = "Fat Sect Drone (Taur)"
 	icon_state = "fat_sect_drone"
 	extra_overlay = "fat_sect_drone_markings"
-	icon_sprite_tag = "sect_drone" //Ported from Chomp addition
+	icon_sprite_tag = "sect_drone" //Ported from Chomp
 
 /datum/sprite_accessory/tail/taur/sect_drone/drone_wag
 	name = "Sect Drone (Taur, Fat vwag)"
@@ -938,7 +938,7 @@
 	extra_overlay = "sect_drone_markings"
 	ani_state = "fat_sect_drone"
 	extra_overlay_w = "fat_sect_drone_markings"
-	icon_sprite_tag = "sect_drone" //Ported from Chomp addition
+	icon_sprite_tag = "sect_drone" //Ported from Chomp
 
 /datum/sprite_accessory/tail/taur/giantspider_colorable//these are honestly better fit for vass icontypes whoops
 	name = "Giant Spider dual-color (Taur)"
