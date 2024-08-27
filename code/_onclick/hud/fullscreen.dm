@@ -132,7 +132,10 @@
 	layer = FULLSCREEN_LAYER
 
 /obj/screen/fullscreen/fishbed
-	icon_state = "fishbed" 
+	icon_state = "fishbed"
+
+/obj/screen/fullscreen/fear
+	icon_state = "fear"
 
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
