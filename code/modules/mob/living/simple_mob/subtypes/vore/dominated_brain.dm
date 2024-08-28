@@ -320,7 +320,7 @@
 	var/list/possible_mobs = list()
 	for(var/obj/belly/B in src.vore_organs)
 		for(var/mob/living/L in B)
-			if(isliving(L) && L.ckey && L.allow_mind_transfe)
+			if(isliving(L) && L.ckey && L.allow_mind_transfer)
 				possible_mobs |= L
 			else
 				continue
