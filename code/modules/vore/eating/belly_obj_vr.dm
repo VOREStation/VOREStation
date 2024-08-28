@@ -929,7 +929,10 @@
 // The next function sets the messages on the belly, from human-readable var
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
-/obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
+// Give them a limit for each type...
+/obj/belly/proc/set_messages(raw_text, type, delim = "\n\n", limit)
+	if(!limit)
+		CRASH("[src] set message called without limit!")
 	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
 	var/list/raw_list
@@ -943,24 +946,13 @@
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
-		if(type == "em" || type == "ema")
-			if(length(raw_list[i]) > 260 || length(raw_list[i]) < 10)
-				raw_list.Cut(i, i + 1)
-				log_debug("[owner] tried to set [lowertext(name)] examine message with >260 or <10 char message")
-				continue
-		else if (type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
-			if(length(raw_list[i]) > 510 || length(raw_list[i]) < 10)
-				raw_list.Cut(i, i + 1)
-				log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
-				continue
-		else if(length(raw_list[i]) > 160 || length(raw_list[i]) < 10) //160 is fudged value due to htmlencoding increasing the size
+		raw_list[i] = readd_quotes(raw_list[i])
+		//Also fix % sign for var replacement
+		raw_list[i] = replacetext(raw_list[i],"&#37;","%")
+		if(length(raw_list[i]) > limit || length(raw_list[i]) < 10)
 			raw_list.Cut(i, i + 1)
-			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
-			continue
-		if(length(raw_list[i]) > 0)
-			raw_list[i] = readd_quotes(raw_list[i])
-			//Also fix % sign for var replacement
-			raw_list[i] = replacetext(raw_list[i],"&#37;","%")
+			to_chat(owner, span_warning("One of the message for [lowertext(name)] has exceeded the limit of [limit] characters or the lower limit of 10 characters and has been removed."))
+			log_debug("[owner] tried to set [lowertext(name)] [type] message with >[limit] or <10 charters")
 
 	ASSERT(raw_list.len <= 10) //Sanity
 
