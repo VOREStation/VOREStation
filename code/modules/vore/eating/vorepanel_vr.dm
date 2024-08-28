@@ -1115,12 +1115,12 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 						host.vore_selected.set_messages(new_message,"smi", limit = MAX_MESSAGE_LEN / 4)
 
 				if("asmo")
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to those nearby when absorbed prey struggles. Write them in 3rd person ('X's Y bulges'). %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorbed struggle Message (outside)",host.vore_selected.get_messages("asmo"), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
+					var/new_message = sanitize(tgui_input_text(user,"These are sent to those nearby when absorbed prey struggles. Write them in 3rd person ('X's Y bulges'). %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorbed Struggle Message (outside)",host.vore_selected.get_messages("asmo"), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"asmo", limit = MAX_MESSAGE_LEN / 4)
 
 				if("asmi")
-					var/new_message = sanitize(tgui_input_text(user,"These are sent to absorbed prey when they struggle. Write them in 2nd person ('you feel X'). Avoid using %prey in this type. %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorbed struggle Message (inside)",host.vore_selected.get_messages("asmi"), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
+					var/new_message = sanitize(tgui_input_text(user,"These are sent to absorbed prey when they struggle. Write them in 2nd person ('you feel X'). Avoid using %prey in this type. %count will not work for this type, and %countprey will only count absorbed victims."+help,"Absorbed Struggle Message (inside)",host.vore_selected.get_messages("asmi"), MAX_MESSAGE_LEN * 1.5, TRUE, prevent_enter = TRUE),MAX_MESSAGE_LEN * 1.5,0,0,0)
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"asmi", limit = MAX_MESSAGE_LEN / 4)
 
