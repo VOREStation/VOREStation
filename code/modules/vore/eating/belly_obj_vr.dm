@@ -945,16 +945,19 @@
 		raw_list.Cut(11)
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
+	var/realIndex = 0
 	for(var/i = 1, i <= raw_list.len, i++)
+		realIndex++
 		raw_list[i] = readd_quotes(raw_list[i])
 		//Also fix % sign for var replacement
 		raw_list[i] = replacetext(raw_list[i],"&#37;","%")
 		if(length(raw_list[i]) > limit || length(raw_list[i]) < 10)
 			to_chat(owner, span_warning("One of the message for [lowertext(name)] exceeded the limit of [limit] characters or has been below the lower limit of 10 characters and has been removed. Actual length: [length(raw_list[i])]"))
 			//Reflect message to the player so that they don't just lose it
-			to_chat(owner, span_warning("Message [i]: [raw_list[i]]"))
+			to_chat(owner, span_warning("Message [realIndex]: [raw_list[i]]"))
 			log_debug("[owner] tried to set [lowertext(name)] [type] message with >[limit] or <10 charters")
 			raw_list.Cut(i, i + 1)
+			i--
 
 	ASSERT(raw_list.len <= 10) //Sanity
 
