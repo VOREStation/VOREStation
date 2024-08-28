@@ -84,6 +84,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 	say_list_type = /datum/say_list/sect_drone
 
+	allow_mind_transfer = TRUE
+
 /mob/living/simple_mob/vore/sect_drone/Login()
 	. = ..()
 	verbs |= /mob/living/simple_mob/vore/sect_drone/proc/set_abdomen_color

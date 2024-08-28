@@ -35,6 +35,8 @@
 	say_list_type = /datum/say_list/horse
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
+	allow_mind_transfer = TRUE
+
 /mob/living/simple_mob/vore/horse/big
 	name = "horse"
 	icon_state = "horse"
