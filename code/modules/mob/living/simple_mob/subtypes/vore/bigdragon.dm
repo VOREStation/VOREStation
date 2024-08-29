@@ -237,7 +237,7 @@ I think I covered everything.
 	value = CATALOGUER_REWARD_SUPERHARD //Scan range is the same as flame breath range. Good luck.
 
 /mob/living/simple_mob/vore/bigdragon/Login()
-	. = ..()
+	..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
