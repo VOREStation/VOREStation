@@ -955,7 +955,7 @@
 			to_chat(owner, span_warning("One of the message for [lowertext(name)] exceeded the limit of [limit] characters or has been below the lower limit of 10 characters and has been removed. Actual length: [length(raw_list[i])]"))
 			//Reflect message to the player so that they don't just lose it
 			to_chat(owner, span_warning("Message [realIndex]: [raw_list[i]]"))
-			log_debug("[owner] tried to set [lowertext(name)] [type] message with >[limit] or <10 charters")
+			log_debug("[owner] tried to set [lowertext(name)] [type] message with >[limit] or <10 characters")
 			raw_list.Cut(i, i + 1)
 			i--
 
