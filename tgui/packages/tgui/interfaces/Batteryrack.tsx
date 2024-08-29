@@ -1,10 +1,12 @@
 import { BooleanLike } from 'common/react';
+import { capitalize } from 'common/string';
 
 import { useBackend } from '../backend';
 import {
   AnimatedNumber,
   Box,
   Button,
+  Flex,
   LabeledList,
   ProgressBar,
   Section,
@@ -24,7 +26,8 @@ type Data = {
   cells_list: {
     slot: number;
     used: BooleanLike;
-    percentage: number;
+    percentage: number | undefined;
+    name: string | undefined;
     id: number;
   }[];
 };
@@ -100,12 +103,20 @@ export const Batteryrack = (props) => {
                 <Table.Cell collapsing>Cell {cell.slot}</Table.Cell>
                 <Table.Cell>
                   <ProgressBar
-                    value={cell.used ? cell.percentage : 100}
+                    value={cell.used ? cell.percentage! : 100}
                     minValue={0}
                     maxValue={100}
                     color={cell.used ? 'good' : 'bad'}
                   >
-                    {cell.used ? cell.percentage + '%' : 'N/C'}
+                    <Flex>
+                      <Flex.Item>
+                        {!!cell.name && capitalize(cell.name)}
+                      </Flex.Item>
+                      <Flex.Item grow={1} />
+                      <Flex.Item>
+                        {cell.used ? cell.percentage + '%' : 'N/C'}
+                      </Flex.Item>
+                    </Flex>
                   </ProgressBar>
                 </Table.Cell>
                 <Table.Cell collapsing>

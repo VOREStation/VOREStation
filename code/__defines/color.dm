@@ -92,6 +92,10 @@
 #define COLOR_LIGHT_VIOLET     "#e7bfff"
 #define COLOR_SAN_MARINO_BLUE  "#4b75ab"
 #define COLOR_HALF_TRANSPARENT_BLACK    "#0000007A"
+#define COLOR_NUKIES_GREEN     "#43fe00"
+#define COLOR_NUKIES_YELLOW    "#ffe900"
+#define COLOR_DESATTI_PRPLOW   "#3300cc"
+#define COLOR_DESATTI_PRPHI    "#6600cc"
 
 #define	PIPE_COLOR_GREY        "#808080"
 #define	PIPE_COLOR_RED         "#ff0000"
