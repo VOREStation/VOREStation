@@ -495,5 +495,6 @@ var/list/preferences_datums = list()
 		return
 
 	overwrite_character(slotnum)
+	attempt_vr(user.client?.prefs_vr,"load_vore","")
 	sanitize_preferences()
 	ShowChoices(user)
