@@ -437,7 +437,7 @@ export const VoreUserPreferences = (props: {
               icon="people-arrows"
               onClick={() => act('loadprefsfromslot')}
             >
-              Load prefs From Slot
+              Load Prefs From Slot
             </Button>
           </Flex.Item>
         </Flex>
