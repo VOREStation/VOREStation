@@ -431,6 +431,15 @@ export const VoreUserPreferences = (props: {
               Reload Prefs
             </Button>
           </Flex.Item>
+          <Flex.Item basis="49%" grow={1}>
+            <Button
+              fluid
+              icon="people-arrows"
+              onClick={() => act('loadprefsfromslot')}
+            >
+              Load prefs From Slot
+            </Button>
+          </Flex.Item>
         </Flex>
       </Section>
     </Box>
