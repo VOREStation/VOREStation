@@ -333,6 +333,78 @@
 
 	return TRUE
 
+/mob/proc/load_vore_prefs_from_slot()
+
+	var/datum/preferences/P = client.prefs
+
+	var/remembered_default = P.load_vore_prefs_from_client(src) //Loads the preferences of a chosen slot
+	if(!remembered_default)
+		return
+
+	apply_vore_prefs() //Applies the vore preferences of said slot
+
+	if(remembered_default)
+		P.return_to_character_slot(src, remembered_default) //sets you back to the original default slot
+
+	return TRUE
+
+
+/datum/preferences/proc/load_vore_prefs_from_client(mob/user)
+	if(selecting_slots)
+		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		return
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		error("Somehow missing savefile path?! [path]")
+		return
+
+	var/name
+	var/nickname //vorestation edit - This set appends nicknames to the save slot
+	var/list/charlist = list()
+	var/default //VOREStation edit
+	for(var/i=1, i<= config.character_slots, i++)
+		S.cd = "/character[i]"
+		S["real_name"] >> name
+		S["nickname"] >> nickname //vorestation edit
+		if(!name)
+			name = "[i] - \[Unused Slot\]"
+		else if(i == default_slot)
+			name = "►[i] - [name]"
+		else
+			name = "[i] - [name]"
+		if (i == default_slot) //VOREStation edit
+			default = "[name][nickname ? " ([nickname])" : ""]"
+		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
+
+	var/remember_default = default_slot
+
+	selecting_slots = TRUE
+	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist, default)
+	selecting_slots = FALSE
+	if(!choice)
+		return
+
+	var/slotnum = charlist[choice]
+	if(!slotnum)
+		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		return
+
+	load_character(slotnum)
+	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
+	sanitize_preferences()
+
+	return remember_default
+
+/datum/preferences/proc/return_to_character_slot(mob/user, var/remembered_default)
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		error("Somehow missing savefile path?! [path]")
+		return
+
+	load_character(remembered_default)
+	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
+	sanitize_preferences()
+
 //
 // Release everything in every vore organ
 //
