@@ -17,9 +17,9 @@ export const VoreBellySelectionAndCustomization = (props: {
   const { our_bellies, selected, show_pictures, host_mobtype } = props;
 
   return (
-    <Flex>
-      <Flex.Item shrink>
-        <Section title="My Bellies" scrollable>
+    <Flex height="83%">
+      <Flex.Item shrink basis="30%">
+        <Section title="My Bellies" scrollable fill>
           <Tabs vertical>
             <Tabs.Tab onClick={() => act('newbelly')}>
               New
@@ -53,7 +53,7 @@ export const VoreBellySelectionAndCustomization = (props: {
       </Flex.Item>
       <Flex.Item grow>
         {selected && (
-          <Section title={selected.belly_name}>
+          <Section title={selected.belly_name} fill scrollable>
             <VoreSelectedBelly
               belly={selected}
               show_pictures={show_pictures}

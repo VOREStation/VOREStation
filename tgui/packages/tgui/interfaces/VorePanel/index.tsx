@@ -37,7 +37,7 @@ export const VorePanel = (props) => {
 
   return (
     <Window width={890} height={660} theme="abstract">
-      <Window.Content scrollable>
+      <Window.Content>
         {(data.unsaved_changes && (
           <NoticeBox danger>
             <Flex>
