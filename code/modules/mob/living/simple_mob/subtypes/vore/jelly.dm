@@ -27,6 +27,8 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+	allow_mind_transfer = TRUE
+
 // Activate Noms!
 	vore_active = 1
 	vore_pounce_chance = 0

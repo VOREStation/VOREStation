@@ -112,7 +112,10 @@ export const VoreUserPreferencesMechanical = (props: {
             Selective Mode Preference
           </Button>
         </Flex.Item>
-        <Flex.Item basis="32%" grow={3}>
+        <Flex.Item basis="32%">
+          <VoreUserPreferenceItem spec={preferences.mind_transfer} />
+        </Flex.Item>
+        <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem spec={preferences.eating_privacy_global} />
         </Flex.Item>
       </Flex>

@@ -28,7 +28,7 @@
 	maxHealth = 150
 	health = 150
 	see_in_dark = 10
-	
+
 	//Something something, phoron mutation.
 	min_oxy = 0
 	max_oxy = 0
@@ -63,6 +63,8 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 	say_list_type = /datum/say_list/xeno_defanged
+
+	allow_mind_transfer = TRUE
 
 /datum/say_list/xeno_defanged
 	say_got_target = list("hisses angrily!")

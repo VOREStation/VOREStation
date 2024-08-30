@@ -117,6 +117,8 @@
 		/obj/item/stack/material/chitin = 1\
 		)
 
+	allow_mind_transfer = TRUE
+
 /mob/living/simple_mob/animal/giant_spider/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A

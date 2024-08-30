@@ -28,6 +28,7 @@ export const VoreUserPreferences = (props: {
     can_be_drop_pred,
     allow_inbelly_spawning,
     allow_spontaneous_tf,
+    allow_mind_transfer,
     step_mechanics_active,
     pickup_mechanics_active,
     noisy,
@@ -365,6 +366,21 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Spontaneous TF Enabled',
         disabled: 'Spontaneous TF Disabled',
+      },
+    },
+    mind_transfer: {
+      action: 'toggle_allow_mind_transfer',
+      test: allow_mind_transfer,
+      tooltip: {
+        main:
+          'This toggle is for mind transfer interactions' +
+          ' as a victim, such as mind-binder or dominate pred/prey.',
+        enable: 'Click here to allow your mind being taken or swapped.',
+        disable: 'Click here to disallow having your mind taken or swapped.',
+      },
+      content: {
+        enabled: 'Mind Transfer Enabled',
+        disabled: 'Mind Transfer Disabled',
       },
     },
     examine_nutrition: {

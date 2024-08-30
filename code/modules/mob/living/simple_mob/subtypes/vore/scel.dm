@@ -56,6 +56,8 @@
 		"scel_green"
 	)
 
+	allow_mind_transfer = TRUE
+
 /mob/living/simple_mob/vore/scel/New()
 	..()
 	if(random_skin)

@@ -73,6 +73,8 @@
 
 		handle_heartbeat()
 		handle_nif() 			//VOREStation Addition
+		if(phobias)
+			handle_phobias()
 		if(!client)
 			species.handle_npc(src)
 
@@ -1244,6 +1246,27 @@
 			if(tiredness >= 100)
 				Sleeping(5)
 
+		if(fear)
+			fear = (fear - 1)
+			if(fear >= 80 && is_preference_enabled(/datum/client_preference/play_ambiance))
+				if(last_fear_sound + 51 SECONDS <= world.time)
+					src << sound('sound/effects/Heart Beat.ogg',0,0,0,25)
+					last_fear_sound = world.time
+			if(fear >= 80 && !isSynthetic())
+				if(prob(1) && get_active_hand())
+					var/stuff_to_drop = get_active_hand()
+					drop_item()
+					visible_message("<span class='notice'>\The [src] suddenly drops their [stuff_to_drop].</span>","<span class='warning'>You drop your [stuff_to_drop]!</span>")
+				if(prob(5))
+					var/fear_self = pick(fear_message_self)
+					var/fear_other = pick(fear_message_other)
+					visible_message("<span class='notice'>\The [src][fear_other]</span>","<span class='warning'>[fear_self]</span>")
+			else if(fear >= 30 && !isSynthetic())
+				if(prob(2))
+					var/fear_self = pick(fear_message_self)
+					var/fear_other = pick(fear_message_other)
+					visible_message("<span class='notice'>\The [src][fear_other]</span>","<span class='warning'>[fear_self]</span>")
+
 		if(paralysis || sleeping)
 			blinded = 1
 			set_stat(UNCONSCIOUS)
@@ -1441,6 +1464,19 @@
 			overlay_fullscreen("tired", /obj/screen/fullscreen/oxy, severity)
 		else
 			clear_fullscreen("tired")
+
+		if(fear)
+			var/severity = 0
+			switch(fear)
+				if(10 to 20)		severity = 1
+				if(20 to 30)		severity = 2
+				if(30 to 50)		severity = 3
+				if(50 to 70)		severity = 4
+				if(70 to 90)		severity = 5
+				if(90 to INFINITY)	severity = 6
+			overlay_fullscreen("fear", /obj/screen/fullscreen/fear, severity)
+		else
+			clear_fullscreen("fear")
 
 		if(healths)
 			if (chem_effects[CE_PAINKILLER] > 100)

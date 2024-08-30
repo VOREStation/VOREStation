@@ -54,6 +54,8 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
+	allow_mind_transfer = TRUE
+
 // Activate Noms!
 /mob/living/simple_mob/vore/aggressive/giant_snake
 	vore_active = 1
