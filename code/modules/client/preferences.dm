@@ -524,7 +524,7 @@ var/list/preferences_datums = list()
 		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
 
-	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [name][nickname ? " ([nickname])" : ""]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
+	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
 		overwrite_character(slotnum)
 		sanitize_preferences()
 		save_preferences()

@@ -1248,7 +1248,7 @@
 
 		if(fear)
 			fear = (fear - 1)
-			if(fear >= 80 && is_preference_enabled(/datum/client_preference/play_ambiance))
+			if(fear >= 80 && client?.prefs?.read_preference(/datum/preference/toggle/play_ambience))
 				if(last_fear_sound + 51 SECONDS <= world.time)
 					src << sound('sound/effects/Heart Beat.ogg',0,0,0,25)
 					last_fear_sound = world.time
