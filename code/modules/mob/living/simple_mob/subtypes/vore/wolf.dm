@@ -33,6 +33,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
 
+	allow_mind_transfer = TRUE
+
 // Activate Noms!
 /mob/living/simple_mob/vore/wolf
 	vore_active = 1

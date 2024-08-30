@@ -41,6 +41,8 @@
 	var/frustration = 0
 	var/max_frustration = 0
 
+	allow_mind_transfer = TRUE
+
 /mob/living/bot/New()
 	..()
 	//update_icons() //VOREstation edit: moved to Init

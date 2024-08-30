@@ -325,6 +325,7 @@ I think I covered everything.
 ///
 
 /mob/living/simple_mob/vore/bigdragon/update_icon()
+	..()
 	update_fullness()
 	build_icons()
 
@@ -342,9 +343,10 @@ I think I covered everything.
 /mob/living/simple_mob/vore/bigdragon/proc/build_icons(var/random)
 	cut_overlays()
 	if(stat == DEAD)
-		icon_state = "dragon-dead"
 		plane = MOB_LAYER
 		return
+	else
+		plane = ABOVE_MOB_PLANE
 	if(random)
 		var/list/bodycolors = list("#1E1E1E","#3F3F3F","#545454","#969696","#DBDBDB","#ABBBD8","#3D0B00","#3A221D","#77554F","#281D1B","#631F00","#964421","#936B24","#381313","#380000","#682121","#700E00","#44525B","#283035","#29353D","#353E44","#281000","#38261A","#302F3D","#322E3A","#262738")
 		under = pick(underbelly_styles)

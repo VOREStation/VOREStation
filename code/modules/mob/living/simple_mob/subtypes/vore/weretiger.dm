@@ -31,6 +31,8 @@
 
 	has_hands = 1
 
+	allow_mind_transfer = TRUE
+
 // Nomnomn
 /mob/living/simple_mob/vore/weretiger
 	vore_active = 1

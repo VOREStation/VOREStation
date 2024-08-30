@@ -27,6 +27,8 @@
 
 	say_list_type = /datum/say_list/bear
 
+	allow_mind_transfer = TRUE
+
 /datum/say_list/bear
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	emote_see = list("stares ferociously", "stomps")

@@ -47,6 +47,8 @@
 	var/tamed = 0
 	var/tame_chance = 50 //It's a fiddy-fiddy default you may get a buddy pal or you may get mauled and ate. Win-win!
 
+	allow_mind_transfer = TRUE
+
 // Activate Noms!
 
 /mob/living/simple_mob/vore/otie
