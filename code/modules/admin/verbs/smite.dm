@@ -9,7 +9,7 @@
 		return
 
 	var/list/smite_types = list(SMITE_BREAKLEGS,SMITE_BLUESPACEARTILLERY,SMITE_SPONTANEOUSCOMBUSTION,SMITE_LIGHTNINGBOLT,
-								SMITE_SHADEKIN_ATTACK,SMITE_SHADEKIN_NOMF,SMITE_AD_SPAM,SMITE_REDSPACE_ABDUCT,SMITE_AUTOSAVE,SMITE_AUTOSAVE_WIDE)
+								SMITE_SHADEKIN_ATTACK,SMITE_SHADEKIN_NOMF,SMITE_AD_SPAM,SMITE_REDSPACE_ABDUCT,SMITE_AUTOSAVE,SMITE_AUTOSAVE_WIDE,SMITE_TERROR)
 
 	var/smite_choice = tgui_input_list(usr, "Select the type of SMITE for [target]","SMITE Type Choice", smite_types)
 	if(!smite_choice)
@@ -157,6 +157,10 @@
 		if(SMITE_AD_SPAM)
 			if(target.client)
 				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
+
+		if(SMITE_TERROR)
+			if(ishuman(target))
+				target.fear = 200
 
 		else
 			return //Injection? Don't print any messages.
