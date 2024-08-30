@@ -1119,3 +1119,22 @@
 	offset_y = -11
 	mob_offset_y = 11
 */
+
+//RS ADD START
+
+
+/datum/sprite_accessory/tail/taur/bunny
+	name = "Bunny (Taur, Fat vwag)"
+	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
+	icon_state = "bnytr"
+	extra_overlay = "bnytr-m1"
+	extra_overlay2 = "bnytr-m2"
+	ani_state = "bnytr-f"
+	extra_overlay_w = "bnytr-m1"
+	extra_overlay2_w = "bnytr-f-m2"
+
+	can_loaf = TRUE
+	icon_loaf = 'icons/rogue-star/loafs_64x32.dmi'
+	loaf_offset = 4
+
+//RS ADD END

@@ -73,3 +73,10 @@
 **Creator:** Poojawa (https://github.com/VOREStation/VOREStation/pull/6052)<br>
 **License:** [General License](sound/vore/sunesound/LICENSE.txt)<br>
 **Notes:** Permission to use assets also given in writing. All files under this folder is NOT licensed under CC3. Seek separate permission before copying/using.<br>
+<br>
+**File:** `icons/rogue-star/loafs_64x32.dmi`and `icons/rogue-star/tails_64x32_rs.dmi`<br>
+**Title:** Rogue Star Tails<br>
+**Icon-States:** `flagtail`, derivs by VerySoft, `bnytr`, derivs by Verysoft, `chonksqrl`, derivs by Verysoft<br>
+**Creator:** VerySoft (https://github.com/TS-Rogue-Star/Rogue-Star/pull/435)<br>
+**URL:** [Website](https://rogue-star.net/)<br>
+**License:** Permission granting in writing for use by Virgo and Chomp with proper attribution
