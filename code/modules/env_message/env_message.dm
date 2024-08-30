@@ -87,6 +87,8 @@ var/global/list/env_messages = list()
 		EM = new /obj/effect/env_message(ourturf)
 	EM.add_message(src.ckey, new_message)
 
+	log_game("[key_name(src)] created an Env Message: [new_message] at ([EM.x], [EM.y], [EM.z])")
+
 /mob/living/verb/remove_env_message()
 	set name = "Remove Env Message"
 	set desc = "Remove your current env message."
@@ -102,6 +104,8 @@ var/global/list/env_messages = list()
 	if(EM)
 		var/answer = tgui_alert(src, "Do you want to remove this env message? (Note: Selecting 'Yes' will remove other players' messages on this tyle too. Please don't remove other players' messages for no reason. Use 'Only My Message' to remove yours only.)", "Env Message", list("Yes", "Only My Message", "No"))
 		if(answer == "Yes")
+			if(!(src.ckey in EM.message_list) || EM.message_list.len > 1)
+				log_game("[key_name(src)] deleted an Env Message that contained other players' entries at ([EM.x], [EM.y], [EM.z])")
 			qdel(EM)
 		else if(answer == "Only My Message")
 			clear_env_message(src.ckey)
