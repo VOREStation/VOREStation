@@ -3,6 +3,7 @@
 	minbodytemp = 175
 	cold_resist = 0.75
 	heat_resist = -0.5
+	allow_mind_transfer = TRUE
 
 	tame_items = list(
 	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 20,

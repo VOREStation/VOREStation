@@ -335,6 +335,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
+		"allow_mind_transfer" = host.allow_mind_transfer,
 		"drop_vore" = host.drop_vore,
 		"slip_vore" = host.slip_vore,
 		"stumble_vore" = host.stumble_vore,
@@ -567,6 +568,12 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.pickup_pref = !host.pickup_pref
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.pickup_pref = host.pickup_pref
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_allow_mind_transfer")
+			host.allow_mind_transfer = !host.allow_mind_transfer
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.allow_mind_transfer = host.allow_mind_transfer
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_healbelly")

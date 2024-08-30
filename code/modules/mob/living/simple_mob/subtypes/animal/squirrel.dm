@@ -52,6 +52,8 @@
 	var/do_seasons = TRUE
 	var/picked_color = FALSE
 
+	allow_mind_transfer = TRUE
+
 /////////////////////////////////////// Vore stuff///////////////////////////////////////////
 
 	swallowTime = 4 SECONDS
