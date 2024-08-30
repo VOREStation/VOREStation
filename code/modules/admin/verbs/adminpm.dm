@@ -165,7 +165,7 @@
 				to_chat(src, "<span class='pm notice'>PM to-<b>Admins</b>: [msg]</span>")
 
 			//play the recieving admin the adminhelp sound (if they have them enabled)
-			if(recipient.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+			if(recipient.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 				recipient << 'sound/effects/adminhelp.ogg'
 
 		else

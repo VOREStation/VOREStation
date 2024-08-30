@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 	//Person just died in guts!
 	if(L.stat == DEAD)
-		if(L.is_preference_enabled(/datum/client_preference/digestion_noises))
+		if(L.check_sound_preference(/datum/preference/toggle/digestion_noises))
 			if(!B.fancy_vore)
 				SEND_SOUND(L, sound(get_sfx("classic_death_sounds")))
 			else
