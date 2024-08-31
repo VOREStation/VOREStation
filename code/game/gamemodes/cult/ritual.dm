@@ -333,11 +333,8 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			tgui_alert_async(user, "The cloth of reality can't take that much of a strain. Remove some runes first!")
 			return
 		else
-			var/input = tgui_alert(user, "You open the tome", "Tome", list("Read it","Scribe a rune","Cancel"))
-			if(!input)
-				return
-			switch(input)
-				if("Cancel")
+			switch(tgui_alert(user, "You open the tome", "Tome", list("Read it","Scribe a rune","Cancel")))
+				if("Cancel", null)
 					return
 				if("Read it")
 					if(usr.get_active_hand() != src)
