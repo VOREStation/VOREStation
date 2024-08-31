@@ -2206,14 +2206,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.8":
-  version: 1.6.8
-  resolution: "axios@npm:1.6.8"
+"axios@npm:^1.7.4":
+  version: 1.7.6
+  resolution: "axios@npm:1.7.6"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/0f22da6f490335479a89878bc7d5a1419484fbb437b564a80c34888fc36759ae4f56ea28d55a191695e5ed327f0bad56e7ff60fb6770c14d1be6501505d47ab9
+  checksum: 10c0/8b4be67056f8f3895ebadbfce0708e5aa9c537a5a68e2da03bec49d35695e29b57f14ce38f20f55bb19946bd89787a839a7c3afa9e58e1152696c208046f8417
   languageName: node
   linkType: hard
 
@@ -8240,7 +8240,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tgui-dev-server@workspace:packages/tgui-dev-server"
   dependencies:
-    axios: "npm:^1.6.8"
+    axios: "npm:^1.7.4"
     glob: "npm:^7.2.3"
     source-map: "npm:^0.7.4"
     stacktrace-parser: "npm:^0.1.10"
