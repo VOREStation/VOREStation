@@ -7,3 +7,6 @@
 	var/list/preferences_disabled = S.get_entry("preferences_disabled")
 	for(var/key in preferences_disabled)
 		S.set_entry("[key]", FALSE)
+
+	// Force a reload of the value cache
+	apply_all_client_preferences()
