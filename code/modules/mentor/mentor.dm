@@ -252,7 +252,7 @@ var/list/mentor_verbs_default = list(
 
 	log_admin("[key_name(src)]->[key_name(recipient)]: [msg]")
 
-	if(recipient.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
+	if(recipient.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
 		recipient << 'sound/effects/mentorhelp.mp3'
 
 	for(var/client/C in GLOB.mentors)

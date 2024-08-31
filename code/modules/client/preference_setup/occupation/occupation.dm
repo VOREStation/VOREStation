@@ -2,41 +2,41 @@
 	name = "Occupation"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/occupation/load_character(list/save_data)
-	pref.alternate_option	= save_data["alternate_option"]
-	pref.job_civilian_high	= save_data["job_civilian_high"]
-	pref.job_civilian_med	= save_data["job_civilian_med"]
-	pref.job_civilian_low	= save_data["job_civilian_low"]
-	pref.job_medsci_high	= save_data["job_medsci_high"]
-	pref.job_medsci_med		= save_data["job_medsci_med"]
-	pref.job_medsci_low		= save_data["job_medsci_low"]
-	pref.job_engsec_high	= save_data["job_engsec_high"]
-	pref.job_engsec_med		= save_data["job_engsec_med"]
-	pref.job_engsec_low		= save_data["job_engsec_low"]
+/datum/category_item/player_setup_item/occupation/load_character(var/savefile/S)
+	S["alternate_option"]	>> pref.alternate_option
+	S["job_civilian_high"]	>> pref.job_civilian_high
+	S["job_civilian_med"]	>> pref.job_civilian_med
+	S["job_civilian_low"]	>> pref.job_civilian_low
+	S["job_medsci_high"]	>> pref.job_medsci_high
+	S["job_medsci_med"]		>> pref.job_medsci_med
+	S["job_medsci_low"]		>> pref.job_medsci_low
+	S["job_engsec_high"]	>> pref.job_engsec_high
+	S["job_engsec_med"]		>> pref.job_engsec_med
+	S["job_engsec_low"]		>> pref.job_engsec_low
 	//VOREStation Add
-	pref.job_talon_low		= save_data["job_talon_low"]
-	pref.job_talon_med		= save_data["job_talon_med"]
-	pref.job_talon_high		= save_data["job_talon_high"]
+	S["job_talon_low"]		>> pref.job_talon_low
+	S["job_talon_med"]		>> pref.job_talon_med
+	S["job_talon_high"]		>> pref.job_talon_high
 	//VOREStation Add End
-	pref.player_alt_titles	= save_data["player_alt_titles"]
+	S["player_alt_titles"]	>> pref.player_alt_titles
 
-/datum/category_item/player_setup_item/occupation/save_character(list/save_data)
-	save_data["alternate_option"]	= pref.alternate_option
-	save_data["job_civilian_high"]	= pref.job_civilian_high
-	save_data["job_civilian_med"]	= pref.job_civilian_med
-	save_data["job_civilian_low"]	= pref.job_civilian_low
-	save_data["job_medsci_high"]	= pref.job_medsci_high
-	save_data["job_medsci_med"]		= pref.job_medsci_med
-	save_data["job_medsci_low"]		= pref.job_medsci_low
-	save_data["job_engsec_high"]	= pref.job_engsec_high
-	save_data["job_engsec_med"]		= pref.job_engsec_med
-	save_data["job_engsec_low"]		= pref.job_engsec_low
+/datum/category_item/player_setup_item/occupation/save_character(var/savefile/S)
+	S["alternate_option"]	<< pref.alternate_option
+	S["job_civilian_high"]	<< pref.job_civilian_high
+	S["job_civilian_med"]	<< pref.job_civilian_med
+	S["job_civilian_low"]	<< pref.job_civilian_low
+	S["job_medsci_high"]	<< pref.job_medsci_high
+	S["job_medsci_med"]		<< pref.job_medsci_med
+	S["job_medsci_low"]		<< pref.job_medsci_low
+	S["job_engsec_high"]	<< pref.job_engsec_high
+	S["job_engsec_med"]		<< pref.job_engsec_med
+	S["job_engsec_low"]		<< pref.job_engsec_low
 	//VOREStation Add
-	save_data["job_talon_low"]		= pref.job_talon_low
-	save_data["job_talon_med"]		= pref.job_talon_med
-	save_data["job_talon_high"]		= pref.job_talon_high
+	S["job_talon_low"]		<< pref.job_talon_low
+	S["job_talon_med"]		<< pref.job_talon_med
+	S["job_talon_high"]		<< pref.job_talon_high
 	//VOREStation Add End
-	save_data["player_alt_titles"]	= pref.player_alt_titles
+	S["player_alt_titles"]	<< pref.player_alt_titles
 
 /datum/category_item/player_setup_item/occupation/sanitize_character()
 	pref.alternate_option	= sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))

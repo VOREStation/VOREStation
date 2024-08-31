@@ -79,7 +79,7 @@
 			channel = channel,
 			pressure_affected = null,
 			S = copy,
-			preference = /datum/preference/toggle/instrument_toggle,
+			preference = /datum/client_preference/instrument_toggle,
 			volume_channel = VOLUME_CHANNEL_INSTRUMENTS)
 		// Could do environment and echo later but not for now
 

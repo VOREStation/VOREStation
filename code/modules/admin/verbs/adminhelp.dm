@@ -251,7 +251,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	for(var/client/X in GLOB.admins)
 		if(!check_rights(R_ADMIN, 0, X))
 			continue
-		if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
+		if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 			X << 'sound/effects/adminhelp.ogg'
 		window_flash(X)
 		to_chat(X, chat_msg)
@@ -362,7 +362,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	if(initiator)
-		if(initiator.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
+		if(initiator.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 			initiator << 'sound/effects/adminhelp.ogg'
 
 		to_chat(initiator, "<span class='filter_pm'>[span_red("<font size='4'><b>- AdminHelp Rejected! -</b></font>")]<br>\

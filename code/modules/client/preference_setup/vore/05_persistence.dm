@@ -7,12 +7,12 @@
 	name = "Persistence"
 	sort_order = 5
 
-/datum/category_item/player_setup_item/vore/persistence/load_character(list/save_data)
-	pref.persistence_settings = save_data["persistence_settings"]
+/datum/category_item/player_setup_item/vore/persistence/load_character(var/savefile/S)
+	S["persistence_settings"]		>> pref.persistence_settings
 	sanitize_character() // Don't let new characters start off with nulls
 
-/datum/category_item/player_setup_item/vore/persistence/save_character(list/save_data)
-	save_data["persistence_settings"] = pref.persistence_settings
+/datum/category_item/player_setup_item/vore/persistence/save_character(var/savefile/S)
+	S["persistence_settings"]		<< pref.persistence_settings
 
 /datum/category_item/player_setup_item/vore/persistence/sanitize_character()
 	pref.persistence_settings		= sanitize_integer(pref.persistence_settings, 0, (1<<(PERSIST_COUNT+1)-1), initial(pref.persistence_settings))

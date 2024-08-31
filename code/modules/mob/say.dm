@@ -68,7 +68,7 @@
 			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
 			return
 
-	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
+	if(!is_preference_enabled(/datum/client_preference/show_dsay))
 		to_chat(usr, "<span class='danger'>You have deadchat muted.</span>")
 		return
 

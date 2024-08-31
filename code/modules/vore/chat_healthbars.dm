@@ -6,7 +6,7 @@
 	if(!reciever.client)	//No one is home, don't bother
 		return
 	if(!override)	//Did the person push the verb? Ignore the pref
-		if(!reciever.client.prefs?.read_preference(/datum/preference/toggle/vore_health_bars))
+		if(!reciever.client.is_preference_enabled(/datum/client_preference/vore_health_bars))
 			return
 	var/ourpercent = 0
 

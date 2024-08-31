@@ -194,10 +194,10 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	var/chat_msg = "<span class='notice'>(<A HREF='?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
 	for (var/client/C in GLOB.mentors)
-		if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
+		if (C.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
 			C << 'sound/effects/mentorhelp.mp3'
 	for (var/client/C in GLOB.admins)
-		if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
+		if (C.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
 			C << 'sound/effects/mentorhelp.mp3'
 	message_mentors(chat_msg)
 

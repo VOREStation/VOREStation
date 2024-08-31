@@ -14,13 +14,13 @@
 	name = "Egg appearance."
 	sort_order = 3
 
-/datum/category_item/player_setup_item/vore/egg/load_character(list/save_data)
-	pref.vore_egg_type	= save_data["vore_egg_type"]
-	pref.autohiss		= save_data["autohiss"]
+/datum/category_item/player_setup_item/vore/egg/load_character(var/savefile/S)
+	S["vore_egg_type"]		>> pref.vore_egg_type
+	S["autohiss"]			>> pref.autohiss // VOREStation Add
 
-/datum/category_item/player_setup_item/vore/egg/save_character(list/save_data)
-	save_data["vore_egg_type"]		= pref.vore_egg_type
-	save_data["autohiss"]			= pref.autohiss
+/datum/category_item/player_setup_item/vore/egg/save_character(var/savefile/S)
+	S["vore_egg_type"]		<< pref.vore_egg_type
+	S["autohiss"]			<< pref.autohiss // VOREStation Add
 
 /datum/category_item/player_setup_item/vore/egg/sanitize_character()
 	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, global_vore_egg_types, initial(pref.vore_egg_type))

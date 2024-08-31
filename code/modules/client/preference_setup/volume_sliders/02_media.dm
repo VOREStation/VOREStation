@@ -6,13 +6,13 @@
 	name = "Media"
 	sort_order = 2
 
-/datum/category_item/player_setup_item/volume_sliders/media/load_preferences(datum/json_savefile/savefile)
-	pref.media_volume = savefile.get_entry("media_volume")
-	pref.media_player = savefile.get_entry("media_player")
+/datum/category_item/player_setup_item/volume_sliders/media/load_preferences(var/savefile/S)
+	S["media_volume"]	>> pref.media_volume
+	S["media_player"]	>> pref.media_player
 
-/datum/category_item/player_setup_item/volume_sliders/media/save_preferences(datum/json_savefile/savefile)
-	savefile.set_entry("media_volume", pref.media_volume)
-	savefile.set_entry("media_player", pref.media_player)
+/datum/category_item/player_setup_item/volume_sliders/media/save_preferences(var/savefile/S)
+	S["media_volume"]	<< pref.media_volume
+	S["media_player"]	<< pref.media_player
 
 /datum/category_item/player_setup_item/volume_sliders/media/sanitize_preferences()
 	pref.media_volume = isnum(pref.media_volume) ? CLAMP(pref.media_volume, 0, 1) : initial(pref.media_volume)
