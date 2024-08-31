@@ -909,10 +909,8 @@
 				if(I_GRAB)
 					if(is_vore_predator(H) && H.devourable && src.feeding && src.devourable)
 						var/switchy = tgui_alert(H, "Do you wish to eat [src] or feed yourself to them?", "Feed or Eat",list("Nevermind!", "Eat","Feed"))
-						if(!switchy)
-							return
 						switch(switchy)
-							if("Nevermind!")
+							if("Nevermind!", null)
 								return
 							if("Eat")
 								feed_grabbed_to_self(H, src)

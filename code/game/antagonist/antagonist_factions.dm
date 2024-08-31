@@ -35,12 +35,10 @@
 
 	player.rev_cooldown = world.time+100
 	var/choice = tgui_alert(player.current, "Asked by [src]: Do you want to join the [faction.faction_descriptor]?", "Join the [faction.faction_descriptor]?", list("No!","Yes!"))
-	if(!choice)
-		return
 	if(choice == "Yes!" && faction.add_antagonist_mind(player, 0, faction.faction_role_text, faction.faction_welcome))
 		to_chat(src, "<span class='notice'>\The [player.current] joins the [faction.faction_descriptor]!</span>")
 		return
-	if(choice == "No!")
+	if(!choice || choice == "No!")
 		to_chat(player, "<span class='danger'>You reject this traitorous cause!</span>")
 	to_chat(src, "<span class='danger'>\The [player.current] does not support the [faction.faction_descriptor]!</span>")
 

@@ -499,8 +499,6 @@
 	if(ID)
 		if (idaccessible == 1)
 			var/input = tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel"))
-			if(!input)
-				return
 			switch(input)
 				if("Add Access")
 					idcard.access |= ID.access
@@ -516,7 +514,7 @@
 					if(radio)
 						radio.recalculateChannels()
 					return
-				if("Cancel")
+				if("Cancel", null)
 					return
 		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
 			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")

@@ -160,8 +160,6 @@ var/list/sounds_cache = list()
 			if((tgui_alert(user, "This song is over 10 minutes long. Are you sure you want to play it?", "Length Warning!", list("No", "Yes", "Cancel")) != "Yes"))
 				return
 		var/res = tgui_alert(user, "Show the title of and link to this song to the players?\n[title]", "Show Info?", list("Yes", "No", "Cancel"))
-		if(!res)
-			return
 		switch(res)
 			if("Yes")
 				music_extra_data["title"] = data["title"]
@@ -174,8 +172,6 @@ var/list/sounds_cache = list()
 			if("Cancel", null)
 				return
 		var/anon = tgui_alert(user, "Display who played the song?", "Credit Yourself?", list("Yes", "No", "Cancel"))
-		if(!anon)
-			return
 		switch(anon)
 			if("Yes")
 				if(res == "Yes")

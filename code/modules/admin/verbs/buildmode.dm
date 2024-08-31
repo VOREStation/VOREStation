@@ -292,10 +292,9 @@
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 
 			if(BUILDMODE_ROOM)
-				var/area_choice = tgui_alert(usr, "Would you like to generate a new area as well?","Room Builder", list("No", "Yes"))
-				if(!area_choice)
-					return
-				switch(area_choice)
+				switch(tgui_alert(usr, "Would you like to generate a new area as well?","Room Builder", list("No", "Yes")))
+					if(null)
+						return
 					if("No")
 						area_enabled = 0
 					if("Yes")

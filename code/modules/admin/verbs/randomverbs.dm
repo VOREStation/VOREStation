@@ -436,7 +436,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			charjob = USELESS_JOB //VOREStation Edit - Visitor not Assistant
 	else
 		records = tgui_alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records",list("No", "Yes", "Cancel"))
-		if(records || records == "Cancel")
+		if(!records || records == "Cancel")
 			return
 		if(records == "Yes")
 			records = 1
