@@ -38,10 +38,8 @@
 		preference = list(preference)
 
 	for(var/p in preference)
-		// Ignore nulls
-		if(p)
-			if(!read_preference(p))
-				return FALSE
+		if(!read_preference(p))
+			return FALSE
 
 	return TRUE
 
