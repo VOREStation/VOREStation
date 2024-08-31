@@ -110,7 +110,7 @@
 		return
 
 	var/swap_not_rebuild = tgui_alert(src,"Do you want to rebuild, or reshape?","Rebuild or Reshape",list("Reshape","Cancel","Rebuild"))
-	if(swap_not_rebuild == "Cancel")
+	if(!swap_not_rebuild || swap_not_rebuild == "Cancel")
 		return
 	if(swap_not_rebuild == "Reshape")
 		var/list/usable_manufacturers = list()

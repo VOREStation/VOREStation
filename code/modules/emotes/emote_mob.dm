@@ -61,7 +61,7 @@
 			if(!message)
 				return
 			if (!m_type)
-				if(tgui_alert(src, "Is this an audible emote?", "Emote", list("Yes", "No")) == "No")
+				if(tgui_alert(src, "Is this an audible emote?", "Emote", list("Yes", "No")) != "Yes")
 					m_type = VISIBLE_MESSAGE
 				else
 					m_type = AUDIBLE_MESSAGE

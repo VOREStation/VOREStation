@@ -13,7 +13,7 @@
 	if (!shuttle_tag) return
 
 	var/datum/shuttle/S = SSshuttles.shuttles[shuttle_tag]
-	
+
 	var/list/area_choices = return_areas()
 	var/origin_area = tgui_input_list(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)", "Area Choice", area_choices)
 	if (!origin_area) return
@@ -22,6 +22,8 @@
 	if (!destination_area) return
 
 	var/long_jump = tgui_alert(user, "Is there a transition area for this jump?","Transition?", list("Yes","No"))
+	if(!long_jump)
+		return
 	if (long_jump == "Yes")
 		var/transition_area = tgui_input_list(user, "Which area is the transition area? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)", "Area Choice", area_choices)
 		if (!transition_area) return

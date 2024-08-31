@@ -593,8 +593,9 @@
 					to_chat(user, "<span class='warning'>The SPASM beeps in an upset manner, you already have a collar!</span>")
 					return
 				var/confirm = tgui_alert(usr, "Are you sure you want to become a sentient prize?", "Confirm Sentient Prize", list("Yes", "No"))
-				if(confirm == "Yes")
-					to_chat(user, "<span class='warning'>You are now a prize!</span>")
+				if(confirm != "Yes")
+					return
+				to_chat(user, "<span class='warning'>You are now a prize!</span>")
 				if(safety_ckey in sentientprizes_ckeys_list)
 					to_chat(user, "<span class='warning'>The SPASM beeps in an upset manner, you already have a collar!</span>")
 					return

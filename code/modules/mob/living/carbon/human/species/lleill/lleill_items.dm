@@ -156,7 +156,7 @@
 	if(homunculus)
 		var/mob/living/simple_mob/homunculus/H = homunculus
 		var/h_action = tgui_alert(user, "What would you like to do with your homunculus?", "Actions", list("Recall", "Speak Through", "Cancel"))
-		if(h_action == "Cancel")
+		if(!h_action || h_action == "Cancel")
 			return
 		if(h_action == "Recall")
 			H.visible_message("<b>\The [H]</b> returns to the face.")
@@ -244,7 +244,7 @@
 	else
 		m_action= tgui_alert(M, "Do you want to destroy the ring, the owner of it may be aware that you have done this?", "Destroy ring", list("Yes", "No"))
 
-	if(m_action == "No")
+	if(!m_action || m_action == "No")
 		return
 
 	if(m_action == "Yes")

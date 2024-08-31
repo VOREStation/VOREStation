@@ -291,7 +291,10 @@
 			return
 
 		var/delmob = 0
-		switch(tgui_alert(usr, "Delete old mob?","Message",list("Yes","No","Cancel")))
+		var/input = tgui_alert(usr, "Delete old mob?","Message",list("Yes","No","Cancel"))
+		if(!input)
+			return
+		switch(input)
 			if("Cancel")	return
 			if("Yes")		delmob = 1
 
@@ -355,7 +358,10 @@
 
 		var/duration
 
-		switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No")))
+		var/input = tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No"))
+		if(!input)
+			return
+		switch(input)
 			if("Yes")
 				temp = 1
 				var/mins = 0
@@ -773,7 +779,10 @@
 
 		//Banning comes first
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
-			switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban", list("Yes","No","Cancel")))
+			var/input = tgui_alert(usr, "Temporary Ban?","Temporary Ban", list("Yes","No","Cancel"))
+			if(!input)
+				return
+			switch(input)
 				if("Yes")
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
 						to_chat(usr, "<span class='filter_adminlog warning'> You cannot issue temporary job-bans!</span>")
@@ -909,7 +918,10 @@
 
 		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
-		switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No","Cancel")))
+		var/input2 = tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No","Cancel"))
+		if(!input2)
+			return
+		switch(input2)
 			if("Yes")
 				var/mins = tgui_input_number(usr,"How long (in minutes)?","Ban time",1440)
 				if(!mins)
@@ -945,7 +957,10 @@
 				var/reason = sanitize(tgui_input_text(usr,"Reason?","reason","Griefer"))
 				if(!reason)
 					return
-				switch(tgui_alert(usr,"IP ban?","IP Ban",list("Yes","No","Cancel")))
+				var/input3 = tgui_alert(usr,"IP ban?","IP Ban",list("Yes","No","Cancel"))
+				if(!input3)
+					return
+				switch(input3)
 					if("Cancel")	return
 					if("Yes")
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)

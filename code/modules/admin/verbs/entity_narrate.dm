@@ -92,10 +92,10 @@
 	var/options = holder.entity_names + "Clear All"
 	var/removekey = tgui_input_list(usr, "Choose which entity to remove", "remove reference", options, null)
 	if(removekey == "Clear All")
-		var/confirm = tgui_alert(usr, "Do you really want to clear your entity list?", "confirm", list("Yes", "No"), "No")
-		if(confirm == "Yes")
-			holder.entity_names = list()
-			holder.entity_refs = list()
+		if(tgui_alert(usr, "Do you really want to clear your entity list?", "confirm", list("Yes", "No")) != "Yes")
+			return
+		holder.entity_names = list()
+		holder.entity_refs = list()
 	else if(removekey)
 		holder.entity_refs -= removekey
 		holder.entity_names -= removekey
@@ -128,7 +128,7 @@
 		holder.tgui_interact(usr)
 	else
 		var/mode = tgui_alert(usr, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
-		if(mode == "Cancel") return
+		if(!mode || mode == "Cancel") return
 		var/message = tgui_input_text(usr, "Input what you want [which_entity] to [mode]", "narrate",
 		null, multiline = TRUE, prevent_enter = TRUE)
 		if(message)

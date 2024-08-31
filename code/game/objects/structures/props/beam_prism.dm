@@ -51,7 +51,7 @@
 		return
 
 	var/confirm = tgui_alert(usr, "Do you want to try to rotate \the [src]?", "[name]", list("Yes", "No"))
-	if(confirm == "No")
+	if(confirm != "Yes")
 		visible_message(\
 			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
 			"<span class='notice'>You decide not to try turning \the [src].</span>")
@@ -157,7 +157,7 @@
 	..()
 
 	var/confirm = tgui_alert(usr, "Do you want to try to rotate \the [src]?", "[name]", list("Yes", "No"))
-	if(confirm == "No")
+	if(confirm != "Yes")
 		visible_message(\
 			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
 			"<span class='notice'>You decide not to try turning \the [src].</span>")
@@ -186,7 +186,7 @@
 		new_bearing = round(compass_directions[choice])
 
 	confirm = tgui_alert(usr, "Are you certain you want to rotate \the [src]?", "[name]", list("Yes", "No"))
-	if(confirm == "No")
+	if(confirm != "Yes")
 		visible_message(\
 			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
 			"<span class='notice'>You decide not to try turning \the [src].</span>")

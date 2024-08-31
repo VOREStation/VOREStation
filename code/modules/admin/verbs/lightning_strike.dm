@@ -8,7 +8,7 @@
 
 	var/result = tgui_alert(src, "Really strike your tile with lightning?", "Confirm Badmin" , list("No", "Yes (Cosmetic)", "Yes (Real)"))
 
-	if(result == "No")
+	if(!result || result == "No")
 		return
 	var/fake_lightning = result == "Yes (Cosmetic)"
 

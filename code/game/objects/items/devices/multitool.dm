@@ -34,9 +34,6 @@
 /obj/item/device/multitool/attack_self(mob/living/user)
 	var/choice = tgui_alert(usr, "What do you want to do with \the [src]?", "Multitool Menu", list("Switch Mode", "Clear Buffers", "Cancel"))
 	switch(choice)
-		if("Cancel")
-			to_chat(user,"<span class='notice'>You lower \the [src].</span>")
-			return
 		if("Clear Buffers")
 			to_chat(user,"<span class='notice'>You clear \the [src]'s memory.</span>")
 			buffer = null
@@ -48,6 +45,9 @@
 				accepting_refs = 1
 		if("Switch Mode")
 			mode_switch(user)
+		else
+			to_chat(user,"<span class='notice'>You lower \the [src].</span>")
+			return
 
 	update_icon()
 

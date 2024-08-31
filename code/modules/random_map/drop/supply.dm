@@ -42,6 +42,8 @@
 	var/chosen_loot_type
 	var/list/chosen_loot_types
 	var/choice = tgui_alert(usr, "Do you wish to supply a custom loot list?","Supply Drop",list("No","Yes"))
+	if(!choice)
+		return
 	if(choice == "Yes")
 		chosen_loot_types = list()
 
@@ -83,11 +85,13 @@
 				chosen_loot_types |= adding_loot_type
 	else
 		choice = tgui_alert(usr, "Do you wish to specify a loot type?","Supply Drop",list("No","Yes"))
+		if(!choice)
+			return
 		if(choice == "Yes")
 			chosen_loot_type = tgui_input_list(usr, "Select a loot type.", "Loot Selection", supply_drop_random_loot_types())
 
 	choice = tgui_alert(usr, "Are you SURE you wish to deploy this supply drop? It will cause a sizable explosion and gib anyone underneath it.","Supply Drop",list("No","Yes"))
-	if(choice == "No")
+	if(choice != "Yes")
 		return
 	log_admin("[key_name(usr)] dropped supplies at ([usr.x],[usr.y],[usr.z])")
 	new /datum/random_map/droppod/supply(null, usr.x-2, usr.y-2, usr.z, supplied_drops = chosen_loot_types, supplied_drop = chosen_loot_type)

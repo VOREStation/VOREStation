@@ -10,7 +10,10 @@
 	var/targetselected = 0
 	var/returnval = null
 
-	switch(tgui_alert(usr, "Proc owned by something?","Call Proc",list("Yes","No")))
+	var/input = tgui_alert(usr, "Proc owned by something?","Call Proc",list("Yes","No"))
+	if(!input)
+		return
+	switch(input)
 		if("Yes")
 			targetselected = 1
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT))

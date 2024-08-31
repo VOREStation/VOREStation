@@ -194,7 +194,7 @@
 			if(!antigens.len)
 				var/a = tgui_alert(usr, "This disease has no antigens; it will be impossible to permanently immunise anyone without them.\
 								It is strongly recommended to set at least one antigen. Do you want to go back and edit your virus?", "Antigens", list("Yes", "No"))
-				if(a == "Yes") return
+				if(!a || a == "Yes") return
 			var/datum/disease2/disease/D = new
 			D.infectionchance = infectionchance
 			D.spreadtype = spreadtype

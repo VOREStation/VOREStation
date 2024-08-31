@@ -612,7 +612,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	feedback_add_details("admin_verb","Adminhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
-		if(tgui_alert(usr, "You already have a ticket open. Is this for the same issue?","Duplicate?",list("Yes","No")) != "No")
+		var/input = tgui_alert(usr, "You already have a ticket open. Is this for the same issue?","Duplicate?",list("Yes","No"))
+		if(!input)
+			return
+		if(input == "Yes")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
 				to_chat(usr, "<span class='pm adminnotice'>PM to-<b>Admins</b>: [msg]</span>")

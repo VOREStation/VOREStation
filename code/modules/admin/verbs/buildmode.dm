@@ -293,6 +293,8 @@
 
 			if(BUILDMODE_ROOM)
 				var/area_choice = tgui_alert(usr, "Would you like to generate a new area as well?","Room Builder", list("No", "Yes"))
+				if(!area_choice)
+					return
 				switch(area_choice)
 					if("No")
 						area_enabled = 0

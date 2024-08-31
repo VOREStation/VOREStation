@@ -178,7 +178,7 @@
 		to_chat(src,"<span class='warning'>You can't do that when restrained.</span>")
 
 	var/r_action = tgui_alert(src, "What would you like to do with your rings? You currently have [LL.lleill_energy] energy remaining.", "Actions", list("Spawn New Ring ([energy_cost_spawn])", "Teleport to Ring ([energy_cost_tele])", "Cancel"))
-	if(r_action == "Cancel")
+	if(!r_action || r_action == "Cancel")
 		return
 	if(findtext(r_action,"Spawn New Ring"))
 		if(LL.lleill_energy < energy_cost_spawn)
@@ -286,7 +286,7 @@
 	if(get_dist(src,chosen_target) > 1)
 		to_chat(src, "<span class='warning'>You need to be standing next to [chosen_target].</span>")
 		return
-	if(accepted == "No")
+	if(!accepted || accepted == "No")
 		to_chat(src, "<span class='warning'>\The [chosen_target] refuses the contact.</span>")
 		return
 	if(accepted == "Yes")

@@ -443,7 +443,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			spawn(1200)
 				src.verbs += /client/verb/mentorhelp // 2 minute cd to prevent abusing this to spam admins.
 			return
-		else if(choice == "Cancel")
+		else if(!choice || choice == "Cancel")
 			return
 
 
@@ -455,7 +455,10 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 	feedback_add_details("admin_verb","Mentorhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_mentorhelp)
-		if(tgui_alert(usr, "You already have a ticket open. Is this for the same issue?","Duplicate?",list("Yes","No")) != "No")
+		var/input = tgui_alert(usr, "You already have a ticket open. Is this for the same issue?","Duplicate?",list("Yes","No"))
+		if(!input)
+			return
+		if(input == "Yes")
 			if(current_mentorhelp)
 				log_admin("Mentorhelp: [key_name(src)]: [msg]")
 				current_mentorhelp.MessageNoRecipient(msg)

@@ -38,7 +38,7 @@
 	sleep(15) //So if they are typing they get interrupted by sound and message, and don't type over the box
 	var/response = tgui_alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny","Allow"))
 
-	if(response == "Deny")
+	if(!response || response == "Deny")
 		to_chat(src,"<span class='warning'>[H] denied your request.</span>")
 		return
 

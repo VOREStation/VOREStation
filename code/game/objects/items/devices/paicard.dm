@@ -77,7 +77,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			return
 
 	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI, or submit yourself to being recruited?", "Confirmation", list("Inhabit", "Recruit", "Cancel"))
-	if(choice == "Cancel")
+	if(!choice || choice == "Cancel")
 		return ..()
 	if(choice == "Recruit")
 		paiController.recruitWindow(user)
@@ -85,7 +85,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	choice = tgui_alert(user, "Do you want to load your pAI data?", "Load", list("Yes", "No"))
 	var/actual_pai_name
 	var/turf/location = get_turf(src)
-	if(choice == "No")
+	if(!choice || choice == "No")
 		var/pai_name = tgui_input_text(user, "Choose your character's name", "Character Name")
 		actual_pai_name = sanitize_name(pai_name, ,1)
 		if(isnull(actual_pai_name))

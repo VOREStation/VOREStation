@@ -30,6 +30,8 @@ var/list/sounds_cache = list()
 	sounds_cache += S
 
 	var/res = tgui_alert(usr, "Show the title of this song ([S]) to the players?\nOptions 'Yes' and 'No' will play the sound.",, list("Yes", "No", "Cancel"))
+	if(!res)
+		return
 	switch(res)
 		if("Yes")
 			to_chat(world, "<span class='boldannounce'>An admin played: [S]</span>", confidential = TRUE)
@@ -83,7 +85,7 @@ var/list/sounds_cache = list()
 
 	sounds_cache += S
 
-	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) == "Cancel")
+	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) != "Play")
 		return
 
 	log_admin("[key_name(src)] played sound [S] on Z[target_z]")
@@ -158,6 +160,8 @@ var/list/sounds_cache = list()
 			if((tgui_alert(user, "This song is over 10 minutes long. Are you sure you want to play it?", "Length Warning!", list("No", "Yes", "Cancel")) != "Yes"))
 				return
 		var/res = tgui_alert(user, "Show the title of and link to this song to the players?\n[title]", "Show Info?", list("Yes", "No", "Cancel"))
+		if(!res)
+			return
 		switch(res)
 			if("Yes")
 				music_extra_data["title"] = data["title"]
@@ -170,6 +174,8 @@ var/list/sounds_cache = list()
 			if("Cancel", null)
 				return
 		var/anon = tgui_alert(user, "Display who played the song?", "Credit Yourself?", list("Yes", "No", "Cancel"))
+		if(!anon)
+			return
 		switch(anon)
 			if("Yes")
 				if(res == "Yes")

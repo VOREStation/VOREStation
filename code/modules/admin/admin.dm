@@ -600,7 +600,7 @@ var/global/floorIsLava = 0
 	if (!usr.client.holder)
 		return
 	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
-	if(confirm == "Cancel")
+	if(!confirm || confirm == "Cancel")
 		return
 	if(confirm == "Yes")
 		to_world("<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>")
@@ -993,7 +993,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
 	if(!usr.client.holder)	return
-	if(alert(usr, "Reboot server?","Reboot!","Yes","No") == "No") // Not tgui_alert for safety
+	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
 	to_world("[span_red("<b>Rebooting world!</b>")] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]")
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
@@ -1530,9 +1530,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	var/shouldStamp = 1
 	if(!P.sender) // admin initiated
-		switch(tgui_alert(usr, "Would you like the fax stamped?","Stamped?", list("Yes", "No")))
-			if("No")
-				shouldStamp = 0
+		if(tgui_alert(usr, "Would you like the fax stamped?","Stamped?", list("Yes", "No")) != "Yes")
+			shouldStamp = 0
 
 	if(shouldStamp)
 		P.stamps += "<hr><i>This paper has been stamped by the [P.origin] Quantum Relay.</i>"
