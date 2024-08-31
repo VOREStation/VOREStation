@@ -6,13 +6,6 @@
 			return number
 	return default
 
-/proc/sanitize_float(number, min=0, max=1, accuracy=1, default=0)
-	if(isnum(number))
-		number = round(number, accuracy)
-		if(round(min, accuracy) <= number && number <= round(max, accuracy))
-			return number
-	return default
-
 // Checks if the given input is a valid list index; returns true/false and doesn't change anything.
 /proc/is_valid_index(input, list/given_list)
 	if(!isnum(input))

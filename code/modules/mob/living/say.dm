@@ -363,14 +363,14 @@ var/list/channel_to_radio_key = new
 
 			if(M && src) //If we still exist, when the spawn processes
 				//VOREStation Add - Ghosts don't hear whispers
-				if(whispering && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
-				(!client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis)  && !M.client?.holder)))
+				if(whispering && isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+				(!is_preference_enabled(/datum/client_preference/whisubtle_vis)  && !M.client?.holder)))
 					M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
 					return
 				//VOREStation Add End
 
 				var/dst = get_dist(get_turf(M),get_turf(src))
-				var/runechat_enabled = M.client?.prefs?.read_preference(/datum/preference/toggle/runechat_mob)
+				var/runechat_enabled = M.client?.is_preference_enabled(/datum/client_preference/runechat_mob)
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
 					if(M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol))
@@ -413,12 +413,12 @@ var/list/channel_to_radio_key = new
 		message = "([message_mode == "headset" ? "Common" : capitalize(message_mode)]) [message]" //Adds radio keys used if available
 	if(whispering)
 		if(do_sound && message)
-			playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/whisper_sounds)
+			playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/whisper_sounds)
 
 		log_whisper(message, src)
 	else
 		if(do_sound && message)
-			playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/say_sounds)
+			playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/say_sounds)
 		log_say(message, src)
 	return 1
 

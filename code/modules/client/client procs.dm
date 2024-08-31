@@ -201,15 +201,12 @@
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
-	if(prefs)
-		prefs.client = src
-		prefs.load_savefile() // just to make sure we have the latest data
-		prefs.apply_all_client_preferences()
-	else
+	if(!prefs)
 		prefs = new /datum/preferences(src)
 		preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
+	prefs.client = src // Only relevant if we reloaded it from the global list, otherwise prefs/New sets it
 
 	hook_vr("client_new",list(src)) //VOREStation Code. For now this only loads vore prefs, so better put before mob.Login() call but after normal prefs are loaded.
 
@@ -274,7 +271,7 @@
 			alert = TRUE
 		if(alert)
 			for(var/client/X in GLOB.admins)
-				if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
+				if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 					X << 'sound/effects/tones/newplayerping.ogg'
 				window_flash(X)
 		//VOREStation Edit end.
@@ -489,12 +486,6 @@
 	set category = "Preferences"
 	if(prefs)
 		prefs.ShowChoices(usr)
-
-/client/verb/game_options()
-	set name = "Game Options"
-	set category = "Preferences"
-	if(prefs)
-		prefs.tgui_interact(usr)
 
 /client/proc/findJoinDate()
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")

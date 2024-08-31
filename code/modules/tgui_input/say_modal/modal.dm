@@ -67,7 +67,7 @@
 	winset(client, "tgui_say", "pos=410,400;size=360,30;is-visible=0;")
 
 	window.send_message("props", list(
-		lightMode = client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_light),
+		lightMode = client.is_preference_enabled(/datum/client_preference/tgui_say_light),
 		maxLength = max_length,
 	))
 

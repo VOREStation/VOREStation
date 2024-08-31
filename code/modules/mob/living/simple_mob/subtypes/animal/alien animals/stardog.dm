@@ -500,14 +500,14 @@
 	for(var/mob/M as anything in vis_mobs)
 		if(isnewplayer(M))
 			continue
-		if(isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
-		!L.client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !M.client?.holder))
+		if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+		!L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else
 			spawn(0)
 				M.show_message(message, 2)
-				if(M.read_preference(/datum/preference/toggle/subtle_sounds))
+				if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
 					M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
 /decl/flooring/fur
@@ -930,7 +930,7 @@
 	spawnstuff = FALSE
 
 /area/redgate/stardog/flesh_abyss/play_ambience(var/mob/living/L, initial = TRUE)
-	if(!L.check_sound_preference(/datum/preference/toggle/digestion_noises))
+	if(!L.is_preference_enabled(/datum/client_preference/digestion_noises))
 		return
 	..()
 
@@ -1172,14 +1172,14 @@
 	for(var/mob/M as anything in vis_mobs)
 		if(isnewplayer(M))
 			continue
-		if(isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
-		!L.client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !M.client?.holder))
+		if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
+		!L.is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else
 			spawn(0)
 				M.show_message(message, 2)
-				if(M.read_preference(/datum/preference/toggle/subtle_sounds))
+				if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
 					M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
 /area/redgate/stardog/eyes
@@ -1335,8 +1335,8 @@
 	var/go = FALSE
 	if(isobserver(AM))
 		return
-	playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
-	playsound(target, teleport_sound, vol = 100, vary = 1, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+	playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+	playsound(target, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(teleport_message && L.client)
@@ -1374,7 +1374,7 @@
 		var/mob/living/simple_mob/vore/overmap/stardog/dog = s.parent
 		dog.adjust_nutrition(I.reagents.total_volume)
 		dog.adjust_affinity(25)
-		playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+		playsound(src, teleport_sound, vol = 100, vary = 1, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		visible_message("<span class='warning'>The dog gobbles up \the [I]!</span>")
 		if(dog.client)
 			to_chat(dog, "<span class='notice'>[I.thrower ? "\The [I.thrower]" : "Someone"] feeds \the [I] to you!</span>")
@@ -1699,7 +1699,7 @@
 /obj/structure/auto_flesh_door/proc/Open()
 	isSwitchingStates = 1
 	var/oursound = pick(open_sounds)
-	playsound(src, oursound, 100, 1, preference = /datum/preference/toggle/digestion_noises , volume_channel = VOLUME_CHANNEL_VORE)
+	playsound(src, oursound, 100, 1, preference = /datum/client_preference/digestion_noises , volume_channel = VOLUME_CHANNEL_VORE)
 	flick("flesh-opening",src)
 	sleep(8)
 	density = FALSE
@@ -1715,7 +1715,7 @@
 /obj/structure/auto_flesh_door/proc/Close()
 	isSwitchingStates = 1
 	var/oursound = pick(open_sounds)
-	playsound(src, oursound, 100, 1, preference = /datum/preference/toggle/digestion_noises , volume_channel = VOLUME_CHANNEL_VORE)
+	playsound(src, oursound, 100, 1, preference = /datum/client_preference/digestion_noises , volume_channel = VOLUME_CHANNEL_VORE)
 	flick("flesh-closing",src)
 	sleep(8)
 	density = TRUE

@@ -512,9 +512,9 @@
 	for (var/mob/G in player_list)
 		if (istype(G, /mob/new_player))
 			continue
-		else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
-			if((client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder) && \
-			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
+		else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
+			if((is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder) && \
+			G.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle))
 				to_chat(G, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
 
 /mob/living/silicon/pai/proc/touch_window(soft_name)	//This lets us touch TGUI procs and windows that may be nested behind other TGUI procs and windows

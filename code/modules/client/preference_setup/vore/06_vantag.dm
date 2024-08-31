@@ -8,13 +8,13 @@
 	name = "VS Events"
 	sort_order = 6
 
-/datum/category_item/player_setup_item/vore/vantag/load_character(list/save_data)
-	pref.vantag_volunteer	= save_data["vantag_volunteer"]
-	pref.vantag_preference	= save_data["vantag_preference"]
+/datum/category_item/player_setup_item/vore/vantag/load_character(var/savefile/S)
+	S["vantag_volunteer"]	>> pref.vantag_volunteer
+	S["vantag_preference"]	>> pref.vantag_preference
 
-/datum/category_item/player_setup_item/vore/vantag/save_character(list/save_data)
-	save_data["vantag_volunteer"]	= pref.vantag_volunteer
-	save_data["vantag_preference"]	= pref.vantag_preference
+/datum/category_item/player_setup_item/vore/vantag/save_character(var/savefile/S)
+	S["vantag_volunteer"]	<< pref.vantag_volunteer
+	S["vantag_preference"]	<< pref.vantag_preference
 
 /datum/category_item/player_setup_item/vore/vantag/sanitize_character()
 	pref.vantag_volunteer	= sanitize_integer(pref.vantag_volunteer, 0, 1, initial(pref.vantag_volunteer))

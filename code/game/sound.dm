@@ -33,23 +33,10 @@
 			if(T && T.z == turf_source.z)
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
-/mob/proc/check_sound_preference(list/preference)
-	if(!islist(preference))
-		preference = list(preference)
-
-	for(var/p in preference)
-		// Ignore nulls
-		if(p)
-			if(!read_preference(p))
-				return FALSE
-
-	return TRUE
-
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, channel = 0, pressure_affected = TRUE, sound/S, preference, volume_channel = null)
 	if(!client || ear_deaf > 0)
 		return
-
-	if(!check_sound_preference(preference))
+	if(preference && !client.is_preference_enabled(preference))
 		return
 
 	if(!S)
@@ -135,7 +122,7 @@
 
 /client/proc/playtitlemusic()
 	if(!ticker || !SSmedia_tracks.lobby_tracks.len || !media)	return
-	if(prefs?.read_preference(/datum/preference/toggle/play_lobby_music))
+	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
 		var/datum/track/T = pick(SSmedia_tracks.lobby_tracks)
 		media.push_music(T.url, world.time, 0.85)
 		to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
