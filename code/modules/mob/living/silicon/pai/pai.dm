@@ -498,8 +498,7 @@
 	var/obj/item/weapon/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
-			var/input = tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel"))
-			switch(input)
+			switch(tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel")))
 				if("Add Access")
 					idcard.access |= ID.access
 					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
