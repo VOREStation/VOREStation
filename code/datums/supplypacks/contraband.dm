@@ -91,6 +91,14 @@
 					/obj/item/clothing/mask/gas/voice,
 					/obj/item/weapon/makeover
 					),
+			list( //the hacker,
+					/obj/item/weapon/gun/projectile/silenced,
+					/obj/item/weapon/gun/energy/ionrifle/pistol,
+					/obj/item/clothing/glasses/thermal/syndi,
+					/obj/item/ammo_magazine/m45/ap,
+					/obj/item/weapon/material/knife/tacknife/combatknife,
+					/obj/item/device/multitool/hacktool
+					),
 			list( //the professional,
 					/obj/item/weapon/gun/projectile/silenced,
 					/obj/item/weapon/gun/energy/ionrifle/pistol,
