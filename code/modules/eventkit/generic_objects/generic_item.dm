@@ -180,7 +180,7 @@
 	if(s_icon_state_off == "Upload Own Sprite")
 		s_icon = input(usr, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
 	var/check_activatable = tgui_alert(src, "Allow it to be turned on?", "activatable", list("Yes", "No", "Cancel"))
-	if(check_activatable == "Cancel")
+	if(!check_activatable || check_activatable == "Cancel")
 		return
 	if(check_activatable == "No")
 		s_activatable = 0
@@ -188,7 +188,7 @@
 		s_activatable = 1
 		s_text_activated = tgui_input_text(src, "Activation text:", "Activation Text")
 		check_togglable = tgui_alert(src, "Allow it to be turned back off again?", "togglable", list("Yes", "No", "Cancel"))
-		if(check_togglable == "Cancel")
+		if(!check_togglable || check_togglable == "Cancel")
 			return
 		if(check_togglable == "No")
 			s_togglable = 0
@@ -200,7 +200,7 @@
 			s_icon2 = input(usr, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
 		s_delay = tgui_input_number(src, "Do you want it to take time to put turn on? Choose a number of deciseconds to activate, or 0 for instant.", "Delay")
 		var/check_effect = tgui_alert(src, "Produce an effect on activation?", "Effect?", list("No", "Spark", "Flicker Lights", "Flash", "Spawn Item", "Cancel"))
-		if(check_effect == "Cancel")
+		if(!check_effect || check_effect == "Cancel")
 			return
 		if(check_effect == "No")
 			s_effect = 0
@@ -214,7 +214,7 @@
 			s_effect = 4
 			s_object = get_path_from_partial_text()
 		var/check_sound = tgui_alert(src, "Play a sound when turning on?", "Sound", list("Yes", "No", "Cancel"))
-		if(check_sound == "Cancel")
+		if(!check_sound || check_sound == "Cancel")
 			return
 		if(check_sound == "Yes")
 			s_sound = tgui_input_list(src, "Choose a sound to play on activation:", "Sound", sound_options)

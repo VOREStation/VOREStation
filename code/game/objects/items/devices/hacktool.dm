@@ -19,7 +19,7 @@
 	..()
 	known_targets = list()
 	max_known_targets = 5 + rand(1,3)
-	supported_types = list(/obj/machinery/door/airlock)
+	supported_types = list(/obj/machinery/door/airlock,/obj/structure/closet/crate/secure,/obj/structure/closet/secure_closet)
 	hack_state = new(src)
 
 /obj/item/device/multitool/hacktool/Destroy()
@@ -74,32 +74,57 @@
 		to_chat(user, "[icon2html(src, user.client)] <span class='warning'>Unable to hack this target, invalid target type.</span>")
 		return 0
 
-	var/obj/machinery/door/airlock/D = target
-	if(D.security_level > max_level)
-		to_chat(user, "[icon2html(src, user.client)] <span class='warning'>Target's electronic security is too complex.</span>")
-		return 0
+	if(istype(target, /obj/structure/closet/crate/secure))
+		var/obj/structure/closet/crate/secure/A = target
+		if(A.locked)
+			to_chat(user, "<span class='notice'>Overriding access. Stand by.</span>")
+			if(do_after(user, (((5 SECONDS + rand(0, 5 SECONDS) + rand(0, 5 SECONDS))*hackspeed))))
+				to_chat(user, "<span class='notice'>Override successful!</span>")
+				A.locked = FALSE
+				A.update_icon()
+				playsound(A, 'sound/machines/click.ogg', 15, 1, -3)
+		else
+			return
 
-	var/found = known_targets.Find(D)
-	if(found)
-		known_targets.Swap(1, found)	// Move the last hacked item first
+	if(istype(target, /obj/structure/closet/secure_closet))
+		var/obj/structure/closet/secure_closet/A = target
+		if(A.locked)
+			to_chat(user, "<span class='notice'>Overriding access. Stand by.</span>")
+			if(do_after(user, (((5 SECONDS + rand(0, 5 SECONDS) + rand(0, 5 SECONDS))*hackspeed))))
+				to_chat(user, "<span class='notice'>Override successful!</span>")
+				A.locked = FALSE
+				A.update_icon()
+				playsound(A, 'sound/machines/click.ogg', 15, 1, -3)
+		else
+			return
+
+	if(istype(target, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/D = target
+		if(D.security_level > max_level)
+			to_chat(user, "[icon2html(src, user.client)] <span class='warning'>Target's electronic security is too complex.</span>")
+			return 0
+
+		var/found = known_targets.Find(D)
+		if(found)
+			known_targets.Swap(1, found)	// Move the last hacked item first
+			return 1
+		to_chat(user, "<span class='notice'>You begin hacking \the [D]...</span>")
+		is_hacking = 1
+		// On average hackin takes ~15 seconds. Fairly small random span to discourage people from simply aborting and trying again
+		// Reduced hack duration to compensate for the reduced functionality, multiplied by door sec level
+		var/hack_result = do_after(user, (((10 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS))*hackspeed)*D.security_level))
+		is_hacking = 0
+
+		if(hack_result && in_hack_mode)
+			to_chat(user, "<span class='notice'>Your hacking attempt was succesful!</span>")
+			user.playsound_local(get_turf(src), 'sound/instruments/piano/An6.ogg', 50)
+		else
+			to_chat(user, "<span class='warning'>Your hacking attempt failed!</span>")
+			return 0
+
+		known_targets.Insert(1, D)	// Insert the newly hacked target first,
+		D.register(OBSERVER_EVENT_DESTROY, src, /obj/item/device/multitool/hacktool/proc/on_target_destroy)
 		return 1
-	to_chat(user, "<span class='notice'>You begin hacking \the [D]...</span>")
-	is_hacking = 1
-	// On average hackin takes ~15 seconds. Fairly small random span to avoid people simply aborting and trying again
-	// Reduced hack duration to compensate for the reduced functionality, multiplied by door sec level
-	var/hack_result = do_after(user, (((10 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS))*hackspeed)*D.security_level))
-	is_hacking = 0
-
-	if(hack_result && in_hack_mode)
-		to_chat(user, "<span class='notice'>Your hacking attempt was succesful!</span>")
-		user.playsound_local(get_turf(src), 'sound/instruments/piano/An6.ogg', 50)
-	else
-		to_chat(user, "<span class='warning'>Your hacking attempt failed!</span>")
-		return 0
-
-	known_targets.Insert(1, D)	// Insert the newly hacked target first,
-	D.register(OBSERVER_EVENT_DESTROY, src, /obj/item/device/multitool/hacktool/proc/on_target_destroy)
-	return 1
 
 /obj/item/device/multitool/hacktool/proc/sanity_check()
 	if(max_known_targets < 1) max_known_targets = 1

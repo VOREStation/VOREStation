@@ -133,7 +133,7 @@
 			spawn_slots --
 			return
 
-	if(tgui_alert(ghost, "Would you like to be resleeved?", "Resleeve", list("No","Yes")) == "No")
+	if(tgui_alert(ghost, "Would you like to be resleeved?", "Resleeve", list("No","Yes")) != "Yes")
 		return
 	var/mob/living/carbon/human/new_character
 	new_character = new(spawnloc)

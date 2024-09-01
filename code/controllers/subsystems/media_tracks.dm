@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(media_tracks)
 		return
 
 	var/secret = tgui_alert(C, "Optional: Mark track as secret?", "Track Secret", list("Yes", "Cancel", "No"))
-	if(secret == "Cancel")
+	if(!secret || secret == "Cancel")
 		return
 	else if(secret == "Yes")
 		secret = TRUE
@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(media_tracks)
 		secret = FALSE
 
 	var/lobby = tgui_alert(C, "Optional: Mark track as lobby music?", "Track Lobby", list("Yes", "Cancel", "No"))
-	if(lobby == "Cancel")
+	if(!lobby || lobby == "Cancel")
 		return
 	else if(secret == "Yes")
 		secret = TRUE

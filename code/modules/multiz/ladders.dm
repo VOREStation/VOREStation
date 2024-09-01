@@ -73,7 +73,7 @@
 	if(target_down && target_up)
 		var/direction = tgui_alert(M,"Do you want to go up or down?", "Ladder", list("Up", "Down", "Cancel"))
 
-		if(direction == "Cancel")
+		if(!direction || direction == "Cancel")
 			return
 
 		if(!M.may_climb_ladders(src))

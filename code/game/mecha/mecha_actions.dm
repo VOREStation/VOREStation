@@ -406,6 +406,8 @@
 	if(usr!=src.occupant)
 		return
 	var/new_damtype = tgui_alert(src.occupant,"Melee Damage Type","Damage Type",list("Brute","Fire","Toxic"))
+	if(!new_damtype)
+		return
 	switch(new_damtype)
 		if("Brute")
 			damtype = "brute"

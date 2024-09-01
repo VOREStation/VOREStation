@@ -334,7 +334,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			return
 		else
 			switch(tgui_alert(user, "You open the tome", "Tome", list("Read it","Scribe a rune","Cancel")))
-				if("Cancel")
+				if("Cancel", null)
 					return
 				if("Read it")
 					if(usr.get_active_hand() != src)

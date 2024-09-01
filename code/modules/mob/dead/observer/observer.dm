@@ -330,7 +330,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	if(config.antag_hud_restricted && !has_enabled_antagHUD && !client.holder)
 		var/response = tgui_alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?",list("Yes","No"))
-		if(response == "No") return
+		if(response != "Yes") return
 		can_reenter_corpse = FALSE
 		set_respawn_timer(-1) // Foreeeever
 	if(!has_enabled_antagHUD && !client.holder)
@@ -979,7 +979,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 			ghost_sprite = possible_ghost_sprites[choice]
 
-			if(finalized == "No")
+			if(!finalized || finalized == "No")
 				icon_state = previous_state
 
 /mob/observer/dead/is_blind()
@@ -1006,6 +1006,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(usr.client.prefs?.be_special & BE_PAI)
 		var/choice = tgui_alert(usr, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
+		if(!choice)
+			return
 		if(choice == "Yes")
 			paiController.recruitWindow(usr)
 		var/count = 0

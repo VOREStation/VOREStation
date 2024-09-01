@@ -15,7 +15,7 @@
 	var/rigged = 0 //So that they can be rigged by varedits to go one way or the other. positive values mean holder always wins, negative values mean target always wins.
 	var/list/prizes = list("shrinking","growing","drugged","invisibility","knocked over","teleport","wealth")
 	var/list/jokes = list(
-						"When is a boat just like snow? When it’s adrift.",
+						"When is a boat just like snow? When it's adrift.",
 						"What happens to naughty elves? Santa gives them the sack.",
 						"What do you call an old snowman? Water.",
 						"Why has Santa been banned from sooty chimneys? Carbon footprints.",
@@ -29,7 +29,7 @@
 						"What's red, and smells like blue paint? Red paint.",
 						"Where do cows go to dance? A meat ball.",
 						"What do you call a person who steals all your toenail clippings? A cliptoemaniac.",
-						"What’s brown and sticky? A stick.",
+						"What's brown and sticky? A stick.",
 						"What's the best way to kill a circus? Go for the juggler.",
 						"What do you call a cow with no legs? Ground Beef.",
 						"Why'd the scarecrow win the Nobel prize? He was outstanding in his field.")
@@ -45,7 +45,7 @@
 		return
 	to_chat(user, "<span class='notice'>You offer \the [src] to \the [target] to pull and wait to see how whether they do.</span>")
 	var/check_pull = tgui_alert(target, "\The [user] is offering to pull \the [src] with you, do you want to pull it?", "Pull Cracker", list("Yes", "No"))
-	if(check_pull == "No")
+	if(!check_pull || check_pull == "No")
 		to_chat(user, "<span class='notice'>\The [target] chose not to pull \the [src]!</span>")
 		return
 	if(!adjacent)

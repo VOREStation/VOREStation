@@ -617,7 +617,7 @@
 				return
 
 		var/confirm = tgui_alert(creator, "Are you sure you want to change [oldA.name] into a new area named [str]?", "READ CAREFULLY", list("No", "Yes"))
-		if(confirm == "No")
+		if(confirm != "Yes")
 			to_chat(creator, "<span class='warning'>No changes made.</span>")
 			return
 
@@ -626,7 +626,7 @@
 		newA.has_gravity = oldA.has_gravity
 	else
 		var/confirm = tgui_alert(creator, "Are you sure you want to change [oldA.name] into [area_choice]?", "READ CAREFULLY", list("No", "Yes"))
-		if(confirm == "No")
+		if(confirm != "Yes")
 			to_chat(creator, "<span class='warning'>No changes made.</span>")
 			return
 		newA = area_choice //They selected to turn the area they're standing on into the selected area.

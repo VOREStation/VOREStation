@@ -31,12 +31,7 @@
 	character.capture_crystal = pref.capture_crystal
 	//Vore Stomach Sprite Preference
 	character.stomach_vision = pref.stomach_vision
-	if((character && !istype(character,/mob/living/carbon/human/dummy)) && character.stomach_vision && !(VIS_CH_STOMACH in character.vis_enabled))
-		character.plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
-		character.vis_enabled += VIS_CH_STOMACH
-	else if((character && !istype(character,/mob/living/carbon/human/dummy)) && !character.stomach_vision && (VIS_CH_STOMACH in character.vis_enabled))
-		character.plane_holder.set_vis(VIS_CH_STOMACH,FALSE)
-		character.vis_enabled -= VIS_CH_STOMACH
+	character.recalculate_vis()
 
 /datum/category_item/player_setup_item/vore/misc/sanitize_character()
 	pref.show_in_directory		= sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
