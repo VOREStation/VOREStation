@@ -34,13 +34,13 @@
 		if(!(VIS_CH_STOMACH in vis_enabled))
 			plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
 			vis_enabled += VIS_CH_STOMACH
-		to_chat("You can now see stomachs!")
+		to_chat(src, "You can now see stomachs!")
 	else
 		stomach_vision = 0
 		if(VIS_CH_STOMACH in vis_enabled)
 			plane_holder.set_vis(VIS_CH_STOMACH,FALSE)
 			vis_enabled -= VIS_CH_STOMACH
-		to_chat("You will no longer see stomachs!")
+		to_chat(src, "You will no longer see stomachs!")
 
 /* //Leaving this in as an example of 'how to properly enable a plane to hide/show itself' for future PRs.
 if(stomach_vision && !(VIS_CH_STOMACH in vis_enabled))

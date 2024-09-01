@@ -4,6 +4,8 @@
 #define SMITE_AD_SPAM				"Ad Spam"
 #define SMITE_AUTOSAVE				"10 Second Autosave"
 #define SMITE_AUTOSAVE_WIDE			"10 Second Autosave (AoE)"
+#define SMITE_SPICEREQUEST			"Give Them Spice (Harmless)"
+#define SMITE_PEPPERNADE			"Give Them Spice (Extra Spicy)"
 #define MODIFIY_ROBOT_MODULE_ADD	"Add a Module"
 #define MODIFIY_ROBOT_MODULE_REMOVE	"Remove a Module"
 #define MODIFIY_ROBOT_APPLY_UPGRADE	"Apply an Upgrade"

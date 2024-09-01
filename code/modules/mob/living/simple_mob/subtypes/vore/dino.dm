@@ -39,6 +39,8 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+	allow_mind_transfer = TRUE
+
 // Activate Noms!
 /mob/living/simple_mob/vore/aggressive/dino
 	vore_active = 1

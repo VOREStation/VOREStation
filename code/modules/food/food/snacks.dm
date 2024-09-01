@@ -4764,7 +4764,7 @@
 		return 0
 
 	if (C.volume < req)
-		to_chat("<span class='warning'>There's not enough [C.name] to coat the [src]!</span>")
+		to_chat(user, "<span class='warning'>There's not enough [C.name] to coat the [src]!</span>")
 		return 0
 
 	var/id = C.id
@@ -4873,6 +4873,7 @@
 
 /mob/living/simple_mob/slime
 	composition_reagent = "slimejelly"
+	allow_mind_transfer = TRUE
 
 /mob/living/simple_mob
 	var/kitchen_tag = "animal" //Used for cooking with animals

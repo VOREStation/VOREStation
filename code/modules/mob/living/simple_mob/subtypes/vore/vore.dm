@@ -46,6 +46,7 @@
 	show_vore_fx = client.prefs_vr.show_vore_fx
 	step_mechanics_pref = client.prefs_vr.step_mechanics_pref
 	pickup_pref = client.prefs_vr.pickup_pref
+	allow_mind_transfer = client.prefs_vr.allow_mind_transfer
 
 /mob/living/simple_mob/proc/set_name()
 	set name = "Set Name"
