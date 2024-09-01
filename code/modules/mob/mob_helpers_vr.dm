@@ -29,6 +29,8 @@
 
 	var/toggle
 	toggle = tgui_alert(src, "Would you like to see visible stomachs?", "Visible Tummy?", list("Yes", "No"))
+	if(!toggle)
+		return
 	if(toggle =="Yes")
 		stomach_vision = 1 //Simple! Easy!
 		if(!(VIS_CH_STOMACH in vis_enabled))

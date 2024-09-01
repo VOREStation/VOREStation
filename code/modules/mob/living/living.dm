@@ -116,7 +116,7 @@
 	else
 		if(stat == DEAD)
 			to_chat(src, span_blue("As much as you'd like, you can't die when already dead"))
-		else if(confirm1 == "No" || confirm2 == "No")
+		else if(!confirm1 || confirm1 == "No" || !confirm2 || confirm2 == "No")
 			to_chat(src, span_blue("You chose to live another day."))
 		else
 			to_chat(src, span_blue("You are not injured enough to succumb to death!"))

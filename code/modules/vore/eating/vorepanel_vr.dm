@@ -1704,7 +1704,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			. = TRUE
 		if("b_del")
 			var/alert = tgui_alert(usr, "Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation",list("Cancel","Delete"))
-			if(!(alert == "Delete"))
+			if(alert != "Delete")
 				return FALSE
 
 			var/failure_msg = ""

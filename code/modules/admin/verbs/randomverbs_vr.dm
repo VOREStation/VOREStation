@@ -29,13 +29,13 @@
 
 	var/char_name = tgui_alert(src, "Spawn mob with their character name?", "Mob name", list("Yes", "No", "Cancel"))
 	var/name = 0
-	if(char_name == "Cancel")
+	if(!char_name || char_name == "Cancel")
 		return
 	if(char_name == "Yes")
 		name = 1
 	var/vorgans = tgui_alert(src, "Spawn mob with their character's vore organs and prefs?", "Vore organs", list("Yes", "No", "Cancel"))
 	var/organs
-	if(vorgans == "Cancel")
+	if(!vorgans || vorgans == "Cancel")
 		return
 	if(vorgans == "Yes")
 		organs = 1

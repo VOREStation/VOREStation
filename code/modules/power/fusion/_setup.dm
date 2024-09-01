@@ -22,7 +22,7 @@
 		return
 
 	var/response = tgui_alert(usr, "Are you sure?", "Engine setup", list("No", "Yes"))
-	if(!response || response == "No")
+	if(response != "Yes")
 		return
 
 	var/errors = 0

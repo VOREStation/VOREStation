@@ -41,7 +41,7 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 
 
 	var/UI_choice = tgui_alert(src, "Would you like the tutorial text to be printed to chat?", "Choose preferred tutorial interface", list("TGUI","To Chat", "Cancel"))
-	if(UI_choice == "Cancel")
+	if(!UI_choice || UI_choice == "Cancel")
 		return
 
 	//Initializing associative lists

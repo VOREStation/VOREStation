@@ -22,7 +22,7 @@
 		to_chat(src, "<span class='danger'>We have no genomes, not even our own, and cannot regenerate.</span>")
 		return 0
 
-	if(!C.stat && tgui_alert(src, "Are we sure we wish to regenerate? We will appear to be dead while doing so.","Revival",list("Yes","No")) == "No")
+	if(!C.stat && tgui_alert(src, "Are we sure we wish to regenerate? We will appear to be dead while doing so.","Revival",list("Yes","No")) != "Yes")
 		return
 	to_chat(C, "<span class='notice'>We will attempt to regenerate our form.</span>")
 

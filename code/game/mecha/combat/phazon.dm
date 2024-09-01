@@ -144,6 +144,8 @@
 
 /obj/mecha/combat/phazon/janus/query_damtype()
 	var/new_damtype = tgui_alert(src.occupant,"Gauntlet Phase Emitter Mode","Damage Type",list("Force","Energy","Stun"))
+	if(!new_damtype)
+		return
 	switch(new_damtype)
 		if("Force")
 			damtype = "brute"

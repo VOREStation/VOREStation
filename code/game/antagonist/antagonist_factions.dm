@@ -38,7 +38,7 @@
 	if(choice == "Yes!" && faction.add_antagonist_mind(player, 0, faction.faction_role_text, faction.faction_welcome))
 		to_chat(src, "<span class='notice'>\The [player.current] joins the [faction.faction_descriptor]!</span>")
 		return
-	if(choice == "No!")
+	if(!choice || choice == "No!")
 		to_chat(player, "<span class='danger'>You reject this traitorous cause!</span>")
 	to_chat(src, "<span class='danger'>\The [player.current] does not support the [faction.faction_descriptor]!</span>")
 

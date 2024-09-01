@@ -163,7 +163,10 @@
 	if(!spawn_path)
 		return
 
-	if(tgui_alert(usr, "Do you wish the mob to have a player?","Assign Player?",list("No","Yes")) == "No")
+	var/input = tgui_alert(usr, "Do you wish the mob to have a player?","Assign Player?",list("No","Yes"))
+	if(!input)
+		return
+	if(input == "No")
 		var/spawn_count = tgui_input_number(usr, "How many mobs do you wish the pod to contain?", "Drop Pod Selection", null, min_value=1)
 		if(spawn_count <= 0)
 			return
@@ -197,7 +200,7 @@
 				var/datum/antagonist/A = all_antag_types[antag_type]
 				A.equip(spawned_mob)
 
-	if(tgui_alert(usr, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) == "No")
+	if(tgui_alert(usr, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) != "Yes")
 		if(spawned_mob)
 			qdel(spawned_mob)
 		if(spawned_mobs.len)

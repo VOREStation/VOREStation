@@ -30,6 +30,8 @@ var/list/sounds_cache = list()
 	sounds_cache += S
 
 	var/res = tgui_alert(usr, "Show the title of this song ([S]) to the players?\nOptions 'Yes' and 'No' will play the sound.",, list("Yes", "No", "Cancel"))
+	if(!res)
+		return
 	switch(res)
 		if("Yes")
 			to_chat(world, "<span class='boldannounce'>An admin played: [S]</span>", confidential = TRUE)
@@ -83,7 +85,7 @@ var/list/sounds_cache = list()
 
 	sounds_cache += S
 
-	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) == "Cancel")
+	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) != "Play")
 		return
 
 	log_admin("[key_name(src)] played sound [S] on Z[target_z]")

@@ -27,7 +27,7 @@
 		preview += image('icons/misc/debug_group.dmi',S ,"red")
 	usr.client.images += preview
 	if(tgui_alert(usr,"Confirm location.", "Template Confirm",list("No","Yes")) == "Yes")
-		if(template.annihilate && tgui_alert(usr,"This template is set to annihilate everything in the red square. EVERYTHING IN THE RED SQUARE WILL BE DELETED, ARE YOU ABSOLUTELY SURE?", "Template Confirm", list("No","Yes")) == "No")
+		if(template.annihilate && tgui_alert(usr,"This template is set to annihilate everything in the red square. EVERYTHING IN THE RED SQUARE WILL BE DELETED, ARE YOU ABSOLUTELY SURE?", "Template Confirm", list("No","Yes")) != "Yes")
 			usr.client.images -= preview
 			return
 
@@ -57,7 +57,7 @@
 	orientation = dir2angle(orientation)
 
 	if((!(orientation%180) && template.width > world.maxx || template.height > world.maxy) || (orientation%180 && template.width > world.maxy || template.height > world.maxx))
-		if(tgui_alert(usr,"This template is larger than the existing z-levels. It will EXPAND ALL Z-LEVELS to match the size of the template. This may cause chaos. Are you sure you want to do this?","DANGER!!!",list("Cancel","Yes")) == "Cancel")
+		if(tgui_alert(usr,"This template is larger than the existing z-levels. It will EXPAND ALL Z-LEVELS to match the size of the template. This may cause chaos. Are you sure you want to do this?","DANGER!!!",list("Cancel","Yes")) != "Yes")
 			to_chat(usr,"Template placement aborted.")
 			return
 

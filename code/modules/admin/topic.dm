@@ -292,7 +292,7 @@
 
 		var/delmob = 0
 		switch(tgui_alert(usr, "Delete old mob?","Message",list("Yes","No","Cancel")))
-			if("Cancel")	return
+			if("Cancel", null)	return
 			if("Yes")		delmob = 1
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]")
@@ -356,6 +356,8 @@
 		var/duration
 
 		switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No")))
+			if(null)
+				return
 			if("Yes")
 				temp = 1
 				var/mins = 0
@@ -774,6 +776,8 @@
 		//Banning comes first
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
 			switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban", list("Yes","No","Cancel")))
+				if(null)
+					return
 				if("Yes")
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
 						to_chat(usr, "<span class='filter_adminlog warning'> You cannot issue temporary job-bans!</span>")
@@ -910,6 +914,8 @@
 		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
 		switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No","Cancel")))
+			if(null)
+				return
 			if("Yes")
 				var/mins = tgui_input_number(usr,"How long (in minutes)?","Ban time",1440)
 				if(!mins)
@@ -946,7 +952,7 @@
 				if(!reason)
 					return
 				switch(tgui_alert(usr,"IP ban?","IP Ban",list("Yes","No","Cancel")))
-					if("Cancel")	return
+					if("Cancel", null)	return
 					if("Yes")
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
 					if("No")

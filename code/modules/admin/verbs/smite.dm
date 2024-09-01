@@ -103,7 +103,7 @@
 			kin_type = kin_types[kin_type]
 
 			var/myself = tgui_alert(usr, "Control the shadekin yourself or delete pred and prey after?","Control Shadekin?",list("Control","Cancel","Delete"))
-			if(myself == "Cancel" || !target)
+			if(!myself || myself == "Cancel" || !target)
 				return
 
 			var/turf/Tt = get_turf(target)

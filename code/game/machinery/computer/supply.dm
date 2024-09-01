@@ -160,7 +160,7 @@
 
 /obj/machinery/computer/supplycomp/tgui_static_data(mob/user)
 	var/list/data = ..()
-	
+
 	var/list/pack_list = list()
 	for(var/pack_name in SSsupply.supply_pack)
 		var/datum/supply_pack/P = SSsupply.supply_pack[pack_name]
@@ -395,6 +395,8 @@
 				return FALSE
 			var/list/L = E.contents[params["index"]]
 			var/field = tgui_alert(usr, "Select which field to edit", "Field Choice", list("Name", "Quantity", "Value"))
+			if(!field)
+				return FALSE
 
 			var/new_val = sanitize(tgui_input_text(usr, field, "Enter the new value for this field:", L[lowertext(field)]))
 			if(!new_val)

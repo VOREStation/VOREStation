@@ -569,7 +569,7 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 			if(trait_choice in nicelist)
 				var/datum/trait/path = nicelist[trait_choice]
 				var/choice = tgui_alert(usr, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name), list("Take Trait","Go Back"))
-				if(choice != "Go Back")
+				if(choice == "Take Trait")
 					done = TRUE
 
 		if(!trait_choice)

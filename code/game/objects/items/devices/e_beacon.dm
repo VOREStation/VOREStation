@@ -24,7 +24,7 @@
 			return
 		else
 			var/answer = tgui_alert(user, "Would you like to activate this personal emergency beacon?","\The [src]", list("Yes", "No"))
-			if(answer == "No")
+			if(answer != "Yes")
 				return
 			else if(do_after(user, (3 SECONDS)))	//short delay, so they can still abort if they want to
 				user.visible_message("<span class='warning'>[user] activates \the [src]!</span>","<span class='warning'>You activate \the [src], spiking it into the ground!</span>")

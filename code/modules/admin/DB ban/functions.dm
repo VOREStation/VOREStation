@@ -52,7 +52,7 @@
 	if(!validckey)
 		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key))) //VOREStation Edit Start.
 			var/confirm = tgui_alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin", list("Yes", "No"))
-			if(confirm == "No")
+			if(confirm != "Yes")
 				return //VOREStation Edit End
 
 	var/a_ckey
