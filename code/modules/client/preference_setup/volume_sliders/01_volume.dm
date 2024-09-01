@@ -7,11 +7,11 @@
 	name = "General Volume"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/volume_sliders/volume/load_preferences(var/savefile/S)
-	S["volume_channels"] >> pref.volume_channels
+/datum/category_item/player_setup_item/volume_sliders/volume/load_preferences(datum/json_savefile/savefile)
+	pref.volume_channels = savefile.get_entry("volume_channels")
 
-/datum/category_item/player_setup_item/volume_sliders/volume/save_preferences(var/savefile/S)
-	S["volume_channels"] << pref.volume_channels
+/datum/category_item/player_setup_item/volume_sliders/volume/save_preferences(datum/json_savefile/savefile)
+	savefile.set_entry("volume_channels", pref.volume_channels)
 
 /datum/category_item/player_setup_item/volume_sliders/volume/sanitize_preferences()
 	if(isnull(pref.volume_channels))
@@ -74,7 +74,7 @@
 /datum/volume_panel/tgui_data(mob/user)
 	if(!user.client || !user.client.prefs)
 		return list("error" = TRUE)
-	
+
 	var/list/data = ..()
 	data["volume_channels"] = user.client.prefs.volume_channels
 	return data

@@ -45,19 +45,19 @@ var/list/gear_datums = list()
 	sort_order = 1
 	var/current_tab = "General"
 
-/datum/category_item/player_setup_item/loadout/load_character(var/savefile/S)
-	from_file(S["gear_list"], pref.gear_list)
-	from_file(S["gear_slot"], pref.gear_slot)
+/datum/category_item/player_setup_item/loadout/load_character(list/save_data)
+	pref.gear_list = save_data["gear_list"]
+	pref.gear_slot = save_data["gear_slot"]
 	if(pref.gear_list!=null && pref.gear_slot!=null)
 		pref.gear = pref.gear_list["[pref.gear_slot]"]
 	else
-		from_file(S["gear"], pref.gear)
+		pref.gear = save_data["gear"]
 		pref.gear_slot = 1
 
-/datum/category_item/player_setup_item/loadout/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/loadout/save_character(list/save_data)
 	pref.gear_list["[pref.gear_slot]"] = pref.gear
-	to_file(S["gear_list"], pref.gear_list)
-	to_file(S["gear_slot"], pref.gear_slot)
+	save_data["gear_list"] = pref.gear_list
+	save_data["gear_slot"] = pref.gear_slot
 
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()

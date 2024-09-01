@@ -21,7 +21,7 @@
 
 	for(var/client/C in GLOB.admins)
 		if(R_ADMIN|R_EVENT & C.holder.rights)
-			if(C.is_preference_enabled(/datum/client_preference/admin/show_chat_prayers))
+			if(C.prefs?.read_preference(/datum/preference/toggle/show_chat_prayers))
 				to_chat(C, msg, type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
 				C << 'sound/effects/ding.ogg'
 	to_chat(usr, "Your prayers have been received by the gods.", confidential = TRUE)

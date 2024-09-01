@@ -63,12 +63,12 @@
 	recalculate_vis()
 
 	// AO support
-	var/ao_enabled = client.is_preference_enabled(/datum/client_preference/ambient_occlusion)
+	var/ao_enabled = client.prefs?.read_preference(/datum/preference/toggle/ambient_occlusion)
 	plane_holder.set_ao(VIS_OBJS, ao_enabled)
 	plane_holder.set_ao(VIS_MOBS, ao_enabled)
 
 	// Status indicators
-	var/status_enabled = client.is_preference_enabled(/datum/client_preference/status_indicators)
+	var/status_enabled = client.prefs?.read_preference(/datum/preference/toggle/status_indicators)
 	plane_holder.set_vis(VIS_STATUS, status_enabled)
 
 	//set macro to normal incase it was overriden (like cyborg currently does)

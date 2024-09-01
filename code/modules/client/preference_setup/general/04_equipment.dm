@@ -6,23 +6,23 @@
 	name = "Clothing"
 	sort_order = 4
 
-/datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
-	S["all_underwear"] >> pref.all_underwear
-	S["all_underwear_metadata"] >> pref.all_underwear_metadata
-	S["backbag"]	>> pref.backbag
-	S["pdachoice"]	>> pref.pdachoice
-	S["communicator_visibility"]	>> pref.communicator_visibility
-	S["ringtone"]	>> pref.ringtone
-	S["shoe_hater"] >> pref.shoe_hater	//RS ADD
+/datum/category_item/player_setup_item/general/equipment/load_character(list/save_data)
+	pref.all_underwear				= save_data["all_underwear"]
+	pref.all_underwear_metadata		= save_data["all_underwear_metadata"]
+	pref.backbag					= save_data["backbag"]
+	pref.pdachoice					= save_data["pdachoice"]
+	pref.communicator_visibility	= save_data["communicator_visibility"]
+	pref.ringtone					= save_data["ringtone"]
+	pref.shoe_hater					= save_data["shoe_hater"]
 
-/datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
-	S["all_underwear"] << pref.all_underwear
-	S["all_underwear_metadata"] << pref.all_underwear_metadata
-	S["backbag"]	<< pref.backbag
-	S["pdachoice"]	<< pref.pdachoice
-	S["communicator_visibility"]	<< pref.communicator_visibility
-	S["ringtone"]	<< pref.ringtone
-	S["shoe_hater"] << pref.shoe_hater	//RS ADD
+/datum/category_item/player_setup_item/general/equipment/save_character(list/save_data)
+	save_data["all_underwear"]				= pref.all_underwear
+	save_data["all_underwear_metadata"] 	= pref.all_underwear_metadata
+	save_data["backbag"]					= pref.backbag
+	save_data["pdachoice"]					= pref.pdachoice
+	save_data["communicator_visibility"]	= pref.communicator_visibility
+	save_data["ringtone"]					= pref.ringtone
+	save_data["shoe_hater"] 				= pref.shoe_hater
 
 var/global/list/valid_ringtones = list(
 		"beep",
