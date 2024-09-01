@@ -140,10 +140,6 @@ export function Input(props: Props) {
     const input = inputRef.current;
     if (!input) return;
 
-    const newValue = toInputValue(value);
-
-    if (input.value !== newValue) input.value = newValue;
-
     if (!autoFocus && !autoSelect) return;
 
     setTimeout(() => {
@@ -154,6 +150,14 @@ export function Input(props: Props) {
       }
     }, 1);
   }, []);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+
+    const newValue = toInputValue(value);
+    if (input.value !== newValue) input.value = newValue;
+  });
 
   return (
     <Box
