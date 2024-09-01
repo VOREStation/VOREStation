@@ -194,6 +194,10 @@
 		to_chat(prey, "<span class='warning'>You cannot do that in your current state.</span>")
 		return
 
+	if(!pred.allow_mind_transfer)
+		to_chat(prey, "<span class='warning'>[pred] is unable to be dominated.</span>")
+		return
+
 	if(!pred.ckey)
 		to_chat(prey, "<span class='notice'>\The [pred] isn't able to be dominated.</span>")
 		return
@@ -316,7 +320,7 @@
 	var/list/possible_mobs = list()
 	for(var/obj/belly/B in src.vore_organs)
 		for(var/mob/living/L in B)
-			if(isliving(L) && L.ckey)
+			if(isliving(L) && L.ckey && L.allow_mind_transfer)
 				possible_mobs |= L
 			else
 				continue
@@ -327,6 +331,9 @@
 	if(!input)
 		return
 	var/mob/living/M = input
+	if(!M.allow_mind_transfer) //check if the dominated mob pref is enabled
+		to_chat(src, "<span class='warning'>[M] is unable to be dominated.</span>")
+		return
 	if(tgui_alert(src, "You selected [M] to attempt to dominate. Are you sure?", "Dominate Prey",list("No","Yes")) != "Yes")
 		return
 	log_admin("[key_name_admin(src)] offered to use dominate prey on [M] ([M.ckey]).")

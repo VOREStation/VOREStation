@@ -60,6 +60,8 @@
 
 	var/picked_color = FALSE
 
+	allow_mind_transfer = TRUE
+
 	can_enter_vent_with = list(
 		/obj/item/weapon/implant,
 		/obj/item/device/radio/borg,

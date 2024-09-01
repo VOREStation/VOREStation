@@ -163,3 +163,5 @@
 	var/custom_species
 
 	var/block_hud
+
+	var/phobias		//For holding a list of phobias

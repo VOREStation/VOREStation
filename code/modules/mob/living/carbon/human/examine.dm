@@ -310,7 +310,7 @@
 		else if(!client)
 			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>"
 		//VOREStation Add Start
-		if(away_from_keyboard && manual_afk)
+		if(client && away_from_keyboard && manual_afk)
 			msg += "\[Away From Keyboard for [round((client.inactivity/10)/60)] minutes\]"
 		else if(client && ((client.inactivity / 10) / 60 > 10)) //10 Minutes
 			msg += "\[Inactive for [round((client.inactivity/10)/60)] minutes\]"

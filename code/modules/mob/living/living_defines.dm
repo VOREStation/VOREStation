@@ -83,3 +83,26 @@
 	var/datum/inventory_panel/inventory_panel
 	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown.
 	var/tiredness = 0					//For vore draining
+	var/fear = 0 						//For fear effects and phobias
+	var/last_fear_sound = 0				//For making sure the heartbeats don't play over each other
+
+	var/list/fear_message_self = list(
+									"Your heart is racing, it feels like it's going burst from your chest.",
+									"Your stomach clenches and churns with anxiety.",
+									"It's getting hard to breathe, you're panting heavily.",
+									"You feel your eyes straining.",
+									"A sharp shiver runs down your spine.",
+									"You feel like you are drowning.",
+									"You feel your palms clamming up.",
+									"Your legs feel weak, you can barely control them.",
+									"You have difficulty even swallowing."
+									)
+	var/list/fear_message_other = list(
+									"'s eyes are darting around the room rapidly.",
+									" looks like they are shivering, literally shaking.",
+									" is breathing rapidly.",
+									" looks profoundly uncomfortable.",
+									"s literally trembling in front of you.",
+									"'s hands are shaking.",
+									" is rocking slightly from side to side."
+									)

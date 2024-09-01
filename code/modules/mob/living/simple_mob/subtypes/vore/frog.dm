@@ -44,6 +44,8 @@
 	special_attack_max_range = 5
 	special_attack_cooldown = 100
 
+	allow_mind_transfer = TRUE
+
 // Pepe is love, not hate.
 /mob/living/simple_mob/vore/aggressive/frog/New()
 	if(rand(1,1000000) == 1)

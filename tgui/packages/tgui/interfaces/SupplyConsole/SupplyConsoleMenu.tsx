@@ -17,7 +17,7 @@ export const SupplyConsoleMenu = (props) => {
   tab[4] = <SupplyConsoleMenuHistoryExport />;
 
   return (
-    <Section title="Menu" scrollable>
+    <Section title="Menu">
       <Tabs>
         <Tabs.Tab
           icon="box"
