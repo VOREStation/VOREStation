@@ -220,7 +220,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	save_data["b_wing3"]			= pref.b_wing3
 	save_data["digitigrade"]		= pref.digitigrade
 
-/datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
+/datum/category_item/player_setup_item/general/body/sanitize_character()
 	if(!pref.species || !(pref.species in GLOB.playable_species))
 		pref.species = SPECIES_HUMAN
 	pref.r_hair			= sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))

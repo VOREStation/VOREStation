@@ -460,7 +460,7 @@ var/list/preferences_datums = list()
 	var/default
 	var/list/charlist = list()
 
-	for(var/i = 1 to config.character_slots)
+	for(var/i in 1 to config.character_slots)
 		var/list/save_data = savefile.get_entry("character[i]", list())
 		var/name = save_data["real_name"]
 		var/nickname = save_data["nickname"]
@@ -506,7 +506,7 @@ var/list/preferences_datums = list()
 
 		if(!name)
 			name = "[i] - \[Unused Slot\]"
-		if(i == default_slot)
+		else if(i == default_slot)
 			name = "►[i] - [name]"
 		else
 			name = "[i] - [name]"

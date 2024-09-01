@@ -353,27 +353,25 @@
 	if(selecting_slots)
 		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
 		return
-	var/savefile/S = new /savefile(path)
-	if(!S)
-		error("Somehow missing savefile path?! [path]")
+	if(!savefile)
 		return
 
-	var/name
-	var/nickname //vorestation edit - This set appends nicknames to the save slot
 	var/list/charlist = list()
-	var/default //VOREStation edit
-	for(var/i=1, i<= config.character_slots, i++)
-		S.cd = "/character[i]"
-		S["real_name"] >> name
-		S["nickname"] >> nickname //vorestation edit
+
+	var/default
+	for(var/i in 1 to config.character_slots)
+		var/list/save_data = savefile.get_entry("character[i]", list())
+		var/name = save_data["real_name"]
+		var/nickname = save_data["nickname"]
+
 		if(!name)
 			name = "[i] - \[Unused Slot\]"
 		else if(i == default_slot)
 			name = "►[i] - [name]"
+			default = "[name][nickname ? " ([nickname])" : ""]"
 		else
 			name = "[i] - [name]"
-		if (i == default_slot) //VOREStation edit
-			default = "[name][nickname ? " ([nickname])" : ""]"
+
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
 	var/remember_default = default_slot
@@ -396,11 +394,6 @@
 	return remember_default
 
 /datum/preferences/proc/return_to_character_slot(mob/user, var/remembered_default)
-	var/savefile/S = new /savefile(path)
-	if(!S)
-		error("Somehow missing savefile path?! [path]")
-		return
-
 	load_character(remembered_default)
 	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
 	sanitize_preferences()

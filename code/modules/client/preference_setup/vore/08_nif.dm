@@ -38,23 +38,8 @@
 
 /datum/category_item/player_setup_item/vore/nif/copy_to_mob(var/mob/living/carbon/human/character)
 	//If you had a NIF...
-	if((character.type == /mob/living/carbon/human) && ispath(pref.nif_path) && pref.nif_durability)
-		new pref.nif_path(character,pref.nif_durability,pref.nif_savedata)
-
-		/*
-		//And now here's the trick. We wipe these so that if they die, they lose the NIF.
-		//Backup implants will start saving this again periodically, and so will cryo'ing out.
-		pref.nif_path = null
-		pref.nif_durability = null
-		pref.nif_savedata = null
-		*/
-		//No we do not, that's lame and admins have to re-NIF them later.
-		//If they leave round after they get their NIF extracted, it will save as 'gone' anyway
-		//The NIF will save automatically every time durability changes too now.
-		var/savefile/S = new /savefile(pref.path)
-		if(!S) WARNING ("Couldn't load NIF save savefile? [pref.real_name]")
-		S.cd = "/character[pref.default_slot]"
-		save_character(S)
+	if(istype(character) && ispath(pref.nif_path) && pref.nif_durability)
+		new pref.nif_path(character, pref.nif_durability, pref.nif_savedata)
 
 /datum/category_item/player_setup_item/vore/nif/content(var/mob/user)
 	. += "<b>NIF:</b> [ispath(pref.nif_path) ? "Present" : "None"]"

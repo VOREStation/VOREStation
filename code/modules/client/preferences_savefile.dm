@@ -41,7 +41,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// Migration for client preferences
 	if(current_version < 13)
+		log_debug("[client_ckey] preferences migrating from [current_version] to v13....")
+		to_chat(client, span_danger("Migrating savefile from version [current_version] to v13..."))
+
 		migration_13_preferences(S)
+
+		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v13.")
+		to_chat(client, span_danger("v13 savefile migration complete."))
 
 
 /datum/preferences/proc/update_character(current_version, list/save_data)
@@ -52,6 +58,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 /// Migrates from byond savefile to json savefile
 /datum/preferences/proc/try_savefile_type_migration()
+	log_debug("[client_ckey] preferences migrating from savefile to JSON...")
+	to_chat(client, span_danger("Savefile migration to JSON in progress..."))
+
 	load_path(client.ckey, "preferences.sav") // old save file
 	var/old_path = path
 	load_path(client.ckey)
@@ -60,6 +69,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/datum/json_savefile/json_savefile = new(path)
 	json_savefile.import_byond_savefile(new /savefile(old_path))
 	json_savefile.save()
+
+	log_debug("[client_ckey] preferences successfully migrated from savefile to JSON.")
+	to_chat(client, span_danger("Savefile migration to JSON is complete."))
+
 	return TRUE
 
 /datum/preferences/proc/load_path(ckey, filename = "preferences.json")
