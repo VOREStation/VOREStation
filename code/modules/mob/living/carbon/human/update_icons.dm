@@ -1417,6 +1417,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		vore_belly_image.layer = BODY_LAYER+VORE_BELLY_LAYER
 		overlays_standing[VORE_BELLY_LAYER] = vore_belly_image
 		vore_belly_image.plane = PLANE_CH_STOMACH //This one line of code. This ONE LINE OF CODE TOOK 6 HOURS TO FIGURE OUT. THANK YOU REDCAT.
+		vore_belly_image.appearance_flags = appearance_flags
 
 	apply_layer(VORE_BELLY_LAYER)
 
@@ -1449,6 +1450,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		vore_tail_image.layer = BODY_LAYER+VORE_TAIL_LAYER
 		overlays_standing[VORE_TAIL_LAYER] = vore_tail_image
 		vore_tail_image.plane = PLANE_CH_STOMACH //This one line of code. This ONE LINE OF CODE TOOK 6 HOURS TO FIGURE OUT. THANK YOU REDCAT.
+		vore_tail_image.appearance_flags = appearance_flags
 
 	apply_layer(VORE_TAIL_LAYER)
 
