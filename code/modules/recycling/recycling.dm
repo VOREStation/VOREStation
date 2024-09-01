@@ -3,7 +3,7 @@
 	active_power_usage = 500
 	density = TRUE
 	anchored = TRUE
-	
+
 	var/working = FALSE
 	var/negative_dir = null	//VOREStation Addition
 
@@ -22,9 +22,9 @@
 /obj/machinery/recycling/attackby(obj/item/O, mob/user)
 	if(!isliving(user) || !Adjacent(user))
 		return
-	
+
 	if(working)
-		to_chat("<span class='warning'>\The [src] is busy! Wait until it's idle.</span>")
+		to_chat(user, "<span class='warning'>\The [src] is busy! Wait until it's idle.</span>")
 		return
 
 	if(default_deconstruction_screwdriver(user, O))
@@ -33,7 +33,7 @@
 		return
 	if(default_part_replacement(user, O))
 		return
-	
+
 	var/mob/living/M = user
 	if(can_accept_item(O))
 		M.drop_from_inventory(O)
@@ -190,7 +190,7 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		warning("Dust in [src] had material_name [D.material_name], which can't be made into stacks")
 		return
-	
+
 	var/stacktype = M.stack_type
 	var/turf/T = get_step(src, dir)
 	var/obj/item/stack/S = locate(stacktype) in T

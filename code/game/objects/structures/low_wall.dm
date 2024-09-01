@@ -133,7 +133,7 @@
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		if(Adjacent(W) && !W.anchored)
-			to_chat("<span class='notice'>You hoist [W] up onto [src].</span>")
+			to_chat(user, "<span class='notice'>You hoist [W] up onto [src].</span>")
 			W.forceMove(loc)
 			return
 	if(isrobot(user))

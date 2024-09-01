@@ -106,7 +106,7 @@ fundamental differences
 
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if(!CI.container.check_contents())
-		to_chat("<span class='filter_notice'>There's nothing in it! Add ingredients before turning [src] on!</span>")
+		to_chat(usr, "<span class='filter_notice'>There's nothing in it! Add ingredients before turning [src] on!</span>")
 		return
 
 	if(stat & POWEROFF)//Its turned off
