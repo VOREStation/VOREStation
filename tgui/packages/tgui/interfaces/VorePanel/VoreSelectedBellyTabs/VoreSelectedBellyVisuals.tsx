@@ -1,7 +1,14 @@
 import { classes } from 'common/react';
 
 import { useBackend } from '../../../backend';
-import { Box, Button, Flex, LabeledList, Section } from '../../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../../components';
 import { selectedData } from '../types';
 
 export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
@@ -211,85 +218,104 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
         </Flex>
       </Section>
       <Section title="Belly Fullscreens Preview and Coloring">
-        <Flex direction="row">
-          <Box
-            backgroundColor={belly_fullscreen_color}
-            width="20px"
-            height="20px"
-          />
-          <Button
-            icon="eye-dropper"
-            onClick={() =>
-              act('set_attribute', {
-                attribute: 'b_fullscreen_color',
-                val: null,
-              })
-            }
-          >
-            Select Primary Color
-          </Button>
-          <Box
-            backgroundColor={belly_fullscreen_color_secondary}
-            width="20px"
-            height="20px"
-          />
-          <Button
-            icon="eye-dropper"
-            onClick={() =>
-              act('set_attribute', {
-                attribute: 'b_fullscreen_color_secondary',
-                val: null,
-              })
-            }
-          >
-            Select Secondary Color
-          </Button>
-          <Box
-            backgroundColor={belly_fullscreen_color_trinary}
-            width="20px"
-            height="20px"
-          />
-          <Button
-            icon="eye-dropper"
-            onClick={() =>
-              act('set_attribute', {
-                attribute: 'b_fullscreen_color_trinary',
-                val: null,
-              })
-            }
-          >
-            Select Trinary Color
-          </Button>
-          <LabeledList.Item label="Enable Coloration">
+        <Stack align="center">
+          <Stack.Item shrink>
+            <Box
+              backgroundColor={belly_fullscreen_color}
+              width="20px"
+              height="20px"
+            />
+          </Stack.Item>
+          <Stack.Item grow>
             <Button
+              fluid
+              icon="eye-dropper"
               onClick={() =>
-                act('set_attribute', { attribute: 'b_colorization_enabled' })
-              }
-              icon={colorization_enabled ? 'toggle-on' : 'toggle-off'}
-              selected={colorization_enabled}
-            >
-              {colorization_enabled ? 'Yes' : 'No'}
-            </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Preview Belly">
-            <Button
-              onClick={() =>
-                act('set_attribute', { attribute: 'b_preview_belly' })
+                act('set_attribute', {
+                  attribute: 'b_fullscreen_color',
+                  val: null,
+                })
               }
             >
-              Preview
+              Select Primary Color
             </Button>
-          </LabeledList.Item>
-          <LabeledList.Item label="Clear Preview">
+          </Stack.Item>
+          <Stack.Item shrink>
+            <Box
+              backgroundColor={belly_fullscreen_color_secondary}
+              width="20px"
+              height="20px"
+            />
+          </Stack.Item>
+          <Stack.Item grow>
             <Button
+              fluid
+              icon="eye-dropper"
               onClick={() =>
-                act('set_attribute', { attribute: 'b_clear_preview' })
+                act('set_attribute', {
+                  attribute: 'b_fullscreen_color_secondary',
+                  val: null,
+                })
               }
             >
-              Clear
+              Select Secondary Color
             </Button>
-          </LabeledList.Item>
-        </Flex>
+          </Stack.Item>
+          <Stack.Item shrink>
+            <Box
+              backgroundColor={belly_fullscreen_color_trinary}
+              width="20px"
+              height="20px"
+            />
+          </Stack.Item>
+          <Stack.Item grow>
+            <Button
+              fluid
+              icon="eye-dropper"
+              onClick={() =>
+                act('set_attribute', {
+                  attribute: 'b_fullscreen_color_trinary',
+                  val: null,
+                })
+              }
+            >
+              Select Trinary Color
+            </Button>
+          </Stack.Item>
+        </Stack>
+        <Box mt={1}>
+          <LabeledList>
+            <LabeledList.Item label="Enable Coloration">
+              <Button
+                onClick={() =>
+                  act('set_attribute', { attribute: 'b_colorization_enabled' })
+                }
+                icon={colorization_enabled ? 'toggle-on' : 'toggle-off'}
+                selected={colorization_enabled}
+              >
+                {colorization_enabled ? 'Yes' : 'No'}
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Preview Belly">
+              <Button
+                onClick={() =>
+                  act('set_attribute', { attribute: 'b_preview_belly' })
+                }
+              >
+                Preview
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Clear Preview">
+              <Button
+                onClick={() =>
+                  act('set_attribute', { attribute: 'b_clear_preview' })
+                }
+              >
+                Clear
+              </Button>
+            </LabeledList.Item>
+          </LabeledList>
+        </Box>
       </Section>
       <Section>
         <Section title="Vore FX">
@@ -307,7 +333,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Belly Fullscreens Styles" width="800px">
+        <Section title="Belly Fullscreens Styles">
           Belly styles:
           <Button
             fluid

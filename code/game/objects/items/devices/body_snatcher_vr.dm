@@ -25,6 +25,10 @@
 			to_chat(usr,"<span class='warning'>A warning pops up on the device, informing you that [M] appears braindead.</span>")
 			return
 
+		if(!M.allow_mind_transfer)
+			to_chat(usr,"<span class='danger'>The target's mind is too complex to be affected!</span>")
+			return
+
 		if(M.stat == DEAD) //Are they dead?
 			to_chat(usr,"<span class='warning'>A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done.</span>")
 			return

@@ -1532,3 +1532,21 @@
 	extra_overlay2 = "kaiju_long_a_spikes_glow"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+//RS ADD START
+
+/datum/sprite_accessory/tail/longtail/flagtail
+	name = "Flagtail"
+	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
+	icon_state = "flagtail"
+	extra_overlay = "flagtail-1"
+	extra_overlay2 = "flagtail-2"
+
+/datum/sprite_accessory/tail/longtail/chonksqrl
+	name = "Squirrel (Big)"
+	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
+	icon_state = "chonksqrl"
+	extra_overlay = "chonksqrl-m1"
+	extra_overlay2 = "chonksqrl-m2"
+
+//RS ADD END

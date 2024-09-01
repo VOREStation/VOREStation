@@ -160,6 +160,7 @@ export type prefData = {
   step_mechanics_active: BooleanLike;
   pickup_mechanics_active: BooleanLike;
   noisy: BooleanLike;
+  allow_mind_transfer: BooleanLike;
   drop_vore: BooleanLike;
   slip_vore: BooleanLike;
   stumble_vore: BooleanLike;
@@ -198,6 +199,7 @@ export type localPrefs = {
   remains: preferenceData;
   pickuppref: preferenceData;
   spontaneous_tf: preferenceData;
+  mind_transfer: preferenceData;
   examine_nutrition: preferenceData;
   examine_weight: preferenceData;
   eating_privacy_global: preferenceData;
