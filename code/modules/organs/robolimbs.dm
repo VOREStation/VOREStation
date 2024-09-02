@@ -512,6 +512,15 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC
 	parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 
+/datum/robolimb/digi
+	company = "DSI Digitigrade Legs" //yup that's how I'm fixing this, you NEED to have digi on or else oh god it looks weird
+	desc = "Synthflesh-wrapped robotic digitigrade legs, for the animal in all of us."
+	icon = 'icons/mob/human_races/r_digi.dmi'
+	lifelike = 1
+	unavailable_to_build = 1
+	skin_tone = 1
+	parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
+
 
 /obj/item/weapon/disk/limb/New(var/newloc)
 	..()

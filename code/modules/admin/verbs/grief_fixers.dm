@@ -5,7 +5,7 @@
 	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT)) return
 
 
-	if(tgui_alert(usr, "WARNING: Executing this command will perform a full reset of atmosphere. All pipelines will lose any gas that may be in them, and all zones will be reset to contain air mix as on roundstart. The supermatter engine will also be stopped (to prevent overheat due to removal of coolant). Do not use unless the station is suffering serious atmospheric issues due to grief or bug.", "Full Atmosphere Reboot", list("No", "Yes")) == "No")
+	if(tgui_alert(usr, "WARNING: Executing this command will perform a full reset of atmosphere. All pipelines will lose any gas that may be in them, and all zones will be reset to contain air mix as on roundstart. The supermatter engine will also be stopped (to prevent overheat due to removal of coolant). Do not use unless the station is suffering serious atmospheric issues due to grief or bug.", "Full Atmosphere Reboot", list("No", "Yes")) != "Yes")
 		return
 	feedback_add_details("admin_verb","FA")
 
