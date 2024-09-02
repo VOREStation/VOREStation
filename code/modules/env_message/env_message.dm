@@ -178,9 +178,3 @@ var/global/list/env_messages = list()
 		if(EM.combined_message == chosen_message)
 			qdel(EM)
 			log_game("[key_name(src)] deleted an Env Message that contained other players' entries at ([EM.x], [EM.y], [EM.z])")
-
-proc/return_env_message_list()
-	var/list/name_messages = list()
-	for(var/obj/effect/env_message/A in world)
-		name_messages[A.combined_message] = A
-	return name_messages
