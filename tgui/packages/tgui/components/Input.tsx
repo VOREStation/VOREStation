@@ -126,7 +126,6 @@ export function Input(props: Props) {
         event.currentTarget.blur();
         onChange?.(event, event.currentTarget.value);
       }
-      editing = false;
 
       return;
     }
