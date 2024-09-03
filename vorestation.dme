@@ -2027,6 +2027,7 @@
 #include "code\modules\client\preferences\preferences_tg.dm"
 #include "code\modules\client\preferences\middleware\_middleware.dm"
 #include "code\modules\client\preferences\migrations\13_preferences.dm"
+#include "code\modules\client\preferences\migrations\14_nifs.dm"
 #include "code\modules\client\preferences\types\admin.dm"
 #include "code\modules\client\preferences\types\chat.dm"
 #include "code\modules\client\preferences\types\ghost.dm"

@@ -5,19 +5,34 @@
 	var/list/nif_savedata
 
 // Definition of the stuff for NIFs
+// Magic bullshit, they're stored separately from everything else
 /datum/category_item/player_setup_item/vore/nif
 	name = "NIF Data"
 	sort_order = 8
 
-/datum/category_item/player_setup_item/vore/nif/load_character(list/save_data)
-	pref.nif_path		= save_data["nif_path"]
-	pref.nif_durability	= save_data["nif_durability"]
-	pref.nif_savedata	= save_data["nif_savedata"]
+/proc/nif_savefile_path(ckey)
+	if(!ckey)
+		return
+	return "data/player_saves/[copytext(ckey,1,2)]/[ckey]/nif.json"
 
-/datum/category_item/player_setup_item/vore/nif/save_character(list/save_data)
-	save_data["nif_path"]		= pref.nif_path
-	save_data["nif_durability"]	= pref.nif_durability
-	save_data["nif_savedata"]	= pref.nif_savedata
+/datum/category_item/player_setup_item/vore/nif/load_character()
+	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(pref.client_ckey))
+	var/list/save_data_file = savefile.get_entry("character[pref.default_slot]", list())
+
+	pref.nif_path		= save_data_file["nif_path"]
+	pref.nif_durability	= save_data_file["nif_durability"]
+	pref.nif_savedata	= save_data_file["nif_savedata"]
+
+/datum/category_item/player_setup_item/vore/nif/save_character()
+	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(pref.client_ckey))
+	var/list/save_data_file = savefile.get_entry("character[pref.default_slot]", list())
+
+	save_data_file["nif_path"]			= pref.nif_path
+	save_data_file["nif_durability"]	= pref.nif_durability
+	save_data_file["nif_savedata"]		= pref.nif_savedata
+
+	savefile.set_entry("character[pref.default_slot]", save_data_file)
+	savefile.save()
 
 /datum/category_item/player_setup_item/vore/nif/sanitize_character()
 	if(pref.nif_path && !ispath(pref.nif_path))		//We have at least a text string that should be a path.

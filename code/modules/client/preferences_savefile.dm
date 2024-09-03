@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	13
+#define SAVEFILE_VERSION_MAX	14
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -48,6 +48,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v13.")
 		to_chat(client, span_danger("v13 savefile migration complete."))
+
+	// Migration for nifs
+	if(current_version < 14)
+		log_debug("[client_ckey] preferences migrating from [current_version] to v14....")
+		to_chat(client, span_danger("Migrating savefile from version [current_version] to v14..."))
+
+		migration_14_nifs(S)
+
+		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v14.")
+		to_chat(client, span_danger("v14 savefile migration complete."))
 
 
 /datum/preferences/proc/update_character(current_version, list/save_data)
