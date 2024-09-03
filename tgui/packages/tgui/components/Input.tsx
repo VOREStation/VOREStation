@@ -102,8 +102,11 @@ export function Input(props: Props) {
   // The ref to the input field
   const inputRef = useRef<HTMLInputElement>(null);
 
+  let editing = false;
+
   function handleInput(event: SyntheticEvent<HTMLInputElement>) {
     if (!onInput) return;
+    editing = true;
 
     const value = event.currentTarget?.value;
 
@@ -123,6 +126,7 @@ export function Input(props: Props) {
         event.currentTarget.blur();
         onChange?.(event, event.currentTarget.value);
       }
+      editing = false;
 
       return;
     }
@@ -140,10 +144,15 @@ export function Input(props: Props) {
     const input = inputRef.current;
     if (!input) return;
 
+    const newValue = toInputValue(value);
+
+    if (input.value !== newValue) input.value = newValue;
+
     if (!autoFocus && !autoSelect) return;
 
     setTimeout(() => {
       input.focus();
+      editing = true;
 
       if (autoSelect) {
         input.select();
@@ -156,7 +165,8 @@ export function Input(props: Props) {
     if (!input) return;
 
     const newValue = toInputValue(value);
-    if (input.value !== newValue) input.value = newValue;
+
+    if (input.value !== newValue && !editing) input.value = newValue;
   });
 
   return (
