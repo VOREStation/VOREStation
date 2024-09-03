@@ -386,6 +386,9 @@ var/list/ai_verbs_default = list(
 
 	var/confirm = tgui_alert(usr, "Are you sure you want to call the shuttle?", "Confirm Shuttle Call", list("Yes", "No"))
 
+	if(!confirm)
+		return
+
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
@@ -612,6 +615,9 @@ var/list/ai_verbs_default = list(
 
 		if("Model")
 			choice = tgui_alert(usr, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection",list("Crew Member","Unique","My Character"))
+
+			if(!choice)
+				return
 
 			switch(choice)
 				if("Crew Member") //A seeable crew member (or a dog)

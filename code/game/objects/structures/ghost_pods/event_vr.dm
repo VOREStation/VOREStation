@@ -87,7 +87,7 @@
 	if (not_has_ooc_text(M))
 		return
 
-	while(finalized == "No" && M.client)
+	while(finalized != "Yes" && M.client)
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
 		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
 			to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")

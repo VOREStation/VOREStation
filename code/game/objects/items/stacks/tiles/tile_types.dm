@@ -45,7 +45,7 @@
 		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 
 		if(can_weld == FALSE)
-			to_chat("You can't reform these into their original components.")
+			to_chat(user, "You can't reform these into their original components.")
 			return
 
 		if(get_amount() < 4)

@@ -506,7 +506,7 @@
 
 	var/response = tgui_alert(usr, "Are you sure? This will start up the engine. Should only be used during debug!","Setup Supermatter",list("Setup Completely","Setup except coolant","No"))
 
-	if(response == "No")
+	if(!response || response == "No")
 		return
 
 	var/found_the_pump = 0

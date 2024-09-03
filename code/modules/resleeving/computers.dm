@@ -407,7 +407,7 @@
 						var/answer = tgui_alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind. Do you want to abandon this body, and move there? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving",list("No","Yes"))
 
 						//They declined to be moved.
-						if(answer == "No")
+						if(answer != "Yes")
 							set_temp("Initiating resleeving... Error: Post-initialisation failed. Resleeving cycle aborted.", "danger")
 							tgui_modal_clear(src)
 							return TRUE

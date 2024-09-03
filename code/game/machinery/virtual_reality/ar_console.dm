@@ -57,7 +57,7 @@
 	if(!occupant)
 		return
 
-	if(!forced && avatar && avatar.stat != DEAD && tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) == "No")
+	if(!forced && avatar && avatar.stat != DEAD && tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) != "Yes")
 		return
 
 	avatar.exit_vr()
@@ -89,7 +89,7 @@
 
 	if(avatar && !occupant.stat)
 		to_chat(occupant,"<span class='alien'>\The [src] begins to [pick("whir","hum","pulse")] as a screen appears in front of you.</span>")
-		if(tgui_alert(occupant, "This pod is already linked. Are you certain you wish to engage?", "Commmit?", list("Yes", "No")) == "No")
+		if(tgui_alert(occupant, "This pod is already linked. Are you certain you wish to engage?", "Commmit?", list("Yes", "No")) != "Yes")
 			visible_message("<span class='alien'>\The [src] pulses!</span>")
 
 	to_chat(occupant,"<span class='alien'>Your mind blurs as information bombards you.</span>")

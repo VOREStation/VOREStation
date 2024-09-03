@@ -239,7 +239,7 @@
 			amount_per_injector = CLAMP(beaker.reagents.total_volume / amount, 0, 15)
 	if((size == "small injector" && amount_per_injector < 5) || size == "large injector" && amount_per_injector < 15)
 		proceed = tgui_alert(usr, "Heads up! Less than max volume per injector!\n Making [amount] [size](s) filled with [amount_per_injector] total reagent volume each!","Proceed?",list("No","Yes"))
-	if(proceed == "No" || !amount_per_injector)
+	if(!proceed || proceed == "No" || !amount_per_injector)
 		return
 	for(var/i, i < amount, i++)
 		switch(size)

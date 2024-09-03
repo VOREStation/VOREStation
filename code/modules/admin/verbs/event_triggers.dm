@@ -44,7 +44,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 				return
 			if(choice == "Delete All")
 				var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK", "CONFIRM", list("Go Back", "Delete all my event triggers"), autofocus = FALSE)
-				if(confirm == "Go Back")
+				if(!confirm || confirm == "Go Back")
 					return
 				for(var/obj/effect/landmark/event_trigger/ET in personal_list)
 					ET.delete_me = TRUE
@@ -62,7 +62,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 					M.forceMove(get_turf(ET))
 				if(decision == "Delete")
 					var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK FROM DELETING [ET.name]", "CONFIRM", list("Go Back", "Delete it!"), autofocus = FALSE)
-					if(confirm == "Go Back")
+					if(!confirm || confirm == "Go Back")
 						return
 					ET.delete_me = TRUE
 					qdel(ET)
@@ -91,7 +91,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 							log_and_message_admins("[src.ckey] deleted all of [other_ckey]'s event triggers while [other_ckey] was active")
 							return
 				var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK", "CONFIRM", list("Go Back", "Delete all my event triggers"), autofocus = FALSE)
-				if(confirm == "Go Back")
+				if(!confirm || confirm == "Go Back")
 					return
 				for(var/obj/effect/landmark/event_trigger/ET in others_list)
 					ET.delete_me = TRUE
@@ -105,7 +105,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 					if(isobserver(M))
 						var/confirm_teleport = tgui_alert(src, "You're not a ghost! Admin-ghost?", "You're not a ghost", \
 							list("Cancel", "Teleport me with my character"))
-						if(confirm_teleport == "Cancel")
+						if(!confirm_teleport || confirm_teleport == "Cancel")
 							return
 					M.forceMove(get_turf(ET))
 				if(decision == "Delete")
@@ -121,7 +121,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 								log_and_message_admins("[src.ckey] tried to delete event trigger [ET.name] while [other_ckey] is active.")
 								return
 					var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK FROM DELETING [ET.name]", "CONFIRM", list("Go Back", "Delete it!"), autofocus = FALSE)
-					if(confirm == "Go Back")
+					if(!confirm || confirm == "Go Back")
 						return
 					ET.delete_me = TRUE
 					qdel(ET)

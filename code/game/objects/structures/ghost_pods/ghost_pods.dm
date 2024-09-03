@@ -53,7 +53,7 @@
 /obj/structure/ghost_pod/manual/attack_hand(var/mob/living/user)
 	if(!used)
 		if(confirm_before_open)
-			if(tgui_alert(user, "Are you sure you want to touch \the [src]?", "Confirm", list("No", "Yes")) == "No")
+			if(tgui_alert(user, "Are you sure you want to touch \the [src]?", "Confirm", list("No", "Yes")) != "Yes")
 				return
 		trigger()
 		// VOREStation Addition Start

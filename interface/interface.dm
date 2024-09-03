@@ -21,7 +21,7 @@
 	set desc = "Visit the forum."
 	set hidden = 1
 	if( config.forumurl )
-		if(tgui_alert(usr, "This will open the forum in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		if(tgui_alert(usr, "This will open the forum in your browser. Are you sure?","Visit Website",list("Yes","No")) != "Yes")
 			return
 		src << link(config.forumurl)
 	else
@@ -34,7 +34,7 @@
 	set hidden = 1
 
 	if(config.rulesurl)
-		if(tgui_alert(usr, "This will open the rules in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		if(tgui_alert(usr, "This will open the rules in your browser. Are you sure?","Visit Website",list("Yes","No")) != "Yes")
 			return
 		src << link(config.rulesurl)
 	else
@@ -47,7 +47,7 @@
 	set hidden = 1
 
 	if(config.mapurl)
-		if(tgui_alert(usr, "This will open the map in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		if(tgui_alert(usr, "This will open the map in your browser. Are you sure?","Visit Website",list("Yes","No")) != "Yes")
 			return
 		src << link(config.mapurl)
 	else
@@ -60,7 +60,7 @@
 	set hidden = 1
 
 	if(config.githuburl)
-		if(tgui_alert(usr, "This will open the GitHub in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		if(tgui_alert(usr, "This will open the GitHub in your browser. Are you sure?","Visit Website",list("Yes","No")) != "Yes")
 			return
 		src << link(config.githuburl)
 	else
@@ -73,7 +73,7 @@
 	set hidden = 1
 
 	if(config.discordurl)
-		if(tgui_alert(usr, "This will open the Discord in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		if(tgui_alert(usr, "This will open the Discord in your browser. Are you sure?","Visit Website",list("Yes","No")) != "Yes")
 			return
 		src << link(config.discordurl)
 	else
@@ -86,7 +86,7 @@
 	set hidden = 1
 
 	if(config.patreonurl)
-		if(tgui_alert(usr, "This will open the Patreon in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		if(tgui_alert(usr, "This will open the Patreon in your browser. Are you sure?","Visit Website",list("Yes","No")) != "Yes")
 			return
 		src << link(config.patreonurl)
 	else

@@ -168,6 +168,8 @@ var/list/mentor_verbs_default = list(
 	set hidden = 1
 
 	var/mhelp = tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp")) == "Mentorhelp"
+	if(!mhelp)
+		return
 	var/msg = tgui_input_text(usr, "Input your request for help.", "Request for Help", multiline = TRUE)
 
 	if (mhelp)

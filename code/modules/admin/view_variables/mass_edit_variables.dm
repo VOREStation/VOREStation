@@ -116,6 +116,8 @@
 			var/unique
 			if (varsvars && varsvars.len)
 				unique = tgui_alert(usr, "Process vars unique to each instance, or same for all?", "Variable Association", list("Unique", "Same"))
+				if(!unique)
+					return
 				if(unique == "Unique")
 					unique = TRUE
 				else
@@ -143,7 +145,7 @@
 
 		if (VV_NEW_TYPE)
 			var/many = tgui_alert(src, "Create only one [value["type"]] and assign each or a new one for each thing", "How Many", list("One", "Many", "Cancel"))
-			if (many == "Cancel")
+			if (!many || many == "Cancel")
 				return
 			if (many == "Many")
 				many = TRUE

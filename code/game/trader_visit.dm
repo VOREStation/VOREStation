@@ -23,9 +23,8 @@ var/can_call_traders = 1
 	if(tgui_alert(usr, "Do you want to dispatch the Beruang trade ship?","Trade Ship",list("Yes","No")) != "Yes")
 		return
 	if(get_security_level() == "red") // Allow admins to reconsider if the alert level is Red
-		switch(tgui_alert(usr, "The station is in red alert. Do you still want to send traders?","Trade Ship",list("Yes","No")))
-			if("No")
-				return
+		if(tgui_alert(usr, "The station is in red alert. Do you still want to send traders?","Trade Ship",list("Yes","No")) != "Yes")
+			return
 	if(send_beruang)
 		to_chat(usr, "<span class='danger'>Looks like somebody beat you to it!</span>")
 		return

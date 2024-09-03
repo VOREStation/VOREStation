@@ -2283,6 +2283,7 @@
 #include "code\modules\entopics_vr\alternate_appearance.dm"
 #include "code\modules\entopics_vr\entopics.dm"
 #include "code\modules\entrepreneur\entrepreneur_items.dm"
+#include "code\modules\env_message\env_message.dm"
 #include "code\modules\error_handler\_defines.dm"
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"
@@ -4340,6 +4341,6 @@
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\stellar_delight\stellar_delight.dm"
+#include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

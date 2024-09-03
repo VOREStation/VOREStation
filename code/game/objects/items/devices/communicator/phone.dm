@@ -287,7 +287,7 @@
 		return //something is terribly wrong
 
 	var/confirm = tgui_alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
-	if(confirm == "No")
+	if(confirm != "Yes")
 		return
 
 	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)

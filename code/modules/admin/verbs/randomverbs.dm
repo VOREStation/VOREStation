@@ -52,7 +52,8 @@
 		return
 
 	var/age = tgui_alert(src, "Age check", "Show accounts yonger then _____ days", list("7","30","All"))
-
+	if(!age)
+		return
 	if(age == "All")
 		age = 9999999
 	else
@@ -236,6 +237,8 @@
 	message_admins("[key_name_admin(src)] has added a random AI law.", 1)
 
 	var/show_log = tgui_alert(src, "Show ion message?", "Message", list("Yes", "No"))
+	if(!show_log)
+		return
 	if(show_log == "Yes")
 		command_announcement.Announce("Ion storm detected near \the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 
@@ -286,7 +289,7 @@ Ccomp's first proc.
 
 	if(GLOB.respawn_timers[target] == -1) // Their respawn timer is set to -1, which is 'not allowed to respawn'
 		var/response = tgui_alert(src, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.","Allow impossible respawn?",list("No","Yes"))
-		if(response == "No")
+		if(response != "Yes")
 			return
 
 	GLOB.respawn_timers -= target
@@ -401,7 +404,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/announce = tgui_alert(src,"Announce as if they had just arrived?", "Announce", list("No", "Yes", "Cancel"))
-	if(announce == "Cancel")
+	if(!announce || announce == "Cancel")
 		return
 	else if(announce == "Yes") //Too bad buttons can't just have 1/0 values and different display strings
 		announce = 1
@@ -409,7 +412,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		announce = 0
 
 	var/inhabit = tgui_alert(src,"Put the person into the spawned mob?", "Inhabit", list("Yes", "No", "Cancel"))
-	if(inhabit == "Cancel")
+	if(!inhabit || inhabit == "Cancel")
 		return
 	else if(inhabit == "Yes")
 		inhabit = 1
@@ -425,13 +428,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//Found their record, they were spawned previously
 	if(record_found)
 		var/samejob = tgui_alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
+		if(!samejob)
+			return
 		if(samejob == "Yes")
 			charjob = record_found.fields["real_rank"]
 		else if(samejob == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 			charjob = USELESS_JOB //VOREStation Edit - Visitor not Assistant
 	else
 		records = tgui_alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records",list("No", "Yes", "Cancel"))
-		if(records == "Cancel")
+		if(!records || records == "Cancel")
 			return
 		if(records == "Yes")
 			records = 1
@@ -450,7 +455,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/equipment
 	if(charjob)
 		equipment = tgui_alert(src,"Spawn them with equipment?", "Equipment", list("Yes", "No", "Cancel"))
-		if(equipment == "Cancel")
+		if(!equipment || equipment == "Cancel")
 			return
 		else if(equipment == "Yes")
 			equipment = 1
@@ -478,7 +483,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				return
 			if(showy == "Drop Pod")
 				showy = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel")) // reusing var
-				if(showy == "Cancel")
+				if(!showy || showy == "Cancel")
 					return
 
 		if("Arrivals") //Spawn them at a latejoin spawnpoint
@@ -706,7 +711,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20))
-			if (tgui_alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) == "No")
+			if (tgui_alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) != "Yes")
 				return
 
 		explosion(O, devastation, heavy, light, flash)
@@ -772,6 +777,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
+	if(!confirm)
+		return
 	if(confirm == "Yes")
 		if (istype(mob, /mob/observer/dead)) // so they don't spam gibs everywhere
 			return
@@ -1000,7 +1007,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 	var/notifyplayers = tgui_alert(src, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel"))
-	if(notifyplayers == "Cancel")
+	if(!notifyplayers || notifyplayers == "Cancel")
 		return
 
 	log_admin("Admin [key_name(src)] has forced the players to have random appearances.")
@@ -1045,7 +1052,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/confirm = tgui_alert(usr, "Are you sure you want to cryo [M]?","Confirmation",list("No","Yes"))
-	if(confirm == "No")
+	if(confirm != "Yes")
 		return
 
 	var/list/human_cryopods = list()
@@ -1121,10 +1128,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 
 	var/podtype = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
-	if(podtype == "Cancel")
+	if(!podtype || podtype == "Cancel")
 		return
 	var/autoopen = tgui_alert(src,"Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
-	if(autoopen == "Cancel")
+	if(!autoopen || autoopen == "Cancel")
 		return
 	switch(podtype)
 		if("Destructive")
@@ -1149,10 +1156,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/podtype = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
-	if(podtype == "Cancel")
+	if(!podtype || podtype == "Cancel")
 		return
 	var/autoopen = tgui_alert(src,"Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
-	if(autoopen == "Cancel")
+	if(!autoopen || autoopen == "Cancel")
 		return
 	if(!L || QDELETED(L))
 		return
