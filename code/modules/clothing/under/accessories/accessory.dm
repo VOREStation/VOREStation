@@ -536,6 +536,14 @@
 	slot_flags = SLOT_TIE
 	slot = ACCESSORY_SLOT_DECOR
 
+/obj/item/clothing/accessory/wristband_spiked
+	name = "wristband (spiked)"
+	desc = "A black wristband with short spikes around it."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_spiked"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
 
 //Gaiter scarves
 /obj/item/clothing/accessory/gaiter
