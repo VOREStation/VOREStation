@@ -162,11 +162,11 @@ export function Input(props: Props) {
 
   useEffect(() => {
     const input = inputRef.current;
-    if (!input) return;
+    if (!input || editing) return;
 
     const newValue = toInputValue(value);
 
-    if (input.value !== newValue && !editing) input.value = newValue;
+    if (input.value !== newValue) input.value = newValue;
   });
 
   return (
