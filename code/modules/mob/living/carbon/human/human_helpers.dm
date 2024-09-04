@@ -172,10 +172,8 @@
 	var/list/compiled_vis = list()
 
 	if(CE_DARKSIGHT in chem_effects) //Putting this near the beginning so it can be overwritten by equipment
-		plane_holder.set_vis(VIS_FULLBRIGHT,TRUE)
 		compiled_vis += VIS_FULLBRIGHT
 	else
-		plane_holder.set_vis(VIS_FULLBRIGHT,FALSE)
 		compiled_vis -= VIS_FULLBRIGHT
 
 	for(var/slot in slots)
@@ -200,11 +198,9 @@
 	//VOREStation Add End
 
 	//Vore Stomach addition start. This goes here.
-	if(stomach_vision && !(VIS_CH_STOMACH in vis_enabled))
-		plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
+	if(stomach_vision)
 		compiled_vis += VIS_CH_STOMACH
-	else if(!stomach_vision && (VIS_CH_STOMACH in vis_enabled))
-		plane_holder.set_vis(VIS_CH_STOMACH,FALSE)
+	else
 		compiled_vis -= VIS_CH_STOMACH
 	//Vore Stomach addition end
 
