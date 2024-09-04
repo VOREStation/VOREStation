@@ -381,6 +381,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 
 			var/new_name = html_encode(tgui_input_text(usr,"New belly's name:","New Belly"))
 
+			if(!new_name)
+				return FALSE
+
 			var/failure_msg
 			if(length(new_name) > BELLIES_NAME_MAX || length(new_name) < BELLIES_NAME_MIN)
 				failure_msg = "Entered belly name length invalid (must be longer than [BELLIES_NAME_MIN], no more than than [BELLIES_NAME_MAX])."
