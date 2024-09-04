@@ -83,7 +83,6 @@ export const serializeMessage = (message, archive = false) => {
   let archiveM = '';
   if (archive) {
     archiveM = message.node.outerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    alert(message.node.outerHTML);
   }
   return {
     type: message.type,
