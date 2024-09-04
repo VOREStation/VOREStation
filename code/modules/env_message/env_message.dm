@@ -113,3 +113,68 @@ var/global/list/env_messages = list()
 		var/answer = tgui_alert(src, "Do you want to remove your env message?", "Env Message", list("Yes", "No"))
 		if(answer == "Yes")
 			clear_env_message(src.ckey)
+
+//GM tool version
+
+/obj/effect/env_message/admin
+	name = "Map message"
+	icon = 'icons/effects/env_message.dmi'
+	icon_state = "env_message_red"
+
+/client/proc/create_gm_message()
+	set name = "Map Message - Create"
+	set desc = "Create an ooc message in the environment for other players to see."
+	set category = "EventKit"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(isnewplayer(mob))
+		to_chat(src, "<span class='warning'>You must spawn or observe to place messages.</span>")
+		return
+
+	if(!get_turf(mob) || !src.ckey)
+		return
+
+	var/new_message = sanitize(tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now.", "Env Message"))
+
+	if(!new_message)
+		return
+
+	var/ourturf = get_turf(mob)
+
+	var/obj/effect/env_message/EM = locate(/obj/effect/env_message) in ourturf
+
+	if(!EM)
+		EM = new /obj/effect/env_message/admin(ourturf)
+	EM.add_message(src.ckey, new_message)
+
+	log_game("[key_name(src)] created an Env Message: [new_message] at ([EM.x], [EM.y], [EM.z])")
+
+/client/proc/remove_gm_message()
+	set name = "Map Message - Remove"
+	set desc = "Remove any env/map message."
+	set category = "EventKit"
+
+	if(!istype(src) || !src.ckey)
+		return
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/list/all_map_messages = list()
+	for(var/obj/effect/env_message/A in world)
+		all_map_messages |= A.combined_message
+
+	if(!all_map_messages.len)
+		to_chat(src, "<span class='warning'>There are no map or env messages.</span>")
+		return
+
+	var/mob/chosen_message = tgui_input_list(src, "Which message do you want to remove?", "Make contact", all_map_messages)
+	if(!chosen_message)
+		return
+
+	for(var/obj/effect/env_message/EM in world)
+		if(EM.combined_message == chosen_message)
+			qdel(EM)
+			log_game("[key_name(src)] deleted an Env Message that contained other players' entries at ([EM.x], [EM.y], [EM.z])")

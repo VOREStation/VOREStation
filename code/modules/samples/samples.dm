@@ -1,6 +1,6 @@
 /obj/item/weapon/research_sample
 	name = "research sample"
-	desc = "A curious sample of unknown material. Perhaps a scientist could tell you more about it?<br/><span class='warning'>It looks dangerous to handle without heavy gloves or other protective equipment.</span>"
+	desc = "A curious sample of unknown material. Destructive analysis might yield scientific advances. Alternatively, it may be possible to stabilize it to yield useful resources instead.<br/><span class='warning'>It looks dangerous to handle without heavy gloves or other protective equipment.</span>"
 	icon = 'icons/obj/samples.dmi'
 	icon_state = "sample"
 	w_class = ITEMSIZE_TINY
@@ -14,9 +14,10 @@
 	persist_storable = FALSE //don't shove hazardous shinies into the item bank!! also their properties are (usually) randomized on creation, so saving them is pointless-- you won't get out what you put in
 
 	//handling requirements; you need gloves with a low permeability threshold, RIG gauntlets, or luck- otherwise you get hand burns
-	var/handle_risk		= 20	//20% chance to hurty if you handle it wrong
-	var/min_damage		= 3		//min: 3 burn per hand
-	var/max_damage		= 5		//max: 5 burn per hand
+	var/handle_risk		= 20		//20% chance to hurty if you handle it wrong
+	var/min_damage		= 3			//min: 3 burn per hand
+	var/max_damage		= 5			//max: 5 burn per hand
+	var/damage_type		= "BURN"	//defaults to burn, but randomized and can be preset if desired; currently supports brute, burn, tox, oxy, emp, and pain
 
 	//resource returns when crunched; a small amount of OK stuff by default
 	var/min_ore			= 3
@@ -33,7 +34,8 @@
 		var/name_suffix		//blank because it's randomized per sample appearance
 		var/sample_icon = rand(1,10)
 		icon_state = "generic_sample[sample_icon]"
-		//per-state tweaks, like glows/light emission or narrower valid tech defs
+		damage_type = pick("BRUTE","BURN","TOX","OXY","EMP","PAIN")
+		//per-state tweaks, like glows/light emission or narrower valid tech defs, if desired
 		switch(sample_icon)
 			if(1)	//prism
 				name_suffix = "[pick("alloy","object","sample","element","chunk")]"
@@ -71,13 +73,45 @@
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/gloves/G = H.gloves
-		if(istype(G) && (G.permeability_coefficient < 0.25) || !prob(handle_risk) || istype(G, /obj/item/clothing/gloves/gauntlets))
+		var/obj/item/clothing/suit/S = H.wear_suit
+		var/gloves_permeability	= 1
+		var/suit_permeability = 1
+		if(istype(G))
+			gloves_permeability = G.permeability_coefficient
+		if(istype(S) && S.body_parts_covered & HANDS)	//if it's a suit *and* it covers our hands
+			suit_permeability = S.permeability_coefficient
+		if((min(gloves_permeability,suit_permeability) < 0.25) || !prob(handle_risk))
 			burn_user = FALSE
 
 		if(burn_user)
-			H.visible_message("<span class='danger'>\The [src] flashes as it scorches [H]'s hands!</span>")
-			H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
-			H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+			switch(damage_type)
+				if("BRUTE")
+					H.visible_message("<span class='danger'>\The [src] creaks as it ravages [H]'s hands!</span>")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon="Anomalous Material")
+				if("BURN")
+					H.visible_message("<span class='danger'>\The [src] flashes as it scorches [H]'s hands!</span>")
+					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+				if("TOX")
+					H.visible_message("<span class='danger'>\The [src] seethes and hisses like burning acid!</span>")
+					if(!H.isSynthetic())
+						to_chat(user,"<span class='danger'>A wave of nausea washes over you!</span>")
+						H.adjustToxLoss(rand(min_damage,max_damage)+rand(min_damage,max_damage))
+				if("OXY")
+					H.visible_message("<span class='danger'>\The [src] seems to draw something into itself!</span>")
+					if(!H.isSynthetic())
+						to_chat(user,"<span class='danger'>You feel dizzy and short of breath!</span>")
+						H.adjustOxyLoss(rand(min_damage,max_damage)+rand(min_damage,max_damage))
+				if("EMP")
+					H.visible_message("<span class='danger'>\The [src] ripples and distorts, emitting some kind of pulse!</span>")
+					empulse(H,0,1,1,1)
+				if("PAIN")
+					H.visible_message("<span class='danger'>\The [src] flashes with coruscating energy!</span>")
+					to_chat(user,"<span class='danger'>Blinding pain assails your senses!</span>")
+					H.adjustHalLoss(rand(min_damage,max_damage)*5)
+				else
+					H.visible_message("<span class='notice'>\The [src] flickers with kaleidoscopic light. You should report this to someone immediately.</span>")
 			H.drop_from_inventory(src, get_turf(H))
 			return
 
@@ -96,13 +130,45 @@
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/gloves/G = H.gloves
-		if(istype(G) && (G.permeability_coefficient < 0.25) || !prob(handle_risk) || istype(G, /obj/item/clothing/gloves/gauntlets))
+		var/obj/item/clothing/suit/S = H.wear_suit
+		var/gloves_permeability	= 1
+		var/suit_permeability = 1
+		if(istype(G))
+			gloves_permeability = G.permeability_coefficient
+		if(istype(S) && S.body_parts_covered & HANDS)	//if it's a suit *and* it covers our hands
+			suit_permeability = S.permeability_coefficient
+		if((min(gloves_permeability,suit_permeability) < 0.25) || !prob(handle_risk))
 			burn_user = FALSE
 
 		if(burn_user)
-			H.visible_message("<span class='danger'>\The [src] flashes as it scorches [H]'s hands!</span>")
-			H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
-			H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+			switch(damage_type)
+				if("BRUTE")
+					H.visible_message("<span class='danger'>\The [src] creaks as it ravages [H]'s hands!</span>")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon="Anomalous Material")
+				if("BURN")
+					H.visible_message("<span class='danger'>\The [src] flashes as it scorches [H]'s hands!</span>")
+					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+				if("TOX")
+					H.visible_message("<span class='danger'>\The [src] seethes and hisses like burning acid!</span>")
+					if(!H.isSynthetic())
+						to_chat(user,"<span class='danger'>A wave of nausea washes over you!</span>")
+						H.adjustToxLoss(rand(min_damage,max_damage)+rand(min_damage,max_damage))
+				if("OXY")
+					H.visible_message("<span class='danger'>\The [src] seems to draw something into itself!</span>")
+					if(!H.isSynthetic())
+						to_chat(user,"<span class='danger'>You feel dizzy and short of breath!</span>")
+						H.adjustOxyLoss(rand(min_damage,max_damage)+rand(min_damage,max_damage))
+				if("EMP")
+					H.visible_message("<span class='danger'>\The [src] ripples and distorts, emitting some kind of pulse!</span>")
+					empulse(H,0,1,1,1)
+				if("PAIN")
+					H.visible_message("<span class='danger'>\The [src] flashes with coruscating energy!</span>")
+					to_chat(user,"<span class='danger'>Blinding pain assails your senses!</span>")
+					H.adjustHalLoss(rand(min_damage,max_damage)*5)
+				else
+					H.visible_message("<span class='notice'>\The [src] flickers with kaleidoscopic light. You should report this to someone immediately.</span>")
 			H.drop_from_inventory(src, get_turf(H))
 			return
 
