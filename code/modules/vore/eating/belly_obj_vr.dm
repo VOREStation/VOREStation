@@ -942,7 +942,7 @@
 	else
 		raw_list = list(raw_text)
 	for(var/i = 1, i <= raw_list.len, i++)
-		if(!raw_list[i].len)
+		if(!length(raw_list[i]))
 			raw_list.Cut(i, i + 1)
 			i--
 	if(raw_list.len > 10)
