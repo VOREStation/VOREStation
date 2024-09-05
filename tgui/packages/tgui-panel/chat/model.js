@@ -79,14 +79,20 @@ export const createMessage = (payload) => ({
   ...payload,
 });
 
-export const serializeMessage = (message, archive = false) => ({
-  type: message.type,
-  text: message.text,
-  html: archive ? message.node.outerHTML : message.html,
-  times: message.times,
-  createdAt: message.createdAt,
-  roundId: message.roundId,
-});
+export const serializeMessage = (message, archive = false) => {
+  let archiveM = '';
+  if (archive) {
+    archiveM = message.node.outerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>');
+  }
+  return {
+    type: message.type,
+    text: message.text,
+    html: archive ? archiveM : message.html,
+    times: message.times,
+    createdAt: message.createdAt,
+    roundId: message.roundId,
+  };
+};
 
 export const isSameMessage = (a, b) =>
   (typeof a.text === 'string' && a.text === b.text) ||
