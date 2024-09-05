@@ -941,6 +941,10 @@
 		raw_list = splittext(html_encode(raw_text), delim)
 	else
 		raw_list = list(raw_text)
+	for(var/i = 1, i <= raw_list.len, i++)
+		if(!raw_list[i].len)
+			raw_list.Cut(i, i + 1)
+			i--
 	if(raw_list.len > 10)
 		raw_list.Cut(11)
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
