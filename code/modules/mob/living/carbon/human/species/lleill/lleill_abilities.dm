@@ -425,6 +425,7 @@
 			new_mob.name = M.name
 			new_mob.real_name = M.real_name
 			new_mob.verbs |= /mob/living/proc/revert_beast_form
+			new_mob.verbs |= /mob/living/proc/set_size
 			for(var/lang in M.languages)
 				new_mob.languages |= lang
 			M.copy_vore_prefs_to_mob(new_mob)
@@ -579,6 +580,7 @@
 			new_mob.name = M.name
 			new_mob.real_name = M.real_name
 			new_mob.verbs |= /mob/living/proc/revert_beast_form
+			new_mob.verbs |= /mob/living/proc/set_size
 			new_mob.health = M.health
 			new_mob.maxHealth = M.health
 			for(var/lang in M.languages)
