@@ -370,7 +370,8 @@
 	"Red and Orange" = /obj/item/clothing/accessory/wristbandcollection/les,
 	"White, Pink and Blue" = /obj/item/clothing/accessory/wristbandcollection/trans,
 	"Blue, Purple and Pink" = /obj/item/clothing/accessory/wristbandcollection/bi,
-	"Black, White and Grey" = /obj/item/clothing/accessory/wristbandcollection/ace
+	"Black, White and Grey" = /obj/item/clothing/accessory/wristbandcollection/ace,
+	"Spiked" = /obj/item/clothing/accessory/wristband_spiked
 	)
 	gear_tweaks += new/datum/gear_tweak/path(wristband_lists)
 

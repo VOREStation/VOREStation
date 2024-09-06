@@ -19,7 +19,7 @@
 
 /obj/machinery/computer/station_alert/Initialize()
 	alarm_monitor = new monitor_type(src)
-	alarm_monitor.register_alarm(src, /atom/proc/update_icon)
+	alarm_monitor.register_alarm(src, "update_icon")
 	. = ..()
 
 /obj/machinery/computer/station_alert/Destroy()
