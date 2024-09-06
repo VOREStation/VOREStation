@@ -21,7 +21,7 @@
 
 	if(!cloaked)
 		if(species.lleill_energy < energy_cost)
-			to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+			to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
 			return
 		cloak()
 		block_hud = 1
@@ -110,7 +110,7 @@
 	var/energy_cost = 50
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
 		return
 
 	if(stat)
@@ -310,7 +310,7 @@
 
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
 		return
 
 	if(stat)
@@ -353,7 +353,7 @@
 	var/energy_cost = 100
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
 		return
 
 	var/list/beast_options = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
@@ -379,7 +379,7 @@
 		return
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
 		return
 
 	var/mob/living/M = src
@@ -403,7 +403,7 @@
 	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
 	coolanimation.plane = PLANE_LIGHTING_ABOVE
 	src.overlays += coolanimation
-	spawn(14)
+	spawn(10)
 		src.overlays -= coolanimation
 
 		log_debug("polymorph not dead")
@@ -460,7 +460,7 @@
 			M.loc = new_mob
 			M.forceMove(new_mob)
 			new_mob.tf_mob_holder = M
-			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [new_mob]!")
+			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
 
 
 /mob/living/carbon/human/proc/spawn_beast_mob(var/chosen_beast)
