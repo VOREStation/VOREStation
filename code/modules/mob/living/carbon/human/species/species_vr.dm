@@ -45,6 +45,11 @@
 	var/list/food_preference = list() //RS edit
 	var/food_preference_bonus = 0
 
+
+	// For Lleill and Hanner
+	var/lleill_energy = 200
+	var/lleill_energy_max = 200
+
 /datum/species/unathi
 	vore_belly_default_variant = "L"
 

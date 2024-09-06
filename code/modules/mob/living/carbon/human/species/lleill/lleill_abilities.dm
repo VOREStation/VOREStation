@@ -15,25 +15,19 @@
 
 	var/energy_cost = 75
 
-	var/datum/species/lleill/LL = species
-
-	if(!istype(LL))
-		to_chat(src, "<span class='warning'>Only a lleill can use that!</span>")
-		return
-
 	if(stat)
 		to_chat(src, "<span class='warning'>You can't go invisible when weakened like this.</span>")
 		return
 
 	if(!cloaked)
-		if(LL.lleill_energy < energy_cost)
+		if(species.lleill_energy < energy_cost)
 			to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
 			return
 		cloak()
 		block_hud = 1
 		hud_updateflag = 1
 		to_chat(src, "<span class='warning'>Your fur shimmers and shifts around you, hiding you from the naked eye.</span>")
-		LL.lleill_energy -= energy_cost
+		species.lleill_energy -= energy_cost
 	else
 		uncloak()
 		block_hud = 0
@@ -115,13 +109,7 @@
 
 	var/energy_cost = 50
 
-	var/datum/species/lleill/LL = species
-
-	if(!istype(LL))
-		to_chat(src, "<span class='warning'>Only a lleill can use that!</span>")
-		return
-
-	if(LL.lleill_energy < energy_cost)
+	if(species.lleill_energy < energy_cost)
 		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
 		return
 
@@ -155,7 +143,7 @@
 		var/spawnloc = get_turf(usr)
 		var/obj/item/N = new transmute_product(spawnloc)
 		put_in_active_hand(N)
-		LL.lleill_energy -= energy_cost
+		species.lleill_energy -= energy_cost
 
 /mob/living/carbon/human/proc/lleill_rings()
 	set name = "Place/Use Rings"
@@ -166,22 +154,17 @@
 	var/energy_cost_spawn = (25 * energy_cost_multi)
 	var/energy_cost_tele = 50
 
-	var/datum/species/lleill/LL = species
-
-	if(!istype(LL))
-		to_chat(src, "<span class='warning'>Only a lleill can use that!</span>")
-		return
 	if(stat)
 		to_chat(src, "<span class='warning'>You can't go do that when weakened like this.</span>")
 		return
 	if(buckled)
 		to_chat(src,"<span class='warning'>You can't do that when restrained.</span>")
 
-	var/r_action = tgui_alert(src, "What would you like to do with your rings? You currently have [LL.lleill_energy] energy remaining.", "Actions", list("Spawn New Ring ([energy_cost_spawn])", "Teleport to Ring ([energy_cost_tele])", "Cancel"))
+	var/r_action = tgui_alert(src, "What would you like to do with your rings? You currently have [species.lleill_energy] energy remaining.", "Actions", list("Spawn New Ring ([energy_cost_spawn])", "Teleport to Ring ([energy_cost_tele])", "Cancel"))
 	if(!r_action || r_action == "Cancel")
 		return
 	if(findtext(r_action,"Spawn New Ring"))
-		if(LL.lleill_energy < energy_cost_spawn)
+		if(species.lleill_energy < energy_cost_spawn)
 			to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
 			return
 		if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
@@ -192,9 +175,9 @@
 		var/obj/structure/glamour_ring/R = new(spawnloc)
 		R.connected_mob = src
 		src.teleporters |= R
-		LL.lleill_energy -= energy_cost_spawn
+		species.lleill_energy -= energy_cost_spawn
 	if(findtext(r_action,"Teleport to Ring"))
-		if(LL.lleill_energy < energy_cost_tele)
+		if(species.lleill_energy < energy_cost_tele)
 			to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
 			return
 		if(!src.teleporters.len)
@@ -214,7 +197,7 @@
 
 			var/S = get_turf(R)
 			src.forceMove(S)
-			LL.lleill_energy -= energy_cost_tele
+			species.lleill_energy -= energy_cost_tele
 
 			spk.start()
 			playsound(S, 'sound/effects/phasein.ogg', 25, 1)
@@ -238,7 +221,6 @@
 	set category = "Abilities"
 	if(!ishuman(src))
 		return //If you're not a human you don't have permission to do this.
-	var/datum/species/lleill/LL = species
 
 	var/list/contact_options = list(
 		"Kiss (lips)",
@@ -252,9 +234,6 @@
 		"Custom"
 		)
 
-	if(!istype(LL))
-		to_chat(src, "<span class='warning'>Only a lleill can use that!</span>")
-		return
 	if(stat)
 		to_chat(src, "<span class='warning'>You can't go do that when weakened like this.</span>")
 		return
@@ -313,7 +292,7 @@
 		else
 			src.visible_message("<b>\The [src]</b> and \the [chosen_target] break contact before energy has been transferred.")
 		src.visible_message("<b>\The [src]</b> and \the [chosen_target] complete their contact.")
-		LL.lleill_energy = LL.lleill_energy_max
+		species.lleill_energy = species.lleill_energy_max
 		nutrition += (chosen_target.nutrition / 2)
 		to_chat(src, "<span class='warning'>You feel revitalised.</span>")
 		chosen_target.tiredness += 70
@@ -329,13 +308,8 @@
 
 	var/energy_cost = 25
 
-	var/datum/species/lleill/LL = species
 
-	if(!istype(LL))
-		to_chat(src, "<span class='warning'>Only a lleill can use that!</span>")
-		return
-
-	if(LL.lleill_energy < energy_cost)
+	if(species.lleill_energy < energy_cost)
 		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
 		return
 
@@ -367,4 +341,147 @@
 		var/spawnloc = get_turf(usr)
 		var/obj/item/N = new transmute_product(spawnloc)
 		put_in_active_hand(N)
-		LL.lleill_energy -= energy_cost
+		species.lleill_energy -= energy_cost
+
+/mob/living/carbon/human/proc/lleill_beast_form()
+	set name = "Beast Form (100)"
+	set desc = "Take the form of a non-humanoid creature."
+	set category = "Abilities"
+	if(!ishuman(src))
+		return //If you're not a human you don't have permission to do this.
+
+	var/energy_cost = 100
+
+	if(species.lleill_energy < energy_cost)
+		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+		return
+
+	var/list/beast_options = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
+									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
+									"Fennec" = /mob/living/simple_mob/vore/fennec,
+									"Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
+									"Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
+									"Wolf" = /mob/living/simple_mob/vore/wolf,
+									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
+									"Giant Snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
+									"Otie" = /mob/living/simple_mob/vore/otie,
+									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
+									"Raptor" = /mob/living/simple_mob/vore/raptor,
+									"Giant Bat" = /mob/living/simple_mob/vore/bat,
+									"Horse" = /mob/living/simple_mob/vore/horse,
+									"Horse (Big)" = /mob/living/simple_mob/vore/horse/big,
+									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie
+									)
+
+	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
+
+	if(!chosen_beast)
+		return
+
+	if(species.lleill_energy < energy_cost)
+		to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+		return
+
+	var/mob/living/M = src
+	log_debug("polymorph start")
+	if(!istype(M))
+		log_debug("polymorph istype")
+		return
+
+	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
+	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		visible_message("<b>\The [src]</b> ceases shifting their form.")
+		return 0
+
+
+
+	log_debug("polymorph else")
+	if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
+		log_debug("polymorph dead")
+		return
+
+	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
+	coolanimation.plane = PLANE_LIGHTING_ABOVE
+	src.overlays += coolanimation
+	spawn(14)
+		src.overlays -= coolanimation
+
+		log_debug("polymorph not dead")
+		var/mob/living/new_mob = spawn_beast_mob(beast_options[chosen_beast])
+		new_mob.faction = M.faction
+
+		if(new_mob && isliving(new_mob))
+			species.lleill_energy -= energy_cost
+			log_debug("polymorph new_mob")
+			for(var/obj/belly/B as anything in new_mob.vore_organs)
+				log_debug("polymorph new_mob belly")
+				new_mob.vore_organs -= B
+				qdel(B)
+			new_mob.vore_organs = list()
+			new_mob.name = M.name
+			new_mob.real_name = M.real_name
+			new_mob.verbs |= /mob/living/proc/revert_beast_form
+			for(var/lang in M.languages)
+				new_mob.languages |= lang
+			M.copy_vore_prefs_to_mob(new_mob)
+			new_mob.vore_selected = M.vore_selected
+			if(ishuman(M))
+				log_debug("polymorph ishuman part2")
+				var/mob/living/carbon/human/H = M
+				if(ishuman(new_mob))
+					log_debug("polymorph ishuman(newmob)")
+					var/mob/living/carbon/human/N = new_mob
+					N.gender = H.gender
+					N.identifying_gender = H.identifying_gender
+				else
+					log_debug("polymorph gender else")
+					new_mob.gender = H.gender
+			else
+				log_debug("polymorph gender else 2")
+				new_mob.gender = M.gender
+				if(ishuman(new_mob))
+					var/mob/living/carbon/human/N = new_mob
+					N.identifying_gender = M.gender
+
+			for(var/obj/belly/B as anything in M.vore_organs)
+				B.loc = new_mob
+				B.forceMove(new_mob)
+				B.owner = new_mob
+				M.vore_organs -= B
+				new_mob.vore_organs += B
+
+			new_mob.ckey = M.ckey
+			if(M.ai_holder && new_mob.ai_holder)
+				var/datum/ai_holder/old_AI = M.ai_holder
+				old_AI.set_stance(STANCE_SLEEP)
+				var/datum/ai_holder/new_AI = new_mob.ai_holder
+				new_AI.hostile = old_AI.hostile
+				new_AI.retaliate = old_AI.retaliate
+			M.loc = new_mob
+			M.forceMove(new_mob)
+			new_mob.tf_mob_holder = M
+			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [new_mob]!")
+
+
+/mob/living/carbon/human/proc/spawn_beast_mob(var/chosen_beast)
+	log_debug("polymorph proc spawn mob")
+	var/tf_type = chosen_beast
+	log_debug("polymorph [tf_type]")
+	if(!ispath(tf_type))
+		log_debug("polymorph tf_type fail")
+		return
+	log_debug("polymorph tf_type pass")
+	var/new_mob = new tf_type(get_turf(src))
+	return new_mob
+
+/mob/living/proc/revert_beast_form()
+	set name = "Revert Beast Form"
+	set desc = "Return to your humanoid form."
+	set category = "Abilities"
+
+	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
+	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		visible_message("<b>\The [src]</b> ceases shifting their form.")
+		return 0
+	visible_message("<b>\The [src]</b> has reverted to their original form.")
+	revert_mob_tf()

@@ -33,9 +33,6 @@
 
 	//Specific abilities
 
-	var/lleill_energy = 200
-	var/lleill_energy_max = 200
-
 	var/ring_cooldown = 0
 
 	darksight = 10 //Can see in dark
@@ -90,7 +87,8 @@
 		/mob/living/carbon/human/proc/lleill_transmute,
 		/mob/living/carbon/human/proc/lleill_rings,
 		/mob/living/carbon/human/proc/lleill_contact,
-		/mob/living/carbon/human/proc/lleill_alchemy)
+		/mob/living/carbon/human/proc/lleill_alchemy,
+		/mob/living/carbon/human/proc/lleill_beast_form)
 
 	//organs, going with just the basics for now
 

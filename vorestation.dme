@@ -2964,6 +2964,7 @@
 #include "code\modules\mob\living\carbon\human\species\species_shapeshift.dm"
 #include "code\modules\mob\living\carbon\human\species\species_shapeshift_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\species_vr.dm"
+#include "code\modules\mob\living\carbon\human\species\lleill\hanner.dm"
 #include "code\modules\mob\living\carbon\human\species\lleill\lleill.dm"
 #include "code\modules\mob\living\carbon\human\species\lleill\lleill_abilities.dm"
 #include "code\modules\mob\living\carbon\human\species\lleill\lleill_items.dm"
