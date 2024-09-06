@@ -112,6 +112,13 @@
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
 
+/mob/living/simple_mob/animal/space/bear/brown/beastmode
+	movement_cooldown = 2
+
+	melee_damage_lower = 5
+	melee_damage_upper = 15
+	attack_armor_pen = 0
+
 /mob/living/simple_mob/animal/space/carp
 	icon = 'icons/mob/vore.dmi'
 	vore_active = 1
