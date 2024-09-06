@@ -371,7 +371,19 @@
 									"Horse" = /mob/living/simple_mob/vore/horse,
 									"Horse (Big)" = /mob/living/simple_mob/vore/horse/big,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
-									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode
+									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
+									"Seagull" = /mob/living/simple_mob/vore/seagull,
+									"Sheep" = /mob/living/simple_mob/vore/sheep,
+									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit,
+									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin,
+									"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
+									"Bull Terrier" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
+									"Duck" = /mob/living/simple_mob/animal/sif/duck,
+									"Cow" = /mob/living/simple_mob/animal/passive/cow,
+									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
+									"Goat" = /mob/living/simple_mob/animal/goat,
+									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Goose" = /mob/living/simple_mob/animal/space/goose
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
@@ -526,7 +538,19 @@
 									"Horse" = /mob/living/simple_mob/vore/horse,
 									"Horse (Big)" = /mob/living/simple_mob/vore/horse/big,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
-									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode
+									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
+									"Seagull" = /mob/living/simple_mob/vore/seagull,
+									"Sheep" = /mob/living/simple_mob/vore/sheep,
+									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit,
+									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin,
+									"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
+									"Bull Terrier" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
+									"Duck" = /mob/living/simple_mob/animal/sif/duck,
+									"Cow" = /mob/living/simple_mob/animal/passive/cow,
+									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
+									"Goat" = /mob/living/simple_mob/animal/goat,
+									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Goose" = /mob/living/simple_mob/animal/space/goose
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
