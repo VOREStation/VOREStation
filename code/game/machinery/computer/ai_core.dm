@@ -10,6 +10,12 @@
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/obj/item/device/mmi/brain = null
 
+// VOREstation edit: Respect map config's default
+/obj/structure/AIcore/Initialize(var/mapload)
+	. = ..()
+	if(mapload)
+		laws = new global.using_map.default_law_type
+// VOREstation edit end
 
 /obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)
 
