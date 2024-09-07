@@ -108,6 +108,16 @@
 			if("set_matrix_color")
 				color_matrix_last[params["color"]] = params["value"]
 				return TRUE
+			if("set_matrix_string")
+				if(params["value"])
+					var/list/colours = splittext(params["value"], ",")
+					if(colours.len > 12)
+						colours.Cut(13)
+					for(var/i = 1, i <= colours.len, i++)
+						var/number = text2num(colours[i])
+						if(isnum(number))
+							color_matrix_last[i] = clamp(number, -10, 10)
+				return TRUE
 			if("set_hue")
 				build_hue = clamp(text2num(params["buildhue"]), 0, 360)
 				return TRUE
