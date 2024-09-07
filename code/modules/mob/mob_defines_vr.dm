@@ -6,6 +6,7 @@
 	var/disconnect_time = null		//Time of client loss, set by Logout(), for timekeeping
 
 	var/obj/screen/shadekin/shadekin_display = null
+	var/obj/screen/shadekin/lleill_display = null
 	var/obj/screen/xenochimera/danger_level/xenochimera_danger_display = null
 
 	var/size_multiplier = 1 //multiplier for the mob's icon size

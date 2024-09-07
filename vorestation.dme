@@ -2967,6 +2967,7 @@
 #include "code\modules\mob\living\carbon\human\species\lleill\hanner.dm"
 #include "code\modules\mob\living\carbon\human\species\lleill\lleill.dm"
 #include "code\modules\mob\living\carbon\human\species\lleill\lleill_abilities.dm"
+#include "code\modules\mob\living\carbon\human\species\lleill\lleill_hud.dm"
 #include "code\modules\mob\living\carbon\human\species\lleill\lleill_items.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\event.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\replicant.dm"

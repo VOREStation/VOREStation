@@ -4,9 +4,10 @@
 // Essentially the same as traitor cloaking, using the same proc for it.
 
 /datum/power/lleill/invisibility
-	name = "Invisibility"
+	name = "Invisibility (75)"
 	desc = "Change your appearance to match your surroundings, becoming completely invisible to the naked eye."
 	verbpath = /mob/living/carbon/human/proc/lleill_invisibility
+	ability_icon_state = "ling_camoflage"
 
 /mob/living/carbon/human/proc/lleill_invisibility()
 	set name = "Invisibility (75)"
@@ -33,6 +34,7 @@
 		block_hud = 0
 		hud_updateflag = 1
 		to_chat(src, "<span class='warning'>The brustling of your fur settles down and you become visible once again.</span>")
+	species.update_lleill_hud(src)
 
 /mob/living/carbon/human/proc/lleill_select_shape()
 
@@ -90,6 +92,12 @@
 
 	regenerate_icons()
 
+/datum/power/lleill/transmute
+	name = "Transmute Object (50)"
+	desc = "Convert an object into a piece of glamour."
+	verbpath = /mob/living/carbon/human/proc/lleill_transmute
+	ability_icon_state = "lleill_transmute"
+
 /mob/living/carbon/human/proc/lleill_transmute()
 	set name = "Transmute Object (50)"
 	set desc = "Convert an object into a piece of glamour."
@@ -144,6 +152,13 @@
 		var/obj/item/N = new transmute_product(spawnloc)
 		put_in_active_hand(N)
 		species.lleill_energy -= energy_cost
+		species.update_lleill_hud(src)
+
+/datum/power/lleill/rings
+	name = "Glamour Rings"
+	desc = "Place or teleport to a glamour ring."
+	verbpath = /mob/living/carbon/human/proc/lleill_rings
+	ability_icon_state = "lleill_ring"
 
 /mob/living/carbon/human/proc/lleill_rings()
 	set name = "Place/Use Rings"
@@ -214,6 +229,13 @@
 						if(M.devourable && M.can_be_drop_prey)
 							M.forceMove(vore_selected)
 							to_chat(M,"<span class='vwarning'>In a bright flash of white light, you suddenly find yourself trapped in \the [src]'s [vore_selected.name]!</span>")
+	species.update_lleill_hud(src)
+
+/datum/power/lleill/contact
+	name = "Energy Transfer"
+	desc = "Take the energy of another creature by making physical contact with them, the other party must consent. This will make them feel drained."
+	verbpath = /mob/living/carbon/human/proc/lleill_contact
+	ability_icon_state = "lleill_contact"
 
 /mob/living/carbon/human/proc/lleill_contact()
 	set name = "Energy Transfer"
@@ -300,6 +322,13 @@
 		chosen_target.remove_blood(40) //removes enough blood to make them feel a bit woozy, mostly just for flavour
 		chosen_target.eye_blurry += 20
 		to_chat(chosen_target, "<span class='warning'>You feel considerably weakened for the moment.</span>")
+	species.update_lleill_hud(src)
+
+/datum/power/lleill/alchemy
+	name = "Alchemy (25)"
+	desc = "Convert a potion material into a potion without the use of a base or alembic."
+	verbpath = /mob/living/carbon/human/proc/lleill_alchemy
+	ability_icon_state = "lleill_alchemy"
 
 /mob/living/carbon/human/proc/lleill_alchemy()
 	set name = "Alchemy (25)"
@@ -342,6 +371,13 @@
 		var/obj/item/N = new transmute_product(spawnloc)
 		put_in_active_hand(N)
 		species.lleill_energy -= energy_cost
+	species.update_lleill_hud(src)
+
+/datum/power/lleill/beastform
+	name = "Beast Form (100)"
+	desc = "Take the form of a non-humanoid creature."
+	verbpath = /mob/living/carbon/human/proc/lleill_beast_form
+	ability_icon_state = "lleill_beast"
 
 /mob/living/carbon/human/proc/lleill_beast_form()
 	set name = "Beast Form (100)"
@@ -478,6 +514,7 @@
 			M.forceMove(new_mob)
 			new_mob.tf_mob_holder = M
 			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
+	species.update_lleill_hud(src)
 
 
 /mob/living/carbon/human/proc/spawn_beast_mob(var/chosen_beast)
@@ -509,6 +546,12 @@
 
 
 //Hanner variant
+
+/datum/power/lleill/beastform_hanner
+	name = "Beast Form (100)"
+	desc = "Take the form of a non-humanoid creature."
+	verbpath = /mob/living/carbon/human/proc/hanner_beast_form
+	ability_icon_state = "lleill_beast"
 
 /mob/living/carbon/human/proc/hanner_beast_form()
 	set name = "Beast Form (100)"

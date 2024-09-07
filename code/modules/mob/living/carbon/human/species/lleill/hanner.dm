@@ -89,10 +89,44 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
 		/mob/living/proc/set_size,
-		/mob/living/carbon/human/proc/lleill_contact,
-		/mob/living/carbon/human/proc/lleill_alchemy,
-		/mob/living/carbon/human/proc/hanner_beast_form
+//		/mob/living/carbon/human/proc/lleill_contact,
+//		/mob/living/carbon/human/proc/lleill_alchemy,
+//		/mob/living/carbon/human/proc/hanner_beast_form
 		)
 
 	valid_transform_species = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ALTEVIAN, SPECIES_TESHARI, SPECIES_MONKEY, SPECIES_LLEILL, SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_RAPALA, SPECIES_NEVREAN, SPECIES_VASILISSAN, SPECIES_AKULA)
 
+	var/list/lleill_abilities = list(/datum/power/lleill/contact,
+									   /datum/power/lleill/alchemy,
+									   /datum/power/lleill/beastform_hanner)
+
+	var/list/lleill_ability_datums = list()
+
+/datum/species/shapeshifter/hanner/New()
+	..()
+	for(var/power in lleill_abilities)
+		var/datum/power/lleill/LP = new power(src)
+		lleill_ability_datums.Add(LP)
+
+/datum/species/shapeshifter/hanner/proc/add_lleill_abilities(var/mob/living/carbon/human/H)
+	if(!H.ability_master || !istype(H.ability_master, /obj/screen/movable/ability_master/lleill))
+		H.ability_master = null
+		H.ability_master = new /obj/screen/movable/ability_master/lleill(H)
+	for(var/datum/power/lleill/P in lleill_ability_datums)
+		if(!(P.verbpath in H.verbs))
+			H.verbs += P.verbpath
+			H.ability_master.add_lleill_ability(
+					object_given = H,
+					verb_given = P.verbpath,
+					name_given = P.name,
+					ability_icon_given = P.ability_icon_state,
+					arguments = list()
+					)
+	spawn (50)
+		if(H.lleill_display)
+			H.lleill_display.invisibility = 0
+			H.lleill_display.icon_state = "lleill-4"
+
+/datum/species/shapeshifter/hanner/add_inherent_verbs(var/mob/living/carbon/human/H)
+	..()
+	add_lleill_abilities(H)

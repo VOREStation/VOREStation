@@ -19,6 +19,10 @@
 			var/mob/living/carbon/human/H = usr
 			if(istype(H) && istype(H.species, /datum/species/shadekin))
 				to_chat(usr,"<span class='notice'><b>Energy:</b> [H.shadekin_get_energy(H)]</span>")
+		if("lleill status")
+			var/mob/living/carbon/human/H = usr
+			if(istype(H))
+				to_chat(usr,"<span class='notice'><b>Energy:</b> [H.species.lleill_energy]/[H.species.lleill_energy_max]</span>")
 		if("danger level")
 			var/mob/living/carbon/human/H = usr
 			if(istype(H) && istype(H.species, /datum/species/xenochimera))
@@ -59,7 +63,7 @@
 					to_chat(usr, "<span class='notice'>We are currently reviving, and will be done in [round((H.revive_finished - world.time) / 10)] seconds, or [round(((H.revive_finished - world.time) * 0.1) / 60)] minutes.</span>")
 				else if(H.revive_ready == REVIVING_DONE)
 					to_chat(usr, "<span class='warning'>You should have a notification + alert for this! Bug report that this is still here!</span>")
-					
+
 		if("Ready to Hatch") // Allow Viewing Reconstruction Timer + Hatching for 'chimera
 			var/mob/living/carbon/human/H = usr
 			if(istype(H) && istype(H.species, /datum/species/xenochimera)) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
