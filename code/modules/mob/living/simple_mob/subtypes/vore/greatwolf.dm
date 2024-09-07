@@ -123,7 +123,7 @@
 	B.desc = "The moment the wolf gets its jaws around you, it scoops you right up off of the ground, and greedily scarfs you down with a few swift gulps. Your small frame alone is hardly enough to make him look somewhat plump as you slop wetly into that dark, hot chamber, although the dense squish is rather comfortable. The thick, humid air is tinged with the smell of digested meat, and the surrounding flesh wastes no time in clenching and massaging down over its newfound fodder."
 	B.vore_sound = "Tauric Swallow"
 	B.release_sound = "Pred Escape"
-	B.mode_flags = list(DM_FLAG_NUMBING, DM_FLAG_THICKBELLY, DM_FLAG_AFFECTWORN)
+	B.mode_flags = DM_FLAG_NUMBING | DM_FLAG_THICKBELLY | DM_FLAG_AFFECTWORN
 	B.fancy_vore = 1
 	B.vore_verb = "slurp"
 	B.contamination_color = "grey"
