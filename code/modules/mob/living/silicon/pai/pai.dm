@@ -57,7 +57,8 @@
 		"Catslug" = "catslug",
 		"Car" = "car",
 		"Type One" = "typeone",
-		"Type Thirteen" = "13"
+		"Type Thirteen" = "13",
+		"Protogen Dog" = "pai-protodog"
 		//VOREStation Addition End
 		)
 
