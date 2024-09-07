@@ -26,7 +26,7 @@
 	for (var/mob/M in dead_mob_list)
 		if(!istype(M,/mob/new_player) && !istype(M,/mob/living/carbon/brain)) //No meta-evesdropping
 			var/message_to_send = span_binary("[message_start] ([ghost_follow_link(speaker, M)]) [message_body]")
-			if(M.check_mentioned(message) && M.is_preference_enabled(/datum/client_preference/check_mention))
+			if(M.check_mentioned(message) && M.client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 				message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 			M.show_message(message_to_send, 2)
 
@@ -39,7 +39,7 @@
 			continue
 
 		var/message_to_send = span_binary("[message_start] [message_body]")
-		if(S.check_mentioned(message) && S.is_preference_enabled(/datum/client_preference/check_mention))
+		if(S.check_mentioned(message) && S.client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 		S.show_message(message_to_send, 2)
 

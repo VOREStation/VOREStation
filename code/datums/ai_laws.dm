@@ -1,4 +1,4 @@
-var/global/const/base_law_type = /datum/ai_laws/nanotrasen
+// var/global/const/base_law_type = /datum/ai_laws/nanotrasen //VOREstation edit: unused
 
 /datum/ai_law
 	var/law = ""

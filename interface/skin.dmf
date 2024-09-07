@@ -1149,6 +1149,20 @@ menu "menu"
 		command = "hotkeys-help"
 		category = "&Help"
 		saved-params = "is-checked"
+	elem
+		name = "&Preferences"
+		command = ""
+		saved-params = "is-checked"
+	elem
+		name = "&Character Setup"
+		command = "character-setup"
+		category = "&Preferences"
+		saved-params = "is-checked"
+	elem
+		name = "&Game Options"
+		command = "game-options"
+		category = "&Preferences"
+		saved-params = "is-checked"
 
 window "mainwindow"
 	elem "mainwindow"

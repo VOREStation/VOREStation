@@ -244,6 +244,8 @@
 				severity = "Mild"
 			if(severity)
 				dat += "<span class='warning'>[severity] inflammation detected in subject [a.name].</span><br>"
+		if(HUSK in H.mutations)
+			dat += "<span class='danger'>Anatomical structure lost, resuscitation not possible!</span><br>"
 		// Infections, fractures, and IB
 		var/basic_fracture = 0	// If it's a basic scanner
 		var/basic_ib = 0		// If it's a basic scanner

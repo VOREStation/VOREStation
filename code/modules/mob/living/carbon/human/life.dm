@@ -1167,7 +1167,7 @@
 	if(noisy == TRUE && nutrition < 250 && prob(10)) //VOREStation edit for hunger noises.
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
-		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
+		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 	// VOREStation Edit End
 
 	if((CE_DARKSIGHT in chem_effects) && chemical_darksight == 0)
@@ -1248,7 +1248,7 @@
 
 		if(fear)
 			fear = (fear - 1)
-			if(fear >= 80 && is_preference_enabled(/datum/client_preference/play_ambiance))
+			if(fear >= 80 && client?.prefs?.read_preference(/datum/preference/toggle/play_ambience))
 				if(last_fear_sound + 51 SECONDS <= world.time)
 					src << sound('sound/effects/Heart Beat.ogg',0,0,0,25)
 					last_fear_sound = world.time
@@ -1989,7 +1989,7 @@
 	if(!H || (H.robotic >= ORGAN_ROBOT))
 		return
 
-	if(pulse >= PULSE_2FAST || shock_stage >= 10 || (istype(get_turf(src), /turf/space) && is_preference_enabled(/datum/client_preference/play_ambiance)))
+	if(pulse >= PULSE_2FAST || shock_stage >= 10 || (istype(get_turf(src), /turf/space) && read_preference(/datum/preference/toggle/play_ambience)))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
 		//High pulse value corresponds to a fast rate of heartbeat.
 		//Divided by 2, otherwise it is too slow.

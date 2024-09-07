@@ -156,6 +156,9 @@ var/list/_cat_default_emotes = list(
 	icon_state = "cat3"
 	item_state = "cat3"
 
+/mob/living/simple_mob/animal/passive/cat/black/beastmode
+	movement_cooldown = 1
+
 /mob/living/simple_mob/animal/passive/cat/bones
 	name = "Bones"
 	desc = "That's Bones the cat. He's a laid back, black cat. Meow."

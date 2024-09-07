@@ -6,6 +6,7 @@
 #define RADIATION_DAMAGE 0x20
 #define TOXIN_DAMAGE 0x40
 #define OXY_DAMAGE 0x80
+#define HUSKED_BODY 0x100
 
 /obj/machinery/medical_kiosk
 	name = "medical kiosk"
@@ -76,14 +77,14 @@
 	if(!choice || choice == "Cancel" || !Adjacent(user) || inoperable() || panel_open)
 		suspend()
 		return
-	
+
 	// Service begins, delay
 	visible_message("<b>\The [src]</b> scans [user] thoroughly!")
 	flick("kiosk_active", src)
 	if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
 		suspend()
 		return
-	
+
 	// Service completes
 	switch(choice)
 		if("Health Scan")
@@ -95,7 +96,7 @@
 			else
 				var/scan_report = do_backup_scan(user)
 				to_chat(user, "<span class='notice'><b>Backup scan results:</b></span>"+scan_report)
-	
+
 	// Standby
 	suspend()
 
@@ -104,7 +105,7 @@
 		return "<br><span class='warning'>Unable to perform diagnosis on this type of life form.</span>"
 	if(user.isSynthetic())
 		return "<br><span class='warning'>Unable to perform diagnosis on synthetic life forms.</span>"
-	
+
 	var/problems = 0
 	for(var/obj/item/organ/external/E in user)
 		if(E.status & ORGAN_BROKEN)
@@ -119,13 +120,16 @@
 					problems |= INTERNAL_BLEEDING
 				else
 					problems |= EXTERNAL_BLEEDING
-	
+
 	for(var/obj/item/organ/internal/I in user)
 		if(I.status & (ORGAN_BROKEN|ORGAN_DEAD|ORGAN_DESTROYED))
 			problems |= SERIOUS_INTERNAL_DAMAGE
 		if(I.status & ORGAN_BLEEDING)
 			problems |= INTERNAL_BLEEDING
-	
+
+	if(HUSK in user.mutations)
+		problems |= HUSKED_BODY
+
 	if(user.getToxLoss() > 0)
 		problems |= TOXIN_DAMAGE
 	if(user.getOxyLoss() > 0)
@@ -134,13 +138,13 @@
 		problems |= RADIATION_DAMAGE
 	if(user.getFireLoss() > 40 || user.getBruteLoss() > 40)
 		problems |= SERIOUS_EXTERNAL_DAMAGE
-	
+
 	if(!problems)
 		if(user.getHalLoss() > 0)
 			return "<br><span class='warning'>Mild concussion detected - advising bed rest until patient feels well. No other anatomical issues detected.</span>"
 		else
 			return "<br><span class='notice'>No anatomical issues detected.</span>"
-	
+
 	var/problem_text = ""
 	if(problems & BROKEN_BONES)
 		problem_text += "<br><span class='warning'>Broken bones detected - see a medical professional and move as little as possible.</span>"
@@ -158,6 +162,8 @@
 		problem_text += "<br><span class='warning'>Exposure to toxic materials detected - induce vomiting if you have consumed anything recently.</span>"
 	if(problems & OXY_DAMAGE)
 		problem_text += "<br><span class='warning'>Blood/air perfusion level is below acceptable norms - use concentrated oxygen if necessary.</span>"
+	if(problems & HUSKED_BODY)
+		problem_text += "<br><span class='danger'>Anatomical structure lost, resuscitation not possible!</span>"
 
 	return problem_text
 
@@ -166,11 +172,11 @@
 		return "<br><span class='warning'>Unable to perform full scan. Please see a medical professional.</span>"
 	if(!user.mind)
 		return "<br><span class='warning'>Unable to perform full scan. Please see a medical professional.</span>"
-	
+
 	var/nif = user.nif
 	if(nif)
 		persist_nif_data(user)
-	
+
 	our_db.m_backup(user.mind,nif,one_time = TRUE)
 	var/datum/transhuman/body_record/BR = new()
 	BR.init_from_mob(user, TRUE, TRUE, database_key = db_key)
@@ -185,3 +191,4 @@
 #undef RADIATION_DAMAGE
 #undef TOXIN_DAMAGE
 #undef OXY_DAMAGE
+#undef HUSKED_BODY

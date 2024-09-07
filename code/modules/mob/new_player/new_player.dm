@@ -100,7 +100,7 @@
 	if (client.prefs.lastlorenews == GLOB.news_data.newsindex)
 		client.seen_news = 1
 
-	if(GLOB.news_data.station_newspaper && !client.seen_news && client.is_preference_enabled(/datum/client_preference/show_lore_news))
+	if(GLOB.news_data.station_newspaper && !client.seen_news && client.prefs?.read_preference(/datum/preference/toggle/show_lore_news))
 		show_latest_news(GLOB.news_data.station_newspaper)
 		client.prefs.lastlorenews = GLOB.news_data.newsindex
 		SScharacter_setup.queue_preferences_save(client.prefs)

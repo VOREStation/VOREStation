@@ -1013,8 +1013,15 @@ About the new airlock wires panel:
 			flick("door_deny", src)
 		playsound(src, knock_hammer_sound, 50, 0, 3)
 	else if(arePowerSystemsOn() && user.a_intent == I_HELP)
-		src.visible_message("[user] presses the door bell on \the [src].", "\The [src]'s bell rings.")
-		src.add_fingerprint(user)
+		if(isElectrified())
+			src.visible_message("[user] presses the door bell on \the [src], making it violently spark!", "\The [src] sparks!")
+			src.add_fingerprint(user)
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+		else
+			src.visible_message("[user] presses the door bell on \the [src].", "\The [src]'s bell rings.")
+			src.add_fingerprint(user)
 		if(icon_state == "door_closed")
 			flick("door_deny", src)
 		playsound(src, knock_sound, 50, 0, 3)
@@ -1277,8 +1284,8 @@ About the new airlock wires panel:
 	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
-		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
-		var/department_door_sounds = M.client.is_preference_enabled(/datum/client_preference/department_door_sounds)
+		var/old_sounds = M.read_preference(/datum/preference/toggle/old_door_sounds)
+		var/department_door_sounds = M.read_preference(/datum/preference/toggle/department_door_sounds)
 		var/sound
 		var/volume
 		if(old_sounds) // Do we have old sounds enabled? Play these even if we have department door sounds enabled.
@@ -1405,8 +1412,8 @@ About the new airlock wires panel:
 	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
-		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
-		var/department_door_sounds = M.client.is_preference_enabled(/datum/client_preference/department_door_sounds)
+		var/old_sounds = M.read_preference(/datum/preference/toggle/old_door_sounds)
+		var/department_door_sounds = M.read_preference(/datum/preference/toggle/department_door_sounds)
 		var/sound
 		var/volume
 		if(old_sounds)
