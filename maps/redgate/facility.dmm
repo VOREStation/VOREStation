@@ -6596,7 +6596,7 @@
 /area/redgate/facility/ne)
 "iWh" = (
 /obj/item/weapon/paper/crumpled/bloody{
-	info = "Report: The Canidfelanis specimens have take a sudden disliking to the lights in their study cell. It's becoming difficult to obser
+	info = "Report: The Canidfelanis specimens have take a sudden disliking to the lights in their study cell. It's becoming difficult to obser"
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
