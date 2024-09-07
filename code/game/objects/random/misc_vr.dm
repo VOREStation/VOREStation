@@ -298,6 +298,41 @@
 				prob(1);/obj/item/weapon/potion_material/folded_dark
 				)
 
+/obj/random/potion_ingredient/plus
+	name = "random better potion ingredient"
+	desc = "A random potion."
+	icon_state = "ingredient_plus"
+	spawn_nothing_percentage = 0
+
+/obj/random/potion_ingredient/plus/item_to_spawn()
+	return pick(prob(20);/obj/item/weapon/potion_material/blood_ruby,
+				prob(4);/obj/item/weapon/potion_material/ruby_eye,
+				prob(20);/obj/item/weapon/potion_material/golden_scale,
+				prob(20);/obj/item/weapon/potion_material/frozen_dew,
+				prob(20);/obj/item/weapon/potion_material/living_coral,
+				prob(8);/obj/item/weapon/potion_material/rare_horn,
+				prob(10);/obj/item/weapon/potion_material/moldy_bread,
+				prob(10);/obj/item/weapon/potion_material/glowing_gem,
+				prob(10);/obj/item/weapon/potion_material/giant_toe,
+				prob(4);/obj/item/weapon/potion_material/flesh_of_the_stars,
+				prob(4);/obj/item/weapon/potion_material/spinning_poppy,
+				prob(4);/obj/item/weapon/potion_material/salt_mage,
+				prob(20);/obj/item/weapon/potion_material/golden_grapes,
+				prob(10);/obj/item/weapon/potion_material/fairy_house,
+				prob(10);/obj/item/weapon/potion_material/thorny_bulb,
+				prob(10);/obj/item/weapon/potion_material/ancient_egg,
+				prob(10);/obj/item/weapon/potion_material/crown_stem,
+				prob(4);/obj/item/weapon/potion_material/red_ingot,
+				prob(4);/obj/item/weapon/potion_material/soft_diamond,
+				prob(4);/obj/item/weapon/potion_material/solid_mist,
+				prob(2);/obj/item/weapon/potion_material/spider_leg,
+				prob(2);/obj/item/weapon/potion_material/folded_dark,
+				prob(1);/obj/item/weapon/potion_material/glamour_transparent,
+				prob(1);/obj/item/weapon/potion_material/glamour_shrinking,
+				prob(1);/obj/item/weapon/potion_material/glamour_twinkling,
+				prob(1);/obj/item/weapon/potion_material/glamour_shard
+				)
+
 /obj/random/potion_base
 	name = "random potion base"
 	desc = "A random potion base."

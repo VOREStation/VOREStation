@@ -331,6 +331,11 @@
 	xenochimera_danger_display.screen_loc = ui_xenochimera_danger_display
 	xenochimera_danger_display.icon_state = "danger00"
 	hud_elements |= xenochimera_danger_display
+
+	lleill_display = new /obj/screen/lleill()
+	lleill_display.screen_loc = ui_lleill_display
+	lleill_display.icon_state = "lleill"
+	hud_elements |= lleill_display
 	//VOREStation Addition end
 
 	ling_chem_display = new /obj/screen/ling/chems()
