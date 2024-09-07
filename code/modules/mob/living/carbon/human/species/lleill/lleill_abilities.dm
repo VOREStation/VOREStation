@@ -648,6 +648,7 @@
 			new_mob.real_name = M.real_name
 			new_mob.verbs |= /mob/living/proc/revert_beast_form
 			new_mob.verbs |= /mob/living/proc/set_size
+			new_mob.hasthermals = 0
 			new_mob.health = M.health
 			new_mob.maxHealth = M.health
 			for(var/lang in M.languages)
