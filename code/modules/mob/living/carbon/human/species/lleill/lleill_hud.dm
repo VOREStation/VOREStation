@@ -1,5 +1,5 @@
 /obj/screen/lleill
-	name = "lleill status"
+	name = "glamour"
 	icon = 'icons/mob/lleill_hud.dmi'
 	invisibility = 101
 

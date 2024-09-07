@@ -19,7 +19,7 @@
 			var/mob/living/carbon/human/H = usr
 			if(istype(H) && istype(H.species, /datum/species/shadekin))
 				to_chat(usr,"<span class='notice'><b>Energy:</b> [H.shadekin_get_energy(H)]</span>")
-		if("lleill status")
+		if("glamour")
 			var/mob/living/carbon/human/H = usr
 			if(istype(H))
 				to_chat(usr,"<span class='notice'><b>Energy:</b> [H.species.lleill_energy]/[H.species.lleill_energy_max]</span>")
