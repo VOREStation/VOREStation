@@ -91,3 +91,9 @@
 
 /decl/mob_organ_names/bird
 	hit_zones = list("head", "chest", "left leg", "right leg", "left wing", "right wing")
+
+/mob/living/simple_mob/animal/passive/bird/european_robin/beastmode
+	movement_cooldown = 1
+
+/mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode
+	movement_cooldown = 1
