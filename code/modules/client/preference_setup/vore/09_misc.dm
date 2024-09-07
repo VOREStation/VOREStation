@@ -2,27 +2,27 @@
 	name = "Misc Settings"
 	sort_order = 9
 
-/datum/category_item/player_setup_item/vore/misc/load_character(var/savefile/S)
-	S["show_in_directory"]		>> pref.show_in_directory
-	S["directory_tag"]			>> pref.directory_tag
-	S["directory_erptag"]		>> pref.directory_erptag
-	S["directory_ad"]			>> pref.directory_ad
-	S["sensorpref"]				>> pref.sensorpref
-	S["capture_crystal"]		>> pref.capture_crystal
-	S["auto_backup_implant"]	>> pref.auto_backup_implant
-	S["borg_petting"]			>> pref.borg_petting
-	S["stomach_vision"]			>> pref.stomach_vision
+/datum/category_item/player_setup_item/vore/misc/load_character(list/save_data)
+	pref.show_in_directory		= save_data["show_in_directory"]
+	pref.directory_tag			= save_data["directory_tag"]
+	pref.directory_erptag		= save_data["directory_erptag"]
+	pref.directory_ad			= save_data["directory_ad"]
+	pref.sensorpref				= save_data["sensorpref"]
+	pref.capture_crystal		= save_data["capture_crystal"]
+	pref.auto_backup_implant	= save_data["auto_backup_implant"]
+	pref.borg_petting			= save_data["borg_petting"]
+	pref.stomach_vision			= save_data["stomach_vision"]
 
-/datum/category_item/player_setup_item/vore/misc/save_character(var/savefile/S)
-	S["show_in_directory"]		<< pref.show_in_directory
-	S["directory_tag"]			<< pref.directory_tag
-	S["directory_erptag"]		<< pref.directory_erptag
-	S["directory_ad"]			<< pref.directory_ad
-	S["sensorpref"]				<< pref.sensorpref
-	S["capture_crystal"]		<< pref.capture_crystal
-	S["auto_backup_implant"]	<< pref.auto_backup_implant
-	S["borg_petting"]			<< pref.borg_petting
-	S["stomach_vision"]			<< pref.stomach_vision
+/datum/category_item/player_setup_item/vore/misc/save_character(list/save_data)
+	save_data["show_in_directory"]		= pref.show_in_directory
+	save_data["directory_tag"]			= pref.directory_tag
+	save_data["directory_erptag"]		= pref.directory_erptag
+	save_data["directory_ad"]			= pref.directory_ad
+	save_data["sensorpref"]				= pref.sensorpref
+	save_data["capture_crystal"]		= pref.capture_crystal
+	save_data["auto_backup_implant"]	= pref.auto_backup_implant
+	save_data["borg_petting"]			= pref.borg_petting
+	save_data["stomach_vision"]			= pref.stomach_vision
 
 /datum/category_item/player_setup_item/vore/misc/copy_to_mob(var/mob/living/carbon/human/character)
 	if(pref.sensorpref > 5 || pref.sensorpref < 1)
