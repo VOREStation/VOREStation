@@ -346,8 +346,8 @@
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(isobserver(G) &&  G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears && \
-			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle)))
+			else if(isobserver(G) &&  G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears) && \
+			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder)
 					to_chat(G, "<span class='psay'>\The [M] thinks, \"[message]\"</span>")
 		log_say(message,M)
@@ -444,8 +444,8 @@
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears && \
-			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle)))
+			else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears) && \
+			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder)
 					to_chat(G, "<span class='pemote'>\The [M] [message]</span>")
 		log_say(message,M)
