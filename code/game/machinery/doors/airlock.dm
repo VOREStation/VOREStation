@@ -1284,8 +1284,8 @@ About the new airlock wires panel:
 	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
-		var/old_sounds = M.read_preference(/datum/preference/toggle/old_door_sounds)
-		var/department_door_sounds = M.read_preference(/datum/preference/toggle/department_door_sounds)
+		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
+		var/department_door_sounds = M.client.is_preference_enabled(/datum/client_preference/department_door_sounds)
 		var/sound
 		var/volume
 		if(old_sounds) // Do we have old sounds enabled? Play these even if we have department door sounds enabled.
@@ -1412,8 +1412,8 @@ About the new airlock wires panel:
 	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
-		var/old_sounds = M.read_preference(/datum/preference/toggle/old_door_sounds)
-		var/department_door_sounds = M.read_preference(/datum/preference/toggle/department_door_sounds)
+		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
+		var/department_door_sounds = M.client.is_preference_enabled(/datum/client_preference/department_door_sounds)
 		var/sound
 		var/volume
 		if(old_sounds)

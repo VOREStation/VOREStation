@@ -406,16 +406,14 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	for (var/mob/R in receive)
 
 	  /* --- Loop through the receivers and categorize them --- */
-		// Allows admins to disable radio
-		if(R?.client?.holder)
-			if(!R.client?.prefs?.read_preference(/datum/preference/toggle/holder/hear_radio))
-				continue
+		if(!R.is_preference_enabled(/datum/client_preference/holder/hear_radio))
+			continue
 
 		if(istype(R, /mob/new_player)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
-		if(data == DATA_ANTAG && istype(R, /mob/observer/dead) && R.client?.prefs?.read_preference(/datum/preference/toggle/ghost_radio))
+		if(data == DATA_ANTAG && istype(R, /mob/observer/dead) && R.is_preference_enabled(/datum/client_preference/ghost_radio))
 			continue
 
 		// --- Check for compression ---
@@ -515,21 +513,21 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_masked))
 			for (var/mob/R in heard_masked)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 0, name)
-				if(R.read_preference(/datum/preference/toggle/radio_sounds))
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 		if(length(heard_normal))
 			for (var/mob/R in heard_normal)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 0, realname)
-				if(R.read_preference(/datum/preference/toggle/radio_sounds))
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 		if(length(heard_voice))
 			for (var/mob/R in heard_voice)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M,0, vname)
-				if(R.read_preference(/datum/preference/toggle/radio_sounds))
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
@@ -537,14 +535,14 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_garbled))
 			for (var/mob/R in heard_garbled)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 1, vname)
-				if(R.read_preference(/datum/preference/toggle/radio_sounds))
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 		if(length(heard_gibberish))
 			for (var/mob/R in heard_gibberish)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 1)
-				if(R.read_preference(/datum/preference/toggle/radio_sounds))
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
 					R << 'sound/effects/radio_common_quieter.ogg'
 
 	return 1
@@ -619,10 +617,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	for (var/mob/R in receive)
 
 	  /* --- Loop through the receivers and categorize them --- */
-		// Allow admins to disable radios completely
-		if(R?.client?.holder)
-			if(!R.client?.prefs?.read_preference(/datum/preference/toggle/holder/hear_radio))
-				continue
+
+		if(!R.is_preference_enabled(/datum/client_preference/holder/hear_radio)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
+			continue
+
 
 		// --- Check for compression ---
 		if(compression > 0)

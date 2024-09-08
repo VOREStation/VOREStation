@@ -1,5 +1,5 @@
 /datum/looping_sound/weather
-	pref_check = /datum/preference/toggle/weather_sounds
+	pref_check = /datum/client_preference/weather_sounds
 
 /datum/looping_sound/weather/outside_blizzard
 	mid_sounds = list(
