@@ -110,9 +110,9 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 /datum/category_item/player_setup_item/vore/traits/load_character(list/save_data)
 	pref.custom_species			= save_data["custom_species"]
 	pref.custom_base			= save_data["custom_base"]
-	pref.pos_traits				= save_data["pos_traits"]
-	pref.neu_traits				= save_data["neu_traits"]
-	pref.neg_traits				= save_data["neg_traits"]
+	pref.pos_traits				= text2path_list(save_data["pos_traits"])
+	pref.neu_traits				= text2path_list(save_data["neu_traits"])
+	pref.neg_traits				= text2path_list(save_data["neg_traits"])
 	pref.blood_color			= save_data["blood_color"]
 	pref.blood_reagents			= save_data["blood_reagents"]
 
@@ -186,13 +186,16 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	//Neutral traits
 	for(var/datum/trait/path as anything in pref.neu_traits)
 		if(!(path in neutral_traits))
+			to_world_log("removing [path] for not being in neutral_traits")
 			pref.neu_traits -= path
 			continue
 		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits_neutral))
+			to_world_log("removing [path] for not being a custom species")
 			pref.neu_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			to_world_log("removing [path] for being a dirty synth")
 			pref.neu_traits -= path
 	//Negative traits
 	for(var/datum/trait/path as anything in pref.neg_traits)

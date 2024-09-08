@@ -506,11 +506,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			++ind
 			if(ind > 1)
 				. += ", "
-			var/datum/robolimb/R
-			if(pref.rlimb_data[name] && all_robolimbs[pref.rlimb_data[name]])
-				R = all_robolimbs[pref.rlimb_data[name]]
+
+			var/datum/robolimb/R = basic_robolimb
+			var/key = pref.rlimb_data[name]
+			if(!istext(key))
+				log_debug("Bad rlimb_data for [key_name(pref.client)], [name] was set to [key]")
+				to_chat(usr, span_warning("Error loading robot limb data for `[name]`, clearing pref."))
+				pref.rlimb_data -= name
 			else
-				R = basic_robolimb
+				R = LAZYACCESS(all_robolimbs, key)
+				if(!istype(R))
+					R = basic_robolimb
 			. += "\t[R.company] [organ_name] prosthesis"
 		else if(status == "amputated")
 			++ind
