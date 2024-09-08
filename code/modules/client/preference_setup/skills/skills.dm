@@ -2,15 +2,15 @@
 	name = "Skills"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/skills/load_character(var/savefile/S)
-	S["skills"]					>> pref.skills
-	S["used_skillpoints"]		>> pref.used_skillpoints
-	S["skill_specialization"]	>> pref.skill_specialization
+/datum/category_item/player_setup_item/skills/load_character(list/save_data)
+	pref.skills					= save_data["skills"]
+	pref.used_skillpoints		= save_data["used_skillpoints"]
+	pref.skill_specialization	= save_data["skill_specialization"]
 
-/datum/category_item/player_setup_item/skills/save_character(var/savefile/S)
-	S["skills"]					<< pref.skills
-	S["used_skillpoints"]		<< pref.used_skillpoints
-	S["skill_specialization"]	<< pref.skill_specialization
+/datum/category_item/player_setup_item/skills/save_character(list/save_data)
+	save_data["skills"]					= pref.skills
+	save_data["used_skillpoints"]		= pref.used_skillpoints
+	save_data["skill_specialization"]	= pref.skill_specialization
 
 /datum/category_item/player_setup_item/skills/sanitize_character()
 	if(SKILLS == null)				setup_skills()
