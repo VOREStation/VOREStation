@@ -563,6 +563,8 @@
 /proc/text2path_list(list/L)
 	. = list()
 	for(var/key in L)
-		var/path = text2path(key)
+		var/path = key
+		if(!ispath(path))
+			path = text2path(key)
 		if(!isnull(path))
 			. += path
