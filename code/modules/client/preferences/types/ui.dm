@@ -11,12 +11,16 @@
 	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/toggle/vchat_enable/apply_to_client(client/client, value)
+	var/before = client.tgui_panel.oldchat
 	if(value)
 		client.tgui_panel.oldchat = FALSE
 	else
 		client.tgui_panel.oldchat = TRUE
 
-	client.nuke_chat()
+	// If something actually changed, reload chat
+	if(before != client.tgui_panel.oldchat)
+		client.nuke_chat()
+
 
 /datum/preference/toggle/tgui_say
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
