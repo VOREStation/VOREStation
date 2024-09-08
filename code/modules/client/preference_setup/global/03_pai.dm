@@ -4,7 +4,7 @@
 
 	var/datum/paiCandidate/candidate
 
-/datum/category_item/player_setup_item/player_global/pai/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/pai/load_preferences(datum/json_savefile/savefile)
 	if(!candidate)
 		candidate = new()
 	var/preference_mob = preference_mob()
@@ -18,7 +18,7 @@
 
 	candidate.savefile_load(preference_mob)
 
-/datum/category_item/player_setup_item/player_global/pai/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/pai/save_preferences(datum/json_savefile/savefile)
 	if(!candidate)
 		return
 

@@ -17,7 +17,7 @@ var/global/floorIsLava = 0
 	var/rendered = "<span class='filter_attacklog log_message'><span class='prefix'>ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
-			if(C.is_preference_enabled(/datum/client_preference/mod/show_attack_logs))
+			if(C.prefs?.read_preference(/datum/preference/toggle/show_attack_logs))
 				var/msg = rendered
 				to_chat(C,
 						type = MESSAGE_TYPE_ATTACKLOG,
