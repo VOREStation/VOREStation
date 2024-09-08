@@ -28,7 +28,7 @@
 		for (var/mob/M in player_list)
 			if (istype(M, /mob/new_player))
 				continue
-			else if(M.stat == DEAD && M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
+			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
 
 /mob/living/captive_brain/me_verb(message as text)

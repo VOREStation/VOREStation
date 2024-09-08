@@ -39,7 +39,7 @@
 
 		if(client)
 			var/idle_limit = 10 MINUTES
-			if(client.inactivity >= idle_limit && !away_from_keyboard && client.prefs?.read_preference(/datum/preference/toggle/auto_afk))	//if we're not already afk and we've been idle too long, and we have automarking enabled... then automark it
+			if(client.inactivity >= idle_limit && !away_from_keyboard && src.is_preference_enabled(/datum/client_preference/auto_afk))	//if we're not already afk and we've been idle too long, and we have automarking enabled... then automark it
 				add_status_indicator("afk")
 				to_chat(src, "<span class='notice'>You have been idle for too long, and automatically marked as AFK.</span>")
 				away_from_keyboard = TRUE

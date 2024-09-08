@@ -11,7 +11,7 @@
 		to_chat(src, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
 		return
 
-	if(!prefs?.read_preference(/datum/preference/toggle/show_dsay))
+	if(!is_preference_enabled(/datum/client_preference/show_dsay))
 		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
 		return
 

@@ -165,14 +165,14 @@
 
 	if(welded)
 		vent_icon += "weld"
-		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/preference/toggle/air_pump_noise)
+		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
 
 	else if(!use_power || !node || (stat & (NOPOWER|BROKEN)))
 		vent_icon += "off"
-		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/preference/toggle/air_pump_noise)
+		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
 	else
 		vent_icon += "[pump_direction ? "out" : "in"]"
-		playsound(src, start_sound, 25, ignore_walls = FALSE, preference = /datum/preference/toggle/air_pump_noise)
+		playsound(src, start_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
 
 
 	add_overlay(icon_manager.get_atmos_icon("device", , , vent_icon))

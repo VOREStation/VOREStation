@@ -84,7 +84,7 @@
 	if(mind)
 		// SSgame_master.adjust_danger(gibbed ? 40 : 20)  // VOREStation Edit - We don't use SSgame_master yet.
 		for(var/mob/observer/dead/O in mob_list)
-			if(O.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
+			if(O.client && O.client.is_preference_enabled(/datum/client_preference/show_dsay))
 				to_chat(O, "<span class='deadsay'><b>[src]</b> has died in <b>[get_area(src)]</b>. [ghost_follow_link(src, O)] </span>")
 
 	if(!gibbed && species.death_sound)

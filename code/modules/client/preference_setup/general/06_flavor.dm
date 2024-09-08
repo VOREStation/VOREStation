@@ -2,37 +2,37 @@
 	name = "Flavor"
 	sort_order = 6
 
-/datum/category_item/player_setup_item/general/flavor/load_character(list/save_data)
-	pref.flavor_texts["general"]	= save_data["flavor_texts_general"]
-	pref.flavor_texts["head"]		= save_data["flavor_texts_head"]
-	pref.flavor_texts["face"]		= save_data["flavor_texts_face"]
-	pref.flavor_texts["eyes"]		= save_data["flavor_texts_eyes"]
-	pref.flavor_texts["torso"]		= save_data["flavor_texts_torso"]
-	pref.flavor_texts["arms"]		= save_data["flavor_texts_arms"]
-	pref.flavor_texts["hands"]		= save_data["flavor_texts_hands"]
-	pref.flavor_texts["legs"]		= save_data["flavor_texts_legs"]
-	pref.flavor_texts["feet"]		= save_data["flavor_texts_feet"]
-	pref.custom_link				= save_data["custom_link"]
+/datum/category_item/player_setup_item/general/flavor/load_character(var/savefile/S)
+	S["flavor_texts_general"]	>> pref.flavor_texts["general"]
+	S["flavor_texts_head"]		>> pref.flavor_texts["head"]
+	S["flavor_texts_face"]		>> pref.flavor_texts["face"]
+	S["flavor_texts_eyes"]		>> pref.flavor_texts["eyes"]
+	S["flavor_texts_torso"]		>> pref.flavor_texts["torso"]
+	S["flavor_texts_arms"]		>> pref.flavor_texts["arms"]
+	S["flavor_texts_hands"]		>> pref.flavor_texts["hands"]
+	S["flavor_texts_legs"]		>> pref.flavor_texts["legs"]
+	S["flavor_texts_feet"]		>> pref.flavor_texts["feet"]
+	S["custom_link"]			>> pref.custom_link
 	//Flavour text for robots.
-	pref.flavour_texts_robot["Default"] = save_data["flavour_texts_robot_Default"]
+	S["flavour_texts_robot_Default"] >> pref.flavour_texts_robot["Default"]
 	for(var/module in robot_module_types)
-		pref.flavour_texts_robot[module] = save_data["flavour_texts_robot_[module]"]
+		S["flavour_texts_robot_[module]"] >> pref.flavour_texts_robot[module]
 
-/datum/category_item/player_setup_item/general/flavor/save_character(list/save_data)
-	save_data["flavor_texts_general"]	= pref.flavor_texts["general"]
-	save_data["flavor_texts_head"]		= pref.flavor_texts["head"]
-	save_data["flavor_texts_face"]		= pref.flavor_texts["face"]
-	save_data["flavor_texts_eyes"]		= pref.flavor_texts["eyes"]
-	save_data["flavor_texts_torso"]		= pref.flavor_texts["torso"]
-	save_data["flavor_texts_arms"]		= pref.flavor_texts["arms"]
-	save_data["flavor_texts_hands"]		= pref.flavor_texts["hands"]
-	save_data["flavor_texts_legs"]		= pref.flavor_texts["legs"]
-	save_data["flavor_texts_feet"]		= pref.flavor_texts["feet"]
-	save_data["custom_link"]			= pref.custom_link
+/datum/category_item/player_setup_item/general/flavor/save_character(var/savefile/S)
+	S["flavor_texts_general"]	<< pref.flavor_texts["general"]
+	S["flavor_texts_head"]		<< pref.flavor_texts["head"]
+	S["flavor_texts_face"]		<< pref.flavor_texts["face"]
+	S["flavor_texts_eyes"]		<< pref.flavor_texts["eyes"]
+	S["flavor_texts_torso"]		<< pref.flavor_texts["torso"]
+	S["flavor_texts_arms"]		<< pref.flavor_texts["arms"]
+	S["flavor_texts_hands"]		<< pref.flavor_texts["hands"]
+	S["flavor_texts_legs"]		<< pref.flavor_texts["legs"]
+	S["flavor_texts_feet"]		<< pref.flavor_texts["feet"]
+	S["custom_link"]			<< pref.custom_link
 
-	save_data["flavour_texts_robot_Default"] = pref.flavour_texts_robot["Default"]
+	S["flavour_texts_robot_Default"] << pref.flavour_texts_robot["Default"]
 	for(var/module in robot_module_types)
-		save_data["flavour_texts_robot_[module]"] = pref.flavour_texts_robot[module]
+		S["flavour_texts_robot_[module]"] << pref.flavour_texts_robot[module]
 
 /datum/category_item/player_setup_item/general/flavor/sanitize_character()
 	return
