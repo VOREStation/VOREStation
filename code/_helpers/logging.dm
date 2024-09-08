@@ -45,7 +45,7 @@
 		WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
 
 	for(var/client/C in GLOB.admins)
-		if(C.prefs?.read_preference(/datum/preference/toggle/show_debug_logs))
+		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
 			to_chat(C,
 					type = MESSAGE_TYPE_DEBUG,
 					html = "<span class='filter_debuglog'>DEBUG: [text]</span>")

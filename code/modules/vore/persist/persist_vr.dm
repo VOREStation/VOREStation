@@ -106,7 +106,6 @@
 			prefs.size_multiplier = H.size_multiplier
 
 	prefs.save_character()
-	prefs.save_preferences()
 
 // Saves mob's current coloration state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
@@ -231,9 +230,16 @@
 * towards future shenanigans such as upgradable NIFs or different types or things of that nature,
 * without invoking the need for a bunch of different save file variables.
 */
-/proc/persist_nif_data(mob/living/carbon/human/H)
+/proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
 	if(!istype(H))
 		stack_trace("Persist (NIF): Given a nonhuman: [H]")
+		return
+
+	if(!prefs)
+		prefs = prep_for_persist(H)
+
+	if(!prefs)
+		warning("Persist (NIF): [H] has no prefs datum, skipping")
 		return
 
 	var/obj/item/device/nif/nif = H.nif
@@ -241,39 +247,23 @@
 	if(nif && H.ckey != nif.owner_key)
 		return
 
-	var/slot = H?.mind?.loaded_from_slot
-	if(isnull(slot))
-		warning("Persist (NIF): [H] has no mind slot, skipping")
-		return
-
-	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(H.ckey))
-	var/list/save_data = savefile.get_entry("character[slot]", list())
-
 	//If they have one, and if it's not installing without an owner, because
 	//Someone who joins and immediately leaves again (wrong job choice, maybe)
 	//should keep it even though it was probably doing the quick-calibrate, and their
 	//owner will have been pre-set during the constructor.
-	var/nif_path
-	var/nif_durability
-	var/nif_savedata
 	if(nif && !(nif.stat == NIF_INSTALLING && !nif.owner))
-		nif_path = nif.type
-		nif_durability = nif.durability
-		nif_savedata = nif.save_data.Copy()
+		prefs.nif_path = nif.type
+		prefs.nif_durability = nif.durability
+		prefs.nif_savedata = nif.save_data.Copy()
 	else
-		nif_path = null
-		nif_durability = null
-		nif_savedata = null
+		prefs.nif_path = null
+		prefs.nif_durability = null
+		prefs.nif_savedata = null
 
-	save_data["nif_path"] = nif_path
-	save_data["nif_durability"] = nif_durability
-	save_data["nif_savedata"] = nif_savedata
+	var/datum/category_group/player_setup_category/vore_cat = prefs.player_setup.categories_by_name["VORE"]
+	var/datum/category_item/player_setup_item/vore/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
 
-	savefile.set_entry("character[slot]", save_data)
-	savefile.save()
-
-	// If they still have the same character loaded, update prefs
-	if(H?.client?.prefs?.default_slot == slot)
-		var/datum/category_group/player_setup_category/vore_cat = H.client.prefs.player_setup.categories_by_name["VORE"]
-		var/datum/category_item/player_setup_item/vore/nif/nif_prefs = vore_cat.items_by_name["NIF Data"]
-		nif_prefs.load_character()
+	var/savefile/S = new /savefile(prefs.path)
+	if(!S) warning("Persist (NIF): Couldn't load NIF save savefile? [prefs.real_name]")
+	S.cd = "/character[prefs.default_slot]"
+	nif_prefs.save_character(S)

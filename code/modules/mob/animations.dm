@@ -238,7 +238,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//Check for clients with pref enabled
 	var/list/viewing = list()
 	for(var/mob/M as anything in viewers(A))
-		if(M.client?.prefs?.read_preference(/datum/preference/toggle/attack_icons))
+		var/client/C = M.client
+		if(C && C.is_preference_enabled(/datum/client_preference/attack_icons))
 			viewing += M.client
 
 	//Animals attacking each other in the distance, probably. Forgeddaboutit.

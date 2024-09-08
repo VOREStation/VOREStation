@@ -19,7 +19,7 @@
 
 	// Anti message spam checks
 	// If multiple limbs are injured, cooldown is ignored to print all injuries until all limbs are iterated over
-	if(client?.prefs?.read_preference(/datum/preference/toggle/pain_frequency))
+	if(src.is_preference_enabled(/datum/client_preference/pain_frequency))
 		switch(power)
 			if(0 to 5)
 				force = 0
