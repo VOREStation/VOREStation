@@ -203,14 +203,14 @@
 				continue
 			if(src.client && M && !(get_z(src) == get_z(M)))
 				message = "<span class='multizsay'>[message]</span>"
-			if(isobserver(M) && (!M.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle) || \
-			!is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder))
+			if(isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
+			!client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !M.client?.holder))
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
 			else
 				spawn(0)
 					M.show_message(message, 2)
-					if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+					if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 						M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
 		for(var/obj/O as anything in vis_objs)
@@ -291,13 +291,13 @@
 		else
 			pb = db.pred_body
 			to_chat(pb, "<span class='psay'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To our pred if dominated brain
-			if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(pb.read_preference(/datum/preference/toggle/subtle_sounds))
 				pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	else if(M.absorbed && isbelly(M.loc))
 		pb = M.loc.loc
 		to_chat(pb, "<span class='psay'>\The [M] thinks, \"[message]\"</span>")	//To our pred if absorbed
-		if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+		if(pb.read_preference(/datum/preference/toggle/subtle_sounds))
 			pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		f = TRUE
 
@@ -307,14 +307,14 @@
 			if(istype(I, /mob/living/dominated_brain) && I != M)
 				var/mob/living/dominated_brain/db = I
 				to_chat(db, "<span class='psay'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To any dominated brains in the pred
-				if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				if(db.read_preference(/datum/preference/toggle/subtle_sounds))
 					db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 		for(var/B in pb.vore_organs)
 			for(var/mob/living/L in B)
 				if(L.absorbed && L != M && L.ckey)
 					to_chat(L, "<span class='psay'>\The [M] thinks, \"[message]\"</span>")	//To any absorbed people in the pred
-					if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+					if(L.read_preference(/datum/preference/toggle/subtle_sounds))
 						L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 					f = TRUE
 
@@ -323,32 +323,32 @@
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
 			to_chat(db, "<span class='psay'><b>\The [M] thinks, \"[message]\"</b></span>")	//To any dominated brains inside us
-			if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(db.read_preference(/datum/preference/toggle/subtle_sounds))
 				db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	for(var/B in M.vore_organs)
 		for(var/mob/living/L in B)
 			if(L.absorbed)
 				to_chat(L, "<span class='psay'><b>\The [M] thinks, \"[message]\"</b></span>")	//To any absorbed people inside us
-				if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				if(L.read_preference(/datum/preference/toggle/subtle_sounds))
 					L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 
 	if(f)	//We found someone to send the message to
 		if(pb)
 			to_chat(M, "<span class='psay'>You think \"[message]\"</span>")	//To us if we are the prey
-			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		else
 			to_chat(M, "<span class='psay'><b>You think \"[message]\"</b></span>")	//To us if we are the pred
-			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(isobserver(G) &&  G.is_preference_enabled(/datum/client_preference/ghost_ears && \
-			G.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle)))
-				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
+			else if(isobserver(G) &&  G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears && \
+			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle)))
+				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder)
 					to_chat(G, "<span class='psay'>\The [M] thinks, \"[message]\"</span>")
 		log_say(message,M)
 	else		//There wasn't anyone to send the message to, pred or prey, so let's just say it instead and correct our psay just in case.
@@ -388,14 +388,14 @@
 		else
 			pb = db.pred_body
 			to_chat(pb, "<span class='pemote'>\The [M] [message]</span>")	//To our pred if dominated brain
-			if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(pb.read_preference(/datum/preference/toggle/subtle_sounds))
 				pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 
 	else if(M.absorbed && isbelly(M.loc))
 		pb = M.loc.loc
 		to_chat(pb, "<span class='pemote'>\The [M] [message]</span>")	//To our pred if absorbed
-		if(pb.is_preference_enabled(/datum/client_preference/subtle_sounds))
+		if(pb.read_preference(/datum/preference/toggle/subtle_sounds))
 			pb << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		f = TRUE
 
@@ -405,14 +405,14 @@
 			if(istype(I, /mob/living/dominated_brain) && I != M)
 				var/mob/living/dominated_brain/db = I
 				to_chat(db, "<span class='pemote'>\The [M] [message]</span>")	//To any dominated brains in the pred
-				if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				if(db.read_preference(/datum/preference/toggle/subtle_sounds))
 					db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 		for(var/B in pb.vore_organs)
 			for(var/mob/living/L in B)
 				if(L.absorbed && L != M && L.ckey)
 					to_chat(L, "<span class='pemote'>\The [M] [message]</span>")	//To any absorbed people in the pred
-					if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+					if(L.read_preference(/datum/preference/toggle/subtle_sounds))
 						L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 					f = TRUE
 
@@ -421,32 +421,32 @@
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
 			to_chat(db, "<span class='pemote'><b>\The [M] [message]</b></span>")	//To any dominated brains inside us
-			if(db.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(db.read_preference(/datum/preference/toggle/subtle_sounds))
 				db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	for(var/B in M.vore_organs)
 		for(var/mob/living/L in B)
 			if(L.absorbed)
 				to_chat(L, "<span class='pemote'><b>\The [M] [message]</b></span>")	//To any absorbed people inside us
-				if(L.is_preference_enabled(/datum/client_preference/subtle_sounds))
+				if(L.read_preference(/datum/preference/toggle/subtle_sounds))
 					L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
 
 	if(f)	//We found someone to send the message to
 		if(pb)
 			to_chat(M, "<span class='pemote'>\The [M] [message]</span>")	//To us if we are the prey
-			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		else
 			to_chat(M, "<span class='pemote'><b>\The [M] [message]</b></span>")	//To us if we are the pred
-			if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears && \
-			G.is_preference_enabled(/datum/client_preference/ghost_see_whisubtle)))
-				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
+			else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears && \
+			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle)))
+				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder)
 					to_chat(G, "<span class='pemote'>\The [M] [message]</span>")
 		log_say(message,M)
 	else	//There wasn't anyone to send the message to, pred or prey, so let's just emote it instead and correct our psay just in case.
@@ -484,7 +484,7 @@
 		ourfreq = voice_freq
 
 	if(client)
-		playsound(T, pick(emote_sound), 25, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/emote_sounds)
+		playsound(T, pick(emote_sound), 25, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/emote_sounds)
 
 	var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,2,remote_ghosts = client ? TRUE : FALSE)
 	var/list/m_viewers = in_range["mobs"]

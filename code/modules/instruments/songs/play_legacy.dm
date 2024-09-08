@@ -89,5 +89,5 @@
 		if(!M)
 			hearing_mobs -= M
 			continue
-		M.playsound_local(source, null, volume * using_instrument.volume_multiplier, S = music_played, preference = /datum/client_preference/instrument_toggle, volume_channel = VOLUME_CHANNEL_INSTRUMENTS)
+		M.playsound_local(source, null, volume * using_instrument.volume_multiplier, S = music_played, preference = /datum/preference/toggle/instrument_toggle, volume_channel = VOLUME_CHANNEL_INSTRUMENTS)
 		// Could do environment and echo later but not for now

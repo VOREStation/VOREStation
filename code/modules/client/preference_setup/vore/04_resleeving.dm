@@ -9,16 +9,15 @@
 	name = "Resleeving"
 	sort_order = 4
 
-/datum/category_item/player_setup_item/vore/resleeve/load_character(var/savefile/S)
-	S["resleeve_lock"]		>> pref.resleeve_lock
-	S["resleeve_scan"]		>> pref.resleeve_scan
-	S["mind_scan"]			>> pref.mind_scan
+/datum/category_item/player_setup_item/vore/resleeve/load_character(list/save_data)
+	pref.resleeve_lock = save_data["resleeve_lock"]
+	pref.resleeve_scan = save_data["resleeve_scan"]
+	pref.mind_scan = save_data["mind_scan"]
 
-
-/datum/category_item/player_setup_item/vore/resleeve/save_character(var/savefile/S)
-	S["resleeve_lock"]		<< pref.resleeve_lock
-	S["resleeve_scan"]		<< pref.resleeve_scan
-	S["mind_scan"]			<< pref.mind_scan
+/datum/category_item/player_setup_item/vore/resleeve/save_character(list/save_data)
+	save_data["resleeve_lock"] = pref.resleeve_lock
+	save_data["resleeve_scan"] = pref.resleeve_scan
+	save_data["mind_scan"] = pref.mind_scan
 
 /datum/category_item/player_setup_item/vore/resleeve/sanitize_character()
 	pref.resleeve_lock		= sanitize_integer(pref.resleeve_lock, 0, 1, initial(pref.resleeve_lock))

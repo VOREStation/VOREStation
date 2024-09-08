@@ -66,7 +66,7 @@
 	if(!client && !teleop)
 		return FALSE
 
-	if(isobserver(src) && is_preference_enabled(/datum/client_preference/ghost_ears))
+	if(isobserver(src) && client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
 		if(speaker && !speaker.client && !(speaker in view(src)))
 			//Does the speaker have a client?  It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
 			//Or someone snoring.  So we make it where they won't hear it.
@@ -108,7 +108,7 @@
 		if(speaker_name != speaker.real_name && speaker.real_name)
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "([ghost_follow_link(speaker, src)]) "
-		if(is_preference_enabled(/datum/client_preference/ghost_ears) && (speaker in view(src)))
+		if(client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears) && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
 	if(is_deaf())
@@ -119,7 +119,7 @@
 	else
 		var/message_to_send = null
 		message_to_send = "<span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]"
-		if(check_mentioned(multilingual_to_message(message_pieces)) && is_preference_enabled(/datum/client_preference/check_mention))
+		if(check_mentioned(multilingual_to_message(message_pieces)) && client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 
 		on_hear_say(message_to_send, speaker)
@@ -227,7 +227,7 @@
 	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
-	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
+	if(check_mentioned(formatted) && client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
 		final_message = "[time][part_a][final_message][part_e]"
@@ -238,7 +238,7 @@
 	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][track][part_c][formatted][part_d]"
-	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
+	if(check_mentioned(formatted) && client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
 		final_message = "[time][part_a][final_message][part_e]"
@@ -249,7 +249,7 @@
 	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][speaker_name][part_c][formatted][part_d]"
-	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
+	if(check_mentioned(formatted) && client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
 		final_message = "[time][part_a][final_message][part_e]"
@@ -260,7 +260,7 @@
 	if(client.prefs.chat_timestamp)
 		time = say_timestamp()
 	var/final_message = "[part_b][track][part_c][formatted][part_d]"
-	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
+	if(check_mentioned(formatted) && client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 		final_message = "[time][part_a]<font size='3'><b>[final_message]</b></font>[part_e]"
 	else
 		final_message = "[time][part_a][final_message][part_e]"
