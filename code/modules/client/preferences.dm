@@ -485,9 +485,11 @@ var/list/preferences_datums = list()
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
+	load_preferences()
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
 	sanitize_preferences()
+	save_preferences()
 	ShowChoices(user)
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
