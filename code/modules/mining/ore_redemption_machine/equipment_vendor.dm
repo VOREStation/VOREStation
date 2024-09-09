@@ -310,7 +310,7 @@
 	if(istype(I,/obj/item/weapon/card/id))
 		if(!powered())
 			return
-		else if(!inserted_id && (user.unEquip(I)  || isrobot(user)))
+		else if(!inserted_id && (user.unEquip(I) || isrobot(user)))
 			I.forceMove(src)
 			inserted_id = I
 			tgui_interact(user)
