@@ -122,14 +122,7 @@ var/list/lunchables_drink_reagents_ = list(/datum/reagent/drink/nothing,
                                            /datum/reagent/drink/hell_ramen,
                                            /datum/reagent/drink/hot_ramen,
                                            /datum/reagent/drink/soda/nuka_cola,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sight,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_heart,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_sleep,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shock,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_fast,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_high,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_shrink,
-                                           /obj/item/weapon/reagent_containers/food/drinks/cans/nukie_mega_grow)
+                                           /datum/reagent/drink/coffee/nukie/mega)
 
 
 // This default list is a bit different, it contains items we don't want
