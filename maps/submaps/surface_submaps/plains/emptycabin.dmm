@@ -4,8 +4,8 @@
 /area/template_noop)
 "b" = (
 /obj/effect/decal/cleanable/filth,
-/obj/item/weapon/bone/arm,
-/obj/item/weapon/bone/skull/unathi,
+/obj/item/bone/arm,
+/obj/item/bone/skull/unathi,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "c" = (
@@ -15,9 +15,9 @@
 /area/submap/EmptyCabin)
 "d" = (
 /obj/structure/closet/wardrobe,
-/obj/item/weapon/material/fishing_rod/modern,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/lunchbox/nymph/filled,
+/obj/item/material/fishing_rod/modern,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/lunchbox/nymph/filled,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "e" = (
@@ -31,7 +31,7 @@
 /area/submap/EmptyCabin)
 "g" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "h" = (
@@ -74,8 +74,8 @@
 /area/submap/EmptyCabin)
 "n" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/paper/crumpled/bloody{
+/obj/item/storage/fancy/candle_box,
+/obj/item/paper/crumpled/bloody{
 	info = "I found an otie while picking flowers today. He's so cute! I took him back home, and he seemed quite happy to share food with me. He really likes fish. Though, he never really seems to not be hungry..."
 	},
 /turf/simulated/floor/wood/sif/virgo3b,
@@ -146,11 +146,11 @@
 /area/submap/EmptyCabin)
 "L" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/weapon/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "M" = (
-/obj/item/weapon/bone/leg,
+/obj/item/bone/leg,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "O" = (
@@ -196,7 +196,7 @@
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "X" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "Z" = (

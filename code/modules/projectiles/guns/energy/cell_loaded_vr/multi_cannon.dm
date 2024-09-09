@@ -1,6 +1,6 @@
 //Why is this in here when it's not a subtype of cell_loaded? Because it has a similar function, and I couldn't be assed to find a better suited spot.
 
-/obj/item/weapon/gun/projectile/multi_cannon
+/obj/item/gun/projectile/multi_cannon
 	name = "Curabitur Cannon"
 	desc = "A cannon developed by Curabitur Scimed, this weapon incorporates both Vey-Med and precursor technology to create a medical alternative to chemicals on the field."
 	icon = 'icons/vore/custom_guns_vr.dmi'
@@ -22,7 +22,7 @@
 	slot_flags = SLOT_BACK
 	recoil = FALSE
 
-/obj/item/weapon/gun/projectile/multi_cannon/update_icon()
+/obj/item/gun/projectile/multi_cannon/update_icon()
 	. = ..()
 	cut_overlays()
 	var/istate = "healcannon_0"
@@ -49,17 +49,17 @@
 	x.color = indicator_colour
 	add_overlay(x)
 
-/obj/item/weapon/gun/projectile/multi_cannon/load_ammo()
+/obj/item/gun/projectile/multi_cannon/load_ammo()
 	.=..()
 	consume_next_projectile()
 	update_icon()
 
-/obj/item/weapon/gun/projectile/multi_cannon/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/multi_cannon/unload_ammo(mob/user, var/allow_dump=1)
 	.=..()
 	update_icon()
 	chambered = null
 	
-/obj/item/weapon/gun/projectile/multi_cannon/get_ammo_count() // Custom handling for the Curabitur.
+/obj/item/gun/projectile/multi_cannon/get_ammo_count() // Custom handling for the Curabitur.
 	if(istype(chambered, /obj/item/ammo_casing/macrobattery))
 		var/obj/item/ammo_casing/macrobattery/battery = chambered
 		if(battery.charge) // Does the battery have charge?
@@ -69,4 +69,4 @@
 	else if(chambered == null)
 		return 0
 	else
-		CRASH("/obj/item/weapon/gun/projectile/multi_cannon/get_ammo_count() was called from [src] but did not have a valid magazine loaded, somehow! Chambered is currently [chambered].")
+		CRASH("/obj/item/gun/projectile/multi_cannon/get_ammo_count() was called from [src] but did not have a valid magazine loaded, somehow! Chambered is currently [chambered].")

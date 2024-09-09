@@ -30,8 +30,8 @@ var/list/turf_edge_cache = list()
 /turf/simulated/floor/outdoors/proc/get_loot_type()
 	if(loot_count && prob(60))
 		return pick( \
-			12;/obj/item/weapon/reagent_containers/food/snacks/worm, \
-			1;/obj/item/weapon/material/knife/machete/hatchet/stone  \
+			12;/obj/item/reagent_containers/food/snacks/worm, \
+			1;/obj/item/material/knife/machete/hatchet/stone  \
 		)
 
 /turf/simulated/floor/outdoors/Initialize(mapload)
@@ -41,8 +41,8 @@ var/list/turf_edge_cache = list()
 
 /turf/simulated/floor/outdoors/attackby(obj/item/C, mob/user)
 
-	if(can_dig && istype(C, /obj/item/weapon/shovel))
-		var/obj/item/weapon/shovel/our_shovel = C
+	if(can_dig && istype(C, /obj/item/shovel))
+		var/obj/item/shovel/our_shovel = C
 		if(our_shovel.grave_mode)
 			if(contents.len > 0)
 				to_chat(user, SPAN_WARNING("You can't dig here!"))

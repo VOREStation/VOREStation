@@ -83,7 +83,7 @@
 	if(istype(H))
 		var/list/holding = list(H.get_active_hand() = 60, H.get_inactive_hand() = 40)
 
-		for(var/obj/item/weapon/gun/W in holding)	// Guns are complex devices, both of a mechanical and electronic nature. A weird gravity ball or other type of object trying to pull or grab it is likely not safe.
+		for(var/obj/item/gun/W in holding)	// Guns are complex devices, both of a mechanical and electronic nature. A weird gravity ball or other type of object trying to pull or grab it is likely not safe.
 			if(W && prob(holding[W]))
 				var/list/turfs = list()
 				for(var/turf/T in view())

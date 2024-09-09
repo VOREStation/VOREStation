@@ -1,3 +1,3 @@
 
-/obj/item/weapon/broken_gun/grenadelauncher/New(var/newloc)
-	..(newloc, /obj/item/weapon/gun/launcher/grenade)
+/obj/item/broken_gun/grenadelauncher/New(var/newloc)
+	..(newloc, /obj/item/gun/launcher/grenade)

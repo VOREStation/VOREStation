@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/shock_maul
+/obj/item/melee/shock_maul
 	name = "concussion maul"
 	desc = "A heavy-duty concussion hammer, typically used for mining. An iconic weapon for the many uprisings of Mars. It uses a manually engaged concussive-force amplifier unit in the head to multiply impact force, but its weight and the charge up time makes it difficult to use effectively. Devastating if used correctly, but requires skill."
 	icon_state = "forcemaul"
@@ -38,10 +38,10 @@
 	attack_verb = list("beaten","slammed","smashed","mauled","hammered","bludgeoned")
 	var/lightcolor = "#D3FDFD"
 	var/status = 0		//whether the thing is on or not
-	var/obj/item/weapon/cell/bcell = null
+	var/obj/item/cell/bcell = null
 	var/hitcost = 600	//you get 4 hits out of a standard cell
 
-/obj/item/weapon/melee/shock_maul/update_held_icon()
+/obj/item/melee/shock_maul/update_held_icon()
 	var/mob/living/M = loc
 	if(istype(M) && M.can_wield_item(src) && is_held_twohanded(M))
 		wielded = 1
@@ -69,15 +69,15 @@
 	update_icon()
 	..()
 
-/obj/item/weapon/melee/shock_maul/New()
+/obj/item/melee/shock_maul/New()
 	..()
 	update_held_icon()
 	return
 
-/obj/item/weapon/melee/shock_maul/get_cell()
+/obj/item/melee/shock_maul/get_cell()
 	return bcell
 
-/obj/item/weapon/melee/shock_maul/MouseDrop(obj/over_object as obj)
+/obj/item/melee/shock_maul/MouseDrop(obj/over_object as obj)
 	if(!canremove)
 		return
 
@@ -109,13 +109,13 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/weapon/melee/shock_maul/loaded/New() //this one starts with a cell pre-installed.
+/obj/item/melee/shock_maul/loaded/New() //this one starts with a cell pre-installed.
 	..()
-	bcell = new/obj/item/weapon/cell/device/weapon(src)
+	bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
 	return
 
-/obj/item/weapon/melee/shock_maul/proc/deductcharge()
+/obj/item/melee/shock_maul/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on
 		if(bcell)
 			if(bcell.checked_use(hitcost))
@@ -124,13 +124,13 @@
 				return 0
 	return null
 
-/obj/item/weapon/melee/shock_maul/proc/powercheck()
+/obj/item/melee/shock_maul/proc/powercheck()
 	if(bcell)
 		if(bcell.charge < hitcost)
 			status = 0
 			update_held_icon()
 
-/obj/item/weapon/melee/shock_maul/update_icon()
+/obj/item/melee/shock_maul/update_icon()
 	if(status)
 		icon_state = "[initial(icon_state)]_active[wielded]"
 		item_state = icon_state
@@ -146,14 +146,14 @@
 	else
 		set_light(0)
 
-/obj/item/weapon/melee/shock_maul/dropped()
+/obj/item/melee/shock_maul/dropped()
 	..()
 	if(status)
 		status = 0
 		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
 	update_held_icon()
 
-/obj/item/weapon/melee/shock_maul/examine(mob/user)
+/obj/item/melee/shock_maul/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
@@ -162,11 +162,11 @@
 		if(!bcell)
 			. += "<span class='warning'>The concussion maul does not have a power source installed.</span>"
 
-/obj/item/weapon/melee/shock_maul/attackby(obj/item/weapon/W, mob/user)
+/obj/item/melee/shock_maul/attackby(obj/item/W, mob/user)
 	if(!user.IsAdvancedToolUser())
 		return
-	if(istype(W, /obj/item/weapon/cell))
-		if(istype(W, /obj/item/weapon/cell/device))
+	if(istype(W, /obj/item/cell))
+		if(istype(W, /obj/item/cell/device))
 			if(!bcell)
 				user.drop_item()
 				W.loc = src
@@ -178,7 +178,7 @@
 		else
 			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
 
-/obj/item/weapon/melee/shock_maul/attack_hand(mob/user as mob)
+/obj/item/melee/shock_maul/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(!user.IsAdvancedToolUser())
 			return
@@ -194,7 +194,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/melee/shock_maul/attack_self(mob/user)
+/obj/item/melee/shock_maul/attack_self(mob/user)
 	if(!user.IsAdvancedToolUser())
 		return
 	if(!status && bcell && bcell.charge >= hitcost)
@@ -214,7 +214,7 @@
 		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/shock_maul/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/melee/shock_maul/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(A && wielded && status)
@@ -234,7 +234,7 @@
 			qdel(A)
 		powercheck(hitcost)
 
-/obj/item/weapon/melee/shock_maul/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/shock_maul/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
 	if(user.a_intent == I_DISARM)
 		launch_force *= launch_force_disarm
@@ -254,7 +254,7 @@
 		update_held_icon()
 	powercheck(hitcost)
 
-/obj/item/weapon/melee/shock_maul/emp_act(severity)
+/obj/item/melee/shock_maul/emp_act(severity)
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	if(status)
@@ -263,7 +263,7 @@
 		update_held_icon()
 	..()
 
-/obj/item/weapon/melee/shock_maul/get_description_interaction()
+/obj/item/melee/shock_maul/get_description_interaction()
 	var/list/results = list()
 
 	if(bcell)

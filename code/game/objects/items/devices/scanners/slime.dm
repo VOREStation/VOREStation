@@ -1,4 +1,4 @@
-/obj/item/device/slime_scanner
+/obj/item/slime_scanner
 	name = "slime scanner"
 	icon_state = "xenobio"
 	item_state = "xenobio"
@@ -9,7 +9,7 @@
 	throw_range = 7
 	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
 
-/obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
 		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
 		return

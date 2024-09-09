@@ -1,14 +1,14 @@
 //Items for the entrepreneurs
 
-/obj/item/weapon/entrepreneur
+/obj/item/entrepreneur
 	name = "crystal ball"
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "crystal_ball"
 	desc = "A perfect sphere that is partially translucent, allowing one to see into it's mysterious depths."
 
-/obj/item/weapon/entrepreneur/crystal_ball
+/obj/item/entrepreneur/crystal_ball
 
-/obj/item/weapon/entrepreneur/horoscope
+/obj/item/entrepreneur/horoscope
 	name = "horoscope book"
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "horoscope"
@@ -123,7 +123,7 @@
 	var/pisces = ""
 	var/list/zodiacs = list("aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces")
 
-/obj/item/weapon/entrepreneur/horoscope/Initialize()
+/obj/item/entrepreneur/horoscope/Initialize()
 	. = ..()
 	var/stars = pick(stars_list)
 	var/prediction = pick(prediction_list)
@@ -185,7 +185,7 @@
 	advice = pick(advice_list)
 	pisces = "[stars] [prediction] [advice]"
 
-/obj/item/weapon/entrepreneur/horoscope/attack_self(var/mob/user)
+/obj/item/entrepreneur/horoscope/attack_self(var/mob/user)
 	var/zodiac = tgui_input_list(user, "Which of todays zodiacs do you want to read?", "Zodiac", zodiacs)
 	if(zodiac)
 		switch(zodiac)
@@ -216,56 +216,56 @@
 
 ///////Dentist tools, basically just fluff for RP
 
-/obj/item/weapon/entrepreneur/dentist_mirror
+/obj/item/entrepreneur/dentist_mirror
 	name = "dental mirror"
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "mirror"
 	desc = "A small mirror at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/entrepreneur/dentist_mirror/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_mirror/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, "<span class='notice'>You use the mirror to get a good look inside of [M]'s mouth.</span>")
 		to_chat(M, "<span class='notice'>[user] uses a small mirror to look inside of your mouth.</span>")
 		return 0
 	..()
 
-/obj/item/weapon/entrepreneur/dentist_probe
+/obj/item/entrepreneur/dentist_probe
 	name = "dental probe"
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "probe"
 	desc = "A short stainless steel rod that ends with a narrow pointy bit for poking."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/entrepreneur/dentist_probe/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_probe/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, "<span class='notice'>You use the probe to poke about inside of [M]'s mouth.</span>")
 		to_chat(M, "<span class='notice'>[user] examines the inside of your mouth with a sharp probe, it hurts a little being prodded.</span>")
 		return 0
 	..()
 
-/obj/item/weapon/entrepreneur/dentist_sickle
+/obj/item/entrepreneur/dentist_sickle
 	name = "dental sickle"
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "sickle"
 	desc = "A narrow, sharp hook at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/entrepreneur/dentist_sickle/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_sickle/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, "<span class='notice'>You loosen some stuck debris from [M]'s mouth with the hook.</span>")
 		to_chat(M, "<span class='notice'>[user] uses a hook to scrape out something stuck in your mouth, it's pretty uncomfortable.</span>")
 		return 0
 	..()
 
-/obj/item/weapon/entrepreneur/dentist_scaler
+/obj/item/entrepreneur/dentist_scaler
 	name = "dental scaler"
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "scaler"
 	desc = "A flat and thin scraper at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/entrepreneur/dentist_scaler/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_scaler/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, "<span class='notice'>You scrape debris out from [M]'s mouth.</span>")
 		to_chat(M, "<span class='notice'>[user] scrapes debris from out of your mouth.</span>")
@@ -274,22 +274,22 @@
 
 ////// Exercise mat, yoga and trainer stuff
 
-/obj/item/weapon/bedsheet/pillow/exercise
+/obj/item/bedsheet/pillow/exercise
 	name = "exercise mat"
 	desc = "A thick, flexible but tough mat designed for people to exercise on."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "exercise_mat"
 
-/obj/item/weapon/bedsheet/pillow/exercise/attackby(var/obj/item/component, mob/user as mob)
+/obj/item/bedsheet/pillow/exercise/attackby(var/obj/item/component, mob/user as mob)
 	return
 
-/obj/item/weapon/entrepreneur/dumbbell
+/obj/item/entrepreneur/dumbbell
 	name = "dumbbell"
 	desc = "A small but heavy pair of weights connected by a bar, desgined to be held in one hand."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "dumbbell"
 
-/obj/item/weapon/entrepreneur/dumbbell/attack_self(var/mob/user)
+/obj/item/entrepreneur/dumbbell/attack_self(var/mob/user)
 	var/mob/living/M = user
 	if(M.nutrition <= 100)
 		to_chat(user, "<span class='notice'>You are too hungry to exercise right now.</span>")
@@ -303,7 +303,7 @@
 
 //////Paranormal Investigator stuff
 
-/obj/item/weapon/entrepreneur/emf
+/obj/item/entrepreneur/emf
 	name = "EMF scanner"
 	desc = "A handheld device used for detecting disturbances to electromagnetic fields."
 	icon = 'icons/obj/entrepreneur.dmi'
@@ -312,7 +312,7 @@
 	var/turf/last_used = 0
 	var/emf_change = 0
 
-/obj/item/weapon/entrepreneur/emf/attack_self(var/mob/user)
+/obj/item/entrepreneur/emf/attack_self(var/mob/user)
 	if(!last_used)
 		emf = rand(1,100)
 		last_used = get_turf(user)
@@ -332,7 +332,7 @@
 		update_icon()
 	to_chat(user, "<span class='notice'>You update the EMF scanner and check the reading. It reads [emf]mG!</span>")
 
-/obj/item/weapon/entrepreneur/emf/update_icon()
+/obj/item/entrepreneur/emf/update_icon()
 	switch(emf)
 		if(-1000 to 20)
 			icon_state = "emf-0"
@@ -346,7 +346,7 @@
 			icon_state = "emf-80"
 	return
 
-/obj/item/weapon/entrepreneur/spirit_board
+/obj/item/entrepreneur/spirit_board
 	name = "spirit board"
 	desc = "A wooden board with an alphabet at numbers on it, used to contact the dead. You need to use a glass to contact the spirit world. (It can be alt-clicked to decide the next letter in the sequence. This item does not canonise ghosts/souls in this setting, it's just a bit of fun!)"
 	icon = 'icons/obj/entrepreneur.dmi'
@@ -355,7 +355,7 @@
 	var/next_result = 0
 	var/ghost_enabled = 1
 
-/obj/item/weapon/entrepreneur/spirit_board/attackby(obj/item/weapon/reagent_containers/food/drinks/W as obj, mob/living/user as mob)
+/obj/item/entrepreneur/spirit_board/attackby(obj/item/reagent_containers/food/drinks/W as obj, mob/living/user as mob)
 	if(!istype(user))
 		return 0
 	if(!istype(W))
@@ -371,12 +371,12 @@
 	src.visible_message("<span class='notice'>[user] slides the [W] over to [result]!</span>")
 	next_result = 0
 
-/obj/item/weapon/entrepreneur/spirit_board/AltClick(mob/living/carbon/user)
+/obj/item/entrepreneur/spirit_board/AltClick(mob/living/carbon/user)
 	if(!istype(user)) //admins can be cheeky
 		return 0
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
 
-/obj/item/weapon/entrepreneur/spirit_board/attack_ghost(var/mob/observer/dead/user)
+/obj/item/entrepreneur/spirit_board/attack_ghost(var/mob/observer/dead/user)
 	if(!ghost_enabled)
 		return
 	if(jobban_isbanned(user, "GhostRoles"))
@@ -389,20 +389,20 @@
 
 // Spirit Healer stuff
 
-/obj/item/weapon/entrepreneur/crystal
+/obj/item/entrepreneur/crystal
 	name = "healing crystal"
 	desc = "A crystal with a powerful energy, apparantly, and is capable of healing the soul, apparantly."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "crystal_pink"
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/entrepreneur/crystal/Initialize()
+/obj/item/entrepreneur/crystal/Initialize()
 	. = ..()
 	var/list/colour_choice = list("crystal_pink","crystal_blue","crystal_green","crystal_orange","crystal_dblue","crystal_purple")
 	icon_state = pick(colour_choice)
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/essential_oil
+/obj/item/reagent_containers/glass/bottle/essential_oil
 	name = "essential oils"
 	desc = "A small bottle of various plant extracts said to improve upon a person's health as an alternative form of medicine."
 	icon = 'icons/obj/entrepreneur.dmi'
@@ -441,14 +441,14 @@
 
 //Magnifying glass
 
-/obj/item/weapon/entrepreneur/magnifying_glass
+/obj/item/entrepreneur/magnifying_glass
 	name = "magnifying glass"
 	desc = "A curved lense for looking at things a little closer."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "magnifying_glass"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/weapon/entrepreneur/magnifying_glass/afterattack(atom/T, mob/living/user as mob)
+/obj/item/entrepreneur/magnifying_glass/afterattack(atom/T, mob/living/user as mob)
 	if(!T.desc)
 		return
 	user.visible_message("<span class='notice'>\The [user] examines the \the [T] with \the [src]!</span>")
@@ -456,11 +456,11 @@
 
 // Streamer and influencer
 
-/obj/item/device/tvcamera/streamer
+/obj/item/tvcamera/streamer
 	name = "streamer camera drone"
 	channel = "Virgo Live Stream"
 
-/obj/item/device/camera/selfie
+/obj/item/camera/selfie
 	name = "selfie stick"
 	desc = "A long stick with a camera on the end, designed for taking pictures of one's self, but could awkwardly be turned to take pictures of other things too!"
 	icon = 'icons/obj/entrepreneur.dmi'
@@ -471,59 +471,59 @@
 
 // Containers
 
-/obj/item/weapon/storage/box/fortune_teller
+/obj/item/storage/box/fortune_teller
 	name = "fortune teller kit"
 	desc = "A kit containing everything that a fortune teller needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "fortune_teller"
-	starts_with = list(/obj/item/weapon/entrepreneur/horoscope, /obj/item/weapon/deck/tarot, /obj/item/weapon/entrepreneur/crystal_ball, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/entrepreneur/horoscope, /obj/item/deck/tarot, /obj/item/entrepreneur/crystal_ball, /obj/item/ticket_printer/train)
 
-/obj/item/weapon/storage/box/dentist
+/obj/item/storage/box/dentist
 	name = "dentist kit"
 	desc = "A kit containing everything that a dentist needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "dentist"
-	starts_with = list(/obj/item/weapon/entrepreneur/dentist_mirror, /obj/item/weapon/entrepreneur/dentist_probe, /obj/item/weapon/entrepreneur/dentist_sickle, /obj/item/weapon/entrepreneur/dentist_scaler, /obj/item/device/flashlight/pen, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/entrepreneur/dentist_mirror, /obj/item/entrepreneur/dentist_probe, /obj/item/entrepreneur/dentist_sickle, /obj/item/entrepreneur/dentist_scaler, /obj/item/flashlight/pen, /obj/item/ticket_printer/train)
 
-/obj/item/weapon/storage/box/fitness_trainer
+/obj/item/storage/box/fitness_trainer
 	name = "exercise kit"
 	desc = "A kit containing everything that a fitness trainer needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "fitness_trainer"
-	starts_with = list(/obj/item/weapon/bedsheet/pillow/exercise, /obj/item/weapon/entrepreneur/dumbbell, /obj/item/weapon/entrepreneur/dumbbell, /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/bedsheet/pillow/exercise, /obj/item/entrepreneur/dumbbell, /obj/item/entrepreneur/dumbbell, /obj/item/reagent_containers/food/snacks/candy/proteinbar, /obj/item/ticket_printer/train)
 
-/obj/item/weapon/storage/box/yoga_teacher
+/obj/item/storage/box/yoga_teacher
 	name = "yoga kit"
 	desc = "A kit containing everything that a yoga teacher needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "yoga_teacher"
-	starts_with = list(/obj/item/weapon/bedsheet/pillow/exercise, /obj/item/weapon/bedsheet/pillow/exercise, /obj/item/weapon/reagent_containers/food/snacks/fruitbar, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/bedsheet/pillow/exercise, /obj/item/bedsheet/pillow/exercise, /obj/item/reagent_containers/food/snacks/fruitbar, /obj/item/ticket_printer/train)
 
-/obj/item/weapon/storage/box/paranormal_investigator
+/obj/item/storage/box/paranormal_investigator
 	name = "ghost hunting kit"
 	desc = "A kit containing everything that a paranormal investigator needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "paranormal_investigator"
-	starts_with = list(/obj/item/weapon/entrepreneur/emf, /obj/item/weapon/entrepreneur/spirit_board, /obj/item/weapon/reagent_containers/food/drinks/glass2/shot, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/entrepreneur/emf, /obj/item/entrepreneur/spirit_board, /obj/item/reagent_containers/food/drinks/glass2/shot, /obj/item/ticket_printer/train)
 
-/obj/item/weapon/storage/box/spirit_healer
+/obj/item/storage/box/spirit_healer
 	name = "exercise kit"
 	desc = "A kit containing everything that a spirit healer needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "spirit_healer"
-	starts_with = list(/obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/entrepreneur/crystal, /obj/item/weapon/reagent_containers/glass/bottle/essential_oil, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/entrepreneur/crystal, /obj/item/entrepreneur/crystal, /obj/item/entrepreneur/crystal, /obj/item/entrepreneur/crystal, /obj/item/entrepreneur/crystal, /obj/item/reagent_containers/glass/bottle/essential_oil, /obj/item/ticket_printer/train)
 
-/obj/item/weapon/storage/box/private_investigator
+/obj/item/storage/box/private_investigator
 	name = "investigator kit"
 	desc = "A kit containing everything that a private eye needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "private_investigator"
-	starts_with = list(/obj/item/device/taperecorder, /obj/item/device/tape, /obj/item/device/tape, /obj/item/device/camera, /obj/item/sticky_pad, /obj/item/weapon/entrepreneur/magnifying_glass, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/taperecorder, /obj/item/tape, /obj/item/tape, /obj/item/camera, /obj/item/sticky_pad, /obj/item/entrepreneur/magnifying_glass, /obj/item/ticket_printer/train)
 
-/obj/item/weapon/storage/box/stylist
+/obj/item/storage/box/stylist
 	name = "stylist kit"
 	desc = "A kit containing everything that a stylist needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "stylist"
-	starts_with = list(/obj/item/weapon/makeover, /obj/item/weapon/lipstick/random, /obj/item/weapon/nailpolish,  /obj/item/weapon/nailpolish_remover, /obj/item/weapon/haircomb, /obj/item/clothing/head/hairnet, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/makeover, /obj/item/lipstick/random, /obj/item/nailpolish,  /obj/item/nailpolish_remover, /obj/item/haircomb, /obj/item/clothing/head/hairnet, /obj/item/ticket_printer/train)
 

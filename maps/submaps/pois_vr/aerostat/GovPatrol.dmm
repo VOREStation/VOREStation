@@ -13,11 +13,11 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 "e" = (
-/obj/item/device/radio/off,
+/obj/item/radio/off,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 "f" = (
-/obj/item/weapon/storage/box/flare,
+/obj/item/storage/box/flare,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 "g" = (
@@ -35,7 +35,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 "k" = (
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
+/obj/item/gun/projectile/shotgun/pump/rifle/lever,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 "m" = (

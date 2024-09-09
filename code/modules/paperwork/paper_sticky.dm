@@ -11,7 +11,7 @@
 	var/papers = 50
 	var/written_text
 	var/written_by
-	var/paper_type = /obj/item/weapon/paper/sticky
+	var/paper_type = /obj/item/paper/sticky
 
 /obj/item/sticky_pad/update_icon()
 	if(papers <= 15)
@@ -23,8 +23,8 @@
 	if(written_text)
 		icon_state = "[icon_state]_writing"
 
-/obj/item/sticky_pad/attackby(var/obj/item/weapon/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/pen))
+/obj/item/sticky_pad/attackby(var/obj/item/thing, var/mob/user)
+	if(istype(thing, /obj/item/pen))
 
 		if(jobban_isbanned(user, "Graffiti"))
 			to_chat(user, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
@@ -53,7 +53,7 @@
 		to_chat(user, SPAN_NOTICE("It has [papers] sticky note\s left."))
 
 /obj/item/sticky_pad/attack_hand(var/mob/user)
-	var/obj/item/weapon/paper/paper = new paper_type(get_turf(src))
+	var/obj/item/paper/paper = new paper_type(get_turf(src))
 	paper.set_content(written_text, "sticky note")
 	paper.last_modified_ckey = written_by
 	paper.color = color
@@ -88,39 +88,39 @@
 	. = ..()
 	color = pick(COLOR_YELLOW, COLOR_LIME, COLOR_CYAN, COLOR_ORANGE, COLOR_PINK)
 
-/obj/item/weapon/paper/sticky
+/obj/item/paper/sticky
 	name = "sticky note"
 	desc = "Note to self: buy more sticky notes."
 	icon = 'icons/obj/stickynotes.dmi'
 	color = COLOR_YELLOW
 	slot_flags = 0
 
-/obj/item/weapon/paper/sticky/Initialize()
+/obj/item/paper/sticky/Initialize()
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/weapon/paper/sticky/proc/reset_persistence_tracking)
+	RegisterSignal(src, COMSIG_OBSERVER_MOVED, /obj/item/paper/sticky/proc/reset_persistence_tracking)
 
-/obj/item/weapon/paper/sticky/proc/reset_persistence_tracking()
+/obj/item/paper/sticky/proc/reset_persistence_tracking()
 	SSpersistence.forget_value(src, /datum/persistent/paper/sticky)
 	pixel_x = 0
 	pixel_y = 0
 
-/obj/item/weapon/paper/sticky/Destroy()
+/obj/item/paper/sticky/Destroy()
 	reset_persistence_tracking()
 	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
 	. = ..()
 
-/obj/item/weapon/paper/sticky/update_icon()
+/obj/item/paper/sticky/update_icon()
 	if(icon_state != "scrap")
 		icon_state = info ? "paper_words" : "paper"
 
 // Copied from duct tape.
-/obj/item/weapon/paper/sticky/attack_hand()
+/obj/item/paper/sticky/attack_hand()
 	. = ..()
 	if(!istype(loc, /turf))
 		reset_persistence_tracking()
 
-/obj/item/weapon/paper/sticky/afterattack(var/A, var/mob/user, var/flag, var/params)
+/obj/item/paper/sticky/afterattack(var/A, var/mob/user, var/flag, var/params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || icon_state == "scrap")
 		return

@@ -32,7 +32,7 @@
 //
 // The explosion cannot insta-kill anyone with 30% or more health.
 
-/obj/item/device/lightreplacer
+/obj/item/lightreplacer
 
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs or sheets of glass."
@@ -54,16 +54,16 @@
 	// when we get this many shards, we get a free bulb.
 	var/shards_required = 4
 
-/obj/item/device/lightreplacer/New()
+/obj/item/lightreplacer/New()
 	failmsg = "The [name]'s refill light blinks red."
 	..()
 
-/obj/item/device/lightreplacer/examine(mob/user)
+/obj/item/lightreplacer/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		. += "It has [uses] lights remaining."
 
-/obj/item/device/lightreplacer/attackby(obj/item/W, mob/user)
+/obj/item/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == "glass" || istype(W, /obj/item/stack/material/cyborg/glass))
 		var/obj/item/stack/G = W
 		if(uses >= max_uses)
@@ -76,9 +76,9 @@
 		else
 			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
 
-	if(istype(W, /obj/item/weapon/light))
+	if(istype(W, /obj/item/light))
 		var/new_bulbs = 0
-		var/obj/item/weapon/light/L = W
+		var/obj/item/light/L = W
 		if(L.status == 0) // LIGHT OKAY
 			if(uses < max_uses)
 				if(!user.unEquip(W))
@@ -95,14 +95,14 @@
 		to_chat(user, "You insert \the [L.name] into \the [src.name]. You have [uses] light\s remaining.")
 		return
 
-	if(istype(W, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = W
+	if(istype(W, /obj/item/storage))
+		var/obj/item/storage/S = W
 		var/found_lightbulbs = FALSE
 		var/replaced_something = TRUE
 
 		for(var/obj/item/I in S.contents)
-			if(istype(I,/obj/item/weapon/light))
-				var/obj/item/weapon/light/L = I
+			if(istype(I,/obj/item/light))
+				var/obj/item/light/L = I
 				found_lightbulbs = TRUE
 				if(src.uses >= max_uses)
 					break
@@ -126,7 +126,7 @@
 
 		to_chat(user, "<span class='notice'>You fill \the [src] with lights from \the [S].</span>")
 
-/obj/item/device/lightreplacer/attack_self(mob/user)
+/obj/item/lightreplacer/attack_self(mob/user)
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
@@ -141,22 +141,22 @@
 		selected_color = new_color
 		to_chat(usr, "The light color has been changed.")
 
-/obj/item/device/lightreplacer/update_icon()
+/obj/item/lightreplacer/update_icon()
 	icon_state = "lightreplacer[emagged]"
 
 
-/obj/item/device/lightreplacer/proc/Use(var/mob/user)
+/obj/item/lightreplacer/proc/Use(var/mob/user)
 
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	add_uses(-1)
 	return 1
 
 // Negative numbers will subtract
-/obj/item/device/lightreplacer/proc/add_uses(var/amount = 1)
+/obj/item/lightreplacer/proc/add_uses(var/amount = 1)
 	uses = min(max(uses + amount, 0), max_uses)
 
 
-/obj/item/device/lightreplacer/proc/AddShards(amount = 1)
+/obj/item/lightreplacer/proc/AddShards(amount = 1)
 	bulb_shards += amount
 	var/new_bulbs = round(bulb_shards / shards_required)
 	if(new_bulbs > 0)
@@ -164,13 +164,13 @@
 	bulb_shards = bulb_shards % shards_required
 	return new_bulbs
 
-/obj/item/device/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
+/obj/item/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
 	charge += amount
 	if(charge > 6)
 		add_uses(1)
 		charge = 0
 
-/obj/item/device/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
+/obj/item/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
 
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
@@ -186,7 +186,7 @@
 				target.installed_light = null //Remove the light!
 				target.update()
 
-			var/obj/item/weapon/light/L2 = new target.light_type()
+			var/obj/item/light/L2 = new target.light_type()
 			L2.brightness_color = selected_color
 			target.insert_bulb(L2) //Call the insertion proc.
 			target.update()
@@ -202,7 +202,7 @@
 		to_chat(U, "There is a working [target.get_fitting_name()] already inserted.")
 		return
 
-/obj/item/device/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
 	playsound(src, "sparks", 100, 1)
 	update_icon()
@@ -210,7 +210,7 @@
 
 //Can you use it?
 
-/obj/item/device/lightreplacer/proc/CanUse(var/mob/living/user)
+/obj/item/lightreplacer/proc/CanUse(var/mob/living/user)
 	src.add_fingerprint(user)
 	//Not sure what else to check for. Maybe if clumsy?
 	if(uses > 0)

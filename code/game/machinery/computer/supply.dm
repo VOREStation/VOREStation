@@ -7,7 +7,7 @@
 	name = "supply ordering console"
 	desc = "Request crates from here! Delivery not guaranteed."
 	icon_screen = "request"
-	circuit = /obj/item/weapon/circuitboard/supplycomp
+	circuit = /obj/item/circuitboard/supplycomp
 	var/authorization = 0
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
@@ -24,7 +24,7 @@
 	icon_screen = "supply"
 	light_color = "#b88b2e"
 	req_access = list(access_cargo)
-	circuit = /obj/item/weapon/circuitboard/supplycomp/control
+	circuit = /obj/item/circuitboard/supplycomp/control
 	authorization = SUP_SEND_SHUTTLE | SUP_ACCEPT_ORDERS
 
 /obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
@@ -246,7 +246,7 @@
 				idname = usr.real_name
 				idrank = "Stationbound synthetic"
 
-			var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+			var/obj/item/paper/reqform = new /obj/item/paper(loc)
 			reqform.name = "Requisition Form - [S.name]"
 			reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
 			reqform.info += "INDEX: #[SSsupply.ordernum]<br>"
@@ -299,7 +299,7 @@
 				idname = usr.real_name
 				idrank = "Stationbound synthetic"
 
-			var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+			var/obj/item/paper/reqform = new /obj/item/paper(loc)
 			reqform.name = "Requisition Form - [S.name]"
 			reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
 			reqform.info += "INDEX: #[SSsupply.ordernum]<br>"

@@ -2,14 +2,14 @@
 	var/hand = null
 	var/obj/item/l_hand = null
 	var/obj/item/r_hand = null
-	var/obj/item/weapon/back = null//Human/Monkey
-	var/obj/item/weapon/tank/internal = null//Human/Monkey
+	var/obj/item/back = null//Human/Monkey
+	var/obj/item/tank/internal = null//Human/Monkey
 	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
 /mob/living/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
 	// Try put it in their backpack
-	if(istype(src.back,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/backpack = src.back
+	if(istype(src.back,/obj/item/storage))
+		var/obj/item/storage/backpack = src.back
 		if(backpack.can_be_inserted(newitem, 1))
 			if(user_initiated)
 				backpack.handle_item_insertion(newitem)
@@ -18,7 +18,7 @@
 			return src.back
 
 	// Try to place it in any item that can store stuff, on the mob.
-	for(var/obj/item/weapon/storage/S in src.contents)
+	for(var/obj/item/storage/S in src.contents)
 		if (S.can_be_inserted(newitem, 1))
 			if(user_initiated)
 				S.handle_item_insertion(newitem)
@@ -121,15 +121,15 @@
 		L = list()
 
 	// Lefty grab!
-	if (istype(l_hand, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = l_hand
+	if (istype(l_hand, /obj/item/grab))
+		var/obj/item/grab/G = l_hand
 		L |= G.affecting
 		if(mobchain_limit-- > 0)
 			G.affecting?.ret_grab(L, mobchain_limit) // Recurse! They can update the list. It's the same instance as ours.
 
 	// Righty grab!
-	if (istype(r_hand, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = r_hand
+	if (istype(r_hand, /obj/item/grab))
+		var/obj/item/grab/G = r_hand
 		L |= G.affecting
 		if(mobchain_limit-- > 0)
 			G.affecting?.ret_grab(L, mobchain_limit) // Same as lefty!
@@ -264,7 +264,7 @@
 	data["slots"] = slots
 
 	data["internals"] = host.internals
-	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.back, /obj/item/weapon/tank)
+	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.back, /obj/item/tank)
 
 	return data
 
@@ -340,7 +340,7 @@
 	data["specialSlots"] = specialSlots
 
 	data["internals"] = H.internals
-	data["internalsValid"] = (istype(H.wear_mask, /obj/item/clothing/mask) || istype(H.head, /obj/item/clothing/head/helmet/space)) && (istype(H.back, /obj/item/weapon/tank) || istype(H.belt, /obj/item/weapon/tank) || istype(H.s_store, /obj/item/weapon/tank))
+	data["internalsValid"] = (istype(H.wear_mask, /obj/item/clothing/mask) || istype(H.head, /obj/item/clothing/head/helmet/space)) && (istype(H.back, /obj/item/tank) || istype(H.belt, /obj/item/tank) || istype(H.s_store, /obj/item/tank))
 
 	data["sensors"] = FALSE
 	if(istype(suit) && suit.has_sensor == 1)

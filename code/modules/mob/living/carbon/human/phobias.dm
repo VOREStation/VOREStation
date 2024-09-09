@@ -34,11 +34,11 @@
 			fear = min((fear + 4), 102)
 	if(phobias & CLAUSTROPHOBIA_MINOR)
 		if(!isturf(loc))
-			if(!istype(loc,/obj/belly) && !istype(loc,/obj/item/weapon/holder/micro))
+			if(!istype(loc,/obj/belly) && !istype(loc,/obj/item/holder/micro))
 				fear = min((fear + 3), 102)
 	if(phobias & CLAUSTROPHOBIA_MAJOR) //Also activated inside of a belly
 		if(!isturf(loc))
-			if(!istype(loc,/obj/item/weapon/holder/micro))
+			if(!istype(loc,/obj/item/holder/micro))
 				fear = min((fear + 3), 102)
 	if(phobias & ANATIDAEPHOBIA)
 		for (var/mob/living/simple_mob/animal/space/goose/G in viewers(src, null))
@@ -49,7 +49,7 @@
 			if(!istype(D) || D.stat)
 				continue
 			fear = min((fear + 3), 102)
-		for(var/obj/item/weapon/bikehorn/rubberducky/R in view(7, src))
+		for(var/obj/item/bikehorn/rubberducky/R in view(7, src))
 			if(!istype(R))
 				continue
 			fear = min((fear + 2), 102)

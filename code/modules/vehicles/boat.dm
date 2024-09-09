@@ -36,7 +36,7 @@
 	..(newloc, MAT_SIFWOOD)
 
 // Oars, which must be held inhand while in a boat to move it.
-/obj/item/weapon/oar
+/obj/item/oar
 	name = "oar"
 	icon = 'icons/obj/vehicles.dmi'
 	desc = "Used to provide propulsion to a boat."
@@ -45,10 +45,10 @@
 	force = 12
 	var/datum/material/material = null
 
-/obj/item/weapon/oar/sifwood/New(newloc, material_name)
+/obj/item/oar/sifwood/New(newloc, material_name)
 	..(newloc, MAT_SIFWOOD)
 
-/obj/item/weapon/oar/New(newloc, material_name)
+/obj/item/oar/New(newloc, material_name)
 	..(newloc)
 	if(!material_name)
 		material_name = "wood"

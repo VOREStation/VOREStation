@@ -65,7 +65,7 @@ var/list/ai_status_emotions = list(
 	name = "AI display"
 	anchored = TRUE
 	density = FALSE
-	circuit =  /obj/item/weapon/circuitboard/ai_status_display
+	circuit =  /obj/item/circuitboard/ai_status_display
 
 	var/mode = 0	// 0 = Blank
 					// 1 = AI emoticon

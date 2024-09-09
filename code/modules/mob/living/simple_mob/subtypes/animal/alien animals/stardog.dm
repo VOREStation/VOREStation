@@ -628,7 +628,7 @@
 	name = "dense fur"
 	desc = "Silky and soft, but too thick to pass or cut!"
 
-/obj/structure/flora/tree/fur/wall/attackby(obj/item/weapon/W, mob/living/user)
+/obj/structure/flora/tree/fur/wall/attackby(obj/item/W, mob/living/user)
 	return
 
 /area/redgate/stardog
@@ -667,23 +667,23 @@
 	var/mob_chance = 10
 	var/treasure_chance = 50
 	var/list/valid_treasure = list(
-		/obj/item/weapon/cell/infinite = 5,
-		/obj/item/weapon/cell/device/weapon/recharge/alien = 5,
-		/obj/item/device/nif/authentic = 1,
+		/obj/item/cell/infinite = 5,
+		/obj/item/cell/device/weapon/recharge/alien = 5,
+		/obj/item/nif/authentic = 1,
 		/obj/item/toy/bosunwhistle = 50,
 		/obj/random/mouseray = 50,
-		/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random = 10,
-		/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced = 5,
+		/obj/item/gun/energy/mouseray/metamorphosis/advanced/random = 10,
+		/obj/item/gun/energy/mouseray/metamorphosis/advanced = 5,
 		/obj/item/clothing/mask/gas/voice = 25,
-		/obj/item/device/perfect_tele = 15,
-		/obj/item/weapon/gun/energy/sizegun = 50,
-		/obj/item/device/slow_sizegun = 50,
+		/obj/item/perfect_tele = 15,
+		/obj/item/gun/energy/sizegun = 50,
+		/obj/item/slow_sizegun = 50,
 		/obj/item/capture_crystal/master = 5,
 		/obj/item/capture_crystal/ultra = 15,
 		/obj/item/capture_crystal/great = 25,
 		/obj/item/capture_crystal/random = 50,
 		/obj/random/pizzabox = 10,	//The dog intercepted your pizza voucher delivery, what a scamp
-		/obj/item/weapon/bluespace_harpoon = 15,
+		/obj/item/bluespace_harpoon = 15,
 		/obj/random/awayloot = 5,
 		/obj/random/cash = 15,
 		/obj/random/cash/big = 10,
@@ -1360,7 +1360,7 @@
 
 /obj/effect/dog_teleporter/food_gobbler/Crossed(atom/movable/AM)
 
-	if(istype(AM, /obj/item/weapon/reagent_containers/food))
+	if(istype(AM, /obj/item/reagent_containers/food))
 		gobble_food(AM)
 	else return	..()
 
@@ -1467,13 +1467,13 @@
 		if(I.unacidable || I.throwing || I.is_incorporeal())
 			return FALSE
 		var/food = FALSE
-		if(istype(I,/obj/item/weapon/reagent_containers/food))
+		if(istype(I,/obj/item/reagent_containers/food))
 			food = TRUE
 		if(prob(95))	//Give people a chance to pick them up
 			return TRUE
 		I.visible_message("<span class='warning'>\The [I] sizzles...</span>")
 		var/yum = I.digest_act()	//Glorp
-		if(istype(I , /obj/item/weapon/card))
+		if(istype(I , /obj/item/card))
 			yum = 0		//No, IDs do not have infinite nutrition, thank you
 		if(mobstuff && linked_mob && yum)
 			if(food)
@@ -1523,7 +1523,7 @@
 				if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 					var/obj/item/organ/internal/mmi_holder/MMI = W
 					MMI.removed()
-				if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif) || istype(W, /obj/item/organ))
+				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif) || istype(W, /obj/item/organ))
 					continue
 				H.drop_from_inventory(W)
 			if(linked_mob)

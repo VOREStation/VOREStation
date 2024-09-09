@@ -1,5 +1,5 @@
 //A portable analyzer, for research borgs.  This is better then giving them a gripper which can hold anything and letting them use the normal analyzer.
-/obj/item/weapon/portable_destructive_analyzer
+/obj/item/portable_destructive_analyzer
 	name = "Portable Destructive Analyzer"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "portable_analyzer"
@@ -10,13 +10,13 @@
 	var/datum/research/techonly/files 	//The device uses the same datum structure as the R&D computer/server.
 										//This analyzer can only store tech levels, however.
 
-	var/obj/item/weapon/loaded_item	//What is currently inside the analyzer.
+	var/obj/item/loaded_item	//What is currently inside the analyzer.
 
-/obj/item/weapon/portable_destructive_analyzer/New()
+/obj/item/portable_destructive_analyzer/New()
 	..()
 	files = new /datum/research/techonly(src) //Setup the research data holder.
 
-/obj/item/weapon/portable_destructive_analyzer/attack_self(user as mob)
+/obj/item/portable_destructive_analyzer/attack_self(user as mob)
 	var/response = tgui_alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
 							Syncing to the research server will send the data that is stored inside to research.\n\
 							Ejecting will place the loaded item onto the floor.",
@@ -80,7 +80,7 @@
 			to_chat(user, "<span class='filter_notice'>The [src] is already empty.</span>")
 
 
-/obj/item/weapon/portable_destructive_analyzer/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/portable_destructive_analyzer/afterattack(var/atom/target, var/mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -100,13 +100,13 @@
 		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
 
-/obj/item/weapon/portable_scanner
+/obj/item/portable_scanner
 	name = "Portable Resonant Analyzer"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "portable_scanner"
 	desc = "An advanced scanning device used for analyzing objects without completely annihilating them for science. Unfortunately, it has no connection to any database like its angrier cousin."
 
-/obj/item/weapon/portable_scanner/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/portable_scanner/afterattack(var/atom/target, var/mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -124,45 +124,45 @@
 				to_chat(user, "<span class='notice'>\The [I] cannot be scanned by \the [src].</span>")
 
 //This is used to unlock other borg covers.
-/obj/item/weapon/card/robot //This is not a child of id cards, as to avoid dumb typechecks on computers.
+/obj/item/card/robot //This is not a child of id cards, as to avoid dumb typechecks on computers.
 	name = "access code transmission device"
 	icon_state = "id-robot"
 	desc = "A circuit grafted onto the bottom of an ID card.  It is used to transmit access codes into other robot chassis, \
 	allowing you to lock and unlock other robots' panels."
 
 	var/dummy_card = null
-	var/dummy_card_type = /obj/item/weapon/card/id/science/roboticist/dummy_cyborg
+	var/dummy_card_type = /obj/item/card/id/science/roboticist/dummy_cyborg
 
-/obj/item/weapon/card/robot/Initialize()
+/obj/item/card/robot/Initialize()
 	. = ..()
 	dummy_card = new dummy_card_type(src)
 
-/obj/item/weapon/card/robot/Destroy()
+/obj/item/card/robot/Destroy()
 	qdel(dummy_card)
 	dummy_card = null
 	..()
 
-/obj/item/weapon/card/robot/GetID()
+/obj/item/card/robot/GetID()
 	return dummy_card
 
-/obj/item/weapon/card/robot/syndi
-	dummy_card_type = /obj/item/weapon/card/id/syndicate/dummy_cyborg
+/obj/item/card/robot/syndi
+	dummy_card_type = /obj/item/card/id/syndicate/dummy_cyborg
 
-/obj/item/weapon/card/id/science/roboticist/dummy_cyborg
+/obj/item/card/id/science/roboticist/dummy_cyborg
 	access = list(access_robotics)
 
-/obj/item/weapon/card/id/syndicate/dummy_cyborg/Initialize()
+/obj/item/card/id/syndicate/dummy_cyborg/Initialize()
 	. = ..()
 	access |= access_robotics
 
 //A harvest item for serviceborgs.
-/obj/item/weapon/robot_harvester
+/obj/item/robot_harvester
 	name = "auto harvester"
 	desc = "A hand-held harvest tool that resembles a sickle.  It uses energy to cut plant matter very efficently."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "autoharvester"
 
-/obj/item/weapon/robot_harvester/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/robot_harvester/afterattack(var/atom/target, var/mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -180,11 +180,11 @@
 // Click on table to unload, click on item to load. Otherwise works identically to a tray.
 // Unlike the base item "tray", robotrays ONLY pick up food, drinks and condiments.
 
-/obj/item/weapon/tray/robotray
+/obj/item/tray/robotray
 	name = "RoboTray"
 	desc = "An autoloading tray specialized for carrying refreshments."
 
-/obj/item/weapon/tray/robotray/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/tray/robotray/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if ( !target )
@@ -198,7 +198,7 @@
 
 		var addedSomething = 0
 
-		for(var/obj/item/weapon/reagent_containers/food/I in pickup)
+		for(var/obj/item/reagent_containers/food/I in pickup)
 
 
 			if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
@@ -269,12 +269,12 @@
 // A special pen for service droids. Can be toggled to switch between normal writting mode, and paper rename mode
 // Allows service droids to rename paper items.
 
-/obj/item/weapon/pen/robopen
+/obj/item/pen/robopen
 	desc = "A black ink printing attachment with a paper naming mode."
 	name = "Printing Pen"
 	var/mode = 1
 
-/obj/item/weapon/pen/robopen/attack_self(mob/user as mob)
+/obj/item/pen/robopen/attack_self(mob/user as mob)
 
 	var/choice = tgui_alert(usr, "Would you like to change colour or mode?", "Change What?", list("Colour","Mode","Cancel"))
 	if(!choice || choice == "Cancel")
@@ -300,7 +300,7 @@
 // Copied over from paper's rename verb
 // see code\modules\paperwork\paper.dm line 62
 
-/obj/item/weapon/pen/robopen/proc/RenamePaper(mob/user, obj/item/weapon/paper/paper)
+/obj/item/pen/robopen/proc/RenamePaper(mob/user, obj/item/paper/paper)
 	if ( !user || !paper )
 		return
 	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32), 32)
@@ -315,7 +315,7 @@
 	return
 
 //TODO: Add prewritten forms to dispense when you work out a good way to store the strings.
-/obj/item/weapon/form_printer
+/obj/item/form_printer
 	name = "paperwork printer"
 	//name = "paper dispenser"
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -326,10 +326,10 @@
 			)
 	item_state = "sheet-metal"
 
-/obj/item/weapon/form_printer/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/form_printer/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	return
 
-/obj/item/weapon/form_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/form_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 
 	if(!target || !flag)
 		return
@@ -337,10 +337,10 @@
 	if(istype(target,/obj/structure/table))
 		deploy_paper(get_turf(target))
 
-/obj/item/weapon/form_printer/attack_self(mob/user as mob)
+/obj/item/form_printer/attack_self(mob/user as mob)
 	deploy_paper()
 
-/obj/item/weapon/form_printer/proc/deploy_paper()
+/obj/item/form_printer/proc/deploy_paper()
 	var/choice = tgui_alert(usr, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
 	if(!choice || choice == "Cancel")
 		return
@@ -350,7 +350,7 @@
 			spawn(22)
 				var/turf/T = get_turf(src)
 				T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
-				new /obj/item/weapon/paper(T)
+				new /obj/item/paper(T)
 		if ("Form")
 			var/list/content = print_form()
 			if(!content)
@@ -360,9 +360,9 @@
 			spawn(22)
 				var/turf/T = get_turf(src)
 				T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
-				new /obj/item/weapon/paper(T, content[1], content[2])
+				new /obj/item/paper(T, content[1], content[2])
 
-/obj/item/weapon/form_printer/proc/print_form()
+/obj/item/form_printer/proc/print_form()
 	var/list/paper_forms = list("Empty", "Command", "Security", "Supply", "Science", "Medical", "Engineering", "Service", "Exploration", "Event", "Other", "Mercenary")
 	var/list/command_paper_forms = list("COM-0002: Dismissal Order", "COM-0003: Job Change Request", "COM-0004: ID Replacement Request", "COM-0005: Access Change Order", "COM-0006: Formal Complaint", "COM-0009: Visitor Permit", "COM-0012: Personnel Request Form", "COM-0013: Employee of the Month Nomination Form")
 	var/list/security_paper_forms = list("SEC-1001: Shift-Start Checklist", "SEC-1002: Patrol Assignment Sheet", "SEC-1003: Incident Report", "SEC-1004: Arrest Report", "SEC-1005: Arrest Warrant", "SEC-1006: Search Warrant", "SEC-1007: Forensics Investigation Report", "SEC-1008: Interrogation Report", "SEC-1009: Witness Statement", "SEC-1010: Armory Inventory", "SEC-1011: Armory Equipment Request", "SEC-1012: Armory Equipment Deployment", "SEC-1013: Weapon Permit", "SEC-1014: Injunction", "SEC-1015: Deputization Waiver")
@@ -442,7 +442,7 @@
 			return
 	return list(select_form(split[1], split[2]), split[1] + ": " + split[2])
 
-/obj/item/weapon/form_printer/proc/select_form(paperid, name)
+/obj/item/form_printer/proc/select_form(paperid, name)
 	var/content = ""
 	var/revision = ""
 	switch(paperid)
@@ -587,7 +587,7 @@
 			revision = @{"[field]"}
 	return create_form(paperid, name, content, revision)
 
-/obj/item/weapon/form_printer/proc/create_form(paperid, name, content, revision)
+/obj/item/form_printer/proc/create_form(paperid, name, content, revision)
 	var/header = "\[center]\[br]\[small]" + paperid + "\[/small]\[br]\[h1]\[u]" + name + "\[/u]\[/h1]\[br]\[logo]\[br]\[br]\[station]\[br]\[/center]\[br]\[hr]\[br]\[b]Station Time:\[/b] \[date], \[time]\[br]\[br]"
 	var/footer = "\[hr]\[br]\[center]\[small]Stamp here.\[/small]\[/center]\[br]\[small]" + revision + "\[/small]"
 	return header + content + footer
@@ -661,7 +661,7 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
-/obj/item/weapon/inflatable_dispenser
+/obj/item/inflatable_dispenser
 	name = "inflatables dispenser"
 	desc = "Hand-held device which allows rapid deployment and removal of inflatables."
 	icon = 'icons/obj/storage.dmi'
@@ -674,23 +674,23 @@
 	var/max_doors = 2
 	var/mode = 0 // 0 - Walls   1 - Doors
 
-/obj/item/weapon/inflatable_dispenser/robot
+/obj/item/inflatable_dispenser/robot
 	w_class = ITEMSIZE_HUGE
 	stored_walls = 10
 	stored_doors = 5
 	max_walls = 10
 	max_doors = 5
 
-/obj/item/weapon/inflatable_dispenser/examine(var/mob/user)
+/obj/item/inflatable_dispenser/examine(var/mob/user)
 	. = ..()
 	. += "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored."
 	. += "It is set to deploy [mode ? "doors" : "walls"]"
 
-/obj/item/weapon/inflatable_dispenser/attack_self()
+/obj/item/inflatable_dispenser/attack_self()
 	mode = !mode
 	to_chat(usr, "<span class='filter_notice'>You set \the [src] to deploy [mode ? "doors" : "walls"].</span>")
 
-/obj/item/weapon/inflatable_dispenser/afterattack(var/atom/A, var/mob/user)
+/obj/item/inflatable_dispenser/afterattack(var/atom/A, var/mob/user)
 	..(A, user)
 	if(!user)
 		return
@@ -702,7 +702,7 @@
 	if(istype(A, /obj/item/inflatable) || istype(A, /obj/structure/inflatable))
 		pick_up(A, user)
 
-/obj/item/weapon/inflatable_dispenser/proc/try_deploy_inflatable(var/turf/T, var/mob/living/user)
+/obj/item/inflatable_dispenser/proc/try_deploy_inflatable(var/turf/T, var/mob/living/user)
 	if(mode) // Door deployment
 		if(!stored_doors)
 			to_chat(user, "<span class='filter_notice'>\The [src] is out of doors!</span>")
@@ -724,7 +724,7 @@
 	playsound(T, 'sound/items/zip.ogg', 75, 1)
 	to_chat(user, "<span class='filter_notice'>You deploy the inflatable [mode ? "door" : "wall"]!</span>")
 
-/obj/item/weapon/inflatable_dispenser/proc/pick_up(var/obj/A, var/mob/living/user)
+/obj/item/inflatable_dispenser/proc/pick_up(var/obj/A, var/mob/living/user)
 	if(istype(A, /obj/structure/inflatable))
 		if(!istype(A, /obj/structure/inflatable/door))
 			if(stored_walls >= max_walls)

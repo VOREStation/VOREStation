@@ -466,7 +466,7 @@
 	name = "phoron window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
 	icon_state = "preview_phoron"
-	shardtype = /obj/item/weapon/material/shard/phoron
+	shardtype = /obj/item/material/shard/phoron
 	glasstype = /obj/item/stack/material/glass/phoronglass
 	maximal_heat = T0C + 2000
 	damage_per_fire_tick = 1.0
@@ -479,7 +479,7 @@
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
 	icon_state = "preview_rphoron"
 	basestate = "rwindow"
-	shardtype = /obj/item/weapon/material/shard/phoron
+	shardtype = /obj/item/material/shard/phoron
 	glasstype = /obj/item/stack/material/glass/phoronrglass
 	reinf = 1
 	maximal_heat = T0C + 4000
@@ -542,7 +542,7 @@
 	desc = "A borosilicate alloy window. It seems to be quite strong."
 	basestate = "preview_phoron"
 	icon_state = "pwindow"
-	shardtype = /obj/item/weapon/material/shard/phoron
+	shardtype = /obj/item/material/shard/phoron
 	glasstype = /obj/item/stack/material/glass/phoronglass
 	maximal_heat = T0C + 2000
 	damage_per_fire_tick = 1.0
@@ -555,7 +555,7 @@
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
 	basestate = "preview_rphoron"
 	icon_state = "rpwindow"
-	shardtype = /obj/item/weapon/material/shard/phoron
+	shardtype = /obj/item/material/shard/phoron
 	glasstype = /obj/item/stack/material/glass/phoronrglass
 	reinf = 1
 	maximal_heat = T0C + 4000

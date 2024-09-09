@@ -72,7 +72,7 @@ var/warrant_uid = 0
 	// The following actions will only be possible if the user has an ID with security access equipped. This is in line with modular computer framework's authentication methods,
 	// which also use RFID scanning to allow or disallow access to some functions. Anyone can view warrants, editing requires ID. This also prevents situations where you show a tablet
 	// to someone who is to be arrested, which allows them to change the stuff there.
-	var/obj/item/weapon/card/id/I = usr.GetIdCard()
+	var/obj/item/card/id/I = usr.GetIdCard()
 	if(!istype(I) || !I.registered_name || !(access_security in I.access))
 		to_chat(usr, "Authentication error: Unable to locate ID with appropriate access to allow this operation.")
 		return

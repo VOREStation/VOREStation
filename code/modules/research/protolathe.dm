@@ -2,7 +2,7 @@
 	name = "Protolathe"
 	icon_state = "protolathe"
 	flags = OPENCONTAINER
-	circuit = /obj/item/weapon/circuitboard/protolathe
+	circuit = /obj/item/circuitboard/protolathe
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 5000
@@ -87,14 +87,14 @@
 
 /obj/machinery/r_n_d/protolathe/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/reagent_containers/glass/G in component_parts)
+	for(var/obj/item/reagent_containers/glass/G in component_parts)
 		T += G.reagents.maximum_volume
 	create_reagents(T)
 	max_material_storage = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		max_material_storage += M.rating * 75000
 	T = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T += M.rating
 	mat_efficiency = max(1 - (T - 2) / 8, 0.2)
 	speed = T / 2
@@ -134,7 +134,7 @@
 		return
 	if(O.is_open_container())
 		return 1
-	if(istype(O, /obj/item/weapon/gripper/no_use/loader))
+	if(istype(O, /obj/item/gripper/no_use/loader))
 		return 0		//Sheet loaders weren't finishing attack(), this prevents the message "You can't stuff that gripper into this" without preventing the rest of the attack sequence from finishing
 	if(panel_open)
 		to_chat(user, "<span class='notice'>You can't load \the [src] while it's opened.</span>")

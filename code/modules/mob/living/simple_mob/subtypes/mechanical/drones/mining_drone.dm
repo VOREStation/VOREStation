@@ -46,35 +46,35 @@
 	say_list_type = /datum/say_list/malf_drone/mining
 
 	tame_items = list(
-	/obj/item/weapon/ore/verdantium = 90,
-	/obj/item/weapon/ore/hydrogen = 90,
-	/obj/item/weapon/ore/osmium = 70,
-	/obj/item/weapon/ore/diamond = 70,
-	/obj/item/weapon/ore/gold = 55,
-	/obj/item/weapon/ore/silver = 55,
-	/obj/item/weapon/ore/lead = 40,
-	/obj/item/weapon/ore/marble = 30,
-	/obj/item/weapon/ore/coal = 25,
-	/obj/item/weapon/ore/iron = 25,
-	/obj/item/weapon/ore/glass = 15,
-	/obj/item/weapon/ore = 5
+	/obj/item/ore/verdantium = 90,
+	/obj/item/ore/hydrogen = 90,
+	/obj/item/ore/osmium = 70,
+	/obj/item/ore/diamond = 70,
+	/obj/item/ore/gold = 55,
+	/obj/item/ore/silver = 55,
+	/obj/item/ore/lead = 40,
+	/obj/item/ore/marble = 30,
+	/obj/item/ore/coal = 25,
+	/obj/item/ore/iron = 25,
+	/obj/item/ore/glass = 15,
+	/obj/item/ore = 5
 	)
 
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
-	var/obj/item/weapon/storage/bag/ore/my_storage = null
+	var/obj/item/storage/bag/ore/my_storage = null
 
 	var/last_search = 0
 	var/search_cooldown = 5 SECONDS
 	var/ignoreunarmed = TRUE
-	var/allowedtools = list(/obj/item/weapon/pickaxe, /obj/item/weapon/gun/energy/kinetic_accelerator, /obj/item/weapon/gun/magnetic/matfed/phoronbore, /obj/item/weapon/kinetic_crusher, /obj/item/weapon/melee/shock_maul)
+	var/allowedtools = list(/obj/item/pickaxe, /obj/item/gun/energy/kinetic_accelerator, /obj/item/gun/magnetic/matfed/phoronbore, /obj/item/kinetic_crusher, /obj/item/melee/shock_maul)
 
 /mob/living/simple_mob/mechanical/mining_drone/Initialize()
 	ion_trail = new
 	ion_trail.set_up(src)
 	ion_trail.start()
 
-	my_storage = new /obj/item/weapon/storage/bag/ore(src)
+	my_storage = new /obj/item/storage/bag/ore(src)
 	shields = new /obj/item/shield_projector/rectangle/automatic/drone(src)
 	return ..()
 
@@ -106,7 +106,7 @@
 
 		var/has_tool = FALSE
 		var/obj/item/I = H.get_active_hand()
-		if(!istype(I,/obj/item/weapon))
+		if(!istype(I,/obj/item))
 			if(ignoreunarmed)
 				return TRUE
 			else //just so they don't attack "miners" for having their mining gear in their offhand
@@ -155,7 +155,7 @@
 			if(my_storage.contents.len >= my_storage.max_storage_space)
 				break
 
-			if((locate(/obj/item/weapon/ore) in T) && prob(40))
+			if((locate(/obj/item/ore) in T) && prob(40))
 				src.Beam(T, icon_state = "holo_beam", time = 0.5 SECONDS)
 				my_storage.rangedload(T, src)
 
@@ -178,5 +178,5 @@
 /mob/living/simple_mob/mechanical/mining_drone/scavenger //more aggro version for the debris field, with a weaker weapon
 	name = "scavenger drone"
 	ignoreunarmed = FALSE
-	allowedtools = list(/obj/item/weapon/pickaxe)
+	allowedtools = list(/obj/item/pickaxe)
 	projectiletype = /obj/item/projectile/energy/excavate/weak

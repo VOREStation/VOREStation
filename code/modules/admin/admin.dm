@@ -1510,7 +1510,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 			var/replyorigin = tgui_input_text(src.owner, "Please specify who the fax is coming from", "Origin")
 
-			var/obj/item/weapon/paper/admin/P = new /obj/item/weapon/paper/admin( null ) //hopefully the null loc won't cause trouble for us
+			var/obj/item/paper/admin/P = new /obj/item/paper/admin( null ) //hopefully the null loc won't cause trouble for us
 			faxreply = P
 
 			P.admindatum = src
@@ -1520,9 +1520,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 			P.adminbrowse()
 
 
-/datum/admins/var/obj/item/weapon/paper/admin/faxreply // var to hold fax replies in
+/datum/admins/var/obj/item/paper/admin/faxreply // var to hold fax replies in
 
-/datum/admins/proc/faxCallback(var/obj/item/weapon/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
+/datum/admins/proc/faxCallback(var/obj/item/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
 	var/customname = tgui_input_text(src.owner, "Pick a title for the report", "Title")
 
 	P.name = "[P.origin] - [customname]"
@@ -1551,7 +1551,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 		if(!P.stamped)
 			P.stamped = new
-		P.stamped += /obj/item/weapon/stamp/centcomm
+		P.stamped += /obj/item/stamp/centcomm
 		P.add_overlay(stampoverlay)
 
 	var/obj/item/rcvdcopy

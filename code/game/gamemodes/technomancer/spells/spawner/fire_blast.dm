@@ -3,10 +3,10 @@
 	desc = "Causes a disturbance on a targeted tile.  After two and a half seconds, it will explode in a small radius around it.  Be \
 	sure to not be close to the disturbance yourself."
 	cost = 175
-	obj_path = /obj/item/weapon/spell/spawner/fire_blast
+	obj_path = /obj/item/spell/spawner/fire_blast
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/spawner/fire_blast
+/obj/item/spell/spawner/fire_blast
 	name = "fire blast"
 	desc = "Leading your booms might be needed."
 	icon_state = "fire_blast"
@@ -14,7 +14,7 @@
 	aspect = ASPECT_FIRE
 	spawner_type = /obj/effect/temporary_effect/fire_blast
 
-/obj/item/weapon/spell/spawner/fire_blast/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/spawner/fire_blast/on_ranged_cast(atom/hit_atom, mob/user)
 	if(within_range(hit_atom) && pay_energy(2000))
 		adjust_instability(12)
 		..() // Makes the booms happen.

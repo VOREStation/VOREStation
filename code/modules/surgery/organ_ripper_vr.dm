@@ -12,7 +12,7 @@
 	max_duration = 80
 	excludes_steps = list(/datum/surgery_step/generic/cut_open) //These things can already do the first step!
 
-/datum/surgery_step/generic/ripper/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/weapon/surgical/scalpel/ripper/tool)
+/datum/surgery_step/generic/ripper/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/surgical/scalpel/ripper/tool)
 
 	if (!..())
 		return 0
@@ -30,7 +30,7 @@
 /datum/surgery_step/generic/ripper/tear_vessel
 	surgery_name = "Tear Blood Vessel"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel/ripper = 100
+	/obj/item/surgical/scalpel/ripper = 100
 	)
 
 /datum/surgery_step/generic/ripper/tear_vessel/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -61,7 +61,7 @@
 /datum/surgery_step/generic/ripper/break_bone
 	surgery_name = "Break Skeletal Structure"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel/ripper = 100
+	/obj/item/surgical/scalpel/ripper = 100
 	)
 
 /datum/surgery_step/generic/ripper/break_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -90,7 +90,7 @@
 /datum/surgery_step/generic/ripper/destroy_organ
 	surgery_name = "Mutilate Organ"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel/ripper = 100
+	/obj/item/surgical/scalpel/ripper = 100
 	)
 
 /datum/surgery_step/generic/ripper/destroy_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -162,7 +162,7 @@
 	surgery_name = "Rip Out Organ"
 
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel/ripper = 100
+	/obj/item/surgical/scalpel/ripper = 100
 	)
 
 	priority = 3

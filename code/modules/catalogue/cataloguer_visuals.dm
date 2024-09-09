@@ -2,7 +2,7 @@
 
 // Draws a box showing the limits of movement while scanning something.
 // Only the client supplied will see the box.
-/obj/item/device/cataloguer/proc/draw_box(atom/A, box_size, client/C)
+/obj/item/cataloguer/proc/draw_box(atom/A, box_size, client/C)
 	. = list()
 	// Things moved with pixel_[x|y] will move the box, so this is to correct that.
 	var/pixel_x_correction = -A.pixel_x
@@ -47,7 +47,7 @@
 #undef ICON_SIZE
 
 // Draws an individual segment of the box.
-/obj/item/device/cataloguer/proc/draw_line(atom/A, line_dir, line_pixel_x, line_pixel_y, client/C)
+/obj/item/cataloguer/proc/draw_line(atom/A, line_dir, line_pixel_x, line_pixel_y, client/C)
 	var/image/line = image(icon = 'icons/effects/effects.dmi', loc = A, icon_state = "stripes", dir = line_dir)
 	line.pixel_x = line_pixel_x
 	line.pixel_y = line_pixel_y
@@ -58,11 +58,11 @@
 	return line
 
 // Removes the box that was generated before from the client.
-/obj/item/device/cataloguer/proc/delete_box(list/box_segments, client/C)
+/obj/item/cataloguer/proc/delete_box(list/box_segments, client/C)
 	for(var/i in box_segments)
 		C.images -= i
 		qdel(i)
 
-/obj/item/device/cataloguer/proc/color_box(list/box_segments, new_color, new_time)
+/obj/item/cataloguer/proc/color_box(list/box_segments, new_color, new_time)
 	for(var/i in box_segments)
 		animate(i, color = new_color, time = new_time)

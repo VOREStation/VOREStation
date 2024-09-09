@@ -98,9 +98,9 @@
 // Handle being clicked, perhaps with something to devour
 //
 /mob/living/proc/vore_attackby(obj/item/I, mob/user)
-	//Handle case: /obj/item/weapon/grab
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	//Handle case: /obj/item/grab
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		var/mob/living/carbon/victim = G.affecting
 
 		//Has to be aggressive grab, has to be living click-er and non-silicon grabbed
@@ -156,9 +156,9 @@
 				else
 					log_debug("[attacker] attempted to feed [G.affecting] to [src] ([type]) but it failed.")
 
-	//Handle case: /obj/item/weapon/holder
-	else if(istype(I, /obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = I
+	//Handle case: /obj/item/holder
+	else if(istype(I, /obj/item/holder))
+		var/obj/item/holder/H = I
 
 		if(!isliving(user))
 			return FALSE // return FALSE to continue upper procs
@@ -171,8 +171,8 @@
 		else
 			log_debug("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
 
-	//Handle case: /obj/item/device/radio/beacon
-	else if(istype(I,/obj/item/device/radio/beacon))
+	//Handle case: /obj/item/radio/beacon
+	else if(istype(I,/obj/item/radio/beacon))
 		var/confirm = tgui_alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", list("Yes!", "Cancel"))
 		if(confirm == "Yes!")
 			var/obj/belly/B = tgui_input_list(usr, "Which belly?", "Select A Belly", vore_organs)
@@ -558,9 +558,9 @@
 			B.owner.update_icons()
 
 	//You're in a dogborg!
-	else if(istype(loc, /obj/item/device/dogborg/sleeper))
+	else if(istype(loc, /obj/item/dogborg/sleeper))
 		var/mob/living/silicon/pred = loc.loc //Thing holding the belly!
-		var/obj/item/device/dogborg/sleeper/belly = loc //The belly!
+		var/obj/item/dogborg/sleeper/belly = loc //The belly!
 
 		var/confirm = tgui_alert(src, "You're in a cyborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != belly)
@@ -601,13 +601,13 @@
 		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob.")
 		revert_mob_tf()
 
-	else if(istype(loc, /obj/item/weapon/holder/micro) && (istype(loc.loc, /obj/machinery/microwave)))
+	else if(istype(loc, /obj/item/holder/micro) && (istype(loc.loc, /obj/machinery/microwave)))
 		forceMove(get_turf(src))
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of a microwave.")
 
 	//You are in food and for some reason can't resist out
-	else if(istype(loc, /obj/item/weapon/reagent_containers/food))
-		var/obj/item/weapon/reagent_containers/food/F = src.loc
+	else if(istype(loc, /obj/item/reagent_containers/food))
+		var/obj/item/reagent_containers/food/F = src.loc
 		if(F.food_inserted_micros)
 			F.food_inserted_micros -= src
 		src.forceMove(get_turf(F))
@@ -721,8 +721,8 @@
 	user.visible_message(success_msg, range = message_range)
 
 	// Actually shove prey into the belly.
-	if(istype(prey.loc, /obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = prey.loc
+	if(istype(prey.loc, /obj/item/holder))
+		var/obj/item/holder/H = prey.loc
 		for(var/mob/living/M in H.contents)
 			belly.nom_mob(M, user)
 			if(M.loc == H) // In case nom_mob failed somehow.
@@ -872,15 +872,15 @@
 		to_chat(src, "<span class='warning'>You can't eat that so casually!</span>")
 		return
 
-	if(istype(I, /obj/item/device/paicard))
-		var/obj/item/device/paicard/palcard = I
+	if(istype(I, /obj/item/paicard))
+		var/obj/item/paicard/palcard = I
 		var/mob/living/silicon/pai/pocketpal = palcard.pai
 		if(pocketpal && (!pocketpal.devourable))
 			to_chat(src, "<span class='warning'>\The [pocketpal] doesn't allow you to eat it.</span>")
 			return
 
-	if(istype(I, /obj/item/weapon/book))
-		var/obj/item/weapon/book/book = I
+	if(istype(I, /obj/item/book))
+		var/obj/item/book/book = I
 		if(book.carved)
 			to_chat(src, "<span class='warning'>\The [book] is not worth eating without the filling.</span>")
 			return
@@ -890,8 +890,8 @@
 			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
 			message_admins("[key_name(src)] has attempted to ingest an uplink item. ([src ? ADMIN_JMP(src) : "null"])")
 			return
-		if(istype(I,/obj/item/device/pda))
-			var/obj/item/device/pda/P = I
+		if(istype(I,/obj/item/pda))
+			var/obj/item/pda/P = I
 			if(P.owner)
 				var/watching = FALSE
 				for(var/mob/living/carbon/human/H in view(src))
@@ -930,9 +930,9 @@
 
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 
-		if(istype(I,/obj/item/device/flashlight/flare) || istype(I,/obj/item/weapon/flame/match) || istype(I,/obj/item/weapon/storage/box/matches))
+		if(istype(I,/obj/item/flashlight/flare) || istype(I,/obj/item/flame/match) || istype(I,/obj/item/storage/box/matches))
 			to_chat(src, "<span class='notice'>You can taste the flavor of spicy cardboard.</span>")
-		else if(istype(I,/obj/item/device/flashlight/glowstick))
+		else if(istype(I,/obj/item/flashlight/glowstick))
 			to_chat(src, "<span class='notice'>You found out the glowy juice only tastes like regret.</span>")
 		else if(istype(I,/obj/item/trash/cigbutt))
 			to_chat(src, "<span class='notice'>You can taste the flavor of bitter ash. Classy.</span>")
@@ -942,38 +942,38 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of burning ash. Spicy!</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and funny looks.</span>")
-		else if(istype(I,/obj/item/weapon/paper))
+		else if(istype(I,/obj/item/paper))
 			to_chat(src, "<span class='notice'>You can taste the dry flavor of bureaucracy.</span>")
-		else if(istype(I,/obj/item/weapon/book))
+		else if(istype(I,/obj/item/book))
 			to_chat(src, "<span class='notice'>You can taste the dry flavor of knowledge.</span>")
-		else if(istype(I,/obj/item/weapon/dice) || istype(I,/obj/item/roulette_ball))
+		else if(istype(I,/obj/item/dice) || istype(I,/obj/item/roulette_ball))
 			to_chat(src, "<span class='notice'>You can taste the bitter flavor of cheating.</span>")
-		else if(istype(I,/obj/item/weapon/lipstick))
+		else if(istype(I,/obj/item/lipstick))
 			to_chat(src, "<span class='notice'>You can taste the flavor of couture and style. Toddler at the make-up bag style.</span>")
-		else if(istype(I,/obj/item/weapon/soap))
+		else if(istype(I,/obj/item/soap))
 			to_chat(src, "<span class='notice'>You can taste the bitter flavor of verbal purification.</span>")
-		else if(istype(I,/obj/item/weapon/spacecash) || istype(I,/obj/item/weapon/storage/wallet))
+		else if(istype(I,/obj/item/spacecash) || istype(I,/obj/item/storage/wallet))
 			to_chat(src, "<span class='notice'>You can taste the flavor of wealth and reckless waste.</span>")
-		else if(istype(I,/obj/item/weapon/broken_bottle) || istype(I,/obj/item/weapon/material/shard))
+		else if(istype(I,/obj/item/broken_bottle) || istype(I,/obj/item/material/shard))
 			to_chat(src, "<span class='notice'>You can taste the flavor of pain. This can't possibly be healthy for your guts.</span>")
-		else if(istype(I,/obj/item/weapon/light))
-			var/obj/item/weapon/light/L = I
+		else if(istype(I,/obj/item/light))
+			var/obj/item/light/L = I
 			if(L.status == LIGHT_BROKEN)
 				to_chat(src, "<span class='notice'>You can taste the flavor of pain. This can't possibly be healthy for your guts.</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of really bad ideas.</span>")
-		else if(istype(I,/obj/item/weapon/bikehorn/tinytether))
+		else if(istype(I,/obj/item/bikehorn/tinytether))
 			to_chat(src, "<span class='notice'>You feel a rush of power swallowing such a large, err, tiny structure.</span>")
-		else if(istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
+		else if(istype(I,/obj/item/mmi/digital/posibrain) || istype(I,/obj/item/aicard))
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship. Or maybe it is something else.</span>")
-		else if(istype(I,/obj/item/device/paicard))
+		else if(istype(I,/obj/item/paicard))
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship.</span>")
-			var/obj/item/device/paicard/ourcard = I
+			var/obj/item/paicard/ourcard = I
 			if(ourcard.pai && ourcard.pai.client && isbelly(ourcard.loc))
 				var/obj/belly/B = ourcard.loc
 				to_chat(ourcard.pai, "<span class= 'notice'><B>[B.desc]</B></span>")
-		else if(istype(I,/obj/item/weapon/reagent_containers/food))
-			var/obj/item/weapon/reagent_containers/food/F = I
+		else if(istype(I,/obj/item/reagent_containers/food))
+			var/obj/item/reagent_containers/food/F = I
 			if(!F.reagents.total_volume)
 				to_chat(src, "<span class='notice'>You can taste the flavor of garbage and leftovers. Delicious?</span>")
 			else
@@ -1029,8 +1029,8 @@
 
 	var/list/nom = null
 	var/datum/material/M = null
-	if(istype(I, /obj/item/weapon/ore)) //Raw unrefined ore. Some things are just better untempered!
-		var/obj/item/weapon/ore/O = I
+	if(istype(I, /obj/item/ore)) //Raw unrefined ore. Some things are just better untempered!
+		var/obj/item/ore/O = I
 		//List in list, define by material property of ore in code/mining/modules/ore.dm.
 		//50 nutrition = 5 ore to get 250 nutrition. 250 is the beginning of the 'well fed' range.
 		var/list/rock_munch = list(
@@ -1052,7 +1052,7 @@
 		if(O.material in rock_munch)
 			nom	= rock_munch[O.material]
 			M 	= name_to_material[O.material]
-		else if(istype(O, /obj/item/weapon/ore/slag))
+		else if(istype(O, /obj/item/ore/slag))
 			nom	= list("nutrition" = 15, "remark" = "You taste dusty, crunchy mistakes. This is a travesty... but at least it is an edible one.",  "WTF" = FALSE)
 		else //Random rock.
 			nom = list("nutrition" = 0,  "remark" = "You taste stony, gravelly goodness - but you crave something with actual nutritional value.", "WTF" = FALSE)
@@ -1093,7 +1093,7 @@
 			I	= stack
 			nom	= refined_taste[O.default_type]
 			M	= name_to_material[O.default_type]
-	else if(istype(I, /obj/item/weapon/entrepreneur/crystal))
+	else if(istype(I, /obj/item/entrepreneur/crystal))
 		nom = list("nutrition" = 100,  "remark" = "The crytal was particularly brittle and not difficult to break apart, but the inside was incredibly flavoursome. Though devoid of any actual healing power, it seems to be very nutritious!", "WTF" = FALSE)
 
 	if(nom) //Ravenous 1-4, snackage confirmed. Clear for chowdown, over.

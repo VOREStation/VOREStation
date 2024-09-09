@@ -5,23 +5,23 @@
 	modtype = "Lost"
 	lawchannel = "State"
 	braintype = "Drone"
-	idcard_type = /obj/item/weapon/card/id/lost
+	idcard_type = /obj/item/card/id/lost
 	icon_selected = FALSE
 	restrict_modules_to = list("Lost")
 	var/law_retries = 5
 
 /mob/living/silicon/robot/lost/init()
-	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
-	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
-	module = new /obj/item/weapon/robot_module/robot/lost(src)
+	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
+	module = new /obj/item/robot_module/robot/lost(src)
 	cut_overlays()
 	init_id()
 
 	updatename("Lost")
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
+		cell = new /obj/item/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
 	scramble_hardware(20)
 

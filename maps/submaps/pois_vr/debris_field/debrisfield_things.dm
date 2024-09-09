@@ -127,12 +127,12 @@
 
 
 
-/obj/item/device/taperecorder/tourist
+/obj/item/taperecorder/tourist
 	name = "Body-Microphone"
 	desc = "A sort of liability device worn by security on luxury yachts. Records everything they say. Strange that the captain was wearing it."
-	mytape = /obj/item/device/tape/touristguard
+	mytape = /obj/item/tape/touristguard
 
-/obj/item/device/tape/touristguard/New()
+/obj/item/tape/touristguard/New()
 	storedinfo += "01:37  *sounds of metal creaking"
 	storedinfo += "01:55  *sounds of distant screaming!"
 	storedinfo += "01:37  *Sounds of hissing, both airlocks and spiders alike. Screaming continues."
@@ -187,7 +187,7 @@
 				prob(1);/obj/item/slime_extract/grey,
 				prob(1);/obj/item/slime_extract/rainbow)
 
-/obj/item/weapon/paper/robo_escape_pod
+/obj/item/paper/robo_escape_pod
 	name = "faded note"
 	info = {"<i>This paper is old and the shaky writing has faded, rendering it difficult to read.</i><br>\
 whichever poor bastard finds this pod<br>\
@@ -217,7 +217,7 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/tanker_escort
 	say_list_type = /datum/say_list/merc/drone/tanker_escort
 	corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/tanker
-	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/weapon/material/knife/tacknife = 100)
+	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/material/knife/tacknife = 100)
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -240,7 +240,7 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	say_list_type = /datum/say_list/merc/drone/tanker_escort
 	corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/tanker
 	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100,
-	/obj/item/weapon/shield/energy = 100, /obj/item/weapon/melee/energy/sword/color = 20)
+	/obj/item/shield/energy = 100, /obj/item/melee/energy/sword/color = 20)
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -259,7 +259,7 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/tanker_escort
 	say_list_type = /datum/say_list/merc/drone/tanker_escort
 	corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/tanker
-	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/weapon/gun/projectile/automatic/c20r = 100)
+	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/gun/projectile/automatic/c20r = 100)
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0

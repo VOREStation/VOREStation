@@ -1,5 +1,5 @@
 //replaces our stun baton code with /tg/station's code
-/obj/item/weapon/melee/baton
+/obj/item/melee/baton
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
@@ -19,21 +19,21 @@
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/status = 0		//whether the thing is on or not
-	var/obj/item/weapon/cell/bcell = null
+	var/obj/item/cell/bcell = null
 	var/hitcost = 240
 	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
 	var/grip_safety = TRUE
 	var/taped_safety = FALSE
 
-/obj/item/weapon/melee/baton/New()
+/obj/item/melee/baton/New()
 	..()
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/get_cell()
+/obj/item/melee/baton/get_cell()
 	return bcell
 
-/obj/item/weapon/melee/baton/MouseDrop(obj/over_object as obj)
+/obj/item/melee/baton/MouseDrop(obj/over_object as obj)
 	if(!canremove)
 		return
 
@@ -65,13 +65,13 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
+/obj/item/melee/baton/loaded/New() //this one starts with a cell pre-installed.
 	..()
-	bcell = new/obj/item/weapon/cell/device/weapon(src)
+	bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/proc/deductcharge()
+/obj/item/melee/baton/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on
 		if(bcell)
 			if(bcell.checked_use(hitcost))
@@ -80,13 +80,13 @@
 				return 0
 	return null
 
-/obj/item/weapon/melee/baton/proc/powercheck()
+/obj/item/melee/baton/proc/powercheck()
 	if(bcell)
 		if(bcell.charge < hitcost)
 			status = 0
 			update_icon()
 
-/obj/item/weapon/melee/baton/update_icon()
+/obj/item/melee/baton/update_icon()
 	if(status)
 		icon_state = "[initial(name)]_active"
 	else if(!bcell)
@@ -99,14 +99,14 @@
 	else
 		set_light(0)
 
-/obj/item/weapon/melee/baton/dropped()
+/obj/item/melee/baton/dropped()
 	..()
 	if(status && grip_safety && !taped_safety)
 		status = 0
 		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
 	update_icon()
 
-/obj/item/weapon/melee/baton/examine(mob/user)
+/obj/item/melee/baton/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
@@ -117,11 +117,11 @@
 		if(!bcell)
 			. += "<span class='warning'>The baton does not have a power source installed.</span>"
 
-/obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
+/obj/item/melee/baton/attackby(obj/item/W, mob/user)
 	if(use_external_power)
 		return
-	if(istype(W, /obj/item/weapon/cell))
-		if(istype(W, /obj/item/weapon/cell/device))
+	if(istype(W, /obj/item/cell))
+		if(istype(W, /obj/item/cell/device))
 			if(!bcell)
 				user.drop_item()
 				W.loc = src
@@ -132,19 +132,19 @@
 				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
 		else
 			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
-	if(istype(W, /obj/item/weapon/tape_roll) || istype(W, /obj/item/taperoll))
+	if(istype(W, /obj/item/tape_roll) || istype(W, /obj/item/taperoll))
 		if(grip_safety && !taped_safety)	//no point letting people wrap tape around the grips of batons without a safety
 			to_chat(user, "<span class='notice'>You firmly wrap tape around the baton's grip, disabling the safety system.</span>")
 			playsound(src, 'sound/effects/tape.ogg',25)
 			taped_safety = TRUE
 		else if(grip_safety && taped_safety)
 			to_chat(user, "<span class='notice'>The grip safety has already been taped down.</span>")
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
+	if(istype(W, /obj/item/tool/screwdriver))
 		if(taped_safety)
 			to_chat(user, "<span class='notice'>You painstakingly scrape away the tape over the grip safety.</span>")
 			taped_safety = FALSE
 
-/obj/item/weapon/melee/baton/attack_hand(mob/user as mob)
+/obj/item/melee/baton/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(bcell)
 			bcell.update_icon()
@@ -158,7 +158,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/melee/baton/attack_self(mob/user)
+/obj/item/melee/baton/attack_self(mob/user)
 	if(use_external_power)
 		//try to find our power cell
 		var/mob/living/silicon/robot/R = loc
@@ -177,7 +177,7 @@
 			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/baton/attack(mob/M, mob/user)
+/obj/item/melee/baton/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='danger'>You accidentally hit yourself with the [src]!</span>")
 		user.Weaken(30)
@@ -186,7 +186,7 @@
 	deductcharge(hitcost)
 	return ..()
 
-/obj/item/weapon/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -224,18 +224,18 @@
 			H.forcesay(hit_appends)
 	powercheck()
 
-/obj/item/weapon/melee/baton/emp_act(severity)
+/obj/item/melee/baton/emp_act(severity)
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
 //secborg stun baton module
-/obj/item/weapon/melee/baton/robot
+/obj/item/melee/baton/robot
 	hitcost = 500
 	use_external_power = TRUE
 
 //Makeshift stun baton. Replacement for stun gloves.
-/obj/item/weapon/melee/baton/cattleprod
+/obj/item/melee/baton/cattleprod
 	name = "stunprod"
 	desc = "An improvised stun baton."
 	icon_state = "stunprod_nocell"
@@ -249,9 +249,9 @@
 	slot_flags = null
 	grip_safety = FALSE
 
-/obj/item/weapon/melee/baton/cattleprod/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/cell))
-		if(!istype(W, /obj/item/weapon/cell/device))
+/obj/item/melee/baton/cattleprod/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/cell))
+		if(!istype(W, /obj/item/cell/device))
 			if(!bcell)
 				user.drop_item()
 				W.loc = src
@@ -263,7 +263,7 @@
 		else
 			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
 
-/obj/item/weapon/melee/baton/get_description_interaction()
+/obj/item/melee/baton/get_description_interaction()
 	var/list/results = list()
 
 	if(bcell)
@@ -276,7 +276,7 @@
 	return results
 
 // Rare version of a baton that causes lesser lifeforms to really hate the user and attack them.
-/obj/item/weapon/melee/baton/shocker
+/obj/item/melee/baton/shocker
 	name = "shocker"
 	desc = "A device that appears to arc electricity into a target to incapacitate or otherwise hurt them, similar to a stun baton.  It looks inefficent."
 	description_info = "Hitting a lesser lifeform with this while it is on will compel them to attack you above other nearby targets.  Otherwise \
@@ -287,11 +287,11 @@
 	agonyforce = 25 // Less efficent than a regular baton.
 	attack_verb = list("poked")
 
-/obj/item/weapon/melee/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	..(target, user, hit_zone)
 	if(status && target.has_AI())
 		target.taunt(user)
 
 // Borg version, for the lost module.
-/obj/item/weapon/melee/baton/shocker/robot
+/obj/item/melee/baton/shocker/robot
 	use_external_power = TRUE

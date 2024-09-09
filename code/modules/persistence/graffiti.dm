@@ -44,7 +44,7 @@
 
 /obj/effect/decal/writing/attackby(var/obj/item/thing, var/mob/user)
 	if(thing.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/welder = thing.get_welder()
+		var/obj/item/weldingtool/welder = thing.get_welder()
 		if(welder.isOn() && welder.remove_fuel(0,user) && do_after(user, 5, src) && !QDELETED(src))
 			playsound(src.loc, welder.usesound, 50, 1)
 			user.visible_message("<b>\The [user]</b> clears away some graffiti.")

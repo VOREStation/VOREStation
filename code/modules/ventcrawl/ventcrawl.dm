@@ -5,10 +5,10 @@ var/list/ventcrawl_machinery = list(
 
 // Vent crawling whitelisted items, whoo
 /mob/living/var/list/can_enter_vent_with = list(
-	/obj/item/weapon/implant,
-	/obj/item/device/radio/borg,
-	/obj/item/device/radio/headset/mob_headset,
-	/obj/item/weapon/holder,
+	/obj/item/implant,
+	/obj/item/radio/borg,
+	/obj/item/radio/headset/mob_headset,
+	/obj/item/holder,
 	/obj/machinery/camera,
 	/obj/belly,
 	/obj/screen,

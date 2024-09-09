@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/item/weapon/reagent_containers/food/snacks/chip/nacho/cheese,
+/obj/item/reagent_containers/food/snacks/chip/nacho/cheese,
 /turf/simulated/floor/outdoors/grass/seasonal/nomobs,
 /area/template_noop)
 "b" = (
-/obj/item/weapon/reagent_containers/food/snacks/chip/nacho/salsa,
+/obj/item/reagent_containers/food/snacks/chip/nacho/salsa,
 /turf/simulated/floor/outdoors/grass/seasonal/nomobs,
 /area/template_noop)
 "c" = (
@@ -18,11 +18,11 @@
 	folded_desc = "A worn picnic blanket with a rough texture. One could swear it seems to be covered in strange, otter-like fur";
 	name = "weathered picnic blanket"
 	},
-/obj/item/weapon/storage/toolbox/lunchbox/cat/filled{
+/obj/item/storage/toolbox/lunchbox/cat/filled{
 	pixel_x = 6;
 	pixel_y = 9
 	},
-/obj/item/weapon/reagent_containers/food/snacks/fruitsalad,
+/obj/item/reagent_containers/food/snacks/fruitsalad,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
 /area/template_noop)
 "h" = (
@@ -37,7 +37,7 @@
 "i" = (
 /obj/structure/table/wooden_reinforced,
 /obj/random/pizzabox,
-/obj/item/weapon/storage/toolbox/lunchbox/mars/filled{
+/obj/item/storage/toolbox/lunchbox/mars/filled{
 	pixel_x = -7;
 	pixel_y = 11
 	},
@@ -65,7 +65,7 @@
 	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
 	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
 	},
-/obj/item/weapon/ore/diamond{
+/obj/item/ore/diamond{
 	name = "porl"
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
@@ -91,7 +91,7 @@
 	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
 	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")
 	},
-/obj/item/weapon/material/twohanded/spear/foam{
+/obj/item/material/twohanded/spear/foam{
 	desc = "The only way you can hunt things with this is by tickling them to death.";
 	name = "squishy foam spear"
 	},
@@ -111,7 +111,7 @@
 /area/template_noop)
 "N" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/storage/toolbox/lunchbox/heart/filled{
+/obj/item/storage/toolbox/lunchbox/heart/filled{
 	pixel_x = -4;
 	pixel_y = -6
 	},
@@ -133,7 +133,7 @@
 /area/template_noop)
 "S" = (
 /obj/structure/table/bench/wooden,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /obj/random/mob/wildscugs{
 	newdesc = "A wild catslug enjoying the simpler things in life: a picnic!";
 	newname = list("happy catslug", "rotund catslug", "anxious catslug", "angry Catslug", "content Catslug", "sad catslug")

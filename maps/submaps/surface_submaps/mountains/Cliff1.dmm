@@ -1,6 +1,6 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/template_noop)
-"c" = (/obj/item/weapon/ore,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"c" = (/obj/item/ore,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "d" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "e" = (/obj/structure/cliff/automatic/corner,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "f" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 5},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)

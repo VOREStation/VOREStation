@@ -4,17 +4,17 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/submap/oldhotel)
 "aJ" = (
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid,
+/obj/item/storage/firstaid,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "bb" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "bQ" = (
@@ -23,7 +23,7 @@
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "bW" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/template_noop,
 /area/submap/oldhotel)
 "cA" = (
@@ -41,7 +41,7 @@
 /area/submap/oldhotel)
 "dn" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/everburn,
+/obj/item/flame/candle/everburn,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "dr" = (
@@ -111,7 +111,7 @@
 /area/submap/oldhotel)
 "je" = (
 /obj/structure/closet/cabinet,
-/obj/item/device/binoculars/spyglass,
+/obj/item/binoculars/spyglass,
 /obj/random/contraband,
 /obj/random/contraband,
 /obj/random/maintenance/medical,
@@ -145,20 +145,20 @@
 /area/submap/oldhotel)
 "kW" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "lj" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "ly" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/mimedouble,
+/obj/item/bedsheet/mimedouble,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "lZ" = (
@@ -168,7 +168,7 @@
 /area/submap/oldhotel)
 "mr" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/cell/hyper,
+/obj/item/cell/hyper,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "mR" = (
@@ -179,7 +179,7 @@
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/oldhotel)
 "nG" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/oldhotel)
 "nZ" = (
@@ -192,8 +192,8 @@
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/oldhotel)
 "pi" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	icon_state = "medium";
 	pixel_x = 12;
 	pixel_y = 7
@@ -201,8 +201,8 @@
 /turf/template_noop,
 /area/submap/oldhotel)
 "pn" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	pixel_x = 7
 	},
 /turf/template_noop,
@@ -213,7 +213,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "rb" = (
-/obj/item/weapon/module/power_control,
+/obj/item/module/power_control,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "rK" = (
@@ -222,7 +222,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "rZ" = (
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /turf/template_noop,
@@ -242,20 +242,20 @@
 /area/submap/oldhotel)
 "tz" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "tE" = (
 /obj/structure/table/woodentable,
 /obj/random/coin,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/oldhotel)
 "tV" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "uF" = (
@@ -280,17 +280,17 @@
 /area/submap/oldhotel)
 "vA" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/telecube/randomized{
+/obj/item/telecube/randomized{
 	name = "Odd artifact"
 	},
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "vM" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	pixel_y = -6
 	},
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	pixel_x = 9
 	},
 /obj/structure/grille/broken/rustic,
@@ -303,7 +303,7 @@
 /area/submap/oldhotel)
 "vR" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/oldhotel)
 "wm" = (
@@ -312,9 +312,9 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/oldhotel)
 "wK" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard,
+/obj/item/material/shard{
 	icon_state = "medium";
 	pixel_x = 12;
 	pixel_y = 7
@@ -323,13 +323,13 @@
 /area/submap/oldhotel)
 "wV" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "wX" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	icon_state = "medium";
 	pixel_x = 12;
 	pixel_y = 7
@@ -354,9 +354,9 @@
 /turf/simulated/wall/wood,
 /area/submap/oldhotel)
 "zO" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/structure/grille/broken/rustic,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium";
 	pixel_x = 12;
 	pixel_y = 7
@@ -369,7 +369,7 @@
 /area/submap/oldhotel)
 "Ac" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "AO" = (
@@ -378,13 +378,13 @@
 /area/submap/oldhotel)
 "AU" = (
 /obj/structure/table/woodentable,
-/obj/item/device/tape,
+/obj/item/tape,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "AZ" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/candle,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a stupid tresure hunt task, that thing is not taking us anywhere. Go on and have fun finding a waste of time.";
 	name = "Wrinkled sheet of paper"
 	},
@@ -406,7 +406,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/oldhotel)
 "CS" = (
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "Di" = (
@@ -463,17 +463,17 @@
 /area/submap/oldhotel)
 "GV" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "Ik" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
@@ -501,9 +501,9 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/oldhotel)
 "Lg" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/structure/grille/broken/rustic,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
@@ -548,14 +548,14 @@
 /area/submap/oldhotel)
 "Qv" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/obj/item/weapon/pen,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/pen,
+/obj/item/pen,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "Qw" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /obj/random/cash,
 /obj/machinery/light/small,
 /turf/simulated/floor/wood/virgo3b,
@@ -572,7 +572,7 @@
 /area/submap/oldhotel)
 "Sf" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/yellowdouble,
+/obj/item/bedsheet/yellowdouble,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "Sy" = (
@@ -583,9 +583,9 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/submap/oldhotel)
 "SL" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard,
+/obj/item/material/shard{
 	icon_state = "medium";
 	pixel_x = 12;
 	pixel_y = 7
@@ -605,13 +605,13 @@
 /area/submap/oldhotel)
 "Uw" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/book/manual/chef_recipes,
+/obj/item/book/manual/chef_recipes,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "UU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/lighter/zippo/royal,
-/obj/item/weapon/lipstick/random,
+/obj/item/flame/lighter/zippo/royal,
+/obj/item/lipstick/random,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "Vf" = (
@@ -649,7 +649,7 @@
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)
 "WH" = (
-/obj/item/device/flashlight{
+/obj/item/flashlight{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -660,7 +660,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "YQ" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/structure/grille/broken/rustic,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/oldhotel)

@@ -1,7 +1,7 @@
 /mob/living/
 	var/summoned = 0
 
-/obj/item/weapon/spell/summon
+/obj/item/spell/summon
 	name = "summon template"
 	desc = "Chitter chitter."
 	cast_methods = CAST_RANGED | CAST_USE
@@ -11,7 +11,7 @@
 	var/energy_cost = 0
 	var/instability_cost = 0
 
-/obj/item/weapon/spell/summon/on_ranged_cast(atom/hit_atom, mob/living/user)
+/obj/item/spell/summon/on_ranged_cast(atom/hit_atom, mob/living/user)
 	var/turf/T = get_turf(hit_atom)
 	if(summoned_mob_type && core.summoned_mobs.len < core.max_summons && within_range(hit_atom) && pay_energy(energy_cost))
 		var/obj/effect/E = new(T)
@@ -32,12 +32,12 @@
 			log_and_message_admins("has summoned \a [L] at [T.x],[T.y],[T.z].")
 			user.adjust_instability(instability_cost)
 
-/obj/item/weapon/spell/summon/on_use_cast(mob/living/user)
+/obj/item/spell/summon/on_use_cast(mob/living/user)
 	if(summon_options.len)
 		var/choice = tgui_input_list(user, "Choose a creature to kidnap from somewhere!", "Summon", summon_options)
 		if(choice)
 			summoned_mob_type = summon_options[choice]
 
 // Called when a new mob is summoned, override for special behaviour.
-/obj/item/weapon/spell/summon/proc/on_summon(var/mob/living/summoned)
+/obj/item/spell/summon/proc/on_summon(var/mob/living/summoned)
 	return

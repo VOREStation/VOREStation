@@ -56,7 +56,7 @@
 	organ_names = /decl/mob_organ_names/fish
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/ray
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/ray
 
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/chill
 	mob_bump_flag = 0

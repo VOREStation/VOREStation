@@ -6,11 +6,11 @@
 	enhancement_desc = "Blink distance is increased greatly."
 	spell_power_desc = "Blink distance is scaled up with more spell power."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/blink
+	obj_path = /obj/item/spell/blink
 	ability_icon_state = "tech_blink"
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/blink
+/obj/item/spell/blink
 	name = "blink"
 	desc = "Teleports you or someone else a short distance away."
 	icon_state = "blink"
@@ -53,7 +53,7 @@
 		new /obj/effect/effect/sparks(starting)
 	return
 
-/obj/item/weapon/spell/blink/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/blink/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(!within_range(AM))
@@ -72,7 +72,7 @@
 		else
 			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")
 
-/obj/item/weapon/spell/blink/on_use_cast(mob/user)
+/obj/item/spell/blink/on_use_cast(mob/user)
 	if(!allowed_to_teleport())
 		to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
 		return
@@ -86,7 +86,7 @@
 	else
 		to_chat(user, "<span class='warning'>You need more energy to blink yourself away!</span>")
 
-/obj/item/weapon/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
+/obj/item/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(!allowed_to_teleport())

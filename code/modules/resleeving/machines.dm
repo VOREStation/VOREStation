@@ -8,13 +8,13 @@
 	name = "grower pod"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
 						/datum/category_item/catalogue/technology/resleeving)
-	circuit = /obj/item/weapon/circuitboard/transhuman_clonepod
+	circuit = /obj/item/circuitboard/transhuman_clonepod
 
 //A full version of the pod
 /obj/machinery/clonepod/transhuman/full/Initialize()
 	. = ..()
 	for(var/i = 1 to container_limit)
-		containers += new /obj/item/weapon/reagent_containers/glass/bottle/biomass(src)
+		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
 
 /obj/machinery/clonepod/transhuman/growclone(var/datum/transhuman/body_record/current_project)
 	//Manage machine-specific stuff.
@@ -72,16 +72,16 @@
 	//Give breathing equipment if needed
 	if(current_project.breath_type != "oxygen")
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
-		var/obj/item/weapon/tank/tankpath
+		var/obj/item/tank/tankpath
 		if(current_project.breath_type == "phoron")
-			tankpath = /obj/item/weapon/tank/vox
+			tankpath = /obj/item/tank/vox
 		else
-			tankpath = text2path("/obj/item/weapon/tank/" + current_project.breath_type)
+			tankpath = text2path("/obj/item/tank/" + current_project.breath_type)
 
 		if(tankpath)
 			H.equip_to_slot_or_del(new tankpath(H), slot_back)
 			H.internal = H.back
-			if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
+			if(istype(H.internal,/obj/item/tank) && H.internals)
 				H.internals.icon_state = "internal1"
 
 	occupant = H
@@ -197,7 +197,7 @@
 						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/machines/synthpod.dmi'
 	icon_state = "pod_0"
-	circuit = /obj/item/weapon/circuitboard/transhuman_synthprinter
+	circuit = /obj/item/circuitboard/transhuman_synthprinter
 	density = TRUE
 	anchored = TRUE
 
@@ -214,10 +214,10 @@
 /obj/machinery/transhuman/synthprinter/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 	RefreshParts()
 	update_icon()
@@ -226,19 +226,19 @@
 
 	//Scanning modules reduce burn rating by 15 each
 	var/burn_rating = initial(burn_value)
-	for(var/obj/item/weapon/stock_parts/scanning_module/SM in component_parts)
+	for(var/obj/item/stock_parts/scanning_module/SM in component_parts)
 		burn_rating = burn_rating - (SM.rating*15)
 	burn_value = burn_rating
 
 	//Manipulators reduce brute by 10 each
 	var/brute_rating = initial(burn_value)
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		brute_rating = brute_rating - (M.rating*10)
 	brute_value = brute_rating
 
 	//Matter bins multiply the storage amount by their rating.
 	var/store_rating = initial(max_res_amount)
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		store_rating = store_rating * MB.rating
 	max_res_amount = store_rating
 
@@ -426,7 +426,7 @@
 						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
-	circuit = /obj/item/weapon/circuitboard/transhuman_resleever
+	circuit = /obj/item/circuitboard/transhuman_resleever
 	density = TRUE
 	opacity = 0
 	anchored = TRUE
@@ -442,23 +442,23 @@
 /obj/machinery/transhuman/resleever/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/console_screen(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 	RefreshParts()
 	update_icon()
 
 /obj/machinery/transhuman/resleever/RefreshParts()
 	var/scan_rating = 0
-	for(var/obj/item/weapon/stock_parts/scanning_module/SM in component_parts)
+	for(var/obj/item/stock_parts/scanning_module/SM in component_parts)
 		scan_rating += SM.rating
 	confuse_amount = (48 - scan_rating * 8)
 
 	var/manip_rating = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		manip_rating += M.rating
 	blur_amount = (48 - manip_rating * 8)
 
@@ -509,8 +509,8 @@
 		return
 	if(default_part_replacement(user, W))
 		return
-	if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		if(!ismob(G.affecting))
 			return
 		var/mob/M = G.affecting
@@ -518,8 +518,8 @@
 			qdel(G)
 			src.updateUsrDialog()
 			return //Don't call up else we'll get attack messsages
-	if(istype(W, /obj/item/device/paicard/sleevecard))
-		var/obj/item/device/paicard/sleevecard/C = W
+	if(istype(W, /obj/item/paicard/sleevecard))
+		var/obj/item/paicard/sleevecard/C = W
 		user.unEquip(C)
 		C.removePersonality()
 		qdel(C)
@@ -565,7 +565,7 @@
 		return 0
 
 	if(mode == 2 && sleevecards) //Card sleeving
-		var/obj/item/device/paicard/sleevecard/card = new /obj/item/device/paicard/sleevecard(get_turf(src))
+		var/obj/item/paicard/sleevecard/card = new /obj/item/paicard/sleevecard(get_turf(src))
 		card.sleeveInto(MR, db_key = db_key)
 		sleevecards--
 		return 1
@@ -600,7 +600,7 @@
 
 	//Re-supply a NIF if one was backed up with them.
 	if(MR.nif_path)
-		var/obj/item/device/nif/nif = new MR.nif_path(occupant,null,MR.nif_savedata)
+		var/obj/item/nif/nif = new MR.nif_path(occupant,null,MR.nif_savedata)
 		spawn(0)			//Delay to not install software before NIF is fully installed
 			for(var/path in MR.nif_software)
 				new path(nif)
@@ -613,7 +613,7 @@
 		occupant.dna.real_name = occupant.real_name
 
 	//Give them a backup implant
-	var/obj/item/weapon/implant/backup/new_imp = new()
+	var/obj/item/implant/backup/new_imp = new()
 	if(new_imp.handle_implant(occupant, BP_HEAD))
 		new_imp.post_implant(occupant)
 

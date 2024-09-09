@@ -22,7 +22,7 @@
 	attacktext = list("slashed")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
-	loot_list = list(/obj/item/weapon/melee/energy/sword/pirate = 100)
+	loot_list = list(/obj/item/melee/energy/sword/pirate = 100)
 
 	corpse = /obj/effect/landmark/mobcorpse/pirate
 
@@ -35,6 +35,6 @@
 	projectiletype = /obj/item/projectile/beam
 	projectilesound = 'sound/weapons/laser.ogg'
 
-	loot_list = list(/obj/item/weapon/gun/energy/laser = 100)
+	loot_list = list(/obj/item/gun/energy/laser = 100)
 
 	corpse = /obj/effect/landmark/mobcorpse/pirate/ranged

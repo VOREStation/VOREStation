@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/atmoscontrol
+/obj/item/circuitboard/atmoscontrol
 	name = "\improper Central Atmospherics Computer Circuitboard"
 	build_path = /obj/machinery/computer/atmoscontrol
 
@@ -10,7 +10,7 @@
 	light_color = "#00b000"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/atmoscontrol
+	circuit = /obj/item/circuitboard/atmoscontrol
 	req_access = list(access_ce)
 	var/list/monitored_alarm_ids = null
 	var/datum/tgui_module/atmos_control/atmos_control

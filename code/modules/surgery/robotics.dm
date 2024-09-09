@@ -32,8 +32,8 @@
 /datum/surgery_step/robotics/unscrew_hatch
 	surgery_name = "Unscrew Hatch"
 	allowed_tools = list(
-		/obj/item/weapon/coin = 50,
-		/obj/item/weapon/material/knife = 50
+		/obj/item/coin = 50,
+		/obj/item/material/knife = 50
 	)
 
 	allowed_procs = list(IS_SCREWDRIVER = 100)
@@ -72,8 +72,8 @@
 /datum/surgery_step/robotics/open_hatch
 	surgery_name = "Open Hatch"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/retractor = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
+		/obj/item/surgical/retractor = 100,
+		/obj/item/material/kitchen/utensil = 50
 	)
 
 	allowed_procs = list(IS_CROWBAR = 100)
@@ -110,8 +110,8 @@
 /datum/surgery_step/robotics/close_hatch
 	surgery_name = "Close Hatch"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/retractor = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
+		/obj/item/surgical/retractor = 100,
+		/obj/item/material/kitchen/utensil = 50
 	)
 
 	allowed_procs = list(IS_CROWBAR = 100)
@@ -149,8 +149,8 @@
 /datum/surgery_step/robotics/repair_brute
 	surgery_name = "Repair Robotic Brute"
 	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 100,
-		/obj/item/weapon/pickaxe/plasmacutter = 50
+		/obj/item/weldingtool = 100,
+		/obj/item/pickaxe/plasmacutter = 50
 	)
 
 	min_duration = 50
@@ -159,8 +159,8 @@
 /datum/surgery_step/robotics/repair_brute/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(istype(tool, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/welder = tool
+		if(istype(tool, /obj/item/weldingtool))
+			var/obj/item/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return 0
 		return affected && affected.open == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
@@ -241,7 +241,7 @@
 	surgery_name = "Fix Robotic Organ"
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
-	/obj/item/weapon/surgical/bonegel = 30, 		\
+	/obj/item/surgical/bonegel = 30, 		\
 	)
 
 	allowed_procs = list(IS_SCREWDRIVER = 100)
@@ -311,7 +311,7 @@
 /datum/surgery_step/robotics/detatch_organ_robotic
 	surgery_name = "Detach Robotic Organ"
 	allowed_tools = list(
-	/obj/item/device/multitool = 100
+	/obj/item/multitool = 100
 	)
 
 	min_duration = 90
@@ -435,7 +435,7 @@
 /datum/surgery_step/robotics/install_mmi
 	surgery_name = "Install MMI"
 	allowed_tools = list(
-	/obj/item/device/mmi = 100
+	/obj/item/mmi = 100
 	)
 
 	min_duration = 60
@@ -445,7 +445,7 @@
 	if(target_zone != BP_HEAD)
 		return
 
-	var/obj/item/device/mmi/M = tool
+	var/obj/item/mmi/M = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && affected.open == 3))
 		return 0
@@ -484,7 +484,7 @@
 	user.visible_message("<span class='notice'>[user] has installed \the [tool] into [target]'s [affected.name].</span>", \
 	"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
 
-	var/obj/item/device/mmi/M = tool
+	var/obj/item/mmi/M = tool
 	var/obj/item/organ/internal/mmi_holder/holder = new(target, 1)
 	target.internal_organs_by_name["brain"] = holder
 	user.drop_from_inventory(tool)
@@ -522,7 +522,7 @@
 /datum/surgery_step/robotics/install_nymph
 	surgery_name = "Install Nymph"
 	allowed_tools = list(
-	/obj/item/weapon/holder/diona = 100
+	/obj/item/holder/diona = 100
 	)
 
 	min_duration = 60
@@ -532,7 +532,7 @@
 	if(target_zone != BP_TORSO)
 		return
 
-	var/obj/item/weapon/holder/diona/N = tool
+	var/obj/item/holder/diona/N = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	if(!(affected && affected.open == 3))
@@ -574,7 +574,7 @@
 	user.visible_message("<span class='notice'>[user] has installed \the [tool] into [target]'s [affected.name].</span>", \
 	"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
 
-	var/obj/item/weapon/holder/diona/N = tool
+	var/obj/item/holder/diona/N = tool
 	var/obj/item/organ/internal/brain/cephalon/cephalon = new(target, 1)
 	target.internal_organs_by_name["brain"] = cephalon
 	var/mob/living/carbon/alien/diona/D = N.held_mob

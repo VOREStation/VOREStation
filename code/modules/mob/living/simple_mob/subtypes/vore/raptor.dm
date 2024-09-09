@@ -9,7 +9,7 @@
 	icon_rest = "raptorpurple"
 	faction = "raptor"
 	meat_amount = 40 //Big dog, lots of meat
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	old_x = -48
 	old_y = 0
 	vis_height = 92

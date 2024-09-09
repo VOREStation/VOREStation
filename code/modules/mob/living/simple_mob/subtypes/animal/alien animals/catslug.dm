@@ -28,8 +28,8 @@
 	health = 50
 	movement_cooldown = -1
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
-	holder_type = /obj/item/weapon/holder/catslug
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	holder_type = /obj/item/holder/catslug
 
 	response_help = "hugs"
 	response_disarm = "rudely paps"
@@ -63,37 +63,37 @@
 	allow_mind_transfer = TRUE
 
 	can_enter_vent_with = list(
-		/obj/item/weapon/implant,
-		/obj/item/device/radio/borg,
-		/obj/item/weapon/holder,
+		/obj/item/implant,
+		/obj/item/radio/borg,
+		/obj/item/holder,
 		/obj/machinery/camera,
 		/obj/belly,
 		/obj/screen,
 		/atom/movable/emissive_blocker,
-		/obj/item/weapon/material,
-		/obj/item/weapon/melee,
+		/obj/item/material,
+		/obj/item/melee,
 		/obj/item/stack/,
-		/obj/item/weapon/tool,
-		/obj/item/weapon/reagent_containers/food,
-		/obj/item/weapon/coin,
-		/obj/item/weapon/aliencoin,
-		/obj/item/weapon/ore,
-		/obj/item/weapon/disk/nuclear,
+		/obj/item/tool,
+		/obj/item/reagent_containers/food,
+		/obj/item/coin,
+		/obj/item/aliencoin,
+		/obj/item/ore,
+		/obj/item/disk/nuclear,
 		/obj/item/toy,
-		/obj/item/weapon/card,
-		/obj/item/device/radio,
-		/obj/item/device/perfect_tele_beacon,
-		/obj/item/weapon/clipboard,
-		/obj/item/weapon/paper,
-		/obj/item/weapon/pen,
+		/obj/item/card,
+		/obj/item/radio,
+		/obj/item/perfect_tele_beacon,
+		/obj/item/clipboard,
+		/obj/item/paper,
+		/obj/item/pen,
 		/obj/item/canvas,
 		/obj/item/paint_palette,
 		/obj/item/paint_brush,
-		/obj/item/device/camera,
-		/obj/item/weapon/photo,
-		/obj/item/device/camera_film,
-		/obj/item/device/taperecorder,
-		/obj/item/device/tape
+		/obj/item/camera,
+		/obj/item/photo,
+		/obj/item/camera_film,
+		/obj/item/taperecorder,
+		/obj/item/tape
 		)
 
 	vore_active = 1
@@ -146,11 +146,11 @@
 		drop_hat()
 	return ..()
 
-/mob/living/simple_mob/vore/alienanimals/catslug/attackby(var/obj/item/weapon/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/alienanimals/catslug/attackby(var/obj/item/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/clothing/head)) // Handle hat simulator.
 		give_hat(O, user)
 		return
-	else if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks))
+	else if(!istype(O, /obj/item/reagent_containers/food/snacks))
 		return ..()
 	if(resting)
 		to_chat(user, "<span class='notice'>\The [src] is napping, and doesn't respond to \the [O].</span>")
@@ -337,12 +337,12 @@
 	var/datum/say_list/S = holder.say_list
 	S.speak |= message
 
-/obj/item/weapon/holder/catslug
+/obj/item/holder/catslug
 	origin_tech = list(TECH_BIO = 2)
 	icon = 'icons/mob/alienanimals_x32.dmi'
 	item_state = "catslug"
 
-/obj/item/weapon/holder/catslug/Initialize(mapload, mob/held)
+/obj/item/holder/catslug/Initialize(mapload, mob/held)
 	. = ..()
 	color = held.color
 
@@ -387,7 +387,7 @@
 	icon_rest = "spaceslug_rest"
 	icon_dead = "spaceslug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/spaceslug)
-	holder_type = /obj/item/weapon/holder/catslug/custom/spaceslug
+	holder_type = /obj/item/holder/catslug/custom/spaceslug
 	say_list_type = /datum/say_list/catslug/custom/spaceslug
 
 	minbodytemp = 0				// Shamelessly stolen temp & atmos tolerances from the space cat.
@@ -457,7 +457,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/holder/catslug/custom/spaceslug
+/obj/item/holder/catslug/custom/spaceslug
 	item_state = "spaceslug"
 
 //Engineer catslug
@@ -487,7 +487,7 @@
 	icon_rest = "engislug_rest"
 	icon_dead = "engislug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/engislug)
-	holder_type = /obj/item/weapon/holder/catslug/custom/engislug
+	holder_type = /obj/item/holder/catslug/custom/engislug
 	say_list_type = /datum/say_list/catslug/custom/engislug
 	myid_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_construction, access_atmospherics)
 	siemens_coefficient = 0 		//Noodly fella's gone and built up an immunity from many small shocks
@@ -557,7 +557,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/holder/catslug/custom/engislug
+/obj/item/holder/catslug/custom/engislug
 	item_state = "engislug"
 
 //Security catslug
@@ -588,7 +588,7 @@
 	icon_rest = "gatslug_rest"
 	icon_dead = "gatslug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/gatslug)
-	holder_type = /obj/item/weapon/holder/catslug/custom/gatslug
+	holder_type = /obj/item/holder/catslug/custom/gatslug
 	maxHealth = 75
 	health = 75
 	say_list_type = /datum/say_list/catslug/custom/gatslug
@@ -609,7 +609,7 @@
 /datum/say_list/catslug/custom/gatslug
 	speak = list("Have any flashbangs?", "Valids!", "Heard spiders?", "What is that?", "Freeze!", "What are you doing?", "How did you get here?", "Red alert means big bangsticks.", "No being naughty now.", "WAOW!", "Who ate all the donuts?")
 
-/obj/item/weapon/holder/catslug/custom/gatslug
+/obj/item/holder/catslug/custom/gatslug
 	item_state = "gatslug"
 
 //Medical catslug
@@ -639,14 +639,14 @@
 	icon_rest = "medislug_rest"
 	icon_dead = "medislug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/medislug)
-	holder_type = /obj/item/weapon/holder/catslug/custom/medislug
+	holder_type = /obj/item/holder/catslug/custom/medislug
 	say_list_type = /datum/say_list/catslug/custom/medislug
 	myid_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 
 /datum/say_list/catslug/custom/medislug
 	speak = list("Have any osteodaxon?", "What is that?", "Suit sensors!", "What are you doing?", "How did you get here?", "Put a mask on!", "No smoking!", "WAOW!", "Stop getting blood everywhere!", "WHERE IN MAINT?")
 
-/obj/item/weapon/holder/catslug/custom/medislug
+/obj/item/holder/catslug/custom/medislug
 	item_state = "medislug"
 
 //Science catslug
@@ -675,7 +675,7 @@
 	icon_rest = "scienceslug_rest"
 	icon_dead = "scienceslug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/scienceslug)
-	holder_type = /obj/item/weapon/holder/catslug/custom/scienceslug
+	holder_type = /obj/item/holder/catslug/custom/scienceslug
 	say_list_type = /datum/say_list/catslug/custom/scienceslug
 	myid_access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
 
@@ -683,7 +683,7 @@
 /datum/say_list/catslug/custom/scienceslug
 	speak = list("Slimes, squish!", "What is that?", "Smoking in Toxins is not advised.", "What are you doing?", "How did you get here?", "Do not deconstruct the cube!", "WAOW!", "Where are our materials?", "The acid dispenser is not full of juice. Must remember that.")
 
-/obj/item/weapon/holder/catslug/custom/scienceslug
+/obj/item/holder/catslug/custom/scienceslug
 	item_state = "scienceslug"
 
 //Cargo catslug
@@ -713,14 +713,14 @@
 	icon_rest = "cargoslug_rest"
 	icon_dead = "cargoslug_dead"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/cargoslug)
-	holder_type = /obj/item/weapon/holder/catslug/custom/cargoslug
+	holder_type = /obj/item/holder/catslug/custom/cargoslug
 	say_list_type = /datum/say_list/catslug/custom/cargoslug
 	myid_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
 /datum/say_list/catslug/custom/cargoslug
 	speak = list("Disposals is not for slip and slide.", "What is that?", "Stamp those manifests!", "What are you doing?", "How did you get here?", "Can order pizza crate?", "WAOW!", "Where are all of our materials?", "Got glubbs?")
 
-/obj/item/weapon/holder/catslug/custom/cargoslug
+/obj/item/holder/catslug/custom/cargoslug
 	item_state = "cargoslug"
 
 //Command catslug
@@ -752,22 +752,22 @@
 	icon_dead = "capslug_dead"
 	faction = "neutral"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/capslug)
-	holder_type = /obj/item/weapon/holder/catslug/custom/capslug
+	holder_type = /obj/item/holder/catslug/custom/capslug
 	say_list_type = /datum/say_list/catslug/custom/capslug
 	myid_access = list(access_heads, access_keycard_auth)		//Same access as a bridge secretary.
 
 /datum/say_list/catslug/custom/capslug
 	speak = list("How open big glass box with shiny inside?.", "What is that?", "Respect my authority!", "What are you doing?", "How did you get here?", "Fax for yellow-shirts!", "WAOW!", "Why is that console blinking and clicking?", "Do we need to call for ERT?", "Have been called comdom before, not sure why they thought I was a balloon.")
 
-/obj/item/weapon/holder/catslug/custom/capslug
+/obj/item/holder/catslug/custom/capslug
 	item_state = "capslug"
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug/Initialize() 		//This is such an awful proc, but if someone wants it better they're welcome to have a go at it.
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = PUB_FREQ
-	mob_radio.ks2type = /obj/item/device/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
-	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/heads/captain(mob_radio)
+	mob_radio.ks2type = /obj/item/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
+	mob_radio.keyslot2 = new /obj/item/encryptionkey/heads/captain(mob_radio)
 	mob_radio.recalculateChannels(1)
 
 //=============================================================================
@@ -808,7 +808,7 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug/Initialize()
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
 	myid.access |= get_all_station_access()
 
@@ -849,11 +849,11 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/Initialize()
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = SYND_FREQ
 	mob_radio.syndie = 1
-	mob_radio.ks2type = /obj/item/device/encryptionkey/syndicate
-	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/syndicate(mob_radio)
+	mob_radio.ks2type = /obj/item/encryptionkey/syndicate
+	mob_radio.keyslot2 = new /obj/item/encryptionkey/syndicate(mob_radio)
 	mob_radio.recalculateChannels(1)
 	myid.access |= get_all_station_access()
 
@@ -893,11 +893,11 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/Initialize()
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = ERT_FREQ
 	mob_radio.centComm = 1
-	mob_radio.ks2type = /obj/item/device/encryptionkey/ert
-	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/ert(mob_radio)
+	mob_radio.ks2type = /obj/item/encryptionkey/ert
+	mob_radio.keyslot2 = new /obj/item/encryptionkey/ert(mob_radio)
 	mob_radio.recalculateChannels(1)
 	myid.access |= get_all_station_access()
 

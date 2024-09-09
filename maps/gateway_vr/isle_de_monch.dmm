@@ -21,7 +21,7 @@
 "bE" = (
 /obj/structure/table/steel,
 /obj/machinery/light,
-/obj/item/weapon/storage/toolbox/electrical{
+/obj/item/storage/toolbox/electrical{
 	pixel_x = -3;
 	pixel_y = -2
 	},
@@ -142,7 +142,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/item/weapon/melee/baton/cattleprod{
+/obj/item/melee/baton/cattleprod{
 	desc = "Metal rod with wire attached to it.";
 	name = "jury-rigged antenna";
 	pixel_x = 5;
@@ -529,16 +529,16 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/item/weapon/melee/baton/cattleprod{
+/obj/item/melee/baton/cattleprod{
 	desc = "Metal rod with wire attached to it.";
 	name = "jury-rigged antenna";
 	pixel_x = 5;
 	pixel_y = 4
 	},
-/obj/item/weapon/cell/emergency_light{
+/obj/item/cell/emergency_light{
 	pixel_x = -4
 	},
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1);
 	pixel_x = 4;
 	pixel_y = -3
@@ -876,7 +876,7 @@
 	pixel_x = -22
 	},
 /obj/structure/closet/walllocker_double/kitchen/south,
-/obj/item/device/multitool{
+/obj/item/multitool{
 	pixel_x = 4;
 	pixel_y = 2
 	},
@@ -919,7 +919,7 @@
 /area/tether_away/beach/resort)
 "Po" = (
 /obj/structure/table/standard,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether_away/beach/resort)
 "PI" = (
@@ -1053,7 +1053,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/obj/item/weapon/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
 /obj/item/ammo_magazine/m9mm/compact,
 /obj/item/ammo_magazine/m9mm/compact,
 /turf/simulated/floor/tiled/techmaint,
@@ -1158,7 +1158,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether_away/beach/resort)
 "Xl" = (
-/obj/item/weapon/circuitboard/broken,
+/obj/item/circuitboard/broken,
 /turf/simulated/floor/plating,
 /area/tether_away/beach/resort)
 "Xo" = (
@@ -1175,7 +1175,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether_away/beach/resort)
 "Xw" = (
-/obj/item/weapon/circuitboard/broken,
+/obj/item/circuitboard/broken,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether_away/beach/resort)
 "Xx" = (

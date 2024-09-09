@@ -14,17 +14,17 @@
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-work"
 	var/mob/living/occupant
-	var/obj/item/weapon/reagent_containers/glass/beaker
+	var/obj/item/reagent_containers/glass/beaker
 	var/obj/machinery/computer/xenobio2/computer
 
-	circuit = /obj/item/weapon/circuitboard/xenobioinjectormachine
+	circuit = /obj/item/circuitboard/xenobioinjectormachine
 
 /obj/machinery/xenobio2/manualinjector/Initialize()
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
-	beaker = new /obj/item/weapon/reagent_containers/glass/beaker(src)
+	beaker = new /obj/item/reagent_containers/glass/beaker(src)
 	default_apply_parts()
 
 /obj/machinery/xenobio2/manualinjector/update_icon()
@@ -72,7 +72,7 @@
 
 /obj/machinery/xenobio2/manualinjector/proc/eject_beaker()
 	if(beaker)
-		var/obj/item/weapon/reagent_containers/glass/beaker/B = beaker
+		var/obj/item/reagent_containers/glass/beaker/B = beaker
 		B.loc = loc
 		beaker = null
 
@@ -97,15 +97,15 @@
 		return
 
 	//are you smashing a beaker in me? Well then insert that shit!
-	if(istype(W, /obj/item/weapon/reagent_containers/glass/beaker))
+	if(istype(W, /obj/item/reagent_containers/glass/beaker))
 		beaker = W
 		user.drop_from_inventory(W)
 		W.loc = src
 		return
 
 	//Did you want to link it?
-	if(istype(W, /obj/item/device/multitool))
-		var/obj/item/device/multitool/P = W
+	if(istype(W, /obj/item/multitool))
+		var/obj/item/multitool/P = W
 		if(P.connectable)
 			if(istype(P.connectable, /obj/machinery/computer/xenobio2))
 				var/obj/machinery/computer/xenobio2/C = P.connectable
@@ -120,7 +120,7 @@
 	if(panel_open)
 		to_chat(user, "<span class='warning'>Close the panel first!</span>")
 
-	var/obj/item/weapon/grab/G = W
+	var/obj/item/grab/G = W
 
 	if(!istype(G))
 		return ..()
@@ -132,7 +132,7 @@
 	move_into_injector(user,G.affecting)
 
 
-/obj/item/weapon/circuitboard/xenobioinjectormachine
+/obj/item/circuitboard/xenobioinjectormachine
 	name = T_BOARD("biological injector")
 	build_path = /obj/machinery/xenobio2/manualinjector
 	board_type = /datum/frame/frame_types/machine

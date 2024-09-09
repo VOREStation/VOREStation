@@ -1,72 +1,72 @@
 /datum/gear/utility/saddlebag
 	display_name = "saddle bag, horse"
-	path = /obj/item/weapon/storage/backpack/saddlebag
+	path = /obj/item/storage/backpack/saddlebag
 	slot = slot_back
 	cost = 2
 
 /datum/gear/utility/saddlebag_common
 	display_name = "saddle bag, common"
-	path = /obj/item/weapon/storage/backpack/saddlebag_common
+	path = /obj/item/storage/backpack/saddlebag_common
 	slot = slot_back
 	cost = 2
 
 /datum/gear/utility/saddlebag_common/robust
 	display_name = "saddle bag, robust"
-	path = /obj/item/weapon/storage/backpack/saddlebag_common/robust
+	path = /obj/item/storage/backpack/saddlebag_common/robust
 	slot = slot_back
 	cost = 2
 
 /datum/gear/utility/saddlebag_common/vest
 	display_name = "taur duty vest (backpack)"
-	path = /obj/item/weapon/storage/backpack/saddlebag_common/vest
+	path = /obj/item/storage/backpack/saddlebag_common/vest
 	slot = slot_back
 	cost = 1
 
 /datum/gear/utility/dufflebag
 	display_name = "dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag
+	path = /obj/item/storage/backpack/dufflebag
 	slot = slot_back
 	cost = 2
 
 /datum/gear/utility/dufflebag/black
 	display_name = "black dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/fluff
+	path = /obj/item/storage/backpack/dufflebag/fluff
 
 /datum/gear/utility/dufflebag/med
 	display_name = "medical dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/med
+	path = /obj/item/storage/backpack/dufflebag/med
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist","Psychiatrist")
 
 /datum/gear/utility/dufflebag/med/emt
 	display_name = "EMT dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/emt
+	path = /obj/item/storage/backpack/dufflebag/emt
 
 /datum/gear/utility/dufflebag/sec
 	display_name = "security Dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/sec
+	path = /obj/item/storage/backpack/dufflebag/sec
 	allowed_roles = list("Head of Security","Warden","Detective","Security Officer")
 
 /datum/gear/utility/dufflebag/eng
 	display_name = "engineering dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/eng
+	path = /obj/item/storage/backpack/dufflebag/eng
 	allowed_roles = list("Chief Engineer","Atmospheric Technician","Engineer")
 
 /datum/gear/utility/dufflebag/sci
 	display_name = "science dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/sci
+	path = /obj/item/storage/backpack/dufflebag/sci
 	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist")
 
 /datum/gear/utility/dufflebag/explorer
 	display_name = "away team dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
+	path = /obj/item/storage/backpack/dufflebag/explorer
 
 /datum/gear/utility/dufflebag/talon
 	display_name = "Talon dufflebag"
-	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
+	path = /obj/item/storage/backpack/dufflebag/explorer
 
 /datum/gear/utility/ID
 	display_name = "contractor identification card"
-	path = /obj/item/weapon/card/id/event/polymorphic/altcard
+	path = /obj/item/card/id/event/polymorphic/altcard
 	cost = 1
 
 /datum/gear/utility/bs_bracelet
@@ -76,5 +76,5 @@
 
 /datum/gear/utility/walkpod
 	display_name = "podzu music player"
-	path = /obj/item/device/walkpod
+	path = /obj/item/walkpod
 	cost = 2

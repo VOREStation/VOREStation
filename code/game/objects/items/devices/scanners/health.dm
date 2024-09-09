@@ -1,6 +1,6 @@
 #define DEFIB_TIME_LIMIT (10 MINUTES) //VOREStation addition- past this many seconds, defib is useless.
 
-/obj/item/device/healthanalyzer
+/obj/item/healthanalyzer
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	icon_state = "health"
@@ -17,28 +17,28 @@
 	var/showadvscan = 1
 	var/guide = FALSE
 
-/obj/item/device/healthanalyzer/New()
+/obj/item/healthanalyzer/New()
 	if(advscan >= 1)
-		verbs += /obj/item/device/healthanalyzer/proc/toggle_adv
+		verbs += /obj/item/healthanalyzer/proc/toggle_adv
 	..()
 
-/obj/item/device/healthanalyzer/examine(mob/user)
+/obj/item/healthanalyzer/examine(mob/user)
 	. = ..()
 	if(guide)
 		. += "<span class='notice'>Guidance is currently enabled.</span>"
 	else
 		. += "<span class='notice'>Guidance is currently disabled.</span>"
 
-/obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	scan_mob(M, user) //default surgery behaviour is just to scan as usual
 	return 1
 
-/obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/attack(mob/living/M, mob/living/user)
 	scan_mob(M, user)
 
-/obj/item/device/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
 	var/dat = ""
 	if ((CLUMSY in user.mutations) && prob(50))
 		user.visible_message("<span class='warning'>\The [user] has analyzed the floor's vitals!</span>", "<span class='warning'>You try to analyze the floor's vitals!</span>")
@@ -332,7 +332,7 @@
 	if(guide)
 		guide(M, user)
 
-/obj/item/device/healthanalyzer/verb/toggle_mode()
+/obj/item/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
 	set category = "Object"
 
@@ -343,7 +343,7 @@
 		if(0)
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
-/obj/item/device/healthanalyzer/proc/toggle_adv()
+/obj/item/healthanalyzer/proc/toggle_adv()
 	set name = "Toggle Advanced Scan"
 	set category = "Object"
 
@@ -354,21 +354,21 @@
 		if(0)
 			to_chat(usr, "The scanner will now perform a basic analysis.")
 
-/obj/item/device/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
+/obj/item/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
 	name = "improved health analyzer"
 	desc = "A miracle of medical technology, this handheld scanner can produce an accurate and specific report of a patient's biosigns."
 	advscan = 1
 	origin_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	icon_state = "health1"
 
-/obj/item/device/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
+/obj/item/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
 	advscan = 2
 	origin_tech = list(TECH_MAGNET = 6, TECH_BIO = 7)
 	icon_state = "health2"
 
-/obj/item/device/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
+/obj/item/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
 	name = "phasic health analyzer"
 	desc = "Possibly the most advanced health analyzer to ever have existed, utilising bluespace technology to determine almost everything worth knowing about a patient."
 	advscan = 3

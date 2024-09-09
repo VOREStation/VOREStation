@@ -1,4 +1,4 @@
-/obj/item/device/tvcamera
+/obj/item/tvcamera
 	name = "press camera drone"
 	desc = "A Ward-Takahashi EyeBuddy media streaming hovercam. Weapon of choice for war correspondents and reality show cameramen."
 	icon_state = "camcorder"
@@ -7,15 +7,15 @@
 	slot_flags = SLOT_BELT
 	var/channel = "NCS Northern Star News Feed"
 	var/obj/machinery/camera/network/thunder/camera
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 	var/datum/weakref/showing
 	var/showing_name
 
-/obj/item/device/tvcamera/New()
+/obj/item/tvcamera/New()
 	..()
 	listening_objects += src
 
-/obj/item/device/tvcamera/Destroy()
+/obj/item/tvcamera/Destroy()
 	listening_objects -= src
 	qdel(camera)
 	qdel(radio)
@@ -23,12 +23,12 @@
 	radio = null
 	..()
 
-/obj/item/device/tvcamera/examine()
+/obj/item/tvcamera/examine()
 	. = ..()
 	. += "Video feed is [camera.status ? "on" : "off"]"
 	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
 
-/obj/item/device/tvcamera/Initialize()
+/obj/item/tvcamera/Initialize()
 	. = ..()
 	camera = new(src)
 	camera.c_tag = channel
@@ -40,16 +40,16 @@
 	radio.icon_state = src.icon_state
 	update_icon()
 
-/obj/item/device/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
+/obj/item/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
 	radio.hear_talk(M, message_pieces, verb)
 	. = ..()
 
-/obj/item/device/tvcamera/attack_self(mob/user)
+/obj/item/tvcamera/attack_self(mob/user)
 	add_fingerprint(user)
 	user.set_machine(src)
 	show_ui(user)
 
-/obj/item/device/tvcamera/proc/show_ui(mob/user)
+/obj/item/tvcamera/proc/show_ui(mob/user)
 	var/dat = list()
 	dat += "Channel name is: <a href='?src=\ref[src];channel=1'>[channel ? channel : "unidentified broadcast"]</a><br>"
 	dat += "Video streaming is <a href='?src=\ref[src];video=1'>[camera.status ? "on" : "off"]</a><br>"
@@ -61,7 +61,7 @@
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-/obj/item/device/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
+/obj/item/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
 	if(..())
 		return 1
 	if(href_list["channel"])
@@ -91,7 +91,7 @@
 	if(!href_list["close"])
 		attack_self(usr)
 
-/obj/item/device/tvcamera/proc/show_tvs(atom/thing)
+/obj/item/tvcamera/proc/show_tvs(atom/thing)
 	if(showing)
 		hide_tvs(showing)
 
@@ -102,7 +102,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/obj/item/device/tvcamera/proc/hide_tvs()
+/obj/item/tvcamera/proc/hide_tvs()
 	if(!showing)
 		return
 	for(var/obj/machinery/computer/security/telescreen/entertainment/ES as anything in GLOB.entertainment_screens)
@@ -111,12 +111,12 @@
 	showing = null
 	showing_name = null
 
-/obj/item/device/tvcamera/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+/obj/item/tvcamera/Moved(atom/old_loc, direction, forced = FALSE, movetime)
 	. = ..()
 	if(camera.status && loc != old_loc)
 		show_tvs(loc)
 
-/obj/item/device/tvcamera/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/tvcamera/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(camera.status && !isturf(target))
 		show_tvs(target)
@@ -124,7 +124,7 @@
 		if(user.machine == src)
 			show_ui(user) // refresh the UI
 
-/obj/item/device/tvcamera/process()
+/obj/item/tvcamera/process()
 	if(!showing)
 		return PROCESS_KILL
 
@@ -135,7 +135,7 @@
 	if(get_dist(get_turf(src), get_turf(A)) > 5)
 		show_tvs(loc)
 
-/obj/item/device/tvcamera/update_icon()
+/obj/item/tvcamera/update_icon()
 	..()
 	if(camera.status)
 		icon_state = "camcorder_on"
@@ -152,11 +152,11 @@
 
 //Assembly by roboticist
 
-/obj/item/robot_parts/head/attackby(var/obj/item/device/assembly/S, mob/user as mob)
-	if(!istype(S, /obj/item/device/assembly/infra))
+/obj/item/robot_parts/head/attackby(var/obj/item/assembly/S, mob/user as mob)
+	if(!istype(S, /obj/item/assembly/infra))
 		..()
 		return
-	var/obj/item/weapon/TVAssembly/A = new(user)
+	var/obj/item/TVAssembly/A = new(user)
 	qdel(S)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the infrared sensor to the robot head.</span>")
@@ -164,7 +164,7 @@
 	qdel(src)
 
 
-/obj/item/weapon/TVAssembly
+/obj/item/TVAssembly
 	name = "\improper TV Camera Assembly"
 	desc = "A robotic head with an infrared sensor inside."
 	icon = 'icons/obj/robot_parts.dmi'
@@ -173,7 +173,7 @@
 	var/buildstep = 0
 	w_class = ITEMSIZE_LARGE
 
-/obj/item/weapon/TVAssembly/attackby(W, mob/user)
+/obj/item/TVAssembly/attackby(W, mob/user)
 	switch(buildstep)
 		if(0)
 			if(istype(W, /obj/item/robot_parts/robot_component/camera))
@@ -184,8 +184,8 @@
 				desc = "This TV camera assembly has a camera module."
 				buildstep++
 		if(1)
-			if(istype(W, /obj/item/device/taperecorder))
-				var/obj/item/device/taperecorder/T = W
+			if(istype(W, /obj/item/taperecorder))
+				var/obj/item/taperecorder/T = W
 				user.drop_item()
 				qdel(T)
 				buildstep++
@@ -203,7 +203,7 @@
 				desc = "This TV camera assembly has wires sticking out"
 				return
 		if(3)
-			if(istype(W, /obj/item/weapon/tool/wirecutters))
+			if(istype(W, /obj/item/tool/wirecutters))
 				to_chat(user, "<span class='notice'> You trim the wires.</span>")
 				buildstep++
 				desc = "This TV camera assembly needs casing."
@@ -215,7 +215,7 @@
 				S.use(1)
 				to_chat(user, "<span class='notice'>You encase the assembly in a Ward-Takeshi casing.</span>")
 				var/turf/T = get_turf(src)
-				new /obj/item/device/tvcamera(T)
+				new /obj/item/tvcamera(T)
 				user.drop_from_inventory(src)
 				qdel(src)
 				return

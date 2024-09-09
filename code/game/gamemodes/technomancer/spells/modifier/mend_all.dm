@@ -1,6 +1,6 @@
 // Gambit only spell.  Heals everything unconditionally.
 
-/obj/item/weapon/spell/modifier/mend_all
+/obj/item/spell/modifier/mend_all
 	name = "mend all"
 	desc = "One function to heal them all."
 	icon_state = "mend_all"

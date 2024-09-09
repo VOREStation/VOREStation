@@ -198,11 +198,11 @@
 	if(istype(I, /obj/item/paint_brush))
 		var/obj/item/paint_brush/P = I
 		return P.selected_color
-	else if(istype(I, /obj/item/weapon/pen/crayon))
-		var/obj/item/weapon/pen/crayon/crayon = I
+	else if(istype(I, /obj/item/pen/crayon))
+		var/obj/item/pen/crayon/crayon = I
 		return crayon.colour
-	else if(istype(I, /obj/item/weapon/pen))
-		var/obj/item/weapon/pen/P = I
+	else if(istype(I, /obj/item/pen))
+		var/obj/item/pen/P = I
 		switch(P.colour)
 			if("black")
 				return "#000000"
@@ -211,7 +211,7 @@
 			if("red")
 				return "#ff0000"
 		return P.colour
-	else if(istype(I, /obj/item/weapon/soap) || istype(I, /obj/item/weapon/reagent_containers/glass/rag))
+	else if(istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag))
 		return canvas_color
 
 /obj/item/canvas/proc/try_rename(mob/user)
@@ -303,7 +303,7 @@
 	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "palette"
 
-/obj/item/paint_palette/attackby(obj/item/weapon/W, mob/user)
+/obj/item/paint_palette/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/paint_brush))
 		var/obj/item/paint_brush/P = W
 		var/newcolor = input(user, "Select a new paint color:", "Paint Palette", P.selected_color) as null|color
@@ -392,7 +392,7 @@
 /obj/structure/sign/painting/attackby(obj/item/I, mob/user, params)
 	if(!current_canvas && istype(I, /obj/item/canvas))
 		frame_canvas(user, I)
-	else if(current_canvas && current_canvas.painting_name == initial(current_canvas.painting_name) && istype(I,/obj/item/weapon/pen))
+	else if(current_canvas && current_canvas.painting_name == initial(current_canvas.painting_name) && istype(I,/obj/item/pen))
 		try_rename(user)
 	else if(current_canvas && I.has_tool_quality(TOOL_WIRECUTTER))
 		unframe_canvas(user)

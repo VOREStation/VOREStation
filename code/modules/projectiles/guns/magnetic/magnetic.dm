@@ -5,7 +5,7 @@
 #define ICON_READY 16
 #define ICON_LOADED 32
 
-/obj/item/weapon/gun/magnetic
+/obj/item/gun/magnetic
 	name = "improvised coilgun"
 	desc = "A coilgun hastily thrown together out of a basic frame and advanced power storage components. Is it safe for it to be duct-taped together like that?"
 	icon_state = "coilgun"
@@ -15,8 +15,8 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 
-	var/obj/item/weapon/cell/cell                              // Currently installed powercell.
-	var/obj/item/weapon/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots. Set to a path to spawn with one of that type.
+	var/obj/item/cell/cell                              // Currently installed powercell.
+	var/obj/item/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots. Set to a path to spawn with one of that type.
 	var/removable_components = TRUE                            // Whether or not the gun can be dismantled.
 	var/gun_unreliable = 15                                    // Percentage chance of detonating in your hands.
 
@@ -29,7 +29,7 @@
 
 	var/state = 0
 
-/obj/item/weapon/gun/magnetic/Initialize()
+/obj/item/gun/magnetic/Initialize()
 	. = ..()
 	// So you can have some spawn with components
 	if(ispath(cell))
@@ -47,17 +47,17 @@
 
 	update_icon()
 
-/obj/item/weapon/gun/magnetic/Destroy()
+/obj/item/gun/magnetic/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(cell)
 	QDEL_NULL(loaded)
 	QDEL_NULL(capacitor)
 	. = ..()
 
-/obj/item/weapon/gun/magnetic/get_cell()
+/obj/item/gun/magnetic/get_cell()
 	return cell
 
-/obj/item/weapon/gun/magnetic/process()
+/obj/item/gun/magnetic/process()
 	if(capacitor)
 		if(cell)
 			if(capacitor.charge < capacitor.max_charge && cell.checked_use(power_per_tick))
@@ -67,7 +67,7 @@
 
 	update_state() // May update icon, only if things changed.
 
-/obj/item/weapon/gun/magnetic/proc/update_state()
+/obj/item/gun/magnetic/proc/update_state()
 	var/newstate = 0
 
 	// Parts or lack thereof
@@ -99,7 +99,7 @@
 	if(needs_update)
 		update_icon()
 
-/obj/item/weapon/gun/magnetic/update_icon()
+/obj/item/gun/magnetic/update_icon()
 	cut_overlays()
 	if(state & ICON_CELL)
 		add_overlay("[icon_state]_cell")
@@ -116,14 +116,14 @@
 
 	..()
 
-/obj/item/weapon/gun/magnetic/proc/show_ammo()
+/obj/item/gun/magnetic/proc/show_ammo()
 	var/list/ammotext = list()
 	if(loaded)
 		ammotext += "<span class='notice'>It has \a [loaded] loaded.</span>"
 
 	return ammotext
 
-/obj/item/weapon/gun/magnetic/examine(var/mob/user)
+/obj/item/gun/magnetic/examine(var/mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		. += show_ammo()
@@ -141,10 +141,10 @@
 			else
 				. += "<span class='notice'>The capacitor charge indicator is [span_green("green")].</span>"
 
-/obj/item/weapon/gun/magnetic/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/gun/magnetic/attackby(var/obj/item/thing, var/mob/user)
 
 	if(removable_components)
-		if(istype(thing, /obj/item/weapon/cell))
+		if(istype(thing, /obj/item/cell))
 			if(cell)
 				to_chat(user, "<span class='warning'>\The [src] already has \a [cell] installed.</span>")
 				return
@@ -166,7 +166,7 @@
 			update_icon()
 			return
 
-		if(istype(thing, /obj/item/weapon/stock_parts/capacitor))
+		if(istype(thing, /obj/item/stock_parts/capacitor))
 			if(capacitor)
 				to_chat(user, "<span class='warning'>\The [src] already has \a [capacitor] installed.</span>")
 				return
@@ -201,7 +201,7 @@
 		return
 	. = ..()
 
-/obj/item/weapon/gun/magnetic/attack_hand(var/mob/user)
+/obj/item/gun/magnetic/attack_hand(var/mob/user)
 	if(user.get_inactive_hand() == src)
 		var/obj/item/removing
 
@@ -221,14 +221,14 @@
 			return
 	. = ..()
 
-/obj/item/weapon/gun/magnetic/proc/check_ammo()
+/obj/item/gun/magnetic/proc/check_ammo()
 	return loaded
 
-/obj/item/weapon/gun/magnetic/proc/use_ammo()
+/obj/item/gun/magnetic/proc/use_ammo()
 	qdel(loaded)
 	loaded = null
 
-/obj/item/weapon/gun/magnetic/consume_next_projectile()
+/obj/item/gun/magnetic/consume_next_projectile()
 
 	if(!check_ammo() || !capacitor || capacitor.charge < power_cost)
 		return
@@ -245,7 +245,7 @@
 
 	return new projectile_type(src)
 
-/obj/item/weapon/gun/magnetic/fuelrod
+/obj/item/gun/magnetic/fuelrod
 	name = "Fuel-Rod Cannon"
 	desc = "A bulky weapon designed to fire reactor core fuel rods at absurd velocities... who thought this was a good idea?!"
 	description_antag = "This device is capable of firing reactor fuel assemblies, acquired from a R-UST fuel compressor and an appropriate fueltype. Be warned, Supermatter rods may have unforseen consequences."
@@ -259,18 +259,18 @@
 	removable_components = TRUE
 	gun_unreliable = 0
 
-	load_type = /obj/item/weapon/fuel_assembly
+	load_type = /obj/item/fuel_assembly
 	projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod
 
 	power_cost = 500
 
-/obj/item/weapon/gun/magnetic/fuelrod/consume_next_projectile()
+/obj/item/gun/magnetic/fuelrod/consume_next_projectile()
 	if(!check_ammo() || !capacitor || capacitor.charge < power_cost)
 		return
 
 	if(loaded) //Safety.
-		if(istype(loaded, /obj/item/weapon/fuel_assembly))
-			var/obj/item/weapon/fuel_assembly/rod = loaded
+		if(istype(loaded, /obj/item/fuel_assembly))
+			var/obj/item/fuel_assembly/rod = loaded
 			if(rod.fuel_type == "composite" || rod.fuel_type == "deuterium") //Safety check for rods spawned in without a fueltype.
 				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod
 			else if(rod.fuel_type == "tritium")
@@ -303,9 +303,9 @@
 
 	return new projectile_type(src)
 
-/obj/item/weapon/gun/magnetic/fuelrod/New()
-	cell = new /obj/item/weapon/cell/high
-	capacitor = new /obj/item/weapon/stock_parts/capacitor
+/obj/item/gun/magnetic/fuelrod/New()
+	cell = new /obj/item/cell/high
+	capacitor = new /obj/item/stock_parts/capacitor
 	. = ..()
 
 #undef ICON_CELL

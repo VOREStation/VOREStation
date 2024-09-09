@@ -7,7 +7,7 @@
 	icon_contents = "chem"
 
 /obj/machinery/smartfridge/medbay/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers) || istype(O,/obj/item/weapon/reagent_containers/glass/))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0
 
@@ -18,7 +18,7 @@
 	req_one_access = list(access_medical,access_chemistry)
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers) || istype(O,/obj/item/weapon/reagent_containers/glass/))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0
 
@@ -31,9 +31,9 @@
 	icon_contents = "viro"
 
 /obj/machinery/smartfridge/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
+	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
 		return 1
-	if(istype(O,/obj/item/weapon/virusdish/))
+	if(istype(O,/obj/item/virusdish/))
 		return 1
 	return 0
 
@@ -44,9 +44,9 @@
 	req_access = list(access_virology)
 
 /obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
+	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
 		return 1
-	if(istype(O,/obj/item/weapon/virusdish/))
+	if(istype(O,/obj/item/virusdish/))
 		return 1
 	return 0
 
@@ -60,7 +60,7 @@
 	req_one_access = list(access_chemistry)
 
 /obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers) || istype(O,/obj/item/weapon/reagent_containers/glass/))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0
 
@@ -71,6 +71,6 @@
 	req_one_access = list(access_chemistry)
 
 /obj/machinery/smartfridge/secure/chemistry/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers) || istype(O,/obj/item/weapon/reagent_containers/glass/))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0

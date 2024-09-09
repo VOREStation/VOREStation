@@ -4,11 +4,11 @@
 	somewhere dangerous."
 	enhancement_desc = "Cost per tile is halved."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/passwall
+	obj_path = /obj/item/spell/passwall
 	ability_icon_state = "tech_passwall"
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/passwall
+/obj/item/spell/passwall
 	name = "passwall"
 	desc = "No walls can hold you back."
 	cast_methods = CAST_MELEE
@@ -16,7 +16,7 @@
 	var/maximum_distance = 20 //Measured in tiles.
 	var/busy = 0
 
-/obj/item/weapon/spell/passwall/on_melee_cast(atom/hit_atom, mob/user)
+/obj/item/spell/passwall/on_melee_cast(atom/hit_atom, mob/user)
 	if(busy)	//Prevent someone from trying to get two uses of the spell from one instance.
 		return 0
 	if(!allowed_to_teleport())

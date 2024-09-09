@@ -2,7 +2,7 @@
 	name = "gyrotron control console"
 	desc = "Used to control the R-UST stability beams."
 	light_color = COLOR_BLUE
-	circuit = /obj/item/weapon/circuitboard/gyrotron_control
+	circuit = /obj/item/circuitboard/gyrotron_control
 
 	icon_keyboard = "generic_key"
 	icon_screen = "mass_driver"
@@ -118,7 +118,7 @@
 
 /obj/machinery/computer/gyrotron_control/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if(istype(W, /obj/item/device/multitool))
+	if(istype(W, /obj/item/multitool))
 		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron Control", monitor.gyro_tag, MAX_NAME_LEN)
 		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))

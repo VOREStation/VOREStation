@@ -24,7 +24,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "req_comp_0"
 	layer = ABOVE_WINDOW_LAYER
-	circuit = /obj/item/weapon/circuitboard/request
+	circuit = /obj/item/circuitboard/request
 	blocks_emissive = NONE
 	light_power = 0.25
 	light_color = "#00ff00"
@@ -203,7 +203,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				msg = "<b>[msg[1]]:</b><br>[msg[2]]"
 				msg = replacetext(msg, "<BR>", "\n")
 				msg = strip_html_properly(msg)
-				var/obj/item/weapon/paper/R = new(src.loc)
+				var/obj/item/paper/R = new(src.loc)
 				R.name = "[department] Message"
 				R.info = "<H3>[department] Requests Console</H3><div>[msg]</div>"
 				. = TRUE
@@ -229,10 +229,10 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			. = TRUE
 
 					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messaging on that console (EXTREME priority...), but the code for that was removed.
-/obj/machinery/requests_console/attackby(var/obj/item/weapon/O as obj, var/mob/user as mob)
+/obj/machinery/requests_console/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(computer_deconstruction_screwdriver(user, O))
 		return
-	if(istype(O, /obj/item/device/multitool))
+	if(istype(O, /obj/item/multitool))
 		var/input = sanitize(tgui_input_text(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")
@@ -251,14 +251,14 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			req_console_information |= department
 		return
 
-	if(istype(O, /obj/item/weapon/card/id))
+	if(istype(O, /obj/item/card/id))
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
-			var/obj/item/weapon/card/id/T = O
+			var/obj/item/card/id/T = O
 			msgVerified = text("<font color='green'><b>Verified by [T.registered_name] ([T.assignment])</b></font>")
 			SStgui.update_uis(src)
 		if(screen == RCS_ANNOUNCE)
-			var/obj/item/weapon/card/id/ID = O
+			var/obj/item/card/id/ID = O
 			if(access_RC_announce in ID.GetAccess())
 				announceAuth = 1
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
@@ -266,10 +266,10 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				reset_message()
 				to_chat(user, "<span class='warning'>You are not authorized to send announcements.</span>")
 			SStgui.update_uis(src)
-	if(istype(O, /obj/item/weapon/stamp))
+	if(istype(O, /obj/item/stamp))
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
-			var/obj/item/weapon/stamp/T = O
+			var/obj/item/stamp/T = O
 			msgStamped = text("<font color='blue'><b>Stamped with the [T.name]</b></font>")
 			SStgui.update_uis(src)
 	return

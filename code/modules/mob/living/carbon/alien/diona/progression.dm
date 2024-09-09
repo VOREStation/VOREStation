@@ -15,8 +15,8 @@
 
 	src.split()
 
-	if(istype(loc,/obj/item/weapon/holder/diona))
-		var/obj/item/weapon/holder/diona/L = loc
+	if(istype(loc,/obj/item/holder/diona))
+		var/obj/item/holder/diona/L = loc
 		src.loc = L.loc
 		qdel(L)
 

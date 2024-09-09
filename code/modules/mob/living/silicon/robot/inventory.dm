@@ -258,19 +258,19 @@
 	after_equip(O)
 
 /mob/living/silicon/robot/proc/after_equip(var/obj/item/O)
-	if(istype(O, /obj/item/device/gps))
-		var/obj/item/device/gps/tracker = O
+	if(istype(O, /obj/item/gps))
+		var/obj/item/gps/tracker = O
 		if(tracker.tracking)
 			tracker.tracking = FALSE
 			tracker.toggle_tracking()
 	if(sight_mode & BORGANOMALOUS)
-		var/obj/item/weapon/dogborg/pounce/pounce = has_upgrade_module(/obj/item/weapon/dogborg/pounce)
+		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
 		if(pounce)
 			pounce.name = "bluespace pounce"
 			pounce.icon_state = "bluespace_pounce"
 			pounce.bluespace = TRUE
 	else
-		var/obj/item/weapon/dogborg/pounce/pounce = has_upgrade_module(/obj/item/weapon/dogborg/pounce)
+		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
 		if(pounce)
 			pounce.name = initial(pounce.name)
 			pounce.icon_state = initial(pounce.icon_state)

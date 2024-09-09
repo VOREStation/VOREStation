@@ -1,7 +1,7 @@
 // Proc: add_communicating()
 // Parameters: 1 (comm - the communicator to add to communicating)
 // Description: Used when this communicator gets a new communicator to relay say/me messages to
-/obj/item/device/communicator/proc/add_communicating(obj/item/device/communicator/comm)
+/obj/item/communicator/proc/add_communicating(obj/item/communicator/comm)
 	if(!comm || !istype(comm)) return
 
 	communicating |= comm
@@ -11,7 +11,7 @@
 // Proc: del_communicating()
 // Parameters: 1 (comm - the communicator to remove from communicating)
 // Description: Used when this communicator is being asked to stop relaying say/me messages to another
-/obj/item/device/communicator/proc/del_communicating(obj/item/device/communicator/comm)
+/obj/item/communicator/proc/del_communicating(obj/item/communicator/comm)
 	if(!comm || !istype(comm)) return
 
 	communicating.Remove(comm)
@@ -20,21 +20,21 @@
 // Proc: open_connection()
 // Parameters: 2 (user - the person who initiated the connecting being opened, candidate - the communicator or observer that will connect to the device)
 // Description: Typechecks the candidate, then calls the correct proc for further connecting.
-/obj/item/device/communicator/proc/open_connection(mob/user, var/atom/candidate)
+/obj/item/communicator/proc/open_connection(mob/user, var/atom/candidate)
 	if(isobserver(candidate))
 		voice_invites.Remove(candidate)
 		open_connection_to_ghost(user, candidate)
 	else
-		if(istype(candidate, /obj/item/device/communicator))
+		if(istype(candidate, /obj/item/communicator))
 			open_connection_to_communicator(user, candidate)
 
 // Proc: open_connection_to_communicator()
 // Parameters: 2 (user - the person who initiated this and will be receiving feedback information, candidate - someone else's communicator)
 // Description: Adds the candidate and src to each other's communicating lists, allowing messages seen by the devices to be relayed.
-/obj/item/device/communicator/proc/open_connection_to_communicator(mob/user, var/atom/candidate)
-	if(!istype(candidate, /obj/item/device/communicator))
+/obj/item/communicator/proc/open_connection_to_communicator(mob/user, var/atom/candidate)
+	if(!istype(candidate, /obj/item/communicator))
 		return
-	var/obj/item/device/communicator/comm = candidate
+	var/obj/item/communicator/comm = candidate
 	voice_invites.Remove(candidate)
 	comm.voice_requests.Remove(src)
 
@@ -56,7 +56,7 @@
 // Proc: open_connection_to_ghost()
 // Parameters: 2 (user - the person who initiated this, candidate - the ghost that will be turned into a voice mob)
 // Description: Pulls the candidate ghost from deadchat, makes a new voice mob, transfers their identity, then their client.
-/obj/item/device/communicator/proc/open_connection_to_ghost(mob/user, var/mob/candidate)
+/obj/item/communicator/proc/open_connection_to_ghost(mob/user, var/mob/candidate)
 	if(!isobserver(candidate))
 		return
 	//Handle moving the ghost into the new shell.
@@ -113,7 +113,7 @@
 // Parameters: 3 (user - the user who initiated the disconnect, target - the mob or device being disconnected, reason - string shown when disconnected)
 // Description: Deletes specific voice_mobs or disconnects communicators, and shows a message to everyone when doing so.  If target is null, all communicators
 //				and voice mobs are removed.
-/obj/item/device/communicator/proc/close_connection(mob/user, var/atom/target, var/reason)
+/obj/item/communicator/proc/close_connection(mob/user, var/atom/target, var/reason)
 	if(voice_mobs.len == 0 && communicating.len == 0)
 		return
 
@@ -126,7 +126,7 @@
 		qdel(voice)
 		update_icon()
 
-	for(var/obj/item/device/communicator/comm in communicating) //Now we handle real communicators.
+	for(var/obj/item/communicator/comm in communicating) //Now we handle real communicators.
 		if(target && comm != target)
 			continue
 		src.del_communicating(comm)
@@ -144,14 +144,14 @@
 // Proc: request()
 // Parameters: 1 (candidate - the ghost or communicator wanting to call the device)
 // Description: Response to a communicator or observer trying to call the device.  Adds them to the list of requesters
-/obj/item/device/communicator/proc/request(var/atom/candidate)
+/obj/item/communicator/proc/request(var/atom/candidate)
 	if(candidate in voice_requests)
 		return
 	var/who = null
 	if(isobserver(candidate))
 		who = candidate.name
-	else if(istype(candidate, /obj/item/device/communicator))
-		var/obj/item/device/communicator/comm = candidate
+	else if(istype(candidate, /obj/item/communicator))
+		var/obj/item/communicator/comm = candidate
 		who = comm.owner
 		comm.voice_invites |= src
 
@@ -179,14 +179,14 @@
 // Proc: del_request()
 // Parameters: 1 (candidate - the ghost or communicator to be declined)
 // Description: Declines a request and cleans up both ends
-/obj/item/device/communicator/proc/del_request(var/atom/candidate)
+/obj/item/communicator/proc/del_request(var/atom/candidate)
 	if(!(candidate in voice_requests))
 		return
 
 	if(isobserver(candidate))
 		to_chat(candidate, "<span class='warning'>Your communicator call request was declined.</span>")
-	else if(istype(candidate, /obj/item/device/communicator))
-		var/obj/item/device/communicator/comm = candidate
+	else if(istype(candidate, /obj/item/communicator))
+		var/obj/item/communicator/comm = candidate
 		comm.voice_invites -= src
 
 	voice_requests -= candidate
@@ -202,15 +202,15 @@
 // Proc: see_emote()
 // Parameters: 2 (M - the mob the emote originated from, text - the emote's contents)
 // Description: Relays the emote to all linked communicators.
-/obj/item/device/communicator/see_emote(mob/living/M, text)
+/obj/item/communicator/see_emote(mob/living/M, text)
 
-	for(var/obj/item/device/communicator/comm in communicating)
+	for(var/obj/item/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		//VOREStation Edit Start for commlinks
 		var/list/mobs_to_relay
-		if(istype(comm,/obj/item/device/communicator/commlink))
-			var/obj/item/device/communicator/commlink/CL = comm
+		if(istype(comm,/obj/item/communicator/commlink))
+			var/obj/item/communicator/commlink/CL = comm
 			mobs_to_relay = list(CL.nif.human)
 		else
 			var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
@@ -231,14 +231,14 @@
 //                list/message_pieces - what is being said w/ baked languages,
 //                verb - the word used to describe how text is being said)
 // Description: Relays the speech to all linked communicators.
-/obj/item/device/communicator/hear_talk(mob/M, list/message_pieces, verb)
-	for(var/obj/item/device/communicator/comm in communicating)
+/obj/item/communicator/hear_talk(mob/M, list/message_pieces, verb)
+	for(var/obj/item/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		//VOREStation Edit Start for commlinks
 		var/list/mobs_to_relay
-		if(istype(comm,/obj/item/device/communicator/commlink))
-			var/obj/item/device/communicator/commlink/CL = comm
+		if(istype(comm,/obj/item/communicator/commlink))
+			var/obj/item/communicator/commlink/CL = comm
 			mobs_to_relay = list(CL.nif.human)
 		else
 			var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
@@ -256,9 +256,9 @@
 // Proc: show_message()
 // Parameters: 4 (msg - the message, type - number to determine if message is visible or audible, alt - unknown, alt_type - unknown)
 // Description: Relays the message to all linked communicators.
-/obj/item/device/communicator/show_message(msg, type, alt, alt_type)
+/obj/item/communicator/show_message(msg, type, alt, alt_type)
 
-	for(var/obj/item/device/communicator/comm in communicating)
+	for(var/obj/item/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
@@ -306,7 +306,7 @@
 		return
 
 	var/list/choices = list()
-	for(var/obj/item/device/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in all_communicators)
 		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
 			continue
 		choices.Add(comm)
@@ -317,7 +317,7 @@
 
 	var/choice = tgui_input_list(src,"Send a voice request to whom?", "Recipient Choice", choices)
 	if(choice)
-		var/obj/item/device/communicator/chosen_communicator = choice
+		var/obj/item/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src
 		if(O.exonet)
 			O.exonet.send_message(chosen_communicator.exonet.address, "voice")
@@ -327,7 +327,7 @@
 // Proc: connect_video()
 // Parameters: user - the mob doing the viewing of video, comm - the communicator at the far end
 // Description: Sets up a videocall and puts the first view into it using watch_video, and updates the icon
-/obj/item/device/communicator/proc/connect_video(mob/user,obj/item/device/communicator/comm)
+/obj/item/communicator/proc/connect_video(mob/user,obj/item/communicator/comm)
 	if((!user) || (!comm) || user.stat) return //KO or dead, or already in a video
 
 	if(video_source) //Already in a video
@@ -356,7 +356,7 @@
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
-/obj/item/device/communicator/proc/end_video(var/reason)
+/obj/item/communicator/proc/end_video(var/reason)
 	UnregisterSignal(video_source, COMSIG_OBSERVER_MOVED)
 	show_static()
 	video_source = null

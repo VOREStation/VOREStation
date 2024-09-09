@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 //Guest pass ////////////////////////////////
 /////////////////////////////////////////////
-/obj/item/weapon/card/id/guest
+/obj/item/card/id/guest
 	name = "guest pass"
 	desc = "Allows temporary access to station areas."
 	icon_state = "guest"
@@ -13,23 +13,23 @@
 	var/expired = 0
 	var/reason = "NOT SPECIFIED"
 
-/obj/item/weapon/card/id/guest/update_icon()
+/obj/item/card/id/guest/update_icon()
 	return
 
-/obj/item/weapon/card/id/guest/GetAccess()
+/obj/item/card/id/guest/GetAccess()
 	if(world.time > expiration_time)
 		return access
 	else
 		return temp_access
 
-/obj/item/weapon/card/id/guest/examine(mob/user)
+/obj/item/card/id/guest/examine(mob/user)
 	. = ..()
 	if(world.time < expiration_time)
 		. += "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
 	else
 		. += "<span class='warning'>It expired at [worldtime2stationtime(expiration_time)].</span>"
 
-/obj/item/weapon/card/id/guest/read()
+/obj/item/card/id/guest/read()
 	if(!Adjacent(usr))
 		return //Too far to read
 	if(world.time > expiration_time)
@@ -43,7 +43,7 @@
 	to_chat(usr, "<span class='notice'>Issuing reason: [reason].</span>")
 	return
 
-/obj/item/weapon/card/id/guest/attack_self(mob/living/user as mob)
+/obj/item/card/id/guest/attack_self(mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		if(icon_state == "guest-invalid")
 			to_chat(user, "<span class='warning'>This guest pass is already deactivated!</span>")
@@ -59,16 +59,16 @@
 			expired = 1
 	return ..()
 
-/obj/item/weapon/card/id/guest/Initialize()
+/obj/item/card/id/guest/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/weapon/card/id/guest/Destroy()
+/obj/item/card/id/guest/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/weapon/card/id/guest/process()
+/obj/item/card/id/guest/process()
 	if(expired == 0 && world.time >= expiration_time)
 		visible_message("<span class='warning'>\The [src] flashes a few times before turning red.</span>")
 		icon_state = "guest-invalid"
@@ -90,9 +90,9 @@
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = FALSE
-	circuit = /obj/item/weapon/circuitboard/guestpass
+	circuit = /obj/item/circuitboard/guestpass
 
-	var/obj/item/weapon/card/id/giver
+	var/obj/item/card/id/giver
 	var/list/accesses = list()
 	var/giv_name = "NOT SPECIFIED"
 	var/reason = "NOT SPECIFIED"
@@ -107,10 +107,10 @@
 
 
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
-	if(istype(I, /obj/item/weapon/card/id/guest))
+	if(istype(I, /obj/item/card/id/guest))
 		to_chat(user, "<span class='warning'>The guest pass terminal denies to accept the guest pass.</span>")
 		return
-	if(istype(I, /obj/item/weapon/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(stat & NOPOWER) //checking for power in here so crowbar and screwdriver and stuff still works.
 			to_chat(user, SPAN_WARNING("The terminal refuses your I.D as it is unpowered!"))
 			return
@@ -230,7 +230,7 @@
 				accesses.Cut()
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+				if(istype(I, /obj/item/card/id) && usr.unEquip(I))
 					I.loc = src
 					giver = I
 
@@ -240,7 +240,7 @@
 				dat += "[entry]<br><hr>"
 			//to_chat(usr, "Printing the log, standby...")
 			//sleep(50)
-			var/obj/item/weapon/paper/P = new/obj/item/weapon/paper( loc )
+			var/obj/item/paper/P = new/obj/item/paper( loc )
 			P.name = "activity log"
 			P.info = dat
 
@@ -256,7 +256,7 @@
 				entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
 				internal_log.Add(entry)
 
-				var/obj/item/weapon/card/id/guest/pass = new(src.loc)
+				var/obj/item/card/id/guest/pass = new(src.loc)
 				pass.temp_access = accesses.Copy()
 				pass.registered_name = giv_name
 				pass.expiration_time = world.time + duration*10*60

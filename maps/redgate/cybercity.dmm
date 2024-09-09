@@ -5,7 +5,7 @@
 /area/redgate/city/science)
 "acv" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/mimedouble,
+/obj/item/bedsheet/mimedouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/city/house3)
 "acN" = (
@@ -30,7 +30,7 @@
 /area/redgate/city/apartments)
 "aex" = (
 /obj/structure/table/rack,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/hotel)
 "aeE" = (
@@ -96,23 +96,23 @@
 "akH" = (
 /obj/structure/table/steel,
 /obj/item/integrated_circuit/memory/large,
-/obj/item/weapon/circuitboard/sensors,
+/obj/item/circuitboard/sensors,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/workshop)
 "alA" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/jager,
+/obj/item/reagent_containers/food/drinks/bottle/jager,
+/obj/item/reagent_containers/food/drinks/bottle/jager,
+/obj/item/reagent_containers/food/drinks/bottle/jager,
+/obj/item/reagent_containers/food/drinks/bottle/gin,
+/obj/item/reagent_containers/food/drinks/bottle/gin,
+/obj/item/reagent_containers/food/drinks/bottle/gin,
+/obj/item/reagent_containers/food/drinks/bottle/gin,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "alF" = (
@@ -149,7 +149,7 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/device/tape/random,
+/obj/item/tape/random,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "anE" = (
@@ -294,7 +294,7 @@
 /area/redgate/city/house13)
 "azU" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/wood,
@@ -323,22 +323,22 @@
 /area/redgate/city/science)
 "aBw" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
 /obj/random/donkpocketbox,
 /obj/structure/closet/walllocker_double/kitchen/east,
 /turf/simulated/floor/tiled/white,
@@ -357,7 +357,7 @@
 /area/redgate/city/supermarket)
 "aCc" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/deck/tarot,
+/obj/item/deck/tarot,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/tarot)
 "aCP" = (
@@ -406,7 +406,7 @@
 /area/redgate/city/house15)
 "aHa" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/cardmon)
 "aHi" = (
@@ -442,7 +442,7 @@
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/city/check1)
 "aIV" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/tile,
@@ -467,7 +467,7 @@
 /area/redgate/city/house8)
 "aKz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "aLg" = (
@@ -491,31 +491,31 @@
 	color = "#8da4a6";
 	pixel_x = -5
 	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/redgate/city/bar1)
 "aMa" = (
@@ -579,7 +579,7 @@
 /area/redgate/city/house8)
 "aQg" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/red,
+/obj/item/bedsheet/red,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/workshop)
 "aQx" = (
@@ -612,8 +612,8 @@
 /area/redgate/city/corporation)
 "aRR" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/weapon/handcuffs/legcuffs/fuzzy,
-/obj/item/weapon/handcuffs/fuzzy,
+/obj/item/handcuffs/legcuffs/fuzzy,
+/obj/item/handcuffs/fuzzy,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/police)
 "aRY" = (
@@ -659,10 +659,10 @@
 /area/redgate/city/science)
 "aTW" = (
 /obj/structure/closet,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/item/clothing/under/bathrobe,
 /obj/item/clothing/under/bathrobe,
 /obj/item/clothing/under/bathrobe,
@@ -678,7 +678,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/spa)
 "aUs" = (
-/obj/item/weapon/tank/anesthetic,
+/obj/item/tank/anesthetic,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/doctor)
 "aUw" = (
@@ -740,7 +740,7 @@
 /area/redgate/city/police)
 "aYz" = (
 /obj/structure/table/woodentable,
-/obj/item/device/tape/random,
+/obj/item/tape/random,
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
@@ -813,14 +813,14 @@
 /area/redgate/city/gamblingden)
 "beL" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -855,10 +855,10 @@
 /area/redgate/city/hospital)
 "bhc" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog,
+/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
+/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
+/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
+/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "bhX" = (
@@ -875,7 +875,7 @@
 /area/redgate/city/nifshop)
 "biP" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/bodybags{
+/obj/item/storage/box/bodybags{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -887,7 +887,7 @@
 /area/redgate/city/hospital)
 "biY" = (
 /obj/structure/table/reinforced,
-/obj/item/device/mass_spectrometer/adv,
+/obj/item/mass_spectrometer/adv,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "bka" = (
@@ -950,11 +950,11 @@
 /area/redgate/city/offlicense)
 "boo" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "bpi" = (
@@ -1064,7 +1064,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "bAz" = (
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house3)
 "bBb" = (
@@ -1160,10 +1160,10 @@
 /area/redgate/city/hospital)
 "bGz" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco,
-/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco,
-/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco,
-/obj/item/weapon/reagent_containers/food/snacks/ratpacktaco,
+/obj/item/reagent_containers/food/snacks/ratpacktaco,
+/obj/item/reagent_containers/food/snacks/ratpacktaco,
+/obj/item/reagent_containers/food/snacks/ratpacktaco,
+/obj/item/reagent_containers/food/snacks/ratpacktaco,
 /obj/machinery/light/small/neon/import{
 	pixel_y = 25
 	},
@@ -1202,7 +1202,7 @@
 /area/redgate/city/succ)
 "bJy" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/wood,
@@ -1297,7 +1297,7 @@
 /turf/simulated/wall/tgmc/window/darkwall,
 /area/redgate/city/hotel)
 "bQA" = (
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -1351,19 +1351,19 @@
 /area/redgate/city/science)
 "bTR" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "bUz" = (
-/obj/item/weapon/stool/baystool,
+/obj/item/stool/baystool,
 /turf/simulated/floor/tiled/eris/steel/cyancorner,
 /area/redgate/city/bar1)
 "bUF" = (
@@ -1404,13 +1404,13 @@
 /area/redgate/city/house17)
 "bXw" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner";
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/box/gloves,
+/obj/item/storage/box/gloves,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "bXx" = (
@@ -1494,7 +1494,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/pharmacy)
 "cbl" = (
-/obj/item/weapon/handcuffs/fuzzy,
+/obj/item/handcuffs/fuzzy,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "cbx" = (
@@ -1517,7 +1517,7 @@
 /area/redgate/city/house4)
 "cdb" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/autoinjectors,
+/obj/item/storage/box/autoinjectors,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/drugden)
 "cdk" = (
@@ -1525,14 +1525,14 @@
 /area/redgate/city/police)
 "cdy" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
+/obj/item/reagent_containers/food/snacks/liquidprotein,
+/obj/item/reagent_containers/food/snacks/liquidprotein,
+/obj/item/reagent_containers/food/snacks/liquidprotein,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "cdL" = (
 /obj/random/soap,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house16)
 "cdY" = (
@@ -1560,7 +1560,7 @@
 /obj/machinery/light/floortube{
 	dir = 8;
 	light_color = "#ff8086";
-	light_type = /obj/item/weapon/light/bulb/red;
+	light_type = /obj/item/light/bulb/red;
 	name = "stripper light"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
@@ -1576,7 +1576,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/spa)
 "cgc" = (
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house2)
 "cgf" = (
@@ -1628,7 +1628,7 @@
 /area/redgate/city/apartments)
 "cly" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/staff,
+/obj/item/staff,
 /turf/simulated/floor/tiled/eris/derelict3,
 /area/redgate/city/wiz)
 "clE" = (
@@ -1708,7 +1708,7 @@
 /area/redgate/city/offlicense)
 "css" = (
 /obj/structure/dirtybed,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/drugden)
 "ctv" = (
@@ -1856,7 +1856,7 @@
 /area/redgate/city/cafe)
 "cBU" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house18)
 "cCO" = (
@@ -1983,12 +1983,12 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "cOh" = (
-/obj/item/weapon/storage/fancy/blackcandle_box,
+/obj/item/storage/fancy/blackcandle_box,
 /obj/structure/closet,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/storage/fancy/whitecandle_box,
-/obj/item/weapon/storage/box/matches,
-/obj/item/weapon/storage/box/matches,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/whitecandle_box,
+/obj/item/storage/box/matches,
+/obj/item/storage/box/matches,
 /turf/simulated/floor/wood,
 /area/redgate/city/tarot)
 "cOn" = (
@@ -2027,7 +2027,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/workshop)
 "cRf" = (
-/obj/item/weapon/broken_bottle,
+/obj/item/broken_bottle,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -2035,11 +2035,11 @@
 /area/redgate/city/hotel)
 "cRx" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -2095,12 +2095,12 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/item/weapon/surgical/surgicaldrill,
+/obj/item/surgical/surgicaldrill,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/doctor)
 "cXQ" = (
 /obj/structure/table/glass,
-/obj/item/device/defib_kit/loaded,
+/obj/item/defib_kit/loaded,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2118,9 +2118,9 @@
 /area/redgate/city/scughouse)
 "cYY" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin,
-/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin,
-/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin,
+/obj/item/reagent_containers/food/snacks/liquidvitamin,
+/obj/item/reagent_containers/food/snacks/liquidvitamin,
+/obj/item/reagent_containers/food/snacks/liquidvitamin,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "cZx" = (
@@ -2179,7 +2179,7 @@
 /area/redgate/city/hospital)
 "ddc" = (
 /obj/structure/table/alien,
-/obj/item/weapon/deck/egy{
+/obj/item/deck/egy{
 	pixel_x = 15
 	},
 /turf/simulated/shuttle/floor/alienplating/blue/half{
@@ -2197,7 +2197,7 @@
 /obj/random/snack,
 /obj/random/snack,
 /obj/random/snack,
-/obj/item/weapon/reagent_containers/food/snacks/truffle/random,
+/obj/item/reagent_containers/food/snacks/truffle/random,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house2)
 "dew" = (
@@ -2208,7 +2208,7 @@
 /area/redgate/city/streets)
 "deD" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/gun/energy/netgun,
+/obj/item/gun/energy/netgun,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/police)
 "deF" = (
@@ -2222,11 +2222,11 @@
 /area/redgate/city/science)
 "deJ" = (
 /obj/structure/table/rack,
-/obj/item/device/gps/medical{
+/obj/item/gps/medical{
 	pixel_y = 3
 	},
-/obj/item/device/gps/medical,
-/obj/item/device/gps/medical{
+/obj/item/gps/medical,
+/obj/item/gps/medical{
 	pixel_x = -3
 	},
 /obj/structure/fireaxecabinet/empty{
@@ -2244,7 +2244,7 @@
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "dfT" = (
-/obj/item/weapon/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/drugden)
 "dgh" = (
@@ -2264,7 +2264,7 @@
 /area/redgate/city/altevian)
 "dgs" = (
 /obj/structure/table/steel,
-/obj/item/weapon/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/redgate/city/morgue)
 "dgM" = (
@@ -2293,7 +2293,7 @@
 /area/redgate/city/hospital)
 "dhx" = (
 /obj/item/clothing/under/bathrobe,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house11)
 "diU" = (
@@ -2435,7 +2435,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/city/casino)
 "dtf" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2470,20 +2470,20 @@
 "dwz" = (
 /obj/structure/closet,
 /obj/random/maintenance/security,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
 /turf/simulated/floor/tiled,
 /area/redgate/city/police)
 "dxq" = (
@@ -2578,7 +2578,7 @@
 /area/redgate/city/spa)
 "dDh" = (
 /obj/machinery/light/small,
-/obj/item/weapon/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/drugden)
 "dDq" = (
@@ -2621,13 +2621,13 @@
 /area/redgate/city/stripclub)
 "dHh" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/fancy/cigarettes/killthroat,
-/obj/item/weapon/storage/fancy/cigarettes/killthroat,
-/obj/item/weapon/storage/fancy/cigarettes/killthroat,
-/obj/item/weapon/storage/fancy/cigarettes/killthroat,
-/obj/item/weapon/storage/fancy/cigarettes/killthroat,
-/obj/item/weapon/storage/fancy/cigarettes/killthroat,
-/obj/item/weapon/storage/fancy/cigarettes/killthroat,
+/obj/item/storage/fancy/cigarettes/killthroat,
+/obj/item/storage/fancy/cigarettes/killthroat,
+/obj/item/storage/fancy/cigarettes/killthroat,
+/obj/item/storage/fancy/cigarettes/killthroat,
+/obj/item/storage/fancy/cigarettes/killthroat,
+/obj/item/storage/fancy/cigarettes/killthroat,
+/obj/item/storage/fancy/cigarettes/killthroat,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2667,20 +2667,20 @@
 	light_color = "#575656";
 	name = "dim light"
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "dKy" = (
 /obj/structure/table/standard,
-/obj/item/device/camera{
+/obj/item/camera{
 	pixel_x = 2;
 	pixel_y = 3
 	},
@@ -2718,9 +2718,9 @@
 /area/redgate/city/parkinglot)
 "dMu" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/matches,
-/obj/item/weapon/storage/box/matches,
-/obj/item/weapon/storage/box/matches,
+/obj/item/storage/box/matches,
+/obj/item/storage/box/matches,
+/obj/item/storage/box/matches,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "dMH" = (
@@ -2766,7 +2766,7 @@
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/city/house1)
 "dQv" = (
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/stool/baystool/padded,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/bar2)
 "dQG" = (
@@ -2786,9 +2786,9 @@
 /area/redgate/city/hospital)
 "dRm" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/apurrrrfectman,
-/obj/item/weapon/book/bundle/custom_library/fiction/beyondthedoor,
-/obj/item/weapon/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
+/obj/item/book/bundle/custom_library/fiction/apurrrrfectman,
+/obj/item/book/bundle/custom_library/fiction/beyondthedoor,
+/obj/item/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "dRw" = (
@@ -2878,8 +2878,8 @@
 /area/redgate/city/science)
 "dWz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blue,
+/obj/item/paper_bin,
+/obj/item/pen/blue,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "dWH" = (
@@ -2897,7 +2897,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/hotel)
 "dWV" = (
-/obj/item/weapon/handcuffs/legcuffs/fuzzy,
+/obj/item/handcuffs/legcuffs/fuzzy,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "dXc" = (
@@ -3049,7 +3049,7 @@
 /area/redgate/city/gym)
 "ehS" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/pill_bottle/happy,
+/obj/item/storage/pill_bottle/happy,
 /obj/effect/floor_decal/corner/red/border{
 	dir = 1
 	},
@@ -3167,7 +3167,7 @@
 /area/redgate/city/clotheshop)
 "epr" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/clown,
+/obj/item/bedsheet/clown,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "epQ" = (
@@ -3178,14 +3178,14 @@
 /area/redgate/city/pool)
 "erI" = (
 /obj/structure/closet/secure_closet/engineering_personal,
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/redgate/city/engine)
 "erQ" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/orange,
+/obj/item/bedsheet/orange,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/city/house3)
 "esT" = (
@@ -3231,24 +3231,24 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 33
 	},
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cah/black,
+/obj/item/deck/cah,
+/obj/item/deck/cah,
+/obj/item/deck/cah,
+/obj/item/deck/cah,
+/obj/item/deck/cah,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah,
+/obj/item/deck/cah,
+/obj/item/deck/cah,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
+/obj/item/deck/cah/black,
 /turf/simulated/shuttle/floor/white,
 /area/redgate/city/cards)
 "ewn" = (
@@ -3260,9 +3260,9 @@
 /area/redgate/city/casino)
 "eww" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/reference/ThermodynamicReactionsandResearch,
-/obj/item/weapon/book/bundle/custom_library/reference/fbpandprostheticmaintenance,
-/obj/item/weapon/book/bundle/custom_library/reference/recyclingprocedures,
+/obj/item/book/bundle/custom_library/reference/ThermodynamicReactionsandResearch,
+/obj/item/book/bundle/custom_library/reference/fbpandprostheticmaintenance,
+/obj/item/book/bundle/custom_library/reference/recyclingprocedures,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "ewA" = (
@@ -3371,11 +3371,11 @@
 /area/redgate/city/clotheshop)
 "eEp" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = 14;
 	pixel_y = 13
 	},
@@ -3387,7 +3387,7 @@
 /area/redgate/city/restaurant)
 "eEw" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/deck/cards,
+/obj/item/deck/cards,
 /turf/simulated/floor/tiled/eris/derelict3,
 /area/redgate/city/wiz)
 "eEz" = (
@@ -3481,15 +3481,15 @@
 /area/redgate/city/streets)
 "eKL" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "eKM" = (
@@ -3505,7 +3505,7 @@
 /obj/structure/closet/walllocker_double/misc_civ/north,
 /obj/random/toy,
 /obj/random/plushie,
-/obj/item/weapon/lipstick/random,
+/obj/item/lipstick/random,
 /turf/simulated/floor/tiled/kafel_full/white,
 /area/redgate/city/gallery)
 "eLr" = (
@@ -3542,9 +3542,9 @@
 /area/redgate/city/gym)
 "eMQ" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/religious/feastofkubera,
-/obj/item/weapon/book/custom_library/religious/storyoflordganesha,
-/obj/item/weapon/book/custom_library/religious/sungoddessofkorea,
+/obj/item/book/custom_library/religious/feastofkubera,
+/obj/item/book/custom_library/religious/storyoflordganesha,
+/obj/item/book/custom_library/religious/sungoddessofkorea,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "eNy" = (
@@ -3749,9 +3749,9 @@
 /area/redgate/city/toys)
 "fap" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "fba" = (
@@ -3766,9 +3766,9 @@
 /area/redgate/city/house12)
 "fbr" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico,
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico,
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico,
+/obj/item/storage/box/fancy/chewables/tobacco/nico,
+/obj/item/storage/box/fancy/chewables/tobacco/nico,
+/obj/item/storage/box/fancy/chewables/tobacco/nico,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "fcp" = (
@@ -3885,12 +3885,12 @@
 /obj/structure/closet,
 /obj/random/contraband,
 /obj/random/maintenance/misc,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/stripclub)
 "fmA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple,
+/obj/item/reagent_containers/food/snacks/sliceable/pizza/pineapple,
 /turf/simulated/floor/tiled/kafel_full/blue,
 /area/redgate/city/pizza)
 "fnj" = (
@@ -3953,8 +3953,8 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/item/weapon/surgical/cautery,
-/obj/item/weapon/surgical/bone_clamp,
+/obj/item/surgical/cautery,
+/obj/item/surgical/bone_clamp,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/doctor)
 "fsS" = (
@@ -3975,7 +3975,7 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/redgate/city/engine)
 "fuf" = (
-/obj/item/weapon/reagent_containers/food/snacks/old/horseburger,
+/obj/item/reagent_containers/food/snacks/old/horseburger,
 /turf/simulated/floor/plating,
 /area/redgate/city/dump)
 "fuu" = (
@@ -4054,7 +4054,7 @@
 /obj/machinery/light/floortube{
 	dir = 4;
 	light_color = "#ff8086";
-	light_type = /obj/item/weapon/light/bulb/red;
+	light_type = /obj/item/light/bulb/red;
 	name = "stripper light"
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -4177,7 +4177,7 @@
 /area/redgate/city/hospital)
 "fEG" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/yellow,
+/obj/item/bedsheet/yellow,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "fEQ" = (
@@ -4195,11 +4195,11 @@
 /area/redgate/city/hospital)
 "fEX" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -4333,7 +4333,7 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/obj/item/weapon/storage/wallet/casino,
+/obj/item/storage/wallet/casino,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/city/casino)
 "fQX" = (
@@ -4382,7 +4382,7 @@
 /area/redgate/city/hospital)
 "fVx" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -4429,19 +4429,19 @@
 /area/redgate/city/church)
 "fZJ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = -9;
 	pixel_y = 10
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 6;
 	pixel_y = 10
 	},
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = -9;
 	pixel_y = 1
 	},
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 6;
 	pixel_y = 1
 	},
@@ -4463,10 +4463,10 @@
 /area/redgate/city/casino)
 "gbV" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese,
+/obj/item/reagent_containers/food/snacks/ratpackcheese,
+/obj/item/reagent_containers/food/snacks/ratpackcheese,
+/obj/item/reagent_containers/food/snacks/ratpackcheese,
+/obj/item/reagent_containers/food/snacks/ratpackcheese,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4575,13 +4575,13 @@
 /area/redgate/city/clotheshop)
 "gjk" = (
 /obj/structure/closet/walllocker_double/emergency_engi/north,
-/obj/item/device/multitool,
-/obj/item/weapon/storage/toolbox/brass,
+/obj/item/multitool,
+/obj/item/storage/toolbox/brass,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/comms)
 "gjl" = (
 /obj/structure/table/steel,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/workshop)
 "gjG" = (
@@ -4615,7 +4615,7 @@
 /area/redgate/city/science)
 "gmI" = (
 /obj/structure/table/standard,
-/obj/item/device/defib_kit/loaded,
+/obj/item/defib_kit/loaded,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "gmQ" = (
@@ -4643,7 +4643,7 @@
 /obj/structure/casino_table/blackjack_m{
 	dir = 4
 	},
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/casino)
 "gpj" = (
@@ -4737,11 +4737,11 @@
 /area/redgate/city/storage)
 "gyl" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine,
+/obj/item/reagent_containers/food/drinks/bottle/pwine,
+/obj/item/reagent_containers/food/drinks/bottle/pwine,
+/obj/item/reagent_containers/food/drinks/bottle/pwine,
+/obj/item/reagent_containers/food/drinks/bottle/pwine,
+/obj/item/reagent_containers/food/drinks/bottle/pwine,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "gyB" = (
@@ -4802,7 +4802,7 @@
 /area/redgate/city/hospital)
 "gEX" = (
 /obj/structure/table/woodentable,
-/obj/item/device/retail_scanner,
+/obj/item/retail_scanner,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/stripclub)
 "gFk" = (
@@ -4862,25 +4862,25 @@
 /area/redgate/city/house17)
 "gIb" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/stripclub)
 "gIf" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "gJm" = (
@@ -4909,8 +4909,8 @@
 /area/redgate/city/house5)
 "gKj" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/tool/wrench/brass,
-/obj/item/weapon/tool/screwdriver/brass{
+/obj/item/tool/wrench/brass,
+/obj/item/tool/screwdriver/brass{
 	pixel_y = 5
 	},
 /turf/simulated/floor/wood/alt,
@@ -4935,12 +4935,12 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 33
 	},
-/obj/item/weapon/deck/egy,
-/obj/item/weapon/deck/egy,
-/obj/item/weapon/deck/egy,
-/obj/item/weapon/deck/egy,
-/obj/item/weapon/deck/egy,
-/obj/item/weapon/deck/egy,
+/obj/item/deck/egy,
+/obj/item/deck/egy,
+/obj/item/deck/egy,
+/obj/item/deck/egy,
+/obj/item/deck/egy,
+/obj/item/deck/egy,
 /turf/simulated/shuttle/floor/white,
 /area/redgate/city/cards)
 "gMN" = (
@@ -4955,7 +4955,7 @@
 /area/redgate/city/morgue)
 "gNu" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/greendouble,
+/obj/item/bedsheet/greendouble,
 /turf/simulated/floor/carpet/green,
 /area/redgate/city/house17)
 "gNx" = (
@@ -4977,7 +4977,7 @@
 /area/redgate/city/hotel)
 "gOW" = (
 /obj/structure/closet/radiation,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random/toxin,
+/obj/item/reagent_containers/glass/beaker/vial/random/toxin,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "gPf" = (
@@ -5004,15 +5004,15 @@
 /area/redgate/city/streets)
 "gQo" = (
 /obj/structure/closet,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/folder/red,
-/obj/item/device/tape/random,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/tape/random,
 /obj/random/powercell/device,
 /turf/simulated/floor/tiled/red,
 /area/redgate/city/corporation)
 "gQA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/pharmacy)
 "gRW" = (
@@ -5055,7 +5055,7 @@
 /area/redgate/city/restaurant)
 "gSV" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/ian,
+/obj/item/bedsheet/ian,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "gTg" = (
@@ -5110,9 +5110,9 @@
 /obj/random/contraband,
 /obj/random/medical/pillbottle,
 /obj/random/cash/huge,
-/obj/item/weapon/reagent_containers/syringe/drugs,
-/obj/item/weapon/reagent_containers/syringe/drugs,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
 /obj/random/unidentified_medicine/drug_den,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/stripclub)
@@ -5143,7 +5143,7 @@
 /obj/structure/closet,
 /obj/random/coin,
 /obj/random/maintenance/clean,
-/obj/item/device/camera,
+/obj/item/camera,
 /obj/item/clothing/under/librarian,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
@@ -5180,8 +5180,8 @@
 	name = "dim light"
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/surgical/scalpel,
-/obj/item/weapon/surgical/circular_saw{
+/obj/item/surgical/scalpel,
+/obj/item/surgical/circular_saw{
 	pixel_y = 7
 	},
 /turf/simulated/floor/dungeon,
@@ -5220,7 +5220,7 @@
 /area/redgate/city/house8)
 "hag" = (
 /obj/structure/closet,
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = -3
 	},
 /turf/simulated/floor/wood/alt,
@@ -5271,7 +5271,7 @@
 /area/redgate/city/science)
 "hdR" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/pack/cardemon,
+/obj/item/pack/cardemon,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/cardmon)
 "hea" = (
@@ -5282,14 +5282,14 @@
 /area/redgate/city/streets)
 "heQ" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -5325,7 +5325,7 @@
 /area/redgate/city/cardmon)
 "hfF" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hos,
+/obj/item/bedsheet/hos,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/city/house1)
 "hfG" = (
@@ -5370,7 +5370,7 @@
 /obj/structure/window/basic{
 	dir = 1
 	},
-/obj/item/device/retail_scanner,
+/obj/item/retail_scanner,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/pharmacy)
 "hip" = (
@@ -5412,7 +5412,7 @@
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/weretiger)
 "hnf" = (
-/obj/item/weapon/reagent_containers/food/snacks/old/fries,
+/obj/item/reagent_containers/food/snacks/old/fries,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "hny" = (
@@ -5546,7 +5546,7 @@
 /area/redgate/city/workshop)
 "hAZ" = (
 /obj/structure/table/glass,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/house2)
 "hBj" = (
@@ -5568,15 +5568,15 @@
 /area/redgate/city/pharmacy)
 "hBE" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/snacks/ratveggies,
-/obj/item/weapon/reagent_containers/food/snacks/ratveggies,
-/obj/item/weapon/reagent_containers/food/snacks/ratveggies,
-/obj/item/weapon/reagent_containers/food/snacks/ratveggies,
+/obj/item/reagent_containers/food/snacks/ratveggies,
+/obj/item/reagent_containers/food/snacks/ratveggies,
+/obj/item/reagent_containers/food/snacks/ratveggies,
+/obj/item/reagent_containers/food/snacks/ratveggies,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "hCn" = (
 /obj/structure/bed/chair/sofa/left/brown,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "hCP" = (
@@ -5611,7 +5611,7 @@
 /area/redgate/city/science)
 "hEw" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/weapon/handcuffs/legcuffs/bola,
+/obj/item/handcuffs/legcuffs/bola,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -5631,7 +5631,7 @@
 /area/redgate/city/science)
 "hEQ" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
 /obj/effect/floor_decal/corner/red/border{
 	dir = 1
 	},
@@ -5646,7 +5646,7 @@
 /area/redgate/city/stripclub)
 "hFs" = (
 /obj/structure/table/woodentable,
-/obj/item/device/retail_scanner,
+/obj/item/retail_scanner,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/hotel)
 "hFF" = (
@@ -5659,7 +5659,7 @@
 /area/redgate/city/hospital)
 "hGr" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/redgate/city/house13)
 "hGN" = (
@@ -5672,41 +5672,41 @@
 /obj/structure/closet{
 	name = "chips"
 	},
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
 /obj/item/roulette_ball/gold,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/city/casino)
@@ -5754,8 +5754,8 @@
 /area/redgate/city/theatre)
 "hMM" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/mmi,
-/obj/item/device/robotanalyzer,
+/obj/item/mmi,
+/obj/item/robotanalyzer,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/ripper)
 "hNk" = (
@@ -5795,25 +5795,25 @@
 /area/redgate/city/science)
 "hQh" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus,
-/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus,
+/obj/item/reagent_containers/food/drinks/cans/bodaplus,
+/obj/item/reagent_containers/food/drinks/cans/bodaplus,
+/obj/item/reagent_containers/food/drinks/cans/bodaplus,
+/obj/item/reagent_containers/food/drinks/cans/bodaplus,
+/obj/item/reagent_containers/food/drinks/cans/bodaplus,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "hQZ" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/random/unidentified_medicine/drug_den,
-/obj/item/weapon/reagent_containers/syringe/steroid,
-/obj/item/weapon/reagent_containers/syringe/steroid,
+/obj/item/reagent_containers/syringe/steroid,
+/obj/item/reagent_containers/syringe/steroid,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/drugden)
 "hRb" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/tuna,
-/obj/item/weapon/reagent_containers/food/snacks/tuna,
-/obj/item/weapon/reagent_containers/food/snacks/tuna,
+/obj/item/reagent_containers/food/snacks/tuna,
+/obj/item/reagent_containers/food/snacks/tuna,
+/obj/item/reagent_containers/food/snacks/tuna,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "hRs" = (
@@ -5860,21 +5860,21 @@
 /area/redgate/city/engine)
 "hSz" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/purcarpet,
 /area/redgate/city/house8)
 "hSA" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "hSV" = (
@@ -5954,7 +5954,7 @@
 /area/redgate/city/morgue)
 "hYt" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/folder/red,
+/obj/item/folder/red,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/police)
 "hYX" = (
@@ -6109,8 +6109,8 @@
 /area/redgate/city/warehouse)
 "ijs" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/kafel_full/blue,
 /area/redgate/city/pizza)
 "ikt" = (
@@ -6150,7 +6150,7 @@
 /area/redgate/city/supermarket)
 "imI" = (
 /obj/structure/table/alien,
-/obj/item/weapon/deck/egy{
+/obj/item/deck/egy{
 	pixel_x = 15
 	},
 /turf/simulated/shuttle/floor/alienplating/blue/half,
@@ -6163,7 +6163,7 @@
 /area/redgate/city/check1)
 "imS" = (
 /obj/structure/table/steel,
-/obj/item/device/electronic_assembly/large/default,
+/obj/item/electronic_assembly/large/default,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/workshop)
 "imV" = (
@@ -6246,7 +6246,7 @@
 /area/redgate/city/toys)
 "itN" = (
 /obj/structure/table/glass,
-/obj/item/device/nif/bad{
+/obj/item/nif/bad{
 	name = "display model NIF"
 	},
 /obj/machinery/light{
@@ -6256,7 +6256,7 @@
 /area/redgate/city/nifshop)
 "iuB" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup,
+/obj/item/reagent_containers/food/drinks/golden_cup,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/city/casino)
 "ivG" = (
@@ -6304,8 +6304,8 @@
 /area/redgate/city/laundry)
 "iyb" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/storage/box/beakers,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/storage/box/beakers,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "iyu" = (
@@ -6323,7 +6323,7 @@
 /area/redgate/city/science)
 "izm" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/brainzsnax,
+/obj/item/storage/box/brainzsnax,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "izw" = (
@@ -6337,7 +6337,7 @@
 /area/redgate/city/house3)
 "iAv" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/city/house3)
 "iAW" = (
@@ -6351,9 +6351,9 @@
 /area/redgate/city/corporation)
 "iCg" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/metalglen,
-/obj/item/weapon/book/bundle/custom_library/fiction/poemsforarainyday,
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue142,
+/obj/item/book/bundle/custom_library/fiction/metalglen,
+/obj/item/book/bundle/custom_library/fiction/poemsforarainyday,
+/obj/item/book/bundle/custom_library/fiction/raissue142,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "iCp" = (
@@ -6372,7 +6372,7 @@
 /area/redgate/city/hospital)
 "iDE" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /obj/machinery/injector_maker{
 	pixel_y = 21
 	},
@@ -6469,11 +6469,11 @@
 /obj/structure/sign/painting/public{
 	pixel_x = -30
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 2;
 	pixel_y = 7
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -6601,13 +6601,13 @@
 /area/redgate/city/check2)
 "iQt" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "iRO" = (
@@ -6664,15 +6664,15 @@
 /area/redgate/city/drugden)
 "iUI" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "iVh" = (
@@ -6741,8 +6741,8 @@
 /area/redgate/city/hospital)
 "jaC" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/bone/arm,
-/obj/item/weapon/bone/leg,
+/obj/item/bone/arm,
+/obj/item/bone/leg,
 /obj/item/clothing/under/pizzaguy,
 /obj/item/clothing/head/pizzaguy,
 /turf/simulated/floor/wood/alt/panel,
@@ -6757,7 +6757,7 @@
 /area/redgate/city/church)
 "jaJ" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/house16)
 "jbM" = (
@@ -6795,11 +6795,11 @@
 /area/redgate/city/apartments)
 "jdC" = (
 /obj/structure/table/glass,
-/obj/item/weapon/disk/nifsoft/compliance,
+/obj/item/disk/nifsoft/compliance,
 /turf/simulated/shuttle/floor,
 /area/redgate/city/nifshop)
 "jdR" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6828,10 +6828,10 @@
 /area/redgate/city/apartments)
 "jfs" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/donut,
-/obj/item/weapon/storage/box/donut,
-/obj/item/weapon/storage/box/donut,
-/obj/item/weapon/storage/box/donut,
+/obj/item/storage/box/donut,
+/obj/item/storage/box/donut,
+/obj/item/storage/box/donut,
+/obj/item/storage/box/donut,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "jgR" = (
@@ -6856,10 +6856,10 @@
 /area/redgate/city/corporation)
 "jiS" = (
 /obj/structure/table/steel,
-/obj/item/device/integrated_electronics/wirer{
+/obj/item/integrated_electronics/wirer{
 	pixel_x = 5
 	},
-/obj/item/device/integrated_electronics/debugger{
+/obj/item/integrated_electronics/debugger{
 	pixel_x = -5
 	},
 /turf/simulated/floor/tiled/dark,
@@ -6899,11 +6899,11 @@
 /area/redgate/city/costumes)
 "jkl" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = 6;
 	pixel_y = 8
 	},
@@ -6919,10 +6919,10 @@
 /area/redgate/city/science)
 "jlg" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/snacks/ratprotein,
-/obj/item/weapon/reagent_containers/food/snacks/ratprotein,
-/obj/item/weapon/reagent_containers/food/snacks/ratprotein,
-/obj/item/weapon/reagent_containers/food/snacks/ratprotein,
+/obj/item/reagent_containers/food/snacks/ratprotein,
+/obj/item/reagent_containers/food/snacks/ratprotein,
+/obj/item/reagent_containers/food/snacks/ratprotein,
+/obj/item/reagent_containers/food/snacks/ratprotein,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "jlA" = (
@@ -6967,10 +6967,10 @@
 /area/redgate/city/wiz)
 "jpC" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackramen,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackramen,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackramen,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackramen,
+/obj/item/reagent_containers/food/snacks/ratpackramen,
+/obj/item/reagent_containers/food/snacks/ratpackramen,
+/obj/item/reagent_containers/food/snacks/ratpackramen,
+/obj/item/reagent_containers/food/snacks/ratpackramen,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "jpH" = (
@@ -6987,7 +6987,7 @@
 /area/redgate/city/hospital)
 "jqG" = (
 /obj/structure/table/standard,
-/obj/item/device/retail_scanner,
+/obj/item/retail_scanner,
 /turf/simulated/floor/tiled/monotile,
 /area/redgate/city/stripclub)
 "jqI" = (
@@ -7079,7 +7079,7 @@
 /area/redgate/city/streets)
 "jwD" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hop,
+/obj/item/bedsheet/hop,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "jwI" = (
@@ -7175,7 +7175,7 @@
 /area/redgate/city/doctor)
 "jCC" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/streets)
 "jCN" = (
@@ -7204,7 +7204,7 @@
 /area/redgate/city/stripclub)
 "jEC" = (
 /obj/structure/table/alien,
-/obj/item/weapon/gun/projectile/revolver/toy/big_iron,
+/obj/item/gun/projectile/revolver/toy/big_iron,
 /turf/simulated/floor/carpet/retro,
 /area/redgate/city/toys)
 "jED" = (
@@ -7260,7 +7260,7 @@
 /area/redgate/city/casino)
 "jGZ" = (
 /obj/structure/closet/wardrobe/chemistry_white,
-/obj/item/weapon/storage/bag/chemistry,
+/obj/item/storage/bag/chemistry,
 /obj/item/clothing/accessory/solgov/department/research/jumper{
 	desc = "Insignia denoting assignment to the research department."
 	},
@@ -7399,7 +7399,7 @@
 /area/redgate/city/supermarket)
 "jPE" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/city/bar1)
 "jPW" = (
@@ -7422,7 +7422,7 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/pharmacy)
 "jQG" = (
@@ -7439,7 +7439,7 @@
 /area/redgate/city/chopshop)
 "jRE" = (
 /obj/structure/closet/l3closet/scientist,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
 /obj/random/slimecore,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
@@ -7455,10 +7455,10 @@
 /area/redgate/city/science)
 "jSC" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs/legcuffs,
-/obj/item/weapon/handcuffs/legcuffs,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
+/obj/item/handcuffs/legcuffs,
+/obj/item/handcuffs/legcuffs,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/police)
 "jTu" = (
@@ -7496,7 +7496,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house17)
 "jVD" = (
-/obj/item/weapon/reagent_containers/food/snacks/old/taco,
+/obj/item/reagent_containers/food/snacks/old/taco,
 /turf/simulated/floor/plating,
 /area/redgate/city/dump)
 "jVJ" = (
@@ -7578,7 +7578,7 @@
 /area/redgate/city/house4)
 "kaY" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
 /turf/simulated/floor/tiled/kafel_full/blue,
@@ -7602,7 +7602,7 @@
 /area/redgate/city/waterworks)
 "kcE" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/weapon/storage/box/casino/costume_plaguedoctor,
+/obj/item/storage/box/casino/costume_plaguedoctor,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/costumes)
 "kcU" = (
@@ -7612,8 +7612,8 @@
 /area/redgate/city/workshop)
 "kdF" = (
 /obj/structure/table/steel,
-/obj/item/weapon/surgical/cautery,
-/obj/item/weapon/surgical/scalpel,
+/obj/item/surgical/cautery,
+/obj/item/surgical/scalpel,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/redgate/city/morgue)
 "kdK" = (
@@ -7689,7 +7689,7 @@
 /area/redgate/city/corporation)
 "khO" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/fancy/crayons,
+/obj/item/storage/fancy/crayons,
 /turf/simulated/floor/tiled/kafel_full/white,
 /area/redgate/city/gallery)
 "kih" = (
@@ -7715,9 +7715,9 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
 	},
-/obj/item/weapon/storage/pill_bottle/paracetamol,
-/obj/item/weapon/storage/pill_bottle/paracetamol,
-/obj/item/weapon/storage/pill_bottle/paracetamol,
+/obj/item/storage/pill_bottle/paracetamol,
+/obj/item/storage/pill_bottle/paracetamol,
+/obj/item/storage/pill_bottle/paracetamol,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/pharmacy)
 "kjI" = (
@@ -7851,7 +7851,7 @@
 /area/redgate/city/engine)
 "kpN" = (
 /obj/structure/table/standard,
-/obj/item/weapon/pen/fountain2,
+/obj/item/pen/fountain2,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "kqd" = (
@@ -7875,7 +7875,7 @@
 /area/redgate/city/tarot)
 "kua" = (
 /obj/structure/table/alien,
-/obj/item/weapon/deck/egy{
+/obj/item/deck/egy{
 	pixel_y = -16
 	},
 /turf/simulated/shuttle/floor/alienplating/blue/half{
@@ -7956,7 +7956,7 @@
 /obj/machinery/light/floortube{
 	dir = 8;
 	light_color = "#ff8086";
-	light_type = /obj/item/weapon/light/bulb/red;
+	light_type = /obj/item/light/bulb/red;
 	name = "stripper light"
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -8026,7 +8026,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/house4)
 "kFi" = (
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /obj/random/soap_common,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/cardmon)
@@ -8056,7 +8056,7 @@
 /area/redgate/city/house14)
 "kHd" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/flame/candle/candelabra{
+/obj/item/flame/candle/candelabra{
 	pixel_y = 13
 	},
 /turf/simulated/floor/carpet/brown,
@@ -8099,7 +8099,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/house3)
 "kLq" = (
-/obj/item/weapon/reagent_containers/food/snacks/old/pizza,
+/obj/item/reagent_containers/food/snacks/old/pizza,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "kLU" = (
@@ -8261,7 +8261,7 @@
 /obj/structure/closet/crate/secure{
 	req_one_access = list(101)
 	},
-/obj/item/weapon/tool/transforming/altevian,
+/obj/item/tool/transforming/altevian,
 /obj/random/junk,
 /obj/random/grenade/less_lethal,
 /obj/item/clothing/mask/altevian_breath,
@@ -8322,8 +8322,8 @@
 /area/redgate/city/workshop)
 "kWL" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain9,
+/obj/item/paper_bin,
+/obj/item/pen/fountain9,
 /obj/random/mug,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
@@ -8375,10 +8375,10 @@
 /area/redgate/city/spa)
 "kZm" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/reagent_containers/food/snacks/packaged/meatration,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "kZP" = (
@@ -8405,9 +8405,9 @@
 /area/redgate/city/library)
 "lbl" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "lbt" = (
@@ -8421,7 +8421,7 @@
 /obj/machinery/light/floortube{
 	dir = 8;
 	light_color = "#ff8086";
-	light_type = /obj/item/weapon/light/bulb/red;
+	light_type = /obj/item/light/bulb/red;
 	name = "stripper light"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
@@ -8474,15 +8474,15 @@
 /area/redgate/city/streets)
 "leS" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
+/obj/item/reagent_containers/food/drinks/bottle/whitewine,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "lfd" = (
@@ -8493,11 +8493,11 @@
 /area/redgate/city/streets)
 "lfQ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -8505,11 +8505,11 @@
 /area/redgate/city/cafe)
 "lfT" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer,
-/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer,
+/obj/item/reagent_containers/food/drinks/cans/root_beer,
+/obj/item/reagent_containers/food/drinks/cans/root_beer,
+/obj/item/reagent_containers/food/drinks/cans/root_beer,
+/obj/item/reagent_containers/food/drinks/cans/root_beer,
+/obj/item/reagent_containers/food/drinks/cans/root_beer,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "lgF" = (
@@ -8635,7 +8635,7 @@
 /area/redgate/city/hospital)
 "loA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8660,7 +8660,7 @@
 /area/redgate/city/casino)
 "lpN" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/briefcase,
+/obj/item/storage/briefcase,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "lpQ" = (
@@ -8696,8 +8696,8 @@
 /area/redgate/city/supermarket)
 "ltu" = (
 /obj/structure/closet/walllocker_double/medical/north,
-/obj/item/weapon/cane,
-/obj/item/weapon/cane,
+/obj/item/cane,
+/obj/item/cane,
 /obj/random/maintenance/medical,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
@@ -8709,7 +8709,7 @@
 /area/redgate/city/pizza)
 "luj" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/manual/medical_diagnostics_manual{
+/obj/item/book/manual/medical_diagnostics_manual{
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood,
@@ -8754,10 +8754,10 @@
 /area/redgate/city/pool)
 "lxh" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito,
+/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
+/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
+/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
+/obj/item/reagent_containers/food/snacks/packaged/vendburrito,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "lxv" = (
@@ -8791,7 +8791,7 @@
 /area/redgate/city/dealership)
 "lCA" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/storage/belt/holding,
+/obj/item/storage/belt/holding,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/redgate/city/corporation)
 "lCD" = (
@@ -8846,7 +8846,7 @@
 /area/redgate/city/house10)
 "lFu" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/bluespace_crystal,
+/obj/item/bluespace_crystal,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/redgate/city/corporation)
 "lFx" = (
@@ -8856,7 +8856,7 @@
 /area/redgate/city/warehouse)
 "lFz" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/orange,
+/obj/item/bedsheet/orange,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/police)
 "lFH" = (
@@ -8936,7 +8936,7 @@
 /area/redgate/city/theatre)
 "lKL" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/bundle/custom_library/fiction/metalglen,
+/obj/item/book/bundle/custom_library/fiction/metalglen,
 /turf/simulated/floor/wood,
 /area/redgate/city/house18)
 "lKP" = (
@@ -8967,7 +8967,7 @@
 "lMx" = (
 /obj/structure/table/rack/shelf,
 /obj/random/grenade/less_lethal,
-/obj/item/weapon/gun/energy/plasmastun,
+/obj/item/gun/energy/plasmastun,
 /obj/machinery/light/small,
 /turf/simulated/floor/concrete,
 /area/redgate/city/storage)
@@ -8980,18 +8980,18 @@
 /obj/structure/closet/walllocker/medical/south,
 /obj/random/unidentified_medicine/drug_den,
 /obj/random/unidentified_medicine/drug_den,
-/obj/item/weapon/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
-/obj/item/weapon/reagent_containers/pill/vermicetol,
+/obj/item/reagent_containers/pill/vermicetol,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/pharmacy)
 "lNn" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain5,
+/obj/item/paper_bin,
+/obj/item/pen/fountain5,
 /turf/simulated/floor/carpet,
 /area/redgate/city/house15)
 "lNM" = (
@@ -9009,7 +9009,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/toys)
 "lPv" = (
-/obj/item/weapon/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/drugden)
 "lPB" = (
@@ -9036,9 +9036,9 @@
 /area/redgate/city/hotel)
 "lRp" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/book/manual/bar_guide,
-/obj/item/weapon/book/manual/barman_recipes,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/bar_guide,
+/obj/item/book/manual/barman_recipes,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "lRH" = (
@@ -9065,7 +9065,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/house11)
 "lUM" = (
-/obj/item/device/communicator/watch,
+/obj/item/communicator/watch,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "lVa" = (
@@ -9162,7 +9162,7 @@
 /area/redgate/city/clotheshop)
 "mbT" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/dealership)
 "mck" = (
@@ -9174,10 +9174,10 @@
 /area/redgate/city/apartments)
 "mcm" = (
 /obj/structure/table/reinforced,
-/obj/item/device/multitool{
+/obj/item/multitool{
 	pixel_x = 5
 	},
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/redgate/city/engine)
 "mds" = (
@@ -9186,7 +9186,7 @@
 /area/redgate/city/clotheshop)
 "mdv" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/house4)
 "mdY" = (
@@ -9225,8 +9225,8 @@
 /area/redgate/city/warehouse)
 "mib" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/kitchen/rollingpin,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/restaurant)
 "mii" = (
@@ -9259,13 +9259,13 @@
 /area/redgate/city/police)
 "mjx" = (
 /obj/structure/table/reinforced,
-/obj/item/device/gps/engineering{
+/obj/item/gps/engineering{
 	pixel_x = -3
 	},
-/obj/item/device/gps/engineering{
+/obj/item/gps/engineering{
 	pixel_y = 3
 	},
-/obj/item/device/gps/engineering{
+/obj/item/gps/engineering{
 	pixel_x = 3;
 	pixel_y = 6
 	},
@@ -9286,7 +9286,7 @@
 /area/redgate/city/casino)
 "mkj" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/house4)
 "mkK" = (
@@ -9294,7 +9294,7 @@
 /area/redgate/city/fightclub)
 "mkP" = (
 /obj/structure/closet/wardrobe,
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/maintenance/security,
@@ -9344,7 +9344,7 @@
 /area/redgate/city/apartments)
 "moo" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/drugden)
 "mpi" = (
@@ -9368,7 +9368,7 @@
 /area/redgate/city/apartments)
 "mqz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "mqA" = (
@@ -9400,7 +9400,7 @@
 /area/redgate/city/fightclub)
 "mrZ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/lights/bulbs,
+/obj/item/storage/box/lights/bulbs,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "msj" = (
@@ -9412,10 +9412,10 @@
 /area/redgate/city/science)
 "msF" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration,
+/obj/item/reagent_containers/food/snacks/packaged/vegration,
+/obj/item/reagent_containers/food/snacks/packaged/vegration,
+/obj/item/reagent_containers/food/snacks/packaged/vegration,
+/obj/item/reagent_containers/food/snacks/packaged/vegration,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "msM" = (
@@ -9448,7 +9448,7 @@
 /area/redgate/city/house10)
 "mvM" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tape_roll{
+/obj/item/tape_roll{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -9459,23 +9459,23 @@
 /area/redgate/city/teppi)
 "mwe" = (
 /obj/structure/closet/walllocker_double/kitchen/north,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/weapon/reagent_containers/dropper,
-/obj/item/weapon/storage/box/beakers{
+/obj/item/reagent_containers/dropper,
+/obj/item/storage/box/beakers{
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
+	starts_with = list(/obj/item/reagent_containers/glass/beaker/measuring_cup=7)
 	},
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
 /obj/random/medical/lite,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/restaurant)
@@ -9524,16 +9524,16 @@
 /area/redgate/city/house8)
 "mzz" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/city/casino)
 "mBu" = (
@@ -9556,7 +9556,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/city/waterworks)
 "mEd" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/tile,
@@ -9750,7 +9750,7 @@
 /area/redgate/city/gym)
 "mNh" = (
 /obj/structure/table/woodentable,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "mNF" = (
@@ -9794,10 +9794,10 @@
 /area/redgate/city/dealership)
 "mPN" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/popcorn,
-/obj/item/weapon/reagent_containers/food/snacks/popcorn,
-/obj/item/weapon/reagent_containers/food/snacks/popcorn,
-/obj/item/weapon/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/popcorn,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/theatre)
 "mQe" = (
@@ -9835,17 +9835,17 @@
 /area/redgate/city/spa)
 "mSf" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/purple,
+/obj/item/bedsheet/purple,
 /turf/simulated/floor/carpet/purcarpet,
 /area/redgate/city/house10)
 "mSj" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "mSy" = (
@@ -10004,7 +10004,7 @@
 /area/redgate/city/bar2)
 "nfa" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/book/tome,
+/obj/item/book/tome,
 /turf/simulated/floor/tiled/eris/derelict3,
 /area/redgate/city/wiz)
 "nfg" = (
@@ -10078,7 +10078,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/item/weapon/surgical/bioregen,
+/obj/item/surgical/bioregen,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/doctor)
 "njA" = (
@@ -10087,10 +10087,10 @@
 /area/redgate/city/science)
 "nkD" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger,
+/obj/item/reagent_containers/food/snacks/packaged/vendburger,
+/obj/item/reagent_containers/food/snacks/packaged/vendburger,
+/obj/item/reagent_containers/food/snacks/packaged/vendburger,
+/obj/item/reagent_containers/food/snacks/packaged/vendburger,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "nlQ" = (
@@ -10121,7 +10121,7 @@
 /area/redgate/city/gym)
 "noL" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/house16)
 "npc" = (
@@ -10144,7 +10144,7 @@
 /area/redgate/city/streets)
 "nqc" = (
 /obj/structure/table/glass,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/cardmon)
 "nqu" = (
@@ -10153,7 +10153,7 @@
 /area/redgate/city/doctor)
 "nqO" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/rainbow,
+/obj/item/bedsheet/rainbow,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "nqT" = (
@@ -10219,7 +10219,7 @@
 /area/redgate/city/altevian)
 "nvN" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/defib_kit/jumper_kit,
+/obj/item/defib_kit/jumper_kit,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/ripper)
 "nwI" = (
@@ -10285,7 +10285,7 @@
 	dir = 1
 	},
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/flame/lighter/zippo/gold,
+/obj/item/flame/lighter/zippo/gold,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/city/casino)
 "nyv" = (
@@ -10320,7 +10320,7 @@
 /area/redgate/city/waterworks)
 "nAC" = (
 /obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit{
+/obj/item/suit_cooling_unit{
 	pixel_y = -5
 	},
 /obj/machinery/light{
@@ -10329,7 +10329,7 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/redgate/city/hospital)
 "nBM" = (
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza,
+/obj/item/reagent_containers/food/snacks/sliceable/pizza/oldpizza,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/pizza)
 "nCg" = (
@@ -10489,7 +10489,7 @@
 /area/redgate/city/cardmon)
 "nOh" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hos,
+/obj/item/bedsheet/hos,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "nOE" = (
@@ -10511,7 +10511,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/item/clothing/mask/breath/anesthetic,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/doctor)
@@ -10562,7 +10562,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/carpet/purcarpet,
 /area/redgate/city/church)
 "nSS" = (
@@ -10605,7 +10605,7 @@
 /area/redgate/city/cards)
 "nWw" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/lights/tubes,
+/obj/item/storage/box/lights/tubes,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "nWH" = (
@@ -10628,7 +10628,7 @@
 /area/redgate/city/house6)
 "nXR" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "nYE" = (
@@ -10770,13 +10770,13 @@
 /area/redgate/city/hospital)
 "ogW" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hosdouble,
-/obj/item/weapon/paper,
+/obj/item/bedsheet/hosdouble,
+/obj/item/paper,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "ohf" = (
 /obj/structure/table/alien/blue,
-/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -10788,7 +10788,7 @@
 /area/redgate/city/church)
 "ohq" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/house2)
 "oht" = (
@@ -10825,7 +10825,7 @@
 /area/redgate/city/waterworks)
 "okB" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/custom_library/religious/feastofkubera,
+/obj/item/book/custom_library/religious/feastofkubera,
 /turf/simulated/floor/wood,
 /area/redgate/city/house4)
 "okP" = (
@@ -10896,7 +10896,7 @@
 /area/redgate/city/morgue)
 "ooo" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/ce,
+/obj/item/bedsheet/ce,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "oov" = (
@@ -10959,7 +10959,7 @@
 /area/redgate/city/workshop)
 "osK" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/cedouble,
+/obj/item/bedsheet/cedouble,
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
@@ -11065,10 +11065,10 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_y = 4
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -11109,7 +11109,7 @@
 /area/redgate/city/house9)
 "oES" = (
 /obj/structure/bed/chair/sofa/right/brown,
-/obj/item/weapon/card/id/event/polymorphic/altcard,
+/obj/item/card/id/event/polymorphic/altcard,
 /obj/item/clothing/shoes/heels,
 /obj/machinery/light{
 	dir = 1
@@ -11145,9 +11145,9 @@
 /area/redgate/city/house13)
 "oGK" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/donut,
-/obj/item/weapon/storage/box/donut,
-/obj/item/weapon/storage/box/donut,
+/obj/item/storage/box/donut,
+/obj/item/storage/box/donut,
+/obj/item/storage/box/donut,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "oHL" = (
@@ -11182,28 +11182,28 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/streets)
 "oJh" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -11269,8 +11269,8 @@
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "oML" = (
@@ -11299,7 +11299,7 @@
 /area/redgate/city/succ)
 "oPf" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/snacks/mint,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "oPT" = (
@@ -11323,7 +11323,7 @@
 /area/redgate/city/police)
 "oQV" = (
 /obj/structure/table/alien/blue,
-/obj/item/device/retail_scanner,
+/obj/item/retail_scanner,
 /turf/simulated/shuttle/floor,
 /area/redgate/city/nifshop)
 "oQW" = (
@@ -11366,7 +11366,7 @@
 /area/redgate/city/apartments)
 "oTp" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hosdouble,
+/obj/item/bedsheet/hosdouble,
 /turf/simulated/floor/carpet,
 /area/redgate/city/house7)
 "oUG" = (
@@ -11376,28 +11376,28 @@
 /turf/simulated/fitness,
 /area/redgate/city/gym)
 "oUL" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/yellow,
@@ -11434,9 +11434,9 @@
 /area/redgate/city/bar1)
 "oXJ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-/obj/item/weapon/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
@@ -11468,7 +11468,7 @@
 /area/redgate/city/morgue)
 "oYM" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hosdouble,
+/obj/item/bedsheet/hosdouble,
 /turf/simulated/floor/carpet,
 /area/redgate/city/house15)
 "oYO" = (
@@ -11477,8 +11477,8 @@
 /area/redgate/city/scughouse)
 "oYS" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blue,
+/obj/item/paper_bin,
+/obj/item/pen/blue,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/gym)
 "oZa" = (
@@ -11493,7 +11493,7 @@
 /obj/structure/casino_table/craps{
 	dir = 1
 	},
-/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/casino)
 "paA" = (
@@ -11521,7 +11521,7 @@
 /area/redgate/city/supermarket)
 "pck" = (
 /obj/structure/table/alien,
-/obj/item/weapon/deck/egy{
+/obj/item/deck/egy{
 	pixel_y = -16
 	},
 /turf/simulated/shuttle/floor/alienplating/blue/half{
@@ -11530,7 +11530,7 @@
 /area/redgate/city/cards)
 "pcD" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
+/obj/item/folder/white,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "pcG" = (
@@ -11541,24 +11541,24 @@
 /area/redgate/city/conveyors)
 "pdm" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "pdK" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackburger,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackburger,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackburger,
+/obj/item/reagent_containers/food/snacks/ratpackburger,
+/obj/item/reagent_containers/food/snacks/ratpackburger,
+/obj/item/reagent_containers/food/snacks/ratpackburger,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "pdR" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor/wood,
 /area/redgate/city/laundry)
 "pdY" = (
@@ -11589,7 +11589,7 @@
 "pfT" = (
 /obj/structure/closet,
 /obj/random/contraband,
-/obj/item/weapon/storage/secure/briefcase/money,
+/obj/item/storage/secure/briefcase/money,
 /obj/random/forgotten_tram,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/offlicense)
@@ -11629,7 +11629,7 @@
 /obj/machinery/light/floortube{
 	dir = 8;
 	light_color = "#ff8086";
-	light_type = /obj/item/weapon/light/bulb/red;
+	light_type = /obj/item/light/bulb/red;
 	name = "stripper light"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
@@ -11692,7 +11692,7 @@
 /area/redgate/city/chopshop)
 "ple" = (
 /obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "plq" = (
@@ -11756,7 +11756,7 @@
 /area/redgate/city/pool)
 "psl" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/house4)
 "psB" = (
@@ -11805,7 +11805,7 @@
 "puH" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
+/obj/item/gun/projectile/shotgun/doublebarrel/flare,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/police)
 "pvu" = (
@@ -11866,7 +11866,7 @@
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house14)
 "pAl" = (
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/wood,
 /area/redgate/city/house15)
 "pAF" = (
@@ -11902,7 +11902,7 @@
 /area/redgate/city/toys)
 "pCC" = (
 /obj/structure/table/alien/blue,
-/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/kafel_full/green,
 /area/redgate/city/lasertag)
 "pCI" = (
@@ -11973,7 +11973,7 @@
 /area/redgate/city/laundry)
 "pGW" = (
 /obj/structure/table/alien,
-/obj/item/weapon/aliencoin/phoron,
+/obj/item/aliencoin/phoron,
 /turf/simulated/floor/wood/sif,
 /area/redgate/city/succ)
 "pGZ" = (
@@ -12005,12 +12005,12 @@
 /area/redgate/city/house6)
 "pIU" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
+/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "pKp" = (
@@ -12020,10 +12020,10 @@
 "pKK" = (
 /obj/structure/table/standard,
 /obj/structure/window/basic,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_y = 4
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -12065,7 +12065,7 @@
 /obj/machinery/light/floortube{
 	dir = 8;
 	light_color = "#ff8086";
-	light_type = /obj/item/weapon/light/bulb/red;
+	light_type = /obj/item/light/bulb/red;
 	name = "stripper light"
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -12079,8 +12079,8 @@
 /area/redgate/city/house1)
 "pNn" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain6,
+/obj/item/paper_bin,
+/obj/item/pen/fountain6,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/city/bar1)
 "pNA" = (
@@ -12156,7 +12156,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/item/weapon/surgical/hemostat,
+/obj/item/surgical/hemostat,
 /turf/simulated/floor/dungeon,
 /area/redgate/city/doctor)
 "pRq" = (
@@ -12207,12 +12207,12 @@
 /area/redgate/city/police)
 "pVc" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
 /turf/simulated/floor/tiled/kafel_full/blue,
 /area/redgate/city/pizza)
 "pVH" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/piratedouble,
+/obj/item/bedsheet/piratedouble,
 /turf/simulated/floor/carpet/geo,
 /area/redgate/city/house18)
 "pVJ" = (
@@ -12234,10 +12234,10 @@
 /area/redgate/city/house4)
 "pWC" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/pocky,
-/obj/item/weapon/storage/box/pocky,
-/obj/item/weapon/storage/box/pocky,
-/obj/item/weapon/storage/box/pocky,
+/obj/item/storage/box/pocky,
+/obj/item/storage/box/pocky,
+/obj/item/storage/box/pocky,
+/obj/item/storage/box/pocky,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "pWU" = (
@@ -12275,9 +12275,9 @@
 /area/redgate/city/house5)
 "qaH" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/freezer,
-/obj/item/weapon/storage/box/freezer,
-/obj/item/weapon/storage/box/freezer,
+/obj/item/storage/box/freezer,
+/obj/item/storage/box/freezer,
+/obj/item/storage/box/freezer,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "qaR" = (
@@ -12372,7 +12372,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/pool)
 "qfB" = (
-/obj/item/weapon/broken_bottle,
+/obj/item/broken_bottle,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/bar2)
 "qfY" = (
@@ -12452,7 +12452,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = -3
 	},
 /turf/simulated/floor/wood/alt,
@@ -12464,7 +12464,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/city/shooting)
 "qlB" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/tile,
@@ -12500,7 +12500,7 @@
 "qmM" = (
 /obj/structure/table/reinforced,
 /obj/random/maintenance/engineering,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/redgate/city/engine)
 "qnY" = (
@@ -12610,7 +12610,7 @@
 /area/redgate/city/house3)
 "quX" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/casino)
 "qvg" = (
@@ -12619,7 +12619,7 @@
 /area/redgate/city/supermarket)
 "qvr" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/toolbox/electrical{
+/obj/item/storage/toolbox/electrical{
 	pixel_x = 1;
 	pixel_y = 6
 	},
@@ -12642,10 +12642,10 @@
 /area/redgate/city/bar1)
 "qxx" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_y = 4
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -12666,27 +12666,27 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 33
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/stripclub)
 "qzT" = (
@@ -12703,16 +12703,16 @@
 /area/redgate/city/apartments)
 "qBt" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /obj/random/action_figure,
 /turf/simulated/floor/carpet,
 /area/redgate/city/house15)
 "qBE" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda,
-/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda,
-/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda,
-/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda,
+/obj/item/reagent_containers/food/drinks/cans/baconsoda,
+/obj/item/reagent_containers/food/drinks/cans/baconsoda,
+/obj/item/reagent_containers/food/drinks/cans/baconsoda,
+/obj/item/reagent_containers/food/drinks/cans/baconsoda,
 /obj/machinery/light{
 	dir = 8;
 	light_color = "#575656";
@@ -12739,7 +12739,7 @@
 /turf/simulated/floor/tiled,
 /area/redgate/city/police)
 "qCR" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "qCT" = (
@@ -12750,7 +12750,7 @@
 /area/redgate/city/hotel)
 "qCV" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/teppi)
 "qDU" = (
@@ -12762,9 +12762,9 @@
 /area/redgate/city/science)
 "qDV" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/condiment/ketchup,
-/obj/item/weapon/reagent_containers/food/condiment/ketchup,
-/obj/item/weapon/reagent_containers/food/condiment/ketchup,
+/obj/item/reagent_containers/food/condiment/ketchup,
+/obj/item/reagent_containers/food/condiment/ketchup,
+/obj/item/reagent_containers/food/condiment/ketchup,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -12923,7 +12923,7 @@
 /area/redgate/city/waterworks)
 "qOv" = (
 /obj/structure/table/glass,
-/obj/item/device/nif/bad{
+/obj/item/nif/bad{
 	name = "display model NIF"
 	},
 /obj/machinery/light{
@@ -12933,7 +12933,7 @@
 /area/redgate/city/nifshop)
 "qOA" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "qOG" = (
@@ -13000,7 +13000,7 @@
 /turf/simulated/floor/wood/sif,
 /area/redgate/city/succ)
 "qQU" = (
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/house16)
 "qSg" = (
@@ -13068,7 +13068,7 @@
 /area/redgate/city/restaurant)
 "qYM" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/purple,
+/obj/item/bedsheet/purple,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "qYT" = (
@@ -13094,7 +13094,7 @@
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/city/house2)
 "rbd" = (
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/wood,
 /area/redgate/city/house18)
 "rbl" = (
@@ -13110,7 +13110,7 @@
 /area/redgate/city/streets)
 "rbP" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -13160,7 +13160,7 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/gun/energy/taser/disabler,
+/obj/item/gun/energy/taser/disabler,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/shooting)
 "ris" = (
@@ -13175,7 +13175,7 @@
 /area/redgate/city/stripclub)
 "rkV" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/gun/energy/sickshot,
+/obj/item/gun/energy/sickshot,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -13224,11 +13224,11 @@
 /area/redgate/city/shooting)
 "rne" = (
 /obj/structure/closet,
-/obj/item/weapon/storage/box/casino/costume_wizard,
+/obj/item/storage/box/casino/costume_wizard,
 /turf/simulated/floor/tiled/eris/derelict3,
 /area/redgate/city/wiz)
 "rni" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "rno" = (
@@ -13296,17 +13296,17 @@
 /obj/structure/closet{
 	name = "prize closet"
 	},
-/obj/item/weapon/grenade/spawnergrenade/casino/chicken,
-/obj/item/weapon/grenade/spawnergrenade/casino,
-/obj/item/weapon/grenade/spawnergrenade/casino/corgi,
-/obj/item/weapon/grenade/spawnergrenade/casino/cow,
-/obj/item/weapon/grenade/spawnergrenade/casino/fennec,
-/obj/item/weapon/grenade/spawnergrenade/casino/fox,
-/obj/item/weapon/grenade/spawnergrenade/casino/goldcrest,
-/obj/item/weapon/grenade/spawnergrenade/casino/otie,
-/obj/item/weapon/grenade/spawnergrenade/casino/penguin,
-/obj/item/weapon/grenade/spawnergrenade/casino/redpanda,
-/obj/item/weapon/grenade/spawnergrenade/casino/snake,
+/obj/item/grenade/spawnergrenade/casino/chicken,
+/obj/item/grenade/spawnergrenade/casino,
+/obj/item/grenade/spawnergrenade/casino/corgi,
+/obj/item/grenade/spawnergrenade/casino/cow,
+/obj/item/grenade/spawnergrenade/casino/fennec,
+/obj/item/grenade/spawnergrenade/casino/fox,
+/obj/item/grenade/spawnergrenade/casino/goldcrest,
+/obj/item/grenade/spawnergrenade/casino/otie,
+/obj/item/grenade/spawnergrenade/casino/penguin,
+/obj/item/grenade/spawnergrenade/casino/redpanda,
+/obj/item/grenade/spawnergrenade/casino/snake,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/city/casino)
 "rsi" = (
@@ -13331,14 +13331,14 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 33
 	},
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/wizoff,
+/obj/item/deck/wizoff,
+/obj/item/deck/wizoff,
+/obj/item/deck/wizoff,
+/obj/item/deck/wizoff,
+/obj/item/deck/wizoff,
+/obj/item/deck/wizoff,
+/obj/item/deck/wizoff,
+/obj/item/deck/wizoff,
 /turf/simulated/shuttle/floor/white,
 /area/redgate/city/cards)
 "ruI" = (
@@ -13429,11 +13429,11 @@
 /area/redgate/city/shooting)
 "ryX" = (
 /obj/structure/closet,
-/obj/item/weapon/bone/skull,
-/obj/item/weapon/bone/skull/tajaran,
-/obj/item/weapon/bone/skull/unathi,
-/obj/item/weapon/bone/skull/unknown,
-/obj/item/weapon/reagent_containers/spray/waterflower,
+/obj/item/bone/skull,
+/obj/item/bone/skull/tajaran,
+/obj/item/bone/skull/unathi,
+/obj/item/bone/skull/unknown,
+/obj/item/reagent_containers/spray/waterflower,
 /obj/random/maintenance,
 /turf/simulated/floor/wood,
 /area/redgate/city/tarot)
@@ -13455,11 +13455,11 @@
 /area/redgate/city/cardmon)
 "rBx" = (
 /obj/structure/table/standard,
-/obj/item/device/camera_film{
+/obj/item/camera_film{
 	pixel_x = 4;
 	pixel_y = 11
 	},
-/obj/item/device/camera_film{
+/obj/item/camera_film{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -13807,17 +13807,17 @@
 /area/redgate/city/hotel)
 "scK" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hosdouble,
+/obj/item/bedsheet/hosdouble,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "scP" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/fancy/cigarettes/jerichos,
-/obj/item/weapon/storage/fancy/cigarettes/jerichos,
-/obj/item/weapon/storage/fancy/cigarettes/jerichos,
-/obj/item/weapon/storage/fancy/cigarettes/jerichos,
-/obj/item/weapon/storage/fancy/cigarettes/jerichos,
-/obj/item/weapon/storage/fancy/cigarettes/jerichos,
+/obj/item/storage/fancy/cigarettes/jerichos,
+/obj/item/storage/fancy/cigarettes/jerichos,
+/obj/item/storage/fancy/cigarettes/jerichos,
+/obj/item/storage/fancy/cigarettes/jerichos,
+/obj/item/storage/fancy/cigarettes/jerichos,
+/obj/item/storage/fancy/cigarettes/jerichos,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "scY" = (
@@ -13902,8 +13902,8 @@
 /area/redgate/city/house15)
 "siU" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain8,
+/obj/item/paper_bin,
+/obj/item/pen/fountain8,
 /obj/machinery/light_switch{
 	pixel_y = 25
 	},
@@ -14087,19 +14087,19 @@
 /area/redgate/city/drugden)
 "sst" = (
 /obj/structure/closet/secure_closet/medical3,
-/obj/item/device/glasses_kit,
-/obj/item/weapon/storage/box/bloodpacks,
-/obj/item/weapon/storage/box/autoinjectors,
+/obj/item/glasses_kit,
+/obj/item/storage/box/bloodpacks,
+/obj/item/storage/box/autoinjectors,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "ssv" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/fancy/cigarettes/professionals,
-/obj/item/weapon/storage/fancy/cigarettes/professionals,
-/obj/item/weapon/storage/fancy/cigarettes/professionals,
-/obj/item/weapon/storage/fancy/cigarettes/professionals,
-/obj/item/weapon/storage/fancy/cigarettes/professionals,
-/obj/item/weapon/storage/fancy/cigarettes/professionals,
+/obj/item/storage/fancy/cigarettes/professionals,
+/obj/item/storage/fancy/cigarettes/professionals,
+/obj/item/storage/fancy/cigarettes/professionals,
+/obj/item/storage/fancy/cigarettes/professionals,
+/obj/item/storage/fancy/cigarettes/professionals,
+/obj/item/storage/fancy/cigarettes/professionals,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "ssJ" = (
@@ -14110,11 +14110,11 @@
 /area/redgate/city/hotel)
 "stU" = (
 /obj/structure/table/standard,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/house17)
 "suq" = (
-/obj/item/weapon/reagent_containers/food/snacks/old/hotdog,
+/obj/item/reagent_containers/food/snacks/old/hotdog,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "suC" = (
@@ -14230,9 +14230,9 @@
 /area/redgate/city/offlicense)
 "szC" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/wormcan,
-/obj/item/weapon/storage/box/wormcan,
-/obj/item/weapon/storage/box/wormcan,
+/obj/item/storage/box/wormcan,
+/obj/item/storage/box/wormcan,
+/obj/item/storage/box/wormcan,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "szL" = (
@@ -14293,9 +14293,9 @@
 /area/redgate/city/streets)
 "sFj" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/nonfiction/riseandfallofpersianempire,
-/obj/item/weapon/book/bundle/custom_library/nonfiction/skrelliancastesystem,
-/obj/item/weapon/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
+/obj/item/book/bundle/custom_library/nonfiction/riseandfallofpersianempire,
+/obj/item/book/bundle/custom_library/nonfiction/skrelliancastesystem,
+/obj/item/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "sFv" = (
@@ -14304,9 +14304,9 @@
 /area/redgate/city/workshop)
 "sGs" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/gum,
-/obj/item/weapon/storage/box/gum,
-/obj/item/weapon/storage/box/gum,
+/obj/item/storage/box/gum,
+/obj/item/storage/box/gum,
+/obj/item/storage/box/gum,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "sGF" = (
@@ -14425,8 +14425,8 @@
 /area/redgate/city/house15)
 "sOv" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/gloves,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/gloves,
 /obj/random/maintenance/medical,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
@@ -14493,7 +14493,7 @@
 /area/redgate/city/house7)
 "sVe" = (
 /obj/structure/table/steel,
-/obj/item/device/integrated_circuit_printer,
+/obj/item/integrated_circuit_printer,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/workshop)
 "sVm" = (
@@ -14639,52 +14639,52 @@
 /area/redgate/city/library)
 "tcH" = (
 /obj/structure/safe/floor,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/casino_platinum_chip,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c50,
+/obj/item/spacecasinocash/c50,
+/obj/item/spacecasinocash/c50,
+/obj/item/spacecasinocash/c50,
+/obj/item/casino_platinum_chip,
 /obj/random/cash/big,
 /obj/random/maintenance/morestuff,
 /obj/item/roulette_ball/cheat/black,
@@ -14705,14 +14705,14 @@
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house12)
 "tdw" = (
-/obj/item/weapon/reagent_containers/food/drinks/shaker{
+/obj/item/reagent_containers/food/drinks/shaker{
 	pixel_x = -7;
 	pixel_y = 11
 	},
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/bar2)
 "tdM" = (
-/obj/item/weapon/broken_bottle,
+/obj/item/broken_bottle,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "ten" = (
@@ -14773,7 +14773,7 @@
 /area/redgate/city/pool)
 "tkS" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/tape_roll,
+/obj/item/tape_roll,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "tkZ" = (
@@ -14848,7 +14848,7 @@
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "tpU" = (
-/obj/item/weapon/storage/box/donkpockets/pizza,
+/obj/item/storage/box/donkpockets/pizza,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "tpX" = (
@@ -14926,7 +14926,7 @@
 /area/redgate/city/wiz)
 "tub" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /obj/item/clothing/glasses/regular,
 /turf/simulated/floor/carpet/green,
 /area/redgate/city/house17)
@@ -14986,7 +14986,7 @@
 /area/redgate/city/house16)
 "tyl" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza,
+/obj/item/reagent_containers/food/snacks/sliceable/pizza/oldpizza,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/city/rats)
 "tyH" = (
@@ -14994,13 +14994,13 @@
 	color = "#8da4a6";
 	pixel_x = -5
 	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
 /obj/random/mug,
 /obj/random/mug,
 /obj/random/mug,
@@ -15078,10 +15078,10 @@
 /area/redgate/city/rats)
 "tDL" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_y = 4
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -15097,18 +15097,18 @@
 	},
 /obj/item/clothing/accessory/collar/casinosentientprize_fake,
 /obj/item/clothing/accessory/medal/gold/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice_nerd,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "tEB" = (
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house13)
 "tFX" = (
@@ -15124,12 +15124,12 @@
 /area/redgate/city/house18)
 "tGw" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
+/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -15141,12 +15141,12 @@
 /area/redgate/city/chopshop)
 "tGz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "tGJ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/roulette_balls_fancy,
+/obj/item/storage/box/roulette_balls_fancy,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/city/casino)
 "tHt" = (
@@ -15209,7 +15209,7 @@
 /obj/item/clothing/mask/pig,
 /obj/random/tank,
 /obj/structure/closet/cabinet,
-/obj/item/weapon/moneybag,
+/obj/item/moneybag,
 /turf/simulated/floor/carpet/geo,
 /area/redgate/city/house18)
 "tKE" = (
@@ -15301,14 +15301,14 @@
 /area/redgate/city/science)
 "tSf" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/redgate/city/bar1)
 "tSF" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/city/house9)
 "tTJ" = (
-/obj/item/weapon/inflatable_duck,
+/obj/item/inflatable_duck,
 /turf/simulated/floor/water/deep/indoors,
 /area/redgate/city/pool)
 "tUh" = (
@@ -15503,11 +15503,11 @@
 /area/redgate/city/house16)
 "ujz" = (
 /obj/structure/table/rack,
-/obj/item/device/radio{
+/obj/item/radio{
 	pixel_x = -1;
 	pixel_y = -3
 	},
-/obj/item/device/radio{
+/obj/item/radio{
 	pixel_x = 2
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
@@ -15528,7 +15528,7 @@
 /turf/simulated/floor/dungeon,
 /area/redgate/city/scughouse)
 "uky" = (
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house17)
 "ulB" = (
@@ -15593,9 +15593,9 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 5
 	},
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
-/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/storage/pill_bottle/iron,
+/obj/item/storage/pill_bottle/iron,
+/obj/item/storage/pill_bottle/iron,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -15633,7 +15633,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "uui" = (
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
@@ -15654,7 +15654,7 @@
 /area/redgate/city/hospital)
 "uwj" = (
 /obj/structure/table/glass,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -15662,11 +15662,11 @@
 /area/redgate/city/hospital)
 "uwE" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "uxg" = (
@@ -15682,19 +15682,19 @@
 /turf/simulated/floor/outdoors/sidewalk/slab/city,
 /area/redgate/city/streets)
 "uxt" = (
-/obj/item/weapon/storage/laundry_basket{
+/obj/item/storage/laundry_basket{
 	name = "shopping basket"
 	},
-/obj/item/weapon/storage/laundry_basket{
+/obj/item/storage/laundry_basket{
 	name = "shopping basket"
 	},
-/obj/item/weapon/storage/laundry_basket{
+/obj/item/storage/laundry_basket{
 	name = "shopping basket"
 	},
-/obj/item/weapon/storage/laundry_basket{
+/obj/item/storage/laundry_basket{
 	name = "shopping basket"
 	},
-/obj/item/weapon/storage/laundry_basket{
+/obj/item/storage/laundry_basket{
 	name = "shopping basket"
 	},
 /turf/simulated/floor/tiled/white,
@@ -15769,10 +15769,10 @@
 /area/redgate/city/gallery)
 "uDr" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/drinks/cans/alecan,
-/obj/item/weapon/reagent_containers/food/drinks/cans/alecan,
-/obj/item/weapon/reagent_containers/food/drinks/cans/alecan,
-/obj/item/weapon/reagent_containers/food/drinks/cans/alecan,
+/obj/item/reagent_containers/food/drinks/cans/alecan,
+/obj/item/reagent_containers/food/drinks/cans/alecan,
+/obj/item/reagent_containers/food/drinks/cans/alecan,
+/obj/item/reagent_containers/food/drinks/cans/alecan,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "uDH" = (
@@ -15782,7 +15782,7 @@
 /turf/simulated/floor/tiled/eris/bcircuit,
 /area/redgate/city/nifshop)
 "uDL" = (
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 24;
@@ -15824,12 +15824,12 @@
 /obj/structure/closet{
 	name = "prize closet"
 	},
-/obj/item/weapon/storage/box/casino/costume_commie,
-/obj/item/weapon/storage/box/casino/costume_cowboy,
-/obj/item/weapon/storage/box/casino/costume_marine,
-/obj/item/weapon/storage/box/casino/costume_pirate,
-/obj/item/weapon/storage/box/casino/costume_plaguedoctor,
-/obj/item/weapon/storage/box/casino/costume_wizard,
+/obj/item/storage/box/casino/costume_commie,
+/obj/item/storage/box/casino/costume_cowboy,
+/obj/item/storage/box/casino/costume_marine,
+/obj/item/storage/box/casino/costume_pirate,
+/obj/item/storage/box/casino/costume_plaguedoctor,
+/obj/item/storage/box/casino/costume_wizard,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/city/casino)
 "uGR" = (
@@ -15879,7 +15879,7 @@
 /area/redgate/city/gallery)
 "uHF" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/random/tool/power,
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/milspec,
@@ -15892,9 +15892,9 @@
 /area/redgate/city/pool)
 "uIN" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue147,
-/obj/item/weapon/book/bundle/custom_library/fiction/silence,
-/obj/item/weapon/book/bundle/custom_library/fiction/taleoftherainbowcat,
+/obj/item/book/bundle/custom_library/fiction/raissue147,
+/obj/item/book/bundle/custom_library/fiction/silence,
+/obj/item/book/bundle/custom_library/fiction/taleoftherainbowcat,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "uJn" = (
@@ -15914,8 +15914,8 @@
 /area/redgate/city/house13)
 "uKe" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blue,
+/obj/item/paper_bin,
+/obj/item/pen/blue,
 /turf/simulated/floor/tiled,
 /area/redgate/city/police)
 "uLj" = (
@@ -15943,7 +15943,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/city/chopshop)
 "uMt" = (
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "uMU" = (
@@ -16008,7 +16008,7 @@
 /turf/simulated/floor/carpet/retro,
 /area/redgate/city/toys)
 "uPK" = (
-/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/fightclub)
 "uQh" = (
@@ -16067,7 +16067,7 @@
 	dir = 1
 	},
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/soap/golden_soap,
+/obj/item/soap/golden_soap,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/city/casino)
 "uUa" = (
@@ -16126,20 +16126,20 @@
 	color = "#8da4a6";
 	pixel_x = -5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
 /turf/simulated/floor/wood/alt,
@@ -16286,7 +16286,7 @@
 	pixel_x = -4;
 	pixel_y = 5
 	},
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "vfl" = (
@@ -16337,7 +16337,7 @@
 /area/redgate/city/stripclub)
 "vii" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/green,
+/obj/item/bedsheet/green,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 26;
@@ -16360,11 +16360,11 @@
 /area/redgate/city/house1)
 "vko" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "vkJ" = (
@@ -16376,15 +16376,15 @@
 /area/redgate/city/clotheshop)
 "vlx" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/flame/lighter/zippo/skull,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/flame/lighter/zippo/capitalist,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/flame/lighter/zippo,
+/obj/item/flame/lighter/zippo,
+/obj/item/flame/lighter/zippo,
+/obj/item/flame/lighter/zippo,
+/obj/item/flame/lighter/zippo/skull,
+/obj/item/flame/lighter/zippo,
+/obj/item/flame/lighter/zippo,
+/obj/item/flame/lighter/zippo/capitalist,
+/obj/item/flame/lighter/zippo,
+/obj/item/flame/lighter/zippo,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -16392,11 +16392,11 @@
 /area/redgate/city/offlicense)
 "vlR" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea,
-/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea,
+/obj/item/reagent_containers/food/drinks/cans/iced_tea,
+/obj/item/reagent_containers/food/drinks/cans/iced_tea,
+/obj/item/reagent_containers/food/drinks/cans/iced_tea,
+/obj/item/reagent_containers/food/drinks/cans/iced_tea,
+/obj/item/reagent_containers/food/drinks/cans/iced_tea,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "vmc" = (
@@ -16427,7 +16427,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
 "vnD" = (
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/workshop)
 "vob" = (
@@ -16451,7 +16451,7 @@
 /obj/machinery/light/floortube{
 	dir = 4;
 	light_color = "#ff8086";
-	light_type = /obj/item/weapon/light/bulb/red;
+	light_type = /obj/item/light/bulb/red;
 	name = "stripper light"
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -16462,7 +16462,7 @@
 /area/redgate/city/crates)
 "voC" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/lights,
+/obj/item/storage/box/lights,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "voK" = (
@@ -16721,7 +16721,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/gym)
 "vIp" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -16743,29 +16743,29 @@
 	name = "kitchen cupboard";
 	pixel_y = -30
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/gamblingden)
 "vJx" = (
@@ -16876,9 +16876,9 @@
 /area/redgate/city/hospital)
 "vXn" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/coldmountain,
-/obj/item/weapon/book/bundle/custom_library/fiction/ghostship,
-/obj/item/weapon/book/bundle/custom_library/fiction/manfromsnowyriver,
+/obj/item/book/bundle/custom_library/fiction/coldmountain,
+/obj/item/book/bundle/custom_library/fiction/ghostship,
+/obj/item/book/bundle/custom_library/fiction/manfromsnowyriver,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "vXV" = (
@@ -16949,7 +16949,7 @@
 /area/redgate/city/stripclub)
 "waR" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza,
+/obj/item/reagent_containers/food/snacks/slice/vegetablepizza,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/pizza)
 "wbr" = (
@@ -17021,7 +17021,7 @@
 "wgO" = (
 /obj/structure/table/woodentable,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/newspaper,
+/obj/item/newspaper,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "whs" = (
@@ -17104,7 +17104,7 @@
 /area/redgate/city/crates)
 "wma" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/buns,
+/obj/item/storage/box/buns,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "wml" = (
@@ -17151,7 +17151,7 @@
 /area/redgate/city/dodgypharmacy)
 "wpm" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/rd,
+/obj/item/bedsheet/rd,
 /turf/simulated/floor/carpet/retro_red,
 /area/redgate/city/house11)
 "wpA" = (
@@ -17160,7 +17160,7 @@
 /area/redgate/city/clotheshop)
 "wpE" = (
 /obj/structure/table/woodentable,
-/obj/item/device/retail_scanner/civilian,
+/obj/item/retail_scanner/civilian,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/restaurant)
 "wpN" = (
@@ -17318,7 +17318,7 @@
 /obj/item/clothing/shoes/heels,
 /obj/random/maintenance/medical,
 /obj/random/maintenance/medical,
-/obj/item/weapon/lipstick/random,
+/obj/item/lipstick/random,
 /obj/structure/closet/cabinet,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/city/house2)
@@ -17348,7 +17348,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/pool)
 "wET" = (
-/obj/item/weapon/bedsheet/cosmos,
+/obj/item/bedsheet/cosmos,
 /obj/structure/bed/padded,
 /turf/simulated/floor/wood/sif,
 /area/redgate/city/succ)
@@ -17400,7 +17400,7 @@
 /area/redgate/city/chopshop)
 "wIE" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/cell/high{
+/obj/item/cell/high{
 	charge = 100;
 	maxcharge = 15000;
 	pixel_x = 5;
@@ -17455,8 +17455,8 @@
 /area/redgate/city/corporation)
 "wLD" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/flash/synthetic,
-/obj/item/device/flash/synthetic,
+/obj/item/flash/synthetic,
+/obj/item/flash/synthetic,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/ripper)
 "wMk" = (
@@ -17471,7 +17471,7 @@
 	dir = 5
 	},
 /obj/structure/closet,
-/obj/item/weapon/melee/classic_baton,
+/obj/item/melee/classic_baton,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/redgate/city/dodgypharmacy)
 "wMY" = (
@@ -17493,11 +17493,11 @@
 /area/redgate/city/dealership)
 "wOo" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/drinks/cans/boda,
-/obj/item/weapon/reagent_containers/food/drinks/cans/boda,
-/obj/item/weapon/reagent_containers/food/drinks/cans/boda,
-/obj/item/weapon/reagent_containers/food/drinks/cans/boda,
-/obj/item/weapon/reagent_containers/food/drinks/cans/boda,
+/obj/item/reagent_containers/food/drinks/cans/boda,
+/obj/item/reagent_containers/food/drinks/cans/boda,
+/obj/item/reagent_containers/food/drinks/cans/boda,
+/obj/item/reagent_containers/food/drinks/cans/boda,
+/obj/item/reagent_containers/food/drinks/cans/boda,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
 "wOJ" = (
@@ -17531,7 +17531,7 @@
 /area/redgate/city/waterworks)
 "wRp" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/city/supermarket)
@@ -17577,9 +17577,9 @@
 /area/redgate/city/house13)
 "wUr" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey,
-/obj/item/weapon/reagent_containers/food/snacks/ratpackturkey,
+/obj/item/reagent_containers/food/snacks/ratpackturkey,
+/obj/item/reagent_containers/food/snacks/ratpackturkey,
+/obj/item/reagent_containers/food/snacks/ratpackturkey,
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/altevian)
 "wUP" = (
@@ -17636,7 +17636,7 @@
 /obj/machinery/door/window/eastright{
 	dir = 8
 	},
-/obj/item/weapon/book/manual/casino,
+/obj/item/book/manual/casino,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/city/casino)
 "wXV" = (
@@ -17715,13 +17715,13 @@
 /area/redgate/city/science)
 "xeZ" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain8,
+/obj/item/paper_bin,
+/obj/item/pen/fountain8,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/city/house16)
 "xfo" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
 /turf/simulated/floor/wood,
 /area/redgate/city/house4)
 "xfB" = (
@@ -17878,12 +17878,12 @@
 /area/redgate/city/house18)
 "xrc" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/city/offlicense)
 "xsl" = (
@@ -17910,9 +17910,9 @@
 /area/redgate/city/lasertag)
 "xuh" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/manual/mass_spectrometry,
-/obj/item/weapon/book/manual/materials_chemistry_analysis,
-/obj/item/weapon/book/manual/nuclear,
+/obj/item/book/manual/mass_spectrometry,
+/obj/item/book/manual/materials_chemistry_analysis,
+/obj/item/book/manual/nuclear,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "xul" = (
@@ -17957,7 +17957,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/city/house2)
 "xyk" = (
-/obj/item/device/radio/headset,
+/obj/item/radio/headset,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "xyC" = (
@@ -17970,7 +17970,7 @@
 /area/redgate/city/house13)
 "xzD" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
 "xAj" = (
@@ -18125,7 +18125,7 @@
 /area/redgate/city/science)
 "xOB" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/glass_extra/straw,
+/obj/item/glass_extra/straw,
 /turf/simulated/floor/wood/alt,
 /area/redgate/city/stripclub)
 "xOC" = (
@@ -18142,8 +18142,8 @@
 /area/redgate/city/doctor)
 "xPE" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain9,
+/obj/item/paper_bin,
+/obj/item/pen/fountain9,
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/redgate/city/dealership)
 "xQn" = (
@@ -18151,11 +18151,11 @@
 /area/redgate/city/casino)
 "xQq" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/rainbow,
+/obj/item/bedsheet/rainbow,
 /turf/simulated/floor/carpet/happy,
 /area/redgate/city/house14)
 "xQN" = (
-/obj/item/weapon/paperplane,
+/obj/item/paperplane,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/hotel)
 "xQU" = (
@@ -18179,7 +18179,7 @@
 /area/redgate/city/warehouse)
 "xTc" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/curtain/open/privacy,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/hospital)
@@ -18282,7 +18282,7 @@
 /area/redgate/city/theatre)
 "yaE" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
 	pixel_x = -4
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -18303,8 +18303,8 @@
 /area/redgate/city/bar1)
 "ybM" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain2,
+/obj/item/paper_bin,
+/obj/item/pen/fountain2,
 /turf/simulated/floor/carpet/green,
 /area/redgate/city/house17)
 "ycs" = (
@@ -18336,14 +18336,14 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 33
 	},
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/holder,
-/obj/item/weapon/deck/holder,
-/obj/item/weapon/deck/holder,
-/obj/item/weapon/deck/holder,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/holder,
+/obj/item/deck/holder,
+/obj/item/deck/holder,
+/obj/item/deck/holder,
 /turf/simulated/shuttle/floor/white,
 /area/redgate/city/cards)
 "yfe" = (
@@ -18354,7 +18354,7 @@
 /area/redgate/city/engine)
 "yfs" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/mimedouble,
+/obj/item/bedsheet/mimedouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/redgate/city/house9)
 "yfD" = (
@@ -18419,7 +18419,7 @@
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/bar2)
 "yjg" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt,

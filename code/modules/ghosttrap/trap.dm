@@ -84,7 +84,7 @@ var/list/ghost_traps
 	to_chat(target, "<b>Use say #b to speak to other artificial intelligences.</b>")
 	var/turf/T = get_turf(target)
 	T.visible_message("<b>\The [src]</b> chimes quietly.")
-	var/obj/item/device/mmi/digital/posibrain/P = target.loc
+	var/obj/item/mmi/digital/posibrain/P = target.loc
 	if(!istype(P)) //wat
 		return
 	P.searching = 0

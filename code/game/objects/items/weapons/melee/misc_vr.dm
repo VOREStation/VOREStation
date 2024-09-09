@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/rapier
+/obj/item/melee/rapier
 	name = "rapier"
 	desc = "A gleaming steel blade with a gold handguard and inlayed with an outstanding red gem."
 	icon = 'icons/obj/weapons_vr.dmi'

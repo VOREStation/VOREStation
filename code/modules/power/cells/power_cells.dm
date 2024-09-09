@@ -1,14 +1,14 @@
 /*
  * Empty
  */
-/obj/item/weapon/cell/empty/New()
+/obj/item/cell/empty/New()
 	..()
 	charge = 0
 
 /*
  * Crap
  */
-/obj/item/weapon/cell/crap
+/obj/item/cell/crap
 	name = "\improper rechargable DD battery"
 	desc = "An older, cheap power cell. It's probably been in use for quite some time now."
 	description_fluff = "You can't top the rust top." //TOTALLY TRADEMARK INFRINGEMENT
@@ -17,17 +17,17 @@
 	maxcharge = 500
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
-/obj/item/weapon/cell/crap/update_icon() //No visible charge indicator
+/obj/item/cell/crap/update_icon() //No visible charge indicator
 	return
 
-/obj/item/weapon/cell/crap/empty/New()
+/obj/item/cell/crap/empty/New()
 	..()
 	charge = 0
 
 /*
  * APC
  */
-/obj/item/weapon/cell/apc
+/obj/item/cell/apc
 	name = "heavy-duty power cell"
 	origin_tech = list(TECH_POWER = 1)
 	icon_state = "apc"
@@ -37,21 +37,21 @@
 /*
  * Robot
  */
-/obj/item/weapon/cell/robot_station
+/obj/item/cell/robot_station
 	name = "standard robot power cell"
 	maxcharge = 7500
 
 /*
  * High
  */
-/obj/item/weapon/cell/high
+/obj/item/cell/high
 	name = "high-capacity power cell"
 	origin_tech = list(TECH_POWER = 2)
 	icon_state = "high"
 	maxcharge = 10000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 60)
 
-/obj/item/weapon/cell/high/empty/New()
+/obj/item/cell/high/empty/New()
 	..()
 	charge = 0
 	update_icon()
@@ -59,14 +59,14 @@
 /*
  * Super
  */
-/obj/item/weapon/cell/super
+/obj/item/cell/super
 	name = "super-capacity power cell"
 	origin_tech = list(TECH_POWER = 5)
 	icon_state = "super"
 	maxcharge = 20000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 70)
 
-/obj/item/weapon/cell/super/empty/New()
+/obj/item/cell/super/empty/New()
 	..()
 	charge = 0
 	update_icon()
@@ -74,7 +74,7 @@
 /*
  * Syndicate
  */
-/obj/item/weapon/cell/robot_syndi
+/obj/item/cell/robot_syndi
 	name = "syndicate robot power cell"
 	description_fluff = "Almost as good as a hyper."
 	icon_state = "super" //We don't want roboticists confuse it with a low standard cell
@@ -83,14 +83,14 @@
 /*
  * Hyper
  */
-/obj/item/weapon/cell/hyper
+/obj/item/cell/hyper
 	name = "hyper-capacity power cell"
 	origin_tech = list(TECH_POWER = 6)
 	icon_state = "hyper"
 	maxcharge = 30000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 
-/obj/item/weapon/cell/hyper/empty/New()
+/obj/item/cell/hyper/empty/New()
 	..()
 	charge = 0
 	update_icon()
@@ -98,7 +98,7 @@
 /*
  * Mecha
  */
-/obj/item/weapon/cell/mech
+/obj/item/cell/mech
 	name = "mecha power cell"
 	icon_state = "mech"
 	connector_type = "mech"
@@ -106,7 +106,7 @@
 	maxcharge = 15000
 	matter = list(MAT_STEEL = 800, MAT_GLASS = 60)
 
-/obj/item/weapon/cell/mech/lead
+/obj/item/cell/mech/lead
 	name = "lead acid battery"
 	desc = "An ancient battery design not commonly seen anymore. It looks like it'd fit inside a mech however..."
 	origin_tech = list(TECH_POWER = 0) //Litteraly an old car battery, doesn't need tech
@@ -115,10 +115,10 @@
 	maxcharge = 8000
 	matter = list(MAT_STEEL = 300, MAT_GLASS = 10)
 
-/obj/item/weapon/cell/mech/lead/update_icon() //No visible charge indicator
+/obj/item/cell/mech/lead/update_icon() //No visible charge indicator
 	return
 
-/obj/item/weapon/cell/mech/high
+/obj/item/cell/mech/high
 	name = "high-capacity mecha power cell"
 	origin_tech = list(TECH_POWER = 3)
 	icon_state = "blue"
@@ -126,7 +126,7 @@
 	maxcharge = 20000
 	matter = list(MAT_STEEL = 800, MAT_GLASS = 80)
 
-/obj/item/weapon/cell/mech/super
+/obj/item/cell/mech/super
 	name = "super-capacity mecha power cell"
 	origin_tech = list(TECH_POWER = 6)
 	icon_state = "white"
@@ -137,23 +137,23 @@
 /*
  * Infinite
  */
-/obj/item/weapon/cell/infinite
+/obj/item/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "infinity"
 	origin_tech =  null
 	maxcharge = 30000 //determines how badly mobs get shocked
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 
-/obj/item/weapon/cell/infinite/check_charge()
+/obj/item/cell/infinite/check_charge()
 	return 1
 
-/obj/item/weapon/cell/infinite/use()
+/obj/item/cell/infinite/use()
 	return 1
 
 /*
  * Potato
  */
-/obj/item/weapon/cell/potato
+/obj/item/cell/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	origin_tech = list(TECH_POWER = 1)
@@ -165,7 +165,7 @@
 /*
  * Slime
  */
-/obj/item/weapon/cell/slime
+/obj/item/cell/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with phoron, it crackles with power."
 	origin_tech = list(TECH_POWER = 4, TECH_BIO = 5)
@@ -181,7 +181,7 @@
 /*
  * Emergency Light
  */
-/obj/item/weapon/cell/emergency_light
+/obj/item/cell/emergency_light
 	name = "miniature power cell"
 	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
 	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
@@ -190,10 +190,10 @@
 	connector_type = "emergency"
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/cell/emergency_light/update_icon() //No visible charge indicator
+/obj/item/cell/emergency_light/update_icon() //No visible charge indicator
 	return
 
-/obj/item/weapon/cell/emergency_light/Initialize()
+/obj/item/cell/emergency_light/Initialize()
 	. = ..()
 	var/area/A = get_area(src)
 	if(!A.lightswitch || !A.light_power)
@@ -204,7 +204,7 @@
  *
  * Not actually a cell, but if people look for it, they'll probably look near other cells
  */
-/obj/item/device/fbp_backup_cell
+/obj/item/fbp_backup_cell
 	name = "backup battery"
 	desc = "A small one-time-use chemical battery for synthetic crew when they are low on power in emergency situations."
 	icon = 'icons/obj/power_cells.dmi'
@@ -213,11 +213,11 @@
 	var/amount = 100
 	var/used = FALSE
 
-/obj/item/device/fbp_backup_cell/Initialize()
+/obj/item/fbp_backup_cell/Initialize()
 	. = ..()
 	add_overlay("[icon_state]_100")
 
-/obj/item/device/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
 	if(!used && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
@@ -232,7 +232,7 @@
 
 	. = ..()
 
-/obj/item/device/fbp_backup_cell/proc/use(var/mob/living/user, var/mob/living/target)
+/obj/item/fbp_backup_cell/proc/use(var/mob/living/user, var/mob/living/target)
 	if(used)
 		return
 	used = TRUE

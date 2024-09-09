@@ -100,7 +100,7 @@
 /area/redgate/jungle/facilityne)
 "bw" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/pasty,
+/obj/item/reagent_containers/food/snacks/packaged/pasty,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "bA" = (
@@ -138,7 +138,7 @@
 /area/redgate/jungle/facilitynw)
 "bQ" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/toy/desk/fan,
+/obj/item/toy/desk/fan,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/jungle/facilityse)
 "bW" = (
@@ -163,7 +163,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "cj" = (
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "cn" = (
@@ -246,7 +246,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "cW" = (
-/obj/item/weapon/bone/leg,
+/obj/item/bone/leg,
 /turf/simulated/mineral/floor/ignore_cavegen{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -313,7 +313,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "dB" = (
-/obj/item/weapon/cell/emergency_light,
+/obj/item/cell/emergency_light,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "dH" = (
@@ -431,7 +431,7 @@
 	dir = 1
 	},
 /obj/structure/table/rack/steel,
-/obj/item/weapon/implantcase/language/eal,
+/obj/item/implantcase/language/eal,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "eK" = (
@@ -445,7 +445,7 @@
 /turf/simulated/floor/lava,
 /area/redgate/jungle/facilityse)
 "eM" = (
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "eN" = (
@@ -463,7 +463,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "eS" = (
-/obj/item/weapon/weldingtool/hugetank,
+/obj/item/weldingtool/hugetank,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "eW" = (
@@ -564,8 +564,8 @@
 /area/redgate/jungle/facilitysw)
 "gf" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder,
-/obj/item/weapon/pen/fountain,
+/obj/item/folder,
+/obj/item/pen/fountain,
 /turf/simulated/floor/wmarble,
 /area/redgate/jungle/facilityse)
 "gh" = (
@@ -663,19 +663,19 @@
 /area/redgate/jungle/facilityne)
 "hw" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/toy/desk/newtoncradle,
+/obj/item/toy/desk/newtoncradle,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/jungle/facilityse)
 "hx" = (
 /turf/simulated/wall,
 /area/redgate/jungle/facilitynw)
 "hy" = (
-/obj/item/weapon/bikehorn/rubberducky/red,
+/obj/item/bikehorn/rubberducky/red,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "hB" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/custardcream,
+/obj/item/storage/box/custardcream,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "hD" = (
@@ -722,7 +722,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "iq" = (
-/obj/item/weapon/mine/stun,
+/obj/item/mine/stun,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "iv" = (
@@ -813,12 +813,12 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "jH" = (
-/obj/item/weapon/storage/vore_egg/floppy,
+/obj/item/storage/vore_egg/floppy,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "jK" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/jaffacake,
+/obj/item/storage/box/jaffacake,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "jL" = (
@@ -854,7 +854,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "kh" = (
-/obj/item/weapon/mine/stun,
+/obj/item/mine/stun,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "kj" = (
@@ -887,13 +887,13 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "kS" = (
-/obj/item/weapon/bikehorn,
+/obj/item/bikehorn,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "kX" = (
 /obj/structure/closet/walllocker_double/casino/west,
-/obj/item/weapon/storage/box/roulette_balls_fancy,
-/obj/item/weapon/storage/box/roulette_balls_normal,
+/obj/item/storage/box/roulette_balls_fancy,
+/obj/item/storage/box/roulette_balls_normal,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/facilitycasino)
 "kY" = (
@@ -930,7 +930,7 @@
 /area/redgate/jungle/facilitybar)
 "lt" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "lv" = (
@@ -959,7 +959,7 @@
 /area/redgate/jungle/facilitynw)
 "lD" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/sausageroll,
+/obj/item/reagent_containers/food/snacks/packaged/sausageroll,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "lH" = (
@@ -988,7 +988,7 @@
 	},
 /area/redgate/jungle/facilitynw)
 "mm" = (
-/obj/item/weapon/inducer/unloaded,
+/obj/item/inducer/unloaded,
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitynw)
@@ -1000,22 +1000,22 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/jungle/underwaterswamp)
 "mv" = (
-/obj/item/weapon/cannonframe,
+/obj/item/cannonframe,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "mw" = (
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/facilitycasino)
 "my" = (
@@ -1038,7 +1038,7 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/facilitycasino)
 "mK" = (
-/obj/item/weapon/bone/arm,
+/obj/item/bone/arm,
 /turf/simulated/mineral/floor/ignore_cavegen{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1047,7 +1047,7 @@
 /area/redgate/jungle/underwatercavepond)
 "mM" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/surgical/cautery/alien,
+/obj/item/surgical/cautery/alien,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "mQ" = (
@@ -1085,7 +1085,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitysw)
 "nc" = (
-/obj/item/weapon/bone/horn,
+/obj/item/bone/horn,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "nd" = (
@@ -1098,7 +1098,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ng" = (
-/obj/item/weapon/newspaper,
+/obj/item/newspaper,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "nq" = (
@@ -1152,10 +1152,10 @@
 /area/redgate/jungle/facilityne)
 "nN" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/bone/leg,
-/obj/item/weapon/bone/arm,
-/obj/item/weapon/bone/horn,
-/obj/item/weapon/bone/skull/unknown,
+/obj/item/bone/leg,
+/obj/item/bone/arm,
+/obj/item/bone/horn,
+/obj/item/bone/skull/unknown,
 /obj/random/mug,
 /obj/item/clothing/accessory/bracelet/material/gold,
 /obj/item/clothing/ears/earring/dangle/gold,
@@ -1163,8 +1163,8 @@
 /area/redgate/jungle/murderroom)
 "nP" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder/blue,
-/obj/item/weapon/pen/fountain4,
+/obj/item/folder/blue,
+/obj/item/pen/fountain4,
 /turf/simulated/floor/wmarble,
 /area/redgate/jungle/facilityse)
 "nZ" = (
@@ -1180,7 +1180,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ok" = (
-/obj/item/weapon/implantcase/armblade,
+/obj/item/implantcase/armblade,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "oo" = (
@@ -1201,10 +1201,10 @@
 /area/redgate/jungle/facilitysw)
 "ou" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/material/twohanded/spear/flint,
-/obj/item/weapon/material/fishing_net,
-/obj/item/weapon/material/fishing_net,
-/obj/item/weapon/material/fishing_net,
+/obj/item/material/twohanded/spear/flint,
+/obj/item/material/fishing_net,
+/obj/item/material/fishing_net,
+/obj/item/material/fishing_net,
 /obj/random/fantasy_item,
 /obj/random/potion_ingredient,
 /turf/simulated/mineral/floor/ignore_cavegen{
@@ -1220,7 +1220,7 @@
 /area/redgate/jungle/facilitynw)
 "ow" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/packageWrap,
+/obj/item/packageWrap,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitynw)
 "oB" = (
@@ -1286,7 +1286,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "pp" = (
-/obj/item/weapon/inflatable_duck,
+/obj/item/inflatable_duck,
 /turf/simulated/floor/water/deep/pool,
 /area/redgate/jungle/facilitynw)
 "pq" = (
@@ -1326,7 +1326,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "pO" = (
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/healthanalyzer/advanced,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "pR" = (
@@ -1344,7 +1344,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitynw)
 "pZ" = (
-/obj/item/weapon/cell/spike,
+/obj/item/cell/spike,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ql" = (
@@ -1361,7 +1361,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "qD" = (
-/obj/item/weapon/anodevice,
+/obj/item/anodevice,
 /obj/structure/closet/tent/B,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
@@ -1443,7 +1443,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ry" = (
-/obj/item/weapon/bone/skull/unknown,
+/obj/item/bone/skull/unknown,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "rB" = (
@@ -1454,7 +1454,7 @@
 /area/redgate/jungle/facilityne)
 "rD" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/pen/fountain8,
+/obj/item/pen/fountain8,
 /turf/simulated/floor/wmarble,
 /area/redgate/jungle/facilityse)
 "rF" = (
@@ -1466,7 +1466,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "rR" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "rU" = (
@@ -1490,11 +1490,11 @@
 /area/redgate/jungle/facilityse)
 "sr" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "su" = (
-/obj/item/weapon/anobattery,
+/obj/item/anobattery,
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
@@ -1521,7 +1521,7 @@
 	},
 /area/redgate/jungle/facilitysw)
 "sA" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "sG" = (
@@ -1561,7 +1561,7 @@
 	},
 /area/redgate/jungle/underwatercave)
 "tf" = (
-/obj/item/weapon/mine/stun,
+/obj/item/mine/stun,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "th" = (
@@ -1571,40 +1571,40 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "tj" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/white/golden,
@@ -1616,7 +1616,7 @@
 /area/redgate/jungle/facilitynw)
 "tn" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "to" = (
@@ -1629,7 +1629,7 @@
 /area/redgate/jungle/facilityne)
 "tF" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/facilitybar)
 "tL" = (
@@ -1652,7 +1652,7 @@
 /area/redgate/jungle/underwatercaveswamp)
 "tQ" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/scotchegg,
+/obj/item/reagent_containers/food/snacks/packaged/scotchegg,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "tR" = (
@@ -1667,7 +1667,7 @@
 /area/redgate/jungle/facilityne)
 "tV" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/facilitycasino)
 "ub" = (
@@ -1751,7 +1751,7 @@
 /area/redgate/jungle/facilityne)
 "uY" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/gun/energy/sickshot,
+/obj/item/gun/energy/sickshot,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/facilitybar)
 "vd" = (
@@ -1767,7 +1767,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "vq" = (
-/obj/item/weapon/folder,
+/obj/item/folder,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "vw" = (
@@ -1785,7 +1785,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "vH" = (
-/obj/item/weapon/refill_cartridge/universal,
+/obj/item/refill_cartridge/universal,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "vI" = (
@@ -1795,7 +1795,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "vM" = (
-/obj/item/weapon/gun/projectile/deagle/gold,
+/obj/item/gun/projectile/deagle/gold,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilityse)
 "vS" = (
@@ -1929,7 +1929,7 @@
 /area/redgate/jungle/facilityne)
 "xF" = (
 /obj/structure/bed/nest,
-/obj/item/weapon/storage/vore_egg/purple,
+/obj/item/storage/vore_egg/purple,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "xH" = (
@@ -1950,7 +1950,7 @@
 /area/redgate/jungle/facilitynw)
 "xW" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/implanter/vrlanguage,
+/obj/item/implanter/vrlanguage,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ya" = (
@@ -1959,7 +1959,7 @@
 /area/redgate/jungle/facilitynw)
 "yc" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/packaged/porkpie,
+/obj/item/reagent_containers/food/snacks/packaged/porkpie,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "yd" = (
@@ -2035,7 +2035,7 @@
 /area/redgate/jungle/facilitynw)
 "yS" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "yV" = (
@@ -2115,7 +2115,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Aa" = (
-/obj/item/weapon/storage/mre/menu12,
+/obj/item/storage/mre/menu12,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Ab" = (
@@ -2128,7 +2128,7 @@
 /area/redgate/jungle/facilityse)
 "Al" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/old/burger,
+/obj/item/reagent_containers/food/snacks/old/burger,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "An" = (
@@ -2137,7 +2137,7 @@
 /area/redgate/jungle/facilitysw)
 "Au" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/bottle/poppy,
+/obj/item/reagent_containers/glass/bottle/poppy,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitynw)
 "Az" = (
@@ -2145,7 +2145,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "AA" = (
-/obj/item/weapon/grenade/confetti/party_ball,
+/obj/item/grenade/confetti/party_ball,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "AI" = (
@@ -2243,28 +2243,28 @@
 /area/redgate/jungle/facilitysw)
 "BT" = (
 /obj/structure/closet/walllocker_double/casino/west,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/facilitycasino)
 "BV" = (
@@ -2329,7 +2329,7 @@
 /turf/simulated/floor/lava,
 /area/redgate/jungle/facilityse)
 "CC" = (
-/obj/item/weapon/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "CE" = (
@@ -2386,32 +2386,32 @@
 /area/redgate/jungle/facilityse)
 "Dj" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/murderroom)
 "Dn" = (
 /obj/structure/closet/walllocker_double/casino/west,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/holder/casino,
-/obj/item/weapon/deck/holder/casino,
-/obj/item/weapon/deck/holder/casino,
-/obj/item/weapon/deck/holder/casino,
-/obj/item/weapon/deck/holder/casino,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/cards,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/schnapsen,
+/obj/item/deck/holder/casino,
+/obj/item/deck/holder/casino,
+/obj/item/deck/holder/casino,
+/obj/item/deck/holder/casino,
+/obj/item/deck/holder/casino,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
+/obj/item/deck/cards,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/facilitycasino)
 "Dr" = (
@@ -2459,7 +2459,7 @@
 /area/redgate/jungle/murderroom)
 "DP" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "DQ" = (
@@ -2554,7 +2554,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "ET" = (
-/obj/item/weapon/reagent_containers/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner";
 	pixel_x = 2;
@@ -2633,7 +2633,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilityne)
 "Gc" = (
-/obj/item/weapon/reagent_containers/glass/beaker/noreact,
+/obj/item/reagent_containers/glass/beaker/noreact,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Ge" = (
@@ -2643,7 +2643,7 @@
 	},
 /area/redgate/jungle/deepforest)
 "Gh" = (
-/obj/item/weapon/mine/stun,
+/obj/item/mine/stun,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "Gj" = (
@@ -2678,7 +2678,7 @@
 /area/redgate/jungle/facilityne)
 "GF" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/toy/desk/dippingbird,
+/obj/item/toy/desk/dippingbird,
 /turf/simulated/floor/carpet/blue,
 /area/redgate/jungle/facilityse)
 "GH" = (
@@ -2772,7 +2772,7 @@
 /turf/simulated/mineral/ignore_cavegen,
 /area/redgate/jungle/underwaterpong)
 "HB" = (
-/obj/item/weapon/implanter,
+/obj/item/implanter,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "HI" = (
@@ -2860,14 +2860,14 @@
 /area/redgate/jungle/facilitybar)
 "IB" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/drinks/shaker{
+/obj/item/reagent_containers/food/drinks/shaker{
 	pixel_x = -7;
 	pixel_y = 11
 	},
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/facilitybar)
 "IC" = (
-/obj/item/weapon/folder,
+/obj/item/folder,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "ID" = (
@@ -2898,7 +2898,7 @@
 /area/redgate/jungle/facilitysw)
 "IQ" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/saucer,
+/obj/item/storage/box/saucer,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "IV" = (
@@ -2906,12 +2906,12 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "IW" = (
-/obj/item/weapon/implanter/compliance,
+/obj/item/implanter/compliance,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Jj" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "Jk" = (
@@ -2932,7 +2932,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "JF" = (
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "JG" = (
@@ -2964,7 +2964,7 @@
 /area/redgate/jungle/facilityne)
 "JT" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/lunchbox/filled,
+/obj/item/storage/toolbox/lunchbox/filled,
 /turf/simulated/floor/tiled,
 /area/redgate/jungle/facilitynw)
 "JU" = (
@@ -2998,7 +2998,7 @@
 /area/redgate/jungle/facilityne)
 "KD" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/shrimpsandbananas,
+/obj/item/storage/box/shrimpsandbananas,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "KG" = (
@@ -3023,7 +3023,7 @@
 /area/redgate/jungle/facilityse)
 "KT" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "KX" = (
@@ -3049,7 +3049,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/jungle/underwaterpong)
 "Lo" = (
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random,
+/obj/item/reagent_containers/glass/beaker/vial/random,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "Lv" = (
@@ -3079,7 +3079,7 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
-/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "LE" = (
@@ -3102,7 +3102,7 @@
 /area/redgate/jungle/facilitysw)
 "LN" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/toy/desk/officetoy,
+/obj/item/toy/desk/officetoy,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "LP" = (
@@ -3139,7 +3139,7 @@
 /area/redgate/jungle/facilityne)
 "Mi" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/melee/chainofcommand/curator_whip,
+/obj/item/melee/chainofcommand/curator_whip,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Ml" = (
@@ -3180,7 +3180,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "ME" = (
-/obj/item/device/pipe_painter,
+/obj/item/pipe_painter,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "MF" = (
@@ -3211,7 +3211,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "MP" = (
-/obj/item/weapon/handcuffs/legcuffs/fuzzy,
+/obj/item/handcuffs/legcuffs/fuzzy,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "MQ" = (
@@ -3270,7 +3270,7 @@
 /area/redgate/jungle/facilitynw)
 "Nx" = (
 /obj/structure/closet/walllocker_double/medical/north,
-/obj/item/device/glasses_kit,
+/obj/item/glasses_kit,
 /obj/random/medical/pillbottle,
 /obj/random/medical/pillbottle,
 /turf/simulated/floor,
@@ -3293,7 +3293,7 @@
 /area/redgate/jungle/facilityse)
 "NR" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/bottle/frostoil,
+/obj/item/reagent_containers/glass/bottle/frostoil,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitynw)
 "NS" = (
@@ -3303,7 +3303,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "NT" = (
-/obj/item/weapon/storage/box/handcuffs/fake,
+/obj/item/storage/box/handcuffs/fake,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "NZ" = (
@@ -3399,7 +3399,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "OV" = (
-/obj/item/weapon/handcuffs/cable/red,
+/obj/item/handcuffs/cable/red,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "OW" = (
@@ -3418,7 +3418,7 @@
 /area/redgate/jungle/facilitysw)
 "Pa" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/phone,
+/obj/item/phone,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitynw)
 "Pb" = (
@@ -3442,7 +3442,7 @@
 /area/redgate/jungle/facilitynw)
 "Ph" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "Pi" = (
@@ -3520,7 +3520,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "Qa" = (
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /turf/simulated/floor/water/deep/pool,
 /area/redgate/jungle/facilitynw)
 "Qb" = (
@@ -3540,7 +3540,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Qj" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/redgrid/animated,
@@ -3564,7 +3564,7 @@
 /area/redgate/jungle/facilityne)
 "QB" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
 "QC" = (
@@ -3599,7 +3599,7 @@
 /area/redgate/jungle/facilitynw)
 "QS" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder/yellow,
+/obj/item/folder/yellow,
 /turf/simulated/floor/wmarble,
 /area/redgate/jungle/facilityse)
 "QY" = (
@@ -3740,7 +3740,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "SJ" = (
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilitynw)
 "SP" = (
@@ -3797,7 +3797,7 @@
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "Tw" = (
-/obj/item/weapon/autopsy_scanner,
+/obj/item/autopsy_scanner,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 "TA" = (
@@ -3845,10 +3845,10 @@
 /area/redgate/jungle/facilityne)
 "Us" = (
 /obj/structure/closet,
-/obj/item/device/multitool,
-/obj/item/weapon/pen/multi,
+/obj/item/multitool,
+/obj/item/pen/multi,
 /obj/item/stack/cable_coil/silver,
-/obj/item/weapon/tool/wirecutters/brass,
+/obj/item/tool/wirecutters/brass,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityne)
@@ -3865,7 +3865,7 @@
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
 	},
-/obj/item/weapon/circuitboard/smes,
+/obj/item/circuitboard/smes,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/jungle/facilitynw)
 "UB" = (
@@ -3879,7 +3879,7 @@
 /area/redgate/jungle/facilitybar)
 "UF" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/scalpel,
+/obj/item/surgical/scalpel,
 /turf/simulated/floor,
 /area/redgate/jungle/facilityse)
 "UL" = (
@@ -3978,11 +3978,11 @@
 /area/redgate/jungle/facilitysw)
 "VN" = (
 /obj/structure/bed/double,
-/obj/item/weapon/bedsheet/yellowdouble,
+/obj/item/bedsheet/yellowdouble,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/facilitybar)
 "VP" = (
-/obj/item/weapon/reagent_containers/food/snacks/jaffacake{
+/obj/item/reagent_containers/food/snacks/jaffacake{
 	bitesize = 0.1;
 	icon_scale_x = 3;
 	icon_scale_y = 3;
@@ -4188,7 +4188,7 @@
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/facilitybar)
 "YY" = (
-/obj/item/weapon/handcuffs/fuzzy,
+/obj/item/handcuffs/fuzzy,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "Za" = (
@@ -4197,7 +4197,7 @@
 /area/redgate/jungle/facilityne)
 "Zb" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/truffle/random,
+/obj/item/reagent_containers/food/snacks/truffle/random,
 /turf/simulated/floor/redgrid/animated,
 /area/redgate/jungle/facilitybar)
 "Zc" = (
@@ -4244,7 +4244,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/jungle/facilityse)
 "ZH" = (
-/obj/item/weapon/tool/wrench/pipe,
+/obj/item/tool/wrench/pipe,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitynw)
 "ZI" = (
@@ -4256,7 +4256,7 @@
 	},
 /area/redgate/jungle/underwatercaveswamp)
 "ZJ" = (
-/obj/item/weapon/bone/ribs,
+/obj/item/bone/ribs,
 /turf/simulated/mineral/floor/ignore_cavegen{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -4290,7 +4290,7 @@
 /area/redgate/jungle/facilitysw)
 "ZX" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/surgical/scalpel/alien,
+/obj/item/surgical/scalpel/alien,
 /turf/simulated/floor,
 /area/redgate/jungle/facilitysw)
 

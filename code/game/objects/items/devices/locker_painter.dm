@@ -1,4 +1,4 @@
-/obj/item/device/closet_painter
+/obj/item/closet_painter
 	name = "closet painter"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
@@ -70,7 +70,7 @@
 		/obj/structure/closet/walllocker
 		)
 
-/obj/item/device/closet_painter/afterattack(atom/A, var/mob/user, proximity)
+/obj/item/closet_painter/afterattack(atom/A, var/mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -117,18 +117,18 @@
 		to_chat(user, "<span class='warning'>\The [src] flashes an error light. You might need to reconfigure it.</span>")
 		return
 
-/obj/item/device/closet_painter/attack_self(var/mob/user)
+/obj/item/closet_painter/attack_self(var/mob/user)
 	var/choice = tgui_alert(usr, "Do you wish to change the regular closet color or the secure closet color?", "Color Selection", list("Regular Closet Colour","Cancel","Secure Closet Colour"))
 	if(choice == "Regular Closet Colour")
 		choose_colour()
 	else if(choice == "Secure Closet Colour")
 		choose_colour_secure()
 
-/obj/item/device/closet_painter/examine(mob/user)
+/obj/item/closet_painter/examine(mob/user)
 	. = ..()
 	. += "It is configured to produce the '[colour]' paint scheme or the '[colour_secure]' secure closet paint scheme."
 
-/obj/item/device/closet_painter/verb/choose_colour()
+/obj/item/closet_painter/verb/choose_colour()
 	set name = "Choose Colour"
 	set desc = "Choose a regular closet painter colour."
 	set category = "Object"
@@ -142,7 +142,7 @@
 		colour = new_colour
 		to_chat(usr, "<span class='notice'>You set \the [src] regular closet colour to '[colour]'.</span>")
 
-/obj/item/device/closet_painter/verb/choose_colour_secure()
+/obj/item/closet_painter/verb/choose_colour_secure()
 	set name = "Choose Secure Colour"
 	set desc = "Choose a secure closet painter colour."
 	set category = "Object"

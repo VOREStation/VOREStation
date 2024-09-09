@@ -12,7 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/obj/item/weapon/card/id/inserted_id	// Inserted ID card, for points
+	var/obj/item/card/id/inserted_id	// Inserted ID card, for points
 
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = FALSE
@@ -40,7 +40,7 @@
 	tgui_interact(user)
 
 /obj/machinery/mineral/processing_unit_console/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(!powered())
 			return
 		if(!inserted_id && user.unEquip(I))
@@ -131,7 +131,7 @@
 					to_chat(usr, "<span class='warning'>Required access not found.</span>")
 			. = TRUE
 		if("insert")
-			var/obj/item/weapon/card/id/I = usr.get_active_hand()
+			var/obj/item/card/id/I = usr.get_active_hand()
 			if(istype(I))
 				usr.drop_item()
 				I.forceMove(src)
@@ -253,7 +253,7 @@
 				ore_chunk.stored_ore[ore] = 0
 			qdel(ore_chunk)
 
-	for(var/obj/item/weapon/ore/O in input.loc)
+	for(var/obj/item/ore/O in input.loc)
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
 			points += (ore_values[O.material]*points_mult)
@@ -337,7 +337,7 @@
 			else
 				ores_stored[metal]--
 				sheets++
-				new /obj/item/weapon/ore/slag(output.loc)
+				new /obj/item/ore/slag(output.loc)
 		else
 			continue
 

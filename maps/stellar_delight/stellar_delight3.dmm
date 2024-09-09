@@ -117,7 +117,7 @@
 /obj/machinery/computer/HolodeckControl{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -150,9 +150,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "au" = (
-/obj/item/weapon/book/manual/command_guide,
-/obj/item/weapon/book/manual/standard_operating_procedure,
-/obj/item/weapon/book/manual/security_space_law,
+/obj/item/book/manual/command_guide,
+/obj/item/book/manual/standard_operating_procedure,
+/obj/item/book/manual/security_space_law,
 /obj/structure/closet/walllocker_double/command/hos{
 	dir = 4;
 	pixel_x = 32
@@ -160,14 +160,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "av" = (
-/obj/item/device/taperecorder{
+/obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/weapon/circuitboard/aicore{
+/obj/item/circuitboard/aicore{
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/weapon/circuitboard/teleporter,
+/obj/item/circuitboard/teleporter,
 /obj/structure/closet/walllocker_double/command/rd{
 	dir = 8;
 	pixel_x = -32
@@ -181,12 +181,12 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/aftstarroom)
 "ax" = (
-/obj/item/weapon/book/manual/command_guide,
-/obj/item/weapon/book/manual/command_guide,
-/obj/item/weapon/book/manual/standard_operating_procedure,
-/obj/item/weapon/book/manual/standard_operating_procedure,
-/obj/item/weapon/book/manual/security_space_law,
-/obj/item/weapon/book/manual/security_space_law,
+/obj/item/book/manual/command_guide,
+/obj/item/book/manual/command_guide,
+/obj/item/book/manual/standard_operating_procedure,
+/obj/item/book/manual/standard_operating_procedure,
+/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/security_space_law,
 /obj/structure/closet/walllocker_double/command/iaa{
 	dir = 4;
 	pixel_x = 32
@@ -194,12 +194,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "ay" = (
-/obj/item/weapon/book/manual/command_guide,
-/obj/item/weapon/book/manual/command_guide,
-/obj/item/weapon/book/manual/standard_operating_procedure,
-/obj/item/weapon/book/manual/standard_operating_procedure,
-/obj/item/weapon/book/manual/security_space_law,
-/obj/item/weapon/book/manual/security_space_law,
+/obj/item/book/manual/command_guide,
+/obj/item/book/manual/command_guide,
+/obj/item/book/manual/standard_operating_procedure,
+/obj/item/book/manual/standard_operating_procedure,
+/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/security_space_law,
 /obj/structure/closet/walllocker_double/command/iaa{
 	dir = 8;
 	pixel_x = -32
@@ -207,11 +207,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "az" = (
-/obj/item/device/megaphone,
-/obj/item/weapon/book/manual/standard_operating_procedure,
-/obj/item/weapon/book/manual/command_guide,
+/obj/item/megaphone,
+/obj/item/book/manual/standard_operating_procedure,
+/obj/item/book/manual/command_guide,
 /obj/structure/table/reinforced,
-/obj/item/weapon/folder/red,
+/obj/item/folder/red,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -576,7 +576,7 @@
 /area/stellardelight/deck2/fore)
 "bJ" = (
 /obj/structure/table/steel,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "bK" = (
@@ -599,7 +599,7 @@
 /area/ai_upload)
 "bO" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/clipboard,
+/obj/item/clipboard,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -1000,7 +1000,7 @@
 /turf/simulated/floor/airless,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "dn" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -1532,38 +1532,38 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_server_room)
 "fd" = (
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = -4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 8
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -4;
 	pixel_y = 12
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/hand_labeler,
+/obj/item/hand_labeler,
 /obj/machinery/alarm/angled,
 /obj/machinery/status_display{
 	pixel_x = -32
@@ -1612,8 +1612,8 @@
 "fj" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/figure/clown,
-/obj/item/weapon/pen/crayon/marker/rainbow,
-/obj/item/weapon/pen/crayon/rainbow,
+/obj/item/pen/crayon/marker/rainbow,
+/obj/item/pen/crayon/rainbow,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
@@ -1736,7 +1736,7 @@
 /area/stellardelight/deck3/starboarddock)
 "gb" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder/red_hos,
+/obj/item/folder/red_hos,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "gc" = (
@@ -1775,7 +1775,7 @@
 	})
 "gj" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/disk/nifsoft/compliance,
+/obj/item/disk/nifsoft/compliance,
 /obj/random/contraband,
 /obj/random/contraband,
 /obj/random/contraband,
@@ -1839,7 +1839,7 @@
 /area/stellardelight/deck3/exterior)
 "gy" = (
 /obj/structure/closet/secure_closet/engineering_chief,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
@@ -1847,7 +1847,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/item/device/retail_scanner/engineering,
+/obj/item/retail_scanner/engineering,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "gA" = (
@@ -1878,11 +1878,11 @@
 /area/stellardelight/deck3/exterior)
 "gE" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/stamp/denied{
+/obj/item/stamp/denied{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/weapon/stamp/internalaffairs,
+/obj/item/stamp/internalaffairs,
 /turf/simulated/floor/carpet/blue2,
 /area/lawoffice)
 "gG" = (
@@ -1914,7 +1914,7 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck3/exterior)
 "gL" = (
-/obj/item/weapon/bedsheet/hosdouble,
+/obj/item/bedsheet/hosdouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black{
 	color = "#631915"
@@ -2441,7 +2441,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -2633,7 +2633,7 @@
 /area/crew_quarters/bar)
 "jD" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /obj/structure/curtain/black,
 /obj/effect/landmark/start/hop,
 /obj/machinery/requests_console{
@@ -2738,7 +2738,7 @@
 /area/stellardelight/deck2/central)
 "ka" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/storage/briefcase{
+/obj/item/storage/briefcase{
 	pixel_x = -2;
 	pixel_y = -5
 	},
@@ -2903,8 +2903,8 @@
 	},
 /obj/structure/closet/secure_closet/hop,
 /obj/item/clothing/glasses/omnihud,
-/obj/item/device/retail_scanner/command,
-/obj/item/weapon/storage/box/PDAs,
+/obj/item/retail_scanner/command,
+/obj/item/storage/box/PDAs,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "kO" = (
@@ -3253,7 +3253,7 @@
 /area/ai_cyborg_station)
 "lP" = (
 /obj/structure/table/woodentable,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
 	pixel_x = 24
@@ -3359,7 +3359,7 @@
 /area/stellardelight/deck2/central)
 "mh" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 1;
 	pixel_y = 1
@@ -3724,9 +3724,9 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "nv" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /obj/structure/closet/crate,
-/obj/item/weapon/material/minihoe,
+/obj/item/material/minihoe,
 /obj/item/seeds/reishimycelium,
 /obj/item/seeds/random,
 /obj/item/seeds/random,
@@ -3813,7 +3813,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -3821,12 +3821,12 @@
 /area/stellardelight/deck3/cafe)
 "nH" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = -4;
 	pixel_y = 12
 	},
-/obj/item/weapon/stamp/hos,
-/obj/item/weapon/book/manual/sd_guide,
+/obj/item/stamp/hos,
+/obj/item/book/manual/sd_guide,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "nL" = (
@@ -3843,7 +3843,7 @@
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -3950,8 +3950,8 @@
 /obj/structure/table/alien{
 	name = "fancy table"
 	},
-/obj/item/weapon/stamp/rd,
-/obj/item/weapon/book/manual/sd_guide,
+/obj/item/stamp/rd,
+/obj/item/book/manual/sd_guide,
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
 "op" = (
@@ -4123,17 +4123,17 @@
 	pixel_x = -32;
 	pixel_y = 32
 	},
-/obj/item/device/radio/intercom/locked/ai_private{
+/obj/item/radio/intercom/locked/ai_private{
 	dir = 4;
 	pixel_x = 32
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	broadcasting = 1;
 	dir = 8;
 	name = "Common Channel";
 	pixel_x = -21
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
@@ -4163,7 +4163,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -4266,7 +4266,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -4274,22 +4274,22 @@
 /area/stellardelight/deck3/starboarddock)
 "pm" = (
 /obj/structure/table/darkglass,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = -5;
 	pixel_y = -5
 	},
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blade/red{
+/obj/item/paper_bin,
+/obj/item/pen/blade/red{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/item/weapon/pen,
-/obj/item/weapon/pen/blue{
+/obj/item/pen,
+/obj/item/pen/blue{
 	pixel_x = 2;
 	pixel_y = 3
 	},
@@ -4362,7 +4362,7 @@
 /area/maintenance/stellardelight/deck3/aftstarroom)
 "pA" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/cosmosdouble{
+/obj/item/bedsheet/cosmosdouble{
 	icon_state = "dobulesheetcosmos"
 	},
 /obj/machinery/camera/network/command,
@@ -4373,7 +4373,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -4878,7 +4878,7 @@
 	pixel_x = 32;
 	pixel_y = 32
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -5275,7 +5275,7 @@
 /area/stellardelight/deck3/starboarddock)
 "sQ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/aiModule/reset,
+/obj/item/aiModule/reset,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -28
@@ -5492,19 +5492,19 @@
 /area/tcommsat/chamber)
 "tO" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/taperecorder{
+/obj/item/taperecorder{
 	pixel_x = 10
 	},
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{
+/obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -9;
 	pixel_y = -2
 	},
-/obj/item/device/radio/off,
+/obj/item/radio/off,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "tQ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/aiModule/freeform,
+/obj/item/aiModule/freeform,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5608,7 +5608,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -5736,15 +5736,15 @@
 "uM" = (
 /obj/machinery/alarm/angled,
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/clown{
+/obj/item/flashlight/lamp/clown{
 	pixel_x = -4;
 	pixel_y = 6
 	},
-/obj/item/weapon/bikehorn{
+/obj/item/bikehorn{
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/weapon/stamp/clown{
+/obj/item/stamp/clown{
 	pixel_x = 6;
 	pixel_y = 9
 	},
@@ -6097,11 +6097,11 @@
 /area/stellardelight/deck2/port)
 "wd" = (
 /obj/structure/table/standard,
-/obj/item/weapon/aiModule/oxygen,
-/obj/item/weapon/aiModule/oneHuman,
-/obj/item/weapon/aiModule/purge,
-/obj/item/weapon/aiModule/antimov,
-/obj/item/weapon/aiModule/teleporterOffline,
+/obj/item/aiModule/oxygen,
+/obj/item/aiModule/oneHuman,
+/obj/item/aiModule/purge,
+/obj/item/aiModule/antimov,
+/obj/item/aiModule/teleporterOffline,
 /obj/machinery/alarm/angled{
 	dir = 8
 	},
@@ -6155,11 +6155,11 @@
 /area/stellardelight/deck3/starboarddock)
 "wo" = (
 /obj/structure/table/standard,
-/obj/item/weapon/aiModule/asimov,
-/obj/item/weapon/aiModule/freeformcore,
-/obj/item/weapon/aiModule/corp,
-/obj/item/weapon/aiModule/paladin,
-/obj/item/weapon/aiModule/robocop,
+/obj/item/aiModule/asimov,
+/obj/item/aiModule/freeformcore,
+/obj/item/aiModule/corp,
+/obj/item/aiModule/paladin,
+/obj/item/aiModule/robocop,
 /obj/structure/cable/blue,
 /obj/machinery/power/apc/angled{
 	dir = 8
@@ -6231,7 +6231,7 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -6405,11 +6405,11 @@
 /area/maintenance/stellardelight/deck3/portaft)
 "xj" = (
 /obj/structure/table/standard,
-/obj/item/weapon/aiModule/consuming_eradicator,
-/obj/item/weapon/aiModule/guard_dog,
-/obj/item/weapon/aiModule/pleasurebot,
-/obj/item/weapon/aiModule/protective_shell,
-/obj/item/weapon/aiModule/scientific_pursuer,
+/obj/item/aiModule/consuming_eradicator,
+/obj/item/aiModule/guard_dog,
+/obj/item/aiModule/pleasurebot,
+/obj/item/aiModule/protective_shell,
+/obj/item/aiModule/scientific_pursuer,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -6800,16 +6800,16 @@
 /turf/simulated/wall/bay/r_wall/blue,
 /area/ai_cyborg_station)
 "yI" = (
-/obj/item/weapon/folder{
+/obj/item/folder{
 	pixel_x = -4
 	},
-/obj/item/weapon/folder/blue{
+/obj/item/folder/blue{
 	pixel_x = 5
 	},
-/obj/item/weapon/folder/red{
+/obj/item/folder/red{
 	pixel_y = 3
 	},
-/obj/item/weapon/folder/yellow,
+/obj/item/folder/yellow,
 /obj/structure/table/darkglass,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
@@ -7015,7 +7015,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/foreportroomb)
 "zv" = (
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black{
 	color = "#361447"
@@ -7074,8 +7074,8 @@
 /area/stellardelight/deck3/commandhall)
 "zC" = (
 /obj/item/toy/figure/mime,
-/obj/item/weapon/pen/crayon/marker/mime,
-/obj/item/weapon/pen/crayon/mime,
+/obj/item/pen/crayon/marker/mime,
+/obj/item/pen/crayon/mime,
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -7191,7 +7191,7 @@
 /area/crew_quarters/heads/hos)
 "zQ" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "zS" = (
@@ -7260,12 +7260,12 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "Aj" = (
-/obj/item/device/camera,
-/obj/item/device/camera_film,
-/obj/item/device/taperecorder,
-/obj/item/device/tape/random,
-/obj/item/device/tape/random,
-/obj/item/weapon/storage/secure/briefcase,
+/obj/item/camera,
+/obj/item/camera_film,
+/obj/item/taperecorder,
+/obj/item/tape/random,
+/obj/item/tape/random,
+/obj/item/storage/secure/briefcase,
 /obj/structure/closet/walllocker_double/east,
 /turf/simulated/floor/carpet/blue2,
 /area/lawoffice)
@@ -7343,7 +7343,7 @@
 /area/maintenance/stellardelight/deck3/starboardaft)
 "At" = (
 /obj/structure/table/glass,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck3/readingroom)
 "Av" = (
@@ -7374,12 +7374,12 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "Az" = (
-/obj/item/weapon/camera_assembly,
-/obj/item/weapon/camera_assembly,
-/obj/item/weapon/camera_assembly,
-/obj/item/weapon/camera_assembly,
-/obj/item/weapon/camera_assembly,
-/obj/item/weapon/camera_assembly,
+/obj/item/camera_assembly,
+/obj/item/camera_assembly,
+/obj/item/camera_assembly,
+/obj/item/camera_assembly,
+/obj/item/camera_assembly,
+/obj/item/camera_assembly,
 /obj/structure/closet/crate{
 	name = "Camera Assembly Crate"
 	},
@@ -8498,7 +8498,7 @@
 /area/space)
 "Et" = (
 /obj/structure/closet/secure_closet/hos,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
@@ -8540,7 +8540,7 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/weapon/rig/ce/equipped,
+/obj/item/rig/ce/equipped,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/shoes/magboots/adv,
 /turf/simulated/floor/tiled,
@@ -8930,7 +8930,7 @@
 /area/maintenance/stellardelight/deck3/starboardaft)
 "Ge" = (
 /obj/structure/table/standard,
-/obj/item/weapon/aiModule/nanotrasen,
+/obj/item/aiModule/nanotrasen,
 /obj/machinery/camera/network/command,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/bluegrid,
@@ -8967,7 +8967,7 @@
 /area/ai_upload)
 "Gi" = (
 /obj/structure/table/rack,
-/obj/item/weapon/rig/hazmat/equipped,
+/obj/item/rig/hazmat/equipped,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
@@ -9033,8 +9033,8 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "GB" = (
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/glass/rag,
 /obj/structure/table/rack,
 /obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -9072,7 +9072,7 @@
 /turf/simulated/floor/airless,
 /area/maintenance/stellardelight/deck3/portcent)
 "GH" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -9131,17 +9131,17 @@
 /area/ai_server_room)
 "GW" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/book/manual/supermatter_engine,
-/obj/item/device/radio{
+/obj/item/book/manual/supermatter_engine,
+/obj/item/radio{
 	pixel_x = -4
 	},
-/obj/item/device/megaphone,
+/obj/item/megaphone,
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "Ha" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/cedouble,
+/obj/item/bedsheet/cedouble,
 /obj/structure/curtain/black{
 	color = "#945112"
 	},
@@ -9215,7 +9215,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -9835,22 +9835,22 @@
 /area/stellardelight/deck3/starboarddock)
 "Js" = (
 /obj/structure/table/darkglass,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 5;
 	pixel_y = -5
 	},
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blade/red{
+/obj/item/paper_bin,
+/obj/item/pen/blade/red{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/item/weapon/pen,
-/obj/item/weapon/pen/blue{
+/obj/item/pen,
+/obj/item/pen/blue{
 	pixel_x = 2;
 	pixel_y = 3
 	},
@@ -9920,19 +9920,19 @@
 	icon_state = "0-2"
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/glass2/square{
+/obj/item/reagent_containers/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/food/drinks/glass2/square{
+/obj/item/reagent_containers/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/food/drinks/glass2/square{
+/obj/item/reagent_containers/food/drinks/glass2/square{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/lino,
 /area/stellardelight/deck3/cafe)
 "JJ" = (
@@ -10006,11 +10006,11 @@
 /area/stellardelight/deck3/aft)
 "JU" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/rcd,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
+/obj/item/rcd,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "JW" = (
@@ -10224,8 +10224,8 @@
 /obj/structure/table/alien{
 	name = "fancy table"
 	},
-/obj/item/weapon/cartridge/signal/science,
-/obj/item/weapon/cartridge/signal/science,
+/obj/item/cartridge/signal/science,
+/obj/item/cartridge/signal/science,
 /obj/item/clothing/glasses/welding/superior,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -10608,12 +10608,12 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "Mg" = (
-/obj/item/device/camera,
-/obj/item/device/camera_film,
-/obj/item/device/taperecorder,
-/obj/item/device/tape/random,
-/obj/item/device/tape/random,
-/obj/item/weapon/storage/secure/briefcase,
+/obj/item/camera,
+/obj/item/camera_film,
+/obj/item/taperecorder,
+/obj/item/tape/random,
+/obj/item/tape/random,
+/obj/item/storage/secure/briefcase,
 /obj/structure/closet/walllocker_double/west,
 /turf/simulated/floor/carpet/blue2,
 /area/lawoffice)
@@ -10645,11 +10645,11 @@
 /area/stellardelight/deck2/port)
 "Ml" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/stamp/denied{
+/obj/item/stamp/denied{
 	pixel_x = -6;
 	pixel_y = 6
 	},
-/obj/item/weapon/stamp/internalaffairs,
+/obj/item/stamp/internalaffairs,
 /turf/simulated/floor/carpet/blue2,
 /area/lawoffice)
 "Mo" = (
@@ -10683,7 +10683,7 @@
 /area/ai_cyborg_station)
 "Mr" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/clowndouble,
+/obj/item/bedsheet/clowndouble,
 /obj/structure/curtain/black{
 	color = "#361447"
 	},
@@ -10691,17 +10691,17 @@
 /area/stellardelight/deck3/clownmimeoffice)
 "Ms" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/stamp/hop,
-/obj/item/weapon/paper_bin{
+/obj/item/stamp/hop,
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/weapon/pen/multi,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/pen/multi,
+/obj/item/flashlight/lamp/green{
 	pixel_x = 3;
 	pixel_y = 18
 	},
-/obj/item/weapon/book/manual/sd_guide,
+/obj/item/book/manual/sd_guide,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "Mu" = (
@@ -10829,8 +10829,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/item/device/retail_scanner/security,
-/obj/item/device/ticket_printer,
+/obj/item/retail_scanner/security,
+/obj/item/ticket_printer,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "MO" = (
@@ -11142,8 +11142,8 @@
 /area/stellardelight/deck3/aft)
 "NO" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp,
-/obj/item/device/radio/intercom{
+/obj/item/flashlight/lamp,
+/obj/item/radio/intercom{
 	dir = 1;
 	frequency = 1357;
 	name = "station intercom (Engineering)";
@@ -11249,7 +11249,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/starboarddock)
 "NZ" = (
-/obj/item/weapon/bedsheet/mimedouble,
+/obj/item/bedsheet/mimedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/bcarpet,
@@ -11362,7 +11362,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
 "Ou" = (
-/obj/item/device/radio/beacon,
+/obj/item/radio/beacon,
 /obj/effect/floor_decal/steeldecal/steel_decals5,
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -11462,8 +11462,8 @@
 	dir = 8
 	},
 /obj/item/clothing/mask/breath,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
+/obj/item/tank/oxygen,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/security/prototype,
 /obj/item/clothing/head/helmet/space/void/security/prototype,
@@ -11816,12 +11816,12 @@
 /area/stellardelight/deck3/commandhall)
 "PR" = (
 /obj/structure/table/glass,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = -4;
 	pixel_y = 12
 	},
-/obj/item/weapon/stamp/cmo,
-/obj/item/weapon/book/manual/sd_guide,
+/obj/item/stamp/cmo,
+/obj/item/book/manual/sd_guide,
 /turf/simulated/floor/carpet/tealcarpet,
 /area/crew_quarters/heads/cmo)
 "PT" = (
@@ -12008,7 +12008,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "QI" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -12419,7 +12419,7 @@
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "Sk" = (
 /obj/structure/table/standard,
-/obj/item/weapon/phone{
+/obj/item/phone{
 	pixel_x = 3;
 	pixel_y = 11
 	},
@@ -12524,7 +12524,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -12706,7 +12706,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
@@ -12752,7 +12752,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -12941,8 +12941,8 @@
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "Ud" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/stamp/ce,
-/obj/item/weapon/book/manual/sd_guide,
+/obj/item/stamp/ce,
+/obj/item/book/manual/sd_guide,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "Ue" = (
@@ -13061,7 +13061,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -13091,7 +13091,7 @@
 /area/maintenance/stellardelight/deck3/portfore)
 "UO" = (
 /obj/machinery/recharge_station,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -13122,13 +13122,13 @@
 /area/crew_quarters/bar)
 "UT" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/device/megaphone,
-/obj/item/weapon/pen/multi,
-/obj/item/device/radio/intercom/department/security{
+/obj/item/megaphone,
+/obj/item/pen/multi,
+/obj/item/radio/intercom/department/security{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -13245,7 +13245,7 @@
 /obj/random/maintenance,
 /obj/random/maintenance,
 /obj/random/maintenance,
-/obj/item/device/gps,
+/obj/item/gps,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "Vk" = (
@@ -13301,12 +13301,12 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/weapon/folder/yellow_ce,
-/obj/item/weapon/pen/multi,
+/obj/item/folder/yellow_ce,
+/obj/item/pen/multi,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -13316,7 +13316,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "Vt" = (
-/obj/item/device/radio/intercom/locked/ai_private{
+/obj/item/radio/intercom/locked/ai_private{
 	dir = 4;
 	pixel_x = 32
 	},
@@ -13356,7 +13356,7 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck3/exterior)
 "VB" = (
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black{
 	color = "#156363"
@@ -13375,26 +13375,26 @@
 /area/maintenance/stellardelight/deck3/foreportroomb)
 "VE" = (
 /obj/structure/table/glass,
-/obj/item/device/radio/intercom/department/medbay{
+/obj/item/radio/intercom/department/medbay{
 	dir = 1;
 	pixel_y = 24
 	},
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = 3;
 	pixel_y = 7
 	},
-/obj/item/weapon/pen/multi,
+/obj/item/pen/multi,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/item/weapon/folder/white_cmo,
+/obj/item/folder/white_cmo,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
 "VG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -13499,7 +13499,7 @@
 	dir = 1;
 	pixel_y = -32
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -13569,7 +13569,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portfore)
 "Wt" = (
@@ -13620,7 +13620,7 @@
 	dir = 4
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper/sdshield,
+/obj/item/paper/sdshield,
 /turf/simulated/floor,
 /area/stellardelight/deck2/central)
 "WA" = (
@@ -13710,7 +13710,7 @@
 /area/lawoffice)
 "WQ" = (
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 4;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -13751,24 +13751,24 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Xa" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
 /obj/structure/closet/secure_closet/CMO,
 /obj/item/clothing/accessory/stethoscope,
-/obj/item/device/flashlight/pen,
-/obj/item/weapon/storage/belt/medical,
+/obj/item/flashlight/pen,
+/obj/item/storage/belt/medical,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/device/defib_kit/compact/combat/loaded,
-/obj/item/weapon/cmo_disk_holder,
-/obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo,
-/obj/item/weapon/storage/mrebag/pill/sleevingcure,
+/obj/item/defib_kit/compact/combat/loaded,
+/obj/item/cmo_disk_holder,
+/obj/item/storage/secure/briefcase/ml3m_pack_cmo,
+/obj/item/storage/mrebag/pill/sleevingcure,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/item/device/retail_scanner/medical,
+/obj/item/retail_scanner/medical,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
 "Xb" = (
@@ -13816,7 +13816,7 @@
 /obj/structure/table/alien{
 	name = "fancy table"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	frequency = 1351;
 	name = "station intercom (Science)";
@@ -13825,16 +13825,16 @@
 /obj/random/paicard{
 	pixel_x = 4
 	},
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = 1;
 	pixel_y = 9
 	},
-/obj/item/weapon/paper/monitorkey,
-/obj/item/device/megaphone,
+/obj/item/paper/monitorkey,
+/obj/item/megaphone,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/item/weapon/folder/white_rd,
+/obj/item/folder/white_rd,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
 "Xo" = (
@@ -14207,18 +14207,18 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/forestarroomb)
 "YC" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
 /obj/structure/closet/secure_closet/RD,
-/obj/item/device/aicard,
+/obj/item/aicard,
 /obj/item/clothing/glasses/omnihud/rnd,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/item/device/retail_scanner/science,
+/obj/item/retail_scanner/science,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
 "YD" = (
@@ -14273,12 +14273,12 @@
 /area/stellardelight/deck3/aft)
 "YL" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/weapon/folder/blue_hop,
-/obj/item/weapon/pen,
+/obj/item/folder/blue_hop,
+/obj/item/pen,
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
@@ -14525,7 +14525,7 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/starboard)
 "ZN" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},

@@ -2,7 +2,7 @@
 //Rewritten version of TG's geiger counter
 //I opted to show exact radiation levels
 
-/obj/item/device/geiger
+/obj/item/geiger
 	name = "geiger counter"
 	desc = "A handheld device used for detecting and measuring radiation in an area."
 	icon_state = "geiger_off"
@@ -12,31 +12,31 @@
 	var/radiation_count = 0
 	var/datum/looping_sound/geiger/soundloop
 
-/obj/item/device/geiger/Initialize()
+/obj/item/geiger/Initialize()
 	soundloop = new(list(src), FALSE)
 	return ..()
 
-/obj/item/device/geiger/Destroy()
+/obj/item/geiger/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(soundloop)
 	return ..()
 
-/obj/item/device/geiger/process()
+/obj/item/geiger/process()
 	get_radiation()
 
-/obj/item/device/geiger/proc/get_radiation()
+/obj/item/geiger/proc/get_radiation()
 	if(!scanning)
 		return
 	radiation_count = SSradiation.get_rads_at_turf(get_turf(src))
 	update_icon()
 	update_sound()
 
-/obj/item/device/geiger/examine(mob/user)
+/obj/item/geiger/examine(mob/user)
 	. = ..()
 	get_radiation()
 	. += "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>"
 
-/obj/item/device/geiger/rad_act(amount)
+/obj/item/geiger/rad_act(amount)
 	if(!amount || !scanning)
 		return FALSE
 
@@ -46,7 +46,7 @@
 	update_icon()
 	update_sound()
 
-/obj/item/device/geiger/proc/update_sound()
+/obj/item/geiger/proc/update_sound()
 	var/datum/looping_sound/geiger/loop = soundloop
 	if(!scanning)
 		loop.stop()
@@ -57,7 +57,7 @@
 	loop.last_radiation = radiation_count
 	loop.start()
 
-/obj/item/device/geiger/attack_self(var/mob/user)
+/obj/item/geiger/attack_self(var/mob/user)
 	scanning = !scanning
 	if(scanning)
 		START_PROCESSING(SSobj, src)
@@ -67,7 +67,7 @@
 	update_sound()
 	to_chat(user, "<span class='notice'>[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src].</span>")
 
-/obj/item/device/geiger/update_icon()
+/obj/item/geiger/update_icon()
 	if(!scanning)
 		icon_state = "geiger_off"
 		return 1
@@ -88,7 +88,7 @@
 
 ///////////////////////
 
-/obj/item/device/geiger/wall
+/obj/item/geiger/wall
 	name = "mounted geiger counter"
 	desc = "A wall mounted device used for detecting and measuring radiation in an area."
 	icon = 'icons/obj/device.dmi'
@@ -101,28 +101,28 @@
 	layer = ABOVE_TURF_LAYER
 	w_class = ITEMSIZE_LARGE
 	flags = NOBLOODY
-	var/circuit = /obj/item/weapon/circuitboard/geiger
+	var/circuit = /obj/item/circuitboard/geiger
 	var/number = 0
 	var/last_tick //used to delay the powercheck
 	var/wiresexposed = 0
 
-/obj/item/device/geiger/wall/Initialize()
+/obj/item/geiger/wall/Initialize()
 	START_PROCESSING(SSobj, src)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
-/obj/item/device/geiger/wall/Destroy()
+/obj/item/geiger/wall/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(soundloop)
 	return ..()
 
-/obj/item/device/geiger/wall/attack_self(var/mob/user)
+/obj/item/geiger/wall/attack_self(var/mob/user)
 	scanning = !scanning
 	update_icon()
 	update_sound()
 	to_chat(user, "<span class='notice'>[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src].</span>")
 
-/obj/item/device/geiger/wall/update_icon()
+/obj/item/geiger/wall/update_icon()
 	if(!scanning)
 		icon_state = "geiger_wall-p"
 		return 1
@@ -141,28 +141,28 @@
 		if(RAD_LEVEL_VERY_HIGH to INFINITY)
 			icon_state = "geiger_level_5"
 
-/obj/item/device/geiger/wall/attack_ai(mob/user as mob)
+/obj/item/geiger/wall/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
-/obj/item/device/geiger/wall/attack_hand(mob/user as mob)
+/obj/item/geiger/wall/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
-/obj/item/device/geiger/wall/north
+/obj/item/geiger/wall/north
 	pixel_y = 28
 	dir = SOUTH
 
-/obj/item/device/geiger/wall/south
+/obj/item/geiger/wall/south
 	pixel_y = -28
 	dir = NORTH
 
-/obj/item/device/geiger/wall/east
+/obj/item/geiger/wall/east
 	pixel_x = 28
 	dir = EAST
 
-/obj/item/device/geiger/wall/west
+/obj/item/geiger/wall/west
 	pixel_x = -28
 	dir = WEST

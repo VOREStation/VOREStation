@@ -96,7 +96,7 @@ Protectiveness | Armor %
 		var/mob/living/M = loc
 		M.drop_from_inventory(src)
 		if(material.shard_type == SHARD_SHARD) // Wearing glass armor is a bad idea.
-			var/obj/item/weapon/material/shard/S = material.place_shard(T)
+			var/obj/item/material/shard/S = material.place_shard(T)
 			M.embed(S)
 
 	playsound(src, "shatter", 70, 1)
@@ -277,7 +277,7 @@ Protectiveness | Armor %
 	default_material = "glass"
 
 // Used to craft sheet armor, and possibly other things in the Future(tm).
-/obj/item/weapon/material/armor_plating
+/obj/item/material/armor_plating
 	name = "armor plating"
 	desc = "A sheet designed to protect something."
 	icon = 'icons/obj/items.dmi'
@@ -287,12 +287,12 @@ Protectiveness | Armor %
 	thrown_force_divisor = 0.2
 	var/wired = FALSE
 
-/obj/item/weapon/material/armor_plating/insert
+/obj/item/material/armor_plating/insert
 	unbreakable = FALSE
 	name = "plate insert"
 	desc = "used to craft armor plates for a plate carrier. Trim with a welder for light armor or add a second for heavy armor"
 
-/obj/item/weapon/material/armor_plating/attackby(var/obj/O, mob/user)
+/obj/item/material/armor_plating/attackby(var/obj/O, mob/user)
 	if(istype(O, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/S = O
 		if(wired)
@@ -306,8 +306,8 @@ Protectiveness | Armor %
 		else
 			to_chat(user, "<span class='notice'>You need more wire for that.</span>")
 			return
-	if(istype(O, /obj/item/weapon/material/armor_plating))
-		var/obj/item/weapon/material/armor_plating/second_plate = O
+	if(istype(O, /obj/item/material/armor_plating))
+		var/obj/item/material/armor_plating/second_plate = O
 		if(!wired && !second_plate.wired)
 			to_chat(user, "<span class='warning'>You need something to hold the two pieces of plating together.</span>")
 			return
@@ -324,12 +324,12 @@ Protectiveness | Armor %
 		..()
 
 //Make plating inserts for modular armour.
-/obj/item/weapon/material/armor_plating/insert/attackby(var/obj/item/O, mob/user)
+/obj/item/material/armor_plating/insert/attackby(var/obj/item/O, mob/user)
 
 	. = ..()
 
 	if(O.has_tool_quality(TOOL_WELDER))
-		var /obj/item/weapon/weldingtool/S = O.get_welder()
+		var /obj/item/weldingtool/S = O.get_welder()
 		if(S.remove_fuel(0,user))
 			if(!src || !S.isOn()) return
 			to_chat(user, "<span class='notice'>You trim down the edges to size.</span>")
@@ -339,8 +339,8 @@ Protectiveness | Armor %
 			qdel(src)
 			return
 
-	if(istype(O, /obj/item/weapon/material/armor_plating/insert))
-		var/obj/item/weapon/material/armor_plating/insert/second_plate = O
+	if(istype(O, /obj/item/material/armor_plating/insert))
+		var/obj/item/material/armor_plating/insert/second_plate = O
 		if(second_plate.material != src.material)
 			to_chat(user, "<span class='warning'>Both plates need to be the same type of material.</span>")
 			return
@@ -353,7 +353,7 @@ Protectiveness | Armor %
 		qdel(src)
 		return
 
-	if(istype(O, /obj/item/weapon/tool/wirecutters))
+	if(istype(O, /obj/item/tool/wirecutters))
 		to_chat(user, "<span class='notice'>You split the plate down the middle, and joint it at the elbow.</span>")
 		user.drop_from_inventory(src)
 		var/obj/item/clothing/accessory/material/makeshift/armguards/new_armor = new(null, src.material.name)

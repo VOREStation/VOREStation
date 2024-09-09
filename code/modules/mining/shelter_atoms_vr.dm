@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	has_gravity = TRUE
 
 //Survival Capsule
-/obj/item/device/survivalcapsule
+/obj/item/survivalcapsule
 	name = "surfluid shelter capsule"
 	desc = "An emergency shelter programmed into construction nanomachines. It has a license for use printed on the bottom."
 	icon_state = "houseball"
@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	var/is_ship = FALSE
 	var/unique_id = null
 
-/obj/item/device/survivalcapsule/proc/get_template()
+/obj/item/survivalcapsule/proc/get_template()
 	if(template)
 		return
 	template = SSmapping.shelter_templates[template_id]
@@ -28,11 +28,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		throw EXCEPTION("Shelter template ([template_id]) not found!")
 		qdel(src)
 
-/obj/item/device/survivalcapsule/Destroy()
+/obj/item/survivalcapsule/Destroy()
 	template = null // without this, capsules would be one use. per round.
 	. = ..()
 
-/obj/item/device/survivalcapsule/examine(mob/user)
+/obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	if(!template)
 		get_template()
@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	else
 		. += "This capsule has an unknown template stored."
 
-/obj/item/device/survivalcapsule/attack_self()
+/obj/item/survivalcapsule/attack_self()
 	//Can't grab when capsule is New() because templates aren't loaded then
 	get_template()
 	if(!used)
@@ -97,34 +97,34 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		template.update_lighting(deploy_location)
 		qdel(src)
 
-/obj/item/device/survivalcapsule/luxury
+/obj/item/survivalcapsule/luxury
 	name = "luxury surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
 	template_id = "shelter_beta"
 
-/obj/item/device/survivalcapsule/luxurybar
+/obj/item/survivalcapsule/luxurybar
 	name = "luxury surfluid bar capsule"
 	desc = "A luxury bar in a capsule. Bartender required and not included. There's a license for use printed on the bottom."
 	template_id = "shelter_gamma"
 
-/obj/item/device/survivalcapsule/military
+/obj/item/survivalcapsule/military
 	name = "military surfluid shelter capsule"
 	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
 	template_id = "shelter_delta"
 
-/obj/item/device/survivalcapsule/escapepod
+/obj/item/survivalcapsule/escapepod
 	name = "escape surfluid shelter capsule"
 	desc = "A prefabricated escape pod in a capsule. Contains a basic escape pod for survival purposes. There's a license for use printed on the bottom."
 	template_id = "shelter_epsilon"
 	unique_id = "shelter_5"
 	is_ship = TRUE
 
-/obj/item/device/survivalcapsule/popcabin
+/obj/item/survivalcapsule/popcabin
 	name = "pop-out cabin shelter capsule"
 	desc = "A cozy cabin; crammed into a survival capsule."
 	template_id = "shelter_cab"
 
-/obj/item/device/survivalcapsule/dropship
+/obj/item/survivalcapsule/dropship
 	name = "dropship surfluid shelter capsule"
 	desc = "A military dropship in a capsule. Contains everything an assault squad would need, minus the squad itself. This capsule is significantly larger than most. There's a license for use printed on the bottom."
 	template_id = "shelter_zeta"
@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	w_class = ITEMSIZE_SMALL
 
 //Custom Shelter Capsules
-/obj/item/device/survivalcapsule/tabiranth
+/obj/item/survivalcapsule/tabiranth
 	name = "silver-trimmed surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. This one is a particularly rare and expensive model. There's a license for use printed on the bottom."
 	template_id = "shelter_phi"
@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	id = "placeholder_id_do_not_use" //This has to be this way, otherwise it will control ALL doors if left blank.
 	var/obj/machinery/door/airlock/voidcraft/survival_pod/door
 
-/obj/machinery/button/remote/airlock/survival_pod/attack_hand(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/button/remote/airlock/survival_pod/attack_hand(obj/item/W, mob/user as mob)
 	if(..()) return 1 //1 is failure on machines (for whatever reason)
 	if(!door)
 		var/turf/dT = get_step(src,dir)
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	verbs -= /obj/structure/table/proc/do_put
 	..()
 
-/obj/structure/table/survival_pod/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
+/obj/structure/table/survival_pod/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 
@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		cut_overlays()
 
 //Computer
-/obj/item/device/gps/computer
+/obj/item/gps/computer
 	name = "pod computer"
 	icon_state = "pod_computer"
 	icon = 'icons/obj/survival_pod_comp.dmi'
@@ -233,18 +233,18 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	density = TRUE
 	pixel_y = -32
 
-/obj/item/device/gps/computer/attackby(obj/item/I, mob/living/user)
+/obj/item/gps/computer/attackby(obj/item/I, mob/living/user)
 	if(I.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
 			"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
 		if(do_after(user,4 SECONDS,src))
-			new /obj/item/device/gps(loc)
+			new /obj/item/gps(loc)
 			qdel(src)
 			return TRUE
 
 	return FALSE
 
-/obj/item/device/gps/computer/attack_hand(mob/user)
+/obj/item/gps/computer/attack_hand(mob/user)
 	attack_self(user)
 
 //Bed

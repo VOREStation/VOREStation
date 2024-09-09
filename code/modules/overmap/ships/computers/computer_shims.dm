@@ -37,12 +37,12 @@
 	. = 0
 	for(var/thing in component_parts)
 		if(istype(thing, part_type))
-			var/obj/item/weapon/stock_parts/part = thing
+			var/obj/item/stock_parts/part = thing
 			. += part.rating
 	// Now isn't THIS a cool idea?
 	// for(var/path in uncreated_component_parts)
 	// 	if(ispath(path, part_type))
-	// 		var/obj/item/weapon/stock_parts/comp = path
+	// 		var/obj/item/stock_parts/comp = path
 	// 		. += initial(comp.rating) * uncreated_component_parts[path]
 
 //

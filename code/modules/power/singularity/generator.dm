@@ -47,7 +47,7 @@
 				to_chat(user, "<span class='cult'>\The [src] looks like it could be adapted to forge advanced materials via particle acceleration, somehow..</span>")
 		else
 			to_chat(user, "<span class='notice'>\The [src]'s mechanisms look secure.</span>")
-	if(istype(W, /obj/item/weapon/smes_coil/super_io) && panel_open)
+	if(istype(W, /obj/item/smes_coil/super_io) && panel_open)
 		visible_message("<b>\The [user]</b> begins to modify \the [src] with \the [W].")
 		if(do_after(user, 300))
 			user.drop_from_inventory(W)

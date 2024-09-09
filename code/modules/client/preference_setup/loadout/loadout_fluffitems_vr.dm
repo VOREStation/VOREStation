@@ -13,7 +13,7 @@
 
 /*
 /datum/gear/fluff/testhorn
-	path = /obj/item/weapon/bikehorn
+	path = /obj/item/bikehorn
 	display_name = "Airhorn - Example Item"
 	description = "An example item that you probably shouldn't see!"
 	ckeywhitelist = list("your_ckey_here")
@@ -29,7 +29,7 @@
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
-	path = /obj/item/weapon/material/twohanded/riding_crop/malady
+	path = /obj/item/material/twohanded/riding_crop/malady
 	display_name = "Malady's Crop"
 	ckeywhitelist = list("1r1s")
 	character_name = list("Malady Blanche")
@@ -80,7 +80,7 @@
     character_name = list("Charlotte Graves")
 
 /datum/gear/fluff/charlotte_cigarettes
-	path = /obj/item/weapon/storage/fancy/fluff/charlotte
+	path = /obj/item/storage/fancy/fluff/charlotte
 	display_name = "Charlotte's cigarette case"
 	ckeywhitelist = list("alfalah")
 	character_name = list("Charlotte Graves")
@@ -104,7 +104,7 @@
 	character_name = list("Fifi The Magnificent")
 
 /datum/gear/fluff/lynn_penlight
-	path = /obj/item/device/flashlight/pen/fluff/lynn
+	path = /obj/item/flashlight/pen/fluff/lynn
 	display_name = "Lynn's Penlight"
 	ckeywhitelist = list("argobargsoup")
 	character_name = list("Lynn Shady")
@@ -132,7 +132,7 @@
 	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/astra_ritualknife
-	path = /obj/item/weapon/material/knife/ritual/fluff/astra
+	path = /obj/item/material/knife/ritual/fluff/astra
 	display_name = "Polished Ritual Knife"
 	description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
 	ckeywhitelist = list("astraether")
@@ -180,7 +180,7 @@
 	character_name = list("Yuuko Shimmerpond")
 
 /datum/gear/fluff/cassandra_box
-	path = /obj/item/weapon/storage/box/fluff/cassandra
+	path = /obj/item/storage/box/fluff/cassandra
 	display_name = "Cassandra's Box"
 	ckeywhitelist = list("beyondmylife")
 	character_name = list("Cassandra Selone")
@@ -200,7 +200,7 @@
 	character_name = list("Kilano Soryu")
 
 /datum/gear/fluff/netra_box
-	path = /obj/item/weapon/storage/box/fluff/kilano
+	path = /obj/item/storage/box/fluff/kilano
 	display_name = "Ne'tra's Box"
 	ckeywhitelist = list("beyondmylife")
 	character_name = list("Ne'tra Ky'ram")
@@ -238,13 +238,13 @@
 	character_name = list("Xin Xiao")
 
 /datum/gear/fluff/tasald_box
-	path = /obj/item/weapon/storage/box/fluff/tasald
+	path = /obj/item/storage/box/fluff/tasald
 	display_name = "Tasald's Box"
 	ckeywhitelist = list("bwoincognito")
 	character_name = list("Tasald Corlethian")
 
 /datum/gear/fluff/octavius_box
-	path = /obj/item/weapon/storage/box/fluff/octavious
+	path = /obj/item/storage/box/fluff/octavious
 	display_name = "Octavious' Box"
 	ckeywhitelist = list("bwoincognito")
 	character_name = list("Octavious Ward")
@@ -277,7 +277,7 @@
 	character_name = list("Cappy Fuzzlyfeathers")
 
 /datum/gear/fluff/james_disk
-	path = /obj/item/weapon/disk/data
+	path = /obj/item/disk/data
 	display_name = "James' Disk"
 	ckeywhitelist = list("cockatricexl")
 	character_name = list("James Holder")
@@ -304,13 +304,13 @@
 	character_name = list("Aika Hisakawa")
 
 /datum/gear/fluff/sariU_disk
-	path = /obj/item/weapon/disk/limb/eggnerdltd
+	path = /obj/item/disk/limb/eggnerdltd
 	display_name = "Sari-U's Eggnerd Disk"
 	ckeywhitelist = list("crossexonar")
 	character_name = list("Sari-U")
 
 /datum/gear/fluff/sariE_disk
-	path = /obj/item/weapon/disk/limb/eggnerdltd
+	path = /obj/item/disk/limb/eggnerdltd
 	display_name = "Sari-E's Eggnerd Disk"
 	ckeywhitelist = list("crossexonar")
 	character_name = list("Sari-E")
@@ -340,13 +340,13 @@
 	character_name = list("Perrin Kade")
 
 /datum/gear/fluff/jade_stamp
-	path = /obj/item/weapon/stamp/fluff/jade_horror
+	path = /obj/item/stamp/fluff/jade_horror
 	display_name = "Official Council of Mid Horror rubber stamp"
 	ckeywhitelist = list("coolcrow420")
 	character_name = list("Jade Davis")
 
 /datum/gear/fluff/m4il_hdd
-	path = /obj/item/weapon/implant/language/fluff/m41l
+	path = /obj/item/implant/language/fluff/m41l
 	display_name = "dusty hard drive"
 	slot = "implant"
 	ckeywhitelist = list("coolcrow420")
@@ -354,7 +354,7 @@
 
 //  D CKEYS
 /datum/gear/fluff/Aku_briefcase
-	path = /obj/item/weapon/storage/secure/briefcase/dealer
+	path = /obj/item/storage/secure/briefcase/dealer
 	display_name = "Aku's dealer briefcase"
 	ckeywhitelist = list("defiintelynotarock")
 	character_name = list("Aku Zoles")
@@ -366,7 +366,7 @@
 	character_name = list("Dhaeleena M'iar")
 
 /datum/gear/fluff/elliot_belt
-	path = /obj/item/weapon/storage/belt/champion
+	path = /obj/item/storage/belt/champion
 	display_name = "Elliot's Belt"
 	ckeywhitelist = list("dickfreedomjohnson")
 	character_name = list("Elliot Richards")
@@ -384,20 +384,20 @@
 	character_name = list("Donald Weinbeck")
 
 /datum/gear/fluff/drake_box
-	path = /obj/item/weapon/storage/box/fluff/drake
+	path = /obj/item/storage/box/fluff/drake
 	display_name = "Drake's Box"
 	ckeywhitelist = list("drakefrostpaw")
 	character_name = list("Drake Frostpaw")
 
 /datum/gear/fluff/theseus_coin
-	path = /obj/item/weapon/coin/diamond
+	path = /obj/item/coin/diamond
 	display_name  = "Theseus' Diamond coin"
 	ckeywhitelist = list("draycu")
 	character_name = list("Theseus")
 	description = "An engraved coin made of diamond. On the side for heads is printed the year 2541, along with the letter T. On the side for tails, the letter Y can be seen."
 
 /datum/gear/fluff/yonra_box
-	path = /obj/item/weapon/storage/box/fluff/yonra
+	path = /obj/item/storage/box/fluff/yonra
 	display_name = "Yonra's Box"
 	ckeywhitelist = list("draycu")
 	character_name = list("Schae Yonra")
@@ -437,7 +437,7 @@
 	character_name = list("Erik Ramadwood")
 
 /datum/gear/fluff/salvage_id
-	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	path = /obj/item/card/id/event/polymorphic/itg
 	display_name = "Salvage's ITG-ID card"
 	ckeywhitelist = list("essbie")
 	character_name = list("Savage")
@@ -504,13 +504,13 @@
 	character_name = list("Lauren Zackson")
 
 /datum/gear/fluff/belle_sizegun
-	path = /obj/item/weapon/gun/energy/sizegun
+	path = /obj/item/gun/energy/sizegun
 	display_name = "Belle's Sizegun"
 	ckeywhitelist = list("hottokeeki")
 	character_name = list("Belle Day")
 
 /datum/gear/fluff/amaryll_claws
-	path = /obj/item/weapon/surgical/scalpel/amaryll_claws
+	path = /obj/item/surgical/scalpel/amaryll_claws
 	display_name = "Amaryll's Claws"
 	ckeywhitelist = list("hunterbirk")
 	character_name = list("Amaryll")
@@ -547,7 +547,7 @@
 	character_name = list("Kai Highlands")
 
 /datum/gear/fluff/ivy_backpack
-	path = /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
+	path = /obj/item/storage/backpack/messenger/sec/fluff/ivymoomoo
 	display_name = "Ivy's Backpack"
 	slot = slot_back
 	ckeywhitelist = list("ivymoomoo")
@@ -567,13 +567,13 @@
 
 //  J CKEYS
 /datum/gear/fluff/mor_box
-	path = /obj/item/weapon/storage/box/fluff/morxaina
+	path = /obj/item/storage/box/fluff/morxaina
 	display_name = "Mor's Box"
 	ckeywhitelist = list("jacknoir413")
 	character_name = list("Mor Xaina")
 
 /datum/gear/fluff/areax_staff
-	path = /obj/item/weapon/storage/backpack/fluff/stunstaff
+	path = /obj/item/storage/backpack/fluff/stunstaff
 	display_name = "Areax's Stun Staff"
 	slot = slot_back
 	ckeywhitelist = list("jacknoir413")
@@ -602,7 +602,7 @@
 	character_name = list("Freyr")
 
 /datum/gear/fluff/cirra_box
-	path = /obj/item/weapon/storage/box/fluff/cirra
+	path = /obj/item/storage/box/fluff/cirra
 	display_name = "Cirra's Box"
 	ckeywhitelist = list("jemli")
 	character_name = list("Cirra Mayhem")
@@ -643,21 +643,21 @@
 	character_name = list("Jeremiah Acacius")
 
 /datum/gear/fluff/joan_backpack
-	path = /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu
+	path = /obj/item/storage/backpack/dufflebag/sec/fluff/joanrisu
 	display_name = "Joan's backpack"
 	ckeywhitelist = list("joanrisu")
 	character_name = list("Joan Risu")
 
 
 /datum/gear/fluff/katarina_backpack
-	path = /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
+	path = /obj/item/storage/backpack/dufflebag/sec/fluff/katarina
 	display_name = "Katarina's Backpack"
 	ckeywhitelist = list("joanrisu")
 	character_name = list("Katarina Eine")
 	allowed_roles = list("Site Manager", "Warden", "Head of Security")
 
 /datum/gear/fluff/emoticon_box
-	path = /obj/item/weapon/storage/box/fluff/emoticon
+	path = /obj/item/storage/box/fluff/emoticon
 	display_name = "Emoticon's Box"
 	ckeywhitelist = list("joey4298")
 	character_name = list("Emoticon")
@@ -683,19 +683,19 @@
 	character_name = list("Harmony Pretchl")
 
 /datum/gear/fluff/harmony_modkit
-	path = /obj/item/device/modkit_conversion/fluff/harmonysuit
+	path = /obj/item/modkit_conversion/fluff/harmonysuit
 	display_name = "Harmony's Modkit"
 	ckeywhitelist = list("john.wayne9392")
 	character_name = list("Harmony Pretchl")
 
 /datum/gear/fluff/harmony_spacemodkit
-	path = /obj/item/device/modkit_conversion/fluff/harmonyspace
+	path = /obj/item/modkit_conversion/fluff/harmonyspace
 	display_name = "Harmony's Modkit 2"
 	ckeywhitelist = list("john.wayne9392")
 	character_name = list("Harmony Pretchl")
 
 /datum/gear/fluff/koyo_box
-	path = /obj/item/weapon/storage/box/fluff/koyoakimomi
+	path = /obj/item/storage/box/fluff/koyoakimomi
 	display_name = "Koyo's Box"
 	ckeywhitelist = list("jwguy")
 	character_name = list("Koyo Akimomi")
@@ -715,7 +715,7 @@
 	character_name = list("Ketrai")
 
 /datum/gear/fluff/amaya_id
-	path = /obj/item/weapon/card/id/event/fluff/amaya
+	path = /obj/item/card/id/event/fluff/amaya
 	display_name = "Amaya's ID"
 	ckeywhitelist = list("kiraalitruss")
 	character_name = list("Amaya Rahl")
@@ -773,21 +773,21 @@
 	character_name = list("Kenzie Houser")
 
 /datum/gear/fluff/kenzie_hypospray
-	path = /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
+	path = /obj/item/reagent_containers/hypospray/vial/kenzie
 	display_name = "Kenzie's Hypospray"
 	ckeywhitelist = list("lm40")
 	character_name = list("Kenzie Houser")
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
 
 /datum/gear/fluff/brianna_backpack
-	path = /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
+	path = /obj/item/storage/backpack/messenger/black/fluff/briana
 	display_name = "Briana's Backpack"
 	slot = slot_back
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
 
 /datum/gear/fluff/zharritool
-	path = /obj/item/weapon/tool/transforming/altevian
+	path = /obj/item/tool/transforming/altevian
 	display_name = "Zharri's Custom Omni-Tool"
 	description = "A Hull Systems Omni-Tool capable of temporarily shrinking to handheld sizes for even the most delicate work."
 	ckeywhitelist = list("lewzharri")
@@ -796,7 +796,7 @@
 
 //  M CKEYS
 /datum/gear/fluff/phi_box
-	path = /obj/item/weapon/storage/box/fluff/phi
+	path = /obj/item/storage/box/fluff/phi
 	display_name = "Phi's Box"
 	ckeywhitelist = list("mewchild")
 	character_name = list("Phi Vietsi")
@@ -809,7 +809,7 @@
 	character_name = list("Giliana Gamish")
 
 /datum/gear/fluff/myryan_belt
-	path = /obj/item/weapon/storage/belt/utility/fluff/vulpine
+	path = /obj/item/storage/belt/utility/fluff/vulpine
 	display_name = "Myryan's Belt"
 	ckeywhitelist = list("myryan")
 	character_name = list("Myryan Karnage-Cunningham")
@@ -882,14 +882,14 @@
 	character_name = list("Damon Bones Xrim")
 
 /datum/gear/fluff/kt_fishing_rod
-	path = /obj/item/weapon/material/fishing_rod/modern/strong
+	path = /obj/item/material/fishing_rod/modern/strong
 	display_name = "K't's fishing rod"
 	ckeywhitelist = list("nerdass")
 	character_name = list("K't")
 
 //  O CKEYS
 /datum/gear/fluff/richard_chain
-	path = /obj/item/weapon/melee/fluff/holochain
+	path = /obj/item/melee/fluff/holochain
 	display_name = "Richard's Holochain"
 	ckeywhitelist = list("orbisa")
 	character_name = list("Richard D'angelo")
@@ -938,13 +938,13 @@
 	character_name = list("Pip Shyner")
 
 /datum/gear/fluff/lucuis_battery
-	path = /obj/item/weapon/fluff/dragor_dot
+	path = /obj/item/fluff/dragor_dot
 	display_name = "Lucuis' Spare Battery"
 	ckeywhitelist = list("pontifexminimus")
 	character_name = list("Lucius Null")
 
 /datum/gear/fluff/lucia_battery
-	path = /obj/item/weapon/fluff/dragor_dot
+	path = /obj/item/fluff/dragor_dot
 	display_name = "Lucia's Spare Battery"
 	ckeywhitelist = list("pontifexminimus")
 	character_name = list("Lucia Null")
@@ -1010,7 +1010,7 @@
 	allowed_roles = list("Roboticist")
 
 /datum/gear/fluff/clara_flask
-	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
 	display_name = "Clara's Vacuum Flask"
 	ckeywhitelist = list("rboys2")
 	character_name = list("Clara Mali")
@@ -1029,19 +1029,19 @@
 	character_name = list("LUNA")
 
 /datum/gear/fluff/pathfinder_id
-	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	path = /obj/item/card/id/event/polymorphic/itg
 	display_name = "Pathfinder's ITG ID"
 	ckeywhitelist = list("residentcody")
 	character_name = list("Pathfinder")
 
 /datum/gear/fluff/revolver_claymore
-	path = /obj/item/weapon/sword/fluff/revolver
+	path = /obj/item/sword/fluff/revolver
 	display_name = "Catnip"
 	ckeywhitelist = list("revolvereloise")
 	character_name = list("Revolver Eloise")
 
 /datum/gear/fluff/nikki_dorky_outfit
-	path = /obj/item/weapon/storage/box/fluff
+	path = /obj/item/storage/box/fluff
 	display_name = "Nikki's Witchy Outfit"
 	ckeywhitelist = list("ryumi")
 	character_name = list("Nikki Yumeno")
@@ -1094,13 +1094,13 @@
 	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Site Manager", "Head of Personnel")
 
 /datum/gear/fluff/viktor_flask
-	path = /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
+	path = /obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
 	display_name = "Viktor's Flask"
 	ckeywhitelist = list("semaun")
 	character_name = list("Viktor Solothurn")
 
 /datum/gear/fluff/scree_modkit
-	path = /obj/item/device/modkit_conversion/fluff/screekit
+	path = /obj/item/modkit_conversion/fluff/screekit
 	display_name = "Scree's Modkit"
 	ckeywhitelist = list("scree")
 	character_name = list("Scree")
@@ -1134,7 +1134,7 @@
 	character_name = list("Alfonso Oak Telanor")
 
 /datum/gear/fluff/cerise_secbelt
-	path = /obj/item/weapon/storage/belt/security/fluff/cerise
+	path = /obj/item/storage/belt/security/fluff/cerise
 	display_name = "Cerise's Champion's Belt"
 	ckeywhitelist = list("shalax")
 	character_name = list("Cerise Duelliste")
@@ -1153,14 +1153,14 @@
 	character_name = list("Sidona Kaal")
 
 /datum/gear/fluff/nthasd_modkit //Converts a Security suit's sprite
-	path = /obj/item/device/modkit_conversion/hasd
+	path = /obj/item/modkit_conversion/hasd
 	display_name = "NT-HASD 556's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("NT-HASD #556")
 	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/fluff/serdykov_modkit //Also converts a Security suit's sprite
-	path = /obj/item/device/modkit_conversion/fluff/serdykit
+	path = /obj/item/modkit_conversion/fluff/serdykit
 	display_name = "Serdykov Antoz's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("Serdykov Antoz")
@@ -1181,13 +1181,13 @@
 	character_name = list("Tasy Ruffles")
 
 /datum/gear/fluff/tasy_clownPDA
-	path = /obj/item/device/pda/clown
+	path = /obj/item/pda/clown
 	display_name = "Tasy's Clown PDA"
 	ckeywhitelist = list("silvertalismen")
 	character_name = list("Tasy Ruffles")
 
 /datum/gear/fluff/fortune_backpack
-	path = /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
+	path = /obj/item/storage/backpack/satchel/fluff/swat43bag
 	display_name = "Fortune's Backpack"
 	slot = slot_back
 	ckeywhitelist = list("swat43")
@@ -1259,19 +1259,19 @@
 	character_name = list("Ascian")
 
 /datum/gear/fluff/ascian_spiritspawner
-	path = /obj/item/weapon/grenade/spawnergrenade/spirit
+	path = /obj/item/grenade/spawnergrenade/spirit
 	display_name = "The Best Kitten"
 	ckeywhitelist = list("tabiranth")
 	character_name = list("Ascian")
 
 /datum/gear/fluff/ascian_shelterpod
-	path = /obj/item/device/survivalcapsule/tabiranth
+	path = /obj/item/survivalcapsule/tabiranth
 	display_name = "Ascian's Shelterpod"
 	ckeywhitelist = list("tabiranth")
 	character_name = list("Ascian")
 
 /datum/gear/fluff/lasshseeki_ealimplant
-	path = /obj/item/weapon/implant/language/eal
+	path = /obj/item/implant/language/eal
 	display_name = "Lasshseeki's EAL Implant"
 	ckeywhitelist = list("techtypes")
 	character_name = list("Lasshseeki Korss")
@@ -1349,7 +1349,7 @@
 	character_name = list("Verie")
 
 /datum/gear/fluff/verie_comb
-	path = /obj/item/weapon/fluff/verie
+	path = /obj/item/fluff/verie
 	display_name = "Verie's Crazy Comb"
 	description = "(Note: The highlights this gives you will be placed above EVERYTHING... including mobs!)"
 	ckeywhitelist = list("vitoras")
@@ -1363,7 +1363,7 @@
 	character_name = list("Cameron Eggbert")
 
 /datum/gear/fluff/cameron_disk
-	path = /obj/item/weapon/disk/limb/eggnerdltd
+	path = /obj/item/disk/limb/eggnerdltd
 	display_name = "Cameron's Eggnerd Disk"
 	ckeywhitelist = list("verkister")
 	character_name = list("Cameron Eggbert")
@@ -1383,7 +1383,7 @@
 	character_name = list("Verin Raharra")
 
 /datum/gear/fluff/lucina_pda
-	path = /obj/item/device/pda/heads/cmo/fluff/lucinapda
+	path = /obj/item/pda/heads/cmo/fluff/lucinapda
 	display_name = "Lucina's PDA"
 	ckeywhitelist = list("vorrarkul")
 	character_name = list("Lucina Dakarim")
@@ -1456,7 +1456,7 @@
 	character_name = list("Roanna Ti'Rox")
 
 /datum/gear/fluff/harmony_id
-	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	path = /obj/item/card/id/event/polymorphic/itg
 	display_name = "ITG-ID card"
 	ckeywhitelist = list("verysoft")
 	character_name = null
@@ -1508,7 +1508,7 @@
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Off-duty Medic")
 
 /datum/gear/fluff/tempest_hypospray
-	path = /obj/item/weapon/reagent_containers/hypospray/vial/tempest
+	path = /obj/item/reagent_containers/hypospray/vial/tempest
 	display_name = "Tempest's Hypospray"
 	slot = slot_belt
 	ckeywhitelist = list("wickedtemp")
@@ -1516,7 +1516,7 @@
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Off-duty Medic")
 
 /datum/gear/fluff/tempest_backpack
-	path = /obj/item/weapon/storage/backpack/saddlebag/tempest
+	path = /obj/item/storage/backpack/saddlebag/tempest
 	display_name = "Tempest's Saddlebag"
 	slot = slot_back
 	ckeywhitelist = list("wickedtemp")
@@ -1524,7 +1524,7 @@
 
 //  X CKEYS
 /datum/gear/fluff/penelope_box
-	path = /obj/item/weapon/storage/box/fluff/penelope
+	path = /obj/item/storage/box/fluff/penelope
 	display_name = "Penelope's Box"
 	ckeywhitelist = list("xsdew")
 	character_name = list("Penelope Allen")
@@ -1557,7 +1557,7 @@
 	character_name = list("Lemon Yellow", "Lemon Gettler Yellow", "Lemon Lee Yellow", "Lemon Jade Yellow") //different sleeves, same char
 
 /datum/gear/fluff/cephyra_d6
-	path = /obj/item/weapon/dice/loaded/ceph
+	path = /obj/item/dice/loaded/ceph
 	display_name = "engraved d6"
 	ckeywhitelist = list("yeehawguvnah")
 	character_name = list("Cephyra")
@@ -1577,7 +1577,7 @@
 	character_name = list("Zaoozaoo Xrimxuqmqixzix")
 
 /datum/gear/fluff/nehi_radio
-	path = /obj/item/device/radio/headset/fluff/zodiacshadow
+	path = /obj/item/radio/headset/fluff/zodiacshadow
 	display_name = "Nehi's 'phones"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")

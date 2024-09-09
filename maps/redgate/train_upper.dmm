@@ -21,7 +21,7 @@
 /area/redgate/train/roof)
 "aQ" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 7;
 	pixel_y = 16
 	},
@@ -123,7 +123,7 @@
 /area/redgate/train/gym)
 "cp" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 7;
 	pixel_y = 16
 	},
@@ -165,7 +165,7 @@
 /area/redgate/train/chef)
 "cU" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/train/dorm2)
 "dd" = (
@@ -187,8 +187,8 @@
 /area/redgate/train/vault)
 "dC" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain6,
+/obj/item/paper_bin,
+/obj/item/pen/fountain6,
 /turf/simulated/shuttle/floor/white{
 	color = "#cccccc"
 	},
@@ -258,7 +258,7 @@
 "eD" = (
 /obj/structure/table/steel_reinforced,
 /obj/structure/window/reinforced,
-/obj/item/weapon/storage/box/donut,
+/obj/item/storage/box/donut,
 /turf/simulated/shuttle/floor/skipjack{
 	name = "floor";
 	nitrogen = 82.1472;
@@ -333,13 +333,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/dining)
 "fL" = (
@@ -511,22 +511,22 @@
 	name = "train captain's locker";
 	req_access = list(900)
 	},
-/obj/item/weapon/soap/golden_soap,
-/obj/item/device/perfect_tele/frontier,
-/obj/item/device/gps/command,
-/obj/item/device/universal_translator,
-/obj/item/device/megaphone/super,
-/obj/item/device/binoculars/spyglass,
+/obj/item/soap/golden_soap,
+/obj/item/perfect_tele/frontier,
+/obj/item/gps/command,
+/obj/item/universal_translator,
+/obj/item/megaphone/super,
+/obj/item/binoculars/spyglass,
 /turf/simulated/shuttle/floor/white{
 	color = "#cccccc"
 	},
 /area/redgate/train/captain)
 "iS" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_y = 5
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/shuttle/floor/white,
 /area/redgate/train/medbay)
 "iZ" = (
@@ -550,7 +550,7 @@
 /area/redgate/train/helipad)
 "jf" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/device/slow_sizegun,
+/obj/item/slow_sizegun,
 /turf/simulated/shuttle/floor/red,
 /area/redgate/train/gear)
 "jh" = (
@@ -647,10 +647,10 @@
 /area/redgate/train/dorm4)
 "kV" = (
 /obj/structure/closet/chefcloset,
-/obj/item/device/retail_scanner/civilian,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/flame/candle/candelabra,
-/obj/item/weapon/flame/candle/candelabra,
+/obj/item/retail_scanner/civilian,
+/obj/item/storage/fancy/candle_box,
+/obj/item/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
 /turf/simulated/floor/wood,
 /area/redgate/train/chef)
 "kW" = (
@@ -715,8 +715,8 @@
 /obj/random/firstaid,
 /obj/item/clothing/gloves/sterile/nitrile,
 /obj/item/clothing/gloves/sterile/nitrile,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/weapon/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
 /obj/effect/floor_decal/corner/green/border{
 	dir = 4
 	},
@@ -742,7 +742,7 @@
 /area/redgate/train/kitchen)
 "lB" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 7;
 	pixel_y = 16
 	},
@@ -802,14 +802,14 @@
 /area/redgate/train/kitchen)
 "mF" = (
 /obj/structure/closet,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
+/obj/item/flashlight/maglight,
+/obj/item/flashlight/maglight,
+/obj/item/flashlight/maglight,
+/obj/item/flashlight/maglight,
+/obj/item/flashlight/maglight,
 /obj/random/flashlight,
-/obj/item/device/text_to_speech,
-/obj/item/weapon/storage/box/matches,
+/obj/item/text_to_speech,
+/obj/item/storage/box/matches,
 /obj/random/mre,
 /obj/random/mre,
 /obj/random/mre,
@@ -836,8 +836,8 @@
 /area/redgate/train/vault)
 "mV" = (
 /obj/structure/closet,
-/obj/item/weapon/melee/telebaton,
-/obj/item/weapon/folder/red,
+/obj/item/melee/telebaton,
+/obj/item/folder/red,
 /obj/random/maintenance/security,
 /obj/random/maintenance/security,
 /obj/machinery/light,
@@ -860,7 +860,7 @@
 /area/redgate/train/dining)
 "mY" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/train/dorm1)
 "nc" = (
@@ -920,7 +920,7 @@
 /area/redgate/train/dining)
 "nG" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/train/dorm3)
 "nQ" = (
@@ -945,8 +945,8 @@
 /area/redgate/train/medbay)
 "ol" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/train/kitchen)
 "or" = (
@@ -1082,7 +1082,7 @@
 /area/redgate/train/helipad)
 "qd" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 7;
 	pixel_y = 16
 	},
@@ -1090,7 +1090,7 @@
 /area/redgate/train/dorm5)
 "qe" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 7;
 	pixel_y = 16
 	},
@@ -1136,10 +1136,10 @@
 /area/redgate/train/dining)
 "qO" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/handcuffs/legcuffs,
-/obj/item/weapon/handcuffs/legcuffs,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs,
+/obj/item/handcuffs/legcuffs,
+/obj/item/handcuffs/legcuffs,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
 /turf/simulated/shuttle/floor/red,
 /area/redgate/train/gear)
 "qX" = (
@@ -1154,8 +1154,8 @@
 /obj/item/clothing/shoes/boots/jackboots/silver,
 /obj/item/clothing/gloves/blue,
 /obj/item/clothing/glasses/hud/security/jensenshades,
-/obj/item/weapon/melee/telebaton,
-/obj/item/device/ticket_printer/train,
+/obj/item/melee/telebaton,
+/obj/item/ticket_printer/train,
 /obj/item/taperoll/police,
 /turf/simulated/shuttle/floor/skipjack{
 	name = "floor";
@@ -1196,7 +1196,7 @@
 /area/redgate/train/dining)
 "rG" = (
 /obj/structure/mopbucket,
-/obj/item/weapon/mop,
+/obj/item/mop,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1220,7 +1220,7 @@
 /area/redgate/train/helipad)
 "sl" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/hand_labeler,
+/obj/item/hand_labeler,
 /turf/simulated/shuttle/floor/white{
 	color = "#cccccc"
 	},
@@ -1306,13 +1306,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/floor/wood,
 /area/redgate/train/sleeper2)
 "tF" = (
@@ -1394,7 +1394,7 @@
 /turf/simulated/shuttle/floor/white,
 /area/redgate/train/medbay)
 "uN" = (
-/obj/item/weapon/inflatable_duck,
+/obj/item/inflatable_duck,
 /turf/simulated/floor/water/deep/indoors,
 /area/redgate/train/pool)
 "uR" = (
@@ -1416,8 +1416,8 @@
 /obj/item/clothing/head/shiny_hood,
 /obj/item/clothing/under/shiny/catsuit,
 /obj/item/clothing/under/shiny/leotard,
-/obj/item/weapon/handcuffs/fuzzy,
-/obj/item/weapon/handcuffs/legcuffs/fuzzy,
+/obj/item/handcuffs/fuzzy,
+/obj/item/handcuffs/legcuffs/fuzzy,
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm1)
 "vd" = (
@@ -1593,7 +1593,7 @@
 /area/redgate/train/helipad)
 "xP" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/bluespace_harpoon,
+/obj/item/bluespace_harpoon,
 /turf/simulated/shuttle/floor/red,
 /area/redgate/train/gear)
 "xS" = (
@@ -1697,21 +1697,21 @@
 "zY" = (
 /obj/structure/table/standard,
 /obj/structure/closet/walllocker_double/medical/east,
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/dropper,
-/obj/item/weapon/tray,
-/obj/item/weapon/tray,
+/obj/item/reagent_containers/dropper,
+/obj/item/tray,
+/obj/item/tray,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/train/kitchen)
 "Aa" = (
@@ -1738,21 +1738,21 @@
 "AJ" = (
 /obj/structure/table/standard,
 /obj/structure/closet/walllocker_double/kitchen/west,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/train/kitchen)
 "AQ" = (
@@ -1849,7 +1849,7 @@
 /obj/machinery/vending/wallmed1/public{
 	pixel_x = -29
 	},
-/obj/item/weapon/storage/lockbox,
+/obj/item/storage/lockbox,
 /turf/simulated/shuttle/floor/skipjack{
 	name = "floor";
 	nitrogen = 82.1472;
@@ -1857,7 +1857,7 @@
 	},
 /area/redgate/train/security)
 "BY" = (
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /turf/simulated/floor/water/deep/indoors,
 /area/redgate/train/pool)
 "BZ" = (
@@ -1866,7 +1866,7 @@
 /area/redgate/train/medbay)
 "Cg" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/train/dorm4)
 "Ct" = (
@@ -1888,24 +1888,24 @@
 /area/redgate/train/dorm1)
 "CQ" = (
 /obj/structure/closet/walllocker_double/security/north,
-/obj/item/device/gps/security{
+/obj/item/gps/security{
 	pixel_x = -3
 	},
-/obj/item/device/gps/security{
+/obj/item/gps/security{
 	pixel_x = -3
 	},
-/obj/item/device/gps/security{
+/obj/item/gps/security{
 	pixel_x = -3
 	},
-/obj/item/device/radio{
+/obj/item/radio{
 	pixel_x = 4;
 	pixel_y = -4
 	},
-/obj/item/device/radio{
+/obj/item/radio{
 	pixel_x = 4;
 	pixel_y = -4
 	},
-/obj/item/device/radio{
+/obj/item/radio{
 	pixel_x = 4;
 	pixel_y = -4
 	},
@@ -1946,9 +1946,9 @@
 	desc = "A whistle used by the train staff. Suitable for ages 8 and up, do not swallow.";
 	name = "train whistle"
 	},
-/obj/item/weapon/cane,
-/obj/item/weapon/cane,
-/obj/item/weapon/storage/wallet/random,
+/obj/item/cane,
+/obj/item/cane,
+/obj/item/storage/wallet/random,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
 "Dm" = (
@@ -1972,7 +1972,7 @@
 /area/redgate/train/dining)
 "DF" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hos,
+/obj/item/bedsheet/hos,
 /obj/structure/curtain/black,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
@@ -2005,8 +2005,8 @@
 	desc = "A whistle used by the train staff. Suitable for ages 8 and up, do not swallow.";
 	name = "train whistle"
 	},
-/obj/item/weapon/cane,
-/obj/item/weapon/cane,
+/obj/item/cane,
+/obj/item/cane,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
 "DR" = (
@@ -2020,7 +2020,7 @@
 /area/redgate/train/dorm5)
 "Ec" = (
 /obj/structure/table/standard,
-/obj/item/weapon/book/manual/cook_guide,
+/obj/item/book/manual/cook_guide,
 /obj/random/snack,
 /turf/simulated/floor/wood,
 /area/redgate/train/chef)
@@ -2067,7 +2067,7 @@
 /area/redgate/train/command)
 "EE" = (
 /obj/structure/table/glass,
-/obj/item/device/defib_kit/loaded,
+/obj/item/defib_kit/loaded,
 /obj/effect/floor_decal/milspec_sterile/green,
 /turf/simulated/shuttle/floor/white,
 /area/redgate/train/medbay)
@@ -2093,13 +2093,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/floor/wood,
 /area/redgate/train/sleeper1)
 "Fv" = (
@@ -2134,22 +2134,22 @@
 /area/redgate/train/kitchen)
 "FV" = (
 /obj/structure/closet,
-/obj/item/device/ticket_printer/train,
-/obj/item/device/ticket_printer/train,
-/obj/item/device/ticket_printer/train,
-/obj/item/device/ticket_printer/train,
-/obj/item/device/ticket_printer/train,
-/obj/item/device/ticket_printer/train,
+/obj/item/ticket_printer/train,
+/obj/item/ticket_printer/train,
+/obj/item/ticket_printer/train,
+/obj/item/ticket_printer/train,
+/obj/item/ticket_printer/train,
+/obj/item/ticket_printer/train,
 /obj/item/clothing/accessory/holster/hip/black,
 /obj/item/clothing/accessory/holster/hip/black,
 /obj/item/clothing/accessory/holster/hip/black,
 /obj/item/clothing/accessory/holster/hip/black,
 /obj/item/clothing/accessory/holster/hip/black,
 /obj/item/clothing/accessory/holster/hip/black,
-/obj/item/device/laser_pointer/red,
-/obj/item/device/laser_pointer/purple,
-/obj/item/device/laser_pointer/green,
-/obj/item/device/laser_pointer/blue,
+/obj/item/laser_pointer/red,
+/obj/item/laser_pointer/purple,
+/obj/item/laser_pointer/green,
+/obj/item/laser_pointer/blue,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
 "Gj" = (
@@ -2331,9 +2331,9 @@
 /area/redgate/train/dorm5)
 "IV" = (
 /obj/structure/closet/chefcloset,
-/obj/item/device/retail_scanner/civilian,
-/obj/item/weapon/storage/fancy/blackcandle_box,
-/obj/item/weapon/storage/fancy/whitecandle_box,
+/obj/item/retail_scanner/civilian,
+/obj/item/storage/fancy/blackcandle_box,
+/obj/item/storage/fancy/whitecandle_box,
 /turf/simulated/floor/wood,
 /area/redgate/train/chef)
 "Jk" = (
@@ -2360,11 +2360,11 @@
 /area/redgate/train/security)
 "JJ" = (
 /obj/structure/closet/walllocker_double/medical/west,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/regular,
 /obj/random/firstaid,
 /obj/effect/floor_decal/corner/green/border{
 	dir = 8
@@ -2620,8 +2620,8 @@
 	desc = "A whistle used by the train staff. Suitable for ages 8 and up, do not swallow.";
 	name = "train whistle"
 	},
-/obj/item/weapon/cane,
-/obj/item/weapon/cane,
+/obj/item/cane,
+/obj/item/cane,
 /obj/random/snack,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
@@ -2746,7 +2746,7 @@
 /area/redgate/train/vault)
 "Pp" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/donut,
+/obj/item/storage/box/donut,
 /turf/simulated/shuttle/floor/skipjack{
 	name = "floor";
 	nitrogen = 82.1472;
@@ -2767,7 +2767,7 @@
 /area/redgate/train/dorm5)
 "Ps" = (
 /obj/structure/table/rack/gun_rack/steel,
-/obj/item/weapon/gun/energy/netgun,
+/obj/item/gun/energy/netgun,
 /turf/simulated/shuttle/floor/red,
 /area/redgate/train/gear)
 "Pv" = (
@@ -2843,7 +2843,7 @@
 /obj/structure/table/rack/shelf{
 	color = "#FFD700"
 	},
-/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random,
+/obj/item/gun/energy/mouseray/metamorphosis/advanced/random,
 /obj/random/maintenance/research,
 /turf/simulated/shuttle/floor/yellow,
 /area/redgate/train/vault)
@@ -2871,14 +2871,14 @@
 /obj/structure/table/rack{
 	color = "#FFD700"
 	},
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2898,7 +2898,7 @@
 	dir = 8;
 	pixel_x = -13
 	},
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
 "Rr" = (
@@ -2919,7 +2919,7 @@
 /area/redgate/train/dining)
 "RG" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 7;
 	pixel_y = 16
 	},
@@ -2941,7 +2941,7 @@
 /area/redgate/train/kitchen)
 "RT" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
 "RY" = (
@@ -2990,8 +2990,8 @@
 /area/redgate/train/kitchen)
 "Sx" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain6,
+/obj/item/paper_bin,
+/obj/item/pen/fountain6,
 /turf/simulated/shuttle/floor/white{
 	color = "#cccccc"
 	},
@@ -3041,7 +3041,7 @@
 /area/redgate/train/dining)
 "Tr" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/train/dorm6)
 "Ts" = (
@@ -3072,7 +3072,7 @@
 /area/redgate/train/gym)
 "Ty" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/gift,
+/obj/item/gift,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
 "TG" = (
@@ -3147,7 +3147,7 @@
 /obj/structure/closet/walllocker_double/security/north{
 	name = "evidence cabinet"
 	},
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /obj/random/contraband/nofail,
 /obj/random/contraband/nofail,
 /obj/random/mainttoyloot/nofail,
@@ -3255,7 +3255,7 @@
 /area/redgate/train/security)
 "VU" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /turf/simulated/shuttle/floor/white{
 	color = "#cccccc"
 	},
@@ -3275,9 +3275,9 @@
 /area/redgate/train/dining)
 "Wk" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/melee/baton/shocker,
-/obj/item/weapon/melee/baton/shocker,
-/obj/item/weapon/melee/baton/shocker,
+/obj/item/melee/baton/shocker,
+/obj/item/melee/baton/shocker,
+/obj/item/melee/baton/shocker,
 /turf/simulated/shuttle/floor/red,
 /area/redgate/train/gear)
 "Wn" = (
@@ -3322,10 +3322,10 @@
 /area/redgate/train/kitchen)
 "Xk" = (
 /obj/structure/closet/walllocker_double/medical/east,
-/obj/item/device/retail_scanner/medical,
-/obj/item/weapon/gun/energy/mouseray/medical,
-/obj/item/device/denecrotizer/medical,
-/obj/item/device/glasses_kit,
+/obj/item/retail_scanner/medical,
+/obj/item/gun/energy/mouseray/medical,
+/obj/item/denecrotizer/medical,
+/obj/item/glasses_kit,
 /obj/random/maintenance/medical,
 /obj/effect/floor_decal/corner/green/border{
 	dir = 4
@@ -3349,7 +3349,7 @@
 	color = "#FFD700"
 	},
 /obj/item/ammo_magazine/ammo_box/b44/rubber,
-/obj/item/weapon/gun/projectile/deagle/gold,
+/obj/item/gun/projectile/deagle/gold,
 /turf/simulated/shuttle/floor/yellow,
 /area/redgate/train/vault)
 "XP" = (
@@ -3369,7 +3369,7 @@
 /area/redgate/train/kitchen)
 "XW" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/train/dorm5)
 "XX" = (
@@ -3444,7 +3444,7 @@
 /obj/structure/table/rack{
 	color = "#FFD700"
 	},
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup,
+/obj/item/reagent_containers/food/drinks/golden_cup,
 /turf/simulated/shuttle/floor/yellow,
 /area/redgate/train/vault)
 "Zl" = (

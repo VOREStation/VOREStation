@@ -30,7 +30,7 @@
 	health = 25
 
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	movement_cooldown = -1
 
@@ -44,7 +44,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
 	// What do you hit the mob with (on help) to get something from it?
-	harvest_tool = /obj/item/weapon/tool/wirecutters
+	harvest_tool = /obj/item/tool/wirecutters
 	// How long do we have to wait until it's harvestable again?
 	harvest_cooldown = 10 MINUTES
 	// How long does it take to harvest?

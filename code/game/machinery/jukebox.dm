@@ -15,7 +15,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
-	circuit = /obj/item/weapon/circuitboard/jukebox
+	circuit = /obj/item/circuitboard/jukebox
 	clicksound = 'sound/machines/buttonbeep.ogg'
 
 	// Vars for hacking
@@ -24,7 +24,7 @@
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 	//VOREStation Add
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
-	var/list/obj/item/device/juke_remote/remotes
+	var/list/obj/item/juke_remote/remotes
 	//VOREStation Add End
 	var/datum/track/current_track
 
@@ -86,7 +86,7 @@
 		media_start_time = 0
 	update_music()
 	//VOREStation Add
-	for(var/obj/item/device/juke_remote/remote as anything in remotes)
+	for(var/obj/item/juke_remote/remote as anything in remotes)
 		remote.update_music()
 	//VOREStation Add End
 
@@ -105,7 +105,7 @@
 		return
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		return wires.Interact(user)
-	if(istype(W, /obj/item/device/multitool))
+	if(istype(W, /obj/item/multitool))
 		return wires.Interact(user)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		if(playing)
