@@ -28,11 +28,11 @@
 		if(deployed_shell)
 			. += "The wireless networking light is blinking."
 
-	. += "*---------*"
-	
+	. += ""
+
 	if(hardware && (hardware.owner == src))
 		. += hardware.get_examine_desc()
-	
+
 	user.showLaws(src)
 
 /mob/proc/showLaws(var/mob/living/silicon/S)
