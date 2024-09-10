@@ -43,7 +43,7 @@
 	if(istype(I, /obj/item/weapon/card/id))
 		if(!powered())
 			return
-		if(!inserted_id && user.unEquip(I))
+		if(!inserted_id && (user.unEquip(I) || isrobot(user)))
 			I.forceMove(src)
 			inserted_id = I
 			SStgui.update_uis(src)
@@ -347,4 +347,3 @@
 #undef PROCESS_SMELT
 #undef PROCESS_COMPRESS
 #undef PROCESS_ALLOY
-
