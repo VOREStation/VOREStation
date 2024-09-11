@@ -1,5 +1,7 @@
 // Station ranks
 #define RANK_HEADS "Heads"
+#define RANK_SECURITY "Security"
+#define RANK_ENGINEERING "Engineering"
 
 
 // Main Station Jobs

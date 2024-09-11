@@ -229,13 +229,13 @@
 					var/selected_radio_channel = tgui_input_list(usr, "Please select the radio channel to add", "Channels", available_channels)
 					if(!selected_radio_channel || selected_radio_channel == "Cancel")
 						break
-					if(selected_radio_channel == "Special Ops")
+					if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
 						target.radio.centComm = 1
-					if(selected_radio_channel == "Raider")
+					if(selected_radio_channel == CHANNEL_RAIDER)
 						qdel(target.radio.keyslot)
 						target.radio.keyslot = new /obj/item/device/encryptionkey/raider(target)
 						target.radio.syndie = 1
-					if(selected_radio_channel == "Mercenary")
+					if(selected_radio_channel == CHANNEL_MERCENARY)
 						qdel(target.radio.keyslot)
 						target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(target)
 						target.radio.syndie = 1
@@ -249,10 +249,10 @@
 					var/selected_radio_channel = tgui_input_list(usr, "Please select the radio channel to remove", "Channels", target.radio.channels)
 					if(!selected_radio_channel || selected_radio_channel == "Cancel")
 						break
-					if(selected_radio_channel == "Special Ops")
+					if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
 						target.radio.centComm = 0
 					target.module.channels -= selected_radio_channel
-					if((selected_radio_channel == "Mercenary" || selected_radio_channel == "Raider") && !(target.module.channels["Raider"] || target.module.channels["Mercenary"]))
+					if((selected_radio_channel == CHANNEL_MERCENARY || selected_radio_channel == CHANNEL_RAIDER) && !(target.module.channels[CHANNEL_RAIDER] || target.module.channels[CHANNEL_MERCENARY]))
 						qdel(target.radio.keyslot)
 						target.radio.keyslot = null
 						target.radio.syndie = 0
