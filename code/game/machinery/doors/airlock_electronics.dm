@@ -131,7 +131,7 @@
 		id = R.idcard
 
 	// Nothing
-	if(!id || !id.access)
+	if(!id || !id.GetAccess())
 		return list()
 
 	// Has engineer access, can put any access

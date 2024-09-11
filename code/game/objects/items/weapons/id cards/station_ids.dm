@@ -355,7 +355,7 @@
 /obj/item/weapon/card/id/event/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		access |= O.access
+		access |= O.GetAccess()
 		desc = I.desc
 		rank = O.rank
 		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")

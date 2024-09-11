@@ -29,7 +29,7 @@
 	if(!proximity) return
 	if(istype(O, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/I = O
-		src.access |= I.access
+		src.access |= I.GetAccess()
 		if(player_is_antag(user.mind) || registered_user == user)
 			to_chat(user, "<span class='notice'>The microscanner activates as you pass it over the ID, copying its access.</span>")
 

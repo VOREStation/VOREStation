@@ -524,8 +524,8 @@
 	ooc_notes_likes = AI.ooc_notes_likes
 	ooc_notes_dislikes = AI.ooc_notes_dislikes
 	to_chat(src, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
-	if(AI.idcard.access)
-		botcard.access	|= AI.idcard.access
+	if(AI.idcard.GetAccess())
+		botcard.access	|= AI.idcard.GetAccess()
 
 /mob/living/bot/proc/ejectpai(mob/user)
 	if(paicard)

@@ -345,9 +345,9 @@
 					continue
 				target.module_reset(FALSE)
 			if(MODIFIY_ROBOT_TOGGLE_STATION_ACCESS)
-				if(target?.idcard?.access)
+				if(target?.idcard?.GetAccess())
 					var/obj/item/weapon/card/id/synthetic/card = target.idcard
-					if(access_synth in card.access)
+					if(access_synth in card.GetAccess())
 						card.access -= get_all_station_access()
 						card.access -= access_synth
 						to_chat(usr, "<span class='danger'>You revoke station access from [target].</span>")
@@ -356,9 +356,9 @@
 						card.access |= access_synth
 						to_chat(usr, "<span class='danger'>You grant station access to [target].</span>")
 			if(MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
-				if(target?.idcard?.access)
+				if(target?.idcard?.GetAccess())
 					var/obj/item/weapon/card/id/synthetic/card = target.idcard
-					if(access_cent_specops in card.access)
+					if(access_cent_specops in card.GetAccess())
 						card.access -= get_all_centcom_access()
 						to_chat(usr, "<span class='danger'>You revoke central access from [target].</span>")
 					else
