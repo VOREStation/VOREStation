@@ -71,7 +71,7 @@
 	display_name = "Security HUD selector"
 	description = "Select from a range of Security HUD eyepieces that can display the ID status and security records of people in line of sight."
 	path = /obj/item/clothing/glasses/hud/security
-	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
+	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN, JOB_DETECTIVE)
 
 /datum/gear/eyes/security/New()
 	..()
@@ -133,7 +133,7 @@
 /datum/gear/eyes/material
 	display_name = "Optical Material Scanners"
 	path = /obj/item/clothing/glasses/material
-	allowed_roles = list("Shaft Miner","Quartermaster")
+	allowed_roles = list(JOB_SHAFT_MINER,"Quartermaster")
 
 /datum/gear/eyes/glasses/fakesun
 	display_name = "Sunglasses, stylish"
@@ -147,7 +147,7 @@
 	display_name = "functional sunglasses selector"
 	description = "Select from a range of polarized sunglasses that can block flashes whilst still looking classy."
 	path = /obj/item/clothing/glasses/sunglasses
-	allowed_roles = list("Security Officer","Head of Security","Warden","Site Manager","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
+	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN,JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,"Quartermaster","Internal Affairs Agent",JOB_DETECTIVE)
 
 /datum/gear/eyes/sun/New()
 	..()

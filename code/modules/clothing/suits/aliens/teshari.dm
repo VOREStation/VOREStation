@@ -107,7 +107,7 @@
 // Job Cloaks
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/cap
 	name = "site manager cloak"
-	desc = "A soft Teshari cloak made for the Site Manager"
+	desc = "A soft Teshari cloak made for the " + JOB_SITE_MANAGER
 	icon_state = "tesh_cloak_cap"
 
 //Cargo
@@ -197,7 +197,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/hos
 	name = "head of security cloak"
-	desc = "A soft Teshari cloak made for the Head of Security"
+	desc = "A soft Teshari cloak made for the " + JOB_HEAD_OF_SECURITY
 	icon_state = "tesh_cloak_hos"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/sec
@@ -214,7 +214,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/hop
 	name = "head of personnel cloak"
-	desc = "A soft Teshari cloak made for the Head of Personnel"
+	desc = "A soft Teshari cloak made for the " + JOB_HEAD_OF_PERSONNEL
 	icon_state = "tesh_cloak_hop"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/service
@@ -694,16 +694,15 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/wrdn
 	name = "warden belted cloak"
-	desc = "A soft Teshari cloak made for the Warden"
+	desc = "A soft Teshari cloak made for the " + JOB_WARDEN
 	icon_state = "tesh_beltcloak_wrdn"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/hos
 	name = "security chief belted cloak"
-	desc = "A soft Teshari cloak made for the Head of Security"
+	desc = "A soft Teshari cloak made for the " + JOB_HEAD_OF_SECURITY
 	icon_state = "tesh_beltcloak_hos"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/jani
 	name = "janitor belted cloak"
 	desc = "A soft Teshari cloak made for the Janitor"
 	icon_state = "tesh_beltcloak_jani"
-

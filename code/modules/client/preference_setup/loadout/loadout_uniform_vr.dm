@@ -15,7 +15,7 @@
 /datum/gear/suit/job_fed/sec
 	display_name = "fed uniform, sec"
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER)
 
 /datum/gear/suit/job_fed/medsci
 	display_name = "fed uniform, med/sci"
@@ -31,10 +31,10 @@
 /datum/gear/suit/job_trek/ds9_coat
 	display_name = "DS9 Overcoat (use uniform)"
 	path = /obj/item/clothing/suit/storage/trek/ds9
-	allowed_roles = list("Head of Security","Site Manager","Head of Personnel","Chief Engineer","Research Director",
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,"Chief Engineer","Research Director",
 						"Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist",
 						"Scientist","Roboticist","Xenobiologist","Xenobotanist","Atmospheric Technician",
-						"Engineer","Warden","Detective","Security Officer")
+						"Engineer",JOB_WARDEN,JOB_DETECTIVE,JOB_SECURITY_OFFICER)
 
 /*
 Swimsuits

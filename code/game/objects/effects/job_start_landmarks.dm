@@ -1,17 +1,17 @@
 /obj/effect/landmark/start/captain
-	name = "Site Manager"
+	name = JOB_SITE_MANAGER
 /obj/effect/landmark/start/hop
-	name = "Head of Personnel"
+	name = JOB_HEAD_OF_PERSONNEL
 /obj/effect/landmark/start/commandsecretary
-	name = "Command Secretary"
+	name = JOB_COMMAND_SECRETARY
 /obj/effect/landmark/start/hos
-	name = "Head of Security"
+	name = JOB_HEAD_OF_SECURITY
 /obj/effect/landmark/start/warden
-	name = "Warden"
+	name = JOB_WARDEN
 /obj/effect/landmark/start/detective
-	name = "Detective"
+	name = JOB_DETECTIVE
 /obj/effect/landmark/start/security
-	name = "Security Officer"
+	name = JOB_SECURITY_OFFICER
 /obj/effect/landmark/start/ce
 	name = "Chief Engineer"
 /obj/effect/landmark/start/atmostech
@@ -43,7 +43,7 @@
 /obj/effect/landmark/start/cargo
 	name = "Cargo Technician"
 /obj/effect/landmark/start/miner
-	name = "Shaft Miner"
+	name = JOB_SHAFT_MINER
 /* //VOREStation Removal
 /obj/effect/landmark/start/pf
 	name = "Pathfinder"

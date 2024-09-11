@@ -142,14 +142,14 @@
 	preserve_item = 1
 
 /obj/item/weapon/card/id/gold/captain
-	assignment = "Site Manager"
-	rank = "Site Manager"
+	assignment = JOB_SITE_MANAGER
+	rank = JOB_SITE_MANAGER
 
 /obj/item/weapon/card/id/gold/captain/spare
-	name = "\improper Site Manager's spare ID"
+	name = "\improper " + JOB_SITE_MANAGER + "'s spare ID"
 	desc = "The emergency spare ID for the station's very own Big Cheese."
 	icon_state = "gold-id-alternate"
-	registered_name = "Site Manager"
+	registered_name = JOB_SITE_MANAGER
 
 /obj/item/weapon/card/id/gold/captain/spare/fakespare
 	rank = "null"
@@ -233,18 +233,19 @@
 	icon_state = "security-id"
 	primary_color = rgb(189,47,0)
 	secondary_color = rgb(223,127,95)
+	rank = JOB_SECURITY_OFFICER
 
 /obj/item/weapon/card/id/security/warden
-	assignment = "Warden"
-	rank = "Warden"
+	assignment = JOB_WARDEN
+	rank = JOB_WARDEN
 
 /obj/item/weapon/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
 	primary_color = rgb(189,47,0)
 	secondary_color = rgb(255,223,127)
-	assignment = "Head of Security"
-	rank = "Head of Security"
+	assignment = JOB_HEAD_OF_SECURITY
+	rank = JOB_HEAD_OF_SECURITY
 
 /obj/item/weapon/card/id/engineering
 	name = "identification card"
@@ -524,7 +525,7 @@
 		"Visitor" = "itg",
 		"Quartermaster" = "itg",
 		"Cargo Technician" = "itg",
-		"Shaft Miner" = "itg",
+		JOB_SHAFT_MINER = "itg",
 		"Intern" = "itg",
 		"Talon Pilot" = "itg",
 		"Talon Miner" = "itg",
@@ -536,9 +537,9 @@
 		"Entertainer" = "itg_green",
 		"Janitor" = "itg_green",
 		"Librarian" = "itg_green",
-		"Warden" = "itg_red",
-		"Detective" = "itg_red",
-		"Security Officer" = "itg_red",
+		JOB_WARDEN = "itg_red",
+		JOB_DETECTIVE = "itg_red",
+		JOB_SECURITY_OFFICER = "itg_red",
 		"Talon Guard" = "itg_red",
 		"Roboticist" = "itg_purple",
 		"Scientist" = "itg_purple",
@@ -577,7 +578,7 @@
 /obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		var/list/itgdont = list("Site Manager", "Head of Personnel", "Command Secretary", "Head of Security", "Chief Engineer", "Chief Medical Officer", "Research Director", "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
+		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, "Head of Security", "Chief Engineer", "Chief Medical Officer", "Research Director", "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
 			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
 			return

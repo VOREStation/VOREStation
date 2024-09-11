@@ -204,7 +204,7 @@
 	corpseidaccess = "Scientist"
 
 /obj/effect/landmark/corpse/security
-	name = "Security Officer"
+	name = JOB_SECURITY_OFFICER
 	corpseradio = /obj/item/device/radio/headset/headset_sec
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpsesuit = /obj/item/clothing/suit/armor/vest
@@ -214,8 +214,8 @@
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpsehelmet = /obj/item/clothing/head/helmet
 	corpseid = 1
-	corpseidjob = "Security Officer"
-	corpseidaccess = "Security Officer"
+	corpseidjob = JOB_SECURITY_OFFICER
+	corpseidaccess = JOB_SECURITY_OFFICER
 
 /obj/effect/landmark/corpse/security/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/security
@@ -243,8 +243,8 @@
 	corpseback = /obj/item/weapon/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
-	corpseidjob = "Shaft Miner"
-	corpseidaccess = "Shaft Miner"
+	corpseidjob = JOB_SHAFT_MINER
+	corpseidaccess = JOB_SHAFT_MINER
 
 /obj/effect/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
@@ -378,4 +378,3 @@
 	corpseshoes = /obj/item/clothing/shoes/boots/tactical
 	corpseid = 1
 	corpseidjob = "Hedberg-Hammarstrom Enforcer"
-

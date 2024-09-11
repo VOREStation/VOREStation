@@ -309,7 +309,7 @@
 	icon_nobadge = "wardenvest_nobadge"
 
 /obj/item/clothing/suit/storage/vest/wardencoat
-	name = "Warden's jacket"
+	name = JOB_WARDEN + "'s jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	blood_overlay_type = "suit"
@@ -317,7 +317,7 @@
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/vest/wardencoat/alt
-	name = "Warden's jacket"
+	name = JOB_WARDEN + "'s jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_alt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS

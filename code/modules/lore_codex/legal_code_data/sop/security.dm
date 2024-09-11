@@ -31,7 +31,7 @@
 
 /datum/lore/codex/page/sop_processing
 	name = "Processing"
-	data = "Processing is the responsibility of the Arresting Officer, or the Warden if the Warden chooses to do so.  The suspect is to be informed \
+	data = "Processing is the responsibility of the Arresting Officer, or the " + JOB_WARDEN + " if the " + JOB_WARDEN + " chooses to do so.  The suspect is to be informed \
 	again of the cause for their arrest, and that they will be searched.  Suspects are assumed to be innocent until they are proven guilty.  \
 	They are to be thoroughly searched.  They may not be stripped of their inner clothing, though pockets are to be emptied.  \
 	Any and all found contraband is to be confiscated, and anything that may be used to escape the brig is to be confiscated until the suspect's release.\
@@ -39,7 +39,7 @@
 	Assess the suspect's guilt.  Contraband found in the search may be used as evidence at the discretion of the Arresting Officer.  If the \
 	suspect is found innocent, all non-contraband is to be returned to them, and they are to be released.  If instead they are found guilty and \
 	brig time is required by the type of violation they are guilty of, or have chosen brig time as an alternative to a fine if possible, they \
-	are now considered a Prisoner, and further processing is the responsibility of the Warden, if one is present.  If no Warden is present, the \
+	are now considered a Prisoner, and further processing is the responsibility of the " + JOB_WARDEN + ", if one is present.  If no " + JOB_WARDEN + " is present, the \
 	Arresting Officer is to continue processing.\
 	<br><br>\
 	The Prisoner is to be informed of their Sentencing Options, if available.  These will vary depending on the violation in question, and \
@@ -58,13 +58,13 @@
 	department channels are to have their radio replaced with a general use radio.  The prisoner's possessions are to be placed in the cell's locker, \
 	which will open upon their release.\
 	<br><br>\
-	The Warden or processing officer is to set the cell timer, uncuff the Prisoner, and exit the cell, in any order desired.  If the Prisoner is non-compliant, the Warden can activate \
-	the cell's mounted flash, to incapacitate the Prisoner.  The Warden may use up to Less-than-Lethal force to Prisoners resisting.  Once the \
-	Prisoner is secure, and the handcuffs recovered, the Warden may elect to open the communal brig for said prisoner.  It is recommended to do this.  If multiple Prisoners are present, \
-	the Warden is to assess the threat posed by all prisoners as a group, to the Security team and to themselves, before allowing any Prisoner to access \
+	The " + JOB_WARDEN + " or processing officer is to set the cell timer, uncuff the Prisoner, and exit the cell, in any order desired.  If the Prisoner is non-compliant, the " + JOB_WARDEN + " can activate \
+	the cell's mounted flash, to incapacitate the Prisoner.  The " + JOB_WARDEN + " may use up to Less-than-Lethal force to Prisoners resisting.  Once the \
+	Prisoner is secure, and the handcuffs recovered, the " + JOB_WARDEN + " may elect to open the communal brig for said prisoner.  It is recommended to do this.  If multiple Prisoners are present, \
+	the " + JOB_WARDEN + " is to assess the threat posed by all prisoners as a group, to the Security team and to themselves, before allowing any Prisoner to access \
 	the communal brig.\
 	<br><br>\
-	The Warden is to check in on all prisoners frequently, to ensure they remain contained and healthy.  This can be accomplished with the use of \
+	The " + JOB_WARDEN + " is to check in on all prisoners frequently, to ensure they remain contained and healthy.  This can be accomplished with the use of \
 	cameras.  They are to also keep track of the sentencing time for all their prisoners, and be on location to escort them out of the brig when \
 	their time is up and they have returned to their normal clothing.  The Prisoner's possessions are to be returned to the Prisoner at this time, and \
 	their security record must be set to Released."
@@ -73,7 +73,7 @@
 	name = "Solitary Confinement"
 	data = "Solitary confinement is only to be used with prisoners possessing Hold until Transfer sentences that cannot be trusted with access to the normal \
 	brig, due to attempts at escaping, or posing a threat to other prisoners, or themselves.  A prisoner is to never be placed inside Solitary as a first course of \
-	action.  Prisoners inside Solitary are to still be checked up on by the Warden."
+	action.  Prisoners inside Solitary are to still be checked up on by the " + JOB_WARDEN + "."
 
 // Sad that we need this page to exist.
 /datum/lore/codex/page/sop_prisoner_rights
@@ -91,10 +91,10 @@
 	be returned if there is no pressing need for them to be deployed.\
 	<br>\
 	For Blue, Security may have weapons visible, but not drawn unless needed.  Body armor and helmets are recommended bot not mandatory.  \
-	Weaponry and specialized armor are allowed to be given out to security officers, with clearance from the Warden or Head of Security.\
+	Weaponry and specialized armor are allowed to be given out to security officers, with clearance from the " + JOB_WARDEN + " or " + JOB_HEAD_OF_SECURITY + ".\
 	<br>\
 	For Red, Security may have weapons drawn at all times, however properly handling of weapons should not be disregarded.  Body armor and \
-	helmets are mandatory.  Specialized armor may be distributed by the Warden and Head of Security, when appropriate."
+	helmets are mandatory.  Specialized armor may be distributed by the " + JOB_WARDEN + " and " + JOB_HEAD_OF_SECURITY + ", when appropriate."
 
 /datum/lore/codex/page/sop_escalation
 	name = "Escalation of Force"

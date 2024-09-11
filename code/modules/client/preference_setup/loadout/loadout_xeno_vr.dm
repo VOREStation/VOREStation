@@ -126,7 +126,7 @@
 	description = "A comfortable official suit for altevian command officers."
 	display_name = "altevian officer's suit selection, site manager"
 	whitelisted = SPECIES_ALTEVIAN
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 	sort_category = "Xenowear"
 
 /datum/gear/suit/altevian_officer_suit/New()

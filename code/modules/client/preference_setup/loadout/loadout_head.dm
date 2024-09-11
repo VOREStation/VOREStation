@@ -19,22 +19,22 @@
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, navy (warden)"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
-	allowed_roles = list("Head of Security","Warden")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 
 /datum/gear/head/beret/bsec_hos
 	display_name = "beret, navy (hos)"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/head/beret/csec_warden
 	display_name = "beret, corporate (warden)"
 	path = /obj/item/clothing/head/beret/sec/corporate/warden
-	allowed_roles = list("Head of Security","Warden")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 
 /datum/gear/head/beret/csec_hos
 	display_name = "beret, corporate (hos)"
 	path = /obj/item/clothing/head/beret/sec/corporate/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/head/beret/eng
 	display_name = "beret, engie-orange"
@@ -376,7 +376,7 @@
 /datum/gear/head/sec_hat_selector
 	display_name = "Security - Basic Headwear"
 	description = "Select from a range of hats available to all Security personnel."
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER)
 	path = /obj/item/clothing/head/soft/sec/corp
 
 /datum/gear/head/sec_hat_selector/New()

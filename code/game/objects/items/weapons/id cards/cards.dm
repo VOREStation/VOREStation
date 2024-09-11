@@ -273,7 +273,7 @@
 	var/mob/living/silicon/robot/R
 	var/last_robot_loc
 	name = "Robot Miner ID"
-	rank = "Shaft Miner"
+	rank = JOB_SHAFT_MINER
 
 /obj/item/weapon/card/id/cargo/miner/borg/Initialize()
 	. = ..()

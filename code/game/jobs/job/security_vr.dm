@@ -40,7 +40,7 @@
 
 /datum/job/detective
 	pto_type = PTO_SECURITY
-	alt_titles = list("Investigator" = /datum/alt_title/investigator, "Security Inspector" = /datum/alt_title/security_inspector, "Forensic Technician" = /datum/alt_title/forensic_tech)
+	alt_titles = list("Investigator" = /datum/alt_title/investigator, "Security Inspector" = /datum/alt_title/security_inspector, JOB_ALT_FORENSIC_TECHNICIAN = /datum/alt_title/forensic_tech)
 
 /datum/alt_title/investigator
 	title = "Investigator"
@@ -57,7 +57,7 @@
 	spawn_positions = 5
 	pto_type = PTO_SECURITY
 	alt_titles = list("Patrol Officer" = /datum/alt_title/patrol_officer, "Security Guard" = /datum/alt_title/security_guard,
-						"Security Deputy" = /datum/alt_title/security_guard, "Junior Officer" = /datum/alt_title/junior_officer, "Security Contractor" = /datum/alt_title/security_contractor)
+						"Security Deputy" = /datum/alt_title/security_guard, JOB_ALT_JUNIOR_OFFICER = /datum/alt_title/junior_officer, "Security Contractor" = /datum/alt_title/security_contractor)
 
 /datum/alt_title/patrol_officer
 	title = "Patrol Officer"

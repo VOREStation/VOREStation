@@ -36,7 +36,7 @@
 	jobs_all += "<table><tr><td></td><td><b>Command</b></td>"
 
 	jobs_all += "</tr><tr height='20'><td><b>Special</b></td>"//Site Manager in special because he is head of heads ~Intercross21
-	jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Site Manager'>Site Manager</a></td>"
+	jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign="+JOB_SITE_MANAGER+"'>"+JOB_SITE_MANAGER+"</a></td>"
 	jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Custom'>Custom</a></td>"
 
 	counter = 0

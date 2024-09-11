@@ -53,7 +53,7 @@ var/silent_ert = 0
 		if(!send_emergency_team)
 			to_chat(usr, "No emergency response team is currently being sent.")
 			return
-		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team") || jobban_isbanned(usr, "Security Officer"))
+		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team") || jobban_isbanned(usr, JOB_SECURITY_OFFICER))
 			to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 			return
 		if(ert.current_antagonists.len >= ert.hard_cap)

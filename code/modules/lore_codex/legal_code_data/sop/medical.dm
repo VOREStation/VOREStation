@@ -31,7 +31,7 @@
 	data = "Persons whom have committed suicide are not to be cloned, without authorization from the Chief Medical Officer.  \
 	The Chief Medical Officer is fully responsible if they choose to clone a person whom has committed suicide.  \
 	Individuals are also to not be cloned if there is a Do Not Clone (generally referred to as DNC) order in their medical records, \
-	or if the individual has had a DNC order declared against them by the Station Director, Chief Medical Officer, or Head of Security.  \
+	or if the individual has had a DNC order declared against them by the " + JOB_SITE_MANAGER + ", Chief Medical Officer, or " + JOB_HEAD_OF_SECURITY + ".  \
 	If any of this occurs, procede to Portmortem Storage.\
 	<br><br>\
 	Some individuals may have special instructions in their Postmortem Instructions, generally found in their medical records.  \

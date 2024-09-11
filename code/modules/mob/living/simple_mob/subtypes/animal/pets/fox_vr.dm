@@ -188,7 +188,7 @@
 //Captain fox
 /mob/living/simple_mob/animal/passive/fox/renault
 	name = "Renault"
-	desc = "Renault, the Site Manager's trustworthy fox. I wonder what it says?"
+	desc = "Renault, the " + JOB_SITE_MANAGER + "'s trustworthy fox. I wonder what it says?"
 	tt_desc = "Vulpes nobilis"
 	//befriend_job = "Site Manager" Sebbe edit: couldn't make this work, commenting out for now.
 

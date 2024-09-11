@@ -58,10 +58,12 @@
 /obj/item/weapon/card/id/silver/secretary
 	name = "Secretary's ID"
 	initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n")
+	rank = JOB_COMMAND_SECRETARY
 
 /obj/item/weapon/card/id/silver/hop
-	name = "Head of Personnel ID"
+	name = JOB_HEAD_OF_PERSONNEL + " ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-gold")
+	rank = JOB_HEAD_OF_PERSONNEL
 
 //Gold
 
@@ -76,6 +78,7 @@
 /obj/item/weapon/card/id/gold/captain/spare
 	name = "Spare ID"
 	initial_sprite_stack = list("base-stamp-gold", "top-gold", "stamp-n")
+	rank = JOB_SITE_MANAGER
 
 //Medical
 
@@ -112,18 +115,22 @@
 /obj/item/weapon/card/id/security
 	name = "Security ID"
 	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n")
+	rank = JOB_SECURITY_OFFICER
 
 /obj/item/weapon/card/id/security/detective
-	name = "Detective's ID"
+	name = JOB_DETECTIVE + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n", "stripe-brown")
+	rank = JOB_DETECTIVE
 
 /obj/item/weapon/card/id/security/warden
-	name = "Warden's ID"
+	name = JOB_WARDEN + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-red", "stamp-n", "stripe-white")
+	rank = JOB_WARDEN
 
 /obj/item/weapon/card/id/security/head
-	name = "Head of Security's ID"
+	name = JOB_HEAD_OF_SECURITY + "'s ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-red", "stamp-n", "pips-gold")
+	rank = JOB_HEAD_OF_SECURITY
 
 //Engineering
 
@@ -170,6 +177,7 @@
 /obj/item/weapon/card/id/cargo/miner
 	name = "Miner's ID"
 	initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n", "stripe-purple")
+	rank = JOB_SHAFT_MINER
 
 /obj/item/weapon/card/id/cargo/head
 	name = "Quartermaster's ID"

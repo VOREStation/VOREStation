@@ -36,7 +36,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Head of Personnel"
+	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#d6d05c"
 	economic_modifier = 8
 	minimal_player_age = 7
@@ -66,7 +66,7 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Pathfinder and the Head of Personnel"
+	supervisors = "the Pathfinder and the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#999440"
 	economic_modifier = 6
 	pto_type = PTO_EXPLORATION

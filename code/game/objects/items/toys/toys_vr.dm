@@ -539,7 +539,7 @@
 			continue
 		players += player.real_name
 
-	var/random_player = "The Site Manager"
+	var/random_player = "The " + JOB_SITE_MANAGER
 	if(cooldown < world.time)
 		cooldown = (world.time + 300) // Sets cooldown at 30 seconds
 		if(players.len)

@@ -11,7 +11,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Site Manager"
+	supervisors = "the " + JOB_SITE_MANAGER
 	selection_color = "#026865"
 	req_admin_notify = 1
 	economic_modifier = 10

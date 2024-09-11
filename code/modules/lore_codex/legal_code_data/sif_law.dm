@@ -157,7 +157,7 @@
 	name = "Excessive Force"
 	definition = "Using more force than what is required to safely detain someone, using force against a helpless or incapacitated person, \
 	or using force against an unarmed and compliant person."
-	suggested_punishments = "Demotion.  Termination at discretion of Superior, or Station Director.  Send notice to Central Command if a Head of Security had used excessive force."
+	suggested_punishments = "Demotion.  Termination at discretion of Superior, or " + JOB_SITE_MANAGER + ".  Send notice to Central Command if a " + JOB_HEAD_OF_SECURITY + " had used excessive force."
 	notes = "This charge also is applicible to non-Security personnel acting in self defense.  \
 	Persons whom have caused a person to die as a result of excessive force should have [quick_link("Manslaughter")] applied instead, if the circumstances were \
 	unjustified."

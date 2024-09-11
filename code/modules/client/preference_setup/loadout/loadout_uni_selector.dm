@@ -21,9 +21,9 @@
 //Command/Specific
 
 /datum/gear/uniform/site_manager_selector
-	display_name = "Command - Site Manager's Uniforms"
-	description = "Select from a range of outfits available to all Site Managers, and Talon Captains."
-	allowed_roles = list("Site Manager","Talon Captain")
+	display_name = "Command - " + JOB_SITE_MANAGER + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_SITE_MANAGER + "s, and Talon Captains."
+	allowed_roles = list(JOB_SITE_MANAGER,"Talon Captain")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_captain
 	sort_category = "Uniforms"
@@ -51,9 +51,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/head_of_personnel_selector
-	display_name = "Command - Head of Personnel's Uniforms"
+	display_name = "Command - " + JOB_HEAD_OF_PERSONNEL + "'s Uniforms"
 	description = "Select from a range of outfits available to all Heads of Personnel."
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_hop
 	sort_category = "Uniforms"
@@ -190,7 +190,7 @@
 /datum/gear/uniform/security_selector
 	display_name = "Security - Basic Uniforms"
 	description = "Select from a range of outfits available to all Security personnel."
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer","Talon Guard")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER,"Talon Guard")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/security/corp
 	sort_category = "Uniforms"
@@ -234,9 +234,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/security_warden_selector
-	display_name = "Security - Warden's Uniforms"
+	display_name = "Security - "+ JOB_WARDEN + "'s Uniforms"
 	description = "Select from a range of outfits available to Wardens."
-	allowed_roles = list("Head of Security","Warden")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/warden/corp
 	sort_category = "Uniforms"
@@ -256,9 +256,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/security_detective_selector
-	display_name = "Security - Detective's Uniforms"
+	display_name = "Security - " + JOB_DETECTIVE + "'s Uniforms"
 	description = "Select from a range of outfits available to all Detectives."
-	allowed_roles = list("Head of Security","Detective")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_DETECTIVE)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/det/corporate
 	sort_category = "Uniforms"
@@ -275,7 +275,7 @@
 /datum/gear/uniform/security_head_selector
 	display_name = "Security - Head's Uniforms"
 	description = "Select from a range of outfits available to all Heads of Security."
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/head_of_security/corp
 	sort_category = "Uniforms"
@@ -347,7 +347,7 @@
 /datum/gear/uniform/cargo_general_selector
 	display_name = "Cargo - Basic Uniforms"
 	description = "Select from a range of outfits available to all Cargo personnel."
-	allowed_roles = list("Cargo Technician","Shaft Miner","Quartermaster")
+	allowed_roles = list("Cargo Technician",JOB_SHAFT_MINER,"Quartermaster")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/cargotech/jeans
 	sort_category = "Uniforms"
@@ -376,7 +376,7 @@
 /datum/gear/uniform/cargo_miner_selector
 	display_name = "Cargo - Miner's Uniforms"
 	description = "Select from a range of outfits available to all Mining personnel."
-	allowed_roles = list("Shaft Miner","Quartermaster","Talon Miner")
+	allowed_roles = list(JOB_SHAFT_MINER,"Quartermaster","Talon Miner")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_miner
 	sort_category = "Uniforms"

@@ -903,4 +903,3 @@ var/global/list/all_objectives = list()
 			rval = 2
 		return 0
 	return rval
-

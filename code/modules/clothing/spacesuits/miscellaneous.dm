@@ -10,7 +10,7 @@
 
 //Captain's space suit This is not the proper path but I don't currently know enough about how this all works to mess with it.
 /obj/item/clothing/suit/armor/captain
-	name = "Site Manager's armor"
+	name = JOB_SITE_MANAGER + "'s armor"
 	desc = "A bulky, heavy-duty piece of exclusive corporate armor. YOU are in charge!"
 	icon_state = "caparmor"
 	w_class = ITEMSIZE_HUGE

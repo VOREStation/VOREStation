@@ -343,7 +343,7 @@ var/const/access_explorer = 43
 /var/const/access_hos = 58
 /datum/access/hos
 	id = access_hos
-	desc = "Head of Security"
+	desc = JOB_HEAD_OF_SECURITY
 	region = ACCESS_REGION_SECURITY
 
 /var/const/access_RC_announce = 59 //Request console announcements

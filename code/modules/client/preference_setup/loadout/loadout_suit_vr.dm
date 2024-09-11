@@ -57,7 +57,7 @@
 /datum/gear/suit/detective_alt
 	display_name = "sleek modern coat selection"
 	path = /obj/item/clothing/suit/storage/det_trench/alt
-	allowed_roles = list("Head of Security", "Detective")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_DETECTIVE)
 
 /datum/gear/suit/detective_alt/New()
 	..()
@@ -231,13 +231,13 @@ Talon winter coat
 /datum/gear/suit/roles/capboatcloak
 	display_name = "boat cloak, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat/cap
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/hopboatcloak
 	display_name = "boat cloak, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/boatcloaks
@@ -269,13 +269,13 @@ Talon winter coat
 /datum/gear/suit/roles/capshroud
 	display_name = "shroud, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud/cap
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/hopshroud
 	display_name = "shroud, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/shrouds

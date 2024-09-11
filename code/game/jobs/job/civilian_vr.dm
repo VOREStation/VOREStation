@@ -218,7 +218,7 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Head of Personnel"
+	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
 	economic_modifier = 5
 	minimal_player_age = 3
@@ -254,7 +254,7 @@
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the Head of Personnel"
+	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
 	access = list(access_entertainment)
 	minimal_access = list(access_entertainment)
@@ -324,7 +324,7 @@
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the Head of Personnel"
+	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
 	access = list()
 	minimal_access = list()

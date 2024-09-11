@@ -72,6 +72,7 @@
 #include "code\__defines\is_helpers.dm"
 #include "code\__defines\items_clothing.dm"
 #include "code\__defines\job_controller.dm"
+#include "code\__defines\jobs.dm"
 #include "code\__defines\jukebox.dm"
 #include "code\__defines\life.dm"
 #include "code\__defines\lighting.dm"

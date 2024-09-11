@@ -141,7 +141,7 @@
 			continue
 		players += player.real_name
 
-	var/random_player = "The Site Manager"
+	var/random_player = "The " + JOB_SITE_MANAGER
 	if(players.len && !exclude_crew_names)
 		random_player = pick(players)		//Random player's name, to be used in laws.
 

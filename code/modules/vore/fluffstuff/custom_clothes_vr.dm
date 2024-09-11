@@ -697,7 +697,7 @@
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
 	name = "\improper prototype voidsuit"
-	desc = "A customized security voidsuit made to match the Head of Security's obession with black. Has additional composite armor."
+	desc = "A customized security voidsuit made to match the " + JOB_HEAD_OF_SECURITY + "'s obession with black. Has additional composite armor."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "rig-hos"
@@ -710,7 +710,7 @@
 //HOS Hardsuit Helmet
 /obj/item/clothing/head/helmet/space/void/security/fluff/hos // ToDo: Rig version.
 	name = "\improper prototype voidsuit helmet"
-	desc = "A customized security voidsuit helmet customized to include the Head of Security's signature hat. Has additional composite armor."
+	desc = "A customized security voidsuit helmet customized to include the " + JOB_HEAD_OF_SECURITY + "'s signature hat. Has additional composite armor."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "rig0-hos"

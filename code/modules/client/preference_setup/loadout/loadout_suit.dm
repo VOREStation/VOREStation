@@ -256,7 +256,7 @@
 /datum/gear/suit/roles/cloak_hos
 	display_name = "cloak, head of security"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 	show_roles = FALSE
 	cost = 1
 
@@ -291,14 +291,14 @@
 /datum/gear/suit/roles/cloak_captain
 	display_name = "cloak, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/captain
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_hop
 	display_name = "cloak, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 	cost = 1
 
@@ -365,7 +365,7 @@
 /datum/gear/suit/forensics
 	display_name = "forensics uniform selection"
 	path = /obj/item/clothing/suit/storage/forensics/red/long
-	allowed_roles = list("Detective")
+	allowed_roles = list(JOB_DETECTIVE)
 
 /datum/gear/suit/forensics/New()
 	..()
@@ -386,7 +386,7 @@
 /datum/gear/suit/cargo_coat
 	display_name = "coat, cargo tech"
 	path = /obj/item/clothing/suit/storage/cargo
-	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
+	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER,"Cargo Technician",JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 // winter coats go here
@@ -397,25 +397,25 @@
 /datum/gear/suit/wintercoat/captain
 	display_name = "winter coat, site manager"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/captain
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/hop
 	display_name = "winter coat, head of personnel"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/security
 	display_name = "winter coat, security"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security
-	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/security/hos
 	display_name = "winter coat, head of security"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical
@@ -511,7 +511,7 @@
 /datum/gear/suit/wintercoat/miner
 	display_name = "winter coat, mining"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/miner
-	allowed_roles = list("Shaft Miner")
+	allowed_roles = list(JOB_SHAFT_MINER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/cargo/qm
@@ -656,13 +656,13 @@
 /datum/gear/suit/snowsuit/command
 	display_name = "snowsuit, command"
 	path = /obj/item/clothing/suit/storage/snowsuit/command
-	allowed_roles = list("Site Manager","Research Director","Head of Personnel","Head of Security","Chief Engineer","Command Secretary")
+	allowed_roles = list(JOB_SITE_MANAGER,"Research Director",JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,"Chief Engineer",JOB_COMMAND_SECRETARY)
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/security
 	display_name = "snowsuit, security"
 	path = /obj/item/clothing/suit/storage/snowsuit/security
-	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE)
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/medical
@@ -686,7 +686,7 @@
 /datum/gear/suit/snowsuit/cargo
 	display_name = "snowsuit, supply"
 	path = /obj/item/clothing/suit/storage/snowsuit/cargo
-	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
+	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER,"Cargo Technician",JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 /datum/gear/suit/miscellaneous/cardigan
@@ -700,7 +700,7 @@
 /datum/gear/suit/cmddressjacket
 	display_name = "command dress jacket"
 	path = /obj/item/clothing/suit/storage/toggle/cmddressjacket
-	allowed_roles = list("Site Manager", "Head of Personnel", "Command Secretary")
+	allowed_roles = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY)
 	show_roles = FALSE
 
 /datum/gear/suit/miscellaneous/kimono

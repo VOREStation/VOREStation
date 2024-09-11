@@ -169,12 +169,12 @@
 /datum/gear/uniform/dept/undercoat/cap
 	display_name = "site manager undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/cap
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 
 /datum/gear/uniform/dept/undercoat/hop
 	display_name = "head of personnel undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 
 /datum/gear/uniform/dept/undercoat/rd
 	display_name = "research director undercoat (Teshari)"
@@ -184,7 +184,7 @@
 /datum/gear/uniform/dept/undercoat/hos
 	display_name = "head of security undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/uniform/dept/undercoat/ce
 	display_name = "chief engineer undercoat (Teshari)"
@@ -204,22 +204,22 @@
 /datum/gear/uniform/dept/undercoat/cargo
 	display_name = "cargo undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/cargo
-	allowed_roles = list("Cargo Technician","Quartermaster","Shaft Miner")
+	allowed_roles = list("Cargo Technician","Quartermaster",JOB_SHAFT_MINER)
 
 /datum/gear/uniform/dept/undercoat/mining
 	display_name = "mining undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/mining
-	allowed_roles = list("Quartermaster","Shaft Miner")
+	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER)
 
 /datum/gear/uniform/dept/undercoat/security
 	display_name = "security undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/sec
-	allowed_roles = list("Head of Security","Detective","Warden","Security Officer",)
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_DETECTIVE,JOB_WARDEN,JOB_SECURITY_OFFICER)
 
 /datum/gear/uniform/dept/undercoat/service
 	display_name = "service undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/service
-	allowed_roles = list("Head of Personnel","Bartender","Botanist","Janitor","Chef","Librarian","Chaplain")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL,"Bartender","Botanist","Janitor","Chef","Librarian","Chaplain")
 
 /datum/gear/uniform/dept/undercoat/engineer
 	display_name = "engineering undercoat (Teshari)"
@@ -278,12 +278,12 @@
 /datum/gear/suit/dept/cloak/cap
 	display_name = "site manager cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 
 /datum/gear/suit/dept/cloak/hop
 	display_name = "head of personnel cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 
 /datum/gear/suit/dept/cloak/rd
 	display_name = "research director cloak (Teshari)"
@@ -293,7 +293,7 @@
 /datum/gear/suit/dept/cloak/hos
 	display_name = "head of security cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/suit/dept/cloak/hos/New()
 	..()
@@ -345,7 +345,7 @@
 /datum/gear/suit/dept/cloak/cargo
 	display_name = "cargo cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/cargo
-	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician")
+	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER,"Cargo Technician")
 
 /datum/gear/suit/dept/cloak/cargo/New()
 	..()
@@ -358,7 +358,7 @@
 /datum/gear/suit/dept/cloak/mining
 	display_name = "mining cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/mining
-	allowed_roles = list("Quartermaster","Shaft Miner")
+	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER)
 
 /datum/gear/suit/dept/cloak/mining/New()
 	..()
@@ -371,7 +371,7 @@
 /datum/gear/suit/dept/cloak/security
 	display_name = "security cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/sec
-	allowed_roles = list("Head of Security","Detective","Warden","Security Officer")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_DETECTIVE,JOB_WARDEN,JOB_SECURITY_OFFICER)
 
 /datum/gear/suit/dept/cloak/security/New()
 	..()
@@ -384,7 +384,7 @@
 /datum/gear/suit/dept/cloak/service
 	display_name = "service cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/service
-	allowed_roles = list("Head of Personnel","Bartender","Botanist","Janitor","Chef","Librarian","Chaplain")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL,"Bartender","Botanist","Janitor","Chef","Librarian","Chaplain")
 
 /datum/gear/suit/dept/cloak/service/New()
 	..()
@@ -553,7 +553,7 @@
 /datum/gear/suit/dept/beltcloak/wrdn
 	display_name = "warden belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/wrdn
-	allowed_roles = list("Head of Security","Warden")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/beltcloak/jani
@@ -565,7 +565,7 @@
 /datum/gear/suit/dept/beltcloak/cmd
 	display_name = "command belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command
-	allowed_roles = list("Site Manager","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
+	allowed_roles = list(JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,"Chief Engineer","Chief Medical Officer","Research Director")
 	sort_category = "Xenowear"
 
 /datum/gear/suit/cloak_hood
