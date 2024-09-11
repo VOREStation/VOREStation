@@ -292,7 +292,7 @@
 		if(loc == R)
 			hud_layerise()
 
-/obj/item/weapon/card/id/cargo/minee/borg/GetAccess()
+/obj/item/weapon/card/id/cargo/miner/borg/GetAccess()
 	return R?.idcard?.GetAccess()
 
 
