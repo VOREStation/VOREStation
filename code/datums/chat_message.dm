@@ -109,7 +109,7 @@ var/list/runechat_image_cache = list()
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, PROC_REF(unregister_qdel_self)) // this should only call owned_by if the client is destroyed
 
-	var/extra_length = owned_by.is_preference_enabled(/datum/client_preference/runechat_long_messages)
+	var/extra_length = owned_by.prefs?.read_preference(/datum/preference/toggle/runechat_long_messages)
 	var/maxlen = extra_length ? CHAT_MESSAGE_EXT_LENGTH : CHAT_MESSAGE_LENGTH
 	var/msgwidth = extra_length ? CHAT_MESSAGE_EXT_WIDTH : CHAT_MESSAGE_WIDTH
 
@@ -244,10 +244,10 @@ var/list/runechat_image_cache = list()
 		return
 
 	// Doesn't want to hear
-	if(ismob(speaker) && !client.is_preference_enabled(/datum/client_preference/runechat_mob))
+	if(ismob(speaker) && !client.prefs?.read_preference(/datum/preference/toggle/runechat_mob))
 		return
 	// I know the pref is 'obj' but people dunno what turfs are
-	else if(!client.is_preference_enabled(/datum/client_preference/runechat_obj))
+	else if(!client.prefs?.read_preference(/datum/preference/toggle/runechat_obj))
 		return
 
 	// Incapable of receiving
@@ -270,7 +270,7 @@ var/list/runechat_image_cache = list()
 	if(italics)
 		extra_classes |= "italics"
 
-	if(client.is_preference_enabled(/datum/client_preference/runechat_border))
+	if(client.prefs?.read_preference(/datum/preference/toggle/runechat_border))
 		extra_classes |= "black_outline"
 
 	var/dist = get_dist(src, speaker)

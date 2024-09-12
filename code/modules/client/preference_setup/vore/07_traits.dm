@@ -107,47 +107,47 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	name = "Traits"
 	sort_order = 7
 
-/datum/category_item/player_setup_item/vore/traits/load_character(var/savefile/S)
-	S["custom_species"]	>> pref.custom_species
-	S["custom_base"]	>> pref.custom_base
-	S["pos_traits"]		>> pref.pos_traits
-	S["neu_traits"]		>> pref.neu_traits
-	S["neg_traits"]		>> pref.neg_traits
-	S["blood_color"]	>> pref.blood_color
-	S["blood_reagents"]		>> pref.blood_reagents
+/datum/category_item/player_setup_item/vore/traits/load_character(list/save_data)
+	pref.custom_species			= save_data["custom_species"]
+	pref.custom_base			= save_data["custom_base"]
+	pref.pos_traits				= text2path_list(save_data["pos_traits"])
+	pref.neu_traits				= text2path_list(save_data["neu_traits"])
+	pref.neg_traits				= text2path_list(save_data["neg_traits"])
+	pref.blood_color			= save_data["blood_color"]
+	pref.blood_reagents			= save_data["blood_reagents"]
 
-	S["traits_cheating"]	>> pref.traits_cheating
-	S["max_traits"]		>> pref.max_traits
-	S["trait_points"]	>> pref.starting_trait_points
+	pref.traits_cheating		= save_data["traits_cheating"]
+	pref.max_traits				= save_data["max_traits"]
+	pref.starting_trait_points	= save_data["trait_points"]
 
-	S["custom_say"]		>> pref.custom_say
-	S["custom_whisper"]	>> pref.custom_whisper
-	S["custom_ask"]		>> pref.custom_ask
-	S["custom_exclaim"]	>> pref.custom_exclaim
+	pref.custom_say				= save_data["custom_say"]
+	pref.custom_whisper			= save_data["custom_whisper"]
+	pref.custom_ask				= save_data["custom_ask"]
+	pref.custom_exclaim			= save_data["custom_exclaim"]
 
-	S["custom_heat"]	>> pref.custom_heat
-	S["custom_cold"]	>> pref.custom_cold
+	pref.custom_heat			= save_data["custom_heat"]
+	pref.custom_cold			= save_data["custom_cold"]
 
-/datum/category_item/player_setup_item/vore/traits/save_character(var/savefile/S)
-	S["custom_species"]	<< pref.custom_species
-	S["custom_base"]	<< pref.custom_base
-	S["pos_traits"]		<< pref.pos_traits
-	S["neu_traits"]		<< pref.neu_traits
-	S["neg_traits"]		<< pref.neg_traits
-	S["blood_color"]	<< pref.blood_color
-	S["blood_reagents"]		<< pref.blood_reagents
+/datum/category_item/player_setup_item/vore/traits/save_character(list/save_data)
+	save_data["custom_species"]		= pref.custom_species
+	save_data["custom_base"]		= pref.custom_base
+	save_data["pos_traits"]			= pref.pos_traits
+	save_data["neu_traits"]			= pref.neu_traits
+	save_data["neg_traits"]			= pref.neg_traits
+	save_data["blood_color"]		= pref.blood_color
+	save_data["blood_reagents"]		= pref.blood_reagents
 
-	S["traits_cheating"]	<< pref.traits_cheating
-	S["max_traits"]		<< pref.max_traits
-	S["trait_points"]	<< pref.starting_trait_points
+	save_data["traits_cheating"]	= pref.traits_cheating
+	save_data["max_traits"]			= pref.max_traits
+	save_data["trait_points"]		= pref.starting_trait_points
 
-	S["custom_say"]		<< pref.custom_say
-	S["custom_whisper"]	<< pref.custom_whisper
-	S["custom_ask"]		<< pref.custom_ask
-	S["custom_exclaim"]	<< pref.custom_exclaim
+	save_data["custom_say"]			= pref.custom_say
+	save_data["custom_whisper"]		= pref.custom_whisper
+	save_data["custom_ask"]			= pref.custom_ask
+	save_data["custom_exclaim"]		= pref.custom_exclaim
 
-	S["custom_heat"]	<< pref.custom_heat
-	S["custom_cold"]	<< pref.custom_cold
+	save_data["custom_heat"]		= pref.custom_heat
+	save_data["custom_cold"]		= pref.custom_cold
 
 /datum/category_item/player_setup_item/vore/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
@@ -186,13 +186,16 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	//Neutral traits
 	for(var/datum/trait/path as anything in pref.neu_traits)
 		if(!(path in neutral_traits))
+			to_world_log("removing [path] for not being in neutral_traits")
 			pref.neu_traits -= path
 			continue
 		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits_neutral))
+			to_world_log("removing [path] for not being a custom species")
 			pref.neu_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			to_world_log("removing [path] for being a dirty synth")
 			pref.neu_traits -= path
 	//Negative traits
 	for(var/datum/trait/path as anything in pref.neg_traits)

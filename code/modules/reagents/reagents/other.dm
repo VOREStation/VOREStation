@@ -456,6 +456,9 @@
 			var/turf/simulated/S = T
 			S.dirt = 0
 		T.clean_blood()
+		for(var/obj/effect/O in T)
+			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+				qdel(O)
 
 		for(var/mob/living/simple_mob/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))

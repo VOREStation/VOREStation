@@ -59,21 +59,21 @@
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		PS.sanitize_setup()
 
-/datum/category_collection/player_setup_collection/proc/load_character(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/load_character(list/save_data)
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.load_character(S)
+		PS.load_character(save_data)
 
-/datum/category_collection/player_setup_collection/proc/save_character(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/save_character(list/save_data)
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.save_character(S)
+		PS.save_character(save_data)
 
-/datum/category_collection/player_setup_collection/proc/load_preferences(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/load_preferences(datum/json_savefile/savefile)
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.load_preferences(S)
+		PS.load_preferences(savefile)
 
-/datum/category_collection/player_setup_collection/proc/save_preferences(var/savefile/S)
+/datum/category_collection/player_setup_collection/proc/save_preferences(datum/json_savefile/savefile)
 	for(var/datum/category_group/player_setup_category/PS in categories)
-		PS.save_preferences(S)
+		PS.save_preferences(savefile)
 
 /datum/category_collection/player_setup_collection/proc/copy_to_mob(var/mob/living/carbon/human/C)
 	for(var/datum/category_group/player_setup_category/PS in categories)
@@ -86,6 +86,7 @@
 			dat += "[PS.name] "	// TODO: Check how to properly mark a href/button selected in a classic browser window
 		else
 			dat += "<a href='?src=\ref[src];category=\ref[PS]'>[PS.name]</a> "
+	dat += "<a href='?src=\ref[src];game_prefs=1'>Game Options</a>"
 	return dat
 
 /datum/category_collection/player_setup_collection/proc/content(var/mob/user)
@@ -105,6 +106,9 @@
 			selected_category = category
 		. = 1
 
+	else if(href_list["game_prefs"])
+		user.client.prefs.tgui_interact(user)
+
 	if(.)
 		user.client.prefs.ShowChoices(user)
 
@@ -123,29 +127,29 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
 
-/datum/category_group/player_setup_category/proc/load_character(var/savefile/S)
+/datum/category_group/player_setup_category/proc/load_character(list/save_data)
 	// Load all data, then sanitize it.
 	// Need due to, for example, the 01_basic module relying on species having been loaded to sanitize correctly but that isn't loaded until module 03_body.
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.load_character(S)
+		PI.load_character(save_data)
 
 
-/datum/category_group/player_setup_category/proc/save_character(var/savefile/S)
+/datum/category_group/player_setup_category/proc/save_character(list/save_data)
 	// Sanitize all data, then save it
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_character()
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.save_character(S)
+		PI.save_character(save_data)
 
-/datum/category_group/player_setup_category/proc/load_preferences(var/savefile/S)
+/datum/category_group/player_setup_category/proc/load_preferences(datum/json_savefile/savefile)
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.load_preferences(S)
+		PI.load_preferences(savefile)
 
-/datum/category_group/player_setup_category/proc/save_preferences(var/savefile/S)
+/datum/category_group/player_setup_category/proc/save_preferences(datum/json_savefile/savefile)
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.sanitize_preferences()
 	for(var/datum/category_item/player_setup_item/PI in items)
-		PI.save_preferences(S)
+		PI.save_preferences(savefile)
 
 /datum/category_group/player_setup_category/proc/copy_to_mob(var/mob/living/carbon/human/C)
 	for(var/datum/category_item/player_setup_item/PI in items)
@@ -188,25 +192,25 @@
 /*
 * Called when the item is asked to load per character settings
 */
-/datum/category_item/player_setup_item/proc/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/proc/load_character(list/save_data)
 	return
 
 /*
 * Called when the item is asked to save per character settings
 */
-/datum/category_item/player_setup_item/proc/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/proc/save_character(list/save_data)
 	return
 
 /*
 * Called when the item is asked to load user/global settings
 */
-/datum/category_item/player_setup_item/proc/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/proc/load_preferences(datum/json_savefile/savefile)
 	return
 
 /*
 * Called when the item is asked to save user/global settings
 */
-/datum/category_item/player_setup_item/proc/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/proc/save_preferences(datum/json_savefile/savefile)
 	return
 
 /*

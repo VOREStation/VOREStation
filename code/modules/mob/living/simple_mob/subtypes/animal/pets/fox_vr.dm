@@ -240,3 +240,6 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+
+/mob/living/simple_mob/animal/passive/fox/beastmode
+	movement_cooldown = 1
