@@ -20,7 +20,7 @@ var/global/list/grub_machine_overlays = list()
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
 	butchery_loot = list()		// No hides
 
-	faction = "grubs"
+	faction = FACTION_GRUBS
 
 	response_help = "pats"
 	response_disarm = "nudges"

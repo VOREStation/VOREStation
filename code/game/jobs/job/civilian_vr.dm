@@ -215,7 +215,7 @@
 	flag = PILOT
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -251,7 +251,7 @@
 	flag = ENTERTAINER
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -321,7 +321,7 @@
 	flag = ENTREPRENEUR
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL

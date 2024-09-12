@@ -468,7 +468,7 @@
 /datum/gear/uniform/medical_selector
 	display_name = "Medical - Basic Uniforms"
 	description = "Select from a range of outfits available to all Medical personnel."
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Talon Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic","Talon Doctor")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_med
 	sort_category = "Uniforms"
@@ -499,9 +499,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/chemist_selector
-	display_name = "Medical - Chemist's Uniforms"
+	display_name = "Medical - " + JOB_CHEMIST + "'s Uniforms"
 	description = "Select from a range of outfits available to all Chemists."
-	allowed_roles = list("Chief Medical Officer","Chemist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_chem
 	sort_category = "Uniforms"
@@ -521,7 +521,7 @@
 /datum/gear/uniform/paramedic_selector
 	display_name = "Medical - Paramedic's Uniforms"
 	description = "Select from a range of outfits available to all Paramedics."
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic","Talon Doctor")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,"Paramedic","Talon Doctor")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/paramedunidark
 	sort_category = "Uniforms"
@@ -542,9 +542,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/chief_medical_selector
-	display_name = "Medical - Chief Medical Officer's Uniforms"
-	description = "Select from a range of outfits available to all Chief Medical Officers."
-	allowed_roles = list("Chief Medical Officer")
+	display_name = "Medical - " + JOB_CHIEF_MEDICAL_OFFICER + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_CHIEF_MEDICAL_OFFICER + "."
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_cmo
 	sort_category = "Uniforms"

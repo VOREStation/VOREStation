@@ -1,5 +1,5 @@
 /datum/gear/suit/snowsuit/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
@@ -16,7 +16,7 @@
 /datum/gear/suit/labcoat_cmo_old
 	display_name = "labcoat, CMO, oldschool"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/cmo
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/gear/suit/roles/labcoat_old
 	display_name = "labcoat selection, department, oldschool"
@@ -73,7 +73,7 @@
 /datum/gear/suit/paramedic_coat
 	display_name = "paramedic outerwear selection"
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
-	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic",JOB_MEDICAL_DOCTOR)
 
 /datum/gear/suit/paramedic_coat/New()
 	..()

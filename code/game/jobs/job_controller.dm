@@ -10,7 +10,7 @@ var/global/datum/controller/occupations/job_master
 		//Cache of icons for job info window
 	var/list/job_icons = list()
 
-/datum/controller/occupations/proc/SetupOccupations(var/faction = "Station")
+/datum/controller/occupations/proc/SetupOccupations(var/faction = FACTION_STATION)
 	occupations = list()
 	//var/list/all_jobs = typesof(/datum/job)
 	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs

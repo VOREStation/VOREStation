@@ -217,7 +217,7 @@
 	icon_state = "chemistryf"
 
 /obj/item/clothing/under/rank/chief_medical_officer/skirt
-	desc = "It's a jumpskirt worn by those with the experience to be \"Chief Medical Officer\". It provides minor biological protection."
+	desc = "It's a jumpskirt worn by those with the experience to be \"" + JOB_CHIEF_MEDICAL_OFFICER + "\". It provides minor biological protection."
 	name = "chief medical officer's jumpskirt"
 	icon_state = "cmof"
 

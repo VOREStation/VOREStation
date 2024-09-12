@@ -26,7 +26,7 @@
 	icon_living = "corrupt-repairbot"
 	hovering = FALSE // Can trigger landmines.
 
-	faction = "underdark"
+	faction = FACTION_UNDERDARK
 	maxHealth = 25
 	health = 25
 	movement_cooldown = -1

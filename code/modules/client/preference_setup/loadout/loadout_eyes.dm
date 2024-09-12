@@ -91,7 +91,7 @@
 	display_name = "Medical HUD selector"
 	description = "Select from a range of Medical HUD eyepieces that can display the health status of people in line of sight."
 	path = /obj/item/clothing/glasses/hud/health
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/eyes/medical/New()
 	..()

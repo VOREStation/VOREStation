@@ -35,7 +35,7 @@
 /datum/gear/utility/dufflebag/med
 	display_name = "medical dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/med
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist","Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist","Psychiatrist")
 
 /datum/gear/utility/dufflebag/med/emt
 	display_name = "EMT dufflebag"

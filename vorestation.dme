@@ -59,6 +59,7 @@
 #include "code\__defines\equipment_vendor.dm"
 #include "code\__defines\events.dm"
 #include "code\__defines\exosuit_fab.dm"
+#include "code\__defines\faction.dm"
 #include "code\__defines\flags.dm"
 #include "code\__defines\gamemode.dm"
 #include "code\__defines\holder.dm"

@@ -19,11 +19,11 @@
 /obj/effect/landmark/start/engineer
 	name = JOB_ENGINEER
 /obj/effect/landmark/start/cmo
-	name = "Chief Medical Officer"
+	name = JOB_CHIEF_MEDICAL_OFFICER
 /obj/effect/landmark/start/chemist
-	name = "Chemist"
+	name = JOB_CHEMIST
 /obj/effect/landmark/start/medical
-	name = "Medical Doctor"
+	name = JOB_MEDICAL_DOCTOR
 /obj/effect/landmark/start/paramedic
 	name = "Paramedic"
 /obj/effect/landmark/start/psych

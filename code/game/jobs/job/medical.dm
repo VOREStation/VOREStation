@@ -2,13 +2,13 @@
 //		Chief Medical Officer
 //////////////////////////////////
 /datum/job/cmo
-	title = "Chief Medical Officer"
+	title = JOB_CHIEF_MEDICAL_OFFICER
 	flag = CMO
 	departments_managed = list(DEPARTMENT_MEDICAL)
 	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_COMMAND)
 	sorting_order = 2
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_SITE_MANAGER
@@ -39,20 +39,20 @@
 //		Medical Doctor
 //////////////////////////////////
 /datum/job/doctor
-	title = "Medical Doctor"
+	title = JOB_MEDICAL_DOCTOR
 	flag = DOCTOR
 	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the Chief Medical Officer"
+	supervisors = "the " + JOB_CHIEF_MEDICAL_OFFICER
 	selection_color = "#013D3B"
 	economic_modifier = 7
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_eva)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology, access_eva)
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
-	job_description = "A Medical Doctor is a Jack-of-All-Trades Medical title, covering a variety of skill levels and minor specializations. They are likely \
+	job_description = "A " + JOB_MEDICAL_DOCTOR + " is a Jack-of-All-Trades Medical title, covering a variety of skill levels and minor specializations. They are likely \
 						familiar with basic first aid, and a number of accompanying medications, and can generally save, if not cure, a majority of the \
 						patients they encounter."
 	alt_titles = list(
@@ -95,14 +95,14 @@
 //			Chemist
 //////////////////////////////////
 /datum/job/chemist
-	title = "Chemist"
+	title = JOB_CHEMIST
 	flag = CHEMIST
 	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Chief Medical Officer"
+	supervisors = "the " + JOB_CHIEF_MEDICAL_OFFICER
 	selection_color = "#013D3B"
 	economic_modifier = 5
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
@@ -111,14 +111,14 @@
 	min_age_by_species = list(SPECIES_PROMETHEAN = 3)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/chemist
-	job_description = "A Chemist produces and maintains a stock of basic to advanced chemicals for medical and occasionally research use. \
+	job_description = "A " + JOB_CHEMIST + " produces and maintains a stock of basic to advanced chemicals for medical and occasionally research use. \
 						They are likely to know the use and dangers of many lab-produced chemicals."
-	alt_titles = list("Pharmacist" = /datum/alt_title/pharmacist)
+	alt_titles = list(JOB_ALT_PHARMACIST = /datum/alt_title/pharmacist)
 
 // Chemist Alt Titles
 /datum/alt_title/pharmacist
-	title = "Pharmacist"
-	title_blurb = "A Pharmacist focuses on the chemical needs of the Medical Department, and often offers to fill crew prescriptions at their discretion."
+	title = JOB_ALT_PHARMACIST
+	title_blurb = "A " + JOB_ALT_PHARMACIST + " focuses on the chemical needs of the Medical Department, and often offers to fill crew prescriptions at their discretion."
 
 /* I'm commenting out Geneticist so you can't actually see it in the job menu, given that you can't play as one - Jon.
 //////////////////////////////////
@@ -129,10 +129,10 @@
 	flag = GENETICIST
 	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 0
 	spawn_positions = 0
-	supervisors = "the Chief Medical Officer and " + JOB_RESEARCH_DIRECTOR
+	supervisors = "the " + JOB_CHIEF_MEDICAL_OFFICER + " and " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#013D3B"
 	economic_modifier = 7
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_research)
@@ -151,11 +151,11 @@
 	flag = PSYCHIATRIST
 	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	economic_modifier = 5
-	supervisors = "the Chief Medical Officer"
+	supervisors = "the " + JOB_CHIEF_MEDICAL_OFFICER
 	selection_color = "#013D3B"
 	access = list(access_medical, access_medical_equip, access_morgue, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
@@ -180,10 +180,10 @@
 	flag = PARAMEDIC
 	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Chief Medical Officer"
+	supervisors = "the " + JOB_CHIEF_MEDICAL_OFFICER
 	selection_color = "#013D3B"
 	economic_modifier = 4
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist)

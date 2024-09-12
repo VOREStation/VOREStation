@@ -7,7 +7,7 @@
 	icon_state = "jelly"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "virgo2"
+	faction = FACTION_VIRGO2
 	maxHealth = 50
 	health = 50
 

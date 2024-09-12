@@ -94,7 +94,7 @@ I think I covered everything.
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to snap up"
 	icon_dead = "dragon-dead"
-	faction = "dragon"
+	faction = FACTION_DRAGON
 	glow_range = 7
 	glow_intensity = 3
 	glow_color = "#ED9200"
@@ -189,7 +189,7 @@ I think I covered everything.
 /mob/living/simple_mob/vore/bigdragon/friendly
 	ai_holder_type = /datum/ai_holder/simple_mob/healbelly/retaliate/dragon
 	desc = "A large, intimidating creature reminiscent of the traditional idea of medieval fire breathing lizards. This one seems particularly relaxed and jovial."
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 	player_msg = "You're a variant of the large dragon stripped of its firebreath attack (harm intent). You can still charge (disarm) and tail sweep (grab). Rest to heal slowly. Check your abilities tab for functions."
 	norange = 1
 	noenrage = 1
@@ -249,7 +249,7 @@ I think I covered everything.
 	verbs |= /mob/living/simple_mob/vore/bigdragon/proc/special_toggle
 	//verbs |= /mob/living/simple_mob/vore/bigdragon/proc/set_name //Implemented upstream
 	//verbs |= /mob/living/simple_mob/vore/bigdragon/proc/set_desc //Implemented upstream
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/vore/bigdragon/Initialize()
 	..()
@@ -902,7 +902,7 @@ I think I covered everything.
 	handle_tame_item(O, user)
 
 	qdel(ai_holder)	//Dragon goes to therapy
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 	norange = 1		//Don't start fires while friendly
 	vore_selected = gut2 //Just incase it eats someone right after being tamed
 	ai_holder = new /datum/ai_holder/simple_mob/healbelly/retaliate/dragon(src)
@@ -1047,7 +1047,7 @@ I think I covered everything.
 /mob/living/simple_mob/vore/bigdragon/proc/enrage(var/atom/movable/attacker)
 	enraged = 1
 	norange = 0
-	faction = "dragon"
+	faction = FACTION_DRAGON
 	say("HAVE IT YOUR WAY THEN")
 	qdel(ai_holder)
 	var/datum/ai_holder/simple_mob/intentional/dragon/D = new /datum/ai_holder/simple_mob/intentional/dragon(src)

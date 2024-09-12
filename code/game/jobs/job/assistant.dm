@@ -7,7 +7,7 @@
 	departments = list(DEPARTMENT_CIVILIAN)
 	sorting_order = -1
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "absolutely everyone"

@@ -218,14 +218,15 @@
 	icon_state = "medical-id"
 	primary_color = rgb(189,237,237)
 	secondary_color = rgb(223,255,255)
+	rank = JOB_MEDICAL_DOCTOR
 
 /obj/item/weapon/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
 	primary_color = rgb(189,237,237)
 	secondary_color = rgb(255,223,127)
-	assignment = "Chief Medical Officer"
-	rank = "Chief Medical Officer"
+	assignment = JOB_CHIEF_MEDICAL_OFFICER
+	rank = JOB_CHIEF_MEDICAL_OFFICER
 
 /obj/item/weapon/card/id/security
 	name = "identification card"
@@ -547,8 +548,8 @@
 		"Xenobotanist" = "itg_purple",
 		"Pathfinder" = "itg_purple",
 		"Explorer" = "itg_purple",
-		"Chemist" = "itg_white",
-		"Medical Doctor" = "itg_white",
+		JOB_CHEMIST = "itg_white",
+		JOB_MEDICAL_DOCTOR = "itg_white",
 		"Paramedic" = "itg_white",
 		"Psychiatrist" = "itg_white",
 		"Field Medic" = "itg_white",
@@ -578,7 +579,7 @@
 /obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, "Head of Security", JOB_CHIEF_ENGINEER, "Chief Medical Officer", JOB_RESEARCH_DIRECTOR, "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
+		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, "Head of Security", JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
 			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
 			return

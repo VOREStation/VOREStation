@@ -7,7 +7,7 @@
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
-	faction = "Station"
+	faction = FACTION_STATION
 	departments = list(DEPARTMENT_OFFDUTY)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#9b633e"
@@ -23,7 +23,7 @@
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
-	faction = "Station"
+	faction = FACTION_STATION
 	departments = list(DEPARTMENT_OFFDUTY)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#9b633e"
@@ -39,7 +39,7 @@
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
-	faction = "Station"
+	faction = FACTION_STATION
 	departments = list(DEPARTMENT_OFFDUTY)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#5B4D20"
@@ -55,7 +55,7 @@
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
-	faction = "Station"
+	faction = FACTION_STATION
 	departments = list(DEPARTMENT_OFFDUTY)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#013D3B"
@@ -71,7 +71,7 @@
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
-	faction = "Station"
+	faction = FACTION_STATION
 	departments = list(DEPARTMENT_OFFDUTY)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#633D63"
@@ -87,7 +87,7 @@
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
-	faction = "Station"
+	faction = FACTION_STATION
 	departments = list(DEPARTMENT_OFFDUTY)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#601C1C"
@@ -103,7 +103,7 @@
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
-	faction = "Station"
+	faction = FACTION_STATION
 	departments = list(DEPARTMENT_OFFDUTY)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#999440"

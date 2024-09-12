@@ -99,7 +99,7 @@
 	say_list_type = /datum/say_list/hivebot/harry
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	faction = "Station"
+	faction = FACTION_STATION
 	water_resist = 1 //Harry lives under the sea!
 
 /mob/living/simple_mob/mechanical/hivebot/support/harry/death()

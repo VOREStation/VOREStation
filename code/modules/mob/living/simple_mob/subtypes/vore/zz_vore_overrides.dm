@@ -248,4 +248,4 @@
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
 /mob/living/simple_mob/animal/passive/mouse
-	faction = "mouse" //Giving mice a faction so certain mobs can get along with them.
+	faction = FACTION_MOUSE //Giving mice a faction so certain mobs can get along with them.

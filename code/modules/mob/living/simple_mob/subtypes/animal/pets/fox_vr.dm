@@ -13,7 +13,7 @@
 	see_in_dark = 6
 	mob_size = MOB_SMALL //Foxes are not smaller than cats so bumping them up to small
 
-	faction = "fox"
+	faction = FACTION_FOX
 
 	response_help = "scritches"
 	response_disarm = "gently pushes aside"

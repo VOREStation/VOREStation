@@ -21,7 +21,7 @@ var/const/access_explorer = 43
 	flag = EXPLORER
 	departments = list(DEPARTMENT_RESEARCH, DEPARTMENT_PLANET)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Research Director"
@@ -47,7 +47,7 @@ var/const/access_explorer = 43
                         access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
                         access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch,
                         access_network, access_maint_tunnels, access_explorer, access_eva, access_external_airlocks)
-			
+
 /*
 	alt_titles = list(
 		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,

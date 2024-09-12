@@ -4,7 +4,7 @@
 	flag = CHAPLAIN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL

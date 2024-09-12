@@ -194,7 +194,7 @@
 /datum/gear/uniform/dept/undercoat/cmo
 	display_name = "chief medical officer undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/cmo
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/gear/uniform/dept/undercoat/qm
 	display_name = "quartermaster undercoat (Teshari)"
@@ -244,27 +244,27 @@
 /datum/gear/uniform/dept/undercoat/medical
 	display_name = "medical undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/medical
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Paramedic","Geneticist","Psychiatrist")
 
 /datum/gear/uniform/dept/undercoat/chemistry
 	display_name = "chemist undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/chemistry
-	allowed_roles = list("Chief Medical Officer","Chemist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST)
 
 /datum/gear/uniform/dept/undercoat/virology
 	display_name = "virologist undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/viro
-	allowed_roles = list("Chief Medical Officer","Medical Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR)
 
 /datum/gear/uniform/dept/undercoat/psych
 	display_name = "psychiatrist undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/psych
-	allowed_roles = list("Chief Medical Officer","Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Psychiatrist")
 
 /datum/gear/uniform/dept/undercoat/paramedic
 	display_name = "paramedic undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/para
-	allowed_roles = list("Chief Medical Officer","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
 
 /datum/gear/uniform/dept/undercoat/iaa
 	display_name = "internal affairs undercoat (Teshari)"
@@ -319,7 +319,7 @@
 /datum/gear/suit/dept/cloak/cmo
 	display_name = "chief medical officer cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/cmo
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/gear/suit/dept/cloak/cmo/New()
 	..()
@@ -332,7 +332,7 @@
 /datum/gear/suit/dept/cloak/qm
 	display_name = "quartermaster cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/qm
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/gear/suit/dept/cloak/qm/New()
 	..()
@@ -449,7 +449,7 @@
 /datum/gear/suit/dept/cloak/medical
 	display_name = "medical cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/medical
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/dept/cloak/medical/New()
 	..()
@@ -462,7 +462,7 @@
 /datum/gear/suit/dept/cloak/chemistry
 	display_name = "chemist cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/chemistry
-	allowed_roles = list("Chemist")
+	allowed_roles = list(JOB_CHEMIST)
 
 /datum/gear/suit/dept/cloak/chemistry/New()
 	..()
@@ -475,7 +475,7 @@
 /datum/gear/suit/dept/cloak/virology
 	display_name = "virologist cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/viro
-	allowed_roles = list("Medical Doctor")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR)
 
 /datum/gear/suit/dept/cloak/virology/New()
 	..()
@@ -488,12 +488,12 @@
 /datum/gear/suit/dept/cloak/psych
 	display_name = "psychiatrist cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/psych
-	allowed_roles = list("Chief Medical Officer","Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Psychiatrist")
 
 /datum/gear/suit/dept/cloak/paramedic
 	display_name = "paramedic cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/para
-	allowed_roles = list("Chief Medical Officer","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
 
 /datum/gear/suit/dept/cloak/paramedic/New()
 	..()
@@ -565,7 +565,7 @@
 /datum/gear/suit/dept/beltcloak/cmd
 	display_name = "command belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command
-	allowed_roles = list(JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,JOB_CHIEF_ENGINEER,"Chief Medical Officer",JOB_RESEARCH_DIRECTOR)
+	allowed_roles = list(JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,JOB_CHIEF_ENGINEER,JOB_CHIEF_MEDICAL_OFFICER,JOB_RESEARCH_DIRECTOR)
 	sort_category = "Xenowear"
 
 /datum/gear/suit/cloak_hood

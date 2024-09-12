@@ -9,7 +9,7 @@
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/med
 
 /decl/hierarchy/outfit/job/medical/cmo
-	name = OUTFIT_JOB_NAME("Chief Medical Officer")
+	name = OUTFIT_JOB_NAME(JOB_CHIEF_MEDICAL_OFFICER)
 	l_ear  =/obj/item/device/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
@@ -20,7 +20,7 @@
 	pda_type = /obj/item/device/pda/heads/cmo
 
 /decl/hierarchy/outfit/job/medical/doctor
-	name = OUTFIT_JOB_NAME("Medical Doctor")
+	name = OUTFIT_JOB_NAME(JOB_MEDICAL_DOCTOR)
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	l_hand = /obj/item/weapon/storage/firstaid/regular
@@ -60,7 +60,7 @@
 	..()
 
 /decl/hierarchy/outfit/job/medical/chemist
-	name = OUTFIT_JOB_NAME("Chemist")
+	name = OUTFIT_JOB_NAME(JOB_CHEMIST)
 	uniform = /obj/item/clothing/under/rank/chemist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	backpack = /obj/item/weapon/storage/backpack/chemistry

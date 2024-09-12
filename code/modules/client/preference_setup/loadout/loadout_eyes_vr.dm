@@ -1,5 +1,5 @@
 /datum/gear/eyes/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/eyes/arglasses
 	display_name = "AR glasses"
@@ -34,7 +34,7 @@
 /datum/gear/eyes/arglasses/med
 	display_name = "AR-Medical glasses"
 	path = /obj/item/clothing/glasses/omnihud/med
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/eyes/arglasses/all
 	display_name = "AR-Command glasses"

@@ -24,7 +24,7 @@
 	icon_rest = "pakkun-rest"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "pakkun"
+	faction = FACTION_PAKKUN
 
 	movement_cooldown = 2
 	can_be_drop_pred = 1 //They can tongue vore.

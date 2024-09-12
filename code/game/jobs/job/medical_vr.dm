@@ -54,11 +54,11 @@
 
 /datum/job/chemist
 	pto_type = PTO_MEDICAL
-	alt_titles = list("Pharmacist" = /datum/alt_title/pharmacist, "Pharmacologist" = /datum/alt_title/pharmacologist)
+	alt_titles = list(JOB_ALT_PHARMACIST = /datum/alt_title/pharmacist, JOB_ALT_PHARMACOLOGIST = /datum/alt_title/pharmacologist)
 
 /datum/alt_title/pharmacologist
-	title = "Pharmacologist"
-	title_blurb = "A Pharmacologist focuses on the chemical needs of the Medical Department, primarily specializing in producing more advanced forms of medicine."
+	title = JOB_ALT_PHARMACOLOGIST
+	title_blurb = "A " + JOB_ALT_PHARMACOLOGIST + " focuses on the chemical needs of the Medical Department, primarily specializing in producing more advanced forms of medicine."
 
 
 /datum/job/psychiatrist

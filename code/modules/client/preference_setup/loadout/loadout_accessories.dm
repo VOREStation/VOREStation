@@ -250,7 +250,7 @@
 /datum/gear/accessory/stethoscope
 	display_name = "stethoscope"
 	path = /obj/item/clothing/accessory/stethoscope
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Talon Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic","Talon Doctor")
 
 /datum/gear/accessory/locket
 	display_name = "locket"

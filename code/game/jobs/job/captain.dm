@@ -11,7 +11,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	sorting_order = 3 // Above everyone.
 	departments_managed = list(DEPARTMENT_COMMAND)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "company officials and Corporate Regulations"
@@ -60,7 +60,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	sorting_order = 2 // Above the QM, below captain.
 	departments_managed = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_SITE_MANAGER
@@ -108,7 +108,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	departments = list(DEPARTMENT_COMMAND)
 	department_accounts = list(DEPARTMENT_COMMAND)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "command staff"

@@ -51,7 +51,7 @@
  * Medical
  */
 /obj/item/clothing/under/rank/chief_medical_officer
-	desc = "It's a jumpsuit worn by those with the experience to be \"Chief Medical Officer\". It provides minor biological protection."
+	desc = "It's a jumpsuit worn by those with the experience to be \"" + JOB_CHIEF_MEDICAL_OFFICER + "\". It provides minor biological protection."
 	name = "chief medical officer's jumpsuit"
 	icon_state = "cmo"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")

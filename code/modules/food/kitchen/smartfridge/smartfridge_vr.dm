@@ -8,11 +8,11 @@
 /obj/machinery/smartfridge/secure/extract
 	expert_job = "Xenobiologist"
 /obj/machinery/smartfridge/secure/medbay
-	expert_job = "Chemist"
+	expert_job = JOB_CHEMIST
 /obj/machinery/smartfridge/secure/chemistry
-	expert_job = "Chemist"
+	expert_job = JOB_CHEMIST
 /obj/machinery/smartfridge/secure/virology
-	expert_job = "Medical Doctor" //Virologist is an alt-title unfortunately
+	expert_job = JOB_MEDICAL_DOCTOR //Virologist is an alt-title unfortunately
 /obj/machinery/smartfridge/drinks
 	expert_job = "Bartender"
 
@@ -42,7 +42,7 @@
 /obj/machinery/smartfridge/chemistry/chemvator
 	name = "\improper Smart Chemavator - Upper"
 	desc = "A refrigerated storage unit for medicine and chemical storage. Now sporting a fancy system of pulleys to lift bottles up and down."
-	expert_job = "Chemist"
+	expert_job = JOB_CHEMIST
 	var/obj/machinery/smartfridge/chemistry/chemvator/attached
 
 /obj/machinery/smartfridge/chemistry/chemvator/accept_check(var/obj/item/O as obj)

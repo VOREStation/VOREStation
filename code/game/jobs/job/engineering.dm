@@ -8,7 +8,7 @@
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_COMMAND)
 	sorting_order = 2
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the "+ JOB_SITE_MANAGER
@@ -46,7 +46,7 @@
 	flag = ENGINEER
 	departments = list(DEPARTMENT_ENGINEERING)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 5
 	supervisors = "the "+ JOB_CHIEF_ENGINEER
@@ -88,7 +88,7 @@
 	flag = ATMOSTECH
 	departments = list(DEPARTMENT_ENGINEERING)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the " + JOB_CHIEF_ENGINEER

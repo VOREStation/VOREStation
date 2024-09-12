@@ -282,7 +282,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/chemistry
 	name = "chemist undercoat"
-	desc = "A traditional Teshari garb made for the Chemist"
+	desc = "A traditional Teshari garb made for the " + JOB_CHEMIST
 	icon_state = "tesh_uniform_chem"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/viro

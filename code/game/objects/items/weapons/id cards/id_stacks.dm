@@ -85,10 +85,12 @@
 /obj/item/weapon/card/id/medical
 	name = "Medical ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n")
+	rank = JOB_MEDICAL_DOCTOR
 
 /obj/item/weapon/card/id/medical/chemist
-	name = "Chemist's ID"
+	name = JOB_CHEMIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-orange")
+	rank = JOB_CHEMIST
 
 /obj/item/weapon/card/id/medical/geneticist
 	name = "Geneticist's ID"
@@ -107,8 +109,9 @@
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-blue")
 
 /obj/item/weapon/card/id/medical/head
-	name = "Chief Medical Officer's ID"
+	name = JOB_CHIEF_MEDICAL_OFFICER + "'s ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-medblu", "stamp-n", "pips-gold")
+	rank = JOB_CHIEF_MEDICAL_OFFICER
 
 //Security
 

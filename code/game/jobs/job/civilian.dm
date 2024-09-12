@@ -9,7 +9,7 @@
 	flag = BARTENDER
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -37,7 +37,7 @@
 	flag = CHEF
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the "+ JOB_HEAD_OF_PERSONNEL
@@ -63,7 +63,7 @@
 	flag = BOTANIST
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -91,7 +91,7 @@
 	sorting_order = 1 // QM is above the cargo techs, but below the HoP.
 	departments_managed = list(DEPARTMENT_CARGO)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -119,7 +119,7 @@
 	flag = CARGOTECH
 	departments = list(DEPARTMENT_CARGO)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Quartermaster and the " + JOB_HEAD_OF_PERSONNEL
@@ -140,7 +140,7 @@
 	flag = MINER
 	departments = list(DEPARTMENT_CARGO)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Quartermaster and the " + JOB_HEAD_OF_PERSONNEL
@@ -166,7 +166,7 @@
 	flag = JANITOR
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -191,7 +191,7 @@
 	flag = LIBRARIAN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -223,7 +223,7 @@
 	flag = LAWYER
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "company officials and Corporate Regulations"

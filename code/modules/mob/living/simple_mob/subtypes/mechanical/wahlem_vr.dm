@@ -8,7 +8,7 @@
 	health = 300
 	maxHealth = 300
 
-	faction = "golem"
+	faction = FACTION_GOLEM
 
 	response_help   = "brushes over"
 	response_disarm = "repulses away"

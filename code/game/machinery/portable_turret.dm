@@ -124,7 +124,7 @@
 	req_one_access = list(access_syndicate)
 	enabled = TRUE
 	check_all = TRUE
-	faction = "syndicate" // Make sure this equals the faction that the mobs in the POI have or they will fight each other.
+	faction = FACTION_SYNDICATE // Make sure this equals the faction that the mobs in the POI have or they will fight each other.
 
 /obj/machinery/porta_turret/ai_defense
 	name = "defense turret"

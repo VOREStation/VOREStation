@@ -8,7 +8,7 @@
 	icon_living = "leopardmander"
 	icon_state = "leopardmander"
 	icon_rest = "leopardmander-rest"
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 	meat_amount = 40 //I mean...
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	old_x = -48

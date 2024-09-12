@@ -7,7 +7,7 @@
 	departments = list(DEPARTMENT_SYNTHETIC)
 	sorting_order = 1 // Be above their borgs.
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 0 // Not used for AI, see is_position_available below and modules/mob/living/silicon/ai/latejoin.dm
 	spawn_positions = 1
 	selection_color = "#3F823F"
@@ -45,7 +45,7 @@
 	flag = CYBORG
 	departments = list(DEPARTMENT_SYNTHETIC)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "your Laws and the AI"	//Nodrak

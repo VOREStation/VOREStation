@@ -33,7 +33,7 @@
 	departments_managed = list(DEPARTMENT_PLANET)
 	sorting_order = 1 // above the other explorers
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
@@ -63,7 +63,7 @@
 	flag = EXPLORER
 	departments = list(DEPARTMENT_PLANET)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the Pathfinder and the " + JOB_HEAD_OF_PERSONNEL
@@ -88,10 +88,10 @@
 	flag = SAR
 	departments = list(DEPARTMENT_PLANET, DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Pathfinder and the Chief Medical Officer"
+	supervisors = "the Pathfinder and the " + JOB_CHIEF_MEDICAL_OFFICER
 	selection_color = "#999440"
 	economic_modifier = 6
 	minimal_player_age = 3

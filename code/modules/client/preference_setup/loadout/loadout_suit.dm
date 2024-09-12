@@ -144,7 +144,7 @@
 /datum/gear/suit/labcoat_cmo
 	display_name = "labcoat selection, cmo"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 	show_roles = FALSE
 
 /datum/gear/suit/labcoat_cmo/New()
@@ -159,7 +159,7 @@
 /datum/gear/suit/labcoat_emt
 	display_name = "labcoat, EMT"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 
 /datum/gear/suit/labcoat_rd
 	display_name = "labcoat, research director"
@@ -174,7 +174,7 @@
 /datum/gear/suit/roles/surgical_apron
 	display_name = "surgical apron"
 	path = /obj/item/clothing/suit/surgicalapron
-	allowed_roles = list("Medical Doctor","Chief Medical Officer")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/gear/suit/overalls
 	display_name = "overalls"
@@ -263,7 +263,7 @@
 /datum/gear/suit/roles/cloak_cmo
 	display_name = "cloak, chief medical officer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cmo
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 	show_roles = FALSE
 	cost = 1
 
@@ -421,43 +421,43 @@
 /datum/gear/suit/wintercoat/medical
 	display_name = "winter coat, medical"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/alt
 	display_name = "winter coat, medical alt"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/viro
 	display_name = "winter coat, virologist"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/viro
-	allowed_roles = list("Medical Doctor","Chief Medical Officer")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/para
 	display_name = "winter coat, paramedic"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/para
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/chemist
 	display_name = "winter coat, chemist"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist
-	allowed_roles = list("Chief Medical Officer","Chemist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/cmo
 	display_name = "winter coat, chief medical officer"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/cmo
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/sar
 	display_name = "winter coat, search and rescue"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
-	allowed_roles = list("Chief Medical Officer","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science
@@ -668,7 +668,7 @@
 /datum/gear/suit/snowsuit/medical
 	display_name = "snowsuit, medical"
 	path = /obj/item/clothing/suit/storage/snowsuit/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Search and Rescue")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist", "Search and Rescue")
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/science

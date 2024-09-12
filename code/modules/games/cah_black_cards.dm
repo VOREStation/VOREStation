@@ -24,7 +24,7 @@
 	"Why am I shivering?",
 	"What is this world coming to? First, ________, now _______",
 	"NanoTrasen's labor union decided to use _______ to raise employee morale.",
-	"The Chemist's drug of choice is ______",
+	"The " + JOB_CHEMIST + "'s drug of choice is ______",
 	"It is common practice for _______ to ______ on Moghes.",
 	"Mercurial Colonies are _____.",
 	"The Skrell are celebrating _____ today.",

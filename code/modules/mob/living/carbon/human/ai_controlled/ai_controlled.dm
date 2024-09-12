@@ -121,7 +121,7 @@
 	generate_gender = TRUE
 	identifying_gender = NEUTER
 
-	faction = "xeno"
+	faction = FACTION_XENO
 
 	to_wear_helmet = /obj/item/clothing/head/helmet/dermal
 	to_wear_glasses = /obj/item/clothing/glasses/goggles

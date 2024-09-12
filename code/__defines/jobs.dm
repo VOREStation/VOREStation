@@ -5,6 +5,7 @@
 #define JOB_HEAD_OF_SECURITY "Head of Security"
 #define JOB_CHIEF_ENGINEER "Chief Engineer"
 #define JOB_RESEARCH_DIRECTOR "Research Director"
+#define JOB_CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
 
 // Station Security jobs
 #define JOB_WARDEN "Warden"
@@ -15,6 +16,9 @@
 #define JOB_ATMOSPHERIC_TECHNICIAN "Atmospheric Technician"
 #define JOB_ENGINEER "Engineer"
 
+// Station Medical jobs
+#define JOB_CHEMIST "Chemist"
+#define JOB_MEDICAL_DOCTOR "Medical Doctor"
 
 
 
@@ -24,6 +28,10 @@
 // Security alt titles
 #define JOB_ALT_FORENSIC_TECHNICIAN "Forensic Technician"
 #define JOB_ALT_JUNIOR_OFFICER "Junior Officer"
+
+// Medical alt titles
+#define JOB_ALT_PHARMACIST "Pharmacist"
+#define JOB_ALT_PHARMACOLOGIST "Pharmacologist"
 
 
 //Assistant/Visitor/Whatever

@@ -18,7 +18,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/talon_captain
 
 	offmap_spawn = TRUE
-	faction = "Station" //Required for SSjob to allow people to join as it
+	faction = FACTION_STATION //Required for SSjob to allow people to join as it
 	departments = list(DEPARTMENT_TALON)
 	total_positions = 1
 	spawn_positions = 1
@@ -45,7 +45,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/talon_doctor
 
 	offmap_spawn = TRUE
-	faction = "Station" //Required for SSjob to allow people to join as it
+	faction = FACTION_STATION //Required for SSjob to allow people to join as it
 	departments = list(DEPARTMENT_TALON)
 	total_positions = 1
 	spawn_positions = 1
@@ -72,7 +72,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/talon_engineer
 
 	offmap_spawn = TRUE
-	faction = "Station" //Required for SSjob to allow people to join as it
+	faction = FACTION_STATION //Required for SSjob to allow people to join as it
 	departments = list(DEPARTMENT_TALON)
 	total_positions = 1
 	spawn_positions = 1
@@ -99,7 +99,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/talon_pilot
 
 	offmap_spawn = TRUE
-	faction = "Station" //Required for SSjob to allow people to join as it
+	faction = FACTION_STATION //Required for SSjob to allow people to join as it
 	departments = list(DEPARTMENT_TALON)
 	total_positions = 1
 	spawn_positions = 1
@@ -126,7 +126,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/talon_security
 
 	offmap_spawn = TRUE
-	faction = "Station" //Required for SSjob to allow people to join as it
+	faction = FACTION_STATION //Required for SSjob to allow people to join as it
 	departments = list(DEPARTMENT_TALON)
 	total_positions = 1
 	spawn_positions = 1
@@ -152,7 +152,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/talon_miner
 
 	offmap_spawn = TRUE
-	faction = "Station" //Required for SSjob to allow people to join as it
+	faction = FACTION_STATION //Required for SSjob to allow people to join as it
 	departments = list(DEPARTMENT_TALON)
 	total_positions = 1
 	spawn_positions = 1

@@ -17,7 +17,7 @@
 	icon_living = "space_mouse"
 	icon_dead = "space_mouse_dead"
 
-	faction = "space mouse"
+	faction = FACTION_SPACE_MOUSE
 	maxHealth = 20
 	health = 20
 	movement_cooldown = -1

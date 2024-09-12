@@ -60,7 +60,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	pixel_x = -16
 	default_pixel_x = -16
 
-	faction = "teppi"
+	faction = FACTION_TEPPI
 	maxHealth = 600
 	health = 600
 	movement_cooldown = -1

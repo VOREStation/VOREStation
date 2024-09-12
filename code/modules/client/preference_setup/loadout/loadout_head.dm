@@ -394,7 +394,7 @@
 /datum/gear/head/med_hat_selector
 	display_name = "Medical - Basic Headwear"
 	description = "Select from a range of hats available to all Medical personnel."
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic")
 	path = /obj/item/clothing/head/soft/med
 
 /datum/gear/head/med_hat_selector/New()

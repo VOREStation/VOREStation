@@ -8,7 +8,7 @@
 	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_COMMAND)
 	sorting_order = 2
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_SITE_MANAGER
@@ -53,7 +53,7 @@
 	departments = list(DEPARTMENT_SECURITY)
 	sorting_order = 1
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_HEAD_OF_SECURITY
@@ -78,7 +78,7 @@
 	flag = DETECTIVE
 	departments = list(DEPARTMENT_SECURITY)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the " + JOB_HEAD_OF_SECURITY
@@ -108,7 +108,7 @@
 	flag = OFFICER
 	departments = list(DEPARTMENT_SECURITY)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the " + JOB_HEAD_OF_SECURITY

@@ -7,7 +7,7 @@
 	flag = INTERN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = ENGSEC // Ran out of bits
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "the staff from the department you're interning in"

@@ -8,7 +8,7 @@
 	departments = list(DEPARTMENT_RESEARCH, DEPARTMENT_COMMAND)
 	sorting_order = 2
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the " + JOB_SITE_MANAGER
@@ -51,7 +51,7 @@
 	flag = SCIENTIST
 	departments = list(DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 3
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
@@ -96,7 +96,7 @@
 	flag = XENOBIOLOGIST
 	departments = list(DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 2
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
@@ -130,7 +130,7 @@ VR edit end*/
 	flag = ROBOTICIST
 	departments = list(DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR

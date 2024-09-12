@@ -36,7 +36,7 @@
 	vore_eyes = TRUE
 	custom_eye_color = "#FF0000"
 
-	faction = "insects"
+	faction = FACTION_INSECTS
 	maxHealth = 200
 	health = 200
 	see_in_dark = 8

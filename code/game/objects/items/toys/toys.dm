@@ -311,8 +311,8 @@
 		playsound(src, 'sound/machines/click.ogg', 20, 1)
 
 /obj/item/toy/figure/cmo
-	name = "Chief Medical Officer action figure"
-	desc = "A \"Space Life\" brand Chief Medical Officer action figure."
+	name = JOB_CHIEF_MEDICAL_OFFICER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHIEF_MEDICAL_OFFICER + " action figure."
 	icon_state = "cmo"
 	toysay = "Suit sensors!"
 
@@ -377,8 +377,8 @@
 	toysay = "I swear it's not human meat."
 
 /obj/item/toy/figure/chemist
-	name = "Chemist action figure"
-	desc = "A \"Space Life\" brand Chemist action figure."
+	name = JOB_CHEMIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHEMIST + " action figure."
 	icon_state = "chemist"
 	toysay = "Get your pills!"
 
@@ -455,8 +455,8 @@
 	toysay = "One day while..."
 
 /obj/item/toy/figure/md
-	name = "Medical Doctor action figure"
-	desc = "A \"Space Life\" brand Medical Doctor action figure."
+	name = JOB_MEDICAL_DOCTOR + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_MEDICAL_DOCTOR + " action figure."
 	icon_state = "md"
 	toysay = "The patient is already dead!"
 

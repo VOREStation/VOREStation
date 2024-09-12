@@ -2,7 +2,7 @@
 	title = "CentCom Officer"
 	departments = list("Central Command")
 	department_accounts = list(DEPARTMENT_COMMAND, DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_SECURITY, DEPARTMENT_CARGO, DEPARTMENT_PLANET, DEPARTMENT_CIVILIAN)
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "company officials and Corporate Regulations"
@@ -28,7 +28,7 @@
 	title = "Emergency Responder"
 	departments = list("Central Command")
 	department_accounts = list(DEPARTMENT_COMMAND, DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_SECURITY, DEPARTMENT_CARGO, DEPARTMENT_PLANET, DEPARTMENT_CIVILIAN)
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "company officials and Corporate Regulations"
@@ -55,7 +55,7 @@
 	flag = CLOWN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the spirit of laughter"
@@ -86,7 +86,7 @@
 	flag = MIME
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the spirit of performance"

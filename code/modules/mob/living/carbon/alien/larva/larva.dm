@@ -7,7 +7,7 @@
 	language = "Hivemind"
 	maxHealth = 50
 	health = 50
-	faction = "xeno"
+	faction = FACTION_XENO
 	max_grown = 325 //Increase larva growth time due to not needing hosts.
 
 /mob/living/carbon/alien/larva/Initialize()

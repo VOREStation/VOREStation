@@ -158,7 +158,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/chemistry
 	name = "chemist cloak"
-	desc = "A soft Teshari cloak made for the Chemist"
+	desc = "A soft Teshari cloak made for the " + JOB_CHEMIST
 	icon_state = "tesh_cloak_chem"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/viro
@@ -639,7 +639,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/cmo
 	name = "chief medical officer belted  cloak"
-	desc = "A soft Teshari cloak made the Chief Medical Officer"
+	desc = "A soft Teshari cloak made the " + JOB_CHIEF_MEDICAL_OFFICER
 	icon_state = "tesh_beltcloak_cmo"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/medical
@@ -649,7 +649,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/chemistry
 	name = "chemist belted cloak"
-	desc = "A soft Teshari cloak made for the Chemist"
+	desc = "A soft Teshari cloak made for the " + JOB_CHEMIST
 	icon_state = "tesh_beltcloak_chem"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/viro
