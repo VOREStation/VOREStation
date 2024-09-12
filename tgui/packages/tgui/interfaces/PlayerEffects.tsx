@@ -7,7 +7,6 @@ import { Window } from '../layouts';
 export type Data = {
   real_name: string;
   player_ckey: string;
-  target_mob: string;
 };
 
 export const PlayerEffects = (props) => {
@@ -36,16 +35,16 @@ export const PlayerEffects = (props) => {
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
             Medical
           </Tabs.Tab>
-          <Tabs.Tab selected={tab === 2} onClick={() => setTab(1)}>
+          <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
             Abilities
           </Tabs.Tab>
-          <Tabs.Tab selected={tab === 3} onClick={() => setTab(1)}>
+          <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
             Inventory
           </Tabs.Tab>
-          <Tabs.Tab selected={tab === 4} onClick={() => setTab(1)}>
+          <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
             Admin
           </Tabs.Tab>
-          <Tabs.Tab selected={tab === 5} onClick={() => setTab(1)}>
+          <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
             Fixes
           </Tabs.Tab>
         </Tabs>

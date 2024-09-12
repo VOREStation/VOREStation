@@ -6,7 +6,8 @@
 		return
 
 	var/datum/eventkit/player_effects/spawner = new()
-	spawner.tgui_interact(usr, target)
+	spawner.target = target
+	spawner.tgui_interact(src)
 
 /datum/eventkit/player_effects
 	var/mob/target //The target of the effects
@@ -14,8 +15,7 @@
 /datum/eventkit/player_effects/New()
 	. = ..()
 
-/datum/eventkit/player_effects/tgui_interact(mob/user, mob/targetx, datum/tgui/ui)
-	target = targetx
+/datum/eventkit/player_effects/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PlayerEffects", "Player Effects")
@@ -37,20 +37,22 @@
 /datum/eventkit/player_effects/tgui_state(mob/user)
 	return GLOB.tgui_admin_state
 
-/datum/eventkit/player_effects/tgui_act(action, mob/target)
+/datum/eventkit/player_effects/tgui_act(action)
 	. = ..()
 	if(.)
 		return
 	if(!check_rights_for(usr.client, R_SPAWN))
 		return
 
-	var/ckey = target.ckey
-	var/mob/living/carbon/human/Tar = target
+	to_world("Recieved action")
+	to_world("Action: [action]")
+	to_world("Target: [target]")
 
 	switch(action)
 
 		////////////SMITES/////////////
 		if("break_legs")
+			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
 			var/broken_legs = 0
@@ -67,6 +69,7 @@
 			bluespace_artillery(target,src)
 
 		if("spont_combustion")
+			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
 			Tar.adjust_fire_stacks(10)
@@ -74,6 +77,9 @@
 			Tar.visible_message("<span class='danger'>[target] bursts into flames!</span>")
 
 		if("lightning_strike")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
 			var/turf/T = get_step(get_step(target, NORTH), NORTH)
 			T.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
 			Tar.electrocute_act(75,def_zone = BP_HEAD)
@@ -171,7 +177,7 @@
 			target.transforming = FALSE //Undo cheap hack
 
 			if(myself == "Control") //Put admin in mob
-				shadekin.ckey = ckey
+				shadekin.ckey = target.ckey
 
 			else //Permakin'd
 				to_chat(target,"<span class='danger'>You're carried off into The Dark by the [shadekin]. Who knows if you'll find your way back?</span>")
@@ -205,11 +211,14 @@
 			to_chat(target,"A bottle of spices appears at your feet... be careful what you wish for!")
 
 		if("terror")
-			if(ishuman(Tar))
-				Tar.fear = 200
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.fear = 200
 
 		////////MEDICAL//////////////
 
 		if("appendicitis")
+			var/mob/living/carbon/human/Tar = target
 			if(istype(Tar))
 				Tar.appendicitis()
