@@ -1738,6 +1738,7 @@
 #include "code\modules\admin\NewBan.dm"
 #include "code\modules\admin\news.dm"
 #include "code\modules\admin\persistence.dm"
+#include "code\modules\admin\player_effects.dm"
 #include "code\modules\admin\player_notes.dm"
 #include "code\modules\admin\player_panel.dm"
 #include "code\modules\admin\topic.dm"
