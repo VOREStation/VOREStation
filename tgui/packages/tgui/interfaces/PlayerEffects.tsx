@@ -62,23 +62,54 @@ export const ControlSmites = (props) => {
 
   return (
     <Section title="Smites">
-      <Button onClick={() => act('break_legs')}>Break Legs</Button>
-      <Button onClick={() => act('bluespace_artillery')}>
+      <Button fluid onClick={() => act('break_legs')}>
+        Break Legs
+      </Button>
+      <Button fluid onClick={() => act('bluespace_artillery')}>
         Bluespace Artillery
       </Button>
-      <Button onClick={() => act('spont_combustion')}>
+      <Button fluid onClick={() => act('spont_combustion')}>
         Spontaneous Combustion
       </Button>
-      <Button onClick={() => act('lightning_strike')}>Lightning Bolt</Button>
-      <Button onClick={() => act('shadekin_attack')}>Shadekin Attack</Button>
-      <Button onClick={() => act('shadekin_vore')}>Shadekin Vore</Button>
-      <Button onClick={() => act('redspace_abduct')}>Redspace Abduction</Button>
-      <Button onClick={() => act('autosave')}>Autosave</Button>
-      <Button onClick={() => act('autosave2')}>Autosave Long</Button>
-      <Button onClick={() => act('adspam')}>Ad Spam</Button>
-      <Button onClick={() => act('peppernade')}>Peppernade</Button>
-      <Button onClick={() => act('spicerequest')}>Spawn Spice</Button>
-      <Button onClick={() => act('terror')}>Terrify</Button>
+      <Button fluid onClick={() => act('lightning_strike')}>
+        Lightning Bolt
+      </Button>
+      <Button fluid onClick={() => act('shadekin_attack')}>
+        Shadekin Attack
+      </Button>
+      <Button fluid onClick={() => act('shadekin_vore')}>
+        Shadekin Vore
+      </Button>
+      <Button fluid onClick={() => act('redspace_abduct')}>
+        Redspace Abduction
+      </Button>
+      <Button fluid onClick={() => act('autosave')}>
+        Autosave
+      </Button>
+      <Button fluid onClick={() => act('autosave2')}>
+        Autosave AOE
+      </Button>
+      <Button fluid onClick={() => act('adspam')}>
+        Ad Spam
+      </Button>
+      <Button fluid onClick={() => act('peppernade')}>
+        Peppernade
+      </Button>
+      <Button fluid onClick={() => act('spicerequest')}>
+        Spawn Spice
+      </Button>
+      <Button fluid onClick={() => act('terror')}>
+        Terrify
+      </Button>
+      <Button fluid onClick={() => act('terror_aoe')}>
+        Terrify AOE
+      </Button>
+      <Button fluid onClick={() => act('spin')}>
+        Spin
+      </Button>
+      <Button fluid onClick={() => act('squish')}>
+        Squish
+      </Button>
     </Section>
   );
 };
@@ -88,7 +119,33 @@ export const ControlMedical = (props) => {
 
   return (
     <Section title="Medical Effects">
-      <Button onClick={() => act('appendicitis')}>Appendicitis</Button>
+      <Button fluid onClick={() => act('appendicitis')}>
+        Appendicitis
+      </Button>
+      <Button fluid onClick={() => act('repair_organ')}>
+        Repair Organ
+      </Button>
+      <Button fluid onClick={() => act('damage_organ')}>
+        Damage Organ/Limb
+      </Button>
+      <Button fluid onClick={() => act('break_bone')}>
+        Break Bone
+      </Button>
+      <Button fluid onClick={() => act('drop_organ')}>
+        Drop Organ/Limb
+      </Button>
+      <Button fluid onClick={() => act('assist_organ')}>
+        Make Organ Assisted
+      </Button>
+      <Button fluid onClick={() => act('robot_organ')}>
+        Make Organ Robotic
+      </Button>
+      <Button fluid onClick={() => act('rejuvenate')}>
+        Rejuvenate
+      </Button>
+      <Button fluid onClick={() => act('stasis')}>
+        Toggle Stasis
+      </Button>
     </Section>
   );
 };
@@ -97,8 +154,46 @@ export const ControlAbilities = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <Section title="Medical Effects">
-      <Button onClick={() => act('appendicitis')}>Appendicitis</Button>
+    <Section title="Grant Abilities">
+      <Button fluid onClick={() => act('vent_crawl')}>
+        Vent Crawl
+      </Button>
+      <Button fluid onClick={() => act('darksight')}>
+        Set Darksight
+      </Button>
+      <Button fluid onClick={() => act('cocoon')}>
+        Give Cocoon Transformation
+      </Button>
+      <Button fluid onClick={() => act('transformation')}>
+        Give TF verbs
+      </Button>
+      <Button fluid onClick={() => act('set_size')}>
+        Give Set Size
+      </Button>
+      <Button fluid onClick={() => act('lleill_energy')}>
+        Set Lleill Energy Levels
+      </Button>
+      <Button fluid onClick={() => act('lleill_invisibility')}>
+        Give Lleill Invisibility
+      </Button>
+      <Button fluid onClick={() => act('beast_form')}>
+        Give Leill Beast Form
+      </Button>
+      <Button fluid onClick={() => act('lleill_transmute')}>
+        Give Leill Transmutation
+      </Button>
+      <Button fluid onClick={() => act('lleill_alchemy')}>
+        Give Leill Alchemy
+      </Button>
+      <Button fluid onClick={() => act('lleill_drain')}>
+        Give Lleill Drain
+      </Button>
+      <Button fluid onClick={() => act('brutal_pred')}>
+        Give Brutal Predation
+      </Button>
+      <Button fluid onClick={() => act('trash_eater')}>
+        Give Trash Eater
+      </Button>
     </Section>
   );
 };
@@ -107,8 +202,25 @@ export const ControlInventory = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <Section title="Medical Effects">
-      <Button onClick={() => act('appendicitis')}>Appendicitis</Button>
+    <Section title="Inventory Controls">
+      <Button fluid onClick={() => act('drop_all')}>
+        Drop Everything
+      </Button>
+      <Button fluid onClick={() => act('drop_specific')}>
+        Drop Specific Item
+      </Button>
+      <Button fluid onClick={() => act('drop_held')}>
+        Drop Held Items
+      </Button>
+      <Button fluid onClick={() => act('list_all')}>
+        List All Items
+      </Button>
+      <Button fluid onClick={() => act('give_item')}>
+        Add Marked Item To Hands
+      </Button>
+      <Button fluid onClick={() => act('equip_item')}>
+        Equip Marked Item To Inventory
+      </Button>
     </Section>
   );
 };
@@ -117,8 +229,43 @@ export const ControlAdmin = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <Section title="Medical Effects">
-      <Button onClick={() => act('appendicitis')}>Appendicitis</Button>
+    <Section title="Admin Controls">
+      <Button fluid onClick={() => act('quick_nif')}>
+        Quick NIF
+      </Button>
+      <Button fluid onClick={() => act('resize')}>
+        Resize
+      </Button>
+      <Button fluid onClick={() => act('teleport')}>
+        Teleport
+      </Button>
+      <Button fluid onClick={() => act('gib')}>
+        Gib
+      </Button>
+      <Button fluid onClick={() => act('dust')}>
+        Dust
+      </Button>
+      <Button fluid onClick={() => act('paralyse')}>
+        Paralyse
+      </Button>
+      <Button fluid onClick={() => act('subtle_message')}>
+        Subtle Message
+      </Button>
+      <Button fluid onClick={() => act('direct_narrate')}>
+        Direct Narrate
+      </Button>
+      <Button fluid onClick={() => act('player_panel')}>
+        Open Player Panel
+      </Button>
+      <Button fluid onClick={() => act('view_variables')}>
+        Open View Variables
+      </Button>
+      <Button fluid onClick={() => act('ai')}>
+        Enable/Modify AI
+      </Button>
+      <Button fluid onClick={() => act('orbit')}>
+        Make Marked Datum Orbit
+      </Button>
     </Section>
   );
 };
@@ -127,8 +274,16 @@ export const ControlFixes = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <Section title="Medical Effects">
-      <Button onClick={() => act('appendicitis')}>Appendicitis</Button>
+    <Section title="Bug Fixes">
+      <Button fluid onClick={() => act('rejuvenate')}>
+        Rejuvenate
+      </Button>
+      <Button fluid onClick={() => act('popup-box')}>
+        Send Message Box
+      </Button>
+      <Button fluid onClick={() => act('stop-orbits')}>
+        Clear All Orbiters
+      </Button>
     </Section>
   );
 };

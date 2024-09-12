@@ -1,4 +1,4 @@
-/client/proc/player_effects(var/mob/target in player_list)
+/client/proc/player_effects(var/mob/target in mob_list)
 	set name = "Player Effects"
 	set desc = "Modify a player character with various 'special treatments' from a list."
 	set category = "Fun"
@@ -7,10 +7,12 @@
 
 	var/datum/eventkit/player_effects/spawner = new()
 	spawner.target = target
-	spawner.tgui_interact(src)
+	spawner.user = src.mob
+	spawner.tgui_interact(src.mob)
 
 /datum/eventkit/player_effects
 	var/mob/target //The target of the effects
+	var/mob/user
 
 /datum/eventkit/player_effects/New()
 	. = ..()
@@ -44,9 +46,7 @@
 	if(!check_rights_for(usr.client, R_SPAWN))
 		return
 
-	to_world("Recieved action")
-	to_world("Action: [action]")
-	to_world("Target: [target]")
+	log_and_message_admins("[key_name(user)] used player effect: [action] on [target.ckey] playing [target.name]")
 
 	switch(action)
 
@@ -63,7 +63,7 @@
 			if(right_leg && right_leg.fracture())
 				broken_legs++
 			if(!broken_legs)
-				to_chat(src,"[target] didn't have any breakable legs, sorry.")
+				to_chat(user,"[target] didn't have any breakable legs, sorry.")
 
 		if("bluespace_artillery")
 			bluespace_artillery(target,src)
@@ -216,9 +216,440 @@
 				return
 			Tar.fear = 200
 
+		if("terror_aoe")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			for(var/mob/living/carbon/human/L in orange(Tar.client.view, Tar))
+				L.fear = 200
+			Tar.fear = 200
+
+		if("spin")
+			var/speed = tgui_input_number(user, "Spin speed (minimum 0.1):", "Speed")
+			if(speed < 0.1)
+				return
+			var/loops = tgui_input_number(user, "Number of loops (-1 for infinite):", "Loops")
+			var/direction_ask = tgui_alert(user, "Clockwise or Anti-Clockwise", "Direction", list("Clockwise", "Anti-Clockwise", "Cancel"))
+			var/direction
+			if(direction_ask == "Clockwise")
+				direction = 1
+			if(direction_ask == "Anti-Clockwise")
+				direction = 0
+			if(direction_ask == "Cancel")
+				return
+			target.SpinAnimation(speed, loops, direction)
+
+		if("squish")
+			var/is_squished = target.tf_scale_x || target.tf_scale_y
+			playsound(target, 'sound/items/hooh.ogg', 50, 1)
+			if(!is_squished)
+				target.SetTransform(null, (target.size_multiplier * 1.2), (target.size_multiplier * 0.5))
+			else
+				target.ClearTransform()
+				target.update_transform()
+
 		////////MEDICAL//////////////
 
 		if("appendicitis")
 			var/mob/living/carbon/human/Tar = target
 			if(istype(Tar))
 				Tar.appendicitis()
+
+		if("damage_organ")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/organs = list()
+			for(var/obj/item/organ/I in Tar.organs)
+				organs |= I
+			for(var/obj/item/organ/I in Tar.internal_organs)
+				organs |= I
+			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to damage:", "Organs", organs)
+			if(!our_organ)
+				return
+			var/effect = tgui_alert(user, "What do you want to do to the Organ", "Effect", list("Damage", "Kill", "Bruise", "Cancel"))
+			if(effect == "Cancel")
+				return
+			if(effect == "Damage")
+				var/organ_damage = tgui_input_number(user, "Add how much damage? It is currently at [our_organ.damage].", "Damage")
+				our_organ.damage = max((our_organ.damage - organ_damage), 0)
+			if(effect == "Kill")
+				our_organ.die()
+			if(effect == "Bruise")
+				our_organ.bruise()
+
+		if("assist_organ")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/organs = list()
+			for(var/obj/item/organ/I in Tar.organs)
+				organs |= I
+			for(var/obj/item/organ/I in Tar.internal_organs)
+				organs |= I
+			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to become assisted:", "Organs", organs)
+			if(!our_organ)
+				return
+			our_organ.mechassist()
+
+		if("robot_organ")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/organs = list()
+			for(var/obj/item/organ/I in Tar.organs)
+				organs |= I
+			for(var/obj/item/organ/I in Tar.internal_organs)
+				organs |= I
+			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to become robotic:", "Organs", organs)
+			if(!our_organ)
+				return
+			our_organ.robotize()
+
+		if("repair_organ")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/organs = list()
+			for(var/obj/item/organ/I in Tar.organs)
+				organs |= I
+			for(var/obj/item/organ/I in Tar.internal_organs)
+				organs |= I
+			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to heal:", "Organs", organs)
+			if(!our_organ)
+				return
+			var/effect = tgui_alert(user, "What do you want to do to the Organ", "Effect", list("Heal", "Rejuvenate", "Cancel"))
+			if(effect == "Cancel")
+				return
+			if(effect == "Heal")
+				var/organ_damage = tgui_input_number(user, "Add how much damage? It is currently at [our_organ.damage].", "Damage")
+				our_organ.damage = max((our_organ.damage - organ_damage), 0)
+			if(effect == "Rejuvenate")
+				our_organ.rejuvenate()
+
+		if("drop_organ")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/organs = list()
+			for(var/obj/item/organ/I in Tar.organs)
+				organs |= I
+			for(var/obj/item/organ/I in Tar.internal_organs)
+				organs |= I
+			var/obj/item/organ/our_organ = tgui_input_list(user, "Choose an organ to damage:", "Organs", organs)
+			if(!our_organ)
+				return
+			our_organ.removed()
+
+		if("break_bone")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/organs = list()
+			for(var/obj/item/organ/external/E in Tar.organs)
+				organs |= E
+			var/obj/item/organ/external/our_organ = tgui_input_list(user, "Choose an bone to break:", "Organs", organs)
+			if(!our_organ)
+				return
+			our_organ.fracture()
+
+		if("stasis")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			if(Tar.in_stasis)
+				Tar.Stasis(0)
+			else
+				Tar.Stasis(100000)
+
+		////////ABILITIES//////////////
+
+		if("vent_crawl")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/proc/ventcrawl
+
+		if("darksight")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/current_darksight = Tar.species.darksight
+			var/change_sight = tgui_input_number(user, "What level do you wish to set their darksight to? It is currently [current_darksight].", "Darksight")
+			if(change_sight)
+				Tar.species.darksight = change_sight
+
+		if("cocoon")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/carbon/human/proc/enter_cocoon
+
+		if("transformation")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_hair
+			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_hair_colors
+			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
+			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_wings
+			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_tail
+			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_ears
+			Tar.verbs |= /mob/living/carbon/human/proc/lleill_select_shape //designed for non-shapeshifter mobs
+			Tar.verbs |= /mob/living/carbon/human/proc/lleill_select_colour
+
+		if("set_size")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/proc/set_size
+
+		if("lleill_energy")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/energy_max = tgui_input_number(user, "What should their max lleill energy be set to? It is currently [Tar.species.lleill_energy_max].", "Max energy")
+			Tar.species.lleill_energy_max = energy_max
+			var/energy_new = tgui_input_number(user, "What should their current lleill energy be set to? It is currently [Tar.species.lleill_energy].", "Max energy")
+			Tar.species.lleill_energy = energy_new
+
+		if("lleill_invisibility")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/carbon/human/proc/lleill_invisibility
+
+		if("beast_form")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/carbon/human/proc/lleill_beast_form
+
+		if("lleill_transmute")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/carbon/human/proc/lleill_transmute
+
+		if("lleill_alchemy")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/carbon/human/proc/lleill_alchemy
+
+		if("lleill_drain")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/carbon/human/proc/lleill_contact
+
+		if("brutal_pred")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/proc/shred_limb
+
+		if("trash_eater")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.verbs |= /mob/living/proc/eat_trash
+			Tar.verbs |= /mob/living/proc/toggle_trash_catching
+
+
+		////////INVENTORY//////////////
+
+		if("drop_all")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/confirm = tgui_alert(user, "Make [Tar] drop everything?", "Message", list("Yes", "No"))
+			if(confirm != "Yes")
+				return
+
+			for(var/obj/item/W in Tar)
+				if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif))	//VOREStation Edit - There's basically no reason to remove either of these
+					continue	//VOREStation Edit
+				Tar.drop_from_inventory(W)
+
+		if("drop_specific")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+
+			var/list/items = Tar.get_equipped_items()
+			var/item_to_drop = tgui_input_list(user, "Choose item to force drop:", "Drop Specific Item", items)
+			if(item_to_drop)
+				Tar.drop_from_inventory(item_to_drop)
+
+		if("drop_held")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.drop_l_hand()
+			Tar.drop_r_hand()
+
+		if("list_all")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.get_equipped_items()
+
+		if("give_item")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			if(!user.client.holder)
+				return
+			var/obj/item/X = user.client.holder.marked_datum
+			if(!istype(X))
+				return
+			Tar.put_in_hands(X)
+
+		if("equip_item")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			if(!user.client.holder)
+				return
+			var/obj/item/X = user.client.holder.marked_datum
+			if(!istype(X))
+				return
+			if(Tar.equip_to_appropriate_slot(X))
+				return
+			else
+				Tar.equip_to_storage(X)
+
+		////////ADMIN//////////////
+
+		if("quick_nif")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/input_NIF
+			if(!Tar.get_organ(BP_HEAD))
+				to_chat(user,"<span class='warning'>Target is unsuitable.</span>")
+				return
+			if(Tar.nif)
+				to_chat(user,"<span class='warning'>Target already has a NIF.</span>")
+				return
+			if(Tar.species.flags & NO_SCAN)
+				var/obj/item/device/nif/S = /obj/item/device/nif/bioadap
+				input_NIF = initial(S.name)
+				new /obj/item/device/nif/bioadap(Tar)
+			else
+				var/list/NIF_types = typesof(/obj/item/device/nif)
+				var/list/NIFs = list()
+
+				for(var/NIF_type in NIF_types)
+					var/obj/item/device/nif/S = NIF_type
+					NIFs[capitalize(initial(S.name))] = NIF_type
+
+				var/list/show_NIFs = sortList(NIFs) // the list that will be shown to the user to pick from
+
+				input_NIF = tgui_input_list(user, "Pick the NIF type","Quick NIF", show_NIFs)
+				var/chosen_NIF = NIFs[capitalize(input_NIF)]
+
+				if(chosen_NIF)
+					new chosen_NIF(Tar)
+				else
+					new /obj/item/device/nif(Tar)
+			log_and_message_admins("[key_name(user)] Quick NIF'd [Tar.real_name] with a [input_NIF].")
+
+		if("resize")
+			user.client.resize(target)
+
+		if("teleport")
+			var/where = tgui_alert(user, "Where to teleport?", "Where?", list("To Me", "To Mob", "To Area", "Cancel"))
+			if(where == "Cancel")
+				return
+			if(where == "To Me")
+				user.client.Getmob(target)
+			if(where == "To Mob")
+				var/mob/selection = tgui_input_list(usr, "Select a mob to jump [target] to:", "Jump to mob", mob_list)
+				target.on_mob_jump()
+				target.forceMove(get_turf(selection))
+				log_admin("[key_name(user)] jumped [target] to [selection]")
+			if(where == "To Area")
+				var/area/A
+				A = tgui_input_list(user, "Pick an area to teleport [target] to:", "Jump to Area", return_sorted_areas())
+				target.on_mob_jump()
+				target.forceMove(pick(get_area_turfs(A)))
+				log_admin("[key_name(user)] jumped [target] to [A]")
+
+		if("gib")
+			var/death = tgui_alert(user, "Are you sure you want to destroy [target]?", "Gib?", list("KILL", "Cancel"))
+			if(death == "KILL")
+				target.gib()
+
+		if("dust")
+			var/death = tgui_alert(user, "Are you sure you want to destroy [target]?", "Dust?", list("KILL", "Cancel"))
+			if(death == "KILL")
+				target.dust()
+
+		if("paralyse")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			user.client.holder.paralyze_mob(Tar)
+
+		if("subtle_message")
+			user.client.cmd_admin_subtle_message(target)
+
+		if("direct_narrate")
+			user.client.cmd_admin_direct_narrate(target)
+
+		if("player_panel")
+			user.client.holder.show_player_panel(target)
+
+		if("view_variables")
+			user.client.debug_variables(target)
+
+		if("orbit")
+			if(!user.client.holder.marked_datum)
+				return
+			var/atom/movable/X = user.client.holder.marked_datum
+			X.orbit(target)
+
+		if("ai")
+			if(!istype(target, /mob/living))
+				to_chat(usr, span_notice("This can only be used on instances of type /mob/living"))
+				return
+			var/mob/living/L = target
+			if(L.client || L.teleop)
+				to_chat(usr, span_warning("This cannot be used on player mobs!"))
+				return
+
+			if(L.ai_holder)	//Cleaning up the original ai
+				var/ai_holder_old = L.ai_holder
+				L.ai_holder = null
+				qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
+			L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
+			L.initialize_ai_holder()
+			L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
+			L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
+			if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
+				L.AdjustSleeping(-100)
+
+
+		////////FIXES//////////////
+
+		if("rejuvenate")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.rejuvenate()
+
+		if("popup-box")
+			var/message = tgui_input_text(user, "Write a message to send to the user with a space for them to reply without using the text box:", "Message")
+			if(!message)
+				return
+			log_admin("[key_name(user)] sent message to [target]: [message]")
+			var/reply = tgui_input_text(target, "An admin has sent you a message: [message]", "Reply")
+			if(!reply)
+				return
+			log_and_message_admins("[key_name(target)] replied to [user]'s message: [reply].")
+
+		if("stop-orbits")
+			for(var/datum/orbit/X in target.orbiters)
+				X.orbiter.stop_orbit()
