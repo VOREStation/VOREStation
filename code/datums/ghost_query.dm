@@ -53,7 +53,7 @@
 /// Send async alerts and ask for responses. Expects you to have tested D for client and type already
 /datum/ghost_query/proc/ask_question(var/mob/observer/dead/D)
 	//VOREStation Add Start		Check the ban status before we ask
-	if(jobban_isbanned(D, "GhostRoles"))
+	if(jobban_isbanned(D, JOB_GHOSTROLES))
 		return
 	//VOREStation Add End
 
@@ -128,7 +128,7 @@
 	role_name = "Technomancer Apprentice"
 	question = "A Technomancer is requesting an Apprentice to help them on their adventure to the facility.  Would you like to play as the Apprentice?"
 	be_special_flag = BE_WIZARD
-	check_bans = list("Syndicate", "wizard")
+	check_bans = list(JOB_SYNDICATE, JOB_WIZARD)
 	cutoff_number = 1
 
 /datum/ghost_query/xeno
@@ -141,7 +141,7 @@
 	role_name = "Xenomorph Larva"
 	question = "A xenomorph larva is ready to hatch from their egg. Would you like to join the hive?"
 	be_special_flag = BE_ALIEN
-	check_bans = list("Xenomorph")
+	check_bans = list(JOB_XENOMORPH)
 	cutoff_number = 1
 
 
@@ -156,14 +156,14 @@
 	role_name = "Mercenary Drone"
 	question = "A team of dubious mercenaries have purchased a powerful drone, and they are attempting to activate it.  Would you like to play as the drone?"
 	be_special_flag = BE_AI
-	check_bans = list(JOB_AI, JOB_CYBORG, "Syndicate")
+	check_bans = list(JOB_AI, JOB_CYBORG, JOB_SYNDICATE)
 	cutoff_number = 1
 
 /datum/ghost_query/borer
 	role_name = "Cortical Borer"
 	question = "A cortical borer has just been created on the facility.  Would you like to play as them?"
 	be_special_flag = BE_ALIEN
-	check_bans = list("Syndicate", "Borer")
+	check_bans = list(JOB_SYNDICATE, JOB_BORER)
 	cutoff_number = 1
 
 // Surface stuff.

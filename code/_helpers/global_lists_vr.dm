@@ -511,9 +511,9 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_SHADEKIN)			//Shadefluffers just poof away
 
 /var/global/list/alt_titles_with_icons = list(
-				"Virologist",
-				"Apprentice Engineer",
-				"Medical Intern",
+				JOB_ALT_VIROLOGIST,
+				JOB_ALT_APPRENTICE_ENGINEER,
+				JOB_ALT_MEDICAL_INTERN,
 				"Research Intern",
 				"Security Cadet",
 				"Jr. Cargo Tech",

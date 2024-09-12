@@ -83,7 +83,7 @@
 			dismantle()
 		return
 	else if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/photo))
-		if(jobban_isbanned(user, "Graffiti"))
+		if(jobban_isbanned(user, JOB_GRAFFITI))
 			to_chat(user, "<span class='warning'>You are banned from leaving persistent information across rounds.</span>")
 		else
 			if(LAZYLEN(notices) < max_notices && user.unEquip(I, src))

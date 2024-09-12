@@ -101,7 +101,7 @@ var/list/ghost_traps
 // Doona pods and walking mushrooms.
 /datum/ghosttrap/plant
 	object = "living plant"
-	ban_checks = list("Dionaea")
+	ban_checks = list(JOB_DIONAEA)
 	pref_check = BE_PLANT
 	ghost_trap_message = "They are occupying a living plant now."
 	ghost_trap_role = "Plant"

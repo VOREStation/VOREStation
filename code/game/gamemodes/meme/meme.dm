@@ -66,8 +66,8 @@
 		// so that we can later know which host belongs to which meme
 		assigned_hosts[meme.key] = first_host
 
-		meme.assigned_role = "MODE" //So they aren't chosen for other jobs.
-		meme.special_role = "Meme"
+		meme.assigned_role = JOB_MODE //So they aren't chosen for other jobs.
+		meme.special_role = JOB_MEME
 
 	return 1
 

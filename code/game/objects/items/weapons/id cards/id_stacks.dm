@@ -104,8 +104,9 @@
 	rank = JOB_PSYCHIATRIST
 
 /obj/item/weapon/card/id/medical/virologist
-	name = "Virologist's ID"
+	name = JOB_ALT_VIROLOGIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-green")
+	rank = JOB_ALT_VIROLOGIST
 
 /obj/item/weapon/card/id/medical/emt
 	name = "Emergency Medical Technician's ID"
@@ -325,6 +326,7 @@
 /obj/item/weapon/card/id/syndicate
 	name = "Syndicate ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s")
+	rank = JOB_SYNDICATE
 
 /obj/item/weapon/card/id/syndicate/officer
 	name = "Syndicate Officer ID"

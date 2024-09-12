@@ -479,8 +479,8 @@
 	toysay = "Oh god! Stop shooting, I'm friendly!"
 
 /obj/item/toy/figure/wizard
-	name = "Wizard action figure"
-	desc = "A \"Space Life\" brand Wizard action figure."
+	name = JOB_WIZARD + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_WIZARD + " action figure."
 	icon_state = "wizard"
 	toysay = "Ei Nath!"
 
@@ -515,8 +515,8 @@
 	toysay = "I am the law!"
 
 /obj/item/toy/figure/virologist
-	name = "Virologist action figure"
-	desc = "A \"Space Life\" brand Virologist action figure."
+	name = JOB_ALT_VIROLOGIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ALT_VIROLOGIST + " action figure."
 	icon_state = "virologist"
 	toysay = "The cure is potassium!"
 
@@ -539,8 +539,8 @@
 	toysay = "WHERE ARE YOU??"
 
 /obj/item/toy/figure/ert
-	name = "Emergency Response Team Commander action figure"
-	desc = "A \"Space Life\" brand Emergency Response Team Commander action figure."
+	name = JOB_EMERGENCY_RESPONSE_TEAM + " Commander action figure"
+	desc = "A \"Space Life\" brand " + JOB_EMERGENCY_RESPONSE_TEAM + " Commander action figure."
 	icon_state = "ert"
 	toysay = "We're probably the good guys!"
 

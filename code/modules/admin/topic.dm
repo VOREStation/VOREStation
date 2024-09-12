@@ -629,7 +629,7 @@
 
 	//Antagonist (Orange)
 		counter = 0
-		var/isbanned_dept = jobban_isbanned(M, "Syndicate")
+		var/isbanned_dept = jobban_isbanned(M, JOB_SYNDICATE)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(all_antag_types)]'><a href='?src=\ref[src];[HrefToken()];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
 
@@ -652,7 +652,7 @@
 
 	//Misc 'roles'
 		counter = 0
-		var/list/misc_roles = list("Dionaea", "Graffiti", "Custom loadout", "pAI", "GhostRoles", "AntagHUD")
+		var/list/misc_roles = list(JOB_DIONAEA, JOB_GRAFFITI, JOB_CUSTOM_LOADOUT, JOB_PAI, JOB_GHOSTROLES, JOB_ANTAGHUD)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		jobs += "<tr bgcolor='ccccff'><th colspan='[length(misc_roles)]'>Other Roles</th></tr><tr align='center'>"
 		for(var/entry in misc_roles)

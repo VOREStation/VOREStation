@@ -16,8 +16,8 @@
 	access = list()			//See /datum/job/intern/get_access()
 	minimal_access = list()	//See /datum/job/intern/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant/intern
-	alt_titles = list("Apprentice Engineer" = /datum/alt_title/intern_eng,
-					  "Medical Intern" = /datum/alt_title/intern_med,
+	alt_titles = list(JOB_ALT_APPRENTICE_ENGINEER = /datum/alt_title/intern_eng,
+					  JOB_ALT_MEDICAL_INTERN = /datum/alt_title/intern_med,
 					  "Research Intern" = /datum/alt_title/intern_sci,
 					  "Security Cadet" = /datum/alt_title/intern_sec,
 					  "Jr. Cargo Tech" = /datum/alt_title/intern_crg,
@@ -29,15 +29,15 @@
 	requestable = FALSE
 
 /datum/alt_title/intern_eng
-	title = "Apprentice Engineer"
-	title_blurb = "An Apprentice Engineer attempts to provide whatever the Engineering department needs. They are not proper Engineers, and are \
-					often in training to become an Engineer. An Apprentice Engineer has no real authority."
+	title = JOB_ALT_APPRENTICE_ENGINEER
+	title_blurb = "An " + JOB_ALT_APPRENTICE_ENGINEER + " attempts to provide whatever the Engineering department needs. They are not proper Engineers, and are \
+					often in training to become an Engineer. An " + JOB_ALT_APPRENTICE_ENGINEER + " has no real authority."
 	title_outfit = /decl/hierarchy/outfit/job/assistant/engineer
 
 /datum/alt_title/intern_med
-	title = "Medical Intern"
-	title_blurb = "A Medical Intern attempts to provide whatever the Medical department needs. They are not proper Doctors, and are \
-					often in training to become a Doctor. A Medical Intern has no real authority."
+	title = JOB_ALT_MEDICAL_INTERN
+	title_blurb = "A " + JOB_ALT_MEDICAL_INTERN + " attempts to provide whatever the Medical department needs. They are not proper Doctors, and are \
+					often in training to become a Doctor. A " + JOB_ALT_MEDICAL_INTERN + " has no real authority."
 	title_outfit = /decl/hierarchy/outfit/job/assistant/medic
 
 /datum/alt_title/intern_sci

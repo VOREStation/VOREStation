@@ -67,7 +67,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	else if(time_till_respawn) // Nonzero time to respawn
 		to_chat(usr, "<span class='warning'>You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
 		return
-	if(jobban_isbanned(usr, "pAI"))
+	if(jobban_isbanned(usr, JOB_PAI))
 		to_chat(usr,"<span class='warning'>You cannot join a pAI card when you are banned from playing as a pAI.</span>")
 		return
 

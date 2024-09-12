@@ -203,9 +203,10 @@
 	access |= get_all_station_access()
 
 /obj/item/weapon/card/id/centcom/ERT
-	name = "\improper Emergency Response Team ID"
-	assignment = "Emergency Response Team"
+	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
+	assignment = JOB_EMERGENCY_RESPONSE_TEAM
 	icon_state = "ert-id"
+	rank = JOB_EMERGENCY_RESPONSE_TEAM
 
 /obj/item/weapon/card/id/centcom/ERT/Initialize()
 	. = ..()
@@ -404,7 +405,7 @@
 /obj/item/weapon/card/id/event/accessset/itg/crew/pilot
 	name = "\improper ITG Pilot's ID"
 	desc = "An ID card belonging to the Pilot of an ITG vessel. The Pilot's responsibility is primarily to fly the ship. They may also be tasked to assist with cargo movement duties."
-	assignment = "v
+	assignment = JOB_PILOT
 	rank = JOB_PILOT
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/service

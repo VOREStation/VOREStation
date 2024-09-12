@@ -19,7 +19,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 	job_description = "An Assistant does whatever is requested of them. Though they are part of the crew, they have no real authority."
 /*	alt_titles = list("Technical Assistant" = /datum/alt_title/tech_assist,
-						"Medical Intern"= /datum/alt_title/med_intern, "Research Assistant" = /datum/alt_title/research_assist,
+						JOB_ALT_MEDICAL_INTERN= /datum/alt_title/med_intern, "Research Assistant" = /datum/alt_title/research_assist,
 						"Visitor" = /datum/alt_title/visitor)
 	)	*/	//VOREStation Removal: no alt-titles for visitors
 
@@ -36,9 +36,9 @@
 					often in training to become an " + JOB_ENGINEER + ". A Technical Assistant has no real authority."
 
 /datum/alt_title/med_intern
-	title = "Medical Intern"
-	title_blurb = "A Medical Intern attempts to provide whatever the Medical department needs. They are frequently asked to pay attention to \
-					the suit sensors console. A Medical Intern has no real authority."
+	title = JOB_ALT_MEDICAL_INTERN
+	title_blurb = "A " + JOB_ALT_MEDICAL_INTERN + " attempts to provide whatever the Medical department needs. They are frequently asked to pay attention to \
+					the suit sensors console. A " + JOB_ALT_MEDICAL_INTERN + " has no real authority."
 
 /datum/alt_title/research_assist
 	title = "Research Assistant"
@@ -53,7 +53,7 @@
 	title_outfit = /decl/hierarchy/outfit/job/assistant/visitor
 
 /datum/alt_title/resident		// Just in case it makes a comeback
-	title = "Resident"
-	title_blurb = "A Resident is an individual who resides on the station, frequently in a different part of the station than what is seen. \
+	title = JOB_ALT_RESIDENT
+	title_blurb = "A " + JOB_ALT_RESIDENT + " is an individual who resides on the station, frequently in a different part of the station than what is seen. \
 					They are considered to be part of the crew for most purposes, but have no real authority."
 	title_outfit = /decl/hierarchy/outfit/job/assistant/resident

@@ -82,7 +82,7 @@
 	item_state_slots = list(slot_r_hand_str = "chemist_labcoat", slot_l_hand_str = "chemist_labcoat")
 
 /obj/item/clothing/suit/storage/toggle/labcoat/virologist
-	name = "Virologist labcoat"
+	name = JOB_ALT_VIROLOGIST + " labcoat"
 	desc = "A suit that protects against minor chemical spills. Offers slightly more protection against biohazards than the standard model. Has a green stripe on the shoulder."
 	icon_state = "labcoat_vir"
 	item_state_slots = list(slot_r_hand_str = "virologist_labcoat", slot_l_hand_str = "virologist_labcoat")

@@ -287,7 +287,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/viro
 	name = "virologist undercoat"
-	desc = "A traditional Teshari garb made for the Virologist"
+	desc = "A traditional Teshari garb made for the " + JOB_ALT_VIROLOGIST
 	icon_state = "tesh_uniform_viro"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/psych

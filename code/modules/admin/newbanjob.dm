@@ -153,7 +153,7 @@ var/savefile/Banlistjob
 	if(rank == RANK_VIROLOGIST_RD_CMO)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHIEF_MEDICAL_OFFICER)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_RESEARCH_DIRECTOR)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Virologist")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_ALT_VIROLOGIST)
 		return 1
 
 	Banlistjob.cd = "/base"

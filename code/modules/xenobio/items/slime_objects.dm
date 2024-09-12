@@ -53,7 +53,7 @@
 	var/mob/living/carbon/human/S = new(get_turf(src))
 	S.client = candidate.client
 	to_chat(S, "<b>You are a promethean, brought into existence on [station_name()].</b>")
-	S.mind.assigned_role = "Promethean"
+	S.mind.assigned_role = JOB_PROMETHEAN
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#2398FF")
 	visible_message("<span class='warning'>The monkey cube suddenly takes the shape of a humanoid!</span>")

@@ -59,7 +59,7 @@
 					"Surgeon" = /datum/alt_title/surgeon,
 					"Emergency Physician" = /datum/alt_title/emergency_physician,
 					"Nurse" = /datum/alt_title/nurse,
-					"Virologist" = /datum/alt_title/virologist)
+					JOB_ALT_VIROLOGIST = /datum/alt_title/virologist)
 
 	min_age_by_species = list(SPECIES_PROMETHEAN = 3)
 
@@ -85,8 +85,8 @@
 	title_outfit = /decl/hierarchy/outfit/job/medical/doctor/nurse
 
 /datum/alt_title/virologist
-	title = "Virologist"
-	title_blurb = "A Virologist cures active diseases in the crew, and prepares antibodies for possible infections. They also have the skills \
+	title = JOB_ALT_VIROLOGIST
+	title_blurb = "A " + JOB_ALT_VIROLOGIST + " cures active diseases in the crew, and prepares antibodies for possible infections. They also have the skills \
 					to produce the various types of virus foods or mutagens."
 	title_outfit = /decl/hierarchy/outfit/job/medical/doctor/virologist
 

@@ -37,7 +37,7 @@
 	head = /obj/item/clothing/head/surgery/blue
 
 /decl/hierarchy/outfit/job/medical/doctor/virologist
-	name = OUTFIT_JOB_NAME("Virologist")
+	name = OUTFIT_JOB_NAME(JOB_ALT_VIROLOGIST)
 	uniform = /obj/item/clothing/under/rank/virologist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/virologist
 	mask = /obj/item/clothing/mask/surgical

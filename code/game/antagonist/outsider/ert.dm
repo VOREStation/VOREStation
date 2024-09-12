@@ -2,7 +2,7 @@ var/datum/antagonist/ert/ert
 
 /datum/antagonist/ert
 	id = MODE_ERT
-	bantype = "Emergency Response Team"
+	bantype = JOB_EMERGENCY_RESPONSE_TEAM
 	role_type = BE_OPERATIVE
 	role_text = "Emergency Responder"
 	role_text_plural = "Emergency Responders"

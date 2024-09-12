@@ -1401,7 +1401,7 @@
 	name = "Sneezes and Coughs: A Guide To Virology, 1st Edition"
 	icon_state = "bookvirology"
 	item_state = "book5"
-	author = "James Simpson, Chief Virologist"
+	author = "James Simpson, Chief " + JOB_ALT_VIROLOGIST
 	title = "Sneezes and Coughs: A Guide To Virology, 1st Edition"
 	dat = {"<html>
 				<head>

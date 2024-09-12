@@ -34,7 +34,7 @@ var/const/access_explorer = 43
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."
 
 	alt_titles = list(
-		"Pilot" = /decl/hierarchy/outfit/job/pilot)
+		JOB_PILOT = /decl/hierarchy/outfit/job/pilot)
 
 /datum/job/rd
     access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,

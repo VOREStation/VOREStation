@@ -2,8 +2,8 @@
 /datum/job/assistant
 	alt_titles = list(
 		"Technical Assistant",
-		"Medical Intern",
+		JOB_ALT_MEDICAL_INTERN,
 		"Research Assistant",
 		USELESS_JOB = /decl/hierarchy/outfit/job/assistant/visitor,
-		"Resident" = /decl/hierarchy/outfit/job/assistant/resident
+		JOB_ALT_RESIDENT = /decl/hierarchy/outfit/job/assistant/resident
 	)

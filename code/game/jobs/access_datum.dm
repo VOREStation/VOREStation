@@ -430,7 +430,7 @@ var/const/access_pilot = 67
 /var/const/access_cent_specops = 103//Special Ops.
 /datum/access/cent_specops
 	id = access_cent_specops
-	desc = "Emergency Response Team Prep"
+	desc = JOB_EMERGENCY_RESPONSE_TEAM + " Prep"
 	access_type = ACCESS_TYPE_CENTCOM
 
 /var/const/access_cent_medical = 104//Medical/Research
@@ -460,7 +460,7 @@ var/const/access_pilot = 67
 /var/const/access_cent_creed = 108//Creed's office.
 /datum/access/cent_creed
 	id = access_cent_creed
-	desc = "Emergency Response Team Administration"
+	desc = JOB_EMERGENCY_RESPONSE_TEAM + " Administration"
 	access_type = ACCESS_TYPE_CENTCOM
 
 /var/const/access_cent_captain = 109//Captain's office/ID comp/AI.

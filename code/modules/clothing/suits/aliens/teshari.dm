@@ -163,7 +163,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/viro
 	name = "virologist cloak"
-	desc = "A soft Teshari cloak made for the Virologist"
+	desc = "A soft Teshari cloak made for the " + JOB_ALT_VIROLOGIST
 	icon_state = "tesh_cloak_viro"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/para
@@ -654,7 +654,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/viro
 	name = "virologist belted cloak"
-	desc = "A soft Teshari cloak made for the Virologist"
+	desc = "A soft Teshari cloak made for the " + JOB_ALT_VIROLOGIST
 	icon_state = "tesh_beltcloak_viro"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/para

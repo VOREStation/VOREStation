@@ -527,11 +527,11 @@
 //slime
 /mob/living/simple_mob/slime/mind_initialize()
 	. = ..()
-	mind.assigned_role = "slime"
+	mind.assigned_role = JOB_SLIME
 
 /mob/living/carbon/alien/larva/mind_initialize()
 	. = ..()
-	mind.special_role = "Larva"
+	mind.special_role = JOB_LARVA
 
 //AI
 /mob/living/silicon/ai/mind_initialize()
@@ -546,34 +546,34 @@
 //PAI
 /mob/living/silicon/pai/mind_initialize()
 	. = ..()
-	mind.assigned_role = "pAI"
+	mind.assigned_role = JOB_PAI
 	mind.special_role = ""
 
 //Animals
 /mob/living/simple_mob/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Simple Mob"
+	mind.assigned_role = JOB_SIMPLE_MOB
 
 /mob/living/simple_mob/animal/passive/dog/corgi/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Corgi"
+	mind.assigned_role = JOB_CORGI
 
 /mob/living/simple_mob/construct/shade/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Shade"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_SHADE
+	mind.special_role = JOB_CULTIST
 
 /mob/living/simple_mob/construct/artificer/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Artificer"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_ARTIFICER
+	mind.special_role = JOB_CULTIST
 
 /mob/living/simple_mob/construct/wraith/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Wraith"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_WRAITH
+	mind.special_role = JOB_CULTIST
 
 /mob/living/simple_mob/construct/juggernaut/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Juggernaut"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_JUGGERNAUT
+	mind.special_role = JOB_CULTIST
