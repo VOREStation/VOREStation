@@ -262,7 +262,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/qm
 	name = "quartermaster undercoat"
-	desc = "A traditional Teshari garb made for the Quartermaster"
+	desc = "A traditional Teshari garb made for the " + JOB_QUARTERMASTER
 	icon_state = "tesh_uniform_qm"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/cargo
@@ -292,12 +292,12 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/psych
 	name = "psychiatrist undercoat"
-	desc = "A traditional Teshari garb made for the Psychiatrist"
+	desc = "A traditional Teshari garb made for the " + JOB_PSYCHIATRIST
 	icon_state = "tesh_uniform_psych"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/para
 	name = "paramedic undercoat"
-	desc = "A traditional Teshari garb made for the Paramedic"
+	desc = "A traditional Teshari garb made for the " + JOB_PARAMEDIC
 	icon_state = "tesh_uniform_para"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/sci
@@ -307,7 +307,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/robo
 	name = "roboticist undercoat"
-	desc = "A traditional Teshari garb made for the Roboticist"
+	desc = "A traditional Teshari garb made for the " + JOB_ROBOTICIST
 	icon_state = "tesh_uniform_robo"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/sec

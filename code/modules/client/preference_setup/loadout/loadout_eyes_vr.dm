@@ -1,5 +1,5 @@
 /datum/gear/eyes/medical
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/eyes/arglasses
 	display_name = "AR glasses"
@@ -24,7 +24,7 @@
 /datum/gear/eyes/arglasses/sci
 	display_name = "AR-Research glasses"
 	path = /obj/item/clothing/glasses/omnihud/rnd
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist","Xenobiologist","Xenobotanist","Roboticist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST,JOB_XENOBIOLOGIST,JOB_XENOBOTANIST,JOB_ROBOTICIST)
 
 /datum/gear/eyes/arglasses/eng
 	display_name = "AR-Engineering glasses"
@@ -34,7 +34,7 @@
 /datum/gear/eyes/arglasses/med
 	display_name = "AR-Medical glasses"
 	path = /obj/item/clothing/glasses/omnihud/med
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/eyes/arglasses/all
 	display_name = "AR-Command glasses"

@@ -65,7 +65,7 @@
 	"Waking up naked in the maintenance tunnels",
 	"Horrible cloning accidents",
 	"Licking the supermatter due to a dare",
-	"A Quartermaster who WON'T STOP ordering guns",
+	"A " + JOB_QUARTERMASTER + " who WON'T STOP ordering guns",
 	"Teaching a synthetic the Birds and the Bees",
 	"Unnecessary surgery",
 	"My addiction to spiders",

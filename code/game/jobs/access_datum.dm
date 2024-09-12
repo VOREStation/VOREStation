@@ -253,7 +253,7 @@
 /var/const/access_qm = 41
 /datum/access/qm
 	id = access_qm
-	desc = "Quartermaster"
+	desc = JOB_QUARTERMASTER
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_network = 42
@@ -265,13 +265,13 @@
 var/const/access_explorer = 43
 /datum/access/explorer
 	id = access_explorer
-	desc = "Away Team"
+	desc = JOB_EXPLORER
 	region = ACCESS_REGION_GENERAL
 /*
 /var/const/access_pathfinder = 44
 /datum/access/pathfinder
 	id = access_pathfinder
-	desc = "Pathfinder"
+	desc = JOB_PATHFINDER
 	region = ACCESS_REGION_GENERAL
 */
 
@@ -379,7 +379,7 @@ var/const/access_explorer = 43
 /var/const/access_psychiatrist = 64 // Psychiatrist's office
 /datum/access/psychiatrist
 	id = access_psychiatrist
-	desc = "Psychiatrist's Office"
+	desc = JOB_PSYCHIATRIST + "'s Office"
 	region = ACCESS_REGION_MEDBAY
 
 /var/const/access_xenoarch = 65

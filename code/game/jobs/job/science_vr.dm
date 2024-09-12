@@ -59,12 +59,12 @@
 
 /datum/alt_title/circuit_designer
 	title = "Circuit Designer"
-	title_blurb = "A Circuit Designer is a Scientist whose expertise is working with integrated circuits. They are familar with the workings and programming of those devices. \
+	title_blurb = "A Circuit Designer is a " + JOB_SCIENTIST + " whose expertise is working with integrated circuits. They are familar with the workings and programming of those devices. \
 				   They work to create various useful devices using the capabilities of integrated circuitry."
 
 /datum/alt_title/circuit_programmer
 	title = "Circuit Programmer"
-	title_blurb = "A Circuit Programmer is a Scientist whose expertise is working with integrated circuits. They are familar with the workings and programming of those devices. \
+	title_blurb = "A Circuit Programmer is a " + JOB_SCIENTIST + " whose expertise is working with integrated circuits. They are familar with the workings and programming of those devices. \
 				   They work to create various useful devices using the capabilities of integrated circuitry."
 
 /datum/job/scientist/get_request_reasons()
@@ -98,7 +98,7 @@
 //			Xenobotanist
 //////////////////////////////////
 /datum/job/xenobotanist
-	title = "Xenobotanist"
+	title = JOB_XENOBOTANIST
 	flag = XENOBOTANIST
 	departments = list(DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
@@ -115,7 +115,7 @@
 	minimal_player_age = 14
 
 	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
-	job_description = "A Xenobotanist grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
+	job_description = "A " + JOB_XENOBOTANIST + " grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
 					are both safe and beneficial to the station, they may choose to introduce it to the rest of the crew."
 	alt_titles = list("Xenohydroponicist" = /datum/alt_title/xenohydroponicist, "Xenoflorist" = /datum/alt_title/xenoflorist)
 

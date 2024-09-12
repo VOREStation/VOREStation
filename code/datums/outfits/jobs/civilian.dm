@@ -108,7 +108,7 @@
 	pda_type = /obj/item/device/pda/chaplain
 
 /decl/hierarchy/outfit/job/explorer
-	name = OUTFIT_JOB_NAME("Explorer")
+	name = OUTFIT_JOB_NAME(JOB_EXPLORER)
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	uniform = /obj/item/clothing/under/explorer
 	mask = /obj/item/clothing/mask/gas/explorer
@@ -120,4 +120,4 @@
 	pda_slot = slot_belt
 	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
 	r_pocket = /obj/item/device/gps/explorer
-	id_pda_assignment = "Explorer"
+	id_pda_assignment = JOB_EXPLORER

@@ -294,8 +294,8 @@
 	desc = "A card which represents service and planning."
 	primary_color = rgb(142,94,0)
 	secondary_color = rgb(255,223,127)
-	assignment = "Quartermaster"
-	rank = "Quartermaster"
+	assignment = JOB_QUARTERMASTER
+	rank = JOB_QUARTERMASTER
 
 /obj/item/weapon/card/id/assistant
 	assignment = USELESS_JOB //VOREStation Edit - Visitor not Assistant
@@ -524,8 +524,8 @@
 		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
 		"Pilot" = "itg",
 		"Visitor" = "itg",
-		"Quartermaster" = "itg",
-		"Cargo Technician" = "itg",
+		JOB_QUARTERMASTER = "itg",
+		JOB_CARGO_TECHNICIAN = "itg",
 		JOB_SHAFT_MINER = "itg",
 		"Intern" = "itg",
 		"Talon Pilot" = "itg",
@@ -542,17 +542,17 @@
 		JOB_DETECTIVE = "itg_red",
 		JOB_SECURITY_OFFICER = "itg_red",
 		"Talon Guard" = "itg_red",
-		"Roboticist" = "itg_purple",
-		"Scientist" = "itg_purple",
-		"Xenobiologist" = "itg_purple",
-		"Xenobotanist" = "itg_purple",
-		"Pathfinder" = "itg_purple",
-		"Explorer" = "itg_purple",
+		JOB_ROBOTICIST = "itg_purple",
+		JOB_SCIENTIST = "itg_purple",
+		JOB_XENOBIOLOGIST = "itg_purple",
+		JOB_XENOBOTANIST = "itg_purple",
+		JOB_PATHFINDER = "itg_purple",
+		JOB_EXPLORER = "itg_purple",
 		JOB_CHEMIST = "itg_white",
 		JOB_MEDICAL_DOCTOR = "itg_white",
-		"Paramedic" = "itg_white",
-		"Psychiatrist" = "itg_white",
-		"Field Medic" = "itg_white",
+		JOB_PARAMEDIC = "itg_white",
+		JOB_PSYCHIATRIST = "itg_white",
+		JOB_FIELD_MEDIC = "itg_white",
 		"Talon Doctor" = "itg_white",
 		JOB_ATMOSPHERIC_TECHNICIAN = "itg_orange",
 		JOB_ENGINEER = "itg_orange",

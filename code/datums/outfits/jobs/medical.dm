@@ -70,7 +70,7 @@
 	pda_type = /obj/item/device/pda/chemist
 
 /decl/hierarchy/outfit/job/medical/geneticist
-	name = OUTFIT_JOB_NAME("Geneticist")
+	name = OUTFIT_JOB_NAME(JOB_GENETICIST)
 	uniform = /obj/item/clothing/under/rank/geneticist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/genetics
 	backpack = /obj/item/weapon/storage/backpack/genetics
@@ -80,7 +80,7 @@
 	pda_type = /obj/item/device/pda/geneticist
 
 /decl/hierarchy/outfit/job/medical/psychiatrist
-	name = OUTFIT_JOB_NAME("Psychiatrist")
+	name = OUTFIT_JOB_NAME(JOB_PSYCHIATRIST)
 	uniform = /obj/item/clothing/under/rank/psych
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/laceup
@@ -91,7 +91,7 @@
 	uniform = /obj/item/clothing/under/rank/psych/turtleneck
 
 /decl/hierarchy/outfit/job/medical/paramedic
-	name = OUTFIT_JOB_NAME("Paramedic")
+	name = OUTFIT_JOB_NAME(JOB_PARAMEDIC)
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
 	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
 	shoes = /obj/item/clothing/shoes/boots/jackboots

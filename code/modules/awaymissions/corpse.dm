@@ -193,15 +193,15 @@
 	corpseidaccess = "Clown"
 
 /obj/effect/landmark/corpse/scientist
-	name = "Scientist"
+	name = JOB_SCIENTIST
 	corpseradio = /obj/item/device/radio/headset/headset_sci
 	corpseuniform = /obj/item/clothing/under/rank/scientist
 	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 	corpseback = /obj/item/weapon/storage/backpack
 	corpseshoes = /obj/item/clothing/shoes/white
 	corpseid = 1
-	corpseidjob = "Scientist"
-	corpseidaccess = "Scientist"
+	corpseidjob = JOB_SCIENTIST
+	corpseidaccess = JOB_SCIENTIST
 
 /obj/effect/landmark/corpse/security
 	name = JOB_SECURITY_OFFICER

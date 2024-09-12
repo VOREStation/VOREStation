@@ -353,8 +353,8 @@
 	toysay = "How do I open this display case?"
 
 /obj/item/toy/figure/cargotech
-	name = "Cargo Technician action figure"
-	desc = "A \"Space Life\" brand Cargo Technician action figure."
+	name = JOB_CARGO_TECHNICIAN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CARGO_TECHNICIAN + " action figure."
 	icon_state = "cargotech"
 	toysay = "For Cargonia!"
 
@@ -413,8 +413,8 @@
 	toysay = "Oh god, the engine is gonna go!"
 
 /obj/item/toy/figure/geneticist
-	name = "Geneticist action figure"
-	desc = "A \"Space Life\" brand Geneticist action figure, which was recently dicontinued."
+	name = JOB_GENETICIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_GENETICIST + " action figure, which was recently dicontinued."
 	icon_state = "geneticist"
 	toysay = "I'm not qualified for this job."
 
@@ -431,8 +431,8 @@
 	toysay = "I'm here to win, anything else is secondary."
 
 /obj/item/toy/figure/qm
-	name = "Quartermaster action figure"
-	desc = "A \"Space Life\" brand Quartermaster action figure."
+	name = JOB_QUARTERMASTER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_QUARTERMASTER + " action figure."
 	icon_state = "qm"
 	toysay = "Hail Cargonia!"
 
@@ -491,14 +491,14 @@
 	toysay = "Blowing all of the borgs!"
 
 /obj/item/toy/figure/roboticist
-	name = "Roboticist action figure"
-	desc = "A \"Space Life\" brand Roboticist action figure."
+	name = JOB_ROBOTICIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ROBOTICIST + " action figure."
 	icon_state = "roboticist"
 	toysay = "He asked to be borged!"
 
 /obj/item/toy/figure/scientist
-	name = "Scientist action figure"
-	desc = "A \"Space Life\" brand Scientist action figure."
+	name = JOB_SCIENTIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_SCIENTIST + " action figure."
 	icon_state = "scientist"
 	toysay = "Someone else must have made those bombs!"
 
@@ -533,8 +533,8 @@
 	toysay = "The analyzer says you're fine!"
 
 /obj/item/toy/figure/paramedic
-	name = "Paramedic action figure"
-	desc = "A \"Space Life\" brand Paramedic action figure."
+	name = JOB_PARAMEDIC + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_PARAMEDIC + " action figure."
 	icon_state = "paramedic"
 	toysay = "WHERE ARE YOU??"
 

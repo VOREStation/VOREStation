@@ -25,32 +25,32 @@
 /obj/effect/landmark/start/medical
 	name = JOB_MEDICAL_DOCTOR
 /obj/effect/landmark/start/paramedic
-	name = "Paramedic"
+	name = JOB_PARAMEDIC
 /obj/effect/landmark/start/psych
-	name = "Psychiatrist"
+	name = JOB_PSYCHIATRIST
 /obj/effect/landmark/start/rd
 	name = JOB_RESEARCH_DIRECTOR
 /obj/effect/landmark/start/roboticist
-	name = "Roboticist"
+	name = JOB_ROBOTICIST
 /obj/effect/landmark/start/scientist
-	name = "Scientist"
+	name = JOB_SCIENTIST
 /obj/effect/landmark/start/xenobio
-	name = "Xenobiologist"
+	name = JOB_XENOBIOLOGIST
 /obj/effect/landmark/start/xenobot
-	name = "Xenobotanist"
+	name = JOB_XENOBOTANIST
 /obj/effect/landmark/start/qm
-	name = "Quartermaster"
+	name = JOB_QUARTERMASTER
 /obj/effect/landmark/start/cargo
-	name = "Cargo Technician"
+	name = JOB_CARGO_TECHNICIAN
 /obj/effect/landmark/start/miner
 	name = JOB_SHAFT_MINER
 /* //VOREStation Removal
 /obj/effect/landmark/start/pf
-	name = "Pathfinder"
+	name = JOB_PATHFINDER
 /obj/effect/landmark/start/explorer
-	name = "Explorer"
+	name = JOB_EXPLORER
 /obj/effect/landmark/start/fieldmedic
-	name = "Field Medic"
+	name = JOB_FIELD_MEDIC
 */
 /obj/effect/landmark/start/bartender
 	name = "Bartender"

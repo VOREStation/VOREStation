@@ -313,9 +313,9 @@
 //Cargo
 
 /datum/gear/uniform/quartermaster_selector
-	display_name = "Cargo - Quartermaster's Uniforms"
-	description = "Select from a range of outfits available to all Quartermasters."
-	allowed_roles = list("Quartermaster")
+	display_name = "Cargo - " + JOB_QUARTERMASTER + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_QUARTERMASTER + "s."
+	allowed_roles = list(JOB_QUARTERMASTER)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/cargo/jeans
 	sort_category = "Uniforms"
@@ -347,7 +347,7 @@
 /datum/gear/uniform/cargo_general_selector
 	display_name = "Cargo - Basic Uniforms"
 	description = "Select from a range of outfits available to all Cargo personnel."
-	allowed_roles = list("Cargo Technician",JOB_SHAFT_MINER,"Quartermaster")
+	allowed_roles = list(JOB_CARGO_TECHNICIAN,JOB_SHAFT_MINER,JOB_QUARTERMASTER)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/cargotech/jeans
 	sort_category = "Uniforms"
@@ -376,7 +376,7 @@
 /datum/gear/uniform/cargo_miner_selector
 	display_name = "Cargo - Miner's Uniforms"
 	description = "Select from a range of outfits available to all Mining personnel."
-	allowed_roles = list(JOB_SHAFT_MINER,"Quartermaster","Talon Miner")
+	allowed_roles = list(JOB_SHAFT_MINER,JOB_QUARTERMASTER,"Talon Miner")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_miner
 	sort_category = "Uniforms"
@@ -468,7 +468,7 @@
 /datum/gear/uniform/medical_selector
 	display_name = "Medical - Basic Uniforms"
 	description = "Select from a range of outfits available to all Medical personnel."
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic","Talon Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,"Talon Doctor")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_med
 	sort_category = "Uniforms"
@@ -519,9 +519,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/paramedic_selector
-	display_name = "Medical - Paramedic's Uniforms"
-	description = "Select from a range of outfits available to all Paramedics."
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,"Paramedic","Talon Doctor")
+	display_name = "Medical - " + JOB_PARAMEDIC + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_PARAMEDIC + "s."
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC,"Talon Doctor")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/paramedunidark
 	sort_category = "Uniforms"
@@ -599,7 +599,7 @@
 /datum/gear/uniform/science_dept_selector
 	display_name = "Science - Basic Uniforms"
 	description = "Select from a range of outfits available to all Science personnel."
-	allowed_roles = list("Scientist",JOB_RESEARCH_DIRECTOR,"Roboticist","Xenobiologist","Xenobotanist")
+	allowed_roles = list(JOB_SCIENTIST,JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST,JOB_XENOBIOLOGIST,JOB_XENOBOTANIST)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_science
 	sort_category = "Uniforms"
@@ -622,9 +622,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/science_robotics_selector
-	display_name = "Science - Roboticist's Uniforms"
-	description = "Select from a range of outfits available to all Roboticists."
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Roboticist")
+	display_name = "Science - " + JOB_ROBOTICIST + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_ROBOTICIST + "s."
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_robo
 	sort_category = "Uniforms"

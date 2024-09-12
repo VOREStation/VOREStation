@@ -115,7 +115,7 @@
 // Very filling food.
 /obj/item/weapon/reagent_containers/food/snacks/slime
 	name = "slimy clump"
-	desc = "A glob of slime that is thick as honey.  For the brave Xenobiologist."
+	desc = "A glob of slime that is thick as honey.  For the brave " + JOB_XENOBIOLOGIST + "."
 	icon_state = "honeycomb"
 	filling_color = "#FFBB00"
 	center_of_mass = list("x"=17, "y"=10)

@@ -77,7 +77,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	outfit_type = /decl/hierarchy/outfit/job/hop
 	job_description = "The " + JOB_HEAD_OF_PERSONNEL + " manages the Service department, the Exploration team, and most other civilians. They also \
-						manage the Supply department, through the Quartermaster. In addition, the " + JOB_HEAD_OF_PERSONNEL + " oversees the personal accounts \
+						manage the Supply department, through the " + JOB_QUARTERMASTER + ". In addition, the " + JOB_HEAD_OF_PERSONNEL + " oversees the personal accounts \
 						of the crew, including their money and access. If necessary, the " + JOB_HEAD_OF_PERSONNEL + " is first in line to assume Acting Command."
 	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro)
 

@@ -199,17 +199,17 @@
 /datum/gear/uniform/dept/undercoat/qm
 	display_name = "quartermaster undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/qm
-	allowed_roles = list("Quartermaster")
+	allowed_roles = list(JOB_QUARTERMASTER)
 
 /datum/gear/uniform/dept/undercoat/cargo
 	display_name = "cargo undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/cargo
-	allowed_roles = list("Cargo Technician","Quartermaster",JOB_SHAFT_MINER)
+	allowed_roles = list(JOB_CARGO_TECHNICIAN,JOB_QUARTERMASTER,JOB_SHAFT_MINER)
 
 /datum/gear/uniform/dept/undercoat/mining
 	display_name = "mining undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/mining
-	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER)
+	allowed_roles = list(JOB_QUARTERMASTER,JOB_SHAFT_MINER)
 
 /datum/gear/uniform/dept/undercoat/security
 	display_name = "security undercoat (Teshari)"
@@ -234,17 +234,17 @@
 /datum/gear/uniform/dept/undercoat/research
 	display_name = "scientist undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/sci
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST, JOB_ROBOTICIST, JOB_XENOBIOLOGIST)
 
 /datum/gear/uniform/dept/undercoat/robo
 	display_name = "roboticist undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/robo
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Roboticist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST)
 
 /datum/gear/uniform/dept/undercoat/medical
 	display_name = "medical undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/medical
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Paramedic","Geneticist","Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST,JOB_PSYCHIATRIST)
 
 /datum/gear/uniform/dept/undercoat/chemistry
 	display_name = "chemist undercoat (Teshari)"
@@ -259,12 +259,12 @@
 /datum/gear/uniform/dept/undercoat/psych
 	display_name = "psychiatrist undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/psych
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_PSYCHIATRIST)
 
 /datum/gear/uniform/dept/undercoat/paramedic
 	display_name = "paramedic undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/para
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC)
 
 /datum/gear/uniform/dept/undercoat/iaa
 	display_name = "internal affairs undercoat (Teshari)"
@@ -345,7 +345,7 @@
 /datum/gear/suit/dept/cloak/cargo
 	display_name = "cargo cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/cargo
-	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER,"Cargo Technician")
+	allowed_roles = list(JOB_QUARTERMASTER,JOB_SHAFT_MINER,JOB_CARGO_TECHNICIAN)
 
 /datum/gear/suit/dept/cloak/cargo/New()
 	..()
@@ -358,7 +358,7 @@
 /datum/gear/suit/dept/cloak/mining
 	display_name = "mining cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/mining
-	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER)
+	allowed_roles = list(JOB_QUARTERMASTER,JOB_SHAFT_MINER)
 
 /datum/gear/suit/dept/cloak/mining/New()
 	..()
@@ -423,7 +423,7 @@
 /datum/gear/suit/dept/cloak/research
 	display_name = "scientist cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/sci
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist","Roboticist","Xenobiologist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST,JOB_ROBOTICIST,JOB_XENOBIOLOGIST)
 
 /datum/gear/suit/dept/cloak/research/New()
 	..()
@@ -436,7 +436,7 @@
 /datum/gear/suit/dept/cloak/robo
 	display_name = "roboticist cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/robo
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Roboticist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST)
 
 /datum/gear/suit/dept/cloak/robo/New()
 	..()
@@ -449,7 +449,7 @@
 /datum/gear/suit/dept/cloak/medical
 	display_name = "medical cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/medical
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/suit/dept/cloak/medical/New()
 	..()
@@ -488,12 +488,12 @@
 /datum/gear/suit/dept/cloak/psych
 	display_name = "psychiatrist cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/psych
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Psychiatrist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_PSYCHIATRIST)
 
 /datum/gear/suit/dept/cloak/paramedic
 	display_name = "paramedic cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/para
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC)
 
 /datum/gear/suit/dept/cloak/paramedic/New()
 	..()

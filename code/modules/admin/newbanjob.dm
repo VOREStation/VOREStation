@@ -100,13 +100,13 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
 		return 1
 	if(rank == RANK_RESEARCH)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Scientist")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Geneticist")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_SCIENTIST)
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_GENETICIST)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHIEF_MEDICAL_OFFICER)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_RESEARCH_DIRECTOR)
 		return 1
 	if(rank == RANK_MEDICAL)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Geneticist")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_GENETICIST)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_MEDICAL_DOCTOR)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHIEF_MEDICAL_OFFICER)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHEMIST)
@@ -132,7 +132,7 @@ var/savefile/Banlistjob
 	if(rank == RANK_GENETIST_RD_CMO)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHIEF_MEDICAL_OFFICER)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_RESEARCH_DIRECTOR)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Geneticist")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_GENETICIST)
 		return 1
 	if(rank == RANK_MD_CMO)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHIEF_MEDICAL_OFFICER)
@@ -140,7 +140,7 @@ var/savefile/Banlistjob
 		return 1
 	if(rank == RANK_SCIENTIST_RD)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_RESEARCH_DIRECTOR)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Scientist")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_SCIENTIST)
 		return 1
 	if(rank == RANK_AI_CYBORG)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")

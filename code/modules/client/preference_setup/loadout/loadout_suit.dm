@@ -159,7 +159,7 @@
 /datum/gear/suit/labcoat_emt
 	display_name = "labcoat, EMT"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/suit/labcoat_rd
 	display_name = "labcoat, research director"
@@ -284,7 +284,7 @@
 /datum/gear/suit/roles/cloak_qm
 	display_name = "cloak, quartermaster"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/qm
-	allowed_roles = list("Quartermaster")
+	allowed_roles = list(JOB_QUARTERMASTER)
 	show_roles = FALSE
 	cost = 1
 
@@ -380,13 +380,13 @@
 /datum/gear/suit/qm_coat
 	display_name = "coat, quartermaster"
 	path = /obj/item/clothing/suit/storage/qm
-	allowed_roles = list("Quartermaster")
+	allowed_roles = list(JOB_QUARTERMASTER)
 	show_roles = FALSE
 
 /datum/gear/suit/cargo_coat
 	display_name = "coat, cargo tech"
 	path = /obj/item/clothing/suit/storage/cargo
-	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER,"Cargo Technician",JOB_HEAD_OF_PERSONNEL)
+	allowed_roles = list(JOB_QUARTERMASTER,JOB_SHAFT_MINER,JOB_CARGO_TECHNICIAN,JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 // winter coats go here
@@ -421,13 +421,13 @@
 /datum/gear/suit/wintercoat/medical
 	display_name = "winter coat, medical"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/alt
 	display_name = "winter coat, medical alt"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/viro
@@ -439,7 +439,7 @@
 /datum/gear/suit/wintercoat/medical/para
 	display_name = "winter coat, paramedic"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/para
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/chemist
@@ -457,19 +457,19 @@
 /datum/gear/suit/wintercoat/medical/sar
 	display_name = "winter coat, search and rescue"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST, JOB_ROBOTICIST, JOB_XENOBIOLOGIST, JOB_XENOBOTANIST)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science/robotics
 	display_name = "winter coat, robotics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science/robotics
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR, "Roboticist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR, JOB_ROBOTICIST)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science/rd
@@ -499,13 +499,13 @@
 /datum/gear/suit/wintercoat/hydro
 	display_name = "winter coat, hydroponics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hydro
-	allowed_roles = list("Botanist", "Xenobotanist")
+	allowed_roles = list("Botanist", JOB_XENOBOTANIST)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/cargo
 	display_name = "winter coat, cargo"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
-	allowed_roles = list("Quartermaster","Cargo Technician")
+	allowed_roles = list(JOB_QUARTERMASTER,JOB_CARGO_TECHNICIAN)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/miner
@@ -517,7 +517,7 @@
 /datum/gear/suit/wintercoat/cargo/qm
 	display_name = "winter coat, quartermaster"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cargo/qm
-	allowed_roles = list("Quartermaster")
+	allowed_roles = list(JOB_QUARTERMASTER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/bar
@@ -668,13 +668,13 @@
 /datum/gear/suit/snowsuit/medical
 	display_name = "snowsuit, medical"
 	path = /obj/item/clothing/suit/storage/snowsuit/medical
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist", "Search and Rescue")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST, "Search and Rescue")
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/science
 	display_name = "snowsuit, science"
 	path = /obj/item/clothing/suit/storage/snowsuit/science
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST, JOB_ROBOTICIST, JOB_XENOBIOLOGIST)
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/engineering
@@ -686,7 +686,7 @@
 /datum/gear/suit/snowsuit/cargo
 	display_name = "snowsuit, supply"
 	path = /obj/item/clothing/suit/storage/snowsuit/cargo
-	allowed_roles = list("Quartermaster",JOB_SHAFT_MINER,"Cargo Technician",JOB_HEAD_OF_PERSONNEL)
+	allowed_roles = list(JOB_QUARTERMASTER,JOB_SHAFT_MINER,JOB_CARGO_TECHNICIAN,JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 /datum/gear/suit/miscellaneous/cardigan

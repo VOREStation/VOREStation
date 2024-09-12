@@ -1,5 +1,5 @@
 /datum/gear/suit/snowsuit/medical
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
@@ -73,7 +73,7 @@
 /datum/gear/suit/paramedic_coat
 	display_name = "paramedic outerwear selection"
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,"Paramedic",JOB_MEDICAL_DOCTOR)
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC,JOB_MEDICAL_DOCTOR)
 
 /datum/gear/suit/paramedic_coat/New()
 	..()
@@ -112,12 +112,12 @@ Talon winter coat
 /datum/gear/suit/armor/combat/crusader_explo
 	display_name = "knight, explo"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo
-	//allowed_roles = list("Explorer","Pathfinder")
+	//allowed_roles = list(JOB_EXPLORER,JOB_PATHFINDER)
 
 /datum/gear/suit/armor/combat/crusader_explo/FM
 	display_name = "knight, Field Medic"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
-	allowed_roles = list ("Paramedic")
+	allowed_roles = list (JOB_PARAMEDIC)
 
 //Long fur coat
 /datum/gear/suit/russofurcoat

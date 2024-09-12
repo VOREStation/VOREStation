@@ -233,7 +233,7 @@
 	one_access = TRUE
 
 /datum/supply_pack/randomised/misc/explorer_shield
-	name = "Away Team shield"
+	name = JOB_EXPLORER + " shield"
 	num_contained = 2
 	contains = list(
 			/obj/item/weapon/shield/riot/explorer,

@@ -114,7 +114,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/qm
 	name = "quartermaster cloak"
-	desc = "A soft Teshari cloak made for the Quartermaster"
+	desc = "A soft Teshari cloak made for the " + JOB_QUARTERMASTER
 	icon_state = "tesh_cloak_qm"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/cargo
@@ -168,12 +168,12 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/para
 	name = "paramedic cloak"
-	desc = "A soft Teshari cloak made for the Paramedic"
+	desc = "A soft Teshari cloak made for the " + JOB_PARAMEDIC
 	icon_state = "tesh_cloak_para"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/psych
 	name = " psychiatrist cloak"
-	desc = "A soft Teshari cloak made for the Psychiatrist"
+	desc = "A soft Teshari cloak made for the " + JOB_PSYCHIATRIST
 	icon_state = "tesh_cloak_psych"
 
 //Science
@@ -190,7 +190,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/robo
 	name = "roboticist cloak"
-	desc = "A soft Teshari cloak made for the Roboticist"
+	desc = "A soft Teshari cloak made for the " + JOB_ROBOTICIST
 	icon_state = "tesh_cloak_robo"
 
 //Security
@@ -659,7 +659,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/para
 	name = "paramedic belted cloak"
-	desc = "A soft Teshari cloak made for the Paramedic"
+	desc = "A soft Teshari cloak made for the " + JOB_PARAMEDIC
 	icon_state = "tesh_beltcloak_para"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/sci
@@ -669,7 +669,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/robo
 	name = "roboticist belted cloak"
-	desc = "A soft Teshari cloak made for the Roboticist"
+	desc = "A soft Teshari cloak made for the " + JOB_ROBOTICIST
 	icon_state = "tesh_beltcloak_robo"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/sec
@@ -679,7 +679,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/qm
 	name = "quartermaster belted cloak"
-	desc = "A soft Teshari cloak made for the Quartermaster"
+	desc = "A soft Teshari cloak made for the " + JOB_QUARTERMASTER
 	icon_state = "tesh_beltcloak_qm"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/service

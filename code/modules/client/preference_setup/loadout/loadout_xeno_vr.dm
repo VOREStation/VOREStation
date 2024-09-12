@@ -2,10 +2,10 @@
 /////
 
 /datum/gear/suit/dept/cloak/research
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST, JOB_ROBOTICIST, JOB_XENOBIOLOGIST, JOB_XENOBOTANIST)
 
 /datum/gear/uniform/dept/undercoat/research
-	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST, JOB_ROBOTICIST, JOB_XENOBIOLOGIST, JOB_XENOBOTANIST)
 
 /////
 

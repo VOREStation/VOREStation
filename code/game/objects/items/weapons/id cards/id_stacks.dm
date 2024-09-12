@@ -74,6 +74,7 @@
 /obj/item/weapon/card/id/gold/captain
 	name = "Captain's ID"
 	initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n", "pips-gold")
+	rank = JOB_SITE_MANAGER
 
 /obj/item/weapon/card/id/gold/captain/spare
 	name = "Spare ID"
@@ -93,12 +94,14 @@
 	rank = JOB_CHEMIST
 
 /obj/item/weapon/card/id/medical/geneticist
-	name = "Geneticist's ID"
+	name = JOB_GENETICIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-purple")
+	rank = JOB_GENETICIST
 
 /obj/item/weapon/card/id/medical/psych
 	name = "Psychologist's ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-brown")
+	rank = JOB_PSYCHIATRIST
 
 /obj/item/weapon/card/id/medical/virologist
 	name = "Virologist's ID"
@@ -107,6 +110,7 @@
 /obj/item/weapon/card/id/medical/emt
 	name = "Emergency Medical Technician's ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-blue")
+	rank = JOB_PARAMEDIC
 
 /obj/item/weapon/card/id/medical/head
 	name = JOB_CHIEF_MEDICAL_OFFICER + "'s ID"
@@ -157,18 +161,22 @@
 /obj/item/weapon/card/id/science
 	name = "Science ID"
 	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n")
+	rank = JOB_SCIENTIST
 
 /obj/item/weapon/card/id/science/roboticist
-	name = "Roboticist's ID"
+	name = JOB_ROBOTICIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "stripe-brown")
+	rank = JOB_ROBOTICIST
 
 /obj/item/weapon/card/id/science/xenobiologist
-	name = "Xenobiologist's ID"
+	name = JOB_XENOBIOLOGIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "stripe-orange")
+	rank = JOB_XENOBIOLOGIST
 
 /obj/item/weapon/card/id/science/xenobotanist
-	name = "Xenobotanist's ID"
+	name = JOB_XENOBOTANIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "stripe-green")
+	rank = JOB_XENOBOTANIST
 
 /obj/item/weapon/card/id/science/head
 	name = JOB_RESEARCH_DIRECTOR + "'s ID"
@@ -180,6 +188,7 @@
 /obj/item/weapon/card/id/cargo
 	name = "Cargo ID"
 	initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n")
+	rank = JOB_CARGO_TECHNICIAN
 
 /obj/item/weapon/card/id/cargo/miner
 	name = "Miner's ID"
@@ -187,8 +196,9 @@
 	rank = JOB_SHAFT_MINER
 
 /obj/item/weapon/card/id/cargo/head
-	name = "Quartermaster's ID"
+	name = JOB_QUARTERMASTER + "'s ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-brown", "stamp-n", "pips-white")
+	rank = JOB_QUARTERMASTER
 
 //Civilian
 
@@ -255,14 +265,17 @@
 /obj/item/weapon/card/id/exploration
 	name = "Exploration ID"
 	initial_sprite_stack = list("base-stamp", "top-olive", "stamp-n")
+	rank = JOB_EXPLORER
 
 /obj/item/weapon/card/id/exploration/fm
-	name = "Field Medic's ID"
+	name = JOB_FIELD_MEDIC + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-olive", "stamp-n", "stripe-medblu")
+	rank = JOB_FIELD_MEDIC
 
 /obj/item/weapon/card/id/exploration/head
-	name = "Pathfinder's ID"
+	name = JOB_PATHFINDER + "'s ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-olive", "stamp-n", "pips-white")
+	rank = JOB_PATHFINDER
 
 //Talon
 

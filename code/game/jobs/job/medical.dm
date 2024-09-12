@@ -125,7 +125,7 @@
 //			Geneticist
 //////////////////////////////////
 /datum/job/geneticist
-	title = "Geneticist"
+	title = JOB_GENETICIST
 	flag = GENETICIST
 	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
@@ -139,7 +139,7 @@
 	minimal_access = list(access_medical, access_morgue, access_genetics, access_research)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/geneticist
-	job_description = "A Geneticist operates genetic manipulation equipment to repair any genetic defects encountered in crew, from cloning or radiation as examples. \
+	job_description = "A " + JOB_GENETICIST + " operates genetic manipulation equipment to repair any genetic defects encountered in crew, from cloning or radiation as examples. \
 						When required, geneticists have the skills to clone, and are the superior choice when available for doing so."
 */
 
@@ -147,7 +147,7 @@
 //			Psychiatrist
 //////////////////////////////////
 /datum/job/psychiatrist
-	title = "Psychiatrist"
+	title = JOB_PSYCHIATRIST
 	flag = PSYCHIATRIST
 	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
@@ -160,7 +160,7 @@
 	access = list(access_medical, access_medical_equip, access_morgue, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
 	outfit_type = /decl/hierarchy/outfit/job/medical/psychiatrist
-	job_description = "A Psychiatrist provides mental health services to crew members in need. They may also be called upon to determine whatever \
+	job_description = "A " + JOB_PSYCHIATRIST + " provides mental health services to crew members in need. They may also be called upon to determine whatever \
 					ails the mentally unwell, frequently under Security supervision. They understand the effects of various psychoactive drugs."
 	alt_titles = list("Psychologist" = /datum/alt_title/psychologist)
 	banned_job_species = list(SPECIES_PROMETHEAN, SPECIES_DIONA)
@@ -176,7 +176,7 @@
 //			Paramedic
 //////////////////////////////////
 /datum/job/paramedic
-	title = "Paramedic"
+	title = JOB_PARAMEDIC
 	flag = PARAMEDIC
 	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
@@ -189,7 +189,7 @@
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_eva, access_maint_tunnels, access_external_airlocks)
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
-	job_description = "A Paramedic is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their own. \
+	job_description = "A " + JOB_PARAMEDIC + " is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their own. \
 						They may also be called upon to keep patients stable when Medical is busy or understaffed."
 	alt_titles = list("Emergency Medical Technician" = /datum/alt_title/emt)
 	banned_job_species = list(SPECIES_DIONA)

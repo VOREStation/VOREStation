@@ -47,7 +47,7 @@
 //			Scientist
 //////////////////////////////////
 /datum/job/scientist
-	title = "Scientist"
+	title = JOB_SCIENTIST
 	flag = SCIENTIST
 	departments = list(DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
@@ -65,7 +65,7 @@
 	minimal_player_age = 14
 
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
-	job_description = "A Scientist is a generalist working in the Research department, with general knowledge of the scientific process, as well as \
+	job_description = "A " + JOB_SCIENTIST + " is a generalist working in the Research department, with general knowledge of the scientific process, as well as \
 						the principles and requirements of Research and Development. They may also formulate experiments of their own devising, if \
 						they find an appropriate topic."
 	alt_titles = list("Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
@@ -79,7 +79,7 @@
 
 /datum/alt_title/anomalist
 	title = "Anomalist"
-	title_blurb = "An Anomalist is a Scientist whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
+	title_blurb = "An Anomalist is a " + JOB_SCIENTIST + " whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
 					function. They work closely with Xenoarchaeologists, or Miners, if either role is present."
 
 /datum/alt_title/phoron_research
@@ -92,7 +92,7 @@
 //			Xenobiologist
 //////////////////////////////////
 /datum/job/xenobiologist
-	title = "Xenobiologist"
+	title = JOB_XENOBIOLOGIST
 	flag = XENOBIOLOGIST
 	departments = list(DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
@@ -110,15 +110,15 @@
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
 	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
-	job_description = "A Xenobiologist studies esoteric lifeforms, usually in the relative safety of their lab. They attempt to find ways to benefit \
+	job_description = "A " + JOB_XENOBIOLOGIST + " studies esoteric lifeforms, usually in the relative safety of their lab. They attempt to find ways to benefit \
 						from the byproducts of these lifeforms, and their main subject at present is the Giant Slime."
 /*VR edit start
-	alt_titles = list("Xenobotanist" = /datum/alt_title/xenobot)
+	alt_titles = list(JOB_XENOBOTANIST = /datum/alt_title/xenobot)
 
  Xenibiologist Alt Titles
 /datum/alt_title/xenobot
-	title = "Xenobotanist"
-	title_blurb = "A Xenobotanist grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
+	title = JOB_XENOBOTANIST
+	title_blurb = "A " + JOB_XENOBOTANIST + " grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
 					is both safe and beneficial to the station, they may choose to introduce it to the rest of the crew."
 VR edit end*/
 
@@ -126,7 +126,7 @@ VR edit end*/
 //			Roboticist
 //////////////////////////////////
 /datum/job/roboticist
-	title = "Roboticist"
+	title = JOB_ROBOTICIST
 	flag = ROBOTICIST
 	departments = list(DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
@@ -143,7 +143,7 @@ VR edit end*/
 	banned_job_species = list("digital")
 
 	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
-	job_description = "A Roboticist maintains and repairs the station's synthetics, including crew with prosthetic limbs. \
+	job_description = "A " + JOB_ROBOTICIST + " maintains and repairs the station's synthetics, including crew with prosthetic limbs. \
 						They can also assist the station by producing simple robots and even pilotable exosuits."
 	alt_titles = list("Biomechanical Engineer" = /datum/alt_title/biomech, "Mechatronic Engineer" = /datum/alt_title/mech_tech)
 

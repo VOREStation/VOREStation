@@ -449,7 +449,7 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("flaktual")
 	character_name = list("Yikatihaki")
-	allowed_roles = list("Explorer")
+	allowed_roles = list(JOB_EXPLORER)
 
 /datum/gear/fluff/suit/storage/flintlock
 	path = /obj/item/clothing/suit/storage/flintlock
@@ -777,7 +777,7 @@
 	display_name = "Kenzie's Hypospray"
 	ckeywhitelist = list("lm40")
 	character_name = list("Kenzie Houser")
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC)
 
 /datum/gear/fluff/brianna_backpack
 	path = /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
@@ -792,7 +792,7 @@
 	description = "A Hull Systems Omni-Tool capable of temporarily shrinking to handheld sizes for even the most delicate work."
 	ckeywhitelist = list("lewzharri")
 	character_name = list ("Kovgam Zharri")
-	allowed_roles = list("Roboticist",JOB_ENGINEER,"Scientist","Xenobiologist","Xenobotanist",JOB_RESEARCH_DIRECTOR)
+	allowed_roles = list(JOB_ROBOTICIST,JOB_ENGINEER,JOB_SCIENTIST,JOB_XENOBIOLOGIST,JOB_XENOBOTANIST,JOB_RESEARCH_DIRECTOR)
 
 //  M CKEYS
 /datum/gear/fluff/phi_box
@@ -1007,7 +1007,7 @@
 	display_name = "Tiemli's Welding Goggles"
 	ckeywhitelist = list("radiantaurora")
 	character_name = list("Tiemli Kroto")
-	allowed_roles = list("Roboticist")
+	allowed_roles = list(JOB_ROBOTICIST)
 
 /datum/gear/fluff/clara_flask
 	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
@@ -1297,7 +1297,7 @@
 
 /datum/gear/fluff/lovec_gasmask
 	path = /obj/item/clothing/mask/gas/explorer
-	display_name = "Explorer's Gas Mask"
+	display_name = JOB_EXPLORER + "'s Gas Mask"
 	ckeywhitelist = list("thenewmeta")
 	character_name = list("Lovec")
 
@@ -1505,7 +1505,7 @@
 	slot = slot_glasses
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic", "Off-duty Medic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC, "Off-duty Medic")
 
 /datum/gear/fluff/tempest_hypospray
 	path = /obj/item/weapon/reagent_containers/hypospray/vial/tempest
@@ -1513,7 +1513,7 @@
 	slot = slot_belt
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic", "Off-duty Medic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC, "Off-duty Medic")
 
 /datum/gear/fluff/tempest_backpack
 	path = /obj/item/weapon/storage/backpack/saddlebag/tempest

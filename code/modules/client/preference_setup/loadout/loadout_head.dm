@@ -288,7 +288,7 @@
 	description = "Select from a range of welding masks (engineering crew/roboticists only)"
 	path = /obj/item/clothing/head/welding
 	cost = 2
-	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_RESEARCH_DIRECTOR,"Roboticist")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST)
 
 /datum/gear/head/welding/New()
 	..()
@@ -394,7 +394,7 @@
 /datum/gear/head/med_hat_selector
 	display_name = "Medical - Basic Headwear"
 	description = "Select from a range of hats available to all Medical personnel."
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Psychiatrist","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC)
 	path = /obj/item/clothing/head/soft/med
 
 /datum/gear/head/med_hat_selector/New()

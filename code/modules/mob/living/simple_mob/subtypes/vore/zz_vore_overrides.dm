@@ -238,7 +238,7 @@
 // Override stuff for holodeck carp to make them not digest when set to safe!
 /mob/living/simple_mob/animal/space/carp/holographic/init_vore()
 	. = ..()
-	var/safe = (faction == "neutral")
+	var/safe = (faction == FACTION_NEUTRAL)
 	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 

@@ -893,7 +893,7 @@ I think I covered everything.
 /mob/living/simple_mob/vore/bigdragon/do_tame(var/obj/O, var/mob/user)
 	if(!user)
 		return
-	if(faction == "neutral")
+	if(faction == FACTION_NEUTRAL)
 		return	//We're already friendly
 	if(enraged || notame)
 		say("NO FORGIVENESS")

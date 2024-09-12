@@ -237,7 +237,7 @@
 	access = null
 
 /datum/supply_pack/voidsuits/explorer
-	name = "Away Team voidsuits"
+	name = JOB_EXPLORER + " voidsuits"
 	contains = list(
 			/obj/item/clothing/suit/space/void/exploration = 2,
 			/obj/item/clothing/head/helmet/space/void/exploration = 2,
@@ -247,11 +247,11 @@
 			)
 	cost = 45
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Away Team voidsuit crate"
+	containername = JOB_EXPLORER + "voidsuit crate"
 	access = list(access_eva, access_explorer)
 
 /datum/supply_pack/voidsuits/explorer_medic
-	name = "Away Team Medic voidsuits"
+	name = JOB_FIELD_MEDIC + " voidsuits"
 	contains = list(
 			/obj/item/clothing/suit/space/void/exploration = 2,
 			/obj/item/clothing/head/helmet/space/void/exploration = 2,
@@ -261,7 +261,7 @@
 			)
 	cost = 45
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Away Team Medic voidsuit crate"
+	containername = JOB_FIELD_MEDIC + " voidsuit crate"
 	access = access_medical
 
 /datum/supply_pack/voidsuits/pilot

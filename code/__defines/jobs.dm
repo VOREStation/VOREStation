@@ -6,6 +6,8 @@
 #define JOB_CHIEF_ENGINEER "Chief Engineer"
 #define JOB_RESEARCH_DIRECTOR "Research Director"
 #define JOB_CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
+#define JOB_QUARTERMASTER "Quartermaster"
+#define JOB_PATHFINDER "Away Team Leader" // was Pathfinder
 
 // Station Security jobs
 #define JOB_WARDEN "Warden"
@@ -19,10 +21,23 @@
 // Station Medical jobs
 #define JOB_CHEMIST "Chemist"
 #define JOB_MEDICAL_DOCTOR "Medical Doctor"
+#define JOB_PARAMEDIC "Paramedic"
+#define JOB_PSYCHIATRIST "Psychiatrist"
+#define JOB_GENETICIST "Geneticist" //Disabled atm
 
+// Station Science jobs
+#define JOB_ROBOTICIST "Roboticist"
+#define JOB_SCIENTIST "Scientist"
+#define JOB_XENOBIOLOGIST "Xenobiologist"
+#define JOB_XENOBOTANIST "Xenobotanist"
 
-
+// Station Cargo jobs
 #define JOB_SHAFT_MINER "Shaft Miner"
+#define JOB_CARGO_TECHNICIAN "Cargo Technician"
+
+// Section Explo jobs
+#define JOB_EXPLORER "Away Team" // was Explorer
+#define JOB_FIELD_MEDIC "Away Team Medic" // was Field Medic
 
 
 // Security alt titles

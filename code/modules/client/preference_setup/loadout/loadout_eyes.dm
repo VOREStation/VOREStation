@@ -91,7 +91,7 @@
 	display_name = "Medical HUD selector"
 	description = "Select from a range of Medical HUD eyepieces that can display the health status of people in line of sight."
 	path = /obj/item/clothing/glasses/hud/health
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,"Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/eyes/medical/New()
 	..()
@@ -117,7 +117,7 @@
 	display_name = "Optical Meson Scanners selection"
 	description = "Select from a range of meson-projection eyewear. Note: not all of these items are atmospherically sealed."
 	path = /obj/item/clothing/glasses/meson
-	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, "Scientist", JOB_RESEARCH_DIRECTOR)
+	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_SCIENTIST, JOB_RESEARCH_DIRECTOR)
 
 /datum/gear/eyes/meson/New()
 	..()
@@ -133,7 +133,7 @@
 /datum/gear/eyes/material
 	display_name = "Optical Material Scanners"
 	path = /obj/item/clothing/glasses/material
-	allowed_roles = list(JOB_SHAFT_MINER,"Quartermaster")
+	allowed_roles = list(JOB_SHAFT_MINER,JOB_QUARTERMASTER)
 
 /datum/gear/eyes/glasses/fakesun
 	display_name = "Sunglasses, stylish"
@@ -147,7 +147,7 @@
 	display_name = "functional sunglasses selector"
 	description = "Select from a range of polarized sunglasses that can block flashes whilst still looking classy."
 	path = /obj/item/clothing/glasses/sunglasses
-	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN,JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,"Quartermaster","Internal Affairs Agent",JOB_DETECTIVE)
+	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN,JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_QUARTERMASTER,"Internal Affairs Agent",JOB_DETECTIVE)
 
 /datum/gear/eyes/sun/New()
 	..()

@@ -6,7 +6,7 @@
 /obj/machinery/smartfridge/seeds
 	expert_job = "Botanist"
 /obj/machinery/smartfridge/secure/extract
-	expert_job = "Xenobiologist"
+	expert_job = JOB_XENOBIOLOGIST
 /obj/machinery/smartfridge/secure/medbay
 	expert_job = JOB_CHEMIST
 /obj/machinery/smartfridge/secure/chemistry

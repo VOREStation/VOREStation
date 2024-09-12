@@ -62,8 +62,8 @@ var/list/event_last_fired = list()
 	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[JOB_ENGINEER] + 25 * active_with_role["Security"]
 	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
 
-	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
-	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role[JOB_ENGINEER] * 10 + active_with_role["Scientist"] * 5
+	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role[JOB_SCIENTIST] * 25
+	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role[JOB_ENGINEER] * 10 + active_with_role[JOB_SCIENTIST] * 5
 	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role[JOB_ENGINEER]
 	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role["Janitor"] + 5 * active_with_role[JOB_ENGINEER]
 	possibleEvents[/datum/event/wallrot] = 30 * active_with_role[JOB_ENGINEER] + 50 * active_with_role["Gardener"]
@@ -182,7 +182,7 @@ var/list/event_last_fired = list()
 	active_with_role[JOB_ENGINEER] = 0
 	active_with_role["Medical"] = 0
 	active_with_role["Security"] = 0
-	active_with_role["Scientist"] = 0
+	active_with_role[JOB_SCIENTIST] = 0
 	active_with_role["AI"] = 0
 	active_with_role["Cyborg"] = 0
 	active_with_role["Janitor"] = 0
@@ -204,7 +204,7 @@ var/list/event_last_fired = list()
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/medical))
 					active_with_role["Medical"]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/research))
-					active_with_role["Scientist"]++
+					active_with_role[JOB_SCIENTIST]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/janitor))
 					active_with_role["Janitor"]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/clerical/butler))
@@ -220,7 +220,7 @@ var/list/event_last_fired = list()
 			active_with_role["Security"]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
-			active_with_role["Scientist"]++
+			active_with_role[JOB_SCIENTIST]++
 
 		if(M.mind.assigned_role == "AI")
 			active_with_role["AI"]++

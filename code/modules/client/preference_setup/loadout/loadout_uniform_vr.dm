@@ -20,7 +20,7 @@
 /datum/gear/suit/job_fed/medsci
 	display_name = "fed uniform, med/sci"
 	path = /obj/item/clothing/suit/storage/fluff/fedcoat/fedblue
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Paramedic","Geneticist",JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist","Xenobotanist")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST,JOB_RESEARCH_DIRECTOR,JOB_SCIENTIST, JOB_ROBOTICIST, JOB_XENOBIOLOGIST,JOB_XENOBOTANIST)
 
 /datum/gear/suit/job_fed/eng
 	display_name = "fed uniform, eng"
@@ -32,8 +32,8 @@
 	display_name = "DS9 Overcoat (use uniform)"
 	path = /obj/item/clothing/suit/storage/trek/ds9
 	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_CHIEF_ENGINEER,JOB_RESEARCH_DIRECTOR,
-						JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,"Paramedic","Geneticist",
-						"Scientist","Roboticist","Xenobiologist","Xenobotanist",JOB_ATMOSPHERIC_TECHNICIAN,
+						JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST,
+						JOB_SCIENTIST,JOB_ROBOTICIST,JOB_XENOBIOLOGIST,JOB_XENOBOTANIST,JOB_ATMOSPHERIC_TECHNICIAN,
 						JOB_ENGINEER,JOB_WARDEN,JOB_DETECTIVE,JOB_SECURITY_OFFICER)
 
 /*
