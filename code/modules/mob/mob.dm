@@ -1184,6 +1184,7 @@
 /mob/proc/set_viewsize(var/new_view = world.view)
 	if (client && new_view != client.view)
 		client.view = new_view
+		client.attempt_auto_fit_viewport()
 		return TRUE
 	return FALSE
 
