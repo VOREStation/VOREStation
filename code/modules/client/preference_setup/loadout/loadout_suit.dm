@@ -499,7 +499,7 @@
 /datum/gear/suit/wintercoat/hydro
 	display_name = "winter coat, hydroponics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hydro
-	allowed_roles = list("Botanist", JOB_XENOBOTANIST)
+	allowed_roles = list(JOB_BOTANIST, JOB_XENOBOTANIST)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/cargo
@@ -523,13 +523,13 @@
 /datum/gear/suit/wintercoat/bar
 	display_name = "winter coat, bartender"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/bar
-	allowed_roles = list("Bartender")
+	allowed_roles = list(JOB_BARTENDER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/janitor
 	display_name = "winter coat, janitor"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/janitor
-	allowed_roles = list("Janitor")
+	allowed_roles = list(JOB_JANITOR)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/aformal

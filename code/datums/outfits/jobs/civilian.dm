@@ -3,13 +3,13 @@
 	id_type = /obj/item/weapon/card/id/generic	//VOREStation Edit
 
 /decl/hierarchy/outfit/job/assistant/visitor
-	name = OUTFIT_JOB_NAME("Visitor")
-	id_pda_assignment = "Visitor"
+	name = OUTFIT_JOB_NAME(USELESS_JOB)
+	id_pda_assignment = USELESS_JOB
 	uniform = /obj/item/clothing/under/assistantformal
 
 //VOREStation Add - Interns
 /decl/hierarchy/outfit/job/assistant/intern
-	name = OUTFIT_JOB_NAME("Intern")
+	name = OUTFIT_JOB_NAME(JOB_INTERN)
 	id_type = /obj/item/weapon/card/id/civilian
 //VOREStation Add End - Interns
 
@@ -23,7 +23,7 @@
 	hierarchy_type = /decl/hierarchy/outfit/job/service
 
 /decl/hierarchy/outfit/job/service/bartender
-	name = OUTFIT_JOB_NAME("Bartender")
+	name = OUTFIT_JOB_NAME(JOB_BARTENDER)
 	uniform = /obj/item/clothing/under/rank/bartender
 	id_type = /obj/item/weapon/card/id/civilian/service/bartender		//VOREStation Edit
 	pda_type = /obj/item/device/pda/bar
@@ -41,7 +41,7 @@
 	backpack_contents = null
 
 /decl/hierarchy/outfit/job/service/chef
-	name = OUTFIT_JOB_NAME("Chef")
+	name = OUTFIT_JOB_NAME(JOB_CHEF)
 	uniform = /obj/item/clothing/under/rank/chef
 	suit = /obj/item/clothing/suit/chef
 	head = /obj/item/clothing/head/chefhat
@@ -61,7 +61,7 @@
 // End Outfit addition
 
 /decl/hierarchy/outfit/job/service/gardener
-	name = OUTFIT_JOB_NAME("Gardener")
+	name = OUTFIT_JOB_NAME(JOB_ALT_GARDENER)
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	suit = /obj/item/clothing/suit/storage/apron
 	gloves = /obj/item/clothing/gloves/botanic_leather
@@ -74,13 +74,13 @@
 	pda_type = /obj/item/device/pda/botanist
 
 /decl/hierarchy/outfit/job/service/janitor
-	name = OUTFIT_JOB_NAME("Janitor")
+	name = OUTFIT_JOB_NAME(JOB_JANITOR)
 	uniform = /obj/item/clothing/under/rank/janitor
 	id_type = /obj/item/weapon/card/id/civilian/service/janitor		//VOREStation Edit
 	pda_type = /obj/item/device/pda/janitor
 
 /decl/hierarchy/outfit/job/librarian
-	name = OUTFIT_JOB_NAME("Librarian")
+	name = OUTFIT_JOB_NAME(JOB_LIBRARIAN)
 	uniform = /obj/item/clothing/under/suit_jacket/red
 	l_hand = /obj/item/weapon/barcodescanner
 	id_type = /obj/item/weapon/card/id/civilian
@@ -101,7 +101,7 @@
 	pda_type = /obj/item/device/pda/lawyer
 
 /decl/hierarchy/outfit/job/chaplain
-	name = OUTFIT_JOB_NAME("Chaplain")
+	name = OUTFIT_JOB_NAME(JOB_CHAPLAIN)
 	uniform = /obj/item/clothing/under/rank/chaplain
 	l_hand = /obj/item/weapon/storage/bible
 	id_type = /obj/item/weapon/card/id/civilian/chaplain

@@ -51,7 +51,7 @@
 	return get_all_accesses().Copy()
 
 /datum/job/clown
-	title = "Clown"
+	title = JOB_CLOWN
 	flag = CLOWN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = ENGSEC
@@ -61,7 +61,7 @@
 	supervisors = "the spirit of laughter"
 	selection_color = "#515151"
 	economic_modifier = 1
-	job_description = "A Clown is there to entertain the crew and keep high morale using various harmless pranks and ridiculous jokes!"
+	job_description = "A " + JOB_CLOWN + " is there to entertain the crew and keep high morale using various harmless pranks and ridiculous jokes!"
 	whitelist_only = 1
 	latejoin_only = 0
 	requestable = FALSE
@@ -82,7 +82,7 @@
 		return list(access_entertainment, access_clown, access_tomfoolery)
 
 /datum/job/mime
-	title = "Mime"
+	title = JOB_MIME
 	flag = MIME
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = ENGSEC
@@ -92,8 +92,8 @@
 	supervisors = "the spirit of performance"
 	selection_color = "#515151"
 	economic_modifier = 1
-	job_description = "A Mime is there to entertain the crew and keep high morale using unbelievable performances and acting skills!"
-	alt_titles = list("Poseur" = /datum/alt_title/poseur)
+	job_description = "A " + JOB_MIME + " is there to entertain the crew and keep high morale using unbelievable performances and acting skills!"
+	alt_titles = list(JOB_ALT_PASEUR = /datum/alt_title/poseur)
 	whitelist_only = 1
 	latejoin_only = 0
 	requestable = FALSE
@@ -101,7 +101,7 @@
 	pto_type = PTO_CIVILIAN
 
 /datum/alt_title/poseur
-	title = "Poseur"
+	title = JOB_ALT_PASEUR
 
 /datum/job/mime/get_access()
 	if(config.assistant_maint)

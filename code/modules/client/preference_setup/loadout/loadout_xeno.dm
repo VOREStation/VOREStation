@@ -219,7 +219,7 @@
 /datum/gear/uniform/dept/undercoat/service
 	display_name = "service undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/service
-	allowed_roles = list(JOB_HEAD_OF_PERSONNEL,"Bartender","Botanist","Janitor","Chef","Librarian","Chaplain")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL,JOB_BARTENDER,JOB_BOTANIST,JOB_JANITOR,JOB_CHEF,JOB_LIBRARIAN,JOB_CHAPLAIN)
 
 /datum/gear/uniform/dept/undercoat/engineer
 	display_name = "engineering undercoat (Teshari)"
@@ -269,7 +269,7 @@
 /datum/gear/uniform/dept/undercoat/iaa
 	display_name = "internal affairs undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/iaa
-	allowed_roles = list("Internal Affairs Agent")
+	allowed_roles = list(JOB_INTERNAL_AFFAIRS_AGENT)
 
 /datum/gear/suit/dept/cloak
 	whitelisted = SPECIES_TESHARI
@@ -384,7 +384,7 @@
 /datum/gear/suit/dept/cloak/service
 	display_name = "service cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/service
-	allowed_roles = list(JOB_HEAD_OF_PERSONNEL,"Bartender","Botanist","Janitor","Chef","Librarian","Chaplain")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL,JOB_BARTENDER,JOB_BOTANIST,JOB_JANITOR,JOB_CHEF,JOB_LIBRARIAN,JOB_CHAPLAIN)
 
 /datum/gear/suit/dept/cloak/service/New()
 	..()
@@ -506,7 +506,7 @@
 /datum/gear/suit/dept/cloak/iaa
 	display_name = "internal affairs cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/iaa
-	allowed_roles = list("Internal Affairs Agent")
+	allowed_roles = list(JOB_INTERNAL_AFFAIRS_AGENT)
 
 /datum/gear/suit/dept/cloak/iaa/New()
 	..()
@@ -559,7 +559,7 @@
 /datum/gear/suit/dept/beltcloak/jani
 	display_name = "janitor belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/jani
-	allowed_roles = list("Janitor")
+	allowed_roles = list(JOB_JANITOR)
 	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/beltcloak/cmd

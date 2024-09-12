@@ -322,5 +322,5 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/iaa
 	name = "internal affairs undercoat"
-	desc = "A traditional Teshari garb made for the Internal Affairs Agent"
+	desc = "A traditional Teshari garb made for the " + JOB_INTERNAL_AFFAIRS_AGENT
 	icon_state = "tesh_uniform_iaa"

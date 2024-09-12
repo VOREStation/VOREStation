@@ -3,7 +3,7 @@
 //////////////////////////////////
 
 /datum/job/intern
-	title = "Intern"
+	title = JOB_INTERN
 	flag = INTERN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = ENGSEC // Ran out of bits
@@ -22,8 +22,8 @@
 					  "Security Cadet" = /datum/alt_title/intern_sec,
 					  "Jr. Cargo Tech" = /datum/alt_title/intern_crg,
 					  "Server" = /datum/alt_title/server,
-					  "Assistant" = /datum/alt_title/assistant)
-	job_description = "An Intern does whatever is requested of them, often doing so in process of learning \
+					  JOB_ALT_ASSISTANT = /datum/alt_title/assistant)
+	job_description = "An " + JOB_INTERN + " does whatever is requested of them, often doing so in process of learning \
 						another job. Though they are part of the crew, they have no real authority."
 	timeoff_factor = 0 // Interns, noh
 	requestable = FALSE
@@ -70,8 +70,8 @@
 	title_outfit = /decl/hierarchy/outfit/job/service/server
 
 /datum/alt_title/assistant
-	title = "Assistant"
-	title_blurb = "An assistant helps out wherever they might be needed. They have no authority, but can volunteer to help if help is needed."
+	title = JOB_ALT_ASSISTANT
+	title_blurb = "An " + JOB_ALT_ASSISTANT + " helps out wherever they might be needed. They have no authority, but can volunteer to help if help is needed."
 	title_outfit = /decl/hierarchy/outfit/job/service/server
 
 /datum/job/intern/New()
@@ -94,7 +94,7 @@
 /datum/job/assistant		// Visitor
 	title = USELESS_JOB
 	supervisors = "nobody! You don't work here"
-	job_description = "A Visitor is just there to visit the place. They have no real authority or responsibility."
+	job_description = "A " + USELESS_JOB + " is just there to visit the place. They have no real authority or responsibility."
 	timeoff_factor = 0
 	requestable = FALSE
 	alt_titles = list("Guest" = /datum/alt_title/guest, "Traveler" = /datum/alt_title/traveler)

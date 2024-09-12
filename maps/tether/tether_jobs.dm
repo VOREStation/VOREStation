@@ -9,7 +9,7 @@
 	visible = FALSE
 
 /datum/job/talon_captain
-	title = "Talon Captain"
+	title = JOB_TALON_CAPTAIN
 	flag = TALCAP
 	department_flag = TALON
 	departments_managed = list(DEPARTMENT_TALON)
@@ -31,13 +31,13 @@
 	dept_time_required = 60
 	access = list(access_talon)
 	minimal_access = list(access_talon)
-	alt_titles = list("Talon Commander" = /datum/alt_title/talon_commander)
+	alt_titles = list(JOB_ALT_TALON_COMMANDER = /datum/alt_title/talon_commander)
 
 /datum/alt_title/talon_commander
-	title = "Talon Commander"
+	title = JOB_ALT_TALON_COMMANDER
 
 /datum/job/talon_doctor
-	title = "Talon Doctor"
+	title = JOB_TALON_DOCTOR
 	flag = TALDOC
 	department_flag = TALON
 	job_description = "The doctor's job is to make sure the crew of the ITV Talon remain in good health and to monitor them when away from the ship."
@@ -57,14 +57,14 @@
 	timeoff_factor = 1
 	access = list(access_talon)
 	minimal_access = list(access_talon)
-	alt_titles = list("Talon Medic" = /datum/alt_title/talon_medic)
+	alt_titles = list(JOB_ALT_TALON_MEDIC = /datum/alt_title/talon_medic)
 
 /datum/alt_title/talon_medic
-	title = "Talon Medic"
+	title = JOB_ALT_TALON_MEDIC
 
 
 /datum/job/talon_engineer
-	title = "Talon Engineer"
+	title = JOB_TALON_ENGINEER
 	flag = TALENG
 	department_flag = TALON
 	job_description = "The engineer's job is to ensure the ITV Talon remains in tip-top shape and to repair any damage as well as manage the shields."
@@ -84,14 +84,14 @@
 	timeoff_factor = 1
 	access = list(access_talon)
 	minimal_access = list(access_talon)
-	alt_titles = list("Talon Technician" = /datum/alt_title/talon_tech)
+	alt_titles = list(JOB_ALT_TALON_TECHNICIAN = /datum/alt_title/talon_tech)
 
 /datum/alt_title/talon_tech
-	title = "Talon Technician"
+	title = JOB_ALT_TALON_TECHNICIAN
 
 
 /datum/job/talon_pilot
-	title = "Talon Pilot"
+	title = JOB_TALON_PILOT
 	flag = TALPIL
 	department_flag = TALON
 	job_description = "The pilot's job is to fly the ITV Talon in the most efficient and profitable way possible."
@@ -111,14 +111,14 @@
 	timeoff_factor = 1
 	access = list(access_talon)
 	minimal_access = list(access_talon)
-	alt_titles = list("Talon Helmsman" = /datum/alt_title/talon_helmsman)
+	alt_titles = list(JOB_ALT_TALON_HELMSMAN = /datum/alt_title/talon_helmsman)
 
 /datum/alt_title/talon_helmsman
-	title = "Talon Helmsman"
+	title = JOB_ALT_TALON_HELMSMAN
 
 
 /datum/job/talon_guard
-	title = "Talon Guard"
+	title = JOB_TALON_GUARD
 	flag = TALSEC
 	department_flag = TALON
 	job_description = "The guard's job is to keep the crew of the ITV Talon safe and ensure the captain's wishes are carried out."
@@ -138,13 +138,13 @@
 	timeoff_factor = 1
 	access = list(access_talon)
 	minimal_access = list(access_talon)
-	alt_titles = list("Talon Security" = /datum/alt_title/talon_security)
+	alt_titles = list(JOB_ALT_TALON_SECURITY = /datum/alt_title/talon_security)
 
 /datum/alt_title/talon_security
-	title = "Talon Security"
+	title = JOB_ALT_TALON_SECURITY
 
 /datum/job/talon_miner
-	title = "Talon Miner"
+	title = JOB_TALON_MINER
 	flag = TALMIN
 	department_flag = TALON
 	job_description = "The miner's job is to excavate ores and refine them for the Talon's use, as well as for trading."
@@ -164,15 +164,15 @@
 	timeoff_factor = 1
 	access = list(access_talon)
 	minimal_access = list(access_talon)
-	alt_titles = list("Talon Excavator" = /datum/alt_title/talon_excavator)
+	alt_titles = list(JOB_ALT_TALON_EXCAVATOR = /datum/alt_title/talon_excavator)
 
 /datum/alt_title/talon_excavator
-	title = "Talon Excavator"
+	title = JOB_ALT_TALON_EXCAVATOR
 
 //////////////////////TALON OUTFITS//////////////////////
 
 /decl/hierarchy/outfit/job/talon_captain
-	name = OUTFIT_JOB_NAME("Talon Captain")
+	name = OUTFIT_JOB_NAME(JOB_TALON_CAPTAIN)
 
 	id_type = /obj/item/weapon/card/id/talon/captain
 	id_slot = slot_wear_id
@@ -187,7 +187,7 @@
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/talon
 
 /decl/hierarchy/outfit/job/talon_pilot
-	name = OUTFIT_JOB_NAME("Talon Pilot")
+	name = OUTFIT_JOB_NAME(JOB_TALON_PILOT)
 
 	id_type = /obj/item/weapon/card/id/talon/pilot
 	id_slot = slot_wear_id
@@ -207,7 +207,7 @@
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/talon
 
 /decl/hierarchy/outfit/job/talon_doctor
-	name = OUTFIT_JOB_NAME("Talon Doctor")
+	name = OUTFIT_JOB_NAME(JOB_TALON_DOCTOR)
 	hierarchy_type = /decl/hierarchy/outfit/job
 
 	id_type = /obj/item/weapon/card/id/talon/doctor
@@ -228,7 +228,7 @@
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/talon
 
 /decl/hierarchy/outfit/job/talon_security
-	name = OUTFIT_JOB_NAME("Talon Security")
+	name = OUTFIT_JOB_NAME(JOB_ALT_TALON_SECURITY)
 	hierarchy_type = /decl/hierarchy/outfit/job
 
 	id_type = /obj/item/weapon/card/id/talon/officer
@@ -249,7 +249,7 @@
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/talon
 
 /decl/hierarchy/outfit/job/talon_engineer
-	name = OUTFIT_JOB_NAME("Talon Engineer")
+	name = OUTFIT_JOB_NAME(JOB_TALON_ENGINEER)
 	hierarchy_type = /decl/hierarchy/outfit/job
 
 	id_type = /obj/item/weapon/card/id/talon/engineer
@@ -271,7 +271,7 @@
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/talon
 
 /decl/hierarchy/outfit/job/talon_miner
-	name = OUTFIT_JOB_NAME("Talon Miner")
+	name = OUTFIT_JOB_NAME(JOB_TALON_MINER)
 	hierarchy_type = /decl/hierarchy/outfit/job
 
 	id_type = /obj/item/weapon/card/id/talon/miner

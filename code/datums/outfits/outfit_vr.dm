@@ -124,7 +124,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/pilot
-	name = OUTFIT_JOB_NAME("Pilot")
+	name = OUTFIT_JOB_NAME(JOB_PILOT)
 	shoes = /obj/item/clothing/shoes/black
 	uniform = /obj/item/clothing/under/rank/pilot1/no_webbing
 	suit = /obj/item/clothing/suit/storage/toggle/bomber/pilot
@@ -136,7 +136,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	pda_slot = slot_belt
 	pda_type = /obj/item/device/pda/pilot
 	id_type = /obj/item/weapon/card/id/civilian/pilot
-	id_pda_assignment = "Pilot"
+	id_pda_assignment = JOB_PILOT
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/medical/sar

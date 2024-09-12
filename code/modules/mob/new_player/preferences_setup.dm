@@ -268,7 +268,7 @@
 	var/datum/job/highJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
-		highJob = job_master.GetJob("Assistant")
+		highJob = job_master.GetJob(JOB_ALT_ASSISTANT)
 	else
 		for(var/datum/job/job in job_master.occupations)
 			var/job_flag

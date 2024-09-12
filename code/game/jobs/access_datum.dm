@@ -397,7 +397,7 @@ var/const/access_explorer = 43
 var/const/access_pilot = 67
 /datum/access/pilot
 	id = access_pilot
-	desc = "Pilot"
+	desc = JOB_PILOT
 	region = ACCESS_REGION_GENERAL
 
 /var/const/access_entertainment = 72
@@ -472,7 +472,7 @@ var/const/access_pilot = 67
 /var/const/access_clown = 136
 /datum/access/clown
 	id = access_clown
-	desc = "Clown Office"
+	desc = JOB_CLOWN + " Office"
 	region = ACCESS_REGION_GENERAL
 
 /var/const/access_tomfoolery = 137
@@ -484,7 +484,7 @@ var/const/access_pilot = 67
 /var/const/access_mime = 138
 /datum/access/mime
 	id = access_mime
-	desc = "Mime Office"
+	desc = JOB_MIME + " Office"
 	region = ACCESS_REGION_GENERAL
 
 /***************

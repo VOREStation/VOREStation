@@ -53,46 +53,46 @@
 	name = JOB_FIELD_MEDIC
 */
 /obj/effect/landmark/start/bartender
-	name = "Bartender"
+	name = JOB_BARTENDER
 /obj/effect/landmark/start/botanist
-	name = "Botanist"
+	name = JOB_BOTANIST
 /obj/effect/landmark/start/chaplain
-	name = "Chaplain"
+	name = JOB_CHAPLAIN
 /obj/effect/landmark/start/chef
-	name = "Chef"
+	name = JOB_CHEF
 /obj/effect/landmark/start/clown
-	name = "Clown"
+	name = JOB_CLOWN
 /obj/effect/landmark/start/entertainer
-	name = "Entertainer"
+	name = JOB_ENTERTAINER
 /obj/effect/landmark/start/entrepreneur
-	name = "Entrepreneur"
+	name = JOB_ENTREPRENEUR
 /obj/effect/landmark/start/intern
-	name = "Intern"
+	name = JOB_INTERN
 /obj/effect/landmark/start/iaa
-	name = "Internal Affairs Agent"
+	name = JOB_INTERNAL_AFFAIRS_AGENT
 /obj/effect/landmark/start/janitor
-	name = "Janitor"
+	name = JOB_JANITOR
 /obj/effect/landmark/start/librarian
-	name = "Librarian"
+	name = JOB_LIBRARIAN
 /obj/effect/landmark/start/mime
-	name = "Mime"
+	name = JOB_MIME
 /obj/effect/landmark/start/pilot
-	name = "Pilot"
+	name = JOB_PILOT
 /obj/effect/landmark/start/visitor
-	name = "Visitor"
+	name = USELESS_JOB
 /obj/effect/landmark/start/ai
-	name = "AI"
+	name = JOB_AI
 /obj/effect/landmark/start/cyborg
-	name = "Cyborg"
+	name = JOB_CYBORG
 /obj/effect/landmark/start/taloncap
-	name = "Talon Captain"
+	name = JOB_TALON_CAPTAIN
 /obj/effect/landmark/start/talondoc
-	name = "Talon Doctor"
+	name = JOB_TALON_DOCTOR
 /obj/effect/landmark/start/taloneng
-	name = "Talon Engineer"
+	name = JOB_TALON_ENGINEER
 /obj/effect/landmark/start/talonguard
-	name = "Talon Guard"
+	name = JOB_TALON_GUARD
 /obj/effect/landmark/start/talonpilot
-	name = "Talon Pilot"
+	name = JOB_TALON_PILOT
 /obj/effect/landmark/start/talonminer
-	name = "Talon Miner"
+	name = JOB_TALON_MINER

@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 /obj/item/device/survivalcapsule/luxurybar
 	name = "luxury surfluid bar capsule"
-	desc = "A luxury bar in a capsule. Bartender required and not included. There's a license for use printed on the bottom."
+	desc = "A luxury bar in a capsule. " + JOB_BARTENDER + " required and not included. There's a license for use printed on the bottom."
 	template_id = "shelter_gamma"
 
 /obj/item/device/survivalcapsule/military

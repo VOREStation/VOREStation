@@ -23,7 +23,7 @@
 /datum/gear/uniform/site_manager_selector
 	display_name = "Command - " + JOB_SITE_MANAGER + "'s Uniforms"
 	description = "Select from a range of outfits available to all " + JOB_SITE_MANAGER + "s, and Talon Captains."
-	allowed_roles = list(JOB_SITE_MANAGER,"Talon Captain")
+	allowed_roles = list(JOB_SITE_MANAGER,JOB_TALON_CAPTAIN)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_captain
 	sort_category = "Uniforms"
@@ -83,9 +83,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/pilot_uniform_selector
-	display_name = "Civilian - Pilot's Uniforms"
-	description = "Select from a range of outfits available to all Pilots (including those on the Talon)."
-	allowed_roles = list("Pilot","Talon Pilot")
+	display_name = "Civilian - " + JOB_PILOT+ "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_PILOT + "s (including those on the Talon)."
+	allowed_roles = list(JOB_PILOT,JOB_TALON_PILOT)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_pilot
 	sort_category = "Uniforms"
@@ -104,9 +104,9 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
 /datum/gear/uniform/janitor_uniform_selector
-	display_name = "Civilian - Janitor's Uniforms"
-	description = "Select from a range of outfits available to all Janitorial personnel."
-	allowed_roles = list("Janitor")
+	display_name = "Civilian - " + JOB_JANITOR + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_JANITOR + "ial personnel."
+	allowed_roles = list(JOB_JANITOR)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_janitor
 	sort_category = "Uniforms"
@@ -190,7 +190,7 @@
 /datum/gear/uniform/security_selector
 	display_name = "Security - Basic Uniforms"
 	description = "Select from a range of outfits available to all Security personnel."
-	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER,"Talon Guard")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER,JOB_TALON_GUARD)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/security/corp
 	sort_category = "Uniforms"
@@ -376,7 +376,7 @@
 /datum/gear/uniform/cargo_miner_selector
 	display_name = "Cargo - Miner's Uniforms"
 	description = "Select from a range of outfits available to all Mining personnel."
-	allowed_roles = list(JOB_SHAFT_MINER,JOB_QUARTERMASTER,"Talon Miner")
+	allowed_roles = list(JOB_SHAFT_MINER,JOB_QUARTERMASTER,JOB_TALON_MINER)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_miner
 	sort_category = "Uniforms"
@@ -420,7 +420,7 @@
 /datum/gear/uniform/engineer_selector
 	display_name = "Engineering - Basic Uniforms"
 	description = "Select from a range of outfits available to all Engineering personnel."
-	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,"Talon Engineer")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_TALON_ENGINEER)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_engi
 	sort_category = "Uniforms"
@@ -468,7 +468,7 @@
 /datum/gear/uniform/medical_selector
 	display_name = "Medical - Basic Uniforms"
 	description = "Select from a range of outfits available to all Medical personnel."
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,"Talon Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,JOB_TALON_DOCTOR)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_med
 	sort_category = "Uniforms"
@@ -521,7 +521,7 @@
 /datum/gear/uniform/paramedic_selector
 	display_name = "Medical - " + JOB_PARAMEDIC + "'s Uniforms"
 	description = "Select from a range of outfits available to all " + JOB_PARAMEDIC + "s."
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC,"Talon Doctor")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC,JOB_TALON_DOCTOR)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/paramedunidark
 	sort_category = "Uniforms"

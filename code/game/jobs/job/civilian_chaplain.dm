@@ -1,6 +1,6 @@
 //Due to how large this one is it gets its own file
 /datum/job/chaplain
-	title = "Chaplain"
+	title = JOB_CHAPLAIN
 	flag = CHAPLAIN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -13,7 +13,7 @@
 	minimal_access = list(access_chapel_office, access_crematorium)
 
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
-	job_description = "The Chaplain ministers to the spiritual needs of the crew."
+	job_description = "The " + JOB_CHAPLAIN + " ministers to the spiritual needs of the crew."
 	alt_titles = list("Counselor" = /datum/alt_title/counselor)
 
 // Chaplain Alt Titles
@@ -111,7 +111,7 @@
 	var/bible_name = "Bible"
 	var/bible_icon_state = "bible"
 	var/bible_item_state = "bible"
-	var/title = "Chaplain"
+	var/title = JOB_CHAPLAIN
 	var/configured = FALSE
 
 /datum/religion/New(var/r, var/d, var/bn, var/bis, var/bits, var/t)

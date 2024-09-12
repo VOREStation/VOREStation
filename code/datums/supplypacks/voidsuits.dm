@@ -265,7 +265,7 @@
 	access = access_medical
 
 /datum/supply_pack/voidsuits/pilot
-	name = "Pilot voidsuits"
+	name = JOB_PILOT + " voidsuits"
 	contains = list(
 			/obj/item/clothing/suit/space/void/pilot = 1,
 			/obj/item/clothing/head/helmet/space/void/pilot = 1,
@@ -275,7 +275,7 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Pilot voidsuit crate"
+	containername = JOB_PILOT + " voidsuit crate"
 	access = access_pilot
 
 // Surplus!

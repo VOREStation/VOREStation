@@ -91,13 +91,13 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_WARDEN)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_DETECTIVE)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_SECURITY_OFFICER)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CYBORG)
 		return 1
 	if(rank == RANK_ENGINEERING)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_ENGINEER)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_ATMOSPHERIC_TECHNICIAN)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHIEF_ENGINEER)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CYBORG)
 		return 1
 	if(rank == RANK_RESEARCH)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_SCIENTIST)
@@ -110,7 +110,7 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_MEDICAL_DOCTOR)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHIEF_MEDICAL_OFFICER)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CHEMIST)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CYBORG)
 		return 1
 	if(rank == RANK_CE_STATION_ENGINEER)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_ENGINEER)
@@ -143,8 +143,8 @@ var/savefile/Banlistjob
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_SCIENTIST)
 		return 1
 	if(rank == RANK_AI_CYBORG)
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Cyborg")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "AI")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_CYBORG)
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_AI)
 		return 1
 	if(rank == RANK_DETECTIVE_HOS)
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, JOB_DETECTIVE)

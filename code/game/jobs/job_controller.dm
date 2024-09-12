@@ -229,7 +229,7 @@ var/global/datum/controller/occupations/job_master
 	//Holder for Triumvirate is stored in the ticker, this just processes it
 	if(ticker && ticker.triai)
 		for(var/datum/job/A in occupations)
-			if(A.title == "AI")
+			if(A.title == JOB_AI)
 				A.spawn_positions = 3
 				break
 

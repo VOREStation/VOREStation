@@ -207,32 +207,38 @@
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n")
 
 /obj/item/weapon/card/id/civilian/chaplain
-	name = "Chaplain's ID"
+	name = JOB_CHAPLAIN + "'s ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-cross", "stripe-white")
+	rank = JOB_CHAPLAIN
 
 /obj/item/weapon/card/id/civilian/journalist
 	name = "Journalist's ID"
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-red")
 
 /obj/item/weapon/card/id/civilian/pilot
-	name = "Pilot's ID"
+	name = JOB_PILOT + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-olive")
+	rank = JOB_PILOT
 
 /obj/item/weapon/card/id/civilian/entertainer
-	name = "Entertainer's ID"
+	name = JOB_ENTERTAINER + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-brown")
+	rank = JOB_ENTERTAINER
 
 /obj/item/weapon/card/id/civilian/entrepreneur
-	name = "Entrepreneur's ID"
+	name = JOB_ENTREPRENEUR + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-gold")
+	rank = JOB_ENTREPRENEUR
 
 /obj/item/weapon/card/id/civilian/clown
-	name = "Clown's ID"
+	name = JOB_CLOWN + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-rainbow", "stamp-n")
+	rank = JOB_CLOWN
 
 /obj/item/weapon/card/id/civilian/mime
-	name = "Mime's ID"
+	name = JOB_MIME + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-white", "stamp-n", "stripe-black")
+	rank = JOB_MIME
 
 /obj/item/weapon/card/id/civilian/internal_affairs
 	name = "Internal Affairs ID"
@@ -245,20 +251,24 @@
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n")
 
 /obj/item/weapon/card/id/civilian/service/botanist
-	name = "Botanist's ID"
+	name = JOB_BOTANIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-darkgreen")
+	rank = JOB_BOTANIST
 
 /obj/item/weapon/card/id/civilian/service/bartender
-	name = "Bartender's ID"
+	name = JOB_BARTENDER + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-black")
+	rank = JOB_BARTENDER
 
 /obj/item/weapon/card/id/civilian/service/chef
-	name = "Chef's ID"
+	name = JOB_CHEF + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-white")
+	rank = JOB_CHEF
 
 /obj/item/weapon/card/id/civilian/service/janitor
-	name = "Janitor's ID"
+	name = JOB_JANITOR + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "stripe-purple")
+	rank = JOB_JANITOR
 
 //Exploration
 
@@ -286,6 +296,7 @@
 /obj/item/weapon/card/id/talon/doctor
 	name = "Talon Medical ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-medblu", "stripe-medblu")
+	rank = JOB_TALON_DOCTOR
 
 /obj/item/weapon/card/id/talon/engineer
 	name = "Talon Engineering ID"
@@ -296,16 +307,18 @@
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-red", "stripe-red")
 
 /obj/item/weapon/card/id/talon/pilot
-	name = "Talon Pilot ID"
+	name = JOB_TALON_PILOT + " ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-purple", "stripe-purple")
+	rank = JOB_TALON_PILOT
 
 /obj/item/weapon/card/id/talon/miner
 	name = "Talon Mining ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-brown", "stripe-brown")
 
 /obj/item/weapon/card/id/talon/captain
-	name = "Talon Captain ID"
+	name = JOB_TALON_CAPTAIN + " ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-gold", "stripe-gold")
+	rank = JOB_TALON_CAPTAIN
 
 //Antags
 

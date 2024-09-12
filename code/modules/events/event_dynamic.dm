@@ -33,8 +33,8 @@ var/list/event_last_fired = list()
 	//var/engineer_count = number_active_with_role(JOB_ENGINEER)
 	//var/security_count = number_active_with_role("Security")
 	//var/medical_count = number_active_with_role("Medical")
-	//var/AI_count = number_active_with_role("AI")
-	//var/janitor_count = number_active_with_role("Janitor")
+	//var/AI_count = number_active_with_role(JOB_AI)
+	//var/janitor_count = number_active_with_role(JOB_JANITOR)
 
 	// Maps event names to event chances
 	// For each chance, 100 represents "normal likelihood", anything below 100 is "reduced likelihood", anything above 100 is "increased likelihood"
@@ -57,16 +57,16 @@ var/list/event_last_fired = list()
 
 
 	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role[JOB_ENGINEER]
-	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role["Janitor"]
+	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role[JOB_JANITOR]
 
 	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[JOB_ENGINEER] + 25 * active_with_role["Security"]
-	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
+	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role[JOB_JANITOR]
 
-	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role[JOB_SCIENTIST] * 25
-	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role[JOB_ENGINEER] * 10 + active_with_role[JOB_SCIENTIST] * 5
+	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role[JOB_AI] + active_with_role[JOB_SCIENTIST] * 25
+	possibleEvents[/datum/event/ionstorm] = active_with_role[JOB_AI] * 25 + active_with_role[JOB_CYBORG] * 25 + active_with_role[JOB_ENGINEER] * 10 + active_with_role[JOB_SCIENTIST] * 5
 	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role[JOB_ENGINEER]
-	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role["Janitor"] + 5 * active_with_role[JOB_ENGINEER]
-	possibleEvents[/datum/event/wallrot] = 30 * active_with_role[JOB_ENGINEER] + 50 * active_with_role["Gardener"]
+	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role[JOB_JANITOR] + 5 * active_with_role[JOB_ENGINEER]
+	possibleEvents[/datum/event/wallrot] = 30 * active_with_role[JOB_ENGINEER] + 50 * active_with_role[JOB_ALT_GARDENER]
 
 	if(!spacevines_spawned)
 		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role[JOB_ENGINEER]
@@ -183,10 +183,10 @@ var/list/event_last_fired = list()
 	active_with_role["Medical"] = 0
 	active_with_role["Security"] = 0
 	active_with_role[JOB_SCIENTIST] = 0
-	active_with_role["AI"] = 0
-	active_with_role["Cyborg"] = 0
-	active_with_role["Janitor"] = 0
-	active_with_role["Botanist"] = 0
+	active_with_role[JOB_AI] = 0
+	active_with_role[JOB_CYBORG] = 0
+	active_with_role[JOB_JANITOR] = 0
+	active_with_role[JOB_BOTANIST] = 0
 
 	for(var/mob/M in player_list)
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES)) // longer than 10 minutes AFK counts them as inactive
@@ -206,9 +206,9 @@ var/list/event_last_fired = list()
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/research))
 					active_with_role[JOB_SCIENTIST]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/janitor))
-					active_with_role["Janitor"]++
+					active_with_role[JOB_JANITOR]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/clerical/butler))
-					active_with_role["Botanist"]++
+					active_with_role[JOB_BOTANIST]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 			active_with_role[JOB_ENGINEER]++
@@ -222,16 +222,16 @@ var/list/event_last_fired = list()
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 			active_with_role[JOB_SCIENTIST]++
 
-		if(M.mind.assigned_role == "AI")
-			active_with_role["AI"]++
+		if(M.mind.assigned_role == JOB_AI)
+			active_with_role[JOB_AI]++
 
-		if(M.mind.assigned_role == "Cyborg")
-			active_with_role["Cyborg"]++
+		if(M.mind.assigned_role == JOB_CYBORG)
+			active_with_role[JOB_CYBORG]++
 
-		if(M.mind.assigned_role == "Janitor")
-			active_with_role["Janitor"]++
+		if(M.mind.assigned_role == JOB_JANITOR)
+			active_with_role[JOB_JANITOR]++
 
-		if(M.mind.assigned_role == "Botanist")
-			active_with_role["Botanist"]++
+		if(M.mind.assigned_role == JOB_BOTANIST)
+			active_with_role[JOB_BOTANIST]++
 
 	return active_with_role

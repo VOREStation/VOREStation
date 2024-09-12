@@ -434,7 +434,7 @@
 	display_name = "pilot helmets selection"
 	description = "Your choice of four hard-wearing head-protecting helmets for pilots."
 	path = /obj/item/clothing/head/pilot_vr
-	allowed_roles = list("Pilot", "Talon Pilot")
+	allowed_roles = list(JOB_PILOT, JOB_TALON_PILOT)
 
 /datum/gear/head/pilot/New()
 	..()

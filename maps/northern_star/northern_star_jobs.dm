@@ -4,6 +4,6 @@
 		"Technical Assistant",
 		"Medical Intern",
 		"Research Assistant",
-		"Visitor" = /decl/hierarchy/outfit/job/assistant/visitor,
+		USELESS_JOB = /decl/hierarchy/outfit/job/assistant/visitor,
 		"Resident" = /decl/hierarchy/outfit/job/assistant/resident
 	)

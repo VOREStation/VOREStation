@@ -1293,7 +1293,7 @@
 	display_name = "Lucky's amour"
 	ckeywhitelist = list ("thedavestdave")
 	character_name = list("Lucky")
-	allowed_roles = list("Chaplain")
+	allowed_roles = list(JOB_CHAPLAIN)
 
 /datum/gear/fluff/lovec_gasmask
 	path = /obj/item/clothing/mask/gas/explorer

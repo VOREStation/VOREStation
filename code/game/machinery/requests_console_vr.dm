@@ -44,8 +44,8 @@
 	departmentType = RC_ASSIST|RC_SUPPLY
 
 /obj/machinery/requests_console/preset/janitor
-	name = "Janitor RC"
-	department = "Janitorial"
+	name = JOB_JANITOR + " RC"
+	department = JOB_JANITOR + "ial"
 	departmentType = RC_ASSIST
 
 /obj/machinery/requests_console/preset/bridge
@@ -87,6 +87,6 @@
 	announcementConsole = 1
 
 /obj/machinery/requests_console/preset/ai
-	name = "AI RC"
-	department = "AI"
+	name = JOB_AI + " RC"
+	department = JOB_AI
 	departmentType = RC_ASSIST|RC_INFO

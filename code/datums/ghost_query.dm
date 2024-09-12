@@ -112,7 +112,7 @@
 	question = "Someone has activated a Positronic Brain.  Would you like to play as one?"
 	query_sound = 'sound/machines/boobeebeep.ogg'
 	be_special_flag = BE_AI
-	check_bans = list("AI", "Cyborg")
+	check_bans = list(JOB_AI, JOB_CYBORG)
 	cutoff_number = 1
 
 /datum/ghost_query/drone_brain
@@ -120,7 +120,7 @@
 	question = "Someone has activated a Drone AI Chipset.  Would you like to play as one?"
 	query_sound = 'sound/machines/boobeebeep.ogg'
 	be_special_flag = BE_AI
-	check_bans = list("AI", "Cyborg")
+	check_bans = list(JOB_AI, JOB_CYBORG)
 	cutoff_number = 1
 
 // Antags.
@@ -156,7 +156,7 @@
 	role_name = "Mercenary Drone"
 	question = "A team of dubious mercenaries have purchased a powerful drone, and they are attempting to activate it.  Would you like to play as the drone?"
 	be_special_flag = BE_AI
-	check_bans = list("AI", "Cyborg", "Syndicate")
+	check_bans = list(JOB_AI, JOB_CYBORG, "Syndicate")
 	cutoff_number = 1
 
 /datum/ghost_query/borer
@@ -171,14 +171,14 @@
 	role_name = "Lost Drone"
 	question = "A lost drone onboard has been discovered by a crewmember and they are attempting to reactivate it.  Would you like to play as the drone?"
 	be_special_flag = BE_LOSTDRONE	//VOREStation Edit
-	check_bans = list("AI", "Cyborg")
+	check_bans = list(JOB_AI, JOB_CYBORG)
 	cutoff_number = 1
 
 /datum/ghost_query/gravekeeper_drone
 	role_name = "Gravekeeper Drone"
 	question = "A gravekeeper drone is about to reactivate and tend to its gravesite. Would you like to play as the drone?"
 	be_special_flag = BE_AI
-	check_bans = list("AI", "Cyborg")
+	check_bans = list(JOB_AI, JOB_CYBORG)
 	cutoff_number = 1
 
 /datum/ghost_query/lost_passenger

@@ -107,7 +107,7 @@
 /datum/gear/eyes/janitor
 	display_name = "Contaminant HUD"
 	path = /obj/item/clothing/glasses/hud/janitor
-	allowed_roles = list("Janitor")
+	allowed_roles = list(JOB_JANITOR)
 
 /datum/gear/eyes/janitor/prescriptionjan
 	display_name = "Contaminant HUD, prescription"
@@ -147,7 +147,7 @@
 	display_name = "functional sunglasses selector"
 	description = "Select from a range of polarized sunglasses that can block flashes whilst still looking classy."
 	path = /obj/item/clothing/glasses/sunglasses
-	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN,JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_QUARTERMASTER,"Internal Affairs Agent",JOB_DETECTIVE)
+	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_HEAD_OF_SECURITY,JOB_WARDEN,JOB_SITE_MANAGER,JOB_HEAD_OF_PERSONNEL,JOB_QUARTERMASTER,JOB_INTERNAL_AFFAIRS_AGENT,JOB_DETECTIVE)
 
 /datum/gear/eyes/sun/New()
 	..()

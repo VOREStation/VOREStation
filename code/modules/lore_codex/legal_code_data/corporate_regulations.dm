@@ -81,7 +81,7 @@
 	adhered to, and assist if needed.</li><br>\
 	<li><b>Reassignments</b> as a form of punishment may be done by the " + JOB_SITE_MANAGER + ", with consent from both the offender and the offender's \
 	Superior, if one exists.  Generally the new role for the offender is usually considered something menial or related to their offense, for example: \
-	Janitor, Miner, Cook, Gardener.  This punishment can be especially fitting for certain violations such as someone who made graffiti being reassigned to janitorial duties.</li><br>\
+	" + JOB_JANITOR + ", Miner, Cook, " + JOB_ALT_GARDENER + ".  This punishment can be especially fitting for certain violations such as someone who made graffiti being reassigned to janitorial duties.</li><br>\
 	<li><b>Demotions</b> may be done by the offender's Superior, at their discretion.  The " + JOB_SITE_MANAGER + " may also do this, \
 	however the Director is recommended to defer to the offender's direct Superior if one exists.</li><br>\
 	<li><b>Terminations of employment</b> from NanoTrasen can only be issued by the " + JOB_SITE_MANAGER + ".  This is the most severe corporate punishment available. \
@@ -188,7 +188,7 @@
 	suggested_punishments = "Fine of up to 200 thaler, or brig time extention up to 20 minutes. Demotion at discretion of Superior."
 	suggested_fine = 200
 	suggested_brig_time = 20 MINUTES
-	notes = "If this disputed, an Internal Affairs Agent (if available) is to be the impartial mediator."
+	notes = "If this disputed, an " + JOB_INTERNAL_AFFAIRS_AGENT + " (if available) is to be the impartial mediator."
 
 /datum/lore/codex/page/law/control_contraband
 	name = "Possession of a Controlled Item (Contraband)"
@@ -301,7 +301,7 @@
 	name = "Wrongful Dismissal"
 	definition = "To demote, dismiss, terminate, or otherwise reduce a crewmember's rank for no valid, or a knowingly false reason."
 	suggested_punishments = "Demotion.  Termination at discretion of " + JOB_SITE_MANAGER + ".  Notify Central Command."
-	notes = "An Internal Affairs Agent is required to do an investigation in order to conclude if this has occurred or not.  Security cannot \
+	notes = "An " + JOB_INTERNAL_AFFAIRS_AGENT + " is required to do an investigation in order to conclude if this has occurred or not.  Security cannot \
 	give this charge out on their own."
 	mandated = TRUE
 

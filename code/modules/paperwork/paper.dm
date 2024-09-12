@@ -517,7 +517,7 @@
 /obj/item/weapon/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 	var/clown = 0
-	if(user.mind && (user.mind.assigned_role == "Clown"))
+	if(user.mind && (user.mind.assigned_role == JOB_CLOWN))
 		clown = 1
 
 	if(istype(P, /obj/item/weapon/tape_roll))

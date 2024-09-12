@@ -207,7 +207,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/iaa
 	name = "internal affairs cloak"
-	desc = "A soft Teshari cloak made for the Internal Affairs Agent"
+	desc = "A soft Teshari cloak made for the " + JOB_INTERNAL_AFFAIRS_AGENT
 	icon_state = "tesh_cloak_iaa"
 
 //Service
@@ -689,7 +689,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/iaa
 	name = "internal affairs belted cloak"
-	desc = "A soft Teshari cloak made for the Internal Affairs Agent"
+	desc = "A soft Teshari cloak made for the " + JOB_INTERNAL_AFFAIRS_AGENT
 	icon_state = "tesh_beltcloak_iaa"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/wrdn
@@ -704,5 +704,5 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/jani
 	name = "janitor belted cloak"
-	desc = "A soft Teshari cloak made for the Janitor"
+	desc = "A soft Teshari cloak made for the " + JOB_JANITOR
 	icon_state = "tesh_beltcloak_jani"

@@ -27,7 +27,7 @@
 	ert.add_antagonist(H.mind)
 
 /decl/hierarchy/outfit/job/clown
-	name = OUTFIT_JOB_NAME("Clown")
+	name = OUTFIT_JOB_NAME(JOB_CLOWN)
 	uniform = /obj/item/clothing/under/rank/clown
 	back = /obj/item/weapon/storage/backpack/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -38,7 +38,7 @@
 	flags = 0
 
 /decl/hierarchy/outfit/job/mime
-	name = OUTFIT_JOB_NAME("Mime")
+	name = OUTFIT_JOB_NAME(JOB_MIME)
 	uniform = /obj/item/clothing/under/mime
 	shoes = /obj/item/clothing/shoes/mime
 	head = /obj/item/clothing/head/soft/mime

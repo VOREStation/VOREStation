@@ -308,7 +308,7 @@
 	primary_color = rgb(0,94,142)
 	secondary_color = rgb(95,159,191)
 	assignment = "Civilian"
-	rank = "Assistant"
+	rank = JOB_ALT_ASSISTANT
 
 /obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
@@ -404,8 +404,8 @@
 /obj/item/weapon/card/id/event/accessset/itg/crew/pilot
 	name = "\improper ITG Pilot's ID"
 	desc = "An ID card belonging to the Pilot of an ITG vessel. The Pilot's responsibility is primarily to fly the ship. They may also be tasked to assist with cargo movement duties."
-	assignment = "Pilot"
-	rank = "Pilot"
+	assignment = "v
+	rank = JOB_PILOT
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/service
 	name = "\improper ITG Cook's ID"
@@ -522,26 +522,25 @@
 /obj/item/weapon/card/id/event/polymorphic/itg/attack_self(var/mob/user)
 	if(!configured)
 		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
-		"Pilot" = "itg",
-		"Visitor" = "itg",
+		JOB_PILOT = "itg",
+		USELESS_JOB = "itg",
 		JOB_QUARTERMASTER = "itg",
 		JOB_CARGO_TECHNICIAN = "itg",
 		JOB_SHAFT_MINER = "itg",
-		"Intern" = "itg",
-		"Talon Pilot" = "itg",
-		"Talon Miner" = "itg",
-		"Bartender" = "itg_green",
-		"Botanist" = "itg_green",
-		"Chef" = "itg_green",
-		"Janitor" = "itg_green",
-		"Chaplain" = "itg_green",
-		"Entertainer" = "itg_green",
-		"Janitor" = "itg_green",
-		"Librarian" = "itg_green",
+		JOB_INTERN = "itg",
+		JOB_TALON_PILOT = "itg",
+		JOB_TALON_MINER = "itg",
+		JOB_BARTENDER = "itg_green",
+		JOB_BOTANIST = "itg_green",
+		JOB_CHEF = "itg_green",
+		JOB_JANITOR = "itg_green",
+		JOB_CHAPLAIN = "itg_green",
+		JOB_ENTERTAINER = "itg_green",
+		JOB_LIBRARIAN = "itg_green",
 		JOB_WARDEN = "itg_red",
 		JOB_DETECTIVE = "itg_red",
 		JOB_SECURITY_OFFICER = "itg_red",
-		"Talon Guard" = "itg_red",
+		JOB_TALON_GUARD = "itg_red",
 		JOB_ROBOTICIST = "itg_purple",
 		JOB_SCIENTIST = "itg_purple",
 		JOB_XENOBIOLOGIST = "itg_purple",
@@ -553,7 +552,7 @@
 		JOB_PARAMEDIC = "itg_white",
 		JOB_PSYCHIATRIST = "itg_white",
 		JOB_FIELD_MEDIC = "itg_white",
-		"Talon Doctor" = "itg_white",
+		JOB_TALON_DOCTOR = "itg_white",
 		JOB_ATMOSPHERIC_TECHNICIAN = "itg_orange",
 		JOB_ENGINEER = "itg_orange",
 		"Off-duty Officer" = "itg_red",
@@ -579,7 +578,7 @@
 /obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, "Head of Security", JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
+		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, JOB_HEAD_OF_SECURITY, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, JOB_CLOWN, JOB_MIME, JOB_TALON_CAPTAIN) //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
 			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
 			return

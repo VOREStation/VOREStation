@@ -183,7 +183,7 @@
 	access = list(access_eva, access_explorer)
 
 /datum/supply_pack/pilotgear
-	name= "Pilot gear"
+	name= JOB_PILOT + " gear"
 	contains = list (
 					/obj/item/weapon/storage/backpack/parachute,
 					/obj/item/device/radio/headset/pilot,
@@ -204,7 +204,7 @@
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
-	containername = "Pilot equipment"
+	containername =  JOB_PILOT + " equipment"
 	access = access_pilot
 
 /datum/supply_pack/supply/foodcubes

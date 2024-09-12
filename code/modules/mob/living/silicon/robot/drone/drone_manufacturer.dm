@@ -112,7 +112,7 @@
 	if (usr != src)
 		return 0 //something is terribly wrong
 
-	if(jobban_isbanned(src,"Cyborg"))
+	if(jobban_isbanned(src,JOB_CYBORG))
 		to_chat(usr, "<span class='danger'>You are banned from playing synthetics and cannot spawn as a drone.</span>")
 		return
 

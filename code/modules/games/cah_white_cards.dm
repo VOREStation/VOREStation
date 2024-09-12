@@ -6,7 +6,7 @@
 	"Having sex in the maintenance tunnels",
 	"Space 'Nam",
 	"Space lesbians",
-	"The Gardener getting SUPER high",
+	"The " + JOB_ALT_GARDENER + " getting SUPER high",
 	"The Site Manager thinking they're a badass",
 	"Being in a cult",
 	"Racially biased lawsets",

@@ -30,7 +30,7 @@
 	spawn_positions = 2
 	pto_type = PTO_CIVILIAN
 	alt_titles = list("Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer,
-						"Gardener" = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit, "Rancher" = /datum/alt_title/rancher)
+						JOB_ALT_GARDENER = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit, "Rancher" = /datum/alt_title/rancher)
 
 /datum/alt_title/hydroponicist
 	title = "Hydroponicist"
@@ -211,7 +211,7 @@
 //////////////////////////////////
 
 /datum/job/pilot
-	title = "Pilot"
+	title = JOB_PILOT
 	flag = PILOT
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -226,7 +226,7 @@
 	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
-	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
+	job_description = "A " + JOB_PILOT + " flies the various shuttles in the Virgo-Erigone System."
 	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator, "Helmsman" = /datum/alt_title/helmsman)
 
 /datum/alt_title/co_pilot
@@ -247,7 +247,7 @@
 //////////////////////////////////
 
 /datum/job/entertainer
-	title = "Entertainer"
+	title = JOB_ENTERTAINER
 	flag = ENTERTAINER
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -261,7 +261,7 @@
 	pto_type = PTO_CIVILIAN
 
 	outfit_type = /decl/hierarchy/outfit/job/assistant/entertainer
-	job_description = "An entertainer does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
+	job_description = "An " + JOB_ENTERTAINER + " does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
 	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand,
 						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
 						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian,
@@ -317,7 +317,7 @@
 //////////////////////////////////
 
 /datum/job/entrepreneur
-	title = "Entrepreneur"
+	title = JOB_ENTREPRENEUR
 	flag = ENTREPRENEUR
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -331,7 +331,7 @@
 	pto_type = PTO_CIVILIAN
 
 	outfit_type = /decl/hierarchy/outfit/job/assistant/entrepreneur
-	job_description = "An entrepreneur is basically a visitor that obtained special permission to offer personal services to people on station. \
+	job_description = "An " + JOB_ENTREPRENEUR + " is basically a visitor that obtained special permission to offer personal services to people on station. \
 						They will offer people these services and, potentially, even demand payment!"
 	alt_titles = list("Lawyer" = /datum/alt_title/lawyer, "Private Eye" = /datum/alt_title/private_eye, "Bodyguard" = /datum/alt_title/bodyguard,
 						"Personal Physician" = /datum/alt_title/personal_physician, "Dentist" = /datum/alt_title/dentist, "Fitness Instructor" = /datum/alt_title/fitness_instructor,

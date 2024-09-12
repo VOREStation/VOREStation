@@ -39,6 +39,35 @@
 #define JOB_EXPLORER "Away Team" // was Explorer
 #define JOB_FIELD_MEDIC "Away Team Medic" // was Field Medic
 
+// Station Civilian jobs
+#define JOB_BARTENDER "Bartender"
+#define JOB_BOTANIST "Botanist"
+#define JOB_CHAPLAIN "Chaplain"
+#define JOB_CHEF "Chef"
+#define JOB_CLOWN "Clown"
+#define JOB_ENTERTAINER "Entertainer"
+#define JOB_ENTREPRENEUR "Entrepreneur"
+#define JOB_INTERN "Intern"
+#define JOB_INTERNAL_AFFAIRS_AGENT "Internal Affairs Agent"
+#define JOB_JANITOR "Janitor"
+#define JOB_LIBRARIAN "Librarian"
+#define JOB_MIME "Mime"
+#define JOB_PILOT "Pilot"
+
+// Station Robot jobs
+#define JOB_AI "AI"
+#define JOB_CYBORG "Cyborg"
+
+
+#define JOB_ALT_ASSISTANT "Assistant"
+
+// Talom jobs
+#define JOB_TALON_CAPTAIN "Talon Captain"
+#define JOB_TALON_DOCTOR "Talon Doctor"
+#define JOB_TALON_ENGINEER "Talon Engineer"
+#define JOB_TALON_GUARD "Talon Guard"
+#define JOB_TALON_PILOT "Talon Pilot"
+#define JOB_TALON_MINER "Talon Miner"
 
 // Security alt titles
 #define JOB_ALT_FORENSIC_TECHNICIAN "Forensic Technician"
@@ -48,6 +77,21 @@
 #define JOB_ALT_PHARMACIST "Pharmacist"
 #define JOB_ALT_PHARMACOLOGIST "Pharmacologist"
 
+// Civilian alt titles
+#define JOB_ALT_GARDENER "Gardener"
+#define JOB_ALT_PASEUR "Poseur"
+
+// Station Robot alt titles
+#define JOB_ALT_ROBOT "Robot"
+#define JOB_ALT_DRONE "Drone"
+
+// Talon alt jobs
+#define JOB_ALT_TALON_COMMANDER "Talon Commander
+#define JOB_ALT_TALON_MEDIC "Talon Medic"
+#define JOB_ALT_TALON_TECHNICIAN "Talon Technician"
+#define JOB_ALT_TALON_SECURITY "Talon Security"
+#define JOB_ALT_TALON_HELMSMAN "Talon Helmsman"
+#define JOB_ALT_TALON_EXCAVATOR "Talon Excavator"
 
 //Assistant/Visitor/Whatever
 #define USELESS_JOB "Visitor"
@@ -55,7 +99,7 @@
 /*
 "Emergency Response Team"
  "Syndicate"
-
+						"Assistant"  "Resident" "Virologist", assigned_role, jobname, M_job, check_bans
 
 	alt_titles = list("Patrol Officer" = /datum/alt_title/patrol_officer, "Security Guard" = /datum/alt_title/security_guard,
 						"Security Deputy" = /datum/alt_title/security_guard, JOB_ALT_JUNIOR_OFFICER = /datum/alt_title/junior_officer, "Security Contractor" = /datum/alt_title/security_contractor)

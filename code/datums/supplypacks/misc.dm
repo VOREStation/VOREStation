@@ -101,7 +101,7 @@
 	containername = "EFTPOS crate"
 
 /datum/supply_pack/misc/chaplaingear
-	name = "Chaplain equipment"
+	name = JOB_CHAPLAIN + " equipment"
 	contains = list(
 			/obj/item/clothing/under/rank/chaplain,
 			/obj/item/clothing/shoes/black,
@@ -116,7 +116,7 @@
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari
-	containername = "Chaplain equipment crate"
+	containername = JOB_CHAPLAIN + " equipment crate"
 
 /datum/supply_pack/misc/hoverpod
 	name = "Hoverpod Shipment"

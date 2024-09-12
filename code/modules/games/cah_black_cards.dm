@@ -4,7 +4,7 @@
 /obj/item/weapon/deck/cah/black/card_text_list = list(
 	"Why am I itchy?",
 	"Today, Security shot ____.",
-	"The Chaplain this shift is worshiping _____.",
+	"The " + JOB_CHAPLAIN + " this shift is worshiping _____.",
 	"Cargo ordered a crate full of _____.",
 	"An ERT was called due to ______.",
 	"Alert! The " + JOB_SITE_MANAGER + " has armed themselves with _____.",

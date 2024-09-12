@@ -26,7 +26,7 @@
 	for(var/mob/observer/dead/O in player_list)
 		if(!O.MayRespawn())
 			continue
-		if(jobban_isbanned(O, "AI") && jobban_isbanned(O, "Cyborg"))
+		if(jobban_isbanned(O, JOB_AI) && jobban_isbanned(O, JOB_CYBORG))
 			continue
 		if(O.client)
 			if(O.client.prefs.be_special & BE_AI)

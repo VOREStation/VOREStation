@@ -159,7 +159,7 @@
 /datum/gear/uniform/suit/iaskirt
 	display_name = "suit, Internal Affairs skirt (Internal Affairs)"
 	path = /obj/item/clothing/under/rank/internalaffairs/skirt
-	allowed_roles = list("Internal Affairs Agent")
+	allowed_roles = list(JOB_INTERNAL_AFFAIRS_AGENT)
 
 /datum/gear/uniform/suit/bartenderskirt
 	display_name = "suit, bartender skirt"

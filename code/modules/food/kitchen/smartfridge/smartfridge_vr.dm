@@ -2,9 +2,9 @@
  * Expert Jobs
  */
 /obj/machinery/smartfridge
-	var/expert_job = "Chef"
+	var/expert_job = JOB_CHEF
 /obj/machinery/smartfridge/seeds
-	expert_job = "Botanist"
+	expert_job = JOB_BOTANIST
 /obj/machinery/smartfridge/secure/extract
 	expert_job = JOB_XENOBIOLOGIST
 /obj/machinery/smartfridge/secure/medbay
@@ -14,7 +14,7 @@
 /obj/machinery/smartfridge/secure/virology
 	expert_job = JOB_MEDICAL_DOCTOR //Virologist is an alt-title unfortunately
 /obj/machinery/smartfridge/drinks
-	expert_job = "Bartender"
+	expert_job = JOB_BARTENDER
 
 /*
  * Allow thrown items into smartfridges

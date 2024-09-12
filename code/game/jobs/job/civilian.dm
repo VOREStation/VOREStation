@@ -5,7 +5,7 @@
 //////////////////////////////////
 
 /datum/job/bartender
-	title = "Bartender"
+	title = JOB_BARTENDER
 	flag = BARTENDER
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -18,7 +18,7 @@
 	minimal_access = list(access_bar)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
-	job_description = "A Bartender mixes drinks for the crew. They generally have permission to charge for drinks or deny service to unruly patrons."
+	job_description = "A " + JOB_BARTENDER + " mixes drinks for the crew. They generally have permission to charge for drinks or deny service to unruly patrons."
 	alt_titles = list("Barista" = /datum/alt_title/barista)
 
 // Bartender Alt Titles
@@ -33,7 +33,7 @@
 //////////////////////////////////
 
 /datum/job/chef
-	title = "Chef"
+	title = JOB_CHEF
 	flag = CHEF
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -46,7 +46,7 @@
 	minimal_access = list(access_kitchen)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
-	job_description = "A Chef cooks food for the crew. They generally have permission to charge for food or deny service to unruly diners."
+	job_description = "A " + JOB_CHEF + " cooks food for the crew. They generally have permission to charge for food or deny service to unruly diners."
 	alt_titles = list("Cook" = /datum/alt_title/cook)
 
 // Chef Alt Titles
@@ -59,7 +59,7 @@
 //////////////////////////////////
 
 /datum/job/hydro
-	title = "Botanist"
+	title = JOB_BOTANIST
 	flag = BOTANIST
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -72,13 +72,13 @@
 	minimal_access = list(access_hydroponics)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
-	job_description = "A Botanist grows plants for the Chef and Bartender."
-	alt_titles = list("Gardener" = /datum/alt_title/gardener)
+	job_description = "A " + JOB_BOTANIST+ " grows plants for the " + JOB_CHEF + " and " + JOB_BARTENDER + "."
+	alt_titles = list(JOB_ALT_GARDENER = /datum/alt_title/gardener)
 
 //Botanist Alt Titles
 /datum/alt_title/gardener
-	title = "Gardener"
-	title_blurb = "A Gardener may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
+	title = JOB_ALT_GARDENER
+	title_blurb = "A " + JOB_ALT_GARDENER + " may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
 
 //Cargo
 //////////////////////////////////
@@ -162,7 +162,7 @@
 //			Janitor
 //////////////////////////////////
 /datum/job/janitor
-	title = "Janitor"
+	title = JOB_JANITOR
 	flag = JANITOR
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -175,7 +175,7 @@
 	minimal_access = list(access_janitor, access_maint_tunnels)
 
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
-	job_description = "A Janitor keeps the station clean, as long as it doesn't interfere with active crime scenes."
+	job_description = "A " + JOB_JANITOR + " keeps the station clean, as long as it doesn't interfere with active crime scenes."
 	alt_titles = list("Custodian" = /datum/alt_title/custodian)
 
 // Janitor Alt Titles
@@ -187,7 +187,7 @@
 //			Librarian
 //////////////////////////////////
 /datum/job/librarian
-	title = "Librarian"
+	title = JOB_LIBRARIAN
 	flag = LIBRARIAN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -200,7 +200,7 @@
 	minimal_access = list(access_library)
 
 	outfit_type = /decl/hierarchy/outfit/job/librarian
-	job_description = "The Librarian curates the book selection in the Library, so the crew might enjoy it."
+	job_description = "The " + JOB_LIBRARIAN + " curates the book selection in the Library, so the crew might enjoy it."
 	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Writer" = /datum/alt_title/writer)
 
 // Librarian Alt Titles
@@ -219,7 +219,7 @@
 
 //var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
 /datum/job/lawyer
-	title = "Internal Affairs Agent"
+	title = JOB_INTERNAL_AFFAIRS_AGENT
 	flag = LAWYER
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
@@ -235,7 +235,7 @@
 	banned_job_species = list(SPECIES_PROMETHEAN, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_ZADDAT, "digital")
 
 	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
-	job_description = "An Internal Affairs Agent makes sure that the crew is following Standard Operating Procedure. They also \
+	job_description = "An " + JOB_INTERNAL_AFFAIRS_AGENT + " makes sure that the crew is following Standard Operating Procedure. They also \
 						handle complaints against crew members, and can have issues brought to the attention of Central Command, \
 						assuming their paperwork is in order."
 

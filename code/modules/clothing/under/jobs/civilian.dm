@@ -104,7 +104,7 @@
 	icon_state = "hydro"
 
 /obj/item/clothing/under/rank/internalaffairs
-	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
+	desc = "The plain, professional attire of an " + JOB_INTERNAL_AFFAIRS_AGENT + ". The collar is <i>immaculately</i> starched."
 	name = "Internal Affairs uniform"
 	icon_state = "internalaffairs"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
@@ -112,7 +112,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/tie/black)
 
 /obj/item/clothing/under/rank/internalaffairs/skirt
-	desc = "The plain, professional attire of an Internal Affairs Agent. The top button is sewn shut."
+	desc = "The plain, professional attire of an " + JOB_INTERNAL_AFFAIRS_AGENT + ". The top button is sewn shut."
 	name = "Internal Affairs skirt"
 	icon_state = "internalaffairs_skirt"
 
