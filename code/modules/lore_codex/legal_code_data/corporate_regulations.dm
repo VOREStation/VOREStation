@@ -151,7 +151,7 @@
 	suggested_punishments = "50 thaler fine. Demotion at discretion of Superior."
 	suggested_fine = 50
 	notes = "For this charge to apply, the order must be lawful, reasonable, and the person being ordered to do it must have been able to do so.  \
-	This includes orders from someone who is not necessarily the direct superior of the offender, but has authority in that context, for instance the Chief Engineer \
+	This includes orders from someone who is not necessarily the direct superior of the offender, but has authority in that context, for instance the " + JOB_CHIEF_ENGINEER + " \
 	giving an order about engineering matters."
 
 /datum/lore/codex/page/law/littering

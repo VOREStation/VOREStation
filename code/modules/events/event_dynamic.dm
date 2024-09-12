@@ -30,7 +30,7 @@ var/list/event_last_fired = list()
 	var/minutes_passed = world.time/600
 
 	var/list/active_with_role = number_active_with_role()
-	//var/engineer_count = number_active_with_role("Engineer")
+	//var/engineer_count = number_active_with_role(JOB_ENGINEER)
 	//var/security_count = number_active_with_role("Security")
 	//var/medical_count = number_active_with_role("Medical")
 	//var/AI_count = number_active_with_role("AI")
@@ -56,23 +56,23 @@ var/list/event_last_fired = list()
 		possibleEvents[/datum/event/money_hacker] = max(min(25, player_list.len) * 4, 200)
 
 
-	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role["Engineer"]
+	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role[JOB_ENGINEER]
 	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role["Janitor"]
 
-	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
+	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[JOB_ENGINEER] + 25 * active_with_role["Security"]
 	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
 
 	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
-	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
-	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Gardener"]
+	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role[JOB_ENGINEER] * 10 + active_with_role["Scientist"] * 5
+	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role[JOB_ENGINEER]
+	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role["Janitor"] + 5 * active_with_role[JOB_ENGINEER]
+	possibleEvents[/datum/event/wallrot] = 30 * active_with_role[JOB_ENGINEER] + 50 * active_with_role["Gardener"]
 
 	if(!spacevines_spawned)
-		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role["Engineer"]
+		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role[JOB_ENGINEER]
 	if(minutes_passed >= 30) // Give engineers time to set up engine
-		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role["Engineer"]
-		possibleEvents[/datum/event/blob] = 10 * active_with_role["Engineer"]
+		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role[JOB_ENGINEER]
+		possibleEvents[/datum/event/blob] = 10 * active_with_role[JOB_ENGINEER]
 
 	if(active_with_role["Medical"] > 0)
 		possibleEvents[/datum/event/radiation_storm] = active_with_role["Medical"] * 10
@@ -179,7 +179,7 @@ var/list/event_last_fired = list()
 // Note that this isn't sorted by department, because e.g. having a roboticist shouldn't make meteors spawn.
 /proc/number_active_with_role()
 	var/list/active_with_role = list()
-	active_with_role["Engineer"] = 0
+	active_with_role[JOB_ENGINEER] = 0
 	active_with_role["Medical"] = 0
 	active_with_role["Security"] = 0
 	active_with_role["Scientist"] = 0
@@ -198,7 +198,7 @@ var/list/event_last_fired = list()
 			var/mob/living/silicon/robot/R = M
 			if(R.module)
 				if(istype(R.module, /obj/item/weapon/robot_module/robot/engineering))
-					active_with_role["Engineer"]++
+					active_with_role[JOB_ENGINEER]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/security))
 					active_with_role["Security"]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/medical))
@@ -211,7 +211,7 @@ var/list/event_last_fired = list()
 					active_with_role["Botanist"]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
-			active_with_role["Engineer"]++
+			active_with_role[JOB_ENGINEER]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
 			active_with_role["Medical"]++

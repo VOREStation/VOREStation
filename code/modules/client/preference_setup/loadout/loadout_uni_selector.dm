@@ -393,9 +393,9 @@
 //Engineering
 
 /datum/gear/uniform/engineering_chief_selector
-	display_name = "Engineering - Chief Engineer's Uniforms"
-	description = "Select from a range of outfits available to all Chief Engineers."
-	allowed_roles = list("Chief Engineer")
+	display_name = "Engineering - " + JOB_CHIEF_ENGINEER + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_CHIEF_ENGINEER + "s."
+	allowed_roles = list(JOB_CHIEF_ENGINEER)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_chiefengi
 	sort_category = "Uniforms"
@@ -420,7 +420,7 @@
 /datum/gear/uniform/engineer_selector
 	display_name = "Engineering - Basic Uniforms"
 	description = "Select from a range of outfits available to all Engineering personnel."
-	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician","Talon Engineer")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,"Talon Engineer")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_engi
 	sort_category = "Uniforms"
@@ -448,7 +448,7 @@
 /datum/gear/uniform/engi_atmos_selector
 	display_name = "Engineering - Atmos Tech's Uniforms"
 	description = "Select from a range of outfits available to all Atmospherics Technicians."
-	allowed_roles = list("Chief Engineer","Atmospheric Technician")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/atmospheric_technician/skirt
 	sort_category = "Uniforms"
@@ -571,9 +571,9 @@
 //Science
 
 /datum/gear/uniform/research_director_selector
-	display_name = "Science - Research Director's Uniforms"
-	description = "Select from a range of outfits available to all Research Directors."
-	allowed_roles = list("Research Director")
+	display_name = "Science - " + JOB_RESEARCH_DIRECTOR + "'s Uniforms"
+	description = "Select from a range of outfits available to all " + JOB_RESEARCH_DIRECTOR + "s."
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR)
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_rd_suit
 	sort_category = "Uniforms"
@@ -599,7 +599,7 @@
 /datum/gear/uniform/science_dept_selector
 	display_name = "Science - Basic Uniforms"
 	description = "Select from a range of outfits available to all Science personnel."
-	allowed_roles = list("Scientist","Research Director","Roboticist","Xenobiologist","Xenobotanist")
+	allowed_roles = list("Scientist",JOB_RESEARCH_DIRECTOR,"Roboticist","Xenobiologist","Xenobotanist")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_science
 	sort_category = "Uniforms"
@@ -624,7 +624,7 @@
 /datum/gear/uniform/science_robotics_selector
 	display_name = "Science - Roboticist's Uniforms"
 	description = "Select from a range of outfits available to all Roboticists."
-	allowed_roles = list("Research Director","Roboticist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Roboticist")
 	show_roles = FALSE
 	path = /obj/item/clothing/under/rank/neo_robo
 	sort_category = "Uniforms"

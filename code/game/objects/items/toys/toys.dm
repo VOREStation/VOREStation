@@ -323,8 +323,8 @@
 	toysay = "Grey tide station wide!"
 
 /obj/item/toy/figure/atmos
-	name = "Atmospheric Technician action figure"
-	desc = "A \"Space Life\" brand Atmospheric Technician action figure."
+	name = JOB_ATMOSPHERIC_TECHNICIAN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ATMOSPHERIC_TECHNICIAN + " action figure."
 	icon_state = "atmos"
 	toysay = "Glory to Atmosia!"
 
@@ -359,8 +359,8 @@
 	toysay = "For Cargonia!"
 
 /obj/item/toy/figure/ce
-	name = "Chief Engineer action figure"
-	desc = "A \"Space Life\" brand Chief Engineer action figure."
+	name = JOB_CHIEF_ENGINEER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHIEF_ENGINEER + " action figure."
 	icon_state = "ce"
 	toysay = "Wire the solars!"
 
@@ -407,8 +407,8 @@
 	toysay = "Eliminate all threats!"
 
 /obj/item/toy/figure/engineer
-	name = "Engineer action figure"
-	desc = "A \"Space Life\" brand Engineer action figure."
+	name = JOB_ENGINEER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ENGINEER + " action figure."
 	icon_state = "engineer"
 	toysay = "Oh god, the engine is gonna go!"
 
@@ -485,8 +485,8 @@
 	toysay = "Ei Nath!"
 
 /obj/item/toy/figure/rd
-	name = "Research Director action figure"
-	desc = "A \"Space Life\" brand Research Director action figure."
+	name = JOB_RESEARCH_DIRECTOR + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_RESEARCH_DIRECTOR + " action figure."
 	icon_state = "rd"
 	toysay = "Blowing all of the borgs!"
 

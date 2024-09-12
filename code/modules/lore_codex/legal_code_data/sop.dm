@@ -60,7 +60,7 @@
 /*
 /datum/lore/codex/page/command_sop
 	name = "Command SOP"
-	data = "This SOP is specific to those in the Command department, which includes the " + JOB_SITE_MANAGER + ", Head of Personnel, Chief Engineer, " + JOB_HEAD_OF_SECURITY + ", and Research Director.  \
+	data = "This SOP is specific to those in the Command department, which includes the " + JOB_SITE_MANAGER + ", Head of Personnel, " + JOB_CHIEF_ENGINEER + ", " + JOB_HEAD_OF_SECURITY + ", and " + JOB_RESEARCH_DIRECTOR + ".  \
 	This also covers Internal Affairs Agents, however they do not occupy a position inside Command crew, and instead exist outside of all the other departments.\
 	<br>\
 	<h3>Bridge Secretaries</h3>\
@@ -171,12 +171,12 @@
 	<h3>Ejection Procedure</h3>\
 	The Supermatter's isolation chamber contains a mass driver and a heavy blast door leading into space.  Ejecting the Supermatter into the void \
 	will cause it to delaminate, however hopefully far away from your facility.  Supermatter crystals are rare and expensive, so this option should \
-	only be used if delamination cannot be stopped by any other means.  A special button, behind glass, exists inside the Chief Engineer's office.  \
+	only be used if delamination cannot be stopped by any other means.  A special button, behind glass, exists inside the " + JOB_CHIEF_ENGINEER + "'s office.  \
 	<b>The button controls the mass driver, however it should not be the first button to press.  The blast door leading into space must be opened first, \
 	or else the Supermatter cannot be ejected.</b>  Premature ejection can cause the Supermatter to not be on the mass driver, which will require an extremely \
-	risky manual Supermatter movement to place onto the mass driver again.  The blast door can be opened with a button in the Chief Engineer's office, or inside the engine room.  \
+	risky manual Supermatter movement to place onto the mass driver again.  The blast door can be opened with a button in the " + JOB_CHIEF_ENGINEER + "'s office, or inside the engine room.  \
 	It is the same button used to 'vent' the engine core.  Make use of engine core cameras to verify that the blast door is open.  \
-	The Chief Engineer should be the one to oversee Ejection.  If one does not exist, the facility's AI should initiate Ejection.  If there is no AI, \
+	The " + JOB_CHIEF_ENGINEER + " should be the one to oversee Ejection.  If one does not exist, the facility's AI should initiate Ejection.  If there is no AI, \
 	it would be prudent for an Engineering member to forcefully enter to press the required buttons."
 
 /*
@@ -273,7 +273,7 @@
 	not to be placed inside an MMI.  Still-living persons who wish to be placed inside an MMI should be ignored.\
 	<br>\
 	Lawbound Synthetics are to not have their lawset tampered with.  Any errors with the lawset, intentional or resulting from an ionic storm, should \
-	be reset by the Research Director or Chief Engineer.  If they are unavailable, it is permissible for Robotics to do the reset.  Lawbound Synthetics \
+	be reset by the " + JOB_RESEARCH_DIRECTOR + " or " + JOB_CHIEF_ENGINEER + ".  If they are unavailable, it is permissible for Robotics to do the reset.  Lawbound Synthetics \
 	physically harmed should be repaired.\
 	<br>\
 	<h3>Lawing Synthetics</h3>\

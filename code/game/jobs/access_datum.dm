@@ -127,7 +127,7 @@
 /var/const/access_captain = 20
 /datum/access/captain
 	id = access_captain
-	desc = "Site Manager"
+	desc = JOB_SITE_MANAGER
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_all_personal_lockers = 21
@@ -187,7 +187,7 @@
 /var/const/access_rd = 30
 /datum/access/rd
 	id = access_rd
-	desc = "Research Director"
+	desc = JOB_RESEARCH_DIRECTOR
 	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_cargo = 31
@@ -331,13 +331,13 @@ var/const/access_explorer = 43
 /var/const/access_ce = 56
 /datum/access/ce
 	id = access_ce
-	desc = "Chief Engineer"
+	desc = JOB_CHIEF_ENGINEER
 	region = ACCESS_REGION_ENGINEERING
 
 /var/const/access_hop = 57
 /datum/access/hop
 	id = access_hop
-	desc = "Head of Personnel"
+	desc = JOB_HEAD_OF_PERSONNEL
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_hos = 58

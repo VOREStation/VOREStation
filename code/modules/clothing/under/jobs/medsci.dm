@@ -2,7 +2,7 @@
  * Science
  */
 /obj/item/clothing/under/rank/research_director
-	desc = "It's a jumpsuit worn by those with the know-how to achieve the position of \"Research Director\". Its fabric provides minor protection from biological contaminants."
+	desc = "It's a jumpsuit worn by those with the know-how to achieve the position of \"" + JOB_RESEARCH_DIRECTOR + "\". Its fabric provides minor protection from biological contaminants."
 	name = "research director's jumpsuit"
 	icon_state = "director"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)

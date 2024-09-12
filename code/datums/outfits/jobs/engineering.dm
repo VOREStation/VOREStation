@@ -11,7 +11,7 @@
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 /decl/hierarchy/outfit/job/engineering/chief_engineer
-	name = OUTFIT_JOB_NAME("Chief engineer")
+	name = OUTFIT_JOB_NAME(JOB_CHIEF_ENGINEER)
 	head = /obj/item/clothing/head/hardhat/white
 	uniform = /obj/item/clothing/under/rank/chief_engineer
 	l_ear = /obj/item/device/radio/headset/heads/ce
@@ -20,14 +20,14 @@
 	pda_type = /obj/item/device/pda/heads/ce
 
 /decl/hierarchy/outfit/job/engineering/engineer
-	name = OUTFIT_JOB_NAME("Engineer")
+	name = OUTFIT_JOB_NAME(JOB_ENGINEER)
 	head = /obj/item/clothing/head/hardhat
 	uniform = /obj/item/clothing/under/rank/engineer
 	id_type = /obj/item/weapon/card/id/engineering
 	pda_type = /obj/item/device/pda/engineering
 
 /decl/hierarchy/outfit/job/engineering/atmos
-	name = OUTFIT_JOB_NAME("Atmospheric technician")
+	name = OUTFIT_JOB_NAME(JOB_ATMOSPHERIC_TECHNICIAN)
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	belt = /obj/item/weapon/storage/belt/utility/atmostech
 	id_type = /obj/item/weapon/card/id/engineering/atmos

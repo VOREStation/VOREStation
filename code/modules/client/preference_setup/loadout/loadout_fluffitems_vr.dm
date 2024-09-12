@@ -17,7 +17,7 @@
 	display_name = "Airhorn - Example Item"
 	description = "An example item that you probably shouldn't see!"
 	ckeywhitelist = list("your_ckey_here")
-	allowed_roles = list("Engineer")
+	allowed_roles = list(JOB_ENGINEER)
 */
 
 /datum/gear/fluff/collar //Use this as a base path for collars if you'd like to set tags in loadout. Make sure you don't use apostrophes in the display name or this breaks!
@@ -792,7 +792,7 @@
 	description = "A Hull Systems Omni-Tool capable of temporarily shrinking to handheld sizes for even the most delicate work."
 	ckeywhitelist = list("lewzharri")
 	character_name = list ("Kovgam Zharri")
-	allowed_roles = list("Roboticist","Engineer","Scientist","Xenobiologist","Xenobotanist","Research Director")
+	allowed_roles = list("Roboticist",JOB_ENGINEER,"Scientist","Xenobiologist","Xenobotanist",JOB_RESEARCH_DIRECTOR)
 
 //  M CKEYS
 /datum/gear/fluff/phi_box
@@ -1076,14 +1076,14 @@
 	display_name = "Kateryna's Voidsuit"
 	ckeywhitelist = list("samanthafyre")
 	character_name = list("Kateryna Petrovitch")
-	allowed_roles = list("Engineer", "Chief Engineer", "Atmospheric Technician")
+	allowed_roles = list(JOB_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/gear/fluff/katerina_spacesuit
 	path = /obj/item/clothing/head/helmet/space/fluff/kate
 	display_name = "Kateryna's Helmet"
 	ckeywhitelist = list("samanthafyre")
 	character_name = list("Kateryna Petrovitch")
-	allowed_roles = list("Engineer", "Chief Engineer", "Atmospheric Technician")
+	allowed_roles = list(JOB_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/gear/fluff/kateryna_armorvest
 	path = /obj/item/clothing/suit/armor/vest/wolftaur/kate

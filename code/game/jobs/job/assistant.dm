@@ -33,7 +33,7 @@
 /datum/alt_title/tech_assist
 	title = "Technical Assistant"
 	title_blurb = "A Technical Assistant attempts to provide whatever the Engineering department needs. They are not proper Engineers, and are \
-					often in training to become an Engineer. A Technical Assistant has no real authority."
+					often in training to become an " + JOB_ENGINEER + ". A Technical Assistant has no real authority."
 
 /datum/alt_title/med_intern
 	title = "Medical Intern"

@@ -288,7 +288,7 @@
 	description = "Select from a range of welding masks (engineering crew/roboticists only)"
 	path = /obj/item/clothing/head/welding
 	cost = 2
-	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician","Research Director","Roboticist")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_RESEARCH_DIRECTOR,"Roboticist")
 
 /datum/gear/head/welding/New()
 	..()

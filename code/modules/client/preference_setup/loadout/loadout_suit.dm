@@ -164,7 +164,7 @@
 /datum/gear/suit/labcoat_rd
 	display_name = "labcoat, research director"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/rd
-	allowed_roles = list("Research Director")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR)
 	show_roles = FALSE
 
 /datum/gear/suit/miscellaneous/labcoat
@@ -270,14 +270,14 @@
 /datum/gear/suit/roles/cloak_ce
 	display_name = "cloak, chief engineer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/ce
-	allowed_roles = list("Chief Engineer")
+	allowed_roles = list(JOB_CHIEF_ENGINEER)
 	show_roles = FALSE
 	cost = 1
 
 /datum/gear/suit/roles/cloak_rd
 	display_name = "cloak, research director"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/rd
-	allowed_roles = list("Research Director")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR)
 	show_roles = FALSE
 	cost = 1
 
@@ -463,37 +463,37 @@
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science/robotics
 	display_name = "winter coat, robotics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science/robotics
-	allowed_roles = list("Research Director", "Roboticist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR, "Roboticist")
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/science/rd
 	display_name = "winter coat, research director"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science/rd
-	allowed_roles = list("Research Director")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/engineering/atmos
 	display_name = "winter coat, atmospherics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
-	allowed_roles = list("Chief Engineer", "Atmospheric Technician")
+	allowed_roles = list(JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/engineering/ce
 	display_name = "winter coat, chief engineer"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce
-	allowed_roles = list("Chief Engineer")
+	allowed_roles = list(JOB_CHIEF_ENGINEER)
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/hydro
@@ -656,7 +656,7 @@
 /datum/gear/suit/snowsuit/command
 	display_name = "snowsuit, command"
 	path = /obj/item/clothing/suit/storage/snowsuit/command
-	allowed_roles = list(JOB_SITE_MANAGER,"Research Director",JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,"Chief Engineer",JOB_COMMAND_SECRETARY)
+	allowed_roles = list(JOB_SITE_MANAGER,JOB_RESEARCH_DIRECTOR,JOB_HEAD_OF_PERSONNEL,JOB_HEAD_OF_SECURITY,JOB_CHIEF_ENGINEER,JOB_COMMAND_SECRETARY)
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/security
@@ -674,13 +674,13 @@
 /datum/gear/suit/snowsuit/science
 	display_name = "snowsuit, science"
 	path = /obj/item/clothing/suit/storage/snowsuit/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist", "Roboticist", "Xenobiologist")
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/engineering
 	display_name = "snowsuit, engineering"
 	path = /obj/item/clothing/suit/storage/snowsuit/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER)
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/cargo

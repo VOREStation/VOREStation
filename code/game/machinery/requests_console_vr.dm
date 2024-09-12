@@ -57,8 +57,8 @@
 // Heads
 
 /obj/machinery/requests_console/preset/ce
-	name = "Chief Engineer RC"
-	department = "Chief Engineer's Desk"
+	name = JOB_CHIEF_ENGINEER + " RC"
+	department = JOB_CHIEF_ENGINEER + "'s Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
@@ -75,8 +75,8 @@
 	announcementConsole = 1
 
 /obj/machinery/requests_console/preset/rd
-	name = "Research Director RC"
-	department = "Research Director's Desk"
+	name = JOB_RESEARCH_DIRECTOR + " RC"
+	department = JOB_RESEARCH_DIRECTOR +"'s Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 

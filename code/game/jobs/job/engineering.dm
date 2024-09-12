@@ -2,7 +2,7 @@
 //		Chief Engineer
 //////////////////////////////////
 /datum/job/chief_engineer
-	title = "Chief Engineer"
+	title = JOB_CHIEF_ENGINEER
 	flag = CHIEF
 	departments_managed = list(DEPARTMENT_ENGINEERING)
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_COMMAND)
@@ -34,7 +34,7 @@
 	minimal_player_age = 7
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
-	job_description = "The Chief Engineer manages the Engineering Department, ensuring that the Engineers work on what needs to be done, handling distribution \
+	job_description = "The " + JOB_CHIEF_ENGINEER + " manages the Engineering Department, ensuring that the Engineers work on what needs to be done, handling distribution \
 						of manpower as much as they handle hands-on operations and repairs. They are also expected to keep the rest of the station informed of \
 						any structural threats to the station that may be hazardous to health or disruptive to work."
 
@@ -42,14 +42,14 @@
 //			Engineer
 //////////////////////////////////
 /datum/job/engineer
-	title = "Engineer"
+	title = JOB_ENGINEER
 	flag = ENGINEER
 	departments = list(DEPARTMENT_ENGINEERING)
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "the Chief Engineer"
+	supervisors = "the "+ JOB_CHIEF_ENGINEER
 	selection_color = "#5B4D20"
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics)
@@ -61,7 +61,7 @@
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer
-	job_description = "An Engineer keeps the station running. They repair damages, keep the atmosphere stable, and ensure that power is being \
+	job_description = "An " + JOB_ENGINEER + " keeps the station running. They repair damages, keep the atmosphere stable, and ensure that power is being \
 						generated and distributed. On quiet shifts, they may be called upon to make cosmetic alterations to the station."
 
 // Engineer Alt Titles
@@ -84,14 +84,14 @@
 //			Atmos Tech
 //////////////////////////////////
 /datum/job/atmos
-	title = "Atmospheric Technician"
+	title = JOB_ATMOSPHERIC_TECHNICIAN
 	flag = ATMOSTECH
 	departments = list(DEPARTMENT_ENGINEERING)
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
-	supervisors = "the Chief Engineer"
+	supervisors = "the " + JOB_CHIEF_ENGINEER
 	selection_color = "#5B4D20"
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_external_airlocks)
@@ -101,5 +101,5 @@
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/atmos
-	job_description = "An Atmospheric Technician is primarily concerned with keeping the station's atmosphere breathable. They are expected to have a good \
+	job_description = "An " + JOB_ATMOSPHERIC_TECHNICIAN + " is primarily concerned with keeping the station's atmosphere breathable. They are expected to have a good \
 						understanding of the pipes, vents, and scrubbers that move gasses around the station, and to be familiar with proper firefighting procedure."

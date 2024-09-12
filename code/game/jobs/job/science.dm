@@ -2,7 +2,7 @@
 //		Research Director
 //////////////////////////////////
 /datum/job/rd
-	title = "Research Director"
+	title = JOB_RESEARCH_DIRECTOR
 	flag = RD
 	departments_managed = list(DEPARTMENT_RESEARCH)
 	departments = list(DEPARTMENT_RESEARCH, DEPARTMENT_COMMAND)
@@ -32,14 +32,14 @@
 	banned_job_species = list(SPECIES_TESHARI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_ZADDAT, "digital")
 
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
-	job_description = "The Research Director manages and maintains the Research department. They are required to ensure the safety of the entire crew, \
+	job_description = "The " + JOB_RESEARCH_DIRECTOR + " manages and maintains the Research department. They are required to ensure the safety of the entire crew, \
 						at least with regards to anything occurring in the Research department, and to inform the crew of any disruptions that \
-						might originate from Research. The Research Director often has at least passing knowledge of most of the Research department, but \
+						might originate from Research. The " + JOB_RESEARCH_DIRECTOR + " often has at least passing knowledge of most of the Research department, but \
 						are encouraged to allow their staff to perform their own duties."
 	alt_titles = list("Research Supervisor" = /datum/alt_title/research_supervisor)
 
 
-// Research Director Alt Titles
+// " + JOB_RESEARCH_DIRECTOR + " Alt Titles
 /datum/alt_title/research_supervisor
 	title = "Research Supervisor"
 
@@ -54,7 +54,7 @@
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the Research Director"
+	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
@@ -99,7 +99,7 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
-	supervisors = "the Research Director"
+	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
@@ -133,7 +133,7 @@ VR edit end*/
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Research Director"
+	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 5
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.

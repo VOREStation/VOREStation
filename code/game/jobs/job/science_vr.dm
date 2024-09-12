@@ -105,7 +105,7 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Research Director"
+	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobotany, access_hydroponics)

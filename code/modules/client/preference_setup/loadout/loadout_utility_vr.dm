@@ -49,12 +49,12 @@
 /datum/gear/utility/dufflebag/eng
 	display_name = "engineering dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/eng
-	allowed_roles = list("Chief Engineer","Atmospheric Technician","Engineer")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_ENGINEER)
 
 /datum/gear/utility/dufflebag/sci
 	display_name = "science dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/sci
-	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist","Roboticist","Xenobiologist","Xenobotanist")
 
 /datum/gear/utility/dufflebag/explorer
 	display_name = "away team dufflebag"

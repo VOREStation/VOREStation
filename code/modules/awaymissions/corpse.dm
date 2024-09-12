@@ -162,7 +162,7 @@
 	corpseidaccess = "Medical Doctor"
 
 /obj/effect/landmark/corpse/engineer
-	name = "Engineer"
+	name = JOB_ENGINEER
 	corpseradio = /obj/item/device/radio/headset/headset_eng
 	corpseuniform = /obj/item/clothing/under/rank/engineer
 	corpseback = /obj/item/weapon/storage/backpack/industrial
@@ -171,8 +171,8 @@
 	corpsegloves = /obj/item/clothing/gloves/yellow
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
-	corpseidjob = "Engineer"
-	corpseidaccess = "Engineer"
+	corpseidjob = JOB_ENGINEER
+	corpseidaccess = JOB_ENGINEER
 
 /obj/effect/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
@@ -266,12 +266,12 @@
 	corpseidjob = "Crewmate"
 
 /obj/effect/landmark/corpse/vintage/engineering
-	name = "Unknown Engineer"
+	name = "Unknown " + JOB_ENGINEER
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/engineering
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering
 	corpsebelt = /obj/item/weapon/storage/belt/utility/full
 	corpseback = /obj/item/weapon/tank/oxygen/yellow
-	corpseidjob = "Engineer"
+	corpseidjob = JOB_ENGINEER
 
 /obj/effect/landmark/corpse/vintage/marine
 	name = "Unknown Marine"

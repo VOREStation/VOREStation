@@ -13,11 +13,11 @@
 /obj/effect/landmark/start/security
 	name = JOB_SECURITY_OFFICER
 /obj/effect/landmark/start/ce
-	name = "Chief Engineer"
+	name = JOB_CHIEF_ENGINEER
 /obj/effect/landmark/start/atmostech
-	name = "Atmospheric Technician"
+	name = JOB_ATMOSPHERIC_TECHNICIAN
 /obj/effect/landmark/start/engineer
-	name = "Engineer"
+	name = JOB_ENGINEER
 /obj/effect/landmark/start/cmo
 	name = "Chief Medical Officer"
 /obj/effect/landmark/start/chemist
@@ -29,7 +29,7 @@
 /obj/effect/landmark/start/psych
 	name = "Psychiatrist"
 /obj/effect/landmark/start/rd
-	name = "Research Director"
+	name = JOB_RESEARCH_DIRECTOR
 /obj/effect/landmark/start/roboticist
 	name = "Roboticist"
 /obj/effect/landmark/start/scientist

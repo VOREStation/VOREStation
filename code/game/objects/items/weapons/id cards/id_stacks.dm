@@ -137,14 +137,17 @@
 /obj/item/weapon/card/id/engineering
 	name = "Engineering ID"
 	initial_sprite_stack = list("base-stamp", "top-orange", "stamp-n")
+	rank = JOB_ENGINEER
 
 /obj/item/weapon/card/id/engineering/atmos
 	name = "Atmospherics ID"
 	initial_sprite_stack = list("base-stamp", "top-orange", "stripe-medblu", "stamp-n")
+	rank = JOB_ATMOSPHERIC_TECHNICIAN
 
 /obj/item/weapon/card/id/engineering/head
-	name = "Chief Engineer's ID"
+	name = JOB_CHIEF_ENGINEER + "'s ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-orange", "stamp-n", "pips-gold")
+	rank = JOB_CHIEF_ENGINEER
 
 //Science
 
@@ -165,8 +168,9 @@
 	initial_sprite_stack = list("base-stamp", "top-purple", "stamp-n", "stripe-green")
 
 /obj/item/weapon/card/id/science/head
-	name = "Research Director's ID"
+	name = JOB_RESEARCH_DIRECTOR + "'s ID"
 	initial_sprite_stack = list("base-stamp-silver", "top-purple", "stamp-n", "pips-gold")
+	rank = JOB_RESEARCH_DIRECTOR
 
 //Cargo
 

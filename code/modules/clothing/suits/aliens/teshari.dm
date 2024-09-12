@@ -131,7 +131,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/ce
 	name = "cheif engineer cloak"
-	desc = "A soft Teshari cloak made the Chief Engineer"
+	desc = "A soft Teshari cloak made for the "+ JOB_CHIEF_ENGINEER
 	icon_state = "tesh_cloak_ce"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/engineer
@@ -141,7 +141,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/atmos
 	name = "atmospherics cloak"
-	desc = "A soft Teshari cloak made for the Atmospheric Technician"
+	desc = "A soft Teshari cloak made for the " + JOB_ATMOSPHERIC_TECHNICIAN
 	icon_state = "tesh_cloak_atmos"
 
 //Medical
@@ -180,7 +180,7 @@
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/rd
 	name = "research director cloak"
-	desc = "A soft Teshari cloak made for the Research Director"
+	desc = "A soft Teshari cloak made for the " + JOB_RESEARCH_DIRECTOR
 	icon_state = "tesh_cloak_rd"
 
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/sci
@@ -624,7 +624,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/ce
 	name = "chief engineer belted cloak"
-	desc = "A soft Teshari cloak made the Chief Engineer"
+	desc = "A soft Teshari cloak made for the " + JOB_CHIEF_ENGINEER
 	icon_state = "tesh_beltcloak_ce"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/engineer
@@ -634,7 +634,7 @@
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/atmos
 	name = "atmospherics belted cloak"
-	desc = "A soft Teshari cloak made for the Atmospheric Technician"
+	desc = "A soft Teshari cloak made for the " + JOB_ATMOSPHERIC_TECHNICIAN
 	icon_state = "tesh_beltcloak_atmos"
 
 /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/cmo

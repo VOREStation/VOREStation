@@ -117,7 +117,7 @@
 	display_name = "Optical Meson Scanners selection"
 	description = "Select from a range of meson-projection eyewear. Note: not all of these items are atmospherically sealed."
 	path = /obj/item/clothing/glasses/meson
-	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director")
+	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, "Scientist", JOB_RESEARCH_DIRECTOR)
 
 /datum/gear/eyes/meson/New()
 	..()

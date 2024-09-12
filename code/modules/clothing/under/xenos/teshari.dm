@@ -232,7 +232,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/ce
 	name = "cheif engineer undercoat"
-	desc = "A traditional Teshari garb made for the Chief Engineer"
+	desc = "A traditional Teshari garb made for the " + JOB_CHIEF_ENGINEER
 	icon_state = "tesh_uniform_ce"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/hos
@@ -242,7 +242,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/rd
 	name = "research director undercoat"
-	desc = "A traditional Teshari garb made for the Research Director"
+	desc = "A traditional Teshari garb made for the " + JOB_RESEARCH_DIRECTOR
 	icon_state = "tesh_uniform_rd"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/engineer
@@ -252,7 +252,7 @@
 
 /obj/item/clothing/under/teshari/undercoat/jobs/atmos
 	name = "atmospherics undercoat"
-	desc = "A traditional Teshari garb made for the Atmospheric Technician"
+	desc = "A traditional Teshari garb made for the " + JOB_ATMOSPHERIC_TECHNICIAN
 	icon_state = "tesh_uniform_atmos"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/cmo

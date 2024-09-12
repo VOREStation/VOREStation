@@ -24,12 +24,12 @@
 /datum/gear/eyes/arglasses/sci
 	display_name = "AR-Research glasses"
 	path = /obj/item/clothing/glasses/omnihud/rnd
-	allowed_roles = list("Research Director","Scientist","Xenobiologist","Xenobotanist","Roboticist")
+	allowed_roles = list(JOB_RESEARCH_DIRECTOR,"Scientist","Xenobiologist","Xenobotanist","Roboticist")
 
 /datum/gear/eyes/arglasses/eng
 	display_name = "AR-Engineering glasses"
 	path = /obj/item/clothing/glasses/omnihud/eng
-	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician")
+	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/gear/eyes/arglasses/med
 	display_name = "AR-Medical glasses"

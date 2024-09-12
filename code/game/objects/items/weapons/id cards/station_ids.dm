@@ -255,16 +255,16 @@
 	secondary_color = rgb(223,159,95)
 
 /obj/item/weapon/card/id/engineering/atmos
-	assignment = "Atmospheric Technician"
-	rank = "Atmospheric Technician"
+	assignment = JOB_ATMOSPHERIC_TECHNICIAN
+	rank = JOB_ATMOSPHERIC_TECHNICIAN
 
 /obj/item/weapon/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
 	primary_color = rgb(189,94,0)
 	secondary_color = rgb(255,223,127)
-	assignment = "Chief Engineer"
-	rank = "Chief Engineer"
+	assignment = JOB_CHIEF_ENGINEER
+	rank = JOB_CHIEF_ENGINEER
 
 /obj/item/weapon/card/id/science
 	name = "identification card"
@@ -278,8 +278,8 @@
 	desc = "A card which represents knowledge and reasoning."
 	primary_color = rgb(142,47,142)
 	secondary_color = rgb(255,223,127)
-	assignment = "Research Director"
-	rank = "Research Director"
+	assignment = JOB_RESEARCH_DIRECTOR
+	rank = JOB_RESEARCH_DIRECTOR
 
 /obj/item/weapon/card/id/cargo
 	name = "identification card"
@@ -435,10 +435,10 @@
 	icon_state = "itg_white"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/engineer
-	name = "\improper ITG Engineer's ID"
-	desc = "An ID card belonging to the Engineer of an ITG vessel. The Engineer's responsibility is primarily to maintain the ship. They may also be tasked to assist with cargo movement duties."
-	assignment = "Engineer"
-	rank = "Engineer"
+	name = "\improper ITG " + JOB_ENGINEER + "'s ID"
+	desc = "An ID card belonging to the " + JOB_ENGINEER + " of an ITG vessel. The " + JOB_ENGINEER + "'s responsibility is primarily to maintain the ship. They may also be tasked to assist with cargo movement duties."
+	assignment = JOB_ENGINEER
+	rank = JOB_ENGINEER
 	icon_state = "itg_orange"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/passengerliason
@@ -553,8 +553,8 @@
 		"Psychiatrist" = "itg_white",
 		"Field Medic" = "itg_white",
 		"Talon Doctor" = "itg_white",
-		"Atmospheric Technician" = "itg_orange",
-		"Engineer" = "itg_orange",
+		JOB_ATMOSPHERIC_TECHNICIAN = "itg_orange",
+		JOB_ENGINEER = "itg_orange",
 		"Off-duty Officer" = "itg_red",
 		"Off-duty Engineer" = "itg_orange",
 		"Off-duty Medic" = "itg_white",
@@ -578,7 +578,7 @@
 /obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, "Head of Security", "Chief Engineer", "Chief Medical Officer", "Research Director", "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
+		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, "Head of Security", JOB_CHIEF_ENGINEER, "Chief Medical Officer", JOB_RESEARCH_DIRECTOR, "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
 			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
 			return

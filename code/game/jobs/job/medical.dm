@@ -132,7 +132,7 @@
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0
-	supervisors = "the Chief Medical Officer and Research Director"
+	supervisors = "the Chief Medical Officer and " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#013D3B"
 	economic_modifier = 7
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_research)
