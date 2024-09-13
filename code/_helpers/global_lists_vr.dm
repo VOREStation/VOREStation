@@ -514,12 +514,12 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				JOB_ALT_VIROLOGIST,
 				JOB_ALT_APPRENTICE_ENGINEER,
 				JOB_ALT_MEDICAL_INTERN,
-				"Research Intern",
-				"Security Cadet",
-				"Jr. Cargo Tech",
-				"Server",
+				JOB_ALT_RESEARCH_INTERN,
+				JOB_ALT_SECURITY_CADET,
+				JOB_ALT_JR_CARGO_TECH,
+				JOB_ALT_SERVER,
 				"Electrician",
-				"Barista")
+				JOB_ALT_BARISTA)
 
 /var/global/list/existing_solargrubs = list()
 

@@ -3,7 +3,7 @@
 //
 
 /datum/job/offduty_civilian
-	title = "Off-duty Worker"
+	title = JOB_OFFDUTY_WORKER
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
@@ -19,7 +19,7 @@
 	economic_modifier = 2
 
 /datum/job/offduty_cargo
-	title = "Off-duty Cargo"
+	title = JOB_OFFDUTY_CARGO
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
@@ -35,7 +35,7 @@
 	economic_modifier = 2
 
 /datum/job/offduty_engineering
-	title = "Off-duty Engineer"
+	title = JOB_OFFDUTY_ENGINEER
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
@@ -51,7 +51,7 @@
 	economic_modifier = 5
 
 /datum/job/offduty_medical
-	title = "Off-duty Medic"
+	title = JOB_OFFDUTY_MEDIC
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
@@ -67,7 +67,7 @@
 	economic_modifier = 5
 
 /datum/job/offduty_science
-	title = "Off-duty Scientist"
+	title = JOB_OFFDUTY_SCIENTIST
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
@@ -83,7 +83,7 @@
 	economic_modifier = 5
 
 /datum/job/offduty_security
-	title = "Off-duty Officer"
+	title = JOB_OFFDUTY_OFFICER
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1
@@ -99,7 +99,7 @@
 	economic_modifier = 4
 
 /datum/job/offduty_exploration
-	title = "Off-duty Explorer"
+	title = JOB_OFFDUTY_EXPLORER
 	latejoin_only = TRUE
 	timeoff_factor = -1
 	total_positions = -1

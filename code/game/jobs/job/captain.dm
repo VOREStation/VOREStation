@@ -32,7 +32,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	job_description = "The " + JOB_SITE_MANAGER + " manages the other Command Staff, and through them the rest of the station. Though they have access to everything, \
 						they do not understand everything, and are expected to delegate tasks to the appropriate crew member. The " + JOB_SITE_MANAGER + " is expected to \
 						have an understanding of Standard Operating Procedure, and is subject to it, and legal action, in the same way as every other crew member."
-	alt_titles = list("Overseer"= /datum/alt_title/overseer)
+	alt_titles = list(JOB_ALT_OVERSEER= /datum/alt_title/overseer)
 
 
 /*
@@ -48,7 +48,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 // Captain Alt Titles
 /datum/alt_title/overseer
-	title = "Overseer"
+	title = JOB_ALT_OVERSEER
 
 //////////////////////////////////
 //		Head of Personnel
@@ -79,7 +79,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	job_description = "The " + JOB_HEAD_OF_PERSONNEL + " manages the Service department, the Exploration team, and most other civilians. They also \
 						manage the Supply department, through the " + JOB_QUARTERMASTER + ". In addition, the " + JOB_HEAD_OF_PERSONNEL + " oversees the personal accounts \
 						of the crew, including their money and access. If necessary, the " + JOB_HEAD_OF_PERSONNEL + " is first in line to assume Acting Command."
-	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro)
+	alt_titles = list(JOB_ALT_CREW_RESOURCE_OFFICER = /datum/alt_title/cro)
 
 	access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
 			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
@@ -96,7 +96,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 // HOP Alt Titles
 /datum/alt_title/cro
-	title = "Crew Resources Officer"
+	title = JOB_ALT_CREW_RESOURCE_OFFICER
 
 //////////////////////////////////
 //		Command Secretary

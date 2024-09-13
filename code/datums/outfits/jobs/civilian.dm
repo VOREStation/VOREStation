@@ -36,8 +36,8 @@
 			permit.set_name(H.real_name)
 
 /decl/hierarchy/outfit/job/service/bartender/barista
-	name = OUTFIT_JOB_NAME("Barista")
-	id_pda_assignment = "Barista"
+	name = OUTFIT_JOB_NAME(JOB_ALT_BARISTA)
+	id_pda_assignment = JOB_ALT_BARISTA
 	backpack_contents = null
 
 /decl/hierarchy/outfit/job/service/chef
@@ -49,13 +49,13 @@
 	pda_type = /obj/item/device/pda/chef
 
 /decl/hierarchy/outfit/job/service/chef/cook
-	name = OUTFIT_JOB_NAME("Cook")
-	id_pda_assignment = "Cook"
+	name = OUTFIT_JOB_NAME(JOB_ALT_COOK)
+	id_pda_assignment = JOB_ALT_COOK
 
 // Rykka adds Server Outfit
 
 /decl/hierarchy/outfit/job/service/server
-	name = OUTFIT_JOB_NAME("Server")
+	name = OUTFIT_JOB_NAME(JOB_ALT_SERVER)
 	uniform = /obj/item/clothing/under/waiter
 
 // End Outfit addition

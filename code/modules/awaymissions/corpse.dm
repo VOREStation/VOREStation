@@ -296,11 +296,11 @@
 	corpseidjob = "Mercenary"
 
 /obj/effect/landmark/corpse/vintage/officer
-	name = "Unknown Captain"
+	name = "Unknown " + JOB_ALT_CAPTAIN
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/officer
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/officer
 	corpseback = /obj/item/weapon/tank/oxygen/yellow
-	corpseidjob = "Captain"
+	corpseidjob = JOB_ALT_CAPTAIN
 
 /obj/effect/landmark/corpse/vintage/pilot
 	name = "Unknown " + JOB_PILOT
@@ -325,7 +325,7 @@
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Captain"
+	corpseidaccess = JOB_ALT_CAPTAIN
 
 /obj/effect/landmark/corpse/commander
 	name = "Commander"
@@ -340,7 +340,7 @@
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	corpseidaccess = JOB_ALT_CAPTAIN
 
 /////////////////Lore Factions//////////////////////
 

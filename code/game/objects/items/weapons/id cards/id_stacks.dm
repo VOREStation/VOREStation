@@ -244,6 +244,7 @@
 /obj/item/weapon/card/id/civilian/internal_affairs
 	name = "Internal Affairs ID"
 	initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n", "stripe-black")
+	rank = JOB_INTERNAL_AFFAIRS_AGENT
 
 //Service
 
@@ -302,10 +303,12 @@
 /obj/item/weapon/card/id/talon/engineer
 	name = "Talon Engineering ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-orange", "stripe-orange")
+	rank = JOB_TALON_ENGINEER
 
 /obj/item/weapon/card/id/talon/officer
 	name = "Talon Security ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-red", "stripe-red")
+	rank = JOB_TALON_GUARD
 
 /obj/item/weapon/card/id/talon/pilot
 	name = JOB_TALON_PILOT + " ID"
@@ -315,6 +318,7 @@
 /obj/item/weapon/card/id/talon/miner
 	name = "Talon Mining ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-brown", "stripe-brown")
+	rank = JOB_TALON_MINER
 
 /obj/item/weapon/card/id/talon/captain
 	name = JOB_TALON_CAPTAIN + " ID"

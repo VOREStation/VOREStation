@@ -58,9 +58,14 @@
 #define JOB_AI "AI"
 #define JOB_CYBORG "Cyborg"
 
-
-#define JOB_ALT_ASSISTANT "Assistant"
-#define JOB_ALT_RESIDENT "Resident"
+// Offduty jobs
+#define JOB_OFFDUTY_OFFICER "Off-duty Officer"
+#define JOB_OFFDUTY_ENGINEER "Off-duty Engineer"
+#define JOB_OFFDUTY_MEDIC "Off-duty Medic"
+#define JOB_OFFDUTY_SCIENTIST "Off-duty Scientist"
+#define JOB_OFFDUTY_CARGO "Off-duty Cargo"
+#define JOB_OFFDUTY_EXPLORER "Off-duty Explorer"
+#define JOB_OFFDUTY_WORKER "Off-duty Worker"
 
 // Talom jobs
 #define JOB_TALON_CAPTAIN "Talon Captain"
@@ -69,6 +74,25 @@
 #define JOB_TALON_GUARD "Talon Guard"
 #define JOB_TALON_PILOT "Talon Pilot"
 #define JOB_TALON_MINER "Talon Miner"
+
+// Command alt titles
+// Site Manager
+#define JOB_ALT_OVERSEER "Overseer"
+#define JOB_ALT_FACILITY_DIRECTOR "Facility Director"
+#define JOB_ALT_CHIEF_SUPERVISOR "Chief Supervisor"
+#define JOB_ALT_CAPTAIN "Captain"
+// HOP
+#define JOB_ALT_CREW_RESOURCE_OFFICER "Crew Resources Officer"
+#define JOB_ALT_DEPUTY_MANAGER "Deputy Manager"
+#define JOB_ALT_STAFF_MANAGER "Staff Manager"
+#define JOB_ALT_FACILITY_STEWARD "Facility Steward"
+#define JOB_ALT_FIRST_MATE "First Mate"
+// Secretary
+#define JOB_ALT_COMMAND_LIAISON "Command Liaison"
+#define JOB_ALT_COMMAND_ASSISTANT "Command Assistant"
+#define JOB_ALT_COMMAND_INTERN "Command Intern"
+#define JOB_ALT_BRIDGE_SECRETARY "Bridge Secretary"
+#define JOB_ALT_BRIDGE_ASSISTANT "Bridge Assistant"
 
 // Security alt titles
 #define JOB_ALT_FORENSIC_TECHNICIAN "Forensic Technician"
@@ -79,11 +103,42 @@
 #define JOB_ALT_PHARMACOLOGIST "Pharmacologist"
 #define JOB_ALT_VIROLOGIST "Virologist"
 
-// Civilian alt titles
+// Bartender alt titles
+#define JOB_ALT_BARKEEPR "Barkeeper"
+#define JOB_ALT_BARMAID "Barmaid"
+#define JOB_ALT_BARISTA "Barista"
+#define JOB_ALT_MIXOLOGIST "Mixologist"
+
+// Botanist alt titles
 #define JOB_ALT_GARDENER "Gardener"
+#define JOB_ALT_HYDROPONICIST "Hydroponicist"
+#define JOB_ALT_CULTIVATOR "Cultivator"
+#define JOB_ALT_FARMER "Farmer"
+#define JOB_ALT_FLORIST "Florist"
+#define JOB_ALT_RANCHER "Rancher"
+
+// Chef alt titles
+#define JOB_ALT_SOUSCHEF "Sous-chef"
+#define JOB_ALT_COOK "Cook"
+#define JOB_ALT_KITCHEN_WORKER "Kitchen Worker"
+
+// Service alt titles
+
+// Chaplain alt titles
+#define JOB_ALT_COUNSELOR "Counselor"
+
+
+// Civilian alt titles
 #define JOB_ALT_PASEUR "Poseur"
 #define JOB_ALT_APPRENTICE_ENGINEER "Apprentice Engineer"
 #define JOB_ALT_MEDICAL_INTERN "Medical Intern"
+#define JOB_ALT_RESEARCH_INTERN "Research Intern"
+#define JOB_ALT_SECURITY_CADET "Security Cadet"
+#define JOB_ALT_JR_CARGO_TECH "Jr. Cargo Tech"
+#define JOB_ALT_SERVER "Server"
+
+#define JOB_ALT_ASSISTANT "Assistant"
+#define JOB_ALT_RESIDENT "Resident"
 
 // Station Robot alt titles
 #define JOB_ALT_ROBOT "Robot"
@@ -146,107 +201,141 @@
 #define JOB_BORER "Borer"
 #define JOB_EMERGENCY_RESPONSE_TEAM "Emergency Response Team"
 
+/* TODO
 
-/*
-	alt_titles
-
-
-					  "Research Intern" = /datum/alt_title/intern_sci,
-					  "Security Cadet" = /datum/alt_title/intern_sec,
-					  "Jr. Cargo Tech" = /datum/alt_title/intern_crg,
-					  "Server" = /datum/alt_title/server,
-	alt_titles = list("Overseer"= /datum/alt_title/overseer, "Facility Director" = /datum/alt_title/facility_director, "Chief Supervisor" = /datum/alt_title/chief_supervisor,
-						"Captain" = /datum/alt_title/captain)
-	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager,
-						"Facility Steward" = /datum/alt_title/facility_steward, "First Mate" = /datum/alt_title/first_mate)
-	alt_titles = list("Command Liaison" = /datum/alt_title/command_liaison, "Command Assistant" = /datum/alt_title/command_assistant, "Command Intern" = /datum/alt_title/command_intern,
-						"Bridge Secretary" = /datum/alt_title/bridge_secretary, "Bridge Assistant" = /datum/alt_title/bridge_assistant)
-	alt_titles = list("Overseer"= /datum/alt_title/overseer)
-	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro)
-	alt_titles = list("Counselor" = /datum/alt_title/counselor)
-	alt_titles = list("Sous-chef" = /datum/alt_title/souschef,"Cook" = /datum/alt_title/cook, "Kitchen Worker" = /datum/alt_title/kitchen_worker)
-	alt_titles = list("Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer,
-						JOB_ALT_GARDENER = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit, "Rancher" = /datum/alt_title/rancher)
-	alt_titles = list("Supply Chief" = /datum/alt_title/supply_chief, "Logistics Manager" = /datum/alt_title/logistics_manager, "Cargo Supervisor" = /datum/alt_title/cargo_supervisor)
-	alt_titles = list("Cargo Loader" = /datum/alt_title/cargo_loader, "Cargo Handler" = /datum/alt_title/cargo_handler, "Supply Courier" = /datum/alt_title/supply_courier,
-					"Disposals Sorter" = /datum/alt_title/disposal_sorter)
-	alt_titles = list("Deep Space Miner" = /datum/alt_title/deep_space_miner, "Drill Technician" = /datum/alt_title/drill_tech, "Prospector" = /datum/alt_title/prospector,
-						"Excavator" = /datum/alt_title/excavator)
-	alt_titles = list("Custodian" = /datum/alt_title/custodian, "Sanitation Technician" = /datum/alt_title/sanitation_tech,
-					"Maid" = /datum/alt_title/maid, "Garbage Collector" = /datum/alt_title/garbage_collector)
-	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Reporter" =  /datum/alt_title/reporter, "Writer" = /datum/alt_title/writer,
-					"Historian" = /datum/alt_title/historian, "Archivist" = /datum/alt_title/archivist, "Professor" = /datum/alt_title/professor,
-					"Academic" = /datum/alt_title/academic, "Philosopher" = /datum/alt_title/philosopher, "Curator" = /datum/alt_title/curator)
-	alt_titles = list("Internal Affairs Liaison" = /datum/alt_title/ia_liaison, "Internal Affairs Delegate" = /datum/alt_title/ia_delegate,
-						"Internal Affairs Investigator" = /datum/alt_title/ia_investigator)
-	alt_titles = list("Missionary" = /datum/alt_title/missionary, "Preacher" = /datum/alt_title/preacher, "Priest" = /datum/alt_title/priest,
-						"Nun" = /datum/alt_title/nun, "Monk" = /datum/alt_title/monk, "Counselor" = /datum/alt_title/counselor,
-						"Guru" = /datum/alt_title/guru)
-	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator, "Helmsman" = /datum/alt_title/helmsman)
-		alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand,
-						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
-						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian,
-						"Artist" = /datum/alt_title/artist, "Game Master" = /datum/alt_title/game_master)
-	alt_titles = list("Lawyer" = /datum/alt_title/lawyer, "Private Eye" = /datum/alt_title/private_eye, "Bodyguard" = /datum/alt_title/bodyguard,
-						"Personal Physician" = /datum/alt_title/personal_physician, "Dentist" = /datum/alt_title/dentist, "Fitness Instructor" = /datum/alt_title/fitness_instructor,
-						"Yoga Teacher" = /datum/alt_title/yoga_teacher, "Masseuse" = /datum/alt_title/masseuse, "Tradesperson" = /datum/alt_title/tradesperson,
-						"Streamer" = /datum/alt_title/streamer, "Influencer" = /datum/alt_title/influencer, "Paranormal Investigator" = /datum/alt_title/paranormal_investigator,
-						"Personal Secretary" = /datum/alt_title/personal_secretary, "Stylist" = /datum/alt_title/stylist, "Fisher" = /datum/alt_title/fisher,
-						"Fortune Teller" = /datum/alt_title/fortune_teller, "Spirit Healer" = /datum/alt_title/spirit_healer)
-	alt_titles = list("Barista" = /datum/alt_title/barista)
-	alt_titles = list("Cook" = /datum/alt_title/cook)
-	alt_titles = list("Supply Chief" = /datum/alt_title/supply_chief)
-	alt_titles = list("Drill Technician" = /datum/alt_title/drill_tech)
-	alt_titles = list("Custodian" = /datum/alt_title/custodian)
-	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Writer" = /datum/alt_title/writer)
-	alt_titles = list("Head Engineer" = /datum/alt_title/head_engineer, "Foreman" = /datum/alt_title/foreman, "Maintenance Manager" = /datum/alt_title/maintenance_manager)
-	alt_titles = list("Maintenance Technician" = /datum/alt_title/maint_tech, "Engine Technician" = /datum/alt_title/engine_tech,
-						"Electrician" = /datum/alt_title/electrician, "Construction Engineer" = /datum/alt_title/construction_engi, "Engineering Contractor" = /datum/alt_title/engineering_contractor)
-	alt_titles = list("Atmospheric Engineer" = /datum/alt_title/atmos_engi, "Atmospheric Maintainer" = /datum/alt_title/atmos_maint, "Disposals Technician" = /datum/alt_title/disposals_tech,
-						"Fuel Technician" = /datum/alt_title/refuel_tech)
-	alt_titles = list("Maintenance Technician" = /datum/alt_title/maint_tech,
-						"Engine Technician" = /datum/alt_title/engine_tech, "Electrician" = /datum/alt_title/electrician)
-	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager)
-	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout)
-	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic, "Offsite Medic" = /datum/alt_title/offsite_medic)
-	alt_titles = list("Chief Physician" = /datum/alt_title/chief_physician, "Medical Director" = /datum/alt_title/medical_director, "Healthcare Manager" = /datum/alt_title/healthcare_manager)
-	alt_titles = list("Physician" = /datum/alt_title/physician, "Medical Practitioner" = /datum/alt_title/medical_practitioner, "Surgeon" = /datum/alt_title/surgeon,
-						"Emergency Physician" = /datum/alt_title/emergency_physician, "Nurse" = /datum/alt_title/nurse, "Orderly" = /datum/alt_title/orderly,
-						JOB_ALT_VIROLOGIST = /datum/alt_title/virologist, "Medical Contractor" = /datum/alt_title/medical_contractor)
-	alt_titles = list("Psychologist" = /datum/alt_title/psychologist, "Psychoanalyst" = /datum/alt_title/psychoanalyst, "Psychotherapist" = /datum/alt_title/psychotherapist)
-	alt_titles = list("Emergency Medical Technician" = /datum/alt_title/emt, "Medical Responder" = /datum/alt_title/medical_responder, "Search and Rescue" = /datum/alt_title/sar)	alt_titles = list(
-					"Surgeon" = /datum/alt_title/surgeon,
-					"Emergency Physician" = /datum/alt_title/emergency_physician,
-					"Nurse" = /datum/alt_title/nurse,
-					JOB_ALT_VIROLOGIST = /datum/alt_title/virologist)
-						alt_titles = list("Psychologist" = /datum/alt_title/psychologist)
-	alt_titles = list("Emergency Medical Technician" = /datum/alt_title/emt)
-	alt_titles = list("Research Supervisor" = /datum/alt_title/research_supervisor, "Research Manager" = /datum/alt_title/research_manager,
-						"Head of Development" = /datum/alt_title/head_of_development,"Head Scientist" = /datum/alt_title/head_scientist)
-	alt_titles = list("Researcher" = /datum/alt_title/researcher, "Lab Assistant" = /datum/alt_title/lab_assistant, "Xenoarchaeologist" = /datum/alt_title/xenoarch,
-						"Xenopaleontologist" = /datum/alt_title/xenopaleontologist, "Anomalist" = /datum/alt_title/anomalist, "Phoron Researcher" = /datum/alt_title/phoron_research,
-						"Gas Physicist" = /datum/alt_title/gas_physicist, "Circuit Designer" = /datum/alt_title/circuit_designer, "Circuit Programmer" = /datum/alt_title/circuit_programmer)
-	alt_titles = list("Xenozoologist" = /datum/alt_title/xenozoologist, "Xenoanthropologist" = /datum/alt_title/xenoanthropologist)
-	alt_titles = list("Assembly Technician" = /datum/alt_title/assembly_tech, "Biomechanical Engineer" = /datum/alt_title/biomech, "Mechatronic Engineer" = /datum/alt_title/mech_tech)
-	alt_titles = list("Xenohydroponicist" = /datum/alt_title/xenohydroponicist, "Xenoflorist" = /datum/alt_title/xenoflorist)
-	alt_titles = list("Research Supervisor" = /datum/alt_title/research_supervisor)
-	alt_titles = list("Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
-						"Phoron Researcher" = /datum/alt_title/phoron_research)
-	alt_titles = list("Biomechanical Engineer" = /datum/alt_title/biomech, "Mechatronic Engineer" = /datum/alt_title/mech_tech)
-	alt_titles = list("Brig Sentry" = /datum/alt_title/brig_sentry, "Armory Superintendent" = /datum/alt_title/armory_superintendent, "Master-at-Arms" = /datum/alt_title/master_at_arms)
-	alt_titles = list("Investigator" = /datum/alt_title/investigator, "Security Inspector" = /datum/alt_title/security_inspector, JOB_ALT_FORENSIC_TECHNICIAN = /datum/alt_title/forensic_tech)
-	alt_titles = list("Patrol Officer" = /datum/alt_title/patrol_officer, "Security Guard" = /datum/alt_title/security_guard,
-						"Security Deputy" = /datum/alt_title/security_guard, JOB_ALT_JUNIOR_OFFICER = /datum/alt_title/junior_officer, "Security Contractor" = /datum/alt_title/security_contractor)
-	alt_titles = list("Security Commander" = /datum/alt_title/sec_commander, "Chief of Security" = /datum/alt_title/sec_chief)
-	alt_titles = list("Jester" = /datum/alt_title/jester, "Fool" = /datum/alt_title/fool)
-
-
-		"Technical Assistant",
-		JOB_ALT_MEDICAL_INTERN,
-		"Research Assistant",
-
-
-		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
-		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
-
+- "Supply Chief"
+- "Logistics Manager"
+- "Cargo Supervisor"
+- "Cargo Loader"
+- "Cargo Handler"
+- "Supply Courier"
+- "Disposals Sorter"
+- "Deep Space Miner"
+- "Drill Technician"
+- "Prospector"
+- "Excavator"
+- "Custodian"
+- "Sanitation Technician"
+- "Maid"
+- "Garbage Collector"
+- "Journalist"
+- "Reporter"
+- "Writer"
+- "Historian"
+- "Archivist"
+- "Professor"
+- "Academic"
+- "Philosopher"
+- "Curator"
+- "Internal Affairs Liaison"
+- "Internal Affairs Delegate"
+- "Internal Affairs Investigator"
+- "Missionary"
+- "Preacher"
+- "Priest"
+- "Nun"
+- "Monk"
+- "Guru"
+- "Co-Pilot"
+- "Navigator"
+- "Helmsman"
+- "Performer"
+- "Musician"
+- "Stagehand"
+- "Actor"
+- "Dancer"
+- "Singer"
+- "Magician"
+- "Comedian"
+- "Tragedian"
+- "Artist"
+- "Game Master"
+- "Lawyer"
+- "Private Eye"
+- "Bodyguard"
+- "Personal Physician"
+- "Dentist"
+- "Fitness Instructor"
+- "Yoga Teacher"
+- "Masseuse"
+- "Tradesperson"
+- "Streamer"
+- "Influencer"
+- "Paranormal Investigator"
+- "Personal Secretary"
+- "Stylist"
+- "Fisher"
+- "Fortune Teller"
+- "Spirit Healer"
+- "Barista"
+- "Head Engineer"
+- "Foreman"
+- "Maintenance Manager"
+- "Maintenance Technician"
+- "Engine Technician"
+- "Electrician"
+- "Construction Engineer"
+- "Engineering Contractor"
+- "Atmospheric Engineer"
+- "Atmospheric Maintainer"
+- "Disposals Technician"
+- "Fuel Technician"
+- "Expedition Lead"
+- "Exploration Manager"
+- "Surveyor"
+- "Offsite Scout"
+- "Expedition Medic"
+- "Offsite Medic"
+- "Chief Physician"
+- "Medical Director"
+- "Healthcare Manager"
+- "Physician"
+- "Medical Practitioner"
+- "Surgeon"
+- "Emergency Physician"
+- "Nurse"
+- "Orderly"
+- "Medical Contractor"
+- "Psychologist"
+- "Psychoanalyst"
+- "Psychotherapist"
+- "Emergency Medical Technician"
+- "Medical Responder"
+- "Search and Rescue"
+- "Research Supervisor"
+- "Research Manager"
+- "Head of Development"
+- "Head Scientist"
+- "Researcher"
+- "Lab Assistant"
+- "Xenoarchaeologist"
+- "Xenopaleontologist"
+- "Anomalist"
+- "Phoron Researcher"
+- "Gas Physicist"
+- "Circuit Designer"
+- "Circuit Programmer"
+- "Xenozoologist"
+- "Xenoanthropologist"
+- "Assembly Technician"
+- "Biomechanical Engineer"
+- "Mechatronic Engineer"
+- "Xenohydroponicist"
+- "Xenoflorist"
+- "Brig Sentry"
+- "Armory Superintendent"
+- "Master-at-Arms"
+- "Investigator"
+- "Security Inspector"
+- "Patrol Officer"
+- "Security Guard"
+- "Security Deputy"
+- "Security Commander"
+- "Chief of Security"
+- "Jester"
+- "Fool"
+- "Technical Assistant"
+- "Research Assistant"
+- "Explorer Technician"
+- "Explorer Medic"
 */

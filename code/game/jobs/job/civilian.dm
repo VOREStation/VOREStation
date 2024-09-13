@@ -19,12 +19,12 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
 	job_description = "A " + JOB_BARTENDER + " mixes drinks for the crew. They generally have permission to charge for drinks or deny service to unruly patrons."
-	alt_titles = list("Barista" = /datum/alt_title/barista)
+	alt_titles = list(JOB_ALT_BARISTA = /datum/alt_title/barista)
 
 // Bartender Alt Titles
 /datum/alt_title/barista
-	title = "Barista"
-	title_blurb = "A barista mans the Cafe, serving primarily non-alcoholic drinks to the crew. They generally have permission to charge for drinks \
+	title = JOB_ALT_BARISTA
+	title_blurb = "A " + JOB_ALT_BARISTA + " mans the Cafe, serving primarily non-alcoholic drinks to the crew. They generally have permission to charge for drinks \
 					or deny service to unruly patrons."
 	title_outfit = /decl/hierarchy/outfit/job/service/bartender/barista
 
@@ -47,12 +47,12 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 	job_description = "A " + JOB_CHEF + " cooks food for the crew. They generally have permission to charge for food or deny service to unruly diners."
-	alt_titles = list("Cook" = /datum/alt_title/cook)
+	alt_titles = list(JOB_ALT_COOK = /datum/alt_title/cook)
 
 // Chef Alt Titles
 /datum/alt_title/cook
-	title = "Cook"
-	title_blurb = "A Cook has the same duties, though they may be less experienced."
+	title = JOB_ALT_COOK
+	title_blurb = "A " + JOB_ALT_COOK + " has the same duties, though they may be less experienced."
 
 //////////////////////////////////
 //			Botanist

@@ -409,10 +409,10 @@
 	rank = JOB_PILOT
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/service
-	name = "\improper ITG Cook's ID"
-	desc = "An ID card belonging to the Cook of an ITG vessel. The Cook's responsibility is primarily to provide sustinence to the crew and passengers. The Cook answers to the Passenger Liason. In the absence of a Passenger Liason, the Cook is also responsible for tending to passenger related care and duties."
-	assignment = "Cook"
-	rank = "Cook"
+	name = "\improper ITG " + JOB_ALT_COOK + "'s ID"
+	desc = "An ID card belonging to the " + JOB_ALT_COOK + " of an ITG vessel. The " + JOB_ALT_COOK + "'s responsibility is primarily to provide sustinence to the crew and passengers. The " + JOB_ALT_COOK + " answers to the Passenger Liason. In the absence of a Passenger Liason, the " + JOB_ALT_COOK + " is also responsible for tending to passenger related care and duties."
+	assignment = JOB_ALT_COOK
+	rank = JOB_ALT_COOK
 	icon_state = "itg_green"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/security
@@ -451,10 +451,10 @@
 	icon_state = "itg_blue"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/captain
-	name = "\improper ITG Captain's ID"
+	name = "\improper ITG " + JOB_ALT_CAPTAIN + "'s ID"
 	desc = "An ID card belonging to the Captain of an ITG vessel. The Captain's responsibility is primarily to manage crew to ensure smooth ship operations. Captains often also often pilot the vessel when no dedicated pilot is assigned."
-	assignment = "Captain"
-	rank = "Captain"
+	assignment = JOB_ALT_CAPTAIN
+	rank = JOB_ALT_CAPTAIN
 	icon_state = "itg_blue"
 	access = list(777, 778)
 
@@ -556,13 +556,13 @@
 		JOB_TALON_DOCTOR = "itg_white",
 		JOB_ATMOSPHERIC_TECHNICIAN = "itg_orange",
 		JOB_ENGINEER = "itg_orange",
-		"Off-duty Officer" = "itg_red",
-		"Off-duty Engineer" = "itg_orange",
-		"Off-duty Medic" = "itg_white",
-		"Off-duty Scientist" = "itg_purple",
-		"Off-duty Cargo" = "itg",
-		"Off-duty Explorer" = "itg_purple",
-		"Off-duty Worker" = "itg_green"
+		JOB_OFFDUTY_OFFICER = "itg_red",
+		JOB_OFFDUTY_ENGINEER = "itg_orange",
+		JOB_OFFDUTY_MEDIC = "itg_white",
+		JOB_OFFDUTY_SCIENTIST = "itg_purple",
+		JOB_OFFDUTY_CARGO = "itg",
+		JOB_OFFDUTY_EXPLORER = "itg_purple",
+		JOB_OFFDUTY_WORKER = "itg_green"
 		)
 		var/guess = jobs_to_icon[user.job]
 

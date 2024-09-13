@@ -14,12 +14,12 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
 	job_description = "The " + JOB_CHAPLAIN + " ministers to the spiritual needs of the crew."
-	alt_titles = list("Counselor" = /datum/alt_title/counselor)
+	alt_titles = list(JOB_ALT_COUNSELOR = /datum/alt_title/counselor)
 
 // Chaplain Alt Titles
 /datum/alt_title/counselor
-	title = "Counselor"
-	title_blurb = "The Counselor attends to the emotional needs of the crew, without a specific medicinal or spiritual focus."
+	title = JOB_ALT_COUNSELOR
+	title_blurb = "The " + JOB_ALT_COUNSELOR + " attends to the emotional needs of the crew, without a specific medicinal or spiritual focus."
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H, var/alt_title, var/ask_questions = TRUE)
 	. = ..()

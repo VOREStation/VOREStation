@@ -1,53 +1,53 @@
 /datum/job/bartender
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Barkeeper" = /datum/alt_title/barkeeper, "Barmaid" = /datum/alt_title/barmaid, "Barista" = /datum/alt_title/barista, "Mixologist" = /datum/alt_title/mixologist)
+	alt_titles = list(JOB_ALT_BARKEEPR = /datum/alt_title/barkeeper, JOB_ALT_BARMAID = /datum/alt_title/barmaid, JOB_ALT_BARISTA = /datum/alt_title/barista, JOB_ALT_MIXOLOGIST = /datum/alt_title/mixologist)
 
 /datum/alt_title/barkeeper
-	title = "Barkeeper"
+	title = JOB_ALT_BARKEEPR
 
 /datum/alt_title/barmaid
-	title = "Barmaid"
+	title = JOB_ALT_BARMAID
 
 /datum/alt_title/mixologist
-	title = "Mixologist"
+	title = JOB_ALT_MIXOLOGIST
 
 
 /datum/job/chef
 	total_positions = 2 //IT TAKES A LOT TO MAKE A STEW
 	spawn_positions = 2 //A PINCH OF SALT AND LAUGHTER, TOO
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Sous-chef" = /datum/alt_title/souschef,"Cook" = /datum/alt_title/cook, "Kitchen Worker" = /datum/alt_title/kitchen_worker)
+	alt_titles = list(JOB_ALT_SOUSCHEF = /datum/alt_title/souschef, JOB_ALT_COOK = /datum/alt_title/cook, JOB_ALT_KITCHEN_WORKER = /datum/alt_title/kitchen_worker)
 
 /datum/alt_title/souschef
-	title = "Sous-chef"
+	title = JOB_ALT_SOUSCHEF
 
 /datum/alt_title/kitchen_worker
-	title = "Kitchen Worker"
-	title_blurb = "A Kitchen Worker has the same duties, though they may be less experienced."
+	title = JOB_ALT_KITCHEN_WORKER
+	title_blurb = "A " + JOB_ALT_KITCHEN_WORKER + " has the same duties, though they may be less experienced."
 
 
 /datum/job/hydro
 	spawn_positions = 2
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer,
-						JOB_ALT_GARDENER = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit, "Rancher" = /datum/alt_title/rancher)
+	alt_titles = list(JOB_ALT_HYDROPONICIST = /datum/alt_title/hydroponicist, JOB_ALT_CULTIVATOR = /datum/alt_title/cultivator, JOB_ALT_FARMER = /datum/alt_title/farmer,
+						JOB_ALT_GARDENER = /datum/alt_title/gardener, JOB_ALT_FLORIST = /datum/alt_title/florsit, JOB_ALT_RANCHER = /datum/alt_title/rancher)
 
 /datum/alt_title/hydroponicist
-	title = "Hydroponicist"
+	title = JOB_ALT_HYDROPONICIST
 
 /datum/alt_title/cultivator
-	title = "Cultivator"
+	title = JOB_ALT_CULTIVATOR
 
 /datum/alt_title/farmer
-	title = "Farmer"
+	title = JOB_ALT_FARMER
 
 /datum/alt_title/florsit
-	title = "Florist"
-	title_blurb = "A Florist may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
+	title = JOB_ALT_FLORIST
+	title_blurb = "A " + JOB_ALT_FLORIST + " may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
 
 /datum/alt_title/rancher
-	title = "Rancher"
-	title_blurb = "A Rancher is tasked with the care, feeding, raising, and harvesting of livestock."
+	title = JOB_ALT_RANCHER
+	title_blurb = "A " + JOB_ALT_RANCHER + " is tasked with the care, feeding, raising, and harvesting of livestock."
 
 
 /datum/job/qm
@@ -183,7 +183,7 @@
 /datum/job/chaplain
 	pto_type = PTO_CIVILIAN
 	alt_titles = list("Missionary" = /datum/alt_title/missionary, "Preacher" = /datum/alt_title/preacher, "Priest" = /datum/alt_title/priest,
-						"Nun" = /datum/alt_title/nun, "Monk" = /datum/alt_title/monk, "Counselor" = /datum/alt_title/counselor,
+						"Nun" = /datum/alt_title/nun, "Monk" = /datum/alt_title/monk, JOB_ALT_COUNSELOR = /datum/alt_title/counselor,
 						"Guru" = /datum/alt_title/guru)
 
 /datum/alt_title/guru
