@@ -22,6 +22,7 @@
 	data["silent"] = notify_silent						// does the pda make noise when it receives a message?
 	data["toff"] = toff									// is the messenger function turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
+	data["enable_message_embeds"] = user?.client?.prefs?.read_preference(/datum/preference/toggle/messenger_embeds)
 
 	has_back = active_conversation
 	if(active_conversation)

@@ -72,3 +72,11 @@ export const AUTO_AFK: FeatureToggle = {
     'When enabled, you will automatically be marked as AFK if you are idle for too long.',
   component: CheckboxInput,
 };
+
+export const MessengerEmbeds: FeatureToggle = {
+  name: 'Messenger Embeds',
+  category: 'UI',
+  description:
+    'When enabled, PDAs and Communicators will attempt to embed links from discord & imgur.',
+  component: CheckboxInput,
+};
