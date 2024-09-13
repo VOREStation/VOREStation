@@ -287,33 +287,3 @@ export const ControlFixes = (props) => {
     </Section>
   );
 };
-
-/* Unused here
-export const CryoStorageItems = (props) => {
-  const { act, data } = useBackend<Data>();
-
-  const { items } = data;
-
-  return (
-    <Section
-      title="Stored Items"
-      buttons={
-        <Button icon="hand-rock" onClick={() => act('allitems')}>
-          Claim All
-        </Button>
-      }
-    >
-      {(items.length &&
-        items.map((item) => (
-          <Button
-            key={item.ref}
-            icon="hand-rock"
-            onClick={() => act('item', { ref: item.ref })}
-          >
-            {item.name}
-          </Button>
-        ))) || <Box color="average">No items stored.</Box>}
-    </Section>
-  );
-};
-*/
