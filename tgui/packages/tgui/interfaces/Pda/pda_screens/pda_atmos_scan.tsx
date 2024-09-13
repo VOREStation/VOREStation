@@ -1,8 +1,7 @@
 import { filter } from 'common/collections';
 import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../../backend';
-import { Box, LabeledList } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, LabeledList } from 'tgui/components';
 
 type Data = {
   aircontents: aircontent[];

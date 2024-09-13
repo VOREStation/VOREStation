@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Box, Button, LabeledList } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList } from 'tgui/components';
 
 type Data = { records: { message1: string; message2: string } | null };
 

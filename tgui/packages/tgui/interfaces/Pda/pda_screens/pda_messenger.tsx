@@ -2,9 +2,8 @@ import { filter } from 'common/collections';
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section } from 'tgui/components';
 
 type Data = {
   active_conversation: string;
