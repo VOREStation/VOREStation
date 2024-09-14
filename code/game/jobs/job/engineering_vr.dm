@@ -12,16 +12,16 @@
 			            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
 			            access_heads, access_construction,
 			            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload, access_gateway)
-	alt_titles = list("Head Engineer" = /datum/alt_title/head_engineer, "Foreman" = /datum/alt_title/foreman, "Maintenance Manager" = /datum/alt_title/maintenance_manager)
+	alt_titles = list(JOB_ALT_HEAD_ENGINEER = /datum/alt_title/head_engineer, JOB_ALT_FOREMAN = /datum/alt_title/foreman, JOB_ALT_MAINTENANCE_MANAGER = /datum/alt_title/maintenance_manager)
 
 /datum/alt_title/head_engineer
-	title = "Head Engineer"
+	title = JOB_ALT_HEAD_ENGINEER
 
 /datum/alt_title/foreman
-	title = "Foreman"
+	title = JOB_ALT_FOREMAN
 
 /datum/alt_title/maintenance_manager
-	title = "Maintenance Manager"
+	title = JOB_ALT_MAINTENANCE_MANAGER
 
 /datum/job/chief_engineer/get_request_reasons()
 	return list("Engine setup", "Construction project", "Repairs necessary", "Training crew", "Assembling expedition team")
@@ -29,17 +29,17 @@
 
 /datum/job/engineer
 	pto_type = PTO_ENGINEERING
-	alt_titles = list("Maintenance Technician" = /datum/alt_title/maint_tech, "Engine Technician" = /datum/alt_title/engine_tech,
-						"Electrician" = /datum/alt_title/electrician, "Construction Engineer" = /datum/alt_title/construction_engi, "Engineering Contractor" = /datum/alt_title/engineering_contractor)
+	alt_titles = list(JOB_ALT_MAINTENANCE_TECHNICIAN = /datum/alt_title/maint_tech, JOB_ALT_ENGINE_TECHNICIAN = /datum/alt_title/engine_tech,
+						JOB_ALT_ELECTRICIAN = /datum/alt_title/electrician, JOB_ALT_CONSTRUCTION_ENGINEER = /datum/alt_title/construction_engi, JOB_ALT_ENGINEERING_CONTRACTOR = /datum/alt_title/engineering_contractor)
 
 /datum/alt_title/construction_engi
-	title = "Construction Engineer"
-	title_blurb = "A Construction Engineer fulfills similar duties to other engineers, but usually occupies spare time with construction of extra facilities in dedicated areas or \
+	title = JOB_ALT_CONSTRUCTION_ENGINEER
+	title_blurb = "A " + JOB_ALT_CONSTRUCTION_ENGINEER + " fulfills similar duties to other engineers, but usually occupies spare time with construction of extra facilities in dedicated areas or \
 					as additions to station layout."
 
 /datum/alt_title/engineering_contractor
-	title = "Engineering Contractor"
-	title_blurb = "An Engineering Contractor fulfills similar duties to other engineers, but isn't directly employed by NT proper."
+	title = JOB_ALT_ENGINEERING_CONTRACTOR
+	title_blurb = "An " + JOB_ALT_ENGINEERING_CONTRACTOR + " fulfills similar duties to other engineers, but isn't directly employed by NT proper."
 
 /datum/job/engineer/get_request_reasons()
 	return list("Engine setup", "Construction project", "Repairs necessary", "Assembling expedition team")
@@ -50,21 +50,21 @@
 /datum/job/atmos
 	spawn_positions = 3
 	pto_type = PTO_ENGINEERING
-	alt_titles = list("Atmospheric Engineer" = /datum/alt_title/atmos_engi, "Atmospheric Maintainer" = /datum/alt_title/atmos_maint, "Disposals Technician" = /datum/alt_title/disposals_tech,
-						"Fuel Technician" = /datum/alt_title/refuel_tech)
+	alt_titles = list(JOB_ALT_ATMOSPHERIC_ENGINEER = /datum/alt_title/atmos_engi, JOB_ALT_ATMOSPHERIC_MAINTAINER = /datum/alt_title/atmos_maint, JOB_ALT_DISPOSALS_TECHNICIAN = /datum/alt_title/disposals_tech,
+						JOB_ALT_FUEL_TECHNICIAN = /datum/alt_title/refuel_tech)
 
 /datum/alt_title/atmos_maint
-	title = "Atmospheric Maintainer"
+	title = JOB_ALT_ATMOSPHERIC_MAINTAINER
 
 /datum/alt_title/atmos_engi
-	title = "Atmospheric Engineer"
+	title = JOB_ALT_ATMOSPHERIC_ENGINEER
 
 /datum/alt_title/disposals_tech
-	title = "Disposals Technician"
-	title_blurb = "A Disposals Technician is an " + JOB_ATMOSPHERIC_TECHNICIAN + " still and can fulfill all the same duties, although specializes more in disposals delivery system's operations and configurations."
+	title = JOB_ALT_DISPOSALS_TECHNICIAN
+	title_blurb = "A " + JOB_ALT_DISPOSALS_TECHNICIAN + " is an " + JOB_ATMOSPHERIC_TECHNICIAN + " still and can fulfill all the same duties, although specializes more in disposals delivery system's operations and configurations."
 
 /datum/alt_title/refuel_tech
-	title = "Fuel Technician"
+	title = JOB_ALT_FUEL_TECHNICIAN
 
 /datum/job/atmos/get_request_reasons()
 	return list("Construction project", "Repairs necessary", "Assembling expedition team")

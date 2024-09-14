@@ -99,7 +99,7 @@
 	rank = JOB_GENETICIST
 
 /obj/item/weapon/card/id/medical/psych
-	name = "Psychologist's ID"
+	name = JOB_ALT_PSYCHOLOGIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-brown")
 	rank = JOB_PSYCHIATRIST
 
@@ -109,7 +109,7 @@
 	rank = JOB_ALT_VIROLOGIST
 
 /obj/item/weapon/card/id/medical/emt
-	name = "Emergency Medical Technician's ID"
+	name = JOB_ALT_EMERGENCY_MEDICAL_TECHNICIAN + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n", "stripe-blue")
 	rank = JOB_PARAMEDIC
 
@@ -213,8 +213,9 @@
 	rank = JOB_CHAPLAIN
 
 /obj/item/weapon/card/id/civilian/journalist
-	name = "Journalist's ID"
+	name = JOB_ALT_JOURNALIST + "'s ID"
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-red")
+	rank = JOB_ALT_JOURNALIST
 
 /obj/item/weapon/card/id/civilian/pilot
 	name = JOB_PILOT + "'s ID"

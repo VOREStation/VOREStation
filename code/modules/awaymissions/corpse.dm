@@ -309,10 +309,10 @@
 	corpseidjob = JOB_PILOT
 
 /obj/effect/landmark/corpse/vintage/research
-	name = "Unknown Researcher"
+	name = "Unknown " + JOB_ALT_RESEARCHER
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/research
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/research
-	corpseidjob = "Researcher"
+	corpseidjob = JOB_ALT_RESEARCHER
 
 /////////////////Officers//////////////////////
 

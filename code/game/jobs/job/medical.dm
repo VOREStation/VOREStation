@@ -56,31 +56,31 @@
 						familiar with basic first aid, and a number of accompanying medications, and can generally save, if not cure, a majority of the \
 						patients they encounter."
 	alt_titles = list(
-					"Surgeon" = /datum/alt_title/surgeon,
-					"Emergency Physician" = /datum/alt_title/emergency_physician,
-					"Nurse" = /datum/alt_title/nurse,
+					JOB_ALT_SURGEON = /datum/alt_title/surgeon,
+					JOB_ALT_EMERGENCY_PHYSICIAN = /datum/alt_title/emergency_physician,
+					JOB_ALT_NURSE = /datum/alt_title/nurse,
 					JOB_ALT_VIROLOGIST = /datum/alt_title/virologist)
 
 	min_age_by_species = list(SPECIES_PROMETHEAN = 3)
 
 //Medical Doctor Alt Titles
 /datum/alt_title/surgeon
-	title = "Surgeon"
-	title_blurb = "A Surgeon specializes in providing surgical aid to injured patients, up to and including amputation and limb reattachement. They are expected \
+	title = JOB_ALT_SURGEON
+	title_blurb = "A " + JOB_ALT_SURGEON + " specializes in providing surgical aid to injured patients, up to and including amputation and limb reattachement. They are expected \
 					to know the ins and outs of anesthesia and surgery."
 	title_outfit = /decl/hierarchy/outfit/job/medical/doctor/surgeon
 
 /datum/alt_title/emergency_physician
-	title = "Emergency Physician"
-	title_blurb = "An Emergency Physician is a Medical professional trained for stabilizing and treating severely injured and/or dying patients. \
+	title = JOB_ALT_EMERGENCY_PHYSICIAN
+	title_blurb = "An " + JOB_ALT_EMERGENCY_PHYSICIAN + " is a Medical professional trained for stabilizing and treating severely injured and/or dying patients. \
 					They are generally the first response for any such individual brought to the Medbay, and can sometimes be expected to help their patients \
 					make a full recovery."
 	title_outfit = /decl/hierarchy/outfit/job/medical/doctor/emergency_physician
 
 /datum/alt_title/nurse
-	title = "Nurse"
-	title_blurb = "A Nurse acts as a general purpose Doctor's Aide, providing basic care to non-critical patients, and stabilizing critical patients during \
-					busy periods. They frequently watch the suit sensors console, to help manage the time of other Doctors. In rare occasions, a Nurse can be \
+	title = JOB_ALT_NURSE
+	title_blurb = "A " + JOB_ALT_NURSE + " acts as a general purpose Doctor's Aide, providing basic care to non-critical patients, and stabilizing critical patients during \
+					busy periods. They frequently watch the suit sensors console, to help manage the time of other Doctors. In rare occasions, a " + JOB_ALT_NURSE + " can be \
 					called upon to revive deceased crew members."
 	title_outfit = /decl/hierarchy/outfit/job/medical/doctor/nurse
 
@@ -162,13 +162,13 @@
 	outfit_type = /decl/hierarchy/outfit/job/medical/psychiatrist
 	job_description = "A " + JOB_PSYCHIATRIST + " provides mental health services to crew members in need. They may also be called upon to determine whatever \
 					ails the mentally unwell, frequently under Security supervision. They understand the effects of various psychoactive drugs."
-	alt_titles = list("Psychologist" = /datum/alt_title/psychologist)
+	alt_titles = list(JOB_ALT_PSYCHOLOGIST = /datum/alt_title/psychologist)
 	banned_job_species = list(SPECIES_PROMETHEAN, SPECIES_DIONA)
 
 //Psychiatrist Alt Titles
 /datum/alt_title/psychologist
-	title = "Psychologist"
-	title_blurb =  "A Psychologist provides mental health services to crew members in need, focusing more on therapy than medication. They may also be \
+	title = JOB_ALT_PSYCHOLOGIST
+	title_blurb =  "A " + JOB_ALT_PSYCHOLOGIST + " provides mental health services to crew members in need, focusing more on therapy than medication. They may also be \
 					called upon to determine whatever ails the mentally unwell, frequently under Security supervision."
 	title_outfit = /decl/hierarchy/outfit/job/medical/psychiatrist/psychologist
 
@@ -191,14 +191,14 @@
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
 	job_description = "A " + JOB_PARAMEDIC + " is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their own. \
 						They may also be called upon to keep patients stable when Medical is busy or understaffed."
-	alt_titles = list("Emergency Medical Technician" = /datum/alt_title/emt)
+	alt_titles = list(JOB_ALT_EMERGENCY_MEDICAL_TECHNICIAN = /datum/alt_title/emt)
 	banned_job_species = list(SPECIES_DIONA)
 
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
 // Paramedic Alt Titles
 /datum/alt_title/emt
-	title = "Emergency Medical Technician"
-	title_blurb = "An Emergency Medical Technician is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their \
+	title = JOB_ALT_EMERGENCY_MEDICAL_TECHNICIAN
+	title_blurb = "An " + JOB_ALT_EMERGENCY_MEDICAL_TECHNICIAN + " is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their \
 					own. They are capable of keeping a patient stabilized until they reach the hands of someone with more training."
 	title_outfit = /decl/hierarchy/outfit/job/medical/paramedic/emt

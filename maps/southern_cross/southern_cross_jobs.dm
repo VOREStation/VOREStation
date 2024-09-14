@@ -92,8 +92,8 @@ var/const/access_explorer = 43
 
 /*
 	alt_titles = list(
-		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
-		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
+		JOB_ALT_EXPLORERE_TECHNICIAN = /decl/hierarchy/outfit/job/explorer2/technician,
+		JOB_ALT_EXPLORER_MEDIC = /decl/hierarchy/outfit/job/explorer2/medic)
 */
 
 /datum/job/sar

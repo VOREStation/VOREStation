@@ -150,7 +150,7 @@ var/global/list/all_objectives = list()
 
 		if(!istype(I)) return 1
 
-		if(I.assignment == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
+		if(I.assignment == JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 			return 1
 		else
 			return 0

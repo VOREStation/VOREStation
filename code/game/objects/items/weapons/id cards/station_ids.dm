@@ -299,8 +299,8 @@
 	rank = JOB_QUARTERMASTER
 
 /obj/item/weapon/card/id/assistant
-	assignment = USELESS_JOB //VOREStation Edit - Visitor not Assistant
-	rank = USELESS_JOB //VOREStation Edit - Visitor not Assistant
+	assignment = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
+	rank = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
 
 /obj/item/weapon/card/id/civilian
 	name = "identification card"
@@ -524,7 +524,7 @@
 	if(!configured)
 		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
 		JOB_PILOT = "itg",
-		USELESS_JOB = "itg",
+		JOB_ALT_VISITOR = "itg",
 		JOB_QUARTERMASTER = "itg",
 		JOB_CARGO_TECHNICIAN = "itg",
 		JOB_SHAFT_MINER = "itg",

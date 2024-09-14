@@ -49,13 +49,13 @@
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway, access_pathfinder, access_RC_announce)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 	job_description = "The " + JOB_PATHFINDER + "'s job is to lead and manage expeditions, and is the primary authority on all off-station expeditions."
-	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager)
+	alt_titles = list(JOB_ALT_EXPEDITION_LEAD = /datum/alt_title/expedition_lead, JOB_ALT_EXPLORATION_MANAGER = /datum/alt_title/exploration_manager)
 
 /datum/alt_title/expedition_lead
-	title = "Expedition Lead"
+	title = JOB_ALT_EXPEDITION_LEAD
 
 /datum/alt_title/exploration_manager
-	title = "Exploration Manager"
+	title = JOB_ALT_EXPLORATION_MANAGER
 
 /datum/job/pathfinder/get_request_reasons()
 	return list("Training crew")
@@ -76,13 +76,13 @@
 	minimal_access = list(access_explorer, access_external_airlocks, access_eva)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An " + JOB_EXPLORER + " searches for interesting things, and returns them to the station."
-	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout)
+	alt_titles = list(JOB_ALT_SURVEYOR = /datum/alt_title/surveyor, JOB_ALT_OFFSITE_SCOUT = /datum/alt_title/offsite_scout)
 
 /datum/alt_title/surveyor
-	title = "Surveyor"
+	title = JOB_ALT_SURVEYOR
 
 /datum/alt_title/offsite_scout
-	title = "Offsite Scout"
+	title = JOB_ALT_OFFSITE_SCOUT
 
 
 /datum/job/sar
@@ -102,10 +102,10 @@
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
 	job_description = "A " + JOB_FIELD_MEDIC + " works as the field doctor of expedition teams."
-	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic, "Offsite Medic" = /datum/alt_title/offsite_medic)
+	alt_titles = list(JOB_ALT_EXPEDITION_MEDIC = /datum/alt_title/expedition_medic, JOB_ALT_OFFSITE_MEDIC = /datum/alt_title/offsite_medic)
 
 /datum/alt_title/expedition_medic
-	title = "Expedition Medic"
+	title = JOB_ALT_EXPEDITION_MEDIC
 
 /datum/alt_title/offsite_medic
-	title = "Offsite Medic"
+	title = JOB_ALT_OFFSITE_MEDIC

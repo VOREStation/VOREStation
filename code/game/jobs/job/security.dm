@@ -34,15 +34,15 @@
 	job_description = "	The " + JOB_HEAD_OF_SECURITY + " manages the Security Department, keeping the station safe and making sure the rules are followed. They are expected to \
 						keep the other Department Heads, and the rest of the crew, aware of developing situations that may be a threat. If necessary, the HoS may \
 						perform the duties of absent Security roles, such as distributing gear from the Armory."
-	alt_titles = list("Security Commander" = /datum/alt_title/sec_commander, "Chief of Security" = /datum/alt_title/sec_chief)
+	alt_titles = list(JOB_ALT_SECURITY_COMMANDER = /datum/alt_title/sec_commander, JOB_ALT_CHIEF_OF_SECURITY = /datum/alt_title/sec_chief)
 
 
 // Head of Security Alt Titles
 /datum/alt_title/sec_commander
-	title = "Security Commander"
+	title = JOB_ALT_SECURITY_COMMANDER
 
 /datum/alt_title/sec_chief
-	title = "Chief of Security"
+	title = JOB_ALT_CHIEF_OF_SECURITY
 
 //////////////////////////////////
 //			Warden

@@ -105,11 +105,11 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/qm
 	job_description = "The " + JOB_QUARTERMASTER + " manages the Supply department, checking cargo orders and ensuring supplies get to where they are needed."
-	alt_titles = list("Supply Chief" = /datum/alt_title/supply_chief)
+	alt_titles = list(JOB_ALT_SUPPLY_CHIEF = /datum/alt_title/supply_chief)
 
 // Quartermaster Alt Titles
 /datum/alt_title/supply_chief
-	title = "Supply Chief"
+	title = JOB_ALT_SUPPLY_CHIEF
 
 //////////////////////////////////
 //			Cargo Tech
@@ -151,11 +151,11 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
 	job_description = "A " + JOB_SHAFT_MINER + " mines and processes minerals to be delivered to departments that need them."
-	alt_titles = list("Drill Technician" = /datum/alt_title/drill_tech)
+	alt_titles = list(JOB_ALT_DRILL_TECHNICIAN = /datum/alt_title/drill_tech)
 
 /datum/alt_title/drill_tech
-	title = "Drill Technician"
-	title_blurb = "A Drill Technician specializes in operating and maintaining the machinery needed to extract ore from veins deep below the surface."
+	title = JOB_ALT_DRILL_TECHNICIAN
+	title_blurb = "A " + JOB_ALT_DRILL_TECHNICIAN + " specializes in operating and maintaining the machinery needed to extract ore from veins deep below the surface."
 
 //Service
 //////////////////////////////////
@@ -176,11 +176,11 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
 	job_description = "A " + JOB_JANITOR + " keeps the station clean, as long as it doesn't interfere with active crime scenes."
-	alt_titles = list("Custodian" = /datum/alt_title/custodian)
+	alt_titles = list(JOB_ALT_CUSTODIAN = /datum/alt_title/custodian)
 
 // Janitor Alt Titles
 /datum/alt_title/custodian
-	title = "Custodian"
+	title = JOB_ALT_CUSTODIAN
 
 //More or less assistants
 //////////////////////////////////
@@ -201,17 +201,17 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/librarian
 	job_description = "The " + JOB_LIBRARIAN + " curates the book selection in the Library, so the crew might enjoy it."
-	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Writer" = /datum/alt_title/writer)
+	alt_titles = list(JOB_ALT_JOURNALIST = /datum/alt_title/journalist, JOB_ALT_WRITER = /datum/alt_title/writer)
 
 // Librarian Alt Titles
 /datum/alt_title/journalist
-	title = "Journalist"
+	title = JOB_ALT_JOURNALIST
 	title_outfit = /decl/hierarchy/outfit/job/librarian/journalist
-	title_blurb = "The Journalist uses the Library as a base of operations, from which they can report the news and goings-on on the station with their camera."
+	title_blurb = "The " + JOB_ALT_JOURNALIST + " uses the Library as a base of operations, from which they can report the news and goings-on on the station with their camera."
 
 /datum/alt_title/writer
-	title = "Writer"
-	title_blurb = "The Writer uses the Library as a quiet place to write whatever it is they choose to write."
+	title = JOB_ALT_WRITER
+	title_blurb = "The " + JOB_ALT_WRITER + " uses the Library as a quiet place to write whatever it is they choose to write."
 
 //////////////////////////////////
 //		Internal Affairs Agent

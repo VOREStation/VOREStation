@@ -15,7 +15,7 @@ var/list/job_whitelist = list()
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job.whitelist_only)
 		return 1
-	if(rank == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
+	if(rank == JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 		return 1
 	if(check_rights(R_ADMIN, 0))
 		return 1
@@ -28,4 +28,3 @@ var/list/job_whitelist = list()
 			if(findtext(s,"[M.ckey] - All"))
 				return 1
 	return 0
-

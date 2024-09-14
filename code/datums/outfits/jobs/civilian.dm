@@ -1,10 +1,10 @@
 /decl/hierarchy/outfit/job/assistant
-	name = OUTFIT_JOB_NAME(USELESS_JOB) //VOREStation Edit - Visitor not Assistant
+	name = OUTFIT_JOB_NAME(JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 	id_type = /obj/item/weapon/card/id/generic	//VOREStation Edit
 
 /decl/hierarchy/outfit/job/assistant/visitor
-	name = OUTFIT_JOB_NAME(USELESS_JOB)
-	id_pda_assignment = USELESS_JOB
+	name = OUTFIT_JOB_NAME(JOB_ALT_VISITOR)
+	id_pda_assignment = JOB_ALT_VISITOR
 	uniform = /obj/item/clothing/under/assistantformal
 
 //VOREStation Add - Interns

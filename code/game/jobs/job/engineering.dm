@@ -54,8 +54,8 @@
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics)
 	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction)
-	alt_titles = list("Maintenance Technician" = /datum/alt_title/maint_tech,
-						"Engine Technician" = /datum/alt_title/engine_tech, "Electrician" = /datum/alt_title/electrician)
+	alt_titles = list(JOB_ALT_MAINTENANCE_TECHNICIAN = /datum/alt_title/maint_tech,
+						JOB_ALT_ENGINE_TECHNICIAN = /datum/alt_title/engine_tech, JOB_ALT_ELECTRICIAN = /datum/alt_title/electrician)
 
 	minimal_player_age = 3
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
@@ -66,18 +66,18 @@
 
 // Engineer Alt Titles
 /datum/alt_title/maint_tech
-	title = "Maintenance Technician"
-	title_blurb = "A Maintenance Technician is generally a junior Engineer, and can be expected to run the mildly unpleasant or boring tasks that other \
+	title = JOB_ALT_MAINTENANCE_TECHNICIAN
+	title_blurb = "A " + JOB_ALT_MAINTENANCE_TECHNICIAN + " is generally a junior Engineer, and can be expected to run the mildly unpleasant or boring tasks that other \
 					Engineers don't care to do."
 
 /datum/alt_title/engine_tech
-	title = "Engine Technician"
-	title_blurb = "An Engine Technician tends to the engine, most commonly a Supermatter crystal. They are expected to be able to keep it stable, and \
+	title = JOB_ALT_ENGINE_TECHNICIAN
+	title_blurb = "An " + JOB_ALT_ENGINE_TECHNICIAN + " tends to the engine, most commonly a Supermatter crystal. They are expected to be able to keep it stable, and \
 					possibly even run it beyond normal tolerances."
 
 /datum/alt_title/electrician
-	title = "Electrician"
-	title_blurb = "An Electrician's primary duty is making sure power is properly distributed thoughout the station, utilizing solars, substations, and other \
+	title = JOB_ALT_ELECTRICIAN
+	title_blurb = "An " + JOB_ALT_ELECTRICIAN + "'s primary duty is making sure power is properly distributed thoughout the station, utilizing solars, substations, and other \
 					methods to ensure every department has power in an emergency."
 
 //////////////////////////////////

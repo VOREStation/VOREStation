@@ -79,7 +79,7 @@
 /obj/effect/landmark/start/pilot
 	name = JOB_PILOT
 /obj/effect/landmark/start/visitor
-	name = USELESS_JOB
+	name = JOB_ALT_VISITOR
 /obj/effect/landmark/start/ai
 	name = JOB_AI
 /obj/effect/landmark/start/cyborg

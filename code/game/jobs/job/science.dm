@@ -36,12 +36,12 @@
 						at least with regards to anything occurring in the Research department, and to inform the crew of any disruptions that \
 						might originate from Research. The " + JOB_RESEARCH_DIRECTOR + " often has at least passing knowledge of most of the Research department, but \
 						are encouraged to allow their staff to perform their own duties."
-	alt_titles = list("Research Supervisor" = /datum/alt_title/research_supervisor)
+	alt_titles = list(JOB_ALT_RESEARCH_SUPERVISOR = /datum/alt_title/research_supervisor)
 
 
 // " + JOB_RESEARCH_DIRECTOR + " Alt Titles
 /datum/alt_title/research_supervisor
-	title = "Research Supervisor"
+	title = JOB_ALT_RESEARCH_SUPERVISOR
 
 //////////////////////////////////
 //			Scientist
@@ -68,24 +68,24 @@
 	job_description = "A " + JOB_SCIENTIST + " is a generalist working in the Research department, with general knowledge of the scientific process, as well as \
 						the principles and requirements of Research and Development. They may also formulate experiments of their own devising, if \
 						they find an appropriate topic."
-	alt_titles = list("Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
-						"Phoron Researcher" = /datum/alt_title/phoron_research)
+	alt_titles = list(JOB_ALT_XENOARCHAEOLOGIST = /datum/alt_title/xenoarch, JOB_ALT_ANOMALIST = /datum/alt_title/anomalist, \
+						JOB_ALT_PHORON_RESEARCHER = /datum/alt_title/phoron_research)
 
 // Scientist Alt Titles
 /datum/alt_title/xenoarch
-	title = "Xenoarchaeologist"
-	title_blurb = "A Xenoarchaeologist enters digsites in search of artifacts of alien origin. These digsites are frequently in vacuum or other inhospitable \
-					locations, and as such a Xenoarchaeologist should be prepared to handle hostile evironmental conditions."
+	title = JOB_ALT_XENOARCHAEOLOGIST
+	title_blurb = "A " + JOB_ALT_XENOARCHAEOLOGIST + " enters digsites in search of artifacts of alien origin. These digsites are frequently in vacuum or other inhospitable \
+					locations, and as such a " + JOB_ALT_XENOARCHAEOLOGIST + " should be prepared to handle hostile evironmental conditions."
 
 /datum/alt_title/anomalist
-	title = "Anomalist"
-	title_blurb = "An Anomalist is a " + JOB_SCIENTIST + " whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
-					function. They work closely with Xenoarchaeologists, or Miners, if either role is present."
+	title = JOB_ALT_ANOMALIST
+	title_blurb = "An " + JOB_ALT_ANOMALIST + " is a " + JOB_SCIENTIST + " whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
+					function. They work closely with " + JOB_ALT_XENOARCHAEOLOGIST + "s, or Miners, if either role is present."
 
 /datum/alt_title/phoron_research
-	title = "Phoron Researcher"
-	title_blurb = "A Phoron Researcher is a specialist in the practical applications of phoron, and has knowledge of its practical uses and dangers. \
-					Many Phoron Researchers are interested in the combustability and explosive properties of gaseous phoron, as well as the specific hazards \
+	title = JOB_ALT_PHORON_RESEARCHER
+	title_blurb = "A " + JOB_ALT_PHORON_RESEARCHER + " is a specialist in the practical applications of phoron, and has knowledge of its practical uses and dangers. \
+					Many " + JOB_ALT_PHORON_RESEARCHER + "s are interested in the combustability and explosive properties of gaseous phoron, as well as the specific hazards \
 					of working with the substance in that state."
 
 //////////////////////////////////
@@ -145,15 +145,15 @@ VR edit end*/
 	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
 	job_description = "A " + JOB_ROBOTICIST + " maintains and repairs the station's synthetics, including crew with prosthetic limbs. \
 						They can also assist the station by producing simple robots and even pilotable exosuits."
-	alt_titles = list("Biomechanical Engineer" = /datum/alt_title/biomech, "Mechatronic Engineer" = /datum/alt_title/mech_tech)
+	alt_titles = list(JOB_ALT_BIOMECHANICAL_ENGINEER = /datum/alt_title/biomech, JOB_ALT_MECHATRONIC_ENGINEER = /datum/alt_title/mech_tech)
 
 // Roboticist Alt Titles
 /datum/alt_title/biomech
-	title = "Biomechanical Engineer"
-	title_blurb = "A Biomechanical Engineer primarily works on prosthetics, and the organic parts attached to them. They may have some \
+	title = JOB_ALT_BIOMECHANICAL_ENGINEER
+	title_blurb = "A " + JOB_ALT_BIOMECHANICAL_ENGINEER + " primarily works on prosthetics, and the organic parts attached to them. They may have some \
 					knowledge of the relatively simple surgical procedures used in making cyborgs and attaching prosthesis."
 
 /datum/alt_title/mech_tech
-	title = "Mechatronic Engineer"
-	title_blurb = "A Mechatronic Engineer focuses on the construction and maintenance of Exosuits, and should be well versed in their use. \
+	title = JOB_ALT_MECHATRONIC_ENGINEER
+	title_blurb = "A " + JOB_ALT_MECHATRONIC_ENGINEER + " focuses on the construction and maintenance of Exosuits, and should be well versed in their use. \
 					They may also be called upon to work on synthetics and prosthetics, if needed."

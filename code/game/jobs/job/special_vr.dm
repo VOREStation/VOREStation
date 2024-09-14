@@ -67,13 +67,13 @@
 	requestable = FALSE
 	outfit_type = /decl/hierarchy/outfit/job/clown
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Jester" = /datum/alt_title/jester, "Fool" = /datum/alt_title/fool)
+	alt_titles = list(JOB_ALT_JESTER = /datum/alt_title/jester, JOB_ALT_FOOL = /datum/alt_title/fool)
 
 /datum/alt_title/jester
-	title = "Jester"
+	title = JOB_ALT_JESTER
 
 /datum/alt_title/fool
-	title = "Fool"
+	title = JOB_ALT_FOOL
 
 /datum/job/clown/get_access()
 	if(config.assistant_maint)

@@ -92,9 +92,9 @@
 //////////////////////////////////
 
 /datum/job/assistant		// Visitor
-	title = USELESS_JOB
+	title = JOB_ALT_VISITOR
 	supervisors = "nobody! You don't work here"
-	job_description = "A " + USELESS_JOB + " is just there to visit the place. They have no real authority or responsibility."
+	job_description = "A " + JOB_ALT_VISITOR + " is just there to visit the place. They have no real authority or responsibility."
 	timeoff_factor = 0
 	requestable = FALSE
 	alt_titles = list("Guest" = /datum/alt_title/guest, "Traveler" = /datum/alt_title/traveler)

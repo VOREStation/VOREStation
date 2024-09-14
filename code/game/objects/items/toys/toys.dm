@@ -527,8 +527,8 @@
 	toysay = "Execute him for breaking in!"
 
 /obj/item/toy/figure/psychologist
-	name = "Psychologist action figure"
-	desc = "A \"Space Life\" brand Psychologist action figure."
+	name = JOB_ALT_PSYCHOLOGIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ALT_PSYCHOLOGIST + " action figure."
 	icon_state = "psychologist"
 	toysay = "The analyzer says you're fine!"
 

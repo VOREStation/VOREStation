@@ -13,7 +13,7 @@
 #define CHANNEL_SCIENCE "Science"
 #define CHANNEL_MEDICAL "Medical"
 #define CHANNEL_MEDICAL_1 "Medical(I)"
-#define CHANNEL_EXPLORATION "Away Team"
+#define CHANNEL_EXPLORATION "Away Team" // was Explorer
 
 // Special Channels
 #define CHANNEL_RESPONSE_TEAM "Response Team"
