@@ -335,8 +335,10 @@
 
 // Station Sepcial jobs
 #define JOB_CLOWN "Clown"
+	// Clown alt titles
 	#define JOB_ALT_JESTER "Jester"
 	#define JOB_ALT_FOOL "Fool"
+
 #define JOB_MIME "Mime"
 	// Mime alt titles
 	#define JOB_ALT_PASEUR "Poseur"
