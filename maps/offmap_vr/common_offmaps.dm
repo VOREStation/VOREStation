@@ -530,7 +530,7 @@
 	icon = 'icons/mob/vore_shadekin.dmi'
 	icon_state = "spawner"
 
-	faction = "shadekin"
+	faction = FACTION_SHADEKIN
 	prob_spawn = 1
 	prob_fall = 1
 	//guard = 10 //Don't wander too far, to stay alive.

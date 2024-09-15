@@ -6,7 +6,7 @@ var/datum/antagonist/mutineer/mutineers
 	role_text_plural = "Mutineers"
 	id = MODE_MUTINEER
 	antag_indicator = "mutineer"
-	restricted_jobs = list("Site Manager")
+	restricted_jobs = list(JOB_SITE_MANAGER)
 
 /datum/antagonist/mutineer/New(var/no_reference)
 	..()
@@ -39,7 +39,7 @@ var/datum/antagonist/mutineer/mutineers
 	proc/get_head_loyalist_candidates()
 		var/list/candidates[0]
 		for(var/mob/loyalist in player_list)
-			if(loyalist.mind && loyalist.mind.assigned_role == "Site Manager")
+			if(loyalist.mind && loyalist.mind.assigned_role == JOB_SITE_MANAGER)
 				candidates.Add(loyalist.mind)
 		return candidates
 
@@ -47,7 +47,7 @@ var/datum/antagonist/mutineer/mutineers
 		var/list/candidates[0]
 		for(var/mob/mutineer in player_list)
 			if(mutineer.client.prefs.be_special & BE_MUTINEER)
-				for(var/job in command_positions - "Site Manager")
+				for(var/job in command_positions - JOB_SITE_MANAGER)
 					if(mutineer.mind && mutineer.mind.assigned_role == job)
 						candidates.Add(mutineer.mind)
 		return candidates

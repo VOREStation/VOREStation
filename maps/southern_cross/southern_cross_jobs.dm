@@ -29,7 +29,7 @@ var/const/access_explorer = 43
 	department = "Command"
 	head_position = 1
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "company officials and Corporate Regulations"
@@ -60,7 +60,7 @@ var/const/access_explorer = 43
 	flag = PILOT
 	departments = list(DEPARTMENT_PLANET)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Head of Personnel"
@@ -77,7 +77,7 @@ var/const/access_explorer = 43
 	flag = EXPLORER
 	departments = list(DEPARTMENT_RESEARCH, DEPARTMENT_PLANET)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Research Director"
@@ -92,8 +92,8 @@ var/const/access_explorer = 43
 
 /*
 	alt_titles = list(
-		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
-		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
+		JOB_ALT_EXPLORERE_TECHNICIAN = /decl/hierarchy/outfit/job/explorer2/technician,
+		JOB_ALT_EXPLORER_MEDIC = /decl/hierarchy/outfit/job/explorer2/medic)
 */
 
 /datum/job/sar
@@ -101,7 +101,7 @@ var/const/access_explorer = 43
 	flag = SAR
 	departments = list(DEPARTMENT_PLANET, DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Chief Medical Officer"

@@ -9,7 +9,7 @@
  * Security
  */
 /obj/item/clothing/under/rank/warden
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the word \"Warden\" written on the shoulders."
+	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the word \"" + JOB_WARDEN+ "\" written on the shoulders."
 	name = "warden's jumpsuit"
 	icon_state = "warden"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
@@ -147,7 +147,7 @@
  * Head of Security
  */
 /obj/item/clothing/under/rank/head_of_security
-	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
+	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"" + JOB_HEAD_OF_SECURITY + "\". It has additional armor to protect the wearer."
 	name = "head of security's jumpsuit"
 	icon_state = "hos"
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
@@ -178,14 +178,14 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/head_of_security/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
+	desc = "The insignia on this uniform tells you that this uniform belongs to the " + JOB_HEAD_OF_SECURITY + "."
 	name = "head of security's uniform"
 	icon_state = "hosblueclothes"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/warden/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
+	desc = "The insignia on this uniform tells you that this uniform belongs to the " + JOB_WARDEN + "."
 	name = "warden's uniform"
 	icon_state = "wardenblueclothes"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
@@ -202,16 +202,15 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/head_of_security/tan
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
+	desc = "The insignia on this uniform tells you that this uniform belongs to the " + JOB_HEAD_OF_SECURITY+ "."
 	name = "head of security's uniform"
 	icon_state = "hostanclothes"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/warden/tan
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
+	desc = "The insignia on this uniform tells you that this uniform belongs to the " + JOB_WARDEN + "."
 	name = "warden's uniform"
 	icon_state = "wardentanclothes"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 	rolled_sleeves = 0
-

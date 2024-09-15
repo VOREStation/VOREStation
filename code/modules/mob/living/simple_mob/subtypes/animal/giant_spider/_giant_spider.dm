@@ -69,7 +69,7 @@
 	icon_dead = "guard_dead"
 	has_eye_glow = TRUE
 
-	faction = "spiders"
+	faction = FACTION_SPIDERS
 	maxHealth = 200
 	health = 200
 	pass_flags = PASSTABLE

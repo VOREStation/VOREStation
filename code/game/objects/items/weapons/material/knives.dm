@@ -63,7 +63,7 @@
 	name = "kitchen knife"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
-	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
+	desc = "A general purpose " + JOB_CHEF + "'s Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	sharp = TRUE
 	edge = TRUE

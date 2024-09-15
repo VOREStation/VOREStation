@@ -1,10 +1,10 @@
 /mob/living/simple_mob/clowns/
 	tt_desc = "E Homo sapiens corydon" //this is a clown
-	faction = "clown"
+	faction = FACTION_CLOWN
 	movement_sound = 'sound/effects/clownstep2.ogg'
 	attack_sound = 'sound/effects/Whipcrack.ogg'
 
-	faction = "clown"
+	faction = FACTION_CLOWN
 
 	maxHealth = 100
 	health = 100

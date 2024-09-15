@@ -56,7 +56,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	if(!I)
 		return 0
 
-	if(access in I.access)
+	if(access in I.GetAccess())
 		return 1
 
 	return 0

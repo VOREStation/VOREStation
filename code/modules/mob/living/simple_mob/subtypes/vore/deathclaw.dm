@@ -32,7 +32,7 @@
 
 	attacktext = list("mauled")
 
-	faction = "deathclaw"
+	faction = FACTION_DEATHCLAW
 
 	maxHealth = 200
 	health = 200

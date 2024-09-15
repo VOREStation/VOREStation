@@ -697,7 +697,7 @@
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.
 	name = "\improper prototype voidsuit"
-	desc = "A customized security voidsuit made to match the Head of Security's obession with black. Has additional composite armor."
+	desc = "A customized security voidsuit made to match the " + JOB_HEAD_OF_SECURITY + "'s obession with black. Has additional composite armor."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "rig-hos"
@@ -710,7 +710,7 @@
 //HOS Hardsuit Helmet
 /obj/item/clothing/head/helmet/space/void/security/fluff/hos // ToDo: Rig version.
 	name = "\improper prototype voidsuit helmet"
-	desc = "A customized security voidsuit helmet customized to include the Head of Security's signature hat. Has additional composite armor."
+	desc = "A customized security voidsuit helmet customized to include the " + JOB_HEAD_OF_SECURITY + "'s signature hat. Has additional composite armor."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "rig0-hos"
@@ -1145,7 +1145,7 @@
 //KiwiDaNinja: Chakat Taiga
 /obj/item/clothing/under/fluff/taiga
 	name = "Taiga's F.D Uniform"
-	desc = "This uniform - consisting of only the uniform shirt, and built out of a soft fleece - dons the badge of Amistad Fire and Rescuse on both shoulders. The badges denote the wearer as a FF/Paramedic, and their name is embroidered in a gold thread on their right breast; Chakat Taiga! An 'official' badge is pinned to their left breast." //A walking advertisement?
+	desc = "This uniform - consisting of only the uniform shirt, and built out of a soft fleece - dons the badge of Amistad Fire and Rescuse on both shoulders. The badges denote the wearer as a FF/" + JOB_PARAMEDIC + ", and their name is embroidered in a gold thread on their right breast; Chakat Taiga! An 'official' badge is pinned to their left breast." //A walking advertisement?
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "taigaff_on"

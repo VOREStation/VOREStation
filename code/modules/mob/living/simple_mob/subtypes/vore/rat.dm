@@ -28,7 +28,7 @@
 	icon_living = "rous"
 	icon_dead = "rous-dead"
 	icon_rest = "rous_rest"
-	faction = "mouse"
+	faction = FACTION_MOUSE
 	icon = 'icons/mob/vore64x32.dmi'
 
 	maxHealth = 150

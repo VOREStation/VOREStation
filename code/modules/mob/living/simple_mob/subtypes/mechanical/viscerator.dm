@@ -27,7 +27,7 @@
 	icon_living = "viscerator_attack"
 	hovering = TRUE // Won't trigger landmines.
 
-	faction = "syndicate"
+	faction = FACTION_SYNDICATE
 	maxHealth = 15
 	health = 15
 	movement_cooldown = -2
@@ -73,7 +73,7 @@
 	icon_state = "viscerator_b_attack"
 	icon_living = "viscerator_b_attack"
 
-	faction = "station"
+	faction = FACTION_STATION
 	maxHealth = 20
 	health = 20
 

@@ -97,8 +97,8 @@
 	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
 
 /obj/item/clothing/head/beret/sec/navy/hos
-	name = "Head of Security beret"
-	desc = "A navy blue beret with a Head of Security's rank emblem. For officers that are more inclined towards style than safety."
+	name = JOB_HEAD_OF_SECURITY + " beret"
+	desc = "A navy blue beret with a " + JOB_HEAD_OF_SECURITY + "'s rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_hos"
 	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
 
@@ -115,8 +115,8 @@
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
 /obj/item/clothing/head/beret/sec/corporate/hos
-	name = "Head of Security beret"
-	desc = "A corporate black beret with a Head of Security's rank emblem. For officers that are more inclined towards style than safety."
+	name = JOB_HEAD_OF_SECURITY + " beret"
+	desc = "A corporate black beret with a " + JOB_HEAD_OF_SECURITY + "'s rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_corporate_hos"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
@@ -128,21 +128,21 @@
 
 /obj/item/clothing/head/helmet/warden
 	name = "warden's helmet"
-	desc = "Standard Warden gear. Protects the head from impacts."
+	desc = "Standard " + JOB_WARDEN + " gear. Protects the head from impacts."
 
 /obj/item/clothing/head/helmet/warden/hat
 	name = "warden's hat"
-	desc = "It's a special hat issued to the Warden of a securiy force."
+	desc = "It's a special hat issued to the " + JOB_WARDEN + " of a securiy force."
 	icon_state = "policehelm"
 	valid_accessory_slots = null
 
 /obj/item/clothing/head/helmet/HoS
-	name = "Head of Security helmet"
-	desc = "Standard Head of Security gear. Protects the head from impacts."
+	name = JOB_HEAD_OF_SECURITY + " helmet"
+	desc = "Standard " + JOB_HEAD_OF_SECURITY + " gear. Protects the head from impacts."
 
 /obj/item/clothing/head/helmet/HoS/hat
-	name = "Head of Security Hat"
-	desc = "The hat of the Head of Security. For showing the officers who's in charge."
+	name = JOB_HEAD_OF_SECURITY + " Hat"
+	desc = "The hat of the " + JOB_HEAD_OF_SECURITY + ". For showing the officers who's in charge."
 	icon_state = "hoscap"
 	valid_accessory_slots = null
 

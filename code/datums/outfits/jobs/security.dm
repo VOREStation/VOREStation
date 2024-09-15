@@ -11,21 +11,21 @@
 	sports_bag = /obj/item/weapon/storage/backpack/sport/sec
 
 /decl/hierarchy/outfit/job/security/hos
-	name = OUTFIT_JOB_NAME("Head of security")
+	name = OUTFIT_JOB_NAME(JOB_HEAD_OF_SECURITY)
 	l_ear = /obj/item/device/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/rank/head_of_security
 	id_type = /obj/item/weapon/card/id/security/head
 	pda_type = /obj/item/device/pda/heads/hos
 
 /decl/hierarchy/outfit/job/security/warden
-	name = OUTFIT_JOB_NAME("Warden")
+	name = OUTFIT_JOB_NAME(JOB_WARDEN)
 	uniform = /obj/item/clothing/under/rank/warden
 	l_pocket = /obj/item/device/flash
 	id_type = /obj/item/weapon/card/id/security/warden
 	pda_type = /obj/item/device/pda/warden
 
 /decl/hierarchy/outfit/job/security/detective
-	name = OUTFIT_JOB_NAME("Detective")
+	name = OUTFIT_JOB_NAME(JOB_DETECTIVE)
 	head = /obj/item/clothing/head/det
 	uniform = /obj/item/clothing/under/det
 	suit = /obj/item/clothing/suit/storage/det_trench
@@ -47,7 +47,7 @@
 //VOREStation Edit End
 
 /decl/hierarchy/outfit/job/security/officer
-	name = OUTFIT_JOB_NAME("Security Officer")
+	name = OUTFIT_JOB_NAME(JOB_SECURITY_OFFICER)
 	uniform = /obj/item/clothing/under/rank/security
 	l_pocket = /obj/item/device/flash
 	id_type = /obj/item/weapon/card/id/security

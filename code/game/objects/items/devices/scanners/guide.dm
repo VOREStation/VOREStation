@@ -17,10 +17,10 @@
 	var/obj/item/weapon/card/id/ourid = user?.GetIdCard()
 	if(!ourid)
 		return
-	if(access_change_ids in ourid.access)
+	if(access_change_ids in ourid.GetAccess())
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
-	if(access_medical in ourid.access)
+	if(access_medical in ourid.GetAccess())
 		playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
 	else
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)

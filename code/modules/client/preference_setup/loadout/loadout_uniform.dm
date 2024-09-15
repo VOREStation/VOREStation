@@ -152,14 +152,14 @@
 	path = /obj/item/clothing/under/scratch/skirt
 
 /datum/gear/uniform/suit/detectiveskirt
-	display_name = "suit, detective skirt (Detective)"
+	display_name = "suit, detective skirt (" + JOB_DETECTIVE + ")"
 	path = /obj/item/clothing/under/det/skirt
-	allowed_roles = list("Detective")
+	allowed_roles = list(JOB_DETECTIVE)
 
 /datum/gear/uniform/suit/iaskirt
 	display_name = "suit, Internal Affairs skirt (Internal Affairs)"
 	path = /obj/item/clothing/under/rank/internalaffairs/skirt
-	allowed_roles = list("Internal Affairs Agent")
+	allowed_roles = list(JOB_INTERNAL_AFFAIRS_AGENT)
 
 /datum/gear/uniform/suit/bartenderskirt
 	display_name = "suit, bartender skirt"

@@ -143,7 +143,7 @@
 	icon_living = "rykka"
 	icon_state = "rykka"
 	icon_rest = "rykka_rest"
-	faction = "underdark"
+	faction = FACTION_UNDERDARK
 	has_eye_glow = TRUE
 
 	min_oxy = 0

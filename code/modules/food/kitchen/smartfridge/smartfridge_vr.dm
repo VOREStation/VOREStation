@@ -2,19 +2,19 @@
  * Expert Jobs
  */
 /obj/machinery/smartfridge
-	var/expert_job = "Chef"
+	var/expert_job = JOB_CHEF
 /obj/machinery/smartfridge/seeds
-	expert_job = "Botanist"
+	expert_job = JOB_BOTANIST
 /obj/machinery/smartfridge/secure/extract
-	expert_job = "Xenobiologist"
+	expert_job = JOB_XENOBIOLOGIST
 /obj/machinery/smartfridge/secure/medbay
-	expert_job = "Chemist"
+	expert_job = JOB_CHEMIST
 /obj/machinery/smartfridge/secure/chemistry
-	expert_job = "Chemist"
+	expert_job = JOB_CHEMIST
 /obj/machinery/smartfridge/secure/virology
-	expert_job = "Medical Doctor" //Virologist is an alt-title unfortunately
+	expert_job = JOB_MEDICAL_DOCTOR //Virologist is an alt-title unfortunately
 /obj/machinery/smartfridge/drinks
-	expert_job = "Bartender"
+	expert_job = JOB_BARTENDER
 
 /*
  * Allow thrown items into smartfridges
@@ -42,7 +42,7 @@
 /obj/machinery/smartfridge/chemistry/chemvator
 	name = "\improper Smart Chemavator - Upper"
 	desc = "A refrigerated storage unit for medicine and chemical storage. Now sporting a fancy system of pulleys to lift bottles up and down."
-	expert_job = "Chemist"
+	expert_job = JOB_CHEMIST
 	var/obj/machinery/smartfridge/chemistry/chemvator/attached
 
 /obj/machinery/smartfridge/chemistry/chemvator/accept_check(var/obj/item/O as obj)

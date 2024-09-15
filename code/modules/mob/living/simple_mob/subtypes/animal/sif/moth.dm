@@ -28,7 +28,7 @@
 	tt_desc = "B Lepidoptera cinereus"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/tymisian)
 
-	faction = "spiders" //Hostile to most mobs, not all.
+	faction = FACTION_SPIDERS //Hostile to most mobs, not all.
 
 	icon_state = "moth"
 	icon_living = "moth"

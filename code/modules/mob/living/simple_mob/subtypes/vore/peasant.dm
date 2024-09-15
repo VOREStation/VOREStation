@@ -28,7 +28,7 @@
 		"peasantmb"
 	)
 
-	faction = "peasant"
+	faction = FACTION_PEASANT
 
 /mob/living/simple_mob/vore/peasant/New()
 	..()
@@ -69,4 +69,3 @@
 	B.escapechance = 15
 	B.selective_preference = DM_HOLD
 	B.escape_stun = 5
-

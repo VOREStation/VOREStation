@@ -21,7 +21,7 @@
 	tt_desc = "S Carabidae glacios"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/frostfly)
 
-	faction = "diyaab"
+	faction = FACTION_DIYAAB
 
 	icon_state = "firefly"
 	icon_living = "firefly"

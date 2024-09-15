@@ -23,7 +23,7 @@
 	icon_living = "skeleton"
 	icon_dead = "skeleton_dead"
 
-	faction = "space skeleton"
+	faction = FACTION_SPACE_SKELETON
 	maxHealth = 100
 	health = 100
 	movement_cooldown = 1

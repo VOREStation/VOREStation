@@ -3,7 +3,7 @@
 	name = "crab"
 	desc = "A hard-shelled crustacean. Seems quite content to lounge around all the time."
 	tt_desc = "E Cancer bellianus"
-	faction = "crabs"
+	faction = FACTION_CRABS
 
 	icon_state = "crab"
 	icon_living = "crab"

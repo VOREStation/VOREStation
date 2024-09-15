@@ -11,7 +11,7 @@ var/global/list/latejoin_talon = list()
 
 /datum/spawnpoint/talon
 	display_name = "ITV Talon Cryo"
-	restrict_job = list("Talon Captain", "Talon Pilot", "Talon Engineer", "Talon Doctor", "Talon Guard")
+	restrict_job = list(JOB_TALON_CAPTAIN, JOB_TALON_PILOT, JOB_TALON_ENGINEER, JOB_TALON_DOCTOR, JOB_TALON_GUARD)
 	msg = "has come out of cryostasis"
 	announce_channel = "Talon"
 

@@ -29,7 +29,7 @@
 		"succubusgingerclothed"
 	)
 
-	faction = "succubus"
+	faction = FACTION_SUCCUBUS
 
 /mob/living/simple_mob/vore/succubus/New()
 	..()

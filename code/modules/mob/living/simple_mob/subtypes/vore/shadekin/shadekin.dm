@@ -5,7 +5,7 @@
 	icon = 'icons/mob/vore_shadekin.dmi'
 	icon_state = "map_example"
 	icon_living = "map_example"
-	faction = "shadekin"
+	faction = FACTION_SHADEKIN
 	ui_icons = 'icons/mob/shadekin_hud.dmi'
 	mob_class = MOB_CLASS_HUMANOID
 	mob_bump_flag = HUMAN

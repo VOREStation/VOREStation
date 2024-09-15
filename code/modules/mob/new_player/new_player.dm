@@ -556,7 +556,7 @@
 			if(!(client.prefs.GetJobDepartment(job, 1) & job.flag))
 				if(!(client.prefs.GetJobDepartment(job, 2) & job.flag))
 					if(!(client.prefs.GetJobDepartment(job, 3) & job.flag))
-						if(!show_hidden_jobs && job.title != "Assistant")	// Assistant is always an option
+						if(!show_hidden_jobs && job.title != JOB_ALT_ASSISTANT)	// Assistant is always an option
 							continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
@@ -609,7 +609,7 @@
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
 		// VOREStation edit to disable the destructive forced renaming for our responsible whitelist clowns.
-		//if(mind.assigned_role == "Clown")				//give them a clownname if they are a clown
+		//if(mind.assigned_role == JOB_CLOWN)				//give them a clownname if they are a clown
 		//	new_character.real_name = pick(clown_names)	//I hate this being here of all places but unfortunately dna is based on real_name!
 		//	new_character.rename_self("clown")
 		mind.original = new_character

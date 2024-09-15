@@ -7,7 +7,7 @@
 	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
 
-	faction = "russian"
+	faction = FACTION_RUSSIAN
 
 	maxHealth = 125
 	health = 125

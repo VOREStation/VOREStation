@@ -273,6 +273,7 @@
 	var/mob/living/silicon/robot/R
 	var/last_robot_loc
 	name = "Robot Miner ID"
+	rank = JOB_SHAFT_MINER
 
 /obj/item/weapon/card/id/cargo/miner/borg/Initialize()
 	. = ..()
@@ -294,4 +295,6 @@
 
 /obj/item/weapon/card/id/cargo/miner/borg/Destroy()
 	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+	R = null
+	last_robot_loc = null
 	..()

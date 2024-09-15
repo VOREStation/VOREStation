@@ -17,7 +17,7 @@
 	icon_living = "startreader"
 	icon_dead = "startreader_dead"
 
-	faction = "space turtle"
+	faction = FACTION_SPACE_TURTLE
 	maxHealth = 1000
 	health = 1000
 	movement_cooldown = 10

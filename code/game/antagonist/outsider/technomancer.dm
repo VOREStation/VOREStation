@@ -5,8 +5,8 @@ var/datum/antagonist/technomancer/technomancers
 	role_type = BE_WIZARD
 	role_text = "Technomancer"
 	role_text_plural = "Technomancers"
-	bantype = "wizard"
-	landmark_id = "wizard"
+	bantype = JOB_WIZARD
+	landmark_id = JOB_WIZARD
 	welcome_text = "You will need to purchase <b>functions</b> and perhaps some <b>equipment</b> from the various machines around your \
 	base. Choose your technological arsenal carefully.  Remember that without the <b>core</b> on your back, your functions are \
 	powerless, and therefore you will be as well.<br>\

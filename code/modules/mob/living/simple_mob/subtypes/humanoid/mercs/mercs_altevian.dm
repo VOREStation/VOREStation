@@ -8,7 +8,7 @@
 	icon_dead = "merc-dead"
 	icon_gib = "merc_gib"
 
-	faction = "altevian"
+	faction = FACTION_ALTEVIAN
 	movement_cooldown = 1
 
 	status_flags = 0
@@ -116,16 +116,16 @@
 	projectilesound = 'sound/weapons/Gunshot_heavy.ogg'
 
 /mob/living/simple_mob/humanoid/merc/altevian/neutral
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/humanoid/merc/altevian/sapper/neutral
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/humanoid/merc/altevian/ranged/neutral
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/humanoid/merc/altevian/ranged/strong/neutral
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/humanoid/merc/altevian/ranged/ballistic/neutral
-	faction = "neutral"
+	faction = FACTION_NEUTRAL

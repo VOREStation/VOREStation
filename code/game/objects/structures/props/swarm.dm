@@ -14,11 +14,11 @@
 /obj/structure/cult/pylon/swarm/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living))
 		var/mob/living/L = mover
-		if(L.faction == "swarmer")
+		if(L.faction == FACTION_SWARMER)
 			return TRUE
 	else if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
-		if(istype(P.firer) && P.firer.faction == "swarmer")
+		if(istype(P.firer) && P.firer.faction == FACTION_SWARMER)
 			return TRUE
 	return ..()
 

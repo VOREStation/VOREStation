@@ -36,7 +36,7 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
-	faction = "wolftaur"
+	faction = FACTION_WOLFTAUR
 
 /mob/living/simple_mob/vore/wolftaur/New()
 	..()
@@ -155,4 +155,3 @@
 	icon_living = "wolftaurdark"
 	icon_rest = "wolftaurdark_rest"
 	icon_dead = "wolftaurdark-dead"
-

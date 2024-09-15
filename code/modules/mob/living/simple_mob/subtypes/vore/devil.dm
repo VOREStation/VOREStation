@@ -8,7 +8,7 @@
 	icon_living = "devil"
 	icon_state = "devil"
 	icon_rest = "devil"
-	faction = "devil"
+	faction = FACTION_DEVIL
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16
@@ -264,4 +264,3 @@
 	else if(!stand_ground)
 		ai_log("engage_target() : Target ([target]) too far away. Exiting.", AI_LOG_DEBUG)
 		set_stance(STANCE_APPROACH)
-

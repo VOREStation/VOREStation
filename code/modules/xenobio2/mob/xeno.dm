@@ -8,7 +8,7 @@ Also includes Life and New
 /mob/living/simple_mob/xeno
 	name = "Xeno"
 	real_name = "Xeno"
-	faction = "xeno"	//Needs to be set.
+	faction = FACTION_XENO	//Needs to be set.
 	desc = "Something's broken, yell at someone."
 	melee_damage_lower = 0
 	melee_damage_upper = 0

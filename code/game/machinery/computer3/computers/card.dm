@@ -36,7 +36,7 @@
 	jobs_all += "<table><tr><td></td><td><b>Command</b></td>"
 
 	jobs_all += "</tr><tr height='20'><td><b>Special</b></td>"//Site Manager in special because he is head of heads ~Intercross21
-	jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Site Manager'>Site Manager</a></td>"
+	jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign="+JOB_SITE_MANAGER+"'>"+JOB_SITE_MANAGER+"</a></td>"
 	jobs_all += "<td weight='100'><a href='?src=\ref[src];;assign=Custom'>Custom</a></td>"
 
 	counter = 0
@@ -123,7 +123,7 @@
 	for(var/i = 1; i <= 7; i++)
 		accesses += "<td style='width:14%' valign='top'>"
 		for(var/A in get_region_accesses(i))
-			if(A in writer.access)
+			if(A in writer.GetAccess())
 				accesses += topic_link(src,"access=[A]","<font color='red'>[replacetext(get_access_desc(A), " ", "&nbsp")]</font>") + " "
 			else
 				accesses += topic_link(src,"access=[A]",replacetext(get_access_desc(A), " ", "&nbsp")) + " "
@@ -189,7 +189,7 @@
 
 // These are here partly in order to be overwritten by the centcom card computer code
 /datum/file/program/card_comp/proc/authenticate()
-	if(access_change_ids in reader.access)
+	if(access_change_ids in reader.GetAccess())
 		return 1
 	if(istype(usr,/mob/living/silicon/ai))
 		return 1
@@ -335,13 +335,13 @@
 /datum/file/program/card_comp/centcom/accessblock()
 	var/accesses = "<h5>[using_map.boss_name]:</h5>"
 	for(var/A in get_all_centcom_access())
-		if(A in writer.access)
+		if(A in writer.GetAccess())
 			accesses += topic_link(src,"access=[A]","<font color='red'>[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font>") + " "
 		else
 			accesses += topic_link(src,"access=[A]",replacetext(get_centcom_access_desc(A), " ", "&nbsp")) + " "
 	return accesses
 
 /datum/file/program/card_comp/centcom/authenticate()
-	if(access_cent_captain in reader.access)
+	if(access_cent_captain in reader.GetAccess())
 		return 1
 	return 0

@@ -5,7 +5,7 @@
 	icon_state = "basic"
 	icon_living = "basic"
 
-	faction = "hivebot"
+	faction = FACTION_HIVEBOT
 
 	maxHealth = 3 LASERS_TO_KILL
 	health = 3 LASERS_TO_KILL

@@ -7,7 +7,7 @@
 	icon_living = "cryptdrake"
 	icon_state = "cryptdrake"
 	icon_rest = "cryptdrake"
-	faction = "dragon"
+	faction = FACTION_DRAGON
 	old_x = -48
 	old_y = 0
 	vis_height = 92

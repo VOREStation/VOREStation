@@ -22,7 +22,7 @@
 	icon_rest = "abyss_lurker"
 	vis_height = 64
 
-	faction = "macrobacteria"
+	faction = FACTION_MACROBACTERIA
 	maxHealth = 600
 	health = 600
 	movement_cooldown = 3
@@ -129,7 +129,7 @@
 	icon_rest = "filter"
 	vis_height = 64
 
-	faction = "macrobacteria"
+	faction = FACTION_MACROBACTERIA
 	maxHealth = 600
 	health = 600
 
@@ -257,7 +257,7 @@
 	icon_rest = "cube"
 	vis_height = 64
 
-	faction = "macrobacteria"
+	faction = FACTION_MACROBACTERIA
 	maxHealth = 500
 	health = 500
 

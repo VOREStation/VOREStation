@@ -25,7 +25,7 @@
 			updateUsrDialog()
 			return
 		var/mob/M = locate(href_list["traitormob"])
-		if(M.mind.tcrystals > 0 || jobban_isbanned(M, "Syndicate"))
+		if(M.mind.tcrystals > 0 || jobban_isbanned(M, JOB_SYNDICATE))
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
 			updateUsrDialog()
 			return

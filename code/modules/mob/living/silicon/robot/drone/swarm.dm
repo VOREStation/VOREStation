@@ -4,7 +4,7 @@
 	icon = 'icons/mob/swarmbot.dmi'
 	icon_state = "swarmer"
 	item_state = "repairbot"
-	faction = "swarmer"
+	faction = FACTION_SWARMER
 	maxHealth = 35
 	health = 35
 	cell_emp_mult = 0.5
@@ -75,7 +75,7 @@
 	real_name = "drone"
 	icon = 'icons/mob/swarmbot.dmi'
 	icon_state = "swarmer_ranged"
-	faction = "swarmer"
+	faction = FACTION_SWARMER
 
 	maxHealth = 50
 	health = 50
@@ -96,7 +96,7 @@
 	real_name = "drone"
 	icon = 'icons/mob/swarmbot.dmi'
 	icon_state = "swarmer_melee"
-	faction = "swarmer"
+	faction = FACTION_SWARMER
 
 	maxHealth = 70
 	health = 70
@@ -111,4 +111,3 @@
 		/spell/aoe_turf/conjure/forcewall/swarm,
 		/spell/aoe_turf/blink/swarm
 		)
-

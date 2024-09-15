@@ -9,5 +9,5 @@
 	end_on_antag_death = 0
 	auto_recall_shuttle = 0
 	antag_tags = list(MODE_MALFUNCTION)
-	disabled_jobs = list("AI")
+	disabled_jobs = list(JOB_AI)
 	votable = 0
