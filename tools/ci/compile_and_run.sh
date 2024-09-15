@@ -16,8 +16,8 @@ replace=${REPLACE}
 if grep -q '#include[[:space:]]\"maps\\tether\\tether.dm\"' $BASENAME.dme && $replace; then
   sed -i 's/#include[[:space:]]\"maps\\tether\\tether.dm\"/#include\ \"maps\\'${MAP}'\\'${MAP}'.dm\"/g' $BASENAME.dme
   replace=false
-elif grep -q '#include[[:space:]]\"maps\\stellardelight\\stellar_delight.dm\"' $BASENAME.dme && $replace; then
-  sed -i 's/#include[[:space:]]\"maps\\stellardelight\\stellar_delight.dm\"/#include\ \"maps\\'${MAP}'\\'${MAP}'.dm\"/g' $BASENAME.dme
+elif grep -q '#include[[:space:]]\"maps\\stellar_delight\\stellar_delight.dm\"' $BASENAME.dme && $replace; then
+  sed -i 's/#include[[:space:]]\"maps\\stellar_delight\\stellar_delight.dm\"/#include\ \"maps\\'${MAP}'\\'${MAP}'.dm\"/g' $BASENAME.dme
   replace=false
 elif grep -q '#include[[:space:]]\"maps\\groundbase\\groundbase.dm\"' $BASENAME.dme && $replace; then
   sed -i 's/#include[[:space:]]\"maps\\groundbase\\groundbase.dm\"/#include\ \"maps\\'${MAP}'\\'${MAP}'.dm\"/g' $BASENAME.dme
