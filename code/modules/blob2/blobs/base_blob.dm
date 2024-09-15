@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	var/heal_timestamp = 0 //we got healed when?
 	var/mob/observer/blob/overmind = null
 	var/base_name = "blob" // The name that gets appended along with the blob_type's name.
-	var/faction = "blob"
+	var/faction = FACTION_BLOB
 
 /obj/structure/blob/Initialize(newloc, new_overmind)
 	if(new_overmind)

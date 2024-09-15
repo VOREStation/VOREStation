@@ -6,7 +6,7 @@ import { Window } from '../../layouts';
 import { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VoreBellySelectionAndCustomization';
 import { VoreInsidePanel } from './VoreInsidePanel';
-import { VoreUserPreferences } from './VoreUserPreferences.tsx';
+import { VoreUserPreferences } from './VoreUserPreferences';
 
 /**
  * There are three main sections to this UI.

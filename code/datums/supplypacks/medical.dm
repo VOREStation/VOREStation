@@ -145,7 +145,7 @@
 	access = access_cmo
 
 /datum/supply_pack/med/doctorgear
-	name = "Medical Doctor equipment"
+	name = JOB_MEDICAL_DOCTOR + " equipment"
 	contains = list(
 			/obj/item/weapon/storage/belt/medical,
 			/obj/item/device/radio/headset/headset_med,
@@ -164,11 +164,11 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
-	containername = "Medical Doctor equipment"
+	containername = JOB_MEDICAL_DOCTOR + " equipment"
 	access = access_medical_equip
 
 /datum/supply_pack/med/chemistgear
-	name = "Chemist equipment"
+	name = JOB_CHEMIST + " equipment"
 	contains = list(
 			/obj/item/weapon/storage/box/beakers,
 			/obj/item/device/radio/headset/headset_med,
@@ -187,11 +187,11 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
-	containername = "Chemist equipment"
+	containername = JOB_CHEMIST + " equipment"
 	access = access_chemistry
 
 /datum/supply_pack/med/paramedicgear
-	name = "Paramedic equipment"
+	name = JOB_PARAMEDIC + " equipment"
 	contains = list(
 			/obj/item/weapon/storage/belt/medical/emt,
 			/obj/item/device/radio/headset/headset_med,
@@ -215,11 +215,11 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
-	containername = "Paramedic equipment"
+	containername = JOB_PARAMEDIC + " equipment"
 	access = access_medical_equip
 
 /datum/supply_pack/med/psychiatristgear
-	name = "Psychiatrist equipment"
+	name = JOB_PSYCHIATRIST + " equipment"
 	contains = list(
 			/obj/item/clothing/under/rank/psych,
 			/obj/item/device/radio/headset/headset_med,
@@ -234,7 +234,7 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
-	containername = "Psychiatrist equipment"
+	containername = JOB_PSYCHIATRIST + " equipment"
 	access = access_psychiatrist
 
 /datum/supply_pack/med/medicalscrubs

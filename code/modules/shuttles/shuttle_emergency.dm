@@ -137,7 +137,7 @@
 	if(!ID)
 		return
 
-	access = ID.access
+	access = ID.GetAccess()
 	auth_name = "[ID.registered_name] ([ID.assignment])"
 	dna_hash = ID.dna_hash
 

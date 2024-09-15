@@ -22,7 +22,7 @@
 	hovering = TRUE
 	pass_flags = PASSTABLE
 
-	faction = "space ghost"
+	faction = FACTION_SPACE_GHOST
 	maxHealth = 50
 	health = 50
 	movement_cooldown = 0
@@ -134,7 +134,7 @@
 	hovering = TRUE
 	pass_flags = PASSTABLE
 
-	faction = "space ghost"
+	faction = FACTION_SPACE_GHOST
 	maxHealth = 5
 	health = 5
 	movement_cooldown = -1

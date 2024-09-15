@@ -88,7 +88,7 @@
 		return
 
 	//VOREStation Add Start
-	if(jobban_isbanned(user, "GhostRoles"))
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, "<span class='warning'>You cannot become a mouse because you are banned from playing ghost roles.</span>")
 		return
 	//VOREStation Add End

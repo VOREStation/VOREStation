@@ -67,7 +67,7 @@
 
 	// High security - can only be operated when the user has an ID with access on them.
 	var/obj/item/weapon/card/id/I = usr.GetIdCard()
-	if(!istype(I) || !(access_network in I.access))
+	if(!istype(I) || !(access_network in I.GetAccess()))
 		return TRUE
 
 	switch(action)

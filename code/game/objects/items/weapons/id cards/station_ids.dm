@@ -142,14 +142,14 @@
 	preserve_item = 1
 
 /obj/item/weapon/card/id/gold/captain
-	assignment = "Site Manager"
-	rank = "Site Manager"
+	assignment = JOB_SITE_MANAGER
+	rank = JOB_SITE_MANAGER
 
 /obj/item/weapon/card/id/gold/captain/spare
-	name = "\improper Site Manager's spare ID"
+	name = "\improper " + JOB_SITE_MANAGER + "'s spare ID"
 	desc = "The emergency spare ID for the station's very own Big Cheese."
 	icon_state = "gold-id-alternate"
-	registered_name = "Site Manager"
+	registered_name = JOB_SITE_MANAGER
 
 /obj/item/weapon/card/id/gold/captain/spare/fakespare
 	rank = "null"
@@ -203,9 +203,10 @@
 	access |= get_all_station_access()
 
 /obj/item/weapon/card/id/centcom/ERT
-	name = "\improper Emergency Response Team ID"
-	assignment = "Emergency Response Team"
+	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
+	assignment = JOB_EMERGENCY_RESPONSE_TEAM
 	icon_state = "ert-id"
+	rank = JOB_EMERGENCY_RESPONSE_TEAM
 
 /obj/item/weapon/card/id/centcom/ERT/Initialize()
 	. = ..()
@@ -218,14 +219,15 @@
 	icon_state = "medical-id"
 	primary_color = rgb(189,237,237)
 	secondary_color = rgb(223,255,255)
+	rank = JOB_MEDICAL_DOCTOR
 
 /obj/item/weapon/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
 	primary_color = rgb(189,237,237)
 	secondary_color = rgb(255,223,127)
-	assignment = "Chief Medical Officer"
-	rank = "Chief Medical Officer"
+	assignment = JOB_CHIEF_MEDICAL_OFFICER
+	rank = JOB_CHIEF_MEDICAL_OFFICER
 
 /obj/item/weapon/card/id/security
 	name = "identification card"
@@ -233,18 +235,19 @@
 	icon_state = "security-id"
 	primary_color = rgb(189,47,0)
 	secondary_color = rgb(223,127,95)
+	rank = JOB_SECURITY_OFFICER
 
 /obj/item/weapon/card/id/security/warden
-	assignment = "Warden"
-	rank = "Warden"
+	assignment = JOB_WARDEN
+	rank = JOB_WARDEN
 
 /obj/item/weapon/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
 	primary_color = rgb(189,47,0)
 	secondary_color = rgb(255,223,127)
-	assignment = "Head of Security"
-	rank = "Head of Security"
+	assignment = JOB_HEAD_OF_SECURITY
+	rank = JOB_HEAD_OF_SECURITY
 
 /obj/item/weapon/card/id/engineering
 	name = "identification card"
@@ -254,16 +257,16 @@
 	secondary_color = rgb(223,159,95)
 
 /obj/item/weapon/card/id/engineering/atmos
-	assignment = "Atmospheric Technician"
-	rank = "Atmospheric Technician"
+	assignment = JOB_ATMOSPHERIC_TECHNICIAN
+	rank = JOB_ATMOSPHERIC_TECHNICIAN
 
 /obj/item/weapon/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
 	primary_color = rgb(189,94,0)
 	secondary_color = rgb(255,223,127)
-	assignment = "Chief Engineer"
-	rank = "Chief Engineer"
+	assignment = JOB_CHIEF_ENGINEER
+	rank = JOB_CHIEF_ENGINEER
 
 /obj/item/weapon/card/id/science
 	name = "identification card"
@@ -277,8 +280,8 @@
 	desc = "A card which represents knowledge and reasoning."
 	primary_color = rgb(142,47,142)
 	secondary_color = rgb(255,223,127)
-	assignment = "Research Director"
-	rank = "Research Director"
+	assignment = JOB_RESEARCH_DIRECTOR
+	rank = JOB_RESEARCH_DIRECTOR
 
 /obj/item/weapon/card/id/cargo
 	name = "identification card"
@@ -292,12 +295,12 @@
 	desc = "A card which represents service and planning."
 	primary_color = rgb(142,94,0)
 	secondary_color = rgb(255,223,127)
-	assignment = "Quartermaster"
-	rank = "Quartermaster"
+	assignment = JOB_QUARTERMASTER
+	rank = JOB_QUARTERMASTER
 
 /obj/item/weapon/card/id/assistant
-	assignment = USELESS_JOB //VOREStation Edit - Visitor not Assistant
-	rank = USELESS_JOB //VOREStation Edit - Visitor not Assistant
+	assignment = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
+	rank = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
 
 /obj/item/weapon/card/id/civilian
 	name = "identification card"
@@ -306,7 +309,7 @@
 	primary_color = rgb(0,94,142)
 	secondary_color = rgb(95,159,191)
 	assignment = "Civilian"
-	rank = "Assistant"
+	rank = JOB_ALT_ASSISTANT
 
 /obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
@@ -355,7 +358,7 @@
 /obj/item/weapon/card/id/event/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		access |= O.access
+		access |= O.GetAccess()
 		desc = I.desc
 		rank = O.rank
 		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
@@ -402,14 +405,14 @@
 /obj/item/weapon/card/id/event/accessset/itg/crew/pilot
 	name = "\improper ITG Pilot's ID"
 	desc = "An ID card belonging to the Pilot of an ITG vessel. The Pilot's responsibility is primarily to fly the ship. They may also be tasked to assist with cargo movement duties."
-	assignment = "Pilot"
-	rank = "Pilot"
+	assignment = JOB_PILOT
+	rank = JOB_PILOT
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/service
-	name = "\improper ITG Cook's ID"
-	desc = "An ID card belonging to the Cook of an ITG vessel. The Cook's responsibility is primarily to provide sustinence to the crew and passengers. The Cook answers to the Passenger Liason. In the absence of a Passenger Liason, the Cook is also responsible for tending to passenger related care and duties."
-	assignment = "Cook"
-	rank = "Cook"
+	name = "\improper ITG " + JOB_ALT_COOK + "'s ID"
+	desc = "An ID card belonging to the " + JOB_ALT_COOK + " of an ITG vessel. The " + JOB_ALT_COOK + "'s responsibility is primarily to provide sustinence to the crew and passengers. The " + JOB_ALT_COOK + " answers to the Passenger Liason. In the absence of a Passenger Liason, the " + JOB_ALT_COOK + " is also responsible for tending to passenger related care and duties."
+	assignment = JOB_ALT_COOK
+	rank = JOB_ALT_COOK
 	icon_state = "itg_green"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/security
@@ -434,10 +437,10 @@
 	icon_state = "itg_white"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/engineer
-	name = "\improper ITG Engineer's ID"
-	desc = "An ID card belonging to the Engineer of an ITG vessel. The Engineer's responsibility is primarily to maintain the ship. They may also be tasked to assist with cargo movement duties."
-	assignment = "Engineer"
-	rank = "Engineer"
+	name = "\improper ITG " + JOB_ENGINEER + "'s ID"
+	desc = "An ID card belonging to the " + JOB_ENGINEER + " of an ITG vessel. The " + JOB_ENGINEER + "'s responsibility is primarily to maintain the ship. They may also be tasked to assist with cargo movement duties."
+	assignment = JOB_ENGINEER
+	rank = JOB_ENGINEER
 	icon_state = "itg_orange"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/passengerliason
@@ -448,10 +451,10 @@
 	icon_state = "itg_blue"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/captain
-	name = "\improper ITG Captain's ID"
+	name = "\improper ITG " + JOB_ALT_CAPTAIN + "'s ID"
 	desc = "An ID card belonging to the Captain of an ITG vessel. The Captain's responsibility is primarily to manage crew to ensure smooth ship operations. Captains often also often pilot the vessel when no dedicated pilot is assigned."
-	assignment = "Captain"
-	rank = "Captain"
+	assignment = JOB_ALT_CAPTAIN
+	rank = JOB_ALT_CAPTAIN
 	icon_state = "itg_blue"
 	access = list(777, 778)
 
@@ -520,47 +523,46 @@
 /obj/item/weapon/card/id/event/polymorphic/itg/attack_self(var/mob/user)
 	if(!configured)
 		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
-		"Pilot" = "itg",
-		"Visitor" = "itg",
-		"Quartermaster" = "itg",
-		"Cargo Technician" = "itg",
-		"Shaft Miner" = "itg",
-		"Intern" = "itg",
-		"Talon Pilot" = "itg",
-		"Talon Miner" = "itg",
-		"Bartender" = "itg_green",
-		"Botanist" = "itg_green",
-		"Chef" = "itg_green",
-		"Janitor" = "itg_green",
-		"Chaplain" = "itg_green",
-		"Entertainer" = "itg_green",
-		"Janitor" = "itg_green",
-		"Librarian" = "itg_green",
-		"Warden" = "itg_red",
-		"Detective" = "itg_red",
-		"Security Officer" = "itg_red",
-		"Talon Guard" = "itg_red",
-		"Roboticist" = "itg_purple",
-		"Scientist" = "itg_purple",
-		"Xenobiologist" = "itg_purple",
-		"Xenobotanist" = "itg_purple",
-		"Pathfinder" = "itg_purple",
-		"Explorer" = "itg_purple",
-		"Chemist" = "itg_white",
-		"Medical Doctor" = "itg_white",
-		"Paramedic" = "itg_white",
-		"Psychiatrist" = "itg_white",
-		"Field Medic" = "itg_white",
-		"Talon Doctor" = "itg_white",
-		"Atmospheric Technician" = "itg_orange",
-		"Engineer" = "itg_orange",
-		"Off-duty Officer" = "itg_red",
-		"Off-duty Engineer" = "itg_orange",
-		"Off-duty Medic" = "itg_white",
-		"Off-duty Scientist" = "itg_purple",
-		"Off-duty Cargo" = "itg",
-		"Off-duty Explorer" = "itg_purple",
-		"Off-duty Worker" = "itg_green"
+		JOB_PILOT = "itg",
+		JOB_ALT_VISITOR = "itg",
+		JOB_QUARTERMASTER = "itg",
+		JOB_CARGO_TECHNICIAN = "itg",
+		JOB_SHAFT_MINER = "itg",
+		JOB_INTERN = "itg",
+		JOB_TALON_PILOT = "itg",
+		JOB_TALON_MINER = "itg",
+		JOB_BARTENDER = "itg_green",
+		JOB_BOTANIST = "itg_green",
+		JOB_CHEF = "itg_green",
+		JOB_JANITOR = "itg_green",
+		JOB_CHAPLAIN = "itg_green",
+		JOB_ENTERTAINER = "itg_green",
+		JOB_LIBRARIAN = "itg_green",
+		JOB_WARDEN = "itg_red",
+		JOB_DETECTIVE = "itg_red",
+		JOB_SECURITY_OFFICER = "itg_red",
+		JOB_TALON_GUARD = "itg_red",
+		JOB_ROBOTICIST = "itg_purple",
+		JOB_SCIENTIST = "itg_purple",
+		JOB_XENOBIOLOGIST = "itg_purple",
+		JOB_XENOBOTANIST = "itg_purple",
+		JOB_PATHFINDER = "itg_purple",
+		JOB_EXPLORER = "itg_purple",
+		JOB_CHEMIST = "itg_white",
+		JOB_MEDICAL_DOCTOR = "itg_white",
+		JOB_PARAMEDIC = "itg_white",
+		JOB_PSYCHIATRIST = "itg_white",
+		JOB_FIELD_MEDIC = "itg_white",
+		JOB_TALON_DOCTOR = "itg_white",
+		JOB_ATMOSPHERIC_TECHNICIAN = "itg_orange",
+		JOB_ENGINEER = "itg_orange",
+		JOB_OFFDUTY_OFFICER = "itg_red",
+		JOB_OFFDUTY_ENGINEER = "itg_orange",
+		JOB_OFFDUTY_MEDIC = "itg_white",
+		JOB_OFFDUTY_SCIENTIST = "itg_purple",
+		JOB_OFFDUTY_CARGO = "itg",
+		JOB_OFFDUTY_EXPLORER = "itg_purple",
+		JOB_OFFDUTY_WORKER = "itg_green"
 		)
 		var/guess = jobs_to_icon[user.job]
 
@@ -577,7 +579,7 @@
 /obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
-		var/list/itgdont = list("Site Manager", "Head of Personnel", "Command Secretary", "Head of Security", "Chief Engineer", "Chief Medical Officer", "Research Director", "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
+		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, JOB_HEAD_OF_SECURITY, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, JOB_CLOWN, JOB_MIME, JOB_TALON_CAPTAIN) //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
 			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
 			return

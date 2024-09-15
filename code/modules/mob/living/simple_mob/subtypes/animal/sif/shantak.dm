@@ -25,7 +25,7 @@
 	tt_desc = "S Choeros shantak"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shantak)
 
-	faction = "shantak"
+	faction = FACTION_SHANTAK
 
 	icon_state = "shantak"
 	icon_living = "shantak"
@@ -107,7 +107,7 @@
 	name = "Scruffy"
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 	makes_dirt = 0
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 /decl/mob_organ_names/shantak
 	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "mane", "snout")

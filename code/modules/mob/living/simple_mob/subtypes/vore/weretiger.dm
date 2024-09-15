@@ -9,7 +9,7 @@
 	icon_rest = null
 	icon = 'icons/mob/bigcat.dmi'
 
-	faction = "panther"
+	faction = FACTION_PANTHER
 	maxHealth = 150
 	health = 150
 	movement_cooldown = -1

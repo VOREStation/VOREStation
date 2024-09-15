@@ -18,7 +18,7 @@
 	tt_desc = "S Pruinaeictis velocis" //Sivian frost weasel, fast
 	catalogue_data = list(/datum/category_item/catalogue/fauna/siffet)
 
-	faction = "siffet"
+	faction =FACTION_SIFFET
 
 	mob_size = MOB_SMALL
 

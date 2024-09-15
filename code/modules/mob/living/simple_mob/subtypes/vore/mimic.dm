@@ -79,7 +79,7 @@
 	icon_living = "crate"
 	icon = 'icons/obj/storage.dmi'
 
-	faction = "mimic"
+	faction = FACTION_MIMIC
 
 	maxHealth = 125
 	health = 125

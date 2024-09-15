@@ -13,7 +13,7 @@
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Site Manager\"."
+	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"" + JOB_SITE_MANAGER + "\"."
 	name = "site manager's jumpsuit"
 	icon_state = "captain"
 	rolled_sleeves = 0
@@ -80,7 +80,7 @@
 	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/head_of_personnel
-	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
+	desc = "It's a jumpsuit worn by someone who works in the position of \"" + JOB_HEAD_OF_PERSONNEL + "\"."
 	name = "head of personnel's jumpsuit"
 	icon_state = "hop"
 	rolled_sleeves = 0
@@ -104,7 +104,7 @@
 	icon_state = "hydro"
 
 /obj/item/clothing/under/rank/internalaffairs
-	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
+	desc = "The plain, professional attire of an " + JOB_INTERNAL_AFFAIRS_AGENT + ". The collar is <i>immaculately</i> starched."
 	name = "Internal Affairs uniform"
 	icon_state = "internalaffairs"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
@@ -112,7 +112,7 @@
 	starting_accessories = list(/obj/item/clothing/accessory/tie/black)
 
 /obj/item/clothing/under/rank/internalaffairs/skirt
-	desc = "The plain, professional attire of an Internal Affairs Agent. The top button is sewn shut."
+	desc = "The plain, professional attire of an " + JOB_INTERNAL_AFFAIRS_AGENT + ". The top button is sewn shut."
 	name = "Internal Affairs skirt"
 	icon_state = "internalaffairs_skirt"
 

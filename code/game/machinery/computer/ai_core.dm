@@ -138,7 +138,7 @@
 					to_chat(user, "<span class='warning'>Sticking a dead [P] into the frame would sort of defeat the purpose.</span>")
 					return
 
-				if(jobban_isbanned(M.brainmob, "AI"))
+				if(jobban_isbanned(M.brainmob, JOB_AI))
 					to_chat(user, "<span class='warning'>This [P] does not seem to fit.</span>")
 					return
 

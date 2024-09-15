@@ -19,7 +19,7 @@
 	icon = 'icons/mob/alienanimals_x32.dmi'
 	color = "#76462c"
 
-	faction = "animal"
+	faction = FACTION_ANIMAL
 	maxHealth = 40
 	health = 40
 	movement_cooldown = -1

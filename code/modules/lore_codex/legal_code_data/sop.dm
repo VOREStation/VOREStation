@@ -19,7 +19,7 @@
 	<br><br>\
 	<h3>Visitors</h3>\
 	Visitors of all forms are required to follow SOP, Corporate Regulations, and local laws while onboard or around NanoTrasen property.  Visitors who are \
-	not registered on the manifest are required to speak with the Head of Personnel or Station Director, if one exists, to register, and obtain an identification \
+	not registered on the manifest are required to speak with the " + JOB_HEAD_OF_PERSONNEL + " or " + JOB_SITE_MANAGER + ", if one exists, to register, and obtain an identification \
 	card denoting their status as a visitor.  Visitors registered on the manifest are free to visit any public (non-access restricted) location on the facility, however \
 	they are still subject to the same regulations and rules as an ordinary crew member.\
 	<br>\
@@ -60,7 +60,7 @@
 /*
 /datum/lore/codex/page/command_sop
 	name = "Command SOP"
-	data = "This SOP is specific to those in the Command department, which includes the Station Director, Head of Personnel, Chief Engineer, Head of Security, and Research Director.  \
+	data = "This SOP is specific to those in the Command department, which includes the " + JOB_SITE_MANAGER + ", Head of Personnel, " + JOB_CHIEF_ENGINEER + ", " + JOB_HEAD_OF_SECURITY + ", and " + JOB_RESEARCH_DIRECTOR + ".  \
 	This also covers Internal Affairs Agents, however they do not occupy a position inside Command crew, and instead exist outside of all the other departments.\
 	<br>\
 	<h3>Bridge Secretaries</h3>\
@@ -68,10 +68,10 @@
 	regards.\
 	<br>\
 	<h3>Responsibility and Authority</h3>\
-	The Chain of Command is generally represented as: Station Director > Command Crew > Station Crew.<br>\
-	The Station Director is responsible for, and authoritative in, and and all matters regarding the station.  In the absence of a Department Head, the Station Director \
+	The Chain of Command is generally represented as: " + JOB_SITE_MANAGER + " > Command Crew > Station Crew.<br>\
+	The " + JOB_SITE_MANAGER + " is responsible for, and authoritative in, and and all matters regarding the station.  In the absence of a Department Head, the " + JOB_SITE_MANAGER + " \
 	may choose to appoint an Acting Head, or else act as the voice of authority in a department.  If a Department Head arrives on station, the Acting Head \
-	is to step down, and the Station Director is to defer to the Department Head in matters involving said department.\
+	is to step down, and the " + JOB_SITE_MANAGER + " is to defer to the Department Head in matters involving said department.\
 	<br>\
 	The remainder of the Command Crew is of equal rank among themselves, and are responsible for, and authoritative over only their own department, crew, and location.  \
 	In the case of the Head of Personnel, this includes Service, Cargo, and any other Civilian role.  Command Crew only have authority in their own department, when going \
@@ -80,7 +80,7 @@
 	<h3>Demotion</h3>\
 	A member of the Command Crew may call for the demotion of any member of their department for disregarding safety protocol, disobeying orders with serious consequences, \
 	or other gross incompetence.  Certain infractions necessitate that a guilty crew member receive a demotion.  Demotion is to be performed by the Head of Personnel, or the \
-	Station Director, as soon as possible.  The demoted crewmember is to be present during the demotion, unless it is caused by a criminal sentence.  If said crewmemeber \
+	" + JOB_SITE_MANAGER + ", as soon as possible.  The demoted crewmember is to be present during the demotion, unless it is caused by a criminal sentence.  If said crewmemeber \
 	refuses to comply with a demotion order, Security is to escort them to the Head of Personnel's office.\
 	<br>\
 	Any demoted crewmember must return all equipment and non-personal items to their previous department, including departmental jumpsuits and radios.  If a demoted \
@@ -88,21 +88,21 @@
 	may treat said items as stolen.\
 	<br>\
 	<h3>Chain of Command & Succession</h3>\
-	In case of emergency or other need, and in the absence of a Station Director, an Acting Director may be selected from active, certified Command crew.  \
-	The selected individual has the same responsibility and authority as a certified Station Director, along with that of their regular position, with the assumption that \
-	they will step down if a certified Station Director arrives on station.  This role is entirely voluntary, and no Command crew may be forced into the role \
+	In case of emergency or other need, and in the absence of a " + JOB_SITE_MANAGER + ", an Acting Director may be selected from active, certified Command crew.  \
+	The selected individual has the same responsibility and authority as a certified " + JOB_SITE_MANAGER + ", along with that of their regular position, with the assumption that \
+	they will step down if a certified " + JOB_SITE_MANAGER + " arrives on station.  This role is entirely voluntary, and no Command crew may be forced into the role \
 	if they are opposed to doing so.\
 	<br>\
 	The preferred order of selecting an Acting Director is as follows:<br>\
 	The role is to be offered to the Head of Personnel, if one is present.  If there is no Head of Personnel, or they are unwilling to assume Acting Director, the \
-	position is offered to non-Security Command crew.  If no other Command crew is available or willing to assume Acting Director, the Head of Security may be offered \
+	position is offered to non-Security Command crew.  If no other Command crew is available or willing to assume Acting Director, the " + JOB_HEAD_OF_SECURITY + " may be offered \
 	the position.  If no other Command crew is available or willing to assume Acting Director, no Acting Director is selected.  Acting Command may not be offered or accept \
 	Acting Director.\
 	<br>\
 	<h3>Command Crew Demotions</h3>\
-	If a member of the Command crew is suspected to be incompetent, or in breach of SOP, the Station Director has discretion to demote the guilty Command crewmember.  \
-	If there is no Station Director, or the Station Director themselves is guilty, they may be demoted after a vote of no confidence by the remaining Command crew \
-	and relevant station crew.  For the Station Director, the vote is only to be among the remaining Command crew.  Misuse of this privilage may warrant an \
+	If a member of the Command crew is suspected to be incompetent, or in breach of SOP, the " + JOB_SITE_MANAGER + " has discretion to demote the guilty Command crewmember.  \
+	If there is no " + JOB_SITE_MANAGER + ", or the " + JOB_SITE_MANAGER + " themselves is guilty, they may be demoted after a vote of no confidence by the remaining Command crew \
+	and relevant station crew.  For the " + JOB_SITE_MANAGER + ", the vote is only to be among the remaining Command crew.  Misuse of this privilage may warrant an \
 	Internal Affairs investigation for wrongful dismissal.\
 	<br>\
 	<h3>Communications with Central Command</h3>\
@@ -171,12 +171,12 @@
 	<h3>Ejection Procedure</h3>\
 	The Supermatter's isolation chamber contains a mass driver and a heavy blast door leading into space.  Ejecting the Supermatter into the void \
 	will cause it to delaminate, however hopefully far away from your facility.  Supermatter crystals are rare and expensive, so this option should \
-	only be used if delamination cannot be stopped by any other means.  A special button, behind glass, exists inside the Chief Engineer's office.  \
+	only be used if delamination cannot be stopped by any other means.  A special button, behind glass, exists inside the " + JOB_CHIEF_ENGINEER + "'s office.  \
 	<b>The button controls the mass driver, however it should not be the first button to press.  The blast door leading into space must be opened first, \
 	or else the Supermatter cannot be ejected.</b>  Premature ejection can cause the Supermatter to not be on the mass driver, which will require an extremely \
-	risky manual Supermatter movement to place onto the mass driver again.  The blast door can be opened with a button in the Chief Engineer's office, or inside the engine room.  \
+	risky manual Supermatter movement to place onto the mass driver again.  The blast door can be opened with a button in the " + JOB_CHIEF_ENGINEER + "'s office, or inside the engine room.  \
 	It is the same button used to 'vent' the engine core.  Make use of engine core cameras to verify that the blast door is open.  \
-	The Chief Engineer should be the one to oversee Ejection.  If one does not exist, the facility's AI should initiate Ejection.  If there is no AI, \
+	The " + JOB_CHIEF_ENGINEER + " should be the one to oversee Ejection.  If one does not exist, the facility's AI should initiate Ejection.  If there is no AI, \
 	it would be prudent for an Engineering member to forcefully enter to press the required buttons."
 
 /*
@@ -202,8 +202,8 @@
 	<br>\
 	<h3>Cloning Procedure</h3>\
 	Persons whom have committed suicide are not to be cloned.  Individuals are also to not be cloned if there is a Do Not Clone (generally referred \
-	to as DNC) order in their medical records, or if the individual has had a DNC order declared against them by the Station Director, Chief \
-	Medical Officer, or Head of Security.  If any of this occurs, procede to Portmortem Storage.\
+	to as DNC) order in their medical records, or if the individual has had a DNC order declared against them by the " + JOB_SITE_MANAGER + ", Chief \
+	Medical Officer, or " + JOB_HEAD_OF_SECURITY + ".  If any of this occurs, procede to Portmortem Storage.\
 	<br>\
 	Some individuals may have special instructions in their Postmortem Instructions, generally found in their medical records.  \
 	Be sure to read them before committing to cloning someone.  In particular, some instructions may express a desire to be placed \
@@ -273,7 +273,7 @@
 	not to be placed inside an MMI.  Still-living persons who wish to be placed inside an MMI should be ignored.\
 	<br>\
 	Lawbound Synthetics are to not have their lawset tampered with.  Any errors with the lawset, intentional or resulting from an ionic storm, should \
-	be reset by the Research Director or Chief Engineer.  If they are unavailable, it is permissible for Robotics to do the reset.  Lawbound Synthetics \
+	be reset by the " + JOB_RESEARCH_DIRECTOR + " or " + JOB_CHIEF_ENGINEER + ".  If they are unavailable, it is permissible for Robotics to do the reset.  Lawbound Synthetics \
 	physically harmed should be repaired.\
 	<br>\
 	<h3>Lawing Synthetics</h3>\
@@ -291,7 +291,7 @@
 	<h3>Exosuits & Prosthetics</h3>\
 	Exosuits (also known as Mecha, or Mechs) are large machines piloted by an individual.  Construction of exosuits is to occur inside Robotics or the \
 	Mech Bay.  Damaged exosuits should be repaired by Robotics.  Civilian Exosuits (Ripley, Odysseus) may be built at the request of departmental crew.  \
-	Combat exosuits (Durand, Gygax) may not be built without permission from the Head of Security or Station Director.\
+	Combat exosuits (Durand, Gygax) may not be built without permission from the " + JOB_HEAD_OF_SECURITY + " or " + JOB_SITE_MANAGER + ".\
 	<br>\
 	Robotics is also tasked with the repair of prostheses limbs.  Robotics may also be tasked with installing a prosthetic, however the Medical team \
 	may also do this if the Robotics staff lack the training to do so."
@@ -319,7 +319,7 @@
 	<h3>Crew</h3>\
 	Crew members and visitors may freely walk in the hallways and other public areas.  Suit sensors are recommended, but not mandatory.  \
 	The Security team must respect the privacy of crew members and visitors, and no unauthorized searches are allowed.  Searches of any kind may \
-	only be done with the consent of the searched, or with a signed warrant by the Head of Security or Station Director.  A warrant is not required \
+	only be done with the consent of the searched, or with a signed warrant by the " + JOB_HEAD_OF_SECURITY + " or " + JOB_SITE_MANAGER + ".  A warrant is not required \
 	for instances of visible contraband."
 
 /datum/lore/codex/page/blue

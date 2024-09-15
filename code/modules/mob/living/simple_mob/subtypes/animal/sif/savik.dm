@@ -21,7 +21,7 @@
 	name = "savik"
 	tt_desc = "S Pistris tellus" //landshark
 	catalogue_data = list(/datum/category_item/catalogue/fauna/savik)
-	faction = "savik"
+	faction = FACTION_SAVIK
 
 	icon_state = "savik"
 	icon_living = "savik"

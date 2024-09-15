@@ -10,7 +10,7 @@
 	icon_living = "flytrap"
 	icon_state = "flytrap"
 	icon_rest = "flytrap"
-	faction = "plants"
+	faction = FACTION_PLANTS
 	harm_intent_damage = 0
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -91,7 +91,7 @@
 	icon_living = "pitcher"
 	icon_state = "pitcher"
 	icon_rest = "pitcher"
-	faction = "plants"
+	faction = FACTION_PLANTS
 	movement_cooldown = 0
 	harm_intent_damage = 0
 	melee_damage_lower = 0

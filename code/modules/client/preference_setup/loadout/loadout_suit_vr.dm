@@ -1,5 +1,5 @@
 /datum/gear/suit/snowsuit/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
@@ -16,7 +16,7 @@
 /datum/gear/suit/labcoat_cmo_old
 	display_name = "labcoat, CMO, oldschool"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/cmo
-	allowed_roles = list("Chief Medical Officer")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/gear/suit/roles/labcoat_old
 	display_name = "labcoat selection, department, oldschool"
@@ -57,7 +57,7 @@
 /datum/gear/suit/detective_alt
 	display_name = "sleek modern coat selection"
 	path = /obj/item/clothing/suit/storage/det_trench/alt
-	allowed_roles = list("Head of Security", "Detective")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_DETECTIVE)
 
 /datum/gear/suit/detective_alt/New()
 	..()
@@ -73,7 +73,7 @@
 /datum/gear/suit/paramedic_coat
 	display_name = "paramedic outerwear selection"
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
-	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_PARAMEDIC,JOB_MEDICAL_DOCTOR)
 
 /datum/gear/suit/paramedic_coat/New()
 	..()
@@ -112,12 +112,12 @@ Talon winter coat
 /datum/gear/suit/armor/combat/crusader_explo
 	display_name = "knight, explo"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo
-	//allowed_roles = list("Explorer","Pathfinder")
+	//allowed_roles = list(JOB_EXPLORER,JOB_PATHFINDER)
 
 /datum/gear/suit/armor/combat/crusader_explo/FM
 	display_name = "knight, Field Medic"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
-	allowed_roles = list ("Paramedic")
+	allowed_roles = list (JOB_PARAMEDIC)
 
 //Long fur coat
 /datum/gear/suit/russofurcoat
@@ -231,13 +231,13 @@ Talon winter coat
 /datum/gear/suit/roles/capboatcloak
 	display_name = "boat cloak, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat/cap
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/hopboatcloak
 	display_name = "boat cloak, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/boatcloaks
@@ -269,13 +269,13 @@ Talon winter coat
 /datum/gear/suit/roles/capshroud
 	display_name = "shroud, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud/cap
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/hopshroud
 	display_name = "shroud, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud/hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list(JOB_HEAD_OF_PERSONNEL)
 	show_roles = FALSE
 
 /datum/gear/suit/roles/shrouds

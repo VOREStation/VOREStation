@@ -105,7 +105,7 @@
 	to_chat(new_voice, "<b>If you want to end the call, use the 'Hang Up' verb.  The other person can also hang up at any time.</b>")
 	to_chat(new_voice, "<b>Remember, your character does not know anything you've learned from observing!</b>")
 	if(new_voice.mind)
-		new_voice.mind.assigned_role = "Disembodied Voice"
+		new_voice.mind.assigned_role = JOB_DISEMBODIED_VOICE
 	if(user)
 		to_chat(user, "<span class='notice'>[icon2html(src,new_voice.client)] Your communicator is now connected to [candidate]'s communicator.</span>")
 

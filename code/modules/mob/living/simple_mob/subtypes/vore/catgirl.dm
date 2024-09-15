@@ -35,7 +35,7 @@
 		"catgirlbrown"
 	)
 
-	faction = "catgirl"
+	faction = FACTION_CATGIRL
 
 /mob/living/simple_mob/vore/catgirl/New()
 	..()

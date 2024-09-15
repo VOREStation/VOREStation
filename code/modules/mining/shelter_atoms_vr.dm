@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 /obj/item/device/survivalcapsule/luxurybar
 	name = "luxury surfluid bar capsule"
-	desc = "A luxury bar in a capsule. Bartender required and not included. There's a license for use printed on the bottom."
+	desc = "A luxury bar in a capsule. " + JOB_BARTENDER + " required and not included. There's a license for use printed on the bottom."
 	template_id = "shelter_gamma"
 
 /obj/item/device/survivalcapsule/military
@@ -123,14 +123,6 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "pop-out cabin shelter capsule"
 	desc = "A cozy cabin; crammed into a survival capsule."
 	template_id = "shelter_cab"
-
-/obj/item/device/survivalcapsule/dropship
-	name = "dropship surfluid shelter capsule"
-	desc = "A military dropship in a capsule. Contains everything an assault squad would need, minus the squad itself. This capsule is significantly larger than most. There's a license for use printed on the bottom."
-	template_id = "shelter_zeta"
-	unique_id = "shelter_6"
-	is_ship = TRUE
-	w_class = ITEMSIZE_SMALL
 
 //Custom Shelter Capsules
 /obj/item/device/survivalcapsule/tabiranth

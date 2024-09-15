@@ -317,7 +317,7 @@
 
 //Handles checking relevent bans, preferences, and asking the player if they want to be caught
 /obj/item/capture_crystal/proc/capture_player(mob/living/M, mob/living/U)
-	if(jobban_isbanned(M, "GhostRoles"))
+	if(jobban_isbanned(M, JOB_GHOSTROLES))
 		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(!M.capture_crystal || M.capture_caught)

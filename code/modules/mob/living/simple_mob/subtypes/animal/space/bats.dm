@@ -8,7 +8,7 @@
 	icon_dead = "bat_dead"
 	icon_gib = "bat_dead"
 
-	faction = "scarybat"
+	faction = FACTION_SCARYBAT
 
 	maxHealth = 20
 	health = 20
@@ -48,7 +48,7 @@
 
 // Spookiest of bats
 /mob/living/simple_mob/animal/space/bats/cult
-	faction = "cult"
+	faction = FACTION_CULT
 	supernatural = TRUE
 
 /mob/living/simple_mob/animal/space/bats/cult/cultify()

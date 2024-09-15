@@ -140,7 +140,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	see_in_dark = 8 // on par with Taj
 
 	tt_desc = "S tesca pabulator"
-	faction = "grafadreka"
+	faction = FACTION_GRAFADREKA
 
 	mob_size = MOB_LARGE
 	mob_bump_flag = SIMPLE_ANIMAL

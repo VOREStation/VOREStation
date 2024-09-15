@@ -19,7 +19,7 @@
 	tt_desc = "S Anatidae vitriae"
 	//catalogue_data = list(/datum/category_item/catalogue/fauna/crystalduck)		TODO: Write non-sif lore
 
-	faction = "duck"
+	faction = FACTION_DUCK
 
 	icon_state = "duck"
 	icon_living = "duck"

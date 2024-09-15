@@ -344,7 +344,7 @@
 	icon = 'icons/mob/randomlandmarks.dmi'
 	icon_state = "monster"
 
-	faction = "spookyland"
+	faction = FACTION_SPOOKYLAND
 	prob_spawn = 50
 	prob_fall = 10
 	//guard = 10 //Don't wander too far, to stay alive.

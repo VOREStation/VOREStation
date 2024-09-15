@@ -70,7 +70,7 @@
 				all_centcom_access.Add(list(list(
 					"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp;"),
 					"ref" = access,
-					"allowed" = (access in id_card.access) ? 1 : 0)))
+					"allowed" = (access in id_card.GetAccess()) ? 1 : 0)))
 			data["all_centcom_access"] = all_centcom_access
 		else
 			for(var/i in ACCESS_REGION_SECURITY to ACCESS_REGION_SUPPLY)
@@ -80,7 +80,7 @@
 						accesses.Add(list(list(
 							"desc" = replacetext(get_access_desc(access), " ", "&nbsp;"),
 							"ref" = access,
-							"allowed" = (access in id_card.access) ? 1 : 0)))
+							"allowed" = (access in id_card.GetAccess()) ? 1 : 0)))
 
 				regions.Add(list(list(
 					"name" = get_region_accesses_name(i),
@@ -143,7 +143,7 @@
 								"}
 
 						var/known_access_rights = get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
-						for(var/A in id_card.access)
+						for(var/A in id_card.GetAccess())
 							if(A in known_access_rights)
 								contents += "  [get_access_desc(A)]"
 
@@ -231,4 +231,3 @@
 
 	if(id_card)
 		id_card.name = text("[id_card.registered_name]'s ID Card ([id_card.assignment])")
-

@@ -7,7 +7,7 @@
 	config_tag = "meme"
 	required_players = 3
 	required_players_secret = 10
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list(JOB_AI, JOB_CYBORG)
 	recommended_enemies = 2 // need at least a meme and a host
 	votable = 0 // temporarily disable this mode for voting
 	end_on_antag_death = 1
@@ -66,8 +66,8 @@
 		// so that we can later know which host belongs to which meme
 		assigned_hosts[meme.key] = first_host
 
-		meme.assigned_role = "MODE" //So they aren't chosen for other jobs.
-		meme.special_role = "Meme"
+		meme.assigned_role = JOB_MODE //So they aren't chosen for other jobs.
+		meme.special_role = JOB_MEME
 
 	return 1
 

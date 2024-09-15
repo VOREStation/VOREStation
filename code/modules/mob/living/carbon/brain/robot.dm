@@ -15,7 +15,7 @@
 /obj/item/device/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
-		brainmob.mind.assigned_role = "Robotic Intelligence"
+		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE
 	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're little more than a complex circuit.</span>")
 	return
 

@@ -1,6 +1,6 @@
 /mob/living/simple_mob/clowns/big
 	tt_desc = "E Homo sapiens corydon horrificus" //this clown is stronk
-	faction = "clown"
+	faction = FACTION_CLOWN
 
 	maxHealth = 200
 	health = 200

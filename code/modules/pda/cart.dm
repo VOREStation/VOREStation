@@ -167,7 +167,7 @@ var/list/civilian_cartridges = list(
 
 /obj/item/weapon/cartridge/quartermaster
 	name = "\improper Space Parts & Space Vendors cartridge"
-	desc = "Perfect for the Quartermaster on the go!"
+	desc = "Perfect for the " + JOB_QUARTERMASTER + " on the go!"
 	icon_state = "cart-q"
 	programs = list(
 		new/datum/data/pda/app/supply)

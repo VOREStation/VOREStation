@@ -11,7 +11,7 @@
 	icon_living = "scel_orange"
 	icon_state = "scel_orange"
 	icon_rest = "scel_orange-rest"
-	faction = "scel"
+	faction = FACTION_SCEL
 	old_x = -48
 	old_y = 0
 	vis_height = 92

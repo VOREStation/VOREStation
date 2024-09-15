@@ -311,8 +311,8 @@
 		playsound(src, 'sound/machines/click.ogg', 20, 1)
 
 /obj/item/toy/figure/cmo
-	name = "Chief Medical Officer action figure"
-	desc = "A \"Space Life\" brand Chief Medical Officer action figure."
+	name = JOB_CHIEF_MEDICAL_OFFICER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHIEF_MEDICAL_OFFICER + " action figure."
 	icon_state = "cmo"
 	toysay = "Suit sensors!"
 
@@ -323,14 +323,14 @@
 	toysay = "Grey tide station wide!"
 
 /obj/item/toy/figure/atmos
-	name = "Atmospheric Technician action figure"
-	desc = "A \"Space Life\" brand Atmospheric Technician action figure."
+	name = JOB_ATMOSPHERIC_TECHNICIAN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ATMOSPHERIC_TECHNICIAN + " action figure."
 	icon_state = "atmos"
 	toysay = "Glory to Atmosia!"
 
 /obj/item/toy/figure/bartender
-	name = "Bartender action figure"
-	desc = "A \"Space Life\" brand Bartender action figure."
+	name = JOB_BARTENDER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_BARTENDER + " action figure."
 	icon_state = "bartender"
 	toysay = "Where's my monkey?"
 
@@ -341,50 +341,50 @@
 	toysay = "I. LIVE. AGAIN."
 
 /obj/item/toy/figure/gardener
-	name = "Gardener action figure"
-	desc = "A \"Space Life\" brand Gardener action figure."
+	name = JOB_ALT_GARDENER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ALT_GARDENER + " action figure."
 	icon_state = "botanist"
 	toysay = "Dude, I see colors..."
 
 /obj/item/toy/figure/captain
-	name = "Site Manager action figure"
-	desc = "A \"Space Life\" brand Site Manager action figure."
+	name = JOB_SITE_MANAGER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_SITE_MANAGER + " action figure."
 	icon_state = "captain"
 	toysay = "How do I open this display case?"
 
 /obj/item/toy/figure/cargotech
-	name = "Cargo Technician action figure"
-	desc = "A \"Space Life\" brand Cargo Technician action figure."
+	name = JOB_CARGO_TECHNICIAN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CARGO_TECHNICIAN + " action figure."
 	icon_state = "cargotech"
 	toysay = "For Cargonia!"
 
 /obj/item/toy/figure/ce
-	name = "Chief Engineer action figure"
-	desc = "A \"Space Life\" brand Chief Engineer action figure."
+	name = JOB_CHIEF_ENGINEER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHIEF_ENGINEER + " action figure."
 	icon_state = "ce"
 	toysay = "Wire the solars!"
 
 /obj/item/toy/figure/chaplain
-	name = "Chaplain action figure"
-	desc = "A \"Space Life\" brand Chaplain action figure."
+	name = JOB_CHAPLAIN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHAPLAIN + " action figure."
 	icon_state = "chaplain"
 	toysay = "Gods make me a killing machine please!"
 
 /obj/item/toy/figure/chef
-	name = "Chef action figure"
-	desc = "A \"Space Life\" brand Chef action figure."
+	name = JOB_CHEF + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHEF + " action figure."
 	icon_state = "chef"
 	toysay = "I swear it's not human meat."
 
 /obj/item/toy/figure/chemist
-	name = "Chemist action figure"
-	desc = "A \"Space Life\" brand Chemist action figure."
+	name = JOB_CHEMIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CHEMIST + " action figure."
 	icon_state = "chemist"
 	toysay = "Get your pills!"
 
 /obj/item/toy/figure/clown
-	name = "Clown action figure"
-	desc = "A \"Space Life\" brand Clown action figure."
+	name = JOB_CLOWN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_CLOWN + " action figure."
 	icon_state = "clown"
 	toysay = "<font face='comic sans ms'><b>Honk!</b></font>"
 
@@ -395,8 +395,8 @@
 	toysay = "Arf!"
 
 /obj/item/toy/figure/detective
-	name = "Detective action figure"
-	desc = "A \"Space Life\" brand Detective action figure."
+	name = JOB_DETECTIVE + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_DETECTIVE + " action figure."
 	icon_state = "detective"
 	toysay = "This airlock has grey jumpsuit and insulated glove fibers on it."
 
@@ -407,68 +407,68 @@
 	toysay = "Eliminate all threats!"
 
 /obj/item/toy/figure/engineer
-	name = "Engineer action figure"
-	desc = "A \"Space Life\" brand Engineer action figure."
+	name = JOB_ENGINEER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ENGINEER + " action figure."
 	icon_state = "engineer"
 	toysay = "Oh god, the engine is gonna go!"
 
 /obj/item/toy/figure/geneticist
-	name = "Geneticist action figure"
-	desc = "A \"Space Life\" brand Geneticist action figure, which was recently dicontinued."
+	name = JOB_GENETICIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_GENETICIST + " action figure, which was recently dicontinued."
 	icon_state = "geneticist"
 	toysay = "I'm not qualified for this job."
 
 /obj/item/toy/figure/hop
-	name = "Head of Personnel action figure"
-	desc = "A \"Space Life\" brand Head of Personnel action figure."
+	name = JOB_HEAD_OF_PERSONNEL + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_HEAD_OF_PERSONNEL + " action figure."
 	icon_state = "hop"
 	toysay = "Giving out all access!"
 
 /obj/item/toy/figure/hos
-	name = "Head of Security action figure"
-	desc = "A \"Space Life\" brand Head of Security action figure."
+	name = JOB_HEAD_OF_SECURITY + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_HEAD_OF_SECURITY + " action figure."
 	icon_state = "hos"
 	toysay = "I'm here to win, anything else is secondary."
 
 /obj/item/toy/figure/qm
-	name = "Quartermaster action figure"
-	desc = "A \"Space Life\" brand Quartermaster action figure."
+	name = JOB_QUARTERMASTER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_QUARTERMASTER + " action figure."
 	icon_state = "qm"
 	toysay = "Hail Cargonia!"
 
 /obj/item/toy/figure/janitor
-	name = "Janitor action figure"
-	desc = "A \"Space Life\" brand Janitor action figure."
+	name = JOB_JANITOR + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_JANITOR + " action figure."
 	icon_state = "janitor"
 	toysay = "Look at the signs, you idiot."
 
 /obj/item/toy/figure/agent
-	name = "Internal Affairs Agent action figure"
-	desc = "A \"Space Life\" brand Internal Affairs Agent action figure."
+	name = JOB_INTERNAL_AFFAIRS_AGENT + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_INTERNAL_AFFAIRS_AGENT + " action figure."
 	icon_state = "agent"
 	toysay = "Standard Operating Procedure says they're guilty! Hacking is proof they're an Enemy of the Corporation!"
 
 /obj/item/toy/figure/librarian
-	name = "Librarian action figure"
-	desc = "A \"Space Life\" brand Librarian action figure."
+	name = JOB_LIBRARIAN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_LIBRARIAN + " action figure."
 	icon_state = "librarian"
 	toysay = "One day while..."
 
 /obj/item/toy/figure/md
-	name = "Medical Doctor action figure"
-	desc = "A \"Space Life\" brand Medical Doctor action figure."
+	name = JOB_MEDICAL_DOCTOR + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_MEDICAL_DOCTOR + " action figure."
 	icon_state = "md"
 	toysay = "The patient is already dead!"
 
 /obj/item/toy/figure/mime
-	name = "Mime action figure"
-	desc = "A \"Space Life\" brand Mime action figure."
+	name = JOB_MIME + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_MIME + " action figure."
 	icon_state = "mime"
 	toysay = "..."
 
 /obj/item/toy/figure/miner
-	name = "Shaft Miner action figure"
-	desc = "A \"Space Life\" brand Shaft Miner action figure."
+	name = JOB_SHAFT_MINER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_SHAFT_MINER + " action figure."
 	icon_state = "miner"
 	toysay = "Oh god, it's eating my intestines!"
 
@@ -479,26 +479,26 @@
 	toysay = "Oh god! Stop shooting, I'm friendly!"
 
 /obj/item/toy/figure/wizard
-	name = "Wizard action figure"
-	desc = "A \"Space Life\" brand Wizard action figure."
+	name = JOB_WIZARD + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_WIZARD + " action figure."
 	icon_state = "wizard"
 	toysay = "Ei Nath!"
 
 /obj/item/toy/figure/rd
-	name = "Research Director action figure"
-	desc = "A \"Space Life\" brand Research Director action figure."
+	name = JOB_RESEARCH_DIRECTOR + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_RESEARCH_DIRECTOR + " action figure."
 	icon_state = "rd"
 	toysay = "Blowing all of the borgs!"
 
 /obj/item/toy/figure/roboticist
-	name = "Roboticist action figure"
-	desc = "A \"Space Life\" brand Roboticist action figure."
+	name = JOB_ROBOTICIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ROBOTICIST + " action figure."
 	icon_state = "roboticist"
 	toysay = "He asked to be borged!"
 
 /obj/item/toy/figure/scientist
-	name = "Scientist action figure"
-	desc = "A \"Space Life\" brand Scientist action figure."
+	name = JOB_SCIENTIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_SCIENTIST + " action figure."
 	icon_state = "scientist"
 	toysay = "Someone else must have made those bombs!"
 
@@ -509,38 +509,38 @@
 	toysay = "Get that fucking disk!"
 
 /obj/item/toy/figure/secofficer
-	name = "Security Officer action figure"
-	desc = "A \"Space Life\" brand Security Officer action figure."
+	name = JOB_SECURITY_OFFICER + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_SECURITY_OFFICER + " action figure."
 	icon_state = "secofficer"
 	toysay = "I am the law!"
 
 /obj/item/toy/figure/virologist
-	name = "Virologist action figure"
-	desc = "A \"Space Life\" brand Virologist action figure."
+	name = JOB_ALT_VIROLOGIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ALT_VIROLOGIST + " action figure."
 	icon_state = "virologist"
 	toysay = "The cure is potassium!"
 
 /obj/item/toy/figure/warden
-	name = "Warden action figure"
-	desc = "A \"Space Life\" brand Warden action figure."
+	name = JOB_WARDEN + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_WARDEN + " action figure."
 	icon_state = "warden"
 	toysay = "Execute him for breaking in!"
 
 /obj/item/toy/figure/psychologist
-	name = "Psychologist action figure"
-	desc = "A \"Space Life\" brand Psychologist action figure."
+	name = JOB_ALT_PSYCHOLOGIST + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_ALT_PSYCHOLOGIST + " action figure."
 	icon_state = "psychologist"
 	toysay = "The analyzer says you're fine!"
 
 /obj/item/toy/figure/paramedic
-	name = "Paramedic action figure"
-	desc = "A \"Space Life\" brand Paramedic action figure."
+	name = JOB_PARAMEDIC + " action figure"
+	desc = "A \"Space Life\" brand " + JOB_PARAMEDIC + " action figure."
 	icon_state = "paramedic"
 	toysay = "WHERE ARE YOU??"
 
 /obj/item/toy/figure/ert
-	name = "Emergency Response Team Commander action figure"
-	desc = "A \"Space Life\" brand Emergency Response Team Commander action figure."
+	name = JOB_EMERGENCY_RESPONSE_TEAM + " Commander action figure"
+	desc = "A \"Space Life\" brand " + JOB_EMERGENCY_RESPONSE_TEAM + " Commander action figure."
 	icon_state = "ert"
 	toysay = "We're probably the good guys!"
 
