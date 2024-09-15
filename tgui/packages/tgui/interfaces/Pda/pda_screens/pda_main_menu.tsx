@@ -1,7 +1,6 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section } from 'tgui/components';
 
 type Data = {
   owner: string;

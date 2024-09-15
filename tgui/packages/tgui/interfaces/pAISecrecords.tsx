@@ -3,7 +3,7 @@ import { BooleanLike } from 'common/react';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
-import { GeneralRecord, RecordList, SecurityRecord } from './pda/pda_types';
+import { GeneralRecord, RecordList, SecurityRecord } from './Pda/pda_types';
 
 type Data = {
   records: RecordList;
