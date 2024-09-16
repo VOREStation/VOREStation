@@ -54,6 +54,15 @@ export const ControlSmites = (props) => {
       <Button fluid onClick={() => act('squish')}>
         Squish
       </Button>
+      <Button fluid onClick={() => act('pie_splat')}>
+        Squish
+      </Button>
+      <Button fluid onClick={() => act('spicy_air')}>
+        Squish
+      </Button>
+      <Button fluid onClick={() => act('hot_dog')}>
+        Squish
+      </Button>
     </Section>
   );
 };
