@@ -31,8 +31,8 @@ var/list/event_last_fired = list()
 
 	var/list/active_with_role = number_active_with_role()
 	//var/engineer_count = number_active_with_role(JOB_ENGINEER)
-	//var/security_count = number_active_with_role("Security")
-	//var/medical_count = number_active_with_role("Medical")
+	//var/security_count = number_active_with_role(JOB_SECURITY_OFFICER)
+	//var/medical_count = number_active_with_role(JOB_MEDICAL_DOCTOR)
 	//var/AI_count = number_active_with_role(JOB_AI)
 	//var/janitor_count = number_active_with_role(JOB_JANITOR)
 
@@ -59,7 +59,7 @@ var/list/event_last_fired = list()
 	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role[JOB_ENGINEER]
 	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role[JOB_JANITOR]
 
-	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[JOB_ENGINEER] + 25 * active_with_role["Security"]
+	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[JOB_ENGINEER] + 25 * active_with_role[JOB_SECURITY_OFFICER]
 	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role[JOB_JANITOR]
 
 	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role[JOB_AI] + active_with_role[JOB_SCIENTIST] * 25
@@ -74,15 +74,15 @@ var/list/event_last_fired = list()
 		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role[JOB_ENGINEER]
 		possibleEvents[/datum/event/blob] = 10 * active_with_role[JOB_ENGINEER]
 
-	if(active_with_role["Medical"] > 0)
-		possibleEvents[/datum/event/radiation_storm] = active_with_role["Medical"] * 10
-		possibleEvents[/datum/event/spontaneous_appendicitis] = active_with_role["Medical"] * 10
+	if(active_with_role[JOB_MEDICAL_DOCTOR] > 0)
+		possibleEvents[/datum/event/radiation_storm] = active_with_role[JOB_MEDICAL_DOCTOR] * 10
+		possibleEvents[/datum/event/spontaneous_appendicitis] = active_with_role[JOB_MEDICAL_DOCTOR] * 10
 
-	possibleEvents[/datum/event/prison_break] = active_with_role["Security"] * 50
-	if(active_with_role["Security"] > 0)
+	possibleEvents[/datum/event/prison_break] = active_with_role[JOB_SECURITY_OFFICER] * 50
+	if(active_with_role[JOB_SECURITY_OFFICER] > 0)
 		if(!sent_spiders_to_station)
-			possibleEvents[/datum/event/spider_infestation] = max(active_with_role["Security"], 5) + 5
-		possibleEvents[/datum/event/random_antag] = max(active_with_role["Security"], 5) + 2.5
+			possibleEvents[/datum/event/spider_infestation] = max(active_with_role[JOB_SECURITY_OFFICER], 5) + 5
+		possibleEvents[/datum/event/random_antag] = max(active_with_role[JOB_SECURITY_OFFICER], 5) + 2.5
 
 	for(var/event_type in event_last_fired) if(possibleEvents[event_type])
 		var/time_passed = world.time - event_last_fired[event_type]
@@ -180,8 +180,8 @@ var/list/event_last_fired = list()
 /proc/number_active_with_role()
 	var/list/active_with_role = list()
 	active_with_role[JOB_ENGINEER] = 0
-	active_with_role["Medical"] = 0
-	active_with_role["Security"] = 0
+	active_with_role[JOB_MEDICAL_DOCTOR] = 0
+	active_with_role[JOB_SECURITY_OFFICER] = 0
 	active_with_role[JOB_SCIENTIST] = 0
 	active_with_role[JOB_AI] = 0
 	active_with_role[JOB_CYBORG] = 0
@@ -200,9 +200,9 @@ var/list/event_last_fired = list()
 				if(istype(R.module, /obj/item/weapon/robot_module/robot/engineering))
 					active_with_role[JOB_ENGINEER]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/security))
-					active_with_role["Security"]++
+					active_with_role[JOB_SECURITY_OFFICER]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/medical))
-					active_with_role["Medical"]++
+					active_with_role[JOB_MEDICAL_DOCTOR]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/research))
 					active_with_role[JOB_SCIENTIST]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/janitor))
@@ -214,10 +214,10 @@ var/list/event_last_fired = list()
 			active_with_role[JOB_ENGINEER]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
-			active_with_role["Medical"]++
+			active_with_role[JOB_MEDICAL_DOCTOR]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
-			active_with_role["Security"]++
+			active_with_role[JOB_SECURITY_OFFICER]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 			active_with_role[JOB_SCIENTIST]++
