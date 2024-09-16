@@ -26,7 +26,7 @@
 	icon_living = "gnat"
 	icon_dead = "gnat_dead"
 
-	faction = "gnat"
+	faction = FACTION_GNAT
 	maxHealth = 5
 	health = 5
 	movement_cooldown = 0

@@ -34,7 +34,7 @@
 	response_help = "pets the"
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
-	faction = "vagrant"
+	faction = FACTION_VAGRANT
 	harm_intent_damage = 3
 	melee_damage_lower = 6
 	melee_damage_upper = 9

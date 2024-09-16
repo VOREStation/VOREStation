@@ -8,7 +8,7 @@
 	icon_dead = "sheep-dead"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "sheep"
+	faction = FACTION_SHEEP
 	maxHealth = 40
 	health = 40
 

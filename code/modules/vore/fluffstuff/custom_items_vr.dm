@@ -1475,8 +1475,8 @@
 
 //PastelPrinceDan - Kiyoshi/Masumi Maki
 /obj/item/toy/plushie/fluff/slimeowshi
-	name = "Slime-Cat Research Director plushie"
-	desc = "An adorable stuffed toy that resembles a slime. It's pink, and has little cat ears, as well as a tail! Atop its head is a small beret with a Research Director's insignia."
+	name = "Slime-Cat " + JOB_RESEARCH_DIRECTOR + " plushie"
+	desc = "An adorable stuffed toy that resembles a slime. It's pink, and has little cat ears, as well as a tail! Atop its head is a small beret with a " + JOB_RESEARCH_DIRECTOR + "'s insignia."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "kimeowshi"
 	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")

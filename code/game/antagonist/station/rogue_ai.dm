@@ -26,7 +26,7 @@ var/datum/antagonist/rogue_ai/malf
 /datum/antagonist/rogue_ai/get_candidates()
 	..()
 	for(var/datum/mind/player in candidates)
-		if(player.assigned_role && player.assigned_role != "AI")
+		if(player.assigned_role && player.assigned_role != JOB_AI)
 			candidates -= player
 	if(!candidates.len)
 		return list()
@@ -101,4 +101,3 @@ var/datum/antagonist/rogue_ai/malf
 	if (newname)
 		player.SetName(newname)
 	if(player.mind) player.mind.name = player.name
-

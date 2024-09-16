@@ -17,7 +17,7 @@
 // Adds Phoron Wolf
 /mob/living/simple_mob/vore/wolf/phoron
 
-	faction = "underdark"
+	faction = FACTION_UNDERDARK
 	movement_cooldown = -1.5
 
 	harm_intent_damage = 5
@@ -39,7 +39,7 @@
 // Underdark mob spawners
 /obj/tether_away_spawner/underdark_drone_swarm
 	name = "Underdark Drone Swarm Spawner"
-	faction = "underdark"
+	faction = FACTION_UNDERDARK
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 10
@@ -50,7 +50,7 @@
 
 /obj/tether_away_spawner/underdark_normal
 	name = "Underdark Normal Spawner"
-	faction = "underdark"
+	faction = FACTION_UNDERDARK
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
@@ -64,7 +64,7 @@
 
 /obj/tether_away_spawner/underdark_hard
 	name = "Underdark Hard Spawner"
-	faction = "underdark"
+	faction = FACTION_UNDERDARK
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
@@ -77,7 +77,7 @@
 
 /obj/tether_away_spawner/underdark_boss
 	name = "Underdark Boss Spawner"
-	faction = "underdark"
+	faction = FACTION_UNDERDARK
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 100

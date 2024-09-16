@@ -961,13 +961,13 @@
 
 /obj/item/clothing/accessory/poncho/roles/cloak/mantle/hop
 	name = "head of personnel mantle"
-	desc = "A shoulder mantle bearing the colors of the Head of Personnel's uniform, featuring the typical royal blue contrasted by authoritative red."
+	desc = "A shoulder mantle bearing the colors of the " + JOB_HEAD_OF_PERSONNEL + "'s uniform, featuring the typical royal blue contrasted by authoritative red."
 	icon_state = "hopmantle"
 	item_state = "hopmantle"
 
 /obj/item/clothing/accessory/poncho/roles/cloak/mantle/cap
 	name = "site manager mantle"
-	desc = "A shoulder mantle bearing the colors usually found on a Site Manager, a commanding blue with regal gold inlay."
+	desc = "A shoulder mantle bearing the colors usually found on a " + JOB_SITE_MANAGER + ", a commanding blue with regal gold inlay."
 	icon_state = "capmantle"
 	item_state = "capmantle"
 

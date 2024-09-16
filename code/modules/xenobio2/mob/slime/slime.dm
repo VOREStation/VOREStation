@@ -4,7 +4,7 @@ Slime definitions, Life and New live here.
 /mob/living/simple_mob/xeno/slime //Adult values are found here
 	nameVar = "grey"		//When mutated, nameVar might change.
 	desc = "A shifting, mass of goo."
-	faction = "slime"
+	faction = FACTION_SLIME
 	speak_emote = list("garbles", "chirps", "blurbles")
 	colored = 1
 	color = "#CACACA"

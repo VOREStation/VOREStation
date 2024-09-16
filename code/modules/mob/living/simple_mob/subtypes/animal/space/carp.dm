@@ -34,7 +34,7 @@
 	icon_dead = "carp_dead"
 	icon_gib = "carp_gib"
 
-	faction = "carp"
+	faction = FACTION_CARP
 	maxHealth = 25
 	health = 25
 	movement_cooldown = -2

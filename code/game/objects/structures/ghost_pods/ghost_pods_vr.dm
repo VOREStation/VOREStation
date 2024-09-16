@@ -11,7 +11,7 @@
 	var/activated = FALSE
 
 /obj/structure/ghost_pod/manual/attack_ghost(var/mob/observer/dead/user)
-	if(jobban_isbanned(user, "GhostRoles"))
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
 		return
 

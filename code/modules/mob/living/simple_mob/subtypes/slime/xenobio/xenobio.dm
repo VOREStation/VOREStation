@@ -172,7 +172,7 @@
 		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
 		AI.pacify()
 
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 	// If for whatever reason the mob AI (or player) decides to try to attack something anyways.
 	melee_damage_upper = 0

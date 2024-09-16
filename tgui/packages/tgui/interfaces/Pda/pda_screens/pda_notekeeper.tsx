@@ -1,6 +1,6 @@
 /* eslint react/no-danger: "off" */
-import { useBackend } from '../../backend';
-import { Box, Button, Section, Table } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Table } from 'tgui/components';
 
 type Data = { note: string; notename: string };
 

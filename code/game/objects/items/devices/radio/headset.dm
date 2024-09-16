@@ -258,13 +258,13 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the poor fool who will one day be Site Manager."
+	desc = "The headset of the poor fool who will one day be " + JOB_SITE_MANAGER + "."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
 /obj/item/device/radio/headset/heads/hop/alt
 	name = "head of personnel's bowman headset"
-	desc = "The headset of the poor fool who will one day be Site Manager."
+	desc = "The headset of the poor fool who will one day be " + JOB_SITE_MANAGER + "."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 

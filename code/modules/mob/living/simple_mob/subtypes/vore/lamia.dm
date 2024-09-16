@@ -24,7 +24,7 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
-	faction = "lamia"
+	faction = FACTION_LAMIA
 
 	// Vore tags
 	vore_active = 1

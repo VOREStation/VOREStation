@@ -76,7 +76,7 @@
 
 /obj/item/clothing/head/hardhat/firefighter/chief
 	name = "chief firefighter helmet"
-	desc = "A helmet with face mask specially designed for firefighting. This one is in the colors of the Chief Engineer. It's airtight and has a port for internals."
+	desc = "A helmet with face mask specially designed for firefighting. This one is in the colors of the " + JOB_CHIEF_ENGINEER + ". It's airtight and has a port for internals."
 	icon_state = "helmet_firefighter_ce"
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE + 10000
 

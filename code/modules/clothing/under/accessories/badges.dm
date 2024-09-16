@@ -114,7 +114,7 @@
 
 		var/found = FALSE
 		for(var/access in valid_access)
-			if(access in id_card.access || emagged)
+			if(access in id_card.GetAccess() || emagged)
 				to_chat(user, "You imprint your ID details onto the badge.")
 				set_name(user.real_name)
 				found = TRUE
@@ -135,25 +135,25 @@
 
 /obj/item/clothing/accessory/badge/holo/officer
 	name = "officer's badge"
-	desc = "A bronze corporate security badge. Stamped with the words 'Security Officer.'"
+	desc = "A bronze corporate security badge. Stamped with the words '" + JOB_SECURITY_OFFICER + ".'"
 	icon_state = "bronzebadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/warden
 	name = "warden's holobadge"
-	desc = "A silver corporate security badge. Stamped with the words 'Warden.'"
+	desc = "A silver corporate security badge. Stamped with the words '" + JOB_WARDEN + ".'"
 	icon_state = "silverbadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/hos
 	name = "head of security's holobadge"
-	desc = "An immaculately polished gold security badge. Stamped with the words 'Head of Security.'"
+	desc = "An immaculately polished gold security badge. Stamped with the words '" + JOB_HEAD_OF_SECURITY + ".'"
 	icon_state = "goldbadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/detective
 	name = "detective's holobadge"
-	desc = "An immaculately polished gold security badge on leather. Labeled 'Detective.'"
+	desc = "An immaculately polished gold security badge on leather. Labeled '" + JOB_DETECTIVE + ".'"
 	icon_state = "marshalbadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 

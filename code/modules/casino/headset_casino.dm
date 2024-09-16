@@ -15,6 +15,6 @@
 /obj/item/device/encryptionkey/casino
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "cypherkey"
-	channels = list("Casino" = 1)
+	channels = list(CHANNEL_CASINO = 1)
 	origin_tech = list(TECH_ILLEGAL = 1)
 	syndie = 1

@@ -379,7 +379,7 @@
 /obj/item/weapon/entrepreneur/spirit_board/attack_ghost(var/mob/observer/dead/user)
 	if(!ghost_enabled)
 		return
-	if(jobban_isbanned(user, "GhostRoles"))
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, "<span class='warning'>You cannot interact with this board because you are banned from playing ghost roles.</span>")
 		return
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
@@ -526,4 +526,3 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "stylist"
 	starts_with = list(/obj/item/weapon/makeover, /obj/item/weapon/lipstick/random, /obj/item/weapon/nailpolish,  /obj/item/weapon/nailpolish_remover, /obj/item/weapon/haircomb, /obj/item/clothing/head/hairnet, /obj/item/device/ticket_printer/train)
-

@@ -19,7 +19,7 @@
 	tt_desc = "S Choeros hirtus" //diyaab and shantak are technically reletives!
 	catalogue_data = list(/datum/category_item/catalogue/fauna/diyaab)
 
-	faction = "diyaab"
+	faction = FACTION_DIYAAB
 
 	icon_state = "diyaab"
 	icon_living = "diyaab"

@@ -69,3 +69,9 @@
 	savefile_key = "AUTO_AFK"
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/messenger_embeds
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "MessengerEmbeds"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER

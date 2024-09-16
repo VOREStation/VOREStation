@@ -23,7 +23,7 @@
 	tt_desc = "S Felidae fluctursora"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/kururak)
 
-	faction = "kururak"
+	faction = FACTION_KURUAK
 
 	icon_state = "bigcat"
 	icon_living = "bigcat"

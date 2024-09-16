@@ -93,7 +93,7 @@
 	suggested_punishments = "200 thaler fine.  Give Drone a temporary paper stating that it is a drone, if the ID was lost.  Fax VirGov.  Inform owner of \
 	Drone if possible.  Instruct Drone to obtain new ID at its earliest opportunity, if it was lost."
 	notes = "This is only applicable to Drone intelligences which possess autonomous capability.  It must be proven that the offender is a Drone, which can be \
-	accomplished in various ways, generally with the expertise of a Roboticist.  Lawbound synthetics, maintenance drones, and \
+	accomplished in various ways, generally with the expertise of a " + JOB_ROBOTICIST + ".  Lawbound synthetics, maintenance drones, and \
 	simple bots do not require an ID card.  No fine or VirGov fax should be sent if the Drone's ID was lost due to theft and the ID is able to be recovered."
 	mandated = TRUE
 
@@ -157,7 +157,7 @@
 	name = "Excessive Force"
 	definition = "Using more force than what is required to safely detain someone, using force against a helpless or incapacitated person, \
 	or using force against an unarmed and compliant person."
-	suggested_punishments = "Demotion.  Termination at discretion of Superior, or Station Director.  Send notice to Central Command if a Head of Security had used excessive force."
+	suggested_punishments = "Demotion.  Termination at discretion of Superior, or " + JOB_SITE_MANAGER + ".  Send notice to Central Command if a " + JOB_HEAD_OF_SECURITY + " had used excessive force."
 	notes = "This charge also is applicible to non-Security personnel acting in self defense.  \
 	Persons whom have caused a person to die as a result of excessive force should have [quick_link("Manslaughter")] applied instead, if the circumstances were \
 	unjustified."
@@ -205,7 +205,7 @@
 	definition = "Creating an intelligence from an codeline that has not been registered with, or audited by, the Emergent Intelligence Oversight (EIO)."
 	suggested_punishments = "Decommissioning of the newly created Drone.  Investigation of Drone to determine level of intelligence, if possible.  \
 	Hold until Transfer for the creator."
-	notes = "It must be proven that the Drone is in fact a Drone, which can be accomplished in various ways, generally with the expertise of a Roboticist.  \
+	notes = "It must be proven that the Drone is in fact a Drone, which can be accomplished in various ways, generally with the expertise of a " + JOB_ROBOTICIST + ".  \
 	It must also be proven that the Drone's codeline is also unregistered. Intelligences produced from a Maintenance Drone Fabricator, \
 	the Research department, and through other regular means are by default already registered.  Very simple machines such as securitrons do not require registration.\
 	<br><br>\

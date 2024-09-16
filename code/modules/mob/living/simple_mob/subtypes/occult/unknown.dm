@@ -15,7 +15,7 @@
 	icon_living = "glitch_boss"
 	icon_dead = "glitch_boss_dead"
 
-	faction = "MATH"
+	faction = FACTION_MATH
 
 	maxHealth = 2000
 	health = 2000
@@ -296,7 +296,7 @@
 	icon_state = "glitch_boss"
 	icon_living = "glitch_boss"
 	icon_dead = "glitch_boss_dead"
-	faction = "MATH"
+	faction = FACTION_MATH
 
 	maxHealth = 20
 	health = 20

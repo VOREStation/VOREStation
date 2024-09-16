@@ -31,7 +31,7 @@
 	icon = 'icons/mob/vore64x64.dmi'
 	vis_height = 64
 
-	faction = "snake"
+	faction = FACTION_SNAKE
 	maxHealth = 200
 	health = 200
 

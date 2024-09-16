@@ -18,7 +18,7 @@
 
 /obj/tether_away_spawner/debrisfield/derelict
 	name = "debris field derelict random mob spawner"
-	faction = "derelict"
+	faction = FACTION_DERELICT
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 2,
 		/mob/living/simple_mob/mechanical/infectionbot = 3,
@@ -27,14 +27,14 @@
 
 /obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm
 	name = "debris field derelict maint swarm"
-	faction = "derelict"
+	faction = FACTION_DERELICT
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 4
 	)
 
 /obj/tether_away_spawner/debrisfield/derelict/mech_wizard
 	name = "debris field derelict wizard lol"
-	faction = "derelict"
+	faction = FACTION_DERELICT
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/technomancer_golem = 2
 	)

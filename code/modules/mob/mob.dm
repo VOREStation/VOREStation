@@ -671,7 +671,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == JOB_CYBORG || mind.assigned_role == JOB_AI))
 		return 1
 	return istype(src, /mob/living/silicon) || get_species() == "Machine"
 
@@ -1184,6 +1184,7 @@
 /mob/proc/set_viewsize(var/new_view = world.view)
 	if (client && new_view != client.view)
 		client.view = new_view
+		client.attempt_auto_fit_viewport()
 		return TRUE
 	return FALSE
 

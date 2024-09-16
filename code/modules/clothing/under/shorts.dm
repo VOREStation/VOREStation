@@ -217,7 +217,7 @@
 	icon_state = "chemistryf"
 
 /obj/item/clothing/under/rank/chief_medical_officer/skirt
-	desc = "It's a jumpskirt worn by those with the experience to be \"Chief Medical Officer\". It provides minor biological protection."
+	desc = "It's a jumpskirt worn by those with the experience to be \"" + JOB_CHIEF_MEDICAL_OFFICER + "\". It provides minor biological protection."
 	name = "chief medical officer's jumpskirt"
 	icon_state = "cmof"
 
@@ -237,11 +237,11 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/warden/skirt
-	desc = "Standard feminine fashion for a Warden. It is made of sturdier material than standard jumpskirts. It has the word \"Warden\" written on the shoulders."
+	desc = "Standard feminine fashion for a " + JOB_WARDEN + ". It is made of sturdier material than standard jumpskirts. It has the word \"" + JOB_WARDEN + "\" written on the shoulders."
 	name = "warden's jumpskirt"
 	icon_state = "wardenf"
 
 /obj/item/clothing/under/rank/head_of_security/skirt
-	desc = "It's a fashionable jumpskirt worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
+	desc = "It's a fashionable jumpskirt worn by those few with the dedication to achieve the position of \"" + JOB_HEAD_OF_SECURITY + "\". It has additional armor to protect the wearer."
 	name = "head of security's jumpskirt"
 	icon_state = "hosf"

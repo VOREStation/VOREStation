@@ -34,7 +34,7 @@
 	. += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit
 	// VOREStation Edit: End
 
-	. += "*---------*"
+	. += ""
 
 	if(print_flavor_text()) . += "<br>[print_flavor_text()]"
 

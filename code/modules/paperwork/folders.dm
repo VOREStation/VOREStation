@@ -26,7 +26,7 @@
 	icon_state = "folder_white"
 
 /obj/item/weapon/folder/blue_captain
-	desc = "A blue folder with Site Manager markings."
+	desc = "A blue folder with " + JOB_SITE_MANAGER + " markings."
 	icon_state = "folder_captain"
 
 /obj/item/weapon/folder/blue_hop

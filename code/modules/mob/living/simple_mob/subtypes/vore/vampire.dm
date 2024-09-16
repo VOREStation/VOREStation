@@ -28,7 +28,7 @@
 		"countessnude"
 	)
 
-	faction = "vampire"
+	faction = FACTION_VAMPIRE
 
 /mob/living/simple_mob/vore/vampire/New()
 	..()

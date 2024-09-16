@@ -21,7 +21,7 @@ var/const/access_explorer = 43
 	flag = EXPLORER
 	departments = list(DEPARTMENT_RESEARCH, DEPARTMENT_PLANET)
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 4
 	spawn_positions = 4
 	supervisors = "the Research Director"
@@ -34,7 +34,7 @@ var/const/access_explorer = 43
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."
 
 	alt_titles = list(
-		"Pilot" = /decl/hierarchy/outfit/job/pilot)
+		JOB_PILOT = /decl/hierarchy/outfit/job/pilot)
 
 /datum/job/rd
     access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
@@ -47,9 +47,9 @@ var/const/access_explorer = 43
                         access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
                         access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch,
                         access_network, access_maint_tunnels, access_explorer, access_eva, access_external_airlocks)
-			
+
 /*
 	alt_titles = list(
-		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
-		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
+		JOB_ALT_EXPLORERE_TECHNICIAN = /decl/hierarchy/outfit/job/explorer2/technician,
+		JOB_ALT_EXPLORER_MEDIC = /decl/hierarchy/outfit/job/explorer2/medic)
 */

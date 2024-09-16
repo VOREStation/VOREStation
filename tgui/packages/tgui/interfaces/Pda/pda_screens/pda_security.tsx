@@ -1,6 +1,7 @@
-import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section } from '../../components';
-import { GeneralRecord, RecordList, SecurityRecord } from './pda_types';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section } from 'tgui/components';
+
+import { GeneralRecord, RecordList, SecurityRecord } from '../pda_types';
 
 type Data = {
   records: {

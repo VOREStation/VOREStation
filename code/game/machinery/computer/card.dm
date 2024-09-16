@@ -59,7 +59,7 @@
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && (access_change_ids in id_card.access) && (user.unEquip(id_card) || (id_card.loc == user && istype(user,/mob/living/silicon/robot)))) //Grippers. Again. ~Mechoid
+	if(!scan && (access_change_ids in id_card.GetAccess()) && (user.unEquip(id_card) || (id_card.loc == user && istype(user,/mob/living/silicon/robot)))) //Grippers. Again. ~Mechoid
 		user.drop_item()
 		id_card.forceMove(src)
 		scan = id_card
@@ -129,7 +129,7 @@
 			all_centcom_access.Add(list(list(
 				"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp;"),
 				"ref" = access,
-				"allowed" = (access in modify.access) ? 1 : 0)))
+				"allowed" = (access in modify.GetAccess()) ? 1 : 0)))
 	else if(modify)
 		for(var/i in ACCESS_REGION_SECURITY to ACCESS_REGION_SUPPLY)
 			var/list/accesses = list()
@@ -138,7 +138,7 @@
 					accesses.Add(list(list(
 						"desc" = replacetext(get_access_desc(access), " ", "&nbsp;"),
 						"ref" = access,
-						"allowed" = (access in modify.access) ? 1 : 0)))
+						"allowed" = (access in modify.GetAccess()) ? 1 : 0)))
 
 			regions.Add(list(list(
 				"name" = get_region_accesses_name(i),

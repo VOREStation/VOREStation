@@ -166,7 +166,7 @@ var/list/sacrificed = list()
 		if(!waiting_for_input[target]) //so we don't spam them with dialogs if they hesitate
 			waiting_for_input[target] = 1
 
-			if(!cult.can_become_antag(target.mind) || jobban_isbanned(target, "cultist"))//putting jobban check here because is_convertable uses mind as argument
+			if(!cult.can_become_antag(target.mind) || jobban_isbanned(target, JOB_CULTIST))//putting jobban check here because is_convertable uses mind as argument
 				//waiting_for_input ensures this is only shown once, so they basically auto-resist from here on out. They still need to find a way to get off the freaking rune if they don't want to burn to death, though.
 				to_chat(target, "<span class='cult'>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</span>")
 				to_chat(target, "<span class='danger'>And you were able to force it out of your mind. You now know the truth, there's something horrible out there, stop it and its minions at all costs.</span>")
@@ -351,7 +351,7 @@ var/list/sacrificed = list()
 			to_chat(usr, "<span class='warning'>The sacrifical corpse is not dead. You must free it from this world of illusions before it may be used.</span>")
 		return fizzle()
 
-	if(!cult.can_become_antag(corpse_to_raise.mind) || jobban_isbanned(corpse_to_raise, "cultist"))
+	if(!cult.can_become_antag(corpse_to_raise.mind) || jobban_isbanned(corpse_to_raise, JOB_CULTIST))
 		to_chat(usr, "<span class='warning'>The Geometer of Blood refuses to touch this one.</span>")
 		return fizzle()
 	else if(!corpse_to_raise.client && corpse_to_raise.mind) //Don't force the dead person to come back if they don't want to.
@@ -459,7 +459,7 @@ var/list/sacrificed = list()
 		break
 	if(!ghost)
 		return this_rune.fizzle()
-	if(jobban_isbanned(ghost, "cultist"))
+	if(jobban_isbanned(ghost, JOB_CULTIST))
 		return this_rune.fizzle()
 
 	usr.say("Gal'h'rfikk harfrandid mud[pick("'","`")]gib!")

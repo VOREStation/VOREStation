@@ -26,7 +26,7 @@
 /obj/item/sticky_pad/attackby(var/obj/item/weapon/thing, var/mob/user)
 	if(istype(thing, /obj/item/weapon/pen))
 
-		if(jobban_isbanned(user, "Graffiti"))
+		if(jobban_isbanned(user, JOB_GRAFFITI))
 			to_chat(user, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
 			return
 
