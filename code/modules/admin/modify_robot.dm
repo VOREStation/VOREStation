@@ -64,6 +64,6 @@
 			target.crisis_override = !target.crisis_override
 			return TRUE
 		if("add_restriction")
-			target.restrict_modules_to += robot_modules[params["new_restriction"]]
+			target.restrict_modules_to += params["new_restriction"]
 		if("remove_restriction")
-			target.restrict_modules_to -= robot_modules[params["rem_restriction"]]
+			target.restrict_modules_to -= params["rem_restriction"]

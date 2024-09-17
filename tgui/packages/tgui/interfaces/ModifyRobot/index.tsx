@@ -3,16 +3,14 @@ import { useState } from 'react';
 import { useBackend } from '../../backend';
 import {
   Box,
-  Button,
   Divider,
   Dropdown,
-  Flex,
+  LabeledList,
   NoticeBox,
-  Section,
-  Stack,
   Tabs,
 } from '../../components';
 import { Window } from '../../layouts';
+import { ModifyTobotNoModule } from './ModifyRobotNoModule';
 import { Data } from './types';
 
 export const ModifyRobot = (props) => {
@@ -36,91 +34,28 @@ export const ModifyRobot = (props) => {
       <Window.Content scrollable>
         {target ? (
           <NoticeBox info>
-            {target.name} played by {target.ckey}.
+            {target.name}
+            {!!target.ckey && ' played by ' + target.ckey}.
           </NoticeBox>
         ) : (
           <NoticeBox danger>No target selected. Please pick one.</NoticeBox>
         )}
-        <Dropdown
-          selected={target ? target.name : ''}
-          options={all_players}
-          onSelected={(value) =>
-            act('select_target', {
-              new_target: value,
-            })
-          }
-        />
+        <LabeledList>
+          <LabeledList.Item label="Player Selection">
+            <Dropdown
+              selected={target ? target.name : ''}
+              options={all_players}
+              onSelected={(value) =>
+                act('select_target', {
+                  new_target: value,
+                })
+              }
+            />
+          </LabeledList.Item>
+        </LabeledList>
+        <Divider />
         {target && !target.module ? (
-          <>
-            <NoticeBox warning>
-              Target has no active module. Limited options available.
-            </NoticeBox>
-            <Button
-              fluid
-              color={target.crisis_override ? 'red' : 'green'}
-              onClick={() => act('toggle_crisis')}
-            >
-              {(target.crisis_override ? 'Disable' : 'Enable') +
-                ' Crisis Override'}
-            </Button>
-            <Divider />
-            <Flex>
-              <Flex.Item grow />
-              <Flex.Item shrink>
-                <Section title="Active Restrictions">
-                  <Stack>
-                    <Stack.Item>
-                      {target.active_restrictions.map(
-                        (active_restriction, i) => {
-                          return (
-                            <Button
-                              fluid
-                              color="red"
-                              key={i}
-                              onClick={() =>
-                                act('remove_restriction', {
-                                  rem_restriction: active_restriction,
-                                })
-                              }
-                            >
-                              {active_restriction}
-                            </Button>
-                          );
-                        },
-                      )}
-                    </Stack.Item>
-                  </Stack>
-                </Section>
-              </Flex.Item>
-              <Flex.Item shrink>
-                <Section title="Possible Restrictions">
-                  <Stack>
-                    <Stack.Item>
-                      {target.possible_restrictions.map(
-                        (possible_restriction, i) => {
-                          return (
-                            <Button
-                              fluid
-                              color="green"
-                              key={i}
-                              onClick={() =>
-                                act('add_restriction', {
-                                  new_restriction: possible_restriction,
-                                })
-                              }
-                            >
-                              {possible_restriction}
-                            </Button>
-                          );
-                        },
-                      )}
-                    </Stack.Item>
-                  </Stack>
-                </Section>
-              </Flex.Item>
-              <Flex.Item grow />
-            </Flex>
-          </>
+          <ModifyTobotNoModule target={target} />
         ) : (
           <>
             <Tabs>
