@@ -1,4 +1,4 @@
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Button,
   Divider,
@@ -6,10 +6,11 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui/components';
+
 import { Target } from './types';
 
-export const ModifyTobotNoModule = (props: { target: Target }) => {
+export const ModifyRobotNoModule = (props: { target: Target }) => {
   const { target } = props;
   const { act } = useBackend();
 

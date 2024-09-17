@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Divider,
@@ -8,9 +7,11 @@ import {
   LabeledList,
   NoticeBox,
   Tabs,
-} from '../../components';
-import { Window } from '../../layouts';
-import { ModifyTobotNoModule } from './ModifyRobotNoModule';
+} from 'tgui/components';
+import { Window } from 'tgui/layouts';
+
+import { ModifyRobotNoModule } from './ModifyRobotNoModule';
+import { ModifyRobotModules } from './ModifyRobotTabs/ModifyRobotModules';
 import { Data } from './types';
 
 export const ModifyRobot = (props) => {
@@ -22,7 +23,7 @@ export const ModifyRobot = (props) => {
 
   const tabs: React.JSX.Element[] = [];
 
-  tabs[0] = <Box />;
+  tabs[0] = <ModifyRobotModules target={target!} />;
   tabs[1] = <Box />;
   tabs[2] = <Box />;
   tabs[3] = <Box />;
@@ -54,33 +55,34 @@ export const ModifyRobot = (props) => {
           </LabeledList.Item>
         </LabeledList>
         <Divider />
-        {target && !target.module ? (
-          <ModifyTobotNoModule target={target} />
-        ) : (
-          <>
-            <Tabs>
-              <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
-                Module Manager
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-                Upgrade Manager
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-                Radio Manager
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-                Component Manager
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
-                Access Manager
-              </Tabs.Tab>
-              <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
-                Law Manager
-              </Tabs.Tab>
-            </Tabs>
-            {tabs[tab]}
-          </>
-        )}
+        {!!target &&
+          (!target.module ? (
+            <ModifyRobotNoModule target={target} />
+          ) : (
+            <>
+              <Tabs>
+                <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
+                  Module Manager
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
+                  Upgrade Manager
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
+                  Radio Manager
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
+                  Component Manager
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
+                  Access Manager
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
+                  Law Manager
+                </Tabs.Tab>
+              </Tabs>
+              {tabs[tab]}
+            </>
+          ))}
       </Window.Content>
     </Window>
   );
