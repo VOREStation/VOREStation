@@ -78,8 +78,8 @@ export const ModifyRobot = (props) => {
                               color="red"
                               key={i}
                               onClick={() =>
-                                act('add_restriction', {
-                                  new_restriction: active_restriction,
+                                act('remove_restriction', {
+                                  rem_restriction: active_restriction,
                                 })
                               }
                             >
@@ -104,8 +104,8 @@ export const ModifyRobot = (props) => {
                               color="green"
                               key={i}
                               onClick={() =>
-                                act('remove_restriction', {
-                                  rem_restriction: possible_restriction,
+                                act('add_restriction', {
+                                  new_restriction: possible_restriction,
                                 })
                               }
                             >
