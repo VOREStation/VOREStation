@@ -121,7 +121,7 @@
 
 /datum/robot_sprite/service/drone
 	name = "AG Model-Serv"
-	sprite_icon_state = "drone-crisis"
+	sprite_icon_state = "drone"
 	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/service/drone_hydro
