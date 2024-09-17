@@ -30,7 +30,7 @@ export const ModifyRobot = (props) => {
   tabs[5] = <Box />;
 
   return (
-    <Window width={400} height={600}>
+    <Window width={target?.module ? 800 : 400} height={600}>
       <Window.Content scrollable>
         {target ? (
           <NoticeBox info>
@@ -60,22 +60,22 @@ export const ModifyRobot = (props) => {
           <>
             <Tabs>
               <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
-                Smites
+                Module Manager
               </Tabs.Tab>
               <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-                Medical
+                Upgrade Manager
               </Tabs.Tab>
               <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-                Abilities
+                Radio Manager
               </Tabs.Tab>
               <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-                Inventory
+                Component Manager
               </Tabs.Tab>
               <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
-                Admin
+                Access Manager
               </Tabs.Tab>
               <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
-                Fixes
+                Law Manager
               </Tabs.Tab>
             </Tabs>
             {tabs[tab]}
