@@ -554,3 +554,18 @@ Talon pin
 	"Service - Echelons" = /obj/item/clothing/accessory/solgov/department/service/army
 	)
 	gear_tweaks += new/datum/gear_tweak/path(insignia)
+
+/datum/gear/accessory/belt_selection
+	display_name = "belts (selection, colorable)"
+	path = /obj/item/clothing/accessory/belt
+
+/datum/gear/accessory/belt_selection/New()
+	..()
+	var/list/wristband_lists = list(
+	"Thin Belt" = /obj/item/clothing/accessory/belt,
+	"Thick Belt" = /obj/item/clothing/accessory/belt/thick,
+	"Strap Belt" = /obj/item/clothing/accessory/belt/strap,
+	"Studded Belt" = /obj/item/clothing/accessory/belt/studded
+	)
+	gear_tweaks += new/datum/gear_tweak/path(wristband_lists)
+	gear_tweaks += gear_tweak_free_color_choice
