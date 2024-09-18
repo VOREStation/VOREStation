@@ -8,4 +8,4 @@ export BYOND_MAJOR=515
 # Byond Minor
 export BYOND_MINOR=1637
 # Macro Count
-export MACRO_COUNT=4
+export MACRO_COUNT=8

@@ -182,12 +182,13 @@ export const IconCutterTarget = new Juke.Target({
       .map((file) => file.replace(`.dmi.toml`, '.png'));
   },
   executes: async () => {
-    await Juke.exec(cutter_path, [
-      '--dont-wait',
-      '--templates',
-      'cutter_templates',
-      'icons',
-    ]);
+    // Don't run icon cutter, we don't use it and it's not compiled for ubuntu 20.04
+    // await Juke.exec(cutter_path, [
+    //   '--dont-wait',
+    //   '--templates',
+    //   'cutter_templates',
+    //   'icons',
+    // ]);
   },
 });
 
