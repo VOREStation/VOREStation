@@ -33,7 +33,11 @@
 	var/datum/dna2/record/R = current_project.mydna
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
 	if(current_project.locked)
-		H.resleeve_lock = current_project.ckey
+		if(current_project.ckey)
+			H.resleeve_lock = current_project.ckey
+		else
+			// Ensure even body scans without an attached ckey respect locking
+			H.resleeve_lock = "@badckey"
 
 	//Fix the external organs
 	for(var/part in current_project.limb_data)
@@ -180,6 +184,7 @@
 		occupant = null
 		if(locked)
 			locked = 0
+		update_icon()
 		return
 
 	return
@@ -282,7 +287,11 @@
 	var/datum/dna2/record/R = current_project.mydna
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
 	if(current_project.locked)
-		H.resleeve_lock = current_project.ckey
+		if(current_project.ckey)
+			H.resleeve_lock = current_project.ckey
+		else
+			// Ensure even body scans without an attached ckey respect locking
+			H.resleeve_lock = "@badckey"
 
 	//Fix the external organs
 	for(var/part in current_project.limb_data)
