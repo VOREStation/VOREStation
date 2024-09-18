@@ -595,13 +595,8 @@ var/global/list/robot_modules = list(
 					)
 	pto_type = PTO_CIVILIAN
 
-<<<<<<< HEAD
-/obj/item/robot_module/robot/clerical/butler
-	channels = list("Service" = 1)
-=======
 /obj/item/robot_module/robot/clerical/butler
 	channels = list(CHANNEL_SERVICE = 1)
->>>>>>> master
 
 /obj/item/robot_module/robot/clerical/butler
 	name = "service robot module"
@@ -677,16 +672,6 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/borg/sight/material(src)
-<<<<<<< HEAD
-	src.modules += new /obj/item/tool/wrench/cyborg(src)
-	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
-	src.modules += new /obj/item/storage/bag/ore(src)
-	src.modules += new /obj/item/pickaxe/borgdrill(src)
-	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
-	src.modules += new /obj/item/gripper/miner(src)
-	src.modules += new /obj/item/mining_scanner(src)
-	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
-=======
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/storage/bag/ore(src)
@@ -696,7 +681,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/mining_scanner(src)
 	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
->>>>>>> master
 
 	src.modules += new /obj/item/dogborg/sleeper/compactor/supply(src)
 	src.emag += new /obj/item/dogborg/pounce(src)

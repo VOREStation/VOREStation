@@ -525,9 +525,4 @@
 	desc = "A kit containing everything that a stylist needs."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "stylist"
-<<<<<<< HEAD
 	starts_with = list(/obj/item/makeover, /obj/item/lipstick/random, /obj/item/nailpolish,  /obj/item/nailpolish_remover, /obj/item/haircomb, /obj/item/clothing/head/hairnet, /obj/item/ticket_printer/train)
-
-=======
-	starts_with = list(/obj/item/makeover, /obj/item/lipstick/random, /obj/item/nailpolish,  /obj/item/nailpolish_remover, /obj/item/haircomb, /obj/item/clothing/head/hairnet, /obj/item/ticket_printer/train)
->>>>>>> master

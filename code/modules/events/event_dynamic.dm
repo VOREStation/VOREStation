@@ -197,33 +197,18 @@ var/list/event_last_fired = list()
 		if(istype(M, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = M
 			if(R.module)
-<<<<<<< HEAD
-				if(istype(R.module, /obj/item/robot_module/robot/engineering))
-					active_with_role["Engineer"]++
-				else if(istype(R.module, /obj/item/robot_module/robot/security))
-=======
 				if(istype(R.module, /obj/item/robot_module/robot/engineering))
 					active_with_role[JOB_ENGINEER]++
 				else if(istype(R.module, /obj/item/robot_module/robot/security))
->>>>>>> master
 					active_with_role["Security"]++
 				else if(istype(R.module, /obj/item/robot_module/robot/medical))
 					active_with_role["Medical"]++
-<<<<<<< HEAD
-				else if(istype(R.module, /obj/item/robot_module/robot/research))
-					active_with_role["Scientist"]++
-				else if(istype(R.module, /obj/item/robot_module/robot/janitor))
-					active_with_role["Janitor"]++
-				else if(istype(R.module, /obj/item/robot_module/robot/clerical/butler))
-					active_with_role["Botanist"]++
-=======
 				else if(istype(R.module, /obj/item/robot_module/robot/research))
 					active_with_role[JOB_SCIENTIST]++
 				else if(istype(R.module, /obj/item/robot_module/robot/janitor))
 					active_with_role[JOB_JANITOR]++
 				else if(istype(R.module, /obj/item/robot_module/robot/clerical/butler))
 					active_with_role[JOB_BOTANIST]++
->>>>>>> master
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 			active_with_role[JOB_ENGINEER]++

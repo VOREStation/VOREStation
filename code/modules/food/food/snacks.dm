@@ -1347,13 +1347,8 @@
 	. = ..()
 	reagents.add_reagent("protein", 8)
 
-<<<<<<< HEAD
-/obj/item/reagent_containers/food/snacks/clownburger
-	name = "Clown Burger"
-=======
 /obj/item/reagent_containers/food/snacks/clownburger
 	name = JOB_CLOWN + " Burger"
->>>>>>> master
 	desc = "This tastes funny..."
 	icon_state = "clownburger"
 	filling_color = "#FF00FF"
@@ -1363,13 +1358,8 @@
 	bitesize = 2
 
 
-<<<<<<< HEAD
-/obj/item/reagent_containers/food/snacks/mimeburger
-	name = "Mime Burger"
-=======
 /obj/item/reagent_containers/food/snacks/mimeburger
 	name = JOB_MIME + " Burger"
->>>>>>> master
 	desc = "Its taste defies language."
 	icon_state = "mimeburger"
 	filling_color = "#FFFFFF"
@@ -2467,13 +2457,8 @@
 	reagents.add_reagent("blood", 10)
 	reagents.add_reagent("water", 5)
 
-<<<<<<< HEAD
-/obj/item/reagent_containers/food/snacks/clownstears
-	name = "Clown's Tears"
-=======
 /obj/item/reagent_containers/food/snacks/clownstears
 	name = JOB_CLOWN + "'s Tears"
->>>>>>> master
 	desc = "Not very funny."
 	icon_state = "clownstears"
 	filling_color = "#C4FBFF"

@@ -66,13 +66,8 @@
 		return TRUE
 
 	// High security - can only be operated when the user has an ID with access on them.
-<<<<<<< HEAD
-	var/obj/item/card/id/I = usr.GetIdCard()
-	if(!istype(I) || !(access_network in I.access))
-=======
 	var/obj/item/card/id/I = usr.GetIdCard()
 	if(!istype(I) || !(access_network in I.GetAccess()))
->>>>>>> master
 		return TRUE
 
 	switch(action)

@@ -25,13 +25,8 @@
 	desc = "A white folder."
 	icon_state = "folder_white"
 
-<<<<<<< HEAD
-/obj/item/folder/blue_captain
-	desc = "A blue folder with Site Manager markings."
-=======
 /obj/item/folder/blue_captain
 	desc = "A blue folder with " + JOB_SITE_MANAGER + " markings."
->>>>>>> master
 	icon_state = "folder_captain"
 
 /obj/item/folder/blue_hop

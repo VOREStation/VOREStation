@@ -38,15 +38,9 @@
 
 /obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
 
-<<<<<<< HEAD
-	if(istype(W, /obj/item/card/id))
-		var/obj/item/card/id/C = W
-		if((access_captain in C.access) || (access_security in C.access) || (access_engine in C.access))
-=======
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/card/id/C = W
 		if((access_captain in C.GetAccess()) || (access_security in C.GetAccess()) || (access_engine in C.GetAccess()))
->>>>>>> master
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
