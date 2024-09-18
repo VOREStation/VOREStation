@@ -529,5 +529,5 @@
 	starts_with = list(/obj/item/makeover, /obj/item/lipstick/random, /obj/item/nailpolish,  /obj/item/nailpolish_remover, /obj/item/haircomb, /obj/item/clothing/head/hairnet, /obj/item/ticket_printer/train)
 
 =======
-	starts_with = list(/obj/item/weapon/makeover, /obj/item/weapon/lipstick/random, /obj/item/weapon/nailpolish,  /obj/item/weapon/nailpolish_remover, /obj/item/weapon/haircomb, /obj/item/clothing/head/hairnet, /obj/item/device/ticket_printer/train)
+	starts_with = list(/obj/item/makeover, /obj/item/lipstick/random, /obj/item/nailpolish,  /obj/item/nailpolish_remover, /obj/item/haircomb, /obj/item/clothing/head/hairnet, /obj/item/ticket_printer/train)
 >>>>>>> master

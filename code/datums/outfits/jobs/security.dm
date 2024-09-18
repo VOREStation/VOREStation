@@ -12,7 +12,7 @@
 
 /decl/hierarchy/outfit/job/security/hos
 	name = OUTFIT_JOB_NAME(JOB_HEAD_OF_SECURITY)
-	l_ear = /obj/item/device/radio/headset/heads/hos
+	l_ear = /obj/item/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/rank/head_of_security
 	id_type = /obj/item/card/id/security/head
 	pda_type = /obj/item/pda/heads/hos

@@ -76,7 +76,7 @@ var/warrant_uid = 0
 	var/obj/item/card/id/I = usr.GetIdCard()
 	if(!istype(I) || !I.registered_name || !(access_security in I.access))
 =======
-	var/obj/item/weapon/card/id/I = usr.GetIdCard()
+	var/obj/item/card/id/I = usr.GetIdCard()
 	if(!istype(I) || !I.registered_name || !(access_security in I.GetAccess()))
 >>>>>>> master
 		to_chat(usr, "Authentication error: Unable to locate ID with appropriate access to allow this operation.")

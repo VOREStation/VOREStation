@@ -86,7 +86,7 @@
 	else if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		if(jobban_isbanned(user, "Graffiti"))
 =======
-	else if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/photo))
+	else if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		if(jobban_isbanned(user, JOB_GRAFFITI))
 >>>>>>> master
 			to_chat(user, "<span class='warning'>You are banned from leaving persistent information across rounds.</span>")

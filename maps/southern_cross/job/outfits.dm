@@ -26,13 +26,13 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 
 /decl/hierarchy/outfit/job/explorer2/technician
 	name = OUTFIT_JOB_NAME(JOB_ALT_EXPLORERE_TECHNICIAN)
-	belt = /obj/item/weapon/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full
 	pda_slot = slot_l_store
 	id_pda_assignment = JOB_ALT_EXPLORERE_TECHNICIAN
 
 /decl/hierarchy/outfit/job/explorer2/medic
 	name = OUTFIT_JOB_NAME(JOB_ALT_EXPLORER_MEDIC)
-	l_hand = /obj/item/weapon/storage/firstaid/regular
+	l_hand = /obj/item/storage/firstaid/regular
 	pda_slot = slot_l_store
 	id_pda_assignment = JOB_ALT_EXPLORER_MEDIC
 
@@ -47,8 +47,8 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	uniform_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1 = 1)
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
-	pda_type = /obj/item/device/pda //VOREStation Edit - Civilian
-	id_type = /obj/item/weapon/card/id/civilian/pilot
+	pda_type = /obj/item/pda //VOREStation Edit - Civilian
+	id_type = /obj/item/card/id/civilian/pilot
 	id_pda_assignment = JOB_PILOT
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 

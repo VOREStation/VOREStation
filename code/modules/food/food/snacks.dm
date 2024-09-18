@@ -1351,7 +1351,7 @@
 /obj/item/reagent_containers/food/snacks/clownburger
 	name = "Clown Burger"
 =======
-/obj/item/weapon/reagent_containers/food/snacks/clownburger
+/obj/item/reagent_containers/food/snacks/clownburger
 	name = JOB_CLOWN + " Burger"
 >>>>>>> master
 	desc = "This tastes funny..."
@@ -1367,7 +1367,7 @@
 /obj/item/reagent_containers/food/snacks/mimeburger
 	name = "Mime Burger"
 =======
-/obj/item/weapon/reagent_containers/food/snacks/mimeburger
+/obj/item/reagent_containers/food/snacks/mimeburger
 	name = JOB_MIME + " Burger"
 >>>>>>> master
 	desc = "Its taste defies language."
@@ -2471,7 +2471,7 @@
 /obj/item/reagent_containers/food/snacks/clownstears
 	name = "Clown's Tears"
 =======
-/obj/item/weapon/reagent_containers/food/snacks/clownstears
+/obj/item/reagent_containers/food/snacks/clownstears
 	name = JOB_CLOWN + "'s Tears"
 >>>>>>> master
 	desc = "Not very funny."

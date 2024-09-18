@@ -141,11 +141,11 @@
 	item_state = "gold_id"
 	preserve_item = 1
 
-/obj/item/weapon/card/id/gold/captain
+/obj/item/card/id/gold/captain
 	assignment = JOB_SITE_MANAGER
 	rank = JOB_SITE_MANAGER
 
-/obj/item/weapon/card/id/gold/captain/spare
+/obj/item/card/id/gold/captain/spare
 	name = "\improper " + JOB_SITE_MANAGER + "'s spare ID"
 	desc = "The emergency spare ID for the station's very own Big Cheese."
 	icon_state = "gold-id-alternate"
@@ -202,7 +202,7 @@
 	. = ..()
 	access |= get_all_station_access()
 
-/obj/item/weapon/card/id/centcom/ERT
+/obj/item/card/id/centcom/ERT
 	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
 	assignment = JOB_EMERGENCY_RESPONSE_TEAM
 	icon_state = "ert-id"
@@ -237,7 +237,7 @@
 	secondary_color = rgb(223,127,95)
 	rank = JOB_SECURITY_OFFICER
 
-/obj/item/weapon/card/id/security/warden
+/obj/item/card/id/security/warden
 	assignment = JOB_WARDEN
 	rank = JOB_WARDEN
 
@@ -256,7 +256,7 @@
 	primary_color = rgb(189,94,0)
 	secondary_color = rgb(223,159,95)
 
-/obj/item/weapon/card/id/engineering/atmos
+/obj/item/card/id/engineering/atmos
 	assignment = JOB_ATMOSPHERIC_TECHNICIAN
 	rank = JOB_ATMOSPHERIC_TECHNICIAN
 
@@ -298,7 +298,7 @@
 	assignment = JOB_QUARTERMASTER
 	rank = JOB_QUARTERMASTER
 
-/obj/item/weapon/card/id/assistant
+/obj/item/card/id/assistant
 	assignment = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
 	rank = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
 
@@ -355,9 +355,9 @@
 	configured = 1
 	to_chat(user, "<span class='notice'>Card settings set.</span>")
 
-/obj/item/weapon/card/id/event/attackby(obj/item/I as obj, var/mob/user)
-	if(istype(I, /obj/item/weapon/card/id) && !accessset)
-		var/obj/item/weapon/card/id/O = I
+/obj/item/card/id/event/attackby(obj/item/I as obj, var/mob/user)
+	if(istype(I, /obj/item/card/id) && !accessset)
+		var/obj/item/card/id/O = I
 		access |= O.GetAccess()
 		desc = I.desc
 		rank = O.rank
@@ -408,7 +408,7 @@
 	assignment = JOB_PILOT
 	rank = JOB_PILOT
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/service
+/obj/item/card/id/event/accessset/itg/crew/service
 	name = "\improper ITG " + JOB_ALT_COOK + "'s ID"
 	desc = "An ID card belonging to the " + JOB_ALT_COOK + " of an ITG vessel. The " + JOB_ALT_COOK + "'s responsibility is primarily to provide sustinence to the crew and passengers. The " + JOB_ALT_COOK + " answers to the Passenger Liason. In the absence of a Passenger Liason, the " + JOB_ALT_COOK + " is also responsible for tending to passenger related care and duties."
 	assignment = JOB_ALT_COOK
@@ -436,7 +436,7 @@
 	rank = "Medic"
 	icon_state = "itg_white"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/engineer
+/obj/item/card/id/event/accessset/itg/crew/engineer
 	name = "\improper ITG " + JOB_ENGINEER + "'s ID"
 	desc = "An ID card belonging to the " + JOB_ENGINEER + " of an ITG vessel. The " + JOB_ENGINEER + "'s responsibility is primarily to maintain the ship. They may also be tasked to assist with cargo movement duties."
 	assignment = JOB_ENGINEER
@@ -450,7 +450,7 @@
 	rank = "Passenger Liason"
 	icon_state = "itg_blue"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/captain
+/obj/item/card/id/event/accessset/itg/crew/captain
 	name = "\improper ITG " + JOB_ALT_CAPTAIN + "'s ID"
 	desc = "An ID card belonging to the Captain of an ITG vessel. The Captain's responsibility is primarily to manage crew to ensure smooth ship operations. Captains often also often pilot the vessel when no dedicated pilot is assigned."
 	assignment = JOB_ALT_CAPTAIN
@@ -576,9 +576,9 @@
 	name = user.name + "'s ITG ID card" + " ([assignment])"
 
 
-/obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
-	if(istype(I, /obj/item/weapon/card/id) && !accessset)
-		var/obj/item/weapon/card/id/O = I
+/obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
+	if(istype(I, /obj/item/card/id) && !accessset)
+		var/obj/item/card/id/O = I
 		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, JOB_HEAD_OF_SECURITY, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, JOB_CLOWN, JOB_MIME, JOB_TALON_CAPTAIN) //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
 			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")

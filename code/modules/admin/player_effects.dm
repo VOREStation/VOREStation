@@ -200,13 +200,13 @@
 				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
 
 		if("peppernade")
-			var/obj/item/weapon/grenade/chem_grenade/teargas/grenade = new /obj/item/weapon/grenade/chem_grenade/teargas
+			var/obj/item/grenade/chem_grenade/teargas/grenade = new /obj/item/grenade/chem_grenade/teargas
 			grenade.loc = target.loc
 			to_chat(target,"<span class='warning'>GRENADE?!</span>")
 			grenade.detonate()
 
 		if("spicerequest")
-			var/obj/item/weapon/reagent_containers/food/condiment/spacespice/spice = new /obj/item/weapon/reagent_containers/food/condiment/spacespice
+			var/obj/item/reagent_containers/food/condiment/spacespice/spice = new /obj/item/reagent_containers/food/condiment/spacespice
 			spice.loc = target.loc
 			to_chat(target,"A bottle of spices appears at your feet... be careful what you wish for!")
 
@@ -468,7 +468,7 @@
 				return
 
 			for(var/obj/item/W in Tar)
-				if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif))	//VOREStation Edit - There's basically no reason to remove either of these
+				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//VOREStation Edit - There's basically no reason to remove either of these
 					continue	//VOREStation Edit
 				Tar.drop_from_inventory(W)
 
@@ -534,15 +534,15 @@
 				to_chat(user,"<span class='warning'>Target already has a NIF.</span>")
 				return
 			if(Tar.species.flags & NO_SCAN)
-				var/obj/item/device/nif/S = /obj/item/device/nif/bioadap
+				var/obj/item/nif/S = /obj/item/nif/bioadap
 				input_NIF = initial(S.name)
-				new /obj/item/device/nif/bioadap(Tar)
+				new /obj/item/nif/bioadap(Tar)
 			else
-				var/list/NIF_types = typesof(/obj/item/device/nif)
+				var/list/NIF_types = typesof(/obj/item/nif)
 				var/list/NIFs = list()
 
 				for(var/NIF_type in NIF_types)
-					var/obj/item/device/nif/S = NIF_type
+					var/obj/item/nif/S = NIF_type
 					NIFs[capitalize(initial(S.name))] = NIF_type
 
 				var/list/show_NIFs = sortList(NIFs) // the list that will be shown to the user to pick from
@@ -553,7 +553,7 @@
 				if(chosen_NIF)
 					new chosen_NIF(Tar)
 				else
-					new /obj/item/device/nif(Tar)
+					new /obj/item/nif(Tar)
 			log_and_message_admins("[key_name(user)] Quick NIF'd [Tar.real_name] with a [input_NIF].")
 
 		if("resize")

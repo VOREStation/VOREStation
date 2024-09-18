@@ -647,7 +647,7 @@
 		</html>
 		"}
 
-/obj/item/weapon/book/manual/robotics_cyborgs
+/obj/item/book/manual/robotics_cyborgs
 	name = JOB_CYBORG + "s for Dummies"
 	icon_state = "borgbook"
 	item_state = "book1"
@@ -949,7 +949,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/chef_recipes
+/obj/item/book/manual/chef_recipes
 	name = JOB_CHEF + " Recipes"
 	icon_state = "cooked_book"
 	item_state = "book16"

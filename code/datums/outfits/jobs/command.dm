@@ -33,7 +33,7 @@
 
 /decl/hierarchy/outfit/job/secretary
 	name = OUTFIT_JOB_NAME(JOB_COMMAND_SECRETARY)
-	l_ear = /obj/item/device/radio/headset/headset_com
+	l_ear = /obj/item/radio/headset/headset_com
 	shoes = /obj/item/clothing/shoes/brown
 	id_type = /obj/item/card/id/silver/secretary
 	pda_type = /obj/item/pda/heads

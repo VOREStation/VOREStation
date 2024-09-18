@@ -38,7 +38,7 @@
 
 /obj/item/holowarrant/attackby(obj/item/W, mob/user)
 	if(active)
-		var/obj/item/weapon/card/id/I = W.GetIdCard()
+		var/obj/item/card/id/I = W.GetIdCard()
 		if(access_hos in I.GetAccess()) // VOREStation edit
 			var/choice = tgui_alert(user, "Would you like to authorize this warrant?","Warrant authorization",list("Yes","No"))
 			if(choice == "Yes")

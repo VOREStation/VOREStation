@@ -32,11 +32,11 @@
 	var/to_wear_id_type = /obj/item/card/id
 	var/to_wear_id_job = "Assistant"
 =======
-	var/to_wear_belt = /obj/item/weapon/storage/belt/utility/full
-	var/to_wear_l_pocket = /obj/item/weapon/soap
-	var/to_wear_r_pocket = /obj/item/device/pda
-	var/to_wear_back = /obj/item/weapon/storage/backpack
-	var/to_wear_id_type = /obj/item/weapon/card/id
+	var/to_wear_belt = /obj/item/storage/belt/utility/full
+	var/to_wear_l_pocket = /obj/item/soap
+	var/to_wear_r_pocket = /obj/item/pda
+	var/to_wear_back = /obj/item/storage/backpack
+	var/to_wear_id_type = /obj/item/card/id
 	var/to_wear_id_job = JOB_ALT_ASSISTANT
 >>>>>>> master
 

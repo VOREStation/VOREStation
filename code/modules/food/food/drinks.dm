@@ -487,7 +487,7 @@
 	name = "\improper Site Manager's flask"
 	desc = "A metal flask belonging to the Site Manager"
 =======
-/obj/item/weapon/reagent_containers/food/drinks/flask
+/obj/item/reagent_containers/food/drinks/flask
 	name = "\improper " + JOB_SITE_MANAGER + "'s flask"
 	desc = "A metal flask belonging to the " + JOB_SITE_MANAGER
 >>>>>>> master
@@ -512,7 +512,7 @@
 /obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "\improper Detective's flask"
 =======
-/obj/item/weapon/reagent_containers/food/drinks/flask/detflask
+/obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "\improper " + JOB_DETECTIVE + "'s flask"
 >>>>>>> master
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."

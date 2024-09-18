@@ -35,8 +35,8 @@
 		var/obj/item/card/id/ID = W
 		if(access_keycard_auth in ID.access)
 =======
-	if(istype(W,/obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = W
+	if(istype(W,/obj/item/card/id))
+		var/obj/item/card/id/ID = W
 		if(access_keycard_auth in ID.GetAccess())
 >>>>>>> master
 			if(active == 1)

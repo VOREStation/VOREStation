@@ -10,7 +10,7 @@
 
 /decl/hierarchy/outfit/job/medical/cmo
 	name = OUTFIT_JOB_NAME(JOB_CHIEF_MEDICAL_OFFICER)
-	l_ear  =/obj/item/device/radio/headset/heads/cmo
+	l_ear  =/obj/item/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	shoes = /obj/item/clothing/shoes/brown

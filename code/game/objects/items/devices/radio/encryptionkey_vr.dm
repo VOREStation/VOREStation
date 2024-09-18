@@ -19,10 +19,10 @@
 	icon_state = "rd_cypherkey"
 	channels = list(CHANNEL_COMMAND = 1, CHANNEL_SCIENCE = 1)
 
-/obj/item/device/encryptionkey/ert
+/obj/item/encryptionkey/ert
 	channels = list(CHANNEL_RESPONSE_TEAM = 1, CHANNEL_SCIENCE = 1, CHANNEL_COMMAND = 1, CHANNEL_MEDICAL = 1, CHANNEL_ENGINEERING = 1, CHANNEL_SECURITY = 1, CHANNEL_SUPPLY = 1, CHANNEL_SERVICE = 1, CHANNEL_EXPLORATION = 1)
 
-/obj/item/device/encryptionkey/omni		//Literally only for the admin intercoms
+/obj/item/encryptionkey/omni		//Literally only for the admin intercoms
 	channels = list(CHANNEL_MERCENARY = 1, CHANNEL_RAIDER = 1, CHANNEL_RESPONSE_TEAM = 1, CHANNEL_SCIENCE = 1, CHANNEL_COMMAND = 1, CHANNEL_MEDICAL = 1, CHANNEL_ENGINEERING = 1, CHANNEL_SECURITY = 1, CHANNEL_SUPPLY = 1, CHANNEL_SERVICE = 1, CHANNEL_EXPLORATION = 1)
 
 /obj/item/encryptionkey/pathfinder
@@ -50,5 +50,5 @@
 	icon_state = "med_cypherkey"
 	channels = list(CHANNEL_MEDICAL = 1, CHANNEL_EXPLORATION = 1)
 
-/obj/item/device/encryptionkey/talon
+/obj/item/encryptionkey/talon
 	channels = list(CHANNEL_TALON = 1)

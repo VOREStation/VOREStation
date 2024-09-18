@@ -70,7 +70,7 @@
 	var/obj/item/card/id/I = usr.GetIdCard()
 	if(!istype(I) || !(access_network in I.access))
 =======
-	var/obj/item/weapon/card/id/I = usr.GetIdCard()
+	var/obj/item/card/id/I = usr.GetIdCard()
 	if(!istype(I) || !(access_network in I.GetAccess()))
 >>>>>>> master
 		return TRUE

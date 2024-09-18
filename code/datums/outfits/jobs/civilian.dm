@@ -1,6 +1,6 @@
 /decl/hierarchy/outfit/job/assistant
 	name = OUTFIT_JOB_NAME(JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
-	id_type = /obj/item/weapon/card/id/generic	//VOREStation Edit
+	id_type = /obj/item/card/id/generic	//VOREStation Edit
 
 /decl/hierarchy/outfit/job/assistant/visitor
 	name = OUTFIT_JOB_NAME(JOB_ALT_VISITOR)
@@ -10,7 +10,7 @@
 //VOREStation Add - Interns
 /decl/hierarchy/outfit/job/assistant/intern
 	name = OUTFIT_JOB_NAME(JOB_INTERN)
-	id_type = /obj/item/weapon/card/id/civilian
+	id_type = /obj/item/card/id/civilian
 //VOREStation Add End - Interns
 
 /decl/hierarchy/outfit/job/assistant/resident
@@ -118,6 +118,6 @@
 	id_slot = slot_wear_id
 	id_type = /obj/item/card/id/exploration					//VOREStation Edit
 	pda_slot = slot_belt
-	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
-	r_pocket = /obj/item/device/gps/explorer
+	pda_type = /obj/item/pda/cargo // Brown looks more rugged
+	r_pocket = /obj/item/gps/explorer
 	id_pda_assignment = JOB_EXPLORER

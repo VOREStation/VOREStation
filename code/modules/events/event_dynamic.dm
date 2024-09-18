@@ -202,9 +202,9 @@ var/list/event_last_fired = list()
 					active_with_role["Engineer"]++
 				else if(istype(R.module, /obj/item/robot_module/robot/security))
 =======
-				if(istype(R.module, /obj/item/weapon/robot_module/robot/engineering))
+				if(istype(R.module, /obj/item/robot_module/robot/engineering))
 					active_with_role[JOB_ENGINEER]++
-				else if(istype(R.module, /obj/item/weapon/robot_module/robot/security))
+				else if(istype(R.module, /obj/item/robot_module/robot/security))
 >>>>>>> master
 					active_with_role["Security"]++
 				else if(istype(R.module, /obj/item/robot_module/robot/medical))
@@ -217,11 +217,11 @@ var/list/event_last_fired = list()
 				else if(istype(R.module, /obj/item/robot_module/robot/clerical/butler))
 					active_with_role["Botanist"]++
 =======
-				else if(istype(R.module, /obj/item/weapon/robot_module/robot/research))
+				else if(istype(R.module, /obj/item/robot_module/robot/research))
 					active_with_role[JOB_SCIENTIST]++
-				else if(istype(R.module, /obj/item/weapon/robot_module/robot/janitor))
+				else if(istype(R.module, /obj/item/robot_module/robot/janitor))
 					active_with_role[JOB_JANITOR]++
-				else if(istype(R.module, /obj/item/weapon/robot_module/robot/clerical/butler))
+				else if(istype(R.module, /obj/item/robot_module/robot/clerical/butler))
 					active_with_role[JOB_BOTANIST]++
 >>>>>>> master
 

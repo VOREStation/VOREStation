@@ -1,4 +1,4 @@
-/obj/item/weapon/card/id/medical/sar
+/obj/item/card/id/medical/sar
 	assignment = JOB_FIELD_MEDIC
 	rank = JOB_FIELD_MEDIC
 	icon_state = "cyan"
