@@ -27,6 +27,7 @@
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
 	var/text_warnings = TRUE 			// Allows us to dismiss the text limit warning messages after viewing it once per round
 	var/eating_privacy_global = FALSE 	// Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
+	var/allow_mimicry = TRUE 	// Allows mimicking their character
 	var/allow_mind_transfer = FALSE			//Allows ones mind to be taken over or swapped
 	var/nutrition_message_visible = TRUE
 	var/list/nutrition_messages = list(
