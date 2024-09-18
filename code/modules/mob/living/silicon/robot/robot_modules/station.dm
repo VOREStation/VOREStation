@@ -183,14 +183,14 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/proc/handle_shell(var/mob/living/silicon/robot/R)
 	if(R.braintype == BORG_BRAINTYPE_AI_SHELL)
 		channels = list(
-			"Medical" = 1,
-			"Engineering" = 1,
-			"Security" = 1,
-			"Service" = 1,
-			"Supply" = 1,
-			"Science" = 1,
-			"Command" = 1,
-			"Away Team" = 1
+			CHANNEL_MEDICAL = 1,
+			CHANNEL_ENGINEERING = 1,
+			CHANNEL_SECURITY = 1,
+			CHANNEL_SERVICE = 1,
+			CHANNEL_SUPPLY = 1,
+			CHANNEL_SCIENCE = 1,
+			CHANNEL_COMMAND = 1,
+			CHANNEL_EXPLORATION = 1
 			)
 
 /obj/item/robot_module/robot/New(var/mob/living/silicon/robot/R)
@@ -225,7 +225,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/robot/medical
 	name = "medical robot module"
-	channels = list("Medical" = 1)
+	channels = list(CHANNEL_MEDICAL = 1)
 	networks = list(NETWORK_MEDICAL)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
 	pto_type = PTO_MEDICAL
@@ -361,7 +361,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/robot/engineering
 	name = "engineering robot module"
-	channels = list("Engineering" = 1)
+	channels = list(CHANNEL_ENGINEERING = 1)
 	networks = list(NETWORK_ENGINEERING)
 	subsystems = list(/mob/living/silicon/proc/subsystem_power_monitor)
 	pto_type = PTO_ENGINEERING
@@ -464,7 +464,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/robot/security
 	name = "security robot module"
-	channels = list("Security" = 1)
+	channels = list(CHANNEL_SECURITY = 1)
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/tasercooler, /obj/item/borg/upgrade/restricted/bellycapupgrade)
@@ -504,7 +504,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/robot/janitor
 	name = "janitorial robot module"
-	channels = list("Service" = 1)
+	channels = list(CHANNEL_SERVICE = 1)
 	pto_type = PTO_CIVILIAN
 
 /obj/item/robot_module/robot/janitor/create_equipment(var/mob/living/silicon/robot/robot)
@@ -571,8 +571,8 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/robot/clerical
 	name = "service robot module"
 	channels = list(
-		"Service" = 1,
-		"Command" = 1
+		CHANNEL_SERVICE = 1,
+		CHANNEL_COMMAND = 1
 		)
 	languages = list(
 					LANGUAGE_SOL_COMMON	= 1,
@@ -595,8 +595,13 @@ var/global/list/robot_modules = list(
 					)
 	pto_type = PTO_CIVILIAN
 
+<<<<<<< HEAD
 /obj/item/robot_module/robot/clerical/butler
 	channels = list("Service" = 1)
+=======
+/obj/item/weapon/robot_module/robot/clerical/butler
+	channels = list(CHANNEL_SERVICE = 1)
+>>>>>>> master
 
 /obj/item/robot_module/robot/clerical/butler
 	name = "service robot module"
@@ -664,7 +669,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/robot/miner
 	name = "miner robot module"
-	channels = list("Supply" = 1)
+	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill)
 	pto_type = PTO_CARGO
@@ -672,6 +677,7 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/borg/sight/material(src)
+<<<<<<< HEAD
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/storage/bag/ore(src)
@@ -680,13 +686,24 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/gripper/miner(src)
 	src.modules += new /obj/item/mining_scanner(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
+=======
+	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weapon/storage/bag/ore(src)
+	src.modules += new /obj/item/weapon/pickaxe/borgdrill(src)
+	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
+	src.modules += new /obj/item/weapon/gripper/miner(src)
+	src.modules += new /obj/item/weapon/mining_scanner(src)
+	src.modules += new /obj/item/weapon/card/id/cargo/miner/borg(src)
+	src.emag += new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
+>>>>>>> master
 
 	src.modules += new /obj/item/dogborg/sleeper/compactor/supply(src)
 	src.emag += new /obj/item/dogborg/pounce(src)
 
 /obj/item/robot_module/robot/research
 	name = "research module"
-	channels = list("Science" = 1)
+	channels = list(CHANNEL_SCIENCE = 1)
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/advrped)
 	pto_type = PTO_SCIENCE
 
@@ -861,7 +878,7 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/drone/construction
 	name = "construction drone module"
 	hide_on_manifest = TRUE
-	channels = list("Engineering" = 1)
+	channels = list(CHANNEL_ENGINEERING = 1)
 	languages = list()
 
 /obj/item/robot_module/drone/construction/create_equipment(var/mob/living/silicon/robot/robot)
@@ -876,7 +893,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/drone/mining
 	name = "miner drone module"
-	channels = list("Supply" = 1)
+	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
 
 /obj/item/robot_module/drone/mining/create_equipment(var/mob/living/silicon/robot/robot)

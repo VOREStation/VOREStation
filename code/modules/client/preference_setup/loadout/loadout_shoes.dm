@@ -206,7 +206,7 @@
 /datum/gear/shoes/boots/winter/security
 	display_name = "security winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/security
-	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
+	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE)
 
 /datum/gear/shoes/boots/winter/science
 	display_name = "science winter boots"
@@ -215,7 +215,7 @@
 /datum/gear/shoes/boots/winter/command
 	display_name = "site manager's winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/command
-	allowed_roles = list("Site Manager")
+	allowed_roles = list(JOB_SITE_MANAGER)
 
 /datum/gear/shoes/boots/winter/engineering
 	display_name = "engineering winter boots"
@@ -228,7 +228,7 @@
 /datum/gear/shoes/boots/winter/medical
 	display_name = "medical winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
 
 /datum/gear/shoes/boots/winter/mining
 	display_name = "mining winter boots"

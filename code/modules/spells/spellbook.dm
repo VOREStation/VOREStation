@@ -91,7 +91,7 @@
 	if(!istype(H, /mob/living/carbon/human))
 		return 1
 
-	if(H.mind.special_role == "apprentice")
+	if(H.mind.special_role == JOB_APPRENTICE)
 		temp = "If you got caught sneaking a peak from your teacher's spellbook, you'd likely be expelled from the Wizard Academy. Better not."
 		return
 
@@ -260,7 +260,7 @@
 		if(knownspell.type == S.type)
 			if(user.mind)
 				// TODO: Update to new antagonist system.
-				if(user.mind.special_role == "apprentice" || user.mind.special_role == "Wizard")
+				if(user.mind.special_role == JOB_APPRENTICE || user.mind.special_role == JOB_WIZARD)
 					to_chat(user, "<span class='notice'>You're already far more versed in this spell than this flimsy how-to book can provide.</span>")
 				else
 					to_chat(user, "<span class='notice'>You've already read this one.</span>")

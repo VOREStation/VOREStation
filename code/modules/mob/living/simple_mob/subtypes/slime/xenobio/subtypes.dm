@@ -777,7 +777,7 @@
 // The RD's pet slime.
 /mob/living/simple_mob/slime/xenobio/rainbow/kendrick
 	name = "Kendrick"
-	desc = "The Research Director's pet slime.  It shifts colors constantly."
+	desc = "The " + JOB_RESEARCH_DIRECTOR + "'s pet slime.  It shifts colors constantly."
 	rainbow_core_candidate = FALSE
 	// Doing pacify() in initialize() won't actually pacify the AI due to the ai_holder not existing due to parent initialize() not being called yet.
 	// Instead lets just give them an ai_holder that does that for us.

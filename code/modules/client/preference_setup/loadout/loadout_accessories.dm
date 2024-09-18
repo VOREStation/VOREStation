@@ -77,7 +77,7 @@
 	display_name = "holster selection"
 	description = "Select from a number of general-purpose handgun holsters, or a baton lanyard."
 	path = /obj/item/clothing/accessory/holster
-	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Talon Captain","Talon Guard")
+	allowed_roles = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY,JOB_DETECTIVE,JOB_TALON_CAPTAIN,JOB_TALON_GUARD)
 
 /datum/gear/accessory/holster/New()
 	..()
@@ -250,7 +250,7 @@
 /datum/gear/accessory/stethoscope
 	display_name = "stethoscope"
 	path = /obj/item/clothing/accessory/stethoscope
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Talon Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,JOB_TALON_DOCTOR)
 
 /datum/gear/accessory/locket
 	display_name = "locket"
@@ -335,12 +335,12 @@
 /datum/gear/accessory/badge
 	display_name = "sheriff badge (Security)"
 	path = /obj/item/clothing/accessory/badge/holo/sheriff
-	allowed_roles = list("Security Officer","Detective","Head of Security","Warden")
+	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_DETECTIVE,JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 
 /datum/gear/accessory/corpbadge
 	display_name = "investigator holobadge (IAA)"
 	path = /obj/item/clothing/accessory/badge/holo/investigator
-	allowed_roles = list("Internal Affairs Agent")
+	allowed_roles = list(JOB_INTERNAL_AFFAIRS_AGENT)
 
 /datum/gear/accessory/pressbadge
 	display_name = "corporate press pass"

@@ -8,7 +8,7 @@
 	icon_gib = "syndicate_gib"
 	icon_rest = "alienh_sleep"
 
-	faction = "xeno"
+	faction = FACTION_XENO
 
 	mob_class = MOB_CLASS_ABERRATION
 

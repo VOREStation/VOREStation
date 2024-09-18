@@ -96,7 +96,7 @@
 	var/spiders_min = 6
 	var/spiders_max = 24
 	var/spider_type = /obj/effect/spider/spiderling
-	var/faction = "spiders"
+	var/faction = FACTION_SPIDERS
 
 /obj/effect/spider/eggcluster/Initialize()
 	pixel_x = rand(3,-3)
@@ -155,7 +155,7 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
 	var/list/grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/hunter)
-	var/faction = "spiders"
+	var/faction = FACTION_SPIDERS
 
 	var/stunted = FALSE
 

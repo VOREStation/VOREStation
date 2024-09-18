@@ -121,7 +121,16 @@ var/list/lunchables_drink_reagents_ = list(/datum/reagent/drink/nothing,
                                            /datum/reagent/drink/dry_ramen,
                                            /datum/reagent/drink/hell_ramen,
                                            /datum/reagent/drink/hot_ramen,
-                                           /datum/reagent/drink/soda/nuka_cola)
+                                           /datum/reagent/drink/soda/nuka_cola,
+                                           /datum/reagent/drink/coffee/nukie/mega,
+                                           /datum/reagent/drink/coffee/nukie/mega/sight,
+                                           /datum/reagent/drink/coffee/nukie/mega/heart,
+                                           /datum/reagent/drink/coffee/nukie/mega/nega,
+                                           /datum/reagent/drink/coffee/nukie/mega/shock,
+                                           /datum/reagent/drink/coffee/nukie/mega/fast,
+                                           /datum/reagent/drink/coffee/nukie/mega/high,
+                                           /datum/reagent/drink/coffee/nukie/mega/shrink,
+                                           /datum/reagent/drink/coffee/nukie/mega/grow)
 
 
 // This default list is a bit different, it contains items we don't want

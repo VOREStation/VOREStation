@@ -142,7 +142,7 @@ var/global/list/obj/item/pda/PDAs = list()
 			model_name = "Thinktronic 5230 Personal Data Assistant"
 		if(2)
 			icon = 'icons/obj/pda_slim.dmi'
-			model_name = "Ward-Takahashi SlimFit� Personal Data Assistant"
+			model_name = "Ward-Takahashi SlimFit™ Personal Data Assistant"
 		if(3)
 			icon = 'icons/obj/pda_old.dmi'
 			model_name = "Thinktronic 5120 Personal Data Assistant"
@@ -169,7 +169,7 @@ var/global/list/obj/item/pda/PDAs = list()
 			)
 		if(7)
 			icon = 'icons/obj/pda_slider.dmi'			//VOREStation edit
-			model_name = "Slider� Personal Data Assistant"
+			model_name = "Slider® Personal Data Assistant"
 		if(8)
 			icon = 'icons/obj/pda_vintage.dmi'
 			model_name = "\[ERR:INVALID_MANUFACTURER_ID\] Personal Data Assistant"

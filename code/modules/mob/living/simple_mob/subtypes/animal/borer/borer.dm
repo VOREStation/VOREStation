@@ -201,8 +201,8 @@
 	ckey = candidate.ckey
 
 	if(mind)
-		mind.assigned_role = "Cortical Borer"
-		mind.special_role = "Cortical Borer"
+		mind.assigned_role = JOB_CORTICAL_BORER
+		mind.special_role = JOB_CORTICAL_BORER
 
 	to_chat(src, span("notice", "You are a cortical borer! You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \

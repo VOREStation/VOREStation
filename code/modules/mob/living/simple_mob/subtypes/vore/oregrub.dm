@@ -33,7 +33,7 @@
 	icon_living = "oregrub"
 	icon_dead = "oregrub-dead"
 
-	faction = "grubs"
+	faction = FACTION_GRUBS
 	maxHealth = 50 //oregrubs are quite hardy
 	health = 50
 

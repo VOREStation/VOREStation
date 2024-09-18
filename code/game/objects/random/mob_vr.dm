@@ -179,7 +179,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
 	spawn_nothing_percentage = 10
-	var/faction = "wild animal"
+	var/faction = FACTION_WILD_ANIMAL
 
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
 	return pick(

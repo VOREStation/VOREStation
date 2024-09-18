@@ -129,7 +129,7 @@ var/list/preferences_datums = list()
 	// will probably not be able to do this for head and torso ;)
 	var/list/organ_data = list()
 	var/list/rlimb_data = list()
-	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
+	var/list/player_alt_titles = new()		// the default name of a job like JOB_MEDICAL_DOCTOR
 
 	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
 
@@ -485,9 +485,11 @@ var/list/preferences_datums = list()
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
+	load_preferences()
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
 	sanitize_preferences()
+	save_preferences()
 	ShowChoices(user)
 
 /datum/preferences/proc/open_copy_dialog(mob/user)

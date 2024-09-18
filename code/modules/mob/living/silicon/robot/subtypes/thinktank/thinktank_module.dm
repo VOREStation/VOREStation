@@ -43,8 +43,8 @@
 		"stripe" =          "#52b8b8"
 	)
 	channels = list(
-		"Science" = 1,
-		"Away Team" = 1
+		CHANNEL_SCIENCE = 1,
+		CHANNEL_EXPLORATION = 1
 	)
 
 /obj/item/robot_module/robot/platform/explorer/create_equipment(var/mob/living/silicon/robot/robot)
@@ -85,7 +85,7 @@
 		"stripe_vertical" = "#bfbfa1",
 		"stripe" =          "#bfbfa1"
 	)
-	channels = list("Supply" = 1)
+	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
 
 /obj/item/robot_module/robot/platform/cargo/create_equipment(var/mob/living/silicon/robot/robot)

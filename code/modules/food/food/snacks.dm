@@ -1347,8 +1347,13 @@
 	. = ..()
 	reagents.add_reagent("protein", 8)
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/snacks/clownburger
 	name = "Clown Burger"
+=======
+/obj/item/weapon/reagent_containers/food/snacks/clownburger
+	name = JOB_CLOWN + " Burger"
+>>>>>>> master
 	desc = "This tastes funny..."
 	icon_state = "clownburger"
 	filling_color = "#FF00FF"
@@ -1358,8 +1363,13 @@
 	bitesize = 2
 
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/snacks/mimeburger
 	name = "Mime Burger"
+=======
+/obj/item/weapon/reagent_containers/food/snacks/mimeburger
+	name = JOB_MIME + " Burger"
+>>>>>>> master
 	desc = "Its taste defies language."
 	icon_state = "mimeburger"
 	filling_color = "#FFFFFF"
@@ -2457,8 +2467,13 @@
 	reagents.add_reagent("blood", 10)
 	reagents.add_reagent("water", 5)
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/snacks/clownstears
 	name = "Clown's Tears"
+=======
+/obj/item/weapon/reagent_containers/food/snacks/clownstears
+	name = JOB_CLOWN + "'s Tears"
+>>>>>>> master
 	desc = "Not very funny."
 	icon_state = "clownstears"
 	filling_color = "#C4FBFF"
@@ -5702,7 +5717,7 @@
 
 /obj/item/reagent_containers/food/snacks/burrito_hell
 	name = "el diablo"
-	desc = "Meat and an insane amount of chillis packed in a flour tortilla. The Chaplain will see you now."
+	desc = "Meat and an insane amount of chillis packed in a flour tortilla. The " + JOB_CHAPLAIN + " will see you now."
 	icon_state = "hellfireburrito"
 	bitesize = 4
 	center_of_mass = list("x"=16, "y"=16)

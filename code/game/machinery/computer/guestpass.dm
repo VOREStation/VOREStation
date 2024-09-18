@@ -165,9 +165,9 @@
 	var/list/area_list = list()
 
 	data["access"] = null
-	if(giver && giver.access)
-		data["access"] = giver.access
-		for (var/A in giver.access)
+	if(giver && giver.GetAccess())
+		data["access"] = giver.GetAccess()
+		for (var/A in giver.GetAccess())
 			if(A in accesses)
 				area_list.Add(list(list("area" = A, "area_name" = get_access_desc(A), "on" = 1)))
 			else
@@ -212,7 +212,7 @@
 			if(A in accesses)
 				accesses.Remove(A)
 			else
-				if(A in giver.access)	//Let's make sure the ID card actually has the access.
+				if(A in giver.GetAccess())	//Let's make sure the ID card actually has the access.
 					accesses.Add(A)
 				else
 					to_chat(usr, "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>")

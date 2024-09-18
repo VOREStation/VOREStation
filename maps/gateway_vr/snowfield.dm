@@ -68,7 +68,7 @@
 	vore_active = 1
 	say_list_type = /datum/say_list/polar_bear
 
-	faction = "polar"
+	faction = FACTION_POLAR
 	maxHealth = 80
 	health = 80 // Polar bear will fuck you up.
 
@@ -99,13 +99,13 @@
 	..()
 
 /mob/living/simple_mob/animal/sif/sakimm/polar
-	faction = "polar"
+	faction = FACTION_POLAR
 
 /mob/living/simple_mob/animal/sif/diyaab/polar
-	faction = "polar"
+	faction = FACTION_POLAR
 
 /mob/living/simple_mob/animal/sif/shantak/polar
-	faction = "polar"
+	faction = FACTION_POLAR
 
 // -- Items -- //
 

@@ -546,7 +546,7 @@
 	access = access_brig
 
 /datum/supply_pack/security/wardengear
-	name = "Gear - Warden equipment"
+	name = "Gear - " + JOB_WARDEN + " equipment"
 	contains = list(
 			/obj/item/clothing/suit/storage/vest/warden,
 			/obj/item/clothing/under/rank/warden,
@@ -571,11 +571,11 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
-	containername = "Warden equipment"
+	containername = JOB_WARDEN + " equipment"
 	access = access_armory
 
 /datum/supply_pack/security/headofsecgear
-	name = "Gear - Head of security equipment"
+	name = "Gear - " + JOB_HEAD_OF_SECURITY + " equipment"
 	contains = list(
 			/obj/item/clothing/head/helmet/HoS,
 			/obj/item/clothing/suit/storage/vest/hos,
@@ -598,7 +598,7 @@
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
-	containername = "Head of security equipment"
+	containername = JOB_HEAD_OF_SECURITY + " equipment"
 	access = access_hos
 
 /datum/supply_pack/security/securityclothing

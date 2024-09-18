@@ -1,11 +1,10 @@
 import { BooleanLike } from 'common/react';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Flex, Icon, LabeledList, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Flex, Icon, LabeledList, Section } from 'tgui/components';
+import { Window } from 'tgui/layouts';
 /* This is all basically stolen from routes.js. */
-import { routingError } from '../routes';
+import { routingError } from 'tgui/routes';
 
 type Data = {
   owner: string;
@@ -25,7 +24,7 @@ type Data = {
   };
 };
 
-const requirePdaInterface = require.context('./pda', false, /\.tsx$/);
+const requirePdaInterface = require.context('./pda_screens', false, /\.tsx$/);
 
 function getPdaApp(name: string) {
   let appModule: __WebpackModuleApi.RequireContext;

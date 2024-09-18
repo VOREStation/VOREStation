@@ -351,7 +351,7 @@
 	desc_with_canvas = "A masterpiece hand-picked by the librarian, supposedly."
 	persistence_id = "library"
 	req_one_access = list(access_library)
-	curator = "Librarian"
+	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/chapel_secure
 	name = "\improper Religious Painting Exhibit mounting"
@@ -359,7 +359,7 @@
 	desc_with_canvas = "A masterpiece hand-picked by the chaplain, supposedly."
 	persistence_id = "chapel"
 	req_one_access = list(access_chapel_office)
-	curator = "Chaplain"
+	curator = JOB_CHAPLAIN
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
 	name = "\improper Private Painting Exhibit mounting"
@@ -367,7 +367,7 @@
 	desc_with_canvas = "A painting hung away from lesser minds."
 	persistence_id = "library_private"
 	req_one_access = list(access_library)
-	curator = "Librarian"
+	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/away_areas // for very hard-to-get-to areas
 	name = "\improper Remote Painting Exhibit mounting"

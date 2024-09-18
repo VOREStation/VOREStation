@@ -205,7 +205,7 @@
 /mob/living/simple_mob/hostile/tunnelclown
 	name = "tunnel clown"
 	desc = "A clown driven to madness in the depths of the Honk Mother's Catacombs."
-	faction = "tunnelclown"
+	faction = FACTION_TUNNELCLOWN
 	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "tunnelclown"
 	icon_living = "tunnelclown"
@@ -247,7 +247,7 @@
 /mob/living/simple_mob/hostile/tunnelclown/sentinel
 	name = "tunnel clown sentinel"
 	desc = "A clown warrior tasked with guarding the Honk Mother's Catacombs."
-	faction = "tunnelclown"
+	faction = FACTION_TUNNELCLOWN
 	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "sentinelclown"
 	icon_living = "sentinelclown"
@@ -271,7 +271,7 @@
 /mob/living/simple_mob/hostile/cluwne
 	name = "cluwne"
 	desc = "A mutated clown alleged to have been cursed by the Honk Mother and permanently banished to these catacombs for once being an unfunny shitter who brought grief instead of laughter."
-	faction = "tunnelclown"
+	faction = FACTION_TUNNELCLOWN
 	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "cluwne"
 	icon_living = "cluwne"

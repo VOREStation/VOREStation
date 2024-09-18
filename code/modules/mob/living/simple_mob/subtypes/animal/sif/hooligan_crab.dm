@@ -35,7 +35,7 @@
 	icon_scale_x = 1.5
 	icon_scale_y = 1.5
 
-	faction = "crabs"
+	faction = FACTION_CRABS
 
 	maxHealth = 200
 	health = 200

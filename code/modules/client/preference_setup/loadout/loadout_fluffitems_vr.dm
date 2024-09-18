@@ -17,7 +17,7 @@
 	display_name = "Airhorn - Example Item"
 	description = "An example item that you probably shouldn't see!"
 	ckeywhitelist = list("your_ckey_here")
-	allowed_roles = list("Engineer")
+	allowed_roles = list(JOB_ENGINEER)
 */
 
 /datum/gear/fluff/collar //Use this as a base path for collars if you'd like to set tags in loadout. Make sure you don't use apostrophes in the display name or this breaks!
@@ -449,7 +449,7 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("flaktual")
 	character_name = list("Yikatihaki")
-	allowed_roles = list("Explorer")
+	allowed_roles = list(JOB_EXPLORER)
 
 /datum/gear/fluff/suit/storage/flintlock
 	path = /obj/item/clothing/suit/storage/flintlock
@@ -536,7 +536,7 @@
 //  I CKEYS
 /datum/gear/fluff/ruda_badge
 	path = /obj/item/clothing/accessory/badge/holo/detective/ruda
-	display_name = "Ruda's Detective Badge"
+	display_name = "Ruda's " + JOB_DETECTIVE + " Badge"
 	ckeywhitelist = list("interrolouis")
 	character_name = list("Ruda Lizden")
 
@@ -578,7 +578,7 @@
 	slot = slot_back
 	ckeywhitelist = list("jacknoir413")
 	character_name = list("Areax Third")
-	allowed_roles = list("Security Officer, Warden, Head of Security")
+	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
 /datum/gear/fluff/earthen_uniform
 	path = /obj/item/clothing/under/fluff/earthenbreath
@@ -626,7 +626,7 @@
 	display_name = "Ace's Holster"
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Site Manager", "Warden", "Head of Security")
+	allowed_roles = list(JOB_SITE_MANAGER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
 /datum/gear/fluff/jeremiah_boots
 	path = /obj/item/clothing/shoes/boots/combat
@@ -654,7 +654,7 @@
 	display_name = "Katarina's Backpack"
 	ckeywhitelist = list("joanrisu")
 	character_name = list("Katarina Eine")
-	allowed_roles = list("Site Manager", "Warden", "Head of Security")
+	allowed_roles = list(JOB_SITE_MANAGER, JOB_WARDEN, JOB_HEAD_OF_SECURITY)
 
 /datum/gear/fluff/emoticon_box
 	path = /obj/item/storage/box/fluff/emoticon
@@ -777,7 +777,7 @@
 	display_name = "Kenzie's Hypospray"
 	ckeywhitelist = list("lm40")
 	character_name = list("Kenzie Houser")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC)
 
 /datum/gear/fluff/brianna_backpack
 	path = /obj/item/storage/backpack/messenger/black/fluff/briana
@@ -792,7 +792,7 @@
 	description = "A Hull Systems Omni-Tool capable of temporarily shrinking to handheld sizes for even the most delicate work."
 	ckeywhitelist = list("lewzharri")
 	character_name = list ("Kovgam Zharri")
-	allowed_roles = list("Roboticist","Engineer","Scientist","Xenobiologist","Xenobotanist","Research Director")
+	allowed_roles = list(JOB_ROBOTICIST,JOB_ENGINEER,JOB_SCIENTIST,JOB_XENOBIOLOGIST,JOB_XENOBOTANIST,JOB_RESEARCH_DIRECTOR)
 
 //  M CKEYS
 /datum/gear/fluff/phi_box
@@ -820,7 +820,7 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("mrsignmeup")
 	character_name = list("Reshskakskakss Seekiseekis")
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/fluff/daniel_medal
 	path = /obj/item/clothing/accessory/medal/conduct
@@ -1007,7 +1007,7 @@
 	display_name = "Tiemli's Welding Goggles"
 	ckeywhitelist = list("radiantaurora")
 	character_name = list("Tiemli Kroto")
-	allowed_roles = list("Roboticist")
+	allowed_roles = list(JOB_ROBOTICIST)
 
 /datum/gear/fluff/clara_flask
 	path = /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask
@@ -1076,14 +1076,14 @@
 	display_name = "Kateryna's Voidsuit"
 	ckeywhitelist = list("samanthafyre")
 	character_name = list("Kateryna Petrovitch")
-	allowed_roles = list("Engineer", "Chief Engineer", "Atmospheric Technician")
+	allowed_roles = list(JOB_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/gear/fluff/katerina_spacesuit
 	path = /obj/item/clothing/head/helmet/space/fluff/kate
 	display_name = "Kateryna's Helmet"
 	ckeywhitelist = list("samanthafyre")
 	character_name = list("Kateryna Petrovitch")
-	allowed_roles = list("Engineer", "Chief Engineer", "Atmospheric Technician")
+	allowed_roles = list(JOB_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/gear/fluff/kateryna_armorvest
 	path = /obj/item/clothing/suit/armor/vest/wolftaur/kate
@@ -1091,7 +1091,7 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("samanthafyre")
 	character_name = list("Kateryna Petrovitch")
-	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Site Manager", "Head of Personnel")
+	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL)
 
 /datum/gear/fluff/viktor_flask
 	path = /obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
@@ -1138,7 +1138,7 @@
 	display_name = "Cerise's Champion's Belt"
 	ckeywhitelist = list("shalax")
 	character_name = list("Cerise Duelliste")
-	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Detective")
+	allowed_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_DETECTIVE)
 
 /datum/gear/fluff/sidona_robes
 	path = /obj/item/clothing/under/fluff/gildedrobe_perrin
@@ -1157,14 +1157,14 @@
 	display_name = "NT-HASD 556's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("NT-HASD #556")
-	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY,JOB_DETECTIVE)
 
 /datum/gear/fluff/serdykov_modkit //Also converts a Security suit's sprite
 	path = /obj/item/modkit_conversion/fluff/serdykit
 	display_name = "Serdykov Antoz's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("Serdykov Antoz")
-	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY,JOB_DETECTIVE)
 
 /datum/gear/fluff/tasy_clownuniform
 	path = /obj/item/clothing/under/sexyclown
@@ -1293,11 +1293,11 @@
 	display_name = "Lucky's amour"
 	ckeywhitelist = list ("thedavestdave")
 	character_name = list("Lucky")
-	allowed_roles = list("Chaplain")
+	allowed_roles = list(JOB_CHAPLAIN)
 
 /datum/gear/fluff/lovec_gasmask
 	path = /obj/item/clothing/mask/gas/explorer
-	display_name = "Explorer's Gas Mask"
+	display_name = JOB_EXPLORER + "'s Gas Mask"
 	ckeywhitelist = list("thenewmeta")
 	character_name = list("Lovec")
 
@@ -1505,7 +1505,7 @@
 	slot = slot_glasses
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Off-duty Medic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC, JOB_OFFDUTY_MEDIC)
 
 /datum/gear/fluff/tempest_hypospray
 	path = /obj/item/reagent_containers/hypospray/vial/tempest
@@ -1513,7 +1513,7 @@
 	slot = slot_belt
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Off-duty Medic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC, JOB_OFFDUTY_MEDIC)
 
 /datum/gear/fluff/tempest_backpack
 	path = /obj/item/storage/backpack/saddlebag/tempest

@@ -21,7 +21,7 @@
 	say_list_type = /datum/say_list/cookiegirl
 	ai_holder_type = /datum/ai_holder/simple_mob/passive/cookiegirl
 
-	faction = "cookiegirl"
+	faction = FACTION_COOKIEGIRL
 
 	// Activate Noms!
 /mob/living/simple_mob/vore/cookiegirl

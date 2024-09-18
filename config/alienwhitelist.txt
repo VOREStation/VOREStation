@@ -44,6 +44,7 @@ digi5 - Protean
 digi5 - Black-Eyed Shadekin
 digitalsquirrel95 - Black-Eyed Shadekin
 digitalsquirrel95 - Protean
+digitalsquirrel95 - Hanner
 draycu - Vox
 draykenthedragon - Xenochimera
 draykenthedragon - Protean
@@ -78,6 +79,7 @@ jademanique - Protean
 jademanique - Teppi
 jademanique - Xenochimera
 joltze - Black-Eyed Shadekin
+juney7 - Hanner
 kered2 - Protean
 khanivore - Protean
 killjaden - Protean
@@ -137,6 +139,7 @@ phoenixx0 - Vox
 pontifexminimus - Black-Eyed Shadekin
 pontifexminimus - Protean
 pontifexminimus - Xenochimera
+pontifexminimus - Hanner
 pugly43 - Protean
 qrocakes - Black-Eyed Shadekin
 radiantaurora - Protean
@@ -147,6 +150,7 @@ residentcody - Protean
 revolvereloise - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
+romanatcolgate - Hanner
 rubyflamewing - Protean
 rykkastormheart - Xenochimera
 ryumi - Protean
@@ -163,6 +167,7 @@ shirosenshi - Xenochimera
 silvertalismen - Diona
 silvertalismen - Vox
 silvertalismen - Xenochimera
+silvertalismen - Hanner
 sirlionfur - Black-Eyed Shadekin
 sixberry - Black-Eyed Shadekin
 skylarks - Black-Eyed Shadekin
@@ -180,6 +185,7 @@ tastypred - Xenochimera
 terrestris - Common Skrellian
 terrestris - Vox
 thedavestdave - Protean
+theoun - Hanner
 timidvi - Diona
 tombomb90 - Protean
 torquegstc - Protean

@@ -792,6 +792,12 @@ macro "hotkeymode"
 	elem
 		name = "CTRL+SHIFT+SUBTRACT"
 		command = "planedown"
+	elem
+		name = "Space"
+		command = ".throwon"
+	elem
+		name = "Space+UP"
+		command = ".throwoff"
 
 macro "borgmacro"
 	elem

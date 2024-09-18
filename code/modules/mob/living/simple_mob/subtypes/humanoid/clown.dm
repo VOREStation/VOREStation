@@ -8,7 +8,7 @@
 	icon_dead = "clown_dead"
 	icon_gib = "clown_gib"
 
-	faction = "clown"
+	faction = FACTION_CLOWN
 
 	loot_list = list(/obj/item/bikehorn = 100)
 

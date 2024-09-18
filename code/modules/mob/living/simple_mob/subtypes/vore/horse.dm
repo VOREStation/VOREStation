@@ -8,7 +8,7 @@
 	icon_dead = "horse-dead"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "horse"
+	faction = FACTION_HORSE
 	maxHealth = 60
 	health = 60
 

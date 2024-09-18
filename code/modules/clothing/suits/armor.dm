@@ -164,7 +164,7 @@
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive
 	name = "Reactive Teleport Armor"
-	desc = "Someone separated our Research Director from their own head!"
+	desc = "Someone separated our " + JOB_RESEARCH_DIRECTOR + " from their own head!"
 	var/active = 0.0
 	icon_state = "reactiveoff"
 	item_state_slots = list(slot_r_hand_str = "armor_reflec_old", slot_l_hand_str = "armor_reflec_old")
@@ -309,7 +309,7 @@
 	icon_nobadge = "wardenvest_nobadge"
 
 /obj/item/clothing/suit/storage/vest/wardencoat
-	name = "Warden's jacket"
+	name = JOB_WARDEN + "'s jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	blood_overlay_type = "suit"
@@ -317,7 +317,7 @@
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/vest/wardencoat/alt
-	name = "Warden's jacket"
+	name = JOB_WARDEN + "'s jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_alt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS

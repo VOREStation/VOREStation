@@ -131,16 +131,16 @@
 		id = R.idcard
 
 	// Nothing
-	if(!id || !id.access)
+	if(!id || !id.GetAccess())
 		return list()
-	
+
 	// Has engineer access, can put any access
-	else if(has_access(null, apply_any_access, id.access))
+	else if(has_access(null, apply_any_access, id.GetAccess()))
 		return get_all_station_access()
-	
+
 	// Not an engineer, can only pick your own accesses to program
 	else
-		return id.access
+		return id.GetAccess()
 
 /obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"

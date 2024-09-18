@@ -198,7 +198,7 @@
 
 /obj/item/material/kitchen/rollingpin
 	name = "rolling pin"
-	desc = "Used to knock out the Bartender."
+	desc = "Used to knock out the " + JOB_BARTENDER+ "."
 	icon_state = "rolling_pin"
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	default_material = "wood"

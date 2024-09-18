@@ -204,7 +204,7 @@
 	var/datum/job/previewJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
-		previewJob = job_master.GetJob(USELESS_JOB)
+		previewJob = job_master.GetJob(JOB_ALT_VISITOR)
 	else if(ispAI(client.mob))	//VOREStation Edit! - pAIs shouldn't wear job gear~!
 		//Don't do anything!
 	else
@@ -268,7 +268,7 @@
 	var/datum/job/highJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
-		highJob = job_master.GetJob("Assistant")
+		highJob = job_master.GetJob(JOB_ALT_ASSISTANT)
 	else
 		for(var/datum/job/job in job_master.occupations)
 			var/job_flag

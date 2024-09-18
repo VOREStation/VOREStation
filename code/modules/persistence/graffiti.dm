@@ -51,7 +51,7 @@
 			qdel(src)
 	else if(thing.sharp)
 
-		if(jobban_isbanned(user, "Graffiti"))
+		if(jobban_isbanned(user, JOB_GRAFFITI))
 			to_chat(user, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
 			return
 

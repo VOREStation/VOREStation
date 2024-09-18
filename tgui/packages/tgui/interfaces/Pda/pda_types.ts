@@ -1,4 +1,4 @@
-import { IconProps } from '../../components/Icon';
+import { IconProps } from 'tgui/components/Icon';
 /**
  * Gernal Record data
  */

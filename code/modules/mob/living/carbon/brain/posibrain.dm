@@ -26,7 +26,7 @@
 	for(var/mob/observer/dead/O in player_list)
 		if(!O.MayRespawn())
 			continue
-		if(jobban_isbanned(O, "AI") && jobban_isbanned(O, "Cyborg"))
+		if(jobban_isbanned(O, JOB_AI) && jobban_isbanned(O, JOB_CYBORG))
 			continue
 		if(O.client)
 			if(O.client.prefs.be_special & BE_AI)
@@ -48,7 +48,7 @@
 /obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
-		brainmob.mind.assigned_role = "Positronic Brain"
+		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
 	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're just a metal cube.</span>")
 	icon_state = "posibrain-occupied"
 	return
@@ -64,7 +64,7 @@
 	to_chat(src.brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
 	to_chat(src.brainmob, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
 	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
-	src.brainmob.mind.assigned_role = "Positronic Brain"
+	src.brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))

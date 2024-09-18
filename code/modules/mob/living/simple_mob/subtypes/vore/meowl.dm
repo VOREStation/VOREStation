@@ -8,7 +8,7 @@
 	icon_living = "meowl"
 	icon_state = "meowl"
 	icon_rest = "meowl_rest"
-	faction = "meowl"
+	faction = FACTION_MEOWL
 	friendly = list("nudges", "sniffs on", "rumbles softly at", "nuzzles")
 	response_help = "pets"
 	response_disarm = "shoves"

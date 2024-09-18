@@ -3087,7 +3087,7 @@
 /datum/reagent/ethanol/bananahonk
 	name = "Banana Mama"
 	id = "bananahonk"
-	description = "A drink from Clown Heaven."
+	description = "A drink from " + JOB_CLOWN + " Heaven."
 	taste_description = "bananas and sugar"
 	nutriment_factor = 1
 	color = "#FFFF91"
@@ -3624,7 +3624,7 @@
 /datum/reagent/ethanol/silencer
 	name = "Silencer"
 	id = "silencer"
-	description = "A drink from Mime Heaven."
+	description = "A drink from " + JOB_MIME + " Heaven."
 	taste_description = "a pencil eraser"
 	taste_mult = 1.2
 	nutriment_factor = 1

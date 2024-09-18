@@ -90,7 +90,7 @@
 
 	see_in_dark = 10
 
-	faction = "overmap"
+	faction = FACTION_OVERMAP
 	low_priority = FALSE
 	devourable = FALSE
 	digestable = FALSE

@@ -21,7 +21,7 @@
 	tt_desc = "S Hirudinea phorus"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/iceleech)
 
-	faction = "leech"
+	faction = FACTION_LEECH
 
 	icon_state = "leech"
 	item_state = "brainslug"

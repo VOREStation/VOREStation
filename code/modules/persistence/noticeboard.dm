@@ -82,8 +82,13 @@
 			visible_message("<span class='danger'>[user] has dismantled [src]!</span>")
 			dismantle()
 		return
+<<<<<<< HEAD
 	else if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		if(jobban_isbanned(user, "Graffiti"))
+=======
+	else if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/photo))
+		if(jobban_isbanned(user, JOB_GRAFFITI))
+>>>>>>> master
 			to_chat(user, "<span class='warning'>You are banned from leaving persistent information across rounds.</span>")
 		else
 			if(LAZYLEN(notices) < max_notices && user.unEquip(I, src))

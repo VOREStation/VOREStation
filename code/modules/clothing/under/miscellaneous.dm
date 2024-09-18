@@ -418,7 +418,7 @@
 
 /obj/item/clothing/under/dress/dress_cap
 	name = "site manager's dress uniform"
-	desc = "Feminine fashion for the style conscious Site Manager."
+	desc = "Feminine fashion for the style conscious " + JOB_SITE_MANAGER + "."
 	icon_state = "dress_cap"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -751,7 +751,7 @@
 
 /obj/item/clothing/under/captainformal
 	name = "site manager's formal uniform"
-	desc = "A Site Manager's formal-wear, for special occasions."
+	desc = "A " + JOB_SITE_MANAGER + "'s formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 

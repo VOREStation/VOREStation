@@ -647,12 +647,12 @@
 		</html>
 		"}
 
-/obj/item/book/manual/robotics_cyborgs
-	name = "Cyborgs for Dummies"
+/obj/item/weapon/book/manual/robotics_cyborgs
+	name = JOB_CYBORG + "s for Dummies"
 	icon_state = "borgbook"
 	item_state = "book1"
 	author = "XISC"
-	title = "Cyborgs for Dummies"
+	title = JOB_CYBORG + "s for Dummies"
 
 	dat = {"<html>
 				<head>
@@ -949,12 +949,12 @@
 		"}
 
 
-/obj/item/book/manual/chef_recipes
-	name = "Chef Recipes"
+/obj/item/weapon/book/manual/chef_recipes
+	name = JOB_CHEF + " Recipes"
 	icon_state = "cooked_book"
 	item_state = "book16"
 	author = "Victoria Ponsonby"
-	title = "Chef Recipes"
+	title = JOB_CHEF + " Recipes"
 
 	dat = {"<html>
 				<head>
@@ -1401,7 +1401,7 @@
 	name = "Sneezes and Coughs: A Guide To Virology, 1st Edition"
 	icon_state = "bookvirology"
 	item_state = "book5"
-	author = "James Simpson, Chief Virologist"
+	author = "James Simpson, Chief " + JOB_ALT_VIROLOGIST
 	title = "Sneezes and Coughs: A Guide To Virology, 1st Edition"
 	dat = {"<html>
 				<head>

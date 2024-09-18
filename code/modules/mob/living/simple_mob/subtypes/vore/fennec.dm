@@ -33,7 +33,7 @@
 	icon_rest = "fennec_rest"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "fennec"
+	faction = FACTION_FENNEC
 	maxHealth = 30
 	health = 30
 

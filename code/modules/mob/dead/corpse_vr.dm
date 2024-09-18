@@ -36,7 +36,7 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/altevian_heartbreaker
 	corpseid = 1
 	corpseidjob = "Altevian Navy"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 	species = SPECIES_ALTEVIAN
 	ear_type = list(/datum/sprite_accessory/ears/altevian, "#777777", "#FFCCFF")
 	tail_type = list(/datum/sprite_accessory/tail/altevian, "#FF9999")

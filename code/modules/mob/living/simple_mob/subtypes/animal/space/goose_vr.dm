@@ -4,4 +4,4 @@
 	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/animal/space/goose/virgo3b
-	faction = "virgo3b"
+	faction = FACTION_VIRGO3B

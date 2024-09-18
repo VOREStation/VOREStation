@@ -1,25 +1,25 @@
 //Due to how large this one is it gets its own file
 /datum/job/chaplain
-	title = "Chaplain"
+	title = JOB_CHAPLAIN
 	flag = CHAPLAIN
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Head of Personnel"
+	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	minimal_access = list(access_chapel_office, access_crematorium)
 
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
-	job_description = "The Chaplain ministers to the spiritual needs of the crew."
-	alt_titles = list("Counselor" = /datum/alt_title/counselor)
+	job_description = "The " + JOB_CHAPLAIN + " ministers to the spiritual needs of the crew."
+	alt_titles = list(JOB_ALT_COUNSELOR = /datum/alt_title/counselor)
 
 // Chaplain Alt Titles
 /datum/alt_title/counselor
-	title = "Counselor"
-	title_blurb = "The Counselor attends to the emotional needs of the crew, without a specific medicinal or spiritual focus."
+	title = JOB_ALT_COUNSELOR
+	title_blurb = "The " + JOB_ALT_COUNSELOR + " attends to the emotional needs of the crew, without a specific medicinal or spiritual focus."
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H, var/alt_title, var/ask_questions = TRUE)
 	. = ..()
@@ -111,7 +111,7 @@
 	var/bible_name = "Bible"
 	var/bible_icon_state = "bible"
 	var/bible_item_state = "bible"
-	var/title = "Chaplain"
+	var/title = JOB_CHAPLAIN
 	var/configured = FALSE
 
 /datum/religion/New(var/r, var/d, var/bn, var/bis, var/bits, var/t)

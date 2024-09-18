@@ -14,7 +14,7 @@
 	health = 200
 	movement_cooldown = -1
 
-	faction = "worm"
+	faction = FACTION_WORM
 
 	status_flags = 0
 	universal_speak = 0

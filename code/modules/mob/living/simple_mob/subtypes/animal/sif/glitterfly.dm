@@ -28,7 +28,7 @@
 	tt_desc = "S Lepidoptera adamas"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/glitterfly)
 
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 
 	icon_state = "butterfly"
 	icon_living = "butterfly"

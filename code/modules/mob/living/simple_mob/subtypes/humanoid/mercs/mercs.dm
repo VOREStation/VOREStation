@@ -12,7 +12,7 @@
 	icon_dead = "syndicate_dead"
 	icon_gib = "syndicate_gib"
 
-	faction = "syndicate"
+	faction = FACTION_SYNDICATE
 	movement_cooldown = 1
 
 	status_flags = 0

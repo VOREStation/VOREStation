@@ -7,7 +7,7 @@
 	icon_dead = "russianmelee_dead"
 	icon_gib = "syndicate_gib"
 
-	faction = "russian"
+	faction = FACTION_RUSSIAN
 
 	response_help = "pokes"
 	response_disarm = "shoves"

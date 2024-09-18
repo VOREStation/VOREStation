@@ -17,7 +17,7 @@
 	tt_desc = "S Procyon cogitae"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/sakimm)
 
-	faction = "sakimm"
+	faction = FACTION_SAKIMM
 
 	icon_state = "raccoon"
 	icon_living = "raccoon"

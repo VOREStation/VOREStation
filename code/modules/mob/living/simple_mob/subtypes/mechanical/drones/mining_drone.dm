@@ -25,7 +25,7 @@
 	icon_dead = "miningdrone_dead"
 	has_eye_glow = TRUE
 
-	faction = "malf_drone"
+	faction = FACTION_MALF_DRONE
 
 	maxHealth = 50
 	health = 50

@@ -6,7 +6,7 @@
 	icon_living = "goose"
 	icon_dead = "goose_dead"
 
-	faction = "geese"
+	faction = FACTION_GEESE
 
 	maxHealth = 30
 	health = 30

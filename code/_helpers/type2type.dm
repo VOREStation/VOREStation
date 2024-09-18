@@ -566,5 +566,11 @@
 		var/path = key
 		if(!ispath(path))
 			path = text2path(key)
+		if(!isnull(L[path]))
+			.[path] = L[path]
+			continue
+		if(!isnull(L[key]))
+			.[path] = L[key]
+			continue
 		if(!isnull(path))
 			. += path

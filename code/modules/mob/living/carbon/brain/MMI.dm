@@ -275,7 +275,7 @@
 	to_chat(src.brainmob, "<b>As a synthetic intelligence, you are designed with organic values in mind.</b>")
 	to_chat(src.brainmob, "<b>However, unless placed in a lawed chassis, you are not obligated to obey any individual crew member.</b>") //it's not like they can hurt anyone
 //	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
-	src.brainmob.mind.assigned_role = "Synthetic Brain"
+	src.brainmob.mind.assigned_role = JOB_SYNTHETIC_BRAIN
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
@@ -299,7 +299,7 @@
 /obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
-		brainmob.mind.assigned_role = "Robotic Intelligence"
+		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE
 	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're little more than a complex circuit.</span>")
 	return
 
@@ -321,7 +321,7 @@
 /obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
-		brainmob.mind.assigned_role = "Positronic Brain"
+		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
 	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're just a metal cube.</span>")
 	icon_state = "posibrain-occupied"
 	return

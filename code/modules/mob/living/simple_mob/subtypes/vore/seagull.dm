@@ -18,7 +18,7 @@
 	icon_rest = "seagull"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "seagull"
+	faction = FACTION_SEAGULL
 	maxHealth = 25
 	health = 25
 

@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/job/captain
-	name = OUTFIT_JOB_NAME("Captain")
+	name = OUTFIT_JOB_NAME(JOB_ALT_CAPTAIN) // Keep Captain for now, not JOB_SITE_MANAGER
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/rank/captain
 	l_ear = /obj/item/radio/headset/heads/captain
@@ -24,7 +24,7 @@
 				qdel(medal)
 
 /decl/hierarchy/outfit/job/hop
-	name = OUTFIT_JOB_NAME("Head of Personnel")
+	name = OUTFIT_JOB_NAME(JOB_HEAD_OF_PERSONNEL)
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	l_ear = /obj/item/radio/headset/heads/hop
 	shoes = /obj/item/clothing/shoes/brown
@@ -32,8 +32,8 @@
 	pda_type = /obj/item/pda/heads/hop
 
 /decl/hierarchy/outfit/job/secretary
-	name = OUTFIT_JOB_NAME("Command Secretary")
-	l_ear = /obj/item/radio/headset/headset_com
+	name = OUTFIT_JOB_NAME(JOB_COMMAND_SECRETARY)
+	l_ear = /obj/item/device/radio/headset/headset_com
 	shoes = /obj/item/clothing/shoes/brown
 	id_type = /obj/item/card/id/silver/secretary
 	pda_type = /obj/item/pda/heads

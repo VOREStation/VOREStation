@@ -27,7 +27,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	hovering = TRUE
 
 
-	faction = "jellyfish"
+	faction = FACTION_JELLYFISH
 	maxHealth = 100
 	health = 100
 	nutrition = 150

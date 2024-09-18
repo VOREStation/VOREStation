@@ -27,9 +27,9 @@
 
 /obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/I = O
-		src.access |= I.access
+	if(istype(O, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/I = O
+		src.access |= I.GetAccess()
 		if(player_is_antag(user.mind) || registered_user == user)
 			to_chat(user, "<span class='notice'>The microscanner activates as you pass it over the ID, copying its access.</span>")
 

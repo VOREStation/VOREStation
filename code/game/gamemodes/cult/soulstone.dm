@@ -24,7 +24,7 @@
 		return ..()
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return..()
-	if(jobban_isbanned(M, "cultist"))
+	if(jobban_isbanned(M, JOB_CULTIST))
 		to_chat(user, "<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>")
 		return..()
 

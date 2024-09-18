@@ -1630,7 +1630,7 @@
 		'sound/vore/sunesound/prey/squish_04.ogg',
 		'sound/vore/sunesound/prey/stomachmove.ogg'
 		)
-	var/faction = "macrobacteria"
+	var/faction = FACTION_MACROBACTERIA
 
 /obj/structure/auto_flesh_door/Initialize()
 	. = ..()

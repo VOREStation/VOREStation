@@ -54,7 +54,7 @@
 				"rad" = 100)
 
 	can_be_antagged = TRUE
-	faction = "cult"
+	faction = FACTION_CULT
 
 	supernatural = TRUE
 

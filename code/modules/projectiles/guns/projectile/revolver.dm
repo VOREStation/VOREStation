@@ -63,7 +63,7 @@
 
 	var/mob/M = usr
 	if(!M.mind)	return 0
-	if(!M.mind.assigned_role == "Detective")
+	if(!M.mind.assigned_role == JOB_DETECTIVE)
 		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
 		return 0
 
@@ -86,12 +86,12 @@
 /obj/item/gun/projectile/revolver/detective45/verb/rename_gun()
 	set name = "Name Gun"
 	set category = "Object"
-	set desc = "Rename your gun. If you're the Detective."
+	set desc = "Rename your gun. If you're the " + JOB_DETECTIVE  + "."
 
 	var/mob/M = usr
 	if(!M.mind)	return 0
 	var/job = M.mind.assigned_role
-	if(job != "Detective")
+	if(job != JOB_DETECTIVE)
 		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
 		return 0
 

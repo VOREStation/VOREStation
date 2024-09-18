@@ -43,7 +43,7 @@
 	if(istype(I, /obj/item/card/id))
 		if(!powered())
 			return
-		if(!inserted_id && user.unEquip(I))
+		if(!inserted_id && (user.unEquip(I) || isrobot(user)))
 			I.forceMove(src)
 			inserted_id = I
 			SStgui.update_uis(src)
@@ -124,7 +124,7 @@
 			. = TRUE
 		if("claim")
 			if(istype(inserted_id))
-				if(access_mining_station in inserted_id.access)
+				if(access_mining_station in inserted_id.GetAccess())
 					inserted_id.mining_points += machine.points
 					machine.points = 0
 				else
@@ -347,4 +347,3 @@
 #undef PROCESS_SMELT
 #undef PROCESS_COMPRESS
 #undef PROCESS_ALLOY
-

@@ -27,7 +27,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	icon = 'icons/mob/vore32x64.dmi'
 	vis_height = 64
 
-	faction = "virgo3b"
+	faction = FACTION_VIRGO3B
 	maxHealth = 100
 	health = 100
 	movement_cooldown = 4

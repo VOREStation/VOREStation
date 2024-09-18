@@ -19,7 +19,7 @@
 	icon_dead = "shark_dead"
 	icon_rest = "shark_rest"
 
-	faction = "spaceshark"
+	faction = FACTION_SPACESHARK
 	maxHealth = 125
 	health = 125
 	movement_cooldown = 0

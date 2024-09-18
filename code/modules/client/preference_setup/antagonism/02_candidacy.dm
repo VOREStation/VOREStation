@@ -41,14 +41,14 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	pref.be_special	= sanitize_integer(pref.be_special, 0, 16777215, initial(pref.be_special)) //VOREStation Edit - 24 bits of support
 
 /datum/category_item/player_setup_item/antagonism/candidacy/content(var/mob/user)
-	if(jobban_isbanned(user, "Syndicate"))
+	if(jobban_isbanned(user, JOB_SYNDICATE))
 		. += "<b>You are banned from antagonist roles.</b>"
 		pref.be_special = 0
 	else
 		var/n = 0
 		for (var/i in special_roles)
 			if(special_roles[i]) //if mode is available on the server
-				if(jobban_isbanned(user, i) || (i == "positronic brain" && jobban_isbanned(user, "AI") && jobban_isbanned(user, "Cyborg")) || (i == "pAI candidate" && jobban_isbanned(user, "pAI")))
+				if(jobban_isbanned(user, i) || (i == "positronic brain" && jobban_isbanned(user, JOB_AI) && jobban_isbanned(user, JOB_CYBORG)) || (i == "pAI candidate" && jobban_isbanned(user, JOB_PAI)))
 					. += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 				else
 					. += "<b>Be [i]:</b> <a href='?src=\ref[src];be_special=[n]'><b>[pref.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"

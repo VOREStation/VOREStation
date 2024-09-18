@@ -9,7 +9,7 @@
 	icon_gib = "generic_gib"
 	vis_height = 96
 
-	faction = "clown"
+	faction = FACTION_CLOWN
 
 	loot_list = list(/obj/item/bikehorn = 100)
 

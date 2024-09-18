@@ -36,7 +36,7 @@
 	icon_rest = "ray_rest"
 	icon_gib = "ray_gib"
 
-	faction = "ray"
+	faction = FACTION_RAY
 	maxHealth = 125
 	health = 125
 	movement_cooldown = 0 // Carp go fast

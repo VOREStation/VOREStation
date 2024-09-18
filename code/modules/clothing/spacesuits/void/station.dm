@@ -380,7 +380,7 @@
 
 /obj/item/clothing/suit/space/void/exploration
 	name = "exploration voidsuit"
-	desc = "A hazard and radiation resistant voidsuit, featuring the Explorer emblem on its chest plate. Designed for exploring unknown planetary environments."
+	desc = "A hazard and radiation resistant voidsuit, featuring the " + JOB_EXPLORER + " emblem on its chest plate. Designed for exploring unknown planetary environments."
 	icon_state = "void_explorer"
 	item_state_slots = list(slot_r_hand_str = "skrell_suit_black", slot_l_hand_str = "skrell_suit_black")
 	armor = list(melee = 50, bullet = 15, laser = 35, energy = 25, bomb = 30, bio = 100, rad = 70)
@@ -402,7 +402,7 @@
 
 /obj/item/clothing/suit/space/void/expedition_medical
 	name = "field medic voidsuit"
-	desc = "A hazard and radiation resistant voidsuit, featuring the Explorer emblem and a green cross on its chest plate. Seems to be a little lighter and more flexible than the regular explorer issue."
+	desc = "A hazard and radiation resistant voidsuit, featuring the " + JOB_EXPLORER + " emblem and a green cross on its chest plate. Seems to be a little lighter and more flexible than the regular explorer issue."
 	icon_state = "void_exp_medic"
 	item_state_slots = list(slot_r_hand_str = "skrell_suit_black", slot_l_hand_str = "skrell_suit_black")
 	armor = list(melee = 50, bullet = 15, laser = 25, energy = 15, bomb = 30, bio = 100, rad = 90)

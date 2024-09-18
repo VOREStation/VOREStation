@@ -482,9 +482,15 @@
 /obj/item/reagent_containers/food/drinks/teapot/on_reagent_change()
 	..()
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/drinks/flask
 	name = "\improper Site Manager's flask"
 	desc = "A metal flask belonging to the Site Manager"
+=======
+/obj/item/weapon/reagent_containers/food/drinks/flask
+	name = "\improper " + JOB_SITE_MANAGER + "'s flask"
+	desc = "A metal flask belonging to the " + JOB_SITE_MANAGER
+>>>>>>> master
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
@@ -502,8 +508,13 @@
 	desc = "A flask with a Lithium Atom symbol on it."
 	icon_state = "lithiumflask"
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "\improper Detective's flask"
+=======
+/obj/item/weapon/reagent_containers/food/drinks/flask/detflask
+	name = "\improper " + JOB_DETECTIVE + "'s flask"
+>>>>>>> master
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."
 	icon_state = "detflask"
 	volume = 60
@@ -522,4 +533,3 @@
 	icon_state = "vacuumflask"
 	volume = 60
 	center_of_mass = list("x"=15, "y"=4)
-

@@ -127,7 +127,7 @@
 /var/const/access_captain = 20
 /datum/access/captain
 	id = access_captain
-	desc = "Site Manager"
+	desc = JOB_SITE_MANAGER
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_all_personal_lockers = 21
@@ -187,7 +187,7 @@
 /var/const/access_rd = 30
 /datum/access/rd
 	id = access_rd
-	desc = "Research Director"
+	desc = JOB_RESEARCH_DIRECTOR
 	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_cargo = 31
@@ -247,13 +247,13 @@
 /var/const/access_cmo = 40
 /datum/access/cmo
 	id = access_cmo
-	desc = "Chief Medical Officer"
+	desc = JOB_CHIEF_MEDICAL_OFFICER
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_qm = 41
 /datum/access/qm
 	id = access_qm
-	desc = "Quartermaster"
+	desc = JOB_QUARTERMASTER
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_network = 42
@@ -265,13 +265,13 @@
 var/const/access_explorer = 43
 /datum/access/explorer
 	id = access_explorer
-	desc = "Away Team"
+	desc = JOB_EXPLORER
 	region = ACCESS_REGION_GENERAL
 /*
 /var/const/access_pathfinder = 44
 /datum/access/pathfinder
 	id = access_pathfinder
-	desc = "Pathfinder"
+	desc = JOB_PATHFINDER
 	region = ACCESS_REGION_GENERAL
 */
 
@@ -331,19 +331,19 @@ var/const/access_explorer = 43
 /var/const/access_ce = 56
 /datum/access/ce
 	id = access_ce
-	desc = "Chief Engineer"
+	desc = JOB_CHIEF_ENGINEER
 	region = ACCESS_REGION_ENGINEERING
 
 /var/const/access_hop = 57
 /datum/access/hop
 	id = access_hop
-	desc = "Head of Personnel"
+	desc = JOB_HEAD_OF_PERSONNEL
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_hos = 58
 /datum/access/hos
 	id = access_hos
-	desc = "Head of Security"
+	desc = JOB_HEAD_OF_SECURITY
 	region = ACCESS_REGION_SECURITY
 
 /var/const/access_RC_announce = 59 //Request console announcements
@@ -379,7 +379,7 @@ var/const/access_explorer = 43
 /var/const/access_psychiatrist = 64 // Psychiatrist's office
 /datum/access/psychiatrist
 	id = access_psychiatrist
-	desc = "Psychiatrist's Office"
+	desc = JOB_PSYCHIATRIST + "'s Office"
 	region = ACCESS_REGION_MEDBAY
 
 /var/const/access_xenoarch = 65
@@ -397,7 +397,7 @@ var/const/access_explorer = 43
 var/const/access_pilot = 67
 /datum/access/pilot
 	id = access_pilot
-	desc = "Pilot"
+	desc = JOB_PILOT
 	region = ACCESS_REGION_GENERAL
 
 /var/const/access_entertainment = 72
@@ -430,7 +430,7 @@ var/const/access_pilot = 67
 /var/const/access_cent_specops = 103//Special Ops.
 /datum/access/cent_specops
 	id = access_cent_specops
-	desc = "Emergency Response Team Prep"
+	desc = JOB_EMERGENCY_RESPONSE_TEAM + " Prep"
 	access_type = ACCESS_TYPE_CENTCOM
 
 /var/const/access_cent_medical = 104//Medical/Research
@@ -460,7 +460,7 @@ var/const/access_pilot = 67
 /var/const/access_cent_creed = 108//Creed's office.
 /datum/access/cent_creed
 	id = access_cent_creed
-	desc = "Emergency Response Team Administration"
+	desc = JOB_EMERGENCY_RESPONSE_TEAM + " Administration"
 	access_type = ACCESS_TYPE_CENTCOM
 
 /var/const/access_cent_captain = 109//Captain's office/ID comp/AI.
@@ -472,7 +472,7 @@ var/const/access_pilot = 67
 /var/const/access_clown = 136
 /datum/access/clown
 	id = access_clown
-	desc = "Clown Office"
+	desc = JOB_CLOWN + " Office"
 	region = ACCESS_REGION_GENERAL
 
 /var/const/access_tomfoolery = 137
@@ -484,7 +484,7 @@ var/const/access_pilot = 67
 /var/const/access_mime = 138
 /datum/access/mime
 	id = access_mime
-	desc = "Mime Office"
+	desc = JOB_MIME + " Office"
 	region = ACCESS_REGION_GENERAL
 
 /***************

@@ -101,7 +101,7 @@
 		else if(species.name != "Human")
 			name_ender = ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>[species.get_additional_examine_text(src)]"
 
-	var/list/msg = list("<span class='info'>*---------*","This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
+	var/list/msg = list("<span class='info'>","This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
 
 	//uniform
 	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
@@ -440,7 +440,7 @@
 		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 	msg += "<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 	// VOREStation End
-	msg += "*---------*</span>"
+	msg += "</span>"
 	if(applying_pressure)
 		msg += applying_pressure
 

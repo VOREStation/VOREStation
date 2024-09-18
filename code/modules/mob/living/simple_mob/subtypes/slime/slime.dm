@@ -31,7 +31,7 @@ var/list/_slime_default_emotes = list(
 	glow_intensity = 2
 	gender = NEUTER
 
-	faction = "slime" // Note that slimes are hostile to other slimes of different color regardless of faction (unless Unified).
+	faction = FACTION_SLIME // Note that slimes are hostile to other slimes of different color regardless of faction (unless Unified).
 	maxHealth = 150
 	movement_cooldown = -1
 	pass_flags = PASSTABLE

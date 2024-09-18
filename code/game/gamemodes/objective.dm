@@ -150,7 +150,7 @@ var/global/list/all_objectives = list()
 
 		if(!istype(I)) return 1
 
-		if(I.assignment == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
+		if(I.assignment == JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 			return 1
 		else
 			return 0
@@ -638,7 +638,7 @@ var/global/list/all_objectives = list()
 	return
 
 /datum/objective/heist/kidnap/choose_target()
-	var/list/roles = list("Chief Engineer","Research Director","Roboticist","Chemist","Engineer")
+	var/list/roles = list(JOB_CHIEF_ENGINEER,JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST,JOB_CHEMIST,JOB_ENGINEER)
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 
@@ -903,4 +903,3 @@ var/global/list/all_objectives = list()
 			rval = 2
 		return 0
 	return rval
-

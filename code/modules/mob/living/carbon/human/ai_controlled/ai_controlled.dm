@@ -24,12 +24,21 @@
 	var/to_wear_suit = /obj/item/clothing/suit/armor/material/makeshift/glass
 	var/to_wear_gloves = /obj/item/clothing/gloves/ring/material/platinum
 	var/to_wear_shoes = /obj/item/clothing/shoes/galoshes
+<<<<<<< HEAD
 	var/to_wear_belt = /obj/item/storage/belt/utility/full
 	var/to_wear_l_pocket = /obj/item/soap
 	var/to_wear_r_pocket = /obj/item/pda
 	var/to_wear_back = /obj/item/storage/backpack
 	var/to_wear_id_type = /obj/item/card/id
 	var/to_wear_id_job = "Assistant"
+=======
+	var/to_wear_belt = /obj/item/weapon/storage/belt/utility/full
+	var/to_wear_l_pocket = /obj/item/weapon/soap
+	var/to_wear_r_pocket = /obj/item/device/pda
+	var/to_wear_back = /obj/item/weapon/storage/backpack
+	var/to_wear_id_type = /obj/item/weapon/card/id
+	var/to_wear_id_job = JOB_ALT_ASSISTANT
+>>>>>>> master
 
 	var/to_wear_l_hand = null
 	var/to_wear_r_hand = /obj/item/melee/baton
@@ -121,7 +130,7 @@
 	generate_gender = TRUE
 	identifying_gender = NEUTER
 
-	faction = "xeno"
+	faction = FACTION_XENO
 
 	to_wear_helmet = /obj/item/clothing/head/helmet/dermal
 	to_wear_glasses = /obj/item/clothing/glasses/goggles

@@ -38,7 +38,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-	faction = "bee"
+	faction = FACTION_BEE
 
 	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks, can be changed to different toxin.
 	var/poison_chance = 10			// Chance for injection to occur.

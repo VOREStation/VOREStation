@@ -158,7 +158,7 @@
 
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (Xray)"
-	desc = "Finally you can see what the Site Manager does."
+	desc = "Finally you can see what the " + JOB_SITE_MANAGER + " does."
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 

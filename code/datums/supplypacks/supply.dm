@@ -157,7 +157,7 @@
 	cost = 15
 
 /datum/supply_pack/explorergear
-	name="Away Team gear"
+	name= JOB_EXPLORER + " gear"
 	contains = list (
 					/obj/item/cataloguer,
 					/obj/item/geiger,
@@ -179,11 +179,11 @@
 					)
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
-	containername = "Away Team equipment"
+	containername = JOB_EXPLORER + " equipment"
 	access = list(access_eva, access_explorer)
 
 /datum/supply_pack/pilotgear
-	name= "Pilot gear"
+	name= JOB_PILOT + " gear"
 	contains = list (
 					/obj/item/storage/backpack/parachute,
 					/obj/item/radio/headset/pilot,
@@ -204,7 +204,7 @@
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
-	containername = "Pilot equipment"
+	containername =  JOB_PILOT + " equipment"
 	access = access_pilot
 
 /datum/supply_pack/supply/foodcubes
@@ -216,7 +216,7 @@
 	containername = "food cubes"
 
 /datum/supply_pack/pathfindergear
-	name="Away Team Leader gear"
+	name= JOB_PATHFINDER + " gear"
 	contains = list (
 					/obj/item/cataloguer/compact/pathfinder,
 					/obj/item/geiger,
@@ -240,5 +240,5 @@
 					)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/xion
-	containername = "Away Team Leader equipment"
+	containername = JOB_PATHFINDER + " equipment"
 	access = list(access_explorer)

@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 
 /obj/item/storage/bible/attack_self(mob/living/carbon/human/user)
 
-	if(user?.mind?.assigned_role != "Chaplain")
+	if(user?.mind?.assigned_role != JOB_CHAPLAIN)
 		return FALSE
 
 	if (!user.mind.my_religion)
@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		return FALSE
 	if(user.incapacitated())
 		return FALSE
-	if(user.mind.assigned_role != "Chaplain")
+	if(user.mind.assigned_role != JOB_CHAPLAIN)
 		return FALSE
 	return TRUE
 
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 
 /obj/item/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
-	if(user.mind && (user.mind.assigned_role == "Chaplain"))
+	if(user.mind && (user.mind.assigned_role == JOB_CHAPLAIN))
 		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
 			to_chat(user, "<span class='notice'>You bless [A].</span>")
 			var/water2holy = A.reagents.get_reagent_amount("water")

@@ -8,7 +8,7 @@
 	icon_living = "whitewolf"
 	icon_state = "whitewolf"
 	icon_rest = "whitewolf-rest"
-	faction = "sif"
+	faction = FACTION_SIF
 	has_eye_glow = TRUE
 	meat_amount = 40 //Big dog, lots of meat
 	meat_type = /obj/item/reagent_containers/food/snacks/meat

@@ -179,7 +179,7 @@
 	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Operative"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 /obj/effect/landmark/mobcorpse/solarpeacekeeper
 	name = "Mercenary"
@@ -193,7 +193,7 @@
 	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Peacekeeper"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 /obj/effect/landmark/mobcorpse/syndicatecommando
 	name = "Mercenary Commando"
@@ -208,12 +208,12 @@
 	corpsepocket1 = /obj/item/tank/emergency/oxygen
 	corpseid = 1
 	corpseidjob = "Operative"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 
 
 /obj/effect/landmark/mobcorpse/clown
-	name = "Clown"
+	name = JOB_CLOWN
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
 	corpseradio = /obj/item/radio/headset
@@ -221,8 +221,8 @@
 	corpsepocket1 = /obj/item/bikehorn
 	corpseback = /obj/item/storage/backpack/clown
 	corpseid = 1
-	corpseidjob = "Clown"
-	corpseidaccess = "Clown"
+	corpseidjob = JOB_CLOWN
+	corpseidaccess = JOB_CLOWN
 
 
 

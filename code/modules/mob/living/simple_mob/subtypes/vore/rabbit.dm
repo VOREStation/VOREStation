@@ -14,7 +14,7 @@
 	icon_rest = "rabbit_brown_rest"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "rabbit"
+	faction = FACTION_RABBIT
 	maxHealth = 30
 	health = 30
 

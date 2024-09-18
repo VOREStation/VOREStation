@@ -5,7 +5,7 @@
 /mob/living/simple_mob/blob
 	icon = 'icons/mob/blob.dmi'
 	pass_flags = PASSBLOB | PASSTABLE
-	faction = "blob"
+	faction = FACTION_BLOB
 
 	organ_names = /decl/mob_organ_names/blob
 

@@ -24,7 +24,7 @@
 	icon = 'icons/mob/vore64x64.dmi'
 	vis_height = 64
 
-	faction = "xeno"
+	faction = FACTION_XENO
 	maxHealth = 150
 	health = 150
 	see_in_dark = 10

@@ -501,7 +501,7 @@
 		if (idaccessible == 1)
 			switch(tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel")))
 				if("Add Access")
-					idcard.access |= ID.access
+					idcard.access |= ID.GetAccess()
 					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
 					to_chat(src, "<span class='notice'>\The [user] swipes the [W] over you. You copy the access codes.</span>")
 					if(radio)

@@ -13,7 +13,7 @@
 	response_help   = "pets"
 	response_disarm = "swats away"
 	response_harm   = "punches"
-	faction = "wards" // Needed as most human mobs are in neutral faction. The owner is generally except from any ward hostility regardless.
+	faction = FACTION_WARDS // Needed as most human mobs are in neutral faction. The owner is generally except from any ward hostility regardless.
 
 	organ_names = /decl/mob_organ_names/ward
 

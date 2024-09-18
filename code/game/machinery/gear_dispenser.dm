@@ -513,7 +513,7 @@ var/list/dispenser_presets = list()
 	req_one_access = list(access_atmospherics)
 
 /datum/gear_disp/voidsuit/station/paramedic
-	name = "Paramedic (Voidsuit)"
+	name = JOB_PARAMEDIC + " (Voidsuit)"
 	voidsuit_type = /obj/item/clothing/suit/space/void/medical/emt
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/medical/emt
 	refit = TRUE

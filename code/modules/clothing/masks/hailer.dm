@@ -39,7 +39,7 @@
 
 
 /obj/item/clothing/mask/gas/sechailer/swat/warden
-	name = "\improper Warden SWAT mask"
+	name = "\improper " + JOB_WARDEN + " SWAT mask"
 	desc = "A close-fitting tactical mask with an especially aggressive Compli-o-nator 3000. It has a blue stripe."
 	icon_state = "wardenmask"
 

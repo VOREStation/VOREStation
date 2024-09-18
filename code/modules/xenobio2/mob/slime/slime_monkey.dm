@@ -39,7 +39,7 @@ Slime cube lives here.
 	var/mob/living/carbon/human/S = new(get_turf(src))
 	S.client = candidate.client
 	to_chat(S., "<b>You are a promethean, brought into existence on [station_name()].</b>")
-	S.mind.assigned_role = "Promethean"
+	S.mind.assigned_role = JOB_PROMETHEAN
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#05FF9B")
 	for(var/mob/M in viewers(get_turf_or_move(loc)))

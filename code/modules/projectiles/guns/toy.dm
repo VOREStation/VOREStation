@@ -215,9 +215,15 @@
 /*
  * Cyborg
  */
+<<<<<<< HEAD
 /obj/item/gun/projectile/cyborgtoy
 	name = "\improper Donk-Soft Cyborg Blaster"
 	desc = "Donk-Soft Cyborg Blaster! It's Donk or Don't! Adult supervision required. Use to toggle between battle and cleanup mode."
+=======
+/obj/item/weapon/gun/projectile/cyborgtoy
+	name = "\improper Donk-Soft " + JOB_CYBORG + " Blaster"
+	desc = "Donk-Soft " + JOB_CYBORG + " Blaster! It's Donk or Don't! Adult supervision required. Use to toggle between battle and cleanup mode."
+>>>>>>> master
 	icon = 'icons/obj/gun_toy.dmi'
 	icon_state = "smg"
 	caliber = "foam"

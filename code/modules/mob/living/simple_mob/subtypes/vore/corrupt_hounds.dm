@@ -22,7 +22,7 @@
 	icon = 'icons/mob/vore64x32.dmi'
 	has_eye_glow = TRUE
 
-	faction = "corrupt"
+	faction = FACTION_CORRUPT
 
 	maxHealth = 200
 	health = 200

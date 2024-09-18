@@ -17,7 +17,7 @@
 /datum/game_mode/epidemic/pre_setup()
 	doctors = 0
 	for(var/mob/new_player/player in world)
-		if(player.mind.assigned_role in list("Chief Medical Officer","Medical Doctor"))
+		if(player.mind.assigned_role in list(JOB_CHIEF_MEDICAL_OFFICER ,JOB_MEDICAL_DOCTOR))
 			doctors++
 			break
 

@@ -2137,15 +2137,15 @@
 	if(istype(I, /obj/item/pda))
 		var/obj/item/pda/pda = I
 		I = pda.id
-	if(!istype(I) || !I.access) //not ID or no access
+	if(!istype(I) || !I.GetAccess()) //not ID or no access
 		return 0
 	if(access_list==src.operation_req_access)
 		for(var/req in access_list)
-			if(!(req in I.access)) //doesn't have this access
+			if(!(req in I.GetAccess())) //doesn't have this access
 				return 0
 	else if(access_list==src.internals_req_access)
 		for(var/req in access_list)
-			if(req in I.access)
+			if(req in I.GetAccess())
 				return 1
 	return 1
 
@@ -2379,7 +2379,7 @@
 	for(var/a in operation_req_access)
 		output += "[get_access_desc(a)] - <a href='?src=\ref[src];del_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Delete</a><br>"
 	output += "<hr><h1>Following keycodes were detected on portable device:</h1>"
-	for(var/a in id_card.access)
+	for(var/a in id_card.GetAccess())
 		if(a in operation_req_access) continue
 		var/a_name = get_access_desc(a)
 		if(!a_name) continue //there's some strange access without a name
