@@ -13,7 +13,6 @@
 *.md text eol=lf
 *.bat text eol=lf
 yarn.lock text eol=lf
-bin/tgui text eol=lf
 
 ## Treat bundles as binary
 *.bundle.* binary
