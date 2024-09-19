@@ -51,10 +51,11 @@
 			.["target"]["active"] = target.icon_selected
 			.["target"]["front"] = icon2base64(get_flat_icon(target,dir=SOUTH,no_anim=TRUE))
 			.["target"]["side"] = icon2base64(get_flat_icon(target,dir=WEST,no_anim=TRUE))
+			.["target"]["side_alt"] = icon2base64(get_flat_icon(target,dir=EAST,no_anim=TRUE))
 			.["target"]["back"] = icon2base64(get_flat_icon(target,dir=NORTH,no_anim=TRUE))
 			var/list/target_items = list()
 			for(var/obj/item in target.module.modules)
-				target_items += list(list("item" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
+				target_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
 			.["target"]["modules"] = target_items
 			var/list/module_options = list()
 			for(var/module in robot_modules)
@@ -102,6 +103,7 @@
 			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			if(kin)
 				.["target"]["pka"] = list()
+				.["target"]["pka"]["name"] = kin.name
 				var/list/installed_modkits = list()
 				for(var/obj/item/borg/upgrade/modkit/modkit in kin.modkits)
 					installed_modkits += list(list("name" = modkit.name, "ref" = "\ref[modkit]", "costs" = modkit.cost))
@@ -132,6 +134,16 @@
 				.["target"]["pka"]["modkits"] = modkits
 				.["target"]["pka"]["capacity"] = kin.get_remaining_mod_capacity()
 				.["target"]["pka"]["max_capacity"] = kin.max_mod_capacity
+			// Radio section
+			var/list/radio_channels = list()
+			for(var/channel in target.radio.channels)
+				radio_channels += channel
+			var/list/availalbe_channels = list()
+			for(var/channel in (radiochannels - target.radio.channels))
+				availalbe_channels += channel
+			.["target"]["radio_channels"] = radio_channels
+			.["target"]["availalbe_channels"] = availalbe_channels
+
 			// Section for source data for the module we might want to salvage
 			if(source)
 				.["source"] = list()
@@ -146,7 +158,7 @@
 							break
 					if(exists)
 						continue
-					source_items += list(list("item" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
+					source_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
 				.["source"]["modules"] = source_items
 	var/list/all_robots = list()
 	for(var/mob/living/silicon/robot/R in silicon_mob_list)
@@ -283,6 +295,10 @@
 			target.hands.icon_state = target.get_hud_module_icon()
 			target.hud_used.update_robot_modules_display()
 			return TRUE
+		if("ert_toggle")
+			target.crisis_override = !target.crisis_override
+			target.module_reset(FALSE)
+			return TRUE
 		if("add_compatibility")
 			target.module.supported_upgrades |= text2path(params["upgrade"])
 			return TRUE
@@ -320,4 +336,35 @@
 			var/obj/item/rem_kit = locate(params["modkit"])
 			kin.modkits.Remove(rem_kit)
 			qdel(rem_kit)
+			return TRUE
+		if("add_channel")
+			var/selected_radio_channel = params["channel"]
+			if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
+				target.radio.centComm = 1
+			if(selected_radio_channel == CHANNEL_RAIDER)
+				qdel(target.radio.keyslot)
+				target.radio.keyslot = new /obj/item/device/encryptionkey/raider(target)
+				target.radio.syndie = 1
+			if(selected_radio_channel == CHANNEL_MERCENARY)
+				qdel(target.radio.keyslot)
+				target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(target)
+				target.radio.syndie = 1
+			target.module.channels += list("[selected_radio_channel]" = 1)
+			target.radio.channels[selected_radio_channel] += target.module.channels[selected_radio_channel]
+			target.radio.secure_radio_connections[selected_radio_channel] += radio_controller.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
+			return TRUE
+		if("rem_channel")
+			var/selected_radio_channel = params["channel"]
+			if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
+				target.radio.centComm = 0
+			target.module.channels -= selected_radio_channel
+			if((selected_radio_channel == CHANNEL_MERCENARY || selected_radio_channel == CHANNEL_RAIDER) && !(target.module.channels[CHANNEL_RAIDER] || target.module.channels[CHANNEL_MERCENARY]))
+				qdel(target.radio.keyslot)
+				target.radio.keyslot = null
+				target.radio.syndie = 0
+			target.radio.channels = list()
+			for(var/n_chan in target.module.channels)
+				target.radio.channels[n_chan] -= target.module.channels[n_chan]
+			radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
+			target.radio.secure_radio_connections -= selected_radio_channel
 			return TRUE

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -16,6 +16,7 @@ import { Window } from 'tgui/layouts';
 import { ModifyRobotNoModule } from './ModifyRobotNoModule';
 import { ModifyRobotModules } from './ModifyRobotTabs/ModifyRobotModules';
 import { ModifyRobotPKA } from './ModifyRobotTabs/ModifyRobotPKA';
+import { ModifyRobotRadio } from './ModifyRobotTabs/ModifyRobotRadio';
 import { ModifyRobotUpgrades } from './ModifyRobotTabs/ModifyRobotUpgrades';
 import { Data } from './types';
 
@@ -26,6 +27,12 @@ export const ModifyRobot = (props) => {
 
   const [tab, setTab] = useState<number>(0);
   const [robotName, setRobotName] = useState<string>(target ? target.name : '');
+
+  useEffect(() => {
+    if (target?.name) {
+      setRobotName(target.name);
+    }
+  }, [target?.name]);
 
   const tabs: React.JSX.Element[] = [];
 
@@ -38,7 +45,7 @@ export const ModifyRobot = (props) => {
   );
   tabs[1] = <ModifyRobotUpgrades target={target!} />;
   tabs[2] = <ModifyRobotPKA target={target!} />;
-  tabs[3] = <Box />;
+  tabs[3] = <ModifyRobotRadio target={target!} />;
   tabs[4] = <Box />;
   tabs[5] = <Box />;
   tabs[6] = <Box />;
@@ -69,7 +76,7 @@ export const ModifyRobot = (props) => {
                   }
                 />
               </Stack.Item>
-              {!!target && (
+              {!!target?.module && (
                 <>
                   <Stack.Item>
                     <Input

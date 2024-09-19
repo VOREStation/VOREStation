@@ -20,9 +20,10 @@ export type Target = {
   crisis_override: BooleanLike;
   active_restrictions: string[];
   possible_restrictions: string[];
-  front: string | null;
-  side: string | null;
-  back: string | null;
+  front: string | undefined;
+  side: string | undefined;
+  side_alt: string | undefined;
+  back: string | undefined;
   modules: Module[];
   whitelisted_upgrades: Upgrade[];
   blacklisted_upgrades: Upgrade[];
@@ -30,8 +31,11 @@ export type Target = {
   basic_upgrades: Upgrade[];
   advanced_upgrades: Upgrade[];
   restricted_upgrades: Upgrade[];
+  radio_channels: string[];
+  availalbe_channels: string[];
   pka:
     | {
+        name: string;
         modkits: {
           name: string;
           path: string;
@@ -49,7 +53,7 @@ export type Target = {
 export type Upgrade = {
   name: string;
   path: string;
-  installed: number;
+  installed: number | undefined;
 };
 
 export type Source = {
@@ -58,4 +62,4 @@ export type Source = {
   modules: Module[];
 } | null;
 
-export type Module = { item: string; ref: string; icon: string; desc: string };
+export type Module = { name: string; ref: string; icon: string; desc: string };

@@ -1,6 +1,3 @@
-import { filter } from 'common/collections';
-import { flow } from 'common/fp';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -17,6 +14,7 @@ import {
 } from 'tgui/components';
 
 import { NoSpriteWarning } from '../components';
+import { prepareSearch } from '../functions';
 import { Module, Source, Target } from '../types';
 
 export const ModifyRobotModules = (props: {
@@ -61,13 +59,34 @@ export const ModifyRobotModules = (props: {
         </Flex.Item>
         <Flex.Item grow />
         <Flex.Item>
-          <Button
-            disabled={!source}
-            tooltip="Swaps the source and destination module types."
-            icon="arrows-rotate"
-            iconSize={4}
-            onClick={() => act('swap_module')}
-          />
+          <Stack vertical>
+            <Stack.Item>
+              <Button
+                disabled={!source}
+                tooltip="Swaps the source and destination module types."
+                icon="arrows-rotate"
+                iconSize={4}
+                onClick={() => act('swap_module')}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button.Confirm
+                width="50px"
+                height="50px"
+                mt={40}
+                textAlign="center"
+                tooltip={
+                  (target.crisis_override ? 'Disable' : 'Enable') +
+                  ' ERT module access and reset the robot!'
+                }
+                color={target.crisis_override ? 'green' : 'yellow'}
+                icon="circle-radiation"
+                iconSize={4}
+                confirmContent="GO?"
+                onClick={() => act('ert_toggle')}
+              />
+            </Stack.Item>
+          </Stack>
         </Flex.Item>
         <Flex.Item grow />
         <Flex.Item width="40%" fill>
@@ -100,22 +119,8 @@ export const ModifyRobotModules = (props: {
   );
 };
 
-function prepareSearch(modules: Module[], searchText: string = ''): Module[] {
-  const testSearch = createSearch(searchText, (module: Module) => module.item);
-  return flow([
-    (modules: Module[]) => {
-      // Optional search term
-      if (!searchText) {
-        return modules;
-      } else {
-        return filter(modules, testSearch);
-      }
-    },
-  ])(modules);
-}
-
 const SelectionField = (props: {
-  previewImage: string | null;
+  previewImage: string | undefined;
   searchText: string;
   onSearchText: Function;
   action: string;
@@ -172,7 +177,7 @@ const SelectionField = (props: {
                   <Flex.Item>
                     <Image src={modul_option.icon} />
                   </Flex.Item>
-                  <Flex.Item ml="10px">{modul_option.item}</Flex.Item>
+                  <Flex.Item ml="10px">{modul_option.name}</Flex.Item>
                   <Flex.Item grow />
                   <Flex.Item>
                     <Icon
