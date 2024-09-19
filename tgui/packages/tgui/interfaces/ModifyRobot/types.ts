@@ -16,6 +16,7 @@ export type Target = {
   name: string;
   ckey: string;
   module: string;
+  active: BooleanLike;
   crisis_override: BooleanLike;
   active_restrictions: string[];
   possible_restrictions: string[];
@@ -23,6 +24,32 @@ export type Target = {
   side: string | null;
   back: string | null;
   modules: Module[];
+  whitelisted_upgrades: Upgrade[];
+  blacklisted_upgrades: Upgrade[];
+  utility_upgrades: Upgrade[];
+  basic_upgrades: Upgrade[];
+  advanced_upgrades: Upgrade[];
+  restricted_upgrades: Upgrade[];
+  pka:
+    | {
+        modkits: {
+          name: string;
+          path: string;
+          costs: number;
+          denied: BooleanLike;
+          denied_by: string;
+        }[];
+        installed_modkits: { name: string; ref: string; costs: number }[];
+        capacity: number;
+        max_capacity: number;
+      }
+    | undefined;
+};
+
+export type Upgrade = {
+  name: string;
+  path: string;
+  installed: number;
 };
 
 export type Source = {

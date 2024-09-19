@@ -33,6 +33,7 @@
 
 /datum/eventkit/modify_robot/tgui_data(mob/user)
 	. = list()
+	// Target section for general data
 	if(target)
 		.["target"] = list()
 		.["target"]["name"] = target.name
@@ -45,7 +46,9 @@
 			if(!target.restrict_modules_to.Find(entry))
 				possible_restrictions += entry
 		.["target"]["possible_restrictions"] = possible_restrictions
+		// Target section for options once a module has been selected
 		if(target.module)
+			.["target"]["active"] = target.icon_selected
 			.["target"]["front"] = icon2base64(get_flat_icon(target,dir=SOUTH,no_anim=TRUE))
 			.["target"]["side"] = icon2base64(get_flat_icon(target,dir=WEST,no_anim=TRUE))
 			.["target"]["back"] = icon2base64(get_flat_icon(target,dir=NORTH,no_anim=TRUE))
@@ -57,6 +60,78 @@
 			for(var/module in robot_modules)
 				module_options += module
 			.["model_options"] = module_options
+			// Data for the upgrade options
+			var/list/whitelisted_upgrades = list()
+			var/list/blacklisted_upgrades = list()
+			for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+				if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
+					whitelisted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
+				else
+					blacklisted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
+			.["target"]["whitelisted_upgrades"] = whitelisted_upgrades
+			.["target"]["blacklisted_upgrades"] = blacklisted_upgrades
+			var/list/utility_upgrades = list()
+			for(var/datum/design/item/prosfab/robot_upgrade/utility/upgrade)
+				if(!(target.has_upgrade(initial(upgrade.build_path))))
+					utility_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
+			.["target"]["utility_upgrades"] = utility_upgrades
+			var/list/basic_upgrades = list()
+			for(var/datum/design/item/prosfab/robot_upgrade/basic/upgrade)
+				if(!(target.has_upgrade(initial(upgrade.build_path))))
+					basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
+				else
+					basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
+			.["target"]["basic_upgrades"] = basic_upgrades
+			var/list/advanced_upgrades = list()
+			for(var/datum/design/item/prosfab/robot_upgrade/advanced/upgrade)
+				if(!(target.has_upgrade(initial(upgrade.build_path))))
+					advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
+				else
+					advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
+			.["target"]["advanced_upgrades"] = advanced_upgrades
+			var/list/restricted_upgrades = list()
+			for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+				if(!(target.has_upgrade(initial(upgrade.build_path))))
+					if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
+						restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 2))
+						continue
+					restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
+				else
+					restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
+			.["target"]["restricted_upgrades"] = restricted_upgrades
+			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			if(kin)
+				.["target"]["pka"] = list()
+				var/list/installed_modkits = list()
+				for(var/obj/item/borg/upgrade/modkit/modkit in kin.modkits)
+					installed_modkits += list(list("name" = modkit.name, "ref" = "\ref[modkit]", "costs" = modkit.cost))
+				.["target"]["pka"]["installed_modkits"] = installed_modkits
+				var/list/modkits = list()
+				for(var/modkit in typesof(/obj/item/borg/upgrade/modkit))
+					var/obj/item/borg/upgrade/modkit/single_modkit = modkit
+					if(single_modkit == /obj/item/borg/upgrade/modkit)
+						continue
+					if(kin.get_remaining_mod_capacity() < initial(single_modkit.cost))
+						modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "Insufficient capacity!"))
+						continue
+					if(initial(single_modkit.denied_type))
+						var/number_of_denied = 0
+						var/denied = FALSE
+						for(var/A in kin.get_modkits())
+							var/obj/item/borg/upgrade/modkit/M = A
+							if(istype(M, initial(single_modkit.denied_type)))
+								number_of_denied++
+							if(number_of_denied >= initial(single_modkit.maximum_of_type))
+								modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "[initial(initial(single_modkit.denied_type).name)]"))
+								denied = TRUE
+								break
+						if(denied)
+							continue
+					modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost)))
+				.["target"]["pka"]["modkits"] = modkits
+				.["target"]["pka"]["capacity"] = kin.get_remaining_mod_capacity()
+				.["target"]["pka"]["max_capacity"] = kin.max_mod_capacity
+			// Section for source data for the module we might want to salvage
 			if(source)
 				.["source"] = list()
 				.["source"]["model"] = source.module
@@ -89,6 +164,11 @@
 	if(.)
 		return
 	switch(action)
+		if("rename")
+			target.name = params["new_name"]
+			target.custom_name = params["new_name"]
+			target.real_name = params["new_name"]
+			return TRUE
 		if("select_target")
 			target = locate(params["new_target"])
 			return TRUE
@@ -119,7 +199,7 @@
 			target.module_reset(FALSE)
 			return TRUE
 		if("add_module")
-			var/obj/item/add_item = locate(params["new_module"])
+			var/obj/item/add_item = locate(params["module"])
 			if(!add_item)
 				return TRUE
 			source.module.emag.Remove(add_item)
@@ -172,11 +252,71 @@
 						item_with_matter.plastic = target.module.synths[found]
 			return TRUE
 		if("rem_module")
-			var/obj/item/rem_item = locate(params["old_module"])
+			var/obj/item/rem_item = locate(params["module"])
 			target.uneq_all()
 			target.hud_used.update_robot_modules_display(TRUE)
 			target.module.emag.Remove(rem_item)
 			target.module.modules.Remove(rem_item)
 			target.module.contents.Remove(rem_item)
 			qdel(rem_item)
+			return TRUE
+		if("swap_module")
+			if(!source)
+				return FALSE
+			var/mod_type = source.modtype
+			qdel(source.module)
+			var/module_type = robot_modules[target.modtype]
+			source.modtype = target.modtype
+			new module_type(source)
+			source.sprite_datum = target.sprite_datum
+			source.update_icon()
+			source.emag_items = 1
+			// Target
+			target.uneq_all()
+			target.hud_used.update_robot_modules_display(TRUE)
+			qdel(target.module)
+			target.modtype = mod_type
+			module_type = robot_modules[mod_type]
+			target.transform_with_anim()
+			new module_type(target)
+			target.hands.icon_state = target.get_hud_module_icon()
+			target.hud_used.update_robot_modules_display()
+			return TRUE
+		if("add_compatibility")
+			target.module.supported_upgrades |= text2path(params["upgrade"])
+			return TRUE
+		if("rem_compatibility")
+			target.module.supported_upgrades.Remove(text2path(params["upgrade"]))
+			return TRUE
+		if("add_upgrade")
+			var/new_upgrade = text2path(params["upgrade"])
+			if(new_upgrade == /obj/item/borg/upgrade/utility/reset)
+				var/obj/item/borg/upgrade/utility/reset/rmodul = new_upgrade
+				if(tgui_alert(usr, "Are you sure that you want to install [initial(rmodul.name)] and reset the robot's module?","Confirm",list("Yes","No"))!="Yes")
+					return FALSE
+			var/obj/item/borg/upgrade/U = new new_upgrade(null)
+			if(new_upgrade == /obj/item/borg/upgrade/utility/rename)
+				var/obj/item/borg/upgrade/utility/rename/UN = U
+				var/new_name = sanitizeSafe(tgui_input_text(usr, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN), MAX_NAME_LEN)
+				if(new_name)
+					UN.heldname = new_name
+				U = UN
+			if(istype(U, /obj/item/borg/upgrade/restricted))
+				target.module.supported_upgrades |= new_upgrade
+			if(!U.action(target))
+				return FALSE
+			U.loc = target
+			target.hud_used.update_robot_modules_display()
+			return TRUE
+		if("install_modkit")
+			var/new_modkit = text2path(params["modkit"])
+			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/borg/upgrade/modkit/M = new new_modkit(null)
+			M.install(kin, target)
+			return TRUE
+		if("remove_modkit")
+			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/rem_kit = locate(params["modkit"])
+			kin.modkits.Remove(rem_kit)
+			qdel(rem_kit)
 			return TRUE
