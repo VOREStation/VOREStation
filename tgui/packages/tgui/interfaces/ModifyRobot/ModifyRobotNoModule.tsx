@@ -3,11 +3,13 @@ import {
   Button,
   Divider,
   Flex,
+  Icon,
   NoticeBox,
   Section,
   Stack,
 } from 'tgui/components';
 
+import { RankIcon } from '../common/RankIcon';
 import { Target } from './types';
 
 export const ModifyRobotNoModule = (props: { target: Target }) => {
@@ -24,8 +26,20 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
         fluid
         color={target.crisis_override ? 'red' : 'green'}
         onClick={() => act('toggle_crisis')}
+        tooltip={
+          (target.crisis_override ? 'Disables' : 'Enables') +
+          ' combat module option for this unit!'
+        }
       >
-        {(target.crisis_override ? 'Disable' : 'Enable') + ' Crisis Override'}
+        <Flex>
+          <Flex.Item>
+            <Icon name="circle-radiation" size={2} />
+          </Flex.Item>
+          <Flex.Item grow={1}>
+            {(target.crisis_override ? 'Disable' : 'Enable') +
+              ' Crisis Override'}
+          </Flex.Item>
+        </Flex>
       </Button>
       <Divider />
       <Flex>
@@ -46,7 +60,12 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
                         })
                       }
                     >
-                      {active_restriction}
+                      <Flex>
+                        <Flex.Item>
+                          {RankIcon({ rank: active_restriction, color: '' })}
+                        </Flex.Item>
+                        <Flex.Item grow={1}>{active_restriction}</Flex.Item>
+                      </Flex>
                     </Button>
                   );
                 })}
@@ -70,7 +89,12 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
                         })
                       }
                     >
-                      {possible_restriction}
+                      <Flex>
+                        <Flex.Item>
+                          {RankIcon({ rank: possible_restriction, color: '' })}
+                        </Flex.Item>
+                        <Flex.Item grow={1}>{possible_restriction}</Flex.Item>
+                      </Flex>
                     </Button>
                   );
                 })}

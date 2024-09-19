@@ -1,8 +1,10 @@
 import { BooleanLike } from 'common/react';
 
 export type Data = {
+  source: Source;
   target: Target | null;
-  all_players: DropdownEntry[];
+  all_robots: DropdownEntry[];
+  model_options: string[] | null;
 };
 
 export type DropdownEntry = {
@@ -20,4 +22,13 @@ export type Target = {
   front: string | null;
   side: string | null;
   back: string | null;
+  modules: Module[];
 };
+
+export type Source = {
+  model: string;
+  front: string;
+  modules: Module[];
+} | null;
+
+export type Module = { item: string; ref: string; icon: string };

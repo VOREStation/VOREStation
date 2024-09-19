@@ -17,21 +17,28 @@ import { Data } from './types';
 export const ModifyRobot = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { target, all_players } = data;
+  const { target, all_robots, source, model_options } = data;
 
   const [tab, setTab] = useState(0);
 
   const tabs: React.JSX.Element[] = [];
 
-  tabs[0] = <ModifyRobotModules target={target!} />;
+  tabs[0] = (
+    <ModifyRobotModules
+      target={target!}
+      source={source}
+      model_options={model_options!}
+    />
+  );
   tabs[1] = <Box />;
   tabs[2] = <Box />;
   tabs[3] = <Box />;
   tabs[4] = <Box />;
   tabs[5] = <Box />;
+  tabs[6] = <Box />;
 
   return (
-    <Window width={target?.module ? 800 : 400} height={600}>
+    <Window width={target?.module ? 800 : 400} height={700}>
       <Window.Content scrollable>
         {target ? (
           <NoticeBox info>
@@ -45,7 +52,7 @@ export const ModifyRobot = (props) => {
           <LabeledList.Item label="Player Selection">
             <Dropdown
               selected={target ? target.name : ''}
-              options={all_players}
+              options={all_robots}
               onSelected={(value) =>
                 act('select_target', {
                   new_target: value,
@@ -78,6 +85,9 @@ export const ModifyRobot = (props) => {
                 </Tabs.Tab>
                 <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
                   Law Manager
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 6} onClick={() => setTab(6)}>
+                  Law Sets
                 </Tabs.Tab>
               </Tabs>
               {tabs[tab]}
