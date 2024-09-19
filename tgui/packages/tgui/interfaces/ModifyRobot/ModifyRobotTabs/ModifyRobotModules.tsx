@@ -171,10 +171,7 @@ export const ModifyRobotModules = (props: {
   );
 };
 
-const prepareSearch = (
-  modules: Module[],
-  searchText: string = '',
-): Module[] => {
+function prepareSearch(modules: Module[], searchText: string = ''): Module[] {
   const testSearch = createSearch(searchText, (module: Module) => module.item);
   return flow([
     (modules: Module[]) => {
@@ -186,4 +183,4 @@ const prepareSearch = (
       }
     },
   ])(modules);
-};
+}
