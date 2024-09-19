@@ -122,7 +122,8 @@
 							if(istype(M, initial(single_modkit.denied_type)))
 								number_of_denied++
 							if(number_of_denied >= initial(single_modkit.maximum_of_type))
-								modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "[initial(initial(single_modkit.denied_type).name)]"))
+								var/obj/item/denied_type = initial(single_modkit.denied_type)
+								modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "[initial(denied_type.name)]"))
 								denied = TRUE
 								break
 						if(denied)
