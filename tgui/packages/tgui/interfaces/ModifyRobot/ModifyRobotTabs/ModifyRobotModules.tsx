@@ -1,3 +1,7 @@
+import { filter } from 'common/collections';
+import { flow } from 'common/fp';
+import { createSearch } from 'common/string';
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -7,11 +11,12 @@ import {
   Flex,
   Icon,
   Image,
+  Input,
   Section,
   Stack,
 } from 'tgui/components';
 
-import { Source, Target } from '../types';
+import { Module, Source, Target } from '../types';
 
 export const ModifyRobotModules = (props: {
   target: Target;
@@ -20,6 +25,8 @@ export const ModifyRobotModules = (props: {
 }) => {
   const { target, source, model_options } = props;
   const { act } = useBackend();
+  const [searchSourceText, setSearchSourceText] = useState<string>('');
+  const [searchModuleText, setSearchModulText] = useState<string>('');
 
   return (
     <Flex>
@@ -49,36 +56,46 @@ export const ModifyRobotModules = (props: {
                 }}
               />
               <Divider />
+              <Input
+                fluid
+                value={searchSourceText}
+                placeholder="Search for modules..."
+                onInput={(e, value: string) => setSearchSourceText(value)}
+              />
+              <Divider />
               <Stack fill>
                 <Stack.Item width="100%">
-                  {source.modules.map((modul_option, i) => {
-                    return (
-                      <Button
-                        fluid
-                        key={i}
-                        onClick={() =>
-                          act('add_module', {
-                            new_module: modul_option.ref,
-                          })
-                        }
-                      >
-                        <Flex varticalAlign="center">
-                          <Flex.Item>
-                            <Image src={modul_option.icon} />
-                          </Flex.Item>
-                          <Flex.Item ml="10px">{modul_option.item}</Flex.Item>
-                          <Flex.Item grow />
-                          <Flex.Item>
-                            <Icon
-                              name="arrow-right-to-bracket"
-                              backgroundColor="green"
-                              size={1.5}
-                            />
-                          </Flex.Item>
-                        </Flex>
-                      </Button>
-                    );
-                  })}
+                  {prepareSearch(source.modules, searchSourceText).map(
+                    (modul_option, i) => {
+                      return (
+                        <Button
+                          fluid
+                          key={i}
+                          tooltip={modul_option.desc}
+                          onClick={() =>
+                            act('add_module', {
+                              new_module: modul_option.ref,
+                            })
+                          }
+                        >
+                          <Flex varticalAlign="center">
+                            <Flex.Item>
+                              <Image src={modul_option.icon} />
+                            </Flex.Item>
+                            <Flex.Item ml="10px">{modul_option.item}</Flex.Item>
+                            <Flex.Item grow />
+                            <Flex.Item>
+                              <Icon
+                                name="arrow-right-to-bracket"
+                                backgroundColor="green"
+                                size={1.5}
+                              />
+                            </Flex.Item>
+                          </Flex>
+                        </Button>
+                      );
+                    },
+                  )}
                 </Stack.Item>
               </Stack>
             </>
@@ -95,6 +112,7 @@ export const ModifyRobotModules = (props: {
             confirmColor="red"
             confirmIcon="triangle-exclamation"
             onClick={() => act('reset_module')}
+            tooltip="Allows to reset the module back to default."
           >
             Reset Module
           </Button.Confirm>
@@ -109,36 +127,63 @@ export const ModifyRobotModules = (props: {
             }}
           />
           <Divider />
+          <Input
+            fluid
+            value={searchModuleText}
+            placeholder="Search for modules..."
+            onInput={(e, value: string) => setSearchModulText(value)}
+          />
+          <Divider />
           <Stack fill>
             <Stack.Item width="100%">
-              {target.modules.map((modul_option, i) => {
-                return (
-                  <Button
-                    fluid
-                    key={i}
-                    onClick={() =>
-                      act('rem_module', {
-                        old_module: modul_option.ref,
-                      })
-                    }
-                  >
-                    <Flex varticalAlign="center">
-                      <Flex.Item>
-                        <Image src={modul_option.icon} />
-                      </Flex.Item>
-                      <Flex.Item ml="10px">{modul_option.item}</Flex.Item>
-                      <Flex.Item grow />
-                      <Flex.Item>
-                        <Icon name="trash" backgroundColor="red" size={1.5} />
-                      </Flex.Item>
-                    </Flex>
-                  </Button>
-                );
-              })}
+              {prepareSearch(target.modules, searchModuleText).map(
+                (modul_option, i) => {
+                  return (
+                    <Button
+                      fluid
+                      key={i}
+                      tooltip={modul_option.desc}
+                      onClick={() =>
+                        act('rem_module', {
+                          old_module: modul_option.ref,
+                        })
+                      }
+                    >
+                      <Flex varticalAlign="center">
+                        <Flex.Item>
+                          <Image src={modul_option.icon} />
+                        </Flex.Item>
+                        <Flex.Item ml="10px">{modul_option.item}</Flex.Item>
+                        <Flex.Item grow />
+                        <Flex.Item>
+                          <Icon name="trash" backgroundColor="red" size={1.5} />
+                        </Flex.Item>
+                      </Flex>
+                    </Button>
+                  );
+                },
+              )}
             </Stack.Item>
           </Stack>
         </Section>
       </Flex.Item>
     </Flex>
   );
+};
+
+const prepareSearch = (
+  modules: Module[],
+  searchText: string = '',
+): Module[] => {
+  const testSearch = createSearch(searchText, (module: Module) => module.item);
+  return flow([
+    (modules: Module[]) => {
+      // Optional search term
+      if (!searchText) {
+        return modules;
+      } else {
+        return filter(modules, testSearch);
+      }
+    },
+  ])(modules);
 };

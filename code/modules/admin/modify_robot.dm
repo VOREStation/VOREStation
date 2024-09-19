@@ -51,7 +51,7 @@
 			.["target"]["back"] = icon2base64(get_flat_icon(target,dir=NORTH,no_anim=TRUE))
 			var/list/target_items = list()
 			for(var/obj/item in target.module.modules)
-				target_items += list(list("item" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE)))
+				target_items += list(list("item" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
 			.["target"]["modules"] = target_items
 			var/list/module_options = list()
 			for(var/module in robot_modules)
@@ -70,7 +70,7 @@
 							break
 					if(exists)
 						continue
-					source_items += list(list("item" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE)))
+					source_items += list(list("item" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
 				.["source"]["modules"] = source_items
 	var/list/all_robots = list()
 	for(var/mob/living/silicon/robot/R in silicon_mob_list)

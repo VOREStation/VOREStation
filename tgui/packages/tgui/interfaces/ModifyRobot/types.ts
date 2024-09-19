@@ -31,4 +31,4 @@ export type Source = {
   modules: Module[];
 } | null;
 
-export type Module = { item: string; ref: string; icon: string };
+export type Module = { item: string; ref: string; icon: string; desc: string };
