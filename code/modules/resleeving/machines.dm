@@ -194,6 +194,12 @@
 		return 100 * ((occupant.health + abs(config.health_threshold_dead)) / (occupant.maxHealth + abs(config.health_threshold_dead)))
 	return 0
 
+/obj/machinery/clonepod/transhuman/examine(mob/user, infix, suffix)
+	. = ..()
+	if(occupant)
+		var/completion = get_completion()
+		. += "Progress: [round(completion)]% [chat_progress_bar(round(completion), TRUE)]"
+
 //Synthetic version
 /obj/machinery/transhuman/synthprinter
 	name = "SynthFab 3000"
