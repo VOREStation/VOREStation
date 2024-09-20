@@ -88,6 +88,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/proc/set_size,
 //		/mob/living/carbon/human/proc/lleill_contact,
 //		/mob/living/carbon/human/proc/lleill_alchemy,
