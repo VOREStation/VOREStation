@@ -29,7 +29,8 @@
 			else
 				icon = 'icons/obj/props/items.dmi'
 			icon_state = icon_state_on
-			src.visible_message("<span class='notice'>[text_activated]</span>")
+			if(user)
+				user.visible_message("<span class='notice'>[text_activated]</span>")
 			update_icon()
 			if(effect == 1)
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -83,7 +84,8 @@
 				icon = icon_off
 			else
 				icon = 'icons/obj/props/items.dmi'
-			src.visible_message("<span class='notice'>[text_deactivated]</span>")
+			if(user)
+				user.visible_message("<span class='notice'>[text_deactivated]</span>")
 			update_icon()
 	return ..()
 
