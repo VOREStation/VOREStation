@@ -330,6 +330,8 @@
 				C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(target)
 			else if(istype(C, /datum/robot_component/armour))
 				C.wrapped = new /obj/item/robot_parts/robot_component/armour(target)
+			C.brute_damage = 0
+			C.electronics_damage = 0
 			C.install()
 			C.installed = 1
 			return TRUE
@@ -338,6 +340,8 @@
 			if(!C.wrapped)
 				return FALSE
 			C.uninstall()
+			C.brute_damage = 0
+			C.electronics_damage = 0
 			C.installed = 0
 			qdel(C.wrapped)
 			C.wrapped = null
