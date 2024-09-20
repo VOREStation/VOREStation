@@ -1,3 +1,4 @@
+import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -105,7 +106,7 @@ const RadioSection = (props: {
                 }
               >
                 <Flex varticalAlign="center">
-                  <Flex.Item>{channel}</Flex.Item>
+                  <Flex.Item>{capitalize(channel)}</Flex.Item>
                   <Flex.Item grow />
                   <Flex.Item>
                     <Icon

@@ -1,3 +1,4 @@
+import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -142,7 +143,7 @@ const UpgradeSection = (props: {
                   })
                 }
               >
-                {upgrade.name}
+                {capitalize(upgrade.name)}
               </Button>
             );
           })}

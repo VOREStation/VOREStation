@@ -62,78 +62,11 @@
 				module_options += module
 			.["model_options"] = module_options
 			// Data for the upgrade options
-			var/list/whitelisted_upgrades = list()
-			var/list/blacklisted_upgrades = list()
-			for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
-				if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
-					whitelisted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
-				else
-					blacklisted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
-			.["target"]["whitelisted_upgrades"] = whitelisted_upgrades
-			.["target"]["blacklisted_upgrades"] = blacklisted_upgrades
-			var/list/utility_upgrades = list()
-			for(var/datum/design/item/prosfab/robot_upgrade/utility/upgrade)
-				if(!(target.has_upgrade(initial(upgrade.build_path))))
-					utility_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
-			.["target"]["utility_upgrades"] = utility_upgrades
-			var/list/basic_upgrades = list()
-			for(var/datum/design/item/prosfab/robot_upgrade/basic/upgrade)
-				if(!(target.has_upgrade(initial(upgrade.build_path))))
-					basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
-				else
-					basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
-			.["target"]["basic_upgrades"] = basic_upgrades
-			var/list/advanced_upgrades = list()
-			for(var/datum/design/item/prosfab/robot_upgrade/advanced/upgrade)
-				if(!(target.has_upgrade(initial(upgrade.build_path))))
-					advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
-				else
-					advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
-			.["target"]["advanced_upgrades"] = advanced_upgrades
-			var/list/restricted_upgrades = list()
-			for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
-				if(!(target.has_upgrade(initial(upgrade.build_path))))
-					if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
-						restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 2))
-						continue
-					restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
-				else
-					restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
-			.["target"]["restricted_upgrades"] = restricted_upgrades
+			.["target"] += get_upgrades()
+
 			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			if(kin)
-				.["target"]["pka"] = list()
-				.["target"]["pka"]["name"] = kin.name
-				var/list/installed_modkits = list()
-				for(var/obj/item/borg/upgrade/modkit/modkit in kin.modkits)
-					installed_modkits += list(list("name" = modkit.name, "ref" = "\ref[modkit]", "costs" = modkit.cost))
-				.["target"]["pka"]["installed_modkits"] = installed_modkits
-				var/list/modkits = list()
-				for(var/modkit in typesof(/obj/item/borg/upgrade/modkit))
-					var/obj/item/borg/upgrade/modkit/single_modkit = modkit
-					if(single_modkit == /obj/item/borg/upgrade/modkit)
-						continue
-					if(kin.get_remaining_mod_capacity() < initial(single_modkit.cost))
-						modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "Insufficient capacity!"))
-						continue
-					if(initial(single_modkit.denied_type))
-						var/number_of_denied = 0
-						var/denied = FALSE
-						for(var/A in kin.get_modkits())
-							var/obj/item/borg/upgrade/modkit/M = A
-							if(istype(M, initial(single_modkit.denied_type)))
-								number_of_denied++
-							if(number_of_denied >= initial(single_modkit.maximum_of_type))
-								var/obj/item/denied_type = initial(single_modkit.denied_type)
-								modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "[initial(denied_type.name)]"))
-								denied = TRUE
-								break
-						if(denied)
-							continue
-					modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost)))
-				.["target"]["pka"]["modkits"] = modkits
-				.["target"]["pka"]["capacity"] = kin.get_remaining_mod_capacity()
-				.["target"]["pka"]["max_capacity"] = kin.max_mod_capacity
+				.["target"]["pka"] += get_pka(kin)
 			// Radio section
 			var/list/radio_channels = list()
 			for(var/channel in target.radio.channels)
@@ -143,29 +76,38 @@
 				availalbe_channels += channel
 			.["target"]["radio_channels"] = radio_channels
 			.["target"]["availalbe_channels"] = availalbe_channels
-
+			// Components
+			var/list/components = list()
+			for(var/entry in target.components)
+				var/datum/robot_component/C = target.components[entry]
+				components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
+			.["target"]["components"] = components
+			.["cell"] = target.cell?.name
+			var/list/cell_options = list()
+			for(var/cell in typesof(/obj/item/weapon/cell))
+				var/obj/item/weapon/cell/C = cell
+				if(initial(C.name) == "power cell")
+					continue
+				if(ispath(C, /obj/item/weapon/cell/standin))
+					continue
+				if(ispath(C, /obj/item/weapon/cell/device))
+					continue
+				if(ispath(C, /obj/item/weapon/cell/mech))
+					continue
+				if(cell_options[initial(C.name)]) // empty cells are defined after normal cells!
+					continue
+				cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
+			.["cell_options"] = cell_options
+			// Access
+			//.["target"]["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
 			// Section for source data for the module we might want to salvage
 			if(source)
-				.["source"] = list()
-				.["source"]["model"] = source.module
-				.["source"]["front"] = icon2base64(get_flat_icon(source,dir=SOUTH,no_anim=TRUE))
-				var/list/source_items = list()
-				for(var/obj/item in (source.module.modules | source.module.emag))
-					var/exists
-					for(var/obj/has_item in (target.module.modules + target.module.emag))
-						if(has_item.name == item.name)
-							exists = TRUE
-							break
-					if(exists)
-						continue
-					source_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
-				.["source"]["modules"] = source_items
+				.["source"] += get_module_source(user)
 	var/list/all_robots = list()
 	for(var/mob/living/silicon/robot/R in silicon_mob_list)
 		if(!R.loc)
 			continue
-		var/list/info = list("displayText" = "[R]", "value" = "\ref[R]")
-		all_robots.Add(list(info))
+		all_robots += list(list("displayText" = "[R]", "value" = "\ref[R]"))
 	.["all_robots"] = all_robots
 
 
@@ -368,3 +310,141 @@
 			radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
 			target.radio.secure_radio_connections -= selected_radio_channel
 			return TRUE
+		if("add_component")
+			var/datum/robot_component/C = locate(params["component"])
+			if(C.wrapped)
+				qdel(C.wrapped)
+			if(istype(C, /datum/robot_component/actuator))
+				C.wrapped = new /obj/item/robot_parts/robot_component/actuator(target)
+			else if(istype(C, /datum/robot_component/radio))
+				C.wrapped = new /obj/item/robot_parts/robot_component/radio(target)
+			else if(istype(C, /datum/robot_component/cell))
+				var/new_cell = text2path(params["cell"])
+				target.cell = new new_cell(target)
+				C.wrapped = target.cell
+			else if(istype(C, /datum/robot_component/diagnosis_unit))
+				C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(target)
+			else if(istype(C, /datum/robot_component/camera))
+				C.wrapped = new /obj/item/robot_parts/robot_component/camera(target)
+			else if(istype(C, /datum/robot_component/binary_communication))
+				C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(target)
+			else if(istype(C, /datum/robot_component/armour))
+				C.wrapped = new /obj/item/robot_parts/robot_component/armour(target)
+			C.install()
+			C.installed = 1
+			return TRUE
+		if("rem_component")
+			var/datum/robot_component/C = locate(params["component"])
+			if(!C.wrapped)
+				return FALSE
+			C.uninstall()
+			C.installed = 0
+			qdel(C.wrapped)
+			C.wrapped = null
+			if(istype(C, /datum/robot_component/cell))
+				target.cell = null
+			return TRUE
+
+/datum/eventkit/modify_robot/proc/get_module_source(var/mob/user)
+	var/list/source_list = list()
+	source_list["model"] = source.module
+	source_list["front"] = icon2base64(get_flat_icon(source,dir=SOUTH,no_anim=TRUE))
+	var/list/source_items = list()
+	for(var/obj/item in (source.module.modules | source.module.emag))
+		var/exists
+		for(var/obj/has_item in (target.module.modules + target.module.emag))
+			if(has_item.name == item.name)
+				exists = TRUE
+				break
+		if(exists)
+			continue
+		source_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
+	source_list["modules"] = source_items
+	return source_list
+
+/datum/eventkit/modify_robot/proc/get_upgrades()
+	var/list/all_upgrades = list()
+	var/list/whitelisted_upgrades = list()
+	var/list/blacklisted_upgrades = list()
+	for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+		if(!upgrade.name)
+			continue
+		if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
+			whitelisted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
+		else
+			blacklisted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
+	all_upgrades["whitelisted_upgrades"] = whitelisted_upgrades
+	all_upgrades["blacklisted_upgrades"] = blacklisted_upgrades
+	var/list/utility_upgrades = list()
+	for(var/datum/design/item/prosfab/robot_upgrade/utility/upgrade)
+		if(!upgrade.name)
+			continue
+		if(!(target.has_upgrade(initial(upgrade.build_path))))
+			utility_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
+	all_upgrades["utility_upgrades"] = utility_upgrades
+	var/list/basic_upgrades = list()
+	for(var/datum/design/item/prosfab/robot_upgrade/basic/upgrade)
+		if(!upgrade.name)
+			continue
+		if(!(target.has_upgrade(initial(upgrade.build_path))))
+			basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
+		else
+			basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
+	all_upgrades["basic_upgrades"] = basic_upgrades
+	var/list/advanced_upgrades = list()
+	for(var/datum/design/item/prosfab/robot_upgrade/advanced/upgrade)
+		if(!upgrade.name)
+			continue
+		if(!(target.has_upgrade(initial(upgrade.build_path))))
+			advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
+		else
+			advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
+	all_upgrades["advanced_upgrades"] = advanced_upgrades
+	var/list/restricted_upgrades = list()
+	for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+		if(!upgrade.name)
+			continue
+		if(!(target.has_upgrade(initial(upgrade.build_path))))
+			if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
+				restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 2))
+				continue
+			restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 0))
+		else
+			restricted_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
+	all_upgrades["restricted_upgrades"] = restricted_upgrades
+	return all_upgrades
+
+/datum/eventkit/modify_robot/proc/get_pka(var/obj/item/weapon/gun/energy/kinetic_accelerator/kin)
+	var/list/pka = list()
+	pka["name"] = kin.name
+	var/list/installed_modkits = list()
+	for(var/obj/item/borg/upgrade/modkit/modkit in kin.modkits)
+		installed_modkits += list(list("name" = modkit.name, "ref" = "\ref[modkit]", "costs" = modkit.cost))
+	pka["installed_modkits"] = installed_modkits
+	var/list/modkits = list()
+	for(var/modkit in typesof(/obj/item/borg/upgrade/modkit))
+		var/obj/item/borg/upgrade/modkit/single_modkit = modkit
+		if(single_modkit == /obj/item/borg/upgrade/modkit)
+			continue
+		if(kin.get_remaining_mod_capacity() < initial(single_modkit.cost))
+			modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "Insufficient capacity!"))
+			continue
+		if(initial(single_modkit.denied_type))
+			var/number_of_denied = 0
+			var/denied = FALSE
+			for(var/A in kin.get_modkits())
+				var/obj/item/borg/upgrade/modkit/M = A
+				if(istype(M, initial(single_modkit.denied_type)))
+					number_of_denied++
+				if(number_of_denied >= initial(single_modkit.maximum_of_type))
+					var/obj/item/denied_type = initial(single_modkit.denied_type)
+					modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost), "denied" = TRUE, "denied_by" = "[initial(denied_type.name)]"))
+					denied = TRUE
+					break
+			if(denied)
+				continue
+		modkits += list(list("name" = initial(single_modkit.name), "path" = single_modkit, "costs" = initial(single_modkit.cost)))
+	pka["modkits"] = modkits
+	pka["capacity"] = kin.get_remaining_mod_capacity()
+	pka["max_capacity"] = kin.max_mod_capacity
+	return pka

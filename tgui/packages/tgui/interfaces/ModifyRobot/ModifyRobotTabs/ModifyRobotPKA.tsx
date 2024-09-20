@@ -1,3 +1,4 @@
+import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -11,8 +12,8 @@ import {
 } from 'tgui/components';
 
 import { NoSpriteWarning } from '../components';
-import { prepareSearch } from '../functions';
-import { Module, Target } from '../types';
+import { getModuleIcon, prepareSearch } from '../functions';
+import { Target } from '../types';
 
 export const ModifyRobotPKA = (props: { target: Target }) => {
   const { act } = useBackend();
@@ -57,7 +58,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
                       })
                     }
                   >
-                    {modkit.name} {modkit.costs}
+                    {capitalize(modkit.name)} {modkit.costs}
                   </Button>
                 );
               },
@@ -66,7 +67,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
           <Flex.Item grow />
           <Flex.Item>
             <Image
-              src={getPKAIcon(target.modules, target.pka.name)}
+              src={getModuleIcon(target.modules, target.pka.name)}
               width="150px"
             />
           </Flex.Item>
@@ -99,7 +100,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
                     })
                   }
                 >
-                  {modkit.name} {modkit.costs}
+                  {capitalize(modkit.name)} {modkit.costs}
                 </Button>
               );
             })}
@@ -109,13 +110,3 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
     </>
   );
 };
-
-function getPKAIcon(modules: Module[], name: string) {
-  if (modules) {
-    const module = modules.filter((module) => module.name === name);
-    if (module.length > 0) {
-      return module[0].icon;
-    }
-  }
-  return '';
-}

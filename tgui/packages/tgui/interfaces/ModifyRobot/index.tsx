@@ -14,6 +14,7 @@ import {
 import { Window } from 'tgui/layouts';
 
 import { ModifyRobotNoModule } from './ModifyRobotNoModule';
+import { ModifyRobotComponent } from './ModifyRobotTabs/ModifyRobotComponent';
 import { ModifyRobotModules } from './ModifyRobotTabs/ModifyRobotModules';
 import { ModifyRobotPKA } from './ModifyRobotTabs/ModifyRobotPKA';
 import { ModifyRobotRadio } from './ModifyRobotTabs/ModifyRobotRadio';
@@ -23,7 +24,8 @@ import { Data } from './types';
 export const ModifyRobot = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { target, all_robots, source, model_options } = data;
+  const { target, all_robots, source, model_options, cell, cell_options } =
+    data;
 
   const [tab, setTab] = useState<number>(0);
   const [robotName, setRobotName] = useState<string>(target ? target.name : '');
@@ -46,7 +48,9 @@ export const ModifyRobot = (props) => {
   tabs[1] = <ModifyRobotUpgrades target={target!} />;
   tabs[2] = <ModifyRobotPKA target={target!} />;
   tabs[3] = <ModifyRobotRadio target={target!} />;
-  tabs[4] = <Box />;
+  tabs[4] = (
+    <ModifyRobotComponent target={target!} cell={cell} cells={cell_options} />
+  );
   tabs[5] = <Box />;
   tabs[6] = <Box />;
   tabs[7] = <Box />;

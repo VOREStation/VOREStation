@@ -1,3 +1,4 @@
+import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -177,7 +178,9 @@ const SelectionField = (props: {
                   <Flex.Item>
                     <Image src={modul_option.icon} />
                   </Flex.Item>
-                  <Flex.Item ml="10px">{modul_option.name}</Flex.Item>
+                  <Flex.Item ml="10px">
+                    {capitalize(modul_option.name)}
+                  </Flex.Item>
                   <Flex.Item grow />
                   <Flex.Item>
                     <Icon
