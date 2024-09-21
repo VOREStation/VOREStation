@@ -184,3 +184,48 @@
 /datum/ai_holder/simple_mob/melee/evasive/corrupthound
 	violent_breakthrough = TRUE
 	can_breakthrough = TRUE
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/fire
+	icon_state = "badboi_fire"
+	icon_living = "badboi_fire"
+	icon_dead = "badboi_fire-dead"
+	icon_rest = "badboi_fire_rest"
+
+	maxHealth = 150
+	health = 150
+
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive
+
+	projectiletype = /obj/item/projectile/scatter/flamethrower
+	ranged_attack_delay = 2 SECONDS
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/laser
+	icon_state = "badboi_laser"
+	icon_living = "badboi_laser"
+	icon_dead = "badboi_laser-dead"
+	icon_rest = "badboi_laser_rest"
+
+	maxHealth = 150
+	health = 150
+
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged
+
+	ranged_attack_delay = 2 SECONDS
+	projectiletype = /obj/item/projectile/beam/midlaser
+	projectilesound = 'sound/weapons/Laser.ogg'
+	projectile_dispersion = 5
+	projectile_accuracy = -20
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/fast
+	icon_state = "badboi_fast"
+	icon_living = "badboi_fast"
+	icon_dead = "badboi_fast-dead"
+	icon_rest = "badboi_fast_rest"
+
+	maxHealth = 100
+	health = 100
+
+	movement_cooldown = -1
+
+	melee_damage_lower = 7
+	melee_damage_upper = 15

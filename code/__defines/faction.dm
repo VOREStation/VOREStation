@@ -21,6 +21,7 @@
 
 #define FACTION_ALTEVIAN "altevian"
 #define FACTION_CULT "cult"
+#define FACTION_GLAMOUR "glamour"
 #define FACTION_PIRATE "pirate"
 #define FACTION_SHADEKIN "shadekin"
 #define FACTION_SPACE_GHOST "space ghost"

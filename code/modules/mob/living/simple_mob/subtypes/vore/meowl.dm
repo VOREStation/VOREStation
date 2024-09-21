@@ -137,6 +137,8 @@
 
 /datum/ai_holder/simple_mob/vore/meowl
 	var/last_friend_time = 0
+	violent_breakthrough = FALSE
+	destructive = FALSE
 
 /datum/ai_holder/simple_mob/vore/meowl/engage_target()
 	ai_log("engage_target() : Entering.", AI_LOG_DEBUG)
