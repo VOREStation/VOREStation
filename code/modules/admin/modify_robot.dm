@@ -399,43 +399,52 @@
 		if("add_zeroth_law")
 			if(zeroth_law && !target.laws.zeroth_law)
 				target.set_zeroth_law(zeroth_law)
+				target.lawsync()
 			return TRUE
 		if("add_ion_law")
 			if(ion_law)
 				target.add_ion_law(ion_law)
+				target.lawsync()
 			return TRUE
 		if("add_inherent_law")
 			if(inherent_law)
 				target.add_inherent_law(inherent_law)
+				target.lawsync()
 			return TRUE
 		if("add_supplied_law")
 			if(supplied_law && supplied_law_position >= 1 && MIN_SUPPLIED_LAW_NUMBER <= MAX_SUPPLIED_LAW_NUMBER)
 				target.add_supplied_law(supplied_law_position, supplied_law)
+				target.lawsync()
 			return TRUE
 		if("change_zeroth_law")
 			var/new_law = sanitize(params["val"])
 			if(new_law && new_law != zeroth_law)
 				zeroth_law = new_law
+				target.lawsync()
 			return TRUE
 		if("change_ion_law")
 			var/new_law = sanitize(params["val"])
 			if(new_law && new_law != ion_law)
 				ion_law = new_law
+				target.lawsync()
 			return TRUE
 		if("change_inherent_law")
 			var/new_law = sanitize(params["val"])
 			if(new_law && new_law != inherent_law)
 				inherent_law = new_law
+				target.lawsync()
 			return TRUE
 		if("change_supplied_law")
 			var/new_law = sanitize(params["val"])
 			if(new_law && new_law != supplied_law)
 				supplied_law = new_law
+				target.lawsync()
 			return TRUE
 		if("change_supplied_law_position")
 			var/new_position = tgui_input_number(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position, MAX_SUPPLIED_LAW_NUMBER, 1)
 			if(isnum(new_position))
 				supplied_law_position = CLAMP(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
+				target.lawsync()
 			return TRUE
 		if("edit_law")
 			var/datum/ai_law/AL = locate(params["edit_law"]) in target.laws.all_laws()
@@ -444,11 +453,13 @@
 				if(new_law && new_law != AL.law)
 					log_and_message_admins("has changed a law of [target] from '[AL.law]' to '[new_law]'")
 					AL.law = new_law
+					target.lawsync()
 				return TRUE
 		if("delete_law")
 			var/datum/ai_law/AL = locate(params["delete_law"]) in target.laws.all_laws()
 			if(AL)
 				target.delete_law(AL)
+				target.lawsync()
 			return TRUE
 		if("state_laws")
 			target.statelaws(target.laws)
