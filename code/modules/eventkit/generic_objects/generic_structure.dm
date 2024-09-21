@@ -77,6 +77,14 @@
 			if(effect == 4)
 				var/atom/o = new object(get_turf(src))
 				src.visible_message("<span class='notice'>[src] has produced [o]!</span>")
+			if(effect == 5)
+				for (var/mob/O in viewers(src, null))
+					if(get_dist(src, O) > 7)
+						continue
+
+					if(istype(O, /mob/living/carbon/human))
+						var/mob/living/carbon/human/H = O
+						H.fear = 200
 			if(sound_activated)
 				playsound(src, sound_activated, 50, 1)
 		else if(togglable)
@@ -96,8 +104,8 @@
 /obj/structure/generic_structure/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(wrenchable && W.has_tool_quality(TOOL_WRENCH))
 		add_fingerprint(user)
-		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+		anchored = !anchored
 
 /client/proc/generic_structure()
 	set category = "EventKit"
@@ -268,7 +276,7 @@
 		if(s_icon_state_on == "Upload Own Sprite")
 			s_icon2 = input(usr, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
 		s_delay = tgui_input_number(src, "Do you want it to take time to put turn on? Choose a number of deciseconds to activate, or 0 for instant.", "Delay")
-		var/check_effect = tgui_alert(src, "Produce an effect on activation?", "Effect?", list("No", "Spark", "Flicker Lights", "Flash", "Spawn Item", "Cancel"))
+		var/check_effect = tgui_alert(src, "Produce an effect on activation?", "Effect?", list("No", "Spark", "Flicker Lights", "Flash", "Spawn Item", "Fear", "Cancel"))
 		if(!check_effect || check_effect == "Cancel")
 			return
 		if(check_effect == "No")
@@ -282,6 +290,8 @@
 		if(check_effect == "Spawn Item")
 			s_effect = 4
 			s_object = get_path_from_partial_text()
+		if(check_effect == "Fear")
+			s_effect = 5
 		var/check_sound = tgui_alert(src, "Play a sound when turning on?", "Sound", list("Yes", "No", "Cancel"))
 		if(!check_sound || check_sound == "Cancel")
 			return
