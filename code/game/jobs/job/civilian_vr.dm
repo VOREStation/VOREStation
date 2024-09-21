@@ -74,7 +74,7 @@
 
 /datum/alt_title/supply_courier
 	title = JOB_ALT_SUPPLY_COURIER
-	title_blurb = "A " + JOB_ALT_SUPPLY_COURIER + " is usually tasked with devlivering packages or cargo directly to whoever requires it."
+	title_blurb = "A " + JOB_ALT_SUPPLY_COURIER + " is usually tasked with delivering packages or cargo directly to whoever requires it."
 
 /datum/alt_title/cargo_loader
 	title = JOB_ALT_CARGO_LOADER

@@ -30,9 +30,9 @@ var/list/event_last_fired = list()
 	var/minutes_passed = world.time/600
 
 	var/list/active_with_role = number_active_with_role()
-	//var/engineer_count = number_active_with_role(JOB_ENGINEER)
-	//var/security_count = number_active_with_role("Security")
-	//var/medical_count = number_active_with_role("Medical")
+	//var/engineer_count = number_active_with_role(DEPARTMENT_ENGINEERING)
+	//var/security_count = number_active_with_role(DEPARTMENT_SECURITY)
+	//var/medical_count = number_active_with_role(DEPARTMENT_MEDICAL)
 	//var/AI_count = number_active_with_role(JOB_AI)
 	//var/janitor_count = number_active_with_role(JOB_JANITOR)
 
@@ -56,33 +56,33 @@ var/list/event_last_fired = list()
 		possibleEvents[/datum/event/money_hacker] = max(min(25, player_list.len) * 4, 200)
 
 
-	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role[JOB_ENGINEER]
+	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role[DEPARTMENT_ENGINEERING]
 	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role[JOB_JANITOR]
 
-	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[JOB_ENGINEER] + 25 * active_with_role["Security"]
+	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[DEPARTMENT_ENGINEERING] + 25 * active_with_role[DEPARTMENT_SECURITY]
 	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role[JOB_JANITOR]
 
-	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role[JOB_AI] + active_with_role[JOB_SCIENTIST] * 25
-	possibleEvents[/datum/event/ionstorm] = active_with_role[JOB_AI] * 25 + active_with_role[JOB_CYBORG] * 25 + active_with_role[JOB_ENGINEER] * 10 + active_with_role[JOB_SCIENTIST] * 5
-	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role[JOB_ENGINEER]
-	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role[JOB_JANITOR] + 5 * active_with_role[JOB_ENGINEER]
-	possibleEvents[/datum/event/wallrot] = 30 * active_with_role[JOB_ENGINEER] + 50 * active_with_role[JOB_ALT_GARDENER]
+	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role[JOB_AI] + active_with_role[DEPARTMENT_RESEARCH] * 25
+	possibleEvents[/datum/event/ionstorm] = active_with_role[JOB_AI] * 25 + active_with_role[JOB_CYBORG] * 25 + active_with_role[DEPARTMENT_ENGINEERING] * 10 + active_with_role[DEPARTMENT_RESEARCH] * 5
+	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role[DEPARTMENT_ENGINEERING]
+	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role[JOB_JANITOR] + 5 * active_with_role[DEPARTMENT_ENGINEERING]
+	possibleEvents[/datum/event/wallrot] = 30 * active_with_role[DEPARTMENT_ENGINEERING] + 50 * active_with_role[JOB_ALT_GARDENER]
 
 	if(!spacevines_spawned)
-		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role[JOB_ENGINEER]
+		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role[DEPARTMENT_ENGINEERING]
 	if(minutes_passed >= 30) // Give engineers time to set up engine
-		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role[JOB_ENGINEER]
-		possibleEvents[/datum/event/blob] = 10 * active_with_role[JOB_ENGINEER]
+		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role[DEPARTMENT_ENGINEERING]
+		possibleEvents[/datum/event/blob] = 10 * active_with_role[DEPARTMENT_ENGINEERING]
 
-	if(active_with_role["Medical"] > 0)
-		possibleEvents[/datum/event/radiation_storm] = active_with_role["Medical"] * 10
-		possibleEvents[/datum/event/spontaneous_appendicitis] = active_with_role["Medical"] * 10
+	if(active_with_role[DEPARTMENT_MEDICAL] > 0)
+		possibleEvents[/datum/event/radiation_storm] = active_with_role[DEPARTMENT_MEDICAL] * 10
+		possibleEvents[/datum/event/spontaneous_appendicitis] = active_with_role[DEPARTMENT_MEDICAL] * 10
 
-	possibleEvents[/datum/event/prison_break] = active_with_role["Security"] * 50
-	if(active_with_role["Security"] > 0)
+	possibleEvents[/datum/event/prison_break] = active_with_role[DEPARTMENT_SECURITY] * 50
+	if(active_with_role[DEPARTMENT_SECURITY] > 0)
 		if(!sent_spiders_to_station)
-			possibleEvents[/datum/event/spider_infestation] = max(active_with_role["Security"], 5) + 5
-		possibleEvents[/datum/event/random_antag] = max(active_with_role["Security"], 5) + 2.5
+			possibleEvents[/datum/event/spider_infestation] = max(active_with_role[DEPARTMENT_SECURITY], 5) + 5
+		possibleEvents[/datum/event/random_antag] = max(active_with_role[DEPARTMENT_SECURITY], 5) + 2.5
 
 	for(var/event_type in event_last_fired) if(possibleEvents[event_type])
 		var/time_passed = world.time - event_last_fired[event_type]
@@ -179,10 +179,10 @@ var/list/event_last_fired = list()
 // Note that this isn't sorted by department, because e.g. having a roboticist shouldn't make meteors spawn.
 /proc/number_active_with_role()
 	var/list/active_with_role = list()
-	active_with_role[JOB_ENGINEER] = 0
-	active_with_role["Medical"] = 0
-	active_with_role["Security"] = 0
-	active_with_role[JOB_SCIENTIST] = 0
+	active_with_role[DEPARTMENT_ENGINEERING] = 0
+	active_with_role[DEPARTMENT_MEDICAL] = 0
+	active_with_role[DEPARTMENT_SECURITY] = 0
+	active_with_role[DEPARTMENT_RESEARCH] = 0
 	active_with_role[JOB_AI] = 0
 	active_with_role[JOB_CYBORG] = 0
 	active_with_role[JOB_JANITOR] = 0
@@ -198,29 +198,29 @@ var/list/event_last_fired = list()
 			var/mob/living/silicon/robot/R = M
 			if(R.module)
 				if(istype(R.module, /obj/item/weapon/robot_module/robot/engineering))
-					active_with_role[JOB_ENGINEER]++
+					active_with_role[DEPARTMENT_ENGINEERING]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/security))
-					active_with_role["Security"]++
+					active_with_role[DEPARTMENT_SECURITY]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/medical))
-					active_with_role["Medical"]++
+					active_with_role[DEPARTMENT_MEDICAL]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/research))
-					active_with_role[JOB_SCIENTIST]++
+					active_with_role[DEPARTMENT_RESEARCH]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/janitor))
 					active_with_role[JOB_JANITOR]++
 				else if(istype(R.module, /obj/item/weapon/robot_module/robot/clerical/butler))
 					active_with_role[JOB_BOTANIST]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
-			active_with_role[JOB_ENGINEER]++
+			active_with_role[DEPARTMENT_ENGINEERING]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
-			active_with_role["Medical"]++
+			active_with_role[DEPARTMENT_MEDICAL]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
-			active_with_role["Security"]++
+			active_with_role[DEPARTMENT_SECURITY]++
 
 		if(M.mind.assigned_role in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
-			active_with_role[JOB_SCIENTIST]++
+			active_with_role[DEPARTMENT_RESEARCH]++
 
 		if(M.mind.assigned_role == JOB_AI)
 			active_with_role[JOB_AI]++

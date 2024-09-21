@@ -147,7 +147,7 @@
 	if(!T)
 		return 0
 
-	if(T.movement_cost)
+	if(T.movement_cost && !flying) //VOREStation Add: If you are flying you are probably not affected by the terrain on the ground.
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)

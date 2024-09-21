@@ -569,3 +569,61 @@ Talon pin
 	)
 	gear_tweaks += new/datum/gear_tweak/path(wristband_lists)
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/plushie
+	display_name = "Plushie Selection"
+	description = "A single plushie of your selection!"
+	path = /obj/item/toy/plushie/nymph
+
+/datum/gear/accessory/plushie/New()
+	..()
+	var/plushie = list(
+		"Nymph" = /obj/item/toy/plushie/nymph,
+		"Mouse" = /obj/item/toy/plushie/mouse,
+		"Kitten" = /obj/item/toy/plushie/kitten,
+		"Lizard" = /obj/item/toy/plushie/lizard,
+		"Black cat" = /obj/item/toy/plushie/black_cat,
+		"Black fox" = /obj/item/toy/plushie/black_fox,
+		"Blue fox" = /obj/item/toy/plushie/blue_fox,
+		"Carp plushie" = /obj/random/carp_plushie,
+		"Coffee fox" = /obj/item/toy/plushie/coffee_fox,
+		"Corgi" = /obj/item/toy/plushie/corgi,
+		"Crimson fox" = /obj/item/toy/plushie/crimson_fox,
+		"Deer" = /obj/item/toy/plushie/deer,
+		"Girly corgi" = /obj/item/toy/plushie/girly_corgi,
+		"Grey cat" = /obj/item/toy/plushie/grey_cat,
+		"Marble fox" = /obj/item/toy/plushie/marble_fox,
+		"Octopus" = /obj/item/toy/plushie/octopus,
+		"Orange cat" = /obj/item/toy/plushie/orange_cat,
+		"Orange fox" = /obj/item/toy/plushie/orange_fox,
+		"Pink fox" = /obj/item/toy/plushie/pink_fox,
+		"Purple fox" = /obj/item/toy/plushie/purple_fox,
+		"Red fox" = /obj/item/toy/plushie/red_fox,
+		"Robo corgi" = /obj/item/toy/plushie/robo_corgi,
+		"Siamese cat" = /obj/item/toy/plushie/siamese_cat,
+		"Spider" = /obj/item/toy/plushie/spider,
+		"Tabby cat" = /obj/item/toy/plushie/tabby_cat,
+		"Tuxedo cat" = /obj/item/toy/plushie/tuxedo_cat,
+		"White cat" = /obj/item/toy/plushie/white_cat,
+		"Lizard" = /obj/item/toy/plushie/lizardplushie,
+		"Kobold" = /obj/item/toy/plushie/lizardplushie/kobold,
+		"Resh" = /obj/item/toy/plushie/lizardplushie/resh,
+		"Slime" = /obj/item/toy/plushie/slimeplushie,
+		"Box" = /obj/item/toy/plushie/box,
+		"Robot" = /obj/item/toy/plushie/borgplushie,
+		"Medihound" = /obj/item/toy/plushie/borgplushie/medihound,
+		"Scrubpuppy" = /obj/item/toy/plushie/borgplushie/scrubpuppy,
+		"Foxbear" = /obj/item/toy/plushie/foxbear,
+		"Operative" = /obj/item/toy/plushie/nukeplushie,
+		"Otter" = /obj/item/toy/plushie/otter,
+		"Vox" = /obj/item/toy/plushie/vox,
+		"Shark" = /obj/item/toy/plushie/shark,
+		"Sec Drake" = /obj/item/toy/plushie/borgplushie/drake/sec,
+		"Med Drake" = /obj/item/toy/plushie/borgplushie/drake/med,
+		"Sci Drake" = /obj/item/toy/plushie/borgplushie/drake/sci,
+		"Jani Drake" = /obj/item/toy/plushie/borgplushie/drake/jani,
+		"Eng Drake" = /obj/item/toy/plushie/borgplushie/drake/eng,
+		"Mine Drake" = /obj/item/toy/plushie/borgplushie/drake/mine,
+		"Trauma Drake" = /obj/item/toy/plushie/borgplushie/drake/trauma,
+	)
+	gear_tweaks += new/datum/gear_tweak/path(plushie)
