@@ -345,7 +345,7 @@
 //___________________________________________________________
 
 
-// Talom jobs
+// Talon jobs
 #define JOB_TALON_CAPTAIN "Talon Captain"
 	// Talon Captain alt titles
 	#define JOB_ALT_TALON_COMMANDER "Talon Commander"

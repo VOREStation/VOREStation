@@ -1,3 +1,5 @@
+var/global/list/micro_tunnels = list()
+
 /obj/structure/micro_tunnel
 	name = "mouse hole"
 	desc = "A tiny little hole... where does it go?"
@@ -18,6 +20,10 @@
 		/mob/living/simple_mob/slime
 	)
 
+/obj/structure/micro_tunnel/New()
+	. = ..()
+	micro_tunnels.Add(src)
+
 /obj/structure/micro_tunnel/Initialize()
 	. = ..()
 	if(name == initial(name))
@@ -33,6 +39,8 @@
 		visible_message("<span class = 'warning'>\The [thing] tumbles out!</span>")
 		thing.forceMove(get_turf(src.loc))
 		thing.cancel_camera()
+
+	micro_tunnels.Remove(src)
 
 	return ..()
 
@@ -63,7 +71,7 @@
 		if(myturf.z in P.expected_z_levels)
 			planet = P
 		else
-	for(var/obj/structure/micro_tunnel/t in world)
+	for(var/obj/structure/micro_tunnel/t in micro_tunnels)
 		if(t == src)
 			continue
 		if(magic || t.magic)
@@ -341,6 +349,8 @@
 				if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
 					return
 				if(QDELETED(src))
+					return
+				if(usr.loc != src)
 					return
 				var/obj/our_choice = choice
 
