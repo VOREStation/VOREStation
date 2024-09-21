@@ -74,7 +74,7 @@
 				return
 			Tar.adjust_fire_stacks(10)
 			Tar.IgniteMob()
-			Tar.visible_message("<span class='danger'>[target] bursts into flames!</span>")
+			Tar.visible_message(span_danger("[target] bursts into flames!"))
 
 		if("lightning_strike")
 			var/mob/living/carbon/human/Tar = target
@@ -83,7 +83,7 @@
 			var/turf/T = get_step(get_step(target, NORTH), NORTH)
 			T.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
 			Tar.electrocute_act(75,def_zone = BP_HEAD)
-			target.visible_message("<span class='danger'>[target] is struck by lightning!</span>")
+			target.visible_message(span_danger("[target] is struck by lightning!"))
 
 		if("shadekin_attack")
 			var/turf/Tt = get_turf(target) //Turf for target
@@ -180,7 +180,7 @@
 				shadekin.ckey = target.ckey
 
 			else //Permakin'd
-				to_chat(target,"<span class='danger'>You're carried off into The Dark by the [shadekin]. Who knows if you'll find your way back?</span>")
+				to_chat(target,span_danger("You're carried off into The Dark by the [shadekin]. Who knows if you'll find your way back?"))
 				target.ghostize()
 				qdel(target)
 				qdel(shadekin)
@@ -202,7 +202,7 @@
 		if("peppernade")
 			var/obj/item/weapon/grenade/chem_grenade/teargas/grenade = new /obj/item/weapon/grenade/chem_grenade/teargas
 			grenade.loc = target.loc
-			to_chat(target,"<span class='warning'>GRENADE?!</span>")
+			to_chat(target,span_warning("GRENADE?!"))
 			grenade.detonate()
 
 		if("spicerequest")
@@ -247,6 +247,39 @@
 			else
 				target.ClearTransform()
 				target.update_transform()
+
+		if("pie_splat")
+			new/obj/effect/decal/cleanable/pie_smudge(get_turf(target))
+			playsound(target, 'sound/effects/slime_squish.ogg', 100, 1, get_rand_frequency(), falloff = 5)
+			target.Weaken(1)
+			target.visible_message(span_danger("[target] is struck by pie!"))
+
+		if("spicy_air")
+			to_chat(target, span_warning("Spice spice baby!"))
+			target.eye_blurry = max(target.eye_blurry, 25)
+			target.Blind(10)
+			target.Stun(5)
+			target.Weaken(5)
+			playsound(target, 'sound/effects/spray2.ogg', 100, 1, get_rand_frequency(), falloff = 5)
+
+		if("hot_dog")
+			playsound(target, 'sound/effects/whistle.ogg', 50, 1, get_rand_frequency(), falloff = 5)
+			sleep(2 SECONDS)
+			target.Stun(10)
+			if(!ishuman(target))
+				return
+			var/mob/living/carbon/human/H = target
+			if(H.head)
+				H.unEquip(H.head)
+			if(H.wear_suit)
+				H.unEquip(H.wear_suit)
+			var/obj/item/clothing/suit = new /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog
+			var/obj/item/clothing/hood = new /obj/item/clothing/head/hood_vr/hotdog_hood
+			H.equip_to_slot_if_possible(suit, slot_wear_suit, 0, 0, 1)
+			H.equip_to_slot_if_possible(hood, slot_head, 0, 0, 1)
+			sleep(5 SECONDS)
+			qdel(suit)
+			qdel(hood)
 
 		////////MEDICAL//////////////
 
@@ -528,10 +561,10 @@
 				return
 			var/input_NIF
 			if(!Tar.get_organ(BP_HEAD))
-				to_chat(user,"<span class='warning'>Target is unsuitable.</span>")
+				to_chat(user,span_warning("Target is unsuitable."))
 				return
 			if(Tar.nif)
-				to_chat(user,"<span class='warning'>Target already has a NIF.</span>")
+				to_chat(user,span_warning("Target already has a NIF."))
 				return
 			if(Tar.species.flags & NO_SCAN)
 				var/obj/item/device/nif/S = /obj/item/device/nif/bioadap
