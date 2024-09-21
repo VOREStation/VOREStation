@@ -62,7 +62,7 @@ export const ModifyRobotAccess = (props: {
                     icon="satellite"
                     onClick={() => act('add_station')}
                   >
-                    Add all station access
+                    Add station access
                   </Button>
                 </Flex.Item>
                 <Flex.Item grow />
@@ -72,7 +72,7 @@ export const ModifyRobotAccess = (props: {
                   icon="satellite"
                   onClick={() => act('rem_station')}
                 >
-                  Remove all station access
+                  Remove station access
                 </Button>
                 <Flex.Item grow />
               </Flex>
@@ -86,7 +86,7 @@ export const ModifyRobotAccess = (props: {
                   icon="building"
                   onClick={() => act('add_centcom')}
                 >
-                  Add all centcom access
+                  Add centcom access
                 </Button>
                 <Flex.Item grow />
                 <Button
@@ -95,7 +95,7 @@ export const ModifyRobotAccess = (props: {
                   icon="building"
                   onClick={() => act('rem_centcom')}
                 >
-                  Remove all centcom access
+                  Remove centcom access
                 </Button>
                 <Flex.Item grow />
               </Flex>
