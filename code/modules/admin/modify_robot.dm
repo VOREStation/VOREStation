@@ -21,6 +21,7 @@
 
 /datum/eventkit/modify_robot/New()
 	. = ..()
+	log_and_message_admins("is modifying [target]")
 	law_list = new()
 	init_subtypes(/datum/ai_laws, law_list)
 	law_list = dd_sortedObjectList(law_list)
@@ -144,6 +145,7 @@
 			return TRUE
 		if("select_target")
 			target = locate(params["new_target"])
+			log_and_message_admins("changed modifictation target to [target]")
 			return TRUE
 		if("toggle_crisis")
 			target.crisis_override = !target.crisis_override
@@ -451,7 +453,6 @@
 			if(AL)
 				var/new_law = sanitize(tgui_input_text(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
 				if(new_law && new_law != AL.law)
-					log_and_message_admins("has changed a law of [target] from '[AL.law]' to '[new_law]'")
 					AL.law = new_law
 					target.lawsync()
 				return TRUE
@@ -472,7 +473,6 @@
 		if("transfer_laws")
 			var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in law_list
 			if(ALs)
-				log_and_message_admins("has transfered the [ALs.name] laws to [target].")
 				ALs.sync(target, 0)
 				target.lawsync()
 			return TRUE
@@ -638,5 +638,4 @@
 		package_laws(packaged_laws, "inherent_laws", ALs.inherent_laws)
 		package_laws(packaged_laws, "supplied_laws", ALs.supplied_laws)
 		law_sets[++law_sets.len] = list("name" = ALs.name, "header" = ALs.law_header, "ref" = "\ref[ALs]","laws" = packaged_laws)
-
 	return law_sets
