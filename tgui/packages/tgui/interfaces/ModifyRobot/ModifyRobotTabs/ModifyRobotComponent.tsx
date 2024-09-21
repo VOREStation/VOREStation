@@ -63,7 +63,7 @@ export const ModifyRobotComponent = (props: {
               />
             </Stack.Item>
             <Stack.Item>
-              <Section title="Powercell">
+              <Section title="Power cell">
                 Current cell:{' '}
                 {cell ? (
                   capitalize(cell)
