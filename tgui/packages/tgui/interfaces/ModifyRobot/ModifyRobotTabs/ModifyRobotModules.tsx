@@ -62,7 +62,9 @@ export const ModifyRobotModules = (props: {
         <Flex.Item>
           <Stack vertical>
             <Stack.Item>
-              <Button
+              <Button.Confirm
+                width="50px"
+                height="50px"
                 disabled={!source}
                 tooltip="Swaps the source and destination module types."
                 icon="arrows-rotate"
@@ -83,7 +85,6 @@ export const ModifyRobotModules = (props: {
                 color={target.crisis_override ? 'green' : 'yellow'}
                 icon="circle-radiation"
                 iconSize={4}
-                confirmContent="GO?"
                 onClick={() => act('ert_toggle')}
               />
             </Stack.Item>

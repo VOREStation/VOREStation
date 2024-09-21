@@ -35,7 +35,7 @@ export const ModifyRobotComponent = (props: {
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
       <Flex height={!target.active ? '80%' : '85%'}>
-        <Flex.Item width="40%" fill>
+        <Flex.Item width="35%" fill>
           <ComponentSection
             title="Repair Component"
             searchText={searchComponentReplaceText}
@@ -95,7 +95,7 @@ export const ModifyRobotComponent = (props: {
             </Stack.Item>
           </Stack>
         </Flex.Item>
-        <Flex.Item width="30%" fill>
+        <Flex.Item width="35%" fill>
           <ComponentSection
             title="Remove Component"
             searchText={searchComponentRemoveText}

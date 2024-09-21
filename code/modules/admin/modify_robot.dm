@@ -53,17 +53,13 @@
 			.["target"]["side"] = icon2base64(get_flat_icon(target,dir=WEST,no_anim=TRUE))
 			.["target"]["side_alt"] = icon2base64(get_flat_icon(target,dir=EAST,no_anim=TRUE))
 			.["target"]["back"] = icon2base64(get_flat_icon(target,dir=NORTH,no_anim=TRUE))
-			var/list/target_items = list()
-			for(var/obj/item in target.module.modules)
-				target_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
-			.["target"]["modules"] = target_items
+			.["target"]["modules"] = get_target_items(user)
 			var/list/module_options = list()
 			for(var/module in robot_modules)
 				module_options += module
 			.["model_options"] = module_options
 			// Data for the upgrade options
 			.["target"] += get_upgrades()
-
 			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			if(kin)
 				.["target"]["pka"] += get_pka(kin)
@@ -77,29 +73,21 @@
 			.["target"]["radio_channels"] = radio_channels
 			.["target"]["availalbe_channels"] = availalbe_channels
 			// Components
-			var/list/components = list()
-			for(var/entry in target.components)
-				var/datum/robot_component/C = target.components[entry]
-				components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
-			.["target"]["components"] = components
+			.["target"]["components"] = get_components()
 			.["cell"] = target.cell?.name
-			var/list/cell_options = list()
-			for(var/cell in typesof(/obj/item/weapon/cell))
-				var/obj/item/weapon/cell/C = cell
-				if(initial(C.name) == "power cell")
-					continue
-				if(ispath(C, /obj/item/weapon/cell/standin))
-					continue
-				if(ispath(C, /obj/item/weapon/cell/device))
-					continue
-				if(ispath(C, /obj/item/weapon/cell/mech))
-					continue
-				if(cell_options[initial(C.name)]) // empty cells are defined after normal cells!
-					continue
-				cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
-			.["cell_options"] = cell_options
+			.["cell_options"] = get_cells()
 			// Access
-			//.["target"]["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
+			.["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
+			var/list/active_access = list()
+			for(var/access in target.idcard?.GetAccess())
+				active_access += list(list("id" = access, "name" = get_access_desc(access)))
+			.["target"]["active_access"] = active_access
+			var/list/access_options = list()
+			for(var/datum/access/acc)
+				if(acc.id in target.idcard?.GetAccess())
+					continue
+				access_options += list(list("id" = acc.id, "name" = acc.desc))
+			.["access_options"] = access_options
 			// Section for source data for the module we might want to salvage
 			if(source)
 				.["source"] += get_module_source(user)
@@ -348,6 +336,32 @@
 			if(istype(C, /datum/robot_component/cell))
 				target.cell = null
 			return TRUE
+		if("add_access")
+			target.idcard.access += text2num(params["access"])
+			return TRUE
+		if("rem_access")
+			target.idcard.access -= text2num(params["access"])
+			return TRUE
+		if("add_centcom")
+			target.idcard.access |= get_all_centcom_access()
+			return TRUE
+		if("rem_centcom")
+			target.idcard.access -= get_all_centcom_access()
+			return TRUE
+		if("add_station")
+			target.idcard.access |= get_all_station_access()
+			target.idcard.access |= access_synth
+			return TRUE
+		if("rem_station")
+			target.idcard.access -= get_all_station_access()
+			target.idcard.access -= access_synth
+			return TRUE
+
+/datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
+	var/list/target_items = list()
+	for(var/obj/item in target.module.modules)
+		target_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
+	return target_items
 
 /datum/eventkit/modify_robot/proc/get_module_source(var/mob/user)
 	var/list/source_list = list()
@@ -452,3 +466,27 @@
 	pka["capacity"] = kin.get_remaining_mod_capacity()
 	pka["max_capacity"] = kin.max_mod_capacity
 	return pka
+
+/datum/eventkit/modify_robot/proc/get_cells()
+	var/list/cell_options = list()
+	for(var/cell in typesof(/obj/item/weapon/cell))
+		var/obj/item/weapon/cell/C = cell
+		if(initial(C.name) == "power cell")
+			continue
+		if(ispath(C, /obj/item/weapon/cell/standin))
+			continue
+		if(ispath(C, /obj/item/weapon/cell/device))
+			continue
+		if(ispath(C, /obj/item/weapon/cell/mech))
+			continue
+		if(cell_options[initial(C.name)]) // empty cells are defined after normal cells!
+			continue
+		cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
+	return cell_options
+
+/datum/eventkit/modify_robot/proc/get_components()
+	var/list/components = list()
+	for(var/entry in target.components)
+		var/datum/robot_component/C = target.components[entry]
+		components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
+	return components

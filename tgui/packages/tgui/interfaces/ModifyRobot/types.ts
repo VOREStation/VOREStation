@@ -7,6 +7,8 @@ export type Data = {
   model_options: string[] | null;
   cell: string | null;
   cell_options: Record<string, Cell>;
+  id_icon: string;
+  access_options: Access[] | undefined;
 };
 
 export type DropdownEntry = {
@@ -37,6 +39,7 @@ export type Target = {
   availalbe_channels: string[];
   pka: PKA | undefined;
   components: Component[];
+  active_access: Access[];
 };
 
 export type Upgrade = {
@@ -84,3 +87,5 @@ export type Cell = {
   charge_amount: number;
   self_charge: BooleanLike;
 };
+
+export type Access = { id: number; name: string };

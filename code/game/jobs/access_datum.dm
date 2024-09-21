@@ -493,6 +493,7 @@ var/const/access_pilot = 67
 /var/const/access_syndicate = 150//General Syndicate Access
 /datum/access/syndicate
 	id = access_syndicate
+	desc = "Syndicate"
 	access_type = ACCESS_TYPE_SYNDICATE
 
 /*******
@@ -507,11 +508,13 @@ var/const/access_pilot = 67
 /var/const/access_crate_cash = 200
 /datum/access/crate_cash
 	id = access_crate_cash
+	desc = "Crate cash"
 	access_type = ACCESS_TYPE_NONE
 
 /var/const/access_trader = 160//General Beruang Trader Access
 /datum/access/trader
 	id = access_trader
+	desc = "Trader"
 	access_type = ACCESS_TYPE_PRIVATE
 
 /var/const/access_alien = 300 // For things like crashed ships.
