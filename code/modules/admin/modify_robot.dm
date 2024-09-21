@@ -463,8 +463,8 @@
 			if(ALs)
 				log_and_message_admins("has transfered the [ALs.name] laws to [target].")
 				ALs.sync(target, 0)
+				target.lawsync()
 			return TRUE
-
 		if("notify_laws")
 			to_chat(target, "<span class='danger'>Law Notice</span>")
 			target.laws.show_laws(target)

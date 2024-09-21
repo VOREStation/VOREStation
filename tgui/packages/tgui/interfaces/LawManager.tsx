@@ -208,7 +208,7 @@ export const LawManagerLaws = (props: {
     sectionHeight,
   } = props;
 
-  let allLaws = zeroth_laws
+  const allLaws = zeroth_laws
     .map((law) => {
       law.zero = true;
       return law;
@@ -383,6 +383,7 @@ export const LawManagerLaws = (props: {
 };
 
 const LawsTable = (props: {
+  laws: law[];
   title: string;
   noButtons?: BooleanLike;
   [rest: string]: any;
