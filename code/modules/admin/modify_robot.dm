@@ -12,9 +12,18 @@
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
 	var/mob/living/silicon/robot/source
+	var/ion_law	= "IonLaw"
+	var/zeroth_law = "ZerothLaw"
+	var/inherent_law = "InherentLaw"
+	var/supplied_law = "SuppliedLaw"
+	var/supplied_law_position = MIN_SUPPLIED_LAW_NUMBER
+	var/list/datum/ai_laws/law_list
 
 /datum/eventkit/modify_robot/New()
 	. = ..()
+	law_list = new()
+	init_subtypes(/datum/ai_laws, law_list)
+	law_list = dd_sortedObjectList(law_list)
 
 /datum/eventkit/modify_robot/tgui_close()
 	if(source)
@@ -97,6 +106,27 @@
 			continue
 		all_robots += list(list("displayText" = "[R]", "value" = "\ref[R]"))
 	.["all_robots"] = all_robots
+	// Law data
+	.["ion_law_nr"] = ionnum()
+	.["ion_law"] = ion_law
+	.["zeroth_law"] = zeroth_law
+	.["inherent_law"] = inherent_law
+	.["supplied_law"] = supplied_law
+	.["supplied_law_position"] = supplied_law_position
+
+	package_laws(., "zeroth_laws", list(target.laws.zeroth_law))
+	package_laws(., "ion_laws", target.laws.ion_laws)
+	package_laws(., "inherent_laws", target.laws.inherent_laws)
+	package_laws(., "supplied_laws", target.laws.supplied_laws)
+
+	.["isAI"] = isAI(target)
+
+	var/list/channels = list()
+	for(var/ch_name in target.law_channels())
+		channels[++channels.len] = list("channel" = ch_name)
+	.["channel"] = target.lawchannel
+	.["channels"] = channels
+	.["law_sets"] = package_multiple_laws(law_list)
 
 
 /datum/eventkit/modify_robot/tgui_state(mob/user)
@@ -356,6 +386,96 @@
 			target.idcard.access -= get_all_station_access()
 			target.idcard.access -= access_synth
 			return TRUE
+		if("law_channel")
+			if(params["law_channel"] in target.law_channels())
+				target.lawchannel = params["law_channel"]
+			return TRUE
+		if("state_law")
+			var/datum/ai_law/AL = locate(params["ref"]) in target.laws.all_laws()
+			if(AL)
+				var/state_law = text2num(params["state_law"])
+				target.laws.set_state_law(AL, state_law)
+			return TRUE
+		if("add_zeroth_law")
+			if(zeroth_law && !target.laws.zeroth_law)
+				target.set_zeroth_law(zeroth_law)
+			return TRUE
+		if("add_ion_law")
+			if(ion_law)
+				target.add_ion_law(ion_law)
+			return TRUE
+		if("add_inherent_law")
+			if(inherent_law)
+				target.add_inherent_law(inherent_law)
+			return TRUE
+		if("add_supplied_law")
+			if(supplied_law && supplied_law_position >= 1 && MIN_SUPPLIED_LAW_NUMBER <= MAX_SUPPLIED_LAW_NUMBER)
+				target.add_supplied_law(supplied_law_position, supplied_law)
+			return TRUE
+		if("change_zeroth_law")
+			var/new_law = sanitize(params["val"])
+			if(new_law && new_law != zeroth_law)
+				zeroth_law = new_law
+			return TRUE
+		if("change_ion_law")
+			var/new_law = sanitize(params["val"])
+			if(new_law && new_law != ion_law)
+				ion_law = new_law
+			return TRUE
+		if("change_inherent_law")
+			var/new_law = sanitize(params["val"])
+			if(new_law && new_law != inherent_law)
+				inherent_law = new_law
+			return TRUE
+		if("change_supplied_law")
+			var/new_law = sanitize(params["val"])
+			if(new_law && new_law != supplied_law)
+				supplied_law = new_law
+			return TRUE
+		if("change_supplied_law_position")
+			var/new_position = tgui_input_number(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position, MAX_SUPPLIED_LAW_NUMBER, 1)
+			if(isnum(new_position))
+				supplied_law_position = CLAMP(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
+			return TRUE
+		if("edit_law")
+			var/datum/ai_law/AL = locate(params["edit_law"]) in target.laws.all_laws()
+			if(AL)
+				var/new_law = sanitize(tgui_input_text(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+				if(new_law && new_law != AL.law)
+					log_and_message_admins("has changed a law of [target] from '[AL.law]' to '[new_law]'")
+					AL.law = new_law
+				return TRUE
+		if("delete_law")
+			var/datum/ai_law/AL = locate(params["delete_law"]) in target.laws.all_laws()
+			if(AL)
+				target.delete_law(AL)
+			return TRUE
+		if("state_laws")
+			target.statelaws(target.laws)
+			return TRUE
+		if("state_law_set")
+			var/datum/ai_laws/ALs = locate(params["state_law_set"]) in law_list
+			if(ALs)
+				target.statelaws(ALs)
+			return TRUE
+		if("transfer_laws")
+			var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in law_list
+			if(ALs)
+				log_and_message_admins("has transfered the [ALs.name] laws to [target].")
+				ALs.sync(target, 0)
+			return TRUE
+
+		if("notify_laws")
+			to_chat(target, "<span class='danger'>Law Notice</span>")
+			target.laws.show_laws(target)
+			if(isAI(target))
+				var/mob/living/silicon/ai/AI = target
+				for(var/mob/living/silicon/robot/R in AI.connected_robots)
+					to_chat(R, "<span class='danger'>Law Notice</span>")
+					R.laws.show_laws(R)
+			if(usr != target)
+				to_chat(usr, "<span class='notice'>Laws displayed.</span>")
+			return TRUE
 
 /datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
 	var/list/target_items = list()
@@ -490,3 +610,22 @@
 		var/datum/robot_component/C = target.components[entry]
 		components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
 	return components
+
+/datum/eventkit/modify_robot/proc/package_laws(var/list/data, var/field, var/list/datum/ai_law/laws)
+	var/list/packaged_laws = list()
+	for(var/datum/ai_law/AL in laws)
+		packaged_laws[++packaged_laws.len] = list("law" = AL.law, "index" = AL.get_index(), "state" = target.laws.get_state_law(AL), "ref" = "\ref[AL]")
+	data[field] = packaged_laws
+	data["has_[field]"] = packaged_laws.len
+
+/datum/eventkit/modify_robot/proc/package_multiple_laws(var/list/datum/ai_laws/laws)
+	var/list/law_sets = list()
+	for(var/datum/ai_laws/ALs in laws)
+		var/list/packaged_laws = list()
+		package_laws(packaged_laws, "zeroth_laws", list(ALs.zeroth_law, ALs.zeroth_law_borg))
+		package_laws(packaged_laws, "ion_laws", ALs.ion_laws)
+		package_laws(packaged_laws, "inherent_laws", ALs.inherent_laws)
+		package_laws(packaged_laws, "supplied_laws", ALs.supplied_laws)
+		law_sets[++law_sets.len] = list("name" = ALs.name, "header" = ALs.law_header, "ref" = "\ref[ALs]","laws" = packaged_laws)
+
+	return law_sets

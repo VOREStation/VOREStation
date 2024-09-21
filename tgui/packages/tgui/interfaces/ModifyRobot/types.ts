@@ -9,6 +9,24 @@ export type Data = {
   cell_options: Record<string, Cell>;
   id_icon: string;
   access_options: Access[] | undefined;
+  ion_law_nr: string;
+  ion_law: string;
+  zeroth_law: string;
+  inherent_law: string;
+  supplied_law: string;
+  supplied_law_position: number;
+  zeroth_laws: law[];
+  ion_laws: law[];
+  inherent_laws: law[];
+  supplied_laws: law[];
+  has_zeroth_laws: number;
+  has_ion_laws: number;
+  has_inherent_laws: number;
+  has_supplied_laws: number;
+  isAI: BooleanLike;
+  channel: string;
+  channels: { channel: string }[];
+  law_sets: law_pack[];
 };
 
 export type DropdownEntry = {
@@ -89,3 +107,27 @@ export type Cell = {
 };
 
 export type Access = { id: number; name: string };
+
+type law_pack = {
+  name: string;
+  header: string;
+  ref: string;
+  laws: {
+    zeroth_laws: law[];
+    has_zeroth_laws: number;
+    ion_laws: law[];
+    has_ion_laws: number;
+    inherent_laws: law[];
+    has_inherent_laws: number;
+    supplied_laws: law[];
+    has_supplied_laws: number;
+  };
+};
+
+type law = {
+  law: string;
+  index: number;
+  state: number;
+  ref: string;
+  zero: boolean; // Local UI var
+};

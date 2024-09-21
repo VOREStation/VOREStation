@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
-  Box,
   Button,
   Divider,
   Dropdown,
   Input,
   LabeledList,
   NoticeBox,
+  Section,
   Stack,
   Tabs,
 } from 'tgui/components';
 import { Window } from 'tgui/layouts';
 
+import { LawManagerLaws, LawManagerLawSets } from '../LawManager';
 import { ModifyRobotNoModule } from './ModifyRobotNoModule';
 import { ModifyRobotAccess } from './ModifyRobotTabs/ModifyRobotAccess';
 import { ModifyRobotComponent } from './ModifyRobotTabs/ModifyRobotComponent';
@@ -34,10 +35,29 @@ export const ModifyRobot = (props) => {
     cell_options,
     id_icon,
     access_options,
+    ion_law_nr,
+    ion_law,
+    zeroth_law,
+    inherent_law,
+    supplied_law,
+    supplied_law_position,
+    zeroth_laws,
+    ion_laws,
+    inherent_laws,
+    supplied_laws,
+    has_zeroth_laws,
+    has_ion_laws,
+    has_inherent_laws,
+    has_supplied_laws,
+    isAI,
+    channel,
+    channels,
+    law_sets,
   } = data;
 
   const [tab, setTab] = useState<number>(0);
   const [robotName, setRobotName] = useState<string>(target ? target.name : '');
+  const [searchLawName, setSearchLawName] = useState<string>('');
 
   useEffect(() => {
     if (target?.name) {
@@ -67,8 +87,43 @@ export const ModifyRobot = (props) => {
       all_access={access_options!}
     />
   );
-  tabs[6] = <Box />;
-  tabs[7] = <Box />;
+  tabs[6] = (
+    <LawManagerLaws
+      isAdmin
+      isMalf
+      hasScroll
+      sectionHeight="85%"
+      ion_law_nr={ion_law_nr}
+      ion_law={ion_law}
+      zeroth_law={zeroth_law}
+      inherent_law={inherent_law}
+      supplied_law={supplied_law}
+      supplied_law_position={supplied_law_position}
+      zeroth_laws={zeroth_laws}
+      ion_laws={ion_laws}
+      inherent_laws={inherent_laws}
+      supplied_laws={supplied_laws}
+      has_zeroth_laws={has_zeroth_laws}
+      has_ion_laws={has_ion_laws}
+      has_inherent_laws={has_inherent_laws}
+      has_supplied_laws={has_supplied_laws}
+      isAI={isAI}
+      channel={channel}
+      channels={channels}
+    />
+  );
+  tabs[7] = (
+    <Section scrollable fill height="85%">
+      <LawManagerLawSets
+        isAdmin
+        isMalf
+        law_sets={law_sets}
+        ion_law_nr={ion_law_nr}
+        searchLawName={searchLawName}
+        onSearchLawName={setSearchLawName}
+      />
+    </Section>
+  );
 
   return (
     <Window width={target?.module ? 900 : 400} height={700}>
