@@ -21,7 +21,7 @@
 
 /datum/eventkit/modify_robot/New()
 	. = ..()
-	log_and_message_admins("is modifying [target]")
+	log_and_message_admins("has used modify robot and is modifying [target]")
 	law_list = new()
 	init_subtypes(/datum/ai_laws, law_list)
 	law_list = dd_sortedObjectList(law_list)
@@ -145,7 +145,7 @@
 			return TRUE
 		if("select_target")
 			target = locate(params["new_target"])
-			log_and_message_admins("changed modifictation target to [target]")
+			log_and_message_admins("changed robot modifictation target to [target]")
 			return TRUE
 		if("toggle_crisis")
 			target.crisis_override = !target.crisis_override
