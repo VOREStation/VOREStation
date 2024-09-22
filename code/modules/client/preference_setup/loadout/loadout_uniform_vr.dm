@@ -185,7 +185,9 @@ Talon jumpsuit
 	"high skirt"=/obj/item/clothing/under/skirt/colorable/high,
 	"swept skirt"=/obj/item/clothing/under/skirt/colorable/swept,
 	"jumper skirt"=/obj/item/clothing/under/skirt/colorable/jumper,
-	"jumper dress"=/obj/item/clothing/under/skirt/colorable/jumperdress
+	"jumper dress"=/obj/item/clothing/under/skirt/colorable/jumperdress,
+	"short skirt"=/obj/item/clothing/under/skirt/colorable/short,
+	"short skirt (split)"=/obj/item/clothing/under/skirt/colorable/short_split
 	)
 	gear_tweaks += list(new/datum/gear_tweak/path(skirts), gear_tweak_free_color_choice)
 

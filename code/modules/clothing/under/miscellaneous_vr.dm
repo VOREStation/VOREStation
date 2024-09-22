@@ -524,6 +524,20 @@
 	item_state = "skirt_jumperdress"
 	worn_state = "skirt_jumperdress"
 
+/obj/item/clothing/under/skirt/colorable/short
+	name = "short skirt"
+	desc = "A far too short pleated skirt."
+	icon_state = "skirt_short"
+	item_state = "skirt_short"
+	worn_state = "skirt_short"
+
+/obj/item/clothing/under/skirt/colorable/short_split
+	name = "short skirt (split)"
+	desc = "A far too short pleated skirt with an open split down one side."
+	icon_state = "skirt_short_split"
+	item_state = "skirt_short_split"
+	worn_state = "skirt_short_split"
+
 // Gwen Beedell's clown outfit
 
 /obj/item/clothing/under/stripeddungarees
