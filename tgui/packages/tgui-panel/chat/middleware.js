@@ -90,7 +90,7 @@ const loadChatFromStorage = async (store) => {
     for (let archivedMessage of archivedMessages) {
       if (archivedMessage.html) {
         archivedMessage.html = DOMPurify.sanitize(archivedMessage.html, {
-          FORBID_TAGS,
+          FORBID_TAGS: blacklisted_tags,
         });
       }
     }
