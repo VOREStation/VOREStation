@@ -3,7 +3,7 @@
 		if(exact)
 			return decls_repository.get_decl(path)
 		else
-			var/list/L = decls_repository.get_decls_of_type(path)
+			var/list/L = decls_repository.get_decls_of_subtype(path) // Use get_decls_of_subtype instead of get_decls_of_type, or it will get the map placing icon_state
 			return L[pick(L)]
 	return null
 
