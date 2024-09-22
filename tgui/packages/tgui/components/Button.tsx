@@ -91,8 +91,20 @@ export const Button = (props: Props) => {
 
   const toDisplay: ReactNode = content || children;
 
+  const ref = useRef(null);
+
+  function handleButtonClick(event) {
+    if (!disabled && onClick) {
+      onClick(event);
+      if (ref?.current) {
+        (ref.current as HTMLElement).blur();
+      }
+    }
+  }
+
   let buttonContent = (
     <div
+      ref={ref}
       className={classes([
         'Button',
         fluid && 'Button--fluid',
@@ -114,9 +126,7 @@ export const Button = (props: Props) => {
       ])}
       tabIndex={!disabled ? 0 : undefined}
       onClick={(event) => {
-        if (!disabled && onClick) {
-          onClick(event);
-        }
+        handleButtonClick(event);
       }}
       onKeyDown={(event) => {
         if (!captureKeys) {
@@ -126,9 +136,7 @@ export const Button = (props: Props) => {
         // Simulate a click when pressing space or enter.
         if (event.key === KEY.Space || event.key === KEY.Enter) {
           event.preventDefault();
-          if (!disabled && onClick) {
-            onClick(event);
-          }
+          handleButtonClick(event);
           return;
         }
 
