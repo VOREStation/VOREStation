@@ -1,0 +1,37 @@
+.Pda__Transition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // Fill positioned parent
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  // Dim
+  animation: dim 0.4s forwards;
+}
+
+.Pda__Transition > i {
+  animation: center-scale 0.4s forwards;
+  transform-origin: center center;
+}
+
+@keyframes dim {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes center-scale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(4);
+  }
+}
