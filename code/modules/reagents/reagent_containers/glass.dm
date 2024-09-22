@@ -18,6 +18,7 @@
 	unacidable = TRUE //glass doesn't dissolve in acid
 	drop_sound = 'sound/items/drop/bottle.ogg'
 	pickup_sound = 'sound/items/pickup/bottle.ogg'
+	description_info = "Clicking on a venomous animal (or person) with the lid closed will express their venom into the beaker!"
 
 	var/label_text = ""
 
@@ -85,15 +86,16 @@
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return	..()
 
+	// If the container is *closed* we do snake milking!~
+	if(!is_open_container() && isliving(M))
+		return attempt_snake_milking(user, M)
+
 	if(standard_feed_mob(user, M))
 		return
 
 	return 0
 
 /obj/item/weapon/reagent_containers/glass/standard_feed_mob(var/mob/user, var/mob/target)
-	if(!is_open_container())
-		to_chat(user, "<span class='notice'>You need to open \the [src] first.</span>")
-		return 1
 	if(user.a_intent == I_HURT)
 		return 1
 	return ..()
@@ -101,8 +103,33 @@
 /obj/item/weapon/reagent_containers/glass/self_feed_message(var/mob/user)
 	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
+/obj/item/weapon/reagent_containers/glass/proc/attempt_snake_milking(mob/living/user, mob/living/target)
+	var/reagent
+	var/amount
+
+	if(target.trait_injection_selected)
+		reagent = target.trait_injection_selected
+		amount = target.trait_injection_amount
+	else if(istype(target, /mob/living/simple_mob/animal/giant_spider))
+		var/mob/living/simple_mob/animal/giant_spider/spider = target
+		reagent = spider.poison_type
+		amount = spider.poison_per_bite
+
+	if(!reagent || !amount)
+		to_chat(user, span_warning("[target] does not have venom you can express. Open the beaker to drink from it."))
+		return TRUE
+
+	if(TIMER_COOLDOWN_RUNNING(target, COOLDOWN_VENOM_MILKING))
+		user.visible_message(span_warning("[user] attempts to express venom from [target], but nothing happens."), span_warning("[target] had their venom expressed too recently, try again later."))
+		return TRUE
+
+	TIMER_COOLDOWN_START(target, COOLDOWN_VENOM_MILKING, 30 SECONDS)
+	user.visible_message(span_notice("[user] expresses venom from [target]."))
+	reagents.add_reagent(reagent, amount)
+	return TRUE
+
 /obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
-	if(!is_open_container() || !proximity) //Is the container open & are they next to whatever they're clicking?
+	if(!proximity || !is_open_container()) //Is the container open & are they next to whatever they're clicking?
 		return 1 //If not, do nothing.
 	for(var/type in can_be_placed_into) //Is it something it can be placed into?
 		if(istype(target, type))
