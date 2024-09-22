@@ -41,3 +41,6 @@
 #endif //ifdef GC_FAILURE_HARD_LOOKUP
 
 #endif //ifdef REFERENCE_TRACKING
+
+// Standard flags to use for browser-options
+#define DEFAULT_CLIENT_BROWSER_OPTIONS "byondstorage,find"

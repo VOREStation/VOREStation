@@ -1,4 +1,4 @@
-import { KEY } from 'common/keys';
+import { isEscape, KEY } from 'common/keys';
 import { BooleanLike } from 'common/react';
 import { Component, createRef, RefObject } from 'react';
 import { dragStartHandler } from 'tgui/drag';
@@ -28,6 +28,13 @@ type State = {
 };
 
 const CHANNEL_REGEX = /^:\w\s|^,b\s/;
+
+const ROWS: Record<keyof typeof WINDOW_SIZES, number> = {
+  small: 1,
+  medium: 2,
+  large: 3,
+  width: 1, // not used
+} as const;
 
 export class TguiSay extends Component<{}, State> {
   private channelIterator: ChannelIterator;
@@ -277,9 +284,10 @@ export class TguiSay extends Component<{}, State> {
         }
         break;
 
-      case KEY.Escape:
-        this.handleClose();
-        break;
+      default:
+        if (isEscape(event.key)) {
+          this.handleClose();
+        }
     }
   }
 
@@ -360,11 +368,14 @@ export class TguiSay extends Component<{}, State> {
               {this.state.buttonContent}
             </button>
             <textarea
+              autoCorrect="off"
               className={`textarea textarea-${theme}`}
               maxLength={this.maxLength}
               onInput={this.handleInput}
               onKeyDown={this.handleKeyDown}
               ref={this.innerRef}
+              spellCheck={false} // TODO: make preference
+              rows={ROWS[this.state.size] || 1}
             />
           </div>
           <Dragzone position="right" theme={theme} />
