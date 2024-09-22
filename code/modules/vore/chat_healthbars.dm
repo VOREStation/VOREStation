@@ -1,5 +1,64 @@
 //Health bars in the game window would be pretty challenging and I don't know how to do that, so I thought this would be a good alternative
 
+// Generates the progress bar text
+/proc/chat_progress_bar(percentage, add_color = FALSE)
+	switch(percentage)
+		if(100)
+			. = "|▓▓▓▓▓▓▓▓▓▓|"
+		if(95 to 99)
+			. = "|▓▓▓▓▓▓▓▓▓▒|"
+		if(90 to 94)
+			. = "|▓▓▓▓▓▓▓▓▓░|"
+		if(85 to 89)
+			. = "|▓▓▓▓▓▓▓▓▒░|"
+		if(80 to 84)
+			. = "|▓▓▓▓▓▓▓▓░░|"
+		if(75 to 79)
+			. = "|▓▓▓▓▓▓▓▒░░|"
+		if(70 to 74)
+			. = "|▓▓▓▓▓▓▓░░░|"
+		if(65 to 69)
+			. = "|▓▓▓▓▓▓▒░░░|"
+		if(60 to 64)
+			. = "|▓▓▓▓▓▓░░░░|"
+		if(55 to 59)
+			. = "|▓▓▓▓▓▒░░░░|"
+		if(50 to 54)
+			. = "|▓▓▓▓▓░░░░░|"
+		if(45 to 49)
+			. = "|▓▓▓▓▒░░░░░|"
+		if(40 to 44)
+			. = "|▓▓▓▓░░░░░░|"
+		if(35 to 39)
+			. = "|▓▓▓▒░░░░░░|"
+		if(30 to 34)
+			. = "|▓▓▓░░░░░░░|"
+		if(25 to 29)
+			. = "|▓▓▒░░░░░░░|"
+		if(20 to 24)
+			. = "|▓▓░░░░░░░░|"
+		if(15 to 19)
+			. = "|▓▒░░░░░░░░|"
+		if(10 to 14)
+			. = "|▓░░░░░░░░░|"
+		if(5 to 9)
+			. = "|▒░░░░░░░░░|"
+		if(0)
+			. = "|░░░░░░░░░░|"
+		else
+			. = "!░░░░░░░░░░!"
+
+	if(add_color)
+		switch(percentage)
+			if(75 to 100)
+				. = span_green(.)
+			if(50 to 75)
+				. = span_yellow(.)
+			if(25 to 50)
+				. = span_orange(.)
+			else
+				. = span_red(.)
+
 /mob/living/proc/chat_healthbar(var/mob/living/reciever, onExamine = FALSE, override = FALSE)
 	if(!reciever)	//No one to send it to, don't bother
 		return
@@ -26,52 +85,7 @@
 
 	ourpercent = round(ourpercent)
 
-	switch(ourpercent)	//I thought about trying to do this in a more automated way but my brain isn't very large so enjoy my stupid switch statement
-		if(100)
-			ourbar = "|▓▓▓▓▓▓▓▓▓▓|"
-		if(95 to 99)
-			ourbar = "|▓▓▓▓▓▓▓▓▓▒|"
-		if(90 to 94)
-			ourbar = "|▓▓▓▓▓▓▓▓▓░|"
-		if(85 to 89)
-			ourbar = "|▓▓▓▓▓▓▓▓▒░|"
-		if(80 to 84)
-			ourbar = "|▓▓▓▓▓▓▓▓░░|"
-		if(75 to 79)
-			ourbar = "|▓▓▓▓▓▓▓▒░░|"
-		if(70 to 74)
-			ourbar = "|▓▓▓▓▓▓▓░░░|"
-		if(65 to 69)
-			ourbar = "|▓▓▓▓▓▓▒░░░|"
-		if(60 to 64)
-			ourbar = "|▓▓▓▓▓▓░░░░|"
-		if(55 to 59)
-			ourbar = "|▓▓▓▓▓▒░░░░|"
-		if(50 to 54)
-			ourbar = "|▓▓▓▓▓░░░░░|"
-		if(45 to 49)
-			ourbar = "|▓▓▓▓▒░░░░░|"
-		if(40 to 44)
-			ourbar = "|▓▓▓▓░░░░░░|"
-		if(35 to 39)
-			ourbar = "|▓▓▓▒░░░░░░|"
-		if(30 to 34)
-			ourbar = "|▓▓▓░░░░░░░|"
-		if(25 to 29)
-			ourbar = "|▓▓▒░░░░░░░|"
-		if(20 to 24)
-			ourbar = "|▓▓░░░░░░░░|"
-		if(15 to 19)
-			ourbar = "|▓▒░░░░░░░░|"
-		if(10 to 14)
-			ourbar = "|▓░░░░░░░░░|"
-		if(5 to 9)
-			ourbar = "|▒░░░░░░░░░|"
-		if(0)
-			ourbar = "|░░░░░░░░░░|"
-		else
-			ourbar = "!░░░░░░░░░░!"
-
+	ourbar = chat_progress_bar(ourpercent, FALSE)
 	ourbar = "[ourbar] [which_var] - [src.name]"
 
 	if(stat == UNCONSCIOUS)

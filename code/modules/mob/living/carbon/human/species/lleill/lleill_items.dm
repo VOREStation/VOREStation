@@ -130,7 +130,7 @@
 		for(var/mob/living/carbon/human/M in mob_list)
 			if(M.z != user.z || get_dist(user,M) > 10)
 				continue
-			if(istype(M) && M.resleeve_lock && M.ckey != M.resleeve_lock)
+			if(!M.allow_mimicry)
 				continue
 			targets |= M
 
