@@ -151,7 +151,7 @@
 			target.crisis_override = !target.crisis_override
 			return TRUE
 		if("add_restriction")
-			target.restrict_modules_to += params["new_restriction"]
+			target.restrict_modules_to |= params["new_restriction"]
 			return TRUE
 		if("remove_restriction")
 			target.restrict_modules_to -= params["rem_restriction"]
