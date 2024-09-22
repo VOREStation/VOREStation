@@ -2,6 +2,53 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"type": "process",
+			"command": "tools/build/build",
+			"windows": {
+				"command": ".\\tools\\build\\build.bat"
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": [
+				"$dreammaker",
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All"
+		},
+		{
+			"type": "process",
+			"command": "tools/build/build",
+			"args": ["-DLOWMEMORYMODE"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["-DLOWMEMORYMODE"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": [
+				"$dreammaker",
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": {
+				"kind": "build"
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (low memory mode)"
+		},
+		{
 			"type": "dreammaker",
 			"dme": "vorestation.dme",
 			"problemMatcher": [
@@ -11,10 +58,15 @@
 			"label": "dm: build - vorestation.dme"
 		},
 		{
+			"command": "${command:dreammaker.reparse}",
+			"group": "build",
+			"label": "dm: reparse"
+		},
+		{
 			"type": "shell",
-			"command": "tgui/bin/tgui",
+			"command": "bin/tgui-build",
 			"windows": {
-				"command": ".\\tgui\\bin\\tgui.bat"
+				"command": ".\\bin\\tgui-build.cmd"
 			},
 			"problemMatcher": [
 				"$tsc",
@@ -25,43 +77,55 @@
 		},
 		{
 			"type": "shell",
-			"command": "yarn build",
-			"options": {
-				"cwd": "tgui/packages/tgfont/",
-			},
-			"group": "build",
-			"problemMatcher": [],
-			"label": "tgui: build tgfont",
-			"detail": "node mkdist.cjs && fantasticon --config config.cjs"
-		},
-		{
-			"type": "shell",
-			"command": "tgui/bin/tgui",
+			"command": "bin/tgui-dev",
 			"windows": {
-				"command": ".\\tgui\\bin\\tgui-prettybuild.bat"
+				"command": ".\\bin\\tgui-dev.cmd"
 			},
 			"problemMatcher": [
 				"$tsc",
 				"$eslint-stylish"
 			],
-			"group": "build",
-			"label": "tgui: prettybuild"
-		},
-		{
-			"type": "shell",
-			"command": "bin/tgui --dev",
-			"windows": {
-				"command": ".\\bin\\tgui.bat --dev"
-			},
-			"problemMatcher": [
-				"$tsc",
-				"$eslint-stylish"
-			],
-			"options": {
-				"cwd": ".\\tgui\\",
-			},
 			"group": "build",
 			"label": "tgui: dev server"
+		},
+		{
+			"type": "shell",
+			"command": "bin/tgui-bench",
+			"windows": {
+				"command": ".\\bin\\tgui-bench.cmd"
+			},
+			"problemMatcher": [
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": "build",
+			"label": "tgui: bench"
+		},
+		{
+			"type": "shell",
+			"command": "bin/tgui-sonar",
+			"windows": {
+				"command": ".\\bin\\tgui-sonar.cmd"
+			},
+			"problemMatcher": [
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": "build",
+			"label": "tgui: sonar"
+		},
+		{
+			"type": "shell",
+			"command": "bin/tgfont",
+			"windows": {
+				"command": ".\\bin\\tgfont.cmd"
+			},
+			"problemMatcher": [
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": "build",
+			"label": "tgui: rebuild tgfont"
 		}
 	]
 }

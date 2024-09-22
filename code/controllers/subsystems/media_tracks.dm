@@ -172,7 +172,7 @@ SUBSYSTEM_DEF(media_tracks)
 			sort_tracks()
 			return
 
-	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
+	to_chat(C, "<span class='warning'>Couldn't find a track matching the specified parameters.</span>")
 
 /datum/controller/subsystem/media_tracks/proc/add_track(var/mob/user, var/new_url, var/new_title, var/new_duration, var/new_artist, var/new_genre, var/new_secret, var/new_lobby)
 	if(!check_rights(R_DEBUG|R_FUN))

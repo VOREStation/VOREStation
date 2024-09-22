@@ -74,7 +74,10 @@
 /mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
 	..()
 	id_card.age = age
-	id_card.species = "[custom_species ? "[custom_species] ([species.name])" : species.name]"
+	if(species.name == SPECIES_HANNER)
+		id_card.species = "[custom_species ? "[custom_species]" : species.name]"
+	else
+		id_card.species = "[custom_species ? "[custom_species] ([species.name])" : species.name]"
 	id_card.sex = capitalize(name_gender())
 
 /obj/item/weapon/card/id/tgui_data(mob/user)
