@@ -5,7 +5,7 @@ export type Data = {
   target: Target | null;
   all_robots: DropdownEntry[];
   model_options: string[] | null;
-  cell: string | null;
+  cell: InstalledCell;
   cell_options: Record<string, Cell>;
   id_icon: string;
   access_options: Access[] | undefined;
@@ -96,6 +96,12 @@ export type PKA = {
   installed_modkits: { name: string; ref: string; costs: number }[];
   capacity: number;
   max_capacity: number;
+};
+
+export type InstalledCell = {
+  name: string | null;
+  charge: number | null;
+  maxcharge: number | null;
 };
 
 export type Cell = {

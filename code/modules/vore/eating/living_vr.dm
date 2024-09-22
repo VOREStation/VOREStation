@@ -259,6 +259,7 @@
 	P.digest_pain = src.digest_pain
 	P.stumble_vore = src.stumble_vore
 	P.eating_privacy_global = src.eating_privacy_global
+	P.allow_mimicry = src.allow_mimicry
 
 	P.nutrition_message_visible = src.nutrition_message_visible
 	P.nutrition_messages = src.nutrition_messages
@@ -312,6 +313,7 @@
 	food_vore = P.food_vore
 	digest_pain = P.digest_pain
 	eating_privacy_global = P.eating_privacy_global
+	allow_mimicry = P.allow_mimicry
 
 	nutrition_message_visible = P.nutrition_message_visible
 	nutrition_messages = P.nutrition_messages
@@ -1212,6 +1214,7 @@
 	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Can be picked up:</b> [pickup_pref ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Global Vore Privacy is:</b> [eating_privacy_global ? "Subtle" : "Loud"]<br>"
+	dispvoreprefs += "<b>Allow Mimicry:</b> [allow_mimicry ? "Yes" : "No"]<br>"
 	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name]mvp;size=300x400;can_resize=1;can_minimize=0")
 	onclose(user, "[name]")
 	return

@@ -441,7 +441,7 @@
 			qdel(T)
 			return
 
-	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
+	to_chat(C, "<span class='warning'>Couldn't find a track matching the specified parameters.</span>")
 
 /obj/machinery/media/jukebox/ghost/vv_get_dropdown()
 	. = ..()

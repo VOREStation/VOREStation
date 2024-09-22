@@ -252,3 +252,33 @@
 	name = "Leotard"
 	icon_state = "leotard"
 	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/tshirt
+	name = "Feminine T-Shirt"
+	icon_state = "t-shirt_full"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/tshirt_midriff
+	name = "Feminine T-Shirt (midriff)"
+	icon_state = "t-shirt_midriff"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/tshirt_shoulders
+	name = "Feminine T-Shirt (black with shoulders)"
+	icon_state = "t-shirt_full_shoulders"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/tshirt_midriff_shoulders
+	name = "Feminine T-Shirt (midriff, black with shoulders)"
+	icon_state = "t-shirt_midriff_shoulders"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/tshirt_shoulders_text
+	name = "Feminine T-Shirt (black with shoulders and text)"
+	icon_state = "t-shirt_full_shoulders_text"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/tshirt_midriff_shoulders_text
+	name = "Feminine T-Shirt (midriff, black with shoulders and text)"
+	icon_state = "t-shirt_midriff_shoulders_text"
+	has_color = TRUE

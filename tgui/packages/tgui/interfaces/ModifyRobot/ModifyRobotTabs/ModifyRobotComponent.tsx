@@ -1,9 +1,11 @@
+import { toFixed } from 'common/math';
 import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
+  Collapsible,
   Divider,
   Dropdown,
   Flex,
@@ -11,24 +13,26 @@ import {
   Image,
   Input,
   Section,
+  Slider,
   Stack,
 } from 'tgui/components';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
-import { Cell, Component, Target } from '../types';
+import { Cell, Component, InstalledCell, Target } from '../types';
 
 export const ModifyRobotComponent = (props: {
   target: Target;
-  cell: string | null;
+  cell: InstalledCell;
   cells: Record<string, Cell>;
 }) => {
+  const { act } = useBackend();
   const { target, cell, cells } = props;
   const [searchComponentReplaceText, setSearchComponentReplaceText] =
     useState<string>('');
   const [searchComponentRemoveText, setSearchComponentRemoveText] =
     useState<string>('');
-  const [selectedCell, setSelectedCell] = useState<string>(cell || '');
+  const [selectedCell, setSelectedCell] = useState<string>(cell.name || '');
   const cell_options = Object.keys(cells) as Array<string>;
 
   return (
@@ -46,7 +50,7 @@ export const ModifyRobotComponent = (props: {
             buttonIcon="arrows-spin"
             celltype={cells[selectedCell]?.path}
             selected_cell={selectedCell}
-            cell={cell || undefined}
+            cell={cell.name || undefined}
           />
         </Flex.Item>
         <Flex.Item width="30%">
@@ -65,13 +69,32 @@ export const ModifyRobotComponent = (props: {
             <Stack.Item>
               <Section title="Power cell">
                 Current cell:{' '}
-                {cell ? (
-                  capitalize(cell)
+                {cell.name ? (
+                  capitalize(cell.name)
                 ) : (
                   <Box inline color="red">
                     No cell installed!
                   </Box>
                 )}
+                <Slider
+                  stepPixelSize={5}
+                  format={(value) => toFixed(value, 2)}
+                  disabled={!cell.charge}
+                  minValue={0}
+                  maxValue={100}
+                  value={((cell.charge || 0) / (cell.maxcharge || 1)) * 100}
+                  onChange={(e, value) =>
+                    act('adjust_cell_charge', {
+                      charge: (value / 100) * (cell.maxcharge || 0),
+                    })
+                  }
+                >
+                  <Flex>
+                    <Flex.Item>Current charge</Flex.Item>
+                    <Flex.Item grow />
+                    <Flex.Item>{cell.charge}</Flex.Item>
+                  </Flex>
+                </Slider>
                 <Dropdown
                   width="100%"
                   selected={selectedCell}
@@ -91,6 +114,57 @@ export const ModifyRobotComponent = (props: {
                     {cells[selectedCell]?.self_charge ? 'Yes' : 'No'}
                   </Stack.Item>
                 </Stack>
+              </Section>
+              <Section scrollable fill>
+                <Collapsible title="Badmin">
+                  {target.components.map((component, i) => {
+                    return (
+                      <Collapsible title={capitalize(component.name)} key={i}>
+                        <Slider
+                          color="red"
+                          disabled={component.installed !== 1}
+                          minValue={0}
+                          maxValue={component.max_damage * 5 || 0}
+                          value={component.brute_damage || 0}
+                          onChange={(e, value) =>
+                            act('adjust_brute', {
+                              component: component.ref,
+                              damage: value,
+                            })
+                          }
+                        >
+                          <Flex>
+                            <Flex.Item>Brute damage</Flex.Item>
+                            <Flex.Item grow />
+                            <Flex.Item>{component.brute_damage}</Flex.Item>
+                          </Flex>
+                        </Slider>
+                        <Slider
+                          color="orange"
+                          key={i}
+                          disabled={component.installed !== 1}
+                          minValue={0}
+                          maxValue={component.max_damage * 5 || 0}
+                          value={component.electronics_damage || 0}
+                          onChange={(e, value) =>
+                            act('adjust_electronics', {
+                              component: component.ref,
+                              damage: value,
+                            })
+                          }
+                        >
+                          <Flex>
+                            <Flex.Item>Electronics damage</Flex.Item>
+                            <Flex.Item grow />
+                            <Flex.Item>
+                              {component.electronics_damage}
+                            </Flex.Item>
+                          </Flex>
+                        </Slider>
+                      </Collapsible>
+                    );
+                  })}
+                </Collapsible>
               </Section>
             </Stack.Item>
           </Stack>

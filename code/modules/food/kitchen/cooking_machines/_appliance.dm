@@ -77,7 +77,7 @@
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
 		return string
 	else
-		to_chat(user, "<span class='notice>'It is empty.</span>")
+		to_chat(user, "<span class='notice'>It is empty.</span>")
 
 /obj/machinery/appliance/proc/report_progress_tgui(datum/cooking_item/CI)
 	if(!CI || !CI.max_cookwork)

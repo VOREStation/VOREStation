@@ -318,7 +318,6 @@
 	master_tag = "aerostat_n_n_airlock";
 	pixel_x = 24;
 	pixel_y = 24;
-	tag = "aerostat_n_n_sensint"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/north)
@@ -924,7 +923,6 @@
 	master_tag = "aerostat_s_s_airlock";
 	pixel_x = -24;
 	pixel_y = -24;
-	tag = "aerostat_s_s_sensint"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
@@ -1969,7 +1967,6 @@
 	dir = 8;
 	master_tag = "aerostat_n_e_airlock";
 	pixel_x = 32;
-	tag = "aerostat_n_e_sensint"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/north)
@@ -8673,7 +8670,6 @@
 	dir = 8;
 	master_tag = "aerostat_s_e_airlock";
 	pixel_x = 24;
-	tag = "aerostat_s_e_sensint"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
@@ -11336,7 +11332,6 @@
 	dir = 4;
 	master_tag = "aerostat_n_w_airlock";
 	pixel_x = -32;
-	tag = "aerostat_n_w_sensint"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/north)
@@ -13479,7 +13474,6 @@
 	dir = 4;
 	master_tag = "aerostat_s_w_airlock";
 	pixel_x = -24;
-	tag = "aerostat_s_w_sensint"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)

@@ -31,3 +31,6 @@ temp.dmi
 
 node_modules/
 package-lock.json
+
+# CBT Things
+.cache
