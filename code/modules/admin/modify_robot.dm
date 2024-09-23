@@ -12,7 +12,7 @@
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
 	var/mob/living/silicon/robot/source
-	var/mob/living/ai/selected_ai
+	var/mob/living/silicon/ai/selected_ai
 	var/ion_law	= "IonLaw"
 	var/zeroth_law = "ZerothLaw"
 	var/inherent_law = "InherentLaw"
@@ -128,7 +128,7 @@
 	for(var/mob/living/silicon/ai/ai in active_ais())
 		if(!ai.loc)
 			continue
-		active_ais += list(list("displayText" = "[R]", "value" = "\ref[R]"))
+		active_ais += list(list("displayText" = "[ai]", "value" = "\ref[ai]"))
 	.["active_ais"] = active_ais
 	.["selected_ai"] = selected_ai
 
@@ -516,7 +516,7 @@
 				target.disconnect_from_ai()
 				target.lawupdate = 0
 			else
-				var/new_ai = selected_ai ? select_ai : select_active_ai_with_fewest_borgs()
+				var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
 				if(new_ai)
 					target.lawupdate = 1
 					target.connect_to_ai(new_ai)
