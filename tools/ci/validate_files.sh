@@ -136,6 +136,14 @@ if [ "$pcre2_support" -eq 1 ]; then
 		echo -e "${RED}A broken span tag class is present (check quotes).${NC}"
 		FAILED=1
 	fi
+
+	part "old style hrefs"
+	(! $grep -Pn "href[\s='\"\\ ]*\?" $code_files)
+	retVal=$?
+	if [ $retVal -ne 0 ]; then
+		echo -e "${RED}old-style hrefs detected, see ripgrep output.${NC}"
+		FAILED=1
+	fi
 else
 	echo -e "${RED}pcre2 not supported, skipping checks requiring pcre2"
 	echo -e "if you want to run these checks install ripgrep with pcre2 support.${NC}"
