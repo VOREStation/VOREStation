@@ -136,7 +136,9 @@ export const Button = (props: Props) => {
         // Simulate a click when pressing space or enter.
         if (event.key === KEY.Space || event.key === KEY.Enter) {
           event.preventDefault();
-          handleButtonClick(event);
+          if (!disabled && onClick) {
+            onClick(event);
+          }
           return;
         }
 
