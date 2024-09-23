@@ -52,6 +52,8 @@ export const ModifyRobot = (props) => {
     isAI,
     isMalf,
     isSlaved,
+    all_ais,
+    selected_ai,
     channel,
     channels,
     law_sets,
@@ -174,7 +176,19 @@ export const ModifyRobot = (props) => {
                     </Button>
                   </Stack.Item>
                   <Stack.Item>
+                    <Dropdown
+                      selected={selected_ai ? selected_ai.name : ''}
+                      options={all_ais}
+                      onSelected={(value) =>
+                        act('select_ai', {
+                          new_ai: value,
+                        })
+                      }
+                    />
+                  </Stack.Item>
+                  <Stack.Item>
                     <Button
+                      disabled={selected_ai.name === isSlaved}
                       color={isSlaved ? "red" : "green"}
                       tooltip={(isSlaved ? "Disconnect from" : "Connect to") + " AI"}
                       onClick={(value) => act('toggle_sync')}
@@ -183,14 +197,14 @@ export const ModifyRobot = (props) => {
                       </Button>
                   </Stack.Item>
                   <Stack.Item>
-                  <Button
-                    disabled={!isSlaved}
-                    color={isMalf ? "red" : "green"}
-                    tooltip={(isMalf ? "Disables" : "Enables") + " lawsync"}
-                    onClick={(value) => act('sneaky_toggle')}
-                  >
-                    Lawsync
-                  </Button>
+                    <Button
+                      disabled={!isSlaved}
+                      color={isMalf ? "red" : "green"}
+                      tooltip={(isMalf ? "Disables" : "Enables") + " lawsync"}
+                      onClick={(value) => act('sneaky_toggle')}
+                    >
+                      Lawsync
+                    </Button>
                   </Stack.Item>
                 </>
               )}

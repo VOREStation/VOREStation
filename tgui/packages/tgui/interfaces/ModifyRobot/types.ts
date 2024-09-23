@@ -29,6 +29,8 @@ export type Data = {
   channel: string;
   channels: { channel: string }[];
   law_sets: law_pack[];
+  active_ais: DropdownEntry[];
+  selected_ai: {name: string; ref: string} | null;
 };
 
 export type DropdownEntry = {

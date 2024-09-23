@@ -12,6 +12,7 @@
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
 	var/mob/living/silicon/robot/source
+	var/mob/living/ai/selected_ai
 	var/ion_law	= "IonLaw"
 	var/zeroth_law = "ZerothLaw"
 	var/inherent_law = "InherentLaw"
@@ -123,6 +124,13 @@
 	.["isAI"] = isAI(target)
 	.["isMalf"] = is_malf(user)
 	.["isSlaved"] = target.is_slaved()
+	var/list/active_ais = list()
+	for(var/mob/living/silicon/ai/ai in active_ais())
+		if(!ai.loc)
+			continue
+		active_ais += list(list("displayText" = "[R]", "value" = "\ref[R]"))
+	.["active_ais"] = active_ais
+	.["selected_ai"] = selected_ai
 
 	var/list/channels = list()
 	for(var/ch_name in target.law_channels())
@@ -500,12 +508,15 @@
 			if(usr != target)
 				to_chat(usr, "<span class='notice'>Laws displayed.</span>")
 			return TRUE
+		if("select_ai")
+			selected_ai = locate(params["new_ai"])
+			return TRUE
 		if("toggle_sync")
 			if(target.is_slaved())
 				target.disconnect_from_ai()
 				target.lawupdate = 0
 			else
-				var/new_ai = select_active_ai_with_fewest_borgs()
+				var/new_ai = selected_ai ? select_ai : select_active_ai_with_fewest_borgs()
 				if(new_ai)
 					target.lawupdate = 1
 					target.connect_to_ai(new_ai)
