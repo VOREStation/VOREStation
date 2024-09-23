@@ -25,6 +25,9 @@
  * Cooldown system based on an datum-level associative lazylist using timers.
 */
 
+// random cooldowns
+#define COOLDOWN_VENOM_MILKING "venom_milking"
+
 // admin verb cooldowns
 #define COOLDOWN_INTERNET_SOUND "internet_sound"
 

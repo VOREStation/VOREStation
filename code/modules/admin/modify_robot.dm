@@ -84,7 +84,7 @@
 			.["target"]["availalbe_channels"] = availalbe_channels
 			// Components
 			.["target"]["components"] = get_components()
-			.["cell"] = target.cell?.name
+			.["cell"] = list("name" = target.cell?.name, "charge" = target.cell?.charge, "maxcharge" = target.cell?.maxcharge)
 			.["cell_options"] = get_cells()
 			// Access
 			.["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
@@ -367,6 +367,17 @@
 			C.wrapped = null
 			if(istype(C, /datum/robot_component/cell))
 				target.cell = null
+			return TRUE
+		if("adjust_cell_charge")
+			target.cell.charge = text2num(params["charge"])
+			return TRUE
+		if("adjust_brute")
+			var/datum/robot_component/C = locate(params["component"])
+			C.brute_damage = text2num(params["damage"])
+			return TRUE
+		if("adjust_electronics")
+			var/datum/robot_component/C = locate(params["component"])
+			C.electronics_damage = text2num(params["damage"])
 			return TRUE
 		if("add_access")
 			target.idcard.access += text2num(params["access"])

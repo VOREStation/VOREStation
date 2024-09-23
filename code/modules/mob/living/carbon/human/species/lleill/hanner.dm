@@ -8,7 +8,6 @@
 	transmutation and energy sharing abilities not unlike they lleill, but considerably more limited. Unlike \
 	other shapeshifter species, such as proteans or prometheans, Hanner have a typical humanoid set of organs and can not regenerate."
 
-	flags =  NO_SCAN
 	color_mult = 1
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | HAS_UNDERWEAR | HAS_LIPS
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
