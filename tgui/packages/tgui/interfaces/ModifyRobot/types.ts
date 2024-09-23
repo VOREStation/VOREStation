@@ -30,7 +30,7 @@ export type Data = {
   channels: { channel: string }[];
   law_sets: law_pack[];
   active_ais: DropdownEntry[];
-  selected_ai: {name: string; ref: string} | null;
+  selected_ai: string | null;
 };
 
 export type DropdownEntry = {
@@ -42,6 +42,7 @@ export type Target = {
   name: string;
   ckey: string;
   module: string;
+  emagged: BooleanLike;
   active: BooleanLike;
   crisis_override: BooleanLike;
   active_restrictions: string[];

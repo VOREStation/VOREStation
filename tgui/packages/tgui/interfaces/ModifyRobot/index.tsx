@@ -95,7 +95,7 @@ export const ModifyRobot = (props) => {
     <LawManagerLaws
       isAdmin
       hasScroll
-      sectionHeight="85%"
+      sectionHeight="80%"
       ion_law_nr={ion_law_nr}
       ion_law={ion_law}
       zeroth_law={zeroth_law}
@@ -117,7 +117,7 @@ export const ModifyRobot = (props) => {
     />
   );
   tabs[7] = (
-    <Section scrollable fill height="85%">
+    <Section scrollable fill height="80%">
       <LawManagerLawSets
         isAdmin
         isMalf={isMalf}
@@ -158,7 +158,7 @@ export const ModifyRobot = (props) => {
                 <>
                   <Stack.Item>
                     <Input
-                      width="300px"
+                      width="200px"
                       value={robotName}
                       onChange={(e, value) => setRobotName(value)}
                     />
@@ -166,7 +166,7 @@ export const ModifyRobot = (props) => {
                   <Stack.Item>
                     <Button
                       disabled={robotName.length < 3}
-                      onClick={(value) =>
+                      onClick={() =>
                         act('rename', {
                           new_name: robotName,
                         })
@@ -175,40 +175,62 @@ export const ModifyRobot = (props) => {
                       Rename
                     </Button>
                   </Stack.Item>
+                  <Stack.Item grow />
                   <Stack.Item>
-                    <Dropdown
-                      selected={selected_ai ? selected_ai.name : ''}
-                      options={active_ais}
-                      onSelected={(value) =>
-                        act('select_ai', {
-                          new_ai: value,
-                        })
+                    <Button
+                      icon={target.emagged ? 'sd-card' : 'bolt'}
+                      color={target.emagged ? 'green' : 'red'}
+                      onClick={() => act('toggle_emag')}
+                      tooltip={
+                        (target.emagged ? 'Disables' : 'Enables') +
+                        ' hacked state'
                       }
-                    />
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      disabled={selected_ai?.name === isSlaved}
-                      color={isSlaved ? "red" : "green"}
-                      tooltip={(isSlaved ? "Disconnect from" : "Connect to") + " AI"}
-                      onClick={(value) => act('toggle_sync')}
                     >
-                      {isSlaved ? isSlaved : "Disconnected!"}
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      disabled={!isSlaved}
-                      color={isMalf ? "red" : "green"}
-                      tooltip={(isMalf ? "Disables" : "Enables") + " lawsync"}
-                      onClick={(value) => act('sneaky_toggle')}
-                    >
-                      Lawsync
+                      EMAG
                     </Button>
                   </Stack.Item>
                 </>
               )}
             </Stack>
+          </LabeledList.Item>
+          <LabeledList.Item label="AI Selection">
+            {!!target?.module && (
+              <Stack inline align="baseline">
+                <Stack.Item>
+                  <Dropdown
+                    selected={selected_ai || ''}
+                    options={active_ais}
+                    onSelected={(value) =>
+                      act('select_ai', {
+                        new_ai: value,
+                      })
+                    }
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="plug"
+                    disabled={selected_ai === isSlaved}
+                    color="green"
+                    tooltip="Connect the robot to an AI"
+                    onClick={() => act('swap_sync')}
+                  >
+                    {isSlaved ? isSlaved : 'Connect AI'}
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="plug-circle-minus"
+                    disabled={!isSlaved}
+                    color="red"
+                    tooltip="Disconnects the robot from the AI"
+                    onClick={() => act('disconnect_ai')}
+                  >
+                    DC
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            )}
           </LabeledList.Item>
         </LabeledList>
         <Divider />

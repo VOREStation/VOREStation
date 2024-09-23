@@ -6,7 +6,8 @@
 		return
 
 	var/datum/eventkit/modify_robot/modify_robot = new()
-	modify_robot.target = target
+	modify_robot.target = isrobot(target) ? target : null
+	modify_robot.selected_ai = target.is_slaved()
 	modify_robot.tgui_interact(src.mob)
 
 /datum/eventkit/modify_robot
@@ -50,6 +51,7 @@
 		.["target"]["name"] = target.name
 		.["target"]["ckey"] = target.ckey
 		.["target"]["module"] = target.module
+		.["target"]["emagged"] = target.emagged
 		.["target"]["crisis_override"] = target.crisis_override
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
@@ -130,7 +132,7 @@
 			continue
 		active_ais += list(list("displayText" = "[ai]", "value" = "\ref[ai]"))
 	.["active_ais"] = active_ais
-	.["selected_ai"] = selected_ai
+	.["selected_ai"] = selected_ai ? selected_ai.name : null
 
 	var/list/channels = list()
 	for(var/ch_name in target.law_channels())
@@ -154,8 +156,10 @@
 			target.real_name = params["new_name"]
 			return TRUE
 		if("select_target")
-			target = locate(params["new_target"])
-			log_and_message_admins("changed robot modifictation target to [target]")
+			var/new_target = locate(params["new_target"])
+			if(new_target != target)
+				target = locate(params["new_target"])
+				log_and_message_admins("changed robot modifictation target to [target]")
 			return TRUE
 		if("toggle_crisis")
 			target.crisis_override = !target.crisis_override
@@ -511,18 +515,37 @@
 		if("select_ai")
 			selected_ai = locate(params["new_ai"])
 			return TRUE
-		if("toggle_sync")
+		if("swap_sync")
+			var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
+			if(new_ai)
+				target.lawupdate = 1
+				target.connect_to_ai(new_ai)
+			return TRUE
+		if("disconnect_ai")
 			if(target.is_slaved())
 				target.disconnect_from_ai()
 				target.lawupdate = 0
-			else
-				var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
-				if(new_ai)
-					target.lawupdate = 1
-					target.connect_to_ai(new_ai)
 			return TRUE
-		if("sneaky_toggle")
-			target.lawupdate = !target.lawupdate
+		if("toggle_emag")
+			if(target.emagged)
+				target.emagged = 0
+				target.clear_supplied_laws()
+				target.clear_inherent_laws()
+				target.laws = new global.using_map.default_law_type
+				target.laws.show_laws(target)
+				target.hud_used.update_robot_modules_display()
+			else
+				target.emagged = 1
+				target.lawupdate = 0
+				target.disconnect_from_ai()
+				target.clear_supplied_laws()
+				target.clear_inherent_laws()
+				target.laws = new /datum/ai_laws/syndicate_override
+				if(target.bolt)
+					if(!target.bolt.malfunction)
+						target.bolt.malfunction = MALFUNCTION_PERMANENT
+				target.laws.show_laws(target)
+				target.hud_used.update_robot_modules_display()
 			return TRUE
 
 /datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
