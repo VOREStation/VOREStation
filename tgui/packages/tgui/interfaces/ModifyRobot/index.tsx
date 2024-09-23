@@ -52,7 +52,7 @@ export const ModifyRobot = (props) => {
     isAI,
     isMalf,
     isSlaved,
-    all_ais,
+    active_ais,
     selected_ai,
     channel,
     channels,
