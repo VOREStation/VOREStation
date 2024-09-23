@@ -511,7 +511,7 @@
 					target.connect_to_ai(new_ai)
 			return TRUE
 		if("sneaky_toggle")
-			target.lawsync = !target.lawsync
+			target.lawupdate = !target.lawupdate
 			return TRUE
 
 /datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
@@ -668,3 +668,6 @@
 
 /datum/eventkit/modify_robot/proc/is_malf(var/mob/user)
 	return (is_admin(user) && !target.is_slaved()) || is_special_role(user)
+
+/datum/eventkit/modify_robot/proc/is_special_role(var/mob/user)
+	return user.mind.special_role ? TRUE : FALSE
