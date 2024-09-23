@@ -202,8 +202,8 @@ export const ModifyRobot = (props) => {
                       color={isMalf ? "red" : "green"}
                       tooltip={(isMalf ? "Disables" : "Enables") + " lawsync"}
                       onClick={(value) => act('sneaky_toggle')}
-                    >
-                      Lawsync
+                      >
+                        Lawsync
                     </Button>
                   </Stack.Item>
                 </>
