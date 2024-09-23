@@ -178,7 +178,7 @@ export const ModifyRobot = (props) => {
                   <Stack.Item>
                     <Dropdown
                       selected={selected_ai ? selected_ai.name : ''}
-                      options={all_ais}
+                      options={active_ais}
                       onSelected={(value) =>
                         act('select_ai', {
                           new_ai: value,
@@ -188,7 +188,7 @@ export const ModifyRobot = (props) => {
                   </Stack.Item>
                   <Stack.Item>
                     <Button
-                      disabled={selected_ai.name === isSlaved}
+                      disabled={selected_ai?.name === isSlaved}
                       color={isSlaved ? "red" : "green"}
                       tooltip={(isSlaved ? "Disconnect from" : "Connect to") + " AI"}
                       onClick={(value) => act('toggle_sync')}
