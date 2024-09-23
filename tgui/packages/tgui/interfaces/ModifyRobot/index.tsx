@@ -192,9 +192,9 @@ export const ModifyRobot = (props) => {
                       color={isSlaved ? "red" : "green"}
                       tooltip={(isSlaved ? "Disconnect from" : "Connect to") + " AI"}
                       onClick={(value) => act('toggle_sync')}
-                      >
-                        {isSlaved ? isSlaved : "Disconnected!"}
-                      </Button>
+                    >
+                      {isSlaved ? isSlaved : "Disconnected!"}
+                    </Button>
                   </Stack.Item>
                   <Stack.Item>
                     <Button
@@ -202,8 +202,8 @@ export const ModifyRobot = (props) => {
                       color={isMalf ? "red" : "green"}
                       tooltip={(isMalf ? "Disables" : "Enables") + " lawsync"}
                       onClick={(value) => act('sneaky_toggle')}
-                      >
-                        Lawsync
+                    >
+                      Lawsync
                     </Button>
                   </Stack.Item>
                 </>
