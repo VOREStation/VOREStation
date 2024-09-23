@@ -121,6 +121,8 @@
 	package_laws(., "supplied_laws", target.laws.supplied_laws)
 
 	.["isAI"] = isAI(target)
+	.["isMalf"] = is_malf(user)
+	.["isSlaved"] = target.is_slaved()
 
 	var/list/channels = list()
 	for(var/ch_name in target.law_channels())
@@ -498,6 +500,19 @@
 			if(usr != target)
 				to_chat(usr, "<span class='notice'>Laws displayed.</span>")
 			return TRUE
+		if("toggle_sync")
+			if(target.is_slaved())
+				target.disconnect_from_ai()
+				target.lawupdate = 0
+			else
+				var/new_ai = select_active_ai_with_fewest_borgs()
+				if(new_ai)
+					target.lawupdate = 1
+					target.connect_to_ai(new_ai)
+			return TRUE
+		if("sneaky_toggle")
+			target.lawsync = !target.lawsync
+			return TRUE
 
 /datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
 	var/list/target_items = list()
@@ -650,3 +665,6 @@
 		package_laws(packaged_laws, "supplied_laws", ALs.supplied_laws)
 		law_sets[++law_sets.len] = list("name" = ALs.name, "header" = ALs.law_header, "ref" = "\ref[ALs]","laws" = packaged_laws)
 	return law_sets
+
+/datum/eventkit/modify_robot/proc/is_malf(var/mob/user)
+	return (is_admin(user) && !target.is_slaved()) || is_special_role(user)

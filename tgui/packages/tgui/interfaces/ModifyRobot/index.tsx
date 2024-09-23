@@ -50,6 +50,8 @@ export const ModifyRobot = (props) => {
     has_inherent_laws,
     has_supplied_laws,
     isAI,
+    isMalf,
+    isSlaved,
     channel,
     channels,
     law_sets,
@@ -90,7 +92,6 @@ export const ModifyRobot = (props) => {
   tabs[6] = (
     <LawManagerLaws
       isAdmin
-      isMalf
       hasScroll
       sectionHeight="85%"
       ion_law_nr={ion_law_nr}
@@ -108,6 +109,7 @@ export const ModifyRobot = (props) => {
       has_inherent_laws={has_inherent_laws}
       has_supplied_laws={has_supplied_laws}
       isAI={isAI}
+      isMalf={isMalf}
       channel={channel}
       channels={channels}
     />
@@ -116,7 +118,7 @@ export const ModifyRobot = (props) => {
     <Section scrollable fill height="85%">
       <LawManagerLawSets
         isAdmin
-        isMalf
+        isMalf={isMalf}
         law_sets={law_sets}
         ion_law_nr={ion_law_nr}
         searchLawName={searchLawName}
@@ -170,6 +172,25 @@ export const ModifyRobot = (props) => {
                     >
                       Rename
                     </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      color={isSlaved ? "red" : "green"}
+                      tooltip={(isSlaved ? "Disconnect from" : "Connect to") + " AI"}
+                      onClick={(value) => act('toggle_sync')}
+                      >
+                        {isSlaved ? isSlaved : "Disconnected!"}
+                      </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                  <Button
+                    disabled={!isSlaved}
+                    color={isMalf ? "red" : "green"}
+                    tooltip={(isMalf ? "Disables" : "Enables") + " lawsync"}
+                    onClick={(value) => act('sneaky_toggle')}
+                  >
+                    Lawsync
+                  </Button>
                   </Stack.Item>
                 </>
               )}

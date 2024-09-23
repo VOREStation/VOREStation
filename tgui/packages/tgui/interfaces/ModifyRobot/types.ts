@@ -24,6 +24,8 @@ export type Data = {
   has_inherent_laws: number;
   has_supplied_laws: number;
   isAI: BooleanLike;
+  isMalf: BooleanLike;
+  isSlaved: string | null;
   channel: string;
   channels: { channel: string }[];
   law_sets: law_pack[];
