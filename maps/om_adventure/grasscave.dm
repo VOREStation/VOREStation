@@ -1,4 +1,4 @@
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "pois/darkstar.dmm"
 #include "pois/darktear1.dmm"
 #include "pois/darktear2.dmm"

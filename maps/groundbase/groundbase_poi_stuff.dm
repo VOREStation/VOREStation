@@ -1,4 +1,4 @@
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "pois/outdoors1.dmm"
 #include "pois/outdoors2.dmm"
 #include "pois/outdoors3.dmm"

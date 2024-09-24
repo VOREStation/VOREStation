@@ -92,7 +92,7 @@ jobs:
   unit_tests:
     strategy:
       matrix:
-        map: ['tether', 'stellar_delight', 'groundbase']
+        map: ['USE_MAP_TETHER', 'USE_MAP_STELLARDELIGHT', 'USE_MAP_GROUNDBASE']
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
     # needs: ['run_linters', 'dreamchecker']
@@ -118,30 +118,21 @@ jobs:
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "UNIT_TEST"
-          TEST_FILE: "code/_unit_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: true
+          EXTRA_ARGS: "-DUNIT_TEST -D${{ matrix.map }}"
           RUN: "1"
       - name: Compile POIs
         run: |
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "MAP_TEST"
-          TEST_FILE: "code/_map_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: false
+          EXTRA_ARGS: "-DMAP_TEST"
           RUN: "0"
       - name: Compile away missions
         run: |
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "AWAY_MISSION_TEST"
-          TEST_FILE: "code/_away_mission_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: false
+          EXTRA_ARGS: "-DAWAY_MISSION_TEST -DUSE_MAP_TETHER" # Only Tether has support for all away missions
           RUN: "0"
 
   tests_successful:
