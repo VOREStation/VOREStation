@@ -105,7 +105,7 @@ jobs:
       - name: Restore BYOND Cache
         uses: actions/cache@v4
         with:
-          path: $HOME/BYOND
+          path: $HOME/byond
           key: ${{ runner.os }}-byond
       - name: Install RUST_G Dependencies
         run: |
@@ -132,7 +132,7 @@ jobs:
       - name: Restore BYOND Cache
         uses: actions/cache@v4
         with:
-          path: $HOME/BYOND
+          path: $HOME/byond
           key: ${{ runner.os }}-byond
       - name: Install BYOND
         run: tools/ci/install_byond.sh
