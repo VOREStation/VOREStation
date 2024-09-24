@@ -5,6 +5,9 @@ NC='\033[0m'
 
 source $HOME/BYOND/byond/bin/byondsetup
 
+# Clean up between steps so Juke doesn't refuse to recompile with different -D options
+rm vorestation.dmb
+
 # Copy example configs
 cp config/example/* config/
 
