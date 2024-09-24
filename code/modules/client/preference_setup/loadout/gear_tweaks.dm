@@ -152,7 +152,7 @@ GLOBAL_DATUM_INIT(gear_tweak_free_matrix_recolor, /datum/gear_tweak/matrix_recol
 		else
 			path = 	contents[metadata[i]]
 		if(!path)
-			var/mob/user = ismob(I.loc) ? I.loc : I.loc.loc
+			var/mob/user = ismob(I.loc) ? I.loc : I.loc?.loc
 			if(istype(user))
 				to_chat(user, span_warning("The content \"[metadata[i]]\" from \"[I]\" does no longer exist and has not been loaded. Please replace it in the character setup."))
 			continue
