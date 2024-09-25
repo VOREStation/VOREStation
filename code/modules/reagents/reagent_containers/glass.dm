@@ -95,7 +95,7 @@
 
 	return 0
 
-/obj/item/weapon/reagent_containers/glass/standard_feed_mob(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/glass/standard_feed_mob(var/mob/user, var/mob/target)
 	if(user.a_intent == I_HURT)
 		return 1
 	return ..()
@@ -103,7 +103,7 @@
 /obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
 	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
-/obj/item/weapon/reagent_containers/glass/proc/attempt_snake_milking(mob/living/user, mob/living/target)
+/obj/item/reagent_containers/glass/proc/attempt_snake_milking(mob/living/user, mob/living/target)
 	var/reagent
 	var/amount
 
@@ -128,7 +128,7 @@
 	reagents.add_reagent(reagent, amount)
 	return TRUE
 
-/obj/item/weapon/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!proximity || !is_open_container()) //Is the container open & are they next to whatever they're clicking?
 		return 1 //If not, do nothing.
 	for(var/type in can_be_placed_into) //Is it something it can be placed into?
