@@ -137,7 +137,7 @@
 			if(!belly_announce)
 				var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
 				var/digest_mode = b.digest_mode == DM_SELECT ? DM_S.get_selective_mode(b, thing) : b.digest_mode
-				to_chat(src, "<span class='notice'>[digest_mode] - Within [b.name]:</span>")	//We only want to announce the belly if we found something
+				to_chat(src, "<span class='notice'>[digest_mode] - Within your [b.name]:</span>")	//We only want to announce the belly if we found something
 				belly_announce = TRUE
 			var/mob/living/ourmob = thing
 			ourmob.chat_healthbar(src, TRUE, TRUE)
