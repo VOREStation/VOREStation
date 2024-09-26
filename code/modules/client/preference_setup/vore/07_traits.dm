@@ -110,9 +110,9 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 /datum/category_item/player_setup_item/vore/traits/load_character(list/save_data)
 	pref.custom_species			= save_data["custom_species"]
 	pref.custom_base			= save_data["custom_base"]
-	pref.pos_traits				= text2path_list(save_data["pos_traits"])
-	pref.neu_traits				= text2path_list(save_data["neu_traits"])
-	pref.neg_traits				= text2path_list(save_data["neg_traits"])
+	pref.pos_traits				= text2path_list(check_list_copy(save_data["pos_traits"]))
+	pref.neu_traits				= text2path_list(check_list_copy(save_data["neu_traits"]))
+	pref.neg_traits				= text2path_list(check_list_copy(save_data["neg_traits"]))
 	pref.blood_color			= save_data["blood_color"]
 	pref.blood_reagents			= save_data["blood_reagents"]
 
@@ -125,15 +125,15 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	pref.custom_ask				= save_data["custom_ask"]
 	pref.custom_exclaim			= save_data["custom_exclaim"]
 
-	pref.custom_heat			= save_data["custom_heat"]
-	pref.custom_cold			= save_data["custom_cold"]
+	pref.custom_heat			= check_list_copy(save_data["custom_heat"])
+	pref.custom_cold			= check_list_copy(save_data["custom_cold"])
 
 /datum/category_item/player_setup_item/vore/traits/save_character(list/save_data)
 	save_data["custom_species"]		= pref.custom_species
 	save_data["custom_base"]		= pref.custom_base
-	save_data["pos_traits"]			= pref.pos_traits
-	save_data["neu_traits"]			= pref.neu_traits
-	save_data["neg_traits"]			= pref.neg_traits
+	save_data["pos_traits"]			= check_list_copy(pref.pos_traits)
+	save_data["neu_traits"]			= check_list_copy(pref.neu_traits)
+	save_data["neg_traits"]			= check_list_copy(pref.neg_traits)
 	save_data["blood_color"]		= pref.blood_color
 	save_data["blood_reagents"]		= pref.blood_reagents
 
@@ -146,8 +146,8 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	save_data["custom_ask"]			= pref.custom_ask
 	save_data["custom_exclaim"]		= pref.custom_exclaim
 
-	save_data["custom_heat"]		= pref.custom_heat
-	save_data["custom_cold"]		= pref.custom_cold
+	save_data["custom_heat"]		= check_list_copy(pref.custom_heat)
+	save_data["custom_cold"]		= check_list_copy(pref.custom_cold)
 
 /datum/category_item/player_setup_item/vore/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
