@@ -50,14 +50,9 @@ var/list/gear_datums = list()
 	var/all_gear = check_list_copy(save_data["gear_list"])
 	for(var/i in all_gear)
 		var/list/entries = check_list_copy(all_gear["[i]"])
-		if(!length(entries))
-			entries = check_list_copy(all_gear[i])
 		for(var/j in entries)
-			entries["[j]"] = check_list_copy(path2text_list(entries["[j]"]))
-		var/index = i
-		if(!isnum(i))
-			index = text2num(i)
-		pref.gear_list["[index]"] = entries
+			entries["[j]"] = path2text_list(entries["[j]"])
+		pref.gear_list["[i]"] = entries
 	pref.gear_slot = save_data["gear_slot"]
 	if(pref.gear_list!=null && pref.gear_slot!=null)
 		pref.gear = pref.gear_list["[pref.gear_slot]"]

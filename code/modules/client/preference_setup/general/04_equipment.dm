@@ -10,7 +10,7 @@
 	pref.all_underwear				= check_list_copy(save_data["all_underwear"])
 	pref.all_underwear_metadata		= check_list_copy(save_data["all_underwear_metadata"])
 	for(var/i in pref.all_underwear_metadata)
-		pref.all_underwear_metadata[i] = check_list_copy(path2text_list(pref.all_underwear_metadata[i]))
+		pref.all_underwear_metadata[i] = path2text_list(pref.all_underwear_metadata[i])
 	pref.backbag					= save_data["backbag"]
 	pref.pdachoice					= save_data["pdachoice"]
 	pref.communicator_visibility	= save_data["communicator_visibility"]

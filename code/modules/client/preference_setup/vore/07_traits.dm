@@ -110,9 +110,9 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 /datum/category_item/player_setup_item/vore/traits/load_character(list/save_data)
 	pref.custom_species			= save_data["custom_species"]
 	pref.custom_base			= save_data["custom_base"]
-	pref.pos_traits				= text2path_list(check_list_copy(save_data["pos_traits"]))
-	pref.neu_traits				= text2path_list(check_list_copy(save_data["neu_traits"]))
-	pref.neg_traits				= text2path_list(check_list_copy(save_data["neg_traits"]))
+	pref.pos_traits				= text2path_list(save_data["pos_traits"])
+	pref.neu_traits				= text2path_list(save_data["neu_traits"])
+	pref.neg_traits				= text2path_list(save_data["neg_traits"])
 	pref.blood_color			= save_data["blood_color"]
 	pref.blood_reagents			= save_data["blood_reagents"]
 
