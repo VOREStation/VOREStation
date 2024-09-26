@@ -21,7 +21,7 @@
 	save_data["all_underwear"]				= pref.all_underwear
 	var/list/underwear = list()
 	for(var/i in pref.all_underwear_metadata)
-		underwear[i] = pref.all_underwear_metadata[i].Copy()
+		underwear[i] = check_list_copy(pref.all_underwear_metadata[i])
 	save_data["all_underwear_metadata"] 	= underwear
 	save_data["backbag"]					= pref.backbag
 	save_data["pdachoice"]					= pref.pdachoice
