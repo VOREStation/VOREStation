@@ -1,5 +1,6 @@
 /obj/item/chameleon
 	name = "chameleon projector"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
 	slot_flags = SLOT_BELT
 	item_state = "electronic"

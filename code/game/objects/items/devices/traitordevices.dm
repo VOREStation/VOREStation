@@ -17,6 +17,7 @@ effective or pretty fucking useless.
 /obj/item/batterer
 	name = "mind batterer"
 	desc = "A strange device with twin antennas."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "batterer"
 	throwforce = 5
 	w_class = ITEMSIZE_TINY

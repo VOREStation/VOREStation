@@ -8,6 +8,7 @@
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	description_info = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "multitool"
 	force = 5.0
 	w_class = ITEMSIZE_SMALL

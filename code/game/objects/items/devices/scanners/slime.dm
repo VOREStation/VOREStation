@@ -1,5 +1,6 @@
 /obj/item/slime_scanner
 	name = "slime scanner"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "xenobio"
 	item_state = "xenobio"
 	origin_tech = list(TECH_BIO = 1)

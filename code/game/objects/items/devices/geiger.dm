@@ -5,6 +5,7 @@
 /obj/item/geiger
 	name = "geiger counter"
 	desc = "A handheld device used for detecting and measuring radiation in an area."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "geiger_off"
 	item_state = "multitool"
 	w_class = ITEMSIZE_SMALL

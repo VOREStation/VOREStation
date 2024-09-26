@@ -1,6 +1,7 @@
 /obj/item/tvcamera
 	name = "press camera drone"
 	desc = "A Ward-Takahashi EyeBuddy media streaming hovercam. Weapon of choice for war correspondents and reality show cameramen."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "camcorder"
 	item_state = "camcorder"
 	w_class = ITEMSIZE_LARGE

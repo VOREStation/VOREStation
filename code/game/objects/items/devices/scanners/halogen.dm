@@ -1,5 +1,6 @@
 /obj/item/halogen_counter
 	name = "halogen counter"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "eftpos"
 	desc = "A hand-held halogen counter, used to detect the level of irradiation of living beings."
 	w_class = ITEMSIZE_SMALL

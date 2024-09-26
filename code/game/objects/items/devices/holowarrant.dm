@@ -1,6 +1,7 @@
 /obj/item/holowarrant
 	name = "warrant projector"
 	desc = "The practical paperwork replacement for the officer on the go."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "holowarrant"
 	item_state = "flashtool"
 	throwforce = 5

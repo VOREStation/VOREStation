@@ -3,6 +3,7 @@
 /obj/item/healthanalyzer
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "health"
 	item_state = "healthanalyzer"
 	slot_flags = SLOT_BELT

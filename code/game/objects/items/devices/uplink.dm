@@ -23,6 +23,8 @@
 	var/discount_amount					//The amount as a percent the item will be discounted by
 	var/compact_mode = FALSE
 
+	icon = 'icons/obj/device.dmi'
+
 /obj/item/uplink/Initialize(var/mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(next_offer)), offer_time) //It seems like only the /hidden type actually makes use of this...
