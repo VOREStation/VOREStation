@@ -354,14 +354,14 @@ I think I covered everything.
 		body = pick(body_styles)
 		overlay_colors["Body"] = pick(bodycolors)
 		ears = pick(ear_styles)
-		overlay_colors["Ears"] = "#[get_random_colour(0, 100, 150)]"
+		overlay_colors["Ears"] = get_random_colour(0, 100, 150)
 		mane = pick(mane_styles)
 		overlay_colors["Mane"] = pick(bodycolors)
 		horns = pick(horn_styles)
 		var/list/horncolors = list("#000000","#151515","#303030","#606060","#808080","#AAAAAA","#CCCCCC","#EEEEEE","#FFFFFF")
 		overlay_colors["Horns"] = pick(horncolors)
 		eyes = pick(eye_styles)
-		overlay_colors["Eyes"] = "#[get_random_colour(1)]"
+		overlay_colors["Eyes"] = get_random_colour(1)
 
 	var/image/I = image(icon, "dragon_under[under][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -48)
 	I.color = overlay_colors["Underbelly"]
