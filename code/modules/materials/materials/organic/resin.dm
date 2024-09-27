@@ -19,17 +19,27 @@
 	var/mob/living/carbon/M = user
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		return TRUE
+	if(istype(M) && locate(/obj/item/organ/internal/xenos/resinspinner/replicant) in M.internal_organs)
+		return TRUE
 	return FALSE
 
 /datum/material/resin/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
 	var/mob/living/carbon/M = L
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
-		to_chat(M, "<span class='alien'>\The [W] shudders under your touch, starting to become porous.</span>")
+		to_chat(M, "\The [W] shudders under your touch, starting to become porous.")
 		playsound(W, 'sound/effects/attackblob.ogg', 50, 1)
-		if(do_after(L, 5 SECONDS))
-			spawn(2)
-				playsound(W, 'sound/effects/attackblob.ogg', 100, 1)
-				W.dismantle_wall()
+		if(!do_after(L, 5 SECONDS))
+			return FALSE
+		playsound(W, 'sound/effects/attackblob.ogg', 100, 1)
+		W.dismantle_wall()
+		return TRUE
+	if(istype(M) && locate(/obj/item/organ/internal/xenos/resinspinner/replicant) in M.internal_organs)
+		to_chat(M, "\The [W] shudders under your touch, starting to become porous.")
+		playsound(W, 'sound/effects/attackblob.ogg', 50, 1)
+		if(!do_after(L, 5 SECONDS))
+			return FALSE
+		playsound(W, 'sound/effects/attackblob.ogg', 100, 1)
+		W.dismantle_wall()
 		return TRUE
 	return FALSE
 
