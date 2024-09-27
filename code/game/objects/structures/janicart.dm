@@ -29,6 +29,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		equippable_item_whitelist = typecacheof(list(
 			/obj/item/weapon/storage/bag/trash,
 			/obj/item/weapon/mop,
+			/obj/item/weapon/mop/advanced,
 			/obj/item/weapon/reagent_containers/spray,
 			/obj/item/device/lightreplacer,
 			/obj/item/clothing/suit/caution,
@@ -49,7 +50,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		mybag = I
 		setTguiIcon("mybag", mybag)
 
-	else if(istype(I, /obj/item/weapon/mop))
+	else if(istype(I, /obj/item/weapon/mop) || istype(I, /obj/item/weapon/mop/advanced))
 		if(mymop)
 			to_chat(user, "<span class='warning'>[src] already has \an [I].</span>")
 			return FALSE

@@ -50,6 +50,10 @@ export const ModifyRobot = (props) => {
     has_inherent_laws,
     has_supplied_laws,
     isAI,
+    isMalf,
+    isSlaved,
+    active_ais,
+    selected_ai,
     channel,
     channels,
     law_sets,
@@ -90,9 +94,8 @@ export const ModifyRobot = (props) => {
   tabs[6] = (
     <LawManagerLaws
       isAdmin
-      isMalf
       hasScroll
-      sectionHeight="85%"
+      sectionHeight="80%"
       ion_law_nr={ion_law_nr}
       ion_law={ion_law}
       zeroth_law={zeroth_law}
@@ -108,15 +111,16 @@ export const ModifyRobot = (props) => {
       has_inherent_laws={has_inherent_laws}
       has_supplied_laws={has_supplied_laws}
       isAI={isAI}
+      isMalf={isMalf}
       channel={channel}
       channels={channels}
     />
   );
   tabs[7] = (
-    <Section scrollable fill height="85%">
+    <Section scrollable fill height="80%">
       <LawManagerLawSets
         isAdmin
-        isMalf
+        isMalf={isMalf}
         law_sets={law_sets}
         ion_law_nr={ion_law_nr}
         searchLawName={searchLawName}
@@ -154,7 +158,7 @@ export const ModifyRobot = (props) => {
                 <>
                   <Stack.Item>
                     <Input
-                      width="300px"
+                      width="200px"
                       value={robotName}
                       onChange={(e, value) => setRobotName(value)}
                     />
@@ -162,7 +166,7 @@ export const ModifyRobot = (props) => {
                   <Stack.Item>
                     <Button
                       disabled={robotName.length < 3}
-                      onClick={(value) =>
+                      onClick={() =>
                         act('rename', {
                           new_name: robotName,
                         })
@@ -171,9 +175,62 @@ export const ModifyRobot = (props) => {
                       Rename
                     </Button>
                   </Stack.Item>
+                  <Stack.Item grow />
+                  <Stack.Item>
+                    <Button
+                      icon={target.emagged ? 'sd-card' : 'bolt'}
+                      color={target.emagged ? 'green' : 'red'}
+                      onClick={() => act('toggle_emag')}
+                      tooltip={
+                        (target.emagged ? 'Disables' : 'Enables') +
+                        ' hacked state'
+                      }
+                    >
+                      EMAG
+                    </Button>
+                  </Stack.Item>
                 </>
               )}
             </Stack>
+          </LabeledList.Item>
+          <LabeledList.Item label="AI Selection">
+            {!!target?.module && (
+              <Stack inline align="baseline">
+                <Stack.Item>
+                  <Dropdown
+                    selected={selected_ai || ''}
+                    options={active_ais}
+                    onSelected={(value) =>
+                      act('select_ai', {
+                        new_ai: value,
+                      })
+                    }
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="plug"
+                    disabled={selected_ai === isSlaved}
+                    color="green"
+                    tooltip="Connect the robot to an AI"
+                    onClick={() => act('swap_sync')}
+                  >
+                    {isSlaved ? isSlaved : 'Connect AI'}
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="plug-circle-minus"
+                    disabled={!isSlaved}
+                    color="red"
+                    tooltip="Disconnects the robot from the AI"
+                    onClick={() => act('disconnect_ai')}
+                  >
+                    DC
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            )}
           </LabeledList.Item>
         </LabeledList>
         <Divider />

@@ -45,6 +45,12 @@
 /obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"awb" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/obj/random/desatti_snacks,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
 "awn" = (
 /obj/item/weapon/bikehorn/rubberducky,
 /turf/simulated/floor/tiled/white,
@@ -81,6 +87,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"baX" = (
+/obj/effect/floor_decal/industrial/arrows/blue{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
 "bdI" = (
 /obj/structure/table/bench/steel,
 /obj/effect/floor_decal/corner/blue{
@@ -101,11 +113,16 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "blC" = (
-/turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/laserdome/lobby)
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/redgate/laserdome/lobby/restaurant)
 "bqk" = (
 /turf/simulated/wall/tgmc/darkwall/deco3,
 /area/redgate/laserdome/arena/capture_the_flag)
+"brx" = (
+/obj/effect/floor_decal/corner/red/full,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "brB" = (
 /obj/structure/flag_decor/blue,
 /turf/simulated/wall/tgmc/darkwall,
@@ -116,6 +133,10 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"bwE" = (
+/obj/structure/bed/chair/sofa/bench/left,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "bBP" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /turf/simulated/floor/tiled/milspec,
@@ -124,13 +145,7 @@
 /turf/simulated/wall/tgmc/darkwall/deco0,
 /area/redgate/laserdome/arena/hyperball)
 "bFM" = (
-/obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/obj/structure/closet/secure_closet/freezer/meat,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "bFV" = (
@@ -146,6 +161,21 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"bRk" = (
+/obj/structure/table/marble,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"bVo" = (
+/obj/structure/table/rack,
+/obj/random/instrument,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
 "bXT" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 10
@@ -182,6 +212,28 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"cIt" = (
+/obj/item/clothing/shoes/black,
+/obj/item/clothing/under/color/red,
+/obj/item/clothing/suit/redtag,
+/obj/item/clothing/gloves/red,
+/obj/item/clothing/head/redtag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"cIU" = (
+/obj/effect/floor_decal/arrow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "cMi" = (
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
@@ -200,6 +252,20 @@
 "cSX" = (
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
 /area/redgate/laserdome/arena/capture_the_flag)
+"cUF" = (
+/obj/effect/floor_decal/industrial/arrows/blue{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
+"cUN" = (
+/obj/structure/table/marble,
+/obj/structure/prop/machine/random_radio{
+	desc = "It looks like a radio, but all the markings are in a strange language. It's tuned to a station playing music you don't recognize.";
+	pixel_y = 10
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "cXB" = (
 /turf/simulated/wall/tgmc/darkwall/deco0,
 /area/redgate/laserdome/arena/capture_the_flag)
@@ -213,6 +279,22 @@
 /obj/structure/flag_decor/red,
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/hyperball)
+"dbA" = (
+/obj/item/clothing/shoes/black,
+/obj/item/clothing/under/color/red,
+/obj/item/clothing/suit/redtag,
+/obj/item/clothing/gloves/red,
+/obj/item/clothing/head/redtag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
+/obj/effect/floor_decal/corner/red/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "dhX" = (
 /turf/space,
 /area/redgate/laserdome/space)
@@ -256,13 +338,21 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena)
 "dJu" = (
-/obj/structure/closet/crate/bin,
-/turf/simulated/floor/tiled/milspec,
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/redgate/laserdome/lobby/spaceview_lounge)
 "dLr" = (
-/obj/structure/redgate/away,
-/turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/laserdome/lobby)
+/obj/structure/table/marble,
+/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/redgate/laserdome/lobby/restaurant)
 "dPZ" = (
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /turf/simulated/floor/tiled/milspec,
@@ -304,6 +394,12 @@
 /obj/machinery/chem_master/condimaster,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
+"erC" = (
+/obj/effect/floor_decal/arrow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/spaceview_lounge)
 "evM" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 1
@@ -322,6 +418,12 @@
 /obj/structure/table/marble,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
+"eJA" = (
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "eND" = (
 /obj/structure/hyperball_pedestal,
 /obj/item/weapon/laserdome_hyperball,
@@ -432,6 +534,12 @@
 /obj/effect/floor_decal/corner/yellow,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"fAL" = (
+/obj/structure/table/marble,
+/obj/item/device/encryptionkey/ent,
+/obj/item/device/encryptionkey/ent,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "fCY" = (
 /obj/structure/flag_decor/blue,
 /turf/simulated/wall/tgmc/darkwall,
@@ -486,12 +594,39 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"gch" = (
+/obj/effect/floor_decal/corner/blue/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"geF" = (
+/obj/structure/table/rack,
+/obj/random/cigarettes,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
 "ggB" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 5
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"ghx" = (
+/obj/item/clothing/shoes/black,
+/obj/item/clothing/under/color/blue,
+/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/gloves/blue,
+/obj/item/clothing/head/bluetag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "giO" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/lobby/store_1)
@@ -529,6 +664,11 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"gKd" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
 "gKy" = (
 /obj/effect/floor_decal/corner/blue/full,
 /obj/structure/closet/lasertag/blue/laserdome,
@@ -574,6 +714,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/redgate/laserdome/lobby/showers)
+"gZw" = (
+/obj/structure/flag_decor/red,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/lobby)
 "had" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 6
@@ -583,6 +727,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"haQ" = (
+/obj/effect/floor_decal/arrow{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "heF" = (
 /obj/structure/flag_decor,
 /turf/simulated/wall/tgmc/darkwall,
@@ -617,6 +767,13 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"hiN" = (
+/obj/structure/table/marble,
+/obj/structure/prop/machine/biosyphon/laserdome/flagcap{
+	pixel_y = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ctf_prep)
 "hnp" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 4
@@ -648,6 +805,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"hxU" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "hBv" = (
 /obj/machinery/body_scanconsole{
 	dir = 4
@@ -667,6 +830,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"hPx" = (
+/obj/effect/floor_decal/corner/blue/full{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "icL" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/effect/floor_decal/corner/red/diagonal{
@@ -817,12 +986,34 @@
 "jCB" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/lobby/spaceview_lounge)
+"jIH" = (
+/obj/effect/floor_decal/arrow{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ctf_prep)
 "jKh" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"jPA" = (
+/obj/item/clothing/shoes/black,
+/obj/item/clothing/under/color/blue,
+/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/gloves/blue,
+/obj/item/clothing/head/bluetag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
+/obj/effect/floor_decal/corner/blue{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "jQs" = (
 /obj/effect/floor_decal/corner/yellow/full{
 	dir = 1
@@ -862,6 +1053,10 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"kiJ" = (
+/obj/structure/table/marble,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "klg" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 10
@@ -871,12 +1066,26 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"kms" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"kqL" = (
+/obj/structure/prop/machine/tgmc_console2,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "krH" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"krQ" = (
+/obj/structure/table/rack,
+/obj/random/nukies_can_legal,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
 "ktn" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 6
@@ -897,6 +1106,12 @@
 /obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
+"kEA" = (
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "kFg" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 5
@@ -927,6 +1142,12 @@
 /obj/machinery/recharger/wallcharger,
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/capture_the_flag)
+"kPg" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "kRK" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 5
@@ -948,6 +1169,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"kUV" = (
+/obj/structure/table/rack,
+/obj/random/cigarettes,
+/obj/random/desatti_snacks,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
 "kYn" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 4
@@ -987,7 +1214,10 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "lpp" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/table/marble,
+/obj/item/weapon/reagent_containers/food/snacks/fries,
+/obj/item/weapon/reagent_containers/food/snacks/fries,
+/obj/item/weapon/reagent_containers/food/snacks/fries,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "lDM" = (
@@ -1001,6 +1231,11 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
+"lEw" = (
+/obj/structure/table/rack,
+/obj/random/flashlight,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
 "lEQ" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 9
@@ -1018,6 +1253,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"lPM" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "lRb" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 8
@@ -1062,6 +1303,12 @@
 "mhi" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/lobby/store_2)
+"mib" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/obj/random/desatti_snacks,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
 "mmm" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 10
@@ -1075,9 +1322,25 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "myA" = (
-/obj/structure/closet/secure_closet/freezer/meat,
+/obj/structure/table/marble,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/random/pizzabox,
+/obj/item/weapon/material/knife/plastic,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
+"mBZ" = (
+/obj/structure/table/rack,
+/obj/random/instrument,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
+"mCM" = (
+/obj/effect/floor_decal/industrial/arrows/blue{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hbl_prep)
 "mIW" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 10
@@ -1094,6 +1357,10 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"mMT" = (
+/obj/structure/flag_decor/blue,
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/laserdome/lobby)
 "mPK" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 9
@@ -1125,6 +1392,10 @@
 /obj/structure/closet/lasertag/red/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"njI" = (
+/obj/structure/redgate/away,
+/turf/simulated/floor/tiled/milspec/raised,
+/area/redgate/laserdome/lobby)
 "nlK" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 5
@@ -1134,9 +1405,18 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"nuz" = (
+/turf/simulated/floor/tiled/milspec/raised,
+/area/redgate/laserdome/lobby)
 "nxb" = (
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"nyb" = (
+/obj/effect/floor_decal/corner/red/full{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "nBo" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 5
@@ -1226,13 +1506,19 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"ohk" = (
+/obj/structure/bed/chair/sofa/bench/right,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "ont" = (
-/obj/structure/closet/crate/bin,
 /obj/machinery/light/small/neon/generic_green{
 	dir = 1;
 	pixel_y = -23
 	},
-/turf/simulated/floor/tiled/milspec,
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/redgate/laserdome/lobby)
 "oqT" = (
 /obj/effect/floor_decal/corner/blue/full{
@@ -1272,6 +1558,10 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
+"oAc" = (
+/obj/structure/bed/chair/sofa/bench,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "oHj" = (
 /obj/machinery/recharger/wallcharger,
 /turf/simulated/wall/tgmc/darkwall,
@@ -1327,16 +1617,21 @@
 /obj/machinery/recharger/wallcharger,
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/arena/ctf_prep)
+"pex" = (
+/obj/effect/floor_decal/corner/red{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "pfr" = (
-/obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
+/obj/machinery/door/airlock/freezer{
+	name = "Restaurant Backroom"
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
+"pfA" = (
+/turf/simulated/wall/tgmc/window/darkwall/reinf,
+/area/redgate/laserdome/lobby)
 "pgz" = (
 /obj/structure/table/marble,
 /obj/item/weapon/storage/firstaid/toxin{
@@ -1357,6 +1652,12 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
+"poL" = (
+/obj/item/weapon/stool/baystool/padded{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "ppf" = (
 /obj/structure/hyperball_goal/red,
 /turf/simulated/floor/tiled/milspec/raised,
@@ -1364,6 +1665,18 @@
 "pvv" = (
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
 /area/redgate/laserdome/arena/hbl_prep)
+"pyU" = (
+/obj/structure/table/rack,
+/obj/random/cigarettes,
+/obj/random/nukies_can_legal,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
+"pAB" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "pBv" = (
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 4
@@ -1392,6 +1705,18 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"pVQ" = (
+/obj/structure/table/marble,
+/obj/structure/prop/machine/biosyphon/laserdome{
+	pixel_y = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
+"pXq" = (
+/obj/structure/table/rack,
+/obj/random/flashlight,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_1)
 "pYa" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 10
@@ -1458,6 +1783,12 @@
 /obj/machinery/appliance/cooker/fryer,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
+"qJa" = (
+/obj/effect/floor_decal/industrial/arrows/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hyperball)
 "qRv" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 1
@@ -1466,7 +1797,8 @@
 /area/redgate/laserdome/arena/hyperball)
 "qVN" = (
 /obj/structure/table/rack,
-/obj/item/device/encryptionkey/ent,
+/obj/random/cigarettes,
+/obj/random/nukies_can_legal,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_2)
 "qWQ" = (
@@ -1481,6 +1813,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"qYD" = (
+/obj/structure/bed/chair/sofa/bench{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "raq" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 6
@@ -1488,8 +1826,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "rjJ" = (
-/obj/structure/closet/crate/bin,
-/turf/simulated/floor/tiled/milspec,
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/redgate/laserdome/lobby)
 "rkC" = (
 /obj/machinery/light/small/neon/generic_green{
@@ -1592,6 +1932,12 @@
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"sbU" = (
+/obj/effect/floor_decal/industrial/arrows/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hbl_prep)
 "shp" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 10
@@ -1601,9 +1947,17 @@
 /area/redgate/laserdome/arena/ctf_prep)
 "sox" = (
 /obj/structure/table/rack,
-/obj/item/device/encryptionkey/ent,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/desatti_snacks,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
+"soY" = (
+/obj/effect/floor_decal/industrial/arrows/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ctf_prep)
 "suI" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 10
@@ -1658,6 +2012,22 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"sRZ" = (
+/obj/item/clothing/shoes/black,
+/obj/item/clothing/under/color/red,
+/obj/item/clothing/suit/redtag,
+/obj/item/clothing/gloves/red,
+/obj/item/clothing/head/redtag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
+/obj/effect/floor_decal/corner/red{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "sSK" = (
 /obj/effect/floor_decal/corner/blue/diagonal,
 /obj/effect/floor_decal/corner/blue/diagonal{
@@ -1674,6 +2044,10 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
+"sWc" = (
+/obj/effect/floor_decal/arrow,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "sXa" = (
 /obj/effect/floor_decal/corner/red/full,
 /turf/simulated/floor/tiled/milspec,
@@ -1768,6 +2142,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
+"tXj" = (
+/obj/effect/floor_decal/industrial/arrows/blue{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/ctf_prep)
 "tZO" = (
 /turf/simulated/wall/tgmc/darkwall,
 /area/redgate/laserdome/lobby/aid_station)
@@ -1787,6 +2167,10 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"udY" = (
+/obj/effect/floor_decal/arrow,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hbl_prep)
 "ugA" = (
 /obj/structure/curtain/open/privacy{
 	name = "shower curtain"
@@ -1877,6 +2261,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"uCy" = (
+/obj/effect/floor_decal/corner/blue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "uIp" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
@@ -1900,6 +2290,22 @@
 /obj/structure/closet/lasertag/blue/laserdome,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
+"uTh" = (
+/obj/item/clothing/shoes/black,
+/obj/item/clothing/under/color/blue,
+/obj/item/clothing/suit/bluetag,
+/obj/item/clothing/gloves/blue,
+/obj/item/clothing/head/bluetag,
+/mob/living/carbon/human/dummy/mannequin/autoequip{
+	autorotate = 0;
+	name = "Laserdome Mannequin";
+	real_name = "Laserdome Mannequin"
+	},
+/obj/effect/floor_decal/corner/blue/full{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "val" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 5
@@ -1924,6 +2330,12 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
+"vid" = (
+/obj/structure/table/rack,
+/obj/random/drinksoft,
+/obj/random/nukies_can_legal,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby/store_2)
 "vjW" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 9
@@ -2030,6 +2442,12 @@
 /obj/effect/floor_decal/corner/blue/full,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
+"vYY" = (
+/obj/effect/floor_decal/industrial/arrows/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/capture_the_flag)
 "vZq" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 10
@@ -2051,6 +2469,13 @@
 /area/redgate/laserdome/arena/hbl_prep)
 "whp" = (
 /obj/structure/table/bench/steel,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/arena/hbl_prep)
+"wkd" = (
+/obj/structure/table/marble,
+/obj/structure/prop/machine/biosyphon/laserdome/hyperball{
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "wkM" = (
@@ -2087,6 +2512,10 @@
 /obj/structure/table/marble,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
+"wws" = (
+/obj/effect/floor_decal/corner/blue/full,
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "wDy" = (
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 1
@@ -2197,9 +2626,17 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "xHi" = (
-/obj/structure/closet/crate/bin,
-/turf/simulated/floor/tiled/milspec,
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/redgate/laserdome/lobby/restaurant)
+"xIq" = (
+/obj/effect/floor_decal/corner/red/full{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/redgate/laserdome/lobby)
 "xIt" = (
 /obj/effect/floor_decal/corner/red/diagonal{
 	dir = 1
@@ -6248,7 +6685,7 @@ asC
 oes
 fbv
 evM
-xPN
+baX
 fLE
 wFI
 oes
@@ -6345,7 +6782,7 @@ vkq
 kOV
 qsu
 aIy
-nxb
+cUF
 iyV
 ayr
 kOV
@@ -7858,7 +8295,7 @@ ikl
 ikl
 ikl
 ikl
-ikl
+erC
 ikl
 ikl
 ikl
@@ -8142,7 +8579,7 @@ ikl
 ikl
 ikl
 ikl
-ikl
+erC
 ikl
 ikl
 ikl
@@ -8426,7 +8863,7 @@ xLH
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -8710,7 +9147,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -8718,8 +9155,8 @@ rkC
 giO
 mmw
 sox
-sox
-sox
+pXq
+pyU
 mmw
 eCL
 xLH
@@ -8995,7 +9432,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -9139,13 +9576,13 @@ xMG
 xMG
 xMG
 xMG
-xMG
+haQ
 xMG
 eCL
 mmw
-sox
-sox
-sox
+awb
+geF
+bVo
 mmw
 eCL
 xLH
@@ -9263,10 +9700,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+uab
+uab
+uab
 uab
 uab
 wHk
@@ -9279,15 +9716,15 @@ dCG
 dCG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
 eCL
 mmw
-sox
-sox
-sox
+pyU
+pXq
+gKd
 mmw
 eCL
 xLH
@@ -9405,10 +9842,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+bFV
+pPz
+pPz
 uab
 coy
 pPz
@@ -9547,10 +9984,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+blC
+pPz
+pPz
 uab
 twc
 pPz
@@ -9563,7 +10000,7 @@ oWY
 dCG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -9689,12 +10126,12 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
 uab
-lpp
+blC
+pPz
+pPz
+pfr
+pPz
 pPz
 pPz
 pPz
@@ -9711,9 +10148,9 @@ xMG
 jZT
 giO
 mmw
-sox
-sox
-sox
+krQ
+gKd
+awb
 mmw
 eCL
 xLH
@@ -9831,12 +10268,12 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
 uab
-myA
+bFM
+pPz
+pPz
+uab
+bFV
 pPz
 pPz
 nVx
@@ -9847,7 +10284,7 @@ bFV
 hfU
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -9973,10 +10410,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+bFM
+pPz
+pPz
 uab
 nXX
 pPz
@@ -10115,10 +10552,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+bFM
+pPz
+pPz
 uab
 qAM
 pPz
@@ -10131,7 +10568,7 @@ bFV
 hfU
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 wPO
@@ -10257,10 +10694,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+dLr
+pPz
+pPz
 uab
 qBt
 pPz
@@ -10399,10 +10836,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+fsP
+pPz
+pPz
 uab
 uzs
 pPz
@@ -10415,7 +10852,7 @@ bFV
 hfU
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 wPO
@@ -10541,10 +10978,10 @@ vHZ
 vHZ
 vHZ
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+lpp
+pPz
+pPz
 uab
 gTS
 pPz
@@ -10555,11 +10992,11 @@ pPz
 pPz
 bFV
 hfU
+sWc
 xMG
 xMG
 xMG
-xMG
-xMG
+haQ
 aSF
 rLV
 aSF
@@ -10683,10 +11120,10 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+lpp
+pPz
+pPz
 uab
 wFp
 pPz
@@ -10699,7 +11136,7 @@ bFV
 hfU
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 wPO
@@ -10825,10 +11262,10 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+myA
+pPz
+pPz
 uab
 eqO
 pPz
@@ -10967,10 +11404,10 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
+uab
+myA
+pPz
+pPz
 uab
 lgv
 pPz
@@ -10983,7 +11420,7 @@ bFV
 hfU
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 wPO
@@ -11109,15 +11546,15 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
 uab
 uab
-fsP
-pfr
-bFM
+uab
+uab
+uab
+uab
+uab
+uab
+uab
 uab
 uab
 uab
@@ -11266,7 +11703,7 @@ rjJ
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -11412,7 +11849,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+rjJ
 vDA
 vDA
 vDA
@@ -11531,7 +11968,7 @@ xLH
 ymc
 wZd
 mad
-cXM
+sbU
 pCi
 wZd
 ymc
@@ -11550,11 +11987,11 @@ xMG
 xMG
 xMG
 xMG
+cIU
 xMG
 xMG
 xMG
 xMG
-rjJ
 vDA
 fCY
 vDA
@@ -11569,7 +12006,7 @@ vDA
 vDA
 jSI
 fhw
-cMi
+soY
 nEA
 jSI
 vDA
@@ -11689,13 +12126,13 @@ akp
 vXs
 pvv
 xMG
+eJA
+ohk
 xMG
 xMG
 xMG
-xMG
-xMG
-xMG
-xMG
+eJA
+ohk
 xMG
 qnI
 diP
@@ -11815,7 +12252,7 @@ xLH
 oIG
 whp
 cXM
-cXM
+sbU
 cXM
 uqG
 yet
@@ -11831,13 +12268,13 @@ fxa
 tVf
 pvv
 xMG
+qYD
+oAc
 xMG
+cIU
 xMG
-xMG
-xMG
-xMG
-xMG
-xMG
+qYD
+oAc
 xMG
 qnI
 oVB
@@ -11853,7 +12290,7 @@ vDA
 ngN
 fqR
 cMi
-cMi
+soY
 cMi
 rAb
 shp
@@ -11973,13 +12410,13 @@ pvv
 pvv
 ymc
 xMG
+kEA
+bwE
 xMG
 xMG
 xMG
-xMG
-xMG
-xMG
-xMG
+kEA
+bwE
 xMG
 vDA
 qnI
@@ -12117,9 +12554,9 @@ wgC
 xMG
 xMG
 xMG
-blC
-blC
-blC
+xMG
+cIU
+xMG
 xMG
 xMG
 xMG
@@ -12241,45 +12678,45 @@ xLH
 oHj
 dSM
 cXM
-cXM
-cXM
-uzE
-cXM
-cXM
-cXM
-cXM
-cXM
-cXM
-cXM
-cXM
-cXM
-cXM
+wkd
 cXM
 uzE
+udY
+cXM
+udY
+cXM
+udY
+cXM
+udY
+cXM
+udY
+cXM
+udY
+uzE
+sWc
+xMG
+sWc
 xMG
 xMG
 xMG
-blC
-dLr
-blC
+haQ
 xMG
-xMG
-xMG
+haQ
+dWp
+jIH
+cMi
+jIH
+cMi
+jIH
+cMi
+jIH
+cMi
+jIH
+cMi
+jIH
 dWp
 cMi
-cMi
-cMi
-cMi
-cMi
-cMi
-cMi
-cMi
-cMi
-cMi
-cMi
-dWp
-cMi
-cMi
+hiN
 cMi
 sbo
 pbF
@@ -12401,9 +12838,9 @@ blf
 xMG
 xMG
 xMG
-blC
-blC
-blC
+xMG
+cIU
+xMG
 xMG
 xMG
 xMG
@@ -12541,13 +12978,13 @@ pvv
 pvv
 ymc
 xMG
+eJA
+ohk
 xMG
 xMG
 xMG
-xMG
-xMG
-xMG
-xMG
+eJA
+ohk
 xMG
 vDA
 qnI
@@ -12667,7 +13104,7 @@ xLH
 wXJ
 whp
 cXM
-cXM
+mCM
 cXM
 bdI
 fga
@@ -12683,13 +13120,13 @@ vjW
 iJM
 pvv
 xMG
+qYD
+oAc
 xMG
+cIU
 xMG
-xMG
-xMG
-xMG
-xMG
-xMG
+qYD
+oAc
 xMG
 qnI
 uIp
@@ -12705,7 +13142,7 @@ vDA
 wED
 hhi
 cMi
-cMi
+tXj
 cMi
 rAb
 tRw
@@ -12825,13 +13262,13 @@ qba
 rWF
 pvv
 xMG
+kEA
+bwE
 xMG
 xMG
 xMG
-xMG
-xMG
-xMG
-xMG
+kEA
+bwE
 xMG
 qnI
 ucr
@@ -12951,7 +13388,7 @@ xLH
 ymc
 vsH
 fbG
-cXM
+mCM
 pYa
 vsH
 ymc
@@ -12970,7 +13407,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -12989,7 +13426,7 @@ vDA
 vDA
 fCY
 djp
-cMi
+tXj
 xVN
 fCY
 vDA
@@ -13254,7 +13691,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -13262,8 +13699,8 @@ jZT
 mhi
 xaR
 qVN
-qVN
-qVN
+mib
+lEw
 xaR
 vIe
 vDA
@@ -13538,7 +13975,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -13687,9 +14124,9 @@ xMG
 xMG
 vIe
 xaR
-qVN
-qVN
-qVN
+mBZ
+vid
+kms
 xaR
 vIe
 xLH
@@ -13822,16 +14259,16 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
 xMG
 vIe
 xaR
-qVN
-qVN
-qVN
+kms
+kUV
+lEw
 xaR
 vIe
 xLH
@@ -13966,7 +14403,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+haQ
 xMG
 xMG
 vIe
@@ -14106,7 +14543,7 @@ hGF
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -14246,7 +14683,7 @@ lcP
 jho
 hGF
 xMG
-xMG
+sWc
 xMG
 xMG
 xMG
@@ -14255,9 +14692,9 @@ xMG
 ont
 mhi
 xaR
-qVN
-qVN
-qVN
+kms
+kUV
+vid
 xaR
 vIe
 xLH
@@ -14390,7 +14827,7 @@ hGF
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -14675,7 +15112,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xMG
@@ -14959,7 +15396,7 @@ xMG
 xMG
 xMG
 xMG
-xMG
+cIU
 xMG
 xMG
 xLH
@@ -15099,9 +15536,9 @@ nXQ
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
+xMG
+xMG
+xMG
 xLH
 xLH
 xLH
@@ -15241,9 +15678,9 @@ nXQ
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
+xMG
+xMG
+cIU
 xLH
 xLH
 xLH
@@ -15383,9 +15820,9 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
+xMG
+xMG
+xMG
 xLH
 xLH
 xLH
@@ -15520,19 +15957,19 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+mMT
+hPx
+jPA
+wws
+pfA
+xMG
+xMG
+cIU
+pfA
+nyb
+sRZ
+brx
+gZw
 xLH
 xLH
 xLH
@@ -15663,17 +16100,17 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+pAB
+xMG
+lPM
+pfA
+xMG
+xMG
+xMG
+pfA
+pex
+xMG
+hxU
 xLH
 xLH
 xLH
@@ -15805,17 +16242,17 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+pAB
+xMG
+lPM
+pfA
+xMG
+xMG
+cIU
+pfA
+pex
+xMG
+hxU
 xLH
 xLH
 xLH
@@ -15947,17 +16384,17 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+pAB
+xMG
+lPM
+pfA
+xMG
+xMG
+xMG
+pfA
+pex
+xMG
+hxU
 xLH
 xLH
 xLH
@@ -16088,19 +16525,19 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+mMT
+ghx
+xMG
+lPM
+pfA
+xMG
+xMG
+cIU
+pfA
+pex
+xMG
+cIt
+gZw
 xLH
 xLH
 xLH
@@ -16231,17 +16668,17 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+pAB
+xMG
+lPM
+pfA
+xMG
+xMG
+xMG
+pfA
+pex
+xMG
+hxU
 xLH
 xLH
 xLH
@@ -16373,17 +16810,17 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+pAB
+xMG
+lPM
+pfA
+xMG
+xMG
+cIU
+pfA
+pex
+xMG
+hxU
 xLH
 xLH
 xLH
@@ -16515,17 +16952,17 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+pAB
+xMG
+lPM
+pfA
+xMG
+xMG
+xMG
+pfA
+pex
+xMG
+hxU
 xLH
 xLH
 xLH
@@ -16656,19 +17093,19 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+mMT
+gch
+uCy
+uTh
+pfA
+xMG
+xMG
+cIU
+pfA
+dbA
+kPg
+xIq
+gZw
 xLH
 xLH
 xLH
@@ -16803,9 +17240,9 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
+xMG
+xMG
+xMG
 xLH
 xLH
 xLH
@@ -16943,12 +17380,12 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+cUN
+xMG
+xMG
+xMG
+cIU
+kiJ
 xLH
 xLH
 xLH
@@ -17085,12 +17522,12 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+kqL
+poL
+kiJ
+xMG
+xMG
+xMG
 xLH
 xLH
 xLH
@@ -17227,12 +17664,12 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+bRk
+kiJ
+pVQ
+xMG
+cIU
+xMG
 xLH
 xLH
 xLH
@@ -17370,11 +17807,11 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+xMG
+xMG
+xMG
+xMG
+xMG
 xLH
 xLH
 xLH
@@ -17511,13 +17948,13 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+fAL
+xMG
+nuz
+nuz
+nuz
+xMG
+fAL
 xLH
 xLH
 xLH
@@ -17653,13 +18090,13 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+fAL
+xMG
+nuz
+njI
+nuz
+xMG
+fAL
 xLH
 xLH
 xLH
@@ -17795,13 +18232,13 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+fAL
+xMG
+nuz
+nuz
+nuz
+xMG
+fAL
 xLH
 xLH
 xLH
@@ -17938,11 +18375,11 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
-xLH
-xLH
+xMG
+xMG
+xMG
+xMG
+xMG
 xLH
 xLH
 xLH
@@ -18081,9 +18518,9 @@ xLH
 xLH
 xLH
 xLH
-xLH
-xLH
-xLH
+fAL
+fAL
+fAL
 xLH
 xLH
 xLH
@@ -18176,7 +18613,7 @@ asC
 oes
 mUp
 wlw
-xPN
+qJa
 aue
 tUV
 oes
@@ -18273,7 +18710,7 @@ vkq
 kOV
 dxx
 fYj
-nxb
+vYY
 bZe
 uBq
 kOV
