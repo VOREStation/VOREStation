@@ -90,6 +90,13 @@ var/list/ventcrawl_machinery = list(
 /mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in organs)
 		return 1
+	if(species.name == SPECIES_REPLICANT_CREW)
+		if(istype(carried_item, /obj/item/clothing/under))
+			return 1 //Allow them to not vent crawl naked
+		if(istype(carried_item, /obj/item))
+			var/obj/item/I = carried_item
+			if(I.w_class <= 2)
+				return 1 //Allow them to carry items that fit in pockets
 	return ..()
 
 /mob/living/proc/ventcrawl_carry()

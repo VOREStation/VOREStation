@@ -398,7 +398,11 @@ var/list/organ_cache = list()
 		rejecting = null
 
 	if(istype(owner))
-		var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+		// VOREstation edit begin - Posibrains don't have blood reagents, so they crash this
+		var/datum/reagent/blood/organ_blood = null
+		if(reagents)
+			organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+		// VOREstation edit end
 		if(!organ_blood || !organ_blood.data["blood_DNA"])
 			owner.vessel.trans_to(src, 5, 1, 1)
 
@@ -418,7 +422,11 @@ var/list/organ_cache = list()
 
 	if(!istype(target)) return
 
-	var/datum/reagent/blood/transplant_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	// VOREstation edit begin - Posibrains don't have blood reagents, so they crash this
+	var/datum/reagent/blood/transplant_blood = null
+	if(reagents)
+		transplant_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	// VOREstation edit end
 	transplant_data = list()
 	if(!transplant_blood)
 		transplant_data["species"] =    target?.species.name

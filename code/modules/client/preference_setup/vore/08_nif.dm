@@ -21,7 +21,7 @@
 
 	pref.nif_path		= save_data_file["nif_path"]
 	pref.nif_durability	= save_data_file["nif_durability"]
-	pref.nif_savedata	= save_data_file["nif_savedata"]
+	pref.nif_savedata	= check_list_copy(save_data_file["nif_savedata"])
 
 /datum/category_item/player_setup_item/vore/nif/save_character()
 	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(pref.client_ckey))
@@ -29,7 +29,7 @@
 
 	save_data_file["nif_path"]			= pref.nif_path
 	save_data_file["nif_durability"]	= pref.nif_durability
-	save_data_file["nif_savedata"]		= pref.nif_savedata
+	save_data_file["nif_savedata"]		= check_list_copy(pref.nif_savedata)
 
 	savefile.set_entry("character[pref.default_slot]", save_data_file)
 	savefile.save()

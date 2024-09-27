@@ -72,6 +72,13 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			return
 		M = new_M
 
+	if(isrobot(M))
+		var/mob/living/silicon/robot/R = M
+		var/obj/item/dogborg/sleeper/S = locate() in R.module.modules
+		if(S && S.patient)
+			scan_mob(S.patient, user)
+			return
+
 	if(ishuman(M))
 		scan_mob(M, user)
 	else

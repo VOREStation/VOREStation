@@ -24,9 +24,13 @@ export type Data = {
   has_inherent_laws: number;
   has_supplied_laws: number;
   isAI: BooleanLike;
+  isMalf: BooleanLike;
+  isSlaved: string | null;
   channel: string;
   channels: { channel: string }[];
   law_sets: law_pack[];
+  active_ais: DropdownEntry[];
+  selected_ai: string | null;
 };
 
 export type DropdownEntry = {
@@ -38,6 +42,7 @@ export type Target = {
   name: string;
   ckey: string;
   module: string;
+  emagged: BooleanLike;
   active: BooleanLike;
   crisis_override: BooleanLike;
   active_restrictions: string[];

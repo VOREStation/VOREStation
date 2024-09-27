@@ -1763,3 +1763,37 @@
 			//todo; throw the ball in a random direction
 			src.visible_message("\The [ball] bounces off \the [src]'s rim!")
 			global_announcer.autosay("[ball.last_holder] threw the HYPERball and +missed!+ |Oooh!|","Laserdome Announcer","Entertainment")
+
+/obj/structure/prop/machine/biosyphon/laserdome
+	name = "Laserdome Orientation Holo"
+	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
+	MANY GREETINGS, BRAVE VISITOR!
+	THE (LIGHT AMPLIFIED BY STIMULATED EMISSION OF RADIATION) DOME IS FINEST PHYSICAL EXERCISE AND RECREATIONAL FACILITY LOCATED UPON THIS RELATIVE SIDE OF THE \[illegible\] SUPERMASSIVE OBSIDIAN VOID.
+	OUR GREAT BRAINS HERE AT THE \[incomprehensible\] HAPPY FUN TIME CORPORATION ARE SURE YOU WILL DEFINITELY MUCH ENJOY PARTAKING IN THE SIGHTS AND SOUNDS OF OUR ESTABLISHMENT.
+	EVEN IF YOU DO NOT WISH TO BE (OR ARE PHYSICALLY INCAPABLE OF) TAKING PART IN THE ACCELERATED LIGHT GAMES, PLEASE WITNESS OUR HEROIC GLADIATORS BATTLE FOR YOUR ENJOYMENT, AND VISIT LOCAL SERVICES SUCH AS THE \[incoherent\] ACCELERATED SUSTENANCE JOINT.
+	PLEASE TO BE FOLLOWINGS FLOOR-BASED POINTED INDICATORS TOWARDS PLACEMENTS OF INTERESTING! AND BE SURE TO BE TAKINGS FREE RADIO HEADSET CHIP TO BE HEARING ARENA ANNOUNCER!
+	THANKINGS YOU FOR YOUR PATRONAGE!!!
+	(p.s. please to be cleanings up after selves, do not leave messes on concourse, thankings you again muchly)"}
+
+/obj/structure/prop/machine/biosyphon/laserdome/hyperball
+	name = "Laserdome HYPERball Orientation Holo"
+	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
+	RULES OF HYPERBALL ARE SIMPLE!<br>
+	TAKE BALL, SLAM-DUNKIFY INTO OPPOSING TEAM GOAL!
+	THREE POINTS AWARD FOR THROW (BUT WATCH OUT, CAN MISS)!
+	SEVEN POINTS IF ENDUNKENING IS BY HAND!
+	POINTS AM DEDUCT IF OWN-DUNKING!
+	FIRST TEAM TO TWENTY-AND-ONE POINTS IS WIN!
+	MUST WEAR TEAM PLATINGS FOR SCORINGS TO COUNT!
+	GOOD LUCK!!!"}
+
+/obj/structure/prop/machine/biosyphon/laserdome/flagcap
+	name = "Laserdome Capture-The-Flag Orientation Holo"
+	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
+	RULES OF CAPTURING FLAG ARE SIMPLE!
+	GO TO ENEMY BASE, TAKE THEIR FLAG, BRING BACK TO OWN BASE!
+	NO SCORE IF ENEMY TEAM HAS FLAG, SO PROTECT OWN FLAG!
+	RETURN OWN FLAG TO BASE BY TOUCHINGS!
+	FIRST TEAM TO THREE CAPTURES IS WIN!
+	MUST WEAR TEAM PLATINGS FOR SCORINGS TO COUNT!
+	GOOD LUCK!!!"}
