@@ -287,7 +287,8 @@
 			if(!istype(M))
 				return
 
-			var/chosen_beast = tgui_input_list(user, "Which form would you like to take?", "Choose Beast Form", beast_options)
+			var/list/types = typesof(/mob/living)
+			var/chosen_beast = tgui_input_list(user, "Which form would you like to take?", "Choose Beast Form", types)
 
 			if(!chosen_beast)
 				return
