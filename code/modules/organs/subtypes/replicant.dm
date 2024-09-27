@@ -53,6 +53,20 @@
 	can_reject = FALSE
 	icon_state = "plasma_grey"
 
+/obj/item/organ/internal/xenos/plasmavessel/replicant/crew/handle_organ_proc_special()
+	if(!istype(owner))
+		return
+
+	var/modifier = 1 - 0.5 * is_bruised()
+
+	if(owner.bloodstr.has_reagent("phoron"))
+		adjust_plasma(round(4 * modifier))
+
+	if(owner.ingested.has_reagent("phoron"))
+		adjust_plasma(round(2 * modifier))
+
+	adjust_plasma(2) //Make it a decent amount so people can actually build stuff without stealing all of medbays phoron
+
 /obj/item/organ/internal/xenos/acidgland/replicant
 	name = "replicant aerosol tubule"
 	desc = "A long, rubbery tube that ends in a hard plastic-like bulb."
@@ -152,6 +166,22 @@
 			owner.add_modifier(/datum/modifier/berserk, 20 SECONDS)
 			take_damage(5)
 
+/obj/item/organ/internal/heart/replicant/rage/crew/handle_organ_proc_special()
+	if(!owner)
+		return
+
+	var/damage_tally = 0
+	var/pain_tally = 0
+	damage_tally += owner.getBruteLoss()
+	damage_tally += owner.getFireLoss()
+	pain_tally += owner.getHalLoss()
+
+	if(((damage_tally >= 50 || prev_damage_tally >= 50) && prev_damage_tally - damage_tally < 0) || pain_tally >= 60)
+		if(world.time > last_activation_time + 60 MINUTES) //Can only be activated once every 60 minutes to prevent it being able to be spammed
+			last_activation_time = world.time
+			owner.add_modifier(/datum/modifier/berserk, 40 SECONDS) //Lasts a little longer so that it can actually get some use seeing as it activates so infrequently
+			take_damage(5)
+
 /obj/item/organ/internal/lungs/replicant/mending
 	name = "replicant hive lungs"
 	desc = "A pair of rubbery sacs with large portions dedicated to honeycombed nanite filters."
@@ -169,3 +199,15 @@
 			var/obj/item/organ/O = owner.internal_organs_by_name[o_tag]
 			if(O)
 				O.take_damage(-1 * modifier)
+
+/obj/item/organ/internal/lungs/replicant/mending/crew/handle_organ_proc_special()
+	if(!owner)
+		return
+
+	var/modifier = 1 - (0.5 * is_bruised())
+
+	if(istype(owner))
+		for(var/o_tag in repair_list)
+			var/obj/item/organ/O = owner.internal_organs_by_name[o_tag]
+			if(O)
+				O.take_damage(-0.01 * modifier) //Very very slow regen, but still cool flavour

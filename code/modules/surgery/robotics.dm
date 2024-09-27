@@ -485,7 +485,17 @@
 	"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
 
 	var/obj/item/device/mmi/M = tool
-	var/obj/item/organ/internal/mmi_holder/holder = new(target, 1)
+	// VOREstation edit begin - Select the proper mmi holder subtype based on the brain inserted
+	var/obj/item/organ/internal/mmi_holder/holder = null
+	if(istype(M,/obj/item/device/mmi/digital/posibrain/nano))
+		holder = new /obj/item/organ/internal/mmi_holder/posibrain/nano(target, 1)
+	else if(istype(M,/obj/item/device/mmi/digital/posibrain))
+		holder = new /obj/item/organ/internal/mmi_holder/posibrain(target, 1)
+	else if(istype(M,/obj/item/device/mmi/digital/robot))
+		holder = new /obj/item/organ/internal/mmi_holder/robot(target, 1)
+	else
+		holder = new /obj/item/organ/internal/mmi_holder(target, 1) // Fallback to old behavior if organic MMI or if no subtype exists.
+	//VOREstation edit end
 	target.internal_organs_by_name["brain"] = holder
 	user.drop_from_inventory(tool)
 	tool.loc = holder

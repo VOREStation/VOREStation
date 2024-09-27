@@ -574,3 +574,22 @@
 			continue
 		if(!isnull(path))
 			. += path
+
+/proc/path2text_list(list/L)
+	. = list()
+	for(var/key in L)
+		var/text = "[key]"
+		if(!isnull(L[text]))
+			.[text] = L[text]
+			continue
+		if(!isnull(L[key]))
+			.[text] = L[key]
+			continue
+		if(!isnull(text))
+			.[text] = ""
+
+/proc/check_list_copy(var/i)
+	if(islist(i))
+		var/list/l = i
+		return l.Copy()
+	return i

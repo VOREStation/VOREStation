@@ -229,7 +229,7 @@
 					var/selected_radio_channel = tgui_input_list(usr, "Please select the radio channel to add", "Channels", available_channels)
 					if(!selected_radio_channel || selected_radio_channel == "Cancel")
 						break
-					if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
+					if(selected_radio_channel == CHANNEL_SPECIAL_OPS || selected_radio_channel == CHANNEL_RESPONSE_TEAM)
 						target.radio.centComm = 1
 					if(selected_radio_channel == CHANNEL_RAIDER)
 						qdel(target.radio.keyslot)
@@ -249,7 +249,7 @@
 					var/selected_radio_channel = tgui_input_list(usr, "Please select the radio channel to remove", "Channels", target.radio.channels)
 					if(!selected_radio_channel || selected_radio_channel == "Cancel")
 						break
-					if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
+					if(selected_radio_channel == CHANNEL_SPECIAL_OPS || selected_radio_channel == CHANNEL_RESPONSE_TEAM && !(target.module.channels[CHANNEL_SPECIAL_OPS] || target.module.channels[CHANNEL_RESPONSE_TEAM]))
 						target.radio.centComm = 0
 					target.module.channels -= selected_radio_channel
 					if((selected_radio_channel == CHANNEL_MERCENARY || selected_radio_channel == CHANNEL_RAIDER) && !(target.module.channels[CHANNEL_RAIDER] || target.module.channels[CHANNEL_MERCENARY]))

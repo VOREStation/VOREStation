@@ -29,7 +29,7 @@ export const ModifyRobotAccess = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Flex height={!target.active ? '80%' : '85%'}>
+      <Flex height={!target.active ? '75%' : '80%'}>
         <Flex.Item width="30%" fill>
           <AccessSection
             title="Add Access"

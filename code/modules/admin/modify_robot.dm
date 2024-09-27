@@ -6,12 +6,14 @@
 		return
 
 	var/datum/eventkit/modify_robot/modify_robot = new()
-	modify_robot.target = target
+	modify_robot.target = isrobot(target) ? target : null
+	modify_robot.selected_ai = target.is_slaved()
 	modify_robot.tgui_interact(src.mob)
 
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
 	var/mob/living/silicon/robot/source
+	var/mob/living/silicon/ai/selected_ai
 	var/ion_law	= "IonLaw"
 	var/zeroth_law = "ZerothLaw"
 	var/inherent_law = "InherentLaw"
@@ -49,6 +51,7 @@
 		.["target"]["name"] = target.name
 		.["target"]["ckey"] = target.ckey
 		.["target"]["module"] = target.module
+		.["target"]["emagged"] = target.emagged
 		.["target"]["crisis_override"] = target.crisis_override
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
@@ -121,6 +124,15 @@
 	package_laws(., "supplied_laws", target.laws.supplied_laws)
 
 	.["isAI"] = isAI(target)
+	.["isMalf"] = is_malf(user)
+	.["isSlaved"] = target.is_slaved()
+	var/list/active_ais = list()
+	for(var/mob/living/silicon/ai/ai in active_ais())
+		if(!ai.loc)
+			continue
+		active_ais += list(list("displayText" = "[ai]", "value" = "\ref[ai]"))
+	.["active_ais"] = active_ais
+	.["selected_ai"] = selected_ai ? selected_ai.name : null
 
 	var/list/channels = list()
 	for(var/ch_name in target.law_channels())
@@ -144,14 +156,16 @@
 			target.real_name = params["new_name"]
 			return TRUE
 		if("select_target")
-			target = locate(params["new_target"])
-			log_and_message_admins("changed robot modifictation target to [target]")
+			var/new_target = locate(params["new_target"])
+			if(new_target != target)
+				target = locate(params["new_target"])
+				log_and_message_admins("changed robot modifictation target to [target]")
 			return TRUE
 		if("toggle_crisis")
 			target.crisis_override = !target.crisis_override
 			return TRUE
 		if("add_restriction")
-			target.restrict_modules_to += params["new_restriction"]
+			target.restrict_modules_to |= params["new_restriction"]
 			return TRUE
 		if("remove_restriction")
 			target.restrict_modules_to -= params["rem_restriction"]
@@ -498,6 +512,41 @@
 			if(usr != target)
 				to_chat(usr, "<span class='notice'>Laws displayed.</span>")
 			return TRUE
+		if("select_ai")
+			selected_ai = locate(params["new_ai"])
+			return TRUE
+		if("swap_sync")
+			var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
+			if(new_ai)
+				target.lawupdate = 1
+				target.connect_to_ai(new_ai)
+			return TRUE
+		if("disconnect_ai")
+			if(target.is_slaved())
+				target.disconnect_from_ai()
+				target.lawupdate = 0
+			return TRUE
+		if("toggle_emag")
+			if(target.emagged)
+				target.emagged = 0
+				target.clear_supplied_laws()
+				target.clear_inherent_laws()
+				target.laws = new global.using_map.default_law_type
+				target.laws.show_laws(target)
+				target.hud_used.update_robot_modules_display()
+			else
+				target.emagged = 1
+				target.lawupdate = 0
+				target.disconnect_from_ai()
+				target.clear_supplied_laws()
+				target.clear_inherent_laws()
+				target.laws = new /datum/ai_laws/syndicate_override
+				if(target.bolt)
+					if(!target.bolt.malfunction)
+						target.bolt.malfunction = MALFUNCTION_PERMANENT
+				target.laws.show_laws(target)
+				target.hud_used.update_robot_modules_display()
+			return TRUE
 
 /datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
 	var/list/target_items = list()
@@ -650,3 +699,9 @@
 		package_laws(packaged_laws, "supplied_laws", ALs.supplied_laws)
 		law_sets[++law_sets.len] = list("name" = ALs.name, "header" = ALs.law_header, "ref" = "\ref[ALs]","laws" = packaged_laws)
 	return law_sets
+
+/datum/eventkit/modify_robot/proc/is_malf(var/mob/user)
+	return (is_admin(user) && !target.is_slaved()) || is_special_role(user)
+
+/datum/eventkit/modify_robot/proc/is_special_role(var/mob/user)
+	return user.mind.special_role ? TRUE : FALSE

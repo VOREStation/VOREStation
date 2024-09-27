@@ -417,6 +417,20 @@ export const TguiBenchTarget = new Juke.Target({
   executes: () => yarn('tgui:bench'),
 });
 
+export const TguiPrettierFix = new Juke.Target({
+  dependsOn: [YarnTarget],
+  executes: () => yarn('tgui:prettier-fix'),
+});
+
+export const TguiEslintFix = new Juke.Target({
+  dependsOn: [YarnTarget],
+  executes: () => yarn('tgui:eslint-fix'),
+});
+
+export const TguiFix = new Juke.Target({
+  dependsOn: [TguiPrettierFix, TguiEslintFix],
+});
+
 export const TestTarget = new Juke.Target({
   dependsOn: [DmTestTarget, TguiTestTarget],
 });
