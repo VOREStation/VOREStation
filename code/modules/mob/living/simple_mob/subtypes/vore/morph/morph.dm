@@ -99,7 +99,7 @@
 
 /mob/living/simple_mob/vore/morph/proc/assume(atom/movable/target)
 	var/mob/living/carbon/human/humantarget = target
-	if(istype(humantarget) && humantarget.resleeve_lock && ckey != humantarget.resleeve_lock)
+	if(istype(humantarget) && !humantarget.allow_mimicry)
 		to_chat(src, "<span class='warning'>[target] cannot be impersonated!</span>")
 		return
 	if(morphed)
@@ -272,12 +272,9 @@
 		var/mob/living/L = tgui_input_list(src, "Select a mob to take over:", "Take Over Prey", possible_mobs)
 		if(!L)
 			return
-		// Adding a ishuman check here, since silicon mobs don't have a resleeve_lock from what I can tell.
-		if(ishuman(L))
-			var/mob/living/carbon/human/M = L
-			if(M.resleeve_lock && ckey != M.resleeve_lock)
-				to_chat(src, "<span class='warning'>\The [M] cannot be impersonated!</span>")
-				return
+		if(!L.allow_mimicry)
+			to_chat(src, "<span class='warning'>\The [L] cannot be impersonated!</span>")
+			return
 		if(tgui_alert(src, "You selected [L] to attempt to take over. Are you sure?", "Take Over Prey",list("No","Yes")) == "Yes")
 			log_admin("[key_name_admin(src)] offered [L] to swap bodies as a morph.")
 			if(tgui_alert(L, "\The [src] has elected to attempt to take over your body and control you. Is this something you will allow to happen?", "Allow Morph To Take Over",list("No","Yes")) == "Yes")

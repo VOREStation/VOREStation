@@ -356,7 +356,10 @@ var/global/list/PDA_Manifest = list()
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= gender2text(H.gender)
-		G.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]" //VOREStation Edit
+		if(H.species.name == SPECIES_HANNER)
+			G.fields["species"] = "[H.custom_species ? "[H.custom_species]" : H.species.name]"
+		else
+			G.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]"
 		G.fields["home_system"]	= H.home_system
 		G.fields["birthplace"]	= H.birthplace
 		G.fields["citizenship"]	= H.citizenship
@@ -367,7 +370,10 @@ var/global/list/PDA_Manifest = list()
 
 		//Medical Record
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id, hidden)
-		M.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]" //VOREStation Edit
+		if(H.species.name == SPECIES_HANNER)
+			M.fields["species"] = "[H.custom_species ? "[H.custom_species]" : H.species.name]"
+		else
+			M.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]"
 		M.fields["b_type"]		= H.b_type
 		M.fields["blood_reagent"]	= H.species.blood_reagents
 		M.fields["b_dna"]		= H.dna.unique_enzymes
@@ -381,7 +387,10 @@ var/global/list/PDA_Manifest = list()
 
 		//Security Record
 		var/datum/data/record/S = CreateSecurityRecord(H.real_name, id, hidden)
-		S.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]" //VOREStation Edit
+		if(H.species.name == SPECIES_HANNER)
+			S.fields["species"] = "[H.custom_species ? "[H.custom_species]" : H.species.name]"
+		else
+			S.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]"
 		if(H.get_FBP_type())
 			S.fields["brain_type"] = H.get_FBP_type()
 		else
@@ -407,7 +416,10 @@ var/global/list/PDA_Manifest = list()
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
 		L.fields["identity"]	= H.dna.UI // "
-		L.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]" //VOREStation Edit
+		if(H.species.name == SPECIES_HANNER)
+			L.fields["species"] = "[H.custom_species ? "[H.custom_species]" : H.species.name]"
+		else
+			L.fields["species"]		= "[H.custom_species ? "[H.custom_species] ([H.species.name])" : H.species.name]"
 		L.fields["home_system"]	= H.home_system
 		L.fields["birthplace"]	= H.birthplace
 		L.fields["citizenship"]	= H.citizenship
