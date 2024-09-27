@@ -9,6 +9,9 @@
 #define USE_MAP_STELLARDELIGHT
 // #define USE_MAP_GROUNDBASE
 
+// Debug
+// #define USE_MAP_MINITEST
+
 /*********************/
 /* End Map Selection */
 /*********************/
@@ -28,4 +31,8 @@
 // Groundbase
 #ifdef USE_MAP_GROUNDBASE
 #include "../groundbase/groundbase.dm"
+#endif
+
+#ifdef USE_MAP_MINITEST
+#include "../virgo_minitest/virgo_minitest.dm"
 #endif
