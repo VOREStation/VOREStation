@@ -400,6 +400,46 @@
 			to_chat(user, "<span class='filter_notice'>It has [uses] lights remaining.</span>")
 			return
 
+/obj/item/dogborg/stasis_clamp
+	name = "stasis clamp"
+	desc = "A magnetic clamp which can halt the flow of gas in a pipe, via a localised stasis field."
+	icon = 'icons/atmos/clamp.dmi'
+	icon_state = "pclamp0"
+	var/max_clamps = 3
+	var/busy
+	var/list/clamps = list()
+
+/obj/item/dogborg/stasis_clamp/afterattack(var/atom/A, mob/user as mob, proximity)
+	if(!proximity)
+		return
+
+	if (istype(A, /obj/machinery/atmospherics/pipe/simple))
+		if(busy)
+			return
+		var/C = locate(/obj/machinery/clamp) in get_turf(A)
+		if(!C)
+			if(length(clamps) >= max_clamps)
+				to_chat(user, span_notice("You've already placed the maximum amount of [max_clamps]s [src]. Find and remove some before placing new ones."))
+				return
+			busy = TRUE
+			to_chat(user, span_notice("You begin to attach \the [C] to \the [A]..."))
+			if(do_after(user, 30))
+				to_chat(user, span_notice("You have attached \the [src] to \the [A]."))
+				var/obj/machinery/clamp/clamp = new/obj/machinery/clamp(A.loc, A)
+				clamps.Add(clamp)
+		else
+			busy = TRUE
+			to_chat(user, span_notice("You begin to remove \the [C] from \the [A]..."))
+			if(do_after(user, 30))
+				to_chat(user, span_notice("You have removed \the [src] from \the [A]."))
+				clamps.Remove(C)
+				qdel(C)
+		busy = FALSE
+
+/obj/item/dogborg/stasis_clamp/Destroy()
+	clamps.Cut()
+	. = ..()
+
 //Pounce stuff for K-9
 /obj/item/weapon/dogborg/pounce
 	name = "pounce"
