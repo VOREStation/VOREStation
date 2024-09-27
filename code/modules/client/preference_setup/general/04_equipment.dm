@@ -7,8 +7,10 @@
 	sort_order = 4
 
 /datum/category_item/player_setup_item/general/equipment/load_character(list/save_data)
-	pref.all_underwear				= save_data["all_underwear"]
-	pref.all_underwear_metadata		= save_data["all_underwear_metadata"]
+	pref.all_underwear				= check_list_copy(save_data["all_underwear"])
+	pref.all_underwear_metadata		= check_list_copy(save_data["all_underwear_metadata"])
+	for(var/i in pref.all_underwear_metadata)
+		pref.all_underwear_metadata[i] = path2text_list(pref.all_underwear_metadata[i])
 	pref.backbag					= save_data["backbag"]
 	pref.pdachoice					= save_data["pdachoice"]
 	pref.communicator_visibility	= save_data["communicator_visibility"]
@@ -17,7 +19,10 @@
 
 /datum/category_item/player_setup_item/general/equipment/save_character(list/save_data)
 	save_data["all_underwear"]				= pref.all_underwear
-	save_data["all_underwear_metadata"] 	= pref.all_underwear_metadata
+	var/list/underwear = list()
+	for(var/i in pref.all_underwear_metadata)
+		underwear[i] = check_list_copy(pref.all_underwear_metadata[i])
+	save_data["all_underwear_metadata"] 	= underwear
 	save_data["backbag"]					= pref.backbag
 	save_data["pdachoice"]					= pref.pdachoice
 	save_data["communicator_visibility"]	= pref.communicator_visibility
