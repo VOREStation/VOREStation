@@ -419,7 +419,7 @@
 		var/C = locate(/obj/machinery/clamp) in get_turf(A)
 		if(!C)
 			if(length(clamps) >= max_clamps)
-				to_chat(user, span_notice("You've already placed the maximum amount of [max_clamps] [src]s. Find and remove some before placing new ones."))
+				to_chat(user, span_warning("You've already placed the maximum amount of [max_clamps] [src]s. Find and remove some before placing new ones."))
 				return
 			busy = TRUE
 			to_chat(user, span_notice("You begin to attach \the [C] to \the [A]..."))
