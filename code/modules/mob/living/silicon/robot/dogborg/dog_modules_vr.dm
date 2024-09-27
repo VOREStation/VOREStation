@@ -427,6 +427,9 @@
 				to_chat(user, span_notice("You have attached \the [src] to \the [A]."))
 				var/obj/machinery/clamp/clamp = new/obj/machinery/clamp(A.loc, A)
 				clamps.Add(clamp)
+				if(isrobot(user))
+					var/mob/living/silicon/robot/R = user
+					R.use_direct_power(1000, 1500)
 		else
 			busy = TRUE
 			to_chat(user, span_notice("You begin to remove \the [C] from \the [A]..."))
