@@ -266,7 +266,7 @@
 		/obj/item/storage/briefcase/crimekit,
 		/obj/item/taperecorder,
 		/obj/item/storage/bag/detective,
-		/obj/item/tape/random = 3)
+		/obj/item/rectape/random = 3)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"

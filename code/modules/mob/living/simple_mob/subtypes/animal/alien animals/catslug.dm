@@ -93,7 +93,7 @@
 		/obj/item/photo,
 		/obj/item/camera_film,
 		/obj/item/taperecorder,
-		/obj/item/tape
+		/obj/item/rectape
 		)
 
 	vore_active = 1

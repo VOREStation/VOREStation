@@ -16004,7 +16004,7 @@
 /obj/structure/railing,
 /obj/structure/closet/crate,
 /obj/item/camera,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder/empty,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)

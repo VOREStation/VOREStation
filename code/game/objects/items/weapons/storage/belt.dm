@@ -287,7 +287,7 @@
 		/obj/item/flame/lighter,
 		/obj/item/flashlight,
 		/obj/item/taperecorder,
-		/obj/item/tape,
+		/obj/item/rectape,
 		/obj/item/pda,
 		/obj/item/radio/headset,
 		/obj/item/clothing/gloves,
@@ -311,7 +311,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(
 		/obj/item/taperecorder,
-		/obj/item/tape,
+		/obj/item/rectape,
 		/obj/item/clothing/glasses,
 		/obj/item/flashlight,
 		/obj/item/cell/device,

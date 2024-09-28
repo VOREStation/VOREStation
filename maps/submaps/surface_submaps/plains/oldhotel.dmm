@@ -378,7 +378,7 @@
 /area/submap/oldhotel)
 "AU" = (
 /obj/structure/table/woodentable,
-/obj/item/tape,
+/obj/item/rectape,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/oldhotel)
 "AZ" = (

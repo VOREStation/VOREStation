@@ -130,9 +130,9 @@
 /obj/item/taperecorder/tourist
 	name = "Body-Microphone"
 	desc = "A sort of liability device worn by security on luxury yachts. Records everything they say. Strange that the captain was wearing it."
-	mytape = /obj/item/tape/touristguard
+	mytape = /obj/item/rectape/touristguard
 
-/obj/item/tape/touristguard/New()
+/obj/item/rectape/touristguard/New()
 	storedinfo += "01:37  *sounds of metal creaking"
 	storedinfo += "01:55  *sounds of distant screaming!"
 	storedinfo += "01:37  *Sounds of hissing, both airlocks and spiders alike. Screaming continues."

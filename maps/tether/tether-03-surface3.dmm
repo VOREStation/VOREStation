@@ -2844,7 +2844,7 @@
 /obj/item/flash,
 /obj/random/drinkbottle,
 /obj/item/camera_film,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/iaa/officecommon)
 "aeu" = (
@@ -15555,7 +15555,7 @@
 	dir = 1
 	},
 /obj/item/camera,
-/obj/item/tape,
+/obj/item/rectape,
 /obj/structure/sign/painting/library_private{
 	pixel_x = -30
 	},
@@ -36615,8 +36615,8 @@
 /obj/item/camera,
 /obj/item/camera_film,
 /obj/item/taperecorder,
-/obj/item/tape/random,
-/obj/item/tape/random,
+/obj/item/rectape/random,
+/obj/item/rectape/random,
 /obj/item/storage/secure/briefcase,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
@@ -37753,8 +37753,8 @@
 /obj/structure/closet{
 	name = "entrepreneur equipment"
 	},
-/obj/item/tape,
-/obj/item/tape,
+/obj/item/rectape,
+/obj/item/rectape,
 /obj/item/taperecorder,
 /obj/item/entrepreneur/magnifying_glass,
 /obj/item/entrepreneur/emf,
@@ -44986,8 +44986,8 @@
 /obj/item/camera,
 /obj/item/camera_film,
 /obj/item/taperecorder,
-/obj/item/tape/random,
-/obj/item/tape/random,
+/obj/item/rectape/random,
+/obj/item/rectape/random,
 /obj/item/storage/secure/briefcase,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)

@@ -25846,7 +25846,7 @@
 "aYd" = (
 /obj/structure/table/standard,
 /obj/item/taperecorder,
-/obj/item/tape,
+/obj/item/rectape,
 /obj/item/megaphone,
 /obj/item/packageWrap,
 /obj/item/storage/box,
@@ -26962,7 +26962,7 @@
 "aZS" = (
 /obj/structure/table/steel,
 /obj/item/newspaper,
-/obj/item/tape,
+/obj/item/rectape,
 /obj/item/taperecorder{
 	pixel_x = -4;
 	pixel_y = 2
@@ -29793,7 +29793,7 @@
 /area/security/security_processing)
 "beB" = (
 /obj/structure/table/standard,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -33475,7 +33475,7 @@
 	},
 /obj/item/handcuffs,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder{
 	pixel_x = -4;
 	pixel_y = 2
@@ -35390,7 +35390,7 @@
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder,
 /obj/item/megaphone,
 /obj/item/radio/off,
@@ -36204,7 +36204,7 @@
 /obj/structure/table/wooden_reinforced,
 /obj/item/handcuffs,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder{
 	pixel_x = -4;
 	pixel_y = 2
@@ -42807,8 +42807,8 @@
 /area/storage/auxillary)
 "bBe" = (
 /obj/structure/table/steel,
-/obj/item/tape/random,
-/obj/item/tape/random,
+/obj/item/rectape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder,
 /obj/item/taperecorder,
 /obj/structure/extinguisher_cabinet{
@@ -44413,7 +44413,7 @@
 /obj/item/paicard{
 	pixel_x = 4
 	},
-/obj/item/tape,
+/obj/item/rectape,
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
@@ -89491,8 +89491,8 @@
 "djV" = (
 /obj/structure/table/woodentable,
 /obj/item/taperecorder,
-/obj/item/tape/random,
-/obj/item/tape/random,
+/obj/item/rectape/random,
+/obj/item/rectape/random,
 /obj/item/camera,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -90078,7 +90078,7 @@
 /area/library)
 "dlb" = (
 /obj/structure/table/woodentable,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder,
 /turf/simulated/floor/wood,
 /area/library)
@@ -93657,7 +93657,7 @@
 /obj/structure/table/woodentable,
 /obj/item/paper,
 /obj/item/taperecorder,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24
@@ -107396,7 +107396,7 @@
 "dSo" = (
 /obj/structure/table/woodentable,
 /obj/item/book/codex/corp_regs,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/sc/sd)

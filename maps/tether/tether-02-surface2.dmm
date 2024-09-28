@@ -18671,7 +18671,7 @@
 /area/maintenance/asmaint2)
 "aHn" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/tape{
+/obj/item/rectape{
 	desc = "No Talk"
 	},
 /obj/item/clothing/suit/varsity/brown{

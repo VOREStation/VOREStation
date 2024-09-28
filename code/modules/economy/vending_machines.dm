@@ -1658,7 +1658,7 @@
 		/obj/item/clothing/glasses/sunglasses/big = 5,
 		/obj/item/clothing/under/lawyer/blue = 5,
 		/obj/item/clothing/under/lawyer/blue/skirt = 5,
-		/obj/item/tape/random = 5
+		/obj/item/rectape/random = 5
 	)
 	req_log_access = access_hop
 	has_logs = 1

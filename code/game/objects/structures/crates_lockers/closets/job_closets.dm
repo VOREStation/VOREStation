@@ -111,7 +111,7 @@
 		/obj/item/clothing/glasses/sunglasses/big = 2,
 		/obj/item/clothing/under/lawyer/blue = 2,
 		/obj/item/clothing/under/lawyer/blue/skirt = 2,
-		/obj/item/tape/random = 2
+		/obj/item/rectape/random = 2
 		)
 
 /*

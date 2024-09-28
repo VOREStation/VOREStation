@@ -149,7 +149,7 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /turf/simulated/floor/wood,
 /area/redgate/city/library)
 "anE" = (
@@ -740,7 +740,7 @@
 /area/redgate/city/police)
 "aYz" = (
 /obj/structure/table/woodentable,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
@@ -5006,7 +5006,7 @@
 /obj/structure/closet,
 /obj/item/folder/red,
 /obj/item/folder/red,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/random/powercell/device,
 /turf/simulated/floor/tiled/red,
 /area/redgate/city/corporation)

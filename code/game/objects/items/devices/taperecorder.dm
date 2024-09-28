@@ -12,7 +12,7 @@
 	var/recording = 0.0
 	var/playing = 0.0
 	var/playsleepseconds = 0.0
-	var/obj/item/tape/mytape = /obj/item/tape/random
+	var/obj/item/rectape/mytape = /obj/item/rectape/random
 	var/canprint = 1
 	slot_flags = SLOT_BELT
 	throwforce = 2
@@ -38,7 +38,7 @@
 
 
 /obj/item/taperecorder/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/tape))
+	if(istype(I, /obj/item/rectape))
 		if(mytape)
 			to_chat(user, "<span class='notice'>There's already a tape inside.</span>")
 			return
@@ -357,7 +357,7 @@
 
 
 
-/obj/item/tape
+/obj/item/rectape
 	name = "tape"
 	desc = "A magnetic tape that can hold up to ten minutes of content."
 	icon = 'icons/obj/device.dmi'
@@ -374,43 +374,43 @@
 	var/ruined = 0
 
 
-/obj/item/tape/update_icon()
+/obj/item/rectape/update_icon()
 	cut_overlays()
 	if(ruined)
 		add_overlay("ribbonoverlay")
 
 
-/obj/item/tape/fire_act()
+/obj/item/rectape/fire_act()
 	ruin()
 
-/obj/item/tape/attack_self(mob/user)
+/obj/item/rectape/attack_self(mob/user)
 	if(!ruined)
 		to_chat(user, "<span class='notice'>You pull out all the tape!</span>")
 		ruin()
 
 
-/obj/item/tape/proc/ruin()
+/obj/item/rectape/proc/ruin()
 	ruined = 1
 	update_icon()
 
 
-/obj/item/tape/proc/fix()
+/obj/item/rectape/proc/fix()
 	ruined = 0
 	update_icon()
 
 
-/obj/item/tape/proc/record_speech(text)
+/obj/item/rectape/proc/record_speech(text)
 	timestamp += used_capacity
 	storedinfo += "\[[time2text(used_capacity*10,"mm:ss")]\] [text]"
 
 
 //shows up on the printed transcript as (Unrecognized sound)
-/obj/item/tape/proc/record_noise(text)
+/obj/item/rectape/proc/record_noise(text)
 	timestamp += used_capacity
 	storedinfo += "*\[[time2text(used_capacity*10,"mm:ss")]\] [text]"
 
 
-/obj/item/tape/attackby(obj/item/I, mob/user, params)
+/obj/item/rectape/attackby(obj/item/I, mob/user, params)
 	if(ruined && I.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>You start winding the tape back in...</span>")
 		playsound(src, I.usesound, 50, 1)
@@ -434,6 +434,5 @@
 
 
 //Random colour tapes
-/obj/item/tape/random/New()
-	icon = 'icons/obj/device.dmi'
+/obj/item/rectape/random/New()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
