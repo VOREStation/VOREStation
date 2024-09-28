@@ -8,7 +8,6 @@ export { AnimatedNumber } from './AnimatedNumber';
 export { Autofocus } from './Autofocus';
 export { Box } from './Box';
 export { Button } from './Button';
-export { ByondUi } from './ByondUi';
 export { Chart } from './Chart';
 export { Collapsible } from './Collapsible';
 export { ColorBox } from './ColorBox';
