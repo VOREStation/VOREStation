@@ -137,7 +137,6 @@
 	vore_tail_sprite_variant = "Skunk" //Sadly there appears to be no sprites... For now!
 	belly_variant_when_loaf = TRUE
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
@@ -172,43 +171,36 @@
 	msg_prey_stepunder = "You jump over %prey's thick tail."
 	msg_owner_stepunder = "%owner bounds over your tail."
 
-/datum/sprite_accessory/tail/taur/naga/vore_compatable
-	name = "Naga (Taur) (Vore Compatable)"
-	vore_tail_sprite_variant = "Naga"
-	fullness_icons = 1
-	struggle_anim = TRUE
-
-/datum/sprite_accessory/tail/taur/naga/vore_compatable/naga_2c
+/datum/sprite_accessory/tail/taur/naga/naga_2c
 	name = "Naga dual-color (Taur)"
 	icon_state = "naga_s"
 	extra_overlay = "naga_markings"
 	//icon_sprite_tag = "naga2c"
 	vore_tail_sprite_variant = "Naga"
 	fullness_icons = 1
-	struggle_anim = TRUE
 
-/datum/sprite_accessory/tail/taur/naga/vore_compatable/alt_2c
+/datum/sprite_accessory/tail/taur/naga/alt_2c
 	name = "Naga alt style dual-color (Taur)"
 	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
 	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	//icon_sprite_tag = "altnaga2c"
 
-/datum/sprite_accessory/tail/taur/naga/vore_compatable/alt_3c
+/datum/sprite_accessory/tail/taur/naga/alt_3c
 	name = "Naga alt style tri-color (Taur)"
 	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
 	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_stripes"
 
-/datum/sprite_accessory/tail/taur/naga/vore_compatable/alt_3c_rattler
+/datum/sprite_accessory/tail/taur/naga/alt_3c_rattler
 	name = "Naga alt style tri-color, rattler (Taur)"
 	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
 	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_rattler"
 
-/datum/sprite_accessory/tail/taur/naga/vore_compatable/alt_3c_tailmaw
+/datum/sprite_accessory/tail/taur/naga/alt_3c_tailmaw
 	name = "Naga alt style tri-color, tailmaw (Taur)"
 	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
 	icon_state = "altnagatailmaw_s"
@@ -226,7 +218,6 @@
 	loaf_offset = 4
 	vore_tail_sprite_variant = "Horse"
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -263,7 +254,6 @@
 	loaf_offset = 3
 	vore_tail_sprite_variant = "Cow"
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -292,7 +282,6 @@
 	vore_tail_sprite_variant = "Deer"
 	belly_variant_when_loaf = TRUE
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -331,7 +320,6 @@
 	loaf_offset = 5
 	vore_tail_sprite_variant = "Lizard"
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 /datum/sprite_accessory/tail/taur/lizard/fatlizard
 	name = "Fat Lizard (Taur)"
@@ -380,7 +368,6 @@
 	loaf_offset = 3
 	vore_tail_sprite_variant = "SynthLiz"
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 /datum/sprite_accessory/tail/taur/lizard/fatsynthlizard
 	name = "Fat SynthLizard dual-color (Taur)"
@@ -459,7 +446,6 @@
 	vore_tail_sprite_variant = "Feline"
 	belly_variant_when_loaf = TRUE
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 /datum/sprite_accessory/tail/taur/fatfeline
 	name = "Fat Feline (Taur)"
@@ -567,7 +553,6 @@
 	icon_sprite_tag = "slug"
 	vore_tail_sprite_variant = "Slug"
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 	msg_owner_help_walk = "You carefully slither around %prey."
 	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
@@ -672,7 +657,6 @@
 	vore_tail_sprite_variant = "Otie"
 	belly_variant_when_loaf = TRUE
 	fullness_icons = 1
-	struggle_anim = TRUE
 
 /datum/sprite_accessory/tail/taur/alraune/alraune_2c
 	name = "Alraune (dual color)"
