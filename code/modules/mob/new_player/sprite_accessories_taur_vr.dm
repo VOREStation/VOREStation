@@ -143,6 +143,8 @@
 	icon_state = "naga_s"
 	suit_sprites = 'icons/mob/taursuits_naga_vr.dmi'
 	//icon_sprite_tag = "naga"
+	vore_tail_sprite_variant = "Naga"
+	fullness_icons = 1
 
 	msg_owner_help_walk = "You carefully slither around %prey."
 	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
@@ -176,8 +178,6 @@
 	icon_state = "naga_s"
 	extra_overlay = "naga_markings"
 	//icon_sprite_tag = "naga2c"
-	vore_tail_sprite_variant = "Naga"
-	fullness_icons = 1
 
 /datum/sprite_accessory/tail/taur/naga/alt_2c
 	name = "Naga alt style dual-color (Taur)"
