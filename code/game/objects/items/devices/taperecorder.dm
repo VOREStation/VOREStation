@@ -435,4 +435,5 @@
 
 //Random colour tapes
 /obj/item/tape/random/New()
+	icon = 'icons/obj/device.dmi'
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
