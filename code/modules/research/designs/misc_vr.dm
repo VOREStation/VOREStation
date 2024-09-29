@@ -62,7 +62,7 @@
 	build_path = /obj/item/inducer/unloaded
 	sort_string = "TCVAB"
 
-/datum/design/item/weapon/mining/mining_scanner
+/datum/design/item/mining/mining_scanner
 	id = "mining_scanner"
 	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 1)
 	materials = list(MAT_STEEL = 1000,MAT_GLASS = 500)
