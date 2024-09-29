@@ -495,3 +495,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define SPECIES_SORT_WHITELISTED 2
 #define SPECIES_SORT_RESTRICTED 3
 #define SPECIES_SORT_CUSTOM 4
+
+// Vote Types
+#define VOTE_RESULT_TYPE_MAJORITY	"Majority"
+#define VOTE_RESULT_TYPE_SKEWED		"Seventy"
