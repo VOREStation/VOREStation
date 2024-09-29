@@ -1,5 +1,5 @@
 	// Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "mercship.dmm"
 #endif
 
@@ -32,7 +32,7 @@
 /area/ship/manta/atmos
 	name = "\improper Mercenary Cruiser - Atmospherics"
 	icon_state = "atmos"
-                                   
+
 /area/ship/manta/mech_bay
 	name = "\improper Mercenary Cruiser - Mech Bay"
 	icon_state = "mechbay"
@@ -100,19 +100,19 @@
 /area/ship/manta/commander
 	name = "\improper Mercenary Cruiser - Commander's Room"
 	icon_state = "head_quarters"
-	
+
 /area/ship/manta/holding
 	name = "\improper Mercenary Cruiser - Holding Cells"
 	icon_state = "brig"
-	
+
 /area/ship/manta/recreation
 	name = "\improper Mercenary Cruiser - Recreation & Supplies"
 	icon_state = "recreation_area"
-	
+
 /area/ship/manta/gunnery
 	name = "\improper Mercenary Cruiser - Gunnery"
 	icon_state = "security_sub"
-	
+
 /area/ship/manta/magazine
 	name = "\improper Mercenary Cruiser - Cannon Magazine"
 	icon_state = "darkred"
@@ -218,7 +218,7 @@
 	on_enter_occupant_message = "You feel cool air surround you. You go numb as your senses turn inward."
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
-	
+
 //Misc Stuff
 /obj/item/paper/manta_shields
 	name = "Shield Setup"

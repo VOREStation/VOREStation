@@ -1,4 +1,4 @@
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "bittynest1.dmm"
 #include "bittynest2.dmm"
 #include "bittynest3.dmm"

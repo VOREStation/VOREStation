@@ -1,5 +1,5 @@
 /// Away Missions
-#if AWAY_MISSION_TEST
+#ifdef AWAY_MISSION_TEST
 #include "../expedition_vr/beach/beach.dmm"
 #include "../expedition_vr/beach/cave.dmm"
 #include "../expedition_vr/alienship/alienship.dmm"
@@ -358,7 +358,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
-#if AWAY_MISSION_TEST
+#ifdef AWAY_MISSION_TEST
 #include "../submaps/admin_use_vr/spa.dmm"
 #endif
 #include "../submaps/admin_use_vr/fun.dm"
@@ -616,7 +616,7 @@
 #include "../offmap_vr/talon/talon_v2.dm"
 #include "../offmap_vr/talon/talon_v2_areas.dm"
 
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "../offmap_vr/talon/talon_v2.dmm"
 #endif
 
