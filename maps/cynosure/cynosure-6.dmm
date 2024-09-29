@@ -1194,8 +1194,6 @@
 /obj/machinery/optable,
 /turf/simulated/shuttle/floor/white,
 /area/skipjack_station/start)
-<<<<<<< HEAD
-=======
 "boh" = (
 /obj/structure/flora/pottedplant/stoutbush,
 /obj/structure/sign/christmas/lights{
@@ -1214,7 +1212,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/escape/centcom)
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 "bos" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
