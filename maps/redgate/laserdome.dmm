@@ -163,12 +163,12 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "bRk" = (
 /obj/structure/table/marble,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "bVo" = (
@@ -536,8 +536,8 @@
 /area/redgate/laserdome/arena/hyperball)
 "fAL" = (
 /obj/structure/table/marble,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "fCY" = (
