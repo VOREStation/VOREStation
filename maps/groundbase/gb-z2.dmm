@@ -511,7 +511,7 @@
 "aV" = (
 /obj/structure/table/woodentable,
 /obj/item/taperecorder,
-/obj/item/tape/random,
+/obj/item/rectape/random,
 /obj/item/camera,
 /obj/item/retail_scanner/civilian,
 /obj/machinery/firealarm{
