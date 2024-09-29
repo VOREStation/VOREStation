@@ -2233,7 +2233,6 @@
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 5
 	},
-/obj/structure/flora/pottedplant/drooping,
 /obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 21
@@ -6075,6 +6074,14 @@
 	},
 /obj/structure/sign/directions/cargo{
 	dir = 8;
+	pixel_y = 32
+	},
+/obj/structure/sign/levels/security{
+	dir = 5;
+	pixel_y = 26
+	},
+/obj/structure/sign/christmas/lights{
+	dir = 1;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
@@ -23154,10 +23161,9 @@
 	pixel_x = -32;
 	pixel_y = -6
 	},
-/obj/structure/sign/directions/stairs_down{
-	dir = 4;
-	pixel_x = -32;
-	pixel_y = -12
+/obj/structure/sign/christmas/lights{
+	dir = 8;
+	pixel_x = -32
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -67534,8 +67540,8 @@ uwO
 uwO
 uwO
 uwO
-uDG
-iaD
+aPW
+rsz
 iaD
 jIo
 ifR

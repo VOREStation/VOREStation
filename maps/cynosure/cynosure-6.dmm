@@ -1194,6 +1194,24 @@
 /obj/machinery/optable,
 /turf/simulated/shuttle/floor/white,
 /area/skipjack_station/start)
+"boh" = (
+/obj/structure/flora/pottedplant/stoutbush,
+/obj/structure/sign/christmas/lights{
+	dir = 4;
+	pixel_x = 32
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "steel"
+	},
+/area/centcom/main_hall)
+"boo" = (
+/obj/structure/shuttle/falsewall_no_join{
+	icon = 'icons/turf/wall_masks_tgmc.dmi';
+	icon_state = "white2"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/escape/centcom)
 "bos" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
