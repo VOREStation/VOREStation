@@ -3,7 +3,7 @@
 		if(exact)
 			return decls_repository.get_decl(path)
 		else
-			var/list/L = decls_repository.get_decls_of_type(path)
+			var/list/L = decls_repository.get_decls_of_subtype(path) // Use get_decls_of_subtype instead of get_decls_of_type, or it will get the map placing icon_state
 			return L[pick(L)]
 	return null
 
@@ -164,7 +164,7 @@
 
 	flick("poster_being_set", src)
 
-/obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, W.usesound, 100, 1)
 		if(ruined)

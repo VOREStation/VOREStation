@@ -1,4 +1,4 @@
-/obj/item/device/juke_remote
+/obj/item/juke_remote
 	name = "\improper BoomTown cordless speaker"
 	desc = "Once paired with a jukebox, this speaker can relay the tunes elsewhere!"
 
@@ -12,12 +12,12 @@
 	var/area/our_area
 
 /*
-/obj/item/device/juke_remote/Initialize()
+/obj/item/juke_remote/Initialize()
 	. = ..()
 	flags |= NOBLUDGEON
 */
 // Pairing
-/obj/item/device/juke_remote/proc/pair_juke(obj/machinery/media/jukebox/juke, mob/user)
+/obj/item/juke_remote/proc/pair_juke(obj/machinery/media/jukebox/juke, mob/user)
 	if(paired_juke)
 		to_chat(user, "<span class='warning'>The [src] is already paired to [paired_juke == juke ? "that" : "a different"] jukebox.</span>")
 		return
@@ -26,7 +26,7 @@
 	to_chat(user, "<span class='notice'>You pair the [src] to the [juke].</span>")
 	icon_state = "[initial(icon_state)]_ready"
 
-/obj/item/device/juke_remote/proc/unpair_juke(mob/user)
+/obj/item/juke_remote/proc/unpair_juke(mob/user)
 	if(!paired_juke)
 		to_chat(user, "<span class='warning'>The [src] isn't paired to anything.</span>")
 		return
@@ -38,30 +38,30 @@
 	to_chat(user, "<span class='notice'>You unpair the [src].</span>")
 	icon_state = "[initial(icon_state)]"
 
-/obj/item/device/juke_remote/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/juke_remote/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(istype(target, /obj/machinery/media/jukebox))
 		pair_juke(target, user)
 		return
 	return ..()
 
-/obj/item/device/juke_remote/verb/reset()
+/obj/item/juke_remote/verb/reset()
 	set name = "Reset Pairing"
 	set desc = "Unpair this speaker from a jukebox."
 
 	unpair_juke(usr)
 
 // Deploying
-/obj/item/device/juke_remote/Moved(atom/old_loc, direction, forced)
+/obj/item/juke_remote/Moved(atom/old_loc, direction, forced)
 	. = ..()
 	if(paired_juke && !anchored && isturf(loc))
 		anchor()
 
-/obj/item/device/juke_remote/attack_hand(mob/living/user)
+/obj/item/juke_remote/attack_hand(mob/living/user)
 	if(anchored)
 		unanchor()
 	return ..()
 
-/obj/item/device/juke_remote/proc/anchor()
+/obj/item/juke_remote/proc/anchor()
 	if(anchored)
 		return
 	anchored = TRUE
@@ -72,7 +72,7 @@
 		else
 			icon_state = "[initial(icon_state)]"
 
-/obj/item/device/juke_remote/proc/unanchor()
+/obj/item/juke_remote/proc/unanchor()
 	detach_area()
 	anchored = FALSE
 	visible_message("[src] detaches from it's mounting surface, able to be moved once again.", runemessage = "clunk")
@@ -82,7 +82,7 @@
 		icon_state = "[initial(icon_state)]"
 
 // Area handling
-/obj/item/device/juke_remote/proc/attach_area()
+/obj/item/juke_remote/proc/attach_area()
 	var/area/A = get_area(src)
 	if(!A || !paired_juke)
 		error("Jukebox remote at [x],[y],[z] without paired juke tried to bind to an area.")
@@ -94,7 +94,7 @@
 	update_music()
 	return TRUE
 	
-/obj/item/device/juke_remote/proc/detach_area()
+/obj/item/juke_remote/proc/detach_area()
 	if(!our_area || (paired_juke && our_area.media_source != paired_juke))
 		return
 	our_area.media_source = null
@@ -102,7 +102,7 @@
 	our_area = null
 
 // Music handling
-/obj/item/device/juke_remote/proc/update_music()
+/obj/item/juke_remote/proc/update_music()
 	if(!our_area || !paired_juke)
 		return
 	// Send update to clients.

@@ -1,6 +1,6 @@
 var/global/ntnet_card_uid = 1
 
-/obj/item/weapon/computer_hardware/network_card/
+/obj/item/computer_hardware/network_card/
 	name = "basic NTNet network card"
 	desc = "A basic network card for usage with standard NTNet frequencies."
 	power_usage = 50
@@ -22,7 +22,7 @@ var/global/ntnet_card_uid = 1
 	/// If set, uses the value to funnel connections through another network card.
 	var/proxy_id
 
-/obj/item/weapon/computer_hardware/network_card/diagnostics(var/mob/user)
+/obj/item/computer_hardware/network_card/diagnostics(var/mob/user)
 	..()
 	to_chat(user, "NIX Unique ID: [identification_id]")
 	to_chat(user, "NIX User Tag: [identification_string]")
@@ -33,12 +33,12 @@ var/global/ntnet_card_uid = 1
 	if(ethernet)
 		to_chat(user, "OpenEth (Physical Connection) - Physical network connection port")
 
-/obj/item/weapon/computer_hardware/network_card/New(var/l)
+/obj/item/computer_hardware/network_card/New(var/l)
 	..(l)
 	identification_id = ntnet_card_uid
 	ntnet_card_uid++
 
-/obj/item/weapon/computer_hardware/network_card/advanced
+/obj/item/computer_hardware/network_card/advanced
 	name = "advanced NTNet network card"
 	desc = "An advanced network card for usage with standard NTNet frequencies. It's transmitter is strong enough to connect even when far away."
 	long_range = 1
@@ -47,7 +47,7 @@ var/global/ntnet_card_uid = 1
 	icon_state = "netcard_advanced"
 	hardware_size = 1
 
-/obj/item/weapon/computer_hardware/network_card/quantum
+/obj/item/computer_hardware/network_card/quantum
 	name = "quantum NTNet network card"
 	desc = "A network card that can connect to NTnet from anywhere, using quantum entanglement."
 	long_range = 1
@@ -56,7 +56,7 @@ var/global/ntnet_card_uid = 1
 	icon_state = "netcard_advanced"
 	hardware_size = 1
 
-/obj/item/weapon/computer_hardware/network_card/quantum/get_signal(var/specific_action = 0)
+/obj/item/computer_hardware/network_card/quantum/get_signal(var/specific_action = 0)
 	if(!holder2)
 		return 0
 
@@ -68,7 +68,7 @@ var/global/ntnet_card_uid = 1
 
 	return 2
 
-/obj/item/weapon/computer_hardware/network_card/wired
+/obj/item/computer_hardware/network_card/wired
 	name = "wired NTNet network card"
 	desc = "An advanced network card for usage with standard NTNet frequencies. This one also supports wired connection."
 	ethernet = 1
@@ -77,21 +77,21 @@ var/global/ntnet_card_uid = 1
 	icon_state = "netcard_ethernet"
 	hardware_size = 3
 
-/obj/item/weapon/computer_hardware/network_card/Destroy()
+/obj/item/computer_hardware/network_card/Destroy()
 	if(holder2 && (holder2.network_card == src))
 		holder2.network_card = null
 	holder2 = null
 	return ..()
 
 // Returns a string identifier of this network card
-/obj/item/weapon/computer_hardware/network_card/proc/get_network_tag()
+/obj/item/computer_hardware/network_card/proc/get_network_tag()
 	return "[identification_string] (NID [identification_id])"
 
-/obj/item/weapon/computer_hardware/network_card/proc/is_banned()
+/obj/item/computer_hardware/network_card/proc/is_banned()
 	return ntnet_global.check_banned(identification_id)
 
 // 0 - No signal, 1 - Low signal, 2 - High signal. 3 - Wired Connection
-/obj/item/weapon/computer_hardware/network_card/proc/get_signal(var/specific_action = 0)
+/obj/item/computer_hardware/network_card/proc/get_signal(var/specific_action = 0)
 	if(!holder2) // Hardware is not installed in anything. No signal. How did this even get called?
 		return 0
 
@@ -133,7 +133,7 @@ var/global/ntnet_card_uid = 1
 		return best
 	return 0 // No computer!
 
-/obj/item/weapon/computer_hardware/network_card/Destroy()
+/obj/item/computer_hardware/network_card/Destroy()
 	if(holder2 && (holder2.network_card == src))
 		holder2.network_card = null
 	return ..()

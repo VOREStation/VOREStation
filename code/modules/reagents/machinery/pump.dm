@@ -13,10 +13,10 @@
 	icon = 'icons/obj/machines/reagent.dmi'
 	icon_state = "pump"
 
-	circuit = /obj/item/weapon/circuitboard/fluidpump
+	circuit = /obj/item/circuitboard/fluidpump
 	active_power_usage = 200 * CELLRATE
 
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/obj/item/hose_connector/output/Output = null
 	var/reagents_per_cycle = 40
 	var/on = 0
@@ -40,16 +40,16 @@
 	. = ..()
 
 /obj/machinery/pump/RefreshParts()
-	var/obj/item/weapon/stock_parts/manipulator/SM = locate() in component_parts
+	var/obj/item/stock_parts/manipulator/SM = locate() in component_parts
 	active_power_usage = initial(active_power_usage) / SM.rating
 
 	var/motor_power = 0
-	for(var/obj/item/weapon/stock_parts/motor/M in component_parts)
+	for(var/obj/item/stock_parts/motor/M in component_parts)
 		motor_power += M.rating
 	reagents_per_cycle = initial(reagents_per_cycle) * motor_power / 2
 
 	var/bin_size = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/SB in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/SB in component_parts)
 		bin_size += SB.rating
 
 	// New holder might have different volume. Transfer everything to a new holder to account for this.
@@ -139,7 +139,7 @@
 	if(!set_state(!on))
 		to_chat(user, "<span class='notice'>You try to toggle \the [src] but it does not respond.</span>")
 
-/obj/machinery/pump/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/pump/attackby(obj/item/W, mob/user)
 	. = TRUE
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && !open)
 		to_chat(user, SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel."))
@@ -158,7 +158,7 @@
 			return FALSE
 		default_unfasten_wrench(user, W, 2 SECONDS)
 
-	else if(istype(W, /obj/item/weapon/cell) && open)
+	else if(istype(W, /obj/item/cell) && open)
 		if(istype(cell))
 			to_chat(user, "<span class='notice'>There is a power cell already installed.</span>")
 			return FALSE

@@ -1,6 +1,6 @@
 var/global/list/paikeys = list()
 
-/obj/item/device/paicard
+/obj/item/paicard
 	var/panel_open = FALSE
 	var/cell = PP_FUNCTIONAL				//critical- power
 	var/processor = PP_FUNCTIONAL			//critical- the thinky part
@@ -10,8 +10,8 @@ var/global/list/paikeys = list()
 	var/emitter = PP_FUNCTIONAL				//non-critical- affects unfolding
 	var/speech_synthesizer = PP_FUNCTIONAL	//non-critical- affects speech
 
-/obj/item/device/paicard/attackby(var/obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/weapon/tool/screwdriver))
+/obj/item/paicard/attackby(var/obj/item/I as obj, mob/user as mob)
+	if(istype(I,/obj/item/tool/screwdriver))
 		if(panel_open)
 			panel_open = FALSE
 			user.visible_message("<span class ='notice'>\The [user] secured \the [src]'s maintenance panel.</span>")
@@ -21,7 +21,7 @@ var/global/list/paikeys = list()
 				panel_open = TRUE
 				user.visible_message("<span class ='warning'>\The [user] opened \the [src]'s maintenance panel.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-	if(istype(I,/obj/item/device/robotanalyzer))
+	if(istype(I,/obj/item/robotanalyzer))
 		if(!panel_open)
 			to_chat(user, "<span class ='warning'>The panel isn't open. You will need to unscrew it to open it.</span>")
 		else
@@ -74,7 +74,7 @@ var/global/list/paikeys = list()
 			else
 				to_chat(user,"Speech Synthesizer: <span class ='warning'>missing</span>")
 
-	if(istype(I,/obj/item/device/multitool))
+	if(istype(I,/obj/item/multitool))
 		if(!panel_open)
 			to_chat(user, "<span class ='warning'>You can't do that in this state.</span>")
 		else
@@ -216,7 +216,7 @@ var/global/list/paikeys = list()
 		else
 			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
 
-/obj/item/device/paicard/attack_self(mob/user)
+/obj/item/paicard/attack_self(mob/user)
 	if(!panel_open)
 		access_screen(user)
 		return
@@ -295,7 +295,7 @@ var/global/list/paikeys = list()
 			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
 			speech_synthesizer = PP_MISSING
 
-/obj/item/device/paicard/proc/death_damage()
+/obj/item/paicard/proc/death_damage()
 
 	var/number = rand(1,4)
 	while(number)
@@ -311,7 +311,7 @@ var/global/list/paikeys = list()
 				capacitor = PP_BROKEN
 
 
-/obj/item/device/paicard/proc/damage_random_component(nonfatal = FALSE)
+/obj/item/paicard/proc/damage_random_component(nonfatal = FALSE)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(2, 1, src)
 	s.start()
@@ -334,7 +334,7 @@ var/global/list/paikeys = list()
 			if(4)
 				capacitor = PP_BROKEN
 
-/obj/item/device/paicard/proc/is_damage_critical()
+/obj/item/paicard/proc/is_damage_critical()
 	if(cell != PP_FUNCTIONAL || processor != PP_FUNCTIONAL || board != PP_FUNCTIONAL || capacitor != PP_FUNCTIONAL)
 		return TRUE
 	return FALSE

@@ -6,7 +6,7 @@
 	var/energy_based					// Sees if the modifier is based on something electronic based.
 	var/energy_cost						// How much the modifier uses per action/special effect blocked. For base values.
 	var/damage_cost						// How much energy is used when numbers are involed. For values, such as taking damage. Ex: (Damage*damage_cost)
-	var/obj/item/weapon/cell/energy_source = null	// The source of the above.
+	var/obj/item/cell/energy_source = null	// The source of the above.
 
 	// RESISTANCES CODE. Variable to enable external damage resistance modifiers. This is not unlike armor.
 	// 0 = immune || < 0 = heals || 1 = full damage || >1 = increased damage.
@@ -129,7 +129,7 @@
 	effective_fire_resistance = 1
 	disable_duration_percent = 1 //THIS CAN ALSO BE USED! Don't be too afraid to use this one, but use it sparingly!
 */
-	var/obj/item/device/personal_shield_generator/shield_generator //This is the shield generator you're wearing!
+	var/obj/item/personal_shield_generator/shield_generator //This is the shield generator you're wearing!
 
 
 /datum/modifier/shield_projection/on_applied()
@@ -141,11 +141,11 @@
 /datum/modifier/shield_projection/check_if_valid() //Let's check to make sure you got the stuff and set the vars. Don't need to modify this for any subtypes!
 	if(ishuman(holder)) //Only humans can use this! Other things later down the line might use the same stuff this does, but the shield generator is human only!
 		var/mob/living/carbon/human/H = holder
-		if(istype(H.get_equipped_item(slot_back), /obj/item/device/personal_shield_generator))
+		if(istype(H.get_equipped_item(slot_back), /obj/item/personal_shield_generator))
 			shield_generator = H.get_equipped_item(slot_back) //Sets the var on the modifier that the shield gen is their back shield gen.
-		else if(istype(H.get_equipped_item(slot_belt), /obj/item/device/personal_shield_generator))
+		else if(istype(H.get_equipped_item(slot_belt), /obj/item/personal_shield_generator))
 			shield_generator = H.get_equipped_item(slot_belt) //No need for other checks. If they got hit by this, they just turned it on.
-		else if(istype(H.get_equipped_item(slot_s_store), /obj/item/device/personal_shield_generator) ) //Rigsuits.
+		else if(istype(H.get_equipped_item(slot_s_store), /obj/item/personal_shield_generator) ) //Rigsuits.
 			shield_generator = H.get_equipped_item(slot_s_store)
 		else
 			expire(silent = TRUE)

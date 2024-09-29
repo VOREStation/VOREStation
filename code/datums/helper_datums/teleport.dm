@@ -1,8 +1,8 @@
-var/bluespace_item_types = newlist(/obj/item/weapon/storage/backpack/holding,
-/obj/item/weapon/storage/bag/trash/holding,
-/obj/item/weapon/storage/pouch/holding,
-/obj/item/weapon/storage/belt/utility/holding,
-/obj/item/weapon/storage/belt/medical/holding
+var/bluespace_item_types = newlist(/obj/item/storage/backpack/holding,
+/obj/item/storage/bag/trash/holding,
+/obj/item/storage/pouch/holding,
+/obj/item/storage/belt/utility/holding,
+/obj/item/storage/belt/medical/holding
 )
 
 //wrapper
@@ -183,11 +183,11 @@ var/bluespace_item_types = newlist(/obj/item/weapon/storage/backpack/holding,
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()
-	if(istype(teleatom, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
+	if(istype(teleatom, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
 		return 0
 
-	if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/disk/nuclear)))
+	if(!isemptylist(teleatom.search_contents_for(/obj/item/disk/nuclear)))
 		if(istype(teleatom, /mob/living))
 			var/mob/living/MM = teleatom
 			MM.visible_message("<span class='danger'>\The [MM] bounces off of the portal!</span>","<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
@@ -200,7 +200,7 @@ var/bluespace_item_types = newlist(/obj/item/weapon/storage/backpack/holding,
 			var/obj/mecha/MM = teleatom
 			to_chat(MM.occupant, "<span class='danger'>\The [MM] would not survive the jump to a location so far away!</span>")
 			return 0
-		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
+		if(!isemptylist(teleatom.search_contents_for(/obj/item/storage/backpack/holding)))
 			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
 			return 0
 	*/ //VOREStation Removal End

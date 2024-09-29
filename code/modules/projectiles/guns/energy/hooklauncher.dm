@@ -2,7 +2,7 @@
  * Contains weapons primarily using the 'grappling hook' projectiles.
  */
 
-/obj/item/weapon/gun/energy/hooklauncher
+/obj/item/gun/energy/hooklauncher
 	name = "gravity whip"
 	desc = "A large, strange gauntlet."
 	icon = 'icons/obj/gun2.dmi'
@@ -14,12 +14,12 @@
 	charge_cost = 300
 	charge_meter = FALSE
 
-	cell_type = /obj/item/weapon/cell/device/weapon
+	cell_type = /obj/item/cell/device/weapon
 	projectile_type = /obj/item/projectile/energy/hook
 
 // An easily concealable not-ripoff version. It would be silenced, if it didn't make it blatant you're the one using it.
 
-/obj/item/weapon/gun/energy/hooklauncher/ring
+/obj/item/gun/energy/hooklauncher/ring
 	name = "ominous ring"
 	desc = "A small ring with strange symbols engraved upon it."
 	icon = 'icons/inventory/hands/item.dmi'
@@ -28,7 +28,7 @@
 
 	w_class = ITEMSIZE_TINY
 
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
+	cell_type = /obj/item/cell/device/weapon/recharge/alien
 	battery_lock = TRUE
 	charge_cost = 400
 

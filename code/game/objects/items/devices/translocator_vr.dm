@@ -1,5 +1,5 @@
 //The perfect adminboos device?
-/obj/item/device/perfect_tele
+/obj/item/perfect_tele
 	name = "personal translocator"
 	desc = "Seems absurd, doesn't it? Yet, here we are. Allows the user to teleport themselves and others to a pre-set beacon."
 	icon = 'icons/obj/device_alt.dmi'
@@ -7,8 +7,8 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 
-	var/cell_type = /obj/item/weapon/cell/device/weapon
-	var/obj/item/weapon/cell/power_source
+	var/cell_type = /obj/item/cell/device/weapon
+	var/obj/item/cell/power_source
 	var/charge_cost = 800 // cell/device/weapon has 2400
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
 
@@ -20,7 +20,7 @@
 	var/ready = 1
 	var/beacons_left = 3
 	var/failure_chance = 5 //Percent
-	var/obj/item/device/perfect_tele_beacon/destination
+	var/obj/item/perfect_tele_beacon/destination
 	var/datum/effect/effect/system/spark_spread/spk
 	var/list/warned_users = list()
 	var/list/logged_events = list()
@@ -31,30 +31,30 @@
 	var/static/radial_set = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_set")
 	var/static/radial_seton = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_seton")
 
-/obj/item/device/perfect_tele/Initialize()
+/obj/item/perfect_tele/Initialize()
 	. = ..()
 
 	flags |= NOBLUDGEON
 	if(cell_type)
 		power_source = new cell_type(src)
 	else
-		power_source = new /obj/item/weapon/cell/device(src)
+		power_source = new /obj/item/cell/device(src)
 	spk = new(src)
 	spk.set_up(5, 0, src)
 	spk.attach(src)
 
 	rebuild_radial_images()
 
-/obj/item/device/perfect_tele/Destroy()
+/obj/item/perfect_tele/Destroy()
 	// Must clear the beacon's backpointer or we won't GC. Someday maybe do something nicer even.
-	for(var/obj/item/device/perfect_tele_beacon/B in beacons)
+	for(var/obj/item/perfect_tele_beacon/B in beacons)
 		B.tele_hand = null
 	beacons.Cut()
 	QDEL_NULL(power_source)
 	QDEL_NULL(spk)
 	return ..()
 
-/obj/item/device/perfect_tele/update_icon()
+/obj/item/perfect_tele/update_icon()
 	if(!power_source)
 		icon_state = "[initial(icon_state)]_o"
 	else if(ready && (power_source.check_charge(charge_cost) || power_source.fully_charged()))
@@ -64,14 +64,14 @@
 
 	..()
 
-/obj/item/device/perfect_tele/proc/rebuild_radial_images()
+/obj/item/perfect_tele/proc/rebuild_radial_images()
 	radial_images.Cut()
 
 	var/index = 1
 	for(var/bcn in beacons) //Grumble
 		var/image/I = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_[index]")
 
-		var/obj/item/device/perfect_tele_beacon/beacon = beacons[bcn]
+		var/obj/item/perfect_tele_beacon/beacon = beacons[bcn]
 		if(destination == beacon)
 			I.add_overlay(radial_seton)
 		else
@@ -86,13 +86,13 @@
 		I.add_overlay(radial_plus)
 		radial_images["New Beacon"] = I
 
-/obj/item/device/perfect_tele/attack_hand(mob/user)
+/obj/item/perfect_tele/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src)
 		unload_ammo(user)
 	else
 		return ..()
 
-/obj/item/device/perfect_tele/proc/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
+/obj/item/perfect_tele/proc/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(battery_lock)
 		to_chat(user,"<span class='notice'>[src] does not have a battery port.</span>")
 		return
@@ -104,16 +104,16 @@
 	else
 		to_chat(user,"<span class='notice'>[src] does not have a power cell.</span>")
 
-/obj/item/device/perfect_tele/proc/check_menu(var/mob/living/user)
+/obj/item/perfect_tele/proc/check_menu(var/mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE
 
-/obj/item/device/perfect_tele/attack_self(mob/user, var/radial_menu_anchor = src)
+/obj/item/perfect_tele/attack_self(mob/user, var/radial_menu_anchor = src)
 	if(loc_network)
-		for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
+		for(var/obj/item/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
 			if(nb.tele_network == loc_network)
 				beacons[nb.tele_name] = nb
 		loc_network = null //Consumed
@@ -147,7 +147,7 @@ This device records all warnings given and teleport events for admin review in c
 			to_chat(user, "<span class='warning'>No duplicate names, please. '[new_name]' exists already.</span>")
 			return
 
-		var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))
+		var/obj/item/perfect_tele_beacon/nb = new(get_turf(src))
 		nb.tele_name = new_name
 		nb.tele_hand = src
 		nb.creator = user.ckey
@@ -162,7 +162,7 @@ This device records all warnings given and teleport events for admin review in c
 		destination = beacons[choice]
 		rebuild_radial_images()
 
-/obj/item/device/perfect_tele/attackby(obj/W, mob/user)
+/obj/item/perfect_tele/attackby(obj/W, mob/user)
 	if(istype(W,cell_type) && !power_source)
 		power_source = W
 		power_source.update_icon() //Why doesn't a cell do this already? :|
@@ -171,8 +171,8 @@ This device records all warnings given and teleport events for admin review in c
 		to_chat(user,"<span class='notice'>You insert \the [power_source] into \the [src].</span>")
 		update_icon()
 
-	else if(istype(W,/obj/item/device/perfect_tele_beacon))
-		var/obj/item/device/perfect_tele_beacon/tb = W
+	else if(istype(W,/obj/item/perfect_tele_beacon))
+		var/obj/item/perfect_tele_beacon/tb = W
 		if(tb.tele_name in beacons)
 			to_chat(user,"<span class='notice'>You re-insert \the [tb] into \the [src].</span>")
 			beacons -= tb.tele_name
@@ -185,7 +185,7 @@ This device records all warnings given and teleport events for admin review in c
 	else
 		..()
 
-/obj/item/device/perfect_tele/proc/teleport_checks(mob/living/target,mob/living/user)
+/obj/item/perfect_tele/proc/teleport_checks(mob/living/target,mob/living/user)
 	//Uhhuh, need that power source
 	if(!power_source)
 		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
@@ -244,7 +244,7 @@ This device records all warnings given and teleport events for admin review in c
 	//Seems okay to me!
 	return TRUE
 
-/obj/item/device/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity, var/ignore_fail_chance = 0)
+/obj/item/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity, var/ignore_fail_chance = 0)
 	//No, you can't teleport people from over there.
 	if(!proximity)
 		return
@@ -317,7 +317,7 @@ This device records all warnings given and teleport events for admin review in c
 	phase_in(target,get_turf(target))
 
 	//And any friends!
-	for(var/obj/item/weapon/grab/G in target.contents)
+	for(var/obj/item/grab/G in target.contents)
 		if(G.affecting && (G.state >= GRAB_AGGRESSIVE))
 
 			//Phase-out effect for grabbed person
@@ -338,7 +338,7 @@ This device records all warnings given and teleport events for admin review in c
 
 	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_dest.name)])" : null]"
 
-/obj/item/device/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
+/obj/item/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
 
 	if(!M || !T)
 		return
@@ -348,7 +348,7 @@ This device records all warnings given and teleport events for admin review in c
 	playsound(T, "sparks", 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
-/obj/item/device/perfect_tele/proc/phase_in(var/mob/M,var/turf/T)
+/obj/item/perfect_tele/proc/phase_in(var/mob/M,var/turf/T)
 
 	if(!M || !T)
 		return
@@ -360,7 +360,7 @@ This device records all warnings given and teleport events for admin review in c
 	spk.set_up(5, 0, src)
 	spk.attach(src)
 
-/obj/item/device/perfect_tele_beacon
+/obj/item/perfect_tele_beacon
 	name = "translocator beacon"
 	desc = "That's unusual."
 	icon = 'icons/obj/device_alt.dmi'
@@ -368,21 +368,21 @@ This device records all warnings given and teleport events for admin review in c
 	w_class = ITEMSIZE_TINY
 
 	var/tele_name
-	var/obj/item/device/perfect_tele/tele_hand
+	var/obj/item/perfect_tele/tele_hand
 	var/creator
 	var/warned_users = list()
 	var/tele_network = null
 
-/obj/item/device/perfect_tele_beacon/New()
+/obj/item/perfect_tele_beacon/New()
 	..()
 	flags |= NOBLUDGEON
 
-/obj/item/device/perfect_tele_beacon/Destroy()
+/obj/item/perfect_tele_beacon/Destroy()
 	tele_name = null
 	tele_hand = null
 	return ..()
 
-/obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
+/obj/item/perfect_tele_beacon/attack_hand(mob/user)
 	if((user.ckey != creator) && !(user.ckey in warned_users))
 		warned_users |= user.ckey
 		var/choice = tgui_alert(user, {"
@@ -394,16 +394,16 @@ not carry this around."}, "OOC Warning", list("Take It","Leave It"))
 			return
 	return ..()
 
-/obj/item/device/perfect_tele_beacon/stationary
+/obj/item/perfect_tele_beacon/stationary
 	name = "stationary translocator beacon"
 	icon = 'icons/obj/radio_vr.dmi'
 	icon_state = "floor_beacon"
 	w_class = ITEMSIZE_HUGE
 	anchored = TRUE
 
-GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beacon/stationary)
+GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stationary)
 
-/obj/item/device/perfect_tele_beacon/attack_self(mob/user)
+/obj/item/perfect_tele_beacon/attack_self(mob/user)
 	if(!isliving(user))
 		return
 	var/mob/living/L = user
@@ -418,16 +418,16 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
 
 // A single-beacon variant for use by miners (or whatever)
-/obj/item/device/perfect_tele/one_beacon
+/obj/item/perfect_tele/one_beacon
 	name = "mini-translocator"
 	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally."
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
-	cell_type = /obj/item/weapon/cell/device
+	cell_type = /obj/item/cell/device
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
 /*
-/obj/item/device/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)
+/obj/item/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)
 	var/turf/T = get_turf(destination)
 	if(T && user.z != T.z)
 		to_chat(user,"<span class='warning'>\The [src] is too far away from the beacon. Try getting closer first!</span>")
@@ -435,24 +435,24 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	return ..()
 */
 
-/obj/item/device/perfect_tele/alien
+/obj/item/perfect_tele/alien
 	name = "alien translocator"
 	desc = "This strange device allows one to teleport people and objects across large distances."
 	icon_state = "alientele"
 
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
+	cell_type = /obj/item/cell/device/weapon/recharge/alien
 	charge_cost = 400
 	beacons_left = 6
 	failure_chance = 0 //Percent
 	longrange = 1
 	abductor = 1
 
-/obj/item/device/perfect_tele/alien/bluefo
+/obj/item/perfect_tele/alien/bluefo
 	name = "hybrid translocator"
 	desc = "This strange device allows one to teleport people and objects across large distances. It has only a single preprogrammed destination, though."
 	icon_state = "alientele"
 
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
+	cell_type = /obj/item/cell/device/weapon/recharge/alien
 	charge_cost = 400
 	beacons_left = 0
 	failure_chance = 0
@@ -460,7 +460,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	abductor = 1
 	loc_network = "hybridshuttle"
 
-/obj/item/device/perfect_tele/frontier
+/obj/item/perfect_tele/frontier
 	icon_state = "frontiertrans"
 	beacons_left = 1 //Just one
 	battery_lock = 1
@@ -470,7 +470,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	var/phase_power = 75
 	var/recharging = 0
 
-/obj/item/device/perfect_tele/frontier/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
+/obj/item/perfect_tele/frontier/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(recharging)
 		return
 	recharging = 1
@@ -487,36 +487,36 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	recharging = 0
 	update_icon()
 
-/obj/item/device/perfect_tele/frontier/update_icon()
+/obj/item/perfect_tele/frontier/update_icon()
 	if(recharging)
 		icon_state = "[initial(icon_state)]_o"
 		update_held_icon()
 		return
 	..()
 
-/obj/item/device/perfect_tele/frontier/staff
+/obj/item/perfect_tele/frontier/staff
 	name = "centcom translocator"
 	desc = "Similar to translocator technology, however, most of its destinations are hardcoded."
 	charge_cost = 1200 // Enough for one person and their partner
 	loc_network = "centcom"
 	longrange = 1
 
-/obj/item/device/perfect_tele/frontier/unknown
+/obj/item/perfect_tele/frontier/unknown
 	name = "modified translocator"
 	desc = "This crank-charged translocator has only one beacon, but it already has a destination preprogrammed into it."
 	charge_cost = 1200 // Enough for one person and their partner
 	longrange = 1
 	abductor = 1
 
-/obj/item/device/perfect_tele/frontier/unknown/one
+/obj/item/perfect_tele/frontier/unknown/one
 	loc_network = "unkone"
-/obj/item/device/perfect_tele/frontier/unknown/two
+/obj/item/perfect_tele/frontier/unknown/two
 	loc_network = "unktwo"
-/obj/item/device/perfect_tele/frontier/unknown/three
+/obj/item/perfect_tele/frontier/unknown/three
 	loc_network = "unkthree"
-/obj/item/device/perfect_tele/frontier/unknown/four
+/obj/item/perfect_tele/frontier/unknown/four
 	loc_network = "unkfour"
-/obj/item/device/perfect_tele/frontier/unknown/five
+/obj/item/perfect_tele/frontier/unknown/five
 	loc_network = "unkfive"
-/obj/item/device/perfect_tele/frontier/unknown/six
+/obj/item/perfect_tele/frontier/unknown/six
 	loc_network = "unksix"

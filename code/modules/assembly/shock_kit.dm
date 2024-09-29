@@ -3,7 +3,7 @@
 	desc = "This appears to be made from both an electropack and a helmet."
 	icon_state = "shock_kit"
 	var/obj/item/clothing/head/helmet/part1 = null
-	var/obj/item/device/radio/electropack/part2 = null
+	var/obj/item/radio/electropack/part2 = null
 	var/status = 0
 	w_class = ITEMSIZE_HUGE
 
@@ -13,7 +13,7 @@
 	..()
 	return
 
-/obj/item/assembly/shock_kit/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/item/assembly/shock_kit/attackby(var/obj/item/W, var/mob/user)
 	if(W.has_tool_quality(TOOL_WRENCH) && !status)
 		var/turf/T = loc
 		if(ismob(T))

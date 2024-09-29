@@ -16,21 +16,21 @@
 	excavation_level = rand(5, 50)
 
 /obj/structure/boulder/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/device/core_sampler))
+	if(istype(I, /obj/item/core_sampler))
 		src.geological_data.artifact_distance = rand(-100,100) / 100
 		src.geological_data.artifact_id = artifact_find.artifact_id
 
-		var/obj/item/device/core_sampler/C = I
+		var/obj/item/core_sampler/C = I
 		C.sample_item(src, user)
 		return
 
-	if(istype(I, /obj/item/device/depth_scanner))
-		var/obj/item/device/depth_scanner/C = I
+	if(istype(I, /obj/item/depth_scanner))
+		var/obj/item/depth_scanner/C = I
 		C.scan_atom(user, src)
 		return
 
-	if(istype(I, /obj/item/device/xenoarch_multi_tool))
-		var/obj/item/device/xenoarch_multi_tool/C = I
+	if(istype(I, /obj/item/xenoarch_multi_tool))
+		var/obj/item/xenoarch_multi_tool/C = I
 		if(C.mode) //Mode means scanning.
 			C.depth_scanner.scan_atom(user, src)
 			return
@@ -40,15 +40,15 @@
 				to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [2 * src.excavation_level]cm.</span>")
 			return
 
-	if(istype(I, /obj/item/device/measuring_tape))
-		var/obj/item/device/measuring_tape/P = I
+	if(istype(I, /obj/item/measuring_tape))
+		var/obj/item/measuring_tape/P = I
 		user.visible_message("<b>\The [user]</b> extends \the [P] towards \the [src].", "<span class='notice'>You extend \the [P] towards \the [src].</span>")
 		if(do_after(user, 15))
 			to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [2 * src.excavation_level]cm.</span>")
 		return
 
-	if(istype(I, /obj/item/weapon/pickaxe))
-		var/obj/item/weapon/pickaxe/P = I
+	if(istype(I, /obj/item/pickaxe))
+		var/obj/item/pickaxe/P = I
 
 		if(last_act + P.digspeed > world.time)//prevents message spam
 			return
@@ -87,13 +87,13 @@
 	. = ..()
 	if(istype(AM,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = AM
-		var/obj/item/weapon/pickaxe/P = H.get_inactive_hand()
+		var/obj/item/pickaxe/P = H.get_inactive_hand()
 		if(istype(P))
 			src.attackby(P, H)
 
 	else if(istype(AM,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = AM
-		if(istype(R.module_active,/obj/item/weapon/pickaxe))
+		if(istype(R.module_active,/obj/item/pickaxe))
 			attackby(R.module_active,R)
 
 	else if(istype(AM,/obj/mecha))

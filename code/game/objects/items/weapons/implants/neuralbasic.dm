@@ -1,4 +1,4 @@
-/obj/item/weapon/implant/neural
+/obj/item/implant/neural
 	name = "neural framework implant"
 	desc = "A small metal casing with numerous wires stemming off of it."
 	initialize_loc = BP_HEAD
@@ -6,7 +6,7 @@
 	var/target_state = null
 	var/robotic_brain = FALSE
 
-/obj/item/weapon/implant/neural/post_implant(var/mob/source)
+/obj/item/implant/neural/post_implant(var/mob/source)
 	if(ishuman(source))
 		var/mob/living/carbon/human/H = source
 		if(H.species.has_organ[O_BRAIN])
@@ -19,7 +19,7 @@
 	if(istype(my_brain) && my_brain.can_assist())
 		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/implant/neural/Destroy()
+/obj/item/implant/neural/Destroy()
 	if(my_brain)
 		if(my_brain.owner)
 			to_chat(my_brain.owner, "<span class='critical'>You feel a pressure in your mind as something is ripped away.</span>")
@@ -27,14 +27,14 @@
 	my_brain = null
 	return ..()
 
-/obj/item/weapon/implant/neural/process()
+/obj/item/implant/neural/process()
 	if(my_brain && part)
 		if(my_brain.loc != part.loc)
 			to_chat(my_brain.owner, "<span class='critical'>You feel a pressure in your mind as something is ripped away.</span>")
 			meltdown()
 	return 1
 
-/obj/item/weapon/implant/neural/get_data()
+/obj/item/implant/neural/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 <b>Name:</b> Neural Framework Implant<BR>
 <b>Life:</b> Duration of Brain Function<BR>
@@ -50,7 +50,7 @@ circuitry. Resulting faults can cause damage to the host's brain.<HR>
 Implant Specifics:<BR>"}
 	return dat
 
-/obj/item/weapon/implant/neural/emp_act(severity)
+/obj/item/implant/neural/emp_act(severity)
 	if(!my_brain)
 		return
 	if(malfunction)	//Don't malfunction while malfunctioning.
@@ -91,7 +91,7 @@ Implant Specifics:<BR>"}
 	spawn(delay)
 		malfunction--
 
-/obj/item/weapon/implant/neural/meltdown()
+/obj/item/implant/neural/meltdown()
 	..()
 	STOP_PROCESSING(SSobj, src)
 	var/mob/living/carbon/human/H = null

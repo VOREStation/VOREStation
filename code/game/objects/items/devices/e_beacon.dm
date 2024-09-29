@@ -1,19 +1,19 @@
-/obj/item/device/emergency_beacon
+/obj/item/emergency_beacon
 	name = "personal emergency beacon"
 	desc = "The hardy PersonaL Emergency Beacon, or PLEB, is a simple device that, once activated, sends out a wideband distress signal that can punch through almost all forms of interference. They are commonly issued to miners and remote exploration teams who may find themselves in need of means to call for assistance whilst being out of conventional communications range."
 	icon = 'icons/obj/device_vr.dmi'
 	icon_state = "e_beacon_off"
 	var/beacon_active = FALSE
 	var/list/levels_for_distress
-	var/obj/item/device/gps/gps = null
+	var/obj/item/gps/gps = null
 
-/obj/item/device/emergency_beacon/New()
-	gps = new/obj/item/device/gps/emergency_beacon(src)
+/obj/item/emergency_beacon/New()
+	gps = new/obj/item/gps/emergency_beacon(src)
 
-/obj/item/device/gps/emergency_beacon
+/obj/item/gps/emergency_beacon
 	gps_tag = "EMERGENCY BEACON"
 
-/obj/item/device/emergency_beacon/attack_self(mob/user)
+/obj/item/emergency_beacon/attack_self(mob/user)
 	var/T = user.loc
 	if(!beacon_active)
 		if(!isturf(T))
@@ -46,14 +46,14 @@
 	else
 		to_chat(user,"\The [src] is already active, or is otherwise malfunctioning. There's nothing you can do but wait. And possibly pray.")
 
-/obj/item/device/emergency_beacon/attack_hand(mob/user)
+/obj/item/emergency_beacon/attack_hand(mob/user)
 	if(beacon_active)
 		to_chat(user,"<span class='warning'>The beacon is already active and cannot be moved!</span>")
 		return
 
 	. = ..()
 
-/obj/item/device/emergency_beacon/attackby(obj/item/weapon/W, mob/user)
+/obj/item/emergency_beacon/attackby(obj/item/W, mob/user)
 	if(W.is_wrench() && beacon_active)
 		gps.tracking = FALSE
 		user.visible_message("[user] disassembles \the [src].")

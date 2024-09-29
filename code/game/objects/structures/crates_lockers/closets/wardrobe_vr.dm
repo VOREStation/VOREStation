@@ -3,7 +3,7 @@
 	closet_appearance = /decl/closet_appearance/tactical/alt	//because ert lockers are red for some dumb reason
 	starts_with = list(
 		/obj/item/clothing/under/ert,
-		/obj/item/device/radio/headset/ert/alt,
+		/obj/item/radio/headset/ert/alt,
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/shoes/boots/swat,
 		/obj/item/clothing/gloves/swat,
@@ -18,7 +18,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/tactical,
 		/obj/item/clothing/under/syndicate/combat,
-		/obj/item/device/radio/headset/syndicate/alt,
+		/obj/item/radio/headset/syndicate/alt,
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/shoes/boots/combat,
 		/obj/item/clothing/gloves/combat,

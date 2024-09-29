@@ -25,7 +25,7 @@
 	return ..()
 
 /mob/living/carbon/brain/say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
-	if(istype(container, /obj/item/device/mmi))
+	if(istype(container, /obj/item/mmi))
 		if(issilicon(other))
 			return TRUE
 	if(ishuman(other))
@@ -35,7 +35,7 @@
 	return ..()
 
 /mob/living/carbon/brain/update_canmove()
-	if(in_contents_of(/obj/mecha) || istype(loc, /obj/item/device/mmi))
+	if(in_contents_of(/obj/mecha) || istype(loc, /obj/item/mmi))
 		canmove = 1
 		use_me = 1
 	else
@@ -43,7 +43,7 @@
 	return canmove
 
 /mob/living/carbon/brain/isSynthetic()
-	return istype(loc, /obj/item/device/mmi)
+	return istype(loc, /obj/item/mmi)
 
 /mob/living/carbon/brain/runechat_holder(datum/chatmessage/CM)
 	if(isturf(loc))

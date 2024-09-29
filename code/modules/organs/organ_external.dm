@@ -112,7 +112,7 @@
 		while(null in owner.organs)
 			owner.organs -= null
 
-	for(var/obj/item/weapon/implant/I as anything in implants)
+	for(var/obj/item/implant/I as anything in implants)
 		if(!istype(I))
 			continue
 		I.imp_in = I.part = null
@@ -169,20 +169,20 @@
 				continue
 			. += "<span class='danger'>There is \a [I] sticking out of it.</span>"
 
-/obj/item/organ/external/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/item/organ/external/attackby(obj/item/W as obj, mob/living/user as mob)
 	switch(stage)
 		if(0)
-			if(istype(W,/obj/item/weapon/surgical/scalpel))
+			if(istype(W,/obj/item/surgical/scalpel))
 				user.visible_message("<span class='danger'><b>[user]</b> cuts [src] open with [W]!</span>")
 				stage++
 				return
 		if(1)
-			if(istype(W,/obj/item/weapon/surgical/retractor))
+			if(istype(W,/obj/item/surgical/retractor))
 				user.visible_message("<span class='danger'><b>[user]</b> cracks [src] open like an egg with [W]!</span>")
 				stage++
 				return
 		if(2)
-			if(istype(W,/obj/item/weapon/surgical/hemostat))
+			if(istype(W,/obj/item/surgical/hemostat))
 				if(contents.len)
 					var/obj/item/removing = pick(contents)
 					removing.loc = get_turf(user.loc)
@@ -296,7 +296,7 @@
 
 	if(status & ORGAN_BROKEN && brute)
 		jostle_bone(brute)
-		if(organ_can_feel_pain() && prob(40) && !isbelly(owner.loc) && !istype(owner.loc, /obj/item/device/dogborg/sleeper)) //VOREStation Edit
+		if(organ_can_feel_pain() && prob(40) && !isbelly(owner.loc) && !istype(owner.loc, /obj/item/dogborg/sleeper)) //VOREStation Edit
 			owner.emote("scream")	//getting hit on broken hand hurts
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
@@ -502,7 +502,7 @@ This function completely restores a damaged organ to perfect condition.
 
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
-		if(istype(implanted_object,/obj/item/weapon/implant) || istype(implanted_object,/obj/item/device/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
+		if(istype(implanted_object,/obj/item/implant) || istype(implanted_object,/obj/item/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
 			continue
 		implanted_object.loc = get_turf(src)
 		implants -= implanted_object
@@ -989,10 +989,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 			qdel(src)
 
 	if(victim.l_hand)
-		if(istype(victim.l_hand,/obj/item/weapon/material/twohanded)) //if they're holding a two-handed weapon, drop it now they've lost a hand
+		if(istype(victim.l_hand,/obj/item/material/twohanded)) //if they're holding a two-handed weapon, drop it now they've lost a hand
 			victim.l_hand.update_held_icon()
 	if(victim.r_hand)
-		if(istype(victim.r_hand,/obj/item/weapon/material/twohanded))
+		if(istype(victim.r_hand,/obj/item/material/twohanded))
 			victim.r_hand.update_held_icon()
 
 /****************************************************
@@ -1216,7 +1216,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/is_malfunctioning()
 	return ((robotic >= ORGAN_ROBOT) && (brute_dam + burn_dam) >= min_broken_damage*0.83 && prob(brute_dam + burn_dam)) //VOREStation Edit - Makes robotic limb damage scalable
 
-/obj/item/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
+/obj/item/organ/external/proc/embed(var/obj/item/W, var/silent = 0)
 	if(!owner || loc != owner)
 		return
 	if(!silent)
@@ -1420,7 +1420,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = 0
 	for(var/obj/item/organ/external/L in organs)
 		for(var/obj/item/I in L.implants)
-			if(!istype(I,/obj/item/weapon/implant) && !istype(I,/obj/item/device/nif)) //VOREStation Add - NIFs
+			if(!istype(I,/obj/item/implant) && !istype(I,/obj/item/nif)) //VOREStation Add - NIFs
 				return 1
 
 /obj/item/organ/external/proc/is_hidden_by_sprite_accessory(var/clothing_only = FALSE)			// Clothing only will mean the check should only be used in places where we want to hide clothing icon, not organ itself.

@@ -40,8 +40,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
 	// Try put it in their belt first
-	if(istype(src.belt,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/wornbelt = src.belt
+	if(istype(src.belt,/obj/item/storage))
+		var/obj/item/storage/wornbelt = src.belt
 		if(wornbelt.can_be_inserted(newitem, 1))
 			if(user_initiated)
 				wornbelt.handle_item_insertion(newitem)

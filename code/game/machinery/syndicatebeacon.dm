@@ -120,7 +120,7 @@
 		to_chat(user, "<span class='danger'>You need to screw the beacon to the floor first!</span>")
 		return
 
-/obj/machinery/power/singularity_beacon/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/power/singularity_beacon/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(active)
 			to_chat(user, "<span class='danger'>You need to deactivate the beacon first!</span>")

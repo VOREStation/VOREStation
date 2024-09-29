@@ -35,19 +35,19 @@
 
 /obj/machinery/power/smes/batteryrack/proc/add_parts()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/batteryrack
-	component_parts += new /obj/item/weapon/stock_parts/capacitor				// Capacitors: Maximal I/O
-	component_parts += new /obj/item/weapon/stock_parts/capacitor
-	component_parts += new /obj/item/weapon/stock_parts/capacitor
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin				// Matter Bin: Max. amount of cells.
+	component_parts += new /obj/item/circuitboard/batteryrack
+	component_parts += new /obj/item/stock_parts/capacitor				// Capacitors: Maximal I/O
+	component_parts += new /obj/item/stock_parts/capacitor
+	component_parts += new /obj/item/stock_parts/capacitor
+	component_parts += new /obj/item/stock_parts/matter_bin				// Matter Bin: Max. amount of cells.
 
 /obj/machinery/power/smes/batteryrack/RefreshParts()
 	var/capacitor_efficiency = 0
 	var/maxcells = 0
-	for(var/obj/item/weapon/stock_parts/capacitor/CP in component_parts)
+	for(var/obj/item/stock_parts/capacitor/CP in component_parts)
 		capacitor_efficiency += CP.rating
 
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		maxcells += MB.rating * 3
 
 	max_transfer_rate = 10000 * capacitor_efficiency // 30kw - 90kw depending on used capacitors.
@@ -56,7 +56,7 @@
 	output_level = max_transfer_rate
 
 /obj/machinery/power/smes/batteryrack/Destroy()
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		qdel(C)
 	internal_cells = null
 	return ..()
@@ -74,7 +74,7 @@
 
 	add_overlay("charge[charge_level]")
 
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		cellcount++
 		add_overlay("cell[cellcount]")
 		if(C.fully_charged())
@@ -85,7 +85,7 @@
 // Recalculate maxcharge and similar variables.
 /obj/machinery/power/smes/batteryrack/proc/update_maxcharge()
 	var/newmaxcharge = 0
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		newmaxcharge += C.maxcharge
 
 	newmaxcharge /= CELLRATE		// Convert to Joules
@@ -116,14 +116,14 @@
 	amount *= CELLRATE // Convert to CELLRATE first.
 	if(equalise)
 		// Now try to get least charged cell and use the power from it.
-		var/obj/item/weapon/cell/CL = get_least_charged_cell()
+		var/obj/item/cell/CL = get_least_charged_cell()
 		if(!CL)
 			return
 		amount -= CL.give(amount)
 		if(!amount)
 			return
 	// We're still here, so it means the least charged cell was full OR we don't care about equalising the charge. Give power to other cells instead.
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		amount -= C.give(amount)
 		// No more power to input so return.
 		if(!amount)
@@ -134,12 +134,12 @@
 	amount *= CELLRATE // Convert to CELLRATE first.
 	if(equalise)
 		// Now try to get most charged cell and use the power from it.
-		var/obj/item/weapon/cell/CL = get_most_charged_cell()
+		var/obj/item/cell/CL = get_most_charged_cell()
 		amount -= CL.use(amount)
 		if(!amount)
 			return
 	// We're still here, so it means the most charged cell didn't have enough power OR we don't care about equalising the charge. Use power from other cells instead.
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		amount -= C.use(amount)
 		// No more power to output so return.
 		if(!amount)
@@ -147,23 +147,23 @@
 
 // Helper procs to get most/least charged cells.
 /obj/machinery/power/smes/batteryrack/proc/get_most_charged_cell()
-	var/obj/item/weapon/cell/CL = null
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	var/obj/item/cell/CL = null
+	for(var/obj/item/cell/C in internal_cells)
 		if(CL == null)
 			CL = C
 		else if(CL.percent() < C.percent())
 			CL = C
 	return CL
 /obj/machinery/power/smes/batteryrack/proc/get_least_charged_cell()
-	var/obj/item/weapon/cell/CL = null
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	var/obj/item/cell/CL = null
+	for(var/obj/item/cell/C in internal_cells)
 		if(CL == null)
 			CL = C
 		else if(CL.percent() > C.percent())
 			CL = C
 	return CL
 
-/obj/machinery/power/smes/batteryrack/proc/insert_cell(var/obj/item/weapon/cell/C, var/mob/user)
+/obj/machinery/power/smes/batteryrack/proc/insert_cell(var/obj/item/cell/C, var/mob/user)
 	if(!istype(C))
 		return 0
 
@@ -182,7 +182,7 @@
 
 /obj/machinery/power/smes/batteryrack/process()
 	charge = 0
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		charge += C.charge
 	charge /= CELLRATE		// Convert to Joules
 	charge *= SMESRATE		// And to SMES charge units (which are for some reason different than CELLRATE)
@@ -198,8 +198,8 @@
 	// Try to balance charge between stored cells. Capped at max_transfer_rate per tick.
 	// Take power from most charged cell, and give it to least charged cell.
 	if(equalise)
-		var/obj/item/weapon/cell/least = get_least_charged_cell()
-		var/obj/item/weapon/cell/most = get_most_charged_cell()
+		var/obj/item/cell/least = get_least_charged_cell()
+		var/obj/item/cell/most = get_most_charged_cell()
 		// Don't bother equalising charge between two same cells. Also ensure we don't get NULLs or wrong types. Don't bother equalising when difference between charges is tiny.
 		if(least == most || !istype(least) || !istype(most) || least.percent() == most.percent())
 			return
@@ -216,13 +216,13 @@
 		least.give(most.use(celldiff))
 
 /obj/machinery/power/smes/batteryrack/dismantle()
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		C.forceMove(get_turf(src))
 		internal_cells -= C
 	return ..()
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/cell)) // ID Card, try to insert it.
+/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/cell)) // ID Card, try to insert it.
 		if(insert_cell(W, user))
 			to_chat(user, "<span class='filter_notice'>You insert \the [W] into \the [src].</span>")
 		else
@@ -263,7 +263,7 @@
 	data["cells_cur"] = internal_cells.len
 	var/list/cells = list()
 	var/cell_index = 0
-	for(var/obj/item/weapon/cell/C in internal_cells)
+	for(var/obj/item/cell/C in internal_cells)
 		var/list/cell[0]
 		cell["slot"] = cell_index + 1
 		cell["used"] = 1
@@ -306,8 +306,8 @@
 			equalise = 0
 			return TRUE
 		if("ejectcell")
-			var/obj/item/weapon/cell/C
-			for(var/obj/item/weapon/cell/CL in internal_cells)
+			var/obj/item/cell/C
+			for(var/obj/item/cell/CL in internal_cells)
 				if(CL.c_uid == text2num(params["ejectcell"]))
 					C = CL
 					break

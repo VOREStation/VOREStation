@@ -1,130 +1,130 @@
 // "Useful" items - I'm guessing things that might be used at work?
 /datum/gear/utility
 	display_name = "briefcase"
-	path = /obj/item/weapon/storage/briefcase
+	path = /obj/item/storage/briefcase
 	sort_category = "Utility"
 
 /datum/gear/utility/clipboard
 	display_name = "clipboard"
-	path = /obj/item/weapon/clipboard
+	path = /obj/item/clipboard
 
 /datum/gear/utility/tts_device
 	display_name = "text to speech device"
-	path = /obj/item/device/text_to_speech
+	path = /obj/item/text_to_speech
 	cost = 3 //Not extremely expensive, but it's useful for mute chracters.
 
 /datum/gear/utility/communicator
 	display_name = "communicator selection"
-	path = /obj/item/device/communicator
+	path = /obj/item/communicator
 	cost = 0
 
 /datum/gear/utility/communicator/New()
 	..()
 	var/list/communicators = list()
-	for(var/obj/item/device/communicator_type as anything in typesof(/obj/item/device/communicator) - list(/obj/item/device/communicator/integrated,/obj/item/device/communicator/commlink)) //VOREStation Edit - Remove Commlink
+	for(var/obj/item/communicator_type as anything in typesof(/obj/item/communicator) - list(/obj/item/communicator/integrated,/obj/item/communicator/commlink)) //VOREStation Edit - Remove Commlink
 		communicators[initial(communicator_type.name)] = communicator_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(communicators))
 
 /datum/gear/utility/camera
 	display_name = "camera"
-	path = /obj/item/device/camera
+	path = /obj/item/camera
 
 /datum/gear/utility/codex
 	display_name = "the traveler's guide to Virgo-Erigone"
-	path = /obj/item/weapon/book/codex //VOREStation Edit
+	path = /obj/item/book/codex //VOREStation Edit
 	cost = 0
 
 /datum/gear/utility/news
 	display_name = "daedalus pocket newscaster"
-	path = /obj/item/weapon/book/codex/lore/news
+	path = /obj/item/book/codex/lore/news
 	cost = 0
 
 /* //VORESTATION REMOVAL
 /datum/gear/utility/corp_regs
 	display_name = "corporate regulations and legal code"
-	path = /obj/item/weapon/book/codex/corp_regs
+	path = /obj/item/book/codex/corp_regs
 	cost = 0
 */
 
 /datum/gear/utility/robutt
 	display_name = "a buyer's guide to artificial bodies"
-	path = /obj/item/weapon/book/codex/lore/robutt
+	path = /obj/item/book/codex/lore/robutt
 	cost = 0
 
 /datum/gear/utility/folder_blue
 	display_name = "folder, blue"
-	path = /obj/item/weapon/folder/blue
+	path = /obj/item/folder/blue
 
 /datum/gear/utility/folder_grey
 	display_name = "folder, grey"
-	path = /obj/item/weapon/folder
+	path = /obj/item/folder
 
 /datum/gear/utility/folder_red
 	display_name = "folder, red"
-	path = /obj/item/weapon/folder/red
+	path = /obj/item/folder/red
 
 /datum/gear/utility/folder_white
 	display_name = "folder, white"
-	path = /obj/item/weapon/folder/white
+	path = /obj/item/folder/white
 
 /datum/gear/utility/folder_yellow
 	display_name = "folder, yellow"
-	path = /obj/item/weapon/folder/yellow
+	path = /obj/item/folder/yellow
 
 /datum/gear/utility/paicard
 	display_name = "personal AI device (classic)"
-	path = /obj/item/device/paicard
+	path = /obj/item/paicard
 
 /datum/gear/utility/paicard_b
 	display_name = "personal AI device (new)"
-	path = /obj/item/device/paicard/typeb
+	path = /obj/item/paicard/typeb
 
 /datum/gear/utility/securecase
 	display_name = "secure briefcase"
-	path =/obj/item/weapon/storage/secure/briefcase
+	path =/obj/item/storage/secure/briefcase
 	cost = 2
 
 /datum/gear/utility/laserpointer
 	display_name = "laser pointer"
-	path =/obj/item/device/laser_pointer
+	path =/obj/item/laser_pointer
 	cost = 2
 
 /datum/gear/utility/flashlight
 	display_name = "flashlight"
-	path = /obj/item/device/flashlight
+	path = /obj/item/flashlight
 
 /datum/gear/utility/maglight
 	display_name = "flashlight, maglight"
-	path = /obj/item/device/flashlight/maglight
+	path = /obj/item/flashlight/maglight
 	cost = 2
 
 /datum/gear/utility/flashlight/color
 	display_name = "flashlight, small (selection)"
-	path = /obj/item/device/flashlight/color
+	path = /obj/item/flashlight/color
 
 /datum/gear/utility/flashlight/color/New()
 	..()
 	var/list/flashlights = list(
-	"Blue Flashlight" = /obj/item/device/flashlight/color,
-	"Red Flashlight" = /obj/item/device/flashlight/color/red,
-	"Green Flashlight" = /obj/item/device/flashlight/color/green,
-	"Yellow Flashlight" = /obj/item/device/flashlight/color/yellow,
-	"Purple Flashlight" = /obj/item/device/flashlight/color/purple,
-	"Orange Flashlight" = /obj/item/device/flashlight/color/orange
+	"Blue Flashlight" = /obj/item/flashlight/color,
+	"Red Flashlight" = /obj/item/flashlight/color/red,
+	"Green Flashlight" = /obj/item/flashlight/color/green,
+	"Yellow Flashlight" = /obj/item/flashlight/color/yellow,
+	"Purple Flashlight" = /obj/item/flashlight/color/purple,
+	"Orange Flashlight" = /obj/item/flashlight/color/orange
 	)
 	gear_tweaks += new/datum/gear_tweak/path(flashlights)
 
 /datum/gear/utility/battery
 	display_name = "cell, device"
-	path = /obj/item/weapon/cell/device
+	path = /obj/item/cell/device
 
 /datum/gear/utility/pen
 	display_name = "fountain pen"
-	path = /obj/item/weapon/pen/fountain
+	path = /obj/item/pen/fountain
 
 /datum/gear/utility/umbrella
 	display_name = "umbrella"
-	path = /obj/item/weapon/melee/umbrella
+	path = /obj/item/melee/umbrella
 	cost = 3
 
 /datum/gear/utility/umbrella/New()
@@ -147,7 +147,7 @@
 
 /datum/gear/utility/lantern
 	display_name = "lantern"
-	path = /obj/item/device/flashlight/lantern
+	path = /obj/item/flashlight/lantern
 	cost = 2
 
 /****************

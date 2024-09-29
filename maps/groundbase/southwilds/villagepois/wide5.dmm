@@ -52,7 +52,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "i" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rainbowdouble,
+/obj/item/bedsheet/rainbowdouble,
 /obj/structure/curtain/open/bed,
 /obj/machinery/button/windowtint{
 	id = "village_wide5_bedroom";
@@ -145,7 +145,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "w" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rainbowdouble,
+/obj/item/bedsheet/rainbowdouble,
 /obj/random/plushie,
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"
@@ -160,7 +160,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "z" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -274,7 +274,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_y = 21
 	},
 /turf/simulated/floor/wmarble,
@@ -292,7 +292,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "W" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rainbowdouble,
+/obj/item/bedsheet/rainbowdouble,
 /obj/structure/curtain/open/bed{
 	color = "#4287f5"
 	},
@@ -316,7 +316,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -2;
 	pixel_y = -15
 	},

@@ -14,8 +14,8 @@
 			new /obj/random/gun/guarenteed(usr.loc)
 			to_chat(usr, "You got a thing!")
 		if(50 to 99)
-			new /obj/item/weapon/bikehorn/rubberducky(usr.loc)
-			new /obj/item/weapon/bikehorn(usr.loc)
+			new /obj/item/bikehorn/rubberducky(usr.loc)
+			new /obj/item/bikehorn(usr.loc)
 			to_chat(usr, "You got two things!")
 		if(100)
 			to_chat(usr, "The box contained nothing!")
@@ -31,10 +31,10 @@
 					/obj/item/clothing/suit/armor/heavy,
 					/obj/item/clothing/suit/armor/laserproof,
 					/obj/item/clothing/suit/armor/vest,
-					/obj/item/device/chameleon,
-					/obj/item/device/pda/clown,
-					/obj/item/device/pda/mime,
-					/obj/item/device/pda/syndicate,
+					/obj/item/chameleon,
+					/obj/item/pda/clown,
+					/obj/item/pda/mime,
+					/obj/item/pda/syndicate,
 					/obj/item/mecha_parts/chassis/phazon,
 					/obj/item/mecha_parts/part/phazon_head,
 					/obj/item/mecha_parts/part/phazon_left_arm,
@@ -42,46 +42,46 @@
 					/obj/item/mecha_parts/part/phazon_right_arm,
 					/obj/item/mecha_parts/part/phazon_right_leg,
 					/obj/item/mecha_parts/part/phazon_torso,
-					/obj/item/weapon/circuitboard/mecha/phazon/targeting,
-					/obj/item/weapon/circuitboard/mecha/phazon/peripherals,
-					/obj/item/weapon/circuitboard/mecha/phazon/main,
-					/obj/item/device/bodysnatcher,
-					/obj/item/weapon/bluespace_harpoon,
+					/obj/item/circuitboard/mecha/phazon/targeting,
+					/obj/item/circuitboard/mecha/phazon/peripherals,
+					/obj/item/circuitboard/mecha/phazon/main,
+					/obj/item/bodysnatcher,
+					/obj/item/bluespace_harpoon,
 					/obj/item/clothing/accessory/permit/gun,
-					/obj/item/device/perfect_tele,
-					/obj/item/device/sleevemate,
-					/obj/item/weapon/disk/nifsoft/compliance,
-					/obj/item/weapon/implanter/compliance,
+					/obj/item/perfect_tele,
+					/obj/item/sleevemate,
+					/obj/item/disk/nifsoft/compliance,
+					/obj/item/implanter/compliance,
 					/obj/item/seeds/ambrosiadeusseed,
 					/obj/item/seeds/ambrosiavulgarisseed,
 					/obj/item/seeds/libertymycelium,
 					/obj/fiftyspawner/platinum,
 					/obj/item/toy/nanotrasenballoon,
 					/obj/item/toy/syndicateballoon,
-					/obj/item/weapon/aiModule/syndicate,
-					/obj/item/weapon/book/manual/engineering_hacking,
-					/obj/item/weapon/card/emag,
-					/obj/item/weapon/card/emag_broken,
-					/obj/item/weapon/card/id/syndicate,
+					/obj/item/aiModule/syndicate,
+					/obj/item/book/manual/engineering_hacking,
+					/obj/item/card/emag,
+					/obj/item/card/emag_broken,
+					/obj/item/card/id/syndicate,
 					/obj/item/poster,
-					/obj/item/weapon/disposable_teleporter,
-					/obj/item/weapon/grenade/flashbang/clusterbang,
-					/obj/item/weapon/grenade/flashbang/clusterbang,
-					/obj/item/weapon/grenade/spawnergrenade/spesscarp,
-					/obj/item/weapon/melee/energy/sword,
-					/obj/item/weapon/melee/telebaton,
-					/obj/item/weapon/pen/reagent/paralysis,
-					/obj/item/weapon/pickaxe/diamonddrill,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine,
-					/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
-					/obj/item/weapon/reagent_containers/food/snacks/clownstears,
-					/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
-					/obj/item/weapon/reagent_containers/glass/beaker/neurotoxin,
-					/obj/item/weapon/rig/combat,
-					/obj/item/weapon/shield/energy,
-					/obj/item/weapon/stamp/centcomm,
-					/obj/item/weapon/stamp/solgov,
-					/obj/item/weapon/storage/fancy/cigar/havana,
+					/obj/item/disposable_teleporter,
+					/obj/item/grenade/flashbang/clusterbang,
+					/obj/item/grenade/flashbang/clusterbang,
+					/obj/item/grenade/spawnergrenade/spesscarp,
+					/obj/item/melee/energy/sword,
+					/obj/item/melee/telebaton,
+					/obj/item/pen/reagent/paralysis,
+					/obj/item/pickaxe/diamonddrill,
+					/obj/item/reagent_containers/food/drinks/bottle/pwine,
+					/obj/item/reagent_containers/food/snacks/carpmeat,
+					/obj/item/reagent_containers/food/snacks/clownstears,
+					/obj/item/reagent_containers/food/snacks/xenomeat,
+					/obj/item/reagent_containers/glass/beaker/neurotoxin,
+					/obj/item/rig/combat,
+					/obj/item/shield/energy,
+					/obj/item/stamp/centcomm,
+					/obj/item/stamp/solgov,
+					/obj/item/storage/fancy/cigar/havana,
 					/obj/item/xenos_claw,
 					/obj/random/contraband,
 					/obj/random/contraband,
@@ -99,12 +99,12 @@
 	to_chat(user, "You unwrap the package.")
 	qdel(src)
 
-/obj/item/weapon/miscdisc
+/obj/item/miscdisc
 	name = "strange artefact"
 	desc = "A large disc-shaped item, with a red, opaque crystal embedded in the center. It is some what heavy. There are indentations along the ring of the disc. Alien scripture lines the disc."
 	icon_state = "wahdisc"
 	icon = 'icons/obj/contraband_vr.dmi'
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/weapon/miscdisc/attack_self(mob/living/user as mob)
+/obj/item/miscdisc/attack_self(mob/living/user as mob)
 	to_chat(user, "As you hold the large disc in your open palm, fingers cusped around the edge, the crystal embedded in the item begins to vibrate. It lifts itself from the disc a few cenimetres, before beginning to glow with a bright red light. The glow lasts for a few seconds, before the crystal embeds itself back into the disc with a quick snap.")

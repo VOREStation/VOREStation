@@ -56,7 +56,7 @@
 	clothing_possibilities |= subtypesof(/obj/item/clothing/under/utility)
 	clothing_possibilities |= subtypesof(/obj/item/clothing/head/beret)
 	clothing_possibilities |= /obj/item/clothing/shoes/black
-	clothing_possibilities |= /obj/item/device/radio/headset
+	clothing_possibilities |= /obj/item/radio/headset
 
 /obj/structure/ghost_pod/manual/survivor/create_occupant(var/mob/M)
 	..()
@@ -88,7 +88,7 @@
 				if(!head_options)
 					head_options = list()
 				head_options |= path
-			if(ispath(path, /obj/item/device/radio/headset))
+			if(ispath(path, /obj/item/radio/headset))
 				if(!headset_options)
 					headset_options = list()
 				headset_options |= path

@@ -1,5 +1,5 @@
 //For synths who have no hands.
-/obj/item/device/communicator/integrated
+/obj/item/communicator/integrated
 	name = "integrated communicator"
 	desc = "A circuit used for long-range communications, able to be integrated into a system."
 
@@ -9,7 +9,7 @@
 // Proc: open_connection_to_ghost()
 // Parameters: 2 (refer to base definition for arguments)
 // Description: Synths don't use languages properly, so this is a bandaid fix until that can be resolved..
-/obj/item/device/communicator/integrated/open_connection_to_ghost(user, candidate)
+/obj/item/communicator/integrated/open_connection_to_ghost(user, candidate)
 	..(user, candidate)
 	spawn(1)
 		for(var/mob/living/voice/V in contents)
@@ -19,7 +19,7 @@
 // Verb: activate()
 // Parameters: None
 // Description: Lets synths use their communicators without hands.
-/obj/item/device/communicator/integrated/verb/activate()
+/obj/item/communicator/integrated/verb/activate()
 	set category = "AI IM"
 	set name = "Use Communicator"
 	set desc = "Utilizes your built-in communicator."

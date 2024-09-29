@@ -22,7 +22,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_lc_wreck)
 "bw" = (
@@ -69,13 +69,13 @@
 /area/shuttle/mackerel_lc_wreck)
 "cv" = (
 /obj/machinery/computer/shuttle_control/explore/mackerel_lc_wreck,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "cD" = (
 /obj/effect/floor_decal/industrial/warning,
-/obj/item/weapon/material/shard/shrapnel,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "dG" = (
@@ -93,8 +93,8 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
 	},
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "ju" = (
@@ -134,7 +134,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/closet/walllocker/emerglocker/west,
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/machinery/light/flicker,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
@@ -161,8 +161,8 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/material/shard,
+/obj/item/tank/oxygen,
+/obj/item/material/shard,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
@@ -203,7 +203,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "nD" = (
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "oe" = (
@@ -285,8 +285,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_lc_wreck)
 "sg" = (
@@ -331,9 +331,9 @@
 /area/shuttle/mackerel_lc_wreck)
 "ue" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/electrical,
-/obj/item/weapon/module/power_control,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/module/power_control,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "ug" = (
@@ -436,7 +436,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
 "BB" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/template_noop)
 "BN" = (
@@ -666,7 +666,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "Ly" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "LU" = (
@@ -808,7 +808,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "TC" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/shuttle/mackerel_lc_wreck)
 "UY" = (
@@ -873,7 +873,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "WN" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/shuttle/mackerel_lc_wreck)
 "WP" = (

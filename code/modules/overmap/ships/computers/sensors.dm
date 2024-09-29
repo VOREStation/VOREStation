@@ -3,7 +3,7 @@
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
 	light_color = "#77fff8"
-	circuit = /obj/item/weapon/circuitboard/sensors
+	circuit = /obj/item/circuitboard/sensors
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
 
@@ -99,7 +99,7 @@
 		if("scan")
 			var/obj/effect/overmap/O = locate(params["scan"])
 			if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
-				new/obj/item/weapon/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
+				new/obj/item/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
 				playsound(src, "sound/machines/printer.ogg", 30, 1)
 			. = TRUE
 
@@ -143,11 +143,11 @@
 	var/range = 1
 	idle_power_usage = 5000
 
-/obj/machinery/shipsensors/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/shipsensors/attackby(obj/item/W, mob/user)
 	var/damage = max_health - health
 	if(damage && W.has_tool_quality(TOOL_WELDER))
 
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 
 		if(!WT.isOn())
 			return

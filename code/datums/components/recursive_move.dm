@@ -106,14 +106,14 @@
 	parents.Cut()
 
 //the banana peel of testing stays
-/obj/item/weapon/bananapeel/testing
+/obj/item/bananapeel/testing
 	name = "banana peel of testing"
 	desc = "spams world log with debugging information"
 
-/obj/item/weapon/bananapeel/testing/proc/shmove(var/atom/source, var/atom/old_loc, var/atom/new_loc)
+/obj/item/bananapeel/testing/proc/shmove(var/atom/source, var/atom/old_loc, var/atom/new_loc)
 	world.log << "the [source] moved from [old_loc]([old_loc.x],[old_loc.y],[old_loc.z]) to [new_loc]([new_loc.x],[new_loc.y],[new_loc.z])"
 
-/obj/item/weapon/bananapeel/testing/Initialize()
+/obj/item/bananapeel/testing/Initialize()
 	. = ..()
 	AddComponent(/datum/component/recursive_move)
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(shmove))

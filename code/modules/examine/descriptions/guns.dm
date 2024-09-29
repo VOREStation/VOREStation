@@ -1,17 +1,17 @@
-/obj/item/weapon/gun/proc/describe_firepower()
+/obj/item/gun/proc/describe_firepower()
 	var/obj/item/projectile/P
-	if(istype(src, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun = src
+	if(istype(src, /obj/item/gun/energy))
+		var/obj/item/gun/energy/energy_gun = src
 		P = new energy_gun.projectile_type()
-	else if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
-		var/obj/item/weapon/gun/projectile/shotgun/pump/projectile_gun = src
+	else if(istype(src, /obj/item/gun/projectile/shotgun/pump))
+		var/obj/item/gun/projectile/shotgun/pump/projectile_gun = src
 		if(isnull(projectile_gun.chambered) || isnull(projectile_gun.chambered.BB))
 			return "no"
 		else
 			var/obj/item/ammo_casing/ammo = projectile_gun.chambered
 			P = ammo.BB
-	else if(istype(src, /obj/item/weapon/gun/projectile))
-		var/obj/item/weapon/gun/projectile/projectile_gun = src
+	else if(istype(src, /obj/item/gun/projectile))
+		var/obj/item/gun/projectile/projectile_gun = src
 		var/obj/item/ammo_casing/ammo
 		if(projectile_gun.ammo_magazine)
 			ammo = projectile_gun.ammo_magazine.contents[1]
@@ -39,20 +39,20 @@
 			return "a ruinous amount of"
 	qdel(P)
 
-/obj/item/weapon/gun/proc/describe_proj_penetration()
+/obj/item/gun/proc/describe_proj_penetration()
 	var/obj/item/projectile/P
-	if(istype(src, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun = src
+	if(istype(src, /obj/item/gun/energy))
+		var/obj/item/gun/energy/energy_gun = src
 		P = new energy_gun.projectile_type()
-	else if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
-		var/obj/item/weapon/gun/projectile/shotgun/pump/projectile_gun = src
+	else if(istype(src, /obj/item/gun/projectile/shotgun/pump))
+		var/obj/item/gun/projectile/shotgun/pump/projectile_gun = src
 		if(isnull(projectile_gun.chambered) || isnull(projectile_gun.chambered.BB))
 			return "as it has no projectile loaded"
 		else
 			var/obj/item/ammo_casing/ammo = projectile_gun.chambered
 			P = ammo.BB
-	else if(istype(src, /obj/item/weapon/gun/projectile))
-		var/obj/item/weapon/gun/projectile/projectile_gun = src
+	else if(istype(src, /obj/item/gun/projectile))
+		var/obj/item/gun/projectile/projectile_gun = src
 		var/obj/item/ammo_casing/ammo
 		if(projectile_gun.ammo_magazine)
 			ammo = projectile_gun.ammo_magazine.contents[1]
@@ -84,7 +84,7 @@
 			return "completely and utterly pierces all armor"
 	qdel(P)
 
-/obj/item/weapon/gun/proc/describe_firerate()
+/obj/item/gun/proc/describe_firerate()
 	switch(fire_delay)
 		if(0)
 			return "no delay"
@@ -105,24 +105,24 @@
 		if(51 to 100)
 			return "an extremely long delay"
 
-/obj/item/weapon/gun/get_description_info()
+/obj/item/gun/get_description_info()
 	var/is_loaded
 	var/non_lethal
-	var/non_lethal_list = list(/obj/item/weapon/gun/energy/medigun,/obj/item/weapon/gun/energy/mouseray,/obj/item/weapon/gun/energy/temperature,/obj/item/weapon/gun/energy/sizegun,/obj/item/weapon/gun/projectile/shotgun/pump/toy,/obj/item/weapon/gun/projectile/revolver/toy,/obj/item/weapon/gun/projectile/pistol/toy,/obj/item/weapon/gun/projectile/automatic/toy)
+	var/non_lethal_list = list(/obj/item/gun/energy/medigun,/obj/item/gun/energy/mouseray,/obj/item/gun/energy/temperature,/obj/item/gun/energy/sizegun,/obj/item/gun/projectile/shotgun/pump/toy,/obj/item/gun/projectile/revolver/toy,/obj/item/gun/projectile/pistol/toy,/obj/item/gun/projectile/automatic/toy)
 	var/less_lethal
-	var/less_lethal_list = list(/obj/item/weapon/gun/energy/taser,/obj/item/weapon/gun/energy/stunrevolver,/obj/item/weapon/gun/energy/plasmastun,/obj/item/weapon/gun/energy/bfgtaser)
+	var/less_lethal_list = list(/obj/item/gun/energy/taser,/obj/item/gun/energy/stunrevolver,/obj/item/gun/energy/plasmastun,/obj/item/gun/energy/bfgtaser)
 	var/weapon_stats = description_info + "\
 	<br>"
-	if(istype(src, /obj/item/weapon/gun/energy))
+	if(istype(src, /obj/item/gun/energy))
 		is_loaded = LAZYLEN(src.contents)
-	if(istype(src, /obj/item/weapon/gun/projectile/shotgun/pump))
-		var/obj/item/weapon/gun/projectile/shotgun/pump/shotgun = src
+	if(istype(src, /obj/item/gun/projectile/shotgun/pump))
+		var/obj/item/gun/projectile/shotgun/pump/shotgun = src
 		if(isnull(shotgun.chambered) || isnull(shotgun.chambered.BB))
 			is_loaded = null
 		else
 			is_loaded = shotgun.chambered
-	if(istype(src, /obj/item/weapon/gun/projectile))
-		var/obj/item/weapon/gun/projectile/projectile_gun = src
+	if(istype(src, /obj/item/gun/projectile))
+		var/obj/item/gun/projectile/projectile_gun = src
 		var/ammo
 		if(projectile_gun.ammo_magazine)
 			ammo = projectile_gun.ammo_magazine.contents

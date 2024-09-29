@@ -1,7 +1,7 @@
 /*
  * Energy Gun
  */
-/obj/item/weapon/gun/energy/gun
+/obj/item/gun/energy/gun
 	name = "energy gun"
 	desc = "Another bestseller of Lawson Arms, the LAEP80 Thor is a versatile energy based pistol, capable of switching between low and high \
 	capacity projectile settings. In other words: Stun or Kill."
@@ -23,7 +23,7 @@
 /*
  * Energy Rifle
  */
-/obj/item/weapon/gun/energy/gun/rifle
+/obj/item/gun/energy/gun/rifle
 	name = "energy rifle"
 	desc = "Another bestseller of Lawson Arms, the LAEP100 Svarog is a versatile energy rifle, capable of switching between low and high capacity \
 	projectile settings. In other words: Stun or Kill."
@@ -47,7 +47,7 @@
 /*
  * Energy Carbine (Burst Laser)
  */
-/obj/item/weapon/gun/energy/gun/burst
+/obj/item/gun/energy/gun/burst
 	name = "energy carbine"
 	desc = "The Lawson Arms FM-2t is a versatile energy based carbine made from modifying the original LAEP100 design. It is capable of switching \
 	between stun or kill with a three round burst option for both settings."
@@ -71,7 +71,7 @@
 /*
  * Energy Thompson (RCW)
  */
-/obj/item/weapon/gun/energy/gun/etommy
+/obj/item/gun/energy/gun/etommy
 	name = "Energy RCW"
 	desc = "The Lawson Arms experimental Rapid Capacitor Weapon is a highly reguarded and deadly peice of military hardware. Using a large drum shaped \
 	capacitor bank the weapon is capable of accurate, rapid burst fire."
@@ -96,7 +96,7 @@
 /*
  * Energy PDW (Martin)
  */
-/obj/item/weapon/gun/energy/gun/compact
+/obj/item/gun/energy/gun/compact
 	name = "personal energy weapon"
 	desc = "The RayZar EW20 \"Martin\" personal energy weapon - or PEW - is Ward-Takahasi's entry into the variable capacity energy gun market. \
 	New users are advised to 'set RayZars to stun'."
@@ -117,7 +117,7 @@
 /*
  * Energy Luger
  */
-/obj/item/weapon/gun/energy/gun/eluger
+/obj/item/gun/energy/gun/eluger
 	name = "energy Luger"
 	desc = "The finest sidearm produced by RauMauser. Although its battery cannot be removed, its ergonomic design makes it easy to shoot, allowing \
 	for rapid follow-up shots. It also has the ability to toggle between stun and kill."
@@ -138,7 +138,7 @@
 /*
  * Mounted Energy Gun
  */
-/obj/item/weapon/gun/energy/gun/mounted
+/obj/item/gun/energy/gun/mounted
 	name = "mounted energy gun"
 	self_recharge = 1
 	use_external_power = 1
@@ -146,7 +146,7 @@
 /*
  * Nuclear Energy Gun
  */
-/obj/item/weapon/gun/energy/gun/nuclear
+/obj/item/gun/energy/gun/nuclear
 	name = "advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor, based on a Lawson Arms platform."
 	icon_state = "nucgunstun"
@@ -156,7 +156,7 @@
 	force = 8 //looks heavier than a pistol
 	w_class = ITEMSIZE_LARGE	//Looks bigger than a pistol, too.
 	fire_delay = 6	//This one's not a handgun, it should have the same fire delay as everything else
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 	modifystate = null
 

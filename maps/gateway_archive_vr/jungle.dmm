@@ -734,8 +734,8 @@
 /area/jungle)
 "cJ" = (
 /obj/structure/closet/crate/secure/gear,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/minihoe,
+/obj/item/extinguisher,
+/obj/item/minihoe,
 /turf/unsimulated/jungle/clear,
 /area/jungle)
 "cK" = (
@@ -753,7 +753,7 @@
 /turf/unsimulated/floor,
 /area/jungle)
 "cO" = (
-/obj/item/weapon/storage/firstaid,
+/obj/item/storage/firstaid,
 /turf/unsimulated/floor,
 /area/jungle)
 "cP" = (
@@ -772,7 +772,7 @@
 /turf/unsimulated/jungle/clear,
 /area/jungle)
 "cT" = (
-/obj/item/weapon/firstaid_arm_assembly,
+/obj/item/firstaid_arm_assembly,
 /turf/unsimulated/jungle/clear,
 /area/jungle)
 "cU" = (
@@ -807,7 +807,7 @@
 /area/jungle)
 "cZ" = (
 /obj/structure/rack,
-/obj/item/weapon/storage/pill_bottle/antitox,
+/obj/item/storage/pill_bottle/antitox,
 /turf/unsimulated/floor,
 /area/jungle)
 "da" = (
@@ -838,7 +838,7 @@
 /area/jungle)
 "df" = (
 /obj/structure/rack,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/unsimulated/floor,
 /area/jungle)
 "dg" = (
@@ -865,7 +865,7 @@
 /area/jungle)
 "dk" = (
 /obj/structure/closet/crate/secure/gear,
-/obj/item/weapon/hatchet,
+/obj/item/hatchet,
 /turf/unsimulated/jungle/clear,
 /area/jungle)
 "dl" = (
@@ -884,7 +884,7 @@
 /turf/unsimulated/jungle/clear,
 /area/jungle/crash_ship_one)
 "dp" = (
-/obj/item/weapon/secbot_assembly,
+/obj/item/secbot_assembly,
 /turf/unsimulated/jungle/clear,
 /area/jungle)
 "dq" = (
@@ -892,7 +892,7 @@
 /turf/unsimulated/jungle/clear,
 /area/jungle)
 "dr" = (
-/obj/item/weapon/rack_parts,
+/obj/item/rack_parts,
 /turf/unsimulated/floor,
 /area/jungle)
 "ds" = (
@@ -917,7 +917,7 @@
 /turf/unsimulated/jungle/path,
 /area/jungle/crash_ship_source)
 "dx" = (
-/obj/item/weapon/shard,
+/obj/item/shard,
 /turf/unsimulated/jungle/path,
 /area/jungle/crash_ship_source)
 "dy" = (
@@ -925,7 +925,7 @@
 /turf/unsimulated/jungle/path,
 /area/jungle/crash_ship_source)
 "dz" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "small"
 	},
 /turf/unsimulated/jungle/path,
@@ -986,11 +986,11 @@
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dJ" = (
-/obj/item/weapon/hatchet,
+/obj/item/hatchet,
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dK" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "small"
 	},
 /turf/unsimulated/floor,
@@ -1000,13 +1000,13 @@
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dM" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "medium"
 	},
 /turf/unsimulated/jungle/path,
 /area/jungle/crash_ship_source)
 "dN" = (
-/obj/item/weapon/cell,
+/obj/item/cell,
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dO" = (
@@ -1018,7 +1018,7 @@
 /area/jungle/crash_ship_source)
 "dP" = (
 /obj/structure/rack,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dQ" = (
@@ -1027,7 +1027,7 @@
 /area/jungle/crash_ship_source)
 "dR" = (
 /obj/structure/rack,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dS" = (
@@ -1038,7 +1038,7 @@
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dT" = (
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /turf/unsimulated/jungle/path,
 /area/jungle/crash_ship_source)
 "dU" = (
@@ -1051,7 +1051,7 @@
 /area/jungle/crash_ship_source)
 "dV" = (
 /obj/structure/rack,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/unsimulated/floor,
 /area/jungle/crash_ship_source)
 "dW" = (

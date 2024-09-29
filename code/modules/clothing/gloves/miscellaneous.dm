@@ -202,7 +202,7 @@
 	description_fluff = "Hold ALT whilst left-clicking on the survival watch to toggle the status of its micro-beacon."
 	icon_state = "wristwatch_survival"
 
-	var/obj/item/device/gps/gps = null
+	var/obj/item/gps/gps = null
 
 /obj/item/clothing/gloves/watch/survival/examine(mob/user)
 	. = ..()
@@ -223,9 +223,9 @@
 			. += "<span class='notice'>Pressure: [env.return_pressure()]kPa / Temperature: [env.temperature]K </span>"
 
 /obj/item/clothing/gloves/watch/survival/New()
-	gps = new/obj/item/device/gps/watch(src)
+	gps = new/obj/item/gps/watch(src)
 
-/obj/item/device/gps/watch
+/obj/item/gps/watch
 	gps_tag = "SRV-WTCH"
 
 /obj/item/clothing/gloves/watch/survival/AltClick(mob/user)

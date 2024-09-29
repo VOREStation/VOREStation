@@ -5,16 +5,16 @@
     on_created_text = "<span class='warning'>You feel physically unstable.</span>"
     on_expired_text = "<span class='notice'>You feel physically stable again.</span>"
     var/mutable_appearance/marked_underlay
-    var/obj/item/weapon/kinetic_crusher/hammer_synced
+    var/obj/item/kinetic_crusher/hammer_synced
 
 /datum/modifier/crusher_mark/New(var/new_holder, var/new_origin)
     . = ..()
     if(isliving(new_origin))
         var/mob/living/origin = new_origin
-        var/obj/item/weapon/kinetic_crusher/to_sync
-        if(istype(origin.get_active_hand(), /obj/item/weapon/kinetic_crusher))
+        var/obj/item/kinetic_crusher/to_sync
+        if(istype(origin.get_active_hand(), /obj/item/kinetic_crusher))
             to_sync = origin.get_active_hand()
-        else if (istype(origin.get_inactive_hand(), /obj/item/weapon/kinetic_crusher))
+        else if (istype(origin.get_inactive_hand(), /obj/item/kinetic_crusher))
             to_sync = origin.get_inactive_hand()
         if(to_sync) // did we find it?
             hammer_synced = to_sync // go ahead

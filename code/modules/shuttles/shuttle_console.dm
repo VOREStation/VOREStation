@@ -157,17 +157,17 @@
 	return
 
 
-GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
+GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
 /hook/roundstart/proc/populate_dockingcodes()
-	for(var/obj/item/weapon/paper/dockingcodes/dcp as anything in global.papers_dockingcode)
+	for(var/obj/item/paper/dockingcodes/dcp as anything in global.papers_dockingcode)
 		dcp.populate_info()
 	return TRUE
 
-/obj/item/weapon/paper/dockingcodes
+/obj/item/paper/dockingcodes
 	name = "Docking Codes"
 	var/codes_from_z = null //So you can put codes from the station other places to give to antags or whatever
 
-/obj/item/weapon/paper/dockingcodes/proc/populate_info()
+/obj/item/paper/dockingcodes/proc/populate_info()
 	var/dockingcodes = null
 	var/turf/T = get_turf(src)
 	var/our_z

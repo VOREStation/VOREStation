@@ -1,5 +1,5 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "itglight.dmm"
 #endif
 
@@ -136,7 +136,7 @@
 	department = "ITG Dauntless"
 	desc = "The ship's fax machine! It's a safe assumption that most of the departments listed aren't on your ship, since the ship only has one."
 
-/obj/item/weapon/paper/Dauntless
+/obj/item/paper/Dauntless
 	name = "Notes about Dauntless"
 	info = {"<font size=1>Welcome to the Ironcrest Transport Group</font><br><br>
 	<h4>ITG Dauntless</h4>

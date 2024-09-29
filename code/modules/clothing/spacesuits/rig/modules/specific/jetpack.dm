@@ -18,7 +18,7 @@
 	interface_name = "maneuvering jets"
 	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
 
-	var/obj/item/weapon/tank/jetpack/rig/jets
+	var/obj/item/tank/jetpack/rig/jets
 
 /obj/item/rig_module/maneuvering_jets/engage()
 	if(!..())

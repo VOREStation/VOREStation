@@ -43,7 +43,7 @@
 	},
 /area/skipjack_station)
 "ai" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
@@ -75,7 +75,7 @@
 /area/skipjack_station)
 "an" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/glasses/square{
+/obj/item/storage/box/glasses/square{
 	pixel_x = 1;
 	pixel_y = 4
 	},
@@ -84,11 +84,11 @@
 	},
 /area/skipjack_station)
 "ao" = (
-/obj/item/weapon/tray{
+/obj/item/tray{
 	pixel_y = 5
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -116,7 +116,7 @@
 	},
 /area/skipjack_station)
 "as" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/unsimulated/floor{
 	icon_state = "white"
@@ -133,7 +133,7 @@
 	},
 /area/skipjack_station)
 "au" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
@@ -143,7 +143,7 @@
 /obj/structure/urinal{
 	pixel_y = 32
 	},
-/obj/item/weapon/soap/syndie,
+/obj/item/soap/syndie,
 /turf/unsimulated/floor{
 	icon_state = "freezerfloor";
 	dir = 2
@@ -175,7 +175,7 @@
 	},
 /area/skipjack_station)
 "az" = (
-/obj/item/weapon/gun/energy/sonic,
+/obj/item/gun/energy/sonic,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
@@ -227,7 +227,7 @@
 	},
 /area/skipjack_station)
 "aD" = (
-/obj/item/weapon/gun/launcher/spikethrower,
+/obj/item/gun/launcher/spikethrower,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
@@ -300,8 +300,8 @@
 /area/skipjack_station)
 "aM" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/darkmatter,
-/obj/item/weapon/gun/energy/darkmatter,
+/obj/item/gun/energy/darkmatter,
+/obj/item/gun/energy/darkmatter,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
@@ -309,7 +309,7 @@
 /area/skipjack_station)
 "aN" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/orange,
+/obj/item/bedsheet/orange,
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/wood.dmi';
 	icon_state = "wood_broken1"
@@ -323,14 +323,14 @@
 /area/skipjack_station)
 "aP" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
 /area/skipjack_station)
 "aQ" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/green,
+/obj/item/bedsheet/green,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -386,14 +386,14 @@
 	},
 /area/skipjack_station)
 "aW" = (
-/obj/item/weapon/gun/energy/plasmastun,
+/obj/item/gun/energy/plasmastun,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
 	},
 /area/skipjack_station)
 "aX" = (
-/obj/item/weapon/gun/launcher/crossbow,
+/obj/item/gun/launcher/crossbow,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
@@ -518,7 +518,7 @@
 	},
 /area/skipjack_station)
 "bn" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /turf/unsimulated/floor{
 	name = "plating";
 	icon_state = "asteroid_dug"
@@ -573,34 +573,34 @@
 /area/skipjack_station)
 "bt" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/launcher/spikethrower,
+/obj/item/gun/launcher/spikethrower,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
 /area/skipjack_station)
 "bu" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
 /area/skipjack_station)
 "bv" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/orange,
+/obj/item/bedsheet/orange,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
 /area/skipjack_station)
 "bw" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hop,
+/obj/item/bedsheet/hop,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
 /area/skipjack_station)
 "bx" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
@@ -628,7 +628,7 @@
 	},
 /area/skipjack_station)
 "bB" = (
-/obj/item/weapon/storage/box,
+/obj/item/storage/box,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
@@ -674,7 +674,7 @@
 /area/skipjack_station)
 "bH" = (
 /obj/structure/table/rack,
-/obj/item/weapon/tank/vox,
+/obj/item/tank/vox,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
@@ -693,7 +693,7 @@
 	},
 /area/skipjack_station)
 "bK" = (
-/obj/item/weapon/tank/vox,
+/obj/item/tank/vox,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
@@ -709,7 +709,7 @@
 /area/skipjack_station)
 "bM" = (
 /obj/structure/table/steel,
-/obj/item/device/pda/syndicate,
+/obj/item/pda/syndicate,
 /turf/unsimulated/floor{
 	name = "plating";
 	icon_state = "cult"
@@ -726,7 +726,7 @@
 /area/skipjack_station)
 "bO" = (
 /obj/machinery/portable_atmospherics/canister/phoron,
-/obj/item/weapon/tank/vox,
+/obj/item/tank/vox,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
@@ -739,20 +739,20 @@
 /area/skipjack_station)
 "bQ" = (
 /obj/structure/table/steel,
-/obj/item/device/radio/uplink,
+/obj/item/radio/uplink,
 /turf/unsimulated/floor{
 	name = "plating";
 	icon_state = "cult"
 	},
 /area/skipjack_station)
 "bR" = (
-/obj/item/weapon/gun/launcher/pneumatic,
+/obj/item/gun/launcher/pneumatic,
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
 	},
 /area/skipjack_station)
 "bS" = (
-/obj/item/weapon/storage/box/syndie_kit/spy,
+/obj/item/storage/box/syndie_kit/spy,
 /turf/unsimulated/floor{
 	name = "plating";
 	icon_state = "cult"
@@ -1071,9 +1071,9 @@
 /area/shuttle/skipjack)
 "cB" = (
 /obj/structure/table/rack,
-/obj/item/weapon/material/harpoon,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
+/obj/item/material/harpoon,
+/obj/item/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /obj/random/rigsuit,
@@ -1089,8 +1089,8 @@
 /area/shuttle/skipjack)
 "cD" = (
 /obj/structure/table/rack,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/random/multiple/voidsuit,
 /obj/random/multiple/voidsuit,
 /obj/random/energy,
@@ -1126,8 +1126,8 @@
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/ambrosiavulgarisseed,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/beartrap,
+/obj/item/material/minihoe,
+/obj/item/beartrap,
 /obj/structure/table/steel,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
@@ -1137,20 +1137,20 @@
 /area/shuttle/skipjack)
 "cK" = (
 /obj/structure/table/rack,
-/obj/item/weapon/melee/energy/sword/pirate,
+/obj/item/melee/energy/sword/pirate,
 /obj/item/clothing/suit/space/pirate,
 /obj/item/clothing/suit/space/pirate,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/pinpointer/shuttle/heist,
-/obj/item/weapon/pinpointer/shuttle/heist,
+/obj/item/tank/oxygen,
+/obj/item/pinpointer/shuttle/heist,
+/obj/item/pinpointer/shuttle/heist,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/skipjack)
 "cL" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/device/multitool,
-/obj/item/device/multitool,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/multitool,
+/obj/item/multitool,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
@@ -1160,8 +1160,8 @@
 /area/shuttle/skipjack)
 "cN" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/fancy/cigarettes,
-/obj/item/weapon/flame/lighter/zippo,
+/obj/item/storage/fancy/cigarettes,
+/obj/item/flame/lighter/zippo,
 /obj/item/clothing/gloves/yellow,
 /obj/item/stack/material/steel{
 	amount = 50
@@ -1169,7 +1169,7 @@
 /obj/item/stack/material/glass{
 	amount = 50
 	},
-/obj/item/weapon/card/emag,
+/obj/item/card/emag,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "cO" = (
@@ -1287,31 +1287,31 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "da" = (
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "db" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/launcher/crossbow,
+/obj/item/gun/launcher/crossbow,
 /obj/item/stack/rods{
 	amount = 10
 	},
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/weapon/beartrap,
-/obj/item/weapon/beartrap,
-/obj/item/weapon/beartrap,
-/obj/item/weapon/beartrap,
-/obj/item/weapon/beartrap,
-/obj/item/weapon/beartrap,
+/obj/item/beartrap,
+/obj/item/beartrap,
+/obj/item/beartrap,
+/obj/item/beartrap,
+/obj/item/beartrap,
+/obj/item/beartrap,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/skipjack)
 "dc" = (
 /obj/structure/table/rack,
-/obj/item/weapon/grenade/empgrenade,
-/obj/item/weapon/grenade/flashbang,
-/obj/item/weapon/grenade/spawnergrenade/manhacks,
+/obj/item/grenade/empgrenade,
+/obj/item/grenade/flashbang,
+/obj/item/grenade/spawnergrenade/manhacks,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/skipjack)
 "dd" = (
@@ -1398,14 +1398,14 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "do" = (
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/mop,
+/obj/item/tool/wrench,
+/obj/item/mop,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "dp" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
-/obj/item/weapon/tool/crowbar,
-/obj/item/device/suit_cooling_unit,
+/obj/item/tool/crowbar,
+/obj/item/suit_cooling_unit,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "dq" = (
@@ -1456,7 +1456,7 @@
 /area/shuttle/skipjack)
 "dw" = (
 /obj/structure/table/steel,
-/obj/item/weapon/deck/cards,
+/obj/item/deck/cards,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/skipjack)
 "dx" = (
@@ -1489,7 +1489,7 @@
 /area/shuttle/skipjack)
 "dC" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/item/weapon/tank/nitrogen,
+/obj/item/tank/nitrogen,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "dD" = (
@@ -1543,12 +1543,12 @@
 /area/shuttle/skipjack)
 "dJ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/handcuffs/legcuffs,
+/obj/item/handcuffs/legcuffs,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/skipjack)
 "dK" = (
 /obj/structure/table/standard,
-/obj/item/weapon/deck/cards,
+/obj/item/deck/cards,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/skipjack)
 "dL" = (
@@ -1572,11 +1572,11 @@
 /area/shuttle/skipjack)
 "dN" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/circular_saw{
+/obj/item/surgical/circular_saw{
 	pixel_y = 8
 	},
-/obj/item/weapon/surgical/hemostat,
-/obj/item/weapon/surgical/scalpel,
+/obj/item/surgical/hemostat,
+/obj/item/surgical/scalpel,
 /obj/item/stack/medical/advanced/bruise_pack,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
@@ -1596,11 +1596,11 @@
 /area/shuttle/skipjack)
 "dR" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/cautery,
-/obj/item/weapon/surgical/retractor,
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-/obj/item/weapon/reagent_containers/syringe,
+/obj/item/surgical/cautery,
+/obj/item/surgical/retractor,
+/obj/item/reagent_containers/glass/bottle/stoxin,
+/obj/item/reagent_containers/glass/bottle/stoxin,
+/obj/item/reagent_containers/syringe,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
 "dS" = (
@@ -1613,7 +1613,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/skipjack)
 "dT" = (
-/obj/item/weapon/bedsheet/rainbow,
+/obj/item/bedsheet/rainbow,
 /obj/structure/bed/padded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
@@ -1621,15 +1621,15 @@
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
 "dV" = (
-/obj/item/weapon/bedsheet/hos,
+/obj/item/bedsheet/hos,
 /obj/structure/bed/padded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
 "dW" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/bonesetter,
-/obj/item/weapon/surgical/bonegel,
-/obj/item/weapon/surgical/FixOVein,
+/obj/item/surgical/bonesetter,
+/obj/item/surgical/bonegel,
+/obj/item/surgical/FixOVein,
 /obj/item/stack/nanopaste,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
@@ -1643,12 +1643,12 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/skipjack)
 "dY" = (
-/obj/item/weapon/bedsheet/orange,
+/obj/item/bedsheet/orange,
 /obj/structure/bed/padded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
 "dZ" = (
-/obj/item/weapon/bedsheet/green,
+/obj/item/bedsheet/green,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -1657,18 +1657,18 @@
 /area/shuttle/skipjack)
 "ea" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/storage/firstaid/clotting,
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/storage/firstaid/clotting,
 /obj/item/stack/medical/splint,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
 "eb" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = 1
 	},
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -1680,18 +1680,18 @@
 	pixel_y = 0;
 	req_access = list(150)
 	},
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 1
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
 "ec" = (
-/obj/item/weapon/bedsheet/rd,
+/obj/item/bedsheet/rd,
 /obj/structure/bed/padded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
@@ -1700,7 +1700,7 @@
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
 "ee" = (
-/obj/item/weapon/bedsheet/clown,
+/obj/item/bedsheet/clown,
 /obj/structure/bed/padded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)

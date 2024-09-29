@@ -578,7 +578,7 @@
 		var/mob/M = A
 		if(istype(A, /mob/living))
 			//if they have a neck grab on someone, that person gets hit instead
-			var/obj/item/weapon/grab/G = locate() in M
+			var/obj/item/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
 				if(G.affecting.stat == DEAD)
 					var/shield_chance = min(80, (30 * (M.mob_size / 10)))	//Small mobs have a harder time keeping a dead body as a shield than a human-sized one. Unathi would have an easier job, if they are made to be SIZE_LARGE in the future. -Mech
@@ -777,7 +777,7 @@
 	return fire(angle_override, direct_target)
 
 //called to launch a projectile from a gun
-/obj/item/projectile/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/weapon/gun/launcher)
+/obj/item/projectile/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/gun/launcher)
 
 	shot_from = launcher.name
 	silenced |= launcher.silenced // Silent bullets (e.g., BBs) are always silent

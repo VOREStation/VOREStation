@@ -196,18 +196,18 @@
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	..()
-	if(istype(O, /obj/item/weapon/paper))
-		var/obj/item/weapon/paper/paperaffected = O
+	if(istype(O, /obj/item/paper))
+		var/obj/item/paper/paperaffected = O
 		paperaffected.clearpaper()
 		to_chat(usr, "The solution dissolves the ink on the paper.")
 		return
-	if(istype(O, /obj/item/weapon/book))
+	if(istype(O, /obj/item/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/weapon/book/tome))
+		if(istype(O, /obj/item/book/tome))
 			to_chat(usr, "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>")
 			return
-		var/obj/item/weapon/book/affectedbook = O
+		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
 		to_chat(usr, "<span class='notice'>The solution dissolves the ink on the book.</span>")
 	return

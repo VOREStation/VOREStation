@@ -310,7 +310,7 @@
 /turf/simulated/wall/can_engrave()
 	return (material && material.hardness >= 10 && material.hardness <= 100)
 
-/turf/simulated/wall/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/turf/simulated/wall/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	if(material.integrity > 1000) // Don't decon things like elevatorium.
 		return FALSE
 	if(reinf_material && !the_rcd.can_remove_rwalls) // Gotta do it the old fashioned way if your RCD can't.
@@ -327,7 +327,7 @@
 			)
 	return FALSE
 
-/turf/simulated/wall/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/turf/simulated/wall/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	if(passed_mode == RCD_DECONSTRUCT)
 		to_chat(user, span("notice", "You deconstruct \the [src]."))
 		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)

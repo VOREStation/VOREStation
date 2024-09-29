@@ -9,9 +9,9 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer
 	name = "destructive analyzer"
 	icon_state = "d_analyzer"
-	var/obj/item/weapon/loaded_item = null
+	var/obj/item/loaded_item = null
 	var/decon_mod = 0
-	circuit = /obj/item/weapon/circuitboard/destructive_analyzer
+	circuit = /obj/item/circuitboard/destructive_analyzer
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 2500
@@ -23,7 +23,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/stock_parts/S in component_parts)
+	for(var/obj/item/stock_parts/S in component_parts)
 		T += S.rating
 	T *= 0.1
 	decon_mod = clamp(T, 0, 1)
@@ -80,8 +80,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 	return
 
 /obj/machinery/r_n_d/destructive_analyzer/MouseDrop_T(atom/dropping, mob/living/user)
-	if(istype(dropping, /obj/item/weapon/storage/part_replacer))
-		var/obj/item/weapon/storage/part_replacer/replacer = dropping
+	if(istype(dropping, /obj/item/storage/part_replacer))
+		var/obj/item/storage/part_replacer/replacer = dropping
 		replacer.hide_from(user)
 		if(!linked_console)
 			to_chat(user, "<span class='notice'>\The [src] must be linked to an R&D console first.</span>")

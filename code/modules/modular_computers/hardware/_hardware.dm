@@ -1,4 +1,4 @@
-/obj/item/weapon/computer_hardware/
+/obj/item/computer_hardware/
 	name = "Hardware"
 	desc = "Unknown Hardware."
 	icon = 'icons/obj/modular_components.dmi'
@@ -26,9 +26,9 @@
 	/// Whether attackby will be passed on it even with a closed panel
 	var/external_slot
 
-/obj/item/weapon/computer_hardware/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/computer_hardware/attackby(obj/item/W as obj, mob/living/user as mob)
 	// Multitool. Runs diagnostics
-	if(istype(W, /obj/item/device/multitool))
+	if(istype(W, /obj/item/multitool))
 		to_chat(user, "***** DIAGNOSTICS REPORT *****")
 		diagnostics(user)
 		to_chat(user, "******************************")
@@ -56,22 +56,22 @@
 
 
 /// Returns a list of lines containing diagnostic information for display.
-/obj/item/weapon/computer_hardware/proc/diagnostics(var/mob/user)
+/obj/item/computer_hardware/proc/diagnostics(var/mob/user)
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
-/obj/item/weapon/computer_hardware/New(var/obj/L)
+/obj/item/computer_hardware/New(var/obj/L)
 	..()
 	w_class = hardware_size
 	if(istype(L, /obj/item/modular_computer))
 		holder2 = L
 		return
 
-/obj/item/weapon/computer_hardware/Destroy()
+/obj/item/computer_hardware/Destroy()
 	holder2 = null
 	return ..()
 
 /// Handles damage checks
-/obj/item/weapon/computer_hardware/proc/check_functionality()
+/obj/item/computer_hardware/proc/check_functionality()
 	// Turned off
 	if(!enabled)
 		return FALSE
@@ -85,7 +85,7 @@
 	// Good to go.
 	return TRUE
 
-/obj/item/weapon/computer_hardware/examine(var/mob/user)
+/obj/item/computer_hardware/examine(var/mob/user)
 	. = ..()
 	if(damage > damage_failure)
 		. += "<span class='danger'>It seems to be severely damaged!</span>"
@@ -95,6 +95,6 @@
 		. += "It seems to be slightly damaged."
 
 /// Damages the component. Contains necessary checks. Negative damage "heals" the component.
-/obj/item/weapon/computer_hardware/take_damage(var/amount)
+/obj/item/computer_hardware/take_damage(var/amount)
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.

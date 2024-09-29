@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/altevian
+/obj/item/gun/projectile/altevian
 	name = "Altevian Rivet Repeater"
 	desc = "An offensive ballistic weapon designed by the Altevian Hegemony commonly used for decompression and structural damage tactics. It's also pretty effective at personnel damage."
 	magazine_type = /obj/item/ammo_magazine/sam48
@@ -9,7 +9,7 @@
 	caliber = ".48"
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/altevian/update_icon()
+/obj/item/gun/projectile/altevian/update_icon()
 	if(ammo_magazine)
 		icon_state = initial(icon_state)
 	else

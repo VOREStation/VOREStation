@@ -95,7 +95,7 @@
 			B.fill()
 		update_icon()
 		return
-	else if(istype(I, /obj/item/device/analyzer/plant_analyzer))
+	else if(istype(I, /obj/item/analyzer/plant_analyzer))
 		to_chat(user, "<span class='notice'>Scan result of \the [src]...</span>")
 		to_chat(user, "Beehive is [bee_count ? "[round(bee_count)]% full" : "empty"].[bee_count > 90 ? " Colony is ready to split." : ""]")
 		if(length(frames))
@@ -190,11 +190,11 @@
 			honey += processing
 			processing = 0
 			icon_state = "[initial(icon_state)]"
-	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(!honey)
 			to_chat(user, SPAN_NOTICE("There is no honey in \the [src]."))
 			return
-		var/obj/item/weapon/reagent_containers/glass/G = I
+		var/obj/item/reagent_containers/glass/G = I
 		var/transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, honey)
 		G.reagents.add_reagent("honey", transferred)
 		honey -= transferred
@@ -271,7 +271,7 @@
 	pass_stack_colors = TRUE
 
 var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/weapon/flame/candle) \
+	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
 )
 
 /obj/item/bee_pack

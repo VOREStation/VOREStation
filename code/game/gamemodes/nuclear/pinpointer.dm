@@ -1,4 +1,4 @@
-/obj/item/weapon/pinpointer
+/obj/item/pinpointer
 	name = "pinpointer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinoff"
@@ -9,15 +9,15 @@
 	throw_range = 20
 	matter = list(MAT_STEEL = 500)
 	preserve_item = 1
-	var/obj/item/weapon/disk/nuclear/the_disk = null
+	var/obj/item/disk/nuclear/the_disk = null
 	var/active = 0
 
-/obj/item/weapon/pinpointer/Destroy()
+/obj/item/pinpointer/Destroy()
 	active = 0
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/weapon/pinpointer/attack_self()
+/obj/item/pinpointer/attack_self()
 	if(!active)
 		active = 1
 		START_PROCESSING(SSobj, src)
@@ -28,7 +28,7 @@
 		icon_state = "pinoff"
 		to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
 
-/obj/item/weapon/pinpointer/process()
+/obj/item/pinpointer/process()
 	if(!active)
 		return PROCESS_KILL
 	
@@ -50,7 +50,7 @@
 		if(16 to INFINITY)
 			icon_state = "pinonfar"
 
-/obj/item/weapon/pinpointer/examine(mob/user)
+/obj/item/pinpointer/examine(mob/user)
 	. = ..()
 	for(var/obj/machinery/nuclearbomb/bomb in machines)
 		if(bomb.timing)
@@ -58,7 +58,7 @@
 
 
 
-/obj/item/weapon/pinpointer/advpinpointer
+/obj/item/pinpointer/advpinpointer
 	name = "Advanced Pinpointer"
 	icon = 'icons/obj/device.dmi'
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
@@ -66,7 +66,7 @@
 	var/turf/location = null
 	var/obj/target = null
 
-/obj/item/weapon/pinpointer/advpinpointer/process()
+/obj/item/pinpointer/advpinpointer/process()
 	if(!active)
 		return PROCESS_KILL
 	if(mode == 0)
@@ -76,7 +76,7 @@
 	if(mode == 2)
 		workobj()
 
-/obj/item/weapon/pinpointer/advpinpointer/proc/worklocation()
+/obj/item/pinpointer/advpinpointer/proc/worklocation()
 	if(!location)
 		icon_state = "pinonnull"
 		return
@@ -93,7 +93,7 @@
 		if(16 to INFINITY)
 			icon_state = "pinonfar"
 
-/obj/item/weapon/pinpointer/advpinpointer/proc/workobj()
+/obj/item/pinpointer/advpinpointer/proc/workobj()
 	if(!target)
 		icon_state = "pinonnull"
 		return
@@ -110,7 +110,7 @@
 		if(16 to INFINITY)
 			icon_state = "pinonfar"
 
-/obj/item/weapon/pinpointer/advpinpointer/verb/toggle_mode()
+/obj/item/pinpointer/advpinpointer/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Pinpointer Mode"
 	set src in view(1)
@@ -178,11 +178,11 @@
 ///////////////////////
 
 
-/obj/item/weapon/pinpointer/nukeop
+/obj/item/pinpointer/nukeop
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
 	var/obj/machinery/computer/shuttle_control/multi/syndicate/home = null
 
-/obj/item/weapon/pinpointer/nukeop/attack_self(mob/user as mob)
+/obj/item/pinpointer/nukeop/attack_self(mob/user as mob)
 	if(!active)
 		active = 1
 		START_PROCESSING(SSobj, src)
@@ -198,7 +198,7 @@
 		icon_state = "pinoff"
 		to_chat(user, "<span class='notice'>You deactivate the pinpointer.</span>")
 
-/obj/item/weapon/pinpointer/nukeop/process()
+/obj/item/pinpointer/nukeop/process()
 	if(!active)
 		return PROCESS_KILL
 
@@ -208,7 +208,7 @@
 		if(1)
 			worklocation()
 
-/obj/item/weapon/pinpointer/nukeop/proc/workdisk()
+/obj/item/pinpointer/nukeop/proc/workdisk()
 	if(bomb_set)	//If the bomb is set, lead to the shuttle
 		mode = 1	//Ensures worklocation() continues to work
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
@@ -233,7 +233,7 @@
 		if(16 to INFINITY)
 			icon_state = "pinonfar"
 
-/obj/item/weapon/pinpointer/nukeop/proc/worklocation()
+/obj/item/pinpointer/nukeop/proc/worklocation()
 	if(!bomb_set)
 		mode = 0
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -264,11 +264,11 @@
 
 
 // This one only points to the ship.  Useful if there is no nuking to occur today.
-/obj/item/weapon/pinpointer/shuttle
+/obj/item/pinpointer/shuttle
 	var/shuttle_comp_id = null
 	var/obj/machinery/computer/shuttle_control/our_shuttle = null
 
-/obj/item/weapon/pinpointer/shuttle/attack_self(mob/user as mob)
+/obj/item/pinpointer/shuttle/attack_self(mob/user as mob)
 	if(!active)
 		active = TRUE
 		START_PROCESSING(SSobj, src)
@@ -279,7 +279,7 @@
 		icon_state = "pinoff"
 		to_chat(user, "<span class='notice'>You deactivate the pinpointer.</span>")
 
-/obj/item/weapon/pinpointer/shuttle/process()
+/obj/item/pinpointer/shuttle/process()
 	if(!active)
 		return PROCESS_KILL
 
@@ -310,8 +310,8 @@
 				icon_state = "pinonfar"
 
 
-/obj/item/weapon/pinpointer/shuttle/merc
+/obj/item/pinpointer/shuttle/merc
 	shuttle_comp_id = "Mercenary"
 
-/obj/item/weapon/pinpointer/shuttle/heist
+/obj/item/pinpointer/shuttle/heist
 	shuttle_comp_id = "Skipjack"

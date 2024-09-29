@@ -1,5 +1,5 @@
 // -------------- Protector -------------
-/obj/item/weapon/gun/energy/gun/protector
+/obj/item/gun/energy/gun/protector
 	name = "secure small energy gun"
 	desc = "The LAEP95 'Protector' is another firearm from Lawson Arms and "+TSC_HEPH+", unlike the Perun this is designed for issue to non-security staff. It contains a detachable cell, and an alert-level-locked lethal mode, only usable on code blue and higher. It also features an integrated flashlight!"
 
@@ -41,26 +41,26 @@
 
 	var/emagged = FALSE
 
-/obj/item/weapon/gun/energy/gun/protector/special_check(mob/user)
+/obj/item/gun/energy/gun/protector/special_check(mob/user)
 	if(!emagged && mode_name == "lethal" && get_security_level() == "green")
 		to_chat(user,"<span class='warning'>The trigger refuses to depress while on the lethal setting under security level green!</span>")
 		return FALSE
 
 	return ..()
 
-/obj/item/weapon/gun/energy/gun/protector/ui_action_click(mob/user, actiontype)
+/obj/item/gun/energy/gun/protector/ui_action_click(mob/user, actiontype)
 	gun_light_on = !gun_light_on
 	playsound(src, 'sound/weapons/empty.ogg', 40, TRUE)
 	update_brightness(user)
 	update_icon()
 
-/obj/item/weapon/gun/energy/gun/protector/proc/update_brightness(mob/user = null)
+/obj/item/gun/energy/gun/protector/proc/update_brightness(mob/user = null)
 	if(gun_light_on)
 		set_light(brightness_on)
 	else
 		set_light(0)
 
-/obj/item/weapon/gun/energy/gun/protector/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/gun/energy/gun/protector/emag_act(var/remaining_charges,var/mob/user)
 	..()
 	if(!emagged)
 		emagged = TRUE
@@ -69,7 +69,7 @@
 	return TRUE
 
 //Update icons from /tg/, so fancy! Use this more!
-/obj/item/weapon/gun/energy/gun/protector/update_icon()
+/obj/item/gun/energy/gun/protector/update_icon()
 	cut_overlays()
 	var/ratio = 0
 
@@ -114,13 +114,13 @@
 		item_state = itemState
 	*/
 
-/obj/item/weapon/gun/energy/gun/protector/unlocked
+/obj/item/gun/energy/gun/protector/unlocked
 	emagged = TRUE
 	name = "small energy gun"
 	desc = "The LAEP95 'Protector' is another firearm from Lawson Arms and "+TSC_HEPH+", unlike the Perun this is designed for issue to non-security staff. It contains a detachable cell. It also features an integrated flashlight!"
 
 
-/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked
+/obj/item/gun/energy/gun/protector/pilotgun/locked
 	name = "secure shuttle-protection pistol"
 	desc = "The LAEP97 'Defender' is a variant of another firearm from Lawson Arms and "+TSC_HEPH+", designed to be issued to pilots for defence of their craft from trespassers whilst in-flight. It contains a detachable cell, two modes of fire and a safety interlock to minimize workplace accidents. It also features an integrated flashlight!"
 
@@ -136,8 +136,8 @@
 	var/locked = 1
 	var/lockable = 1
 
-/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked/attackby(obj/item/I, mob/user)
-	var/obj/item/weapon/card/id/id = I.GetID()
+/obj/item/gun/energy/gun/protector/pilotgun/locked/attackby(obj/item/I, mob/user)
+	var/obj/item/card/id/id = I.GetID()
 	if(istype(id) && lockable)
 		if(check_access(id))
 			locked = !locked
@@ -148,10 +148,10 @@
 	else
 		return ..()
 
-/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/gun/energy/gun/protector/pilotgun/locked/emag_act(var/remaining_charges,var/mob/user)
 	return ..()
 
-/obj/item/weapon/gun/energy/gun/protector/pilotgun/locked/special_check(mob/user)
+/obj/item/gun/energy/gun/protector/pilotgun/locked/special_check(mob/user)
 	if(locked)
 		var/turf/T = get_turf(src)
 		if(T.z in using_map.station_levels)

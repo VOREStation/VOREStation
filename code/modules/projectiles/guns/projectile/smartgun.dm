@@ -1,7 +1,7 @@
 /**
  * The gun itself
  */
-/obj/item/weapon/gun/projectile/smartgun
+/obj/item/gun/projectile/smartgun
 	name = "\improper OP-15 'S.M.A.R.T.' Rifle"
 	desc = "Suppressive Manual Action Reciprocating Taser rifle. A modified version of an Armadyne heavy machine gun fitted to fire miniature shock-bolts."
 	description_info = "Alt-click to toggle the rifle's ready state. The rifle can't be unloaded when ready, and requires a few seconds to get ready before firing."
@@ -30,38 +30,38 @@
 
 	var/static/mutable_appearance/mag_underlay
 
-/obj/item/weapon/gun/projectile/smartgun/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer, icon/clip_mask)
+/obj/item/gun/projectile/smartgun/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer, icon/clip_mask)
 	var/image/I = ..()
 	if(I)
 		I.pixel_x = -16
 	return I
 
-/obj/item/weapon/gun/projectile/smartgun/loaded
+/obj/item/gun/projectile/smartgun/loaded
 	magazine_type = /obj/item/ammo_magazine/smartgun
 
-/obj/item/weapon/gun/projectile/smartgun/Initialize()
+/obj/item/gun/projectile/smartgun/Initialize()
 	. = ..()
 	if(!mag_underlay)
 		mag_underlay = mutable_appearance(icon, icon_state = "smartgun_mag")
 
-/obj/item/weapon/gun/projectile/smartgun/consume_next_projectile()
+/obj/item/gun/projectile/smartgun/consume_next_projectile()
 	if(!closed)
 		return null
 	return ..()
 
-/obj/item/weapon/gun/projectile/smartgun/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/smartgun/load_ammo(var/obj/item/A, mob/user)
 	if(closed)
 		to_chat(user, "<span class='warning'>[src] can't be loaded until you un-ready it. (Alt-click)</span>")
 		return
 	return ..()
 
-/obj/item/weapon/gun/projectile/smartgun/unload_ammo(mob/user, var/allow_dump=0)
+/obj/item/gun/projectile/smartgun/unload_ammo(mob/user, var/allow_dump=0)
 	if(closed)
 		to_chat(user, "<span class='warning'>[src] can't be unloaded until you un-ready it. (Alt-click)</span>")
 		return
 	return ..()
 
-/obj/item/weapon/gun/projectile/smartgun/AltClick(mob/user)
+/obj/item/gun/projectile/smartgun/AltClick(mob/user)
 	if(ishuman(user) && !user.incapacitated() && Adjacent(user))
 		if(cycling)
 			to_chat(user, "<span class='warning'>[src] is still cycling!</span>")
@@ -79,11 +79,11 @@
 			to_chat(user, "<span class='notice'>You ready [src] so that it can be fired.</span>")
 		addtimer(CALLBACK(src, PROC_REF(toggle_real_state)), 2 SECONDS, TIMER_UNIQUE)
 
-/obj/item/weapon/gun/projectile/smartgun/proc/toggle_real_state()
+/obj/item/gun/projectile/smartgun/proc/toggle_real_state()
 	cycling = FALSE
 	closed = !closed
 
-/obj/item/weapon/gun/projectile/smartgun/update_icon()
+/obj/item/gun/projectile/smartgun/update_icon()
 	. = ..()
 	underlays = null
 	if(ammo_magazine)

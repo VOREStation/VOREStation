@@ -257,7 +257,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 1
 	produces_heat = 0
-	circuit = /obj/item/weapon/circuitboard/telecomms/receiver
+	circuit = /obj/item/circuitboard/telecomms/receiver
 	//Vars only used if you're using the overmap
 	var/overmap_range = 0
 	var/overmap_range_min = 0
@@ -269,7 +269,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/device/radio/R)
+/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
@@ -296,7 +296,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/receiver/proc/check_receive_level(datum/signal/signal)
 	// If it's a direct message from a bluespace radio, we eat it and convert it into a subspace signal locally
 	if(signal.transmission_method == TRANSMISSION_BLUESPACE)
-		var/obj/item/device/radio/R = signal.data["radio"]
+		var/obj/item/radio/R = signal.data["radio"]
 
 		//Who're you?
 		if(!(WEAKREF(R) in linked_radios_weakrefs))
@@ -344,7 +344,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 1600
 	machinetype = 7
-	circuit = /obj/item/weapon/circuitboard/telecomms/hub
+	circuit = /obj/item/circuitboard/telecomms/hub
 	long_range_link = 1
 	netspeed = 40
 
@@ -382,7 +382,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 8
 	produces_heat = 0
-	circuit = /obj/item/weapon/circuitboard/telecomms/relay
+	circuit = /obj/item/circuitboard/telecomms/relay
 	netspeed = 5
 	long_range_link = 1
 	var/broadcasting = 1
@@ -441,7 +441,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 1000
 	machinetype = 2
-	circuit = /obj/item/weapon/circuitboard/telecomms/bus
+	circuit = /obj/item/circuitboard/telecomms/bus
 	netspeed = 40
 	var/change_frequency = 0
 
@@ -498,7 +498,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 3
 	delay = 5
-	circuit = /obj/item/weapon/circuitboard/telecomms/processor
+	circuit = /obj/item/circuitboard/telecomms/processor
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
 /obj/machinery/telecomms/processor/Initialize()
@@ -539,7 +539,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 300
 	machinetype = 4
-	circuit = /obj/item/weapon/circuitboard/telecomms/server
+	circuit = /obj/item/circuitboard/telecomms/server
 	var/list/log_entries = list()
 	var/list/stored_names = list()
 	var/list/TrafficActions = list()
@@ -554,7 +554,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/encryption = "null" // encryption key: ie "password"
 	var/salt = "null"		// encryption salt: ie "123comsat"
 							// would add up to md5("password123comsat")
-	var/obj/item/device/radio/headset/server_radio = null
+	var/obj/item/radio/headset/server_radio = null
 
 /obj/machinery/telecomms/server/New()
 	..()

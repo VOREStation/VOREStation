@@ -1,7 +1,7 @@
 // This causes PoI maps to get 'checked' and compiled, when undergoing a unit test.
 // This is so CI can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 // When adding a new PoI, please add it to this list.
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "farm1.dmm"
 #include "construction1.dmm"
 #include "camp1.dmm"
@@ -338,7 +338,7 @@
 	name = "Syndi Sniper"
 	desc = "Syndicate watch tower, deadly but secluded"
 	mappath = 'maps/submaps/surface_submaps/plains/syndisniper.dmm'
-	
+
 	cost = 5
 
 /datum/map_template/surface/plains/drgnplateu

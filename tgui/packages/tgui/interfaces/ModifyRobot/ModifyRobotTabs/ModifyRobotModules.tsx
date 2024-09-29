@@ -31,7 +31,7 @@ export const ModifyRobotModules = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Flex height={!target.active ? '80%' : '85%'}>
+      <Flex height={!target.active ? '75%' : '80%'}>
         <Flex.Item width="40%" fill>
           <Section title="Source Module" scrollable fill>
             <Box>Robot to salvage</Box>

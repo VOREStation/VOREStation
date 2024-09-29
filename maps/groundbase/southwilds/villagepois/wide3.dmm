@@ -104,7 +104,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "r" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain/open/bed{
 	color = "#4287f5"
 	},
@@ -237,7 +237,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide3)
 "N" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/random/plushie,
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"

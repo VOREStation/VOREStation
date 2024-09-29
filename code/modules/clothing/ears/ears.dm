@@ -4,6 +4,7 @@
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
+	icon = 'icons/obj/items.dmi'
 	icon_state = "earmuffs"
 	item_state_slots = list(slot_r_hand_str = "earmuffs", slot_l_hand_str = "earmuffs")
 	slot_flags = SLOT_EARS | SLOT_TWOEARS

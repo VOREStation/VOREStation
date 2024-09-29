@@ -18,7 +18,7 @@
 	dir = NORTH
 	w_class = ITEMSIZE_NORMAL
 
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/airlock_electronics/electronics = null
 	var/created_name = null
 
 	//Vars to help with the icon's name
@@ -76,19 +76,19 @@
 	update_state()
 
 /obj/structure/windoor_assembly/attack_robot(mob/living/silicon/robot/user)
-	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/weapon/robot_module/robot/engineering)) \
-	|| istype(user.module,/obj/item/weapon/robot_module/drone))) //Only drone (and engiborg) needs this.
+	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/robot_module/robot/engineering)) \
+	|| istype(user.module,/obj/item/robot_module/drone))) //Only drone (and engiborg) needs this.
 		rename_door(user)
 
 /obj/structure/windoor_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/pen))
 		rename_door(user)
 		return
 
 	switch(state)
 		if("01")
 			if(W.has_tool_quality(TOOL_WELDER) && !anchored)
-				var/obj/item/weapon/weldingtool/WT = W.get_welder()
+				var/obj/item/weldingtool/WT = W.get_welder()
 				if (WT.remove_fuel(0,user))
 					user.visible_message("[user] disassembles the windoor assembly.", "You start to disassemble the windoor assembly.")
 					playsound(src, WT.usesound, 50, 1)
@@ -156,7 +156,7 @@
 					step = 0
 
 			//Adding airlock electronics for access. Step 6 complete.
-			else if(istype(W, /obj/item/weapon/airlock_electronics))
+			else if(istype(W, /obj/item/airlock_electronics))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
@@ -180,7 +180,7 @@
 					if(!src || !src.electronics) return
 					to_chat(user,"<span class='notice'>You've removed the airlock electronics!</span>")
 					step = 1
-					var/obj/item/weapon/airlock_electronics/ae = electronics
+					var/obj/item/airlock_electronics/ae = electronics
 					electronics = null
 					ae.loc = src.loc
 
@@ -189,7 +189,7 @@
 				if(!src.electronics)
 					to_chat(usr,"<span class='warning'>The assembly is missing electronics.</span>")
 					return
-				if(src.electronics && istype(src.electronics, /obj/item/weapon/circuitboard/broken))
+				if(src.electronics && istype(src.electronics, /obj/item/circuitboard/broken))
 					to_chat(usr,"<span class='warning'>The assembly has broken airlock electronics.</span>")
 					return
 				usr << browse(null, "window=windoor_access") //Not sure what this actually does... -Ner

@@ -120,7 +120,7 @@
 /turf/simulated/floor,
 /area/awaymission/example)
 "ar" = (
-/obj/item/weapon/cigbutt,
+/obj/item/cigbutt,
 /turf/simulated/floor,
 /area/awaymission/example)
 "as" = (
@@ -190,7 +190,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/paper/pamphlet,
+/obj/item/paper/pamphlet,
 /turf/simulated/floor,
 /area/awaymission/example)
 "aC" = (
@@ -206,12 +206,12 @@
 /area/awaymission/example)
 "aE" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor,
 /area/awaymission/example)
 "aF" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /turf/simulated/floor,
 /area/awaymission/example)
 "aG" = (
@@ -228,7 +228,7 @@
 "aI" = (
 /obj/structure/table/standard,
 /obj/effect/spawner/lootdrop{
-	loot = "/obj/item/weapon/tool/wrench;/obj/item/weapon/tool/screwdriver;/obj/item/weapon/cigpacket/dromedaryco";
+	loot = "/obj/item/tool/wrench;/obj/item/tool/screwdriver;/obj/item/cigpacket/dromedaryco";
 	lootcount = 2
 	},
 /turf/simulated/floor,
@@ -368,7 +368,7 @@
 /area/awaymission/example)
 "bb" = (
 /obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
@@ -387,22 +387,22 @@
 /area/awaymission/example)
 "be" = (
 /obj/structure/table/standard,
-/obj/item/device/mass_spectrometer/adv,
+/obj/item/mass_spectrometer/adv,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
 /area/awaymission/example)
 "bf" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
 /area/awaymission/example)
 "bg" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen/red,
+/obj/item/folder/white,
+/obj/item/pen/red,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
@@ -415,8 +415,8 @@
 /area/awaymission/example)
 "bi" = (
 /obj/structure/table/standard,
-/obj/item/weapon/clipboard,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/clipboard,
+/obj/item/reagent_containers/syringe/antiviral,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
@@ -618,7 +618,7 @@
 /area/awaymission/example)
 "bI" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/drinks/sodawater,
+/obj/item/reagent_containers/food/drinks/sodawater,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -628,9 +628,9 @@
 	density = 0;
 	pixel_y = 32
 	},
-/obj/item/weapon/book/manual/barman_recipes,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/book/manual/ripley_build_and_repair,
+/obj/item/book/manual/barman_recipes,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/ripley_build_and_repair,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -664,15 +664,15 @@
 	density = 0;
 	pixel_y = 32
 	},
-/obj/item/weapon/book/manual/security_space_law,
-/obj/item/weapon/book/manual/security_space_law,
+/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/security_space_law,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
 /area/awaymission/example)
 "bO" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -693,7 +693,7 @@
 "bR" = (
 /obj/structure/table/standard,
 /obj/machinery/light/small,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "X X O<br>X O X<br>O X"
 	},
 /turf/simulated/floor{
@@ -714,7 +714,7 @@
 /area/awaymission/example)
 "bU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/validsalad,
+/obj/item/reagent_containers/food/snacks/validsalad,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -729,28 +729,28 @@
 /area/awaymission/example)
 "bX" = (
 /obj/structure/table/standard,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/simulated/floor,
 /area/awaymission/example)
 "bY" = (
 /obj/structure/table/standard,
-/obj/item/weapon/rack_parts,
+/obj/item/rack_parts,
 /turf/simulated/floor,
 /area/awaymission/example)
 "bZ" = (
 /obj/structure/table/standard,
-/obj/item/device/toner,
+/obj/item/toner,
 /turf/simulated/floor,
 /area/awaymission/example)
 "ca" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/wirecutters,
+/obj/item/tool/wirecutters,
 /obj/item/stack/cable_coil/yellow,
 /turf/simulated/floor,
 /area/awaymission/example)
 "cb" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor,
 /area/awaymission/example)
 "cc" = (
@@ -765,7 +765,7 @@
 /area/awaymission/example)
 "ce" = (
 /obj/structure/filingcabinet,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Todo: write up a lawsuit for Ted, fuck what the pamphlets say, nothing good is gonna come out of that gate. Ted'll thank me later, I'll bet.";
 	name = "documents"
 	},
@@ -773,8 +773,8 @@
 /area/awaymission/example)
 "cf" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blue,
+/obj/item/paper_bin,
+/obj/item/pen/blue,
 /turf/simulated/floor,
 /area/awaymission/example)
 "cg" = (
@@ -783,8 +783,8 @@
 /area/awaymission/example)
 "ch" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/hand_labeler,
+/obj/item/tool/screwdriver,
+/obj/item/hand_labeler,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -799,7 +799,7 @@
 /area/awaymission/example)
 "cj" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper/pamphlet,
+/obj/item/paper/pamphlet,
 /turf/simulated/floor,
 /area/awaymission/example)
 "ck" = (
@@ -813,7 +813,7 @@
 	},
 /area/awaymission/example)
 "cm" = (
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Hey Ted, remind me to take Angeline out some time before I ship out. You know how bad my memory is, so don't get all high and mighty with me. READ THIS.";
 	name = "note"
 	},
@@ -827,11 +827,11 @@
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Remember, friday is David Bowie night! You guys had better fucking <i>be there!</i>";
 	name = "friday night"
 	},
-/obj/item/weapon/cigbutt,
+/obj/item/cigbutt,
 /turf/simulated/floor{
 	icon_state = "yellowcorner"
 	},
@@ -850,7 +850,7 @@
 /obj/effect/landmark{
 	name = "awaystart"
 	},
-/obj/item/device/assembly/mousetrap/armed,
+/obj/item/assembly/mousetrap/armed,
 /turf/simulated/floor,
 /area/awaymission/example)
 "cs" = (
@@ -871,7 +871,7 @@
 /obj/effect/landmark{
 	name = "awaystart"
 	},
-/obj/item/weapon/mop,
+/obj/item/mop,
 /turf/simulated/floor,
 /area/awaymission/example)
 "cv" = (
@@ -880,7 +880,7 @@
 /area/awaymission/example)
 "cw" = (
 /obj/structure/table/standard,
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
 /turf/simulated/floor,
 /area/awaymission/example)
 "cx" = (

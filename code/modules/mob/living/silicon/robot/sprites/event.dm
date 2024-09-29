@@ -28,13 +28,13 @@
 	module_type = "Lost"
 	sprite_icon = 'icons/mob/robot/lost_wide.dmi'
 
-/datum/robot_sprite/dogborg/lost/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+/datum/robot_sprite/dogborg/lost/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
 
 	..()
 
-	var/obj/item/weapon/shockpaddles/robot/SP = locate() in module.modules
+	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)
 		SP.name = "paws of life"
 		SP.desc = "Zappy paws. For fixing cardiac arrest."
@@ -58,7 +58,7 @@
 	var/has_laser_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/lost/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/weapon/gun/energy/retro/mounted))
+	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/retro/mounted))
 		ourborg.add_overlay("[sprite_icon_state]-laser")
 	if(has_shield_sprite)
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
@@ -113,7 +113,7 @@
 	var/has_laser_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/gravekeeper/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/weapon/gun/energy/retro/mounted))
+	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/retro/mounted))
 		ourborg.add_overlay("[sprite_icon_state]-laser")
 	if(has_shield_sprite)
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield))

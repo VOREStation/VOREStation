@@ -39,7 +39,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/template_noop)
 "cD" = (
-/obj/item/weapon/camera_assembly,
+/obj/item/camera_assembly,
 /turf/simulated/floor/tiled,
 /area/template_noop)
 "cL" = (
@@ -88,7 +88,7 @@
 	dir = 4
 	},
 /obj/item/stack/tile/floor,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 21
 	},
@@ -162,7 +162,7 @@
 /obj/structure/closet/cabinet,
 /obj/random/contraband,
 /obj/random/drinkbottle,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "ku" = (
@@ -182,7 +182,7 @@
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8
 	},
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/template_noop)
 "mk" = (
@@ -216,7 +216,7 @@
 /area/template_noop)
 "oR" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -285,14 +285,14 @@
 /area/template_noop)
 "xI" = (
 /obj/structure/bed/double,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 21
 	},
 /turf/simulated/floor/wood/broken,
 /area/template_noop)
 "zm" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "zr" = (
@@ -383,7 +383,7 @@
 "CQ" = (
 /obj/structure/table/standard,
 /obj/random/soap,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/freezer,
 /area/template_noop)
 "Di" = (
@@ -430,7 +430,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central4{
 	dir = 4
 	},
-/obj/item/weapon/stool{
+/obj/item/stool{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -483,7 +483,7 @@
 /area/template_noop)
 "MI" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -542,7 +542,7 @@
 /area/template_noop)
 "TQ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/coin/silver,
+/obj/item/coin/silver,
 /obj/item/clothing/head/soft/grey{
 	pixel_x = -2;
 	pixel_y = 3
@@ -592,17 +592,17 @@
 /area/template_noop)
 "YN" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
-/obj/item/weapon/handcuffs/fuzzy{
+/obj/item/bedsheet/browndouble,
+/obj/item/handcuffs/fuzzy{
 	pixel_x = -5
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -21
 	},
 /turf/simulated/floor/wood,
 /area/template_noop)
 "YR" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/plating,

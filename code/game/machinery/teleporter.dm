@@ -6,7 +6,7 @@
 	desc = "Used to control a linked teleportation Hub and Station."
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
-	circuit = /obj/item/weapon/circuitboard/teleporter
+	circuit = /obj/item/circuitboard/teleporter
 	dir = 4
 	var/id = null
 	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)
@@ -48,8 +48,8 @@
 	return ..()
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/card/data/))
-		var/obj/item/weapon/card/data/C = I
+	if(istype(I, /obj/item/card/data/))
+		var/obj/item/card/data/C = I
 		if(stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
 			attack_hand()
 
@@ -139,7 +139,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/teleporter_hub
+	circuit = /obj/item/circuitboard/teleporter_hub
 	var/obj/machinery/computer/teleporter/com
 
 /obj/machinery/teleport/hub/Initialize()
@@ -207,7 +207,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/teleporter_station
+	circuit = /obj/item/circuitboard/teleporter_station
 	var/obj/machinery/teleport/hub/com
 
 /obj/machinery/teleport/station/Initialize()

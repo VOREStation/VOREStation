@@ -13,12 +13,12 @@
 	set name = "Arm Blade (20)"
 
 	if(src.mind.changeling.recursive_enhancement)
-		if(changeling_generic_weapon(/obj/item/weapon/melee/changeling/arm_blade/greater))
+		if(changeling_generic_weapon(/obj/item/melee/changeling/arm_blade/greater))
 			to_chat(src, "<span class='notice'>We prepare an extra sharp blade.</span>")
 			return 1
 
 	else
-		if(changeling_generic_weapon(/obj/item/weapon/melee/changeling/arm_blade))
+		if(changeling_generic_weapon(/obj/item/melee/changeling/arm_blade))
 			return 1
 		return 0
 
@@ -38,16 +38,16 @@
 	set name = "Claw (15)"
 
 	if(src.mind.changeling.recursive_enhancement)
-		if(changeling_generic_weapon(/obj/item/weapon/melee/changeling/claw/greater, 1, 15))
+		if(changeling_generic_weapon(/obj/item/melee/changeling/claw/greater, 1, 15))
 			to_chat(src, "<span class='notice'>We prepare an extra sharp claw.</span>")
 			return 1
 
 	else
-		if(changeling_generic_weapon(/obj/item/weapon/melee/changeling/claw, 1, 15))
+		if(changeling_generic_weapon(/obj/item/melee/changeling/claw, 1, 15))
 			return 1
 		return 0
 
-/obj/item/weapon/melee/changeling
+/obj/item/melee/changeling
 	name = "arm weapon"
 	desc = "A grotesque weapon made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon = 'icons/obj/weapons.dmi'
@@ -65,7 +65,7 @@
 	defend_chance = 40	// The base chance for the weapon to parry.
 	projectile_parry_chance = 15	// The base chance for a projectile to be deflected.
 
-/obj/item/weapon/melee/changeling/New(location)
+/obj/item/melee/changeling/New(location)
 	..()
 	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
@@ -74,7 +74,7 @@
 		"<span class='italics'>You hear organic matter ripping and tearing!</span>")
 		src.creator = loc
 
-/obj/item/weapon/melee/changeling/dropped(mob/user)
+/obj/item/melee/changeling/dropped(mob/user)
 	visible_message("<span class='warning'>With a sickening crunch, [creator] reforms their arm!</span>",
 	"<span class='notice'>We assimilate the weapon back into our body.</span>",
 	"<span class='italics'>You hear organic matter ripping and tearing!</span>")
@@ -83,12 +83,12 @@
 		if(src)
 			qdel(src)
 
-/obj/item/weapon/melee/changeling/Destroy()
+/obj/item/melee/changeling/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	creator = null
 	..()
 
-/obj/item/weapon/melee/changeling/process()  //Stolen from ninja swords.
+/obj/item/melee/changeling/process()  //Stolen from ninja swords.
 	if(!creator || loc != creator || !creator.item_is_in_hands(src))
 		// Tidy up a bit.
 		if(istype(loc,/mob/living))
@@ -105,7 +105,7 @@
 			if(src)
 				qdel(src)
 
-/obj/item/weapon/melee/changeling/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/changeling/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
@@ -117,7 +117,7 @@
 
 	return 0
 
-/obj/item/weapon/melee/changeling/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
+/obj/item/melee/changeling/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
 	if(user.incapacitated() || !istype(damage_source, /obj/item/projectile))
 		return 0
 
@@ -127,7 +127,7 @@
 
 	return 1
 
-/obj/item/weapon/melee/changeling/arm_blade
+/obj/item/melee/changeling/arm_blade
 	name = "arm blade"
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon_state = "arm_blade"
@@ -140,14 +140,14 @@
 	defend_chance = 60
 	projectile_parry_chance = 25
 
-/obj/item/weapon/melee/changeling/arm_blade/greater
+/obj/item/melee/changeling/arm_blade/greater
 	name = "arm greatblade"
 	desc = "A grotesque blade made out of bone and flesh that cleaves through people and armor as a hot knife through butter."
 	armor_penetration = 30
 	defend_chance = 70
 	projectile_parry_chance = 35
 
-/obj/item/weapon/melee/changeling/claw
+/obj/item/melee/changeling/claw
 	name = "hand claw"
 	desc = "A grotesque claw made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon_state = "ling_claw"
@@ -158,7 +158,7 @@
 	defend_chance = 50
 	projectile_parry_chance = 15
 
-/obj/item/weapon/melee/changeling/claw/greater
+/obj/item/melee/changeling/claw/greater
 	name = "hand greatclaw"
 	force = 20
 	armor_penetration = 20

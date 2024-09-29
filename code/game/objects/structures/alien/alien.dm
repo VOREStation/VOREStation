@@ -55,7 +55,7 @@
 	healthcheck()
 	return
 
-/obj/structure/alien/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/alien/attackby(obj/item/W as obj, mob/user as mob)
 
 	user.setClickCooldown(user.get_attack_speed(W))
 	var/aforce = W.force
@@ -77,6 +77,13 @@
 		if(istype(usr,/mob/living/carbon))
 			var/mob/living/carbon/M = usr
 			if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
+				visible_message ("<span class='warning'>[usr] strokes the [name] and it melts away!</span>", 1)
+				health = 0
+				healthcheck()
+				return
+			if(locate(/obj/item/organ/internal/xenos/resinspinner/replicant) in M.internal_organs)
+				if(!do_after(M, 3 SECONDS))
+					return
 				visible_message ("<span class='warning'>[usr] strokes the [name] and it melts away!</span>", 1)
 				health = 0
 				healthcheck()

@@ -1,4 +1,4 @@
-/obj/item/weapon/spell/projectile
+/obj/item/spell/projectile
 	name = "projectile template"
 	icon_state = "generic"
 	desc = "This is a generic template that shoots projectiles.  If you can read this, the game broke!"
@@ -9,7 +9,7 @@
 	var/pre_shot_delay = 0
 	var/fire_sound = null
 
-/obj/item/weapon/spell/projectile/on_ranged_cast(atom/hit_atom, mob/living/user)
+/obj/item/spell/projectile/on_ranged_cast(atom/hit_atom, mob/living/user)
 	if(set_up(hit_atom, user))
 		var/obj/item/projectile/new_projectile = make_projectile(spell_projectile, user)
 		new_projectile.old_style_target(hit_atom)
@@ -21,12 +21,12 @@
 		return 1
 	return 0
 
-/obj/item/weapon/spell/projectile/proc/make_projectile(obj/item/projectile/projectile_type, mob/living/user)
+/obj/item/spell/projectile/proc/make_projectile(obj/item/projectile/projectile_type, mob/living/user)
 	var/obj/item/projectile/P = new projectile_type(get_turf(user))
 	P.damage = calculate_spell_power(P.damage)
 	return P
 
-/obj/item/weapon/spell/projectile/proc/set_up(atom/hit_atom, mob/living/user)
+/obj/item/spell/projectile/proc/set_up(atom/hit_atom, mob/living/user)
 	if(spell_projectile)
 		if(pay_energy(energy_cost_per_shot))
 			if(pre_shot_delay)

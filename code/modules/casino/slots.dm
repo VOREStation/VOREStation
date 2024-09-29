@@ -57,7 +57,7 @@
 			ispowered = 0
 			update_icon()
 
-/obj/machinery/slot_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/slot_machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(busy)
 		to_chat(user,"<span class='notice'>The slot machine is currently running.</span> ")
 		return
@@ -81,8 +81,8 @@
 	var/handled = 0
 	var/paid = 0
 
-	if(istype(W, /obj/item/weapon/spacecasinocash))
-		var/obj/item/weapon/spacecasinocash/C = W
+	if(istype(W, /obj/item/spacecasinocash))
+		var/obj/item/spacecasinocash/C = W
 		paid = insert_chip(C, user)
 		handled = 1
 
@@ -98,7 +98,7 @@
 	else if(isbroken)
 		return
 
-/obj/machinery/slot_machine/proc/insert_chip(var/obj/item/weapon/spacecasinocash/cashmoney, mob/user)
+/obj/machinery/slot_machine/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user)
 	if (ispowered == 0)
 		return
 	if (isbroken)
@@ -212,7 +212,7 @@
 		to_chat(user,output) //Output message
 
 		if(platinumwin) // Did they win the platinum chip?
-			new /obj/item/weapon/casino_platinum_chip(src.loc)
+			new /obj/item/casino_platinum_chip(src.loc)
 			playsound(src.loc, 'sound/machines/slotmachine.ogg', 25, 1)
 
 		if(winnings) //Did the person win?
@@ -287,7 +287,7 @@
 			ispowered = 0
 			update_icon()
 
-/obj/machinery/station_slot_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/station_slot_machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(busy)
 		to_chat(user,"<span class='notice'>The slot machine is currently running.</span> ")
 		return
@@ -311,8 +311,8 @@
 	var/handled = 0
 	var/paid = 0
 
-	if(istype(W, /obj/item/weapon/spacecash))
-		var/obj/item/weapon/spacecash/C = W
+	if(istype(W, /obj/item/spacecash))
+		var/obj/item/spacecash/C = W
 		paid = insert_cash(C, user)
 		handled = 1
 		if(paid)
@@ -327,7 +327,7 @@
 	else if(isbroken)
 		return
 
-/obj/machinery/station_slot_machine/proc/insert_cash(var/obj/item/weapon/spacecash/cashmoney, mob/user)
+/obj/machinery/station_slot_machine/proc/insert_cash(var/obj/item/spacecash/cashmoney, mob/user)
 	if (ispowered == 0)
 		return
 	if (isbroken)
@@ -441,7 +441,7 @@
 		to_chat(user,output) //Output message
 
 		if(platinumwin) // Did they win the platinum chip?
-			new /obj/item/weapon/casino_platinum_chip(src.loc)
+			new /obj/item/casino_platinum_chip(src.loc)
 			playsound(src.loc, 'sound/machines/slotmachine.ogg', 25, 1)
 
 		if(winnings) //Did the person win?

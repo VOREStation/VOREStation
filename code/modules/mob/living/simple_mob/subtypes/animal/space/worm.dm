@@ -36,7 +36,7 @@
 	mob_class = MOB_CLASS_ABERRATION	// It's a monster.
 
 	meat_amount = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/worm
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
 
 	var/mob/living/simple_mob/animal/space/space_worm/previous //next/previous segments, correspondingly
 	var/mob/living/simple_mob/animal/space/space_worm/next     //head is the nextest segment

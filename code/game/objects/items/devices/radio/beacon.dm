@@ -1,4 +1,4 @@
-/obj/item/device/radio/beacon
+/obj/item/radio/beacon
 	name = "tracking beacon"
 	desc = "A beacon used by a teleporter."
 	icon_state = "beacon"
@@ -6,17 +6,17 @@
 	var/code = "electronic"
 	origin_tech = list(TECH_BLUESPACE = 1)
 
-GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/device/radio/beacon)
+GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/radio/beacon)
 
-/obj/item/device/radio/beacon/hear_talk()
+/obj/item/radio/beacon/hear_talk()
 	return
 
 
-/obj/item/device/radio/beacon/send_hear()
+/obj/item/radio/beacon/send_hear()
 	return null
 
 
-/obj/item/device/radio/beacon/verb/alter_signal(t as text)
+/obj/item/radio/beacon/verb/alter_signal(t as text)
 	set name = "Alter Beacon's Signal"
 	set category = "Object"
 	set src in usr
@@ -30,12 +30,12 @@ GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/device/radio/beacon)
 
 // SINGULO BEACON SPAWNER
 
-/obj/item/device/radio/beacon/syndicate
+/obj/item/radio/beacon/syndicate
 	name = "suspicious beacon"
 	desc = "A label on it reads: <i>Activate to have a singularity beacon teleported to your location</i>."
 	origin_tech = list(TECH_BLUESPACE = 1, TECH_ILLEGAL = 7)
 
-/obj/item/device/radio/beacon/syndicate/attack_self(mob/user as mob)
+/obj/item/radio/beacon/syndicate/attack_self(mob/user as mob)
 	if(user)
 		to_chat(user, "<span class='notice'>Locked In</span>")
 		new /obj/machinery/power/singularity_beacon/syndicate( user.loc )

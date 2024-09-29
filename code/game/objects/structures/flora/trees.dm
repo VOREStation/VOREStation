@@ -36,7 +36,7 @@
 		. = TRUE
 	return .
 
-/obj/structure/flora/tree/attackby(var/obj/item/weapon/W, var/mob/living/user)
+/obj/structure/flora/tree/attackby(var/obj/item/W, var/mob/living/user)
 	if(can_harvest(W))
 		..(W, user)
 		return
@@ -45,7 +45,7 @@
 		return ..()
 
 	if(is_stump)
-		if(istype(W,/obj/item/weapon/shovel))
+		if(istype(W,/obj/item/shovel))
 			if(do_after(user, 5 SECONDS))
 				visible_message("<b>\The [user]</b> digs up \the [src] stump with \the [W].")
 				qdel(src)
@@ -163,7 +163,7 @@
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
 	indestructable = TRUE
-	var/gift_type = /obj/item/weapon/a_gift
+	var/gift_type = /obj/item/a_gift
 	var/list/ckeys_that_took = list()
 
 /obj/structure/flora/tree/pine/xmas/presents/choose_icon_state()
@@ -269,12 +269,12 @@
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 	randomize_size = TRUE
 
-	harvest_tool = /obj/item/weapon/material/knife
+	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
 	harvest_loot = list(
-		/obj/item/weapon/reagent_containers/food/snacks/siffruit = 20,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/sifpod = 5,
+		/obj/item/reagent_containers/food/snacks/siffruit = 20,
+		/obj/item/reagent_containers/food/snacks/grown/sif/sifpod = 5,
 		/obj/item/seeds/sifbulb = 1
 	)
 

@@ -141,13 +141,13 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			return
 
 	//Hacking init.
-	if(istype(I, /obj/item/device/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
+	if(istype(I, /obj/item/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
 		if(panel_open)
 			attack_hand(user)
 		return
 	//Other interface stuff.
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 
 		if(!(ismob(G.affecting)))
 			return

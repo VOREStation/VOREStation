@@ -58,23 +58,23 @@
 /mob/living/carbon/human/break_cloak()
 	if(mind && mind.changeling) //Changeling visible camo
 		mind.changeling.cloaked = 0
-	if(istype(back, /obj/item/weapon/rig)) //Ninja cloak
-		var/obj/item/weapon/rig/suit = back
+	if(istype(back, /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = back
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				cloaker.deactivate()
-	for(var/obj/item/weapon/deadringer/dr in src)
+	for(var/obj/item/deadringer/dr in src)
 		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
 	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
 		return TRUE
-	else if(istype(back, /obj/item/weapon/rig)) //Ninja cloak
-		var/obj/item/weapon/rig/suit = back
+	else if(istype(back, /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = back
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				return TRUE
-	for(var/obj/item/weapon/deadringer/dr in src)
+	for(var/obj/item/deadringer/dr in src)
 		if(dr.timer > 20)
 			return TRUE
 	return ..()
@@ -136,11 +136,11 @@
 	if(B) // Incase we lost our brain for some reason, like if we got decapped.
 		if(istype(B, /obj/item/organ/internal/mmi_holder))
 			var/obj/item/organ/internal/mmi_holder/mmi_holder = B
-			if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi/digital/posibrain))
+			if(istype(mmi_holder.stored_mmi, /obj/item/mmi/digital/posibrain))
 				return FBP_POSI
-			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi/digital/robot))
+			else if(istype(mmi_holder.stored_mmi, /obj/item/mmi/digital/robot))
 				return FBP_DRONE
-			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi)) // This needs to come last because inheritence.
+			else if(istype(mmi_holder.stored_mmi, /obj/item/mmi)) // This needs to come last because inheritence.
 				return FBP_CYBORG
 
 	return FBP_NONE
@@ -180,7 +180,7 @@
 			compiled_vis |= O.enables_planes
 
 	//Check to see if we have a rig (ugh, blame rigs, desnowflake this)
-	var/obj/item/weapon/rig/rig = get_rig()
+	var/obj/item/rig/rig = get_rig()
 	if(istype(rig) && rig.visor)
 		if(!rig.helmet || (head && rig.helmet == head))
 			if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
@@ -218,7 +218,7 @@
 		vis_enabled -= vis
 
 /mob/living/carbon/human/get_restraining_bolt()
-	var/obj/item/weapon/implant/restrainingbolt/RB
+	var/obj/item/implant/restrainingbolt/RB
 
 	for(var/obj/item/organ/external/EX in organs)
 		RB = locate() in EX

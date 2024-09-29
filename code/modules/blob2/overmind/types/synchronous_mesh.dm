@@ -42,7 +42,7 @@
 
 	return damage / max(blobs_to_hurt.len, 1) // To hurt the blob that got hit.
 
-/datum/blob_type/synchronous_mesh/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/synchronous_mesh/on_chunk_tick(obj/item/blobcore_chunk/B)
 	var/mob/living/carrier = B.get_carrier()
 
 	if(!carrier)

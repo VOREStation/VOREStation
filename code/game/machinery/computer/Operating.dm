@@ -7,7 +7,7 @@
 	anchored = TRUE
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
-	circuit = /obj/item/weapon/circuitboard/operating
+	circuit = /obj/item/circuitboard/operating
 	var/obj/machinery/optable/table = null
 	var/mob/living/carbon/human/victim = null
 	var/verbose = 1 //general speaker toggle

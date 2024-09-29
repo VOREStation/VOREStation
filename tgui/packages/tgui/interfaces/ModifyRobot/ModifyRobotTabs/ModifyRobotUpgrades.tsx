@@ -65,7 +65,7 @@ export const ModifyRobotUpgrades = (props: { target: Target }) => {
           />
         </Flex.Item>
       </Flex>
-      <Flex height={!target.active ? '45%' : '50%'}>
+      <Flex height={!target.active ? '40%' : '45%'}>
         <Flex.Item width="25%" fill>
           <UpgradeSection
             title="Utility Upgrade"

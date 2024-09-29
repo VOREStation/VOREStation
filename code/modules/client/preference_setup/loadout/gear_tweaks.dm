@@ -151,6 +151,11 @@ GLOBAL_DATUM_INIT(gear_tweak_free_matrix_recolor, /datum/gear_tweak/matrix_recol
 			continue
 		else
 			path = 	contents[metadata[i]]
+		if(!path)
+			var/mob/user = ismob(I.loc) ? I.loc : I.loc?.loc
+			if(istype(user))
+				to_chat(user, span_warning("The content \"[metadata[i]]\" from \"[I]\" does no longer exist and has not been loaded. Please replace it in the character setup."))
+			continue
 		new path(I)
 
 /*
@@ -256,13 +261,13 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 //end of custom description
 
 /datum/gear_tweak/tablet
-	var/list/ValidProcessors = list(/obj/item/weapon/computer_hardware/processor_unit/small)
-	var/list/ValidBatteries = list(/obj/item/weapon/computer_hardware/battery_module/nano, /obj/item/weapon/computer_hardware/battery_module/micro, /obj/item/weapon/computer_hardware/battery_module)
-	var/list/ValidHardDrives = list(/obj/item/weapon/computer_hardware/hard_drive/micro, /obj/item/weapon/computer_hardware/hard_drive/small, /obj/item/weapon/computer_hardware/hard_drive)
-	var/list/ValidNetworkCards = list(/obj/item/weapon/computer_hardware/network_card, /obj/item/weapon/computer_hardware/network_card/advanced)
-	var/list/ValidNanoPrinters = list(null, /obj/item/weapon/computer_hardware/nano_printer)
-	var/list/ValidCardSlots = list(null, /obj/item/weapon/computer_hardware/card_slot)
-	var/list/ValidTeslaLinks = list(null, /obj/item/weapon/computer_hardware/tesla_link)
+	var/list/ValidProcessors = list(/obj/item/computer_hardware/processor_unit/small)
+	var/list/ValidBatteries = list(/obj/item/computer_hardware/battery_module/nano, /obj/item/computer_hardware/battery_module/micro, /obj/item/computer_hardware/battery_module)
+	var/list/ValidHardDrives = list(/obj/item/computer_hardware/hard_drive/micro, /obj/item/computer_hardware/hard_drive/small, /obj/item/computer_hardware/hard_drive)
+	var/list/ValidNetworkCards = list(/obj/item/computer_hardware/network_card, /obj/item/computer_hardware/network_card/advanced)
+	var/list/ValidNanoPrinters = list(null, /obj/item/computer_hardware/nano_printer)
+	var/list/ValidCardSlots = list(null, /obj/item/computer_hardware/card_slot)
+	var/list/ValidTeslaLinks = list(null, /obj/item/computer_hardware/tesla_link)
 
 /datum/gear_tweak/tablet/get_contents(var/list/metadata)
 	var/list/names = list()
@@ -405,13 +410,13 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 	I.update_verbs()
 
 /datum/gear_tweak/laptop
-	var/list/ValidProcessors = list(/obj/item/weapon/computer_hardware/processor_unit/small, /obj/item/weapon/computer_hardware/processor_unit)
-	var/list/ValidBatteries = list(/obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/computer_hardware/battery_module/advanced, /obj/item/weapon/computer_hardware/battery_module/super)
-	var/list/ValidHardDrives = list(/obj/item/weapon/computer_hardware/hard_drive, /obj/item/weapon/computer_hardware/hard_drive/advanced, /obj/item/weapon/computer_hardware/hard_drive/super)
-	var/list/ValidNetworkCards = list(/obj/item/weapon/computer_hardware/network_card, /obj/item/weapon/computer_hardware/network_card/advanced)
-	var/list/ValidNanoPrinters = list(null, /obj/item/weapon/computer_hardware/nano_printer)
-	var/list/ValidCardSlots = list(null, /obj/item/weapon/computer_hardware/card_slot)
-	var/list/ValidTeslaLinks = list(null, /obj/item/weapon/computer_hardware/tesla_link)
+	var/list/ValidProcessors = list(/obj/item/computer_hardware/processor_unit/small, /obj/item/computer_hardware/processor_unit)
+	var/list/ValidBatteries = list(/obj/item/computer_hardware/battery_module, /obj/item/computer_hardware/battery_module/advanced, /obj/item/computer_hardware/battery_module/super)
+	var/list/ValidHardDrives = list(/obj/item/computer_hardware/hard_drive, /obj/item/computer_hardware/hard_drive/advanced, /obj/item/computer_hardware/hard_drive/super)
+	var/list/ValidNetworkCards = list(/obj/item/computer_hardware/network_card, /obj/item/computer_hardware/network_card/advanced)
+	var/list/ValidNanoPrinters = list(null, /obj/item/computer_hardware/nano_printer)
+	var/list/ValidCardSlots = list(null, /obj/item/computer_hardware/card_slot)
+	var/list/ValidTeslaLinks = list(null, /obj/item/computer_hardware/tesla_link)
 
 /datum/gear_tweak/laptop/get_contents(var/list/metadata)
 	var/list/names = list()
@@ -584,7 +589,7 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 /datum/gear_tweak/implant_location/get_default()
 	return bodypart_names_to_tokens[1]
 
-/datum/gear_tweak/implant_location/tweak_item(var/obj/item/weapon/implant/I, var/metadata)
+/datum/gear_tweak/implant_location/tweak_item(var/obj/item/implant/I, var/metadata)
 	if(istype(I))
 		I.initialize_loc = bodypart_names_to_tokens[metadata] || BP_TORSO
 

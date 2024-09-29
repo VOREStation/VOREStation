@@ -171,7 +171,7 @@
 /area/redgate/structure/powered/teppi_ranch/barn
 	name = "barn"
 
-/obj/item/weapon/paper/teppiranch
+/obj/item/paper/teppiranch
 	name = "elegantly scrawled note"
 	info = {"<i>Goeleigh,<BR><BR>
 
@@ -1465,7 +1465,7 @@
 	icon_state = "dark128"
 
 //The actual flags. Base type defined to handle some of the basic behaviours.
-/obj/item/weapon/laserdome_flag
+/obj/item/laserdome_flag
 	name = "Flag"
 	desc = "Steal the enemy flag and take it to your base in order to score! First team to three captures wins! Or was it five? Eh, check with the referee I guess."
 	description_info = "Simply pick up your team's flag to return it to your base after a short delay. If you're carrying the enemy flag, use it on your team's flag base to score a point!"
@@ -1483,18 +1483,18 @@
 	var/start_pos
 	var/flag_return_delay = 3 SECONDS	//how long you have to hold onto your team's flag before it returns home
 
-/obj/item/weapon/laserdome_flag/Initialize()
+/obj/item/laserdome_flag/Initialize()
 	. = ..()
 	start_pos = src.loc	//save our starting location for later
 
 /*
 //TODO - make this not trigger when the flag is returned to its original location
-/obj/item/weapon/laserdome_flag/dropped()
+/obj/item/laserdome_flag/dropped()
 	. = ..()
 	global_announcer.autosay("[src] dropped!","Laserdome Announcer","Entertainment")
 */
 
-/obj/item/weapon/laserdome_flag/attack_hand(mob/user as mob)
+/obj/item/laserdome_flag/attack_hand(mob/user as mob)
 	. = ..()
 	var/mob/living/carbon/human/M = loc
 	var/grabbing_team
@@ -1525,13 +1525,13 @@
 		user.visible_message("<span class='warning'>[user] has taken \the [src]!</span>")
 		global_announcer.autosay("[src] taken by [capitalize(grabbing_team)] team!","Laserdome Announcer","Entertainment")
 
-/obj/item/weapon/laserdome_flag/red
+/obj/item/laserdome_flag/red
 	name = "Red flag"
 	icon_state = "red_flag"
 	item_state = "laserdome_flag_red"
 	laser_team = "red"
 
-/obj/item/weapon/laserdome_flag/blue
+/obj/item/laserdome_flag/blue
 	name = "Blue flag"
 	icon_state = "blue_flag"
 	item_state = "laserdome_flag_blue"
@@ -1572,8 +1572,8 @@
 	. = ..()
 
 	//TODO- require the team's flag to be present before they can score?
-	if(istype(F,/obj/item/weapon/laserdome_flag))
-		var/obj/item/weapon/laserdome_flag/flag = F
+	if(istype(F,/obj/item/laserdome_flag))
+		var/obj/item/laserdome_flag/flag = F
 		if(flag.laser_team != base_team)
 			global_announcer.autosay("[user] captured the [capitalize(flag.laser_team)] flag for [capitalize(base_team)] team!","Laserdome Announcer","Entertainment")
 			user.drop_from_inventory(flag)
@@ -1590,7 +1590,7 @@
 			user.drop_from_inventory(flag)
 			flag.loc = src.loc			//place our flag neatly back on its pedestal
 
-/obj/item/weapon/laserdome_hyperball
+/obj/item/laserdome_hyperball
 	name = "\improper HYPERball"	//*always* refer to it as "the hyperball", not just "the ball". corporate insists.
 	desc = "Because regular balls aren't exciting enough, the future needs HYPERballs!"
 	description_info = "Take the ball and dunk it into the opposing team's goal to score! You can either throw it into the goal or dunk it directly; the latter is worth more points, but it's more challenging as you need to be next to the goal in order to dunk."
@@ -1608,7 +1608,7 @@
 	var/last_holder
 	var/last_team
 
-/obj/item/weapon/laserdome_hyperball_prop
+/obj/item/laserdome_hyperball_prop
 	name = "demonstration HYPERball"
 	desc = "Because regular balls aren't exciting enough, the future needs HYPERballs!"
 	description_info = "This model is for demonstration purposes only. It looks pretty heavy!"
@@ -1618,11 +1618,11 @@
 	w_class = ITEMSIZE_NO_CONTAINER
 	redgate_allowed = FALSE //you can't take the demonstration balls and go home either
 
-/obj/item/weapon/laserdome_hyperball/Initialize()
+/obj/item/laserdome_hyperball/Initialize()
 	. = ..()
 	start_pos = src.loc	//save our starting location for later
 
-/obj/item/weapon/laserdome_hyperball/attack_hand(mob/user as mob)
+/obj/item/laserdome_hyperball/attack_hand(mob/user as mob)
 	. = ..()
 	var/mob/living/carbon/human/M = loc
 	var/grabbing_team
@@ -1654,7 +1654,7 @@
 
 /*
 //TODO- make this not trigger when the ball is thrown or dunked, only when it's actually dropped
-/obj/item/weapon/laserdome_hyperball/dropped()
+/obj/item/laserdome_hyperball/dropped()
 	. = ..()
 	global_announcer.autosay("[capitalize(last_team)] fumble!","Laserdome Announcer","Entertainment")
 */
@@ -1702,8 +1702,8 @@
 	else
 		return	//if they're not on a team, stop!
 
-	if(istype(B,/obj/item/weapon/laserdome_hyperball))
-		var/obj/item/weapon/laserdome_hyperball/ball = B
+	if(istype(B,/obj/item/laserdome_hyperball))
+		var/obj/item/laserdome_hyperball/ball = B
 		if(dunking_team != goal_team)
 			global_announcer.autosay("[user] dunked the HYPERball for [capitalize(dunking_team)] team! [num2text(dunk_points)] points scored!","Laserdome Announcer","Entertainment")
 			score += dunk_points	//increment our score!
@@ -1732,8 +1732,8 @@
 
 /obj/structure/hyperball_goal/hitby(obj/B as obj)
 	. = ..()
-	if(istype(B,/obj/item/weapon/laserdome_hyperball))
-		var/obj/item/weapon/laserdome_hyperball/ball = B
+	if(istype(B,/obj/item/laserdome_hyperball))
+		var/obj/item/laserdome_hyperball/ball = B
 		if(prob(range_dunk_chance))
 			if(ball.last_team != goal_team)
 				global_announcer.autosay("[ball.last_holder] threw the HYPERball for [capitalize(ball.last_team)] team! [num2text(range_dunk_points)] points scored!","Laserdome Announcer","Entertainment")
@@ -1763,3 +1763,37 @@
 			//todo; throw the ball in a random direction
 			src.visible_message("\The [ball] bounces off \the [src]'s rim!")
 			global_announcer.autosay("[ball.last_holder] threw the HYPERball and +missed!+ |Oooh!|","Laserdome Announcer","Entertainment")
+
+/obj/structure/prop/machine/biosyphon/laserdome
+	name = "Laserdome Orientation Holo"
+	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
+	MANY GREETINGS, BRAVE VISITOR!
+	THE (LIGHT AMPLIFIED BY STIMULATED EMISSION OF RADIATION) DOME IS FINEST PHYSICAL EXERCISE AND RECREATIONAL FACILITY LOCATED UPON THIS RELATIVE SIDE OF THE \[illegible\] SUPERMASSIVE OBSIDIAN VOID.
+	OUR GREAT BRAINS HERE AT THE \[incomprehensible\] HAPPY FUN TIME CORPORATION ARE SURE YOU WILL DEFINITELY MUCH ENJOY PARTAKING IN THE SIGHTS AND SOUNDS OF OUR ESTABLISHMENT.
+	EVEN IF YOU DO NOT WISH TO BE (OR ARE PHYSICALLY INCAPABLE OF) TAKING PART IN THE ACCELERATED LIGHT GAMES, PLEASE WITNESS OUR HEROIC GLADIATORS BATTLE FOR YOUR ENJOYMENT, AND VISIT LOCAL SERVICES SUCH AS THE \[incoherent\] ACCELERATED SUSTENANCE JOINT.
+	PLEASE TO BE FOLLOWINGS FLOOR-BASED POINTED INDICATORS TOWARDS PLACEMENTS OF INTERESTING! AND BE SURE TO BE TAKINGS FREE RADIO HEADSET CHIP TO BE HEARING ARENA ANNOUNCER!
+	THANKINGS YOU FOR YOUR PATRONAGE!!!
+	(p.s. please to be cleanings up after selves, do not leave messes on concourse, thankings you again muchly)"}
+
+/obj/structure/prop/machine/biosyphon/laserdome/hyperball
+	name = "Laserdome HYPERball Orientation Holo"
+	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
+	RULES OF HYPERBALL ARE SIMPLE!<br>
+	TAKE BALL, SLAM-DUNKIFY INTO OPPOSING TEAM GOAL!
+	THREE POINTS AWARD FOR THROW (BUT WATCH OUT, CAN MISS)!
+	SEVEN POINTS IF ENDUNKENING IS BY HAND!
+	POINTS AM DEDUCT IF OWN-DUNKING!
+	FIRST TEAM TO TWENTY-AND-ONE POINTS IS WIN!
+	MUST WEAR TEAM PLATINGS FOR SCORINGS TO COUNT!
+	GOOD LUCK!!!"}
+
+/obj/structure/prop/machine/biosyphon/laserdome/flagcap
+	name = "Laserdome Capture-The-Flag Orientation Holo"
+	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
+	RULES OF CAPTURING FLAG ARE SIMPLE!
+	GO TO ENEMY BASE, TAKE THEIR FLAG, BRING BACK TO OWN BASE!
+	NO SCORE IF ENEMY TEAM HAS FLAG, SO PROTECT OWN FLAG!
+	RETURN OWN FLAG TO BASE BY TOUCHINGS!
+	FIRST TEAM TO THREE CAPTURES IS WIN!
+	MUST WEAR TEAM PLATINGS FOR SCORINGS TO COUNT!
+	GOOD LUCK!!!"}

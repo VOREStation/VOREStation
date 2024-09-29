@@ -1,4 +1,4 @@
-/obj/item/weapon/implant/reagent_generator
+/obj/item/implant/reagent_generator
 	name = "reagent generator implant"
 	desc = "This is an implant that has attached storage and generates a reagent."
 	implant_color = "r"
@@ -17,26 +17,26 @@
 	var/verb_name = "Transfer From Reagent Implant"
 	var/verb_desc = "Remove reagents from an internal reagent into a container"
 
-/obj/item/weapon/implant/reagent_generator/New()
+/obj/item/implant/reagent_generator/New()
 	..()
 	create_reagents(usable_volume)
 
-/obj/item/weapon/implanter/reagent_generator
-	var/implant_type = /obj/item/weapon/implant/reagent_generator
+/obj/item/implanter/reagent_generator
+	var/implant_type = /obj/item/implant/reagent_generator
 
-/obj/item/weapon/implanter/reagent_generator/New()
+/obj/item/implanter/reagent_generator/New()
 	..()
 	imp = new implant_type(src)
 	update()
 	return
 
-/obj/item/weapon/implant/reagent_generator/post_implant(mob/living/carbon/source)
+/obj/item/implant/reagent_generator/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	assigned_proc = new assigned_proc(source, verb_name, verb_desc)
 	return 1
 
-/obj/item/weapon/implant/reagent_generator/process()
+/obj/item/implant/reagent_generator/process()
 	var/before_gen
 	if(isliving(imp_in) && generated_reagents)
 		before_gen = reagents.total_volume
@@ -56,7 +56,7 @@
 		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
 			to_chat(imp_in, "<span class='warning'>[pick(full_message)]</span>")
 
-/obj/item/weapon/implant/reagent_generator/proc/do_generation(var/mob/living/L)
+/obj/item/implant/reagent_generator/proc/do_generation(var/mob/living/L)
 	L.adjust_nutrition(-gen_cost)
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
@@ -76,16 +76,16 @@
 	if(user.incapacitated() || user.stat > CONSCIOUS)
 		return
 
-	var/obj/item/weapon/reagent_containers/container = user.get_active_hand()
+	var/obj/item/reagent_containers/container = user.get_active_hand()
 	if(!container)
 		to_chat(user,"<span class='notice'>You need an open container to do this!</span>")
 		return
 
 
-	var/obj/item/weapon/implant/reagent_generator/rimplant
+	var/obj/item/implant/reagent_generator/rimplant
 	for(var/obj/item/organ/external/E in organs)
-		for(var/obj/item/weapon/implant/I in E.implants)
-			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+		for(var/obj/item/implant/I in E.implants)
+			if(istype(I, /obj/item/implant/reagent_generator))
 				rimplant = I
 				break
 	if(rimplant)

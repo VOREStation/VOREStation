@@ -13,7 +13,7 @@
 	desc = "An interface between crew and the cryogenic storage oversight systems."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cellconsole"
-	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
+	circuit = /obj/item/circuitboard/cryopodcontrol
 	density = FALSE
 	interact_offline = 1
 	var/mode = null
@@ -41,7 +41,7 @@
 	desc = "An interface between crew and the robotic storage systems"
 	icon = 'icons/obj/robot_storage.dmi'
 	icon_state = "console"
-	circuit = /obj/item/weapon/circuitboard/robotstoragecontrol
+	circuit = /obj/item/circuitboard/robotstoragecontrol
 
 	storage_type = "cyborgs"
 	storage_name = "Robotic Storage Control"
@@ -50,7 +50,7 @@
 /obj/machinery/computer/cryopod/dorms
 	name = "residential oversight console"
 	desc = "An interface between visitors and the residential oversight systems tasked with keeping track of all visitors in the deeper section of the colony."
-	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	circuit = "/obj/item/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
 	storage_name = "Residential Oversight Control"
@@ -59,7 +59,7 @@
 /obj/machinery/computer/cryopod/travel
 	name = "docking oversight console"
 	desc = "An interface between visitors and the docking oversight systems tasked with keeping track of all visitors who enter or exit from the docks."
-	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	circuit = "/obj/item/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
 	storage_name = "Travel Oversight Control"
@@ -68,7 +68,7 @@
 /obj/machinery/computer/cryopod/gateway
 	name = "gateway oversight console"
 	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
-	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	circuit = "/obj/item/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
 	storage_name = "Travel Oversight Control"
@@ -151,27 +151,27 @@
 				frozen_items -= I
 	*/
 
-/obj/item/weapon/circuitboard/cryopodcontrol
+/obj/item/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
 	build_path = "/obj/machinery/computer/cryopod"
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/weapon/circuitboard/robotstoragecontrol
+/obj/item/circuitboard/robotstoragecontrol
 	name = "Circuit board (Robotic Storage Console)"
 	build_path = "/obj/machinery/computer/cryopod/robot"
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/weapon/circuitboard/dormscontrol
+/obj/item/circuitboard/dormscontrol
 	name = "Circuit board (Residential Oversight Console)"
 	build_path = "/obj/machinery/computer/cryopod/door/dorms"
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/weapon/circuitboard/travelcontrol
+/obj/item/circuitboard/travelcontrol
 	name = "Circuit board (Travel Oversight Console - Docks)"
 	build_path = "/obj/machinery/computer/cryopod/door/travel"
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/weapon/circuitboard/gatewaycontrol
+/obj/item/circuitboard/gatewaycontrol
 	name = "Circuit board (Travel Oversight Console - Gateway)"
 	build_path = "/obj/machinery/computer/cryopod/door/gateway"
 	origin_tech = list(TECH_DATA = 3)
@@ -213,7 +213,7 @@
 	var/mob/occupant = null       // Person waiting to be despawned.
 	var/time_till_despawn = 599  // Down to 1 minute to reflect Vorestation respawn times.
 	var/time_entered = 0          // Used to keep track of the safe period.
-	var/obj/item/device/radio/intercom/announce //
+	var/obj/item/radio/intercom/announce //
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/last_no_computer_message = 0
@@ -290,7 +290,7 @@
 	time_till_despawn = 60 //1 second, because gateway.
 
 /obj/machinery/cryopod/New()
-	announce = new /obj/item/device/radio/intercom(src)
+	announce = new /obj/item/radio/intercom(src)
 	..()
 
 /obj/machinery/cryopod/Destroy()
@@ -390,7 +390,7 @@
 				W.forceMove(src)
 				if(W.contents.len)
 					for(var/obj/item/O in W.contents)
-						if(istype(O,/obj/item/weapon/storage/internal))
+						if(istype(O,/obj/item/storage/internal))
 							continue
 						O.forceMove(src)
 		if(ishuman(to_despawn))
@@ -411,7 +411,7 @@
 
 		if(W.contents.len) //Make sure we catch anything not handled by qdel() on the items.
 			for(var/obj/item/O in W.contents)
-				if(istype(O,/obj/item/weapon/storage/internal)) //Stop eating pockets, you fuck!
+				if(istype(O,/obj/item/storage/internal)) //Stop eating pockets, you fuck!
 					continue
 				O.forceMove(src)
 
@@ -422,13 +422,13 @@
 
 	for(var/obj/item/W in items)
 		//VOREStation Addition Start
-		if(istype(W, /obj/item/device/pda))
-			var/obj/item/device/pda/found_pda = W
+		if(istype(W, /obj/item/pda))
+			var/obj/item/pda/found_pda = W
 			found_pda.delete_id = TRUE
 		else
-			var/list/pdas_found = W.search_contents_for(/obj/item/device/pda)
+			var/list/pdas_found = W.search_contents_for(/obj/item/pda)
 			if(pdas_found.len)
-				for(var/obj/item/device/pda/found_pda in pdas_found)
+				for(var/obj/item/pda/found_pda in pdas_found)
 					found_pda.delete_id = TRUE
 		//VOREStation Addition End
 
@@ -437,7 +437,7 @@
 		if(W.preserve_item)
 			preserve = 1
 
-		if(istype(W,/obj/item/weapon/implant/health))
+		if(istype(W,/obj/item/implant/health))
 			for(var/obj/machinery/computer/cloning/com in machines)
 				for(var/datum/dna2/record/R in com.records)
 					if(locate(R.implant) == W)
@@ -555,11 +555,11 @@
 	qdel(to_despawn)
 	set_occupant(null)
 
-/obj/machinery/cryopod/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
+/obj/machinery/cryopod/attackby(var/obj/item/G as obj, var/mob/user as mob)
 
-	if(istype(G, /obj/item/weapon/grab))
+	if(istype(G, /obj/item/grab))
 
-		var/obj/item/weapon/grab/grab = G
+		var/obj/item/grab/grab = G
 		if(occupant)
 			to_chat(user, "<span class='notice'>\The [src] is in use.</span>")
 			return

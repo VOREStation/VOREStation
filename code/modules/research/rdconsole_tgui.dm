@@ -626,7 +626,7 @@
 		if("print") //Print research information
 			busy_msg = "Printing Research Information. Please Wait..."
 			spawn(20)
-				var/obj/item/weapon/paper/PR = new/obj/item/weapon/paper
+				var/obj/item/paper/PR = new/obj/item/paper
 				PR.name = "list of researched technologies"
 				PR.info = "<center><b>[station_name()] Science Laboratories</b>"
 				PR.info += "<h2>[ (text2num(params["print"]) == 2) ? "Detailed" : null] Research Progress Report</h2>"

@@ -20,7 +20,7 @@
 /turf/simulated/floor/outdoors/grass,
 /area/om_adventure/poi/woodentemple)
 "f" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor,
 /area/om_adventure/poi/woodentemple)
 "g" = (
@@ -28,7 +28,7 @@
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/woodentemple)
 "j" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/woodentemple)
 "k" = (
@@ -78,7 +78,7 @@
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/woodentemple)
 "C" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/woodentemple)
 "E" = (

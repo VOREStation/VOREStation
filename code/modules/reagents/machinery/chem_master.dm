@@ -6,11 +6,11 @@
 	unacidable = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
-	circuit = /obj/item/weapon/circuitboard/chem_master
+	circuit = /obj/item/circuitboard/chem_master
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
-	var/obj/item/weapon/reagent_containers/beaker = null
-	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
+	var/obj/item/reagent_containers/beaker = null
+	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
 	var/useramount = 15 // Last used amount
@@ -42,9 +42,9 @@
 /obj/machinery/chem_master/update_icon()
 	icon_state = "mixer[beaker ? "1" : "0"]"
 
-/obj/machinery/chem_master/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
+/obj/machinery/chem_master/attackby(var/obj/item/B as obj, var/mob/user as mob)
 
-	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
+	if(istype(B, /obj/item/reagent_containers/glass) || istype(B, /obj/item/reagent_containers/food))
 
 		if(src.beaker)
 			to_chat(user, "\A [beaker] is already loaded into the machine.")
@@ -55,7 +55,7 @@
 		to_chat(user, "You add \the [B] to the machine.")
 		update_icon()
 
-	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
+	else if(istype(B, /obj/item/storage/pill_bottle))
 
 		if(src.loaded_pill_bottle)
 			to_chat(user, "A \the [loaded_pill_bottle] s already loaded into the machine.")
@@ -281,7 +281,7 @@
 						return
 					if(!length(answer))
 						answer = reagents.get_master_reagent_name()
-					var/obj/item/weapon/reagent_containers/pill/P = new(loc)
+					var/obj/item/reagent_containers/pill/P = new(loc)
 					P.name = "[answer] pack"
 					P.desc = "A small condiment pack. The label says it contains [answer]."
 					P.icon_state = "bouilloncube"//Reskinned monkey cube
@@ -301,7 +301,7 @@
 							to_chat(usr, "<span class='notice'>Not enough reagents to create these pills!</span>")
 							return
 
-						var/obj/item/weapon/reagent_containers/pill/P = new(loc)
+						var/obj/item/reagent_containers/pill/P = new(loc)
 						P.name = "[answer] pill"
 						P.pixel_x = rand(-7, 7) // Random position
 						P.pixel_y = rand(-7, 7)
@@ -337,7 +337,7 @@
 							to_chat(usr, "<span class='notice'>Not enough reagents to create these patches!</span>")
 							return
 
-						var/obj/item/weapon/reagent_containers/pill/patch/P = new(loc)
+						var/obj/item/reagent_containers/pill/patch/P = new(loc)
 						P.name = "[answer] patch"
 						P.pixel_x = rand(-7, 7) // random position
 						P.pixel_y = rand(-7, 7)
@@ -363,7 +363,7 @@
 						if(reagents.total_volume <= 0)
 							to_chat(usr, "<span class='notice'>Not enough reagents to create these bottles!</span>")
 							return
-						var/obj/item/weapon/reagent_containers/glass/bottle/P = new(loc)
+						var/obj/item/reagent_containers/glass/bottle/P = new(loc)
 						P.name = "[answer] bottle"
 						P.pixel_x = rand(-7, 7) // random position
 						P.pixel_y = rand(-7, 7)
@@ -420,7 +420,7 @@
 			visible_message("<span class='notice'>[src] rattles and prints out a sheet of paper.</span>")
 			// playsound(loc, 'sound/goonstation/machines/printer_dotmatrix.ogg', 50, 1)
 
-			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(loc)
+			var/obj/item/paper/P = new /obj/item/paper(loc)
 			P.info = "<center><b>Chemical Analysis</b></center><br>"
 			P.info += "<b>Time of analysis:</b> [worldtime2stationtime(world.time)]<br><br>"
 			P.info += "<b>Chemical name:</b> [R.name]<br>"
@@ -469,7 +469,7 @@
 		if("create_condi_bottle")
 			if(!condi || !reagents.total_volume)
 				return
-			var/obj/item/weapon/reagent_containers/food/condiment/P = new(loc)
+			var/obj/item/reagent_containers/food/condiment/P = new(loc)
 			reagents.trans_to_obj(P, 50)
 		else
 			return FALSE

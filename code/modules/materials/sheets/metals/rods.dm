@@ -44,7 +44,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 
 		if(get_amount() < 2)
 			to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
@@ -63,7 +63,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 				user.put_in_hands(new_item)
 		return
 
-	if (istype(W, /obj/item/weapon/tape_roll))
+	if (istype(W, /obj/item/tape_roll))
 		var/obj/item/stack/medical/splint/ghetto/new_splint = new(get_turf(user))
 		new_splint.add_fingerprint(user)
 

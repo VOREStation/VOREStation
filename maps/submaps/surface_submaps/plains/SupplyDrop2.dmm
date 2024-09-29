@@ -20,14 +20,14 @@
 /turf/simulated/floor/reinforced/virgo3b,
 /area/submap/SupplyDrop2)
 "h" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/reinforced/virgo3b,
 /area/submap/SupplyDrop2)
 "i" = (
 /obj/structure/loot_pile/maint/technical,
-/obj/item/device/gps/internal/poi,
-/obj/item/weapon/cell/device/weapon/empty,
-/obj/item/weapon/cell/device/weapon/empty,
+/obj/item/gps/internal/poi,
+/obj/item/cell/device/weapon/empty,
+/obj/item/cell/device/weapon/empty,
 /turf/simulated/floor/reinforced/virgo3b,
 /area/submap/SupplyDrop2)
 "j" = (

@@ -1,6 +1,6 @@
 //Pretty small file, mostly just for storage.
 /datum/preferences
-	var/obj/item/device/nif/nif_path
+	var/obj/item/nif/nif_path
 	var/nif_durability
 	var/list/nif_savedata
 
@@ -21,7 +21,7 @@
 
 	pref.nif_path		= save_data_file["nif_path"]
 	pref.nif_durability	= save_data_file["nif_durability"]
-	pref.nif_savedata	= save_data_file["nif_savedata"]
+	pref.nif_savedata	= check_list_copy(save_data_file["nif_savedata"])
 
 /datum/category_item/player_setup_item/vore/nif/save_character()
 	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(pref.client_ckey))
@@ -29,7 +29,7 @@
 
 	save_data_file["nif_path"]			= pref.nif_path
 	save_data_file["nif_durability"]	= pref.nif_durability
-	save_data_file["nif_savedata"]		= pref.nif_savedata
+	save_data_file["nif_savedata"]		= check_list_copy(pref.nif_savedata)
 
 	savefile.set_entry("character[pref.default_slot]", save_data_file)
 	savefile.save()
@@ -41,7 +41,7 @@
 			pref.nif_path = null					//Kill!
 			WARNING("Loaded a NIF but it was an invalid path, [pref.real_name]")
 
-	if (ispath(pref.nif_path, /obj/item/device/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
+	if (ispath(pref.nif_path, /obj/item/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
 		pref.nif_path = null
 
 	if(ispath(pref.nif_path) && isnull(pref.nif_durability))		//How'd you lose this?

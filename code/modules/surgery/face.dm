@@ -26,9 +26,9 @@
 /datum/surgery_step/generic/cut_face
 	surgery_name = "Cut Face"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
+	/obj/item/surgical/scalpel = 100,		\
+	/obj/item/material/knife = 75,	\
+	/obj/item/material/shard = 50, 		\
 	)
 
 	min_duration = 90
@@ -61,9 +61,9 @@
 /datum/surgery_step/face/mend_vocal
 	surgery_name = "Mend Vocal Cords"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/hemostat = 100, 	\
+	/obj/item/surgical/hemostat = 100, 	\
 	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/device/assembly/mousetrap = 10	//I don't know. Don't ask me. But I'm leaving it because hilarity.
+	/obj/item/assembly/mousetrap = 10	//I don't know. Don't ask me. But I'm leaving it because hilarity.
 	)
 
 	min_duration = 70
@@ -94,8 +94,8 @@
 /datum/surgery_step/face/fix_face
 	surgery_name = "Fix Face"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/retractor = 100, 	\
-		/obj/item/weapon/material/kitchen/utensil/fork = 75
+		/obj/item/surgical/retractor = 100, 	\
+		/obj/item/material/kitchen/utensil/fork = 75
 	)
 
 	allowed_procs = list(IS_CROWBAR = 55)
@@ -129,10 +129,10 @@
 /datum/surgery_step/face/cauterize
 	surgery_name = "Cauterize Face"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/cautery = 100,			\
+	/obj/item/surgical/cautery = 100,			\
 	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,			\
-	/obj/item/weapon/weldingtool = 25
+	/obj/item/flame/lighter = 50,			\
+	/obj/item/weldingtool = 25
 	)
 
 	min_duration = 70

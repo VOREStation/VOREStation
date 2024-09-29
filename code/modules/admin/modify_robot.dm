@@ -6,12 +6,14 @@
 		return
 
 	var/datum/eventkit/modify_robot/modify_robot = new()
-	modify_robot.target = target
+	modify_robot.target = isrobot(target) ? target : null
+	modify_robot.selected_ai = target.is_slaved()
 	modify_robot.tgui_interact(src.mob)
 
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
 	var/mob/living/silicon/robot/source
+	var/mob/living/silicon/ai/selected_ai
 	var/ion_law	= "IonLaw"
 	var/zeroth_law = "ZerothLaw"
 	var/inherent_law = "InherentLaw"
@@ -49,6 +51,7 @@
 		.["target"]["name"] = target.name
 		.["target"]["ckey"] = target.ckey
 		.["target"]["module"] = target.module
+		.["target"]["emagged"] = target.emagged
 		.["target"]["crisis_override"] = target.crisis_override
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
@@ -70,7 +73,7 @@
 			.["model_options"] = module_options
 			// Data for the upgrade options
 			.["target"] += get_upgrades()
-			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			if(kin)
 				.["target"]["pka"] += get_pka(kin)
 			// Radio section
@@ -121,6 +124,15 @@
 	package_laws(., "supplied_laws", target.laws.supplied_laws)
 
 	.["isAI"] = isAI(target)
+	.["isMalf"] = is_malf(user)
+	.["isSlaved"] = target.is_slaved()
+	var/list/active_ais = list()
+	for(var/mob/living/silicon/ai/ai in active_ais())
+		if(!ai.loc)
+			continue
+		active_ais += list(list("displayText" = "[ai]", "value" = "\ref[ai]"))
+	.["active_ais"] = active_ais
+	.["selected_ai"] = selected_ai ? selected_ai.name : null
 
 	var/list/channels = list()
 	for(var/ch_name in target.law_channels())
@@ -144,14 +156,16 @@
 			target.real_name = params["new_name"]
 			return TRUE
 		if("select_target")
-			target = locate(params["new_target"])
-			log_and_message_admins("changed robot modifictation target to [target]")
+			var/new_target = locate(params["new_target"])
+			if(new_target != target)
+				target = locate(params["new_target"])
+				log_and_message_admins("changed robot modifictation target to [target]")
 			return TRUE
 		if("toggle_crisis")
 			target.crisis_override = !target.crisis_override
 			return TRUE
 		if("add_restriction")
-			target.restrict_modules_to += params["new_restriction"]
+			target.restrict_modules_to |= params["new_restriction"]
 			return TRUE
 		if("remove_restriction")
 			target.restrict_modules_to -= params["rem_restriction"]
@@ -162,11 +176,11 @@
 			source = new /mob/living/silicon/robot(null)
 			var/module_type = robot_modules[params["new_source"]]
 			source.modtype = params["new_source"]
-			var/obj/item/weapon/robot_module/robot/robot_type = new module_type(source)
+			var/obj/item/robot_module/robot/robot_type = new module_type(source)
 			source.sprite_datum = pick(SSrobot_sprites.get_module_sprites(source.modtype, source))
 			source.update_icon()
 			source.emag_items = 1
-			if(!istype(robot_type, /obj/item/weapon/robot_module/robot))
+			if(!istype(robot_type, /obj/item/robot_module/robot))
 				QDEL_NULL(source)
 				return TRUE
 			return TRUE
@@ -195,8 +209,8 @@
 					else
 						item_with_synth.synths = list(target.module.synths[found])
 				return TRUE
-			if(istype(add_item, /obj/item/weapon/matter_decompiler/) || istype(add_item, /obj/item/device/dogborg/sleeper/compactor/decompiler/))
-				var/obj/item/weapon/matter_decompiler/item_with_matter = add_item
+			if(istype(add_item, /obj/item/matter_decompiler/) || istype(add_item, /obj/item/dogborg/sleeper/compactor/decompiler/))
+				var/obj/item/matter_decompiler/item_with_matter = add_item
 				if(item_with_matter.metal)
 					var/found = target.module.synths.Find(item_with_matter.metal)
 					if(!found)
@@ -289,12 +303,12 @@
 			return TRUE
 		if("install_modkit")
 			var/new_modkit = text2path(params["modkit"])
-			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			var/obj/item/borg/upgrade/modkit/M = new new_modkit(null)
 			M.install(kin, target)
 			return TRUE
 		if("remove_modkit")
-			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			var/obj/item/rem_kit = locate(params["modkit"])
 			kin.modkits.Remove(rem_kit)
 			qdel(rem_kit)
@@ -305,11 +319,11 @@
 				target.radio.centComm = 1
 			if(selected_radio_channel == CHANNEL_RAIDER)
 				qdel(target.radio.keyslot)
-				target.radio.keyslot = new /obj/item/device/encryptionkey/raider(target)
+				target.radio.keyslot = new /obj/item/encryptionkey/raider(target)
 				target.radio.syndie = 1
 			if(selected_radio_channel == CHANNEL_MERCENARY)
 				qdel(target.radio.keyslot)
-				target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(target)
+				target.radio.keyslot = new /obj/item/encryptionkey/syndicate(target)
 				target.radio.syndie = 1
 			target.module.channels += list("[selected_radio_channel]" = 1)
 			target.radio.channels[selected_radio_channel] += target.module.channels[selected_radio_channel]
@@ -498,6 +512,41 @@
 			if(usr != target)
 				to_chat(usr, "<span class='notice'>Laws displayed.</span>")
 			return TRUE
+		if("select_ai")
+			selected_ai = locate(params["new_ai"])
+			return TRUE
+		if("swap_sync")
+			var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
+			if(new_ai)
+				target.lawupdate = 1
+				target.connect_to_ai(new_ai)
+			return TRUE
+		if("disconnect_ai")
+			if(target.is_slaved())
+				target.disconnect_from_ai()
+				target.lawupdate = 0
+			return TRUE
+		if("toggle_emag")
+			if(target.emagged)
+				target.emagged = 0
+				target.clear_supplied_laws()
+				target.clear_inherent_laws()
+				target.laws = new global.using_map.default_law_type
+				target.laws.show_laws(target)
+				target.hud_used.update_robot_modules_display()
+			else
+				target.emagged = 1
+				target.lawupdate = 0
+				target.disconnect_from_ai()
+				target.clear_supplied_laws()
+				target.clear_inherent_laws()
+				target.laws = new /datum/ai_laws/syndicate_override
+				if(target.bolt)
+					if(!target.bolt.malfunction)
+						target.bolt.malfunction = MALFUNCTION_PERMANENT
+				target.laws.show_laws(target)
+				target.hud_used.update_robot_modules_display()
+			return TRUE
 
 /datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
 	var/list/target_items = list()
@@ -574,7 +623,7 @@
 	all_upgrades["restricted_upgrades"] = restricted_upgrades
 	return all_upgrades
 
-/datum/eventkit/modify_robot/proc/get_pka(var/obj/item/weapon/gun/energy/kinetic_accelerator/kin)
+/datum/eventkit/modify_robot/proc/get_pka(var/obj/item/gun/energy/kinetic_accelerator/kin)
 	var/list/pka = list()
 	pka["name"] = kin.name
 	var/list/installed_modkits = list()
@@ -611,15 +660,15 @@
 
 /datum/eventkit/modify_robot/proc/get_cells()
 	var/list/cell_options = list()
-	for(var/cell in typesof(/obj/item/weapon/cell))
-		var/obj/item/weapon/cell/C = cell
+	for(var/cell in typesof(/obj/item/cell))
+		var/obj/item/cell/C = cell
 		if(initial(C.name) == "power cell")
 			continue
-		if(ispath(C, /obj/item/weapon/cell/standin))
+		if(ispath(C, /obj/item/cell/standin))
 			continue
-		if(ispath(C, /obj/item/weapon/cell/device))
+		if(ispath(C, /obj/item/cell/device))
 			continue
-		if(ispath(C, /obj/item/weapon/cell/mech))
+		if(ispath(C, /obj/item/cell/mech))
 			continue
 		if(cell_options[initial(C.name)]) // empty cells are defined after normal cells!
 			continue
@@ -650,3 +699,9 @@
 		package_laws(packaged_laws, "supplied_laws", ALs.supplied_laws)
 		law_sets[++law_sets.len] = list("name" = ALs.name, "header" = ALs.law_header, "ref" = "\ref[ALs]","laws" = packaged_laws)
 	return law_sets
+
+/datum/eventkit/modify_robot/proc/is_malf(var/mob/user)
+	return (is_admin(user) && !target.is_slaved()) || is_special_role(user)
+
+/datum/eventkit/modify_robot/proc/is_special_role(var/mob/user)
+	return user.mind.special_role ? TRUE : FALSE

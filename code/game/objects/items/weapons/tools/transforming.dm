@@ -1,26 +1,26 @@
-/obj/item/weapon/tool/transforming
+/obj/item/tool/transforming
 	name = "transforming tool"
 	desc = "You should never see this..."
 	var/list/possible_tooltypes = list()
 	var/current_tooltype = 1
-	var/obj/item/weapon/weldingtool/welder
-	var/weldertype = /obj/item/weapon/weldingtool/dummy
+	var/obj/item/weldingtool/welder
+	var/weldertype = /obj/item/weldingtool/dummy
 
-/obj/item/weapon/tool/transforming/New(newloc, no_counterpart = TRUE)
+/obj/item/tool/transforming/New(newloc, no_counterpart = TRUE)
 	..(newloc)
 	if(TOOL_WELDER in possible_tooltypes)
 		welder = new weldertype(src)
 	on_tool_switch()
 
-/obj/item/weapon/tool/transforming/Destroy()
+/obj/item/tool/transforming/Destroy()
 	if(welder)
 		QDEL_NULL(welder)
 	..()
 
-/obj/item/weapon/tool/transforming/get_welder()
+/obj/item/tool/transforming/get_welder()
 	return welder
 
-/obj/item/weapon/tool/transforming/attack_self(mob/user)
+/obj/item/tool/transforming/attack_self(mob/user)
 	if(!possible_tooltypes.len || possible_tooltypes.len < 2)
 		return
 	if(current_tooltype == possible_tooltypes.len)
@@ -30,10 +30,10 @@
 
 	on_tool_switch(user)
 
-/obj/item/weapon/tool/transforming/proc/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/proc/on_tool_switch(var/mob/user)
 	return
 
-/obj/item/weapon/tool/transforming/jawsoflife
+/obj/item/tool/transforming/jawsoflife
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science."
 	icon = 'icons/obj/tools.dmi'
@@ -49,7 +49,7 @@
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked", "pinched", "nipped")
 	possible_tooltypes = list(TOOL_CROWBAR,TOOL_WIRECUTTER)
 
-/obj/item/weapon/tool/transforming/jawsoflife/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/jawsoflife/on_tool_switch(var/mob/user)
 	switch(possible_tooltypes[current_tooltype])
 		if(TOOL_CROWBAR)
 			desc = initial(desc) + " It's fitted with a prying head."
@@ -70,7 +70,7 @@
 				playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
 
-/obj/item/weapon/tool/transforming/powerdrill
+/obj/item/tool/transforming/powerdrill
 	name = "hand drill"
 	desc = "A simple powered hand drill."
 	icon = 'icons/obj/tools.dmi'
@@ -88,7 +88,7 @@
 	attack_verb = list("drilled", "screwed", "jabbed", "whacked")
 	possible_tooltypes = list(TOOL_WRENCH,TOOL_SCREWDRIVER)
 
-/obj/item/weapon/tool/transforming/powerdrill/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/powerdrill/on_tool_switch(var/mob/user)
 	switch(possible_tooltypes[current_tooltype])
 		if(TOOL_WRENCH)
 			desc = initial(desc) + " It's fitted with a bolt driver."
@@ -107,7 +107,7 @@
 				playsound(src,'sound/items/change_drill.ogg',50,1)
 				to_chat(user, "<span class='notice'>You attach the screw driver to [src].</span>")
 
-/obj/item/weapon/tool/transforming/altevian
+/obj/item/tool/transforming/altevian
 	name = "Hull Systems Omni-Tool"
 	desc = "A big and bulky tool, used by Altevians for engineering duties. It's able to do the job of any regular tool while scaled up to a comically large size. It seems nanites are in play to help with adjusting the tip and handling some of the heavy lifting when in use."
 	icon = 'icons/obj/weapons_vr.dmi'
@@ -126,9 +126,9 @@
 	attack_verb = list("whacked", "slammed", "bashed", "wrenched", "fixed", "bolted", "clonked", "bonked")
 	hitsound = 'sound/weapons/smash.ogg'
 	possible_tooltypes = list(TOOL_WRENCH,TOOL_CROWBAR,TOOL_WIRECUTTER,TOOL_SCREWDRIVER,TOOL_MULTITOOL,TOOL_WELDER)
-	weldertype = /obj/item/weapon/weldingtool/dummy/altevian
+	weldertype = /obj/item/weldingtool/dummy/altevian
 
-/obj/item/weapon/tool/transforming/altevian/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/altevian/on_tool_switch(var/mob/user)
 	switch(possible_tooltypes[current_tooltype])
 		if(TOOL_WRENCH)
 			desc = initial(desc) + " It's currently in bolting mode."
@@ -180,5 +180,5 @@
 				playsound(src,'sound/items/ratchet.ogg',50,1)
 				to_chat(user, "<span class='notice'>You reconfigure [src] into welding mode.</span>")
 
-/obj/item/weapon/weldingtool/dummy/altevian
+/obj/item/weldingtool/dummy/altevian
 	toolspeed = 0.25

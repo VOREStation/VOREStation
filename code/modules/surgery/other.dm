@@ -11,7 +11,7 @@
 	surgery_name = "Fix Vein"
 	priority = 2
 	allowed_tools = list(
-	/obj/item/weapon/surgical/FixOVein = 100, \
+	/obj/item/surgical/FixOVein = 100, \
 	/obj/item/stack/cable_coil = 75
 	)
 	can_infect = 1
@@ -65,9 +65,9 @@
 	surgery_name = "Remove Dead Tissue"
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/surgical/scalpel = 100,        \
-		/obj/item/weapon/material/knife = 75,    \
-		/obj/item/weapon/material/shard = 50,         \
+		/obj/item/surgical/scalpel = 100,        \
+		/obj/item/material/knife = 75,    \
+		/obj/item/material/shard = 50,         \
 	)
 
 	can_infect = 1
@@ -115,11 +115,11 @@
 	surgery_name = "Treat Necrosis"
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/reagent_containers/dropper = 100,
-		/obj/item/weapon/reagent_containers/glass/bottle = 75,
-		/obj/item/weapon/reagent_containers/glass/beaker = 75,
-		/obj/item/weapon/reagent_containers/spray = 50,
-		/obj/item/weapon/reagent_containers/glass/bucket = 50,
+		/obj/item/reagent_containers/dropper = 100,
+		/obj/item/reagent_containers/glass/bottle = 75,
+		/obj/item/reagent_containers/glass/beaker = 75,
+		/obj/item/reagent_containers/spray = 50,
+		/obj/item/reagent_containers/glass/bucket = 50,
 	)
 
 	can_infect = 0
@@ -129,10 +129,10 @@
 	max_duration = 60
 
 /datum/surgery_step/treat_necrosis/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!istype(tool, /obj/item/weapon/reagent_containers))
+	if (!istype(tool, /obj/item/reagent_containers))
 		return 0
 
-	var/obj/item/weapon/reagent_containers/container = tool
+	var/obj/item/reagent_containers/container = tool
 	if(!container.reagents.has_reagent("peridaxon"))
 		return 0
 
@@ -157,10 +157,10 @@
 /datum/surgery_step/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	if (!istype(tool, /obj/item/weapon/reagent_containers))
+	if (!istype(tool, /obj/item/reagent_containers))
 		return
 
-	var/obj/item/weapon/reagent_containers/container = tool
+	var/obj/item/reagent_containers/container = tool
 
 	var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
 	if (trans > 0)
@@ -173,10 +173,10 @@
 /datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	if (!istype(tool, /obj/item/weapon/reagent_containers))
+	if (!istype(tool, /obj/item/reagent_containers))
 		return
 
-	var/obj/item/weapon/reagent_containers/container = tool
+	var/obj/item/reagent_containers/container = tool
 
 	var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD)
 
@@ -192,9 +192,9 @@
 /datum/surgery_step/hardsuit
 	surgery_name = "Remove Hardsuit"
 	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 80,
-		/obj/item/weapon/surgical/circular_saw = 60,
-		/obj/item/weapon/pickaxe/plasmacutter = 100
+		/obj/item/weldingtool = 80,
+		/obj/item/surgical/circular_saw = 60,
+		/obj/item/pickaxe/plasmacutter = 100
 		)
 	req_open = 0
 
@@ -207,14 +207,14 @@
 /datum/surgery_step/hardsuit/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
 		return 0
-	if(istype(tool,/obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/welder = tool
+	if(istype(tool,/obj/item/weldingtool))
+		var/obj/item/weldingtool/welder = tool
 		if(!welder.isOn() || !welder.remove_fuel(1,user))
 			return 0
-	return (target_zone == BP_TORSO) && ((istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)) || (istype(target.belt, /obj/item/weapon/rig) && !(target.belt.canremove)))
+	return (target_zone == BP_TORSO) && ((istype(target.back, /obj/item/rig) && !(target.back.canremove)) || (istype(target.belt, /obj/item/rig) && !(target.belt.canremove)))
 
 /datum/surgery_step/hardsuit/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/weapon/rig/rig = target.back
+	var/obj/item/rig/rig = target.back
 	if(!istype(rig))
 		rig = target.belt
 		if(!istype(rig))
@@ -224,7 +224,7 @@
 	..()
 
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/weapon/rig/rig = target.back
+	var/obj/item/rig/rig = target.back
 	if(!istype(rig))
 		rig = target.belt
 		if(!istype(rig))
@@ -263,7 +263,7 @@
 /datum/surgery_step/dehusk/structinitial
 	surgery_name = "Create Structure"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/bioregen = 100
+		/obj/item/surgical/bioregen = 100
 	)
 	min_duration = 90
 	max_duration = 120
@@ -293,9 +293,9 @@
 /datum/surgery_step/dehusk/relocateflesh
 	surgery_name = "Relocate Flesh"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/hemostat = 100,	\
+		/obj/item/surgical/hemostat = 100,	\
 		/obj/item/stack/cable_coil = 75, 	\
-		/obj/item/device/assembly/mousetrap = 20
+		/obj/item/assembly/mousetrap = 20
 	)
 	min_duration = 90
 	max_duration = 120
@@ -325,8 +325,8 @@
 /datum/surgery_step/dehusk/structfinish
 	surgery_name = "Finish Structure"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/bioregen = 100, \
-		/obj/item/weapon/surgical/FixOVein = 30
+		/obj/item/surgical/bioregen = 100, \
+		/obj/item/surgical/FixOVein = 30
 	)
 	min_duration = 90
 	max_duration = 120
@@ -335,10 +335,10 @@
 	return ..() && target.op_stage.dehusk == 2
 
 /datum/surgery_step/dehusk/structfinish/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(istype(tool,/obj/item/weapon/surgical/bioregen))
+	if(istype(tool,/obj/item/surgical/bioregen))
 		user.visible_message("<span class='notice'>[user] begins to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>", \
 	"<span class='notice'>You begin to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>")
-	else if(istype(tool,/obj/item/weapon/surgical/FixOVein))
+	else if(istype(tool,/obj/item/surgical/FixOVein))
 		user.visible_message("<span class='notice'>[user] attempts to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>", \
 	"<span class='notice'>You attempt to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>")
 	..()
@@ -354,10 +354,10 @@
 
 /datum/surgery_step/dehusk/structfinish/fail_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(istype(tool,/obj/item/weapon/surgical/bioregen))
+	if(istype(tool,/obj/item/surgical/bioregen))
 		user.visible_message("<span class='danger'>[user]'s hand slips, causing \the [tool] to scrape [target]'s body.</span>", \
 	"<span class='danger'>Your hand slips, causing \the [tool] to scrape [target]'s body.</span>")
-	else if(istype(tool,/obj/item/weapon/surgical/FixOVein))
+	else if(istype(tool,/obj/item/surgical/FixOVein))
 		user.visible_message("<span class='danger'>[user] fails to finish the structure over the gaps in [target]'s flesh, doing more damage than good.</span>", \
 	"<span class='danger'>You fail to finish the structure over the gaps in [target]'s flesh, doing more damage than good.</span>")
 	affected.createwound(CUT, 15)
@@ -367,7 +367,7 @@
 /datum/surgery_step/internal/detoxify
 	surgery_name = "Detoxify"
 	blood_level = 1
-	allowed_tools = list(/obj/item/weapon/surgical/bioregen=100)
+	allowed_tools = list(/obj/item/surgical/bioregen=100)
 	min_duration = 90
 	max_duration = 120
 

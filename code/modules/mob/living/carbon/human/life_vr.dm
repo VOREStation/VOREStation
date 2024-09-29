@@ -41,9 +41,9 @@
 		holder.icon_state = "hudblank"
 
 		for(var/obj/item/organ/external/E in organs)
-			for(var/obj/item/weapon/implant/I in E.implants)
-				if(I.implanted && istype(I,/obj/item/weapon/implant/backup))
-					var/obj/item/weapon/implant/backup/B = I
+			for(var/obj/item/implant/I in E.implants)
+				if(I.implanted && istype(I,/obj/item/implant/backup))
+					var/obj/item/implant/backup/B = I
 					if(!mind)
 						holder.icon_state = "hud_backup_nomind"
 					else if(!(mind.name in B.our_db.body_scans))

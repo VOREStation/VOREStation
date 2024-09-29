@@ -16,7 +16,7 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
-/obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
 /obj/structure/reagent_dispensers/Destroy()
@@ -115,7 +115,7 @@
 	icon_state = "fuel"
 	amount_per_transfer_from_this = 10
 	var/modded = 0
-	var/obj/item/device/assembly_holder/rig = null
+	var/obj/item/assembly_holder/rig = null
 
 /obj/structure/reagent_dispensers/fueltank/Initialize()
 	. = ..()
@@ -177,7 +177,7 @@
 	icon_state = "barrel3"
 	modded = FALSE
 
-/obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_WRENCH)) //can't wrench it shut, it's always open
 		return
 	return ..()
@@ -200,7 +200,7 @@
 			rig = null
 			overlays = new/list()
 
-/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if (W.has_tool_quality(TOOL_WRENCH))
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
@@ -211,7 +211,7 @@
 			message_admins("[key_name_admin(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 			log_game("[key_name(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
 			leak_fuel(amount_per_transfer_from_this)
-	if (istype(W,/obj/item/device/assembly_holder))
+	if (istype(W,/obj/item/assembly_holder))
 		if (rig)
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return ..()
@@ -219,8 +219,8 @@
 		if(do_after(user, 20))
 			user.visible_message("<span class='notice'>[user] rigs [W] to \the [src].</span>", "<span class='notice'>You rig [W] to \the [src]</span>")
 
-			var/obj/item/device/assembly_holder/H = W
-			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
+			var/obj/item/assembly_holder/H = W
+			if (istype(H.a_left,/obj/item/assembly/igniter) || istype(H.a_right,/obj/item/assembly/igniter))
 				message_admins("[key_name_admin(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 				log_game("[key_name(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
 
@@ -379,7 +379,7 @@
 			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20) && bottle)
 				to_chat(user, "<span class='notice'>You unfasten the jug.</span>")
-				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = new /obj/item/weapon/reagent_containers/glass/cooler_bottle( src.loc )
+				var/obj/item/reagent_containers/glass/cooler_bottle/G = new /obj/item/reagent_containers/glass/cooler_bottle( src.loc )
 				for(var/datum/reagent/R in reagents.reagent_list)
 					var/total_reagent = reagents.get_reagent_amount(R.id)
 					G.reagents.add_reagent(R.id, total_reagent)
@@ -405,7 +405,7 @@
 			new /obj/item/stack/material/plastic( src.loc )
 			if(cups)
 				for(var/i = 0 to cups)
-					new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
+					new /obj/item/reagent_containers/food/drinks/sillycup(src.loc)
 			cups = 0
 			cupholder = 0
 			update_icon()
@@ -419,11 +419,11 @@
 				qdel(src)
 		return
 
-	if(istype(I, /obj/item/weapon/reagent_containers/glass/cooler_bottle))
+	if(istype(I, /obj/item/reagent_containers/glass/cooler_bottle))
 		src.add_fingerprint(user)
 		if(!bottle)
 			if(anchored)
-				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = I
+				var/obj/item/reagent_containers/glass/cooler_bottle/G = I
 				to_chat(user, "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>")
 				if(do_after(user, 20) && !bottle && anchored)
 					bottle = 1
@@ -459,7 +459,7 @@
 
 /obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/user)
 	if(cups)
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
+		new /obj/item/reagent_containers/food/drinks/sillycup(src.loc)
 		cups--
 		flick("[icon_state]-vend", src)
 		return

@@ -480,7 +480,7 @@ var/list/global_huds = list(
  * All these do is manage the amount of huds on screen and set the HUD.
 */
 ///Add an ammo hud to the user informing of the ammo count of G
-/datum/hud/proc/add_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+/datum/hud/proc/add_ammo_hud(mob/living/user, obj/item/gun/G)
 	if(length(ammo_hud_list) >= MAX_AMMO_HUD_POSSIBLE)
 		return
 	var/obj/screen/ammo/ammo_hud = new
@@ -490,7 +490,7 @@ var/list/global_huds = list(
 	ammo_hud.update_hud(user, G)
 
 ///Remove the ammo hud related to the gun G from the user
-/datum/hud/proc/remove_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+/datum/hud/proc/remove_ammo_hud(mob/living/user, obj/item/gun/G)
 	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
 	if(isnull(ammo_hud))
 		return
@@ -504,7 +504,7 @@ var/list/global_huds = list(
 		i++
 
 ///Update the ammo hud related to the gun G
-/datum/hud/proc/update_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+/datum/hud/proc/update_ammo_hud(mob/living/user, obj/item/gun/G)
 	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
 	ammo_hud?.update_hud(user, G)
 

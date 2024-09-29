@@ -12,7 +12,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 250
 	active_power_usage = 500
-	circuit = /obj/item/weapon/circuitboard/roguezones
+	circuit = /obj/item/circuitboard/roguezones
 
 	var/debug = 0
 	var/debug_scans = 0
@@ -143,12 +143,12 @@
 	var/datum/shuttle/autodock/ferry/S = SSshuttles.shuttles["Belter"]
 	S.launch(usr)
 
-/obj/item/weapon/circuitboard/roguezones
+/obj/item/circuitboard/roguezones
 	name = T_BOARD("asteroid belt scanning computer")
 	build_path = /obj/machinery/computer/roguezones
 	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 1)
 
-/obj/item/weapon/paper/rogueminer
+/obj/item/paper/rogueminer
 	name = "R-38 Scanner Console Guide"
 	info = {"<h4>Getting Started</h4>
 	Congratulations, your station has purchased the R-38 industrial asteroid belt scanner!<br>
