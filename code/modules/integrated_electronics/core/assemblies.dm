@@ -1,7 +1,7 @@
 // Here is where the base definition lives.
 // Specific subtypes are in their own folder.
 
-/obj/item/device/electronic_assembly
+/obj/item/electronic_assembly
 	name = "electronic assembly"
 	desc = "It's a case, for building small electronics with."
 	w_class = ITEMSIZE_SMALL
@@ -12,25 +12,25 @@
 	var/max_complexity = IC_COMPLEXITY_BASE
 	var/opened = FALSE
 	var/can_anchor = FALSE // If true, wrenching it will anchor it.
-	var/obj/item/weapon/cell/device/battery = null // Internal cell which most circuits need to work.
+	var/obj/item/cell/device/battery = null // Internal cell which most circuits need to work.
 	var/net_power = 0 // Set every tick, to display how much power is being drawn in total.
 	var/detail_color = COLOR_ASSEMBLY_BLACK
 
 
-/obj/item/device/electronic_assembly/Initialize()
+/obj/item/electronic_assembly/Initialize()
 	battery = new(src)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/device/electronic_assembly/Destroy()
+/obj/item/electronic_assembly/Destroy()
 	battery = null // It will be qdel'd by ..() if still in our contents
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/device/electronic_assembly/process()
+/obj/item/electronic_assembly/process()
 	handle_idle_power()
 
-/obj/item/device/electronic_assembly/proc/handle_idle_power()
+/obj/item/electronic_assembly/proc/handle_idle_power()
 	net_power = 0 // Reset this. This gets increased/decreased with [give/draw]_power() outside of this loop.
 
 	// First we handle passive sources. Most of these make power so they go first.
@@ -44,23 +44,23 @@
 				IC.power_fail()
 
 
-/obj/item/device/electronic_assembly/proc/check_interactivity(mob/user)
+/obj/item/electronic_assembly/proc/check_interactivity(mob/user)
 	return tgui_status(user, GLOB.tgui_physical_state) == STATUS_INTERACTIVE
 
-/obj/item/device/electronic_assembly/get_cell()
+/obj/item/electronic_assembly/get_cell()
 	return battery
 
 // TGUI
-/obj/item/device/electronic_assembly/tgui_state(mob/user)
+/obj/item/electronic_assembly/tgui_state(mob/user)
 	return GLOB.tgui_physical_state
 
-/obj/item/device/electronic_assembly/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/electronic_assembly/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICAssembly", name, parent_ui)
 		ui.open()
 
-/obj/item/device/electronic_assembly/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/electronic_assembly/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	var/total_parts = 0
@@ -94,7 +94,7 @@
 
 	return data
 
-/obj/item/device/electronic_assembly/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/electronic_assembly/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -136,8 +136,8 @@
 			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
 			if(!istype(C))
 				return
-			if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-				var/obj/item/device/integrated_electronics/debugger/D = held_item
+			if(istype(held_item, /obj/item/integrated_electronics/debugger))
+				var/obj/item/integrated_electronics/debugger/D = held_item
 				if(D.accepting_refs)
 					D.afterattack(C, usr, TRUE)
 				else
@@ -164,7 +164,7 @@
 	return FALSE
 // End TGUI
 
-/obj/item/device/electronic_assembly/verb/rename()
+/obj/item/electronic_assembly/verb/rename()
 	set name = "Rename Circuit"
 	set category = "Object"
 	set desc = "Rename your circuit, useful to stay organized."
@@ -178,10 +178,10 @@
 		to_chat(M, "<span class='notice'>The machine now has a label reading '[input]'.</span>")
 		name = input
 
-/obj/item/device/electronic_assembly/proc/can_move()
+/obj/item/electronic_assembly/proc/can_move()
 	return FALSE
 
-/obj/item/device/electronic_assembly/update_icon()
+/obj/item/electronic_assembly/update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
 	else
@@ -194,19 +194,19 @@
 	add_overlay(detail_overlay)
 
 
-/obj/item/device/electronic_assembly/GetAccess()
+/obj/item/electronic_assembly/GetAccess()
 	. = list()
 	for(var/obj/item/integrated_circuit/part in contents)
 		. |= part.GetAccess()
 
-/obj/item/device/electronic_assembly/GetIdCard()
+/obj/item/electronic_assembly/GetIdCard()
 	. = list()
 	for(var/obj/item/integrated_circuit/part in contents)
 		var/id_card = part.GetIdCard()
 		if(id_card)
 			return id_card
 
-/obj/item/device/electronic_assembly/examine(mob/user)
+/obj/item/electronic_assembly/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		for(var/obj/item/integrated_circuit/IC in contents)
@@ -214,18 +214,18 @@
 		if(opened)
 			tgui_interact(user)
 
-/obj/item/device/electronic_assembly/proc/get_part_complexity()
+/obj/item/electronic_assembly/proc/get_part_complexity()
 	. = 0
 	for(var/obj/item/integrated_circuit/part in contents)
 		. += part.complexity
 
-/obj/item/device/electronic_assembly/proc/get_part_size()
+/obj/item/electronic_assembly/proc/get_part_size()
 	. = 0
 	for(var/obj/item/integrated_circuit/part in contents)
 		. += part.size
 
 // Returns true if the circuit made it inside.
-/obj/item/device/electronic_assembly/proc/add_circuit(var/obj/item/integrated_circuit/IC, var/mob/user)
+/obj/item/electronic_assembly/proc/add_circuit(var/obj/item/integrated_circuit/IC, var/mob/user)
 	if(!opened)
 		to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>")
 		return FALSE
@@ -252,11 +252,11 @@
 	return TRUE
 
 // Non-interactive version of above that always succeeds, intended for build-in circuits that get added on assembly initialization.
-/obj/item/device/electronic_assembly/proc/force_add_circuit(var/obj/item/integrated_circuit/IC)
+/obj/item/electronic_assembly/proc/force_add_circuit(var/obj/item/integrated_circuit/IC)
 	IC.forceMove(src)
 	IC.assembly = src
 
-/obj/item/device/electronic_assembly/afterattack(atom/target, mob/user, proximity)
+/obj/item/electronic_assembly/afterattack(atom/target, mob/user, proximity)
 	if(proximity)
 		var/scanned = FALSE
 		for(var/obj/item/integrated_circuit/input/sensor/S in contents)
@@ -267,7 +267,7 @@
 		if(scanned)
 			visible_message("<b>\The [user]</b> waves \the [src] around [target].")
 
-/obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
+/obj/item/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(can_anchor && I.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		to_chat(user, span("notice", "You've [anchored ? "" : "un"]secured \the [src] to \the [get_turf(src)]."))
@@ -294,7 +294,7 @@
 		update_icon()
 		return TRUE
 
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.has_tool_quality(TOOL_SCREWDRIVER))
+	else if(istype(I, /obj/item/integrated_electronics/wirer) || istype(I, /obj/item/integrated_electronics/debugger) || I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(opened)
 			tgui_interact(user)
 			return TRUE
@@ -303,19 +303,19 @@
 			Try using a crowbar.</span>")
 			return FALSE
 
-	else if(istype(I, /obj/item/device/integrated_electronics/detailer))
-		var/obj/item/device/integrated_electronics/detailer/D = I
+	else if(istype(I, /obj/item/integrated_electronics/detailer))
+		var/obj/item/integrated_electronics/detailer/D = I
 		detail_color = D.detail_color
 		update_icon()
 
-	else if(istype(I, /obj/item/weapon/cell/device))
+	else if(istype(I, /obj/item/cell/device))
 		if(!opened)
 			to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>")
 			return FALSE
 		if(battery)
 			to_chat(user, "<span class='warning'>\The [src] already has \a [battery] inside.  Remove it first if you want to replace it.</span>")
 			return FALSE
-		var/obj/item/weapon/cell/device/cell = I
+		var/obj/item/cell/device/cell = I
 		user.drop_item(cell)
 		cell.forceMove(src)
 		battery = cell
@@ -327,7 +327,7 @@
 	else
 		return ..()
 
-/obj/item/device/electronic_assembly/attack_self(mob/user)
+/obj/item/electronic_assembly/attack_self(mob/user)
 	if(!check_interactivity(user))
 		return
 	if(opened)
@@ -357,19 +357,19 @@
 	if(choice)
 		choice.ask_for_input(user)
 
-/obj/item/device/electronic_assembly/attack_robot(mob/user as mob)
+/obj/item/electronic_assembly/attack_robot(mob/user as mob)
 	if(Adjacent(user))
 		return attack_self(user)
 	else
 		return ..()
 
-/obj/item/device/electronic_assembly/emp_act(severity)
+/obj/item/electronic_assembly/emp_act(severity)
 	..()
 	for(var/atom/movable/AM in contents)
 		AM.emp_act(severity)
 
 // Returns true if power was successfully drawn.
-/obj/item/device/electronic_assembly/proc/draw_power(amount)
+/obj/item/electronic_assembly/proc/draw_power(amount)
 	if(battery)
 		var/lost = battery.use(amount * CELLRATE)
 		net_power -= lost
@@ -377,21 +377,21 @@
 	return FALSE
 
 // Ditto for giving.
-/obj/item/device/electronic_assembly/proc/give_power(amount)
+/obj/item/electronic_assembly/proc/give_power(amount)
 	if(battery)
 		var/gained = battery.give(amount * CELLRATE)
 		net_power += gained
 		return TRUE
 	return FALSE
 
-/obj/item/device/electronic_assembly/proc/on_anchored()
+/obj/item/electronic_assembly/proc/on_anchored()
 	for(var/obj/item/integrated_circuit/IC in contents)
 		IC.on_anchored()
 
-/obj/item/device/electronic_assembly/proc/on_unanchored()
+/obj/item/electronic_assembly/proc/on_unanchored()
 	for(var/obj/item/integrated_circuit/IC in contents)
 		IC.on_unanchored()
 
 // Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
-/obj/item/device/electronic_assembly/proc/is_valid_tool(var/obj/item/I)
-	return I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/integrated_circuit) || istype(I, /obj/item/weapon/cell/device) || istype(I, /obj/item/device/integrated_electronics)
+/obj/item/electronic_assembly/proc/is_valid_tool(var/obj/item/I)
+	return I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/integrated_circuit) || istype(I, /obj/item/cell/device) || istype(I, /obj/item/integrated_electronics)

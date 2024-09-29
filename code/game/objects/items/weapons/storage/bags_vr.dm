@@ -1,2 +1,2 @@
-/obj/item/weapon/storage/bag/chemistry
+/obj/item/storage/bag/chemistry
 	slot_flags = null

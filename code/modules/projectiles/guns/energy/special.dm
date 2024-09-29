@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/ionrifle
+/obj/item/gun/energy/ionrifle
 	name = "ion rifle"
 	desc = "The RayZar Mk60 EW Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. Not the best of its type."
 	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist energy weapons of various types and quality primarily for the civilian market."
@@ -11,13 +11,13 @@
 	slot_flags = SLOT_BACK
 	projectile_type = /obj/item/projectile/ion
 
-/obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
+/obj/item/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 4)) //so it doesn't EMP itself, I guess
 
-/obj/item/weapon/gun/energy/ionrifle/empty
+/obj/item/gun/energy/ionrifle/empty
 	cell_type = null
 
-/obj/item/weapon/gun/energy/ionrifle/pistol
+/obj/item/gun/energy/ionrifle/pistol
 	name = "ion pistol"
 	desc = "The RayZar Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability."
 	icon_state = "ionpistol"
@@ -28,7 +28,7 @@
 	charge_cost = 480
 	projectile_type = /obj/item/projectile/ion/pistol
 
-/obj/item/weapon/gun/energy/decloner
+/obj/item/gun/energy/decloner
 	name = "biological demolecularisor"
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
 	icon_state = "decloner"
@@ -36,7 +36,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/energy/declone
 
-/obj/item/weapon/gun/energy/floragun
+/obj/item/gun/energy/floragun
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
 	description_fluff = "The floral somatoray is a relatively recent invention of the NanoTrasen corporation, turning a process that once involved transferring plants to massive mutating racks, into a remote interface. Do not look directly into the transmission end."
@@ -45,11 +45,11 @@
 	projectile_type = /obj/item/projectile/energy/floramut
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 
 	var/decl/plantgene/gene = null
-	var/obj/item/weapon/stock_parts/micro_laser/emitter
+	var/obj/item/stock_parts/micro_laser/emitter
 
 	firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut"),
@@ -57,17 +57,17 @@
 		list(mode_name="induce specific mutations", projectile_type=/obj/item/projectile/energy/floramut/gene, modifystate="floramut"),
 		)
 
-/obj/item/weapon/gun/energy/floragun/Initialize()
+/obj/item/gun/energy/floragun/Initialize()
 	. = ..()
 	emitter = new(src)
 
-/obj/item/weapon/gun/energy/floragun/examine(var/mob/user)
+/obj/item/gun/energy/floragun/examine(var/mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "It has [emitter ? emitter : "no micro laser"] installed."
 
-/obj/item/weapon/gun/energy/floragun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/stock_parts/micro_laser))
+/obj/item/gun/energy/floragun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/stock_parts/micro_laser))
 		if(!emitter)
 			user.drop_item()
 			W.loc = src
@@ -87,7 +87,7 @@
 			to_chat(user, "<span class='notice'>There is no micro laser in this [src].</span>")
 			return
 
-/obj/item/weapon/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
+/obj/item/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
 	//allow shooting into adjacent hydrotrays regardless of intent
 	if(!emitter)
 		to_chat(user, "<span class='notice'>The [src] has no laser! </span>")
@@ -99,7 +99,7 @@
 		return
 	..()
 
-/obj/item/weapon/gun/energy/floragun/verb/select_gene()
+/obj/item/gun/energy/floragun/verb/select_gene()
 	set name = "Select Gene"
 	set category = "Object"
 	set src in view(1)
@@ -115,7 +115,7 @@
 
 	return
 
-/obj/item/weapon/gun/energy/floragun/consume_next_projectile()
+/obj/item/gun/energy/floragun/consume_next_projectile()
 	. = ..()
 	var/obj/item/projectile/energy/floramut/gene/G = .
 	var/obj/item/projectile/energy/florayield/GY = .
@@ -129,7 +129,7 @@
 	else if(istype(GM))
 		GM.lasermod = emitter.rating
 
-/obj/item/weapon/gun/energy/meteorgun
+/obj/item/gun/energy/meteorgun
 	name = "meteor gun"
 	desc = "For the love of god, make sure you're aiming this the right way!"
 	icon_state = "riotgun"
@@ -137,13 +137,13 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	projectile_type = /obj/item/projectile/meteor
-	cell_type = /obj/item/weapon/cell/potato
+	cell_type = /obj/item/cell/potato
 	charge_cost = 100
 	self_recharge = 1
 	recharge_time = 5 //Time it takes for shots to recharge (in ticks)
 	charge_meter = 0
 
-/obj/item/weapon/gun/energy/meteorgun/pen
+/obj/item/gun/energy/meteorgun/pen
 	name = "meteor pen"
 	desc = "The pen is mightier than the sword."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -153,13 +153,13 @@
 	slot_flags = SLOT_BELT
 
 
-/obj/item/weapon/gun/energy/mindflayer
+/obj/item/gun/energy/mindflayer
 	name = "mind flayer"
 	desc = "A custom-built weapon of some kind."
 	icon_state = "xray"
 	projectile_type = /obj/item/projectile/beam/mindflayer
 
-/obj/item/weapon/gun/energy/toxgun
+/obj/item/gun/energy/toxgun
 	name = "phoron pistol"
 	desc = "A specialized firearm designed to fire lethal bolts of phoron."
 	icon_state = "toxgun"
@@ -169,7 +169,7 @@
 
 /* Staves */
 
-/obj/item/weapon/gun/energy/staff
+/obj/item/gun/energy/staff
 	name = "staff of change"
 	desc = "An artifact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
 	icon = 'icons/obj/gun.dmi'
@@ -180,31 +180,31 @@
 	charge_cost = 480
 	projectile_type = /obj/item/projectile/change
 	origin_tech = null
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 	charge_meter = 0
 
-/obj/item/weapon/gun/energy/staff/special_check(var/mob/user)
+/obj/item/gun/energy/staff/special_check(var/mob/user)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
 		to_chat(usr, "<span class='warning'>You focus your mind on \the [src], but nothing happens!</span>")
 		return 0
 
 	return ..()
 
-/obj/item/weapon/gun/energy/staff/handle_click_empty(mob/user = null)
+/obj/item/gun/energy/staff/handle_click_empty(mob/user = null)
 	if (user)
 		user.visible_message("*fizzle*", "<span class='danger'>*fizzle*</span>")
 	else
 		src.visible_message("*fizzle*")
 	playsound(src, 'sound/effects/sparks1.ogg', 100, 1)
 /*
-/obj/item/weapon/gun/energy/staff/animate
+/obj/item/gun/energy/staff/animate
 	name = "staff of animation"
 	desc = "An artifact that spits bolts of life force, which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
 	projectile_type = /obj/item/projectile/animate
 	charge_cost = 240
 */
-/obj/item/weapon/gun/energy/staff/focus
+/obj/item/gun/energy/staff/focus
 	name = "mental focus"
 	desc = "An artifact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
 	icon = 'icons/obj/wizard.dmi'
@@ -223,7 +223,7 @@
 			projectile_type = "/obj/item/projectile/forcebolt"
 	*/
 
-/obj/item/weapon/gun/energy/dakkalaser
+/obj/item/gun/energy/dakkalaser
 	name = "suppression gun"
 	desc = "A massive weapon designed to pressure the opposition by raining down a torrent of energy pellets."
 	icon_state = "dakkalaser"
@@ -232,7 +232,7 @@
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 24 // 100 shots, it's a spray and pray (to RNGesus) weapon.
 	projectile_type = /obj/item/projectile/energy/blue_pellet
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 	accuracy = 75 // Suppressive weapons don't work too well if there's no risk of being hit.
 	burst_delay = 1 // Burst faster than average.
@@ -244,7 +244,7 @@
 		list(mode_name="ten shot burst", burst = 10, burst_accuracy = list(75,75,75,75,75,75,75,75,75,75), dispersion = list(2,2,2,2,2,2,2,2,2,2)),
 		)
 
-/obj/item/weapon/gun/energy/maghowitzer
+/obj/item/gun/energy/maghowitzer
 	name = "portable MHD howitzer"
 	desc = "A massive weapon designed to destroy fortifications with a stream of molten tungsten."
 	description_fluff = "A weapon designed by joint cooperation of NanoTrasen, Hephaestus, and SCG scientists. Everything else is red tape and black highlighters."
@@ -256,8 +256,8 @@
 
 	charge_cost = 10000 // Uses large cells, can at max have 3 shots.
 	projectile_type = /obj/item/projectile/beam/tungsten
-	cell_type = /obj/item/weapon/cell/high
-	accept_cell_type = /obj/item/weapon/cell
+	cell_type = /obj/item/cell/high
+	accept_cell_type = /obj/item/cell
 
 	accuracy = 75
 	charge_meter = 0
@@ -265,7 +265,7 @@
 
 	var/power_cycle = FALSE
 
-/obj/item/weapon/gun/energy/maghowitzer/proc/pick_random_target(var/turf/T)
+/obj/item/gun/energy/maghowitzer/proc/pick_random_target(var/turf/T)
 	var/foundmob = FALSE
 	var/foundmobs = list()
 	for(var/mob/living/L in T.contents)
@@ -276,7 +276,7 @@
 		return return_target
 	return FALSE
 
-/obj/item/weapon/gun/energy/maghowitzer/attack(atom/A, mob/living/user, def_zone)
+/obj/item/gun/energy/maghowitzer/attack(atom/A, mob/living/user, def_zone)
 	if(power_cycle)
 		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
 		return 0
@@ -302,7 +302,7 @@
 	else
 		..(A, user, def_zone) //If it can't fire, just bash with no delay.
 
-/obj/item/weapon/gun/energy/maghowitzer/afterattack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/energy/maghowitzer/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(power_cycle)
 		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
 		return 0

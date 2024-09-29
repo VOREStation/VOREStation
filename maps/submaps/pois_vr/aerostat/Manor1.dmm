@@ -18,7 +18,7 @@
 /area/submap/virgo2/Manor1)
 "ae" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "af" = (
@@ -42,7 +42,7 @@
 "aj" = (
 /obj/structure/table/woodentable,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
-/obj/item/weapon/material/ashtray/glass,
+/obj/item/material/ashtray/glass,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "ak" = (
@@ -56,7 +56,7 @@
 /area/submap/virgo2/Manor1)
 "am" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "an" = (
@@ -85,13 +85,13 @@
 /area/submap/virgo2/Manor1)
 "at" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "au" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
@@ -101,8 +101,8 @@
 /area/submap/virgo2/Manor1)
 "aw" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "ax" = (
@@ -125,12 +125,12 @@
 /area/submap/virgo2/Manor1)
 "aC" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/maglight,
+/obj/item/flashlight/maglight,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aD" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aE" = (
@@ -148,12 +148,12 @@
 /area/submap/virgo2/Manor1)
 "aG" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aH" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aI" = (
@@ -175,7 +175,7 @@
 /area/submap/virgo2/Manor1)
 "aO" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aP" = (
@@ -205,17 +205,17 @@
 /area/submap/virgo2/Manor1)
 "aV" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aW" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aX" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/knife,
+/obj/item/material/knife,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "aY" = (
@@ -224,7 +224,7 @@
 /area/submap/virgo2/Manor1)
 "aZ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "ba" = (
@@ -233,19 +233,19 @@
 /area/submap/virgo2/Manor1)
 "bb" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tray,
-/obj/item/weapon/tray,
+/obj/item/tray,
+/obj/item/tray,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bc" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bd" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "be" = (
@@ -262,7 +262,7 @@
 /area/submap/virgo2/Manor1)
 "bg" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bh" = (
@@ -300,7 +300,7 @@
 /turf/template_noop,
 /area/submap/virgo2/Manor1)
 "bo" = (
-/obj/item/weapon/material/twohanded/baseballbat/metal,
+/obj/item/material/twohanded/baseballbat/metal,
 /turf/simulated/floor/carpet/blucarpet,
 /area/submap/virgo2/Manor1)
 "bp" = (
@@ -342,7 +342,7 @@
 /area/submap/virgo2/Manor1)
 "bv" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bw" = (
@@ -370,18 +370,18 @@
 /area/submap/virgo2/Manor1)
 "bA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bB" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/weapon/reagent_containers/food/snacks/stew,
-/obj/item/weapon/reagent_containers/food/snacks/stew,
+/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/reagent_containers/food/snacks/stew,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bC" = (
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bD" = (
@@ -394,9 +394,9 @@
 /area/submap/virgo2/Manor1)
 "bE" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
 /obj/effect/spider/stickyweb,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
@@ -407,8 +407,8 @@
 /area/submap/virgo2/Manor1)
 "bG" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/weapon/reagent_containers/food/snacks/sausage,
-/obj/item/weapon/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bH" = (
@@ -423,18 +423,18 @@
 /area/submap/virgo2/Manor1)
 "bJ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /obj/effect/spider/stickyweb,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bK" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
+/obj/item/reagent_containers/glass/bottle/stoxin,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bL" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bM" = (
@@ -467,7 +467,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bT" = (
-/obj/item/weapon/material/minihoe,
+/obj/item/material/minihoe,
 /turf/simulated/floor/carpet/blucarpet,
 /area/submap/virgo2/Manor1)
 "bU" = (
@@ -501,7 +501,7 @@
 /area/submap/virgo2/Manor1)
 "ca" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "cb" = (
@@ -511,25 +511,25 @@
 /area/submap/virgo2/Manor1)
 "cc" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /obj/random/medical,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "cd" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "ce" = (
 /obj/structure/bed/double,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "cf" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/wallet/random,
+/obj/item/storage/wallet/random,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "cg" = (
@@ -544,7 +544,7 @@
 /area/submap/virgo2/Manor1)
 "ci" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /obj/random/powercell,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
@@ -572,7 +572,7 @@
 /area/submap/virgo2/Manor1)
 "cn" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/storage/wallet/random,
+/obj/item/storage/wallet/random,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "co" = (
@@ -597,7 +597,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/submap/virgo2/Manor1)
 "cs" = (
-/obj/item/weapon/material/twohanded/spear,
+/obj/item/material/twohanded/spear,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "ct" = (
@@ -608,7 +608,7 @@
 /area/submap/virgo2/Manor1)
 "cu" = (
 /obj/effect/decal/remains,
-/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "cv" = (
@@ -627,8 +627,8 @@
 /area/submap/virgo2/Manor1)
 "cy" = (
 /obj/structure/table/standard,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/hydro,
 /area/submap/virgo2/Manor1)
 "cz" = (
@@ -637,7 +637,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "cA" = (
-/obj/item/weapon/paper/crumpled,
+/obj/item/paper/crumpled,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "cB" = (

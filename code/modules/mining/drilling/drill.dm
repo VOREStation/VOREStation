@@ -9,14 +9,14 @@
 	name = "mining drill head"
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
-	circuit = /obj/item/weapon/circuitboard/miningdrill
+	circuit = /obj/item/circuitboard/miningdrill
 	var/braces_needed = 2
 	var/total_brace_tier = 0
 	var/list/obj/machinery/mining/brace/supports = list()
 	var/supported = 0
 	var/active = 0
 	var/list/resource_field = list()
-	var/obj/item/device/radio/intercom/faultreporter
+	var/obj/item/radio/intercom/faultreporter
 	var/drill_range = 5
 	var/offset = 2
 	var/current_capacity = 0
@@ -44,20 +44,20 @@
 		"rutile" = 0)
 
 	var/list/ore_types = list(
-		"hematite" = /obj/item/weapon/ore/iron,
-		"uranium" = /obj/item/weapon/ore/uranium,
-		"gold" = /obj/item/weapon/ore/gold,
-		"silver" = /obj/item/weapon/ore/silver,
-		"diamond" = /obj/item/weapon/ore/diamond,
-		"phoron" = /obj/item/weapon/ore/phoron,
-		"platinum" = /obj/item/weapon/ore/osmium,
-		"mhydrogen" = /obj/item/weapon/ore/hydrogen,
-		"sand" = /obj/item/weapon/ore/glass,
-		"carbon" = /obj/item/weapon/ore/coal,
-	//	"copper" = /obj/item/weapon/ore/copper,
-	//	"tin" = /obj/item/weapon/ore/tin,
-	//	"bauxite" = /obj/item/weapon/ore/bauxite,
-		"rutile" = /obj/item/weapon/ore/rutile
+		"hematite" = /obj/item/ore/iron,
+		"uranium" = /obj/item/ore/uranium,
+		"gold" = /obj/item/ore/gold,
+		"silver" = /obj/item/ore/silver,
+		"diamond" = /obj/item/ore/diamond,
+		"phoron" = /obj/item/ore/phoron,
+		"platinum" = /obj/item/ore/osmium,
+		"mhydrogen" = /obj/item/ore/hydrogen,
+		"sand" = /obj/item/ore/glass,
+		"carbon" = /obj/item/ore/coal,
+	//	"copper" = /obj/item/ore/copper,
+	//	"tin" = /obj/item/ore/tin,
+	//	"bauxite" = /obj/item/ore/bauxite,
+		"rutile" = /obj/item/ore/rutile
 		)
 
 	//Upgrades
@@ -65,20 +65,20 @@
 	var/capacity
 	var/charge_use
 	var/exotic_drilling
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 
 	// Found with an advanced laser. exotic_drilling >= 1
 	var/list/ore_types_uncommon = list(
-		MAT_MARBLE = /obj/item/weapon/ore/marble,
-		//"painite" = /obj/item/weapon/ore/painite,
-		//"quartz" = /obj/item/weapon/ore/quartz,
-		MAT_LEAD = /obj/item/weapon/ore/lead
+		MAT_MARBLE = /obj/item/ore/marble,
+		//"painite" = /obj/item/ore/painite,
+		//"quartz" = /obj/item/ore/quartz,
+		MAT_LEAD = /obj/item/ore/lead
 		)
 
 	// Found with an ultra laser. exotic_drilling >= 2
 	var/list/ore_types_rare = list(
-		//"void opal" = /obj/item/weapon/ore/void_opal,
-		MAT_VERDANTIUM = /obj/item/weapon/ore/verdantium
+		//"void opal" = /obj/item/ore/void_opal,
+		MAT_VERDANTIUM = /obj/item/ore/verdantium
 		)
 
 	//Flags
@@ -109,7 +109,7 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	default_apply_parts()
-	faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
+	faultreporter = new /obj/item/radio/intercom{channels=list("Supply")}(null)
 
 /obj/machinery/mining/drill/Destroy()
 	qdel_null(faultreporter)
@@ -126,7 +126,7 @@
 	return cell
 
 /obj/machinery/mining/drill/loaded
-	cell = /obj/item/weapon/cell/high
+	cell = /obj/item/cell/high
 
 /obj/machinery/mining/drill/process()
 
@@ -223,7 +223,7 @@
 
 /obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
 	if(!active)
-		if(istype(O, /obj/item/device/multitool))
+		if(istype(O, /obj/item/multitool))
 			var/newtag = text2num(sanitizeSafe(tgui_input_text(user, "Enter new ID number or leave empty to cancel.", "Assign ID number", null, 4), 4))
 			if(newtag)
 				name = "[initial(name)] #[newtag]"
@@ -240,7 +240,7 @@
 			return
 	if(!panel_open || active) return ..()
 
-	if(istype(O, /obj/item/weapon/cell))
+	if(istype(O, /obj/item/cell))
 		if(cell)
 			to_chat(user, "The drill already has a cell installed.")
 		else
@@ -305,8 +305,8 @@
 	drill_range = 5
 	offset = 2
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/micro_laser))
 			harvest_speed = P.rating ** 2 // 1, 4, 9, 16, 25
 			exotic_drilling = P.rating - 1
 			if(exotic_drilling >= 1)
@@ -324,11 +324,11 @@
 				else if(P.rating >= 4) // t4
 					drill_range = 7
 					offset = 3
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+		if(istype(P, /obj/item/stock_parts/matter_bin))
 			capacity = 200 * P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			charge_use -= 10 * P.rating
-	cell = locate(/obj/item/weapon/cell) in src
+	cell = locate(/obj/item/cell) in src
 
 /obj/machinery/mining/drill/proc/check_supports()
 
@@ -414,7 +414,7 @@
 	name = "mining drill brace"
 	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
 	icon_state = "mining_brace"
-	circuit = /obj/item/weapon/circuitboard/miningdrillbrace
+	circuit = /obj/item/circuitboard/miningdrillbrace
 	var/brace_tier = 1
 	var/obj/machinery/mining/drill/connected
 
@@ -430,10 +430,10 @@
 /obj/machinery/mining/brace/RefreshParts()
 	..()
 	brace_tier = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		brace_tier += M.rating
 
-/obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
 	if(connected && connected.active)
 		to_chat(user, "<span class='notice'>You can't work with the brace of a running drill!</span>")
 		return

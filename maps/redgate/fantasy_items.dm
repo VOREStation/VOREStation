@@ -1,5 +1,5 @@
 
-/obj/item/device/healthanalyzer/scroll //reports all of the above, as well as name and quantity of nonmed reagents in stomach
+/obj/item/healthanalyzer/scroll //reports all of the above, as well as name and quantity of nonmed reagents in stomach
 	name = "scroll of divination"
 	desc = "An unusual scroll that appears to report all of the details of a person's health when waved near them. Oddly, it seems to have a little metal chip up near the handles..."
 	advscan = 3
@@ -7,40 +7,40 @@
 	icon_state = "health_scroll"
 
 
-/obj/item/weapon/tool/crowbar/alien/magic
+/obj/item/tool/crowbar/alien/magic
 	name = "sentient crowbar"
 	desc = "A crowbar with a green gem set in it and a green ribbon tied to it, it floats lightly by itself and appears to be able to pry on its own. It almost feels like there is some sort of anti gravity generator running in it..."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar)
 	icon_state = "crowbar_sentient"
 
-/obj/item/weapon/tool/screwdriver/alien/magic
+/obj/item/tool/screwdriver/alien/magic
 	name = "vintage screwdriver of revolving"
 	desc = "A vintage screwdriver that spins as fast as a drill with little aid, it has a red gem on the handle. It oddly sounds like a drill too..."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "screwdriver_old"
 
-/obj/item/weapon/weldingtool/alien/magic
+/obj/item/weldingtool/alien/magic
 	name = "bellows of flame"
 	desc = "A set of bellows that have a yellow gem on the spout, they emit flames when pressed. Oddly seems to have a faint phoron smell to it..."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_welder)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "bellows"
 
-/obj/item/weapon/tool/wirecutters/alien/magic
+/obj/item/tool/wirecutters/alien/magic
 	name = "secateurs of organisation"
 	desc = "Extremely sharp secateurs, fitted with a glowing blue gem, said to be magically enhanced for speed. There seems to be a little whirring sound coming from beneath that gem..."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cutters_magic"
 
-/obj/item/weapon/tool/wrench/alien/magic
+/obj/item/tool/wrench/alien/magic
 	name = "pliers of molding"
 	desc = "A set of pliers that seems to mold to the shape of their target, housing a pink gem. Oddly seems to have a slightly slimey texture at the metal..."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wrench)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "pliers"
 
-/obj/item/weapon/surgical/bone_clamp/alien/magic
+/obj/item/surgical/bone_clamp/alien/magic
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.75
 	icon_state = "bone_boneclamp"
@@ -69,18 +69,18 @@
 	return // Doesn't care about material or anything else.
 
 /obj/structure/bed/bath/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/mop) || istype(I, /obj/item/weapon/soap)) //VOREStation Edit - "Allows soap and rags to be used on mopbuckets"
+	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap)) //VOREStation Edit - "Allows soap and rags to be used on mopbuckets"
 		if(reagents.total_volume < 1)
 			to_chat(user, "<span class='warning'>\The [src] is out of water!</span>")
 		else
 			reagents.trans_to_obj(I, 5)
 			to_chat(user, "<span class='notice'>You wet \the [I] in \the [src].</span>")
 			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
-	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_containers/glass))
 		update_icon()
 		return
-	else if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	else if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		var/mob/living/affecting = G.affecting
 		if(has_buckled_mobs()) //Handles trying to buckle someone else to a chair when someone else is on it
 			to_chat(user, "<span class='notice'>\The [src] already has someone buckled to it.</span>")
@@ -141,9 +141,9 @@
 	return //No lid
 
 /obj/structure/toilet/wooden/attackby(obj/item/I as obj, mob/living/user as mob) //simpler interactions
-	if(istype(I, /obj/item/weapon/grab))
+	if(istype(I, /obj/item/grab))
 		user.setClickCooldown(user.get_attack_speed(I))
-		var/obj/item/weapon/grab/G = I
+		var/obj/item/grab/G = I
 
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
@@ -246,7 +246,7 @@
 			return 1
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
-		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner) || istype(O, /obj/item/weapon/soap)) // If they're trying to clean it then let them
+		if(istype(O, /obj/item/reagent_containers/spray/cleaner) || istype(O, /obj/item/soap)) // If they're trying to clean it then let them
 			user.visible_message( \
 				"<b>\The [user]</b> starts to clean the cooking pot.", \
 				"<span class='notice'>You start to clean the cooking pot.</span>" \
@@ -285,8 +285,8 @@
 				"<span class='notice'>You add \the [O] to \the [src].</span>")
 			SStgui.update_uis(src)
 			return
-	else if (istype(O,/obj/item/weapon/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
-		var/obj/item/weapon/storage/bag/plants/bag = O
+	else if (istype(O,/obj/item/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
+		var/obj/item/storage/bag/plants/bag = O
 		var/failed = 1
 		for(var/obj/item/G in O.contents)
 			if(!G.reagents || !G.reagents.total_volume)
@@ -313,9 +313,9 @@
 		SStgui.update_uis(src)
 		return 0
 
-	else if(istype(O,/obj/item/weapon/reagent_containers/glass) || \
-			istype(O,/obj/item/weapon/reagent_containers/food/drinks) || \
-			istype(O,/obj/item/weapon/reagent_containers/food/condiment) \
+	else if(istype(O,/obj/item/reagent_containers/glass) || \
+			istype(O,/obj/item/reagent_containers/food/drinks) || \
+			istype(O,/obj/item/reagent_containers/food/condiment) \
 		)
 		if (!O.reagents)
 			return 1
@@ -324,8 +324,8 @@
 				to_chat(user, "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>")
 				return 1
 		return
-	else if(istype(O,/obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = O
+	else if(istype(O,/obj/item/grab))
+		var/obj/item/grab/G = O
 		to_chat(user, "<span class='warning'>This is ridiculous. You can not fit \the [G.affecting] in this [src].</span>")
 		return 1
 	else if(O.is_screwdriver())
@@ -349,7 +349,7 @@
 				to_chat(user, "<span class='notice'>You decide not to do that.</span>")
 	else if(default_part_replacement(user, O))
 		return
-	else if(istype(O, /obj/item/device/paicard))
+	else if(istype(O, /obj/item/paicard))
 		if(!paicard)
 			insertpai(user, O)
 	else
@@ -401,14 +401,14 @@
 
 //harpoon
 
-/obj/item/weapon/bluespace_harpoon/wand
+/obj/item/bluespace_harpoon/wand
 	name = "teleportation wand"
 	desc = "An odd wand that weighs more than it looks like it should. It has a wire protruding from it and a glass-like tip, suggesting there may be more tech behind this than magic."
 
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "harpoonwand-2"
 
-/obj/item/weapon/bluespace_harpoon/wand/update_icon()
+/obj/item/bluespace_harpoon/wand/update_icon()
 	if(transforming)
 		switch(mode)
 			if(0)
@@ -423,7 +423,7 @@
  * magic orb
  */
 
-/obj/item/weapon/gun/energy/taser/magic
+/obj/item/gun/energy/taser/magic
 	name = "orb of lightning"
 	desc = "An orb filled with electrical energy, it looks oddly like a toy plasma orb..."
 	description_fluff = ""
@@ -440,46 +440,46 @@
 
 /obj/machinery/chemical_dispenser/kettle/full
 	spawn_cartridges = list(
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mint,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/greentea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/chaitea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decafchai
+			/obj/item/reagent_containers/chem_disp_cartridge/coffee,
+			/obj/item/reagent_containers/chem_disp_cartridge/cafe_latte,
+			/obj/item/reagent_containers/chem_disp_cartridge/soy_latte,
+			/obj/item/reagent_containers/chem_disp_cartridge/hot_coco,
+			/obj/item/reagent_containers/chem_disp_cartridge/milk,
+			/obj/item/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/reagent_containers/chem_disp_cartridge/sugar,
+			/obj/item/reagent_containers/chem_disp_cartridge/tea,
+			/obj/item/reagent_containers/chem_disp_cartridge/ice,
+			/obj/item/reagent_containers/chem_disp_cartridge/mint,
+			/obj/item/reagent_containers/chem_disp_cartridge/orange,
+			/obj/item/reagent_containers/chem_disp_cartridge/lemon,
+			/obj/item/reagent_containers/chem_disp_cartridge/lime,
+			/obj/item/reagent_containers/chem_disp_cartridge/berry,
+			/obj/item/reagent_containers/chem_disp_cartridge/greentea,
+			/obj/item/reagent_containers/chem_disp_cartridge/decaf,
+			/obj/item/reagent_containers/chem_disp_cartridge/chaitea,
+			/obj/item/reagent_containers/chem_disp_cartridge/decafchai
 		)
 
 // teleporter
 
-/obj/item/device/perfect_tele/magic
+/obj/item/perfect_tele/magic
 	name = "teleportation tome"
 	desc = "A large tome that can be used to teleport to special pages that can be removed from it. The spine seems to have some sort buzzing tech inside..."
 	icon = 'icons/obj/props/fantasy.dmi'
 	icon_state = "teleporter"
 	beacons_left = 3
-	cell_type = /obj/item/weapon/cell/device
+	cell_type = /obj/item/cell/device
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
-/obj/item/device/perfect_tele_beacon/magic
+/obj/item/perfect_tele_beacon/magic
 	name = "teleportation page"
 	desc = "A single page from a tome, with a glowing blue symbol on it. It seems like the symbol is raised as though there were something running beneath it..."
 	icon = 'icons/obj/props/fantasy.dmi'
 	icon_state = "page"
 
-/obj/item/device/perfect_tele/magic/attack_self(mob/user, var/radial_menu_anchor = src)
+/obj/item/perfect_tele/magic/attack_self(mob/user, var/radial_menu_anchor = src)
 	if(loc_network)
-		for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
+		for(var/obj/item/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
 			if(nb.tele_network == loc_network)
 				beacons[nb.tele_name] = nb
 		loc_network = null //Consumed
@@ -513,7 +513,7 @@ This device records all warnings given and teleport events for admin review in c
 			to_chat(user, "<span class='warning'>No duplicate names, please. '[new_name]' exists already.</span>")
 			return
 
-		var/obj/item/device/perfect_tele_beacon/magic/nb = new(get_turf(src))
+		var/obj/item/perfect_tele_beacon/magic/nb = new(get_turf(src))
 		nb.tele_name = new_name
 		nb.tele_hand = src
 		nb.creator = user.ckey
@@ -530,7 +530,7 @@ This device records all warnings given and teleport events for admin review in c
 
 //sizegun
 
-/obj/item/device/slow_sizegun/magic
+/obj/item/slow_sizegun/magic
 	name = "wand of growth and shrinking"
 	desc = "A wand said to be able to shrink or grow it's targets, it's encrusted with glowing gems and a... trigger?"
 	icon = 'icons/obj/gun_vr.dmi'
@@ -547,7 +547,7 @@ This device records all warnings given and teleport events for admin review in c
 	breakable = FALSE
 	lock_id = "dungeon"
 
-/obj/item/weapon/simple_key/dungeon
+/obj/item/simple_key/dungeon
 	name = "old key"
 	desc = "A plain, old-timey key, as one might use to unlock a door."
 	icon_state = "dungeon"

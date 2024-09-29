@@ -61,16 +61,16 @@ GLOBAL_LIST_EMPTY(apcs)
 	is_critical = 1
 
 /obj/machinery/power/apc/high
-	cell_type = /obj/item/weapon/cell/high
+	cell_type = /obj/item/cell/high
 
 /obj/machinery/power/apc/super
-	cell_type = /obj/item/weapon/cell/super
+	cell_type = /obj/item/cell/super
 
 /obj/machinery/power/apc/super/critical
 	is_critical = 1
 
 /obj/machinery/power/apc/hyper
-	cell_type = /obj/item/weapon/cell/hyper
+	cell_type = /obj/item/cell/hyper
 
 /obj/machinery/power/apc/alarms_hidden
 	alarms_hidden = TRUE
@@ -104,10 +104,10 @@ GLOBAL_LIST_EMPTY(apcs)
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/area/area
 	var/areastring = null
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/chargelevel = 0.0005  // Cap for how fast APC cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
 	var/start_charge = 90				// initial cell charge %
-	var/cell_type = /obj/item/weapon/cell/apc
+	var/cell_type = /obj/item/cell/apc
 	var/opened = 0 //0=closed, 1=opened, 2=cover removed
 	var/shorted = 0
 	var/grid_check = FALSE
@@ -491,7 +491,7 @@ GLOBAL_LIST_EMPTY(apcs)
 						user.visible_message(\
 							"<span class='warning'>[user.name] has removed the power control board from [name]!</span>",\
 							"<span class='notice'>You remove the power control board.</span>")
-						new /obj/item/weapon/module/power_control(loc)
+						new /obj/item/module/power_control(loc)
 		else if(opened != 2) //cover isn't removed
 			opened = 0
 			update_icon()
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		else
 			opened = 1
 			update_icon()
-	else if	(istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+	else if	(istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
 		if(cell)
 			to_chat(user, "The [name] already has a power cell installed.")
 			return
@@ -547,7 +547,7 @@ GLOBAL_LIST_EMPTY(apcs)
 			playsound(src, W.usesound, 50, 1)
 			update_icon()
 
-	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
 		togglelock(user)
 
 	else if(istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
@@ -596,7 +596,7 @@ GLOBAL_LIST_EMPTY(apcs)
 				new /obj/item/stack/cable_coil(loc,10)
 				to_chat(user, "<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
 				qdel(terminal)
-	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && !((stat & BROKEN)))
+	else if(istype(W, /obj/item/module/power_control) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && !((stat & BROKEN)))
 		user.visible_message("<span class='warning'>[user.name] inserts the power control board into [src].</span>", \
 							"You start to insert the power control board into the frame...")
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -606,11 +606,11 @@ GLOBAL_LIST_EMPTY(apcs)
 				reboot()
 				to_chat(user, "<span class='notice'>You place the power control board inside the frame.</span>")
 				qdel(W)
-	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && ((stat & BROKEN)))
+	else if(istype(W, /obj/item/module/power_control) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && ((stat & BROKEN)))
 		to_chat(user, "<span class='warning'>The [src] is too broken for that. Repair it first.</span>")
 		return
 	else if(W.has_tool_quality(TOOL_WELDER) && opened && has_electronics == APC_HAS_ELECTRONICS_NONE && !terminal)
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 		if(WT.get_fuel() < 3)
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
@@ -650,7 +650,7 @@ GLOBAL_LIST_EMPTY(apcs)
 				if(opened==2)
 					opened = 1
 				update_icon()
-		else if(istype(W, /obj/item/device/multitool) && (hacker || emagged))
+		else if(istype(W, /obj/item/multitool) && (hacker || emagged))
 			if(cell)
 				to_chat(user, "<span class='warning'>You need to remove the power cell first.</span>")
 				return
@@ -678,7 +678,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		else
 			if(istype(user, /mob/living/silicon))
 				return attack_hand(user)
-			if(!opened && wiresexposed && (istype(W, /obj/item/device/multitool) || W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/assembly/signaler)))
+			if(!opened && wiresexposed && (istype(W, /obj/item/multitool) || W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/assembly/signaler)))
 				return attack_hand(user)
 			//Placeholder until someone can do take_damage() for APCs or something.
 			to_chat(user, "<span class='notice'>The [name] looks too sturdy to bash open with \the [W.name].</span>")

@@ -6,14 +6,14 @@
 	not true mind control, but merely pheromone synthesis for living animals, and electronic hacking for simple robots.  The green web \
 	around the entity is merely a hologram used to allow the user to know if the creature is safe or not."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/control
+	obj_path = /obj/item/spell/control
 	ability_icon_state = "tech_control"
 	category = UTILITY_SPELLS
 
 /mob/living/carbon/human/proc/technomancer_control()
-	place_spell_in_hand(/obj/item/weapon/spell/control)
+	place_spell_in_hand(/obj/item/spell/control)
 
-/obj/item/weapon/spell/control
+/obj/item/spell/control
 	name = "control"
 	icon_state = "control"
 	desc = "Now you can command your own army!"
@@ -24,7 +24,7 @@
 	var/allowed_mob_classes = MOB_CLASS_ANIMAL|MOB_CLASS_SYNTHETIC
 
 //This unfortunately is gonna be rather messy due to the various mobtypes involved.
-/obj/item/weapon/spell/control/proc/select(var/mob/living/L)
+/obj/item/spell/control/proc/select(var/mob/living/L)
 	if(!(L.mob_class & allowed_mob_classes))
 		return FALSE
 
@@ -44,7 +44,7 @@
 	L.add_overlay(control_overlay, TRUE)
 	controlled_mobs |= L
 
-/obj/item/weapon/spell/control/proc/deselect(var/mob/living/L)
+/obj/item/spell/control/proc/deselect(var/mob/living/L)
 	if(!(L in controlled_mobs))
 		return FALSE
 
@@ -62,31 +62,31 @@
 	L.cut_overlay(control_overlay, TRUE)
 	controlled_mobs.Remove(L)
 
-/obj/item/weapon/spell/control/proc/move_all(turf/T)
+/obj/item/spell/control/proc/move_all(turf/T)
 	for(var/mob/living/L in controlled_mobs)
 		if(!L.has_AI() || L.stat)
 			deselect(L)
 			continue
 		L.ai_holder.give_destination(T, 0, TRUE)
 
-/obj/item/weapon/spell/control/proc/attack_all(mob/target)
+/obj/item/spell/control/proc/attack_all(mob/target)
 	for(var/mob/living/L in controlled_mobs)
 		if(!L.has_AI() || L.stat)
 			deselect(L)
 			continue
 		L.ai_holder.give_target(target)
 
-/obj/item/weapon/spell/control/Initialize()
+/obj/item/spell/control/Initialize()
 	control_overlay = image('icons/obj/spells.dmi',"controlled")
 	return ..()
 
-/obj/item/weapon/spell/control/Destroy()
+/obj/item/spell/control/Destroy()
 	for(var/mob/living/L in controlled_mobs)
 		deselect(L)
 	controlled_mobs = list()
 	return ..()
 
-/obj/item/weapon/spell/control/on_use_cast(mob/living/user)
+/obj/item/spell/control/on_use_cast(mob/living/user)
 	if(controlled_mobs.len != 0)
 		var/choice = tgui_alert(user,"Would you like to release control of the entities you are controlling? They won't be friendly to you anymore if you do this, so be careful.","Release Control?",list("No","Yes"))
 		if(choice == "Yes")
@@ -95,7 +95,7 @@
 			to_chat(user, "<span class='notice'>You've released control of all entities you had in control.</span>")
 
 
-/obj/item/weapon/spell/control/on_ranged_cast(atom/hit_atom, mob/living/user)
+/obj/item/spell/control/on_ranged_cast(atom/hit_atom, mob/living/user)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		if(L == user && !controlled_mobs.len)

@@ -1,7 +1,7 @@
 //
 // Size Gun
 //
-/obj/item/weapon/gun/energy/sizegun
+/obj/item/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
@@ -24,16 +24,16 @@
 			fire_sound		= 'sound/weapons/pulse3.ogg'
 		))
 
-/obj/item/weapon/gun/energy/sizegun/New()
+/obj/item/gun/energy/sizegun/New()
 	..()
-	verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
-	verbs += /obj/item/weapon/gun/energy/sizegun/proc/spin_dial
+	verbs += /obj/item/gun/energy/sizegun/proc/select_size
+	verbs += /obj/item/gun/energy/sizegun/proc/spin_dial
 
-/obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
+/obj/item/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
 	select_size()
 
-/obj/item/weapon/gun/energy/sizegun/proc/spin_dial()
+/obj/item/gun/energy/sizegun/proc/spin_dial()
 	set name = "Spin Size Dial"
 	set category = "Object"
 	set src in view(1)
@@ -41,13 +41,13 @@
 	size_set_to = (rand(25,200)) /100
 	usr.visible_message("<span class='warning'>\The [usr] spins the size dial to a random value!</span>","<span class='notice'>You spin the dial to a random value!</span>")
 
-/obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
+/obj/item/gun/energy/sizegun/consume_next_projectile()
 	. = ..()
 	var/obj/item/projectile/beam/sizelaser/G = .
 	if(istype(G))
 		G.set_size = size_set_to
 
-/obj/item/weapon/gun/energy/sizegun/proc/select_size()
+/obj/item/gun/energy/sizegun/proc/select_size()
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
@@ -62,7 +62,7 @@
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
 		to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
 
-/obj/item/weapon/gun/energy/sizegun/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/sizegun/update_icon(var/ignore_inhands)
 	var/grow_mode = "shrink"
 	if(size_set_to > 1)
 		grow_mode = "grow"
@@ -80,11 +80,11 @@
 
 	if(!ignore_inhands) update_held_icon()
 
-/obj/item/weapon/gun/energy/sizegun/examine(mob/user)
+/obj/item/gun/energy/sizegun/examine(mob/user)
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
 
-/obj/item/weapon/gun/energy/sizegun/admin
+/obj/item/gun/energy/sizegun/admin
 	name = "modified size gun"
 	desc = "An older model sizegun, modified to be without limits on minimum/maximum size, and have an unlimited charge. Time to show 'em that size does matter."
 	description_fluff = "A standard size gun that has been modified with \
@@ -113,7 +113,7 @@
 	have their theories as they continue to analyse the technology."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/obj/item/weapon/gun/energy/sizegun/admin/abductor
+/obj/item/gun/energy/sizegun/admin/abductor
 	name = "alien size gun"
 	desc = "A strange looking ray gun weapon with an adjustor knob on the side. The design is alien, but it bares a striking resemblence to the older model size guns that NT uses for research."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun)
@@ -123,7 +123,7 @@
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin/alien
 
-/obj/item/weapon/gun/energy/sizegun/admin/select_size()
+/obj/item/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
@@ -134,7 +134,7 @@
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
-/obj/item/weapon/gun/energy/sizegun/afterattack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/energy/sizegun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
 	if(backfire)
@@ -151,7 +151,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
 	if(backfire)
 		if(prob(50))
 			to_chat(user, "<span class='notice'>\The [src] backfires and consumes its entire charge!</span>")
@@ -167,7 +167,7 @@
 		return ..()
 
 
-/obj/item/weapon/gun/energy/sizegun/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/energy/sizegun/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(A.has_tool_quality(TOOL_WIRECUTTER))
 		if(backfire)
 			to_chat(user, "<span class='warning'>You repair the damage to the \the [src].</span>")
@@ -179,11 +179,11 @@
 			name = "unstable size gun"
 	..()
 
-/obj/item/weapon/gun/energy/sizegun/backfire
+/obj/item/gun/energy/sizegun/backfire
 	name = "unstable size gun"
 	backfire = 1
 
-/obj/item/weapon/gun/energy/sizegun/mounted
+/obj/item/gun/energy/sizegun/mounted
 	name = "mounted size gun"
 	self_recharge = 1
 	use_external_power = 1

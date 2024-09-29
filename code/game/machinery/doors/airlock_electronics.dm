@@ -1,4 +1,4 @@
-/obj/item/weapon/airlock_electronics
+/obj/item/airlock_electronics
 	name = "airlock electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -16,13 +16,13 @@
 	var/locked = 1
 	var/emagged = 0
 
-/obj/item/weapon/airlock_electronics/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/airlock_electronics/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
 		to_chat(user, "<span class='notice'>You remove the access restrictions on [src]!</span>")
 		return 1
 
-/obj/item/weapon/airlock_electronics/attack_self(mob/user as mob)
+/obj/item/airlock_electronics/attack_self(mob/user as mob)
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
 		return ..(user)
 
@@ -59,7 +59,7 @@
 	user << browse(t1, "window=airlock_electronics")
 	onclose(user, "airlock")
 
-/obj/item/weapon/airlock_electronics/Topic(href, href_list)
+/obj/item/airlock_electronics/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained() || (!ishuman(usr) && !istype(usr,/mob/living/silicon)))
 		return
@@ -75,7 +75,7 @@
 			src.locked = 0
 			src.last_configurator = usr.name
 		else if(isliving(usr))
-			var/obj/item/weapon/card/id/id
+			var/obj/item/card/id/id
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				id = H.get_idcard()
@@ -105,7 +105,7 @@
 
 	attack_self(usr)
 
-/obj/item/weapon/airlock_electronics/proc/toggle_access(var/acc)
+/obj/item/airlock_electronics/proc/toggle_access(var/acc)
 	if (acc == "all")
 		conf_access = null
 	else
@@ -121,8 +121,8 @@
 			if (!conf_access.len)
 				conf_access = null
 
-/obj/item/weapon/airlock_electronics/proc/get_available_accesses(var/mob/user)
-	var/obj/item/weapon/card/id/id
+/obj/item/airlock_electronics/proc/get_available_accesses(var/mob/user)
+	var/obj/item/card/id/id
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		id = H.get_idcard()
@@ -142,12 +142,12 @@
 	else
 		return id.GetAccess()
 
-/obj/item/weapon/airlock_electronics/secure
+/obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
 	origin_tech = list(TECH_DATA = 2)
 	secure = 1
 
-/obj/item/weapon/airlock_electronics/secure/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/airlock_electronics/secure/emag_act(var/remaining_charges, var/mob/user)
 	to_chat(user, "<span class='warning'>You don't appear to be able to bypass this hardened device!</span>")
 	return -1

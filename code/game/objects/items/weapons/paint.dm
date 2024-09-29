@@ -3,7 +3,7 @@
 
 var/global/list/cached_icons = list()
 
-/obj/item/weapon/reagent_containers/glass/paint
+/obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
 	icon = 'icons/obj/items.dmi'
@@ -18,7 +18,7 @@ var/global/list/cached_icons = list()
 	flags = OPENCONTAINER
 	var/paint_type = "red"
 
-/obj/item/weapon/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
+/obj/item/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target) && reagents.total_volume > 5)
 		user.visible_message("<span class='warning'>\The [target] has been splashed with something by [user]!</span>")
@@ -26,52 +26,52 @@ var/global/list/cached_icons = list()
 	else
 		return ..()
 
-/obj/item/weapon/reagent_containers/glass/paint/Initialize()
+/obj/item/reagent_containers/glass/paint/Initialize()
 	.=..()
 	if(paint_type)
 		reagents.add_reagent("paint", volume, paint_type)
 
-/obj/item/weapon/reagent_containers/glass/paint/red
+/obj/item/reagent_containers/glass/paint/red
 	icon_state = "paint_red"
 	paint_type = "#FF0000"
 
-/obj/item/weapon/reagent_containers/glass/paint/yellow
+/obj/item/reagent_containers/glass/paint/yellow
 	icon_state = "paint_yellow"
 	paint_type = "#FFFF00"
 
-/obj/item/weapon/reagent_containers/glass/paint/green
+/obj/item/reagent_containers/glass/paint/green
 	icon_state = "paint_green"
 	paint_type = "#00FF00"
 
-/obj/item/weapon/reagent_containers/glass/paint/blue
+/obj/item/reagent_containers/glass/paint/blue
 	icon_state = "paint_blue"
 	paint_type = "#0000FF"
 
-/obj/item/weapon/reagent_containers/glass/paint/violet
+/obj/item/reagent_containers/glass/paint/violet
 	icon_state = "paint_violet"
 	paint_type = "#FF00FF"
 
-/obj/item/weapon/reagent_containers/glass/paint/black
+/obj/item/reagent_containers/glass/paint/black
 	icon_state = "paint_black"
 	paint_type = "#000000"
 
-/obj/item/weapon/reagent_containers/glass/paint/grey
+/obj/item/reagent_containers/glass/paint/grey
 	icon_state = "paint_neutral"
 	paint_type = "#808080"
 
-/obj/item/weapon/reagent_containers/glass/paint/orange
+/obj/item/reagent_containers/glass/paint/orange
 	icon_state = "paint_orange"
 	paint_type = "#FFA500"
 
-/obj/item/weapon/reagent_containers/glass/paint/purple
+/obj/item/reagent_containers/glass/paint/purple
 	icon_state = "paint_purple"
 	paint_type = "#A500FF"
 
-/obj/item/weapon/reagent_containers/glass/paint/cyan
+/obj/item/reagent_containers/glass/paint/cyan
 	icon_state = "paint_cyan"
 	paint_type = "#00FFFF"
 
-/obj/item/weapon/reagent_containers/glass/paint/white
+/obj/item/reagent_containers/glass/paint/white
 	name = "paint remover bucket"
 	icon_state = "paint_white"
 	paint_type = "#FFFFFF"

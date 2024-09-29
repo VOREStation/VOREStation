@@ -18,14 +18,14 @@
 	icon_state = "rig-vintagecrew"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
-	allowed = list(/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/storage/briefcase/inflatable,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/weapon/pickaxe,
-			/obj/item/weapon/shovel
+	allowed = list(/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/storage/briefcase/inflatable,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/pickaxe,
+			/obj/item/shovel
 			)
 
 //Engineering Crewsuit (ORANGE, RING)
@@ -52,25 +52,25 @@
 	max_pressure_protection = 15 * ONE_ATMOSPHERE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE+10000
 	breach_threshold = 14 //These are kinda thicc
-	allowed = list(/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/device/t_scanner,
-			/obj/item/weapon/rcd,
-			/obj/item/weapon/rcd_ammo,
-			/obj/item/weapon/storage/toolbox,
-			/obj/item/weapon/storage/briefcase/inflatable,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/device/robotanalyzer,
-			/obj/item/device/geiger,
-			/obj/item/weapon/tool,
-			/obj/item/weapon/weldingtool,
-			/obj/item/weapon/cell,
-			/obj/item/weapon/pickaxe,
-			/obj/item/device/measuring_tape,
-			/obj/item/device/lightreplacer,
-			/obj/item/weapon/shovel
+	allowed = list(/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/t_scanner,
+			/obj/item/rcd,
+			/obj/item/rcd_ammo,
+			/obj/item/storage/toolbox,
+			/obj/item/storage/briefcase/inflatable,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/robotanalyzer,
+			/obj/item/geiger,
+			/obj/item/tool,
+			/obj/item/weldingtool,
+			/obj/item/cell,
+			/obj/item/pickaxe,
+			/obj/item/measuring_tape,
+			/obj/item/lightreplacer,
+			/obj/item/shovel
 			)
 
 //Medical Crewsuit (GREEN, CROSS)
@@ -94,18 +94,18 @@
 	icon_state = "rig-vintagemedic"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15, energy = 5, bomb = 25, bio = 100, rad = 75)
-	allowed = list(/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/storage/firstaid,
-			/obj/item/device/healthanalyzer,
-			/obj/item/device/robotanalyzer,
-			/obj/item/device/mass_spectrometer,
-			/obj/item/device/halogen_counter,
+	allowed = list(/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/storage/firstaid,
+			/obj/item/healthanalyzer,
+			/obj/item/robotanalyzer,
+			/obj/item/mass_spectrometer,
+			/obj/item/halogen_counter,
 			/obj/item/stack/medical,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/weapon/cell
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/cell
 			)
 
 //Marine Crewsuit (BLUE, SHIELD)
@@ -128,21 +128,21 @@
 	breach_threshold = 14 //These are kinda thicc
 	resilience = 0.15 //Armored
 	siemens_coefficient = 0.8
-	allowed = list(/obj/item/weapon/gun,
-			/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/melee,
-			/obj/item/weapon/grenade,
-			/obj/item/device/flash,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/weapon/handcuffs,
-			/obj/item/device/hailer,
-			/obj/item/device/holowarrant,
-			/obj/item/device/megaphone,
+	allowed = list(/obj/item/gun,
+			/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/melee,
+			/obj/item/grenade,
+			/obj/item/flash,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/handcuffs,
+			/obj/item/hailer,
+			/obj/item/holowarrant,
+			/obj/item/megaphone,
 			/obj/item/ammo_magazine,
-			/obj/item/weapon/cell
+			/obj/item/cell
 			)
 
 //Officer Crewsuit (GOLD, X)
@@ -166,21 +166,21 @@
 	breach_threshold = 16 //Extra Thicc
 	resilience = 0.1 //Heavily Armored
 	siemens_coefficient = 0.7
-	allowed = list(/obj/item/weapon/gun,
-			/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/melee,
-			/obj/item/weapon/grenade,
-			/obj/item/device/flash,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/weapon/handcuffs,
-			/obj/item/device/hailer,
-			/obj/item/device/holowarrant,
-			/obj/item/device/megaphone,
+	allowed = list(/obj/item/gun,
+			/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/melee,
+			/obj/item/grenade,
+			/obj/item/flash,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/handcuffs,
+			/obj/item/hailer,
+			/obj/item/holowarrant,
+			/obj/item/megaphone,
 			/obj/item/ammo_magazine,
-			/obj/item/weapon/cell
+			/obj/item/cell
 			)
 
 //Pilot Crewsuit (ROYAL BLUE, I)
@@ -207,12 +207,12 @@
 	slowdown = 0
 	armor = list(melee = 25, bullet = 20, laser = 20, energy = 5, bomb = 20, bio = 100, rad = 50)
 	siemens_coefficient = 0.9
-	allowed = list(/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/storage/briefcase/inflatable,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
+	allowed = list(/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/storage/briefcase/inflatable,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
 			)
 			
 //Scientist Crewsuit (PURPLE, O)
@@ -237,27 +237,27 @@
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 25, bullet = 10, laser = 10, energy = 50, bomb = 10, bio = 100, rad = 100)
 	siemens_coefficient = 0.8
-	allowed = list(/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/storage/firstaid,
-			/obj/item/device/healthanalyzer,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/device/ano_scanner,
-			/obj/item/device/depth_scanner,
-			/obj/item/device/xenoarch_multi_tool,
-			/obj/item/device/measuring_tape,
-			/obj/item/device/reagent_scanner,
-			/obj/item/device/robotanalyzer,
-			/obj/item/device/analyzer,
-			/obj/item/device/cataloguer,
-			/obj/item/device/universal_translator,
-			/obj/item/weapon/tool/crowbar,
+	allowed = list(/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/storage/firstaid,
+			/obj/item/healthanalyzer,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/ano_scanner,
+			/obj/item/depth_scanner,
+			/obj/item/xenoarch_multi_tool,
+			/obj/item/measuring_tape,
+			/obj/item/reagent_scanner,
+			/obj/item/robotanalyzer,
+			/obj/item/analyzer,
+			/obj/item/cataloguer,
+			/obj/item/universal_translator,
+			/obj/item/tool/crowbar,
 			/obj/item/stack/marker_beacon,
 			/obj/item/stack/flag,
-			/obj/item/weapon/clipboard,
-			/obj/item/weapon/cell
+			/obj/item/clipboard,
+			/obj/item/cell
 			)
 
 //Miner's Crewsuit (BROWN)
@@ -276,14 +276,14 @@
 	icon_state = "rig-vintageminer"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
-	allowed = list(/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/storage/briefcase/inflatable,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/weapon/pickaxe,
-			/obj/item/weapon/shovel
+	allowed = list(/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/storage/briefcase/inflatable,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/pickaxe,
+			/obj/item/shovel
 			)
 
 //Mercenary Crewsuit (RED, CROSS)
@@ -306,22 +306,22 @@
 	breach_threshold = 16 //Extra Thicc
 	resilience = 0.05 //Military Armor
 	siemens_coefficient = 0.6
-	allowed = list(/obj/item/weapon/gun,
-			/obj/item/device/flashlight,
-			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
-			/obj/item/weapon/melee,
-			/obj/item/weapon/grenade,
-			/obj/item/device/flash,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
-			/obj/item/weapon/handcuffs,
-			/obj/item/device/hailer,
-			/obj/item/device/holowarrant,
-			/obj/item/device/megaphone,
+	allowed = list(/obj/item/gun,
+			/obj/item/flashlight,
+			/obj/item/tank,
+			/obj/item/suit_cooling_unit,
+			/obj/item/melee,
+			/obj/item/grenade,
+			/obj/item/flash,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
+			/obj/item/handcuffs,
+			/obj/item/hailer,
+			/obj/item/holowarrant,
+			/obj/item/megaphone,
 			/obj/item/ammo_magazine,
-			/obj/item/device/spaceflare,
-			/obj/item/device/powersink,
-			/obj/item/device/radio_jammer,
-			/obj/item/weapon/cell
+			/obj/item/spaceflare,
+			/obj/item/powersink,
+			/obj/item/radio_jammer,
+			/obj/item/cell
 			)

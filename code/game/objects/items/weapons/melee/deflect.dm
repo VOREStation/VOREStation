@@ -2,11 +2,11 @@
  * The home of basic deflect / defense code.
  */
 
-/obj/item/weapon/melee
+/obj/item/melee
 	var/defend_chance = 5	// The base chance for the weapon to parry.
 	var/projectile_parry_chance = 0	// The base chance for a projectile to be deflected.
 
-/obj/item/weapon/melee/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(.)
 		return .
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))
@@ -18,7 +18,7 @@
 
 	return 0
 
-/obj/item/weapon/melee/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
+/obj/item/melee/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
 	if(.)
 		return .
 	if(user.incapacitated() || !istype(damage_source, /obj/item/projectile))

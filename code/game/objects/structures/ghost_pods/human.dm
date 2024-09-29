@@ -35,7 +35,7 @@
 	clothing_possibilities |= subtypesof(/obj/item/clothing/under/color)
 	clothing_possibilities |= subtypesof(/obj/item/clothing/head/soft)
 	clothing_possibilities |= /obj/item/clothing/shoes/black
-	clothing_possibilities |= /obj/item/device/radio/headset
+	clothing_possibilities |= /obj/item/radio/headset
 
 /obj/structure/ghost_pod/ghost_activated/human/create_occupant(var/mob/M)
 	..()
@@ -71,7 +71,7 @@
 				if(!head_options)
 					head_options = list()
 				head_options |= path
-			if(ispath(path, /obj/item/device/radio/headset))
+			if(ispath(path, /obj/item/radio/headset))
 				if(!headset_options)
 					headset_options = list()
 				headset_options |= path
@@ -97,7 +97,7 @@
 		H.equip_to_appropriate_slot(C)
 
 	if(spawn_with_emag)
-		var/obj/item/weapon/card/emag/E = new(H)
+		var/obj/item/card/emag/E = new(H)
 		E.name = "broken card"
 		E.description_antag = "This is a 'disguised' emag, to make your escape from wherever you happen to be trapped."
 		H.equip_to_appropriate_slot(E)
@@ -163,7 +163,7 @@
 	clothing_possibilities |= subtypesof(/obj/item/clothing/under/utility)
 	clothing_possibilities |= subtypesof(/obj/item/clothing/head/beret)
 	clothing_possibilities |= /obj/item/clothing/shoes/black
-	clothing_possibilities |= /obj/item/device/radio/headset
+	clothing_possibilities |= /obj/item/radio/headset
 
 /obj/structure/ghost_pod/manual/human/create_occupant(var/mob/M)
 	..()
@@ -199,7 +199,7 @@
 				if(!head_options)
 					head_options = list()
 				head_options |= path
-			if(ispath(path, /obj/item/device/radio/headset))
+			if(ispath(path, /obj/item/radio/headset))
 				if(!headset_options)
 					headset_options = list()
 				headset_options |= path

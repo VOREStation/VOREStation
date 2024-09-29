@@ -88,8 +88,8 @@
 			//Did they use an item? If so, we're done here.
 
 			//Did they put a micro in it?
-			if(istype(source_material,/obj/item/weapon/holder/micro))
-				var/obj/item/weapon/holder/micro/micro_holder = source_material
+			if(istype(source_material,/obj/item/holder/micro))
+				var/obj/item/holder/micro/micro_holder = source_material
 				var/mob/mob_to_be_changed = micro_holder.held_mob
 				var/mob/living/M = mob_to_be_changed
 				//Start of mob code shamelessly ripped from mouseray
@@ -205,12 +205,12 @@
 	last_process_time = world.time
 
 
-/obj/machinery/replicator/vore/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/machinery/replicator/vore/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W,item_vore_blacklist)) //No armblades, no putting possessed items in it!
 		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine.</span>")
 		return
-	if(istype(W, /obj/item/weapon/holder/micro)) //Are you putting a micro in it?
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro)) //Are you putting a micro in it?
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(!inserted_mob.allow_spontaneous_tf) //Do they allow TF?
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
@@ -238,8 +238,8 @@
 		else
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The micro must be connected to the server.))</span>")
 			return
-	else if(istype(W,/obj/item/weapon/grab)) //Is someone being shoved into the machine?
-		var/obj/item/weapon/grab/the_grab = W
+	else if(istype(W,/obj/item/grab)) //Is someone being shoved into the machine?
+		var/obj/item/grab/the_grab = W
 		var/mob/living/inserted_mob = the_grab.affecting //Get the mob that is grabbed.
 		if(!inserted_mob.allow_spontaneous_tf)
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
@@ -270,7 +270,7 @@
 				if(istype(inserted_mob, /mob/living/carbon/human)) //So, this WORKS. Works very well!
 					var/mob/living/carbon/human/inserted_human = inserted_mob
 					for(var/obj/item/I in inserted_mob)
-						if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+						if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 							continue
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
@@ -280,17 +280,17 @@
 		else
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The micro must be connected to the server.))</span>")
 			return
-	else if(istype(W, /obj/item/weapon/holder/mouse)) //No you can't turn your army of mice into giant rats.
+	else if(istype(W, /obj/item/holder/mouse)) //No you can't turn your army of mice into giant rats.
 		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. The machine reads 'NOT ENOUGH BIOMASS'.</span>")
 		return
 	user.drop_item() //Put the micro on the floor (or drop the item)
-	if(istype(W, /obj/item/weapon/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(istype(inserted_mob, /mob/living/carbon/human)) //Only humans have the drop_from_inventory proc.
 			var/mob/living/carbon/human/inserted_human = inserted_mob
 			for(var/obj/item/I in inserted_human) //Drop any remaining items! This only really seems to affect hands.
-				if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+				if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 					continue
 				inserted_human.drop_from_inventory(I)
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.
@@ -376,13 +376,13 @@
 	/obj/item/clothing/shoes/flipflop,
 	/obj/item/clothing/shoes/boots/duty,
 	/obj/item/clothing/shoes/footwraps,
-	/obj/item/weapon/storage/smolebrickcase,
-	/obj/item/weapon/lipstick,
-	/obj/item/weapon/material/fishing_rod/modern,
-	/obj/item/weapon/inflatable_duck,
+	/obj/item/storage/smolebrickcase,
+	/obj/item/lipstick,
+	/obj/item/material/fishing_rod/modern,
+	/obj/item/inflatable_duck,
 	/obj/item/toy/syndicateballoon,
-	/obj/item/weapon/towel,
-	/obj/item/weapon/bedsheet/rainbowdouble
+	/obj/item/towel,
+	/obj/item/bedsheet/rainbowdouble
 	) 	// Currently: 3 gloves, 5 undersuits, 3 oversuits, 5 plushies, 5 headwear, 7 shoes, 7 misc. = 35
 		//Fishing hat was going to be added, but it was simply too powerful for this world.
 
@@ -438,8 +438,8 @@
 						spawned_obj.desc += " It is made of [source_material]."
 					else
 						spawned_obj.desc = "It is made of [source_material]."
-			if(istype(source_material,/obj/item/weapon/holder/micro))
-				var/obj/item/weapon/holder/micro/micro_holder = source_material //Tells the machine that a micro is the material being used
+			if(istype(source_material,/obj/item/holder/micro))
+				var/obj/item/holder/micro/micro_holder = source_material //Tells the machine that a micro is the material being used
 				var/mob/mob_to_be_changed = micro_holder.held_mob //Get the mob.
 				var/mob/living/M = mob_to_be_changed
 				M.release_vore_contents(TRUE, TRUE) //Release their stomach contents. Don't spam the chat, either.
@@ -473,12 +473,12 @@
 
 	last_process_time = world.time
 
-/obj/machinery/replicator/clothing/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/machinery/replicator/clothing/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W,item_vore_blacklist)) //No armblades, no putting already possessed items in it!
 		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine.</span>")
 		return
-	if(istype(W, /obj/item/weapon/holder/micro) || istype(W, /obj/item/weapon/holder/mouse)) //Are you putting a micro/mouse in it?
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro) || istype(W, /obj/item/holder/mouse)) //Are you putting a micro/mouse in it?
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(!inserted_mob.allow_spontaneous_tf) //Do they allow TF?
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
@@ -506,8 +506,8 @@
 		else
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The micro must be connected to the server.))</span>")
 			return
-	else if(istype(W,/obj/item/weapon/grab)) //Is someone being shoved into the machine?
-		var/obj/item/weapon/grab/the_grab = W
+	else if(istype(W,/obj/item/grab)) //Is someone being shoved into the machine?
+		var/obj/item/grab/the_grab = W
 		var/mob/living/inserted_mob = the_grab.affecting //Get the mob that is grabbed.
 		if(!inserted_mob.allow_spontaneous_tf)
 			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
@@ -538,7 +538,7 @@
 				if(istype(inserted_mob, /mob/living/carbon/human)) //So, this WORKS. Works very well!
 					var/mob/living/carbon/human/inserted_human = inserted_mob
 					for(var/obj/item/I in inserted_mob)
-						if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+						if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 							continue
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
@@ -550,13 +550,13 @@
 			return
 
 	user.drop_item() //Put the micro on the floor (or drop the item)
-	if(istype(W, /obj/item/weapon/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(istype(inserted_mob, /mob/living/carbon/human)) //Only humans have the drop_from_inventory proc.
 			var/mob/living/carbon/human/inserted_human = inserted_mob
 			for(var/obj/item/I in inserted_human) //Drop any remaining items! This only really seems to affect hands.
-				if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+				if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 					continue
 				inserted_human.drop_from_inventory(I)
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.

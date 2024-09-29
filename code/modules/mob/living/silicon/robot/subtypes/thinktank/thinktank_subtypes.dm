@@ -2,7 +2,7 @@
 	name = "recon platform"
 	desc = "A large quadrupedal AI platform, colloquially known as a 'think-tank' due to the flexible onboard intelligence. This one is lightly armoured and fitted with all-terrain wheels."
 	modtype = "Recon"
-	module = /obj/item/weapon/robot_module/robot/platform/explorer
+	module = /obj/item/robot_module/robot/platform/explorer
 
 /mob/living/silicon/robot/platform/explorer/Initialize()
 	. = ..()
@@ -20,7 +20,7 @@
 	name = "logistics platform"
 	desc = "A large quadrupedal AI platform, colloquially known as a 'think-tank' due to the flexible onboard intelligence. This one has an expanded storage compartment."
 	modtype = "Logistics"
-	module = /obj/item/weapon/robot_module/robot/platform/cargo
+	module = /obj/item/robot_module/robot/platform/cargo
 	max_stored_atoms = 3
 
 /mob/living/silicon/robot/platform/cargo/welcome_client()

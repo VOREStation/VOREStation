@@ -31,10 +31,10 @@
 
 	next_spam_attempt_time = world.time + rand(30 SECONDS, 2 MINUTES)
 
-	var/obj/item/device/pda/P = null
+	var/obj/item/pda/P = null
 	var/list/viables = list()
 
-	for(var/obj/item/device/pda/check_pda in sortAtom(PDAs))
+	for(var/obj/item/pda/check_pda in sortAtom(PDAs))
 		if (!check_pda.owner || check_pda == src || check_pda.hidden)
 			continue
 
@@ -129,7 +129,7 @@
 			"You have won tickets to the newest thriller THE CULT OF THE SLEEPING ONE!")
 	return list(sender, message)
 
-/datum/event2/event/pda_spam/proc/send_spam(obj/item/device/pda/P, sender, message)
+/datum/event2/event/pda_spam/proc/send_spam(obj/item/pda/P, sender, message)
 	last_spam_time = world.time
 	var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 	PM.notify("<b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)", 0)

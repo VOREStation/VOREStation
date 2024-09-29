@@ -46,7 +46,7 @@
 		BITSET(H.hud_updateflag, LIFE_HUD)
 
 		if(H.handcuffed)
-			var/obj/item/weapon/W = H.handcuffed
+			var/obj/item/W = H.handcuffed
 			H.handcuffed = null
 			if(H.buckled && H.buckled.buckle_require_restraints)
 				H.buckled.unbuckle_mob()
@@ -58,7 +58,7 @@
 			if(W)
 				W.layer = initial(W.layer)
 		if(H.legcuffed)
-			var/obj/item/weapon/W = H.legcuffed
+			var/obj/item/W = H.legcuffed
 			H.legcuffed = null
 			H.update_inv_legcuffed()
 			if(H.client)

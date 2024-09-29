@@ -6,9 +6,9 @@
 	icon_state = "dnaopen"
 	anchored = TRUE
 	density = TRUE
-	circuit = /obj/item/weapon/circuitboard/dna_analyzer
+	circuit = /obj/item/circuitboard/dna_analyzer
 
-	var/obj/item/weapon/forensics/swab/bloodsamp = null
+	var/obj/item/forensics/swab/bloodsamp = null
 	var/scanning = 0
 	var/scanner_progress = 0
 	var/scanner_rate = 5
@@ -33,7 +33,7 @@
 	if(default_deconstruction_crowbar(user, W))
 		return
 
-	var/obj/item/weapon/forensics/swab/swab = W
+	var/obj/item/forensics/swab/swab = W
 	if(istype(swab) && swab.is_used())
 		user.unEquip(W)
 		bloodsamp = swab
@@ -108,9 +108,9 @@
 	visible_message("<span class='notice'>[icon2html(src,viewers(src))] makes an insistent chime.</span>", 2)
 	update_icon()
 	if(bloodsamp)
-		var/obj/item/weapon/paper/P = new(src)
+		var/obj/item/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [bloodsamp.name]"
-		P.stamped = list(/obj/item/weapon/stamp)
+		P.stamped = list(/obj/item/stamp)
 		P.cut_overlays()
 		P.add_overlay("paper_stamped")
 		//dna data itself

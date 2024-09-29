@@ -60,7 +60,7 @@
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
 	if(C.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = C.get_welder()
+		var/obj/item/weldingtool/WT = C.get_welder()
 		if(WT.welding == 1)
 			if(WT.remove_fuel(0, user))
 				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")

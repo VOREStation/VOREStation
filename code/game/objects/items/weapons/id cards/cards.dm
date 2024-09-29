@@ -11,7 +11,7 @@
 /*
  * DATA CARDS - Used for the teleporter
  */
-/obj/item/weapon/card
+/obj/item/card
 	name = "card"
 	desc = "A tiny plaque of plastic. Does card things."
 	icon = 'icons/obj/card_new.dmi'
@@ -27,15 +27,15 @@
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 
-/obj/item/weapon/card/New()
+/obj/item/card/New()
 	. = ..()
 	reset_icon()
 
-/obj/item/weapon/card/proc/reset_icon()
+/obj/item/card/proc/reset_icon()
 	sprite_stack = initial_sprite_stack
 	update_icon()
 
-/obj/item/weapon/card/update_icon()
+/obj/item/card/update_icon()
 	if(!sprite_stack || !istype(sprite_stack) || sprite_stack == list(""))
 		icon = base_icon
 		icon_state = initial(icon_state)
@@ -52,7 +52,7 @@
 	if(I)
 		icon = I
 
-/obj/item/weapon/card/data
+/obj/item/card/data
 	name = "data card"
 	desc = "A solid-state storage card, used to back up or transfer information. What knowledge could it contain?"
 	icon_state = "data"
@@ -63,7 +63,7 @@
 	drop_sound = 'sound/items/drop/disk.ogg'
 	pickup_sound = 'sound/items/pickup/disk.ogg'
 
-/obj/item/weapon/card/data/verb/label(t as text)
+/obj/item/card/data/verb/label(t as text)
 	set name = "Label Card"
 	set category = "Object"
 	set src in usr
@@ -75,7 +75,7 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/item/weapon/card/data/clown
+/obj/item/card/data/clown
 	name = "\proper the coordinates to clown planet"
 	icon_state = "rainbow"
 	item_state = "card-id"
@@ -88,14 +88,14 @@
  * ID CARDS
  */
 
-/obj/item/weapon/card/emag_broken
+/obj/item/card/emag_broken
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"
 	icon_state = "emag-spent"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 
-/obj/item/weapon/card/emag
+/obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
@@ -103,7 +103,7 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	var/uses = 10
 
-/obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user, var/click_parameters)
+/obj/item/card/emag/resolve_attackby(atom/A, mob/user, attack_modifier, var/click_parameters)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)
 		return ..(A, user, click_parameters)
@@ -120,13 +120,13 @@
 	if(uses<1)
 		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")
 		user.drop_item()
-		var/obj/item/weapon/card/emag_broken/junk = new(user.loc)
+		var/obj/item/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
 		qdel(src)
 
 	return 1
 
-/obj/item/weapon/card/emag/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/card/emag/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/stack/telecrystal))
 		var/obj/item/stack/telecrystal/T = O
 		if(T.get_amount() < 1)
@@ -138,11 +138,11 @@
 		qdel(O)
 
 
-/obj/item/weapon/card/emag/borg
+/obj/item/card/emag/borg
 	uses = 12
 	var/burnt_out = FALSE
 
-/obj/item/weapon/card/emag/borg/afterattack(atom/A, mob/user, proximity, var/click_parameters)
+/obj/item/card/emag/borg/afterattack(atom/A, mob/user, proximity, var/click_parameters)
 	if(!proximity || burnt_out) return
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)
@@ -165,7 +165,7 @@
 
 /// FLUFF PERMIT
 
-/obj/item/weapon/card_fluff
+/obj/item/card_fluff
 	name = "fluff card"
 	desc = "A tiny plaque of plastic. Purely decorative?"
 	description_fluff = "This permit was not issued by any branch of NanoTrasen, and as such it is not formally recognized at any NanoTrasen-operated installations. The bearer is not - under any circumstances - entitled to ownership of any items or allowed to perform any acts that would normally be restricted or illegal for their current position, regardless of what they or this permit may claim."
@@ -180,11 +180,11 @@
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 
-/obj/item/weapon/card_fluff/proc/reset_icon()
+/obj/item/card_fluff/proc/reset_icon()
 	sprite_stack = list("")
 	update_icon()
 
-/obj/item/weapon/card_fluff/update_icon()
+/obj/item/card_fluff/update_icon()
 	if(!sprite_stack || !istype(sprite_stack) || sprite_stack == list(""))
 		icon = base_icon
 		icon_state = initial(icon_state)
@@ -201,7 +201,7 @@
 	if(I)
 		icon = I
 
-/obj/item/weapon/card_fluff/attack_self()
+/obj/item/card_fluff/attack_self()
 
 	var/choice = tgui_input_list(usr, "What element would you like to customize?", "Customize Card", list("Band","Stamp","Reset"))
 	if(!choice) return
@@ -269,19 +269,19 @@
 		return
 	return
 
-/obj/item/weapon/card/id/cargo/miner/borg
+/obj/item/card/id/cargo/miner/borg
 	var/mob/living/silicon/robot/R
 	var/last_robot_loc
 	name = "Robot Miner ID"
 	rank = JOB_SHAFT_MINER
 
-/obj/item/weapon/card/id/cargo/miner/borg/Initialize()
+/obj/item/card/id/cargo/miner/borg/Initialize()
 	. = ..()
 	R = loc.loc
 	registered_name = R.braintype
 	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
 
-/obj/item/weapon/card/id/cargo/miner/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
+/obj/item/card/id/cargo/miner/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	if(old_loc == R || old_loc == R.module)
 		last_robot_loc = old_loc
 	if(!istype(loc, /obj/machinery) && loc != R && loc != R.module)
@@ -293,7 +293,7 @@
 		if(loc == R)
 			hud_layerise()
 
-/obj/item/weapon/card/id/cargo/miner/borg/Destroy()
+/obj/item/card/id/cargo/miner/borg/Destroy()
 	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
 	R = null
 	last_robot_loc = null

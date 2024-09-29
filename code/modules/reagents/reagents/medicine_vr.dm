@@ -234,7 +234,7 @@
 			log_debug("polymorph human")
 			for(var/obj/item/W in M)
 				log_debug("polymorph items")
-				if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif))
+				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
 					log_debug("polymorph implants")
 					continue
 				M.drop_from_inventory(W)

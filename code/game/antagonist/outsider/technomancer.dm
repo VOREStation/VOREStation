@@ -20,7 +20,7 @@ var/datum/antagonist/technomancer/technomancers
 	initial_spawn_req = 1
 	initial_spawn_target = 1
 
-	id_type = /obj/item/weapon/card/id/syndicate
+	id_type = /obj/item/card/id/syndicate
 
 /datum/antagonist/technomancer/New()
 	..()
@@ -39,13 +39,13 @@ var/datum/antagonist/technomancer/technomancers
 
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/under/technomancer/master(technomancer_mob), slot_w_uniform)
 	create_id("Technomagus", technomancer_mob)
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/disposable_teleporter/free(technomancer_mob), slot_r_store)
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/technomancer_catalog(technomancer_mob), slot_l_store)
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(technomancer_mob), slot_l_ear)
-	var/obj/item/weapon/technomancer_core/core = new /obj/item/weapon/technomancer_core(technomancer_mob)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/disposable_teleporter/free(technomancer_mob), slot_r_store)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/technomancer_catalog(technomancer_mob), slot_l_store)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/radio/headset(technomancer_mob), slot_l_ear)
+	var/obj/item/technomancer_core/core = new /obj/item/technomancer_core(technomancer_mob)
 	technomancer_mob.equip_to_slot_or_del(core, slot_back)
 	technomancer_belongings.Add(core) // So it can be Tracked.
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/master(technomancer_mob), slot_head)
 	return 1
@@ -54,17 +54,17 @@ var/datum/antagonist/technomancer/technomancers
 
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/under/technomancer/apprentice(technomancer_mob), slot_w_uniform)
 	create_id("Techno-apprentice", technomancer_mob)
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/weapon/disposable_teleporter/free(technomancer_mob), slot_r_store)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/disposable_teleporter/free(technomancer_mob), slot_r_store)
 
-	var/obj/item/weapon/technomancer_catalog/apprentice/catalog = new /obj/item/weapon/technomancer_catalog/apprentice()
+	var/obj/item/technomancer_catalog/apprentice/catalog = new /obj/item/technomancer_catalog/apprentice()
 	catalog.bind_to_owner(technomancer_mob)
 	technomancer_mob.equip_to_slot_or_del(catalog, slot_l_store)
 
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(technomancer_mob), slot_l_ear)
-	var/obj/item/weapon/technomancer_core/core = new /obj/item/weapon/technomancer_core(technomancer_mob)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/radio/headset(technomancer_mob), slot_l_ear)
+	var/obj/item/technomancer_core/core = new /obj/item/technomancer_core(technomancer_mob)
 	technomancer_mob.equip_to_slot_or_del(core, slot_back)
 	technomancer_belongings.Add(core) // So it can be Tracked.
-	technomancer_mob.equip_to_slot_or_del(new /obj/item/device/flashlight(technomancer_mob), slot_belt)
+	technomancer_mob.equip_to_slot_or_del(new /obj/item/flashlight(technomancer_mob), slot_belt)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(technomancer_mob), slot_shoes)
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/apprentice(technomancer_mob), slot_head)
 	return 1
@@ -82,7 +82,7 @@ var/datum/antagonist/technomancer/technomancers
 
 /datum/antagonist/technomancer/print_player_summary()
 	..()
-	for(var/obj/item/weapon/technomancer_core/core in technomancer_belongings)
+	for(var/obj/item/technomancer_core/core in technomancer_belongings)
 		if(core.wearer)
 			continue // Only want abandoned cores.
 		if(!core.spells.len)
@@ -92,7 +92,7 @@ var/datum/antagonist/technomancer/technomancers
 /datum/antagonist/technomancer/print_player_full(var/datum/mind/player)
 	var/text = print_player_lite(player)
 
-	var/obj/item/weapon/technomancer_core/core
+	var/obj/item/technomancer_core/core
 	if(player.original)
 		core = locate() in player.original
 		if(core)

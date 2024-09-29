@@ -136,7 +136,7 @@
 /area/om_adventure/poi/shuttlewreck2)
 "K" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
 /obj/random/awayloot/looseloot,
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck2)

@@ -30,7 +30,7 @@
 	can_be_drop_pred = 1 //They can tongue vore.
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
@@ -161,7 +161,7 @@
 	B.digest_mode = DM_SELECT
 
 /mob/living/simple_mob/vore/pakkun/attackby(var/obj/item/O, var/mob/user) //if they're newspapered, they'll spit out any junk they've eaten for whatever reason
-    if(istype(O, /obj/item/weapon/newspaper) && !ckey && isturf(user.loc))
+    if(istype(O, /obj/item/newspaper) && !ckey && isturf(user.loc))
         user.visible_message("<span class='info'>[user] swats [src] with [O]!</span>")
         release_vore_contents()
         for(var/mob/living/L in living_mobs(0))

@@ -287,10 +287,10 @@
 // Returns an assoc list of RCD information.
 // Example would be: list(RCD_VALUE_MODE = RCD_DECONSTRUCT, RCD_VALUE_DELAY = 50, RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 4)
 // This occurs before rcd_act() is called, and it won't be called if it returns FALSE.
-/atom/proc/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/atom/proc/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return FALSE
 
-/atom/proc/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/atom/proc/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return
 
 /atom/proc/melt()
@@ -493,7 +493,7 @@
 		blood_DNA = null
 		return TRUE
 
-/atom/proc/on_rag_wipe(var/obj/item/weapon/reagent_containers/glass/rag/R)
+/atom/proc/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
 	clean_blood()
 	R.reagents.splash(src, 1)
 

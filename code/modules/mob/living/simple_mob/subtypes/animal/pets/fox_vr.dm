@@ -24,11 +24,11 @@
 	maxbodytemp = 323		//Above 50 Degrees Celcius
 
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fox
 
 	say_list_type = /datum/say_list/fox
 	ai_holder_type = /datum/ai_holder/simple_mob/fox
-	holder_type = /obj/item/weapon/holder/fox
+	holder_type = /obj/item/holder/fox
 
 	var/turns_since_scan = 0
 	var/mob/flee_target

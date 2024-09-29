@@ -41,7 +41,7 @@
 // Attacking someone with a weapon while they are neck-grabbed
 /mob/living/carbon/proc/check_neckgrab_attack(obj/item/W, mob/user, var/hit_zone)
 	if(user.a_intent == I_HURT)
-		for(var/obj/item/weapon/grab/G in src.grabbed_by)
+		for(var/obj/item/grab/G in src.grabbed_by)
 			if(G.assailant == user)
 				if(G.state >= GRAB_AGGRESSIVE)
 					if(hit_zone == BP_TORSO && shank_attack(W, G, user))
@@ -53,7 +53,7 @@
 
 
 // Knifing
-/mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
+/mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/grab/G, mob/user)
 
 	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
@@ -101,7 +101,7 @@
 
 	return 1
 
-/mob/living/carbon/proc/shank_attack(obj/item/W, obj/item/weapon/grab/G, mob/user, hit_zone)
+/mob/living/carbon/proc/shank_attack(obj/item/W, obj/item/grab/G, mob/user, hit_zone)
 
 	if(!W.sharp || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
@@ -118,7 +118,7 @@
 
 	return 1
 
-/mob/living/carbon/proc/shank_armor_helper(obj/item/W, obj/item/weapon/grab/G, mob/user)
+/mob/living/carbon/proc/shank_armor_helper(obj/item/W, obj/item/grab/G, mob/user)
 	var/damage = W.force
 	var/damage_mod = 1
 	if(W.edge)

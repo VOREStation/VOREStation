@@ -1,5 +1,5 @@
 //1R1S: Malady Blanche
-/obj/item/weapon/material/twohanded/riding_crop/malady
+/obj/item/material/twohanded/riding_crop/malady
 	name = "Malady's riding crop"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_icons = list(
@@ -8,7 +8,7 @@
 				)
 	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
 
-/obj/item/weapon/material/twohanded/longsword
+/obj/item/material/twohanded/longsword
     w_class = ITEMSIZE_NORMAL
     name = "longsword"
     desc = "a more elegant weapon from a more civilised age"
@@ -26,7 +26,7 @@
     edge = TRUE
     sharp = TRUE
 
-/obj/item/weapon/material/twohanded/saber/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/material/twohanded/saber/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if (src.wielded == 1)
 		if(unique_parry_check(user, attacker, damage_source) && prob(50))
 			user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
@@ -34,7 +34,7 @@
 		return 1
 	return 0
 
-/obj/item/weapon/material/twohanded/staff
+/obj/item/material/twohanded/staff
 	w_class = ITEMSIZE_LARGE
 	default_material = MAT_WOOD
 	name = "staff"
@@ -59,7 +59,7 @@
 	edge = FALSE
 	sharp = FALSE
 
-/obj/item/weapon/material/twohanded/staff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/material/twohanded/staff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	var/parry_chance
 	if(istype(damage_source, /obj/item/projectile))	//can't block ranged attacks, only melee!
 		return 0
@@ -74,7 +74,7 @@
 			return 1
 	return 0
 
-/obj/item/weapon/material/twohanded/staff/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/material/twohanded/staff/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
 	if(src.wielded == 1 && user.a_intent == I_DISARM && prob(stun_chance))
 		target.Weaken(stun_duration)

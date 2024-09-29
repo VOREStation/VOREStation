@@ -158,13 +158,13 @@
 				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
 
 		if(SMITE_PEPPERNADE)
-			var/obj/item/weapon/grenade/chem_grenade/teargas/grenade = new /obj/item/weapon/grenade/chem_grenade/teargas
+			var/obj/item/grenade/chem_grenade/teargas/grenade = new /obj/item/grenade/chem_grenade/teargas
 			grenade.loc = target.loc
 			to_chat(target,"<span class='warning'>GRENADE?!</span>")
 			grenade.detonate()
 
 		if(SMITE_SPICEREQUEST)
-			var/obj/item/weapon/reagent_containers/food/condiment/spacespice/spice = new /obj/item/weapon/reagent_containers/food/condiment/spacespice
+			var/obj/item/reagent_containers/food/condiment/spacespice/spice = new /obj/item/reagent_containers/food/condiment/spacespice
 			spice.loc = target.loc
 			to_chat(target,"A bottle of spices appears at your feet... be careful what you wish for!")
 

@@ -15,7 +15,7 @@
 	var/human_name = TRUE
 
 	var/static/list/cutout_types
-	var/static/list/painters = list(/obj/item/weapon/reagent_containers/glass/paint, /obj/item/device/floor_painter)//, /obj/item/device/closet_painter)
+	var/static/list/painters = list(/obj/item/reagent_containers/glass/paint, /obj/item/floor_painter)//, /obj/item/closet_painter)
 
 /obj/structure/barricade/cutout/New()
 	. = ..()

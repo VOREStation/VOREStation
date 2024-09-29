@@ -7,8 +7,8 @@
 /area/submap/virgo2/DJOutpost1)
 "c" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	 icon_state = "shardmedium"
 	},
 /obj/item/stack/rods,
@@ -16,7 +16,7 @@
 /area/submap/virgo2/DJOutpost1)
 "d" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor,
 /area/submap/virgo2/DJOutpost1)
 "e" = (
@@ -60,7 +60,7 @@
 /area/submap/virgo2/DJOutpost1)
 "m" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/phone,
+/obj/item/radio/phone,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/virgo2/DJOutpost1)
 "n" = (
@@ -76,7 +76,7 @@
 /area/submap/virgo2/DJOutpost1)
 "q" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/structure/cable/yellow,
 /turf/simulated/floor/wood/broken,
 /area/submap/virgo2/DJOutpost1)
@@ -95,7 +95,7 @@
 /area/submap/virgo2/DJOutpost1)
 "w" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	 icon_state = "shardmedium"
 	},
 /turf/simulated/floor,
@@ -106,7 +106,7 @@
 /area/submap/virgo2/DJOutpost1)
 "y" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/intercom/syndicate{
+/obj/item/radio/intercom/syndicate{
 	desc = "Talk through this.";
 	name = "station intercom (General)"
 	},
@@ -122,7 +122,7 @@
 /area/submap/virgo2/DJOutpost1)
 "C" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /obj/structure/cable/yellow{
@@ -131,24 +131,24 @@
 /turf/simulated/floor,
 /area/submap/virgo2/DJOutpost1)
 "D" = (
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	 icon_state = "shardmedium"
 	},
 /turf/template_noop,
 /area/template_noop)
 "F" = (
-/obj/item/device/transfer_valve,
+/obj/item/transfer_valve,
 /turf/simulated/floor/outdoors/rocks,
 /area/submap/virgo2/DJOutpost1)
 "G" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/DJOutpost1)
 "H" = (
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /turf/template_noop,
@@ -158,7 +158,7 @@
 /turf/simulated/floor/wood/broken,
 /area/submap/virgo2/DJOutpost1)
 "J" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/template_noop,
 /area/template_noop)
 "K" = (
@@ -170,12 +170,12 @@
 /turf/simulated/floor/wood/broken,
 /area/submap/virgo2/DJOutpost1)
 "L" = (
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/outdoors/rocks,
 /area/submap/virgo2/DJOutpost1)
 "M" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /obj/item/stack/rods,

@@ -111,7 +111,7 @@
 	if(..()) // Always call parent in tgui_act, it handles making sure the user is allowed to interact with the UI.
 		return TRUE
 
-	var/obj/item/weapon/computer_hardware/nano_printer/printer
+	var/obj/item/computer_hardware/nano_printer/printer
 	if(computer)
 		printer = computer.nano_printer
 

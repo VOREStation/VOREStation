@@ -31,7 +31,7 @@
 /area/submap/virgo2/CaveS)
 "j" = (
 /obj/item/clothing/accessory/storage/webbing,
-/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "k" = (
@@ -60,13 +60,13 @@
 /obj/structure/closet/crate,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/storage/toolbox,
+/obj/item/storage/toolbox,
 /obj/random/toolbox,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "x" = (
 /obj/structure/table/woodentable,
-/obj/item/device/survivalcapsule,
+/obj/item/survivalcapsule,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "y" = (
@@ -81,15 +81,15 @@
 /area/submap/virgo2/CaveS)
 "A" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-/obj/item/weapon/reagent_containers/pill/antitox,
-/obj/item/weapon/reagent_containers/pill/antitox,
-/obj/item/weapon/reagent_containers/pill/antitox,
-/obj/item/weapon/reagent_containers/pill/paracetamol,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/glass/bottle/stoxin,
+/obj/item/reagent_containers/glass/bottle/antitoxin,
+/obj/item/reagent_containers/pill/antitox,
+/obj/item/reagent_containers/pill/antitox,
+/obj/item/reagent_containers/pill/antitox,
+/obj/item/reagent_containers/pill/paracetamol,
 /obj/random/firstaid,
-/obj/item/weapon/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "B" = (
@@ -105,11 +105,11 @@
 /obj/random/contraband,
 /obj/random/contraband,
 /obj/random/energy,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "E" = (

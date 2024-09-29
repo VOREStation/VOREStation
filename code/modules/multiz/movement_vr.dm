@@ -153,7 +153,7 @@
 	//Catslugs are a snowflake case because of references.
 	if(istype(L, /mob/living/simple_mob/vore/alienanimals/catslug))
 		var/obj/O = L.get_active_hand()
-		if(istype(O, /obj/item/weapon/material/twohanded/spear))
+		if(istype(O, /obj/item/material/twohanded/spear))
 			var/choice = tgui_alert(L, "Use your spear to climb faster? This will drop and break it!", "Scug Tactics", list("Yes!", "No"))
 			if(choice == "Yes!")
 				drop_our_held = TRUE

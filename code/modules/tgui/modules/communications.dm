@@ -221,7 +221,7 @@
 		if(check_access(usr, access_captain))
 			authenticated = COMM_AUTHENTICATION_MAX
 			var/mob/M = usr
-			var/obj/item/weapon/card/id = M.GetIdCard()
+			var/obj/item/card/id = M.GetIdCard()
 			if(istype(id))
 				crew_announcement.announcer = GetNameAndAssignmentFromId(id)
 		if(authenticated == COMM_AUTHENTICATION_NONE)

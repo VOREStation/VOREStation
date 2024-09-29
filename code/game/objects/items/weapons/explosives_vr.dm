@@ -1,7 +1,7 @@
-/obj/item/weapon/plastique/seismic/locked
+/obj/item/plastique/seismic/locked
 	desc = "Used to dig holes in specific areas without too much extra hole. Has extra mechanism that safely implodes the bomb if it is used in close proximity to the facility."
 
-/obj/item/weapon/plastique/seismic/locked/explode(var/location)
+/obj/item/plastique/seismic/locked/explode(var/location)
 	if(!target)
 		target = get_atom_on_turf(src)
 	if(!target)

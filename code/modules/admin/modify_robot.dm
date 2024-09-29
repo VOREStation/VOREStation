@@ -73,7 +73,7 @@
 			.["model_options"] = module_options
 			// Data for the upgrade options
 			.["target"] += get_upgrades()
-			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			if(kin)
 				.["target"]["pka"] += get_pka(kin)
 			// Radio section
@@ -176,11 +176,11 @@
 			source = new /mob/living/silicon/robot(null)
 			var/module_type = robot_modules[params["new_source"]]
 			source.modtype = params["new_source"]
-			var/obj/item/weapon/robot_module/robot/robot_type = new module_type(source)
+			var/obj/item/robot_module/robot/robot_type = new module_type(source)
 			source.sprite_datum = pick(SSrobot_sprites.get_module_sprites(source.modtype, source))
 			source.update_icon()
 			source.emag_items = 1
-			if(!istype(robot_type, /obj/item/weapon/robot_module/robot))
+			if(!istype(robot_type, /obj/item/robot_module/robot))
 				QDEL_NULL(source)
 				return TRUE
 			return TRUE
@@ -209,8 +209,8 @@
 					else
 						item_with_synth.synths = list(target.module.synths[found])
 				return TRUE
-			if(istype(add_item, /obj/item/weapon/matter_decompiler/) || istype(add_item, /obj/item/device/dogborg/sleeper/compactor/decompiler/))
-				var/obj/item/weapon/matter_decompiler/item_with_matter = add_item
+			if(istype(add_item, /obj/item/matter_decompiler/) || istype(add_item, /obj/item/dogborg/sleeper/compactor/decompiler/))
+				var/obj/item/matter_decompiler/item_with_matter = add_item
 				if(item_with_matter.metal)
 					var/found = target.module.synths.Find(item_with_matter.metal)
 					if(!found)
@@ -303,12 +303,12 @@
 			return TRUE
 		if("install_modkit")
 			var/new_modkit = text2path(params["modkit"])
-			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			var/obj/item/borg/upgrade/modkit/M = new new_modkit(null)
 			M.install(kin, target)
 			return TRUE
 		if("remove_modkit")
-			var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			var/obj/item/rem_kit = locate(params["modkit"])
 			kin.modkits.Remove(rem_kit)
 			qdel(rem_kit)
@@ -319,11 +319,11 @@
 				target.radio.centComm = 1
 			if(selected_radio_channel == CHANNEL_RAIDER)
 				qdel(target.radio.keyslot)
-				target.radio.keyslot = new /obj/item/device/encryptionkey/raider(target)
+				target.radio.keyslot = new /obj/item/encryptionkey/raider(target)
 				target.radio.syndie = 1
 			if(selected_radio_channel == CHANNEL_MERCENARY)
 				qdel(target.radio.keyslot)
-				target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(target)
+				target.radio.keyslot = new /obj/item/encryptionkey/syndicate(target)
 				target.radio.syndie = 1
 			target.module.channels += list("[selected_radio_channel]" = 1)
 			target.radio.channels[selected_radio_channel] += target.module.channels[selected_radio_channel]
@@ -623,7 +623,7 @@
 	all_upgrades["restricted_upgrades"] = restricted_upgrades
 	return all_upgrades
 
-/datum/eventkit/modify_robot/proc/get_pka(var/obj/item/weapon/gun/energy/kinetic_accelerator/kin)
+/datum/eventkit/modify_robot/proc/get_pka(var/obj/item/gun/energy/kinetic_accelerator/kin)
 	var/list/pka = list()
 	pka["name"] = kin.name
 	var/list/installed_modkits = list()
@@ -660,15 +660,15 @@
 
 /datum/eventkit/modify_robot/proc/get_cells()
 	var/list/cell_options = list()
-	for(var/cell in typesof(/obj/item/weapon/cell))
-		var/obj/item/weapon/cell/C = cell
+	for(var/cell in typesof(/obj/item/cell))
+		var/obj/item/cell/C = cell
 		if(initial(C.name) == "power cell")
 			continue
-		if(ispath(C, /obj/item/weapon/cell/standin))
+		if(ispath(C, /obj/item/cell/standin))
 			continue
-		if(ispath(C, /obj/item/weapon/cell/device))
+		if(ispath(C, /obj/item/cell/device))
 			continue
-		if(ispath(C, /obj/item/weapon/cell/mech))
+		if(ispath(C, /obj/item/cell/mech))
 			continue
 		if(cell_options[initial(C.name)]) // empty cells are defined after normal cells!
 			continue

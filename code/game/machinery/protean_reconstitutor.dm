@@ -17,7 +17,7 @@
 	var/buzzsound = 'sound/items/nif_tone_bad.ogg'	//sound to play when we have to abort due to loss of posibrain client
 
 	//vars for basic functionality
-	var/obj/item/device/mmi/digital/posibrain/nano/protean_brain = null	//only allow protean brains, no midround upgrades to bypass the whitelist!
+	var/obj/item/mmi/digital/posibrain/nano/protean_brain = null	//only allow protean brains, no midround upgrades to bypass the whitelist!
 	var/obj/item/organ/internal/nano/orchestrator/protean_orchestrator = null	//essential
 	var/obj/item/organ/internal/nano/refactory/protean_refactory = null	//not essential, but nice to have; lets us transfer stored materials
 	var/nanomass_reserve = 0		//starting reserve - will be wiped if it's deconstructed!
@@ -31,13 +31,13 @@
 	var/finalize_time = 135 SECONDS	//finally, how long we need before popping them out of the tank
 
 	//component vars
-	circuit = /obj/item/weapon/circuitboard/protean_reconstitutor
+	circuit = /obj/item/circuitboard/protean_reconstitutor
 
 /obj/machinery/protean_reconstitutor/Initialize()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/console_screen(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
 	RefreshParts()
 	. = ..()
@@ -45,13 +45,13 @@
 /obj/machinery/protean_reconstitutor/RefreshParts()
 	//total paste storage cap (300 * the rating, straightforward)
 	var/store_rating = initial(nanotank_max)
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		store_rating = store_rating * MB.rating
 	nanotank_max = store_rating
 
 	//inefficiency of adding paste (amount of uses * (mech_repair / inefficiency)); most complex, good way to get good bang for your buck tho
 	var/paste_rating = initial(paste_inefficiency)
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		paste_rating = paste_rating - (M.rating - 1)
 	paste_inefficiency = paste_rating
 	..()
@@ -100,8 +100,8 @@
 	if(default_part_replacement(user, W))
 		return
 
-	if(istype(W,/obj/item/device/mmi/digital/posibrain/nano))
-		var/obj/item/device/mmi/digital/posibrain/nano/NB = W
+	if(istype(W,/obj/item/mmi/digital/posibrain/nano))
+		var/obj/item/mmi/digital/posibrain/nano/NB = W
 		if(!NB.brainmob.client)
 			to_chat(user,"<span class='warning'>You cannot use an inactive positronic brain for this process.</span>")
 			return
@@ -279,7 +279,7 @@
 		P.apply_vore_prefs()
 		//run a little revive, load their prefs, and boot a new NIF on them for the finishing touches and cleanup... (yes, we need to initialize a new NIF, they don't get one from the revive process)
 		//using revive is honestly a bit overkill since it kinda deletes-and-replaces most of the guts anyway (hence the cache and restore of refactory contents; otherwise they get wiped!), but it also ensures the new protean comes out in their "base form" as well as hopefully cleaning up any loose ends in the resurrection process
-		var/obj/item/device/nif/protean/new_nif = new()
+		var/obj/item/nif/protean/new_nif = new()
 		new_nif.quick_implant(P)
 		//revive complete, now restore the cached mats (if we had any)
 		if(mats_cached == TRUE)

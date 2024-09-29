@@ -107,15 +107,15 @@ var/list/dispenser_presets = list()
 			if(voidsuit.cooler)
 				error("[src] created a voidsuit [voidsuit] and wants to add a suit cooler but it already has one")
 			else
-				var/obj/item/life_support = new /obj/item/device/suit_cooling_unit(voidsuit)
+				var/obj/item/life_support = new /obj/item/suit_cooling_unit(voidsuit)
 				voidsuit.cooler = life_support
 		else if(user.species?.breath_type)
 			if(voidsuit.tank)
 				error("[src] created a voidsuit [voidsuit] and wants to add a tank but it already has one")
 			else
 				//Create a tank (if such a thing exists for this species)
-				var/tanktext = "/obj/item/weapon/tank/" + "[user.species?.breath_type]"
-				var/obj/item/weapon/tank/tankpath = text2path(tanktext)
+				var/tanktext = "/obj/item/tank/" + "[user.species?.breath_type]"
+				var/obj/item/tank/tankpath = text2path(tanktext)
 
 				if(tankpath)
 					var/obj/item/life_support = new tankpath(voidsuit)
@@ -443,19 +443,19 @@ var/list/dispenser_presets = list()
 // Hardsuit versions
 /datum/gear_disp/ert/security_rig
 	name = "Security (Hardsuit)"
-	to_spawn = list(/obj/item/weapon/rig/ert/security)
+	to_spawn = list(/obj/item/rig/ert/security)
 
 /datum/gear_disp/ert/medical_rig
 	name = "Medical (Hardsuit)"
-	to_spawn = list(/obj/item/weapon/rig/ert/medical)
+	to_spawn = list(/obj/item/rig/ert/medical)
 
 /datum/gear_disp/ert/engineer_rig
 	name = "Engineering (Hardsuit)"
-	to_spawn = list(/obj/item/weapon/rig/ert/engineer)
+	to_spawn = list(/obj/item/rig/ert/engineer)
 /*
 /datum/gear_disp/ert/commander_rig
 	name = "Commander (Hardsuit)"
-	to_spawn = list(/obj/item/weapon/rig/ert)
+	to_spawn = list(/obj/item/rig/ert)
 	amount = 1
 */
 
@@ -892,9 +892,9 @@ var/list/dispenser_presets = list()
 /datum/gear_disp/adventure_box/food
 	name = "Food Plate"
 	to_spawn = list(
-					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-					/obj/item/weapon/reagent_containers/food/snacks/no_raisin,
-					/obj/item/weapon/reagent_containers/food/drinks/tea
+					/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+					/obj/item/reagent_containers/food/snacks/no_raisin,
+					/obj/item/reagent_containers/food/drinks/tea
 					)
 	amount = 10
 
@@ -904,7 +904,7 @@ var/list/dispenser_presets = list()
 					/obj/random/tool,
 					/obj/random/tool,
 					/obj/random/tool,
-					/obj/item/weapon/storage/belt/utility
+					/obj/item/storage/belt/utility
 					)
 	amount = 5
 
@@ -919,7 +919,7 @@ var/list/dispenser_presets = list()
 
 /datum/gear_disp/adventure_box/light
 	name = "Flashlight"
-	to_spawn = list(/obj/item/device/flashlight/maglight)
+	to_spawn = list(/obj/item/flashlight/maglight)
 	amount = 2
 
 /datum/gear_disp/adventure_box/weapon

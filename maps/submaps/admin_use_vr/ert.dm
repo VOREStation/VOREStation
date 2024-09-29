@@ -186,7 +186,7 @@
 	on_store_visible_message_2 = "into cryogenic storage."
 	
 //Misc Stuff
-/obj/item/weapon/paper/ert_armory_cells
+/obj/item/paper/ert_armory_cells
 	name = "ERT Armory Cell Supply"
 	info = {"To All Current ERT Members,<br>\
 All energy weapons here come installed with standard power cells, but the spares on the racks are self-charging tech.<br>\
@@ -197,7 +197,7 @@ Point is they're fairly expensive and probably prototypes or something, so for t
 <br>\
 <i>Lt. Cmdr. Sykes</i>"}
 
-/obj/item/weapon/paper/vonbraun_shields
+/obj/item/paper/vonbraun_shields
 	name = "NRV Von Braun Shield Configuration Documentation"
 	info = {"To All Current ERT Members,<br>\
 Be advised that use of the NRV Von Braun's shield generator (located adjacent to this document) is strongly recommended when responding to calls, but also that it is not impervious, nor is the ship's point defense system flawless.<br>\
@@ -214,7 +214,7 @@ The shield generator will tax the Von Braun's reserves greatly so try to use it 
 <br>\
 <i>Lt. Cmdr. Sykes</i>"}
 
-/obj/item/weapon/paper/vonbraun_cannon
+/obj/item/paper/vonbraun_cannon
 	name = "NRV Von Braun O.F.D. Console"
 	info = {"To All Current ERT Members,<br>\
 Given recent events, Central has finally cleared the paperwork that allowed us to install an Obstruction Field Disperser, or 'O.F.D.', on the Von Braun. Please note we had to get rid of the mech bay (that nobody was allowed to use anyway) so that's where you'll find it. Of course if you're reading this you already found it.<br>\
@@ -232,7 +232,7 @@ P.S. Before any of you ask, no, you cannot fire yourself or your teammates out o
 /obj/machinery/computer/cryopod/ert
 	name = "responder oversight console"
 	desc = "An interface between responders and the cryo oversight systems tasked with keeping track of all responders who enter or exit cryostasis."
-	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	circuit = "/obj/item/circuitboard/robotstoragecontrol"
 
 	storage_type = "responders"
 	storage_name = "ERT Oversight Control"

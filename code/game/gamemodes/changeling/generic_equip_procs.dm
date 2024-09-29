@@ -245,7 +245,7 @@
 		to_chat(src, "<span class='warning'>Our hands are full.  Drop something first.</span>")
 		return 0
 
-	var/obj/item/weapon/W = new weapon_type(src)
+	var/obj/item/W = new weapon_type(src)
 	src.put_in_hands(W)
 
 	src.mind.changeling.chem_charges -= cost

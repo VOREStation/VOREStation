@@ -81,11 +81,11 @@
 /obj/structure/construction/update_icon()
 	icon_state = "[base_icon][stage]"
 
-/obj/structure/construction/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/construction/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(W.has_tool_quality(TOOL_WELDER))
 		if(stage == FRAME_UNFASTENED)
-			var/obj/item/weapon/weldingtool/WT = W.get_welder()
+			var/obj/item/weldingtool/WT = W.get_welder()
 			if(!WT.remove_fuel(0, user))
 				to_chat(user, "<span class='warning'>\The [src] must be on to complete this task.</span>")
 				return

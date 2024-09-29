@@ -29,7 +29,7 @@
 /area/submap/virgo2/MHR)
 "h" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/backpack,
+/obj/item/storage/backpack,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
@@ -42,7 +42,7 @@
 /area/submap/virgo2/MHR)
 "j" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Do not enter the cave. The estimated active time of the Vicerators is much longer due to the improvements on the rotor bearings. It's estimated to be roughly a few months before we start to see any chancces of mechanical failure. ";
 	name = "NOTICE: DO NOT ENTER"
 	},
@@ -91,7 +91,7 @@
 "r" = (
 /obj/effect/decal/remains,
 /obj/item/clothing/mask/gas/explorer,
-/obj/item/weapon/material/twohanded/fireaxe,
+/obj/item/material/twohanded/fireaxe,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},

@@ -220,14 +220,14 @@
 /area/shuttle/specops/centcom)
 "ay" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/captain,
+/obj/item/bedsheet/captain,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "az" = (
 /obj/structure/closet/wardrobe/ert,
 /obj/item/modular_computer/laptop/preset/custom_loadout/elite,
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -237,8 +237,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -256,13 +256,13 @@
 "aC" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/chemical_dispenser/ert,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aD" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/chemical_dispenser/biochemistry/full,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aE" = (
@@ -341,27 +341,27 @@
 /area/shuttle/specops/centcom)
 "aN" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -369,10 +369,10 @@
 /area/shuttle/specops/centcom)
 "aO" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
 /obj/item/clothing/accessory/storage/white_vest,
 /obj/item/clothing/accessory/storage/white_vest,
 /obj/item/clothing/accessory/storage/white_vest,
@@ -393,22 +393,22 @@
 /obj/item/clothing/head/helmet/ert/medical,
 /obj/item/clothing/head/helmet/ert/medical,
 /obj/item/clothing/head/helmet/ert/medical,
-/obj/item/weapon/storage/backpack/ert/medical,
-/obj/item/weapon/storage/backpack/ert/medical,
-/obj/item/weapon/storage/backpack/ert/medical,
-/obj/item/weapon/storage/backpack/ert/medical,
+/obj/item/storage/backpack/ert/medical,
+/obj/item/storage/backpack/ert/medical,
+/obj/item/storage/backpack/ert/medical,
+/obj/item/storage/backpack/ert/medical,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aQ" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/rig/ert/medical,
-/obj/item/weapon/rig/ert/medical,
-/obj/item/weapon/rig/ert/medical,
-/obj/item/weapon/rig/ert/medical,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
+/obj/item/rig/ert/medical,
+/obj/item/rig/ert/medical,
+/obj/item/rig/ert/medical,
+/obj/item/rig/ert/medical,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aR" = (
@@ -452,61 +452,61 @@
 /area/shuttle/specops/centcom)
 "aW" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/sniperrifle{
+/obj/item/gun/energy/netgun,
+/obj/item/gun/energy/sniperrifle{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/compact{
+/obj/item/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/compact{
+/obj/item/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/compact{
+/obj/item/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/compact{
+/obj/item/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aX" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aY" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aZ" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+/obj/item/gun/projectile/shotgun/pump/combat,
+/obj/item/gun/projectile/shotgun/pump/combat,
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
@@ -522,13 +522,13 @@
 /area/shuttle/specops/centcom)
 "ba" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/projectile/automatic/advanced_smg,
+/obj/item/gun/projectile/automatic/advanced_smg,
 /obj/item/ammo_magazine/m9mmAdvanced,
 /obj/item/ammo_magazine/m9mmAdvanced,
 /obj/item/ammo_magazine/m9mmAdvanced,
 /obj/item/ammo_magazine/m9mmAdvanced,
-/obj/item/weapon/gun/projectile/revolver/detective45,
-/obj/item/weapon/gun/projectile/revolver/detective45,
+/obj/item/gun/projectile/revolver/detective45,
+/obj/item/gun/projectile/revolver/detective45,
 /obj/item/ammo_magazine/s45,
 /obj/item/ammo_magazine/s45,
 /obj/item/ammo_magazine/s45,
@@ -597,21 +597,21 @@
 /area/shuttle/specops/centcom)
 "bj" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bk" = (
@@ -635,8 +635,8 @@
 /area/shuttle/specops/centcom)
 "bn" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
@@ -678,18 +678,18 @@
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/bonemed,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
+/obj/item/storage/firstaid/clotting,
+/obj/item/storage/firstaid/bonemed,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bt" = (
@@ -702,14 +702,14 @@
 "bu" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/energy/ionrifle,
-/obj/item/weapon/gun/energy/ionrifle,
-/obj/item/weapon/gun/energy/ionrifle/pistol,
-/obj/item/weapon/gun/energy/ionrifle/pistol,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/gun/energy/ionrifle,
+/obj/item/gun/energy/ionrifle,
+/obj/item/gun/energy/ionrifle/pistol,
+/obj/item/gun/energy/ionrifle/pistol,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bv" = (
@@ -730,10 +730,10 @@
 /obj/item/ammo_magazine/m9mm/large/preban,
 /obj/item/ammo_magazine/m9mm/large/preban,
 /obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/weapon/gun/projectile/p92x/large/preban,
-/obj/item/weapon/gun/projectile/p92x/large/preban,
-/obj/item/weapon/gun/projectile/p92x/large/preban,
-/obj/item/weapon/gun/projectile/p92x/large/preban,
+/obj/item/gun/projectile/p92x/large/preban,
+/obj/item/gun/projectile/p92x/large/preban,
+/obj/item/gun/projectile/p92x/large/preban,
+/obj/item/gun/projectile/p92x/large/preban,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bx" = (
@@ -746,8 +746,8 @@
 "by" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
@@ -777,28 +777,28 @@
 /area/shuttle/specops/centcom)
 "bB" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bC" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
-/obj/item/weapon/storage/pill_bottle/blood_regen,
-/obj/item/weapon/storage/pill_bottle/blood_regen,
-/obj/item/weapon/storage/pill_bottle/sleevingcure/full,
-/obj/item/weapon/extinguisher/mini,
-/obj/item/weapon/extinguisher/mini,
-/obj/item/weapon/extinguisher/mini,
-/obj/item/weapon/extinguisher/mini,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/storage/box/syringes{
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
+/obj/item/storage/pill_bottle/blood_regen,
+/obj/item/storage/pill_bottle/blood_regen,
+/obj/item/storage/pill_bottle/sleevingcure/full,
+/obj/item/extinguisher/mini,
+/obj/item/extinguisher/mini,
+/obj/item/extinguisher/mini,
+/obj/item/extinguisher/mini,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -886,11 +886,11 @@
 /area/shuttle/specops/centcom)
 "bM" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 8
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/shuttle/floor/black,
@@ -932,26 +932,26 @@
 /area/shuttle/specops/centcom)
 "bS" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/rig/ert/security,
-/obj/item/weapon/rig/ert/security,
-/obj/item/weapon/rig/ert/security,
-/obj/item/weapon/rig/ert/security,
+/obj/item/rig/ert/security,
+/obj/item/rig/ert/security,
+/obj/item/rig/ert/security,
+/obj/item/rig/ert/security,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bT" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/storage/box/autoinjectors,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/device/defib_kit/compact/combat/loaded,
-/obj/item/device/defib_kit/compact/combat/loaded,
-/obj/item/weapon/storage/box/bodybags,
-/obj/item/weapon/storage/box/bodybags{
+/obj/item/storage/box/autoinjectors,
+/obj/item/storage/box/beakers,
+/obj/item/defib_kit/compact/combat/loaded,
+/obj/item/defib_kit/compact/combat/loaded,
+/obj/item/storage/box/bodybags,
+/obj/item/storage/box/bodybags{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/freezer,
-/obj/item/weapon/storage/box/masks,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/freezer,
+/obj/item/storage/box/masks,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bU" = (
@@ -983,7 +983,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "ERT";
 	tele_network = "centcom"
 	},
@@ -1018,10 +1018,10 @@
 /obj/item/clothing/head/helmet/ert/security,
 /obj/item/clothing/head/helmet/ert/security,
 /obj/item/clothing/head/helmet/ert/security,
-/obj/item/weapon/storage/backpack/ert/security,
-/obj/item/weapon/storage/backpack/ert/security,
-/obj/item/weapon/storage/backpack/ert/security,
-/obj/item/weapon/storage/backpack/ert/security,
+/obj/item/storage/backpack/ert/security,
+/obj/item/storage/backpack/ert/security,
+/obj/item/storage/backpack/ert/security,
+/obj/item/storage/backpack/ert/security,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "cb" = (
@@ -1031,32 +1031,32 @@
 /obj/item/taperoll/police,
 /obj/item/taperoll/police,
 /obj/item/taperoll/police,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/flash,
 /obj/structure/table/rack/steel,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/specops/centcom)
 "cc" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/storage/box/emps{
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/emps{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/box/smokes,
-/obj/item/weapon/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/specops/centcom)
 "cd" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/box/handcuffs,
-/obj/item/weapon/storage/box/handcuffs{
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -1080,24 +1080,24 @@
 /area/shuttle/specops/centcom)
 "cf" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/crowbar,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/specops/centcom)
 "cg" = (
@@ -1128,14 +1128,14 @@
 /area/shuttle/specops/centcom)
 "cm" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "cn" = (
@@ -1199,38 +1199,38 @@
 /area/shuttle/specops/centcom)
 "ct" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/energy/stunrevolver,
-/obj/item/weapon/gun/energy/stunrevolver,
-/obj/item/weapon/gun/energy/stunrevolver,
-/obj/item/weapon/gun/energy/stunrevolver,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
+/obj/item/gun/energy/stunrevolver,
+/obj/item/gun/energy/stunrevolver,
+/obj/item/gun/energy/stunrevolver,
+/obj/item/gun/energy/stunrevolver,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/specops/centcom)
 "cu" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
+/obj/item/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/specops/centcom)
 "cv" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
 /obj/item/clothing/glasses/sunglasses/sechud/tactical,
 /obj/item/clothing/glasses/sunglasses/sechud/tactical,
 /obj/item/clothing/glasses/sunglasses/sechud/tactical,
@@ -1304,20 +1304,20 @@
 "cE" = (
 /obj/machinery/light,
 /obj/structure/table/standard,
-/obj/item/weapon/soap,
-/obj/item/weapon/soap,
-/obj/item/weapon/soap,
-/obj/item/weapon/soap,
-/obj/item/weapon/towel{
+/obj/item/soap,
+/obj/item/soap,
+/obj/item/soap,
+/obj/item/soap,
+/obj/item/towel{
 	color = "#0000FF"
 	},
-/obj/item/weapon/towel{
+/obj/item/towel{
 	color = "#0000FF"
 	},
-/obj/item/weapon/towel{
+/obj/item/towel{
 	color = "#0000FF"
 	},
-/obj/item/weapon/towel{
+/obj/item/towel{
 	color = "#0000FF"
 	},
 /turf/simulated/shuttle/floor/black,
@@ -1326,23 +1326,23 @@
 /obj/structure/closet{
 	name = "custodial"
 	},
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/mop,
-/obj/item/weapon/mop,
-/obj/item/weapon/mop,
-/obj/item/weapon/rig/ert/janitor,
-/obj/item/device/lightreplacer,
-/obj/item/device/lightreplacer,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/mop,
+/obj/item/mop,
+/obj/item/mop,
+/obj/item/rig/ert/janitor,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "cH" = (
@@ -1362,7 +1362,7 @@
 	icon_state = "tube1"
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /obj/item/stack/nanopaste,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -1406,16 +1406,16 @@
 /area/shuttle/specops/centcom)
 "cL" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
+/obj/item/melee/energy/sword/blue,
+/obj/item/melee/energy/sword/blue,
+/obj/item/melee/energy/sword/blue,
+/obj/item/melee/energy/sword/blue,
+/obj/item/melee/energy/sword/blue,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "cM" = (
@@ -1445,19 +1445,19 @@
 	dir = 1
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
 /obj/machinery/cell_charger,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "cS" = (
@@ -1472,7 +1472,7 @@
 	dir = 1
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "cU" = (
@@ -1513,7 +1513,7 @@
 /area/shuttle/specops/centcom)
 "da" = (
 /obj/structure/table/rack,
-/obj/item/weapon/rig/ert,
+/obj/item/rig/ert,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "db" = (
@@ -1576,22 +1576,22 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dk" = (
-/obj/item/weapon/circuitboard/aiupload,
-/obj/item/weapon/circuitboard/borgupload,
-/obj/item/weapon/circuitboard/smes,
-/obj/item/weapon/aiModule/nanotrasen,
-/obj/item/weapon/aiModule/reset,
-/obj/item/weapon/aiModule/freeformcore,
-/obj/item/weapon/aiModule/protectStation,
-/obj/item/weapon/aiModule/quarantine,
-/obj/item/weapon/aiModule/paladin,
-/obj/item/weapon/aiModule/robocop,
-/obj/item/weapon/aiModule/safeguard,
+/obj/item/circuitboard/aiupload,
+/obj/item/circuitboard/borgupload,
+/obj/item/circuitboard/smes,
+/obj/item/aiModule/nanotrasen,
+/obj/item/aiModule/reset,
+/obj/item/aiModule/freeformcore,
+/obj/item/aiModule/protectStation,
+/obj/item/aiModule/quarantine,
+/obj/item/aiModule/paladin,
+/obj/item/aiModule/robocop,
+/obj/item/aiModule/safeguard,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/smes_coil,
-/obj/item/weapon/smes_coil,
-/obj/item/device/t_scanner/advanced,
-/obj/item/device/t_scanner/advanced,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/t_scanner/advanced,
+/obj/item/t_scanner/advanced,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dl" = (
@@ -1605,12 +1605,12 @@
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dm" = (
@@ -1662,8 +1662,8 @@
 /area/shuttle/specops/centcom)
 "do" = (
 /obj/structure/table/glass,
-/obj/item/weapon/hand_tele,
-/obj/item/device/perfect_tele,
+/obj/item/hand_tele,
+/obj/item/perfect_tele,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dp" = (
@@ -1671,10 +1671,10 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
-/obj/item/device/binoculars,
-/obj/item/device/survivalcapsule,
-/obj/item/device/survivalcapsule,
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid,
+/obj/item/binoculars,
+/obj/item/survivalcapsule,
+/obj/item/survivalcapsule,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dq" = (
@@ -1683,7 +1683,7 @@
 /area/shuttle/specops/centcom)
 "dr" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/backpack/ert/commander,
+/obj/item/storage/backpack/ert/commander,
 /obj/item/clothing/head/helmet/ert/command,
 /obj/item/clothing/suit/armor/vest/ert/command,
 /turf/simulated/shuttle/floor/black,
@@ -1793,26 +1793,26 @@
 /area/shuttle/specops/centcom)
 "dE" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 8
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/floor/carpet,
 /area/shuttle/specops/centcom)
 "dF" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/stamp/centcomm,
-/obj/item/weapon/storage/box/cdeathalarm_kit,
-/obj/item/weapon/storage/box/trackimp,
+/obj/item/stamp/centcomm,
+/obj/item/storage/box/cdeathalarm_kit,
+/obj/item/storage/box/trackimp,
 /turf/simulated/floor/carpet,
 /area/shuttle/specops/centcom)
 "dG" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/pinpointer/advpinpointer,
-/obj/item/device/aicard,
+/obj/item/pinpointer/advpinpointer,
+/obj/item/aicard,
 /turf/simulated/floor/carpet,
 /area/shuttle/specops/centcom)
 "dH" = (
@@ -1898,8 +1898,8 @@
 /area/shuttle/specops/centcom)
 "dN" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
@@ -1926,14 +1926,14 @@
 /area/shuttle/specops/centcom)
 "dP" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/rig/ert/engineer,
-/obj/item/weapon/rig/ert/engineer,
-/obj/item/weapon/rig/ert/engineer,
-/obj/item/weapon/rig/ert/engineer,
-/obj/item/weapon/storage/belt/utility/chief/full,
-/obj/item/weapon/storage/belt/utility/chief/full,
-/obj/item/weapon/storage/belt/utility/chief/full,
-/obj/item/weapon/storage/belt/utility/chief/full,
+/obj/item/rig/ert/engineer,
+/obj/item/rig/ert/engineer,
+/obj/item/rig/ert/engineer,
+/obj/item/rig/ert/engineer,
+/obj/item/storage/belt/utility/chief/full,
+/obj/item/storage/belt/utility/chief/full,
+/obj/item/storage/belt/utility/chief/full,
+/obj/item/storage/belt/utility/chief/full,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dQ" = (
@@ -1946,10 +1946,10 @@
 /obj/item/clothing/head/helmet/ert/engineer,
 /obj/item/clothing/head/helmet/ert/engineer,
 /obj/item/clothing/head/helmet/ert/engineer,
-/obj/item/weapon/storage/backpack/ert/engineer,
-/obj/item/weapon/storage/backpack/ert/engineer,
-/obj/item/weapon/storage/backpack/ert/engineer,
-/obj/item/weapon/storage/backpack/ert/engineer,
+/obj/item/storage/backpack/ert/engineer,
+/obj/item/storage/backpack/ert/engineer,
+/obj/item/storage/backpack/ert/engineer,
+/obj/item/storage/backpack/ert/engineer,
 /obj/item/taperoll/engineering,
 /obj/item/taperoll/engineering,
 /obj/item/taperoll/engineering,
@@ -1961,7 +1961,7 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -35
 	},
-/obj/item/weapon/gun/projectile/deagle,
+/obj/item/gun/projectile/deagle,
 /obj/item/ammo_magazine/m44,
 /obj/item/ammo_magazine/m44,
 /turf/simulated/shuttle/floor/black,
@@ -2122,14 +2122,14 @@
 /area/shuttle/specops/centcom)
 "rB" = (
 /obj/structure/table/rack/steel,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "zV" = (
@@ -2163,10 +2163,10 @@
 /obj/item/clothing/suit/space/void/responseteam/janitor,
 /obj/item/clothing/suit/space/void/responseteam/janitor,
 /obj/item/clothing/suit/space/void/responseteam/janitor,
-/obj/item/weapon/storage/belt/janitor,
-/obj/item/weapon/storage/belt/janitor,
-/obj/item/weapon/storage/belt/janitor,
-/obj/item/weapon/storage/belt/janitor,
+/obj/item/storage/belt/janitor,
+/obj/item/storage/belt/janitor,
+/obj/item/storage/belt/janitor,
+/obj/item/storage/belt/janitor,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 

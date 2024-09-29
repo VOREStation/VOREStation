@@ -1,5 +1,5 @@
 
-/obj/item/weapon/cell/spike
+/obj/item/cell/spike
 	name = "modified power cell"
 	desc = "A modified power cell sitting in a highly conductive chassis."
 	origin_tech = list(TECH_POWER = 2)
@@ -9,7 +9,7 @@
 	self_recharge = TRUE
 	charge_amount = 150
 
-/obj/item/weapon/cell/spike/process()
+/obj/item/cell/spike/process()
 	..()
 
 	var/turf/Center = get_turf(src)
@@ -63,7 +63,7 @@
 			var/obj/item/projectile/beam/shock/weak/P = new (get_turf(src))
 			P.launch_projectile_from_turf(L, BP_TORSO)
 
-	var/obj/item/weapon/plastique/C4 = locate() in get_turf(src)
+	var/obj/item/plastique/C4 = locate() in get_turf(src)
 
 	if(C4)
 		C4.visible_message("<span class='danger'>The current fries \the [C4]!</span>")

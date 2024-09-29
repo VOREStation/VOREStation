@@ -75,3 +75,9 @@
 	savefile_key = "MessengerEmbeds"
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/autopunctuation
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "AutoPunctuation"
+	default_value = FALSE
+	savefile_identifier = PREFERENCE_PLAYER

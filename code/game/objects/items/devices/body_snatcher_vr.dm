@@ -1,5 +1,5 @@
 //Body snatcher. Based off the sleevemate, but instead of storing a mind it lets you swap your mind with someone. Extremely illegal and being caught with one s
-/obj/item/device/bodysnatcher
+/obj/item/bodysnatcher
 	name = "\improper Body Snatcher Device"
 	desc = "An extremely illegal tool that allows the user to swap minds with the selected humanoid victim. The LED panel on the side states 'Place both heads on the device, pull trigger, then wait for the transfer to complete.'"
 	icon = 'icons/obj/device_alt.dmi'
@@ -10,11 +10,11 @@
 	matter = list(MAT_STEEL = 200)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2, TECH_ILLEGAL = 1)
 
-/obj/item/device/bodysnatcher/New()
+/obj/item/bodysnatcher/New()
 	..()
 	flags |= NOBLUDGEON //So borgs don't spark.
 
-/obj/item/device/bodysnatcher/attack(mob/living/M, mob/living/user)
+/obj/item/bodysnatcher/attack(mob/living/M, mob/living/user)
 	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
 		if(usr == M)
@@ -82,6 +82,6 @@
 	else
 		to_chat(user,"<span class='warning'> A warning pops up on the LED display on the side of the device, informing you that the target is not able to have their mind swapped with!</span>")
 
-/obj/item/device/bodysnatcher/attack_self(mob/living/user)
+/obj/item/bodysnatcher/attack_self(mob/living/user)
 		to_chat(user,"<span class='warning'> A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?</span>")
 		return

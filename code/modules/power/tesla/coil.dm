@@ -11,7 +11,7 @@
 	can_buckle = TRUE
 	buckle_lying = FALSE
 
-	circuit = /obj/item/weapon/circuitboard/tesla_coil
+	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/power_loss = 2
 	var/input_power_multiplier = 1
@@ -44,7 +44,7 @@
 /obj/machinery/power/tesla_coil/RefreshParts()
 	var/power_multiplier = 0
 	zap_cooldown = 100
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		power_multiplier += C.rating
 		zap_cooldown -= (C.rating * 20)
 	input_power_multiplier = power_multiplier
@@ -110,7 +110,7 @@
 	icon_state = "relay0"
 	icontype = "relay"
 
-	circuit = /obj/item/weapon/circuitboard/tesla_coil
+	circuit = /obj/item/circuitboard/tesla_coil
 
 	power_loss = 1
 	input_power_multiplier = 0
@@ -120,7 +120,7 @@
 /obj/machinery/power/tesla_coil/relay/RefreshParts()
 	..()
 	var/relay_multiplier
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		relay_multiplier += C.rating
 	relay_efficiency = 0.85 + (0.05 * relay_multiplier)
 
@@ -136,14 +136,14 @@
 	icon_state = "prism0"
 	icontype = "prism"
 
-	circuit = /obj/item/weapon/circuitboard/tesla_coil
+	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/split_count = 1
 
 /obj/machinery/power/tesla_coil/splitter/RefreshParts()
 	..()
 	split_count = 0
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		split_count += C.rating
 
 /obj/machinery/power/tesla_coil/splitter/coil_act(var/power)
@@ -161,14 +161,14 @@
 	icon_state = "amp0"
 	icontype = "amp"
 
-	circuit = /obj/item/weapon/circuitboard/tesla_coil
+	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/amp_eff = 2
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
 	..()
 	var/amp_eff = 1
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		amp_eff += C.rating
 
 /obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
@@ -184,14 +184,14 @@
 	icon_state = "recaster0"
 	icontype = "recaster"
 
-	circuit = /obj/item/weapon/circuitboard/tesla_coil
+	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/zap_range = 6
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
 	..()
 	var/zap_range = 5
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		zap_range += C.rating
 
 /obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
@@ -208,14 +208,14 @@
 	icon_state = "collector0"
 	icontype = "collector"
 
-	circuit = /obj/item/weapon/circuitboard/tesla_coil
+	circuit = /obj/item/circuitboard/tesla_coil
 
 	var/collect_eff = 0.8
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
 	var/collect_mod = 0
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		collect_mod += C.rating
 	collect_eff = 0.75 + collect_mod*0.05
 
@@ -235,7 +235,7 @@
 
 	can_buckle = TRUE
 	buckle_lying = FALSE
-	circuit = /obj/item/weapon/circuitboard/grounding_rod
+	circuit = /obj/item/circuitboard/grounding_rod
 
 /obj/machinery/power/grounding_rod/examine()
 	. = ..()

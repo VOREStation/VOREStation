@@ -20,9 +20,9 @@
 
 	organ_names = /decl/mob_organ_names/fish
 
-	holder_type = /obj/item/weapon/holder/fish
+	holder_type = /obj/item/holder/fish
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 	meat_amount = 3
 
 	// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
@@ -132,7 +132,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/javelin)
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish/sif
 
 /datum/category_item/catalogue/fauna/icebass
 	name = "Sivian Fauna - Glitter Bass"
@@ -159,7 +159,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/icebass)
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish/sif
 
 	var/max_red = 150
 	var/min_red = 50
@@ -248,7 +248,7 @@
 
 	var/image/head_image
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish/sif
 
 /mob/living/simple_mob/animal/passive/fish/rockfish/Initialize()
 	. = ..()
@@ -295,7 +295,7 @@
 
 	has_eye_glow = TRUE
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish/sif
 
 /datum/category_item/catalogue/fauna/murkin
 	name = "Sivian Fauna - Murkfish"
@@ -322,7 +322,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/sif/murkfish
 
 /decl/mob_organ_names/fish
 	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")

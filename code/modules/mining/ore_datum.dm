@@ -28,7 +28,7 @@
 	smelts_to = "uranium"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/uranium
+	ore = /obj/item/ore/uranium
 	scan_icon = "mineral_uncommon"
 	xarch_ages = list(
 		"thousand" = 999,
@@ -44,7 +44,7 @@
 	alloy = 1
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/iron
+	ore = /obj/item/ore/iron
 	scan_icon = "mineral_common"
 	reagent = "iron"
 
@@ -56,7 +56,7 @@
 	alloy = 1
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/coal
+	ore = /obj/item/ore/coal
 	scan_icon = "mineral_common"
 	reagent = "carbon"
 
@@ -74,7 +74,7 @@
 	//smelts_to = something that explodes violently on the conveyor, huhuhuhu
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/phoron
+	ore = /obj/item/ore/phoron
 	scan_icon = "mineral_uncommon"
 	xarch_ages = list(
 		"thousand" = 999,
@@ -91,7 +91,7 @@
 	smelts_to = "silver"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/silver
+	ore = /obj/item/ore/silver
 	scan_icon = "mineral_uncommon"
 	reagent = "silver"
 
@@ -101,7 +101,7 @@
 	display_name = "native gold"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/gold
+	ore = /obj/item/ore/gold
 	scan_icon = "mineral_uncommon"
 	xarch_ages = list(
 		"thousand" = 999,
@@ -118,7 +118,7 @@
 	compresses_to = "diamond"
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/diamond
+	ore = /obj/item/ore/diamond
 	scan_icon = "mineral_rare"
 	xarch_source_mineral = "nitrogen"
 	reagent = "carbon"
@@ -131,7 +131,7 @@
 	alloy = 1
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/osmium
+	ore = /obj/item/ore/osmium
 	scan_icon = "mineral_rare"
 	reagent = "platinum"
 
@@ -149,7 +149,7 @@
 	compresses_to = MAT_VERDANTIUM
 	result_amount = 2
 	spread_chance = 5
-	ore = /obj/item/weapon/ore/verdantium
+	ore = /obj/item/ore/verdantium
 	scan_icon = "mineral_rare"
 	xarch_ages = list(
 		"billion" = 13,
@@ -162,7 +162,7 @@
 	compresses_to = "marble"
 	result_amount = 1
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/marble
+	ore = /obj/item/ore/marble
 	scan_icon = "mineral_common"
 	reagent = "calciumcarbonate"
 
@@ -172,7 +172,7 @@
 	smelts_to = "lead"
 	result_amount = 3
 	spread_chance = 20
-	ore = /obj/item/weapon/ore/lead
+	ore = /obj/item/ore/lead
 	scan_icon = "mineral_rare"
 	reagent = "lead"
 /*
@@ -183,7 +183,7 @@
 	alloy = 1
 	result_amount = 5
 	spread_chance = 15
-	ore = /obj/item/weapon/ore/copper
+	ore = /obj/item/ore/copper
 	scan_icon = "mineral_common"
 	reagent = "copper"
 
@@ -194,7 +194,7 @@
 	alloy = 1
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/tin
+	ore = /obj/item/ore/tin
 	scan_icon = "mineral_common"
 
 /ore/quartz
@@ -203,7 +203,7 @@
 	compresses_to = "quartz"
 	result_amount = 5
 	spread_chance = 5
-	ore = /obj/item/weapon/ore/quartz
+	ore = /obj/item/ore/quartz
 	scan_icon = "mineral_common"
 
 /ore/bauxite
@@ -212,7 +212,7 @@
 	smelts_to = "aluminium"
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/bauxite
+	ore = /obj/item/ore/bauxite
 	scan_icon = "mineral_common"
 	reagent = "aluminum"
 */
@@ -223,7 +223,7 @@
 	result_amount = 5
 	spread_chance = 12
 	alloy = 1
-	ore = /obj/item/weapon/ore/rutile
+	ore = /obj/item/ore/rutile
 	scan_icon = "mineral_uncommon"
 /*
 /ore/painite
@@ -232,7 +232,7 @@
 	compresses_to = "painite"
 	result_amount = 5
 	spread_chance = 3
-	ore = /obj/item/weapon/ore/painite
+	ore = /obj/item/ore/painite
 	scan_icon = "mineral_rare"
 
 /ore/void_opal
@@ -241,6 +241,6 @@
 	compresses_to = "void opal"
 	result_amount = 5
 	spread_chance = 1
-	ore = /obj/item/weapon/ore/void_opal
+	ore = /obj/item/ore/void_opal
 	scan_icon = "mineral_rare"
 */

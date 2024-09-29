@@ -1,7 +1,7 @@
 /*
  * Bolt-Action Rifle
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle
+/obj/item/gun/projectile/shotgun/pump/rifle
 	name = "bolt-action rifle"
 	desc = "The Weissen Company Type-19 is a modern interpretation of an almost ancient weapon design. \
 	The model is popular among hunters and collectors due to its reliability. Uses 7.62mm rounds."
@@ -27,7 +27,7 @@
 /*
  * Practice Rifle
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice // For target practice
+/obj/item/gun/projectile/shotgun/pump/rifle/practice // For target practice
 	name = "practice bolt-action rifle"
 	icon_state = "boltaction_practice"
 	desc = "A bolt-action rifle with a lightweight synthetic wood stock, designed for competitive shooting. \
@@ -39,7 +39,7 @@
 /*
  * Moist Nugget
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/moistnugget
+/obj/item/gun/projectile/shotgun/pump/rifle/moistnugget
 	name = "mosin-nagant"
 	icon_state = "moistnugget"
 	item_state = "rifle"
@@ -55,7 +55,7 @@
 /*
  * Ceremonial Rifle
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial
+/obj/item/gun/projectile/shotgun/pump/rifle/ceremonial
 	name = "ceremonial bolt-action rifle"
 	desc = "A bolt-action rifle with a heavy, high-quality wood stock that has a beautiful finish. \
 	Clearly not intended to be used in combat. Uses 7.62mm rounds."
@@ -67,11 +67,11 @@
 
 	var/sawn_off = FALSE
 
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/shotgun/pump/rifle/ceremonial/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(sawn_off)
 		to_chat(user, "<span class='warning'>The [src] is already shortened!</span>")
 		return
-	if(istype(A, /obj/item/weapon/surgical/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
+	if(istype(A, /obj/item/surgical/circular_saw) || istype(A, /obj/item/melee/energy) || istype(A, /obj/item/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
 		to_chat(user, "<span class='notice'>You begin to shorten the barrel and stock of \the [src].</span>")
 		if(loaded.len)
 			afterattack(user, user)
@@ -99,7 +99,7 @@
 /*
  * Surplus Rifle
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/surplus
+/obj/item/gun/projectile/shotgun/pump/surplus
 	name = "surplus rifle"
 	desc = "An ancient weapon from an era long past, crude in design, but still just as effective \
 	as any modern interpretation. Uses 7.62mm rounds."
@@ -118,7 +118,7 @@
 /*
  * Scoped Rifle
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/scoped
+/obj/item/gun/projectile/shotgun/pump/rifle/scoped
 	name = "scoped bolt-action rifle"
 	desc = "The Weissen Company Type-19 is a modern interpretation of an almost ancient weapon design. \
 	The model is popular among hunters and collectors due to its reliability. Uses 7.62mm rounds."
@@ -141,10 +141,10 @@
 	action_sound = 'sound/weapons/riflebolt.ogg'
 	pump_animation = "scoped-boltaction-cycling"
 
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ui_action_click()
+/obj/item/gun/projectile/shotgun/pump/rifle/ui_action_click()
 	scope()
 
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/verb/scope()
+/obj/item/gun/projectile/shotgun/pump/rifle/verb/scope()
 	set category = "Object"
 	set name = "Use Scope"
 	set popup_menu = 1

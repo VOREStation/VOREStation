@@ -277,7 +277,7 @@
 	else if(href_list["fakepdapropconvo"])
 		if(!check_rights(R_FUN)) return
 
-		var/obj/item/device/pda/P = locate(href_list["fakepdapropconvo"])
+		var/obj/item/pda/P = locate(href_list["fakepdapropconvo"])
 		if(!istype(P))
 			to_chat(usr, span_warning("This can only be done to instances of type /pda"))
 			return

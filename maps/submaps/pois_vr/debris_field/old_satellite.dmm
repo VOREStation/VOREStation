@@ -38,7 +38,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "g" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/template_noop,
 /area/space)
 "h" = (
@@ -111,7 +111,7 @@
 /area/submap/debrisfield/old_sat)
 "o" = (
 /obj/structure/lattice,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/space,
 /area/space)
 "p" = (
@@ -120,18 +120,18 @@
 /turf/simulated/floor/bluegrid/airless,
 /area/submap/debrisfield/old_sat)
 "q" = (
-/obj/item/weapon/material/shard/phoron,
-/obj/item/weapon/ore/iron,
+/obj/item/material/shard/phoron,
+/obj/item/ore/iron,
 /obj/random/tech_supply/component,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "r" = (
-/obj/item/weapon/ore/iron,
-/obj/item/weapon/ore/iron,
+/obj/item/ore/iron,
+/obj/item/ore/iron,
 /turf/template_noop,
 /area/space)
 "s" = (
-/obj/item/weapon/ore/glass,
+/obj/item/ore/glass,
 /turf/template_noop,
 /area/space)
 "t" = (

@@ -6,18 +6,18 @@
 	enhancement_desc = "Increased heat generation, more fires, and higher temperature cap."
 	spell_power_desc = "Radius, heat rate, heat capacity, and amount of fires made increased."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/aura/fire
+	obj_path = /obj/item/spell/aura/fire
 	ability_icon_state = "tech_fireaura"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/aura/fire
+/obj/item/spell/aura/fire
 	name = "Fire Storm"
 	desc = "Things are starting to heat up."
 	icon_state = "fire_bolt"
 	aspect = ASPECT_FIRE
 	glow_color = "#FF6A00"
 
-/obj/item/weapon/spell/aura/fire/process()
+/obj/item/spell/aura/fire/process()
 	if(!pay_energy(100))
 		qdel(src)
 	var/list/nearby_things = range(round(calculate_spell_power(4)),owner)

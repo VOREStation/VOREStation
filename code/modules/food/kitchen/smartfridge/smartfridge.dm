@@ -106,7 +106,7 @@
 	if(wrenchable && default_unfasten_wrench(user, O, 20))
 		return
 
-	if(istype(O, /obj/item/device/multitool) || O.has_tool_quality(TOOL_WIRECUTTER))
+	if(istype(O, /obj/item/multitool) || O.has_tool_quality(TOOL_WIRECUTTER))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -121,8 +121,8 @@
 		user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
 		sortTim(item_records, GLOBAL_PROC_REF(cmp_stored_item_name))
 
-	else if(istype(O, /obj/item/weapon/storage/bag))
-		var/obj/item/weapon/storage/bag/P = O
+	else if(istype(O, /obj/item/storage/bag))
+		var/obj/item/storage/bag/P = O
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
 			if(accept_check(G))
@@ -134,8 +134,8 @@
 			if(P.contents.len > 0)
 				to_chat(user, "<span class='notice'>Some items are refused.</span>")
 
-	else if(istype(O, /obj/item/weapon/gripper)) // Grippers. ~Mechoid.
-		var/obj/item/weapon/gripper/B = O	//B, for Borg.
+	else if(istype(O, /obj/item/gripper)) // Grippers. ~Mechoid.
+		var/obj/item/gripper/B = O	//B, for Borg.
 		if(!B.wrapped)
 			to_chat(user, "<span class='filter_notice'>\The [B] is not holding anything.</span>")
 			return
