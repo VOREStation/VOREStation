@@ -277,9 +277,10 @@
 
 /obj/item/card/id/cargo/miner/borg/Initialize()
 	. = ..()
-	R = loc.loc
-	registered_name = R.braintype
-	RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
+	if(isrobot(loc?.loc))
+		R = loc.loc
+		registered_name = R.braintype
+		RegisterSignal(src, COMSIG_OBSERVER_MOVED, PROC_REF(check_loc))
 
 /obj/item/card/id/cargo/miner/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	if(old_loc == R || old_loc == R.module)
@@ -294,7 +295,8 @@
 			hud_layerise()
 
 /obj/item/card/id/cargo/miner/borg/Destroy()
-	UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
-	R = null
-	last_robot_loc = null
+	if(R)
+		UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
+		R = null
+		last_robot_loc = null
 	..()
