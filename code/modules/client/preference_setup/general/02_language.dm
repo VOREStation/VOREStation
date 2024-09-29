@@ -1,6 +1,7 @@
 /datum/preferences
 	var/extra_languages = 0
 	var/preferred_language = "common" // VOREStation Edit: Allow selecting a preferred language
+	var/runechat_color = COLOR_BLACK
 
 /datum/category_item/player_setup_item/general/language
 	name = "Language"
@@ -14,6 +15,7 @@
 	pref.species				= save_data["species"]
 	pref.preferred_language		= save_data["preflang"]
 	pref.language_custom_keys	= check_list_copy(save_data["language_custom_keys"])
+	pref.runechat_color			= save_data["runechat_color"]
 
 /datum/category_item/player_setup_item/general/language/save_character(list/save_data)
 	save_data["language"]				= check_list_copy(pref.alternate_languages)
@@ -21,6 +23,7 @@
 	save_data["language_prefixes"]		= pref.language_prefixes
 	save_data["language_custom_keys"]	= pref.language_custom_keys
 	save_data["preflang"]				= check_list_copy(pref.preferred_language)
+	save_data["runechat_color"]			= pref.runechat_color
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
 	if(!islist(pref.alternate_languages))
@@ -62,6 +65,8 @@
 		if(!((pref.language_custom_keys[key] == S.language) || (pref.language_custom_keys[key] == S.default_language && S.default_language != S.language) || (pref.language_custom_keys[key] in pref.alternate_languages)))
 			pref.language_custom_keys.Remove(key)
 
+	pref.runechat_color = sanitize_hexcolor(pref.runechat_color, COLOR_BLACK)
+
 /datum/category_item/player_setup_item/general/language/content()
 	. += "<b>Languages</b><br>"
 	var/datum/species/S = GLOB.all_species[pref.species]
@@ -86,6 +91,7 @@
 	. += "<b>Language Keys</b><br>"
 	. += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
 	. += "<b>Preferred Language</b> <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
+	. += "<b>Runechat Color</b> <a href='?src=\ref[src];pref_runechat_color=1'>Change Runechat Color</a> [color_square(hex = pref.runechat_color)]"
 
 /datum/category_item/player_setup_item/general/language/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["remove_language"])
@@ -189,6 +195,18 @@
 					tgui_alert_async(user, "You will now speak [pref.preferred_language] if you do not specify a language when speaking.", "Preferred Language Set")
 			return TOPIC_REFRESH
 	// VOREStation Add End
+
+	else if(href_list["pref_runechat_color"])
+		var/new_runechat_color = input(user, "Choose your character's runechat colour (#000000 for random):", "Character Preference", pref.runechat_color) as color|null
+		if(new_runechat_color && CanUseTopic(user))
+			pref.runechat_color = new_runechat_color
+			// whenever we change this, we update our mob
+			var/mob/pref_mob = preference_mob()
+			if(pref_mob)
+				pref_mob.chat_color = new_runechat_color
+				pref_mob.chat_color_darkened = new_runechat_color
+				pref_mob.chat_color_name = pref_mob.name
+			return TOPIC_REFRESH
 
 
 	return ..()
