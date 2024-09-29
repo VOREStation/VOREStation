@@ -85,7 +85,10 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		if(species && should_have_organ(O_HEART))
 			var/obj/item/organ/internal/heart/heart = internal_organs_by_name[O_HEART]
 
-			if(!heart)
+			if(has_modifier_of_type(/datum/modifier/bloodpump))
+				blood_volume_raw *= 1
+				blood_volume *= 1
+			else if(!heart)
 				blood_volume_raw = 0
 				blood_volume = 0
 			else if(heart.is_broken())
