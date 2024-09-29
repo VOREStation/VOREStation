@@ -15945,8 +15945,8 @@
 "JO" = (
 /obj/structure/closet/lawcloset,
 /obj/item/storage/secure/briefcase,
-/obj/item/tape/random,
-/obj/item/tape/random,
+/obj/item/rectape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder,
 /obj/item/camera_film,
 /obj/item/camera,
@@ -20022,8 +20022,8 @@
 "Tj" = (
 /obj/structure/closet/lawcloset,
 /obj/item/storage/secure/briefcase,
-/obj/item/tape/random,
-/obj/item/tape/random,
+/obj/item/rectape/random,
+/obj/item/rectape/random,
 /obj/item/taperecorder,
 /obj/item/camera_film,
 /obj/item/camera,
