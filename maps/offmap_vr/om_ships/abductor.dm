@@ -41,7 +41,7 @@
 	fore_dir = NORTH
 	known = FALSE
 
-/obj/item/weapon/paper/alien/abductor
+/obj/item/paper/alien/abductor
 	name = "Read Me"
 	info = {"<b>((Just to state the obvious here, but make sure you're reading OOC notes and all that. This role does not give you any special protections from the rules. Only abduct people who seem like they'd be cool with it.))</b><br><br>
 
@@ -71,7 +71,7 @@ You will find a dispenser within the room you started in which contains some bas
 
 /obj/machinery/porta_turret/alien/abductor
 	name = "anti-personnel turret"
-	installation = /obj/item/weapon/gun/energy/gun/taser
+	installation = /obj/item/gun/energy/gun/taser
 	lethal = FALSE
 	health = 500 // Sturdier turrets, non-lethal, for capturing people alive
 	maxhealth = 500
@@ -79,7 +79,7 @@ You will find a dispenser within the room you started in which contains some bas
 
 /obj/machinery/porta_turret/alien/abductor/ion
 	name = "anti-personnel turret"
-	installation = /obj/item/weapon/gun/energy/ionrifle/weak
+	installation = /obj/item/gun/energy/ionrifle/weak
 	lethal = TRUE
 
 /obj/machinery/power/rtg/abductor/built/abductor

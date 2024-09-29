@@ -112,14 +112,14 @@
 /area/redgate/structure/powered/teppi_ranch)
 "jE" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/dropper,
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
 /turf/simulated/floor/tiled/eris/cafe,
@@ -281,7 +281,7 @@
 /area/redgate/wilds)
 "ux" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/food/snacks/lasagna,
+/obj/item/reagent_containers/food/snacks/lasagna,
 /turf/simulated/floor/wood,
 /area/redgate/structure/powered/teppi_ranch)
 "uP" = (
@@ -428,7 +428,7 @@
 /area/redgate/structure/powered/teppi_ranch)
 "Fc" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/paper/teppiranch,
+/obj/item/paper/teppiranch,
 /turf/simulated/floor/wood,
 /area/redgate/structure/powered/teppi_ranch)
 "Gj" = (
@@ -444,8 +444,8 @@
 /area/redgate/structure/powered/teppi_ranch/barn)
 "GF" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/structure/powered/teppi_ranch)
 "GQ" = (
@@ -471,7 +471,7 @@
 /area/redgate/structure/powered/teppi_ranch/barn)
 "Hf" = (
 /obj/structure/table/standard,
-/obj/item/weapon/book/manual/cook_guide,
+/obj/item/book/manual/cook_guide,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/structure/powered/teppi_ranch)
 "Ia" = (
@@ -483,7 +483,7 @@
 /area/redgate/structure/powered/teppi_ranch)
 "IV" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/redgate/structure/powered/teppi_ranch)
 "Jg" = (
@@ -603,11 +603,11 @@
 /area/redgate/structure/powered/teppi_ranch/barn)
 "NL" = (
 /obj/structure/closet/chefcloset,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/tool/wrench,
+/obj/item/soap/nanotrasen,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
+/obj/item/tool/wrench,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/structure/powered/teppi_ranch)
@@ -711,22 +711,22 @@
 /area/redgate/wilds)
 "Wa" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
 /obj/random/donkpocketbox,
 /obj/structure/closet/walllocker_double/south{
 	dir = 2;
@@ -746,12 +746,12 @@
 /area/redgate/structure/powered/teppi_ranch/barn)
 "WL" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/mint,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -771,7 +771,7 @@
 /area/redgate/structure/powered/teppi_ranch/barn)
 "Xg" = (
 /obj/structure/flora/tree/bigtree,
-/obj/item/weapon/aliencoin/silver,
+/obj/item/aliencoin/silver,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs,
 /area/redgate/wilds)
 "XA" = (
@@ -797,11 +797,11 @@
 /area/redgate/structure/powered/teppi_ranch)
 "Zr" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/beakers{
+/obj/item/storage/box/beakers{
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
+	starts_with = list(/obj/item/reagent_containers/glass/beaker/measuring_cup=7)
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/structure/powered/teppi_ranch)

@@ -7,7 +7,7 @@ Category: Non-Fiction
 
 /// Free Sirisai: Light Bulbs by Sene of Sheraeshi.
 
-/obj/item/weapon/book/custom_library/nonfiction/freesirisailightbulbs
+/obj/item/book/custom_library/nonfiction/freesirisailightbulbs
 	name = "Free Sirisai: Light Bulbs"
 	desc = "A hardbound book titled \"Free Sirisai: Light Bulbs\" by Sene of Sheraeshi."
 	description_info = "This book is titled \"Free Sirisai: Light Bulbs\" by Sene of Sheraeshi. It appears to be about the different lighting needs of different sapient species, written from a Teshari author's view."
@@ -42,7 +42,7 @@ Category: Non-Fiction
 
 /// The Viability of Corporate Government by Yang Simiao
 
-/obj/item/weapon/book/bundle/custom_library/nonfiction/viabilityofcorporategov
+/obj/item/book/bundle/custom_library/nonfiction/viabilityofcorporategov
 	name = "The Viability of Corporate Government"
 	desc = "A hardbound book titled \"The Viability of Corporate Government\" by Yang Simiao."
 	description_info = "This book is titled \"The Viability of Corporate Government\" by Yang Simiao. It seems to be an opinion piece on the relationship between corporations and the stations they own."
@@ -99,7 +99,7 @@ Category: Non-Fiction
 
 ///A Brief History Of The Rise And Fall Of The Persian Empire by Satrap.
 
-/obj/item/weapon/book/bundle/custom_library/nonfiction/riseandfallofpersianempire
+/obj/item/book/bundle/custom_library/nonfiction/riseandfallofpersianempire
 	name = "The Rise And Fall Of The Persian Empire"
 	desc = "A hardbound book titled \"A Brief History Of The Rise And Fall Of The Persian Empire\" by Satrap."
 	description_info = "This book is titled \"A Brief History Of The Rise And Fall Of The Persian Empire\" by Satrap. It covers the beginning and end of Earth's Persian Empire."
@@ -224,7 +224,7 @@ Category: Non-Fiction
 
 /// An Explanation of the Skrellian Caste System by Jyotirao Phule.
 
-/obj/item/weapon/book/bundle/custom_library/nonfiction/skrelliancastesystem
+/obj/item/book/bundle/custom_library/nonfiction/skrelliancastesystem
 
 	name = "An Explanation of the Skrellian Caste System"
 	desc = "A hardbound book titled \"An Explanation of the Skrellian Caste System\" by Jyotirao Phule."

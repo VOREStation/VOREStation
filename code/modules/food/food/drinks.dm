@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Drinks.
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/weapon/reagent_containers/food/drinks
+/obj/item/reagent_containers/food/drinks
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
@@ -19,12 +19,12 @@
 	/// Yims
 	food_can_insert_micro = TRUE
 
-/obj/item/weapon/reagent_containers/food/drinks/Initialize()
+/obj/item/reagent_containers/food/drinks/Initialize()
 	. = ..()
 	if (prob(cant_chance))
 		cant_open = 1
 
-/obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/on_reagent_change()
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(R.price_tag)
@@ -33,7 +33,7 @@
 			price_tag = null
 	return
 
-/obj/item/weapon/reagent_containers/food/drinks/Destroy()
+/obj/item/reagent_containers/food/drinks/Destroy()
 	if(food_inserted_micros)
 		for(var/mob/M in food_inserted_micros)
 			M.dropInto(loc)
@@ -42,9 +42,9 @@
 
 	return
 
-/obj/item/weapon/reagent_containers/food/drinks/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(food_can_insert_micro && istype(W, /obj/item/weapon/holder))
-		if(!(istype(W, /obj/item/weapon/holder/micro) || istype(W, /obj/item/weapon/holder/mouse)))
+/obj/item/reagent_containers/food/drinks/attackby(obj/item/W as obj, mob/user as mob)
+	if(food_can_insert_micro && istype(W, /obj/item/holder))
+		if(!(istype(W, /obj/item/holder/micro) || istype(W, /obj/item/holder/mouse)))
 			. = ..()
 			return
 
@@ -52,7 +52,7 @@
 			to_chat(user, "<span class='warning'>You cannot drop anything into \the [src] without opening it first.</span>")
 			return
 
-		var/obj/item/weapon/holder/H = W
+		var/obj/item/holder/H = W
 
 		if(!food_inserted_micros)
 			food_inserted_micros = list()
@@ -72,7 +72,7 @@
 
 	return ..()
 
-/obj/item/weapon/reagent_containers/food/drinks/MouseDrop_T(mob/living/M, mob/user)
+/obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/M, mob/user)
 	if(!user.stat && istype(M) && (M == user) && Adjacent(M) && (M.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
 		if(!food_inserted_micros)
 			food_inserted_micros = list()
@@ -86,7 +86,7 @@
 
 	return ..()
 
-/obj/item/weapon/reagent_containers/food/drinks/proc/On_Consume(var/mob/living/M, var/mob/user, var/changed = FALSE)
+/obj/item/reagent_containers/food/drinks/proc/On_Consume(var/mob/living/M, var/mob/user, var/changed = FALSE)
 	if(!user)
 		user = M
 
@@ -121,14 +121,14 @@
 			qdel(src)
 	return
 
-/obj/item/weapon/reagent_containers/food/drinks/on_rag_wipe(var/obj/item/weapon/reagent_containers/glass/rag/R)
+/obj/item/reagent_containers/food/drinks/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
 	clean_blood()
 
-/obj/item/weapon/reagent_containers/food/drinks/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/drinks/attack_self(mob/user as mob)
 	if(!is_open_container())
 		open(user)
 
-/obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
+/obj/item/reagent_containers/food/drinks/proc/open(mob/user)
 	if(!cant_open)
 		playsound(src,"canopen", rand(10,50), 1)
 		GLOB.cans_opened_roundstat++
@@ -138,7 +138,7 @@
 		to_chat(user, "<span class='warning'>...wait a second, this one doesn't have a ring pull. It's not a <b>can</b>, it's a <b>can't!</b></span>")
 		name = "\improper can't of [initial(name)]"	//don't update the name until they try to open it
 
-/obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
@@ -147,7 +147,7 @@
 
 	return 0
 
-/obj/item/weapon/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return
 
 	if(standard_dispenser_refill(user, target))
@@ -156,7 +156,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
@@ -166,19 +166,19 @@
 	On_Consume(target,user,changed)
 	return
 
-/obj/item/weapon/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
+/obj/item/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
 	return ..()
 
-/obj/item/weapon/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
+/obj/item/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
 	return ..()
 
-/obj/item/weapon/reagent_containers/food/drinks/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
 	if(amount_per_transfer_from_this == volume)	//I wanted to use a switch, but switch statements can't use vars and the maximum volume of containers varies
 		to_chat(user, "<span class='notice'>You knock back the entire [src] in one go!</span>")
 	else if(amount_per_transfer_from_this <= 4)	//below the standard 5
@@ -190,10 +190,10 @@
 	else	//default message as a fallback
 		to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
-/obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
+/obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(src, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/weapon/reagent_containers/food/drinks/examine(mob/user)
+/obj/item/reagent_containers/food/drinks/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		if(cant_open)
@@ -216,7 +216,7 @@
 /// Drinks. END
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup
+/obj/item/reagent_containers/food/drinks/golden_cup
 	desc = "A golden cup"
 	name = "golden cup"
 	icon_state = "golden_cup"
@@ -229,7 +229,7 @@
 	volume = 150
 	flags = OPENCONTAINER
 
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/golden_cup/on_reagent_change()
 	..()
 
 ///////////////////////////////////////////////Drinks
@@ -237,7 +237,7 @@
 //	rather then having to add it to something else first. They should only contain liquids. They have a default container size of 50.
 //	Formatting is the same as food.
 
-/obj/item/weapon/reagent_containers/food/drinks/milk
+/obj/item/reagent_containers/food/drinks/milk
 	name = "milk carton"
 	desc = "It's milk. White and nutritious goodness!"
 	description_fluff = "A product of NanoPastures. Who would have thought that cows would thrive in zero-G?"
@@ -247,11 +247,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/milk/Initialize()
+/obj/item/reagent_containers/food/drinks/milk/Initialize()
 	. = ..()
 	reagents.add_reagent("milk", 50)
 
-/obj/item/weapon/reagent_containers/food/drinks/soymilk
+/obj/item/reagent_containers/food/drinks/soymilk
 	name = "soymilk carton"
 	desc = "It's soy milk. White and nutritious goodness!"
 	description_fluff = "A product of NanoPastures. For those skeptical that cows can thrive in zero-G."
@@ -261,11 +261,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/soymilk/Initialize()
+/obj/item/reagent_containers/food/drinks/soymilk/Initialize()
 	. = ..()
 	reagents.add_reagent("soymilk", 50)
 
-/obj/item/weapon/reagent_containers/food/drinks/smallmilk
+/obj/item/reagent_containers/food/drinks/smallmilk
 	name = "small milk carton"
 	desc = "It's milk. White and nutritious goodness!"
 	description_fluff = "A product of NanoPastures. Who would have thought that cows would thrive in zero-G?"
@@ -276,11 +276,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/smallmilk/Initialize()
+/obj/item/reagent_containers/food/drinks/smallmilk/Initialize()
 	. = ..()
 	reagents.add_reagent("milk", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk
+/obj/item/reagent_containers/food/drinks/smallchocmilk
 	name = "small chocolate milk carton"
 	desc = "It's milk! This one is in delicious chocolate flavour."
 	description_fluff = "A product of NanoPastures. Who would have thought that cows would thrive in zero-G?"
@@ -291,11 +291,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk/Initialize()
+/obj/item/reagent_containers/food/drinks/smallchocmilk/Initialize()
 	. = ..()
 	reagents.add_reagent("chocolate_milk", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/coffee
+/obj/item/reagent_containers/food/drinks/coffee
 	name = "\improper Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	description_fluff = "Fresh coffee is almost unheard of outside of planets and stations where it is grown. Robust Coffee proudly advertises the six separate times it is freeze-dried during the production process of every cup of instant."
@@ -305,11 +305,11 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/coffee/Initialize()
+/obj/item/reagent_containers/food/drinks/coffee/Initialize()
 	. = ..()
 	reagents.add_reagent("coffee", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/tea
+/obj/item/reagent_containers/food/drinks/tea
 	name = "cup of Duke Purple tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	description_fluff = "Duke Purple is NanoPasture's proprietary strain of black tea, noted for its strong but otherwise completely non-distinctive flavour."
@@ -320,11 +320,11 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/tea/Initialize()
+/obj/item/reagent_containers/food/drinks/tea/Initialize()
 	. = ..()
 	reagents.add_reagent("tea", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/decaf_tea
+/obj/item/reagent_containers/food/drinks/decaf_tea
 	name = "cup of Count Mauve decaffeinated tea"
 	desc = "Why should bedtime stop you from enjoying a nice cuppa?"
 	description_fluff = "Count Mauve is a milder strain of NanoPasture's proprietary black tea, noted for its strong but otherwise completely non-distinctive flavour and total lack of caffeination."
@@ -335,20 +335,20 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/decaf_tea/Initialize()
+/obj/item/reagent_containers/food/drinks/decaf_tea/Initialize()
 	. = ..()
 	reagents.add_reagent("teadecaf", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/ice
+/obj/item/reagent_containers/food/drinks/ice
 	name = "cup of ice"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "ice"
 	center_of_mass = list("x"=15, "y"=10)
-/obj/item/weapon/reagent_containers/food/drinks/ice/Initialize()
+/obj/item/reagent_containers/food/drinks/ice/Initialize()
 	. = ..()
 	reagents.add_reagent("ice", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/h_chocolate
+/obj/item/reagent_containers/food/drinks/h_chocolate
 	name = "cup of Counselor's Choice hot cocoa"
 	desc = "Who needs character traits when you can enjoy a hot mug of cocoa?"
 	description_fluff = "Counselor's Choice brand hot cocoa is made with a blend of hot water and non-dairy milk powder substitute, in a compromise destined to annoy all parties."
@@ -359,11 +359,11 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/h_chocolate/Initialize()
+/obj/item/reagent_containers/food/drinks/h_chocolate/Initialize()
 	. = ..()
 	reagents.add_reagent("hot_coco", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/greentea
+/obj/item/reagent_containers/food/drinks/greentea
 	name = "cup of green tea"
 	desc = "Exceptionally traditional, delightfully subtle."
 	description_fluff = "Tea remains an important tradition in many cultures originating on Earth. Among these, green tea is probably the most traditional of the bunch... Though the vending machines of the modern era hardly do it justice."
@@ -374,11 +374,11 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/greentea/Initialize()
+/obj/item/reagent_containers/food/drinks/greentea/Initialize()
 	. = ..()
 	reagents.add_reagent("greentea", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/chaitea
+/obj/item/reagent_containers/food/drinks/chaitea
 	name = "cup of chai tea"
 	desc = "The name is redundant but the flavor is delicious!"
 	description_fluff = "Chai Tea - tea blended with a spice mix of cinnamon and cloves - borders on a national drink on Kishar."
@@ -389,11 +389,11 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/chaitea/Initialize()
+/obj/item/reagent_containers/food/drinks/chaitea/Initialize()
 	. = ..()
 	reagents.add_reagent("chaitea", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/decaf
+/obj/item/reagent_containers/food/drinks/decaf
 	name = "cup of decaf coffee"
 	desc = "Coffee with all the wake-up sucked out."
 	description_fluff = "A trial run on two NanoTrasen stations in 2481 attempted to replace all vending machine coffee with decaf in order to combat an epidemic of caffeine addiction. After two days, three major industrial accidents and a death, the initiative was cancelled. Decaf is now thankfully optional."
@@ -404,11 +404,11 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/decaf/Initialize()
+/obj/item/reagent_containers/food/drinks/decaf/Initialize()
 	. = ..()
 	reagents.add_reagent("decaf", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/dry_ramen
+/obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	description_fluff = "Konohagakure Brand Ramen has been an instant meal staple for centuries. Cheap, quick and available in over two hundred varieties - though most taste like artifical chicken."
@@ -418,11 +418,11 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/dry_ramen/Initialize()
+/obj/item/reagent_containers/food/drinks/dry_ramen/Initialize()
 	. = ..()
 	reagents.add_reagent("dry_ramen", 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/sillycup
+/obj/item/reagent_containers/food/drinks/sillycup
 	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
@@ -432,17 +432,17 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/weapon/reagent_containers/food/drinks/sillycup/Initialize()
+/obj/item/reagent_containers/food/drinks/sillycup/Initialize()
 	. = ..()
 
-/obj/item/weapon/reagent_containers/food/drinks/sillycup/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/sillycup/on_reagent_change()
 	..()
 	if(reagents.total_volume)
 		icon_state = "water_cup"
 	else
 		icon_state = "water_cup_e"
 
-/obj/item/weapon/reagent_containers/food/drinks/sillycup/MouseDrop(obj/over_object as obj)
+/obj/item/reagent_containers/food/drinks/sillycup/MouseDrop(obj/over_object as obj)
 	if(!reagents.total_volume && istype(over_object, /obj/structure/reagent_dispensers/water_cooler))
 		if(over_object.Adjacent(usr))
 			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
@@ -459,7 +459,7 @@
 //	itself), in Chemistry-Recipes.dm (for the reaction that changes the components into the drink), and here (for the drinking glass
 //	icon states.
 
-/obj/item/weapon/reagent_containers/food/drinks/shaker
+/obj/item/reagent_containers/food/drinks/shaker
 	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
@@ -467,10 +467,10 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=10)
 
-/obj/item/weapon/reagent_containers/food/drinks/shaker/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/shaker/on_reagent_change()
 	..()
 
-/obj/item/weapon/reagent_containers/food/drinks/teapot
+/obj/item/reagent_containers/food/drinks/teapot
 	name = "teapot"
 	desc = "An elegant teapot. It simply oozes class."
 	icon_state = "teapot"
@@ -479,44 +479,45 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=7)
 
-/obj/item/weapon/reagent_containers/food/drinks/teapot/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/teapot/on_reagent_change()
 	..()
 
-/obj/item/weapon/reagent_containers/food/drinks/flask
+/obj/item/reagent_containers/food/drinks/flask
 	name = "\improper " + JOB_SITE_MANAGER + "'s flask"
 	desc = "A metal flask belonging to the " + JOB_SITE_MANAGER
+
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/flask/on_reagent_change()
 	..()
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/shiny
+/obj/item/reagent_containers/food/drinks/flask/shiny
 	name = "shiny flask"
 	desc = "A shiny metal flask. It appears to have a Greek symbol inscribed on it."
 	icon_state = "shinyflask"
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/lithium
+/obj/item/reagent_containers/food/drinks/flask/lithium
 	name = "lithium flask"
 	desc = "A flask with a Lithium Atom symbol on it."
 	icon_state = "lithiumflask"
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/detflask
+/obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "\improper " + JOB_DETECTIVE + "'s flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."
 	icon_state = "detflask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask
+/obj/item/reagent_containers/food/drinks/flask/barflask
 	name = "flask"
 	desc = "For those who can't be bothered to hang out at the bar to drink."
 	icon_state = "barflask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
 
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask
 	name = "vacuum flask"
 	desc = "Keeping your drinks at the perfect temperature since 1892."
 	icon_state = "vacuumflask"

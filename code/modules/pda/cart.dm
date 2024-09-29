@@ -1,50 +1,50 @@
 var/list/command_cartridges = list(
-	/obj/item/weapon/cartridge/captain,
-	/obj/item/weapon/cartridge/hop,
-	/obj/item/weapon/cartridge/hos,
-	/obj/item/weapon/cartridge/ce,
-	/obj/item/weapon/cartridge/rd,
-	/obj/item/weapon/cartridge/cmo,
-	/obj/item/weapon/cartridge/head,
-	/obj/item/weapon/cartridge/lawyer // Internal Affaris,
+	/obj/item/cartridge/captain,
+	/obj/item/cartridge/hop,
+	/obj/item/cartridge/hos,
+	/obj/item/cartridge/ce,
+	/obj/item/cartridge/rd,
+	/obj/item/cartridge/cmo,
+	/obj/item/cartridge/head,
+	/obj/item/cartridge/lawyer // Internal Affaris,
 	)
 
 var/list/security_cartridges = list(
-	/obj/item/weapon/cartridge/security,
-	/obj/item/weapon/cartridge/detective,
-	/obj/item/weapon/cartridge/hos
+	/obj/item/cartridge/security,
+	/obj/item/cartridge/detective,
+	/obj/item/cartridge/hos
 	)
 
 var/list/engineering_cartridges = list(
-	/obj/item/weapon/cartridge/engineering,
-	/obj/item/weapon/cartridge/atmos,
-	/obj/item/weapon/cartridge/ce
+	/obj/item/cartridge/engineering,
+	/obj/item/cartridge/atmos,
+	/obj/item/cartridge/ce
 	)
 
 var/list/medical_cartridges = list(
-	/obj/item/weapon/cartridge/medical,
-	/obj/item/weapon/cartridge/chemistry,
-	/obj/item/weapon/cartridge/cmo
+	/obj/item/cartridge/medical,
+	/obj/item/cartridge/chemistry,
+	/obj/item/cartridge/cmo
 	)
 
 var/list/research_cartridges = list(
-	/obj/item/weapon/cartridge/signal/science,
-	/obj/item/weapon/cartridge/rd
+	/obj/item/cartridge/signal/science,
+	/obj/item/cartridge/rd
 	)
 
 var/list/cargo_cartridges = list(
-	/obj/item/weapon/cartridge/quartermaster, // This also covers cargo-techs, apparently,
-	/obj/item/weapon/cartridge/miner,
-	/obj/item/weapon/cartridge/hop
+	/obj/item/cartridge/quartermaster, // This also covers cargo-techs, apparently,
+	/obj/item/cartridge/miner,
+	/obj/item/cartridge/hop
 	)
 
 var/list/civilian_cartridges = list(
-	/obj/item/weapon/cartridge/janitor,
-	/obj/item/weapon/cartridge/service,
-	/obj/item/weapon/cartridge/hop
+	/obj/item/cartridge/janitor,
+	/obj/item/cartridge/service,
+	/obj/item/cartridge/hop
 	)
 
-/obj/item/weapon/cartridge
+/obj/item/cartridge
 	name = "generic cartridge"
 	desc = "A data cartridge for portable microcomputers."
 	icon = 'icons/obj/pda.dmi'
@@ -62,38 +62,38 @@ var/list/civilian_cartridges = list(
 	var/list/programs = list()
 	var/list/messenger_plugins = list()
 
-/obj/item/weapon/cartridge/Destroy()
+/obj/item/cartridge/Destroy()
 	QDEL_NULL(radio)
 	QDEL_LIST(programs)
 	QDEL_LIST(messenger_plugins)
 	return ..()
 
-/obj/item/weapon/cartridge/proc/update_programs(obj/item/device/pda/pda)
+/obj/item/cartridge/proc/update_programs(obj/item/pda/pda)
 	for(var/datum/data/pda/P as anything in programs)
 		P.pda = pda
 	for(var/datum/data/pda/messenger_plugin/P as anything in messenger_plugins)
 		P.pda = pda
 
-/obj/item/weapon/cartridge/engineering
+/obj/item/cartridge/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
 	programs = list(
 		new/datum/data/pda/app/power,
 		new/datum/data/pda/utility/scanmode/halogen)
 
-/obj/item/weapon/cartridge/atmos
+/obj/item/cartridge/atmos
 	name = "\improper BreatheDeep cartridge"
 	icon_state = "cart-a"
 	programs = list(new/datum/data/pda/utility/scanmode/gas)
 
-/obj/item/weapon/cartridge/medical
+/obj/item/cartridge/medical
 	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
 	programs = list(
 		new/datum/data/pda/app/crew_records/medical,
 		new/datum/data/pda/utility/scanmode/medical)
 
-/obj/item/weapon/cartridge/chemistry
+/obj/item/cartridge/chemistry
 	name = "\improper ChemWhiz cartridge"
 	icon_state = "cart-chem"
 	programs = list(
@@ -101,13 +101,13 @@ var/list/civilian_cartridges = list(
 		new/datum/data/pda/utility/scanmode/medical,
 		new/datum/data/pda/utility/scanmode/reagent)
 
-/obj/item/weapon/cartridge/security
+/obj/item/cartridge/security
 	name = "\improper R.O.B.U.S.T. cartridge"
 	icon_state = "cart-s"
 	programs = list(
 		new/datum/data/pda/app/crew_records/security)
 
-/obj/item/weapon/cartridge/detective
+/obj/item/cartridge/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
 	icon_state = "cart-s"
 	programs = list(
@@ -117,44 +117,44 @@ var/list/civilian_cartridges = list(
 		new/datum/data/pda/app/crew_records/security)
 
 
-/obj/item/weapon/cartridge/janitor
+/obj/item/cartridge/janitor
 	name = "\improper CustodiPRO cartridge"
 	desc = "The ultimate in clean-room design."
 	icon_state = "cart-j"
 	programs = list(new/datum/data/pda/app/janitor)
 
-/obj/item/weapon/cartridge/lawyer
+/obj/item/cartridge/lawyer
 	name = "\improper P.R.O.V.E. cartridge"
 	icon_state = "cart-s"
 	programs = list(new/datum/data/pda/app/crew_records/security)
 
-/obj/item/weapon/cartridge/clown
+/obj/item/cartridge/clown
 	name = "\improper Honkworks 5.0 cartridge"
 	icon_state = "cart-clown"
 	charges = 5
 	programs = list(new/datum/data/pda/utility/honk)
 	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/clown)
 
-/obj/item/weapon/cartridge/mime
+/obj/item/cartridge/mime
 	name = "\improper Gestur-O 1000 cartridge"
 	icon_state = "cart-mi"
 	charges = 5
 	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/mime)
 
-/obj/item/weapon/cartridge/service
+/obj/item/cartridge/service
 	name = "\improper Serv-U Pro cartridge"
 	desc = "A data cartridge designed to serve YOU!"
 
-/obj/item/weapon/cartridge/signal
+/obj/item/cartridge/signal
 	name = "generic signaler cartridge"
 	desc = "A data cartridge with an integrated radio signaler module."
 	programs = list(new/datum/data/pda/app/signaller)
 
-/obj/item/weapon/cartridge/signal/Initialize()
+/obj/item/cartridge/signal/Initialize()
 	radio = new /obj/item/radio/integrated/signal(src)
 	. = ..()
 
-/obj/item/weapon/cartridge/signal/science
+/obj/item/cartridge/signal/science
 	name = "\improper Signal Ace 2 cartridge"
 	desc = "Complete with integrated radio signaler!"
 	icon_state = "cart-tox"
@@ -165,24 +165,24 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/signaller)
 
-/obj/item/weapon/cartridge/quartermaster
+/obj/item/cartridge/quartermaster
 	name = "\improper Space Parts & Space Vendors cartridge"
 	desc = "Perfect for the " + JOB_QUARTERMASTER + " on the go!"
 	icon_state = "cart-q"
 	programs = list(
 		new/datum/data/pda/app/supply)
 
-/obj/item/weapon/cartridge/miner
+/obj/item/cartridge/miner
 	name = "\improper Drill-Jockey 4.5 cartridge"
 	desc = "It's covered in some sort of sand."
 	icon_state = "cart-q"
 
-/obj/item/weapon/cartridge/head
+/obj/item/cartridge/head
 	name = "\improper Easy-Record DELUXE cartridge"
 	icon_state = "cart-h"
 	programs = list(new/datum/data/pda/app/status_display)
 
-/obj/item/weapon/cartridge/hop
+/obj/item/cartridge/hop
 	name = "\improper HumanResources9001 cartridge"
 	icon_state = "cart-h"
 	programs = list(
@@ -194,7 +194,7 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/weapon/cartridge/hos
+/obj/item/cartridge/hos
 	name = "\improper R.O.B.U.S.T. DELUXE cartridge"
 	icon_state = "cart-hos"
 	programs = list(
@@ -202,7 +202,7 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/weapon/cartridge/ce
+/obj/item/cartridge/ce
 	name = "\improper Power-On DELUXE cartridge"
 	icon_state = "cart-ce"
 	programs = list(
@@ -213,7 +213,7 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/weapon/cartridge/cmo
+/obj/item/cartridge/cmo
 	name = "\improper Med-U DELUXE cartridge"
 	icon_state = "cart-cmo"
 	programs = list(
@@ -224,7 +224,7 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/weapon/cartridge/rd
+/obj/item/cartridge/rd
 	name = "\improper Signal Ace DELUXE cartridge"
 	icon_state = "cart-rd"
 	programs = list(
@@ -236,11 +236,11 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/weapon/cartridge/rd/Initialize()
+/obj/item/cartridge/rd/Initialize()
 	radio = new /obj/item/radio/integrated/signal(src)
 	. = ..()
 
-/obj/item/weapon/cartridge/captain
+/obj/item/cartridge/captain
 	name = "\improper Value-PAK cartridge"
 	desc = "Now with 200% more value!"
 	icon_state = "cart-c"
@@ -263,7 +263,7 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/weapon/cartridge/syndicate
+/obj/item/cartridge/syndicate
 	name = "\improper Detomatix cartridge"
 	icon_state = "cart"
 	var/initial_remote_door_id = "smindicate" //Make sure this matches the syndicate shuttle's shield/door id!!	//don't ask about the name, testing.
@@ -271,12 +271,12 @@ var/list/civilian_cartridges = list(
 	programs = list(new/datum/data/pda/utility/toggle_door)
 	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/detonate)
 
-/obj/item/weapon/cartridge/syndicate/New()
+/obj/item/cartridge/syndicate/New()
 	var/datum/data/pda/utility/toggle_door/D = programs[1]
 	if(istype(D))
 		D.remote_door_id = initial_remote_door_id
 
-/obj/item/weapon/cartridge/proc/post_status(var/command, var/data1, var/data2)
+/obj/item/cartridge/proc/post_status(var/command, var/data1, var/data2)
 
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 	if(!frequency) return
@@ -301,7 +301,7 @@ var/list/civilian_cartridges = list(
 
 	frequency.post_signal(src, status_signal)
 
-/obj/item/weapon/cartridge/frame
+/obj/item/cartridge/frame
 	name = "F.R.A.M.E. cartridge"
 	icon_state = "cart"
 	charges = 5

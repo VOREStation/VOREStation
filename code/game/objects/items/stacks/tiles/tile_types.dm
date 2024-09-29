@@ -42,7 +42,7 @@
 
 /obj/item/stack/tile/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 
 		if(can_weld == FALSE)
 			to_chat(user, "You can't reform these into their original components.")

@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile
+/obj/item/gun/projectile
 	name = "gun"
 	desc = "A gun that fires bullets."
 	icon_state = "revolver"
@@ -33,7 +33,7 @@
 
 	var/random_start_ammo = FALSE	//randomize amount of starting ammo
 
-/obj/item/weapon/gun/projectile/New(loc, var/starts_loaded = 1)
+/obj/item/gun/projectile/New(loc, var/starts_loaded = 1)
 	..()
 	if(starts_loaded)
 		if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
@@ -50,7 +50,7 @@
 				ammo_magazine.stored_ammo.Cut(0,ammo_cut)
 	update_icon()
 
-/obj/item/weapon/gun/projectile/consume_next_projectile()
+/obj/item/gun/projectile/consume_next_projectile()
 	//get the next casing
 	if(loaded.len)
 		chambered = loaded[1] //load next casing.
@@ -69,17 +69,17 @@
 		return chambered.BB
 	return null
 
-/obj/item/weapon/gun/projectile/handle_post_fire()
+/obj/item/gun/projectile/handle_post_fire()
 	..()
 	if(chambered)
 		chambered.expend()
 		process_chambered()
 
-/obj/item/weapon/gun/projectile/handle_click_empty()
+/obj/item/gun/projectile/handle_click_empty()
 	..()
 	process_chambered()
 
-/obj/item/weapon/gun/projectile/proc/process_chambered()
+/obj/item/gun/projectile/proc/process_chambered()
 	if (!chambered) return
 
 	// Aurora forensics port, gunpowder residue.
@@ -116,7 +116,7 @@
 
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
 //Maybe this should be broken up into separate procs for each load method?
-/obj/item/weapon/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber || allowed_magazines && !is_type_in_list(A, allowed_magazines))
@@ -169,8 +169,8 @@
 			user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
 			playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
-	else if(istype(A, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/storage = A
+	else if(istype(A, /obj/item/storage))
+		var/obj/item/storage/storage = A
 		if(!(load_method & SINGLE_CASING))
 			return //incompatible
 
@@ -191,7 +191,7 @@
 	user.hud_used.update_ammo_hud(user, src)
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
-/obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 		user.visible_message("[user] removes [ammo_magazine] from [src].", "<span class='notice'>You remove [ammo_magazine] from [src].</span>")
@@ -223,23 +223,23 @@
 	update_icon()
 	user.hud_used.update_ammo_hud(user, src)
 
-/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	..()
 	load_ammo(A, user)
 
-/obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
+/obj/item/gun/projectile/attack_self(mob/user as mob)
 	if(firemodes.len > 1)
 		switch_firemodes(user)
 	else
 		unload_ammo(user)
 
-/obj/item/weapon/gun/projectile/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
 		unload_ammo(user, allow_dump=0)
 	else
 		return ..()
 
-/obj/item/weapon/gun/projectile/afterattack(atom/A, mob/living/user)
+/obj/item/gun/projectile/afterattack(atom/A, mob/living/user)
 	..()
 	if(auto_eject && ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
 		ammo_magazine.loc = get_turf(src.loc)
@@ -254,13 +254,13 @@
 		update_icon() //make sure to do this after unsetting ammo_magazine
 		user.hud_used.update_ammo_hud(user, src)
 
-/obj/item/weapon/gun/projectile/examine(mob/user)
+/obj/item/gun/projectile/examine(mob/user)
 	. = ..()
 	if(ammo_magazine)
 		. += "It has \a [ammo_magazine] loaded."
 	. += "It has [getAmmo()] round\s remaining."
 
-/obj/item/weapon/gun/projectile/proc/getAmmo()
+/obj/item/gun/projectile/proc/getAmmo()
 	var/bullets = 0
 	if(loaded)
 		bullets += loaded.len
@@ -272,7 +272,7 @@
 
 /* Unneeded -- so far.
 //in case the weapon has firemodes and can't unload using attack_hand()
-/obj/item/weapon/gun/projectile/verb/unload_gun()
+/obj/item/gun/projectile/verb/unload_gun()
 	set name = "Unload Ammo"
 	set category = "Object"
 	set src in usr
@@ -283,10 +283,10 @@
 */
 
 // TGMC Ammo HUD Insertion
-/obj/item/weapon/gun/projectile/has_ammo_counter()
+/obj/item/gun/projectile/has_ammo_counter()
 	return TRUE
 
-/obj/item/weapon/gun/projectile/get_ammo_type()
+/obj/item/gun/projectile/get_ammo_type()
 	if(load_method & MAGAZINE)
 		if(chambered) // Do we have an ammo casing chambered
 			var/obj/item/ammo_casing/A = chambered
@@ -321,7 +321,7 @@
 	else  // Failsafe if we somehow fail all three methods
 		return list("unknown", "unknown")
 
-/obj/item/weapon/gun/projectile/get_ammo_count()
+/obj/item/gun/projectile/get_ammo_count()
 	if(ammo_magazine) // Do we have a magazine loaded?
 		var/shots_left
 		if(chambered && chambered.BB) // Do we have a bullet in the currently-chambered casing, if any?

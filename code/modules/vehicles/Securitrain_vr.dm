@@ -23,11 +23,11 @@
 
 	var/car_limit = 0	//how many cars an engine can pull before performance degrades. This should be 0 to prevent trailers from unhitching.
 	active_engines = 1
-	var/obj/item/weapon/key/key
-	var/key_type = /obj/item/weapon/key/security
+	var/obj/item/key/key
+	var/key_type = /obj/item/key/security
 	var/siren = 0 //This is for eventually getting the siren sprite to work.
 
-/obj/item/weapon/key/security
+/obj/item/key/security
 	name = "The Security Cart key"
 	desc = "The Security Cart Key used to start it."
 	icon = 'icons/obj/vehicles_vr.dmi'
@@ -61,7 +61,7 @@
 //-------------------------------------------
 /obj/vehicle/train/security/engine/New()
 	..()
-	cell = new /obj/item/weapon/cell/high(src)
+	cell = new /obj/item/cell/high(src)
 	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
 	add_overlay(I)
@@ -83,14 +83,14 @@
 
 	return ..()
 
-/obj/vehicle/train/security/trolley/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(open && istype(W, /obj/item/weapon/tool/wirecutters))
+/obj/vehicle/train/security/trolley/attackby(obj/item/W as obj, mob/user as mob)
+	if(open && istype(W, /obj/item/tool/wirecutters))
 		passenger_allowed = !passenger_allowed
 		user.visible_message("<span class='notice'>[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src].</span>","<span class='notice'>You [passenger_allowed ? "cut" : "mend"] the load limiter cable.</span>")
 	else
 		..()
 
-/obj/vehicle/train/security/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/vehicle/train/security/engine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, key_type))
 		if(!key)
 			user.drop_item()
@@ -113,10 +113,10 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/vehicle/train/security/trolley/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/security/trolley/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	return
 
-/obj/vehicle/train/security/engine/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/security/engine/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	..()
 	update_stats()
 

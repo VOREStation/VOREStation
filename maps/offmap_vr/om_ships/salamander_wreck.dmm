@@ -514,7 +514,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/weapon/circuitboard/smes,
+/obj/item/circuitboard/smes,
 /obj/structure/closet/walllocker_double/north{
 	name = "Uniform Locker"
 	},
@@ -910,7 +910,7 @@
 	name = "Spare Fuel";
 	pixel_y = -32
 	},
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
@@ -965,7 +965,7 @@
 	dir = 1
 	},
 /obj/random/empty_or_lootable_crate,
-/obj/item/weapon/smes_coil,
+/obj/item/smes_coil,
 /obj/structure/closet/walllocker_double/south{
 	name = "Storage Locker"
 	},
@@ -1048,8 +1048,8 @@
 /area/shuttle/salamander_wreck)
 "oi" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/weapon/storage/box/donkpockets,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /obj/random/snack,
 /obj/random/snack,
 /obj/random/snack,
@@ -1078,7 +1078,7 @@
 /area/shuttle/salamander_wreck_cockpit)
 "oF" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = 22
@@ -1318,7 +1318,7 @@
 /area/shuttle/salamander_wreck_galley)
 "vt" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
 	pixel_x = 26
@@ -1355,7 +1355,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/tank/phoron/pressurized,
 /obj/structure/closet/walllocker_double/south{
 	name = "Uniform Locker"
 	},
@@ -1415,7 +1415,7 @@
 /area/shuttle/salamander_wreck_engineering)
 "AK" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = 22
@@ -1830,7 +1830,7 @@
 	},
 /obj/structure/handrail,
 /obj/random/empty_or_lootable_crate,
-/obj/item/weapon/smes_coil,
+/obj/item/smes_coil,
 /obj/structure/closet/walllocker_double/north{
 	name = "Storage Locker"
 	},
@@ -1841,7 +1841,7 @@
 /area/shuttle/salamander_wreck)
 "RO" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
 	pixel_x = 26
@@ -1886,7 +1886,7 @@
 "Sp" = (
 /obj/structure/table/steel,
 /obj/machinery/light,
-/obj/item/weapon/paper/unity_notice,
+/obj/item/paper/unity_notice,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -1908,7 +1908,7 @@
 /obj/machinery/light/flicker{
 	dir = 1
 	},
-/obj/item/weapon/smes_coil,
+/obj/item/smes_coil,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0

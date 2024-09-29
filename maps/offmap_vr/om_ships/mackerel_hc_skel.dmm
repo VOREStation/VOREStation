@@ -452,8 +452,8 @@
 /area/shuttle/mackerel_hc_skel_cockpit)
 "we" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel_eng)
 "wF" = (
@@ -583,8 +583,8 @@
 /obj/structure/fuel_port{
 	pixel_y = -26
 	},
-/obj/item/weapon/tank/phoron,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
+/obj/item/tank/phoron,
 /obj/structure/closet/crate/engineering,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel_eng)

@@ -1,21 +1,21 @@
-/obj/item/weapon/gun/magnetic/matfed
+/obj/item/gun/magnetic/matfed
 	power_cost = 750
-	load_type = list(/obj/item/stack/material, /obj/item/weapon/ore)
+	load_type = list(/obj/item/stack/material, /obj/item/ore)
 	var/mat_storage = 0			// How much material is stored inside? Input in multiples of 2000 as per auto/protolathe.
 	var/max_mat_storage = 8000	// How much material can be stored inside?
 	var/mat_cost = 500			// How much material is used per-shot?
 	var/ammo_material
-	var/obj/item/weapon/stock_parts/manipulator/manipulator    // Installed manipulator. Mostly for Phoron Bore, higher rating == less mats consumed upon firing. Set to a path to spawn with one of that type.
+	var/obj/item/stock_parts/manipulator/manipulator    // Installed manipulator. Mostly for Phoron Bore, higher rating == less mats consumed upon firing. Set to a path to spawn with one of that type.
 	var/rating_modifier = 0 // rating of installed capacitor + manipulator
 	var/loading = FALSE
 
-/obj/item/weapon/gun/magnetic/matfed/proc/update_rating_mod()
+/obj/item/gun/magnetic/matfed/proc/update_rating_mod()
 	if(capacitor && manipulator)
 		rating_modifier = capacitor.get_rating() + manipulator.get_rating()
 	else
 		rating_modifier = FALSE
 
-/obj/item/weapon/gun/magnetic/matfed/Initialize()
+/obj/item/gun/magnetic/matfed/Initialize()
 	. = ..()
 	if(ispath(manipulator))
 		manipulator = new manipulator(src)
@@ -23,18 +23,18 @@
 		mat_cost = initial(mat_cost) / (2*manipulator.rating)
 	update_rating_mod()
 
-/obj/item/weapon/gun/magnetic/matfed/Destroy()
+/obj/item/gun/magnetic/matfed/Destroy()
 	QDEL_NULL(manipulator)
 	. = ..()
 
-/obj/item/weapon/gun/magnetic/matfed/examine(mob/user)
+/obj/item/gun/magnetic/matfed/examine(mob/user)
 	. = ..()
 	if(manipulator)
 		. += "<span class='notice'>The installed [manipulator.name] consumes [mat_cost] units of [ammo_material] per shot.</span>"
 	else
 		. += "<span class='notice'>The \"manipulator missing\" indicator is lit. [src] consumes [mat_cost] units of [ammo_material] per shot.</span>"
 
-/obj/item/weapon/gun/magnetic/matfed/update_icon()
+/obj/item/gun/magnetic/matfed/update_icon()
 	var/list/overlays_to_add = list()
 	if(removable_components)
 		if(cell)
@@ -53,7 +53,7 @@
 	overlays = overlays_to_add
 	..()
 
-/obj/item/weapon/gun/magnetic/matfed/attack_hand(var/mob/user) // It doesn't keep a loaded item inside.
+/obj/item/gun/magnetic/matfed/attack_hand(var/mob/user) // It doesn't keep a loaded item inside.
 	if(user.get_inactive_hand() == src)
 		var/obj/item/removing
 
@@ -69,22 +69,22 @@
 			return
 	. = ..()
 
-/obj/item/weapon/gun/magnetic/matfed/check_ammo()
+/obj/item/gun/magnetic/matfed/check_ammo()
 	if(mat_storage - mat_cost >= 0)
 		return TRUE
 	return FALSE
 
-/obj/item/weapon/gun/magnetic/matfed/use_ammo()
+/obj/item/gun/magnetic/matfed/use_ammo()
 	mat_storage -= mat_cost
 
-/obj/item/weapon/gun/magnetic/matfed/show_ammo()
+/obj/item/gun/magnetic/matfed/show_ammo()
 	if(mat_storage)
 		return "<span class='notice'>It has [mat_storage] out of [max_mat_storage] units of [ammo_material] loaded.</span>"
 	else
 		return "<span class='warning'>It\'s out of [ammo_material]!</span>"
 
 
-/obj/item/weapon/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
 	. = ..()
 	update_rating_mod()
 	if(removable_components)
@@ -101,7 +101,7 @@
 			update_rating_mod()
 			return
 
-		if(istype(thing, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(thing, /obj/item/stock_parts/manipulator))
 			if(manipulator)
 				to_chat(user, "<span class='warning'>\The [src] already has \a [manipulator] installed.</span>")
 				return
@@ -154,7 +154,7 @@
 #define GEN_IDLE 1
 #define GEN_ACTIVE 2
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore
+/obj/item/gun/magnetic/matfed/phoronbore
 	name = "portable phoron bore"
 	desc = "A large man-portable tunnel bore, using phorogenic plasma blasts. Point away from user."
 	description_fluff = "An aging Grayson Manufactories mining tool used for rapidly digging through rock. Mass production was discontinued when many of the devices were stolen and used to break into a high security facility by Boiling Point drones."
@@ -179,7 +179,7 @@
 	var/datum/looping_sound/small_motor/soundloop
 	var/time_started //to keep the soundloop from being "stopped" too soon and playing indefinitely
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/consume_next_projectile()
+/obj/item/gun/magnetic/matfed/phoronbore/consume_next_projectile()
 	if(!check_ammo() || !capacitor || capacitor.charge < power_cost)
 		return
 
@@ -189,25 +189,25 @@
 
 	return new projectile_type(src, rating_modifier)
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/examine(mob/user)
+/obj/item/gun/magnetic/matfed/phoronbore/examine(mob/user)
 	. = ..()
 	if(rating_modifier)
 		. += "<span class='notice'>A display on the side slowly scrolls the text \"BLAST EFFICIENCY [rating_modifier]\".</span>"
 	else // rating_mod 0 = something's not right
 		. += "<span class='warning'>A display on the side slowly scrolls the text \"ERR: MISSING COMPONENT - EFFICIENCY MODIFICATION INCOMPLETE\".</span>"
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/Initialize()
+/obj/item/gun/magnetic/matfed/phoronbore/Initialize()
 	. = ..()
 	soundloop = new(list(src), 0)
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/Destroy()
+/obj/item/gun/magnetic/matfed/phoronbore/Destroy()
 	QDEL_NULL(soundloop)
 	. = ..()
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/ui_action_click()
+/obj/item/gun/magnetic/matfed/phoronbore/ui_action_click()
 	toggle_generator(usr)
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/process()
+/obj/item/gun/magnetic/matfed/phoronbore/process()
 	if(generator_state && !mat_storage)
 		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."), runemessage = "goes quiet")
 		soundloop.stop()
@@ -230,7 +230,7 @@
 
 	update_state()
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/proc/generator_generate()
+/obj/item/gun/magnetic/matfed/phoronbore/proc/generator_generate()
 	var/fuel_used = generator_state == GEN_IDLE ? 5 : 25
 	var/power_made = fuel_used * 800 * CELLRATE //20kW when active, same power as a pacman on setting one, but less efficient because compact and portable
 	if(cell)
@@ -242,7 +242,7 @@
 	if(T)
 		T.assume_gas("carbon_dioxide", fuel_used * 0.01, T0C+200)
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/proc/toggle_generator(mob/living/user)
+/obj/item/gun/magnetic/matfed/phoronbore/proc/toggle_generator(mob/living/user)
 	if(!generator_state && !mat_storage)
 		to_chat(user, SPAN_NOTICE("\The [src] has no fuel!"))
 		return
@@ -267,9 +267,9 @@
 		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."), runemessage = "goes quiet")
 		generator_state = GEN_OFF
 
-/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded
-	cell = /obj/item/weapon/cell/apc
-	capacitor = /obj/item/weapon/stock_parts/capacitor
+/obj/item/gun/magnetic/matfed/phoronbore/loaded
+	cell = /obj/item/cell/apc
+	capacitor = /obj/item/stock_parts/capacitor
 
 #undef GEN_STARTING
 #undef GEN_OFF

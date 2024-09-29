@@ -51,7 +51,7 @@
 	burn_mod =  1.35
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	holder_type = /obj/item/weapon/holder/human
+	holder_type = /obj/item/holder/human
 //	short_sighted = 1
 	gluttonous = 1
 	blood_volume = 400

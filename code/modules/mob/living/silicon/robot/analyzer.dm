@@ -1,7 +1,7 @@
 //
 //Robotic Component Analyser, basically a health analyser for robots
 //
-/obj/item/device/robotanalyzer
+/obj/item/robotanalyzer
 	name = "cyborg analyzer"
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
@@ -16,14 +16,14 @@
 	matter = list(MAT_STEEL = 500, MAT_GLASS = 200)
 	var/mode = 1;
 
-/obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	do_scan(M, user)
 
-/obj/item/device/robotanalyzer/AltClick(mob/user)
+/obj/item/robotanalyzer/AltClick(mob/user)
 	mode = !mode
 	user.show_message(span_blue("[mode ? "Toggled to cyborg analyzing mode." : "Toggled to cyborg upgrade scan mode."]"), 1)
 
-/obj/item/device/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, span_red("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
@@ -57,7 +57,7 @@
 				if(M.tod && M.stat == DEAD)
 					user.show_message(span_blue("Time of Disable: [M.tod]"))
 				var/mob/living/silicon/robot/R = M
-				var/obj/item/weapon/cell/cell = R.get_cell()
+				var/obj/item/cell/cell = R.get_cell()
 				if(cell)
 					var/cell_charge = round(cell.percent())
 					var/cell_text
@@ -90,7 +90,7 @@
 				user.show_message(span_blue("Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"), 1)
 			else
 				var/mob/living/silicon/robot/R = M
-				var/obj/item/weapon/cell/cell = R.get_cell()
+				var/obj/item/cell/cell = R.get_cell()
 				user.show_message(span_blue("Upgrade Analyzing Results for [M]:"))
 				if(cell)
 					user.show_message("\t Power Cell Details: [span_blue("[capitalize(cell.name)]")] with a capacity of [cell.maxcharge] at [round(cell.percent())]% charge")

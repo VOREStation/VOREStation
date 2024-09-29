@@ -7,9 +7,9 @@
 	icon_screen = "id"
 	light_color = "#0099ff"
 	req_access = list(access_change_ids)
-	circuit = /obj/item/weapon/circuitboard/card
-	var/obj/item/weapon/card/id/scan = null
-	var/obj/item/weapon/card/id/modify = null
+	circuit = /obj/item/circuitboard/card
+	var/obj/item/card/id/scan = null
+	var/obj/item/card/id/modify = null
 	var/mode = 0.0
 	var/printing = null
 
@@ -55,7 +55,7 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/card/attackby(obj/item/weapon/card/id/id_card, mob/user)
+/obj/machinery/computer/card/attackby(obj/item/card/id/id_card, mob/user)
 	if(!istype(id_card))
 		return ..()
 
@@ -168,7 +168,7 @@
 					modify = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+				if(istype(I, /obj/item/card/id) && usr.unEquip(I))
 					I.forceMove(src)
 					modify = I
 			. = TRUE
@@ -185,7 +185,7 @@
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -253,7 +253,7 @@
 					printing = null
 					SStgui.update_uis(src)
 
-					var/obj/item/weapon/paper/P = new(loc)
+					var/obj/item/paper/P = new(loc)
 					if(mode)
 						P.name = text("crew manifest ([])", stationtime2text())
 						P.info = {"<h4>Crew Manifest</h4>
@@ -290,7 +290,7 @@
 
 /obj/machinery/computer/card/centcom
 	name = "\improper CentCom ID card modification console"
-	circuit = /obj/item/weapon/circuitboard/card/centcom
+	circuit = /obj/item/circuitboard/card/centcom
 	req_access = list(access_cent_captain)
 
 

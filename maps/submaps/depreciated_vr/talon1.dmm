@@ -84,8 +84,8 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
 /obj/machinery/alarm/talon{
 	dir = 8;
 	pixel_x = 22
@@ -213,10 +213,10 @@
 /area/space)
 "ax" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
+/obj/item/tank/oxygen,
+/obj/item/tank/oxygen,
+/obj/item/tank/oxygen,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/space)
 "ay" = (
@@ -274,10 +274,10 @@
 "aD" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/camera/network/talon,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/space)
 "aE" = (
@@ -356,11 +356,11 @@
 /area/space)
 "aN" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/space)
 "aP" = (
@@ -413,7 +413,7 @@
 	dir = 1
 	},
 /obj/structure/closet/wardrobe/black{
-	starts_with = list(/obj/item/clothing/under/color/black = 4, /obj/item/clothing/accessory/storage/black_vest = 4, /obj/item/clothing/accessory/storage/black_drop_pouches = 4, /obj/item/clothing/gloves/black = 4, /obj/item/clothing/head/soft/black = 4, /obj/item/clothing/mask/balaclava = 4, /obj/item/clothing/mask/bandana = 4, /obj/item/clothing/mask/gas/commando = 4, /obj/item/weapon/storage/backpack/messenger/black = 4, /obj/item/weapon/storage/backpack/dufflebag = 4, /obj/item/clothing/shoes/black = 4, /obj/item/clothing/shoes/boots/duty = 4)
+	starts_with = list(/obj/item/clothing/under/color/black = 4, /obj/item/clothing/accessory/storage/black_vest = 4, /obj/item/clothing/accessory/storage/black_drop_pouches = 4, /obj/item/clothing/gloves/black = 4, /obj/item/clothing/head/soft/black = 4, /obj/item/clothing/mask/balaclava = 4, /obj/item/clothing/mask/bandana = 4, /obj/item/clothing/mask/gas/commando = 4, /obj/item/storage/backpack/messenger/black = 4, /obj/item/storage/backpack/dufflebag = 4, /obj/item/clothing/shoes/black = 4, /obj/item/clothing/shoes/boots/duty = 4)
 	},
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/space)
@@ -465,7 +465,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /obj/item/stack/nanopaste{
 	pixel_x = -7;
 	pixel_y = -4
@@ -474,7 +474,7 @@
 	pixel_x = 9;
 	pixel_y = -4
 	},
-/obj/item/device/robotanalyzer{
+/obj/item/robotanalyzer{
 	pixel_y = -8
 	},
 /obj/machinery/alarm/talon{
@@ -677,7 +677,7 @@
 /area/space)
 "bE" = (
 /obj/machinery/vending/engineering{
-	products = list(/obj/item/clothing/under/rank/chief_engineer = 4, /obj/item/clothing/under/rank/engineer = 4, /obj/item/clothing/shoes/orange = 4, /obj/item/clothing/head/hardhat = 4, /obj/item/weapon/storage/belt/utility = 4, /obj/item/clothing/glasses/meson = 4, /obj/item/clothing/gloves/yellow = 4, /obj/item/weapon/tool/screwdriver = 12, /obj/item/weapon/tool/crowbar = 12, /obj/item/weapon/tool/wirecutters = 12, /obj/item/device/multitool = 12, /obj/item/weapon/tool/wrench = 12, /obj/item/device/t_scanner = 12, /obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell = 8, /obj/item/weapon/weldingtool = 8, /obj/item/clothing/head/welding = 8, /obj/item/weapon/light/tube = 10, /obj/item/clothing/head/hardhat/red = 4, /obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5, /obj/item/weapon/stock_parts/micro_laser = 5, /obj/item/weapon/stock_parts/matter_bin = 5, /obj/item/weapon/stock_parts/manipulator = 5, /obj/item/weapon/stock_parts/console_screen = 5);
+	products = list(/obj/item/clothing/under/rank/chief_engineer = 4, /obj/item/clothing/under/rank/engineer = 4, /obj/item/clothing/shoes/orange = 4, /obj/item/clothing/head/hardhat = 4, /obj/item/storage/belt/utility = 4, /obj/item/clothing/glasses/meson = 4, /obj/item/clothing/gloves/yellow = 4, /obj/item/tool/screwdriver = 12, /obj/item/tool/crowbar = 12, /obj/item/tool/wirecutters = 12, /obj/item/multitool = 12, /obj/item/tool/wrench = 12, /obj/item/t_scanner = 12, /obj/item/stack/cable_coil/heavyduty = 8, /obj/item/cell = 8, /obj/item/weldingtool = 8, /obj/item/clothing/head/welding = 8, /obj/item/light/tube = 10, /obj/item/clothing/head/hardhat/red = 4, /obj/item/clothing/suit/fire = 4, /obj/item/stock_parts/scanning_module = 5, /obj/item/stock_parts/micro_laser = 5, /obj/item/stock_parts/matter_bin = 5, /obj/item/stock_parts/manipulator = 5, /obj/item/stock_parts/console_screen = 5);
 	req_access = list(301);
 	req_log_access = 301;
 	req_one_access = list(301)
@@ -686,9 +686,9 @@
 /area/space)
 "bF" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /obj/item/stack/marker_beacon/thirty,
-/obj/item/weapon/pipe_dispenser,
+/obj/item/pipe_dispenser,
 /obj/machinery/alarm/talon{
 	pixel_y = 28
 	},
@@ -700,15 +700,15 @@
 	pixel_y = -25
 	},
 /obj/structure/table/rack/steel,
-/obj/item/weapon/whetstone{
+/obj/item/whetstone{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/grenade/spawnergrenade/manhacks/mercenary{
+/obj/item/grenade/spawnergrenade/manhacks/mercenary{
 	pixel_x = -5;
 	pixel_y = 4
 	},
-/obj/item/device/spaceflare,
+/obj/item/spaceflare,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/space)
 "bH" = (
@@ -738,7 +738,7 @@
 "bJ" = (
 /obj/structure/closet/hydrant{
 	pixel_x = -32;
-	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/device/flashlight = 2, /obj/item/weapon/tank/oxygen/red = 2, /obj/item/weapon/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
+	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/flashlight = 2, /obj/item/tank/oxygen/red = 2, /obj/item/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/space)
@@ -753,21 +753,21 @@
 	dir = 1
 	},
 /obj/structure/table/steel,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1);
 	pixel_y = 6
 	},
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1);
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1);
 	pixel_x = 6;
 	pixel_y = 4
 	},
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
@@ -789,23 +789,23 @@
 	pixel_y = 28
 	},
 /obj/structure/mopbucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/space)
 "bO" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/machinery/light_switch{
 	dir = 1;
 	on = 0;
 	pixel_x = -10;
 	pixel_y = -24
 	},
-/obj/item/weapon/storage/box/mousetraps,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/storage/box/mousetraps,
+/obj/item/storage/box/lights/mixed,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/space)
 "bR" = (
@@ -1076,10 +1076,10 @@
 /area/space)
 "ct" = (
 /obj/structure/table/standard,
-/obj/item/device/defib_kit/jumper_kit/loaded,
-/obj/item/device/defib_kit/loaded,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/device/sleevemate,
+/obj/item/defib_kit/jumper_kit/loaded,
+/obj/item/defib_kit/loaded,
+/obj/item/storage/belt/medical/emt,
+/obj/item/sleevemate,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/space)
 "cu" = (
@@ -1203,12 +1203,12 @@
 /area/space)
 "cI" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/gun/burst,
-/obj/item/weapon/cell/device/weapon{
+/obj/item/gun/energy/gun/burst,
+/obj/item/cell/device/weapon{
 	pixel_x = -5;
 	pixel_y = 2
 	},
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/space)
@@ -1305,7 +1305,7 @@
 /area/space)
 "cQ" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/gun/energy/locked/frontier/holdout/unlocked,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/space)
 "cR" = (
@@ -1396,7 +1396,7 @@
 /area/space)
 "db" = (
 /obj/machinery/vending/engivend{
-	products = list(/obj/item/device/geiger = 4, /obj/item/clothing/glasses/meson = 2, /obj/item/device/multitool = 4, /obj/item/weapon/cell/high = 10, /obj/item/weapon/airlock_electronics = 10, /obj/item/weapon/module/power_control = 10, /obj/item/weapon/circuitboard/airalarm = 10, /obj/item/weapon/circuitboard/firealarm = 10, /obj/item/weapon/circuitboard/status_display = 2, /obj/item/weapon/circuitboard/ai_status_display = 2, /obj/item/weapon/circuitboard/newscaster = 2, /obj/item/weapon/circuitboard/holopad = 2, /obj/item/weapon/circuitboard/intercom = 4, /obj/item/weapon/circuitboard/security/telescreen/entertainment = 4, /obj/item/weapon/stock_parts/motor = 2, /obj/item/weapon/stock_parts/spring = 2, /obj/item/weapon/stock_parts/gear = 2, /obj/item/weapon/circuitboard/atm, /obj/item/weapon/circuitboard/guestpass, /obj/item/weapon/circuitboard/keycard_auth, /obj/item/weapon/circuitboard/photocopier, /obj/item/weapon/circuitboard/fax, /obj/item/weapon/circuitboard/request, /obj/item/weapon/circuitboard/microwave, /obj/item/weapon/circuitboard/washing, /obj/item/weapon/circuitboard/scanner_console, /obj/item/weapon/circuitboard/sleeper_console, /obj/item/weapon/circuitboard/body_scanner, /obj/item/weapon/circuitboard/sleeper, /obj/item/weapon/circuitboard/dna_analyzer, /obj/item/weapon/circuitboard/partslathe);
+	products = list(/obj/item/geiger = 4, /obj/item/clothing/glasses/meson = 2, /obj/item/multitool = 4, /obj/item/cell/high = 10, /obj/item/airlock_electronics = 10, /obj/item/module/power_control = 10, /obj/item/circuitboard/airalarm = 10, /obj/item/circuitboard/firealarm = 10, /obj/item/circuitboard/status_display = 2, /obj/item/circuitboard/ai_status_display = 2, /obj/item/circuitboard/newscaster = 2, /obj/item/circuitboard/holopad = 2, /obj/item/circuitboard/intercom = 4, /obj/item/circuitboard/security/telescreen/entertainment = 4, /obj/item/stock_parts/motor = 2, /obj/item/stock_parts/spring = 2, /obj/item/stock_parts/gear = 2, /obj/item/circuitboard/atm, /obj/item/circuitboard/guestpass, /obj/item/circuitboard/keycard_auth, /obj/item/circuitboard/photocopier, /obj/item/circuitboard/fax, /obj/item/circuitboard/request, /obj/item/circuitboard/microwave, /obj/item/circuitboard/washing, /obj/item/circuitboard/scanner_console, /obj/item/circuitboard/sleeper_console, /obj/item/circuitboard/body_scanner, /obj/item/circuitboard/sleeper, /obj/item/circuitboard/dna_analyzer, /obj/item/circuitboard/partslathe);
 	req_access = list(301);
 	req_log_access = 301
 	},
@@ -1450,7 +1450,7 @@
 /area/space)
 "dj" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
 /turf/simulated/floor/tiled/eris/steel,
 /area/space)
 "dm" = (
@@ -1535,8 +1535,8 @@
 /area/space)
 "ek" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/adv{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -2030,7 +2030,7 @@
 /area/space)
 "kL" = (
 /obj/machinery/shower,
-/obj/item/weapon/soap/deluxe,
+/obj/item/soap/deluxe,
 /obj/structure/curtain,
 /turf/simulated/floor/tiled/eris/white,
 /area/space)
@@ -2239,12 +2239,12 @@
 /area/space)
 "oc" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/cell/device/weapon{
+/obj/item/gun/energy/netgun,
+/obj/item/cell/device/weapon{
 	pixel_x = -5;
 	pixel_y = 2
 	},
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/space)
@@ -2571,9 +2571,9 @@
 /area/space)
 "sS" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/gun,
+/obj/item/gun/energy/gun,
 /obj/item/clothing/accessory/holster/machete,
-/obj/item/weapon/material/knife/machete,
+/obj/item/material/knife/machete,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/space)
 "sY" = (
@@ -2854,7 +2854,7 @@
 /area/space)
 "xf" = (
 /obj/structure/table/standard,
-/obj/item/weapon/pickaxe/drill,
+/obj/item/pickaxe/drill,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/shuttle/talonboat)
 "xm" = (
@@ -2897,14 +2897,14 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/space)
 "xE" = (
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /obj/structure/closet/walllocker/medical/east,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/space)
@@ -2969,7 +2969,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/weapon/deck/cards,
+/obj/item/deck/cards,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/eris/steel,
 /area/space)
@@ -4336,8 +4336,8 @@
 	pixel_y = -24
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/space)
 "Nu" = (
@@ -4369,7 +4369,7 @@
 /obj/structure/closet/secure_closet/chemical{
 	req_access = list(301)
 	},
-/obj/item/weapon/reagent_containers/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
 	name = "Chemistry Cleaner"
 	},
@@ -4788,16 +4788,16 @@
 /area/space)
 "TX" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/cell/device/weapon{
+/obj/item/gun/energy/netgun,
+/obj/item/cell/device/weapon{
 	pixel_x = -5;
 	pixel_y = 2
 	},
-/obj/item/weapon/cell/device/weapon{
+/obj/item/cell/device/weapon{
 	pixel_x = -5;
 	pixel_y = 2
 	},
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/space)
@@ -4820,7 +4820,7 @@
 /area/space)
 "Ut" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donut,
+/obj/item/storage/box/donut,
 /turf/simulated/floor/tiled/eris/steel,
 /area/space)
 "Uv" = (
@@ -4895,7 +4895,7 @@
 /turf/simulated/floor/tiled/eris/white,
 /area/space)
 "UQ" = (
-/obj/item/weapon/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
 /obj/item/roller,
 /obj/item/roller{
 	pixel_y = 8

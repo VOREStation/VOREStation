@@ -1,7 +1,7 @@
 #define CENTER 1
 #define SIDE 2
 
-/obj/item/weapon/picnic_blankets_carried
+/obj/item/picnic_blankets_carried
 	name = "picnic blanket"
 	desc = "A neatly folded picnic blanket!"
 	var/unfolded_desc = "Separates your meal from the dirty floor. Or table."
@@ -14,7 +14,7 @@
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
-/obj/item/weapon/picnic_blankets_carried/verb/fold_out()
+/obj/item/picnic_blankets_carried/verb/fold_out()
 	set name = "Fold out"
 	set desc = "Fold out the picnic blanket for use"
 	set category = "Object"
@@ -43,7 +43,7 @@
 
 	for(var/obj/structure/picnic_blanket_deployed/side in attached_blankets)
 		qdel(side)
-	var/obj/item/weapon/picnic_blankets_carried/P = new /obj/item/weapon/picnic_blankets_carried(usr.loc)
+	var/obj/item/picnic_blankets_carried/P = new /obj/item/picnic_blankets_carried(usr.loc)
 	P.name = name
 	P.desc = folded_desc
 	qdel(src)

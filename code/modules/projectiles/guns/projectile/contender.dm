@@ -1,7 +1,7 @@
 /*
  * Gram
  */
-/obj/item/weapon/gun/projectile/contender
+/obj/item/gun/projectile/contender
 	name = "\improper \"Gram\" Contender"
 	desc = "Hedberg-Hammarstrom's flagship one-shot hand-cannon. For when you \
 	really want to make a hole. This one has been modified to work almost like \
@@ -22,7 +22,7 @@
 	var/retracted_bolt = 0
 	load_method = SINGLE_CASING
 
-/obj/item/weapon/gun/projectile/contender/attack_self(mob/user as mob)
+/obj/item/gun/projectile/contender/attack_self(mob/user as mob)
 	if(chambered)
 		chambered.loc = get_turf(src)
 		chambered = null
@@ -41,7 +41,7 @@
 	icon_state = initial(icon_state)
 	retracted_bolt = 0
 
-/obj/item/weapon/gun/projectile/contender/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/contender/load_ammo(var/obj/item/A, mob/user)
 	if(!retracted_bolt)
 		to_chat(user, "<span class='notice'>You can't load [src] without cycling the bolt.</span>")
 		return
@@ -50,7 +50,7 @@
 /*
  * Balmung
  */
-/obj/item/weapon/gun/projectile/contender/tacticool
+/obj/item/gun/projectile/contender/tacticool
 	name = "\improper \"Balmung\" Contender"
 	desc = "A later model of the Hedberg-Hammarstrom \"Gram\", reinvented with a \
 	tactical look. For when you really want to make a hole. This one has been \

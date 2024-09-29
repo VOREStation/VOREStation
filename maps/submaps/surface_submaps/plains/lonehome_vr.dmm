@@ -90,12 +90,12 @@
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
 "au" = (
-/obj/item/device/tape,
+/obj/item/tape,
 /obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "av" = (
-/obj/item/weapon/extinguisher{
+/obj/item/extinguisher{
 	pixel_x = 8;
 	pixel_y = 1
 	},
@@ -108,9 +108,9 @@
 	pixel_x = -8;
 	pixel_y = -4
 	},
-/obj/item/weapon/mop,
-/obj/item/device/multitool,
-/obj/item/device/flashlight{
+/obj/item/mop,
+/obj/item/multitool,
+/obj/item/flashlight{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -138,23 +138,23 @@
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 8
 	},
-/obj/item/weapon/storage/box/glasses/square{
+/obj/item/storage/box/glasses/square{
 	pixel_y = -2
 	},
-/obj/item/weapon/storage/box/glass_extras/sticks{
+/obj/item/storage/box/glass_extras/sticks{
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/box/glass_extras/straws{
+/obj/item/storage/box/glass_extras/straws{
 	pixel_y = 7
 	},
-/obj/item/weapon/packageWrap,
+/obj/item/packageWrap,
 /obj/structure/curtain/open/bed,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 2
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 2
 	},
 /obj/structure/table/rack,
@@ -164,9 +164,9 @@
 /obj/machinery/button/windowtint{
 	id = "h_kitchen"
 	},
-/obj/item/weapon/storage/box/donkpockets,
-/obj/item/weapon/storage/box/condimentbottles,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/condimentbottles,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
 /obj/structure/curtain/open/bed,
 /obj/structure/table/rack,
 /obj/structure/window/reinforced/polarized{
@@ -206,19 +206,19 @@
 /area/submap/lonehome)
 "aG" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/white/virgo3b,
 /area/submap/lonehome)
 "aH" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
 /turf/simulated/floor/tiled/white/virgo3b,
 /area/submap/lonehome)
 "aI" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/sharpeningkit,
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/material/sharpeningkit,
+/obj/item/reagent_containers/dropper,
 /turf/simulated/floor/tiled/white/virgo3b,
 /area/submap/lonehome)
 "aJ" = (
@@ -228,7 +228,7 @@
 /obj/machinery/button/windowtint{
 	id = "h_kitchen"
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /obj/structure/window/reinforced/polarized{
 	dir = 4;
 	id = "h_kitchen"
@@ -240,16 +240,16 @@
 	dir = 8;
 	health = 1e+006
 	},
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/lonehome)
 "aM" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/template_noop,
 /area/submap/lonehome)
 "aN" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	pixel_x = 5;
 	pixel_y = 3
 	},
@@ -282,7 +282,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "aT" = (
-/obj/item/weapon/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
@@ -302,14 +302,14 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "aW" = (
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	pixel_x = 6
 	},
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/lonehome)
 "aX" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/lonehome)
 "aY" = (
@@ -341,7 +341,7 @@
 /area/submap/lonehome)
 "bd" = (
 /obj/item/trash/plate,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
 /obj/structure/table/sifwooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
@@ -349,7 +349,7 @@
 /obj/machinery/button/windowtint{
 	id = "h_kitchen"
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 2
 	},
 /obj/structure/table/sifwooden_reinforced,
@@ -389,7 +389,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bj" = (
-/obj/item/weapon/module/power_control,
+/obj/item/module/power_control,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
@@ -401,8 +401,8 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bl" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	pixel_x = 5;
 	pixel_y = 10
 	},
@@ -423,17 +423,17 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bn" = (
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
 "bo" = (
-/obj/item/weapon/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
 /obj/random/trash,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bp" = (
-/obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/poison,
+/obj/item/reagent_containers/food/snacks/ghostmuffin/poison,
 /obj/structure/table/sifwooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
@@ -455,18 +455,18 @@
 /turf/simulated/floor/wood/broken,
 /area/submap/lonehome)
 "bs" = (
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bt" = (
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 2
 	},
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bu" = (
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-/obj/item/weapon/pen,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/pen,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bv" = (
@@ -494,13 +494,13 @@
 /area/submap/lonehome)
 "by" = (
 /obj/structure/table/rack,
-/obj/item/weapon/makeover,
+/obj/item/makeover,
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bz" = (
 /obj/structure/table/rack,
-/obj/item/weapon/material/knife/ritual,
+/obj/item/material/knife/ritual,
 /obj/structure/curtain/open/bed,
 /obj/item/clothing/under/suit_jacket/really_black,
 /obj/item/clothing/under/suit_jacket/navy,
@@ -512,11 +512,11 @@
 	dir = 8
 	},
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/book/tome,
+/obj/item/book/tome,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bB" = (
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Seems to be filled with odd runes drawn with blood";
 	name = "Blood stained paper"
 	},
@@ -537,13 +537,13 @@
 /area/submap/lonehome)
 "bE" = (
 /obj/item/seeds/random,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bF" = (
 /obj/machinery/light/small,
-/obj/item/weapon/ore/diamond,
+/obj/item/ore/diamond,
 /obj/structure/sign/goldenplaque{
 	desc = "Done No Harm.";
 	name = "Best Doctor 2552";
@@ -553,7 +553,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bG" = (
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /obj/item/clothing/gloves/ring/engagement,
 /obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
@@ -566,9 +566,9 @@
 /area/submap/lonehome)
 "bI" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/storage/wallet/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/storage/wallet/random,
+/obj/item/towel/random,
+/obj/item/melee/umbrella/random,
 /obj/random/carp_plushie,
 /obj/random/curseditem,
 /obj/random/junk,
@@ -578,14 +578,14 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bJ" = (
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Seems to be filled with odd runes drawn with blood";
 	name = "Blood stained paper"
 	},
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bK" = (
-/obj/item/weapon/cell/high/empty,
+/obj/item/cell/high/empty,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
 "bL" = (
@@ -596,7 +596,7 @@
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
 "bM" = (
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "F%$K this detective, I swear I can see them peeking from behind the window, these tinted glasses help but I swear I can still see them snooping around. His days are counted... I am so close to figuring this out, just need a few more days. Then Shepiffany will be part of the family once again, then our two kids and I can go back on having a normal life... a normal life...";
 	name = "Stained sheet of paper"
 	},
@@ -621,18 +621,18 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/weapon/paper/courtroom,
-/obj/item/weapon/paper/courtroom,
-/obj/item/weapon/paper_bin,
+/obj/item/paper/courtroom,
+/obj/item/paper/courtroom,
+/obj/item/paper_bin,
 /obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bQ" = (
-/obj/item/weapon/pen/fountain,
+/obj/item/pen/fountain,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bR" = (
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Seems to be filled with odd runes drawn with blood";
 	name = "Blood stained paper"
 	},
@@ -650,15 +650,15 @@
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
 "bU" = (
-/obj/item/weapon/photo,
-/obj/item/weapon/photo{
+/obj/item/photo,
+/obj/item/photo{
 	pixel_x = 4
 	},
 /obj/structure/table/bench/wooden,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bV" = (
-/obj/item/weapon/storage/box/characters,
+/obj/item/storage/box/characters,
 /obj/structure/curtain/open/bed,
 /obj/structure/table/rack,
 /turf/simulated/floor/wood/virgo3b,
@@ -674,8 +674,8 @@
 	dir = 1
 	},
 /obj/structure/bed/padded,
-/obj/item/weapon/book/custom_library/fiction/truelovehathmyheart,
-/obj/item/weapon/bedsheet/clown,
+/obj/item/book/custom_library/fiction/truelovehathmyheart,
+/obj/item/bedsheet/clown,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bY" = (
@@ -687,8 +687,8 @@
 /obj/random/multiple,
 /obj/random/toy,
 /obj/random/toy,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bZ" = (
@@ -703,9 +703,9 @@
 /area/submap/lonehome)
 "cb" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/storage/wallet/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/storage/wallet/random,
+/obj/item/towel/random,
+/obj/item/melee/umbrella/random,
 /obj/random/ammo,
 /obj/random/cigarettes,
 /obj/random/contraband,
@@ -735,14 +735,14 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/lonehome)
 "cf" = (
-/obj/item/weapon/pack/cardemon,
+/obj/item/pack/cardemon,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/lonehome)
 "cg" = (
-/obj/item/weapon/reagent_containers/blood,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/deck/tarot,
+/obj/item/reagent_containers/blood,
+/obj/item/pack/cardemon,
+/obj/item/pack/cardemon,
+/obj/item/deck/tarot,
 /obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
@@ -755,9 +755,9 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/table/marble,
 /obj/item/organ/internal/intestine/unathi,
-/obj/item/weapon/surgical/bonesetter,
-/obj/item/weapon/bone/ribs,
-/obj/item/weapon/bone/skull{
+/obj/item/surgical/bonesetter,
+/obj/item/bone/ribs,
+/obj/item/bone/skull{
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -768,20 +768,20 @@
 /turf/simulated/wall/wood,
 /area/submap/lonehome)
 "ck" = (
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "cl" = (
-/obj/item/weapon/phone,
+/obj/item/phone,
 /obj/structure/table/bench/wooden,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Seems to be filled with odd runes drawn with blood";
 	name = "Blood stained paper"
 	},
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "cm" = (
-/obj/item/weapon/pack/cardemon,
+/obj/item/pack/cardemon,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "cn" = (
@@ -795,7 +795,7 @@
 /obj/random/junk,
 /obj/random/junk,
 /obj/random/junk,
-/obj/item/weapon/bedsheet/ian,
+/obj/item/bedsheet/ian,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "co" = (
@@ -817,7 +817,7 @@
 "cq" = (
 /obj/structure/table/marble,
 /obj/item/organ/internal/brain/grey,
-/obj/item/weapon/material/knife/plastic,
+/obj/item/material/knife/plastic,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
 "cr" = (
@@ -867,7 +867,7 @@
 /area/submap/lonehome)
 "cx" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/knife/hook,
+/obj/item/material/knife/hook,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
 "cy" = (
@@ -875,7 +875,7 @@
 /area/submap/lonehome)
 "cz" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/outdoors/grass/sif/forest/virgo3b,
 /area/submap/lonehome)
 "cA" = (
@@ -916,10 +916,10 @@
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
 "cF" = (
-/obj/item/weapon/chainsaw,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/chainsaw,
+/obj/item/storage/box/lights/mixed,
+/obj/item/extinguisher,
+/obj/item/storage/toolbox/mechanical,
 /obj/structure/table/rack,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
@@ -941,11 +941,11 @@
 /turf/simulated/floor/outdoors/grass/sif/forest/virgo3b,
 /area/submap/lonehome)
 "cJ" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/outdoors/grass/sif/forest/virgo3b,
 /area/submap/lonehome)
 "cK" = (
-/obj/item/weapon/material/minihoe,
+/obj/item/material/minihoe,
 /turf/simulated/floor/outdoors/grass/sif/forest/virgo3b,
 /area/submap/lonehome)
 "cL" = (
@@ -958,7 +958,7 @@
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/lonehome)
 "cN" = (
-/obj/item/device/flashlight{
+/obj/item/flashlight{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -976,7 +976,7 @@
 /area/submap/lonehome)
 "cP" = (
 /obj/item/organ/internal/lungs/vox,
-/obj/item/weapon/beartrap/hunting{
+/obj/item/beartrap/hunting{
 	anchored = 1;
 	deployed = 1
 	},

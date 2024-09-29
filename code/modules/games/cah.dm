@@ -2,19 +2,19 @@
 // which is licensed under CC BY-NC-SA 2.0, the full text of which can be found at the following URL:
 // https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode
 
-/obj/item/weapon/deck/cah
+/obj/item/deck/cah
 	name = "\improper CAG deck (white)"
 	desc = "The ever-popular Cards Against The Galaxy word game. Warning: may include traces of broken fourth wall. This is the white deck."
 	icon_state = "cag_white"
 	var/blanks = 5
 
-/obj/item/weapon/deck/cah/black
+/obj/item/deck/cah/black
 	name = "\improper CAG deck (black)"
 	desc = "The ever-popular Cards Against The Galaxy word game. Warning: may include traces of broken fourth wall. This is the black deck."
 	icon_state = "cag_black"
 	blanks = 0
 
-/obj/item/weapon/deck/cah/New()
+/obj/item/deck/cah/New()
 	..()
 	var/datum/playingcard/P
 	for(var/cardtext in card_text_list)

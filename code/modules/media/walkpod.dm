@@ -1,7 +1,7 @@
 // Mostly a jukebox copy-paste, given the vastly different paths though it seemed worth it.
 // Would rather not have a bunch of /machinery baggage on our portable music player.
 
-/obj/item/device/walkpod
+/obj/item/walkpod
 	name = "\improper PodZu music player"
 	desc = "Portable music player! For when you need to ignore the rest of the world, there's only one choice: PodZu."
 	description_fluff = "A prestigious set: The ZuMan music player, and the HeadPods headphones, both 90th anniversary releases! Together they form the PodZu Music Player, famous in the local galactic cluster for pumping sick beats directly into your head."
@@ -20,17 +20,17 @@
 	var/media_url = ""
 	var/media_start_time
 
-	var/obj/item/device/headpods/deployed_headpods
+	var/obj/item/headpods/deployed_headpods
 
 	w_class = ITEMSIZE_COST_SMALL
 	slot_flags = SLOT_BELT
 
-/obj/item/device/walkpod/Destroy()
+/obj/item/walkpod/Destroy()
 	remove_listener()
 	return ..()
 
 // Icon
-/obj/item/device/walkpod/update_icon()
+/obj/item/walkpod/update_icon()
 	if(listener)
 		if(deployed_headpods)
 			icon_state = "zuman_on"
@@ -43,12 +43,12 @@
 			icon_state = "[initial(icon_state)]"
 
 // Listener handling
-/obj/item/device/walkpod/proc/check_listener()
+/obj/item/walkpod/proc/check_listener()
 	if(loc == listener)
 		return TRUE
 	return FALSE
 
-/obj/item/device/walkpod/proc/remove_listener()
+/obj/item/walkpod/proc/remove_listener()
 	if(playing)
 		StopPlaying()
 	STOP_PROCESSING(SSobj, src)
@@ -58,7 +58,7 @@
 	listener = null
 	update_icon()
 
-/obj/item/device/walkpod/proc/set_listener(mob/living/L)
+/obj/item/walkpod/proc/set_listener(mob/living/L)
 	if(listener)
 		remove_listener()
 	listener = L
@@ -66,16 +66,16 @@
 	to_chat(L, "<span class='notice'>You put the [src]'s headphones on and power it up, preparing to listen to some <b>sick tunes</b>.</span>")
 	update_icon()
 
-/obj/item/device/walkpod/proc/update_music()
+/obj/item/walkpod/proc/update_music()
 	listener?.force_music(media_url, media_start_time, volume) // Calling this with "" url (when we aren't playing) helpfully disables forced music
 
-/obj/item/device/walkpod/AltClick(mob/living/L)
+/obj/item/walkpod/AltClick(mob/living/L)
 	if(L == listener && check_listener())
 		tgui_interact(L)
 	else if(loc == L) // at least they're holding it
 		to_chat(L, "<span class='warning'>Turn on the [src] first.</span>")
 
-/obj/item/device/walkpod/attack_self(mob/living/L)
+/obj/item/walkpod/attack_self(mob/living/L)
 	if(!istype(L) || loc != L)
 		return
 	if(!listener)
@@ -83,7 +83,7 @@
 	tgui_interact(L)
 
 // Process ticks to ensure our listener remains valid and we do music-ing
-/obj/item/device/walkpod/process()
+/obj/item/walkpod/process()
 	if(!check_headpods())
 		restore_headpods()
 	if(!check_listener())
@@ -116,7 +116,7 @@
 	start_stop_song()
 
 // Track/music internals
-/obj/item/device/walkpod/proc/start_stop_song()
+/obj/item/walkpod/proc/start_stop_song()
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
@@ -126,11 +126,11 @@
 		media_start_time = 0
 	update_music()
 
-/obj/item/device/walkpod/proc/StopPlaying()
+/obj/item/walkpod/proc/StopPlaying()
 	playing = 0
 	start_stop_song()
 
-/obj/item/device/walkpod/proc/StartPlaying()
+/obj/item/walkpod/proc/StartPlaying()
 	if(!current_track)
 		return
 	playing = 1
@@ -138,7 +138,7 @@
 	updateDialog()
 
 // Advance to the next track - Don't start playing it unless we were already playing
-/obj/item/device/walkpod/proc/NextTrack()
+/obj/item/walkpod/proc/NextTrack()
 	var/list/tracks = getTracksList()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
@@ -149,7 +149,7 @@
 	updateDialog()
 
 // Unadvance to the notnext track - Don't start playing it unless we were already playing
-/obj/item/device/walkpod/proc/PrevTrack()
+/obj/item/walkpod/proc/PrevTrack()
 	var/list/tracks = getTracksList()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
@@ -160,16 +160,16 @@
 	updateDialog()
 
 // UI
-/obj/item/device/walkpod/proc/getTracksList()
+/obj/item/walkpod/proc/getTracksList()
 	return SSmedia_tracks.jukebox_tracks
 
-/obj/item/device/walkpod/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/walkpod/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Jukebox", "PodZu Music Player")
 		ui.open()
 
-/obj/item/device/walkpod/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/walkpod/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["playing"] = playing
@@ -191,7 +191,7 @@
 
 	return data
 
-/obj/item/device/walkpod/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/walkpod/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -222,7 +222,7 @@
 			return TRUE
 
 // Silly verb
-/obj/item/device/walkpod/verb/take_headpods()
+/obj/item/walkpod/verb/take_headpods()
 	set name = "Take HeadPods"
 	set desc = "Grab the pair of HeadPods."
 
@@ -236,13 +236,13 @@
 	L.put_in_any_hand_if_possible(deployed_headpods)
 	update_icon()
 
-/obj/item/device/walkpod/attackby(obj/item/W, mob/user)
+/obj/item/walkpod/attackby(obj/item/W, mob/user)
 	if(W == deployed_headpods)
 		restore_headpods(user)
 		return
 	return ..()
 
-/obj/item/device/walkpod/proc/restore_headpods(mob/living/potential_holder)
+/obj/item/walkpod/proc/restore_headpods(mob/living/potential_holder)
 	if(!deployed_headpods)
 		return
 
@@ -254,12 +254,12 @@
 	qdel_null(deployed_headpods)
 	update_icon()
 
-/obj/item/device/walkpod/proc/check_headpods()
+/obj/item/walkpod/proc/check_headpods()
 	if(deployed_headpods && deployed_headpods.loc != loc)
 		return FALSE
 	return TRUE
 
-/obj/item/device/headpods
+/obj/item/headpods
 	name = "\improper pair of HeadPods"
 	desc = "Portable listening in Hi-Fi!"
 	icon = 'icons/obj/device_vr.dmi'

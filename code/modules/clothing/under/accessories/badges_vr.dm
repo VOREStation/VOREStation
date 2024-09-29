@@ -9,11 +9,11 @@
 	item_state = "dosimeter"
 	overlay_state = "dosimeter"
 	slot_flags = SLOT_TIE
-	var/obj/item/weapon/dosimeter_film/current_film = null
+	var/obj/item/dosimeter_film/current_film = null
 
 /obj/item/clothing/accessory/dosimeter/New()
 	..()
-	current_film = new /obj/item/weapon/dosimeter_film(src)
+	current_film = new /obj/item/dosimeter_film(src)
 	update_state(current_film.state)
 	START_PROCESSING(SSobj, src)
 
@@ -40,7 +40,7 @@
 		return ..()
 
 /obj/item/clothing/accessory/dosimeter/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/dosimeter_film))
+	if(istype(I, /obj/item/dosimeter_film))
 		if(!current_film)
 			user.drop_item()
 			I.loc = src
@@ -78,7 +78,7 @@
 		icon_state = "[initial(icon_state)]-empty"
 	update_icon()
 
-/obj/item/weapon/dosimeter_film
+/obj/item/dosimeter_film
 	name = "dosimeter film"
 	desc = "These films can be inserted into dosimeters. It turns from white to black, depending on how much radiation it endured."
 	w_class = ITEMSIZE_SMALL
@@ -87,11 +87,11 @@
 	icon_state = "dosimeter_film0"
 	var/state = 0 //0 - White, 1 - Darker, 2 - Black (same as iconstates)
 
-/obj/item/weapon/dosimeter_film/proc/update_state(var/tostate)
+/obj/item/dosimeter_film/proc/update_state(var/tostate)
 	icon_state = tostate
 	update_icon()
 
-/obj/item/weapon/paper/dosimeter_manual
+/obj/item/paper/dosimeter_manual
 	name = "Dosimeter manual"
 	info = {"<h4>Dosimeter</h4>
 	<h5>Usage</h5>
@@ -106,7 +106,7 @@
 	A white film indicates that everything is alright. A darker film indicates, that the radiation level is starting to get dangerous for your body.
 	The body has absorbed too much radiation if the film turned black.</p>"}
 
-/obj/item/weapon/storage/box/dosimeter
+/obj/item/storage/box/dosimeter
 	name = "dosimeter case"
 	desc = "This case can only hold the Dosimeter, a few films and a manual."
 	icon = 'icons/inventory/accessory/item_vr.dmi'
@@ -114,14 +114,14 @@
 	icon_state = "dosimeter_case"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	storage_slots = 5
-	can_hold = list(/obj/item/weapon/paper/dosimeter_manual, /obj/item/clothing/accessory/dosimeter, /obj/item/weapon/dosimeter_film)
+	can_hold = list(/obj/item/paper/dosimeter_manual, /obj/item/clothing/accessory/dosimeter, /obj/item/dosimeter_film)
 	max_storage_space = (ITEMSIZE_COST_SMALL * 4) + (ITEMSIZE_COST_TINY * 1)
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/weapon/storage/box/dosimeter/New()
+/obj/item/storage/box/dosimeter/New()
 	..()
-	new /obj/item/weapon/paper/dosimeter_manual(src)
+	new /obj/item/paper/dosimeter_manual(src)
 	new /obj/item/clothing/accessory/dosimeter(src)
-	new /obj/item/weapon/dosimeter_film(src)
-	new /obj/item/weapon/dosimeter_film(src)
-	new /obj/item/weapon/dosimeter_film(src)
+	new /obj/item/dosimeter_film(src)
+	new /obj/item/dosimeter_film(src)
+	new /obj/item/dosimeter_film(src)

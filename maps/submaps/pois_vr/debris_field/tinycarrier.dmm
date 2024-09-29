@@ -574,8 +574,8 @@
 	anchored = 1;
 	starts_with = list()
 	},
-/obj/item/weapon/gun/projectile/p92x/large,
-/obj/item/weapon/gun/projectile/p92x/large,
+/obj/item/gun/projectile/p92x/large,
+/obj/item/gun/projectile/p92x/large,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
@@ -759,9 +759,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/screwdriver{
+/obj/item/tool/crowbar,
+/obj/item/tool/wrench,
+/obj/item/tool/screwdriver{
 	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
@@ -862,10 +862,10 @@
 /area/submap/debrisfield/tinyshuttle/hangar)
 "bB" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/toolbox/mechanical{
-	starts_with = list(/obj/item/weapon/tool/screwdriver,/obj/item/weapon/tool/wrench,/obj/item/weapon/tool/crowbar,/obj/item/device/analyzer,/obj/item/weapon/tool/wirecutters)
+/obj/item/storage/toolbox/mechanical{
+	starts_with = list(/obj/item/tool/screwdriver,/obj/item/tool/wrench,/obj/item/tool/crowbar,/obj/item/analyzer,/obj/item/tool/wirecutters)
 	},
-/obj/item/device/t_scanner,
+/obj/item/t_scanner,
 /obj/effect/floor_decal/corner/orange{
 	dir = 9
 	},
@@ -997,7 +997,7 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/submap/debrisfield/tinyshuttle/engine)
 "bO" = (
@@ -1132,7 +1132,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/debrisfield/tinyshuttle/engine)
 "cf" = (
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/tinyshuttle/hangar)
@@ -1148,7 +1148,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/item/weapon/weldingtool/electric,
+/obj/item/weldingtool/electric,
 /obj/effect/floor_decal/corner/orange{
 	dir = 10
 	},
@@ -1186,7 +1186,7 @@
 /area/submap/debrisfield/tinyshuttle/hangar)
 "cm" = (
 /obj/structure/lattice,
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/tinyshuttle/hangar)
 

@@ -1,14 +1,14 @@
 //Transparent Glamour (invisibility potion)
 
-/obj/item/weapon/potion_material/glamour_transparent
+/obj/item/potion_material/glamour_transparent
 	name = "transparent glamour"
 	desc = "A shard of hardened white crystal that is clearly translucent."
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "transparent"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/invisibility
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/invisibility
 
-/obj/item/weapon/reagent_containers/glass/bottle/potion/invisibility
+/obj/item/reagent_containers/glass/bottle/potion/invisibility
 	name = "transparent potion"
 	desc = "A small white potion, the clear liquid inside can barely be seen at all."
 	prefill = list("transparent glamour" = 1)
@@ -36,15 +36,15 @@
 
 //Shrinking Glamour (scaling potion)
 
-/obj/item/weapon/potion_material/glamour_shrinking
+/obj/item/potion_material/glamour_shrinking
 	name = "shrinking glamour"
 	desc = "A soft clump of white material that seems to shrink at your touch."
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "shrinking"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/scaling
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/scaling
 
-/obj/item/weapon/reagent_containers/glass/bottle/potion/scaling
+/obj/item/reagent_containers/glass/bottle/potion/scaling
 	name = "scaling potion"
 	desc = "A small white potion, the clear liquid inside can barely be seen at all."
 	prefill = list("scaling glamour" = 1)
@@ -68,15 +68,15 @@
 
 //Twinkling Glamour (Sparkling potion - Gives darksight)
 
-/obj/item/weapon/potion_material/glamour_twinkling
+/obj/item/potion_material/glamour_twinkling
 	name = "twinkling glamour"
 	desc = "A sheet of white material that twinkles on its own accord."
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "twinkling"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/darksight
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/darksight
 
-/obj/item/weapon/reagent_containers/glass/bottle/potion/darksight
+/obj/item/reagent_containers/glass/bottle/potion/darksight
 	name = "twinling potion"
 	desc = "A small white potion, the thin white liquid inside twinkles brightly."
 	prefill = list("twinkling glamour" = 1)
@@ -171,13 +171,13 @@
 
 //Speaking Glamour (universal translator)
 
-/obj/item/device/universal_translator/glamour
+/obj/item/universal_translator/glamour
 	name = "speaking glamour"
 	desc = "A shard of glamour that translates all known language for the user."
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "translator"
 
-/obj/item/device/universal_translator/glamour/hear_talk(mob/M, list/message_pieces, verb)
+/obj/item/universal_translator/glamour/hear_talk(mob/M, list/message_pieces, verb)
 	if(!listening || !istype(M))
 		return
 

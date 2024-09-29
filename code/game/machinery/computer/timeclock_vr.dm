@@ -14,16 +14,16 @@
 	light_power_on = 0.5
 	layer = ABOVE_WINDOW_LAYER
 	density = FALSE
-	circuit = /obj/item/weapon/circuitboard/timeclock
+	circuit = /obj/item/circuitboard/timeclock
 	clicksound = null
 	var/channel = "Common" //Radio channel to announce on
 
-	var/obj/item/weapon/card/id/card // Inserted Id card
-	var/obj/item/device/radio/intercom/announce	// Integreated announcer
+	var/obj/item/card/id/card // Inserted Id card
+	var/obj/item/radio/intercom/announce	// Integreated announcer
 
 
 /obj/machinery/computer/timeclock/New()
-	announce = new /obj/item/device/radio/intercom(src)
+	announce = new /obj/item/radio/intercom(src)
 	..()
 
 /obj/machinery/computer/timeclock/Destroy()
@@ -51,7 +51,7 @@
 		set_light(light_range_on, light_power_on)
 
 /obj/machinery/computer/timeclock/attackby(obj/I, mob/user)
-	if(istype(I, /obj/item/weapon/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(!card && user.unEquip(I))
 			I.forceMove(src)
 			card = I
@@ -121,7 +121,7 @@
 				card = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+				if (istype(I, /obj/item/card/id) && usr.unEquip(I))
 					I.forceMove(src)
 					card = I
 			update_icon()
@@ -239,10 +239,10 @@
 	else
 		return TRUE
 
-/obj/item/weapon/card/id
+/obj/item/card/id
 	var/last_job_switch
 
-/obj/item/weapon/card/id/New()
+/obj/item/card/id/New()
 	.=..()
 	last_job_switch = world.time
 

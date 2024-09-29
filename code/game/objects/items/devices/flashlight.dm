@@ -11,7 +11,7 @@
  * Flashlights
  */
 
-/obj/item/device/flashlight
+/obj/item/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
@@ -29,12 +29,12 @@
 
 	var/on = 0
 
-	var/obj/item/weapon/cell/cell
-	var/cell_type = /obj/item/weapon/cell/device
+	var/obj/item/cell/cell
+	var/cell_type = /obj/item/cell/device
 	var/power_usage = 1
 	var/power_use = 1
 
-/obj/item/device/flashlight/Initialize()
+/obj/item/flashlight/Initialize()
 	. = ..()
 
 	if(power_use && cell_type)
@@ -42,15 +42,15 @@
 
 	update_brightness()
 
-/obj/item/device/flashlight/Destroy()
+/obj/item/flashlight/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	qdel_null(cell)
 	return ..()
 
-/obj/item/device/flashlight/get_cell()
+/obj/item/flashlight/get_cell()
 	return cell
 
-/obj/item/device/flashlight/process()
+/obj/item/flashlight/process()
 	if(!on || !cell)
 		return PROCESS_KILL
 
@@ -62,7 +62,7 @@
 			update_brightness()
 			return PROCESS_KILL
 
-/obj/item/device/flashlight/proc/update_brightness()
+/obj/item/flashlight/proc/update_brightness()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 	else
@@ -71,7 +71,7 @@
 	if(light_system == STATIC_LIGHT)
 		update_light()
 
-/obj/item/device/flashlight/examine(mob/user)
+/obj/item/flashlight/examine(mob/user)
 	. = ..()
 	if(power_use && cell)
 		. += "\The [src] has a \the [cell] attached."
@@ -85,7 +85,7 @@
 		else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
 			. += "It appears to have a high amount of power remaining."
 
-/obj/item/device/flashlight/attack_self(mob/user)
+/obj/item/flashlight/attack_self(mob/user)
 	if(power_use)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalities.
@@ -103,12 +103,12 @@
 	user.update_action_buttons()
 	return 1
 
-/obj/item/device/flashlight/emp_act(severity)
+/obj/item/flashlight/emp_act(severity)
 	for(var/obj/O in contents)
 		O.emp_act(severity)
 	..()
 
-/obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)
 
@@ -161,7 +161,7 @@
 	else
 		return ..()
 
-/obj/item/device/flashlight/attack_hand(mob/user as mob)
+/obj/item/flashlight/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(cell)
 			cell.update_icon()
@@ -176,7 +176,7 @@
 	else
 		return ..()
 
-/obj/item/device/flashlight/MouseDrop(obj/over_object as obj)
+/obj/item/flashlight/MouseDrop(obj/over_object as obj)
 	if(!canremove)
 		return
 
@@ -208,10 +208,10 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/device/flashlight/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/item/flashlight/attackby(obj/item/W, mob/user as mob)
 	if(power_use)
-		if(istype(W, /obj/item/weapon/cell))
-			if(istype(W, /obj/item/weapon/cell/device))
+		if(istype(W, /obj/item/cell))
+			if(istype(W, /obj/item/cell/device))
 				if(!cell)
 					user.drop_item()
 					W.loc = src
@@ -227,7 +227,7 @@
 	else
 		..()
 
-/obj/item/device/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!on)
 		return
@@ -238,7 +238,7 @@
 		var/turf/T = get_turf(target)
 		OL.place_directional_light(T)
 
-/obj/item/device/flashlight/pen
+/obj/item/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
@@ -250,37 +250,37 @@
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 
-/obj/item/device/flashlight/color	//Default color is blue
+/obj/item/flashlight/color	//Default color is blue
 	name = "blue flashlight"
 	desc = "A small flashlight. This one is blue."
 	icon_state = "flashlight_blue"
 
-/obj/item/device/flashlight/color/green
+/obj/item/flashlight/color/green
 	name = "green flashlight"
 	desc = "A small flashlight. This one is green."
 	icon_state = "flashlight_green"
 
-/obj/item/device/flashlight/color/purple
+/obj/item/flashlight/color/purple
 	name = "purple flashlight"
 	desc = "A small flashlight. This one is purple."
 	icon_state = "flashlight_purple"
 
-/obj/item/device/flashlight/color/red
+/obj/item/flashlight/color/red
 	name = "red flashlight"
 	desc = "A small flashlight. This one is red."
 	icon_state = "flashlight_red"
 
-/obj/item/device/flashlight/color/orange
+/obj/item/flashlight/color/orange
 	name = "orange flashlight"
 	desc = "A small flashlight. This one is orange."
 	icon_state = "flashlight_orange"
 
-/obj/item/device/flashlight/color/yellow
+/obj/item/flashlight/color/yellow
 	name = "yellow flashlight"
 	desc = "A small flashlight. This one is yellow."
 	icon_state = "flashlight_yellow"
 
-/obj/item/device/flashlight/maglight
+/obj/item/flashlight/maglight
 	name = "maglight"
 	desc = "A very, very heavy duty flashlight."
 	icon_state = "maglight"
@@ -292,7 +292,7 @@
 	matter = list(MAT_STEEL = 200,MAT_GLASS = 50)
 	hitsound = "swing_hit"
 
-/obj/item/device/flashlight/drone
+/obj/item/flashlight/drone
 	name = "low-power flashlight"
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
@@ -306,7 +306,7 @@
  */
 
 // pixar desk lamp
-/obj/item/device/flashlight/lamp
+/obj/item/flashlight/lamp
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
@@ -318,7 +318,7 @@
 	on = 1
 	light_system = STATIC_LIGHT
 
-/obj/item/device/flashlight/lamp/verb/toggle_light()
+/obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
 	set category = "Object"
 	set src in oview(1)
@@ -327,14 +327,14 @@
 		attack_self(usr)
 
 // green-shaded desk lamp
-/obj/item/device/flashlight/lamp/green
+/obj/item/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	center_of_mass = list("x" = 15,"y" = 11)
 	light_color = "#FFC58F"
 
 // clown lamp
-/obj/item/device/flashlight/lamp/clown
+/obj/item/flashlight/lamp/clown
 	desc = "A whacky banana peel shaped lamp."
 	icon_state = "bananalamp"
 	center_of_mass = list("x" = 15,"y" = 11)
@@ -344,7 +344,7 @@
  * Flares
  */
 
-/obj/item/device/flashlight/flare
+/obj/item/flashlight/flare
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = ITEMSIZE_SMALL
@@ -362,11 +362,11 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/device/flashlight/flare/New()
+/obj/item/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
-/obj/item/device/flashlight/flare/process()
+/obj/item/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
 	if(pos)
 		pos.hotspot_expose(produce_heat, 5)
@@ -377,13 +377,13 @@
 			src.icon_state = "[initial(icon_state)]-empty"
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/device/flashlight/flare/proc/turn_off()
+/obj/item/flashlight/flare/proc/turn_off()
 	on = 0
 	src.force = initial(src.force)
 	src.damtype = initial(src.damtype)
 	update_brightness()
 
-/obj/item/device/flashlight/flare/attack_self(mob/user)
+/obj/item/flashlight/flare/attack_self(mob/user)
 
 	// Usual checks
 	if(!fuel)
@@ -400,7 +400,7 @@
 		src.damtype = "fire"
 		START_PROCESSING(SSobj, src)
 
-/obj/item/device/flashlight/flare/proc/ignite() //Used for flare launchers.
+/obj/item/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
 	update_brightness()
 	force = on_damage
@@ -412,7 +412,7 @@
  * Chemlights
  */
 
-/obj/item/device/flashlight/glowstick
+/obj/item/flashlight/glowstick
 	name = "green glowstick"
 	desc = "A green military-grade chemical light."
 	w_class = ITEMSIZE_SMALL
@@ -425,11 +425,11 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/device/flashlight/glowstick/New()
+/obj/item/flashlight/glowstick/New()
 	fuel = rand(1600, 2000)
 	..()
 
-/obj/item/device/flashlight/glowstick/process()
+/obj/item/flashlight/glowstick/process()
 	fuel = max(fuel - 1, 0)
 	if(!fuel || !on)
 		turn_off()
@@ -437,11 +437,11 @@
 			src.icon_state = "[initial(icon_state)]-empty"
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/device/flashlight/glowstick/proc/turn_off()
+/obj/item/flashlight/glowstick/proc/turn_off()
 	on = 0
 	update_brightness()
 
-/obj/item/device/flashlight/glowstick/attack_self(mob/user)
+/obj/item/flashlight/glowstick/attack_self(mob/user)
 
 	if(!fuel)
 		to_chat(user, "<span class='notice'>The glowstick has already been turned on.</span>")
@@ -454,35 +454,35 @@
 		user.visible_message("<span class='notice'>[user] cracks and shakes \the [name].</span>", "<span class='notice'>You crack and shake \the [src], turning it on!</span>")
 		START_PROCESSING(SSobj, src)
 
-/obj/item/device/flashlight/glowstick/red
+/obj/item/flashlight/glowstick/red
 	name = "red glowstick"
 	desc = "A red military-grade chemical light."
 	light_color = "#FC0F29"
 	icon_state = "glowstick_red"
 	item_state = "glowstick_red"
 
-/obj/item/device/flashlight/glowstick/blue
+/obj/item/flashlight/glowstick/blue
 	name = "blue glowstick"
 	desc = "A blue military-grade chemical light."
 	light_color = "#599DFF"
 	icon_state = "glowstick_blue"
 	item_state = "glowstick_blue"
 
-/obj/item/device/flashlight/glowstick/orange
+/obj/item/flashlight/glowstick/orange
 	name = "orange glowstick"
 	desc = "A orange military-grade chemical light."
 	light_color = "#FA7C0B"
 	icon_state = "glowstick_orange"
 	item_state = "glowstick_orange"
 
-/obj/item/device/flashlight/glowstick/yellow
+/obj/item/flashlight/glowstick/yellow
 	name = "yellow glowstick"
 	desc = "A yellow military-grade chemical light."
 	light_color = "#FEF923"
 	icon_state = "glowstick_yellow"
 	item_state = "glowstick_yellow"
 
-/obj/item/device/flashlight/glowstick/radioisotope
+/obj/item/flashlight/glowstick/radioisotope
 	name = "radioisotope glowstick"
 	desc = "A radioisotope powered chemical light. Escaping particles light up the area far brighter on similar levels to flares and for longer"
 	icon_state = "glowstick_isotope"

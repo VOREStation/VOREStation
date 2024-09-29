@@ -22,7 +22,7 @@
 /turf/simulated/wall,
 /area/mine/explored/underdark)
 "g" = (
-/obj/item/device/geiger,
+/obj/item/geiger,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "h" = (

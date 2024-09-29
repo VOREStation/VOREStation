@@ -1,7 +1,7 @@
 /*
  * Device
  */
-/obj/item/weapon/cell/device
+/obj/item/cell/device
 	name = "device power cell"
 	desc = "A small power cell designed to power handheld devices."
 	icon_state = "device_cell"
@@ -15,7 +15,7 @@
 	matter = list(MAT_STEEL = 350, MAT_GLASS = 50)
 	preserve_item = 1
 
-/obj/item/weapon/cell/device/empty/Initialize()
+/obj/item/cell/device/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
@@ -23,7 +23,7 @@
 /*
  * Crap Device
  */
-/obj/item/weapon/cell/device/crap
+/obj/item/cell/device/crap
 	name = "\improper rechargable D battery"
 	desc = "An older, cheap power cell designed to power handheld devices. It's probably been in use for quite some time now."
 	description_fluff = "You can't top the rust top." //TOTALLY TRADEMARK INFRINGEMENT
@@ -32,10 +32,10 @@
 	maxcharge = 240
 	matter = list(MAT_STEEL = 350, MAT_GLASS = 30)
 
-/obj/item/weapon/cell/device/crap/update_icon() //No visible charge indicator
+/obj/item/cell/device/crap/update_icon() //No visible charge indicator
 	return
 
-/obj/item/weapon/cell/device/crap/empty/Initialize()
+/obj/item/cell/device/crap/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
@@ -43,14 +43,14 @@
 /*
  * Hyper Device
  */
-/obj/item/weapon/cell/device/hyper
+/obj/item/cell/device/hyper
 	name = "hyper device power cell"
 	desc = "A small power cell designed to power handheld devices. Has a better charge than a standard device cell."
 	icon_state = "hype_device_cell"
 	maxcharge = 600
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
 
-/obj/item/weapon/cell/device/hyper/empty/Initialize()
+/obj/item/cell/device/hyper/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
@@ -58,14 +58,14 @@
 /*
  * EMP Proof Device
  */
-/obj/item/weapon/cell/device/empproof
+/obj/item/cell/device/empproof
 	name = "shielded device power cell"
 	desc = "A small power cell designed to power handheld devices. Shielded from EMPs."
 	icon_state = "up_device_cell"
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
 	emp_proof = TRUE
 
-/obj/item/weapon/cell/device/empproof/empty/Initialize()
+/obj/item/cell/device/empproof/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
@@ -73,14 +73,14 @@
 /*
  * Weapon
  */
-/obj/item/weapon/cell/device/weapon
+/obj/item/cell/device/weapon
 	name = "weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry."
 	icon_state = "weapon_cell"
 	maxcharge = 2400
 	charge_amount = 20
 
-/obj/item/weapon/cell/device/weapon/empty/Initialize()
+/obj/item/cell/device/weapon/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
@@ -88,14 +88,14 @@
 /*
  * EMP Proof Weapon
  */
-/obj/item/weapon/cell/device/weapon/empproof
+/obj/item/cell/device/weapon/empproof
 	name = "shielded weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry. Shielded from EMPs."
 	icon_state = "emp_weapon_cell"
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
 	emp_proof = TRUE
 
-/obj/item/weapon/cell/device/weapon/empproof/empty/Initialize()
+/obj/item/cell/device/weapon/empproof/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
@@ -103,7 +103,7 @@
 /*
  * Self-charging Weapon
  */
-/obj/item/weapon/cell/device/weapon/recharge
+/obj/item/cell/device/weapon/recharge
 	name = "self-charging weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry. This one recharges itself."
 	icon_state = "sc_weapon_cell"
@@ -115,7 +115,7 @@
 /*
  * Captain's Self-charging Weapon
  */
-/obj/item/weapon/cell/device/weapon/recharge/captain
+/obj/item/cell/device/weapon/recharge/captain
 	icon_state = "cap_weapon_cell"
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 100)
 	charge_amount = 160	//Recharges a lot more quickly...
@@ -138,7 +138,7 @@
 	Scanning similar objects may yield more information."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/weapon/cell/device/weapon/recharge/alien
+/obj/item/cell/device/weapon/recharge/alien
 	name = "void cell"
 	desc = "An alien technology that produces energy seemingly out of nowhere. Its small, cylinderal shape means it might be able to be used with human technology, perhaps?"
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_void_cell)
@@ -148,5 +148,5 @@
 	charge_delay = 50 // Every five seconds, bit faster than the default.
 	origin_tech = list(TECH_POWER = 8, TECH_ENGINEERING = 6)
 
-/obj/item/weapon/cell/device/weapon/recharge/alien/update_icon()
+/obj/item/cell/device/weapon/recharge/alien/update_icon()
 	return // No overlays please.

@@ -10,7 +10,7 @@
 	idle_power_usage = 20
 	active_power_usage = 5000
 	req_access = list(access_robotics)
-	circuit = /obj/item/weapon/circuitboard/prosthetics
+	circuit = /obj/item/circuitboard/prosthetics
 
 	// Prosfab specific stuff
 	var/manufacturer = null
@@ -134,8 +134,8 @@
 	if(..())
 		return 1
 
-	if(istype(I,/obj/item/weapon/disk/limb))
-		var/obj/item/weapon/disk/limb/D = I
+	if(istype(I,/obj/item/disk/limb))
+		var/obj/item/disk/limb/D = I
 		if(!D.company || !(D.company in all_robolimbs))
 			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
 		else
@@ -147,8 +147,8 @@
 				qdel(I)
 		return
 
-	if(istype(I,/obj/item/weapon/disk/species))
-		var/obj/item/weapon/disk/species/D = I
+	if(istype(I,/obj/item/disk/species))
+		var/obj/item/disk/species/D = I
 		if(!D.species || !(D.species in GLOB.all_species))
 			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
 		else

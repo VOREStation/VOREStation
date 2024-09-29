@@ -1,4 +1,4 @@
-/obj/item/weapon/teleportation_scroll
+/obj/item/teleportation_scroll
 	name = "scroll of teleportation"
 	desc = "A scroll for moving around."
 	icon = 'icons/obj/wizard.dmi'
@@ -14,7 +14,7 @@
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 4)
 
-/obj/item/weapon/teleportation_scroll/attack_self(mob/user as mob)
+/obj/item/teleportation_scroll/attack_self(mob/user as mob)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
 		to_chat(usr, "<span class='warning'>You stare at the scroll but cannot make sense of the markings!</span>")
 		return
@@ -30,7 +30,7 @@
 	onclose(user, "scroll")
 	return
 
-/obj/item/weapon/teleportation_scroll/Topic(href, href_list)
+/obj/item/teleportation_scroll/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained() || src.loc != usr)
 		return
@@ -45,7 +45,7 @@
 	attack_self(H)
 	return
 
-/obj/item/weapon/teleportation_scroll/proc/teleportscroll(var/mob/user)
+/obj/item/teleportation_scroll/proc/teleportscroll(var/mob/user)
 	var/A = tgui_input_list(user, "Area to jump to:", "Teleportation Scroll", teleportlocs)
 	if(!A)
 		return

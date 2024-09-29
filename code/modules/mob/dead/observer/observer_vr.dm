@@ -30,7 +30,7 @@
 		return
 
 	//Fine fine, we can ask.
-	var/obj/item/device/nif/nif = H.nif
+	var/obj/item/nif/nif = H.nif
 	to_chat(src,"<span class='notice'>Request sent to [H].</span>")
 
 	var/req_time = world.time

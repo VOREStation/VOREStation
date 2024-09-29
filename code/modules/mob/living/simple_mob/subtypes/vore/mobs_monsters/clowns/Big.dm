@@ -16,7 +16,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/angryclowns
 
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
+	loot_list = list(/obj/item/bikehorn = 100)
 
 	min_oxy = 0
 	max_oxy = 500

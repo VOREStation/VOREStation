@@ -23,41 +23,41 @@
 /turf/simulated/wall/sandstonediamond,
 /area/submap/AbandonedTemple)
 "h" = (
-/obj/item/weapon/flame/candle/everburn,
+/obj/item/flame/candle/everburn,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/AbandonedTemple)
 "i" = (
-/obj/item/weapon/ectoplasm,
+/obj/item/ectoplasm,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/AbandonedTemple)
 "j" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/platinum,
-/obj/item/weapon/coin/uranium,
-/obj/item/weapon/coin/diamond,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/uranium,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/phoron,
-/obj/item/weapon/coin/platinum,
+/obj/item/coin/iron,
+/obj/item/coin/platinum,
+/obj/item/coin/uranium,
+/obj/item/coin/diamond,
+/obj/item/coin/iron,
+/obj/item/coin/uranium,
+/obj/item/coin/iron,
+/obj/item/coin/phoron,
+/obj/item/coin/platinum,
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/AbandonedTemple)
 "k" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/coin/silver,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/silver,
+/obj/item/coin/silver,
+/obj/item/coin/silver,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/silver,
+/obj/item/coin/silver,
+/obj/item/coin/silver,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/AbandonedTemple)
 "l" = (
@@ -82,7 +82,7 @@
 /area/submap/AbandonedTemple)
 "q" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/lighter/zippo/royal,
+/obj/item/flame/lighter/zippo/royal,
 /obj/item/clothing/mask/smokable/pipe,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/AbandonedTemple)
@@ -108,8 +108,8 @@
 /area/submap/AbandonedTemple)
 "v" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
-/obj/item/weapon/pen/fountain,
+/obj/item/paper,
+/obj/item/pen/fountain,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/AbandonedTemple)
 "w" = (
@@ -123,7 +123,7 @@
 /area/submap/AbandonedTemple)
 "y" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/AbandonedTemple)
 "z" = (
@@ -166,7 +166,7 @@
 /area/submap/AbandonedTemple)
 "G" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	desc = "";
 	icon_state = "alienpaper_words";
 	info = "(On the screen of the tablet are several lines of characters written in a language you don't seem to recognize. At the end of each line is a set of numbers seperated by a colon. The screen flickers occasionally, as if damaged. Nothing about the tablet seems particularly interesting, but it does seem very, very old.)"
@@ -196,12 +196,12 @@
 /area/submap/AbandonedTemple)
 "M" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/AbandonedTemple)
 "N" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/AbandonedTemple)
 "O" = (

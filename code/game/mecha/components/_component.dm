@@ -133,7 +133,7 @@
 	return TRUE
 
 
-/obj/item/mecha_parts/component/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/mecha_parts/component/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/NP = W
 

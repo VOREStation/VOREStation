@@ -7,7 +7,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 200
 	active_power_usage = 5000
-	circuit = /obj/item/weapon/circuitboard/quantumpad
+	circuit = /obj/item/circuitboard/quantumpad
 	var/teleport_cooldown = 400 //30 seconds base due to base parts
 	var/teleport_speed = 50
 	var/last_teleport //to handle the cooldown
@@ -47,12 +47,12 @@
 
 /obj/machinery/power/quantumpad/RefreshParts()
 	var/E = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
 	power_efficiency = E
 
 	E = 0
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
 
 	teleport_speed = initial(teleport_speed)
@@ -64,27 +64,27 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		//VOREStation Addition Start
 		if(istype(get_area(src), /area/shuttle))
 			to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
 			return
 		//VOREStation Addition End
 		if(panel_open)
-			var/obj/item/device/multitool/M = I
+			var/obj/item/multitool/M = I
 			M.connectable = src
 			to_chat(user, "<span class='notice'>You save the data in [I]'s buffer.</span>")
 			return 1
 		else
-			var/obj/item/device/multitool/M = I
+			var/obj/item/multitool/M = I
 			if(istype(M.connectable, /obj/machinery/power/quantumpad))
 				linked_pad = M.connectable
 				to_chat(user, "<span class='notice'>You link [src] to the one in [I]'s buffer.</span>")
 				update_icon()
 				return 1
 	
-	if(istype(I, /obj/item/device/quantum_pad_booster))
-		var/obj/item/device/quantum_pad_booster/booster = I
+	if(istype(I, /obj/item/quantum_pad_booster))
+		var/obj/item/quantum_pad_booster/booster = I
 		visible_message("[user] violently jams [booster] into the side of [src]. [src] beeps, quietly.", \
 		"You hear the sound of a device being improperly installed in sensitive machinery, then subsequent beeping.", runemessage = "beep!")
 		playsound(src, 'sound/items/rped.ogg', 25, 1)
@@ -303,7 +303,7 @@
 	flick("qpad-beam-out", src)
 	transport_objects(get_turf(dest))
 
-/obj/item/device/quantum_pad_booster
+/obj/item/quantum_pad_booster
 	icon = 'icons/obj/device_vr.dmi'
 	name = "quantum pad particle booster"
 	desc = "A deceptively simple interface for increasing the mass of objects a quantum pad is capable of teleporting, at the cost of increased power draw."

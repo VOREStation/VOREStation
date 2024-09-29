@@ -21,21 +21,21 @@
 	name = "Random Item"
 	desc = "Buys you one random item."
 
-/datum/uplink_item/item/badassery/random_one/buy(var/obj/item/device/uplink/U, var/mob/user)
+/datum/uplink_item/item/badassery/random_one/buy(var/obj/item/uplink/U, var/mob/user)
 	var/datum/uplink_item/item = default_uplink_selection.get_random_item((user ? user.mind.tcrystals : DEFAULT_TELECRYSTAL_AMOUNT), U)
 	return item.buy(U, user)
 
-/datum/uplink_item/item/badassery/random_one/can_buy(var/obj/item/device/uplink/U, var/telecrystals)
+/datum/uplink_item/item/badassery/random_one/can_buy(var/obj/item/uplink/U, var/telecrystals)
 	return default_uplink_selection.get_random_item(telecrystals, U) != null
 
 /datum/uplink_item/item/badassery/random_many
 	name = "Random Items"
 	desc = "Buys you as many random items you can afford. Convenient packaging NOT included."
 
-/datum/uplink_item/item/badassery/random_many/cost(obj/item/device/uplink/U, var/telecrystals)
+/datum/uplink_item/item/badassery/random_many/cost(obj/item/uplink/U, var/telecrystals)
 	return max(1, telecrystals)
 
-/datum/uplink_item/item/badassery/random_many/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/M)
+/datum/uplink_item/item/badassery/random_many/get_goods(var/obj/item/uplink/U, var/loc, var/mob/M)
 	var/list/bought_items = list()
 	for(var/datum/uplink_item/UI in get_random_uplink_items(U, M.mind.tcrystals, loc))
 		UI.purchase_log(U)
@@ -45,7 +45,7 @@
 
 	return bought_items
 
-/datum/uplink_item/item/badassery/random_many/purchase_log(obj/item/device/uplink/U)
+/datum/uplink_item/item/badassery/random_many/purchase_log(obj/item/uplink/U)
 	feedback_add_details("traitor_uplink_items_bought", "[src]")
 	log_and_message_admins("used \the [U.loc] to buy \a [src] at random")
 
@@ -77,7 +77,7 @@
 	..()
 	desc = "A crate containing [item_worth] telecrystal\s worth of surplus leftovers."
 
-/datum/uplink_item/item/badassery/surplus/get_goods(var/obj/item/device/uplink/U, var/loc)
+/datum/uplink_item/item/badassery/surplus/get_goods(var/obj/item/uplink/U, var/loc)
 	var/obj/structure/largecrate/C = new(loc)
 	var/random_items = get_surplus_items(null, item_worth, C)
 	for(var/datum/uplink_item/I in random_items)

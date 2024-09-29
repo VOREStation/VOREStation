@@ -19,7 +19,7 @@
 /mob/living/carbon/brain/handle_message_mode(message_mode, message, verb, speaking, used_radios)
 	..()
 	if(message_mode)
-		var/obj/item/device/mmi/R = container
+		var/obj/item/mmi/R = container
 		if(R.radio && R.radio.radio_enabled)
 			if(message_mode == "general")
 				message_mode = null

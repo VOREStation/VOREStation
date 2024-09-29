@@ -1,7 +1,7 @@
 /*
  * Wirecutters
  */
-/obj/item/weapon/tool/wirecutters
+/obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
 	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
@@ -27,7 +27,7 @@
 	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
-/obj/item/weapon/tool/wirecutters/New()
+/obj/item/tool/wirecutters/New()
 	if(random_color)
 		switch(pick("red","blue","yellow"))
 			if ("red")
@@ -44,8 +44,8 @@
 		src.pixel_y = rand(0, 16)
 	..()
 
-/obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
+/obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
@@ -70,7 +70,7 @@
 	energy and signals, just as humans do."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/weapon/tool/wirecutters/alien
+/obj/item/tool/wirecutters/alien
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters)
@@ -80,13 +80,13 @@
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
 
-/obj/item/weapon/tool/wirecutters/cyborg
+/obj/item/tool/wirecutters/cyborg
 	name = "wirecutters"
 	desc = "This cuts wires.  With science."
 	usesound = 'sound/items/jaws_cut.ogg'
 	toolspeed = 0.5
 
-/obj/item/weapon/tool/wirecutters/hybrid
+/obj/item/tool/wirecutters/hybrid
 	name = "strange wirecutters"
 	desc = "This cuts wires.  With <span class='alien'>Science!</span>"
 	icon_state = "hybcutters"
@@ -97,7 +97,7 @@
 	toolspeed = 0.4
 	reach = 2
 
-/obj/item/weapon/tool/wirecutters/power
+/obj/item/tool/wirecutters/power
 	name = "power cutters"
 	desc = "You shouldn't see this."
 	usesound = 'sound/items/jaws_cut.ogg'

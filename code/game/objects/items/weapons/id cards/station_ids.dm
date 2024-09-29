@@ -1,4 +1,4 @@
-/obj/item/weapon/card/id
+/obj/item/card/id
 	name = "identification card"
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "generic-nt"
@@ -31,34 +31,34 @@
 	var/mining_points = 0	// For redeeming at mining equipment vendors
 	var/survey_points = 0	// For redeeming at explorer equipment vendors.
 
-/obj/item/weapon/card/id/examine(mob/user)
+/obj/item/card/id/examine(mob/user)
 	. = ..()
 	if(in_range(user, src))
 		tgui_interact(user) //Not chat related
 	else
 		. += "<span class='warning'>It is too far away to read.</span>"
 
-/obj/item/weapon/card/id/proc/prevent_tracking()
+/obj/item/card/id/proc/prevent_tracking()
 	return 0
 
-/obj/item/weapon/card/id/tgui_state(mob/user)
+/obj/item/card/id/tgui_state(mob/user)
 	return GLOB.tgui_deep_inventory_state
 
-/obj/item/weapon/card/id/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/card/id/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "IDCard", name)
 		ui.open()
 
-/obj/item/weapon/card/id/proc/update_name()
+/obj/item/card/id/proc/update_name()
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
-/obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
+/obj/item/card/id/proc/set_id_photo(var/mob/M)
 	M.ImmediateOverlayUpdate()
 	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 	front = "'data:image/png;base64,[icon2base64(F)]'"
 
-/mob/proc/set_id_info(var/obj/item/weapon/card/id/id_card)
+/mob/proc/set_id_info(var/obj/item/card/id/id_card)
 	id_card.age = 0
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
@@ -71,7 +71,7 @@
 		id_card.fingerprint_hash= md5(dna.uni_identity)
 	id_card.update_name()
 
-/mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
+/mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)
 	..()
 	id_card.age = age
 	if(species.name == SPECIES_HANNER)
@@ -80,7 +80,7 @@
 		id_card.species = "[custom_species ? "[custom_species] ([species.name])" : species.name]"
 	id_card.sex = capitalize(name_gender())
 
-/obj/item/weapon/card/id/tgui_data(mob/user)
+/obj/item/card/id/tgui_data(mob/user)
 	var/list/data = list()
 
 	data["registered_name"] = registered_name
@@ -95,20 +95,20 @@
 
 	return data
 
-/obj/item/weapon/card/id/attack_self(mob/user as mob)
+/obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("\The [user] shows you: [icon2html(src,viewers(src))] [src.name]. The assignment on the card: [src.assignment]",\
 		"You flash your ID card: [icon2html(src, user.client)] [src.name]. The assignment on the card: [src.assignment]")
 
 	src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/card/id/GetAccess()
+/obj/item/card/id/GetAccess()
 	return access
 
-/obj/item/weapon/card/id/GetID()
+/obj/item/card/id/GetID()
 	return src
 
-/obj/item/weapon/card/id/verb/read()
+/obj/item/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"
 	set src in usr
@@ -119,66 +119,66 @@
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 	return
 
-/obj/item/weapon/card/id/get_worn_icon_state(var/slot_name)
+/obj/item/card/id/get_worn_icon_state(var/slot_name)
 	if(slot_name == slot_wear_id_str)
 		return "id" //Legacy, just how it is. There's only one sprite.
 
 	return ..()
 
-/obj/item/weapon/card/id/Initialize()
+/obj/item/card/id/Initialize()
 	. = ..()
 	var/datum/job/J = job_master.GetJob(rank)
 	if(J)
 		access = J.get_access()
 
-/obj/item/weapon/card/id/silver
+/obj/item/card/id/silver
 	name = "identification card"
 	desc = "A silver card which shows honour and dedication."
 	icon_state = "silver-id"
 	item_state = "silver_id"
 
-/obj/item/weapon/card/id/gold
+/obj/item/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
 	icon_state = "gold-id"
 	item_state = "gold_id"
 	preserve_item = 1
 
-/obj/item/weapon/card/id/gold/captain
+/obj/item/card/id/gold/captain
 	assignment = JOB_SITE_MANAGER
 	rank = JOB_SITE_MANAGER
 
-/obj/item/weapon/card/id/gold/captain/spare
+/obj/item/card/id/gold/captain/spare
 	name = "\improper " + JOB_SITE_MANAGER + "'s spare ID"
 	desc = "The emergency spare ID for the station's very own Big Cheese."
 	icon_state = "gold-id-alternate"
 	registered_name = JOB_SITE_MANAGER
 
-/obj/item/weapon/card/id/gold/captain/spare/fakespare
+/obj/item/card/id/gold/captain/spare/fakespare
 	rank = "null"
 
-/obj/item/weapon/card/id/synthetic
+/obj/item/card/id/synthetic
 	name = "\improper Synthetic ID"
 	desc = "Access module for NanoTrasen Synthetics"
 	icon_state = "id-robot"
 	item_state = "idgreen"
 	assignment = "Synthetic"
 
-/obj/item/weapon/card/id/synthetic/Initialize()
+/obj/item/card/id/synthetic/Initialize()
 	. = ..()
 	access = get_all_station_access().Copy() + access_synth
 
-/obj/item/weapon/card/id/lost
+/obj/item/card/id/lost
 	name = "\improper Unknown ID"
 	desc = "Access module for Lost drones"
 	icon_state = "id-robot-n"
 	assignment = "Lost"
 
-/obj/item/weapon/card/id/lost/Initialize()
+/obj/item/card/id/lost/Initialize()
 	. = ..()
 	access += access_lost
 
-/obj/item/weapon/card/id/platform
+/obj/item/card/id/platform
 	name = "\improper Support Platform ID"
 	desc = "Access module for support platforms."
 	icon_state = "id-robot"
@@ -190,33 +190,33 @@
 		access_tox_storage, access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot
 	)
 
-/obj/item/weapon/card/id/centcom
+/obj/item/card/id/centcom
 	name = "\improper CentCom. ID"
 	desc = "An ID straight from Central Command."
 	icon_state = "cc-id"
 	registered_name = "Central Command"
 	assignment = "General"
 
-/obj/item/weapon/card/id/centcom/Initialize()
+/obj/item/card/id/centcom/Initialize()
 	. = ..()
 	access = get_all_centcom_access().Copy()
 
-/obj/item/weapon/card/id/centcom/station/Initialize()
+/obj/item/card/id/centcom/station/Initialize()
 	. = ..()
 	access |= get_all_station_access()
 
-/obj/item/weapon/card/id/centcom/ERT
+/obj/item/card/id/centcom/ERT
 	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
 	assignment = JOB_EMERGENCY_RESPONSE_TEAM
 	icon_state = "ert-id"
 	rank = JOB_EMERGENCY_RESPONSE_TEAM
 
-/obj/item/weapon/card/id/centcom/ERT/Initialize()
+/obj/item/card/id/centcom/ERT/Initialize()
 	. = ..()
 	access |= get_all_station_access()
 
 // Department-flavor IDs
-/obj/item/weapon/card/id/medical
+/obj/item/card/id/medical
 	name = "identification card"
 	desc = "A card issued to station medical staff."
 	icon_state = "medical-id"
@@ -224,7 +224,7 @@
 	secondary_color = rgb(223,255,255)
 	rank = JOB_MEDICAL_DOCTOR
 
-/obj/item/weapon/card/id/medical/head
+/obj/item/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
 	primary_color = rgb(189,237,237)
@@ -232,7 +232,7 @@
 	assignment = JOB_CHIEF_MEDICAL_OFFICER
 	rank = JOB_CHIEF_MEDICAL_OFFICER
 
-/obj/item/weapon/card/id/security
+/obj/item/card/id/security
 	name = "identification card"
 	desc = "A card issued to station security staff."
 	icon_state = "security-id"
@@ -240,11 +240,11 @@
 	secondary_color = rgb(223,127,95)
 	rank = JOB_SECURITY_OFFICER
 
-/obj/item/weapon/card/id/security/warden
+/obj/item/card/id/security/warden
 	assignment = JOB_WARDEN
 	rank = JOB_WARDEN
 
-/obj/item/weapon/card/id/security/head
+/obj/item/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
 	primary_color = rgb(189,47,0)
@@ -252,18 +252,18 @@
 	assignment = JOB_HEAD_OF_SECURITY
 	rank = JOB_HEAD_OF_SECURITY
 
-/obj/item/weapon/card/id/engineering
+/obj/item/card/id/engineering
 	name = "identification card"
 	desc = "A card issued to station engineering staff."
 	icon_state = "engineering-id"
 	primary_color = rgb(189,94,0)
 	secondary_color = rgb(223,159,95)
 
-/obj/item/weapon/card/id/engineering/atmos
+/obj/item/card/id/engineering/atmos
 	assignment = JOB_ATMOSPHERIC_TECHNICIAN
 	rank = JOB_ATMOSPHERIC_TECHNICIAN
 
-/obj/item/weapon/card/id/engineering/head
+/obj/item/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
 	primary_color = rgb(189,94,0)
@@ -271,14 +271,14 @@
 	assignment = JOB_CHIEF_ENGINEER
 	rank = JOB_CHIEF_ENGINEER
 
-/obj/item/weapon/card/id/science
+/obj/item/card/id/science
 	name = "identification card"
 	desc = "A card issued to station science staff."
 	icon_state = "science-id"
 	primary_color = rgb(142,47,142)
 	secondary_color = rgb(191,127,191)
 
-/obj/item/weapon/card/id/science/head
+/obj/item/card/id/science/head
 	name = "identification card"
 	desc = "A card which represents knowledge and reasoning."
 	primary_color = rgb(142,47,142)
@@ -286,14 +286,14 @@
 	assignment = JOB_RESEARCH_DIRECTOR
 	rank = JOB_RESEARCH_DIRECTOR
 
-/obj/item/weapon/card/id/cargo
+/obj/item/card/id/cargo
 	name = "identification card"
 	desc = "A card issued to station cargo staff."
 	icon_state = "cargo-id"
 	primary_color = rgb(142,94,0)
 	secondary_color = rgb(191,159,95)
 
-/obj/item/weapon/card/id/cargo/head
+/obj/item/card/id/cargo/head
 	name = "identification card"
 	desc = "A card which represents service and planning."
 	primary_color = rgb(142,94,0)
@@ -301,11 +301,11 @@
 	assignment = JOB_QUARTERMASTER
 	rank = JOB_QUARTERMASTER
 
-/obj/item/weapon/card/id/assistant
+/obj/item/card/id/assistant
 	assignment = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
 	rank = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
 
-/obj/item/weapon/card/id/civilian
+/obj/item/card/id/civilian
 	name = "identification card"
 	desc = "A card issued to station civilian staff."
 	icon_state = "civilian-id"
@@ -314,13 +314,13 @@
 	assignment = "Civilian"
 	rank = JOB_ALT_ASSISTANT
 
-/obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
+/obj/item/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
 	desc = "A card which represents common sense and responsibility."
 	primary_color = rgb(0,94,142)
 	secondary_color = rgb(255,223,127)
 
-/obj/item/weapon/card/id/external
+/obj/item/card/id/external
 	name = "identification card"
 	desc = "An identification card of some sort. It does not look like it is issued by NT."
 	icon_state = "generic"
@@ -328,14 +328,14 @@
 	secondary_color = rgb(191,159,95)
 
 //Event IDs
-/obj/item/weapon/card/id/event
+/obj/item/card/id/event
 	var/configured = 0
 	var/accessset = 0
 	initial_sprite_stack = list()
 	var/list/title_strings = list()
 	var/preset_rank = FALSE
 
-/obj/item/weapon/card/id/event/attack_self(var/mob/user)
+/obj/item/card/id/event/attack_self(var/mob/user)
 	if(configured == 1)
 		return ..()
 
@@ -358,9 +358,9 @@
 	configured = 1
 	to_chat(user, "<span class='notice'>Card settings set.</span>")
 
-/obj/item/weapon/card/id/event/attackby(obj/item/I as obj, var/mob/user)
-	if(istype(I, /obj/item/weapon/card/id) && !accessset)
-		var/obj/item/weapon/card/id/O = I
+/obj/item/card/id/event/attackby(obj/item/I as obj, var/mob/user)
+	if(istype(I, /obj/item/card/id) && !accessset)
+		var/obj/item/card/id/O = I
 		access |= O.GetAccess()
 		desc = I.desc
 		rank = O.rank
@@ -370,90 +370,90 @@
 		accessset = 1
 	..()
 
-/obj/item/weapon/card/id/event/accessset
+/obj/item/card/id/event/accessset
 	accessset = 1
 
-/obj/item/weapon/card/id/event/accessset/itg
+/obj/item/card/id/event/accessset/itg
 	name = "identification card"
 	desc = "A small card designating affiliation with the Ironcrest Transport Group."
 	icon = 'icons/obj/card_vr.dmi'
 	base_icon = 'icons/obj/card_vr.dmi'
 	icon_state = "itg"
 
-/obj/item/weapon/card/id/event/accessset/itg/green
+/obj/item/card/id/event/accessset/itg/green
 	icon_state = "itg_green"
 
-/obj/item/weapon/card/id/event/accessset/itg/red
+/obj/item/card/id/event/accessset/itg/red
 	icon_state = "itg_red"
 
-/obj/item/weapon/card/id/event/accessset/itg/purple
+/obj/item/card/id/event/accessset/itg/purple
 	icon_state = "itg_purple"
 
-/obj/item/weapon/card/id/event/accessset/itg/white
+/obj/item/card/id/event/accessset/itg/white
 	icon_state = "itg_white"
 
-/obj/item/weapon/card/id/event/accessset/itg/orange
+/obj/item/card/id/event/accessset/itg/orange
 	icon_state = "itg_orange"
 
-/obj/item/weapon/card/id/event/accessset/itg/blue
+/obj/item/card/id/event/accessset/itg/blue
 	icon_state = "itg_blue"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew
+/obj/item/card/id/event/accessset/itg/crew
 	name = "\improper ITG Crew ID"
 	assignment = "Crew"
 	rank = "Crew"
 	access = list(777)
 	preset_rank = TRUE
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/pilot
+/obj/item/card/id/event/accessset/itg/crew/pilot
 	name = "\improper ITG Pilot's ID"
 	desc = "An ID card belonging to the Pilot of an ITG vessel. The Pilot's responsibility is primarily to fly the ship. They may also be tasked to assist with cargo movement duties."
 	assignment = JOB_PILOT
 	rank = JOB_PILOT
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/service
+/obj/item/card/id/event/accessset/itg/crew/service
 	name = "\improper ITG " + JOB_ALT_COOK + "'s ID"
 	desc = "An ID card belonging to the " + JOB_ALT_COOK + " of an ITG vessel. The " + JOB_ALT_COOK + "'s responsibility is primarily to provide sustinence to the crew and passengers. The " + JOB_ALT_COOK + " answers to the Passenger Liason. In the absence of a Passenger Liason, the " + JOB_ALT_COOK + " is also responsible for tending to passenger related care and duties."
 	assignment = JOB_ALT_COOK
 	rank = JOB_ALT_COOK
 	icon_state = "itg_green"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/security
+/obj/item/card/id/event/accessset/itg/crew/security
 	name = "\improper ITG Security's ID"
 	desc = "An ID card belonging to Security of an ITG vessel. Security's responsibility is primarily to protect the ship, cargo, or facility. They may also be tasked to assist with cargo movement duties and rescue operations. ITG Security is almost exclusively defensive. They should not start fights, but they are very capable of finishing them."
 	assignment = "Security"
 	rank = "Security"
 	icon_state = "itg_red"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/research
+/obj/item/card/id/event/accessset/itg/crew/research
 	name = "\improper ITG Research's ID"
 	desc = "An ID card belonging to ITG Research staff. ITG Research staff primarily specializes in starship and starship engine design, and overcoming astronomic phenomena."
 	assignment = "Research"
 	rank = "Research"
 	icon_state = "itg_purple"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/medical
+/obj/item/card/id/event/accessset/itg/crew/medical
 	name = "\improper ITG Medic's ID"
 	desc = "An ID card belonging to the Medic of an ITG vessel. The Medic's responsibility is primarily to treat crew and passenger injuries. They may also be tasked with rescue operations."
 	assignment = "Medic"
 	rank = "Medic"
 	icon_state = "itg_white"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/engineer
+/obj/item/card/id/event/accessset/itg/crew/engineer
 	name = "\improper ITG " + JOB_ENGINEER + "'s ID"
 	desc = "An ID card belonging to the " + JOB_ENGINEER + " of an ITG vessel. The " + JOB_ENGINEER + "'s responsibility is primarily to maintain the ship. They may also be tasked to assist with cargo movement duties."
 	assignment = JOB_ENGINEER
 	rank = JOB_ENGINEER
 	icon_state = "itg_orange"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/passengerliason
+/obj/item/card/id/event/accessset/itg/crew/passengerliason
 	name = "\improper ITG Passenger Liason's ID"
 	desc = "An ID card belonging to the Passenger Liason of an ITG vessel. The Passenger Liason's responsibility is primarily to manage and tend to passenger needs and maintain supplies and facilities for passenger use."
 	assignment = "Passenger Liason"
 	rank = "Passenger Liason"
 	icon_state = "itg_blue"
 
-/obj/item/weapon/card/id/event/accessset/itg/crew/captain
+/obj/item/card/id/event/accessset/itg/crew/captain
 	name = "\improper ITG " + JOB_ALT_CAPTAIN + "'s ID"
 	desc = "An ID card belonging to the Captain of an ITG vessel. The Captain's responsibility is primarily to manage crew to ensure smooth ship operations. Captains often also often pilot the vessel when no dedicated pilot is assigned."
 	assignment = JOB_ALT_CAPTAIN
@@ -461,54 +461,54 @@
 	icon_state = "itg_blue"
 	access = list(777, 778)
 
-/obj/item/weapon/card/id/event/altcard
+/obj/item/card/id/event/altcard
 	icon = 'icons/obj/card_alt_vr.dmi'
 	base_icon = 'icons/obj/card_alt_vr.dmi'
 	icon_state = "id"
 
-/obj/item/weapon/card/id/event/altcard/spare
+/obj/item/card/id/event/altcard/spare
 	icon_state = "spare"
 
-/obj/item/weapon/card/id/event/altcard/clown
+/obj/item/card/id/event/altcard/clown
 	icon_state = "Clown"
 
-/obj/item/weapon/card/id/event/altcard/mime
+/obj/item/card/id/event/altcard/mime
 	icon_state = "Mime"
 
-/obj/item/weapon/card/id/event/altcard/centcom
+/obj/item/card/id/event/altcard/centcom
 	icon_state = "CentCom Officer"
 
-/obj/item/weapon/card/id/event/altcard/ert
+/obj/item/card/id/event/altcard/ert
 	icon_state = "Emergency Responder"
 
-/obj/item/weapon/card/id/event/altcard/nt
+/obj/item/card/id/event/altcard/nt
 	icon_state = "nanotrasen"
 
-/obj/item/weapon/card/id/event/altcard/syndiegold
+/obj/item/card/id/event/altcard/syndiegold
 	icon_state = "syndieGold"
 
-/obj/item/weapon/card/id/event/altcard/syndie
+/obj/item/card/id/event/altcard/syndie
 	icon_state = "syndie"
 
-/obj/item/weapon/card/id/event/altcard/greengold
+/obj/item/card/id/event/altcard/greengold
 	icon_state = "greenGold"
 
-/obj/item/weapon/card/id/event/altcard/pink
+/obj/item/card/id/event/altcard/pink
 	icon_state = "pink"
 
-/obj/item/weapon/card/id/event/altcard/pinkgold
+/obj/item/card/id/event/altcard/pinkgold
 	icon_state = "pinkGold"
 
-/obj/item/weapon/card/id/event/polymorphic
+/obj/item/card/id/event/polymorphic
 	var/base_icon_state
 
-/obj/item/weapon/card/id/event/polymorphic/digest_act(atom/movable/item_storage = null)
+/obj/item/card/id/event/polymorphic/digest_act(atom/movable/item_storage = null)
 	var/gimmeicon = icon
 	. = ..()
 	icon = gimmeicon
 	icon_state = base_icon_state + "_digested"
 
-/obj/item/weapon/card/id/event/polymorphic/altcard/attack_self(var/mob/user)
+/obj/item/card/id/event/polymorphic/altcard/attack_self(var/mob/user)
 	if(configured == 1)
 		return ..()
 	else
@@ -516,14 +516,14 @@
 		base_icon_state = user.job
 		return ..()
 
-/obj/item/weapon/card/id/event/polymorphic/altcard
+/obj/item/card/id/event/polymorphic/altcard
 	icon = 'icons/obj/card_alt_vr.dmi'
 	base_icon = 'icons/obj/card_alt_vr.dmi'
 	icon_state = "blank"
 	name = "contractor identification card"
 	desc = "An ID card typically used by contractors."
 
-/obj/item/weapon/card/id/event/polymorphic/itg/attack_self(var/mob/user)
+/obj/item/card/id/event/polymorphic/itg/attack_self(var/mob/user)
 	if(!configured)
 		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
 		JOB_PILOT = "itg",
@@ -579,9 +579,9 @@
 	name = user.name + "'s ITG ID card" + " ([assignment])"
 
 
-/obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
-	if(istype(I, /obj/item/weapon/card/id) && !accessset)
-		var/obj/item/weapon/card/id/O = I
+/obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
+	if(istype(I, /obj/item/card/id) && !accessset)
+		var/obj/item/card/id/O = I
 		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, JOB_HEAD_OF_SECURITY, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, JOB_CLOWN, JOB_MIME, JOB_TALON_CAPTAIN) //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
 			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
@@ -590,7 +590,7 @@
 	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."
 
 
-/obj/item/weapon/card/id/event/polymorphic/itg
+/obj/item/card/id/event/polymorphic/itg
 	icon = 'icons/obj/card_vr.dmi'
 	base_icon = 'icons/obj/card_vr.dmi'
 	icon_state = "itg"

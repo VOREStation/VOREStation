@@ -24,7 +24,7 @@
 	parachuting = TRUE
 
 	meat_amount = 1
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
 
 	attacktext = list("clawed", "pecked")
 	speak_emote = list("chirps", "caws")
@@ -35,7 +35,7 @@
 	organ_names = /decl/mob_organ_names/bird
 
 	say_list_type = /datum/say_list/bird
-	holder_type = /obj/item/weapon/holder/bird
+	holder_type = /obj/item/holder/bird
 
 /datum/say_list/bird
 	speak = list("Chirp!","Caw!","Screech!","Squawk!")

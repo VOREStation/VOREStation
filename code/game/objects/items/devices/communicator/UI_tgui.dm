@@ -1,5 +1,5 @@
 // Etc UI-only vars
-/obj/item/device/communicator
+/obj/item/communicator
 	// Stuff for moving cameras
 	var/turf/last_camera_turf
 	// Stuff needed to render the map
@@ -12,7 +12,7 @@
 // Proc: setup_tgui_camera()
 // Parameters: None
 // Description: This sets up all of the variables above to handle in-UI map windows.
-/obj/item/device/communicator/proc/setup_tgui_camera()
+/obj/item/communicator/proc/setup_tgui_camera()
 	map_name = "communicator_[REF(src)]_map"
 
 	// Initialize map objects
@@ -42,7 +42,7 @@
 // Proc: update_active_camera_screen()
 // Parameters: None
 // Description: This refreshes the camera location
-/obj/item/device/communicator/proc/update_active_camera_screen()
+/obj/item/communicator/proc/update_active_camera_screen()
 	if(!video_source?.can_use())
 		show_static()
 		return
@@ -52,7 +52,7 @@
 		show_static()
 		return
 
-	var/obj/item/device/communicator/communicator = video_source.loc
+	var/obj/item/communicator/communicator = video_source.loc
 	if(istype(communicator))
 		if(communicator.selfie_mode)
 			var/mob/target = get(communicator, /mob)
@@ -91,7 +91,7 @@
 	local_skybox.scale_to_view(video_range * 2)
 	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - last_camera_turf.x, (world.maxy>>1) - last_camera_turf.y)
 
-/obj/item/device/communicator/proc/show_static()
+/obj/item/communicator/proc/show_static()
 	cam_screen.vis_contents.Cut()
 	cam_background.icon_state = "scanline2"
 	cam_background.fill_rect(1, 1, (video_range * 2), (video_range * 2))
@@ -100,13 +100,13 @@
 // Proc: tgui_state()
 // Parameters: User
 // Description: This tells TGUI to only allow us to be interacted with while in a mob inventory.
-/obj/item/device/communicator/tgui_state(mob/user)
+/obj/item/communicator/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
 // Proc: tgui_interact()
 // Parameters: User, UI, Parent UI
 // Description: This proc handles opening the UI. It's basically just a standard stub.
-/obj/item/device/communicator/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/tgui_state/custom_state)
+/obj/item/communicator/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/tgui_state/custom_state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	// Update the camera every SStgui tick in case it moves
 	update_active_camera_screen()
@@ -127,7 +127,7 @@
 // Proc: tgui_data()
 // Parameters: User, UI, State
 // Description: Uses a bunch of for loops to turn lists into lists of lists, so they can be displayed in nanoUI, then displays various buttons to the user.
-/obj/item/device/communicator/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/communicator/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	// this is the data which will be sent to the ui
 	var/list/data = list()						//General nanoUI information
 	var/list/communicators = list()			    //List of communicators
@@ -143,7 +143,7 @@
 	var/list/modules_ui = list()				//Home screen info.
 
 	//First we add other 'local' communicators.
-	for(var/obj/item/device/communicator/comm in known_devices)
+	for(var/obj/item/communicator/comm in known_devices)
 		if(comm.network_visibility && comm.exonet)
 			communicators.Add(list(list(
 				"name" = sanitize(comm.name),
@@ -160,7 +160,7 @@
 			)))
 
 	//Lists all the other communicators that we invited.
-	for(var/obj/item/device/communicator/comm in voice_invites)
+	for(var/obj/item/communicator/comm in voice_invites)
 		if(comm.exonet)
 			invites.Add(list(list(
 				"name" = sanitize(comm.name),
@@ -178,7 +178,7 @@
 			)))
 
 	//Communicators that want to talk to us.
-	for(var/obj/item/device/communicator/comm in voice_requests)
+	for(var/obj/item/communicator/comm in voice_requests)
 		if(comm.exonet)
 			requests.Add(list(list(
 				"name" = sanitize(comm.name),
@@ -203,7 +203,7 @@
 		)))
 
 	//Finally, all the communicators linked to this one.
-	for(var/obj/item/device/communicator/comm in communicating)
+	for(var/obj/item/communicator/comm in communicating)
 		connected_communicators.Add(list(list(
 			"name" = sanitize(comm.name),
 			"true_name" = sanitize(comm.name),
@@ -211,7 +211,7 @@
 		)))
 
 	//Devices that have been messaged or recieved messages from.
-	for(var/obj/item/device/communicator/comm in im_contacts)
+	for(var/obj/item/communicator/comm in im_contacts)
 		if(comm.exonet)
 			im_contacts_ui.Add(list(list(
 				"name" = sanitize(comm.name),
@@ -302,7 +302,7 @@
 // Proc: tgui_static_data()
 // Parameters: User, UI, State
 // Description: Just like tgui_data, except it only gets called once when the user opens the UI, not every tick.
-/obj/item/device/communicator/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/communicator/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	// Update manifest'
 	if(data_core)
@@ -314,7 +314,7 @@
 // Proc: tgui-act()
 // Parameters: 4 (standard tgui_act arguments)
 // Description: Responds to UI button presses.
-/obj/item/device/communicator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/communicator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -381,8 +381,8 @@
 				exonet.send_message(their_address, "text", text)
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
 				log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", usr)
-				var/obj/item/device/communicator/comm = exonet.get_atom_from_address(their_address)
-				to_chat(usr, "<span class='notice'>[icon2html(src, usr.client)] Sent message to [istype(comm, /obj/item/device/communicator) ? comm.owner : comm.name], <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
+				var/obj/item/communicator/comm = exonet.get_atom_from_address(their_address)
+				to_chat(usr, "<span class='notice'>[icon2html(src, usr.client)] Sent message to [istype(comm, /obj/item/communicator) ? comm.owner : comm.name], <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
 				for(var/mob/M in player_list)
 					if(M.stat == DEAD && M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
 						if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)
@@ -396,13 +396,13 @@
 			for(var/mob/living/voice/V in contents)
 				if(name_to_disconnect == sanitize(V.name))
 					close_connection(usr, V, "[usr] hung up")
-			for(var/obj/item/device/communicator/comm in communicating)
+			for(var/obj/item/communicator/comm in communicating)
 				if(name_to_disconnect == sanitize(comm.name))
 					close_connection(usr, comm, "[usr] hung up")
 
 		if("startvideo")
 			var/ref_to_video = params["startvideo"]
-			var/obj/item/device/communicator/comm = locate(ref_to_video)
+			var/obj/item/communicator/comm = locate(ref_to_video)
 			if(comm)
 				connect_video(usr, comm)
 
@@ -419,7 +419,7 @@
 		if("hang_up")
 			for(var/mob/living/voice/V in contents)
 				close_connection(usr, V, "[usr] hung up")
-			for(var/obj/item/device/communicator/comm in communicating)
+			for(var/obj/item/communicator/comm in communicating)
 				close_connection(usr, comm, "[usr] hung up")
 
 		if("switch_tab")

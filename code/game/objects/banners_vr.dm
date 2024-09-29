@@ -1,2 +1,2 @@
-/obj/item/weapon/banner/solgov
+/obj/item/banner/solgov
 	name = "\improper SolCom banner"

@@ -23,7 +23,7 @@
 	var/wires_intact = TRUE
 	var/list/areas_added
 	var/field_type = /obj/structure/atmospheric_retention_field
-	circuit = /obj/item/weapon/circuitboard/arf_generator
+	circuit = /obj/item/circuitboard/arf_generator
 
 /obj/machinery/atmospheric_field_generator/impassable
 	desc = "An older model of ARF-G that generates an impassable retention field. Works just as well as the modern variety, but is slightly more energy-efficient.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
@@ -40,7 +40,7 @@
 	active_power_usage = 1500
 	field_type = /obj/structure/atmospheric_retention_field/impassable
 
-/obj/machinery/atmospheric_field_generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospheric_field_generator/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_CROWBAR) && isactive)
 		if(!src) return
 		to_chat(user, "<span class='warning'>You can't open the ARF-G whilst it's running!</span>")
@@ -67,7 +67,7 @@
 		return
 	if(hatch_open && W.has_tool_quality(TOOL_WELDER))
 		if(!src) return
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.isOn()) return
 		if(WT.get_fuel() < 5) // uses up 5 fuel.
 			to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")

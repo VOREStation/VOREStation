@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/baton/slime
+/obj/item/melee/baton/slime
 	name = "slimebaton"
 	desc = "A modified stun baton designed to stun slimes and other lesser slimy xeno lifeforms for handling."
 	icon_state = "slimebaton"
@@ -11,7 +11,7 @@
 	hitcost = 48	//Less zap for less cost
 	description_info = "This baton will stun a slime or other slime-based lifeform for about five seconds, if hit with it while on."
 
-/obj/item/weapon/melee/baton/slime/attack(mob/living/L, mob/user, hit_zone)
+/obj/item/melee/baton/slime/attack(mob/living/L, mob/user, hit_zone)
 	if(istype(L) && status) // Is it on?
 		if(L.mob_class & MOB_CLASS_SLIME) // Are they some kind of slime? (Prommies might pass this check someday).
 			if(isslime(L))
@@ -28,18 +28,18 @@
 				H.apply_damage(agony_to_apply, HALLOSS)
 
 	..()
-/obj/item/weapon/melee/baton/slime/loaded/Initialize()
-	bcell = new/obj/item/weapon/cell/device(src)
+/obj/item/melee/baton/slime/loaded/Initialize()
+	bcell = new/obj/item/cell/device(src)
 	update_icon()
 	return ..()
 
 // Research borg's version
-/obj/item/weapon/melee/baton/slime/robot
+/obj/item/melee/baton/slime/robot
 	hitcost = 200
 	use_external_power = TRUE
 
 // Xeno stun gun + projectile
-/obj/item/weapon/gun/energy/taser/xeno
+/obj/item/gun/energy/taser/xeno
 	name = "xeno taser gun"
 	desc = "Straight out of NT's testing laboratories, this small gun is used to subdue non-humanoid xeno life forms. \
 	While marketed towards handling slimes, it may be useful for other creatures."
@@ -53,13 +53,13 @@
 	it's core components swaped out for a new design made to subdue lesser slime-based xeno lifeforms at a distance.  It is \
 	ineffective at stunning non-slimy lifeforms such as humanoids."
 
-/obj/item/weapon/gun/energy/taser/xeno/robot // Borg version
+/obj/item/gun/energy/taser/xeno/robot // Borg version
 	self_recharge = 1
 	use_external_power = 1
 	recharge_time = 3
 /*
 VORESTATION REMOVAL
-/obj/item/weapon/gun/energy/taser/xeno/sec //NT's corner-cutting option for their on-station security.
+/obj/item/gun/energy/taser/xeno/sec //NT's corner-cutting option for their on-station security.
 	desc = "An NT Mk30 NL retrofitted to fire beams for subduing non-humanoid slimy xeno life forms."
 	icon_state = "taserblue"
 	item_state = "taser"
@@ -68,7 +68,7 @@ VORESTATION REMOVAL
 	accuracy = 0 //Same accuracy as a normal Sec taser.
 	description_fluff = "An NT Mk30 NL retrofitted after the events that occurred aboard the NRS Prometheus."
 
-/obj/item/weapon/gun/energy/taser/xeno/sec/robot //Cyborg variant of the security xeno-taser.
+/obj/item/gun/energy/taser/xeno/sec/robot //Cyborg variant of the security xeno-taser.
 	self_recharge = 1
 	use_external_power = 1
 	recharge_time = 3

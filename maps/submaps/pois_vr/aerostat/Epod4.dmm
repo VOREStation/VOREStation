@@ -58,7 +58,7 @@
 	dir = 1
 	},
 /obj/structure/closet/walllocker/emerglocker/east,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -28

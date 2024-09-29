@@ -136,7 +136,7 @@ field_generator power level display
 				to_chat(user, span_red("The [src.name] needs to be unwelded from the floor."))
 				return
 	else if(W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 		switch(state)
 			if(0)
 				to_chat(user, span_red("The [src.name] needs to be wrenched to the floor."))

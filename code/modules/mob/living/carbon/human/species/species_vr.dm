@@ -2,7 +2,7 @@
 	//This is so that if a race is using the chimera revive they can't use it more than once.
 	//Shouldn't really be seen in play too often, but it's case an admin event happens and they give a non chimera the chimera revive. Only one person can use the chimera revive at a time per race.
 	//var/reviving = 0 //commented out 'cause moved to mob
-	holder_type = /obj/item/weapon/holder/micro //This allows you to pick up crew
+	holder_type = /obj/item/holder/micro //This allows you to pick up crew
 	min_age = 18
 	descriptors = list()
 
@@ -67,7 +67,7 @@
 		var/list/nif_savedata = H.nif.save_data.Copy()*/
 		..()
 		H.nif = null //A previous call during the rejuvenation path deleted it, so we no longer should have it here
-		/*var/obj/item/device/nif/nif = new type(H,durability,nif_savedata)
+		/*var/obj/item/nif/nif = new type(H,durability,nif_savedata)
 		nif.nifsofts = nifsofts*/
 	else
 		..()

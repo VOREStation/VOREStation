@@ -57,7 +57,7 @@
 		food_recipes[Rp]["has_coatable_items"] = FALSE
 		for(var/I in food_recipes[Rp]["Ingredients"])
 			var/atom/ing = new I()
-			if(istype(ing, /obj/item/weapon/reagent_containers/food/snacks)) // only subtypes of this have a coating variable and are checked for it (fruit are a subtype of this, so there's a check for them too later)
+			if(istype(ing, /obj/item/reagent_containers/food/snacks)) // only subtypes of this have a coating variable and are checked for it (fruit are a subtype of this, so there's a check for them too later)
 				food_recipes[Rp]["has_coatable_items"] = TRUE
 
 			//So now we add something like "Bread" = 3

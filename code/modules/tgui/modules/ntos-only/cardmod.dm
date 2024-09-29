@@ -41,7 +41,7 @@
 	data["target_owner"] = null
 	data["target_name"] = null
 	if(program && program.computer && program.computer.card_slot)
-		var/obj/item/weapon/card/id/id_card = program.computer.card_slot.stored_card
+		var/obj/item/card/id/id_card = program.computer.card_slot.stored_card
 		data["has_modify"] = !!id_card
 		data["account_number"] = id_card ? id_card.associated_account_number : null
 		data["id_rank"] = id_card && id_card.assignment ? id_card.assignment : "Unassigned"
@@ -64,7 +64,7 @@
 	var/list/all_centcom_access = list()
 	var/list/regions = list()
 	if(program.computer.card_slot && program.computer.card_slot.stored_card)
-		var/obj/item/weapon/card/id/id_card = program.computer.card_slot.stored_card
+		var/obj/item/card/id/id_card = program.computer.card_slot.stored_card
 		if(is_centcom)
 			for(var/access in get_all_centcom_access())
 				all_centcom_access.Add(list(list(
@@ -97,7 +97,7 @@
 	if(!istype(program))
 		return null
 
-	var/obj/item/weapon/card/id/id_card = program.computer.card_slot ? program.computer.card_slot.stored_card : null
+	var/obj/item/card/id/id_card = program.computer.card_slot ? program.computer.card_slot.stored_card : null
 	var/list/formatted = list()
 	for(var/job in jobs)
 		formatted.Add(list(list(
@@ -119,8 +119,8 @@
 	if(!istype(computer))
 		return TRUE
 
-	var/obj/item/weapon/card/id/user_id_card = usr.GetIdCard()
-	var/obj/item/weapon/card/id/id_card
+	var/obj/item/card/id/user_id_card = usr.GetIdCard()
+	var/obj/item/card/id/id_card
 	if(computer.card_slot)
 		id_card = computer.card_slot.stored_card
 

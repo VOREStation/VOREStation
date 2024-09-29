@@ -13,8 +13,8 @@
 	clickvol = 60
 	idle_power_usage = 5
 	active_power_usage = 100
-	circuit = /obj/item/weapon/circuitboard/injector_maker
-	var/obj/item/weapon/reagent_containers/beaker = null
+	circuit = /obj/item/circuitboard/injector_maker
+	var/obj/item/reagent_containers/beaker = null
 	var/list/beaker_reagents_list = list()
 
 
@@ -54,12 +54,12 @@
 
 /obj/machinery/injector_maker/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if (istype(O, /obj/item/device/multitool))
+	if (istype(O, /obj/item/multitool))
 		return ..()
 
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/glass2) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/shaker))
+	if(istype(O,/obj/item/reagent_containers/glass) || \
+		istype(O,/obj/item/reagent_containers/food/drinks/glass2) || \
+		istype(O,/obj/item/reagent_containers/food/drinks/shaker))
 
 		if (beaker)
 			return 1
@@ -73,8 +73,8 @@
 
 
 
-	if(istype(O,/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty))
-		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty/E = O
+	if(istype(O,/obj/item/reagent_containers/hypospray/autoinjector/empty))
+		var/obj/item/reagent_containers/hypospray/autoinjector/empty/E = O
 		if(src.count_small_injector >= src.capacity_small_injector)
 			to_chat(user, SPAN_WARNING("Storage is full! It can only hold [capacity_small_injector]"))
 			return
@@ -84,8 +84,8 @@
 		src.count_small_injector = src.count_small_injector + 1
 		qdel(E)
 		update_icon()
-	if(istype(O,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty))
-		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty/E = O
+	if(istype(O,/obj/item/reagent_containers/hypospray/autoinjector/biginjector/empty))
+		var/obj/item/reagent_containers/hypospray/autoinjector/biginjector/empty/E = O
 		if(src.count_large_injector >= src.capacity_large_injector)
 			to_chat(user, SPAN_WARNING("Storage is full! It can only hold [capacity_large_injector]"))
 			return
@@ -255,7 +255,7 @@
 							return
 						else
 							src.count_small_injector = src.count_small_injector - 1
-				var/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty/P = new(loc)
+				var/obj/item/reagent_containers/hypospray/autoinjector/empty/P = new(loc)
 				beaker.reagents.trans_to_obj(P, amount_per_injector)
 				P.update_icon()
 				if(new_name)
@@ -274,7 +274,7 @@
 							return
 						else
 							src.count_large_injector = src.count_large_injector - 1
-				var/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty/P = new(loc)
+				var/obj/item/reagent_containers/hypospray/autoinjector/biginjector/empty/P = new(loc)
 				beaker.reagents.trans_to_obj(P, amount_per_injector)
 				P.update_icon()
 				if(new_name)

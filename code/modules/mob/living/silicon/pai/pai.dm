@@ -7,12 +7,12 @@
 	pass_flags = 1
 	mob_size = MOB_SMALL
 
-	holder_type = /obj/item/weapon/holder/pai
+	holder_type = /obj/item/holder/pai
 
 	can_pull_size = ITEMSIZE_SMALL
 	can_pull_mobs = MOB_PULL_SMALLER
 
-	idcard_type = /obj/item/weapon/card/id
+	idcard_type = /obj/item/card/id
 	var/idaccessible = 0
 
 	var/network = "SS13"
@@ -21,9 +21,9 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/device/paicard/card	// The card we inhabit
-	var/obj/item/device/radio/borg/pai/radio		// Our primary radio
-	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
+	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/radio/borg/pai/radio		// Our primary radio
+	var/obj/item/communicator/integrated/communicator	// Our integrated communicator.
 
 	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
@@ -72,7 +72,7 @@
 		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit
 		)
 
-	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
+	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
 	var/master				// Name of the one who commands us
 	var/master_dna			// DNA string for owner verification
@@ -88,7 +88,7 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/pda/ai/pai/pda = null
+	var/obj/item/pda/ai/pai/pda = null
 
 	var/paiHUD = 0			// Toggles whether the AR HUD is active or not
 
@@ -112,14 +112,14 @@
 
 	var/our_icon_rotation = 0
 
-/mob/living/silicon/pai/New(var/obj/item/device/paicard)
+/mob/living/silicon/pai/New(var/obj/item/paicard)
 	src.loc = paicard
 	card = paicard
 	sradio = new(src)
 	communicator = new(src)
 	if(card)
 		if(!card.radio)
-			card.radio = new /obj/item/device/radio/borg/pai(src.card)
+			card.radio = new /obj/item/radio/borg/pai(src.card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -174,7 +174,7 @@
 	return 0
 
 /mob/living/silicon/pai/restrained()
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		return 0
 	..()
 
@@ -290,8 +290,8 @@
 	else if(isbelly(card.loc)) //VOREStation edit.
 		to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
 		return 0 //VOREStation edit.
-	else if(istype(card.loc,/obj/item/device/pda))
-		var/obj/item/device/pda/holder = card.loc
+	else if(istype(card.loc,/obj/item/pda))
+		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 
 	src.client.perspective = EYE_PERSPECTIVE
@@ -361,9 +361,9 @@
 	set category = "IC"
 
 	// Pass lying down or getting up to our pet human, if we're in a rig.
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		resting = 0
-		var/obj/item/weapon/rig/rig = src.get_rig()
+		var/obj/item/rig/rig = src.get_rig()
 		if(istype(rig))
 			rig.force_rest(src)
 			return
@@ -415,7 +415,7 @@
 	handle_status_indicators()
 */
 //Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
 		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
 		src.adjustBruteLoss(W.force)
@@ -455,7 +455,7 @@
 	resting = 0
 
 	// If we are being held, handle removing our holder from their inv.
-	var/obj/item/weapon/holder/H = loc
+	var/obj/item/holder/H = loc
 	if(istype(H))
 		var/mob/living/M = H.loc
 		if(istype(M))
@@ -486,7 +486,7 @@
 
 // Handle being picked up.
 /mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
-	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
+	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
 
@@ -495,8 +495,8 @@
 	grabber.update_inv_r_hand()
 	return H
 
-/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/obj/item/weapon/card/id/ID = W.GetID()
+/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
+	var/obj/item/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
 			switch(tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel")))
@@ -516,7 +516,7 @@
 					return
 				if("Cancel", null)
 					return
-		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
+		else if (istype(W, /obj/item/card/id) && idaccessible == 0)
 			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")
 			return
 

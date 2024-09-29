@@ -14,7 +14,7 @@
 
 	..()
 
-/obj/structure/table/darkglass/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
+/obj/structure/table/darkglass/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 /obj/structure/table/alien/blue
@@ -37,7 +37,7 @@
 
 	..()
 
-/obj/structure/table/fancyblack/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
+/obj/structure/table/fancyblack/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 

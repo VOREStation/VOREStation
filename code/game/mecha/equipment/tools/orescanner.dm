@@ -10,7 +10,7 @@
 	ready_sound = 'sound/items/goggles_charge.ogg'
 	required_type = list(/obj/mecha/working/ripley)
 
-	var/obj/item/weapon/mining_scanner/my_scanner = null
+	var/obj/item/mining_scanner/my_scanner = null
 	var/exact_scan = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/tool/orescanner/Initialize()

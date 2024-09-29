@@ -4,17 +4,17 @@
 	will grab them automatically."
 	enhancement_desc = "Range is unlimited."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/apportation
+	obj_path = /obj/item/spell/apportation
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/apportation
+/obj/item/spell/apportation
 	name = "apportation"
 	icon_state = "apportation"
 	desc = "Allows you to reach through Bluespace with your hand, and grab something, bringing it to you instantly."
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_TELE
 
-/obj/item/weapon/spell/apportation/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/apportation/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 
@@ -69,7 +69,7 @@
 				L.Weaken(3)
 				user.visible_message("<span class='warning'><b>\The [user]</b> seizes [L]!</span>")
 
-				var/obj/item/weapon/grab/G = new(user,L)
+				var/obj/item/grab/G = new(user,L)
 
 				user.put_in_hands(G)
 

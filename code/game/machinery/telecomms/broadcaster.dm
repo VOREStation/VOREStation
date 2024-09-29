@@ -22,7 +22,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	machinetype = 5
 	produces_heat = 0
 	delay = 7
-	circuit = /obj/item/weapon/circuitboard/telecomms/broadcaster
+	circuit = /obj/item/circuitboard/telecomms/broadcaster
 	//Vars only used if you're using the overmap
 	var/overmap_range = 0
 	var/overmap_range_min = 0
@@ -34,7 +34,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/device/radio/R)
+/obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
@@ -67,7 +67,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		var/list/forced_radios
 		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/device/radio/R = wr.resolve()
+			var/obj/item/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
 
@@ -146,7 +146,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/allinone/proc/link_radio(var/obj/item/device/radio/R)
+/obj/machinery/telecomms/allinone/proc/link_radio(var/obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
@@ -198,7 +198,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		var/list/forced_radios
 		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/device/radio/R = wr.resolve()
+			var/obj/item/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
 
@@ -256,7 +256,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		var/list/forced_radios
 		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/device/radio/R = wr.resolve()
+			var/obj/item/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
 
@@ -336,7 +336,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 **/
 
 /proc/Broadcast_Message(var/datum/radio_frequency/connection, var/mob/M,
-						var/vmask, var/list/vmessage_pieces, var/obj/item/device/radio/radio,
+						var/vmask, var/list/vmessage_pieces, var/obj/item/radio/radio,
 						var/list/message_pieces, var/name, var/job, var/realname, var/vname,
 						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
 						var/list/forced_radios)
@@ -345,9 +345,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	var/display_freq = freq
 
-	var/list/obj/item/device/radio/radios = list()
+	var/list/obj/item/radio/radios = list()
 
-	for(var/obj/item/device/radio/R in forced_radios)
+	for(var/obj/item/radio/R in forced_radios)
 		//Cursory check to ensure they are 'on' and stuff
 		if(R.receive_range(display_freq, list(0)) > -1)
 			radios |= R
@@ -356,7 +356,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	if(data == DATA_INTERCOM)
 
-		for (var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
+		for (var/obj/item/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
 				radios |= R
 
@@ -364,9 +364,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	else if(data == DATA_LOCAL)
 
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for (var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 
-			if(istype(R, /obj/item/device/radio/headset) && !R.adhoc_fallback)
+			if(istype(R, /obj/item/radio/headset) && !R.adhoc_fallback)
 				continue
 
 			if(R.receive_range(display_freq, level) > -1)
@@ -377,7 +377,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	else if(data == DATA_ANTAG)
 		for(var/antag_freq in ANTAG_FREQS)
 			var/datum/radio_frequency/antag_connection = radio_controller.return_frequency(antag_freq)
-			for (var/obj/item/device/radio/R in antag_connection.devices["[RADIO_CHAT]"])
+			for (var/obj/item/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				if(R.receive_range(antag_freq, level) > -1)
 					radios |= R
 
@@ -385,7 +385,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	else
 
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for (var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
 				radios |= R
 
@@ -563,13 +563,13 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	var/list/receive = list()
 
-	for(var/obj/item/device/radio/R in forced_radios)
+	for(var/obj/item/radio/R in forced_radios)
 		receive |= R.send_hear(display_freq)
 
 	// --- Broadcast only to intercom devices ---
 
 	if(data == DATA_INTERCOM)
-		for (var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
+		for (var/obj/item/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
 				receive |= R.send_hear(display_freq, level)
@@ -578,9 +578,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast only to intercoms and station-bounced radios ---
 
 	else if(data == DATA_LOCAL)
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for (var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 
-			if(istype(R, /obj/item/device/radio/headset))
+			if(istype(R, /obj/item/radio/headset))
 				continue
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
@@ -592,7 +592,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	else if(data == DATA_ANTAG)
 		for(var/freq in ANTAG_FREQS)
 			var/datum/radio_frequency/antag_connection = radio_controller.return_frequency(freq)
-			for (var/obj/item/device/radio/R in antag_connection.devices["[RADIO_CHAT]"])
+			for (var/obj/item/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				var/turf/position = get_turf(R)
 				if(position && position.z == level)
 					receive |= R.send_hear(freq)
@@ -601,7 +601,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast to ALL radio devices ---
 
 	else
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for (var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
 				receive |= R.send_hear(display_freq)
@@ -658,7 +658,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			part_b_extra = " <i>(Intercepted)</i>"
 
 		// Create a radio headset for the sole purpose of using its icon
-		var/obj/item/device/radio/headset/radio = new
+		var/obj/item/radio/headset/radio = new
 
 		var/part_b = "</span><b>[icon2html(radio, heard_normal + heard_garbled + heard_gibberish)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_blackbox_b = "</span><b> \[[freq_text]\]</b> <span class='message'>" // Tweaked for security headsets -- TLE
