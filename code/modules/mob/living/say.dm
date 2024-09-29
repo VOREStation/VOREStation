@@ -192,6 +192,13 @@ var/list/channel_to_radio_key = new
 		return
 	// VOREStation Edit End
 
+	// If the message ends in an alphanumeric character (therefore, not punctuation),
+	// and autopunctuation is turned on, add a period.
+	// This must be done right here, before parse_languages is called, to make sure it's in the last multilingual say piece.
+	if(contains_az09(copytext(message, length(message))))
+		if(client?.prefs?.read_preference(/datum/preference/toggle/autopunctuation))
+			message += "."
+
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
