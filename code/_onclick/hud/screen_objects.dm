@@ -69,8 +69,8 @@
 
 /obj/screen/close/Click()
 	if(master)
-		if(istype(master, /obj/item/weapon/storage))
-			var/obj/item/weapon/storage/S = master
+		if(istype(master, /obj/item/storage))
+			var/obj/item/storage/S = master
 			S.close(usr)
 	return 1
 
@@ -101,7 +101,7 @@
 	name = "grab"
 
 /obj/screen/grab/Click()
-	var/obj/item/weapon/grab/G = master
+	var/obj/item/grab/G = master
 	G.s_click(src)
 	return 1
 
@@ -361,7 +361,7 @@
 								tankcheck = list(C.r_hand, C.l_hand, C.back)
 
 							// Rigs are a fucking pain since they keep an air tank in nullspace.
-							var/obj/item/weapon/rig/Rig = C.get_rig()
+							var/obj/item/rig/Rig = C.get_rig()
 							if(Rig)
 								if(Rig.air_supply && !Rig.offline)
 									from = "in"
@@ -369,8 +369,8 @@
 									tankcheck |= Rig.air_supply
 
 							for(var/i=1, i<tankcheck.len+1, ++i)
-								if(istype(tankcheck[i], /obj/item/weapon/tank))
-									var/obj/item/weapon/tank/t = tankcheck[i]
+								if(istype(tankcheck[i], /obj/item/tank))
+									var/obj/item/tank/t = tankcheck[i]
 									if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
 										contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
 										continue					//in it, so we're going to believe the tank is what it says it is
@@ -772,7 +772,7 @@
 	var/obj/screen/mapper/powbutton/powbutton
 	var/obj/screen/mapper/mapbutton/mapbutton
 
-	var/obj/item/device/mapping_unit/owner
+	var/obj/item/mapping_unit/owner
 	var/obj/screen/mapper/extras_holder/extras_holder
 
 /obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
@@ -965,7 +965,7 @@
 	var/warned = FALSE
 	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
 
-/obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
+/obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/gun/G)
 
 	if(!user?.client)
 		return
@@ -981,7 +981,7 @@
 /obj/screen/ammo/proc/remove_hud(var/mob/living/user)
 	user?.client?.screen -= src
 
-/obj/screen/ammo/proc/update_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
+/obj/screen/ammo/proc/update_hud(var/mob/living/user, var/obj/item/gun/G)
 	if(!user?.client?.screen.Find(src))
 		return
 

@@ -3,7 +3,7 @@
  * Patches. A subtype of pills, in order to inherit the possible future produceability within chem-masters, and dissolving.
  */
 
-/obj/item/weapon/reagent_containers/pill/patch
+/obj/item/reagent_containers/pill/patch
 	name = "patch"
 	desc = "A patch."
 	icon = 'icons/obj/chemical.dmi'
@@ -19,7 +19,7 @@
 
 	var/pierce_material = FALSE	// If true, the patch can be used through thick material.
 
-/obj/item/weapon/reagent_containers/pill/patch/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/pill/patch/attack(mob/M as mob, mob/user as mob)
 	var/mob/living/L = user
 
 	if(M == L)

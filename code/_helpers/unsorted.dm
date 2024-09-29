@@ -315,16 +315,16 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/search_pda = 1
 
 		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/weapon/card/id) )
-				var/obj/item/weapon/card/id/ID = A
+			if( search_id && istype(A,/obj/item/card/id) )
+				var/obj/item/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
 					if(!search_pda)	break
 					search_id = 0
 
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
+			else if( search_pda && istype(A,/obj/item/pda) )
+				var/obj/item/pda/PDA = A
 				if(PDA.owner == oldname)
 					PDA.owner = newname
 					PDA.name = "PDA-[newname] ([PDA.ownjob])"
@@ -1030,13 +1030,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Quick type checks for some tools
 var/global/list/common_tools = list(
 /obj/item/stack/cable_coil,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/wirecutters,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/transforming)
+/obj/item/tool/wrench,
+/obj/item/weldingtool,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wirecutters,
+/obj/item/multitool,
+/obj/item/tool/crowbar,
+/obj/item/tool/transforming)
 
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
@@ -1045,32 +1045,32 @@ var/global/list/common_tools = list(
 
 
 /proc/is_wire_tool(obj/item/I)
-	if(istype(I, /obj/item/device/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
+	if(istype(I, /obj/item/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
 		return TRUE
-	if(istype(I, /obj/item/device/assembly/signaler))
+	if(istype(I, /obj/item/assembly/signaler))
 		return TRUE
 	return
 
 /proc/is_hot(obj/item/W as obj)
 	switch(W.type)
-		if(/obj/item/weapon/weldingtool)
-			var/obj/item/weapon/weldingtool/WT = W
+		if(/obj/item/weldingtool)
+			var/obj/item/weldingtool/WT = W
 			if(WT.isOn())
 				return 3800
 			else
 				return 0
-		if(/obj/item/weapon/tool/transforming)
-			var/obj/item/weapon/tool/transforming/TT = W
+		if(/obj/item/tool/transforming)
+			var/obj/item/tool/transforming/TT = W
 			if(TT.possible_tooltypes[TT.current_tooltype] == TOOL_WELDER)
 				return 3800
 			else
 				return 0
-		if(/obj/item/weapon/flame/lighter)
+		if(/obj/item/flame/lighter)
 			if(W:lit)
 				return 1500
 			else
 				return 0
-		if(/obj/item/weapon/flame/match)
+		if(/obj/item/flame/match)
 			if(W:lit)
 				return 1000
 			else
@@ -1080,9 +1080,9 @@ var/global/list/common_tools = list(
 				return 1000
 			else
 				return 0
-		if(/obj/item/weapon/pickaxe/plasmacutter)
+		if(/obj/item/pickaxe/plasmacutter)
 			return 3800
-		if(/obj/item/weapon/melee/energy)
+		if(/obj/item/melee/energy)
 			return 3500
 		else
 			return 0
@@ -1113,12 +1113,12 @@ var/global/list/common_tools = list(
 		return TRUE
 	return ( \
 		W.has_tool_quality(TOOL_SCREWDRIVER)		     				              || \
-		istype(W, /obj/item/weapon/pen)                           || \
-		istype(W, /obj/item/weapon/weldingtool)					  || \
-		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \
-		istype(W, /obj/item/weapon/flame/match)            		  || \
+		istype(W, /obj/item/pen)                           || \
+		istype(W, /obj/item/weldingtool)					  || \
+		istype(W, /obj/item/flame/lighter/zippo)			  || \
+		istype(W, /obj/item/flame/match)            		  || \
 		istype(W, /obj/item/clothing/mask/smokable/cigarette) 		      || \
-		istype(W, /obj/item/weapon/shovel) \
+		istype(W, /obj/item/shovel) \
 	)
 
 // check if mob is lying down on something we can operate him on.
@@ -1153,12 +1153,12 @@ Checks if that loc and dir has a item on the wall
 TODO - Fix this ancient list of wall items. Preferably make it dynamically populated. ~Leshana
 */
 var/list/WALLITEMS = list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/device/radio/intercom, /obj/structure/frame,
+	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom, /obj/structure/frame,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
 	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/structure/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/button/remote,
 	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio,
-	/obj/item/weapon/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
+	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
 	)
 /proc/gotwallitem(loc, dir)
@@ -1463,12 +1463,12 @@ var/mob/dview/dview_mob = new
 		var/typename = "[type]"
 		var/static/list/TYPES_SHORTCUTS = list(
 			/obj/effect/decal/cleanable = "CLEANABLE",
-			/obj/item/device/radio/headset = "HEADSET",
+			/obj/item/radio/headset = "HEADSET",
 			/obj/item/clothing/head/helmet/space = "SPESSHELMET",
-			/obj/item/weapon/book/manual = "MANUAL",
-			/obj/item/weapon/reagent_containers/food/drinks = "DRINK",
-			/obj/item/weapon/reagent_containers/food = "FOOD",
-			/obj/item/weapon/reagent_containers = "REAGENT_CONTAINERS",
+			/obj/item/book/manual = "MANUAL",
+			/obj/item/reagent_containers/food/drinks = "DRINK",
+			/obj/item/reagent_containers/food = "FOOD",
+			/obj/item/reagent_containers = "REAGENT_CONTAINERS",
 			/obj/machinery/atmospherics = "ATMOS_MECH",
 			/obj/machinery/portable_atmospherics = "PORT_ATMOS",
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack = "MECHA_MISSILE_RACK",

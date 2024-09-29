@@ -2,7 +2,7 @@
 //The winner of the pull has an effect applied to them.
 //Crackers do already exist, but these ones are a more memey scene item.
 
-/obj/item/weapon/cracker
+/obj/item/cracker
 	name = "bluespace cracker" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A celebratory little game with a bluespace twist! Pull it between two people until it snaps, and the person who recieves the larger end gets a prize!"
 	icon = 'icons/obj/crackers.dmi'
@@ -34,7 +34,7 @@
 						"What do you call a cow with no legs? Ground Beef.",
 						"Why'd the scarecrow win the Nobel prize? He was outstanding in his field.")
 
-/obj/item/weapon/cracker/attack(atom/A, mob/living/user, adjacent, params)
+/obj/item/cracker/attack(atom/A, mob/living/user, adjacent, params)
 	var/mob/living/carbon/human/target = A
 	if(!istype(target))
 		return
@@ -119,42 +119,42 @@
 	user.drop_item(src)
 	new /obj/random/toy(spawnloc)
 	new /obj/item/clothing/head/paper_crown(spawnloc)
-	var/obj/item/weapon/paper/cracker_joke/J = new(spawnloc)
+	var/obj/item/paper/cracker_joke/J = new(spawnloc)
 	J.info = joke
 	qdel(src)
 
-/obj/item/weapon/cracker/Initialize()
+/obj/item/cracker/Initialize()
 	var/list/styles = list("blue","green","yellow","red","heart","hazard")
 	var/style = pick(styles)
 	icon_state = style
 	item_state = style
 	..()
 
-/obj/item/weapon/cracker/shrinking
+/obj/item/cracker/shrinking
 	name = "shrinking bluespace cracker"
 	prizes = list("shrinking")
 
-/obj/item/weapon/cracker/growing
+/obj/item/cracker/growing
 	name = "growing bluespace cracker"
 	prizes = list("growing")
 
-/obj/item/weapon/cracker/invisibility
+/obj/item/cracker/invisibility
 	name = "cloaking bluespace cracker"
 	prizes = list("invisibility")
 
-/obj/item/weapon/cracker/drugged
+/obj/item/cracker/drugged
 	name = "psychedelic bluespace cracker"
 	prizes = list("drugged")
 
-/obj/item/weapon/cracker/knockover
+/obj/item/cracker/knockover
 	name = "forceful bluespace cracker"
 	prizes = list("knocked over")
 
-/obj/item/weapon/cracker/vore
+/obj/item/cracker/vore
 	name = "teleporting bluespace cracker"
 	prizes = list("teleport")
 
-/obj/item/weapon/cracker/money
+/obj/item/cracker/money
 	name = "fortuitous bluespace cracker"
 	prizes = list("wealth")
 
@@ -175,9 +175,9 @@
 	item_state = style
 	..()
 
-/obj/item/weapon/paper/cracker_joke
+/obj/item/paper/cracker_joke
 	name = "joke"
 	icon_state = "joke"
 
-/obj/item/weapon/paper/cracker_joke/update_icon()
+/obj/item/paper/cracker_joke/update_icon()
 	return

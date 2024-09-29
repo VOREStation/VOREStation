@@ -1,4 +1,4 @@
-/obj/item/weapon/ore/rutile
+/obj/item/ore/rutile
 	name = "rutile"
 	icon = 'icons/obj/mining_vr.dmi'
 	icon_state = "ore_rutile"

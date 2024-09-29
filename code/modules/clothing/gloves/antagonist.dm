@@ -28,11 +28,11 @@
 		to_chat(target, "<span class='warning'>[user] rifles in your pockets!</span>")
 
 	if(user.a_intent == I_HELP)
-		if(istype(target.back,/obj/item/weapon/storage) && do_after(user, 3 SECONDS, target))
-			var/obj/item/weapon/storage/Backpack = target.back
+		if(istype(target.back,/obj/item/storage) && do_after(user, 3 SECONDS, target))
+			var/obj/item/storage/Backpack = target.back
 			Backpack.open(user)
-		else if(istype(target.belt, /obj/item/weapon/storage) && do_after(user, 5 SECONDS, target))
-			var/obj/item/weapon/storage/Belt = target.belt
+		else if(istype(target.belt, /obj/item/storage) && do_after(user, 5 SECONDS, target))
+			var/obj/item/storage/Belt = target.belt
 			Belt.open(user)
 		return 1
 
@@ -97,8 +97,8 @@
 	The device is also capable of 'frankenstein'-ing a corpse, long after normal technology would be able to save them. The body will still be tied to the\
 	normal damage limits for survival, however, so care must be taken."
 	icon_state = "material"
-	var/battery_type = /obj/item/weapon/cell/device/weapon/recharge
-	var/obj/item/weapon/cell/battery = null
+	var/battery_type = /obj/item/cell/device/weapon/recharge
+	var/obj/item/cell/battery = null
 
 /obj/item/clothing/gloves/ring/buzzer/get_cell()
 	return battery

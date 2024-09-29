@@ -1,10 +1,10 @@
-/obj/item/weapon/gun/energy/ionrifle/pistol
+/obj/item/gun/energy/ionrifle/pistol
 	projectile_type = /obj/item/projectile/ion/pistol // still packs a punch but no AoE
 
-/obj/item/weapon/gun/energy/ionrifle/weak
+/obj/item/gun/energy/ionrifle/weak
 	projectile_type = /obj/item/projectile/ion/small
 
-/obj/item/weapon/gun/energy/medigun //Adminspawn/ERT etc
+/obj/item/gun/energy/medigun //Adminspawn/ERT etc
 	name = "directed restoration system"
 	desc = "The BL-3 'Phoenix' is an adaptation on the ML-3 'Medbeam' design that channels the power of the beam into a single healing laser. It is highly energy-inefficient, but its medical power cannot be denied."
 	force = 5
@@ -22,11 +22,11 @@
 
 	projectile_type = /obj/item/projectile/beam/medigun
 
-	accept_cell_type = /obj/item/weapon/cell
-	cell_type = /obj/item/weapon/cell/high
+	accept_cell_type = /obj/item/cell
+	cell_type = /obj/item/cell/high
 	charge_cost = 2500
 
-/obj/item/weapon/gun/energy/bfgtaser
+/obj/item/gun/energy/bfgtaser
 	name = "9000-series Ball Lightning Taser"
 	desc = "The brainchild of Hephaestus Industries Civil Pacification Division, the BLT-9000 was intended for riot control but despite enthusiastic interest from law-enforcement agencies across the Commonwealth and beyond, its indiscriminate nature led to it being banned from civilian use in virtually all jurisdictions. As a result, most pieces are found in the hands of collectors."
 	icon = 'icons/obj/gun_vr.dmi'
@@ -43,7 +43,7 @@
 	charge_cost = 2400 //yes, this bad boy empties an entire weapon cell in one shot. What of it?
 	var/spinning_up = FALSE
 
-/obj/item/weapon/gun/energy/bfgtaser/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+/obj/item/gun/energy/bfgtaser/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(spinning_up)
 		return
 	if(!power_supply || !power_supply.check_charge(charge_cost))

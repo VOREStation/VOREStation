@@ -21,28 +21,28 @@
 		return 0
 
 	if(held_item == null)
-		if(changeling_generic_weapon(/obj/item/weapon/finger_lockpick,0,5))  //Chemical cost is handled in the equip proc.
+		if(changeling_generic_weapon(/obj/item/finger_lockpick,0,5))  //Chemical cost is handled in the equip proc.
 			return 1
 		return 0
 
-/obj/item/weapon/finger_lockpick
+/obj/item/finger_lockpick
 	name = "finger lockpick"
 	desc = "This finger appears to be an organic datajack."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
 	show_examine = FALSE
 
-/obj/item/weapon/finger_lockpick/New()
+/obj/item/finger_lockpick/New()
 	if(ismob(loc))
 		to_chat(loc, "<span class='notice'>We shape our finger to fit inside electronics, and are ready to force them open.</span>")
 
-/obj/item/weapon/finger_lockpick/dropped(mob/user)
+/obj/item/finger_lockpick/dropped(mob/user)
 	to_chat(user, "<span class='notice'>We discreetly shape our finger back to a less suspicious form.</span>")
 	spawn(1)
 		if(src)
 			qdel(src)
 
-/obj/item/weapon/finger_lockpick/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/finger_lockpick/afterattack(var/atom/target, var/mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)

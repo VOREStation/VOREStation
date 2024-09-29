@@ -1,4 +1,4 @@
-/obj/item/weapon/weldpack
+/obj/item/weldpack
 	name = "Welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK
@@ -6,13 +6,13 @@
 	icon_state = "welderpack"
 	w_class = ITEMSIZE_LARGE
 	var/max_fuel = 350
-	var/obj/item/weapon/nozzle = null //Attached welder, or other spray device.
-	var/nozzle_type = /obj/item/weapon/weldingtool/tubefed
+	var/obj/item/nozzle = null //Attached welder, or other spray device.
+	var/nozzle_type = /obj/item/weldingtool/tubefed
 	var/nozzle_attached = 0
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
-/obj/item/weapon/weldpack/Initialize()
+/obj/item/weldpack/Initialize()
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
@@ -21,19 +21,19 @@
 	nozzle = new nozzle_type(src)
 	nozzle_attached = 1
 
-/obj/item/weapon/weldpack/Destroy()
+/obj/item/weldpack/Destroy()
 	qdel(nozzle)
 	nozzle = null
 	return ..()
 
-/obj/item/weapon/weldpack/dropped(mob/user)
+/obj/item/weldpack/dropped(mob/user)
 	..()
 	if(nozzle)
 		user.remove_from_mob(nozzle)
 		return_nozzle()
 		to_chat(user, "<span class='notice'>\The [nozzle] retracts to its fueltank.</span>")
 
-/obj/item/weapon/weldpack/proc/get_nozzle(var/mob/living/user)
+/obj/item/weldpack/proc/get_nozzle(var/mob/living/user)
 	if(!ishuman(user))
 		return 0
 
@@ -43,19 +43,19 @@
 		to_chat(H, "<span class='warning'>Your hands are full.  Drop something first.</span>")
 		return 0
 
-	var/obj/item/weapon/F = nozzle
+	var/obj/item/F = nozzle
 	H.put_in_hands(F)
 	nozzle_attached = 0
 
 	return 1
 
-/obj/item/weapon/weldpack/proc/return_nozzle(var/mob/living/user)
+/obj/item/weldpack/proc/return_nozzle(var/mob/living/user)
 	nozzle.forceMove(src)
 	nozzle_attached = 1
 
-/obj/item/weapon/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool) && !(W == nozzle))
-		var/obj/item/weapon/weldingtool/T = W
+/obj/item/weldpack/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weldingtool) && !(W == nozzle))
+		var/obj/item/weldingtool/T = W
 		if(T.welding & prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")
@@ -86,7 +86,7 @@
 		to_chat(user, "<span class='warning'>The tank scoffs at your insolence. It only provides services to welders.</span>")
 	return
 
-/obj/item/weapon/weldpack/attack_hand(mob/user as mob)
+/obj/item/weldpack/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/wearer = user
 		if(wearer.back == src)
@@ -100,7 +100,7 @@
 	else
 		..()
 
-/obj/item/weapon/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
@@ -112,7 +112,7 @@
 		to_chat(user, "<span class='warning'>The pack is already full!</span>")
 		return
 
-/obj/item/weapon/weldpack/MouseDrop(obj/over_object as obj) //This is terrifying.
+/obj/item/weldpack/MouseDrop(obj/over_object as obj) //This is terrifying.
 	if(!canremove)
 		return
 
@@ -144,11 +144,11 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/weapon/weldpack/examine(mob/user)
+/obj/item/weldpack/examine(mob/user)
 	. = ..()
 	. += "It has [src.reagents.total_volume] units of fuel left!"
 
-/obj/item/weapon/weldpack/survival
+/obj/item/weldpack/survival
 	name = "emergency welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK
@@ -157,4 +157,4 @@
 	item_state = "welderpack"
 	w_class = ITEMSIZE_LARGE
 	max_fuel = 100
-	nozzle_type = /obj/item/weapon/weldingtool/tubefed/survival
+	nozzle_type = /obj/item/weldingtool/tubefed/survival

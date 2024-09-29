@@ -67,7 +67,7 @@
 	climbable = FALSE
 
 	starts_with = list(
-		/obj/item/weapon/fuel_assembly/deuterium = 6)
+		/obj/item/fuel_assembly/deuterium = 6)
 
 /obj/item/poi/brokenoldreactor
 	icon_state = "poireactor_broken"
@@ -149,15 +149,15 @@
 		return FALSE
 
 	var/turf/message_turf = get_turf(user)	//We use this to ensure everyone can see it!
-	if(istype(I, /obj/item/weapon/tool/screwdriver))
+	if(istype(I, /obj/item/tool/screwdriver))
 		unscrewed = !unscrewed
 		to_chat(user, "You screw the blackbox panel [unscrewed ? "off" : "on"]")
 
-	if(istype(I, /obj/item/weapon/tool/wirecutters))
+	if(istype(I, /obj/item/tool/wirecutters))
 		wirecutted = !wirecutted
 		to_chat(user, "You [wirecutted ? "cut" : "mend"] the power wire to the blackbox")
 
-	if(istype(I, /obj/item/weapon/paper) && unscrewed)
+	if(istype(I, /obj/item/paper) && unscrewed)
 		if(!has_paper)
 			to_chat(user, "You feed the debug printer some paper")
 			has_paper = TRUE
@@ -165,7 +165,7 @@
 		else
 			to_chat(user, span_notice("[src] cannot hold more than 1 sheet of paper."))
 
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		if(!unscrewed && !wirecutted)
 			to_chat(user, span_notice("You cannot access the debug interface with the panel screwed on!"))
 		else if(unscrewed && !wirecutted)
@@ -182,7 +182,7 @@
 			to_chat(user, span_notice("You modify the security settings."))
 			unlocked = TRUE
 
-	if(istype(I, /obj/item/device/robotanalyzer))
+	if(istype(I, /obj/item/robotanalyzer))
 		if(!unscrewed)
 			to_chat(user, span_notice("You cannot access the debug interface with the panel screwed on!"))
 		else if(wirecutted)
@@ -199,7 +199,7 @@
 			else
 				message_turf.audible_message(message = "<b>[src]</b> rattles loudly as it prints",
 				deaf_message = "<b>[src]</b> flashes green!", runemessage= "RATTLE RATTLE")
-				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
+				var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 				P.name = "[drone_name] blackbox transcript"
 				P.info = "[examine_canalyzer_printed ? examine_canalyzer_printed : examine_canalyzer]"
 				has_paper = FALSE

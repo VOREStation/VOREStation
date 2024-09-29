@@ -34,7 +34,7 @@
 /obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
 
-	if(occupant && (istype(I, /obj/item/device/healthanalyzer) || istype(I, /obj/item/device/robotanalyzer)))
+	if(occupant && (istype(I, /obj/item/healthanalyzer) || istype(I, /obj/item/robotanalyzer)))
 		I.attack(occupant, user)
 	return
 

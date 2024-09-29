@@ -14,13 +14,13 @@
 /*
  * Gun Locking Mechanism
  */
-/obj/item/weapon/gun/energy/locked
+/obj/item/gun/energy/locked
 	req_access = list(access_armory) //for toggling safety
 	var/locked = 1
 	var/lockable = 1
 
-/obj/item/weapon/gun/energy/locked/attackby(obj/item/I, mob/user)
-	var/obj/item/weapon/card/id/id = I.GetID()
+/obj/item/gun/energy/locked/attackby(obj/item/I, mob/user)
+	var/obj/item/card/id/id = I.GetID()
 	if(istype(id) && lockable)
 		if(check_access(id))
 			locked = !locked
@@ -31,14 +31,14 @@
 	else
 		return ..()
 
-/obj/item/weapon/gun/energy/locked/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/gun/energy/locked/emag_act(var/remaining_charges,var/mob/user)
 	..()
 	if(lockable)
 		locked = !locked
 		to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src]!</span>")
 		return 1
 
-/obj/item/weapon/gun/energy/locked/special_check(mob/user)
+/obj/item/gun/energy/locked/special_check(mob/user)
 	if(locked)
 		var/turf/T = get_turf(src)
 		if(T.z in using_map.station_levels)
@@ -49,7 +49,7 @@
 /*
  * Expedition Frontier Phaser
  */
-/obj/item/weapon/gun/energy/locked/frontier
+/obj/item/gun/energy/locked/frontier
 	name = "frontier phaser"
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank \
 	charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
@@ -80,7 +80,7 @@
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="phaserstun", charge_cost = 100),
 	)
 
-/obj/item/weapon/gun/energy/locked/frontier/unload_ammo(var/mob/user)
+/obj/item/gun/energy/locked/frontier/unload_ammo(var/mob/user)
 	if(recharging)
 		return
 	recharging = 1
@@ -99,20 +99,20 @@
 	update_icon()
 	user.hud_used.update_ammo_hud(user, src) // Update one last time once we're finished!
 
-/obj/item/weapon/gun/energy/locked/frontier/update_icon()
+/obj/item/gun/energy/locked/frontier/update_icon()
 	if(recharging)
 		icon_state = "[initial(icon_state)]_pump"
 		update_held_icon()
 		return
 	..()
 
-/obj/item/weapon/gun/energy/locked/frontier/emp_act(severity)
+/obj/item/gun/energy/locked/frontier/emp_act(severity)
 	return ..(severity+2)
 
-/obj/item/weapon/gun/energy/locked/frontier/ex_act() //|rugged|
+/obj/item/gun/energy/locked/frontier/ex_act() //|rugged|
 	return
 
-/obj/item/weapon/gun/energy/locked/frontier/unlocked
+/obj/item/gun/energy/locked/frontier/unlocked
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a \
 	built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
@@ -122,7 +122,7 @@
 /*
  * Expedition Frontier Carbine
  */
-/obj/item/weapon/gun/energy/locked/frontier/carbine
+/obj/item/gun/energy/locked/frontier/carbine
 	name = "frontier carbine"
 	desc = "An ergonomically improved version of the venerable frontier phaser, the carbine is a fairly new weapon, and has only been \
 	produced in limited numbers so far. Includes a built-in crank charger for recharging away from civilization. This one has a safety \
@@ -144,14 +144,14 @@
 		list(mode_name="low-power", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="phcarbinestun", charge_cost = 100),
 	)
 
-/obj/item/weapon/gun/energy/locked/frontier/carbine/update_icon()
+/obj/item/gun/energy/locked/frontier/carbine/update_icon()
 	if(recharging)
 		icon_state = "[modifystate]_pump"
 		update_held_icon()
 		return
 	..()
 
-/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked
+/obj/item/gun/energy/locked/frontier/carbine/unlocked
 	desc = "An ergonomically improved version of the venerable frontier phaser, the carbine is a fairly new weapon, and has only been \
 	produced in limited numbers so far. Includes a built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
@@ -161,7 +161,7 @@
 /*
  * Expedition Frontier Rifle
  */
-/obj/item/weapon/gun/energy/locked/frontier/rifle
+/obj/item/gun/energy/locked/frontier/rifle
 	name = "frontier marksman rifle"
 	desc = "A much larger, heavier weapon than the typical frontier-type weapons, this DMR can be fired both from the hip, and in scope. \
 	Includes a built-in crank charger for recharging away from civilization. Unlike other frontier-type weapons, this model lacks a non-lethal option. \
@@ -194,24 +194,24 @@
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="phriflekill", charge_cost = 200),
 	)
 
-/obj/item/weapon/gun/energy/locked/frontier/rifle/ui_action_click()
+/obj/item/gun/energy/locked/frontier/rifle/ui_action_click()
 	scope()
 
-/obj/item/weapon/gun/energy/locked/frontier/rifle/verb/scope()
+/obj/item/gun/energy/locked/frontier/rifle/verb/scope()
 	set category = "Object"
 	set name = "Use Scope"
 	set popup_menu = 1
 
 	toggle_scope(2.0)
 
-/obj/item/weapon/gun/energy/locked/frontier/rifle/update_icon()
+/obj/item/gun/energy/locked/frontier/rifle/update_icon()
 	if(recharging)
 		icon_state = "[modifystate]_pump"
 		update_held_icon()
 		return
 	..()
 
-/obj/item/weapon/gun/energy/locked/frontier/rifle/unlocked
+/obj/item/gun/energy/locked/frontier/rifle/unlocked
 	desc = "A much larger, heavier weapon than the typical frontier-type weapons, this DMR can be fired both from the hip, and in scope. \
 	Unlike other frontier-type weapons, this model lacks a non-lethal option. Includes a built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
@@ -221,7 +221,7 @@
 /*
  * Holdout Phaser Pistol
  */
-/obj/item/weapon/gun/energy/locked/frontier/holdout
+/obj/item/gun/energy/locked/frontier/holdout
 	name = "holdout frontier phaser"
 	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for \
 	recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
@@ -239,7 +239,7 @@
 		list(mode_name="stun", fire_delay=12, projectile_type=/obj/item/projectile/beam/stun/med, modifystate="holdoutshock", charge_cost = 300),
 	)
 
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked
+/obj/item/gun/energy/locked/frontier/holdout/unlocked
 	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in \
 	crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
@@ -249,7 +249,7 @@
 /*
  * Holdout Phaser Bow
  */
-/obj/item/weapon/gun/energy/locked/frontier/handbow
+/obj/item/gun/energy/locked/frontier/handbow
 	name = "phaser handbow"
 	desc = "An minaturized weapon that fires a bolt of energy. Includes a built-in crank charger for recharging away from civilization. \
 	This one has a safety interlock that prevents firing while in proximity to the facility."
@@ -265,7 +265,7 @@
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/energy/bow, modifystate="handbowstun", charge_cost = 200),
 	)
 
-/obj/item/weapon/gun/energy/locked/frontier/handbow/unlocked
+/obj/item/gun/energy/locked/frontier/handbow/unlocked
 	desc = "An minaturized weapon that fires a bolt of energy. Includes a built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
 	locked = 0

@@ -6,8 +6,8 @@
 	density = TRUE
 	anchored = TRUE
 
-	circuit = /obj/item/weapon/circuitboard/firework_launcher
-	var/obj/item/weapon/firework_star/loaded_star
+	circuit = /obj/item/circuitboard/firework_launcher
+	var/obj/item/firework_star/loaded_star
 	var/last_launch
 	var/launch_cooldown = 5 MINUTES
 
@@ -21,7 +21,7 @@
 /obj/machinery/firework_launcher/RefreshParts()
 	launch_cooldown = 5 MINUTES
 	var/rating = 0
-	for(var/obj/item/weapon/stock_parts/micro_laser/laser in component_parts)
+	for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
 		rating += laser.rating - 1
 	launch_cooldown = max(0, (launch_cooldown - ((rating*30) SECONDS)))			// For every part tier above 1 on the two lasers, reduce cooldown by 30 seconds. 1 minute cooldown on the tier 5 parts, 3 minutes on tier 3.
 
@@ -45,7 +45,7 @@
 		update_icon()
 		return
 
-	if(istype(O, /obj/item/weapon/firework_star))
+	if(istype(O, /obj/item/firework_star))
 		if(loaded_star)
 			to_chat(user, SPAN_NOTICE("\The [src] already has \a [loaded_star] inside, unload it first!"))
 			return
@@ -98,7 +98,7 @@
 		return
 
 	var/datum/weather_holder/WH = P.weather_holder
-	if(WH.firework_override && istype(loaded_star, /obj/item/weapon/firework_star/weather))			// Enable weather-based events to not be ruined
+	if(WH.firework_override && istype(loaded_star, /obj/item/firework_star/weather))			// Enable weather-based events to not be ruined
 		to_chat(user, "<span class='warning'>\The [src] beeps as it seems some interference is preventing launch of this type of firework.</span>")
 		return
 

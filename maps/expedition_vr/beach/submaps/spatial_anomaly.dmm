@@ -67,7 +67,7 @@
 /turf/simulated/floor/lava,
 /area/submap/spatial_anomaly)
 "k" = (
-/obj/item/weapon/disposable_teleporter/slime,
+/obj/item/disposable_teleporter/slime,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "l" = (
@@ -148,12 +148,12 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "v" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/plating/external,
 /area/submap/spatial_anomaly)
 "w" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/xenoarch_multi_tool,
+/obj/item/xenoarch_multi_tool,
 /turf/simulated/floor/plating/external,
 /area/submap/spatial_anomaly)
 "x" = (
@@ -175,7 +175,7 @@
 /area/submap/spatial_anomaly)
 "B" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/ore/diamond,
+/obj/item/ore/diamond,
 /turf/simulated/floor/plating/external,
 /area/submap/spatial_anomaly)
 "C" = (
@@ -191,7 +191,7 @@
 /area/submap/spatial_anomaly)
 "E" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pickaxe/jackhammer,
+/obj/item/pickaxe/jackhammer,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "F" = (
@@ -240,12 +240,12 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "K" = (
-/obj/item/weapon/mining_scanner,
+/obj/item/mining_scanner,
 /obj/structure/table/rack,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "L" = (
-/obj/item/weapon/storage/belt/archaeology,
+/obj/item/storage/belt/archaeology,
 /obj/effect/decal/remains/human,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
@@ -254,15 +254,15 @@
 /turf/simulated/floor/plating/external,
 /area/submap/spatial_anomaly)
 "N" = (
-/obj/item/weapon/pickaxe/brush,
+/obj/item/pickaxe/brush,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "O" = (
-/obj/item/weapon/pickaxe/one_pick,
+/obj/item/pickaxe/one_pick,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "P" = (
-/obj/item/weapon/pickaxe/four_pick,
+/obj/item/pickaxe/four_pick,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "Q" = (
@@ -270,27 +270,27 @@
 /turf/simulated/floor/plating/external,
 /area/submap/spatial_anomaly)
 "R" = (
-/obj/item/weapon/pickaxe/five_pick,
+/obj/item/pickaxe/five_pick,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "S" = (
-/obj/item/weapon/pickaxe/six_pick,
+/obj/item/pickaxe/six_pick,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "T" = (
-/obj/item/weapon/pickaxe/two_pick,
+/obj/item/pickaxe/two_pick,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "U" = (
-/obj/item/device/measuring_tape,
+/obj/item/measuring_tape,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "X" = (
-/obj/item/weapon/pickaxe/three_pick,
+/obj/item/pickaxe/three_pick,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/spatial_anomaly)
 "Y" = (
-/obj/item/weapon/pickaxe/excavationdrill,
+/obj/item/pickaxe/excavationdrill,
 /turf/simulated/floor/plating/external,
 /area/submap/spatial_anomaly)
 

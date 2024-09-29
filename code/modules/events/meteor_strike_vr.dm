@@ -82,13 +82,13 @@
 	switch(rand(1,100))
 		if(1 to 60)
 			for(var/i=1 to rand(12,36))
-				new /obj/item/weapon/ore/iron(src)
+				new /obj/item/ore/iron(src)
 		if(61 to 90)
 			for(var/i=1 to rand(8,24))
-				new /obj/item/weapon/ore/silver(src)
-				new /obj/item/weapon/ore/gold(src)
-				new /obj/item/weapon/ore/osmium(src)
-				new /obj/item/weapon/ore/diamond(src)
+				new /obj/item/ore/silver(src)
+				new /obj/item/ore/gold(src)
+				new /obj/item/ore/osmium(src)
+				new /obj/item/ore/diamond(src)
 		if(91 to 100)
 			new /obj/machinery/artifact(src)
 
@@ -96,8 +96,8 @@
 	return
 
 /obj/structure/meteorite/attackby(var/obj/item/I, var/mob/M)
-	if(istype(I, /obj/item/weapon/pickaxe))
-		var/obj/item/weapon/pickaxe/P = I
+	if(istype(I, /obj/item/pickaxe))
+		var/obj/item/pickaxe/P = I
 		M.visible_message("<span class='warning'>[M] starts [P.drill_verb] \the [src].</span>", "<span class='warning'>You start [P.drill_verb] \the [src].</span>")
 
 		if(!do_after(M, P.digspeed*3))

@@ -3,12 +3,12 @@
 //TODO:Let players choose 2,3,4 player mode to get decks of ace/ten/jack/queen/king + seven for 3 player, nine+eight for 4 player modes.
 //values: ace = 11, ten = 10, unter = 2, ober = 3, king = 4
 
-/obj/item/weapon/deck/schnapsen
+/obj/item/deck/schnapsen
 	name = "deck of schnapsen cards"
 	desc = "An ancient trick-taking card game from a bygone-Earth country. For 2 players!"
 	icon_state = "deck"
 
-/obj/item/weapon/deck/schnapsen/New()
+/obj/item/deck/schnapsen/New()
 	..()
 	var/datum/playingcard/P
 	var/colour

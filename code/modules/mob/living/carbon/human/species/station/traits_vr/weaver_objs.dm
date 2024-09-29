@@ -11,7 +11,7 @@
 	qdel(src)
 	return
 
-/obj/effect/weaversilk/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/weaversilk/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(W.force)
@@ -73,7 +73,7 @@
 /obj/structure/bed/double/weaversilk_nest/update_icon()
 	return
 
-/obj/structure/bed/double/weaversilk_nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/double/weaversilk_nest/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH) || istype(W,/obj/item/stack) || W.has_tool_quality(TOOL_WIRECUTTER))
 		return
 	..()

@@ -2,7 +2,7 @@
 	name = "UAV Control"
 	tgui_id = "UAV"
 	ntos = TRUE
-	var/obj/item/device/uav/current_uav = null //The UAV we're watching
+	var/obj/item/uav/current_uav = null //The UAV we're watching
 	var/signal_strength = 0 //Our last signal strength report (cached for a few seconds)
 	var/signal_test_counter = 0 //How long until next signal strength check
 	var/list/viewers //Who's viewing a UAV through us
@@ -31,7 +31,7 @@
 	var/obj/item/modular_computer/mc_host = tgui_host()
 	if(istype(mc_host))
 		for(var/datum/weakref/wr as anything in mc_host.paired_uavs)
-			var/obj/item/device/uav/U = wr.resolve()
+			var/obj/item/uav/U = wr.resolve()
 			paired_map.Add(list(list("name" = "[U ? U.nickname : "!!Missing!!"]", "uavref" = "\ref[U]")))
 
 	data["paired_uavs"] = paired_map
@@ -43,7 +43,7 @@
 
 	switch(action)
 		if("switch_uav")
-			var/obj/item/device/uav/U = locate(params["switch_uav"]) //This is a \ref to the UAV itself
+			var/obj/item/uav/U = locate(params["switch_uav"]) //This is a \ref to the UAV itself
 			if(!istype(U))
 				to_chat(usr,"<span class='warning'>Something is blocking the connection to that UAV. In-person investigation is required.</span>")
 				return FALSE
@@ -88,7 +88,7 @@
 							unlook(M)
 				return TRUE
 
-/datum/tgui_module/uav/proc/set_current(var/obj/item/device/uav/U)
+/datum/tgui_module/uav/proc/set_current(var/obj/item/uav/U)
 	if(current_uav == U)
 		return
 

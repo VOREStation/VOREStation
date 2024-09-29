@@ -24,7 +24,7 @@
 				qdel(Robot.mmi)
 		else
 			for(var/obj/item/W in M)
-				if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
+				if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
 					qdel(W)
 					continue
 				M.drop_from_inventory(W)
@@ -51,7 +51,7 @@
 				new_mob.invisibility = 0
 				new_mob.job = JOB_CYBORG
 				var/mob/living/silicon/robot/Robot = new_mob
-				Robot.mmi = new /obj/item/device/mmi(new_mob)
+				Robot.mmi = new /obj/item/mmi(new_mob)
 				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.
 			if("slime")
 				new_mob = new /mob/living/simple_mob/slime/xenobio(M.loc)

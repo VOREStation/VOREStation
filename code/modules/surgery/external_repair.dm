@@ -39,8 +39,8 @@
 /datum/surgery_step/repairflesh/scan_injury
 	surgery_name = "Scan Injury"
 	allowed_tools = list(
-	/obj/item/weapon/autopsy_scanner = 100,
-	/obj/item/device/analyzer = 10
+	/obj/item/autopsy_scanner = 100,
+	/obj/item/analyzer = 10
 	)
 
 	priority = 2
@@ -92,7 +92,7 @@
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/ointment = 100,
 	/obj/item/stack/medical/ointment = 50,
-	/obj/item/weapon/tape_roll = 30,
+	/obj/item/tape_roll = 30,
 	/obj/item/taperoll = 10
 	)
 
@@ -111,11 +111,11 @@
 
 /datum/surgery_step/repairflesh/repair_burns/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(istype(tool, /obj/item/weapon/tape_roll) || istype(tool, /obj/item/taperoll))
+	if(istype(tool, /obj/item/tape_roll) || istype(tool, /obj/item/taperoll))
 		user.visible_message("<span class='warning'>[user] begins taping up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You begin taping up [target]'s [affected] with \the [tool].</span>")
 		affected.jostle_bone(10)
-	else if(istype(tool, /obj/item/weapon/surgical/hemostat) || istype(tool, /obj/item/weapon/surgical/FixOVein))
+	else if(istype(tool, /obj/item/surgical/hemostat) || istype(tool, /obj/item/surgical/FixOVein))
 		user.visible_message("<span class='notice'>[user] begins mending the charred blood vessels in [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You begin mending the charred blood vessels in [target]'s [affected] with \the [tool].</span>")
 	else
@@ -125,7 +125,7 @@
 
 /datum/surgery_step/repairflesh/repair_burns/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(istype(tool, /obj/item/weapon/tape_roll) || istype(tool, /obj/item/taperoll))
+	if(istype(tool, /obj/item/tape_roll) || istype(tool, /obj/item/taperoll))
 		user.visible_message("<span class='notice'>[user] finishes taping up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You finish taping up [target]'s [affected] with \the [tool].</span>")
 		affected.createwound(BRUISE, 10)
@@ -157,7 +157,7 @@
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack = 100,
 	/obj/item/stack/medical/bruise_pack = 50,
-	/obj/item/weapon/tape_roll = 40,
+	/obj/item/tape_roll = 40,
 	/obj/item/taperoll = 10
 	)
 
@@ -176,11 +176,11 @@
 
 /datum/surgery_step/repairflesh/repair_brute/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(istype(tool, /obj/item/weapon/tape_roll) || istype(tool, /obj/item/taperoll))
+	if(istype(tool, /obj/item/tape_roll) || istype(tool, /obj/item/taperoll))
 		user.visible_message("<span class='warning'>[user] begins taping up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You begin taping up [target]'s [affected] with \the [tool].</span>")
 		affected.jostle_bone(10)
-	else if(istype(tool, /obj/item/weapon/surgical/FixOVein) || istype(tool, /obj/item/weapon/surgical/bonesetter))
+	else if(istype(tool, /obj/item/surgical/FixOVein) || istype(tool, /obj/item/surgical/bonesetter))
 		user.visible_message("<span class='notice'>[user] begins mending the torn tissue in [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You begin mending the torn tissue in [target]'s [affected] with \the [tool].</span>")
 	else
@@ -190,7 +190,7 @@
 
 /datum/surgery_step/repairflesh/repair_brute/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(istype(tool, /obj/item/weapon/tape_roll) || istype(tool, /obj/item/taperoll))
+	if(istype(tool, /obj/item/tape_roll) || istype(tool, /obj/item/taperoll))
 		user.visible_message("<span class='notice'>[user] finishes taping up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You finish taping up [target]'s [affected] with \the [tool].</span>")
 		affected.createwound(BRUISE, 10)

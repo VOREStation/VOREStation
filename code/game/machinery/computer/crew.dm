@@ -7,7 +7,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 250
 	active_power_usage = 500
-	circuit = /obj/item/weapon/circuitboard/crew
+	circuit = /obj/item/circuitboard/crew
 	var/datum/tgui_module/crew_monitor/crew_monitor
 
 /obj/machinery/computer/crew/New()

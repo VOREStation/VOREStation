@@ -777,11 +777,11 @@
 //GLOBAL VERB FOR PAPER TO ENABLE ANYONE TO MAKE AN AREA IN BUILDABLE AREAS.
 //THIS IS 70 TILES. ANYTHING LARGER SHOULD USE ACTUAL BLUEPRINTS.
 
-/obj/item/weapon/paper
+/obj/item/paper
 	var/created_area = 0
 	var/area_cooldown = 0
 
-/obj/item/weapon/paper/verb/create_area()
+/obj/item/paper/verb/create_area()
 	set name = "Create Area"
 	set category = "Object"
 	set src in usr

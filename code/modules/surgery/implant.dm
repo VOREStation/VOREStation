@@ -49,8 +49,8 @@
 /datum/surgery_step/cavity/make_space
 	surgery_name = "Create Cavity"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/surgicaldrill = 100,	\
-		/obj/item/weapon/pen = 75,	\
+		/obj/item/surgical/surgicaldrill = 100,	\
+		/obj/item/pen = 75,	\
 		/obj/item/stack/rods = 50
 	)
 
@@ -83,10 +83,10 @@
 	surgery_name = "Close Cavity"
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/surgical/cautery = 100,			\
+		/obj/item/surgical/cautery = 100,			\
 		/obj/item/clothing/mask/smokable/cigarette = 75,	\
-		/obj/item/weapon/flame/lighter = 50,			\
-		/obj/item/weapon/weldingtool = 25
+		/obj/item/flame/lighter = 50,			\
+		/obj/item/weldingtool = 25
 	)
 
 	min_duration = 60
@@ -128,8 +128,8 @@
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(istype(user,/mob/living/silicon/robot))
-			if(istype(tool, /obj/item/weapon/gripper))
-				var/obj/item/weapon/gripper/Gripper = tool
+			if(istype(tool, /obj/item/gripper))
+				var/obj/item/gripper/Gripper = tool
 				if(Gripper.wrapped)
 					tool = Gripper.wrapped
 				else
@@ -139,15 +139,15 @@
 		if(affected && affected.cavity)
 			var/total_volume = tool.w_class
 			for(var/obj/item/I in affected.implants)
-				if(istype(I,/obj/item/weapon/implant))
+				if(istype(I,/obj/item/implant))
 					continue
 				total_volume += I.w_class
 			return total_volume <= get_max_wclass(affected)
 
 /datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(isrobot(user) && istype(tool, /obj/item/weapon/gripper))
-		var/obj/item/weapon/gripper/G = tool
+	if(isrobot(user) && istype(tool, /obj/item/gripper))
+		var/obj/item/gripper/G = tool
 		tool = G.wrapped
 	user.visible_message("<span class='notice'>[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
 	"<span class='notice'>You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" ) //Nobody will probably ever see this, but I made these two blue. ~CK
@@ -156,8 +156,8 @@
 
 /datum/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-	if(isrobot(user) && istype(tool, /obj/item/weapon/gripper))
-		var/obj/item/weapon/gripper/G = tool
+	if(isrobot(user) && istype(tool, /obj/item/gripper))
+		var/obj/item/gripper/G = tool
 		tool = G.wrapped
 		G.drop_item()
 	else
@@ -171,7 +171,7 @@
 		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
 	affected.implants += tool
 	tool.loc = affected
-	if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support
+	if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support
 	affected.cavity = 0
 
 //////////////////////////////////////////////////////////////////
@@ -181,8 +181,8 @@
 /datum/surgery_step/cavity/implant_removal
 	surgery_name = "Remove Implant"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/hemostat = 100,	\
-		/obj/item/weapon/material/kitchen/utensil/fork = 20
+		/obj/item/surgical/hemostat = 100,	\
+		/obj/item/material/kitchen/utensil/fork = 20
 	)
 
 	allowed_procs = list(IS_WIRECUTTER = 75)
@@ -221,8 +221,8 @@
 			"<span class='notice'>You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!</span>" )
 			return
 
-		if(istype(obj,/obj/item/weapon/implant))
-			var/obj/item/weapon/implant/imp = obj
+		if(istype(obj,/obj/item/implant))
+			var/obj/item/implant/imp = obj
 			if (!imp.islegal()) //ILLEGAL IMPLANT ALERT!!!!!!!!!!
 				user.visible_message("<span class='notice'>[user] seems to be intently working on something within [target]'s [affected.name] with \the [tool]!</span>", \
 				"<span class='notice'>You intently begin to take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!</span>" )
@@ -251,11 +251,11 @@
 			obj.loc = get_turf(target)
 			obj.add_blood(target)
 			obj.update_icon()
-			if(istype(obj,/obj/item/weapon/implant))
-				var/obj/item/weapon/implant/imp = obj
+			if(istype(obj,/obj/item/implant))
+				var/obj/item/implant/imp = obj
 				imp.imp_in = null
 				imp.implanted = 0
-			else if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
+			else if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
 	else
 		user.visible_message("<span class='notice'>[user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.</span>", \
 		"<span class='notice'>You could not find anything inside [target]'s [affected.name].</span>" )
@@ -267,7 +267,7 @@
 		var/fail_prob = 10
 		fail_prob += 100 - tool_quality(tool)
 		if (prob(fail_prob))
-			var/obj/item/weapon/implant/imp = affected.implants[1]
+			var/obj/item/implant/imp = affected.implants[1]
 			user.visible_message("<span class='danger'> Something beeps inside [target]'s [affected.name]!</span>")
 			playsound(imp, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)

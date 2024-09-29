@@ -4,18 +4,18 @@
 	hitting an ally with a deterimental function, if your opponent has similar capabilities to you, or if you're tired of Instability \
 	plaguing you."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/dispel
+	obj_path = /obj/item/spell/dispel
 	ability_icon_state = "tech_dispel"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/dispel
+/obj/item/spell/dispel
 	name = "dispel"
 	desc = "Useful if you're tired of glowing because of a miscast."
 	icon_state = "dispel"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_BIOMED
 
-/obj/item/weapon/spell/dispel/on_ranged_cast(atom/hit_atom, mob/living/user)
+/obj/item/spell/dispel/on_ranged_cast(atom/hit_atom, mob/living/user)
 	if(isliving(hit_atom) && within_range(hit_atom) && pay_energy(1000))
 		var/mob/living/target = hit_atom
 		target.remove_modifiers_of_type(/datum/modifier/technomancer)

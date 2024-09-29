@@ -73,9 +73,9 @@
 						break
 					var/module_type = robot_modules[selected_module_module]
 					var/mob/living/silicon/robot/robot = new /mob/living/silicon/robot(null)
-					var/obj/item/weapon/robot_module/robot/robot_type = new module_type(robot)
+					var/obj/item/robot_module/robot/robot_type = new module_type(robot)
 					robot.emag_items = 1
-					if(!istype(robot_type, /obj/item/weapon/robot_module/robot/))
+					if(!istype(robot_type, /obj/item/robot_module/robot/))
 						qdel(robot)
 						break
 					var/list/all_modules = robot.module.modules
@@ -104,8 +104,8 @@
 								else
 									item_with_synth.synths = list(target.module.synths[found])
 							continue
-						if(istype(add_item, /obj/item/weapon/matter_decompiler/) || istype(add_item, /obj/item/device/dogborg/sleeper/compactor/decompiler/))
-							var/obj/item/weapon/matter_decompiler/item_with_matter = add_item
+						if(istype(add_item, /obj/item/matter_decompiler/) || istype(add_item, /obj/item/dogborg/sleeper/compactor/decompiler/))
+							var/obj/item/matter_decompiler/item_with_matter = add_item
 							if(item_with_matter.metal)
 								var/found = target.module.synths.Find(item_with_matter.metal)
 								if(!found)
@@ -191,7 +191,7 @@
 								break
 							var/new_modkit = modkits[selected_ka_upgrade]
 							var/obj/item/borg/upgrade/modkit/M = new new_modkit(src)
-							var/obj/item/weapon/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
+							var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 							if(kin.get_remaining_mod_capacity() >= M.cost)
 								to_chat(usr, "<span class='danger'>You installed the [M] into the [kin], [capacity]% remaining!</span>")
 								modkits.Remove(selected_ka_upgrade)
@@ -233,11 +233,11 @@
 						target.radio.centComm = 1
 					if(selected_radio_channel == CHANNEL_RAIDER)
 						qdel(target.radio.keyslot)
-						target.radio.keyslot = new /obj/item/device/encryptionkey/raider(target)
+						target.radio.keyslot = new /obj/item/encryptionkey/raider(target)
 						target.radio.syndie = 1
 					if(selected_radio_channel == CHANNEL_MERCENARY)
 						qdel(target.radio.keyslot)
-						target.radio.keyslot = new /obj/item/device/encryptionkey/syndicate(target)
+						target.radio.keyslot = new /obj/item/encryptionkey/syndicate(target)
 						target.radio.syndie = 1
 					target.module.channels += list("[selected_radio_channel]" = 1)
 					target.radio.channels[selected_radio_channel] += target.module.channels[selected_radio_channel]
@@ -276,11 +276,11 @@
 						if("radio")
 							C.wrapped = new /obj/item/robot_parts/robot_component/radio(target)
 						if("power cell")
-							var/list/recommended_cells = list(/obj/item/weapon/cell/robot_station, /obj/item/weapon/cell/high, /obj/item/weapon/cell/super, /obj/item/weapon/cell/robot_syndi, /obj/item/weapon/cell/hyper,
-								/obj/item/weapon/cell/infinite, /obj/item/weapon/cell/potato, /obj/item/weapon/cell/slime)
+							var/list/recommended_cells = list(/obj/item/cell/robot_station, /obj/item/cell/high, /obj/item/cell/super, /obj/item/cell/robot_syndi, /obj/item/cell/hyper,
+								/obj/item/cell/infinite, /obj/item/cell/potato, /obj/item/cell/slime)
 							var/list/cell_names = list()
 							for(var/cell_type in recommended_cells)
-								var/obj/item/weapon/cell/single_cell = cell_type
+								var/obj/item/cell/single_cell = cell_type
 								cell_names[capitalize(initial(single_cell.name))] = cell_type
 							var/selected_cell = tgui_input_list(usr, "What kind of cell do you want to install?", "Cells", cell_names)
 							if(!selected_cell || selected_cell == "Cancel")
@@ -346,7 +346,7 @@
 				target.module_reset(FALSE)
 			if(MODIFIY_ROBOT_TOGGLE_STATION_ACCESS)
 				if(target?.idcard?.GetAccess())
-					var/obj/item/weapon/card/id/synthetic/card = target.idcard
+					var/obj/item/card/id/synthetic/card = target.idcard
 					if(access_synth in card.GetAccess())
 						card.access -= get_all_station_access()
 						card.access -= access_synth
@@ -357,7 +357,7 @@
 						to_chat(usr, "<span class='danger'>You grant station access to [target].</span>")
 			if(MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
 				if(target?.idcard?.GetAccess())
-					var/obj/item/weapon/card/id/synthetic/card = target.idcard
+					var/obj/item/card/id/synthetic/card = target.idcard
 					if(access_cent_specops in card.GetAccess())
 						card.access -= get_all_centcom_access()
 						to_chat(usr, "<span class='danger'>You revoke central access from [target].</span>")

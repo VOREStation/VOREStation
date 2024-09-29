@@ -34,15 +34,15 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/clothing/head/helmet/laserproof,
 		/obj/item/clothing/suit/armor/laserproof,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
-		/obj/item/weapon/storage/belt/security/tactical/bandolier,
+		/obj/item/storage/belt/security/tactical/bandolier,
 		/obj/item/clothing/accessory/storage/black_drop_pouches,
-		/obj/item/weapon/storage/backpack/dufflebag/sec,
-		/obj/item/weapon/shield/energy,
-		/obj/item/weapon/gun/energy/ionrifle,
-		/obj/item/weapon/gun/energy/xray,
-		/obj/item/weapon/storage/box/emps,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/material/knife/tacknife/combatknife)
+		/obj/item/storage/backpack/dufflebag/sec,
+		/obj/item/shield/energy,
+		/obj/item/gun/energy/ionrifle,
+		/obj/item/gun/energy/xray,
+		/obj/item/storage/box/emps,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/material/knife/tacknife/combatknife)
 
 /datum/supply_drop_loot/ballistics
 	name = "Ballistic Warfare"
@@ -55,18 +55,18 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/clothing/gloves/arm_guard/bulletproof,
 		/obj/item/clothing/shoes/leg_guard/bulletproof,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
-		/obj/item/weapon/storage/belt/security/tactical/bandolier,
+		/obj/item/storage/belt/security/tactical/bandolier,
 		/obj/item/clothing/accessory/storage/black_drop_pouches,
-		/obj/item/weapon/storage/backpack/dufflebag/sec,
-		/obj/item/weapon/shield/riot/tele,
-		/obj/item/weapon/storage/box/emps,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/gun/projectile/automatic/sts35,
+		/obj/item/storage/backpack/dufflebag/sec,
+		/obj/item/shield/riot/tele,
+		/obj/item/storage/box/emps,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/gun/projectile/automatic/sts35,
 		/obj/item/ammo_magazine/m762/ap,
 		/obj/item/ammo_magazine/m762/ap,
-		/obj/item/weapon/gun/projectile/colt,
+		/obj/item/gun/projectile/colt,
 		/obj/item/ammo_magazine/m45,
-		/obj/item/weapon/material/knife/tacknife/combatknife)
+		/obj/item/material/knife/tacknife/combatknife)
 
 /datum/supply_drop_loot/heavy_warfare
 	name = "Heavy Warfare"
@@ -79,22 +79,22 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/clothing/gloves/arm_guard/combat,
 		/obj/item/clothing/shoes/leg_guard/combat,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
-		/obj/item/weapon/storage/belt/security/tactical/bandolier,
+		/obj/item/storage/belt/security/tactical/bandolier,
 		/obj/item/clothing/accessory/storage/black_drop_pouches,
-		/obj/item/weapon/storage/backpack/dufflebag/sec,
-		/obj/item/weapon/gun/projectile/automatic/bullpup,
+		/obj/item/storage/backpack/dufflebag/sec,
+		/obj/item/gun/projectile/automatic/bullpup,
 		/obj/item/ammo_magazine/m762/ap,
 		/obj/item/ammo_magazine/m762,
-		/obj/item/weapon/shield/energy,
-		/obj/item/weapon/grenade/explosive/frag,
-		/obj/item/weapon/grenade/explosive/frag,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/flashbang,
-		/obj/item/weapon/grenade/flashbang,
-		/obj/item/weapon/grenade/empgrenade,
-		/obj/item/weapon/grenade/empgrenade,
-		/obj/item/weapon/material/knife/tacknife/combatknife)
+		/obj/item/shield/energy,
+		/obj/item/grenade/explosive/frag,
+		/obj/item/grenade/explosive/frag,
+		/obj/item/grenade/smokebomb,
+		/obj/item/grenade/smokebomb,
+		/obj/item/grenade/flashbang,
+		/obj/item/grenade/flashbang,
+		/obj/item/grenade/empgrenade,
+		/obj/item/grenade/empgrenade,
+		/obj/item/material/knife/tacknife/combatknife)
 
 /datum/supply_drop_loot/riot
 	name = "Riot Gear"
@@ -106,19 +106,19 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/clothing/suit/armor/riot,
 		/obj/item/clothing/gloves/arm_guard/riot,
 		/obj/item/clothing/shoes/leg_guard/riot,
-		/obj/item/weapon/shield/riot/tele,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/box/handcuffs,
-		/obj/item/weapon/melee/baton,
+		/obj/item/shield/riot/tele,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/box/handcuffs,
+		/obj/item/melee/baton,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
-		/obj/item/weapon/storage/belt/security,
+		/obj/item/storage/belt/security,
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/gloves/black,
-		/obj/item/weapon/gun/projectile/shotgun/pump,
-		/obj/item/weapon/gun/energy/gun,
+		/obj/item/gun/projectile/shotgun/pump,
+		/obj/item/gun/energy/gun,
 		/obj/item/clothing/accessory/holster,
-		/obj/item/weapon/gun/launcher/grenade,
-		/obj/item/weapon/storage/backpack/dufflebag/sec)
+		/obj/item/gun/launcher/grenade,
+		/obj/item/storage/backpack/dufflebag/sec)
 
 /datum/supply_drop_loot/seeds
 	name = "Plant Growing"
@@ -158,12 +158,12 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/seeds/sugarcaneseed,
 		/obj/item/seeds/watermelonseed,
 		/obj/item/seeds/cherryseed,
-		/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-		/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-		/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-		/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-		/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-		/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
+		/obj/item/reagent_containers/glass/bottle/eznutrient,
+		/obj/item/reagent_containers/glass/bottle/eznutrient,
+		/obj/item/reagent_containers/glass/bottle/eznutrient,
+		/obj/item/reagent_containers/glass/bottle/eznutrient,
+		/obj/item/reagent_containers/glass/bottle/eznutrient,
+		/obj/item/reagent_containers/glass/bottle/eznutrient,
 		/obj/machinery/portable_atmospherics/hydroponics,
 		/obj/machinery/portable_atmospherics/hydroponics,
 		/obj/machinery/portable_atmospherics/hydroponics,
@@ -171,8 +171,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/machinery/portable_atmospherics/hydroponics,
 		/obj/machinery/portable_atmospherics/hydroponics,
 		/obj/structure/reagent_dispensers/watertank,
-		/obj/item/weapon/reagent_containers/glass/bucket,
-		/obj/item/weapon/reagent_containers/glass/bucket)
+		/obj/item/reagent_containers/glass/bucket,
+		/obj/item/reagent_containers/glass/bucket)
 
 /datum/supply_drop_loot/food
 	name = "Emergency Provisions For Two"
@@ -180,27 +180,27 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/food/New()
 	..()
 	contents = list(
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-		/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-		/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-		/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-		/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-		/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
-		/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/device/flashlight,
-		/obj/item/device/flashlight,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/reagent_containers/food/snacks/tastybread,
+		/obj/item/reagent_containers/food/snacks/tastybread,
+		/obj/item/reagent_containers/food/snacks/tastybread,
+		/obj/item/reagent_containers/food/snacks/tastybread,
+		/obj/item/reagent_containers/food/snacks/tastybread,
+		/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
+		/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/crowbar,
+		/obj/item/flashlight,
+		/obj/item/flashlight,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/device/flashlight/flare,
-		/obj/item/device/flashlight/flare)
+		/obj/item/flashlight/flare,
+		/obj/item/flashlight/flare)
 
 /datum/supply_drop_loot/plushie
 	name = "Cuddly Fun!"
@@ -229,8 +229,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/toy/sword,
 		/obj/item/toy/katana,
 		/obj/item/toy/katana,
-		/obj/item/weapon/inflatable_duck,
-		/obj/item/weapon/inflatable_duck)
+		/obj/item/inflatable_duck,
+		/obj/item/inflatable_duck)
 
 /datum/supply_drop_loot/christmas
 	name = "Surplus Christmas Supplies"
@@ -309,15 +309,15 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/medical/New()
 	..()
 	contents = list(
-		/obj/item/weapon/storage/firstaid/regular,
-		/obj/item/weapon/storage/firstaid/fire,
-		/obj/item/weapon/storage/firstaid/toxin,
-		/obj/item/weapon/storage/firstaid/o2,
-		/obj/item/weapon/storage/firstaid/adv,
-		/obj/item/weapon/storage/firstaid/combat,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/storage/box/syringes,
-		/obj/item/weapon/storage/box/autoinjectors)
+		/obj/item/storage/firstaid/regular,
+		/obj/item/storage/firstaid/fire,
+		/obj/item/storage/firstaid/toxin,
+		/obj/item/storage/firstaid/o2,
+		/obj/item/storage/firstaid/adv,
+		/obj/item/storage/firstaid/combat,
+		/obj/item/reagent_containers/glass/bottle/antitoxin,
+		/obj/item/reagent_containers/glass/bottle/antitoxin,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/storage/box/syringes,
+		/obj/item/storage/box/autoinjectors)

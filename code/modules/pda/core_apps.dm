@@ -172,8 +172,8 @@
 	if(istype( usr, /mob/living/carbon/human ))
 		var/mob/living/carbon/human/H = usr
 		var/obj/item/I = H.get_active_hand()
-		if(istype(I,/obj/item/weapon/paper))
-			var/obj/item/weapon/paper/P = I
+		if(istype(I,/obj/item/paper))
+			var/obj/item/paper/P = I
 			if(isnull(P.info) || P.info == "" )
 				var/titlenote = "Note [alphabet_uppercase[currentnote]]"
 				if(!isnull(notetitle) && notetitle != "")

@@ -2,11 +2,11 @@
 	name = "Reflect"
 	desc = "Emits a protective shield fron your hand in front of you, which will reflect one attack back at the attacker."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/reflect
+	obj_path = /obj/item/spell/reflect
 	ability_icon_state = "tech_reflect"
 	category = DEFENSIVE_SPELLS
 
-/obj/item/weapon/spell/reflect
+/obj/item/spell/reflect
 	name = "\proper reflect shield"
 	icon_state = "reflect"
 	desc = "A very protective combat shield that'll reflect the next attack at the unfortunate person who tried to shoot you."
@@ -16,7 +16,7 @@
 	var/damage_to_energy_multiplier = 60.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 1200 energy cost
 	var/datum/effect/effect/system/spark_spread/spark_system = null
 
-/obj/item/weapon/spell/reflect/New()
+/obj/item/spell/reflect/New()
 	..()
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect/effect/system/spark_spread()
@@ -24,13 +24,13 @@
 	to_chat(owner, "<span class='notice'>Your shield will expire in 5 seconds!</span>")
 	QDEL_IN(src, 5 SECONDS)
 
-/obj/item/weapon/spell/reflect/Destroy()
+/obj/item/spell/reflect/Destroy()
 	if(owner)
 		to_chat(owner, "<span class='danger'>Your shield expires!</span>")
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/spell/reflect/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/spell/reflect/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 
@@ -72,8 +72,8 @@
 
 				return PROJECTILE_CONTINUE // complete projectile permutation
 
-		else if(istype(damage_source, /obj/item/weapon))
-			var/obj/item/weapon/W = damage_source
+		else if(istype(damage_source, /obj/item))
+			var/obj/item/W = damage_source
 			if(attacker)
 				W.attack(attacker)
 				to_chat(attacker, "<span class='danger'>Your [damage_source.name] goes through \the [src] in one location, comes out \

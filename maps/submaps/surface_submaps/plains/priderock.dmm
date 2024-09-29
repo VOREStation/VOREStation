@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ae" = (
 /obj/structure/railing,
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "cR" = (
@@ -41,7 +41,7 @@
 /obj/random/maintenance/medical,
 /obj/random/maintenance/medical,
 /obj/random/maintenance/medical,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "md" = (
@@ -51,8 +51,8 @@
 "nG" = (
 /obj/structure/railing,
 /obj/random/junk,
-/obj/item/weapon/bone/ribs,
-/obj/item/weapon/bone/skull,
+/obj/item/bone/ribs,
+/obj/item/bone/skull,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "nV" = (
@@ -234,7 +234,7 @@
 /obj/random/junk,
 /obj/random/junk,
 /obj/random/junk,
-/obj/item/weapon/bone/skull/tajaran,
+/obj/item/bone/skull/tajaran,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "Lo" = (
@@ -265,7 +265,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "Pb" = (
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
+/obj/item/storage/backpack/dufflebag/syndie/med,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/priderock)
 "Pn" = (
@@ -345,7 +345,7 @@
 /area/submap/priderock)
 "XN" = (
 /obj/item/clothing/head/bearpelt,
-/obj/item/device/binoculars/spyglass,
+/obj/item/binoculars/spyglass,
 /turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/submap/priderock)
 "Yd" = (

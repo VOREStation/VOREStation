@@ -164,7 +164,7 @@
 		quick_link(href_list["quick_link"], usr)
 	else if(href_list["close"])
 		// Close the book, if our holder is actually a book.
-		//if(istype(holder, /obj/item/weapon/book/codex))
+		//if(istype(holder, /obj/item/book/codex))
 			//holder.icon_state = initial(holder.icon_state)
 		usr << browse(null, "window=the_empress_protects")
 		return

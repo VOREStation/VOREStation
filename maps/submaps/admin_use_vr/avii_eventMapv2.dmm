@@ -11,7 +11,7 @@
 	dir = 4
 	},
 /obj/machinery/light/small,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -723,7 +723,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint)
 "dM" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/bcarpet,
@@ -923,7 +923,7 @@
 /turf/simulated/floor/plating,
 /area/engineering/engine_smes)
 "eF" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/sblucarpet,
@@ -1074,11 +1074,11 @@
 /area/engineering/engine_smes)
 "fI" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = -9;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 6;
 	pixel_y = 3
 	},
@@ -1118,8 +1118,8 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/circuitboard/tesla_coil,
-/obj/item/weapon/circuitboard/tesla_coil,
+/obj/item/circuitboard/tesla_coil,
+/obj/item/circuitboard/tesla_coil,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "fR" = (
@@ -1138,16 +1138,16 @@
 /obj/structure/closet/crate/engineering{
 	name = "spare SMES coils"
 	},
-/obj/item/weapon/smes_coil,
-/obj/item/weapon/smes_coil,
-/obj/item/weapon/smes_coil,
-/obj/item/weapon/smes_coil/super_capacity,
-/obj/item/weapon/smes_coil/super_capacity,
-/obj/item/weapon/smes_coil/super_capacity,
-/obj/item/weapon/smes_coil/super_io,
-/obj/item/weapon/smes_coil/super_io,
-/obj/item/weapon/smes_coil/super_io,
-/obj/item/device/geiger/wall/west{
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil/super_capacity,
+/obj/item/smes_coil/super_capacity,
+/obj/item/smes_coil/super_capacity,
+/obj/item/smes_coil/super_io,
+/obj/item/smes_coil/super_io,
+/obj/item/smes_coil/super_io,
+/obj/item/geiger/wall/west{
 	dir = 4;
 	pixel_x = 36
 	},
@@ -1166,7 +1166,7 @@
 "ga" = (
 /obj/structure/table/steel,
 /obj/item/clothing/gloves/yellow,
-/obj/item/device/multitool{
+/obj/item/multitool{
 	pixel_x = 5
 	},
 /obj/item/stack/cable_coil{
@@ -1390,10 +1390,10 @@
 	icon_state = "2-8"
 	},
 /obj/structure/table/reinforced,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
 "gT" = (
@@ -1407,11 +1407,11 @@
 /area/medical/medbay2)
 "gU" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = -9;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 6;
 	pixel_y = 3
 	},
@@ -1447,12 +1447,12 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals8,
 /obj/structure/table/standard,
-/obj/item/weapon/book/manual/tesla_engine,
-/obj/item/weapon/book/manual/engineering_particle_accelerator{
+/obj/item/book/manual/tesla_engine,
+/obj/item/book/manual/engineering_particle_accelerator{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
@@ -1584,7 +1584,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	name = "night shift APC";
 	nightshift_setting = 2
 	},
@@ -1793,7 +1793,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge)
 "iG" = (
-/obj/item/device/geiger/wall/west{
+/obj/item/geiger/wall/west{
 	dir = 4;
 	pixel_x = -36
 	},
@@ -1902,7 +1902,7 @@
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
 "jf" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/oracarpet,
@@ -2207,7 +2207,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -2377,7 +2377,7 @@
 /obj/machinery/r_n_d/circuit_imprinter{
 	dir = 1
 	},
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
+/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/workshop)
 "lu" = (
@@ -2440,8 +2440,8 @@
 /area/engineering/engine_monitoring)
 "lO" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blue{
+/obj/item/paper_bin,
+/obj/item/pen/blue{
 	pixel_x = -3;
 	pixel_y = 2
 	},
@@ -2511,8 +2511,8 @@
 /area/maintenance/asmaint)
 "mf" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /obj/structure/sink{
 	dir = 1
 	},
@@ -2770,7 +2770,7 @@
 "nr" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/weapon/cell/hyper{
+/obj/item/cell/hyper{
 	charge = 30000
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -3028,7 +3028,7 @@
 	dir = 8
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -3317,7 +3317,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/cell/high{
+/obj/item/cell/high{
 	charge = 100;
 	maxcharge = 15000
 	},
@@ -3511,23 +3511,23 @@
 /area/maintenance/asmaint)
 "qN" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = -7;
 	pixel_y = 4
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = 6;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/device/flashlight/pen{
+/obj/item/flashlight/pen{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -3539,7 +3539,7 @@
 /area/crew_quarters/locker)
 "qT" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "qU" = (
@@ -3637,7 +3637,7 @@
 "rm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	name = "night shift APC";
 	nightshift_setting = 2
 	},
@@ -3802,7 +3802,7 @@
 /obj/machinery/computer/telecomms/monitor{
 	network = "tcommsat"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "General Listening Channel";
 	pixel_x = 28
 	},
@@ -3850,7 +3850,7 @@
 	},
 /area/tcommsat/chamber)
 "sb" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/turcarpet,
@@ -4209,7 +4209,7 @@
 /area/maintenance/fore)
 "tK" = (
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -4220,7 +4220,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint)
 "tL" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/green,
@@ -4289,7 +4289,7 @@
 	dir = 8;
 	layer = 2.6
 	},
-/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
 "tU" = (
@@ -4297,7 +4297,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	name = "night shift APC";
 	nightshift_setting = 2
 	},
@@ -4574,7 +4574,7 @@
 /area/engineering/engine_smes)
 "vl" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1
 	},
 /obj/effect/floor_decal/milspec/color/blue/corner{
@@ -4652,7 +4652,7 @@
 /area/maintenance/asmaint)
 "vH" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "vI" = (
@@ -4868,7 +4868,7 @@
 "wN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/weapon/cell/hyper{
+/obj/item/cell/hyper{
 	charge = 30000
 	},
 /obj/machinery/camera/network/research,
@@ -4944,7 +4944,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 9
 	},
-/obj/item/weapon/storage/part_replacer/adv/discount_bluespace,
+/obj/item/storage/part_replacer/adv/discount_bluespace,
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
@@ -4993,8 +4993,8 @@
 /obj/structure/closet/secure_closet/medical3{
 	req_access = null
 	},
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/storage/belt/medical,
+/obj/item/soap/nanotrasen,
+/obj/item/storage/belt/medical,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/medbay)
 "xl" = (
@@ -5197,7 +5197,7 @@
 /area/engineering/engine_monitoring)
 "yw" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/book/manual/sd_guide,
+/obj/item/book/manual/sd_guide,
 /obj/effect/floor_decal/milspec/color/blue/half{
 	dir = 6
 	},
@@ -5303,7 +5303,7 @@
 /area/engineering/engine_smes)
 "yX" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/deck/cards,
+/obj/item/deck/cards,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "yY" = (
@@ -5388,7 +5388,7 @@
 /area/medical/medbay)
 "zu" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/medical/medbay)
 "zy" = (
@@ -5633,7 +5633,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/fore)
 "AD" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/purple,
@@ -5806,7 +5806,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
 "Br" = (
@@ -6169,7 +6169,7 @@
 /obj/random/trash,
 /obj/structure/cable,
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	name = "always night shift APC";
 	nightshift_setting = 3
 	},
@@ -6212,7 +6212,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint)
 "Dh" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -28
@@ -6452,8 +6452,8 @@
 /area/bridge)
 "Eq" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/yellow,
-/obj/item/weapon/folder/yellow,
+/obj/item/folder/yellow,
+/obj/item/folder/yellow,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -6648,7 +6648,7 @@
 	pixel_x = -4;
 	pixel_y = 5
 	},
-/obj/item/device/defib_kit/loaded,
+/obj/item/defib_kit/loaded,
 /turf/simulated/floor/tiled,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/medbay)
@@ -6925,7 +6925,7 @@
 /area/hallway/primary/fore)
 "Gy" = (
 /obj/machinery/light/small,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /obj/structure/closet/radiation,
@@ -7488,38 +7488,38 @@
 /obj/structure/closet/crate/engineering{
 	name = "capacitor storage"
 	},
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/adv,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/super,
+/obj/item/stock_parts/capacitor/super,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
 "Jc" = (
@@ -7562,7 +7562,7 @@
 	color = "#361447"
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/tiled/steel_grid,
 /area/crew_quarters/sleep/vistor_room_1)
 "Jn" = (
@@ -7612,7 +7612,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/maintenance/dormitory)
 "JE" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet,
@@ -7674,7 +7674,7 @@
 /turf/simulated/floor,
 /area/maintenance/central)
 "JV" = (
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Whoops, we seem to lost our Tesla... Oh well! Good thing we have backups... Right?";
 	name = "tesla note"
 	},
@@ -7707,7 +7707,7 @@
 /area/medical/medbay)
 "Kh" = (
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	name = "always night shift APC";
 	nightshift_setting = 3
 	},
@@ -7756,7 +7756,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -7943,7 +7943,7 @@
 	anchored = 1
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -8897,7 +8897,7 @@
 	dir = 10
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	name = "always night shift APC";
 	nightshift_setting = 3
 	},
@@ -8962,7 +8962,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "PJ" = (
@@ -9000,7 +9000,7 @@
 	anchored = 1
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -9288,7 +9288,7 @@
 	dir = 8
 	},
 /obj/item/clothing/shoes/black,
-/obj/item/device/communicator,
+/obj/item/communicator,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "QY" = (
@@ -9328,7 +9328,7 @@
 	dir = 1
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -9545,7 +9545,7 @@
 /area/submap/pa_room)
 "RU" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "RX" = (
@@ -9558,16 +9558,16 @@
 /area/tcommsat/chamber)
 "RY" = (
 /obj/structure/table/glass,
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = 9
 	},
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = 2
 	},
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = -5
 	},
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = -12
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
@@ -9752,7 +9752,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -9779,7 +9779,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/device/geiger/wall/west{
+/obj/item/geiger/wall/west{
 	dir = 4;
 	pixel_x = -36
 	},
@@ -10049,12 +10049,12 @@
 	},
 /obj/structure/table/standard,
 /obj/item/stack/cable_coil/random,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/screwdriver,
+/obj/item/tool/wrench,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "Uz" = (
-/obj/item/device/geiger/wall/west{
+/obj/item/geiger/wall/west{
 	dir = 4;
 	pixel_x = 36
 	},
@@ -10068,7 +10068,7 @@
 /area/engineering/engine_room)
 "UB" = (
 /obj/machinery/r_n_d/circuit_imprinter,
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
+/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/steel,
 /area/rnd/workshop)
 "UD" = (
@@ -10393,7 +10393,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/maintenance/dormitory)
 "Wq" = (
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/blue2,
@@ -10410,7 +10410,7 @@
 	anchored = 1
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -10447,7 +10447,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -10459,7 +10459,7 @@
 	color = "#361447"
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/tiled/steel_grid,
 /area/crew_quarters/sleep/vistor_room_2)
 "WL" = (
@@ -10470,7 +10470,7 @@
 	anchored = 1
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -10517,7 +10517,7 @@
 	dir = 1
 	},
 /obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "always night shift APC";
 	nightshift_setting = 3
@@ -10556,7 +10556,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/machinery/light/small,
-/obj/item/device/communicator,
+/obj/item/communicator,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "Xg" = (
@@ -10618,12 +10618,12 @@
 /area/medical/medbay2)
 "XC" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/cell/high{
+/obj/item/storage/box/lights/mixed,
+/obj/item/cell/high{
 	charge = 100;
 	maxcharge = 15000
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "The big blue box recently installed in here is a 'grid checker' which will shut off the power if a dangerous power spike from the engine erupts into the powernet.  Shutting everything down protects everything from electrical damage, however the outages can be disruptive to colony operations, so it is designed to restore power after a somewhat significant delay, up to ten minutes or so.  The grid checker can be manually hacked in order to end the outage sooner.  To do that, you must cut three specific wires which do not cause a red light to shine, then pulse a fourth wire.  Electrical protection is highly recommended when doing maintenance on the grid checker.";
 	name = "grid checker info"
 	},
@@ -10771,7 +10771,7 @@
 /area/maintenance/aft)
 "Yl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom{
@@ -11133,7 +11133,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engine_room)
 "ZU" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "ZW" = (

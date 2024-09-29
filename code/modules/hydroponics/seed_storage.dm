@@ -391,8 +391,8 @@
 		add(O)
 		user.visible_message("<span class ='filter_notice'>[user] puts \the [O.name] into \the [src].</span>", "<span class ='filter_notice'>You put \the [O] into \the [src].</span>")
 		return
-	else if (istype(O, /obj/item/weapon/storage/bag/plants) && !lockdown)
-		var/obj/item/weapon/storage/P = O
+	else if (istype(O, /obj/item/storage/bag/plants) && !lockdown)
+		var/obj/item/storage/P = O
 		var/loaded = 0
 		for(var/obj/item/seeds/G in P.contents)
 			++loaded
@@ -413,7 +413,7 @@
 		cut_overlays()
 		if(panel_open)
 			add_overlay("[initial(icon_state)]-panel")
-	else if((O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/device/multitool)) && panel_open)
+	else if((O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/multitool)) && panel_open)
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
@@ -437,8 +437,8 @@
 	if (istype(O.loc, /mob))
 		var/mob/user = O.loc
 		user.remove_from_mob(O)
-	else if(istype(O.loc,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = O.loc
+	else if(istype(O.loc,/obj/item/storage))
+		var/obj/item/storage/S = O.loc
 		S.remove_from_storage(O, src)
 
 	O.loc = src

@@ -1,6 +1,6 @@
 // Powersink - used to drain station power
 
-/obj/item/device/powersink
+/obj/item/powersink
 	name = "power sink"
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
@@ -24,12 +24,12 @@
 	var/datum/powernet/PN			// Our powernet
 	var/obj/structure/cable/attached		// the attached cable
 
-/obj/item/device/powersink/Destroy()
+/obj/item/powersink/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	STOP_PROCESSING_POWER_OBJECT(src)
 	..()
 
-/obj/item/device/powersink/attackby(var/obj/item/I, var/mob/user)
+/obj/item/powersink/attackby(var/obj/item/I, var/mob/user)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(mode == 0)
 			var/turf/T = loc
@@ -62,10 +62,10 @@
 	else
 		..()
 
-/obj/item/device/powersink/attack_ai()
+/obj/item/powersink/attack_ai()
 	return
 
-/obj/item/device/powersink/attack_hand(var/mob/user)
+/obj/item/powersink/attack_hand(var/mob/user)
 	switch(mode)
 		if(0)
 			..()
@@ -84,7 +84,7 @@
 			STOP_PROCESSING(SSobj, src)
 			STOP_PROCESSING_POWER_OBJECT(src)
 
-/obj/item/device/powersink/pwr_drain()
+/obj/item/powersink/pwr_drain()
 	if(!attached)
 		return 0
 
@@ -119,7 +119,7 @@
 	return 1
 
 
-/obj/item/device/powersink/process()
+/obj/item/powersink/process()
 	drained_this_tick = 0
 	power_drained -= min(dissipation_rate, power_drained)
 	if(power_drained > max_power * 0.95)

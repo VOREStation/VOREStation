@@ -35,7 +35,7 @@
 /datum/blob_type/fabrication_swarm/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(30 / severity))
 
-/datum/blob_type/fabrication_swarm/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/fabrication_swarm/on_chunk_tick(obj/item/blobcore_chunk/B)
 	var/turf/T = get_turf(B)
 	for(var/mob/living/L in view(world.view, T))
 		if(L.stat != DEAD && L.isSynthetic())

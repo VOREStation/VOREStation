@@ -9,16 +9,16 @@
 	icon = 'icons/obj/machines/id_restorer_vr.dmi'
 	density = FALSE
 	clicksound = null
-	circuit = /obj/item/weapon/circuitboard/id_restorer
+	circuit = /obj/item/circuitboard/id_restorer
 
 	var/icon_success = "restorer_success"
 	var/icon_fail = "restorer_fail"
 
-	var/obj/item/weapon/card/id/inserted
+	var/obj/item/card/id/inserted
 
 /obj/machinery/computer/id_restorer/attackby(obj/I, mob/user)
 	/*
-	if(istype(I, /obj/item/weapon/card/id) && !(istype(I,/obj/item/weapon/card/id/guest)))
+	if(istype(I, /obj/item/card/id) && !(istype(I,/obj/item/card/id/guest)))
 		if(!inserted && user.unEquip(I))
 			I.forceMove(src)
 			inserted = I

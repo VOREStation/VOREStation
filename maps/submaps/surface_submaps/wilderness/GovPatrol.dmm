@@ -13,11 +13,11 @@
 /turf/template_noop,
 /area/submap/GovPatrol)
 "e" = (
-/obj/item/device/radio/off,
+/obj/item/radio/off,
 /turf/template_noop,
 /area/submap/GovPatrol)
 "f" = (
-/obj/item/weapon/storage/box/flare,
+/obj/item/storage/box/flare,
 /turf/template_noop,
 /area/submap/GovPatrol)
 "g" = (
@@ -35,7 +35,7 @@
 /turf/template_noop,
 /area/submap/GovPatrol)
 "j" = (
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
+/obj/item/gun/projectile/shotgun/pump/rifle/lever,
 /turf/template_noop,
 /area/submap/GovPatrol)
 "k" = (
@@ -47,7 +47,7 @@
 /turf/template_noop,
 /area/submap/GovPatrol)
 "u" = (
-/obj/item/weapon/storage/backpack/parachute,
+/obj/item/storage/backpack/parachute,
 /turf/template_noop,
 /area/submap/GovPatrol)
 

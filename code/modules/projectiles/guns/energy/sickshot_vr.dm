@@ -1,5 +1,5 @@
 // -------------- Sickshot -------------
-/obj/item/weapon/gun/energy/sickshot
+/obj/item/gun/energy/sickshot
 	name = "\'Sickshot\' revolver"
 	desc = "Need to stun someone? Don't mind having to clean up the mess afterwards? The MPA6 'Sickshot' is the answer to your prayers. \
 	Using a short-range concentrated blast of disruptive sound, the Sickshot will nauseate and confuse the target for several seconds. NOTE: Not suitable \

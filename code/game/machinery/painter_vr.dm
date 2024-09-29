@@ -27,8 +27,8 @@
 
 	var/list/allowed_types = list(
 		/obj/item/clothing,
-		/obj/item/weapon/storage/backpack,
-		/obj/item/weapon/storage/belt,
+		/obj/item/storage/backpack,
+		/obj/item/storage/belt,
 		/obj/item/toy
 	)
 

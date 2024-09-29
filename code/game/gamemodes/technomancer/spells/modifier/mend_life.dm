@@ -5,11 +5,11 @@
 	if the target is completely healthy, preventing further instability."
 	spell_power_desc = "Healing amount increased."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/modifier/mend_life
+	obj_path = /obj/item/spell/modifier/mend_life
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/modifier/mend_life
+/obj/item/spell/modifier/mend_life
 	name = "mend life"
 	desc = "Watch your wounds close up before your eyes."
 	icon_state = "mend_life"

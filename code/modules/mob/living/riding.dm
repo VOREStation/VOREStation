@@ -10,7 +10,7 @@
 				to_chat(src, "<span class='filter_notice'>Rider control enabled.</span>")
 				return
 			else
-				riding_datum.keytype = /obj/item/weapon/material/twohanded/riding_crop
+				riding_datum.keytype = /obj/item/material/twohanded/riding_crop
 				to_chat(src, "<span class='filter_notice'>Rider control restricted.</span>")
 				return
 	return

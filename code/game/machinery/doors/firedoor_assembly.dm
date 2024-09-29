@@ -41,7 +41,7 @@
 			new/obj/item/stack/cable_coil(src.loc, 1)
 			wired = 0
 
-	else if(istype(C, /obj/item/weapon/circuitboard/airalarm) && wired)
+	else if(istype(C, /obj/item/circuitboard/airalarm) && wired)
 		if(anchored)
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='warning'>[user] has inserted a circuit into \the [src]!</span>",
@@ -61,7 +61,7 @@
 							  "You have [anchored ? "" : "un" ]secured \the [src]!")
 		update_icon()
 	else if((glass || !anchored) && C.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = C.get_welder()
+		var/obj/item/weldingtool/WT = C.get_welder()
 		if(WT.remove_fuel(0, user))
 			playsound(src, WT.usesound, 50, 1)
 			if(glass)

@@ -46,7 +46,7 @@
 	icon_state = "ward-nt"
 
 /mob/living/simple_mob/mechanical/ward/monitor/crew/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/card/id) && !owner)
+	if(istype(O, /obj/item/card/id) && !owner)
 		owner = user
 		return
 	..()

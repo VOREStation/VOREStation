@@ -48,8 +48,8 @@
 
 	tame_items = list(
 	/obj/item/organ = 70,
-	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 30,
-	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
+	/obj/item/reagent_containers/food/snacks/crabmeat = 30,
+	/obj/item/reagent_containers/food/snacks/meat = 20
 	)
 
 	say_list_type = /datum/say_list/savik

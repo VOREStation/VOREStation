@@ -110,7 +110,7 @@ Class Procs:
 	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
 	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/circuitboard/circuit = null
 
 	// 0.0 - 1.0 multipler for prob() based on bullet structure damage
 	// So if this is 1.0 then a 100 damage bullet will always break this structure
@@ -313,23 +313,23 @@ Class Procs:
 	return 0
 
 /obj/machinery/proc/default_apply_parts()
-	var/obj/item/weapon/circuitboard/CB = circuit
+	var/obj/item/circuitboard/CB = circuit
 	if(!istype(CB))
 		return
 	CB.apply_default_parts(src)
 	RefreshParts()
 
 /obj/machinery/proc/default_use_hicell()
-	var/obj/item/weapon/cell/C = locate(/obj/item/weapon/cell) in component_parts
+	var/obj/item/cell/C = locate(/obj/item/cell) in component_parts
 	if(C)
 		component_parts -= C
 		qdel(C)
-		C = new /obj/item/weapon/cell/high(src)
+		C = new /obj/item/cell/high(src)
 		component_parts += C
 		RefreshParts()
 		return C
 
-/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
+/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
 	var/parts_replaced = FALSE
 	if(!istype(R))
 		return 0
@@ -339,7 +339,7 @@ Class Procs:
 	for(var/obj/item/C in component_parts)
 		to_chat(user, "<span class='notice'>    [C.name]</span>")
 	if(panel_open || !R.panel_req)
-		var/obj/item/weapon/circuitboard/CB = circuit
+		var/obj/item/circuitboard/CB = circuit
 		var/P
 		for(var/obj/item/A in component_parts)
 			for(var/T in CB.req_components)
@@ -410,7 +410,7 @@ Class Procs:
 	if(do_after(user, 20 * S.toolspeed))
 		if(stat & BROKEN)
 			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
-			new /obj/item/weapon/material/shard(src.loc)
+			new /obj/item/material/shard(src.loc)
 		else
 			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 		. = dismantle()
@@ -437,13 +437,13 @@ Class Procs:
 /obj/machinery/proc/dismantle()
 	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	for(var/obj/I in contents)
-		if(istype(I,/obj/item/weapon/card/id))
+		if(istype(I,/obj/item/card/id))
 			I.forceMove(src.loc)
 
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
-	var/obj/item/weapon/circuitboard/M = circuit
+	var/obj/item/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = TRUE
 	A.frame_type = M.board_type
@@ -511,7 +511,7 @@ Class Procs:
 	var/list/surviving_parts = list()
 	// Deleting IDs is lame, unless this is like nuclear severity
 	if(severity != 1)
-		for(var/obj/item/weapon/card/id/I in contents)
+		for(var/obj/item/card/id/I in contents)
 			surviving_parts |= I
 
 	// May populate some items to throw around

@@ -167,8 +167,8 @@
 	pixel_y = -26
 	},
 /obj/random/awayloot,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/item/clothing/under/swimsuit/fluff/science,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
@@ -242,8 +242,8 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/item/clothing/under/swimsuit/fluff/engineering,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
@@ -325,8 +325,8 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 26
 	},
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/item/clothing/under/swimsuit/earth,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
@@ -352,8 +352,8 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/item/clothing/under/swimsuit/fluff/medical,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
@@ -392,7 +392,7 @@
 /area/redgate/eggnogtown/underground)
 "lX" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/item/toy/mecha/honk,
 /turf/simulated/floor/wood{
 	temperature = 258.15
@@ -464,7 +464,7 @@
 /turf/simulated/floor/reinforced,
 /area/redgate/eggnogtown/telecomms)
 "qr" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
@@ -613,7 +613,7 @@
 /area/redgate/eggnogtown/houserhomestead/basement)
 "vW" = (
 /obj/structure/table/borosilicate,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -701,8 +701,8 @@
 /obj/structure/closet/walllocker{
 	pixel_y = 26
 	},
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/item/clothing/under/swimsuit/blue,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
@@ -727,8 +727,8 @@
 "DZ" = (
 /obj/structure/railing,
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/material/ashtray,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/material/ashtray,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/tiled/dark{
 	temperature = 258.15
 	},
@@ -777,7 +777,7 @@
 /turf/simulated/wall/iron,
 /area/redgate/eggnogtown/houserhomestead/basement)
 "Hk" = (
-/obj/item/weapon/bedsheet/mimedouble,
+/obj/item/bedsheet/mimedouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/wood{
 	temperature = 258.15
@@ -815,8 +815,8 @@
 /area/redgate/eggnogtown/hotsprings)
 "Jv" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/material/ashtray,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/material/ashtray,
+/obj/item/flashlight/lamp/green,
 /obj/item/toy/plushie/orange_fox,
 /turf/simulated/floor/wood{
 	temperature = 258.15
@@ -948,7 +948,7 @@
 	},
 /area/redgate/eggnogtown/hotspring)
 "Pb" = (
-/obj/item/weapon/bedsheet/piratedouble,
+/obj/item/bedsheet/piratedouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/wood{
 	temperature = 258.15
@@ -991,7 +991,7 @@
 /area/redgate/eggnogtown/telecomms)
 "Tx" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -1060,7 +1060,7 @@
 /area/redgate/eggnogtown/hotspring)
 "Wr" = (
 /obj/structure/table/borosilicate,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
@@ -1121,7 +1121,7 @@
 /turf/simulated/floor/reinforced,
 /area/redgate/eggnogtown/telecomms)
 "YF" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
@@ -1140,12 +1140,12 @@
 /area/redgate/eggnogtown/houserhomestead/basement)
 "YK" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/glasses/mug,
+/obj/item/storage/box/glasses/mug,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/cigarettes,
-/obj/item/weapon/book/manual/barman_recipes,
+/obj/item/book/manual/barman_recipes,
 /turf/simulated/floor/tiled{
 	temperature = 258.15
 	},
@@ -1161,8 +1161,8 @@
 	pixel_y = 26
 	},
 /obj/random/awayloot,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/item/clothing/under/swimsuit/black,
 /turf/simulated/floor/bmarble{
 	temperature = 303.15

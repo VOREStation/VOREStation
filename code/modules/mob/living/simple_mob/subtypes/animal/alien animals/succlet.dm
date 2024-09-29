@@ -134,7 +134,7 @@
 	qdel(src)
 
 /mob/living/simple_mob/vore/alienanimals/succlet/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/newspaper) && !ckey && isturf(user.loc))
+	if(istype(O, /obj/item/newspaper) && !ckey && isturf(user.loc))
 		user.visible_message("<span class='info'>[user] swats [src] with [O]!</span>")
 		release_vore_contents()
 	else

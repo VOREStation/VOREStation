@@ -77,7 +77,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	return GLOB.tgui_physical_state
 
 /obj/item/integrated_circuit/tgui_host(mob/user)
-	if(istype(loc, /obj/item/device/electronic_assembly))
+	if(istype(loc, /obj/item/electronic_assembly))
 		return loc.tgui_host()
 	return ..()
 
@@ -170,8 +170,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			return
 
 		if("wire", "pin_name", "pin_data", "pin_unwire")
-			if(istype(held_item, /obj/item/device/multitool) && allow_multitool)
-				var/obj/item/device/multitool/M = held_item
+			if(istype(held_item, /obj/item/multitool) && allow_multitool)
+				var/obj/item/multitool/M = held_item
 				switch(action)
 					if("pin_name")
 						M.wire(pin, usr)
@@ -181,15 +181,15 @@ a creative player the means to solve many problems.  Circuits are held inside an
 					if("pin_unwire")
 						M.unwire(pin, linked, usr)
 
-			else if(istype(held_item, /obj/item/device/integrated_electronics/wirer))
-				var/obj/item/device/integrated_electronics/wirer/wirer = held_item
+			else if(istype(held_item, /obj/item/integrated_electronics/wirer))
+				var/obj/item/integrated_electronics/wirer/wirer = held_item
 				if(linked)
 					wirer.wire(linked, usr)
 				else if(pin)
 					wirer.wire(pin, usr)
 
-			else if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-				var/obj/item/device/integrated_electronics/debugger/debugger = held_item
+			else if(istype(held_item, /obj/item/integrated_electronics/debugger))
+				var/obj/item/integrated_electronics/debugger/debugger = held_item
 				if(pin)
 					debugger.write_data(pin, usr)
 			else
@@ -197,8 +197,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			return
 
 		if("scan")
-			if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-				var/obj/item/device/integrated_electronics/debugger/D = held_item
+			if(istype(held_item, /obj/item/integrated_electronics/debugger))
+				var/obj/item/integrated_electronics/debugger/D = held_item
 				if(D.accepting_refs)
 					D.afterattack(src, usr, TRUE)
 				else
@@ -222,14 +222,14 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	return FALSE
 
 /obj/item/integrated_circuit/proc/remove(mob/user)
-	var/obj/item/device/electronic_assembly/A = assembly
+	var/obj/item/electronic_assembly/A = assembly
 	if(!A)
 		to_chat(user, "<span class='warning'>This circuit is not in an assembly!</span>")
 		return
 	if(!removable)
 		to_chat(user, "<span class='warning'>\The [src] seems to be permanently attached to the case.</span>")
 		return
-	var/obj/item/device/electronic_assembly/ea = loc
+	var/obj/item/electronic_assembly/ea = loc
 
 	power_fail()
 	disconnect_all()

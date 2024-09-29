@@ -4,4 +4,4 @@
 	closet_appearance = /decl/closet_appearance/cabinet/secure
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 10)
+		/obj/item/reagent_containers/food/drinks/bottle/small/beer = 10)

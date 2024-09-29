@@ -28,7 +28,7 @@
 /turf/simulated/floor/wood,
 /area/submap/Speakeasy)
 "k" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/wood,
 /area/submap/Speakeasy)
 "l" = (

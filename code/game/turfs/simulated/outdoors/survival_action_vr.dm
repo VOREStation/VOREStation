@@ -46,7 +46,7 @@ var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
 		return
 
 /turf/simulated/floor/outdoors/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/shovel) && rock_chance)
+	if(istype(O, /obj/item/shovel) && rock_chance)
 		rock_gathering(user)
 	else
 		return ..()

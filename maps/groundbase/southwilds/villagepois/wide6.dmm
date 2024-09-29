@@ -50,10 +50,10 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "m" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /obj/random/plushie,
 /obj/structure/curtain/open/privacy,
-/obj/item/weapon/paper/wide6,
+/obj/item/paper/wide6,
 /turf/simulated/floor/tiled/white,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "n" = (
@@ -111,7 +111,7 @@
 /obj/structure/bed/chair/sofa/blue{
 	dir = 4
 	},
-/obj/item/weapon/bedsheet/ian,
+/obj/item/bedsheet/ian,
 /turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "z" = (
@@ -153,18 +153,18 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "K" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/apurrrrfectman,
-/obj/item/weapon/book/bundle/custom_library/fiction/beyondthedoor,
-/obj/item/weapon/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
-/obj/item/weapon/book/bundle/custom_library/fiction/coldmountain,
-/obj/item/weapon/book/bundle/custom_library/fiction/ghostship,
-/obj/item/weapon/book/bundle/custom_library/fiction/manfromsnowyriver,
-/obj/item/weapon/book/bundle/custom_library/fiction/metalglen,
-/obj/item/weapon/book/bundle/custom_library/fiction/poemsforarainyday,
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue142,
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue147,
-/obj/item/weapon/book/bundle/custom_library/fiction/silence,
-/obj/item/weapon/book/bundle/custom_library/fiction/taleoftherainbowcat,
+/obj/item/book/bundle/custom_library/fiction/apurrrrfectman,
+/obj/item/book/bundle/custom_library/fiction/beyondthedoor,
+/obj/item/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
+/obj/item/book/bundle/custom_library/fiction/coldmountain,
+/obj/item/book/bundle/custom_library/fiction/ghostship,
+/obj/item/book/bundle/custom_library/fiction/manfromsnowyriver,
+/obj/item/book/bundle/custom_library/fiction/metalglen,
+/obj/item/book/bundle/custom_library/fiction/poemsforarainyday,
+/obj/item/book/bundle/custom_library/fiction/raissue142,
+/obj/item/book/bundle/custom_library/fiction/raissue147,
+/obj/item/book/bundle/custom_library/fiction/silence,
+/obj/item/book/bundle/custom_library/fiction/taleoftherainbowcat,
 /turf/simulated/floor/tiled/white,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "L" = (

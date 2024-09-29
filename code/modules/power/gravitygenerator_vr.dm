@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				return
 		if(GRAV_NEEDS_WELDING)
 			if(I.has_tool_quality(TOOL_WELDER))
-				var/obj/item/weapon/weldingtool/W = I.get_welder()
+				var/obj/item/weldingtool/W = I.get_welder()
 				if(W.remove_fuel(0,user))
 					to_chat(user, "<span class='notice'>You mend the damaged framework.</span>")
 					broken_state++

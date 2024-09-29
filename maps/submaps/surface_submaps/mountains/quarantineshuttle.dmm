@@ -124,7 +124,7 @@
 "as" = (
 /obj/machinery/vending/snack{
 	contraband = null;
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 0, /obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/weapon/reagent_containers/food/snacks/chips = 0, /obj/item/weapon/reagent_containers/food/snacks/sosjerky = 0, /obj/item/weapon/reagent_containers/food/snacks/no_raisin = 0, /obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie = 0, /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 0, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 0)
+	products = list(/obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/reagent_containers/food/snacks/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0, /obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/snacks/packaged/spacetwinkie = 0, /obj/item/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/reagent_containers/food/snacks/tastybread = 0, /obj/item/reagent_containers/food/snacks/skrellsnacks = 0)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
@@ -133,7 +133,7 @@
 "at" = (
 /obj/machinery/vending/cola{
 	contraband = null;
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 0)
+	products = list(/obj/item/reagent_containers/food/drinks/cans/cola = 0, /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 0, /obj/item/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/reagent_containers/food/drinks/cans/starkist = 0, /obj/item/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/reagent_containers/food/drinks/cans/space_up = 0, /obj/item/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 0, /obj/item/reagent_containers/food/drinks/cans/gingerale = 0)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
@@ -146,7 +146,7 @@
 	},
 /area/submap/cave/qShuttle)
 "av" = (
-/obj/item/weapon/pickaxe/drill,
+/obj/item/pickaxe/drill,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -183,13 +183,13 @@
 /area/submap/cave/qShuttle)
 "aB" = (
 /obj/item/trash/cigbutt,
-/obj/item/weapon/tank/emergency/oxygen,
+/obj/item/tank/emergency/oxygen,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
 /area/submap/cave/qShuttle)
 "aC" = (
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/material/knife/tacknife/boot,
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
@@ -203,8 +203,8 @@
 /area/submap/cave/qShuttle)
 "aE" = (
 /obj/item/trash/sosjerky,
-/obj/item/weapon/storage/box/donut/empty,
-/obj/item/weapon/reagent_containers/food/drinks/sillycup,
+/obj/item/storage/box/donut/empty,
+/obj/item/reagent_containers/food/drinks/sillycup,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -332,13 +332,13 @@
 	},
 /area/submap/cave/qShuttle)
 "aV" = (
-/obj/item/weapon/virusdish/random,
+/obj/item/virusdish/random,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
 /area/submap/cave/qShuttle)
 "aW" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -390,7 +390,7 @@
 	},
 /area/submap/cave/qShuttle)
 "bc" = (
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
@@ -460,7 +460,7 @@
 /area/submap/cave/qShuttle)
 "bk" = (
 /obj/structure/table/rack,
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -472,9 +472,9 @@
 	name = "Virus Samples - FRAGILE";
 	opened = 1
 	},
-/obj/item/weapon/virusdish/random,
-/obj/item/weapon/virusdish/random,
-/obj/item/weapon/virusdish/random,
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -498,11 +498,11 @@
 /area/submap/cave/qShuttle)
 "bn" = (
 /obj/structure/table/standard,
-/obj/item/device/taperecorder,
+/obj/item/taperecorder,
 /turf/simulated/shuttle/floor,
 /area/submap/cave/qShuttle)
 "bo" = (
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -554,7 +554,7 @@
 	},
 /area/submap/cave/qShuttle)
 "bv" = (
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /turf/simulated/shuttle/floor{
@@ -574,7 +574,7 @@
 	},
 /area/submap/cave/qShuttle)
 "by" = (
-/obj/item/weapon/coin/silver,
+/obj/item/coin/silver,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -594,7 +594,7 @@
 	},
 /area/submap/cave/qShuttle)
 "bB" = (
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -656,7 +656,7 @@
 /area/submap/cave/qShuttle)
 "bJ" = (
 /obj/item/trash/tastybread,
-/obj/item/weapon/material/butterfly/boxcutter,
+/obj/item/material/butterfly/boxcutter,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
@@ -682,7 +682,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/item/weapon/card/id/external{
+/obj/item/card/id/external{
 	desc = "An identification card of some sort. Looks like this one was issued by the Vir Independent Mining Corp.";
 	name = "VIMC identification card";
 	rank = "Miner";
@@ -694,7 +694,7 @@
 /area/submap/cave/qShuttle)
 "bN" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -783,7 +783,7 @@
 /area/submap/cave/qShuttle)
 "cc" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cd" = (
@@ -797,7 +797,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cf" = (
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/syringe/antiviral,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cg" = (
@@ -810,12 +810,12 @@
 /area/submap/cave/qShuttle)
 "ci" = (
 /obj/structure/table/steel,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/syringe/antiviral,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cj" = (
 /obj/structure/table/steel,
-/obj/item/weapon/reagent_containers/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
 	name = "Chemistry Cleaner"
 	},
@@ -823,7 +823,7 @@
 /area/submap/cave/qShuttle)
 "ck" = (
 /obj/structure/table/steel,
-/obj/item/weapon/tool/transforming/jawsoflife,
+/obj/item/tool/transforming/jawsoflife,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cl" = (
@@ -833,7 +833,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cm" = (
-/obj/item/weapon/weldingtool/largetank,
+/obj/item/weldingtool/largetank,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cn" = (

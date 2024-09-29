@@ -4,7 +4,7 @@
 	Wonderful if you're worried someone will steal your valuables, like a certain shiny Scepter..."
 	enhancement_desc = "You will be able to track most other entities in addition to your belongings and allies."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/track
+	obj_path = /obj/item/spell/track
 	ability_icon_state = "tech_track"
 	category = UTILITY_SPELLS
 
@@ -12,7 +12,7 @@
 // I feel dirty for adding yet another global list used by one thing, but the only alternative is to loop through world, and yeahhh.
 var/list/technomancer_belongings = list()
 
-/obj/item/weapon/spell/track
+/obj/item/spell/track
 	name = "track"
 	icon_state = "track"
 	desc = "Never lose your stuff again!"
@@ -21,12 +21,12 @@ var/list/technomancer_belongings = list()
 	var/atom/movable/tracked = null // The thing to point towards.
 	var/tracking = 0 // If one, points towards tracked.
 
-/obj/item/weapon/spell/track/Destroy()
+/obj/item/spell/track/Destroy()
 	tracked = null
 	tracking = 0
 	return ..()
 
-/obj/item/weapon/spell/track/on_use_cast(mob/user)
+/obj/item/spell/track/on_use_cast(mob/user)
 	if(tracking)
 		tracking = 0
 		to_chat(user, "<span class='notice'>You stop tracking for \the [tracked]'s whereabouts.</span>")
@@ -50,7 +50,7 @@ var/list/technomancer_belongings = list()
 		tracking = 1
 		track()
 
-/obj/item/weapon/spell/track/proc/track()
+/obj/item/spell/track/proc/track()
 	if(!tracking)
 		icon_state = "track"
 		return

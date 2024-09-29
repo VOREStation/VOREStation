@@ -13,7 +13,7 @@
 	var/exploding = 0
 
 
-/obj/item/weapon/gun/proc/get_dna(mob/user)
+/obj/item/gun/proc/get_dna(mob/user)
 	var/mob/living/M = user
 	if(!attached_lock.controller_lock)
 
@@ -31,13 +31,13 @@
 		to_chat(M, "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA samples at this time.</span>")
 		return 0
 
-/obj/item/weapon/gun/verb/give_dna()
+/obj/item/gun/verb/give_dna()
 	set name = "Give DNA"
 	set category = "Object"
 	set src in usr
 	get_dna(usr)
 
-/obj/item/weapon/gun/proc/clear_dna(mob/user)
+/obj/item/gun/proc/clear_dna(mob/user)
 	var/mob/living/M = user
 	if(!attached_lock.controller_lock)
 		if(!authorized_user(M))
@@ -56,13 +56,13 @@
 		to_chat(M, "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA modifcation at this time.</span>")
 		return 0
 
-/obj/item/weapon/gun/verb/remove_dna()
+/obj/item/gun/verb/remove_dna()
 	set name = "Remove DNA"
 	set category = "Object"
 	set src in usr
 	clear_dna(usr)
 
-/obj/item/weapon/gun/proc/toggledna(mob/user)
+/obj/item/gun/proc/toggledna(mob/user)
 	var/mob/living/M = user
 	if(authorized_user(M) && user.dna == attached_lock.controller_dna)
 		if(!attached_lock.controller_lock)
@@ -74,13 +74,13 @@
 	else
 		to_chat(M, "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>")
 
-/obj/item/weapon/gun/verb/allow_dna()
+/obj/item/gun/verb/allow_dna()
 	set name = "Toggle DNA Samples Allowance"
 	set category = "Object"
 	set src in usr
 	toggledna(usr)
 
-/obj/item/weapon/gun/proc/authorized_user(mob/user)
+/obj/item/gun/proc/authorized_user(mob/user)
 	if(!attached_lock.stored_dna || !attached_lock.stored_dna.len)
 		return 1
 	if(!(user.dna in attached_lock.stored_dna))

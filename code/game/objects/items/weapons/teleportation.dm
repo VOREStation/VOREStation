@@ -7,7 +7,7 @@
 /*
  * Locator
  */
-/obj/item/weapon/locator
+/obj/item/locator
 	name = "locator"
 	desc = "Used to track those with locater implants."
 	icon = 'icons/obj/device.dmi'
@@ -23,7 +23,7 @@
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MAT_STEEL = 400)
 
-/obj/item/weapon/locator/attack_self(mob/user as mob)
+/obj/item/locator/attack_self(mob/user as mob)
 	user.set_machine(src)
 	var/dat
 	if (src.temp)
@@ -42,7 +42,7 @@ Frequency:
 	onclose(user, "radio")
 	return
 
-/obj/item/weapon/locator/Topic(href, href_list)
+/obj/item/locator/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained())
 		return
@@ -59,7 +59,7 @@ Frequency:
 			if (sr)
 				src.temp += "<B>Located Beacons:</B><BR>"
 
-				for(var/obj/item/device/radio/beacon/W in all_beacons)
+				for(var/obj/item/radio/beacon/W in all_beacons)
 					if (W.frequency == src.frequency)
 						var/turf/tr = get_turf(W)
 						if (tr.z == sr.z && tr)
@@ -77,7 +77,7 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>Extraneous Signals:</B><BR>"
-				for (var/obj/item/weapon/implant/tracking/W in all_tracking_implants)
+				for (var/obj/item/implant/tracking/W in all_tracking_implants)
 					if (!W.implanted || !(istype(W.loc,/obj/item/organ/external) || ismob(W.loc) || W.malfunction))
 						continue
 
@@ -116,7 +116,7 @@ Frequency:
 /*
  * Hand-tele
  */
-/obj/item/weapon/hand_tele
+/obj/item/hand_tele
 	name = "hand tele"
 	desc = "A portable item using blue-space technology."
 	icon = 'icons/obj/device.dmi'
@@ -130,7 +130,7 @@ Frequency:
 	matter = list(MAT_STEEL = 10000)
 	preserve_item = 1
 
-/obj/item/weapon/hand_tele/attack_self(mob/user as mob)
+/obj/item/hand_tele/attack_self(mob/user as mob)
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location || (current_location.z in using_map.admin_levels) || current_location.block_tele)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")

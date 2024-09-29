@@ -81,7 +81,7 @@
 	if (kin_energy > 1000000)
 		add_overlay(image('icons/obj/pipeturbine.dmi', "hi-turb"))
 
-/obj/machinery/atmospherics/pipeturbine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/pipeturbine/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
@@ -255,7 +255,7 @@
 	turbine.kin_energy -= power_generated
 	add_avail(power_generated)
 
-/obj/machinery/power/turbinemotor/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/power/turbinemotor/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)

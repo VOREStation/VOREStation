@@ -1,4 +1,4 @@
-/obj/item/weapon/material/sword
+/obj/item/material/sword
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
@@ -12,26 +12,26 @@
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
 
-/obj/item/weapon/material/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/material/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(unique_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
-/obj/item/weapon/material/sword/katana
+/obj/item/material/sword/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20. This one looks pretty sharp."
 	icon_state = "katana"
 	slot_flags = SLOT_BELT | SLOT_BACK
 
-/obj/item/weapon/material/sword/katana/caneblade
+/obj/item/material/sword/katana/caneblade
 	name = "cane blade"
 	desc = "Used for making people fall over instead of helping them stand up."
 	icon_state = "caneblade"
 	item_state = "caneblade"
 
-/obj/item/weapon/material/sword/rapier
+/obj/item/material/sword/rapier
 	name = "rapier"
 	desc = "A slender, fancy and sharply pointed sword."
 	icon_state = "rapier"
@@ -41,7 +41,7 @@
 	attack_verb = list("attacked", "stabbed", "prodded", "poked", "lunged")
 	edge = 0 //rapiers are pointy, but not cutty like other swords
 
-/obj/item/weapon/material/sword/longsword
+/obj/item/material/sword/longsword
 	name = "longsword"
 	desc = "A double-edged large blade."
 	icon_state = "longsword"
@@ -50,7 +50,7 @@
 	slot_flags = SLOT_BELT | SLOT_BACK
 	can_cleave = TRUE
 
-/obj/item/weapon/material/sword/sabre
+/obj/item/material/sword/sabre
 	name = "sabre"
 	desc = "A sharp curved sword, a favored weapon of pirates far in the past."
 	icon_state = "sabre"
@@ -58,7 +58,7 @@
 	applies_material_colour = 0 //messes up the hilt color otherwise
 	slot_flags = SLOT_BELT
 
-/obj/item/weapon/material/sword/battleaxe
+/obj/item/material/sword/battleaxe
 	name = "battleaxe"
 	desc = "A one handed battle axe, still a deadly weapon."
 	icon_state = "axe"
@@ -70,14 +70,14 @@
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 	can_cleave = TRUE
 
-/obj/item/weapon/material/sword/battleaxe/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/material/sword/battleaxe/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(unique_parry_check(user, attacker, damage_source) && prob(10))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
-/obj/item/weapon/material/sword/gladius
+/obj/item/material/sword/gladius
 	name = "gladius"
 	desc = "An ancient short sword, designed to stab and cut."
 	icon_state = "gladius"

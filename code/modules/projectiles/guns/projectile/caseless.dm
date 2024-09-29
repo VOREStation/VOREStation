@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/caseless/prototype
+/obj/item/gun/projectile/caseless/prototype
 	name = "prototype caseless rifle"
 	desc = "The GC1 is a rifle cooked up in Gilthari Exports's R&D labs that operates with barely comprehensible clockwork internals. Uses solid phoron 5mm caseless rounds."
 	description_fluff = "Gilthari is Sol’s premier supplier of luxury goods, specializing in extracting money from the rich and successful. \
@@ -13,11 +13,11 @@
 	magazine_type = null // R&D builds this. Starts unloaded.
 	allowed_magazines = list(/obj/item/ammo_magazine/m5mmcaseless)
 
-/obj/item/weapon/gun/projectile/caseless/prototype/update_icon()
+/obj/item/gun/projectile/caseless/prototype/update_icon()
 	if(ammo_magazine)
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]-empty"
 
-/obj/item/weapon/gun/projectile/caseless/prototype/loaded
+/obj/item/gun/projectile/caseless/prototype/loaded
 	magazine_type = /obj/item/ammo_magazine/m5mmcaseless

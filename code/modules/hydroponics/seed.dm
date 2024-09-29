@@ -825,10 +825,10 @@
 			else if(has_item_product)
 				product = new has_item_product(get_turf(user))
 			else
-				product = new /obj/item/weapon/reagent_containers/food/snacks/grown(get_turf(user),name)
+				product = new /obj/item/reagent_containers/food/snacks/grown(get_turf(user),name)
 			if (get_trait(TRAIT_PRODUCT_COLOUR))
-				if (istype(product,/obj/item/weapon/reagent_containers/food))
-					var/obj/item/weapon/reagent_containers/food/food = product
+				if (istype(product,/obj/item/reagent_containers/food))
+					var/obj/item/reagent_containers/food/food = product
 					food.filling_color = get_trait(TRAIT_PRODUCT_COLOUR)
 
 			if(mysterious)

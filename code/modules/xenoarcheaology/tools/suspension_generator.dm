@@ -5,15 +5,15 @@
 	icon_state = "suspension"
 	density = 1
 	req_access = list(access_research)
-	var/obj/item/weapon/cell/cell
-	var/obj/item/weapon/card/id/auth_card
+	var/obj/item/cell/cell
+	var/obj/item/card/id/auth_card
 	var/locked = 1
 	var/power_use = 5
 	var/obj/effect/suspension_field/suspension_field
 
 /obj/machinery/suspension_gen/Initialize()
 	. = ..()
-	cell = new /obj/item/weapon/cell/high(src)
+	cell = new /obj/item/cell/high(src)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -109,7 +109,7 @@
 			update_icon()
 		else
 			to_chat(user, "<span class='warning'>You are unable to secure [src] while it is active!</span>")
-	else if (istype(W, /obj/item/weapon/cell))
+	else if (istype(W, /obj/item/cell))
 		if(panel_open)
 			if(cell)
 				to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
@@ -119,8 +119,8 @@
 				cell = W
 				to_chat(user, "<span class='info'>You insert the power cell.</span>")
 				icon_state = "suspension"
-	else if(istype(W, /obj/item/weapon/card))
-		var/obj/item/weapon/card/I = W
+	else if(istype(W, /obj/item/card))
+		var/obj/item/card/I = W
 		if(!auth_card)
 			if(attempt_unlock(I, user))
 				to_chat(user, "<span class='info'>You swipe [I], the console flashes \'<i>Access granted.</i>\'</span>")
@@ -129,11 +129,11 @@
 		else
 			to_chat(user, "<span class='warning'>Remove [auth_card] first.</span>")
 
-/obj/machinery/suspension_gen/proc/attempt_unlock(var/obj/item/weapon/card/C, var/mob/user)
+/obj/machinery/suspension_gen/proc/attempt_unlock(var/obj/item/card/C, var/mob/user)
 	if(!panel_open)
-		if(istype(C, /obj/item/weapon/card/emag))
+		if(istype(C, /obj/item/card/emag))
 			C.resolve_attackby(src, user)
-		else if(istype(C, /obj/item/weapon/card/id) && check_access(C))
+		else if(istype(C, /obj/item/card/id) && check_access(C))
 			locked = 0
 		if(!locked)
 			return 1
@@ -158,7 +158,7 @@
 	playsound(loc, 'sound/machines/quiet_beep.ogg', 40)
 	update_icon()
 
-	for(var/obj/item/weapon/I in T)
+	for(var/obj/item/I in T)
 		I.loc = suspension_field
 		collected++
 

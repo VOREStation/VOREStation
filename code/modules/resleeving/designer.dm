@@ -15,7 +15,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "explosive"
 	light_color = "#315ab4"
-	circuit = /obj/item/weapon/circuitboard/body_designer
+	circuit = /obj/item/circuitboard/body_designer
 	req_access = list(access_medical) // Used for loading people's designs
 	var/temp = ""
 	var/menu = MENU_MAIN //Which menu screen to display
@@ -27,7 +27,7 @@
 	var/obj/screen/west_preview = null
 	// Mannequins are somewhat expensive to create, so cache it
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = null
-	var/obj/item/weapon/disk/body_record/disk = null
+	var/obj/item/disk/body_record/disk = null
 
 	// Resleeving database this machine interacts with. Blank for default database
 	// Needs a matching /datum/transcore_db with key defined in code
@@ -71,7 +71,7 @@
 	..()
 
 /obj/machinery/computer/transhuman/designer/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/disk/body_record))
+	if(istype(W, /obj/item/disk/body_record))
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
@@ -436,7 +436,7 @@
 	// Do NOT call ..(), it expects real stuff
 
 // Disk for manually moving body records between the designer and sleever console etc.
-/obj/item/weapon/disk/body_record
+/obj/item/disk/body_record
 	name = "Body Design Disk"
 	desc = "It has a small label: \n\
 	\"Portable Body Record Storage Disk. \n\
@@ -451,15 +451,15 @@
  *	Diskette Box
  */
 
-/obj/item/weapon/storage/box/body_record_disk
+/obj/item/storage/box/body_record_disk
 	name = "body record disk box"
 	desc = "A box of body record disks, apparently."
 	icon_state = "disk_kit"
 
-/obj/item/weapon/storage/box/body_record_disk/New()
+/obj/item/storage/box/body_record_disk/New()
 	..()
 	for(var/i = 0 to 7)
-		new /obj/item/weapon/disk/body_record(src)
+		new /obj/item/disk/body_record(src)
 
 #undef MOB_HEX_COLOR
 

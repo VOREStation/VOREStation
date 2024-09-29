@@ -6,7 +6,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	density = FALSE
-	var/obj/item/weapon/extinguisher/has_extinguisher
+	var/obj/item/extinguisher/has_extinguisher
 	var/opened = 0
 
 /obj/structure/extinguisher_cabinet/Initialize(var/mapload, var/dir, var/building = 0)
@@ -16,14 +16,14 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
 		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
 	else
-		has_extinguisher = new/obj/item/weapon/extinguisher(src)
+		has_extinguisher = new/obj/item/extinguisher(src)
 
 	update_icon()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(isrobot(user))
 		return
-	if(istype(O, /obj/item/weapon/extinguisher))
+	if(istype(O, /obj/item/extinguisher))
 		if(!has_extinguisher && opened)
 			user.remove_from_mob(O)
 			contents += O
@@ -78,9 +78,9 @@
 /obj/structure/extinguisher_cabinet/update_icon()
 	var/suffix = "empty"
 	if(has_extinguisher)
-		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
+		if(istype(has_extinguisher, /obj/item/extinguisher/mini))
 			suffix = "mini"
-		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/atmo))
+		if(istype(has_extinguisher, /obj/item/extinguisher/atmo))
 			suffix = "advanced"
 		else
 			suffix = "standard"

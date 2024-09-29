@@ -173,11 +173,11 @@
 	O.job = JOB_CYBORG
 	if(O.mind.assigned_role == JOB_CYBORG)
 		if(O.mind.role_alt_title == JOB_ALT_ROBOT)
-			O.mmi = new /obj/item/device/mmi/digital/posibrain(O)
+			O.mmi = new /obj/item/mmi/digital/posibrain(O)
 		else if(O.mind.role_alt_title == JOB_ALT_DRONE)
-			O.mmi = new /obj/item/device/mmi/digital/robot(O)
+			O.mmi = new /obj/item/mmi/digital/robot(O)
 		else
-			O.mmi = new /obj/item/device/mmi(O)
+			O.mmi = new /obj/item/mmi(O)
 
 		O.mmi.transfer_identity(src)
 

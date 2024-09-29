@@ -87,7 +87,7 @@
 /area/gateway/arynthilake/caveruins)
 "aD" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/lampshade,
+/obj/item/lampshade,
 /obj/effect/landmark/mcguffin_spawner,
 /turf/simulated/floor/plating/external,
 /area/gateway/arynthilake/caveruins)
@@ -146,7 +146,7 @@
 /turf/simulated/floor/wood/sif/broken,
 /area/gateway/arynthilake/oldcabin)
 "aV" = (
-/obj/item/weapon/lampshade,
+/obj/item/lampshade,
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "aX" = (
@@ -436,28 +436,28 @@
 /area/gateway/arynthilake/dome)
 "cG" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/manual/mass_spectrometry,
-/obj/item/weapon/book/manual/materials_chemistry_analysis,
-/obj/item/weapon/book/manual/medical_cloning,
-/obj/item/weapon/book/manual/medical_diagnostics_manual,
-/obj/item/weapon/book/manual/nuclear,
-/obj/item/weapon/book/manual/research_and_development,
-/obj/item/weapon/book/manual/resleeving,
-/obj/item/weapon/book/manual/ripley_build_and_repair,
-/obj/item/weapon/book/manual/robotics_cyborgs,
-/obj/item/weapon/book/manual/rust_engine,
-/obj/item/weapon/book/manual/security_space_law,
-/obj/item/weapon/book/manual/standard_operating_procedure,
-/obj/item/weapon/book/manual/stasis,
-/obj/item/weapon/book/manual/supermatter_engine,
-/obj/item/weapon/book/manual/tesla_engine,
+/obj/item/book/manual/mass_spectrometry,
+/obj/item/book/manual/materials_chemistry_analysis,
+/obj/item/book/manual/medical_cloning,
+/obj/item/book/manual/medical_diagnostics_manual,
+/obj/item/book/manual/nuclear,
+/obj/item/book/manual/research_and_development,
+/obj/item/book/manual/resleeving,
+/obj/item/book/manual/ripley_build_and_repair,
+/obj/item/book/manual/robotics_cyborgs,
+/obj/item/book/manual/rust_engine,
+/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/standard_operating_procedure,
+/obj/item/book/manual/stasis,
+/obj/item/book/manual/supermatter_engine,
+/obj/item/book/manual/tesla_engine,
 /turf/simulated/floor/wood{
 	outdoors = 1
 	},
 /area/gateway/arynthilake/dome)
 "dg" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/gateway/arynthilake/dome)
 "dB" = (
@@ -471,7 +471,7 @@
 /area/gateway/arynthilake/dome)
 "dI" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 9
 	},
@@ -504,9 +504,9 @@
 /area/gateway/arynthilake/engine)
 "eo" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/religious/storyoflordganesha,
-/obj/item/weapon/book/custom_library/religious/sungoddessofkorea,
-/obj/item/weapon/book/custom_library/religious/wayofbleedingswan,
+/obj/item/book/custom_library/religious/storyoflordganesha,
+/obj/item/book/custom_library/religious/sungoddessofkorea,
+/obj/item/book/custom_library/religious/wayofbleedingswan,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "er" = (
@@ -523,8 +523,8 @@
 /area/gateway/arynthilake/engine)
 "ex" = (
 /obj/machinery/light,
-/obj/item/device/flash,
-/obj/item/weapon/stamp,
+/obj/item/flash,
+/obj/item/stamp,
 /obj/structure/closet/walllocker{
 	dir = 4;
 	pixel_x = 27
@@ -536,12 +536,12 @@
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "eW" = (
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/minihoe,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/material/minihoe,
+/obj/item/material/minihoe,
 /obj/structure/closet,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/landmark/mcguffin_spawner,
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/gateway/arynthilake/dome)
@@ -561,9 +561,9 @@
 /area/gateway/arynthilake/dome)
 "fu" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/pen,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/paper_bin{
+/obj/item/pen,
+/obj/item/folder/red,
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 9
 	},
@@ -596,7 +596,7 @@
 /area/gateway/arynthilake)
 "fY" = (
 /obj/structure/mopbucket,
-/obj/item/weapon/mop,
+/obj/item/mop,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "gu" = (
@@ -664,8 +664,8 @@
 /area/gateway/arynthilake/dome)
 "il" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/manual/security_space_law,
-/obj/item/weapon/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
+/obj/item/book/manual/security_space_law,
+/obj/item/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
 /turf/simulated/floor/carpet/blucarpet,
 /area/gateway/arynthilake/dome)
 "iI" = (
@@ -735,12 +735,12 @@
 	dir = 8
 	},
 /obj/structure/table/wooden_reinforced,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/gateway/arynthilake/dome)
 "jZ" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "kf" = (
@@ -754,12 +754,12 @@
 /area/gateway/arynthilake/dome)
 "kk" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/gateway/arynthilake/dome)
 "kl" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/storage/box/cups,
+/obj/item/storage/box/cups,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "ko" = (
@@ -777,9 +777,9 @@
 /area/gateway/arynthilake/dome)
 "kK" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/reference/recyclingprocedures,
-/obj/item/weapon/book/custom_library/reference/securityguidelines,
-/obj/item/weapon/book/custom_library/reference/spacesurvivalguidedespressurization,
+/obj/item/book/bundle/custom_library/reference/recyclingprocedures,
+/obj/item/book/custom_library/reference/securityguidelines,
+/obj/item/book/custom_library/reference/spacesurvivalguidedespressurization,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "kX" = (
@@ -828,7 +828,7 @@
 /obj/structure/table/standard{
 	color = "#b8e4ff"
 	},
-/obj/item/weapon/folder/blue,
+/obj/item/folder/blue,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "lI" = (
@@ -838,9 +838,9 @@
 /area/gateway/arynthilake/dome)
 "lO" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/pen,
-/obj/item/weapon/folder/blue,
-/obj/item/weapon/paper_bin{
+/obj/item/pen,
+/obj/item/folder/blue,
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 9
 	},
@@ -893,7 +893,7 @@
 /area/gateway/arynthilake)
 "mL" = (
 /obj/structure/table/darkglass,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /obj/random/snack,
 /obj/random/snack,
 /turf/simulated/floor/carpet/bcarpet,
@@ -1079,9 +1079,9 @@
 /area/gateway/arynthilake/dome)
 "qW" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/reference/ThermodynamicReactionsandResearch,
-/obj/item/weapon/book/bundle/custom_library/reference/fbpandprostheticmaintenance,
-/obj/item/weapon/book/custom_library/reference/fistfulofd6splayersguide,
+/obj/item/book/bundle/custom_library/reference/ThermodynamicReactionsandResearch,
+/obj/item/book/bundle/custom_library/reference/fbpandprostheticmaintenance,
+/obj/item/book/custom_library/reference/fistfulofd6splayersguide,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "rm" = (
@@ -1134,24 +1134,24 @@
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/yeast,
-/obj/item/weapon/reagent_containers/food/condiment/yeast,
-/obj/item/weapon/reagent_containers/food/condiment/yeast,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/yeast,
+/obj/item/reagent_containers/food/condiment/yeast,
+/obj/item/reagent_containers/food/condiment/yeast,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /obj/random/awayloot,
 /obj/effect/landmark/mcguffin_spawner,
 /turf/simulated/floor/tiled/eris/cafe{
@@ -1186,11 +1186,11 @@
 /obj/structure/table/standard{
 	color = "#ffb8b8"
 	},
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 9
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "sO" = (
@@ -1205,11 +1205,11 @@
 /area/gateway/arynthilake)
 "to" = (
 /obj/structure/table/sifwooden_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 9
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /obj/random/awayloot,
 /turf/simulated/floor/carpet{
 	outdoors = 1
@@ -1267,11 +1267,11 @@
 /obj/structure/table/standard{
 	color = "#b8e4ff"
 	},
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 9
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "vy" = (
@@ -1295,12 +1295,12 @@
 /obj/structure/closet/walllocker_double{
 	pixel_y = 26
 	},
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/multitool,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/multitool,
 /obj/random/tool,
 /obj/random/tool,
 /obj/random/tool/power,
@@ -1313,7 +1313,7 @@
 /area/gateway/arynthilake/engine)
 "wb" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/reddouble,
+/obj/item/bedsheet/reddouble,
 /obj/effect/landmark/mcguffin_spawner,
 /turf/simulated/floor/carpet/blucarpet,
 /area/gateway/arynthilake/dome)
@@ -1370,16 +1370,16 @@
 /area/gateway/arynthilake/dome)
 "xu" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/manfromsnowyriver,
-/obj/item/weapon/book/bundle/custom_library/fiction/metalglen,
-/obj/item/weapon/book/bundle/custom_library/fiction/poemsforarainyday,
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue142,
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue147,
-/obj/item/weapon/book/bundle/custom_library/fiction/silence,
-/obj/item/weapon/book/bundle/custom_library/fiction/taleoftherainbowcat,
-/obj/item/weapon/book/custom_library/fiction/starsandsometimesfallingones,
-/obj/item/weapon/book/custom_library/fiction/truelovehathmyheart,
-/obj/item/weapon/book/custom_library/fiction/woodysgotwood,
+/obj/item/book/bundle/custom_library/fiction/manfromsnowyriver,
+/obj/item/book/bundle/custom_library/fiction/metalglen,
+/obj/item/book/bundle/custom_library/fiction/poemsforarainyday,
+/obj/item/book/bundle/custom_library/fiction/raissue142,
+/obj/item/book/bundle/custom_library/fiction/raissue147,
+/obj/item/book/bundle/custom_library/fiction/silence,
+/obj/item/book/bundle/custom_library/fiction/taleoftherainbowcat,
+/obj/item/book/custom_library/fiction/starsandsometimesfallingones,
+/obj/item/book/custom_library/fiction/truelovehathmyheart,
+/obj/item/book/custom_library/fiction/woodysgotwood,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "xv" = (
@@ -1451,7 +1451,7 @@
 /area/gateway/arynthilake/engine)
 "At" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/gateway/arynthilake/dome)
 "Ax" = (
@@ -1490,8 +1490,8 @@
 /area/gateway/arynthilake/dome)
 "Bg" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/ghostship,
-/obj/item/weapon/book/manual/security_space_law,
+/obj/item/book/bundle/custom_library/fiction/ghostship,
+/obj/item/book/manual/security_space_law,
 /turf/simulated/floor/carpet/bcarpet,
 /area/gateway/arynthilake/dome)
 "Bv" = (
@@ -1614,7 +1614,7 @@
 /area/gateway/arynthilake/gateway)
 "Fk" = (
 /obj/structure/table/sifwooden_reinforced,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/carpet/purcarpet,
 /area/gateway/arynthilake/dome)
 "Fm" = (
@@ -1625,8 +1625,8 @@
 /area/gateway/arynthilake/gateway)
 "Fq" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/religious/zoroastrianism,
-/obj/item/weapon/book/custom_library/religious/feastofkubera,
+/obj/item/book/bundle/custom_library/religious/zoroastrianism,
+/obj/item/book/custom_library/religious/feastofkubera,
 /turf/simulated/floor/wood{
 	outdoors = 1
 	},
@@ -1672,12 +1672,12 @@
 /area/gateway/arynthilake/dome)
 "Gc" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/book/manual/chef_recipes,
+/obj/item/book/manual/chef_recipes,
 /obj/effect/landmark/mcguffin_spawner,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/gateway/arynthilake/dome)
 "Gh" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/carpet/purcarpet,
 /area/gateway/arynthilake/dome)
 "Gp" = (
@@ -1806,23 +1806,23 @@
 /area/gateway/arynthilake)
 "JQ" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/manual/anomaly_spectroscopy,
-/obj/item/weapon/book/manual/anomaly_testing,
-/obj/item/weapon/book/manual/atmospipes,
-/obj/item/weapon/book/manual/bar_guide,
-/obj/item/weapon/book/manual/barman_recipes,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/book/manual/command_guide,
-/obj/item/weapon/book/manual/cook_guide,
-/obj/item/weapon/book/manual/detective,
-/obj/item/weapon/book/manual/engineering_construction,
-/obj/item/weapon/book/manual/engineering_guide,
-/obj/item/weapon/book/manual/engineering_hacking,
-/obj/item/weapon/book/manual/engineering_particle_accelerator,
-/obj/item/weapon/book/manual/engineering_singularity_safety,
-/obj/item/weapon/book/manual/evaguide,
-/obj/item/weapon/book/manual/excavation,
-/obj/item/weapon/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/anomaly_spectroscopy,
+/obj/item/book/manual/anomaly_testing,
+/obj/item/book/manual/atmospipes,
+/obj/item/book/manual/bar_guide,
+/obj/item/book/manual/barman_recipes,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/command_guide,
+/obj/item/book/manual/cook_guide,
+/obj/item/book/manual/detective,
+/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/engineering_guide,
+/obj/item/book/manual/engineering_hacking,
+/obj/item/book/manual/engineering_particle_accelerator,
+/obj/item/book/manual/engineering_singularity_safety,
+/obj/item/book/manual/evaguide,
+/obj/item/book/manual/excavation,
+/obj/item/book/manual/hydroponics_pod_people,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "Kc" = (
@@ -1870,7 +1870,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/gateway/arynthilake/dome)
 "Lr" = (
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /obj/structure/table/rack/steel,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/gateway/arynthilake/dome)
@@ -1888,11 +1888,11 @@
 /area/gateway/arynthilake/dome)
 "LQ" = (
 /obj/structure/table/sifwooden_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = 5;
 	pixel_y = 9
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_x = -4;
 	pixel_y = -2
 	},
@@ -1900,8 +1900,8 @@
 /area/gateway/arynthilake/dome)
 "LR" = (
 /obj/structure/table/sifwooden_reinforced,
-/obj/item/weapon/newspaper,
-/obj/item/weapon/dice/d20,
+/obj/item/newspaper,
+/obj/item/dice/d20,
 /turf/simulated/floor/carpet/purcarpet,
 /area/gateway/arynthilake/dome)
 "Md" = (
@@ -1916,7 +1916,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway/arynthilake/dome)
 "Mq" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/carpet/purcarpet,
 /area/gateway/arynthilake/dome)
@@ -1932,22 +1932,22 @@
 /area/gateway/arynthilake/engine)
 "MH" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/manual,
-/obj/item/weapon/book/manual/anomaly_spectroscopy,
-/obj/item/weapon/book/manual/anomaly_testing,
-/obj/item/weapon/book/manual/atmospipes,
-/obj/item/weapon/book/manual/bar_guide,
-/obj/item/weapon/book/manual/barman_recipes,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/book/manual/command_guide,
-/obj/item/weapon/book/manual/cook_guide,
-/obj/item/weapon/book/manual/detective,
-/obj/item/weapon/book/manual/engineering_construction,
-/obj/item/weapon/book/manual/engineering_guide,
-/obj/item/weapon/book/manual/engineering_hacking,
-/obj/item/weapon/book/manual/engineering_particle_accelerator,
-/obj/item/weapon/book/manual/engineering_singularity_safety,
-/obj/item/weapon/book/manual/evaguide,
+/obj/item/book/manual,
+/obj/item/book/manual/anomaly_spectroscopy,
+/obj/item/book/manual/anomaly_testing,
+/obj/item/book/manual/atmospipes,
+/obj/item/book/manual/bar_guide,
+/obj/item/book/manual/barman_recipes,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/command_guide,
+/obj/item/book/manual/cook_guide,
+/obj/item/book/manual/detective,
+/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/engineering_guide,
+/obj/item/book/manual/engineering_hacking,
+/obj/item/book/manual/engineering_particle_accelerator,
+/obj/item/book/manual/engineering_singularity_safety,
+/obj/item/book/manual/evaguide,
 /turf/simulated/floor/carpet,
 /area/gateway/arynthilake/dome)
 "MS" = (
@@ -1976,7 +1976,7 @@
 /area/gateway/arynthilake/dome)
 "Ng" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "Nm" = (
@@ -2043,8 +2043,8 @@
 /area/gateway/arynthilake/dome)
 "Og" = (
 /obj/machinery/light,
-/obj/item/device/flash,
-/obj/item/weapon/stamp,
+/obj/item/flash,
+/obj/item/stamp,
 /obj/structure/closet/walllocker{
 	dir = 8;
 	pixel_x = -27
@@ -2175,10 +2175,10 @@
 /area/gateway/arynthilake/dome)
 "Rl" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/gateway/arynthilake/dome)
 "Rm" = (
@@ -2198,8 +2198,8 @@
 /area/gateway/arynthilake)
 "RW" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
-/obj/item/weapon/book/custom_library/nonfiction/freesirisailightbulbs,
+/obj/item/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
+/obj/item/book/custom_library/nonfiction/freesirisailightbulbs,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "Sb" = (
@@ -2275,7 +2275,7 @@
 /area/gateway/arynthilake/dome)
 "Um" = (
 /obj/structure/table/darkglass,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /obj/random/awayloot,
 /turf/simulated/floor/carpet/blucarpet,
 /area/gateway/arynthilake/dome)
@@ -2287,20 +2287,20 @@
 /area/gateway/arynthilake/dome)
 "UJ" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/nonfiction/riseandfallofpersianempire,
-/obj/item/weapon/book/bundle/custom_library/nonfiction/skrelliancastesystem,
+/obj/item/book/bundle/custom_library/nonfiction/riseandfallofpersianempire,
+/obj/item/book/bundle/custom_library/nonfiction/skrelliancastesystem,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "UY" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/apurrrrfectman,
-/obj/item/weapon/book/bundle/custom_library/fiction/beyondthedoor,
-/obj/item/weapon/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
-/obj/item/weapon/book/bundle/custom_library/fiction/coldmountain,
-/obj/item/weapon/book/bundle/custom_library/fiction/ghostship,
-/obj/item/weapon/book/custom_library/fiction/blacksmithandkinglybloke,
-/obj/item/weapon/book/custom_library/fiction/irishairmanforseesdeath,
-/obj/item/weapon/book/custom_library/fiction/myrock,
+/obj/item/book/bundle/custom_library/fiction/apurrrrfectman,
+/obj/item/book/bundle/custom_library/fiction/beyondthedoor,
+/obj/item/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
+/obj/item/book/bundle/custom_library/fiction/coldmountain,
+/obj/item/book/bundle/custom_library/fiction/ghostship,
+/obj/item/book/custom_library/fiction/blacksmithandkinglybloke,
+/obj/item/book/custom_library/fiction/irishairmanforseesdeath,
+/obj/item/book/custom_library/fiction/myrock,
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "UZ" = (
@@ -2336,7 +2336,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "Vo" = (
-/obj/item/weapon/storage/box/sinpockets,
+/obj/item/storage/box/sinpockets,
 /obj/structure/table/rack/steel,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/gateway/arynthilake/dome)
@@ -2382,7 +2382,7 @@
 /obj/structure/table/standard{
 	color = "#ffb8b8"
 	},
-/obj/item/weapon/folder/red,
+/obj/item/folder/red,
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "WV" = (

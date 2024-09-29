@@ -30,18 +30,18 @@
 /area/submap/hotspring)
 "j" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/flame/lighter/random{
+/obj/item/storage/fancy/candle_box,
+/obj/item/flame/lighter/random{
 	pixel_x = 7
 	},
-/obj/item/weapon/storage/fancy/candle_box{
+/obj/item/storage/fancy/candle_box{
 	pixel_x = -6
 	},
-/obj/item/weapon/storage/firstaid{
+/obj/item/storage/firstaid{
 	pixel_x = 4;
 	pixel_y = -6
 	},
-/obj/item/weapon/wrapping_paper,
+/obj/item/wrapping_paper,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/hotspring)
 "k" = (
@@ -51,12 +51,12 @@
 /area/submap/hotspring)
 "o" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/harpoon,
+/obj/item/material/harpoon,
 /obj/item/pizzabox/vegetable,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/hotspring)
 "r" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/structure/bed/chair{
 	dir = 1
 	},
@@ -105,7 +105,7 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/hotspring)
 "L" = (
-/obj/item/weapon/inflatable_duck,
+/obj/item/inflatable_duck,
 /obj/effect/effect/steam,
 /turf/simulated/floor/water/virgo3b,
 /area/submap/hotspring)
@@ -126,7 +126,7 @@
 	dir = 8;
 	health = 1e+006
 	},
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/structure/loot_pile/maint/trash,
 /turf/template_noop,
 /area/submap/hotspring)

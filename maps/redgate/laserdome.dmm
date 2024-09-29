@@ -52,7 +52,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/store_1)
 "awn" = (
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /turf/simulated/floor/tiled/white,
 /area/redgate/laserdome/lobby/showers)
 "ayr" = (
@@ -244,7 +244,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hbl_prep)
 "cRZ" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -387,7 +387,7 @@
 /area/redgate/laserdome/arena/ctf_prep)
 "ebx" = (
 /obj/structure/table/marble,
-/obj/item/device/defib_kit/loaded,
+/obj/item/defib_kit/loaded,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
 "eqO" = (
@@ -411,7 +411,7 @@
 /area/redgate/laserdome/arena/hyperball)
 "eAj" = (
 /obj/structure/table/marble,
-/obj/item/device/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/spaceview_lounge)
 "eCL" = (
@@ -426,7 +426,7 @@
 /area/redgate/laserdome/lobby)
 "eND" = (
 /obj/structure/hyperball_pedestal,
-/obj/item/weapon/laserdome_hyperball,
+/obj/item/laserdome_hyperball,
 /turf/simulated/floor/tiled/milspec/raised,
 /area/redgate/laserdome/arena/hyperball)
 "eSA" = (
@@ -516,12 +516,12 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "fsP" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "fxa" = (
@@ -647,7 +647,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/device/healthanalyzer/guide,
+/obj/item/healthanalyzer/guide,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
 "gEn" = (
@@ -698,8 +698,8 @@
 /area/redgate/laserdome/arena/ctf_prep)
 "gTS" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "gVl" = (
@@ -755,7 +755,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/ctf_prep)
 "hfU" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -936,11 +936,11 @@
 /area/redgate/laserdome/arena/hbl_prep)
 "iVw" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -1;
 	pixel_y = 10
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3;
 	pixel_y = 13
 	},
@@ -980,7 +980,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/capture_the_flag)
 "jti" = (
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/stool/baystool/padded,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby/spaceview_lounge)
 "jCB" = (
@@ -1133,7 +1133,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/arena/hyperball)
 "kKQ" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -1210,7 +1210,7 @@
 /area/redgate/laserdome/arena/hbl_prep)
 "lgv" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/snacks/mint,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "lpp" = (
@@ -1244,7 +1244,7 @@
 /area/redgate/laserdome/arena/ctf_prep)
 "lIm" = (
 /obj/structure/table/marble,
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
 "lON" = (
@@ -1447,14 +1447,14 @@
 /area/redgate/laserdome/arena/hyperball)
 "nVx" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = 4
 	},
@@ -1478,7 +1478,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/laserdome/lobby/showers)
 "obC" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -1634,19 +1634,19 @@
 /area/redgate/laserdome/lobby)
 "pgz" = (
 /obj/structure/table/marble,
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = -9;
 	pixel_y = 10
 	},
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = -9;
 	pixel_y = 1
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 6;
 	pixel_y = 10
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 6;
 	pixel_y = 1
 	},
@@ -1765,7 +1765,7 @@
 "qyt" = (
 /obj/effect/floor_decal/industrial/hatch/blue,
 /obj/structure/flag_base/blue,
-/obj/item/weapon/laserdome_flag/blue,
+/obj/item/laserdome_flag/blue,
 /turf/simulated/floor/tiled/milspec/raised,
 /area/redgate/laserdome/arena/capture_the_flag)
 "qAG" = (
@@ -1846,7 +1846,7 @@
 "rnw" = (
 /obj/structure/table/standard,
 /obj/random/soap,
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /turf/simulated/floor/tiled/white,
 /area/redgate/laserdome/lobby/showers)
 "roP" = (
@@ -1997,13 +1997,13 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
 "sOY" = (
 /obj/effect/floor_decal/industrial/hatch/red,
 /obj/structure/flag_base/red,
-/obj/item/weapon/laserdome_flag/red,
+/obj/item/laserdome_flag/red,
 /turf/simulated/floor/tiled/milspec/raised,
 /area/redgate/laserdome/arena/capture_the_flag)
 "sQh" = (
@@ -2065,7 +2065,7 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 6
 	},
-/obj/item/weapon/laserdome_hyperball_prop{
+/obj/item/laserdome_hyperball_prop{
 	icon_state = "hyperball_red"
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -2224,19 +2224,19 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "uwE" = (
 /obj/structure/table/marble,
-/obj/item/weapon/storage/firstaid{
+/obj/item/storage/firstaid{
 	pixel_x = -9;
 	pixel_y = 10
 	},
-/obj/item/weapon/storage/firstaid{
+/obj/item/storage/firstaid{
 	pixel_x = -9;
 	pixel_y = 1
 	},
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 6;
 	pixel_y = 10
 	},
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 6;
 	pixel_y = 1
 	},
@@ -2340,7 +2340,7 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 9
 	},
-/obj/item/weapon/laserdome_hyperball_prop{
+/obj/item/laserdome_hyperball_prop{
 	icon_state = "hyperball_blue"
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -2531,11 +2531,11 @@
 /area/redgate/laserdome/arena/ctf_prep)
 "wFp" = (
 /obj/structure/table/marble,
-/obj/item/weapon/storage/box/beakers{
+/obj/item/storage/box/beakers{
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
+	starts_with = list(/obj/item/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
@@ -2679,8 +2679,8 @@
 /obj/structure/closet/secure_closet/personal,
 /obj/item/clothing/under/bathrobe,
 /obj/item/clothing/under/bathrobe,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/white,
 /area/redgate/laserdome/lobby/showers)
 "ymc" = (

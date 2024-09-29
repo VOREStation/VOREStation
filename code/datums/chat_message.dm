@@ -379,7 +379,7 @@ var/list/runechat_image_cache = list()
 	return src
 
 /mob/runechat_holder(datum/chatmessage/CM)
-	if(istype(loc, /obj/item/weapon/holder))
+	if(istype(loc, /obj/item/holder))
 		return loc
 	return ..()
 

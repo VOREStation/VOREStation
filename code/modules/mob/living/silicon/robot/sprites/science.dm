@@ -98,13 +98,13 @@
 	module_type = "Research"
 	sprite_icon = 'icons/mob/robot/science_wide.dmi'
 
-/datum/robot_sprite/dogborg/science/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+/datum/robot_sprite/dogborg/science/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
 
 	..()
 
-	var/obj/item/weapon/shockpaddles/robot/jumper/J = locate() in module.modules
+	var/obj/item/shockpaddles/robot/jumper/J = locate() in module.modules
 	if(J)
 		J.name = "jumper paws"
 		J.desc = "Zappy paws. For rebooting a full body prostetic."
@@ -151,16 +151,16 @@
 	var/has_taser_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/science/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_taser_sprite && istype(ourborg.module_active, /obj/item/weapon/gun/energy/taser/xeno/robot))
+	if(has_taser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/taser/xeno/robot))
 		ourborg.add_overlay("[sprite_icon_state]-taser")
 
-/datum/robot_sprite/dogborg/tall/science/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+/datum/robot_sprite/dogborg/tall/science/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
 
 	..()
 
-	var/obj/item/weapon/shockpaddles/robot/jumper/J = locate() in module.modules
+	var/obj/item/shockpaddles/robot/jumper/J = locate() in module.modules
 	if(J)
 		J.name = "jumper paws"
 		J.desc = "Zappy paws. For rebooting a full body prostetic."

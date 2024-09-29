@@ -17,7 +17,7 @@
 	see_in_dark = 8
 
 	meat_amount = 8
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	melee_damage_lower = 5
 	melee_damage_upper = 15
