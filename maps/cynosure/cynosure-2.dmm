@@ -854,17 +854,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/hallway/secondary/groundfloor/civilian)
 "azs" = (
-<<<<<<< HEAD
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/grass,
-=======
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
 /turf/simulated/floor/fakesnow,
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /area/surface/station/park)
 "aBf" = (
 /obj/effect/floor_decal/spline/plain{
@@ -5708,13 +5701,6 @@
 /obj/effect/floor_decal/spline/plain{
 	icon_state = "spline_plain_full"
 	},
-<<<<<<< HEAD
-/obj/item/bikehorn/rubberducky{
-	pixel_x = 6;
-	pixel_y = -6
-	},
-=======
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /obj/machinery/camera/network/ground_floor{
 	c_tag = "Ground Floor - Park Center";
 	dir = 1;
@@ -13417,17 +13403,12 @@
 /area/surface/station/rnd/research_lockerroom)
 "gvo" = (
 /obj/structure/table/woodentable,
-<<<<<<< HEAD
-/obj/item/dice/d20,
-/obj/item/deck/cards,
-=======
 /obj/item/dice/d20,
 /obj/item/deck/cards,
 /obj/structure/flora/pottedplant/xmas{
 	pixel_x = 16;
 	pixel_y = 25
 	},
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/carpet,
 /area/surface/station/library)
 "gvD" = (
@@ -16658,8 +16639,6 @@
 	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/medical/surgery_storage)
-<<<<<<< HEAD
-=======
 "ibT" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -16677,7 +16656,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/park)
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 "icz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/firealarm{
@@ -16872,8 +16850,6 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner{
 	dir = 1
 	},
-<<<<<<< HEAD
-=======
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
 	pixel_y = 30
@@ -16882,7 +16858,6 @@
 	dir = 1;
 	pixel_y = 32
 	},
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/north)
 "ihg" = (
@@ -18067,20 +18042,12 @@
 	},
 /turf/simulated/floor/plating/sif/planetuse,
 /area/surface/outside/station/solar/westsolar)
-<<<<<<< HEAD
-"iOa" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/grass,
-/area/surface/station/park)
-=======
 "iOD" = (
 /obj/structure/sign/level/ground/large{
 	pixel_y = -32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/east)
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 "iPo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -22267,12 +22234,8 @@
 /area/surface/station/medical/etc)
 "kKR" = (
 /obj/structure/table/woodentable,
-<<<<<<< HEAD
-/obj/item/deck/cards,
-=======
 /obj/item/deck/cards,
 /obj/item/toy/xmas_cracker,
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
 "kKX" = (
@@ -24203,8 +24166,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/security/lobby)
-<<<<<<< HEAD
-=======
 "lIt" = (
 /obj/random/vendorfood,
 /obj/structure/sign/christmas/lights{
@@ -24213,7 +24174,6 @@
 	},
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/park)
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 "lIJ" = (
 /obj/machinery/computer/aifixer{
 	dir = 8
@@ -27287,8 +27247,6 @@
 /obj/item/folder/red,
 /turf/simulated/floor/plating,
 /area/surface/station/security/briefing_room)
-<<<<<<< HEAD
-=======
 "mWA" = (
 /turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/kitchen)
@@ -27300,7 +27258,6 @@
 	},
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/park)
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 "mXo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -27409,15 +27366,11 @@
 /obj/effect/floor_decal/corner/blue/bordercorner2{
 	dir = 10
 	},
-<<<<<<< HEAD
-/obj/item/banner/nt,
-=======
 /obj/item/banner/nt,
 /obj/structure/sign/christmas/lights{
 	dir = 8;
 	pixel_x = -32
 	},
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/hallway/primary/groundfloor/south)
 "naO" = (
@@ -30252,8 +30205,6 @@
 	c_tag = "Ground Floor - South Hallway 3";
 	dir = 8
 	},
-<<<<<<< HEAD
-=======
 /obj/structure/sign/directions/bar{
 	dir = 5;
 	pixel_y = 39
@@ -30263,7 +30214,6 @@
 	pixel_y = 32
 	},
 /obj/structure/flora/pottedplant/xmas,
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/hallway/primary/groundfloor/south)
 "osf" = (
@@ -49858,17 +49808,12 @@
 	},
 /obj/item/roller,
 /obj/item/bodybag/cryobag,
-<<<<<<< HEAD
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/pill_bottle/spaceacillin,
-=======
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/pill_bottle/spaceacillin,
 /obj/structure/sign/christmas/lights{
 	dir = 4;
 	pixel_x = 32
 	},
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
 "xGi" = (
@@ -66847,23 +66792,6 @@ vwy
 vwy
 vwy
 vwy
-<<<<<<< HEAD
-aNW
-aNW
-aNW
-aNW
-oum
-oum
-oum
-oum
-oum
-oum
-oum
-aNW
-aNW
-aNW
-aNW
-=======
 vSk
 vSk
 vSk
@@ -66879,7 +66807,6 @@ vSk
 vSk
 vSk
 vSk
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 vwy
 vwy
 vwy
@@ -66892,23 +66819,6 @@ iGM
 iGM
 iGM
 iGM
-<<<<<<< HEAD
-aNW
-dXk
-qzz
-qzz
-qzz
-qzz
-qzz
-qzz
-qzz
-dXk
-qzz
-qzz
-qzz
-qzz
-qzz
-=======
 vSk
 jWt
 jWt
@@ -66924,7 +66834,6 @@ jWt
 jWt
 jWt
 jWt
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 wYa
 "}
 (61,1,1) = {"
@@ -66959,15 +66868,9 @@ vwy
 vwy
 vwy
 vwy
-<<<<<<< HEAD
-vwy
-vwy
-vwy
-=======
 fyc
 fyc
 fyc
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 vwy
 vwy
 vwy
@@ -81734,21 +81637,12 @@ lUL
 jmQ
 lUL
 lUL
-<<<<<<< HEAD
-oqM
-sYq
-oqM
-sYq
-pts
-bql
-=======
 xUE
 ogV
 xUE
 ogV
 ibT
 tsW
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 wAe
 rIC
 tDF

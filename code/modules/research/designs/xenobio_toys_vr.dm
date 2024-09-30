@@ -1,4 +1,4 @@
-/datum/design/item/weapon/xenobio/monkey_gun
+/datum/design/item/xenobio/monkey_gun
 	name = "bluespace monkey deployment system"
 	desc = "An Advanced monkey teleportation and rehydration system. For serious monkey business."
 	id = "monkey_gun"
@@ -7,7 +7,7 @@
 	build_path = /obj/item/xenobio/monkey_gun
 	sort_string = "HBBA"
 
-/datum/design/item/weapon/xenobio/grinder
+/datum/design/item/xenobio/grinder
 	name = "portable slime processor"
 	desc = "This high tech device combines the slime processor with the latest in woodcutting technology."
 	id = "slime_grinder"
