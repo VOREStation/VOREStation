@@ -332,6 +332,7 @@
 /obj/item/destTagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "dest_tagger"
 	var/currTag = 0
 
