@@ -27,7 +27,7 @@
 	if(default_deconstruction_crowbar(user, I))
 		return
 
-	if(istype(I,/obj/item/weapon/reagent_containers))
+	if(istype(I,/obj/item/reagent_containers))
 		analyzing = TRUE
 		update_icon()
 		to_chat(user, span("notice", "Analyzing \the [I], please stand by..."))
@@ -53,7 +53,7 @@
 				to_chat(user, span("notice", "Contains [R.volume]u of <b>[R.name]</b>.<br>[R.description]<br>"))
 
 		// Last, unseal it if it's an autoinjector.
-		if(istype(I,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector) && !(I.flags & OPENCONTAINER))
+		if(istype(I,/obj/item/reagent_containers/hypospray/autoinjector/biginjector) && !(I.flags & OPENCONTAINER))
 			I.flags |= OPENCONTAINER
 			to_chat(user, span("notice", "Sample container unsealed.<br>"))
 

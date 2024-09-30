@@ -89,7 +89,7 @@
 /obj/effect/projectile/emitter/singularity_pull()
 	return
 
-/obj/item/weapon/storage/backpack/holding/singularity_act(S, current_size)
+/obj/item/storage/backpack/holding/singularity_act(S, current_size)
 	var/dist = max((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	return 1000

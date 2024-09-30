@@ -88,8 +88,8 @@
 	popup.open()
 
 /obj/machinery/icecream_vat/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/icecream))
-		var/obj/item/weapon/reagent_containers/food/snacks/icecream/I = O
+	if(istype(O, /obj/item/reagent_containers/food/snacks/icecream))
+		var/obj/item/reagent_containers/food/snacks/icecream/I = O
 		if(!I.ice_creamed)
 			if(product_types[dispense_flavour] > 0)
 				src.visible_message("[icon2html(src,viewers(src))] <span class='info'>[user] scoops delicious [flavour_name] icecream into [I].</span>")
@@ -142,7 +142,7 @@
 		var/cone_name = get_flavour_name(dispense_cone)
 		if(product_types[dispense_cone] >= 1)
 			product_types[dispense_cone] -= 1
-			var/obj/item/weapon/reagent_containers/food/snacks/icecream/I = new(src.loc)
+			var/obj/item/reagent_containers/food/snacks/icecream/I = new(src.loc)
 			I.cone_type = cone_name
 			I.icon_state = "icecream_cone_[cone_name]"
 			I.desc = "Delicious [cone_name] cone, but no ice cream."
@@ -168,7 +168,7 @@
 		usr << browse(null,"window=icecreamvat")
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/icecream
+/obj/item/reagent_containers/food/snacks/icecream
 	name = "ice cream cone"
 	desc = "Delicious waffle cone, but no ice cream."
 	icon_state = "icecream_cone_waffle" //default for admin-spawned cones, href_list["cone"] should overwrite this all the time
@@ -177,11 +177,11 @@
 	var/ice_creamed = 0
 	var/cone_type
 
-/obj/item/weapon/reagent_containers/food/snacks/icecream/New()
+/obj/item/reagent_containers/food/snacks/icecream/New()
 	create_reagents(20)
 	reagents.add_reagent("nutriment", 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
+/obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
 	name = "[flavour_name] icecream"
 	add_overlay("icecream_[flavour_name]")
 	desc = "Delicious [cone_type] cone with a dollop of [flavour_name] ice cream."

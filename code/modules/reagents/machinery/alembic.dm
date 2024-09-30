@@ -31,8 +31,8 @@
 		icon_state = "alembic-bubble"
 	return
 
-/obj/machinery/alembic/attackby(var/obj/item/weapon/potion_material/O as obj, var/mob/user as mob)
-	if(istype(O,/obj/item/weapon/potion_material))
+/obj/machinery/alembic/attackby(var/obj/item/potion_material/O as obj, var/mob/user as mob)
+	if(istype(O,/obj/item/potion_material))
 		if(potion_reagent != 0 )
 			to_chat(user, SPAN_WARNING("There is already a reagent in the alembic!"))
 			return
@@ -46,7 +46,7 @@
 			to_chat(user, SPAN_NOTICE("You place the [O] in the alembic."))
 			src.updateUsrDialog()
 			return
-	else if(istype(O,/obj/item/weapon/potion_base))
+	else if(istype(O,/obj/item/potion_base))
 		if(base_reagent != 0 )
 			to_chat(user, SPAN_WARNING("There is already a base in the alembic!"))
 			return
@@ -102,220 +102,220 @@
 	if(istype(base_reagent,expected_base))
 		new product_potion(loc)
 	else
-		var/failed_product = pick(/obj/item/weapon/reagent_containers/glass/bottle/potion/plain,
-								/obj/item/weapon/reagent_containers/glass/bottle/potion/ethanol,
-								/obj/item/weapon/reagent_containers/glass/bottle/potion/sugar,
-								/obj/item/weapon/reagent_containers/glass/bottle/potion/capsaicin,
-								/obj/item/weapon/reagent_containers/glass/bottle/potion/soporific,
-								/obj/item/weapon/reagent_containers/glass/bottle/potion/lipostipo,
-								/obj/item/weapon/reagent_containers/glass/bottle/potion/phoron)
+		var/failed_product = pick(/obj/item/reagent_containers/glass/bottle/potion/plain,
+								/obj/item/reagent_containers/glass/bottle/potion/ethanol,
+								/obj/item/reagent_containers/glass/bottle/potion/sugar,
+								/obj/item/reagent_containers/glass/bottle/potion/capsaicin,
+								/obj/item/reagent_containers/glass/bottle/potion/soporific,
+								/obj/item/reagent_containers/glass/bottle/potion/lipostipo,
+								/obj/item/reagent_containers/glass/bottle/potion/phoron)
 		new failed_product(loc)
 
 //The actual ingredients!
 
-/obj/item/weapon/potion_material
+/obj/item/potion_material
 	name = "blood ruby"
 	desc = "An extremely hard but oddly brittle gem with a beautiful red colouration."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "blood_ruby"
-	var/base_reagent = /obj/item/weapon/potion_base/ichor
-	var/product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/healing
+	var/base_reagent = /obj/item/potion_base/ichor
+	var/product_potion = /obj/item/reagent_containers/glass/bottle/potion/healing
 
-/obj/item/weapon/potion_material/blood_ruby
+/obj/item/potion_material/blood_ruby
 
-/obj/item/weapon/potion_material/ruby_eye
+/obj/item/potion_material/ruby_eye
 	name = "ruby eye"
 	desc = "An odd gem in the shape of an eye, it has a strange static charge to the surface."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "ruby_eye"
-	base_reagent = /obj/item/weapon/potion_base/ichor
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/greater_healing
+	base_reagent = /obj/item/potion_base/ichor
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/greater_healing
 
-/obj/item/weapon/potion_material/golden_scale
+/obj/item/potion_material/golden_scale
 	name = "golden scale"
 	desc = "A reptilian scale with an almost metalic texture and a shining gold surface."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "golden_scale"
-	base_reagent = /obj/item/weapon/potion_base/alkahest
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/fire_resist
+	base_reagent = /obj/item/potion_base/alkahest
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/fire_resist
 
-/obj/item/weapon/potion_material/frozen_dew
+/obj/item/potion_material/frozen_dew
 	name = "frozen dew"
 	desc = "A bitter leaf with a small droplet of crystalised dew attached to it."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "frozen_dew"
-	base_reagent = /obj/item/weapon/potion_base/ichor
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/antidote
+	base_reagent = /obj/item/potion_base/ichor
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/antidote
 
-/obj/item/weapon/potion_material/living_coral
+/obj/item/potion_material/living_coral
 	name = "living coral"
 	desc = "Some coral that appears to be friving outside of the water, it has an oddly metallic scent."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "living_coral"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/water
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/water
 
-/obj/item/weapon/potion_material/rare_horn
+/obj/item/potion_material/rare_horn
 	name = "rare horn"
 	desc = "A sharp, straight horn from some unknown animal."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "rare_horn"
-	base_reagent = /obj/item/weapon/potion_base/alkahest
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/regeneration
+	base_reagent = /obj/item/potion_base/alkahest
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/regeneration
 
-/obj/item/weapon/potion_material/moldy_bread
+/obj/item/potion_material/moldy_bread
 	name = "moldy bread"
 	desc = "A slice of bread that's clearly been left out for far too long."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "moldy_bread"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/panacea
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/panacea
 
-/obj/item/weapon/potion_material/glowing_gem
+/obj/item/potion_material/glowing_gem
 	name = "glowing gem"
 	desc = "An pretty but rough gem that is literally glowing green, it tingles to touch."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "glowing_gem"
-	base_reagent = /obj/item/weapon/potion_base/alkahest
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/magic
+	base_reagent = /obj/item/potion_base/alkahest
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/magic
 
-/obj/item/weapon/potion_material/giant_toe
+/obj/item/potion_material/giant_toe
 	name = "giant toe"
 	desc = "One really large severed toe, in some state of suspended decomposition. It's gross and stinks."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "giant_toe"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/lightness
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/lightness
 
-/obj/item/weapon/potion_material/flesh_of_the_stars
+/obj/item/potion_material/flesh_of_the_stars
 	name = "flesh of the stars"
 	desc = "A rare slab of meat with an unknown origin, said to have fallen from the sky."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "flesh_of_the_stars"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/bonerepair
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/bonerepair
 
-/obj/item/weapon/potion_material/spinning_poppy
+/obj/item/potion_material/spinning_poppy
 	name = "spinning poppy"
 	desc = "A small poppy flower that seems inclined to twirl without aid."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "spinning_poppy"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/pain
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/pain
 
-/obj/item/weapon/potion_material/salt_mage
+/obj/item/potion_material/salt_mage
 	name = "salt mage"
 	desc = "A statuette made from salt crystals, it's adorned with a little mages hat."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "salt_mage"
-	base_reagent = /obj/item/weapon/potion_base/alkahest
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/shrink
+	base_reagent = /obj/item/potion_base/alkahest
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/shrink
 
-/obj/item/weapon/potion_material/golden_grapes
+/obj/item/potion_material/golden_grapes
 	name = "golden grapes"
 	desc = "A bunch of grapes with a shining golden skin, they smell strongly of some sort of solvent."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "golden_grapes"
-	base_reagent = /obj/item/weapon/potion_base/alkahest
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/growth
+	base_reagent = /obj/item/potion_base/alkahest
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/growth
 
-/obj/item/weapon/potion_material/fairy_house
+/obj/item/potion_material/fairy_house
 	name = "fairy house"
 	desc = "A moderately large mushroom with a speckled red cap and... a door on the front?"
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "fairy_house"
-	base_reagent = /obj/item/weapon/potion_base/ichor
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/faerie
+	base_reagent = /obj/item/potion_base/ichor
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/faerie
 
-/obj/item/weapon/potion_material/thorny_bulb
+/obj/item/potion_material/thorny_bulb
 	name = "thorny bulb"
 	desc = "A flesh green plant bulb covered in thorns, it has a sulfur rich aroma."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "thorny_bulb"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/relaxation
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/relaxation
 
-/obj/item/weapon/potion_material/ancient_egg
+/obj/item/potion_material/ancient_egg
 	name = "ancient egg"
 	desc = "An egg, but seemingly really really old and long past rotten."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "ancient_egg"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/speed
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/speed
 
-/obj/item/weapon/potion_material/crown_stem
+/obj/item/potion_material/crown_stem
 	name = "crown stem"
 	desc = "An odd little flower that looks like a crown, the leaves have a minty aroma."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "crown_stem"
-	base_reagent = /obj/item/weapon/potion_base/alkahest
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/attractiveness
+	base_reagent = /obj/item/potion_base/alkahest
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/attractiveness
 
-/obj/item/weapon/potion_material/red_ingot
+/obj/item/potion_material/red_ingot
 	name = "red ingot"
 	desc = "An oddly red coloured block of iron, it seems rather brittle and wouldn't make for a good smithing material."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "red_ingot"
-	base_reagent = /obj/item/weapon/potion_base/alkahest
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/boyjuice
+	base_reagent = /obj/item/potion_base/alkahest
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/boyjuice
 
-/obj/item/weapon/potion_material/soft_diamond
+/obj/item/potion_material/soft_diamond
 	name = "soft diamond"
 	desc = "A gem that looks much like a diamond, but is squishy to the touch."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "soft_diamond"
-	base_reagent = /obj/item/weapon/potion_base/ichor
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/girljuice
+	base_reagent = /obj/item/potion_base/ichor
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/girljuice
 
-/obj/item/weapon/potion_material/solid_mist
+/obj/item/potion_material/solid_mist
 	name = "solid mist"
 	desc = "A small purple stone that seems to be radiating some sort of mist."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "solid_mist"
-	base_reagent = /obj/item/weapon/potion_base/ichor
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/badpolymorph
+	base_reagent = /obj/item/potion_base/ichor
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/badpolymorph
 
-/obj/item/weapon/potion_material/spider_leg
+/obj/item/potion_material/spider_leg
 	name = "spider leg"
 	desc = "A severed limb from a spider, it seems to be oozing with green... something."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "spider_leg"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/SOP
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/SOP
 
-/obj/item/weapon/potion_material/folded_dark
+/obj/item/potion_material/folded_dark
 	name = "folded dark"
 	desc = "A folded material that appears to be made of pure dark."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "folded_dark"
-	base_reagent = /obj/item/weapon/potion_base/ichor
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/truepolymorph
+	base_reagent = /obj/item/potion_base/ichor
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/truepolymorph
 
-/obj/item/weapon/potion_material/glamour_shard
+/obj/item/potion_material/glamour_shard
 	name = "glamour shard"
 	desc = "A shard of hardened white crystal that seems to change shapes as you hold it."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "glamour_shard"
-	base_reagent = /obj/item/weapon/potion_base/aqua_regia
-	product_potion = /obj/item/weapon/reagent_containers/glass/bottle/potion/glamour
+	base_reagent = /obj/item/potion_base/aqua_regia
+	product_potion = /obj/item/reagent_containers/glass/bottle/potion/glamour
 
 //base ingredients
 
-/obj/item/weapon/potion_base/aqua_regia
+/obj/item/potion_base/aqua_regia
 	name = "aqua regia"
 	desc = "A mixture of concentrated acids, be careful not to spill it! A base ingredient of many potions."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "aqua_regia"
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/potion_base/ichor
+/obj/item/potion_base/ichor
 	name = "ichor"
 	desc = "A thick and heavy red reagent said to be tinged with the blood of gods. A base ingredient of many potions."
 	icon = 'icons/obj/chemical_potionreagents.dmi'
 	icon_state = "ichor"
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/potion_base/alkahest
+/obj/item/potion_base/alkahest
 	name = "alkahest"
 	desc = "Also known as the universal solvent, said to be capable of dissolving metal rapidly. A base ingredient of many potions."
 	icon = 'icons/obj/chemical_potionreagents.dmi'

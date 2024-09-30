@@ -1,5 +1,5 @@
 // Inherits from /book/ so it can fit on bookshelves.
-/obj/item/weapon/book/codex // Vorestation Edits throughout this object.
+/obj/item/book/codex // Vorestation Edits throughout this object.
 	name = "The Traveler's Guide to Human Space: Virgo-Erigone Edition"
 	desc = "Contains useful information about the world around you.  It seems to have been written for travelers to Virgo-Erigone, human or not. It also \
 	has the words 'Don't Panic' in small, friendly letters on the cover."
@@ -11,14 +11,14 @@
 
 	var/static/list/codex_tree_keys = list() // static list linking codexes to the correct codex_tree.
 
-/obj/item/weapon/book/codex/Initialize()
+/obj/item/book/codex/Initialize()
 	tree = codex_tree_keys["[root_type]"]
 	if(!tree)
 		tree = new(src, root_type)
 		codex_tree_keys["[root_type]"] = tree
 	. = ..()
 
-/obj/item/weapon/book/codex/attack_self(mob/user)
+/obj/item/book/codex/attack_self(mob/user)
 	if(!tree)
 		tree = codex_tree_keys["[root_type]"]
 		if(!tree)
@@ -27,7 +27,7 @@
 	icon_state = "[initial(icon_state)]-open"
 	tree.display(user)
 
-/obj/item/weapon/book/codex/lore/vir // Vorestation Edits throughout this object.
+/obj/item/book/codex/lore/vir // Vorestation Edits throughout this object.
 	name = "The Traveler's Guide to Human Space: Virgo-Erigone Edition"
 	desc = "Contains useful information about the world around you.  It seems to have been written for travelers to Virgo-Erigone, human or not. It also \
 	has the words 'Don't Panic' in small, friendly letters on the cover."
@@ -35,7 +35,7 @@
 	root_type = /datum/lore/codex/category/main_virgo_lore
 	libcategory = "Reference"
 
-/obj/item/weapon/book/codex/lore/robutt
+/obj/item/book/codex/lore/robutt
 	name = "A Buyer's Guide to Artificial Bodies"
 	desc = "Recommended reading for the newly cyborgified, new positronics, and the upwardly-mobile FBP."
 	icon_state = "codex_robutt"
@@ -43,7 +43,7 @@
 	root_type = /datum/lore/codex/category/main_robutts
 	libcategory = "Reference"
 
-/obj/item/weapon/book/codex/lore/news
+/obj/item/book/codex/lore/news
 	name = "Daedalus Pocket Newscaster"
 	desc = "A regularly-updating compendium of articles on current events. Essential for new arrivals in the Vir system and anyone interested in politics."
 	icon_state = "newscodex"
@@ -55,7 +55,7 @@
 
 /* //VORESTATION REMOVAL
 // Combines SOP/Regs/Law
-/obj/item/weapon/book/codex/corp_regs
+/obj/item/book/codex/corp_regs
 	name = "NanoTrasen Regulatory Compendium"
 	desc = "Contains large amounts of information on Standard Operating Procedure, Corporate Regulations, and important regional laws.  The best friend of \
 	Internal Affairs."

@@ -50,7 +50,7 @@
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
 "m" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/misc_debris)
 "n" = (
@@ -132,7 +132,7 @@
 /area/submap/debrisfield/misc_debris)
 "C" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
 "D" = (
@@ -153,7 +153,7 @@
 /area/submap/debrisfield/misc_debris)
 "H" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
 "I" = (
@@ -161,7 +161,7 @@
 /turf/simulated/shuttle/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "J" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/shuttle/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "K" = (

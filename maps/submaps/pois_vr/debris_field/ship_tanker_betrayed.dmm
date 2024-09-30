@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ah" = (
 /obj/item/stack/rods,
-/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza,
+/obj/item/reagent_containers/food/snacks/slice/vegetablepizza,
 /turf/space/cracked_asteroid{
 	temperature = 2.7
 	},
@@ -144,7 +144,7 @@
 /obj/item/robot_parts/head,
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /obj/effect/decal/cleanable/blood/oil,
-/obj/item/weapon/broken_gun/laserrifle,
+/obj/item/broken_gun/laserrifle,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/debrisfield/phoron_tanker)
 "ky" = (
@@ -160,7 +160,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/debrisfield/phoron_tanker)
 "li" = (
-/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza,
+/obj/item/reagent_containers/food/snacks/slice/vegetablepizza,
 /turf/space/cracked_asteroid{
 	temperature = 2.7
 	},
@@ -182,7 +182,7 @@
 	},
 /area/submap/debrisfield/phoron_tanker)
 "mP" = (
-/obj/item/weapon/card/id/event/altcard/centcom,
+/obj/item/card/id/event/altcard/centcom,
 /obj/structure/closet/wardrobe/captain,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/debrisfield/phoron_tanker)
@@ -269,7 +269,7 @@
 	},
 /area/submap/debrisfield/phoron_tanker)
 "sY" = (
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/mineral/floor/ignore_mapgen/cave{
 	name = "asteroid";
 	nitrogen = 0;
@@ -356,7 +356,7 @@
 /area/submap/debrisfield/phoron_tanker)
 "yp" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/ian,
+/obj/item/bedsheet/ian,
 /obj/structure/closet/walllocker_double/emergency_engi/south,
 /obj/machinery/light/flicker{
 	dir = 4
@@ -542,7 +542,7 @@
 "Lr" = (
 /obj/structure/bed/chair/bay/comfy/captain,
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/item/weapon/gun/projectile/revolver/mateba,
+/obj/item/gun/projectile/revolver/mateba,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/debrisfield/phoron_tanker)
 "LM" = (

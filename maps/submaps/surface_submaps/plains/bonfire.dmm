@@ -10,15 +10,15 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/bonfire)
 "d" = (
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /turf/template_noop,
 /area/submap/bonfire)
 "e" = (
-/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/bonfire)
 "f" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/bonfire)
 "g" = (
@@ -26,7 +26,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/bonfire)
 "h" = (
-/obj/item/weapon/material/knife/machete,
+/obj/item/material/knife/machete,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/bonfire)
 "i" = (

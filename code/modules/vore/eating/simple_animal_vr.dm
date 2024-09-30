@@ -69,7 +69,7 @@
 	to_chat(user, "[src] is now using [vore_selected.fancy_vore ? "Fancy" : "Classic"] vore sounds.")
 
 /mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
+	if(istype(O, /obj/item/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
 		if(ai_holder.retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
 			user.Weaken(5) //They get tackled anyway whether they're edible or not.
 			user.visible_message("<span class='danger'>[user] swats [src] with [O] and promptly gets tackled!</span>!")
@@ -89,7 +89,7 @@
 				if(!(LAZYFIND(prey_excludes, L))) // Unless they're already on it, just to avoid fuckery.
 					LAZYSET(prey_excludes, L, world.time)
 					addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(L)), 5 MINUTES)
-	else if(istype(O, /obj/item/device/healthanalyzer))
+	else if(istype(O, /obj/item/healthanalyzer))
 		var/healthpercent = health/maxHealth*100
 		to_chat(user, "<span class='notice'>[src] seems to be [healthpercent]% healthy.</span>")
 	else

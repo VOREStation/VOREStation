@@ -1,4 +1,4 @@
-/obj/item/weapon/material/harpoon
+/obj/item/material/harpoon
 	name = "harpoon"
 	sharp = TRUE
 	edge = FALSE
@@ -8,7 +8,7 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
-/obj/item/weapon/material/knife/machete/hatchet
+/obj/item/material/knife/machete/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon = 'icons/obj/weapons.dmi'
@@ -24,7 +24,7 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 /* VOREStation Removal - We have one already
-/obj/item/weapon/material/knife/machete/hatchet/stone
+/obj/item/material/knife/machete/hatchet/stone
 	name = "sharp rock"
 	desc = "The secret is to bang the rocks together, guys."
 	force_divisor = 0.2
@@ -32,12 +32,12 @@
 	item_state = "rock"
 	attack_verb = list("chopped", "torn", "cut")
 
-/obj/item/weapon/material/knife/machete/hatchet/stone/set_material(var/new_material)
+/obj/item/material/knife/machete/hatchet/stone/set_material(var/new_material)
 	var/old_name = name
 	. = ..()
 	name = old_name
 */
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife
+/obj/item/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
 	icon = 'icons/obj/weapons.dmi'
@@ -46,22 +46,22 @@
 	can_cleave = FALSE
 	var/hits = 0
 
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
+/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
 	if(hits > 0)
 		return
 	var/obj/item/I = user.get_inactive_hand()
-	if(istype(I, /obj/item/weapon/material/knife/machete/hatchet/unathiknife))
+	if(istype(I, /obj/item/material/knife/machete/hatchet/unathiknife))
 		hits ++
-		var/obj/item/weapon/W = I
+		var/obj/item/W = I
 		W.attack(M, user)
 		W.afterattack(M, user)
 	..()
 
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
+/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
 	hits = initial(hits)
 	..()
 
-/obj/item/weapon/material/minihoe // -- Numbers
+/obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
 	icon = 'icons/obj/weapons.dmi'
@@ -72,7 +72,7 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
-/obj/item/weapon/material/snow/snowball
+/obj/item/material/snow/snowball
 	name = "loose packed snowball"
 	desc = "A fun snowball. Throw it at your friends!"
 	icon = 'icons/obj/weapons.dmi'
@@ -85,7 +85,7 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("mushed", "splatted", "splooshed", "splushed") // Words that totally exist.
 
-/obj/item/weapon/material/snow/snowball/attack_self(mob/user as mob)
+/obj/item/material/snow/snowball/attack_self(mob/user as mob)
 	if(user.a_intent == I_HURT)
 		to_chat(user, SPAN_NOTICE("You smash the snowball in your hand."))
 		var/atom/S = new /obj/item/stack/material/snow(user.loc)
@@ -94,18 +94,18 @@
 	else
 		to_chat(user, SPAN_NOTICE("You start compacting the snowball."))
 		if(do_after(user, 2 SECONDS))
-			var/atom/S = new /obj/item/weapon/material/snow/snowball/reinforced(user.loc)
+			var/atom/S = new /obj/item/material/snow/snowball/reinforced(user.loc)
 			qdel(src)
 			user.put_in_hands(S)
 
-/obj/item/weapon/material/snow/snowball/reinforced
+/obj/item/material/snow/snowball/reinforced
 	name = "snowball"
 	desc = "A well-formed and fun snowball. It looks kind of dangerous."
 	//icon_state = "reinf-snowball"
 	force_divisor = 0.20
 	thrown_force_divisor = 0.25
 
-/obj/item/weapon/material/whip
+/obj/item/material/whip
 	name = "whip"
 	desc = "A tool used to discipline animals, or look cool. Mostly the latter."
 	description_info = "Help - Standard attack, no modifiers.<br>\
@@ -129,7 +129,7 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/weapon/material/whip/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/material/whip/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	..()
 
 	if(!proximity)
@@ -151,7 +151,7 @@
 				user.visible_message("<span class='warning'>\The [AM] is snatched by \the [src]!</span>")
 				AM.throw_at(user, reach, 0.1, user)
 
-/obj/item/weapon/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(user.a_intent)
 		switch(user.a_intent)
 			if(I_HURT)
@@ -173,12 +173,12 @@
 
 	..()
 
-/obj/item/weapon/material/whip/proc/ranged_disarm(var/mob/living/carbon/human/H, var/mob/living/user)
+/obj/item/material/whip/proc/ranged_disarm(var/mob/living/carbon/human/H, var/mob/living/user)
 	if(istype(H))
 		var/list/holding = list(H.get_active_hand() = 40, H.get_inactive_hand() = 20)
 
 		if(user.zone_sel in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
-			for(var/obj/item/weapon/gun/W in holding)
+			for(var/obj/item/gun/W in holding)
 				if(W && prob(holding[W]))
 					var/list/turfs = list()
 					for(var/turf/T in view())
@@ -211,11 +211,11 @@
 						playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
 
-/obj/item/weapon/material/whip/attack_self(mob/user)
+/obj/item/material/whip/attack_self(mob/user)
 	user.visible_message("<span class='warning'>\The [user] cracks \the [src]!</span>")
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 
-/obj/item/weapon/material/knife/machete/hatchet/stone
+/obj/item/material/knife/machete/hatchet/stone
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon = 'icons/obj/weapons_vr.dmi'
@@ -224,5 +224,5 @@
 	origin_tech = list()
 	applies_material_colour = FALSE
 
-/obj/item/weapon/material/knife/machete/hatchet/stone/bone
+/obj/item/material/knife/machete/hatchet/stone/bone
 	icon_state = "stone_bone_axe"

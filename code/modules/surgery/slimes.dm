@@ -15,9 +15,9 @@
 /datum/surgery_step/slime/cut_flesh
 	surgery_name = "Cut Flesh"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
+	/obj/item/surgical/scalpel = 100,		\
+	/obj/item/material/knife = 75,	\
+	/obj/item/material/shard = 50, 		\
 	)
 
 	min_duration = 30
@@ -44,9 +44,9 @@
 /datum/surgery_step/slime/cut_innards
 	surgery_name = "Cut Innards"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
+	/obj/item/surgical/scalpel = 100,		\
+	/obj/item/material/knife = 75,	\
+	/obj/item/material/shard = 50, 		\
 	)
 
 	min_duration = 30
@@ -73,8 +73,8 @@
 /datum/surgery_step/slime/saw_core
 	surgery_name = "Remove Core"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/circular_saw = 100, \
-	/obj/item/weapon/material/knife/machete/hatchet = 75
+	/obj/item/surgical/circular_saw = 100, \
+	/obj/item/material/knife/machete/hatchet = 75
 	)
 
 	min_duration = 50

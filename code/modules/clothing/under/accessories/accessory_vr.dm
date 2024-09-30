@@ -323,11 +323,11 @@
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		return
 
-	if(istype(I,/obj/item/weapon/tool/screwdriver))
+	if(istype(I,/obj/item/tool/screwdriver))
 		update_collartag(user, I, "scratched out", "scratch out", "engraved")
 		return
 
-	if(istype(I,/obj/item/weapon/pen))
+	if(istype(I,/obj/item/pen))
 		update_collartag(user, I, "crossed out", "cross out", "written")
 		return
 
@@ -501,7 +501,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
 	to_chat(user, "<span class='notice'>You wire the signaler into the [src].</span>")
@@ -532,7 +532,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
 	to_chat(user, "<span class='notice'>There is already a signaler wired to the [src].</span>")
@@ -652,7 +652,7 @@
 	var/currently_shrinking = 0
 
 /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attackby(var/obj/item/component, mob/user as mob)
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
 	to_chat(user, "<span class='notice'>The signaler doesn't respond to the connection attempt [src].</span>")
@@ -781,7 +781,7 @@
 	icon_state = "holster_machete"
 	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 0
-	can_hold = list(/obj/item/weapon/material/knife/machete, /obj/item/weapon/kinetic_crusher/machete)
+	can_hold = list(/obj/item/material/knife/machete, /obj/item/kinetic_crusher/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
 

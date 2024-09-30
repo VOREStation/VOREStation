@@ -1,6 +1,6 @@
 /******************************Lantern*******************************/
 
-/obj/item/device/flashlight/lantern
+/obj/item/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."
@@ -9,7 +9,7 @@
 
 /*****************************Pickaxe********************************/
 
-/obj/item/weapon/pickaxe
+/obj/item/pickaxe
 	name = "pickaxe"
 	desc = "A miner's best friend."
 	icon = 'icons/obj/items.dmi'
@@ -31,7 +31,7 @@
 	var/excavation_amount = 200
 	var/destroy_artefacts = FALSE // some mining tools will destroy artefacts completely while avoiding side-effects.
 
-/obj/item/weapon/pickaxe/silver
+/obj/item/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
@@ -39,7 +39,7 @@
 	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
 
-/obj/item/weapon/pickaxe/gold
+/obj/item/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
@@ -48,7 +48,7 @@
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
 
-/obj/item/weapon/pickaxe/diamond
+/obj/item/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
@@ -59,7 +59,7 @@
 
 /*****************************Drill********************************/
 
-/obj/item/weapon/pickaxe/drill
+/obj/item/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "drill"
 	item_state = "jackhammer"
@@ -70,7 +70,7 @@
 	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/advdrill
+/obj/item/pickaxe/advdrill
 	name = "advanced mining drill" // Can dig sand as well!
 	icon_state = "advdrill"
 	item_state = "jackhammer"
@@ -81,7 +81,7 @@
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+/obj/item/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
@@ -92,7 +92,7 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/jackhammer
+/obj/item/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
@@ -102,7 +102,7 @@
 	drill_verb = "hammering"
 	destroy_artefacts = TRUE
 
-/obj/item/weapon/pickaxe/borgdrill
+/obj/item/pickaxe/borgdrill
 	name = "jackhammer"
 	icon_state = "borg_pick"
 	item_state = "jackhammer"
@@ -112,7 +112,7 @@
 	drill_verb = "hammering"
 	destroy_artefacts = TRUE
 
-/obj/item/weapon/pickaxe/plasmacutter
+/obj/item/pickaxe/plasmacutter
 	name = "plasma cutter"
 	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	icon_state = "plasmacutter"
@@ -127,13 +127,13 @@
 	sharp = TRUE
 	edge = TRUE
 
-/obj/item/weapon/pickaxe/plasmacutter/borg
+/obj/item/pickaxe/plasmacutter/borg
 	name = "mounted plasma cutter"
 	icon_state = "pcutter_borg"
 
 /*****************************Shovel********************************/
 
-/obj/item/weapon/shovel
+/obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt. Alt click to switch modes."
 	icon = 'icons/obj/items.dmi'
@@ -151,17 +151,17 @@
 	var/digspeed = 40
 	var/grave_mode = FALSE
 
-/obj/item/weapon/shovel/AltClick(mob/user)
+/obj/item/shovel/AltClick(mob/user)
 	grave_mode = !grave_mode
 	to_chat(user, span_notice("You'll now dig [grave_mode ? "out graves" : "for loot"]."))
 	. = ..()
 
-/obj/item/weapon/shovel/wood
+/obj/item/shovel/wood
 	icon_state = "whiteshovel"
 	item_state = "whiteshovel"
 	var/datum/material/material
 
-/obj/item/weapon/shovel/wood/Initialize(var/ml, var/_mat)
+/obj/item/shovel/wood/Initialize(var/ml, var/_mat)
 	. = ..()
 	material = get_material_by_name(_mat)
 	if(!istype(material))
@@ -171,12 +171,12 @@
 		matter = list("[material.name]" = 50)
 		update_icon()
 
-/obj/item/weapon/shovel/wood/update_icon()
+/obj/item/shovel/wood/update_icon()
 	. = ..()
 	color = material ? material.icon_colour : initial(color)
 	alpha = min(max(255 * material.opacity, 80), 255)
 
-/obj/item/weapon/shovel/spade
+/obj/item/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
@@ -185,7 +185,7 @@
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/weapon/shovel/wood
+/obj/item/shovel/wood
 	name = "wooden shovel"
 	desc = "An improvised tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'

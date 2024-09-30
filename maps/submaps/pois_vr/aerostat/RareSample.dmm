@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/obj/item/weapon/research_sample/rare,
+/obj/item/research_sample/rare,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/template_noop)
 "c" = (

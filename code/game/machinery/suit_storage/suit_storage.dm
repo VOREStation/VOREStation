@@ -391,8 +391,8 @@
 		to_chat(user, span_blue("You [panelopen ? "open up" : "close"] the unit's maintenance panel."))
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		if(!(ismob(G.affecting)))
 			return
 		if(!isopen)

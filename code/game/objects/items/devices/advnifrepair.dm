@@ -1,5 +1,5 @@
 //Programs nanopaste into NIF repair nanites
-/obj/item/device/nifrepairer
+/obj/item/nifrepairer
 	name = "advanced NIF repair tool"
 	desc = "A tool that accepts nanopaste and converts the nanites into NIF repair nanites for injection/ingestion. Insert paste, deposit into container."
 	icon = 'icons/obj/device_alt.dmi'
@@ -16,12 +16,12 @@
 	var/efficiency = 15 //How many units reagent per 1 unit nanopaste
 
 
-/obj/item/device/nifrepairer/New()
+/obj/item/nifrepairer/New()
 	..()
 
 	supply = new(max = 60, A = src)
 
-/obj/item/device/nifrepairer/attackby(obj/W, mob/user)
+/obj/item/nifrepairer/attackby(obj/W, mob/user)
 	if(istype(W,/obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/np = W
 		if((supply.get_free_space() >= efficiency) && np.use(1))
@@ -32,13 +32,13 @@
 			to_chat(user, "<span class='warning'>\The [src] is too full. Empty it into a container first.</span>")
 			return
 
-/obj/item/device/nifrepairer/update_icon()
+/obj/item/nifrepairer/update_icon()
 	if(supply.total_volume)
 		icon_state = "[initial(icon_state)]2"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/nifrepairer/afterattack(var/atom/target, var/mob/user, var/proximity)
+/obj/item/nifrepairer/afterattack(var/atom/target, var/mob/user, var/proximity)
 	if(!target.is_open_container() || !target.reagents)
 		return 0
 
@@ -55,7 +55,7 @@
 	update_icon()
 	return 1
 
-/obj/item/device/nifrepairer/examine(mob/user)
+/obj/item/nifrepairer/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		if(supply.total_volume)

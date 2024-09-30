@@ -38,9 +38,9 @@
 	data["device_theme"] = device_theme
 
 	data["login"] = list()
-	var/obj/item/weapon/computer_hardware/card_slot/cardholder = card_slot
+	var/obj/item/computer_hardware/card_slot/cardholder = card_slot
 	if(cardholder)
-		var/obj/item/weapon/card/id/stored_card = cardholder.stored_card
+		var/obj/item/card/id/stored_card = cardholder.stored_card
 		if(stored_card)
 			var/stored_name = stored_card.registered_name
 			var/stored_title = stored_card.assignment

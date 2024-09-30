@@ -18,7 +18,7 @@
 "g" = (
 /obj/random/handgun/sec,
 /obj/effect/decal/remains/human,
-/obj/item/weapon/storage/secure/briefcase/money,
+/obj/item/storage/secure/briefcase/money,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Rocky1)
 

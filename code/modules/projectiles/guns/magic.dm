@@ -2,7 +2,7 @@
  * "Magic" "Guns"
  */
 
-/obj/item/weapon/gun/magic
+/obj/item/gun/magic
 	name = "staff of nothing"
 	desc = "This staff is boring to watch because even though it came first you've seen everything it can do in other staves for years."
 	icon = 'icons/obj/wizard.dmi'
@@ -21,8 +21,8 @@
 	var/charge_tick = 0
 	var/can_charge = TRUE
 
-/obj/item/weapon/gun/magic/consume_next_projectile()
-	if(checks_antimagic && locate(/obj/item/weapon/nullrod) in usr) return null
+/obj/item/gun/magic/consume_next_projectile()
+	if(checks_antimagic && locate(/obj/item/nullrod) in usr) return null
 	if(!ispath(projectile_type)) return null
 	if(charges <= 0) return null
 
@@ -30,18 +30,18 @@
 
 	return new projectile_type(src)
 
-/obj/item/weapon/gun/magic/Initialize()
+/obj/item/gun/magic/Initialize()
 	. = ..()
 	charges = max_charges
 	if(can_charge)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/gun/magic/Destroy()
+/obj/item/gun/magic/Destroy()
 	if(can_charge)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/weapon/gun/magic/process()
+/obj/item/gun/magic/process()
 	if (charges >= max_charges)
 		charge_tick = 0
 		return
@@ -52,7 +52,7 @@
 	charges++
 	return 1
 
-/obj/item/weapon/gun/magic/handle_click_empty(mob/user)
+/obj/item/gun/magic/handle_click_empty(mob/user)
 	if (user)
 		user.visible_message("*wzhzhzh*", "<span class='danger'>The [name] whizzles quietly.</span>")
 	else

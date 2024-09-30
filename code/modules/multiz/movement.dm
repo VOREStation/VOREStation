@@ -143,7 +143,7 @@
 		var/mob/living/L = src
 		if(L.pulling && !L.pulling.anchored)
 			pulling |= L.pulling
-		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
+		for(var/obj/item/grab/G in list(L.l_hand, L.r_hand))
 			pulling |= G.affecting
 		if(direction == UP)
 			src.audible_message("<span class='notice'>[src] moves up.</span>")

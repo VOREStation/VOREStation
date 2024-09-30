@@ -50,7 +50,7 @@
 /area/submap/farm1)
 "m" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/wood,
 /area/submap/farm1)
 "n" = (
@@ -62,7 +62,7 @@
 /area/submap/farm1)
 "p" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/knife,
+/obj/item/material/knife,
 /turf/simulated/floor/wood,
 /area/submap/farm1)
 "q" = (
@@ -116,15 +116,15 @@
 	},
 /area/submap/farm1)
 "y" = (
-/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/material/knife/machete/hatchet,
 /turf/simulated/floor/outdoors/mud/virgo3b{
 	outdoors = 0
 	},
 /area/submap/farm1)
 "z" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/matches,
-/obj/item/weapon/flame/match,
+/obj/item/storage/box/matches,
+/obj/item/flame/match,
 /turf/simulated/floor/wood,
 /area/submap/farm1)
 "A" = (
@@ -148,7 +148,7 @@
 /area/submap/farm1)
 "E" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /turf/simulated/floor/wood,
 /area/submap/farm1)
 "F" = (
@@ -168,12 +168,12 @@
 /area/submap/farm1)
 "I" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/manual/hydroponics_pod_people,
+/obj/item/book/manual/hydroponics_pod_people,
 /turf/simulated/floor/wood,
 /area/submap/farm1)
 "J" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/wood,
 /area/submap/farm1)
 "K" = (

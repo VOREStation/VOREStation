@@ -4,17 +4,17 @@
 	icon_state = "arcade1"
 	icon_keyboard = null
 	clicksound = null	//Gets too spammy and makes no sense for arcade to have the console keyboard noise anyway
-	var/list/prizes = list(	/obj/item/weapon/storage/box/snappops					= 2,
+	var/list/prizes = list(	/obj/item/storage/box/snappops					= 2,
 							/obj/item/toy/blink										= 2,
 							/obj/item/clothing/under/syndicate/tacticool			= 2,
 							/obj/item/toy/sword										= 2,
-							/obj/item/weapon/storage/box/capguntoy					= 2,
-							/obj/item/weapon/gun/projectile/revolver/toy/crossbow	= 2,
+							/obj/item/storage/box/capguntoy					= 2,
+							/obj/item/gun/projectile/revolver/toy/crossbow	= 2,
 							/obj/item/clothing/suit/syndicatefake					= 2,
-							/obj/item/weapon/storage/fancy/crayons					= 2,
+							/obj/item/storage/fancy/crayons					= 2,
 							/obj/item/toy/spinningtoy								= 2,
 							/obj/random/mech_toy									= 1,
-							/obj/item/weapon/reagent_containers/spray/waterflower	= 1,
+							/obj/item/reagent_containers/spray/waterflower	= 1,
 							/obj/random/action_figure								= 1,
 							/obj/random/plushie										= 1,
 							/obj/item/toy/cultsword									= 1,
@@ -30,8 +30,8 @@
 	// If it's a generic arcade machine, pick a random arcade
 	// circuit board for it and make the new machine
 	if(!circuit)
-		var/choice = pick(subtypesof(/obj/item/weapon/circuitboard/arcade) - /obj/item/weapon/circuitboard/arcade/clawmachine)
-		var/obj/item/weapon/circuitboard/CB = new choice()
+		var/choice = pick(subtypesof(/obj/item/circuitboard/arcade) - /obj/item/circuitboard/arcade/clawmachine)
+		var/obj/item/circuitboard/CB = new choice()
 		new CB.build_path(loc, CB)
 		return INITIALIZE_HINT_QDEL
 
@@ -89,7 +89,7 @@
 	desc = "Fight through what space has to offer!"
 	icon_state = "arcade2"
 	icon_screen = "battler"
-	circuit = /obj/item/weapon/circuitboard/arcade/battle
+	circuit = /obj/item/circuitboard/arcade/battle
 	var/enemy_name = "Space Villian"
 	var/temp = "Winners don't use space drugs" //Temporary message, for attack messages, etc
 	var/enemy_action = ""
@@ -321,7 +321,7 @@
 	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
 	icon_state = "arcade1"
 	icon_screen = "orion"
-	circuit = /obj/item/weapon/circuitboard/arcade/orion_trail
+	circuit = /obj/item/circuitboard/arcade/orion_trail
 	var/busy = 0 //prevent clickspam that allowed people to ~speedrun~ the game.
 	var/engine = 0
 	var/hull = 0
@@ -682,7 +682,7 @@
 						last_spaceport_action = "You failed to raid the spaceport! You lost [FU*-1] Fuel and [FO*-1] Food, AND [lost_crew] in your scramble to escape! ([FU]FI,[FO]FO,-Crew)"
 						if(emagged)
 							src.visible_message("The machine states, 'YOU ARE UNDER ARREST, RAIDER!' and shoots handcuffs onto [usr]!", "You hear something say 'YOU ARE UNDER ARREST, RAIDER!' and a clinking sound")
-							var/obj/item/weapon/handcuffs/C = new(src.loc)
+							var/obj/item/handcuffs/C = new(src.loc)
 							var/mob/living/carbon/human/H = usr
 							if(istype(H))
 								C.forceMove(H)
@@ -1011,7 +1011,7 @@
 	src.visible_message("\The [src] plays a triumpant tune, stating 'CONGRATULATIONS, YOU HAVE MADE IT TO ORION.'")
 	playsound(src, 'sound/arcade/Ori_win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
 	if(emagged)
-		new /obj/item/weapon/orion_ship(src.loc)
+		new /obj/item/orion_ship(src.loc)
 		message_admins("[key_name_admin(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 		log_game("[key_name(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
 	else
@@ -1029,7 +1029,7 @@
 		emagged = 1
 		return 1
 
-/obj/item/weapon/orion_ship
+/obj/item/orion_ship
 	name = "model settler ship"
 	desc = "A model spaceship, it looks like those used back in the day when travelling to Orion! It even has a miniature FX-293 reactor, which was renowned for its instability and tendency to explode..."
 	icon = 'icons/obj/toy.dmi'
@@ -1037,7 +1037,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/active = 0 //if the ship is on
 
-/obj/item/weapon/orion_ship/examine(mob/user)
+/obj/item/orion_ship/examine(mob/user)
 	. = ..()
 	if(in_range(user, src))
 		if(!active)
@@ -1045,7 +1045,7 @@
 		else
 			. += span("notice", "There's a little switch on the bottom. It's flipped up.")
 
-/obj/item/weapon/orion_ship/attack_self(mob/user)
+/obj/item/orion_ship/attack_self(mob/user)
 	if(active)
 		return
 
@@ -1093,7 +1093,7 @@
 	icon_state = "clawmachine_new"
 	icon_keyboard = null
 	icon_screen = null
-	circuit = /obj/item/weapon/circuitboard/arcade/clawmachine
+	circuit = /obj/item/circuitboard/arcade/clawmachine
 	prizes = list(/obj/random/plushie)
 	var/wintick = 0
 	var/winprob = 0
@@ -1110,14 +1110,14 @@
 
 	if(gamepaid == 0 && vendor_account && !vendor_account.suspended)
 		var/paid = 0
-		var/obj/item/weapon/card/id/W = I.GetID()
+		var/obj/item/card/id/W = I.GetID()
 		if(W) //for IDs and PDAs and wallets with IDs
 			paid = pay_with_card(W,I)
-		else if(istype(I, /obj/item/weapon/spacecash/ewallet))
-			var/obj/item/weapon/spacecash/ewallet/C = I
+		else if(istype(I, /obj/item/spacecash/ewallet))
+			var/obj/item/spacecash/ewallet/C = I
 			paid = pay_with_ewallet(C)
-		else if(istype(I, /obj/item/weapon/spacecash))
-			var/obj/item/weapon/spacecash/C = I
+		else if(istype(I, /obj/item/spacecash))
+			var/obj/item/spacecash/C = I
 			paid = pay_with_cash(C, user)
 		if(paid)
 			gamepaid = 1
@@ -1126,7 +1126,7 @@
 		return
 
 ////// Cash
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_cash(var/obj/item/weapon/spacecash/cashmoney, mob/user)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_cash(var/obj/item/spacecash/cashmoney, mob/user)
 	if(!emagged)
 		if(gameprice > cashmoney.worth)
 
@@ -1135,7 +1135,7 @@
 			to_chat(usr, "[icon2html(cashmoney,user.client)] <span class='warning'>That is not enough money.</span>")
 			return 0
 
-		if(istype(cashmoney, /obj/item/weapon/spacecash))
+		if(istype(cashmoney, /obj/item/spacecash))
 
 			visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
 			cashmoney.worth -= gameprice
@@ -1155,7 +1155,7 @@
 
 
 ///// Ewallet
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
 	if(!emagged)
 		visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
 		playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
@@ -1171,7 +1171,7 @@
 		to_chat(usr, "<span class='info'>It doesn't seem to accept that! Seem you'll need to swipe a valid ID.</span>")
 
 ///// ID
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(var/obj/item/weapon/card/id/I, var/obj/item/ID_container)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
 		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	else
@@ -1302,7 +1302,7 @@
 			gameprice = 1
 			emagged = 0
 			winscreen = "You won...?"
-			var/obj/item/weapon/grenade/G = new /obj/item/weapon/grenade/explosive(get_turf(src)) /// YEAAAAAAAAAAAAAAAAAAH!!!!!!!!!!
+			var/obj/item/grenade/G = new /obj/item/grenade/explosive(get_turf(src)) /// YEAAAAAAAAAAAAAAAAAAH!!!!!!!!!!
 			G.activate()
 			G.throw_at(get_turf(usr),10,10) /// Play stupid games, win stupid prizes.
 

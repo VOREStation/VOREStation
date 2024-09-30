@@ -9,63 +9,63 @@
 
 // Energy Weapons
 
-/datum/design/item/weapon/energy/protector
+/datum/design/item/energy/protector
 	desc = "The 'Protector' is an advanced energy gun that cannot be fired in lethal mode on low security alert levels, but features DNA locking and a powerful stun."
 	id = "protector"
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 1000)
-	build_path = /obj/item/weapon/gun/energy/gun/protector
+	build_path = /obj/item/gun/energy/gun/protector
 	sort_string = "MAAVA"
 
-/datum/design/item/weapon/energy/sickshot
+/datum/design/item/energy/sickshot
 	desc = "A 'Sickshot' is a 4-shot energy revolver that causes nausea and confusion."
 	id = "sickshot"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 2000)
-	build_path = /obj/item/weapon/gun/energy/sickshot
+	build_path = /obj/item/gun/energy/sickshot
 	sort_string = "MAAVB"
 
-/datum/design/item/weapon/energy/netgun
+/datum/design/item/energy/netgun
 	desc  = "The \"Varmint Catcher\" is an energy net projector designed to immobilize dangerous wildlife."
 	id = "netgun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
-	build_path = /obj/item/weapon/gun/energy/netgun
+	build_path = /obj/item/gun/energy/netgun
 	sort_string = "MAAVC"
 
 // Misc weapons
 
-/datum/design/item/weapon/pummeler
+/datum/design/item/pummeler
 	desc = "With the 'Pummeler', punt anyone you don't like out of the room!"
 	id = "pummeler"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 5)
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000, MAT_URANIUM = 1000)
-	build_path = /obj/item/weapon/gun/energy/pummeler
+	build_path = /obj/item/gun/energy/pummeler
 	sort_string = "MADVA"
 
 // Anti-particle stuff
 
-/datum/design/item/weapon/particle/AssembleDesignName()
+/datum/design/item/particle/AssembleDesignName()
 	..()
 	name = "Anti-particle weapon prototype ([item_name])"
 
-/datum/design/item/weapon/particle/advparticle
+/datum/design/item/particle/advparticle
 	name = "Advanced anti-particle rifle"
 	id = "advparticle"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 5, TECH_POWER = 3, TECH_MAGNET = 3)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_GOLD = 1000, MAT_URANIUM = 750)
-	build_path = /obj/item/weapon/gun/energy/particle/advanced
+	build_path = /obj/item/gun/energy/particle/advanced
 	sort_string = "MAAUA"
 
-/datum/design/item/weapon/particle/particlecannon
+/datum/design/item/particle/particlecannon
 	name = "Anti-particle cannon"
 	id = "particlecannon"
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 1500, MAT_GOLD = 2000, MAT_URANIUM = 1000, MAT_DIAMOND = 2000)
-	build_path = /obj/item/weapon/gun/energy/particle/cannon
+	build_path = /obj/item/gun/energy/particle/cannon
 	sort_string = "MAAUB"
 
-/datum/design/item/weapon/particle/pressureinterlock
+/datum/design/item/particle/pressureinterlock
 	name = "APP pressure interlock"
 	id = "pressureinterlock"
 	req_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
@@ -74,19 +74,19 @@
 	sort_string = "MAAUC"
 
 // NSFW gun and cells
-/datum/design/item/weapon/cell_based/AssembleDesignName()
+/datum/design/item/cell_based/AssembleDesignName()
 	..()
 	name = "Cell-based weapon prototype ([item_name])"
 
-/datum/design/item/weapon/cell_based/prototype_nsfw
+/datum/design/item/cell_based/prototype_nsfw
 	name = "cell-loaded revolver"
 	id = "nsfw_prototype"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 6000, MAT_PHORON = 8000, MAT_URANIUM = 4000)
-	build_path = /obj/item/weapon/gun/projectile/cell_loaded/combat/prototype
+	build_path = /obj/item/gun/projectile/cell_loaded/combat/prototype
 	sort_string = "MAVAA"
 
-/datum/design/item/weapon/cell_based/prototype_nsfw_mag
+/datum/design/item/cell_based/prototype_nsfw_mag
 	name = "combat cell magazine"
 	id = "nsfw_mag_prototype"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
@@ -154,7 +154,7 @@
 	build_path = /obj/item/ammo_casing/microbattery/combat/stripper
 	sort_string = "MAVCG"
 
-/datum/design/item/weapon/ballistic/ammo/ptrshell
+/datum/design/item/ballistic/ammo/ptrshell
 	name = "14.5mm shell"
 	desc = "A dense-core projectile fired from a small cannon."
 	id = "ptrshell"

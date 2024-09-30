@@ -1,10 +1,10 @@
-/obj/item/weapon/holder/dropped(mob/user)
+/obj/item/holder/dropped(mob/user)
 	if (held_mob?.loc != src || isturf(loc))
 		var/held = held_mob
 		dump_mob()
 		held_mob = held
 
-/obj/item/weapon/holder/attack_hand(mob/living/user as mob) //straight up just copypasted from objects/items.dm with a few things changed (doesn't called dropped unless +actually dropped+)
+/obj/item/holder/attack_hand(mob/living/user as mob) //straight up just copypasted from objects/items.dm with a few things changed (doesn't called dropped unless +actually dropped+)
 	if (!user) return
 	if(anchored)
 		to_chat(user, span("notice", "\The [src] won't budge, you can't pick it up!"))
@@ -23,8 +23,8 @@
 	if(held_mob == user) return // No picking your own micro self up
 
 	var/old_loc = src.loc
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
+	if (istype(src.loc, /obj/item/storage))
+		var/obj/item/storage/S = src.loc
 		if(!S.remove_from_storage(src))
 			return
 

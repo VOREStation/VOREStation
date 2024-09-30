@@ -9,7 +9,7 @@
 
 /datum/supply_pack/atmos/inflatable
 	name = "Inflatable barriers"
-	contains = list(/obj/item/weapon/storage/briefcase/inflatable = 3)
+	contains = list(/obj/item/storage/briefcase/inflatable = 3)
 	cost = 20
 	containertype = /obj/structure/closet/crate/aether
 	containername = "Inflatable Barrier Crate"
@@ -66,7 +66,7 @@
 	access = access_atmospherics
 
 /datum/supply_pack/atmos/rapid_pipe_dispenser
-	contains = list(/obj/item/weapon/pipe_dispenser)
+	contains = list(/obj/item/pipe_dispenser)
 	name = "Rapid Pipe Dispenser"
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/aether
@@ -77,7 +77,7 @@
 	name = "Internals crate"
 	contains = list(
 			/obj/item/clothing/mask/gas = 3,
-			/obj/item/weapon/tank/air = 3
+			/obj/item/tank/air = 3
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/aether
@@ -86,10 +86,10 @@
 /datum/supply_pack/atmos/evacuation
 	name = "Emergency equipment"
 	contains = list(
-			/obj/item/weapon/storage/toolbox/emergency = 2,
+			/obj/item/storage/toolbox/emergency = 2,
 			/obj/item/clothing/suit/storage/hazardvest = 2,
 			/obj/item/clothing/suit/storage/vest = 2,
-			/obj/item/weapon/tank/emergency/oxygen/engi = 4,
+			/obj/item/tank/emergency/oxygen/engi = 4,
 			/obj/item/clothing/suit/space/emergency = 4,
 			/obj/item/clothing/head/helmet/space/emergency = 4,
 			/obj/item/clothing/mask/gas = 4
@@ -102,9 +102,9 @@
 	name = "Firefighting equipment"
 	contains = list(
 		/obj/item/clothing/suit/fire/heavy = 2,
-		/obj/item/weapon/tank/oxygen/red = 2,
-		/obj/item/weapon/watertank/atmos = 2,
-		/obj/item/device/flashlight = 2,
+		/obj/item/tank/oxygen/red = 2,
+		/obj/item/watertank/atmos = 2,
+		/obj/item/flashlight = 2,
 		/obj/item/clothing/head/hardhat/firefighter/atmos = 2
 			)
 	cost = 35

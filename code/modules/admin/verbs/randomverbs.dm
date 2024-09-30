@@ -9,7 +9,7 @@
 		return
 
 	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif))	//VOREStation Edit - There's basically no reason to remove either of these
+		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//VOREStation Edit - There's basically no reason to remove either of these
 			continue	//VOREStation Edit
 		M.drop_from_inventory(W)
 

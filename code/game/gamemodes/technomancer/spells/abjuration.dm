@@ -3,17 +3,17 @@
 	desc = "This ability attempts to send summoned or teleported entities or anomalies to the place from whence they came, or at least \
 	far away from the caster.  Failing that, it may inhibit those entities in some form."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/abjuration
+	obj_path = /obj/item/spell/abjuration
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/abjuration
+/obj/item/spell/abjuration
 	name = "abjuration"
 	desc = "Useful for unruly minions, hostile summoners, or for fighting the horrors that may await you with your hubris."
 	icon_state = "generic"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_TELE
 
-/obj/item/weapon/spell/abjuration/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/abjuration/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /mob/living) && pay_energy(500) && within_range(hit_atom))
 		var/mob/living/L = hit_atom
 		var/mob/living/simple_mob/SM = null

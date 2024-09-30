@@ -1,5 +1,5 @@
 	// Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "mercship.dmm"
 #endif
 
@@ -32,7 +32,7 @@
 /area/ship/manta/atmos
 	name = "\improper Mercenary Cruiser - Atmospherics"
 	icon_state = "atmos"
-                                   
+
 /area/ship/manta/mech_bay
 	name = "\improper Mercenary Cruiser - Mech Bay"
 	icon_state = "mechbay"
@@ -100,19 +100,19 @@
 /area/ship/manta/commander
 	name = "\improper Mercenary Cruiser - Commander's Room"
 	icon_state = "head_quarters"
-	
+
 /area/ship/manta/holding
 	name = "\improper Mercenary Cruiser - Holding Cells"
 	icon_state = "brig"
-	
+
 /area/ship/manta/recreation
 	name = "\improper Mercenary Cruiser - Recreation & Supplies"
 	icon_state = "recreation_area"
-	
+
 /area/ship/manta/gunnery
 	name = "\improper Mercenary Cruiser - Gunnery"
 	icon_state = "security_sub"
-	
+
 /area/ship/manta/magazine
 	name = "\improper Mercenary Cruiser - Cannon Magazine"
 	icon_state = "darkred"
@@ -218,9 +218,9 @@
 	on_enter_occupant_message = "You feel cool air surround you. You go numb as your senses turn inward."
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
-	
+
 //Misc Stuff
-/obj/item/weapon/paper/manta_shields
+/obj/item/paper/manta_shields
 	name = "Shield Setup"
 	info = {"To All Personnel,<br>\
 The cruiser's shield generator is intended to keep asteroids and pesky railgun rounds off our ass, so make sure you use it if we get into a scuffle.<br>\
@@ -237,7 +237,7 @@ The shield generator's a hungry beast and will drain the cruiser's reserves fair
 <br>\
 <i>Capt. Thorne</i>"}
 
-/obj/item/weapon/paper/manta_new_personnel_brief
+/obj/item/paper/manta_new_personnel_brief
 	name = "Fresh Personnel Primer"
 	info = {"To All <i>New</i> Personnel,<br>\
 Welcome to your new home, the SAARE Typhon Four-Niner. This Manta-class Cruiser is equipped with everything you should ever need to conduct operations against any target we may encounter during our contracts. If you're reading this, you're probably in the Barracks right now; at the outer edge of the starboard wing are the Holding Cells. To the fore of the barracks is the Medbay, pray you don't end up there.<br>\
@@ -252,7 +252,7 @@ You don't want to know how long it's going to take to pay off.<br>\
 <br>
 P.S. If you need to refuel the lander for some reason, there's a spare fuel canister in that closet space in the port fore wing edge, opposite the assault armory."}
 
-/obj/item/weapon/paper/manta_approach_tactics
+/obj/item/paper/manta_approach_tactics
 	name = "Installation Approach"
 	info = {"To All Personnel,<br>\
 Word of advice: this ship isn't exactly sneaky, despite our best efforts. If we pull up around a major site <i>they're going to notice</i>. Now sure we have the whole transponder thing that should throw them off for a bit, but sooner or later they're gonna catch on, <i>especially</i> if you go in loud. Fortunately for you all, our handy-dandy little landing craft <i>is</i> stealthy, and can get you aboard most ships, stations, or outposts without too much fuss. Better yet it's an all-passive system, so you don't even need to turn it on or worry about some idiot accidentally turning it off.<br>\
@@ -261,7 +261,7 @@ We've also been supplied with a few packs of 'liberated' SAARE gear for use as d
 <br>\
 <i>Capt. Thorne</i>"}
 
-/obj/item/weapon/paper/manta_prisoners
+/obj/item/paper/manta_prisoners
 	name = "Prisoner Management"
 	info = {"To All Personnel,<br>\
 I don't care if they're 'not being cooperative', for the love of fuck if another high-value prisoner 'disappears' under your watch <i>you are fucking next</i>, do I make myself clear? I don't care if it's some schmuck we picked up during a raid who happened to be in the wrong place at the wrong time, but if it's someone we're trying to extract information from or ransom or whatever then they better not vanish.<br>\
@@ -270,7 +270,7 @@ I don't care if they're 'not being cooperative', for the love of fuck if another
 <br>\
 P.S. If you gotta cut 'em up or whatever try not to make too much of a mess, and clean up when you're done. Don't trail blood all over my damn ship, and don't get them killed by infections either."}
 
-/obj/item/weapon/paper/manta_cannon_usage
+/obj/item/paper/manta_cannon_usage
 	name = "Cannon Operation Instructions"
 	info = {"To All Personnel,<br>\
 Heads up people, we've got a new toy.<br>\
@@ -292,7 +292,7 @@ In the meantime, happy hunting. Go bag me some carp. The mech bay can be found i
 /obj/machinery/computer/cryopod/merc
 	name = "mercenary oversight console"
 	desc = "An interface between mercenaries and the cryo oversight systems tasked with keeping track of all mercenaries who enter or exit cryostasis."
-	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	circuit = "/obj/item/circuitboard/robotstoragecontrol"
 
 	storage_type = "mercenaries"
 	storage_name = "Merc Oversight Control"

@@ -69,7 +69,7 @@
 	icon_living = "measelshark"
 	icon_dead = "measelshark-dead"
 	meat_amount = 8 //Big fish, tons of meat. Great for feasts.
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk
+	meat_type = /obj/item/reagent_containers/food/snacks/sliceable/sharkchunk
 	vore_active = 1
 	vore_bump_chance = 100
 	vore_default_mode = DM_HOLD //docile shark

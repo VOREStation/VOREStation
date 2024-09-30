@@ -66,7 +66,7 @@
 	description_info = "This machine is the first step in turning things back into their materials. There's a bit of loss, depending on how upgraded it is. The output of this machine goes into the sorter."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "crusher"
-	circuit = /obj/item/weapon/circuitboard/recycler_crusher
+	circuit = /obj/item/circuitboard/recycler_crusher
 
 	working = FALSE
 	var/effic_factor = 0.5
@@ -74,9 +74,9 @@
 /obj/machinery/recycling/crusher/RefreshParts()
 	. = ..()
 	var/total_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		total_rating += M.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		total_rating += M.rating
 
 	total_rating *= 0.1
@@ -117,7 +117,7 @@
 	description_info = "The output of the recycling crusher should go into this machine, and it will output material dust, which can go into the sheet stamper to make sheets."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "sorter"
-	circuit = /obj/item/weapon/circuitboard/recycler_sorter
+	circuit = /obj/item/circuitboard/recycler_sorter
 
 	var/list/materials = list()
 	working = FALSE
@@ -163,7 +163,7 @@
 	description_info = "This machine is the last step in the recycling process. The output of a debris sorter should be fed into this machine and it will produce material sheets."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "stamper"
-	circuit = /obj/item/weapon/circuitboard/recycler_stamper
+	circuit = /obj/item/circuitboard/recycler_stamper
 
 /obj/machinery/recycling/stamper/can_accept_item(obj/item/O)
 	if(istype(O, /obj/item/material_dust))

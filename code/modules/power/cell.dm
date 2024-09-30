@@ -2,7 +2,7 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/weapon/cell
+/obj/item/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power_cells.dmi'
@@ -35,7 +35,7 @@
 	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
-/obj/item/weapon/cell/New()
+/obj/item/cell/New()
 	..()
 	c_uid = cell_uid++
 	charge = maxcharge
@@ -43,28 +43,28 @@
 	if(self_recharge)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/cell/Destroy()
+/obj/item/cell/Destroy()
 	if(self_recharge)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/weapon/cell/get_cell()
+/obj/item/cell/get_cell()
 	return src
 
-/obj/item/weapon/cell/process()
+/obj/item/cell/process()
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)
 			give(charge_amount)
 			// TGMC Ammo HUD - Update the HUD every time we're called to recharge.
-			if(istype(loc, /obj/item/weapon/gun/energy)) // Are we in a gun currently?
-				var/obj/item/weapon/gun/energy/gun = loc
+			if(istype(loc, /obj/item/gun/energy)) // Are we in a gun currently?
+				var/obj/item/gun/energy/gun = loc
 				var/mob/living/user = gun.loc
 				if(istype(user))
 					user?.hud_used.update_ammo_hud(user, gun) // Update the HUD
 	else
 		return PROCESS_KILL
 
-/obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
+/obj/item/cell/drain_power(var/drain_check, var/surge, var/power = 0)
 
 	if(drain_check)
 		return 1
@@ -80,7 +80,7 @@
 #define OVERLAY_PARTIAL	1
 #define OVERLAY_EMPTY	0
 
-/obj/item/weapon/cell/update_icon()
+/obj/item/cell/update_icon()
 	if(!standard_overlays)
 		return
 	var/ratio = 0
@@ -96,25 +96,25 @@
 #undef OVERLAY_PARTIAL
 #undef OVERLAY_EMPTY
 
-/obj/item/weapon/cell/proc/percent()		// return % charge of cell
+/obj/item/cell/proc/percent()		// return % charge of cell
 	var/charge_percent = 0
 	if(maxcharge > 0)
 		charge_percent = 100.0*charge/maxcharge
 	return charge_percent
 
-/obj/item/weapon/cell/proc/fully_charged()
+/obj/item/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
-/obj/item/weapon/cell/proc/check_charge(var/amount)
+/obj/item/cell/proc/check_charge(var/amount)
 	return (charge >= amount)
 
 // Returns how much charge is missing from the cell, useful to make sure not overdraw from the grid when recharging.
-/obj/item/weapon/cell/proc/amount_missing()
+/obj/item/cell/proc/amount_missing()
 	return max(maxcharge - charge, 0)
 
 // use power from a cell, returns the amount actually used
-/obj/item/weapon/cell/proc/use(var/amount)
+/obj/item/cell/proc/use(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -126,14 +126,14 @@
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
-/obj/item/weapon/cell/proc/checked_use(var/amount)
+/obj/item/cell/proc/checked_use(var/amount)
 	if(!check_charge(amount))
 		return 0
 	use(amount)
 	return 1
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(var/amount)
+/obj/item/cell/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -147,16 +147,16 @@
 	return amount_used
 
 
-/obj/item/weapon/cell/examine(mob/user)
+/obj/item/cell/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "It has a power rating of [maxcharge]."
 		. += "The charge meter reads [round(src.percent() )]%."
 
-/obj/item/weapon/cell/attackby(obj/item/W, mob/user)
+/obj/item/cell/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
-		var/obj/item/weapon/reagent_containers/syringe/S = W
+	if(istype(W, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = W
 
 		to_chat(user, "You inject the solution into the power cell.")
 
@@ -169,7 +169,7 @@
 
 		S.reagents.clear_reagents()
 
-/obj/item/weapon/cell/proc/explode()
+/obj/item/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
@@ -196,13 +196,13 @@
 
 	qdel(src)
 
-/obj/item/weapon/cell/proc/corrupt()
+/obj/item/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
 		rigged = 1 //broken batterys are dangerous
 
-/obj/item/weapon/cell/emp_act(severity)
+/obj/item/cell/emp_act(severity)
 	if(emp_proof)
 		return
 	//remove this once emp changes on dev are merged in
@@ -217,7 +217,7 @@
 	update_icon()
 	..()
 
-/obj/item/weapon/cell/ex_act(severity)
+/obj/item/cell/ex_act(severity)
 
 	switch(severity)
 		if(1.0)
@@ -237,7 +237,7 @@
 				corrupt()
 	return
 
-/obj/item/weapon/cell/proc/get_electrocute_damage()
+/obj/item/cell/proc/get_electrocute_damage()
 	//1kW = 5
 	//10kW = 24
 	//100kW = 45

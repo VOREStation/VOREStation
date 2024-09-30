@@ -123,7 +123,7 @@
 	reagents.add_reagent("nicotine", 2)
 	color = reagents.get_color()
 
-/obj/item/weapon/storage/chewables
+/obj/item/storage/chewables
 	name = "box of chewing wads master"
 	desc = "A generic brand of Waffle Co Wads, unflavored chews. Why do these exist?"
 	icon = 'icons/obj/cigarettes.dmi'
@@ -136,13 +136,13 @@
 	slot_flags = SLOT_BELT
 	starts_with = list(/obj/item/clothing/mask/chewable/tobacco = 6)
 
-/obj/item/weapon/storage/chewables/Initialize()
+/obj/item/storage/chewables/Initialize()
 	. = ..()
 	make_exact_fit()
 
 //Tobacco Tins
 
-/obj/item/weapon/storage/chewables/tobacco
+/obj/item/storage/chewables/tobacco
 	name = "tin of Al Mamun Smooth chewing tobacco"
 	desc = "Packaged and shipped straight from Kishar, popularised by the biosphere farmers of Kanondaga."
 	icon_state = "chew_generic"
@@ -150,14 +150,14 @@
 	starts_with = list(/obj/item/clothing/mask/chewable/tobacco/cheap = 6)
 	storage_slots = 6
 
-/obj/item/weapon/storage/chewables/tobacco/fine
+/obj/item/storage/chewables/tobacco/fine
 	name = "tin of Suamalie chewing tobacco"
 	desc = "Once reserved for the first-class tourists of Oasis, this premium blend has been released for the public to enjoy."
 	icon_state = "chew_fine"
 	item_state = "Dpacket"
 	starts_with = list(/obj/item/clothing/mask/chewable/tobacco/fine = 6)
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico
+/obj/item/storage/box/fancy/chewables/tobacco/nico
 	name = "box of Nico-Tine gum"
 	desc = "A government doctor approved brand of nicotine gum. Cut out the middleman for your addiction fix."
 	icon = 'icons/obj/cigarettes.dmi'
@@ -171,14 +171,14 @@
 	var/open_state
 	var/closed_state
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/New()
+/obj/item/storage/box/fancy/chewables/tobacco/nico/New()
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
 	..()
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/update_icon()
+/obj/item/storage/box/fancy/chewables/tobacco/nico/update_icon()
 	cut_overlays()
 	if(open)
 		icon_state = open_state
@@ -187,7 +187,7 @@
 	else
 		icon_state = closed_state
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/open(mob/user as mob)
+/obj/item/storage/box/fancy/chewables/tobacco/nico/open(mob/user as mob)
 	if(open)
 		return
 	open = TRUE
@@ -197,7 +197,7 @@
 		update_icon()
 	..()
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/close(mob/user as mob)
+/obj/item/storage/box/fancy/chewables/tobacco/nico/close(mob/user as mob)
 	open = FALSE
 	if(contents.len == 0)
 		icon_state = "[initial(icon_state)]_empty"
@@ -230,7 +230,7 @@
 	color = reagents.get_color()
 	update_icon()
 
-/obj/item/weapon/storage/box/gum
+/obj/item/storage/box/gum
 	name = "\improper Frooty-Choos flavored gum"
 	desc = "A small pack of chewing gum in various flavors."
 	description_fluff = "Frooty-Choos is NanoTrasen's top-selling brand of artificially flavoured fruit-adjacent non-swallowable chew-product. This extremely specific definition places sales figures safely away from competing 'gum' brands."
@@ -267,7 +267,7 @@
 	color = reagents.get_color()
 	update_icon()
 
-/obj/item/weapon/storage/box/pocky
+/obj/item/storage/box/pocky
 	name = "\improper Totemo yoi Pocky"
 	desc = "A bundle of chocolate-coated bisquit sticks."
 	icon = 'icons/obj/food_snacks.dmi'

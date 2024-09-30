@@ -35,6 +35,6 @@
 		new_B.forceMove(get_turf(B))
 		B.forceMove(T)
 
-/datum/blob_type/shifting_fragments/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
+/datum/blob_type/shifting_fragments/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)
 	user.add_modifier(/datum/modifier/sprinting, 2 MINUTES)
 	return

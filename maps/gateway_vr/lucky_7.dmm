@@ -137,7 +137,7 @@
 "ap" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/marble,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/kitchen)
 "aq" = (
@@ -178,7 +178,7 @@
 /obj/structure/casino_table/craps{
 	dir = 1
 	},
-/obj/item/weapon/dice{
+/obj/item/dice{
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -237,7 +237,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/awaymission/lucky7/loungeprivateroom)
 "aC" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -443,9 +443,9 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/obj/item/weapon/storage/box/roulette_balls_normal,
-/obj/item/weapon/storage/box/roulette_balls_fancy,
-/obj/item/weapon/storage/box/roulette_balls_cheat,
+/obj/item/storage/box/roulette_balls_normal,
+/obj/item/storage/box/roulette_balls_fancy,
+/obj/item/storage/box/roulette_balls_cheat,
 /obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/lucky7/breakroom)
@@ -560,7 +560,7 @@
 /area/awaymission/lucky7/privateroom/three)
 "bC" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/kitchen/utensil/fork/plastic,
+/obj/item/material/kitchen/utensil/fork/plastic,
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/casinofloor)
 "bD" = (
@@ -572,7 +572,7 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/item/device/radio{
+/obj/item/radio{
 	pixel_x = 10;
 	pixel_y = 8
 	},
@@ -619,7 +619,7 @@
 /obj/structure/casino_table/blackjack_m{
 	dir = 4
 	},
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /obj/machinery/light/floortube{
 	dir = 8
 	},
@@ -788,25 +788,25 @@
 /area/awaymission/lucky7/loungeprivateroom)
 "da" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = 3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_y = 3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_y = -3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = -3
 	},
@@ -1039,7 +1039,7 @@
 "er" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/steel,
-/obj/item/weapon/weldingtool{
+/obj/item/weldingtool{
 	pixel_x = 1;
 	pixel_y = -4
 	},
@@ -1081,7 +1081,7 @@
 /area/awaymission/lucky7/privateroom/two)
 "ey" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 27
@@ -1104,7 +1104,7 @@
 /turf/simulated/floor/water/pool,
 /area/awaymission/lucky7/privateroom/vip)
 "eF" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/retro,
@@ -1129,11 +1129,11 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/handcuffs{
+/obj/item/handcuffs{
 	pixel_y = -5
 	},
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs{
+/obj/item/handcuffs,
+/obj/item/handcuffs{
 	pixel_y = 5
 	},
 /turf/simulated/floor/tiled,
@@ -1183,7 +1183,7 @@
 "eY" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/marble,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/kitchen)
 "fb" = (
@@ -1198,7 +1198,7 @@
 /area/awaymission/lucky7/casinofloor)
 "ff" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/weapon/storage/pill_bottle/happy,
+/obj/item/storage/pill_bottle/happy,
 /obj/item/clothing/under/bathrobe,
 /obj/item/clothing/under/bathrobe,
 /turf/simulated/floor/wood,
@@ -1415,7 +1415,7 @@
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 2
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -1603,7 +1603,7 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/privateroom/five)
 "hD" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/brown,
@@ -1718,7 +1718,7 @@
 /area/awaymission/lucky7/entry)
 "ir" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
 /obj/machinery/light,
 /turf/simulated/floor/carpet/retro,
 /area/awaymission/lucky7/arcade)
@@ -2235,7 +2235,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/bar)
 "ln" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/brown,
@@ -2373,8 +2373,8 @@
 /area/awaymission/lucky7/kitchen)
 "mv" = (
 /obj/structure/table/standard,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/laundry)
 "mw" = (
@@ -2415,7 +2415,7 @@
 /area/awaymission/lucky7/trash)
 "mJ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/belt/janitor,
+/obj/item/storage/belt/janitor,
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/maint1)
 "mK" = (
@@ -2502,7 +2502,7 @@
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/casinofloor)
 "ng" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/brown,
@@ -2835,8 +2835,8 @@
 /area/awaymission/lucky7/privateroom/three)
 "oT" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/device/radio,
+/obj/item/storage/firstaid/regular,
+/obj/item/radio,
 /obj/item/ammo_casing/spent{
 	pixel_x = -12;
 	pixel_y = 8
@@ -2888,7 +2888,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/medical)
 "pn" = (
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom/vip)
@@ -2912,14 +2912,14 @@
 	name = "Game Cabinet";
 	pixel_x = -28
 	},
-/obj/item/weapon/book/manual/wizzoffguide,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/storage/dicecup,
+/obj/item/book/manual/wizzoffguide,
+/obj/item/deck/wizoff,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cah,
+/obj/item/deck/cah/black,
+/obj/item/storage/dicecup,
 /turf/simulated/floor/carpet/purple,
 /area/awaymission/lucky7/privategameroom)
 "py" = (
@@ -3075,7 +3075,7 @@
 /area/space)
 "qv" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/carpet/purcarpet,
 /area/awaymission/lucky7/privateroom/vip)
@@ -3290,7 +3290,7 @@
 /area/awaymission/lucky7/maint2)
 "rN" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/manual/bar_guide,
+/obj/item/book/manual/bar_guide,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/barbackroom)
 "rT" = (
@@ -3385,7 +3385,7 @@
 "ss" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/plate,
-/obj/item/weapon/material/kitchen/utensil/fork/plastic,
+/obj/item/material/kitchen/utensil/fork/plastic,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/lounge)
 "sv" = (
@@ -3455,11 +3455,11 @@
 /area/awaymission/lucky7/entry)
 "sX" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/fancy/cigar/havana{
+/obj/item/storage/fancy/cigar/havana{
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/fancy/cigar{
+/obj/item/storage/fancy/cigar{
 	pixel_x = 2;
 	pixel_y = 3
 	},
@@ -3507,7 +3507,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/filth,
@@ -3525,9 +3525,9 @@
 "ts" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/structure/closet/crate/internals,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
@@ -3579,7 +3579,7 @@
 /area/awaymission/lucky7/bar)
 "tE" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/ashtray/glass,
+/obj/item/material/ashtray/glass,
 /obj/machinery/light/floortube{
 	dir = 4
 	},
@@ -3809,7 +3809,7 @@
 /area/awaymission/lucky7/gateway)
 "uF" = (
 /obj/structure/casino_table/craps,
-/obj/item/weapon/dice{
+/obj/item/dice{
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -3824,7 +3824,7 @@
 /area/awaymission/lucky7/privateroom)
 "uH" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/bar)
 "uI" = (
@@ -3877,7 +3877,7 @@
 /obj/structure/casino_table/craps{
 	dir = 1
 	},
-/obj/item/weapon/dice,
+/obj/item/dice,
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/casinofloor)
 "uZ" = (
@@ -3960,7 +3960,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 5
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
@@ -3973,7 +3973,7 @@
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/casinofloor)
 "vy" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/brown,
@@ -4021,13 +4021,13 @@
 /area/awaymission/lucky7/dock1)
 "wd" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/simulated/floor/lino,
 /area/awaymission/lucky7/bar)
 "we" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/manual/casino,
-/obj/item/weapon/pen,
+/obj/item/book/manual/casino,
+/obj/item/pen,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/lucky7/breakroom)
 "wj" = (
@@ -4136,7 +4136,7 @@
 "wG" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/asian_bowl,
-/obj/item/weapon/material/kitchen/utensil/fork/plastic,
+/obj/item/material/kitchen/utensil/fork/plastic,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -4162,7 +4162,7 @@
 /area/awaymission/lucky7/dock1)
 "wK" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom/four)
 "wL" = (
@@ -4311,7 +4311,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/lucky7/maint2)
 "xM" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/brown,
@@ -4321,12 +4321,12 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/privateroom/vip)
 "xU" = (
-/obj/item/weapon/gun/projectile/shotgun/pump{
+/obj/item/gun/projectile/shotgun/pump{
 	ammo_type = /obj/item/ammo_casing/a12g/pellet;
 	pixel_x = 1;
 	pixel_y = 4
 	},
-/obj/item/weapon/gun/projectile/shotgun/pump{
+/obj/item/gun/projectile/shotgun/pump{
 	ammo_type = /obj/item/ammo_casing/a12g/pellet;
 	pixel_x = 2;
 	pixel_y = -6
@@ -4393,7 +4393,7 @@
 /area/awaymission/lucky7/hall2)
 "yv" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom/two)
 "yw" = (
@@ -4614,7 +4614,7 @@
 "zM" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/plate,
-/obj/item/weapon/material/kitchen/utensil/fork/plastic,
+/obj/item/material/kitchen/utensil/fork/plastic,
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/casinofloor)
 "zQ" = (
@@ -5224,7 +5224,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 10
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
@@ -5556,7 +5556,7 @@
 /obj/random/junk,
 /obj/random/maintenance,
 /obj/random/maintenance/engineering,
-/obj/item/device/flashlight/color,
+/obj/item/flashlight/color,
 /obj/structure/railing{
 	dir = 4
 	},
@@ -5621,7 +5621,7 @@
 /turf/simulated/wall,
 /area/awaymission/lucky7/bar)
 "Fv" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -5866,7 +5866,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/storage/firstaid/regular{
+/obj/item/storage/firstaid/regular{
 	pixel_x = 5;
 	pixel_y = 8
 	},
@@ -5876,7 +5876,7 @@
 /area/awaymission/lucky7/medical)
 "GQ" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
 /obj/random/maintenance/medical,
 /turf/simulated/floor/tiled/techfloor,
 /area/awaymission/lucky7/medical)
@@ -6029,8 +6029,8 @@
 "HH" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/mopbucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -6100,15 +6100,15 @@
 /area/awaymission/lucky7/hall1)
 "HZ" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/spacecash/c1000{
+/obj/item/spacecash/c1000{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/weapon/spacecash/c1000{
+/obj/item/spacecash/c1000{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/spacecash/c1000,
+/obj/item/spacecash/c1000,
 /turf/simulated/floor/tiled/techfloor,
 /area/awaymission/lucky7/security)
 "Ig" = (
@@ -6150,7 +6150,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
 	},
-/obj/item/weapon/tool/screwdriver,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/medical)
 "Iq" = (
@@ -6178,7 +6178,7 @@
 "Ir" = (
 /obj/structure/table/glass,
 /obj/random/soap,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6202,7 +6202,7 @@
 /area/awaymission/lucky7/privategameroom/three)
 "Iu" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom/five)
 "Iv" = (
@@ -6229,7 +6229,7 @@
 /area/awaymission/lucky7/privateroom/five)
 "IJ" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom/three)
 "IM" = (
@@ -6268,7 +6268,7 @@
 	pixel_y = 8
 	},
 /obj/random/cash/huge,
-/obj/item/weapon/bikehorn{
+/obj/item/bikehorn{
 	pixel_x = -7;
 	pixel_y = 7
 	},
@@ -6354,7 +6354,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
@@ -6523,7 +6523,7 @@
 /area/awaymission/lucky7/dock2)
 "Kt" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom)
 "Ku" = (
@@ -6637,7 +6637,7 @@
 /obj/structure/table/steel,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/blood/oil,
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/plating,
 /area/awaymission/lucky7/maint2)
 "KT" = (
@@ -6855,7 +6855,7 @@
 /area/awaymission/lucky7/security)
 "LJ" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 27
@@ -6942,30 +6942,30 @@
 /area/awaymission/lucky7/workshop)
 "Mb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/lounge)
 "Mc" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = -3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_y = -3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_y = 3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = -7;
 	pixel_y = 3
 	},
@@ -6992,14 +6992,14 @@
 	name = "Game Cabinet";
 	pixel_x = -28
 	},
-/obj/item/weapon/book/manual/wizzoffguide,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/storage/dicecup,
+/obj/item/book/manual/wizzoffguide,
+/obj/item/deck/wizoff,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cah,
+/obj/item/deck/cah/black,
+/obj/item/storage/dicecup,
 /turf/simulated/floor/carpet/green,
 /area/awaymission/lucky7/privategameroom/two)
 "Mf" = (
@@ -7179,11 +7179,11 @@
 /area/awaymission/lucky7/maint2)
 "MX" = (
 /obj/structure/table/steel,
-/obj/item/weapon/tool/wrench{
+/obj/item/tool/wrench{
 	pixel_x = 6;
 	pixel_y = -3
 	},
-/obj/item/device/multitool{
+/obj/item/multitool{
 	pixel_x = -6
 	},
 /turf/simulated/floor/plating,
@@ -7480,7 +7480,7 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/security)
 "Ol" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
@@ -7577,7 +7577,7 @@
 	dir = 1
 	},
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/lucky7/security)
 "OC" = (
@@ -7757,10 +7757,10 @@
 "Pq" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
 /obj/structure/cable/green{
@@ -7810,14 +7810,14 @@
 	name = "Game Cabinet";
 	pixel_x = -28
 	},
-/obj/item/weapon/book/manual/wizzoffguide,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/storage/dicecup,
+/obj/item/book/manual/wizzoffguide,
+/obj/item/deck/wizoff,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cah,
+/obj/item/deck/cah/black,
+/obj/item/storage/dicecup,
 /turf/simulated/floor/carpet/blue2,
 /area/awaymission/lucky7/privategameroom/three)
 "PC" = (
@@ -8103,11 +8103,11 @@
 /area/awaymission/lucky7/casinofloor)
 "QU" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/gloves{
+/obj/item/storage/box/gloves{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/box/masks,
+/obj/item/storage/box/masks,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
 /turf/simulated/floor/tiled/white,
@@ -8131,7 +8131,7 @@
 "Rc" = (
 /obj/effect/floor_decal/spline/plain,
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/ashtray/glass,
+/obj/item/material/ashtray/glass,
 /obj/random/cash/big{
 	pixel_x = 5;
 	pixel_y = 8
@@ -8176,12 +8176,12 @@
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/hotelhall)
 "Rw" = (
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /turf/simulated/floor/water/pool,
 /area/awaymission/lucky7/privateroom/vip)
 "Rx" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
@@ -8287,7 +8287,7 @@
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/hotelhall)
 "Sj" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 8
 	},
@@ -8389,16 +8389,16 @@
 /area/awaymission/lucky7/laundry)
 "SK" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/ashtray/glass,
+/obj/item/material/ashtray/glass,
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/bar)
 "SM" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/white,
@@ -8833,7 +8833,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/medical)
 "Uu" = (
@@ -8878,7 +8878,7 @@
 /area/awaymission/lucky7/maint1)
 "UG" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/orangedouble,
+/obj/item/bedsheet/orangedouble,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 27
@@ -8999,11 +8999,11 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -1;
 	pixel_y = 4
 	},
-/obj/item/weapon/folder/white,
+/obj/item/folder/white,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/medical)
 "Vv" = (
@@ -9059,7 +9059,7 @@
 /area/awaymission/lucky7/entry)
 "VD" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/greendouble,
+/obj/item/bedsheet/greendouble,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 27
@@ -9218,7 +9218,7 @@
 /area/awaymission/lucky7/entry)
 "Wy" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/yellowdouble,
+/obj/item/bedsheet/yellowdouble,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 27
@@ -9311,7 +9311,7 @@
 	dir = 9
 	},
 /obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/medical)
 "WR" = (
@@ -9608,7 +9608,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/medical)
 "YD" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/carpet/brown,
 /area/awaymission/lucky7/casinofloor)
 "YE" = (
@@ -9688,8 +9688,8 @@
 /area/awaymission/lucky7/privateroom/four)
 "Ze" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
 /obj/item/ammo_casing/spent,
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -9789,14 +9789,14 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/entry)
 "ZF" = (
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/mousetraps,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/mousetraps,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/soap/nanotrasen,
 /obj/structure/closet,
 /obj/effect/floor_decal/rust,
-/obj/item/weapon/storage/bag/trash,
+/obj/item/storage/bag/trash,
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/maint1)
 "ZJ" = (
@@ -9819,12 +9819,12 @@
 /area/awaymission/lucky7/hall1)
 "ZO" = (
 /obj/structure/table/steel,
-/obj/item/weapon/spacecasinocash/c1000{
+/obj/item/spacecasinocash/c1000{
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000{
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000{
 	pixel_x = 3;
 	pixel_y = 3
 	},

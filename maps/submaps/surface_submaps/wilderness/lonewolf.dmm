@@ -85,7 +85,7 @@
 /turf/simulated/mineral/ignore_mapgen,
 /area/submap/lonewolf)
 "P" = (
-/obj/item/weapon/sword/fluff/joanaria{
+/obj/item/sword/fluff/joanaria{
 	desc = "An ancient sword, belonging to someone of power. Now, it is little more than a relic, damaged beyong use.";
 	force = 10;
 	name = "old greatsword"

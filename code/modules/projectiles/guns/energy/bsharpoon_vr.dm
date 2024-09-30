@@ -1,5 +1,5 @@
 //RD 'gun'
-/obj/item/weapon/bluespace_harpoon
+/obj/item/bluespace_harpoon
 	name = "bluespace harpoon"
 	desc = "For climbing on bluespace mountains!"
 
@@ -17,28 +17,28 @@
 	var/firable = TRUE
 	var/transforming = 0
 	var/failure_chance = 15 // This can become negative with part tiers above 3, which helps offset penalties
-	var/obj/item/weapon/stock_parts/scanning_module/scanmod
+	var/obj/item/stock_parts/scanning_module/scanmod
 	var/dropnoms_active = TRUE
 
-/obj/item/weapon/bluespace_harpoon/Initialize()
+/obj/item/bluespace_harpoon/Initialize()
 	. = ..()
 	scanmod = new(src)
 	update_fail_chance()
 
-/obj/item/weapon/bluespace_harpoon/examine(var/mob/user)
+/obj/item/bluespace_harpoon/examine(var/mob/user)
 	. = ..()
 	. += "It is currently in [mode ? "transmitting" : "receiving"] mode."
 	. += "Spatial rearrangement is [dropnoms_active ? "active" : "inactive"]."
 	if(Adjacent(user))
 		. += "It has [scanmod ? scanmod : "no scanner module"] installed."
 
-/obj/item/weapon/bluespace_harpoon/proc/update_fail_chance()
+/obj/item/bluespace_harpoon/proc/update_fail_chance()
 	if(scanmod)
 		failure_chance = initial(failure_chance) - (scanmod.rating * 5)
 	else
 		failure_chance = 75 // You can't even use it if there's no scanmod, but why not.
 
-/obj/item/weapon/bluespace_harpoon/attackby(var/obj/item/I, var/mob/living/user)
+/obj/item/bluespace_harpoon/attackby(var/obj/item/I, var/mob/living/user)
 	if(!istype(user))
 		return
 
@@ -52,7 +52,7 @@
 		scanmod.forceMove(T)
 		scanmod = null
 		update_fail_chance()
-	else if(istype(I, /obj/item/weapon/stock_parts/scanning_module))
+	else if(istype(I, /obj/item/stock_parts/scanning_module))
 		if(scanmod)
 			to_chat(user, "<span class='warning'>There's already [scanmod] installed! Remove it first.</span>")
 			return
@@ -64,7 +64,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
+/obj/item/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	if(!user || !A || isstorage(A))
 		return
 	if(!scanmod)
@@ -200,10 +200,10 @@
 						to_chat(M, "<span class='vnotice'>You materialize around [living_user] as they end up in your [belly_dest]!</span>")
 
 
-/obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
+/obj/item/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return chande_fire_mode(user)
 
-/obj/item/weapon/bluespace_harpoon/verb/chande_fire_mode(mob/user as mob)
+/obj/item/bluespace_harpoon/verb/chande_fire_mode(mob/user as mob)
 	set name = "Change Fire Mode"
 	set category = "Object"
 	set src in range(0)
@@ -214,7 +214,7 @@
 	to_chat(user,"<span class = 'info'>You change \the [src]'s mode to [mode ? "transmiting" : "receiving"].</span>")
 	update_icon()
 
-/obj/item/weapon/bluespace_harpoon/verb/chande_dropnom_mode(mob/user as mob)
+/obj/item/bluespace_harpoon/verb/chande_dropnom_mode(mob/user as mob)
 	set name = "Toggle Spatial Rearrangement"
 	set category = "Object"
 	set src in range(0)
@@ -222,7 +222,7 @@
 	dropnoms_active = !dropnoms_active
 	to_chat(user,"<span class = 'info'>You switch \the [src]'s spatial rearrangement [dropnoms_active ? "on" : "off"]. (Telenoms [dropnoms_active ? "enabled" : "disabled"])</span>")
 
-/obj/item/weapon/bluespace_harpoon/update_icon()
+/obj/item/bluespace_harpoon/update_icon()
 	if(transforming)
 		switch(mode)
 			if(0)

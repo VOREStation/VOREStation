@@ -79,7 +79,7 @@
 			to_chat(user, "<span class='warning'>You will need more plasteel to reinforce \the [src].</span>")
 			return TRUE
 
-		var/obj/item/weapon/weldingtool/welder = I.get_welder()
+		var/obj/item/weldingtool/welder = I.get_welder()
 		if(welder.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start weld \the plasteel into place.</span>")
 			playsound(src, welder.usesound, 50, 1)

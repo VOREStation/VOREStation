@@ -44,7 +44,7 @@ mappath = 'tether_plains.dmm'
 # Non-map specific expedition areas should be loaded as follows:
 
 /// Away Missions
-#if AWAY_MISSION_TEST
+#ifdef AWAY_MISSION_TEST
 #include "../../expedition_vr/beach/beach.dmm"
 #include "../../expedition_vr/beach/cave.dmm"
 #include "../../expedition_vr/alienship/alienship.dmm"

@@ -640,7 +640,7 @@
 /area/awaymission/labyrinth/arrival)
 "bI" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -759,7 +759,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "ca" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -810,13 +810,13 @@
 /area/awaymission/labyrinth/arrival)
 "ch" = (
 /obj/structure/table,
-/obj/item/weapon/pen,
-/obj/item/weapon/paper{
+/obj/item/pen,
+/obj/item/paper{
 	info = "... the key lies beneath the tears of our mother...";
 	name = "translated cryptic riddle"
 	},
-/obj/item/weapon/paper/awaygate/labyrinth/calypso,
-/obj/item/weapon/paper/awaygate/labyrinth/research,
+/obj/item/paper/awaygate/labyrinth/calypso,
+/obj/item/paper/awaygate/labyrinth/research,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -922,12 +922,12 @@
 /area/awaymission/labyrinth/arrival)
 "ct" = (
 /obj/structure/table,
-/obj/item/weapon/storage/box,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/tool/wrench,
-/obj/item/device/measuring_tape,
+/obj/item/storage/box,
+/obj/item/pickaxe,
+/obj/item/tool/wrench,
+/obj/item/measuring_tape,
 /obj/item/stack/flag/yellow,
-/obj/item/weapon/shovel/spade,
+/obj/item/shovel/spade,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -949,8 +949,8 @@
 /area/awaymission/labyrinth/arrival)
 "cw" = (
 /obj/structure/table,
-/obj/item/weapon/storage/box/donkpockets,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},
@@ -1025,7 +1025,7 @@
 	},
 /area/awaymission/labyrinth/temple/entry)
 "cF" = (
-/obj/item/weapon/fossil/plant,
+/obj/item/fossil/plant,
 /turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
@@ -1058,7 +1058,7 @@
 /area/awaymission/labyrinth/temple/entry)
 "cK" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/bananapeel,
+/obj/item/bananapeel,
 /turf/unsimulated/floor{
 	name = "plating";
 	icon_state = "cult"
@@ -1071,7 +1071,7 @@
 	layer = 2;
 	specialfunctions = 4
 	},
-/obj/item/weapon/reagent_containers/food/snacks/clownstears{
+/obj/item/reagent_containers/food/snacks/clownstears{
 	pixel_y = 6
 	},
 /turf/unsimulated/floor{
@@ -1081,7 +1081,7 @@
 /area/awaymission/labyrinth/temple/entry)
 "cM" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/bikehorn,
+/obj/item/bikehorn,
 /turf/unsimulated/floor{
 	name = "plating";
 	icon_state = "cult"
@@ -1121,7 +1121,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "cS" = (
-/obj/item/weapon/bananapeel,
+/obj/item/bananapeel,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "asteroid";
@@ -1161,7 +1161,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "cW" = (
-/obj/item/weapon/fossil/skull/horned,
+/obj/item/fossil/skull/horned,
 /turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
@@ -1192,7 +1192,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "cY" = (
-/obj/item/weapon/storage/box,
+/obj/item/storage/box,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "asteroid";
@@ -1232,7 +1232,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "db" = (
-/obj/item/weapon/fossil,
+/obj/item/fossil,
 /turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
@@ -1258,7 +1258,7 @@
 	name = "dirt";
 	
 	},
-/obj/item/device/measuring_tape,
+/obj/item/measuring_tape,
 /turf/unsimulated/wall/exterior{
 	density = 0;
 	icon_state = "rock_side_n";
@@ -1267,7 +1267,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "de" = (
-/obj/item/weapon/shovel/spade,
+/obj/item/shovel/spade,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "asteroid";
@@ -1276,7 +1276,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "df" = (
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "asteroid";
@@ -1294,7 +1294,7 @@
 	},
 /area/awaymission/labyrinth/arrival)
 "dh" = (
-/obj/item/weapon/fossil/shell,
+/obj/item/fossil/shell,
 /turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
@@ -1767,7 +1767,7 @@
 	},
 /area/awaymission/labyrinth/boss)
 "dY" = (
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Pray to the honk mother if ye are ready to face her champion. Shouldst thou be deem'd worthy, the champion will appear. There shall be no retreat once the conflict begins. Though her holy highness is a lady of laughter, there will be no mercy.";
 	name = "parchment"
 	},

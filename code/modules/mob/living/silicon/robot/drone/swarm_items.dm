@@ -1,6 +1,6 @@
 
 //Swarm Assimilator / Breacher
-/obj/item/weapon/matter_decompiler/swarm
+/obj/item/matter_decompiler/swarm
 	name = "matter assimilator"
 	desc = "Used to eat some forms of simple machinery; and large, wall-shaped blocks of metal with energetic fields."
 	icon = 'icons/obj/device.dmi'
@@ -9,7 +9,7 @@
 	var/field_cooldown = 1 MINUTE
 	var/last_field = 0
 
-/obj/item/weapon/matter_decompiler/swarm/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity, params)
+/obj/item/matter_decompiler/swarm/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity, params)
 
 	if(!proximity) return //Not adjacent.
 
@@ -139,7 +139,7 @@
 		explosion(get_turf(src), -1, 1, 2, 5, adminlog = 1)
 	..()
 
-/obj/item/weapon/gun/energy/xray/swarm
+/obj/item/gun/energy/xray/swarm
 	name = "spectral projector"
 	desc = "A high-power laser gun capable of expelling concentrated gamma blasts, which are able to penetrate matter easier than \
 	standard xray beams, resulting in an effective 'anti-everything' energy weapon."
@@ -157,6 +157,6 @@
 		list(mode_name="deter", projectile_type=/obj/item/projectile/beam/shock, charge_cost = 175),
 		)
 
-/obj/item/weapon/gun/energy/xray/swarm/Initialize()
+/obj/item/gun/energy/xray/swarm/Initialize()
 	. = ..()
 	adjust_scale(-1, 1)

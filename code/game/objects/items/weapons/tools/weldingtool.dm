@@ -2,7 +2,7 @@
 /*
  * Welding Tool
  */
-/obj/item/weapon/weldingtool
+/obj/item/weldingtool
 	name = "\improper welding tool"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
@@ -43,7 +43,7 @@
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	tool_qualities = list(TOOL_WELDER)
 
-/obj/item/weapon/weldingtool/Initialize()
+/obj/item/weldingtool/Initialize()
 	. = ..()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
@@ -54,20 +54,20 @@
 	if(always_process)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/weldingtool/Destroy()
+/obj/item/weldingtool/Destroy()
 	if(welding || always_process)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/weapon/weldingtool/get_welder()
+/obj/item/weldingtool/get_welder()
 	return src
 
-/obj/item/weapon/weldingtool/examine(mob/user)
+/obj/item/weldingtool/examine(mob/user)
 	. = ..()
 	if(max_fuel && loc == user)
 		. += "It contains [get_fuel()]/[src.max_fuel] units of fuel!"
 
-/obj/item/weapon/weldingtool/attack(atom/A, mob/living/user, def_zone)
+/obj/item/weldingtool/attack(atom/A, mob/living/user, def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
 		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
@@ -101,8 +101,8 @@
 
 	return ..()
 
-/obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(istype(W,/obj/item/weapon/tool/screwdriver))
+/obj/item/weldingtool/attackby(obj/item/W as obj, mob/living/user as mob)
+	if(istype(W,/obj/item/tool/screwdriver))
 		if(welding)
 			to_chat(user, "<span class='danger'>Stop welding first!</span>")
 			return
@@ -117,7 +117,7 @@
 	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
-		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
+		var/obj/item/flamethrower/F = new/obj/item/flamethrower(user.loc)
 		src.loc = F
 		F.weldtool = src
 		if (user.client)
@@ -138,7 +138,7 @@
 	..()
 	return
 
-/obj/item/weapon/weldingtool/process()
+/obj/item/weldingtool/process()
 	if(welding)
 		++burned_fuel_for
 		if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
@@ -154,7 +154,7 @@
 			if (istype(location, /turf))
 				location.hotspot_expose(700, 5)
 
-/obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
 		if(!welding && max_fuel)
@@ -180,18 +180,18 @@
 			L.IgniteMob()
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
-/obj/item/weapon/weldingtool/attack_self(mob/user)
+/obj/item/weldingtool/attack_self(mob/user)
 	setWelding(!welding, user)
 
 //Returns the amount of fuel in the welder
-/obj/item/weapon/weldingtool/proc/get_fuel()
+/obj/item/weldingtool/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
-/obj/item/weapon/weldingtool/proc/get_max_fuel()
+/obj/item/weldingtool/proc/get_max_fuel()
 	return max_fuel
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weapon/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!welding)
 		return 0
 	if(amount)
@@ -209,10 +209,10 @@
 		return 0
 
 //Returns whether or not the welding tool is currently on.
-/obj/item/weapon/weldingtool/proc/isOn()
+/obj/item/weldingtool/proc/isOn()
 	return welding
 
-/obj/item/weapon/weldingtool/update_icon()
+/obj/item/weldingtool/update_icon()
 	..()
 	cut_overlays()
 	// Welding overlay.
@@ -240,7 +240,7 @@
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
 
-/obj/item/weapon/weldingtool/MouseDrop(obj/over_object as obj)
+/obj/item/weldingtool/MouseDrop(obj/over_object as obj)
 	if(!canremove)
 		return
 
@@ -274,7 +274,7 @@
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
-/obj/item/weapon/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
+/obj/item/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
 	if(!status)	return
 
 	var/turf/T = get_turf(src)
@@ -317,7 +317,7 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/weapon/weldingtool/proc/eyecheck(mob/living/carbon/user)
+/obj/item/weldingtool/proc/eyecheck(mob/living/carbon/user)
 	if(!istype(user))
 		return 1
 	var/safety = user.eyecheck()
@@ -362,10 +362,10 @@
 						user.disabilities &= ~NEARSIGHTED
 	return
 
-/obj/item/weapon/weldingtool/is_hot()
+/obj/item/weldingtool/is_hot()
 	return isOn()
 
-/obj/item/weapon/weldingtool/largetank
+/obj/item/weldingtool/largetank
 	name = "industrial welding tool"
 	desc = "A slightly larger welder with a larger tank."
 	icon_state = "indwelder"
@@ -373,12 +373,12 @@
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_PHORON = 2)
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
 
-/obj/item/weapon/weldingtool/largetank/cyborg
+/obj/item/weldingtool/largetank/cyborg
 	name = "integrated welding tool"
 	desc = "An advanced welder designed to be used in robotic systems."
 	toolspeed = 0.5
 
-/obj/item/weapon/weldingtool/hugetank
+/obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	desc = "A much larger welder with a huge tank."
 	icon_state = "upindwelder"
@@ -387,7 +387,7 @@
 	origin_tech = list(TECH_ENGINEERING = 3)
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
 
-/obj/item/weapon/weldingtool/mini
+/obj/item/weldingtool/mini
 	name = "emergency welding tool"
 	desc = "A miniature welder used during emergencies."
 	icon_state = "miniwelder"
@@ -398,7 +398,7 @@
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
 
-/obj/item/weapon/weldingtool/mini/two
+/obj/item/weldingtool/mini/two
 	icon_state = "miniwelder2"
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_welder
@@ -425,7 +425,7 @@
 	deconstruction purposes."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/weapon/weldingtool/alien
+/obj/item/weldingtool/alien
 	name = "alien welding tool"
 	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_welder)
@@ -438,12 +438,12 @@
 	origin_tech = list(TECH_PHORON = 5 ,TECH_ENGINEERING = 5)
 	always_process = TRUE
 
-/obj/item/weapon/weldingtool/alien/process()
+/obj/item/weldingtool/alien/process()
 	if(get_fuel() <= get_max_fuel())
 		reagents.add_reagent("fuel", 1)
 	..()
 
-/obj/item/weapon/weldingtool/experimental
+/obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	desc = "An experimental welder capable of synthesizing its own fuel from waste compounds. It can output a flame hotter than regular welders."
 	icon_state = "exwelder"
@@ -457,13 +457,13 @@
 	always_process = TRUE
 	var/nextrefueltick = 0
 
-/obj/item/weapon/weldingtool/experimental/process()
+/obj/item/weldingtool/experimental/process()
 	..()
 	if(get_fuel() < get_max_fuel() && nextrefueltick < world.time)
 		nextrefueltick = world.time + 10
 		reagents.add_reagent("fuel", 1)
 
-/obj/item/weapon/weldingtool/experimental/hybrid
+/obj/item/weldingtool/experimental/hybrid
 	name = "strange welding tool"
 	desc = "An experimental welder capable of synthesizing its own fuel from spatial waveforms. It's like welding with a star!"
 	icon_state = "hybwelder"
@@ -479,7 +479,7 @@
  * Backpack Welder.
  */
 
-/obj/item/weapon/weldingtool/tubefed
+/obj/item/weldingtool/tubefed
 	name = "tube-fed welding tool"
 	desc = "A bulky, cooler-burning welding tool that draws from a worn welding tank."
 	icon_state = "tubewelder"
@@ -491,22 +491,22 @@
 	flame_intensity = 1
 	eye_safety_modifier = 1
 	always_process = TRUE
-	var/obj/item/weapon/weldpack/mounted_pack = null
+	var/obj/item/weldpack/mounted_pack = null
 
-/obj/item/weapon/weldingtool/tubefed/New(location)
+/obj/item/weldingtool/tubefed/New(location)
 	..()
-	if(istype(location, /obj/item/weapon/weldpack))
-		var/obj/item/weapon/weldpack/holder = location
+	if(istype(location, /obj/item/weldpack))
+		var/obj/item/weldpack/holder = location
 		mounted_pack = holder
 	else
 		qdel(src)
 
-/obj/item/weapon/weldingtool/tubefed/Destroy()
+/obj/item/weldingtool/tubefed/Destroy()
 	mounted_pack.nozzle = null
 	mounted_pack = null
 	return ..()
 
-/obj/item/weapon/weldingtool/tubefed/process()
+/obj/item/weldingtool/tubefed/process()
 	if(mounted_pack)
 		if(!istype(mounted_pack.loc,/mob/living/carbon/human))
 			mounted_pack.return_nozzle()
@@ -524,13 +524,13 @@
 
 	..()
 
-/obj/item/weapon/weldingtool/tubefed/dropped(mob/user)
+/obj/item/weldingtool/tubefed/dropped(mob/user)
 	..()
 	if(src.loc != user)
 		mounted_pack.return_nozzle()
 		to_chat(user, "<span class='notice'>\The [src] retracts to its fueltank.</span>")
 
-/obj/item/weapon/weldingtool/tubefed/survival
+/obj/item/weldingtool/tubefed/survival
 	name = "tube-fed emergency welding tool"
 	desc = "A bulky, cooler-burning welding tool that draws from a worn welding tank."
 	icon_state = "tubewelder"
@@ -542,37 +542,37 @@
  * Electric/Arc Welder
  */
 
-/obj/item/weapon/weldingtool/electric	//AND HIS WELDING WAS ELECTRIC
+/obj/item/weldingtool/electric	//AND HIS WELDING WAS ELECTRIC
 	name = "electric welding tool"
 	desc = "A welder which runs off of electricity."
 	icon_state = "arcwelder"
 	max_fuel = 0	//We'll handle the consumption later.
 	item_state = "ewelder"
-	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
+	var/obj/item/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 24	//The rough equivalent of 1 unit of fuel, based on us wanting 10 welds per battery
-	var/cell_type = /obj/item/weapon/cell/device
+	var/cell_type = /obj/item/cell/device
 	var/use_external_power = 0	//If in a borg or hardsuit, this needs to = 1
 	flame_color = "#00CCFF"  // Blue-ish, to set it apart from the gas flames.
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/weapon/weldingtool/electric/unloaded/New()
+/obj/item/weldingtool/electric/unloaded/New()
 	cell_type = null
 
-/obj/item/weapon/weldingtool/electric/New()
+/obj/item/weldingtool/electric/New()
 	..()
 	if(cell_type == null)
 		update_icon()
 	else if(cell_type)
 		power_supply = new cell_type(src)
 	else
-		power_supply = new /obj/item/weapon/cell/device(src)
+		power_supply = new /obj/item/cell/device(src)
 	update_icon()
 
-/obj/item/weapon/weldingtool/electric/get_cell()
+/obj/item/weldingtool/electric/get_cell()
 	return power_supply
 
-/obj/item/weapon/weldingtool/electric/examine(mob/user)
+/obj/item/weldingtool/electric/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		if(power_supply)
@@ -580,9 +580,9 @@
 		else
 			. += "It [src.name] has no power cell!"
 
-/obj/item/weapon/weldingtool/electric/get_fuel()
+/obj/item/weldingtool/electric/get_fuel()
 	if(use_external_power)
-		var/obj/item/weapon/cell/external = get_external_power_supply()
+		var/obj/item/cell/external = get_external_power_supply()
 		if(external)
 			return external.charge
 	else if(power_supply)
@@ -590,22 +590,22 @@
 	else
 		return 0
 
-/obj/item/weapon/weldingtool/electric/get_max_fuel()
+/obj/item/weldingtool/electric/get_max_fuel()
 	if(use_external_power)
-		var/obj/item/weapon/cell/external = get_external_power_supply()
+		var/obj/item/cell/external = get_external_power_supply()
 		if(external)
 			return external.maxcharge
 	else if(power_supply)
 		return power_supply.maxcharge
 	return 0
 
-/obj/item/weapon/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
 		power_supply.checked_use(charge_cost)
 		if(use_external_power)
-			var/obj/item/weapon/cell/external = get_external_power_supply()
+			var/obj/item/cell/external = get_external_power_supply()
 			if(!external || !external.use(charge_cost)) //Take power from the borg...
 				power_supply.give(charge_cost)	//Give it back to the cell.
 		if(M)
@@ -618,7 +618,7 @@
 		update_icon()
 		return 0
 
-/obj/item/weapon/weldingtool/electric/attack_hand(mob/user as mob)
+/obj/item/weldingtool/electric/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(power_supply)
 			power_supply.update_icon()
@@ -632,9 +632,9 @@
 	else
 		return ..()
 
-/obj/item/weapon/weldingtool/electric/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/cell))
-		if(istype(W, /obj/item/weapon/cell/device))
+/obj/item/weldingtool/electric/attackby(obj/item/W, mob/user as mob)
+	if(istype(W, /obj/item/cell))
+		if(istype(W, /obj/item/cell/device))
 			if(!power_supply)
 				user.drop_item()
 				W.loc = src
@@ -648,7 +648,7 @@
 	else
 		..()
 
-/obj/item/weapon/weldingtool/electric/proc/get_external_power_supply()
+/obj/item/weldingtool/electric/proc/get_external_power_supply()
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return R.cell
@@ -657,7 +657,7 @@
 		if(module.holder && module.holder.wearer)
 			var/mob/living/carbon/human/H = module.holder.wearer
 			if(istype(H) && H.back)
-				var/obj/item/weapon/rig/suit = H.back
+				var/obj/item/rig/suit = H.back
 				if(istype(suit))
 					return suit.cell
 	if(istype(src.loc, /obj/item/mecha_parts/mecha_equipment))
@@ -666,25 +666,25 @@
 			return mounting.chassis.cell
 	return null
 
-/obj/item/weapon/weldingtool/electric/mounted
+/obj/item/weldingtool/electric/mounted
 	use_external_power = 1
 
-/obj/item/weapon/weldingtool/electric/mounted/cyborg
+/obj/item/weldingtool/electric/mounted/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/weldingtool/electric/mounted/exosuit
+/obj/item/weldingtool/electric/mounted/exosuit
 	var/obj/item/mecha_parts/mecha_equipment/equip_mount = null
 	flame_intensity = 1
 	eye_safety_modifier = 2
 	always_process = TRUE
 
-/obj/item/weapon/weldingtool/electric/mounted/exosuit/Initialize()
+/obj/item/weldingtool/electric/mounted/exosuit/Initialize()
 	. = ..()
 
 	if(istype(loc, /obj/item/mecha_parts/mecha_equipment))
 		equip_mount = loc
 
-/obj/item/weapon/weldingtool/electric/mounted/exosuit/process()
+/obj/item/weldingtool/electric/mounted/exosuit/process()
 	..()
 
 	if(equip_mount && equip_mount.chassis)
@@ -695,21 +695,21 @@
 			setWelding(FALSE, M.occupant)
 
 
-/obj/item/weapon/weldingtool/dummy
+/obj/item/weldingtool/dummy
 	name = "dummy welding tool"
 	desc = "you shouldn't be reading this. Tell a dev!"
 	welding = TRUE
 
-/obj/item/weapon/weldingtool/dummy/process()
+/obj/item/weldingtool/dummy/process()
 	return
 
-/obj/item/weapon/weldingtool/dummy/get_fuel()
+/obj/item/weldingtool/dummy/get_fuel()
 	return get_max_fuel()
 
-/obj/item/weapon/weldingtool/dummy/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/dummy/remove_fuel(var/amount = 1, var/mob/M = null)
 	return TRUE
 
-/obj/item/weapon/weldingtool/dummy/isOn()
+/obj/item/weldingtool/dummy/isOn()
 	return TRUE
 
 #undef WELDER_FUEL_BURN_INTERVAL

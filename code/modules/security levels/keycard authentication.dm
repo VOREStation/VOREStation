@@ -4,7 +4,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 	layer = ABOVE_WINDOW_LAYER
-	circuit = /obj/item/weapon/circuitboard/keycard_auth
+	circuit = /obj/item/circuitboard/keycard_auth
 	var/active = 0 //This gets set to 1 on all devices except the one where the initial request was made.
 	var/event = ""
 	var/screen = 1
@@ -26,12 +26,12 @@
 	to_chat (user, "<span class='warning'>A firewall prevents you from interfacing with this device!</span>")
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
-	if(istype(W,/obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = W
+	if(istype(W,/obj/item/card/id))
+		var/obj/item/card/id/ID = W
 		if(access_keycard_auth in ID.GetAccess())
 			if(active == 1)
 				//This is not the device that made the initial request. It is the device confirming the request.
@@ -48,7 +48,7 @@
 		if(do_after(user, 10 * W.toolspeed))
 			to_chat(user, "You remove the faceplate from the [src]")
 			var/obj/structure/frame/A = new /obj/structure/frame(loc)
-			var/obj/item/weapon/circuitboard/M = new circuit(A)
+			var/obj/item/circuitboard/M = new circuit(A)
 			A.frame_type = M.board_type
 			A.need_circuit = 0
 			A.pixel_x = pixel_x

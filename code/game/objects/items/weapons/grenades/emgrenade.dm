@@ -1,4 +1,4 @@
-/obj/item/weapon/grenade/empgrenade
+/obj/item/grenade/empgrenade
 	name = "emp grenade"
 	icon_state = "emp"
 	item_state = "empgrenade"
@@ -8,13 +8,13 @@
 	var/emp_light = 7
 	var/emp_long = 10
 
-/obj/item/weapon/grenade/empgrenade/detonate()
+/obj/item/grenade/empgrenade/detonate()
 	..()
 	if(empulse(src, emp_heavy, emp_med, emp_light, emp_long))
 		qdel(src)
 	return
 
-/obj/item/weapon/grenade/empgrenade/low_yield
+/obj/item/grenade/empgrenade/low_yield
 	name = "low yield emp grenade"
 	desc = "A weaker variant of the EMP grenade"
 	icon_state = "lyemp"

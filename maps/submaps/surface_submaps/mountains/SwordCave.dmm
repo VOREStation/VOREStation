@@ -27,7 +27,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/swordcave)
 "i" = (
-/obj/item/device/gps/explorer/on,
+/obj/item/gps/explorer/on,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/swordcave)
 "j" = (
