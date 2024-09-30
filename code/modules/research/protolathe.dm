@@ -69,8 +69,6 @@
 			build(D)
 			progress = 0
 			removeFromQueue(1)
-			if(linked_console)
-				linked_console.updateUsrDialog()
 			flick("[initial(icon_state)]_finish", src)
 		update_icon()
 	else
@@ -179,7 +177,6 @@
 	spawn(10)
 		cut_overlay("protolathe_[t]")
 
-	updateUsrDialog()
 	return
 
 /obj/machinery/r_n_d/protolathe/proc/addToQueue(var/datum/design/D)
