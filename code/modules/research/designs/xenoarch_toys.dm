@@ -1,10 +1,10 @@
-/datum/design/item/weapon/xenoarch/AssembleDesignName()
+/datum/design/item/xenoarch/AssembleDesignName()
 	..()
 	name = "Xenoarcheology equipment design ([item_name])"
 
 // Xenoarch tools
 
-/datum/design/item/weapon/xenoarch/ano_scanner
+/datum/design/item/xenoarch/ano_scanner
 	name = "Alden-Saraspova counter"
 	id = "ano_scanner"
 	desc = "Aids in triangulation of exotic particles."
@@ -13,7 +13,7 @@
 	build_path = /obj/item/ano_scanner
 	sort_string = "GAAAA"
 
-/datum/design/item/weapon/xenoarch/xenoarch_multi_tool
+/datum/design/item/xenoarch/xenoarch_multi_tool
 	name = "xenoarcheology multitool"
 	id = "xenoarch_multitool"
 	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3)
@@ -21,7 +21,7 @@
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_URANIUM = 500, MAT_PHORON = 500)
 	sort_string = "GAAAB"
 
-/datum/design/item/weapon/xenoarch/excavationdrill
+/datum/design/item/xenoarch/excavationdrill
 	name = "Excavation Drill"
 	id = "excavationdrill"
 	req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)

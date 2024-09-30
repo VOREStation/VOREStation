@@ -67,7 +67,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache SpacemanDMM
+      - name: Restore SpacemanDMM Cache
         uses: actions/cache@v4
         with:
           path: ~/SpacemanDMM
@@ -92,7 +92,7 @@ jobs:
   unit_tests:
     strategy:
       matrix:
-        map: ['tether', 'stellar_delight', 'groundbase']
+        map: ['USE_MAP_TETHER', 'USE_MAP_STELLARDELIGHT', 'USE_MAP_GROUNDBASE']
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
     # needs: ['run_linters', 'dreamchecker']
@@ -102,10 +102,10 @@ jobs:
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci
-      - name: Setup Cache
+      - name: Restore BYOND Cache
         uses: actions/cache@v4
         with:
-          path: $HOME/BYOND
+          path: $HOME/byond
           key: ${{ runner.os }}-byond
       - name: Install RUST_G Dependencies
         run: |
@@ -118,35 +118,38 @@ jobs:
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "UNIT_TEST"
-          TEST_FILE: "code/_unit_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: true
+          EXTRA_ARGS: "-DUNIT_TEST -D${{ matrix.map }}"
           RUN: "1"
-      - name: Compile POIs
+
+  extra_map_tests:
+    name: Map Tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure +x on CI directory
         run: |
-          tools/ci/install_byond.sh
-          tools/ci/compile_and_run.sh
+          chmod -R +x ./tools/ci
+      - name: Restore BYOND Cache
+        uses: actions/cache@v4
+        with:
+          path: $HOME/byond
+          key: ${{ runner.os }}-byond
+      - name: Install BYOND
+        run: tools/ci/install_byond.sh
+      - name: Compile POIs
+        run: tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "MAP_TEST"
-          TEST_FILE: "code/_map_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: false
+          EXTRA_ARGS: "-DMAP_TEST"
           RUN: "0"
       - name: Compile away missions
-        run: |
-          tools/ci/install_byond.sh
-          tools/ci/compile_and_run.sh
+        run: tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "AWAY_MISSION_TEST"
-          TEST_FILE: "code/_away_mission_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: false
+          EXTRA_ARGS: "-DAWAY_MISSION_TEST -DUSE_MAP_TETHER" # Only Tether has support for all away missions
           RUN: "0"
 
   tests_successful:
     name: Integration Tests
-    needs: ['run_linters', 'dreamchecker', 'unit_tests']
+    needs: ['run_linters', 'dreamchecker', 'unit_tests', 'extra_map_tests']
     runs-on: ubuntu-20.04
     steps:
       - name: Report Success

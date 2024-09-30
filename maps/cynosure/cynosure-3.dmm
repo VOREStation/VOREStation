@@ -2233,12 +2233,7 @@
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 5
 	},
-<<<<<<< HEAD
-/obj/structure/flora/pottedplant/drooping,
 /obj/item/radio/intercom{
-=======
-/obj/item/radio/intercom{
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 	dir = 4;
 	pixel_x = 21
 	},
@@ -6081,8 +6076,6 @@
 	dir = 8;
 	pixel_y = 32
 	},
-<<<<<<< HEAD
-=======
 /obj/structure/sign/levels/security{
 	dir = 5;
 	pixel_y = 26
@@ -6091,7 +6084,6 @@
 	dir = 1;
 	pixel_y = 32
 	},
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
 "ehU" = (
@@ -23169,16 +23161,9 @@
 	pixel_x = -32;
 	pixel_y = -6
 	},
-<<<<<<< HEAD
-/obj/structure/sign/directions/stairs_down{
-	dir = 4;
-	pixel_x = -32;
-	pixel_y = -12
-=======
 /obj/structure/sign/christmas/lights{
 	dir = 8;
 	pixel_x = -32
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/secondfloor/east)
@@ -67555,13 +67540,8 @@ uwO
 uwO
 uwO
 uwO
-<<<<<<< HEAD
-uDG
-iaD
-=======
 aPW
 rsz
->>>>>>> d94406daccd... Merge pull request #8859 from Spookerton/greenjoe12345/xmas2022
 iaD
 jIo
 ifR

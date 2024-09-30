@@ -1,6 +1,6 @@
 #include "virgo2_submap_areas.dm"
 
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "Flake.dmm"
 #include "MCamp1.dmm"
 #include "Rocky1.dmm"

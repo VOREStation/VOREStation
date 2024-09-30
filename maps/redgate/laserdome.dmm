@@ -163,12 +163,12 @@
 /area/redgate/laserdome/arena/capture_the_flag)
 "bRk" = (
 /obj/structure/table/marble,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "bVo" = (
@@ -345,12 +345,12 @@
 /area/redgate/laserdome/lobby/spaceview_lounge)
 "dLr" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
+/obj/item/reagent_containers/food/snacks/chickenfillet,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "dPZ" = (
@@ -536,8 +536,8 @@
 /area/redgate/laserdome/arena/hyperball)
 "fAL" = (
 /obj/structure/table/marble,
-/obj/item/device/encryptionkey/ent,
-/obj/item/device/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
+/obj/item/encryptionkey/ent,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/laserdome/lobby)
 "fCY" = (
@@ -1215,9 +1215,9 @@
 /area/redgate/laserdome/lobby/restaurant)
 "lpp" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
+/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/reagent_containers/food/snacks/fries,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "lDM" = (
@@ -1327,7 +1327,7 @@
 /obj/random/pizzabox,
 /obj/random/pizzabox,
 /obj/random/pizzabox,
-/obj/item/weapon/material/knife/plastic,
+/obj/item/material/knife/plastic,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/laserdome/lobby/restaurant)
 "mBZ" = (
@@ -1653,7 +1653,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/laserdome/lobby/aid_station)
 "poL" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
