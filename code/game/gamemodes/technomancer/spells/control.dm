@@ -109,7 +109,7 @@
 					to_chat(user, "<span class='danger'>\The [L] seems to resist you!</span>")
 					return 0
 				if(!L.has_AI())
-					to_chat(user, span("warning", "\The [L] seems too dim for this to work on them."))
+					to_chat(user, span_warning("\The [L] seems too dim for this to work on them."))
 					return FALSE
 				if(pay_energy(500))
 					select(L)
@@ -141,4 +141,3 @@
 			adjust_instability(controlled_mobs.len)
 			to_chat(user, "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to move \
 			towards \the [T].</span>")
-

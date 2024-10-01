@@ -73,13 +73,13 @@
 		if(host.reagents.has_reagent("sugar") && !docile)
 			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
 			var/target = controlling ? host : src
-			to_chat(target, span("warning", message))
+			to_chat(target, span_warning(message))
 			docile = TRUE
 
 		else if(docile)
 			var/message = "You shake off your lethargy as the sugar leaves your host's blood."
 			var/target = controlling ? host : src
-			to_chat(target, span("notice", message))
+			to_chat(target, span_notice(message))
 			docile = FALSE
 
 		// Chem regen.
@@ -89,7 +89,7 @@
 		// Control stuff.
 		if(controlling)
 			if(docile)
-				to_chat(host, span("warning", "You are feeling far too docile to continue controlling your host..."))
+				to_chat(host, span_warning("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
 				return
 
@@ -204,7 +204,7 @@
 		mind.assigned_role = JOB_CORTICAL_BORER
 		mind.special_role = JOB_CORTICAL_BORER
 
-	to_chat(src, span("notice", "You are a cortical borer! You are a brain slug that worms its way \
+	to_chat(src, span_notice("You are a cortical borer! You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
 	your host and your eventual spawn safe and warm."))
 	to_chat(src, "You can speak to your victim with <b>say</b>, to other borers with <b>say :x</b>, and use your Abilities tab to access powers.")
@@ -226,7 +226,7 @@
 		return
 
 	if(client && client.prefs.muted & MUTE_IC)
-		to_chat(src, span("danger", "You cannot speak in IC (muted)."))
+		to_chat(src, span_danger("You cannot speak in IC (muted)."))
 		return
 
 	if(copytext(message, 1, 2) == "*")
@@ -240,7 +240,7 @@
 
 	if(!host)
 		if(chemicals >= 30)
-			to_chat(src, span("alien", "..You emit a psionic pulse with an encoded message.."))
+			to_chat(src, span_alien("..You emit a psionic pulse with an encoded message.."))
 			var/list/nearby_mobs = list()
 			for(var/mob/living/LM in view(src, 1 + round(6 * (chemicals / max_chemicals))))
 				if(LM == src)
@@ -255,9 +255,9 @@
 				message_admins("[src.ckey]/([src]) tried to force [speaker] to say: [message]")
 				speaker.say("[message]")
 				return
-			to_chat(src, span("alien", "..But nothing heard it.."))
+			to_chat(src, span_alien("..But nothing heard it.."))
 		else
-			to_chat(src, span("warning", "You have no host to speak to."))
+			to_chat(src, span_warning("You have no host to speak to."))
 		return //No host, no audible speech.
 
 	to_chat(src, "You drop words into [host]'s mind: \"[message]\"")

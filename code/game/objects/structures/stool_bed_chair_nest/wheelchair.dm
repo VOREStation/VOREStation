@@ -35,10 +35,10 @@
 	. = ..()
 	if(.)
 		if(M.mob_size < min_mob_buckle_size)
-			to_chat(M, SPAN_WARNING("You are too small to use \the [src]."))
+			to_chat(M, span_warning("You are too small to use \the [src]."))
 			. = FALSE
 		else if(M.mob_size >= max_mob_buckle_size)
-			to_chat(M, SPAN_WARNING("You are too large to use \the [src]."))
+			to_chat(M, span_warning("You are too large to use \the [src]."))
 			. = FALSE
 
 /obj/structure/bed/chair/wheelchair/update_icon()

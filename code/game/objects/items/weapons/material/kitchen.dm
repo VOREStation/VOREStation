@@ -46,16 +46,16 @@
 
 /obj/item/material/kitchen/utensil/proc/load_food(var/mob/user, var/obj/item/reagent_containers/food/snacks/loading)
 	if (reagents.total_volume > 0)
-		to_chat(user, SPAN_DANGER("There is already something on \the [src]."))
+		to_chat(user, span_danger("There is already something on \the [src]."))
 		return
 	if (!loading?.reagents?.total_volume)
-		to_chat(user, SPAN_NOTICE("Nothing to scoop up in \the [loading]!"))
+		to_chat(user, span_notice("Nothing to scoop up in \the [loading]!"))
 
 
 	loaded = "\the [loading]"
 	user.visible_message( \
 		"<b>\The [user]</b> scoops up some of [loaded] with \the [src]!",
-		SPAN_NOTICE("You scoop up some of [loaded] with \the [src]!")
+		span_notice("You scoop up some of [loaded] with \the [src]!")
 	)
 	loading.bitecount++
 	loading.reagents.trans_to_obj(src, min(loading.reagents.total_volume, scoop_volume))
@@ -110,7 +110,7 @@
 				return
 			M.visible_message("<b>\The [user]</b> eats some of [loaded] with \the [src].")
 		else
-			user.visible_message(SPAN_WARNING("\The [user] begins to feed \the [M]!"))
+			user.visible_message(span_warning("\The [user] begins to feed \the [M]!"))
 			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
 				return
 			M.visible_message("<b>\The [user]</b> feeds some of [loaded] to \the [M] with \the [src].")
@@ -119,7 +119,7 @@
 		update_icon()
 		return
 	else
-		to_chat(user, SPAN_WARNING("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
+		to_chat(user, span_warning("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
 		return
 
 /obj/item/material/kitchen/utensil/on_rag_wipe()

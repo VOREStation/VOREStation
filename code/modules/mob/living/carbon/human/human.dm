@@ -1778,7 +1778,7 @@
 		var/obj/item/clothing/glasses/goggles = glasses
 		if(goggles.active && (goggles.vision_flags & (SEE_TURFS|SEE_OBJS)))
 			goggles.toggle_active(src)
-			to_chat(src, span("warning", "Your [goggles.name] have suddenly turned off!"))
+			to_chat(src, span_warning("Your [goggles.name] have suddenly turned off!"))
 
 	// RIGs.
 	var/obj/item/rig/rig = get_rig()
@@ -1786,7 +1786,7 @@
 		var/obj/item/clothing/glasses/rig_goggles = rig.visor.vision.glasses
 		if(rig_goggles.vision_flags & (SEE_TURFS|SEE_OBJS))
 			rig.visor.deactivate()
-			to_chat(src, span("warning", "\The [rig]'s visor has shuddenly deactivated!"))
+			to_chat(src, span_warning("\The [rig]'s visor has shuddenly deactivated!"))
 
 	..()
 

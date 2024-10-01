@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 /obj/item/cataloguer/afterattack(atom/target, mob/user, proximity_flag)
 	// Things that invalidate the scan immediately.
 	if(busy)
-		to_chat(user, span("warning", "\The [src] is already scanning something."))
+		to_chat(user, span_warning("\The [src] is already scanning something."))
 		return
 
 	if(isturf(target) && (!target.can_catalogue()))
@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		return
 
 	if(get_dist(target, user) > scan_range)
-		to_chat(user, span("warning", "You are too far away from \the [target] to catalogue it. Get closer."))
+		to_chat(user, span_warning("You are too far away from \the [target] to catalogue it. Get closer."))
 		return
 
 	// Get how long the delay will be.
@@ -97,9 +97,9 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	if(partial_scanned)
 		if(partial_scanned.resolve() == target)
 			scan_delay -= partial_scan_time
-			to_chat(user, span("notice", "Resuming previous scan."))
+			to_chat(user, span_notice("Resuming previous scan."))
 		else
-			to_chat(user, span("warning", "Scanning new target. Previous scan buffer cleared."))
+			to_chat(user, span_warning("Scanning new target. Previous scan buffer cleared."))
 
 	// Start the special effects.
 	busy = TRUE
@@ -118,18 +118,18 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/scan_start_time = world.time
 	if(do_after(user, scan_delay, target, ignore_movement = TRUE, max_distance = scan_range))
 		if(target.can_catalogue(user))
-			to_chat(user, span("notice", "You successfully scan \the [target] with \the [src]."))
+			to_chat(user, span_notice("You successfully scan \the [target] with \the [src]."))
 			playsound(src, 'sound/machines/ping.ogg', 50)
 			catalogue_object(target, user)
 		else
 			// In case someone else scans it first, or it died, etc.
-			to_chat(user, span("warning", "\The [target] is no longer valid to scan with \the [src]."))
+			to_chat(user, span_warning("\The [target] is no longer valid to scan with \the [src]."))
 			playsound(src, 'sound/machines/buzz-two.ogg', 50)
 
 		partial_scanned = null
 		partial_scan_time = 0
 	else
-		to_chat(user, span("warning", "You failed to finish scanning \the [target] with \the [src]."))
+		to_chat(user, span_warning("You failed to finish scanning \the [target] with \the [src]."))
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		color_box(box_segments, "#FF0000", 3)
 		partial_scanned = WEAKREF(target)
@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	// Give out points.
 	if(points_gained)
 		// First, to us.
-		to_chat(user, span("notice", "Gained [points_gained] points from this scan."))
+		to_chat(user, span_notice("Gained [points_gained] points from this scan."))
 		adjust_points(points_gained)
 
 		// Now to our friends, if any.
@@ -184,9 +184,9 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 				var/list/things = M.GetAllContents(3) // Depth of two should reach into bags but just in case lets make it three.
 				var/obj/item/cataloguer/other_cataloguer = locate() in things // If someone has two or more scanners this only adds points to one.
 				if(other_cataloguer)
-					to_chat(M, span("notice", "Gained [points_gained] points from \the [user]'s scan of \the [target]."))
+					to_chat(M, span_notice("Gained [points_gained] points from \the [user]'s scan of \the [target]."))
 					other_cataloguer.adjust_points(points_gained)
-			to_chat(user, span("notice", "Shared discovery with [contributers.len] other contributer\s."))
+			to_chat(user, span_notice("Shared discovery with [contributers.len] other contributer\s."))
 
 
 
@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 // Helps to avoid having to click a hundred things in a room for things that have an entry.
 /obj/item/cataloguer/proc/pulse_scan(mob/user)
 	if(busy)
-		to_chat(user, span("warning", "\The [src] is busy doing something else."))
+		to_chat(user, span_warning("\The [src] is busy doing something else."))
 		return
 
 	busy = TRUE
@@ -215,7 +215,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/filter = filter(type = "outline", size = 1, color = "#00FF00")
 	for(var/atom/A as anything in scannable_atoms)
 		A.filters += filter
-	to_chat(user, span("notice", "\The [src] is highlighting scannable objects in green, if any exist."))
+	to_chat(user, span_notice("\The [src] is highlighting scannable objects in green, if any exist."))
 
 	sleep(2 SECONDS)
 
@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		playsound(src, 'sound/machines/ping.ogg', 50)
 	else
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
-	to_chat(user, span("notice", "\The [src] found [scannable_atoms.len] object\s that can be scanned."))
+	to_chat(user, span_notice("\The [src] found [scannable_atoms.len] object\s that can be scanned."))
 
 
 // Negative points are bad.
@@ -354,17 +354,17 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	set category = "Object"
 
 	if(busy)
-		to_chat(usr, span("warning", "\The [src] is currently scanning something."))
+		to_chat(usr, span_warning("\The [src] is currently scanning something."))
 		return
 	deployed = !(deployed)
 	if(deployed)
 		w_class = ITEMSIZE_NORMAL
 		icon_state = "[initial(icon_state)]"
-		to_chat(usr, span("notice", "You flick open \the [src]."))
+		to_chat(usr, span_notice("You flick open \the [src]."))
 	else
 		w_class = ITEMSIZE_SMALL
 		icon_state = "[initial(icon_state)]_closed"
-		to_chat(usr, span("notice", "You close \the [src]."))
+		to_chat(usr, span_notice("You close \the [src]."))
 
 	if (ismob(usr))
 		var/mob/M = usr
@@ -372,12 +372,12 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 /obj/item/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
 	if(!deployed)
-		to_chat(user, span("warning", "\The [src] is closed."))
+		to_chat(user, span_warning("\The [src] is closed."))
 		return
 	return ..()
 
 /obj/item/cataloguer/compact/pulse_scan(mob/user)
 	if(!deployed)
-		to_chat(user, span("warning", "\The [src] is closed."))
+		to_chat(user, span_warning("\The [src] is closed."))
 		return
 	return ..()

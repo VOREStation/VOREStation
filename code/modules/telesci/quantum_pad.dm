@@ -39,7 +39,7 @@
 	if(world.time < last_teleport + teleport_cooldown)
 		. += "<span class='warning'>[src] is recharging power. A timer on the side reads <b>[round((last_teleport + teleport_cooldown - world.time)/10)]</b> seconds.</span>"
 	if(boosted)
-		. += SPAN_NOTICE("There appears to be a booster haphazardly jammed into the side of [src]. That looks unsafe.")
+		. += span_notice("There appears to be a booster haphazardly jammed into the side of [src]. That looks unsafe.")
 	if(!panel_open)
 		. += "<span class='notice'>The panel is <i>screwed</i> in, obstructing the linking device.</span>"
 	else
@@ -82,7 +82,7 @@
 				to_chat(user, "<span class='notice'>You link [src] to the one in [I]'s buffer.</span>")
 				update_icon()
 				return 1
-	
+
 	if(istype(I, /obj/item/quantum_pad_booster))
 		var/obj/item/quantum_pad_booster/booster = I
 		visible_message("[user] violently jams [booster] into the side of [src]. [src] beeps, quietly.", \
@@ -101,11 +101,11 @@
 
 /obj/machinery/power/quantumpad/update_icon()
 	. = ..()
-	
+
 	cut_overlays()
 	if(panel_open)
 		add_overlay("qpad-panel")
-	
+
 	if(inoperable() || panel_open || !powernet)
 		icon_state = "[initial(icon_state)]-o"
 	else if (!linked_pad)
@@ -121,7 +121,7 @@
 			disconnect_from_network()
 		connect_to_network()
 		if(powernet != original_powernet)
-			update_icon()		
+			update_icon()
 
 /obj/machinery/power/quantumpad/attack_hand(mob/user)
 	. = ..()
@@ -229,7 +229,7 @@
 		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 		flick("qpad-beam-in", linked_pad)
 		playsound(linked_pad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
-		
+
 		transport_objects(get_turf(linked_pad))
 
 /obj/machinery/power/quantumpad/proc/initMappedLink()
@@ -245,7 +245,7 @@
 	// Well, I guess you can do it!
 	if(!A?.requires_power)
 		return TRUE
-	
+
 	// Otherwise we'll need a powernet
 	var/power_to_use = 10000 / power_efficiency
 	if(boosted)
@@ -277,7 +277,7 @@
 	// Well, if there's no gateway map we're definitely not on it
 	if(!GLOB.gateway_away)
 		return TRUE
-	
+
 	// Traverse!
 	if(GLOB.gateway_away.calibrated)
 		return TRUE
@@ -285,7 +285,7 @@
 	var/list/gateway_zs = GetConnectedZlevels(GLOB.gateway_away.z)
 	if(z in gateway_zs)
 		return FALSE // It's not calibrated and we're in a connected z
-	
+
 	return TRUE
 
 /obj/machinery/power/quantumpad/proc/gateway_scatter(mob/user)

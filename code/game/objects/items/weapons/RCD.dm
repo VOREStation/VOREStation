@@ -31,7 +31,7 @@
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
 /* VOREStation Removal - Unused
 /obj/item/rcd/Initialize()
-	
+
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -56,13 +56,13 @@
 	if(istype(W, /obj/item/rcd_ammo))
 		var/obj/item/rcd_ammo/cartridge = W
 		if((stored_matter + cartridge.remaining) > max_stored_matter)
-			to_chat(user, span("warning", "The RCD can't hold that many additional matter-units."))
+			to_chat(user, span_warning("The RCD can't hold that many additional matter-units."))
 			return FALSE
 		stored_matter += cartridge.remaining
 		user.drop_from_inventory(W)
 		qdel(W)
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, span("notice", "The RCD now holds [stored_matter]/[max_stored_matter] matter-units."))
+		to_chat(user, span_notice("The RCD now holds [stored_matter]/[max_stored_matter] matter-units."))
 		return TRUE
 	return ..()
 */
@@ -74,7 +74,7 @@
 	else
 		mode_index++
 
-	to_chat(user, span("notice", "Changed mode to '[modes[mode_index]]'."))
+	to_chat(user, span_notice("Changed mode to '[modes[mode_index]]'."))
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 
 	if(prob(20))
@@ -99,16 +99,16 @@
 // Used to call rcd_act() on the atom hit.
 /obj/item/rcd/proc/use_rcd(atom/A, mob/living/user)
 	if(busy && !allow_concurrent_building)
-		to_chat(user, span("warning", "\The [src] is busy finishing its current operation, be patient."))
+		to_chat(user, span_warning("\The [src] is busy finishing its current operation, be patient."))
 		return FALSE
 
 	var/list/rcd_results = A.rcd_values(user, src, modes[mode_index])
 	if(!rcd_results)
-		to_chat(user, span("warning", "\The [src] blinks a red light as you point it towards \the [A], indicating \
+		to_chat(user, span_warning("\The [src] blinks a red light as you point it towards \the [A], indicating \
 		that it won't work. Try changing the mode, or use it on something else."))
 		return FALSE
 	if(!can_afford(rcd_results[RCD_VALUE_COST]))
-		to_chat(user, span("warning", "\The [src] lacks the required material to start."))
+		to_chat(user, span_warning("\The [src] lacks the required material to start."))
 		return FALSE
 
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
@@ -128,7 +128,7 @@
 		busy = FALSE
 		// Doing another check in case we lost matter during the delay for whatever reason.
 		if(!can_afford(rcd_results[RCD_VALUE_COST]))
-			to_chat(user, span("warning", "\The [src] lacks the required material to finish the operation."))
+			to_chat(user, span_warning("\The [src] lacks the required material to finish the operation."))
 			return FALSE
 		if(A.rcd_act(user, src, rcd_results[RCD_VALUE_MODE]))
 			consume_resources(rcd_results[RCD_VALUE_COST])
@@ -289,7 +289,7 @@
 
 /obj/item/rcd/debug/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/rcd_ammo))
-		to_chat(user, span("notice", "\The [src] makes its own material, no need to add more."))
+		to_chat(user, span_notice("\The [src] makes its own material, no need to add more."))
 		return FALSE
 	return ..()
 

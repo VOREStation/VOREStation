@@ -785,7 +785,7 @@ I think I covered everything.
 	status_flags |= LEAPING
 	flying  = 1		//So we can thunk into things
 	hovering = 1	// So we don't hurt ourselves running off cliffs
-	visible_message(span("danger","\The [src] charges at \the [A]!"))
+	visible_message(span_danger("\The [src] charges at \the [A]!"))
 	throw_at(A, 7, 2)
 	playsound(src, charge_sound, 75, 1)
 	if(status_flags & LEAPING)

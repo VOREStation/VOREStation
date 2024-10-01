@@ -23,31 +23,31 @@
 
 	if(!istype(storing))
 		var/storing_target = (user == src) ? "yourself" : "\the [src]"
-		to_chat(user, SPAN_WARNING("You cannot store that inside [storing_target]."))
+		to_chat(user, span_warning("You cannot store that inside [storing_target]."))
 		return FALSE
 
 	if(!isturf(storing.loc))
 		return FALSE
 
 	if(storing.anchored || !storing.simulated)
-		to_chat(user, SPAN_WARNING("\The [storing] won't budge!"))
+		to_chat(user, span_warning("\The [storing] won't budge!"))
 		return FALSE
 
 	if(storing == src)
 		var/storing_target = (user == src) ? "yourself" : "\the [src]"
-		to_chat(user, SPAN_WARNING("You cannot store [storing_target] inside [storing_target]!"))
+		to_chat(user, span_warning("You cannot store [storing_target] inside [storing_target]!"))
 		return FALSE
 
 	if(length(stored_atoms) >= max_stored_atoms)
 		var/storing_target = (user == src) ? "Your" : "\The [src]'s"
-		to_chat(user, SPAN_WARNING("[storing_target] cargo compartment is full."))
+		to_chat(user, span_warning("[storing_target] cargo compartment is full."))
 		return FALSE
 
 	if(ismob(storing))
 		var/mob/M = storing
 		if(M.mob_size >= mob_size)
 			var/storing_target = (user == src) ? "your storage compartment" : "\the [src]"
-			to_chat(user, SPAN_WARNING("\The [storing] is too big for [storing_target]."))
+			to_chat(user, span_warning("\The [storing] is too big for [storing_target]."))
 			return FALSE
 
 	for(var/store_type in can_store_types)
@@ -62,7 +62,7 @@
 				break
 	if(!.)
 		var/storing_target = (user == src) ? "yourself" : "\the [src]"
-		to_chat(user, SPAN_WARNING("You cannot store \the [storing] inside [storing_target]."))
+		to_chat(user, span_warning("You cannot store \the [storing] inside [storing_target]."))
 
 /mob/living/silicon/robot/platform/proc/store_atom(var/atom/movable/storing, var/mob/user)
 	if(istype(storing))
@@ -110,13 +110,13 @@
 	set desc = "Drop something from your internal storage."
 
 	if(incapacitated())
-		to_chat(src, SPAN_WARNING("You are not in any state to do that."))
+		to_chat(src, span_warning("You are not in any state to do that."))
 		return
 
 	if(length(stored_atoms))
 		drop_stored_atom(user = src)
 	else
-		to_chat(src, SPAN_WARNING("You have nothing in your cargo compartment."))
+		to_chat(src, span_warning("You have nothing in your cargo compartment."))
 
 /mob/living/silicon/robot/platform/MouseDrop_T(atom/movable/dropping, mob/living/user)
 	if(!istype(user) || !istype(dropping) || user.incapacitated())

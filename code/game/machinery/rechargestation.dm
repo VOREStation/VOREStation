@@ -262,7 +262,7 @@
 			return
 
 		if(istype(R, /mob/living/silicon/robot/platform))
-			to_chat(R, SPAN_WARNING("You are too large to fit into \the [src]."))
+			to_chat(R, span_warning("You are too large to fit into \the [src]."))
 			return
 
 		add_fingerprint(R)

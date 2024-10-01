@@ -27,12 +27,12 @@
 	if(istype(thing, /obj/item/pen))
 
 		if(jobban_isbanned(user, JOB_GRAFFITI))
-			to_chat(user, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
+			to_chat(user, span_warning("You are banned from leaving persistent information across rounds."))
 			return
 
 		var/writing_space = MAX_MESSAGE_LEN - length(written_text)
 		if(writing_space <= 0)
-			to_chat(user, SPAN_WARNING("There is no room left on \the [src]."))
+			to_chat(user, span_warning("There is no room left on \the [src]."))
 			return
 		var/text = sanitizeSafe(tgui_input_text(usr, "What would you like to write?", null, null, writing_space), writing_space)
 		if(!text || thing.loc != user || (!Adjacent(user) && loc != user) || user.incapacitated())
@@ -50,7 +50,7 @@
 /obj/item/sticky_pad/examine(var/mob/user)
 	. = ..()
 	if(.)
-		to_chat(user, SPAN_NOTICE("It has [papers] sticky note\s left."))
+		to_chat(user, span_notice("It has [papers] sticky note\s left."))
 
 /obj/item/sticky_pad/attack_hand(var/mob/user)
 	var/obj/item/paper/paper = new paper_type(get_turf(src))
@@ -59,7 +59,7 @@
 	paper.color = color
 	written_text = null
 	user.put_in_hands(paper)
-	to_chat(user, SPAN_NOTICE("You pull \the [paper] off \the [src]."))
+	to_chat(user, span_notice("You pull \the [paper] off \the [src]."))
 	papers--
 	if(papers <= 0)
 		qdel(src)
@@ -132,7 +132,7 @@
 	if(target_turf != source_turf)
 		dir_offset = get_dir(source_turf, target_turf)
 		if(!(dir_offset in GLOB.cardinal))
-			to_chat(user, SPAN_WARNING("You cannot reach that from here."))
+			to_chat(user, span_warning("You cannot reach that from here."))
 			return
 
 	if(user.unEquip(src, source_turf))

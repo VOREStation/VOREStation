@@ -99,24 +99,24 @@
 	//Checking if there's any point trying to climb
 	var/turf/above_wall = GetAbove(src)
 	if(L.nutrition <= nutrition_cost)
-		to_chat(L, SPAN_WARNING("You [L.isSynthetic() ? "lack the energy" : "are too hungry"] for such strenous activities!"))
+		to_chat(L, span_warning("You [L.isSynthetic() ? "lack the energy" : "are too hungry"] for such strenous activities!"))
 		return
 	if(!above_wall) //No multiZ
-		to_chat(L, SPAN_NOTICE("There's nothing interesting over this cliff!"))
+		to_chat(L, span_notice("There's nothing interesting over this cliff!"))
 		return
 	var/turf/above_mob = GetAbove(L)	//Making sure we got headroom
 	if(!above_mob.CanZPass(L, UP))
-		to_chat(L, SPAN_WARNING("\The [above_mob] blocks your way."))
+		to_chat(L, span_warning("\The [above_mob] blocks your way."))
 		return
 	if(above_wall.density) //We check density rather than type since some walls dont have a floor on top.
-		to_chat(L, SPAN_WARNING("\The [above_wall] blocks your way."))
+		to_chat(L, span_warning("\The [above_wall] blocks your way."))
 		return
 	if(LAZYLEN(above_wall.contents) > 30) //We avoid checking the contents if it's too cluttered to avoid issues
-		to_chat(L, SPAN_WARNING("\The [above_wall] is too cluttered to climb onto!"))
+		to_chat(L, span_warning("\The [above_wall] is too cluttered to climb onto!"))
 		return
 	for(var/atom/A in above_wall.contents)
 		if(A.density)
-			to_chat(L, SPAN_WARNING("\The [A.name] blocks your way!"))
+			to_chat(L, span_warning("\The [A.name] blocks your way!"))
 			return
 
 	//human mobs got species and can wear special equipment
@@ -169,19 +169,19 @@
 	// Climb time is 30 for gearless untrained people
 	var/climb_time = (5 * climbing_delay_min) SECONDS
 	if(fall_chance)
-		to_chat(L, SPAN_WARNING("You begin climbing over \The [src]. Getting a grip is exceedingly difficult..."))
+		to_chat(L, span_warning("You begin climbing over \The [src]. Getting a grip is exceedingly difficult..."))
 		climb_time += 20 SECONDS
 	else
-		to_chat(L, SPAN_NOTICE("You begin climbing above \The [src]! "))
+		to_chat(L, span_notice("You begin climbing above \The [src]! "))
 		if(climbing_delay_min > 1.25)
 			climb_time += 10 SECONDS
 		if(climbing_delay_min > 1.0)
 			climb_time += 2.5 SECONDS
 	if(L.nutrition >= 100 && L.nutrition <= 200)
-		to_chat(L, SPAN_NOTICE("Climbing while [L.isSynthetic() ? "low on power" : "hungry"] slows you down"))
+		to_chat(L, span_notice("Climbing while [L.isSynthetic() ? "low on power" : "hungry"] slows you down"))
 		climb_time += 1 SECONDS
 	else if(L.nutrition >= nutrition_cost && L.nutrition <= 100)
-		to_chat(L, SPAN_DANGER("You [L.isSynthetic() ? "lack enough power" : "are too hungry"] to climb safely!"))
+		to_chat(L, span_danger("You [L.isSynthetic() ? "lack enough power" : "are too hungry"] to climb safely!"))
 		climb_time +=3 SECONDS
 		if(fall_chance < 30)
 			fall_chance = 30
@@ -189,23 +189,23 @@
 		blind_message = "You hear the sounds of climbing!", runemessage = "Tap Tap")
 	var/oops_time = world.time
 	var/grace_time = 4 SECONDS
-	to_chat(L, SPAN_WARNING("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
+	to_chat(L, span_warning("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
 	if(do_after(L,climb_time))
 		if(prob(fall_chance))
 			L.forceMove(above_mob)
-			L.visible_message(message = "<b>[L]</b> falls off <b>\The [src]</b>", self_message = SPAN_DANGER("You slipped off <b>\The [src]</b>"), \
+			L.visible_message(message = "<b>[L]</b> falls off <b>\The [src]</b>", self_message = span_danger("You slipped off <b>\The [src]</b>"), \
 				blind_message = "you hear a loud thud!", runemessage = "CRASH!")
 		else
 			if(drop_our_held)
 				L.drop_item(get_turf(L))
 			L.forceMove(above_wall)
 			L.visible_message(message = "<b>[L]</b> climbed up on <b>\The [src]</b>",	\
-				self_message = SPAN_NOTICE("You successfully scaled <b>\The [src]</b>"),	\
+				self_message = span_notice("You successfully scaled <b>\The [src]</b>"),	\
 				blind_message = "The sounds of climbing cease.", runemessage = "Tap Tap")
 		L.adjust_nutrition(-nutrition_cost)
 	else if(world.time > (oops_time + grace_time))
 		L.forceMove(above_mob)
-		L.visible_message(message = "<b>[L]</b> falls off <b>\The [src]</b>", self_message = SPAN_DANGER("You slipped off <b>\The [src]</b>"), \
+		L.visible_message(message = "<b>[L]</b> falls off <b>\The [src]</b>", self_message = span_danger("You slipped off <b>\The [src]</b>"), \
 			blind_message = "you hear a loud thud!", runemessage = "CRASH!")
 
 /mob/living/verb/climb_down()
@@ -221,26 +221,26 @@
 
 	//Check if we can even try to climb
 	if(nutrition <= nutrition_cost)
-		to_chat(src, SPAN_WARNING("You [isSynthetic() ? "lack the energy" : "are too hungry"] for such strenous activities!"))
+		to_chat(src, span_warning("You [isSynthetic() ? "lack the energy" : "are too hungry"] for such strenous activities!"))
 		return
 	var/turf/below_wall = GetBelow(our_turf)
 	if(!below_wall)	//No multiZ
-		to_chat(src, SPAN_NOTICE("There's nothing interesting below us!"))
+		to_chat(src, span_notice("There's nothing interesting below us!"))
 		return
 	if(!istype(below_wall,/turf/simulated)) //Our var is on simulated turfs, we must enforce this
-		to_chat(src, SPAN_NOTICE("There's nothing useful to grab onto!"))
+		to_chat(src, span_notice("There's nothing useful to grab onto!"))
 		return
 	var/turf/simulated/climbing_surface = below_wall
 	if(!climbing_surface.density) //passable turfs make no sense to climb
-		to_chat(src, SPAN_NOTICE("There's nothing climbable below us!"))
+		to_chat(src, span_notice("There's nothing climbable below us!"))
 		return
 	var/turf/front_of_us = get_step(src, dir) //We get the spot we are facing
 	if(!front_of_us.CanZPass(src, DOWN)) //Makes sure where we're climbing isnt blocked by a tile or there's a wall below it.
-		to_chat(src, SPAN_NOTICE("\The [front_of_us] blocks your way in this direction!"))
+		to_chat(src, span_notice("\The [front_of_us] blocks your way in this direction!"))
 		return
 	var/turf/destination = GetBelow(front_of_us)
 	if(isopenspace(destination)) //We don't allow descending more than 1 Z at a time
-		to_chat(src, SPAN_NOTICE("You're too high up to climb down from here! Find a more gentle descent!"))
+		to_chat(src, span_notice("You're too high up to climb down from here! Find a more gentle descent!"))
 		return
 
 	//Determining whether we should be able to climb safely and how fast
@@ -285,25 +285,25 @@
 	// Climb time is 30 for gearless untrained people
 	var/climb_time = (5 * climbing_delay_min) SECONDS
 	if(fall_chance)
-		to_chat(src, SPAN_WARNING("You begin climbing down along \The [below_wall]. Getting a grip is exceedingly difficult..."))
+		to_chat(src, span_warning("You begin climbing down along \The [below_wall]. Getting a grip is exceedingly difficult..."))
 		climb_time += 20 SECONDS
 	else
-		to_chat(src, SPAN_NOTICE("You begin climbing down \The [below_wall]! "))
+		to_chat(src, span_notice("You begin climbing down \The [below_wall]! "))
 		if(climbing_delay_min > 1.25)
 			climb_time += 10 SECONDS
 		if(climbing_delay_min > 1.0)
 			climb_time += 2.5 SECONDS
 	if(nutrition >= 100 && nutrition <= 200) //Values are 50 lower than the warning icon appearing
-		to_chat(src, SPAN_NOTICE("Climbing while [isSynthetic() ? "low on power" : "hungry"] slows you down"))
+		to_chat(src, span_notice("Climbing while [isSynthetic() ? "low on power" : "hungry"] slows you down"))
 		climb_time += 1 SECONDS
 	else if(nutrition >= nutrition_cost && nutrition <= 100)
-		to_chat(src, SPAN_DANGER("You [isSynthetic() ? "lack enough power" : "are too hungry"] to climb safely!"))
+		to_chat(src, span_danger("You [isSynthetic() ? "lack enough power" : "are too hungry"] to climb safely!"))
 		climb_time +=3 SECONDS
 		if(fall_chance < 30)
 			fall_chance = 30
 
 	if(!climbing_surface.climbable)
-		to_chat(src, SPAN_DANGER("\The [climbing_surface] is not suitable for climbing! Even for a master climber, this is risky!"))
+		to_chat(src, span_danger("\The [climbing_surface] is not suitable for climbing! Even for a master climber, this is risky!"))
 		if(fall_chance < 75 )
 			fall_chance = 75
 	src.visible_message(message = "<b>[src]</b> climb down <b>\The [below_wall]</b>",	\
@@ -312,21 +312,21 @@
 	below_wall.audible_message(message = "You hear something climbing up <b>\The [below_wall]</b>", runemessage= "Tap Tap")
 	var/oops_time = world.time
 	var/grace_time = 3 SECONDS
-	to_chat(src, SPAN_WARNING("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
+	to_chat(src, span_warning("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
 	if(do_after(src,climb_time))
 		if(prob(fall_chance))
 			src.forceMove(front_of_us)
 			src.visible_message(message = "<b>[src]</b> falls off <b>\The [below_wall]</b>", \
-				self_message = SPAN_DANGER("You slipped off <b>\The [below_wall]</b>"), \
+				self_message = span_danger("You slipped off <b>\The [below_wall]</b>"), \
 				blind_message = "you hear a loud thud!", runemessage = "CRASH!")
 		else
 			src.forceMove(destination)
 			src.visible_message(message = "<b>[src]</b> climbed down on <b>\The [below_wall]</b>",	\
-				self_message = SPAN_NOTICE("You successfully descended <b>\The [below_wall]</b>"),	\
+				self_message = span_notice("You successfully descended <b>\The [below_wall]</b>"),	\
 				blind_message = "The sounds of climbing cease.", runemessage = "Tap Tap")
 		adjust_nutrition(-nutrition_cost)
 	else if(world.time > (oops_time + grace_time))
 		src.forceMove(front_of_us)
 		src.visible_message(message = "<b>[src]</b> falls off <b>\The [below_wall]</b>", \
-			self_message = SPAN_DANGER("You slipped off <b>\The [below_wall]</b>"), \
+			self_message = span_danger("You slipped off <b>\The [below_wall]</b>"), \
 			blind_message = "you hear a loud thud!", runemessage = "CRASH!")

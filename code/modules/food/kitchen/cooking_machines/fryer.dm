@@ -247,7 +247,7 @@
 		if (I.reagents.total_volume <= 0 && oil)
 			//Its empty, handle scooping some hot oil out of the fryer
 			oil.trans_to(I, I.reagents.maximum_volume)
-			user.visible_message("<span class='filter_notice'>[user] scoops some oil out of \the [src].</span>", span("notice","You scoop some oil out of \the [src]."))
+			user.visible_message("<span class='filter_notice'>[user] scoops some oil out of \the [src].</span>", span_notice("You scoop some oil out of \the [src]."))
 			return 1
 		else
 	//It contains stuff, handle pouring any oil into the fryer

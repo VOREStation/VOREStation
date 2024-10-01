@@ -181,7 +181,7 @@
 					keepgoing = FALSE
 
 	if(E.len == 0)
-		to_chat(src, SPAN_NOTICE("There are no mobs to examine."))
+		to_chat(src, span_notice("There are no mobs to examine."))
 		return
 	var/atom/B = null
 	if(E.len == 1)

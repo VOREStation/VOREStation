@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 
 	// Give button to leave.
 	verbs += /mob/living/silicon/robot/proc/undeploy_act
-	to_chat(AI, span("notice", "You have connected to an AI Shell remotely, and are now in control of it.<br>\
+	to_chat(AI, span_notice("You have connected to an AI Shell remotely, and are now in control of it.<br>\
 	To return to your core, use the <b>Release Control</b> verb."))
 
 	// Languages and comms.
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 //	mainframe.redeploy_action.Grant(mainframe)
 //	mainframe.redeploy_action.last_used_shell = src
 	if(message)
-		to_chat(src, span("notice", message))
+		to_chat(src, span_notice(message))
 	mind.transfer_to(mainframe)
 	src.copy_vore_prefs_to_mob(mainframe)
 	deployed = FALSE

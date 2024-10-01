@@ -29,10 +29,10 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 		for(var/mob/M in player_list)
 			if(M.client?.prefs?.read_preference(/datum/preference/toggle/player_tips))
 				if(!M.key && !(M.key in HasReceived))
-					to_chat(M, SPAN_WARNING("You have periodic player tips enabled. You may turn them off at any time with the Toggle Receiving Player Tips verb in Preferences, or in character set up under the OOC tab!\n Player tips appear every 45-75 minutes."))
+					to_chat(M, span_warning("You have periodic player tips enabled. You may turn them off at any time with the Toggle Receiving Player Tips verb in Preferences, or in character set up under the OOC tab!\n Player tips appear every 45-75 minutes."))
 					HasReceived.Add(M.key)
 				tip = GLOB.is_valid_url.Replace(tip,"<span class='linkify'>$1</span>")
-				to_chat(M, SPAN_NOTICE("[tip]"))
+				to_chat(M, span_notice("[tip]"))
 
 
 
@@ -47,4 +47,4 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 	if(choice == "cancel")
 		return
 	var/static/datum/player_tips/player_tips = new
-	to_chat(src, SPAN_NOTICE("[GLOB.is_valid_url.Replace(player_tips.pick_tip(choice),"<span class='linkify'>$1</span>")]"))
+	to_chat(src, span_notice("[GLOB.is_valid_url.Replace(player_tips.pick_tip(choice),"<span class='linkify'>$1</span>")]"))
