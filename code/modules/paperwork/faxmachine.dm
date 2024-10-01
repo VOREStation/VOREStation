@@ -302,6 +302,18 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 		department = input
 		if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) && !(department == "Unknown"))
 			alldepartments |= department
+	else if(istype(O, /obj/item/toner))
+		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
+			user.drop_item()
+			to_chat(user, span_notice("You insert the toner cartridge into \the [src]."))
+			playsound(loc, 'sound/machines/click.ogg', 50, 1)
+			var/obj/item/toner/T = O
+			toner += T.toner_amount
+			qdel(O)
+		else
+			to_chat(user, span_notice("This cartridge is not yet ready for replacement! Use up the rest of the toner."))
+			playsound(loc, 'sound/machines/buzz-two.ogg', 75, 1)
+		return
 
 	return ..()
 
