@@ -17,6 +17,7 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
 
   useEffect(() => {
     if (!desc || desc.length === 0) {
+      setHtmlDesc([]);
       return;
     }
 
