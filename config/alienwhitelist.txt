@@ -196,6 +196,7 @@ trikonei - Protean
 umbraferros - Black-Eyed Shadekin
 umbraferros - Protean
 umbraferros - Xenochimera
+umbraferros - Hanner
 umbrenos - Black-Eyed Shadekin
 varkaselyn - Protean
 varonis - Protean
