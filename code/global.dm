@@ -139,7 +139,8 @@ var/list/emergency_module_types = list(
 )
 // List of modules available to AI shells
 var/list/shell_module_types = list(
-	"Standard", "Service", "Clerical"
+	"Standard", "Engineering", "Surgeon", "Crisis",
+	"Miner", "Janitor", "Service", "Clerical", "Research"
 )
 // List of whitelisted modules
 var/list/whitelisted_module_types = list(
