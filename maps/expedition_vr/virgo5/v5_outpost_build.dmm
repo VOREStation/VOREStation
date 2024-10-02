@@ -212,10 +212,14 @@
 /obj/structure/cable/orange{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/structure/cable/orange{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_nhall)
@@ -585,14 +589,17 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_nhall)
 "ki" = (
-/turf/simulated/floor/plating{
-	carbon_dioxide = 75;
-	nitrogen = 17;
-	outdoors = 1;
-	oxygen = 8;
-	temperature = 150
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
-/area/submap/v5/outpost_airlock)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/submap/v5/outpost_nhall)
 "kn" = (
 /turf/simulated/shuttle/floor/alien,
 /area/submap/v5/alien_ship)
@@ -628,7 +635,9 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "ld" = (
 /obj/machinery/atmospherics/omni/atmos_filter{
@@ -650,7 +659,9 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "lx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -699,9 +710,6 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_dome)
 "mG" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/machinery/airlock_sensor/airlock_interior{
 	pixel_x = -24;
@@ -758,9 +766,8 @@
 /turf/simulated/floor/outdoors/snow/v5,
 /area/submap/v5/outpost_lpad)
 "oe" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 1
-	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
 /turf/simulated/floor/outdoors/snow/v5,
 /area/submap/v5/outpost_airlock)
 "of" = (
@@ -900,11 +907,14 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_nhall)
 "pr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/structure/cable/orange{
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_nhall)
@@ -1062,8 +1072,11 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_atmos)
 "sd" = (
-/turf/simulated/floor/outdoors/snow/v5,
-/area/submap/v5/outpost_airlock)
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/submap/v5/outpost_nhall)
 "sm" = (
 /obj/structure/table/gamblingtable,
 /obj/item/reagent_containers/food/condiment/small/peppermill{
@@ -1076,11 +1089,6 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/v5/outpost_bar)
-"sq" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume,
-/obj/effect/map_helper/airlock/atmos/pump_out_external,
-/turf/simulated/floor/outdoors/snow/v5,
-/area/submap/v5/outpost_airlock)
 "sz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1453,7 +1461,9 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "zD" = (
 /obj/structure/cable{
@@ -1706,7 +1716,9 @@
 	dir = 4
 	},
 /obj/structure/railing,
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "Dr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1811,7 +1823,9 @@
 /area/submap/v5/outpost_nhall)
 "EF" = (
 /obj/structure/railing,
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "EI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
@@ -1821,7 +1835,9 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "EV" = (
 /obj/structure/cliff/automatic/corner{
@@ -2038,7 +2054,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/v5/outpost_power)
 "II" = (
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "IQ" = (
 /obj/structure/prop/rock/ice/round,
@@ -2147,8 +2165,11 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_atmos)
 "Kp" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
-/area/submap/v5/outpost_airlock)
+/area/submap/v5/outpost_nhall)
 "Kq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 10
@@ -2350,24 +2371,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_dome)
-"Mx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel_grid{
-	carbon_dioxide = 75;
-	nitrogen = 17;
-	outdoors = 1;
-	oxygen = 8;
-	temperature = 150
-	},
-/area/submap/v5/outpost_airlock)
 "My" = (
 /turf/simulated/shuttle/wall/alien/hard_corner,
 /area/submap/v5/alien_ship)
@@ -2769,14 +2772,18 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "SJ" = (
 /obj/structure/railing,
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "SN" = (
 /obj/machinery/door/airlock/glass_engineering,
@@ -2817,7 +2824,9 @@
 	dir = 8
 	},
 /obj/structure/railing,
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "TG" = (
 /obj/item/bluespace_crystal,
@@ -2903,7 +2912,9 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water{
+	outdoors = -1
+	},
 /area/submap/v5/outpost_power)
 "UR" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3263,12 +3274,6 @@
 	temperature = 150
 	},
 /area/submap/v5/outdoors)
-"Zx" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/submap/v5/outpost_nhall)
 "Zy" = (
 /turf/simulated/floor/outdoors/snow/v5,
 /area/submap/v5/outdoors)
@@ -13336,20 +13341,20 @@ Zy
 Zy
 Zy
 Zy
-sd
-sd
+Zy
+Zy
 Tb
-ki
-Mx
-ki
-Zy
-Zy
-Zy
-Zy
-Zy
-Zy
-Zy
-Zy
+XJ
+om
+XJ
+Cy
+Cy
+Cy
+Cy
+Cy
+Cy
+Cy
+Cy
 zk
 zk
 VM
@@ -13478,8 +13483,8 @@ Zy
 Zy
 Zy
 Zy
-sd
-sd
+Zy
+Zy
 ZX
 MJ
 fn
@@ -13488,9 +13493,9 @@ ZX
 ZX
 ZX
 ZX
-Zy
-Zy
-Zy
+Cy
+Cy
+Cy
 zk
 zk
 mq
@@ -13620,7 +13625,7 @@ Zy
 Zy
 Zy
 Zy
-sq
+Zy
 oe
 yQ
 Ca
@@ -13630,8 +13635,8 @@ Vh
 WZ
 WZ
 ZX
-Zy
-Zy
+Cy
+Cy
 WQ
 cb
 VM
@@ -13762,8 +13767,8 @@ Zy
 Zy
 Zy
 Zy
-sd
-sd
+Zy
+Zy
 AZ
 qT
 RH
@@ -13772,7 +13777,7 @@ Ed
 Na
 gI
 ZX
-Zy
+Cy
 WQ
 cb
 VM
@@ -13904,7 +13909,7 @@ Wu
 Zy
 Zy
 Et
-sq
+Zy
 oe
 yQ
 Ca
@@ -13914,7 +13919,7 @@ Vh
 XX
 OQ
 ZX
-Zy
+Cy
 HI
 VM
 UJ
@@ -14046,8 +14051,8 @@ Wu
 Wu
 Zy
 Zy
-sd
-sd
+Zy
+Zy
 ZX
 LS
 uk
@@ -14190,9 +14195,9 @@ Wu
 Wu
 Zy
 Zy
-Vh
+Ou
 mG
-RH
+ki
 Kp
 Qs
 Eo
@@ -14333,9 +14338,9 @@ Wu
 Wu
 Zy
 Ou
-pr
+CQ
 dO
-Vj
+pr
 Vj
 ke
 ke
@@ -14475,9 +14480,9 @@ Wu
 Wu
 Wu
 Ou
-Zx
-OA
 CQ
+OA
+sd
 OZ
 CQ
 CQ
