@@ -52,7 +52,7 @@ export const BodyScannerMainOrgansExternal = (props: {
                 >
                   {!!o.bruteLoss && (
                     <Tooltip content="Brute damage" position="top">
-                      <Icon name="bone" />
+                      <Icon name="band-aid" />
                       {toFixed(o.bruteLoss)}&nbsp;
                     </Tooltip>
                   )}
