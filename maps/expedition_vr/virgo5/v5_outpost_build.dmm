@@ -5,17 +5,23 @@
 /area/submap/v5/outpost_atmos)
 "ai" = (
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/machinery/embedded_controller/radio/airlock/phoron{
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	id_tag = "v5_airlock";
-	pixel_x = 25;
-	pixel_y = -30
+	frequency = 1379;
+	id_tag = "v5_airlock_pump"
 	},
-/obj/machinery/light/floortube,
-/obj/machinery/airlock_sensor/co2{
-	id_tag = "v5_airlock_sensor";
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/airlock_sensor{
 	pixel_x = 27;
 	pixel_y = -39
+	},
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	cycle_to_external_air = 1;
+	dir = 4;
+	id_tag = "v5_airlock";
+	name = "Aerostat Airlock Controller";
+	pixel_x = 29;
+	pixel_y = -31
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_airlock)
@@ -150,7 +156,9 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_dome)
 "ck" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_airlock)
 "cQ" = (
@@ -272,21 +280,6 @@
 "eT" = (
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_engi)
-"eZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1
-	},
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/submap/v5/outpost_airlock)
 "fj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -436,21 +429,6 @@
 /obj/machinery/vending/snack,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/v5/outpost_bar)
-"hM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9
-	},
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/submap/v5/outpost_airlock)
 "hZ" = (
 /obj/structure/outcrop/silver,
 /turf/simulated/mineral/floor/icey{
@@ -606,6 +584,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_nhall)
+"ki" = (
+/turf/simulated/floor/plating{
+	carbon_dioxide = 75;
+	nitrogen = 17;
+	outdoors = 1;
+	oxygen = 8;
+	temperature = 150
+	},
+/area/submap/v5/outpost_airlock)
 "kn" = (
 /turf/simulated/shuttle/floor/alien,
 /area/submap/v5/alien_ship)
@@ -715,8 +702,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor/airlock_interior{
+	pixel_x = -24;
+	pixel_y = 21
+	},
 /turf/simulated/floor/plating,
-/area/submap/v5/outpost_nhall)
+/area/submap/v5/outpost_airlock)
 "mR" = (
 /obj/structure/prop/rock/glamour/small/alt2,
 /turf/simulated/mineral/floor/icey{
@@ -765,6 +757,12 @@
 /obj/effect/shuttle_landmark/automatic/admin_use1,
 /turf/simulated/floor/outdoors/snow/v5,
 /area/submap/v5/outpost_lpad)
+"oe" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/snow/v5,
+/area/submap/v5/outpost_airlock)
 "of" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -1015,9 +1013,8 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_atmos)
 "qT" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
-	frequency = 1379;
-	scrub_id = "v5_airlock_scrubber"
+/obj/machinery/light/floortube{
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_airlock)
@@ -1064,6 +1061,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_atmos)
+"sd" = (
+/turf/simulated/floor/outdoors/snow/v5,
+/area/submap/v5/outpost_airlock)
 "sm" = (
 /obj/structure/table/gamblingtable,
 /obj/item/reagent_containers/food/condiment/small/peppermill{
@@ -1076,6 +1076,11 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/v5/outpost_bar)
+"sq" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
+/turf/simulated/floor/outdoors/snow/v5,
+/area/submap/v5/outpost_airlock)
 "sz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1159,18 +1164,6 @@
 /obj/item/robot_parts/robot_component/camera,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/submap/v5/mech_pod)
-"tA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/submap/v5/outpost_nhall)
 "tH" = (
 /obj/structure/prop/rock/crystal,
 /turf/simulated/mineral/floor/icey{
@@ -1421,6 +1414,17 @@
 "yB" = (
 /turf/simulated/shuttle/floor/alienplating/blue,
 /area/submap/v5/alien_ship)
+"yQ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced/full,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/submap/v5/outpost_airlock)
 "yY" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -1616,11 +1620,12 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_dome)
 "Ca" = (
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
 	frequency = 1379;
 	id_tag = "v5_airlock_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_airlock)
 "Cg" = (
@@ -2141,6 +2146,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_atmos)
+"Kp" = (
+/turf/simulated/floor/plating,
+/area/submap/v5/outpost_airlock)
 "Kq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 10
@@ -2342,6 +2350,24 @@
 	},
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_dome)
+"Mx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_grid{
+	carbon_dioxide = 75;
+	nitrogen = 17;
+	outdoors = 1;
+	oxygen = 8;
+	temperature = 150
+	},
+/area/submap/v5/outpost_airlock)
 "My" = (
 /turf/simulated/shuttle/wall/alien/hard_corner,
 /area/submap/v5/alien_ship)
@@ -2704,9 +2730,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5
-	},
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
@@ -2728,7 +2751,12 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/v5/outpost_bar)
 "Sn" = (
-/obj/machinery/light/floortube,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1379;
+	id_tag = "v5_airlock_pump"
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_airlock)
 "Sq" = (
@@ -2767,6 +2795,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_atmos)
+"Tb" = (
+/obj/machinery/airlock_sensor/airlock_exterior{
+	pixel_x = 23
+	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/turf/simulated/floor/outdoors/snow/v5,
+/area/submap/v5/outpost_airlock)
 "Tr" = (
 /obj/structure/table/gamblingtable,
 /obj/item/storage/fancy/cigar,
@@ -13301,12 +13336,12 @@ Zy
 Zy
 Zy
 Zy
-Zy
-Zy
-Zy
-XJ
-om
-XJ
+sd
+sd
+Tb
+ki
+Mx
+ki
 Zy
 Zy
 Zy
@@ -13443,8 +13478,8 @@ Zy
 Zy
 Zy
 Zy
-Zy
-Zy
+sd
+sd
 ZX
 MJ
 fn
@@ -13585,9 +13620,9 @@ Zy
 Zy
 Zy
 Zy
-Zy
-Zy
-AZ
+sq
+oe
+yQ
 Ca
 RH
 Sn
@@ -13727,11 +13762,11 @@ Zy
 Zy
 Zy
 Zy
-Zy
-Zy
+sd
+sd
 AZ
 qT
-eZ
+RH
 ck
 Ed
 Na
@@ -13869,11 +13904,11 @@ Wu
 Zy
 Zy
 Et
-Zy
-Zy
-AZ
+sq
+oe
+yQ
 Ca
-hM
+RH
 ai
 Vh
 XX
@@ -14011,8 +14046,8 @@ Wu
 Wu
 Zy
 Zy
-Zy
-Zy
+sd
+sd
 ZX
 LS
 uk
@@ -14155,10 +14190,10 @@ Wu
 Wu
 Zy
 Zy
-Ou
+Vh
 mG
-tA
-CQ
+RH
+Kp
 Qs
 Eo
 sT
