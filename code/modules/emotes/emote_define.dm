@@ -85,7 +85,7 @@ var/global/list/emotes_by_key
 	if(ismob(user) && check_restraints)
 		var/mob/M = user
 		if(M.restrained())
-			to_chat(user, SPAN_WARNING("You are restrained and cannot do that."))
+			to_chat(user, span_warning("You are restrained and cannot do that."))
 			return
 
 	var/atom/target
@@ -106,7 +106,7 @@ var/global/list/emotes_by_key
 				target = thing
 
 		if(!target)
-			to_chat(user, SPAN_WARNING("You cannot see a '[extra_params]' within range."))
+			to_chat(user, span_warning("You cannot see a '[extra_params]' within range."))
 			return
 
 	var/use_1p = get_emote_message_1p(user, target, extra_params)

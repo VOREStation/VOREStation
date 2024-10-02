@@ -40,7 +40,7 @@
 			scraped++
 
 		if(scraped)
-			to_chat(user, SPAN_NOTICE("You scrape the hair off [scraped] hide\s."))
+			to_chat(user, span_notice("You scrape the hair off [scraped] hide\s."))
 	else
 		..()
 

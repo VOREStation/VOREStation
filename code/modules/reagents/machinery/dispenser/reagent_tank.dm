@@ -522,7 +522,7 @@
 
 /obj/structure/reagent_dispensers/cookingoil/proc/explode()
 	reagents.splash_area(get_turf(src), 3)
-	visible_message(span("danger", "The [src] bursts open, spreading oil all over the area."))
+	visible_message(span_danger("The [src] bursts open, spreading oil all over the area."))
 	qdel(src)
 
 /obj/structure/reagent_dispensers/bloodbarrel

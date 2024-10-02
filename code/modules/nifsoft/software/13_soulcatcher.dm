@@ -492,21 +492,21 @@
 	src.nsay_act(message)
 
 /mob/proc/nsay_act(message as text)
-	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
+	to_chat(src, span_warning("You must be a humanoid with a NIF implanted to use that."))
 
 /mob/living/carbon/human/nsay_act(message as text)
 	if(stat != CONSCIOUS)
-		to_chat(src,SPAN_WARNING("You can't use NSay while unconscious."))
+		to_chat(src,span_warning("You can't use NSay while unconscious."))
 		return
 	if(!nif)
-		to_chat(src,SPAN_WARNING("You can't use NSay without a NIF."))
+		to_chat(src,span_warning("You can't use NSay without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NSay."))
+		to_chat(src,span_warning("You need the Soulcatcher software to use NSay."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,SPAN_WARNING("You need a loaded mind to use NSay."))
+		to_chat(src,span_warning("You need a loaded mind to use NSay."))
 		return
 	if(!message)
 		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
@@ -522,21 +522,21 @@
 	src.nme_act(message)
 
 /mob/proc/nme_act(message as message)
-	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
+	to_chat(src, span_warning("You must be a humanoid with a NIF implanted to use that."))
 
 /mob/living/carbon/human/nme_act(message as message)
 	if(stat != CONSCIOUS)
-		to_chat(src,SPAN_WARNING("You can't use NMe while unconscious."))
+		to_chat(src,span_warning("You can't use NMe while unconscious."))
 		return
 	if(!nif)
-		to_chat(src,SPAN_WARNING("You can't use NMe without a NIF."))
+		to_chat(src,span_warning("You can't use NMe without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NMe."))
+		to_chat(src,span_warning("You need the Soulcatcher software to use NMe."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,SPAN_WARNING("You need a loaded mind to use NMe."))
+		to_chat(src,span_warning("You need a loaded mind to use NMe."))
 		return
 
 	if(!message)

@@ -9,12 +9,12 @@
 	that is the Exonet.<br>\
 	<br>\
 	The Exonet is the predominant interstellar telecomm system, servicing trillions of devices across a large portion of human-controlled space.  \
-	It is distributed by a massive network of telecommunication satellites, some privately owned and others owned by the systems� local governments, \
+	It is distributed by a massive network of telecommunication satellites, some privately owned and others owned by the systems' local governments, \
 	that utilize FTL technologies to bounce data between satellites at speeds that would not be possible at sub-light technology.  This communicator \
 	uses a protocol called Exonet Protocol Version 2, generally shortened to EPv2.<br>\
 	<br>\
 	EPv2 is the most common communications protocol in the Exonet, and was specifically designed for it.  It was designed to facilitate communication \
-	between any device in a star system, and have the ability to forward interstellar requests at the root node of that system�s Exonet.  \
+	between any device in a star system, and have the ability to forward interstellar requests at the root node of that system's Exonet.  \
 	It is also built to cope with the reality that the numerous nodes in a system will likely have frequent outages.  The protocol allows for \
 	up to 18,446,744,073,709,551,616 unique addresses, one of which is assigned to this device."
 

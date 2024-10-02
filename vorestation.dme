@@ -3915,7 +3915,6 @@
 #include "code\modules\research\designs\medical_vr.dm"
 #include "code\modules\research\designs\mining_toys.dm"
 #include "code\modules\research\designs\misc.dm"
-#include "code\modules\research\designs\misc_vr.dm"
 #include "code\modules\research\designs\modular_computer.dm"
 #include "code\modules\research\designs\pdas.dm"
 #include "code\modules\research\designs\power_cells.dm"

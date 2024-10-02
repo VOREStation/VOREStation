@@ -229,7 +229,7 @@ var/list/GPS_list = list()
 /obj/item/gps/proc/display(mob/user)
 
 	if(emped)
-		to_chat(user, SPAN_WARNING("It's busted!"))
+		to_chat(user, span_warning("It's busted!"))
 		return
 
 	var/list/dat = list()
@@ -290,7 +290,7 @@ var/list/GPS_list = list()
 			LAZYSET(showing_tracked_names, gps_ref, TRUE)
 		else
 			LAZYREMOVE(showing_tracked_names, gps_ref)
-		to_chat(usr, SPAN_NOTICE("\The [src] is [LAZYACCESS(showing_tracked_names, gps_ref) ? "now showing" : "no longer showing"] labels for [gps.gps_tag]."))
+		to_chat(usr, span_notice("\The [src] is [LAZYACCESS(showing_tracked_names, gps_ref) ? "now showing" : "no longer showing"] labels for [gps.gps_tag]."))
 
 	if(href_list["stop_track"])
 		var/gps_ref = href_list["stop_track"]
@@ -299,7 +299,7 @@ var/list/GPS_list = list()
 		LAZYREMOVE(tracking_devices, gps_ref)
 		LAZYREMOVE(showing_tracked_names, gps_ref)
 		if(istype(gps) && !QDELETED(gps))
-			to_chat(usr, SPAN_NOTICE("\The [src] is no longer tracking [gps.gps_tag]."))
+			to_chat(usr, span_notice("\The [src] is no longer tracking [gps.gps_tag]."))
 		update_compass()
 		. = TRUE
 
@@ -309,7 +309,7 @@ var/list/GPS_list = list()
 		if(istype(gps) && !QDELETED(gps))
 			LAZYSET(tracking_devices, gps_ref, "#00ffff")
 			LAZYSET(showing_tracked_names, gps_ref, TRUE)
-			to_chat(usr, SPAN_NOTICE("\The [src] is now tracking [gps.gps_tag]."))
+			to_chat(usr, span_notice("\The [src] is now tracking [gps.gps_tag]."))
 			update_compass()
 			. = TRUE
 
@@ -318,7 +318,7 @@ var/list/GPS_list = list()
 		if(istype(gps) && !QDELETED(gps))
 			var/new_colour = input(usr, "Enter a new tracking color.", "GPS Waypoint Color") as color|null
 			if(new_colour && istype(gps) && !QDELETED(gps) && holder == usr && !usr.incapacitated())
-				to_chat(usr, SPAN_NOTICE("You adjust the colour \the [src] is using to highlight [gps.gps_tag]."))
+				to_chat(usr, span_notice("You adjust the colour \the [src] is using to highlight [gps.gps_tag]."))
 				LAZYSET(tracking_devices, href_list["track_color"], new_colour)
 				update_compass()
 				. = TRUE

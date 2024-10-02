@@ -150,7 +150,7 @@
 
 /obj/item/space_spider_egg/attack_self(mob/user as mob)
 	var/turf/drop_loc = user.loc
-	to_chat(user, SPAN_WARNING("The egg cracks open, splattering disgusting goop at your feet...\n \
+	to_chat(user, span_warning("The egg cracks open, splattering disgusting goop at your feet...\n \
 	Whatever life laid within shall never awaken, if it was even alive."))
 	new /obj/effect/decal/cleanable/spiderling_remains(drop_loc)
 	qdel(src)

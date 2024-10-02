@@ -521,13 +521,13 @@
 							var/datum/ai_holder/AI = L.ai_holder
 							if(stance == STANCE_SLEEP)
 								AI.go_wake()
-								to_chat(user, span("notice", "\The [L]'s AI has been enabled."))
+								to_chat(user, span_notice("\The [L]'s AI has been enabled."))
 							else
 								AI.go_sleep()
-								to_chat(user, span("notice", "\The [L]'s AI has been disabled."))
+								to_chat(user, span_notice("\The [L]'s AI has been disabled."))
 							return
 						else
-							to_chat(user, span("warning", "\The [L] is not AI controlled."))
+							to_chat(user, span_warning("\The [L] is not AI controlled."))
 						return
 
 					// Toggle hostility
@@ -535,28 +535,28 @@
 						if(!isnull(L.get_AI_stance()))
 							var/datum/ai_holder/AI = L.ai_holder
 							AI.hostile = !AI.hostile
-							to_chat(user, span("notice", "\The [L] is now [AI.hostile ? "hostile" : "passive"]."))
+							to_chat(user, span_notice("\The [L] is now [AI.hostile ? "hostile" : "passive"]."))
 						else
-							to_chat(user, span("warning", "\The [L] is not AI controlled."))
+							to_chat(user, span_warning("\The [L] is not AI controlled."))
 						return
 
 					// Copy faction
 					if(pa.Find("ctrl"))
 						holder.copied_faction = L.faction
-						to_chat(user, span("notice", "Copied faction '[holder.copied_faction]'."))
+						to_chat(user, span_notice("Copied faction '[holder.copied_faction]'."))
 						return
 
 					// Select/Deselect
 					if(!isnull(L.get_AI_stance()))
 						if(L in holder.selected_mobs)
 							holder.deselect_AI_mob(user.client, L)
-							to_chat(user, span("notice", "Deselected \the [L]."))
+							to_chat(user, span_notice("Deselected \the [L]."))
 						else
 							holder.select_AI_mob(user.client, L)
-							to_chat(user, span("notice", "Selected \the [L]."))
+							to_chat(user, span_notice("Selected \the [L]."))
 						return
 					else
-						to_chat(user, span("warning", "\The [L] is not AI controlled."))
+						to_chat(user, span_warning("\The [L] is not AI controlled."))
 						return
 				else //Not living
 					for(var/mob/living/unit in holder.selected_mobs)
@@ -564,17 +564,17 @@
 
 			if(pa.Find("middle"))
 				if(pa.Find("shift"))
-					to_chat(user, SPAN_NOTICE("All selected mobs set to wander"))
+					to_chat(user, span_notice("All selected mobs set to wander"))
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = TRUE
 				if(pa.Find("ctrl"))
-					to_chat(user, SPAN_NOTICE("Setting mobs set to NOT wander"))
+					to_chat(user, span_notice("Setting mobs set to NOT wander"))
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = FALSE
 				if(pa.Find("alt") && isatom(object))
-					to_chat(user, SPAN_NOTICE("Adding [object] to Entity Narrate List!"))
+					to_chat(user, span_notice("Adding [object] to Entity Narrate List!"))
 					user.client.add_mob_for_narration(object)
 
 
@@ -582,12 +582,12 @@
 				// Paste faction
 				if(pa.Find("ctrl") && isliving(object))
 					if(!holder.copied_faction)
-						to_chat(user, span("warning", "LMB+Shift a mob to copy their faction before pasting."))
+						to_chat(user, span_warning("LMB+Shift a mob to copy their faction before pasting."))
 						return
 					else
 						var/mob/living/L = object
 						L.faction = holder.copied_faction
-						to_chat(user, span("notice", "Pasted faction '[holder.copied_faction]'."))
+						to_chat(user, span_notice("Pasted faction '[holder.copied_faction]'."))
 						return
 
 				if(istype(object, /atom)) // Force attack.
@@ -599,7 +599,7 @@
 							var/datum/ai_holder/AI = unit.ai_holder
 							AI.give_target(A)
 							i++
-						to_chat(user, span("notice", "Commanded [i] mob\s to attack \the [A]."))
+						to_chat(user, span_notice("Commanded [i] mob\s to attack \the [A]."))
 						var/image/orderimage = image(buildmode_hud,A,"ai_targetorder")
 						orderimage.plane = PLANE_BUILDMODE
 						flick_overlay(orderimage, list(user.client), 8, TRUE)
@@ -626,7 +626,7 @@
 							message += "."
 					if(j)
 						message += "[j] mob\s to follow \the [L]."
-					to_chat(user, span("notice", message))
+					to_chat(user, span_notice(message))
 					var/image/orderimage = image(buildmode_hud,L,"ai_targetorder")
 					orderimage.plane = PLANE_BUILDMODE
 					flick_overlay(orderimage, list(user.client), 8, TRUE)
@@ -645,7 +645,7 @@
 						else
 							AI.give_destination(T, 1, pa.Find("shift")) // If shift is held, the mobs will not stop moving to attack a visible enemy.
 							told++
-					to_chat(user, span("notice", "Commanded [told] mob\s to move to \the [T], and manually placed [forced] of them."))
+					to_chat(user, span_notice("Commanded [told] mob\s to move to \the [T], and manually placed [forced] of them."))
 					var/image/orderimage = image(buildmode_hud,T,"ai_turforder")
 					orderimage.plane = PLANE_BUILDMODE
 					flick_overlay(orderimage, list(user.client), 8, TRUE)
@@ -708,7 +708,7 @@
 					holder.select_AI_mob(user, L)
 					i++
 
-			to_chat(user, span("notice", "Band-selected [i] mobs."))
+			to_chat(user, span_notice("Band-selected [i] mobs."))
 			return
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)

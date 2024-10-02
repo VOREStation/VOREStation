@@ -25,7 +25,7 @@
 			return
 
 		if(world.time < next_emote)
-			to_chat(src, SPAN_WARNING("You cannot use another emote yet."))
+			to_chat(src, span_warning("You cannot use another emote yet."))
 			return
 		//VOREStation Addition Start
 		if(forced_psay)
@@ -49,7 +49,7 @@
 			return
 
 		if(!can_emote(m_type))
-			to_chat(src, SPAN_WARNING("You cannot currently [m_type == AUDIBLE_MESSAGE ? "audibly" : "visually"] emote!"))
+			to_chat(src, span_warning("You cannot currently [m_type == AUDIBLE_MESSAGE ? "audibly" : "visually"] emote!"))
 			return
 
 		if(act == "me")
@@ -83,11 +83,11 @@
 
 	var/decl/emote/use_emote = get_emote_by_key(act)
 	if(!istype(use_emote))
-		to_chat(src, SPAN_WARNING("Unknown emote '[act]'. Type <b>say *help</b> for a list of usable emotes."))
+		to_chat(src, span_warning("Unknown emote '[act]'. Type <b>say *help</b> for a list of usable emotes."))
 		return
 
 	if(!use_emote.mob_can_use(src))
-		to_chat(src, SPAN_WARNING("You cannot use the emote '[act]'. Type <b>say *help</b> for a list of usable emotes."))
+		to_chat(src, span_warning("You cannot use the emote '[act]'. Type <b>say *help</b> for a list of usable emotes."))
 		return
 
 	if(m_type != use_emote.message_type && use_emote.conscious && stat != CONSCIOUS)
@@ -130,8 +130,8 @@
 	// Oh shit, we got this far! Let's see... did the user attempt to use more than one token?
 	if(findtext(subtext, "*"))
 		// abort abort!
-		to_chat(emoter, SPAN_WARNING("You may use only one \"["*"]\" symbol in your emote."))
-		to_chat(emoter, SPAN_WARNING(message))
+		to_chat(emoter, span_warning("You may use only one \"["*"]\" symbol in your emote."))
+		to_chat(emoter, span_warning(message))
 		return
 
 	if(pretext)

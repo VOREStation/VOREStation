@@ -1,6 +1,8 @@
-import { useBackend } from '../backend';
-import { Button, ByondUi } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Button } from 'tgui/components';
+import { NtosWindow } from 'tgui/layouts';
+import { ByondUi } from 'tgui-core/components';
+
 import {
   camera,
   CameraConsoleContent,

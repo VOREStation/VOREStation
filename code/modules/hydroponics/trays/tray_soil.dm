@@ -34,13 +34,13 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/shovel) && user.a_intent == I_HURT)
-		user.visible_message(SPAN_NOTICE("\The [user] begins filling in \the [src]."))
+		user.visible_message(span_notice("\The [user] begins filling in \the [src]."))
 		if(do_after(user, 3 SECONDS) && !QDELETED(src))
-			user.visible_message(SPAN_NOTICE("\The [user] fills in \the [src]."))
+			user.visible_message(span_notice("\The [user] fills in \the [src]."))
 			qdel(src)
 		return
 	. = ..()
-	
+
 
 // Holder for vine plants.
 // Icons for plants are generated as overlays, so setting it to invisible wouldn't work.

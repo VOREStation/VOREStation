@@ -40,20 +40,20 @@
 
 	//Since we extended to include all atoms, we're shutting things down with a guard clause for ghosts
 	if(istype(E, /mob/observer))
-		to_chat(usr, SPAN_NOTICE("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
+		to_chat(usr, span_notice("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
 		return
 	//We require a static mob/living type to check for .client and also later on, to use the unique .say mechanics for stuttering and language
 	if(istype(E, /mob/living))
 		var/mob/living/L = E
 		if(L.client)
-			to_chat(usr, SPAN_NOTICE("[L.name] is a player. All attempts to speak through them \
+			to_chat(usr, span_notice("[L.name] is a player. All attempts to speak through them \
 			gets logged in case of abuse."))
 			log_and_message_admins("has added [L.ckey]'s mob to their entity narrate list", usr)
 			return
 		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", L.name))
 		if(unique_name in holder.entity_names)
-			to_chat(usr, SPAN_NOTICE("[unique_name] is not unique! Pick another!"))
+			to_chat(usr, span_notice("[unique_name] is not unique! Pick another!"))
 			add_mob_for_narration(L) //Recursively calling ourselves until cancelled or a unique name is given.
 			return
 		holder.entity_names += unique_name
@@ -66,7 +66,7 @@
 		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", A.name))
 		if(unique_name in holder.entity_names)
-			to_chat(usr, SPAN_NOTICE("[unique_name] is not unique! Pick another!"))
+			to_chat(usr, span_notice("[unique_name] is not unique! Pick another!"))
 			add_mob_for_narration(A)
 			return
 		holder.entity_names += unique_name
@@ -157,17 +157,17 @@
 	mode = sanitize(mode)
 
 	if(!(mode in list("Speak", "Emote")))
-		to_chat(usr, SPAN_NOTICE("Valid modes are 'Speak' and 'Emote'."))
+		to_chat(usr, span_notice("Valid modes are 'Speak' and 'Emote'."))
 		return
 	if(!holder.entity_refs[name])
-		to_chat(usr, SPAN_NOTICE("[name] not in saved references!"))
+		to_chat(usr, span_notice("[name] not in saved references!"))
 
 	//Separate definition for mob/living and /obj due to .say() code allowing us to engage with languages, stuttering etc
 	//We also need this so we can check for .client
 	var/datum/weakref/wref = holder.entity_refs[name]
 	var/selection = wref.resolve()
 	if(!selection)
-		to_chat(usr, SPAN_NOTICE("[name] has invalid reference, deleting"))
+		to_chat(usr, span_notice("[name] has invalid reference, deleting"))
 		holder.entity_names -= name
 		holder.entity_refs -= name
 	if(istype(selection, /mob/living))
@@ -260,7 +260,7 @@
 					var/datum/weakref/wref = entity_refs[tgui_selected_id]
 					tgui_selected_refs = wref.resolve()
 					if(!tgui_selected_refs)
-						to_chat(usr, SPAN_NOTICE("[tgui_selected_id] has invalid reference, deleting"))
+						to_chat(usr, span_notice("[tgui_selected_id] has invalid reference, deleting"))
 						entity_names -= tgui_selected_id
 						entity_refs -= tgui_selected_id
 						tgui_selected_id = ""
@@ -281,9 +281,9 @@
 						tgui_selected_name = A.name
 		if("narrate")
 			if(world.time < (tgui_last_message + 0.5 SECONDS))
-				to_chat(usr, SPAN_NOTICE("You can't messages that quickly! Wait at least half a second"))
+				to_chat(usr, span_notice("You can't messages that quickly! Wait at least half a second"))
 			else
-				to_chat(usr, SPAN_NOTICE("Message successfully sent!"))
+				to_chat(usr, span_notice("Message successfully sent!"))
 				tgui_last_message = world.time
 				var/message = params["message"] //Sanitizing before speaking it
 				if(tgui_selection_mode)
@@ -291,7 +291,7 @@
 						var/datum/weakref/wref = entity_refs[entity]
 						var/ref = wref.resolve()
 						if(!ref)
-							to_chat(usr, SPAN_NOTICE("[entity] has invalid reference, deleting"))
+							to_chat(usr, span_notice("[entity] has invalid reference, deleting"))
 							entity_names -= entity
 							entity_refs -= entity
 							tgui_selected_id_multi -= entity
@@ -308,7 +308,7 @@
 					var/datum/weakref/wref = entity_refs[tgui_selected_id]
 					var/ref = wref.resolve()
 					if(!ref)
-						to_chat(usr, SPAN_NOTICE("[tgui_selected_id] has invalid reference, deleting"))
+						to_chat(usr, span_notice("[tgui_selected_id] has invalid reference, deleting"))
 						entity_names -= tgui_selected_id
 						entity_refs -= tgui_selected_id
 						tgui_selected_id = ""

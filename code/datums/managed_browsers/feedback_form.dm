@@ -58,14 +58,14 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 	if(can_be_private())
 		if(!feedback_hide_author)
 			dat += "[my_client.ckey] "
-			dat += span("linkOn", "<b>Visible</b>")
+			dat += span_linkOn("<b>Visible</b>")
 			dat += " | "
 			dat += href(src, list("feedback_hide_author" = 1), "Hashed")
 		else
 			dat += "[md5(ckey(lowertext(my_client.ckey + SSsqlite.get_feedback_pepper())))] "
 			dat += href(src, list("feedback_hide_author" = 0), "Visible")
 			dat += " | "
-			dat += span("linkOn", "<b>Hashed</b>")
+			dat += span_linkOn("<b>Hashed</b>")
 	else
 		dat += my_client.ckey
 	dat += "<br>"
@@ -120,13 +120,13 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 		// Do some last minute validation, and tell the user if something goes wrong,
 		// so we don't wipe out their ten thousand page essay due to having a few too many characters.
 		if(length(feedback_body) > MAX_FEEDBACK_LENGTH)
-			to_chat(my_client, span("warning", "Your feedback is too long, at [length(feedback_body)] characters, where as the \
+			to_chat(my_client, span_warning("Your feedback is too long, at [length(feedback_body)] characters, where as the \
 			limit is [MAX_FEEDBACK_LENGTH]. Please shorten it and try again."))
 			return
 
 		var/text = sanitize(feedback_body, max_length = 0, encode = TRUE, trim = FALSE, extra = FALSE)
 		if(!text) // No text, or it was super invalid.
-			to_chat(my_client, span("warning", "It appears you didn't write anything, or it was invalid."))
+			to_chat(my_client, span_warning("It appears you didn't write anything, or it was invalid."))
 			return
 
 		if(tgui_alert(my_client, "Are you sure you want to submit your feedback?", "Confirm Submission", list("No", "Yes")) == "Yes")
@@ -136,7 +136,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 
 			var/success = SSsqlite.insert_feedback(author = author_text, topic = feedback_topic, content = feedback_body, sqlite_object = SSsqlite.sqlite_db)
 			if(!success)
-				to_chat(my_client, span("warning", "Something went wrong while inserting your feedback into the database. Please try again. \
+				to_chat(my_client, span_warning("Something went wrong while inserting your feedback into the database. Please try again. \
 				If this happens again, you should contact a developer."))
 				return
 

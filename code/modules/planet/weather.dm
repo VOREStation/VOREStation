@@ -151,7 +151,7 @@
 	wind_speed = new_wind_speed
 	wind_dir = pick(alldirs)
 	var/message = "You feel the wind blowing [wind_speed > 2 ? "strongly ": ""]towards the <b>[dir2text(wind_dir)]</b>."
-	message_all_outdoor_players(span("warning", message))
+	message_all_outdoor_players(span_warning(message))
 
 /datum/weather_holder/proc/message_all_outdoor_players(message)
 	for(var/mob/M in player_list) // Don't need to care about clientless mobs.

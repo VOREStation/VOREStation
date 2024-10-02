@@ -191,7 +191,7 @@
 			var/obj/item/reagent_containers/cooking_container/CC = container
 			CC.clear()
 
-		container.visible_message(SPAN_WARNING("[container] inexplicably spills, and its contents are lost!"))
+		container.visible_message(span_warning("[container] inexplicably spills, and its contents are lost!"))
 
 		return
 

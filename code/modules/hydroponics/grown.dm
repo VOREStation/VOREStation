@@ -216,7 +216,7 @@
 
 				if(seed.kitchen_tag == "sunflower")
 					new /obj/item/reagent_containers/food/snacks/rawsunflower(get_turf(src))
-					to_chat(user, SPAN_NOTICE("You remove the seeds from the flower, slightly damaging them."))
+					to_chat(user, span_notice("You remove the seeds from the flower, slightly damaging them."))
 					qdel(src)
 					return
 

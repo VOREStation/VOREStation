@@ -89,18 +89,18 @@
 				break
 
 	if(busy && !(target == current_target))
-		to_chat(user, span("warning", "\The [src] is already targeting something."))
+		to_chat(user, span_warning("\The [src] is already targeting something."))
 		return
 
 	if(!isliving(target))
-		to_chat(user, span("warning", "\the [target] is not a valid target."))
+		to_chat(user, span_warning("\the [target] is not a valid target."))
 		return
 
 	var/mob/living/L = target
 	var/mob/living/U = user
 
 	if(get_dist(target, user) > beam_range)
-		to_chat(user, span("warning", "You are too far away from \the [target] to affect it. Get closer."))
+		to_chat(user, span_warning("You are too far away from \the [target] to affect it. Get closer."))
 		return
 
 	if(target == current_target && busy)
@@ -121,7 +121,7 @@
 		unresizable = TRUE
 
 	if(unresizable)
-		to_chat(user, span("warning", "\the [target] is immune to resizing."))
+		to_chat(user, span_warning("\the [target] is immune to resizing."))
 
 	// Start the effects
 	current_target = target
@@ -175,7 +175,7 @@
 	else
 		sizeshift_mode = !sizeshift_mode
 		update_icon()
-		to_chat(user, span("notice", "\The [src] will now [sizeshift_mode ? "grow" : "shrink"] its targets."))
+		to_chat(user, span_notice("\The [src] will now [sizeshift_mode ? "grow" : "shrink"] its targets."))
 
 
 #undef SIZE_SHRINK
@@ -256,7 +256,7 @@
 /obj/item/slow_sizegun/AltClick(mob/user)
 	if (trading == 0)
 		trading = 1
-		to_chat(user, span("notice", "\The [src] will now trade your targets size for your own."))
+		to_chat(user, span_notice("\The [src] will now trade your targets size for your own."))
 	else
 		trading = 0
-		to_chat(user, span("notice", "\The [src] will no longer trade your targets size for your own."))
+		to_chat(user, span_notice("\The [src] will no longer trade your targets size for your own."))

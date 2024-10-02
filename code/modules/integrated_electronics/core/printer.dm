@@ -49,20 +49,20 @@
 		var/obj/item/stack/material/stack = O
 		if(stack.material.name == MAT_STEEL)
 			if(debug)
-				to_chat(user, span("warning", "\The [src] does not need any material."))
+				to_chat(user, span_warning("\The [src] does not need any material."))
 				return
 			var/num = min((max_metal - metal) / metal_per_sheet, stack.get_amount())
 			if(num < 1)
-				to_chat(user, span("warning", "\The [src] is too full to add more metal."))
+				to_chat(user, span_warning("\The [src] is too full to add more metal."))
 				return
 			if(stack.use(max(1, round(num)))) // We don't want to create stacks that aren't whole numbers
-				to_chat(user, span("notice", "You add [num] sheet\s to \the [src]."))
+				to_chat(user, span_notice("You add [num] sheet\s to \the [src]."))
 				metal += num * metal_per_sheet
 				attack_self(user)
 				return TRUE
 
 	if(istype(O,/obj/item/integrated_circuit))
-		to_chat(user, span("notice", "You insert the circuit into \the [src]."))
+		to_chat(user, span_notice("You insert the circuit into \the [src]."))
 		user.unEquip(O)
 		metal = min(metal + O.w_class, max_metal)
 		qdel(O)
@@ -71,9 +71,9 @@
 
 	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/advanced))
 		if(upgraded)
-			to_chat(user, span("warning", "\The [src] already has this upgrade."))
+			to_chat(user, span_warning("\The [src] already has this upgrade."))
 			return TRUE
-		to_chat(user, span("notice", "You install \the [O] into  \the [src]."))
+		to_chat(user, span_notice("You install \the [O] into  \the [src]."))
 		upgraded = TRUE
 		dirty_items = TRUE
 		attack_self(user)
@@ -81,9 +81,9 @@
 
 	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/illegal))
 		if(illegal_upgraded)
-			to_chat(user, span("warning", "\The [src] already has this upgrade."))
+			to_chat(user, span_warning("\The [src] already has this upgrade."))
 			return TRUE
-		to_chat(user, span("notice", "You install \the [O] into  \the [src]."))
+		to_chat(user, span_notice("You install \the [O] into  \the [src]."))
 		illegal_upgraded = TRUE
 		dirty_items = TRUE
 		attack_self(user)
@@ -91,9 +91,9 @@
 
 	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/clone))
 		if(can_clone)
-			to_chat(user, span("warning", "\The [src] already has this upgrade."))
+			to_chat(user, span_warning("\The [src] already has this upgrade."))
 			return TRUE
-		to_chat(user, span("notice", "You install \the [O] into  \the [src]."))
+		to_chat(user, span_notice("You install \the [O] into  \the [src]."))
 		can_clone = TRUE
 		attack_self(user)
 		return TRUE
@@ -138,7 +138,7 @@
 		for(var/path in circuit_list)
 			var/obj/O = path
 			var/can_build = TRUE
-			
+
 			if(ispath(path, /obj/item/integrated_circuit))
 				var/obj/item/integrated_circuit/IC = path
 				if((initial(IC.spawn_flags) & IC_SPAWN_RESEARCH) && (!(initial(IC.spawn_flags) & IC_SPAWN_DEFAULT)) && !upgraded)
@@ -159,7 +159,7 @@
 				"cost" = cost,
 				"path" = path,
 			)))
-		
+
 		cat_obj["items"] = items
 		categories.Add(list(cat_obj))
 	data["categories"] = categories
@@ -199,7 +199,7 @@
 			else
 				var/obj/item/I = build_type
 				cost = initial(I.w_class)
-			
+
 			var/in_some_category = FALSE
 			for(var/category in SScircuit.circuit_fabricator_recipe_list)
 				if(build_type in SScircuit.circuit_fabricator_recipe_list[category])

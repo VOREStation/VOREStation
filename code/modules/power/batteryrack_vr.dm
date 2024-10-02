@@ -12,7 +12,7 @@
 
 /obj/item/module/power_control/attackby(var/obj/item/I, var/mob/user)
 	if(I.has_tool_quality(TOOL_MULTITOOL))
-		to_chat(user, SPAN_NOTICE("You begin tweaking the power control circuits to support a power cell rack."))
+		to_chat(user, span_notice("You begin tweaking the power control circuits to support a power cell rack."))
 		if(do_after(user, 50 * I.toolspeed))
 			var/obj/item/newcircuit = new/obj/item/circuitboard/batteryrack(get_turf(user))
 			qdel(src)

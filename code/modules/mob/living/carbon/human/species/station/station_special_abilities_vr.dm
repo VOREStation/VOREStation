@@ -409,7 +409,7 @@
 		src.species.bloodsucker_controlmode = tgui_input_list(src,"Choose your preferred control of blood sucking. \
 		You can only cause bleeding wounds with pop up and intents modes. Choosing intents prints controls to chat.", "Configure Bloodsuck", control_options, "always loud")
 		if(src.species.bloodsucker_controlmode == "intents") //We are printing to chat for better readability
-			to_chat(src, SPAN_NOTICE("You've chosen to use intents for blood draining. \n \
+			to_chat(src, span_notice("You've chosen to use intents for blood draining. \n \
 			HELP - Loud, No Bleeding \n \
 			DISARM - Subtle, Causes bleeding \n \
 			GRAB - Subtle, No Bleeding \n \
@@ -474,8 +474,8 @@
 		src.visible_message(span_red("<i>[src] moves their head next to [B]'s neck, seemingly looking for something!</i>"), range = 1)
 
 	if(bleed) //Due to possibility of missing/misclick and missing the bleeding cues, we are warning the scene members of BLEEDING being on
-		to_chat(src, SPAN_WARNING("This is going to cause [B] to keep bleeding!"))
-		to_chat(B, SPAN_DANGER("You are going to keep bleeding from this bite!"))
+		to_chat(src, span_warning("This is going to cause [B] to keep bleeding!"))
+		to_chat(B, span_danger("You are going to keep bleeding from this bite!"))
 
 	if(do_after(src, 300, B)) //Thrirty seconds.
 		if(!Adjacent(B)) return
@@ -1512,8 +1512,8 @@
 			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
 			return
 
-		visible_message(span("warning","\The [src] rears back, ready to lunge!"))
-		to_chat(target, span("danger","\The [src] focuses on you!"))
+		visible_message(span_warning("\The [src] rears back, ready to lunge!"))
+		to_chat(target, span_danger("\The [src] focuses on you!"))
 		// Telegraph, since getting stunned suddenly feels bad.
 		do_windup_animation(target, leap_warmup)
 		sleep(leap_warmup) // For the telegraphing.
@@ -1523,7 +1523,7 @@
 
 		// Do the actual leap.
 		status_flags |= LEAPING // Lets us pass over everything.
-		visible_message(span("critical","\The [src] leaps at \the [target]!"))
+		visible_message(span_critical("\The [src] leaps at \the [target]!"))
 		throw_at(get_step(target, get_turf(src)), 7, 1, src)
 		playsound(src, leap_sound, 75, 1)
 

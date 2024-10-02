@@ -1127,7 +1127,7 @@
 	var/list/visible_implants = list()
 	for(var/obj/item/organ/external/organ in src.organs)
 		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/material/shard/shrapnel))
+			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/material/shard/shrapnel) && !istype(O,/obj/item/nif))
 				visible_implants += O
 
 	return(visible_implants)
@@ -1778,7 +1778,7 @@
 		var/obj/item/clothing/glasses/goggles = glasses
 		if(goggles.active && (goggles.vision_flags & (SEE_TURFS|SEE_OBJS)))
 			goggles.toggle_active(src)
-			to_chat(src, span("warning", "Your [goggles.name] have suddenly turned off!"))
+			to_chat(src, span_warning("Your [goggles.name] have suddenly turned off!"))
 
 	// RIGs.
 	var/obj/item/rig/rig = get_rig()
@@ -1786,7 +1786,7 @@
 		var/obj/item/clothing/glasses/rig_goggles = rig.visor.vision.glasses
 		if(rig_goggles.vision_flags & (SEE_TURFS|SEE_OBJS))
 			rig.visor.deactivate()
-			to_chat(src, span("warning", "\The [rig]'s visor has shuddenly deactivated!"))
+			to_chat(src, span_warning("\The [rig]'s visor has shuddenly deactivated!"))
 
 	..()
 

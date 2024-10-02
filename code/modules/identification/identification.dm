@@ -66,11 +66,11 @@
 	if(user)
 		switch(identified) // Give a message based on what's left.
 			if(IDENTITY_QUALITY)
-				to_chat(user, span("warning", "You forgot what \the [holder] actually did..."))
+				to_chat(user, span_warning("You forgot what \the [holder] actually did..."))
 			if(IDENTITY_PROPERTIES)
-				to_chat(user, span("warning", "You forgot \the [holder]'s quality..."))
+				to_chat(user, span_warning("You forgot \the [holder]'s quality..."))
 			if(IDENTITY_UNKNOWN)
-				to_chat(user, span("warning", "You forgot everything about \the [holder]."))
+				to_chat(user, span_warning("You forgot everything about \the [holder]."))
 
 // Sets the holder's name to the real name if its properties are identified, or obscures it otherwise.
 /datum/identification/proc/update_name()
