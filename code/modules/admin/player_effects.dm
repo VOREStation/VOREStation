@@ -453,6 +453,41 @@
 			else
 				Tar.Stasis(100000)
 
+		if("give_chem")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/chem_list = typesof(/datum/reagent)
+			var/datum/reagent/chemical = tgui_input_list(user, "Which chemical would you like to add?", "Chemicals", chem_list)
+
+			if(!chemical)
+				return
+
+			var/chem = chemical.id
+
+			var/amount = tgui_input_number(user, "How much of the chemical would you like to add?", "Amount", 5)
+			if(!amount)
+				return
+
+			var/location = tgui_alert(user, "Where do you want to add the chemical?", "Location", list("Blood", "Stomach", "Skin", "Cancel"))
+
+			if(!location || location == "Cancel")
+				return
+			if(location == "Blood")
+				Tar.bloodstr.add_reagent(chem, amount)
+			if(location == "Stomach")
+				Tar.ingested.add_reagent(chem, amount)
+			if(location == "Skin")
+				Tar.touching.add_reagent(chem, amount)
+
+		if("purge")
+			var/mob/living/carbon/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.bloodstr.clear_reagents()
+			Tar.ingested.clear_reagents()
+			Tar.touching.clear_reagents()
+
 		////////ABILITIES//////////////
 
 		if("vent_crawl")
