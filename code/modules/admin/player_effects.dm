@@ -757,6 +757,12 @@
 			if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)
 
+		if("cloaking")
+			if(target.cloaked)
+				target.uncloak()
+			else if(!target.cloaked)
+				target.cloak()
+
 
 		////////FIXES//////////////
 
