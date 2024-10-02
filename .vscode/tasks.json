@@ -49,6 +49,102 @@
 			"label": "Build All (low memory mode)"
 		},
 		{
+			"type": "process",
+			"command": "tools/build/build",
+			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_TETHER"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_TETHER"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": [
+				"$dreammaker",
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": {
+				"kind": "build"
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (Force Tether)"
+		},
+		{
+			"type": "process",
+			"command": "tools/build/build",
+			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_STELLARDELIGHT"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_STELLARDELIGHT"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": [
+				"$dreammaker",
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": {
+				"kind": "build"
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (Force Stellar Delight)"
+		},
+		{
+			"type": "process",
+			"command": "tools/build/build",
+			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_GROUNDBASE"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_GROUNDBASE"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": [
+				"$dreammaker",
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": {
+				"kind": "build"
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (Force Groundbase)"
+		},
+		{
+			"type": "process",
+			"command": "tools/build/build",
+			"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_MINITEST"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["-DLOWMEMORYMODE", "-DCITESTING", "-DUSE_MAP_MINITEST"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": [
+				"$dreammaker",
+				"$tsc",
+				"$eslint-stylish"
+			],
+			"group": {
+				"kind": "build"
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (Force Minitest)"
+		},
+		{
 			"type": "dreammaker",
 			"dme": "vorestation.dme",
 			"problemMatcher": [
