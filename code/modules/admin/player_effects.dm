@@ -66,7 +66,7 @@
 				to_chat(user,"[target] didn't have any breakable legs, sorry.")
 
 		if("bluespace_artillery")
-			bluespace_artillery(target,src)
+			bluespace_artillery(target,usr)
 
 		if("spont_combustion")
 			var/mob/living/carbon/human/Tar = target
@@ -187,13 +187,13 @@
 
 
 		if("redspace_abduct")
-			redspace_abduction(target, src)
+			redspace_abduction(target, usr)
 
 		if("autosave")
-			fake_autosave(target, src)
+			fake_autosave(target, usr)
 
 		if("autosave2")
-			fake_autosave(target, src, TRUE)
+			fake_autosave(target, usr, TRUE)
 
 		if("adspam")
 			if(target.client)
