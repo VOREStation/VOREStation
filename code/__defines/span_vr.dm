@@ -42,8 +42,8 @@
 #define span_emote_subtle(str) ("<span class='emotesubtle'>" + str + "</span>")
 #define span_npc_emote(str) ("<span class='npcemote'>" + str + "</span>")
 
-#define span_message(str) ("<span class='message'>" + str + "</span>") // TODO: This makes no sense, check it! CI Error: Span not defined in scss
-#define span_notify(str) ("<span class='notify'>" + str + "</span>") // TODO: This makes no sense, check it! CI Error: Span not defined in scss
+#define span_message(str) ("<span class='message'>" + str + "</span>") // TODO: This makes no sense, check it!
+#define span_notify(str) ("<span class='notify'>" + str + "</span>") // TODO: This makes no sense, check it!
 #define span_body(str) ("<span class='body'>" + str + "</span>")
 #define span_suicide(str) ("<span class='suicide'>" + str + "</span>")
 
