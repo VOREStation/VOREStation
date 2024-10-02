@@ -1,37 +1,3 @@
-/obj/machinery/airlock_sensor/co2
-	icon = 'icons/obj/airlock_machines.dmi'
-	icon_state = "airlock_sensor_off"
-	name = "carbon dioxide sensor"
-	var/previousco2
-
-/obj/machinery/airlock_sensor/co2/process()
-	if(on)
-		var/datum/gas_mixture/air_sample = return_air()
-		var/pressure = round(air_sample.return_pressure(), 0.1)
-		var/co2 = ("carbon_dioxide" in air_sample.gas) ? round(air_sample.gas["carbon_dioxide"], 0.1) : 0
-
-		if(abs(pressure - previousPressure) > 0.1 || previousPressure == null || abs(co2 - previousco2) > 0.1 || previousco2 == null)
-			var/datum/signal/signal = new
-			signal.transmission_method = TRANSMISSION_RADIO //radio signal
-			signal.data["tag"] = id_tag
-			signal.data["timestamp"] = world.time
-			signal.data["pressure"] = num2text(pressure)
-			signal.data["carbon_dioxide"] = num2text(co2)
-			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, radio_filter = RADIO_AIRLOCK)
-			previousPressure = pressure
-			previousco2 = co2
-			alert = (pressure < ONE_ATMOSPHERE*0.8) || (co2 > 1)
-			update_icon()
-
-/obj/machinery/airlock_sensor/co2/airlock_interior
-	command = "cycle_interior"
-
-/obj/machinery/airlock_sensor/co2/airlock_exterior
-	command = "cycle_exterior"
-
-
-
-
 ////////// THERMAL POWER //////////////
 
 
@@ -109,4 +75,3 @@
 
 /area/submap/v5/mech_pod
 	name = "\improper V5 Mech Pod"
-
