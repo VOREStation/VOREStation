@@ -17,23 +17,23 @@
 	var/energy_cost = 75
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't go invisible when weakened like this.</span>")
+		to_chat(src, span_warning("You can't go invisible when weakened like this."))
 		return
 
 	if(!cloaked)
 		if(species.lleill_energy < energy_cost)
-			to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
+			to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 			return
 		cloak()
 		block_hud = 1
 		hud_updateflag = 1
-		to_chat(src, "<span class='warning'>Your fur shimmers and shifts around you, hiding you from the naked eye.</span>")
+		to_chat(src, span_warning("Your fur shimmers and shifts around you, hiding you from the naked eye."))
 		species.lleill_energy -= energy_cost
 	else
 		uncloak()
 		block_hud = 0
 		hud_updateflag = 1
-		to_chat(src, "<span class='warning'>The brustling of your fur settles down and you become visible once again.</span>")
+		to_chat(src, span_warning("The brustling of your fur settles down and you become visible once again."))
 	species.update_lleill_hud(src)
 
 /mob/living/carbon/human/proc/lleill_select_shape()
@@ -118,16 +118,16 @@
 	var/energy_cost = 50
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
+		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't go do that when weakened like this.</span>")
+		to_chat(src, span_warning("You can't go do that when weakened like this."))
 		return
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, "<span class='warning'>You have no item in your active hand.</span>")
+		to_chat(src, span_warning("You have no item in your active hand."))
 		return
 
 	var/choice = tgui_input_list(src, "Choose a glamour to transmute the item into:", "Transmutation", transmute_list)
@@ -138,7 +138,7 @@
 
 
 	if(!get_active_hand(I))
-		to_chat(src, "<span class='warning'>The item is no longer in your hands.</span>")
+		to_chat(src, span_warning("The item is no longer in your hands."))
 		return
 	else
 		visible_message("<b>\The [src]</b> begins to change the form of \the [I].")
@@ -170,22 +170,22 @@
 	var/energy_cost_tele = 50
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't go do that when weakened like this.</span>")
+		to_chat(src, span_warning("You can't go do that when weakened like this."))
 		return
 	if(buckled)
-		to_chat(src,"<span class='warning'>You can't do that when restrained.</span>")
+		to_chat(src,span_warning("You can't do that when restrained."))
 
 	var/r_action = tgui_alert(src, "What would you like to do with your rings? You currently have [species.lleill_energy] energy remaining.", "Actions", list("Spawn New Ring ([energy_cost_spawn])", "Teleport to Ring ([energy_cost_tele])", "Cancel"))
 	if(!r_action || r_action == "Cancel")
 		return
 	if(findtext(r_action,"Spawn New Ring"))
 		if(species.lleill_energy < energy_cost_spawn)
-			to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+			to_chat(src, span_warning("You do not have enough energy to do that!"))
 			return
 		if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
 			src.visible_message("<b>\The [src]</b> begins to form white rings on the ground.")
 			return 0
-		to_chat(src, "<span class='warning'>You place a new glamour ring at your feet.</span>")
+		to_chat(src, span_warning("You place a new glamour ring at your feet."))
 		var/spawnloc = get_turf(src)
 		var/obj/structure/glamour_ring/R = new(spawnloc)
 		R.connected_mob = src
@@ -193,10 +193,10 @@
 		species.lleill_energy -= energy_cost_spawn
 	if(findtext(r_action,"Teleport to Ring"))
 		if(species.lleill_energy < energy_cost_tele)
-			to_chat(src, "<span class='warning'>You do not have enough energy to do that!</span>")
+			to_chat(src, span_warning("You do not have enough energy to do that!"))
 			return
 		if(!src.teleporters.len)
-			to_chat(src, "<span class='warning'>You need to place rings to teleport to them.</span>")
+			to_chat(src, span_warning("You need to place rings to teleport to them."))
 			return
 		else
 			var/obj/structure/glamour_ring/R = tgui_input_list(src, "Where do you wish to teleport?", "Teleport", src.teleporters)
@@ -228,7 +228,7 @@
 					for(var/mob/living/M in target_list)
 						if(M.devourable && M.can_be_drop_prey)
 							M.forceMove(vore_selected)
-							to_chat(M,"<span class='vwarning'>In a bright flash of white light, you suddenly find yourself trapped in \the [src]'s [vore_selected.name]!</span>")
+							to_chat(M,span_vwarning("In a bright flash of white light, you suddenly find yourself trapped in \the [src]'s [vore_selected.name]!"))
 	species.update_lleill_hud(src)
 
 /datum/power/lleill/contact
@@ -257,7 +257,7 @@
 		)
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't go do that when weakened like this.</span>")
+		to_chat(src, span_warning("You can't go do that when weakened like this."))
 		return
 
 	var/list/targets = list()
@@ -269,7 +269,7 @@
 		targets |= M
 
 	if(!targets)
-		to_chat(src, "<span class='warning'>There is nobody next to you.</span>")
+		to_chat(src, span_warning("There is nobody next to you."))
 		return
 	var/mob/living/carbon/human/chosen_target = tgui_input_list(src, "Who do you wish to take energy from?", "Make contact", targets)
 	if(!chosen_target)
@@ -285,10 +285,10 @@
 
 	var/accepted = tgui_alert(chosen_target, "Do you accept the [contact_type] physical contact from \the [src]?", "Actions", list("Yes", "No"))
 	if(get_dist(src,chosen_target) > 1)
-		to_chat(src, "<span class='warning'>You need to be standing next to [chosen_target].</span>")
+		to_chat(src, span_warning("You need to be standing next to [chosen_target]."))
 		return
 	if(!accepted || accepted == "No")
-		to_chat(src, "<span class='warning'>\The [chosen_target] refuses the contact.</span>")
+		to_chat(src, span_warning("\The [chosen_target] refuses the contact."))
 		return
 	if(accepted == "Yes")
 		if(contact_type == "Kiss (lips)")
@@ -316,12 +316,12 @@
 		src.visible_message("<b>\The [src]</b> and \the [chosen_target] complete their contact.")
 		species.lleill_energy = species.lleill_energy_max
 		nutrition += (chosen_target.nutrition / 2)
-		to_chat(src, "<span class='warning'>You feel revitalised.</span>")
+		to_chat(src, span_warning("You feel revitalised."))
 		chosen_target.tiredness += 70
 		chosen_target.nutrition = max((chosen_target.nutrition / 2),75)
 		chosen_target.remove_blood(40) //removes enough blood to make them feel a bit woozy, mostly just for flavour
 		chosen_target.eye_blurry += 20
-		to_chat(chosen_target, "<span class='warning'>You feel considerably weakened for the moment.</span>")
+		to_chat(chosen_target, span_warning("You feel considerably weakened for the moment."))
 	species.update_lleill_hud(src)
 
 /datum/power/lleill/alchemy
@@ -339,25 +339,25 @@
 
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
+		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't go do that when weakened like this.</span>")
+		to_chat(src, span_warning("You can't go do that when weakened like this."))
 		return
 
 	var/obj/item/potion_material/I = get_active_hand()
 	if(!I)
-		to_chat(src, "<span class='warning'>You have no item in your active hand.</span>")
+		to_chat(src, span_warning("You have no item in your active hand."))
 		return
 
 	if(!istype(I))
-		to_chat(src, "<span class='warning'>\The [I] is not a potion material.</span>")
+		to_chat(src, span_warning("\The [I] is not a potion material."))
 		return
 	var/obj/item/reagent_containers/glass/bottle/potion/transmute_product = I.product_potion
 
 	if(!get_active_hand(I))
-		to_chat(src, "<span class='warning'>The item is no longer in your hands.</span>")
+		to_chat(src, span_warning("The item is no longer in your hands."))
 		return
 	else
 		visible_message("<b>\The [src]</b> begins to change the form of \the [I].")
@@ -389,7 +389,7 @@
 	var/energy_cost = 100
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
+		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
 	var/list/beast_options = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
@@ -432,7 +432,7 @@
 		return
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
+		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
 	var/mob/living/M = src
@@ -443,12 +443,12 @@
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 		log_debug("polymorph stat")
-		to_chat(src, "<span class='warning'>You can't do that in your condition.</span>")
+		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 		log_debug("polymorph injured")
-		to_chat(src, "<span class='warning'>You are too injured to transform into a beast.</span>")
+		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
 	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
@@ -538,7 +538,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't do that in your condition.</span>")
+		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
@@ -567,7 +567,7 @@
 	var/energy_cost = 100
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
+		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
 	var/list/beast_options = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
@@ -610,7 +610,7 @@
 		return
 
 	if(species.lleill_energy < energy_cost)
-		to_chat(src, "<span class='warning'>You do not have enough energy to do that! You currently have [species.lleill_energy] energy.</span>")
+		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
 	var/mob/living/M = src
@@ -621,12 +621,12 @@
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 		log_debug("polymorph stat")
-		to_chat(src, "<span class='warning'>You can't do that in your condition.</span>")
+		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 		log_debug("polymorph injured")
-		to_chat(src, "<span class='warning'>You are too injured to transform into a beast.</span>")
+		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
 	visible_message("<b>\The [src]</b> begins significantly shifting their form.")

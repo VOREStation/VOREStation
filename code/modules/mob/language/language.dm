@@ -115,7 +115,7 @@
 	return scrambled_text
 
 /datum/language/proc/format_message(message, verb)
-	return "<span class='message'><span class='[colour]'>[message]</span></span>"
+	return span_message("<span class='[colour]'>[message]</span>")
 
 /datum/language/proc/format_message_plain(message, verb)
 	return "[capitalize(message)]"

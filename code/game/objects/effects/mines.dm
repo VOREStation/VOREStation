@@ -103,8 +103,8 @@
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
-		user.visible_message("<span class='warning'>[user] very carefully screws the mine's panel [panel_open ? "open" : "closed"].</span>",
-		"<span class='notice'>You very carefully screw the mine's panel [panel_open ? "open" : "closed"].</span>")
+		user.visible_message(span_warning("[user] very carefully screws the mine's panel [panel_open ? "open" : "closed"]."),
+		span_notice("You very carefully screw the mine's panel [panel_open ? "open" : "closed"]."))
 		playsound(src, W.usesound, 50, 1)
 
 		// Panel open, stay uncloaked, or uncloak if already cloaked. If you don't cloak on place, ignore it and just be normal alpha.
@@ -310,9 +310,9 @@
 
 /obj/item/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && trap)
-		to_chat(user, "<span class='notice'>You begin removing \the [trap].</span>")
+		to_chat(user, span_notice("You begin removing \the [trap]."))
 		if(do_after(user, 10 SECONDS))
-			to_chat(user, "<span class='notice'>You finish disconnecting the mine's trigger.</span>")
+			to_chat(user, span_notice("You finish disconnecting the mine's trigger."))
 			trap.forceMove(get_turf(src))
 			trap = null
 		return

@@ -23,7 +23,7 @@
 	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	opened = !opened
 	EA.opened = opened
-	to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
+	to_chat(user, span_notice("You [opened ? "opened" : "closed"] \the [src]."))
 	secured = 1
 	update_icon()
 
@@ -81,4 +81,3 @@
 	if(!CanInteract(user, state = GLOB.tgui_deep_inventory_state))
 		return 0
 	return 1
-

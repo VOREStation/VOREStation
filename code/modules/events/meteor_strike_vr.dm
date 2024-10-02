@@ -62,7 +62,7 @@
 			if(!mob_turf || !(mob_turf.z in impacted.expected_z_levels))
 				continue
 			if(L.client)
-				to_chat(L, "<span class='danger'>The ground lurches beneath you!</span>")
+				to_chat(L, span_danger("The ground lurches beneath you!"))
 				shake_camera(L, 6, 1)
 				if(!L.ear_deaf)
 					L << 'sound/effects/explosionfar.ogg'
@@ -98,7 +98,7 @@
 /obj/structure/meteorite/attackby(var/obj/item/I, var/mob/M)
 	if(istype(I, /obj/item/pickaxe))
 		var/obj/item/pickaxe/P = I
-		M.visible_message("<span class='warning'>[M] starts [P.drill_verb] \the [src].</span>", "<span class='warning'>You start [P.drill_verb] \the [src].</span>")
+		M.visible_message(span_warning("[M] starts [P.drill_verb] \the [src]."), span_warning("You start [P.drill_verb] \the [src]."))
 
 		if(!do_after(M, P.digspeed*3))
 			return

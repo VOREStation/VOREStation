@@ -70,7 +70,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the circuit?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(src && input && assembly.check_interactivity(M))
-		to_chat(M, "<span class='notice'>The circuit '[src.name]' is now labeled '[input]'.</span>")
+		to_chat(M, span_notice("The circuit '[src.name]' is now labeled '[input]'."))
 		displayed_name = input
 
 /obj/item/integrated_circuit/tgui_state(mob/user)
@@ -193,7 +193,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 				if(pin)
 					debugger.write_data(pin, usr)
 			else
-				to_chat(usr, "<span class='warning'>You can't do a whole lot without the proper tools.</span>")
+				to_chat(usr, span_warning("You can't do a whole lot without the proper tools."))
 			return
 
 		if("scan")
@@ -202,9 +202,9 @@ a creative player the means to solve many problems.  Circuits are held inside an
 				if(D.accepting_refs)
 					D.afterattack(src, usr, TRUE)
 				else
-					to_chat(usr, "<span class='warning'>The Debugger's 'ref scanner' needs to be on.</span>")
+					to_chat(usr, span_warning("The Debugger's 'ref scanner' needs to be on."))
 			else
-				to_chat(usr, "<span class='warning'>You need a multitool/debugger set to 'ref' mode to do that.</span>")
+				to_chat(usr, span_warning("You need a multitool/debugger set to 'ref' mode to do that."))
 			return
 
 
@@ -224,10 +224,10 @@ a creative player the means to solve many problems.  Circuits are held inside an
 /obj/item/integrated_circuit/proc/remove(mob/user)
 	var/obj/item/electronic_assembly/A = assembly
 	if(!A)
-		to_chat(user, "<span class='warning'>This circuit is not in an assembly!</span>")
+		to_chat(user, span_warning("This circuit is not in an assembly!"))
 		return
 	if(!removable)
-		to_chat(user, "<span class='warning'>\The [src] seems to be permanently attached to the case.</span>")
+		to_chat(user, span_warning("\The [src] seems to be permanently attached to the case."))
 		return
 	var/obj/item/electronic_assembly/ea = loc
 
@@ -237,7 +237,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	forceMove(T)
 	assembly = null
 	playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-	to_chat(user, "<span class='notice'>You pop \the [src] out of the case, and slide it out.</span>")
+	to_chat(user, span_notice("You pop \the [src] out of the case, and slide it out."))
 
 	if(istype(ea))
 		ea.tgui_interact(user)

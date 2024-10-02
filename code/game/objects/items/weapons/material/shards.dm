@@ -89,15 +89,15 @@
 				break
 
 	if(user.gloves && !protected_hands)
-		to_chat(user, "<span class='warning'>\The [src] partially cuts into your hand through your gloves as you hit \the [target]!</span>")
+		to_chat(user, span_warning("\The [src] partially cuts into your hand through your gloves as you hit \the [target]!"))
 		user.apply_damage(light_glove_d + will_break ? break_damage : 0, BRUTE, active_hand, 0, 0, src, src.sharp, src.edge) // Ternary to include break damage
 
 	else if(!user.gloves)
-		to_chat(user, "<span class='warning'>\The [src] cuts into your hand as you hit \the [target]!</span>")
+		to_chat(user, span_warning("\The [src] cuts into your hand as you hit \the [target]!"))
 		user.apply_damage(no_glove_d + will_break ? break_damage : 0, BRUTE, active_hand, 0, 0, src, src.sharp, src.edge)
 
 	if(will_break && src.loc == user) // If it's not in our hand anymore
-		user.visible_message("<span class='danger'>[user] hit \the [target] with \the [src], shattering it!</span>", "<span class='warning'>You shatter \the [src] in your hand!</span>")
+		user.visible_message(span_danger("[user] hit \the [target] with \the [src], shattering it!"), span_warning("You shatter \the [src] in your hand!"))
 		playsound(src, pick('sound/effects/Glassbr1.ogg', 'sound/effects/Glassbr2.ogg', 'sound/effects/Glassbr3.ogg'), 30, 1)
 		qdel(src)
 	return
@@ -125,7 +125,7 @@
 			if(H.species.flags & NO_MINOR_CUT)
 				return
 
-			to_chat(H, "<span class='danger'>You step on \the [src]!</span>")
+			to_chat(H, span_danger("You step on \the [src]!"))
 
 			var/list/check = list("l_foot", "r_foot")
 			while(check.len)

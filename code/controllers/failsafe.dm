@@ -57,23 +57,23 @@ var/datum/controller/failsafe/Failsafe
 						if(4,5)
 							--defcon
 						if(3)
-							log_and_message_admins("<span class='adminnotice'>SSfailsafe Notice: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has not fired in the last [(5-defcon) * processing_interval] ticks.</span>")
+							log_and_message_admins(span_adminnotice("SSfailsafe Notice: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has not fired in the last [(5-defcon) * processing_interval] ticks."))
 							--defcon
 						if(2)
-							log_and_message_admins("<span class='boldannounce'>SSfailsafe Warning: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks.</span>")
+							log_and_message_admins(span_boldannounce("SSfailsafe Warning: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks."))
 							--defcon
 						if(1)
 
-							log_and_message_admins("<span class='boldannounce'>SSfailsafe Warning: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting...</span>")
+							log_and_message_admins(span_boldannounce("SSfailsafe Warning: DEFCON [defcon_pretty()]. The Master Controller (\ref[Master]) has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting..."))
 							--defcon
 							var/rtn = Recreate_MC()
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								log_and_message_admins("<span class='adminnotice'>SSfailsafe Notice: MC (New:\ref[Master]) restarted successfully</span>")
+								log_and_message_admins(span_adminnotice("SSfailsafe Notice: MC (New:\ref[Master]) restarted successfully"))
 							else if(rtn < 0)
 								log_game("SSfailsafe Notice: Could not restart MC (\ref[Master]), runtime encountered. Entering defcon 0")
-								log_and_message_admins("<span class='boldannounce'>SSFAILSAFE ERROR: DEFCON [defcon_pretty()]. Could not restart MC (\ref[Master]), runtime encountered. I will silently keep retrying.</span>")
+								log_and_message_admins(span_boldannounce("SSFAILSAFE ERROR: DEFCON [defcon_pretty()]. Could not restart MC (\ref[Master]), runtime encountered. I will silently keep retrying."))
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
 						if(0) //DEFCON 0! (mc failed to restart)
@@ -81,7 +81,7 @@ var/datum/controller/failsafe/Failsafe
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								log_and_message_admins("<span class='adminnotice'>SSfailsafe Notice: MC (New:\ref[Master]) restarted successfully</span>")
+								log_and_message_admins(span_adminnotice("SSfailsafe Notice: MC (New:\ref[Master]) restarted successfully"))
 				else
 					defcon = min(defcon + 1,5)
 					master_iteration = Master.iteration

@@ -31,7 +31,7 @@
 
 /obj/item/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
-		to_chat(user, "<span class='warning'>[src] is empty.</span>")
+		to_chat(user, span_warning("[src] is empty."))
 		return
 	if (!istype(M))
 		return
@@ -40,26 +40,26 @@
 	if(istype(H))
 		var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
 		if(!affected)
-			to_chat(user, "<span class='danger'>\The [H] is missing that limb!</span>")
+			to_chat(user, span_danger("\The [H] is missing that limb!"))
 			return
 		/* since synths have oil/coolant streams now, it only makes sense that you should be able to inject stuff. preserved for posterity.
 		else if(affected.robotic >= ORGAN_ROBOT)
-			to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
+			to_chat(user, span_danger("You cannot inject a robotic limb."))
 			return
 		*/
 
 		//VOREStation Add Start - Adds Prototype Hypo functionality
 		if(H != user && prototype)
-			to_chat(user, "<span class='notice'>You begin injecting [H] with \the [src].</span>")
-			to_chat(H, "<span class='danger'> [user] is trying to inject you with \the [src]!</span>")
+			to_chat(user, span_notice("You begin injecting [H] with \the [src]."))
+			to_chat(H, span_danger(" [user] is trying to inject you with \the [src]!"))
 			if(!do_after(user, 30, H))
 				return
 		//VOREstation Add End
 		else if(!H.stat && !prototype) //VOREStation Edit
 			if(H != user)
 				if(H.a_intent != I_HELP)
-					to_chat(user, "<span class='notice'>[H] is resisting your attempt to inject them with \the [src].</span>")
-					to_chat(H, "<span class='danger'> [user] is trying to inject you with \the [src]!</span>")
+					to_chat(user, span_notice("[H] is resisting your attempt to inject them with \the [src]."))
+					to_chat(H, span_danger(" [user] is trying to inject you with \the [src]!"))
 					if(!do_after(user, 30, H))
 						return
 
@@ -109,7 +109,7 @@
 			loaded_vial.update_icon()
 			user.put_in_hands(loaded_vial)
 			loaded_vial = null
-			to_chat(user, "<span class='notice'>You remove the vial from the [src].</span>")
+			to_chat(user, span_notice("You remove the vial from the [src]."))
 			update_icon()
 			playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 			return
@@ -127,7 +127,7 @@
 /obj/item/reagent_containers/hypospray/vial/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/reagent_containers/glass/beaker/vial))
 		if(!loaded_vial)
-			user.visible_message("<span class='notice'>[user] begins loading [W] into \the [src].</span>","<span class='notice'>You start loading [W] into \the [src].</span>")
+			user.visible_message(span_notice("[user] begins loading [W] into \the [src]."),span_notice("You start loading [W] into \the [src]."))
 			if(!do_after(user,30) || loaded_vial || !(W in user))
 				return 0
 			if(W.is_open_container())
@@ -138,11 +138,11 @@
 			loaded_vial = W
 			reagents.maximum_volume = loaded_vial.reagents.maximum_volume
 			loaded_vial.reagents.trans_to_holder(reagents,volume)
-			user.visible_message("<span class='notice'>[user] has loaded [W] into \the [src].</span>","<span class='notice'>You have loaded [W] into \the [src].</span>")
+			user.visible_message(span_notice("[user] has loaded [W] into \the [src]."),span_notice("You have loaded [W] into \the [src]."))
 			update_icon()
 			playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		else
-			to_chat(user, "<span class='notice'>\The [src] already has a vial.</span>")
+			to_chat(user, span_notice("\The [src] already has a vial."))
 	else
 		..()
 
@@ -186,9 +186,9 @@
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	. = ..()
 	if(reagents && reagents.reagent_list.len)
-		. += "<span class='notice'>It is currently loaded.</span>"
+		. += span_notice("It is currently loaded.")
 	else
-		. += "<span class='notice'>It is spent.</span>"
+		. += span_notice("It is spent.")
 
 
 /obj/item/reagent_containers/hypospray/autoinjector/detox

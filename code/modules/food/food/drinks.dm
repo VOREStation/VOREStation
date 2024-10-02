@@ -49,7 +49,7 @@
 			return
 
 		if(!is_open_container())
-			to_chat(user, "<span class='warning'>You cannot drop anything into \the [src] without opening it first.</span>")
+			to_chat(user, span_warning("You cannot drop anything into \the [src] without opening it first."))
 			return
 
 		var/obj/item/holder/H = W
@@ -66,8 +66,8 @@
 
 		food_inserted_micros += M
 
-		to_chat(user, "<span class='warning'>You drop [M] into \the [src].</span>")
-		to_chat(M, "<span class='warning'>[user] drops you into \the [src].</span>")
+		to_chat(user, span_warning("You drop [M] into \the [src]."))
+		to_chat(M, span_warning("[user] drops you into \the [src]."))
 		return
 
 	return ..()
@@ -81,7 +81,7 @@
 
 		food_inserted_micros += M
 
-		to_chat(user, "<span class='warning'>You climb into \the [src].</span>")
+		to_chat(user, span_warning("You climb into \the [src]."))
 		return
 
 	return ..()
@@ -110,7 +110,7 @@
 					food_inserted_micros -= F
 
 	if(!reagents.total_volume && changed)
-		M.visible_message("<span class='notice'>[M] finishes drinking \the [src].</span>","<span class='notice'>You finish drinking \the [src].</span>")
+		M.visible_message(span_notice("[M] finishes drinking \the [src]."),span_notice("You finish drinking \the [src]."))
 		if(trash)
 			user.drop_from_inventory(src)	//so icons update :[
 			if(ispath(trash,/obj/item))
@@ -132,10 +132,10 @@
 	if(!cant_open)
 		playsound(src,"canopen", rand(10,50), 1)
 		GLOB.cans_opened_roundstat++
-		to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
+		to_chat(user, span_notice("You open [src] with an audible pop!"))
 		flags |= OPENCONTAINER
 	else
-		to_chat(user, "<span class='warning'>...wait a second, this one doesn't have a ring pull. It's not a <b>can</b>, it's a <b>can't!</b></span>")
+		to_chat(user, span_warning("...wait a second, this one doesn't have a ring pull. It's not a <b>can</b>, it's a <b>can't!</b>"))
 		name = "\improper can't of [initial(name)]"	//don't update the name until they try to open it
 
 /obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
@@ -158,7 +158,7 @@
 
 /obj/item/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
 	if(!is_open_container())
-		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
+		to_chat(user, span_notice("You need to open [src]!"))
 		return 1
 	var/original_volume = reagents.total_volume
 	.=..()
@@ -168,27 +168,27 @@
 
 /obj/item/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
 	if(!is_open_container())
-		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
+		to_chat(user, span_notice("You need to open [src]!"))
 		return 1
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
 	if(!is_open_container())
-		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
+		to_chat(user, span_notice("You need to open [src]!"))
 		return 1
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
 	if(amount_per_transfer_from_this == volume)	//I wanted to use a switch, but switch statements can't use vars and the maximum volume of containers varies
-		to_chat(user, "<span class='notice'>You knock back the entire [src] in one go!</span>")
+		to_chat(user, span_notice("You knock back the entire [src] in one go!"))
 	else if(amount_per_transfer_from_this <= 4)	//below the standard 5
-		to_chat(user, "<span class='notice'>You take a modest sip from \the [src].</span>")
+		to_chat(user, span_notice("You take a modest sip from \the [src]."))
 	else if(amount_per_transfer_from_this <= 10)	//the standard five to a bit more
-		to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
+		to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 	else if(amount_per_transfer_from_this <= 30)
-		to_chat(user, "<span class='notice'>You take a long drag from \the [src].</span>")
+		to_chat(user, span_notice("You take a long drag from \the [src]."))
 	else	//default message as a fallback
-		to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
+		to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 
 /obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(src, 'sound/items/drink.ogg', rand(10, 50), 1)
@@ -197,19 +197,19 @@
 	. = ..()
 	if(Adjacent(user))
 		if(cant_open)
-			. += "<span class='warning'>It doesn't have a ring pull!</span>"
+			. += span_warning("It doesn't have a ring pull!")
 		if(food_inserted_micros && food_inserted_micros.len)
-			. += "<span class='notice'>It has [english_list(food_inserted_micros)] [!reagents?.total_volume ? "sitting" : "floating"] in it.</span>"
+			. += span_notice("It has [english_list(food_inserted_micros)] [!reagents?.total_volume ? "sitting" : "floating"] in it.")
 		if(!reagents?.total_volume)
-			. += "<span class='notice'>It is empty!</span>"
+			. += span_notice("It is empty!")
 		else if (reagents.total_volume <= volume * 0.25)
-			. += "<span class='notice'>It is almost empty!</span>"
+			. += span_notice("It is almost empty!")
 		else if (reagents.total_volume <= volume * 0.66)
-			. += "<span class='notice'>It is half full!</span>"
+			. += span_notice("It is half full!")
 		else if (reagents.total_volume <= volume * 0.90)
-			. += "<span class='notice'>It is almost full!</span>"
+			. += span_notice("It is almost full!")
 		else
-			. += "<span class='notice'>It is full!</span>"
+			. += span_notice("It is full!")
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -448,7 +448,7 @@
 			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
 			if(W.cupholder && W.cups < 10)
 				W.cups++
-				to_chat(usr, "<span class='notice'>You put the [src] in the cup dispenser.</span>")
+				to_chat(usr, span_notice("You put the [src] in the cup dispenser."))
 				qdel(src)
 				W.update_icon()
 	else

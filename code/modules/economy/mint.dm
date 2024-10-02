@@ -34,16 +34,16 @@
 				else if(M.default_type == "uranium")
 					while(coinsToProduce-- > 0)
 						new /obj/item/coin/uranium(user.loc)
-				src.visible_message("<span class='notice'>\The [src] rattles and dispenses several [M.default_type] coins!</span>")
+				src.visible_message(span_notice("\The [src] rattles and dispenses several [M.default_type] coins!"))
 				coinsToProduce = initial(coinsToProduce)
 				if(M.amount == 0)
 					icon_state = "coinpress0"
 					qdel(M)	//clean it up just to be sure
-					src.visible_message("<span class='notice'>\The [src] has run out of usable materials.</span>")
+					src.visible_message(span_notice("\The [src] has run out of usable materials."))
 					break
 			else
-				to_chat(usr,"<span class='warning'>\The [src] is hand-operated and requires your full attention!</span>")
+				to_chat(usr,span_warning("\The [src] is hand-operated and requires your full attention!"))
 				icon_state = "coinpress0"
 				break
 	else
-		src.visible_message("<span class='notice'>\The [src] doesn't look like it'll accept that material.</span>")
+		src.visible_message(span_notice("\The [src] doesn't look like it'll accept that material."))

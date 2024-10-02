@@ -49,7 +49,7 @@
 		if(affecting.open)
 			too_far_gone++
 			continue
-		
+
 		for(var/datum/wound/W as anything in affecting.wounds)
 			// No need
 			if(W.bandaged)
@@ -61,7 +61,7 @@
 				clotted++
 			W.bandage()
 
-	var/healmessage = "<span class='notice'>You spray [src] onto [H], sealing [clotted ? clotted : "no"] wounds.</span>"
+	var/healmessage = span_notice("You spray [src] onto [H], sealing [clotted ? clotted : "no"] wounds.")
 	if(too_far_gone)
 		healmessage += " <span class='warning'>You can see some wounds that are too large where the spray is not taking effect.</span>"
 

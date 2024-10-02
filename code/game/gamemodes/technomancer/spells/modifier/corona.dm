@@ -24,8 +24,8 @@
 	desc = "You appear to be glowing really bright.  It doesn't seem to hurt, however hiding will be impossible."
 	mob_overlay_state = "corona"
 
-	on_created_text = "<span class='warning'>You start to glow very brightly!</span>"
-	on_expired_text = "<span class='notice'>Your glow has ended.</span>"
+	on_created_text = span_warning("You start to glow very brightly!")
+	on_expired_text = span_notice("Your glow has ended.")
 	evasion = -30
 	stacks = MODIFIER_STACK_EXTEND
 

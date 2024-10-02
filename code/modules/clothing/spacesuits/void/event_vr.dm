@@ -206,7 +206,7 @@
 		return
 	icon_state = "moebiushelm_[choice]"
 	update_clothing_icon()
-	to_chat(usr, "<span class='notice'>[src] color changed to: [choice]</span>")
+	to_chat(usr, span_notice("[src] color changed to: [choice]"))
 
 // Excelsior suit
 /obj/item/clothing/suit/space/void/excelsior

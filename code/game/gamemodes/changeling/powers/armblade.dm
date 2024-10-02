@@ -14,7 +14,7 @@
 
 	if(src.mind.changeling.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/melee/changeling/arm_blade/greater))
-			to_chat(src, "<span class='notice'>We prepare an extra sharp blade.</span>")
+			to_chat(src, span_notice("We prepare an extra sharp blade."))
 			return 1
 
 	else
@@ -39,7 +39,7 @@
 
 	if(src.mind.changeling.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/melee/changeling/claw/greater, 1, 15))
-			to_chat(src, "<span class='notice'>We prepare an extra sharp claw.</span>")
+			to_chat(src, span_notice("We prepare an extra sharp claw."))
 			return 1
 
 	else
@@ -69,15 +69,15 @@
 	..()
 	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		visible_message("<span class='warning'>A grotesque weapon forms around [loc.name]\'s arm!</span>",
-		"<span class='warning'>Our arm twists and mutates, transforming it into a deadly weapon.</span>",
-		"<span class='italics'>You hear organic matter ripping and tearing!</span>")
+		visible_message(span_warning("A grotesque weapon forms around [loc.name]\'s arm!"),
+		span_warning("Our arm twists and mutates, transforming it into a deadly weapon."),
+		span_italics("You hear organic matter ripping and tearing!"))
 		src.creator = loc
 
 /obj/item/melee/changeling/dropped(mob/user)
-	visible_message("<span class='warning'>With a sickening crunch, [creator] reforms their arm!</span>",
-	"<span class='notice'>We assimilate the weapon back into our body.</span>",
-	"<span class='italics'>You hear organic matter ripping and tearing!</span>")
+	visible_message(span_warning("With a sickening crunch, [creator] reforms their arm!"),
+	span_notice("We assimilate the weapon back into our body."),
+	span_italics("You hear organic matter ripping and tearing!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	spawn(1)
 		if(src)
@@ -107,11 +107,11 @@
 
 /obj/item/melee/changeling/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))
-		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
 		return 1
 	if(unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
-		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
+		user.visible_message(span_danger("\The [user] deflects [attack_text] with \the [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
 		return 1
 

@@ -43,7 +43,7 @@
 
 /obj/item/gun/energy/gun/protector/special_check(mob/user)
 	if(!emagged && mode_name == "lethal" && get_security_level() == "green")
-		to_chat(user,"<span class='warning'>The trigger refuses to depress while on the lethal setting under security level green!</span>")
+		to_chat(user,span_warning("The trigger refuses to depress while on the lethal setting under security level green!"))
 		return FALSE
 
 	return ..()
@@ -64,7 +64,7 @@
 	..()
 	if(!emagged)
 		emagged = TRUE
-		to_chat(user,"<span class='warning'>You disable the alert level locking mechanism on \the [src]!</span>")
+		to_chat(user,span_warning("You disable the alert level locking mechanism on \the [src]!"))
 
 	return TRUE
 
@@ -141,10 +141,10 @@
 	if(istype(id) && lockable)
 		if(check_access(id))
 			locked = !locked
-			to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety interlock on \the [src].</span>")
+			to_chat(user, span_warning("You [locked ? "enable" : "disable"] the safety interlock on \the [src]."))
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
-		user.visible_message("<span class='notice'>[user] swipes \the [I] against \the [src].</span>")
+			to_chat(user, span_warning("Access denied."))
+		user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
 	else
 		return ..()
 
@@ -155,6 +155,6 @@
 	if(locked)
 		var/turf/T = get_turf(src)
 		if(T.z in using_map.station_levels)
-			to_chat(user, "<span class='warning'>The safety device prevents the gun from firing this close to the facility.</span>")
+			to_chat(user, span_warning("The safety device prevents the gun from firing this close to the facility."))
 			return 0
 	return ..()

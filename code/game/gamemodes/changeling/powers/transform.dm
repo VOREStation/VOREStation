@@ -14,7 +14,7 @@
 	if(!changeling)	return
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>Transforming here would be a bad idea.</span>")
+		to_chat(src, span_warning("Transforming here would be a bad idea."))
 		return 0
 
 	var/list/names = list()
@@ -29,7 +29,7 @@
 		return
 
 	changeling.chem_charges -= 5
-	src.visible_message("<span class='warning'>[src] transforms!</span>")
+	src.visible_message(span_warning("[src] transforms!"))
 	changeling.geneticdamage = 5
 
 	if(ishuman(src))

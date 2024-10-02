@@ -237,7 +237,7 @@
 	medicalActive2 = null
 	medical_cannotfind = 0
 	SStgui.update_uis(src)
-	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
+	to_chat(usr, span_notice("You reset your record-viewing software."))
 
 /mob/living/silicon/pai/cancel_camera()
 	set category = "pAI Commands"
@@ -274,7 +274,7 @@
 		M.ejectpai()
 	//I'm not sure how much of this is necessary, but I would rather avoid issues.
 	if(istype(card.loc,/obj/item/rig_module))
-		to_chat(src, "<span class='filter_notice'>There is no room to unfold inside this rig module. You're good and stuck.</span>")
+		to_chat(src, span_filter_notice("There is no room to unfold inside this rig module. You're good and stuck."))
 		return 0
 	else if(istype(card.loc,/mob))
 		var/mob/holder = card.loc
@@ -284,11 +284,11 @@
 				if(card in affecting.implants)
 					affecting.take_damage(rand(30,50))
 					affecting.implants -= card
-					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!</span>")
+					H.visible_message(span_danger("\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!"))
 					break
 		holder.drop_from_inventory(card)
 	else if(isbelly(card.loc)) //VOREStation edit.
-		to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
+		to_chat(src, span_notice("There is no room to unfold in here. You're good and stuck.")) //VOREStation edit.
 		return 0 //VOREStation edit.
 	else if(istype(card.loc,/obj/item/pda))
 		var/obj/item/pda/holder = card.loc
@@ -303,7 +303,7 @@
 	canmove = TRUE
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message("<span class='filter_notice'><b>[src]</b> folds outwards, expanding into a mobile form.</span>")
+	if(istype(T)) T.visible_message(span_filter_notice("<b>[src]</b> folds outwards, expanding into a mobile form."))
 	verbs |= /mob/living/silicon/pai/proc/pai_nom
 	verbs |= /mob/living/proc/vertical_nom
 	update_icon()
@@ -374,7 +374,7 @@
 		resting = !resting
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		update_icon() //VOREStation edit
-	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
+	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 
 	canmove = !resting
 
@@ -417,20 +417,20 @@
 //Overriding this will stop a number of headaches down the track.
 /mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
-		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
+		visible_message(span_danger("[user.name] attacks [src] with [W]!"))
 		src.adjustBruteLoss(W.force)
 		src.updatehealth()
 	else
-		visible_message("<span class='warning'>[user.name] bonks [src] harmlessly with [W].</span>")
+		visible_message(span_warning("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
 		if(stat != 2) close_up()
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
 	if(user.a_intent == I_HELP)
-		visible_message("<span class='notice'>[user.name] pats [src].</span>")
+		visible_message(span_notice("[user.name] pats [src]."))
 	else
-		visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
+		visible_message(span_danger("[user.name] boops [src] on the head."))
 		close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.
@@ -444,7 +444,7 @@
 	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
-	if(istype(T) && !silent) T.visible_message("<span class='filter_notice'><b>[src]</b> neatly folds inwards, compacting down to a rectangular card.</span>")
+	if(istype(T) && !silent) T.visible_message(span_filter_notice("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card."))
 
 	if(client)
 		src.stop_pulling()
@@ -502,22 +502,22 @@
 			switch(tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel")))
 				if("Add Access")
 					idcard.access |= ID.GetAccess()
-					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
-					to_chat(src, "<span class='notice'>\The [user] swipes the [W] over you. You copy the access codes.</span>")
+					to_chat(user, span_notice("You add the access from the [W] to [src]."))
+					to_chat(src, span_notice("\The [user] swipes the [W] over you. You copy the access codes."))
 					if(radio)
 						radio.recalculateChannels()
 					return
 				if("Remove Access")
 					idcard.access = list()
-					to_chat(user, "<span class='notice'>You remove the access from [src].</span>")
-					to_chat(src, "<span class='warning'>\The [user] swipes the [W] over you, removing access codes from you.</span>")
+					to_chat(user, span_notice("You remove the access from [src]."))
+					to_chat(src, span_warning("\The [user] swipes the [W] over you, removing access codes from you."))
 					if(radio)
 						radio.recalculateChannels()
 					return
 				if("Cancel", null)
 					return
 		else if (istype(W, /obj/item/card/id) && idaccessible == 0)
-			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")
+			to_chat(user, span_notice("[src] is not accepting access modifcations at this time."))
 			return
 
 /mob/living/silicon/pai/verb/allowmodification()
@@ -527,10 +527,10 @@
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		visible_message("<span class='notice'>\The [src] clicks as their access modification slot opens.</span>","<span class='notice'>You allow access modifications.</span>", runemessage = "click")
+		visible_message(span_notice("\The [src] clicks as their access modification slot opens."),span_notice("You allow access modifications."), runemessage = "click")
 	else
 		idaccessible = 0
-		visible_message("<span class='notice'>\The [src] clicks as their access modification slot closes.</span>","<span class='notice'>You block access modfications.</span>", runemessage = "click")
+		visible_message(span_notice("\The [src] clicks as their access modification slot closes."),span_notice("You block access modfications."), runemessage = "click")
 
 
 /mob/living/silicon/pai/verb/wipe_software()
@@ -543,6 +543,6 @@
 		return
 
 	close_up()
-	visible_message("<span class='filter_notice'><b>[src]</b> fades away from the screen, the pAI device goes silent.</span>")
+	visible_message(span_filter_notice("<b>[src]</b> fades away from the screen, the pAI device goes silent."))
 	card.removePersonality()
 	clear_client()

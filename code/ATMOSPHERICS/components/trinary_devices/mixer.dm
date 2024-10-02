@@ -101,7 +101,7 @@
 	tgui_interact(user)
 	// src.add_fingerprint(usr)
 	// if(!src.allowed(user))
-	// 	to_chat(user, "<span class='warning'>Access denied.</span>")
+	// 	to_chat(user, span_warning("Access denied."))
 	// 	return
 	// usr.set_machine(src)
 	// var/list/node_connects = get_node_connect_dirs()

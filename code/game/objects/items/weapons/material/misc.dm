@@ -138,17 +138,17 @@
 	if(istype(A, /atom/movable))
 		var/atom/movable/AM = A
 		if(AM.anchored)
-			to_chat(user, "<span class='notice'>\The [AM] won't budge.</span>")
+			to_chat(user, span_notice("\The [AM] won't budge."))
 			return
 
 		else
 			if(!istype(AM, /obj/item))
-				user.visible_message("<span class='warning'>\The [AM] is pulled along by \the [src]!</span>")
+				user.visible_message(span_warning("\The [AM] is pulled along by \the [src]!"))
 				AM.Move(get_step(AM, get_dir(AM, src)))
 				return
 
 			else
-				user.visible_message("<span class='warning'>\The [AM] is snatched by \the [src]!</span>")
+				user.visible_message(span_warning("\The [AM] is snatched by \the [src]!"))
 				AM.throw_at(user, reach, 0.1, user)
 
 /obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
@@ -156,19 +156,19 @@
 		switch(user.a_intent)
 			if(I_HURT)
 				if(prob(10) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
-					to_chat(target, "<span class='warning'>\The [src] rips at your hands!</span>")
+					to_chat(target, span_warning("\The [src] rips at your hands!"))
 					ranged_disarm(target)
 			if(I_DISARM)
 				if(prob(min(90, force * 3)) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
 					ranged_disarm(target)
 				else
-					target.visible_message("<span class='danger'>\The [src] sends \the [target] stumbling away.</span>")
+					target.visible_message(span_danger("\The [src] sends \the [target] stumbling away."))
 					target.Move(get_step(target,get_dir(user,target)))
 			if(I_GRAB)
 				var/turf/STurf = get_turf(target)
 				spawn(2)
 					playsound(STurf, 'sound/effects/snap.ogg', 60, 1)
-				target.visible_message("<span class='critical'>\The [src] yanks \the [target] towards \the [user]!</span>")
+				target.visible_message(span_critical("\The [src] yanks \the [target] towards \the [user]!"))
 				target.throw_at(get_turf(get_step(user,get_dir(user,target))), 2, 1, src)
 
 	..()
@@ -185,7 +185,7 @@
 						turfs += T
 					if(turfs.len)
 						var/turf/target = pick(turfs)
-						visible_message("<span class='danger'>[H]'s [W] goes off due to \the [src]!</span>")
+						visible_message(span_danger("[H]'s [W] goes off due to \the [src]!"))
 						return W.afterattack(target,H)
 
 		if(!(H.species.flags & NO_SLIP) && prob(10) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
@@ -193,9 +193,9 @@
 			H.apply_effect(3, WEAKEN, armor_check)
 			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if(armor_check < 60)
-				visible_message("<span class='danger'>\The [src] has tripped [H]!</span>")
+				visible_message(span_danger("\The [src] has tripped [H]!"))
 			else
-				visible_message("<span class='warning'>\The [src] attempted to trip [H]!</span>")
+				visible_message(span_warning("\The [src] attempted to trip [H]!"))
 			return
 
 		else
@@ -207,12 +207,12 @@
 				for(var/obj/item/I in holding)
 					if(I && prob(holding[I]))
 						H.drop_from_inventory(I)
-						visible_message("<span class='danger'>\The [src] has disarmed [H]!</span>")
+						visible_message(span_danger("\The [src] has disarmed [H]!"))
 						playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
 
 /obj/item/material/whip/attack_self(mob/user)
-	user.visible_message("<span class='warning'>\The [user] cracks \the [src]!</span>")
+	user.visible_message(span_warning("\The [user] cracks \the [src]!"))
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 
 /obj/item/material/knife/machete/hatchet/stone

@@ -69,7 +69,7 @@
 	if(tacknife)
 		tacknife.loc = get_turf(src)
 		if(M.put_in_active_hand(tacknife))
-			to_chat(M, "<span class='notice'>You slide \the [tacknife] out of [src].</span>")
+			to_chat(M, span_notice("You slide \the [tacknife] out of [src]."))
 			playsound(src, 'sound/weapons/flipblade.ogg', 40, 1)
 			tacknife = null
 			update_icon()
@@ -83,7 +83,7 @@
 		M.drop_item()
 		tacknife = I
 		I.loc = src
-		to_chat(M, "<span class='notice'>You slide the [I] into [src].</span>")
+		to_chat(M, span_notice("You slide the [I] into [src]."))
 		playsound(src, 'sound/weapons/flipblade.ogg', 40, 1)
 		update_icon()
 	..()

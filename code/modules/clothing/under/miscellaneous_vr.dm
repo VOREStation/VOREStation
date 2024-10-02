@@ -73,7 +73,7 @@
 		return
 
 	if (src != H.w_uniform)
-		to_chat(H,"<span class='warning'>You must be WEARING the uniform to change your size.</span>")
+		to_chat(H,span_warning("You must be WEARING the uniform to change your size."))
 		return
 
 	var/new_size = tgui_input_number(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200, 600, 1)
@@ -82,20 +82,20 @@
 
 	//Check AGAIN because we accepted user input which is blocking.
 	if (src != H.w_uniform)
-		to_chat(H,"<span class='warning'>You must be WEARING the uniform to change your size.</span>")
+		to_chat(H,span_warning("You must be WEARING the uniform to change your size."))
 		return
 
 	if (H.stat || H.restrained())
 		return
 
 	if (isnull(H.size_multiplier)) // Why would this ever be the case?
-		to_chat(H,"<span class='warning'>The uniform panics and corrects your apparently microscopic size.</span>")
+		to_chat(H,span_warning("The uniform panics and corrects your apparently microscopic size."))
 		H.resize(RESIZE_NORMAL, ignore_prefs = TRUE)
 		H.update_icons() //Just want the matrix transform
 		return
 
 	if (!H.size_range_check(new_size))
-		to_chat(H,"<span class='notice'>The safety features of the uniform prevent you from choosing this size.</span>")
+		to_chat(H,span_notice("The safety features of the uniform prevent you from choosing this size."))
 		return
 
 	else if(new_size)
@@ -103,7 +103,7 @@
 			if(!original_size)
 				original_size = H.size_multiplier
 			H.resize(new_size/100, uncapped = H.has_large_resize_bounds(), ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 		else //They chose their current size.
 			return
 
@@ -113,7 +113,7 @@
 		var/mob/living/carbon/human/H = M
 		H.resize(original_size, ignore_prefs = TRUE)
 		original_size = null
-		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+		H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 
 /obj/item/clothing/gloves/bluespace
 	name = "size standardization bracelet"
@@ -143,7 +143,7 @@
 			last_activated = world.time
 			original_size = H.size_multiplier
 			H.resize(target_size, uncapped = emagged, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
 
 /obj/item/clothing/gloves/bluespace/mob_can_unequip(mob/M, gloves, disable_warning = 0)
@@ -155,7 +155,7 @@
 		last_activated = world.time
 		H.resize(original_size, uncapped = emagged, ignore_prefs = FALSE)
 		original_size = null
-		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+		H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 		log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
 		to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in thirty seconds.</span>")
 
@@ -164,9 +164,9 @@
 	var/cooldowntime = round((10 SECONDS - (world.time - last_activated)) * 0.1)
 	if(Adjacent(user))
 		if(cooldowntime >= 0)
-			. += "<span class='notice'>It appears to be recharging.</span>"
+			. += span_notice("It appears to be recharging.")
 		if(emagged)
-			. += "<span class='warning'>The crystal is flickering.</span>"
+			. += span_warning("The crystal is flickering.")
 
 /obj/item/clothing/gloves/bluespace/emag_act(R_charges, var/mob/user, emag_source)
 	. = ..()
@@ -175,7 +175,7 @@
 		target_size = (rand(1,300)) /100
 		if(target_size < 0.1)
 			target_size = 0.1
-		user.visible_message("<span class='notice'>\The [user] swipes the [emag_source] over the \the [src].</span>","<span class='notice'>You swipes the [emag_source] over the \the [src].</span>")
+		user.visible_message(span_notice("\The [user] swipes the [emag_source] over the \the [src]."),span_notice("You swipes the [emag_source] over the \the [src]."))
 		return 1
 
 /obj/item/clothing/gloves/bluespace/emagged

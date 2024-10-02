@@ -360,7 +360,7 @@
 
 		if("dial")
 			if(!get_connection_to_tcomms())
-				to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
+				to_chat(usr, span_danger("Error: Cannot connect to Exonet node."))
 				return FALSE
 			var/their_address = params["dial"]
 			exonet.send_message(their_address, "voice")
@@ -373,7 +373,7 @@
 
 		if("message")
 			if(!get_connection_to_tcomms())
-				to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
+				to_chat(usr, span_danger("Error: Cannot connect to Exonet node."))
 				return FALSE
 			var/their_address = params["message"]
 			var/text = sanitizeSafe(tgui_input_text(usr,"Enter your message.","Text Message"))
@@ -382,7 +382,7 @@
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
 				log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", usr)
 				var/obj/item/communicator/comm = exonet.get_atom_from_address(their_address)
-				to_chat(usr, "<span class='notice'>[icon2html(src, usr.client)] Sent message to [istype(comm, /obj/item/communicator) ? comm.owner : comm.name], <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
+				to_chat(usr, span_notice("[icon2html(src, usr.client)] Sent message to [istype(comm, /obj/item/communicator) ? comm.owner : comm.name], <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)"))
 				for(var/mob/M in player_list)
 					if(M.stat == DEAD && M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
 						if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)

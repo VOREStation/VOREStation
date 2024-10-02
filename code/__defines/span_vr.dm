@@ -2,7 +2,10 @@
 // We have two other ways of doing this, so why not a third. This one atleast has more span options.
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
+#define span_rlooc(str) ("<span class='rlooc'>" + str + "</span>")
+#define span_aooc(str) ("<span class='aooc'>" + str + "</span>")
 
+#define span_npcsay(str) ("<span class='npcsay'>" + str + "</span>")
 #define span_deadsay(str) ("<span class='deadsay'>" + str + "</span>")
 #define span_radio(str) ("<span class='radio'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")
@@ -22,19 +25,29 @@
 #define span_srvradio(str) ("<span class='srvradio'>" + str + "</span>")
 #define span_expradio(str) ("<span class='expradio'>" + str + "</span>")
 
-#define span_binary(str) ("<span class='binarysay'>" + str + "</span>")
+#define span_binarysay(str) ("<span class='binarysay'>" + str + "</span>")
 #define span_hivemind(str) ("<span class='hivemind'>" + str + "</span>")
 
 #define span_name(str) ("<span class='name'>" + str + "</span>")
 #define span_say(str) ("<span class='say'>" + str + "</span>")
+#define span_filter_say(str) ("<span class='filter_say'>" + str + "</span>")
+#define span_npc_say(str) ("<span class='npcsay'>" + str + "</span>")
+#define span_multizsay(str) ("<span class='multizsay'>" + str + "</span>")
 #define span_alert(str) ("<span class='alert'>" + str + "</span>")
 #define span_ghostalert(str) ("<span class='ghostalert'>" + str + "</span>")
-#define span_npc_say(str) ("<span class='npcsay'>" + str + "</span>")
 
+#define span_game(str) ("<span class='game'>" + str + "</span>")
 
 #define span_emote(str) ("<span class='emote'>" + str + "</span>")
 #define span_emote_subtle(str) ("<span class='emotesubtle'>" + str + "</span>")
 #define span_npc_emote(str) ("<span class='npcemote'>" + str + "</span>")
+
+#define span_message(str) ("<span class='message'>" + str + "</span>") // TODO: This makes no sense, check it! CI Error: Span not defined in scss
+#define span_notify(str) ("<span class='notify'>" + str + "</span>") // TODO: This makes no sense, check it! CI Error: Span not defined in scss
+#define span_body(str) ("<span class='body'>" + str + "</span>")
+#define span_suicide(str) ("<span class='suicide'>" + str + "</span>")
+
+#define span_hear(str) ("<span class='hear'>" + str + "</span>")
 
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_moderate(str) ("<span class='moderate'>" + str + "</span>")
@@ -45,19 +58,41 @@
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_userdanger(str) ("<span class='userdanger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
+#define span_boldwarning(str) ("<span class='boldwarning'>" + str + "</span>")
+#define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>")
+#define span_filter_combat(str) ("<span class='filter_combat'>" + str + "</span>")
+#define span_unconscious(str) ("<span class='unconscious'>" + str + "</span>")
+
 #define span_rose(str) ("<span class='rose'>" + str + "</span>")
 #define span_info(str) ("<span class='info'>" + str + "</span>")
+#define span_infoplain(str) ("<span class='infoplain'>" + str + "</span>")
 #define span_notice(str) ("<span class='notice'>" + str + "</span>")
+#define span_filter_notice(str) ("<span class='filter_notice'>" + str + "</span>")
+#define span_boldnotice(str) ("<span class='boldnotice'>" + str + "</span>")
 #define span_alium(str) ("<span class='alium'>" + str + "</span>")
 #define span_cult(str) ("<span class='cult'>" + str + "</span>")
 
+#define span_sinister(str) ("<span class='sinister'>" + str + "</span>")
+
 #define span_reflex_shoot(str) ("<span class='reflex_shoot'>" + str + "</span>")
+
+/* Direct communication spans */
+
+#define span_psay(str) ("<span class='psay'>" + str + "</span>")
+#define span_pemote(str) ("<span class='pemote'>" + str + "</span>")
+
+/* Export spans */
+
+#define span_chatexport(str) ("<span class='chatexport'>" + str + "</span>")
 
 /* Vore messages */
 
+#define span_valert(str) ("<span class='valert'>" + str + "</span>")
 #define span_vdanger(str) ("<span class='vdanger'>" + str + "</span>")
 #define span_vwarning(str) ("<span class='vwarning'>" + str + "</span>")
 #define span_vnotice(str) ("<span class='vnotice'>" + str + "</span>")
+#define span_nif(str) ("<span class='nif'>" + str + "</span>")
+#define span_filter_nif(str) ("<span class='filter_nif'>" + str + "</span>")
 
 /* Languages */
 
@@ -109,13 +144,32 @@
 #define span_maroon(str) ("<span class='maroon'>" + str + "</span>")
 #define span_brown(str) ("<span class='brown'>" + str + "</span>")
 #define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
-#define span_darkpink(str) ("<span class='lightpurple'>" + str + "</span>")
+#define span_darkpink(str) ("<span class='darkpurple'>" + str + "</span>")
 
 /* System and Debug */
 
+#define span_prefix(str) ("<span class='prefix'>" + str + "</span>")
+#define span_admin(str) ("<span class='admin'>" + str + "</span>")
+#define span_adminnotice(str) ("<span class='adminnotice'>" + str + "</span>")
+#define span_boldannounce(str) ("<span class='boldannounce'>" + str + "</span>")
 #define span_linkOn(str) ("<span class='linkOn'>" + str + "</span>")
+#define span_linkOff(str) ("<span class='linkOff'>" + str + "</span>")
+#define span_log_message(str) ("<span class='log_message'>" + str + "</span>")
 #define span_filter_system(str) ("<span class='filter_system'>" + str + "</span>")
 #define span_filter_debuglogs(str) ("<span class='filter_debuglogs'>" + str + "</span>")
+#define span_filter_adminlog(str) ("<span class='filter_adminlog'>" + str + "</span>")
+#define span_pm(str) ("<span class='pm'>" + str + "</span>")
+#define span_filter_pm(str) ("<span class='filter_pm'>" + str + "</span>")
+#define span_adminhelp(str) ("<span class='adminhelp'>" + str + "</span>")
+#define span_mentor(str) ("<span class='mentor'>" + str + "</span>")
+#define span_filter_pray(str) ("<span class='filter_pray'>" + str + "</span>")
+
+/* Adminchat */
+
+#define span_admin_channel(str) ("<span class='admin_channel'>" + str + "</span>")
+#define span_mod_channel(str) ("<span class='mod_channel'>" + str + "</span>")
+#define span_event_channel(str) ("<span class='event_channel'>" + str + "</span>")
+#define span_mentor_channel(str) ("<span class='mentor_channel'>" + str + "</span>")
 
 /* Byond Sizes */
 
@@ -128,3 +182,10 @@
 #define span_huge(X) "<font size='4'>[X]</font>"
 
 #define span_giant(X) "<font size='5'>[X]</font>"
+
+/* Style spans */
+
+#define span_italics(str) ("<span class='italics'>" + str + "</span>")
+#define span_bold(str) ("<span class='bold'>" + str + "</span>")
+
+#define span_linkify(str) ("<span class='linkify'>" + str + "</span>")

@@ -50,7 +50,7 @@
 		. += span_notice("\The [src] can be removed with \a [initial(tool.name)].")
 
 /obj/structure/flora/proc/get_harvestable_desc()
-	return "<span class='notice'>\The [src] seems to have something hanging from it.</span>"
+	return span_notice("\The [src] seems to have something hanging from it.")
 
 /obj/structure/flora/attackby(var/obj/item/W, var/mob/living/user)
 
@@ -282,18 +282,18 @@
 /obj/structure/flora/pottedplant/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) && stored_item)
-		. += "<span class='filter_notice'><i>You can see something in there...</i></span>"
+		. += span_filter_notice("<i>You can see something in there...</i>")
 
 /obj/structure/flora/pottedplant/attackby(obj/item/I, mob/user)
 	if(issilicon(user))
 		return // Don't try to put modules in here, you're a borg. TODO: Inventory refactor to not be ass.
 
 	if(stored_item)
-		to_chat(user, "<span class='notice'>[I] won't fit in. There already appears to be something in here...</span>")
+		to_chat(user, span_notice("[I] won't fit in. There already appears to be something in here..."))
 		return
 
 	if(I.w_class > ITEMSIZE_TINY)
-		to_chat(user, "<span class='notice'>[I] is too big to fit inside [src].</span>")
+		to_chat(user, span_notice("[I] is too big to fit inside [src]."))
 		return
 
 	if(do_after(user, 10))
@@ -303,15 +303,15 @@
 		src.visible_message("[icon2html(src,viewers(src))] [icon2html(I,viewers(src))] [user] places [I] into [src].")
 		return
 	else
-		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
+		to_chat(user, span_notice("You refrain from putting things into the plant pot."))
 		return
 
 /obj/structure/flora/pottedplant/attack_hand(mob/user)
 	if(!stored_item)
-		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")
+		to_chat(user, span_filter_notice("<b>You see nothing of interest in [src]...</b>"))
 	else
 		if(do_after(user, 10))
-			to_chat(user, "<span class='filter_notice'>You find [icon2html(stored_item, user.client)] [stored_item] in [src]!</span>")
+			to_chat(user, span_filter_notice("You find [icon2html(stored_item, user.client)] [stored_item] in [src]!"))
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 	..()
@@ -598,7 +598,7 @@
 	. = ..()
 
 /obj/structure/flora/sif/tendrils/get_harvestable_desc()
-	return "<span class='notice'>\The [src] seems to be growing over something.</span>"
+	return span_notice("\The [src] seems to be growing over something.")
 
 /datum/category_item/catalogue/flora/frostbelle
 	name = "Sivian Flora - Frostbelle"
@@ -639,7 +639,7 @@
 		icon_state = initial(icon_state)
 
 /obj/structure/flora/sif/frostbelle/get_harvestable_desc()
-	return "<span class='notice'>\The [src] seems to be budding.</span>"
+	return span_notice("\The [src] seems to be budding.")
 
 //Start of underwater plants
 

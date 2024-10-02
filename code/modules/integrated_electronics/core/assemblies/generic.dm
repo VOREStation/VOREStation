@@ -209,12 +209,12 @@
 		return
 	var/turf/T = get_turf(user)
 	if(!istype(T, /turf/simulated/floor))
-		to_chat(user, "<span class='warning'>You cannot place \the [src] on this spot!</span>")
+		to_chat(user, span_warning("You cannot place \the [src] on this spot!"))
 		return
 	playsound(src, 'sound/machines/click.ogg', 75, 1)
 	user.visible_message("\The [user] attaches \the [src] to the wall.",
-		"<span class='notice'>You attach \the [src] to the wall.</span>",
-		"<span class='italics'>You hear clicking.</span>")
+		span_notice("You attach \the [src] to the wall."),
+		span_italics("You hear clicking."))
 	if(istype(user, /mob/living/silicon/robot)) //Robots cannot unequip/drop items, for Safety Reasons.
 		forceMove(T)
 	user.drop_item(T)

@@ -90,9 +90,9 @@
 
 /obj/structure/outcrop/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/pickaxe))
-		to_chat(user, "<span class='notice'>[user] begins to hack away at \the [src].</span>")
+		to_chat(user, span_notice("[user] begins to hack away at \the [src]."))
 		if(do_after(user,40))
-			to_chat(user, "<span class='notice'>You have finished digging!</span>")
+			to_chat(user, span_notice("You have finished digging!"))
 			for(var/i=0;i<(rand(mindrop,upperdrop));i++)
 				new outcropdrop(get_turf(src))
 			qdel(src)
@@ -100,13 +100,13 @@
 	if (istype(W, /obj/item/melee/shock_maul))
 		var/obj/item/melee/shock_maul/S = W
 		if(!S.wielded || !S.status)
-			to_chat(user, "<span class='warning'>\The [src] must be wielded in two hands and powered on to be used for mining!</span>")
+			to_chat(user, span_warning("\The [src] must be wielded in two hands and powered on to be used for mining!"))
 			return
-		to_chat(user, "<span class='notice'>You pulverize \the [src]!</span>")
+		to_chat(user, span_notice("You pulverize \the [src]!"))
 		for(var/i=0;i<(rand(mindrop,upperdrop));i++)
 			new outcropdrop(get_turf(src))
 		playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
-		user.visible_message("<span class='warning'>\The [S] discharges with a thunderous, hair-raising crackle!</span>")
+		user.visible_message(span_warning("\The [S] discharges with a thunderous, hair-raising crackle!"))
 		S.deductcharge()
 		S.status = 0
 		S.update_held_icon()

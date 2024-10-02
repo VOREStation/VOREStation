@@ -35,7 +35,7 @@
 			return
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
+		to_chat(user, span_notice("\The [src] is empty!"))
 		return
 
 	Spray_at(A, user, proximity)
@@ -75,7 +75,7 @@
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
-	to_chat(user, "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>")
+	to_chat(user, span_notice("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
 /obj/item/reagent_containers/spray/examine(mob/user)
 	. = ..()
@@ -91,7 +91,7 @@
 	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc))
-		to_chat(usr, "<span class='notice'>You empty \the [src] onto the floor.</span>")
+		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
 		reagents.splash(usr.loc, reagents.total_volume)
 
 //space cleaner
@@ -245,7 +245,7 @@
 /obj/item/reagent_containers/spray/chemsprayer/hosed/AltClick(mob/living/carbon/user)
 	if(++spray_particles > 3) spray_particles = 1
 
-	to_chat(user, "<span class='notice'>You turn the dial on \the [src] to [spray_particles].</span>")
+	to_chat(user, span_notice("You turn the dial on \the [src] to [spray_particles]."))
 	return
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed/CtrlClick(var/mob/user)
@@ -264,7 +264,7 @@
 	var/list/the_targets = list(T, T1, T2)
 
 	if(src.reagents.total_volume < 1)
-		to_chat(usr, "<span class='notice'>\The [src] is empty.</span>")
+		to_chat(usr, span_notice("\The [src] is empty."))
 		return
 
 	if(!heavy_spray)

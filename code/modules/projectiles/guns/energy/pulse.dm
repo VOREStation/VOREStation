@@ -36,7 +36,7 @@
 	fire_delay = 12
 
 /obj/item/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
-	to_chat(user, "<span class='warning'>[src.name] has three settings, and they are all DESTROY.</span>")
+	to_chat(user, span_warning("[src.name] has three settings, and they are all DESTROY."))
 
 /*
  * Pulse Carbine

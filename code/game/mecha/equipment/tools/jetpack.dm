@@ -50,7 +50,7 @@
 	var/move_result = 0
 	if(direction == UP || direction == DOWN)
 		if(!chassis.can_ztravel())
-			chassis.occupant_message("<span class='warning'>Your vehicle lacks the capacity to move in that direction!</span>")
+			chassis.occupant_message(span_warning("Your vehicle lacks the capacity to move in that direction!"))
 			return FALSE
 
 		//We're using locs because some mecha are 2x2 turfs. So thicc!
@@ -58,16 +58,16 @@
 
 		for(var/turf/T in chassis.locs)
 			if(!T.CanZPass(chassis,direction))
-				chassis.occupant_message("<span class='warning'>You can't move that direction from here!</span>")
+				chassis.occupant_message(span_warning("You can't move that direction from here!"))
 				result = FALSE
 				break
 			var/turf/dest = (direction == UP) ? GetAbove(chassis) : GetBelow(chassis)
 			if(!dest)
-				chassis.occupant_message("<span class='notice'>There is nothing of interest in this direction.</span>")
+				chassis.occupant_message(span_notice("There is nothing of interest in this direction."))
 				result = FALSE
 				break
 			if(!dest.CanZPass(chassis,direction))
-				chassis.occupant_message("<span class='warning'>There's something blocking your movement in that direction!</span>")
+				chassis.occupant_message(span_warning("There's something blocking your movement in that direction!"))
 				result = FALSE
 				break
 		if(result)
@@ -80,7 +80,7 @@
 				if(!chassis.check_for_support())
 					chassis.float_direction = direction
 					chassis.start_process(MECHA_PROC_MOVEMENT)
-					chassis.log_message("<span class='warning'>Movement control lost. Inertial movement started.</span>")
+					chassis.log_message(span_warning("Movement control lost. Inertial movement started."))
 			if(chassis.do_after(get_step_delay()))
 				chassis.can_move = 1
 			return 1

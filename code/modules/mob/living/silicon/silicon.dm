@@ -74,8 +74,8 @@
 			src.take_organ_damage(0,5,emp=1)
 			Confuse(2)
 	flash_eyes(affect_silicon = 1)
-	to_chat(src, "<span class='danger'><B>*BZZZT*</B></span>")
-	to_chat(src, "<span class='danger'>Warning: Electromagnetic pulse detected.</span>")
+	to_chat(src, span_danger("<B>*BZZZT*</B>"))
+	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
@@ -89,9 +89,9 @@
 
 		shock_damage *= siemens_coeff	//take reduced damage
 		take_overall_damage(0, shock_damage)
-		visible_message("<span class='warning'>[src] was shocked by \the [source]!</span>", \
-			"<span class='danger'>Energy pulse detected, system damaged!</span>", \
-			"<span class='warning'>You hear an electrical crack.</span>")
+		visible_message(span_warning("[src] was shocked by \the [source]!"), \
+			span_danger("Energy pulse detected, system damaged!"), \
+			span_warning("You hear an electrical crack."))
 		if(prob(20))
 			Stun(2)
 		return
@@ -160,7 +160,7 @@
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat = "<div align='center'>"
 	if(!data_core)
-		to_chat(src, "<span class='notice'>There is no data to form a manifest with. Contact your Nanotrasen administrator.</span>")
+		to_chat(src, span_notice("There is no data to form a manifest with. Contact your Nanotrasen administrator."))
 		return
 	dat += data_core.get_manifest(1) //The 1 makes it monochrome.
 
@@ -172,7 +172,7 @@
 //can't inject synths
 /mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
+		to_chat(user, span_alert("The armoured plating is too tough."))
 	return 0
 
 
@@ -336,7 +336,7 @@
 					alarm_raised = 1
 					if(!reported)
 						reported = 1
-						to_chat(src, "<span class='warning'>--- [AH.category] Detected ---</span>")
+						to_chat(src, span_warning("--- [AH.category] Detected ---"))
 					raised_alarm(A)
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
@@ -346,24 +346,24 @@
 				if(alarms[A] == -1)
 					if(!reported)
 						reported = 1
-						to_chat(src, "<span class='notice'>--- [AH.category] Cleared ---</span>")
+						to_chat(src, span_notice("--- [AH.category] Cleared ---"))
 					to_chat(src, "\The [A.alarm_name()].")
 
 		if(alarm_raised)
-			to_chat(src, "<span class='filter_notice'><A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A></span>")
+			to_chat(src, span_filter_notice("<A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A>"))
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
 			var/list/alarms = queued_alarms[AH]
 			alarms.Cut()
 
 /mob/living/silicon/proc/raised_alarm(var/datum/alarm/A)
-	to_chat(src, "<span class='filter_warning'>[A.alarm_name()]!</span>")
+	to_chat(src, span_filter_warning("[A.alarm_name()]!"))
 
 /mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
 		cameratext += "[(cameratext == "")? "" : "|"]<A HREF=?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
-	to_chat(src, "<span class='filter_warning'>[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])</span>")
+	to_chat(src, span_filter_warning("[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])"))
 
 
 /mob/living/silicon/proc/is_traitor()

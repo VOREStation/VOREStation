@@ -20,34 +20,34 @@
 	user.do_attack_animation(M)
 
 	if (!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='danger'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_danger("You don't have the dexterity to do this!"))
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='danger'>The rod slips out of your hand and hits your head.</span>")
+		to_chat(user, span_danger("The rod slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(20)
 		return
 
 	if (M.stat !=2)
 		if(cult && (M.mind in cult.current_antagonists) && prob(33))
-			to_chat(M, "<span class='danger'>The power of [src] clears your mind of the cult's influence!</span>")
-			to_chat(user, "<span class='danger'>You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal.</span>")
+			to_chat(M, span_danger("The power of [src] clears your mind of the cult's influence!"))
+			to_chat(user, span_danger("You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal."))
 			cult.remove_antagonist(M.mind)
-			M.visible_message("<span class='danger'>\The [user] waves \the [src] over \the [M]'s head.</span>")
+			M.visible_message(span_danger("\The [user] waves \the [src] over \the [M]'s head."))
 		else if(prob(10))
-			to_chat(user, "<span class='danger'>The rod slips in your hand.</span>")
+			to_chat(user, span_danger("The rod slips in your hand."))
 			..()
 		else
-			to_chat(user, "<span class='danger'>The rod appears to do nothing.</span>")
-			M.visible_message("<span class='danger'>\The [user] waves \the [src] over \the [M]'s head.</span>")
+			to_chat(user, span_danger("The rod appears to do nothing."))
+			M.visible_message(span_danger("\The [user] waves \the [src] over \the [M]'s head."))
 			return
 
 /obj/item/nullrod/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if (istype(A, /turf/simulated/floor))
-		to_chat(user, "<span class='notice'>You hit the floor with the [src].</span>")
+		to_chat(user, span_notice("You hit the floor with the [src]."))
 		call(/obj/effect/rune/proc/revealrunes)(src)
 
 /obj/item/energy_net
@@ -107,7 +107,7 @@
 /obj/effect/energy_net/Destroy()
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
-			to_chat(A, "<span class='notice'>You are free of the net!</span>")
+			to_chat(A, span_notice("You are free of the net!"))
 			unbuckle_mob(A)
 
 	STOP_PROCESSING(SSobj, src)
@@ -119,11 +119,11 @@
 
 /obj/effect/energy_net/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	user.setClickCooldown(user.get_attack_speed())
-	visible_message("<span class='danger'>[user] begins to tear at \the [src]!</span>")
+	visible_message(span_danger("[user] begins to tear at \the [src]!"))
 	if(do_after(user, escape_time, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
 		if(!has_buckled_mobs())
 			return
-		visible_message("<span class='danger'>[user] manages to tear \the [src] apart!</span>")
+		visible_message(span_danger("[user] manages to tear \the [src] apart!"))
 		unbuckle_mob(buckled_mob)
 
 /obj/effect/energy_net/post_buckle_mob(mob/living/M)

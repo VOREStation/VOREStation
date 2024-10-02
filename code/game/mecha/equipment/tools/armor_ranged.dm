@@ -19,7 +19,7 @@
 	if(!action_checks(src))
 		return inc_damage
 	if(prob(chassis.deflect_chance*deflect_coeff))
-		chassis.occupant_message("<span class='notice'>The armor deflects incoming projectile.</span>")
+		chassis.occupant_message(span_notice("The armor deflects incoming projectile."))
 		chassis.visible_message("The [chassis.name] armor deflects the projectile.")
 		chassis.log_append_to_last("Armor saved.")
 		inc_damage = 0
@@ -35,7 +35,7 @@
 	if(!action_checks(A))
 		return inc_damage
 	if(prob(chassis.deflect_chance*deflect_coeff))
-		chassis.occupant_message("<span class='notice'>The [A] bounces off the armor.</span>")
+		chassis.occupant_message(span_notice("The [A] bounces off the armor."))
 		chassis.visible_message("The [A] bounces off \the [chassis]'s armor")
 		chassis.log_append_to_last("Armor saved.")
 		inc_damage = 0
@@ -76,7 +76,7 @@
 	if(!action_checks(src))
 		return chassis.dynbulletdamage(Proj)
 	if(prob(chassis.deflect_chance*deflect_coeff))
-		chassis.occupant_message("<span class='notice'>The armor deflects incoming projectile.</span>")
+		chassis.occupant_message(span_notice("The armor deflects incoming projectile."))
 		chassis.visible_message("The [chassis.name] armor deflects the projectile")
 		chassis.log_append_to_last("Armor saved.")
 	else
@@ -92,7 +92,7 @@
 	if(!action_checks(A))
 		return chassis.dynhitby(A)
 	if(prob(chassis.deflect_chance*deflect_coeff) || istype(A, /mob/living) || istype(A, /obj/item/mecha_parts/mecha_tracking))
-		chassis.occupant_message("<span class='notice'>The [A] bounces off the armor.</span>")
+		chassis.occupant_message(span_notice("The [A] bounces off the armor."))
 		chassis.visible_message("The [A] bounces off the [chassis] armor")
 		chassis.log_append_to_last("Armor saved.")
 		if(istype(A, /mob/living))

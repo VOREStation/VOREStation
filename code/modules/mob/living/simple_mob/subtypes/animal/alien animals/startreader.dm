@@ -124,7 +124,7 @@
 		flip_cooldown = 0
 		flipped = FALSE
 		handle_flip()
-		visible_message("<span class='notice'>\The [src] rights itself!!!</span>")
+		visible_message(span_notice("\The [src] rights itself!!!"))
 		return
 	if(flip_cooldown)
 		flip_cooldown --

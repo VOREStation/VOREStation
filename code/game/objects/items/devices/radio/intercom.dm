@@ -139,7 +139,7 @@
 		playsound(src, W.usesound, 50, 1)
 		update_icon()
 	else if(wiresexposed && W.has_tool_quality(TOOL_WIRECUTTER))
-		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+		user.visible_message(span_warning("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 		playsound(src, W.usesound, 50, 1)
 		new/obj/item/stack/cable_coil(get_turf(src), 5)
 		var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
@@ -200,15 +200,15 @@
 //VOREStation Add Start
 /obj/item/radio/intercom/AICtrlClick(var/mob/user)
 	ToggleBroadcast()
-	to_chat(user, "<span class='notice'>\The [src]'s microphone is now <b>[broadcasting ? "enabled" : "disabled"]</b>.</span>")
+	to_chat(user, span_notice("\The [src]'s microphone is now <b>[broadcasting ? "enabled" : "disabled"]</b>."))
 
 /obj/item/radio/intercom/AIAltClick(var/mob/user)
 	if(frequency == AI_FREQ)
 		set_frequency(initial(frequency))
-		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to [span_green("<b>Default</b>")].</span>")
+		to_chat(user, span_notice("\The [src]'s frequency is now set to [span_green("<b>Default</b>")]."))
 	else
 		set_frequency(AI_FREQ)
-		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to [span_pink("<b>AI Private</b>")].</span>")
+		to_chat(user, span_notice("\The [src]'s frequency is now set to [span_pink("<b>AI Private</b>")]."))
 //VOREStation Add End
 /obj/item/radio/intercom/locked
     var/locked_frequency

@@ -158,12 +158,12 @@
 		return 0
 
 	if (!user.Adjacent(src))
-		to_chat(user, "<span class='danger'>You can't climb there, the way is blocked.</span>")
+		to_chat(user, span_danger("You can't climb there, the way is blocked."))
 		return 0
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		to_chat(user, "<span class='danger'>There's \a [occupied] in the way.</span>")
+		to_chat(user, span_danger("There's \a [occupied] in the way."))
 		return 0
 	return 1
 
@@ -185,7 +185,7 @@
 	if (!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	usr.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
 	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? climb_delay * 0.6 : climb_delay)))
@@ -199,7 +199,7 @@
 	usr.forceMove(climb_to(user))
 
 	if (get_turf(user) == get_turf(src))
-		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+		usr.visible_message(span_warning("[user] climbs onto \the [src]!"))
 	LAZYREMOVE(climbers, user)
 
 /obj/machinery/computer/proc/climb_to(var/mob/living/user)
@@ -212,11 +212,11 @@
 	if(!Adjacent(user))
 		return 0
 	if (user.restrained() || user.buckled)
-		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
+		to_chat(user, span_notice("You need your hands and legs free for this."))
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
 	if (isAI(user))
-		to_chat(user, "<span class='notice'>You need hands for this.</span>")
+		to_chat(user, span_notice("You need hands for this."))
 		return 0
 	return 1

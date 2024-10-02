@@ -264,7 +264,7 @@
 /obj/item/clothing/head/psy_crown/proc/activate_ability(var/mob/living/wearer)
 	cooldown = world.time + cooldown_duration
 	to_chat(wearer, flavor_activate)
-	to_chat(wearer, "<span class='danger'>The inside of your head hurts...</span>")
+	to_chat(wearer, span_danger("The inside of your head hurts..."))
 	wearer.adjustBrainLoss(brainloss_cost)
 
 /obj/item/clothing/head/psy_crown/equipped(var/mob/living/carbon/human/H)
@@ -298,10 +298,10 @@
 	desc = "A crown-of-thorns set with a red gemstone that seems to glow unnaturally. It feels rather disturbing to touch."
 	description_info = "This has a chance to cause the wearer to become extremely angry when in extreme danger."
 	icon_state = "wrathcrown"
-	flavor_equip = "<span class='warning'>You feel a bit angrier after putting on this crown.</span>"
-	flavor_unequip = "<span class='notice'>You feel calmer after removing the crown.</span>"
-	flavor_drop = "<span class='notice'>You feel much calmer after letting go of the crown.</span>"
-	flavor_activate = "<span class='danger'>An otherworldly feeling seems to enter your mind, and it ignites your mind in fury!</span>"
+	flavor_equip = span_warning("You feel a bit angrier after putting on this crown.")
+	flavor_unequip = span_notice("You feel calmer after removing the crown.")
+	flavor_drop = span_notice("You feel much calmer after letting go of the crown.")
+	flavor_activate = span_danger("An otherworldly feeling seems to enter your mind, and it ignites your mind in fury!")
 
 /obj/item/clothing/head/psy_crown/wrath/activate_ability(var/mob/living/wearer)
 	..()
@@ -312,10 +312,10 @@
 	desc = "A crown-of-thorns set with a green gemstone that seems to glow unnaturally. It feels rather disturbing to touch."
 	description_info = "This has a chance to cause the wearer to become extremely durable, but hungry when in extreme danger."
 	icon_state = "gluttonycrown"
-	flavor_equip = "<span class='warning'>You feel a bit hungrier after putting on this crown.</span>"
-	flavor_unequip = "<span class='notice'>You feel sated after removing the crown.</span>"
-	flavor_drop = "<span class='notice'>You feel much more sated after letting go of the crown.</span>"
-	flavor_activate = "<span class='danger'>An otherworldly feeling seems to enter your mind, and it drives your mind into gluttony!</span>"
+	flavor_equip = span_warning("You feel a bit hungrier after putting on this crown.")
+	flavor_unequip = span_notice("You feel sated after removing the crown.")
+	flavor_drop = span_notice("You feel much more sated after letting go of the crown.")
+	flavor_activate = span_danger("An otherworldly feeling seems to enter your mind, and it drives your mind into gluttony!")
 
 /obj/item/clothing/head/psy_crown/gluttony/activate_ability(var/mob/living/wearer)
 	..()

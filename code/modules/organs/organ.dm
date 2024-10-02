@@ -197,7 +197,7 @@ var/list/organ_cache = list()
 /obj/item/organ/examine(mob/user)
 	. = ..()
 	if(status & ORGAN_DEAD)
-		. += "<span class='notice'>Decay appears to have set in.</span>"
+		. += span_notice("Decay appears to have set in.")
 
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
@@ -451,7 +451,7 @@ var/list/organ_cache = list()
 	if(robotic >= ORGAN_ROBOT)
 		return
 
-	to_chat(user, "<span class='notice'>You take an experimental bite out of \the [src].</span>")
+	to_chat(user, span_notice("You take an experimental bite out of \the [src]."))
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	blood_splatter(src,B,1)
 
@@ -503,10 +503,10 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
 	if(robotic >= ORGAN_ROBOT)
-		user?.visible_message("<span class='notice'>[user] disassembles \the [src].</span>")
+		user?.visible_message(span_notice("[user] disassembles \the [src]."))
 
 	else
-		user?.visible_message("<span class='notice'>[user] butchers \the [src].</span>")
+		user?.visible_message(span_notice("[user] butchers \the [src]."))
 
 	if(!newtarget)
 		newtarget = get_turf(src)

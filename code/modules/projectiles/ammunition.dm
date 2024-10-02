@@ -59,7 +59,7 @@
 				break
 			if(box.caliber == bullet.caliber && bullet.BB)
 				if (boolets < 1)
-					to_chat(user, "<span class='notice'>You start collecting shells.</span>") // Say it here so it doesn't get said if we don't find anything useful.
+					to_chat(user, span_notice("You start collecting shells.")) // Say it here so it doesn't get said if we don't find anything useful.
 				if(do_after(user,5,box))
 					if(box.stored_ammo.len >= box.max_ammo) // Double check because these can change during the wait.
 						break
@@ -73,9 +73,9 @@
 					break
 
 		if(boolets > 0)
-			to_chat(user, "<span class='notice'>You collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s.</span>")
+			to_chat(user, span_notice("You collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s."))
 		else
-			to_chat(user, "<span class='warning'>You fail to collect anything!</span>")
+			to_chat(user, span_warning("You fail to collect anything!"))
 		box.reloading = FALSE
 	else
 		return ..()
@@ -139,10 +139,10 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber != caliber)
-			to_chat(user, "<span class='warning'>[C] does not fit into [src].</span>")
+			to_chat(user, span_warning("[C] does not fit into [src]."))
 			return
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, "<span class='warning'>[src] is full!</span>")
+			to_chat(user, span_warning("[src] is full!"))
 			return
 		user.remove_from_mob(C)
 		C.forceMove(src)
@@ -151,13 +151,13 @@
 	if(istype(W, /obj/item/ammo_magazine/clip))
 		var/obj/item/ammo_magazine/clip/L = W
 		if(L.caliber != caliber)
-			to_chat(user, "<span class='warning'>The ammo in [L] does not fit into [src].</span>")
+			to_chat(user, span_warning("The ammo in [L] does not fit into [src]."))
 			return
 		if(!L.stored_ammo.len)
-			to_chat(user, "<span class='warning'>There's no more ammo [L]!</span>")
+			to_chat(user, span_warning("There's no more ammo [L]!"))
 			return
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, "<span class='warning'>[src] is full!</span>")
+			to_chat(user, span_warning("[src] is full!"))
 			return
 		var/obj/item/ammo_casing/AC = L.stored_ammo[1] //select the next casing.
 		L.stored_ammo -= AC //Remove this casing from loaded list of the clip.
@@ -171,9 +171,9 @@
 /obj/item/ammo_magazine/attack_self(mob/user)
 	if(can_remove_ammo)
 		if(!stored_ammo.len)
-			to_chat(user, "<span class='notice'>[src] is already empty!</span>")
+			to_chat(user, span_notice("[src] is already empty!"))
 			return
-		to_chat(user, "<span class='notice'>You empty [src].</span>")
+		to_chat(user, span_notice("You empty [src]."))
 		playsound(src, "casing_sound", 50, 1)
 		spawn(7)
 			playsound(src, "casing_sound", 50, 1)
@@ -185,7 +185,7 @@
 		stored_ammo.Cut()
 		update_icon()
 	else
-		to_chat(user, "<span class='notice'>\The [src] is not designed to be unloaded.</span>")
+		to_chat(user, span_notice("\The [src] is not designed to be unloaded."))
 		return
 
 // This puts one bullet from the magazine into your hand
@@ -196,7 +196,7 @@
 				var/obj/item/ammo_casing/C = stored_ammo[stored_ammo.len]
 				stored_ammo-=C
 				user.put_in_hands(C)
-				user.visible_message("\The [user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+				user.visible_message("\The [user] removes \a [C] from [src].", span_notice("You remove \a [C] from [src]."))
 				update_icon()
 				return
 	..()
@@ -268,7 +268,7 @@
 				var/obj/item/ammo_casing/C = stored_ammo[stored_ammo.len]
 				stored_ammo-=C
 				user.put_in_hands(C)
-				user.visible_message("\The [user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+				user.visible_message("\The [user] removes \a [C] from [src].", span_notice("You remove \a [C] from [src]."))
 				update_icon()
 				return
 	..()
@@ -276,4 +276,4 @@
 /obj/item/ammo_magazine/ammo_box/examine(mob/user)
 	. = ..()
 
-	. += to_chat(usr, "<span class='notice'>Alt-click to extract contents.</span>")
+	. += to_chat(usr, span_notice("Alt-click to extract contents."))

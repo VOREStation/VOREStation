@@ -166,9 +166,9 @@
 		reattach_gun(user)
 	else if(istype(W, /obj/item/cell))
 		if(bcell)
-			to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
+			to_chat(user, span_notice("\The [src] already has a cell."))
 		else if(!istype(W, /obj/item/cell/device/weapon)) //Weapon cells only!
-			to_chat(user, "<span class='notice'>This cell will not fit in the device.</span>")
+			to_chat(user, span_notice("This cell will not fit in the device."))
 		else
 			if(!user.unEquip(W))
 				return
@@ -176,7 +176,7 @@
 			bcell = W
 			if(active_weapon)
 				active_weapon.power_supply = bcell
-			to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
+			to_chat(user, span_notice("You install a cell in \the [src]."))
 			update_icon()
 
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
@@ -193,7 +193,7 @@
 					if(active_weapon)
 						reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
 						active_weapon.power_supply = null //No power cell anymore!
-					to_chat(user, "<span class='notice'>You remove the cell from \the [src], destroying the battery.</span>")
+					to_chat(user, span_notice("You remove the cell from \the [src], destroying the battery."))
 					update_icon()
 					return
 				else
@@ -205,7 +205,7 @@
 				if(active_weapon)
 					reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
 					active_weapon.power_supply = null //No power cell anymore!
-				to_chat(user, "<span class='notice'>You remove the cell from \the [src].</span>")
+				to_chat(user, span_notice("You remove the cell from \the [src]."))
 				update_icon()
 	else if(istype(W,/obj/item/multitool))
 		var/new_color = input(usr, "Choose a color to set the shield to!", "", effect_color) as color|null
@@ -243,22 +243,22 @@
 	user.last_special = world.time + 10 //No spamming!
 
 	if(!bcell || !bcell.check_charge(generator_hit_cost) || !bcell.check_charge(generator_active_cost))
-		to_chat(user, "<span class='warning'>You require a charged cell to do this!</span>")
+		to_chat(user, span_warning("You require a charged cell to do this!"))
 		return
 
 	if(!slot_check())
-		to_chat(user, "<span class='warning'>You need to equip [src] before starting the shield up!</span>")
+		to_chat(user, span_warning("You need to equip [src] before starting the shield up!"))
 		return
 	else
 		if(shield_active)
 			shield_active = !shield_active //Deactivate the shield!
-			to_chat(user, "<span class='warning'>You deactive the shield!</span>")
+			to_chat(user, span_warning("You deactive the shield!"))
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 			STOP_PROCESSING(SSobj, src)
 			playsound(src, 'sound/weapons/saberoff.ogg', 50, 1) //Shield turning off! PLACEHOLDER
 		else
 			shield_active = !shield_active
-			to_chat(user, "<span class='warning'>You activate the shield!</span>")
+			to_chat(user, span_warning("You activate the shield!"))
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection) //Just to make sure they aren't using two at once!
 			user.add_modifier(modifier_type)
 			user.update_modifier_visuals() //Forces coloration to WORK.
@@ -277,11 +277,11 @@
 	user.last_special = world.time + 10 //No spamming!
 
 	if(!active_weapon)
-		to_chat(user, "<span class='warning'>The gun is missing!</span>")
+		to_chat(user, span_warning("The gun is missing!"))
 		return
 
 	if(!bcell)
-		to_chat(user, "<span class='warning'>The gun requires a power supply!</span>")
+		to_chat(user, span_warning("The gun requires a power supply!"))
 		return
 
 	if(active_weapon.loc != src)
@@ -289,17 +289,17 @@
 		return
 
 	if(!slot_check())
-		to_chat(user, "<span class='warning'>You need to equip [src] before taking out [active_weapon].</span>")
+		to_chat(user, span_warning("You need to equip [src] before taking out [active_weapon]."))
 	else
 		if(!usr.put_in_hands(active_weapon)) //Detach the gun into the user's hands
-			to_chat(user, "<span class='warning'>You need a free hand to hold the gun!</span>")
+			to_chat(user, span_warning("You need a free hand to hold the gun!"))
 		update_icon() //success
 
 /obj/item/personal_shield_generator/process()
 	if(!bcell) //They removed the battery midway.
 		if(istype(loc, /mob/living/carbon/human)) //We on someone? Tell them it turned off.
 			var/mob/living/carbon/human/user = loc
-			to_chat(user, "<span class='warning'>The shield deactivates! An error message pops up on screen: 'Cell missing. Cell replacement required.'</span>")
+			to_chat(user, span_warning("The shield deactivates! An error message pops up on screen: 'Cell missing. Cell replacement required.'"))
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 		shield_active = 0
 		STOP_PROCESSING(SSobj, src)
@@ -311,7 +311,7 @@
 		if(bcell.rigged) //They turned it back on after it was rigged to go boom.
 			if(istype(loc, /mob/living/carbon/human)) //Deactivate the shield, first. You're not getting reduced damage...
 				var/mob/living/carbon/human/user = loc
-				to_chat(user, "<span class='warning'>The shield deactivates, an error message popping up on screen: 'Cell Reactor Critically damaged. Cell replacement required.'</span>")
+				to_chat(user, span_warning("The shield deactivates, an error message popping up on screen: 'Cell Reactor Critically damaged. Cell replacement required.'"))
 				user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 
 			if(active_weapon) //Retract the gun. There's about to be no cell anymore.
@@ -332,7 +332,7 @@
 		shield_active = 0
 		if(istype(loc, /mob/living/carbon/human)) //We on someone? Tell them it turned off.
 			var/mob/living/carbon/human/user = loc
-			to_chat(user, "<span class='warning'>The shield deactivates, an error message popping up on screen: 'Cell out of charge.'</span>")
+			to_chat(user, span_warning("The shield deactivates, an error message popping up on screen: 'Cell out of charge.'"))
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 		STOP_PROCESSING(SSobj, src)
 		update_icon()
@@ -369,7 +369,7 @@
 	if(ismob(active_weapon.loc))
 		var/mob/M = active_weapon.loc
 		if(M.drop_from_inventory(active_weapon, src))
-			to_chat(user, "<span class='notice'>\The [active_weapon] snaps back into the main unit.</span>")
+			to_chat(user, span_notice("\The [active_weapon] snaps back into the main unit."))
 	else
 		active_weapon.forceMove(src)
 
@@ -421,13 +421,13 @@
 	if(busy)
 		return 0
 	if(!check_charge(charge_cost))
-		to_chat(user, "<span class='warning'>\The [src] doesn't have enough charge left to do that.</span>")
+		to_chat(user, span_warning("\The [src] doesn't have enough charge left to do that."))
 		return 0
 	if(!wielded && !isrobot(user))
-		to_chat(user, "<span class='warning'>You need to wield the gun with both hands before you can use it on someone!</span>")
+		to_chat(user, span_warning("You need to wield the gun with both hands before you can use it on someone!"))
 		return 0
 	if(cooldown)
-		to_chat(user, "<span class='warning'>\The [src] are re-energizing!</span>")
+		to_chat(user, span_warning("\The [src] are re-energizing!"))
 		return 0
 	return 1
 
@@ -509,11 +509,11 @@
 /obj/item/personal_shield_generator/belt/mining/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/borg/upgrade/shield_upgrade))
 		if(modifier_type == /datum/modifier/shield_projection/mining/strong)
-			to_chat(user, "<span class='warning'>This shield generator is already upgraded!</span>")
+			to_chat(user, span_warning("This shield generator is already upgraded!"))
 			return
 		modifier_type = /datum/modifier/shield_projection/mining/strong
 		upgraded = 1
-		to_chat(user, "<span class='notice'>You upgrade the [src] with the [W]!</span>")
+		to_chat(user, span_notice("You upgrade the [src] with the [W]!"))
 		user.drop_from_inventory(W)
 		qdel(W)
 	else

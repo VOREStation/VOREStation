@@ -56,7 +56,7 @@
 		if(M.connectable && istype(M.connectable, /obj/machinery/button/doorbell))
 			var/obj/machinery/button/doorbell/B = M.connectable
 			id_tag = B.id
-			to_chat(user, "<span class='notice'>You upload the data from \the [W]'s buffer.</span>")
+			to_chat(user, span_notice("You upload the data from \the [W]'s buffer."))
 		return
 	..()
 
@@ -135,12 +135,12 @@
 	else if(panel_open && istype(W, /obj/item/multitool))
 		var/obj/item/multitool/M = W
 		M.connectable = src
-		to_chat(user, "<span class='caution'>You save the data in \the [M]'s buffer.</span>")
+		to_chat(user, span_notice("You save the data in \the [M]'s buffer."))
 	else if(W.has_tool_quality(TOOL_WRENCH))
-		to_chat(user, "<span class='notice'>You start to unwrench \the [src].</span>")
+		to_chat(user, span_notice("You start to unwrench \the [src]."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 15) && !QDELETED(src))
-			to_chat(user, "<span class='notice'>You unwrench \the [src].</span>")
+			to_chat(user, span_notice("You unwrench \the [src]."))
 			new /obj/item/frame/doorbell(src.loc)
 			qdel(src)
 		return

@@ -35,7 +35,7 @@
 	if(..())
 		return
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 	tgui_interact(user)
 
@@ -128,7 +128,7 @@
 					inserted_id.mining_points += machine.points
 					machine.points = 0
 				else
-					to_chat(usr, "<span class='warning'>Required access not found.</span>")
+					to_chat(usr, span_warning("Required access not found."))
 			. = TRUE
 		if("insert")
 			var/obj/item/card/id/I = usr.get_active_hand()
@@ -137,7 +137,7 @@
 				I.forceMove(src)
 				inserted_id = I
 			else
-				to_chat(usr, "<span class='warning'>No valid ID.</span>")
+				to_chat(usr, span_warning("No valid ID."))
 			. = TRUE
 		if("speed_toggle")
 			machine.toggle_speed()

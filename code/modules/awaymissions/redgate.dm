@@ -41,7 +41,7 @@
 
 	for(var/obj/O in M.contents)
 		if(O.redgate_allowed == FALSE)
-			to_chat(M, "<span class='warning'>The redgate refuses to allow you to pass whilst you possess \the [O].</span>")
+			to_chat(M, span_warning("The redgate refuses to allow you to pass whilst you possess \the [O]."))
 			return
 
 	if(keycheck)		//exceptions probably won't have a ckey
@@ -66,12 +66,12 @@
 				pulled.forceMove(ourturf)
 				M.continue_pulling(pulled)
 			else
-				to_chat(M, "<span class='notice'>The redgate refused your pulled item.</span>")
+				to_chat(M, span_notice("The redgate refused your pulled item."))
 		else
 			playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
 			M.forceMove(ourturf)		//Let's just do forcemove, I don't really want people teleporting to weird places if they have bluespace stuff
 	else
-		to_chat(M, "<span class='notice'>Something blocks your way.</span>")
+		to_chat(M, span_notice("Something blocks your way."))
 
 /obj/structure/redgate/proc/find_our_turf(var/atom/movable/AM)	//This finds the turf on the opposite side of the target gate from where you are
 	var/offset_x = x - AM.x										//used for more smooth teleporting
@@ -106,7 +106,7 @@
 		src.teleport(M)
 	else
 		if(!find_partner())
-			to_chat(M, "<span class='warning'>The [src] remains off... seems like it doesn't have a destination.</span>")
+			to_chat(M, span_warning("The [src] remains off... seems like it doesn't have a destination."))
 
 
 /obj/structure/redgate/attack_ghost(var/mob/observer/dead/user)
@@ -1513,7 +1513,7 @@
 
 	//set the verb based on matching (or mismatching) outfits, and teleport the flag back to base if it was touched by the owning team
 	if(grabbing_team == laser_team)
-		user.visible_message("<span class='warning'>[user] is returning \the [src]!</span>")
+		user.visible_message(span_warning("[user] is returning \the [src]!"))
 		if(do_after(user,flag_return_delay))	//channel return, rather than instant
 			user.drop_from_inventory(src)
 			src.loc = src.start_pos
@@ -1522,7 +1522,7 @@
 			user.drop_from_inventory(src)
 			return
 	else
-		user.visible_message("<span class='warning'>[user] has taken \the [src]!</span>")
+		user.visible_message(span_warning("[user] has taken \the [src]!"))
 		global_announcer.autosay("[src] taken by [capitalize(grabbing_team)] team!","Laserdome Announcer","Entertainment")
 
 /obj/item/laserdome_flag/red
@@ -1643,7 +1643,7 @@
 	else
 		return	//if they're not on a team, stop!
 
-	user.visible_message("<span class='warning'>[user] has taken \the [src]!</span>")
+	user.visible_message(span_warning("[user] has taken \the [src]!"))
 	//cache our grabber and their team, for throw interactions with the goals later
 	last_holder = M
 	last_team = grabbing_team

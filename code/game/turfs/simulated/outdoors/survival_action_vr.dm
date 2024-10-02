@@ -16,7 +16,7 @@ var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
 			icon_state = "dirt0"
 		return
 	if(locate(/obj) in src)
-		to_chat(user, "<span class='notice'>The [name] isn't clear.</span>")
+		to_chat(user, span_notice("The [name] isn't clear."))
 		return
 	else
 		var/choice= tgui_alert(user, "Do you want to build a growplot out of the dirt?", "Build growplot?" , list("Yes", "No"))
@@ -31,17 +31,17 @@ var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
 
 /turf/simulated/floor/outdoors/proc/rock_gathering(var/mob/user as mob)
 	if(locate(/obj) in src)
-		to_chat(user, "<span class='notice'>The [name] isn't clear.</span>")
+		to_chat(user, span_notice("The [name] isn't clear."))
 		return
 	user.visible_message("[user] starts digging around in \the [src]...", "You start digging around in \the [src]...")
 	if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
 		if(prob(rock_chance))
 			var/obj/item/stack/material/flint/R = new(get_turf(src), rand(1,4))
-			to_chat(user, "<span class='notice'>You found some [R]</span>")
+			to_chat(user, span_notice("You found some [R]"))
 			R.pixel_x = rand(-6,6)
 			R.pixel_y = rand(-6,6)
 		else
-			to_chat(user, "<span class='notice'>You didn't find anything...</span>")
+			to_chat(user, span_notice("You didn't find anything..."))
 	else
 		return
 
@@ -65,7 +65,7 @@ var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
 	if(Adjacent(user))
 		var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
 		if(icon_state in has_rocks)
-			. += "<span class='notice'>There are some rocks in the dirt.</span>"
+			. += span_notice("There are some rocks in the dirt.")
 
 /obj/structure/flora/tree
 	var/sticks = TRUE
@@ -79,4 +79,4 @@ var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")
 			S.pixel_y = rand(-6,6)
 			sticks = FALSE
 	else
-		to_chat(user, "<span class='notice'>You don't see any loose sticks...</span>")
+		to_chat(user, span_notice("You don't see any loose sticks..."))

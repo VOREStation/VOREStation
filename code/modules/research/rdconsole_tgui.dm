@@ -394,7 +394,7 @@
 		if("eject_item") //Eject the item inside the destructive analyzer.
 			if(linked_destroy)
 				if(linked_destroy.busy)
-					to_chat(usr, "<span class='notice'>The destructive analyzer is busy at the moment.</span>")
+					to_chat(usr, span_notice("The destructive analyzer is busy at the moment."))
 					return FALSE
 
 				if(linked_destroy.loaded_item)
@@ -408,7 +408,7 @@
 				return FALSE
 
 			if(linked_destroy.busy)
-				to_chat(usr, "<span class='notice'>The destructive analyzer is busy at the moment.</span>")
+				to_chat(usr, span_notice("The destructive analyzer is busy at the moment."))
 				return
 
 			if(tgui_alert(usr, "Proceeding will destroy loaded item. Continue?", "Destructive analyzer confirmation", list("Yes", "No")) != "Yes" || !linked_destroy)
@@ -421,7 +421,7 @@
 					linked_destroy.busy = 0
 					busy_msg = null
 					if(!linked_destroy.loaded_item)
-						to_chat(usr, "<span class='notice'>The destructive analyzer appears to be empty.</span>")
+						to_chat(usr, span_notice("The destructive analyzer appears to be empty."))
 						return
 
 					if(istype(linked_destroy.loaded_item,/obj/item/stack))//Only deconsturcts one sheet at a time instead of the entire stack
@@ -475,7 +475,7 @@
 
 		if("sync") //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 			if(!sync)
-				to_chat(usr, "<span class='notice'>You must connect to the network first.</span>")
+				to_chat(usr, span_notice("You must connect to the network first."))
 				return
 
 			busy_msg = "Updating Database..."

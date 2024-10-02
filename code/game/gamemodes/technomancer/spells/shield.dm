@@ -46,14 +46,14 @@
 		damage_to_energy_cost *= 0.50
 
 	if(!pay_energy(damage_to_energy_cost))
-		to_chat(owner, "<span class='danger'>Your shield fades due to lack of energy!</span>")
+		to_chat(owner, span_danger("Your shield fades due to lack of energy!"))
 		qdel(src)
 		return 0
 
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(check_shield_arc(user, bad_arc, damage_source, attacker))
-		user.visible_message("<span class='danger'>\The [user]'s [src] blocks [attack_text]!</span>")
+		user.visible_message(span_danger("\The [user]'s [src] blocks [attack_text]!"))
 		spark_system.start()
 		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		adjust_instability(2)

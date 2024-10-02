@@ -17,7 +17,7 @@
 /obj/item/spell/flame_tongue/New()
 	..()
 	set_light(3, 2, l_color = "#FF6A00")
-	visible_message("<span class='warning'>\The [loc]'s hand begins to emit a flame.</span>")
+	visible_message(span_warning("\The [loc]'s hand begins to emit a flame."))
 	welder = new /obj/item/weldingtool/spell(src)
 	welder.setWelding(1)
 
@@ -43,8 +43,8 @@
 	if(isliving(hit_atom) && user.a_intent != I_HELP)
 		var/mob/living/L = hit_atom
 		if(pay_energy(1000))
-			visible_message("<span class='danger'>\The [user] reaches out towards \the [L] with the flaming hand, and they ignite!</span>")
-			to_chat(L, "<span class='danger'>You ignite!</span>")
+			visible_message(span_danger("\The [user] reaches out towards \the [L] with the flaming hand, and they ignite!"))
+			to_chat(L, span_danger("You ignite!"))
 			L.fire_act()
 			add_attack_logs(user,L,"Ignited with [src]")
 			adjust_instability(12)

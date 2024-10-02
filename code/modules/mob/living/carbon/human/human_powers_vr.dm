@@ -5,12 +5,12 @@
 
 	if(stat == DEAD) return
 
-	to_chat(src, "<span class='notice'>Performing reagent purge, please wait...</span>")
+	to_chat(src, span_notice("Performing reagent purge, please wait..."))
 	sleep(50)
 	src.bloodstr.clear_reagents()
 	src.ingested.clear_reagents()
 	src.touching.clear_reagents()
-	to_chat(src, "<span class='notice'>Reagents purged!</span>")
+	to_chat(src, span_notice("Reagents purged!"))
 
 	return TRUE
 
@@ -20,11 +20,11 @@
 	set category = "IC"
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You must be awake and standing to perform this action!</span>")
+		to_chat(src, span_warning("You must be awake and standing to perform this action!"))
 		return
 	var/obj/item/organ/external/head/H = organs_by_name[BP_HEAD]
 	if(!H)
-		to_chat(src, "<span class='warning'>You don't seem to have a head!</span>")
+		to_chat(src, span_warning("You don't seem to have a head!"))
 		return
 
 	H.eyes_over_markings = !H.eyes_over_markings
@@ -33,6 +33,6 @@
 	if(H.robotic)
 		var/datum/robolimb/robohead = all_robolimbs[H.model]
 		if(robohead.monitor_styles && robohead.monitor_icon)
-			to_chat(src, "<span class='notice'>You reconfigure the rendering order of your facial display.</span>")
+			to_chat(src, span_notice("You reconfigure the rendering order of your facial display."))
 
 	return TRUE

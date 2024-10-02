@@ -47,14 +47,14 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		var/obj/item/weldingtool/WT = W.get_welder()
 
 		if(get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
+			to_chat(user, span_warning("You need at least two rods to do this."))
 			return
 
 		if(WT.remove_fuel(0,user))
 			var/obj/item/stack/material/steel/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
 			for (var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>[src] is shaped into metal by [user.name] with the weldingtool.</span>", 3, "<span class='notice'>You hear welding.</span>", 2)
+				M.show_message(span_notice("[src] is shaped into metal by [user.name] with the weldingtool."), 3, span_notice("You hear welding."), 2)
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_hand()==R)
@@ -68,7 +68,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		new_splint.add_fingerprint(user)
 
 		user.visible_message("<b>\The [user]</b> constructs \a [new_splint] out of a [singular_name].", \
-				"<span class='notice'>You use make \a [new_splint] out of a [singular_name].</span>")
+				span_notice("You use make \a [new_splint] out of a [singular_name]."))
 		src.use(1)
 		return
 
@@ -93,15 +93,15 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 
 	else if(!in_use)
 		if(get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
+			to_chat(user, span_warning("You need at least two rods to do this."))
 			return
-		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
+		to_chat(usr, span_notice("Assembling grille..."))
 		in_use = 1
 		if (!do_after(usr, 10))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
-		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
+		to_chat(usr, span_notice("You assemble a grille"))
 		in_use = 0
 		F.add_fingerprint(usr)
 		use(2)

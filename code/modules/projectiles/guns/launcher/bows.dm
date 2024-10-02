@@ -60,7 +60,7 @@
 
 /obj/item/gun/launcher/crossbow/bow/consume_next_projectile(mob/user)
 	if(!drawn)
-		to_chat(user, "<span class='warning'>\The [src] is not drawn back!</span>")
+		to_chat(user, span_warning("\The [src] is not drawn back!"))
 		return null
 	return bolt
 
@@ -94,7 +94,7 @@
 		return
 
 	current_user = user
-	user.visible_message("<b>[user]</b> begins to draw back the string of [src].","<span class='notice'>You begin to draw back the string of [src].</span>")
+	user.visible_message("<b>[user]</b> begins to draw back the string of [src].",span_notice("You begin to draw back the string of [src]."))
 	if(do_after(user, 25, src, exclusive = TASK_ALL_EXCLUSIVE))
 		drawn = TRUE
 		user.visible_message("<b>[user]</b> draws the string on [src] back fully!", "You draw the string on [src] back fully!")

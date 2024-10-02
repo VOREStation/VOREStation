@@ -21,7 +21,7 @@
 
 /obj/item/bedsheet/pillow/attackby(var/obj/item/component, mob/user as mob)
 	if (istype(component,src))
-		to_chat(user, "<span class='notice'>You assemble a pillow pile!</span>")
+		to_chat(user, span_notice("You assemble a pillow pile!"))
 		user.drop_item()
 		qdel(component)
 		var/turf/T = get_turf(src)
@@ -29,7 +29,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>You can't assemble a pillow pile out of mismatched stuff, it'd look hideous!</span>")
+		to_chat(user, span_notice("You can't assemble a pillow pile out of mismatched stuff, it'd look hideous!"))
 
 //Pillow Piles, they're piles of pillows! 	layer = BELOW_MOB_LAYER
 
@@ -62,18 +62,18 @@
 	return
 
 /obj/structure/bed/pillowpile/attack_hand(mob/user)
-	to_chat(user, "<span class='notice'>Now disassembling the large pillow pile...</span>")
+	to_chat(user, span_notice("Now disassembling the large pillow pile..."))
 	if(do_after(user, 30))
 		if(!src) return
-		to_chat(user, "<span class='notice'>You dissasembled the large pillow pile!</span>")
+		to_chat(user, span_notice("You dissasembled the large pillow pile!"))
 		new sourcepillow(src.loc)
 		qdel(src)
 
 /obj/structure/bed/pillowpilefront/attack_hand(mob/user)
-	to_chat(user, "<span class='notice'>Now disassembling the front of the pillow pile...</span>")
+	to_chat(user, span_notice("Now disassembling the front of the pillow pile..."))
 	if(do_after(user, 30))
 		if(!src) return
-		to_chat(user, "<span class='notice'>You dissasembled the the front of the pillow pile!</span>")
+		to_chat(user, span_notice("You dissasembled the the front of the pillow pile!"))
 		new sourcepillow(src.loc)
 		qdel(src)
 
@@ -257,4 +257,3 @@
 	)
 	time = 60
 	category = CAT_MISC
-

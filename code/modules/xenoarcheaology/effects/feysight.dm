@@ -13,13 +13,13 @@
 		return FALSE // Drons are presumably deaf to any psionic things.
 
 	if(L.add_modifier(/datum/modifier/feysight, 30 SECONDS))
-		to_chat(L, "<span class='alien'>An otherworldly feeling seems to enter your mind, and you feel at peace.</span>")
+		to_chat(L, span_alien("An otherworldly feeling seems to enter your mind, and you feel at peace."))
 		L.adjustHalLoss(10)
-		to_chat(L, "<span class='danger'>The inside of your head hurts...</span>")
+		to_chat(L, span_danger("The inside of your head hurts..."))
 		return TRUE
 	else
 		if(L.has_modifier_of_type(/datum/modifier/feysight))
-			to_chat(L, "<span class='warning'>An otherworldly feeling seems to enter your mind again, and it holds the visions in place.</span>")
+			to_chat(L, span_warning("An otherworldly feeling seems to enter your mind again, and it holds the visions in place."))
 		else
 			to_chat(L, "<span class='warning'>An otherworldly feeling seems to enter your mind, and you briefly feel peace, but \
 			it quickly passes.</span>")

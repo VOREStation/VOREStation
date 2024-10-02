@@ -75,25 +75,25 @@
 			full = TRUE
 	else if(I.has_tool_quality(TOOL_WRENCH))
 		if(anchored)
-			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
+			to_chat(user, span_notice("You lean down and unwrench [src]."))
 			anchored = FALSE
 		else
-			to_chat(user, "<span class='notice'>You wrench [src] into place.</span>")
+			to_chat(user, span_notice("You wrench [src] into place."))
 			anchored = TRUE
 		return
 	else if(user.a_intent != I_HURT)
-		to_chat(user, "<span class='notice'>[I] does not fit into [src].</span>")
+		to_chat(user, span_notice("[I] does not fit into [src]."))
 		return
 	else
 		return ..()
 
 	if(full)
-		to_chat(user, "<span class='notice'>[src] can't hold any more of [I].</span>")
+		to_chat(user, span_notice("[src] can't hold any more of [I]."))
 		return
 
 	if(!user.unEquip(I, target = src))
 		return
-	to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+	to_chat(user, span_notice("You put [I] in [src]."))
 	update_icon()
 
 #undef TANK_DISPENSER_CAPACITY

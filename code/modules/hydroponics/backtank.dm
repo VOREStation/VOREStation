@@ -78,16 +78,16 @@
 
 	var/mob/living/carbon/human/user = usr
 	if(!noz)
-		to_chat(user, "<span class='warning'>The mister is missing!</span>")
+		to_chat(user, span_warning("The mister is missing!"))
 		return
 	if(noz.loc != src)
 		remove_noz(user) //Remove from their hands and back onto the defib unit
 		return
 	if(!slot_check())
-		to_chat(user, "<span class='warning'>You need to equip [src] before taking out [noz].</span>")
+		to_chat(user, span_warning("You need to equip [src] before taking out [noz]."))
 	else
 		if(!usr.put_in_hands(noz)) //Detach the handset into the user's hands
-			to_chat(user, "<span class='warning'>You need a free hand to hold the handset!</span>")
+			to_chat(user, span_warning("You need a free hand to hold the handset!"))
 		update_icon() //success
 
 /obj/item/watertank/proc/make_noz()
@@ -104,7 +104,7 @@
 	if(ismob(noz.loc))
 		var/mob/M = noz.loc
 		if(M.drop_from_inventory(noz, src))
-			to_chat(user, "<span class='notice'>\The [noz] snaps back into the main unit.</span>")
+			to_chat(user, span_notice("\The [noz] snaps back into the main unit."))
 	else
 		noz.forceMove(src)
 

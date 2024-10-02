@@ -54,7 +54,7 @@
 
 /obj/item/gun/magic/handle_click_empty(mob/user)
 	if (user)
-		user.visible_message("*wzhzhzh*", "<span class='danger'>The [name] whizzles quietly.</span>")
+		user.visible_message("*wzhzhzh*", span_danger("The [name] whizzles quietly."))
 	else
 		src.visible_message("*wzhzh*")
 	playsound(src, 'sound/weapons/empty.ogg', 100, 1)

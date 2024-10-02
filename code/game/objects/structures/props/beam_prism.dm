@@ -24,7 +24,7 @@
 	var/dialID = null
 	var/obj/structure/prop/prismcontrol/remote_dial = null
 
-	interaction_message = "<span class='notice'>The prismatic turret seems to be able to rotate.</span>"
+	interaction_message = span_notice("The prismatic turret seems to be able to rotate.")
 
 /obj/structure/prop/prism/Initialize()
 	if(degrees_from_north)
@@ -44,17 +44,17 @@
 	..()
 
 	if(rotation_lock)
-		to_chat(user, "<span class='warning'>\The [src] is locked at its current bearing.</span>")
+		to_chat(user, span_warning("\The [src] is locked at its current bearing."))
 		return
 	if(external_control_lock)
-		to_chat(user, "<span class='warning'>\The [src]'s motors resist your efforts to rotate it. You may need to find some form of controller.</span>")
+		to_chat(user, span_warning("\The [src]'s motors resist your efforts to rotate it. You may need to find some form of controller."))
 		return
 
 	var/confirm = tgui_alert(usr, "Do you want to try to rotate \the [src]?", "[name]", list("Yes", "No"))
 	if(confirm != "Yes")
 		visible_message(\
-			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
-			"<span class='notice'>You decide not to try turning \the [src].</span>")
+			span_notice("[user.name] decides not to try turning \the [src]."),\
+			span_notice("You decide not to try turning \the [src]."))
 		return
 
 	var/new_bearing
@@ -62,7 +62,7 @@
 		new_bearing = tgui_input_number(usr, "What bearing do you want to rotate \the [src] to?", "[name]", 0, 360, 0)
 		new_bearing = round(new_bearing)
 		if(new_bearing <= -1 || new_bearing > 360)
-			to_chat(user, "<span class='warning'>Rotating \the [src] [new_bearing] degrees would be a waste of time.</span>")
+			to_chat(user, span_warning("Rotating \the [src] [new_bearing] degrees would be a waste of time."))
 			return
 	else
 		var/choice = tgui_input_list(usr, "What point do you want to set \the [src] to?", "[name]", compass_directions)
@@ -118,7 +118,7 @@
 
 /obj/structure/prop/prism/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, redirect_type))
-		visible_message("<span class='danger'>\The [src] redirects \the [Proj]!</span>")
+		visible_message(span_danger("\The [src] redirects \the [Proj]!"))
 		flick("[initial(icon_state)]+glow", src)
 
 		var/new_x = (1 * round(10 * cos(degrees_from_north - 90))) + x //Vectors vectors vectors.
@@ -149,7 +149,7 @@
 	density = FALSE
 	anchored = TRUE
 
-	interaction_message = "<span class='notice'>The dial pulses as your hand nears it.</span>"
+	interaction_message = span_notice("The dial pulses as your hand nears it.")
 	var/list/my_turrets = list()
 	var/dialID = null
 
@@ -159,12 +159,12 @@
 	var/confirm = tgui_alert(usr, "Do you want to try to rotate \the [src]?", "[name]", list("Yes", "No"))
 	if(confirm != "Yes")
 		visible_message(\
-			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
-			"<span class='notice'>You decide not to try turning \the [src].</span>")
+			span_notice("[user.name] decides not to try turning \the [src]."),\
+			span_notice("You decide not to try turning \the [src]."))
 		return
 
 	if(!my_turrets || !my_turrets.len)
-		to_chat(user, "<span class='notice'>\The [src] doesn't seem to do anything.</span>")
+		to_chat(user, span_notice("\The [src] doesn't seem to do anything."))
 		return
 
 	var/free_rotate = 1
@@ -179,7 +179,7 @@
 		new_bearing = tgui_input_number(usr, "What bearing do you want to rotate \the [src] to?", "[name]", 0, 360, 0)
 		new_bearing = round(new_bearing)
 		if(new_bearing <= -1 || new_bearing > 360)
-			to_chat(user, "<span class='warning'>Rotating \the [src] [new_bearing] degrees would be a waste of time.</span>")
+			to_chat(user, span_warning("Rotating \the [src] [new_bearing] degrees would be a waste of time."))
 			return
 	else
 		var/choice = tgui_input_list(usr, "What point do you want to set \the [src] to?", "[name]", compass_directions)
@@ -188,11 +188,11 @@
 	confirm = tgui_alert(usr, "Are you certain you want to rotate \the [src]?", "[name]", list("Yes", "No"))
 	if(confirm != "Yes")
 		visible_message(\
-			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
-			"<span class='notice'>You decide not to try turning \the [src].</span>")
+			span_notice("[user.name] decides not to try turning \the [src]."),\
+			span_notice("You decide not to try turning \the [src]."))
 		return
 
-	to_chat(user, "<span class='notice'>\The [src] clicks into place.</span>")
+	to_chat(user, span_notice("\The [src] clicks into place."))
 	for(var/obj/structure/prop/prism/P in my_turrets)
 		P.rotate_auto(new_bearing)
 

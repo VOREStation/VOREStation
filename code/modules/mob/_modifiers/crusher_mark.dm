@@ -2,8 +2,8 @@
     name = "destabilized"
     desc = "You've been struck by a destabilizing bolt. By all accounts, this is probably a bad thing."
     stacks = MODIFIER_STACK_EXTEND
-    on_created_text = "<span class='warning'>You feel physically unstable.</span>"
-    on_expired_text = "<span class='notice'>You feel physically stable again.</span>"
+    on_created_text = span_warning("You feel physically unstable.")
+    on_expired_text = span_notice("You feel physically stable again.")
     var/mutable_appearance/marked_underlay
     var/obj/item/kinetic_crusher/hammer_synced
 

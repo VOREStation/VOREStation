@@ -1137,7 +1137,7 @@
 
 		if(istype(cashmoney, /obj/item/spacecash))
 
-			visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
+			visible_message(span_info("\The [usr] inserts some cash into \the [src]."))
 			cashmoney.worth -= gameprice
 
 			if(cashmoney.worth <= 0)
@@ -1151,16 +1151,16 @@
 		return 1
 	if(emagged)
 		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
-		to_chat(user, "<span class='info'>It doesn't seem to accept that! Seem you'll need to swipe a valid ID.</span>")
+		to_chat(user, span_info("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
 
 
 ///// Ewallet
 /obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
 	if(!emagged)
-		visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [wallet] through \the [src]."))
 		playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 		if(gameprice > wallet.worth)
-			visible_message("<span class='info'>Insufficient funds.</span>")
+			visible_message(span_info("Insufficient funds."))
 			return 0
 		else
 			wallet.worth -= gameprice
@@ -1168,22 +1168,22 @@
 			return 1
 	if(emagged)
 		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
-		to_chat(usr, "<span class='info'>It doesn't seem to accept that! Seem you'll need to swipe a valid ID.</span>")
+		to_chat(usr, span_info("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
 
 ///// ID
 /obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
-		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [I] through \the [src]."))
 	else
-		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [ID_container] through \the [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
-		visible_message("<span class='info'>Error: Unable to access account. Please contact technical support if problem persists.</span>")
+		visible_message(span_info("Error: Unable to access account. Please contact technical support if problem persists."))
 		return 0
 
 	if(customer_account.suspended)
-		visible_message("<span class='info'>Unable to access account: account suspended.</span>")
+		visible_message(span_info("Unable to access account: account suspended."))
 		return 0
 
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
@@ -1193,11 +1193,11 @@
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
-			visible_message("<span class='info'>Unable to access account: incorrect credentials.</span>")
+			visible_message(span_info("Unable to access account: incorrect credentials."))
 			return 0
 
 	if(gameprice > customer_account.money)
-		visible_message("<span class='info'>Insufficient funds in account.</span>")
+		visible_message(span_info("Insufficient funds in account."))
 		return 0
 	else
 		// Okay to move the money at this point
@@ -1319,7 +1319,7 @@
 
 /obj/machinery/computer/arcade/clawmachine/emag_act(mob/user)
 	if(!emagged)
-		to_chat(user, "<span class='info'>You modify the claw of the machine. The next one is sure to win! You just have to pay...</span>")
+		to_chat(user, span_info("You modify the claw of the machine. The next one is sure to win! You just have to pay..."))
 		name = "AlliCo Snag-A-Prize"
 		desc = "Get some goodies, all for you!"
 		instructions = "Swipe a card to play!"
@@ -1336,13 +1336,13 @@
 		var/obj/item/stack/arcadeticket/T = O
 		var/amount = T.get_amount()
 		if(amount <2)
-			to_chat(user, "<span class='warning'>You need 2 tickets to claim a prize!</span>")
+			to_chat(user, span_warning("You need 2 tickets to claim a prize!"))
 			return
 		prizevend(user)
 		T.pay_tickets()
 		T.update_icon()
 		O = T
-		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
+		to_chat(user, span_notice("You turn in 2 tickets to the [src] and claim a prize!"))
 		return
 	else
 		..() //You can now actually deconstruct these.

@@ -20,11 +20,11 @@
 	..()
 	if(isliving(L) && Adjacent(L))
 		var/mob/living/M = L
-		visible_message("<span class='warning'>\The [src][is_dead()?"'s corpse":""] flails at [M]!</span>")
+		visible_message(span_warning("\The [src][is_dead()?"'s corpse":""] flails at [M]!"))
 		SpinAnimation(7,1)
 		if(prob(75))
 			if(sting(M))
-				to_chat(M, "<span class='warning'>You feel a tiny prick.</span>")
+				to_chat(M, span_warning("You feel a tiny prick."))
 		if(is_dead())
 			return
 		for(var/i = 1 to 3)
@@ -38,11 +38,11 @@
 /mob/living/simple_mob/animal/passive/fish/koi/poisonous/react_to_attack(var/atom/A)
 	if(isliving(A) && Adjacent(A))
 		var/mob/living/M = A
-		visible_message("<span class='warning'>\The [src][is_dead()?"'s corpse":""] flails at [M]!</span>")
+		visible_message(span_warning("\The [src][is_dead()?"'s corpse":""] flails at [M]!"))
 		SpinAnimation(7,1)
 		if(prob(75))
 			if(sting(M))
-				to_chat(M, "<span class='warning'>You feel a tiny prick.</span>")
+				to_chat(M, span_warning("You feel a tiny prick."))
 		if(is_dead())
 			return
 		for(var/i = 1 to 3)

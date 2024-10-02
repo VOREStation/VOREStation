@@ -2,7 +2,7 @@
 	..()
 	if(message_mode)
 		if(!is_component_functioning("radio"))
-			to_chat(src, "<span class='warning'>Your radio isn't functional at this time.</span>")
+			to_chat(src, span_warning("Your radio isn't functional at this time."))
 			return 0
 		if(message_mode == "general")
 			message_mode = null
@@ -17,7 +17,7 @@
 		return holopad_talk(message, verb, speaking)
 	else if(message_mode)
 		if (aiRadio.disabledAi || aiRestorePowerRoutine || stat)
-			to_chat(src, "<span class='danger'>System Error - Transceiver Disabled.</span>")
+			to_chat(src, span_danger("System Error - Transceiver Disabled."))
 			return 0
 		if(message_mode == "general")
 			message_mode = null
@@ -73,9 +73,9 @@
 		/*Radios "filter out" this conversation channel so we don't need to account for them.
 		This is another way of saying that we won't bother dealing with them.*/
 		var/list/combined = combine_message(message_pieces, verb, src)
-		to_chat(src, "<span class='game say'><i>Holopad transmitted, <span class='name'>[real_name]</span> [combined["formatted"]]</i></span>")
+		to_chat(src, span_game(span_say("<i>Holopad transmitted, [span_name(real_name)] [combined["formatted"]]</i>")))
 	else
-		to_chat(src, "<span class='filter_notice'>No holopad connected.</span>")
+		to_chat(src, span_filter_notice("No holopad connected."))
 		return 0
 	return 1
 
@@ -87,8 +87,8 @@
 
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])
-		var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[message]</span></span>"
-		to_chat(src, "<span class='game say'><i>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></i></span>")
+		var/rendered = span_game(span_say(span_name(name) + " " + span_message(message)))
+		to_chat(src, span_game(span_say("<i>Holopad action relayed, [span_name(real_name)] [span_message(message)]</i>")))
 		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
 
 		//var/obj/effect/overlay/hologram = T.masters[src] //VOREStation edit. Done above.
@@ -111,7 +111,7 @@
 		log_emote("(HPAD) [message]", src)
 
 	else //This shouldn't occur, but better safe then sorry.
-		to_chat(src, "<span class='filter_notice'>No holopad connected.</span>")
+		to_chat(src, span_filter_notice("No holopad connected."))
 		return 0
 	return 1
 

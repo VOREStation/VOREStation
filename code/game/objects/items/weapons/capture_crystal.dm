@@ -28,7 +28,7 @@
 	if(bound_mob)
 		if(bound_mob in contents)
 			unleash()
-		to_chat(bound_mob, "<span class='notice'>You feel like yourself again. You are no longer under the influence of \the [src]'s command.</span>")
+		to_chat(bound_mob, span_notice("You feel like yourself again. You are no longer under the influence of \the [src]'s command."))
 		UnregisterSignal(bound_mob, COMSIG_PARENT_QDELETING)
 		bound_mob.capture_caught = FALSE
 		bound_mob = null
@@ -45,7 +45,7 @@
 			. += "<span class = 'notice'>[bound_mob.health / bound_mob.maxHealth * 100]%</span>"
 		if(bound_mob.ooc_notes)
 			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
-		. += "<span class='deptradio'><a href='?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
+		. += span_deptradio("<a href='?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
 
 //Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.
 /obj/item/capture_crystal/ui_action_click()
@@ -53,10 +53,10 @@
 		return
 	var/mob/living/M = src.loc
 	if(M != owner)
-		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
+		to_chat(M, span_notice("\The [src] emits an unpleasant tone... It does not respond to your command."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(!bound_mob)
-		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... There is nothing to command.</span>")
+		to_chat(M, span_notice("\The [src] emits an unpleasant tone... There is nothing to command."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(isanimal(bound_mob) && !bound_mob.client)
 		if(!isnull(bound_mob.get_AI_stance()))
@@ -69,17 +69,17 @@
 	else if(bound_mob.client)
 		var/transmit_msg = tgui_input_text(usr, "What is your command?", "Command")
 		if(length(transmit_msg) >= MAX_MESSAGE_LEN)
-			to_chat(M, "<span class='danger'>Your message was TOO LONG!:[transmit_msg]</span>")
+			to_chat(M, span_danger("Your message was TOO LONG!:[transmit_msg]"))
 			return
 		transmit_msg = sanitize(transmit_msg, max_length = MAX_MESSAGE_LEN)
 		if(isnull(transmit_msg))
-			to_chat(M, "<span class='notice'>You decided against it.</span>")
+			to_chat(M, span_notice("You decided against it."))
 			return
-		to_chat(bound_mob, "<span class='notice'>\The [owner] commands, '[transmit_msg]'</span>")
-		to_chat(M, "<span class='notice'>Your command has been transmitted, '[transmit_msg]'</span>")
+		to_chat(bound_mob, span_notice("\The [owner] commands, '[transmit_msg]'"))
+		to_chat(M, span_notice("Your command has been transmitted, '[transmit_msg]'"))
 		log_admin("[key_name_admin(M)] sent the command, '[transmit_msg]' to [bound_mob].")
 	else
-		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is unresponsive.</span>")
+		to_chat(M, span_notice("\The [src] emits an unpleasant tone... \The [bound_mob] is unresponsive."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
 //Lets the owner get AI controlled bound mobs to follow them, or tells player controlled mobs to follow them.
@@ -91,39 +91,39 @@
 		return
 	var/mob/living/M = src.loc
 	if(M != owner)
-		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
+		to_chat(M, span_notice("\The [src] emits an unpleasant tone... It does not respond to your command."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(bound_mob.stat != CONSCIOUS)
-		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command.</span>")
+		to_chat(M, span_notice("\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(bound_mob.client)
-		to_chat(bound_mob, "<span class='notice'>\The [owner] wishes for you to follow them.</span>")
+		to_chat(bound_mob, span_notice("\The [owner] wishes for you to follow them."))
 	else if(bound_mob in contents)
 		if(!bound_mob.ai_holder)
-			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to follow your command.</span>")
+			to_chat(M, span_notice("\The [src] emits an unpleasant tone... \The [bound_mob] is not able to follow your command."))
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			return
 		var/datum/ai_holder/AI = bound_mob.ai_holder
 		if(AI.leader)
-			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
+			to_chat(M, span_notice("\The [src] chimes~ \The [bound_mob] stopped following [AI.leader]."))
 			AI.lose_follow(AI.leader)
 		else
 			AI.set_follow(M)
-			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] started following following [AI.leader].</span>")
+			to_chat(M, span_notice("\The [src] chimes~ \The [bound_mob] started following following [AI.leader]."))
 	else if(!(bound_mob in view(M)))
-		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command.</span>")
+		to_chat(M, span_notice("\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		if(!bound_mob.ai_holder)
-			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to follow your command.</span>")
+			to_chat(M, span_notice("\The [src] emits an unpleasant tone... \The [bound_mob] is not able to follow your command."))
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			return
 		var/datum/ai_holder/AI = bound_mob.ai_holder
 		if(AI.leader)
-			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
+			to_chat(M, span_notice("\The [src] chimes~ \The [bound_mob] stopped following [AI.leader]."))
 			AI.lose_follow(AI.leader)
 		else
 			AI.set_follow(M)
-			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] started following following [AI.leader].</span>")
+			to_chat(M, span_notice("\The [src] chimes~ \The [bound_mob] started following following [AI.leader]."))
 
 //Don't really want people 'haha funny' capturing and releasing one another willy nilly. So! If you wanna release someone, you gotta destroy the thingy.
 //(Which is consistent with how it works with digestion anyway.)
@@ -135,7 +135,7 @@
 		return
 	var/mob/living/M = src.loc
 	if(M != owner)
-		to_chat(M, "<span class='notice'>\The [src] is too hard for you to break.</span>")
+		to_chat(M, span_notice("\The [src] is too hard for you to break."))
 	else
 		M.visible_message("\The [M] crushes \the [src] into dust...", "\The [src] cracks and disintegrates in your hand.")
 		qdel(src)
@@ -149,7 +149,7 @@
 		return
 	var/mob/living/M = src.loc
 	if(M != owner)
-		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
+		to_chat(M, span_notice("\The [src] emits an unpleasant tone... It does not respond to your command."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else
 		M.visible_message("\The [src] flickers in \the [M]'s hand and emits a little tone.", "\The [src] flickers in your hand and emits a little tone.")
@@ -166,26 +166,26 @@
 		return
 	var/mob/living/U = src.loc
 	if(!bound_mob)
-		to_chat(U, "<span class='notice'>\The [src] emits an unpleasant tone... There is nothing to enhance.</span>")
+		to_chat(U, span_notice("\The [src] emits an unpleasant tone... There is nothing to enhance."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	else if(U != owner)
-		to_chat(U, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
+		to_chat(U, span_notice("\The [src] emits an unpleasant tone... It does not respond to your command."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	else if(bound_mob.client || !isanimal(bound_mob))
-		to_chat(U, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not eligable for enhancement.</span>")
+		to_chat(U, span_notice("\The [src] emits an unpleasant tone... \The [bound_mob] is not eligable for enhancement."))
 		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
 		return		//Need to type cast the mob so it can detect ghostjoin
 	var/mob/living/simple_mob/M = bound_mob
 	if(M.ghostjoin)
 		M.ghostjoin = FALSE
-		to_chat(U, "<span class='notice'>\The [bound_mob] is no longer eligable to be joined by ghosts.</span>")
+		to_chat(U, span_notice("\The [bound_mob] is no longer eligable to be joined by ghosts."))
 	else if(tgui_alert(U, "Do you want to offer your [bound_mob] up to ghosts to play as? There is no way undo this once a ghost takes over.", "Invite ghosts?",list("No","Yes")) == "Yes")
 		M.ghostjoin = TRUE
-		to_chat(U, "<span class='notice'>\The [bound_mob] is now eligable to be joined by ghosts. It will need to be out of the crystal to be able to be joined.</span>")
+		to_chat(U, span_notice("\The [bound_mob] is now eligable to be joined by ghosts. It will need to be out of the crystal to be able to be joined."))
 	else
-		to_chat(U, "<span class='notice'>You decided against it.</span>")
+		to_chat(U, span_notice("You decided against it."))
 
 /obj/item/capture_crystal/update_icon()
 	. = ..()
@@ -221,26 +221,26 @@
 		user.visible_message("\The [user] taps \the [M] with \the [src].")
 		activate(user, M)
 	else
-		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It is not ready yet.</span>")
+		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
 //Tries to unleash or recall your stored mob
 /obj/item/capture_crystal/attack_self(mob/living/user)
 	if(bound_mob && !owner)
 		if(bound_mob == user)
-			to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It does not activate for you.</span>")
+			to_chat(user, span_notice("\The [src] emits an unpleasant tone... It does not activate for you."))
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			return
 		if(tgui_alert(user, "\The [src] hasn't got an owner. It has \the [bound_mob] registered to it. Would you like to claim this as yours?", "Claim ownership", list("No","Yes")) == "Yes")
 			owner = user
 	if(!cooldown_check())
-		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It is not ready yet.</span>")
+		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
 		if(bound_mob)
 			playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
 		else
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(user == bound_mob)	//You can't recall yourself
-		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It does not activate for you.</span>")
+		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It does not activate for you."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(!active)
 		activate(user)
@@ -255,7 +255,7 @@
 //The basic capture command does most of the registration work.
 /obj/item/capture_crystal/proc/capture(mob/living/M, mob/living/U)
 	if(!M.capture_crystal || M.capture_caught)
-		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
+		to_chat(U, span_warning("This creature is not suitable for capture."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	knowyoursignals(M, U)
@@ -309,7 +309,7 @@
 		capture_chance = 0 + effect_count
 		if(capture_chance <= 0)
 			capture_chance = 0
-			to_chat(user, "<span class='notice'>There's no chance... It needs to be weaker.</span>")
+			to_chat(user, span_notice("There's no chance... It needs to be weaker."))
 
 	last_activate = world.time
 	log_admin("[user] threw a capture crystal at [M] and got [capture_chance]% chance to catch.")
@@ -318,10 +318,10 @@
 //Handles checking relevent bans, preferences, and asking the player if they want to be caught
 /obj/item/capture_crystal/proc/capture_player(mob/living/M, mob/living/U)
 	if(jobban_isbanned(M, JOB_GHOSTROLES))
-		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
+		to_chat(U, span_warning("This creature is not suitable for capture."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(!M.capture_crystal || M.capture_caught)
-		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
+		to_chat(U, span_warning("This creature is not suitable for capture."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(tgui_alert(M, "Would you like to be caught by in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
 		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No","Yes")) == "Yes")
@@ -329,7 +329,7 @@
 			capture(M, U)
 			recall(U)
 			return
-	to_chat(U, "<span class='warning'>This creature is too strong willed to be captured.</span>")
+	to_chat(U, span_warning("This creature is too strong willed to be captured."))
 	playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
 //The clean up procs!
@@ -352,7 +352,7 @@
 //If the crystal hasn't been set up, it does this
 /obj/item/capture_crystal/proc/activate(mob/living/user, target)
 	if(!cooldown_check())		//Are we ready to do things yet?
-		to_chat(thrower, "<span class='notice'>\The [src] clicks unsatisfyingly... It is not ready yet.</span>")
+		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want
@@ -375,22 +375,22 @@
 		last_activate = world.time
 		if(M.capture_caught)					//Can't capture things that were already caught.
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly... \The [M] is already under someone else's control.</span>")
+			to_chat(user, span_notice("\The [src] clicks unsatisfyingly... \The [M] is already under someone else's control."))
 			return
 		else if(M.stat == DEAD)						//Is it dead? We can't influence dead things.
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly... \The [M] is not in a state to be captured.</span>")
+			to_chat(user, span_notice("\The [src] clicks unsatisfyingly... \The [M] is not in a state to be captured."))
 			return
 		else if(M.client)							//Is it player controlled?
 			capture_player(M, user)				//We have to do things a little differently if so.
 			return
 		else if(!isanimal(M))						//So it's not player controlled, but it's also not a simplemob?
-			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
+			to_chat(user, span_warning("This creature is not suitable for capture."))
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			return
 		var/mob/living/simple_mob/S = M
 		if(!S.ai_holder)						//We don't really want to capture simplemobs that don't have an AI
-			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
+			to_chat(user, span_warning("This creature is not suitable for capture."))
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		else if(prob(capture_chance(S, user)))				//OKAY! So we have an NPC simplemob with an AI, let's calculate its capture chance! It varies based on the mob's condition.
 			capture(S, user)					//We did it! Woo! We capture it!
@@ -402,17 +402,17 @@
 			S.ai_holder.give_target(user, urgent = TRUE)
 			user.visible_message("\The [src] bonks into \the [S], angering it!")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
+			to_chat(user, span_notice("\The [src] clicks unsatisfyingly."))
 		update_icon()
 		return
 	//The target is not a mob, so let's not do anything.
 	playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-	to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
+	to_chat(user, span_notice("\The [src] clicks unsatisfyingly."))
 
 //We're using the crystal, but what will it do?
 /obj/item/capture_crystal/proc/determine_action(mob/living/U, T)
 	if(!cooldown_check())	//Are we ready yet?
-		to_chat(thrower, "<span class='notice'>\The [src] clicks unsatisfyingly... It is not ready yet.</span>")
+		to_chat(thrower, span_notice("\The [src] clicks unsatisfyingly... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return				//No
 	if(bound_mob in contents)	//Do we have our mob?
@@ -423,7 +423,7 @@
 	else if (bound_mob)			//Do we HAVE a mob?
 		recall(U)				//Yes, let's try to put it back in the crystal
 	else						//No we don't have a mob, let's reset the crystal.
-		to_chat(U, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
+		to_chat(U, span_notice("\The [src] clicks unsatisfyingly."))
 		active = FALSE
 		update_icon()
 		owner = null
@@ -443,7 +443,7 @@
 		playsound(src, 'sound/effects/capture-crystal-in.ogg', 75, 1, -1)
 		update_icon()
 	else
-		to_chat(user, "<span class='notice'>\The [src] clicks and emits a small, unpleasant tone. \The [bound_mob] cannot be recalled.</span>")
+		to_chat(user, span_notice("\The [src] clicks and emits a small, unpleasant tone. \The [bound_mob] cannot be recalled."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
 //Let's let our mob out!
@@ -487,7 +487,7 @@
 	if(target == bound_mob && thrower != bound_mob)		//We got thrown at our bound mob (and weren't thrown by the bound mob) let's ignore the cooldown and just put them back in
 		recall(thrower)
 	else if(!cooldown_check())		//OTHERWISE let's obey the cooldown
-		to_chat(thrower, "<span class='notice'>\The [src] emits an soft tone... It is not ready yet.</span>")
+		to_chat(thrower, span_notice("\The [src] emits an soft tone... It is not ready yet."))
 		if(bound_mob)
 			playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
 		else
@@ -500,14 +500,14 @@
 		sleep(10)
 		activate(thrower, src)
 	else if(!bound_mob)				//We hit something else, and we don't have a mob, so we can't really do anything!
-		to_chat(thrower, "<span class='notice'>\The [src] clicks unpleasantly...</span>")
+		to_chat(thrower, span_notice("\The [src] clicks unpleasantly..."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(bound_mob in contents)	//We have our mob! Let's try to let it out.
 		sleep(10)
 		unleash(thrower, src)
 		update_icon()
 	else						//Our mob isn't here, we can't do anything.
-		to_chat(thrower, "<span class='notice'>\The [src] clicks unpleasantly...</span>")
+		to_chat(thrower, span_notice("\The [src] clicks unpleasantly..."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
 /obj/item/capture_crystal/basic

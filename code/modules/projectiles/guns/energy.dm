@@ -126,42 +126,42 @@
 /obj/item/gun/energy/proc/load_ammo(var/obj/item/C, mob/user)
 	if(istype(C, /obj/item/cell))
 		if(self_recharge || battery_lock)
-			to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
+			to_chat(user, span_notice("[src] does not have a battery port."))
 			return
 		if(istype(C, accept_cell_type))
 			var/obj/item/cell/P = C
 			if(power_supply)
-				to_chat(user, "<span class='notice'>[src] already has a power cell.</span>")
+				to_chat(user, span_notice("[src] already has a power cell."))
 			else
-				user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
+				user.visible_message("[user] is reloading [src].", span_notice("You start to insert [P] into [src]."))
 				if(do_after(user, reload_time * P.w_class))
 					user.remove_from_mob(P)
 					power_supply = P
 					P.loc = src
-					user.visible_message("[user] inserts [P] into [src].", "<span class='notice'>You insert [P] into [src].</span>")
+					user.visible_message("[user] inserts [P] into [src].", span_notice("You insert [P] into [src]."))
 					playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 					update_icon()
 					update_held_icon()
 					user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD
 		else
-			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
+			to_chat(user, span_notice("This cell is not fitted for [src]."))
 	return
 
 /obj/item/gun/energy/proc/unload_ammo(mob/user)
 	if(self_recharge || battery_lock)
-		to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
+		to_chat(user, span_notice("[src] does not have a battery port."))
 		return
 	if(power_supply)
 		user.put_in_hands(power_supply)
 		power_supply.update_icon()
-		user.visible_message("[user] removes [power_supply] from [src].", "<span class='notice'>You remove [power_supply] from [src].</span>")
+		user.visible_message("[user] removes [power_supply] from [src].", span_notice("You remove [power_supply] from [src]."))
 		power_supply = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		update_icon()
 		update_held_icon()
 		user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD
 	else
-		to_chat(user, "<span class='notice'>[src] does not have a power cell.</span>")
+		to_chat(user, span_notice("[src] does not have a power cell."))
 
 /obj/item/gun/energy/attackby(var/obj/item/A as obj, mob/user as mob)
 	..()

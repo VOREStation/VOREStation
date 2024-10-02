@@ -30,10 +30,10 @@
 		var/obj/item/organ/NewOrgan = new organ_to_implant()
 
 		var/obj/item/organ/external/E = H.get_organ(NewOrgan.parent_organ)
-		to_chat(H, "<span class='notice'>You feel a tingling sensation in your [part].</span>")
+		to_chat(H, span_notice("You feel a tingling sensation in your [part]."))
 		if(E && !(H.internal_organs_by_name[NewOrgan.organ_tag]))
 			spawn(rand(1 SECONDS, 30 SECONDS))
-				to_chat(H, "<span class='alien'>You feel a pressure in your [E] as the tingling fades, the lump caused by the implant now gone.</span>")
+				to_chat(H, span_alien("You feel a pressure in your [E] as the tingling fades, the lump caused by the implant now gone."))
 
 			NewOrgan.forceMove(H)
 			NewOrgan.owner = H
@@ -50,7 +50,7 @@
 
 		else
 			qdel(NewOrgan)
-			to_chat(H, "<span class='warning'>You feel a pinching sensation in your [part]. The implant remains.</span>")
+			to_chat(H, span_warning("You feel a pinching sensation in your [part]. The implant remains."))
 
 /obj/item/implant/organ/islegal()
 	return 0
@@ -74,12 +74,12 @@
 		var/obj/item/organ/NewOrgan = new organ_to_implant()
 
 		var/obj/item/organ/external/E = setup_augment_slots(H, NewOrgan)
-		to_chat(H, "<span class='notice'>You feel a tingling sensation in your [part].</span>")
+		to_chat(H, span_notice("You feel a tingling sensation in your [part]."))
 		NewOrgan.forceMove(H)
 		NewOrgan.owner = H
 		if(E && istype(E) && !(H.internal_organs_by_name[NewOrgan.organ_tag]) && NewOrgan.check_verb_compatability())
 			spawn(rand(1 SECONDS, 30 SECONDS))
-				to_chat(H, "<span class='alien'>You feel a pressure in your [E] as the tingling fades, the lump caused by the implant now gone.</span>")
+				to_chat(H, span_alien("You feel a pressure in your [E] as the tingling fades, the lump caused by the implant now gone."))
 
 			if(E.internal_organs == null)
 				E.internal_organs = list()
@@ -94,7 +94,7 @@
 
 		else
 			qdel(NewOrgan)
-			to_chat(H, "<span class='warning'>You feel a pinching sensation in your [part]. The implant remains.</span>")
+			to_chat(H, span_warning("You feel a pinching sensation in your [part]. The implant remains."))
 
 /obj/item/implant/organ/limbaugment/proc/setup_augment_slots(var/mob/living/carbon/human/H, var/obj/item/organ/internal/augment/armmounted/I)
 	var/list/Choices = possible_targets.Copy()

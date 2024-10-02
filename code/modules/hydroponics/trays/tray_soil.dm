@@ -19,7 +19,7 @@
 			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
 				qdel(src)
 		else
-			to_chat(user, "<span class='notice'>There is something growing here.</span>")
+			to_chat(user, span_notice("There is something growing here."))
 	else
 		return ..()
 

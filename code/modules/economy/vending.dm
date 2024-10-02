@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
-		to_chat(user, "<span class='filter_notice'>You short out \the [src]'s product lock.</span>")
+		to_chat(user, span_filter_notice("You short out \the [src]'s product lock."))
 		return 1
 
 /obj/machinery/vending/attackby(obj/item/W as obj, mob/user as mob)
@@ -195,26 +195,26 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 	else if(istype(W, /obj/item/refill_cartridge))
 		if(stat & (BROKEN|NOPOWER))
-			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not functioning.</span>")
+			to_chat(user, span_notice("You cannot refill [src] while it is not functioning."))
 			return
 		if(!anchored)
-			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not secured.</span>")
+			to_chat(user, span_notice("You cannot refill [src] while it is not secured."))
 			return
 		if(panel_open)
-			to_chat(user, "<span class='notice'>You cannot refill [src] while it's panel is open.</span>")
+			to_chat(user, span_notice("You cannot refill [src] while it's panel is open."))
 			return
 		if(!refillable)
-			to_chat(user, "<span class='notice'>\the [src] does not have a refill port.</span>")
+			to_chat(user, span_notice("\the [src] does not have a refill port."))
 			return
 		var/obj/item/refill_cartridge/RC = W
 		if(RC.can_refill(src))
-			to_chat(user, "<span class='notice'>You refill [src] using [RC].</span>")
+			to_chat(user, span_notice("You refill [src] using [RC]."))
 			user.drop_from_inventory(RC)
 			qdel(RC)
 			refill_inventory()
 			return
 		else
-			to_chat(user, "<span class='notice'>You cannot refill [src] with [RC].</span>")
+			to_chat(user, span_notice("You cannot refill [src] with [RC]."))
 			return
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
@@ -237,19 +237,19 @@ GLOBAL_LIST_EMPTY(vending_products)
 		W.forceMove(src)
 		coin = W
 		categories |= CAT_COIN
-		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
+		to_chat(user, span_notice("You insert \the [W] into \the [src]."))
 		SStgui.update_uis(src)
 		return
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
-			user.visible_message("<span class='filter_notice'>[user] begins unsecuring \the [src] from the floor.</span>", "<span class='filter_notice'>You start unsecuring \the [src] from the floor.</span>")
+			user.visible_message(span_filter_notice("[user] begins unsecuring \the [src] from the floor."), span_filter_notice("You start unsecuring \the [src] from the floor."))
 		else
-			user.visible_message("<span class='filter_notice'>[user] begins securing \the [src] to the floor.</span>", "<span class='filter_notice'>You start securing \the [src] to the floor.</span>")
+			user.visible_message(span_filter_notice("[user] begins securing \the [src] to the floor."), span_filter_notice("You start securing \the [src] to the floor."))
 
 		if(do_after(user, 20 * W.toolspeed))
 			if(!src) return
-			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored
 		return
 	else
@@ -275,7 +275,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	if(istype(cashmoney, /obj/item/spacecash))
 
-		visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
+		visible_message(span_info("\The [usr] inserts some cash into \the [src]."))
 		cashmoney.worth -= currently_vending.price
 
 		if(cashmoney.worth <= 0)
@@ -295,10 +295,10 @@ GLOBAL_LIST_EMPTY(vending_products)
  * successful, 0 if failed.
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
-	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
+	visible_message(span_info("\The [usr] swipes \the [wallet] through \the [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
-		to_chat(usr, "<span class='warning'>Insufficient funds on chargecard.</span>")
+		to_chat(usr, span_warning("Insufficient funds on chargecard."))
 		return 0
 	else
 		wallet.worth -= currently_vending.price
@@ -312,16 +312,16 @@ GLOBAL_LIST_EMPTY(vending_products)
  * successful, 0 if failed
  */
 /obj/machinery/vending/proc/pay_with_card(obj/item/card/id/I, mob/M)
-	visible_message("<span class='info'>[M] swipes a card through [src].</span>")
+	visible_message(span_info("[M] swipes a card through [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
-		to_chat(M, "<span class='warning'>Error: Unable to access account. Please contact technical support if problem persists.</span>")
+		to_chat(M, span_warning("Error: Unable to access account. Please contact technical support if problem persists."))
 		return FALSE
 
 	if(customer_account.suspended)
-		to_chat(M, "<span class='warning'>Unable to access account: account suspended.</span>")
+		to_chat(M, span_warning("Unable to access account: account suspended."))
 		return FALSE
 
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
@@ -331,11 +331,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
-			to_chat(M, "<span class='warning'>Unable to access account: incorrect credentials.</span>")
+			to_chat(M, span_warning("Unable to access account: incorrect credentials."))
 			return FALSE
 
 	if(currently_vending.price > customer_account.money)
-		to_chat(M, "<span class='warning'>Insufficient funds in account.</span>")
+		to_chat(M, span_warning("Insufficient funds in account."))
 		return FALSE
 
 	// Okay to move the money at this point
@@ -487,28 +487,28 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return FALSE
 
 			if(!coin)
-				to_chat(usr, "<span class='filter_notice'>There is no coin in this machine.</span>")
+				to_chat(usr, span_filter_notice("There is no coin in this machine."))
 				return
 
 			coin.forceMove(src.loc)
 			if(!usr.get_active_hand())
 				usr.put_in_hands(coin)
 
-			to_chat(usr, "<span class='notice'>You remove \the [coin] from \the [src].</span>")
+			to_chat(usr, span_notice("You remove \the [coin] from \the [src]."))
 			coin = null
 			categories &= ~CAT_COIN
 			return TRUE
 		if("vend")
 			if(!vend_ready)
-				to_chat(usr, "<span class='warning'>[src] is busy!</span>")
+				to_chat(usr, span_warning("[src] is busy!"))
 				return
 			if(!allowed(usr) && !emagged && scan_id)
-				to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
+				to_chat(usr, span_warning("Access denied."))	//Unless emagged of course
 				flick("[icon_state]-deny",src)
 				playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 				return
 			if(panel_open)
-				to_chat(usr, "<span class='warning'>[src] cannot dispense products while its service panel is open!</span>")
+				to_chat(usr, span_warning("[src] cannot dispense products while its service panel is open!"))
 				return
 
 			var/key = text2num(params["vend"])
@@ -527,7 +527,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return TRUE
 
 			if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
-				to_chat(usr, "<span class='danger'>Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled.</span>")
+				to_chat(usr, span_danger("Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled."))
 				return
 			if(!ishuman(usr))
 				return
@@ -538,7 +538,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/obj/item/card/id/C = H.GetIdCard()
 
 			if(!vendor_account || vendor_account.suspended)
-				to_chat(usr, "<span class='filter_notice'>Vendor account offline. Unable to process transaction.</span>")
+				to_chat(usr, span_filter_notice("Vendor account offline. Unable to process transaction."))
 				flick("[icon_state]-deny",src)
 				vend_ready = TRUE
 				return
@@ -556,10 +556,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 			else if(istype(C, /obj/item/card))
 				paid = pay_with_card(C, usr)
 			/*else if(usr.can_advanced_admin_interact())
-				to_chat(usr, "<span class='notice'>Vending object due to admin interaction.</span>")
+				to_chat(usr, span_notice("Vending object due to admin interaction."))
 				paid = TRUE*/
 			else
-				to_chat(usr, "<span class='warning'>Payment failure: you have no ID or other method of payment.</span>")
+				to_chat(usr, span_warning("Payment failure: you have no ID or other method of payment."))
 				vend_ready = TRUE
 				flick("[icon_state]-deny",src)
 				return TRUE // we set this because they shouldn't even be able to get this far, and we want the UI to update.
@@ -567,7 +567,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				vend(currently_vending, usr) // vend will handle vend_ready
 				. = TRUE
 			else
-				to_chat(usr, "<span class='warning'>Payment failure: unable to process payment.</span>")
+				to_chat(usr, span_warning("Payment failure: unable to process payment."))
 				vend_ready = TRUE
 
 		if("togglevoice")
@@ -577,7 +577,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/proc/can_buy(datum/stored_item/vending_product/R, mob/user)
 	if(!allowed(user) && !emagged && scan_id)
-		to_chat(user, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
+		to_chat(user, span_warning("Access denied."))	//Unless emagged of course
 		flick("[icon_state]-deny",src)
 		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return FALSE
@@ -588,7 +588,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 
 	if(!R.amount)
-		to_chat(user, "<span class='warning'>[src] has ran out of that product.</span>")
+		to_chat(user, span_warning("[src] has ran out of that product."))
 		vend_ready = TRUE
 		return
 
@@ -597,13 +597,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	if(R.category & CAT_COIN)
 		if(!coin)
-			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
+			to_chat(user, span_notice("You need to insert a coin to get this item."))
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, "<span class='notice'>You successfully pull the coin out before \the [src] could swallow it.</span>")
+				to_chat(user, span_notice("You successfully pull the coin out before \the [src] could swallow it."))
 			else
-				to_chat(user, "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>")
+				to_chat(user, span_notice("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
 				qdel(coin)
 				coin = null
 				categories &= ~CAT_COIN
@@ -666,7 +666,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			popup.set_content(dat)
 			popup.open()
 	else
-		to_chat(user,"<span class='warning'>You do not have the required access to view the vending logs for this machine.</span>")
+		to_chat(user,span_warning("You do not have the required access to view the vending logs for this machine."))
 
 
 /obj/machinery/vending/verb/rotate_clockwise()
@@ -675,11 +675,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	set src in oview(1)
 
 	if (src.can_rotate == 0)
-		to_chat(usr, "<span class='warning'>\The [src] cannot be rotated.</span>")
+		to_chat(usr, span_warning("\The [src] cannot be rotated."))
 		return 0
 
 	if (src.anchored || usr:stat)
-		to_chat(usr, "<span class='filter_notice'>It is bolted down!</span>")
+		to_chat(usr, span_filter_notice("It is bolted down!"))
 		return 0
 	src.set_dir(turn(src.dir, 270))
 	return 1
@@ -691,11 +691,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	set src in oview(1)
 
 	if (src.can_rotate == 0)
-		to_chat(usr, "<span class='warning'>\The [src] cannot be rotated.</span>")
+		to_chat(usr, span_warning("\The [src] cannot be rotated."))
 		return 0
 
 	if (src.anchored || usr:stat)
-		to_chat(usr, "<span class='filter_notice'>It is bolted down!</span>")
+		to_chat(usr, span_filter_notice("It is bolted down!"))
 		return 0
 	src.set_dir(turn(src.dir, 90))
 	return 1
@@ -718,7 +718,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!user.unEquip(W))
 		return
 
-	to_chat(user, "<span class='notice'>You insert \the [W] in the product receptor.</span>")
+	to_chat(user, span_notice("You insert \the [W] in the product receptor."))
 	R.add_product(W)
 	if(has_logs)
 		do_logging(R, user)
@@ -754,7 +754,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='npcsay'><span class='name'>\The [src]</span> beeps, \"[message]\"</span>",2)
+		O.show_message(span_npcsay("<span class='name'>\The [src]</span> beeps, \"[message]\""),2)
 	return
 
 /obj/machinery/vending/power_change()
@@ -795,7 +795,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return FALSE
 	throw_item.vendor_action(src)
 	INVOKE_ASYNC(throw_item, TYPE_PROC_REF(/atom/movable, throw_at), target, rand(3, 10), rand(1, 3), src)
-	visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
+	visible_message(span_warning("\The [src] launches \a [throw_item] at \the [target]!"))
 	return 1
 
 //Actual machines are in vending_machines.dm

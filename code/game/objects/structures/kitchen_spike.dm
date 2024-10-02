@@ -26,7 +26,7 @@
 			qdel(G)
 			qdel(M)
 		else
-			to_chat(user, "<span class='danger'>They are too big for the spike, try something smaller!</span>")
+			to_chat(user, span_danger("They are too big for the spike, try something smaller!"))
 
 /obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
 	if(!istype(victim))

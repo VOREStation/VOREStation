@@ -32,7 +32,7 @@
 			H.help_shake_act(user)
 		if(isanimal(L))
 			var/mob/living/simple_mob/S = L
-			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
+			user.visible_message(span_notice("[user] [S.response_help] \the [S]."))
 
 //Egg features.
 /obj/item/holder/attack_hand(mob/living/user as mob)

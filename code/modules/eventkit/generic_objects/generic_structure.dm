@@ -35,7 +35,7 @@
 			else
 				icon = 'icons/obj/props/decor.dmi'
 			icon_state = icon_state_on
-			src.visible_message("<span class='notice'>[text_activated]</span>")
+			src.visible_message(span_notice("[text_activated]"))
 			update_icon()
 			if(effect == 1)
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -76,7 +76,7 @@
 					O.Weaken(flash_time)
 			if(effect == 4)
 				var/atom/o = new object(get_turf(src))
-				src.visible_message("<span class='notice'>[src] has produced [o]!</span>")
+				src.visible_message(span_notice("[src] has produced [o]!"))
 			if(effect == 5)
 				for (var/mob/O in viewers(src, null))
 					if(get_dist(src, O) > 7)
@@ -97,14 +97,14 @@
 				icon = icon_off
 			else
 				icon = 'icons/obj/props/decor.dmi'
-			src.visible_message("<span class='notice'>[text_deactivated]</span>")
+			src.visible_message(span_notice("[text_deactivated]"))
 			update_icon()
 	return ..()
 
 /obj/structure/generic_structure/attackby(obj/item/W as obj, mob/user as mob)
 	if(wrenchable && W.has_tool_quality(TOOL_WRENCH))
 		add_fingerprint(user)
-		to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+		to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 		anchored = !anchored
 
 /client/proc/generic_structure()

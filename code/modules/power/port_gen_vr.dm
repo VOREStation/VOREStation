@@ -116,7 +116,7 @@
 /obj/machinery/power/rtg/examine(mob/user)
 	. = ..()
 	if(Adjacent(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Power generation now at <b>[power_gen*0.001]</b>kW.</span>"
+		. += span_notice("The status display reads: Power generation now at <b>[power_gen*0.001]</b>kW.")
 
 /obj/machinery/power/rtg/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, I))
@@ -179,8 +179,8 @@
 	if(going_kaboom)
 		return
 	going_kaboom = TRUE
-	visible_message("<span class='danger'>\The [src] lets out an shower of sparks as it starts to lose stability!</span>",\
-		"<span class='italics'>You hear a loud electrical crack!</span>")
+	visible_message(span_danger("\The [src] lets out an shower of sparks as it starts to lose stability!"),\
+		span_italics("You hear a loud electrical crack!"))
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_gen * 0.05)
 	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(explosion), get_turf(src), 2, 3, 4, 8), 100) // Not a normal explosion.
@@ -285,8 +285,8 @@
 	can_buckle = FALSE
 
 /obj/machinery/power/rtg/kugelblitz/proc/asplod()
-	visible_message("<span class='danger'>\The [src] lets out an shower of sparks as it starts to lose stability!</span>",\
-		"<span class='italics'>You hear a loud electrical crack!</span>")
+	visible_message(span_danger("\The [src] lets out an shower of sparks as it starts to lose stability!"),\
+		span_italics("You hear a loud electrical crack!"))
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	var/turf/T = get_turf(src)
 	qdel(src)
@@ -339,7 +339,7 @@
 /obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
 	. = ..()
 	M.pixel_y = 8
-	M.visible_message("<span class='notice'>\The [M], hops up onto \the [src] and begins running!</span>")
+	M.visible_message(span_notice("\The [M], hops up onto \the [src] and begins running!"))
 
 /obj/machinery/power/rtg/reg/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	. = ..()
@@ -380,7 +380,7 @@
 /obj/machinery/power/rtg/reg/proc/runner_process(var/mob/living/runner)
 	if(runner.stat != CONSCIOUS)
 		unbuckle_mob(runner)
-		runner.visible_message("<span class='warning'>\The [runner], topples off of \the [src]!</span>")
+		runner.visible_message(span_warning("\The [runner], topples off of \the [src]!"))
 		return
 	var/cool_rotations
 	if(ishuman(runner))
@@ -407,7 +407,7 @@
 			cool_rotations *= 0.25
 		else	//TOO HUNGY IT TIME TO STOP!!!
 			unbuckle_mob(runner)
-			runner.visible_message("<span class='notice'>\The [runner], panting and exhausted hops off of \the [src]!</span>")
+			runner.visible_message(span_notice("\The [runner], panting and exhausted hops off of \the [src]!"))
 	if(part_mult > 1)
 		cool_rotations += (cool_rotations * (part_mult - 1)) / 4
 	power_gen = cool_rotations
@@ -497,9 +497,9 @@
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.get_amount())
 		if(amount < 1)
-			to_chat(user, "<span class='warning'>The [src.name] is full!</span>")
+			to_chat(user, span_warning("The [src.name] is full!"))
 			return
-		to_chat(user, "<span class='notice'>You add [amount] sheet\s to the [src.name].</span>")
+		to_chat(user, span_notice("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
 		update_icon()

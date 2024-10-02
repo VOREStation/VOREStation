@@ -7,7 +7,7 @@
 
 /obj/item/cell/device/weapon/recharge/alien/attack_self(var/mob/user)
 	user.remove_from_mob(src)
-	to_chat(user, "<span class='notice'>You swap [src] to 'machinery cell' mode.</span>")
+	to_chat(user, span_notice("You swap [src] to 'machinery cell' mode."))
 	var/obj/item/cell/newcell = new swaps_to(null)
 	user.put_in_active_hand(newcell)
 	var/percentage = charge/maxcharge
@@ -32,7 +32,7 @@
 
 /obj/item/cell/void/attack_self(var/mob/user)
 	user.remove_from_mob(src)
-	to_chat(user, "<span class='notice'>You swap [src] to 'device cell' mode.</span>")
+	to_chat(user, span_notice("You swap [src] to 'device cell' mode."))
 	var/obj/item/cell/newcell = new swaps_to(null)
 	user.put_in_active_hand(newcell)
 	var/percentage = charge/maxcharge

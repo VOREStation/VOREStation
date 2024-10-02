@@ -8,18 +8,18 @@
 
 /obj/machinery/gateway/centeraway/mcguffin/attackby(obj/item/W as obj, mob/user as mob)
 	if(calibrated && stationgate)
-		to_chat(user, "<span class='info'>The gate is already configured, you should be able to activate it.</span>")
+		to_chat(user, span_info("The gate is already configured, you should be able to activate it."))
 		return
 	else if(!stationgate)
-		to_chat(user, "<span class='danger'>Error: Configuration failed. No destination found... That can't be good.</span>")
+		to_chat(user, span_danger("Error: Configuration failed. No destination found... That can't be good."))
 		return
 
 	if(istype(W,mcguffin_type) && !calibrated)
-		to_chat(user, "<span class='emote'>As the device nears the gateway, mechanical clunks and whirrs can be heard. <br>[span_blue("<b>Configuration successful! </b>")]<br>This gate's systems have been fine tuned. Travel to this gate will now be on target.</span>")
+		to_chat(user, span_emote("As the device nears the gateway, mechanical clunks and whirrs can be heard. <br>[span_blue("<b>Configuration successful! </b>")]<br>This gate's systems have been fine tuned. Travel to this gate will now be on target."))
 		calibrated = 1
 		return
 	else
-		to_chat(user, "<span class='danger'>This device does not seem to interface correctly with the gateway. Perhaps you should try something else.</span>")
+		to_chat(user, span_danger("This device does not seem to interface correctly with the gateway. Perhaps you should try something else."))
 		return
 
 //If you use this kind of gateway you NEED one of these on the map or the players won't be able to leave//

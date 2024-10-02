@@ -20,7 +20,7 @@
 		definiton of 'the station' is where your pod is, and unless your laws say otherwise, the entity that released you \
 		from the pod is not a crewmember.</span>")
 		R.ckey = M.ckey
-		visible_message("<span class='warning'>As \the [src] opens, the eyes of the robot flicker as it is activated.</span>")
+		visible_message(span_warning("As \the [src] opens, the eyes of the robot flicker as it is activated."))
 		R.namepick()
 		log_and_message_admins("successfully opened \a [src] and got a Lost Drone.")
 		used = TRUE

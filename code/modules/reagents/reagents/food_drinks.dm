@@ -88,7 +88,7 @@
 	//We'll assume that the batter isnt going to be regurgitated and eaten by someone else. Only show this once
 	if(data["cooked"] != 1)
 		if (!messaged)
-			to_chat(M, "<span class='warning'>Ugh, this raw [name] tastes disgusting.</span>")
+			to_chat(M, span_warning("Ugh, this raw [name] tastes disgusting."))
 			nutriment_factor *= 0.5
 			messaged = 1
 
@@ -238,7 +238,7 @@
 		M.take_organ_damage(0, removed * 1.5 * dfactor)
 		data["temperature"] -= (6 * removed) / (1 + volume*0.1)//Cools off as it burns you
 		if (lastburnmessage+100 < world.time	)
-			to_chat(M, "<span class='danger'>Searing hot oil burns you, wash it off quick!</span>")
+			to_chat(M, span_danger("Searing hot oil burns you, wash it off quick!"))
 			lastburnmessage = world.time
 
 /datum/reagent/nutriment/triglyceride/oil/cooking
@@ -587,7 +587,7 @@
 	..()
 	if(iscarbon(M) && !M.isSynthetic())
 		var/message = pick("Oh god, it smells disgusting here.", "What is that stench?", "That's an awful odor.")
-		to_chat(M, "<span class='alien'>[message]</span>")
+		to_chat(M, span_alien("[message]"))
 		if(prob(CLAMP(amount, 5, 90)))
 			var/mob/living/L = M
 			L.vomit()
@@ -725,7 +725,7 @@
 		return
 	if(alien == IS_ALRAUNE) // VOREStation Edit: It wouldn't affect plants that much.
 		if(prob(5))
-			to_chat(M, "<span class='rose'>You feel a chilly, tingling sensation in your mouth.</span>")
+			to_chat(M, span_rose("You feel a chilly, tingling sensation in your mouth."))
 		M.bodytemperature -= rand(10, 25)
 		return
 	if(ishuman(M))
@@ -734,12 +734,12 @@
 			return
 	var/effective_dose = (dose * M.species.spice_mod)
 	if((effective_dose < 5) && (dose == metabolism || prob(5)))
-		to_chat(M, "<span class='danger'>Your insides suddenly feel a spreading chill!</span>")
+		to_chat(M, span_danger("Your insides suddenly feel a spreading chill!"))
 	if(effective_dose >= 5)
 		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
 		M.bodytemperature -= rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you cold.
 		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are freezing!</span>", "<span class='danger'>Your insides feel like they're turning to ice!</span>"))
+			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are freezing!"), span_danger("Your insides feel like they're turning to ice!")))
 	// holder.remove_reagent("capsaicin", 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
@@ -770,7 +770,7 @@
 		return
 	if(alien == IS_ALRAUNE) // VOREStation Edit: It wouldn't affect plants that much.
 		if(prob(5))
-			to_chat(M, "<span class='rose'>You feel a pleasant sensation in your mouth.</span>")
+			to_chat(M, span_rose("You feel a pleasant sensation in your mouth."))
 		M.bodytemperature += rand(10, 25)
 		return
 	if(ishuman(M))
@@ -780,12 +780,12 @@
 
 	var/effective_dose = (dose * M.species.spice_mod)
 	if((effective_dose < 5) && (dose == metabolism || prob(5)))
-		to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
+		to_chat(M, span_danger("Your insides feel uncomfortably hot!"))
 	if(effective_dose >= 5)
 		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
 		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
+			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are burning!"), span_danger("You feel like your insides are on fire!"), span_danger("You feel like your belly is full of lava!")))
 	// holder.remove_reagent("frostoil", 5)  // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /datum/reagent/condensedcapsaicin
@@ -865,11 +865,11 @@
 				if(head_covered && chest_covered && groin_covered && legs_covered && arms_covered && hands_covered && feet_covered)
 					break
 	if(eyes_covered && mouth_covered)
-		to_chat(M, "<span class='warning'>Your [safe_thing] protects you from the pepperspray!</span>")
+		to_chat(M, span_warning("Your [safe_thing] protects you from the pepperspray!"))
 		if(alien != IS_SLIME)
 			return
 	else if(eyes_covered)
-		to_chat(M, "<span class='warning'>Your [safe_thing] protects you from most of the pepperspray!</span>")
+		to_chat(M, span_warning("Your [safe_thing] protects you from most of the pepperspray!"))
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 3)
 		M.Blind(effective_strength)
 		M.Stun(5)
@@ -877,12 +877,12 @@
 		if(alien != IS_SLIME)
 			return
 	else if(mouth_covered) // Mouth cover is better than eye cover
-		to_chat(M, "<span class='warning'>Your [safe_thing] protects your face from the pepperspray!</span>")
+		to_chat(M, span_warning("Your [safe_thing] protects your face from the pepperspray!"))
 		M.eye_blurry = max(M.eye_blurry, effective_strength)
 		if(alien != IS_SLIME)
 			return
 	else// Oh dear :D
-		to_chat(M, "<span class='warning'>You're sprayed directly in the eyes with pepperspray!</span>")
+		to_chat(M, span_warning("You're sprayed directly in the eyes with pepperspray!"))
 		M.eye_blurry = max(M.eye_blurry, effective_strength * 5)
 		M.Blind(effective_strength * 2)
 		M.Stun(5)
@@ -892,31 +892,31 @@
 	if(alien == IS_SLIME)
 		if(!head_covered)
 			if(prob(33))
-				to_chat(M, "<span class='warning'>The exposed flesh on your head burns!</span>")
+				to_chat(M, span_warning("The exposed flesh on your head burns!"))
 			M.apply_effect(5 * effective_strength, AGONY, 0)
 		if(!chest_covered)
 			if(prob(33))
-				to_chat(M, "<span class='warning'>The exposed flesh on your chest burns!</span>")
+				to_chat(M, span_warning("The exposed flesh on your chest burns!"))
 			M.apply_effect(5 * effective_strength, AGONY, 0)
 		if(!groin_covered && prob(75))
 			if(prob(33))
-				to_chat(M, "<span class='warning'>The exposed flesh on your groin burns!</span>")
+				to_chat(M, span_warning("The exposed flesh on your groin burns!"))
 			M.apply_effect(3 * effective_strength, AGONY, 0)
 		if(!arms_covered && prob(45))
 			if(prob(33))
-				to_chat(M, "<span class='warning'>The exposed flesh on your arms burns!</span>")
+				to_chat(M, span_warning("The exposed flesh on your arms burns!"))
 			M.apply_effect(3 * effective_strength, AGONY, 0)
 		if(!legs_covered && prob(45))
 			if(prob(33))
-				to_chat(M, "<span class='warning'>The exposed flesh on your legs burns!</span>")
+				to_chat(M, span_warning("The exposed flesh on your legs burns!"))
 			M.apply_effect(3 * effective_strength, AGONY, 0)
 		if(!hands_covered && prob(20))
 			if(prob(33))
-				to_chat(M, "<span class='warning'>The exposed flesh on your hands burns!</span>")
+				to_chat(M, span_warning("The exposed flesh on your hands burns!"))
 			M.apply_effect(effective_strength / 2, AGONY, 0)
 		if(!feet_covered && prob(20))
 			if(prob(33))
-				to_chat(M, "<span class='warning'>The exposed flesh on your feet burns!</span>")
+				to_chat(M, span_warning("The exposed flesh on your feet burns!"))
 			M.apply_effect(effective_strength / 2, AGONY, 0)
 
 /datum/reagent/condensedcapsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -925,11 +925,11 @@
 		if(!H.can_feel_pain())
 			return
 	if(dose == metabolism)
-		to_chat(M, "<span class='danger'>You feel like your insides are burning!</span>")
+		to_chat(M, span_danger("You feel like your insides are burning!"))
 	else
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
+			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), span_danger("You feel like your insides are burning!"))
 	// holder.remove_reagent("frostoil", 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /* Drinks */
@@ -4370,7 +4370,7 @@
 					return
 				var/adjust_liver = rand(-3, 2)
 				if(prob(L.damage))
-					to_chat(M, "<span class='cult'>You feel woozy...</span>")
+					to_chat(M, span_cult("You feel woozy..."))
 				L.damage = max(L.damage + (adjust_liver * removed), 0)
 		var/adjust_tox = rand(-4, 2)
 		M.adjustToxLoss(adjust_tox * removed)
@@ -4544,7 +4544,7 @@
 	..()
 	playsound(M, 'sound/items/hooh.ogg', 50, 1, -1)
 	if(prob(5))
-		to_chat(M, "<span class='warning'>You feel like you've been gnomed...</span>")
+		to_chat(M, span_warning("You feel like you've been gnomed..."))
 
 /datum/reagent/drink/soda/kompot
 	name = "Kompot"

@@ -24,7 +24,7 @@
 			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
-					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
+					to_chat(user, span_notice("You wrench the frame into place."))
 					anchored = TRUE
 					state = 1
 			if(P.has_tool_quality(TOOL_WELDER))
@@ -35,31 +35,31 @@
 				playsound(src, WT.usesound, 50, 1)
 				if(do_after(user, 20 * WT.toolspeed))
 					if(!src || !WT.remove_fuel(0, user)) return
-					to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
+					to_chat(user, span_notice("You deconstruct the frame."))
 					new /obj/item/stack/material/plasteel( loc, 4)
 					qdel(src)
 		if(1)
 			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
-					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
+					to_chat(user, span_notice("You unfasten the frame."))
 					anchored = FALSE
 					state = 0
 			if(istype(P, /obj/item/circuitboard/aicore) && !circuit)
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				to_chat(user, "<span class='notice'>You place the circuit board inside the frame.</span>")
+				to_chat(user, span_notice("You place the circuit board inside the frame."))
 				icon_state = "1"
 				circuit = P
 				user.drop_item()
 				P.loc = src
 			if(P.has_tool_quality(TOOL_SCREWDRIVER) && circuit)
 				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You screw the circuit board into place.</span>")
+				to_chat(user, span_notice("You screw the circuit board into place."))
 				state = 2
 				icon_state = "2"
 			if(P.has_tool_quality(TOOL_CROWBAR) && circuit)
 				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You remove the circuit board.</span>")
+				to_chat(user, span_notice("You remove the circuit board."))
 				state = 1
 				icon_state = "0"
 				circuit.loc = loc
@@ -67,21 +67,21 @@
 		if(2)
 			if(P.has_tool_quality(TOOL_SCREWDRIVER) && circuit)
 				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You unfasten the circuit board.</span>")
+				to_chat(user, span_notice("You unfasten the circuit board."))
 				state = 1
 				icon_state = "1"
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = P
 				if (C.get_amount() < 5)
-					to_chat(user, "<span class='warning'>You need five coils of wire to add them to the frame.</span>")
+					to_chat(user, span_warning("You need five coils of wire to add them to the frame."))
 					return
-				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
+				to_chat(user, span_notice("You start to add cables to the frame."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if (do_after(user, 20) && state == 2)
 					if (C.use(5))
 						state = 3
 						icon_state = "3"
-						to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
+						to_chat(user, span_notice("You add cables to the frame."))
 				return
 		if(3)
 			if(P.has_tool_quality(TOOL_WIRECUTTER))
@@ -89,7 +89,7 @@
 					to_chat(user, "Get that brain out of there first")
 				else
 					playsound(src, P.usesound, 50, 1)
-					to_chat(user, "<span class='notice'>You remove the cables.</span>")
+					to_chat(user, span_notice("You remove the cables."))
 					state = 2
 					icon_state = "2"
 					new /obj/item/stack/cable_coil(loc, 5)
@@ -97,13 +97,13 @@
 			if(istype(P, /obj/item/stack/material) && P.get_material_name() == "rglass")
 				var/obj/item/stack/RG = P
 				if (RG.get_amount() < 2)
-					to_chat(user, "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>")
+					to_chat(user, span_warning("You need two sheets of glass to put in the glass panel."))
 					return
-				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
+				to_chat(user, span_notice("You start to put in the glass panel."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if (do_after(user, 20) && state == 3)
 					if(RG.use(2))
-						to_chat(user, "<span class='notice'>You put in the glass panel.</span>")
+						to_chat(user, span_notice("You put in the glass panel."))
 						state = 4
 						icon_state = "4"
 
@@ -132,14 +132,14 @@
 			if(istype(P, /obj/item/mmi))
 				var/obj/item/mmi/M = P
 				if(!M.brainmob)
-					to_chat(user, "<span class='warning'>Sticking an empty [P] into the frame would sort of defeat the purpose.</span>")
+					to_chat(user, span_warning("Sticking an empty [P] into the frame would sort of defeat the purpose."))
 					return
 				if(M.brainmob.stat == 2)
-					to_chat(user, "<span class='warning'>Sticking a dead [P] into the frame would sort of defeat the purpose.</span>")
+					to_chat(user, span_warning("Sticking a dead [P] into the frame would sort of defeat the purpose."))
 					return
 
 				if(jobban_isbanned(M.brainmob, JOB_AI))
-					to_chat(user, "<span class='warning'>This [P] does not seem to fit.</span>")
+					to_chat(user, span_warning("This [P] does not seem to fit."))
 					return
 
 				if(M.brainmob.mind)
@@ -153,7 +153,7 @@
 
 			if(P.has_tool_quality(TOOL_CROWBAR) && brain)
 				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You remove the brain.</span>")
+				to_chat(user, span_notice("You remove the brain."))
 				brain.loc = loc
 				brain = null
 				icon_state = "3"
@@ -161,7 +161,7 @@
 		if(4)
 			if(P.has_tool_quality(TOOL_CROWBAR))
 				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You remove the glass panel.</span>")
+				to_chat(user, span_notice("You remove the glass panel."))
 				state = 3
 				if (brain)
 					icon_state = "3b"
@@ -172,7 +172,7 @@
 
 			if(P.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
+				to_chat(user, span_notice("You connect the monitor."))
 				if(!brain)
 					var/open_for_latejoin = tgui_alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", list("Yes", "No")) == "Yes"
 					var/obj/structure/AIcore/deactivated/D = new(loc)

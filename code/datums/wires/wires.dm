@@ -170,7 +170,7 @@
 		if("cut")
 			// if(!I.has_tool_quality(TOOL_WIRECUTTER) && !user.can_admin_interact())
 			if(!istype(I) || !I.has_tool_quality(TOOL_WIRECUTTER))
-				to_chat(user, "<span class='error'>You need wirecutters!</span>")
+				to_chat(user, span_warning("You need wirecutters!"))
 				return
 
 			playsound(holder, I.usesound, 20, 1)
@@ -181,7 +181,7 @@
 		if("pulse")
 			// if(!I.has_tool_quality(TOOL_MULTITOOL) && !user.can_admin_interact())
 			if(!istype(I) || !I.has_tool_quality(TOOL_MULTITOOL))
-				to_chat(user, "<span class='error'>You need a multitool!</span>")
+				to_chat(user, span_warning("You need a multitool!"))
 				return
 
 			playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
@@ -202,14 +202,14 @@
 					return TRUE
 
 			if(!istype(I, /obj/item/assembly/signaler))
-				to_chat(user, "<span class='error'>You need a remote signaller!</span>")
+				to_chat(user, span_warning("You need a remote signaller!"))
 				return
 
 			if(user.unEquip(I))
 				attach_assembly(color, I)
 				return TRUE
 			else
-				to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
+				to_chat(user, span_warning("[I] is stuck to your hand!"))
 
 /**
  * Proc called to determine if the user can see wire define information, such as "Contraband", "Door Bolts", etc.

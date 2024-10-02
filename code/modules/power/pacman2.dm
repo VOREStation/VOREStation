@@ -45,7 +45,7 @@
 
 	examine(mob/user)
 		. = ..()
-		. += "<span class='notice'>The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.</span>"
+		. += span_notice("The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.")
 
 	handleInactive()
 		heat -= 2

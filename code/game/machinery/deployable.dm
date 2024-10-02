@@ -44,7 +44,7 @@ Deployable items
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-				visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+				visible_message(span_warning("BZZzZZzZZzZT"))
 				return
 		return
 	else if(W.has_tool_quality(TOOL_WRENCH))
@@ -52,12 +52,12 @@ Deployable items
 			health = maxhealth
 			emagged = 0
 			req_access = list(access_security)
-			visible_message("<span class='warning'>[user] repairs \the [src]!</span>")
+			visible_message(span_warning("[user] repairs \the [src]!"))
 			return
 		else if(emagged > 0)
 			emagged = 0
 			req_access = list(access_security)
-			visible_message("<span class='warning'>[user] repairs \the [src]!</span>")
+			visible_message(span_warning("[user] repairs \the [src]!"))
 			return
 		return
 	else
@@ -76,7 +76,7 @@ Deployable items
 	return
 
 /obj/machinery/deployable/barrier/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 	user.do_attack_animation(src)
 	health -= damage
@@ -113,7 +113,7 @@ Deployable items
 
 /obj/machinery/deployable/barrier/proc/explode()
 
-	visible_message("<span class='danger'>[src] blows apart!</span>")
+	visible_message(span_danger("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 /*	var/obj/item/stack/rods/ =*/
@@ -136,7 +136,7 @@ Deployable items
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
-		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+		visible_message(span_warning("BZZzZZzZZzZT"))
 		return 1
 	else if(emagged == 1)
 		emagged = 2
@@ -144,5 +144,5 @@ Deployable items
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
-		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+		visible_message(span_warning("BZZzZZzZZzZT"))
 		return 1

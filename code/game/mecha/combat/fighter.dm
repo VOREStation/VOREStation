@@ -118,16 +118,16 @@
 	else
 		var/obj/effect/overmap/visitable/V = choices[choice]
 		if(occupant != this_occupant || this_x != x || this_y != y || this_z != z || get_dist(V,our_ship) > 1) //Sanity after user input
-			to_chat(occupant, "<span class='warning'>You or they appear to have moved!</span>")
+			to_chat(occupant, span_warning("You or they appear to have moved!"))
 			return
 		var/list/levels = V.get_space_zlevels()
 		if(!levels.len)
-			to_chat(occupant, "<span class='warning'>You don't appear to be able to get there from here!</span>")
+			to_chat(occupant, span_warning("You don't appear to be able to get there from here!"))
 			return
 		new_z = pick(levels)
 	var/turf/destination = locate(new_x, new_y, new_z)
 	if(!destination || destination.density)
-		to_chat(occupant, "<span class='warning'>You don't appear to be able to get there from here! Is it blocked?</span>")
+		to_chat(occupant, span_warning("You don't appear to be able to get there from here! Is it blocked?"))
 		return
 	else
 		forceMove(destination)
@@ -138,7 +138,7 @@
 	if (href_list["toggle_stabilization"])
 		stabilization_enabled = !stabilization_enabled
 		send_byjax(src.occupant,"exosuit.browser","stabilization_command","[stabilization_enabled?"Dis":"En"]able thruster stabilization")
-		src.occupant_message("<span class='notice'>Thruster stabilization [stabilization_enabled? "enabled" : "disabled"].</span>")
+		src.occupant_message(span_notice("Thruster stabilization [stabilization_enabled? "enabled" : "disabled"]."))
 		return
 
 /obj/mecha/combat/fighter/get_commands()

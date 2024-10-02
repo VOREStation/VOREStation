@@ -67,7 +67,7 @@
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
-		to_chat(user, "<span class='warning'>What the fuck are you doing?</span>")
+		to_chat(user, span_warning("What the fuck are you doing?"))
 	return
 
 // /vg/: Don't let ghosts fuck with this.

@@ -37,7 +37,7 @@
 			for(var/mob/living/P in loc)
 				if(P.can_be_drop_prey && P.drop_vore)
 					L.feed_grabbed_to_self_falling_nom(L,P)
-					L.visible_message("<span class='vdanger'>\The [L] falls right onto \the [P]!</span>")
+					L.visible_message(span_vdanger("\The [L] falls right onto \the [P]!"))
 
 	if(crushing)
 		for(var/atom/movable/AM in loc)

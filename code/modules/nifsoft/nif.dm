@@ -211,7 +211,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 		if(human)
 			notify("Danger! General system insta#^!($",TRUE)
-			to_chat(human,"<span class='danger'>Your NIF vision overlays disappear and your head suddenly seems very quiet...</span>")
+			to_chat(human,span_danger("Your NIF vision overlays disappear and your head suddenly seems very quiet..."))
 
 //Repair update/check proc
 /obj/item/nif/proc/repair(var/repair = 0)
@@ -224,33 +224,33 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/nif/attackby(obj/item/W, mob/user as mob)
 	if(open == 0 && W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(do_after(user, 4 SECONDS, src) && open == 0)
-			user.visible_message("[user] unscrews and pries open \the [src].","<span class='notice'>You unscrew and pry open \the [src].</span>")
+			user.visible_message("[user] unscrews and pries open \the [src].",span_notice("You unscrew and pry open \the [src]."))
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = 1
 			update_icon()
 	else if(open == 1 && istype(W,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.get_amount() < 3)
-			to_chat(user,"<span class='warning'>You need at least three coils of wire to add them to \the [src].</span>")
+			to_chat(user,span_warning("You need at least three coils of wire to add them to \the [src]."))
 			return
 		if(durability >= initial(durability))
-			to_chat(user,"<span class='notice'>There's no damaged wiring that needs replacing!</span>")
+			to_chat(user,span_notice("There's no damaged wiring that needs replacing!"))
 			open = 3
 			update_icon()
 			return
 		if(do_after(user, 6 SECONDS, src) && open == 1 && C.use(3))
-			user.visible_message("[user] replaces some wiring in \the [src].","<span class='notice'>You replace any burned out wiring in \the [src].</span>")
+			user.visible_message("[user] replaces some wiring in \the [src].",span_notice("You replace any burned out wiring in \the [src]."))
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			open = 2
 			update_icon()
 	else if(open == 2 && istype(W,/obj/item/multitool))
 		if(do_after(user, 8 SECONDS, src) && open == 2)
-			user.visible_message("[user] resets several circuits in \the [src].","<span class='notice'>You find and repair any faulty circuits in \the [src].</span>")
+			user.visible_message("[user] resets several circuits in \the [src].",span_notice("You find and repair any faulty circuits in \the [src]."))
 			open = 3
 			update_icon()
 	else if(open == 3 && W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(do_after(user, 3 SECONDS, src) && open == 3)
-			user.visible_message("[user] closes up \the [src].","<span class='notice'>You re-seal \the [src] for use once more.</span>")
+			user.visible_message("[user] closes up \the [src].",span_notice("You re-seal \the [src] for use once more."))
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = FALSE
 			repair(initial(durability))
@@ -325,10 +325,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 					human.custom_pain(message,35)
 				if(2)
 					human.Weaken(5)
-					to_chat(human,"<span class='danger'>A wave of weakness rolls over you.</span>")
+					to_chat(human,span_danger("A wave of weakness rolls over you."))
 				/*if(3)
 					human.Sleeping(5) //Disabled for being boring
-					to_chat(human,"<span class='danger'>You suddenly black out!</span>")*/
+					to_chat(human,span_danger("You suddenly black out!"))*/
 
 		//Finishing up
 		if(1.0 to INFINITY)
@@ -387,8 +387,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	last_notification = message // TGUI Hook
 
-	to_chat(human,"<span class='filter_nif'><b>\[[icon2html(src.big_icon, human.client)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"</span>")
-	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
+	to_chat(human,span_filter_nif("<b>\[[icon2html(src.big_icon, human.client)]NIF\]</b> displays, " + alert ? span_danger(message) : span_notice(message)))
+	if(prob(1)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
 	if(alert)
 		human << bad_sound
 	else
@@ -488,7 +488,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(stat != NIF_WORKING) return FALSE
 
 	if(human)
-		if(prob(5)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
+		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
 		var/applies_to = soft.applies_to
 		var/synth = human.isSynthetic()
 		if(synth && !(applies_to & NIF_SYNTHETIC))
@@ -515,7 +515,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Deactivate a nifsoft
 /obj/item/nif/proc/deactivate(var/datum/nifsoft/soft)
 	if(human)
-		if(prob(5)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
+		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
 		human << click_sound
 
 	if(soft.tick_flags == NIF_ACTIVETICK)
@@ -667,14 +667,14 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	if(istype(T.species,/datum/species/shapeshifter/promethean) && target_zone == BP_TORSO)
 		if(T.w_uniform || T.wear_suit)
-			to_chat(user,"<span class='warning'>Remove any clothing they have on, as it might interfere!</span>")
+			to_chat(user,span_warning("Remove any clothing they have on, as it might interfere!"))
 			return
 		var/obj/item/organ/external/eo = T.get_organ(BP_TORSO)
 		if(!T)
-			to_chat(user,"<span class='warning'>They should probably regrow their torso first.</span>")
+			to_chat(user,span_warning("They should probably regrow their torso first."))
 			return
-		U.visible_message("<span class='notice'>[U] begins installing [src] into [T]'s chest by just stuffing it in.</span>",
-		"<span class='notice'>You begin installing [src] into [T]'s chest by just stuffing it in.</span>",
+		U.visible_message(span_notice("[U] begins installing [src] into [T]'s chest by just stuffing it in."),
+		span_notice("You begin installing [src] into [T]'s chest by just stuffing it in."),
 		"There's a wet SQUISH noise.")
 		if(do_mob(user = user, target = T, time = 200, target_zone = BP_TORSO))
 			user.unEquip(src)
@@ -692,7 +692,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	if(!nif)
 		verbs -= /mob/living/carbon/human/proc/set_nif_examine
-		to_chat(src,"<span class='warning'>You don't have a NIF, not sure why this was here.</span>")
+		to_chat(src,span_warning("You don't have a NIF, not sure why this was here."))
 		return
 
 	var/new_flavor = sanitize(tgui_input_text(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg, 128), max_length = 128)

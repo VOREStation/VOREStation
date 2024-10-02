@@ -68,9 +68,9 @@
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You start to dismantle the IV drip.</span>")
+		to_chat(user, span_notice("You start to dismantle the IV drip."))
 		if(do_after(user, 15))
-			to_chat(user, "<span class='notice'>You dismantle the IV drip.</span>")
+			to_chat(user, span_notice("You dismantle the IV drip."))
 			new /obj/item/stack/rods(src.loc, 6)
 			if(beaker)
 				beaker.loc = get_turf(src)
@@ -154,7 +154,7 @@
 	set src in view(1)
 
 	if(!istype(usr, /mob/living))
-		to_chat(usr, "<span class='warning'>You can't do that.</span>")
+		to_chat(usr, span_warning("You can't do that."))
 		return
 
 	if(usr.stat)
@@ -171,13 +171,13 @@
 
 		if(beaker)
 			if(beaker.reagents?.reagent_list?.len)
-				. += "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>"
+				. += span_notice("Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.")
 			else
-				. += "<span class='notice'>Attached is an empty [beaker].</span>"
+				. += span_notice("Attached is an empty [beaker].")
 		else
-			. += "<span class='notice'>No chemicals are attached.</span>"
+			. += span_notice("No chemicals are attached.")
 
-		. += "<span class='notice'>[attached ? attached : "No one"] is attached.</span>"
+		. += span_notice("[attached ? attached : "No one"] is attached.")
 
 /obj/machinery/iv_drip/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE)) //allow bullets, beams, thrown objects, mice, drones, and the like through.

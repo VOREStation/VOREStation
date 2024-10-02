@@ -569,8 +569,8 @@
 	stacks = MODIFIER_STACK_FORBID
 	aura_max_distance = 2
 
-	on_created_text = "<span class='warning'>Twinkling spores of goo surround you.  It makes you feel healthier.</span>"
-	on_expired_text = "<span class='notice'>The spores of goo have faded, although you feel much healthier than before.</span>"
+	on_created_text = span_warning("Twinkling spores of goo surround you.  It makes you feel healthier.")
+	on_expired_text = span_notice("The spores of goo have faded, although you feel much healthier than before.")
 
 /datum/modifier/aura/slime_heal/tick()
 	if(holder.stat == DEAD)

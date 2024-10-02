@@ -22,14 +22,14 @@
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(usr, "<span class='danger'>Error: You cannot request spice (muted from adminhelps).</span>")
+		to_chat(usr, span_danger("Error: You cannot request spice (muted from adminhelps)."))
 		return
 
 	if(tgui_alert(usr, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.","Spicy!",list("Yes","No")) == "Yes")
 		message_admins("[ADMIN_FULLMONTY(usr)] has requested the round be spiced up a little.")
-		to_chat(usr, "<span class='notice'>You have requested some more spice in your round.</span>")
+		to_chat(usr, span_notice("You have requested some more spice in your round."))
 	else
-		to_chat(usr, "<span class='notice'>Spice request cancelled.</span>")
+		to_chat(usr, span_notice("Spice request cancelled."))
 		return
 
 	//if they requested spice, then remove spice verb temporarily to prevent spamming

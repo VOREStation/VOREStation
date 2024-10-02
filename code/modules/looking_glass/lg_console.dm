@@ -66,7 +66,7 @@
 
 /obj/machinery/computer/looking_glass/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/program_list = list()
 	for(var/P in supported_programs)
 		program_list.Add(P)
@@ -88,7 +88,7 @@
 /obj/machinery/computer/looking_glass/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("program")
 			if(ready)
@@ -100,7 +100,7 @@
 					current_program = prog
 					load_program(prog)
 			else
-				visible_message("<span class='warning'>ERROR. Recalibrating displays.</span>")
+				visible_message(span_warning("ERROR. Recalibrating displays."))
 			return TRUE
 
 		if("gravity")
@@ -118,7 +118,7 @@
 	if (!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		to_chat(user, "<span class='notice'>You unlock several programs that were hidden somewhere in memory.</span>")
+		to_chat(user, span_notice("You unlock several programs that were hidden somewhere in memory."))
 		log_game("[key_name(usr)] emagged the [name]")
 		return 1
 	return
@@ -142,7 +142,7 @@
 	if(world.time < (last_gravity_change + 3 SECONDS))
 		if(world.time < (last_gravity_change + 1 SECOND))
 			return
-		visible_message("<span class='warning'>ERROR. Recalibrating gravity field.</span>")
+		visible_message(span_warning("ERROR. Recalibrating gravity field."))
 		return
 
 	last_gravity_change = world.time

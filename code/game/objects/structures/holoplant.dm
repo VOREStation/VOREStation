@@ -26,7 +26,7 @@
 		return
 
 	if(!anchored)
-		to_chat(user,"<span class='warning'>\The [src] must be anchored before activation!</span>")
+		to_chat(user,span_warning("\The [src] must be anchored before activation!"))
 		return
 
 	if(!plant)

@@ -78,4 +78,4 @@
 
 		//After a certain amount of time the victim gets a message about being in a different body.
 		spawn(msg_wait)
-			to_chat(caster, "<span class='danger'>You feel woozy and lightheaded. Your body doesn't seem like your own.</span>")
+			to_chat(caster, span_danger("You feel woozy and lightheaded. Your body doesn't seem like your own."))

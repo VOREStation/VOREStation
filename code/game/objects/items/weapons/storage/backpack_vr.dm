@@ -15,7 +15,7 @@
 		if(istype(H) && istype(H.tail_style, taurtype))
 			return 1
 		else
-			to_chat(H, "<span class='warning'>[no_message]</span>")
+			to_chat(H, span_warning("[no_message]"))
 			return 0
 
 /* If anyone wants to make some... this is how you would.
@@ -201,4 +201,3 @@
 	icon_override = 'icons/inventory/back/mob_vr.dmi'
 	icon_state = "satchel_strapless"
 	item_state_slots = null
-

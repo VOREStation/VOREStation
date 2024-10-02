@@ -15,8 +15,8 @@
 		if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
 	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
-	chassis.visible_message("<span class='danger'>[chassis] starts to drill [target]</span>", "<span class='warning'>You hear the drill.</span>")
-	occupant_message("<span class='danger'>You start to drill [target]</span>")
+	chassis.visible_message(span_danger("[chassis] starts to drill [target]"), span_warning("You hear the drill."))
+	occupant_message(span_danger("You start to drill [target]"))
 	var/T = chassis.loc
 	var/C = target.loc	//why are these backwards? we may never know -Pete
 	if(do_after_cooldown(target))
@@ -24,7 +24,7 @@
 			if(istype(target, /turf/simulated/wall))
 				var/turf/simulated/wall/W = target
 				if(W.reinf_material && !advanced)//R wall but no good drill
-					occupant_message("<span class='warning'>[target] is too durable to drill through.</span>")
+					occupant_message(span_warning("[target] is too durable to drill through."))
 					return
 
 				else if((W.reinf_material && advanced) || do_after_cooldown(target))//R wall with good drill
@@ -103,8 +103,8 @@
 		if(target_obj.unacidable)	return
 	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
-	chassis.visible_message("<span class='danger'>[chassis] starts to bore into \the [target]</span>", "<span class='warning'>You hear the bore.</span>")
-	occupant_message("<span class='danger'>You start to bore into \the [target]</span>")
+	chassis.visible_message(span_danger("[chassis] starts to bore into \the [target]"), span_warning("You hear the bore."))
+	occupant_message(span_danger("You start to bore into \the [target]"))
 	var/T = chassis.loc
 	var/C = target.loc
 	if(do_after_cooldown(target))
@@ -112,7 +112,7 @@
 			if(istype(target, /turf/simulated/wall))
 				var/turf/simulated/wall/W = target
 				if(W.reinf_material)
-					occupant_message("<span class='warning'>[target] is too durable to bore through.</span>")
+					occupant_message(span_warning("[target] is too durable to bore through."))
 				else
 					log_message("Bored through [target]")
 					target.ex_act(2)

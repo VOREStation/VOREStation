@@ -69,10 +69,10 @@
 
 	if(loaded)
 		var/obj/item/tank/T = loaded
-		. += "<span class='notice'>\The [T]'s pressure meter shows: [T.air_contents.return_pressure()] kpa.</span>"
+		. += span_notice("\The [T]'s pressure meter shows: [T.air_contents.return_pressure()] kpa.")
 
 		switch(check_ammo())
 			if(TRUE)
-				. += "<span class='notice'>\The [src]'s display registers a proper fuel mixture.</span>"
+				. += span_notice("\The [src]'s display registers a proper fuel mixture.")
 			if(FALSE)
-				. += "<span class='warning'>\The [src]'s display registers an improper fuel mixture.</span>"
+				. += span_warning("\The [src]'s display registers an improper fuel mixture.")

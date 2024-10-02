@@ -25,7 +25,7 @@
 	if(held_item == null)
 		if(src.mind.changeling.recursive_enhancement)
 			if(changeling_generic_weapon(/obj/item/electric_hand/efficent,0))
-				to_chat(src, "<span class='notice'>We will shock others more efficently.</span>")
+				to_chat(src, span_notice("We will shock others more efficently."))
 				return 1
 		else
 			if(changeling_generic_weapon(/obj/item/electric_hand,0))  //Chemical cost is handled in the equip proc.
@@ -50,11 +50,11 @@
 				add_attack_logs(src,G.affecting,"Changeling shocked")
 
 				if(siemens)
-					visible_message("<span class='warning'>Arcs of electricity strike [G.affecting]!</span>",
-					"<span class='warning'>Our hand channels raw electricity into [G.affecting].</span>",
-					"<span class='italics'>You hear sparks!</span>")
+					visible_message(span_warning("Arcs of electricity strike [G.affecting]!"),
+					span_warning("Our hand channels raw electricity into [G.affecting]."),
+					span_italics("You hear sparks!"))
 				else
-					to_chat(src, "<span class='warning'>Our gloves block us from shocking \the [G.affecting].</span>")
+					to_chat(src, span_warning("Our gloves block us from shocking \the [G.affecting]."))
 				src.mind.changeling.chem_charges -= 10
 				return 1
 
@@ -74,9 +74,9 @@
 
 			//Now for the actual recharging.
 			for(var/obj/item/cell/cell in L)
-				visible_message("<span class='warning'>Some sparks fall out from \the [src.name]\'s [held_item]!</span>",
-				"<span class='warning'>Our hand channels raw electricity into \the [held_item].</span>",
-				"<span class='italics'>You hear sparks!</span>")
+				visible_message(span_warning("Some sparks fall out from \the [src.name]\'s [held_item]!"),
+				span_warning("Our hand channels raw electricity into \the [held_item]."),
+				span_italics("You hear sparks!"))
 				var/i = 10
 				if(siemens)
 					while(i)
@@ -92,7 +92,7 @@
 						sleep(1 SECOND)
 					success = 1
 			if(success == 0) //If we couldn't do anything with the ability, don't deduct the chemicals.
-				to_chat(src, "<span class='warning'>We are unable to affect \the [held_item].</span>")
+				to_chat(src, span_warning("We are unable to affect \the [held_item]."))
 			else
 				src.mind.changeling.chem_charges -= 10
 			return success
@@ -115,9 +115,9 @@
 
 /obj/item/electric_hand/New()
 	if(ismob(loc))
-		visible_message("<span class='warning'>Electrical arcs form around [loc.name]\'s hand!</span>",
-		"<span class='warning'>We store a charge of electricity in our hand.</span>",
-		"<span class='italics'>You hear crackling electricity!</span>")
+		visible_message(span_warning("Electrical arcs form around [loc.name]\'s hand!"),
+		span_warning("We store a charge of electricity in our hand."),
+		span_italics("You hear crackling electricity!"))
 		var/T = get_turf(src)
 		new /obj/effect/effect/sparks(T)
 
@@ -143,7 +143,7 @@
 		var/mob/living/carbon/C = target
 
 		if(user.mind.changeling.chem_charges < shock_cost)
-			to_chat(src, "<span class='warning'>We require more chemicals to electrocute [C]!</span>")
+			to_chat(src, span_warning("We require more chemicals to electrocute [C]!"))
 			return 0
 
 		C.electrocute_act(electrocute_amount * siemens,src,1.0,BP_TORSO)
@@ -152,11 +152,11 @@
 		add_attack_logs(user,C,"Shocked with [src]")
 
 		if(siemens)
-			visible_message("<span class='warning'>Arcs of electricity strike [C]!</span>",
-			"<span class='warning'>Our hand channels raw electricity into [C]</span>",
-			"<span class='italics'>You hear sparks!</span>")
+			visible_message(span_warning("Arcs of electricity strike [C]!"),
+			span_warning("Our hand channels raw electricity into [C]"),
+			span_italics("You hear sparks!"))
 		else
-			to_chat(src, "<span class='warning'>Our gloves block us from shocking \the [C].</span>")
+			to_chat(src, span_warning("Our gloves block us from shocking \the [C]."))
 		//qdel(src)  //Since we're no longer a one hit stun, we need to stick around.
 		user.mind.changeling.chem_charges -= shock_cost
 		return 1
@@ -165,15 +165,15 @@
 		var/mob/living/silicon/S = target
 
 		if(user.mind.changeling.chem_charges < 10)
-			to_chat(src, "<span class='warning'>We require more chemicals to electrocute [S]!</span>")
+			to_chat(src, span_warning("We require more chemicals to electrocute [S]!"))
 			return 0
 
 		S.electrocute_act(60,src,0.75) //If only they had surge protectors.
 		if(siemens)
-			visible_message("<span class='warning'>Arcs of electricity strike [S]!</span>",
-			"<span class='warning'>Our hand channels raw electricity into [S]</span>",
-			"<span class='italics'>You hear sparks!</span>")
-			to_chat(S, "<span class='danger'>Warning: Electrical surge detected!</span>")
+			visible_message(span_warning("Arcs of electricity strike [S]!"),
+			span_warning("Our hand channels raw electricity into [S]"),
+			span_italics("You hear sparks!"))
+			to_chat(S, span_danger("Warning: Electrical surge detected!"))
 		//qdel(src)
 		user.mind.changeling.chem_charges -= 10
 		return 1
@@ -184,9 +184,9 @@
 			var/obj/T = target
 			//We can also recharge things we touch, such as APCs or hardsuits.
 			for(var/obj/item/cell/cell in T.contents)
-				visible_message("<span class='warning'>Some sparks fall out from \the [target]!</span>",
-				"<span class='warning'>Our hand channels raw electricity into \the [target].</span>",
-				"<span class='italics'>You hear sparks!</span>")
+				visible_message(span_warning("Some sparks fall out from \the [target]!"),
+				span_warning("Our hand channels raw electricity into \the [target]."),
+				span_italics("You hear sparks!"))
 				var/i = 10
 				if(siemens)
 					while(i)
@@ -205,7 +205,7 @@
 					success = 1
 					break
 			if(success == 0)
-				to_chat(src, "<span class='warning'>We are unable to affect \the [target].</span>")
+				to_chat(src, span_warning("We are unable to affect \the [target]."))
 			else
 				qdel(src)
 			return 1

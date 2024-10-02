@@ -47,7 +47,7 @@
 			else
 				to_chat(user, "You failed to salvage anything valuable from [src].")
 		else
-			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+			to_chat(user, span_notice("You need more welding fuel to complete this task."))
 			return
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(salvage_num <= 0)

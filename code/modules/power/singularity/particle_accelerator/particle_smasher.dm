@@ -42,12 +42,12 @@
 /obj/machinery/particle_smasher/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "<span class='notice'>\The [src] contains:</span>"
+		. += span_notice("\The [src] contains:")
 		for(var/obj/item/I in contents)
-			. += "<span class='notice'>\the [I]</span>"
+			. += span_notice("\the [I]")
 
 /obj/machinery/particle_smasher/atmosanalyze(var/mob/user)
-	return list("<span class='notice'>\The [src] reads an energy level of [energy].</span>")
+	return list(span_notice("\The [src] reads an energy level of [energy]."))
 
 /obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.type == /obj/item/analyzer)
@@ -55,14 +55,14 @@
 	else if(istype(W, /obj/item/stack/material))
 		var/obj/item/stack/material/M = W
 		if(M.uses_charge)
-			to_chat(user, "<span class='notice'>You cannot fill \the [src] with a synthesizer!</span>")
+			to_chat(user, span_notice("You cannot fill \the [src] with a synthesizer!"))
 			return
 		target = M.split(1)
 		target.forceMove(src)
 		update_icon()
 	else if(istype(W, beaker_type))
 		if(reagent_container)
-			to_chat(user, "<span class='notice'>\The [src] already has a container attached.</span>")
+			to_chat(user, span_notice("\The [src] already has a container attached."))
 			return
 		if(isrobot(user) && istype(W.loc, /obj/item/gripper))
 			var/obj/item/gripper/G = W.loc
@@ -71,7 +71,7 @@
 			user.drop_from_inventory(W)
 		reagent_container = W
 		reagent_container.forceMove(src)
-		to_chat(user, "<span class='notice'>You add \the [reagent_container] to \the [src].</span>")
+		to_chat(user, span_notice("You add \the [reagent_container] to \the [src]."))
 		update_icon()
 		return
 	else if(W.has_tool_quality(TOOL_WRENCH))
@@ -88,7 +88,7 @@
 		update_icon()
 		return
 	else if(istype(W, /obj/item/card/id))
-		to_chat(user, "<span class='notice'>Swiping \the [W] on \the [src] doesn't seem to do anything...</span>")
+		to_chat(user, span_notice("Swiping \the [W] on \the [src] doesn't seem to do anything..."))
 		return ..()
 	else if(((isrobot(user) && istype(W.loc, /obj/item/gripper)) || (!isrobot(user) && W.canremove)) && storage.len < max_storage)
 		if(isrobot(user) && istype(W.loc, /obj/item/gripper))
@@ -182,7 +182,7 @@
 		return
 
 	if(successful_craft)
-		visible_message("<span class='warning'>\The [src] fizzles.</span>")
+		visible_message(span_warning("\The [src] fizzles."))
 		if(prob(33))	// Why are you blasting it after it's already done!
 			SSradiation.radiate(src, 10 + round(src.energy / 60, 1))
 			energy = max(0, energy - 30)

@@ -101,7 +101,7 @@
 	set category = "IC"
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		to_chat(src, span_notice("Something is there but you can't see it."))
 		return 1
 
 	//Could be gone by the time they finally pick something
@@ -112,7 +112,7 @@
 	var/list/results = A.examine(src)
 	if(!results || !results.len)
 		results = list("You were unable to examine that. Tell a developer!")
-	var/final_string = "<span class='infoplain'>[jointext(results, "<br>")]</span>"
+	var/final_string = span_infoplain("[jointext(results, "<br>")]")
 	if(ismob(A)) // mob descriptions matter more than others
 		final_string = examine_block(final_string)
 	to_chat(src, final_string)
@@ -131,7 +131,7 @@
 	set popup_menu = FALSE
 
 	if((is_blind(src) || src.stat) && !isobserver(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		to_chat(src, span_notice("Something is there but you can't see it."))
 		return 1
 	var/list/E = list()
 	if(isAI(src))

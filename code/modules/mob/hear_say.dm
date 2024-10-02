@@ -40,7 +40,7 @@
 
 		//HTML formatting
 		if(!SP.speaking) // Catch the most generic case first
-			piece = "<span class='message body'>[piece]</span>"
+			piece = span_message(span_body(piece))
 		else if(radio) // SP.speaking == TRUE enforced by previous !SP.speaking
 			piece = SP.speaking.format_message_radio(piece)
 		else // SP.speaking == TRUE && radio == FALSE
@@ -113,14 +113,14 @@
 
 	if(is_deaf())
 		if(speaker == src)
-			to_chat(src, "<span class='filter_say'><span class='warning'>You cannot hear yourself speak!</span></span>")
+			to_chat(src, span_filter_say(span_warning("You cannot hear yourself speak!")))
 		else
-			to_chat(src, "<span class='filter_say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] makes a noise, possibly speech, but you cannot hear them.</span>")
+			to_chat(src, span_filter_say(span_name(speaker_name) + "[speaker.GetAltName()] makes a noise, possibly speech, but you cannot hear them."))
 	else
 		var/message_to_send = null
-		message_to_send = "<span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]"
+		message_to_send = span_name(speaker_name) + "[speaker.GetAltName()] [track][message]"
 		if(check_mentioned(multilingual_to_message(message_pieces)) && client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
-			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
+			message_to_send = span_large(span_bold(message_to_send))
 
 		on_hear_say(message_to_send, speaker)
 		create_chat_message(speaker, combined["raw"], italics, list())
@@ -142,32 +142,32 @@
 	if(client)
 		if(client.prefs.chat_timestamp)
 			message = "[time] [message]"
-		message = "<span class='game say'>[message]</span>"
+		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
-			message = "<span class='npcsay'>[message]</span>"
+			message = span_npcsay(message)
 		else if(speaker && !(get_z(src) == get_z(speaker)))
-			message = "<span class='multizsay'>[message]</span>"
+			message = span_multizsay(message)
 		to_chat(src, message)
 	else if(teleop)
-		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
+		to_chat(teleop, span_game(span_say("[create_text_tag("body", "BODY:", teleop.client)][message]")))
 	else
-		to_chat(src, "<span class='game say'>[message]</span>")
+		to_chat(src, span_game(span_say(message)))
 
 /mob/living/silicon/on_hear_say(var/message, var/mob/speaker = null)
 	var/time = say_timestamp()
 	if(client)
 		if(client.prefs.chat_timestamp)
 			message = "[time] [message]"
-		message = "<span class='game say'>[message]</span>"
+		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
-			message = "<span class='npcsay'>[message]</span>"
+			message = span_npcsay(message)
 		else if(speaker && !(get_z(src) == get_z(speaker)))
-			message = "<span class='multizsay'>[message]</span>"
+			message = span_multizsay(message)
 		to_chat(src, message)
 	else if(teleop)
-		to_chat(teleop, "<span class='game say'>[create_text_tag("body", "BODY:", teleop.client)][message]</span>")
+		to_chat(teleop, span_game(span_say("[create_text_tag("body", "BODY:", teleop.client)][message]")))
 	else
-		to_chat(src, "<span class='game say'>[message]</span>")
+		to_chat(src, span_game(span_say(message)))
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)
@@ -215,12 +215,12 @@
 
 	if((sdisabilities & DEAF) || ear_deaf)
 		if(prob(20))
-			to_chat(src, "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>")
+			to_chat(src, span_warning("You feel your headset vibrate but can hear nothing from it!"))
 	else
 		on_hear_radio(part_a, part_b, speaker_name, track, part_c, message, part_d, part_e)
 
 /proc/say_timestamp()
-	return "<span class='say_quote'>\[[time2text(world.timeofday, "hh:mm")]\]</span>"
+	return span_say_quote("\[[time2text(world.timeofday, "hh:mm")]\]")
 
 /mob/proc/on_hear_radio(part_a, part_b, speaker_name, track, part_c, formatted, part_d, part_e)
 	var/time = ""
@@ -271,7 +271,7 @@
 		return
 
 	if(say_understands(speaker, language))
-		message = "<span class='game say'><B>[speaker]</B> [verb_understood], \"[message]\"</span>"
+		message = span_game(span_say("<B>[speaker]</B> [verb_understood], \"[message]\""))
 	else if(!(language.ignore_adverb))
 		var/adverb
 		var/length = length(message) * pick(0.8, 0.9, 1.0, 1.1, 1.2)	//Adds a little bit of fuzziness
@@ -281,9 +281,9 @@
 			if(30 to 48)	adverb = " a message"
 			if(48 to 90)	adverb = " a lengthy message"
 			else			adverb = " a very lengthy message"
-		message = "<span class='game say'><B>[speaker]</B> [verb][adverb].</span>"
+		message = span_game(span_say("<B>[speaker]</B> [verb][adverb]."))
 	else
-		message = "<span class='game say'><B>[speaker]</B> [verb].</span>"
+		message = span_game(span_say("<B>[speaker]</B> [verb]."))
 
 	show_message(message, type = speech_type) // Type 1 is visual message
 
@@ -298,10 +298,10 @@
 			heardword = copytext(heardword,2)
 		if(copytext(heardword,-1) in punctuation)
 			heardword = copytext(heardword,1,length(heardword))
-		heard = "<span class='game say'>...You hear something about...[heardword]</span>"
+		heard = span_game(span_say("...You hear something about...[heardword]"))
 
 	else
-		heard = "<span class='game say'>...<i>You almost hear someone talking</i>...</span>"
+		heard = span_game(span_say("...<i>You almost hear someone talking</i>..."))
 
 	to_chat(src, heard)
 
@@ -334,14 +334,14 @@
 	if(!say_understands(speaker))
 		name = speaker.voice_name
 
-	var/rendered = "<span class='game say'><span class='name'>[name]</span> [message]</span>"
+	var/rendered = span_game(span_say(span_name(name) + " [message]"))
 	if(!speaker.client)
-		rendered = "<span class='npcsay'>[rendered]</span>"
+		rendered = span_npcsay(rendered)
 	else
 		if(istype(speaker, /mob/living/silicon/ai))
 			var/mob/living/silicon/ai/source = speaker
 			if(!(get_z(src) == get_z(source.holo)))
-				rendered = "<span class='multizsay'>[rendered]</span>"
+				rendered = span_multizsay(rendered)
 		else if(!(get_z(src) == get_z(speaker)))
-			rendered = "<span class='multizsay'>[rendered]</span>"
+			rendered = span_multizsay(rendered)
 	to_chat(src, rendered)

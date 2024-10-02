@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
 			if(I.has_tool_quality(TOOL_SCREWDRIVER))
-				to_chat(user, "<span class='notice'>You secure the screws of the framework.</span>")
+				to_chat(user, span_notice("You secure the screws of the framework."))
 				playsound(src, I.usesound, 75, 1)
 				broken_state++
 				update_icon()
@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 			if(I.has_tool_quality(TOOL_WELDER))
 				var/obj/item/weldingtool/W = I.get_welder()
 				if(W.remove_fuel(0,user))
-					to_chat(user, "<span class='notice'>You mend the damaged framework.</span>")
+					to_chat(user, span_notice("You mend the damaged framework."))
 					broken_state++
 					update_icon()
 				return
@@ -223,16 +223,16 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				var/obj/item/stack/material/plasteel/PS = I
 				if(PS.get_amount() >= 10)
 					PS.use(10)
-					to_chat(user, "<span class='notice'>You add the plating to the framework.</span>")
+					to_chat(user, span_notice("You add the plating to the framework."))
 					playsound(src, 'sound/machines/click.ogg', 75, 1)
 					broken_state++
 					update_icon()
 				else
-					to_chat(user, "<span class='warning'>You need 10 sheets of plasteel!</span>")
+					to_chat(user, span_warning("You need 10 sheets of plasteel!"))
 				return
 		if(GRAV_NEEDS_WRENCH)
 			if(I.has_tool_quality(TOOL_WRENCH))
-				to_chat(user, "<span class='notice'>You secure the plating to the framework.</span>")
+				to_chat(user, span_notice("You secure the plating to the framework."))
 				playsound(src, I.usesound, 75, 1)
 				set_fix()
 				return

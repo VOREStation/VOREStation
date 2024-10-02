@@ -49,14 +49,14 @@
 		spawn(time SECONDS)
 			// check to see if they've been fixed by outside forces in the meantime such as defibbing
 			if(stat != DEAD)
-				to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
+				to_chat(src, span_notice("Your body has recovered from its ordeal, ready to regenerate itself again."))
 				revive_ready = REVIVING_READY //reset their cooldown
 				clear_alert("regen")
 				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 			// Was dead, still dead.
 			else
-				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
+				to_chat(src, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch."))
 				verbs |= /mob/living/carbon/human/proc/hatch
 				revive_ready = REVIVING_DONE
 				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
@@ -76,9 +76,9 @@
 
 			//Slightly different flavour messages
 			if(stat != DEAD || hasnutriment())
-				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
+				to_chat(src, span_notice("Consciousness begins to stir as your new body awakens, ready to hatch.."))
 			else
-				to_chat(src, "<span class='warning'>Consciousness begins to stir as your battered body struggles to recover from its ordeal..</span>")
+				to_chat(src, span_warning("Consciousness begins to stir as your battered body struggles to recover from its ordeal.."))
 			verbs |= /mob/living/carbon/human/proc/hatch
 			revive_ready = REVIVING_DONE
 			src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
@@ -126,7 +126,7 @@
 			chimera_hatch()
 			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
 			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
-			visible_message("<span class='warning'><p><font size=4>The former corpse staggers to its feet, all its former wounds having vanished...</font></p></span>") //Bloody hell...
+			visible_message(span_warning("<p><font size=4>The former corpse staggers to its feet, all its former wounds having vanished...</font></p>")) //Bloody hell...
 			clear_alert("hatch")
 			return
 
@@ -134,12 +134,12 @@
 		else
 			chimera_hatch()
 
-			visible_message("<span class='warning'><p><font size=4>[src] rises to \his feet.</font></p></span>") //Bloody hell...
+			visible_message(span_warning("<p><font size=4>[src] rises to \his feet.</font></p>")) //Bloody hell...
 			clear_alert("hatch")
 
 /mob/living/carbon/human/proc/chimera_hatch()
 	verbs -= /mob/living/carbon/human/proc/hatch
-	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
+	to_chat(src, span_notice("Your new body awakens, bursting free from your old skin."))
 	//Modify and record values (half nutrition and braindamage)
 	var/old_nutrition = nutrition
 	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
@@ -160,7 +160,7 @@
 		var/blood_color = species.blood_color
 		var/flesh_color = species.flesh_color
 		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-		visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+		visible_message(span_danger("<p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p>")) //Bloody hell...
 		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 	else //lower cost for doing a quick cosmetic revive
 		nutrition = old_nutrition * 0.9
@@ -176,8 +176,8 @@
 	name = "imperfect regeneration"
 	desc = "You feel rather weak and unfocused, having just regrown your body not so long ago."
 
-	on_created_text = "<span class='warning'><font size='3'>You feel weak and unsteady, that regeneration having been rougher than most.</font></span>"
-	on_expired_text = "<span class='notice'><font size='3'>You feel your strength and focus return to you.</font></span>"
+	on_created_text = span_warning("<font size='3'>You feel weak and unsteady, that regeneration having been rougher than most.</font>")
+	on_expired_text = span_notice("<font size='3'>You feel your strength and focus return to you.</font>")
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
@@ -378,7 +378,7 @@
 					var/list/hiddenspeakers = list("Someone distant", "A voice nearby","A familiar voice", "An echoing voice", "A cautious voice", "A scared voice", "Someone around the corner", "Someone", "Something", "Something scary", "An urgent voice", "An angry voice")
 					var/list/speakerverbs = list("calls out", "yells", "screams", "exclaims", "shrieks", "shouts", "hisses", "snarls")
 					var/list/spookyphrases = list("It's over here!","Stop it!", "Hunt it down!", "Get it!", "Quick, over here!", "Anyone there?", "Who's there?", "Catch that thing!", "Stop it! Kill it!", "Anyone there?", "Where is it?", "Find it!", "There it is!")
-					to_chat(src, "<span class='game say'><span class='name'>[pick(hiddenspeakers)]</span> [pick(speakerverbs)], \"[pick(spookyphrases)]\"</span>")
+					to_chat(src, span_game(span_say(span_name(pick(hiddenspeakers)) + " [pick(speakerverbs)], \"[pick(spookyphrases)]\"")))
 
 
 	handling_hal = 0
@@ -516,34 +516,34 @@
 	var/mob/living/carbon/human/C = src
 	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
-		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to absorb them.</span>")
+		to_chat(C, span_warning("You must be grabbing a creature in your active hand to absorb them."))
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T) || T.isSynthetic())
-		to_chat(src, "<span class='warning'>\The [T] is not able to be drained.</span>")
+		to_chat(src, span_warning("\The [T] is not able to be drained."))
 		return
 
 	if(G.state != GRAB_NECK)
-		to_chat(C, "<span class='warning'>You must have a tighter grip to drain this creature.</span>")
+		to_chat(C, span_warning("You must have a tighter grip to drain this creature."))
 		return
 
 	if(C.absorbing_prey)
-		to_chat(C, "<span class='warning'>You are already draining someone!</span>")
+		to_chat(C, span_warning("You are already draining someone!"))
 		return
 
 	C.absorbing_prey = 1
 	for(var/stage = 1, stage<=100, stage++) //100 stages.
 		switch(stage)
 			if(1)
-				to_chat(C, "<span class='notice'>You begin to drain [T]...</span>")
-				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [C] begins to drain you!</span>")
+				to_chat(C, span_notice("You begin to drain [T]..."))
+				to_chat(T, span_danger("An odd sensation flows through your body as [C] begins to drain you!"))
 				C.nutrition = (C.nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
 			if(2)
-				to_chat(C, "<span class='notice'>You feel stronger with every passing moment of draining [T].</span>")
-				src.visible_message("<span class='danger'>[C] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
-				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [C] drains you!</span>")
+				to_chat(C, span_notice("You feel stronger with every passing moment of draining [T]."))
+				src.visible_message(span_danger("[C] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!"))
+				to_chat(T, span_danger("You feel weaker with every passing moment as [C] drains you!"))
 				C.nutrition = (C.nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
 			if(3 to 99)
@@ -560,13 +560,13 @@
 				var/damage_to_be_applied = T.species.total_health //Get their max health.
 				T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 				C.absorbing_prey = 0
-				to_chat(C, "<span class='notice'>You have completely drained [T], causing them to pass out.</span>")
-				to_chat(T, "<span class='danger'>You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!</span>")
+				to_chat(C, span_notice("You have completely drained [T], causing them to pass out."))
+				to_chat(T, span_danger("You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!"))
 				add_attack_logs(C,T,"Succubus drained")
 				return
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
-			to_chat(src, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
+			to_chat(src, span_warning("Your draining of [T] has been interrupted!"))
 			C.absorbing_prey = 0
 			return
 
@@ -579,20 +579,20 @@
 
 	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
-		to_chat(src, "<span class='warning'>You must be grabbing a creature in your active hand to drain them.</span>")
+		to_chat(src, span_warning("You must be grabbing a creature in your active hand to drain them."))
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T) || T.isSynthetic())
-		to_chat(src, "<span class='warning'>\The [T] is not able to be drained.</span>")
+		to_chat(src, span_warning("\The [T] is not able to be drained."))
 		return
 
 	if(G.state != GRAB_NECK)
-		to_chat(src, "<span class='warning'>You must have a tighter grip to drain this creature.</span>")
+		to_chat(src, span_warning("You must have a tighter grip to drain this creature."))
 		return
 
 	if(absorbing_prey)
-		to_chat(src, "<span class='warning'>You are already draining someone!</span>")
+		to_chat(src, span_warning("You are already draining someone!"))
 		return
 
 	absorbing_prey = 1
@@ -600,16 +600,16 @@
 		switch(stage)
 			if(1)
 				if(T.stat == DEAD)
-					to_chat(src, "<span class='warning'>[T] is dead and can not be drained..</span>")
+					to_chat(src, span_warning("[T] is dead and can not be drained.."))
 					return
-				to_chat(src, "<span class='notice'>You begin to drain [T]...</span>")
-				to_chat(T, "<span class='danger'>An odd sensation flows through your body as [src] begins to drain you!</span>")
+				to_chat(src, span_notice("You begin to drain [T]..."))
+				to_chat(T, span_danger("An odd sensation flows through your body as [src] begins to drain you!"))
 				nutrition = (nutrition + (T.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				T.nutrition = T.nutrition*0.95
 			if(2)
-				to_chat(src, "<span class='notice'>You feel stronger with every passing moment as you drain [T].</span>")
-				visible_message("<span class='danger'>[src] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!</span>")
-				to_chat(T, "<span class='danger'>You feel weaker with every passing moment as [src] drains you!</span>")
+				to_chat(src, span_notice("You feel stronger with every passing moment as you drain [T]."))
+				visible_message(span_danger("[src] seems to be doing something to [T], resulting in [T]'s body looking weaker with every passing moment!"))
+				to_chat(T, span_danger("You feel weaker with every passing moment as [src] drains you!"))
 				nutrition = (nutrition + (T.nutrition*0.1))
 				T.nutrition = T.nutrition*0.9
 			if(3 to 48) //Should be more than enough to get under 100.
@@ -623,22 +623,22 @@
 					stage = 3 //Otherwise, advance to stage 50 (Lethal draining.)
 			if(50)
 				if(!T.digestable)
-					to_chat(src, "<span class='danger'>You feel invigorated as you completely drain [T] and begin to move onto draining them lethally before realizing they are too strong for you to do so!</span>")
-					to_chat(T, "<span class='danger'>You feel completely drained as [src] finishes draining you and begins to move onto draining you lethally, but you are too strong for them to do so!</span>")
+					to_chat(src, span_danger("You feel invigorated as you completely drain [T] and begin to move onto draining them lethally before realizing they are too strong for you to do so!"))
+					to_chat(T, span_danger("You feel completely drained as [src] finishes draining you and begins to move onto draining you lethally, but you are too strong for them to do so!"))
 					nutrition = (nutrition + T.nutrition)
 					T.nutrition = 0 //Completely drained of everything.
 					var/damage_to_be_applied = T.species.total_health //Get their max health.
 					T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 					absorbing_prey = 0 //Clean this up before we return
 					return
-				to_chat(src, "<span class='notice'>You begin to drain [T] completely...</span>")
-				to_chat(T, "<span class='danger'>An odd sensation flows through your body as you as [src] begins to drain you to dangerous levels!</span>")
+				to_chat(src, span_notice("You begin to drain [T] completely..."))
+				to_chat(T, span_danger("An odd sensation flows through your body as you as [src] begins to drain you to dangerous levels!"))
 			if(51 to 98)
 				if(T.stat == DEAD)
 					T.apply_damage(500, OXY) //Bit of fluff.
 					absorbing_prey = 0
-					to_chat(src, "<span class='notice'>You have completely drained [T], killing them.</span>")
-					to_chat(T, "<span class='danger'size='5'>You feel... So... Weak...</span>")
+					to_chat(src, span_notice("You have completely drained [T], killing them."))
+					to_chat(T, span_danger(span_giant("You feel... So... Weak...")))
 					add_attack_logs(src,T,"Succubus drained (almost lethal)")
 					return
 				if(drain_finalized == 1 || T.getBrainLoss() < 55) //Let's not kill them with this unless the drain is finalized. This will still stack up to 55, since 60 is lethal.
@@ -651,14 +651,14 @@
 			if(100) //They shouldn't  survive long enough to get here, but just in case.
 				T.apply_damage(500, OXY) //Kill them.
 				absorbing_prey = 0
-				to_chat(src, "<span class='notice'>You have completely drained [T], killing them in the process.</span>")
-				to_chat(T, "<span class='danger'><font size='7'>You... Feel... So... Weak...</font></span>")
-				visible_message("<span class='danger'>[src] seems to finish whatever they were doing to [T].</span>")
+				to_chat(src, span_notice("You have completely drained [T], killing them in the process."))
+				to_chat(T, span_danger("<font size='7'>You... Feel... So... Weak...</font>"))
+				visible_message(span_danger("[src] seems to finish whatever they were doing to [T]."))
 				add_attack_logs(src,T,"Succubus drained (lethal)")
 				return
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
-			to_chat(src, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
+			to_chat(src, span_warning("Your draining of [T] has been interrupted!"))
 			absorbing_prey = 0
 			return
 
@@ -671,33 +671,33 @@
 	var/mob/living/carbon/human/C = src
 	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
-		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to feed them.</span>")
+		to_chat(C, span_warning("You must be grabbing a creature in your active hand to feed them."))
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T))
-		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
+		to_chat(src, span_warning("\The [T] is not able to be fed."))
 		return
 
 	if(!G.state) //This should never occur. But alright
 		return
 
 	if(C.absorbing_prey)
-		to_chat(C, "<span class='warning'>You are already feeding someone!</span>")
+		to_chat(C, span_warning("You are already feeding someone!"))
 		return
 
 	C.absorbing_prey = 1
 	for(var/stage = 1, stage<=100, stage++) //100 stages.
 		switch(stage)
 			if(1)
-				to_chat(C, "<span class='notice'>You begin to feed [T]...</span>")
-				to_chat(T, "<span class='notice'>An odd sensation flows through your body as [C] begins to feed you!</span>")
+				to_chat(C, span_notice("You begin to feed [T]..."))
+				to_chat(T, span_notice("An odd sensation flows through your body as [C] begins to feed you!"))
 				T.nutrition = (T.nutrition + (C.nutrition*0.05)) //Drain a small bit at first. 5% of the prey's nutrition.
 				C.nutrition = C.nutrition*0.95
 			if(2)
-				to_chat(C, "<span class='notice'>You feel weaker with every passing moment of feeding [T].</span>")
-				src.visible_message("<span class='notice'>[C] seems to be doing something to [T], resulting in [T]'s body looking stronger with every passing moment!</span>")
-				to_chat(T, "<span class='notice'>You feel stronger with every passing moment as [C] feeds you!</span>")
+				to_chat(C, span_notice("You feel weaker with every passing moment of feeding [T]."))
+				src.visible_message(span_notice("[C] seems to be doing something to [T], resulting in [T]'s body looking stronger with every passing moment!"))
+				to_chat(T, span_notice("You feel stronger with every passing moment as [C] feeds you!"))
 				T.nutrition = (T.nutrition + (C.nutrition*0.1))
 				C.nutrition = C.nutrition*0.90
 			if(3 to 99)
@@ -712,14 +712,14 @@
 				T.nutrition = (T.nutrition + C.nutrition)
 				C.nutrition = 0 //Completely drained of everything.
 				C.absorbing_prey = 0
-				to_chat(C, "<span class='danger'>You have completely fed [T] every part of your body!</span>")
-				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding \himself to you!</span>")
+				to_chat(C, span_danger("You have completely fed [T] every part of your body!"))
+				to_chat(T, span_notice("You feel quite strong and well fed, as [C] finishes feeding \himself to you!"))
 				add_attack_logs(C,T,"Slime fed")
 				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
 				return
 
 		if(!do_mob(src, T, 50) || !G.state) //One drain tick every 5 seconds.
-			to_chat(src, "<span class='warning'>Your feeding of [T] has been interrupted!</span>")
+			to_chat(src, span_warning("Your feeding of [T] has been interrupted!"))
 			C.absorbing_prey = 0
 			return
 
@@ -730,7 +730,7 @@
 
 	var/mob/living/carbon/human/C = src
 	C.drain_finalized = !C.drain_finalized
-	to_chat(C, "<span class='notice'>You will [C.drain_finalized?"now":"not"] finalize draining/feeding.</span>")
+	to_chat(C, span_notice("You will [C.drain_finalized?"now":"not"] finalize draining/feeding."))
 
 
 //Test to see if we can shred a mob. Some child override needs to pass us a target. We'll return it if you can.
@@ -738,19 +738,19 @@
 /mob/living/proc/can_shred(var/mob/living/carbon/human/target)
 	//Needs to have organs to be able to shred them.
 	if(!istype(target))
-		to_chat(src,"<span class='warning'>You can't shred that type of creature.</span>")
+		to_chat(src,span_warning("You can't shred that type of creature."))
 		return FALSE
 	//Needs to be capable (replace with incapacitated call?)
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src,"<span class='warning'>You cannot do that in your current state!</span>")
+		to_chat(src,span_warning("You cannot do that in your current state!"))
 		return FALSE
 	//Needs to be adjacent, at the very least.
 	if(!Adjacent(target))
-		to_chat(src,"<span class='warning'>You must be next to your target.</span>")
+		to_chat(src,span_warning("You must be next to your target."))
 		return FALSE
 	//Cooldown on abilities
 	if(last_special > world.time)
-		to_chat(src,"<span class='warning'>You can't perform an ability again so soon!</span>")
+		to_chat(src,span_warning("You can't perform an ability again so soon!"))
 		return FALSE
 
 	return target
@@ -761,10 +761,10 @@
 	//Humans need a grab
 	var/obj/item/grab/G = get_active_hand()
 	if(!istype(G))
-		to_chat(src,"<span class='warning'>You have to have a very strong grip on someone first!</span>")
+		to_chat(src,span_warning("You have to have a very strong grip on someone first!"))
 		return FALSE
 	if(G.state != GRAB_NECK)
-		to_chat(src,"<span class='warning'>You must have a tighter grip to severely damage this creature!</span>")
+		to_chat(src,span_warning("You must have a tighter grip to severely damage this creature!"))
 		return FALSE
 
 	return ..(G.affecting)
@@ -777,7 +777,7 @@
 			choices += M
 
 		if(!choices.len)
-			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
+			to_chat(src,span_warning("There's nobody nearby to use this on."))
 
 		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
@@ -792,7 +792,7 @@
 			choices += M
 
 		if(!choices.len)
-			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
+			to_chat(src,span_warning("There's nobody nearby to use this on."))
 
 		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
@@ -807,7 +807,7 @@
 			choices += M
 
 		if(!choices.len)
-			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
+			to_chat(src,span_warning("There's nobody nearby to use this on."))
 
 		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
@@ -843,15 +843,15 @@
 	var/obj/belly/B = tgui_input_list(src,"To where do you wish to swallow the organ if you tear if out? If not at all, click 'cancel'", "Organ Choice", vore_organs)
 
 	if(can_shred(T) != T)
-		to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
+		to_chat(src,span_warning("Looks like you lost your chance..."))
 		return
 
 	last_special = world.time + vore_shred_time
-	visible_message("<span class='danger'>[src] appears to be preparing to do something to [T]!</span>") //Let everyone know that bad times are ahead
+	visible_message(span_danger("[src] appears to be preparing to do something to [T]!")) //Let everyone know that bad times are ahead
 
 	if(do_after(src, vore_shred_time, T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
 		if(can_shred(T) != T)
-			to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
+			to_chat(src,span_warning("Looks like you lost your chance..."))
 			return
 
 		T.add_modifier(/datum/modifier/gory_devourment, 10 SECONDS)
@@ -862,10 +862,10 @@
 			T_int.removed()
 			if(B)
 				T_int.forceMove(B) //Move to pred's gut
-				visible_message("<span class='danger'>[src] severely damages [T_int.name] of [T]!</span>")
+				visible_message(span_danger("[src] severely damages [T_int.name] of [T]!"))
 			else
 				T_int.forceMove(T.loc)
-				visible_message("<span class='danger'>[src] severely damages [T_ext.name] of [T], resulting in their [T_int.name] coming out!</span>","<span class='warning'>You tear out [T]'s [T_int.name]!</span>")
+				visible_message(span_danger("[src] severely damages [T_ext.name] of [T], resulting in their [T_int.name] coming out!"),span_warning("You tear out [T]'s [T_int.name]!"))
 
 		//Removing an external organ
 		else if(!T_int && (T_ext.damage >= 25 || T_ext.brute_dam >= 25))
@@ -874,20 +874,20 @@
 			//Is it groin/chest? You can't remove those.
 			if(T_ext.cannot_amputate)
 				T.apply_damage(25, BRUTE, T_ext)
-				visible_message("<span class='danger'>[src] severely damages [T]'s [T_ext.name]!</span>")
+				visible_message(span_danger("[src] severely damages [T]'s [T_ext.name]!"))
 			else if(B)
 				T_ext.forceMove(B)
-				visible_message("<span class='warning'>[src] swallows [T]'s [T_ext.name] into their [lowertext(B.name)]!</span>")
+				visible_message(span_warning("[src] swallows [T]'s [T_ext.name] into their [lowertext(B.name)]!"))
 			else
 				T_ext.forceMove(T.loc)
-				visible_message("<span class='warning'>[src] tears off [T]'s [T_ext.name]!</span>","<span class='warning'>You tear off [T]'s [T_ext.name]!</span>")
+				visible_message(span_warning("[src] tears off [T]'s [T_ext.name]!"),span_warning("You tear off [T]'s [T_ext.name]!"))
 
 		//Not targeting an internal organ w/ > 25 damage , and the limb doesn't have < 25 damage.
 		else
 			if(T_int)
 				T_int.damage = 25 //Internal organs can only take damage, not brute damage.
 			T.apply_damage(25, BRUTE, T_ext)
-			visible_message("<span class='danger'>[src] severely damages [T]'s [T_ext.name]!</span>")
+			visible_message(span_danger("[src] severely damages [T]'s [T_ext.name]!"))
 
 		add_attack_logs(src,T,"Shredded (hardvore)")
 
@@ -910,12 +910,12 @@
 		to_chat(src, "You cannot fly in this state!")
 		return
 	if(C.nutrition < 25 && !C.flying) //Don't have any food in you?" You can't fly.
-		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		to_chat(C, span_notice("You lack the nutrition to fly."))
 		return
 
 	C.flying = !C.flying
 	update_floating()
-	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")
+	to_chat(C, span_notice("You have [C.flying?"started":"stopped"] flying."))
 
 /mob/living/
 	var/flight_vore = FALSE
@@ -948,17 +948,17 @@
 		to_chat(src, "You cannot hover in your current state!")
 		return
 	if(C.nutrition < 50 && !C.flying) //Don't have any food in you?" You can't hover, since it takes up 25 nutrition. And it's not 25 since we don't want them to immediately fall.
-		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
+		to_chat(C, span_notice("You lack the nutrition to fly."))
 		return
 	if(C.anchored)
-		to_chat(C, "<span class='notice'>You are already hovering and/or anchored in place!</span>")
+		to_chat(C, span_notice("You are already hovering and/or anchored in place!"))
 		return
 
 	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
 		C.anchored = TRUE //This is the only way to stop the inertial_drift.
 		C.adjust_nutrition(-25)
 		update_floating()
-		to_chat(C, "<span class='notice'>You hover in place.</span>")
+		to_chat(C, span_notice("You hover in place."))
 		spawn(6) //.6 seconds.
 			C.anchored = FALSE
 	else
@@ -978,7 +978,7 @@
 	if(species.is_weaver)
 		to_chat(src, "Your silk reserves are at [species.silk_reserve]/[species.silk_max_reserve].")
 	else
-		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		to_chat(src, span_warning("You are not a weaver! How are you doing this? Tell a developer!"))
 
 /mob/living/carbon/human/proc/toggle_silk_production()
 	set name = "Toggle Silk Production"
@@ -988,14 +988,14 @@
 		species.silk_production = !(species.silk_production)
 		to_chat(src, "You are [species.silk_production ? "now" : "no longer"] producing silk.")
 	else
-		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		to_chat(src, span_warning("You are not a weaver! How are you doing this? Tell a developer!"))
 
 /mob/living/carbon/human/proc/weave_structure()
 	set name = "Weave Structure"
 	set category = "Abilities"
 
 	if(!(species.is_weaver))
-		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		to_chat(src, span_warning("You are not a weaver! How are you doing this? Tell a developer!"))
 		return
 
 	var/choice
@@ -1015,32 +1015,32 @@
 		return
 
 	if(desired_result.cost > species.silk_reserve)
-		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		to_chat(src, span_warning("You don't have enough silk to weave that!"))
 		return
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		to_chat(src, span_warning("You can't do that in your current state!"))
 		return
 
 	if(locate(desired_result.result_type) in src.loc)
-		to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+		to_chat(src, span_warning("You can't create another weaversilk [desired_result.title] here!"))
 		return
 
 	if(!isturf(src.loc))
-		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		to_chat(src, span_warning("You can't weave here!"))
 		return
 
 	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
-			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			to_chat(src, span_warning("You don't have enough silk to weave that!"))
 			return
 
 		if(locate(desired_result.result_type) in src.loc)
-			to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+			to_chat(src, span_warning("You can't create another weaversilk [desired_result.title] here!"))
 			return
 
 		if(!isturf(src.loc))
-			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			to_chat(src, span_warning("You can't weave here!"))
 			return
 
 		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
@@ -1074,28 +1074,28 @@
 		return
 
 	if(!(species.is_weaver))
-		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		to_chat(src, span_warning("You are not a weaver! How are you doing this? Tell a developer!"))
 		return
 
 	if(desired_result.cost > species.silk_reserve)
-		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		to_chat(src, span_warning("You don't have enough silk to weave that!"))
 		return
 
 	if(stat)
-		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		to_chat(src, span_warning("You can't do that in your current state!"))
 		return
 
 	if(!isturf(src.loc))
-		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		to_chat(src, span_warning("You can't weave here!"))
 		return
 
 	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
-			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			to_chat(src, span_warning("You don't have enough silk to weave that!"))
 			return
 
 		if(!isturf(src.loc))
-			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			to_chat(src, span_warning("You can't weave here!"))
 			return
 
 		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
@@ -1109,7 +1109,7 @@
 	set category = "Abilities"
 
 	if(!(species.is_weaver))
-		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		to_chat(src, span_warning("You are not a weaver! How are you doing this? Tell a developer!"))
 		return
 
 	var/new_silk_color = input(usr, "Pick a color for your woven products:","Silk Color", species.silk_color) as null|color
@@ -1192,11 +1192,11 @@
 	last_special = world.time + 50 //No spamming!
 
 	if(stat == DEAD || paralysis || weakened || stunned)
-		to_chat(src, "<span class='notice'>You cannot do that while in your current state.</span>")
+		to_chat(src, span_notice("You cannot do that while in your current state."))
 		return
 
 	if(!(src.vore_selected))
-		to_chat(src, "<span class='notice'>No selected belly found.</span>")
+		to_chat(src, span_notice("No selected belly found."))
 		return
 
 
@@ -1215,7 +1215,7 @@
 					targets += L
 
 	if(!(targets.len))
-		to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+		to_chat(src, span_notice("No eligible targets found."))
 		return
 
 	var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
@@ -1223,19 +1223,19 @@
 	if(!target)
 		return
 
-	to_chat(target, "<span class='critical'>Something begins to circle around you in the water!</span>") //Dun dun...
+	to_chat(target, span_critical("Something begins to circle around you in the water!")) //Dun dun...
 	var/starting_loc = target.loc
 
 	if(do_after(src, 50))
 		if(target.loc != starting_loc)
-			to_chat(target, "<span class='warning'>You got away from whatever that was...</span>")
-			to_chat(src, "<span class='notice'>They got away.</span>")
+			to_chat(target, span_warning("You got away from whatever that was..."))
+			to_chat(src, span_notice("They got away."))
 			return
 		if(target.buckled) //how are you buckled in the water?!
 			target.buckled.unbuckle_mob()
-		target.visible_message("<span class='vwarning'>\The [target] suddenly disappears, being dragged into the water!</span>",\
-			"<span class='vdanger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
-		to_chat(src, "<span class='vnotice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
+		target.visible_message(span_vwarning("\The [target] suddenly disappears, being dragged into the water!"),\
+			span_vdanger("You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!"))
+		to_chat(src, span_vnotice("You successfully drag \the [target] into the water, slipping them into your [vore_selected]."))
 		target.forceMove(src.vore_selected)
 
 /mob/living/carbon/human/proc/toggle_pain_module()
@@ -1244,9 +1244,9 @@
 	set category = "Abilities"
 
 	if(synth_cosmetic_pain)
-		to_chat(src, "<span class='notice'> You turn off your pain simulators.</span>")
+		to_chat(src, span_notice(" You turn off your pain simulators."))
 	else
-		to_chat(src, "<span class='danger'> You turn on your pain simulators </span>")
+		to_chat(src, span_danger(" You turn on your pain simulators "))
 
 	synth_cosmetic_pain = !synth_cosmetic_pain
 
@@ -1260,13 +1260,13 @@
 	set desc = "Grab a target with any of your appendages!"
 
 	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
-		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
 	last_special = world.time + 10 //Anti-spam.
 
 	if (!istype(src, /mob/living))
-		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		to_chat(src, span_warning("It doesn't work that way."))
 		return
 
 	var/choice = tgui_alert(src, "Do you wish to change the color of your appendage, use it, or change its functionality?", "Selection List", list("Use it", "Color", "Functionality"))
@@ -1297,7 +1297,7 @@
 				targets += L
 
 		if(!(targets.len))
-			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			to_chat(src, span_notice("No eligible targets found."))
 			return
 
 		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
@@ -1306,15 +1306,15 @@
 			return
 
 		if(!istype(target, /mob/living)) //Safety.
-			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			to_chat(src, span_warning("You need to select a living target!"))
 			return
 
 		if (get_dist(src,target) >= 6)
-			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			to_chat(src, span_warning("You need to be closer to do that."))
 			return
 
-		visible_message("<span class='vnotice'>\The [src] attempts to snatch up [target]!</span>", \
-						"<span class='vnotice'>You attempt to snatch up [target]!</span>" )
+		visible_message(span_vnotice("\The [src] attempts to snatch up [target]!"), \
+						span_vnotice("You attempt to snatch up [target]!") )
 		playsound(src, 'sound/vore/sunesound/pred/schlorp.ogg', 25)
 
 		//Code to shoot the beam here.
@@ -1384,8 +1384,8 @@
 			if(istype(firer, /mob/living))
 				var/mob/living/originator = firer
 				originator.Weaken(2) //If you hit something dense or anchored, fall flat on your face.
-				originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
-								"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+				originator.visible_message(span_warning("\The [originator] trips over their self and falls flat on their face!"), \
+								span_warning("You trip over yourself and fall flat on your face!") )
 				playsound(originator, "punch", 25, 1, -1)
 			return
 		else
@@ -1394,8 +1394,8 @@
 		if(istype(firer, /mob/living))
 			var/mob/living/originator = firer
 			originator.Weaken(2) //Hit a wall? Whoops!
-			originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
-							"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+			originator.visible_message(span_warning("\The [originator] trips over their self and falls flat on their face!"), \
+							span_warning("You trip over yourself and fall flat on your face!") )
 			playsound(originator, "punch", 25, 1, -1)
 			return
 		else
@@ -1475,13 +1475,13 @@
 	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
 
 	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
-		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
 	last_special = world.time + 10 //Anti-spam.
 
 	if (!istype(src, /mob/living))
-		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		to_chat(src, span_warning("It doesn't work that way."))
 		return
 
 	else
@@ -1496,7 +1496,7 @@
 				targets += L
 
 		if(!(targets.len))
-			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			to_chat(src, span_notice("No eligible targets found."))
 			return
 
 		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
@@ -1505,11 +1505,11 @@
 			return
 
 		if(!istype(target, /mob/living)) //Safety.
-			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			to_chat(src, span_warning("You need to select a living target!"))
 			return
 
 		if (get_dist(src,target) >= 6)
-			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			to_chat(src, span_warning("You need to be closer to do that."))
 			return
 
 		visible_message(span_warning("\The [src] rears back, ready to lunge!"))
@@ -1542,7 +1542,7 @@
 	set desc = "Inject another being with something!"
 
 	if(stat || paralysis || weakened || stunned || world.time < last_special) //Epic copypasta from tongue grabbing.
-		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
 	last_special = world.time + 10 //Anti-spam.
@@ -1567,19 +1567,19 @@
 		var/reagent_choice = tgui_input_list(usr, "Choose which reagent to inject!", "Select reagent", trait_injection_reagents)
 		if(reagent_choice)
 			trait_injection_selected = reagent_choice
-		to_chat(src, "<span class='notice'>You prepare to inject [trait_injection_amount] units of [trait_injection_selected ? "[trait_injection_selected]" : "...nothing. Select a reagent before trying to inject anything."]</span>")
+		to_chat(src, span_notice("You prepare to inject [trait_injection_amount] units of [trait_injection_selected ? "[trait_injection_selected]" : "...nothing. Select a reagent before trying to inject anything."]"))
 		return
 	if(choice == "Change amount")
 		var/amount_choice = tgui_input_number(usr, "How much of the reagent do you want to inject? (Up to 5 units) (Can select 0 for a bite that doesn't inject venom!)", "How much?", trait_injection_amount, 5, 0, round_value = FALSE)
 		if(amount_choice >= 0)
 			trait_injection_amount = amount_choice
-		to_chat(src, "<span class='notice'>You prepare to inject [trait_injection_amount] units of [trait_injection_selected ? "[trait_injection_selected]" : "...nothing. Select a reagent before trying to inject anything."]</span>")
+		to_chat(src, span_notice("You prepare to inject [trait_injection_amount] units of [trait_injection_selected ? "[trait_injection_selected]" : "...nothing. Select a reagent before trying to inject anything."]"))
 		return
 	if(choice == "Change verb")
 		var/verb_choice = tgui_input_text(usr, "Choose the percieved manner of injection, such as 'bites' or 'stings', don't be misleading or abusive. This will show up in game as ('X' 'Verb' 'Y'. Example: X bites Y.)", "How are you injecting?", trait_injection_verb, max_length = 60) //Whoaa there cowboy don't put a novel in there.
 		if(verb_choice)
 			trait_injection_verb = verb_choice
-		to_chat(src, "<span class='notice'>You will [trait_injection_verb] your targets.</span>")
+		to_chat(src, span_notice("You will [trait_injection_verb] your targets."))
 		return
 	if(choice == "Chemical Refresher")
 		var/output = {"<B>Chemical Refresher!</B><HR>
@@ -1628,7 +1628,7 @@
 			targets += L
 
 		if(!(targets.len))
-			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			to_chat(src, span_notice("No eligible targets found."))
 			return
 
 		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
@@ -1637,7 +1637,7 @@
 			return
 
 		if(!istype(target, /mob/living/carbon)) //Safety.
-			to_chat(src, "<span class='warning'>That won't work on that kind of creature! (Only works on crew/monkeys)</span>")
+			to_chat(src, span_warning("That won't work on that kind of creature! (Only works on crew/monkeys)"))
 			return
 
 
@@ -1646,11 +1646,11 @@
 			synth = 1
 
 		if(!trait_injection_selected)
-			to_chat(src, "<span class='notice'>You need to select a reagent.</span>")
+			to_chat(src, span_notice("You need to select a reagent."))
 			return
 
 		if(!trait_injection_verb)
-			to_chat(src, "<span class='notice'>Somehow, you forgot your means of injecting. (Select a verb!)</span>")
+			to_chat(src, span_notice("Somehow, you forgot your means of injecting. (Select a verb!)"))
 			return
 
 		if(do_after(src, 50, target)) //A decent enough timer.

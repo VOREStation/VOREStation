@@ -128,10 +128,10 @@
 
 	if(world.time < time_maw_opened + maw_cooldown)
 		if(open_maw)
-			to_chat(src, "<span class='notice'>You retract your teeth.</span>")
+			to_chat(src, span_notice("You retract your teeth."))
 			time_maw_opened -= maw_cooldown / 2	// Recovers half cooldown if you end it early manually.
 		else
-			to_chat(src, "<span class='notice'>You are too tired to do this..</span>")
+			to_chat(src, span_notice("You are too tired to do this.."))
 		set_maw(FALSE)
 	else
 		set_maw(!open_maw)
@@ -158,7 +158,7 @@
 
 	if(world.time > time_maw_opened + maw_cooldown)	// Auto-stop eating.
 		if(open_maw)
-			to_chat(src, "<span class='notice'>Your jaws cannot remain open..</span>")
+			to_chat(src, span_notice("Your jaws cannot remain open.."))
 			set_maw(FALSE)
 
 	if(next && !(next in view(src,1)) && !z_transitioning)
@@ -260,7 +260,7 @@
 						break
 
 					if(do_after(src, 5))
-						D.visible_message("<span class='danger'>Something crashes against \the [D]!</span>")
+						D.visible_message(span_danger("Something crashes against \the [D]!"))
 						D.take_damage(2 * melee_damage_upper)
 					else
 						objectOrMob = null
@@ -274,14 +274,14 @@
 				var/obj/effect/energy_field/EF = objectOrMob
 				objectOrMob = null	// No eating shields.
 				if(EF.opacity)
-					EF.visible_message("<span class='danger'>Something begins forcing itself through \the [EF]!</span>")
+					EF.visible_message(span_danger("Something begins forcing itself through \the [EF]!"))
 				else
-					EF.visible_message("<span class='danger'>\The [src] begins forcing itself through \the [EF]!</span>")
+					EF.visible_message(span_danger("\The [src] begins forcing itself through \the [EF]!"))
 				if(do_after(src, EF.strength * 5))
 					EF.adjust_strength(rand(-8, -10))
-					EF.visible_message("<span class='danger'>\The [src] crashes through \the [EF]!</span>")
+					EF.visible_message(span_danger("\The [src] crashes through \the [EF]!"))
 				else
-					EF.visible_message("<span class='danger'>\The [EF] reverberates as it returns to normal.</span>")
+					EF.visible_message(span_danger("\The [EF] reverberates as it returns to normal."))
 
 			if(objectOrMob)
 				objectOrMob.update_nearby_tiles(need_rebuild=1)

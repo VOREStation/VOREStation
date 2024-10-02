@@ -45,8 +45,8 @@
 	var/mob/living/user = loc
 	stock = !stock
 	if(stock)
-		user.visible_message("<span class='warning'>With a fluid movement, [user] unfolds their shotgun's stock and foregrip.</span>",\
-		"<span class='warning'>You unfold the shotgun's stock and foregrip.</span>",\
+		user.visible_message(span_warning("With a fluid movement, [user] unfolds their shotgun's stock and foregrip."),\
+		span_warning("You unfold the shotgun's stock and foregrip."),\
 		"You hear an ominous click.")
 		icon_state = "compshot"
 		item_state = icon_state
@@ -55,7 +55,7 @@
 		recoil = 1 //As above, stock and foregrip would help with the kick
 	else
 		user.visible_message("<b>\The [user]</b> collapses their shotgun's stock and fold it's foregrip.",\
-		"<span class='notice'>You fold the shotgun's stock and foregrip.</span>",\
+		span_notice("You fold the shotgun's stock and foregrip."),\
 		"You hear a click.")
 		icon_state = "compshotc"
 		item_state = icon_state
@@ -82,7 +82,7 @@
 	if (isliving(usr))
 		toggle_stock()
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this in your current state.</span>")
+		to_chat(usr, span_notice("You cannot do this in your current state."))
 
 
 /obj/item/gun/projectile/shotgun/compact/attack_self(mob/user as mob)
@@ -92,7 +92,7 @@
 	if (isliving(usr))
 		toggle_stock()
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this in your current state.</span>")
+		to_chat(usr, span_notice("You cannot do this in your current state."))
 
 /obj/item/gun/projectile/shotgun/compact/ui_action_click()
 	var/mob/living/user = loc

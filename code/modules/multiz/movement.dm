@@ -3,14 +3,14 @@
 	set category = "IC"
 
 	if(zMove(UP))
-		to_chat(src, "<span class='notice'>You move upwards.</span>")
+		to_chat(src, span_notice("You move upwards."))
 
 /mob/verb/down()
 	set name = "Move Down"
 	set category = "IC"
 
 	if(zMove(DOWN))
-		to_chat(src, "<span class='notice'>You move down.</span>")
+		to_chat(src, span_notice("You move down."))
 
 /mob/proc/zMove(direction)
 	if(eyeobj)
@@ -20,17 +20,17 @@
 		return mech.relaymove(src,direction)
 
 	if(!can_ztravel())
-		to_chat(src, "<span class='warning'>You lack means of travel in that direction.</span>")
+		to_chat(src, span_warning("You lack means of travel in that direction."))
 		return
 
 	var/turf/start = loc
 	if(!istype(start))
-		to_chat(src, "<span class='notice'>You are unable to move from here.</span>")
+		to_chat(src, span_notice("You are unable to move from here."))
 		return 0
 
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(!destination)
-		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		to_chat(src, span_notice("There is nothing of interest in this direction."))
 		return 0
 
 	if(is_incorporeal())
@@ -43,27 +43,27 @@
 			return ladder.climbLadder(src, (direction == UP ? ladder.target_up : ladder.target_down))
 
 	if(!start.CanZPass(src, direction))
-		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
+		to_chat(src, span_warning("\The [start] is in the way."))
 		return 0
 
 	if(direction == DOWN)
 		var/turf/simulated/floor/water/deep/ocean/diving/sink = start
 		if(istype(sink) && !destination.density)
 			var/pull_up_time = max(3 SECONDS + (src.movement_delay() * 10), 1)
-			to_chat(src, "<span class='notice'>You start diving underwater...</span>")
-			src.audible_message("<span class='notice'>[src] begins to dive under the water.</span>", runemessage = "splish splosh")
+			to_chat(src, span_notice("You start diving underwater..."))
+			src.audible_message(span_notice("[src] begins to dive under the water."), runemessage = "splish splosh")
 			if(do_after(src, pull_up_time))
-				to_chat(src, "<span class='notice'>You reach the sea floor.</span>")
+				to_chat(src, span_notice("You reach the sea floor."))
 			else
-				to_chat(src, "<span class='warning'>You stopped swimming downwards.</span>")
+				to_chat(src, span_warning("You stopped swimming downwards."))
 				return 0
 
 		else if(!destination.CanZPass(src, direction)) // one for the down and non-special case
-			to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
+			to_chat(src, span_warning("\The [destination] blocks your way."))
 			return 0
 
 	else if(!destination.CanZPass(src, direction)) // and one for up
-		to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
+		to_chat(src, span_warning("\The [destination] blocks your way."))
 		return 0
 
 
@@ -76,65 +76,65 @@
 
 			if(lattice)
 				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
-				to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
-				src.audible_message("<span class='notice'>[src] begins climbing up \the [lattice].</span>", runemessage = "clank clang")
+				to_chat(src, span_notice("You grab \the [lattice] and start pulling yourself upward..."))
+				src.audible_message(span_notice("[src] begins climbing up \the [lattice]."), runemessage = "clank clang")
 				if(do_after(src, pull_up_time))
-					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
+					to_chat(src, span_notice("You pull yourself up."))
 				else
-					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
+					to_chat(src, span_warning("You gave up on pulling yourself up."))
 					return 0
 
 			else if(istype(surface))
 				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
-				to_chat(src, "<span class='notice'>You start swimming upwards...</span>")
-				src.audible_message("<span class='notice'>[src] begins to swim towards the surface.</span>", runemessage = "splish splosh")
+				to_chat(src, span_notice("You start swimming upwards..."))
+				src.audible_message(span_notice("[src] begins to swim towards the surface."), runemessage = "splish splosh")
 				if(do_after(src, pull_up_time))
-					to_chat(src, "<span class='notice'>You reach the surface.</span>")
+					to_chat(src, span_notice("You reach the surface."))
 				else
-					to_chat(src, "<span class='warning'>You stopped swimming upwards.</span>")
+					to_chat(src, span_warning("You stopped swimming upwards."))
 					return 0
 
 			else if(catwalk?.hatch_open)
 				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
-				to_chat(src, "<span class='notice'>You grab the edge of \the [catwalk] and start pulling yourself upward...</span>")
+				to_chat(src, span_notice("You grab the edge of \the [catwalk] and start pulling yourself upward..."))
 				var/old_dest = destination
 				destination = get_step(destination, dir) // mob's dir
 				if(!destination?.Enter(src, old_dest))
-					to_chat(src, "<span class='notice'>There's something in the way up above in that direction, try another.</span>")
+					to_chat(src, span_notice("There's something in the way up above in that direction, try another."))
 					return 0
-				src.audible_message("<span class='notice'>[src] begins climbing up \the [lattice].</span>", runemessage = "clank clang")
+				src.audible_message(span_notice("[src] begins climbing up \the [lattice]."), runemessage = "clank clang")
 				if(do_after(src, pull_up_time))
-					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
+					to_chat(src, span_notice("You pull yourself up."))
 				else
-					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
+					to_chat(src, span_warning("You gave up on pulling yourself up."))
 					return 0
 
 			else if(isliving(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
 				var/mob/living/H = src
 				if(H.flying)
 					if(H.incapacitated(INCAPACITATION_ALL))
-						to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
+						to_chat(src, span_notice("You can't fly in your current state."))
 						H.stop_flying() //Should already be done, but just in case.
 						return 0
 					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
-					to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
-					H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>", runemessage = "flap flap")
+					to_chat(src, span_notice("You begin to fly upwards..."))
+					H.audible_message(span_notice("[H] begins to flap \his wings, preparing to move upwards!"), runemessage = "flap flap")
 					if(do_after(H, fly_time) && H.flying)
-						to_chat(src, "<span class='notice'>You fly upwards.</span>")
+						to_chat(src, span_notice("You fly upwards."))
 					else
-						to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
+						to_chat(src, span_warning("You stopped flying upwards."))
 						return 0
 				else
-					to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+					to_chat(src, span_warning("Gravity stops you from moving upward."))
 					return 0 //VOREStation Edit End.
 
 			else
-				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+				to_chat(src, span_warning("Gravity stops you from moving upward."))
 				return 0
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
-			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
+			to_chat(src, span_warning("\The [A] blocks you."))
 			return 0
 	if(!Move(destination))
 		return 0
@@ -146,9 +146,9 @@
 		for(var/obj/item/grab/G in list(L.l_hand, L.r_hand))
 			pulling |= G.affecting
 		if(direction == UP)
-			src.audible_message("<span class='notice'>[src] moves up.</span>")
+			src.audible_message(span_notice("[src] moves up."))
 		else if(direction == DOWN)
-			src.audible_message("<span class='notice'>[src] moves down.</span>")
+			src.audible_message(span_notice("[src] moves down."))
 		for(var/atom/movable/P in pulling)
 			P.forceMove(destination)
 	return 1
@@ -169,14 +169,14 @@
 	if(destination)
 		forceMove(destination)
 	else
-		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		to_chat(src, span_notice("There is nothing of interest in this direction."))
 
 /mob/observer/eye/zMove(direction)
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(destination)
 		setLoc(destination)
 	else
-		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
+		to_chat(src, span_notice("There is nothing of interest in this direction."))
 
 /mob/proc/can_ztravel()
 	return 0
@@ -293,14 +293,14 @@
 				L.stop_flying()
 				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_fall.
 			else if(L.nutrition < 300 && L.nutrition > 299.4) //290 would be risky, as metabolism could mess it up. Let's do 289.
-				to_chat(L, "<span class='danger'>You are starting to get fatigued... You probably have a good minute left in the air, if that. Even less if you continue to fly around! You should get to the ground soon!</span>") //Ticks are, on average, 3 seconds. So this would most likely be 90 seconds, but lets just say 60.
+				to_chat(L, span_danger("You are starting to get fatigued... You probably have a good minute left in the air, if that. Even less if you continue to fly around! You should get to the ground soon!")) //Ticks are, on average, 3 seconds. So this would most likely be 90 seconds, but lets just say 60.
 				L.adjust_nutrition(-0.5)
 				return
 			else if(L.nutrition < 100 && L.nutrition > 99.4)
-				to_chat(L, "<span class='danger'>You're seriously fatigued! You need to get to the ground immediately and eat before you fall!</span>")
+				to_chat(L, span_danger("You're seriously fatigued! You need to get to the ground immediately and eat before you fall!"))
 				return
 			else if(L.nutrition < 10) //Should have listened to the warnings!
-				to_chat(L, "<span class='danger'>You lack the strength to keep yourself up in the air...</span>")
+				to_chat(L, span_danger("You lack the strength to keep yourself up in the air..."))
 				L.stop_flying()
 			else
 				return
@@ -439,7 +439,7 @@
 
 /atom/movable/proc/find_fall_target(var/turf/oldloc, var/turf/landing)
 	if(isopenspace(oldloc))
-		oldloc.visible_message("<span class='notice'>\The [src] falls down through \the [oldloc]!</span>", "<span class='notice'>You hear something falling through the air.</span>")
+		oldloc.visible_message(span_notice("\The [src] falls down through \the [oldloc]!"), span_notice("You hear something falling through the air."))
 
 	// If the turf has density, we give it first dibs
 	if (landing.density && landing.CheckFall(src))
@@ -527,27 +527,27 @@
 		safe_fall = TRUE
 	if(planetary && src.CanParachute())
 		if(!silent)
-			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
-				"<span class='danger'>You land on \the [landing]!</span>", \
+			visible_message(span_warning("\The [src] glides in from above and lands on \the [landing]!"), \
+				span_danger("You land on \the [landing]!"), \
 				"You hear something land \the [landing].")
 		return
 	else if(!planetary && safe_fall) // Falling one floor and falling one atmosphere are very different things
 		if(!silent)
-			visible_message("<span class='warning'>\The [src] falls from above and lands on \the [landing]!</span>", \
-				"<span class='danger'>You land on \the [landing]!</span>", \
+			visible_message(span_warning("\The [src] falls from above and lands on \the [landing]!"), \
+				span_danger("You land on \the [landing]!"), \
 				"You hear something land \the [landing].")
 		return
 	else
 		if(!silent)
 			if(planetary)
-				visible_message("<span class='danger'><font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font></span>", \
-					"<span class='danger'><font size='3'> You fall out of the sky and crash into \the [landing]!</font></span>", \
+				visible_message(span_danger("<font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font>"), \
+					span_danger("<font size='3'> You fall out of the sky and crash into \the [landing]!</font>"), \
 					"You hear something slam into \the [landing].")
 				var/turf/T = get_turf(landing)
 				explosion(T, 0, 1, 2)
 			else
-				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
-					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
+				visible_message(span_warning("\The [src] falls from above and slams into \the [landing]!"), \
+					span_danger("You fall off and hit \the [landing]!"), \
 					"You hear something slam into \the [landing].")
 			playsound(src, "punch", 25, 1, -1)
 
@@ -609,7 +609,7 @@
 	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, loc)
 	if(lattice)
 		// Lattices seem a bit too flimsy to hold up a massive exosuit.
-		lattice.visible_message("<span class='danger'>\The [lattice] collapses under the weight of \the [src]!</span>")
+		lattice.visible_message(span_danger("\The [lattice] collapses under the weight of \the [src]!"))
 		qdel(lattice)
 
 	// Then call parent to have us actually fall
@@ -618,7 +618,7 @@
 /obj/mecha/fall_impact(var/atom/hit_atom, var/damage_min = 15, var/damage_max = 30, var/silent = FALSE, var/planetary = FALSE)
 	// Anything on the same tile as the landing tile is gonna have a bad day.
 	for(var/mob/living/L in hit_atom.contents)
-		L.visible_message("<span class='danger'>\The [src] crushes \the [L] as it lands on them!</span>")
+		L.visible_message(span_danger("\The [src] crushes \the [L] as it lands on them!"))
 		L.adjustBruteLoss(rand(70, 100))
 		L.Weaken(8)
 
@@ -626,27 +626,27 @@
 
 	if(planetary && src.CanParachute())
 		if(!silent)
-			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
-				"<span class='danger'>You land on \the [landing]!</span>", \
+			visible_message(span_warning("\The [src] glides in from above and lands on \the [landing]!"), \
+				span_danger("You land on \the [landing]!"), \
 				"You hear something land \the [landing].")
 		return
 	else if(!planetary && src.softfall) // Falling one floor and falling one atmosphere are very different things
 		if(!silent)
-			visible_message("<span class='warning'>\The [src] falls from above and lands on \the [landing]!</span>", \
-				"<span class='danger'>You land on \the [landing]!</span>", \
+			visible_message(span_warning("\The [src] falls from above and lands on \the [landing]!"), \
+				span_danger("You land on \the [landing]!"), \
 				"You hear something land \the [landing].")
 		return
 	else
 		if(!silent)
 			if(planetary)
-				visible_message("<span class='danger'><font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font></span>", \
-					"<span class='danger'><font size='3'> You fall out of the skiy and crash into \the [landing]!</font></span>", \
+				visible_message(span_danger("<font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font>"), \
+					span_danger("<font size='3'> You fall out of the skiy and crash into \the [landing]!</font>"), \
 					"You hear something slam into \the [landing].")
 				var/turf/T = get_turf(landing)
 				explosion(T, 0, 1, 2)
 			else
-				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
-					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
+				visible_message(span_warning("\The [src] falls from above and slams into \the [landing]!"), \
+					span_danger("You fall off and hit \the [landing]!"), \
 					"You hear something slam into \the [landing].")
 			playsound(src, "punch", 25, 1, -1)
 

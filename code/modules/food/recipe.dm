@@ -182,7 +182,7 @@
 // This proc is called under the assumption that the container has already been checked and found to contain the necessary ingredients
 /datum/recipe/proc/make_food(var/obj/container as obj)
 	if(!result)
-		log_runtime(EXCEPTION("<span class='danger'>Recipe [type] is defined without a result, please bug report this.</span>"))
+		log_runtime(EXCEPTION(span_danger("Recipe [type] is defined without a result, please bug report this.")))
 		if(istype(container, /obj/machinery/microwave))
 			var/obj/machinery/microwave/M = container
 			M.dispose(FALSE)

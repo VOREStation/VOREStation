@@ -24,10 +24,10 @@
 			if(!O.completed && !O.check_completion())
 				result = 0
 		if(result && victory_text)
-			to_world("<span class='danger'><font size = 3>[victory_text]</font></span>")
+			to_world(span_danger("<font size = 3>[victory_text]</font>"))
 			if(victory_feedback_tag) feedback_set_details("round_end_result","[victory_feedback_tag]")
 		else if(loss_text)
-			to_world("<span class='danger'><font size = 3>[loss_text]</font></span>")
+			to_world(span_danger("<font size = 3>[loss_text]</font>"))
 			if(loss_feedback_tag) feedback_set_details("round_end_result","[loss_feedback_tag]")
 
 /mob/living/proc/write_ambition()
@@ -49,7 +49,7 @@
 	new_ambitions = sanitize(new_ambitions)
 	mind.ambitions = new_ambitions
 	if(new_ambitions)
-		to_chat(src, "<span class='notice'>You've set your goal to be '[new_ambitions]'.</span>")
+		to_chat(src, span_notice("You've set your goal to be '[new_ambitions]'."))
 	else
-		to_chat(src, "<span class='notice'>You leave your ambitions behind.</span>")
+		to_chat(src, span_notice("You leave your ambitions behind."))
 	log_and_message_admins("has set their ambitions to now be: [new_ambitions].")

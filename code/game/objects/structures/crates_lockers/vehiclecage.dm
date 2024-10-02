@@ -11,7 +11,7 @@
 /obj/structure/vehiclecage/examine(mob/user)
 	. = ..()
 	if(my_vehicle)
-		. += "<span class='notice'>It seems to contain \the [my_vehicle].</span>"
+		. += span_notice("It seems to contain \the [my_vehicle].")
 
 /obj/structure/vehiclecage/Initialize()
 	. = ..()
@@ -24,21 +24,21 @@
 	update_icon()
 
 /obj/structure/vehiclecage/attack_hand(mob/user as mob)
-	to_chat(user, "<span class='notice'>You need a wrench to take this apart!</span>")
+	to_chat(user, span_notice("You need a wrench to take this apart!"))
 	return
 
 /obj/structure/vehiclecage/attackby(obj/item/W as obj, mob/user as mob)
 	var/turf/T = get_turf(src)
 	if(!T)
-		to_chat(user, "<span class='notice'>You can't open this here!</span>")
+		to_chat(user, span_notice("You can't open this here!"))
 	if(W.has_tool_quality(TOOL_WRENCH) && do_after(user, 60 * W.toolspeed, src))
 		playsound(src, W.usesound, 50, 1)
 		disassemble(W, user)
-		user.visible_message("<span class='notice'>[user] begins loosening \the [src]'s bolts.</span>")
+		user.visible_message(span_notice("[user] begins loosening \the [src]'s bolts."))
 	if(W.has_tool_quality(TOOL_WIRECUTTER) && do_after(user, 70 * W.toolspeed, src))
 		playsound(src, W.usesound, 50, 1)
 		disassemble(W, user)
-		user.visible_message("<span class='notice'>[user] begins cutting \the [src]'s bolts.</span>")
+		user.visible_message(span_notice("[user] begins cutting \the [src]'s bolts."))
 	else
 		return attack_hand(user)
 
@@ -72,9 +72,9 @@
 
 /obj/structure/vehiclecage/proc/load_vehicle(var/obj/vehicle/V, mob/user as mob)
 	if(user)
-		user.visible_message("<span class='notice'>[user] loads \the [V] into \the [src].</span>", \
-							 "<span class='notice'>You load \the [V] into \the [src].</span>", \
-							 "<span class='notice'>You hear creaking metal.</span>")
+		user.visible_message(span_notice("[user] loads \the [V] into \the [src]."), \
+							 span_notice("You load \the [V] into \the [src]."), \
+							 span_notice("You hear creaking metal."))
 
 	V.forceMove(src)
 
@@ -91,9 +91,9 @@
 			AM.forceMove(T)
 
 	my_vehicle = null
-	user.visible_message("<span class='notice'>[user] release \the [src].</span>", \
-						 "<span class='notice'>You finally release \the [src].</span>", \
-						 "<span class='notice'>You hear creaking metal.</span>")
+	user.visible_message(span_notice("[user] release \the [src]."), \
+						 span_notice("You finally release \the [src]."), \
+						 span_notice("You hear creaking metal."))
 	qdel(src)
 
 /obj/structure/vehiclecage/spacebike

@@ -25,7 +25,7 @@
 		if(loaded_item)
 			var/confirm = tgui_alert(user, "This will destroy the item inside forever. Are you sure?","Confirm Analyze",list("Yes","No"))
 			if(confirm == "Yes" && !QDELETED(loaded_item)) //This is pretty copypasta-y
-				to_chat(user, "<span class='filter_notice'>You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.</span>")
+				to_chat(user, span_filter_notice("You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down."))
 				flick("portable_analyzer_scan", src)
 				playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 				var/research_levels = list()
@@ -33,7 +33,7 @@
 					files.UpdateTech(T, loaded_item.origin_tech[T])
 					research_levels += "\The [loaded_item] had level [loaded_item.origin_tech[T]] in [CallTechName(T)]."
 				if (length(research_levels))
-					to_chat(user, "<span class='filter_notice'>[jointext(research_levels,"<br>")]</span>")
+					to_chat(user, span_filter_notice("[jointext(research_levels,"<br>")]"))
 				loaded_item = null
 				for(var/obj/I in contents)
 					for(var/mob/M in I.contents)
@@ -54,7 +54,7 @@
 			else
 				return
 		else
-			to_chat(user, "<span class='filter_notice'>The [src] is empty.  Put something inside it first.</span>")
+			to_chat(user, span_filter_notice("The [src] is empty.  Put something inside it first."))
 	if(response == "Sync")
 		var/success = 0
 		for(var/obj/machinery/r_n_d/server/S in machines)
@@ -65,10 +65,10 @@
 			success = 1
 			files.RefreshResearch()
 		if(success)
-			to_chat(user, "<span class='filter_notice'>You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.</span>")
+			to_chat(user, span_filter_notice("You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch."))
 			playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		else
-			to_chat(user, "<span class='filter_notice'>Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.</span>")
+			to_chat(user, span_filter_notice("Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator."))
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
 	if(response == "Eject")
 		if(loaded_item)
@@ -77,7 +77,7 @@
 			icon_state = initial(icon_state)
 			loaded_item = null
 		else
-			to_chat(user, "<span class='filter_notice'>The [src] is already empty.</span>")
+			to_chat(user, span_filter_notice("The [src] is already empty."))
 
 
 /obj/item/portable_destructive_analyzer/afterattack(var/atom/target, var/mob/living/user, proximity)
@@ -89,13 +89,13 @@
 		return
 	if(istype(target,/obj/item))
 		if(loaded_item)
-			to_chat(user, "<span class='filter_notice'>Your [src] already has something inside.  Analyze or eject it first.</span>")
+			to_chat(user, span_filter_notice("Your [src] already has something inside.  Analyze or eject it first."))
 			return
 		var/obj/item/I = target
 		I.loc = src
 		loaded_item = I
 		for(var/mob/M in viewers())
-			M.show_message("<span class='notice'>[user] adds the [I] to the [src].</span>", 1)
+			M.show_message(span_notice("[user] adds the [I] to the [src]."), 1)
 		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
 		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
@@ -115,13 +115,13 @@
 		var/obj/item/I = target
 		if(do_after(src, 5 SECONDS * I.w_class))
 			for(var/mob/M in viewers())
-				M.show_message(text("<span class='notice'>[user] sweeps \the [src] over \the [I].</span>"), 1)
+				M.show_message(span_notice("[user] sweeps \the [src] over \the [I]."), 1)
 			flick("[initial(icon_state)]-scan", src)
 			if(I.origin_tech && I.origin_tech.len)
 				for(var/T in I.origin_tech)
-					to_chat(user, "<span class='notice'>\The [I] had level [I.origin_tech[T]] in [CallTechName(T)].</span>")
+					to_chat(user, span_notice("\The [I] had level [I.origin_tech[T]] in [CallTechName(T)]."))
 			else
-				to_chat(user, "<span class='notice'>\The [I] cannot be scanned by \the [src].</span>")
+				to_chat(user, span_notice("\The [I] cannot be scanned by \the [src]."))
 
 //This is used to unlock other borg covers.
 /obj/item/card/robot //This is not a child of id cards, as to avoid dumb typechecks on computers.
@@ -174,7 +174,7 @@
 		else if(T.dead) //It's probably dead otherwise.
 			T.remove_dead(user)
 	else
-		to_chat(user, "<span class='filter_notice'>Harvesting \a [target] is not the purpose of this tool. [src] is for plants being grown.</span>")
+		to_chat(user, span_filter_notice("Harvesting \a [target] is not the purpose of this tool. [src] is for plants being grown."))
 
 // A special tray for the service droid. Allow droid to pick up and drop items as if they were using the tray normally
 // Click on table to unload, click on item to load. Otherwise works identically to a tray.
@@ -217,7 +217,7 @@
 				add_overlay(image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer))
 				addedSomething = 1
 		if ( addedSomething )
-			user.visible_message("<span class='notice'>[user] loads some items onto their service tray.</span>")
+			user.visible_message(span_notice("[user] loads some items onto their service tray."))
 
 		return
 
@@ -257,9 +257,9 @@
 							sleep(rand(2,4))
 		if ( droppedSomething )
 			if ( foundtable )
-				user.visible_message("<span class='notice'>[user] unloads their service tray.</span>")
+				user.visible_message(span_notice("[user] unloads their service tray."))
 			else
-				user.visible_message("<span class='notice'>[user] drops all the items on their tray.</span>")
+				user.visible_message(span_notice("[user] drops all the items on their tray."))
 
 	return ..()
 
@@ -293,7 +293,7 @@
 				mode = 2
 			else
 				mode = 1
-			to_chat(user, "<span class='filter_notice'>Changed printing mode to '[mode == 2 ? "Rename Paper" : "Write Paper"]'</span>")
+			to_chat(user, span_filter_notice("Changed printing mode to '[mode == 2 ? "Rename Paper" : "Write Paper"]'"))
 
 	return
 
@@ -349,17 +349,17 @@
 			flick("doc_printer_mod_ejecting", src)
 			spawn(22)
 				var/turf/T = get_turf(src)
-				T.visible_message("<span class='notice'>\The [src.loc] dispenses a sheet of crisp white paper.</span>")
+				T.visible_message(span_notice("\The [src.loc] dispenses a sheet of crisp white paper."))
 				new /obj/item/paper(T)
 		if ("Form")
 			var/list/content = print_form()
 			if(!content)
-				to_chat(usr, "<span class='warning'>No form for this category found in central network. Central is advising employees to upload new forms whenever possible.</span>")
+				to_chat(usr, span_warning("No form for this category found in central network. Central is advising employees to upload new forms whenever possible."))
 				return
 			flick("doc_printer_mod_printing", src)
 			spawn(22)
 				var/turf/T = get_turf(src)
-				T.visible_message("<span class='notice'>\The [src.loc] dispenses an official form to fill.</span>")
+				T.visible_message(span_notice("\The [src.loc] dispenses an official form to fill."))
 				new /obj/item/paper(T, content[1], content[2])
 
 /obj/item/form_printer/proc/print_form()
@@ -628,7 +628,7 @@
 		overload_time = 0
 
 		var/mob/living/user = src.loc
-		user.visible_message("<span class='danger'>[user]'s shield reactivates!</span>", "<span class='danger'>Your shield reactivates!</span>")
+		user.visible_message(span_danger("[user]'s shield reactivates!"), span_danger("Your shield reactivates!"))
 		user.update_icon()
 
 /obj/item/borg/combat/shield/proc/adjust_flash_count(var/mob/living/user, amount)
@@ -642,7 +642,7 @@
 
 /obj/item/borg/combat/shield/proc/overload(var/mob/living/user)
 	active = 0
-	user.visible_message("<span class='danger'>[user]'s shield destabilizes!</span>", "<span class='danger'>Your shield destabilizes!</span>")
+	user.visible_message(span_danger("[user]'s shield destabilizes!"), span_danger("Your shield destabilizes!"))
 	user.update_icon()
 	overload_time = world.time
 
@@ -688,14 +688,14 @@
 
 /obj/item/inflatable_dispenser/attack_self()
 	mode = !mode
-	to_chat(usr, "<span class='filter_notice'>You set \the [src] to deploy [mode ? "doors" : "walls"].</span>")
+	to_chat(usr, span_filter_notice("You set \the [src] to deploy [mode ? "doors" : "walls"]."))
 
 /obj/item/inflatable_dispenser/afterattack(var/atom/A, var/mob/user)
 	..(A, user)
 	if(!user)
 		return
 	if(!user.Adjacent(A))
-		to_chat(user, "<span class='filter_notice'>You can't reach!</span>")
+		to_chat(user, span_filter_notice("You can't reach!"))
 		return
 	if(istype(A, /turf))
 		try_deploy_inflatable(A, user)
@@ -705,7 +705,7 @@
 /obj/item/inflatable_dispenser/proc/try_deploy_inflatable(var/turf/T, var/mob/living/user)
 	if(mode) // Door deployment
 		if(!stored_doors)
-			to_chat(user, "<span class='filter_notice'>\The [src] is out of doors!</span>")
+			to_chat(user, span_filter_notice("\The [src] is out of doors!"))
 			return
 
 		if(T && istype(T))
@@ -714,7 +714,7 @@
 
 	else // Wall deployment
 		if(!stored_walls)
-			to_chat(user, "<span class='filter_notice'>\The [src] is out of walls!</span>")
+			to_chat(user, span_filter_notice("\The [src] is out of walls!"))
 			return
 
 		if(T && istype(T))
@@ -722,40 +722,40 @@
 			stored_walls--
 
 	playsound(T, 'sound/items/zip.ogg', 75, 1)
-	to_chat(user, "<span class='filter_notice'>You deploy the inflatable [mode ? "door" : "wall"]!</span>")
+	to_chat(user, span_filter_notice("You deploy the inflatable [mode ? "door" : "wall"]!"))
 
 /obj/item/inflatable_dispenser/proc/pick_up(var/obj/A, var/mob/living/user)
 	if(istype(A, /obj/structure/inflatable))
 		if(!istype(A, /obj/structure/inflatable/door))
 			if(stored_walls >= max_walls)
-				to_chat(user, "<span class='filter_notice'>\The [src] is full.</span>")
+				to_chat(user, span_filter_notice("\The [src] is full."))
 				return
 			stored_walls++
 			qdel(A)
 		else
 			if(stored_doors >= max_doors)
-				to_chat(user, "<span class='filter_notice'>\The [src] is full.</span>")
+				to_chat(user, span_filter_notice("\The [src] is full."))
 				return
 			stored_doors++
 			qdel(A)
 		playsound(src, 'sound/machines/hiss.ogg', 75, 1)
-		visible_message("<span class='filter_notice'>\The [user] deflates \the [A] with \the [src]!</span>")
+		visible_message(span_filter_notice("\The [user] deflates \the [A] with \the [src]!"))
 		return
 	if(istype(A, /obj/item/inflatable))
 		if(!istype(A, /obj/item/inflatable/door))
 			if(stored_walls >= max_walls)
-				to_chat(user, "<span class='filter_notice'>\The [src] is full.</span>")
+				to_chat(user, span_filter_notice("\The [src] is full."))
 				return
 			stored_walls++
 			qdel(A)
 		else
 			if(stored_doors >= max_doors)
-				to_chat(usr, "<span class='filter_notice'>\The [src] is full!</span>")
+				to_chat(usr, span_filter_notice("\The [src] is full!"))
 				return
 			stored_doors++
 			qdel(A)
-		visible_message("<span class='filter_notice'>\The [user] picks up \the [A] with \the [src]!</span>")
+		visible_message(span_filter_notice("\The [user] picks up \the [A] with \the [src]!"))
 		return
 
-	to_chat(user, "<span class='filter_notice'>You fail to pick up \the [A] with \the [src].</span>")
+	to_chat(user, span_filter_notice("You fail to pick up \the [A] with \the [src]."))
 	return

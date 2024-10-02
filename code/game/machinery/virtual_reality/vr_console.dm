@@ -43,7 +43,7 @@
 			visible_message("<b>\The [src]</b> emits a low droning sound, before the pod door clicks open.")
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD) // If someone dies somehow while inside, spit them out.
-		visible_message("<span class='warning'>\The [src] sounds an alarm, swinging its hatch open.</span>")
+		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
 		go_out()
 
 /obj/machinery/vr_sleeper/update_icon()
@@ -54,7 +54,7 @@
 		return 1
 
 	if(usr == occupant)
-		to_chat(usr, "<span class='warning'>You can't reach the controls from the inside.</span>")
+		to_chat(usr, span_warning("You can't reach the controls from the inside."))
 		return
 
 	add_fingerprint(usr)
@@ -107,7 +107,7 @@
 		if(prob(15 / ( severity / 4 )) && occupant.species.has_organ[O_BRAIN] && occupant.internal_organs_by_name[O_BRAIN])
 			var/obj/item/organ/O = occupant.internal_organs_by_name[O_BRAIN]
 			O.take_damage(severity * 2)
-			visible_message("<span class='danger'>\The [src]'s internal lighting flashes rapidly, before the hatch swings open with a cloud of smoke.</span>")
+			visible_message(span_danger("\The [src]'s internal lighting flashes rapidly, before the hatch swings open with a cloud of smoke."))
 			smoke.set_up(severity, 0, src)
 			smoke.start("#202020")
 		go_out()
@@ -151,9 +151,9 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(!ishuman(M))
-		to_chat(user, "<span class='warning'>\The [src] rejects [M] with a sharp beep.</span>")
+		to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
 	if(occupant)
-		to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
+		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
 
 	if(M == user)
@@ -163,7 +163,7 @@
 
 	if(do_after(user, 20))
 		if(occupant)
-			to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
+			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
 		if(M.client)
@@ -180,7 +180,7 @@
 			update_use_power(USE_POWER_ACTIVE)
 			enter_vr()
 		else
-			to_chat(user, "<span class='warning'>\The [src] rejects [M] with a sharp beep.</span>")
+			to_chat(user, span_warning("\The [src] rejects [M] with a sharp beep."))
 		//VOREstation edit end
 	return
 

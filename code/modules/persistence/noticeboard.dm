@@ -76,23 +76,23 @@
 					return
 		return
 	else if(I.has_tool_quality(TOOL_WRENCH))
-		visible_message("<span class='warning'>[user] begins dismantling [src].</span>")
+		visible_message(span_warning("[user] begins dismantling [src]."))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 50, src))
-			visible_message("<span class='danger'>[user] has dismantled [src]!</span>")
+			visible_message(span_danger("[user] has dismantled [src]!"))
 			dismantle()
 		return
 	else if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		if(jobban_isbanned(user, JOB_GRAFFITI))
-			to_chat(user, "<span class='warning'>You are banned from leaving persistent information across rounds.</span>")
+			to_chat(user, span_warning("You are banned from leaving persistent information across rounds."))
 		else
 			if(LAZYLEN(notices) < max_notices && user.unEquip(I, src))
 				add_fingerprint(user)
 				add_paper(I)
-				to_chat(user, "<span class='notice'>You pin [I] to [src].</span>")
+				to_chat(user, span_notice("You pin [I] to [src]."))
 				SSpersistence.track_value(I, /datum/persistent/paper)
 			else
-				to_chat(user, "<span class='warning'>You hesitate, certain [I] will not be seen among the many others already attached to \the [src].</span>")
+				to_chat(user, span_warning("You hesitate, certain [I] will not be seen among the many others already attached to \the [src]."))
 		return
 	return ..()
 
@@ -166,7 +166,7 @@
 						add_fingerprint(M)
 						P.attackby(E, usr)
 					else
-						to_chat(M, "<span class='notice'>You'll need something to write with!</span>")
+						to_chat(M, span_notice("You'll need something to write with!"))
 						. = TRUE
 
 /obj/structure/noticeboard/anomaly

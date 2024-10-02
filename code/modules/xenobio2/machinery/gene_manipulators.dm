@@ -277,7 +277,7 @@
 					occupant = X
 					to_chat(user, "You load [X] into [src]."
 			else
-				to_chat(user, "<span class='danger'>This specimen is incompatible with the machinery!</span>")
+				to_chat(user, span_danger("This specimen is incompatible with the machinery!"))
 		return
 	..()
 
@@ -360,21 +360,21 @@
 /obj/machinery/xenobio/editor/proc/move_into_editor(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
-		to_chat(user, "<span class='danger'>The [src] is full, empty it first!</span>")
+		to_chat(user, span_danger("The [src] is full, empty it first!"))
 		return
 
 	if(in_use)
-		to_chat(user, "<span class='danger'>The [src] is locked and running, wait for it to finish.</span>")
+		to_chat(user, span_danger("The [src] is locked and running, wait for it to finish."))
 		return
 
 	if(!(istype(victim, /mob/living/simple_mob/xeno/slime)) )
-		to_chat(user, "<span class='danger'>This is not a suitable subject for the [src]!</span>")
+		to_chat(user, span_danger("This is not a suitable subject for the [src]!"))
 		return
 
-	user.visible_message("<span class='danger'>[user] starts to put [victim] into the [src]!</span>")
+	user.visible_message(span_danger("[user] starts to put [victim] into the [src]!"))
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
-		user.visible_message("<span class='danger'>[user] stuffs [victim] into the [src]!</span>")
+		user.visible_message(span_danger("[user] stuffs [victim] into the [src]!"))
 		if(victim.client)
 			victim.client.perspective = EYE_PERSPECTIVE
 			victim.client.eye = src

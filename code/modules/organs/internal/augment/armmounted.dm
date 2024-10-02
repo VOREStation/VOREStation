@@ -31,7 +31,7 @@
 				organ_tag = O_AUG_L_FOREARM
 				parent_organ = BP_L_ARM
 				target_slot = slot_l_hand
-		to_chat(user, "<span class='notice'>You swap \the [src]'s servos to install neatly into \the lower [parent_organ] mount.</span>")
+		to_chat(user, span_notice("You swap \the [src]'s servos to install neatly into \the lower [parent_organ] mount."))
 		return
 
 	. = ..()
@@ -76,7 +76,7 @@
 				organ_tag = O_AUG_L_HAND
 				parent_organ = BP_L_HAND
 				target_slot = slot_l_hand
-		to_chat(user, "<span class='notice'>You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount.</span>")
+		to_chat(user, span_notice("You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount."))
 		return
 
 	. = ..()
@@ -120,7 +120,7 @@
 				organ_tag = O_AUG_L_UPPERARM
 				parent_organ = BP_L_ARM
 				target_slot = slot_l_hand
-		to_chat(user, "<span class='notice'>You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount.</span>")
+		to_chat(user, span_notice("You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount."))
 		return
 
 	. = ..()

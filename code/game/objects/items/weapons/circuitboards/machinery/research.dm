@@ -14,15 +14,15 @@
 /obj/item/circuitboard/rdserver/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, I.usesound, 50, 1)
-		user.visible_message("<b>\The [user]</b> adjusts the jumper on \the [src]'s access protocol pins.", "<span class='notice'>You adjust the jumper on the access protocol pins.</span>")
+		user.visible_message("<b>\The [user]</b> adjusts the jumper on \the [src]'s access protocol pins.", span_notice("You adjust the jumper on the access protocol pins."))
 		if(build_path == /obj/machinery/r_n_d/server/core)
 			name = T_BOARD("RD Console - Robotics")
 			build_path = /obj/machinery/r_n_d/server/robotics
-			to_chat(user, "<span class='notice'>Access protocols set to robotics.</span>")
+			to_chat(user, span_notice("Access protocols set to robotics."))
 		else
 			name = T_BOARD("RD Console")
 			build_path = /obj/machinery/r_n_d/server/core
-			to_chat(user, "<span class='notice'>Access protocols set to default.</span>")
+			to_chat(user, span_notice("Access protocols set to default."))
 	return
 
 /obj/item/circuitboard/destructive_analyzer

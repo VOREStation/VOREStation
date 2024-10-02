@@ -110,7 +110,7 @@
 //		G.affecting = victim
 //		victim.LAssailant = src
 
-//		visible_message("<span class='warning'>\The [src] seizes \the [victim] aggressively!</span>")
+//		visible_message(span_warning("\The [src] seizes \the [victim] aggressively!"))
 //		do_attack_animation(victim)
 
 

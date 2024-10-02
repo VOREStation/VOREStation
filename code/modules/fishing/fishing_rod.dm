@@ -35,13 +35,13 @@
 /obj/item/material/fishing_rod/examine(mob/user)
 	. = ..()
 	if(Bait)
-		. += "<span class='notice'>It has [Bait] hanging on its hook: </span>"
+		. += span_notice("It has [Bait] hanging on its hook: ")
 		. += Bait.examine(user)
 
 /obj/item/material/fishing_rod/CtrlClick(mob/user)
 	if((src.loc == user || Adjacent(user)) && Bait)
 		Bait.forceMove(get_turf(user))
-		to_chat(user, "<span class='notice'>You remove the bait from \the [src].</span>")
+		to_chat(user, span_notice("You remove the bait from \the [src]."))
 		Bait = null
 	else
 		..()
@@ -53,24 +53,24 @@
 /obj/item/material/fishing_rod/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WIRECUTTER) && strung)
 		strung = FALSE
-		to_chat(user, "<span class='notice'>You cut \the [src]'s string!</span>")
+		to_chat(user, span_notice("You cut \the [src]'s string!"))
 		update_icon()
 		return
 	else if(istype(I, /obj/item/stack/cable_coil) && !strung)
 		var/obj/item/stack/cable_coil/C = I
 		if(C.get_amount() < 5)
-			to_chat(user, "<span class='warning'>You do not have enough length in \the [C] to string this!</span>")
+			to_chat(user, span_warning("You do not have enough length in \the [C] to string this!"))
 			return
 		if(do_after(user, rand(10 SECONDS, 20 SECONDS)))
 			C.use(5)
 			strung = TRUE
-			to_chat(user, "<span class='notice'>You string \the [src]!</span>")
+			to_chat(user, span_notice("You string \the [src]!"))
 			update_icon()
 			return
 	else if(istype(I, bait_type))
 		if(Bait)
 			Bait.forceMove(get_turf(user))
-			to_chat(user, "<span class='notice'>You swap \the [Bait] with \the [I].</span>")
+			to_chat(user, span_notice("You swap \the [Bait] with \the [I]."))
 		Bait = I
 		user.drop_from_inventory(Bait)
 		Bait.forceMove(src)
@@ -104,7 +104,7 @@
 
 /obj/item/material/fishing_rod/attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
 	if(cast)
-		to_chat(user, "<span class='notice'>You cannot cast \the [src] when it is already in use!</span>")
+		to_chat(user, span_notice("You cannot cast \the [src] when it is already in use!"))
 		return FALSE
 	update_bait()
 	return ..()

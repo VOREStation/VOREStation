@@ -16,7 +16,7 @@
 
 	var/turf/T = get_turf(usr)
 	if(!T || !(T.z in using_map.player_levels))
-		to_chat(usr, "<span class='warning'><b>Unable to establish a connection</b>: You're too far away from the station!</span>")
+		to_chat(usr, span_warning("<b>Unable to establish a connection</b>: You're too far away from the station!"))
 		return FALSE
 
 	switch(action)
@@ -36,7 +36,7 @@
 	var/list/map_levels = using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
 
 	if(!map_levels.len)
-		to_chat(user, "<span class='warning'>The crew monitor doesn't seem like it'll work here.</span>")
+		to_chat(user, span_warning("The crew monitor doesn't seem like it'll work here."))
 		if(ui)
 			ui.close()
 		return null

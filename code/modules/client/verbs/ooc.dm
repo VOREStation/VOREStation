@@ -4,7 +4,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, span_warning("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)	return
@@ -16,18 +16,18 @@
 	if(!msg)	return
 
 	if(!prefs?.read_preference(/datum/preference/toggle/show_ooc))
-		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
+		to_chat(src, span_warning("You have OOC muted."))
 		return
 
 	if(!holder)
 		if(!config.ooc_allowed)
-			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
+			to_chat(src, span_danger("OOC is globally muted."))
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(findtext(msg, "byond://") && !config.allow_byond_links)
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
@@ -63,7 +63,7 @@
 		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
 			ooc_style = "admin"
 
-	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
+	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))
 
 	for(var/client/target in GLOB.clients)
 		if(target.prefs?.read_preference(/datum/preference/toggle/show_ooc))
@@ -77,9 +77,9 @@
 					else
 						display_name = holder.fakekey
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				to_chat(target, "<span class='ooc'><font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></font></span>")
+				to_chat(target, span_ooc("<font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 			else
-				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>")
+				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> " + span_message(msg)))
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
@@ -87,7 +87,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)
@@ -102,18 +102,18 @@
 		return
 
 	if(!prefs?.read_preference(/datum/preference/toggle/show_looc))
-		to_chat(src, "<span class='danger'>You have LOOC muted.</span>")
+		to_chat(src, span_danger("You have LOOC muted."))
 		return
 
 	if(!holder)
 		if(!config.looc_allowed)
-			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
+			to_chat(src, span_danger("LOOC is globally muted."))
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_LOOC)
-			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(findtext(msg, "byond://") && !config.allow_byond_links)
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
@@ -172,7 +172,7 @@
 			if(check_rights(R_SERVER, FALSE, admin)) //Stop rLOOC showing for retired staff
 				r_receivers |= admin
 
-	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
+	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))
 
 	// Send a message
 	for(var/client/target in receivers)
@@ -181,12 +181,12 @@
 		if(target in GLOB.admins)
 			admin_stuff += "/([key])"
 
-		to_chat(target, "<span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, span_looc("" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 
-		to_chat(target, "<span class='rlooc'>" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, span_rlooc("" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
 
 /mob/proc/get_looc_source()
 	return src

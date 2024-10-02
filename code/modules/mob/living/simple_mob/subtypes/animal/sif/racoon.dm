@@ -83,14 +83,14 @@
 		hat = null
 		update_icon()
 		if(user == src)
-			to_chat(user, "<span class='notice'>You removed your hat.</span>")
+			to_chat(user, span_notice("You removed your hat."))
 			return
-		to_chat(user, "<span class='warning'>You removed \the [src]'s hat. You monster.</span>")
+		to_chat(user, span_warning("You removed \the [src]'s hat. You monster."))
 	else
 		if(user == src)
-			to_chat(user, "<span class='notice'>You are not wearing a hat!</span>")
+			to_chat(user, span_notice("You are not wearing a hat!"))
 			return
-		to_chat(user, "<span class='notice'>\The [src] is not wearing a hat!</span>")
+		to_chat(user, span_notice("\The [src] is not wearing a hat!"))
 
 /mob/living/simple_mob/animal/sif/sakimm/verb/give_hat()
 	set name = "Give Hat"
@@ -103,16 +103,16 @@
 /mob/living/simple_mob/animal/sif/sakimm/proc/take_hat(var/mob/user)
 	if(hat)
 		if(user == src)
-			to_chat(user, "<span class='notice'>You already have a hat!</span>")
+			to_chat(user, span_notice("You already have a hat!"))
 			return
-		to_chat(user, "<span class='notice'>\The [src] already has a hat!</span>")
+		to_chat(user, span_notice("\The [src] already has a hat!"))
 	else
 		if(user == src)
 			if(istype(get_active_hand(), /obj/item/clothing/head))
 				hat = get_active_hand()
 				drop_from_inventory(hat, src)
 				hat.forceMove(src)
-				to_chat(user, "<span class='notice'>You put on the hat.</span>")
+				to_chat(user, span_notice("You put on the hat."))
 				update_icon()
 			return
 		else if(ishuman(user))
@@ -125,10 +125,10 @@
 					a_intent = I_HELP
 					newhat.attack_hand(src)
 			else if(src.get_active_hand())
-				to_chat(user, "<span class='notice'>\The [src] seems busy with \the [get_active_hand()] already!</span>")
+				to_chat(user, span_notice("\The [src] seems busy with \the [get_active_hand()] already!"))
 
 			else
-				to_chat(user, "<span class='warning'>You aren't holding a hat...</span>")
+				to_chat(user, span_warning("You aren't holding a hat..."))
 
 /datum/say_list/sakimm
 	speak = list("Shurr.", "|R|rr?", "Hss.")

@@ -26,21 +26,21 @@
 	if(!changeling)	return 0
 
 	if(is_muzzled())
-		to_chat(src, "<span class='danger'>Mmmf mrrfff!</span>")
+		to_chat(src, span_danger("Mmmf mrrfff!"))
 		return 0
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.silent)
-			to_chat(src, "<span class='danger'>You can't speak!</span>")
+			to_chat(src, span_danger("You can't speak!"))
 			return 0
 
 	if(world.time < (changeling.last_shriek + 10 SECONDS) )
-		to_chat(src, "<span class='warning'>We are still recovering from our last shriek...</span>")
+		to_chat(src, span_warning("We are still recovering from our last shriek..."))
 		return 0
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>Shrieking here would be a bad idea.</span>")
+		to_chat(src, span_warning("Shrieking here would be a bad idea."))
 		return 0
 
 	src.break_cloak()	//No more invisible shrieking
@@ -49,9 +49,9 @@
 	var/range = 4
 	if(src.mind.changeling.recursive_enhancement)
 		range = range * 2
-		to_chat(src, "<span class='notice'>We are extra loud.</span>")
+		to_chat(src, span_notice("We are extra loud."))
 
-	visible_message("<span class='notice'>[src] appears to shout.</span>")
+	visible_message(span_notice("[src] appears to shout."))
 	var/list/affected = list()
 	for(var/mob/living/M in range(range, src))
 		if(iscarbon(M))
@@ -66,12 +66,12 @@
 				affected += M
 			else
 				if(M != src)
-					to_chat(M, "<span class='notice'>You hear a familiar screech from nearby.  It has no effect on you.</span>")
+					to_chat(M, span_notice("You hear a familiar screech from nearby.  It has no effect on you."))
 				M << sound('sound/effects/screech.ogg')
 
 		if(issilicon(M))
 			M << sound('sound/weapons/flash.ogg')
-			to_chat(M, "<span class='notice'>Auditory input overloaded.  Reinitializing...</span>")
+			to_chat(M, span_notice("Auditory input overloaded.  Reinitializing..."))
 			M.Weaken(rand(5,10))
 			affected += M
 
@@ -95,21 +95,21 @@
 	if(!changeling)	return 0
 
 	if(is_muzzled())
-		to_chat(src, "<span class='danger'>Mmmf mrrfff!</span>")
+		to_chat(src, span_danger("Mmmf mrrfff!"))
 		return 0
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.silent)
-			to_chat(src, "<span class='danger'>You can't speak!</span>")
+			to_chat(src, span_danger("You can't speak!"))
 			return 0
 
 	if(world.time < (changeling.last_shriek + 10 SECONDS) )
-		to_chat(src, "<span class='warning'>We are still recovering from our last shriek...</span>")
+		to_chat(src, span_warning("We are still recovering from our last shriek..."))
 		return 0
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>Shrieking here would be a bad idea.</span>")
+		to_chat(src, span_warning("Shrieking here would be a bad idea."))
 		return 0
 
 	src.break_cloak()	//No more invisible shrieking
@@ -125,10 +125,10 @@
 		range_med = range_med * 2
 		range_light = range_light * 2
 		range_long = range_long * 2
-		to_chat(src, "<span class='notice'>We are extra loud.</span>")
+		to_chat(src, span_notice("We are extra loud."))
 		src.mind.changeling.recursive_enhancement = 0
 
-	visible_message("<span class='notice'>[src] appears to shout.</span>")
+	visible_message(span_notice("[src] appears to shout."))
 
 	add_attack_logs(src,null,"Use dissonant shriek")
 

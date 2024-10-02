@@ -57,7 +57,7 @@
 	var/obj/item/clothing/head/helmet/space/rig/helmet = holder.helmet
 	var/obj/item/clothing/gloves/gauntlets/rig/gloves = holder.gloves
 
-	to_chat(H, "<span class='danger'>You deactivate your suit's powered radiation shielding.</span>")
+	to_chat(H, span_danger("You deactivate your suit's powered radiation shielding."))
 
 	if(boots)
 		boots.armor["rad"] = stored_rad_armor
@@ -145,7 +145,7 @@
 	var/obj/item/clothing/head/helmet/space/rig/helmet = holder.helmet
 	var/obj/item/clothing/gloves/gauntlets/rig/gloves = holder.gloves
 
-	to_chat(H, "<span class='danger'><b>You deactivate your suit's powered atmospheric shielding.</b></span>")
+	to_chat(H, span_danger("<b>You deactivate your suit's powered atmospheric shielding.</b>"))
 
 	if(boots)
 		boots.max_pressure_protection = stored_max_pressure

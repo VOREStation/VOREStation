@@ -100,20 +100,20 @@
 
 		var/obj/machinery/portable_atmospherics/hydroponics/H = target
 		if(H.frozen == 1)
-			to_chat(user, "<span class='warning'>Disable the cryogenic freezing first!</span>")
+			to_chat(user, span_warning("Disable the cryogenic freezing first!"))
 			return
 		grown_seed = H.seed
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		to_chat(user, "<span class='danger'>[src] can tell you nothing about \the [target].</span>")
+		to_chat(user, span_danger("[src] can tell you nothing about \the [target]."))
 		return
 
 	last_seed = grown_seed.diverge()
 	if(!istype(last_seed))
 		last_seed = grown_seed // TRAIT_IMMUTABLE makes diverge() return null
 
-	user.visible_message("<span class='notice'>[user] runs the scanner over \the [target].</span>")
+	user.visible_message(span_notice("[user] runs the scanner over \the [target]."))
 
 	last_reagents = list()
 	if(grown_reagents && grown_reagents.reagent_list && grown_reagents.reagent_list.len)
@@ -137,7 +137,7 @@
 /obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
 	var/datum/seed/grown_seed = last_seed
 	if(!istype(grown_seed))
-		to_chat(user, "<span class='warning'>There is no scan data to print.</span>")
+		to_chat(user, span_warning("There is no scan data to print."))
 		return
 
 	var/form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"

@@ -12,7 +12,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	var/charge_max = 100 //recharge time in deciseconds if charge_type = Sp_RECHARGE or starting charges if charge_type = Sp_CHARGES
 	var/charge_counter = 0 //can only cast spells if it equals recharge, ++ each decisecond if charge_type = Sp_RECHARGE or -- each cast if charge_type = Sp_CHARGES
-	var/still_recharging_msg = "<span class='notice'>The spell is still recharging.</span>"
+	var/still_recharging_msg = span_notice("The spell is still recharging.")
 
 	var/silenced = 0 //not a binary - the length of time we can't cast this for
 
@@ -61,7 +61,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 /spell/New()
 	..()
 
-	//still_recharging_msg = "<span class='notice'>[name] is still recharging.</span>"
+	//still_recharging_msg = span_notice("[name] is still recharging.")
 	charge_counter = charge_max
 
 /spell/process()
@@ -180,7 +180,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	if(!(src in user.spell_list) && holder == user)
 		error("[user] utilized the spell '[src]' without having it.")
-		to_chat(user, "<span class='warning'>You shouldn't have this spell! Something's wrong.</span>")
+		to_chat(user, span_warning("You shouldn't have this spell! Something's wrong."))
 		return 0
 
 	if(silenced > 0)
@@ -188,7 +188,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	var/turf/user_turf = get_turf(user)
 	if(!user_turf)
-		to_chat(user, "<span class='warning'>You cannot cast spells in null space!</span>")
+		to_chat(user, span_warning("You cannot cast spells in null space!"))
 
 	if(spell_flags & Z2NOCAST && (user_turf.z in using_map.admin_levels)) //Certain spells are not allowed on the CentCom zlevel
 		return 0
@@ -201,7 +201,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	if(istype(user, /mob/living/simple_mob) && holder == user)
 		var/mob/living/simple_mob/SM = user
 		if(SM.purge)
-			to_chat(SM, "<span class='warning'>The nullrod's power interferes with your own!</span>")
+			to_chat(SM, span_warning("The nullrod's power interferes with your own!"))
 			return 0
 
 	if(!src.check_charge(skipcharge, user)) //sees if we can cast based on charges alone
@@ -233,7 +233,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 					return 0
 			if(Sp_CHARGES)
 				if(!charge_counter)
-					to_chat(user, "<span class='notice'>[name] has no charges left.</span>")
+					to_chat(user, span_notice("[name] has no charges left."))
 					return 0
 	return 1
 

@@ -47,7 +47,7 @@ var/global/list/active_radio_jammers = list()
 
 /obj/item/radio_jammer/proc/turn_off(mob/user)
 	if(user)
-		to_chat(user,"<span class='warning'>\The [src] deactivates.</span>")
+		to_chat(user,span_warning("\The [src] deactivates."))
 	STOP_PROCESSING(SSobj, src)
 	active_radio_jammers -= src
 	on = FALSE
@@ -55,7 +55,7 @@ var/global/list/active_radio_jammers = list()
 
 /obj/item/radio_jammer/proc/turn_on(mob/user)
 	if(user)
-		to_chat(user,"<span class='notice'>\The [src] is now active.</span>")
+		to_chat(user,span_notice("\The [src] is now active."))
 	START_PROCESSING(SSobj, src)
 	active_radio_jammers += src
 	on = TRUE
@@ -74,7 +74,7 @@ var/global/list/active_radio_jammers = list()
 
 /obj/item/radio_jammer/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && power_source)
-		to_chat(user,"<span class='notice'>You eject \the [power_source] from \the [src].</span>")
+		to_chat(user,span_notice("You eject \the [power_source] from \the [src]."))
 		user.put_in_hands(power_source)
 		power_source = null
 		turn_off()
@@ -88,7 +88,7 @@ var/global/list/active_radio_jammers = list()
 		if(power_source)
 			turn_on(user)
 		else
-			to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
+			to_chat(user,span_warning("\The [src] has no power source!"))
 
 /obj/item/radio_jammer/attackby(obj/W, mob/user)
 	if(istype(W,/obj/item/cell/device/weapon) && !power_source)
@@ -97,7 +97,7 @@ var/global/list/active_radio_jammers = list()
 		user.unEquip(power_source)
 		power_source.forceMove(src)
 		update_icon()
-		to_chat(user,"<span class='notice'>You insert \the [power_source] into \the [src].</span>")
+		to_chat(user,span_notice("You insert \the [power_source] into \the [src]."))
 
 /obj/item/radio_jammer/update_icon()
 	if(on)

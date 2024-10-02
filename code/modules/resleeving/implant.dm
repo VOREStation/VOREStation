@@ -85,14 +85,14 @@
 		return
 
 	if(imps.len)
-		to_chat(user, "<span class='notice'>You eject a backup implant.</span>")
+		to_chat(user, span_notice("You eject a backup implant."))
 		var/obj/item/implant/backup/imp = imps[imps.len]
 		imp.forceMove(get_turf(user))
 		imps -= imp
 		user.put_in_any_hand_if_possible(imp)
 		update()
 	else
-		to_chat(user, "<span class='warning'>\The [src] is empty.</span>")
+		to_chat(user, span_warning("\The [src] is empty."))
 
 	return
 
@@ -104,15 +104,15 @@
 			W.germ_level = 0
 			W.forceMove(src)
 			update()
-			to_chat(user, "<span class='notice'>You load \the [W] into \the [src].</span>")
+			to_chat(user, span_notice("You load \the [W] into \the [src]."))
 		else
-			to_chat(user, "<span class='warning'>\The [src] is already full!</span>")
+			to_chat(user, span_warning("\The [src] is already full!"))
 
 /obj/item/backup_implanter/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob/living/carbon))
 		return
 	if (user && imps.len)
-		M.visible_message("<span class='notice'>[user] is injecting a backup implant into [M].</span>")
+		M.visible_message(span_notice("[user] is injecting a backup implant into [M]."))
 
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 		user.do_attack_animation(M)
@@ -120,7 +120,7 @@
 		var/turf/T1 = get_turf(M)
 		if (T1 && ((M == user) || do_after(user, 5 SECONDS, M)))
 			if(user && M && (get_turf(M) == T1) && src && src.imps.len)
-				M.visible_message("<span class='notice'>[M] has been backup implanted by [user].</span>")
+				M.visible_message(span_notice("[M] has been backup implanted by [user]."))
 
 				var/obj/item/implant/backup/imp = imps[imps.len]
 				if(imp.handle_implant(M,user.zone_sel.selecting))

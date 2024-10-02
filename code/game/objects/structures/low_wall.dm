@@ -62,15 +62,15 @@
 	. = ..()
 
 	if(health == material.integrity)
-		to_chat(user, "<span class='notice'>It seems to be in fine condition.</span>")
+		to_chat(user, span_notice("It seems to be in fine condition."))
 	else
 		var/dam = health / material.integrity
 		if(dam <= 0.3)
-			to_chat(user, "<span class='notice'>It's got a few dents and scratches.</span>")
+			to_chat(user, span_notice("It's got a few dents and scratches."))
 		else if(dam <= 0.7)
-			to_chat(user, "<span class='warning'>A few pieces of panelling have fallen off.</span>")
+			to_chat(user, span_warning("A few pieces of panelling have fallen off."))
 		else
-			to_chat(user, "<span class='danger'>It's nearly falling to pieces.</span>")
+			to_chat(user, span_danger("It's nearly falling to pieces."))
 
 /obj/structure/low_wall/attackby(var/obj/item/W, var/mob/user, var/hit_modifier, var/click_parameters)
 	src.add_fingerprint(user)
@@ -89,15 +89,15 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		for(var/obj/structure/S in loc)
 			if(istype(S, /obj/structure/window))
-				to_chat(user, "<span class='notice'>There is still a window on the low wall!</span>")
+				to_chat(user, span_notice("There is still a window on the low wall!"))
 				return
 			else if(istype(S, /obj/structure/grille))
-				to_chat(user, "<span class='notice'>There is still a grille on the low wall!</span>")
+				to_chat(user, span_notice("There is still a grille on the low wall!"))
 				return
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		to_chat(user, "<span class='notice'>Now disassembling the low wall...</span>")
+		to_chat(user, span_notice("Now disassembling the low wall..."))
 		if(do_after(user, 40, src))
-			to_chat(user, "<span class='notice'>You dissasembled the low wall!</span>")
+			to_chat(user, span_notice("You dissasembled the low wall!"))
 			dismantle()
 			return
 
@@ -133,7 +133,7 @@
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		if(Adjacent(W) && !W.anchored)
-			to_chat(user, "<span class='notice'>You hoist [W] up onto [src].</span>")
+			to_chat(user, span_notice("You hoist [W] up onto [src]."))
 			W.forceMove(loc)
 			return
 	if(isrobot(user))
@@ -163,16 +163,16 @@
 
 /obj/structure/low_wall/proc/handle_rod_use(mob/user, obj/item/stack/rods/R)
 	if(!grille_type)
-		to_chat(user, "<span class='notice'>This type of wall frame doesn't support grilles.</span>")
+		to_chat(user, span_notice("This type of wall frame doesn't support grilles."))
 		return
 	for(var/obj/structure/window/WINDOW in loc)
 		if(WINDOW.dir == get_dir(src, user))
-			to_chat(user, "<span class='notice'>There is a window in the way.</span>")
+			to_chat(user, span_notice("There is a window in the way."))
 			return
 	if(R.get_amount() < 2)
-		to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
+		to_chat(user, span_warning("You need at least two rods to do this."))
 		return
-	to_chat(user, "<span class='notice'>Assembling grille...</span>")
+	to_chat(user, span_notice("Assembling grille..."))
 	if(!do_after(user, 1 SECONDS, R, exclusive = TASK_ALL_EXCLUSIVE))
 		return
 	if(!R.use(2))
@@ -183,16 +183,16 @@
 /obj/structure/low_wall/proc/handle_glass_use(mob/user, obj/item/stack/material/glass/G)
 	var/window_type = get_window_build_type(user, G)
 	if(!window_type)
-		to_chat(user, "<span class='notice'>You can't build that type of window on this type of low wall.</span>")
+		to_chat(user, span_notice("You can't build that type of window on this type of low wall."))
 		return
 	for(var/obj/structure/window/WINDOW in loc)
 		if(WINDOW.dir == get_dir(src, user))
-			to_chat(user, "<span class='notice'>There is already a window here.</span>")
+			to_chat(user, span_notice("There is already a window here."))
 			return
 	if(G.get_amount() < 4)
-		to_chat(user, "<span class='warning'>You need at least four sheets of glass to do this.</span>")
+		to_chat(user, span_warning("You need at least four sheets of glass to do this."))
 		return
-	to_chat(user, "<span class='notice'>Assembling window...</span>")
+	to_chat(user, span_notice("Assembling window..."))
 	if(!do_after(user, 4 SECONDS, G, exclusive = TASK_ALL_EXCLUSIVE))
 		return
 	if(!G.use(4))
@@ -277,7 +277,7 @@
 		dismantle()
 
 /obj/structure/low_wall/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	user.do_attack_animation(src)
 	take_damage(damage)
 	return ..()

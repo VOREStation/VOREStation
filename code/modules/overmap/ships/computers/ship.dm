@@ -22,7 +22,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		return
 	. = attempt_hook_up_recursive(sector)
 	if(. && linked && user)
-		to_chat(user, "<span class='notice'>[src] reconnected to [linked]</span>")
+		to_chat(user, span_notice("[src] reconnected to [linked]"))
 		user << browse(null, "window=[src]") // close reconnect dialog
 
 /obj/machinery/computer/ship/proc/attempt_hook_up_recursive(obj/effect/overmap/visitable/ship/sector)

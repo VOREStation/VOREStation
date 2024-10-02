@@ -108,12 +108,12 @@
 
 		if("remove_cell")
 			if(!battery)
-				to_chat(usr, "<span class='warning'>There's no power cell to remove from \the [src].</span>")
+				to_chat(usr, span_warning("There's no power cell to remove from \the [src]."))
 				return FALSE
 			var/turf/T = get_turf(src)
 			battery.forceMove(T)
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-			to_chat(usr, "<span class='notice'>You pull \the [battery] out of \the [src]'s power supplier.</span>")
+			to_chat(usr, span_notice("You pull \the [battery] out of \the [src]'s power supplier."))
 			battery = null
 			return TRUE
 
@@ -141,9 +141,9 @@
 				if(D.accepting_refs)
 					D.afterattack(C, usr, TRUE)
 				else
-					to_chat(usr, "<span class='warning'>The Debugger's 'ref scanner' needs to be on.</span>")
+					to_chat(usr, span_warning("The Debugger's 'ref scanner' needs to be on."))
 			else
-				to_chat(usr, "<span class='warning'>You need a multitool/debugger set to 'ref' mode to do that.</span>")
+				to_chat(usr, span_warning("You need a multitool/debugger set to 'ref' mode to do that."))
 			return TRUE
 
 		if("remove_circuit")
@@ -175,7 +175,7 @@
 
 	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(src && input)
-		to_chat(M, "<span class='notice'>The machine now has a label reading '[input]'.</span>")
+		to_chat(M, span_notice("The machine now has a label reading '[input]'."))
 		name = input
 
 /obj/item/electronic_assembly/proc/can_move()
@@ -227,21 +227,21 @@
 // Returns true if the circuit made it inside.
 /obj/item/electronic_assembly/proc/add_circuit(var/obj/item/integrated_circuit/IC, var/mob/user)
 	if(!opened)
-		to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>")
+		to_chat(user, span_warning("\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar."))
 		return FALSE
 
 	if(IC.w_class > src.w_class)
-		to_chat(user, "<span class='warning'>\The [IC] is way too big to fit into \the [src].</span>")
+		to_chat(user, span_warning("\The [IC] is way too big to fit into \the [src]."))
 		return FALSE
 
 	var/total_part_size = get_part_size()
 	var/total_complexity = get_part_complexity()
 
 	if((total_part_size + IC.size) > max_components)
-		to_chat(user, "<span class='warning'>You can't seem to add the '[IC.name]', as there's insufficient space.</span>")
+		to_chat(user, span_warning("You can't seem to add the '[IC.name]', as there's insufficient space."))
 		return FALSE
 	if((total_complexity + IC.complexity) > max_complexity)
-		to_chat(user, "<span class='warning'>You can't seem to add the '[IC.name]', since this setup's too complicated for the case.</span>")
+		to_chat(user, span_warning("You can't seem to add the '[IC.name]', since this setup's too complicated for the case."))
 		return FALSE
 
 	if(!IC.forceMove(src))
@@ -282,7 +282,7 @@
 		if(!user.unEquip(I) && !istype(user, /mob/living/silicon/robot)) //Robots cannot de-equip items in grippers.
 			return FALSE
 		if(add_circuit(I, user))
-			to_chat(user, "<span class='notice'>You slide \the [I] inside \the [src].</span>")
+			to_chat(user, span_notice("You slide \the [I] inside \the [src]."))
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			tgui_interact(user)
 			return TRUE
@@ -290,7 +290,7 @@
 	else if(I.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
-		to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
+		to_chat(user, span_notice("You [opened ? "opened" : "closed"] \the [src]."))
 		update_icon()
 		return TRUE
 
@@ -310,17 +310,17 @@
 
 	else if(istype(I, /obj/item/cell/device))
 		if(!opened)
-			to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>")
+			to_chat(user, span_warning("\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar."))
 			return FALSE
 		if(battery)
-			to_chat(user, "<span class='warning'>\The [src] already has \a [battery] inside.  Remove it first if you want to replace it.</span>")
+			to_chat(user, span_warning("\The [src] already has \a [battery] inside.  Remove it first if you want to replace it."))
 			return FALSE
 		var/obj/item/cell/device/cell = I
 		user.drop_item(cell)
 		cell.forceMove(src)
 		battery = cell
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>")
+		to_chat(user, span_notice("You slot \the [cell] inside \the [src]'s power supplier."))
 		tgui_interact(user)
 		return TRUE
 

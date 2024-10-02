@@ -83,13 +83,13 @@
 	if(protean_brain)
 		. += "It currently has a protean positronic brain."
 		if(!protean_brain.brainmob.client)
-			. += "<span class='warning'>The positronic brain appears to be inactive!</span>"
+			. += span_warning("The positronic brain appears to be inactive!")
 	. += "The readout shows that it has [nanomass_reserve] units of nanites ready for use. It requires [nanomass_required] per \'revive\' process, and has a maximum capacity of [nanotank_max] units."
 
 /obj/machinery/protean_reconstitutor/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(processing_revive)
-		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
+		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
 		playsound(src, buzzsound, 100, 1, -1)
 		return
 
@@ -103,21 +103,21 @@
 	if(istype(W,/obj/item/mmi/digital/posibrain/nano))
 		var/obj/item/mmi/digital/posibrain/nano/NB = W
 		if(!NB.brainmob.client)
-			to_chat(user,"<span class='warning'>You cannot use an inactive positronic brain for this process.</span>")
+			to_chat(user,span_warning("You cannot use an inactive positronic brain for this process."))
 			return
-		to_chat(user,"<span class='notice'>You slot \the [NB] into \the [src].</span>")
+		to_chat(user,span_notice("You slot \the [NB] into \the [src]."))
 		user.drop_from_inventory(NB)
 		NB.loc = src
 		protean_brain = NB
 
 	if(istype(W,/obj/item/organ/internal/nano/orchestrator))
-		to_chat(user,"<span class='notice'>You slot \the [W] into \the [src].</span>")
+		to_chat(user,span_notice("You slot \the [W] into \the [src]."))
 		user.drop_from_inventory(W)
 		W.loc = src
 		protean_orchestrator = W
 
 	if(istype(W,/obj/item/organ/internal/nano/refactory))
-		to_chat(user,"<span class='notice'>You slot \the [W] into \the [src].</span>")
+		to_chat(user,span_notice("You slot \the [W] into \the [src]."))
 		user.drop_from_inventory(W)
 		W.loc = src
 		protean_refactory = W
@@ -125,12 +125,12 @@
 	if(istype(W,/obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/NP = W
 		if(nanomass_reserve >= nanotank_max)
-			to_chat(user,"<span class='notice'>The tank is full!</span>")
+			to_chat(user,span_notice("The tank is full!"))
 			return
 		nanomass_reserve += NP.amount * max(1,NP.mech_repair / paste_inefficiency)
 		if(nanomass_reserve > nanotank_max)
 			nanomass_reserve = nanotank_max
-		to_chat(user,"<span class='notice'>You fill \the [src] with paste from \the [NP]. The display now reads [nanomass_reserve]/[nanotank_max] units.</span>")
+		to_chat(user,span_notice("You fill \the [src] with paste from \the [NP]. The display now reads [nanomass_reserve]/[nanotank_max] units."))
 		qdel(NP)
 
 	if(W.has_tool_quality(TOOL_WRENCH))
@@ -162,21 +162,21 @@
 /obj/machinery/protean_reconstitutor/attack_hand(mob/user as mob)
 	if(!protean_brain || !protean_orchestrator || !protean_refactory || (nanomass_reserve < nanomass_required))
 		//no brain, no orchestrator, and/or not enough goo
-		to_chat(user,"<span class='warning'>Essential components missing, or insufficient materials available!</span>")
+		to_chat(user,span_warning("Essential components missing, or insufficient materials available!"))
 		playsound(src, buzzsound, 100, 1, -1)
 		update_icon()
 		return
 	if(processing_revive)
 		//we're currently processing a patient, chill out!
-		src.visible_message("<span class='notice'>\The [src] chirps, \"Reconstitution cycle currently in progress, please wait!\"</span>")
+		src.visible_message(span_notice("\The [src] chirps, \"Reconstitution cycle currently in progress, please wait!\""))
 		playsound(src, buzzsound, 100, 1, -1)
 		return
 	if(!protean_brain.brainmob.client)
-		src.visible_message("<span class='warning'>\The [src] chirps, \"Warning, no positronic neural network activity detected! Recommend removing inactive core.\"</span>")
+		src.visible_message(span_warning("\The [src] chirps, \"Warning, no positronic neural network activity detected! Recommend removing inactive core.\""))
 		return
 	else if(!processing_revive && protean_brain && protean_orchestrator && protean_refactory && (nanomass_reserve >= nanomass_required))
 		//we're good, let's get recombobulating!
-		src.visible_message("<span class='notice'>[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: five minutes.\"</span>")
+		src.visible_message(span_notice("[user] initializes \the [src]. It chirps, \"Please stand by, synchronizing components... estimated time to completion: five minutes.\""))
 		processing_revive = TRUE
 		power_change()
 		if(prob(2))
@@ -195,7 +195,7 @@
 			sleep(per_organ_delay)
 			var/obj/item/O = P.internal_organs_by_name[organ]
 			if(istype(O,/obj/item/organ/internal/nano/refactory))
-				src.visible_message("<span class='notice'>\The [src] chirps, \"Initializing refactory...\"</span>")
+				src.visible_message(span_notice("\The [src] chirps, \"Initializing refactory...\""))
 				P.internal_organs_by_name.Remove(O)
 				P.contents.Remove(O)
 				qdel(O)
@@ -206,7 +206,7 @@
 				mats_cached = TRUE
 				protean_refactory.loc = P
 			if(istype(O,/obj/item/organ/internal/nano/orchestrator))
-				src.visible_message("<span class='notice'>\The [src] chirps, \"Linking nanoswarm to orchestrator...\"</span>")
+				src.visible_message(span_notice("\The [src] chirps, \"Linking nanoswarm to orchestrator...\""))
 				P.internal_organs_by_name.Remove(O)
 				P.internal_organs.Remove(O)
 				P.contents.Remove(O)
@@ -215,10 +215,10 @@
 				P.internal_organs.Add(protean_orchestrator)
 				protean_orchestrator.loc = P
 			if(istype(O,/obj/item/organ/internal/mmi_holder/posibrain/nano))
-				src.visible_message("<span class='notice'>\The [src] chirps, \"Synchronizing positronic neural architecture...\"</span>")
+				src.visible_message(span_notice("\The [src] chirps, \"Synchronizing positronic neural architecture...\""))
 				//on the offchance our client blipped before getting to this step, abort, schloop the organs back into the machine, dissolve the body, and refund the nanos
 				if(!protean_brain.brainmob.client)
-					src.visible_message("<span class='warning'>\The [src] buzzes, \"No positronic neural activity detected! Aborting cycle!\"</span>")
+					src.visible_message(span_warning("\The [src] buzzes, \"No positronic neural activity detected! Aborting cycle!\""))
 					playsound(src, buzzsound, 100, 1, -1)
 					processing_revive = FALSE
 					qdel(P)
@@ -283,7 +283,7 @@
 		new_nif.quick_implant(P)
 		//revive complete, now restore the cached mats (if we had any)
 		if(mats_cached == TRUE)
-			src.visible_message("<span class='notice'>\The [src] chirps, \"Reindexing archived refactory materials storage.\"</span>")
+			src.visible_message(span_notice("\The [src] chirps, \"Reindexing archived refactory materials storage.\""))
 			for(var/organ in P.internal_organs_by_name)
 				var/obj/item/O = P.internal_organs_by_name[organ]
 				if(istype(O,/obj/item/organ/internal/nano/refactory))
@@ -292,8 +292,8 @@
 					materials_cache.Cut()
 					mats_cached = FALSE
 		//finally... drop them in front of the machine
-		src.visible_message("<span class='notice'>\The [src] chirps, \"Protean reconstitution cycle complete!\"</span>")
-		to_chat(P,"<span class='notice'>You feel your sense of self expanding, spreading out to inhabit your new \'body\'. You feel... <i><b>ALIVE!</b></i></span>")
+		src.visible_message(span_notice("\The [src] chirps, \"Protean reconstitution cycle complete!\""))
+		to_chat(P,span_notice("You feel your sense of self expanding, spreading out to inhabit your new \'body\'. You feel... <i><b>ALIVE!</b></i>"))
 		playsound(src, dingsound, 100, 1, -1)	//soup's on!
 		P.loc = src.loc
 		processing_revive = FALSE

@@ -10,7 +10,7 @@
 	confirm_before_open = TRUE
 
 /obj/structure/ghost_pod/manual/corgi/trigger()
-	..("<span class='warning'>\The [usr] places their hand on the rune!</span>", "is attempting to summon a corgi.")
+	..(span_warning("\The [usr] places their hand on the rune!"), "is attempting to summon a corgi.")
 
 /obj/structure/ghost_pod/manual/corgi/create_occupant(var/mob/M)
 	lightning_strike(get_turf(src), cosmetic = TRUE)
@@ -18,9 +18,9 @@
 	var/mob/living/simple_mob/animal/passive/dog/corgi/R = new(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(R)
-	to_chat(M, "<span class='notice'>You are a <b>Corgi</b>! Woof!</span>")
+	to_chat(M, span_notice("You are a <b>Corgi</b>! Woof!"))
 	R.ckey = M.ckey
-	visible_message("<span class='warning'>With a bright flash of light, \the [src] disappears, and in its place stands a small corgi.</span>")
+	visible_message(span_warning("With a bright flash of light, \the [src] disappears, and in its place stands a small corgi."))
 	log_and_message_admins("successfully touched \a [src] and summoned a corgi.")
 	..()
 
@@ -35,7 +35,7 @@
 	confirm_before_open = TRUE
 
 /obj/structure/ghost_pod/manual/cursedblade/trigger()
-	..("<span class='warning'>\The [usr] attempts to pull out the sword!</span>", "is activating a cursed blade.")
+	..(span_warning("\The [usr] attempts to pull out the sword!"), "is activating a cursed blade.")
 
 /obj/structure/ghost_pod/manual/cursedblade/create_occupant(var/mob/M)
 	density = FALSE
@@ -45,6 +45,6 @@
 	your body was reduced to ashes and your soul was cursed to remain trapped in the blade forever. \
 	Now it is up to you to decide whether you want to be a faithful companion, or a bitter prisoner of the blade.</span>")
 	R.ghost_inhabit(M)
-	visible_message("<span class='warning'>The blade shines brightly for a brief moment as [usr] pulls it out of the stone!</span>")
+	visible_message(span_warning("The blade shines brightly for a brief moment as [usr] pulls it out of the stone!"))
 	log_and_message_admins("successfully acquired a cursed sword.")
 	..()

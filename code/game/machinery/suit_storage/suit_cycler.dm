@@ -153,14 +153,14 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			return
 
 		if(locked)
-			to_chat(user, "<span class='danger'>The suit cycler is locked.</span>")
+			to_chat(user, span_danger("The suit cycler is locked."))
 			return
 
 		if(contents.len > 0)
-			to_chat(user, "<span class='danger'>There is no room inside the cycler for [G.affecting.name].</span>")
+			to_chat(user, span_danger("There is no room inside the cycler for [G.affecting.name]."))
 			return
 
-		visible_message("<span class='notice'>[user] starts putting [G.affecting.name] into the suit cycler.</span>", 3)
+		visible_message(span_notice("[user] starts putting [G.affecting.name] into the suit cycler."), 3)
 
 		if(do_after(user, 20))
 			if(!G || !G.affecting) return
@@ -189,15 +189,15 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		var/obj/item/clothing/head/helmet/space/void/IH = I
 
 		if(locked)
-			to_chat(user, "<span class='danger'>The suit cycler is locked.</span>")
+			to_chat(user, span_danger("The suit cycler is locked."))
 			return
 
 		if(helmet)
-			to_chat(user, "<span class='danger'>The cycler already contains a helmet.</span>")
+			to_chat(user, span_danger("The cycler already contains a helmet."))
 			return
 
 		if(IH.no_cycle)
-			to_chat(user, "<span class='danger'>That item is not compatible with the cycler's protocols.</span>")
+			to_chat(user, span_danger("That item is not compatible with the cycler's protocols."))
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
@@ -229,15 +229,15 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		var/obj/item/clothing/suit/space/void/IS = I
 
 		if(locked)
-			to_chat(user, "<span class='danger'>The suit cycler is locked.</span>")
+			to_chat(user, span_danger("The suit cycler is locked."))
 			return
 
 		if(suit)
-			to_chat(user, "<span class='danger'>The cycler already contains a voidsuit.</span>")
+			to_chat(user, span_danger("The cycler already contains a voidsuit."))
 			return
 
 		if(IS.no_cycle)
-			to_chat(user, "<span class='danger'>That item is not compatible with the cycler's protocols.</span>")
+			to_chat(user, span_danger("That item is not compatible with the cycler's protocols."))
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
@@ -269,11 +269,11 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 /obj/machinery/suit_cycler/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged)
-		to_chat(user, "<span class='danger'>The cycler has already been subverted.</span>")
+		to_chat(user, span_danger("The cycler has already been subverted."))
 		return
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
-	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
+	to_chat(user, span_danger("You run the sequencer across the interface, corrupting the operating protocols."))
 
 	emagged = 1
 	safeties = 0
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 				locked = !locked
 				to_chat(usr, "You [locked ? "" : "un"]lock \the [src].")
 			else
-				to_chat(usr, "<span class='danger'>Access denied.</span>")
+				to_chat(usr, span_danger("Access denied."))
 			. = TRUE
 
 		if("eject_guy")
@@ -422,7 +422,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 		if("uv")
 			if(safeties && occupant)
-				to_chat(usr, "<span class='danger'>The cycler has detected an occupant. Please remove the occupant before commencing the decontamination cycle.</span>")
+				to_chat(usr, span_danger("The cycler has detected an occupant. Please remove the occupant before commencing the decontamination cycle."))
 				return
 
 			active = 1
@@ -505,7 +505,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
 
 	if(locked || active)
-		to_chat(user, "<span class='warning'>The cycler is locked.</span>")
+		to_chat(user, span_warning("The cycler is locked."))
 		return
 
 	if(!occupant)

@@ -251,7 +251,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	wind_high = 2
 	wind_low = 1
 	light_modifier = 0.5
-	effect_message = "<span class='warning'>Rain falls on you.</span>"
+	effect_message = span_warning("Rain falls on you.")
 
 	transition_chances = list(
 		WEATHER_OVERCAST = 25,
@@ -280,7 +280,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 			if(istype(U) && U.open)
 				if(show_message)
-					to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
+					to_chat(L, span_notice("Rain patters softly onto your umbrella."))
 				continue
 
 			L.water_act(1)
@@ -294,7 +294,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	wind_low = 2
 	light_modifier = 0.3
 	flight_failure_modifier = 10
-	effect_message = "<span class='warning'>Rain falls on you, drenching you in water.</span>"
+	effect_message = span_warning("Rain falls on you, drenching you in water.")
 
 	var/next_lightning_strike = 0 // world.time when lightning will strike.
 	var/min_lightning_cooldown = 5 SECONDS
@@ -330,7 +330,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 			if(istype(U) && U.open)
 				if(show_message)
-					to_chat(L, "<span class='notice'>Rain showers loudly onto your umbrella!</span>")
+					to_chat(L, span_notice("Rain showers loudly onto your umbrella!"))
 				continue
 
 
@@ -356,7 +356,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	flight_failure_modifier = 15
 	timer_low_bound = 2
 	timer_high_bound = 5
-	effect_message = "<span class='warning'>The hail smacks into you!</span>"
+	effect_message = span_warning("The hail smacks into you!")
 
 	transition_chances = list(
 		WEATHER_HAIL = 10,
@@ -386,7 +386,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 			if(istype(U) && U.open)
 				if(show_message)
-					to_chat(H, "<span class='notice'>Hail patters onto your umbrella.</span>")
+					to_chat(H, span_notice("Hail patters onto your umbrella."))
 				continue
 
 			var/target_zone = pick(BP_ALL)
