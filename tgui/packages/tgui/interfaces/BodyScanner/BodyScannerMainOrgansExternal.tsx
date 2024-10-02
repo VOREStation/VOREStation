@@ -51,18 +51,17 @@ export const BodyScannerMainOrgansExternal = (props: {
                   inline
                 >
                   {!!o.bruteLoss && (
-                    <Box inline position="relative">
+                    <Tooltip content="Brute damage" position="top">
                       <Icon name="bone" />
                       {toFixed(o.bruteLoss)}&nbsp;
-                      <Tooltip position="top" content="Brute damage" />
-                    </Box>
+                    </Tooltip>
                   )}
                   {!!o.fireLoss && (
-                    <Box inline position="relative">
+                    <Tooltip content="Burn damage" position="top">
                       <Icon name="fire" />
                       {toFixed(o.fireLoss)}
                       <Tooltip position="top" content="Burn damage" />
-                    </Box>
+                    </Tooltip>
                   )}
                 </Box>
                 <Box inline>{toFixed(o.totalLoss)}</Box>

@@ -62,7 +62,7 @@ export const BodyScannerMainOccupant = (props: { occupant: occupant }) => {
             value={occupant.blood.volume}
             format={(value) => toFixed(value)}
           />
-          units&nbsp;(
+          u&nbsp;(
           <AnimatedNumber
             value={occupant.blood.percent}
             format={(value) => toFixed(value)}
@@ -70,10 +70,8 @@ export const BodyScannerMainOccupant = (props: { occupant: occupant }) => {
           %)
         </LabeledList.Item>
         <LabeledList.Item label="Weight">
-          {toFixed(occupant.weight) +
-            'lbs, ' +
-            toFixed(occupant.weight / 2.20463) +
-            'kgs'}
+          {toFixed(occupant.weight / 2.20463, 1) + 'kg, '}
+          {toFixed(occupant.weight) + 'lbs'}
         </LabeledList.Item>
       </LabeledList>
     </Section>
