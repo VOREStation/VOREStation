@@ -78,10 +78,10 @@
 		to_chat(user, "<span class='warning'>\The [M] is dead!</span>")
 		return ..()
 	if(!M.has_AI())
-		to_chat(user, span("warning", "\The [M] is too strongly willed for this to affect them.")) // Most likely player controlled.
+		to_chat(user, span_warning("\The [M] is too strongly willed for this to affect them.")) // Most likely player controlled.
 		return
 	if(currently_using)
-		to_chat(user, span("warning", "This agent has already been used!")) // Possibly trying to cheese the dialogue box and use same potion on multiple targets.
+		to_chat(user, span_warning("This agent has already been used!")) // Possibly trying to cheese the dialogue box and use same potion on multiple targets.
 		return
 
 	currently_using = TRUE
@@ -199,7 +199,7 @@
 		to_chat(user, "<span class='warning'>\The [M] is already loyal to your species!</span>")
 		return ..()
 	if(!M.has_AI())
-		to_chat(user, span("warning", "\The [M] is too strong-willed for this to affect them."))
+		to_chat(user, span_warning("\The [M] is too strong-willed for this to affect them."))
 		return ..()
 
 	var/datum/ai_holder/AI = M.ai_holder
@@ -234,7 +234,7 @@
 		to_chat(user, "<span class='warning'>\The [M] is already loyal to you!</span>")
 		return ..()
 	if(!M.has_AI())
-		to_chat(user, span("warning", "\The [M] is too strong-willed for this to affect them."))
+		to_chat(user, span_warning("\The [M] is too strong-willed for this to affect them."))
 		return ..()
 
 	var/datum/ai_holder/AI = M.ai_holder

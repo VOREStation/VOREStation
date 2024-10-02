@@ -34,7 +34,7 @@
 /obj/machinery/alembic/attackby(var/obj/item/potion_material/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/potion_material))
 		if(potion_reagent != 0 )
-			to_chat(user, SPAN_WARNING("There is already a reagent in the alembic!"))
+			to_chat(user, span_warning("There is already a reagent in the alembic!"))
 			return
 		else
 			src.potion_reagent = O
@@ -43,49 +43,49 @@
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			to_chat(user, SPAN_NOTICE("You place the [O] in the alembic."))
+			to_chat(user, span_notice("You place the [O] in the alembic."))
 			src.updateUsrDialog()
 			return
 	else if(istype(O,/obj/item/potion_base))
 		if(base_reagent != 0 )
-			to_chat(user, SPAN_WARNING("There is already a base in the alembic!"))
+			to_chat(user, span_warning("There is already a base in the alembic!"))
 			return
 		else
 			src.base_reagent = O
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			to_chat(user, SPAN_NOTICE("You place the [O] in the alembic."))
+			to_chat(user, span_notice("You place the [O] in the alembic."))
 			src.updateUsrDialog()
 			return
 	else
-		to_chat(user, SPAN_WARNING("This item is no use in the alembic."))
+		to_chat(user, span_warning("This item is no use in the alembic."))
 		return
 
 /obj/machinery/alembic/attack_hand(mob/user as mob)
 
 	if(potion_reagent == 0 || base_reagent == 0) //If there is nothing in there
-		to_chat(user, SPAN_WARNING("The alembic is not yet full!"))
+		to_chat(user, span_warning("The alembic is not yet full!"))
 		return
 	else if(potion_reagent != 0 && base_reagent != 0 && !bubbling) //if there is something in there and it's not bubbling yet
 		bubbling = 1
 		update_icon()
-		to_chat(user, SPAN_NOTICE("The alembic begins boiling the [potion_reagent] in the [base_reagent]."))
+		to_chat(user, span_notice("The alembic begins boiling the [potion_reagent] in the [base_reagent]."))
 		sleep(30)
 		bubbling = 0
-		to_chat(user, SPAN_NOTICE("The alembic finishes brewing the potion!"))
+		to_chat(user, span_notice("The alembic finishes brewing the potion!"))
 		spawn_potion()
 		potion_reagent = 0
 		base_reagent = 0
 		update_icon()
 		return
 	else if(bubbling)
-		to_chat(user, SPAN_WARNING("The alembic is already boiling!"))
+		to_chat(user, span_warning("The alembic is already boiling!"))
 		return
 
 /obj/machinery/alembic/AltClick(mob/user)
 	if(potion_reagent == 0)
-		to_chat(user, SPAN_WARNING("There is nothing in the alembic!"))
+		to_chat(user, span_warning("There is nothing in the alembic!"))
 		return
 	else if(potion_reagent != 0 && !bubbling) //if there is something in there and it's not bubbling yet
 		if(!user.incapacitated() && Adjacent(user))
@@ -95,7 +95,7 @@
 		else
 			return
 	else if(bubbling)
-		to_chat(user, SPAN_WARNING("The alembic is already boiling, it's too late to get your reagent back!"))
+		to_chat(user, span_warning("The alembic is already boiling, it's too late to get your reagent back!"))
 		return
 
 /obj/machinery/alembic/proc/spawn_potion()

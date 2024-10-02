@@ -69,7 +69,7 @@
 		"/obj/item/clothing/head/helmet/ert/engineer" = "erte",
 		"/obj/item/clothing/head/helmet/ert/medical" = "ertm",
 	)
-	
+
 	prefix_update_rig = list(
 		"/obj/item/rig/ert" = "ertc",
 		"/obj/item/rig/ert/security" = "erts",
@@ -83,9 +83,9 @@
 
 	if(!mask_icon)
 		mask_icon = icon('icons/effects/64x64.dmi', "mapper_mask")
-	
+
 	extras_holder = new()
-	
+
 	var/obj/screen/mapper/marker/mark = new()
 	mark.icon = 'icons/effects/64x64.dmi'
 	mark.icon_state = "mapper_none"
@@ -109,7 +109,7 @@
 	mapping_units -= src
 
 	last_run()
-	
+
 	map_image_cache.Cut()
 	icon_image_cache.Cut()
 	qdel_null(extras_holder)
@@ -132,7 +132,7 @@
 
 	if(!ishuman(loc) || user != loc)
 		to_chat(H, "<span class='warning'>This device needs to be on your person.</span>")
-	
+
 	if(hud_datum?.main_hud)
 		hide_device()
 		to_chat(H, "<span class='notice'>You put \the [src] away.</span>")
@@ -199,7 +199,7 @@
 	if(!updating || (uses_power && !cell))
 		stop_updates()
 		return
-	
+
 	if(uses_power)
 		var/power_to_use = pinging ? power_usage*2 : power_usage
 		if(cell.use(power_to_use) != power_to_use) // we weren't able to use our full power_usage amount!
@@ -288,11 +288,11 @@
 		// Mapper not on a turf or elsewhere
 		if(!TU || (TU.z != T_z))
 			continue
-	
+
 		// We're the marker
 		if(HC == src)
 			mob_indicator = HOLOMAP_YOU
-		
+
 		// The marker is held by a borg
 		else if(isrobot(HC.loc))
 			var/mob/living/silicon/robot/R = HC.loc
@@ -300,7 +300,7 @@
 				mob_indicator = HOLOMAP_DEAD
 			else
 				mob_indicator = HOLOMAP_OTHER
-		
+
 		// The marker is worn by a human
 		else if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
@@ -308,11 +308,11 @@
 				mob_indicator = HOLOMAP_DEAD
 			else
 				mob_indicator = HOLOMAP_OTHER
-		
+
 		// It's not attached to anything useful
 		else
 			mob_indicator = HOLOMAP_DEAD
-		
+
 		// Ask it to update it's icon based on helmet (or whatever)
 		HC.update_marker()
 
@@ -342,19 +342,19 @@
 	for(var/obj/item/holomap_beacon/HB as anything in mapping_beacons)
 		if(HB.mapper_filter != mapper_filter)
 			continue
-		
+
 		var/turf/TB = get_turf(HB)
 		// Marker beacon not on a turf or elsewhere
 		if(!TB || (TB.z != T_z))
 			continue
-		
+
 		var/marker_cache_key = "\ref[HB]_marker"
 		if(!(marker_cache_key in icon_image_cache))
 			var/obj/screen/mapper/marker/mark = new()
 			mark.icon_state = "beacon"
 			mark.layer = 1
 			icon_image_cache[marker_cache_key] = mark
-		
+
 		var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
 		handle_marker(mark,TB.x,TB.y)
 		extras += mark
@@ -369,7 +369,7 @@
 	extras_holder.vis_contents = extras
 
 	hud_item.update(bgmap, extras_holder, badmap ? FALSE : pinging)
-	
+
 /obj/item/mapping_unit/proc/update_marker()
 	marker_prefix = base_prefix
 	if (prefix_update_head)
@@ -416,7 +416,7 @@
 		in_list = FALSE
 		mapping_beacons -= src
 	icon_state = "[initial(icon_state)][in_list ? "_on" : ""]"
-	to_chat(user,SPAN_NOTICE("The [src] is now [in_list ? "broadcasting" : "disabled"]."))
+	to_chat(user,span_notice("The [src] is now [in_list ? "broadcasting" : "disabled"]."))
 
 /obj/item/holomap_beacon/Destroy()
 	if(in_list)

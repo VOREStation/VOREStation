@@ -117,15 +117,15 @@
 
 	if(friend)
 		if(friend == usr)
-			to_chat(L, span("notice", "\The [src] is already your friend!"))
+			to_chat(L, span_notice("\The [src] is already your friend!"))
 			return
 		else
-			to_chat(L, span("warning", "\The [src] ignores you."))
+			to_chat(L, span_warning("\The [src] ignores you."))
 			return
 
 	friend = L
 	face_atom(L)
-	to_chat(L, span("notice", "\The [src] is now your friend!"))
+	to_chat(L, span_notice("\The [src] is now your friend!"))
 	visible_emote(pick("nips [friend].", "brushes against [friend].", "tugs on [friend].", "chrrrrs."))
 
 	if(has_AI())

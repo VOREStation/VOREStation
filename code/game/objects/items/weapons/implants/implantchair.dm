@@ -73,7 +73,7 @@
 		if(!ismob(grab.affecting))
 			return
 		if(grab.affecting.has_buckled_mobs())
-			to_chat(user, span("warning", "\The [grab.affecting] has other entities attached to them. Remove them first."))
+			to_chat(user, span_warning("\The [grab.affecting] has other entities attached to them. Remove them first."))
 			return
 		var/mob/M = grab.affecting
 		if(put_mob(M))

@@ -112,7 +112,7 @@
 		return
 	if(istype(I, /obj/item/card/id))
 		if(stat & NOPOWER) //checking for power in here so crowbar and screwdriver and stuff still works.
-			to_chat(user, SPAN_WARNING("The terminal refuses your I.D as it is unpowered!"))
+			to_chat(user, span_warning("The terminal refuses your I.D as it is unpowered!"))
 			return
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
@@ -134,7 +134,7 @@
 	if(!usr || usr.stat || usr.lying)	return
 
 	if(giver)
-		to_chat(usr, SPAN_NOTICE("You remove \the [giver] from \the [src]."))
+		to_chat(usr, span_notice("You remove \the [giver] from \the [src]."))
 		giver.loc = get_turf(src)
 		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(giver)
@@ -143,7 +143,7 @@
 		giver = null
 		accesses.Cut()
 	else
-		to_chat(usr, SPAN_WARNING("There is nothing to remove from the console."))
+		to_chat(usr, span_warning("There is nothing to remove from the console."))
 	return
 
 /obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)

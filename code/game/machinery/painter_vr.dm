@@ -58,7 +58,7 @@
 
 /obj/machinery/gear_painter/attackby(obj/item/I, mob/living/user)
 	if(inserted)
-		to_chat(user, SPAN_WARNING("The machine is already loaded."))
+		to_chat(user, span_warning("The machine is already loaded."))
 		return
 	if(default_deconstruction_screwdriver(user, I))
 		return
@@ -92,7 +92,7 @@
 	if(inserted)
 		return
 	if(user)
-		visible_message(SPAN_WARNING("[user] stuffs [victim] into [src]!"))
+		visible_message(span_warning("[user] stuffs [victim] into [src]!"))
 	inserted = victim
 	inserted.forceMove(src)
 
@@ -113,7 +113,7 @@
 		return
 	if(!inserted)
 		return
-	to_chat(usr, SPAN_NOTICE("You remove [inserted] from [src]"))
+	to_chat(usr, span_notice("You remove [inserted] from [src]"))
 	inserted.forceMove(drop_location())
 	var/mob/living/user = usr
 	if(istype(user))
@@ -234,7 +234,7 @@
 			color_to_use = color_matrix_hsv(build_hue, build_sat, build_val)
 			color_matrix_last = color_to_use
 	if(!color_to_use || !check_valid_color(color_to_use, user))
-		to_chat(user, SPAN_NOTICE("Invalid color."))
+		to_chat(user, span_notice("Invalid color."))
 		return FALSE
 	inserted.add_atom_colour(color_to_use, FIXED_COLOUR_PRIORITY)
 	playsound(src, 'sound/effects/spray3.ogg', 50, 1)

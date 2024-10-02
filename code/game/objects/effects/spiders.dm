@@ -82,7 +82,7 @@
 		return TRUE
 	else if(istype(mover, /mob/living))
 		if(prob(50))
-			to_chat(mover, span("warning", "You get stuck in \the [src] for a moment."))
+			to_chat(mover, span_warning("You get stuck in \the [src] for a moment."))
 			return FALSE
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)

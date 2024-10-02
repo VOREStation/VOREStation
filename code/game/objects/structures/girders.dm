@@ -397,7 +397,7 @@
 
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
-			to_chat(user, span("notice", "You finish a wall."))
+			to_chat(user, span_notice("You finish a wall."))
 			// This is mostly the same as using on a floor. The girder's material is preserved, however.
 			T.ChangeTurf(wall_type)
 			var/turf/simulated/wall/new_T = get_turf(src) // Ref to the wall we just built.
@@ -410,7 +410,7 @@
 			return TRUE
 
 		if(RCD_DECONSTRUCT)
-			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			to_chat(user, span_notice("You deconstruct \the [src]."))
 			qdel(src)
 			return TRUE
 

@@ -270,7 +270,7 @@
 /obj/item/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(can_anchor && I.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
-		to_chat(user, span("notice", "You've [anchored ? "" : "un"]secured \the [src] to \the [get_turf(src)]."))
+		to_chat(user, span_notice("You've [anchored ? "" : "un"]secured \the [src] to \the [get_turf(src)]."))
 		if(anchored)
 			on_anchored()
 		else

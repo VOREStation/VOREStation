@@ -378,7 +378,7 @@
 //	if(.)
 //
 //		if(M.get_effective_size(TRUE) > RESIZE_TINY)
-//			to_chat(M, SPAN_WARNING("You are to big to fit in \the [src]."))
+//			to_chat(M, span_warning("You are to big to fit in \the [src]."))
 	//		. = FALSE
 //
 //

@@ -99,7 +99,7 @@
 						entangle(M)
 
 		if(seed.get_trait(TRAIT_SPORING) && prob(1))
-			visible_message(SPAN_WARNING("\The [src] hisses, releasing a cloud of spores!"), SPAN_WARNING("Something nearby hisses loudly!"))
+			visible_message(span_warning("\The [src] hisses, releasing a cloud of spores!"), span_warning("Something nearby hisses loudly!"))
 			seed.create_spores(get_turf(src))
 
 		if(length(neighbors) && prob(spread_chance))
@@ -123,7 +123,7 @@
 /obj/effect/plant/proc/spread_to(turf/target_turf)
 	//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
 	if(istype(target_turf, /turf/simulated/open))
-		return			
+		return
 	//VOREStation Edit End
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 

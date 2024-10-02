@@ -562,7 +562,7 @@
 	if(O.buckled)
 		return 0
 	if(O.has_buckled_mobs())
-		to_chat(user, span("warning", "\The [O] has other entities attached to it. Remove them first."))
+		to_chat(user, span_warning("\The [O] has other entities attached to it. Remove them first."))
 		return
 
 	if(put_mob(O))

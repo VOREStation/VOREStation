@@ -587,17 +587,17 @@
 
 	switch(tgui_input_list(usr, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
 		if("Players")
-			to_chat(usr, span("filter_debuglogs", jointext(player_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(player_list,",")))
 		if("Admins")
-			to_chat(usr, span("filter_debuglogs", jointext(GLOB.admins,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.admins,",")))
 		if("Mobs")
-			to_chat(usr, span("filter_debuglogs", jointext(mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(mob_list,",")))
 		if("Living Mobs")
-			to_chat(usr, span("filter_debuglogs", jointext(living_mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(living_mob_list,",")))
 		if("Dead Mobs")
-			to_chat(usr, span("filter_debuglogs", jointext(dead_mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(dead_mob_list,",")))
 		if("Clients")
-			to_chat(usr, span("filter_debuglogs", jointext(GLOB.clients,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.clients,",")))
 
 /client/proc/cmd_debug_using_map()
 	set category = "Debug"

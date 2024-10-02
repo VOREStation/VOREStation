@@ -135,11 +135,11 @@
 	if(ar_toggled)
 		away_planes = enables_planes
 		enables_planes = null
-		to_chat(usr, SPAN_NOTICE("You disabled the Augmented Reality HUD of your [src.name]."))
+		to_chat(usr, span_notice("You disabled the Augmented Reality HUD of your [src.name]."))
 	else
 		enables_planes = away_planes
 		away_planes = null
-		to_chat(usr, SPAN_NOTICE("You enabled the Augmented Reality HUD of your [src.name]."))
+		to_chat(usr, span_notice("You enabled the Augmented Reality HUD of your [src.name]."))
 	ar_toggled = !ar_toggled
 	usr.update_action_buttons()
 	usr.recalculate_vis()

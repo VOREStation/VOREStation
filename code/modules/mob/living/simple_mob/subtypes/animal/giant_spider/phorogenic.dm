@@ -64,7 +64,7 @@
 	return ..()
 
 /mob/living/simple_mob/animal/giant_spider/phorogenic/death()
-	visible_message(span("critical", "\The [src]'s body begins to rupture!"))
+	visible_message(span_critical("\The [src]'s body begins to rupture!"))
 	var/delay = rand(explosion_delay_lower, explosion_delay_upper)
 	spawn(0)
 		// Flash black and red as a warning.
@@ -78,7 +78,7 @@
 	spawn(delay)
 		// The actual boom.
 		if(src && !exploded)
-			visible_message(span("danger", "\The [src]'s body detonates!"))
+			visible_message(span_danger("\The [src]'s body detonates!"))
 			exploded = TRUE
 			explosion(src.loc, explosion_dev_range, explosion_heavy_range, explosion_light_range, explosion_flash_range)
 	return ..()

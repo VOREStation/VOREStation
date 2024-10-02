@@ -77,13 +77,13 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
 		if(!can_toggle(user))
-			to_chat(user, span("warning", "You don't seem to be able to toggle \the [src] here."))
+			to_chat(user, span_warning("You don't seem to be able to toggle \the [src] here."))
 		else
 			toggle_active(user)
 			if(active)
-				to_chat(user, span("notice", "You activate the optical matrix on the [src]."))
+				to_chat(user, span_notice("You activate the optical matrix on the [src]."))
 			else
-				to_chat(user, span("notice", "You deactivate the optical matrix on the [src]."))
+				to_chat(user, span_notice("You deactivate the optical matrix on the [src]."))
 	..()
 
 /obj/item/clothing/glasses/meson

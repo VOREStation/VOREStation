@@ -52,7 +52,7 @@
 	else if(thing.sharp)
 
 		if(jobban_isbanned(user, JOB_GRAFFITI))
-			to_chat(user, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
+			to_chat(user, span_warning("You are banned from leaving persistent information across rounds."))
 			return
 
 		var/_message = sanitize(tgui_input_text(usr, "Enter an additional message to engrave.", "Graffiti"), trim = TRUE)

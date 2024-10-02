@@ -64,7 +64,7 @@
 			AI.hostile = !AI.hostile
 			if(!AI.hostile)
 				AI.set_stance(STANCE_IDLE)
-			to_chat(M, span("notice", "\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
+			to_chat(M, span_notice("\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
 			log_admin("[key_name_admin(M)] set [bound_mob] to [AI.hostile].")
 	else if(bound_mob.client)
 		var/transmit_msg = tgui_input_text(usr, "What is your command?", "Command")

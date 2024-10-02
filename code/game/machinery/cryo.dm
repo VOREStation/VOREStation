@@ -184,7 +184,7 @@
 		if(occupant)
 			to_chat(user,"<span class='warning'>\The [src] is already occupied by [occupant].</span>")
 		if(grab.affecting.has_buckled_mobs())
-			to_chat(user, span("warning", "\The [grab.affecting] has other entities attached to it. Remove them first."))
+			to_chat(user, span_warning("\The [grab.affecting] has other entities attached to it. Remove them first."))
 			return
 		var/mob/M = grab.affecting
 		qdel(grab)
@@ -341,7 +341,7 @@
 	if(isliving(usr))
 		var/mob/living/L = usr
 		if(L.has_buckled_mobs())
-			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
+			to_chat(L, span_warning("You have other entities attached to yourself. Remove them first."))
 			return
 		if(L.stat != CONSCIOUS)
 			return

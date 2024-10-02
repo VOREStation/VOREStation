@@ -43,6 +43,7 @@
 
 #define span_critical(str) ("<span class='critical'>" + str + "</span>")
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
+#define span_userdanger(str) ("<span class='userdanger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
 #define span_rose(str) ("<span class='rose'>" + str + "</span>")
 #define span_info(str) ("<span class='info'>" + str + "</span>")
@@ -109,3 +110,21 @@
 #define span_brown(str) ("<span class='brown'>" + str + "</span>")
 #define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
 #define span_darkpink(str) ("<span class='lightpurple'>" + str + "</span>")
+
+/* System and Debug */
+
+#define span_linkOn(str) ("<span class='linkOn'>" + str + "</span>")
+#define span_filter_system(str) ("<span class='filter_system'>" + str + "</span>")
+#define span_filter_debuglogs(str) ("<span class='filter_debuglogs'>" + str + "</span>")
+
+/* Byond Sizes */
+
+#define span_small(X) "<font size='1'>[X]</font>"
+
+#define span_normal(X) "<font size='2'>[X]</font>"
+
+#define span_large(X) "<font size='3'>[X]</font>"
+
+#define span_huge(X) "<font size='4'>[X]</font>"
+
+#define span_giant(X) "<font size='5'>[X]</font>"

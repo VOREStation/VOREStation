@@ -113,9 +113,9 @@
 	update_icon()
 	if(message)
 		if(on)
-			message = SPAN_NOTICE("\The [src] turns on.")
+			message = span_notice("\The [src] turns on.")
 		else
-			message = SPAN_NOTICE("\The [src] shuts down.")
+			message = span_notice("\The [src] shuts down.")
 		visible_message(message)
 	return TRUE
 
@@ -142,7 +142,7 @@
 /obj/machinery/pump/attackby(obj/item/W, mob/user)
 	. = TRUE
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && !open)
-		to_chat(user, SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel."))
+		to_chat(user, span_notice("You [unlocked ? "screw" : "unscrew"] the battery panel."))
 		unlocked = !unlocked
 
 	else if(W.has_tool_quality(TOOL_CROWBAR) && unlocked)

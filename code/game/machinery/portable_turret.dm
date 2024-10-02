@@ -111,7 +111,7 @@
 
 /obj/machinery/porta_turret/can_catalogue(mob/user) // Dead turrets can't be scanned.
 	if(stat & BROKEN)
-		to_chat(user, span("warning", "\The [src] was destroyed, so it cannot be scanned."))
+		to_chat(user, span_warning("\The [src] was destroyed, so it cannot be scanned."))
 		return FALSE
 	return ..()
 

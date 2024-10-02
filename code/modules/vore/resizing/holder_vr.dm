@@ -7,7 +7,7 @@
 /obj/item/holder/attack_hand(mob/living/user as mob) //straight up just copypasted from objects/items.dm with a few things changed (doesn't called dropped unless +actually dropped+)
 	if (!user) return
 	if(anchored)
-		to_chat(user, span("notice", "\The [src] won't budge, you can't pick it up!"))
+		to_chat(user, span_notice("\The [src] won't budge, you can't pick it up!"))
 		return
 	if (hasorgans(user))
 		var/mob/living/carbon/human/H = user

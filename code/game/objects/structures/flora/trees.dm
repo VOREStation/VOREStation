@@ -177,9 +177,9 @@
 		return
 
 	if(ckeys_that_took[user.ckey])
-		to_chat(user, span("warning", "There are no presents with your name on."))
+		to_chat(user, span_warning("There are no presents with your name on."))
 		return
-	to_chat(user, span("notice", "After a bit of rummaging, you locate a gift with your name on it!"))
+	to_chat(user, span_notice("After a bit of rummaging, you locate a gift with your name on it!"))
 	ckeys_that_took[user.ckey] = TRUE
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
@@ -295,4 +295,3 @@
 		set_light(bulbs, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
 		add_overlay(mutable_appearance(icon, "[base_state][bulbs]_glow"))
 		add_overlay(emissive_appearance(icon, "[base_state][bulbs]_glow"))
-	
