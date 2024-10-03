@@ -9,7 +9,7 @@
 /datum/persistent/filth/CheckTokenSanity(var/list/token)
 	// byond's json implementation is "questionable", and uses types as keys and values without quotes sometimes even though they aren't valid json
 	token["path"] = istext(token["path"]) ? text2path(token["path"]) : token["path"]
-	return ..() && ispath(token["path"] && (!saves_dirt || isnum(token["dirt"]))
+	return ..() && ispath(token["path"]) && (!saves_dirt || isnum(token["dirt"]))
 
 /datum/persistent/filth/CheckTurfContents(var/turf/T, var/list/token)
 	var/_path = token["path"]
