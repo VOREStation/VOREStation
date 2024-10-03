@@ -75,7 +75,7 @@
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
-		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
+		to_chat(user, span_notice("You insert \the [W] into \the [src]."))
 		updateUsrDialog()
 	else
 		..()

@@ -25,18 +25,18 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/attackby(var/obj/item/W, var/mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		anchored = !anchored
-		visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
+		visible_message(span_notice("\The [user] has [anchored ? "attached" : "detached"] \the [src]."))
 	else if(W.has_tool_quality(TOOL_WELDER) && (damaged || (stat & BROKEN)))
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(0, user))
-			to_chat(user, "<span class='warning'>\The [src] must be on to complete this task.</span>")
+			to_chat(user, span_warning("\The [src] must be on to complete this task."))
 			return
 		playsound(src, WT.usesound, 50, 1)
 		if(!do_after(user, 20 * WT.toolspeed))
 			return
 		if(!src || !WT.isOn())
 			return
-		visible_message("<span class='notice'>\The [user] has repaired \the [src].</span>")
+		visible_message(span_notice("\The [user] has repaired \the [src]."))
 		stat &= ~BROKEN
 		damaged = null
 		update_brightness()
@@ -48,11 +48,11 @@ var/list/floor_light_cache = list()
 
 	if(user.a_intent == I_HURT && !issmall(user))
 		if(!isnull(damaged) && !(stat & BROKEN))
-			visible_message("<span class='danger'>\The [user] smashes \the [src]!</span>")
+			visible_message(span_danger("\The [user] smashes \the [src]!"))
 			playsound(src, "shatter", 70, 1)
 			stat |= BROKEN
 		else
-			visible_message("<span class='danger'>\The [user] attacks \the [src]!</span>")
+			visible_message(span_danger("\The [user] attacks \the [src]!"))
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 			if(isnull(damaged)) damaged = 0
 		update_brightness()
@@ -60,20 +60,20 @@ var/list/floor_light_cache = list()
 	else
 
 		if(!anchored)
-			to_chat(user, "<span class='warning'>\The [src] must be screwed down first.</span>")
+			to_chat(user, span_warning("\The [src] must be screwed down first."))
 			return
 
 		if(stat & BROKEN)
-			to_chat(user, "<span class='warning'>\The [src] is too damaged to be functional.</span>")
+			to_chat(user, span_warning("\The [src] is too damaged to be functional."))
 			return
 
 		if(stat & NOPOWER)
-			to_chat(user, "<span class='warning'>\The [src] is unpowered.</span>")
+			to_chat(user, span_warning("\The [src] is unpowered."))
 			return
 
 		on = !on
 		if(on) update_use_power(USE_POWER_ACTIVE)
-		//visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>") //VOREStation Edit - No thankouuuu. Too spammy.
+		//visible_message(span_notice("\The [user] turns \the [src] [on ? "on" : "off"].")) //VOREStation Edit - No thankouuuu. Too spammy.
 		update_brightness()
 		return
 

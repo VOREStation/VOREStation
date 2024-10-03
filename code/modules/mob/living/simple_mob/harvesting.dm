@@ -18,12 +18,12 @@
 /mob/living/simple_mob/examine(mob/user)
 	. = ..()
 	if(stat != DEAD && user && harvest_tool && (get_dist(user, src) <= 3))
-		. += "<span class='notice'>\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.</span>"
+		. += span_notice("\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.")
 		var/time_to_harvest = (harvest_recent + harvest_cooldown) - world.time
 		if(time_to_harvest > 0)
-			. += "<span class='notice'>It can be [harvest_verb] in [time_to_harvest / (1 MINUTE)] second(s).</span>"
+			. += span_notice("It can be [harvest_verb] in [time_to_harvest / (1 MINUTE)] second(s).")
 		else
-			. += "<span class='notice'>It can be [harvest_verb] now.</span>"
+			. += span_notice("It can be [harvest_verb] now.")
 
 /mob/living/simple_mob/proc/livestock_harvest(var/obj/item/tool, var/mob/living/user)
 	if(!LAZYLEN(harvest_results))	// Might be a unique interaction of an object using the proc to do something weird, or just someone's a donk.

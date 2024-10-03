@@ -24,7 +24,7 @@
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			return ..()
 		else
-			to_chat(H,"<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
+			to_chat(H,span_warning("You need to have a wolf-taur half to wear this."))
 			return 0
 
 // HoS armor improved by Vorestation to be slightly better than normal security stuff.

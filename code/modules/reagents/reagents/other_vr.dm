@@ -11,7 +11,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name != "Promethean")
-			to_chat(M, "<span class='danger'>Your flesh rapidly mutates!</span>")
+			to_chat(M, span_danger("Your flesh rapidly mutates!"))
 
 			var/list/backup_implants = list()
 			for(var/obj/item/organ/I in H.organs)
@@ -80,7 +80,7 @@
 		var/removed_heat = between(0, volume * 19000, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
 		if(prob(5))
-			T.visible_message("<span class='warning'>The foam sizzles as it lands on \the [T]!</span>")
+			T.visible_message(span_warning("The foam sizzles as it lands on \the [T]!"))
 
 /datum/reagent/firefighting_foam/touch_obj(var/obj/O, reac_volume)
 	O.water_act(reac_volume / 5)
@@ -89,7 +89,7 @@
 	if(istype(M, /mob/living/simple_mob/slime)) //I'm sure foam is water-based!
 		var/mob/living/simple_mob/slime/S = M
 		S.adjustToxLoss(15 * reac_volume)
-		S.visible_message("<span class='warning'>[S]'s flesh sizzles where the foam touches it!</span>", "<span class='danger'>Your flesh burns in the foam!</span>")
+		S.visible_message(span_warning("[S]'s flesh sizzles where the foam touches it!"), span_danger("Your flesh burns in the foam!"))
 
 	M.adjust_fire_stacks(-reac_volume)
 	M.ExtinguishMob()

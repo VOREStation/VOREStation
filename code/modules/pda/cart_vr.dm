@@ -50,7 +50,7 @@ var/list/exploration_cartridges = list(
 		..(over_object)
 
 /obj/item/cartridge/storage/attack_self(mob/user as mob)
-	to_chat(user, "<span class='notice'>You empty [src].</span>")
+	to_chat(user, span_notice("You empty [src]."))
 	var/turf/T = get_turf(src)
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)

@@ -224,9 +224,9 @@
 /obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/cell)) // ID Card, try to insert it.
 		if(insert_cell(W, user))
-			to_chat(user, "<span class='filter_notice'>You insert \the [W] into \the [src].</span>")
+			to_chat(user, span_filter_notice("You insert \the [W] into \the [src]."))
 		else
-			to_chat(user, "<span class='filter_notice'>\The [src] has no empty slot for \the [W]</span>")
+			to_chat(user, span_filter_notice("\The [src] has no empty slot for \the [W]"))
 	if(!..())
 		return 0
 	if(default_deconstruction_crowbar(user, W))

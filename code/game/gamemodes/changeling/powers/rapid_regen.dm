@@ -24,7 +24,7 @@
 		var/healing_amount = 40
 		if(src.mind.changeling.recursive_enhancement)
 			healing_amount = C.maxHealth
-			to_chat(src, "<span class='notice'>We completely heal ourselves.</span>")
+			to_chat(src, span_notice("We completely heal ourselves."))
 		spawn(0)
 			C.adjustBruteLoss(-healing_amount)
 			C.adjustFireLoss(-healing_amount)
@@ -47,9 +47,9 @@
 			playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 			var/T = get_turf(src)
 			new /obj/effect/gibspawner/human(T)
-			visible_message("<span class='warning'>With a sickening squish, [src] reforms their whole body, casting their old parts on the floor!</span>",
-			"<span class='notice'>We reform our body.  We are whole once more.</span>",
-			"<span class='italics'>You hear organic matter ripping and tearing!</span>")
+			visible_message(span_warning("With a sickening squish, [src] reforms their whole body, casting their old parts on the floor!"),
+			span_notice("We reform our body.  We are whole once more."),
+			span_italics("You hear organic matter ripping and tearing!"))
 
 	feedback_add_details("changeling_powers","RR")
 	return 1

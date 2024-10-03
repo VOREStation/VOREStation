@@ -30,8 +30,8 @@
 	if(!curloc || !targloc)
 		return
 	chassis.use_power(energy_drain)
-	chassis.visible_message("<span class='warning'>[chassis] fires [src]!</span>")
-	occupant_message("<span class='warning'>You fire [src]!</span>")
+	chassis.visible_message(span_warning("[chassis] fires [src]!"))
+	occupant_message(span_warning("You fire [src]!"))
 	log_message("Fired from [src], targeting [target].")
 	var/target_for_log = "unknown"
 	if(ismob(target))

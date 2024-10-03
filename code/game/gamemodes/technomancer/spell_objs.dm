@@ -117,7 +117,7 @@
 	if(owner)
 		core = owner.get_technomancer_core()
 		if(!core)
-			to_chat(owner, "<span class='warning'>You need a Core to do that.</span>")
+			to_chat(owner, span_warning("You need a Core to do that."))
 			qdel(src)
 			return
 //		if(istype(/obj/item/technomancer_core, owner.back))
@@ -160,13 +160,13 @@
 	if(!core)
 		core = locate(/obj/item/technomancer_core) in owner
 		if(!core)
-			to_chat(owner, "<span class='danger'>You need to be wearing a core on your back!</span>")
+			to_chat(owner, span_danger("You need to be wearing a core on your back!"))
 			return 0
 	if(core.loc != owner || owner.back != core) //Make sure the core's being worn.
-		to_chat(owner, "<span class='danger'>You need to be wearing a core on your back!</span>")
+		to_chat(owner, span_danger("You need to be wearing a core on your back!"))
 		return 0
 	if(!technomancers.is_antagonist(owner.mind) && !core.universal) //Now make sure the person using this is the actual antag. //VOREStation Edit - Universal cores
-		to_chat(owner, "<span class='danger'>You can't seem to figure out how to make the machine work properly.</span>")
+		to_chat(owner, span_danger("You can't seem to figure out how to make the machine work properly."))
 		return 0
 	return 1
 
@@ -269,7 +269,7 @@
 			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
 				l_spell.on_combine_cast(S, src)
 		else //Welp
-			to_chat(src, "<span class='warning'>You require a free hand to use this function.</span>")
+			to_chat(src, span_warning("You require a free hand to use this function."))
 			return 0
 
 	if(S.run_checks())

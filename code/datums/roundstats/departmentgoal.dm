@@ -41,16 +41,16 @@ GLOBAL_LIST(active_department_goals)
 	for(var/category in GLOB.active_department_goals)
 		var/list/cat_goals = GLOB.active_department_goals[category]
 
-		to_world("<span class='filter_system'><b>[category]</b></span>")
+		to_world(span_filter_system("<b>[category]</b>"))
 
 		if(!LAZYLEN(cat_goals))
-			to_world("<span class='filter_system'>There were no assigned goals!</span>")
+			to_world(span_filter_system("There were no assigned goals!"))
 
 		else
 			for(var/datum/goal/G in cat_goals)
 				var/success = G.check_completion()
-				to_world("<span class='filter_system'>[success ? "<span class='notice'>[G.name]</span>" : "<span class='warning'>[G.name]</span>"]</span>")
-				to_world("<span class='filter_system'>[G.goal_text]</span>")
+				to_world(span_filter_system("[success ? span_notice("[G.name]") : span_warning("[G.name]")]"))
+				to_world(span_filter_system("[G.goal_text]"))
 	return 1
 
 /datum/goal

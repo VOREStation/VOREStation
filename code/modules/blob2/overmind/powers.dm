@@ -1,6 +1,6 @@
 /mob/observer/blob/proc/can_buy(cost = 15)
 	if(blob_points < cost)
-		to_chat(src, "<span class='warning'>You cannot afford this, you need at least [cost] resources!</span>")
+		to_chat(src, span_warning("You cannot afford this, you need at least [cost] resources!"))
 		return FALSE
 	add_points(-cost)
 	return TRUE
@@ -19,20 +19,20 @@
 	var/obj/structure/blob/B = (locate(/obj/structure/blob) in T)
 
 	if(!B)
-		to_chat(src, "<span class='warning'>There is no blob here!</span>")
+		to_chat(src, span_warning("There is no blob here!"))
 		return
 
 	if(B.overmind != src)
 		to_chat(src, span_warning("This blob isn't controlled by you."))
 
 	if(!istype(B, /obj/structure/blob/normal))
-		to_chat(src, "<span class='warning'>Unable to use this blob, find a normal one.</span>")
+		to_chat(src, span_warning("Unable to use this blob, find a normal one."))
 		return
 
 	if(nearEquals)
 		for(var/obj/structure/blob/L in orange(nearEquals, T))
 			if(L.type == blobType)
-				to_chat(src, "<span class='warning'>There is a similar blob nearby, move more than [nearEquals] tiles away from it!</span>")
+				to_chat(src, span_warning("There is a similar blob nearby, move more than [nearEquals] tiles away from it!"))
 				return
 
 	if(!can_buy(price))
@@ -197,7 +197,7 @@
 				break
 
 	if(!B)
-		to_chat(src, "<span class='warning'>There is no blob cardinally adjacent to the target tile!</span>")
+		to_chat(src, span_warning("There is no blob cardinally adjacent to the target tile!"))
 		return
 
 	if(!can_buy(4))

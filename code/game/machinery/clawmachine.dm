@@ -109,12 +109,12 @@
 
 		if(do_after(user, 20 * W.toolspeed))
 			if(!src) return
-			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored
 		return
 
 	if(!anchored)
-		to_chat(user,"<span class='notice'> The machine isn't secured.</span>")
+		to_chat(user,span_notice(" The machine isn't secured."))
 		return
 
 	var/handled = 0
@@ -153,7 +153,7 @@
 		to_chat(user,"<span class='notice'>You dont have enough Thalers to play!</span> ")
 		return
 
-	to_chat(user,"<span class='notice'>You put 5 Thalers in the claw machine and press start.</span>")
+	to_chat(user,span_notice("You put 5 Thalers in the claw machine and press start."))
 	cashmoney.worth -= 5
 	cashmoney.update_icon()
 
@@ -186,14 +186,14 @@
 	var/delaytime = 7 SECONDS
 
 	spawn(delaytime)
-		to_chat(user,"<span class='notice'>The clam machine lights up and starts to play!</span>")
+		to_chat(user,span_notice("The clam machine lights up and starts to play!"))
 
 		if (symbol1 == "one" && symbol2 == "one" && symbol3 == "one")
-			output = "<span class='notice'>Hooray! You Win!</span>"
+			output = span_notice("Hooray! You Win!")
 			winnings = TRUE
 
 		if (symbol1 == "two" && symbol2 == "two" && symbol3 == "two")
-			output = "<span class='notice'>Hooray! You Win!!</span>"
+			output = span_notice("Hooray! You Win!!")
 			winnings = TRUE
 
 		icon_state = initial(icon_state) // Set it back to the original iconstate.

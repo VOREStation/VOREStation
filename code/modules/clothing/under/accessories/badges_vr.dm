@@ -30,7 +30,7 @@
 		if(current_film)
 			user.put_in_hands(current_film)
 			current_film = null
-			to_chat(user, "<span class='notice'>You pulled out the film out of \the [src].</span>")
+			to_chat(user, span_notice("You pulled out the film out of \the [src]."))
 			desc = "This seems like a dosimeter, but there is no film inside."
 			STOP_PROCESSING(SSobj, src)
 			update_state(0)
@@ -47,13 +47,13 @@
 			current_film = I
 			update_state(current_film.state)
 
-			to_chat(user, "<span class='notice'>You inserted the film into \the [src].</span>")
+			to_chat(user, span_notice("You inserted the film into \the [src]."))
 			desc = "This seems like a dosimeter. It has a film inside."
 
 			if(current_film.state < 2)
 				START_PROCESSING(SSobj, src)
 		else
-			to_chat(user, "<span class='notice'>\The [src] already has a film inside.</span>")
+			to_chat(user, span_notice("\The [src] already has a film inside."))
 	else
 		return ..()
 
@@ -61,11 +61,11 @@
 	if(wearer)
 		if(current_film && (wearer.radiation >= 25) && (current_film.state == 0))
 			update_state(1)
-			visible_message("<span class='warning'>The film of \the [src] starts to darken.</span>")
+			visible_message(span_warning("The film of \the [src] starts to darken."))
 			desc = "This seems like a dosimeter, but the film has darkened."
 			sleep(30)
 		else if(current_film && (wearer.radiation >= 50) && (current_film.state == 1))
-			visible_message("<span class='warning'>The film of \the [src] has turned black!</span>")
+			visible_message(span_warning("The film of \the [src] has turned black!"))
 			update_state(2)
 			desc = "This seems like a dosimeter, but the film has turned black."
 

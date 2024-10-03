@@ -21,7 +21,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/engine_loader)
 
 /obj/effect/landmark/engine_loader/proc/annihilate_bounds()
 	var/deleted_atoms = 0
-	admin_notice("<span class='danger'>Annihilating objects in engine loading location.</span>", R_DEBUG)
+	admin_notice(span_danger("Annihilating objects in engine loading location."), R_DEBUG)
 	var/list/turfs_to_clean = get_turfs_to_clean()
 	if(turfs_to_clean.len)
 		for(var/x in 1 to 2) // Requires two passes to get everything.
@@ -29,4 +29,4 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/engine_loader)
 				for(var/atom/movable/AM in T)
 					++deleted_atoms
 					qdel(AM)
-	admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
+	admin_notice(span_danger("Annihilated [deleted_atoms] objects."), R_DEBUG)

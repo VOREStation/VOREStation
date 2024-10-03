@@ -31,7 +31,7 @@
 
 /obj/item/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
+		to_chat(user, span_warning("You club yourself over the head."))
 		user.Weaken(3 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -58,8 +58,8 @@
 /obj/item/melee/telebaton/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		user.visible_message("<span class='warning'>With a flick of their wrist, [user] extends their telescopic baton.</span>",\
-		"<span class='warning'>You extend the baton.</span>",\
+		user.visible_message(span_warning("With a flick of their wrist, [user] extends their telescopic baton."),\
+		span_warning("You extend the baton."),\
 		"You hear an ominous click.")
 		icon_state = "telebaton1"
 		item_state = icon_state
@@ -68,7 +68,7 @@
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message("<b>\The [user]</b> collapses their telescopic baton.",\
-		"<span class='notice'>You collapse the baton.</span>",\
+		span_notice("You collapse the baton."),\
 		"You hear a click.")
 		icon_state = "telebaton0"
 		item_state = icon_state
@@ -99,7 +99,7 @@
 /obj/item/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
-			to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
+			to_chat(user, span_warning("You club yourself over the head."))
 			user.Weaken(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user

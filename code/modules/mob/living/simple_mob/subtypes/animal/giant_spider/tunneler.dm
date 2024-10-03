@@ -199,8 +199,8 @@
 /datum/modifier/tunneler_vulnerable
 	name = "Vulnerable"
 	desc = "You are vulnerable to more harm than usual."
-	on_created_text = "<span class='warning'>You feel vulnerable...</span>"
-	on_expired_text = "<span class='notice'>You feel better.</span>"
+	on_created_text = span_warning("You feel vulnerable...")
+	on_expired_text = span_notice("You feel better.")
 	stacks = MODIFIER_STACK_EXTEND
 
 	incoming_damage_percent = 2

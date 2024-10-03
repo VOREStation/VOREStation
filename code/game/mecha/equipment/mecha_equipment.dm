@@ -35,7 +35,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>[src] will fill [equip_type?"a [equip_type]":"any"] slot.</span>"
+	. += span_notice("[src] will fill [equip_type?"a [equip_type]":"any"] slot.")
 
 /obj/item/mecha_parts/mecha_equipment/proc/add_equip_overlay(obj/mecha/M as obj)
 	return

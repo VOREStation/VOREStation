@@ -184,7 +184,7 @@
 		attack_mob(L)
 
 	spawn()
-		T.visible_message("<span class='warning'>\The [src] covers \the [T] in a corrosive paste!</span>")
+		T.visible_message(span_warning("\The [src] covers \the [T] in a corrosive paste!"))
 		for(var/turf/simulated/floor/F in view(2, T))
 			spawn()
 				var/obj/effect/effect/water/splash = new(T)

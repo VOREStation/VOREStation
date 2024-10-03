@@ -68,5 +68,5 @@
 				carrier.adjustFireLoss(-3 / nearby_mobs.len)
 
 			if(need_beam)
-				carrier.visible_message("<span class='alien'>[icon2html(B,viewers(carrier))] \The [B] sends noxious spores toward \the [victim]!</span>")
+				carrier.visible_message(span_alien("[icon2html(B,viewers(carrier))] \The [B] sends noxious spores toward \the [victim]!"))
 				carrier.Beam(victim, icon_state = "lichbeam", time = 2 SECONDS)

@@ -21,7 +21,7 @@
 			machine.console = src
 		else
 			//Silently failing and causing mappers to scratch their heads while runtiming isn't ideal.
-			to_world("<span class='danger'>Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!</span>")
+			to_world(span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
 			qdel(src)
 
 /obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user)
@@ -37,7 +37,7 @@
 /obj/machinery/mineral/stacking_unit_console/tgui_data(mob/user)
 	var/list/data = ..()
 
-	
+
 	var/list/stacktypes = list()
 	for(var/stacktype in machine.stack_storage)
 		if(machine.stack_storage[stacktype] > 0)
@@ -136,8 +136,7 @@
 			var/stacktype = stack_paths[sheet]
 			new stacktype (get_turf(output), stack_amt)
 			stack_storage[sheet] -= stack_amt
-	
+
 	if(console)
 		console.updateUsrDialog()
 	return
-

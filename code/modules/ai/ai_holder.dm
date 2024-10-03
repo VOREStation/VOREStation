@@ -101,7 +101,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		if(snapshot)
-			to_chat(usr, "<span class='error'>Someone (or you) may have started a mass edit on this AI datum already. Refresh the VV window to get the option to end the mass edit instead.</span>")
+			to_chat(usr, span_warning("Someone (or you) may have started a mass edit on this AI datum already. Refresh the VV window to get the option to end the mass edit instead."))
 			href_list["datumrefresh"] = "\ref[src]"
 			return
 		snapshot = vars.Copy() //'vars' appears to be special in that vars.Copy produces a flat list of keys with no values. It seems that 'vars[key]' is handled somewhere in the byond engine differently than normal lists.
@@ -143,7 +143,7 @@
 			snapshot[key] = thing
 
 		VARSET_IN(src, snapshot, null, 2 MINUTES) // Safety
-		to_chat(usr, "<span class='notice'>Variable snapshot saved. Begin editing the datum, and end the mass edit from the dropdown menu within 2 minutes. Note that editing the contents of lists is not supported.</span>")
+		to_chat(usr, span_notice("Variable snapshot saved. Begin editing the datum, and end the mass edit from the dropdown menu within 2 minutes. Note that editing the contents of lists is not supported."))
 		href_list["datumrefresh"] = "\ref[src]"
 
 	IF_VV_OPTION("mass_edit_finish")
@@ -167,7 +167,7 @@
 			diff += key
 
 		if(!diff.len)
-			to_chat(usr, "<span class='warning'>You don't appear to have changed anything on the AI datum you were editing.</span>")
+			to_chat(usr, span_warning("You don't appear to have changed anything on the AI datum you were editing."))
 			href_list["datumrefresh"] = "\ref[src]"
 		else
 			var/message = "<span class='notice'>These differences were detected in your varedit. If you notice any that you didn't change, please redo your edit:<br>"
@@ -209,18 +209,18 @@
 		var/list/selected = choices[choice]
 		for(var/mob/living/L as anything in selected)
 			if(!istype(L))
-				to_chat(usr,"<span class='warning'>Skipping incompatible mob: [L] [ADMIN_COORDJMP(L)]</span>")
+				to_chat(usr,span_warning("Skipping incompatible mob: [L] [ADMIN_COORDJMP(L)]"))
 				continue
 			if(!L.ai_holder)
-				to_chat(usr,"<span class='warning'>Skipping due to no AI: [L] [ADMIN_COORDJMP(L)]</span>")
+				to_chat(usr,span_warning("Skipping due to no AI: [L] [ADMIN_COORDJMP(L)]"))
 				continue
 			for(var/newvar in diff)
 				if(newvar in L.ai_holder.vars)
 					L.ai_holder.vars[newvar] = after[newvar]
 				else
-					to_chat(usr,"<span class='warning'>Skipping unavailable var '[newvar]' on: [L] [ADMIN_COORDJMP(L)]</span>")
+					to_chat(usr,span_warning("Skipping unavailable var '[newvar]' on: [L] [ADMIN_COORDJMP(L)]"))
 
-		to_chat(usr,"<span class='notice'>Mass AI edit done.</span>")
+		to_chat(usr,span_notice("Mass AI edit done."))
 		href_list["datumrefresh"] = "\ref[src]"
 
 /datum/ai_holder/New(var/new_holder)
@@ -393,7 +393,7 @@
 				var/mob/living/holder = src.holder
 				ai_log("handle_stance_tactical() : Owner was stat, moving.", AI_LOG_TRACE)
 				holder.forceMove(get_turf(L))
-				holder.visible_message("<span class='danger'>[src] climbs out of [L], ready to continue fighting!</span>")
+				holder.visible_message(span_danger("[src] climbs out of [L], ready to continue fighting!"))
 				playsound(holder, 'sound/effects/splat.ogg')
 
 		// Should we flee?

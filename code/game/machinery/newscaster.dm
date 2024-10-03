@@ -211,7 +211,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 	if(hitstaken > 0) //Cosmetic damage overlay
 		add_overlay("crack[hitstaken]")
-	
+
 	icon_state = "newscaster_normal"
 	add_overlay(emissive_appearance(icon, "newscaster_normal_ov"))
 	add_overlay(mutable_appearance(icon, "newscaster_normal_ov"))
@@ -272,7 +272,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 	if(!user.IsAdvancedToolUser())
 		return 0
-	
+
 	tgui_interact(user)
 
 /**
@@ -286,7 +286,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	temp = list(text = text, style = style)
 	if(update_now)
 		SStgui.update_uis(src)
-	
+
 /obj/machinery/newscaster/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -316,7 +316,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	data["wanted_issue"] = wanted_issue
 
 	data["securityCaster"] = !!securityCaster
-	
+
 	var/list/network_channels = list()
 	for(var/datum/feed_channel/FC in news_network.network_channels)
 		network_channels.Add(list(list(
@@ -483,7 +483,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			if(!paper_remaining)
 				set_temp("Unable to print newspaper. Insufficient paper. Please notify maintenance personnel to refill machine storage.", "danger", FALSE)
 				return TRUE
-			
+
 			print_paper()
 			set_temp("Printing successful. Please receive your newspaper from the bottom of the machine.", "success", FALSE)
 			return TRUE
@@ -695,7 +695,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	var/turf/T = get_turf(src)
 	if(news_call)
 		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[name]</EM> beeps, \"[news_call]\"</span>",2)
+			O.show_message(span_newscaster("<EM>[name]</EM> beeps, \"[news_call]\""),2)
 		alert = 1
 		update_icon()
 		spawn(300)
@@ -704,6 +704,6 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 		playsound(src, 'sound/machines/twobeep.ogg', 75, 1)
 	else
 		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>",2)
+			O.show_message(span_newscaster("<EM>[name]</EM> beeps, \"Attention! Wanted issue distributed!\""),2)
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 75, 1)
 	return

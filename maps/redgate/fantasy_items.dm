@@ -71,10 +71,10 @@
 /obj/structure/bed/bath/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap)) //VOREStation Edit - "Allows soap and rags to be used on mopbuckets"
 		if(reagents.total_volume < 1)
-			to_chat(user, "<span class='warning'>\The [src] is out of water!</span>")
+			to_chat(user, span_warning("\The [src] is out of water!"))
 		else
 			reagents.trans_to_obj(I, 5)
-			to_chat(user, "<span class='notice'>You wet \the [I] in \the [src].</span>")
+			to_chat(user, span_notice("You wet \the [I] in \the [src]."))
 			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		update_icon()
@@ -83,17 +83,17 @@
 		var/obj/item/grab/G = I
 		var/mob/living/affecting = G.affecting
 		if(has_buckled_mobs()) //Handles trying to buckle someone else to a chair when someone else is on it
-			to_chat(user, "<span class='notice'>\The [src] already has someone buckled to it.</span>")
+			to_chat(user, span_notice("\The [src] already has someone buckled to it."))
 			return
-		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
+		user.visible_message(span_notice("[user] attempts to buckle [affecting] into \the [src]!"))
 		if(do_after(user, 20, G.affecting))
 			affecting.loc = loc
 			spawn(0)
 				if(buckle_mob(affecting))
 					affecting.visible_message(\
-						"<span class='danger'>[affecting.name] is buckled to [src] by [user.name]!</span>",\
-						"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
-						"<span class='notice'>You hear metal clanking.</span>")
+						span_danger("[affecting.name] is buckled to [src] by [user.name]!"),\
+						span_danger("You are buckled to [src] by [user.name]!"),\
+						span_notice("You hear metal clanking."))
 			qdel(I)
 
 
@@ -150,28 +150,28 @@
 
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))
-					to_chat(user, "<span class='notice'>[GM.name] needs to be on the toilet.</span>")
+					to_chat(user, span_notice("[GM.name] needs to be on the toilet."))
 					return
 				if(open && !swirlie)
-					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+					user.visible_message(span_danger("[user] starts to give [GM.name] a swirlie!"), span_notice("You start to give [GM.name] a swirlie!"))
 					swirlie = GM
 					if(do_after(user, 30, GM))
-						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+						user.visible_message(span_danger("[user] gives [GM.name] a swirlie!"), span_notice("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)
 					swirlie = null
 				else
-					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+					user.visible_message(span_danger("[user] slams [GM.name] into the [src]!"), span_notice("You slam [GM.name] into the [src]!"))
 					GM.adjustBruteLoss(5)
 			else
-				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
+				to_chat(user, span_notice("You need a tighter grip."))
 
 	if(cistern && !istype(user,/mob/living/silicon/robot)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > 3)
-			to_chat(user, "<span class='notice'>\The [I] does not fit.</span>")
+			to_chat(user, span_notice("\The [I] does not fit."))
 			return
 		if(w_items + I.w_class > 5)
-			to_chat(user, "<span class='notice'>The cistern is full.</span>")
+			to_chat(user, span_notice("The cistern is full."))
 			return
 		user.drop_item()
 		I.loc = src
@@ -195,7 +195,7 @@
 	desc = "An old fashioned cooking pot above some logs."
 
 /obj/machinery/microwave/cookingpot/start()
-	src.visible_message("<span class='notice'>The cooking pot starts cooking.</span>", "<span class='notice'>You hear a fire roar.</span>")
+	src.visible_message(span_notice("The cooking pot starts cooking."), span_notice("You hear a fire roar."))
 	src.operating = TRUE
 	src.icon_state = "cookingpot1"
 	SStgui.update_uis(src)
@@ -218,43 +218,43 @@
 		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
 			user.visible_message( \
 				"<b>\The [user]</b> starts to fix part of the cooking pot.", \
-				"<span class='notice'>You start to fix part of the cooking pot.</span>" \
+				span_notice("You start to fix part of the cooking pot.") \
 			)
 			playsound(src, O.usesound, 50, 1)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
 					"<b>\The [user]</b> fixes part of the cooking pot.", \
-					"<span class='notice'>You have fixed part of the cooking pot.</span>" \
+					span_notice("You have fixed part of the cooking pot.") \
 				)
 				src.broken = 1 // Fix it a bit
 		else if(src.broken == 1 && O.is_wrench()) // If it's broken and they're doing the wrench
 			user.visible_message( \
 				"<b>\The [user]</b> starts to fix part of the cooking pot.", \
-				"<span class='notice'>You start to fix part of the cooking pot.</span>" \
+				span_notice("You start to fix part of the cooking pot.") \
 			)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
 					"<b>\The [user]</b> fixes the cooking pot.", \
-					"<span class='notice'>You have fixed the cooking pot.</span>" \
+					span_notice("You have fixed the cooking pot.") \
 				)
 				src.icon_state = "cookingpot"
 				src.broken = 0 // Fix it!
 				src.dirty = 0 // just to be sure
 				src.flags = OPENCONTAINER | NOREACT
 		else
-			to_chat(user, "<span class='warning'>It's broken!</span>")
+			to_chat(user, span_warning("It's broken!"))
 			return 1
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/reagent_containers/spray/cleaner) || istype(O, /obj/item/soap)) // If they're trying to clean it then let them
 			user.visible_message( \
 				"<b>\The [user]</b> starts to clean the cooking pot.", \
-				"<span class='notice'>You start to clean the cooking pot.</span>" \
+				span_notice("You start to clean the cooking pot.") \
 			)
 			if (do_after(user,20))
 				user.visible_message( \
-					"<span class='notice'>\The [user] has cleaned the cooking pot.</span>", \
-					"<span class='notice'>You have cleaned the cooking pot.</span>" \
+					span_notice("\The [user] has cleaned the cooking pot."), \
+					span_notice("You have cleaned the cooking pot.") \
 				)
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
@@ -262,27 +262,27 @@
 				src.flags = OPENCONTAINER | NOREACT
 				SStgui.update_uis(src)
 		else //Otherwise bad luck!!
-			to_chat(user, "<span class='warning'>It's dirty!</span>")
+			to_chat(user, span_warning("It's dirty!"))
 			return 1
 	else if(is_type_in_list(O,acceptable_items))
 		var/list/workingList = cookingContents()
 		if(workingList.len>=(max_n_of_items + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
-			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
+			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = O
 			new O.type (src)
 			S.use(1)
 			user.visible_message( \
-				"<span class='notice'>\The [user] has added one of [O] to \the [src].</span>", \
-				"<span class='notice'>You add one of [O] to \the [src].</span>")
+				span_notice("\The [user] has added one of [O] to \the [src]."), \
+				span_notice("You add one of [O] to \the [src]."))
 			return
 		else
 		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete - Man whoever you are, it's been years. o7
 			user.drop_from_inventory(O,src)
 			user.visible_message( \
-				"<span class='notice'>\The [user] has added \the [O] to \the [src].</span>", \
-				"<span class='notice'>You add \the [O] to \the [src].</span>")
+				span_notice("\The [user] has added \the [O] to \the [src]."), \
+				span_notice("You add \the [O] to \the [src]."))
 			SStgui.update_uis(src)
 			return
 	else if (istype(O,/obj/item/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
@@ -293,7 +293,7 @@
 				continue
 			failed = 0
 			if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
-				to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
+				to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
 				return 0
 			else
 				bag.remove_from_storage(G, src)
@@ -321,12 +321,12 @@
 			return 1
 		for (var/datum/reagent/R in O.reagents.reagent_list)
 			if (!(R.id in acceptable_reagents))
-				to_chat(user, "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>")
+				to_chat(user, span_warning("Your [O] contains components unsuitable for cookery."))
 				return 1
 		return
 	else if(istype(O,/obj/item/grab))
 		var/obj/item/grab/G = O
-		to_chat(user, "<span class='warning'>This is ridiculous. You can not fit \the [G.affecting] in this [src].</span>")
+		to_chat(user, span_warning("This is ridiculous. You can not fit \the [G.affecting] in this [src]."))
 		return 1
 	else if(O.is_screwdriver())
 		default_deconstruction_screwdriver(user, O)
@@ -336,30 +336,30 @@
 			return
 		else
 			user.visible_message( \
-				"<span class='notice'>\The [user] begins [src.anchored ? "unsecuring" : "securing"] the cooking pot.</span>", \
-				"<span class='notice'>You attempt to [src.anchored ? "unsecure" : "secure"] the cooking pot.</span>"
+				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the cooking pot."), \
+				span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] the cooking pot.")
 				)
 			if (do_after(user,20/O.toolspeed))
 				user.visible_message( \
-				"<span class='notice'>\The [user] [src.anchored ? "unsecures" : "secures"] the cooking pot.</span>", \
-				"<span class='notice'>You [src.anchored ? "unsecure" : "secure"] the cooking pot.</span>"
+				span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] the cooking pot."), \
+				span_notice("You [src.anchored ? "unsecure" : "secure"] the cooking pot.")
 				)
 				src.anchored = !src.anchored
 			else
-				to_chat(user, "<span class='notice'>You decide not to do that.</span>")
+				to_chat(user, span_notice("You decide not to do that."))
 	else if(default_part_replacement(user, O))
 		return
 	else if(istype(O, /obj/item/paicard))
 		if(!paicard)
 			insertpai(user, O)
 	else
-		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [O].</span>")
+		to_chat(user, span_warning("You have no idea what you can cook with this [O]."))
 	..()
 	SStgui.update_uis(src)
 
 /obj/machinery/microwave/cookingpot/broke()
 	src.icon_state = "cookingpotb" // Make it look all busted up and shit
-	src.visible_message("<span class='warning'>The cooking pot breaks!</span>") //Let them know they're stupid
+	src.visible_message(span_warning("The cooking pot breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
 	src.flags = null //So you can't add condiments
 	src.operating = 0 // Turn it off again aferwards
@@ -374,7 +374,7 @@
 		src.dirty++
 	src.reagents.clear_reagents()
 	if(message)
-		to_chat(usr, "<span class='notice'>You dispose of the cooking pot contents.</span>")
+		to_chat(usr, span_notice("You dispose of the cooking pot contents."))
 	SStgui.update_uis(src)
 
 /obj/machinery/microwave/cookingpot/muck_start()
@@ -382,7 +382,7 @@
 	src.icon_state = "cookingpotbloody1" // Make it look dirty!!
 
 /obj/machinery/microwave/cookingpot/muck_finish()
-	src.visible_message("<span class='warning'>The cooking pot gets covered in muck!</span>")
+	src.visible_message(span_warning("The cooking pot gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags = null //So you can't add condiments
 	src.icon_state = "cookingpotbloody0" // Make it look dirty too
@@ -498,7 +498,7 @@ This device records all warnings given and teleport events for admin review in c
 
 	else if(choice == "New Beacon")
 		if(beacons_left <= 0)
-			to_chat(user, "<span class='warning'>The tome can't support any more pages!</span>")
+			to_chat(user, span_warning("The tome can't support any more pages!"))
 			return
 
 		var/new_name = html_encode(tgui_input_text(user,"New pages's name (2-20 char):","[src]",null,20))
@@ -506,11 +506,11 @@ This device records all warnings given and teleport events for admin review in c
 			return
 
 		if(length(new_name) > 20 || length(new_name) < 2)
-			to_chat(user, "<span class='warning'>Entered name length invalid (must be longer than 2, no more than than 20).</span>")
+			to_chat(user, span_warning("Entered name length invalid (must be longer than 2, no more than than 20)."))
 			return
 
 		if(new_name in beacons)
-			to_chat(user, "<span class='warning'>No duplicate names, please. '[new_name]' exists already.</span>")
+			to_chat(user, span_warning("No duplicate names, please. '[new_name]' exists already."))
 			return
 
 		var/obj/item/perfect_tele_beacon/magic/nb = new(get_turf(src))

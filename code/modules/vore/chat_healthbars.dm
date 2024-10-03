@@ -108,9 +108,9 @@
 		ourbar = span_red("<b>[ourbar] - [digest_mode]ed</b>")
 
 	if(onExamine)
-		to_chat(reciever,"<span class='notice'>[ourbar]</span>")
+		to_chat(reciever,span_notice("[ourbar]"))
 	else
-		to_chat(reciever,"<span class='vnotice'>[ourbar]</span>")
+		to_chat(reciever,span_vnotice("[ourbar]"))
 
 /mob/living/verb/print_healthbars()
 	set name = "Print Prey Healthbars"
@@ -123,7 +123,7 @@
 	if(istype(amprey))
 		var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
 		var/digest_mode = amprey.digest_mode == DM_SELECT ? DM_S.get_selective_mode(amprey, src) : amprey.digest_mode
-		to_chat(src, "<span class='notice'>[digest_mode] - You are in [amprey.owner]'s [amprey.name]:</span>")
+		to_chat(src, span_notice("[digest_mode] - You are in [amprey.owner]'s [amprey.name]:"))
 		src.chat_healthbar(src, TRUE, TRUE)
 		nuffin = FALSE
 
@@ -137,10 +137,10 @@
 			if(!belly_announce)
 				var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
 				var/digest_mode = b.digest_mode == DM_SELECT ? DM_S.get_selective_mode(b, thing) : b.digest_mode
-				to_chat(src, "<span class='notice'>[digest_mode] - Within your [b.name]:</span>")	//We only want to announce the belly if we found something
+				to_chat(src, span_notice("[digest_mode] - Within your [b.name]:"))	//We only want to announce the belly if we found something
 				belly_announce = TRUE
 			var/mob/living/ourmob = thing
 			ourmob.chat_healthbar(src, TRUE, TRUE)
 			nuffin = FALSE
 	if(nuffin)
-		to_chat(src, "<span class='warning'>There are no mobs within any of your bellies to print health bars for, and you are not in a belly yourself.</span>")
+		to_chat(src, span_warning("There are no mobs within any of your bellies to print health bars for, and you are not in a belly yourself."))

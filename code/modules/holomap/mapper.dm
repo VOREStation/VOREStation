@@ -125,24 +125,24 @@
 		return
 
 	if(!ishuman(user))
-		to_chat(user, "<span class='warning'>Only humanoids can use this device.</span>")
+		to_chat(user, span_warning("Only humanoids can use this device."))
 		return
 
 	var/mob/living/carbon/human/H = user
 
 	if(!ishuman(loc) || user != loc)
-		to_chat(H, "<span class='warning'>This device needs to be on your person.</span>")
+		to_chat(H, span_warning("This device needs to be on your person."))
 
 	if(hud_datum?.main_hud)
 		hide_device()
-		to_chat(H, "<span class='notice'>You put \the [src] away.</span>")
+		to_chat(H, span_notice("You put \the [src] away."))
 	else
 		show_device(H)
-		to_chat(H, "<span class='notice'>You hold \the [src] where you can see it.</span>")
+		to_chat(H, span_notice("You hold \the [src] where you can see it."))
 
 /obj/item/mapping_unit/attack_hand(mob/user)
 	if(cell && user.get_inactive_hand() == src) // click with empty off hand
-		to_chat(user,"<span class='notice'>You eject \the [cell] from \the [src].</span>")
+		to_chat(user,span_notice("You eject \the [cell] from \the [src]."))
 		user.put_in_hands(cell)
 		cell = null
 		if(updating)
@@ -156,7 +156,7 @@
 		cell.update_icon() //Why doesn't a cell do this already? :|
 		user.unEquip(cell)
 		cell.forceMove(src)
-		to_chat(user,"<span class='notice'>You insert \the [cell] into \the [src].</span>")
+		to_chat(user,span_notice("You insert \the [cell] into \the [src]."))
 
 
 /obj/item/mapping_unit/proc/first_run(mob/user)
@@ -203,7 +203,7 @@
 	if(uses_power)
 		var/power_to_use = pinging ? power_usage*2 : power_usage
 		if(cell.use(power_to_use) != power_to_use) // we weren't able to use our full power_usage amount!
-			visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
+			visible_message(span_warning("\The [src] flickers before going dull."))
 			stop_updates()
 			return
 

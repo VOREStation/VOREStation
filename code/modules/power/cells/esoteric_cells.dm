@@ -66,7 +66,7 @@
 	var/obj/item/plastique/C4 = locate() in get_turf(src)
 
 	if(C4)
-		C4.visible_message("<span class='danger'>The current fries \the [C4]!</span>")
+		C4.visible_message(span_danger("The current fries \the [C4]!"))
 
 		if(prob(10))
 			C4.explode(get_turf(src))

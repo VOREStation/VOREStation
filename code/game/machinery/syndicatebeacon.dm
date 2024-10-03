@@ -90,7 +90,7 @@
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1500)
 		if(user)
-			to_chat(user, "<span class='notice'>The connected wire doesn't have enough current.</span>")
+			to_chat(user, span_notice("The connected wire doesn't have enough current."))
 		return
 	for(var/obj/singularity/singulo in all_singularities)
 		if(singulo.z == z)
@@ -99,7 +99,7 @@
 	active = 1
 	START_MACHINE_PROCESSING(src)
 	if(user)
-		to_chat(user, "<span class='notice'>You activate the beacon.</span>")
+		to_chat(user, span_notice("You activate the beacon."))
 
 /obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
 	for(var/obj/singularity/singulo in all_singularities)
@@ -108,7 +108,7 @@
 	icon_state = "[icontype]0"
 	active = 0
 	if(user)
-		to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")
+		to_chat(user, span_notice("You deactivate the beacon."))
 
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user as mob)
 	return
@@ -117,18 +117,18 @@
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
-		to_chat(user, "<span class='danger'>You need to screw the beacon to the floor first!</span>")
+		to_chat(user, span_danger("You need to screw the beacon to the floor first!"))
 		return
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(active)
-			to_chat(user, "<span class='danger'>You need to deactivate the beacon first!</span>")
+			to_chat(user, span_danger("You need to deactivate the beacon first!"))
 			return
 
 		if(anchored)
 			anchored = FALSE
-			to_chat(user, "<span class='notice'>You unscrew the beacon from the floor.</span>")
+			to_chat(user, span_notice("You unscrew the beacon from the floor."))
 			playsound(src, W.usesound, 50, 1)
 			disconnect_from_network()
 			return
@@ -137,7 +137,7 @@
 				to_chat(user, "This device must be placed over an exposed cable.")
 				return
 			anchored = TRUE
-			to_chat(user, "<span class='notice'>You screw the beacon to the floor and attach the cable.</span>")
+			to_chat(user, span_notice("You screw the beacon to the floor and attach the cable."))
 			playsound(src, W.usesound, 50, 1)
 			return
 	..()

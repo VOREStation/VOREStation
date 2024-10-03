@@ -34,7 +34,7 @@ var/list/sounds_cache = list()
 		return
 	switch(res)
 		if("Yes")
-			to_chat(world, "<span class='boldannounce'>An admin played: [S]</span>", confidential = TRUE)
+			to_chat(world, span_boldannounce("An admin played: [S]"), confidential = TRUE)
 		if("Cancel")
 			return
 
@@ -121,7 +121,7 @@ var/list/sounds_cache = list()
 		return
 	var/ytdl = config.invoke_youtubedl
 	if(!ytdl)
-		to_chat(user, "<span class='boldwarning'>Youtube-dl was not configured, action unavailable</span>", confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(user, span_boldwarning("Youtube-dl was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 	var/web_sound_url = ""
 	var/stop_web_sounds = FALSE
@@ -134,15 +134,15 @@ var/list/sounds_cache = list()
 		var/stdout = output[SHELLEO_STDOUT]
 		var/stderr = output[SHELLEO_STDERR]
 		if(errorlevel)
-			to_chat(user, "<span class='boldwarning'>Youtube-dl URL retrieval FAILED:</span>", confidential = TRUE)
-			to_chat(user, "<span class='warning'>[stderr]</span>", confidential = TRUE)
+			to_chat(user, span_boldwarning("Youtube-dl URL retrieval FAILED:"), confidential = TRUE)
+			to_chat(user, span_warning("[stderr]"), confidential = TRUE)
 			return
 		var/list/data
 		try
 			data = json_decode(stdout)
 		catch(var/exception/e)
-			to_chat(user, "<span class='boldwarning'>Youtube-dl JSON parsing FAILED:</span>", confidential = TRUE)
-			to_chat(user, "<span class='warning'>[e]: [stdout]</span>", confidential = TRUE)
+			to_chat(user, span_boldwarning("Youtube-dl JSON parsing FAILED:"), confidential = TRUE)
+			to_chat(user, span_warning("[e]: [stdout]"), confidential = TRUE)
 			return
 		if (data["url"])
 			web_sound_url = data["url"]
@@ -175,16 +175,16 @@ var/list/sounds_cache = list()
 		switch(anon)
 			if("Yes")
 				if(res == "Yes")
-					to_chat(world, "<span class='boldannounce'>[user.key] played: [webpage_url]</span>", confidential = TRUE)
+					to_chat(world, span_boldannounce("[user.key] played: [webpage_url]"), confidential = TRUE)
 				else
-					to_chat(world, "<span class='boldannounce'>[user.key] played a sound</span>", confidential = TRUE)
+					to_chat(world, span_boldannounce("[user.key] played a sound"), confidential = TRUE)
 			if("No")
 				if(res == "Yes")
-					to_chat(world, "<span class='boldannounce'>An admin played: [webpage_url]</span>", confidential = TRUE)
+					to_chat(world, span_boldannounce("An admin played: [webpage_url]"), confidential = TRUE)
 			if("Cancel", null)
 				return
 		if(credit)
-			to_chat(world, "<span class='boldannounce'>[credit]</span>", confidential = TRUE)
+			to_chat(world, span_boldannounce("[credit]"), confidential = TRUE)
 		//SSblackbox.record_feedback("nested tally", "played_url", 1, list("[user.ckey]", "[input]"))
 		log_admin("[key_name(user)] played web sound: [input]")
 		message_admins("[key_name(user)] played web sound: [input]")
@@ -197,7 +197,7 @@ var/list/sounds_cache = list()
 		stop_web_sounds = TRUE
 	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
 		tgui_alert(user, "The media provider returned a content URL that isn't using the HTTP or HTTPS protocol. This is a security risk and the sound will not be played.", "Security Risk", list("OK"))
-		to_chat(user, "<span class='boldwarning'>BLOCKED: Content URL not using HTTP(S) Protocol!</span>", confidential = TRUE)
+		to_chat(user, span_boldwarning("BLOCKED: Content URL not using HTTP(S) Protocol!"), confidential = TRUE)
 
 		return
 	if(web_sound_url || stop_web_sounds)
@@ -222,7 +222,7 @@ var/list/sounds_cache = list()
 
 	var/ytdl = config.invoke_youtubedl
 	if(!ytdl)
-		to_chat(src, "<span class='boldwarning'>Youtube-dl was not configured, action unavailable</span>", confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(src, span_boldwarning("Youtube-dl was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 
 	if(S_TIMER_COOLDOWN_TIMELEFT(SStimer, COOLDOWN_INTERNET_SOUND))
@@ -235,8 +235,8 @@ var/list/sounds_cache = list()
 	if(length(web_sound_input))
 		web_sound_input = trim(web_sound_input)
 		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-			to_chat(src, "<span class='boldwarning'>Non-http(s) URIs are not allowed.</span>", confidential = TRUE)
-			to_chat(src, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website.</span>", confidential = TRUE)
+			to_chat(src, span_boldwarning("Non-http(s) URIs are not allowed."), confidential = TRUE)
+			to_chat(src, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website."), confidential = TRUE)
 			return
 		web_sound(usr, web_sound_input)
 	else

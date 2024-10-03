@@ -183,8 +183,8 @@
 		new to_spawn(get_turf(src))
 
 		if(prob(20))
-			user.visible_message("<span class='alien'>Something oozes out of \the [src] as it is cut.</span>")
+			user.visible_message(span_alien("Something oozes out of \the [src] as it is cut."))
 
-		to_chat(user, "<span class='alien'>You cut the tissue holding the chunks together.</span>")
+		to_chat(user, span_alien("You cut the tissue holding the chunks together."))
 
 	..()

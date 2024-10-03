@@ -49,7 +49,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!charge_selected)
-		to_chat(H,"<span class='danger'>You have not selected a chemical type.</span>")
+		to_chat(H,span_danger("You have not selected a chemical type."))
 		return 0
 
 	var/datum/rig_charge/charge = charges[charge_selected]
@@ -58,7 +58,7 @@
 		return 0
 
 	if(charge.charges <= 0)
-		to_chat(H,"<span class='danger'>Insufficient chems!</span>")
+		to_chat(H,span_danger("Insufficient chems!"))
 		return 0
 
 	else if(charge.charges < chems_to_use)
@@ -70,8 +70,8 @@
 	else
 		return 0
 
-	to_chat(H,"<span class='notice'>You inject [target_mob == H ? "yourself" : target_mob] with [chems_to_use] unit\s of [charge.short_name].</span>")
-	to_chat(target_mob,"<span class='notice'>You feel a rushing in your veins as you're injected by \the [src].</span>")
+	to_chat(H,span_notice("You inject [target_mob == H ? "yourself" : target_mob] with [chems_to_use] unit\s of [charge.short_name]."))
+	to_chat(target_mob,span_notice("You feel a rushing in your veins as you're injected by \the [src]."))
 	target_mob.reagents.add_reagent(charge.display_name, chems_to_use)
 
 	charge.charges -= chems_to_use

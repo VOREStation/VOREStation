@@ -31,7 +31,7 @@
 /obj/item/plastique/attackby(var/obj/item/I, var/mob/user)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		open_panel = !open_panel
-		to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
+		to_chat(user, span_notice("You [open_panel ? "open" : "close"] the wire panel."))
 		playsound(src, I.usesound, 50, 1)
 	else if(I.has_tool_quality(TOOL_WIRECUTTER) || istype(I, /obj/item/multitool) || istype(I, /obj/item/assembly/signaler ))
 		wires.Interact(user)
@@ -60,7 +60,7 @@
 
 		if (ismob(target))
 			add_attack_logs(user, target, "planted [name] on with [timer] second fuse")
-			user.visible_message("<span class='danger'>[user.name] finished planting an explosive on [target.name]!</span>")
+			user.visible_message(span_danger("[user.name] finished planting an explosive on [target.name]!"))
 		else
 			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
@@ -108,12 +108,12 @@
 			var/obj/item/stock_parts/SP = I
 			var/new_blast_power = max(1, round(SP.rating / 2) + 1)
 			if(new_blast_power > blast_heavy)
-				to_chat(user, "<span class='notice'>You install \the [I] into \the [src].</span>")
+				to_chat(user, span_notice("You install \the [I] into \the [src]."))
 				user.drop_from_inventory(I)
 				qdel(I)
 				blast_heavy = new_blast_power
 				blast_light = blast_heavy + round(new_blast_power * 0.5)
 				blast_flash = blast_light + round(new_blast_power * 0.75)
 			else
-				to_chat(user, "<span class='notice'>The [I] is not any better than the component already installed into this charge!</span>")
+				to_chat(user, span_notice("The [I] is not any better than the component already installed into this charge!"))
 	return .

@@ -227,7 +227,7 @@
 			var/newtag = text2num(sanitizeSafe(tgui_input_text(user, "Enter new ID number or leave empty to cancel.", "Assign ID number", null, 4), 4))
 			if(newtag)
 				name = "[initial(name)] #[newtag]"
-				to_chat(user, "<span class='notice'>You changed the drill ID to: [newtag]</span>")
+				to_chat(user, span_notice("You changed the drill ID to: [newtag]"))
 			else
 				name = "[initial(name)]"
 				to_chat(user, span_notice("You removed the drill's ID and any extraneous labels."))
@@ -280,9 +280,9 @@
 			else
 				visible_message("<b>\The [src]</b> shudders to a grinding halt.")
 		else
-			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
+			to_chat(user, span_notice("The drill is unpowered."))
 	else
-		to_chat(user, "<span class='notice'>Turning on a piece of industrial machinery without sufficient bracing or wires exposed is a bad idea.</span>")
+		to_chat(user, span_notice("Turning on a piece of industrial machinery without sufficient bracing or wires exposed is a bad idea."))
 
 	update_icon()
 
@@ -405,9 +405,9 @@
 				B.stored_ore[ore] += ore_amount 	// Add the ore to the machine.
 				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
 				current_capacity = 0				// Set the amount of ore in the drill to 0.
-		to_chat(usr, "<span class='notice'>You unload the drill's storage cache into the ore box.</span>")
+		to_chat(usr, span_notice("You unload the drill's storage cache into the ore box."))
 	else
-		to_chat(usr, "<span class='notice'>You must move an ore box up to the drill before you can unload it.</span>")
+		to_chat(usr, span_notice("You must move an ore box up to the drill before you can unload it."))
 
 
 /obj/machinery/mining/brace
@@ -435,7 +435,7 @@
 
 /obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
 	if(connected && connected.active)
-		to_chat(user, "<span class='notice'>You can't work with the brace of a running drill!</span>")
+		to_chat(user, span_notice("You can't work with the brace of a running drill!"))
 		return
 
 	if(default_deconstruction_screwdriver(user, W))
@@ -448,11 +448,11 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 
 		if(istype(get_turf(src), /turf/space))
-			to_chat(user, "<span class='notice'>You can't anchor something to empty space. Idiot.</span>")
+			to_chat(user, span_notice("You can't anchor something to empty space. Idiot."))
 			return
 
 		playsound(src, W.usesound, 100, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>")
+		to_chat(user, span_notice("You [anchored ? "un" : ""]anchor the brace."))
 
 		anchored = !anchored
 		if(anchored)

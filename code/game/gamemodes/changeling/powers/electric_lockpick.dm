@@ -34,10 +34,10 @@
 
 /obj/item/finger_lockpick/New()
 	if(ismob(loc))
-		to_chat(loc, "<span class='notice'>We shape our finger to fit inside electronics, and are ready to force them open.</span>")
+		to_chat(loc, span_notice("We shape our finger to fit inside electronics, and are ready to force them open."))
 
 /obj/item/finger_lockpick/dropped(mob/user)
-	to_chat(user, "<span class='notice'>We discreetly shape our finger back to a less suspicious form.</span>")
+	to_chat(user, span_notice("We discreetly shape our finger back to a less suspicious form."))
 	spawn(1)
 		if(src)
 			qdel(src)
@@ -53,13 +53,13 @@
 	var/datum/changeling/ling_datum = user.mind.changeling
 
 	if(ling_datum.chem_charges < 10)
-		to_chat(user, "<span class='warning'>We require more chemicals to do that.</span>")
+		to_chat(user, span_warning("We require more chemicals to do that."))
 		return
 
 	//Airlocks require an ugly block of code, but we don't want to just call emag_act(), since we don't want to break airlocks forever.
 	if(istype(target,/obj/machinery/door))
 		var/obj/machinery/door/door = target
-		to_chat(user, "<span class='notice'>We send an electrical pulse up our finger, and into \the [target], attempting to open it.</span>")
+		to_chat(user, span_notice("We send an electrical pulse up our finger, and into \the [target], attempting to open it."))
 
 		if(door.density && door.operable())
 			door.do_animate("spark")
@@ -70,15 +70,15 @@
 
 				if(airlock.locked) //Check if we're bolted.
 					airlock.unlock()
-					to_chat(user, "<span class='notice'>We've unlocked \the [airlock].  Another pulse is requried to open it.</span>")
+					to_chat(user, span_notice("We've unlocked \the [airlock].  Another pulse is requried to open it."))
 				else	//We're not bolted, so open the door already.
 					airlock.open()
-					to_chat(user, "<span class='notice'>We've opened \the [airlock].</span>")
+					to_chat(user, span_notice("We've opened \the [airlock]."))
 			else
 				door.open() //If we're a windoor, open the windoor.
-				to_chat(user, "<span class='notice'>We've opened \the [door].</span>")
+				to_chat(user, span_notice("We've opened \the [door]."))
 		else //Probably broken or no power.
-			to_chat(user, "<span class='warning'>The door does not respond to the pulse.</span>")
+			to_chat(user, span_warning("The door does not respond to the pulse."))
 		door.add_fingerprint(user)
 		log_and_message_admins("finger-lockpicked \an [door].")
 		ling_datum.chem_charges -= 10
@@ -86,7 +86,7 @@
 
 	else if(istype(target,/obj/)) //This should catch everything else we might miss, without a million typechecks.
 		var/obj/O = target
-		to_chat(user, "<span class='notice'>We send an electrical pulse up our finger, and into \the [O].</span>")
+		to_chat(user, span_notice("We send an electrical pulse up our finger, and into \the [O]."))
 		O.add_fingerprint(user)
 		O.emag_act(1,user,src)
 		log_and_message_admins("finger-lockpicked \an [O].")

@@ -77,7 +77,7 @@
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
 		return string
 	else
-		to_chat(user, "<span class='notice'>It is empty.</span>")
+		to_chat(user, span_notice("It is empty."))
 
 /obj/machinery/appliance/proc/report_progress_tgui(datum/cooking_item/CI)
 	if(!CI || !CI.max_cookwork)
@@ -114,17 +114,17 @@
 	if (progress < 0.25)
 		return "It's barely started cooking."
 	if (progress < 0.75)
-		return "<span class='notice'>It's cooking away nicely.</span>"
+		return span_notice("It's cooking away nicely.")
 	if (progress < 1)
-		return "<span class='notice'><b>It's almost ready!</b></span>"
+		return span_notice("<b>It's almost ready!</b>")
 
 	var/half_overcook = (CI.overcook_mult - 1)*0.5
 	if (progress < 1+half_overcook)
-		return "<span class='soghun'><b>It is done !</b></span>"
+		return span_soghun("<b>It is done !</b>")
 	if (progress < CI.overcook_mult)
-		return "<span class='warning'>It looks overcooked, get it out!</span>"
+		return span_warning("It looks overcooked, get it out!")
 	else
-		return "<span class='danger'>It is burning!</span>"
+		return span_danger("It is burning!")
 
 /obj/machinery/appliance/update_icon()
 	if (!stat && cooking_objs.len)
@@ -145,25 +145,25 @@
 		return
 
 	if (!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You lack the dexterity to do that!</span>")
+		to_chat(user, span_warning("You lack the dexterity to do that!"))
 		return
 
 	if (user.stat || user.restrained() || user.incapacitated())
 		return
 
 	if (!Adjacent(user) && !issilicon(user))
-		to_chat(user, "<span class='warning'>You can't reach [src] from here!</span>")
+		to_chat(user, span_warning("You can't reach [src] from here!"))
 		return
 
 	if (stat & POWEROFF)//Its turned off
 		stat &= ~POWEROFF
 		use_power = 1
-		user.visible_message("<span class='filter_notice'>[user] turns [src] on.</span>", "<span class='filter_notice'>You turn on [src].</span>")
+		user.visible_message(span_filter_notice("[user] turns [src] on."), span_filter_notice("You turn on [src]."))
 
 	else //Its on, turn it off
 		stat |= POWEROFF
 		use_power = 0
-		user.visible_message("<span class='filter_notice'>[user] turns [src] off.</span>", "<span class='filter_notice'>You turn off [src].</span>")
+		user.visible_message(span_filter_notice("[user] turns [src] off."), span_filter_notice("You turn off [src]."))
 		cooking = FALSE // Stop cooking here, too, just in case.
 
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
@@ -181,14 +181,14 @@
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, "<span class='filter_notice'>You lack the dexterity to do that!</span>")
+		to_chat(usr, span_filter_notice("You lack the dexterity to do that!"))
 		return
 
 	if (usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
 	if (!Adjacent(usr) && !issilicon(usr))
-		to_chat(usr, "<span class='filter_notice'>You can't adjust the [src] from this distance, get closer!</span>")
+		to_chat(usr, span_filter_notice("You can't adjust the [src] from this distance, get closer!"))
 		return
 
 	if(output_options.len)
@@ -197,10 +197,10 @@
 			return
 		if(choice == "Default")
 			selected_option = null
-			to_chat(usr, "<span class='notice'>You decide not to make anything specific with \the [src].</span>")
+			to_chat(usr, span_notice("You decide not to make anything specific with \the [src]."))
 		else
 			selected_option = choice
-			to_chat(usr, "<span class='notice'>You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!</span>")
+			to_chat(usr, span_notice("You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!"))
 
 //Handles all validity checking and error messages for inserting things
 /obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
@@ -214,18 +214,18 @@
 	if(istype(G))
 
 		if(!can_cook_mobs)
-			to_chat(user, "<span class='warning'>That's not going to fit.</span>")
+			to_chat(user, span_warning("That's not going to fit."))
 			return 0
 
 		if(!isliving(G.affecting))
-			to_chat(user, "<span class='warning'>You can't cook that.</span>")
+			to_chat(user, span_warning("You can't cook that."))
 			return 0
 
 		return 2
 
 
 	if (!has_space(I))
-		to_chat(user, "<span class='warning'>There's no room in [src] for that!</span>")
+		to_chat(user, span_warning("There's no room in [src] for that!"))
 		return 0
 
 
@@ -235,18 +235,18 @@
 	// We're trying to cook something else. Check if it's valid.
 	var/obj/item/reagent_containers/food/snacks/check = I
 	if(istype(check) && islist(check.cooked) && (cook_type in check.cooked))
-		to_chat(user, "<span class='warning'>\The [check] has already been [cook_type].</span>")
+		to_chat(user, span_warning("\The [check] has already been [cook_type]."))
 		return 0
 	else if(istype(check, /obj/item/reagent_containers/glass))
-		to_chat(user, "<span class='warning'>That would probably break [src].</span>")
+		to_chat(user, span_warning("That would probably break [src]."))
 		return 0
 	else if(istype(check, /obj/item/disk/nuclear))
-		to_chat(user, "<span class='warning'>You can't cook that.</span>")
+		to_chat(user, span_warning("You can't cook that."))
 		return 0
 	else if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/storage/part_replacer)) // You can't cook tools, dummy.
 		return 0
 	else if(!istype(check) &&  !istype(check, /obj/item/holder))
-		to_chat(user, "<span class='warning'>That's not edible.</span>")
+		to_chat(user, span_warning("That's not edible."))
 		return 0
 
 	return 1
@@ -261,7 +261,7 @@
 
 /obj/machinery/appliance/attackby(var/obj/item/I, var/mob/user)
 	if(!cook_type || (stat & (BROKEN)))
-		to_chat(user, "<span class='warning'>\The [src] is not working.</span>")
+		to_chat(user, span_warning("\The [src] is not working."))
 		return FALSE
 
 	var/obj/item/ToCook = I
@@ -595,7 +595,7 @@
 	new /obj/item/reagent_containers/food/snacks/badrecipe(CI.container)
 
 	// Produce nasty smoke.
-	visible_message("<span class='danger'>\The [src] vomits a gout of rancid smoke!</span>")
+	visible_message(span_danger("\The [src] vomits a gout of rancid smoke!"))
 	var/datum/effect/effect/system/smoke_spread/bad/burntfood/smoke = new /datum/effect/effect/system/smoke_spread/bad/burntfood
 	playsound(src, 'sound/effects/smoke.ogg', 20, 1)
 	smoke.attach(src)
@@ -666,7 +666,7 @@
 		CI.reset()//reset instead of deleting if the container is left inside
 
 	if(user)
-		user.visible_message("<span class='notice'>\The [user] remove \the [thing] from \the [src].</span>")
+		user.visible_message(span_notice("\The [user] remove \the [thing] from \the [src]."))
 	else
 		src.visible_message("<b>\The [src]</b> pings as it automatically ejects its contents!")
 		if(cooked_sound)

@@ -51,7 +51,7 @@
 				qdel(src)
 		return
 
-	visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W]!</span>")
+	visible_message(span_danger("\The [user] hits \the [src] with \the [W]!"))
 
 	var/damage_to_do = W.force
 	if(!W.sharp && !W.edge)
@@ -64,7 +64,7 @@
 		if(damage_to_do > 5 && !indestructable)
 			adjust_health(-damage_to_do)
 		else
-			to_chat(user, "<span class='warning'>\The [W] is ineffective at harming \the [src].</span>")
+			to_chat(user, span_warning("\The [W] is ineffective at harming \the [src]."))
 
 	hit_animation()
 	user.setClickCooldown(user.get_attack_speed(W))
@@ -103,7 +103,7 @@
 	if(product && product_amount) // Make wooden logs.
 		var/obj/item/stack/material/M = new product(get_turf(src), product_amount)
 		M.update_icon()
-	visible_message("<span class='danger'>\The [src] is felled!</span>")
+	visible_message(span_danger("\The [src] is felled!"))
 	stump()
 
 // Makes the tree into a mostly non-interactive stump.

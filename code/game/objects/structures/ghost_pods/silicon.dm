@@ -13,7 +13,7 @@
 	needscharger = TRUE
 
 /obj/structure/ghost_pod/manual/lost_drone/trigger()
-	..("<span class='notice'>\The [src] appears to be attempting to restart the robot contained inside.</span>", "is attempting to open \a [src].")
+	..(span_notice("\The [src] appears to be attempting to restart the robot contained inside."), "is attempting to open \a [src].")
 
 /obj/structure/ghost_pod/manual/lost_drone/create_occupant(var/mob/M)
 	density = FALSE
@@ -30,7 +30,7 @@
 	definiton of 'the station' is where your pod is, and unless your laws say otherwise, the entity that released you \
 	from the pod is not a crewmember.</span>")
 	R.ckey = M.ckey
-	visible_message("<span class='warning'>As \the [src] opens, the eyes of the robot flicker as it is activated.</span>")
+	visible_message(span_warning("As \the [src] opens, the eyes of the robot flicker as it is activated."))
 	R.namepick()
 	log_and_message_admins("successfully opened \a [src] and got a Lost Drone.")
 	..()
@@ -52,11 +52,11 @@
 	if(M.mind)
 		M.mind.transfer_to(R)
 	// Put this text here before ckey change so that their laws are shown below it, since borg login() shows it.
-	to_chat(M, "<span class='notice'>You are a <b>Gravekeeper Drone</b>, activated once again to tend to the restful dead.</span>")
+	to_chat(M, span_notice("You are a <b>Gravekeeper Drone</b>, activated once again to tend to the restful dead."))
 	to_chat(M, "<span class='notice'><b>Be sure to examine your currently loaded lawset closely.</b>  Remember, your \
 	definiton of 'your gravesite' is where your pod is.</span>")
 	R.ckey = M.ckey
-	visible_message("<span class='warning'>As \the [src] opens, the eyes of the robot flicker as it is activated.</span>")
+	visible_message(span_warning("As \the [src] opens, the eyes of the robot flicker as it is activated."))
 	R.namepick()
 	..()
 
@@ -75,16 +75,16 @@
 	var/mob/living/silicon/robot/drone/swarm/R = new drone_type(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(R)
-	to_chat(M, "<span class='cult'>You are <b>[R]</b>, the remnant of some distant species, mechanical or flesh, living or dead.</span>")
+	to_chat(M, span_cult("You are <b>[R]</b>, the remnant of some distant species, mechanical or flesh, living or dead."))
 	R.ckey = M.ckey
-	visible_message("<span class='cult'>As \the [src] shudders, it glows before lifting itself with three shimmering limbs!</span>")
+	visible_message(span_cult("As \the [src] shudders, it glows before lifting itself with three shimmering limbs!"))
 	spawn(3 SECONDS)
-		to_chat(R,"<span class='notice'>Many of your tools are standard drone devices, however others provide you with particular benefits.</span>")
-		to_chat(R,"<span class='notice'>Unlike standard drones, you are capable of utilizing 'zero point wells', found in your 'spells' tab.</span>")
-		to_chat(R,"<span class='notice'>Here you will also find your replication ability(s), depending on the type of drone you are.</span>")
-		to_chat(R,"<span class='notice'>Gunners have a special anti-personnel gun capable of shocking or punching through armor with low damage.</span>")
-		to_chat(R,"<span class='notice'>Impalers have an energy-lance.</span>")
-		to_chat(R,"<span class='notice'>General drones have the unique ability to produce one of each of these two types of shells per generation.</span>")
+		to_chat(R,span_notice("Many of your tools are standard drone devices, however others provide you with particular benefits."))
+		to_chat(R,span_notice("Unlike standard drones, you are capable of utilizing 'zero point wells', found in your 'spells' tab."))
+		to_chat(R,span_notice("Here you will also find your replication ability(s), depending on the type of drone you are."))
+		to_chat(R,span_notice("Gunners have a special anti-personnel gun capable of shocking or punching through armor with low damage."))
+		to_chat(R,span_notice("Impalers have an energy-lance."))
+		to_chat(R,span_notice("General drones have the unique ability to produce one of each of these two types of shells per generation."))
 	if(!QDELETED(src))
 		qdel(src)
 

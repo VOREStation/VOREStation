@@ -14,7 +14,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
-			to_chat(H, "<span class='notice'>You are not holding anything to equip.</span>")
+			to_chat(H, span_notice("You are not holding anything to equip."))
 			return
 
 		var/moved = FALSE
@@ -29,7 +29,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 		// No?! Well, give up.
 		if(!moved)
-			to_chat(H, "<span class='warning'>You are unable to equip that.</span>")
+			to_chat(H, span_warning("You are unable to equip that."))
 
 		// Update hand icons
 		else
@@ -401,7 +401,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.wear_suit
 
 	if(covering && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
-		to_chat(user, "<span class='warning'>\The [covering] is in the way.</span>")
+		to_chat(user, span_warning("\The [covering] is in the way."))
 		return 0
 	return 1
 

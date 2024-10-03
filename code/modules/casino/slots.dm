@@ -70,12 +70,12 @@
 
 		if(do_after(user, 20 * W.toolspeed))
 			if(!src) return
-			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored
 		return
 
 	if(!anchored)
-		to_chat(user,"<span class='notice'> The slot machine isn't secured.</span>")
+		to_chat(user,span_notice(" The slot machine isn't secured."))
 		return
 
 	var/handled = 0
@@ -110,7 +110,7 @@
 		to_chat(user,"<span class='notice'>You dont have enough chips to gamble!</span> ")
 		return
 
-	to_chat(user,"<span class='notice'>You puts 5 credits in the slot machine and presses start.</span>")
+	to_chat(user,span_notice("You puts 5 credits in the slot machine and presses start."))
 	cashmoney.worth -= 5
 	cashmoney.update_icon()
 
@@ -161,44 +161,44 @@
 
 
 	spawn(delaytime)
-		to_chat(user,"<span class='notice'>The slot machine flashes with bright colours as the slots lights up with a [symbol1], a [symbol2] and a [symbol3]!</span>")
+		to_chat(user,span_notice("The slot machine flashes with bright colours as the slots lights up with a [symbol1], a [symbol2] and a [symbol3]!"))
 
 		if (symbol1 == "cherry" && symbol2 == "cherry" && symbol3 == "cherry")
-			output = "<span class='notice'>Three cherries! The slot machine deposits chips worth 25 credits!</span>"
+			output = span_notice("Three cherries! The slot machine deposits chips worth 25 credits!")
 			winnings = 25
 
 		if ((symbol1 != "cherry" && symbol2 == "cherry" && symbol3 == "cherry") || (symbol1 == "cherry" && symbol2 != "cherry" && symbol3 == "cherry") ||(symbol1 == "cherry" && symbol2 == "cherry" && symbol3 != "cherry"))
-			output = "<span class='notice'>Two cherries! The slot machine deposits a 10 credit chip!</span>"
+			output = span_notice("Two cherries! The slot machine deposits a 10 credit chip!")
 			winnings = 10
 
 		if (symbol1 == "lemon" && symbol2 == "lemon" && symbol3 == "lemon")
-			output = "<span class='notice'>Three lemons! The slot machine deposits a 50 credit chip!</span>"
+			output = span_notice("Three lemons! The slot machine deposits a 50 credit chip!")
 			winnings = 50
 
 		if (symbol1 == "watermelon" && symbol2 == "watermelon" && symbol3 == "watermelon")
-			output = "<span class='notice'>Three watermelons! The slot machine deposits chips worth 75 credits!</span>"
+			output = span_notice("Three watermelons! The slot machine deposits chips worth 75 credits!")
 			winnings = 75
 
 		if (symbol1 == "bell" && symbol2 == "bell" && symbol3 == "bell")
-			output = "<span class='notice'>Three bells! The slot machine deposits chips a 100 credit chip!</span>"
+			output = span_notice("Three bells! The slot machine deposits chips a 100 credit chip!")
 			winnings = 100
 
 		if (symbol1 == "four leaf clover" && symbol2 == "four leaf clover" && symbol3 == "four leaf clover")
-			output = "<span class='notice'>Three four leaf clovers! The slot machine deposits a 200 credit chip!</span>"
+			output = span_notice("Three four leaf clovers! The slot machine deposits a 200 credit chip!")
 			winnings = 200
 
 		if (symbol1 == "seven" && symbol2 == "seven" && symbol3 == "seven")
-			output = "<span class='notice'>Three sevens! The slot machine deposits a 500 credit chip!</span>"
+			output = span_notice("Three sevens! The slot machine deposits a 500 credit chip!")
 			winnings = 500
 			celebrate = 1
 
 		if (symbol1 == "diamond" && symbol2 == "diamond" && symbol3 == "diamond")
-			output = "<span class='notice'>Three diamonds! The slot machine deposits a 1000 credit chip!</span>"
+			output = span_notice("Three diamonds! The slot machine deposits a 1000 credit chip!")
 			winnings = 1000
 			celebrate = 1
 
 		if (symbol1 == "platinum coin" && symbol2 == "platinum coin" && symbol3 == "platinum coin")
-			output = "<span class='notice'>Three platinum coins! The slot machine deposits a platinum chip!</span>"
+			output = span_notice("Three platinum coins! The slot machine deposits a platinum chip!")
 			platinumwin = TRUE
 			celebrate = 1
 
@@ -300,12 +300,12 @@
 
 		if(do_after(user, 20 * W.toolspeed))
 			if(!src) return
-			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored
 		return
 
 	if(!anchored)
-		to_chat(user,"<span class='notice'> The slot machine isn't secured.</span>")
+		to_chat(user,span_notice(" The slot machine isn't secured."))
 		return
 
 	var/handled = 0
@@ -339,7 +339,7 @@
 		to_chat(user,"<span class='notice'>You dont have enough Thalers to gamble!</span> ")
 		return
 
-	to_chat(user,"<span class='notice'>You puts 5 Thalers in the slot machine and presses start.</span>")
+	to_chat(user,span_notice("You puts 5 Thalers in the slot machine and presses start."))
 	cashmoney.worth -= 5
 	cashmoney.update_icon()
 
@@ -390,44 +390,44 @@
 
 
 	spawn(delaytime)
-		to_chat(user,"<span class='notice'>The slot machine flashes with bright colours as the slots lights up with a [symbol1], a [symbol2] and a [symbol3]!</span>")
+		to_chat(user,span_notice("The slot machine flashes with bright colours as the slots lights up with a [symbol1], a [symbol2] and a [symbol3]!"))
 
 		if (symbol1 == "cherry" && symbol2 == "cherry" && symbol3 == "cherry")
-			output = "<span class='notice'>Three cherries! The slot machine deposits 25 Thalers!</span>"
+			output = span_notice("Three cherries! The slot machine deposits 25 Thalers!")
 			winnings = 25
 
 		if ((symbol1 != "cherry" && symbol2 == "cherry" && symbol3 == "cherry") || (symbol1 == "cherry" && symbol2 != "cherry" && symbol3 == "cherry") ||(symbol1 == "cherry" && symbol2 == "cherry" && symbol3 != "cherry"))
-			output = "<span class='notice'>Two cherries! The slot machine deposits 10 Thalers!</span>"
+			output = span_notice("Two cherries! The slot machine deposits 10 Thalers!")
 			winnings = 10
 
 		if (symbol1 == "lemon" && symbol2 == "lemon" && symbol3 == "lemon")
-			output = "<span class='notice'>Three lemons! The slot machine deposits 50 Thalers!</span>"
+			output = span_notice("Three lemons! The slot machine deposits 50 Thalers!")
 			winnings = 50
 
 		if (symbol1 == "watermelon" && symbol2 == "watermelon" && symbol3 == "watermelon")
-			output = "<span class='notice'>Three watermelons! The slot machine deposits 75 Thalers!</span>"
+			output = span_notice("Three watermelons! The slot machine deposits 75 Thalers!")
 			winnings = 75
 
 		if (symbol1 == "bell" && symbol2 == "bell" && symbol3 == "bell")
-			output = "<span class='notice'>Three bells! The slot machine deposits 100 Thalers!</span>"
+			output = span_notice("Three bells! The slot machine deposits 100 Thalers!")
 			winnings = 100
 
 		if (symbol1 == "four leaf clover" && symbol2 == "four leaf clover" && symbol3 == "four leaf clover")
-			output = "<span class='notice'>Three four leaf clovers! The slot machine deposits 200 Thalers!</span>"
+			output = span_notice("Three four leaf clovers! The slot machine deposits 200 Thalers!")
 			winnings = 200
 
 		if (symbol1 == "seven" && symbol2 == "seven" && symbol3 == "seven")
-			output = "<span class='notice'>Three sevens! The slot machine deposits 500 Thalers!</span>"
+			output = span_notice("Three sevens! The slot machine deposits 500 Thalers!")
 			winnings = 500
 			celebrate = 1
 
 		if (symbol1 == "diamond" && symbol2 == "diamond" && symbol3 == "diamond")
-			output = "<span class='notice'>Three diamonds! The slot machine deposits 1000 Thalers!</span>"
+			output = span_notice("Three diamonds! The slot machine deposits 1000 Thalers!")
 			winnings = 1000
 			celebrate = 1
 
 		if (symbol1 == "platinum coin" && symbol2 == "platinum coin" && symbol3 == "platinum coin")
-			output = "<span class='notice'>Three platinum coins! The slot machine deposits a platinum chip!</span>"
+			output = span_notice("Three platinum coins! The slot machine deposits a platinum chip!")
 			platinumwin = TRUE;
 			celebrate = 1
 

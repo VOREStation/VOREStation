@@ -45,11 +45,11 @@
 	H.adjustCloneLoss(rand(1,5))
 	if(M.mind)
 		M.mind.transfer_to(H)
-	to_chat(M, "<span class='notice'>You are a [occupant_type]!</span>")
+	to_chat(M, span_notice("You are a [occupant_type]!"))
 	if(make_antag)
-		to_chat(M, "<span class='warning'>Your intent may not be completely beneficial.</span>")
+		to_chat(M, span_warning("Your intent may not be completely beneficial."))
 	H.ckey = M.ckey
-	visible_message("<span class='warning'>As \the [src] opens, the pipes on \the [src] surge, before it grows dark.</span>")
+	visible_message(span_warning("As \the [src] opens, the pipes on \the [src] surge, before it grows dark."))
 	log_and_message_admins("successfully opened \a [src] and became a [occupant_type].")
 
 	var/list/uniform_options
@@ -124,7 +124,7 @@
 	if(allow_appearance_change)
 		H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 
-//	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")
+//	visible_message(span_alien("\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!"))
 
 	qdel(src)
 
@@ -173,11 +173,11 @@
 	H.adjustCloneLoss(rand(1,5))
 	if(M.mind)
 		M.mind.transfer_to(H)
-	to_chat(M, "<span class='notice'>You are a [occupant_type]!</span>")
+	to_chat(M, span_notice("You are a [occupant_type]!"))
 	if(make_antag)
-		to_chat(M, "<span class='warning'>Your intent may not be completely beneficial.</span>")
+		to_chat(M, span_warning("Your intent may not be completely beneficial."))
 	H.ckey = M.ckey
-	visible_message("<span class='warning'>As \the [src] opens, the pipes on \the [src] surge, before it grows dark.</span>")
+	visible_message(span_warning("As \the [src] opens, the pipes on \the [src] surge, before it grows dark."))
 	log_and_message_admins("successfully opened \a [src] and got a [occupant_type].")
 
 	var/list/uniform_options
@@ -246,4 +246,4 @@
 	if(allow_appearance_change)
 		H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 
-	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")
+	visible_message(span_alien("\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!"))

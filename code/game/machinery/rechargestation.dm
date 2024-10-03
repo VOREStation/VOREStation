@@ -126,14 +126,14 @@
 			if(wornrig) // just to make sure
 				for(var/obj/item/rig_module/storedmod in wornrig.installed_modules)
 					if(weld_rate && storedmod.damage && cell.checked_use(weld_power_use * weld_rate * CELLRATE))
-						to_chat(H, "<span class='notice'>[storedmod] is repaired!</span>")
+						to_chat(H, span_notice("[storedmod] is repaired!"))
 						storedmod.damage = 0
 				if(wornrig.chest)
 					var/obj/item/clothing/suit/space/rig/rigchest = wornrig.chest
 					if(weld_rate && rigchest.damage && cell.checked_use(weld_power_use * weld_rate * CELLRATE))
 						rigchest.breaches = list()
 						rigchest.calc_breach_damage()
-						to_chat(H, "<span class='notice'>[rigchest] is repaired!</span>")
+						to_chat(H, span_notice("[rigchest] is repaired!"))
 				if(wornrig.cell)
 					var/obj/item/cell/rigcell = wornrig.cell
 					var/diff = min(rigcell.maxcharge - rigcell.charge, charging_power * CELLRATE) // Capped by charging_power / tick

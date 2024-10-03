@@ -294,5 +294,5 @@
 	chew()
 	if(chewtime < 1)
 		if(ismob(loc))
-			to_chat(loc, "<span class='notice'>There's no more of \the [name] left!</span>")
+			to_chat(loc, span_notice("There's no more of \the [name] left!"))
 		spitout(0)

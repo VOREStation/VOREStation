@@ -27,7 +27,7 @@
 		var/obj/item/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
-				to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
+				to_chat(user, span_notice("You have labeled the destination as [O.currTag]."))
 				if(!src.sortTag)
 					src.sortTag = O.currTag
 					update_icon()
@@ -35,19 +35,19 @@
 					src.sortTag = O.currTag
 				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 			else
-				to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
+				to_chat(user, span_warning("The package is already labeled for [O.currTag]."))
 		else
-			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
+			to_chat(user, span_warning("You need to set a destination first!"))
 
 	else if(istype(W, /obj/item/pen))
 		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
-					to_chat(user, "<span class='warning'> Invalid text.</span>")
+					to_chat(user, span_warning(" Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
-				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				span_notice("You title \the [src]: \"[str]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 				name = "[name] ([str])"
@@ -67,7 +67,7 @@
 				else
 					examtext = str
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
-				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				span_notice("You label \the [src]: \"[examtext]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 	return
@@ -105,9 +105,9 @@
 	. = ..()
 	if(get_dist(user, src) <= 4)
 		if(sortTag)
-			. += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
+			. += span_notice("It is labeled \"[sortTag]\"")
 		if(examtext)
-			. += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+			. += span_notice("It has a note attached which reads, \"[examtext]\"")
 
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
@@ -138,7 +138,7 @@
 		var/obj/item/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
-				to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
+				to_chat(user, span_notice("You have labeled the destination as [O.currTag]."))
 				if(!src.sortTag)
 					src.sortTag = O.currTag
 					update_icon()
@@ -146,19 +146,19 @@
 					src.sortTag = O.currTag
 				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 			else
-				to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
+				to_chat(user, span_warning("The package is already labeled for [O.currTag]."))
 		else
-			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
+			to_chat(user, span_warning("You need to set a destination first!"))
 
 	else if(istype(W, /obj/item/pen))
 		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
-					to_chat(user, "<span class='warning'> Invalid text.</span>")
+					to_chat(user, span_warning(" Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
-				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				span_notice("You title \the [src]: \"[str]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 				name = "[name] ([str])"
@@ -179,7 +179,7 @@
 				else
 					examtext = str
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
-				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				span_notice("You label \the [src]: \"[examtext]\""),\
 				"You hear someone scribbling a note.")
 				playsound(src, pick('sound/bureaucracy/pen1.ogg','sound/bureaucracy/pen2.ogg'), 20)
 	return
@@ -213,9 +213,9 @@
 	. = ..()
 	if(get_dist(user, src) <= 4)
 		if(sortTag)
-			. += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
+			. += span_notice("It is labeled \"[sortTag]\"")
 		if(examtext)
-			. += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+			. += span_notice("It has a note attached which reads, \"[examtext]\"")
 
 /obj/item/packageWrap
 	name = "package wrapper"
@@ -273,7 +273,7 @@
 			src.add_fingerprint(usr)
 			src.amount -= 1
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a small object.")
 			playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
 	else if (istype(target, /obj/structure/closet/crate))
@@ -285,11 +285,11 @@
 			O.loc = P
 			src.amount -= 3
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a large object.")
 			playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
 		else if(src.amount < 3)
-			to_chat(user, "<span class='warning'>You need more paper.</span>")
+			to_chat(user, span_warning("You need more paper."))
 	else if (istype (target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
 		if (src.amount > 3 && !O.opened)
@@ -299,11 +299,11 @@
 			O.loc = P
 			src.amount -= 3
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a large object.")
 			playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
 		else if(src.amount < 3)
-			to_chat(user, "<span class='warning'>You need more paper.</span>")
+			to_chat(user, span_warning("You need more paper."))
 	else
 		to_chat(user, span_blue("The object you are trying to wrap is unsuitable for the sorting machinery!"))
 	if (src.amount <= 0)

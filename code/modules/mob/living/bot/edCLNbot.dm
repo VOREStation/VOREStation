@@ -44,7 +44,7 @@
 	if(!red_switch && !blue_switch && green_switch && prob(10) || src.emagged)
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
-			visible_message("<span class='warning'>\The [src] stomps on \the [T], breaking it!</span>")
+			visible_message(span_warning("\The [src] stomps on \the [T], breaking it!"))
 			qdel(T)
 
 	if(red_switch && blue_switch && green_switch && prob(1))
@@ -52,7 +52,7 @@
 
 /mob/living/bot/cleanbot/edCLN/explode()
 	on = 0
-	visible_message("<span class='danger'>[src] blows apart!</span>")
+	visible_message(span_danger("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/secbot_assembly/ed209_assembly(Tsec)
@@ -87,22 +87,22 @@
 	switch(action)
 		if("red_switch")
 			red_switch = !red_switch
-			to_chat(usr, "<span class='notice'>You flip the red switch [red_switch ? "on" : "off"].</span>")
+			to_chat(usr, span_notice("You flip the red switch [red_switch ? "on" : "off"]."))
 			. = TRUE
 		if("green_switch")
 			green_switch = !green_switch
-			to_chat(usr, "<span class='notice'>You flip the green switch [green_switch ? "on" : "off"].</span>")
+			to_chat(usr, span_notice("You flip the green switch [green_switch ? "on" : "off"]."))
 			. = TRUE
 		if("blue_switch")
 			blue_switch = !blue_switch
-			to_chat(usr, "<span class='notice'>You flip the blue switch [blue_switch ? "on" : "off"].</span>")
+			to_chat(usr, span_notice("You flip the blue switch [blue_switch ? "on" : "off"]."))
 			. = TRUE
 
 /mob/living/bot/cleanbot/edCLN/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
-			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
+			to_chat(user, span_notice("The [src] buzzes and beeps."))
 			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		emagged = 1
 		return 1
@@ -135,7 +135,7 @@
 				user.drop_item()
 				qdel(W)
 				build_step++
-				to_chat(user, "<span class='notice'>You add \the [W] to \the [src].</span>")
+				to_chat(user, span_notice("You add \the [W] to \the [src]."))
 				name = "legs/frame assembly"
 				if(build_step == 1)
 					icon_state = "ed209_leg"
@@ -147,7 +147,7 @@
 				user.drop_item()
 				qdel(W)
 				build_step++
-				to_chat(user, "<span class='notice'>You add \the [W] to \the [src].</span>")
+				to_chat(user, span_notice("You add \the [W] to \the [src]."))
 				name = "bucket/legs/frame assembly"
 				item_state = "edCLN_bucket"
 				icon_state = "edCLN_bucket"
@@ -158,13 +158,13 @@
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "bucketed frame assembly"
-					to_chat(user, "<span class='notice'>You welded the bucket to \the [src].</span>")
+					to_chat(user, span_notice("You welded the bucket to \the [src]."))
 		if(4)
 			if(isprox(W))
 				user.drop_item()
 				qdel(W)
 				build_step++
-				to_chat(user, "<span class='notice'>You add \the [W] to \the [src].</span>")
+				to_chat(user, span_notice("You add \the [W] to \the [src]."))
 				name = "proximity bucket ED assembly"
 				item_state = "edCLN_prox"
 				icon_state = "edCLN_prox"
@@ -173,13 +173,13 @@
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
-					to_chat(user, "<span class='warning'>You need one coil of wire to wire \the [src].</span>")
+					to_chat(user, span_warning("You need one coil of wire to wire \the [src]."))
 					return
-				to_chat(user, "<span class='notice'>You start to wire \the [src].</span>")
+				to_chat(user, span_notice("You start to wire \the [src]."))
 				if(do_after(user, 40))
 					if(C.use(1))
 						build_step++
-						to_chat(user, "<span class='notice'>You wire the ED-CLN assembly.</span>")
+						to_chat(user, span_notice("You wire the ED-CLN assembly."))
 						name = "wired ED-CLN assembly"
 				return
 
@@ -187,7 +187,7 @@
 			if(istype(W, /obj/item/mop))
 				name = "mop ED-CLN assembly"
 				build_step++
-				to_chat(user, "<span class='notice'>You add \the [W] to \the [src].</span>")
+				to_chat(user, span_notice("You add \the [W] to \the [src]."))
 				item_state = "edCLN_mop"
 				icon_state = "edCLN_mop"
 				user.drop_item()
@@ -197,16 +197,16 @@
 			if(W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
-				to_chat(user, "<span class='notice'>Attatching the mop to the frame...</span>")
+				to_chat(user, span_notice("Attatching the mop to the frame..."))
 				if(do_after(user, 40) && get_turf(user) == T)
 					build_step++
 					name = "mopped ED-CLN assembly"
-					to_chat(user, "<span class='notice'>Mop attached.</span>")
+					to_chat(user, span_notice("Mop attached."))
 
 		if(8)
 			if(istype(W, /obj/item/cell))
 				build_step++
-				to_chat(user, "<span class='notice'>You complete the ED-CLN.</span>")
+				to_chat(user, span_notice("You complete the ED-CLN."))
 				var/turf/T = get_turf(src)
 				var/mob/living/bot/cleanbot/edCLN/S = new /mob/living/bot/cleanbot/edCLN(T)
 				S.name = created_name

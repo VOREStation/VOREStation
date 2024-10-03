@@ -257,15 +257,15 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if(!user.IsAdvancedToolUser())  //Vorestation edit
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return 1
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src].</span>")
+			visible_message(span_warning("[H] stares cluelessly at [src]."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return 1
 
 	if(clicksound && istype(user, /mob/living/carbon))
@@ -335,9 +335,9 @@ Class Procs:
 		return 0
 	if(!component_parts)
 		return 0
-	to_chat(user, "<span class='notice'>Following parts detected in [src]:</span>")
+	to_chat(user, span_notice("Following parts detected in [src]:"))
 	for(var/obj/item/C in component_parts)
-		to_chat(user, "<span class='notice'>    [C.name]</span>")
+		to_chat(user, span_notice("    [C.name]"))
 	if(panel_open || !R.panel_req)
 		var/obj/item/circuitboard/CB = circuit
 		var/P
@@ -354,7 +354,7 @@ Class Procs:
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						to_chat(user, "<span class='notice'>[A.name] replaced with [B.name].</span>")
+						to_chat(user, span_notice("[A.name] replaced with [B.name]."))
 						parts_replaced = TRUE
 						break
 			update_icon()
@@ -373,12 +373,12 @@ Class Procs:
 	var/actual_time = W.toolspeed * time
 	if(actual_time != 0)
 		user.visible_message( \
-			"<span class='warning'>\The [user] begins [anchored ? "un" : ""]securing \the [src].</span>", \
-			"<span class='notice'>You start [anchored ? "un" : ""]securing \the [src].</span>")
+			span_warning("\The [user] begins [anchored ? "un" : ""]securing \the [src]."), \
+			span_notice("You start [anchored ? "un" : ""]securing \the [src]."))
 	if(actual_time == 0 || do_after(user, actual_time, target = src))
 		user.visible_message( \
-			"<span class='warning'>\The [user] has [anchored ? "un" : ""]secured \the [src].</span>", \
-			"<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+			span_warning("\The [user] has [anchored ? "un" : ""]secured \the [src]."), \
+			span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		power_change() //Turn on or off the machine depending on the status of power in the new area.
 		update_icon()
@@ -396,7 +396,7 @@ Class Procs:
 		return 0
 	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
-	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
 	update_icon()
 	return 1
 
@@ -405,14 +405,14 @@ Class Procs:
 		return 0
 	if(!circuit)
 		return 0
-	to_chat(user, "<span class='notice'>You start disconnecting the monitor.</span>")
+	to_chat(user, span_notice("You start disconnecting the monitor."))
 	playsound(src, S.usesound, 50, 1)
 	if(do_after(user, 20 * S.toolspeed))
 		if(stat & BROKEN)
-			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+			to_chat(user, span_notice("The broken glass falls out."))
 			new /obj/item/material/shard(src.loc)
 		else
-			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+			to_chat(user, span_notice("You disconnect the monitor."))
 		. = dismantle()
 
 /obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
@@ -429,7 +429,7 @@ Class Procs:
 		return 0
 	if(!panel_open)
 		return 0
-	user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+	user.visible_message(span_warning("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 	playsound(src, W.usesound, 50, 1)
 	new/obj/item/stack/cable_coil(get_turf(src), 5)
 	. = dismantle()

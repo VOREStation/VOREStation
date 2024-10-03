@@ -95,7 +95,7 @@
 	if(Output.get_pairing())
 		reagents.trans_to_holder(Output.reagents, Output.reagents.maximum_volume)
 		if(prob(5))
-			visible_message("<span class='notice'>\The [src] gurgles as it pumps fluid.</span>")
+			visible_message(span_notice("\The [src] gurgles as it pumps fluid."))
 
 
 // Sets the power state, if possible.
@@ -124,7 +124,7 @@
 
 /obj/machinery/pump/attack_ai(mob/user)
 	if(!set_state(!on))
-		to_chat(user, "<span class='notice'>You try to toggle \the [src] but it does not respond.</span>")
+		to_chat(user, span_notice("You try to toggle \the [src] but it does not respond."))
 
 /obj/machinery/pump/attack_hand(mob/user)
 	if(open && istype(cell))
@@ -133,11 +133,11 @@
 		cell.update_icon()
 		cell = null
 		set_state(FALSE)
-		to_chat(user, "<span class='notice'>You remove the power cell.</span>")
+		to_chat(user, span_notice("You remove the power cell."))
 		return
 
 	if(!set_state(!on))
-		to_chat(user, "<span class='notice'>You try to toggle \the [src] but it does not respond.</span>")
+		to_chat(user, span_notice("You try to toggle \the [src] but it does not respond."))
 
 /obj/machinery/pump/attackby(obj/item/W, mob/user)
 	. = TRUE
@@ -147,23 +147,23 @@
 
 	else if(W.has_tool_quality(TOOL_CROWBAR) && unlocked)
 		to_chat(user, open ? \
-			"<span class='notice'>You crowbar the battery panel in place.</span>" : \
-			"<span class='notice'>You remove the battery panel.</span>" \
+			span_notice("You crowbar the battery panel in place.") : \
+			span_notice("You remove the battery panel.") \
 		)
 		open = !open
 
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(on)
-			to_chat(user, "<span class='notice'>\The [src] is active. Turn it off before trying to move it!</span>")
+			to_chat(user, span_notice("\The [src] is active. Turn it off before trying to move it!"))
 			return FALSE
 		default_unfasten_wrench(user, W, 2 SECONDS)
 
 	else if(istype(W, /obj/item/cell) && open)
 		if(istype(cell))
-			to_chat(user, "<span class='notice'>There is a power cell already installed.</span>")
+			to_chat(user, span_notice("There is a power cell already installed."))
 			return FALSE
 		user.drop_from_inventory(W, src)
-		to_chat(user, "<span class='notice'>You insert the power cell.</span>")
+		to_chat(user, span_notice("You insert the power cell."))
 
 	else
 		. = ..()

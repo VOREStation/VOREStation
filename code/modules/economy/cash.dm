@@ -32,7 +32,7 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(SC)
 			h_user.put_in_hands(SC)
-		to_chat(user, "<span class='notice'>You combine the [initial_name]s to a bundle of [SC.worth] [initial_name]s.</span>")
+		to_chat(user, span_notice("You combine the [initial_name]s to a bundle of [SC.worth] [initial_name]s."))
 		qdel(src)
 
 /obj/item/spacecash/update_icon()
@@ -171,4 +171,4 @@
 /obj/item/spacecash/ewallet/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "<span class='notice'>Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth].</span>"
+		. += span_notice("Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth].")

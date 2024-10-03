@@ -143,7 +143,7 @@
 		return 0
 	var/zone = user.zone_sel.selecting
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
-		to_chat(user, "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>")
+		to_chat(user, span_warning("You can't operate on this area while surgery is already in progress."))
 		return 1
 	var/obj/surface = M.get_surgery_surface(user)
 	if(!surface || !surface.surgery_odds) 	// If the surface has a chance of 0% surgery odds (ground), don't even bother trying to do surgery.
@@ -179,7 +179,7 @@
 																										// All of this just to make it so you are forced to do bloodless surgery with a laser scalpel.
 
 	if(M == user)	// Once we determine if we can actually do a step at all, give a slight delay to self-surgery to confirm attempts.
-		to_chat(user, "<span class='critical'>You focus on attempting to perform surgery upon yourself.</span>")
+		to_chat(user, span_critical("You focus on attempting to perform surgery upon yourself."))
 		if(!do_after(user, 3 SECONDS, M))
 			return 0
 
@@ -195,9 +195,9 @@
 	// VOREstation edit start
 	if(istype(selected_surgery,/datum/surgery_step/generic/amputate))
 		var/obj/item/organ/external/affected = M.get_organ(zone)
-		to_chat(user, "<span class='danger'>You are preparing to amputate \the [M]'s [affected.name]!</span>")
+		to_chat(user, span_danger("You are preparing to amputate \the [M]'s [affected.name]!"))
 		if(!do_after(user, 3 SECONDS, M))
-			to_chat(user, "<span class='warning'>You reconsider performing an amputation...</span>")
+			to_chat(user, span_warning("You reconsider performing an amputation..."))
 			return 0
 	// VOREstation edit end
 	M.op_stage.in_progress += zone
@@ -217,7 +217,7 @@
 		var/calc_duration = rand(selected_surgery.min_duration, selected_surgery.max_duration)
 		if(!do_mob(user, M, calc_duration * toolspeed, zone, exclusive = TRUE))
 			success = FALSE
-			to_chat(user, "<span class='warning'>You must remain close to and keep focused on your patient to conduct surgery.</span>")
+			to_chat(user, span_warning("You must remain close to and keep focused on your patient to conduct surgery."))
 
 	if(success)
 		selected_surgery.end_step(user, M, zone, src)

@@ -27,7 +27,7 @@
 
 /datum/blob_type/ectoplasmic_horror/on_pulse(var/obj/structure/blob/B)
 	if(B.type == /obj/structure/blob && (locate(/obj/structure/blob/node) in oview(2, get_turf(B))))
-		B.visible_message("<span class='alien'>The [name] quakes, before hardening.</span>")
+		B.visible_message(span_alien("The [name] quakes, before hardening."))
 		new/obj/structure/blob/shield(get_turf(B), B.overmind)
 		qdel(B)
 
@@ -47,12 +47,12 @@
 							break
 
 				if(!beamtarget_exists && GetAnomalySusceptibility(L) >= 0.5)
-					B.visible_message("<span class='danger'>\The [B] lashes out at \the [L]!</span>")
+					B.visible_message(span_danger("\The [B] lashes out at \the [L]!"))
 					var/datum/beam/drain_beam = beam_origin.Beam(L, icon_state = "drain_life", time = 10 SECONDS)
 					active_beams |= drain_beam
 					spawn(9 SECONDS)
 						if(B && drain_beam)
-							B.visible_message("<span class='alien'>\The [B] siphons energy from \the [L]</span>")
+							B.visible_message(span_alien("\The [B] siphons energy from \the [L]"))
 							L.add_modifier(/datum/modifier/berserk_exhaustion, 60 SECONDS)
 							B.overmind.add_points(rand(10,30))
 							if(!QDELETED(drain_beam))
@@ -60,7 +60,7 @@
 
 /datum/blob_type/ectoplasmic_horror/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
 	if(prob(round(damage * 0.5)))
-		B.visible_message("<span class='alien'>\The [B] shimmers, distorting through some unseen dimension.</span>")
+		B.visible_message(span_alien("\The [B] shimmers, distorting through some unseen dimension."))
 		var/initial_alpha = B.alpha
 		spawn()
 			animate(B,alpha = initial_alpha, alpha = 10, time = 10)
@@ -94,12 +94,12 @@
 							break
 
 				if(!beamtarget_exists && GetAnomalySusceptibility(L) >= 0.5)
-					carrier.visible_message("<span class='danger'>[icon2html(B,viewers(carrier))] \The [B] lashes out at \the [L]!</span>")
+					carrier.visible_message(span_danger("[icon2html(B,viewers(carrier))] \The [B] lashes out at \the [L]!"))
 					var/datum/beam/drain_beam = carrier.Beam(L, icon_state = "drain_life", time = 10 SECONDS)
 					active_beams |= drain_beam
 					spawn(9 SECONDS)
 						if(B && drain_beam)
-							carrier.visible_message("<span class='alien'>\The [B] siphons energy from \the [L]</span>")
+							carrier.visible_message(span_alien("\The [B] siphons energy from \the [L]"))
 							L.add_modifier(/datum/modifier/berserk_exhaustion, 30 SECONDS)
 							var/total_heal = 0
 

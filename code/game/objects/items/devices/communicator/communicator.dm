@@ -144,19 +144,19 @@ var/global/list/obj/item/communicator/all_communicators = list()
 	. = ..()
 
 	for(var/mob/living/voice/voice in contents)
-		. += "<span class='notice'>On the screen, you can see a image feed of [voice].</span>"
+		. += span_notice("On the screen, you can see a image feed of [voice].")
 
 		if(voice && voice.key)
 			switch(voice.stat)
 				if(CONSCIOUS)
 					if(!voice.client)
-						. += "<span class='warning'>[voice] appears to be asleep.</span>" //afk
+						. += span_warning("[voice] appears to be asleep.") //afk
 				if(UNCONSCIOUS)
-					. += "<span class='warning'>[voice] doesn't appear to be conscious.</span>"
+					. += span_warning("[voice] doesn't appear to be conscious.")
 				if(DEAD)
-					. += "<span class='deadsay'>[voice] appears to have died...</span>" //Hopefully this never has to be used.
+					. += span_deadsay("[voice] appears to have died...") //Hopefully this never has to be used.
 		else
-			. += "<span class='notice'>The device doesn't appear to be transmitting any data.</span>"
+			. += span_notice("The device doesn't appear to be transmitting any data.")
 
 // Proc: emp_act()
 // Parameters: None
@@ -221,12 +221,12 @@ var/global/list/obj/item/communicator/all_communicators = list()
 	if(istype(C, /obj/item/card/id))
 		var/obj/item/card/id/idcard = C
 		if(!idcard.registered_name || !idcard.assignment)
-			to_chat(user, "<span class='notice'>\The [src] rejects the ID.</span>")
+			to_chat(user, span_notice("\The [src] rejects the ID."))
 		else if(!owner)
-			to_chat(user, "<span class='notice'>\The [src] rejects the ID.</span>")
+			to_chat(user, span_notice("\The [src] rejects the ID."))
 		else if(owner == idcard.registered_name)
 			occupation = idcard.assignment
-			to_chat(user, "<span class='notice'>Occupation updated.</span>")
+			to_chat(user, span_notice("Occupation updated."))
 
 	return
 
@@ -302,7 +302,7 @@ var/global/list/obj/item/communicator/all_communicators = list()
 /obj/item/communicator/Destroy()
 	for(var/mob/living/voice/voice in contents)
 		voice_mobs.Remove(voice)
-		to_chat(voice, "<span class='danger'>[icon2html(src, voice.client)] Connection timed out with remote host.</span>")
+		to_chat(voice, span_danger("[icon2html(src, voice.client)] Connection timed out with remote host."))
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
 

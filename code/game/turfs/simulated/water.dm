@@ -42,12 +42,12 @@
 	var/obj/item/reagent_containers/RG = O
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("<span class='notice'>[user] fills \the [RG] using \the [src].</span>","<span class='notice'>You fill \the [RG] using \the [src].</span>")
+		user.visible_message(span_notice("[user] fills \the [RG] using \the [src]."),span_notice("You fill \the [RG] using \the [src]."))
 		return 1
 
 	else if(istype(O, /obj/item/mop))
 		O.reagents.add_reagent(reagent_type, 5)
-		to_chat(user, "<span class='notice'>You wet \the [O] in \the [src].</span>")
+		to_chat(user, span_notice("You wet \the [O] in \the [src]."))
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		return 1
 
@@ -75,7 +75,7 @@
 			return water_breath
 	if(L && L.is_bad_swimmer() && depth >= 2 && !L.buckled() && !L.flying)
 		if(prob(10))
-			L.visible_message("<span class='notice'>[L] splashes wildly.</span>","<span class='warning'>You struggle to keep your head above the water!</span>")
+			L.visible_message(span_notice("[L] splashes wildly."),span_warning("You struggle to keep your head above the water!"))
 		if(L.can_breathe_water())
 			var/datum/gas_mixture/water_breath = new()
 			var/datum/gas_mixture/above_air = return_air()
@@ -103,7 +103,7 @@
 		if(L.check_submerged() <= 0)
 			return
 		if(!istype(oldloc, /turf/simulated/floor/water))
-			to_chat(L, "<span class='warning'>You get drenched in water from entering \the [src]!</span>")
+			to_chat(L, span_warning("You get drenched in water from entering \the [src]!"))
 	AM.water_act(5)
 	..()
 
@@ -114,7 +114,7 @@
 		if(L.check_submerged() <= 0)
 			return
 		if(!istype(newloc, /turf/simulated/floor/water))
-			to_chat(L, "<span class='warning'>You climb out of \the [src].</span>")
+			to_chat(L, span_warning("You climb out of \the [src]."))
 	..()
 
 /turf/simulated/floor/water/deep
@@ -260,7 +260,7 @@ var/list/shoreline_icon_cache = list()
 		if(L.check_submerged() <= 0)
 			return
 		if(!istype(oldloc, /turf/simulated/floor/water))
-			to_chat(L, "<span class='warning'>You get drenched in blood from entering \the [src]!</span>")
+			to_chat(L, span_warning("You get drenched in blood from entering \the [src]!"))
 	AM.water_act(5)
 	..()
 
@@ -273,4 +273,3 @@ var/list/shoreline_icon_cache = list()
 	water_state = "water"
 	under_state = "glamour"
 	reagent_type = "water"
-

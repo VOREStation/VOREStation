@@ -76,10 +76,10 @@
 				if (H.hand)
 					temp = H.organs_by_name["l_hand"]
 				if(temp && !temp.is_usable())
-					to_chat(user, "<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+					to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 					return
 
-				to_chat(user, "<span class='notice'>You pick up the [src].</span>")
+				to_chat(user, span_notice("You pick up the [src]."))
 				user.put_in_hands(src)
 
 	return

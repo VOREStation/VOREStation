@@ -32,8 +32,8 @@
 // The boost is lost if the commander is too far away or dies.
 /datum/modifier/aura/hivebot_commander_buff
 	name = "Strategicals"
-	on_created_text = "<span class='notice'>Signal established with commander. Optimizating combat performance...</span>"
-	on_expired_text = "<span class='warning'>Lost signal to commander. Optimization halting.</span>"
+	on_created_text = span_notice("Signal established with commander. Optimizating combat performance...")
+	on_expired_text = span_warning("Lost signal to commander. Optimization halting.")
 	stacks = MODIFIER_STACK_FORBID
 	aura_max_distance = 4
 	mob_overlay_state = "signal_blue"

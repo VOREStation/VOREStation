@@ -52,10 +52,10 @@
 		if(prob(chance))
 			health -= P.damage/2
 			if (health > 0)
-				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
+				visible_message(span_warning("[P] hits \the [src]!"))
 				return 0
 			else
-				visible_message("<span class='warning'>[src] breaks down!</span>")
+				visible_message(span_warning("[src] breaks down!"))
 				break_to_parts()
 				return 1
 	return 1
@@ -96,7 +96,7 @@
 			var/mob/living/M = G.affecting
 			var/obj/occupied = turf_is_crowded()
 			if(occupied)
-				to_chat(user, "<span class='danger'>There's \a [occupied] in the way.</span>")
+				to_chat(user, span_danger("There's \a [occupied] in the way."))
 				return
 			if(!user.Adjacent(M))
 				return
@@ -104,7 +104,7 @@
 				if(user.a_intent == I_HURT)
 					if (prob(15))	M.Weaken(5)
 					M.apply_damage(8,def_zone = BP_HEAD)
-					visible_message("<span class='danger'>[G.assailant] slams [G.affecting]'s face against \the [src]!</span>")
+					visible_message(span_danger("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
 					if(material)
 						playsound(src, material.tableslam_noise, 50, 1)
 					else
@@ -113,18 +113,18 @@
 					// Shards. Extra damage, plus potentially the fact YOU LITERALLY HAVE A PIECE OF GLASS/METAL/WHATEVER IN YOUR FACE
 					for(var/obj/item/material/shard/S in L)
 						if(prob(50))
-							M.visible_message("<span class='danger'>\The [S] slices [M]'s face messily!</span>",
-							                   "<span class='danger'>\The [S] slices your face messily!</span>")
+							M.visible_message(span_danger("\The [S] slices [M]'s face messily!"),
+							                   span_danger("\The [S] slices your face messily!"))
 							M.apply_damage(10, def_zone = BP_HEAD)
 							if(prob(2))
 								M.embed(S, def_zone = BP_HEAD)
 				else
-					to_chat(user, "<span class='danger'>You need a better grip to do that!</span>")
+					to_chat(user, span_danger("You need a better grip to do that!"))
 					return
 			else if(G.state > GRAB_AGGRESSIVE || world.time >= (G.last_action + UPGRADE_COOLDOWN))
 				M.forceMove(get_turf(src))
 				M.Weaken(5)
-				visible_message("<span class='danger'>[G.assailant] puts [G.affecting] on \the [src].</span>")
+				visible_message(span_danger("[G.assailant] puts [G.affecting] on \the [src]."))
 			qdel(W)
 			return
 
@@ -141,17 +141,17 @@
 		spark_system.start()
 		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		playsound(src, "sparks", 50, 1)
-		user.visible_message("<span class='danger'>\The [src] was sliced apart by [user]!</span>")
+		user.visible_message(span_danger("\The [src] was sliced apart by [user]!"))
 		break_to_parts()
 		return
 
 	if(istype(W, /obj/item/melee/changeling/arm_blade))
-		user.visible_message("<span class='danger'>\The [src] was sliced apart by [user]!</span>")
+		user.visible_message(span_danger("\The [src] was sliced apart by [user]!"))
 		break_to_parts()
 		return
 
 	if(can_plate && !material)
-		to_chat(user, "<span class='warning'>There's nothing to put \the [W] on! Try adding plating to \the [src] first.</span>")
+		to_chat(user, span_warning("There's nothing to put \the [W] on! Try adding plating to \the [src] first."))
 		return
 
 // Placing stuff on tables

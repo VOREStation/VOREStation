@@ -99,11 +99,11 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
-		to_chat(src, "<span class='danger'>The game hasn't started yet!</span>")
+		to_chat(src, span_danger("The game hasn't started yet!"))
 		return
 
 	if(!(config.allow_drone_spawn))
-		to_chat(src, "<span class='danger'>That verb is not currently permitted.</span>")
+		to_chat(src, span_danger("That verb is not currently permitted."))
 		return
 
 	if (!src.stat)
@@ -113,14 +113,14 @@
 		return 0 //something is terribly wrong
 
 	if(jobban_isbanned(src,JOB_CYBORG))
-		to_chat(usr, "<span class='danger'>You are banned from playing synthetics and cannot spawn as a drone.</span>")
+		to_chat(usr, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
 		return
 
 	// VOREStation Addition Start
 	if(config.use_age_restriction_for_jobs && isnum(src.client.player_age))
 		var/time_till_play = max(0, 3 - src.client.player_age)
 		if(time_till_play)
-			to_chat(usr, "<span class='danger'>You have not been playing on the server long enough to join as drone.</span>")
+			to_chat(usr, span_danger("You have not been playing on the server long enough to join as drone."))
 			return
 	// VOREStation Addition End
 
@@ -151,7 +151,7 @@
 			all_fabricators[DF.fabricator_tag] = DF
 
 	if(!all_fabricators.len)
-		to_chat(src, "<span class='danger'>There are no available drone spawn points, sorry.</span>")
+		to_chat(src, span_danger("There are no available drone spawn points, sorry."))
 		return
 
 	var/choice = tgui_input_list(src, "Which fabricator do you wish to use?", "Fabricator Choice", all_fabricators)

@@ -67,9 +67,9 @@
 	. = ..()
 	if(Adjacent(user)) //It literally has a light on the sprite, are you sure this is necessary?
 		if(active)
-			. += "<span class='notice'>The generator is on.</span>"
+			. += span_notice("The generator is on.")
 		else
-			. += "<span class='notice'>The generator is off.</span>"
+			. += span_notice("The generator is off.")
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes
@@ -156,9 +156,9 @@
 	. += "It appears to be producing [power_gen*power_output] W."
 	. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
 	if(IsBroken())
-		. += "<span class='warning'>It seems to have broken down.</span>"
+		. += span_warning("It seems to have broken down.")
 	if(overheating)
-		. += "<span class='danger'>It is overheating!</span>"
+		. += span_danger("It is overheating!")
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet
@@ -273,9 +273,9 @@
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.get_amount())
 		if(amount < 1)
-			to_chat(user, "<span class='warning'>The [src.name] is full!</span>")
+			to_chat(user, span_warning("The [src.name] is full!"))
 			return
-		to_chat(user, "<span class='notice'>You add [amount] sheet\s to the [src.name].</span>")
+		to_chat(user, span_notice("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
 		updateUsrDialog()
@@ -284,10 +284,10 @@
 		if(O.has_tool_quality(TOOL_WRENCH))
 			if(!anchored)
 				connect_to_network()
-				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
+				to_chat(user, span_notice("You secure the generator to the floor."))
 			else
 				disconnect_from_network()
-				to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
+				to_chat(user, span_notice("You unsecure the generator from the floor."))
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			anchored = !anchored
 			return

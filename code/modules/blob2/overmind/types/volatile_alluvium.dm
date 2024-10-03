@@ -36,10 +36,10 @@
 		if(I)
 			if((I.sharp || I.edge) && !istype(I, /obj/item/gun))
 				I.forceMove(get_turf(B)) // Disarmed entirely.
-				B.visible_message("<span class='danger'>The [name] heaves, \the [attacker]'s weapon becoming stuck in the churning mass!</span>")
+				B.visible_message(span_danger("The [name] heaves, \the [attacker]'s weapon becoming stuck in the churning mass!"))
 			else
 				I.throw_at(B, 2, 4) // Just yoinked.
-				B.visible_message("<span class='danger'>The [name] heaves, pulling \the [attacker]'s weapon from their hands!</span>")
+				B.visible_message(span_danger("The [name] heaves, pulling \the [attacker]'s weapon from their hands!"))
 		B.blob_attack_animation(attacker, B.overmind)
 	return ..()
 
@@ -48,7 +48,7 @@
 		var/damage = amount * 4
 		B.adjust_integrity(-(damage))
 		if(B && prob(damage))
-			B.visible_message("<span class='danger'>The [name] begins to crumble!</span>")
+			B.visible_message(span_danger("The [name] begins to crumble!"))
 
 /datum/blob_type/volatile_alluvium/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)
 	if(user)

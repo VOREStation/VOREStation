@@ -57,12 +57,12 @@
 
 		var/_message = sanitize(tgui_input_text(usr, "Enter an additional message to engrave.", "Graffiti"), trim = TRUE)
 		if(_message && loc && user && !user.incapacitated() && user.Adjacent(loc) && thing.loc == user)
-			user.visible_message("<span class='warning'>\The [user] begins carving something into \the [loc].</span>")
+			user.visible_message(span_warning("\The [user] begins carving something into \the [loc]."))
 			if(do_after(user, max(20, length(_message)), src) && loc)
-				user.visible_message("<span class='danger'>\The [user] carves some graffiti into \the [loc].</span>")
+				user.visible_message(span_danger("\The [user] carves some graffiti into \the [loc]."))
 				message = "[message] [_message]"
 				author = user.ckey
 				if(lowertext(message) == "elbereth")
-					to_chat(user, "<span class='notice'>You feel much safer.</span>")
+					to_chat(user, span_notice("You feel much safer."))
 	else
 		. = ..()

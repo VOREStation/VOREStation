@@ -116,7 +116,7 @@
 
 /obj/item/digestion_remains/attack_self(var/mob/user)
 	if(user.a_intent == I_HURT)
-		to_chat(user,"<span class='warning'>As you squeeze the [name], it crumbles into dust and falls apart into nothing!</span>")
+		to_chat(user,span_warning("As you squeeze the [name], it crumbles into dust and falls apart into nothing!"))
 		qdel(src)
 
 /obj/item/digestion_remains/ribcage

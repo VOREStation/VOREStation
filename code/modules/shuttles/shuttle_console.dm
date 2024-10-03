@@ -17,13 +17,13 @@
 		return
 	//VOREStation Addition Start
 	if(!ai_control && issilicon(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return TRUE
 	//VOREStation Addition End
 
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return 1
 
 	tgui_interact(user)
@@ -71,12 +71,12 @@
 /obj/machinery/computer/shuttle_control/proc/can_move(var/datum/shuttle/autodock/shuttle, var/user)
 	var/cannot_depart = shuttle.current_location.cannot_depart(shuttle)
 	if(cannot_depart)
-		to_chat(user, "<span class='warning'>[cannot_depart]</span>")
+		to_chat(user, span_warning("[cannot_depart]"))
 		if(shuttle.debug_logging)
 			log_shuttle("Shuttle [shuttle] cannot depart [shuttle.current_location] because: [cannot_depart].")
 		return FALSE
 	if(!shuttle.next_location.is_valid(shuttle))
-		to_chat(user, "<span class='warning'>Destination zone is invalid or obstructed.</span>")
+		to_chat(user, span_warning("Destination zone is invalid or obstructed."))
 		if(shuttle.debug_logging)
 			log_shuttle("Shuttle [shuttle] destination [shuttle.next_location] is invalid.")
 		return FALSE
@@ -92,7 +92,7 @@
 
 	var/datum/shuttle/autodock/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(shuttle))
-		to_chat(usr, "<span class='warning'>Unable to establish link with the shuttle.</span>")
+		to_chat(usr, span_warning("Unable to establish link with the shuttle."))
 		return TRUE
 
 	switch(action)
@@ -127,7 +127,7 @@
 /obj/machinery/computer/shuttle_control/tgui_data(mob/user)
 	var/datum/shuttle/autodock/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(shuttle))
-		to_chat(user, "<span class='warning'>Unable to establish link with the shuttle.</span>")
+		to_chat(user, span_warning("Unable to establish link with the shuttle."))
 		return
 
 	return shuttlerich_tgui_data(shuttle)

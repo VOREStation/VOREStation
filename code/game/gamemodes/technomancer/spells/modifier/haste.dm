@@ -22,7 +22,7 @@
 	desc = "Moving is almost effortless!"
 	mob_overlay_state = "haste"
 
-	on_created_text = "<span class='notice'>You suddenly find it much easier to move.</span>"
-	on_expired_text = "<span class='warning'>You feel slow again.</span>"
+	on_created_text = span_notice("You suddenly find it much easier to move.")
+	on_expired_text = span_warning("You feel slow again.")
 	haste = TRUE
 	stacks = MODIFIER_STACK_EXTEND

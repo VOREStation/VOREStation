@@ -36,7 +36,7 @@
 	var/choice = tgui_alert(usr, "What do you want to do with \the [src]?", "Multitool Menu", list("Switch Mode", "Clear Buffers", "Cancel"))
 	switch(choice)
 		if("Clear Buffers")
-			to_chat(user,"<span class='notice'>You clear \the [src]'s memory.</span>")
+			to_chat(user,span_notice("You clear \the [src]'s memory."))
 			buffer = null
 			connecting = null
 			connectable = null
@@ -47,7 +47,7 @@
 		if("Switch Mode")
 			mode_switch(user)
 		else
-			to_chat(user,"<span class='notice'>You lower \the [src].</span>")
+			to_chat(user,span_notice("You lower \the [src]."))
 			return
 
 	update_icon()
@@ -61,7 +61,7 @@
 		mode_index += 1
 
 	toolmode = modes[mode_index]
-	to_chat(user,"<span class='notice'>\The [src] is now set to [toolmode].</span>")
+	to_chat(user,span_notice("\The [src] is now set to [toolmode]."))
 
 	accepting_refs = (toolmode == MULTITOOL_MODE_INTCIRCUITS)
 

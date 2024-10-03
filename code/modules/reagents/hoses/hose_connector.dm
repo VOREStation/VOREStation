@@ -25,7 +25,7 @@
 
 /obj/item/stack/hose/CtrlClick(mob/user)
 	if(remembered)
-		to_chat(user, "<span class='notice'>You wind \the [src] back up.</span>")
+		to_chat(user, span_notice("You wind \the [src] back up."))
 		remembered = null
 	return
 
@@ -50,18 +50,18 @@
 			if(remembered && remembered.valid_connection(AC))
 				var/distancetonode = get_dist(remembered,AC)
 				if(distancetonode > world.view)
-					to_chat(user, "<span class='notice'>\The [src] would probably burst if it were this long.</span>")
+					to_chat(user, span_notice("\The [src] would probably burst if it were this long."))
 				else if(distancetonode <= amount)
-					to_chat(user, "<span class='notice'>You join \the [remembered] to \the [AC]</span>")
+					to_chat(user, span_notice("You join \the [remembered] to \the [AC]"))
 					remembered.setup_hoses(AC)
 					use(distancetonode)
 					remembered = null
 				else
-					to_chat(user, "<span class='notice'>You do not have enough tubing to connect the sockets.</span>")
+					to_chat(user, span_notice("You do not have enough tubing to connect the sockets."))
 
 			else
 				remembered = AC
-				to_chat(user, "<span class='notice'>You connect one end of tubing to \the [AC].</span>")
+				to_chat(user, span_notice("You connect one end of tubing to \the [AC]."))
 
 		else
 			var/choice = tgui_input_list(usr, "Select a target hose connector.", "Socket Selection", available_sockets)
@@ -72,20 +72,20 @@
 					if(remembered.valid_connection(CC))
 						var/distancetonode = get_dist(remembered, CC)
 						if(distancetonode > world.view)
-							to_chat(user, "<span class='notice'>\The [src] would probably burst if it were this long.</span>")
+							to_chat(user, span_notice("\The [src] would probably burst if it were this long."))
 						else if(distancetonode <= amount)
-							to_chat(user, "<span class='notice'>You join \the [remembered] to \the [CC]</span>")
+							to_chat(user, span_notice("You join \the [remembered] to \the [CC]"))
 
 							remembered.setup_hoses(CC)
 							use(distancetonode)
 							remembered = null
 
 						else
-							to_chat(user, "<span class='notice'>You do not have enough tubing to connect the sockets.</span>")
+							to_chat(user, span_notice("You do not have enough tubing to connect the sockets."))
 
 				else
 					remembered = CC
-					to_chat(user, "<span class='notice'>You connect one end of tubing to \the [CC].</span>")
+					to_chat(user, span_notice("You connect one end of tubing to \the [CC]."))
 
 		return
 

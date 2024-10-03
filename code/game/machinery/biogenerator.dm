@@ -166,11 +166,11 @@
 					return
 				var/cost = round(br.cost / build_eff)
 				if(cost > points)
-					to_chat(usr, "<span class='danger'>Insufficient biomass.</span>")
+					to_chat(usr, span_danger("Insufficient biomass."))
 					return
 				var/amt_to_actually_dispense = round(min(beaker.reagents.get_free_space(), br.reagent_amt))
 				if(amt_to_actually_dispense <= 0)
-					to_chat(usr, "<span class='danger'>The loaded beaker is full!</span>")
+					to_chat(usr, span_danger("The loaded beaker is full!"))
 					return
 				points -= (cost * (amt_to_actually_dispense / br.reagent_amt))
 				beaker.reagents.add_reagent(br.reagent_id, amt_to_actually_dispense)
@@ -179,7 +179,7 @@
 
 			var/cost = round(bi.cost / build_eff)
 			if(cost > points)
-				to_chat(usr, "<span class='danger'>Insufficient biomass.</span>")
+				to_chat(usr, span_danger("Insufficient biomass."))
 				return
 
 			points -= cost
@@ -218,43 +218,43 @@
 		return
 	if(istype(O, /obj/item/reagent_containers/glass))
 		if(beaker)
-			to_chat(user, "<span class='notice'>\The [src] is already loaded.</span>")
+			to_chat(user, span_notice("\The [src] is already loaded."))
 		else
 			user.remove_from_mob(O)
 			O.loc = src
 			beaker = O
 			updateUsrDialog()
 	else if(processing)
-		to_chat(user, "<span class='notice'>\The [src] is currently processing.</span>")
+		to_chat(user, span_notice("\The [src] is currently processing."))
 	else if(istype(O, /obj/item/storage/bag/plants))
 		var/i = 0
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, "<span class='notice'>\The [src] is already full! Activate it.</span>")
+			to_chat(user, span_notice("\The [src] is already full! Activate it."))
 		else
 			for(var/obj/item/reagent_containers/food/snacks/grown/G in O.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
-					to_chat(user, "<span class='notice'>You fill \the [src] to its capacity.</span>")
+					to_chat(user, span_notice("You fill \the [src] to its capacity."))
 					break
 			if(i < 10)
-				to_chat(user, "<span class='notice'>You empty \the [O] into \the [src].</span>")
+				to_chat(user, span_notice("You empty \the [O] into \the [src]."))
 
 
 	else if(!istype(O, /obj/item/reagent_containers/food/snacks/grown))
-		to_chat(user, "<span class='notice'>You cannot put this in \the [src].</span>")
+		to_chat(user, span_notice("You cannot put this in \the [src]."))
 	else
 		var/i = 0
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, "<span class='notice'>\The [src] is full! Activate it.</span>")
+			to_chat(user, span_notice("\The [src] is full! Activate it."))
 		else
 			user.remove_from_mob(O)
 			O.loc = src
-			to_chat(user, "<span class='notice'>You put \the [O] in \the [src]</span>")
+			to_chat(user, span_notice("You put \the [O] in \the [src]"))
 	update_icon()
 	return
 
@@ -269,7 +269,7 @@
 	if(stat) //NOPOWER etc
 		return
 	if(processing)
-		to_chat(usr, "<span class='notice'>The biogenerator is in the process of working.</span>")
+		to_chat(usr, span_notice("The biogenerator is in the process of working."))
 		return
 	var/S = 0
 	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
@@ -289,7 +289,7 @@
 		playsound(src, 'sound/machines/biogenerator_end.ogg', 40, 1)
 		update_icon()
 	else
-		to_chat(usr, "<span class='warning'>Error: No growns inside. Please insert growns.</span>")
+		to_chat(usr, span_warning("Error: No growns inside. Please insert growns."))
 	return
 
 /obj/machinery/biogenerator/RefreshParts()

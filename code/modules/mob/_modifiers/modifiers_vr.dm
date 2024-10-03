@@ -50,8 +50,8 @@
 	name = "underwater stealth"
 	desc = "You are currently underwater, rendering it more difficult to see you and enabling you to move quicker, thanks to your aquatic nature."
 
-	on_created_text = "<span class='warning'>You sink under the water.</span>"
-	on_expired_text = "<span class='notice'>You come out from the water.</span>"
+	on_created_text = span_warning("You sink under the water.")
+	on_expired_text = span_notice("You come out from the water.")
 
 	stacks = MODIFIER_STACK_FORBID
 
@@ -92,8 +92,8 @@
 	name = "Shield Projection"
 	desc = "You are currently protected by a shield, rendering nigh impossible to hit you through conventional means."
 
-	on_created_text = "<span class='notice'>Your shield generator buzzes on.</span>"
-	on_expired_text = "<span class='warning'>Your shield generator buzzes off.</span>"
+	on_created_text = span_notice("Your shield generator buzzes on.")
+	on_expired_text = span_warning("Your shield generator buzzes off.")
 	stacks = MODIFIER_STACK_FORBID //No stacking shields. If you put one one your belt and backpack it won't work.
 
 	icon_override = 1
@@ -277,8 +277,8 @@
 	effective_clone_resistance = 1
 
 /datum/modifier/shield_projection/admin // Adminbus.
-	on_created_text = "<span class='notice'>Your shield generator activates and you feel the power of the tesla buzzing around you.</span>"
-	on_expired_text = "<span class='warning'>Your shield generator deactivates, leaving you feeling weak and vulnerable.</span>"
+	on_created_text = span_notice("Your shield generator activates and you feel the power of the tesla buzzing around you.")
+	on_expired_text = span_warning("Your shield generator deactivates, leaving you feeling weak and vulnerable.")
 	siemens_coefficient = 0
 	disable_duration_percent = 0
 	min_damage_resistance = 0

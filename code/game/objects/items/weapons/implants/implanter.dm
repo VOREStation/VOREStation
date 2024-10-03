@@ -12,7 +12,7 @@
 
 /obj/item/implanter/attack_self(var/mob/user)
 	active = !active
-	to_chat(user, "<span class='notice'>You [active ? "" : "de"]activate \the [src].</span>")
+	to_chat(user, span_notice("You [active ? "" : "de"]activate \the [src]."))
 	update()
 
 /obj/item/implanter/verb/remove_implant()
@@ -27,7 +27,7 @@
 		imp.loc = get_turf(src)
 		if(M.get_active_hand() == null)
 			M.put_in_hands(imp)
-		to_chat(M, "<span class='notice'>You remove \the [imp] from \the [src].</span>")
+		to_chat(M, span_notice("You remove \the [imp] from \the [src]."))
 		name = "implanter"
 		imp = null
 
@@ -48,7 +48,7 @@
 		return
 	if(active)
 		if (imp)
-			M.visible_message("<span class='warning'>[user] is attempting to implant [M].</span>")
+			M.visible_message(span_warning("[user] is attempting to implant [M]."))
 
 			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 			user.do_attack_animation(M)
@@ -56,7 +56,7 @@
 			var/turf/T1 = get_turf(M)
 			if (T1 && ((M == user) || do_after(user, 50)))
 				if(user && M && (get_turf(M) == T1) && src && src.imp)
-					M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
+					M.visible_message(span_warning("[M] has been implanted by [user]."))
 
 					add_attack_logs(user,M,"Implanted with [imp.name] using [name]")
 
@@ -71,7 +71,7 @@
 					src.imp = null
 					update()
 	else
-		to_chat(user, "<span class='warning'>You need to activate \the [src.name] first.</span>")
+		to_chat(user, span_warning("You need to activate \the [src.name] first."))
 	return
 
 /obj/item/implanter/loyalty
@@ -134,16 +134,16 @@
 	if(!proximity)
 		return
 	if(!active)
-		to_chat(user, "<span class='warning'>Activate \the [src.name] first.</span>")
+		to_chat(user, span_warning("Activate \the [src.name] first."))
 		return
 	if(istype(A,/obj/item) && imp)
 		var/obj/item/implant/compressed/c = imp
 		if (c.scanned)
-			to_chat(user, "<span class='warning'>Something is already scanned inside the implant!</span>")
+			to_chat(user, span_warning("Something is already scanned inside the implant!"))
 			return
 		c.scanned = A
 		if(istype(A, /obj/item/storage))
-			to_chat(user, "<span class='warning'>You can't store \the [A.name] in this!</span>")
+			to_chat(user, span_warning("You can't store \the [A.name] in this!"))
 			c.scanned = null
 			return
 		if(istype(A.loc,/mob/living/carbon/human))

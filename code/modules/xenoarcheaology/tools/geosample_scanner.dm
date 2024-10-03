@@ -61,7 +61,7 @@
 
 /obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(scanning)
-		to_chat(user, "<span class='warning'>You can't do that while [src] is scanning!</span>")
+		to_chat(user, span_warning("You can't do that while [src] is scanning!"))
 	else
 		if(istype(I, /obj/item/stack/nanopaste))
 			var/choice = tgui_alert(usr, "What do you want to do with the nanopaste?","Radiometric Scanner",list("Scan nanopaste","Fix seal integrity"))
@@ -83,13 +83,13 @@
 			if(choice == "Add coolant")
 				var/amount_transferred = min(src.reagents.maximum_volume - src.reagents.total_volume, G.reagents.total_volume)
 				var/trans = G.reagents.trans_to_obj(src, amount_transferred)
-				to_chat(user, "<span class='info'>You empty [trans ? trans : 0]u of coolant into [src].</span>")
+				to_chat(user, span_info("You empty [trans ? trans : 0]u of coolant into [src]."))
 				update_coolant()
 				return
 			else if(choice == "Empty coolant")
 				var/amount_transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, src.reagents.total_volume)
 				var/trans = src.reagents.trans_to(G, amount_transferred)
-				to_chat(user, "<span class='info'>You remove [trans ? trans : 0]u of coolant from [src].</span>")
+				to_chat(user, span_info("You remove [trans ? trans : 0]u of coolant from [src]."))
 				update_coolant()
 				return
 		if(scanned_item)
@@ -175,11 +175,11 @@
 						scanner_progress = 0
 						scanning = 1
 						t_left_radspike = pick(5,10,15)
-						to_chat(usr, "<span class='notice'>Scan initiated.</span>")
+						to_chat(usr, span_notice("Scan initiated."))
 					else
-						to_chat(usr, "<span class='warning'>Could not initiate scan, seal requires replacing.</span>")
+						to_chat(usr, span_warning("Could not initiate scan, seal requires replacing."))
 				else
-					to_chat(usr, "<span class='warning'>Insert an item to scan.</span>")
+					to_chat(usr, span_warning("Insert an item to scan."))
 			return TRUE
 
 		if("maserWavelength")

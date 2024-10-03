@@ -28,24 +28,24 @@
 	. = ..()
 
 	if(health == maxhealth)
-		. += "<span class='notice'>It looks fully intact.</span>"
+		. += span_notice("It looks fully intact.")
 	else
 		var/perc = health / maxhealth
 		if(perc > 0.75)
-			. += "<span class='notice'>It has a few cracks.</span>"
+			. += span_notice("It has a few cracks.")
 		else if(perc > 0.5)
-			. += "<span class='warning'>It looks slightly damaged.</span>"
+			. += span_warning("It looks slightly damaged.")
 		else if(perc > 0.25)
-			. += "<span class='warning'>It looks moderately damaged.</span>"
+			. += span_warning("It looks moderately damaged.")
 		else
-			. += "<span class='danger'>It looks heavily damaged.</span>"
+			. += span_danger("It looks heavily damaged.")
 	if(silicate)
 		if (silicate < 30)
-			. += "<span class='notice'>It has a thin layer of silicate.</span>"
+			. += span_notice("It has a thin layer of silicate.")
 		else if (silicate < 70)
-			. += "<span class='notice'>It is covered in silicate.</span>"
+			. += span_notice("It is covered in silicate.")
 		else
-			. += "<span class='notice'>There is a thick layer of silicate covering it.</span>"
+			. += span_notice("There is a thick layer of silicate covering it.")
 
 /obj/structure/window/examine_icon()
 	return icon(icon=initial(icon),icon_state=initial(icon_state))
@@ -158,7 +158,7 @@
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	visible_message(span_danger("[src] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -174,14 +174,14 @@
 	take_damage(tforce)
 
 /obj/structure/window/attack_tk(mob/user as mob)
-	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
+	user.visible_message(span_notice("Something knocks on [src]."))
 	playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed())
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
+		user.visible_message(span_danger("[user] smashes through [src]!"))
 		user.do_attack_animation(src)
 		shatter()
 
@@ -195,8 +195,8 @@
 
 		playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
 		user.do_attack_animation(src)
-		user.visible_message("<span class='danger'>\The [user] bangs against \the [src]!</span>",
-							"<span class='danger'>You bang against \the [src]!</span>",
+		user.visible_message(span_danger("\The [user] bangs against \the [src]!"),
+							span_danger("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
 		playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
@@ -210,7 +210,7 @@
 	if(!damage)
 		return
 	if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
-		visible_message("<span class='danger'>[user] smashes into [src]!</span>")
+		visible_message(span_danger("[user] smashes into [src]!"))
 		if(reinf)
 			damage = damage / 2
 		take_damage(damage)
@@ -227,15 +227,15 @@
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(health < maxhealth)
 			if(WT.remove_fuel(1 ,user))
-				to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+				to_chat(user, span_notice("You begin repairing [src]..."))
 				playsound(src, WT.usesound, 50, 1)
 				if(do_after(user, 40 * WT.toolspeed, target = src))
 					health = maxhealth
 			//		playsound(src, 'sound/items/Welder.ogg', 50, 1)
 					update_icon()
-					to_chat(user, "<span class='notice'>You repair [src].</span>")
+					to_chat(user, span_notice("You repair [src]."))
 		else
-			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
+			to_chat(user, span_warning("[src] is already in good condition!"))
 		return
 
 	// Slamming.
@@ -247,17 +247,17 @@
 			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
 			switch (state)
 				if(1)
-					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+					M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
 					M.apply_damage(7)
 					hit(10)
 				if(2)
-					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+					M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 					if (prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
 					hit(25)
 				if(3)
-					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+					M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 					M.Weaken(5)
 					M.apply_damage(20)
 					hit(50)
@@ -270,31 +270,31 @@
 			state = 3 - state
 			update_nearby_icons()
 			playsound(src, W.usesound, 75, 1)
-			to_chat(user, "<span class='notice'>You have [state == 1 ? "un" : ""]fastened the window [state ? "from" : "to"] the frame.</span>")
+			to_chat(user, span_notice("You have [state == 1 ? "un" : ""]fastened the window [state ? "from" : "to"] the frame."))
 		else if(reinf && state == 0)
 			anchored = !anchored
 			update_nearby_tiles(need_rebuild=1)
 			update_nearby_icons()
 			update_verbs()
 			playsound(src, W.usesound, 75, 1)
-			to_chat(user, "<span class='notice'>You have [anchored ? "" : "un"]fastened the frame [anchored ? "to" : "from"] the floor.</span>")
+			to_chat(user, span_notice("You have [anchored ? "" : "un"]fastened the frame [anchored ? "to" : "from"] the floor."))
 		else if(!reinf)
 			anchored = !anchored
 			update_nearby_tiles(need_rebuild=1)
 			update_nearby_icons()
 			update_verbs()
 			playsound(src, W.usesound, 75, 1)
-			to_chat(user, "<span class='notice'>You have [anchored ? "" : "un"]fastened the window [anchored ? "to" : "from"] the floor.</span>")
+			to_chat(user, span_notice("You have [anchored ? "" : "un"]fastened the window [anchored ? "to" : "from"] the floor."))
 	else if(W.has_tool_quality(TOOL_CROWBAR) && reinf && state <= 1)
 		state = 1 - state
 		playsound(src, W.usesound, 75, 1)
-		to_chat(user, "<span class='notice'>You have pried the window [state ? "into" : "out of"] the frame.</span>")
+		to_chat(user, span_notice("You have pried the window [state ? "into" : "out of"] the frame."))
 	else if(W.has_tool_quality(TOOL_WRENCH) && !anchored && (!state || !reinf))
 		if(!glasstype)
-			to_chat(user, "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>")
+			to_chat(user, span_notice("You're not sure how to dismantle \the [src] properly."))
 		else
 			playsound(src, W.usesound, 75, 1)
-			visible_message("<span class='notice'>[user] dismantles \the [src].</span>")
+			visible_message(span_notice("[user] dismantles \the [src]."))
 			var/obj/item/stack/material/mats = new glasstype(loc)
 			if(is_fulltile())
 				mats.set_amount(4)
@@ -305,7 +305,7 @@
 			playsound(src, 'sound/effects/sparks1.ogg', 75, 1)
 			user.visible_message( \
 				"<b>\The [user]</b> begins to wire \the [src] for electrochromic tinting.", \
-				"<span class='notice'>You begin to wire \the [src] for electrochromic tinting.</span>", \
+				span_notice("You begin to wire \the [src] for electrochromic tinting."), \
 				"You hear sparks.")
 			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -609,7 +609,7 @@
 		if(istype(MT.connectable, /obj/machinery/button/windowtint))
 			var/obj/machinery/button/windowtint/buffered_button = MT.connectable
 			src.id = buffered_button.id
-			to_chat(user, "<span class='notice'>\The [src] is linked to \the [buffered_button] with ID '[id]'.</span>")
+			to_chat(user, span_notice("\The [src] is linked to \the [buffered_button] with ID '[id]'."))
 			return TRUE
 		// Otherwise fall back to asking them... and remind them what the current ID is.
 		if(id)
@@ -617,7 +617,7 @@
 		var/t = sanitizeSafe(input(user, "Enter the new ID for the window.", src.name, null), MAX_NAME_LEN)
 		if(t && in_range(src, user))
 			src.id = t
-			to_chat(user, "<span class='notice'>The new ID of \the [src] is '[id]'.</span>")
+			to_chat(user, span_notice("The new ID of \the [src] is '[id]'."))
 			return TRUE
 	. = ..()
 
@@ -677,10 +677,10 @@
 			var/t = sanitizeSafe(tgui_input_text(user, "Enter an ID for \the [src].", src.name, null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if (t && in_range(src, user))
 				src.id = t
-				to_chat(user, "<span class='notice'>The new ID of \the [src] is '[id]'. To reset this, rebuild the control.</span>")
+				to_chat(user, span_notice("The new ID of \the [src] is '[id]'. To reset this, rebuild the control."))
 		if(id)
 			// It already has an ID (or they just set one), buffer it for copying to windows.
-			to_chat(user, "<span class='notice'>You store \the [src] ID ('[id]') in \the [MT]'s buffer!</span>")
+			to_chat(user, span_notice("You store \the [src] ID ('[id]') in \the [MT]'s buffer!"))
 			MT.connectable = src
 			MT.update_icon()
 		return TRUE

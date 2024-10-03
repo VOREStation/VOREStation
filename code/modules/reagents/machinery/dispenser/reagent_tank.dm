@@ -43,12 +43,12 @@
 /obj/structure/reagent_dispensers/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
-		. += "<span class='notice'>It contains:</span>"
+		. += span_notice("It contains:")
 		if(reagents && reagents.reagent_list.len)
 			for(var/datum/reagent/R in reagents.reagent_list)
-				. += "<span class='notice'>[R.volume] units of [R.name]</span>"
+				. += span_notice("[R.volume] units of [R.name]")
 		else
-			. += "<span class='notice'>Nothing.</span>"
+			. += span_notice("Nothing.")
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -187,15 +187,15 @@
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		if(modded)
-			. += "<span class='warning'>Fuel faucet is wrenched open, leaking the fuel!</span>"
+			. += span_warning("Fuel faucet is wrenched open, leaking the fuel!")
 		if(rig)
-			. += "<span class='notice'>There is some kind of device rigged to the tank.</span>"
+			. += span_notice("There is some kind of device rigged to the tank.")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
 		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]")
 		if(do_after(usr, 20))
-			usr.visible_message("<span class='notice'>[usr] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src]</span>")
+			usr.visible_message(span_notice("[usr] detaches [rig] from \the [src]."), span_notice("You detach [rig] from \the [src]"))
 			rig.loc = get_turf(usr)
 			rig = null
 			overlays = new/list()
@@ -213,11 +213,11 @@
 			leak_fuel(amount_per_transfer_from_this)
 	if (istype(W,/obj/item/assembly_holder))
 		if (rig)
-			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
+			to_chat(user, span_warning("There is another device in the way."))
 			return ..()
 		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
 		if(do_after(user, 20))
-			user.visible_message("<span class='notice'>[user] rigs [W] to \the [src].</span>", "<span class='notice'>You rig [W] to \the [src]</span>")
+			user.visible_message(span_notice("[user] rigs [W] to \the [src]."), span_notice("You rig [W] to \the [src]"))
 
 			var/obj/item/assembly_holder/H = W
 			if (istype(H.a_left,/obj/item/assembly/igniter) || istype(H.a_right,/obj/item/assembly/igniter))
@@ -346,7 +346,7 @@
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()
 	if(cupholder)
-		. += "<span class='notice'>There are [cups] cups in the cup dispenser.</span>"
+		. += span_notice("There are [cups] cups in the cup dispenser.")
 
 /obj/structure/reagent_dispensers/water_cooler/verb/rotate_clockwise()
 	set name = "Rotate Cooler Clockwise"
@@ -378,7 +378,7 @@
 		if(bottle)
 			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20) && bottle)
-				to_chat(user, "<span class='notice'>You unfasten the jug.</span>")
+				to_chat(user, span_notice("You unfasten the jug."))
 				var/obj/item/reagent_containers/glass/cooler_bottle/G = new /obj/item/reagent_containers/glass/cooler_bottle( src.loc )
 				for(var/datum/reagent/R in reagents.reagent_list)
 					var/total_reagent = reagents.get_reagent_amount(R.id)
@@ -393,7 +393,7 @@
 				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
 			if(do_after(user, 20 * I.toolspeed, src))
 				if(!src) return
-				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+				to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
 				playsound(src, I.usesound, 50, 1)
 		return
@@ -401,7 +401,7 @@
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(cupholder)
 			playsound(src, I.usesound, 50, 1)
-			to_chat(user, "<span class='notice'>You take the cup dispenser off.</span>")
+			to_chat(user, span_notice("You take the cup dispenser off."))
 			new /obj/item/stack/material/plastic( src.loc )
 			if(cups)
 				for(var/i = 0 to cups)
@@ -412,9 +412,9 @@
 			return
 		if(!bottle && !cupholder)
 			playsound(src, I.usesound, 50, 1)
-			to_chat(user, "<span class='notice'>You start taking the water-cooler apart.</span>")
+			to_chat(user, span_notice("You start taking the water-cooler apart."))
 			if(do_after(user, 20 * I.toolspeed) && !bottle && !cupholder)
-				to_chat(user, "<span class='notice'>You take the water-cooler apart.</span>")
+				to_chat(user, span_notice("You take the water-cooler apart."))
 				new /obj/item/stack/material/plastic( src.loc, 4 )
 				qdel(src)
 		return
@@ -424,19 +424,19 @@
 		if(!bottle)
 			if(anchored)
 				var/obj/item/reagent_containers/glass/cooler_bottle/G = I
-				to_chat(user, "<span class='notice'>You start to screw the bottle onto the water-cooler.</span>")
+				to_chat(user, span_notice("You start to screw the bottle onto the water-cooler."))
 				if(do_after(user, 20) && !bottle && anchored)
 					bottle = 1
 					update_icon()
-					to_chat(user, "<span class='notice'>You screw the bottle onto the water-cooler!</span>")
+					to_chat(user, span_notice("You screw the bottle onto the water-cooler!"))
 					for(var/datum/reagent/R in G.reagents.reagent_list)
 						var/total_reagent = G.reagents.get_reagent_amount(R.id)
 						reagents.add_reagent(R.id, total_reagent)
 					qdel(G)
 			else
-				to_chat(user, "<span class='warning'>You need to wrench down the cooler first.</span>")
+				to_chat(user, span_warning("You need to wrench down the cooler first."))
 		else
-			to_chat(user, "<span class='warning'>There is already a bottle there!</span>")
+			to_chat(user, span_warning("There is already a bottle there!"))
 		return 1
 
 	if(istype(I, /obj/item/stack/material/plastic))
@@ -444,17 +444,17 @@
 			if(anchored)
 				var/obj/item/stack/material/plastic/P = I
 				src.add_fingerprint(user)
-				to_chat(user, "<span class='notice'>You start to attach a cup dispenser onto the water-cooler.</span>")
+				to_chat(user, span_notice("You start to attach a cup dispenser onto the water-cooler."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(do_after(user, 20) && !cupholder && anchored)
 					if (P.use(1))
-						to_chat(user, "<span class='notice'>You attach a cup dispenser onto the water-cooler.</span>")
+						to_chat(user, span_notice("You attach a cup dispenser onto the water-cooler."))
 						cupholder = 1
 						update_icon()
 			else
-				to_chat(user, "<span class='warning'>You need to wrench down the cooler first.</span>")
+				to_chat(user, span_warning("You need to wrench down the cooler first."))
 		else
-			to_chat(user, "<span class='warning'>There is already a cup dispenser there!</span>")
+			to_chat(user, span_warning("There is already a cup dispenser there!"))
 		return
 
 /obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/user)

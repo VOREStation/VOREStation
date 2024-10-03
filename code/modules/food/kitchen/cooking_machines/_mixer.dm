@@ -18,7 +18,7 @@ fundamental differences
 /obj/machinery/appliance/mixer/examine(var/mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "<span class='notice'>It is currently set to make a [selected_option]</span>"
+		. += span_notice("It is currently set to make a [selected_option]")
 
 /obj/machinery/appliance/mixer/Initialize()
 	. = ..()
@@ -43,7 +43,7 @@ fundamental differences
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, "<span class='notice'>You can't operate [src].</span>")
+		to_chat(usr, span_notice("You can't operate [src]."))
 		return
 
 	if(output_options.len)
@@ -52,7 +52,7 @@ fundamental differences
 			return
 		else
 			selected_option = choice
-			to_chat(usr, "<span class='notice'>You prepare \the [src] to make \a [selected_option].</span>")
+			to_chat(usr, span_notice("You prepare \the [src] to make \a [selected_option]."))
 			var/datum/cooking_item/CI = cooking_objs[1]
 			CI.combine_target = selected_option
 
@@ -73,7 +73,7 @@ fundamental differences
 		return 1
 	else
 		if(show_warning)
-			to_chat(user, "<span class='warning'>You can't remove ingredients while it's turned on! Turn it off first or wait for it to finish.</span>")
+			to_chat(user, span_warning("You can't remove ingredients while it's turned on! Turn it off first or wait for it to finish."))
 		return 0
 
 //Container is not removable
@@ -83,7 +83,7 @@ fundamental differences
 		for(var/datum/cooking_item/CI as anything in cooking_objs)
 			if (CI.container)
 				if (!CI.container.check_contents())
-					to_chat(user, "<span class='filter_notice'>There's nothing in [src] you can remove!</span>")
+					to_chat(user, span_filter_notice("There's nothing in [src] you can remove!"))
 					return
 
 				for (var/obj/item/I in CI.container)
@@ -106,26 +106,26 @@ fundamental differences
 
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if(!CI.container.check_contents())
-		to_chat(usr, "<span class='filter_notice'>There's nothing in it! Add ingredients before turning [src] on!</span>")
+		to_chat(usr, span_filter_notice("There's nothing in it! Add ingredients before turning [src] on!"))
 		return
 
 	if(stat & POWEROFF)//Its turned off
 		stat &= ~POWEROFF
 		if(usr)
-			usr.visible_message("<span class='filter_notice'>[usr] turns the [src] on.</span>", "<span class='filter_notice'>You turn on \the [src].</span>")
+			usr.visible_message(span_filter_notice("[usr] turns the [src] on."), span_filter_notice("You turn on \the [src]."))
 			get_cooking_work(CI)
 			use_power = 2
 	else //Its on, turn it off
 		stat |= POWEROFF
 		use_power = 0
 		if(usr)
-			usr.visible_message("<span class='filter_notice'>[usr] turns the [src] off.</span>", "<span class='filter_notice'>You turn off \the [src].</span>")
+			usr.visible_message(span_filter_notice("[usr] turns the [src] off."), span_filter_notice("You turn off \the [src]."))
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
 /obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)
 	if(!stat)
-		to_chat(user, "<span class='warning'>,You can't add items while \the [src] is running. Wait for it to finish or turn the power off to abort.</span>")
+		to_chat(user, span_warning(",You can't add items while \the [src] is running. Wait for it to finish or turn the power off to abort."))
 		return 0
 	else
 		return ..()

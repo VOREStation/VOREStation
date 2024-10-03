@@ -21,7 +21,7 @@
 		painting = canvas
 		canvas.forceMove(get_turf(src))
 		canvas.layer = layer+0.1
-		user.visible_message("<span class='notice'>[user] puts \the [canvas] on \the [src].</span>","<span class='notice'>You place \the [canvas] on \the [src].</span>")
+		user.visible_message(span_notice("[user] puts \the [canvas] on \the [src]."),span_notice("You place \the [canvas] on \the [src]."))
 	else
 		return ..()
 
@@ -402,40 +402,40 @@
 /obj/structure/sign/painting/examine(mob/user)
 	. = ..()
 	if(persistence_id)
-		. += "<span class='notice'>Any painting placed here will be archived at the end of the shift.</span>"
+		. += span_notice("Any painting placed here will be archived at the end of the shift.")
 
 	if(current_canvas)
 		current_canvas.tgui_interact(user)
-		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
-		. += "<span class='notice'>Paintings hung here are curated based on interest. The more often someone EXAMINEs the painting, the longer it will stay in rotation.</span>"
+		. += span_notice("Use wirecutters to remove the painting.")
+		. += span_notice("Paintings hung here are curated based on interest. The more often someone EXAMINEs the painting, the longer it will stay in rotation.")
 		// Painting loaded and persistent frame, give a hint about removal safety
 		if(persistence_id)
 			if(loaded)
-				. += "<span class='warning'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+				. += span_warning("Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.")
 				back_of_the_line(user)
 			else
-				. += "<span class='warning'>This painting has not been entered into the archives yet. Removing it will prevent that from happening.</span>"
+				. += span_warning("This painting has not been entered into the archives yet. Removing it will prevent that from happening.")
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
-		to_chat(user, "<span class='notice'>Access lock prevents you from putting a painting into this frame. Ask [curator] for help!</span>")
+		to_chat(user, span_notice("Access lock prevents you from putting a painting into this frame. Ask [curator] for help!"))
 		return
 	if(user.drop_from_inventory(new_canvas, src))
 		current_canvas = new_canvas
 		if(!current_canvas.finalized)
 			current_canvas.finalize(user)
-		to_chat(user,"<span class='notice'>You frame [current_canvas].</span>")
+		to_chat(user,span_notice("You frame [current_canvas]."))
 		update_appearance()
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='notice'>Access lock prevents you from removing paintings from this frame. Ask [curator] ((or admins)) for help!</span>")
+		to_chat(user, span_notice("Access lock prevents you from removing paintings from this frame. Ask [curator] ((or admins)) for help!"))
 		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
 		current_canvas = null
 		loaded = FALSE
-		to_chat(user, "<span class='notice'>You remove the painting from the frame.</span>")
+		to_chat(user, span_notice("You remove the painting from the frame."))
 		update_appearance()
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
@@ -649,7 +649,7 @@
 			SSpersistence.all_paintings.Remove(list(entry))
 			SSpersistence.all_paintings.Add(list(entry))
 			art_appreciators += user.ckey
-			to_chat(user, "<span class='notice'>Showing interest in this painting renews its position in the curator database.</span>")
+			to_chat(user, span_notice("Showing interest in this painting renews its position in the curator database."))
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()
@@ -662,7 +662,7 @@
 			return
 		var/mob/user = usr
 		if(!persistence_id || !current_canvas)
-			to_chat(user,"<span class='warning'>This is not a persistent painting.</span>")
+			to_chat(user,span_warning("This is not a persistent painting."))
 			return
 		var/md5 = md5(lowertext(current_canvas.get_data_string()))
 		var/author = current_canvas.author_ckey
@@ -679,4 +679,4 @@
 				QDEL_NULL(P.current_canvas)
 				P.update_appearance()
 		loaded = FALSE
-		log_and_message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
+		log_and_message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

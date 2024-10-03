@@ -301,11 +301,11 @@ I think I covered everything.
 	set category = "Abilities"
 
 	if(norange)
-		to_chat(src, "<span class='userdanger'>You don't have a breath attack!</span>")
+		to_chat(src, span_userdanger("You don't have a breath attack!"))
 		return
 
 	flametoggle = !flametoggle
-	to_chat(src, "<span class='notice'>You will [flametoggle?"now breath":"no longer breath"] attack on harm intent.</span>")
+	to_chat(src, span_notice("You will [flametoggle?"now breath":"no longer breath"] attack on harm intent."))
 
 /mob/living/simple_mob/vore/bigdragon/proc/special_toggle()
 	set name = "Toggle special attacks"
@@ -313,11 +313,11 @@ I think I covered everything.
 	set category = "Abilities"
 
 	if(nospecial)
-		to_chat(src, "<span class='userdanger'>You don't have special attacks!</span>")
+		to_chat(src, span_userdanger("You don't have special attacks!"))
 		return
 
 	specialtoggle = !specialtoggle
-	to_chat(src, "<span class='notice'>You will [specialtoggle?"now special":"no longer special"] attack on grab/disarm intent.</span>")
+	to_chat(src, span_notice("You will [specialtoggle?"now special":"no longer special"] attack on grab/disarm intent."))
 
 
 ///
@@ -757,14 +757,14 @@ I think I covered everything.
 			M.Weaken(5)
 			if(!gentle)
 				M.adjustBruteLoss(50)	//A dragon just slammed ontop of you
-			to_chat(M, "<span class='userdanger'>You're slammed into the floor by [src]!</span>")
+			to_chat(M, span_userdanger("You're slammed into the floor by [src]!"))
 	else
 		if(isliving(AM))
 			var/mob/living/M = AM
 			M.Weaken(1.5)
 			if(!gentle)
 				M.adjustBruteLoss(20)
-			to_chat(M, "<span class='userdanger'>You're thrown back by [src]!</span>")
+			to_chat(M, span_userdanger("You're thrown back by [src]!"))
 			playsound(src, get_sfx("punch"), 50, 1)
 		AM.throw_at(throwtarget, maxthrow, 3, src)
 
@@ -825,7 +825,7 @@ I think I covered everything.
 		set_AI_busy(FALSE)
 		return
 	var/obj/item/projectile/P = new /obj/item/projectile/bullet/dragon(get_turf(src))
-	src.visible_message("<span class='danger'>\The [src] spews fire at \the [A]!</span>")
+	src.visible_message(span_danger("\The [src] spews fire at \the [A]!"))
 	playsound(src, "sound/weapons/Flamer.ogg", 50, 1)
 	P.launch_projectile(A, BP_TORSO, src)
 	set_AI_busy(FALSE)

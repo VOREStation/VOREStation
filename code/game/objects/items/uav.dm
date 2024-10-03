@@ -68,12 +68,12 @@
 	if(Adjacent(user))
 		. += "It has <i>'[nickname]'</i> scribbled on the side."
 	if(!cell)
-		. += "<span class='warning'>It appears to be missing a power cell.</span>"
+		. += span_warning("It appears to be missing a power cell.")
 
 	if(health <= (initial(health)/4))
-		. += "<span class='warning'>It looks like it might break at any second!</span>"
+		. += span_warning("It looks like it might break at any second!")
 	else if(health <= (initial(health)/2))
-		. += "<span class='warning'>It looks pretty beaten up...</span>"
+		. += span_warning("It looks pretty beaten up...")
 
 /obj/item/uav/attack_hand(var/mob/user)
 	//Has to be on the ground to work with it properly
@@ -93,7 +93,7 @@
 			if(state == UAV_OFF || state == UAV_PACKED)
 				return ..()
 			else
-				to_chat(user,"<span class='warning'>Turn [nickname] off or pack it first!</span>")
+				to_chat(user,span_warning("Turn [nickname] off or pack it first!"))
 				return
 		// Can disasemble or reassemble from packed or off (and this one takes time)
 		if("(Dis)Assemble")
@@ -115,12 +115,12 @@
 		var/obj/item/modular_computer/MC = I
 		LAZYDISTINCTADD(MC.paired_uavs, WEAKREF(src))
 		playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
-		visible_message("<span class='notice'>[user] pairs [I] to [nickname]</span>")
+		visible_message(span_notice("[user] pairs [I] to [nickname]"))
 		toggle_pairing()
 
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER) && cell)
 		if(do_after(user, 3 SECONDS, src))
-			to_chat(user, "<span class='notice'>You remove [cell] into [nickname].</span>")
+			to_chat(user, span_notice("You remove [cell] into [nickname]."))
 			playsound(src, I.usesound, 50, 1)
 			power_down()
 			cell.forceMove(get_turf(src))
@@ -128,7 +128,7 @@
 
 	else if(istype(I, /obj/item/cell) && !cell)
 		if(do_after(user, 3 SECONDS, src))
-			to_chat(user, "<span class='notice'>You insert [I] into [nickname].</span>")
+			to_chat(user, span_notice("You insert [I] into [nickname]."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			power_down()
 			user.remove_from_mob(I)
@@ -138,9 +138,9 @@
 	else if(istype(I, /obj/item/pen) || istype(I, /obj/item/flashlight/pen))
 		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a nickname for [src]", "Nickname", nickname, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50 || length(tmp_label) < 3)
-			to_chat(user, "<span class='notice'>The nickname must be between 3 and 50 characters.</span>")
+			to_chat(user, span_notice("The nickname must be between 3 and 50 characters."))
 		else
-			to_chat(user, "<span class='notice'>You scribble your new nickname on the side of [src].</span>")
+			to_chat(user, span_notice("You scribble your new nickname on the side of [src]."))
 			nickname = tmp_label
 			desc = initial(desc) + " This one has <span class='notice'>'[nickname]'</span> scribbled on the side."
 	else
@@ -163,7 +163,7 @@
 
 	if(!.)
 		if(user)
-			to_chat(user, "<span class='warning'>You can't do that while [nickname] is in this state.</span>")
+			to_chat(user, span_warning("You can't do that while [nickname] is in this state."))
 		return FALSE
 
 /obj/item/uav/update_icon()
@@ -181,7 +181,7 @@
 
 /obj/item/uav/process()
 	if(cell?.use(power_per_process) != power_per_process)
-		visible_message("<span class='warning'>[src] sputters and thuds to the ground, inert.</span>")
+		visible_message(span_warning("[src] sputters and thuds to the ground, inert."))
 		playsound(src, 'sound/items/drop/metalboots.ogg', 75, 1)
 		power_down()
 		health -= initial(health)*0.25 //Lose 25% of your original health
@@ -237,7 +237,7 @@
 	if(state != UAV_OFF || !isturf(loc))
 		return
 	if(cell?.use(power_per_process) != power_per_process)
-		visible_message("<span class='warning'>[src] sputters and chugs as it tries, and fails, to power up.</span>")
+		visible_message(span_warning("[src] sputters and chugs as it tries, and fails, to power up."))
 		return
 
 	state = UAV_ON
@@ -246,7 +246,7 @@
 	set_light_on(TRUE)
 	START_PROCESSING(SSobj, src)
 	no_masters_time = 0
-	visible_message("<span class='notice'>[nickname] buzzes and lifts into the air.</span>")
+	visible_message(span_notice("[nickname] buzzes and lifts into the air."))
 
 /obj/item/uav/proc/power_down()
 	if(state != UAV_ON)
@@ -258,7 +258,7 @@
 	set_light_on(FALSE)
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
-	visible_message("<span class='notice'>[nickname] gracefully settles onto the ground.</span>")
+	visible_message(span_notice("[nickname] gracefully settles onto the ground."))
 
 //////////////// Helpers
 /obj/item/uav/get_cell()
@@ -337,7 +337,7 @@
 	return
 
 /obj/item/uav/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 	user.do_attack_animation(src)
 	health -= damage
@@ -357,7 +357,7 @@
 		die()
 
 /obj/item/uav/proc/die()
-	visible_message("<span class='danger'>[src] shorts out and explodes!</span>")
+	visible_message(span_danger("[src] shorts out and explodes!"))
 	power_down()
 	var/turf/T = get_turf(src)
 	qdel(src)

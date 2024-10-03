@@ -87,5 +87,5 @@
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
-			visible_message("<span class='warning'>\The [assembly] makes some sparks!</span>")
+			visible_message(span_warning("\The [assembly] makes some sparks!"))
 			qdel(sparks)

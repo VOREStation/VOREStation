@@ -133,7 +133,7 @@
 	if(food_inserted_micros)
 		food_inserted_micros -= M
 	M.forceMove(get_turf(src))
-	to_chat(M, "<span class='warning'>You climb off of \the [src].</span>")
+	to_chat(M, span_warning("You climb off of \the [src]."))
 
 /obj/item/material/kitchen/utensil/fork
 	name = "fork"
@@ -184,7 +184,7 @@
 /* From the time of Clowns. Commented out for posterity, and sanity.
 /obj/item/material/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You accidentally cut yourself with \the [src].</span>")
+		to_chat(user, span_warning("You accidentally cut yourself with \the [src]."))
 		user.take_organ_damage(20)
 		return
 	return ..()
@@ -210,7 +210,7 @@
 
 /obj/item/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>\The [src] slips out of your hand and hits your head.</span>")
+		to_chat(user, span_warning("\The [src] slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(2)
 		return

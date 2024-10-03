@@ -21,12 +21,12 @@
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
-	to_chat(owner, "<span class='notice'>Your shield will expire in 5 seconds!</span>")
+	to_chat(owner, span_notice("Your shield will expire in 5 seconds!"))
 	QDEL_IN(src, 5 SECONDS)
 
 /obj/item/spell/reflect/Destroy()
 	if(owner)
-		to_chat(owner, "<span class='danger'>Your shield expires!</span>")
+		to_chat(owner, span_danger("Your shield expires!"))
 	spark_system = null
 	return ..()
 
@@ -37,7 +37,7 @@
 	var/damage_to_energy_cost = (damage_to_energy_multiplier * damage)
 
 	if(!pay_energy(damage_to_energy_cost))
-		to_chat(owner, "<span class='danger'>Your shield fades due to lack of energy!</span>")
+		to_chat(owner, span_danger("Your shield fades due to lack of energy!"))
 		qdel(src)
 		return 0
 
@@ -49,7 +49,7 @@
 			var/obj/item/projectile/P = damage_source
 
 			if(P.starting && !P.reflected)
-				visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+				visible_message(span_danger("\The [user]'s [src.name] reflects [attack_text]!"))
 
 				var/turf/curloc = get_turf(user)
 
@@ -67,7 +67,7 @@
 				if(!reflecting)
 					reflecting = 1
 					spawn(2 SECONDS) //To ensure that most or all of a burst fire cycle is reflected.
-						to_chat(owner, "<span class='danger'>Your shield fades due being used up!</span>")
+						to_chat(owner, span_danger("Your shield fades due being used up!"))
 						qdel(src)
 
 				return PROJECTILE_CONTINUE // complete projectile permutation
@@ -87,7 +87,7 @@
 				if(!reflecting)
 					reflecting = 1
 					spawn(2 SECONDS) //To ensure that most or all of a burst fire cycle is reflected.
-						to_chat(owner, "<span class='danger'>Your shield fades due being used up!</span>")
+						to_chat(owner, span_danger("Your shield fades due being used up!"))
 						qdel(src)
 		return 1
 	return 0

@@ -63,11 +63,11 @@
 
 /obj/item/clothing/suit/space/void/examine(user)
 	. = ..()
-	. += to_chat(usr, "<span class='notice'>Alt-click to relase Tank/Cooling unit if installed.</span>")
+	. += to_chat(usr, span_notice("Alt-click to relase Tank/Cooling unit if installed."))
 	for(var/obj/item/I in list(helmet,boots,tank,cooler))
 		. += "It has \a [I] installed."
 	if(tank && in_range(src,user))
-		. += "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
+		. += span_notice("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 
 /obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()
@@ -195,7 +195,7 @@
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.canremove = FALSE
-			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
+			to_chat(H, span_info("You deploy your suit helmet, sealing you off from the world."))
 			playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 
 /obj/item/clothing/suit/space/void/AltClick(mob/living/user)
@@ -238,7 +238,7 @@
 		return ..()
 
 	if(user.get_inventory_slot(src) == slot_wear_suit)
-		to_chat(user, "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>")
+		to_chat(user, span_warning("You cannot modify \the [src] while it is being worn."))
 		return
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))

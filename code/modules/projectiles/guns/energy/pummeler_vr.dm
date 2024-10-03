@@ -50,7 +50,7 @@
 			var/mob/living/simple_mob/vore/alienanimals/startreader/S = L
 			if(!S.flipped)
 				S.adjustBruteLoss(100)
-				S.visible_message("<span class='notice'>\The [S] is flipped over!!!</span>")
+				S.visible_message(span_notice("\The [S] is flipped over!!!"))
 				S.flipped = TRUE
 				S.flip_cooldown = 10
 				S.handle_flip()

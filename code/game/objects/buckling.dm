@@ -116,12 +116,12 @@
 //Wrapper procs that handle sanity and user feedback
 /atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = FALSE)
 	if(!ticker)
-		to_chat(user, "<span class='warning'>You can't buckle anyone in before the game starts.</span>")
+		to_chat(user, span_warning("You can't buckle anyone in before the game starts."))
 		return FALSE // Is this really needed?
 	if(!user.Adjacent(M) || user.restrained() || user.stat || istype(user, /mob/living/silicon/pai))
 		return FALSE
 	if(M in buckled_mobs)
-		to_chat(user, "<span class='warning'>\The [M] is already buckled to \the [src].</span>")
+		to_chat(user, span_warning("\The [M] is already buckled to \the [src]."))
 		return FALSE
 	if(!can_buckle_check(M, forced))
 		return FALSE
@@ -141,19 +141,19 @@
 		var/reveal_message = list("buckled_mob" = null, "buckled_to" = null) //VORE EDIT: This being a list and messages existing for the buckle target atom.
 		if(!silent)
 			if(M == user)
-				reveal_message["buckled_mob"] = "<span class='notice'>You come out of hiding and buckle yourself to [src].</span>" //VORE EDIT
-				reveal_message["buckled_to"] = "<span class='notice'>You come out of hiding as [M.name] buckles themselves to you.</span>" //VORE EDIT
+				reveal_message["buckled_mob"] = span_notice("You come out of hiding and buckle yourself to [src].") //VORE EDIT
+				reveal_message["buckled_to"] = span_notice("You come out of hiding as [M.name] buckles themselves to you.") //VORE EDIT
 				M.visible_message(\
-					"<span class='notice'>[M.name] buckles themselves to [src].</span>",\
-					"<span class='notice'>You buckle yourself to [src].</span>",\
-					"<span class='notice'>You hear metal clanking.</span>")
+					span_notice("[M.name] buckles themselves to [src]."),\
+					span_notice("You buckle yourself to [src]."),\
+					span_notice("You hear metal clanking."))
 			else
-				reveal_message["buckled_mob"] = "<span class='notice'>You are revealed as you are buckled to [src].</span>" //VORE EDIT
-				reveal_message["buckled_to"] = "<span class='notice'>You are revealed as [M.name] is buckled to you.</span>" //VORE EDIT
+				reveal_message["buckled_mob"] = span_notice("You are revealed as you are buckled to [src].") //VORE EDIT
+				reveal_message["buckled_to"] = span_notice("You are revealed as [M.name] is buckled to you.") //VORE EDIT
 				M.visible_message(\
-					"<span class='danger'>[M.name] is buckled to [src] by [user.name]!</span>",\
-					"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
-					"<span class='notice'>You hear metal clanking.</span>")
+					span_danger("[M.name] is buckled to [src] by [user.name]!"),\
+					span_danger("You are buckled to [src] by [user.name]!"),\
+					span_notice("You hear metal clanking."))
 
 		M.reveal(silent, reveal_message["buckled_mob"]) //Reveal people so they aren't buckled to chairs from behind. //VORE EDIT, list arg instead of simple message var for buckled mob
 		//Vore edit start
@@ -168,14 +168,14 @@
 	if(M)
 		if(M != user)
 			M.visible_message(\
-				"<span class='notice'>[M.name] was unbuckled by [user.name]!</span>",\
-				"<span class='notice'>You were unbuckled from [src] by [user.name].</span>",\
-				"<span class='notice'>You hear metal clanking.</span>")
+				span_notice("[M.name] was unbuckled by [user.name]!"),\
+				span_notice("You were unbuckled from [src] by [user.name]."),\
+				span_notice("You hear metal clanking."))
 		else
 			M.visible_message(\
-				"<span class='notice'>[M.name] unbuckled themselves!</span>",\
-				"<span class='notice'>You unbuckle yourself from [src].</span>",\
-				"<span class='notice'>You hear metal clanking.</span>")
+				span_notice("[M.name] unbuckled themselves!"),\
+				span_notice("You unbuckle yourself from [src]."),\
+				span_notice("You hear metal clanking."))
 		add_fingerprint(user)
 	return M
 
@@ -202,7 +202,7 @@
 		return FALSE
 
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it
-		to_chat(M, "<span class='notice'>\The [src] can't buckle anymore people.</span>")
+		to_chat(M, span_notice("\The [src] can't buckle anymore people."))
 		return FALSE
 
 	return TRUE

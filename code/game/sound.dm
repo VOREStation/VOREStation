@@ -138,7 +138,7 @@
 	if(prefs?.read_preference(/datum/preference/toggle/play_lobby_music))
 		var/datum/track/T = pick(SSmedia_tracks.lobby_tracks)
 		media.push_music(T.url, world.time, 0.85)
-		to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
+		to_chat(src,span_notice("Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>."))
 
 /proc/get_sfx(soundin)
 	if(istext(soundin))

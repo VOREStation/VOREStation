@@ -63,15 +63,15 @@
 
 /obj/item/inducer/proc/cantbeused(mob/user)
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to use [src]!"))
 		return TRUE
 
 	if(!cell)
-		to_chat(user, "<span class='warning'>[src] doesn't have a power cell installed!</span>")
+		to_chat(user, span_warning("[src] doesn't have a power cell installed!"))
 		return TRUE
 
 	if(!cell.charge)
-		to_chat(user, "<span class='warning'>[src]'s battery is dead!</span>")
+		to_chat(user, span_warning("[src]'s battery is dead!"))
 		return TRUE
 	return FALSE
 
@@ -80,12 +80,12 @@
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
 		if(!opened)
-			to_chat(user, "<span class='notice'>You open the battery compartment.</span>")
+			to_chat(user, span_notice("You open the battery compartment."))
 			opened = TRUE
 			update_icon()
 			return
 		else
-			to_chat(user, "<span class='notice'>You close the battery compartment.</span>")
+			to_chat(user, span_notice("You close the battery compartment."))
 			opened = FALSE
 			update_icon()
 			return
@@ -94,12 +94,12 @@
 			if(!cell)
 				user.drop_from_inventory(W)
 				W.forceMove(src)
-				to_chat(user, "<span class='notice'>You insert [W] into [src].</span>")
+				to_chat(user, span_notice("You insert [W] into [src]."))
 				cell = W
 				update_icon()
 				return
 			else
-				to_chat(user, "<span class='warning'>[src] already has \a [cell] installed!</span>")
+				to_chat(user, span_warning("[src] already has \a [cell] installed!"))
 				return
 
 	if(cantbeused(user))
@@ -119,7 +119,7 @@
 		recharging = TRUE
 
 	if(istype(A, /obj/item/gun/energy) && !charge_guns)
-		to_chat(user, "<span class='alert'>Error: Device is unable to interface with weapons.</span>")
+		to_chat(user, span_alert("Error: Device is unable to interface with weapons."))
 		recharging = FALSE
 		return FALSE
 
@@ -150,10 +150,10 @@
 		var/done_any = FALSE
 
 		if(C.charge >= C.maxcharge)
-			to_chat(user, "<span class='notice'>[A] is fully charged ([round(C.charge)] / [C.maxcharge])!</span>")
+			to_chat(user, span_notice("[A] is fully charged ([round(C.charge)] / [C.maxcharge])!"))
 			recharging = FALSE
 			return TRUE
-		user.visible_message("<span class='notice'>[user] starts recharging [A] with [src].</span>", "<span class='notice'>You start recharging [A] with [src].</span>")
+		user.visible_message(span_notice("[user] starts recharging [A] with [src]."), span_notice("You start recharging [A] with [src]."))
 
 		var/datum/beam/charge_beam = user.Beam(A, icon_state = "rped_upgrade", time = 20 SECONDS)
 		var/filter = filter(type = "outline", size = 1, color = "#22AAFF")
@@ -179,18 +179,18 @@
 			A.filters -= filter
 
 		if(done_any) // Only show a message if we succeeded at least once
-			user.visible_message("<span class='notice'>[user] recharged [A]!</span>", "<span class='notice'>You recharged [A]!</span>")
+			user.visible_message(span_notice("[user] recharged [A]!"), span_notice("You recharged [A]!"))
 
 		recharging = FALSE
 		return TRUE
 	else //Couldn't find a cell
-		to_chat(user, "<span class='alert'>Error unable to interface with device.</span>")
+		to_chat(user, span_alert("Error unable to interface with device."))
 
 	recharging = FALSE
 
 /obj/item/inducer/attack_self(mob/user)
 	if(opened && cell)
-		user.visible_message("<span class='notice'>[user] removes [cell] from [src]!</span>", "<span class='notice'>You remove [cell].</span>")
+		user.visible_message(span_notice("[user] removes [cell] from [src]!"), span_notice("You remove [cell]."))
 		cell.update_icon()
 		user.put_in_hands(cell)
 		cell = null
@@ -199,11 +199,11 @@
 /obj/item/inducer/examine(mob/living/M)
 	. = ..()
 	if(cell)
-		. += "<span class='notice'>Its display shows: [round(cell.charge)] / [cell.maxcharge].</span>"
+		. += span_notice("Its display shows: [round(cell.charge)] / [cell.maxcharge].")
 	else
-		. += "<span class='notice'>Its display is dark.</span>"
+		. += span_notice("Its display is dark.")
 	if(opened)
-		. += "<span class='notice'>Its battery compartment is open.</span>"
+		. += span_notice("Its battery compartment is open.")
 
 /obj/item/inducer/update_icon()
 	..()

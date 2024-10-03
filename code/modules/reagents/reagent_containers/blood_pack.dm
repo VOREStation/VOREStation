@@ -58,13 +58,13 @@
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/flashlight/pen))
 		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
-			to_chat(user, "<span class='notice'>The label can be at most 50 characters long.</span>")
+			to_chat(user, span_notice("The label can be at most 50 characters long."))
 		else if(length(tmp_label) > 10)
-			to_chat(user, "<span class='notice'>You set the label.</span>")
+			to_chat(user, span_notice("You set the label."))
 			label_text = tmp_label
 			update_iv_label()
 		else
-			to_chat(user, "<span class='notice'>You set the label to \"[tmp_label]\".</span>")
+			to_chat(user, span_notice("You set the label to \"[tmp_label]\"."))
 			label_text = tmp_label
 			update_iv_label()
 

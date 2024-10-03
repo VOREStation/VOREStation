@@ -69,14 +69,14 @@
 
 /obj/item/gun/projectile/shotgun/pump/rifle/ceremonial/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(sawn_off)
-		to_chat(user, "<span class='warning'>The [src] is already shortened!</span>")
+		to_chat(user, span_warning("The [src] is already shortened!"))
 		return
 	if(istype(A, /obj/item/surgical/circular_saw) || istype(A, /obj/item/melee/energy) || istype(A, /obj/item/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
-		to_chat(user, "<span class='notice'>You begin to shorten the barrel and stock of \the [src].</span>")
+		to_chat(user, span_notice("You begin to shorten the barrel and stock of \the [src]."))
 		if(loaded.len)
 			afterattack(user, user)
 			playsound(src, fire_sound, 50, 1)
-			user.visible_message("<span class='danger'>[src] goes off!</span>", "<span class='danger'>The rifle goes off in your face!</span>")
+			user.visible_message(span_danger("[src] goes off!"), span_danger("The rifle goes off in your face!"))
 			return
 		if(do_after(user, 30))
 			if(sawn_off)
@@ -91,7 +91,7 @@
 			name = "sawn-off rifle"
 			desc = "The firepower of a rifle, now the size of a pistol, with an effective combat range of about three feet. Uses 7.62mm rounds."
 			pump_animation = "sawn_rifle-cycling"
-			to_chat(user, "<span class='warning'>You shorten the barrel and stock of \the [src]!</span>")
+			to_chat(user, span_warning("You shorten the barrel and stock of \the [src]!"))
 			sawn_off = TRUE
 	else
 		..()

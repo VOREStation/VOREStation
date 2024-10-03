@@ -15,7 +15,7 @@ var/global/datum/controller/occupations/job_master
 	//var/list/all_jobs = typesof(/datum/job)
 	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
 	if(!all_jobs.len)
-		to_world("<span class='warning'>Error setting up jobs, no job datums found!</span>")
+		to_world(span_warning("Error setting up jobs, no job datums found!"))
 		return 0
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
@@ -374,7 +374,7 @@ var/global/datum/controller/occupations/job_master
 			var/list/spawn_props = LateSpawn(H.client, rank)
 			var/turf/T = spawn_props["turf"]
 			if(!T)
-				to_chat(H, "<span class='critical'>You were unable to be spawned at your chosen late-join spawnpoint. Please verify your job/spawn point combination makes sense, and try another one.</span>")
+				to_chat(H, span_critical("You were unable to be spawned at your chosen late-join spawnpoint. Please verify your job/spawn point combination makes sense, and try another one."))
 				return
 			else
 				H.forceMove(T)
@@ -410,7 +410,7 @@ var/global/datum/controller/occupations/job_master
 
 				// If they aren't, tell them
 				if(!permitted)
-					to_chat(H, "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>")
+					to_chat(H, span_warning("Your current species, job or whitelist status does not permit you to spawn with [thing]!"))
 					continue
 
 				// Implants get special treatment
@@ -429,7 +429,7 @@ var/global/datum/controller/occupations/job_master
 					if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
 						continue
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
+						to_chat(H, span_notice("Equipping you with \the [thing]!"))
 						if(G.slot != slot_tie)
 							custom_equip_slots.Add(G.slot)
 					else
@@ -460,12 +460,12 @@ var/global/datum/controller/occupations/job_master
 			else
 				var/metadata = H.client.prefs.gear[G.display_name]
 				if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-					to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
+					to_chat(H, span_notice("Equipping you with \the [thing]!"))
 					custom_equip_slots.Add(G.slot)
 				else
 					spawn_in_storage += thing
 	else
-		to_chat(H, "<span class='filter_notice'>Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.</span>")
+		to_chat(H, span_filter_notice("Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."))
 
 	H.job = rank
 	log_game("JOINED [key_name(H)] as \"[rank]\"")
@@ -508,12 +508,12 @@ var/global/datum/controller/occupations/job_master
 
 			if(!isnull(B))
 				for(var/thing in spawn_in_storage)
-					to_chat(H, "<span class='notice'>Placing \the [thing] in your [B.name]!</span>")
+					to_chat(H, span_notice("Placing \the [thing] in your [B.name]!"))
 					var/datum/gear/G = gear_datums[thing]
 					var/metadata = H.client.prefs.gear[G.display_name]
 					G.spawn_item(B, metadata)
 			else
-				to_chat(H, "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>")
+				to_chat(H, span_danger("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug."))
 
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
@@ -533,16 +533,16 @@ var/global/datum/controller/occupations/job_master
 				W.color = R.color
 				qdel(R)
 
-	to_chat(H, "<span class='filter_notice'><B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B></span>")
+	to_chat(H, span_filter_notice("<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"))
 
 	if(job.supervisors)
-		to_chat(H, "<span class='filter_notice'><b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b></span>")
+		to_chat(H, span_filter_notice("<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"))
 	if(job.has_headset)
 		H.equip_to_slot_or_del(new /obj/item/radio/headset(H), slot_l_ear)
-		to_chat(H, "<span class='filter_notice'><b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b></span>")
+		to_chat(H, span_filter_notice("<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"))
 
 	if(job.req_admin_notify)
-		to_chat(H, "<span class='filter_notice'><b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b></span>")
+		to_chat(H, span_filter_notice("<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"))
 
 	// EMAIL GENERATION
 	// Email addresses will be created under this domain name. Mostly for the looks.
@@ -559,13 +559,13 @@ var/global/datum/controller/occupations/job_master
 
 	// If even fallback login generation failed, just don't give them an email. The chance of this happening is astronomically low.
 	if(ntnet_global.does_email_exist(complete_login))
-		to_chat(H, "<span class='filter_notice'>You were not assigned an email address.</span>")
+		to_chat(H, span_filter_notice("You were not assigned an email address."))
 		H.mind.store_memory("You were not assigned an email address.")
 	else
 		var/datum/computer_file/data/email_account/EA = new/datum/computer_file/data/email_account()
 		EA.password = GenerateKey()
 		EA.login = 	complete_login
-		to_chat(H, "<span class='filter_notice'>Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes.</span>")
+		to_chat(H, span_filter_notice("Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes."))
 		H.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
 	// END EMAIL GENERATION
 
@@ -663,10 +663,10 @@ var/global/datum/controller/occupations/job_master
 	if(C && C.prefs.spawnpoint)
 		if(!(C.prefs.spawnpoint in using_map.allowed_spawns))
 			if(fail_deadly)
-				to_chat(C, "<span class='warning'>Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice.</span>")
+				to_chat(C, span_warning("Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice."))
 				return
 			else
-				to_chat(C, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
+				to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
 				spawnpos = null
 		else
 			spawnpos = spawntypes[C.prefs.spawnpoint]
@@ -680,9 +680,9 @@ var/global/datum/controller/occupations/job_master
 			.["channel"] = spawnpos.announce_channel
 		else
 			if(fail_deadly)
-				to_chat(C, "<span class='warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice.</span>")
+				to_chat(C, span_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice."))
 				return
-			to_chat(C, "<span class='filter_warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.</span>")
+			to_chat(C, span_filter_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."))
 			var/spawning = pick(latejoin)
 			.["turf"] = get_turf(spawning)
 			.["msg"] = "will arrive at the station shortly"

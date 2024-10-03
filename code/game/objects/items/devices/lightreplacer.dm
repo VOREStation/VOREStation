@@ -67,14 +67,14 @@
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == "glass" || istype(W, /obj/item/stack/material/cyborg/glass))
 		var/obj/item/stack/G = W
 		if(uses >= max_uses)
-			to_chat(user, "<span class='warning'>[src.name] is full.</span>")
+			to_chat(user, span_warning("[src.name] is full."))
 			return
 		else if(G.use(1))
 			add_uses(16) //Autolathe converts 1 sheet into 16 lights.
-			to_chat(user, "<span class='notice'>You insert a piece of glass into \the [src.name]. You have [uses] light\s remaining.</span>")
+			to_chat(user, span_notice("You insert a piece of glass into \the [src.name]. You have [uses] light\s remaining."))
 			return
 		else
-			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
+			to_chat(user, span_warning("You need one sheet of glass to replace lights."))
 
 	if(istype(W, /obj/item/light))
 		var/new_bulbs = 0
@@ -117,14 +117,14 @@
 					qdel(L)
 
 		if(!found_lightbulbs)
-			to_chat(user, "<span class='warning'>\The [S] contains no bulbs.</span>")
+			to_chat(user, span_warning("\The [S] contains no bulbs."))
 			return
 
 		if(!replaced_something && src.uses == max_uses)
-			to_chat(user, "<span class='warning'>\The [src] is full!</span>")
+			to_chat(user, span_warning("\The [src] is full!"))
 			return
 
-		to_chat(user, "<span class='notice'>You fill \the [src] with lights from \the [S].</span>")
+		to_chat(user, span_notice("You fill \the [src] with lights from \the [S]."))
 
 /obj/item/lightreplacer/attack_self(mob/user)
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.
@@ -175,12 +175,12 @@
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
 			if(!Use(U)) return
-			to_chat(U, "<span class='notice'>You replace the [target.get_fitting_name()] with the [src].</span>")
+			to_chat(U, span_notice("You replace the [target.get_fitting_name()] with the [src]."))
 
 			if(target.status != LIGHT_EMPTY)
 				var/new_bulbs = AddShards(1)
 				if(new_bulbs != 0)
-					to_chat(U, "<span class='notice'>\The [src] has fabricated a new bulb from the broken bulbs it has stored. It now has [uses] uses.</span>")
+					to_chat(U, span_notice("\The [src] has fabricated a new bulb from the broken bulbs it has stored. It now has [uses] uses."))
 					playsound(src, 'sound/machines/ding.ogg', 50, 1)
 				target.status = LIGHT_EMPTY
 				target.installed_light = null //Remove the light!

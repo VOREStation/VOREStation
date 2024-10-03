@@ -67,13 +67,13 @@ var/list/gurgled_overlays = list(
 
 /obj/structure/sink/attackby(obj/item/I, mob/user) //Wash the soggy item before it can interact with the sink.
 	if(istype(I) && I.gurgled)
-		to_chat(user, "<span class='notice'>You start washing [I].</span>")
+		to_chat(user, span_notice("You start washing [I]."))
 
 		busy = TRUE
 		if(do_after(user, 40, src))
 			I.clean_blood()
-			user.visible_message("<span class='notice'>[user] washes [I] using [src].</span>",
-				"<span class='notice'>You wash [I] using [src].</span>")
+			user.visible_message(span_notice("[user] washes [I] using [src]."),
+				span_notice("You wash [I] using [src]."))
 		busy = FALSE
 	else
 		..()

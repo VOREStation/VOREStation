@@ -37,26 +37,26 @@ RSF
 /obj/item/rsf/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) == 0)
-		. += "<span class='notice'>It currently holds [stored_matter]/30 fabrication-units.</span>"
+		. += span_notice("It currently holds [stored_matter]/30 fabrication-units.")
 
 /obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (istype(W, /obj/item/rcd_ammo))
 
 		if ((stored_matter + 10) > 30)
-			to_chat(user, "<span class='warning'>The RSF can't hold any more matter.</span>")
+			to_chat(user, span_warning("The RSF can't hold any more matter."))
 			return
 
 		qdel(W)
 
 		stored_matter += 10
 		playsound(src, 'sound/machines/click.ogg', 10, 1)
-		to_chat(user,"<span class='notice'>The RSF now holds [stored_matter]/30 fabrication-units.</span>")
+		to_chat(user,span_notice("The RSF now holds [stored_matter]/30 fabrication-units."))
 		return
 
 /obj/item/rsf/CtrlClick(mob/living/user)
 	if(!Adjacent(user) || !istype(user))
-		to_chat(user,"<span class='notice'>You are too far away.</span>")
+		to_chat(user,span_notice("You are too far away."))
 		return
 	var/glass_choice = tgui_input_list(user, "Please choose which type of glass you would like to produce.", "Glass Choice", container_types)
 
@@ -69,23 +69,23 @@ RSF
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	if (mode == 1)
 		mode = 2
-		to_chat(user,"<span class='notice'>Changed dispensing mode to 'Container'.</span>")
+		to_chat(user,span_notice("Changed dispensing mode to 'Container'."))
 		return
 	if (mode == 2)
 		mode = 3
-		to_chat(user,"<span class='notice'>Changed dispensing mode to 'Paper'</span>")
+		to_chat(user,span_notice("Changed dispensing mode to 'Paper'"))
 		return
 	if (mode == 3)
 		mode = 4
-		to_chat(user,"<span class='notice'>Changed dispensing mode to 'Pen'</span>")
+		to_chat(user,span_notice("Changed dispensing mode to 'Pen'"))
 		return
 	if (mode == 4)
 		mode = 5
-		to_chat(user,"<span class='notice'>Changed dispensing mode to 'Dice Pack'</span>")
+		to_chat(user,span_notice("Changed dispensing mode to 'Dice Pack'"))
 		return
 	if (mode == 5)
 		mode = 1
-		to_chat(user,"<span class='notice'>Changed dispensing mode to 'Cigarette'</span>")
+		to_chat(user,span_notice("Changed dispensing mode to 'Cigarette'"))
 		return
 
 /obj/item/rsf/afterattack(atom/A, mob/user as mob, proximity)
@@ -124,7 +124,7 @@ RSF
 			product = new /obj/item/storage/pill_bottle/dice()
 			used_energy = 200
 
-	to_chat(user,"<span class='notice'>Dispensing [product ? product : "product"]...</span>")
+	to_chat(user,span_notice("Dispensing [product ? product : "product"]..."))
 	product.loc = get_turf(A)
 
 	if(isrobot(user))
@@ -133,4 +133,4 @@ RSF
 			R.cell.use(used_energy)
 	else
 		stored_matter--
-		to_chat(user,"<span class='notice'>The RSF now holds [stored_matter]/30 fabrication-units.</span>")
+		to_chat(user,span_notice("The RSF now holds [stored_matter]/30 fabrication-units."))

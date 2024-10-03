@@ -74,13 +74,13 @@
 
 	to_chat(nif.human,
 			type = MESSAGE_TYPE_NIF,
-			html = "<span class='nif'><b>\[[icon2html(nif.big_icon, nif.human)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+			html = span_nif("<b>\[[icon2html(nif.big_icon, nif.human)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\""))
 	nif.human << sound
 
 	for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 		to_chat(CS,
 				type = MESSAGE_TYPE_NIF,
-				html = "<span class='nif'><b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"</span>")
+				html = span_nif("<b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\""))
 		CS << sound
 
 /datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
@@ -88,17 +88,17 @@
 
 	//AR Projecting
 	if(eyeobj)
-		sender.eyeobj.visible_message("<span class='game say'><b>[sender_name]</b> says, \"[message]\"</span>")
+		sender.eyeobj.visible_message(span_game(span_say("<b>[sender_name]</b> says, \"[message]\"")))
 
 	//Not AR Projecting
 	else
 		to_chat(nif.human,
 				type = MESSAGE_TYPE_NIF,
-				html = "<span class='nif'><b>\[[icon2html(nif.big_icon, nif.human.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+				html = span_nif("<b>\[[icon2html(nif.big_icon, nif.human.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\""))
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,
 					type = MESSAGE_TYPE_NIF,
-					html = "<span class='nif'><b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+					html = span_nif("<b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\""))
 
 	log_nsay(message,nif.human.real_name,sender)
 
@@ -107,17 +107,17 @@
 
 	//AR Projecting
 	if(eyeobj)
-		sender.eyeobj.visible_message("<span class='emote'>[sender_name] [message]</span>")
+		sender.eyeobj.visible_message(span_emote("[sender_name] [message]"))
 
 	//Not AR Projecting
 	else
 		to_chat(nif.human,
 				type = MESSAGE_TYPE_NIF,
-				html = "<span class='nif'><b>\[[icon2html(nif.big_icon,nif.human.client)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+				html = span_nif("<b>\[[icon2html(nif.big_icon,nif.human.client)]NIF\]</b> <b>[sender_name]</b> [message]"))
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,
 					type = MESSAGE_TYPE_NIF,
-					html = "<span class='nif'><b>\[[icon2html(nif.big_icon,CS.client)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+					html = span_nif("<b>\[[icon2html(nif.big_icon,CS.client)]NIF\]</b> <b>[sender_name]</b> [message]"))
 
 	log_nme(message,nif.human.real_name,sender)
 
@@ -380,7 +380,7 @@
 			return
 		if (src.client)
 			if (client.prefs.muted & MUTE_IC)
-				to_chat(src, "<span class='warning'>You cannot send IC messages (muted).</span>")
+				to_chat(src, span_warning("You cannot send IC messages (muted)."))
 				return
 		if (stat)
 			return
@@ -398,7 +398,7 @@
 	set name = "Resist"
 	set category = "IC"
 
-	to_chat(src,"<span class='warning'>There's no way out! You're stuck in VR.</span>")
+	to_chat(src,span_warning("There's no way out! You're stuck in VR."))
 
 ///////////////////
 //A projected AR soul thing
@@ -553,11 +553,11 @@
 	set category = "Soulcatcher"
 
 	if(eyeobj)
-		to_chat(src,"<span class='warning'>You're already projecting in AR!</span>")
+		to_chat(src,span_warning("You're already projecting in AR!"))
 		return
 
 	if(!(soulcatcher.setting_flags & NIF_SC_PROJECTING))
-		to_chat(src,"<span class='warning'>Projecting from this NIF has been disabled!</span>")
+		to_chat(src,span_warning("Projecting from this NIF has been disabled!"))
 		return
 
 	if(!client || !client.prefs)
@@ -572,7 +572,7 @@
 	set category = "Soulcatcher"
 
 	if(!eyeobj)
-		to_chat(src,"<span class='warning'>You're not projecting into AR!</span>")
+		to_chat(src,span_warning("You're not projecting into AR!"))
 		return
 
 	eyeobj.forceMove(get_turf(nif))
@@ -583,7 +583,7 @@
 	set category = "Soulcatcher"
 
 	if(!eyeobj)
-		to_chat(src,"<span class='warning'>You're not projecting into AR!</span>")
+		to_chat(src,span_warning("You're not projecting into AR!"))
 		return
 
 	QDEL_NULL(eyeobj)

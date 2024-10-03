@@ -37,26 +37,26 @@
 	switch(attack_type)
 		if(RESIST_ATTACK_DEFAULT)
 			visible_message(
-			"<span class='danger'>\The [src] struggles to remove \the [SJ]!</span>",
-			"<span class='warning'>You struggle to remove \the [SJ]. (This will take around [round(breakouttime / 600)] minutes and you need to stand still.)</span>"
+			span_danger("\The [src] struggles to remove \the [SJ]!"),
+			span_warning("You struggle to remove \the [SJ]. (This will take around [round(breakouttime / 600)] minutes and you need to stand still.)")
 			)
 		if(RESIST_ATTACK_CLAWS)
 			visible_message(
-			"<span class='danger'>\The [src] starts clawing at \the [SJ]!</span>",
-			"<span class='warning'>You claw at \the [SJ]. (This will take around [round(breakouttime / 600)] minutes and you need to stand still.)</span>"
+			span_danger("\The [src] starts clawing at \the [SJ]!"),
+			span_warning("You claw at \the [SJ]. (This will take around [round(breakouttime / 600)] minutes and you need to stand still.)")
 			)
 		if(RESIST_ATTACK_BITE)
 			visible_message(
-			"<span class='danger'>\The [src] starts gnawing on \the [SJ]!</span>",
-			"<span class='warning'>You gnaw on \the [SJ]. (This will take around [round(breakouttime / 600)] minutes and you need to stand still.)</span>"
+			span_danger("\The [src] starts gnawing on \the [SJ]!"),
+			span_warning("You gnaw on \the [SJ]. (This will take around [round(breakouttime / 600)] minutes and you need to stand still.)")
 			)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DISABLED & INCAPACITATION_KNOCKDOWN))
 		if(!wear_suit)
 			return
 		visible_message(
-			"<span class='danger'>\The [src] manages to remove \the [wear_suit]!</span>",
-			"<span class='notice'>You successfully remove \the [wear_suit].</span>"
+			span_danger("\The [src] manages to remove \the [wear_suit]!"),
+			span_notice("You successfully remove \the [wear_suit].")
 			)
 		drop_from_inventory(wear_suit)
 
@@ -70,8 +70,8 @@
 
 /mob/living/carbon/human/proc/break_straight_jacket()
 	visible_message(
-		"<span class='danger'>[src] is trying to rip \the [wear_suit]!</span>",
-		"<span class='warning'>You attempt to rip your [wear_suit.name] apart. (This will take around 5 seconds and you need to stand still)</span>"
+		span_danger("[src] is trying to rip \the [wear_suit]!"),
+		span_warning("You attempt to rip your [wear_suit.name] apart. (This will take around 5 seconds and you need to stand still)")
 		)
 
 	if(do_after(src, 20 SECONDS, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))	// Same scaling as breaking cuffs, 5 seconds to 120 seconds, 20 seconds to 480 seconds.
@@ -79,8 +79,8 @@
 			return
 
 		visible_message(
-			"<span class='danger'>[src] manages to rip \the [wear_suit]!</span>",
-			"<span class='warning'>You successfully rip your [wear_suit.name].</span>"
+			span_danger("[src] manages to rip \the [wear_suit]!"),
+			span_warning("You successfully rip your [wear_suit.name].")
 			)
 
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!", "RAAAAAAAARGH!", "HNNNNNNNNNGGGGGGH!", "GWAAAAAAAARRRHHH!", "AAAAAAARRRGH!" ))

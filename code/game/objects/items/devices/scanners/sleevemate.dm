@@ -82,11 +82,11 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	if(ishuman(M))
 		scan_mob(M, user)
 	else
-		to_chat(user,"<span class='warning'>Not a compatible subject to work with!</span>")
+		to_chat(user,span_warning("Not a compatible subject to work with!"))
 
 /obj/item/sleevemate/attack_self(mob/living/user)
 	if(!stored_mind)
-		to_chat(user,"<span class='warning'>No stored mind in \the [src].</span>")
+		to_chat(user,span_warning("No stored mind in \the [src]."))
 		return
 
 	var/choice = tgui_alert(user,"What would you like to do?","Stored: [stored_mind.name]",list("Delete","Backup","Cancel"))
@@ -94,10 +94,10 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		return
 	switch(choice)
 		if("Delete")
-			to_chat(user,"<span class='notice'>Internal copy of [stored_mind.name] deleted.</span>")
+			to_chat(user,span_notice("Internal copy of [stored_mind.name] deleted."))
 			clear_mind()
 		if("Backup")
-			to_chat(user,"<span class='notice'>Internal copy of [stored_mind.name] backed up to database.</span>")
+			to_chat(user,span_notice("Internal copy of [stored_mind.name] backed up to database."))
 			our_db.m_backup(stored_mind,null,one_time = TRUE)
 		if("Cancel")
 			return
@@ -165,7 +165,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			output += "<br>"
 			output += "<b>Soulcatcher detected ([SC.brainmobs.len] minds)</b><br>"
 			for(var/mob/living/carbon/brain/caught_soul/mind in SC.brainmobs)
-				output += "<i>[mind.name]: </i> [mind.transient == FALSE ? "\[<a href='?src=\ref[src];target=\ref[H];mindrelease=[mind.name]'>Load</a>\]" : "<span class='warning'>Incompatible</span>"]<br>"
+				output += "<i>[mind.name]: </i> [mind.transient == FALSE ? "\[<a href='?src=\ref[src];target=\ref[H];mindrelease=[mind.name]'>Load</a>\]" : span_warning("Incompatible")]<br>"
 
 			if(stored_mind)
 				output += "<b>Store in Soulcatcher: </b>\[<a href='?src=\ref[src];target=\ref[H];mindput=1'>Perform</a>\]<br>"
@@ -177,23 +177,23 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//Sanity checking/href-hacking checking
 	if(usr.get_active_hand() != src)
-		to_chat(usr,"<span class='warning'>You're not holding \the [src].</span>")
+		to_chat(usr,span_warning("You're not holding \the [src]."))
 		return
 
 	var/target_ref = href_list["target"]
 	var/mob/living/target = locate(target_ref) in mob_list
 	if(!target)
-		to_chat(usr,"<span class='warning'>Unable to operate on that target.</span>")
+		to_chat(usr,span_warning("Unable to operate on that target."))
 		return
 
 	if(!usr.Adjacent(target))
-		to_chat(usr,"<span class='warning'>You are too far from that target.</span>")
+		to_chat(usr,span_warning("You are too far from that target."))
 		return
 
 	//The actual options
 	if(href_list["mindscan"])
 		if(!target.mind || (target.mind.name in prevent_respawns))
-			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
+			to_chat(usr,span_warning("Target seems totally braindead."))
 			return
 
 		var/nif
@@ -202,55 +202,55 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			nif = H.nif
 			persist_nif_data(H)
 
-		usr.visible_message("[usr] begins scanning [target]'s mind.","<span class='notice'>You begin scanning [target]'s mind.</span>")
+		usr.visible_message("[usr] begins scanning [target]'s mind.",span_notice("You begin scanning [target]'s mind."))
 		if(do_after(usr,8 SECONDS,target))
 			our_db.m_backup(target.mind,nif,one_time = TRUE)
-			to_chat(usr,"<span class='notice'>Mind backed up!</span>")
+			to_chat(usr,span_notice("Mind backed up!"))
 		else
-			to_chat(usr,"<span class='warning'>You must remain close to your target!</span>")
+			to_chat(usr,span_warning("You must remain close to your target!"))
 
 		return
 
 	if(href_list["bodyscan"])
 		if(!ishuman(target))
-			to_chat(usr,"<span class='warning'>Target is not of an acceeptable body type.</span>")
+			to_chat(usr,span_warning("Target is not of an acceeptable body type."))
 			return
 
 		var/mob/living/carbon/human/H = target
 
-		usr.visible_message("[usr] begins scanning [target]'s body.","<span class='notice'>You begin scanning [target]'s body.</span>")
+		usr.visible_message("[usr] begins scanning [target]'s body.",span_notice("You begin scanning [target]'s body."))
 		if(do_after(usr,8 SECONDS,target))
 			var/datum/transhuman/body_record/BR = new()
 			BR.init_from_mob(H, TRUE, TRUE, database_key = db_key)
-			to_chat(usr,"<span class='notice'>Body scanned!</span>")
+			to_chat(usr,span_notice("Body scanned!"))
 		else
-			to_chat(usr,"<span class='warning'>You must remain close to your target!</span>")
+			to_chat(usr,span_warning("You must remain close to your target!"))
 
 		return
 
 	if(href_list["mindsteal"])
 		if(!target.mind || (target.mind.name in prevent_respawns))
-			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
+			to_chat(usr,span_warning("Target seems totally braindead."))
 			return
 
 		if(stored_mind)
-			to_chat(usr,"<span class='warning'>There is already someone's mind stored inside</span>")
+			to_chat(usr,span_warning("There is already someone's mind stored inside"))
 			return
 
 		var/choice = tgui_alert(usr,"This will remove the target's mind from their body (and from the game as long as they're in the sleevemate). You can put them into a (mindless) body, a NIF, or back them up for normal resleeving, but you should probably have a plan in advance so you don't leave them unable to interact for too long. Continue?","Confirmation",list("Continue","Cancel"))
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(target))
 
-			usr.visible_message("<span class='warning'>[usr] begins downloading [target]'s mind!</span>","<span class='notice'>You begin downloading [target]'s mind!</span>")
+			usr.visible_message(span_warning("[usr] begins downloading [target]'s mind!"),span_notice("You begin downloading [target]'s mind!"))
 			if(do_after(usr,35 SECONDS,target)) //This is powerful, yo.
 				if(!stored_mind && target.mind)
 					get_mind(target)
-					to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
+					to_chat(usr,span_notice("Mind downloaded!"))
 
 		return
 
 	if(href_list["mindput"])
 		if(!stored_mind)
-			to_chat(usr,"<span class='warning'>\The [src] no longer has a stored mind.</span>")
+			to_chat(usr,span_warning("\The [src] no longer has a stored mind."))
 			return
 
 		var/mob/living/carbon/human/H = target
@@ -271,11 +271,11 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 		put_mind(sleevemate_mob)
 		SC.catch_mob(sleevemate_mob)
-		to_chat(usr,"<span class='notice'>Mind transferred into Soulcatcher!</span>")
+		to_chat(usr,span_notice("Mind transferred into Soulcatcher!"))
 
 	if(href_list["mindupload"])
 		if(!stored_mind)
-			to_chat(usr,"<span class='warning'>\The [src] no longer has a stored mind.</span>")
+			to_chat(usr,span_warning("\The [src] no longer has a stored mind."))
 			return
 
 		if(!istype(target))
@@ -284,20 +284,20 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
 			if(H.resleeve_lock && stored_mind.loaded_from_ckey != H.resleeve_lock)
-				to_chat(usr,"<span class='warning'>\The [H] is protected from impersonation!</span>")
+				to_chat(usr,span_warning("\The [H] is protected from impersonation!"))
 				return
 
-		usr.visible_message("<span class='warning'>[usr] begins uploading someone's mind into [target]!</span>","<span class='notice'>You begin uploading a mind into [target]!</span>")
+		usr.visible_message(span_warning("[usr] begins uploading someone's mind into [target]!"),span_notice("You begin uploading a mind into [target]!"))
 		if(do_after(usr,35 SECONDS,target))
 			if(!stored_mind)
-				to_chat(usr,"<span class='warning'>\The [src] no longer has a stored mind.</span>")
+				to_chat(usr,span_warning("\The [src] no longer has a stored mind."))
 				return
 			put_mind(target)
-			to_chat(usr,"<span class='notice'>Mind transferred into [target]!</span>")
+			to_chat(usr,span_notice("Mind transferred into [target]!"))
 
 	if(href_list["mindrelease"])
 		if(stored_mind)
-			to_chat(usr,"<span class='warning'>There is already someone's mind stored inside</span>")
+			to_chat(usr,span_warning("There is already someone's mind stored inside"))
 			return
 		var/mob/living/carbon/human/H = target
 		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
@@ -307,9 +307,9 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			if(soul.name == href_list["mindrelease"])
 				get_mind(soul)
 				qdel(soul)
-				to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
+				to_chat(usr,span_notice("Mind downloaded!"))
 				return
-		to_chat(usr,"<span class='notice'>Unable to find that mind in Soulcatcher!</span>")
+		to_chat(usr,span_notice("Unable to find that mind in Soulcatcher!"))
 
 /obj/item/sleevemate/update_icon()
 	if(stored_mind)
@@ -318,7 +318,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		icon_state = initial(icon_state)
 
 /obj/item/sleevemate/emag_act(var/remaining_charges, var/mob/user)
-	to_chat(user,"<span class='danger'>You hack [src]!</span>")
+	to_chat(user,span_danger("You hack [src]!"))
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src.loc)
 	spark_system.start()

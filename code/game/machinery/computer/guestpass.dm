@@ -25,28 +25,28 @@
 /obj/item/card/id/guest/examine(mob/user)
 	. = ..()
 	if(world.time < expiration_time)
-		. += "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
+		. += span_notice("This pass expires at [worldtime2stationtime(expiration_time)].")
 	else
-		. += "<span class='warning'>It expired at [worldtime2stationtime(expiration_time)].</span>"
+		. += span_warning("It expired at [worldtime2stationtime(expiration_time)].")
 
 /obj/item/card/id/guest/read()
 	if(!Adjacent(usr))
 		return //Too far to read
 	if(world.time > expiration_time)
-		to_chat(usr, "<span class='notice'>This pass expired at [worldtime2stationtime(expiration_time)].</span>")
+		to_chat(usr, span_notice("This pass expired at [worldtime2stationtime(expiration_time)]."))
 	else
-		to_chat(usr, "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>")
+		to_chat(usr, span_notice("This pass expires at [worldtime2stationtime(expiration_time)]."))
 
-	to_chat(usr, "<span class='notice'>It grants access to following areas:</span>")
+	to_chat(usr, span_notice("It grants access to following areas:"))
 	for (var/A in temp_access)
-		to_chat(usr, "<span class='notice'>[get_access_desc(A)].</span>")
-	to_chat(usr, "<span class='notice'>Issuing reason: [reason].</span>")
+		to_chat(usr, span_notice("[get_access_desc(A)]."))
+	to_chat(usr, span_notice("Issuing reason: [reason]."))
 	return
 
 /obj/item/card/id/guest/attack_self(mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		if(icon_state == "guest-invalid")
-			to_chat(user, "<span class='warning'>This guest pass is already deactivated!</span>")
+			to_chat(user, span_warning("This guest pass is already deactivated!"))
 			return
 
 		var/confirm = tgui_alert(usr, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
@@ -70,7 +70,7 @@
 
 /obj/item/card/id/guest/process()
 	if(expired == 0 && world.time >= expiration_time)
-		visible_message("<span class='warning'>\The [src] flashes a few times before turning red.</span>")
+		visible_message(span_warning("\The [src] flashes a few times before turning red."))
 		icon_state = "guest-invalid"
 		update_icon()
 		expired = 1
@@ -108,7 +108,7 @@
 
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/card/id/guest))
-		to_chat(user, "<span class='warning'>The guest pass terminal denies to accept the guest pass.</span>")
+		to_chat(user, span_warning("The guest pass terminal denies to accept the guest pass."))
 		return
 	if(istype(I, /obj/item/card/id))
 		if(stat & NOPOWER) //checking for power in here so crowbar and screwdriver and stuff still works.
@@ -119,7 +119,7 @@
 			giver = I
 			SStgui.update_uis(src)
 		else if(giver)
-			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
+			to_chat(user, span_warning("There is already ID card inside."))
 		return
 	..()
 
@@ -206,7 +206,7 @@
 				if(dur > 0 && dur <= 360) //VOREStation Edit
 					duration = dur
 				else
-					to_chat(usr, "<span class='warning'>Invalid duration.</span>")
+					to_chat(usr, span_warning("Invalid duration."))
 		if("access")
 			var/A = text2num(params["access"])
 			if(A in accesses)
@@ -215,7 +215,7 @@
 				if(A in giver.GetAccess())	//Let's make sure the ID card actually has the access.
 					accesses.Add(A)
 				else
-					to_chat(usr, "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>")
+					to_chat(usr, span_warning("Invalid selection, please consult technical support if there are any issues."))
 					log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
 		if("id")
 			if(giver)
@@ -263,7 +263,7 @@
 				pass.reason = reason
 				pass.name = "guest pass #[number]"
 			else
-				to_chat(usr, "<span class='warning'>Cannot issue pass without issuing ID.</span>")
+				to_chat(usr, span_warning("Cannot issue pass without issuing ID."))
 
 	add_fingerprint(usr)
 	return TRUE

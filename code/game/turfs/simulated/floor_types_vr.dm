@@ -55,7 +55,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+			to_chat(user, span_notice("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			new/obj/structure/lattice(src)
 		return
@@ -72,7 +72,7 @@
 			ChangeTurf(/turf/simulated/floor/airless)
 			return
 		else
-			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
+			to_chat(user, span_warning("The plating is going to need some support."))
 
 /turf/simulated/shuttle/plating/airless/carry/is_solid_structure()
 	return locate(/obj/structure/lattice, src)
@@ -88,4 +88,3 @@
 	desc = "It is entirely made of sick, gurgling flesh. It is releasing a sickly odour."
 	icon_state = "bloodfloor_2"
 	icon = 'icons/goonstation/turf/meatland.dmi'
-

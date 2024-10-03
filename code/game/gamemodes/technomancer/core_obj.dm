@@ -288,7 +288,7 @@
 		if(prob(30))
 			give_energy(round(amount / 2))
 			if(amount >= 50) // Managing to recover less than half of this isn't worth telling the user about.
-				to_chat(wearer, "<span class='notice'>\The [src] has recovered [amount/2 >= 1000 ? "a lot of" : "some"] energy.</span>")
+				to_chat(wearer, span_notice("\The [src] has recovered [amount/2 >= 1000 ? "a lot of" : "some"] energy."))
 	return success
 
 // For those dedicated to summoning hoards of things.
@@ -350,7 +350,7 @@
 	set desc = "Toggles the locking mechanism on your manipulation core."
 
 	canremove = !canremove
-	to_chat(usr, "<span class='notice'>You [canremove ? "de" : ""]activate the locking mechanism on \the [src].</span>")
+	to_chat(usr, span_notice("You [canremove ? "de" : ""]activate the locking mechanism on \the [src]."))
 
 //For the adminbuse! VOREStation Add
 /obj/item/technomancer_core/universal

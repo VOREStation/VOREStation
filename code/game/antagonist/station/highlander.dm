@@ -68,5 +68,5 @@ var/datum/antagonist/highlander/highlanders
 		if(is_special_character(H)) continue
 		highlanders.add_antagonist(H.mind)
 
-	message_admins("<span class='notice'>[key_name_admin(usr)] used THERE CAN BE ONLY ONE!</span>", 1)
+	message_admins(span_notice("[key_name_admin(usr)] used THERE CAN BE ONLY ONE!"), 1)
 	log_admin("[key_name(usr)] used there can be only one.")

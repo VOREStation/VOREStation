@@ -148,7 +148,7 @@
 								contents += "  [get_access_desc(A)]"
 
 						if(!computer.nano_printer.print_text(contents,"access report"))
-							to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
+							to_chat(usr, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 							return
 						else
 							computer.visible_message("<b>\The [computer]</b> prints out paper.")
@@ -158,7 +158,7 @@
 									[data_core ? data_core.get_manifest(0) : ""]
 									"}
 					if(!computer.nano_printer.print_text(contents,text("crew manifest ([])", stationtime2text())))
-						to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
+						to_chat(usr, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 						return
 					else
 						computer.visible_message("<b>\The [computer]</b> prints out paper.")
@@ -181,7 +181,7 @@
 				if(temp_name)
 					id_card.registered_name = temp_name
 				else
-					computer.visible_message("<span class='notice'>[computer] buzzes rudely.</span>")
+					computer.visible_message(span_notice("[computer] buzzes rudely."))
 			. = TRUE
 		if("account")
 			if(computer && program.can_run(usr, 1))
@@ -208,7 +208,7 @@
 								jobdatum = J
 								break
 						if(!jobdatum)
-							to_chat(usr, "<span class='warning'>No log exists for this job: [t1]</span>")
+							to_chat(usr, span_warning("No log exists for this job: [t1]"))
 							return
 
 						access = jobdatum.get_access()

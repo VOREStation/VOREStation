@@ -35,7 +35,7 @@
 		return
 
 	if(panel_open)
-		to_chat(user, "<span class='warning'>Close the panel first!</span>")
+		to_chat(user, span_warning("Close the panel first!"))
 
 	var/obj/item/grab/G = W
 
@@ -43,7 +43,7 @@
 		return ..()
 
 	if(G.state < 2)
-		to_chat(user, "<span class='danger'>You need a better grip to do that!</span>")
+		to_chat(user, span_danger("You need a better grip to do that!"))
 		return
 
 	move_into_extractor(user,G.affecting)
@@ -56,26 +56,26 @@
 /obj/machinery/slime/extractor/proc/move_into_extractor(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
-		to_chat(user, "<span class='danger'>The core extractor is full, empty it first!</span>")
+		to_chat(user, span_danger("The core extractor is full, empty it first!"))
 		return
 
 	if(inuse)
-		to_chat(user, "<span class='danger'>The core extractor is locked and running, wait for it to finish.</span>")
+		to_chat(user, span_danger("The core extractor is locked and running, wait for it to finish."))
 		return
 
 	if(!(istype(victim, /mob/living/simple_mob/xeno/slime)))
-		to_chat(user, "<span class='danger'>This is not a suitable subject for the core extractor!</span>")
+		to_chat(user, span_danger("This is not a suitable subject for the core extractor!"))
 		return
 
 	var/mob/living/simple_mob/xeno/slime/S = victim
 	if(S.is_child)
-		to_chat(user, "<span class='danger'>This subject is not developed enough for the core extractor!</span>")
+		to_chat(user, span_danger("This subject is not developed enough for the core extractor!"))
 		return
 
-	user.visible_message("<span class='danger'>[user] starts to put [victim] into the core extractor!</span>")
+	user.visible_message(span_danger("[user] starts to put [victim] into the core extractor!"))
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
-		user.visible_message("<span class='danger'>[user] stuffs [victim] into the core extractor!</span>")
+		user.visible_message(span_danger("[user] stuffs [victim] into the core extractor!"))
 		if(victim.client)
 			victim.client.perspective = EYE_PERSPECTIVE
 			victim.client.eye = src

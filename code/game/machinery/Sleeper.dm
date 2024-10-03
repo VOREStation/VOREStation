@@ -44,11 +44,11 @@
 	if(!sleeper)
 		findsleeper()
 		if(!sleeper)
-			to_chat(user, "<span class='notice'>Sleeper not found!</span>")
+			to_chat(user, span_notice("Sleeper not found!"))
 			return
 
 	if(panel_open)
-		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(user, span_notice("Close the maintenance panel first."))
 		return
 
 	if(sleeper)
@@ -169,7 +169,7 @@
 /obj/machinery/sleeper/attack_hand(var/mob/user)
 	if(!controls_inside)
 		return FALSE
-	
+
 	if(user == occupant)
 		tgui_interact(user)
 
@@ -299,7 +299,7 @@
 	if(!controls_inside && usr == occupant)
 		return
 	if(panel_open)
-		to_chat(usr, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(usr, span_notice("Close the maintenance panel first."))
 		return
 
 	. = TRUE
@@ -309,7 +309,7 @@
 				return
 			if(occupant.stat == DEAD)
 				var/datum/gender/G = gender_datums[occupant.get_visible_gender()]
-				to_chat(usr, "<span class='danger'>This person has no life to preserve anymore. Take [G.him] to a department capable of reanimating [G.him].</span>")
+				to_chat(usr, span_danger("This person has no life to preserve anymore. Take [G.him] to a department capable of reanimating [G.him]."))
 				return
 			var/chemical = params["chemid"]
 			var/amount = text2num(params["amount"])
@@ -318,7 +318,7 @@
 			if(occupant.health > min_health) //|| (chemical in emergency_chems))
 				inject_chemical(usr, chemical, amount)
 			else
-				to_chat(usr, "<span class='danger'>This person is not in good enough condition for sleepers to be effective! Use another means of treatment, such as cryogenics!</span>")
+				to_chat(usr, span_danger("This person is not in good enough condition for sleepers to be effective! Use another means of treatment, such as cryogenics!"))
 		if("removebeaker")
 			remove_beaker()
 		if("togglefilter")
@@ -384,9 +384,9 @@
 			beaker = I
 			user.drop_item()
 			I.loc = src
-			user.visible_message("<b>\The [user]</b> adds \a [I] to \the [src].", "<span class='notice'>You add \a [I] to \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> adds \a [I] to \the [src].", span_notice("You add \a [I] to \the [src]."))
 		else
-			to_chat(user, "<span class='warning'>\The [src] has a beaker already.</span>")
+			to_chat(user, span_warning("\The [src] has a beaker already."))
 		return
 	if(!occupant)
 		if(default_deconstruction_screwdriver(user, I))
@@ -405,7 +405,7 @@
 			if(DEAD)
 				return
 			if(UNCONSCIOUS)
-				to_chat(usr, "<span class='notice'>You struggle through the haze to hit the eject button. This will take a couple of minutes...</span>")
+				to_chat(usr, span_notice("You struggle through the haze to hit the eject button. This will take a couple of minutes..."))
 				if(do_after(usr, 2 MINUTES, src))
 					go_out()
 			if(CONSCIOUS)
@@ -460,10 +460,10 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(occupant)
-		to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
+		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
 	if(!ishuman(M))
-		to_chat(user, "<span class='warning'>\The [src] is not designed for that organism!</span>")
+		to_chat(user, span_warning("\The [src] is not designed for that organism!"))
 		return
 	if(M == user)
 		visible_message("\The [user] starts climbing into \the [src].")
@@ -472,7 +472,7 @@
 
 	if(do_after(user, 20))
 		if(occupant)
-			to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
+			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
 		if(M.client)

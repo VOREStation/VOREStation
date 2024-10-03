@@ -24,11 +24,11 @@
 				return
 			if("")
 				F.dir.Remove(ckey)
-				to_chat(src, "<span class='filter_adminlog'><b>Memo removed</b></span>")
+				to_chat(src, span_filter_adminlog("<b>Memo removed</b>"))
 				return
 		if( findtext(memo,"<script",1,0) )
 			return
-		to_chat(F[ckey], "<span class='filter_adminlog'>[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]</span>")
+		to_chat(F[ckey], span_filter_adminlog("[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]"))
 		message_admins("[key] set an admin memo:<br>[memo]")
 
 //show all memos
@@ -39,7 +39,7 @@
 	var/savefile/F = new(MEMOFILE)
 	if(F)
 		for(var/ckey in F.dir)
-			to_chat(src, "<span class='filter_adminlog'><center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center></span>")
+			to_chat(src, span_filter_adminlog("<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>"))
 
 //delete your own or somebody else's memo
 /client/proc/admin_memo_delete()
@@ -52,7 +52,7 @@
 			ckey = src.ckey
 		if(ckey)
 			F.dir.Remove(ckey)
-			to_chat(src, "<span class='filter_adminlog'><b>Removed Memo created by [ckey].</b></span>")
+			to_chat(src, span_filter_adminlog("<b>Removed Memo created by [ckey].</b>"))
 
 #undef MEMOFILE
 #undef ENABLE_MEMOS

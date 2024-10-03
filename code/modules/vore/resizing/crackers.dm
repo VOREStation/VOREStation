@@ -41,20 +41,20 @@
 	if(target.stat)
 		return
 	if(target == user)
-		to_chat(user, "<span class='notice'>You can't pull \the [src] by yourself, that would just be sad!</span>")
+		to_chat(user, span_notice("You can't pull \the [src] by yourself, that would just be sad!"))
 		return
-	to_chat(user, "<span class='notice'>You offer \the [src] to \the [target] to pull and wait to see how whether they do.</span>")
+	to_chat(user, span_notice("You offer \the [src] to \the [target] to pull and wait to see how whether they do."))
 	var/check_pull = tgui_alert(target, "\The [user] is offering to pull \the [src] with you, do you want to pull it?", "Pull Cracker", list("Yes", "No"))
 	if(!check_pull || check_pull == "No")
-		to_chat(user, "<span class='notice'>\The [target] chose not to pull \the [src]!</span>")
+		to_chat(user, span_notice("\The [target] chose not to pull \the [src]!"))
 		return
 	if(!adjacent)
-		to_chat(user, "<span class='notice'>\The [target] is not standing close enough to pull \the [src]!</span>")
+		to_chat(user, span_notice("\The [target] is not standing close enough to pull \the [src]!"))
 		return
 	var/obj/item/check_hand = user.get_active_hand()
 	if(check_hand != src)
-		to_chat(user, "<span class='notice'>\The [src] is no longer in-hand!</span>")
-		to_chat(target, "<span class='notice'>\The [src] is no longer in-hand!</span>")
+		to_chat(user, span_notice("\The [src] is no longer in-hand!"))
+		to_chat(target, span_notice("\The [src] is no longer in-hand!"))
 		return
 	var/prize = pick(prizes)
 	var/joke = pick(jokes)
@@ -77,7 +77,7 @@
 
 	var/spawnloc = get_turf(winner)
 
-	winner.visible_message("<span class='notice'>\The [winner] wins the cracker prize!</span>","<span class='notice'>You win the cracker prize!</span>")
+	winner.visible_message(span_notice("\The [winner] wins the cracker prize!"),span_notice("You win the cracker prize!"))
 	if(prize == "shrinking")
 		winner.resize(0.25)
 		winner.visible_message("<b>\The [winner]</b> shrinks suddenly!")

@@ -54,7 +54,7 @@
 	STOP_PROCESSING(SSobj, src)
 	if(deployed_headpods)
 		restore_headpods()
-	to_chat(listener, "<span class='notice'>You are no longer wearing the [src]'s headphones.</span>")
+	to_chat(listener, span_notice("You are no longer wearing the [src]'s headphones."))
 	listener = null
 	update_icon()
 
@@ -63,7 +63,7 @@
 		remove_listener()
 	listener = L
 	START_PROCESSING(SSobj, src)
-	to_chat(L, "<span class='notice'>You put the [src]'s headphones on and power it up, preparing to listen to some <b>sick tunes</b>.</span>")
+	to_chat(L, span_notice("You put the [src]'s headphones on and power it up, preparing to listen to some <b>sick tunes</b>."))
 	update_icon()
 
 /obj/item/walkpod/proc/update_music()
@@ -73,7 +73,7 @@
 	if(L == listener && check_listener())
 		tgui_interact(L)
 	else if(loc == L) // at least they're holding it
-		to_chat(L, "<span class='warning'>Turn on the [src] first.</span>")
+		to_chat(L, span_warning("Turn on the [src] first."))
 
 /obj/item/walkpod/attack_self(mob/living/L)
 	if(!istype(L) || loc != L)
@@ -230,7 +230,7 @@
 	if(!istype(L))
 		return
 	if(deployed_headpods)
-		to_chat(usr, "<span class='warning'>The HeadPods are already deployed!</span>")
+		to_chat(usr, span_warning("The HeadPods are already deployed!"))
 		return
 	deployed_headpods = new ()
 	L.put_in_any_hand_if_possible(deployed_headpods)
@@ -247,7 +247,7 @@
 		return
 
 	if(listener)
-		to_chat(listener, "<span class='notice'>The headphone cable reunites the [deployed_headpods] with the [src] by retracting inwards.</span>")
+		to_chat(listener, span_notice("The headphone cable reunites the [deployed_headpods] with the [src] by retracting inwards."))
 
 	if(istype(potential_holder))
 		potential_holder.unEquip(deployed_headpods, force = TRUE)

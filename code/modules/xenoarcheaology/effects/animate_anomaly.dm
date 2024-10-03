@@ -39,7 +39,7 @@
 
 	if(target && istype(T) && istype(O.loc, /turf))
 		O.Move(T)
-		O.visible_message("<span class='alien'>\The [holder] lurches away from [user]</span>")
+		O.visible_message(span_alien("\The [holder] lurches away from [user]"))
 
 /datum/artifact_effect/animate_anomaly/DoEffectAura()
 	var/obj/O = get_master_holder()
@@ -58,7 +58,7 @@
 	if(istype(O.loc, /turf))
 		if(get_dist(O.loc, target.loc) > 1)
 			O.Move(get_step_to(O, target))
-			O.visible_message("<span class='alien'>\The [O] lurches toward [target]</span>")
+			O.visible_message(span_alien("\The [O] lurches toward [target]"))
 
 /datum/artifact_effect/animate_anomaly/DoEffectPulse()
 	DoEffectAura()

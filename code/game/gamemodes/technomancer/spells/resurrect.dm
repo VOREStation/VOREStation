@@ -19,16 +19,16 @@
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		if(L == user)
-			to_chat(user, "<span class='warning'>Clever as you may seem, this won't work on yourself while alive.</span>")
+			to_chat(user, span_warning("Clever as you may seem, this won't work on yourself while alive."))
 			return 0
 		if(L.stat != DEAD)
-			to_chat(user, "<span class='warning'>\The [L] isn't dead!</span>")
+			to_chat(user, span_warning("\The [L] isn't dead!"))
 			return 0
 		if(pay_energy(5000))
 			if(L.tod > world.time + 30 MINUTES)
-				to_chat(user, "<span class='danger'>\The [L]'s been dead for too long, even this function cannot replace cloning at this point.</span>")
+				to_chat(user, span_danger("\The [L]'s been dead for too long, even this function cannot replace cloning at this point."))
 				return 0
-			to_chat(user, "<span class='notice'>You stab \the [L] with a hidden integrated hypo, attempting to bring them back...</span>")
+			to_chat(user, span_notice("You stab \the [L] with a hidden integrated hypo, attempting to bring them back..."))
 			if(istype(L, /mob/living/simple_mob))
 				var/mob/living/simple_mob/SM = L
 				SM.health = SM.getMaxHealth() / 3
@@ -56,10 +56,10 @@
 					dead_mob_list -= H
 					living_mob_list += H
 					H.timeofdeath = null
-					visible_message("<span class='danger'>\The [H]'s eyes open!</span>")
-					to_chat(user, "<span class='notice'>It's alive!</span>")
+					visible_message(span_danger("\The [H]'s eyes open!"))
+					to_chat(user, span_notice("It's alive!"))
 					adjust_instability(50)
 					log_and_message_admins("has resurrected [H].")
 				else
-					to_chat(user, "<span class='warning'>The body of \the [H] doesn't seem to respond, perhaps you could try again?</span>")
+					to_chat(user, span_warning("The body of \the [H] doesn't seem to respond, perhaps you could try again?"))
 					adjust_instability(10)

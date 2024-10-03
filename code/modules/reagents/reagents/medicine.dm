@@ -261,7 +261,7 @@
 	else if(alien == IS_SLIME && dose >= 15)
 		M.add_chemical_effect(CE_PAINKILLER, 15 * M.species.chem_strength_pain)
 		if(prob(15))
-			to_chat(M, "<span class='notice'>You have a moment of clarity as you collapse.</span>")
+			to_chat(M, span_notice("You have a moment of clarity as you collapse."))
 			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
 			M.Weaken(6)
 	else if(alien != IS_DIONA)
@@ -286,7 +286,7 @@
 	else if(alien == IS_SLIME && dose >= 10)
 		M.add_chemical_effect(CE_PAINKILLER, 25 * M.species.chem_strength_pain)
 		if(prob(25))
-			to_chat(M, "<span class='notice'>You have a moment of clarity, as you feel your tubes lose pressure rapidly.</span>")
+			to_chat(M, span_notice("You have a moment of clarity, as you feel your tubes lose pressure rapidly."))
 			M.adjustBrainLoss(-8 * removed)
 			M.Weaken(3)
 	else if(alien != IS_DIONA)
@@ -368,7 +368,7 @@
 		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			chem_effective = 0.25
-			to_chat(M, "<span class='danger'>It's cold. Something causes your cellular mass to harden occasionally, resulting in vibration.</span>")
+			to_chat(M, span_danger("It's cold. Something causes your cellular mass to harden occasionally, resulting in vibration."))
 			M.Weaken(10)
 			M.silent = max(M.silent, 10)
 			M.make_jittery(4)
@@ -393,7 +393,7 @@
 		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			if(prob(10))
-				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching.</span>")
+				to_chat(M, span_danger("It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching."))
 			chem_effective = 0.5
 			M.Weaken(20)
 			M.silent = max(M.silent, 20)
@@ -427,7 +427,7 @@
 		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			if(prob(10))
-				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to solidify sporadically, resulting in uncontrollable twitching.</span>")
+				to_chat(M, span_danger("It's so cold. Something causes your cellular mass to solidify sporadically, resulting in uncontrollable twitching."))
 			chem_effective = 0.5
 			M.Weaken(10)
 			M.silent = max(M.silent, 10)
@@ -463,7 +463,7 @@
 	if(M.bodytemperature < 170 || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
 		if(alien == IS_SLIME)
 			if(prob(10))
-				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching.</span>")
+				to_chat(M, span_danger("It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching."))
 			chem_effective = 0.5
 			M.Weaken(20)
 			M.silent = max(M.silent, 20)
@@ -617,7 +617,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/ht = H.internal_organs_by_name[O_HEART]
 		ht?.take_damage(1)
-		to_chat(M, "<span class='warning'>Huh... Is this what a heart attack feels like?</span>")
+		to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
 
 /datum/reagent/alkysine
 	name = "Alkysine"
@@ -862,7 +862,7 @@
 			if(prob(5))
 				H.vomit(1)
 			else if(prob(5))
-				to_chat(H, "<span class='danger'>Something churns inside you.</span>")
+				to_chat(H, span_danger("Something churns inside you."))
 				H.adjustToxLoss(10 * removed)
 				H.vomit(0, 1)
 		else
@@ -1136,12 +1136,12 @@
 	if(alien == IS_SLIME)
 		if(volume <= 0.1 && data != -1)
 			data = -1
-			to_chat(M, "<span class='notice'>You regain focus...</span>")
+			to_chat(M, span_notice("You regain focus..."))
 		else
 			var/delay = (5 MINUTES)
 			if(world.time > data + delay)
 				data = world.time
-				to_chat(M, "<span class='warning'>Your senses feel unfocused, and divided.</span>")
+				to_chat(M, span_warning("Your senses feel unfocused, and divided."))
 	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
 
 /datum/reagent/spaceacillin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
@@ -1169,12 +1169,12 @@
 	if(ishuman(M) && alien == IS_SLIME) //Everything about them is treated like a targetted organism. Widespread bodily function begins to fail.
 		if(volume <= 0.1 && data != -1)
 			data = -1
-			to_chat(M, "<span class='notice'>Your body ceases its revolt.</span>")
+			to_chat(M, span_notice("Your body ceases its revolt."))
 		else
 			var/delay = (3 MINUTES)
 			if(world.time > data + delay)
 				data = world.time
-				to_chat(M, "<span class='critical'>It feels like your body is revolting!</span>")
+				to_chat(M, span_critical("It feels like your body is revolting!"))
 		M.Confuse(7)
 		M.adjustFireLoss(removed * 2)
 		M.adjustToxLoss(removed * 2)
@@ -1183,7 +1183,7 @@
 			M.eye_blurry = min(20, max(0, M.eye_blurry + 10))
 			if(prob(25))
 				if(prob(25))
-					to_chat(M, "<span class='danger'>Your pneumatic fluids seize for a moment.</span>")
+					to_chat(M, span_danger("Your pneumatic fluids seize for a moment."))
 				M.Stun(2)
 				spawn(30)
 					M.Weaken(2)
@@ -1196,7 +1196,7 @@
 		if(M.bruteloss >= 60 && M.toxloss >= 60 && M.brainloss >= 30) //Total Structural Failure. Limbs start splattering.
 			var/obj/item/organ/external/O = pick(H.organs)
 			if(prob(20) && !istype(O, /obj/item/organ/external/chest/unbreakable/slime) && !istype(O, /obj/item/organ/external/groin/unbreakable/slime))
-				to_chat(M, "<span class='critical'>You feel your [O] begin to dissolve, before it sloughs from your body.</span>")
+				to_chat(M, span_critical("You feel your [O] begin to dissolve, before it sloughs from your body."))
 				O.droplimb() //Splat.
 		return
 
@@ -1241,12 +1241,12 @@
 	if(alien == IS_SLIME)
 		if(volume <= 0.1 && data != -1)
 			data = -1
-			to_chat(M, "<span class='notice'>The itching fades...</span>")
+			to_chat(M, span_notice("The itching fades..."))
 		else
 			var/delay = (2 MINUTES)
 			if(world.time > data + delay)
 				data = world.time
-				to_chat(M, "<span class='warning'>Your skin itches.</span>")
+				to_chat(M, span_warning("Your skin itches."))
 
 	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
 	M.add_chemical_effect(CE_PAINKILLER, 20 * M.species.chem_strength_pain) // 5 less than paracetamol.
@@ -1313,7 +1313,7 @@
 		if(istype(L, /mob/living/simple_mob/slime))
 			var/mob/living/simple_mob/slime/S = L
 			S.adjustToxLoss(rand(15, 25) * amount)	// Does more damage than water.
-			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the fluid touches it!</span>", "<span class='danger'>Your flesh burns in the fluid!</span>")
+			S.visible_message(span_warning("[S]'s flesh sizzles where the fluid touches it!"), span_danger("Your flesh burns in the fluid!"))
 		remove_self(amount)
 
 /datum/reagent/leporazine

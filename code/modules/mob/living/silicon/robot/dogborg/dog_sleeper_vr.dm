@@ -75,70 +75,70 @@
 	if(target in hound.module.modules)
 		return
 	if(length(contents) >= max_item_count)
-		to_chat(user, "<span class='warning'>Your [src.name] is full. Eject or process contents to continue.</span>")
+		to_chat(user, span_warning("Your [src.name] is full. Eject or process contents to continue."))
 		return
 
 	if(compactor)
 		if(is_type_in_list(target,item_vore_blacklist))
-			to_chat(user, "<span class='warning'>You are hard-wired to not ingest this item.</span>")
+			to_chat(user, span_warning("You are hard-wired to not ingest this item."))
 			return
 		if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
 			var/obj/target_obj = target
 			if(target_obj.w_class > ITEMSIZE_LARGE)
-				to_chat(user, "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>")
+				to_chat(user, span_warning("\The [target] is too large to fit into your [src.name]"))
 				return
-			user.visible_message("<span class='warning'>[hound.name] is ingesting [target.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [target] into your [src.name]...</span>")
+			user.visible_message(span_warning("[hound.name] is ingesting [target.name] into their [src.name]."), span_notice("You start ingesting [target] into your [src.name]..."))
 			if(do_after(user, 30, target) && length(contents) < max_item_count)
 				target.forceMove(src)
-				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [target] slips inside.</span>")
+				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [target.name] slips inside."), span_notice("Your [src.name] groans lightly as [target] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(analyzer && istype(target,/obj/item))
 					var/obj/item/tech_item = target
 					var/list/tech_levels = list()
 					for(var/T in tech_item.origin_tech)
 						tech_levels += "\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)]."
-					to_chat(user, "<span class='notice'>[jointext(tech_levels, "<br>")]</span>")
+					to_chat(user, span_notice("[jointext(tech_levels, "<br>")]"))
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= target
-					to_chat(user, "<span class='notice'>\The [target.name] added to cargo compartment slot: [delivery_tag].</span>")
+					to_chat(user, span_notice("\The [target.name] added to cargo compartment slot: [delivery_tag]."))
 				update_patient()
 			return
 		if(istype(target, /mob/living/simple_mob/animal/passive/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
 			var/mob/living/simple_mob/trashmouse = target
-			user.visible_message("<span class='warning'>[hound.name] is ingesting [trashmouse] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashmouse] into your [src.name]...</span>")
+			user.visible_message(span_warning("[hound.name] is ingesting [trashmouse] into their [src.name]."), span_notice("You start ingesting [trashmouse] into your [src.name]..."))
 			if(do_after(user, 30, trashmouse) && length(contents) < max_item_count)
 				trashmouse.forceMove(src)
 				trashmouse.reset_view(src)
-				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [trashmouse] slips inside.</span>")
+				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= trashmouse
-					to_chat(user, "<span class='notice'>\The [trashmouse] added to cargo compartment slot: [delivery_tag].</span>")
+					to_chat(user, span_notice("\The [trashmouse] added to cargo compartment slot: [delivery_tag]."))
 				update_patient()
 			return
 		else if(ishuman(target))
 			var/mob/living/carbon/human/trashman = target
 			if(patient)
-				to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
+				to_chat(user, span_warning("Your [src.name] is already occupied."))
 				return
 			if(trashman.buckled)
-				to_chat(user, "<span class='warning'>[trashman] is buckled and can not be put into your [src.name].</span>")
+				to_chat(user, span_warning("[trashman] is buckled and can not be put into your [src.name]."))
 				return
-			user.visible_message("<span class='warning'>[hound.name] is ingesting [trashman] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashman] into your [src.name]...</span>")
+			user.visible_message(span_warning("[hound.name] is ingesting [trashman] into their [src.name]."), span_notice("You start ingesting [trashman] into your [src.name]..."))
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
-				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [trashman] slips inside.</span>")
+				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
 				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= trashman
-					to_chat(user, "<span class='notice'>\The [trashman] added to cargo compartment slot: [delivery_tag].</span>")
-					to_chat(trashman, "<span class='notice'>[hound.name] has added you to their cargo compartment slot: [delivery_tag].</span>")
+					to_chat(user, span_notice("\The [trashman] added to cargo compartment slot: [delivery_tag]."))
+					to_chat(trashman, span_notice("[hound.name] has added you to their cargo compartment slot: [delivery_tag]."))
 				update_patient()
 			return
 		return
@@ -146,12 +146,12 @@
 	else if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.buckled)
-			to_chat(user, "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>")
+			to_chat(user, span_warning("The user is buckled and can not be put into your [src.name]."))
 			return
 		if(patient)
-			to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
+			to_chat(user, span_warning("Your [src.name] is already occupied."))
 			return
-		user.visible_message("<span class='warning'>[hound.name] is ingesting [H.name] into their [src.name].</span>", "<span class='notice'>You start ingesting [H] into your [src]...</span>")
+		user.visible_message(span_warning("[hound.name] is ingesting [H.name] into their [src.name]."), span_notice("You start ingesting [H] into your [src]..."))
 		if(!patient && !H.buckled && do_after (user, 50, H))
 			if(!proximity)
 				return //If they moved away, you can't eat them.
@@ -162,7 +162,7 @@
 				H.reset_view(src)
 				update_patient()
 				START_PROCESSING(SSobj, src)
-				user.visible_message("<span class='warning'>[hound.name]'s [src.name] lights up as [H.name] slips inside.</span>", "<span class='notice'>Your [src] lights up as [H] slips inside. Life support functions engaged.</span>")
+				user.visible_message(span_warning("[hound.name]'s [src.name] lights up as [H.name] slips inside."), span_notice("Your [src] lights up as [H] slips inside. Life support functions engaged."))
 				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 
@@ -205,7 +205,7 @@
 	for(var/list/dlist in deliverylists)
 		dlist.Cut()
 	if(length(contents) > 0)
-		hound.visible_message("<span class='warning'>[hound.name] empties out their contents via their [eject_port] port.</span>", "<span class='notice'>You empty your contents via your [eject_port] port.</span>")
+		hound.visible_message(span_warning("[hound.name] empties out their contents via their [eject_port] port."), span_notice("You empty your contents via your [eject_port] port."))
 		for(var/C in contents)
 			if(ishuman(C))
 				var/mob/living/carbon/human/person = C
@@ -222,7 +222,7 @@
 	if (!istype(hound) || length(contents) <= 0)
 		return
 	if (!hound.vore_selected)
-		to_chat(hound, "<span class='warning'>You don't have a belly selected to empty the contents into!</span>")
+		to_chat(hound, span_warning("You don't have a belly selected to empty the contents into!"))
 		return
 	for (var/C in contents)
 		if (isliving(C) || isitem(C))
@@ -266,7 +266,7 @@
 	if(!cleaning)
 		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
 	else
-		dat += "<span class='linkOff'>Self-Clean</span>"
+		dat += span_linkOff("Self-Clean")
 	if(medsensor)
 		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	if(delivery)
@@ -317,25 +317,30 @@
 
 		switch(patient.stat)
 			if(0)
-				dat += "<span class='good'>Conscious</span>"
+				dat += span_green("Conscious")
 			if(1)
-				dat += "<span class='average'>Unconscious</span>"
+				dat += span_orange("Unconscious")
 			else
-				dat += "<span class='bad'>DEAD</span>"
+				dat += span_red("DEAD")
 
-		var/pulsecolor = (patient.pulse == PULSE_NONE || patient.pulse == PULSE_THREADY ? "color:red;" : "color:white;")
-		var/healthcolor = (patient.health > 0 ? "color:white;" : "color:red;")
-		var/brutecolor = (patient.getBruteLoss() < 60 ? "color:gray;" : "color:red;")
-		var/o2color = (patient.getOxyLoss() < 60 ? "color:gray;" : "color:red;")
-		var/toxcolor = (patient.getToxLoss() < 60 ? "color:gray;" : "color:red;")
-		var/burncolor = (patient.getFireLoss() < 60 ? "color:gray;" : "color:red;")
-
-		dat += "<span style='[pulsecolor]'>\t-Pulse, bpm: [patient.get_pulse(GETPULSE_TOOL)]</span><BR>"
-		dat += "<span style='[healthcolor]'>\t-Overall Health %: [round(100 * (patient.health / patient.getMaxHealth()))]</span><BR>"
-		dat += "<span style='[brutecolor]'>\t-Brute Damage %: [patient.getBruteLoss()]</span><BR>"
-		dat += "<span style='[o2color]'>\t-Respiratory Damage %: [patient.getOxyLoss()]</span><BR>"
-		dat += "<span style='[toxcolor]'>\t-Toxin Content %: [patient.getToxLoss()]</span><BR>"
-		dat += "<span style='[burncolor]'>\t-Burn Severity %: [patient.getFireLoss()]</span><BR>"
+		var/pulse = "\t-Pulse, bpm: [patient.get_pulse(GETPULSE_TOOL)]"
+		dat += (patient.pulse == PULSE_NONE || patient.pulse == PULSE_THREADY ? span_red(pulse) : span_white(pulse))
+		dat += "<BR>"
+		var/health = "\t-Overall Health %: [round(100 * (patient.health / patient.getMaxHealth()))]"
+		dat += (patient.health > 0 ? span_white(health) : span_red(health))
+		dat += "<BR>"
+		var/brute = "\t-Brute Damage %: [patient.getBruteLoss()]"
+		dat += (patient.getBruteLoss() < 60 ? span_gray(brute) : span_red(brute))
+		dat += "<BR>"
+		var/oxygen = "\t-Respiratory Damage %: [patient.getOxyLoss()]"
+		dat += (patient.getOxyLoss() < 60 ? span_gray(oxygen) : span_red(oxygen))
+		dat += "<BR>"
+		var/toxic = "\t-Toxin Content %: [patient.getToxLoss()]"
+		dat += (patient.getToxLoss() < 60 ? span_gray(toxic) : span_red(toxic))
+		dat += "<BR>"
+		var/burn = "\t-Burn Severity %: [patient.getFireLoss()]"
+		dat += (patient.getFireLoss() < 60 ? span_gray(burn) : span_red(burn))
+		dat += "<BR>"
 
 		if(round(patient.paralysis / 4) >= 1)
 			dat += text("<HR>Patient paralyzed for: []<BR>", round(patient.paralysis / 4) >= 1 ? "[round(patient.paralysis / 4)] seconds" : "None")
@@ -382,7 +387,7 @@
 					START_PROCESSING(SSobj, src)
 					update_patient()
 					if(patient)
-						to_chat(patient, "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>")
+						to_chat(patient, span_danger("[hound.name]'s [src.name] fills with caustic enzymes around you!"))
 					return
 		if(cleaning)
 			sleeperUI(usr)
@@ -410,7 +415,7 @@
 		return
 	if(href_list["slot_eject"])
 		if(length(deliverylists[delivery_tag]) > 0)
-			hound.visible_message("<span class='warning'>[hound.name] empties out their cargo compartment via their [eject_port] port.</span>", "<span class='notice'>You empty your cargo compartment via your [eject_port] port.</span>")
+			hound.visible_message(span_warning("[hound.name] empties out their cargo compartment via their [eject_port] port."), span_notice("You empty your cargo compartment via your [eject_port] port."))
 			for(var/C in deliverylists[delivery_tag])
 				if(ishuman(C))
 					var/mob/living/carbon/human/person = C
@@ -447,9 +452,9 @@
 		if(href_list["inject"] == "inaprovaline" || patient.health > min_health)
 			inject_chem(usr, href_list["inject"])
 		else
-			to_chat(usr, "<span class='notice'>ERROR: Subject is not in stable condition for injections.</span>")
+			to_chat(usr, span_notice("ERROR: Subject is not in stable condition for injections."))
 	else
-		to_chat(usr, "<span class='notice'>ERROR: Subject cannot metabolise chemicals.</span>")
+		to_chat(usr, span_notice("ERROR: Subject cannot metabolise chemicals."))
 
 	updateUsrDialog()
 	sleeperUI(usr) //Needs a callback to boop the page to refresh.
@@ -459,15 +464,15 @@
 	if(patient && patient.reagents)
 		if(chem in injection_chems + "inaprovaline")
 			if(hound.cell.charge < 800) //This is so borgs don't kill themselves with it.
-				to_chat(hound, "<span class='notice'>You don't have enough power to synthesize fluids.</span>")
+				to_chat(hound, span_notice("You don't have enough power to synthesize fluids."))
 				return
 			else if(patient.reagents.get_reagent_amount(chem) + 10 >= 20) //Preventing people from accidentally killing themselves by trying to inject too many chemicals!
-				to_chat(hound, "<span class='notice'>Your stomach is currently too full of fluids to secrete more fluids of this kind.</span>")
+				to_chat(hound, span_notice("Your stomach is currently too full of fluids to secrete more fluids of this kind."))
 			else if(patient.reagents.get_reagent_amount(chem) + 10 <= 20) //No overdoses for you
 				patient.reagents.add_reagent(chem, inject_amount)
 				drain(SLEEPER_INJECT_COST)
 			var/units = round(patient.reagents.get_reagent_amount(chem))
-			to_chat(hound, "<span class='notice'>Injecting [units] unit\s of [SSchemistry.chemical_reagents[chem]] into occupant.</span>") //If they were immersed, the reagents wouldn't leave with them.
+			to_chat(hound, span_notice("Injecting [units] unit\s of [SSchemistry.chemical_reagents[chem]] into occupant.")) //If they were immersed, the reagents wouldn't leave with them.
 
 //For if the dogborg's existing patient uh, doesn't make it.
 /obj/item/dogborg/sleeper/proc/update_patient()
@@ -552,7 +557,7 @@
 			'sound/vore/death9.ogg',
 			'sound/vore/death10.ogg')
 		playsound(src, finisher, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
-		to_chat(hound, "<span class='notice'>Your [src.name] is now clean. Ending self-cleaning cycle.</span>")
+		to_chat(hound, span_notice("Your [src.name] is now clean. Ending self-cleaning cycle."))
 		cleaning = 0
 		update_patient()
 		playsound(src, 'sound/machines/ding.ogg', vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
@@ -593,8 +598,8 @@
 				if(T.stat == DEAD)
 					if(ishuman(T))
 						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-					to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
-					to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
+					to_chat(hound, span_notice("You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems."))
+					to_chat(T, span_notice("You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems."))
 					var/deathsound = pick(
 						'sound/vore/death1.ogg',
 						'sound/vore/death2.ogg',
@@ -612,7 +617,7 @@
 							for(var/atom/movable/thing in B)
 								thing.forceMove(src)
 								if(ismob(thing))
-									to_chat(thing, "<span class='filter_notice'>As [T] melts away around you, you find yourself in [hound]'s [name].</span>")
+									to_chat(thing, span_filter_notice("As [T] melts away around you, you find yourself in [hound]'s [name]."))
 					for(var/obj/item/I in T)
 						if(istype(I,/obj/item/organ/internal/mmi_holder/posibrain))
 							var/obj/item/organ/internal/mmi_holder/MMI = I

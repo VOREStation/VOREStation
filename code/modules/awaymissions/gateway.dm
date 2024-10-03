@@ -104,13 +104,13 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 	if(linked.len != 8)	return
 	if(!powered())		return
 	if(!awaygate)
-		to_chat(user, "<span class='notice'>Error: No destination found. Please program gateway.</span>")
+		to_chat(user, span_notice("Error: No destination found. Please program gateway."))
 		return
 	if(world.time < wait)
-		to_chat(user, "<span class='notice'>Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes.</span>")
+		to_chat(user, span_notice("Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes."))
 		return
 	if(!awaygate.calibrated && !LAZYLEN(awaydestinations)) //VOREStation Edit
-		to_chat(user, "<span class='notice'>Error: Destination gate uncalibrated. Gateway unsafe to use without far-end calibration update.</span>")
+		to_chat(user, span_notice("Error: Destination gate uncalibrated. Gateway unsafe to use without far-end calibration update."))
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
@@ -209,7 +209,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 						sleep(1)
 						MI.Paralyse(10)
 						MI << 'sound/effects/bamf.ogg'
-						to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+						to_chat(MI,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 					for(var/obj/item/I in L)
 						if(istype(I,/obj/item/implant) || istype(I,/obj/item/nif))
 							continue
@@ -219,7 +219,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 				sleep(1)
 				L.Paralyse(10)
 				L << 'sound/effects/bamf.ogg'
-				to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+				to_chat(L,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 			//VOREStation Addition End
 		return
 
@@ -231,7 +231,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 			else
 				awaygate = locate(/obj/machinery/gateway/centeraway)
 			if(!awaygate) // We still can't find the damn thing because there is no destination.
-				to_chat(user, "<span class='notice'>Error: Programming failed. No destination found.</span>")
+				to_chat(user, span_notice("Error: Programming failed. No destination found."))
 				return
 			to_chat(user, "<span class='notice'><b>Startup programming successful!</b></span>: A destination in another point of space and time has been detected.")
 		else
@@ -304,7 +304,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 	if(!ready)			return
 	if(linked.len != 8)	return
 	if(!stationgate || !calibrated) // Vorestation edit. Not like Polaris ever touches this anyway.
-		to_chat(user, "<span class='notice'>Error: No destination found. Please calibrate gateway.</span>")
+		to_chat(user, span_notice("Error: No destination found. Please calibrate gateway."))
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
@@ -358,7 +358,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 			else
 				stationgate = locate(/obj/machinery/gateway/centerstation)
 			if(!stationgate)
-				to_chat(user, "<span class='notice'>Error: Recalibration failed. No destination found... That can't be good.</span>")
+				to_chat(user, span_notice("Error: Recalibration failed. No destination found... That can't be good."))
 				return
 			// VOREStation Add End
 			else

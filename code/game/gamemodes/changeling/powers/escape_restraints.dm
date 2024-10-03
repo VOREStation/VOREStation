@@ -19,15 +19,15 @@
 	if(!changeling)
 		return 0
 	if(world.time < changeling.next_escape)
-		to_chat(src, "<span class='warning'>We are still recovering from our last escape...</span>")
+		to_chat(src, span_warning("We are still recovering from our last escape..."))
 		return 0
 	if(!(C.handcuffed || C.legcuffed || istype(C.wear_suit,/obj/item/clothing/suit/straight_jacket)))	// No need to waste chems if there's nothing to break out of
-		to_chat(C, "<span class='warning'>We are are not restrained in a way we can escape...</span>")
+		to_chat(C, span_warning("We are are not restrained in a way we can escape..."))
 		return 0
 
 	changeling.chem_charges -= 40
 
-	to_chat(C,"<span class='notice'>We contort our extremities and slip our cuffs.</span>")
+	to_chat(C,span_notice("We contort our extremities and slip our cuffs."))
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	if(C.handcuffed)
 		var/obj/item/W = C.handcuffed

@@ -20,11 +20,11 @@
 					if(tgui_alert(usr, "This robot has not yet selected a module. Would you like to toggle combat module override?","Confirm",list("Yes","No"))!="Yes")
 						continue
 					target.crisis_override = !target.crisis_override
-					to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
+					to_chat(usr, span_danger("You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite."))
 					continue
 				if(MODIFIY_ROBOT_LIMIT_MODULES_ADD)
 					if(target.restrict_modules_to.len)
-						to_chat(usr, "<span class='warning'>[target]'s modules are already restricted. For details you can use the remove verb to show all active restrictions.</span>")
+						to_chat(usr, span_warning("[target]'s modules are already restricted. For details you can use the remove verb to show all active restrictions."))
 					var/list/possible_options = list()
 					for(var/entry in robot_modules)
 						if(!target.restrict_modules_to.Find(entry))
@@ -35,16 +35,16 @@
 							break
 						possible_options -= selected_type
 						target.restrict_modules_to += selected_type
-						to_chat(usr, "<span class='danger'>You added [selected_type] to [target]'s possible modules list.</span>")
+						to_chat(usr, span_danger("You added [selected_type] to [target]'s possible modules list."))
 					continue
 				if(MODIFIY_ROBOT_LIMIT_MODULES_REMOVE)
 					while(TRUE)
 						var/selected_type = tgui_input_list(usr, "Please select the module type to remove. Removing all module types here will allow default station module selection.", "Module types", target.restrict_modules_to)
 						if(!selected_type || selected_type == "Cancel")
-							to_chat(usr, "<span class='danger'>[target] uses the default module list without special restrictions.</span>")
+							to_chat(usr, span_danger("[target] uses the default module list without special restrictions."))
 							break
 						target.restrict_modules_to -= selected_type
-						to_chat(usr, "<span class='danger'>You removed [selected_type] from [target]'s possible modules list.</span>")
+						to_chat(usr, span_danger("You removed [selected_type] from [target]'s possible modules list."))
 					continue
 
 	if(!target.module.modules)
@@ -59,7 +59,7 @@
 			return
 
 		if(!target.module || !target.module.modules)
-			to_chat(usr, "<span class='danger'>[target] was recently reset, you must wait until module selection has been completed before continuing modifying.</span>")
+			to_chat(usr, span_danger("[target] was recently reset, you must wait until module selection has been completed before continuing modifying."))
 			continue
 
 		log_and_message_admins("[key_name(src)] has used MODIFYROBOT ([modification_choice]) on [key_name(target)].")
@@ -93,7 +93,7 @@
 						spawn(0) //ChompEDIT Must be after to allow the movement to finish
 							SEND_SIGNAL(add_item, COMSIG_OBSERVER_MOVED)//ChompEDIT - report the movement since setting loc doesn't call Move or Moved
 						target.hud_used.update_robot_modules_display()
-						to_chat(usr, "<span class='danger'>You added \"[add_item]\" to [target].</span>")
+						to_chat(usr, span_danger("You added \"[add_item]\" to [target]."))
 						if(istype(add_item, /obj/item/stack/))
 							var/obj/item/stack/item_with_synth = add_item
 							for(var/synth in item_with_synth.synths)
@@ -141,7 +141,7 @@
 					var/selected_module_module = tgui_input_list(usr, "Please select the module to remove", "Modules", active_modules)
 					if(!istype(selected_module_module, /obj/item/))
 						break
-					to_chat(usr, "<span class='danger'>You removed \"[selected_module_module]\" from [target]</span>")
+					to_chat(usr, span_danger("You removed \"[selected_module_module]\" from [target]"))
 					target.uneq_all()
 					target.hud_used.update_robot_modules_display(TRUE)
 					target.module.emag.Remove(selected_module_module)
@@ -172,12 +172,12 @@
 					if(istype(U, /obj/item/borg/upgrade/restricted))
 						target.module.supported_upgrades |= new_upgrade
 					if(U.action(target))
-						to_chat(usr, "<span class='danger'>You apply the [U] to [target]!</span>")
+						to_chat(usr, span_danger("You apply the [U] to [target]!"))
 						usr.drop_item()
 						U.loc = target
 						target.hud_used.update_robot_modules_display()
 					else
-						to_chat(usr, "<span class='danger'>Upgrade error!</span>")
+						to_chat(usr, span_danger("Upgrade error!"))
 					if(selected_module_upgrade == "Proto-Kinetic Accelerator")
 						var/list/modkits = list()
 						for(var/modkit in typesof(/obj/item/borg/upgrade/modkit))
@@ -193,7 +193,7 @@
 							var/obj/item/borg/upgrade/modkit/M = new new_modkit(src)
 							var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 							if(kin.get_remaining_mod_capacity() >= M.cost)
-								to_chat(usr, "<span class='danger'>You installed the [M] into the [kin], [capacity]% remaining!</span>")
+								to_chat(usr, span_danger("You installed the [M] into the [kin], [capacity]% remaining!"))
 								modkits.Remove(selected_ka_upgrade)
 							M.install(kin, target)
 							capacity = kin.get_remaining_mod_capacity()
@@ -243,7 +243,7 @@
 					target.radio.channels[selected_radio_channel] += target.module.channels[selected_radio_channel]
 					target.radio.secure_radio_connections[selected_radio_channel] += radio_controller.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
 					available_channels -= selected_radio_channel
-					to_chat(usr, "<span class='danger'>You added \"[selected_radio_channel]\" channel to [target].</span>")
+					to_chat(usr, span_danger("You added \"[selected_radio_channel]\" channel to [target]."))
 			if(MODIFIY_ROBOT_RADIOC_REMOVE)
 				while(TRUE)
 					var/selected_radio_channel = tgui_input_list(usr, "Please select the radio channel to remove", "Channels", target.radio.channels)
@@ -261,7 +261,7 @@
 						target.radio.channels[n_chan] -= target.module.channels[n_chan]
 					radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
 					target.radio.secure_radio_connections -= selected_radio_channel
-					to_chat(usr, "<span class='danger'>You removed \"[selected_radio_channel]\" channel from [target].</span>")
+					to_chat(usr, span_danger("You removed \"[selected_radio_channel]\" channel from [target]."))
 			if(MODIFIY_ROBOT_COMP_ADD)
 				while(TRUE)
 					var/selected_component = tgui_input_list(usr, "Please select the component to add or replace", "Component", target.components)
@@ -289,7 +289,7 @@
 							var/new_power_cell = cell_names[capitalize(selected_cell)]
 							target.cell = new new_power_cell(target)
 							C.wrapped = target.cell
-							to_chat(usr, "<span class='danger'>You replaced \"[C]\" on [target] with \"[selected_cell]\".</span>")
+							to_chat(usr, span_danger("You replaced \"[C]\" on [target] with \"[selected_cell]\"."))
 						if("diagnosis unit")
 							C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(target)
 						if("camera")
@@ -301,7 +301,7 @@
 					C.install()
 					C.installed = 1
 					if(selected_component != "power cell")
-						to_chat(usr, "<span class='danger'>You repplaced \"[C]\" on [target].</span>")
+						to_chat(usr, span_danger("You repplaced \"[C]\" on [target]."))
 			if(MODIFIY_ROBOT_COMP_REMOVE)
 				while(TRUE)
 					var/selected_component = tgui_input_list(usr, "Please select the component to remove", "Component", target.components)
@@ -315,7 +315,7 @@
 						C.wrapped = null
 						if(selected_component == "power cell")
 							target.cell = null
-					to_chat(usr, "<span class='danger'>You removed \"[C]\" from [target]</span>")
+					to_chat(usr, span_danger("You removed \"[C]\" from [target]"))
 			if(MODIFIY_ROBOT_SWAP_MODULE)
 				var/selected_module = tgui_input_list(usr, "Which Module would you like to use?", "Module", robot_modules)
 				if(!selected_module || selected_module == "Cancel")
@@ -337,10 +337,10 @@
 				if(tgui_alert(usr, "Are you sure that you want to reset the entire module?","Confirm",list("Yes","No"))!="Yes")
 					continue
 				target.module_reset(FALSE)
-				to_chat(usr, "<span class='danger'>You resetted [target]'s module selection.</span>")
+				to_chat(usr, span_danger("You resetted [target]'s module selection."))
 			if(MODIFIY_ROBOT_TOGGLE_ERT)
 				target.crisis_override = !target.crisis_override
-				to_chat(usr, "<span class='danger'>You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite.</span>")
+				to_chat(usr, span_danger("You [target.crisis_override? "enabled":"disabled"] [target]'s combat module overwrite."))
 				if(tgui_alert(usr, "Do you want to reset the module as well to allow selection?","Confirm",list("Yes","No"))!="Yes")
 					continue
 				target.module_reset(FALSE)
@@ -350,17 +350,17 @@
 					if(access_synth in card.GetAccess())
 						card.access -= get_all_station_access()
 						card.access -= access_synth
-						to_chat(usr, "<span class='danger'>You revoke station access from [target].</span>")
+						to_chat(usr, span_danger("You revoke station access from [target]."))
 					else
 						card.access |= get_all_station_access()
 						card.access |= access_synth
-						to_chat(usr, "<span class='danger'>You grant station access to [target].</span>")
+						to_chat(usr, span_danger("You grant station access to [target]."))
 			if(MODIFIY_ROBOT_TOGGLE_CENT_ACCESS)
 				if(target?.idcard?.GetAccess())
 					var/obj/item/card/id/synthetic/card = target.idcard
 					if(access_cent_specops in card.GetAccess())
 						card.access -= get_all_centcom_access()
-						to_chat(usr, "<span class='danger'>You revoke central access from [target].</span>")
+						to_chat(usr, span_danger("You revoke central access from [target]."))
 					else
 						card.access |= get_all_centcom_access()
-						to_chat(usr, "<span class='danger'>You grant central access to [target].</span>")
+						to_chat(usr, span_danger("You grant central access to [target]."))

@@ -15,7 +15,7 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 			revision = REV.origin_commit || REV.commit
 			branch = "-Using TGS-" // TGS doesn't provide branch info yet
 			date = "-Using TGS-" // Or date
-	
+
 	if(!revision) // File parse method
 		var/list/head_branch = file2list(".git/HEAD", "\n")
 		if(head_branch.len)
@@ -58,11 +58,11 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 	set desc = "Check the current server code revision"
 
 	if(!GLOB.revdata)
-		to_chat(src, "<span class='warning'>Please wait until server initializations are complete.</span>")
+		to_chat(src, span_warning("Please wait until server initializations are complete."))
 		return
-	
+
 	var/list/msg = list()
-	
+
 	if(GLOB.revdata.revision)
 		msg += "<b>Server revision:</b> B:[GLOB.revdata.branch] D:[GLOB.revdata.date]"
 		if(config.githuburl)

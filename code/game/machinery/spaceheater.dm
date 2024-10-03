@@ -85,7 +85,7 @@
 					C.loc = src
 					C.add_fingerprint(usr)
 
-					user.visible_message("<span class='notice'>[user] inserts a power cell into [src].</span>", "<span class='notice'>You insert the power cell into [src].</span>")
+					user.visible_message(span_notice("[user] inserts a power cell into [src]."), span_notice("You insert the power cell into [src]."))
 					power_change()
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
@@ -93,7 +93,7 @@
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)
-		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")
+		user.visible_message(span_notice("[user] [panel_open ? "opens" : "closes"] the hatch on the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on the [src]."))
 		update_icon()
 		if(!panel_open && user.machine == src)
 			user << browse(null, "window=spaceheater")
@@ -111,7 +111,7 @@
 		tgui_interact(user)
 	else
 		state = state ? SHEATER_OFF : SHEATER_STANDBY
-		user.visible_message("<span class='notice'>[user] switches [state ? "on" : "off"] the [src].</span>","<span class='notice'>You switch [state ? "on" : "off"] the [src].</span>")
+		user.visible_message(span_notice("[user] switches [state ? "on" : "off"] the [src]."),span_notice("You switch [state ? "on" : "off"] the [src]."))
 		update_icon()
 	return
 
@@ -155,7 +155,7 @@
 
 		if("cellremove")
 			if(cell && !usr.get_active_hand())
-				usr.visible_message("<span class='notice'>[usr] removes [cell] from [src].</span>", "<span class='notice'>You remove [cell] from [src].</span>")
+				usr.visible_message(span_notice("[usr] removes [cell] from [src]."), span_notice("You remove [cell] from [src]."))
 				cell.update_icon()
 				usr.put_in_hands(cell)
 				cell.add_fingerprint(usr)
@@ -173,7 +173,7 @@
 					C.loc = src
 					C.add_fingerprint(usr)
 					power_change()
-					usr.visible_message("<span class='notice'>[usr] inserts \the [C] into \the [src].</span>", "<span class='notice'>You insert \the [C] into \the [src].</span>")
+					usr.visible_message(span_notice("[usr] inserts \the [C] into \the [src]."), span_notice("You insert \the [C] into \the [src]."))
 				. = TRUE
 
 /obj/machinery/space_heater/process()

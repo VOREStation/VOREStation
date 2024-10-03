@@ -36,7 +36,7 @@
 	if(in_range(user, src))
 		tgui_interact(user) //Not chat related
 	else
-		. += "<span class='warning'>It is too far away to read.</span>"
+		. += span_warning("It is too far away to read.")
 
 /obj/item/card/id/proc/prevent_tracking()
 	return 0
@@ -356,7 +356,7 @@
 		name = user.name + "'s ID card" + " ([assignment])"
 
 	configured = 1
-	to_chat(user, "<span class='notice'>Card settings set.</span>")
+	to_chat(user, span_notice("Card settings set."))
 
 /obj/item/card/id/event/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
@@ -364,7 +364,7 @@
 		access |= O.GetAccess()
 		desc = I.desc
 		rank = O.rank
-		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
+		to_chat(user, span_notice("You copy the access from \the [I] to \the [src]."))
 		user.drop_from_inventory(I)
 		qdel(I)
 		accessset = 1
@@ -570,7 +570,7 @@
 		var/guess = jobs_to_icon[user.job]
 
 		if(!guess)
-			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
+			to_chat(user, span_notice("ITG Cards do not seem to be able to accept the access codes for your ID."))
 			return
 		else
 			icon_state = guess
@@ -584,7 +584,7 @@
 		var/obj/item/card/id/O = I
 		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, JOB_HEAD_OF_SECURITY, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, JOB_CLOWN, JOB_MIME, JOB_TALON_CAPTAIN) //If you're in as one of these you probably aren't representing ITG
 		if(O.rank in itgdont)
-			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
+			to_chat(user, span_notice("ITG Cards do not seem to be able to accept the access codes for your ID."))
 			return
 	. = ..()
 	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."

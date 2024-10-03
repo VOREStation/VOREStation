@@ -13,9 +13,9 @@
 /obj/machinery/the_singularitygen/examine()
 	. = ..()
 	if(anchored)
-		. += "<span class='notice'>It has been securely bolted down and is ready for operation.</span>"
+		. += span_notice("It has been securely bolted down and is ready for operation.")
 	else
-		. += "<span class='warning'>It is not secured!</span>"
+		. += span_warning("It is not secured!")
 
 /obj/machinery/the_singularitygen/process()
 	var/turf/T = get_turf(src)
@@ -41,12 +41,12 @@
 		playsound(src, W.usesound, 50, 1)
 		visible_message("<b>\The [user]</b> adjusts \the [src]'s mechanisms.")
 		if(panel_open && do_after(user, 30))
-			to_chat(user, "<span class='notice'>\The [src] looks like it could be modified.</span>")
+			to_chat(user, span_notice("\The [src] looks like it could be modified."))
 			if(panel_open && do_after(user, 80 * W.toolspeed))	// We don't have skills, so a delayed hint for engineers will have to do for now. (Panel open check for sanity)
 				playsound(src, W.usesound, 50, 1)
-				to_chat(user, "<span class='cult'>\The [src] looks like it could be adapted to forge advanced materials via particle acceleration, somehow..</span>")
+				to_chat(user, span_cult("\The [src] looks like it could be adapted to forge advanced materials via particle acceleration, somehow.."))
 		else
-			to_chat(user, "<span class='notice'>\The [src]'s mechanisms look secure.</span>")
+			to_chat(user, span_notice("\The [src]'s mechanisms look secure."))
 	if(istype(W, /obj/item/smes_coil/super_io) && panel_open)
 		visible_message("<b>\The [user]</b> begins to modify \the [src] with \the [W].")
 		if(do_after(user, 300))

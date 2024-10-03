@@ -37,7 +37,7 @@ GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/radio/beacon)
 
 /obj/item/radio/beacon/syndicate/attack_self(mob/user as mob)
 	if(user)
-		to_chat(user, "<span class='notice'>Locked In</span>")
+		to_chat(user, span_notice("Locked In"))
 		new /obj/machinery/power/singularity_beacon/syndicate( user.loc )
 		playsound(src, 'sound/effects/pop.ogg', 100, 1, 1)
 		qdel(src)

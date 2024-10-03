@@ -29,7 +29,7 @@
 		if (burndamage && health <= 0) //once they break, start taking damage to destroy_hits
 			destroy_hits -= (burndamage / destroytime)
 			if (destroy_hits <= 0)
-				visible_message("<span class='danger'>\The [src.name] disintegrates!</span>")
+				visible_message(span_danger("\The [src.name] disintegrates!"))
 				new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
 				qdel(src)
 		take_damage(burndamage)
@@ -40,13 +40,13 @@
 /obj/machinery/door/proc/attackby_vr(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		if(heat_proof)
-			to_chat(user, "<span class='warning'>\The [src] is already reinforced.</span>")
+			to_chat(user, span_warning("\The [src] is already reinforced."))
 			return TRUE
 		if((stat & BROKEN) || (health < maxhealth))
-			to_chat(user, "<span class='notice'>It looks like \the [src] broken. Repair it before reinforcing it.</span>")
+			to_chat(user, span_notice("It looks like \the [src] broken. Repair it before reinforcing it."))
 			return TRUE
 		if(!density)
-			to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
+			to_chat(user, span_warning("\The [src] must be closed before you can reinforce it."))
 			return TRUE
 
 		var/amount_needed = 2
@@ -56,7 +56,7 @@
 		var/mats_given = stack.get_amount()
 		var/singular_name = stack.singular_name
 		if(reinforcing && amount_given <= 0)
-			to_chat(user, "<span class='warning'>You must weld or remove \the plasteel from \the [src] before you can add anything else.</span>")
+			to_chat(user, span_warning("You must weld or remove \the plasteel from \the [src] before you can add anything else."))
 		else
 			if(mats_given >= amount_given)
 				if(stack.use(amount_given))
@@ -66,25 +66,25 @@
 					reinforcing += mats_given
 					amount_given = mats_given
 		if(amount_given)
-			to_chat(user, "<span class='notice'>You fit [amount_given] [singular_name]\s on \the [src].</span>")
+			to_chat(user, span_notice("You fit [amount_given] [singular_name]\s on \the [src]."))
 
 		return TRUE
 
 	if(reinforcing && I.has_tool_quality(TOOL_WELDER))
 		if(!density)
-			to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
+			to_chat(user, span_warning("\The [src] must be closed before you can reinforce it."))
 			return TRUE
 
 		if(reinforcing < 2)
-			to_chat(user, "<span class='warning'>You will need more plasteel to reinforce \the [src].</span>")
+			to_chat(user, span_warning("You will need more plasteel to reinforce \the [src]."))
 			return TRUE
 
 		var/obj/item/weldingtool/welder = I.get_welder()
 		if(welder.remove_fuel(0,user))
-			to_chat(user, "<span class='notice'>You start weld \the plasteel into place.</span>")
+			to_chat(user, span_notice("You start weld \the plasteel into place."))
 			playsound(src, welder.usesound, 50, 1)
 			if(do_after(user, 10 * welder.toolspeed) && welder && welder.isOn())
-				to_chat(user, "<span class='notice'>You finish reinforcing \the [src].</span>")
+				to_chat(user, span_notice("You finish reinforcing \the [src]."))
 				heat_proof = 1
 				update_icon()
 				reinforcing = 0
@@ -93,7 +93,7 @@
 	if(reinforcing && I.has_tool_quality(TOOL_CROWBAR))
 		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc, reinforcing)
 		reinforcing = 0
-		to_chat(user, "<span class='notice'>You remove \the [reinforcing_sheet].</span>")
+		to_chat(user, span_notice("You remove \the [reinforcing_sheet]."))
 		playsound(src, I.usesound, 100, 1)
 		return TRUE
 

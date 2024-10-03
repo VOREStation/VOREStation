@@ -186,9 +186,9 @@
 /obj/effect/alien/weeds/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 	if(LAZYLEN(W.attack_verb))
-		visible_message("<span class='danger'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message(span_danger("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
 	else
-		visible_message("<span class='danger'>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message(span_danger("\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]"))
 
 	var/damage = W.force / 4.0
 
@@ -203,7 +203,7 @@
 	healthcheck()
 
 /obj/effect/alien/weeds/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	user.do_attack_animation(src)
 	health -= damage
 	healthcheck()
@@ -267,7 +267,7 @@
 	if(ticks >= target_strength)
 
 		for(var/mob/O in hearers(src, null))
-			O.show_message("<span class='alium'>[src.target] collapses under its own weight into a puddle of goop and undigested debris!</span>", 1)
+			O.show_message(span_alium("[src.target] collapses under its own weight into a puddle of goop and undigested debris!"), 1)
 
 		if(iswall(target)) //Gurgs : Spruced up corrosive acid
 			var/turf/simulated/wall/W = target
@@ -282,13 +282,13 @@
 
 	switch(target_strength - ticks)
 		if(6)
-			visible_message("<span class='alium'>[src.target] is holding up against the acid!</span>")
+			visible_message(span_alium("[src.target] is holding up against the acid!"))
 		if(4)
-			visible_message("<span class='alium'>[src.target]\s structure is being melted by the acid!</span>")
+			visible_message(span_alium("[src.target]\s structure is being melted by the acid!"))
 		if(2)
-			visible_message("<span class='alium'>[src.target] is struggling to withstand the acid!</span>")
+			visible_message(span_alium("[src.target] is struggling to withstand the acid!"))
 		if(0 to 1)
-			visible_message("<span class='alium'>[src.target] begins to crumble under the acid!</span>")
+			visible_message(span_alium("[src.target] begins to crumble under the acid!"))
 	spawn(rand(150, 200)) tick()
 
 //Xenomorph Effect egg removed, replaced with Structure Egg.

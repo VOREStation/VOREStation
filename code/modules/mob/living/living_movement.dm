@@ -60,12 +60,12 @@ default behaviour is:
 		for(var/mob/living/M in range(tmob, 1))
 			if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
 				if ( !(world.time % 5) )
-					to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
+					to_chat(src, span_warning("[tmob] is restrained, you cannot push past"))
 				now_pushing = 0
 				return
 			if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
 				if ( !(world.time % 5) )
-					to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
+					to_chat(src, span_warning("[tmob] is restraining [M], you cannot push past"))
 				now_pushing = 0
 				return
 
@@ -144,7 +144,7 @@ default behaviour is:
 		if(ishuman(tmob))
 			var/mob/living/carbon/human/H = tmob
 			if(H.species.lightweight == 1 && prob(50))
-				H.visible_message("<span class='warning'>[src] bumps into [H], knocking them off balance!</span>")
+				H.visible_message(span_warning("[src] bumps into [H], knocking them off balance!"))
 				H.Weaken(5)
 				now_pushing = 0
 				return
@@ -154,7 +154,7 @@ default behaviour is:
 		// VOREStation Edit - End
 		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 			if(prob(40) && !(FAT in src.mutations))
-				to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
+				to_chat(src, span_danger("You fail to push [tmob]'s fat ass out of the way."))
 				now_pushing = 0
 				return
 		if(tmob.r_hand && istype(tmob.r_hand, /obj/item/shield/riot))
@@ -182,9 +182,9 @@ default behaviour is:
 		if(confused && prob(50) && m_intent=="run")
 			Weaken(2)
 			playsound(src, "punch", 25, 1, -1)
-			visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
+			visible_message(span_warning("[src] [pick("ran", "slammed")] into \the [AM]!"))
 			src.apply_damage(5, BRUTE)
-			to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
+			to_chat(src, span_warning("You just [pick("ran", "slammed")] into \the [AM]!"))
 			*/ // VOREStation Removal End
 		return
 	if (!now_pushing)
@@ -266,7 +266,7 @@ default behaviour is:
 	var/area/A = get_area(src)
 	if(lying && !buckled && pull_damage() && A.has_gravity() && (prob(getBruteLoss() * 200 / maxHealth)))
 		adjustBruteLoss(2)
-		visible_message("<span class='danger'>\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
+		visible_message(span_danger("\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"))
 
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()

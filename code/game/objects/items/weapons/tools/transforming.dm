@@ -59,7 +59,7 @@
 			tool_qualities = list(TOOL_CROWBAR)
 			if(user)
 				playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
-				to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
+				to_chat(user, span_notice("You attach the pry jaws to [src]."))
 		if(TOOL_WIRECUTTER)
 			desc = initial(desc) + " It's fitted with a cutting head."
 			icon_state = "jaws_cutter"
@@ -68,7 +68,7 @@
 			tool_qualities = list(TOOL_WIRECUTTER)
 			if(user)
 				playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
-				to_chat(user, "<span class='notice'>You attach the cutting jaws to [src].</span>")
+				to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 
 /obj/item/tool/transforming/powerdrill
 	name = "hand drill"
@@ -97,7 +97,7 @@
 			tool_qualities = list(TOOL_WRENCH)
 			if(user)
 				playsound(src,'sound/items/change_drill.ogg',50,1)
-				to_chat(user, "<span class='notice'>You attach the bolt driver to [src].</span>")
+				to_chat(user, span_notice("You attach the bolt driver to [src]."))
 		if(TOOL_SCREWDRIVER)
 			desc = initial(desc) + " It's fitted with a screw driver."
 			icon_state = "drill_screw"
@@ -105,7 +105,7 @@
 			tool_qualities = list(TOOL_SCREWDRIVER)
 			if(user)
 				playsound(src,'sound/items/change_drill.ogg',50,1)
-				to_chat(user, "<span class='notice'>You attach the screw driver to [src].</span>")
+				to_chat(user, span_notice("You attach the screw driver to [src]."))
 
 /obj/item/tool/transforming/altevian
 	name = "Hull Systems Omni-Tool"
@@ -137,7 +137,7 @@
 			tool_qualities = list(TOOL_WRENCH)
 			if(user)
 				playsound(src,'sound/items/ratchet.ogg',50,1)
-				to_chat(user, "<span class='notice'>You reconfigure [src] into bolting mode.</span>")
+				to_chat(user, span_notice("You reconfigure [src] into bolting mode."))
 		if(TOOL_CROWBAR)
 			desc = initial(desc) + " It's currently in prying mode."
 			icon_state = "altevian-crowbar"
@@ -145,7 +145,7 @@
 			tool_qualities = list(TOOL_CROWBAR)
 			if(user)
 				playsound(src,'sound/items/ratchet.ogg',50,1)
-				to_chat(user, "<span class='notice'>You reconfigure [src] into prying mode.</span>")
+				to_chat(user, span_notice("You reconfigure [src] into prying mode."))
 		if(TOOL_WIRECUTTER)
 			desc = initial(desc) + " It's currently in cutting mode."
 			icon_state = "altevian-wirecutter"
@@ -153,7 +153,7 @@
 			tool_qualities = list(TOOL_WIRECUTTER)
 			if(user)
 				playsound(src,'sound/items/ratchet.ogg',50,1)
-				to_chat(user, "<span class='notice'>You reconfigure [src] into cutting mode.</span>")
+				to_chat(user, span_notice("You reconfigure [src] into cutting mode."))
 		if(TOOL_SCREWDRIVER)
 			desc = initial(desc) + " It's currently in screwing mode."
 			icon_state = "altevian-screwdriver"
@@ -161,7 +161,7 @@
 			tool_qualities = list(TOOL_SCREWDRIVER)
 			if(user)
 				playsound(src,'sound/items/ratchet.ogg',50,1)
-				to_chat(user, "<span class='notice'>You reconfigure [src] into screwing mode.</span>")
+				to_chat(user, span_notice("You reconfigure [src] into screwing mode."))
 		if(TOOL_MULTITOOL)
 			desc = initial(desc) + " It's currently in pulsing mode."
 			icon_state = "altevian-pulser"
@@ -169,7 +169,7 @@
 			tool_qualities = list(TOOL_MULTITOOL)
 			if(user)
 				playsound(src,'sound/items/ratchet.ogg',50,1)
-				to_chat(user, "<span class='notice'>You reconfigure [src] into pulsing mode.</span>")
+				to_chat(user, span_notice("You reconfigure [src] into pulsing mode."))
 		if(TOOL_WELDER)
 			desc = initial(desc) + " It's currently in welding mode."
 			icon_state = "altevian-welder-on"
@@ -178,7 +178,7 @@
 			tool_qualities = list(TOOL_WELDER)
 			if(user)
 				playsound(src,'sound/items/ratchet.ogg',50,1)
-				to_chat(user, "<span class='notice'>You reconfigure [src] into welding mode.</span>")
+				to_chat(user, span_notice("You reconfigure [src] into welding mode."))
 
 /obj/item/weldingtool/dummy/altevian
 	toolspeed = 0.25

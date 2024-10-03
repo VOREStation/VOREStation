@@ -43,7 +43,7 @@
 	switch(action)
 		if("electronic_warfare")
 			S.electronic_warfare = !S.electronic_warfare
-			to_chat(usr, "<span class='notice'>Electronic warfare [S.electronic_warfare ? "enabled" : "disabled"].</span>")
+			to_chat(usr, span_notice("Electronic warfare [S.electronic_warfare ? "enabled" : "disabled"]."))
 			. = TRUE
 		if("age")
 			var/new_age = tgui_input_number(usr,"What age would you like to put on this card?","Agent Card Age", S.age)
@@ -52,7 +52,7 @@
 					S.age = initial(S.age)
 				else
 					S.age = new_age
-				to_chat(usr, "<span class='notice'>Age has been set to '[S.age]'.</span>")
+				to_chat(usr, span_notice("Age has been set to '[S.age]'."))
 				. = TRUE
 		if("appearance")
 			var/datum/card_state/choice = tgui_input_list(usr, "Select the appearance for this card.", "Agent Card Appearance", id_card_states())
@@ -61,13 +61,13 @@
 				S.item_state = choice.item_state
 				S.sprite_stack = choice.sprite_stack
 				S.update_icon()
-				to_chat(usr, "<span class='notice'>Appearance changed to [choice].</span>")
+				to_chat(usr, span_notice("Appearance changed to [choice]."))
 				. = TRUE
 		if("assignment")
 			var/new_job = sanitize(tgui_input_text(usr,"What assignment would you like to put on this card?\nChanging assignment will not grant or remove any access levels.","Agent Card Assignment", S.assignment))
 			if(!isnull(new_job) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.assignment = new_job
-				to_chat(usr, "<span class='notice'>Occupation changed to '[new_job]'.</span>")
+				to_chat(usr, span_notice("Occupation changed to '[new_job]'."))
 				S.update_name()
 				. = TRUE
 		if("bloodtype")
@@ -79,7 +79,7 @@
 			var/new_blood_type = sanitize(tgui_input_text(usr,"What blood type would you like to be written on this card?","Agent Card Blood Type",default))
 			if(!isnull(new_blood_type) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.blood_type = new_blood_type
-				to_chat(usr, "<span class='notice'>Blood type changed to '[new_blood_type]'.</span>")
+				to_chat(usr, span_notice("Blood type changed to '[new_blood_type]'."))
 				. = TRUE
 		if("dnahash")
 			var/default = S.dna_hash
@@ -90,7 +90,7 @@
 			var/new_dna_hash = sanitize(tgui_input_text(usr,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default))
 			if(!isnull(new_dna_hash) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.dna_hash = new_dna_hash
-				to_chat(usr, "<span class='notice'>DNA hash changed to '[new_dna_hash]'.</span>")
+				to_chat(usr, span_notice("DNA hash changed to '[new_dna_hash]'."))
 				. = TRUE
 		if("fingerprinthash")
 			var/default = S.fingerprint_hash
@@ -101,30 +101,30 @@
 			var/new_fingerprint_hash = sanitize(tgui_input_text(usr,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default))
 			if(!isnull(new_fingerprint_hash) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.fingerprint_hash = new_fingerprint_hash
-				to_chat(usr, "<span class='notice'>Fingerprint hash changed to '[new_fingerprint_hash]'.</span>")
+				to_chat(usr, span_notice("Fingerprint hash changed to '[new_fingerprint_hash]'."))
 				. = TRUE
 		if("name")
 			var/new_name = sanitizeName(tgui_input_text(usr,"What name would you like to put on this card?","Agent Card Name", S.registered_name))
 			if(!isnull(new_name) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.registered_name = new_name
 				S.update_name()
-				to_chat(usr, "<span class='notice'>Name changed to '[new_name]'.</span>")
+				to_chat(usr, span_notice("Name changed to '[new_name]'."))
 				. = TRUE
 		if("photo")
 			S.set_id_photo(usr)
-			to_chat(usr, "<span class='notice'>Photo changed.</span>")
+			to_chat(usr, span_notice("Photo changed."))
 			. = TRUE
 		if("sex")
 			var/new_sex = sanitize(tgui_input_text(usr,"What sex would you like to put on this card?","Agent Card Sex", S.sex))
 			if(!isnull(new_sex) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.sex = new_sex
-				to_chat(usr, "<span class='notice'>Sex changed to '[new_sex]'.</span>")
+				to_chat(usr, span_notice("Sex changed to '[new_sex]'."))
 				. = TRUE
 		if("species")
 			var/new_species = sanitize(tgui_input_text(usr,"What species would you like to put on this card?","Agent Card Species", S.species))
 			if(!isnull(new_species) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.species = new_species
-				to_chat(usr, "<span class='notice'>Species changed to '[new_species]'.</span>")
+				to_chat(usr, span_notice("Species changed to '[new_species]'."))
 				. = TRUE
 		if("factoryreset")
 			if(tgui_alert(usr, "This will factory reset the card, including access and owner. Continue?", "Factory Reset", list("No", "Yes")) == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
@@ -145,5 +145,5 @@
 				S.sex = initial(S.sex)
 				S.species = initial(S.species)
 				S.update_icon()
-				to_chat(usr, "<span class='notice'>All information has been deleted from \the [src].</span>")
+				to_chat(usr, span_notice("All information has been deleted from \the [src]."))
 				. = TRUE

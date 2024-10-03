@@ -139,19 +139,19 @@
 		has_edge = prob(get_trait(TRAIT_POTENCY)/2)
 
 		if(affecting)
-			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your [affecting.name] greedily!</span>")
+			to_chat(target, span_danger("\The [fruit]'s thorns pierce your [affecting.name] greedily!"))
 			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
 		else
-			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your flesh greedily!</span>")
+			to_chat(target, span_danger("\The [fruit]'s thorns pierce your flesh greedily!"))
 			target.adjustBruteLoss(damage)
 	else
 		damage = max(1, round(5*get_trait(TRAIT_POTENCY)/100, 1))
 		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
 		if(affecting)
-			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your [affecting.name]!</span>")
+			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your [affecting.name]!"))
 			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
 		else
-			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your flesh!</span>")
+			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your flesh!"))
 			target.adjustBruteLoss(damage)
 
 // Adds reagents to a target.
@@ -270,7 +270,7 @@
 				apply_special_effect(M)
 			splatter(T,thrown)
 		if(origin_turf)
-			origin_turf.visible_message("<span class='danger'>The [thrown.name] explodes!</span>")
+			origin_turf.visible_message(span_danger("The [thrown.name] explodes!"))
 		qdel(thrown)
 		return
 
@@ -284,7 +284,7 @@
 	if(get_trait(TRAIT_JUICY) && splatted)
 		splatter(origin_turf,thrown)
 		if(origin_turf)
-			origin_turf.visible_message("<span class='danger'>The [thrown.name] splatters against [target]!</span>")
+			origin_turf.visible_message(span_danger("The [thrown.name] splatters against [target]!"))
 		qdel(thrown)
 
 /datum/seed/proc/handle_environment(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only)
@@ -584,7 +584,7 @@
 		switch(rand(0,11))
 			if(0) //Plant cancer!
 				set_trait(TRAIT_ENDURANCE,get_trait(TRAIT_ENDURANCE)-rand(10,20),null,0)
-				source_turf.visible_message("<span class='danger'>\The [display_name] withers rapidly!</span>")
+				source_turf.visible_message(span_danger("\The [display_name] withers rapidly!"))
 			if(1)
 				set_trait(TRAIT_NUTRIENT_CONSUMPTION,get_trait(TRAIT_NUTRIENT_CONSUMPTION)+rand(-(degree*0.1),(degree*0.1)),5,0)
 				set_trait(TRAIT_WATER_CONSUMPTION,   get_trait(TRAIT_WATER_CONSUMPTION)   +rand(-degree,degree),50,0)
@@ -657,7 +657,7 @@
 							set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
 							source_turf.visible_message("<span class='notice'>\The [display_name]'s glow </span><font color='[get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")
 					else
-						source_turf.visible_message("<span class='notice'>\The [display_name]'s glow dims...</span>")
+						source_turf.visible_message(span_notice("\The [display_name]'s glow dims..."))
 			if(11)
 				set_trait(TRAIT_TELEPORTING,1)
 
@@ -789,10 +789,10 @@
 
 	if(!force_amount && get_trait(TRAIT_YIELD) == 0 && !harvest_sample)
 		if(istype(user))
-			to_chat(user, "<span class='danger'>You fail to harvest anything useful.</span>")
+			to_chat(user, span_danger("You fail to harvest anything useful."))
 	else
 		if(istype(user))
-			to_chat(user, "<span class='filter_notice'>You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].</span>")
+			to_chat(user, span_filter_notice("You [harvest_sample ? "take a sample" : "harvest"] from the [display_name]."))
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in SSplants.seeds))
@@ -850,7 +850,7 @@
 
 			//Handle spawning in living, mobile products (like dionaea).
 			if(istype(product,/mob/living))
-				product.visible_message("<span class='notice'>The pod disgorges [product]!</span>")
+				product.visible_message(span_notice("The pod disgorges [product]!"))
 				handle_living_product(product)
 
 // When the seed in this machine mutates/is modified, the tray seed value

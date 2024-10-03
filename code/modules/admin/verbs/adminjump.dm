@@ -77,7 +77,7 @@
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		to_chat(A, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
+		to_chat(A, span_filter_adminlog("This mob is not located in the game world."))
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
@@ -92,7 +92,7 @@
 			A.on_mob_jump()
 			var/turf/T = locate(tx, ty, tz)
 			if(!T)
-				to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+				to_chat(usr, span_warning("Those coordinates are outside the boundaries of the map."))
 				return
 			A.forceMove(T)
 			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -220,7 +220,7 @@
 			if(!tz) return
 		var/turf/T = locate(tx, ty, tz)
 		if(!T)
-			to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+			to_chat(usr, span_warning("Those coordinates are outside the boundaries of the map."))
 			return
 		if(ismob(AM))
 			var/mob/M = AM

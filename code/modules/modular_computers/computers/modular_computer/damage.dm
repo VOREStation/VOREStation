@@ -1,7 +1,7 @@
 /obj/item/modular_computer/examine(var/mob/user)
 	. = ..()
 	if(damage > broken_damage)
-		. += "<span class='danger'>It is heavily damaged!</span>"
+		. += span_danger("It is heavily damaged!")
 	else if(damage)
 		. += "It is damaged."
 

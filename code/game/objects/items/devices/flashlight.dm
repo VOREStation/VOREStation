@@ -56,7 +56,7 @@
 
 	if(power_usage)
 		if(cell.use(power_usage) != power_usage) // we weren't able to use our full power_usage amount!
-			visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
+			visible_message(span_warning("\The [src] flickers before going dull."))
 			playsound(src, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket. //VOREStation Edit
 			on = 0
 			update_brightness()
@@ -119,7 +119,7 @@
 		if(istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES))
-					to_chat(user, "<span class='warning'>You're going to need to remove [C.name] first.</span>")
+					to_chat(user, span_warning("You're going to need to remove [C.name] first."))
 					return
 
 			var/obj/item/organ/vision
@@ -127,34 +127,34 @@
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
 				user.visible_message("<b>\The [user]</b> directs [src] at [M]'s face.", \
-								 	 "<span class='notice'>You direct [src] at [M]'s face.</span>")
-				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>")
+								 	 span_notice("You direct [src] at [M]'s face."))
+				to_chat(user, span_warning("You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!"))
 				user.setClickCooldown(user.get_attack_speed(src))
 				return
 
 			user.visible_message("<b>\The [user]</b> directs [src] to [M]'s eyes.", \
-							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+							 	 span_notice("You direct [src] to [M]'s eyes."))
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
-					to_chat(user, "<span class='warning'>\The [M]'s pupils do not react to the light!</span>")
+					to_chat(user, span_warning("\The [M]'s pupils do not react to the light!"))
 					return
 				if(XRAY in M.mutations)
-					to_chat(user, "<span class='notice'>\The [M] pupils give an eerie glow!</span>")
+					to_chat(user, span_notice("\The [M] pupils give an eerie glow!"))
 				if(vision.is_bruised())
-					to_chat(user, "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>")
+					to_chat(user, span_warning("There's visible damage to [M]'s [vision.name]!"))
 				else if(M.eye_blurry)
-					to_chat(user, "<span class='notice'>\The [M]'s pupils react slower than normally.</span>")
+					to_chat(user, span_notice("\The [M]'s pupils react slower than normally."))
 				if(M.getBrainLoss() > 15)
-					to_chat(user, "<span class='notice'>There's visible lag between left and right pupils' reactions.</span>")
+					to_chat(user, span_notice("There's visible lag between left and right pupils' reactions."))
 
 				var/list/pinpoint = list("oxycodone"=1,"tramadol"=5)
 				var/list/dilating = list("bliss"=5,"ambrosia_extract"=5,"mindbreaker"=1)
 				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
-					to_chat(user, "<span class='notice'>\The [M]'s pupils are already pinpoint and cannot narrow any more.</span>")
+					to_chat(user, span_notice("\The [M]'s pupils are already pinpoint and cannot narrow any more."))
 				else if(M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
-					to_chat(user, "<span class='notice'>\The [M]'s pupils narrow slightly, but are still very dilated.</span>")
+					to_chat(user, span_notice("\The [M]'s pupils narrow slightly, but are still very dilated."))
 				else
-					to_chat(user, "<span class='notice'>\The [M]'s pupils narrow.</span>")
+					to_chat(user, span_notice("\The [M]'s pupils narrow."))
 
 			user.setClickCooldown(user.get_attack_speed(src)) //can be used offensively
 			M.flash_eyes()
@@ -167,7 +167,7 @@
 			cell.update_icon()
 			user.put_in_hands(cell)
 			cell = null
-			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
+			to_chat(user, span_notice("You remove the cell from the [src]."))
 			playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 			on = 0
 			update_brightness()
@@ -216,13 +216,13 @@
 					user.drop_item()
 					W.loc = src
 					cell = W
-					to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
+					to_chat(user, span_notice("You install a cell in \the [src]."))
 					playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 					update_brightness()
 				else
-					to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
+					to_chat(user, span_notice("\The [src] already has a cell."))
 			else
-				to_chat(user, "<span class='notice'>\The [src] cannot use that type of cell.</span>")
+				to_chat(user, span_notice("\The [src] cannot use that type of cell."))
 
 	else
 		..()
@@ -387,7 +387,7 @@
 
 	// Usual checks
 	if(!fuel)
-		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
+		to_chat(user, span_notice("It's out of fuel."))
 		return
 	if(on)
 		return
@@ -395,7 +395,7 @@
 	. = ..()
 	// All good, turn it on.
 	if(.)
-		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
+		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
 		src.force = on_damage
 		src.damtype = "fire"
 		START_PROCESSING(SSobj, src)
@@ -444,14 +444,14 @@
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 
 	if(!fuel)
-		to_chat(user, "<span class='notice'>The glowstick has already been turned on.</span>")
+		to_chat(user, span_notice("The glowstick has already been turned on."))
 		return
 	if(on)
 		return
 
 	. = ..()
 	if(.)
-		user.visible_message("<span class='notice'>[user] cracks and shakes \the [name].</span>", "<span class='notice'>You crack and shake \the [src], turning it on!</span>")
+		user.visible_message(span_notice("[user] cracks and shakes \the [name]."), span_notice("You crack and shake \the [src], turning it on!"))
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/glowstick/red

@@ -86,7 +86,7 @@
 	if(href_list["write"])
 		var/id = href_list["write"]
 		if(free_space <= 0)
-			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
+			to_chat(usr, span_info("There isn't enough space left on \the [src] to write anything."))
 			return
 
 		var/raw_t = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE, prevent_enter = TRUE)
@@ -104,7 +104,7 @@
 
 
 		if(fields > 50)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
-			to_chat(usr, "<span class='warning'>Too many fields. Sorry, you can't do this.</span>")
+			to_chat(usr, span_warning("Too many fields. Sorry, you can't do this."))
 			fields = last_fields_value
 			return
 

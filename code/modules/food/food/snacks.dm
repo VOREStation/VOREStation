@@ -80,7 +80,7 @@
 					food_inserted_micros -= F
 
 	if(!reagents.total_volume)
-		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
+		M.visible_message(span_notice("[M] finishes eating \the [src]."),span_notice("You finish eating \the [src]."))
 
 		usr.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
@@ -98,17 +98,17 @@
 
 /obj/item/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
-		to_chat(user, "<span class='danger'>None of [src] left!</span>")
+		to_chat(user, span_danger("None of [src] left!"))
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
 
 	if(package)
-		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
+		to_chat(M, span_warning("How do you expect to eat this with the package still on?"))
 		return FALSE
 
 	if(canned)
-		to_chat(M, "<span class='warning'>How do you expect to eat this without opening it?</span>")
+		to_chat(M, span_warning("How do you expect to eat this without opening it?"))
 		return FALSE
 
 	if(istype(M, /mob/living/carbon))
@@ -129,30 +129,30 @@
 				else
 					blocked = H.check_mouth_coverage()
 				if(blocked)
-					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
+					to_chat(user, span_warning("\The [blocked] is in the way!"))
 					return
 
 			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
 			if (fullness <= 50)
-				to_chat(M, "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>")
+				to_chat(M, span_danger("You hungrily chew out a piece of [src] and gobble it!"))
 			if (fullness > 50 && fullness <= 150)
-				to_chat(M, "<span class='notice'>You hungrily begin to eat [src].</span>")
+				to_chat(M, span_notice("You hungrily begin to eat [src]."))
 			if (fullness > 150 && fullness <= 350)
-				to_chat(M, "<span class='notice'>You take a bite of [src].</span>")
+				to_chat(M, span_notice("You take a bite of [src]."))
 			if (fullness > 350 && fullness <= 550)
-				to_chat(M, "<span class='notice'>You unwillingly chew a bit of [src].</span>")
+				to_chat(M, span_notice("You unwillingly chew a bit of [src]."))
 			if (fullness > 550 && fullness <= 650)
-				to_chat(M, "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>")
+				to_chat(M, span_notice("You swallow some more of the [src], causing your belly to swell out a little."))
 			if (fullness > 650 && fullness <= 1000)
-				to_chat(M, "<span class='notice'>You stuff yourself with the [src]. Your stomach feels very heavy.</span>")
+				to_chat(M, span_notice("You stuff yourself with the [src]. Your stomach feels very heavy."))
 			if (fullness > 1000 && fullness <= 3000)
-				to_chat(M, "<span class='notice'>You gluttonously swallow down the hunk of [src]. You're so gorged, it's hard to stand.</span>")
+				to_chat(M, span_notice("You gluttonously swallow down the hunk of [src]. You're so gorged, it's hard to stand."))
 			if (fullness > 3000 && fullness <= 5500)
-				to_chat(M, "<span class='danger'>You force the piece of [src] down your throat. You can feel your stomach getting firm as it reaches its limits.</span>")
+				to_chat(M, span_danger("You force the piece of [src] down your throat. You can feel your stomach getting firm as it reaches its limits."))
 			if (fullness > 5500 && fullness <= 6000)
-				to_chat(M, "<span class='danger'>You barely glug down the bite of [src], causing undigested food to force into your intestines. You can't take much more of this!</span>")
+				to_chat(M, span_danger("You barely glug down the bite of [src], causing undigested food to force into your intestines. You can't take much more of this!"))
 			if (fullness > 6000) // There has to be a limit eventually.
-				to_chat(M, "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>")
+				to_chat(M, span_danger("Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat."))
 				return 0
 
 		else if(user.a_intent == I_HURT)
@@ -180,25 +180,25 @@
 					belly_target = M.vore_selected
 
 				if(unconcious)
-					to_chat(user, "<span class='warning'>You can't feed [H] through \the [blocked] while they are unconcious!</span>")
+					to_chat(user, span_warning("You can't feed [H] through \the [blocked] while they are unconcious!"))
 					return
 
 				if(blocked)
-					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
+					to_chat(user, span_warning("\The [blocked] is in the way!"))
 					return
 
 				if(swallow_whole)
 					if(!(M.feeding))
-						to_chat(user, "<span class='warning'>You can't feed [H] a whole [src] as they refuse to be fed whole things!</span>")
+						to_chat(user, span_warning("You can't feed [H] a whole [src] as they refuse to be fed whole things!"))
 						return
 					if(!belly_target)
-						to_chat(user, "<span class='warning'>You can't feed [H] a whole [src] as they don't appear to have a belly to fit it!</span>")
+						to_chat(user, span_warning("You can't feed [H] a whole [src] as they don't appear to have a belly to fit it!"))
 						return
 
 				if(swallow_whole)
-					user.visible_message("<span class='danger'>[user] attempts to make [M] consume [src] whole into their [belly_target].</span>")
+					user.visible_message(span_danger("[user] attempts to make [M] consume [src] whole into their [belly_target]."))
 				else
-					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+					user.visible_message(span_danger("[user] attempts to feed [M] [src]."))
 
 				var/feed_duration = 3 SECONDS
 				if(swallow_whole)
@@ -211,10 +211,10 @@
 
 				if(swallow_whole)
 					add_attack_logs(user,M,"Whole-fed with [src.name] containing [reagentlist(src)] into [belly_target]", admin_notify = FALSE)
-					user.visible_message("<span class='danger'>[user] successfully forces [src] into [M]'s [belly_target].</span>")
+					user.visible_message(span_danger("[user] successfully forces [src] into [M]'s [belly_target]."))
 				else
 					add_attack_logs(user,M,"Fed with [src.name] containing [reagentlist(src)]", admin_notify = FALSE)
-					user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
+					user.visible_message(span_danger("[user] feeds [M] [src]."))
 
 			else
 				to_chat(user, "This creature does not seem to have a mouth!")
@@ -241,17 +241,17 @@
 	. = ..()
 	if(Adjacent(user))
 		if(food_inserted_micros && food_inserted_micros.len)
-			. += "<span class='notice'>It has [english_list(food_inserted_micros)] stuck in it.</span>"
+			. += span_notice("It has [english_list(food_inserted_micros)] stuck in it.")
 		if(coating)
-			. += "<span class='notice'>It's coated in [coating.name]!</span>"
+			. += span_notice("It's coated in [coating.name]!")
 		if(bitecount==0)
 			return .
 		else if (bitecount==1)
-			. += "<span class='notice'>It was bitten by someone!</span>"
+			. += span_notice("It was bitten by someone!")
 		else if (bitecount<=3)
-			. += "<span class='notice'>It was bitten [bitecount] times!</span>"
+			. += span_notice("It was bitten [bitecount] times!")
 		else
-			. += "<span class='notice'>It was bitten multiple times!</span>"
+			. += span_notice("It was bitten multiple times!")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/storage))
@@ -270,7 +270,7 @@
 			return
 
 		if(package || canned)
-			to_chat(user, "<span class='warning'>You cannot stuff anything into \the [src] without opening it first.</span>")
+			to_chat(user, span_warning("You cannot stuff anything into \the [src] without opening it first."))
 			return
 
 		var/obj/item/holder/H = W
@@ -287,8 +287,8 @@
 
 		food_inserted_micros += M
 
-		to_chat(user, "<span class='warning'>You stuff [M] into \the [src].</span>")
-		to_chat(M, "<span class='warning'>[user] stuffs you into \the [src].</span>")
+		to_chat(user, span_warning("You stuff [M] into \the [src]."))
+		to_chat(M, span_warning("[user] stuffs you into \the [src]."))
 		return
 
 	if (is_sliceable())
@@ -301,10 +301,10 @@
 				return
 
 			if(tgui_alert(user,"You can't slice \the [src] here. Would you like to hide \the [W] inside it instead?","No Cutting Surface!",list("Yes","No")) != "Yes")
-				to_chat(user, "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>")
+				to_chat(user, span_warning("You cannot slice \the [src] here! You need a table or at least a tray to do it."))
 				return
 			else
-				to_chat(user, "<span class='warning'>You slip \the [W] inside \the [src].</span>")
+				to_chat(user, span_warning("You slip \the [W] inside \the [src]."))
 				user.drop_from_inventory(W, src)
 				add_fingerprint(user)
 				contents += W
@@ -312,15 +312,15 @@
 
 		if (has_edge(W))
 			if (!can_slice_here)
-				to_chat(user, "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>")
+				to_chat(user, span_warning("You cannot slice \the [src] here! You need a table or at least a tray to do it."))
 				return
 
 			var/slices_lost = 0
 			if (W.w_class > 3)
-				user.visible_message("<span class='notice'>\The [user] crudely slices \the [src] with [W]!</span>", "<span class='notice'>You crudely slice \the [src] with your [W]!</span>")
+				user.visible_message(span_notice("\The [user] crudely slices \the [src] with [W]!"), span_notice("You crudely slice \the [src] with your [W]!"))
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
-				user.visible_message("<b>\The [user]</b> slices \the [src]!", "<span class='notice'>You slice \the [src]!</span>")
+				user.visible_message("<b>\The [user]</b> slices \the [src]!", span_notice("You slice \the [src]!"))
 
 			var/reagents_per_slice = reagents.total_volume/slices_num
 			for(var/i=1 to (slices_num-slices_lost))
@@ -347,7 +347,7 @@
 
 		food_inserted_micros += M
 
-		to_chat(user, "<span class='warning'>You climb into \the [src].</span>")
+		to_chat(user, span_warning("You climb into \the [src]."))
 		return
 
 	return ..()
@@ -367,7 +367,7 @@
 
 /obj/item/reagent_containers/food/snacks/proc/unpackage(mob/user)
 	package = FALSE
-	to_chat(user, "<span class='notice'>You unwrap [src].</span>")
+	to_chat(user, span_notice("You unwrap [src]."))
 	playsound(user,opening_sound, 15, 1)
 	if(package_trash)
 		var/obj/item/T = new package_trash
@@ -379,7 +379,7 @@
 
 /obj/item/reagent_containers/food/snacks/proc/uncan(mob/user)
 	canned = FALSE
-	to_chat(user, "<span class='notice'>You unseal \the [src] with a crack of metal.</span>")
+	to_chat(user, span_notice("You unseal \the [src] with a crack of metal."))
 	playsound(loc,opening_sound, rand(10,50), 1)
 	if(canned_open_state)
 		icon_state = canned_open_state
@@ -1219,10 +1219,10 @@
 
 /obj/item/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
 	if(has_been_heated)
-		to_chat(user, "<span class='notice'>The heating chemicals have already been spent.</span>")
+		to_chat(user, span_notice("The heating chemicals have already been spent."))
 		return
 	has_been_heated = 1
-	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up. Now just to wait for it to be ready.")
+	user.visible_message(span_notice("[user] crushes \the [src] package."), "You crush \the [src] package and feel a comfortable heat build up. Now just to wait for it to be ready.")
 	spawn(200)
 		if(!QDELETED(src))
 			if(src.loc == user)
@@ -1410,7 +1410,7 @@
 /obj/item/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
 	. = ..()
 	new/obj/effect/decal/cleanable/pie_smudge(src.loc)
-	src.visible_message("<span class='danger'>\The [src.name] splats.</span>","<span class='danger'>You hear a splat.</span>")
+	src.visible_message(span_danger("\The [src.name] splats."),span_danger("You hear a splat."))
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/berryclafoutis
@@ -1885,7 +1885,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.visible_message("<span class='warning'>A screeching creature bursts out of [M]'s chest!</span>")
+		H.visible_message(span_warning("A screeching creature bursts out of [M]'s chest!"))
 		var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
 		organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
 	Expand()
@@ -3854,7 +3854,7 @@
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
-		to_chat(user, "<span class='warning'>You take \the [src.pizza] out of \the [src].</span>")
+		to_chat(user, span_warning("You take \the [src.pizza] out of \the [src]."))
 		src.pizza = null
 		update_icon()
 		return
@@ -3868,7 +3868,7 @@
 		boxes -= box
 
 		user.put_in_hands( box )
-		to_chat(user, "<span class='warning'>You remove the topmost [src] from your hand.</span>")
+		to_chat(user, span_warning("You remove the topmost [src] from your hand."))
 		box.update_icon()
 		update_icon()
 		return
@@ -3907,11 +3907,11 @@
 				box.update_icon()
 				update_icon()
 
-				to_chat(user, "<span class='warning'>You put \the [box] ontop of \the [src]!</span>")
+				to_chat(user, span_warning("You put \the [box] ontop of \the [src]!"))
 			else
-				to_chat(user, "<span class='warning'>The stack is too high!</span>")
+				to_chat(user, span_warning("The stack is too high!"))
 		else
-			to_chat(user, "<span class='warning'>Close \the [box] first!</span>")
+			to_chat(user, span_warning("Close \the [box] first!"))
 
 		return
 
@@ -3924,9 +3924,9 @@
 
 			update_icon()
 
-			to_chat(user, "<span class='warning'>You put \the [I] in \the [src]!</span>")
+			to_chat(user, span_warning("You put \the [I] in \the [src]!"))
 		else
-			to_chat(user, "<span class='warning'>You try to push \the [I] through the lid but it doesn't work!</span>")
+			to_chat(user, span_warning("You try to push \the [I] through the lid but it doesn't work!"))
 		return
 
 	if( istype(I, /obj/item/pen/) )
@@ -4185,11 +4185,11 @@
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/W, mob/user)
 	if(seed && seed.kitchen_tag && seed.kitchen_tag == "potato" && istype(W,/obj/item/material/knife))
 		new /obj/item/reagent_containers/food/snacks/rawsticks(get_turf(src))
-		to_chat(user, "<span class='notice'>You cut the potato.</span>")
+		to_chat(user, span_notice("You cut the potato."))
 		qdel(src)
 	else if(seed && seed.kitchen_tag && seed.kitchen_tag == "sunflower" && istype(W,/obj/item/material/knife))
 		new /obj/item/reagent_containers/food/snacks/rawsunflower(get_turf(src))
-		to_chat(user, "<span class='notice'>You remove the seeds from the flower, slightly damaging them.</span>")
+		to_chat(user, span_notice("You remove the seeds from the flower, slightly damaging them."))
 		qdel(src)
 	else
 		. = ..()
@@ -4639,7 +4639,7 @@
 		return ..()
 	if(!(proximity && O.is_open_container()))
 		return
-	to_chat(user, "<span class='notice'>You tear \the [src]'s sac open, pouring it into \the [O].</span>")
+	to_chat(user, span_notice("You tear \the [src]'s sac open, pouring it into \the [O]."))
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
 	qdel(src)
@@ -4764,7 +4764,7 @@
 		return 0
 
 	if (C.volume < req)
-		to_chat(user, "<span class='warning'>There's not enough [C.name] to coat the [src]!</span>")
+		to_chat(user, span_warning("There's not enough [C.name] to coat the [src]!"))
 		return 0
 
 	var/id = C.id
@@ -4841,7 +4841,7 @@
 
 /obj/item/reagent_containers/food/snacks/proc/on_consume(var/mob/eater, var/mob/feeder = null)
 	if(!reagents.total_volume)
-		eater.visible_message("<span class='notice'>[eater] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
+		eater.visible_message(span_notice("[eater] finishes eating \the [src]."),span_notice("You finish eating \the [src]."))
 
 		if (!feeder)
 			feeder = eater

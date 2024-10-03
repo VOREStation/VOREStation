@@ -39,15 +39,15 @@
 				continue
 			full++
 		if(full >= 2)
-			to_chat(user, "<span class='warning'>You can't fit anyone else into \the [src]!</span>")
+			to_chat(user, span_warning("You can't fit anyone else into \the [src]!"))
 		else
 			var/obj/item/holder/micro/holder = I
 			if(holder.held_mob && (holder.held_mob in holder))
 				var/mob/living/M = holder.held_mob
 				holder.dump_mob()
-				to_chat(M, "<span class='warning'>[user] stuffs you into \the [src]!</span>")
+				to_chat(M, span_warning("[user] stuffs you into \the [src]!"))
 				M.forceMove(src)
-				to_chat(user, "<span class='notice'>You stuff \the [M] into \the [src]!</span>")
+				to_chat(user, span_notice("You stuff \the [M] into \the [src]!"))
 	else
 		..()
 
@@ -56,8 +56,8 @@
 		if(istype(M,/mob/living/voice)) //Don't knock voices out!
 			continue
 		M.forceMove(get_turf(user))
-		to_chat(M, "<span class='warning'>[user] shakes you out of \the [src]!</span>")
-		to_chat(user, "<span class='notice'>You shake [M] out of \the [src]!</span>")
+		to_chat(M, span_warning("[user] shakes you out of \the [src]!"))
+		to_chat(user, span_notice("You shake [M] out of \the [src]!"))
 
 	..()
 
@@ -66,9 +66,9 @@
 	if(istype(micro,/mob/living/voice)) //Voices shouldn't be able to resist but we have this here just in case.
 		return
 	if(!istype(macro))
-		to_chat(micro, "<span class='notice'>You start to climb out of [src]!</span>")
+		to_chat(micro, span_notice("You start to climb out of [src]!"))
 		if(do_after(micro, 50, src))
-			to_chat(micro, "<span class='notice'>You climb out of [src]!</span>")
+			to_chat(micro, span_notice("You climb out of [src]!"))
 			micro.forceMove(loc)
 		return
 
@@ -80,15 +80,15 @@
 		escape_message_micro = "You start to climb around the larger creature's feet and ankles!"
 		escape_time = 100
 
-	to_chat(micro, "<span class='notice'>[escape_message_micro]</span>")
-	to_chat(macro, "<span class='danger'>[escape_message_macro]</span>")
+	to_chat(micro, span_notice("[escape_message_micro]"))
+	to_chat(macro, span_danger("[escape_message_macro]"))
 	if(!do_after(micro, escape_time, macro))
-		to_chat(micro, "<span class='danger'>You're pinned underfoot!</span>")
-		to_chat(macro, "<span class='danger'>You pin the escapee underfoot!</span>")
+		to_chat(micro, span_danger("You're pinned underfoot!"))
+		to_chat(macro, span_danger("You pin the escapee underfoot!"))
 		return
 
-	to_chat(micro, "<span class='notice'>You manage to escape [src]!</span>")
-	to_chat(macro, "<span class='danger'>Someone has climbed out of your [src]!</span>")
+	to_chat(micro, span_notice("You manage to escape [src]!"))
+	to_chat(macro, span_danger("Someone has climbed out of your [src]!"))
 	micro.forceMove(macro.loc)
 
 /obj/item/clothing/gloves

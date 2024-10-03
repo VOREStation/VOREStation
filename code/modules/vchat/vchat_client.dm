@@ -212,7 +212,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		too_many_topics++
 		if(too_many_topics >= topic_spam_limit)
 			log_and_message_admins("Kicking [key_name(owner)] - VChat Topic() spam")
-			to_chat(owner,"<span class='danger'>You have been kicked due to VChat sending too many messages to the server. Try reconnecting.</span>")
+			to_chat(owner,span_danger("You have been kicked due to VChat sending too many messages to the server. Try reconnecting."))
 			qdel(owner)
 			qdel(src)
 			return
@@ -390,17 +390,17 @@ var/to_chat_src
 	set category = "OOC"
 
 	if(chatOutput.broken)
-		to_chat(src, "<span class='warning'>Error: VChat isn't processing your messages!</span>")
+		to_chat(src, span_warning("Error: VChat isn't processing your messages!"))
 		return
 
 	var/list/results = vchat_get_messages(ckey)
 	if(!LAZYLEN(results))
-		to_chat(src, "<span class='warning'>Error: No messages found! Please inform a dev if you do have messages!</span>")
+		to_chat(src, span_warning("Error: No messages found! Please inform a dev if you do have messages!"))
 		return
 
 	var/o_file = "data/chatlog_tmp/[ckey]_chat_log"
 	if(fexists(o_file) && !fdel(o_file))
-		to_chat(src, "<span class='warning'>Error: Your chat log is already being prepared. Please wait until it's been downloaded before trying to export it again.</span>")
+		to_chat(src, span_warning("Error: Your chat log is already being prepared. Please wait until it's been downloaded before trying to export it again."))
 		return
 
 	// Write the CSS file to the log

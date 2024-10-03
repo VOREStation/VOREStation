@@ -18,23 +18,23 @@
 			if(C.mob.real_name)
 				switch(C.mob.stat)
 					if(UNCONSCIOUS)
-						entry += "<span class='darkgray'><b>Unconscious</b></span>" // these are literally all spans so I can apply .inverted to them because black on dark grey isn't legible
+						entry += span_darkgray("<b>Unconscious</b>") // these are literally all spans so I can apply .inverted to them because black on dark grey isn't legible
 
 					if(DEAD)
 						if(isobserver(C.mob))
 							var/mob/observer/dead/O = C.mob
 							if(O.started_as_observer)
-								entry += "<span class='gray'>Observing</span>"
+								entry += span_gray("Observing")
 							else
-								entry += "<span class='black'><b>Died</b></span>"
+								entry += span_black("<b>Died</b>")
 
 					else
-						entry += "<span class='green'>Playing</span>"
+						entry += span_green("Playing")
 
 				entry += " as [C.mob.real_name]"
 
 			else if(isnewplayer(C.mob))
-				entry += "<span class='blue'><b>In lobby</b></span>"
+				entry += span_blue("<b>In lobby</b>")
 
 			entry += "</td><td>"
 
@@ -45,9 +45,9 @@
 				age = 0
 
 			if(age <= 1)
-				age = "<span class='red'><b>[age]</b></span>"
+				age = span_red("<b>[age]</b>")
 			else if(age < 10)
-				age = "<span class='orange'><b>[age]</b></span>"
+				age = span_orange("<b>[age]</b>")
 
 			entry += "Age: [age]"
 			entry += "</td><td>"
@@ -93,5 +93,5 @@
 		msg += "[line]"
 	msg += "</table>"
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	msg = "<span class='filter_notice'>" + msg + "</span>"
+	msg = span_filter_notice("" + msg + "")
 	to_chat(src, msg)

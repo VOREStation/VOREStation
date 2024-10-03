@@ -102,7 +102,7 @@
 	item_state_slots[slot_w_uniform_str] = unrolled ? "[worn_state]_r" : initial(worn_state)
 	var/mob/living/carbon/human/H = loc
 	H.update_inv_w_uniform(1)
-	to_chat(H, "<span class='notice'>You roll the sleeves of your shirt [unrolled ? "up" : "down"]</span>")
+	to_chat(H, span_notice("You roll the sleeves of your shirt [unrolled ? "up" : "down"]"))
 */
 
 /obj/item/clothing/under/det/grey

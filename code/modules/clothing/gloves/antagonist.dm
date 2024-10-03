@@ -25,7 +25,7 @@
 		return 0
 
 	if(user.a_intent != I_HURT && (turn(target.dir, 180) == get_dir(user, target)))
-		to_chat(target, "<span class='warning'>[user] rifles in your pockets!</span>")
+		to_chat(target, span_warning("[user] rifles in your pockets!"))
 
 	if(user.a_intent == I_HELP)
 		if(istype(target.back,/obj/item/storage) && do_after(user, 3 SECONDS, target))
@@ -127,7 +127,7 @@
 
 					do_defib(H)
 
-			to_chat(L, "<span class='warning'>You feel a powerful shock!</span>")
+			to_chat(L, span_warning("You feel a powerful shock!"))
 			if(!.)
 				playsound(L, 'sound/effects/sparks7.ogg', 40, 1)
 				L.electrocute_act(battery.percent() * 0.25, src)

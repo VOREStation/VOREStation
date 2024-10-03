@@ -23,7 +23,7 @@
 
 	for(var/mob/M in T)
 		if(istype(M,/mob/living/simple_mob/animal/passive/lizard) || istype(M,/mob/living/simple_mob/animal/passive/mouse))
-			src.loc.visible_message("<span class='danger'>[src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.</span>","<span class='danger'>It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.</span>")
+			src.loc.visible_message(span_danger("[src.loc] sucks [M] into its decompiler. There's a horrible crunching noise."),span_danger("It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises."))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)
 			if(wood)
@@ -39,15 +39,15 @@
 			if(!istype(D))
 				return
 
-			to_chat(D, "<span class='danger'>You begin decompiling [M].</span>")
+			to_chat(D, span_danger("You begin decompiling [M]."))
 
 			if(!do_after(D,50))
-				to_chat(D, "<span class='danger'>You need to remain still while decompiling such a large object.</span>")
+				to_chat(D, span_danger("You need to remain still while decompiling such a large object."))
 				return
 
 			if(!M || !D) return
 
-			to_chat(D, "<span class='danger'>You carefully and thoroughly decompile [M], storing as much of its resources as you can within yourself.</span>")
+			to_chat(D, span_danger("You carefully and thoroughly decompile [M], storing as much of its resources as you can within yourself."))
 			qdel(M)
 			new/obj/effect/decal/cleanable/blood/oil(get_turf(src))
 
@@ -100,16 +100,16 @@
 	if(istype(T,/turf/simulated/wall) && (last_field < world.time + field_cooldown))
 		if(!(locate(/obj/effect/temporary_effect/pulse/disintegrate)))
 			last_field = world.time
-			to_chat(user, "<span class='alien'>You deploy an energetic field through \the [T], beginning its deconstruction.</span>")
-			to_chat(user, "<span class='warning'>You should stand back.</span>")
+			to_chat(user, span_alien("You deploy an energetic field through \the [T], beginning its deconstruction."))
+			to_chat(user, span_warning("You should stand back."))
 			new /obj/effect/temporary_effect/pulse/disintegrate(T)
 		else
-			to_chat(user, "<span class='notice'>There is already a disintigration field affecting \the [T].</span>")
+			to_chat(user, span_notice("There is already a disintigration field affecting \the [T]."))
 
 	if(grabbed_something)
-		to_chat(user, "<span class='notice'>You deploy your decompiler and clear out the contents of \the [T].</span>")
+		to_chat(user, span_notice("You deploy your decompiler and clear out the contents of \the [T]."))
 	else
-		to_chat(user, "<span class='danger'>Nothing on \the [T] is useful to you.</span>")
+		to_chat(user, span_danger("Nothing on \the [T] is useful to you."))
 	return
 
 /obj/effect/temporary_effect/pulse/disintegrate
@@ -124,7 +124,7 @@
 	pulse_delay = 2 SECONDS
 
 /obj/effect/temporary_effect/pulse/disintegrate/emp_act()
-	visible_message("<span class='warning'>\The [src] flickers, before dispersing energetically.</span>")
+	visible_message(span_warning("\The [src] flickers, before dispersing energetically."))
 	qdel(src)
 
 /obj/effect/temporary_effect/pulse/disintegrate/on_pulse()

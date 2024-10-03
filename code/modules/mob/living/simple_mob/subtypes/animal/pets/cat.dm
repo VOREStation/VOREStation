@@ -258,13 +258,13 @@ var/list/_cat_default_emotes = list(
 /mob/living/simple_mob/animal/passive/cat/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/flashlight/pen))
 		if(named)
-			to_chat(user, "<span class='notice'>\The [name] already has a name!</span>")
+			to_chat(user, span_notice("\The [name] already has a name!"))
 		else
 			var/tmp_name = sanitizeSafe(tgui_input_text(user, "Give \the [name] a name", "Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if(length(tmp_name) > 50)
-				to_chat(user, "<span class='notice'>The name can be at most 50 characters long.</span>")
+				to_chat(user, span_notice("The name can be at most 50 characters long."))
 			else
-				to_chat(user, "<span class='notice'>You name \the [name]. Meow!</span>")
+				to_chat(user, span_notice("You name \the [name]. Meow!"))
 				name = tmp_name
 				named = TRUE
 	else
@@ -279,7 +279,7 @@ var/list/_cat_default_emotes = list(
 
 /obj/item/cat_box/attack_self(var/mob/user)
 	var/turf/catturf = get_turf(src)
-	to_chat(user, "<span class='notice'>You peek into \the [name]-- and a cat jumps out!</span>")
+	to_chat(user, span_notice("You peek into \the [name]-- and a cat jumps out!"))
 	new cattype(catturf)
 	new /obj/item/stack/material/cardboard(catturf) //if i fits i sits
 	qdel(src)

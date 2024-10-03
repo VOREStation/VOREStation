@@ -19,8 +19,8 @@
 		var/mob/living/carbon/C = src
 		C.seedarkness = !C.seedarkness
 		if(C.seedarkness)
-			to_chat(C, "<span class='notice'>We allow the shadows to return.</span>")
+			to_chat(C, span_notice("We allow the shadows to return."))
 		else
-			to_chat(C, "<span class='notice'>We no longer need light to see.</span>")
+			to_chat(C, span_notice("We no longer need light to see."))
 
 	return 0

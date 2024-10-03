@@ -49,13 +49,13 @@
 	name = "dufflebag of holding"
 	var/tilted = 0
 	icon_state = "holdingduffle"
-	
+
 /obj/item/storage/backpack/holding/duffle/Initialize()
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"
 		tilted = 1
-	
+
 /obj/item/storage/backpack/holding/duffle/verb/tilt()
 	set name = "Adjust Duffelbag Angle"
 	set desc = "Adjust the angle of your dufflebag for cosmetic effect"
@@ -76,7 +76,7 @@
 
 /obj/item/storage/backpack/holding/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/storage/backpack/holding))
-		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
+		to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
 		qdel(W)
 		return
 	. = ..()
@@ -175,13 +175,13 @@
 	var/tilted = 0
 	var/can_tilt = 1
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
-	
+
 /obj/item/storage/backpack/dufflebag/Initialize()
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"
 		tilted = 1
-	
+
 /obj/item/storage/backpack/dufflebag/verb/tilt()
 	set name = "Adjust Duffelbag Angle"
 	set desc = "Adjust the angle of your dufflebag for cosmetic effect"
@@ -514,34 +514,34 @@
 	if(H.stat)
 		return
 	if(H.back == src)
-		to_chat(H, "<span class='warning'>How do you expect to work on \the [src] while it's on your back?</span>")
+		to_chat(H, span_warning("How do you expect to work on \the [src] while it's on your back?"))
 		return
 
 	if(!parachute)	//This packs the parachute
 		H.visible_message("<b>\The [H]</b> starts to pack \the [src]!", \
-					"<span class='notice'>You start to pack \the [src]!</span>", \
+					span_notice("You start to pack \the [src]!"), \
 					"You hear the shuffling of cloth.")
 		if(do_after(H, 50))
 			H.visible_message("<b>\The [H]</b> finishes packing \the [src]!", \
-					"<span class='notice'>You finish packing \the [src]!</span>", \
+					span_notice("You finish packing \the [src]!"), \
 					"You hear the shuffling of cloth.")
 			parachute = TRUE
 		else
 			H.visible_message("<b>\The [src]</b> gives up on packing \the [src]!", \
-					"<span class='notice'>You give up on packing \the [src]!</span>")
+					span_notice("You give up on packing \the [src]!"))
 			return
 	else			//This unpacks the parachute
 		H.visible_message("<b>\The [src]</b> starts to unpack \the [src]!", \
-					"<span class='notice'>You start to unpack \the [src]!</span>", \
+					span_notice("You start to unpack \the [src]!"), \
 					"You hear the shuffling of cloth.")
 		if(do_after(H, 25))
 			H.visible_message("<b>\The [src]</b> finishes unpacking \the [src]!", \
-					"<span class='notice'>You finish unpacking \the [src]!</span>", \
+					span_notice("You finish unpacking \the [src]!"), \
 					"You hear the shuffling of cloth.")
 			parachute = FALSE
 		else
 			H.visible_message("<b>\The [src]</b> decides not to unpack \the [src]!", \
-					"<span class='notice'>You decide not to unpack \the [src]!</span>")
+					span_notice("You decide not to unpack \the [src]!"))
 	return
 
 /obj/item/storage/backpack/satchel/ranger

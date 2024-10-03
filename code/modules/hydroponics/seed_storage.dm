@@ -400,7 +400,7 @@
 		if (loaded)
 			user.visible_message("<span class ='filter_notice'>[user] puts the seeds from \the [O.name] into \the [src].</span>", "<span class ='filter_notice'>You put the seeds from \the [O.name] into \the [src].</span>")
 		else
-			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
+			to_chat(user, span_notice("There are no seeds in \the [O.name]."))
 		return
 	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 50, 1)
@@ -420,16 +420,16 @@
 	if(!src.emagged)
 		emagged = 1
 		if(lockdown)
-			to_chat(user, "<span class='notice'>\The [src]'s control panel thunks, as its cover retracts.</span>")
+			to_chat(user, span_notice("\The [src]'s control panel thunks, as its cover retracts."))
 			lockdown = 0
 		if(LAZYLEN(req_access) || LAZYLEN(req_one_access))
 			req_access = list()
 			req_one_access = list()
-			to_chat(user, "<span class='warning'>\The [src]'s access mechanism shorts out.</span>")
+			to_chat(user, span_warning("\The [src]'s access mechanism shorts out."))
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
-			visible_message("<span class='warning'>\The [src]'s panel sparks!</span>")
+			visible_message(span_warning("\The [src]'s panel sparks!"))
 			qdel(sparks)
 		return 1
 

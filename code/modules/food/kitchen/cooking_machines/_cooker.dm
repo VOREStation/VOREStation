@@ -76,12 +76,12 @@
 	if(.)	//no need to duplicate adjacency check
 		if(!stat)
 			if (temperature < min_temp)
-				. += "<span class='warning'>\The [src] is still heating up and is too cold to cook anything yet.</span>"
+				. += span_warning("\The [src] is still heating up and is too cold to cook anything yet.")
 			else
-				. += "<span class='notice'>It is running at [round(get_efficiency(), 0.1)]% efficiency!</span>"
+				. += span_notice("It is running at [round(get_efficiency(), 0.1)]% efficiency!")
 			. += "Temperature: [round(temperature - T0C, 0.1)]C / [round(optimal_temp - T0C, 0.1)]C"
 		else
-			. += "<span class='warning'>It is switched off.</span>"
+			. += span_warning("It is switched off.")
 
 /obj/machinery/appliance/cooker/list_contents(var/mob/user)
 	if (cooking_objs.len)
@@ -94,7 +94,7 @@
 				string += "- [CI.container.label(num)], [report_progress(CI)]</br>"
 		to_chat(user, string)
 	else
-		to_chat(user, "<span class='notice'>It's empty.</span>")
+		to_chat(user, span_notice("It's empty."))
 
 /obj/machinery/appliance/cooker/proc/get_efficiency()
 	// to_world("Our cooking_power is [cooking_power] and our efficiency is [(cooking_power / optimal_power) * 100].") // Debug lines, uncomment if you need to test.
@@ -199,5 +199,5 @@
 /obj/machinery/appliance/cooker/add_content(var/obj/item/I, var/mob/user)
 	var/datum/cooking_item/CI = ..()
 	if(istype(CI) && CI.combine_target)
-		to_chat(user, "<span class='filter_notice'>\The [I] will be used to make a [selected_option]. Output selection is returned to default for future items.</span>")
+		to_chat(user, span_filter_notice("\The [I] will be used to make a [selected_option]. Output selection is returned to default for future items."))
 		selected_option = null

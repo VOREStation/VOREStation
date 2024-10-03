@@ -176,7 +176,7 @@
 	if(!istype(victim))
 		return
 
-	// user.visible_message("<span class='danger'>\The [user] starts pushing \the [victim] into \the [src]!</span>")
+	// user.visible_message(span_danger("\The [user] starts pushing \the [victim] into \the [src]!"))
 
 	//Removed delay on this action in favour of a cooldown after it
 	//If you can lure someone close to the fryer and grab them then you deserve success.
@@ -193,7 +193,7 @@
 		return
 
 	if(!victim || !victim.Adjacent(user))
-		to_chat(user, "<span class='danger'>Your victim slipped free!</span>")
+		to_chat(user, span_danger("Your victim slipped free!"))
 		cooking = FALSE
 		icon_state = off_icon
 		fry_loop.stop(src)
@@ -214,7 +214,7 @@
 		else if(E.robotic >= ORGAN_ROBOT)
 			nopain = 1
 
-	user.visible_message("<span class='danger'>\The [user] shoves \the [victim][E ? "'s [E.name]" : ""] into \the [src]!</span>")
+	user.visible_message(span_danger("\The [user] shoves \the [victim][E ? "'s [E.name]" : ""] into \the [src]!"))
 	if (damage > 0)
 		if(E)
 			if(E.children && E.children.len)
@@ -228,10 +228,10 @@
 			victim.apply_damage(damage, BURN, user.zone_sel.selecting)
 
 		if(!nopain)
-			to_chat(victim, "<span class='danger'>Agony consumes you as searing hot oil scorches your [E ? E.name : "flesh"] horribly!</span>")
+			to_chat(victim, span_danger("Agony consumes you as searing hot oil scorches your [E ? E.name : "flesh"] horribly!"))
 			victim.emote("scream")
 		else
-			to_chat(victim, "<span class='danger'>Searing hot oil scorches your [E ? E.name : "flesh"]!</span>")
+			to_chat(victim, span_danger("Searing hot oil scorches your [E ? E.name : "flesh"]!"))
 
 		user.attack_log += text("\[[time_stamp()]\] [span_red("Has [cook_type] \the [victim] ([victim.ckey]) in \a [src]")]")
 		victim.attack_log += text("\[[time_stamp()]\] [span_orange("Has been [cook_type] in \a [src] by [user.name] ([user.ckey])")]")
@@ -247,7 +247,7 @@
 		if (I.reagents.total_volume <= 0 && oil)
 			//Its empty, handle scooping some hot oil out of the fryer
 			oil.trans_to(I, I.reagents.maximum_volume)
-			user.visible_message("<span class='filter_notice'>[user] scoops some oil out of \the [src].</span>", span_notice("You scoop some oil out of \the [src]."))
+			user.visible_message(span_filter_notice("[user] scoops some oil out of \the [src]."), span_notice("You scoop some oil out of \the [src]."))
 			return 1
 		else
 	//It contains stuff, handle pouring any oil into the fryer
@@ -263,7 +263,7 @@
 					I.reagents.remove_reagent(R.id, delta)
 					amount += delta
 			if (amount > 0)
-				user.visible_message("<span class='filter_notice'>[user] pours some oil into \the [src].</span>", "<span class='notice'>You pour [amount]u of oil into \the [src].</span>", "<span class='notice'>You hear something viscous being poured into a metal container.</span>")
+				user.visible_message(span_filter_notice("[user] pours some oil into \the [src]."), span_notice("You pour [amount]u of oil into \the [src]."), span_notice("You hear something viscous being poured into a metal container."))
 				return 1
 	//If neither of the above returned, then call parent as normal
 	..()

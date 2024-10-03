@@ -170,7 +170,7 @@
 		L.Paralyse(10)
 		L.forceMove(get_turf(pick(teleport_to)))
 		L << 'sound/effects/bamf.ogg'
-		to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+		to_chat(L,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 
 /area/tether_away/alienship
 	name = "\improper Away Mission - Unknown Vessel"

@@ -68,7 +68,7 @@
 	if(!emagged)
 		emagged = 1
 		if(user)
-			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
+			to_chat(user, span_notice("The [src] buzzes and beeps."))
 			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		return 1
 
@@ -208,12 +208,12 @@
 		busy = 1
 		update_icons()
 		if(F.flooring)
-			visible_message("<span class='warning'>\The [src] begins to tear the floor tile from the floor!</span>")
+			visible_message(span_warning("\The [src] begins to tear the floor tile from the floor!"))
 			if(do_after(src, 50))
 				F.break_tile_to_plating()
 				addTiles(1)
 		else
-			visible_message("<span class='danger'>\The [src] begins to tear through the floor!</span>")
+			visible_message(span_danger("\The [src] begins to tear through the floor!"))
 			if(do_after(src, 150)) // Extra time because this can and will kill.
 				F.ReplaceWithLattice()
 				addTiles(1)
@@ -289,7 +289,7 @@
 
 /mob/living/bot/floorbot/explode()
 	turn_off()
-	visible_message("<span class='danger'>\The [src] blows apart!</span>")
+	visible_message(span_danger("\The [src] blows apart!"))
 	playsound(src, "sparks", 50, 1)
 	var/turf/Tsec = get_turf(src)
 
@@ -345,18 +345,18 @@
 		..()
 		return
 	if(contents.len >= 1)
-		to_chat(user, "<span class='notice'>They wont fit in as there is already stuff inside.</span>")
+		to_chat(user, span_notice("They wont fit in as there is already stuff inside."))
 		return
 	if(user.s_active)
 		user.s_active.close(user)
 	if(T.use(10))
 		var/obj/item/toolbox_tiles/B = new /obj/item/toolbox_tiles
 		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
+		to_chat(user, span_notice("You add the tiles into the empty toolbox. They protrude from the top."))
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
-		to_chat(user, "<span class='warning'>You need 10 floor tiles for a floorbot.</span>")
+		to_chat(user, span_warning("You need 10 floor tiles for a floorbot."))
 	return
 
 /obj/item/toolbox_tiles
@@ -378,7 +378,7 @@
 		var/obj/item/toolbox_tiles_sensor/B = new /obj/item/toolbox_tiles_sensor()
 		B.created_name = created_name
 		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You add the sensor to the toolbox and tiles!</span>")
+		to_chat(user, span_notice("You add the sensor to the toolbox and tiles!"))
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if (istype(W, /obj/item/pen))
@@ -408,7 +408,7 @@
 		var/turf/T = get_turf(user.loc)
 		var/mob/living/bot/floorbot/A = new /mob/living/bot/floorbot(T)
 		A.name = created_name
-		to_chat(user, "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>")
+		to_chat(user, span_notice("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if(istype(W, /obj/item/pen))

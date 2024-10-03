@@ -9,11 +9,11 @@
 				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))
 				src << link(output)
 			else
-				to_chat(src, "<span class='warning'> The wiki search URL is not set in the server configuration.</span>")
+				to_chat(src, span_warning(" The wiki search URL is not set in the server configuration."))
 		else
 			src << link(config.wikiurl)
 	else
-		to_chat(src, "<span class='warning'>The wiki URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The wiki URL is not set in the server configuration."))
 		return
 
 /client/verb/forum()
@@ -25,7 +25,7 @@
 			return
 		src << link(config.forumurl)
 	else
-		to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The forum URL is not set in the server configuration."))
 		return
 
 /client/verb/rules()
@@ -38,7 +38,7 @@
 			return
 		src << link(config.rulesurl)
 	else
-		to_chat(src, "<span class='danger'>The rules URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The rules URL is not set in the server configuration."))
 	return
 
 /client/verb/map()
@@ -51,7 +51,7 @@
 			return
 		src << link(config.mapurl)
 	else
-		to_chat(src, "<span class='danger'>The map URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The map URL is not set in the server configuration."))
 	return
 
 /client/verb/github()
@@ -64,7 +64,7 @@
 			return
 		src << link(config.githuburl)
 	else
-		to_chat(src, "<span class='danger'>The GitHub URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The GitHub URL is not set in the server configuration."))
 	return
 
 /client/verb/discord()
@@ -77,7 +77,7 @@
 			return
 		src << link(config.discordurl)
 	else
-		to_chat(src, "<span class='danger'>The Discord URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The Discord URL is not set in the server configuration."))
 	return
 
 /client/verb/patreon()
@@ -90,7 +90,7 @@
 			return
 		src << link(config.patreonurl)
 	else
-		to_chat(src, "<span class='danger'>The Patreon URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The Patreon URL is not set in the server configuration."))
 	return
 
 /client/verb/hotkeys_help()

@@ -169,8 +169,8 @@
 	if(!target)
 		if(device == iastamp)
 			device = deniedstamp
-			to_chat(holder.wearer, "<span class='notice'>Switched to denied stamp.</span>")
+			to_chat(holder.wearer, span_notice("Switched to denied stamp."))
 		else if(device == deniedstamp)
 			device = iastamp
-			to_chat(holder.wearer, "<span class='notice'>Switched to internal affairs stamp.</span>")
+			to_chat(holder.wearer, span_notice("Switched to internal affairs stamp."))
 		return 1

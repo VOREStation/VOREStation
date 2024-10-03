@@ -47,9 +47,9 @@
 /obj/machinery/power/breakerbox/examine(mob/user)
 	. = ..()
 	if(on)
-		. += "<span class='notice'>It seems to be online.</span>"
+		. += span_notice("It seems to be online.")
 	else
-		. += "<span class='warning'>It seems to be offline.</span>"
+		. += span_warning("It seems to be offline.")
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
@@ -87,8 +87,8 @@
 	if(do_after(user, 50))
 		set_state(!on)
 		user.visible_message(\
-		"<span class='notice'>[user.name] [on ? "enabled" : "disabled"] the breaker box!</span>",\
-		"<span class='notice'>You [on ? "enabled" : "disabled"] the breaker box!</span>")
+		span_notice("[user.name] [on ? "enabled" : "disabled"] the breaker box!"),\
+		span_notice("You [on ? "enabled" : "disabled"] the breaker box!"))
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
@@ -100,7 +100,7 @@
 		newtag = sanitize(newtag,MAX_NAME_LEN)
 		if(newtag)
 			RCon_tag = newtag
-			to_chat(user, "<span class='notice'>You changed the RCON tag to: [newtag]</span>")
+			to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
 	if(on)
 		to_chat(user, span_red("Disable the breaker before performing maintenance."))
 		return

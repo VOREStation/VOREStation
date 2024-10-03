@@ -76,7 +76,7 @@ log transactions
 
 	//display a message to the user
 	var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
-	to_chat(user, "<span class='warning'>[icon2html(src, user.client)] The [src] beeps: \"[response]\"</span>")
+	to_chat(user, span_warning("[icon2html(src, user.client)] The [src] beeps: \"[response]\""))
 	return 1
 
 /obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
@@ -117,7 +117,7 @@ log transactions
 			T.time = stationtime2text()
 			authenticated_account.transaction_log.Add(T)
 
-			to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
+			to_chat(user, span_info("You insert [I] into [src]."))
 			src.attack_hand(user)
 			qdel(I)
 	else
@@ -125,7 +125,7 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/silicon))
-		to_chat (user, "<span class='warning'>A firewall prevents you from interfacing with this device!</span>")
+		to_chat (user, span_warning("A firewall prevents you from interfacing with this device!"))
 		return
 	if(get_dist(src,user) <= 1)
 
@@ -140,7 +140,7 @@ log transactions
 			dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 
 			if(ticks_left_locked_down > 0)
-				dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
+				dat += span_alert("Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.")
 			else if(authenticated_account)
 				if(authenticated_account.suspended)
 					dat += "<font color='red'><b>Access to this account has been suspended, and the funds within frozen.</b></font>"

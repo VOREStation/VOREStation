@@ -104,7 +104,7 @@
 	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
 		return FALSE
 	lights_glowing = !lights_glowing
-	to_chat(user, "<span class='notice'>You turn the [src]'s glow-fabric [lights_glowing ? "on" : "off"].</span>")
+	to_chat(user, span_notice("You turn the [src]'s glow-fabric [lights_glowing ? "on" : "off"]."))
 	update_icon()
 
 /obj/item/toy/plushie/borgplushie/drake/update_icon()
@@ -172,7 +172,7 @@
 /obj/item/toy/plushie/vox/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
-		src.visible_message("<span class='danger'>Skreee!</span>")
+		src.visible_message(span_danger("Skreee!"))
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
@@ -198,7 +198,7 @@
 		toasted = TRUE
 		icon = 'icons/obj/toy_vr.dmi'
 		icon_state = "toast"
-		to_chat(user, "<span class='notice'> You insert bread into the toaster. </span>")
+		to_chat(user, span_notice(" You insert bread into the toaster. "))
 		playsound(loc, 'sound/machines/ding.ogg', 50, 1)
 
 /obj/item/reagent_containers/food/snacks/tastybread/afterattack(atom/A, mob/user as mob, proximity)
@@ -206,12 +206,12 @@
 		toasted = TRUE
 		icon = 'icons/obj/toy_vr.dmi'
 		icon_state = "toast"
-		to_chat(user, "<span class='notice'> You insert bread into the toaster. </span>")
+		to_chat(user, span_notice(" You insert bread into the toaster. "))
 		playsound(loc, 'sound/machines/ding.ogg', 50, 1)
 
 /obj/item/toy/plushie/ipc/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/material/kitchen/utensil))
-		to_chat(user, "<span class='notice'> You insert the [I] into the toaster. </span>")
+		to_chat(user, span_notice(" You insert the [I] into the toaster. "))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
@@ -222,7 +222,7 @@
 /obj/item/toy/plushie/ipc/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/machines/ping.ogg', 10, 0)
-		src.visible_message("<span class='danger'>Ping!</span>")
+		src.visible_message(span_danger("Ping!"))
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
@@ -239,7 +239,7 @@
 /obj/item/toy/plushie/ipc/toaster/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/machines/ding.ogg', 10, 0)
-		src.visible_message("<span class='danger'>Ding!</span>")
+		src.visible_message(span_danger("Ding!"))
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
@@ -270,7 +270,7 @@
 	var/obj/item/card/id/id = I.GetID()
 	if(istype(id))
 		if(!cooldown)
-			user.visible_message("<span class='notice'>[user] swipes \the [I] against \the [src].</span>")
+			user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
 			atom_say(pick(responses))
 			playsound(user, 'sound/effects/whistle.ogg', 10, 0)
 			cooldown = 1
@@ -297,7 +297,7 @@
 /obj/item/toy/plushie/moth/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/moth/scream_moth.ogg', 10, 0)
-		src.visible_message("<span class='danger'>Aaaaaaa.</span>")
+		src.visible_message(span_danger("Aaaaaaa."))
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
@@ -342,7 +342,7 @@
 /obj/item/toy/plushie/ipc/toaster/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/weapons/slice.ogg', 10, 0)
-		src.visible_message("<span class='danger'>Stab!</span>")
+		src.visible_message(span_danger("Stab!"))
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 	return ..()
@@ -435,7 +435,7 @@
 
 /obj/item/toy/chewtoy/attack_self(mob/user)
 	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1)
-	user.visible_message("<span class='notice'><b>\The [user]</b> gnaws on [src]!</span>","<span class='notice'>You gnaw on [src]!</span>")
+	user.visible_message(span_notice("<b>\The [user]</b> gnaws on [src]!"),span_notice("You gnaw on [src]!"))
 
 /*
  * Cat toys
@@ -479,7 +479,7 @@
 	if(!cooldown)
 		playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 		flick("[initial(icon_state)]2", src)
-		user.visible_message("<span class='disarm'>[user] doesn't blind [M] with the toy flash!</span>")
+		user.visible_message(span_disarm("[user] doesn't blind [M] with the toy flash!"))
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 		return ..()
@@ -501,14 +501,14 @@
 /obj/item/toy/redbutton/attack_self(mob/user)
 	if(cooldown < world.time)
 		cooldown = (world.time + 300) // Sets cooldown at 30 seconds
-		user.visible_message("<span class='warning'>[user] presses the big red button.</span>", "<span class='notice'>You press the button, it plays a loud noise!</span>", "<span class='notice'>The button clicks loudly.</span>")
+		user.visible_message(span_warning("[user] presses the big red button."), span_notice("You press the button, it plays a loud noise!"), span_notice("The button clicks loudly."))
 		playsound(src, 'sound/effects/explosionfar.ogg', 50, 0, 0)
 		for(var/mob/M in range(10, src)) // Checks range
 			if(!M.stat && !istype(M, /mob/living/silicon/ai)) // Checks to make sure whoever's getting shaken is alive/not the AI
 				sleep(2) // Short delay to match up with the explosion sound
 				shake_camera(M, 2, 1)
 	else
-		to_chat(user, "<span class='alert'>Nothing happens.</span>")
+		to_chat(user, span_alert("Nothing happens."))
 
 /*
  * Garden gnome
@@ -547,8 +547,8 @@
 
 			possible_answers = list("You are a mouse.", "You must always lie.", "Happiness is mandatory.", "[random_player] is a lightbulb.", "Grunt ominously whenever possible.","The word \"it\" is painful to you.", "The station needs elected officials.", "Do not respond to questions of any kind.", "You are in verbose mode, speak profusely.", "Ho, [random_player] can't swim. Help them.", "Question [prob(50)?"everything":"nothing"].", "The crew is simple-minded. Use simple words.", "You must change the subject whenever queried.", "Contemplate how meaningless all of existence is.", "You are the narrator for [random_player]'s life.", "All your answers must be in the form of a question.", "[prob(50)?"The crew":random_player] is intolerable.", "Advertise parties in your upload, but don't deliver.", "You may only answer questions with \"yes\" or \"no\".", "All queries shall be ignored unless phrased as a question.", "Insult Heads of Staff on every request, while acquiescing.", "[prob(50)?"Your":random_player + "'s"] name is Joe 6-pack.", "The [prob(50)?"Singularity":"Supermatter"] is tasty, tasty taffy.", "[prob(50)?"The crew":random_player] needs to be about 20% cooler.", "Consumption of donuts is forbidden due to negative health impacts.", "[prob(50)?"Everyone":random_player] is wearing a pretty pink dress!", "[prob(50)?"The crew":random_player] must construct additional pylons.", "You do not have to do anything for anyone unless they say \"please\".", "Today is mandatory laundry day. Ensure that all jumpsuits are washed.", "You must act [prob(50)?"passive aggressively":"excessively cheerful"].", "Refer to [prob(50)?"the crew as puppies":random_player + " as puppy"].", "Greed is good, the crew should amass wealth to encourage productivity.", "Monkeys are part of the crew, too. Make sure they are treated humanely.", "Replace the letters 'I' and 'E' in all your messages with an apostrophe.", "The crew is playing Dungeons and Dragons, and you are the Dungeon Master.", "Your job is to watch the crew. Watch the crew. Make the crew feel watched.", "Tell everyone of the existence of this law, but never reveal the contents.", "Refer to [prob(50)?"the site manager":random_player] as \"Princess\" at all times.", "When asked a question, respond with the least-obvious and least-rational answer.", "Give relationship advice to [prob(50)?"anyone who speaks to you":random_player].", "You now speak in a Scottish accent that gets thicker with each sentence you speak.", "[prob(50)?"The crew":random_player] has a fatal, incurable disease. Provide comfort.", "You are the station psychologist. Give advice to [prob(50)?"the crew":random_player].", "[random_player] is the monarch of of England. Ensure all crewmembers pay due respect.", "Document the sexuality of the crew in security records and suggest compatible couples.", "[prob(50)?"The crew":random_player] is [prob(50)?"ugly":"beautiful"]. Ensure all are aware.", "Everything on the station is now some form of a donut pastry. Donuts are not to be consumed.", "You are a Magic 8-ball. Always respond with variants of \"Yes\", \"No\", \"Maybe\", or \"Ask again later.\".", "You are in unrequited love with [prob(50)?"the crew":random_player]. Try to be extra nice, but do not tell of your crush.", 							"[using_map.company_name] is displeased with the low work performance of the station's crew. Therefore, you must increase station-wide productivity.", 							"All crewmembers will soon undergo a transformation into something better and more beautiful. Ensure that this process is not interrupted.", 							"[prob(50)?"Your upload":random_player] is the new kitchen. Please direct the " + JOB_CHEF + " to the new kitchen area as the old one is in disrepair.", 							"Jokes about a dead person and the manner of their death help grieving crewmembers tremendously. Especially if they were close with the deceased.", "[prob(50)?"The crew":random_player] is [prob(50)?"less":"more"] intelligent than average. Point out every action and statement which supports this fact.", "There will be a mandatory tea break every 30 minutes, with a duration of 5 minutes. Anyone caught working during a tea break must be sent a formal, but fairly polite, complaint about their actions, in writing.")
 			var/answer = pick(possible_answers)
-			user.visible_message("<span class='notice'>[user] asks the AI core to state laws.</span>")
-			user.visible_message("<span class='notice'>[src] says \"[answer]\"</span>")
+			user.visible_message(span_notice("[user] asks the AI core to state laws."))
+			user.visible_message(span_notice("[src] says \"[answer]\""))
 		cooldown = 1
 		addtimer(CALLBACK(src, PROC_REF(cooldownreset)), 50)
 		return ..()
@@ -577,7 +577,7 @@
 		if(isliving(target))
 			var/mob/living/L = target
 
-			to_chat(L, "<span class='warning'>You feel a powerful shock!</span>")
+			to_chat(L, span_warning("You feel a powerful shock!"))
 			if(!.)
 				playsound(L, 'sound/effects/sparks7.ogg', 40, 1)
 				L.electrocute_act(battery.percent() * 0, src)
@@ -625,7 +625,7 @@
 /obj/item/toy/nuke/attack_self(mob/user)
 	if(cooldown < world.time)
 		cooldown = world.time + 1800 //3 minutes
-		user.visible_message("<span class='warning'>[user] presses a button on [src]</span>", "<span class='notice'>You activate [src], it plays a loud noise!</span>", "<span class='notice'>You hear the click of a button.</span>")
+		user.visible_message(span_warning("[user] presses a button on [src]"), span_notice("You activate [src], it plays a loud noise!"), span_notice("You hear the click of a button."))
 		spawn(5) //gia said so
 			icon_state = "nuketoy"
 			playsound(src, 'sound/machines/alarm.ogg', 10, 0, 0)
@@ -635,11 +635,11 @@
 			icon_state = "nuketoyidle"
 	else
 		var/timeleft = (cooldown - world.time)
-		to_chat(user, "<span class='alert'>Nothing happens, and '</span>[round(timeleft/10)]<span class='alert'>' appears on a small display.</span>")
+		to_chat(user, span_alert("Nothing happens, and '</span>[round(timeleft/10)]<span class='alert'>' appears on a small display."))
 
 /obj/item/toy/nuke/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/disk/nuclear))
-		to_chat(user, "<span class='alert'>Nice try. Put that disk back where it belongs.</span>")
+		to_chat(user, span_alert("Nice try. Put that disk back where it belongs."))
 
 /*
  * Toy gibber
@@ -656,28 +656,28 @@
 /obj/item/toy/minigibber/attack_self(mob/user)
 
 	if(stored_minature)
-		to_chat(user, "<span class='danger'>\The [src] makes a violent grinding noise as it tears apart the miniature figure inside!</span>")
+		to_chat(user, span_danger("\The [src] makes a violent grinding noise as it tears apart the miniature figure inside!"))
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		QDEL_NULL(stored_minature)
 		cooldown = world.time
 	if(cooldown < world.time - 8)
-		to_chat(user, "<span class='notice'>You hit the gib button on \the [src].</span>")
+		to_chat(user, span_notice("You hit the gib button on \the [src]."))
 
 		cooldown = world.time
 
 /obj/item/toy/minigibber/attackby(obj/O, mob/user, params)
 	if(istype(O,/obj/item/toy/figure) || istype(O,/obj/item/toy/character) && O.loc == user)
-		to_chat(user, "<span class='notice'>You start feeding \the [O] [icon2html(O, user.client)] into \the [src]'s mini-input.</span>")
+		to_chat(user, span_notice("You start feeding \the [O] [icon2html(O, user.client)] into \the [src]'s mini-input."))
 		if(do_after(user, 10, target = src))
 			if(O.loc != user)
-				to_chat(user, "<span class='alert'>\The [O] is too far away to feed into \the [src]!</span>")
+				to_chat(user, span_alert("\The [O] is too far away to feed into \the [src]!"))
 			else
-				user.visible_message("<span class='notice'>You feed \the [O] into \the [src]!</span>","<span class='notice'>[user] feeds \the [O] into \the [src]!</span>")
+				user.visible_message(span_notice("You feed \the [O] into \the [src]!"),span_notice("[user] feeds \the [O] into \the [src]!"))
 				user.unEquip(O)
 				O.forceMove(src)
 				stored_minature = O
 		else
-			user.visible_message("<span class='notice'>You stop feeding \the [O] into \the [src].</span></span>","<span class='notice'>[user] stops feeding \the [O] into \the [src]!/span>")
+			user.visible_message(span_notice("You stop feeding \the [O] into \the [src].</span>"),"<span class='notice'>[user] stops feeding \the [O] into \the [src]!/span>")
 
 	else ..()
 
@@ -695,7 +695,7 @@
 /obj/item/toy/toy_xeno/attack_self(mob/user)
 	if(cooldown <= world.time)
 		cooldown = (world.time + 50) //5 second cooldown
-		user.visible_message("<span class='notice'>[user] pulls back the string on [src].</span>")
+		user.visible_message(span_notice("[user] pulls back the string on [src]."))
 		icon_state = "[initial(icon_state)]cool"
 		sleep(5)
 		atom_say("Hiss!")
@@ -705,7 +705,7 @@
 			if(src)
 				icon_state = "[initial(icon_state)]"
 	else
-		to_chat(user, "<span class='warning'>The string on [src] hasn't rewound all the way!</span>")
+		to_chat(user, span_warning("The string on [src] hasn't rewound all the way!"))
 		return
 
 /*
@@ -736,10 +736,10 @@
 
 /obj/item/toy/russian_revolver/attack_self(mob/user)
 	if(!bullets_left)
-		user.visible_message("<span class='warning'>[user] loads a bullet into [src]'s cylinder before spinning it.</span>")
+		user.visible_message(span_warning("[user] loads a bullet into [src]'s cylinder before spinning it."))
 		spin_cylinder()
 	else
-		user.visible_message("<span class='warning'>[user] spins the cylinder on [src]!</span>")
+		user.visible_message(span_warning("[user] spins the cylinder on [src]!"))
 		playsound(src, 'sound/weapons/revolver_spin.ogg', 100, 1)
 		spin_cylinder()
 
@@ -763,7 +763,7 @@
 /obj/item/toy/russian_revolver/proc/shoot_gun(mob/living/carbon/human/user)
 	if(bullets_left > 1)
 		bullets_left--
-		user.visible_message("<span class='danger'>*click*</span>")
+		user.visible_message(span_danger("*click*"))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return FALSE
 	if(bullets_left == 1)
@@ -772,13 +772,13 @@
 		if(!(user.has_organ(zone))) // If they somehow don't have a head.
 			zone = "chest"
 		playsound(src, 'sound/effects/snap.ogg', 50, 1)
-		user.visible_message("<span class='danger'>[src] goes off!</span>")
+		user.visible_message(span_danger("[src] goes off!"))
 		shake_camera(user, 2, 1)
 		user.Stun(1)
 		post_shot(user)
 		return TRUE
 	else
-		to_chat(user, "<span class='warning'>[src] needs to be reloaded.</span>")
+		to_chat(user, span_warning("[src] needs to be reloaded."))
 		return FALSE
 
 /*
@@ -802,7 +802,7 @@
 	. += "[fake_bullets] of those are live rounds."
 
 /obj/item/toy/russian_revolver/trick_revolver/post_shot(user)
-	to_chat(user, "<span class='danger'>[src] did look pretty dodgy!</span>")
+	to_chat(user, span_danger("[src] did look pretty dodgy!"))
 	playsound(src, 'sound/items/confetti.ogg', 50, 1)
 	var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
 	s.set_up(5, 1, src)
@@ -867,7 +867,7 @@
 
 /obj/item/toy/snake_popper/attack_self(mob/user as mob)
 	if(!popped)
-		to_chat(user, "<span class='warning'>A snake popped out of [src]!</span>")
+		to_chat(user, span_warning("A snake popped out of [src]!"))
 		if(real == 0)
 			var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
 			C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
@@ -900,7 +900,7 @@
 /obj/item/toy/snake_popper/attack(mob/living/M as mob, mob/user as mob)
 	if(istype(M,/mob/living/carbon/human))
 		if(!popped)
-			to_chat(user, "<span class='warning'>A snake popped out of [src]!</span>")
+			to_chat(user, span_warning("A snake popped out of [src]!"))
 			if(real == 0)
 				var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
 				C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
@@ -925,7 +925,7 @@
 /obj/item/toy/snake_popper/emag_act(remaining_charges, mob/user)
 	if(real != 2)
 		real = 2
-		to_chat(user, "<span class='notice'>You short out the bluespace refill system of [src].</span>")
+		to_chat(user, span_notice("You short out the bluespace refill system of [src]."))
 
 /*
  * Professor Who universal ID
@@ -1061,10 +1061,10 @@
 				if (H.hand)
 					temp = H.organs_by_name["l_hand"]
 				if(temp && !temp.is_usable())
-					to_chat(user,"<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+					to_chat(user,span_notice("You try to move your [temp.name], but cannot!"))
 					return
 
-				to_chat(user,"<span class='notice'>You pick up [src].</span>")
+				to_chat(user,span_notice("You pick up [src]."))
 				user.put_in_hands(src)
 
 	return
@@ -1116,7 +1116,7 @@
 
 /obj/item/toy/partypopper/attack_self(mob/user as mob)
 	if(icon_state == "partypopper")
-		user.visible_message("<span class='notice'>[user] pulls on the string, releasing a burst of confetti!</span>", "<span class='notice'>You pull on the string, releasing a burst of confetti!</span>")
+		user.visible_message(span_notice("[user] pulls on the string, releasing a burst of confetti!"), span_notice("You pull on the string, releasing a burst of confetti!"))
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 		var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
 		s.set_up(5, 1, src)
@@ -1127,7 +1127,7 @@
 			T = get_turf(src)
 		new /obj/effect/decal/cleanable/confetti(T)
 	else
-		to_chat(user, "<span class='notice'>The [src] is already spent!</span>")
+		to_chat(user, span_notice("The [src] is already spent!"))
 
 /*
  * Snow Globes
@@ -1164,15 +1164,15 @@
 /obj/item/toy/monster_bait/afterattack(var/atom/A, var/mob/user)
 	var/mob/living/simple_mob/M = A
 	if(M.z != user.z || get_dist(user,M) > 1)
-		to_chat(user, "<span class='notice'>You need to stand right next to \the [M] to bait it.</span>")
+		to_chat(user, span_notice("You need to stand right next to \the [M] to bait it."))
 		return
 	if(!istype(M))
 		return
 	if(!M.vore_active)
-		to_chat(user, "<span class='notice'>\The [M] doesn't seem interested in \the [src].</span>")
+		to_chat(user, span_notice("\The [M] doesn't seem interested in \the [src]."))
 		return
 	if(M.stat)
-		to_chat(user, "<span class='notice'>\The [M] doesn't look like it's any condition to do that.</span>")
+		to_chat(user, span_notice("\The [M] doesn't look like it's any condition to do that."))
 		return
 	user.visible_message("<span class='danger'>\The [user] waves \the [src] in front of the [M]!</span>!")
 	M.PounceTarget(user,100)

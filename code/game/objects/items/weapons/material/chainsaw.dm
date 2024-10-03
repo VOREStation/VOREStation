@@ -87,16 +87,16 @@
 		else if(istype(A,/obj/machinery/portable_atmospherics/hydroponics))
 			var/obj/machinery/portable_atmospherics/hydroponics/Hyd = A
 			if(Hyd.seed && !Hyd.dead)
-				to_chat(user, "<span class='notice'>You shred the plant.</span>")
+				to_chat(user, span_notice("You shred the plant."))
 				Hyd.die()
 	if (istype(A, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,A) <= 1)
-		to_chat(user, "<span class='notice'>You begin filling the tank on the chainsaw.</span>")
+		to_chat(user, span_notice("You begin filling the tank on the chainsaw."))
 		if(do_after(usr, 15))
 			A.reagents.trans_to_obj(src, max_fuel)
 			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
-			to_chat(user, "<span class='notice'>Chainsaw succesfully refueled.</span>")
+			to_chat(user, span_notice("Chainsaw succesfully refueled."))
 		else
-			to_chat(user, "<span class='notice'>Don't move while you're refilling the chainsaw.</span>")
+			to_chat(user, span_notice("Don't move while you're refilling the chainsaw."))
 
 /obj/item/chainsaw/process()
 	if(!on) return

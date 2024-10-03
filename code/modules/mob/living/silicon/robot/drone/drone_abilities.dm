@@ -10,13 +10,13 @@
 		mail_destination = ""
 		return
 
-	to_chat(src, "<span class='notice'>You configure your internal beacon, tagging yourself for delivery to '[new_tag]'.</span>")
+	to_chat(src, span_notice("You configure your internal beacon, tagging yourself for delivery to '[new_tag]'."))
 	mail_destination = new_tag
 
 	//Auto flush if we use this verb inside a disposal chute.
 	var/obj/machinery/disposal/D = src.loc
 	if(istype(D))
-		to_chat(src, "<span class='notice'>\The [D] acknowledges your signal.</span>")
+		to_chat(src, span_notice("\The [D] acknowledges your signal."))
 		D.flush_count = D.flush_every_ticks
 
 	return
@@ -27,7 +27,7 @@
 		return ..()
 	if(H.a_intent == "grab" && hat && !(H.l_hand && H.r_hand))
 		H.put_in_hands(hat)
-		H.visible_message("<span class='danger'>\The [H] removes \the [src]'s [hat].</span>")
+		H.visible_message(span_danger("\The [H] removes \the [src]'s [hat]."))
 		hat = null
 		update_icon()
 		return

@@ -41,7 +41,7 @@
 	if(!M.mind)	return 0
 	var/job = M.mind.assigned_role
 	if(job != JOB_DETECTIVE && job != JOB_SECURITY_OFFICER && job != JOB_WARDEN  && job != JOB_HEAD_OF_SECURITY )
-		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
+		to_chat(M, span_notice("You don't feel cool enough to name this gun, chump."))
 		return 0
 
 	var/input = sanitizeSafe(input(usr, "What do you want to name the gun?", ,""), MAX_NAME_LEN)
@@ -234,7 +234,7 @@
 			if(!user.item_is_in_hands(src))
 				..()
 				return
-			to_chat(user, "<span class='notice'>You unscrew [silenced] from [src].</span>")
+			to_chat(user, span_notice("You unscrew [silenced] from [src]."))
 			user.put_in_hands(silenced)
 			silenced = 0
 			w_class = ITEMSIZE_SMALL
@@ -245,10 +245,10 @@
 /obj/item/gun/projectile/pistol/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/silencer))
 		if(!user.item_is_in_hands(src))	//if we're not in his hands
-			to_chat(user, "<span class='notice'>You'll need [src] in your hands to do that.</span>")
+			to_chat(user, span_notice("You'll need [src] in your hands to do that."))
 			return
 		user.drop_item()
-		to_chat(user, "<span class='notice'>You screw [I] onto [src].</span>")
+		to_chat(user, span_notice("You screw [I] onto [src]."))
 		silenced = I	//dodgy?
 		w_class = ITEMSIZE_NORMAL
 		I.loc = src		//put the silencer into the gun
@@ -290,7 +290,7 @@
 			if(!user.item_is_in_hands(src))
 				..()
 				return
-			to_chat(user, "<span class='notice'>You unscrew [silenced] from [src].</span>")
+			to_chat(user, span_notice("You unscrew [silenced] from [src]."))
 			user.put_in_hands(silenced)
 			silenced = 0
 			update_icon()
@@ -300,10 +300,10 @@
 /obj/item/gun/projectile/aps/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/silencer))
 		if(!user.item_is_in_hands(src))	//if we're not in his hands
-			to_chat(user, "<span class='notice'>You'll need [src] in your hands to do that.</span>")
+			to_chat(user, span_notice("You'll need [src] in your hands to do that."))
 			return
 		user.drop_item()
-		to_chat(user, "<span class='notice'>You screw [I] onto [src].</span>")
+		to_chat(user, span_notice("You screw [I] onto [src]."))
 		silenced = I	//dodgy?
 		I.loc = src		//put the silencer into the gun
 		update_icon()

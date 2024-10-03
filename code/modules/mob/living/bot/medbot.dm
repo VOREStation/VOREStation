@@ -143,7 +143,7 @@
 	if(!t)
 		return
 
-	visible_message("<span class='warning'>[src] is trying to inject [H]!</span>")
+	visible_message(span_warning("[src] is trying to inject [H]!"))
 	if(declare_treatment)
 		var/area/location = get_area(src)
 		global_announcer.autosay("[src] is treating <b>[H]</b> in <b>[location]</b>", "[src]", "Medical")
@@ -154,7 +154,7 @@
 			reagent_glass.reagents.trans_to_mob(H, injection_amount, CHEM_BLOOD)
 		else
 			H.reagents.add_reagent(t, injection_amount)
-		visible_message("<span class='warning'>[src] injects [H] with the syringe!</span>")
+		visible_message(span_warning("[src] injects [H] with the syringe!"))
 
 	if(H.stat == DEAD) // This is down here because this proc won't be called again due to losing a target because of parent AI loop.
 		target = null
@@ -197,7 +197,7 @@
 
 /mob/living/bot/medbot/attack_hand(mob/living/carbon/human/H)
 	if(istype(H) && H.a_intent == I_DISARM && !is_tipped)
-		H.visible_message("<span class='danger'>[H] begins tipping over [src].</span>", "<span class='warning'>You begin tipping over [src]...</span>")
+		H.visible_message(span_danger("[H] begins tipping over [src]."), span_warning("You begin tipping over [src]..."))
 
 		if(world.time > last_tipping_action_voice + 15 SECONDS)
 			last_tipping_action_voice = world.time // message for tipping happens when we start interacting, message for righting comes after finishing
@@ -210,7 +210,7 @@
 			tip_over(H)
 
 	else if(istype(H) && H.a_intent == I_HELP && is_tipped)
-		H.visible_message("<span class='notice'>[H] begins righting [src].</span>", "<span class='notice'>You begin righting [src]...</span>")
+		H.visible_message(span_notice("[H] begins righting [src]."), span_notice("You begin righting [src]..."))
 		if(do_after(H, 3 SECONDS, target=src))
 			set_right(H)
 	else
@@ -251,16 +251,16 @@
 /mob/living/bot/medbot/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/reagent_containers/glass))
 		if(locked)
-			to_chat(user, "<span class='notice'>You cannot insert a beaker because the panel is locked.</span>")
+			to_chat(user, span_notice("You cannot insert a beaker because the panel is locked."))
 			return
 		if(!isnull(reagent_glass))
-			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
+			to_chat(user, span_notice("There is already a beaker loaded."))
 			return
 
 		user.drop_item()
 		O.loc = src
 		reagent_glass = O
-		to_chat(user, "<span class='notice'>You insert [O].</span>")
+		to_chat(user, span_notice("You insert [O]."))
 		return
 	else
 		..()
@@ -316,8 +316,8 @@
 	. = ..()
 	if(!emagged)
 		if(user)
-			to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
-		visible_message("<span class='warning'>[src] buzzes oddly!</span>")
+			to_chat(user, span_warning("You short out [src]'s reagent synthesis circuits."))
+		visible_message(span_warning("[src] buzzes oddly!"))
 		flick("medibot_spark", src)
 		target = null
 		busy = 0
@@ -329,7 +329,7 @@
 
 /mob/living/bot/medbot/explode()
 	on = 0
-	visible_message("<span class='danger'>[src] blows apart!</span>")
+	visible_message(span_danger("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/storage/firstaid(Tsec)
@@ -360,7 +360,7 @@
 
 /mob/living/bot/medbot/proc/tip_over(mob/user)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
-	user.visible_message("<span class='danger'>[user] tips over [src]!</span>", "<span class='danger'>You tip [src] over!</span>")
+	user.visible_message(span_danger("[user] tips over [src]!"), span_danger("You tip [src] over!"))
 	is_tipped = TRUE
 	tipper_name = user.name
 	var/matrix/mat = transform
@@ -369,13 +369,13 @@
 /mob/living/bot/medbot/proc/set_right(mob/user)
 	var/list/messagevoice
 	if(user)
-		user.visible_message("<span class='notice'>[user] sets [src] right-side up!</span>", "<span class='green'>You set [src] right-side up!</span>")
+		user.visible_message(span_notice("[user] sets [src] right-side up!"), span_green("You set [src] right-side up!"))
 		if(user.name == tipper_name)
 			messagevoice = list("I forgive you." = 'sound/voice/medbot/forgive.ogg')
 		else
 			messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
 	else
-		visible_message("<span class='notice'>[src] manages to [pick("writhe", "wriggle", "wiggle")] enough to right itself.</span>")
+		visible_message(span_notice("[src] manages to [pick("writhe", "wriggle", "wiggle")] enough to right itself."))
 		messagevoice = list("Fuck you." = 'sound/voice/medbot/fuck_you.ogg', "Your behavior has been reported, have a nice day." = 'sound/voice/medbot/reported.ogg')
 
 	tipper_name = null
@@ -430,9 +430,9 @@
 		if(MEDBOT_PANIC_MED to MEDBOT_PANIC_HIGH)
 			. += "They are tipped over and appear visibly distressed." // now we humanize the medbot as a they, not an it
 		if(MEDBOT_PANIC_HIGH to MEDBOT_PANIC_FUCK)
-			. += "<span class='warning'>They are tipped over and visibly panicking!</span>"
+			. += span_warning("They are tipped over and visibly panicking!")
 		if(MEDBOT_PANIC_FUCK to INFINITY)
-			. += "<span class='warning'><b>They are freaking out from being tipped over!</b></span>"
+			. += span_warning("<b>They are freaking out from being tipped over!</b>")
 
 /mob/living/bot/medbot/confirmTarget(var/mob/living/carbon/human/H)
 	if(!..())
@@ -477,7 +477,7 @@
 		return
 
 	if(contents.len >= 1)
-		to_chat(user, "<span class='notice'>You need to empty [src] out first.</span>")
+		to_chat(user, span_notice("You need to empty [src] out first."))
 		return
 
 	var/obj/item/firstaid_arm_assembly/A = new /obj/item/firstaid_arm_assembly
@@ -490,7 +490,7 @@
 
 	qdel(S)
 	user.put_in_hands(A)
-	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
+	to_chat(user, span_notice("You add the robot arm to the first aid kit."))
 	user.drop_from_inventory(src)
 	qdel(src)
 
@@ -500,7 +500,7 @@
 		return
 
 	if(contents.len >= 1)
-		to_chat(user, "<span class='notice'>You need to empty [src] out first.</span>")
+		to_chat(user, span_notice("You need to empty [src] out first."))
 		return
 
 	var/obj/item/firstaid_arm_assembly/A = new /obj/item/firstaid_arm_assembly
@@ -513,7 +513,7 @@
 
 	qdel(S)
 	user.put_in_hands(A)
-	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
+	to_chat(user, span_notice("You add the robot arm to the first aid kit."))
 	user.drop_from_inventory(src)
 	qdel(src)
 
@@ -548,7 +548,7 @@
 					user.drop_item()
 					qdel(W)
 					build_step++
-					to_chat(user, "<span class='notice'>You add the health sensor to [src].</span>")
+					to_chat(user, span_notice("You add the health sensor to [src]."))
 					name = "First aid/robot arm/health analyzer assembly"
 					add_overlay("na_scanner")
 
@@ -556,7 +556,7 @@
 				if(isprox(W))
 					user.drop_item()
 					qdel(W)
-					to_chat(user, "<span class='notice'>You complete the Medibot! Beep boop.</span>")
+					to_chat(user, span_notice("You complete the Medibot! Beep boop."))
 					var/turf/T = get_turf(src)
 					var/mob/living/bot/medbot/S = new /mob/living/bot/medbot(T)
 					S.skin = skin

@@ -39,9 +39,9 @@
 				to_chat(user, span_blue("Download successful; disk erased."))
 				disk.stored = null
 			else
-				to_chat(user, "<span class='warning'>The disk is corrupt. It is useless to you.</span>")
+				to_chat(user, span_warning("The disk is corrupt. It is useless to you."))
 		else
-			to_chat(user, "<span class='warning'>The disk is blank. It is useless to you.</span>")
+			to_chat(user, span_warning("The disk is blank. It is useless to you."))
 		return 1
 
 	// I fucking hate R&D code. This typecheck spam would be totally unnecessary in a sane setup. Sanity? This is BYOND.
@@ -54,13 +54,13 @@
 			incoming_files = input_device:files
 
 		if(!incoming_files || !incoming_files.known_tech || !incoming_files.known_tech.len)
-			to_chat(user, "<span class='warning'>Memory failure. There is nothing accessible stored on this terminal.</span>")
+			to_chat(user, span_warning("Memory failure. There is nothing accessible stored on this terminal."))
 		else
 			// Maybe consider a way to drop all your data into a target repo in the future.
 			if(load_data(incoming_files.known_tech))
 				to_chat(user, span_blue("Download successful; local and remote repositories synchronized."))
 			else
-				to_chat(user, "<span class='warning'>Scan complete. There is nothing useful stored on this terminal.</span>")
+				to_chat(user, span_warning("Scan complete. There is nothing useful stored on this terminal."))
 		return 1
 	return 0
 

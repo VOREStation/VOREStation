@@ -175,7 +175,7 @@
 			to_chat(U, "ERROR: Cannot reach recipient.")
 			return
 		useMS.send_pda_message("[P.owner]","[pda.owner]","[t]")
-		pda.investigate_log("<span class='game say'>PDA Message - <span class='name'>[U.key] - [pda.owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span></span>", "pda")
+		pda.investigate_log(span_game(span_say("PDA Message - <span class='name'>[U.key] - [pda.owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span>")), "pda")
 
 		receive_message(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]"), "\ref[P]")
 		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
@@ -184,7 +184,7 @@
 		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", usr)
 		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
-		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
+		to_chat(U, span_notice("ERROR: Messaging server is not responding."))
 
 /datum/data/pda/app/messenger/proc/available_pdas()
 	var/list/names = list()

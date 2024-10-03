@@ -34,13 +34,13 @@
 		if(65 to 85)
 			. += "It's slightly damaged."
 		if(45 to 65)
-			. += "<span class='notice'>It's badly damaged.</span>"
+			. += span_notice("It's badly damaged.")
 		if(25 to 45)
-			. += "<span class='warning'>It's heavily damaged.</span>"
+			. += span_warning("It's heavily damaged.")
 		if(2 to 25)
-			. += "<span class='warning'><b>It's falling apart.</b></span>"
+			. += span_warning("<b>It's falling apart.</b>")
 		if(0 to 1)
-			. += "<span class='warning'><b>It is completely destroyed.</b></span>"
+			. += span_warning("<b>It is completely destroyed.</b>")
 
 /obj/item/mecha_parts/component/Initialize()
 	. = ..()
@@ -95,11 +95,11 @@
 	if(target)
 		if(!(component_type in target.internal_components))
 			if(user)
-				to_chat(user, "<span class='notice'>\The [target] doesn't seem to have anywhere to put \the [src].</span>")
+				to_chat(user, span_notice("\The [target] doesn't seem to have anywhere to put \the [src]."))
 			return FALSE
 		if(target.internal_components[component_type])
 			if(user)
-				to_chat(user, "<span class='notice'>\The [target] already has a [component_type] installed!</span>")
+				to_chat(user, span_notice("\The [target] already has a [component_type] installed!"))
 			return FALSE
 		chassis = target
 		if(user)
@@ -117,7 +117,7 @@
 		chassis.internal_components[component_type] = src
 
 		if(user)
-			chassis.visible_message("<span class='notice'>[user] installs \the [src] in \the [chassis].</span>")
+			chassis.visible_message(span_notice("[user] installs \the [src] in \the [chassis]."))
 		return TRUE
 	return FALSE
 
@@ -138,25 +138,25 @@
 		var/obj/item/stack/nanopaste/NP = W
 
 		if(integrity < max_integrity)
-			to_chat(user, "<span class='notice'>You start to repair damage to \the [src].</span>")
+			to_chat(user, span_notice("You start to repair damage to \the [src]."))
 			while(integrity < max_integrity && NP)
 				if(do_after(user, 1 SECOND, src))
 					NP.use(1)
 					adjust_integrity(NP.mech_repair)
 
 					if(integrity >= max_integrity)
-						to_chat(user, "<span class='notice'>You finish repairing \the [src].</span>")
+						to_chat(user, span_notice("You finish repairing \the [src]."))
 						break
 
 					else if(NP.amount == 0)
-						to_chat(user, "<span class='warning'>Insufficient nanopaste to complete repairs!</span>")
+						to_chat(user, span_warning("Insufficient nanopaste to complete repairs!"))
 						break
 
 
 			return
 
 		else
-			to_chat(user, "<span class='notice'>\The [src] doesn't require repairs.</span>")
+			to_chat(user, span_notice("\The [src] doesn't require repairs."))
 
 	return ..()
 

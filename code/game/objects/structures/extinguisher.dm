@@ -28,15 +28,15 @@
 			user.remove_from_mob(O)
 			contents += O
 			has_extinguisher = O
-			to_chat(user, "<span class='notice'>You place [O] in [src].</span>")
+			to_chat(user, span_notice("You place [O] in [src]."))
 		else
 			opened = !opened
 	if(O.has_tool_quality(TOOL_WRENCH))
 		if(!has_extinguisher)
-			to_chat(user, "<span class='notice'>You start to unwrench the extinguisher cabinet.</span>")
+			to_chat(user, span_notice("You start to unwrench the extinguisher cabinet."))
 			playsound(src, O.usesound, 50, 1)
 			if(do_after(user, 15 * O.toolspeed))
-				to_chat(user, "<span class='notice'>You unwrench the extinguisher cabinet.</span>")
+				to_chat(user, span_notice("You unwrench the extinguisher cabinet."))
 				new /obj/item/frame/extinguisher_cabinet( src.loc )
 				qdel(src)
 			return
@@ -54,11 +54,11 @@
 		if (user.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			to_chat(user, "<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
-		to_chat(user, "<span class='notice'>You take [has_extinguisher] from [src].</span>")
+		to_chat(user, span_notice("You take [has_extinguisher] from [src]."))
 		has_extinguisher = null
 		opened = 1
 	else
@@ -68,7 +68,7 @@
 /obj/structure/extinguisher_cabinet/attack_tk(mob/user)
 	if(has_extinguisher)
 		has_extinguisher.loc = loc
-		to_chat(user, "<span class='notice'>You telekinetically remove [has_extinguisher] from [src].</span>")
+		to_chat(user, span_notice("You telekinetically remove [has_extinguisher] from [src]."))
 		has_extinguisher = null
 		opened = 1
 	else
