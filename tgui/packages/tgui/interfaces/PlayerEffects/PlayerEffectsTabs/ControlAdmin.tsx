@@ -42,6 +42,9 @@ export const ControlAdmin = (props) => {
       <Button fluid onClick={() => act('orbit')}>
         Make Marked Datum Orbit
       </Button>
+      <Button fluid onClick={() => act('cloaking')}>
+        Force Cloaking or Uncloaking
+      </Button>
     </Section>
   );
 };
