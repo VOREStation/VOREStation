@@ -64,7 +64,7 @@
 	//stuff in the stomach
 	//handle_stomach() //VOREStation Code
 
-	update_gravity(mob_has_gravity())
+	update_gravity(mob_get_gravity())
 
 	update_pulling()
 

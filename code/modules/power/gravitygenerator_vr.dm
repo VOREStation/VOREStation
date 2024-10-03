@@ -393,7 +393,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	for(var/mob/M as anything in player_list)
 		if(!(M.z in levels))
 			continue
-		M.update_gravity(M.mob_has_gravity())
+		M.update_gravity(M.mob_get_gravity())
 		shake_camera(M, 15, 1)
 		M.playsound_local(src, null, 50, 1, 0.5, S = alert_sound)
 

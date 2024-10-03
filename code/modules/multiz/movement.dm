@@ -68,7 +68,7 @@
 
 
 	var/area/area = get_area(src)
-	if(area.has_gravity() && !can_overcome_gravity())
+	if(area.get_gravity() && !can_overcome_gravity())
 		if(direction == UP)
 			var/obj/structure/lattice/lattice = locate() in destination.contents
 			var/obj/structure/catwalk/catwalk = locate() in destination.contents
@@ -278,7 +278,7 @@
 
 	// No gravity in space, apparently.
 	var/area/area = get_area(src)
-	if(!area.has_gravity())
+	if(!area.get_gravity())
 		return
 
 	if(throwing)

@@ -1143,7 +1143,7 @@
 
 			src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
 
-			if((isspace(src.loc)) || (src.lastarea?.has_gravity == 0))
+			if((isspace(src.loc)) || (src.lastarea?.get_gravity() == 0))
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
@@ -1174,7 +1174,7 @@
 	//actually throw it!
 	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
 
-	if((isspace(src.loc)) || (src.lastarea?.has_gravity == 0))
+	if((isspace(src.loc)) || (src.lastarea?.get_gravity() == 0))
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 

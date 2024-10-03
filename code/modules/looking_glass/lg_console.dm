@@ -66,7 +66,7 @@
 
 /obj/machinery/computer/looking_glass/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/program_list = list()
 	for(var/P in supported_programs)
 		program_list.Add(P)
@@ -78,7 +78,7 @@
 	data["supportedPrograms"] = program_list
 	data["currentProgram"] = current_program
 	data["immersion"] = immersion
-	if(my_area?.has_gravity)
+	if(my_area?.get_gravity())
 		data["gravity"] = 1
 	else
 		data["gravity"] = 0
@@ -88,7 +88,7 @@
 /obj/machinery/computer/looking_glass/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("program")
 			if(ready)
@@ -147,7 +147,7 @@
 
 	last_gravity_change = world.time
 
-	if(A.has_gravity)
+	if(A.get_gravity())
 		A.gravitychange(0)
 	else
 		A.gravitychange(1)
