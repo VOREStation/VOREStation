@@ -173,15 +173,15 @@
 
 /* Byond Sizes */
 
-#define span_small(X) "<font size='1'>[X]</font>"
+#define span_small(str) "<font size='1'>" + str + "</font>"
 
-#define span_normal(X) "<font size='2'>[X]</font>"
+#define span_normal(str) "<font size='2'>" + str + "</font>"
 
-#define span_large(X) "<font size='3'>[X]</font>"
+#define span_large(str) "<font size='3'>" + str + "</font>"
 
-#define span_huge(X) "<font size='4'>[X]</font>"
+#define span_huge(str) "<font size='4'>" + str + "</font>"
 
-#define span_giant(X) "<font size='5'>[X]</font>"
+#define span_giant(str) "<font size='5'>" + str + "</font>"
 
 /* Style spans */
 
