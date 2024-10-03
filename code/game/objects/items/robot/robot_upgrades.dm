@@ -121,7 +121,7 @@
 
 	R.verbs += /mob/living/silicon/robot/proc/toggle_vtec
 	R.vtec_active = TRUE
-	R.hud_used?.toggle_vtec_control()
+	R.hud_used.toggle_vtec_control()
 	return 1
 
 /obj/item/borg/upgrade/basic/sizeshift

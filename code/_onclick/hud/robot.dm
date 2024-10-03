@@ -256,9 +256,9 @@ var/obj/screen/robot_inventory
 			control_vtec.icon_state = "speed_2"
 		R.m_intent = "run"
 		R.hud_used.move_intent.icon_state = "running"
-		R.client.screen += control_vtec
+		R.client?.screen += control_vtec
 	else
-		R.client.screen -= control_vtec
+		R.client?.screen -= control_vtec
 		R.speed = 0
 
 /datum/hud/proc/toggle_show_robot_modules()
