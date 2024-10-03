@@ -26,7 +26,8 @@ export type Data = {
   selected_sleever: string;
   bodyrecords: record[];
   mindrecords: record[];
-  modal: Partial<modalBBodyData & modalMindData>;
+  active_b_rec: ActiveBodyRecordData | null;
+  active_m_rec: modalMindData | null;
 };
 
 type pod = {
@@ -37,33 +38,23 @@ type pod = {
   progress: number;
 };
 
-export type modalBBodyData = {
-  id: string;
-  text: string;
-  args: {
-    activerecord: string;
-    realname: string;
-    species: string;
-    sex: string;
-    mind_compat: string;
-    synthetic: BooleanLike;
-    oocnotes: string;
-    can_grow_active: BooleanLike;
-  };
-  modal_type: string;
+export type ActiveBodyRecordData = {
+  activerecord: string;
+  realname: string;
+  species: string;
+  sex: string;
+  mind_compat: string;
+  synthetic: BooleanLike;
+  oocnotes: string;
+  can_grow_active: BooleanLike;
 };
 
 export type modalMindData = {
-  id: string;
-  text: string;
-  args: {
-    activerecord: string;
-    realname: string;
-    obviously_dead: string;
-    oocnotes: string;
-    can_sleeve_active: BooleanLike;
-  };
-  modal_type: string;
+  activerecord: string;
+  realname: string;
+  obviously_dead: string;
+  oocnotes: string;
+  can_sleeve_active: BooleanLike;
 };
 
 export type record = { name: string; recref: string };

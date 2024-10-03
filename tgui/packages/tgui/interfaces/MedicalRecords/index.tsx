@@ -1,10 +1,11 @@
-import { useBackend } from '../../backend';
-import { Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Section, Stack } from 'tgui-core/components';
+
 import {
   ComplexModal,
   modalRegisterBodyOverride,
-} from '../../interfaces/common/ComplexModal';
-import { Window } from '../../layouts';
+} from '../common/ComplexModal';
 import { LoginInfo } from '../common/LoginInfo';
 import { LoginScreen } from '../common/LoginScreen';
 import { TemporaryNotice } from '../common/TemporaryNotice';
@@ -46,14 +47,26 @@ export const MedicalRecords = (props) => {
 
   return (
     <Window width={800} height={380}>
-      <ComplexModal maxHeight="100%" maxWidth="80%" />
-      <Window.Content className="Layout__content--flexColumn" scrollable>
-        <LoginInfo />
-        <TemporaryNotice />
-        <MedicalRecordsNavigation />
-        <Section height="calc(100% - 5rem)" flexGrow>
-          {(screen && body[screen]) || ''}
-        </Section>
+      <Window.Content>
+        <ComplexModal maxHeight="100%" maxWidth="80%" />
+        <Stack fill vertical>
+          <Stack.Item>
+            <LoginInfo />
+          </Stack.Item>
+          {!!data.temp && (
+            <Stack.Item>
+              <TemporaryNotice />
+            </Stack.Item>
+          )}
+          <Stack.Item>
+            <MedicalRecordsNavigation />
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section fill scrollable>
+              {(screen && body[screen]) || ''}
+            </Section>
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );

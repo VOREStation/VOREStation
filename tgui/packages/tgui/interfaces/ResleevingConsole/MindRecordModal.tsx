@@ -1,8 +1,9 @@
-import { useBackend } from '../../backend';
-import { Button, LabeledList, Section } from '../../components';
-import { modalMindData } from './types';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
-export const viewMindRecordModalBodyOverride = (modal: modalMindData) => {
+import { modalMindData as ActiveMindRecordData } from './types';
+
+export const MindRecordModal = (props: { data: ActiveMindRecordData }) => {
   const { act } = useBackend();
   const {
     activerecord,
@@ -10,14 +11,14 @@ export const viewMindRecordModalBodyOverride = (modal: modalMindData) => {
     obviously_dead,
     oocnotes,
     can_sleeve_active,
-  } = modal.args;
+  } = props.data;
   return (
     <Section
-      m="-1rem"
-      pb="1rem"
+      backgroundColor="#252525"
+      m={2}
       title={'Mind Record (' + realname + ')'}
       buttons={
-        <Button icon="times" color="red" onClick={() => act('modal_close')} />
+        <Button icon="times" color="red" onClick={() => act('clear_m_rec')} />
       }
     >
       <LabeledList>
@@ -48,13 +49,18 @@ export const viewMindRecordModalBodyOverride = (modal: modalMindData) => {
             Card
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="OOC Notes">
-          <Section
-            style={{ wordBreak: 'break-all', height: '100px' }}
-            scrollable
-          >
-            {oocnotes}
-          </Section>
+        <LabeledList.Item label="OOC Notes" verticalAlign="top">
+          <Box height={10} mt={1} ml={1} mr={1}>
+            <Section
+              style={{ wordBreak: 'break-word', borderRadius: '5px' }}
+              scrollable
+              fill
+              backgroundColor="black"
+              preserveWhitespace
+            >
+              {oocnotes}
+            </Section>
+          </Box>
         </LabeledList.Item>
       </LabeledList>
     </Section>
