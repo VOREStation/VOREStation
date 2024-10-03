@@ -117,8 +117,8 @@
 	if(statpanel("Lobby") && SSticker)
 		stat("Game Mode:", SSticker.hide_mode ? "Secret" : "[config.mode_names[master_mode]]")
 
-		if(SSvote.mode)
-			stat("Vote: [capitalize(SSvote.mode)]", "Time Left: [SSvote.time_remaining] s")
+		// if(SSvote.mode)
+		//	stat("Vote: [capitalize(SSvote.mode)]", "Time Left: [SSvote.time_remaining] s")
 
 		if(SSticker.current_state == GAME_STATE_INIT)
 			stat("Time To Start:", "Server Initializing")

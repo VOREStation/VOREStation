@@ -1,36 +1,39 @@
-import { useBackend } from '../../backend';
-import { Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Dimmer, Section, Stack } from 'tgui-core/components';
+
+import { BodyRecordModal } from './BodyRecordModal';
+import { MindRecordModal } from './MindRecordModal';
 import {
-  ComplexModal,
-  modalRegisterBodyOverride,
-} from '../../interfaces/common/ComplexModal';
-import { Window } from '../../layouts';
+  ResleevingConsoleCoreDump,
+  ResleevingConsoleDiskPrep,
+} from './ResleevingConsoleCoreDump';
 import {
   ResleevingConsoleBody,
   ResleevingConsoleNavigation,
   ResleevingConsoleTemp,
 } from './ResleevingConsoleElements';
 import { ResleevingConsoleStatus } from './ResleevingConsoleStatus';
-import {
-  ResleevingConsoleCoreDump,
-  ResleevingConsoleDiskPrep,
-} from './ResleevingConsoleTexts';
 import { Data } from './types';
-import { viewBodyRecordModalBodyOverride } from './viewBodyRecordModalBodyOverride';
-import { viewMindRecordModalBodyOverride } from './viewMindRecordModalBodyOverride';
 
 export const ResleevingConsole = (props) => {
   const { data } = useBackend<Data>();
   const { coredumped, emergency } = data;
   let body: React.JSX.Element = (
-    <>
+    <Stack fill vertical>
       <ResleevingConsoleTemp />
-      <ResleevingConsoleStatus />
-      <ResleevingConsoleNavigation />
-      <Section noTopPadding flexGrow>
-        <ResleevingConsoleBody />
-      </Section>
-    </>
+      <Stack.Item>
+        <ResleevingConsoleStatus />
+      </Stack.Item>
+      <Stack.Item>
+        <ResleevingConsoleNavigation />
+      </Stack.Item>
+      <Stack.Item grow>
+        <Section fill>
+          <ResleevingConsoleBody />
+        </Section>
+      </Stack.Item>
+    </Stack>
   );
   if (coredumped) {
     body = <ResleevingConsoleCoreDump />;
@@ -38,14 +41,19 @@ export const ResleevingConsole = (props) => {
   if (emergency) {
     body = <ResleevingConsoleDiskPrep />;
   }
-  modalRegisterBodyOverride('view_b_rec', viewBodyRecordModalBodyOverride);
-  modalRegisterBodyOverride('view_m_rec', viewMindRecordModalBodyOverride);
   return (
     <Window width={640} height={520}>
-      <ComplexModal maxWidth="75%" maxHeight="75%" />
-      <Window.Content className="Layout__content--flexColumn">
-        {body}
-      </Window.Content>
+      {data.active_b_rec && (
+        <Dimmer>
+          <BodyRecordModal data={data.active_b_rec} />
+        </Dimmer>
+      )}
+      {data.active_m_rec && (
+        <Dimmer>
+          <MindRecordModal data={data.active_m_rec} />
+        </Dimmer>
+      )}
+      <Window.Content>{body}</Window.Content>
     </Window>
   );
 };
