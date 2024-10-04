@@ -1,5 +1,8 @@
 // Sorted by however I felt like it
-// We have two other ways of doing this, so why not a third. This one atleast has more span options.
+
+// Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
+#define examine_block(str) ("<div class='examine_block'>" + str + "</div>")
+
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_looc(str) ("<span class='looc'>" + str + "</span>")
 #define span_rlooc(str) ("<span class='rlooc'>" + str + "</span>")
