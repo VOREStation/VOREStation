@@ -9,7 +9,7 @@ $bg-map: colors.$bg-map !default;
 
   white-space: nowrap;
 
-  -ms-user-select: none;
+  -ms-user-select: none; // TODO: Remove with 516
   user-select: none;
 }
 
@@ -17,7 +17,7 @@ $bg-map: colors.$bg-map !default;
   white-space: nowrap;
   background-color: rgba(0, 0, 0, 0.5);
 
-  -ms-user-select: none;
+  -ms-user-select: none; // TODO: Remove with 516
   user-select: none;
 }
 

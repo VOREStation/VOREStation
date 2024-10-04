@@ -28,7 +28,7 @@ $background-color: base.$color-bg !default;
   line-height: 1.928em;
   background-color: rgba(0, 0, 0, 0.5);
   user-select: none;
-  -ms-user-select: none;
+  -ms-user-select: none; // TODO: Remove with 516
 }
 
 .Dialog__title {

@@ -35,7 +35,7 @@ import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
 
 // List of blacklisted tags
-const FORBID_TAGS = ['a', 'iframe', 'link', 'video'];
+const blacklisted_tags = ['a', 'iframe', 'link', 'video'];
 let storedRounds = [];
 let storedLines = [];
 
@@ -72,7 +72,7 @@ const loadChatFromStorage = async (store) => {
     for (let message of messages) {
       if (message.html) {
         message.html = DOMPurify.sanitize(message.html, {
-          FORBID_TAGS,
+          FORBID_TAGS: blacklisted_tags,
         });
       }
     }
@@ -90,7 +90,7 @@ const loadChatFromStorage = async (store) => {
     for (let archivedMessage of archivedMessages) {
       if (archivedMessage.html) {
         archivedMessage.html = DOMPurify.sanitize(archivedMessage.html, {
-          FORBID_TAGS,
+          FORBID_TAGS: blacklisted_tags,
         });
       }
     }
