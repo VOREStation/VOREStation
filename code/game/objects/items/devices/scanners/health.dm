@@ -366,7 +366,7 @@
 			else
 				dat += span_notice("Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].")
 				dat += "<br>"
-		dat += span_notice("Subject's pulse: [H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? span_red(H.get_pulse(GETPULSE_TOOL)) : span_blue(H.get_pulse(GETPULSE_TOOL))] bpm.</font>") // VORE Edit: Missed a linebreak here.
+		dat += span_notice("Subject's pulse: [H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? span_red(H.get_pulse(GETPULSE_TOOL) + " bpm") : span_blue(H.get_pulse(GETPULSE_TOOL) + " bpm")].") // VORE Edit: Missed a linebreak here.
 		dat += "<br>"
 		if(istype(H.species, /datum/species/xenochimera)) // VOREStation Edit Start: Visible feedback for medmains on Xenochimera.
 			if(H.stat == DEAD && H.revive_ready == REVIVING_READY && !H.hasnutriment())

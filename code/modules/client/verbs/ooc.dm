@@ -79,7 +79,7 @@
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
 				to_chat(target, span_ooc("<font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 			else
-				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> " + span_message(msg)))
+				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> " + span_message(msg)) + "</span>")
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
