@@ -1,8 +1,19 @@
-import { Component } from 'react';
+import { KEY_DOWN, KEY_E, KEY_S, KEY_UP, KEY_W } from 'common/keycodes';
+import React, { Component, PropsWithChildren } from 'react';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
+import { KeyEvent } from 'tgui/events';
 
-import { resolveAsset } from '../assets';
-import { useBackend } from '../backend';
-import { Box, Button, Icon, LabeledList, Slider, Tooltip } from '.';
+import { logger } from '../logging';
+import {
+  Box,
+  Button,
+  Icon,
+  KeyListener,
+  LabeledList,
+  Slider,
+  Tooltip,
+} from '.';
 
 const pauseEvent = (e) => {
   if (e.stopPropagation) {
@@ -16,8 +27,56 @@ const pauseEvent = (e) => {
   return false;
 };
 
-export class NanoMap extends Component {
-  constructor(props) {
+type Props = PropsWithChildren<{
+  zoomScale: number;
+  onZoom?: (zoom: number) => void;
+}>;
+
+type State = {
+  offsetX: number;
+  offsetY: number;
+  dragging: boolean;
+  originX: number;
+  originY: number;
+  zoom: number;
+};
+
+export class NanoMap extends Component<Props, State> {
+  static Marker: React.FC<NanoMapMarkerProps>;
+  static Zoomer: React.FC<NanoMapZoomerProps>;
+
+  handleDragStart: React.MouseEventHandler<HTMLDivElement>;
+  handleDragMove: (e: MouseEvent) => void;
+  handleDragEnd: (e: MouseEvent) => void;
+  handleZoom: (e: Event, v: number) => void;
+  handleKey: (e: KeyEvent) => void;
+  ref: EventTarget;
+
+  setZoom(zoom: number) {
+    const newZoom = Math.min(Math.max(zoom, 1), 8);
+    this.setState((state) => {
+      let zoomDifference = -(state.zoom - newZoom);
+
+      let newOffsetX =
+        state.offsetX - (this.props.zoomScale / 2) * zoomDifference;
+
+      let newOffsetY =
+        state.offsetY - (this.props.zoomScale / 2) * zoomDifference;
+
+      return {
+        ...state,
+        zoom: newZoom,
+        offsetX: newOffsetX,
+        offsetY: newOffsetY,
+      };
+    });
+
+    if (this.props.onZoom) {
+      this.props.onZoom(newZoom);
+    }
+  }
+
+  constructor(props: Props) {
     super(props);
 
     // Auto center based on window size
@@ -27,15 +86,14 @@ export class NanoMap extends Component {
     this.state = {
       offsetX: Xcenter,
       offsetY: Ycenter,
-      transform: 'none',
       dragging: false,
-      originX: null,
-      originY: null,
+      originX: 0,
+      originY: 0,
       zoom: 1,
     };
 
     // Dragging
-    this.handleDragStart = (e) => {
+    this.handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
       this.ref = e.target;
       this.setState({
         dragging: false,
@@ -47,7 +105,7 @@ export class NanoMap extends Component {
       pauseEvent(e);
     };
 
-    this.handleDragMove = (e) => {
+    this.handleDragMove = (e: MouseEvent) => {
       this.setState((prevState) => {
         const state = { ...prevState };
         const newOffsetX = e.screenX - state.originX;
@@ -65,57 +123,38 @@ export class NanoMap extends Component {
       pauseEvent(e);
     };
 
-    this.handleDragEnd = (e) => {
+    this.handleDragEnd = (e: MouseEvent) => {
       this.setState({
         dragging: false,
-        originX: null,
-        originY: null,
+        originX: 0,
+        originY: 0,
       });
       document.removeEventListener('mousemove', this.handleDragMove);
       document.removeEventListener('mouseup', this.handleDragEnd);
       pauseEvent(e);
     };
 
-    this.handleOnClick = (e) => {
-      let byondX = e.offsetX / this.state.zoom / this.props.zoomScale;
-      let byondY = 1 - e.offsetY / this.state.zoom / this.props.zoomScale; // Byond origin is bottom left, this is top left
-
-      e.byondX = byondX;
-      e.byondY = byondY;
-      if (typeof this.props.onClick === 'function') {
-        this.props.onClick(e);
-      }
+    this.handleZoom = (_e: Event, value: number) => {
+      this.setZoom(value);
     };
 
-    this.handleZoom = (_e, value) => {
-      this.setState((state) => {
-        const newZoom = Math.min(Math.max(value, 1), 8);
-        let zoomDiff = (newZoom - state.zoom) * 1.5;
-        state.zoom = newZoom;
-
-        let newOffsetX = state.offsetX - 262 * zoomDiff;
-        if (newOffsetX < -500) {
-          newOffsetX = -500;
+    this.handleKey = (e: KeyEvent) => {
+      switch (e.code) {
+        case KEY_UP:
+        case KEY_W: {
+          this.setZoom(this.state.zoom + 1);
+          break;
         }
-        if (newOffsetX > 500) {
-          newOffsetX = 500;
+        case KEY_DOWN:
+        case KEY_S: {
+          this.setZoom(this.state.zoom - 1);
+          break;
         }
-
-        let newOffsetY = state.offsetY - 256 * zoomDiff;
-        if (newOffsetY < -200) {
-          newOffsetY = -200;
+        case KEY_E: {
+          logger.log(this.state.offsetX, this.state.offsetY);
+          break;
         }
-        if (newOffsetY > 200) {
-          newOffsetY = 200;
-        }
-
-        state.offsetX = newOffsetX;
-        state.offsetY = newOffsetY;
-        if (props.onZoom) {
-          props.onZoom(state.zoom);
-        }
-        return state;
-      });
+      }
     };
   }
 
@@ -144,25 +183,35 @@ export class NanoMap extends Component {
     };
 
     return (
-      <Box className="NanoMap__container">
+      <Box className="NanoMap__container" overflow="hidden">
         <Box
           style={newStyle}
           textAlign="center"
           onMouseDown={this.handleDragStart}
-          onClick={this.handleOnClick}
         >
           <Box>{children}</Box>
         </Box>
         <NanoMapZoomer zoom={zoom} onZoom={this.handleZoom} />
+        <KeyListener onKeyDown={this.handleKey} />
       </Box>
     );
   }
 }
 
-const NanoMapMarker = (props) => {
+type NanoMapMarkerProps = {
+  x: number;
+  y: number;
+  zoom: number;
+  icon: string;
+  tooltip: string;
+  color: string;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+};
+
+const NanoMapMarker = (props: NanoMapMarkerProps) => {
   const { x, y, zoom = 1, icon, tooltip, color, onClick } = props;
 
-  const handleOnClick = (e) => {
+  const handleOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
     pauseEvent(e);
     if (onClick) {
       onClick(e);
@@ -172,7 +221,7 @@ const NanoMapMarker = (props) => {
   const rx = x * 2 * zoom - zoom - 3;
   const ry = y * 2 * zoom - zoom - 3;
   return (
-    <div>
+    <Tooltip content={tooltip}>
       <Box
         position="absolute"
         className="NanoMap__marker"
@@ -181,25 +230,33 @@ const NanoMapMarker = (props) => {
         left={rx + 'px'}
         onMouseDown={handleOnClick}
       >
-        <Icon name={icon} color={color} fontSize="6px" />
-        <Tooltip content={tooltip} />
+        <Icon name={icon} color={color} size={zoom * 0.25} />
       </Box>
-    </div>
+    </Tooltip>
   );
 };
 
 NanoMap.Marker = NanoMapMarker;
 
-const NanoMapZoomer = (props) => {
-  const { act, config, data } = useBackend();
+type Data = {
+  map_levels: number[];
+};
+
+type NanoMapZoomerProps = {
+  zoom: number;
+  onZoom: (e: Event, v: number) => void;
+};
+
+const NanoMapZoomer = (props: NanoMapZoomerProps) => {
+  const { act, config, data } = useBackend<Data>();
   return (
     <Box className="NanoMap__zoomer">
       <LabeledList>
         <LabeledList.Item label="Zoom">
           <Slider
-            minValue="1"
-            maxValue="8"
-            stepPixelSize="10"
+            minValue={1}
+            maxValue={8}
+            stepPixelSize={10}
             format={(v) => v + 'x'}
             value={props.zoom}
             onDrag={(e, v) => props.onZoom(e, v)}
