@@ -426,7 +426,7 @@
 			formatted_desc = replacetext(desc, "%belly", lowertext(name)) //replace with this belly's name
 			formatted_desc = replacetext(formatted_desc, "%pred", owner) //replace with this belly's owner
 			formatted_desc = replacetext(formatted_desc, "%prey", thing) //replace with whatever mob entered into this belly
-			to_chat(thing, span_notice("<B>[formatted_desc]</B>"))
+			to_chat(thing, span_vnotice("<B>[formatted_desc]</B>"))
 
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
