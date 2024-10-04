@@ -71,13 +71,13 @@
 	if(ismob(loc))
 		visible_message(span_warning("A grotesque weapon forms around [loc.name]\'s arm!"),
 		span_warning("Our arm twists and mutates, transforming it into a deadly weapon."),
-		span_italics("You hear organic matter ripping and tearing!"))
+		span_warningplain("You hear organic matter ripping and tearing!"))
 		src.creator = loc
 
 /obj/item/melee/changeling/dropped(mob/user)
 	visible_message(span_warning("With a sickening crunch, [creator] reforms their arm!"),
 	span_notice("We assimilate the weapon back into our body."),
-	span_italics("You hear organic matter ripping and tearing!"))
+	span_warningplain("You hear organic matter ripping and tearing!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 	spawn(1)
 		if(src)

@@ -46,7 +46,7 @@ var/list/mentor_verbs_default = list(
 	set category = "Special Verbs"
 	set name = "Make Mentor"
 	if(!holder)
-		to_chat(src, span_pm(span_warning("Error: Only administrators may use this command.")))
+		to_chat(src, span_admin_pm_warning("Error: Only administrators may use this command."))
 		return
 	var/list/client/targets[0]
 	for(var/client/T in GLOB.clients)
@@ -56,12 +56,12 @@ var/list/mentor_verbs_default = list(
 		return
 	var/client/C = targets[target]
 	if(has_mentor_powers(C) || C.deadmin_holder) // If an admin is deadminned you could mentor them and that will cause fuckery if they readmin
-		to_chat(src, span_pm(span_warning("Error: They already have mentor powers.")))
+		to_chat(src, span_admin_pm_warning("Error: They already have mentor powers."))
 		return
 	var/datum/mentor/M = new /datum/mentor(C.ckey)
 	M.associate(C)
-	to_chat(C, span_pm(span_notice("You have been granted mentorship.")))
-	to_chat(src, span_pm(span_notice("You have made [C] a mentor.")))
+	to_chat(C, span_admin_pm_notice("You have been granted mentorship."))
+	to_chat(src, span_admin_pm_notice("You have made [C] a mentor."))
 	log_admin("[key_name(src)] made [key_name(C)] a mentor.")
 	feedback_add_details("admin_verb","Make Mentor") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -69,7 +69,7 @@ var/list/mentor_verbs_default = list(
 	set category = "Special Verbs"
 	set name = "Unmake Mentor"
 	if(!holder)
-		to_chat(src, span_pm(span_warning("Error: Only administrators may use this command.")))
+		to_chat(src, span_admin_pm_warning("Error: Only administrators may use this command."))
 		return
 	var/list/client/targets[0]
 	for(var/client/T in GLOB.mentors)
@@ -79,8 +79,8 @@ var/list/mentor_verbs_default = list(
 		return
 	var/client/C = targets[target]
 	C.mentorholder.disassociate()
-	to_chat(C, span_pm(span_warning("Your mentorship has been revoked.")))
-	to_chat(src, span_pm(span_notice("You have revoked [C]'s mentorship.")))
+	to_chat(C, span_admin_pm_warning("Your mentorship has been revoked."))
+	to_chat(src, span_admin_pm_notice("You have revoked [C]'s mentorship."))
 	log_admin("[key_name(src)] revoked [key_name(C)]'s mentorship.")
 	feedback_add_details("admin_verb","Unmake Mentor") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -134,7 +134,7 @@ var/list/mentor_verbs_default = list(
 
 /client/proc/cmd_mhelp_reply(whom)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, span_pm(span_warning("Error: Mentor-PM: You are unable to use admin PM-s (muted).")))
+		to_chat(src, span_admin_pm_warning("Error: Mentor-PM: You are unable to use admin PM-s (muted)."))
 		return
 	var/client/C
 	if(istext(whom))
@@ -143,7 +143,7 @@ var/list/mentor_verbs_default = list(
 		C = whom
 	if(!C)
 		if(has_mentor_powers(src))
-			to_chat(src, span_pm(span_warning("Error: Mentor-PM: Client not found.")))
+			to_chat(src, span_admin_pm_warning("Error: Mentor-PM: Client not found."))
 		return
 
 	var/datum/mentor_help/MH = C.current_mentorhelp
@@ -185,13 +185,13 @@ var/list/mentor_verbs_default = list(
 	set hidden = 1
 
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, span_pm(span_warning("Error: Mentor-PM: You are unable to use admin PM-s (muted).")))
+		to_chat(src, span_mentor_pm_warning("Error: Mentor-PM: You are unable to use mentor PM-s (muted)."))
 		return
 
 	//Not a mentor and no open ticket
 	if(!has_mentor_powers(src) && !current_mentorhelp)
-		to_chat(src, span_pm(span_warning("You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be.")))
-		to_chat(src, span_pm(span_notice("Message: [msg]")))
+		to_chat(src, span_mentor_pm_warning("You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be."))
+		to_chat(src, span_mentor_pm_notice("Message: [msg]"))
 		return
 
 	var/client/recipient
@@ -210,12 +210,12 @@ var/list/mentor_verbs_default = list(
 			return
 
 		if(prefs.muted & MUTE_ADMINHELP)
-			to_chat(src, span_pm(span_warning("Error: Mentor-PM: You are unable to use admin PM-s (muted).")))
+			to_chat(src, span_mentor_pm_warning("Error: Mentor-PM: You are unable to use mentor PM-s (muted)."))
 			return
 
 		if(!recipient)
 			if(has_mentor_powers(src))
-				to_chat(src, span_pm(span_warning("Error:Mentor-PM: Client not found.")))
+				to_chat(src, span_mentor_pm_warning("Error:Mentor-PM: Client not found."))
 				to_chat(src, msg)
 			else
 				log_admin("Mentorhelp: [key_name(src)]: [msg]")
@@ -224,8 +224,8 @@ var/list/mentor_verbs_default = list(
 
 	//Has mentor powers but the recipient no longer has an open ticket
 	if(has_mentor_powers(src) && !recipient.current_mentorhelp)
-		to_chat(src, span_pm(span_warning("You can no longer reply to this ticket.")))
-		to_chat(src, span_pm(span_notice("Message: [msg]")))
+		to_chat(src, span_mentor_pm_warning("You can no longer reply to this ticket."))
+		to_chat(src, span_mentor_pm_notice("Message: [msg]"))
 		return
 
 	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
@@ -235,7 +235,7 @@ var/list/mentor_verbs_default = list(
 	if(!msg)
 		return
 
-	var/interaction_message = span_pm(span_notice("Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]"))
+	var/interaction_message = span_mentor_pm_notice("Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]")
 
 	if (recipient.current_mentorhelp && !has_mentor_powers(recipient))
 		recipient.current_mentorhelp.AddInteraction(interaction_message)

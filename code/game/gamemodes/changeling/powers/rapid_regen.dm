@@ -49,7 +49,7 @@
 			new /obj/effect/gibspawner/human(T)
 			visible_message(span_warning("With a sickening squish, [src] reforms their whole body, casting their old parts on the floor!"),
 			span_notice("We reform our body.  We are whole once more."),
-			span_italics("You hear organic matter ripping and tearing!"))
+			span_warningplain("You hear organic matter ripping and tearing!"))
 
 	feedback_add_details("changeling_powers","RR")
 	return 1

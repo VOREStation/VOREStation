@@ -375,9 +375,12 @@ img.icon.bigicon {
 .npcsay,
 .infoplain,
 .oocplain,
-.warningplain,
 .chatexport,
 .body {
+}
+
+.warningplain {
+  font-style: italic;
 }
 
 .hivemind {

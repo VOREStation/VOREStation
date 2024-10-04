@@ -177,13 +177,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		MessageNoRecipient(parsed_message)
 		send2adminchat() //VOREStation Add
 		//show it to the person adminhelping too
-		to_chat(C, span_pm(span_adminnotice("PM to-<b>Admins</b>: [name]")))
+		to_chat(C, span_admin_pm_notice("PM to-<b>Admins</b>: [name]"))
 
 		//send it to irc if nobody is on and tell us how many were on
 		var/admin_number_present = send2irc_adminless_only(initiator_ckey, name)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
-			to_chat(C, span_pm(span_notice("No active admins are online, your adminhelp was sent to the admin discord.")))		//VOREStation Edit
+			to_chat(C, span_admin_pm_notice("No active admins are online, your adminhelp was sent to the admin discord."))		//VOREStation Edit
 
 		// Also send it to discord since that's the hip cool thing now.
 		SSwebhooks.send(
@@ -243,7 +243,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //won't bug irc
 /datum/admin_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
-	var/chat_msg = span_pm(span_adminnotice("<span class='adminhelp'>Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> [msg]"))
+	var/chat_msg = span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(": [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:") + msg)
 
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
 	//send this msg to all admins
@@ -618,7 +618,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(input == "Yes")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
-				to_chat(usr, span_pm(span_adminnotice("PM to-<b>Admins</b>: [msg]")))
+				to_chat(usr, span_admin_pm_notice("PM to-<b>Admins</b>: [msg]"))
 				return
 			else
 				to_chat(usr, span_warning("Ticket not found, creating new one..."))
