@@ -74,8 +74,6 @@
 
 #define span_sinister(str) ("<span class='sinister'>" + str + "</span>")
 
-#define span_reflex_shoot(str) ("<span class='reflex_shoot'>" + str + "</span>")
-
 /* Direct communication spans */
 
 #define span_psay(str) ("<span class='psay'>" + str + "</span>")
