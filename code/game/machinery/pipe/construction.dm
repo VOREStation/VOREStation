@@ -216,7 +216,7 @@ Buildable meters
 	user.visible_message( \
 		"[user] fastens \the [src].", \
 		span_notice("You fasten \the [src]."), \
-		span_italics("You hear ratcheting."))
+		span_warningplain("You hear ratcheting."))
 
 	qdel(src)
 

@@ -18,7 +18,7 @@
 	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
 		M.visible_message(span_warning("[M] casts off their [M.wear_suit.name]!"),
 		span_warning("We cast off our [M.wear_suit.name]"),
-		span_italics("You hear the organic matter ripping and tearing!"))
+		span_warningplain("You hear the organic matter ripping and tearing!"))
 		if(istype(M.wear_suit, armor_type))
 			qdel(M.wear_suit)
 		if(istype(M.head, helmet_type))

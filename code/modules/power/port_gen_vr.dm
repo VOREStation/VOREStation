@@ -180,7 +180,7 @@
 		return
 	going_kaboom = TRUE
 	visible_message(span_danger("\The [src] lets out an shower of sparks as it starts to lose stability!"),\
-		span_italics("You hear a loud electrical crack!"))
+		span_warningplain("You hear a loud electrical crack!"))
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_gen * 0.05)
 	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(explosion), get_turf(src), 2, 3, 4, 8), 100) // Not a normal explosion.
@@ -286,7 +286,7 @@
 
 /obj/machinery/power/rtg/kugelblitz/proc/asplod()
 	visible_message(span_danger("\The [src] lets out an shower of sparks as it starts to lose stability!"),\
-		span_italics("You hear a loud electrical crack!"))
+		span_warningplain("You hear a loud electrical crack!"))
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	var/turf/T = get_turf(src)
 	qdel(src)

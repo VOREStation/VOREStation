@@ -52,7 +52,7 @@
 				if(siemens)
 					visible_message(span_warning("Arcs of electricity strike [G.affecting]!"),
 					span_warning("Our hand channels raw electricity into [G.affecting]."),
-					span_italics("You hear sparks!"))
+					span_warningplain("You hear sparks!"))
 				else
 					to_chat(src, span_warning("Our gloves block us from shocking \the [G.affecting]."))
 				src.mind.changeling.chem_charges -= 10
@@ -76,7 +76,7 @@
 			for(var/obj/item/cell/cell in L)
 				visible_message(span_warning("Some sparks fall out from \the [src.name]\'s [held_item]!"),
 				span_warning("Our hand channels raw electricity into \the [held_item]."),
-				span_italics("You hear sparks!"))
+				span_warningplain("You hear sparks!"))
 				var/i = 10
 				if(siemens)
 					while(i)
@@ -117,7 +117,7 @@
 	if(ismob(loc))
 		visible_message(span_warning("Electrical arcs form around [loc.name]\'s hand!"),
 		span_warning("We store a charge of electricity in our hand."),
-		span_italics("You hear crackling electricity!"))
+		span_warningplain("You hear crackling electricity!"))
 		var/T = get_turf(src)
 		new /obj/effect/effect/sparks(T)
 
@@ -154,7 +154,7 @@
 		if(siemens)
 			visible_message(span_warning("Arcs of electricity strike [C]!"),
 			span_warning("Our hand channels raw electricity into [C]"),
-			span_italics("You hear sparks!"))
+			span_warningplain("You hear sparks!"))
 		else
 			to_chat(src, span_warning("Our gloves block us from shocking \the [C]."))
 		//qdel(src)  //Since we're no longer a one hit stun, we need to stick around.
@@ -172,7 +172,7 @@
 		if(siemens)
 			visible_message(span_warning("Arcs of electricity strike [S]!"),
 			span_warning("Our hand channels raw electricity into [S]"),
-			span_italics("You hear sparks!"))
+			span_warningplain("You hear sparks!"))
 			to_chat(S, span_danger("Warning: Electrical surge detected!"))
 		//qdel(src)
 		user.mind.changeling.chem_charges -= 10
@@ -186,7 +186,7 @@
 			for(var/obj/item/cell/cell in T.contents)
 				visible_message(span_warning("Some sparks fall out from \the [target]!"),
 				span_warning("Our hand channels raw electricity into \the [target]."),
-				span_italics("You hear sparks!"))
+				span_warningplain("You hear sparks!"))
 				var/i = 10
 				if(siemens)
 					while(i)
