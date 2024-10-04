@@ -339,6 +339,8 @@
 			B.name = "Stomach"
 			B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
 			B.can_taste = TRUE
+		else
+			vore_selected = vore_organs[1]
 
 	return TRUE
 
