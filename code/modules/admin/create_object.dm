@@ -21,8 +21,6 @@
 	var/list/choices = list("/obj",
 	"/obj/structure",
 	"/obj/item",
-	"/obj/item",
-	"/obj/item",
 	"/obj/item/gun",
 	"/obj/item/reagent_containers",
 	"/obj/item/reagent_containers/food",
