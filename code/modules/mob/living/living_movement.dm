@@ -264,7 +264,7 @@ default behaviour is:
 
 /mob/living/proc/dragged(var/mob/living/dragger, var/oldloc)
 	var/area/A = get_area(src)
-	if(lying && !buckled && pull_damage() && A.has_gravity() && (prob(getBruteLoss() * 200 / maxHealth)))
+	if(lying && !buckled && pull_damage() && A.get_gravity() && (prob(getBruteLoss() * 200 / maxHealth)))
 		adjustBruteLoss(2)
 		visible_message(span_danger("\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"))
 
@@ -303,7 +303,7 @@ default behaviour is:
 
 	if(!isturf(loc))
 		return
-	else if(lastarea?.has_gravity == 0)
+	else if(lastarea?.get_gravity() == 0)
 		inertial_drift()
 	//VOREStation Edit Start
 	else if(flying)

@@ -147,7 +147,7 @@
 /turf/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 	var/turf/T = get_turf(user)
 	var/area/A = T.loc
-	if((istype(A) && !(A.has_gravity)) || (istype(T,/turf/space)))
+	if((istype(A) && !(A.get_gravity())) || (istype(T,/turf/space)))
 		return
 	if(istype(O, /obj/screen))
 		return
@@ -302,7 +302,7 @@
 // Called when turf is hit by a thrown object
 /turf/hitby(atom/movable/AM as mob|obj, var/speed)
 	if(density)
-		if(!has_gravity(AM)) //Checked a different codebase for reference. Turns out it's only supposed to happen in no-gravity
+		if(!get_gravity(AM)) //Checked a different codebase for reference. Turns out it's only supposed to happen in no-gravity
 			spawn(2)
 				step(AM, turn(AM.last_move, 180)) //This makes it float away after hitting a wall in 0G
 		if(isliving(AM))

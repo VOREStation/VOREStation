@@ -295,9 +295,9 @@
 		var/new_grav = 1
 		if(destination.flags & SLANDMARK_FLAG_ZERO_G)
 			var/area/new_area = get_area(destination)
-			new_grav = new_area.has_gravity
+			new_grav = new_area.get_gravity()
 		for(var/area/our_area in shuttle_area)
-			if(our_area.has_gravity != new_grav)
+			if(our_area.get_gravity() != new_grav)
 				our_area.gravitychange(new_grav)
 
 	// TODO - Old code used to throw stuff out of the way instead of squashing.  Should we?
