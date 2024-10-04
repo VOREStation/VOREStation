@@ -96,6 +96,23 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		. = icon2base64(getFlatIcon(target,defdir=SOUTH,no_anim=TRUE))
 		nom_icons[key] = .
 
+/datum/vore_look/tgui_static_data(mob/user)
+	var/list/data = ..()
+
+	data["vore_words"] = list(
+		"%goo" = GLOB.vore_words_goo,
+		"%happybelly" = GLOB.vore_words_hbellynoises,
+		"%fat" = GLOB.vore_words_fat,
+		"%grip" = GLOB.vore_words_grip,
+		"%cozy" = GLOB.vore_words_cozyholdingwords,
+		"%angry" = GLOB.vore_words_angry,
+		"%acid" = GLOB.vore_words_acid,
+		"%snack" = GLOB.vore_words_snackname,
+		"%hot" = GLOB.vore_words_hot,
+		"%snake" = GLOB.vore_words_snake,
+	)
+
+	return data
 
 /datum/vore_look/tgui_data(mob/user)
 	var/list/data = list()
@@ -118,14 +135,8 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		else if(inside_belly.desc)
 			inside_desc = inside_belly.desc
 
-		//I'd rather not copy-paste this code twice into the previous if-statement
-		//Technically we could just format the text anyway, but IDK how demanding unnecessary text-replacements are
-		if((host.absorbed && inside_belly.absorbed_desc) || (inside_belly.desc))
-			var/formatted_desc
-			formatted_desc = replacetext(inside_desc, "%belly", lowertext(inside_belly.name)) //replace with this belly's name
-			formatted_desc = replacetext(formatted_desc, "%pred", pred) //replace with the pred of this belly
-			formatted_desc = replacetext(formatted_desc, "%prey", host) //replace with whoever's reading this
-			inside_desc = formatted_desc
+		if(inside_desc != "No description.")
+			inside_desc = inside_belly.belly_format_string(inside_desc, host, use_first_only = TRUE)
 
 		inside = list(
 			"absorbed" = host.absorbed,

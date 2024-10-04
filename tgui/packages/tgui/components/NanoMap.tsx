@@ -3,17 +3,10 @@ import React, { Component, PropsWithChildren } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { KeyEvent } from 'tgui/events';
+import { KeyListener } from 'tgui-core/components';
 
 import { logger } from '../logging';
-import {
-  Box,
-  Button,
-  Icon,
-  KeyListener,
-  LabeledList,
-  Slider,
-  Tooltip,
-} from '.';
+import { Box, Button, Icon, LabeledList, Slider, Tooltip } from '.';
 
 const pauseEvent = (e) => {
   if (e.stopPropagation) {
