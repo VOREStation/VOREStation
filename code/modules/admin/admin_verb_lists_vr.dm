@@ -127,7 +127,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/unmake_mentor,
 	/client/proc/removetickets,
 	/client/proc/delbook,
-	/client/proc/toggle_spawning_with_recolour
+	/client/proc/toggle_spawning_with_recolour,
+	/client/proc/start_vote
 	)
 
 var/list/admin_verbs_ban = list(
@@ -416,7 +417,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
 	/datum/admins/proc/view_persistent_data,
 	/datum/admins/proc/view_txt_log,	//shows the server log (diary) for today,
-	/datum/admins/proc/view_atk_log		//shows the server combat-log, doesn't do anything presently,
+	/datum/admins/proc/view_atk_log,		//shows the server combat-log, doesn't do anything presently,
+	/client/proc/start_vote
 )
 
 var/list/admin_verbs_event_manager = list(
@@ -559,7 +561,8 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/cmd_debug_del_all,
 	/client/proc/toggle_random_events,
 	/client/proc/modify_server_news,
-	/client/proc/toggle_spawning_with_recolour
+	/client/proc/toggle_spawning_with_recolour,
+	/client/proc/start_vote
 
 )
 
