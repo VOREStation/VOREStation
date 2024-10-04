@@ -85,13 +85,13 @@
 		"%prey slid into your %dest due to their struggling inside your %belly!")
 
 	var/list/primary_transfer_messages_prey = list(
-		"Your attempt to escape %pred's %belly has failed and your struggles only results in you sliding into pred's %dest!")
+		"Your attempt to escape %pred's %belly has failed and your struggles only results in you sliding into %pred's %dest!")
 
 	var/list/secondary_transfer_messages_owner = list(
 		"%prey slid into your %dest due to their struggling inside your %belly!")
 
 	var/list/secondary_transfer_messages_prey = list(
-		"Your attempt to escape %pred's %belly has failed and your struggles only results in you sliding into pred's %dest!")
+		"Your attempt to escape %pred's %belly has failed and your struggles only results in you sliding into %pred's %dest!")
 
 	var/list/digest_chance_messages_owner = list(
 		"You feel your %belly beginning to become active!")
