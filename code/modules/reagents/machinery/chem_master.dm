@@ -226,12 +226,14 @@
 					if(condi || !reagents.total_volume)
 						return
 					tgui_modal_input(src, id, "Please enter the amount of patches to make (max [MAX_MULTI_AMOUNT] at a time):", null, arguments, pillamount, 5)
-				if("create_bottle")
+				if("create_bottle", "create_bottle_two")
 					if(condi || !reagents.total_volume)
 						return
 					var/num = round(text2num(arguments["num"] || 1))
 					if(!num)
 						return
+					if(id == "create_bottle_two")
+						num = 2
 					arguments["num"] = num
 					var/amount_per_bottle = CLAMP(reagents.total_volume / num, 0, MAX_UNITS_PER_BOTTLE)
 					var/default_name = "[reagents.get_master_reagent_name()]"
@@ -349,7 +351,7 @@
 					if(condi || !reagents.total_volume)
 						return
 					tgui_act("modal_open", list("id" = "create_patch", "arguments" = list("num" = answer)), ui, state)
-				if("create_bottle")
+				if("create_bottle", "create_bottle_two")
 					if(condi || !reagents.total_volume)
 						return
 					var/count = CLAMP(round(text2num(arguments["num"]) || 0), 0, MAX_MULTI_AMOUNT)
