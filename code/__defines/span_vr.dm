@@ -58,7 +58,7 @@
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_userdanger(str) ("<span class='userdanger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
-#define span_warningplain(str) ("<span class='warningplain italics'>" + str + "</span>")
+#define span_warningplain(str) ("<span class='warningplain'>" + str + "</span>")
 #define span_boldwarning(str) ("<span class='boldwarning'>" + str + "</span>")
 #define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>")
 #define span_filter_combat(str) ("<span class='filter_combat'>" + str + "</span>")
