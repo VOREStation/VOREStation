@@ -117,7 +117,7 @@ const QueueList = (props: { textColors: Record<number, number> }) => {
   }
 
   return queue.map((part, index) => (
-    <Box key={part.name}>
+    <Box key={index}>
       <Flex
         mb={0.5}
         direction="column"
