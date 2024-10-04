@@ -164,6 +164,9 @@
 
 	if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W
+		if (isshell(user) && istype(W, /obj/item/mmi/inert/ai_remote))
+			to_chat(user, span_warning("Your hardware prohibits you from self-replicating."))
+			return
 		if(check_completion())
 			if(!istype(loc,/turf))
 				to_chat(user, span_warning("You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise."))
