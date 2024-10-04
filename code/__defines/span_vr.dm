@@ -50,12 +50,12 @@
 #define span_hear(str) ("<span class='hear'>" + str + "</span>")
 
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
-#define span_moderate(str) ("<span class='moderate'>" + str + "</span>")
 #define span_disarm(str) ("<span class='disarm'>" + str + "</span>")
 #define span_passive(str) ("<span class='passive'>" + str + "</span>")
 
 #define span_critical(str) ("<span class='critical'>" + str + "</span>")
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
+#define span_bolddanger(str) ("<span class='bolddanger'>" + str + "</span>")
 #define span_userdanger(str) ("<span class='userdanger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
 #define span_boldwarning(str) ("<span class='boldwarning'>" + str + "</span>")
