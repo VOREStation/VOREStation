@@ -164,6 +164,14 @@
 #define span_mentor(str) ("<span class='mentor'>" + str + "</span>")
 #define span_filter_pray(str) ("<span class='filter_pray'>" + str + "</span>")
 
+/* Admin only usage */
+
+#define span_admin_pm_notice(str) ("<span class='pm notice'>" + str + "</span>")
+#define span_admin_pm_warning(str) ("<span class='pm warning'>" + str + "</span>")
+
+#define span_mentor_pm_notice(str) ("<span class='mentor notice'>" + str + "</span>")
+#define span_mentor_pm_warning(str) ("<span class='mentor warning'>" + str + "</span>")
+
 /* Adminchat */
 
 #define span_admin_channel(str) ("<span class='admin_channel'>" + str + "</span>")
