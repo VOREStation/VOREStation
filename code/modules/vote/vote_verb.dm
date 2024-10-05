@@ -12,7 +12,7 @@
 	set name = "Start Vote"
 	set desc = "Start a vote on the server"
 
-	if(!is_admin(usr))
+	if(!is_admin())
 		return
 
 	if(SSvote.active_vote)
