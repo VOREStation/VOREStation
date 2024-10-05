@@ -37,7 +37,7 @@ var/global/universe_has_ended = 0
 // Apply changes when entering state
 /datum/universal_state/supermatter_cascade/OnEnter()
 	set background = 1
-	to_world(span_sinister("<span style='font-size:22pt'>You are blinded by a brilliant flash of energy.</span>"))
+	to_world(span_sinister(span_cascade("You are blinded by a brilliant flash of energy.")))
 
 	world << sound('sound/effects/cascade.ogg')
 

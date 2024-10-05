@@ -142,7 +142,7 @@
 		else
 			to_chat(user, span_notice("You scribble your new nickname on the side of [src]."))
 			nickname = tmp_label
-			desc = initial(desc) + " This one has <span class='notice'>'[nickname]'</span> scribbled on the side."
+			desc = initial(desc) + " This one has "  + span_notice("'[nickname]'") + " scribbled on the side."
 	else
 		return ..()
 

@@ -63,8 +63,8 @@
 		return .(pulses_remaining, victim, previous_damage)
 	// Now check if our damage predictions are going to cause the victim to go into crit if no healing occurs.
 	if(previous_damage + health_lost >= victim.getMaxHealth()) // We're probably going to hardcrit
-		to_chat(victim, "<span class='danger'><font size='3'>A feeling of immense dread starts to overcome you as everything starts \
-		to fade to black...</font></span>")
+		to_chat(victim, span_danger(span_large("A feeling of immense dread starts to overcome you as everything starts \
+		to fade to black...")))
 		//to_world("Predicted hardcrit.")
 		return 1
 	else if(predicted_damage >= victim.species.total_health / 2) // Or perhaps we're gonna go into 'oxy crit'.

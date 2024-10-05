@@ -117,13 +117,13 @@ var/global/list/additional_antag_types = list()
 				return
 
 /datum/game_mode/proc/announce() //to be called when round starts
-	to_world("<B>The current game mode is [capitalize(name)]!</B>")
+	to_world(span_bold("The current game mode is [capitalize(name)]!"))
 	if(round_description)
 		to_world("[round_description]")
 	if(round_autoantag)
 		to_world("Antagonists will be added to the round automagically as needed.")
 	if(antag_templates && antag_templates.len)
-		var/antag_summary = "<b>Possible antagonist types:</b> "
+		var/antag_summary = span_bold("Possible antagonist types:") + " "
 		var/i = 1
 		for(var/datum/antagonist/antag in antag_templates)
 			if(i > 1)
@@ -338,8 +338,9 @@ var/global/list/additional_antag_types = list()
 
 	var/text = ""
 	if(surviving_total > 0)
-		text += "<br>There [surviving_total>1 ? "were <b>[surviving_total] survivors</b>" : "was <b>one survivor</b>"]"
-		text += " (<b>[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts</b>.<br>"
+		text += "<br>There [surviving_total>1 ? ("were " + span_bold("[surviving_total] survivors")) : ("was " + span_bold("one survivor"))] ("
+		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts")
+		text += ".<br>"
 	else
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
 	to_world(text)
@@ -470,7 +471,8 @@ var/global/list/additional_antag_types = list()
 //Reports player logouts//
 //////////////////////////
 /proc/display_roundstart_logout_report()
-	var/msg = "<span class='notice'><b>Roundstart logout report</b>\n\n"
+	var/msg = span_bold("Roundstart logout report")
+	msg += "<br><br>"
 	for(var/mob/living/L in mob_list)
 
 		if(L.ckey)
@@ -480,21 +482,21 @@ var/global/list/additional_antag_types = list()
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_yellow("<b>Disconnected</b>")])\n"
+				msg += "[span_bold(L.name)] ([L.ckey]), the [L.job] ([span_yellow(span_bold("Disconnected"))])<br>"
 
 		if(L.ckey && L.client)
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_yellow("<b>Connected, Inactive</b>")])\n"
+				msg += "[span_bold(L.name)] ([L.ckey]), the [L.job] ([span_yellow(span_bold("Connected, Inactive"))])<br>"
 				continue //AFK client
 			if(L.stat)
 				if(L.suiciding)	//Suicider
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_red("<b>Suicide</b>")])\n"
+					msg += "[span_bold(L.name)] ([L.ckey]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
 					continue //Disconnected client
 				if(L.stat == UNCONSCIOUS)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
+					msg += "[span_bold(L.name)] ([L.ckey]), the [L.job] (Dying)<br>"
 					continue //Unconscious
 				if(L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"
+					msg += "[span_bold(L.name)] ([L.ckey]), the [L.job] (Dead)<br>"
 					continue //Dead
 
 			continue //Happy connected client
@@ -502,20 +504,20 @@ var/global/list/additional_antag_types = list()
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Suicide</b>")])\n"
+						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
 						continue //Disconnected client
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Adminghosted</b>")])\n"
+						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
 						continue //Lolwhat
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Ghosted</b>")])\n"
+						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
 						continue //Ghosted while alive
 
-	msg += "</span>" // close the span from right at the top
+	msg = span_notice(msg)// close the span from right at the top
 
 	for(var/mob/M in mob_list)
 		if(M.client && M.client.holder)
@@ -539,7 +541,7 @@ var/global/list/additional_antag_types = list()
 	var/obj_count = 1
 	to_chat(player.current, span_notice("Your current objectives:"))
 	for(var/datum/objective/objective in player.objectives)
-		to_chat(player.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
+		to_chat(player.current, span_bold("Objective #[obj_count]") + ": [objective.explanation_text]")
 		obj_count++
 
 /mob/verb/check_round_info()
@@ -551,11 +553,11 @@ var/global/list/additional_antag_types = list()
 		return
 
 	if(master_mode != "secret")
-		to_chat(usr, span_notice("<b>The roundtype is [capitalize(ticker.mode.name)]</b>"))
+		to_chat(usr, span_notice(span_bold("The roundtype is [capitalize(ticker.mode.name)]")))
 		if(ticker.mode.round_description)
-			to_chat(usr, span_notice("<i>[ticker.mode.round_description]</i>"))
+			to_chat(usr, span_notice(span_italics("[ticker.mode.round_description]")))
 		if(ticker.mode.extended_round_description)
 			to_chat(usr, span_notice("[ticker.mode.extended_round_description]"))
 	else
-		to_chat(usr, span_notice("<i>Shhhh</i>. It's a secret."))
+		to_chat(usr, span_notice(span_italics("Shhhh") + ". It's a secret."))
 	return

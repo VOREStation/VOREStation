@@ -54,9 +54,9 @@
 
 			if(is_special_character(C.mob))
 				if(C.mob?.mind?.special_role)
-					entry += "<b><span class='red'>[C.mob.mind.special_role]</span></b>"
+					entry += span_red(span_bold("[C.mob.mind.special_role]"))
 				else
-					entry += "<b><span class='red'>Antagonist</span></b>"
+					entry += span_red(span_bold("Antagonist"))
 
 			entry += "</td><td>"
 
@@ -80,11 +80,11 @@
 				entry += "[C.key]"
 			var/mob/observer/dead/O = C.mob
 			if(isobserver(O))
-				entry += " - <span class='gray'>Observing</span><br>"
+				entry += " - " + span_gray("Observing") + "<br>"
 			else if(istype(O,/mob/new_player))
-				entry += " - <span class='blue'>In Lobby</span><br>"
+				entry += " - " + span_blue("In Lobby") + "<br>"
 			else
-				entry += " - <span class='green'>Playing</span><br>"
+				entry += " - "+ span_green("Playing") + "<br>"
 
 			Lines += entry
 

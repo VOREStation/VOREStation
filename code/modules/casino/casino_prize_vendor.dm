@@ -344,7 +344,7 @@
 		return
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message(span_npcsay("<span class='name'>\The [src]</span> beeps, \"[message]\""),2)
+		O.show_message(span_npc_say("<span class='name'>\The [src]</span> beeps, \"[message]\""),2)
 	return
 
 /obj/machinery/casino_prize_dispenser/process() //Might not need this, but just to be safe for now

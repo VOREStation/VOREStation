@@ -144,7 +144,7 @@
 			message = "[time] [message]"
 		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
-			message = span_npcsay(message)
+			message = span_npc_say(message)
 		else if(speaker && !(get_z(src) == get_z(speaker)))
 			message = span_multizsay(message)
 		to_chat(src, message)
@@ -160,7 +160,7 @@
 			message = "[time] [message]"
 		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
-			message = span_npcsay(message)
+			message = span_npc_say(message)
 		else if(speaker && !(get_z(src) == get_z(speaker)))
 			message = span_multizsay(message)
 		to_chat(src, message)
@@ -336,7 +336,7 @@
 
 	var/rendered = span_game(span_say(span_name(name) + " [message]"))
 	if(!speaker.client)
-		rendered = span_npcsay(rendered)
+		rendered = span_npc_say(rendered)
 	else
 		if(istype(speaker, /mob/living/silicon/ai))
 			var/mob/living/silicon/ai/source = speaker

@@ -46,7 +46,7 @@ var/global/datum/book_manager/book_mgr = new()
 			break
 
 	if(!our_comp)
-		to_chat(usr, "<span class = 'warning'>Unable to locate a library computer to use for book deleting.</span>")
+		to_chat(usr, span_warning("Unable to locate a library computer to use for book deleting."))
 		return
 
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>

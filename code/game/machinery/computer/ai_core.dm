@@ -214,8 +214,8 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	transfer.loc = get_turf(src)
 	transfer.create_eyeobj()
 	transfer.cancel_camera()
-	to_chat(user, "<span class='notice'>Transfer successful:</span> [transfer.name] placed within stationary core.")
-	to_chat(transfer, "You have been transferred into a stationary core. Remote device connection restored.")
+	to_chat(user, span_notice("Transfer successful:") + " [transfer.name] placed within stationary core.")
+	to_chat(transfer, span_info("You have been transferred into a stationary core. Remote device connection restored."))
 
 	if(card)
 		card.clear()
@@ -236,25 +236,25 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		if(transfer)
 			load_ai(transfer,card,user)
 		else
-			to_chat(user, "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence.")
+			to_chat(user, span_danger("ERROR:") + " Unable to locate artificial intelligence.")
 		return
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(anchored)
-			user.visible_message("<b>\The [user]</b> starts to unbolt \the [src] from the plating...")
+			user.visible_message(span_bold("\The [user]") + " starts to unbolt \the [src] from the plating...")
 			playsound(src, W.usesound, 50, 1)
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<b>\The [user]</b> decides not to unbolt \the [src].")
+				user.visible_message(span_bold("\The [user]") + " decides not to unbolt \the [src].")
 				return
-			user.visible_message("<b>\The [user]</b> finishes unfastening \the [src]!")
+			user.visible_message(span_bold("\The [user]") + " finishes unfastening \the [src]!")
 			anchored = FALSE
 			return
 		else
-			user.visible_message("<b>\The [user]</b> starts to bolt \the [src] to the plating...")
+			user.visible_message(span_bold("\The [user]") + " starts to bolt \the [src] to the plating...")
 			playsound(src, W.usesound, 50, 1)
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<b>\The [user]</b> decides not to bolt \the [src].")
+				user.visible_message(span_bold("\The [user]") + " decides not to bolt \the [src].")
 				return
-			user.visible_message("<b>\The [user]</b> finishes fastening down \the [src]!")
+			user.visible_message(span_bold("\The [user]") + " finishes fastening down \the [src]!")
 			anchored = TRUE
 			return
 	else

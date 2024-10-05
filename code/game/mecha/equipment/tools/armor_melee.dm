@@ -15,7 +15,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/get_equip_info()
 	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name]"
 
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
 	if(!action_checks(user))

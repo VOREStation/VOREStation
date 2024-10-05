@@ -74,7 +74,7 @@
 	if(..())
 		return
 	if (using_map && !(src.z in using_map.contact_levels))
-		to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
+		to_chat(user, span_danger("Unable to establish a connection:") + " You're too far away from the station!")
 		return
 	tgui_interact(user)
 

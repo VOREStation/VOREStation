@@ -53,10 +53,10 @@
 	if(mode)
 		return analyze_reagents(target)
 	if(!syringes.len)
-		occupant_message("<span class=\"alert\">No syringes loaded.</span>")
+		occupant_message(span_warning("No syringes loaded."))
 		return
 	if(reagents.total_volume<=0)
-		occupant_message("<span class=\"alert\">No available reagents to load syringe with.</span>")
+		occupant_message(span_warning("No available reagents to load syringe with."))
 		return
 	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
@@ -84,7 +84,7 @@
 					S.icon = initial(S.icon)
 					S.reagents.trans_to_mob(M, S.reagents.total_volume, CHEM_BLOOD)
 					M.take_organ_damage(2)
-					S.visible_message("<span class=\"attack\"> [M] was hit by the syringe!</span>")
+					S.visible_message(span_attack("[M] was hit by the syringe!"))
 					break
 				else if(S.loc == trg)
 					S.icon_state = initial(S.icon_state)
@@ -225,7 +225,7 @@
 		occupant_message("The object is too far away.")
 		return 0
 	if(!A.reagents || istype(A,/mob))
-		occupant_message("<span class=\"alert\">No reagent info gained from [A].</span>")
+		occupant_message(span_warning("No reagent info gained from [A]."))
 		return 0
 	occupant_message("Analyzing reagents...")
 	//VOREStation Block Edit - Start
@@ -267,7 +267,7 @@
 	if(!chassis)
 		return PROCESS_KILL
 	if(!processed_reagents.len || reagents.total_volume >= reagents.maximum_volume || !chassis.has_charge(energy_drain))
-		occupant_message("<span class=\"alert\">Reagent processing stopped.</span>")
+		occupant_message(span_warning("Reagent processing stopped."))
 		log_message("Reagent processing stopped.")
 		return PROCESS_KILL
 	var/amount = synth_speed / processed_reagents.len
@@ -474,7 +474,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/get_equip_info()
 	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_drone=1'>[enabled?"Dea":"A"]ctivate</a>"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='?src=\ref[src];toggle_drone=1'>[enabled?"Dea":"A"]ctivate</a>"
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/rad
 	name = "hazmat dronebay"

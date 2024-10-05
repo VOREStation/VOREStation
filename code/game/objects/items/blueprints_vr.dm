@@ -818,7 +818,7 @@
 
 /proc/detect_new_area(var/turf/first, var/user) //Heavily simplified version for creating an area yourself.
 	if(!istype(first)) //Not on a turf.
-		to_chat(usr, "<span class='warning'You can not create a room here.</span>")
+		to_chat(usr, span_warning("You can not create a room here."))
 		return
 	if(get_new_area_type(first.loc) == 1) //Are they in an area they can build? I tried to do this BUILDABLE_AREA_TYPES[first.loc.type] but it refused.
 		var/list/turf/found = new

@@ -85,8 +85,8 @@ var/datum/antagonist/ninja/ninjas
 	if(!..())
 		return 0
 	var/directive = generate_ninja_directive("heel")
-	player.store_memory("<B>Directive:</B> <span class='danger'>[directive]</span><br>")
-	to_chat(player, "<b>Remember your directive:</b> [directive].")
+	player.store_memory(span_bold("Directive:") + " " + span_danger("[directive]") + "<br>")
+	to_chat(player, span_bold("Remember your directive:") + " [directive].")
 
 /datum/antagonist/ninja/update_antag_mob(var/datum/mind/player)
 	..()

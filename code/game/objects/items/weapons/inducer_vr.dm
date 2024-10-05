@@ -119,7 +119,7 @@
 		recharging = TRUE
 
 	if(istype(A, /obj/item/gun/energy) && !charge_guns)
-		to_chat(user, span_alert("Error: Device is unable to interface with weapons."))
+		to_chat(user, span_warning("Error: Device is unable to interface with weapons."))
 		recharging = FALSE
 		return FALSE
 
@@ -184,7 +184,7 @@
 		recharging = FALSE
 		return TRUE
 	else //Couldn't find a cell
-		to_chat(user, span_alert("Error unable to interface with device."))
+		to_chat(user, span_warning("Error unable to interface with device."))
 
 	recharging = FALSE
 

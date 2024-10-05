@@ -150,7 +150,7 @@
 		else
 			charging = null
 			update_icon()
-			src.visible_message("<span class ='notice'>\The [src] ejects the [pcard]!</span>")
+			src.visible_message(span_notice("\The [src] ejects the [pcard]!"))
 			pcard.forceMove(get_turf(src))
 			pcard.pai.full_restore()
 	//VOREStation Edit End

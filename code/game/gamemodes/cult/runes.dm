@@ -5,9 +5,9 @@ var/list/sacrificed = list()
 
 /*
  * Use as a general guideline for this and related files:
- *  * <span class='warning'>...</span> - when something non-trivial or an error happens, so something similar to "Sparks come out of the machine!"
- *  * <span class='danger'>...</span>  - when something that is fit for 'warning' happens but there is some damage or pain as well.
- *  * <span class='cult'>...</span>    - when there is a private message to the cultists. This guideline is very arbitrary but there has to be some consistency!
+ *  * span_warning("...") - when something non-trivial or an error happens, so something similar to "Sparks come out of the machine!"
+ *  * span_danger("...")  - when something that is fit for 'warning' happens but there is some damage or pain as well.
+ *  * span_cult("...")    - when there is a private message to the cultists. This guideline is very arbitrary but there has to be some consistency!
  */
 
 
@@ -197,7 +197,7 @@ var/list/sacrificed = list()
 			cultists.Add(M)
 	if(cultists.len >= 9)
 		if(!narsie_cometh)//so we don't initiate Hell more than one time.
-			to_world("<font size='15' color='red'><b>THE VEIL HAS BEEN SHATTERED!</b></font>")
+			to_world(span_narsie(span_red(span_bold("THE VEIL HAS BEEN SHATTERED!"))))
 			world << sound('sound/effects/weather/wind/wind_5_1.ogg')
 
 			SetUniversalState(/datum/universal_state/hell)
@@ -1082,10 +1082,10 @@ var/list/sacrificed = list()
 		var/obj/item/nullrod/N = locate() in T
 		if(N)
 			for(var/mob/O in viewers(T, null))
-				O.show_message(span_warning("<B>[usr] invokes a talisman at [T], but they are unaffected!</B>"), 1)
+				O.show_message(span_warning(span_bold("[usr] invokes a talisman at [T], but they are unaffected!")), 1)
 		else
 			for(var/mob/O in viewers(T, null))
-				O.show_message(span_warning("<B>[usr] invokes a talisman at [T]</B>"), 1)
+				O.show_message(span_warning(span_bold("[usr] invokes a talisman at [T]")), 1)
 
 			if(issilicon(T))
 				T.Weaken(15)

@@ -113,9 +113,9 @@
 	var/mob/living/silicon/robot/R = new drone_type(T)
 
 	// Put this text here before ckey change so that their laws are shown below it, since borg login() shows it.
-	to_chat(C, span_notice("You are a <b>Mercenary Drone</b>, activated to serve your team."))
-	to_chat(C, "<span class='notice'><b>Be sure to examine your currently loaded lawset closely.</b>  It would be wise \
-	to speak with your team, and learn what their plan is for today.</span>")
+	to_chat(C, span_notice("You are a " + span_bold("Mercenary Drone") + ", activated to serve your team."))
+	to_chat(C, span_boldnotice("Be sure to examine your currently loaded lawset closely.</b>  It would be wise \
+	to speak with your team, and learn what their plan is for today."))
 
 	R.key = C.key
 //	R.Namepick() // Apparnetly making someone a merc lets them pick a name, so this isn't needed.
