@@ -192,9 +192,14 @@
 
 #define span_giant(str) "<font size='5'>" + str + "</font>"
 
+#define span_narsie(str) "<font size='15'>" + str + "</font>"
+
+#define span_cascade(str) "<span style='font-size:22pt'>" + str + "</span>"
+
 /* Style spans */
 
 #define span_italics(str) ("<span class='italics'>" + str + "</span>")
 #define span_bold(str) ("<span class='bold'>" + str + "</span>")
+#define span_underline(str) ("<span class='underline'>" + str + "</span>")
 
 #define span_linkify(str) ("<span class='linkify'>" + str + "</span>")

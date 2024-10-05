@@ -98,7 +98,7 @@
 
 /obj/machinery/clawmachine/attackby(obj/item/W as obj, mob/user as mob)
 	if(busy)
-		to_chat(user,"<span class='notice'>The claw machine is currently running.</span> ")
+		to_chat(user,span_notice("The claw machine is currently running."))
 		return
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
@@ -114,7 +114,7 @@
 		return
 
 	if(!anchored)
-		to_chat(user,span_notice(" The machine isn't secured."))
+		to_chat(user,span_notice("The machine isn't secured."))
 		return
 
 	var/handled = 0
@@ -147,10 +147,10 @@
 	if (isbroken)
 		return
 	if(busy)
-		to_chat(user,"<span class='notice'>The claw machine is currently running.</span> ")
+		to_chat(user,span_notice("The claw machine is currently running."))
 		return
 	if(cashmoney.worth < 5)
-		to_chat(user,"<span class='notice'>You dont have enough Thalers to play!</span> ")
+		to_chat(user,span_notice("You dont have enough Thalers to play!"))
 		return
 
 	to_chat(user,span_notice("You put 5 Thalers in the claw machine and press start."))

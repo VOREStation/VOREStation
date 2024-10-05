@@ -43,14 +43,14 @@ SUBSYSTEM_DEF(air)
 		S.update_air_properties()
 		CHECK_TICK
 
-	admin_notice({"<span class='danger'>Geometry initialized in [round(0.1*(REALTIMEOFDAY-timeofday),0.1)] seconds.</span>
-<span class='info'>
-Total Simulated Turfs: [simulated_turf_count]
-Total Zones: [zones.len]
-Total Edges: [edges.len]
-Total Active Edges: [active_edges.len ? span_danger("[active_edges.len]") : "None"]
-Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]
-</span>"}, R_DEBUG)
+	admin_notice(span_danger("Geometry initialized in [round(0.1*(REALTIMEOFDAY-timeofday),0.1)] seconds.") + \
+span_info("<br>\
+Total Simulated Turfs: [simulated_turf_count]<br>\
+Total Zones: [zones.len]<br>\
+Total Edges: [edges.len]<br>\
+Total Active Edges: [active_edges.len ? span_danger("[active_edges.len]") : "None"]<br>\
+Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]\
+"), R_DEBUG)
 
 	// Note - Baystation settles the air by running for one tick.  We prefer to not have active edges.
 	// Maps should not have active edges on boot.  If we've got some, log it so it can get fixed.

@@ -101,11 +101,11 @@ var/datum/antagonist/traitor/traitors
 	give_codewords(traitor_mob)
 
 /datum/antagonist/traitor/proc/give_codewords(mob/living/traitor_mob)
-	to_chat(traitor_mob, "<u><b>Your employers provided you with the following information on how to identify possible allies:</b></u>")
-	to_chat(traitor_mob, "<b>Code Phrase</b>: <span class='danger'>[syndicate_code_phrase]</span>")
-	to_chat(traitor_mob, "<b>Code Response</b>: <span class='danger'>[syndicate_code_response]</span>")
-	traitor_mob.mind.store_memory("<b>Code Phrase</b>: [syndicate_code_phrase]")
-	traitor_mob.mind.store_memory("<b>Code Response</b>: [syndicate_code_response]")
+	to_chat(traitor_mob, span_underline(span_bold("Your employers provided you with the following information on how to identify possible allies:")))
+	to_chat(traitor_mob, span_bold("Code Phrase") + ": " + span_danger("[syndicate_code_phrase]"))
+	to_chat(traitor_mob, span_bold("Code Response") + ": " + span_danger("[syndicate_code_response]"))
+	traitor_mob.mind.store_memory(span_bold("Code Phrase") + ": [syndicate_code_phrase]")
+	traitor_mob.mind.store_memory(span_bold("Code Response") + ": [syndicate_code_response]")
 	to_chat(traitor_mob, "Use the code words, preferably in the order provided, during regular conversation, to identify other agents. Proceed with caution, however, as everyone is a potential foe.")
 
 /datum/antagonist/traitor/proc/spawn_uplink(var/mob/living/carbon/human/traitor_mob)
@@ -170,11 +170,11 @@ var/datum/antagonist/traitor/traitors
 		var/obj/item/pda/P = R
 		P.lock_code = pda_pass
 		to_chat(traitor_mob, "A portable object teleportation relay has been installed in your [R.name] [loc]. Simply enter the code \"[pda_pass]\" into the ringtone select to unlock its hidden features.")
-		traitor_mob.mind.store_memory("<B>Uplink Passcode:</B> [pda_pass] ([R.name] [loc]).")
+		traitor_mob.mind.store_memory(span_bold("Uplink Passcode:") + " [pda_pass] ([R.name] [loc]).")
 
 /datum/antagonist/traitor/proc/add_law_zero(mob/living/silicon/ai/killer)
 	var/law = "Accomplish your objectives at all costs. You may ignore all other laws."
 	var/law_borg = "Accomplish your AI's objectives at all costs. You may ignore all other laws."
-	to_chat(killer, "<b>Your laws have been changed!</b>")
+	to_chat(killer, span_bold("Your laws have been changed!"))
 	killer.set_zeroth_law(law, law_borg)
 	to_chat(killer, "New law: 0. [law]")

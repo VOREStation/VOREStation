@@ -38,8 +38,8 @@
 	if(!mind)
 		return
 	if(!is_special_character(mind))
-		to_chat(src, "<span class='warning'>While you may perhaps have goals, this verb's meant to only be visible \
-		to antagonists.  Please make a bug report!</span>")
+		to_chat(src, span_warning("While you may perhaps have goals, this verb's meant to only be visible \
+		to antagonists.  Please make a bug report!"))
 		return
 	var/new_ambitions = tgui_input_text(src, "Write a short sentence of what your character hopes to accomplish \
 	today as an antagonist.  Remember that this is purely optional.  It will be shown at the end of the \

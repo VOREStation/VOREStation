@@ -190,9 +190,9 @@
 /datum/game_mode/epidemic/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","win - epidemic cured")
-		to_world("<font size = 3><span class='danger'> The virus outbreak was contained! The crew wins!</span></font>")
+		to_world(span_danger(span_large("The virus outbreak was contained! The crew wins!")))
 	else if(finished == 2)
 		feedback_set_details("round_end_result","loss - rev heads killed")
-		to_world("<font size = 3><span class='danger'> The crew succumbed to the epidemic!</span></font>")
+		to_world(span_danger(span_large("The crew succumbed to the epidemic!")))
 	..()
 	return 1

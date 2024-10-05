@@ -58,8 +58,8 @@
 			if(!M.mind || !M.mind.changeling)
 				if(M.get_ear_protection() >= 2)
 					continue
-				to_chat(M, "<span class='danger'>You hear an extremely loud screeching sound!  It \
-				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you.</span>")
+				to_chat(M, span_danger("You hear an extremely loud screeching sound!  It \
+				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you."))
 				M.adjustEarDamage(0,30)
 				M.Confuse(20)
 				M << sound('sound/effects/screech.ogg')

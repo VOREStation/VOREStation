@@ -336,7 +336,7 @@
 	switch(action)
 		if("ejectBoard")
 			if(copy_board)
-				visible_message("<span class='notice'>[copy_board] is ejected from [src]'s circuit reader</span>.")
+				visible_message(span_notice("[copy_board] is ejected from [src]'s circuit reader."))
 				copy_board.forceMove(src.loc)
 				copy_board = null
 			return TRUE
