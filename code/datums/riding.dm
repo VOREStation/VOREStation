@@ -119,7 +119,7 @@
 		ridden.unbuckle_mob(M)
 
 /datum/riding/proc/Process_Spacemove(direction)
-	if(ridden.has_gravity())
+	if(ridden.get_gravity())
 		return TRUE
 
 	return FALSE

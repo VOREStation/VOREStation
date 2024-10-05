@@ -292,7 +292,7 @@
 	if(buckled || lying || throwing)
 		return // people flying, lying down or sitting do not step
 
-	if(!has_gravity(src) && prob(75))
+	if(!get_gravity(src) && prob(75))
 		return // Far less likely to make noise in no gravity
 
 	playsound(T, S, volume, FALSE)

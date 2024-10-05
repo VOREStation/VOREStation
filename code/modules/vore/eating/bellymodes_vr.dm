@@ -107,25 +107,12 @@
 	if(emote_active)
 		var/list/EL = emote_lists[digest_mode]
 		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD])) || (digest_mode == DM_SELECT && (LAZYLEN(emote_lists[DM_HOLD])||LAZYLEN(emote_lists[DM_DIGEST])||LAZYLEN(emote_lists[DM_ABSORB])) )) && next_emote <= world.time)
-			var/living_count = 0
-			var/absorbed_count = 0
-			for(var/mob/living/L in contents)
-				living_count++
-				if(L.absorbed)
-					absorbed_count++
 			next_emote = world.time + (emote_time SECONDS)
 			for(var/mob/living/M in contents)
 				if(M.absorbed)
 					EL = emote_lists[DM_HOLD_ABSORBED]
-
-					var/raw_message = pick(EL)
-					var/formatted_message
-					formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-					formatted_message = replacetext(formatted_message, "%pred", owner)
-					formatted_message = replacetext(formatted_message, "%prey", M)
-					formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
-					if(formatted_message)
-						to_chat(M, span_vnotice("[formatted_message]"))
+					if(LAZYLEN(EL))
+						to_chat(M, span_vnotice(belly_format_string(EL, M, use_absorbed_count = TRUE)))
 				else
 					if (digest_mode == DM_SELECT)
 						var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
@@ -133,15 +120,8 @@
 					else if(digest_mode == DM_DIGEST && !M.digestable)
 						EL = emote_lists[DM_HOLD]					// Use Hold's emote list if we're indigestible
 
-					var/raw_message = pick(EL)
-					var/formatted_message
-					formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-					formatted_message = replacetext(formatted_message, "%pred", owner)
-					formatted_message = replacetext(formatted_message, "%prey", M)
-					formatted_message = replacetext(formatted_message, "%countprey", living_count)
-					formatted_message = replacetext(formatted_message, "%count", contents.len)
-					if(formatted_message)
-						to_chat(M, span_vnotice("[formatted_message]"))
+					if(LAZYLEN(EL))
+						to_chat(M, span_vnotice(belly_format_string(EL, M)))
 
 	if(to_update)
 		updateVRPanels()
@@ -260,32 +240,15 @@
 	return did_an_item
 
 /obj/belly/proc/handle_digestion_death(mob/living/M)
-	var/digest_alert_owner = pick(digest_messages_owner)
-	var/digest_alert_prey = pick(digest_messages_prey)
+	var/digest_alert_owner = span_vnotice(belly_format_string(digest_messages_owner, M))
+	var/digest_alert_prey = span_vnotice(belly_format_string(digest_messages_prey, M))
 	var/compensation = M.maxHealth / 5 //Dead body bonus.
 	if(ishuman(M))
 		compensation += M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
 
-	var/living_count = 0
-	for(var/mob/living/L in contents)
-		living_count++
-
-	//Replace placeholder vars
-	digest_alert_owner = replacetext(digest_alert_owner, "%pred", owner)
-	digest_alert_owner = replacetext(digest_alert_owner, "%prey", M)
-	digest_alert_owner = replacetext(digest_alert_owner, "%belly", lowertext(name))
-	digest_alert_owner = replacetext(digest_alert_owner, "%countprey", living_count)
-	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
-
-	digest_alert_prey = replacetext(digest_alert_prey, "%pred", owner)
-	digest_alert_prey = replacetext(digest_alert_prey, "%prey", M)
-	digest_alert_prey = replacetext(digest_alert_prey, "%belly", lowertext(name))
-	digest_alert_prey = replacetext(digest_alert_prey, "%countprey", living_count)
-	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
-
 	//Send messages
-	to_chat(owner, span_vnotice("[digest_alert_owner]"))
-	to_chat(M, span_vnotice("[digest_alert_prey]"))
+	to_chat(owner, digest_alert_owner)
+	to_chat(M, digest_alert_prey)
 
 	if(M.ckey)
 		GLOB.prey_digested_roundstat++

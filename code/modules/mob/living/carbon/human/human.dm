@@ -1754,7 +1754,7 @@
 // Drag damage is handled in a parent
 /mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc)
 	var/area/A = get_area(src)
-	if(lying && !buckled && A.has_gravity() && prob(getBruteLoss() * 200 / maxHealth))
+	if(lying && !buckled && A.get_gravity() && prob(getBruteLoss() * 200 / maxHealth))
 		var/bloodtrail = 1
 		if(species?.flags & NO_BLOOD)
 			bloodtrail = 0

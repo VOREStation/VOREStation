@@ -137,7 +137,7 @@
 							for(var/I in req_components)
 								if(istype(P, text2path(I)) && (req_components[I] > 0))
 									playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-									if(P.is_cable_coil))
+									if(P.is_cable_coil)
 										var/obj/item/stack/cable_coil/CP = P
 										if(CP.get_amount() > 1)
 											var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided

@@ -226,7 +226,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		mode.cleanup()
 		//call a transfer shuttle vote
 		to_world(span_danger("The round has ended!"))
-		new /datum/vote/crew_transfer
+		SSvote.start_vote(new /datum/vote/crew_transfer)
 
 // Called during GAME_STATE_FINISHED (RUNLEVEL_POSTGAME)
 /datum/controller/subsystem/ticker/proc/post_game_tick()

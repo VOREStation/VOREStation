@@ -78,7 +78,7 @@
 	data["supportedPrograms"] = program_list
 	data["currentProgram"] = current_program
 	data["immersion"] = immersion
-	if(my_area?.has_gravity)
+	if(my_area?.get_gravity())
 		data["gravity"] = 1
 	else
 		data["gravity"] = 0
@@ -147,7 +147,7 @@
 
 	last_gravity_change = world.time
 
-	if(A.has_gravity)
+	if(A.get_gravity())
 		A.gravitychange(0)
 	else
 		A.gravitychange(1)

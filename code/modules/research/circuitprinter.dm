@@ -55,8 +55,6 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 			build(D)
 			progress = 0
 			removeFromQueue(1)
-			if(linked_console)
-				linked_console.updateUsrDialog()
 		update_icon()
 	else
 		if(busy)
@@ -163,7 +161,6 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		to_chat(user, span_filter_notice("The fabricator cannot hold more [sname]."))
 	busy = 0
 
-	updateUsrDialog()
 	return
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/addToQueue(var/datum/design/D)

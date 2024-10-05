@@ -23,9 +23,13 @@
 	. = ..()
 	if(locked && !allowed(user) && !emagged)
 		. = min(., STATUS_UPDATE)
+	if(busy_msg)
+		. = min(., STATUS_UPDATE)
 
 /obj/machinery/computer/rdconsole/tgui_static_data(mob/user)
 	var/list/data = ..()
+
+	data["sheet_material_amount"] = SHEET_MATERIAL_AMOUNT
 
 	data["tech"] = tgui_GetResearchLevelsInfo()
 	data["designs"] = tgui_GetDesignInfo(design_page)
@@ -45,138 +49,104 @@
 	data["builder_page"] = builder_page
 	data["design_page"] = design_page
 
-	data["info"] = null
-	if(!locked && !busy_msg)
-		data["info"] = list(
-			"sync" = sync,
-			"is_public" = is_public,
+	data["sync"] = sync
+	data["is_public"] = is_public
+
+	// Skip the rest of the data if it's locked
+	if(locked)
+		return data
+
+	if(linked_destroy)
+		data["linked_destroy"] = list(
+			"loaded_item" = linked_destroy.loaded_item,
+			"origin_tech" = tgui_GetOriginTechForItem(linked_destroy.loaded_item),
 		)
+	else
+		data["linked_destroy"] = null
 
-		data["info"]["linked_destroy"] = list("present" = FALSE)
-		if(linked_destroy)
-			data["info"]["linked_destroy"] = list(
-				"present" = TRUE,
-				"loaded_item" = linked_destroy.loaded_item,
-				"origin_tech" = tgui_GetOriginTechForItem(linked_destroy.loaded_item),
-			)
+	if(linked_lathe)
+		var/list/reagents = list()
+		for(var/datum/reagent/R as anything in linked_lathe.reagents.reagent_list)
+			UNTYPED_LIST_ADD(reagents, list(
+				"name" = R.name,
+				"id" = R.id,
+				"volume" = R.volume
+			))
 
-		data["info"]["linked_lathe"] = list("present" = FALSE)
-		if(linked_lathe)
-			data["info"]["linked_lathe"] = list(
-				"present" = TRUE,
-				"total_materials" = linked_lathe.TotalMaterials(),
-				"max_materials" = linked_lathe.max_material_storage,
-				"total_volume" = linked_lathe.reagents.total_volume,
-				"max_volume" = linked_lathe.reagents.maximum_volume,
-				"busy" = linked_lathe.busy,
-			)
+		var/list/queue = list()
+		var/i = 1
+		for(var/datum/design/D as anything in linked_lathe.queue)
+			UNTYPED_LIST_ADD(queue, list(
+				"name" = D.name,
+				"index" = i
+			))
+			i += 1
 
-			var/list/materials = list()
-			for(var/M in linked_lathe.materials)
-				var/amount = linked_lathe.materials[M]
-				var/hidden_mat = FALSE
-				for(var/HM in linked_lathe.hidden_materials)
-					if(M == HM && amount == 0)
-						hidden_mat = TRUE
-						break
-				if(hidden_mat)
-					continue
-				materials.Add(list(list(
-					"name" = M,
-					"amount" = amount,
-					"sheets" = round(amount / SHEET_MATERIAL_AMOUNT),
-					"removable" = amount >= SHEET_MATERIAL_AMOUNT,
-				)))
-			data["info"]["linked_lathe"]["mats"] = materials
+		data["linked_lathe"] = list(
+			"total_materials" = linked_lathe.TotalMaterials(),
+			"max_materials" = linked_lathe.max_material_storage,
+			"total_volume" = linked_lathe.reagents.total_volume,
+			"max_volume" = linked_lathe.reagents.maximum_volume,
+			"busy" = linked_lathe.busy,
+			"materials" = linked_lathe.materials,
+			"reagents" = reagents,
+			"queue" = queue,
+		)
+	else
+		data["linked_lathe"] = null
 
-			var/list/reagents = list()
-			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
-				reagents.Add(list(list(
-					"name" = R.name,
-					"id" = R.id,
-					"volume" = R.volume,
-				)))
-			data["info"]["linked_lathe"]["reagents"] = reagents
+	if(linked_imprinter)
+		var/list/reagents = list()
+		for(var/datum/reagent/R as anything in linked_imprinter.reagents.reagent_list)
+			UNTYPED_LIST_ADD(reagents, list(
+				"name" = R.name,
+				"id" = R.id,
+				"volume" = R.volume
+			))
 
-			var/list/queue = list()
-			var/i = 1
-			for(var/datum/design/D in linked_lathe.queue)
-				queue.Add(list(list(
-					"name" = D.name,
-					"index" = i, // ugghhhh
-				)))
-				i++
-			data["info"]["linked_lathe"]["queue"] = queue
+		var/list/queue = list()
+		var/i = 1
+		for(var/datum/design/D as anything in linked_imprinter.queue)
+			UNTYPED_LIST_ADD(queue, list(
+				"name" = D.name,
+				"index" = i
+			))
+			i += 1
 
-		data["info"]["linked_imprinter"] = list("present" = FALSE)
-		if(linked_imprinter)
-			data["info"]["linked_imprinter"] = list(
-				"present" = TRUE,
-				"total_materials" = linked_imprinter.TotalMaterials(),
-				"max_materials" = linked_imprinter.max_material_storage,
-				"total_volume" = linked_imprinter.reagents.total_volume,
-				"max_volume" = linked_imprinter.reagents.maximum_volume,
-				"busy" = linked_imprinter.busy,
-			)
+		data["linked_imprinter"] = list(
+			"total_materials" = linked_imprinter.TotalMaterials(),
+			"max_materials" = linked_imprinter.max_material_storage,
+			"total_volume" = linked_imprinter.reagents.total_volume,
+			"max_volume" = linked_imprinter.reagents.maximum_volume,
+			"busy" = linked_imprinter.busy,
+			"materials" = linked_imprinter.materials,
+			"reagents" = reagents,
+			"queue" = queue
+		)
+	else
+		data["linked_imprinter"] = null
 
-			var/list/materials = list()
-			for(var/M in linked_imprinter.materials)
-				var/amount = linked_imprinter.materials[M]
-				var/hidden_mat = FALSE
-				for(var/HM in linked_imprinter.hidden_materials)
-					if(M == HM && amount == 0)
-						hidden_mat = TRUE
-						break
-				if(hidden_mat)
-					continue
-				materials.Add(list(list(
-					"name" = M,
-					"amount" = amount,
-					"sheets" = round(amount / SHEET_MATERIAL_AMOUNT),
-					"removable" = amount >= SHEET_MATERIAL_AMOUNT,
-				)))
-			data["info"]["linked_imprinter"]["mats"] = materials
+	if(t_disk)
+		data["t_disk"] = list(
+			"stored" = t_disk.stored ? list(
+				"name" = t_disk.stored.name,
+				"level" = t_disk.stored.level,
+				"desc" = t_disk.stored.desc,
+			) : null,
+		)
+	else
+		data["t_disk"] = null
 
-			var/list/reagents = list()
-			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
-				reagents.Add(list(list(
-					"name" = R.name,
-					"id" = R.id,
-					"volume" = R.volume,
-				)))
-			data["info"]["linked_imprinter"]["reagents"] = reagents
-
-			var/list/queue = list()
-			var/i = 1
-			for(var/datum/design/D in linked_imprinter.queue)
-				queue.Add(list(list(
-					"name" = D.name,
-					"index" = i, // ugghhhh
-				)))
-				i++
-			data["info"]["linked_imprinter"]["queue"] = queue
-
-		data["info"]["t_disk"] = list("present" = FALSE)
-		if(t_disk)
-			data["info"]["t_disk"] = list(
-				"present" = TRUE,
-				"stored" = !!t_disk.stored,
-			)
-			if(t_disk.stored)
-				data["info"]["t_disk"]["name"] = t_disk.stored.name
-				data["info"]["t_disk"]["level"] = t_disk.stored.level
-				data["info"]["t_disk"]["desc"] = t_disk.stored.desc
-
-		data["info"]["d_disk"] = list("present" = FALSE)
-		if(d_disk)
-			data["info"]["d_disk"] = list(
-				"present" = TRUE,
-				"stored" = !!d_disk.blueprint,
-			)
-			if(d_disk.blueprint)
-				data["info"]["d_disk"]["name"] = d_disk.blueprint.name
-				data["info"]["d_disk"]["build_type"] = d_disk.blueprint.build_type
-				data["info"]["d_disk"]["materials"] = d_disk.blueprint.materials
+	if(d_disk)
+		data["d_disk"] = list(
+			"stored" = d_disk.blueprint ? list(
+				"name" = d_disk.blueprint.name,
+				"build_type" = d_disk.blueprint.build_type,
+				"materials" = d_disk.blueprint.materials,
+			) : null,
+		)
+	else
+		data["d_disk"] = null
 
 	return data
 
@@ -244,6 +214,9 @@
 		)))
 
 	data = sortTim(data, GLOBAL_PROC_REF(cmp_designs_rdconsole), FALSE)
+	if((ENTRIES_PER_RDPAGE * page) > LAZYLEN(data))
+		return null
+
 	if(LAZYLEN(data) > ENTRIES_PER_RDPAGE)
 		var/first_index = clamp(ENTRIES_PER_RDPAGE * page, 1, LAZYLEN(data))
 		var/last_index  = min((ENTRIES_PER_RDPAGE * page) + ENTRIES_PER_RDPAGE, LAZYLEN(data) + 1)
@@ -282,6 +255,9 @@
 		)))
 
 	data = sortTim(data, GLOBAL_PROC_REF(cmp_designs_rdconsole), FALSE)
+	if((ENTRIES_PER_RDPAGE * page) > LAZYLEN(data))
+		return null
+
 	if(LAZYLEN(data) > ENTRIES_PER_RDPAGE)
 		var/first_index = clamp(ENTRIES_PER_RDPAGE * page, 1, LAZYLEN(data))
 		var/last_index  = min((ENTRIES_PER_RDPAGE * page) + ENTRIES_PER_RDPAGE, LAZYLEN(data) + 1)
@@ -304,7 +280,11 @@
 				"id" = D.id,
 			)))
 
+
 	data = sortTim(data, GLOBAL_PROC_REF(cmp_designs_rdconsole), FALSE)
+	if((ENTRIES_PER_RDPAGE * page) > LAZYLEN(data))
+		return null
+
 	if(LAZYLEN(data) > ENTRIES_PER_RDPAGE)
 		var/first_index = clamp(ENTRIES_PER_RDPAGE * page, 1, LAZYLEN(data))
 		var/last_index  = clamp((ENTRIES_PER_RDPAGE * page) + ENTRIES_PER_RDPAGE, 1, LAZYLEN(data) + 1)
@@ -318,7 +298,6 @@
 		return TRUE
 
 	add_fingerprint(usr)
-	usr.set_machine(src)
 
 	switch(action)
 		if("search")
@@ -411,8 +390,6 @@
 				to_chat(usr, span_notice("The destructive analyzer is busy at the moment."))
 				return
 
-			if(tgui_alert(usr, "Proceeding will destroy loaded item. Continue?", "Destructive analyzer confirmation", list("Yes", "No")) != "Yes" || !linked_destroy)
-				return
 			linked_destroy.busy = 1
 			busy_msg = "Processing and Updating Database..."
 			flick("d_analyzer_process", linked_destroy)

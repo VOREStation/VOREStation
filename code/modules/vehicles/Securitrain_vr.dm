@@ -182,7 +182,7 @@
 
 	if(is_train_head() && istype(load, /mob/living/carbon/human))
 		var/mob/living/carbon/human/D = load
-		to_chat(D, span_danger("You ran over \the [M]!")
+		to_chat(D, span_danger("You ran over \the [M]!"))
 		visible_message(span_danger("\The [src] ran over \the [M]!"))
 		add_attack_logs(D,M,"Ran over with [src.name]")
 		attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey]), driven by [D.name] ([D.ckey])")]")

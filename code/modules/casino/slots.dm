@@ -59,7 +59,7 @@
 
 /obj/machinery/slot_machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(busy)
-		to_chat(user,"<span class='notice'>The slot machine is currently running.</span> ")
+		to_chat(user,span_notice("The slot machine is currently running."))
 		return
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
@@ -104,10 +104,10 @@
 	if (isbroken)
 		return
 	if (busy)
-		to_chat(user,"<span class='notice'>The slot machine is currently rolling.</span> ")
+		to_chat(user,span_notice("The slot machine is currently rolling."))
 		return
 	if(cashmoney.worth < 5)
-		to_chat(user,"<span class='notice'>You dont have enough chips to gamble!</span> ")
+		to_chat(user,span_notice("You dont have enough chips to gamble!"))
 		return
 
 	to_chat(user,span_notice("You puts 5 credits in the slot machine and presses start."))
@@ -289,7 +289,7 @@
 
 /obj/machinery/station_slot_machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(busy)
-		to_chat(user,"<span class='notice'>The slot machine is currently running.</span> ")
+		to_chat(user,span_notice("The slot machine is currently running."))
 		return
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
@@ -333,10 +333,10 @@
 	if (isbroken)
 		return
 	if (busy)
-		to_chat(user,"<span class='notice'>The slot machine is currently rolling.</span> ")
+		to_chat(user,span_notice("The slot machine is currently rolling."))
 		return
 	if(cashmoney.worth < 5)
-		to_chat(user,"<span class='notice'>You dont have enough Thalers to gamble!</span> ")
+		to_chat(user,span_notice("You dont have enough Thalers to gamble!"))
 		return
 
 	to_chat(user,span_notice("You puts 5 Thalers in the slot machine and presses start."))

@@ -167,7 +167,7 @@
 	return (stabilization_enabled && has_charge(step_energy_drain))
 
 /obj/mecha/combat/fighter/proc/consider_gravity(var/moved = FALSE)
-	var/gravity = has_gravity()
+	var/gravity = get_gravity()
 	if(gravity && ground_capable && occupant)
 		start_hover()
 	else if((!gravity && ground_capable) || !occupant)
