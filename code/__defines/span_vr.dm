@@ -58,10 +58,11 @@
 // Unfiltered, only style!
 #define span_name(str) ("<span class='name'>" + str + "</span>")
 #define span_game(str) ("<span class='game'>" + str + "</span>")
-#define span_filter_say(str) ("<span class='filter_say'>" + str + "</span>")
 #define span_message(str) ("<span class='message'>" + str + "</span>") // TODO: This makes no sense, check it!
 #define span_notify(str) ("<span class='notify'>" + str + "</span>") // TODO: This makes no sense, check it!
 #define span_body(str) ("<span class='body'>" + str + "</span>")
+// TODO! Those 4 below should be replaced....
+#define span_filter_say(str) ("<span class='filter_say'>" + str + "</span>")
 #define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>")
 #define span_filter_combat(str) ("<span class='filter_combat'>" + str + "</span>")
 #define span_filter_notice(str) ("<span class='filter_notice'>" + str + "</span>")
@@ -92,6 +93,8 @@
 #define span_adminnotice(str) ("<span class='adminnotice'>" + str + "</span>")
 #define span_alium(str) ("<span class='alium'>" + str + "</span>")
 #define span_cult(str) ("<span class='cult'>" + str + "</span>")
+
+#define span_pnarrate(str) ("<span class='pnarrate'>" + str + "</span>")
 
 /* Direct communication spans */
 // Local pred / prey filter
@@ -148,6 +151,7 @@
 #define span_orange(str) ("<span class='orange'>" + str + "</span>")
 #define span_blue(str) ("<span class='blue'>" + str + "</span>")
 #define span_green(str) ("<span class='green'>" + str + "</span>")
+#define span_darkgreen(str) ("<span class='darkgreen'>" + str + "</span>") // Do not use regularly!
 #define span_purple(str) ("<span class='purple'>" + str + "</span>")
 #define span_yellow(str) ("<span class='yellow'>" + str + "</span>")
 #define span_pink(str) ("<span class='pink'>" + str + "</span>")
@@ -156,7 +160,7 @@
 #define span_maroon(str) ("<span class='maroon'>" + str + "</span>")
 #define span_brown(str) ("<span class='brown'>" + str + "</span>")
 #define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
-#define span_darkpink(str) ("<span class='darkpurple'>" + str + "</span>")
+#define span_darkpink(str) ("<span class='darkpink'>" + str + "</span>")
 #define span_rose(str) ("<span class='rose'>" + str + "</span>")
 
 /* System and Debug */

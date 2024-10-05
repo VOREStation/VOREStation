@@ -234,7 +234,7 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, "[icon2html(src, usr.client)]<span class='info'>Funds transfer successful.</span>")
+							to_chat(usr, "[icon2html(src, usr.client)]" + span_info("Funds transfer successful."))
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
@@ -247,10 +247,10 @@ log transactions
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
-							to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Funds transfer failed.</span>")
+							to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Funds transfer failed."))
 
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -336,7 +336,7 @@ log transactions
 						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			if("withdrawal")
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
@@ -361,7 +361,7 @@ log transactions
 						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)

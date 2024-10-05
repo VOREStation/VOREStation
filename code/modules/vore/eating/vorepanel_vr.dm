@@ -728,19 +728,19 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				to_chat(user, span_warning("You can't do that in your state!"))
 				return TRUE
 
-			to_chat(user,"<span vnotice>[span_green("You begin to push [M] to freedom!")]</span>")
-			to_chat(M,"<span vnotice>[host] begins to push you to freedom!</span>")
+			to_chat(user,span_vnotice("[span_green("You begin to push [M] to freedom!")]"))
+			to_chat(M,span_vnotice("[host] begins to push you to freedom!"))
 			to_chat(OB.owner,span_vwarning("Someone is trying to escape from inside you!"))
 			sleep(50)
 			if(prob(33))
 				OB.release_specific_contents(M)
-				to_chat(user,"<span vnotice>[span_green("You manage to help [M] to safety!")]</span>")
-				to_chat(M, "<span vnotice>[span_green("[host] pushes you free!")]</span>")
+				to_chat(user,span_vnotice("[span_green("You manage to help [M] to safety!")]"))
+				to_chat(M, span_vnotice("[span_green("[host] pushes you free!")]"))
 				to_chat(OB.owner,span_valert("[M] forces free of the confines of your body!"))
 			else
 				to_chat(user,span_valert("[M] slips back down inside despite your efforts."))
-				to_chat(M,span_valert(" Even with [host]'s help, you slip back inside again."))
-				to_chat(OB.owner,"<span vnotice>[span_green("Your body efficiently shoves [M] back where they belong.")]</span>")
+				to_chat(M,span_valert("Even with [host]'s help, you slip back inside again."))
+				to_chat(OB.owner,span_vnotice("[span_green("Your body efficiently shoves [M] back where they belong.")]"))
 			return TRUE
 
 		if("Devour") //Eat the inside mob
@@ -910,27 +910,27 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			if(process_options.len)
 				process_options += "Cancel"
 			else
-				to_chat(usr, "<span class= 'vwarning'>You cannot instantly process [ourtarget].</span>")
+				to_chat(usr, span_vwarning("You cannot instantly process [ourtarget]."))
 				return
 
 			var/ourchoice = tgui_input_list(usr, "How would you prefer to process \the [target]? This will perform the given action instantly if the prey accepts.","Instant Process", process_options)
 			if(!ourchoice)
 				return
 			if(!ourtarget.client)
-				to_chat(usr, "<span class= 'vwarning'>You cannot instantly process [ourtarget].</span>")
+				to_chat(usr, span_vwarning("You cannot instantly process [ourtarget]."))
 				return
 			var/obj/belly/b = ourtarget.loc
 			switch(ourchoice)
 				if("Digest")
 					if(ourtarget.absorbed)
-						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is absorbed, and cannot presently be digested.</span>")
+						to_chat(usr, span_vwarning("\The [ourtarget] is absorbed, and cannot presently be digested."))
 						return
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly digest you. Is this something you are okay with happening to you?","Instant Digest", list("No", "Yes")) != "Yes")
-						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] declined your digest attempt.</span>")
-						to_chat(ourtarget, "<span class= 'vwarning'>You declined the digest attempt.</span>")
+						to_chat(usr, span_vwarning("\The [ourtarget] declined your digest attempt."))
+						to_chat(ourtarget, span_vwarning("You declined the digest attempt."))
 						return
 					if(ourtarget.loc != b)
-						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is no longer in \the [b].</span>")
+						to_chat(usr, span_vwarning("\The [ourtarget] is no longer in \the [b]."))
 						return
 					if(isliving(usr))
 						var/mob/living/l = usr
@@ -950,11 +950,11 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 						b.handle_digestion_death(ourtarget)
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
-						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] declined your absorb attempt.</span>")
-						to_chat(ourtarget, "<span class= 'vwarning'>You declined the absorb attempt.</span>")
+						to_chat(usr, span_vwarning("\The [ourtarget] declined your absorb attempt."))
+						to_chat(ourtarget, span_vwarning("You declined the absorb attempt."))
 						return
 					if(ourtarget.loc != b)
-						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is no longer in \the [b].</span>")
+						to_chat(usr, span_vwarning("\The [ourtarget] is no longer in \the [b]."))
 						return
 					if(isliving(usr))
 						var/mob/living/l = usr
@@ -964,14 +964,14 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 					b.absorb_living(ourtarget)
 				if("Knockout")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly make you unconscious, you will be unable until ejected from the pred. Is this something you are okay with happening to you?","Instant Knockout", list("No", "Yes")) != "Yes")
-						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] declined your knockout attempt.</span>")
-						to_chat(ourtarget, "<span class= 'vwarning'>You declined the knockout attempt.</span>")
+						to_chat(usr, span_vwarning("\The [ourtarget] declined your knockout attempt."))
+						to_chat(ourtarget, span_vwarning("You declined the knockout attempt."))
 						return
 					if(ourtarget.loc != b)
-						to_chat(usr, "<span class= 'vwarning'>\The [ourtarget] is no longer in \the [b].</span>")
+						to_chat(usr, span_vwarning("\The [ourtarget] is no longer in \the [b]."))
 						return
 					ourtarget.AdjustSleeping(500000)
-					to_chat(ourtarget, "<span class= 'vwarning'>\The [usr] has put you to sleep, you will remain unconscious until ejected from the belly.</span>")
+					to_chat(ourtarget, span_vwarning("\The [usr] has put you to sleep, you will remain unconscious until ejected from the belly."))
 				if("Cancel")
 					return
 		if("Health Check")
@@ -979,7 +979,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			var/target_health = round((H.health/H.getMaxHealth())*100)
 			var/condition
 			var/condition_consequences
-			to_chat(usr, "<span class= 'vwarning'>\The [target] is at [target_health]% health.</span>")
+			to_chat(usr, span_vwarning("\The [target] is at [target_health]% health."))
 			if(H.blinded)
 				condition += "blinded"
 				condition_consequences += "hear emotes"
@@ -996,7 +996,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				condition += "sleeping"
 				condition_consequences += "hear or do anything"
 			if(condition)
-				to_chat(usr, "<span class= 'vwarning'>\The [target] is currently [condition], they will not be able to [condition_consequences].</span>")
+				to_chat(usr, span_vwarning("\The [target] is currently [condition], they will not be able to [condition_consequences]."))
 			return
 
 

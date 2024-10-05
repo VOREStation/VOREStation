@@ -67,9 +67,9 @@
 		dat += "<tr>"
 
 		if(I.stat & (BROKEN|NOPOWER))
-			dat += "<td><span class='danger'>ERROR</span></td>"
-			dat += "<td><span class='danger'>ERROR</span></td>"
-			dat += "<td><span class='danger'>ERROR</span></td>"
+			dat += "<td>" + span_danger("ERROR") + "</td>"
+			dat += "<td>" + span_danger("ERROR") + "</td>"
+			dat += "<td>" + span_danger("ERROR") + "</td>"
 		else
 			dat += "<td>[I.cur_assembly ? I.cur_assembly.fuel_type : "NONE"]</td>"
 			if(I.cur_assembly)

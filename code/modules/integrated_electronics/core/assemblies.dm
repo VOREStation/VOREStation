@@ -299,8 +299,8 @@
 			tgui_interact(user)
 			return TRUE
 		else
-			to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't fiddle with the internal components.  \
-			Try using a crowbar.</span>")
+			to_chat(user, span_warning("\The [src] isn't opened, so you can't fiddle with the internal components.  \
+			Try using a crowbar."))
 			return FALSE
 
 	else if(istype(I, /obj/item/integrated_electronics/detailer))

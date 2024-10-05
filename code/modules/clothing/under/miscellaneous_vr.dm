@@ -138,7 +138,7 @@
 			return
 		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				to_chat(M, span_warning("\The [src] flickers. It seems to be recharging."))
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
@@ -157,7 +157,7 @@
 		original_size = null
 		H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 		log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
-		to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in thirty seconds.</span>")
+		to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in thirty seconds."))
 
 /obj/item/clothing/gloves/bluespace/examine(var/mob/user)
 	. = ..()

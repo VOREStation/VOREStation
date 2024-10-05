@@ -45,7 +45,7 @@
 	icon = "heart-o"
 
 /datum/data/pda/utility/scanmode/medical/scan_mob(mob/living/C as mob, mob/living/user as mob)
-	C.visible_message("<span class=warning>[user] has analyzed [C]'s vitals!</span>")
+	C.visible_message(span_warning("[user] has analyzed [C]'s vitals!"))
 
 	user.show_message(span_notice("Analyzing Results for [C]:"))
 	user.show_message(span_notice("    Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]"), 1)
@@ -78,9 +78,9 @@
 	if(istype(C, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = C
 		if(!istype(H.dna, /datum/dna))
-			to_chat(user, "<span class=notice>No fingerprints found on [H]</span>")
+			to_chat(user, span_notice("No fingerprints found on [H]"))
 		else
-			to_chat(user, "<span class=notice>[H]'s Fingerprints: [md5(H.dna.uni_identity)]</span>")
+			to_chat(user, span_notice("[H]'s Fingerprints: [md5(H.dna.uni_identity)]"))
 	scan_blood(C, user)
 
 /datum/data/pda/utility/scanmode/dna/scan_atom(atom/A as mob|obj|turf|area, mob/user as mob)
@@ -88,27 +88,27 @@
 
 /datum/data/pda/utility/scanmode/dna/proc/scan_blood(atom/A, mob/user)
 	if(!A.blood_DNA)
-		to_chat(user, "<span class=notice>No blood found on [A]</span>")
+		to_chat(user, span_notice("No blood found on [A]"))
 		if(A.blood_DNA)
 			qdel(A.blood_DNA)
 	else
-		to_chat(user, "<span class=notice>Blood found on [A]. Analysing...</span>")
+		to_chat(user, span_notice("Blood found on [A]. Analysing..."))
 		spawn(15)
 			for(var/blood in A.blood_DNA)
-				to_chat(user, "<span class=notice>Blood type: [A.blood_DNA[blood]]\nDNA: [blood]</span>")
+				to_chat(user, span_notice("Blood type: [A.blood_DNA[blood]]\nDNA: [blood]"))
 
 /datum/data/pda/utility/scanmode/halogen
 	base_name = "Halogen Counter"
 	icon = "exclamation-circle"
 
 /datum/data/pda/utility/scanmode/halogen/scan_mob(mob/living/C as mob, mob/living/user as mob)
-	C.visible_message("<span class=warning>[user] has analyzed [C]'s radiation levels!</span>")
+	C.visible_message(span_warning("[user] has analyzed [C]'s radiation levels!"))
 
-	user.show_message("<span class=notice>Analyzing Results for [C]:</span>")
+	user.show_message(span_notice("Analyzing Results for [C]:"))
 	if(C.radiation)
-		user.show_message("<span class=notice>Radiation Level: [C.radiation > 0 ? "</span><span class=danger>[C.radiation]" : "0"]</span>")
+		user.show_message(span_notice("Radiation Level: [C.radiation > 0 ? span_danger("[C.radiation]") : "0"]"))
 	else
-		user.show_message("<span class=notice>No radiation detected.</span>")
+		user.show_message(span_notice("No radiation detected."))
 
 /datum/data/pda/utility/scanmode/reagent
 	base_name = "Reagent Scanner"
@@ -189,7 +189,7 @@
 		var/scannedtitle = "Paper"
 		if(!isnull(notes.notetitle) && notes.notetitle != "")
 			scannedtitle = "'[notes.notetitle]'"
-		to_chat(user, "<span class=notice>[scannedtitle] scanned to Notekeeper in note [alphabet_uppercase[notes.currentnote]].</span>")//concept of scanning paper copyright brainoblivion 2009
+		to_chat(user, span_notice("[scannedtitle] scanned to Notekeeper in note [alphabet_uppercase[notes.currentnote]]."))//concept of scanning paper copyright brainoblivion 2009
 
 	else
-		to_chat(user, "<span class=warning>Error scanning [A].</span>")
+		to_chat(user, span_warning("Error scanning [A]."))

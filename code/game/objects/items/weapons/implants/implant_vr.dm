@@ -165,7 +165,7 @@ Due to the small chemical capacity of the implant, the life of the implant is re
 		var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", "", multiline = TRUE, prevent_enter = TRUE)
 		newlaws = sanitize(newlaws,2048)
 		if(newlaws)
-			to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
+			to_chat(user,"You set the laws to: <br>" + span_notice("[newlaws]"))
 			implant.laws = newlaws //Organic
 	else //No using other implants.
 		to_chat(user,span_notice("A red warning pops up on the implanter's micro-screen: 'INVALID IMPLANT DETECTED.'"))

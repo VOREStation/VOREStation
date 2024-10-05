@@ -109,7 +109,7 @@
 
 	if(!locked && lock_time <= world.time)
 		locked = 1
-		to_chat(owner, "<span class ='notice'>You are locked onto your target.</span>")
+		to_chat(owner, span_notice("You are locked onto your target."))
 		to_chat(aiming_at, span_danger("The gun is trained on you!"))
 		update_icon()
 

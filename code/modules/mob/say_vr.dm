@@ -70,7 +70,7 @@
 	if(!subtle_mode)
 		if(mode_selection)
 			if(message)
-				to_chat(src, "<span class='warning'>Subtle mode not selected. Your input has not been sent, but preserved:</span> [message]")
+				to_chat(src, span_warning("Subtle mode not selected. Your input has not been sent, but preserved:") + " [message]")
 			return
 		else
 			subtle_mode = "Adjacent Turfs (Default)"
@@ -117,7 +117,7 @@
 					if(istype(T) && !(T in tablelist) && !istype(T, /obj/structure/table/rack) && !istype(T, /obj/structure/table/bench))
 						tablelist |= T.get_all_connected_tables()
 				if(!(tablelist.len))
-					to_chat(src, "<span class='warning'>No nearby tables detected. Your input has not been sent, but preserved:</span> [input]")
+					to_chat(src, span_warning("No nearby tables detected. Your input has not been sent, but preserved:") + " [input]")
 					return
 				for(var/obj/structure/table/T in tablelist)
 					for(var/mob/M in vis_mobs)
@@ -133,7 +133,7 @@
 			if("Current Belly (Prey)")
 				var/obj/belly/B = get_belly(src)
 				if(!istype(B))
-					to_chat(src, "<span class='warning'>You are currently not in the belly. Your input has not been sent, but preserved:</span> [input]")
+					to_chat(src, span_warning("You are currently not in the belly. Your input has not been sent, but preserved:") + " [input]")
 					return
 				vis = get_mobs_and_objs_in_view_fast(get_turf(src),0,2)
 				vis_mobs = vis["mobs"]
@@ -154,15 +154,15 @@
 						vis_objs -= O
 			if("Specific Belly (Pred)")
 				if(!isliving(src))
-					to_chat(src, "<span class='warning'>You do not appear to be a living mob capable of having bellies. Your input has not been sent, but preserved:</span> [input]")
+					to_chat(src, span_warning("You do not appear to be a living mob capable of having bellies. Your input has not been sent, but preserved:") + " [input]")
 					return
 				var/mob/living/L = src
 				if(!(L.vore_organs) || !(L.vore_organs.len))
-					to_chat(src, "<span class='warning'>You do not have any bellies. Your input has not been sent, but preserved:</span> [input]")
+					to_chat(src, span_warning("You do not have any bellies. Your input has not been sent, but preserved:") + " [input]")
 					return
 				var/obj/belly/B = tgui_input_list(src, "Which belly do you want to sent the subtle to?","Select Belly", L.vore_organs)
 				if(!B || !istype(B))
-					to_chat(src, "<span class='warning'>You have not selected a valid belly. Your input has not been sent, but preserved:</span> [input]")
+					to_chat(src, span_warning("You have not selected a valid belly. Your input has not been sent, but preserved:") + " [input]")
 					return
 				vis = get_mobs_and_objs_in_view_fast(get_turf(src),0,2)
 				vis_mobs = vis["mobs"]
@@ -190,11 +190,11 @@
 					if(isobserver(M) || (M.stat == DEAD))
 						vis_mobs -= M
 				if(!(vis_mobs.len))
-					to_chat(src, "<span class='warning'>No valid targets found. Your input has not been sent, but preserved:</span> [input]")
+					to_chat(src, span_warning("No valid targets found. Your input has not been sent, but preserved:") + " [input]")
 					return
 				var/target = tgui_input_list(src, "Who do we send our message to?","Select Target", vis_mobs)
 				if(!(target))
-					to_chat(src, "<span class='warning'>No target selected. Your input has not been sent, but preserved:</span> [input]")
+					to_chat(src, span_warning("No target selected. Your input has not been sent, but preserved:") + " [input]")
 					return
 				vis_mobs = list(target, src)
 
@@ -470,9 +470,9 @@
 	if(stat == DEAD)
 		return say_dead(message)
 	if(stat)
-		to_chat(src, "<span class= 'warning'>You need to be concious to narrate: [message]</span>")
+		to_chat(src, span_warning("You need to be concious to narrate: [message]"))
 		return
-	message = span_name("([name])</span> <span class='pnarrate'>[message]")
+	message = span_name("([name])") + " " +  span_pnarrate("[message]")
 
 	//Below here stolen from emotes
 	var/turf/T = get_turf(src)

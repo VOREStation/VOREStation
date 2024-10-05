@@ -108,8 +108,8 @@
 
 		. += span_notice("\The [src]'s gauges read:")
 		if(!use_atmos)
-			. += span_notice("- Target Temperature:</span> <span class='warning'>[target_temp]")
-		. += span_notice("- Temperature:</span> <span class='warning'>[current_temp]")
+			. += span_notice("- Target Temperature:") + span_warning("[target_temp]")
+		. += span_notice("- Temperature:") + span_warning("[current_temp]")
 
 		if(InputBeaker)
 			if(InputBeaker.reagents.reagent_list.len)
@@ -187,8 +187,8 @@
 		if("inspect gauges")
 			to_chat(user, span_notice("\The [src]'s gauges read:"))
 			if(!use_atmos)
-				to_chat(user, span_notice("- Target Temperature:</span> <span class='warning'>[target_temp]"))
-			to_chat(user, span_notice("- Temperature:</span> <span class='warning'>[current_temp]"))
+				to_chat(user, span_notice("- Target Temperature:") + span_warning("[target_temp]"))
+			to_chat(user, span_notice("- Temperature:") + span_warning("[current_temp]"))
 
 		if("pulse agitator")
 			toggle_mixing(user)

@@ -216,7 +216,7 @@
 			var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
 			mobs_to_relay = in_range["mobs"]
 		//VOREStation Edit End
-		var/rendered = "[icon2html(src,mobs_to_relay)] <span class='message'>[text]</span>"
+		var/rendered = "[icon2html(src,mobs_to_relay)] " + span_message("[text]")
 		for(var/mob/mob in mobs_to_relay) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
 			var/dst = get_dist(get_turf(mob),get_turf(comm))
 			if(dst <= video_range)
@@ -263,7 +263,7 @@
 		if(!T) return
 		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0)
 		var/list/mobs_to_relay = in_range["mobs"]
-		var/rendered = "[icon2html(src, mobs_to_relay)] <span class='message'>[msg]</span>"
+		var/rendered = "[icon2html(src, mobs_to_relay)] " + span_message("[msg]")
 		for(var/mob/mob in mobs_to_relay)
 			mob.show_message(rendered)
 	..()
@@ -301,8 +301,8 @@
 
 	var/obj/machinery/exonet_node/E = get_exonet_node()
 	if(!E || !E.on || !E.allow_external_communicators)
-		to_chat(src, "<span class='danger'>The Exonet node at telecommunications is down at the moment, or is actively blocking you, \
-		so your call can't go through.</span>")
+		to_chat(src, span_danger("The Exonet node at telecommunications is down at the moment, or is actively blocking you, \
+		so your call can't go through."))
 		return
 
 	var/list/choices = list()

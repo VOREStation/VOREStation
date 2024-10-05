@@ -33,9 +33,9 @@
 /obj/item/clothing/glasses/omnihud/examine()
 	. = ..()
 	if(ar_toggled)
-		. += "\n <span class='notice'>The HUD indicator reads ON.</span>"
+		. += "\n " + span_notice("The HUD indicator reads ON.")
 	else
-		. += "\n <span class='notice'>The HUD indicator reads OFF.</span>"
+		. += "\n " + span_notice("The HUD indicator reads OFF.")
 
 
 /obj/item/clothing/glasses/omnihud/emp_act(var/severity)

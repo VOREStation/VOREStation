@@ -627,7 +627,7 @@ var/global/floorIsLava = 0
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		to_world("<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>")
+		to_world(span_notice(span_bold("[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:") + "<p style='text-indent: 50px'>[message]</p>"))
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -678,7 +678,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!speech_verb)
 		return
 
-	to_chat(usr, "<span class='notice'><B>Intercom Convo Directions</B><br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
+	to_chat(usr, span_notice(span_bold("Intercom Convo Directions") + "<br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
 		add another line, and type a (whole) number of seconds to pause between that message, and the next message, then repeat the message syntax up to 20 times. For example:<br>\
 		--- --- ---<br>\
 		Some Guy|Hello guys, what's up?<br>\
@@ -687,7 +687,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		5<br>\
 		Some Guy|Yeah, you too.<br>\
 		--- --- ---<br>\
-		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed.</span>")
+		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed."))
 
 	var/list/decomposed
 	var/message = tgui_input_text(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "", multiline = TRUE, prevent_enter = TRUE)

@@ -953,7 +953,7 @@
 						M.stop_pulling()
 
 	if(wearer.pinned.len)
-		to_chat(src, "<span class='notice'>Your host is pinned to a wall by [wearer.pinned[1]]</span>!")
+		to_chat(src, span_notice("Your host is pinned to a wall by [wearer.pinned[1]]!"))
 		return 0
 
 	// AIs are a bit slower than regular and ignore move intent.

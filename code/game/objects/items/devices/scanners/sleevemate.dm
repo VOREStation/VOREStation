@@ -105,40 +105,40 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 /obj/item/sleevemate/proc/scan_mob(mob/living/carbon/human/H, mob/living/user)
 	var/output = ""
 
-	output += "<br><br><span class='notice'><b>[src.name] Scan Results</b></span><br>"
+	output += "<br><br>" + span_boldnotice("[src.name] Scan Results") + "<br>"
 
 	//Mind name
-	output += "<b>Sleeved Mind:</b> "
+	output += span_bold("Sleeved Mind:") + " "
 	if(H.mind)
 		output += "[H.mind.name]<br>"
 	else
-		output += "<span class='warning'>Unknown/None</span><br>"
+		output += span_warning("Unknown/None") + "<br>"
 
 	//Mind status
-	output += "<b>Mind Status:</b> "
+	output += span_bold("Mind Status:") + " "
 	if(H.client)
 		output += "Healthy<br>"
 	else
 		output += "Space Sleep Disorder<br>"
 
 	//Body status
-	output += "<b>Sleeve Status:</b> "
+	output += span_bold("Sleeve Status:") + " "
 	switch(H.stat)
 		if(CONSCIOUS)
 			output += "Alive<br>"
 		if(UNCONSCIOUS)
 			output += "Unconscious<br>"
 		if(DEAD)
-			output += "<span class='warning'>Deceased</span><br>"
+			output += span_warning("Deceased") + "<br>"
 		else
-			output += "<span class='warning'>Unknown</span><br>"
+			output += span_warning("Unknown") + "<br>"
 
 	//Mind/body comparison
-	output += "<b>Sleeve Pair:</b> "
+	output += span_bold("Sleeve Pair:")
 	if(!H.ckey)
-		output += "<span class='warning'>No mind in that body</span> [stored_mind != null ? "\[<a href='?src=\ref[src];target=\ref[H];mindupload=1'>Upload</a>\]" : null]<br>"
+		output += span_warning("No mind in that body") + " [stored_mind != null ? "\[<a href='?src=\ref[src];target=\ref[H];mindupload=1'>Upload</a>\]" : null]<br>"
 	else if(H.mind && ckey(H.mind.key) != H.ckey)
-		output += "<span class='warning'>May not be correct body</span><br>"
+		output += span_warning("May not be correct body") + "<br>"
 	else if(H.mind && ckey(H.mind.key) == H.ckey)
 		output += "Appears to be correct mind in body<br>"
 	else
@@ -150,13 +150,13 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	output += "<b>Body-Scan (One Time): </b>\[<a href='?src=\ref[src];target=\ref[H];bodyscan=1'>Perform</a>\]<br>"
 
 	//Saving a mind
-	output += "<b>Store Full Mind: </b>"
+	output += span_bold("Store Full Mind:") + " "
 	if(stored_mind)
-		output += "<span class='notice'>Already Stored</span> ([stored_mind.name])<br>"
+		output += span_notice("Already Stored") + " ([stored_mind.name])<br>"
 	else if(H.mind)
 		output += "\[<a href='?src=\ref[src];target=\ref[H];mindsteal=1'>Perform</a>\]<br>"
 	else
-		output += "<span class='warning'>Unable</span><br>"
+		output += span_warning("Unable") + "<br>"
 
 	//Soulcatcher transfer
 	if(H.nif)

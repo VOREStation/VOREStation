@@ -1299,8 +1299,8 @@
 	if (istype(user))
 		// It's only made for Verie's chassis silly!
 		if (user.ckey != owner)
-			to_chat(user, "<span class='warning'>The brush's teeth are far too rough to even comb your hair. Apparently, \
-			this device was not made for people like you.</span>")
+			to_chat(user, span_warning("The brush's teeth are far too rough to even comb your hair. Apparently, \
+			this device was not made for people like you."))
 			return
 
 		if (!user.hair_accessory_style)

@@ -3,8 +3,8 @@
 	desc = "Your wounds have been salved with Sivian sap."
 	mob_overlay_state = "cyan_sparkles"
 	stacks = MODIFIER_STACK_FORBID
-	on_created_text = "<span class = 'notice'>The glowing sap seethes and bubbles in your wounds, tingling and stinging.</span>"
-	on_expired_text = "<span class = 'notice'>The last of the sap in your wounds fizzles away.</span>"
+	on_created_text = span_notice("The glowing sap seethes and bubbles in your wounds, tingling and stinging.")
+	on_expired_text = span_notice("The last of the sap in your wounds fizzles away.")
 
 /datum/modifier/sifsap_salve/tick()
 
