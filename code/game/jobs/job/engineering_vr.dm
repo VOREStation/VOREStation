@@ -30,7 +30,7 @@
 /datum/job/engineer
 	pto_type = PTO_ENGINEERING
 	alt_titles = list(JOB_ALT_MAINTENANCE_TECHNICIAN = /datum/alt_title/maint_tech, JOB_ALT_ENGINE_TECHNICIAN = /datum/alt_title/engine_tech,
-						JOB_ALT_ELECTRICIAN = /datum/alt_title/electrician, JOB_ALT_CONSTRUCTION_ENGINEER = /datum/alt_title/construction_engi, JOB_ALT_ENGINEERING_CONTRACTOR = /datum/alt_title/engineering_contractor)
+						JOB_ALT_ELECTRICIAN = /datum/alt_title/electrician, JOB_ALT_CONSTRUCTION_ENGINEER = /datum/alt_title/construction_engi, JOB_ALT_ENGINEERING_CONTRACTOR = /datum/alt_title/engineering_contractor,  JOB_ALT_SOFTWARE_ENGINEER = /datum/alt_title/software_engi)
 
 /datum/alt_title/construction_engi
 	title = JOB_ALT_CONSTRUCTION_ENGINEER
@@ -44,7 +44,9 @@
 /datum/job/engineer/get_request_reasons()
 	return list("Engine setup", "Construction project", "Repairs necessary", "Assembling expedition team")
 
-
+/datum/alt_title/software_engi
+	title = JOB_ALT_SOFTWARE_ENGINEER
+	title_blurb = "A " + JOB_ALT_SOFTWARE_ENGINEER + " fulfills similar duties to other engineers, but specializes in working with software and firmware. They also often deal with integrated circuits."
 
 
 /datum/job/atmos

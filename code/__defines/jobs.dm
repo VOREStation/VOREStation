@@ -200,6 +200,7 @@
 	#define JOB_ALT_ELECTRICIAN "Electrician"
 	#define JOB_ALT_CONSTRUCTION_ENGINEER "Construction Engineer"
 	#define JOB_ALT_ENGINEERING_CONTRACTOR "Engineering Contractor"
+	#define JOB_ALT_SOFTWARE_ENGINEER "Software Engineer"
 
 #define JOB_ATMOSPHERIC_TECHNICIAN "Atmospheric Technician"
 	// Atmospheric Technician alt titles
@@ -236,6 +237,7 @@
 	#define JOB_ALT_ORDERLY "Orderly"
 	#define JOB_ALT_VIROLOGIST "Virologist"
 	#define JOB_ALT_MEDICAL_CONTRACTOR "Medical Contractor"
+	#define JOB_ALT_GENETICIST "Geneticist"
 
 #define JOB_CHEMIST "Chemist"
 	// Chemist alt titles
