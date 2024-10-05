@@ -508,7 +508,7 @@
 				sleep(2) // Short delay to match up with the explosion sound
 				shake_camera(M, 2, 1)
 	else
-		to_chat(user, span_alert("Nothing happens."))
+		to_chat(user, span_warning("Nothing happens."))
 
 /*
  * Garden gnome
@@ -635,11 +635,11 @@
 			icon_state = "nuketoyidle"
 	else
 		var/timeleft = (cooldown - world.time)
-		to_chat(user, span_alert("Nothing happens, and '</span>[round(timeleft/10)]<span class='alert'>' appears on a small display."))
+		to_chat(user, span_warning("Nothing happens, and '</span>[round(timeleft/10)]<span class='alert'>' appears on a small display."))
 
 /obj/item/toy/nuke/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/disk/nuclear))
-		to_chat(user, span_alert("Nice try. Put that disk back where it belongs."))
+		to_chat(user, span_warning("Nice try. Put that disk back where it belongs."))
 
 /*
  * Toy gibber
@@ -670,7 +670,7 @@
 		to_chat(user, span_notice("You start feeding \the [O] [icon2html(O, user.client)] into \the [src]'s mini-input."))
 		if(do_after(user, 10, target = src))
 			if(O.loc != user)
-				to_chat(user, span_alert("\The [O] is too far away to feed into \the [src]!"))
+				to_chat(user, span_warning("\The [O] is too far away to feed into \the [src]!"))
 			else
 				user.visible_message(span_notice("You feed \the [O] into \the [src]!"),span_notice("[user] feeds \the [O] into \the [src]!"))
 				user.unEquip(O)

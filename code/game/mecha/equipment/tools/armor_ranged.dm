@@ -49,7 +49,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/get_equip_info()
 	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name]"
 
 /*
 /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/can_attach(obj/mecha/M as obj)

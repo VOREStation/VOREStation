@@ -90,8 +90,8 @@
 			return FALSE
 		// If the attacker_controller isn't next to the attacking toy (and doesn't have telekinesis), the battle ends.
 		if(!in_range(attacker, attacker_controller))
-			attacker_controller.visible_message(span_notice(" [attacker_controller.name] separates from [attacker], ending the battle."), \
-								span_notice(" You separate from [attacker], ending the battle. "))
+			attacker_controller.visible_message(span_notice("[attacker_controller.name] separates from [attacker], ending the battle."), \
+								span_notice("You separate from [attacker], ending the battle. "))
 			return FALSE
 
 		// If it's PVP and the opponent is not next to the defending(src) toy (and doesn't have telekinesis), the battle ends.

@@ -172,7 +172,7 @@
 //can't inject synths
 /mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
 	if(error_msg)
-		to_chat(user, span_alert("The armoured plating is too tough."))
+		to_chat(user, span_warning("The armoured plating is too tough."))
 	return 0
 
 

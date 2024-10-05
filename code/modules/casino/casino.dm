@@ -46,10 +46,10 @@
 
 /obj/structure/casino_table/roulette_table/attack_hand(mob/user as mob)
 	if(busy)
-		to_chat(user,"<span class='notice'>You cannot spin now! The roulette is already spinning.</span> ")
+		to_chat(user,span_notice("You cannot spin now! The roulette is already spinning."))
 		return
 	if(!ball)
-		to_chat(user,"<span class='notice'>This roulette wheel has no ball!</span> ")
+		to_chat(user,span_notice("This roulette wheel has no ball!"))
 		return
 	visible_message(span_notice("\The [user] spins the roulette and throws [ball.get_ball_desc()] into it."))
 	playsound(src.loc, 'sound/machines/roulette.ogg', 40, 1)
@@ -377,7 +377,7 @@
 
 /obj/machinery/wheel_of_fortune/attack_hand(mob/user as mob)
 	if (busy)
-		to_chat(user,"<span class='notice'>The wheel of fortune is already spinning!</span> ")
+		to_chat(user,span_notice("The wheel of fortune is already spinning!"))
 		return
 
 	if(usr.incapacitated())
@@ -388,10 +388,10 @@
 				return
 			if("Spin the Wheel! (Not Lottery)")
 				if(public_spin == 0)
-					to_chat(user,"<span class='notice'>The Wheel makes a sad beep, public spins are not enabled right now..</span> ")
+					to_chat(user,span_notice("The Wheel makes a sad beep, public spins are not enabled right now..."))
 					return
 				else
-					to_chat(user,"<span class='notice'>You spin the wheel!</span> ")
+					to_chat(user,span_notice("You spin the wheel!"))
 					spin_the_wheel("not_lottery")
 			if("Set the interval")
 				setinterval()
@@ -399,7 +399,7 @@
 
 /obj/machinery/wheel_of_fortune/attackby(obj/item/W as obj, mob/user as mob)
 	if (busy)
-		to_chat(user,"<span class='notice'>The wheel of fortune is already spinning!</span> ")
+		to_chat(user,span_notice("The wheel of fortune is already spinning!"))
 		return
 
 	if(usr.incapacitated())
@@ -416,24 +416,24 @@
 					if("Cancel")
 						return
 					if("Spin the Lottery Wheel!")
-						to_chat(user,"<span class='notice'>You spin the wheel for the lottery!</span> ")
+						to_chat(user,span_notice("You spin the wheel for the lottery!"))
 						spin_the_wheel("lottery")
 
 					if("Toggle Lottery Sales")
 						if(lottery_sale == "disabled")
 							lottery_sale = "enabled"
-							to_chat(user,"<span class='notice'>Public Lottery sale has been enabled.</span> ")
+							to_chat(user,span_notice("Public Lottery sale has been enabled."))
 						else
 							lottery_sale = "disabled"
-							to_chat(user,"<span class='notice'>Public Lottery sale has been disabled.</span> ")
+							to_chat(user,span_notice("Public Lottery sale has been disabled."))
 
 					if("Toggle Public Spins")
 						if(public_spin == 0)
 							public_spin = 1
-							to_chat(user,"<span class='notice'>Public spins has been enabled.</span> ")
+							to_chat(user,span_notice("Public spins has been enabled."))
 						else
 							public_spin = 0
-							to_chat(user,"<span class='notice'>Public spins has been disabled.</span> ")
+							to_chat(user,span_notice("Public spins has been disabled."))
 
 					if("Reset Lottery")
 						var/confirm = tgui_alert(usr, "Are you sure you want to reset Lottery?", "Confirm Lottery Reset", list("Yes", "No"))
@@ -457,10 +457,10 @@
 
 /obj/machinery/wheel_of_fortune/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user)
 	if (busy)
-		to_chat(user,"<span class='notice'>The Wheel of Fortune is busy, wait for it to be done to buy a lottery ticket.</span> ")
+		to_chat(user,span_notice("The Wheel of Fortune is busy, wait for it to be done to buy a lottery ticket."))
 		return
 	if(cashmoney.worth < lottery_price)
-		to_chat(user,"<span class='notice'>You dont have enough chips to buy a lottery ticket!</span> ")
+		to_chat(user,span_notice("You dont have enough chips to buy a lottery ticket!"))
 		return
 
 	to_chat(user,span_notice("You put [lottery_price] credits worth of chips into the Wheel of Fortune and it pings to notify of your lottery ticket registered!"))
@@ -556,7 +556,7 @@
 	if(usr.incapacitated())
 		return
 	if(casinosentientprize_sale == "disabled")
-		to_chat(user,"<span class='notice'>The SPASM is disabled.</span> ")
+		to_chat(user,span_notice("The SPASM is disabled."))
 		return
 
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
@@ -643,10 +643,10 @@
 			return
 		if(user.name == C.sentientprizename)
 			if(!C.ownername)
-				to_chat(user,"<span class='notice'>If collar isn't disabled and entry removed, please select your entry and insert chips. Or contact staff if you need assistance.</span> ")
+				to_chat(user,span_notice("If collar isn't disabled and entry removed, please select your entry and insert chips. Or contact staff if you need assistance."))
 				return
 			else
-				to_chat(user,"<span class='notice'>If collar isn't disabled and entry removed, please ask your owner to free you with collar swipe on the SPASM, or contact staff if you need assistance.</span> ")
+				to_chat(user,span_notice("If collar isn't disabled and entry removed, please ask your owner to free you with collar swipe on the SPASM, or contact staff if you need assistance."))
 				return
 		if(user.name == C.ownername)
 			var/confirm = tgui_alert(usr, "Are you sure you want to wipe [C.sentientprizename] entry?", "Confirm Sentient Prize Release", list("Yes", "No"))
@@ -676,12 +676,12 @@
 							casinosentientprize_sale = "enabled"
 							icon_state = "casinoslave_hub_on"
 							update_icon()
-							to_chat(user,"<span class='notice'>Prize sale has been enabled.</span> ")
+							to_chat(user,span_notice("Prize sale has been enabled."))
 						else
 							casinosentientprize_sale = "disabled"
 							icon_state = "casinoslave_hub_off"
 							update_icon()
-							to_chat(user,"<span class='notice'>Prize sale has been disabled.</span> ")
+							to_chat(user,span_notice("Prize sale has been disabled."))
 
 					if("Wipe Selected Prize Entry")
 						if(!selected_collar)
@@ -715,7 +715,7 @@
 
 /obj/machinery/casinosentientprize_handler/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user, var/buystate)
 	if(cashmoney.worth < casinosentientprize_price)
-		to_chat(user,"<span class='notice'>You dont have enough chips to pay for the sentient prize!</span> ")
+		to_chat(user,span_notice("You dont have enough chips to pay for the sentient prize!"))
 		return
 
 	cashmoney.worth -= casinosentientprize_price
@@ -727,7 +727,7 @@
 		cashmoney.update_icon()
 
 	if(buystate == "selfbuy")
-		to_chat(user,"<span class='notice'>You put [casinosentientprize_price] credits worth of chips into the SPASM and nullify your collar!</span> ")
+		to_chat(user,span_notice("You put [casinosentientprize_price] credits worth of chips into the SPASM and nullify your collar!"))
 		selected_collar.icon_state = "casinoslave"
 		selected_collar.update_icon()
 		selected_collar.name = "disabled Sentient Prize Collar: [selected_collar.sentientprizename]"
@@ -738,7 +738,7 @@
 		selected_collar = null
 
 	if(buystate == "buy")
-		to_chat(user,"<span class='notice'>You put [casinosentientprize_price] credits worth of chips into the SPASM and it pings to inform you bought [selected_collar.sentientprizename]!</span> ")
+		to_chat(user,span_notice("You put [casinosentientprize_price] credits worth of chips into the SPASM and it pings to inform you bought [selected_collar.sentientprizename]!"))
 		selected_collar.icon_state = "casinoslave_owned"
 		selected_collar.update_icon()
 		selected_collar.ownername = user.name
@@ -752,6 +752,6 @@
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
 		casinosentientprize_price = tgui_input_number(usr, "Select the desired price (1-1000)", "Set Price", null, null, 1000, 1)
 		if(casinosentientprize_price>1000 || casinosentientprize_price<1)
-			to_chat(user,"<span class='notice'>Invalid price.</span> ")
+			to_chat(user,span_notice("Invalid price."))
 			return
-		to_chat(user,"<span class='notice'>You set the price to [casinosentientprize_price]</span> ")
+		to_chat(user,span_notice("You set the price to [casinosentientprize_price]"))

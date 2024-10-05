@@ -619,7 +619,7 @@
 
 	//Don't appear to be in a vore situation
 	else
-		to_chat(src,span_alert("You aren't inside anyone, though, is the thing."))
+		to_chat(src,span_warning("You aren't inside anyone, though, is the thing."))
 
 //
 // Eating procs depending on who clicked what

@@ -378,7 +378,7 @@
 	for(var/obj/item/gun/energy/kinetic_accelerator/H in R.module.modules)
 		if(install(H, R)) //It worked
 			return
-	to_chat(R, span_alert("Upgrade error - Aborting Kinetic Accelerator linking.")) //No applicable KA found, insufficient capacity, or some other problem.
+	to_chat(R, span_warning("Upgrade error - Aborting Kinetic Accelerator linking.")) //No applicable KA found, insufficient capacity, or some other problem.
 */
 
 /obj/item/borg/upgrade/modkit/proc/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)

@@ -24,7 +24,7 @@
 	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.max_nutrition]")
 
 	if (S.nutrition < S.get_starve_nutrition())
-		user.show_message(span_alert("Warning: Subject is starving!"))
+		user.show_message(span_warning("Warning: Subject is starving!"))
 	else if (S.nutrition < S.get_hunger_nutrition())
 		user.show_message(span_warning("Warning: Subject is hungry."))
 	user.show_message("Electric change strength: [S.power_charge]")

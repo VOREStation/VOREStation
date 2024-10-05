@@ -141,7 +141,7 @@
 				to_chat(user, span_notice("Turbine connected."))
 				stat &= ~BROKEN
 			else
-				to_chat(user, span_alert("Turbine not connected."))
+				to_chat(user, span_warning("Turbine not connected."))
 				stat |= BROKEN
 
 /obj/machinery/compressor/process()
@@ -239,7 +239,7 @@
 				to_chat(user, span_notice("Compressor connected."))
 				stat &= ~BROKEN
 			else
-				to_chat(user, span_alert("Compressor not connected."))
+				to_chat(user, span_warning("Compressor not connected."))
 				stat |= BROKEN
 
 /obj/machinery/power/turbine/process()
