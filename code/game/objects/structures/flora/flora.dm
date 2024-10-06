@@ -282,7 +282,7 @@
 /obj/structure/flora/pottedplant/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) && stored_item)
-		. += span_filter_notice("<i>You can see something in there...</i>")
+		. += span_filter_notice(span_italics("You can see something in there..."))
 
 /obj/structure/flora/pottedplant/attackby(obj/item/I, mob/user)
 	if(issilicon(user))

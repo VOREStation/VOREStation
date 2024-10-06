@@ -79,7 +79,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 	if(feedback_body)
 		dat += replacetext(feedback_body, "\n", "<br>") // So newlines will look like they work in the preview.
 	else
-		dat += "<i>\[Feedback goes here...\]</i>"
+		dat += span_italics("\[Feedback goes here...\]")
 	dat += "<br>"
 	dat += href(src, list("feedback_edit_body" = 1), "Edit")
 	dat += "<hr>"

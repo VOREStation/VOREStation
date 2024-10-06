@@ -19,7 +19,7 @@
 		dat += "</fieldset>"
 
 	else
-		dat += "<i>No attack logs found for [M].</i>"
+		dat += span_italics("No attack logs found for [M].")
 
 	var/datum/browser/popup = new(usr, "admin_attack_log", "[src]", 650, 650, src)
 	popup.set_content(jointext(dat,null))
@@ -49,7 +49,7 @@
 
 		dat += "</fieldset>"
 	else
-		dat += "<i>No dialogue logs found for [M].</i>"
+		dat += span_italics("No dialogue logs found for [M].")
 	var/datum/browser/popup = new(usr, "admin_dialogue_log", "[src]", 650, 650, src)
 	popup.set_content(jointext(dat,null))
 	popup.open()

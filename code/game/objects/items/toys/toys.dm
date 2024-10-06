@@ -706,9 +706,9 @@
 /obj/structure/plushie/examine(mob/user)
 	. = ..()
 	if(opened)
-		. += "<i>You notice an incision has been made on [src].</i>"
+		. += span_italics("You notice an incision has been made on [src].")
 		if(in_range(user, src) && stored_item)
-			. += "<i>You can see something in there...</i>"
+			. += span_italics("You can see something in there...")
 
 /obj/structure/plushie/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -805,9 +805,9 @@
 /obj/item/toy/plushie/examine(mob/user)
 	. = ..()
 	if(opened)
-		. += "<i>You notice an incision has been made on [src].</i>"
+		. += span_italics("You notice an incision has been made on [src].")
 		if(in_range(user, src) && stored_item)
-			. += "<i>You can see something in there...</i>"
+			. += span_italics("You can see something in there...")
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
 	if(stored_item && opened && !searching)

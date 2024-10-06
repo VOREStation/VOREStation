@@ -987,7 +987,7 @@ var/list/ai_verbs_default = list(
 	var/message = combined["formatted"]
 	var/name_used = M.GetVoice()
 	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
-	var/rendered = span_game(span_say("<i>Relayed Speech: [span_name(name_used)] [message]</i>"))
+	var/rendered = span_game(span_say(span_italics("Relayed Speech: [span_name(name_used)] [message]")))
 	show_message(rendered, 2)
 
 /mob/living/silicon/ai/proc/toggle_multicam_verb()

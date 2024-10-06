@@ -318,7 +318,7 @@ var/global/floorIsLava = 0
 		if(1)
 			dat+= "Station Feed Channels<HR>"
 			if( isemptylist(news_network.network_channels) )
-				dat+="<I>No active channels found...</I>"
+				dat+=span_italics("No active channels found...")
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
 					if(CHANNEL.is_admin_channel)

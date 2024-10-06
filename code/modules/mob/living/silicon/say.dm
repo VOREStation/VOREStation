@@ -73,7 +73,7 @@
 		/*Radios "filter out" this conversation channel so we don't need to account for them.
 		This is another way of saying that we won't bother dealing with them.*/
 		var/list/combined = combine_message(message_pieces, verb, src)
-		to_chat(src, span_game(span_say("<i>Holopad transmitted, [span_name(real_name)] [combined["formatted"]]</i>")))
+		to_chat(src, span_game(span_say(span_italics("Holopad transmitted, [span_name(real_name)] [combined["formatted"]]"))))
 	else
 		to_chat(src, span_filter_notice("No holopad connected."))
 		return 0
@@ -88,7 +88,7 @@
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])
 		var/rendered = span_game(span_say(span_name(name) + " " + span_message(message)))
-		to_chat(src, span_game(span_say("<i>Holopad action relayed, [span_name(real_name)] [span_message(message)]</i>")))
+		to_chat(src, span_game(span_say(span_italics("Holopad action relayed, [span_name(real_name)] [span_message(message)]"))))
 		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
 
 		//var/obj/effect/overlay/hologram = T.masters[src] //VOREStation edit. Done above.

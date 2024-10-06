@@ -113,7 +113,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 		displayed_desc = copytext(displayed_desc, 1, desc_length_limit + 1)
 		displayed_desc += "... (View databanks for full data)"
 
-	to_chat(user, span_notice("<i>[displayed_desc]</i>"))
+	to_chat(user, span_notice(span_italics("[displayed_desc]")))
 	to_chat(user, span_notice("Cataloguers : <b>[english_list(cataloguers)]</b>."))
 	to_chat(user, span_notice("Contributes <b>[value]</b> points to personal exploration fund."))
 

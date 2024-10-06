@@ -138,7 +138,7 @@
 	else if(!charge_only)	//can only use it 10 times a minute, unless it runs purely on charge.
 		if(user)
 			update_icon()
-			to_chat(user, span_warning("<i>click</i>"))
+			to_chat(user, span_warning(span_italics("click")))
 			playsound(src, 'sound/weapons/empty.ogg', 80, 1)
 		return FALSE
 	else if(battery && battery.checked_use(charge_cost + (round(charge_cost / 4) * max(0, times_used - max_flashes)))) // Using over your maximum flashes starts taking more charge per added flash.

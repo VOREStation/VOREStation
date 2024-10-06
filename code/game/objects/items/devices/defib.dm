@@ -470,7 +470,7 @@
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
-	user.visible_message(span_danger("<i>\The [user] shocks [H] with \the [src]!</i>"), span_warning("You shock [H] with \the [src]!"))
+	user.visible_message(span_danger(span_italics("\The [user] shocks [H] with \the [src]!")), span_warning("You shock [H] with \the [src]!"))
 	playsound(src, 'sound/machines/defib_zap.ogg', 100, 1, -1)
 	playsound(src, 'sound/weapons/Egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)

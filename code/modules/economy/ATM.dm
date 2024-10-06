@@ -132,7 +132,7 @@ log transactions
 		//js replicated from obj/machinery/computer/card
 		var/dat = "<h1>Automatic Teller Machine</h1>"
 		dat += "For all your monetary needs!<br>"
-		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting IT Support</i><br/>"
+		dat += span_italics("This terminal is") + " [machine_id]. " + span_italics("Report this code when contacting IT Support") + "<br/>"
 
 		if(emagged > 0)
 			dat += "Card: " + span_red("LOCKED") + "<br><br>" + span_red("Unauthorized terminal access detected! This ATM has been locked. Please contact IT Support.")
@@ -367,11 +367,11 @@ log transactions
 					var/obj/item/paper/R = new(src.loc)
 					R.name = "Account balance: [authenticated_account.owner_name]"
 					R.info = span_bold("NT Automated Teller Account Statement") + "<br><br>"
-					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
-					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-					R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
-					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
-					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
+					R.info += span_italics("Account holder:") + " [authenticated_account.owner_name]<br>"
+					R.info += span_italics("Account number:") + " [authenticated_account.account_number]<br>"
+					R.info += span_italics("Balance:") + " $[authenticated_account.money]<br>"
+					R.info += span_italics("Date and time:") + " [stationtime2text()], [current_date_string]<br><br>"
+					R.info += span_italics("Service terminal ID:") + " [machine_id]<br>"
 
 					//stamp the paper
 					var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -380,7 +380,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/stamp
 					R.add_overlay(stampoverlay)
-					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+					R.stamps += "<HR>" + span_italics("This paper has been stamped by the Automatic Teller Machine.")
 
 				if(prob(50))
 					playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
@@ -391,10 +391,10 @@ log transactions
 					var/obj/item/paper/R = new(src.loc)
 					R.name = "Transaction logs: [authenticated_account.owner_name]"
 					R.info = span_bold("Transaction logs") + "<br>"
-					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
-					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
-					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
+					R.info += span_italics("Account holder:") + " [authenticated_account.owner_name]<br>"
+					R.info += span_italics("Account number:") + " [authenticated_account.account_number]<br>"
+					R.info += span_italics("Date and time:") + " [stationtime2text()], [current_date_string]<br><br>"
+					R.info += span_italics("Service terminal ID:") + " [machine_id]<br>"
 					R.info += "<table border=1 style='width:100%'>"
 					R.info += "<tr>"
 					R.info += "<td><b>Date</b></td>"
@@ -422,7 +422,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/stamp
 					R.add_overlay(stampoverlay)
-					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+					R.stamps += "<HR>" + span_italics("This paper has been stamped by the Automatic Teller Machine.")
 
 				if(prob(50))
 					playsound(src, 'sound/items/polaroid1.ogg', 50, 1)

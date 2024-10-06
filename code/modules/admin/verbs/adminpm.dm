@@ -175,7 +175,7 @@
 
 				to_chat(recipient, span_admin_pm_warning(span_huge("<b>-- Administrator private message --</b>")))
 				to_chat(recipient, span_admin_pm_warning("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [msg]"))
-				to_chat(recipient, span_admin_pm_warning("<i>Click on the administrator's name to reply.</i>"))
+				to_chat(recipient, span_admin_pm_warning(span_italics("Click on the administrator's name to reply.")))
 				to_chat(src, span_admin_pm_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [msg]"))
 
 				admin_ticket_log(recipient, span_admin_pm_notice("PM From [key_name_admin(src)]: [keywordparsedmsg]"))
@@ -264,7 +264,7 @@
 
 	to_chat(C, span_admin_pm_warning(span_huge("<b>-- Administrator private message --</b>")))
 	to_chat(C, span_admin_pm_warning("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"))
-	to_chat(C, span_admin_pm_warning("<i>Click on the administrator's name to reply.</i>"))
+	to_chat(C, span_admin_pm_warning(span_italics("Click on the administrator's name to reply.")))
 
 	admin_ticket_log(C, span_admin_pm_notice("PM From [irc_tagged]: [msg]"))
 

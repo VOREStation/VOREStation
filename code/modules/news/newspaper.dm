@@ -32,7 +32,7 @@
 					if(important_message)
 						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"
 					else
-						dat+="<I>Other than the title, the rest of the newspaper is unprinted...</I>"
+						dat+=span_italics("Other than the title, the rest of the newspaper is unprinted...")
 				else
 					dat+="Contents:<BR><ul>"
 					for(var/datum/feed_channel/NP in news_content)
@@ -86,7 +86,7 @@
 					else
 						dat+="None"
 				else
-					dat+="<I>Apart from some uninteresting Classified ads, there's nothing on this page...</I>"
+					dat+=span_italics("Apart from some uninteresting Classified ads, there's nothing on this page...")
 				if(scribble_page==curr_page)
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"

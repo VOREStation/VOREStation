@@ -113,7 +113,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon
 	name = "8.8cm KwK 47"
-	desc = "<i>Precision German engineering!</i>" // Why would you ever take this off the mech, anyway?
+	desc = span_italics("Precision German engineering!") // Why would you ever take this off the mech, anyway?
 	icon_state = "mecha_uac2"
 	equip_cooldown = 60 // 6 seconds
 	projectile = /obj/item/projectile/bullet/cannon

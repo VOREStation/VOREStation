@@ -361,10 +361,10 @@
 			var/blood_type = H.dna.b_type
 			var/blood_reagent = H.species.blood_reagents
 			if(blood_volume <= H.species.blood_volume*H.species.blood_level_danger)
-				dat += span_danger("<i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i>")
+				dat += span_danger(span_italics("Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent]."))
 				dat += "<br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_warning)
-				dat += span_danger("<i>Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i>")
+				dat += span_danger(span_italics("Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent]."))
 				dat += "<br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_safe)
 				dat += span_danger("Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].")

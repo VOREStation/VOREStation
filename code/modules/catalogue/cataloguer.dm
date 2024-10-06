@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 			dat += "<a href='?src=\ref[src];debug_unlock=\ref[displayed_data]'>\[(DEBUG) Force Discovery\]</a>"
 		dat += "<hr>"
 
-		dat += "<i>[displayed_data.desc]</i>"
+		dat += span_italics("[displayed_data.desc]")
 		if(LAZYLEN(displayed_data.cataloguers))
 			dat += "Cataloguers : <b>[english_list(displayed_data.cataloguers)]</b>."
 		else

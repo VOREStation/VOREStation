@@ -53,7 +53,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 	name = "universal catalog"
 	desc = "A catalog to be used with the KHI 'Universal Core', shamelessly \
 	copied by a Kitsuhana designer from some group of 'technomancers' or another.<br>\
-	The back of the book has <i>'Export Edition'</i> stamped on it."
+	The back of the book has " + span_italics("'Export Edition'") + " stamped on it."
 	budget = 700
 	max_budget = 700
 	universal = TRUE

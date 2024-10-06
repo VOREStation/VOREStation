@@ -252,7 +252,7 @@
 
 		dat += "<p style='background-color: [job.selection_color]'><br><br><p>"
 		if(job.alt_titles)
-			dat += "<i><b>Alternate titles:</b> [english_list(job.alt_titles)].</i>"
+			dat += span_italics(span_bold("Alternate titles:") + " [english_list(job.alt_titles)].")
 		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")
 		dat += "<img src=job[ckey(rank)].png width=96 height=96 style='float:left;'>"
 		if(job.departments)

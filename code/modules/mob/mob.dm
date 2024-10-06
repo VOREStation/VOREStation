@@ -90,7 +90,7 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		to_chat(src, span_filter_notice("<I>... You can almost hear someone talking ...</I>"))
+		to_chat(src, span_filter_notice(span_italics("... You can almost hear someone talking ...")))
 	else
 		if(client && client.prefs.chat_timestamp)
 			// TG-Chat filters latch directly to the spans, we no longer need that

@@ -11,7 +11,7 @@
 		for(var/client/C in GLOB.clients)
 			var/entry = "<tr><td>[C.key]"
 			if(C.holder && C.holder.fakekey)
-				entry += " <i>(as [C.holder.fakekey])</i>"
+				entry += " " + span_italics("(as [C.holder.fakekey])")
 
 			entry += "</td><td>"
 
