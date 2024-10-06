@@ -36,9 +36,9 @@ mob
 		update()
 			var/hsbpanel = "<center><b>h_Sandbox Panel</b></center><hr>"
 			if(admin)
-				hsbpanel += "<b>Administration Tools:</b><br>"
+				hsbpanel += span_bold("Administration Tools:") + "<br>"
 				hsbpanel += "- <a href=\"?\ref[src];hsb=hsbtobj\">Toggle Object Spawning</a><br><br>"
-			hsbpanel += "<b>Regular Tools:</b><br>"
+			hsbpanel += span_bold("Regular Tools:") + "<br>"
 			for(var/T in hrefs)
 				hsbpanel += "- <a href=\"?\ref[src];hsb=[T]\">[hrefs[T]]</a><br>"
 			if(hsboxspawn)

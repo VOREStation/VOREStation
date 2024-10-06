@@ -95,7 +95,7 @@
 
 /obj/mecha/combat/gorilla/get_stats_part()
 	var/output = ..()
-	output += {"<b>Smoke:</b> [smoke_reserve]"}
+	output += span_bold("Smoke:") + {"[smoke_reserve]"}
 	return output
 
 

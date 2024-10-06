@@ -95,13 +95,13 @@
 		to_chat(user, span_warning("There's not enough of [victim] left to sip on!"))
 		return
 
-	user.visible_message("<b>[user]</b> starts sipping on [victim] with [src]!", "You start sipping on [victim] with [src].")
+	user.visible_message(span_info(span_bold("[user]") + " starts sipping on [victim] with [src]!"), span_info("You start sipping on [victim] with [src]."))
 	if(!do_after(user, 3 SECONDS, victim, exclusive = TASK_ALL_EXCLUSIVE))
 		return
 
-	user.visible_message("<b>[user]</b> sips some of [victim] with [src]!", "You take a sip of [victim] with [src]. Yum!")
+	user.visible_message(span_info(span_bold("[user]") + " sips some of [victim] with [src]!"), span_info("You take a sip of [victim] with [src]. Yum!"))
 	if(victim.vore_taste)
-		to_chat(user, "<b>[victim]</b> tastes like... [victim.vore_taste]!")
+		to_chat(user, span_info(span_bold("[victim]") + " tastes like... [victim.vore_taste]!"))
 
 	victim.apply_damage(5, used_weapon = "straw")
 

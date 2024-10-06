@@ -3,7 +3,7 @@ var/global/floorIsLava = 0
 
 ////////////////////////////////
 /proc/message_admins(var/msg)
-	msg = "<span class='filter_adminlog log_message'><span class='prefix'>ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
+	msg = span_filter_adminlog(span_log_message(span_prefix("ADMIN LOG:") + span_message("[msg]")))
 	//log_adminwarn(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
@@ -14,7 +14,7 @@ var/global/floorIsLava = 0
 					confidential = TRUE)
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
-	var/rendered = "<span class='filter_attacklog log_message'><span class='prefix'>ATTACK:</span> <span class=\"message\">[text]</span></span>"
+	var/rendered = span_filter_attacklog(span_log_message(span_prefix("ATTACK:") + span_message("[text]")))
 	for(var/client/C in GLOB.admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			if(C.prefs?.read_preference(/datum/preference/toggle/show_attack_logs))
@@ -101,7 +101,7 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
 
-	if (M.client)
+if (M.client)
 		if(!istype(M, /mob/new_player))
 			body += "<br><br>"
 			body += "<b>Transformation:</b>"
