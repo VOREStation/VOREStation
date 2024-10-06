@@ -176,8 +176,8 @@
 	name = "imperfect regeneration"
 	desc = "You feel rather weak and unfocused, having just regrown your body not so long ago."
 
-	on_created_text = span_warning("<font size='3'>You feel weak and unsteady, that regeneration having been rougher than most.</font>")
-	on_expired_text = span_notice("<font size='3'>You feel your strength and focus return to you.</font>")
+	on_created_text = span_warning(span_large("You feel weak and unsteady, that regeneration having been rougher than most."))
+	on_expired_text = span_notice(span_large("You feel your strength and focus return to you."))
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY

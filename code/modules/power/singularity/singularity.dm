@@ -213,7 +213,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			if(chained)
 				overlays = "chain_s9"
 			if(growing)
-				visible_message(span_danger("<font size='2'>The singularity has grown out of control!</font>"))
+				visible_message(span_danger(span_normal("The singularity has grown out of control!")))
 			else
 				visible_message(span_warning("The singularity miraculously reduces in size and loses its supermatter properties."))
 		if(STAGE_SUPER)//SUPERSINGULO
@@ -230,10 +230,10 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			event_chance = 25 //Events will fire off more often.
 			if(chained)
 				overlays = "chain_s9"
-			visible_message(span_sinister("<font size='3'>You witness the creation of a destructive force that cannot possibly be stopped by human hands.</font>"))
+			visible_message(span_sinister(span_large("You witness the creation of a destructive force that cannot possibly be stopped by human hands.")))
 
 	if (current_size == allowed_size)
-		investigate_log("<font color='red'>grew to size [current_size].</font>", I_SINGULO)
+		investigate_log(span_red("grew to size [current_size]."), I_SINGULO)
 		return 1
 	else if (current_size < (--temp_allowed_size) && current_size != STAGE_SUPER)
 		expand(temp_allowed_size)

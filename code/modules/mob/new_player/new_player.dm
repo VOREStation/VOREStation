@@ -385,7 +385,7 @@
 		dat += "<br>"
 		dat += "[F["body"]]"
 		dat += "<br>"
-		dat += "<font size='2'><i>Last written by [F["author"]], on [F["timestamp"]].</i></font>"
+		dat += span_normal(span_italics("Last written by [F["author"]], on [F["timestamp"]]."))
 		dat += "</center></body></html>"
 		var/datum/browser/popup = new(src, "Server News", "Server News", 450, 300, src)
 		popup.set_content(dat)

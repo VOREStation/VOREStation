@@ -101,7 +101,7 @@
 	window_flash(player.current.client)
 
 	// Basic intro text.
-	to_chat(player.current, span_danger("<font size=3>You are a [role_text]!</font>"))
+	to_chat(player.current, span_danger(span_large("You are a [role_text]!")))
 	if(leader_welcome_text && player == leader)
 		to_chat(player.current, span_notice("[leader_welcome_text]"))
 	else
