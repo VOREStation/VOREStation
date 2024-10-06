@@ -477,9 +477,9 @@ var/global/datum/controller/occupations/job_master
 		for(var/D in job.department_accounts)
 			var/datum/money_account/department_account = department_accounts[D]
 			if(department_account)
-				remembered_info += "<b>Department account number ([D]):</b> #[department_account.account_number]<br>"
-				remembered_info += "<b>Department account pin ([D]):</b> [department_account.remote_access_pin]<br>"
-				remembered_info += "<b>Department account funds ([D]):</b> $[department_account.money]<br>"
+				remembered_info += span_bold("Department account number ([D]):") + " #[department_account.account_number]<br>"
+				remembered_info += span_bold("Department account pin ([D]):") + " [department_account.remote_access_pin]<br>"
+				remembered_info += span_bold("Department account funds ([D]):") + " $[department_account.money]<br>"
 
 		H.mind.store_memory(remembered_info)
 

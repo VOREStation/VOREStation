@@ -224,7 +224,7 @@
 //Client attached
 /mob/living/simple_mob/Login()
 	. = ..()
-	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
+	to_chat(src,span_boldnotice("You are \the [src].") + " [player_msg]")
 	if(hasthermals)
 		verbs |= /mob/living/simple_mob/proc/hunting_vision //So that maint preds can see prey through walls, to make it easier to find them.
 

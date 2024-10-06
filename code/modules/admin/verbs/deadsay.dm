@@ -23,6 +23,6 @@
 	if (!msg)
 		return
 
-	say_dead_direct(span_name("[stafftype]([src.holder.fakekey ? src.holder.fakekey : src.key])</span> says, <span class='message'>\"[msg]\""))
+	say_dead_direct(span_name("[stafftype]([src.holder.fakekey ? src.holder.fakekey : src.key])") + " says, " + span_message("\"[msg]\""))
 
 	feedback_add_details("admin_verb","D") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
