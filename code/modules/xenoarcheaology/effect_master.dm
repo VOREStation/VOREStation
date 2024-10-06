@@ -269,7 +269,7 @@
 		to_chat(user, span_filter_notice("[span_red("You can't reach [holder] from here.")]"))
 		return
 	if(ishuman(user) && user:gloves)
-		to_chat(user, span_filter_notice("<b>You touch [holder]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))
+		to_chat(user, span_filter_notice(span_bold("You touch [holder]") + " with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))
 		return
 
 	var/triggered = FALSE
@@ -288,7 +288,7 @@
 		to_chat(user, span_filter_notice("<b>You touch [holder].</b>"))
 
 	else
-		to_chat(user, span_filter_notice("<b>You touch [holder],</b> [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))
+		to_chat(user, span_filter_notice(span_bold("You touch [holder],") + " [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))
 
 
 /datum/component/artifact_master/proc/on_attackby()

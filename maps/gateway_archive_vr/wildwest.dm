@@ -83,7 +83,7 @@
 				to_chat(user, "<B>Your inhibitions are swept away, the bonds of loyalty broken, you are free to murder as you please!</B>")
 				var/obj_count = 1
 				for(var/datum/objective/OBJ in user.mind.objectives)
-					to_chat(user, "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]")
+					to_chat(user, span_bold("Objective #[obj_count]") + ": [OBJ.explanation_text]")
 					obj_count++
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()

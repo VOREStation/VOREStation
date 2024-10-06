@@ -2115,7 +2115,7 @@ Departamental Swimsuits, for general use
 		user.visible_message(span_notice("[user] harmlessly bops [target] with \the [src]."), \
 		span_notice("\The [src] harmlessly bops [target]. The hat seems... unwilling?"))
 	else
-		user.visible_message("<b>\The [src]</b> flops over [user]'s' head for a moment, but they seem alright.", \
+		user.visible_message(span_bold("\The [src]") + " flops over [user]'s' head for a moment, but they seem alright.", \
 		span_notice("\The [src] flops over your head for a moment, but you correct it without issue. There we go!"))
 
 /obj/item/clothing/head/fluff/nikki/proc/hat_warp_checks(var/mob/living/target, mob/user, proximity_flag)
@@ -2187,13 +2187,13 @@ Departamental Swimsuits, for general use
 		translocator.attack_self(user, user)
 		return
 	else
-		to_chat(user, "<span_class='warning'>\The [src] doesn't have a translocator inside it right now.</span>")
+		to_chat(user, span_warning("\The [src] doesn't have a translocator inside it right now."))
 		return
 
 /obj/item/clothing/head/fluff/nikki/examine(mob/user) // If it has a translocator installed, make it very obvious to viewers that something WEIRD is going on with this hat.
 	. = ..()
 	if (translocator)
-		. += "Weird... <span class='danger'>You can't see the bottom of the hole inside the hat...</span>"
+		. += "Weird... " + span_danger("You can't see the bottom of the hole inside the hat...")
 
 /obj/item/clothing/head/fluff/nikki/equipped(mob/living/carbon/human/user, slot)
 	. = ..()

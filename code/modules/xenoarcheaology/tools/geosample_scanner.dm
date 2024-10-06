@@ -93,12 +93,12 @@
 				update_coolant()
 				return
 		if(scanned_item)
-			to_chat(user, "<span class=warning>\The [src] already has \a [scanned_item] inside!</span>")
+			to_chat(user, span_warning("\The [src] already has \a [scanned_item] inside!"))
 			return
 		user.drop_item()
 		I.loc = src
 		scanned_item = I
-		to_chat(user, "<span class=notice>You put \the [I] into \the [src].</span>")
+		to_chat(user, span_notice("You put \the [I] into \the [src]."))
 
 /obj/machinery/radiocarbon_spectrometer/proc/update_coolant()
 	var/total_purity = 0
@@ -354,8 +354,8 @@
 		if(!anom_found)
 			data += " - No anomalous data<br>"
 
-		P.info = "<b>[src] analysis report #[report_num]</b><br>"
-		P.info += "<b>Scanned item:</b> [scanned_item.name]<br><br>" + data
+		P.info = span_bold("[src] analysis report #[report_num]") + "<br>"
+		P.info += span_bold("Scanned item:") + " [scanned_item.name]<br><br>" + data
 		last_scan_data = P.info
 		P.loc = src.loc
 
