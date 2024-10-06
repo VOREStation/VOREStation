@@ -104,7 +104,7 @@
 			continue
 		var/celsius = convert_k2c(tile_info[index][1])
 		var/pressure = tile_info[index][2]
-		var/temperature_string = "[celsius]&deg;C</span> "
+		var/temperature_string = "[celsius]&deg;C "
 		o += ((dir_alerts[index] & (FIREDOOR_ALERT_HOT|FIREDOOR_ALERT_COLD)) ? span_warning(temperature_string) : span_blue(temperature_string))
 		o += span_blue("[pressure]kPa")
 		o += "</li>"

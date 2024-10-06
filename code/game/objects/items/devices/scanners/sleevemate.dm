@@ -146,8 +146,8 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//Actions
 	output += "<br><b>-- Possible Actions --</b><br>"
-	output += "<b>Mind-Scan (One Time): </b>\[<a href='?src=\ref[src];target=\ref[H];mindscan=1'>Perform</a>\]<br>"
-	output += "<b>Body-Scan (One Time): </b>\[<a href='?src=\ref[src];target=\ref[H];bodyscan=1'>Perform</a>\]<br>"
+	output += span_bold("Mind-Scan (One Time): ") + "\[<a href='?src=\ref[src];target=\ref[H];mindscan=1'>Perform</a>\]<br>"
+	output += span_bold("Body-Scan (One Time): ") + "\[<a href='?src=\ref[src];target=\ref[H];bodyscan=1'>Perform</a>\]<br>"
 
 	//Saving a mind
 	output += span_bold("Store Full Mind:") + " "
@@ -163,12 +163,12 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
 		if(SC)
 			output += "<br>"
-			output += "<b>Soulcatcher detected ([SC.brainmobs.len] minds)</b><br>"
+			output += span_bold("Soulcatcher detected ([SC.brainmobs.len] minds)") + "<br>"
 			for(var/mob/living/carbon/brain/caught_soul/mind in SC.brainmobs)
 				output += "<i>[mind.name]: </i> [mind.transient == FALSE ? "\[<a href='?src=\ref[src];target=\ref[H];mindrelease=[mind.name]'>Load</a>\]" : span_warning("Incompatible")]<br>"
 
 			if(stored_mind)
-				output += "<b>Store in Soulcatcher: </b>\[<a href='?src=\ref[src];target=\ref[H];mindput=1'>Perform</a>\]<br>"
+				output += span_bold("Store in Soulcatcher: ") + "\[<a href='?src=\ref[src];target=\ref[H];mindput=1'>Perform</a>\]<br>"
 
 	to_chat(user,output)
 

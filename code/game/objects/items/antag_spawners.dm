@@ -114,7 +114,7 @@
 
 	// Put this text here before ckey change so that their laws are shown below it, since borg login() shows it.
 	to_chat(C, span_notice("You are a " + span_bold("Mercenary Drone") + ", activated to serve your team."))
-	to_chat(C, span_boldnotice("Be sure to examine your currently loaded lawset closely.</b>  It would be wise \
+	to_chat(C, span_notice(span_bold("Be sure to examine your currently loaded lawset closely.") + " It would be wise \
 	to speak with your team, and learn what their plan is for today."))
 
 	R.key = C.key

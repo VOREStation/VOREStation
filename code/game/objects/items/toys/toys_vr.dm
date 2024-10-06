@@ -435,7 +435,7 @@
 
 /obj/item/toy/chewtoy/attack_self(mob/user)
 	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1)
-	user.visible_message(span_notice("<b>\The [user]</b> gnaws on [src]!"),span_notice("You gnaw on [src]!"))
+	user.visible_message(span_notice(span_bold("\The [user]") + " gnaws on [src]!"),span_notice("You gnaw on [src]!"))
 
 /*
  * Cat toys
