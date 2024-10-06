@@ -223,7 +223,7 @@
 		var/owner = data["owner"]
 		var/job = data["job"]
 		var/message = data["message"]
-		notify("<b>Message from [owner] ([job]), </b>\"[message]\" (<a href='?src=\ref[src];choice=Message;target=[ref]'>Reply</a>)")
+		notify(span_bold("Message from [owner] ([job]), ") + "\"[message]\" (<a href='?src=\ref[src];choice=Message;target=[ref]'>Reply</a>)")
 
 /datum/data/pda/app/messenger/multicast
 /datum/data/pda/app/messenger/multicast/receive_message(list/data, ref)

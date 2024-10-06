@@ -47,6 +47,7 @@
 #define span_say(str) ("<span class='say'>" + str + "</span>")
 #define span_emote(str) ("<span class='emote'>" + str + "</span>")
 #define span_emote_subtle(str) ("<span class='emotesubtle'>" + str + "</span>")
+#define span_filter_say(str) ("<span class='filter_say'>" + str + "</span>")
 
 // Filtered as NPC messages
 #define span_npc_say(str) ("<span class='npcsay'>" + str + "</span>")
@@ -61,11 +62,6 @@
 #define span_message(str) ("<span class='message'>" + str + "</span>") // TODO: This makes no sense, check it!
 #define span_notify(str) ("<span class='notify'>" + str + "</span>") // TODO: This makes no sense, check it!
 #define span_body(str) ("<span class='body'>" + str + "</span>")
-// TODO! Those 4 below should be replaced....
-#define span_filter_say(str) ("<span class='filter_say'>" + str + "</span>")
-#define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>")
-#define span_filter_combat(str) ("<span class='filter_combat'>" + str + "</span>")
-#define span_filter_notice(str) ("<span class='filter_notice'>" + str + "</span>")
 
 // Filtered under combat!
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
@@ -73,6 +69,7 @@
 #define span_passive(str) ("<span class='passive'>" + str + "</span>")
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_bolddanger(str) ("<span class='bolddanger'>" + str + "</span>")
+#define span_filter_combat(str) ("<span class='filter_combat'>" + str + "</span>")
 
 // Filtered under warning messages
 #define span_critical(str) ("<span class='critical'>" + str + "</span>")
@@ -81,6 +78,7 @@
 #define span_warningplain(str) ("<span class='warningplain'>" + str + "</span>")
 #define span_boldwarning(str) ("<span class='boldwarning'>" + str + "</span>")
 #define span_sinister(str) ("<span class='sinister'>" + str + "</span>")
+#define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>") // Close to warning plain, maybe replace
 
 // FIltered under info
 #define span_info(str) ("<span class='info'>" + str + "</span>")
@@ -89,6 +87,7 @@
 #define span_unconscious(str) ("<span class='unconscious'>" + str + "</span>")
 #define span_hear(str) ("<span class='hear'>" + str + "</span>")
 #define span_notice(str) ("<span class='notice'>" + str + "</span>")
+#define span_filter_notice(str) ("<span class='filter_notice'>" + str + "</span>") // Close to infoplain, maybe replace
 #define span_boldnotice(str) ("<span class='boldnotice'>" + str + "</span>")
 #define span_adminnotice(str) ("<span class='adminnotice'>" + str + "</span>")
 #define span_alium(str) ("<span class='alium'>" + str + "</span>")
@@ -174,11 +173,14 @@
 #define span_linkOff(str) ("<span class='linkOff'>" + str + "</span>")
 #define span_filter_system(str) ("<span class='filter_system'>" + str + "</span>")
 #define span_filter_pm(str) ("<span class='filter_pm'>" + str + "</span>")
-#define span_filter_pray(str) ("<span class='filter_pray'>" + str + "</span>")
+#define span_filter_pray(str) ("<span class='filter_pray'>" + str + "</span>") // (Uses the chat message type directly)
 
 // Admin log filters
 #define span_log_message(str) ("<span class='log_message'>" + str + "</span>")
-#define span_filter_adminlog(str) ("<span class='filter_adminlog'>" + str + "</span>")
+#define span_filter_adminlog(str) ("<span class='filter_adminlog'>" + str + "</span>") // (Uses the chat message type directly)
+
+// Attack log filter
+#define span_filter_attacklog(str) ("<span class='filter_attacklog'>" + str + "</span>") // (Uses the chat message type directly)
 
 // Debug filter
 #define span_debug_error(str) ("<span class='debug_error'>" + str + "</span>")
@@ -186,7 +188,7 @@
 #define span_debug_info(str) ("<span class='debug_info'>" + str + "</span>")
 #define span_debug_debug(str) ("<span class='debug_debug'>" + str + "</span>")
 #define span_debug_trace(str) ("<span class='debug_trace'>" + str + "</span>")
-#define span_filter_debuglogs(str) ("<span class='filter_debuglogs'>" + str + "</span>")
+#define span_filter_debuglogs(str) ("<span class='filter_debuglogs'>" + str + "</span>") // (Uses the chat message type directly)
 
 /* Admin only usage */
 // Admin pm filter

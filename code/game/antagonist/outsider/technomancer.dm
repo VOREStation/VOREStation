@@ -28,7 +28,7 @@ var/datum/antagonist/technomancer/technomancers
 
 /datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
 	..()
-	technomancer.store_memory("<B>Remember:</B> Do not forget to purchase the functions and equipment you need.")
+	technomancer.store_memory(span_bold("Remember:") + " Do not forget to purchase the functions and equipment you need.")
 	technomancer.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
 	technomancer.current.name = technomancer.current.real_name
 

@@ -120,7 +120,7 @@ SUBSYSTEM_DEF(vote)
 	if(winners.len > 0)
 		if(winners.len > 1)
 			if(mode != VOTE_GAMEMODE || ticker.hide_mode == 0) // Here we are making sure we don't announce potential game modes
-				text = "<b>Vote Tied Between:</b>\n"
+				text = span_bold("Vote Tied Between:") + "\n"
 				for(var/option in winners)
 					text += "\t[option]\n"
 		. = pick(winners)
@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(vote)
 
 		log_vote(text)
 
-		to_world(span_purple("<b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote."))
+		to_world(span_purple(span_bold("[text]") + "nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote."))
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
