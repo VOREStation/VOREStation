@@ -83,9 +83,9 @@
 		)
 
 	full_fear_up = list(
-		span_danger("<font size='4'>The blood is too much!</font>"),
-		span_danger("<font size='4'>There is so much blood here, you need to leave!</font>"),
-		span_danger("<font size='4'>You gotta get away from the blood!</font>")
+		span_danger(span_huge("The blood is too much!")),
+		span_danger(span_huge("There is so much blood here, you need to leave!")),
+		span_danger(span_huge("You gotta get away from the blood!"))
 		)
 	full_fear_down = list(
 		span_danger("The blood is gone, but you're still very anxious."),
@@ -185,9 +185,9 @@
 		)
 
 	full_fear_up = list(
-		span_danger("<font size='4'>The chittering is driving you mad!</font>"),
-		span_danger("<font size='4'>You're gonna be spider-food if you don't run!</font>"),
-		span_danger("<font size='4'>The spiders are gonna feast on your eyes!</font>")
+		span_danger(span_huge("The chittering is driving you mad!")),
+		span_danger(span_huge("You're gonna be spider-food if you don't run!")),
+		span_danger(span_huge("The spiders are gonna feast on your eyes!"))
 		)
 	full_fear_down = list(
 		span_danger("The spiders must surely be hiding somewhere..."),
@@ -258,8 +258,8 @@
 		)
 
 	full_fear_up = list(
-		span_danger("<font size='4'>What was that?</font>"),
-		span_danger("<font size='4'>Something is nearby...</font>")
+		span_danger(span_huge("What was that?")),
+		span_danger(span_huge("Something is nearby..."))
 		)
 	full_fear_down = list(
 		span_danger("Light, at last!"),
@@ -335,8 +335,8 @@
 		)
 
 	full_fear_up = list(
-		span_danger("<font size='4'>You need to escape!</font>"),
-		span_danger("<font size='4'>There's barely any room to move around!</font>")
+		span_danger(span_huge("You need to escape!")),
+		span_danger(span_huge("There's barely any room to move around!"))
 		)
 	full_fear_down = list(
 		span_danger("The surroundings stop shrinking."),
@@ -398,8 +398,8 @@
 		)
 
 	full_fear_up = list(
-		span_danger("<font size='4'>The slime is everywhere!</font>"),
-		span_danger("<font size='4'>You're gonna get absorbed if you don't get out!</font>")
+		span_danger(span_huge("The slime is everywhere!")),
+		span_danger(span_huge("You're gonna get absorbed if you don't get out!"))
 		)
 	full_fear_down = list(
 		span_danger("There must be more of that slime somewhere..."),
@@ -493,8 +493,8 @@
 		)
 
 	full_fear_up = list(
-		span_danger("<font size='4'>The needles are going to pierce you!</font>"),
-		span_danger("<font size='4'>They could get you any second!</font>")
+		span_danger(span_huge("The needles are going to pierce you!")),
+		span_danger(span_huge("They could get you any second!"))
 		)
 	full_fear_down = list(
 		span_danger("There are more needles around, you can feel it..."),
