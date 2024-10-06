@@ -101,7 +101,7 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
 
-if (M.client)
+	if (M.client)
 		if(!istype(M, /mob/new_player))
 			body += "<br><br>"
 			body += "<b>Transformation:</b>"
