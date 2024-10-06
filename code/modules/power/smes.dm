@@ -408,10 +408,18 @@ GLOBAL_LIST_EMPTY(smeses)
 		target = 0
 		. = TRUE
 	else if(target == "max")
-		target = output_level_max
+		switch(io)
+			if(SMES_TGUI_INPUT)
+				target = input_level_max
+			if(SMES_TGUI_OUTPUT)
+				target = output_level_max
 		. = TRUE
 	else if(adjust)
-		target = output_level + adjust
+		switch(io)
+			if(SMES_TGUI_INPUT)
+				target = input_level + adjust
+			if(SMES_TGUI_OUTPUT)
+				target = output_level + adjust
 		. = TRUE
 	else if(text2num(target) != null)
 		target = text2num(target)
