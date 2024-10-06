@@ -517,7 +517,7 @@
 		if(25 to 45)
 			. += span_warning("It's heavily damaged.")
 		else
-			. += span_warning("<b> It's falling apart.</b> ")
+			. += span_warning(span_bold(" It's falling apart.") + " ")
 	if(equipment?.len)
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
@@ -1946,7 +1946,7 @@
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message("<b>\The [usr]</b> starts to climb into [src.name]")
+		visible_message(span_info(span_bold("\The [usr]") + " starts to climb into [src.name]"))
 		if(enter_after(40,usr))
 			if(!src.occupant)
 				moved_inside(usr)
@@ -2246,16 +2246,16 @@
 
 
 	if(defence_mode_possible)
-		output += "<b>Defence mode: [defence_mode?"on":"off"]</b><br>"
+		output += span_bold("Defence mode: [defence_mode?"on":"off"]") + "<br>"
 	if(overload_possible)
-		output += "<b>Leg actuators overload: [overload?"on":"off"]</b><br>"
+		output += span_bold("Leg actuators overload: [overload?"on":"off"]") + "<br>"
 	if(smoke_possible)
-		output += "<b>Smoke:</b> [smoke_reserve]<br>"
+		output += span_bold("Smoke:") + " [smoke_reserve]<br>"
 	if(thrusters_possible)
-		output += "<b>Thrusters:</b> [thrusters?"on":"off"]<br>"
+		output += span_bold("Thrusters:") + " [thrusters?"on":"off"]<br>"
 
 //Cargo components. Keep this last otherwise it does weird alignment issues.
-	output += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
+	output += span_bold("Cargo Compartment Contents:") + "<div style=\"margin-left: 15px;\">"
 	if(src.cargo.len)
 		for(var/obj/O in src.cargo)
 			output += "<a href='?src=\ref[src];drop_from_cargo=\ref[O]'>Unload</a> : [O]<br>"
@@ -2338,7 +2338,7 @@
 /obj/mecha/proc/get_equipment_list() //outputs mecha equipment list in html
 	if(!equipment.len)
 		return
-	var/output = "<b>Equipment:</b><div style=\"margin-left: 15px;\">"
+	var/output = span_bold("Equipment:") + "<div style=\"margin-left: 15px;\">"
 	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
 		output += "<div id='\ref[MT]'>[MT.get_equip_info()]</div>"
 	output += "</div>"
@@ -2586,11 +2586,11 @@
 		var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P = passengers[pname]
 		var/mob/occupant = P.occupant
 
-		user.visible_message("<b>\The [user]</b> begins opening the hatch on \the [P]...", span_notice("You begin opening the hatch on \the [P]..."))
+		user.visible_message(span_info(span_bold("\The [user]") + " begins opening the hatch on \the [P]..."), span_notice("You begin opening the hatch on \the [P]..."))
 		if (!do_after(user, 40))
 			return
 
-		user.visible_message("<b>\The [user]</b> opens the hatch on \the [P] and removes [occupant]!", span_notice("You open the hatch on \the [P] and remove [occupant]!"))
+		user.visible_message(span_info(span_bold("\The [user]") + " opens the hatch on \the [P] and removes [occupant]!"), span_notice("You open the hatch on \the [P] and remove [occupant]!"))
 		P.go_out()
 		P.log_message("[occupant] was removed.")
 		return
@@ -2777,7 +2777,7 @@
 	if(prob(temp_deflect_chance))//Deflected
 		src.log_append_to_last("Armor saved.")
 		src.occupant_message(span_notice("\The [user]'s attack is stopped by the armor."))
-		visible_message("<b>\The [user]</b> rebounds off [src.name]'s armor!")
+		visible_message(span_info(span_bold("\The [user]") + " rebounds off [src.name]'s armor!"))
 		user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 

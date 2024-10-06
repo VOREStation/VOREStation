@@ -121,7 +121,7 @@ var/global/list/emotes_by_key
 		if(target)
 			raw_3p = replace_target_tokens(raw_3p, target)
 		prefinal_3p = replace_user_tokens(raw_3p, user)
-		use_3p = span_emote("<b>\The [user]</b> [prefinal_3p]")
+		use_3p = span_emote(span_bold("\The [user]") + " [prefinal_3p]")
 	var/use_radio = get_radio_message(user)
 	if(use_radio)
 		if(target)
