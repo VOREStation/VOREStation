@@ -60,6 +60,11 @@
 		ui = new(user, src, "ICAssembly", name, parent_ui)
 		ui.open()
 
+/obj/item/electronic_assembly/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/circuit_assets)
+	)
+
 /obj/item/electronic_assembly/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
@@ -78,27 +83,16 @@
 	data["battery_max"] = round(battery?.maxcharge, 0.1)
 	data["net_power"] = net_power / CELLRATE
 
-	// This works because lists are always passed by reference in BYOND, so modifying unremovable_circuits
-	// after setting data["unremovable_circuits"] = unremovable_circuits also modifies data["unremovable_circuits"]
-	// Same for the removable one
-	var/list/unremovable_circuits = list()
-	data["unremovable_circuits"] = unremovable_circuits
-	var/list/removable_circuits = list()
-	data["removable_circuits"] = removable_circuits
+	var/list/circuits = list()
 	for(var/obj/item/integrated_circuit/circuit in contents)
-		var/list/target = circuit.removable ? removable_circuits : unremovable_circuits
-		target.Add(list(list(
-			"name" = circuit.displayed_name,
-			"ref" = REF(circuit),
-		)))
+		UNTYPED_LIST_ADD(circuits, circuit.tgui_data(user, ui, state))
+	data["circuits"] = circuits
 
 	return data
 
 /obj/item/electronic_assembly/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-
-	var/obj/held_item = usr.get_active_hand()
 
 	switch(action)
 		// Actual assembly actions
@@ -118,32 +112,53 @@
 			return TRUE
 
 		// Circuit actions
+		if("wire_internal")
+			var/datum/integrated_io/pin1 = locate(params["pin1"])
+			if(!istype(pin1))
+				return
+			var/datum/integrated_io/pin2 = locate(params["pin2"])
+			if(!istype(pin2))
+				return
+
+			var/obj/item/integrated_circuit/holder1 = pin1.holder
+			if(!istype(holder1) || holder1.loc != src || holder1.assembly != src)
+				return
+
+			var/obj/item/integrated_circuit/holder2 = pin2.holder
+			if(!istype(holder2) || holder2.loc != src || holder2.assembly != src)
+				return
+
+			// Wiring the same pin will unwire it
+			if(pin2 in pin1.linked)
+				pin1.linked -= pin2
+				pin2.linked -= pin1
+			else
+				pin1.linked |= pin2
+				pin2.linked |= pin1
+
+			return TRUE
+
+		if("remove_all_wires")
+			var/datum/integrated_io/pin1 = locate(params["pin"])
+			if(!istype(pin1))
+				return
+
+			var/obj/item/integrated_circuit/holder1 = pin1.holder
+			if(!istype(holder1) || holder1.loc != src || holder1.assembly != src)
+				return
+
+			for(var/datum/integrated_io/other as anything in pin1.linked)
+				other.linked -= pin1
+
+			pin1.linked.Cut()
+
+			return TRUE
+
 		if("open_circuit")
 			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
 			if(!istype(C))
 				return
 			C.tgui_interact(usr, null, ui)
-			return TRUE
-
-		if("rename_circuit")
-			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
-			if(!istype(C))
-				return
-			C.rename_component(usr)
-			return TRUE
-
-		if("scan_circuit")
-			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
-			if(!istype(C))
-				return
-			if(istype(held_item, /obj/item/integrated_electronics/debugger))
-				var/obj/item/integrated_electronics/debugger/D = held_item
-				if(D.accepting_refs)
-					D.afterattack(C, usr, TRUE)
-				else
-					to_chat(usr, span_warning("The Debugger's 'ref scanner' needs to be on."))
-			else
-				to_chat(usr, span_warning("You need a multitool/debugger set to 'ref' mode to do that."))
 			return TRUE
 
 		if("remove_circuit")
@@ -153,14 +168,6 @@
 			C.remove(usr)
 			return TRUE
 
-		if("bottom_circuit")
-			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
-			if(!istype(C))
-				return
-			// Puts it at the bottom of our contents
-			// Note, this intentionally does *not* use forceMove, because forceMove will stop if it detects the same loc
-			C.loc = null
-			C.loc = src
 	return FALSE
 // End TGUI
 

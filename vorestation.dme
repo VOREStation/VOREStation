@@ -1881,6 +1881,7 @@
 #include "code\modules\asset_cache\asset_list.dm"
 #include "code\modules\asset_cache\asset_list_items.dm"
 #include "code\modules\asset_cache\assets\chat.dm"
+#include "code\modules\asset_cache\assets\circuits.dm"
 #include "code\modules\asset_cache\assets\fontawesome.dm"
 #include "code\modules\asset_cache\assets\icon_ref_map.dm"
 #include "code\modules\asset_cache\assets\jquery.dm"
