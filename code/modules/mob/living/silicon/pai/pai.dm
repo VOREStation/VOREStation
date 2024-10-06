@@ -261,10 +261,10 @@
 		return
 
 	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
-		to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
+		to_chat(src, span_warning("ERROR: System malfunction. Service required!"))
 
 	if(world.time <= last_special)
-		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
+		to_chat(src, span_warning("You can't unfold yet."))
 		return
 
 	last_special = world.time + 100
@@ -303,7 +303,7 @@
 	canmove = TRUE
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message(span_filter_notice("<b>[src]</b> folds outwards, expanding into a mobile form."))
+	if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
 	verbs |= /mob/living/silicon/pai/proc/pai_nom
 	verbs |= /mob/living/proc/vertical_nom
 	update_icon()
@@ -319,7 +319,7 @@
 		return
 
 	if(world.time <= last_special)
-		to_chat(src, "<span class ='warning'>You can't fold up yet.</span>")
+		to_chat(src, span_warning("You can't fold up yet."))
 		return
 
 	close_up()
@@ -444,7 +444,7 @@
 	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
-	if(istype(T) && !silent) T.visible_message(span_filter_notice("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card."))
+	if(istype(T) && !silent) T.visible_message(span_filter_notice(span_bold("[src]") + " neatly folds inwards, compacting down to a rectangular card."))
 
 	if(client)
 		src.stop_pulling()
@@ -543,6 +543,6 @@
 		return
 
 	close_up()
-	visible_message(span_filter_notice("<b>[src]</b> fades away from the screen, the pAI device goes silent."))
+	visible_message(span_filter_notice(span_bold("[src]") + " fades away from the screen, the pAI device goes silent."))
 	card.removePersonality()
 	clear_client()

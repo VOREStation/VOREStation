@@ -60,7 +60,7 @@
 	wrapped_species_by_ref["\ref[src]"] = new_species
 	dna.base_species = new_species
 	species.base_species = new_species
-	visible_message("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!")
+	visible_message(span_infoplain(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
 	regenerate_icons()
 
 /mob/living/carbon/human/proc/lleill_select_colour()
@@ -141,11 +141,11 @@
 		to_chat(src, span_warning("The item is no longer in your hands."))
 		return
 	else
-		visible_message("<b>\The [src]</b> begins to change the form of \the [I].")
+		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
 		if(!do_after(usr, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
-			visible_message("<b>\The [src]</b> leaves \the [I] in its original form.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
-		visible_message("<b>\The [src]</b> transmutes \the [I] into \the [transmute_product.name].")
+		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
 		drop_item(I)
 		qdel(I)
 		var/spawnloc = get_turf(usr)
@@ -183,7 +183,7 @@
 			to_chat(src, span_warning("You do not have enough energy to do that!"))
 			return
 		if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
-			src.visible_message("<b>\The [src]</b> begins to form white rings on the ground.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " begins to form white rings on the ground."))
 			return 0
 		to_chat(src, span_warning("You place a new glamour ring at your feet."))
 		var/spawnloc = get_turf(src)
@@ -292,28 +292,28 @@
 		return
 	if(accepted == "Yes")
 		if(contact_type == "Kiss (lips)")
-			src.visible_message("<b>\The [src]</b> presses their lips up against [chosen_target]'s own.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " presses their lips up against [chosen_target]'s own."))
 		if(contact_type == "Kiss (neck)")
-			src.visible_message("<b>\The [src]</b> presses their lips up against [chosen_target]'s neck.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " presses their lips up against [chosen_target]'s neck."))
 		if(contact_type == "Bite (neck)")
-			src.visible_message("<b>\The [src]</b> bites down on [chosen_target]'s neck.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " bites down on [chosen_target]'s neck."))
 		if(contact_type == "Bite (wrist)")
-			src.visible_message("<b>\The [src]</b> bites down on [chosen_target]'s wrist.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " bites down on [chosen_target]'s wrist."))
 		if(contact_type == "Hold Hand")
-			src.visible_message("<b>\The [src]</b> takes [chosen_target]'s hand into their own.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " takes [chosen_target]'s hand into their own."))
 		if(contact_type == "Embrace")
-			src.visible_message("<b>\The [src]</b> embraces [chosen_target].")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " embraces [chosen_target]."))
 		if(contact_type == "Stroke (hair)")
-			src.visible_message("<b>\The [src]</b> runs their hand through [chosen_target]'s hair.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " runs their hand through [chosen_target]'s hair."))
 		if(contact_type == "Boop (nose)")
-			src.visible_message("<b>\The [src]</b> boops [chosen_target] on the nose.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " boops [chosen_target] on the nose."))
 		if(contact_type == "Custom")
-			src.visible_message("[custom_text]")
+			src.visible_message(span_infoplain("[custom_text]"))
 		if(!do_after(src, 10 SECONDS, chosen_target, exclusive = TASK_USER_EXCLUSIVE))
 			return
 		else
-			src.visible_message("<b>\The [src]</b> and \the [chosen_target] break contact before energy has been transferred.")
-		src.visible_message("<b>\The [src]</b> and \the [chosen_target] complete their contact.")
+			src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] break contact before energy has been transferred."))
+		src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] complete their contact."))
 		species.lleill_energy = species.lleill_energy_max
 		nutrition += (chosen_target.nutrition / 2)
 		to_chat(src, span_warning("You feel revitalised."))
@@ -360,11 +360,11 @@
 		to_chat(src, span_warning("The item is no longer in your hands."))
 		return
 	else
-		visible_message("<b>\The [src]</b> begins to change the form of \the [I].")
+		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
 		if(!do_after(usr, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
-			visible_message("<b>\The [src]</b> leaves \the [I] in its original form.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
-		visible_message("<b>\The [src]</b> transmutes \the [I] into \the [transmute_product.name].")
+		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
 		drop_item(I)
 		qdel(I)
 		var/spawnloc = get_turf(usr)
@@ -451,9 +451,9 @@
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
-	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
+	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
 	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
-		visible_message("<b>\The [src]</b> ceases shifting their form.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 
 	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
@@ -517,7 +517,7 @@
 			M.loc = new_mob
 			M.forceMove(new_mob)
 			new_mob.tf_mob_holder = M
-			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
+			new_mob.visible_message(span_infoplain(span_bold("\The [src]") + " has transformed into \the [chosen_beast]!"))
 	species.update_lleill_hud(src)
 
 
@@ -541,11 +541,11 @@
 		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
-	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
+	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
 	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
-		visible_message("<b>\The [src]</b> ceases shifting their form.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
-	visible_message("<b>\The [src]</b> has reverted to their original form.")
+	visible_message(span_infoplain(span_bold("\The [src]") + " has reverted to their original form."))
 	revert_mob_tf()
 
 
@@ -629,9 +629,9 @@
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
-	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
+	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
 	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
-		visible_message("<b>\The [src]</b> ceases shifting their form.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 
 	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
@@ -698,4 +698,4 @@
 			M.loc = new_mob
 			M.forceMove(new_mob)
 			new_mob.tf_mob_holder = M
-			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
+			new_mob.visible_message(span_infoplain(span_bold("\The [src]") + " has transformed into \the [chosen_beast]!"))

@@ -83,14 +83,14 @@
 
 	if(input)
 		log_subtle(message,src)
-		message = span_emote_subtle("<B>[src]</B> <I>[input]</I>")
+		message = span_emote_subtle(span_bold("[src]") + " " + span_italics("[input]"))
 		if(!(subtle_mode == "Adjacent Turfs (Default)"))
-			message = "<B>(T) </B>" + message
+			message = span_bold("(T) ") + message
 	else
 		return
 
 	if (message)
-		var/undisplayed_message = span_emote("<B>[src]</B> <I>does something too subtle for you to see.</I>")
+		var/undisplayed_message = span_emote(span_bold("[src]") + " " + span_italics("does something too subtle for you to see."))
 		message = encode_html_emphasis(message)
 
 		var/list/vis
@@ -322,14 +322,14 @@
 	for(var/I in M.contents)
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
-			to_chat(db, span_psay("<b>\The [M] thinks, \"[message]\"</b>"))	//To any dominated brains inside us
+			to_chat(db, span_psay(span_bold("\The [M] thinks, \"[message]\"")))	//To any dominated brains inside us
 			if(db.read_preference(/datum/preference/toggle/subtle_sounds))
 				db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	for(var/B in M.vore_organs)
 		for(var/mob/living/L in B)
 			if(L.absorbed)
-				to_chat(L, span_psay("<b>\The [M] thinks, \"[message]\"</b>"))	//To any absorbed people inside us
+				to_chat(L, span_psay(span_bold("\The [M] thinks, \"[message]\"")))	//To any absorbed people inside us
 				if(L.read_preference(/datum/preference/toggle/subtle_sounds))
 					L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
@@ -340,7 +340,7 @@
 			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		else
-			to_chat(M, span_psay("<b>You think \"[message]\"</b>"))	//To us if we are the pred
+			to_chat(M, span_psay(span_bold("You think \"[message]\"")))	//To us if we are the pred
 			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)
@@ -420,14 +420,14 @@
 	for(var/I in M.contents)
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
-			to_chat(db, span_pemote("<b>\The [M] [message]</b>"))	//To any dominated brains inside us
+			to_chat(db, span_pemote(span_bold("\The [M] [message]")))	//To any dominated brains inside us
 			if(db.read_preference(/datum/preference/toggle/subtle_sounds))
 				db << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 			f = TRUE
 	for(var/B in M.vore_organs)
 		for(var/mob/living/L in B)
 			if(L.absorbed)
-				to_chat(L, span_pemote("<b>\The [M] [message]</b>"))	//To any absorbed people inside us
+				to_chat(L, span_pemote(span_bold("\The [M] [message]")))	//To any absorbed people inside us
 				if(L.read_preference(/datum/preference/toggle/subtle_sounds))
 					L << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 				f = TRUE
@@ -438,7 +438,7 @@
 			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		else
-			to_chat(M, span_pemote("<b>\The [M] [message]</b>"))	//To us if we are the pred
+			to_chat(M, span_pemote(span_bold("\The [M] [message]")))	//To us if we are the pred
 			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)

@@ -85,7 +85,7 @@
 			playsound(src, O.usesound, 50, 1)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
-					span_infoplain(span_bold("\The [user]") + " fixes part of the microwave.")), \
+					span_infoplain(span_bold("\The [user]") + " fixes part of the microwave."), \
 					span_notice("You have fixed part of the microwave.") \
 				)
 				src.broken = 1 // Fix it a bit

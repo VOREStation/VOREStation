@@ -78,7 +78,7 @@
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
-			O.show_message(span_warning("[span_red("<B>[src] [failed ? "tried to tackle" : "has tackled"] down [T]!</B>")]"), 1)
+			O.show_message(span_warning(span_red(span_bold("[src] [failed ? "tried to tackle" : "has tackled"] down [T]!"))), 1)
 
 /mob/living/carbon/human/proc/commune()
 	set category = "Abilities"
@@ -126,7 +126,7 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message(span_filter_warning("[span_red("<B>[src] hurls out the contents of their stomach!</B>")]"))
+		src.visible_message(span_filter_warning(span_red(span_bold("[src] hurls out the contents of their stomach!"))))
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -302,7 +302,7 @@
 		return
 	else
 		active_regen = TRUE
-		src.visible_message(span_filter_notice("<B>[src]</B>'s flesh begins to mend..."))
+		src.visible_message(span_filter_notice(span_bold("[src]") + "'s flesh begins to mend..."))
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	if(do_after(src,delay_length))

@@ -82,9 +82,9 @@
 	if(istype(ejecting) && !QDELETED(ejecting) && ejecting.loc == src)
 		ejecting.dropInto(loc)
 		if(user == src)
-			visible_message("<b>\The [src]</b> ejects \the [ejecting] from its cargo compartment.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " ejects \the [ejecting] from its cargo compartment."))
 		else
-			user.visible_message("<b>\The [user]</b> pulls \the [ejecting] from \the [src]'s cargo compartment.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " pulls \the [ejecting] from \the [src]'s cargo compartment."))
 
 /mob/living/silicon/robot/platform/attack_ai(mob/user)
 	if(isrobot(user) && user.Adjacent(src))
@@ -99,7 +99,7 @@
 	if(!istype(removing) || QDELETED(removing) || removing.loc != src)
 		LAZYREMOVE(stored_atoms, remove_ref)
 	else
-		user.visible_message("<b>\The [user]</b> begins unloading \the [removing] from \the [src]'s cargo compartment.")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " begins unloading \the [removing] from \the [src]'s cargo compartment."))
 		if(do_after(user, 3 SECONDS, src) && !QDELETED(removing) && removing.loc == src)
 			drop_stored_atom(removing, user)
 	return TRUE
@@ -124,9 +124,9 @@
 	if(!can_mouse_drop(dropping, user) || !can_store_atom(dropping, user))
 		return FALSE
 	if(user == src)
-		visible_message("<b>\The [src]</b> begins loading \the [dropping] into its cargo compartment.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " begins loading \the [dropping] into its cargo compartment."))
 	else
-		user.visible_message("<b>\The [user]</b> begins loading \the [dropping] into \the [src]'s cargo compartment.")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " begins loading \the [dropping] into \the [src]'s cargo compartment."))
 	if(do_after(user, 3 SECONDS, src) && can_mouse_drop(dropping, user) && can_store_atom(dropping, user))
 		store_atom(dropping, user)
 	return FALSE
