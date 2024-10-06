@@ -502,6 +502,6 @@
 
 /obj/item/storage/box/sinpockets
 	name = "box of sin-pockets"
-	desc = span_bold("Instructions:") + " " span_italics("Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.")
+	desc = span_bold("Instructions:") + " " + span_italics("Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.")
 	icon_state = "donk_kit"
 	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket = 7)

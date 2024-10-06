@@ -129,10 +129,10 @@
 						qdel(contained)
 						contained = new mask_type(src)
 					breather = null
-					src.visible_message("<b>\The [contained]</b> slips to \the [src]!")
+					src.visible_message(span_info(span_bold("\The [contained]") + " slips to \the [src]!"))
 					update_icon()
 					return
-				usr.visible_message("<b>\The [usr]</b> begins carefully placing the mask onto [target].",
+				usr.visible_message(span_info(span_bold("\The [usr]") + " begins carefully placing the mask onto [target]."),
 							span_notice("You begin carefully placing the mask onto [target]."))
 				if(!do_mob(usr, target, 100) || !can_apply_to_target(target, usr))
 					return
@@ -151,14 +151,14 @@
 					visible_message("\The [attached] is taken off \the [src]")
 					attached = null
 				else if(ishuman(target))
-					usr.visible_message("<b>\The [usr]</b> begins inserting needle into [target]'s vein.",
+					usr.visible_message(span_info(span_bold("\The [usr]") + " begins inserting needle into [target]'s vein."),
 									span_notice("You begin inserting needle into [target]'s vein."))
 					if(!do_mob(usr, target, 50))
 						usr.visible_message(span_notice("\The [usr]'s hand slips and pricks \the [target]."),
 									span_notice("Your hand slips and pricks \the [target]."))
 						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))
 						return
-					usr.visible_message("<b>\The [usr]</b> hooks \the [target] up to \the [src].",
+					usr.visible_message(span_info(span_bold("\The [usr]") + "hooks \the [target] up to \the [src]."),
 									span_notice("You hook \the [target] up to \the [src]."))
 					attached = target
 					START_PROCESSING(SSobj,src)
