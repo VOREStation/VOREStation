@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/itglight
 	name = "OM Ship - ITG Dauntless (New Z)"
 	desc = "A small, well armed interstellar cargo ship!!"
-	mappath = 'itglight.dmm'
+	mappath = "maps/offmap_vr/om_ships/itglight.dmm"
 
 /area/itglight
 	requires_power = 1

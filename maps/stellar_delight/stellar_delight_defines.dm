@@ -321,7 +321,7 @@
 /datum/map_template/ship_lateload/ship_centcom
 	name = "Ship - Central Command"
 	desc = "Central Command lives here!"
-	mappath = 'ship_centcom.dmm'
+	mappath = "maps/stellar_delight/ship_centcom.dmm"
 
 	associated_map_datum = /datum/map_z_level/ship_lateload/ship_centcom
 
@@ -337,7 +337,7 @@
 /datum/map_template/ship_lateload/ship_misc
 	name = "Ship - Misc"
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
-	mappath = 'ship_misc.dmm'
+	mappath = "maps/stellar_delight/ship_misc.dmm"
 
 	associated_map_datum = /datum/map_z_level/ship_lateload/misc
 
@@ -350,7 +350,7 @@
 /datum/map_template/ship_lateload/space_rocks
 	name = "V3b Asteroid Field"
 	desc = "Space debris is common in V3b's orbit due to the proximity of Virgo 3"
-	mappath = 'maps/submaps/space_rocks/space_rocks.dmm'
+	mappath = "maps/submaps/space_rocks/space_rocks.dmm"
 
 	associated_map_datum = /datum/map_z_level/ship_lateload/space_rocks
 
@@ -369,7 +369,7 @@
 /datum/map_template/ship_lateload/overmap
 	name = "Overmap"
 	desc = "Overmap lives here :3"
-	mappath = 'overmap.dmm'
+	mappath = "maps/stellar_delight/overmap.dmm"
 
 	associated_map_datum = /datum/map_z_level/ship_lateload/overmap
 
@@ -382,5 +382,5 @@
 /datum/map_template/common_lateload/away_aerostat
 	name = "Remmi Aerostat - Z1 Aerostat"
 	desc = "The Virgo 2 Aerostat away mission."
-	mappath = 'maps/expedition_vr/aerostat/aerostat_science_outpost.dmm'
+	mappath = "maps/expedition_vr/aerostat/aerostat_science_outpost.dmm"
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
