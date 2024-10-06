@@ -1079,7 +1079,7 @@
 
 	for (var/obj in module.modules)
 		if (!obj)
-			dat += text(span_bold("Resource depleted") + "<BR>")
+			dat += span_bold("Resource depleted") + "<BR>"
 		else if(activated(obj))
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else
@@ -1087,7 +1087,7 @@
 	if (emagged || emag_items)
 		for (var/obj in module.emag)
 			if (!obj)
-				dat += text(span_bold("Resource depleted") + "<BR>")
+				dat += span_bold("Resource depleted") + "<BR>"
 			else if(activated(obj))
 				dat += text("[obj]: <B>Activated</B><BR>")
 			else
