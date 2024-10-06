@@ -70,7 +70,7 @@
 
 	. = list()
 	. += "<tt><center>"
-	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
+	. += span_bold("Choose occupation chances") + "<br>Unavailable occupations are crossed out.<br>"
 	. += "<script type='text/javascript'>function setJobPrefRedirect(level, rank) { window.location.href='?src=\ref[src];level=' + level + ';set_job=' + encodeURIComponent(rank); return false; }</script>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%' valign='top'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -158,7 +158,7 @@
 			. += "<font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
 		if((rank in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND) ) || (rank == JOB_AI))//Bold head jobs
-			. += "<b>[rank]</b></a>"
+			. += span_bold("[rank]") + "</a>"
 		else
 			. += "[rank]</a>"
 
@@ -256,7 +256,7 @@
 		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")
 		dat += "<img src=job[ckey(rank)].png width=96 height=96 style='float:left;'>"
 		if(job.departments)
-			dat += "<b>Departments:</b> [english_list(job.departments)]."
+			dat += span_bold("Departments:") + " [english_list(job.departments)]."
 			if(LAZYLEN(job.departments_managed))
 				dat += "You manage these departments: [english_list(job.departments_managed)]"
 

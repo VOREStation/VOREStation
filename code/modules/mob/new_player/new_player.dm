@@ -39,22 +39,22 @@
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
 
-	output += "<b>Map:</b> [using_map.full_name]<br>"
-	output += "<b>Station Time:</b> [stationtime2text()]<br>"
+	output += span_bold("Map:") + " [using_map.full_name]<br>"
+	output += span_bold("Station Time:") + " [stationtime2text()]<br>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		output += "<b>Server Initializing!</b>"
 	else
-		output += "<b>Round Duration:</b> [roundduration2text()]<br>"
+		output += span_bold("Round Duration:") + " [roundduration2text()]<br>"
 	output += "<hr>"
 
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Character Setup</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			output += "<p>\[ " + span_linkOn(span_bold("Ready")) + " | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <span class='linkOn'><b>Not Ready</b></span> \]</p>"
+			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | " + span_linkOn(span_bold("Not Ready")) + " \]</p>"
 
 	else
 		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"

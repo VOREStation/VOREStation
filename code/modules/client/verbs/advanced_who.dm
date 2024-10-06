@@ -3,7 +3,7 @@
 	set name = "Advanced Who"
 	set category = "OOC"
 
-	var/msg = "<b>Current Players:</b>\n"
+	var/msg = span_bold("Current Players:") + "\n"
 
 	var/list/Lines = list()
 

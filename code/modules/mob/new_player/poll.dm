@@ -131,7 +131,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>"
+				output += span_bold("Question: [pollquestion]") + "<br>"
 				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
@@ -145,7 +145,7 @@
 					if(O.optionid && O.optiontext)
 						if(voted)
 							if(votedoptionid == O.optionid)
-								output += "<b>[O.optiontext]</b><br>"
+								output += span_bold("[O.optiontext]") + "<br>"
 							else
 								output += "[O.optiontext]<br>"
 						else
@@ -175,7 +175,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>"
+				output += span_bold("Question: [pollquestion]") + "<br>"
 				output += "<font size='2'>Feedback gathering runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
@@ -209,7 +209,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>"
+				output += span_bold("Question: [pollquestion]") + "<br>"
 				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				var/voted = 0
@@ -304,7 +304,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>You can select up to [multiplechoiceoptions] options. If you select more, the first [multiplechoiceoptions] will be saved.<br>"
+				output += span_bold("Question: [pollquestion]") + "<br>You can select up to [multiplechoiceoptions] options. If you select more, the first [multiplechoiceoptions] will be saved.<br>"
 				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
@@ -320,7 +320,7 @@
 					if(O.optionid && O.optiontext)
 						if(voted)
 							if(O.optionid in votedfor)
-								output += "<b>[O.optiontext]</b><br>"
+								output += span_bold("[O.optiontext]") + "<br>"
 							else
 								output += "[O.optiontext]<br>"
 						else

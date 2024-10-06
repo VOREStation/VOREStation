@@ -63,7 +63,7 @@
 	if(cur_viewed_device && (cur_viewed_device.id_tag != id_tag || get_dist(src, cur_viewed_device) > scan_range))
 		cur_viewed_device = null
 
-	var/dat = "<B>Core Control #[id_tag]</B><BR>"
+	var/dat = span_bold("Core Control #[id_tag]") + "<BR>"
 
 	if(cur_viewed_device)
 		dat += {"
