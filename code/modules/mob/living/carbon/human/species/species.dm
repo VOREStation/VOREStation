@@ -576,7 +576,7 @@
 
 		if(!silent)
 			to_chat(H, span_notice("You manage to lower impact of the fall and land safely."))
-			landing.visible_message("<b>\The [H]</b> lowers down from above, landing safely.")
+			landing.visible_message(span_infoplain(span_bold("\The [H]") + " lowers down from above, landing safely."))
 			playsound(H, "rustle", 25, 1)
 		return TRUE
 

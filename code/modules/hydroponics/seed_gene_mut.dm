@@ -4,7 +4,7 @@
 		return src
 
 	var/datum/seed/S = diverge()	//Let's not modify all of the seeds.
-	T.visible_message(span_info(span_bold("\The [S.display_name]") + " quivers!"))	//Mimicks the normal mutation.
+	T.visible_message(span_infoplain(span_bold("\The [S.display_name]") + " quivers!"))	//Mimicks the normal mutation.
 	G.mutate(S, T)
 
 	return S
@@ -126,7 +126,7 @@
 		S.set_trait(TRAIT_MATURATION, S.get_trait(TRAIT_MATURATION)+rand(-1,1),30,0)
 	if(prob(55))
 		S.set_trait(TRAIT_SPREAD, S.get_trait(TRAIT_SPREAD)+rand(-1,1),2,0)
-		T.visible_message(span_info(span_bold("\The [S.display_name]") + " spasms visibly, shifting in the tray."))
+		T.visible_message(span_infoplain(span_bold("\The [S.display_name]") + " spasms visibly, shifting in the tray."))
 
 /decl/plantgene/fruit/mutate(var/datum/seed/S)
 	if(prob(65))

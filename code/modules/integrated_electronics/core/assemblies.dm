@@ -265,7 +265,7 @@
 			if(S.scan(target))
 				scanned = TRUE
 		if(scanned)
-			visible_message("<b>\The [user]</b> waves \the [src] around [target].")
+			visible_message(span_infoplain(span_bold("\The [user]") + " waves \the [src] around [target]."))
 
 /obj/item/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(can_anchor && I.has_tool_quality(TOOL_WRENCH))

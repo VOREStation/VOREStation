@@ -173,7 +173,7 @@
 	. = ..()
 
 	if(is_admin(user))
-		. += "\t><span class='admin'>[ADMIN_FULLMONTY(src)]</span>"
+		. += "\t>" + span_admin("[ADMIN_FULLMONTY(src)]")
 
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
@@ -750,7 +750,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			choices += B
 
 	if(!choices.len)
-		to_chat(src, "<span class = 'warning'>There is no blood to use nearby.</span>")
+		to_chat(src, span_warning("There is no blood to use nearby."))
 		return
 
 	var/obj/effect/decal/cleanable/blood/choice = tgui_input_list(src, "What blood would you like to use?", "Blood Choice", choices)
@@ -796,7 +796,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/dead/pointed(atom/A as mob|obj|turf in view())
 	if(!..())
 		return 0
-	usr.visible_message(span_deadsay("<b>[src]</b> points to [A]."))
+	usr.visible_message(span_deadsay(span_bold("[src]") + " points to [A]."))
 	return 1
 
 /mob/observer/dead/proc/manifest(mob/user)

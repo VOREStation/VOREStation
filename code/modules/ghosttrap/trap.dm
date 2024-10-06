@@ -83,7 +83,7 @@ var/list/ghost_traps
 	to_chat(target, span_infoplain(span_bold("Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.")))
 	to_chat(target, span_infoplain(span_bold("Use say #b to speak to other artificial intelligences.")))
 	var/turf/T = get_turf(target)
-	T.visible_message(span_info(span_bold("\The [src]") + " chimes quietly."))
+	T.visible_message(span_infoplain(span_bold("\The [src]") + " chimes quietly."))
 	var/obj/item/mmi/digital/posibrain/P = target.loc
 	if(!istype(P)) //wat
 		return

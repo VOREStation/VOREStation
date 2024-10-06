@@ -111,7 +111,7 @@
 	cards -= P
 	H.parentdeck = src
 	H.update_icon()
-	user.visible_message(span_info(span_bold("\The [user]") + " draws a card."))
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " draws a card."))
 	to_chat(user,span_notice("It's the [P]."))
 
 /obj/item/deck/verb/deal_card()

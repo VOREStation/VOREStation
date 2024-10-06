@@ -81,7 +81,7 @@ var/global/list/breach_burn_descriptors = list(
 			amount_left = 0
 			B.update_descriptor()
 
-	user.visible_message("<b>[user]</b> patches some of the damage on \the [src].")
+	user.visible_message(span_infoplain(span_bold("[user]") + " patches some of the damage on \the [src]."))
 	calc_breach_damage()
 
 /obj/item/clothing/suit/space/proc/create_breaches(var/damtype, var/amount)

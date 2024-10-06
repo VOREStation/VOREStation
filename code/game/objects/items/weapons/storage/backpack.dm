@@ -541,7 +541,7 @@
 			parachute = FALSE
 		else
 			H.visible_message(span_infoplain(span_bold("\The [src]") + " decides not to unpack \the [src]!"), \
-					span_notice("You decide not to unpack \the [src]!")))
+					span_notice("You decide not to unpack \the [src]!"))
 	return
 
 /obj/item/storage/backpack/satchel/ranger

@@ -628,7 +628,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(prob(1))
 		sleep(3)
 		if(R.get_product(get_turf(src)))
-			visible_message(span_info(span_bold("\The [src]") + " clunks as it vends an additional item."))
+			visible_message(span_infoplain(span_bold("\The [src]") + " clunks as it vends an additional item."))
 	playsound(src, "sound/[vending_sound]", 100, 1, 1)
 
 	GLOB.items_sold_shift_roundstat++
