@@ -489,11 +489,11 @@
 	var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
 
 	log_subtle(message,L)
-	message = span_emote_subtle("<B>[L]</B> <I>[message]</I>")
-	message = "<B>(From the back of \the [m]) </B>" + message
+	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
+	message = span_bold("(From the back of \the [m]) ") + message
 	message = encode_html_emphasis(message)
 
-	var/undisplayed_message = span_emote("<B>[L]</B> <I>does something too subtle for you to see.</I>")
+	var/undisplayed_message = span_emote(span_bold("[L]") + " " + span_italics("does something too subtle for you to see."))
 	var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(m),1,2)
 	var/list/vis_mobs = vis["mobs"]
 	vis_mobs |= L
@@ -1161,11 +1161,11 @@
 		return
 
 	log_subtle(message,L)
-	message = span_emote_subtle("<B>[L]</B> <I>[message]</I>")
-	message = "<B>(From within \the [s]) </B>" + message
+	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
+	message = span_bold("(From within \the [s]) ") + message
 	message = encode_html_emphasis(message)
 
-	var/undisplayed_message = span_emote("<B>[L]</B> <I>does something too subtle for you to see.</I>")
+	var/undisplayed_message = span_emote(span_bold("[L]") + " " + span_italics("does something too subtle for you to see."))
 	var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(s),1,2)
 	var/list/vis_mobs = vis["mobs"]
 	vis_mobs |= L

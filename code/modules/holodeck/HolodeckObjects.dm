@@ -522,5 +522,5 @@
 	derez()
 
 /mob/living/simple_mob/animal/space/carp/holodeck/proc/derez()
-	visible_message("<b>\The [src]</b> fades away!")
+	visible_message(span_info(span_bold("\The [src]") + " fades away!"))
 	qdel(src)

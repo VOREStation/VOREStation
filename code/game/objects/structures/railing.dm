@@ -205,7 +205,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH) && !anchored)
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
-			user.visible_message(span_info(span_bold("\The [user]") + " dismantles \the [src]."), span_notice("You dismantle \the [src]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 			new /obj/item/stack/material/steel(get_turf(usr), 2)
 			qdel(src)
 			return
@@ -216,7 +216,7 @@
 		if(F.welding)
 			playsound(src, F.usesound, 50, 1)
 			if(do_after(user, 20, src))
-				user.visible_message(span_info(span_bold("\The [user]") + " repairs some damage to \the [src]."), span_notice("You repair some damage to \the [src]."))
+				user.visible_message(span_infoplain(span_bold("\The [user]") + " repairs some damage to \the [src]."), span_notice("You repair some damage to \the [src]."))
 				health = min(health+(maxhealth/5), maxhealth) // 20% repair per application
 				return
 

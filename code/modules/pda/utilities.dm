@@ -49,12 +49,10 @@
 
 	user.show_message(span_notice("Analyzing Results for [C]:"))
 	user.show_message(span_notice("    Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]"), 1)
-	user.show_message(text("<span class='notice'>    Damage Specifics:</span> <span class='[]'>[]</span>-<span class='[]'>[]</span>-<span class='[]'>[]</span>-<span class='[]'>[]</span>",
-			(C.getOxyLoss() > 50) ? "warning" : "", C.getOxyLoss(),
-			(C.getToxLoss() > 50) ? "warning" : "", C.getToxLoss(),
-			(C.getFireLoss() > 50) ? "warning" : "", C.getFireLoss(),
-			(C.getBruteLoss() > 50) ? "warning" : "", C.getBruteLoss()
-			), 1)
+	user.show_message(span_notice("    Damage Specifics:") + " [(C.getOxyLoss() > 50) ? span_warning(C.getOxyLoss()) : C.getOxyLoss()]-\
+									[(C.getToxLoss() > 50) ? span_warning(C.getToxLoss()) : C.getToxLoss()]-\
+									[(C.getFireLoss() > 50) ? span_warning(C.getFireLoss()) : C.getFireLoss()]-\
+									[(C.getBruteLoss() > 50) ? span_warning(C.getBruteLoss()) : C.getBruteLoss()]", 1)
 	user.show_message(span_notice("    Key: Suffocation/Toxin/Burns/Brute"), 1)
 	user.show_message(span_notice("    Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)"), 1)
 	if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
@@ -65,8 +63,8 @@
 		user.show_message(span_notice("Localized Damage, Brute/Burn:"),1)
 		if(length(damaged)>0)
 			for(var/obj/item/organ/external/org in damaged)
-				user.show_message(text("<span class='notice'>     []: <span class='[]'>[]</span>-<span class='[]'>[]</span></span>",
-						capitalize(org.name), (org.brute_dam > 0) ? "warning" : "notice", org.brute_dam, (org.burn_dam > 0) ? "warning" : "notice", org.burn_dam),1)
+				user.show_message(span_notice("     [capitalize(org.name)]: [(org.brute_dam > 0) ? span_warning("[org.brute_dam]") : span_notice("[org.brute_dam]")]-\
+								[(org.burn_dam > 0) ? span_warning("[org.burn_dam]") : span_notice("[org.burn_dam]")]"), 1)
 		else
 			user.show_message(span_notice("    Limbs are OK."),1)
 

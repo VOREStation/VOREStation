@@ -54,7 +54,7 @@
 
 	loaded = "\the [loading]"
 	user.visible_message( \
-		span_info(span_bold("\The [user]") + " scoops up some of [loaded] with \the [src]!"),
+		span_infoplain(span_bold("\The [user]") + " scoops up some of [loaded] with \the [src]!"),
 		span_notice("You scoop up some of [loaded] with \the [src]!")
 	)
 	loading.bitecount++

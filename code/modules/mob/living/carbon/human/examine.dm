@@ -101,7 +101,7 @@
 		else if(species.name != "Human")
 			name_ender = ", " + span_bold("<font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font>") + "[species.get_additional_examine_text(src)]"
 
-	var/list/msg = list("<span class='info'>","This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
+	var/list/msg = list("This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
 
 	//uniform
 	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
@@ -290,7 +290,7 @@
 		if((stat == 2 || src.losebreath) && get_dist(user, src) <= 3)
 			msg += span_warning("[T.He] [T.does] not appear to be breathing.")
 		if(istype(user, /mob/living/carbon/human) && !user.stat && Adjacent(user))
-			user.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
+			user.visible_message(span_info(span_bold("[usr]") + " checks [src]'s pulse.", "You check [src]'s pulse."))
 		spawn(15)
 			if(isobserver(user) || (Adjacent(user) && !user.stat)) // If you're a corpse then you can't exactly check their pulse, but ghosts can see anything
 				if(pulse == PULSE_NONE)
@@ -440,7 +440,7 @@
 		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 	msg += "<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 	// VOREStation End
-	msg += "</span>"
+	msg = list(span_info(jointext(msg, "<br>")))
 	if(applying_pressure)
 		msg += applying_pressure
 

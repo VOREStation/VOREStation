@@ -117,7 +117,7 @@
 		if(reveal_blood && do_after(user, 5 SECONDS))
 			flick("[icon_state]1",src)
 			for(var/blood in A.blood_DNA)
-				to_chat(user, "Blood type: " + span_warning("[A.blood_DNA[blood]]</span> DNA: <span class='warning'>[blood]"))
+				to_chat(user, "Blood type: " + span_warning("[A.blood_DNA[blood]]") + " DNA: " + span_warning("[blood]"))
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 	span_notice("You finish scanning \the [A]."),\
@@ -183,7 +183,7 @@
 				to_chat(user, span_notice("[bloods.len] samples of blood were present."))
 				if(reveal_blood)
 					for(var/bloodsample in bloods)
-						to_chat(user, " - <span class='warning'>[bloodsample]</span> Type: [bloods[bloodsample]]")
+						to_chat(user, " - " + span_warning("[bloodsample]") + " Type: [bloods[bloodsample]]")
 
 /obj/item/detective_scanner/verb/wipe()
 	set name = "Wipe Forensic Data"

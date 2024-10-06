@@ -354,7 +354,7 @@
 			playsound(src, 'sound/machines/printer.ogg', 50, 1)
 			var/obj/item/paper/P = new /obj/item/paper(get_turf(target))
 			var/name = occupant ? occupant.name : "Unknown"
-			P.info = "<CENTER>" + span_vold("Body Scan - [name]") + "</CENTER><BR>"
+			P.info = "<CENTER>" + span_bold("Body Scan - [name]") + "</CENTER><BR>"
 			P.info += span_bold("Time of scan:") + " [stationtime2text()]<br><br>"
 			P.info += "[generate_printing_text()]"
 			P.info += "<br><br>" + span_bold("Notes:") + "<br>"
@@ -418,7 +418,7 @@
 			blood_percent *= 100
 
 			damage_string = "\tBlood Level %: [blood_percent] ([blood_volume] units)"
-		dat += (blood_volume > 448 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
+			dat += (blood_volume > 448 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
 		if(occupant.reagents)
 			for(var/datum/reagent/R in occupant.reagents.reagent_list)

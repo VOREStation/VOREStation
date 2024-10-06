@@ -1657,7 +1657,7 @@
 			add_attack_logs(src,target,"Injection trait ([trait_injection_selected], [trait_injection_amount])")
 			if(target.reagents && (trait_injection_amount > 0) && !synth)
 				target.reagents.add_reagent(trait_injection_selected, trait_injection_amount)
-			var/ourmsg = "<span class='warning'>[usr] [trait_injection_verb] [target] "
+			var/ourmsg = "[usr] [trait_injection_verb] [target] "
 			switch(zone_sel.selecting)
 				if(BP_HEAD)
 					ourmsg += "on the head!"
@@ -1677,5 +1677,4 @@
 					ourmsg += "on the mouth!"
 				if("eyes")
 					ourmsg += "on the eyes!"
-			ourmsg += "</span>"
-			visible_message(ourmsg)
+			visible_message(span_warning(ourmsg))

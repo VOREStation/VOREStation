@@ -26,10 +26,10 @@
 	var/obj/item/paper/R = new(src.loc)
 	R.name = "Steps to success: Correct EFTPOS Usage"
 	//Temptative new manual:
-	R.info += "<b>First EFTPOS setup:</b><br>"
+	R.info += span_bold("First EFTPOS setup:") + "<br>"
 	R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
 	R.info += "2. Connect the EFTPOS to the account in which you want to receive the funds.<br><br>"
-	R.info += "<b>When starting a new transaction:</b><br>"
+	R.info += span_bold("When starting a new transaction:") + "<br>"
 	R.info += "1. Enter the amount of money you want to charge and a purpose message for the new transaction.<br>"
 	R.info += "2. Lock the new transaction. If you want to modify or cancel the transaction, you simply have to reset your EFTPOS device.<br>"
 	R.info += "3. Give the EFTPOS device to your customer, he/she must finish the transaction by swiping their ID card or a charge card with enough funds.<br>"
@@ -54,9 +54,9 @@
 /obj/item/eftpos/proc/print_reference()
 	var/obj/item/paper/R = new(src.loc)
 	R.name = "Reference: [eftpos_name]"
-	R.info = "<b>[eftpos_name] reference</b><br><br>"
+	R.info = span_bold("[eftpos_name] reference") + "<br><br>"
 	R.info += "Access code: [access_code]<br><br>"
-	R.info += "<b>Do not lose or misplace this code.</b><br>"
+	R.info += span_bold("Do not lose or misplace this code.") + "<br>"
 
 	//stamp the paper
 	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -73,7 +73,7 @@
 
 /obj/item/eftpos/attack_self(mob/user as mob)
 	if(get_dist(src,user) <= 1)
-		var/dat = "<b>[eftpos_name]</b><br>"
+		var/dat = span_bold("[eftpos_name]") + "<br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting IT Support</i><br>"
 		if(transaction_locked)
 			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"

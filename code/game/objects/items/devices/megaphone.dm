@@ -33,12 +33,12 @@
 	if(emagged)
 		if(insults)
 			var/insult = pick(insultmsg)
-			user.audible_message(span_info(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, " + span_large("\"[insult]\"")), runemessage = insult)
+			user.audible_message(span_infoplain(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, " + span_large("\"[insult]\"")), runemessage = insult)
 			insults--
 		else
 			to_chat(user, span_warning("*BZZZZzzzzzt*"))
 	else
-		user.audible_message(span_info(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, " + span_large("\"[message]\"")), runemessage = message)
+		user.audible_message(span_infoplain(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, " + span_large("\"[message]\"")), runemessage = message)
 
 /obj/item/megaphone/attack_self(var/mob/living/user)
 	var/message = sanitize(tgui_input_text(user, "Shout a message?", "Megaphone", null))

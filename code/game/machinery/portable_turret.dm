@@ -564,7 +564,7 @@
 			take_damage(incoming_damage)
 			S.do_attack_animation(src)
 			return 1
-		visible_message(span_info(span_bold("\The [L]") + " bonks \the [src]'s casing!"))
+		visible_message(span_infoplain(span_bold("\The [L]") + " bonks \the [src]'s casing!"))
 	return ..()
 
 /obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)

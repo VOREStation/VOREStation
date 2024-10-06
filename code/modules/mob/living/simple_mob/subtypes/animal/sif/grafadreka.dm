@@ -120,8 +120,8 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	name = "grafadreka"
 	desc = "A large, sleek snow drake with heavy claws, powerful jaws and many pale spines along its body."
 	player_msg = "You are a large Sivian pack predator in symbiosis with the local bioluminescent bacteria. You can eat glowing \
-	tree fruit to fuel your <b>ranged spitting attack</b> and <b>poisonous bite</b> (on <span class = 'danger'>harm intent</span>), as well as <b>healing saliva</b> \
-	(on <b><span class='green'>help intent</span></b>).<br>There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, \
+	tree fruit to fuel your " + span_bold("ranged spitting attack") + " and " + span_bold("poisonous bite") + " (on " + span_danger("harm intent") + "), as well as " + span_bold("healing saliva") + "\
+	(on " + span_bold(span_green("help intent")) + ").<br>There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, \
 	is up to you."
 	color = "#608894"
 	icon = 'icons/mob/drake_adult.dmi'
@@ -571,12 +571,12 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		to_chat(src, span_warning("You aren't the pack leader! Sit down!"))
 		return
 
-	audible_message("<b>\The [src]</b> barks loudly and rattles its neck spines.")
+	audible_message(span_infoplain(span_bold("\The [src]") + " barks loudly and rattles its neck spines."))
 	for(var/mob/living/simple_mob/animal/sif/grafadreka/drake in hearers(world.view * 3, src))
 		if(drake == src || drake.faction != faction)
 			continue
 		if(drake.client)
-			to_chat(drake, span_notice("<b>The pack leader wishes for you to follow them.</b>"))
+			to_chat(drake, span_boldnotice("The pack leader wishes for you to follow them."))
 		else if(drake.ai_holder)
 			drake.ai_holder.set_follow(src)
 

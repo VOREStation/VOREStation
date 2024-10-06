@@ -111,7 +111,7 @@
 	cards -= P
 	H.parentdeck = src
 	H.update_icon()
-	user.visible_message("<b>\The [user]</b> draws a card.")
+	user.visible_message(span_info(span_bold("\The [user]") + " draws a card."))
 	to_chat(user,span_notice("It's the [P]."))
 
 /obj/item/deck/verb/deal_card()
@@ -288,7 +288,7 @@
 
 
 /obj/item/pack/attack_self(var/mob/user as mob)
-	user.visible_message("<span class ='danger'>[user] rips open \the [src]!</span>")
+	user.visible_message(span_danger("[user] rips open \the [src]!"))
 	var/obj/item/hand/H = new()
 
 	H.cards += cards

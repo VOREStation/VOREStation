@@ -159,7 +159,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 				tmpmodes+=M.name
 			tmpmodes = sortList(tmpmodes)
 			if(tmpmodes.len)
-				to_world(span_info(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
+				to_world(span_infoplain(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
 	else
 		src.mode.announce()
 	return 1
