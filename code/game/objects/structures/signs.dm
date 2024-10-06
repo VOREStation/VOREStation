@@ -17,7 +17,7 @@
 	else ..()
 
 /obj/structure/sign/proc/unfasten(mob/user)
-	user.visible_message(SPAN_NOTICE("\The [user] unfastens \the [src]."), SPAN_NOTICE("You unfasten \the [src]."))
+	user.visible_message(span_notice("\The [user] unfastens \the [src]."), span_notice("You unfasten \the [src]."))
 	var/obj/item/sign/S = new(src.loc)
 	S.name = name
 	S.desc = desc
@@ -1539,12 +1539,12 @@
 		return
 
 	if((!iswall(A) && !istype(A, /obj/structure/window)) || !isturf(user.loc))
-		to_chat(user, SPAN_WARNING("You can't place this here!"))
+		to_chat(user, span_warning("You can't place this here!"))
 		return
 
 	var/placement_dir = get_dir(user, A)
 	if (!(placement_dir in cardinal))
-		to_chat(user, SPAN_WARNING("You must stand directly in front of the location you wish to place that on."))
+		to_chat(user, span_warning("You must stand directly in front of the location you wish to place that on."))
 		return
 
 	var/obj/structure/sign/flag/P = new(user.loc)
@@ -1613,11 +1613,11 @@
 
 /obj/structure/sign/flag/unfasten(mob/user)
 	if(!ripped)
-		user.visible_message(SPAN_NOTICE("\The [user] unfastens \the [src] and folds it back up."), SPAN_NOTICE("You unfasten \the [src] and fold it back up."))
+		user.visible_message(span_notice("\The [user] unfastens \the [src] and folds it back up."), span_notice("You unfasten \the [src] and fold it back up."))
 		var/obj/item/flag/F = new flagtype(get_turf(user))
 		user.put_in_hands(F)
 	else
-		user.visible_message(SPAN_NOTICE("\The [user] unfastens the tattered remnants of \the [src]."), SPAN_NOTICE("You unfasten the tattered remains of \the [src]."))
+		user.visible_message(span_notice("\The [user] unfastens the tattered remnants of \the [src]."), span_notice("You unfasten the tattered remains of \the [src]."))
 	if(linked_flag)
 		qdel(linked_flag) //otherwise you're going to get weird duping nonsense
 	qdel(src)
@@ -1626,7 +1626,7 @@
 	if(alert("Do you want to rip \the [src] from its place?","You think...","Yes","No") == "Yes")
 		if(!Adjacent(user)) //Cannot bring up dialogue and walk away
 			return FALSE
-		visible_message(SPAN_WARNING("\The [user] rips \the [src] in a single, decisive motion!" ))
+		visible_message(span_warning("\The [user] rips \the [src] in a single, decisive motion!" ))
 		playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
 		add_fingerprint(user)
 		rip()
@@ -1645,10 +1645,10 @@
 /obj/structure/sign/flag/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/flame/lighter) || istype(W, /obj/item/weldingtool))
-		visible_message(SPAN_WARNING("\The [user] starts to burn \the [src] down!"))
+		visible_message(span_warning("\The [user] starts to burn \the [src] down!"))
 		if(!do_after(user, 2 SECONDS))
 			return FALSE
-		visible_message(SPAN_WARNING("\The [user] burns \the [src] down!"))
+		visible_message(span_warning("\The [user] burns \the [src] down!"))
 		playsound(src.loc, 'sound/items/cigs_lighters/cig_light.ogg', 100, 1)
 		new /obj/effect/decal/cleanable/ash(src.loc)
 		if(linked_flag)

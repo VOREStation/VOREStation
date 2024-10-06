@@ -94,15 +94,15 @@
 
 /obj/item/perfect_tele/proc/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(battery_lock)
-		to_chat(user,"<span class='notice'>[src] does not have a battery port.</span>")
+		to_chat(user,span_notice("[src] does not have a battery port."))
 		return
 	if((user.get_inactive_hand() == src || ignore_inactive_hand_check) && power_source)
-		to_chat(user,"<span class='notice'>You eject \the [power_source] from \the [src].</span>")
+		to_chat(user,span_notice("You eject \the [power_source] from \the [src]."))
 		user.put_in_hands(power_source)
 		power_source = null
 		update_icon()
 	else
-		to_chat(user,"<span class='notice'>[src] does not have a power cell.</span>")
+		to_chat(user,span_notice("[src] does not have a power cell."))
 
 /obj/item/perfect_tele/proc/check_menu(var/mob/living/user)
 	if(!istype(user))
@@ -132,7 +132,7 @@ This device records all warnings given and teleport events for admin review in c
 
 	else if(choice == "New Beacon")
 		if(beacons_left <= 0)
-			to_chat(user, "<span class='warning'>The translocator can't support any more beacons!</span>")
+			to_chat(user, span_warning("The translocator can't support any more beacons!"))
 			return
 
 		var/new_name = html_encode(tgui_input_text(user,"New beacon's name (2-20 char):","[src]",null,20))
@@ -140,11 +140,11 @@ This device records all warnings given and teleport events for admin review in c
 			return
 
 		if(length(new_name) > 20 || length(new_name) < 2)
-			to_chat(user, "<span class='warning'>Entered name length invalid (must be longer than 2, no more than than 20).</span>")
+			to_chat(user, span_warning("Entered name length invalid (must be longer than 2, no more than than 20)."))
 			return
 
 		if(new_name in beacons)
-			to_chat(user, "<span class='warning'>No duplicate names, please. '[new_name]' exists already.</span>")
+			to_chat(user, span_warning("No duplicate names, please. '[new_name]' exists already."))
 			return
 
 		var/obj/item/perfect_tele_beacon/nb = new(get_turf(src))
@@ -168,19 +168,19 @@ This device records all warnings given and teleport events for admin review in c
 		power_source.update_icon() //Why doesn't a cell do this already? :|
 		user.unEquip(power_source)
 		power_source.forceMove(src)
-		to_chat(user,"<span class='notice'>You insert \the [power_source] into \the [src].</span>")
+		to_chat(user,span_notice("You insert \the [power_source] into \the [src]."))
 		update_icon()
 
 	else if(istype(W,/obj/item/perfect_tele_beacon))
 		var/obj/item/perfect_tele_beacon/tb = W
 		if(tb.tele_name in beacons)
-			to_chat(user,"<span class='notice'>You re-insert \the [tb] into \the [src].</span>")
+			to_chat(user,span_notice("You re-insert \the [tb] into \the [src]."))
 			beacons -= tb.tele_name
 			user.unEquip(tb)
 			qdel(tb)
 			beacons_left++
 		else
-			to_chat(user,"<span class='notice'>\The [tb] doesn't belong to \the [src].</span>")
+			to_chat(user,span_notice("\The [tb] doesn't belong to \the [src]."))
 			return
 	else
 		..()
@@ -188,12 +188,12 @@ This device records all warnings given and teleport events for admin review in c
 /obj/item/perfect_tele/proc/teleport_checks(mob/living/target,mob/living/user)
 	//Uhhuh, need that power source
 	if(!power_source)
-		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
+		to_chat(user,span_warning("\The [src] has no power source!"))
 		return FALSE
 
 	//Check for charge
 	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
-		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
+		to_chat(user,span_warning("\The [src] does not have enough power left!"))
 		return FALSE
 
 	//Only mob/living need apply.
@@ -202,24 +202,24 @@ This device records all warnings given and teleport events for admin review in c
 
 	//No, you can't teleport buckled people.
 	if(target.buckled)
-		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
+		to_chat(user,span_warning("The target appears to be attached to something..."))
 		return FALSE
 
 	//No, you can't teleport if it's not ready yet.
 	if(!ready)
-		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
+		to_chat(user,span_warning("\The [src] is still recharging!"))
 		return FALSE
 
 	//No, you can't teleport if there's no destination.
 	if(!destination)
-		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
+		to_chat(user,span_warning("\The [src] doesn't have a current valid destination set!"))
 		return FALSE
 
 	//No, you can't teleport if there's a jammer.
 	if(is_jammed(src) || is_jammed(destination))
 		var/area/our_area = get_area(src)
 		if(!our_area.no_comms)	//I don't actually want this to block teleporters, just comms
-			to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
+			to_chat(user,span_warning("\The [src] refuses to teleport you, due to strong interference!"))
 			return FALSE
 
 	//No, you can't port to or from away missions. Stupidly complicated check.
@@ -233,12 +233,12 @@ This device records all warnings given and teleport events for admin review in c
 
 	if(!longrange)
 		if( (uT.z != dT.z) && (!(dT.z in dat["z_level_detection"])) )
-			to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
+			to_chat(user,span_warning("\The [src] can't teleport you that far!"))
 			return FALSE
 
 	if(!abductor)
 		if(uT.block_tele || dT.block_tele)
-			to_chat(user,"<span class='warning'>Something is interfering with \the [src]!</span>")
+			to_chat(user,span_warning("Something is interfering with \the [src]!"))
 			return FALSE
 
 	//Seems okay to me!
@@ -257,8 +257,8 @@ This device records all warnings given and teleport events for admin review in c
 		if(!L.stat)
 			if(L != user)
 				if(L.a_intent != I_HELP || L.has_AI())
-					to_chat(user, "<span class='notice'>[L] is resisting your attempt to teleport them with \the [src].</span>")
-					to_chat(L, "<span class='danger'> [user] is trying to teleport you with \the [src]!</span>")
+					to_chat(user, span_notice("[L] is resisting your attempt to teleport them with \the [src]."))
+					to_chat(L, span_danger(" [user] is trying to teleport you with \the [src]!"))
 					if(!do_after(user, 30, L))
 						return
 
@@ -280,7 +280,7 @@ This device records all warnings given and teleport events for admin review in c
 			var/list/wrong_choices = beacons - destination.tele_name
 			var/wrong_name = pick(wrong_choices)
 			destination = beacons[wrong_name]
-			to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
+			to_chat(user,span_warning("\The [src] malfunctions and sends you to the wrong beacon!"))
 
 	//Destination beacon vore checking
 	var/turf/dT = get_turf(destination)
@@ -301,11 +301,11 @@ This device records all warnings given and teleport events for admin review in c
 	if(isbelly(real_dest))
 		var/obj/belly/B = real_dest
 		if(!(target.can_be_drop_prey) && B.owner != user)
-			to_chat(target,"<span class='vwarning'>\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!</span>")
+			to_chat(target,span_vwarning("\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!"))
 			real_dest = dT //Nevermind!
 		else
 			televored = TRUE
-			to_chat(target,"<span class='vwarning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
+			to_chat(target,span_vwarning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
@@ -326,7 +326,7 @@ This device records all warnings given and teleport events for admin review in c
 			//Move them, and televore if necessary
 			G.affecting.forceMove(real_dest)
 			if(televored)
-				to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
+				to_chat(target,span_warning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
 
 			//Phase-in effect for grabbed person
 			phase_in(G.affecting,get_turf(G.affecting))
@@ -411,11 +411,11 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	if(confirm == "Eat it!")
 		var/obj/belly/bellychoice = tgui_input_list(usr, "Which belly?","Select A Belly", L.vore_organs)
 		if(bellychoice)
-			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice.name]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice.name]!</span>")
+			user.visible_message(span_warning("[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice.name]!"),span_notice("You begin putting \the [src] into your [bellychoice.name]!"))
 			if(do_after(user,5 SECONDS,src))
 				user.unEquip(src)
 				forceMove(bellychoice)
-				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
+				user.visible_message(span_warning("[user] eats a telebeacon!"),"You eat the the beacon!")
 
 // A single-beacon variant for use by miners (or whatever)
 /obj/item/perfect_tele/one_beacon
@@ -430,7 +430,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 /obj/item/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)
 	var/turf/T = get_turf(destination)
 	if(T && user.z != T.z)
-		to_chat(user,"<span class='warning'>\The [src] is too far away from the beacon. Try getting closer first!</span>")
+		to_chat(user,span_warning("\The [src] is too far away from the beacon. Try getting closer first!"))
 		return FALSE
 	return ..()
 */
@@ -475,8 +475,8 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 		return
 	recharging = 1
 	update_icon()
-	user.visible_message("<span class='notice'>[user] opens \the [src] and starts pumping the handle.</span>", \
-						"<span class='notice'>You open \the [src] and start pumping the handle.</span>")
+	user.visible_message(span_notice("[user] opens \the [src] and starts pumping the handle."), \
+						span_notice("You open \the [src] and start pumping the handle."))
 	while(recharging)
 		if(!do_after(user, 10, src))
 			break

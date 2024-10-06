@@ -67,7 +67,7 @@
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/paper_bundle))
 		user.drop_item()
 		W.loc = src
-		to_chat(user, "<span class='notice'>You put the [W] into \the [src].</span>")
+		to_chat(user, span_notice("You put the [W] into \the [src]."))
 		update_icon()
 	else if(istype(W, /obj/item/pen))
 		var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the folder?", "Folder Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
@@ -79,7 +79,7 @@
 	for(var/obj/item/paper/P in T)
 		P.loc = src
 		update_icon()
-		to_chat(user, "<span class='notice'>You tuck the [P] into \the [src].</span>")
+		to_chat(user, span_notice("You tuck the [P] into \the [src]."))
 
 /obj/item/folder/attack_self(mob/user as mob)
 	var/dat = "<title>[name]</title>"

@@ -44,7 +44,7 @@
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if(HULK in usr.mutations)
-		visible_message("<span class='danger'>\The [usr] destroys \the [src]!</span>")
+		visible_message(span_danger("\The [usr] destroys \the [src]!"))
 		density = FALSE
 		qdel(src)
 	return
@@ -78,7 +78,7 @@
 	if(C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
-		visible_message("<span class='notice'>\The [C] has been laid on \the [src] by [user].</span>")
+		visible_message(span_notice("\The [C] has been laid on \the [src] by [user]."))
 	if(C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
@@ -128,9 +128,9 @@
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient, mob/living/user)
 	check_victim()
 	if(victim && get_turf(victim) == get_turf(src) && victim.lying)
-		to_chat(user, "<span class='warning'>\The [src] is already occupied!</span>")
+		to_chat(user, span_warning("\The [src] is already occupied!"))
 		return 0
 	if(patient.buckled)
-		to_chat(user, "<span class='notice'>Unbuckle \the [patient] first!</span>")
+		to_chat(user, span_notice("Unbuckle \the [patient] first!"))
 		return 0
 	return 1

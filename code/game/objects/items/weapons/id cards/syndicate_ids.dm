@@ -31,12 +31,12 @@
 		var/obj/item/card/id/I = O
 		src.access |= I.GetAccess()
 		if(player_is_antag(user.mind) || registered_user == user)
-			to_chat(user, "<span class='notice'>The microscanner activates as you pass it over the ID, copying its access.</span>")
+			to_chat(user, span_notice("The microscanner activates as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
 	// We use the fact that registered_name is not unset should the owner be vaporized, to ensure the id doesn't magically become unlocked.
 	if(!registered_user && register_user(user))
-		to_chat(user, "<span class='notice'>The microscanner marks you as its owner, preventing others from accessing its internals.</span>")
+		to_chat(user, span_notice("The microscanner marks you as its owner, preventing others from accessing its internals."))
 	if(registered_user == user)
 		switch(tgui_alert(usr, "Would you like to edit the ID, or show it?","Show or Edit?", list("Edit","Show")))
 			if(null)

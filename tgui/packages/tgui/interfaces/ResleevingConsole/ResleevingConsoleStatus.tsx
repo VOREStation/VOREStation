@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, LabeledList, Section } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const ResleevingConsoleStatus = (props) => {

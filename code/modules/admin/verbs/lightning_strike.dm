@@ -93,7 +93,7 @@
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
 				C.ear_deaf += 10
-			to_chat(L, span("danger", "Lightning struck nearby, and the thunderclap is deafening!"))
+			to_chat(L, span_danger("Lightning struck nearby, and the thunderclap is deafening!"))
 
 #undef LIGHTNING_REDIRECT_RANGE
 #undef LIGHTNING_ZAP_RANGE

@@ -118,7 +118,7 @@
 		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from 25% to 200%", "Set Size", null, 200, 25)
 		if (!ISINRANGE(new_size,25,200))
 			pref.size_multiplier = 1
-			to_chat(user, "<span class='notice'>Invalid size.</span>")
+			to_chat(user, span_notice("Invalid size."))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		else if(new_size)
 			pref.size_multiplier = (new_size/100)

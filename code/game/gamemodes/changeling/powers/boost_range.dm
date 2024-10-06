@@ -18,11 +18,11 @@
 	if(!changeling)
 		return 0
 	changeling.chem_charges -= 10
-	to_chat(src, "<span class='notice'>Your throat adjusts to launch the sting.</span>")
+	to_chat(src, span_notice("Your throat adjusts to launch the sting."))
 	var/range = 2
 	if(src.mind.changeling.recursive_enhancement)
 		range = range + 3
-		to_chat(src, "<span class='notice'>We can fire our next sting from five squares away.</span>")
+		to_chat(src, span_notice("We can fire our next sting from five squares away."))
 	changeling.sting_range = range
 	src.verbs -= /mob/proc/changeling_boost_range
 	spawn(5)

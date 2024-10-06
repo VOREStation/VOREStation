@@ -264,7 +264,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else
 				reset_message()
-				to_chat(user, "<span class='warning'>You are not authorized to send announcements.</span>")
+				to_chat(user, span_warning("You are not authorized to send announcements."))
 			SStgui.update_uis(src)
 	if(istype(O, /obj/item/stamp))
 		if(inoperable(MAINT)) return

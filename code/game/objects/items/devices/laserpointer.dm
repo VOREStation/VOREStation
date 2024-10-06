@@ -50,13 +50,13 @@
 			user.drop_item()
 			W.loc = src
 			diode = W
-			to_chat(user, "<span class='notice'>You install a [diode.name] in [src].</span>")
+			to_chat(user, span_notice("You install a [diode.name] in [src]."))
 		else
-			to_chat(user, "<span class='notice'>[src] already has a diode.</span>")
+			to_chat(user, span_notice("[src] already has a diode."))
 
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(diode)
-			to_chat(user, "<span class='notice'>You remove the [diode.name] from the [src].</span>")
+			to_chat(user, span_notice("You remove the [diode.name] from the [src]."))
 			diode.loc = get_turf(src.loc)
 			diode = null
 			return
@@ -76,17 +76,17 @@
 	if(!(world.time - last_used_time >= cooldown))
 		return
 	if (!diode)
-		to_chat(user, "<span class='notice'>You point [src] at [target], but nothing happens!</span>")
+		to_chat(user, span_notice("You point [src] at [target], but nothing happens!"))
 		return
 	if (!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	add_fingerprint(user)
 
 	//nothing happens if the battery is drained
 	if(recharge_locked)
-		to_chat(user, "<span class='notice'>You point [src] at [target], but it's still charging.</span>")
+		to_chat(user, span_notice("You point [src] at [target], but it's still charging."))
 		return
 
 	var/outmsg
@@ -110,38 +110,38 @@
 				var/mob/living/carbon/human/H = C
 				var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 				if(!E)
-					outmsg = "<span class='notice'>You shine [src] at [C], but they don't seem to have eyes.</span>"
+					outmsg = span_notice("You shine [src] at [C], but they don't seem to have eyes.")
 					return
 
-				outmsg = "<span class='notice'>You shine [src] into [C]'s eyes.</span>"
+				outmsg = span_notice("You shine [src] into [C]'s eyes.")
 				switch(severity)
 					if(0)
 						//rank 1 diode with basic eye protection (like sunglasses), or rank 2 with industrial protection (like welding goggles)
-						to_chat(C, "<span class='info'>A small, bright dot appears in your vision.</span>")
+						to_chat(C, span_info("A small, bright dot appears in your vision."))
 					if(1)
 						//rank 1 with no protection, rank 2 with basic protection, or rank 3 with industrial protection
-						to_chat(C, "<span class='notice'>Something bright flashes in the corner of your vision.</span>")
+						to_chat(C, span_notice("Something bright flashes in the corner of your vision."))
 					if(2)
 						//rank 1 or 2 with no protection, rank 2 or 3 with basic protection, or rank 3 with industrial protection
 						//alternatively, rank 1 with minor vulnerability (like night vision goggles)
 						flick("flash", C.flash_eyes())
-						to_chat(C, "<span class='danger'>A bright light shines across your eyes!</span>")
+						to_chat(C, span_danger("A bright light shines across your eyes!"))
 					if(3)
 						//rank 1 with minor vulnerability, rank 2 or 3 with no protection, or rank 3 with basic protection
 						if(prob(3 * diode.rating))
 							C.Weaken(1)
 						flick("flash", C.flash_eyes())
 						E.damage += 1
-						to_chat(C, "<span class='danger'>A bright light briefly blinds you!</span>")
+						to_chat(C, span_danger("A bright light briefly blinds you!"))
 					if(4)
 						//rank 3 with no protection, or rank 2 with minor vulnerability
 						if(prob(5 * diode.rating))
 							C.Weaken(1)
 						flick("e_flash", C.flash_eyes())
 						E.damage += 2
-						to_chat(C, "<span class='danger'>A blinding light burns your eyes!</span>")
+						to_chat(C, span_danger("A blinding light burns your eyes!"))
 			else
-				outmsg = "<span class='notice'>You shine the [src] at [C], but miss their eyes.</span>"
+				outmsg = span_notice("You shine the [src] at [C], but miss their eyes.")
 
 	//robots and AI
 	else if(issilicon(target))
@@ -151,34 +151,34 @@
 			flick("flash", S.flash_eyes(affect_silicon = TRUE))
 			if (prob(3 * diode.rating))
 				S.Weaken(1)
-			to_chat(S, "<span class='warning'>Your sensors were blinded by a laser!</span>")
-			outmsg = "<span class='notice'>You blind [S] by shining [src] at their sensors.</span>"
+			to_chat(S, span_warning("Your sensors were blinded by a laser!"))
+			outmsg = span_notice("You blind [S] by shining [src] at their sensors.")
 			add_attack_logs(user,S,"Tried disabling using [src]")
 		else
-			outmsg = "<span class='notice'>You shine the [src] at [S], but miss their sensors.</span>"
+			outmsg = span_notice("You shine the [src] at [S], but miss their sensors.")
 
 	//cameras
 	else if(istype(target, /obj/machinery/camera))
 		var/obj/machinery/camera/C = target
 		if(prob(effectchance * diode.rating))
 			C.emp_act(4 - diode.rating)
-			outmsg = "<span class='notice'>You shine the [src] into the lens of [C].</span>"
+			outmsg = span_notice("You shine the [src] into the lens of [C].")
 			add_attack_logs(user,C.name,"Tried disabling using [src]")
 		else
-			outmsg = "<span class='info'>You missed the lens of [C] with [src].</span>"
+			outmsg = span_info("You missed the lens of [C] with [src].")
 
 	//cats!
 	for(var/mob/living/simple_mob/animal/passive/cat/C in viewers(1,targloc))
 		if (!(C.stat || C.buckled))
 			if(prob(50) && !(C.client))
-				C.visible_message("<span class='warning'>[C] pounces on the light!</span>", "<span class='warning'>You pounce on the light!</span>")
+				C.visible_message(span_warning("[C] pounces on the light!"), span_warning("You pounce on the light!"))
 				step_towards(C, targloc)
 				C.lay_down()
 				spawn(10)
 					C.lay_down()
 			else
 				C.set_dir(get_dir(C,targloc))
-				C.visible_message("<span class='notice'>[C] watches the light.</span>", "<span class='notice'>Your attention is drawn to the mysterious glowing dot.</span>")
+				C.visible_message(span_notice("[C] watches the light."), span_notice("Your attention is drawn to the mysterious glowing dot."))
 
 
 	//laser pointer image
@@ -193,9 +193,9 @@
 	I.pixel_y = target.pixel_y + rand(-5,5)
 
 	if(outmsg)
-		user.visible_message("<span class='info'>[user] points [src] at [target].</span>", outmsg)
+		user.visible_message(span_info("[user] points [src] at [target]."), outmsg)
 	else
-		user.visible_message("<span class='info'>[user] points [src] at [target].</span>", "<span class='info'>You point [src] at [target].</span>")
+		user.visible_message(span_info("[user] points [src] at [target]."), span_info("You point [src] at [target]."))
 
 	last_used_time = world.time
 	energy -= 1
@@ -204,7 +204,7 @@
 			recharging = 1
 			START_PROCESSING(SSobj, src)
 		if(energy <= 0)
-			to_chat(user, "<span class='warning'>You've overused the battery of [src], now it needs time to recharge!</span>")
+			to_chat(user, span_warning("You've overused the battery of [src], now it needs time to recharge!"))
 			recharge_locked = 1
 
 	flick_overlay(I, showto, cooldown)

@@ -49,7 +49,7 @@
 	var/rare_spell_chance = between(0, calculate_spell_power(100) - 100, 100) // Having 120% spellpower means a 20% chance to get to roll for rare spells.
 	if(prob(rare_spell_chance))
 		potential_spells += rare_spells.Copy()
-		to_chat(owner, "<span class='notice'>You feel a bit luckier...</span>")
+		to_chat(owner, span_notice("You feel a bit luckier..."))
 	return pick(potential_spells)
 
 // Gives a "random" spell.
@@ -59,7 +59,7 @@
 	var/give_rare_spells = FALSE
 	if(prob(rare_spell_chance))
 		give_rare_spells = TRUE
-		to_chat(owner, "<span class='notice'>You feel a bit luckier...</span>")
+		to_chat(owner, span_notice("You feel a bit luckier..."))
 
 	// First the spell will concern itself with the health of the technomancer.
 	if(prob(owner.getBruteLoss() + owner.getBruteLoss() * 2)) // Having 20 brute means a 40% chance of being added to the pool.

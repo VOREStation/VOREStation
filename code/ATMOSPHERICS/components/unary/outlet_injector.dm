@@ -158,7 +158,7 @@
 	update_underlays()
 
 /obj/machinery/atmospherics/unary/outlet_injector/attack_hand(mob/user as mob)
-	to_chat(user, "<span class='notice'>You toggle \the [src].</span>")
+	to_chat(user, span_notice("You toggle \the [src]."))
 	injecting = !injecting
 	update_use_power(injecting ? USE_POWER_IDLE : USE_POWER_OFF)
 	update_icon()
@@ -168,10 +168,10 @@
 		return ..()
 
 	playsound(src, W.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
 			"<b>\The [user]</b> unfastens \the [src].", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		deconstruct()

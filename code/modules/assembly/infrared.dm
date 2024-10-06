@@ -102,7 +102,7 @@
 
 /obj/item/assembly/infra/tgui_interact(mob/user, datum/tgui/ui)
 	if(!secured)
-		to_chat(user, "<span class='warning'>[src] is unsecured!</span>")
+		to_chat(user, span_warning("[src] is unsecured!"))
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

@@ -106,7 +106,7 @@
 
 /obj/item/material/proc/shatter(var/consumed)
 	var/turf/T = get_turf(src)
-	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
+	T.visible_message(span_danger("\The [src] [material.destruction_desc]!"))
 	if(istype(loc, /mob/living))
 		var/mob/living/M = loc
 		M.drop_from_inventory(src)
@@ -116,7 +116,7 @@
 
 /obj/item/material/proc/dull()
 	var/turf/T = get_turf(src)
-	T.visible_message("<span class='danger'>\The [src] goes dull!</span>")
+	T.visible_message(span_danger("\The [src] goes dull!"))
 	playsound(src, "shatter", 70, 1)
 	dulled = 1
 	if(is_sharp() || has_edge())
@@ -134,9 +134,9 @@
 				sharp = initial(sharp)
 				edge = initial(edge)
 		else
-			to_chat(user, "<span class='notice'>[src] doesn't need repairs.</span>")
+			to_chat(user, span_notice("[src] doesn't need repairs."))
 	else
-		to_chat(user, "<span class='warning'>You can't repair \the [src].</span>")
+		to_chat(user, span_warning("You can't repair \the [src]."))
 		return
 
 /obj/item/material/proc/sharpen(var/material, var/sharpen_time, var/kit, mob/living/M)

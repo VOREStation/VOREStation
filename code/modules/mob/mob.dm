@@ -90,7 +90,7 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
+		to_chat(src, span_filter_notice("<I>... You can almost hear someone talking ...</I>"))
 	else
 		if(client && client.prefs.chat_timestamp)
 			// TG-Chat filters latch directly to the spans, we no longer need that
@@ -330,14 +330,14 @@
 
 /mob/proc/warn_flavor_changed()
 	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
-		to_chat(src, "<span class='filter_notice'><h2 class='alert'>OOC Warning:</h2></span>")
-		to_chat(src, "<span class='filter_notice'><span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span></span>")
+		to_chat(src, span_filter_notice("<h2 class='alert'>OOC Warning:</h2>"))
+		to_chat(src, span_filter_notice(span_warning("Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a>")))
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
 		var/msg = replacetext(flavor_text, "\n", " ")
 		if(length(msg) <= 40)
-			return "<span class='notice'>[msg]</span>"
+			return span_notice("[msg]")
 		else
 			return "<span class='notice'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</span></a>"
 
@@ -387,7 +387,7 @@
 	set category = "OOC"
 
 	if(stat != DEAD || !ticker)
-		to_chat(usr, "<span class='notice'><B>You must be dead to use this!</B></span>")
+		to_chat(usr, span_notice("<B>You must be dead to use this!</B>"))
 		return
 
 	// Final chance to abort "respawning"
@@ -404,7 +404,7 @@
 				for(var/datum/objective/O in all_objectives)
 					if(O.target == src.mind)
 						if(O.owner && O.owner.current)
-							to_chat(O.owner.current,"<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
+							to_chat(O.owner.current,span_warning("You get the feeling your target is no longer within your reach..."))
 						qdel(O)
 
 				//Resleeving cleanup
@@ -435,7 +435,7 @@
 
 				//This removes them from being 'active' list on join screen
 				src.mind.assigned_role = null
-				to_chat(src,"<span class='notice'>Your job has been free'd up, and you can rejoin as another character or quit. Thanks for properly quitting round, it helps the server!</span>")
+				to_chat(src,span_notice("Your job has been free'd up, and you can rejoin as another character or quit. Thanks for properly quitting round, it helps the server!"))
 
 	// Beyond this point, you're going to respawn
 
@@ -483,7 +483,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || istype(src, /mob/new_player))
-		to_chat(usr, "<span class='filter_notice'>[span_blue("You must be observing to use this!")]</span>")
+		to_chat(usr, span_filter_notice("[span_blue("You must be observing to use this!")]"))
 		return
 
 	if(is_admin && stat == DEAD)
@@ -549,9 +549,9 @@
 	if(pulling)
 		if(ishuman(pulling))
 			var/mob/living/carbon/human/H = pulling
-			visible_message(SPAN_WARNING("\The [src] lets go of \the [H]."), SPAN_NOTICE("You let go of \the [H]."), exclude_mobs = list(H))
+			visible_message(span_warning("\The [src] lets go of \the [H]."), span_notice("You let go of \the [H]."), exclude_mobs = list(H))
 			if(!H.stat)
-				to_chat(H, SPAN_WARNING("\The [src] lets go of you."))
+				to_chat(H, span_warning("\The [src] lets go of you."))
 		pulling.pulledby = null
 		pulling = null
 		if(pullin)
@@ -563,22 +563,22 @@
 		return
 
 	if (AM.anchored)
-		to_chat(src, "<span class='warning'>It won't budge!</span>")
+		to_chat(src, span_warning("It won't budge!"))
 		return
 
 	var/mob/M = AM
 	if(ismob(AM))
 
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, "<span class='warning'>They won't budge!</span>")
+			to_chat(src, span_warning("They won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, "<span class='warning'>[M] is too large for you to move!</span>")
+			to_chat(src, span_warning("[M] is too large for you to move!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, "<span class='warning'>[M] is too heavy for you to move!</span>")
+			to_chat(src, span_warning("[M] is too heavy for you to move!"))
 			return
 
 		// If your size is larger than theirs and you have some
@@ -594,7 +594,7 @@
 				else
 					qdel(G)
 			if(!.)
-				to_chat(src, "<span class='warning'>Somebody has a grip on them!</span>")
+				to_chat(src, span_warning("Somebody has a grip on them!"))
 				return
 
 		if(!iscarbon(src))
@@ -605,7 +605,7 @@
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 	if(pulling)
@@ -624,17 +624,17 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.lying) // If they're on the ground we're probably dragging their arms to move them
-			visible_message(SPAN_WARNING("\The [src] leans down and grips \the [H]'s arms."), SPAN_NOTICE("You lean down and grip \the [H]'s arms."), exclude_mobs = list(H))
+			visible_message(span_warning("\The [src] leans down and grips \the [H]'s arms."), span_notice("You lean down and grip \the [H]'s arms."), exclude_mobs = list(H))
 			if(!H.stat)
-				to_chat(H, SPAN_WARNING("\The [src] leans down and grips your arms."))
+				to_chat(H, span_warning("\The [src] leans down and grips your arms."))
 		else //Otherwise we're probably just holding their arm to lead them somewhere
-			visible_message(SPAN_WARNING("\The [src] grips \the [H]'s arm."), SPAN_NOTICE("You grip \the [H]'s arm."), exclude_mobs = list(H))
+			visible_message(span_warning("\The [src] grips \the [H]'s arm."), span_notice("You grip \the [H]'s arm."), exclude_mobs = list(H))
 			if(!H.stat)
-				to_chat(H, SPAN_WARNING("\The [src] grips your arm."))
+				to_chat(H, span_warning("\The [src] grips your arm."))
 		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
-			to_chat(src, "<span class='filter_notice'>[span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")]</span>")
+			to_chat(src, span_filter_notice("[span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")]"))
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -967,11 +967,11 @@
 	usr.setClickCooldown(20)
 
 	if(usr.stat == 1)
-		to_chat(usr, "<span class='filter_notice'>You are unconcious and cannot do that!</span>")
+		to_chat(usr, span_filter_notice("You are unconcious and cannot do that!"))
 		return
 
 	if(usr.restrained())
-		to_chat(usr, "<span class='filter_notice'>You are restrained and cannot do that!</span>")
+		to_chat(usr, span_filter_notice("You are restrained and cannot do that!"))
 		return
 
 	var/mob/S = src
@@ -985,17 +985,17 @@
 	valid_objects = get_visible_implants(0)
 	if(!valid_objects.len)
 		if(self)
-			to_chat(src, "<span class='filter_notice'>You have nothing stuck in your body that is large enough to remove.</span>")
+			to_chat(src, span_filter_notice("You have nothing stuck in your body that is large enough to remove."))
 		else
-			to_chat(U, "<span class='filter_notice'>[src] has nothing stuck in their wounds that is large enough to remove.</span>")
+			to_chat(U, span_filter_notice("[src] has nothing stuck in their wounds that is large enough to remove."))
 		return
 
 	var/obj/item/selection = tgui_input_list(usr, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(self)
-		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
+		to_chat(src, span_warning("You attempt to get a good grip on [selection] in your body."))
 	else
-		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
+		to_chat(U, span_warning("You attempt to get a good grip on [selection] in [S]'s body."))
 
 	if(!do_after(U, 30))
 		return
@@ -1003,9 +1003,9 @@
 		return
 
 	if(self)
-		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>")
+		visible_message(span_warning("<b>[src] rips [selection] out of their body.</b>"),span_warning("<b>You rip [selection] out of your body.</b>"))
 	else
-		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
+		visible_message(span_warning("<b>[usr] rips [selection] out of [src]'s body.</b>"),span_warning("<b>[usr] rips [selection] out of your body.</b>"))
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object
@@ -1072,9 +1072,9 @@
 	set_face_dir()
 
 	if(!facing_dir)
-		to_chat(usr, "<span class='filter_notice'>You are now not facing anything.</span>")
+		to_chat(usr, span_filter_notice("You are now not facing anything."))
 	else
-		to_chat(usr, "<span class='filter_notice'>You are now facing [dir2text(facing_dir)].</span>")
+		to_chat(usr, span_filter_notice("You are now facing [dir2text(facing_dir)]."))
 
 /mob/proc/set_face_dir(var/newdir)
 	if(newdir == facing_dir)

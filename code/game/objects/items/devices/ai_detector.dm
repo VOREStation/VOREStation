@@ -94,13 +94,13 @@
 	if(new_state != old_state)
 		switch(new_state)
 			if(PROXIMITY_OFF_CAMERANET)
-				to_chat(carrier, "<span class='notice'>[icon2html(src, carrier.client)] Now outside of camera network.</span>")
+				to_chat(carrier, span_notice("[icon2html(src, carrier.client)] Now outside of camera network."))
 				carrier << 'sound/machines/defib_failed.ogg'
 			if(PROXIMITY_NONE)
-				to_chat(carrier, "<span class='notice'>[icon2html(src, carrier.client)] Now within camera network, AI and cameras unfocused.</span>")
+				to_chat(carrier, span_notice("[icon2html(src, carrier.client)] Now within camera network, AI and cameras unfocused."))
 				carrier << 'sound/machines/defib_safetyOff.ogg'
 			if(PROXIMITY_NEAR)
-				to_chat(carrier, "<span class='warning'>[icon2html(src, carrier.client)] Warning: AI focus at nearby location.</span>")
+				to_chat(carrier, span_warning("[icon2html(src, carrier.client)] Warning: AI focus at nearby location."))
 				carrier << 'sound/machines/defib_SafetyOn.ogg'
 			if(PROXIMITY_ON_SCREEN)
 				to_chat(carrier, "<font size='3'><span class='danger'>[icon2html(src, carrier.client)] Alert: AI or camera focused at current location!</span></font>")

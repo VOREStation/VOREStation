@@ -157,16 +157,16 @@ list[](
 			new_data = tgui_input_text(usr, "Now type in a string.","[src] string writing", istext(default) ? default : null, MAX_NAME_LEN)
 			new_data = sanitize(new_data,MAX_NAME_LEN)
 			if(istext(new_data) && holder.check_interactivity(user) )
-				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
+				to_chat(user, span_notice("You input [new_data] into the pin."))
 				return new_data
 		if("number")
 			new_data = tgui_input_number(usr, "Now type in a number.","[src] number writing", isnum(default) ? default : null, MAX_NAME_LEN)
 			if(isnum(new_data) && holder.check_interactivity(user) )
-				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
+				to_chat(user, span_notice("You input [new_data] into the pin."))
 				return new_data
 		if("null")
 			if(holder.check_interactivity(user))
-				to_chat(user, "<span class='notice'>You clear the pin's memory.</span>")
+				to_chat(user, span_notice("You clear the pin's memory."))
 				return new_data
 
 // Basically a null check
@@ -180,7 +180,7 @@ list[](
 
 /datum/integrated_io/activate/ask_for_pin_data(mob/user) // This just pulses the pin.
 	holder.check_then_do_work(ignore_power = TRUE)
-	to_chat(user, "<span class='notice'>You pulse \the [holder]'s [src] pin.</span>")
+	to_chat(user, span_notice("You pulse \the [holder]'s [src] pin."))
 
 /datum/integrated_io/activate
 	name = "activation pin"

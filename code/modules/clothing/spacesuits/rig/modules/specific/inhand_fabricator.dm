@@ -26,11 +26,11 @@
 	if(target)
 		var/obj/item/firing = new fabrication_type()
 		firing.forceMove(get_turf(src))
-		H.visible_message("<span class='danger'>[H] launches \a [firing]!</span>")
+		H.visible_message(span_danger("[H] launches \a [firing]!"))
 		firing.throw_at(target,fire_force,fire_distance)
 	else
 		if(H.l_hand && H.r_hand)
-			to_chat(H, "<span class='danger'>Your hands are full.</span>")
+			to_chat(H, span_danger("Your hands are full."))
 		else
 			var/obj/item/new_weapon = new fabrication_type()
 			new_weapon.forceMove(H)

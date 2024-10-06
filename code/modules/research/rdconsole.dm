@@ -120,7 +120,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
 		if(t_disk || d_disk)
-			to_chat(user, "<span class='filter_notice'>A disk is already loaded into the machine.</span>")
+			to_chat(user, span_filter_notice("A disk is already loaded into the machine."))
 			return
 
 		if(istype(D, /obj/item/disk/tech_disk))
@@ -128,11 +128,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else if (istype(D, /obj/item/disk/design_disk))
 			d_disk = D
 		else
-			to_chat(user, "<span class='notice'>Machine cannot accept disks in that format.</span>")
+			to_chat(user, span_notice("Machine cannot accept disks in that format."))
 			return
 		user.drop_item()
 		D.loc = src
-		to_chat(user, "<span class='notice'>You add \the [D] to the machine.</span>")
+		to_chat(user, span_notice("You add \the [D] to the machine."))
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -153,7 +153,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		to_chat(user, "<span class='notice'>You disable the security protocols.</span>")
+		to_chat(user, span_notice("You disable the security protocols."))
 		return 1
 
 /obj/machinery/computer/rdconsole/proc/GetResearchLevelsInfo()

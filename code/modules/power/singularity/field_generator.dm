@@ -44,11 +44,11 @@ field_generator power level display
 	. = ..()
 	switch(state)
 		if(0)
-			. += "<span class='warning'>It is not secured in place!</span>"
+			. += span_warning("It is not secured in place!")
 		if(1)
-			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
+			. += span_warning("It has been bolted down securely, but not welded into place.")
 		if(2)
-			. += "<span class='notice'>It has been bolted down securely and welded down into place.</span>"
+			. += span_notice("It has been bolted down securely and welded down into place.")
 
 /obj/machinery/field_generator/update_icon()
 	cut_overlays()

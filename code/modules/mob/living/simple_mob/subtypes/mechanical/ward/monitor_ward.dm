@@ -60,7 +60,7 @@
 
 /mob/living/simple_mob/mechanical/ward/monitor/death()
 	if(owner)
-		to_chat(owner, span("warning", "Your [src.name] inside [get_area(src)] was destroyed!"))
+		to_chat(owner, span_warning("Your [src.name] inside [get_area(src)] was destroyed!"))
 	..()
 
 /mob/living/simple_mob/mechanical/ward/monitor/handle_special()
@@ -96,9 +96,9 @@
 			playsound(L, 'sound/effects/EMPulse.ogg', 75, 1)
 			L.break_cloak()
 
-			to_chat(L, span("danger", "\The [src] disrupts your cloak!"))
+			to_chat(L, span_danger("\The [src] disrupts your cloak!"))
 			if(owner)
-				to_chat(owner, span("notice", "Your [src.name] at [get_area(src)] uncloaked \the [L]."))
+				to_chat(owner, span_notice("Your [src.name] at [get_area(src)] uncloaked \the [L]."))
 
 		// Warn the owner when it sees a new mob.
 		if(!(L in seen_mobs))
@@ -106,7 +106,7 @@
 			newly_seen_mobs += L
 
 	if(newly_seen_mobs.len && owner) // Yell at our owner if someone new shows up.
-		to_chat(owner, span("notice", "Your [src.name] at [get_area(src)] detected [english_list(newly_seen_mobs)]."))
+		to_chat(owner, span_notice("Your [src.name] at [get_area(src)] detected [english_list(newly_seen_mobs)]."))
 
 	// Now get rid of old mobs that left vision.
 	for(var/thing in seen_mobs)

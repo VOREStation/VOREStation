@@ -17,14 +17,14 @@
 	if(istype(id))
 		if(check_access(id))
 			locked = !locked
-			to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src].</span>")
+			to_chat(user, span_warning("You [locked ? "enable" : "disable"] the safety lock on \the [src]."))
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
-		user.visible_message("<span class='notice'>[user] swipes \the [I] against \the [src].</span>")
+			to_chat(user, span_warning("Access denied."))
+		user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
 	else
 		return ..()
 
 /obj/item/grenade/spawnergrenade/manhacks/station/locked/emag_act(var/remaining_charges,var/mob/user)
 	..()
 	locked = !locked
-	to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src]!</span>")
+	to_chat(user, span_warning("You [locked ? "enable" : "disable"] the safety lock on \the [src]!"))

@@ -8,16 +8,16 @@
 /mob/proc/emote_dead(var/message)
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='danger'>You cannot send deadchat emotes (muted).</span>")
+		to_chat(src, span_danger("You cannot send deadchat emotes (muted)."))
 		return
 
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
-		to_chat(src, "<span class='danger'>You have deadchat muted.</span>")
+		to_chat(src, span_danger("You have deadchat muted."))
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
+			to_chat(src, span_danger("Deadchat is globally muted."))
 			return
 
 
@@ -32,6 +32,6 @@
 	if(input)
 		log_ghostemote(input, src)
 		if(!invisibility) //If the ghost is made visible by admins or cult. And to see if the ghost has toggled its own visibility, as well. -Mech
-			visible_message("<span class='deadsay'><B>[src]</B> [input]</span>")
+			visible_message(span_deadsay("<B>[src]</B> [input]"))
 		else
 			say_dead_direct(input, src)

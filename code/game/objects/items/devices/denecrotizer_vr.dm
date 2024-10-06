@@ -44,7 +44,7 @@
 	if(!ghostjoin)
 		return ..()
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		to_chat(user, span_warning("You cannot inhabit this creature because you are banned from playing ghost roles."))
 		return
 	if(!evaluate_ghost_join(user))
 		return ..()
@@ -77,11 +77,11 @@
 	ghostjoin = FALSE
 	ghostjoin_icon()
 	if(capture_caught)
-		to_chat(src, "<span class='notice'>You are bound to [revivedby], follow their commands within reason and to the best of your abilities, and avoid betraying or abandoning them.</span><span class= warning> You are allied with [revivedby]. Do not attack anyone for no reason. Of course, you may do scenes as you like, but you must still respect preferences.</span>")
+		to_chat(src, span_notice("You are bound to [revivedby], follow their commands within reason and to the best of your abilities, and avoid betraying or abandoning them.</span><span class= warning> You are allied with [revivedby]. Do not attack anyone for no reason. Of course, you may do scenes as you like, but you must still respect preferences."))
 		visible_message("[src]'s eyes flicker with a curious intelligence.", runemessage = "looks around")
 		return
 	if(revivedby != "no one")
-		to_chat(src, "<span class='notice'>Where once your life had been rough and scary, you have been assisted by [revivedby]. They seem to be the reason you are on your feet again... so perhaps you should help them out.</span> <span class= warning> Being as you were revived, you are allied with the station. Do not attack anyone unless they are threatening the one who revived you. And try to listen to the one who revived you within reason. Of course, you may do scenes as you like, but you must still respect preferences.</span>")
+		to_chat(src, span_notice("Where once your life had been rough and scary, you have been assisted by [revivedby]. They seem to be the reason you are on your feet again... so perhaps you should help them out.</span> <span class= warning> Being as you were revived, you are allied with the station. Do not attack anyone unless they are threatening the one who revived you. And try to listen to the one who revived you within reason. Of course, you may do scenes as you like, but you must still respect preferences."))
 		visible_message("[src]'s eyes flicker with a curious intelligence.", runemessage = "looks around")
 
 /// Evaluate someone for being allowed to join as this mob from being a ghost
@@ -92,15 +92,15 @@
 
 	// At this point we can at least send them messages as to why they can't join, since they are a mob with a client
 	if(!ghostjoin)
-		to_chat(D, "<span class='notice'>Sorry, [src] is no longer ghost-joinable.</span>")
+		to_chat(D, span_notice("Sorry, [src] is no longer ghost-joinable."))
 		return FALSE
 
 	if(ckey)
-		to_chat(D, "<span class='notice'>Sorry, someone else has already inhabited [src].</span>")
+		to_chat(D, span_notice("Sorry, someone else has already inhabited [src]."))
 		return FALSE
 
 	if(capture_caught && !D.client.prefs.capture_crystal)
-		to_chat(D, "<span class='notice'>Sorry, [src] is participating in capture mechanics, and your preferences do not allow for that.</span>")
+		to_chat(D, span_notice("Sorry, [src] is participating in capture mechanics, and your preferences do not allow for that."))
 		return FALSE
 
 	// Insert whatever ban checks you want here if we ever add simplemob bans
@@ -124,9 +124,9 @@
 	var/cooldowntime = round((cooldown - (world.time - last_used)) * 0.1)
 	if(Adjacent(user))
 		if(cooldowntime <= 0)
-			. += "<span class='notice'>The screen indicates that this device is ready to be used, and that it has enough energy for [charges] uses.</span>"
+			. += span_notice("The screen indicates that this device is ready to be used, and that it has enough energy for [charges] uses.")
 		else
-			. += "<span class='notice'>The screen indicates that this device can be used again in [cooldowntime] seconds, and that it has enough energy for [charges] uses.</span>"
+			. += span_notice("The screen indicates that this device can be used again in [cooldowntime] seconds, and that it has enough energy for [charges] uses.")
 
 /obj/item/denecrotizer/proc/check_target(mob/living/simple_mob/target, mob/living/user)
 	if(!target.Adjacent(user))
@@ -135,23 +135,23 @@
 		user.visible_message("[user] bonks [target] with [src].", runemessage = "bonks [target]")
 		return FALSE
 	if(!istype(target))
-		to_chat(user, "<span class='notice'>[target] seems to be too complicated for [src] to interface with.</span>")
+		to_chat(user, span_notice("[target] seems to be too complicated for [src] to interface with."))
 		return FALSE
 	if(!(world.time - last_used > cooldown))
-		to_chat(user, "<span class='notice'>[src] doesn't seem to be ready yet.</span>")
+		to_chat(user, span_notice("[src] doesn't seem to be ready yet."))
 		return FALSE
 	if(!charges)
-		to_chat(user, "<span class='notice'>[src] doesn't seem to be active anymore.</span>")
+		to_chat(user, span_notice("[src] doesn't seem to be active anymore."))
 		return FALSE
 	if(!target.ic_revivable)
-		to_chat(user, "<span class='notice'>[src] doesn't seem to interface with [target].</span>")
+		to_chat(user, span_notice("[src] doesn't seem to interface with [target]."))
 		return FALSE
 	if(target.stat != DEAD)
 		if(!advanced)
-			to_chat(user, "<span class='notice'>[src] doesn't seem to work on that.</span>")
+			to_chat(user, span_notice("[src] doesn't seem to work on that."))
 			return FALSE
 		if(target.ai_holder.retaliate || target.ai_holder.hostile) // You can be friends with still living mobs if they are passive I GUESS
-			to_chat(user, "<span class='notice'>[src] doesn't seem to work on that.</span>")
+			to_chat(user, span_notice("[src] doesn't seem to work on that."))
 			return FALSE
 		if(!target.mind)
 			user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
@@ -170,7 +170,7 @@
 					update_icon()
 			return FALSE
 		else
-			to_chat(user, "<span class='notice'>[src] doesn't seem to work on that.</span>")
+			to_chat(user, span_notice("[src] doesn't seem to work on that."))
 			return FALSE
 	return TRUE
 

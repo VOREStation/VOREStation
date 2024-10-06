@@ -21,7 +21,7 @@
 			if(C)
 				if(issilicon(L) && ((last_message + (1 MINUTE)) < world.time))
 					messaged_robots = TRUE
-					to_chat(L, SPAN_WARNING("SYSTEM ALERT: Energy drain detected!"))
+					to_chat(L, span_warning("SYSTEM ALERT: Energy drain detected!"))
 				C.charge = min(C.maxcharge, C.charge - amount)
 			continue
 

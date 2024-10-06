@@ -214,7 +214,7 @@ var/datum/gear_tweak/custom_name/gear_tweak_free_name = new()
 
 /datum/gear_tweak/custom_name/get_metadata(var/user, var/metadata)
 	if(jobban_isbanned(user, LOADOUT_BAN_STRING))
-		to_chat(user, SPAN_WARNING("You are banned from using custom loadout names/descriptions."))
+		to_chat(user, span_warning("You are banned from using custom loadout names/descriptions."))
 		return
 	if(valid_custom_names)
 		return tgui_input_list(user, "Choose an item name.", "Character Preference", valid_custom_names, metadata)
@@ -246,7 +246,7 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 
 /datum/gear_tweak/custom_desc/get_metadata(var/user, var/metadata)
 	if(jobban_isbanned(user, LOADOUT_BAN_STRING))
-		to_chat(user, SPAN_WARNING("You are banned from using custom loadout names/descriptions."))
+		to_chat(user, span_warning("You are banned from using custom loadout names/descriptions."))
 		return
 	if(valid_custom_desc)
 		return tgui_input_list(user, "Choose an item description.", "Character Preference",valid_custom_desc, metadata)

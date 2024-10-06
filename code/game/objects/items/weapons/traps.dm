@@ -29,15 +29,15 @@
 	..()
 	if(!deployed && can_use(user))
 		user.visible_message(
-			"<span class='danger'>[user] starts to deploy \the [src].</span>",
-			"<span class='danger'>You begin deploying \the [src]!</span>",
+			span_danger("[user] starts to deploy \the [src]."),
+			span_danger("You begin deploying \the [src]!"),
 			"You hear the slow creaking of a spring."
 			)
 
 		if (do_after(user, 60))
 			user.visible_message(
-				"<span class='danger'>[user] has deployed \the [src].</span>",
-				"<span class='danger'>You have deployed \the [src]!</span>",
+				span_danger("[user] has deployed \the [src]."),
+				span_danger("You have deployed \the [src]!"),
 				"You hear a latch click loudly."
 				)
 			playsound(src, 'sound/machines/click.ogg',70, 1)
@@ -51,26 +51,26 @@
 	if(has_buckled_mobs() && can_use(user))
 		var/victim = english_list(buckled_mobs)
 		user.visible_message(
-			"<span class='notice'>[user] begins freeing [victim] from \the [src].</span>",
-			"<span class='notice'>You carefully begin to free [victim] from \the [src].</span>",
+			span_notice("[user] begins freeing [victim] from \the [src]."),
+			span_notice("You carefully begin to free [victim] from \the [src]."),
 			)
 		if(do_after(user, 60))
-			user.visible_message("<span class='notice'>[victim] has been freed from \the [src] by [user].</span>")
+			user.visible_message(span_notice("[victim] has been freed from \the [src] by [user]."))
 			for(var/A in buckled_mobs)
 				unbuckle_mob(A)
 			anchored = FALSE
 	else if(deployed && can_use(user))
 		user.visible_message(
-			"<span class='danger'>[user] starts to disarm \the [src].</span>",
-			"<span class='notice'>You begin disarming \the [src]!</span>",
+			span_danger("[user] starts to disarm \the [src]."),
+			span_notice("You begin disarming \the [src]!"),
 			"You hear a latch click followed by the slow creaking of a spring."
 			)
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 		if(do_after(user, 60))
 			user.visible_message(
-				"<span class='danger'>[user] has disarmed \the [src].</span>",
-				"<span class='notice'>You have disarmed \the [src]!</span>"
+				span_danger("[user] has disarmed \the [src]."),
+				span_notice("You have disarmed \the [src]!")
 				)
 			deployed = 0
 			anchored = FALSE
@@ -103,7 +103,7 @@
 		var/mob/living/carbon/human/H = L
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(target_zone))
 		if(!affected) // took it clean off!
-			to_chat(H, "<span class='danger'>The steel jaws of \the [src] take your limb clean off!</span>")
+			to_chat(H, span_danger("The steel jaws of \the [src] take your limb clean off!"))
 			L.Stun(stun_length*2)
 			deployed = 0
 			anchored = FALSE
@@ -114,7 +114,7 @@
 	can_buckle = TRUE
 	buckle_mob(L)
 	L.Stun(stun_length)
-	to_chat(L, "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>")
+	to_chat(L, span_danger("The steel jaws of \the [src] bite into you, trapping you in place!"))
 	deployed = 0
 	anchored = FALSE
 	can_buckle = initial(can_buckle)
@@ -126,8 +126,8 @@
 		var/mob/living/L = AM
 		if(L.m_intent == "run")
 			L.visible_message(
-				"<span class='danger'>[L] steps on \the [src].</span>",
-				"<span class='danger'>You step on \the [src]!</span>",
+				span_danger("[L] steps on \the [src]."),
+				span_danger("You step on \the [src]!"),
 				"<b>You hear a loud metallic snap!</b>"
 				)
 			attack_mob(L)
@@ -194,16 +194,16 @@
 /obj/item/material/barbedwire/attack_hand(mob/user as mob)
 	if(anchored && can_use(user))
 		user.visible_message(
-			"<span class='danger'>[user] starts to collect \the [src].</span>",
-			"<span class='notice'>You begin collecting \the [src]!</span>",
+			span_danger("[user] starts to collect \the [src]."),
+			span_notice("You begin collecting \the [src]!"),
 			"You hear the sound of rustling [material.name]."
 			)
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 		if(do_after(user, health))
 			user.visible_message(
-				"<span class='danger'>[user] has collected \the [src].</span>",
-				"<span class='notice'>You have collected \the [src]!</span>"
+				span_danger("[user] has collected \the [src]."),
+				span_notice("You have collected \the [src]!")
 				)
 			anchored = FALSE
 			update_icon()
@@ -214,15 +214,15 @@
 	..()
 	if(!anchored && can_use(user))
 		user.visible_message(
-			"<span class='danger'>[user] starts to deploy \the [src].</span>",
-			"<span class='danger'>You begin deploying \the [src]!</span>",
+			span_danger("[user] starts to deploy \the [src]."),
+			span_danger("You begin deploying \the [src]!"),
 			"You hear the rustling of [material.name]."
 			)
 
 		if (do_after(user, 60))
 			user.visible_message(
-				"<span class='danger'>[user] has deployed \the [src].</span>",
-				"<span class='danger'>You have deployed \the [src]!</span>",
+				span_danger("[user] has deployed \the [src]."),
+				span_danger("You have deployed \the [src]!"),
 				"You hear the rustling of [material.name]."
 				)
 			playsound(src, 'sound/items/Wirecutter.ogg',70, 1)
@@ -273,8 +273,8 @@
 		var/mob/living/L = AM
 		if(L.m_intent == "run")
 			L.visible_message(
-				"<span class='danger'>[L] steps in \the [src].</span>",
-				"<span class='danger'>You step in \the [src]!</span>",
+				span_danger("[L] steps in \the [src]."),
+				span_danger("You step in \the [src]!"),
 				"<b>You hear a sharp rustling!</b>"
 				)
 			attack_mob(L)
@@ -366,7 +366,7 @@
 		if(H.species.flags & NO_MINOR_CUT)
 			return
 
-		to_chat(H, "<span class='danger'>You step directly on \the [src]!</span>")
+		to_chat(H, span_danger("You step directly on \the [src]!"))
 
 		var/list/check = list("l_foot", "r_foot")
 		while(check.len)

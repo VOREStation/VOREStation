@@ -8,8 +8,8 @@
 	name = "fortified body"
 	desc = "You are taking less damage from outside sources."
 
-	on_created_text = "<span class='critical'>Your body becomes a mountain to your enemies' storm.</span>"
-	on_expired_text = "<span class='notice'>Your body softens, returning to its regular durability.</span>"
+	on_created_text = span_critical("Your body becomes a mountain to your enemies' storm.")
+	on_expired_text = span_notice("Your body softens, returning to its regular durability.")
 	stacks = MODIFIER_STACK_EXTEND
 
 	disable_duration_percent = 0.25			// Disables only last 25% as long.
@@ -25,8 +25,8 @@
 	name = "phased"
 	desc = "You are partially shifted from the material plane."
 
-	on_created_text = "<span class='critical'>Your body pulses, before partially dematerializing.</span>"
-	on_expired_text = "<span class='notice'>Your body rematerializes fully.</span>"
+	on_created_text = span_critical("Your body pulses, before partially dematerializing.")
+	on_expired_text = span_notice("Your body rematerializes fully.")
 
 	stacks = MODIFIER_STACK_FORBID
 
@@ -50,8 +50,8 @@
 	name = "deep wounds"
 	desc = "Your wounds are mysteriously harder to mend."
 
-	on_created_text = "<span class='cult'>Your wounds pain you greatly.</span>"
-	on_expired_text = "<span class='notice'>Your wounds numb for a moment.</span>"
+	on_created_text = span_cult("Your wounds pain you greatly.")
+	on_expired_text = span_notice("Your wounds numb for a moment.")
 
 	stacks = MODIFIER_STACK_EXTEND
 
@@ -64,8 +64,8 @@
 	name = "aura of repair (cult)"
 	desc = "You are emitting a field of strange energy, capable of repairing occult constructs."
 
-	on_created_text = "<span class='cult'>You begin emitting an occult repair aura.</span>"
-	on_expired_text = "<span class='notice'>The occult repair aura fades.</span>"
+	on_created_text = span_cult("You begin emitting an occult repair aura.")
+	on_expired_text = span_notice("The occult repair aura fades.")
 	stacks = MODIFIER_STACK_EXTEND
 
 	mob_overlay_state = "cult_aura"
@@ -80,8 +80,8 @@
 	name = "agonize"
 	desc = "Your body is wracked with pain."
 
-	on_created_text = "<span class='cult'>A red lightning quickly covers your body. The pain is horrendous.</span>"
-	on_expired_text = "<span class='notice'>The lightning fades, and so too does the ongoing pain.</span>"
+	on_created_text = span_cult("A red lightning quickly covers your body. The pain is horrendous.")
+	on_expired_text = span_notice("The lightning fades, and so too does the ongoing pain.")
 
 	stacks = MODIFIER_STACK_EXTEND
 
@@ -93,15 +93,15 @@
 			var/mob/living/carbon/human/H = holder
 			H.apply_effect(20, AGONY)
 			if(prob(10))
-				to_chat(H, "<span class='warning'>Just make it stop!</span>")
+				to_chat(H, span_warning("Just make it stop!"))
 
 ////////// Target Modifier
 /datum/modifier/mend_occult
 	name = "occult mending"
 	desc = "Your body is mending, though at what cost?"
 
-	on_created_text = "<span class='cult'>Something haunting envelops your body as it begins to mend.</span>"
-	on_expired_text = "<span class='notice'>The cloak of unease dissipates.</span>"
+	on_created_text = span_cult("Something haunting envelops your body as it begins to mend.")
+	on_expired_text = span_notice("The cloak of unease dissipates.")
 
 	stacks = MODIFIER_STACK_EXTEND
 
@@ -144,7 +144,7 @@
 				if(!iscultist(H))
 					H.apply_effect(2, AGONY)
 				if(prob(10))
-					to_chat(H, "<span class='danger'>It feels as though your body is being torn apart!</span>")
+					to_chat(H, span_danger("It feels as though your body is being torn apart!"))
 			L.updatehealth()
 
 /datum/modifier/gluttonyregeneration
@@ -152,20 +152,20 @@
 	desc = "You are filled with an overwhelming hunger."
 	mob_overlay_state = "electricity"
 
-	on_created_text = "<span class='critical'>You feel an intense and overwhelming hunger overtake you as your body regenerates!</span>"
-	on_expired_text = "<span class='notice'>The blaze of hunger inside you has been snuffed.</span>"
+	on_created_text = span_critical("You feel an intense and overwhelming hunger overtake you as your body regenerates!")
+	on_expired_text = span_notice("The blaze of hunger inside you has been snuffed.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/gluttonyregeneration/can_apply(var/mob/living/L)
 	if(L.stat == DEAD)
-		to_chat(L, "<span class='warning'>You can't be dead to consume.</span>")
+		to_chat(L, span_warning("You can't be dead to consume."))
 		return FALSE
 
 	if(!L.is_sentient())
 		return FALSE // Drones don't feel anything, not even hunger.
 
 	if(L.has_modifier_of_type(/datum/modifier/berserk_exhaustion))
-		to_chat(L, "<span class='warning'>You recently berserked, so you are too tired to consume.</span>")
+		to_chat(L, span_warning("You recently berserked, so you are too tired to consume."))
 		return FALSE
 
 	if(!ishuman(L)) // Only humanoids feel hunger. Totally.
@@ -174,7 +174,7 @@
 	else
 		var/mob/living/carbon/human/H = L
 		if(H.species.name == "Diona")
-			to_chat(L, "<span class='warning'>You feel strange for a moment, but it passes.</span>")
+			to_chat(L, span_warning("You feel strange for a moment, but it passes."))
 			return FALSE // Happy trees aren't affected by incredible hunger.
 
 	return ..()

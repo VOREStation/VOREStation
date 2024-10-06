@@ -178,12 +178,12 @@
 				var/titlenote = "Note [alphabet_uppercase[currentnote]]"
 				if(!isnull(notetitle) && notetitle != "")
 					titlenote = notetitle
-				to_chat(usr, "<span class='notice'>Successfully printed [titlenote]!</span>")
+				to_chat(usr, span_notice("Successfully printed [titlenote]!"))
 				P.set_content( pencode2html(note), titlenote)
 			else
-				to_chat(usr, "<span class='notice'>You can only print to empty paper!</span>")
+				to_chat(usr, span_notice("You can only print to empty paper!"))
 		else
-			to_chat(usr, "<span class='notice'>You must be holding paper for the pda to print to!</span>")
+			to_chat(usr, span_notice("You must be holding paper for the pda to print to!"))
 
 
 /datum/data/pda/app/notekeeper/proc/changetonote(var/noteindex)

@@ -17,9 +17,9 @@
 
 /datum/disease2/effect/spin/activate(var/mob/living/carbon/mob,var/multiplier)
 	if(mob.buckled())
-		to_chat(viewers(mob),"<span class='warning'>[mob.name] struggles violently against their restraints!</span>")
+		to_chat(viewers(mob),span_warning("[mob.name] struggles violently against their restraints!"))
 	else
-		to_chat(viewers(mob),"<span class='warning'>[mob.name] spins around violently!</span>")
+		to_chat(viewers(mob),span_warning("[mob.name] spins around violently!"))
 		for(var/D in directions)
 			mob.dir = D
 			sleep(1)
@@ -47,7 +47,7 @@
 /datum/disease2/effect/size/activate(var/mob/living/carbon/mob,var/multiplier)
 	var/newsize = rand (25, 200)
 	mob.resize(newsize/100)
-	to_chat(viewers(mob),"<span class='warning'>[mob.name] suddenly changes size!</span>")
+	to_chat(viewers(mob),span_warning("[mob.name] suddenly changes size!"))
 
 /datum/disease2/effect/flip
 	name = "Flipponov's Disease"
@@ -59,5 +59,5 @@
 		var/mob/living/carbon/human/H = mob
 		H.emote("flip")
 	else
-		to_chat(viewers(mob),"<span class='warning'>[mob.name] does a backflip!</span>")
+		to_chat(viewers(mob),span_warning("[mob.name] does a backflip!"))
 		mob.SpinAnimation(7,1)

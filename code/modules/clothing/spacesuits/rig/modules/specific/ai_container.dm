@@ -155,9 +155,9 @@
 		if(istype(ai_card, /obj/item/aicard))
 			if(integrated_ai && !integrated_ai.stat)
 				if(user)
-					to_chat(user, "<span class='danger'>You cannot eject your currently stored AI. Purge it manually.</span>")
+					to_chat(user, span_danger("You cannot eject your currently stored AI. Purge it manually."))
 				return 0
-			to_chat(user, "<span class='danger'>You purge the previous AI from your Integrated Intelligence System, freeing it for use.</span>")
+			to_chat(user, span_danger("You purge the previous AI from your Integrated Intelligence System, freeing it for use."))
 			if(integrated_ai)
 				integrated_ai.ghostize()
 				qdel(integrated_ai)
@@ -209,8 +209,8 @@
 				integrated_ai = null
 				eject_ai()
 		else
-			to_chat(user, "<span class='warning'>There is no active AI within \the [ai].</span>")
+			to_chat(user, span_warning("There is no active AI within \the [ai]."))
 	else
-		to_chat(user, "<span class='warning'>There is no active AI within \the [ai].</span>")
+		to_chat(user, span_warning("There is no active AI within \the [ai]."))
 	update_verb_holder()
 	return

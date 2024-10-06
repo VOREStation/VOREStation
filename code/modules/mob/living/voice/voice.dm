@@ -83,14 +83,14 @@
 	var/new_name = sanitizeSafe(tgui_input_text(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(new_name)
 		if(comm)
-			comm.visible_message("<span class='notice'>[icon2html(comm,viewers(comm))] [src.name] has left, and now you see [new_name].</span>")
+			comm.visible_message(span_notice("[icon2html(comm,viewers(comm))] [src.name] has left, and now you see [new_name]."))
 		//Do a bit of logging in-case anyone tries to impersonate other characters for whatever reason.
 		var/msg = "[src.client.key] ([src]) has changed their communicator identity's name to [new_name]."
 		message_admins(msg)
 		log_game(msg)
 		src.name = new_name
 	else
-		to_chat(src, "<span class='warning'>Invalid name.  Rejected.</span>")
+		to_chat(src, span_warning("Invalid name.  Rejected."))
 
 // Proc: Life()
 // Parameters: None

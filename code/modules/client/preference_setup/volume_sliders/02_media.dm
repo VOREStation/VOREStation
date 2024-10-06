@@ -25,9 +25,9 @@
 	. += "Use HTML5 if it works for you. If neither HTML5 nor WMP work, you'll have to fall back to using VLC, "
 	. += "but this requires you have the VLC client installed on your comptuer."
 	. += "Try the others if you want but you'll probably just get no music.<br>"
-	. += (pref.media_player == 2) ? "<span class='linkOn'><b>HTML5</b></span> " : "<a href='?src=\ref[src];set_media_player=2'>HTML5</a> "
-	. += (pref.media_player == 1) ? "<span class='linkOn'><b>WMP</b></span> " : "<a href='?src=\ref[src];set_media_player=1'>WMP</a> "
-	. += (pref.media_player == 0) ? "<span class='linkOn'><b>VLC</b></span> " : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
+	. += (pref.media_player == 2) ? (span_linkOn(span_bold("HTML5")) + " ") : "<a href='?src=\ref[src];set_media_player=2'>HTML5</a> "
+	. += (pref.media_player == 1) ? (span_linkOn(span_bold("WMP")) + " ") : "<a href='?src=\ref[src];set_media_player=1'>WMP</a> "
+	. += (pref.media_player == 0) ? (span_linkOn(span_bold("VLC")) + " ") : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
 	. += "<br>"
 
 /datum/category_item/player_setup_item/volume_sliders/media/OnTopic(var/href, var/list/href_list, var/mob/user)

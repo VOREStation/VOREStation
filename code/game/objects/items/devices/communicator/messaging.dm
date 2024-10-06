@@ -44,7 +44,7 @@
 			random = random / 10
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
 	if(message == "text")
-		to_chat(src, "<span class='notice'>[icon2html(origin_atom,src.client)] Received text message from [origin_atom]: <b>\"[text]\"</b></span>")
+		to_chat(src, span_notice("[icon2html(origin_atom,src.client)] Received text message from [origin_atom]: <b>\"[text]\"</b>"))
 		src << 'sound/machines/defib_safetyOff.ogg'
 		exonet_messages.Add("<b>From [origin_atom]:</b><br>[text]")
 		return
@@ -95,7 +95,7 @@
 		L = loc
 
 	if(L)
-		to_chat(L, "<span class='notice'>[icon2html(src,L.client)] Message from [who]: <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)</span>")
+		to_chat(L, span_notice("[icon2html(src,L.client)] Message from [who]: <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)"))
 
 // This is the only Topic the communicators really uses
 /obj/item/communicator/Topic(href, href_list)
@@ -108,7 +108,7 @@
 				exonet.send_message(comm.exonet.address, "text", message)
 				im_list += list(list("address" = exonet.address, "to_address" = comm.exonet.address, "im" = message))
 				log_pda("(COMM: [src]) sent \"[message]\" to [exonet.get_atom_from_address(comm.exonet.address)]", usr)
-				to_chat(usr, "<span class='notice'>[icon2html(src,usr.client)] Sent message to [istype(comm, /obj/item/communicator) ? comm.owner : comm.name], <b>\"[message]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
+				to_chat(usr, span_notice("[icon2html(src,usr.client)] Sent message to [istype(comm, /obj/item/communicator) ? comm.owner : comm.name], <b>\"[message]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)"))
 
 // Verb: text_communicator()
 // Parameters: None
@@ -119,7 +119,7 @@
 	set desc = "If there is a communicator available, send a text message to it."
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
-		to_chat(src, "<span class='danger'>The game hasn't started yet!</span>")
+		to_chat(src, span_danger("The game hasn't started yet!"))
 		return
 
 	if (!src.stat)
@@ -130,7 +130,7 @@
 
 	for(var/mob/living/L in mob_list) //Simple check so you don't have dead people calling.
 		if(src.client.prefs.real_name == L.real_name)
-			to_chat(src, "<span class='danger'>Your identity is already present in the game world.  Please load in a different character first.</span>")
+			to_chat(src, span_danger("Your identity is already present in the game world.  Please load in a different character first."))
 			return
 
 	var/obj/machinery/exonet_node/E = get_exonet_node()
@@ -146,7 +146,7 @@
 		choices.Add(comm)
 
 	if(!choices.len)
-		to_chat(src, "<span class='danger'>There are no available communicators, sorry.</span>")
+		to_chat(src, span_danger("There are no available communicators, sorry."))
 		return
 
 	var/choice = tgui_input_list(src,"Send a text message to whom?", "Recipient Choice", choices)
@@ -157,7 +157,7 @@
 		if(text_message && O.exonet)
 			O.exonet.send_message(chosen_communicator.exonet.address, "text", text_message)
 
-			to_chat(src, "<span class='notice'>You have sent '[text_message]' to [chosen_communicator].</span>")
+			to_chat(src, span_notice("You have sent '[text_message]' to [chosen_communicator]."))
 			exonet_messages.Add("<b>To [chosen_communicator]:</b><br>[text_message]")
 			log_pda("(DCOMM: [src]) sent \"[text_message]\" to [chosen_communicator]", src)
 			for(var/mob/M in player_list)

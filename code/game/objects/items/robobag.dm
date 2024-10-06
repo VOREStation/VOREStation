@@ -29,7 +29,7 @@
 /obj/structure/closet/body_bag/cryobag/robobag/examine(mob/user)
 	. = ..()
 	if(corptag && Adjacent(user))
-		. += "<span class='notice'>[src] has a [corptag] attached to it.</span>"
+		. += span_notice("[src] has a [corptag] attached to it.")
 
 /obj/structure/closet/body_bag/cryobag/robobag/update_icon()
 	cut_overlays()
@@ -52,7 +52,7 @@
 		..()
 	if(corptag)
 		corptag.forceMove(get_turf(user))
-		to_chat(user, "<span class='notice'>You remove \the [corptag] from \the [src].</span>")
+		to_chat(user, span_notice("You remove \the [corptag] from \the [src]."))
 		corptag = null
 		update_icon()
 		return
@@ -93,12 +93,12 @@
 				corptag = W
 				user.unEquip(corptag)
 				corptag.loc = null
-				to_chat(user, "<span class='notice'>You swap \the [old_tag] for \the [corptag].</span>")
+				to_chat(user, span_notice("You swap \the [old_tag] for \the [corptag]."))
 			else
 				corptag = W
 				user.unEquip(corptag)
 				corptag.loc = null
-				to_chat(user, "<span class='notice'>You attach \the [corptag] to \the [src].</span>")
+				to_chat(user, span_notice("You attach \the [corptag] to \the [src]."))
 			update_icon()
 
 		else
@@ -109,8 +109,8 @@
 	desc = "Your software is being debugged."
 	mob_overlay_state = "signal_blue"
 
-	on_created_text = "<span class='notice'>You feel something pour over your senses.</span>"
-	on_expired_text = "<span class='notice'>Your mind is clear once more.</span>"
+	on_created_text = span_notice("You feel something pour over your senses.")
+	on_expired_text = span_notice("Your mind is clear once more.")
 	stacks = MODIFIER_STACK_FORBID
 
 /datum/modifier/fbp_debug/tick()

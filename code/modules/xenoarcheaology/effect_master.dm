@@ -108,7 +108,7 @@
 			my_effects += my_effect
 
 		else
-			to_chat(usr, "<span class='filter_notice'>This effect can not be applied to this atom type.</span>")
+			to_chat(usr, span_filter_notice("This effect can not be applied to this atom type."))
 			qdel(my_effect)
 
 /datum/component/artifact_master/proc/remove_effect()
@@ -237,7 +237,7 @@
 				warn = 1
 
 	if(warn && isliving(bumped))
-		to_chat(bumped, "<span class='filter_notice'><b>You accidentally touch \the [holder] as it hits you.</b></span>")
+		to_chat(bumped, span_filter_notice("<b>You accidentally touch \the [holder] as it hits you.</b>"))
 
 /datum/component/artifact_master/proc/on_bumped()
 	var/atom/movable/M = args[2]
@@ -258,7 +258,7 @@
 				warn = 1
 
 	if(warn && isliving(M))
-		to_chat(M, "<span class='filter_notice'><b>You accidentally touch \the [holder].</b></span>")
+		to_chat(M, span_filter_notice("<b>You accidentally touch \the [holder].</b>"))
 
 /datum/component/artifact_master/proc/on_attack_hand()
 	var/mob/living/user = args[2]
@@ -266,10 +266,10 @@
 		return
 
 	if (get_dist(user, holder) > 1)
-		to_chat(user, "<span class='filter_notice'>[span_red("You can't reach [holder] from here.")]</span>")
+		to_chat(user, span_filter_notice("[span_red("You can't reach [holder] from here.")]"))
 		return
 	if(ishuman(user) && user:gloves)
-		to_chat(user, "<span class='filter_notice'><b>You touch [holder]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].</span>")
+		to_chat(user, span_filter_notice("<b>You touch [holder]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))
 		return
 
 	var/triggered = FALSE
@@ -285,10 +285,10 @@
 			my_effect.DoEffectTouch(user)
 
 	if(triggered)
-		to_chat(user, "<span class='filter_notice'><b>You touch [holder].</b></span>")
+		to_chat(user, span_filter_notice("<b>You touch [holder].</b>"))
 
 	else
-		to_chat(user, "<span class='filter_notice'><b>You touch [holder],</b> [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].</span>")
+		to_chat(user, span_filter_notice("<b>You touch [holder],</b> [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))
 
 
 /datum/component/artifact_master/proc/on_attackby()

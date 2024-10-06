@@ -37,30 +37,30 @@
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		to_chat(user, "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>")
+		to_chat(user, span_notice("You need to take that [target.name] off before cleaning it."))
 	else if(istype(target,/obj/effect/decal/cleanable/blood))
-		to_chat(user, "<span class='notice'>You scrub \the [target.name] out.</span>")
+		to_chat(user, span_notice("You scrub \the [target.name] out."))
 		target.clean_blood()
 		return	//Blood is a cleanable decal, therefore needs to be accounted for before all cleanable decals.
 	else if(istype(target,/obj/effect/decal/cleanable))
-		to_chat(user, "<span class='notice'>You scrub \the [target.name] out.</span>")
+		to_chat(user, span_notice("You scrub \the [target.name] out."))
 		qdel(target)
 	else if(istype(target,/turf))
-		to_chat(user, "<span class='notice'>You scrub \the [target.name] clean.</span>")
+		to_chat(user, span_notice("You scrub \the [target.name] clean."))
 		var/turf/T = target
 		T.clean(src, user)
 	else if(istype(target,/obj/structure/sink))
-		to_chat(user, "<span class='notice'>You wet \the [src] in the sink.</span>")
+		to_chat(user, span_notice("You wet \the [src] in the sink."))
 		wet()
 	else
-		to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+		to_chat(user, span_notice("You clean \the [target.name]."))
 		target.clean_blood(TRUE)
 	return
 
 //attack_as_weapon
 /obj/item/soap/attack(mob/living/target, mob/living/user, var/target_zone)
 	if(target && user && ishuman(target) && ishuman(user) && !user.incapacitated() && user.zone_sel &&user.zone_sel.selecting == "mouth" )
-		user.visible_message("<span class='danger'>\The [user] washes \the [target]'s mouth out with soap!</span>")
+		user.visible_message(span_danger("\The [user] washes \the [target]'s mouth out with soap!"))
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //prevent spam
 		return
 	..()

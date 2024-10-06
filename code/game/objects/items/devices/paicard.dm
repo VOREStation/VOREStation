@@ -59,21 +59,21 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	if(pai != null) //Have a person in them already?
 		return ..()
 	if(is_damage_critical())
-		to_chat(usr, "<span class='warning'>That card is too damaged to activate!</span>")
+		to_chat(usr, span_warning("That card is too damaged to activate!"))
 		return
 	var/time_till_respawn = user.time_till_respawn()
 	if(time_till_respawn == -1) // Special case, never allowed to respawn
-		to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
+		to_chat(usr, span_warning("Respawning is not allowed!"))
 	else if(time_till_respawn) // Nonzero time to respawn
-		to_chat(usr, "<span class='warning'>You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
+		to_chat(usr, span_warning("You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes."))
 		return
 	if(jobban_isbanned(usr, JOB_PAI))
-		to_chat(usr,"<span class='warning'>You cannot join a pAI card when you are banned from playing as a pAI.</span>")
+		to_chat(usr,span_warning("You cannot join a pAI card when you are banned from playing as a pAI."))
 		return
 
 	for(var/ourkey in paikeys)
 		if(ourkey == user.ckey)
-			to_chat(usr, "<span class='warning'>You can't just rejoin any old pAI card!!! Your card still exists.</span>")
+			to_chat(usr, span_warning("You can't just rejoin any old pAI card!!! Your card still exists."))
 			return
 
 	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI, or submit yourself to being recruited?", "Confirmation", list("Inhabit", "Recruit", "Cancel"))
@@ -136,7 +136,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 
 /obj/item/paicard/proc/access_screen(mob/user)
 	if(is_damage_critical())
-		to_chat(user, "<span class='warning'>WARNING: CRITICAL HARDWARE FAILURE, SERVICE DEVICE IMMEDIATELY</span>")
+		to_chat(user, span_warning("WARNING: CRITICAL HARDWARE FAILURE, SERVICE DEVICE IMMEDIATELY"))
 		return
 	if (!in_range(src, user))
 		return
@@ -430,7 +430,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	if(pai)
 		return
 	if(last_notify == 0 || (5 MINUTES <= world.time - last_notify))
-		audible_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", hearing_distance = world.view, runemessage = "bleeps!")
+		audible_message(span_notice("\The [src] flashes a message across its screen, \"Additional personalities available for download.\""), hearing_distance = world.view, runemessage = "bleeps!")
 		last_notify = world.time
 
 /obj/item/paicard/emp_act(severity)
@@ -445,13 +445,13 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 
 /obj/item/paicard/see_emote(mob/living/M, text)
 	if(pai && pai.client && !pai.canmove)
-		var/rendered = "<span class='message'>[text]</span>"
+		var/rendered = span_message("[text]")
 		pai.show_message(rendered, 2)
 	..()
 
 /obj/item/paicard/show_message(msg, type, alt, alt_type)
 	if(pai && pai.client)
-		var/rendered = "<span class='message'>[msg]</span>"
+		var/rendered = span_message("[msg]")
 		pai.show_message(rendered, type)
 	..()
 

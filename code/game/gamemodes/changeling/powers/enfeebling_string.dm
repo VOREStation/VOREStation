@@ -15,8 +15,8 @@
 	max_health_percent = 0.7
 	outgoing_melee_damage_percent = 0.75
 	incoming_damage_percent = 1.1
-	on_created_text = "<span class='danger'>You feel a small prick and you feel extremly weak!</span>"
-	on_expired_text = "<span class='notice'>You no longer feel extremly weak.</span>"
+	on_created_text = span_danger("You feel a small prick and you feel extremly weak!")
+	on_expired_text = span_notice("You no longer feel extremly weak.")
 
 // Now YOU'RE the Teshari!
 /datum/modifier/enfeeble/strong
@@ -40,7 +40,7 @@
 		var/type_to_give = /datum/modifier/enfeeble
 		if(src.mind.changeling.recursive_enhancement)
 			type_to_give = /datum/modifier/enfeeble/strong
-			to_chat(src, "<span class='notice'>We make them extremely weak.</span>")
+			to_chat(src, span_notice("We make them extremely weak."))
 		H.add_modifier(type_to_give, 2 MINUTES)
 	feedback_add_details("changeling_powers","ES")
 	return 1

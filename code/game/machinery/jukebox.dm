@@ -80,7 +80,7 @@
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
-		audible_message("<span class='notice'>\The [src] begins to play [current_track.display()].</span>", runemessage = "[current_track.display()]")
+		audible_message(span_notice("\The [src] begins to play [current_track.display()]."), runemessage = "[current_track.display()]")
 	else
 		media_url = ""
 		media_start_time = 0
@@ -110,7 +110,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		if(playing)
 			StopPlaying()
-		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+		user.visible_message(span_warning("[user] has [anchored ? "un" : ""]secured \the [src]."), span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		power_change()
@@ -158,10 +158,10 @@
 
 /obj/machinery/media/jukebox/tgui_status(mob/user)
 	if(inoperable())
-		to_chat(user, "<span class='warning'>[src] doesn't appear to function.</span>")
+		to_chat(user, span_warning("[src] doesn't appear to function."))
 		return STATUS_CLOSE
 	if(!anchored)
-		to_chat(user, "<span class='warning'>You must secure [src] first.</span>")
+		to_chat(user, span_warning("You must secure [src] first."))
 		return STATUS_CLOSE
 	. = ..()
 
@@ -255,7 +255,7 @@
 
 /obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)
-	src.visible_message("<span class='danger'>\The [src] blows apart!</span>", 1)
+	src.visible_message(span_danger("\The [src] blows apart!"), 1)
 
 	explosion(src.loc, 0, 0, 1, rand(1,2), 1)
 
@@ -276,7 +276,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		if(playing)
 			StopPlaying()
-		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+		user.visible_message(span_warning("[user] has [anchored ? "un" : ""]secured \the [src]."), span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		power_change()
@@ -288,7 +288,7 @@
 	if(!emagged)
 		emagged = 1
 		StopPlaying()
-		visible_message("<span class='danger'>\The [src] makes a fizzling sound.</span>")
+		visible_message(span_danger("\The [src] makes a fizzling sound."))
 		update_icon()
 		return 1
 
@@ -441,7 +441,7 @@
 			qdel(T)
 			return
 
-	to_chat(C, "<span class='warning'>Couldn't find a track matching the specified parameters.</span>")
+	to_chat(C, span_warning("Couldn't find a track matching the specified parameters."))
 
 /obj/machinery/media/jukebox/ghost/vv_get_dropdown()
 	. = ..()

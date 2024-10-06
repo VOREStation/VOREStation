@@ -306,7 +306,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(src == H.wear_suit)
-			to_chat(H, "<span class='notice'>You need help taking this off!</span>")
+			to_chat(H, span_notice("You need help taking this off!"))
 			return
 	..()
 
@@ -953,11 +953,11 @@
 	if(rolled == 0)
 		rolled = 1
 		body_parts_covered &= ~(ARMS)
-		to_chat(usr, "<span class='notice'>You roll up the sleeves of your [src].</span>")
+		to_chat(usr, span_notice("You roll up the sleeves of your [src]."))
 	else
 		rolled = 0
 		body_parts_covered = initial(body_parts_covered)
-		to_chat(usr, "<span class='notice'>You roll down the sleeves of your [src].</span>")
+		to_chat(usr, span_notice("You roll down the sleeves of your [src]."))
 	update_icon()
 
 /obj/item/clothing/suit/storage/flannel/verb/tuck()
@@ -969,10 +969,10 @@
 
 	if(tucked == 0)
 		tucked = 1
-		to_chat(usr, "<span class='notice'>You tuck in your your [src].</span>")
+		to_chat(usr, span_notice("You tuck in your your [src]."))
 	else
 		tucked = 0
-		to_chat(usr, "<span class='notice'>You untuck your [src].</span>")
+		to_chat(usr, span_notice("You untuck your [src]."))
 	update_icon()
 
 /obj/item/clothing/suit/storage/flannel/verb/button()
@@ -985,11 +985,11 @@
 	if(buttoned == 0)
 		buttoned = 1
 		flags_inv = HIDETIE|HIDEHOLSTER
-		to_chat(usr, "<span class='notice'>You button your [src].</span>")
+		to_chat(usr, span_notice("You button your [src]."))
 	else
 		buttoned = 0
 		flags_inv = HIDEHOLSTER
-		to_chat(usr, "<span class='notice'>You unbutton your [src].</span>")
+		to_chat(usr, span_notice("You unbutton your [src]."))
 	update_icon()
 
 /obj/item/clothing/suit/storage/flannel/update_icon()

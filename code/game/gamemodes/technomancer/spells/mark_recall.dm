@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 
 /obj/item/spell/mark/on_use_cast(var/mob/living/user)
 	if(!allowed_to_teleport()) // Otherwise you could teleport back to the admin Z-level.
-		to_chat(user, "<span class='warning'>You can't teleport here!</span>")
+		to_chat(user, span_warning("You can't teleport here!"))
 		return 0
 	if(pay_energy(1000))
 		//VOREStation Add - Multiple technomancer support
@@ -50,16 +50,16 @@ GLOBAL_LIST_INIT(mark_spells, list())
 		//They have one in the list
 		if(istype(marker))
 			qdel(marker)
-			to_chat(user, "<span class='notice'>Your mark is moved from its old position to \the [get_turf(user)] under you.</span>")
+			to_chat(user, span_notice("Your mark is moved from its old position to \the [get_turf(user)] under you."))
 		//They don't have one yet
 		else
-			to_chat(user, "<span class='notice'>You mark \the [get_turf(user)] under you.</span>")
+			to_chat(user, span_notice("You mark \the [get_turf(user)] under you."))
 		GLOB.mark_spells[WEAKREF(user)] = new /datum/technomancer_marker(user)
 		//VOREStation Add End
 		adjust_instability(5)
 		return 1
 	else
-		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
+		to_chat(user, span_warning("You can't afford the energy cost!"))
 		return 0
 
 //Recall
@@ -85,21 +85,21 @@ GLOBAL_LIST_INIT(mark_spells, list())
 	if(pay_energy(3000))
 		var/datum/technomancer_marker/marker = GLOB.mark_spells[WEAKREF(user)] //VOREStation Add - Multiple technomancer support
 		if(!istype(marker))
-			to_chat(user, "<span class='danger'>There's no Mark!</span>")
+			to_chat(user, span_danger("There's no Mark!"))
 			return 0
 		else
 			if(!allowed_to_teleport())
-				to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
+				to_chat(user, span_warning("Teleportation doesn't seem to work here."))
 				return
-			visible_message("<span class='warning'>\The [user] starts glowing!</span>")
+			visible_message(span_warning("\The [user] starts glowing!"))
 			var/light_intensity = 2
 			var/time_left = 3
 			if(check_for_scepter())
 				time_left = 2
 			while(time_left)
 				if(user.incapacitated())
-					visible_message("<span class='notice'>\The [user]'s glow fades.</span>")
-					to_chat(user, "<span class='danger'>You cannot Recall while incapacitated!</span>")
+					visible_message(span_notice("\The [user]'s glow fades."))
+					to_chat(user, span_danger("You cannot Recall while incapacitated!"))
 					return 0
 				light_intensity++
 				set_light(light_intensity, light_intensity, l_color = "#006AFF")
@@ -112,10 +112,10 @@ GLOBAL_LIST_INIT(mark_spells, list())
 			for(var/obj/item/grab/G in user.contents) // People the Technomancer is grabbing come along for the ride.
 				if(G.affecting)
 					G.affecting.forceMove(locate( target_turf.x+rand(-1,1), target_turf.y+rand(-1,1), target_turf.z))
-					to_chat(G.affecting, "<span class='warning'>You are teleported along with [user]!</span>")
+					to_chat(G.affecting, span_warning("You are teleported along with [user]!"))
 
 			user.forceMove(target_turf)
-			to_chat(user, "<span class='notice'>You are teleported to your Mark.</span>")
+			to_chat(user, span_notice("You are teleported to your Mark."))
 
 			playsound(target_turf, 'sound/effects/phasein.ogg', 25, 1)
 			playsound(target_turf, 'sound/effects/sparks2.ogg', 50, 1)
@@ -126,5 +126,5 @@ GLOBAL_LIST_INIT(mark_spells, list())
 			qdel(src)
 			return 1
 	else
-		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
+		to_chat(user, span_warning("You can't afford the energy cost!"))
 		return 0

@@ -177,7 +177,7 @@
 	if(old_stat != stat)
 		update_icon()
 	if(inserted_id && !powered())
-		visible_message("<span class='notice'>The ID slot indicator light flickers on \the [src] as it spits out a card before powering down.</span>")
+		visible_message(span_notice("The ID slot indicator light flickers on \the [src] as it spits out a card before powering down."))
 		inserted_id.forceMove(get_turf(src))
 
 /obj/machinery/mineral/equipment_vendor/update_icon()
@@ -279,7 +279,7 @@
 				return
 			var/datum/data/mining_equipment/prize = prize_list[category][name]
 			if(prize.cost > get_points(inserted_id)) // shouldn't be able to access this since the button is greyed out, but..
-				to_chat(usr, "<span class='danger'>You have insufficient points.</span>")
+				to_chat(usr, span_danger("You have insufficient points."))
 				flick(icon_deny, src) //VOREStation Add
 				return
 

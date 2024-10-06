@@ -102,11 +102,11 @@
 /obj/item/gun/projectile/dartgun/examine(mob/user)
 	. = ..()
 	if(beakers.len)
-		. += "<span class='notice'>[src] contains:</span>"
+		. += span_notice("[src] contains:")
 		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					. += "<span class='notice'>[R.volume] units of [R.name]</span>"
+					. += span_notice("[R.volume] units of [R.name]")
 
 /obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/glass))

@@ -106,7 +106,7 @@
 	if(inuse)
 		return 0
 
-	user.visible_message("<span class='danger'>\The [user] is trying to inject \the [M] with \the [src]!</span>")
+	user.visible_message(span_danger("\The [user] is trying to inject \the [M] with \the [src]!"))
 	inuse = 1
 	s_time = world.time
 	spawn(50)
@@ -118,11 +118,11 @@
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.do_attack_animation(M)
 
-	M.visible_message("<span class='danger'>\The [M] has been injected with \the [src] by \the [user].</span>")
+	M.visible_message(span_danger("\The [M] has been injected with \the [src] by \the [user]."))
 
 	var/mob/living/carbon/human/H = M
 	if(!istype(H))
-		to_chat(user, "<span class='warning'>Apparently it didn't work...</span>")
+		to_chat(user, span_warning("Apparently it didn't work..."))
 		return
 
 	// Used by admin log.

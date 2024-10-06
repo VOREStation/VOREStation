@@ -3,10 +3,10 @@ import { flow } from 'common/fp';
 import { BooleanLike, classes } from 'common/react';
 import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
-import { Button, ByondUi, Dropdown, Flex, Input, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Button, Dropdown, Flex, Input, Section } from 'tgui/components';
+import { Window } from 'tgui/layouts';
+import { ByondUi } from 'tgui-core/components';
 
 type activeCamera = { name: string; status: BooleanLike } | null;
 

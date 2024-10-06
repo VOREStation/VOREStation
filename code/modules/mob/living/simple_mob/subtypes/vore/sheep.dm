@@ -93,7 +93,7 @@
 		if(!harvestable_wool)
 			return ..()
 		if(do_after(user, 3 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
-			user.visible_message("<span class='notice'>\The [user] shears \the [src] with \the [O].</span>","<span class='notice'>You shear \the [src] with \the [O].</span>")
+			user.visible_message(span_notice("\The [user] shears \the [src] with \the [O]."),span_notice("You shear \the [src] with \the [O]."))
 			var/obj/item/stack/material/fur/wool/W = new(get_turf(user))
 			harvestable_wool = FALSE
 			update_icon()

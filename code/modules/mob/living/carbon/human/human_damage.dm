@@ -217,7 +217,7 @@
 	if(HULK in mutations)	return
 	// Notify our AI if they can now control the suit.
 	if(wearing_rig && !stat && paralysis < amount) //We are passing out right this second.
-		wearing_rig.notify_ai("<span class='danger'>Warning: user consciousness failure. Mobility control passed to integrated intelligence system.</span>")
+		wearing_rig.notify_ai(span_danger("Warning: user consciousness failure. Mobility control passed to integrated intelligence system."))
 	..()
 
 /mob/living/carbon/human/proc/Stasis(amount)
@@ -269,21 +269,21 @@
 			if (candidates.len)
 				var/obj/item/organ/external/O = pick(candidates)
 				O.mutate()
-				to_chat(src, "<span class='notice'>Something is not right with your [O.name]...</span>")
+				to_chat(src, span_notice("Something is not right with your [O.name]..."))
 				return
 	else
 		if (prob(heal_prob))
 			for (var/obj/item/organ/external/O in organs)
 				if (O.status & ORGAN_MUTATED)
 					O.unmutate()
-					to_chat(src, "<span class='notice'>Your [O.name] is shaped normally again.</span>")
+					to_chat(src, span_notice("Your [O.name] is shaped normally again."))
 					return
 
 	if (getCloneLoss() < 1)
 		for (var/obj/item/organ/external/O in organs)
 			if (O.status & ORGAN_MUTATED)
 				O.unmutate()
-				to_chat(src, "<span class='notice'>Your [O.name] is shaped normally again.</span>")
+				to_chat(src, span_notice("Your [O.name] is shaped normally again."))
 	BITSET(hud_updateflag, HEALTH_HUD)
 
 // Defined here solely to take species flags into account without having to recast at mob/living level.

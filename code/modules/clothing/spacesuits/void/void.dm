@@ -63,11 +63,11 @@
 
 /obj/item/clothing/suit/space/void/examine(user)
 	. = ..()
-	. += to_chat(usr, "<span class='notice'>Alt-click to relase Tank/Cooling unit if installed.</span>")
+	. += to_chat(usr, span_notice("Alt-click to relase Tank/Cooling unit if installed."))
 	for(var/obj/item/I in list(helmet,boots,tank,cooler))
 		. += "It has \a [I] installed."
 	if(tank && in_range(src,user))
-		. += "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
+		. += span_notice("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 
 /obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()
@@ -180,22 +180,22 @@
 	if(H.wear_suit != src) return
 
 	if(helmet.light_on)
-		to_chat(H, SPAN_NOTICE("The helmet light shuts off as it retracts."))
+		to_chat(H, span_notice("The helmet light shuts off as it retracts."))
 		helmet.update_flashlight(H)
 
 	if(H.head == helmet)
-		to_chat(H, SPAN_NOTICE("You retract your suit helmet."))
+		to_chat(H, span_notice("You retract your suit helmet."))
 		helmet.canremove = TRUE
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 		playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 	else
 		if(H.head)
-			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head]."))
+			to_chat(H, span_danger("You cannot deploy your helmet while wearing \the [H.head]."))
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.canremove = FALSE
-			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
+			to_chat(H, span_info("You deploy your suit helmet, sealing you off from the world."))
 			playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
 
 /obj/item/clothing/suit/space/void/AltClick(mob/living/user)
@@ -211,7 +211,7 @@
 	var/mob/living/carbon/human/H = usr
 
 	if(!tank && !cooler)
-		to_chat(H, SPAN_NOTICE("There is no tank or cooling unit inserted."))
+		to_chat(H, span_notice("There is no tank or cooling unit inserted."))
 		return
 
 	if(!istype(H)) return
@@ -225,7 +225,7 @@
 	else
 		removing = cooler
 		cooler = null
-	to_chat(H, SPAN_DANGER("You press the emergency release, ejecting \the [removing] from your suit."))
+	to_chat(H, span_danger("You press the emergency release, ejecting \the [removing] from your suit."))
 	playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 	removing.canremove = TRUE
 	H.drop_from_inventory(removing)
@@ -238,7 +238,7 @@
 		return ..()
 
 	if(user.get_inventory_slot(src) == slot_wear_suit)
-		to_chat(user, "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>")
+		to_chat(user, span_warning("You cannot modify \the [src] while it is being worn."))
 		return
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))

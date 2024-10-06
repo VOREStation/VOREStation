@@ -31,7 +31,7 @@
 /obj/item/cane/concealed/attack_self(var/mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
 	if(concealed_blade)
-		user.visible_message("<span class='warning'>[user] has unsheathed \a [concealed_blade] from [T.his] [src]!</span>", "You unsheathe \the [concealed_blade] from \the [src].")
+		user.visible_message(span_warning("[user] has unsheathed \a [concealed_blade] from [T.his] [src]!"), "You unsheathe \the [concealed_blade] from \the [src].")
 		// Calling drop/put in hands to properly call item drop/pickup procs
 		playsound(src, 'sound/weapons/holster/sheathout.ogg', 50, 1)
 		user.drop_from_inventory(src)
@@ -47,7 +47,7 @@
 /obj/item/cane/concealed/attackby(var/obj/item/material/sword/katana/caneblade/W, var/mob/user)
 	if(!src.concealed_blade && istype(W))
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
-		user.visible_message("<span class='warning'>[user] has sheathed \a [W] into [T.his] [src]!</span>", "You sheathe \the [W] into \the [src].")
+		user.visible_message(span_warning("[user] has sheathed \a [W] into [T.his] [src]!"), "You sheathe \the [W] into \the [src].")
 		playsound(src, 'sound/weapons/holster/sheathin.ogg', 50, 1)
 		user.drop_from_inventory(W)
 		W.loc = src
@@ -73,7 +73,7 @@
 
 /obj/item/cane/white/attack(mob/M as mob, mob/user as mob)
     if(user.a_intent == I_HELP)
-        user.visible_message("<span class='notice'>\The [user] has lightly tapped [M] on the ankle with their white cane!</span>")
+        user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
         return TRUE
     else
         . = ..()
@@ -98,7 +98,7 @@
 	on = !on
 	if(on)
 		user.visible_message("<b>\The [user]</b> extends the white cane.",\
-				"<span class='warning'>You extend the white cane.</span>",\
+				span_warning("You extend the white cane."),\
 				"You hear an ominous click.")
 		icon_state = "whitecane1out"
 		item_state_slots = list(slot_r_hand_str = "whitecane", slot_l_hand_str = "whitecane")
@@ -107,7 +107,7 @@
 		attack_verb = list("smacked", "struck", "cracked", "beaten")
 	else
 		user.visible_message("<b>\The [user]</b> collapses the white cane.",\
-		"<span class='notice'>You collapse the white cane.</span>",\
+		span_notice("You collapse the white cane."),\
 		"You hear a click.")
 		icon_state = "whitecane1in"
 		item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)

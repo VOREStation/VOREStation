@@ -58,6 +58,7 @@ export const OperatingComputerOptions = (props) => {
           value={oxyAlarm}
           stepPixelSize={5}
           ml="0"
+          format={(val) => val + '%'}
           onChange={(e, val: number) =>
             act('oxy_adj', {
               new: val,

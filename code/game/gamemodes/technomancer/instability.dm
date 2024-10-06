@@ -109,7 +109,7 @@
 						sparks.set_up(5, 0, src)
 						sparks.attach(loc)
 						sparks.start()
-						visible_message("<span class='warning'>Electrical sparks manifest from nowhere around \the [src]!</span>")
+						visible_message(span_warning("Electrical sparks manifest from nowhere around \the [src]!"))
 						qdel(sparks)
 					if(1)
 						return
@@ -121,13 +121,13 @@
 						electrocute_act(instability * 0.3, "unstable energies", 0.75)
 					if(1)
 						adjustFireLoss(instability * 0.15) //7.5 burn @ 50 instability
-						to_chat(src, "<span class='danger'>Your chassis alerts you to overheating from an unknown external force!</span>")
+						to_chat(src, span_danger("Your chassis alerts you to overheating from an unknown external force!"))
 					if(2)
 						adjustBruteLoss(instability * 0.15) //7.5 brute @ 50 instability
-						to_chat(src, "<span class='danger'>Your chassis makes the sound of metal groaning!</span>")
+						to_chat(src, span_danger("Your chassis makes the sound of metal groaning!"))
 					if(3)
 						safe_blink(src, range = 6)
-						to_chat(src, "<span class='warning'>You're teleported against your will!</span>")
+						to_chat(src, span_warning("You're teleported against your will!"))
 					if(4)
 						emp_act(3)
 
@@ -140,10 +140,10 @@
 						emp_act(2)
 					if(2)
 						adjustFireLoss(instability * 0.3) //30 burn @ 100 instability
-						to_chat(src, "<span class='danger'>Your chassis alerts you to extreme overheating from an unknown external force!</span>")
+						to_chat(src, span_danger("Your chassis alerts you to extreme overheating from an unknown external force!"))
 					if(3)
 						adjustBruteLoss(instability * 0.3) //30 brute @ 100 instability
-						to_chat(src, "<span class='danger'>Your chassis makes the sound of metal groaning and tearing!</span>")
+						to_chat(src, span_danger("Your chassis makes the sound of metal groaning and tearing!"))
 
 			if(101 to 200) //Lethal
 				rng = rand(0,4)
@@ -154,10 +154,10 @@
 						emp_act(1)
 					if(2)
 						adjustFireLoss(instability * 0.4) //40 burn @ 100 instability
-						to_chat(src, "<span class='danger'>Your chassis alerts you to extreme overheating from an unknown external force!</span>")
+						to_chat(src, span_danger("Your chassis alerts you to extreme overheating from an unknown external force!"))
 					if(3)
 						adjustBruteLoss(instability * 0.4) //40 brute @ 100 instability
-						to_chat(src, "<span class='danger'>Your chassis makes the sound of metal groaning and tearing!</span>")
+						to_chat(src, span_danger("Your chassis makes the sound of metal groaning and tearing!"))
 
 /mob/living/carbon/human/instability_effects()
 	if(instability)
@@ -174,7 +174,7 @@
 						sparks.set_up(5, 0, src)
 						sparks.attach(loc)
 						sparks.start()
-						visible_message("<span class='warning'>Electrical sparks manifest from nowhere around \the [src]!</span>")
+						visible_message(span_warning("Electrical sparks manifest from nowhere around \the [src]!"))
 						qdel(sparks)
 					if(1)
 						return
@@ -189,23 +189,23 @@
 					if(2)
 						if(can_feel_pain())
 							apply_effect(instability * 0.3, AGONY)
-							to_chat(src, "<span class='danger'>You feel a sharp pain!</span>")
+							to_chat(src, span_danger("You feel a sharp pain!"))
 					if(3)
 						apply_effect(instability * 0.3, EYE_BLUR)
-						to_chat(src, "<span class='danger'>Your eyes start to get cloudy!</span>")
+						to_chat(src, span_danger("Your eyes start to get cloudy!"))
 					if(4)
 						electrocute_act(instability * 0.3, "unstable energies")
 					if(5)
 						adjustFireLoss(instability * 0.15) //7.5 burn @ 50 instability
-						to_chat(src, "<span class='danger'>You feel your skin burn!</span>")
+						to_chat(src, span_danger("You feel your skin burn!"))
 					if(6)
 						adjustBruteLoss(instability * 0.15) //7.5 brute @ 50 instability
-						to_chat(src, "<span class='danger'>You feel a sharp pain as an unseen force harms your body!</span>")
+						to_chat(src, span_danger("You feel a sharp pain as an unseen force harms your body!"))
 					if(7)
 						adjustToxLoss(instability * 0.15) //7.5 tox @ 50 instability
 					if(8)
 						safe_blink(src, range = 6)
-						to_chat(src, "<span class='warning'>You're teleported against your will!</span>")
+						to_chat(src, span_warning("You're teleported against your will!"))
 
 			if(50 to 100) //Severe
 				rng = rand(0,8)
@@ -217,18 +217,18 @@
 					if(2)
 						if(can_feel_pain())
 							apply_effect(instability * 0.7, AGONY)
-							to_chat(src, "<span class='danger'>You feel an extremly angonizing pain from all over your body!</span>")
+							to_chat(src, span_danger("You feel an extremly angonizing pain from all over your body!"))
 					if(3)
 						apply_effect(instability * 0.5, EYE_BLUR)
-						to_chat(src, "<span class='danger'>Your eyes start to get cloudy!</span>")
+						to_chat(src, span_danger("Your eyes start to get cloudy!"))
 					if(4)
 						electrocute_act(instability * 0.5, "extremely unstable energies")
 					if(5)
 						fire_act()
-						to_chat(src, "<span class='danger'>You spontaneously combust!</span>")
+						to_chat(src, span_danger("You spontaneously combust!"))
 					if(6)
 						adjustCloneLoss(instability * 0.05) //5 cloneloss @ 100 instability
-						to_chat(src, "<span class='danger'>You feel your body slowly degenerate.</span>")
+						to_chat(src, span_danger("You feel your body slowly degenerate."))
 					if(7)
 						adjustToxLoss(instability * 0.25) //25 tox @ 100 instability
 
@@ -238,24 +238,24 @@
 					if(0)
 						apply_effect(instability, IRRADIATE)
 					if(1)
-						visible_message("<span class='warning'>\The [src] suddenly collapses!</span>",
-						"<span class='danger'>You suddenly feel very light-headed, and faint!</span>")
+						visible_message(span_warning("\The [src] suddenly collapses!"),
+						span_danger("You suddenly feel very light-headed, and faint!"))
 						Paralyse(instability * 0.1)
 					if(2)
 						if(can_feel_pain())
 							apply_effect(instability, AGONY)
-							to_chat(src, "<span class='danger'>You feel an extremly angonizing pain from all over your body!</span>")
+							to_chat(src, span_danger("You feel an extremly angonizing pain from all over your body!"))
 					if(3)
 						apply_effect(instability, EYE_BLUR)
-						to_chat(src, "<span class='danger'>Your eyes start to get cloudy!</span>")
+						to_chat(src, span_danger("Your eyes start to get cloudy!"))
 					if(4)
 						electrocute_act(instability, "extremely unstable energies")
 					if(5)
 						fire_act()
-						to_chat(src, "<span class='danger'>You spontaneously combust!</span>")
+						to_chat(src, span_danger("You spontaneously combust!"))
 					if(6)
 						adjustCloneLoss(instability * 0.10) //5 cloneloss @ 100 instability
-						to_chat(src, "<span class='danger'>You feel your body slowly degenerate.</span>")
+						to_chat(src, span_danger("You feel your body slowly degenerate."))
 					if(7)
 						adjustToxLoss(instability * 0.40) //40 tox @ 100 instability
 
@@ -282,9 +282,9 @@
 	amount = amount * armor_factor
 	if(amount && prob(10))
 		if(isSynthetic())
-			to_chat(src, "<span class='cult'><font size='4'>Warning: Anomalous field detected.</font></span>")
+			to_chat(src, span_cult("<font size='4'>Warning: Anomalous field detected.</font>"))
 		else
-			to_chat(src, "<span class='cult'><font size='4'>The purple glow makes you feel strange...</font></span>")
+			to_chat(src, span_cult("<font size='4'>The purple glow makes you feel strange...</font>"))
 	adjust_instability(amount)
 
 #undef TECHNOMANCER_INSTABILITY_DECAY

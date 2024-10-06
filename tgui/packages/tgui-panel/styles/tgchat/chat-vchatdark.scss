@@ -222,6 +222,10 @@ a.popt {
   color: #638500;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /* ADD HERE FOR BOLD */
 
 .bold,
@@ -375,9 +379,12 @@ img.icon.bigicon {
 .npcsay,
 .infoplain,
 .oocplain,
-.warningplain,
 .chatexport,
 .body {
+}
+
+.warningplain {
+  font-style: italic;
 }
 
 .hivemind {

@@ -35,7 +35,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>[src] will fill [equip_type?"a [equip_type]":"any"] slot.</span>"
+	. += span_notice("[src] will fill [equip_type?"a [equip_type]":"any"] slot.")
 
 /obj/item/mecha_parts/mecha_equipment/proc/add_equip_overlay(obj/mecha/M as obj)
 	return
@@ -111,7 +111,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/get_equip_info()
 	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected==src?"<b>":"<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[chassis.selected==src?"<b>":"<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]"
 
 /obj/item/mecha_parts/mecha_equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
 	return range&RANGED

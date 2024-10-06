@@ -49,7 +49,7 @@
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(check_shield_arc(user, bad_arc, damage_source, attacker))
 		if(prob(get_block_chance(user, damage, damage_source, attacker)))
-			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			user.visible_message(span_danger("\The [user] blocks [attack_text] with \the [src]!"))
 			return 1
 	return 0
 
@@ -88,12 +88,12 @@
 					//If we're at this point, the bullet/beam is going to go through the shield, however it will hit for less damage.
 					//Bullets get slowed down, while beams are diffused as they hit the shield, so these shields are not /completely/
 					//useless.  Extremely penetrating projectiles will go through the shield without less damage.
-					user.visible_message("<span class='danger'>\The [user]'s [src.name] is pierced by [attack_text]!</span>")
+					user.visible_message(span_danger("\The [user]'s [src.name] is pierced by [attack_text]!"))
 					if(P.armor_penetration < 30) //PTR bullets and x-rays will bypass this entirely.
 						P.damage = P.damage / 2
 					return 0
 			//Otherwise, if we're here, we're gonna stop the attack entirely.
-			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			user.visible_message(span_danger("\The [user] blocks [attack_text] with \the [src]!"))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			return 1
 	return 0
@@ -101,7 +101,7 @@
 /obj/item/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/melee/baton))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else
@@ -155,7 +155,7 @@
 
 /obj/item/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You beat yourself in the head with [src].</span>")
+		to_chat(user, span_warning("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)
 	active = !active
 	if (active)
@@ -164,7 +164,7 @@
 		w_class = ITEMSIZE_LARGE
 		slot_flags = null
 		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>\The [src] is now active.</span>")
+		to_chat(user, span_notice("\The [src] is now active."))
 
 	else
 		force = 3
@@ -172,7 +172,7 @@
 		w_class = ITEMSIZE_TINY
 		slot_flags = SLOT_EARS
 		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
+		to_chat(user, span_notice("\The [src] can now be concealed."))
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -206,7 +206,7 @@
 	if(!in_range(src, user))	//Basic checks to prevent abuse
 		return
 	if(user.incapacitated() || !istype(user))
-		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(tgui_alert(usr, "Are you sure you want to recolor your shield?", "Confirm Recolor", list("Yes", "No")) == "Yes")
 		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
@@ -216,7 +216,7 @@
 
 /obj/item/shield/energy/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to recolor it.</span>"
+	. += span_notice("Alt-click to recolor it.")
 
 /obj/item/shield/riot/tele
 	name = "telescopic shield"
@@ -248,14 +248,14 @@
 		throw_speed = 2
 		w_class = ITEMSIZE_LARGE
 		slot_flags = SLOT_BACK
-		to_chat(user, "<span class='notice'>You extend \the [src].</span>")
+		to_chat(user, span_notice("You extend \the [src]."))
 	else
 		force = 3
 		throwforce = 3
 		throw_speed = 3
 		w_class = ITEMSIZE_NORMAL
 		slot_flags = null
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, span_notice("[src] can now be concealed."))
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

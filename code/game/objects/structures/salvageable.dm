@@ -19,11 +19,11 @@
 		var/actual_time = I.toolspeed * 170
 		user.visible_message( \
 			"<b>\The [user]</b> begins salvaging from \the [src].", \
-			"<span class='notice'>You start salvaging from \the [src].</span>")
+			span_notice("You start salvaging from \the [src]."))
 		if(do_after(user, actual_time, target = src))
 			user.visible_message( \
-				"<span class='notice'>\The [user] has salvaged \the [src].</span>", \
-				"<span class='notice'>You salvage \the [src].</span>")
+				span_notice("\The [user] has salvaged \the [src]."), \
+				span_notice("You salvage \the [src]."))
 			dismantle()
 			qdel(src)
 			return TRUE

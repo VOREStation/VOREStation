@@ -498,7 +498,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(resting)
 			lay_down()
 		handle_affinity(user, -5)
-		user.visible_message(user, "<span class='notice'>\The [user] hits \the [src] with \the [O]. \The [src] grumbles at \the [user].</span>","<span class='notice'>You hits \the [src] with \the [O]. \The [src] grumbles at you.</span>")
+		user.visible_message(user, span_notice("\The [user] hits \the [src] with \the [O]. \The [src] grumbles at \the [user]."),span_notice("You hits \the [src] with \the [O]. \The [src] grumbles at you."))
 		playsound(src, 'sound/weapons/tap.ogg', 50, 1, -1)
 		return ..()
 	if(teppi_wool)
@@ -507,10 +507,10 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	/////FOOD/////
 	if(istype(O, /obj/item/reagent_containers/food))
 		if(resting)
-			to_chat(user, "<span class='notice'>\The [src] is napping, and doesn't respond to \the [O].</span>")
+			to_chat(user, span_notice("\The [src] is napping, and doesn't respond to \the [O]."))
 			return
 		if(nutrition >= 5000)
-			user.visible_message("<span class='notice'>\The [user] tries to feed \the [O] to \the [src]. It snoofs but does not eat.</span>","<span class='notice'>You try to feed \the [O] to \the [src], but it only snoofts at it.</span>")
+			user.visible_message(span_notice("\The [user] tries to feed \the [O] to \the [src]. It snoofs but does not eat."),span_notice("You try to feed \the [O] to \the [src], but it only snoofts at it."))
 			return
 		var/nutriment_amount = O.reagents?.get_reagent_amount("nutriment") //does it have nutriment, if so how much?
 		var/protein_amount = O.reagents?.get_reagent_amount("protein") //does it have protein, if so how much?
@@ -529,54 +529,54 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				if(R.allergen_type & allergen_unpreference)
 					disliked = TRUE
 			if(liked && disliked) //in case a food has both the thing they like and also the thing they don't like in it
-				user.visible_message("<span class='notice'>\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] and looks confused.</span>","<span class='notice'>You feed \the [O] to \the [src]. It nibbles \the [O] and looks confused.</span>")
+				user.visible_message(span_notice("\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] and looks confused."),span_notice("You feed \the [O] to \the [src]. It nibbles \the [O] and looks confused."))
 			else if(liked && !disliked)
-				user.visible_message("<span class='notice'>\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] excitedly.</span>","<span class='notice'>You feed \the [O] to \the [src]. It nibbles \the [O] excitedly.</span>")
+				user.visible_message(span_notice("\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] excitedly."),span_notice("You feed \the [O] to \the [src]. It nibbles \the [O] excitedly."))
 				yum *= 2
 				handle_affinity(user, 5)
 			else if(!liked && disliked)
-				user.visible_message("<span class='notice'>\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] slowly.</span>","<span class='notice'>You feed \the [O] to \the [src]. It nibbles \the [O] slowly.</span>")
+				user.visible_message(span_notice("\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] slowly."),span_notice("You feed \the [O] to \the [src]. It nibbles \the [O] slowly."))
 				yum *= 0.5
 				handle_affinity(user, -5)
 			else
-				user.visible_message("<span class='notice'>\The [user] feeds \the [O] to \the [src]. It nibbles \the [O].</span>","<span class='notice'>You feed \the [O] to \the [src]. It nibbles \the [O].</span>")
+				user.visible_message(span_notice("\The [user] feeds \the [O] to \the [src]. It nibbles \the [O]."),span_notice("You feed \the [O] to \the [src]. It nibbles \the [O]."))
 				handle_affinity(user, 1)
 		else
-			user.visible_message("<span class='notice'>\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] casually.</span>","<span class='notice'>You feed \the [O] to \the [src]. It nibbles \the [O] casually.</span>")
+			user.visible_message(span_notice("\The [user] feeds \the [O] to \the [src]. It nibbles \the [O] casually."),span_notice("You feed \the [O] to \the [src]. It nibbles \the [O] casually."))
 		adjust_nutrition(yum) //add the nutriment!
 		user.drop_from_inventory(O)
 		qdel(O)
 		playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 		if(!client && lets_eat(user) && prob(1))
 			visible_message("<span class='danger'>\The [src] scromfs \the [user] along with the food!</span>!")
-			to_chat(user, "<span class='notice'>\The [src] leans in close, spreading its jaws in front of you. A hot, humid gust of breath blows over you as the weight of \the [src]'s presses you over, knocking you off of your feet as the warm gooey tough of jaws scromf over your figure, rapidly guzzling you away with the [O], leaving you to tumble down into the depths of its body...</span>")
+			to_chat(user, span_notice("\The [src] leans in close, spreading its jaws in front of you. A hot, humid gust of breath blows over you as the weight of \the [src]'s presses you over, knocking you off of your feet as the warm gooey tough of jaws scromf over your figure, rapidly guzzling you away with the [O], leaving you to tumble down into the depths of its body..."))
 			playsound(src, pick(bodyfall_sound), 75, 1)
 			teppi_pounce(user)
 		if(yum && nutrition >= 500)
-			to_chat(user, "<span class='notice'>\The [src] seems satisfied.</span>")
+			to_chat(user, span_notice("\The [src] seems satisfied."))
 		return
 	/////WEAPONS/////
 	if(istype(O, /obj/item/material/knife))
 		if(client)
 			return ..()
 		if(resting)
-			user.visible_message("<span class='attack'>\The [user] approaches \the [src]'s neck with \the [O].</span>","<span class='attack'>You approach \the [src]'s neck with \the [O].</span>")
+			user.visible_message(span_attack("\The [user] approaches \the [src]'s neck with \the [O]."),span_attack("You approach \the [src]'s neck with \the [O]."))
 			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
 				if(resting)
 					death()
 					return
 				else
-					to_chat(user, "<span class='notice'>\The [src] woke up! You think better of slaughtering it while it is awake.</span>")
+					to_chat(user, span_notice("\The [src] woke up! You think better of slaughtering it while it is awake."))
 					return
 		else
 			return ..()
 	if(istype(O, /obj/item/clothing/accessory/collar/craftable))
 		var/obj/item/clothing/accessory/collar/craftable/C = O
 		if(item_type == "collar")
-			to_chat(user, "<span class='notice'>[src] is already wearing a collar.</span>")
+			to_chat(user, span_notice("[src] is already wearing a collar."))
 			return
 		if(!C.given_name)
-			to_chat(user, "<span class='notice'>You didn't put a name on the collar. You can use it in your hand to do that!</span>")
+			to_chat(user, span_notice("You didn't put a name on the collar. You can use it in your hand to do that!"))
 			return
 		item_type = "collar"
 		item_color = C.color
@@ -596,18 +596,18 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return ..()
 	if(M.a_intent == I_GRAB && item_type)
 		if(affinity[M.real_name] >= 30)
-			M.visible_message("<span class='notice'>\The [M.name] removes \the [src]'s [item_type].</span>","<span class='notice'>You remove \the [src]'s [item_type].</span>")
+			M.visible_message(span_notice("\The [M.name] removes \the [src]'s [item_type]."),span_notice("You remove \the [src]'s [item_type]."))
 			item_type = null
 			update_icon()
 			return
 	if(M.a_intent != I_HELP) //be gentle
 		handle_affinity(M, -5)
-		to_chat(M, "<span class='notice'>\The [src] fusses at your rough treatment!!</span>")
+		to_chat(M, span_notice("\The [src] fusses at your rough treatment!!"))
 		if(resting)
 			lay_down()
 		return..()
 	if(resting)
-		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
+		M.visible_message(span_notice("\The [M.name] shakes \the [src] awake from their nap."),span_notice("You shake \the [src] awake!"))
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		lay_down()
 		return
@@ -618,24 +618,24 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			handle_affinity(M, 1)
 			if(teppi_adult)
 				if(prob(25))
-					M.visible_message("<span class='notice'>\The [src] rumbles happily at \the [M]</span>","<span class='notice'>\The [src] rumbles happily at you!</span>")
+					M.visible_message(span_notice("\The [src] rumbles happily at \the [M]"),span_notice("\The [src] rumbles happily at you!"))
 					playsound(src, 'sound/voice/teppi/rumble.ogg', 75, 1)
 				vore_selected.digest_mode = DM_DRAIN //People outside can help calm the tumby if you squirm too much
 			else if(prob(25))
-				M.visible_message("<span class='notice'>\The [src] rumbles happily at \the [M]</span>","<span class='notice'>\The [src] rumbles happily at you!</span>")
+				M.visible_message(span_notice("\The [src] rumbles happily at \the [M]"),span_notice("\The [src] rumbles happily at you!"))
 				playsound(src, 'sound/voice/teppi/cute_rumble.ogg', 75, 1)
 			if(prob(25))
 				wantpet = rand(0,25) * affection_factor //We stopped wanting pets
-			to_chat(M, "<span class='notice'>\The [src] leans into your touch.</span>")
+			to_chat(M, span_notice("\The [src] leans into your touch."))
 			petcount = 0
 		else if(petcount < 20)
 			wantpet = 0
 			petcount += 1
 			if(prob(20))
-				to_chat(M, "<span class='notice'>\The [src] grumbles at your touch.</span>")
+				to_chat(M, span_notice("\The [src] grumbles at your touch."))
 		else if(lets_eat(M) && prob(50))
-			to_chat(M, "<span class='notice'>\The [src] grumbles a bit... and then bowls you over, pressing their weight into yours to knock you off of your feet! In a rush of chaotic presses and schlorps, the gooey touch of Teppi flesh grinds over you as you're guzzled away! Casually swallowed down in retaliation for all of the pettings. Pumped down deep into the grumbling depths of \the [src].</span>")
-			visible_message("<span class='danger'>\The [src] scromfs \the [M], before chuffing and settling down again.</span>")
+			to_chat(M, span_notice("\The [src] grumbles a bit... and then bowls you over, pressing their weight into yours to knock you off of your feet! In a rush of chaotic presses and schlorps, the gooey touch of Teppi flesh grinds over you as you're guzzled away! Casually swallowed down in retaliation for all of the pettings. Pumped down deep into the grumbling depths of \the [src]."))
+			visible_message(span_danger("\The [src] scromfs \the [M], before chuffing and settling down again."))
 			playsound(src, pick(bodyfall_sound), 75, 1)
 			teppi_pounce(M)
 			wantpet = 100
@@ -645,13 +645,13 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 /mob/living/simple_mob/vore/alienanimals/teppi/examine()
 	. = ..()
 	if(item_type)
-		. += "<span class='notice'>They are wearing a [item_type] with [name] written on it.</span>"
+		. += span_notice("They are wearing a [item_type] with [name] written on it.")
 	if(nutrition >= 1000)
-		. += "<span class='notice'>They look well fed.</span>"
+		. += span_notice("They look well fed.")
 	if(nutrition <= 500)
-		. += "<span class='notice'>They look hungry.</span>"
+		. += span_notice("They look hungry.")
 	if(health < maxHealth && health / maxHealth * 100 <= 75)
-		. += "<span class='notice'>They look beat up.</span>"
+		. += span_notice("They look beat up.")
 
 
 /mob/living/simple_mob/vore/alienanimals/teppi/update_icon()
@@ -746,7 +746,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	else
 		return FALSE
 	if(do_after(user, sheartime, exclusive = TASK_USER_EXCLUSIVE, target = src))
-		user.visible_message("<span class='notice'>\The [user] shears \the [src] with \the [tool].</span>","<span class='notice'>You shear \the [src] with \the [tool].</span>")
+		user.visible_message(span_notice("\The [user] shears \the [src] with \the [tool]."),span_notice("You shear \the [src] with \the [tool]."))
 		amount_grown = rand(0,250)
 		var/obj/item/stack/material/fur/F = new(get_turf(user), rand(10,15))
 		F.color = marking_color
@@ -965,26 +965,26 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	set category = "Abilities"
 	set desc = "You can have babies if the conditions are right."
 	if(prevent_breeding)
-		to_chat(src, "<span class='notice'>You have elected to not participate in breeding mechanics, and so cannot complete that action.</span>")
+		to_chat(src, span_notice("You have elected to not participate in breeding mechanics, and so cannot complete that action."))
 		return
 	if(!teppi_warned)
-		to_chat(src, "<span class='danger'>Be aware of your surroundings when using this verb. If you use this to be disruptive or prefbreak people, you are likely to eat a ban. If whoever's tending the teppi is trying to make more babies, or you're alone, or playing with other people who you know are into it, then sure. You should not however, for example, drag another teppi to the bar (or any public place) and drop a baby in the middle of the floor. If you're not sure if it's okay to do where you are, with whoever's around, it probably isn't. This is intended to preserve the mechanical utility of the mob you are playing as, not as a scene tool.</span>")
+		to_chat(src, span_danger("Be aware of your surroundings when using this verb. If you use this to be disruptive or prefbreak people, you are likely to eat a ban. If whoever's tending the teppi is trying to make more babies, or you're alone, or playing with other people who you know are into it, then sure. You should not however, for example, drag another teppi to the bar (or any public place) and drop a baby in the middle of the floor. If you're not sure if it's okay to do where you are, with whoever's around, it probably isn't. This is intended to preserve the mechanical utility of the mob you are playing as, not as a scene tool."))
 		teppi_warned = TRUE
 		return
 	if(stat != CONSCIOUS)
-		to_chat(src, "<span class='notice'>I can't do that right now...</span>")
+		to_chat(src, span_notice("I can't do that right now..."))
 		return
 	if(!teppi_adult)
-		to_chat(src, "<span class='notice'>I'm not old enough to make babies.</span>")
+		to_chat(src, span_notice("I'm not old enough to make babies."))
 		return
 	if(baby_countdown > 0)
-		to_chat(src, "<span class='notice'>It is not time yet...</span>")
+		to_chat(src, span_notice("It is not time yet..."))
 		return
 	if(!breedable || nutrition < 500)
-		to_chat(src, "<span class='notice'>The conditions are not right to produce offspring.</span>")
+		to_chat(src, span_notice("The conditions are not right to produce offspring."))
 		return
 	if(GLOB.teppi_count >= GLOB.max_teppi) //if we can't make more then we shouldn't look for partners
-		to_chat(src, "<span class='notice'>I cannot produce more offspring at the moment, there are too many of us!</span>")
+		to_chat(src, span_notice("I cannot produce more offspring at the moment, there are too many of us!"))
 		return
 	. = FALSE
 	for(var/mob/living/simple_mob/vore/alienanimals/teppi/alltep in oview(1,src))
@@ -1000,17 +1000,17 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			alltep.handle_affinity(src, 30)
 			return
 	if(. == FALSE)
-		to_chat(src, "<span class='notice'>There are no suitable partners nearby.</span>")
+		to_chat(src, span_notice("There are no suitable partners nearby."))
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/toggle_producing_offspring()
 	set name = "Toggle Producing Offspring"
 	set category = "Abilities"
 	set desc = "You can toggle whether or not you can produce offspring."
 	if(!prevent_breeding)
-		to_chat(src, "<span class='notice'>You disable breeding.</span>")
+		to_chat(src, span_notice("You disable breeding."))
 		prevent_breeding = TRUE
 	else
-		to_chat(src, "<span class='notice'>You enable breeding.</span>")
+		to_chat(src, span_notice("You enable breeding."))
 		prevent_breeding = FALSE
 
 ///////////////////AI Things////////////////////////
@@ -1100,7 +1100,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(!leader)
 			if(speaker_affinity >= 100)
 				set_follow(speaker, follow_for = 10 MINUTES)
-				holder.visible_message("<span class='notice'>\The [holder] starts following \the [speaker]</span>","<span class='notice'>\The [holder] starts following you.</span>")
+				holder.visible_message(span_notice("\The [holder] starts following \the [speaker]"),span_notice("\The [holder] starts following you."))
 				return
 		else
 			var/mob/living/L = leader
@@ -1108,19 +1108,19 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				lose_follow()
 				if(speaker_affinity >= 100)
 					set_follow(speaker, follow_for = 10 MINUTES)
-					holder.visible_message("<span class='notice'>\The [holder] starts following \the [speaker]</span>","<span class='notice'>\The [holder] starts following you.</span>")
+					holder.visible_message(span_notice("\The [holder] starts following \the [speaker]"),span_notice("\The [holder] starts following you."))
 					return
 			else if(speaker_affinity > T.affinity[L.real_name])
-				holder.visible_message("<span class='notice'>\The [holder] starts following \the [speaker]</span>","<span class='notice'>\The [holder] starts following you.</span>")
+				holder.visible_message(span_notice("\The [holder] starts following \the [speaker]"),span_notice("\The [holder] starts following you."))
 				set_follow(speaker, follow_for = 10 MINUTES)
 				return
 			if(speaker_affinity == T.affinity[L.real_name])
 				lose_follow()
-				holder.visible_message("<span class='notice'>\The [holder] gives off an anxious whine.</span>")
+				holder.visible_message(span_notice("\The [holder] gives off an anxious whine."))
 	if(findtext(message, "stop teppi") || findtext(message, "stay here") || findtext(message, "stop [holder.name]"))
 		if(leader == speaker)
 			lose_follow()
-			holder.visible_message("<span class='notice'>\The [holder] stops following \the [speaker]</span>","<span class='notice'>\The [holder] stops following you.</span>")
+			holder.visible_message(span_notice("\The [holder] stops following \the [speaker]"),span_notice("\The [holder] stops following you."))
 			return
 
 //This a teppi with funny colors will spawn!

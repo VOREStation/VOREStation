@@ -66,7 +66,7 @@
 				to_chat(user,"[target] didn't have any breakable legs, sorry.")
 
 		if("bluespace_artillery")
-			bluespace_artillery(target,src)
+			bluespace_artillery(target,usr)
 
 		if("spont_combustion")
 			var/mob/living/carbon/human/Tar = target
@@ -187,13 +187,13 @@
 
 
 		if("redspace_abduct")
-			redspace_abduction(target, src)
+			redspace_abduction(target, usr)
 
 		if("autosave")
-			fake_autosave(target, src)
+			fake_autosave(target, usr)
 
 		if("autosave2")
-			fake_autosave(target, src, TRUE)
+			fake_autosave(target, usr, TRUE)
 
 		if("adspam")
 			if(target.client)
@@ -452,6 +452,41 @@
 				Tar.Stasis(0)
 			else
 				Tar.Stasis(100000)
+
+		if("give_chem")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/chem_list = typesof(/datum/reagent)
+			var/datum/reagent/chemical = tgui_input_list(user, "Which chemical would you like to add?", "Chemicals", chem_list)
+
+			if(!chemical)
+				return
+
+			var/chem = chemical.id
+
+			var/amount = tgui_input_number(user, "How much of the chemical would you like to add?", "Amount", 5)
+			if(!amount)
+				return
+
+			var/location = tgui_alert(user, "Where do you want to add the chemical?", "Location", list("Blood", "Stomach", "Skin", "Cancel"))
+
+			if(!location || location == "Cancel")
+				return
+			if(location == "Blood")
+				Tar.bloodstr.add_reagent(chem, amount)
+			if(location == "Stomach")
+				Tar.ingested.add_reagent(chem, amount)
+			if(location == "Skin")
+				Tar.touching.add_reagent(chem, amount)
+
+		if("purge")
+			var/mob/living/carbon/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.bloodstr.clear_reagents()
+			Tar.ingested.clear_reagents()
+			Tar.touching.clear_reagents()
 
 		////////ABILITIES//////////////
 
@@ -721,6 +756,12 @@
 			L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 			if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)
+
+		if("cloaking")
+			if(target.cloaked)
+				target.uncloak()
+			else if(!target.cloaked)
+				target.cloak()
 
 
 		////////FIXES//////////////

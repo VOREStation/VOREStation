@@ -19,7 +19,7 @@
 
 	for(var/mob/living/L in nearby_mobs)
 		if(L.isSynthetic())
-			to_chat(L, "<span class='danger'>ERROR: Electrical fault detected!</span>")
+			to_chat(L, span_danger("ERROR: Electrical fault detected!"))
 			L.stuttering += 3
 
 		if(ishuman(L))
@@ -41,7 +41,7 @@
 
 	for(var/mob/living/L in nearby_mobs)
 		if(L.isSynthetic())
-			to_chat(L, "<span class='danger'>ERROR: Electrical fault detected!</span>")
+			to_chat(L, span_danger("ERROR: Electrical fault detected!"))
 			L.stuttering += 3
 
 		if(ishuman(L))
@@ -63,7 +63,7 @@
 
 	for(var/mob/living/L in nearby_mobs)
 		if(L.isSynthetic())
-			to_chat(L, "<span class='danger'>ERROR: Electrical fault detected!</span>")
+			to_chat(L, span_danger("ERROR: Electrical fault detected!"))
 			L.stuttering += 3
 
 		if(ishuman(L))

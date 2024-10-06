@@ -52,7 +52,7 @@
 		if (!found)	// User is too far away
 			return
 		// Now make the cardboard
-		to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+		to_chat(user, span_notice("You fold [src] flat."))
 		playsound(src, 'sound/items/storage/boxfold.ogg', 30, 1)
 		new foldable(get_turf(src))
 		qdel(src)
@@ -60,10 +60,10 @@
 	//try to crush it
 	if(ispath(trash))
 		if(contents.len &&  user.a_intent == I_HURT)  // only crumple with things inside on harmintent.
-			user.visible_message(SPAN_DANGER("[user] crushes \the [src], spilling its contents everywhere!"), SPAN_DANGER("You crush \the [src], spilling its contents everywhere!"))
+			user.visible_message(span_danger("[user] crushes \the [src], spilling its contents everywhere!"), span_danger("You crush \the [src], spilling its contents everywhere!"))
 			spill()
 		else
-			to_chat(user, SPAN_NOTICE("You crumple up \the [src].")) //make trash
+			to_chat(user, span_notice("You crumple up \the [src].")) //make trash
 		playsound(src.loc, 'sound/items/drop/wrapper.ogg', 30, 1)
 		var/obj/item/trash = new src.trash()
 		qdel(src)
@@ -369,7 +369,7 @@
 	if(istype(W) && !W.lit && !W.burnt)
 		if(prob(25))
 			W.light(user)
-			user.visible_message("<span class='notice'>[user] manages to light the match on the matchbox.</span>")
+			user.visible_message(span_notice("[user] manages to light the match on the matchbox."))
 		else
 			playsound(src, 'sound/items/cigs_lighters/matchstick_hit.ogg', 25, 0, -1)
 	W.update_icon()

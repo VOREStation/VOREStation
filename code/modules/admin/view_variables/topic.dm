@@ -261,7 +261,7 @@
 					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
+				message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
 			if("Type and subtypes")
 				var/i = 0
 				for(var/obj/Obj in world)
@@ -273,7 +273,7 @@
 					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
+				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
 	else if(href_list["fakepdapropconvo"])
 		if(!check_rights(R_FUN)) return
 
@@ -564,7 +564,7 @@
 
 		if(amount != 0)
 			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L]")
-			message_admins("<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [L]</span>")
+			message_admins(span_notice("[key_name(usr)] dealt [amount] amount of [Text] damage to [L]"))
 			href_list["datumrefresh"] = href_list["mobToDamage"]
 	else if(href_list["expose"])
 		if(!check_rights(R_ADMIN, FALSE))
@@ -582,7 +582,7 @@
 		if (prompt != "Yes")
 			return
 		if(!thing)
-			to_chat(usr, "<span class='warning'>The object you tried to expose to [C] no longer exists (GC'd)</span>")
+			to_chat(usr, span_warning("The object you tried to expose to [C] no longer exists (GC'd)"))
 			return
 		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=\ref[thing]'>VV window</a>")
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [src]")

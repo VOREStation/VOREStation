@@ -10,10 +10,10 @@
 
 /decl/emote/audible/slap/New()
 	..()
-	emote_message_1p_target = SPAN_DANGER(emote_message_1p_target)
-	emote_message_1p =        SPAN_DANGER(emote_message_1p)
-	emote_message_3p_target = SPAN_DANGER(emote_message_3p_target)
-	emote_message_3p =        SPAN_DANGER(emote_message_3p)
+	emote_message_1p_target = span_danger(emote_message_1p_target)
+	emote_message_1p =        span_danger(emote_message_1p)
+	emote_message_3p_target = span_danger(emote_message_3p_target)
+	emote_message_3p =        span_danger(emote_message_3p)
 
 /decl/emote/audible/slap/do_extra(var/atom/user, var/atom/target)
 	. = ..()

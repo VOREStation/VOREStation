@@ -71,14 +71,14 @@
 		if(nc)
 			channel = nc
 			camera.c_tag = channel
-			to_chat(usr, "<span class='notice'>New channel name - '[channel]' is set</span>")
+			to_chat(usr, span_notice("New channel name - '[channel]' is set"))
 	if(href_list["video"])
 		camera.set_status(!camera.status)
 		if(camera.status)
-			to_chat(usr,"<span class='notice'>Video streaming activated. Broadcasting on channel '[channel]'</span>")
+			to_chat(usr,span_notice("Video streaming activated. Broadcasting on channel '[channel]'"))
 			show_tvs(loc)
 		else
-			to_chat(usr,"<span class='notice'>Video streaming deactivated.</span>")
+			to_chat(usr,span_notice("Video streaming deactivated."))
 			hide_tvs()
 			for(var/obj/machinery/computer/security/telescreen/entertainment/ES as anything in GLOB.entertainment_screens)
 				ES.stop_showing()
@@ -86,9 +86,9 @@
 	if(href_list["sound"])
 		radio.ToggleBroadcast()
 		if(radio.broadcasting)
-			to_chat(usr,"<span class='notice'>Audio streaming activated. Broadcasting on frequency [format_frequency(radio.frequency)].</span>")
+			to_chat(usr,span_notice("Audio streaming activated. Broadcasting on frequency [format_frequency(radio.frequency)]."))
 		else
-			to_chat(usr,"<span class='notice'>Audio streaming deactivated.</span>")
+			to_chat(usr,span_notice("Audio streaming deactivated."))
 	if(!href_list["close"])
 		attack_self(usr)
 
@@ -133,8 +133,9 @@
 	if(!A || QDELETED(A))
 		show_tvs(loc)
 
-	if(get_dist(get_turf(src), get_turf(A)) > 5)
+	if(get_dist(get_turf(src), get_turf(A)) > 0) // No realtime updates
 		show_tvs(loc)
+		update_feed()
 
 /obj/item/tvcamera/update_icon()
 	..()
@@ -150,6 +151,9 @@
 		H.update_inv_l_hand()
 		H.update_inv_belt()
 
+/obj/item/tvcamera/proc/update_feed()
+	if(camera.status)
+		SEND_SIGNAL(camera, COMSIG_OBSERVER_MOVED) // Forward the movement signal
 
 //Assembly by roboticist
 
@@ -160,7 +164,7 @@
 	var/obj/item/TVAssembly/A = new(user)
 	qdel(S)
 	user.put_in_hands(A)
-	to_chat(user, "<span class='notice'>You add the infrared sensor to the robot head.</span>")
+	to_chat(user, span_notice("You add the infrared sensor to the robot head."))
 	user.drop_from_inventory(src)
 	qdel(src)
 
@@ -179,7 +183,7 @@
 		if(0)
 			if(istype(W, /obj/item/robot_parts/robot_component/camera))
 				var/obj/item/robot_parts/robot_component/camera/CA = W
-				to_chat(user, "<span class='notice'>You add the camera module to [src]</span>")
+				to_chat(user, span_notice("You add the camera module to [src]"))
 				user.drop_item()
 				qdel(CA)
 				desc = "This TV camera assembly has a camera module."
@@ -190,22 +194,22 @@
 				user.drop_item()
 				qdel(T)
 				buildstep++
-				to_chat(user, "<span class='notice'>You add the tape recorder to [src]</span>")
+				to_chat(user, span_notice("You add the tape recorder to [src]"))
 		if(2)
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if(!C.use(3))
-					to_chat(user, "<span class='notice'>You need six cable coils to wire the devices.</span>")
+					to_chat(user, span_notice("You need six cable coils to wire the devices."))
 					..()
 					return
 				C.use(3)
 				buildstep++
-				to_chat(user, "<span class='notice'>You wire the assembly</span>")
+				to_chat(user, span_notice("You wire the assembly"))
 				desc = "This TV camera assembly has wires sticking out"
 				return
 		if(3)
 			if(istype(W, /obj/item/tool/wirecutters))
-				to_chat(user, "<span class='notice'> You trim the wires.</span>")
+				to_chat(user, span_notice(" You trim the wires."))
 				buildstep++
 				desc = "This TV camera assembly needs casing."
 				return
@@ -214,7 +218,7 @@
 				var/obj/item/stack/material/steel/S = W
 				buildstep++
 				S.use(1)
-				to_chat(user, "<span class='notice'>You encase the assembly in a Ward-Takeshi casing.</span>")
+				to_chat(user, span_notice("You encase the assembly in a Ward-Takeshi casing."))
 				var/turf/T = get_turf(src)
 				new /obj/item/tvcamera(T)
 				user.drop_from_inventory(src)

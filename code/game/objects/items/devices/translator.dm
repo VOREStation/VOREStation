@@ -18,20 +18,20 @@
 		if(langset)
 			if(langset && ((langset.flags & NONVERBAL) || (langset.flags & HIVEMIND) || (!langset.machine_understands)))
 				//Nonverbal means no spoken words to translate, so I didn't see the need to remove it.
-				to_chat(user, "<span class='warning'>\The [src] cannot output that language.</span>")
+				to_chat(user, span_warning("\The [src] cannot output that language."))
 				return
 			else
 				listening = 1
 				listening_objects |= src
 				if(mult_icons)
 					icon_state = "[initial(icon_state)]1"
-				to_chat(user, "<span class='notice'>You enable \the [src], translating into [langset.name].</span>")
+				to_chat(user, span_notice("You enable \the [src], translating into [langset.name]."))
 	else	//Turning OFF
 		listening = 0
 		listening_objects -= src
 		langset = null
 		icon_state = "[initial(icon_state)]"
-		to_chat(user, "<span class='notice'>You disable \the [src].</span>")
+		to_chat(user, span_notice("You disable \the [src]."))
 
 /obj/item/universal_translator/hear_talk(mob/M, list/message_pieces, verb)
 	if(!listening || !istype(M))
@@ -71,7 +71,7 @@
 	if(!L.say_understands(null, langset))
 		new_message = langset.scramble(new_message)
 
-	to_chat(L, "<span class='filter_say'><i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\"</span>")
+	to_chat(L, span_filter_say("<i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\""))
 
 /obj/item/universal_translator/proc/user_understands(mob/M, mob/living/L, list/message_pieces)
 	for(var/datum/multilingual_say_piece/S in message_pieces)

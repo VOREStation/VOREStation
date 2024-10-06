@@ -90,7 +90,7 @@
 					wearable = 1
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
-				to_chat(H, "<span class='danger'>Your species cannot wear [src].</span>")
+				to_chat(H, span_danger("Your species cannot wear [src]."))
 				return 0
 	return 1
 
@@ -348,7 +348,7 @@
 /*/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/scalpel))
 		if (clipped)
-			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
+			to_chat(user, span_notice("The [src] have already been clipped!"))
 			update_icon()
 			return
 
@@ -517,9 +517,9 @@
 	if(!success)
 		return 0
 	else if(success == 2)
-		to_chat(user, "<span class='warning'>You are already wearing a hat.</span>")
+		to_chat(user, span_warning("You are already wearing a hat."))
 	else if(success == 1)
-		to_chat(user, "<span class='notice'>You crawl under \the [src].</span>")
+		to_chat(user, span_notice("You crawl under \the [src]."))
 	return 1
 
 /obj/item/clothing/head/update_icon(var/mob/user)
@@ -639,12 +639,12 @@
 	holding.forceMove(get_turf(usr))
 
 	if(usr.put_in_hands(holding))
-		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
+		usr.visible_message(span_danger("\The [usr] pulls a knife out of their boot!"))
 		playsound(src, 'sound/weapons/holster/sheathout.ogg', 25)
 		holding = null
 		cut_overlay("[icon_state]_knife")
 	else
-		to_chat(usr, "<span class='warning'>Your need an empty, unbroken hand to do that.</span>")
+		to_chat(usr, span_warning("Your need an empty, unbroken hand to do that."))
 		holding.forceMove(src)
 
 	if(!holding)
@@ -665,7 +665,7 @@
 	 istype(I, /obj/item/material/kitchen/utensil) || \
 	 istype(I, /obj/item/material/knife/tacknife)))
 		if(holding)
-			to_chat(user, "<span class='warning'>\The [src] is already holding \a [holding].</span>")
+			to_chat(user, span_warning("\The [src] is already holding \a [holding]."))
 			return
 		user.unEquip(I)
 		I.forceMove(src)
@@ -681,7 +681,7 @@
 	set category = "Object"
 
 	if(shoes_under_pants == -1)
-		to_chat(usr, "<span class='notice'>\The [src] cannot be worn above your suit!</span>")
+		to_chat(usr, span_notice("\The [src] cannot be worn above your suit!"))
 		return
 	shoes_under_pants = !shoes_under_pants
 	update_icon()
@@ -1003,7 +1003,7 @@
 
 	update_rolldown_status()
 	if(rolled_down == -1)
-		to_chat(usr, "<span class='notice'>You cannot roll down [src]!</span>")
+		to_chat(usr, span_notice("You cannot roll down [src]!"))
 		return
 	if((rolled_sleeves == 1) && !(rolled_down))
 		rolled_sleeves = 0
@@ -1018,13 +1018,13 @@
 		else
 			LAZYSET(item_state_slots, slot_w_uniform_str, "[worn_state]_d")
 
-		to_chat(usr, "<span class='notice'>You roll down your [src].</span>")
+		to_chat(usr, span_notice("You roll down your [src]."))
 	else
 		body_parts_covered = initial(body_parts_covered)
 		if(icon_override == rolled_down_icon)
 			icon_override = initial(icon_override)
 		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
-		to_chat(usr, "<span class='notice'>You roll up your [src].</span>")
+		to_chat(usr, span_notice("You roll up your [src]."))
 	update_clothing_icon()
 
 /obj/item/clothing/under/verb/rollsleeves()
@@ -1036,10 +1036,10 @@
 
 	update_rollsleeves_status()
 	if(rolled_sleeves == -1)
-		to_chat(usr, "<span class='notice'>You cannot roll up your [src]'s sleeves!</span>")
+		to_chat(usr, span_notice("You cannot roll up your [src]'s sleeves!"))
 		return
 	if(rolled_down == 1)
-		to_chat(usr, "<span class='notice'>You must roll up your [src] first!</span>")
+		to_chat(usr, span_notice("You must roll up your [src] first!"))
 		return
 
 	rolled_sleeves = !rolled_sleeves
@@ -1050,13 +1050,13 @@
 			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		else
 			LAZYSET(item_state_slots, slot_w_uniform_str, "[worn_state]_r")
-		to_chat(usr, "<span class='notice'>You roll up your [src]'s sleeves.</span>")
+		to_chat(usr, span_notice("You roll up your [src]'s sleeves."))
 	else
 		body_parts_covered = initial(body_parts_covered)
 		if(icon_override == rolled_down_sleeves_icon)
 			icon_override = initial(icon_override)
 		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
-		to_chat(usr, "<span class='notice'>You roll down your [src]'s sleeves.</span>")
+		to_chat(usr, span_notice("You roll down your [src]'s sleeves."))
 	update_clothing_icon()
 
 /obj/item/clothing/under/rank/New()

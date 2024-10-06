@@ -279,7 +279,7 @@
 	if(isturf(target.loc))
 		var/obj/effect/spider/stickyweb/W = locate() in get_turf(target)
 		if(!W && prob(75))
-			visible_message("<span class='danger'>\The [src] splatters a layer of web on \the [target]!</span>")
+			visible_message(span_danger("\The [src] splatters a layer of web on \the [target]!"))
 			new /obj/effect/spider/stickyweb(target.loc)
 	..()
 
@@ -339,17 +339,17 @@
 					target_limb.dislocate()
 
 			if(armor_special > 1)
-				target.visible_message("<span class='cult'>\The [src] slams into \the [target]'s [target_limb], reverberating loudly!</span>")
+				target.visible_message(span_cult("\The [src] slams into \the [target]'s [target_limb], reverberating loudly!"))
 
 			else if(armor_special)
-				target.visible_message("<span class='cult'>\The [src] slams into \the [target]'s [target_limb] with a low rumble!</span>")
+				target.visible_message(span_cult("\The [src] slams into \the [target]'s [target_limb] with a low rumble!"))
 
 	..()
 
 /obj/item/projectile/beam/tungsten/on_impact(var/atom/A)
 	if(istype(A,/turf/simulated/shuttle/wall) || istype(A,/turf/simulated/wall) || (istype(A,/turf/simulated/mineral) && A.density) || istype(A,/obj/mecha) || istype(A,/obj/machinery/door))
 		var/blast_dir = src.dir
-		A.visible_message("<span class='danger'>\The [A] begins to glow!</span>")
+		A.visible_message(span_danger("\The [A] begins to glow!"))
 		spawn(2 SECONDS)
 			var/blastloc = get_step(A, blast_dir)
 			if(blastloc)

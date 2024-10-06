@@ -48,7 +48,7 @@
 		if(C.prefs?.read_preference(/datum/preference/toggle/show_debug_logs))
 			to_chat(C,
 					type = MESSAGE_TYPE_DEBUG,
-					html = "<span class='filter_debuglog'>DEBUG: [text]</span>")
+					html = span_filter_debuglogs("DEBUG: [text]"))
 
 /proc/log_game(text)
 	if (config.log_game)
@@ -178,7 +178,7 @@
 	WRITE_LOG(diary, "ASSET: [text]")
 
 /proc/report_progress(var/progress_message)
-	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)
+	admin_notice(span_boldannounce("[progress_message]"), R_DEBUG)
 	to_world_log(progress_message)
 
 //pretty print a direction bitflag, can be useful for debugging.

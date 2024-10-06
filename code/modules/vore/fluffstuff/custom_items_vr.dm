@@ -61,10 +61,10 @@
 	if(istype(O,/obj/item/clothing/suit/space/void/) && !can_repair) //check if we're a voidsuit and if we're allowed to repair
 		var/obj/item/clothing/suit/space/void/SS = O
 		if(LAZYLEN(SS.breaches))
-			to_chat(user, "<span class='warning'>You should probably repair that before you start tinkering with it.</span>")
+			to_chat(user, span_warning("You should probably repair that before you start tinkering with it."))
 			return
 	if(O.blood_DNA || O.contaminated) //check if we're bloody or gooey or whatever, so modkits can't be used to hide crimes easily.
-		to_chat(user, "<span class='warning'>You should probably clean that up before you start tinkering with it.</span>")
+		to_chat(user, span_warning("You should probably clean that up before you start tinkering with it."))
 		return
 	//we have to check that it's not the original type first, because otherwise it might convert wrong based on pathing; the subtype can still count as the basetype
 	if(istype(O,to_helmet) && can_revert)
@@ -74,7 +74,7 @@
 		cost = to_suit_cost
 		to_type = from_suit
 	else if(!can_revert && (istype(O,to_helmet) || istype (O,to_suit)))
-		to_chat(user, "<span class='warning'>This kit doesn't seem to have the tools necessary to revert changes to modified items.</span>")
+		to_chat(user, span_warning("This kit doesn't seem to have the tools necessary to revert changes to modified items."))
 		return
 	else if(istype(O,from_helmet))
 		cost = from_helmet_cost
@@ -87,23 +87,23 @@
 	else
 		return
 	if(!isturf(O.loc))
-		to_chat(user, "<span class='warning'>You need to put \the [O] on the ground, a table, or other worksurface before modifying it.</span>")
+		to_chat(user, span_warning("You need to put \the [O] on the ground, a table, or other worksurface before modifying it."))
 		return
 	if(!skip_content_check && O.contents.len) //check if we're loaded/modified, in the event of gun/suit kits, to avoid purging stuff like ammo, badges, armbands, or suit helmets
-		to_chat(user, "<span class='warning'>You should probably remove any attached items or loaded ammunition before trying to modify that!</span>")
+		to_chat(user, span_warning("You should probably remove any attached items or loaded ammunition before trying to modify that!"))
 		return
 	if(cost > parts)
-		to_chat(user, "<span class='warning'>The kit doesn't have enough parts left to modify that.</span>")
+		to_chat(user, span_warning("The kit doesn't have enough parts left to modify that."))
 		if(can_revert && ((to_helmet_cost || to_suit_cost) < 0))
-			to_chat(user, "<span class='notice'> You can recover parts by using the kit on an already-modified item.</span>")
+			to_chat(user, span_notice(" You can recover parts by using the kit on an already-modified item."))
 		return
 	if(keycheck && owner_ckey) //check if we're supposed to care
 		if(user.ckey != owner_ckey) //ERROR: UNAUTHORIZED USER
-			to_chat(user, "<span class='warning'>You probably shouldn't mess with all these strange tools and parts...</span>") //give them a slightly fluffy explanation as to why it didn't work
+			to_chat(user, span_warning("You probably shouldn't mess with all these strange tools and parts...")) //give them a slightly fluffy explanation as to why it didn't work
 			return
 	playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 	var/obj/N = new to_type(O.loc)
-	user.visible_message("<span class='notice'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='notice'>You open \the [src] and modify \the [O] into \the [N].</span>")
+	user.visible_message(span_notice("[user] opens \the [src] and modifies \the [O] into \the [N]."),span_notice("You open \the [src] and modify \the [O] into \the [N]."))
 
 	//crude, but transfer prints and fibers to avoid forensics abuse, same as the bloody/gooey check above
 	N.fingerprints = O.fingerprints
@@ -178,7 +178,7 @@
 /obj/item/sword/fluff/joanaria/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
-		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
@@ -191,7 +191,7 @@
 /obj/item/material/knife/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
-		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
@@ -226,11 +226,11 @@
 
 /obj/item/card/id/centcom/station/fluff/joanbadge/attack_self(mob/user as mob)
 	if(isliving(user))
-		user.visible_message("<span class='warning'>[user] flashes their golden security badge.\nIt reads:NT Security.</span>","<span class='warning'>You display the faded badge.\nIt reads: NT Security.</span>")
+		user.visible_message(span_warning("[user] flashes their golden security badge.\nIt reads:NT Security."),span_warning("You display the faded badge.\nIt reads: NT Security."))
 
 /obj/item/card/id/centcom/station/fluff/joanbadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
+		user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
 
 //JoanRisu:Joan Risu
 /obj/item/pda/heads/hos/joanpda
@@ -294,11 +294,11 @@
 
 /obj/item/flag/attack_self(mob/user as mob)
 	if(isliving(user))
-		user.visible_message("<span class='warning'>[user] waves their Banner around!</span>","<span class='warning'>You wave your Banner around.</span>")
+		user.visible_message(span_warning("[user] waves their Banner around!"),span_warning("You wave your Banner around."))
 
 /obj/item/flag/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
+		user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
 
 
 /obj/item/flag/federation
@@ -400,13 +400,13 @@
 		//O.icon = icon // just in case we're using custom sprite paths with fluff items.
 		O.icon_state = new_icon // Changes the icon without changing the access.
 		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
-		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
+		user.visible_message(span_warning(" [user] reprints their ID."))
 		qdel(src)
 	else if(O.icon_state == new_icon)
-		to_chat(user, "<span class='notice'>[O] already has been reprinted.</span>")
+		to_chat(user, span_notice("[O] already has been reprinted."))
 		return
 	else
-		to_chat(user, "<span class='warning'>This isn't even an ID card you idiot.</span>")
+		to_chat(user, span_warning("This isn't even an ID card you idiot."))
 		return
 
 //arokha:Aronai Sieyes - Centcom ID (Medical dept)
@@ -423,7 +423,7 @@
 	if(user.mind && user.mind.initial_account)
 		associated_account_number = user.mind.initial_account.account_number
 	configured = 1
-	to_chat(user, "<span class='notice'>Card settings set.</span>")
+	to_chat(user, span_notice("Card settings set."))
 
 //Swat43:Fortune Bloise
 /obj/item/storage/backpack/satchel/fluff/swat43bag
@@ -458,7 +458,7 @@
 	if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 		return ..()
 	else
-		to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
+		to_chat(H, span_warning("You need to have a wolf-taur half to wear this."))
 		return 0
 
 /obj/item/clothing/head/serdyhelmet //SilencedMP5A5's specialty helmet.
@@ -545,24 +545,24 @@
 
 /obj/item/clothing/accessory/collar/khcrystal/attack_self(mob/user as mob)
 	if(state > 0) //Can't re-pair, one time only, for security reasons.
-		to_chat(user, "<span class='notice'>The [name] doesn't do anything.</span>")
+		to_chat(user, span_notice("The [name] doesn't do anything."))
 		return 0
 
 	owner = user	//We're paired to this guy
 	owner_c = user.client	//This is his client
 	update_state(1)
-	to_chat(user, "<span class='notice'>The [name] glows pleasantly blue.</span>")
+	to_chat(user, span_notice("The [name] glows pleasantly blue."))
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/accessory/collar/khcrystal/proc/check_owner()
 	//He's dead, jim
 	if((state == 1) && owner && (owner.stat == DEAD))
 		update_state(2)
-		visible_message("<span class='warning'>The [name] begins flashing red.</span>")
+		visible_message(span_warning("The [name] begins flashing red."))
 		sleep(30)
-		visible_message("<span class='warning'>The [name] shatters into dust!</span>")
+		visible_message(span_warning("The [name] shatters into dust!"))
 		if(owner_c)
-			to_chat(owner_c, "<span class='notice'>The HAVENS system is notified of your demise via \the [name].</span>")
+			to_chat(owner_c, span_notice("The HAVENS system is notified of your demise via \the [name]."))
 		update_state(3)
 		name = "broken [initial(name)]"
 		desc = "This seems like a necklace, but the actual pendant is missing."
@@ -660,13 +660,13 @@
 		O.icon_state = new_icon_state // Changes the icon without changing the access.
 		O.desc = new_desc
 		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
-		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
+		user.visible_message(span_warning(" [user] reprints their ID."))
 		qdel(src)
 	else if(O.icon_state == new_icon)
-		to_chat(user, "<span class='notice'>[O] already has been reprinted.</span>")
+		to_chat(user, span_notice("[O] already has been reprinted."))
 		return
 	else
-		to_chat(user, "<span class='warning'>This isn't even an ID card you idiot.</span>")
+		to_chat(user, span_warning("This isn't even an ID card you idiot."))
 		return
 
 //WickedTempest: Chakat Tempest
@@ -832,7 +832,7 @@
 
 /obj/item/clothing/accessory/badge/holo/detective/ruda/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face with an insistent huff.</span>")
+		user.visible_message(span_danger("[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff."),span_danger("You invade [M]'s personal space, thrusting [src] into their face with an insistent huff."))
 		user.do_attack_animation(M)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
@@ -845,9 +845,9 @@
 
 	if(isliving(user))
 		if(stored_name)
-			user.visible_message("<span class='notice'>[user] displays their [src].\nIt reads: [stored_name], [badge_string].</span>","<span class='notice'>You display your [src].\nIt reads: [stored_name], [badge_string].</span>")
+			user.visible_message(span_notice("[user] displays their [src].\nIt reads: [stored_name], [badge_string]."),span_notice("You display your [src].\nIt reads: [stored_name], [badge_string]."))
 		else
-			user.visible_message("<span class='notice'>[user] displays their [src].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src]. It reads: [badge_string].</span>")
+			user.visible_message(span_notice("[user] displays their [src].\nIt reads: [badge_string]."),span_notice("You display your [src]. It reads: [badge_string]."))
 
 /obj/item/card/id/fluff/xennith
 	name = "\improper Amy Lessen's Central Command ID (Xenobiology Director)"
@@ -878,7 +878,7 @@
 			H.monkeyize()
 			qdel(src) //One time use.
 	else //If not, do nothing.
-		to_chat(user, "<span class='warning'>You are unable to inject other people.</span>")
+		to_chat(user, span_warning("You are unable to inject other people."))
 
 /obj/item/fluff/injector/numb_bite
 	name = "Numbing Venom Injector"
@@ -892,7 +892,7 @@
 			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
 			qdel(src) //One time use.
 	else //If not, do nothing.
-		to_chat(user, "<span class='warning'>You are unable to inject other people.</span>")
+		to_chat(user, span_warning("You are unable to inject other people."))
 
 //For 2 handed fluff weapons.
 /obj/item/material/twohanded/fluff //Twohanded fluff items.
@@ -950,7 +950,7 @@
 
 /obj/item/melee/baton/fluff/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(30))
-		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
@@ -973,14 +973,14 @@
 /obj/item/melee/baton/fluff/stunstaff/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)
 		status = !status
-		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
+		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		if(status == 0)
 			playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		else
 			playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	else
 		status = 0
-		to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
+		to_chat(user, span_warning("[src] is out of charge."))
 	update_held_icon()
 	add_fingerprint(user)
 
@@ -1042,8 +1042,8 @@
 /obj/item/melee/fluffstuff/attack_self(mob/living/user as mob)
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
-			user.visible_message("<span class='danger'>\The [user] accidentally cuts \himself with \the [src].</span>",\
-			"<span class='danger'>You accidentally cut yourself with \the [src].</span>")
+			user.visible_message(span_danger("\The [user] accidentally cuts \himself with \the [src]."),\
+			span_danger("You accidentally cut yourself with \the [src]."))
 			user.take_organ_damage(5,5)
 		deactivate(user)
 	else
@@ -1084,7 +1084,7 @@
 
 /obj/item/melee/fluffstuff/wolfgirlsword/activate(mob/living/user)
 	if(!active)
-		to_chat(user, "<span class='notice'>The [src] is now sharpened. It will cut!</span>")
+		to_chat(user, span_notice("The [src] is now sharpened. It will cut!"))
 
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -1096,7 +1096,7 @@
 
 /obj/item/melee/fluffstuff/wolfgirlsword/deactivate(mob/living/user)
 	if(active)
-		to_chat(user, "<span class='notice'>The [src] grows dull!</span>")
+		to_chat(user, span_notice("The [src] grows dull!"))
 	..()
 	attack_verb = list("bapped", "thwapped", "bonked", "whacked")
 	icon_state = initial(icon_state)
@@ -1176,7 +1176,7 @@
 /obj/item/clothing/glasses/welding/tiemgogs/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
    if(..())
       if(H.ckey != "radiantaurora")
-         to_chat(H, "<span class='warning'>These don't look like they were made to fit you...</span>")
+         to_chat(H, span_warning("These don't look like they were made to fit you..."))
          return 0
       else
          return 1
@@ -1215,7 +1215,7 @@
 /obj/item/rig/nikki/attackby(obj/item/W, mob/living/user)
 	//This thing accepts ONLY mounted sizeguns. That's IT. Nothing else!
 	if(open && istype(W,/obj/item/rig_module) && !istype(W,/obj/item/rig_module/mounted/sizegun))
-		to_chat(user, "<span class='danger'>\The [src] only accepts mounted size gun modules.</span>")
+		to_chat(user, span_danger("\The [src] only accepts mounted size gun modules."))
 		return
 	..()
 
@@ -1224,7 +1224,7 @@
 		if (M.ckey == "ryumi")
 			return 1
 		else if (M.get_active_hand() == src)
-			to_chat(M, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit.</span>")
+			to_chat(M, span_warning("For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit."))
 			return 0
 
 //Nickcrazy - Damon Bones Xrim
@@ -1319,13 +1319,13 @@
 			like a sponge scrubbing away a stain.</span>")
 			user.hair_accessory_style = null
 			for(var/datum/sprite_accessory/hair_accessory/verie_hair_glow/V in user)
-				to_chat(user, "<span class='warning'>found a V to delete!</span>")
+				to_chat(user, span_warning("found a V to delete!"))
 				qdel(V)
 			user.update_hair()
 
 
 	else
-		to_chat(user, "<span class='warning'>\The [src] isn't compatible with your body as it is now.</span>")
+		to_chat(user, span_warning("\The [src] isn't compatible with your body as it is now."))
 
 // Astra - // Astra
 /obj/item/material/knife/ritual/fluff/astra
@@ -1432,7 +1432,7 @@
 	desc = "A hard drive containing knowledge of various languages."
 
 /obj/item/implant/language/fluff/m41l/post_implant(mob/M)
-	to_chat(M,"<span class='notice'>LANGUAGES - LOADING</span>")
+	to_chat(M,span_notice("LANGUAGES - LOADING"))
 	M.add_language(LANGUAGE_SKRELLIAN)
 	M.add_language(LANGUAGE_UNATHI)
 	M.add_language(LANGUAGE_SIIK)
@@ -1449,7 +1449,7 @@
 	M.add_language(LANGUAGE_SPACER)
 	M.add_language(LANGUAGE_TAVAN)
 	M.add_language(LANGUAGE_ECHOSONG)
-	to_chat(M,"<span class='notice'>LANGUAGES - INITIALISED</span>")
+	to_chat(M,span_notice("LANGUAGES - INITIALISED"))
 
 //thedavestdave - Lucky
 /obj/item/clothing/suit/armor/combat/crusader_costume/lucky
@@ -1542,16 +1542,16 @@
 	if(world.time - last_message <= 5 SECONDS)
 		return
 	if(user.a_intent == I_HELP)
-		user.visible_message("<span class='notice'><b>\The [user]</b> hugs [src]!</span>","<span class='notice'>You hug [src]!</span>")
+		user.visible_message(span_notice("<b>\The [user]</b> hugs [src]!"),span_notice("You hug [src]!"))
 		icon_state = "pandorba"
 	else if (user.a_intent == I_HURT)
-		user.visible_message("<span class='warning'><b>\The [user]</b> punches [src]!</span>","<span class='warning'>You punch [src]!</span>")
+		user.visible_message(span_warning("<b>\The [user]</b> punches [src]!"),span_warning("You punch [src]!"))
 		icon_state = "pandorba_h"
 	else if (user.a_intent == I_GRAB)
-		user.visible_message("<span class='warning'><b>\The [user]</b> attempts to strangle [src]!</span>","<span class='warning'>You attempt to strangle [src]!</span>")
+		user.visible_message(span_warning("<b>\The [user]</b> attempts to strangle [src]!"),span_warning("You attempt to strangle [src]!"))
 		icon_state = "pandorba_g"
 	else
-		user.visible_message("<span class='notice'><b>\The [user]</b> pokes [src].</span>","<span class='notice'>You poke [src].</span>")
+		user.visible_message(span_notice("<b>\The [user]</b> pokes [src]."),span_notice("You poke [src]."))
 		icon_state = "pandorba_d"
 		playsound(src, 'sound/items/drop/plushie.ogg', 25, 0)
 		visible_message("[src] says, \"[pokephrase]\"")

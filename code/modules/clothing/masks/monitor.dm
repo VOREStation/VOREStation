@@ -27,7 +27,7 @@
 		if(robohead.monitor_styles)
 			monitor_states = params2list(robohead.monitor_styles)
 			icon_state = monitor_states[monitor_state_index]
-			to_chat(H, "<span class='notice'>\The [src] connects to your display output.</span>")
+			to_chat(H, span_notice("\The [src] connects to your display output."))
 
 /obj/item/clothing/mask/monitor/dropped()
 	canremove = TRUE
@@ -41,7 +41,7 @@
 		var/datum/robolimb/robohead = all_robolimbs[E.model]
 		if(istype(E) && (E.robotic >= ORGAN_ROBOT) && robohead.monitor_styles)
 			return 1
-		to_chat(user, "<span class='warning'>You must have a compatible robotic head to install this upgrade.</span>")
+		to_chat(user, span_warning("You must have a compatible robotic head to install this upgrade."))
 	return 0
 
 /obj/item/clothing/mask/monitor/verb/set_monitor_state()
@@ -54,7 +54,7 @@
 	if(!istype(H) || H != usr)
 		return
 	if(H.wear_mask != src)
-		to_chat(usr, "<span class='warning'>You have not installed \the [src] yet.</span>")
+		to_chat(usr, span_warning("You have not installed \the [src] yet."))
 		return
 	var/choice = tgui_input_list(usr, "Select a screen icon:", "Head Monitor Choice", monitor_states)
 	if(choice)

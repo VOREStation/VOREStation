@@ -260,10 +260,10 @@
 
 		if(breath.temperature <= breath_cold_level_1)
 			if(prob(20))
-				to_chat(H, "<span class='danger'>You feel icicles forming on your skin!</span>")
+				to_chat(H, span_danger("You feel icicles forming on your skin!"))
 		else if(breath.temperature >= breath_heat_level_1)
 			if(prob(20))
-				to_chat(H, "<span class='danger'>You feel yourself smouldering in the heat!</span>")
+				to_chat(H, span_danger("You feel yourself smouldering in the heat!"))
 
 		var/bodypart = pick(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 		if(breath.temperature >= breath_heat_level_1)
@@ -369,9 +369,9 @@
 
 	if(reagents)
 		if(reagents.total_volume == reagents.maximum_volume * 0.05)
-			to_chat(organ_owner, "<span class='notice'>[pick(empty_message)]</span>")
+			to_chat(organ_owner, span_notice("[pick(empty_message)]"))
 		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
-			to_chat(organ_owner, "<span class='warning'>[pick(full_message)]</span>")
+			to_chat(organ_owner, span_warning("[pick(full_message)]"))
 
 /obj/item/organ/internal/fruitgland/proc/do_generation()
 	organ_owner.adjust_nutrition(-gen_cost)
@@ -399,7 +399,7 @@
 		fruit_gland.emote_descriptor = list("fruit right off of [fruit_gland.organ_owner]!", "a fruit from [fruit_gland.organ_owner]!")
 
 	else
-		to_chat(src, "<span class='notice'>You lack the organ required to produce fruit.</span>")
+		to_chat(src, span_notice("You lack the organ required to produce fruit."))
 		return
 
 /mob/living/carbon/human/proc/alraune_fruit_pick()
@@ -422,7 +422,7 @@
 			break
 	if (fruit_gland) //Do they have the gland?
 		if(fruit_gland.reagents.total_volume < fruit_gland.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(fruit_gland.empty_message)]</span>")
+			to_chat(src, span_notice("[pick(fruit_gland.empty_message)]"))
 			return
 
 		var/datum/seed/S = SSplants.seeds["[fruit_gland.fruit_type]"]
@@ -434,11 +434,11 @@
 			var/emote = fruit_gland.emote_descriptor[index]
 			var/verb_desc = fruit_gland.verb_descriptor[index]
 			var/self_verb_desc = fruit_gland.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+			usr.visible_message(span_notice("[usr] [verb_desc] [emote]"),
+							span_notice("You [self_verb_desc] [emote]"))
 		else
-			visible_message("<span class='notice'>[src] [pick(fruit_gland.short_emote_descriptor)] a fruit.</span>",
-								"<span class='notice'>You [pick(fruit_gland.self_emote_descriptor)] a fruit.</span>")
+			visible_message(span_notice("[src] [pick(fruit_gland.short_emote_descriptor)] a fruit."),
+								span_notice("You [pick(fruit_gland.self_emote_descriptor)] a fruit."))
 
 		fruit_gland.reagents.remove_any(fruit_gland.transfer_amount)
 

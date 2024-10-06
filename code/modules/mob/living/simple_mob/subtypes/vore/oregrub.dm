@@ -130,7 +130,7 @@
 			inject_poison(L, target_zone)
 
 /mob/living/simple_mob/vore/oregrub/death()
-	visible_message("<span class='warning'>\The [src] shudders and collapses, expelling the ores it had devoured!</span>")
+	visible_message(span_warning("\The [src] shudders and collapses, expelling the ores it had devoured!"))
 	var/i = rand(min_ore,max_ore)
 	while(i>1)
 		var/ore = pick(/obj/item/ore/glass,/obj/item/ore/coal,/obj/item/ore/iron,/obj/item/ore/lead,/obj/item/ore/marble,/obj/item/ore/phoron,/obj/item/ore/silver,/obj/item/ore/gold)
@@ -158,7 +158,7 @@
 // Does actual poison injection, after all checks passed.
 /mob/living/simple_mob/vore/oregrub/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
-		to_chat(L, "<span class='warning'>You feel fire running through your veins!</span>")
+		to_chat(L, span_warning("You feel fire running through your veins!"))
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 //I'm no good at writing this stuff, so I've just left it as placeholders and disabled the chances of them eating you.

@@ -23,30 +23,30 @@
 /obj/item/pizzavoucher/attack_self(mob/user)
 	add_fingerprint(user)
 	if(!spent)
-		user.visible_message("<span class='notice'>[user] presses a button on [src]!</span>")
+		user.visible_message(span_notice("[user] presses a button on [src]!"))
 		desc = desc + " This one seems to be used-up."
 		spent = TRUE
-		user.visible_message("<span class='notice'>A small bluespace rift opens just above [user]'s head and spits out a pizza box!</span>",
-			"<span class='notice'>A small bluespace rift opens just above your head and spits out a pizza box!</span>",
-			"<span class='notice'>You hear a fwoosh followed by a thump.</span>")
+		user.visible_message(span_notice("A small bluespace rift opens just above [user]'s head and spits out a pizza box!"),
+			span_notice("A small bluespace rift opens just above your head and spits out a pizza box!"),
+			span_notice("You hear a fwoosh followed by a thump."))
 		if(special_delivery)
 			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECEIVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
 			new /obj/effect/falling_effect/pizza_delivery/special(user.loc)
 		else
 			new /obj/effect/falling_effect/pizza_delivery(user.loc)
 	else
-		to_chat(user, "<span class='warning'>The [src] is spent!</span>")
+		to_chat(user, span_warning("The [src] is spent!"))
 
 /obj/item/pizzavoucher/emag_act(var/remaining_charges, var/mob/user)
 	if(spent)
-		to_chat(user, "<span class='warning'>The [src] is spent!</span>")
+		to_chat(user, span_warning("The [src] is spent!"))
 		return
 	if(!special_delivery)
-		to_chat(user, "<span class='warning'>You activate the special delivery protocol on the [src]!</span>")
+		to_chat(user, span_warning("You activate the special delivery protocol on the [src]!"))
 		special_delivery = TRUE
 		return 1
 	else
-		to_chat(user, "<span class='warning'>The [src] is already in special delivery mode!</span>")
+		to_chat(user, span_warning("The [src] is already in special delivery mode!"))
 
 /obj/effect/falling_effect/pizza_delivery
 	name = "PIZZA PIE POWER!"

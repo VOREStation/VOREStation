@@ -21,25 +21,25 @@
 	if(!active)
 		active = 1
 		START_PROCESSING(SSobj, src)
-		to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
+		to_chat(usr, span_notice("You activate the pinpointer"))
 	else
 		active = 0
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "pinoff"
-		to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
+		to_chat(usr, span_notice("You deactivate the pinpointer"))
 
 /obj/item/pinpointer/process()
 	if(!active)
 		return PROCESS_KILL
-	
+
 	if(!the_disk)
 		the_disk = locate()
 		if(!the_disk)
 			icon_state = "pinonnull"
 			return
-	
+
 	set_dir(get_dir(src,the_disk))
-	
+
 	switch(get_dist(src,the_disk))
 		if(0)
 			icon_state = "pinondirect"
@@ -188,15 +188,15 @@
 		START_PROCESSING(SSobj, src)
 		if(!mode)
 			workdisk()
-			to_chat(user, "<span class='notice'>Authentication Disk Locator active.</span>")
+			to_chat(user, span_notice("Authentication Disk Locator active."))
 		else
 			worklocation()
-			to_chat(user, "<span class='notice'>Shuttle Locator active.</span>")
+			to_chat(user, span_notice("Shuttle Locator active."))
 	else
 		active = 0
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "pinoff"
-		to_chat(user, "<span class='notice'>You deactivate the pinpointer.</span>")
+		to_chat(user, span_notice("You deactivate the pinpointer."))
 
 /obj/item/pinpointer/nukeop/process()
 	if(!active)
@@ -212,7 +212,7 @@
 	if(bomb_set)	//If the bomb is set, lead to the shuttle
 		mode = 1	//Ensures worklocation() continues to work
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
-		visible_message("<span class='notice'>Shuttle Locator active.</span>")			//Lets the mob holding it know that the mode has changed
+		visible_message(span_notice("Shuttle Locator active."))			//Lets the mob holding it know that the mode has changed
 		return		//Get outta here
 
 	if(!the_disk)
@@ -237,7 +237,7 @@
 	if(!bomb_set)
 		mode = 0
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		visible_message("<span class='notice'>Authentication Disk Locator active.</span>")
+		visible_message(span_notice("Authentication Disk Locator active."))
 		return
 
 	if(!home)
@@ -272,12 +272,12 @@
 	if(!active)
 		active = TRUE
 		START_PROCESSING(SSobj, src)
-		to_chat(user, "<span class='notice'>Shuttle Locator active.</span>")
+		to_chat(user, span_notice("Shuttle Locator active."))
 	else
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "pinoff"
-		to_chat(user, "<span class='notice'>You deactivate the pinpointer.</span>")
+		to_chat(user, span_notice("You deactivate the pinpointer."))
 
 /obj/item/pinpointer/shuttle/process()
 	if(!active)
@@ -295,10 +295,10 @@
 
 	if(loc.z != our_shuttle.z)	//If you are on a different z-level from the shuttle
 		icon_state = "pinonnull"
-	
+
 	else
 		set_dir(get_dir(src, our_shuttle))
-	
+
 		switch(get_dist(src, our_shuttle))
 			if(0)
 				icon_state = "pinondirect"

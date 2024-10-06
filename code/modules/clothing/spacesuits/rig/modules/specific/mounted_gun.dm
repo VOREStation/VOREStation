@@ -95,7 +95,7 @@
 	var/mob/living/M = holder.wearer
 
 	if(M.l_hand && M.r_hand)
-		to_chat(M, "<span class='danger'>Your hands are full.</span>")
+		to_chat(M, span_danger("Your hands are full."))
 		deactivate()
 		return
 
@@ -153,7 +153,7 @@
 	var/mob/living/M = holder.wearer
 
 	if(M.l_hand && M.r_hand)
-		to_chat(M, "<span class='danger'>Your hands are full.</span>")
+		to_chat(M, span_danger("Your hands are full."))
 		deactivate()
 		return
 

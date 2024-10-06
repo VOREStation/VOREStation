@@ -27,7 +27,7 @@
 		B.adjust_integrity(10)
 	else
 		B = new /obj/structure/blob/normal(T, S.overmind) // Otherwise spread it.
-		B.visible_message("<span class='danger'>\A [B] forms on \the [T] as \the [S] bursts!</span>")
+		B.visible_message(span_danger("\A [B] forms on \the [T] as \the [S] bursts!"))
 
 /datum/blob_type/fungal_bloom/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)
 	var/mob/living/simple_mob/blob/spore/S = new spore_type(get_turf(B))

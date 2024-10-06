@@ -187,19 +187,19 @@
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
-				O.show_message(text("<span class='danger'>[src] starts having a seizure!</span>"), 1)
+				O.show_message(span_danger("[src] starts having a seizure!"), 1)
 			Paralyse(10)
 			make_jittery(1000)
 	if (disabilities & COUGHING)
 		if ((prob(5) && paralysis <= 1))
 			drop_item()
-			spawn( 0 )
+			spawn(0)
 				emote("cough")
 				return
 	if (disabilities & TOURETTES)
 		if ((prob(10) && paralysis <= 1))
 			Stun(10)
-			spawn( 0 )
+			spawn(0)
 				switch(rand(1, 3))
 					if(1)
 						emote("twitch")
@@ -217,19 +217,19 @@
 			custom_pain("Your head feels numb and painful.", 10)
 	if(getBrainLoss() >= 15)
 		if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-			to_chat(src, "<span class='warning'>It becomes hard to see for some reason.</span>")
+			to_chat(src, span_warning("It becomes hard to see for some reason."))
 			eye_blurry = 10
 	if(getBrainLoss() >= 35)
 		if(7 <= rn && rn <= 9) if(get_active_hand())
-			to_chat(src, "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>")
+			to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding!"))
 			drop_item()
 	if(getBrainLoss() >= 45)
 		if(10 <= rn && rn <= 12)
 			if(prob(50))
-				to_chat(src, "<span class='danger'>You suddenly black out!</span>")
+				to_chat(src, span_danger("You suddenly black out!"))
 				Paralyse(10)
 			else if(!lying)
-				to_chat(src, "<span class='danger'>Your legs won't respond properly, you fall down!</span>")
+				to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 				Weaken(10)
 
 // RADIATION! Everyone's favorite thing in the world! So let's get some numbers down off the bat.
@@ -323,11 +323,11 @@
 			accumulated_rads += 10 * RADIATION_SPEED_COEFFICIENT
 			if(!isSynthetic())
 				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && !weakened)
-					to_chat(src, "<span class='warning'>You feel exhausted.</span>")
+					to_chat(src, span_warning("You feel exhausted."))
 					AdjustWeakened(3)
 				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald
 					if((h_style != "Bald" || f_style != "Shaved" ))
-						to_chat(src, "<span class='warning'>Your hair falls out.</span>")
+						to_chat(src, span_warning("Your hair falls out."))
 						h_style = "Bald"
 						f_style = "Shaved"
 						update_hair()
@@ -347,7 +347,7 @@
 				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 					spawn vomit()
 				if(prob(10) && !weakened)
-					to_chat(src, "<span class='warning'>You feel sick.</span>")
+					to_chat(src, span_warning("You feel sick."))
 					AdjustWeakened(3)
 
 		else if (radiation >= 300 && radiation < 400) //Equivalent of 6.0 to 8.0 Gy.
@@ -363,7 +363,7 @@
 				if(prob(10) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 					spawn vomit()
 				if(prob(15) && !weakened)
-					to_chat(src, "<span class='warning'>You feel horribly ill.</span>")
+					to_chat(src, span_warning("You feel horribly ill."))
 					AdjustWeakened(3)
 				if(prob(5) && internal_organs.len)
 					I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
@@ -383,7 +383,7 @@
 						if(I)
 							if(istype(I)) I.add_autopsy_data("Radiation Burns", damage)
 							I.take_damage(damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
-							to_chat(src, "<span class='warning'>Your eyes burn!</span>")
+							to_chat(src, span_warning("Your eyes burn!"))
 							eye_blurry += 10
 				if(prob(4))
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
@@ -391,10 +391,10 @@
 				if(prob(25) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 					spawn vomit()
 				if(prob(20) && !weakened)
-					to_chat(src, "<span class='critical'>You feel like your insides are burning!</span>")
+					to_chat(src, span_critical("You feel like your insides are burning!"))
 					AdjustWeakened(5)
 				if(prob(5))
-					to_chat(src, "<span class='critical'>Your entire body feels like it's on fire!</span>")
+					to_chat(src, span_critical("Your entire body feels like it's on fire!"))
 					adjustHalLoss(5)
 				if(prob(10) && internal_organs.len)
 					I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
@@ -419,13 +419,13 @@
 				if(prob(50) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 					spawn vomit()
 				if(!paralysis && prob(30) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
-					to_chat(src, "<span class='critical'>You have a seizure!</span>")
+					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
 					make_jittery(1000)
 					if(!lying)
 						emote("collapse")
 				if(get_active_hand() && prob(15)) //CNS is shutting down.
-					to_chat(src, "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>")
+					to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding!"))
 					drop_item()
 				if(internal_organs.len)
 					I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
@@ -457,29 +457,29 @@
 			I = internal_organs_by_name[O_EYES]
 			if(I) //Eye stuff
 				if(prob(5) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
-					to_chat(src, "<span class='warning'>Your eyes water.</span>")
+					to_chat(src, span_warning("Your eyes water."))
 					eye_blurry += 5
 				if(accumulated_rads > 300) // (6Gy)
 					if(prob(2) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
-						to_chat(src, "<span class='warning'>Your eyes burn.</span>")
+						to_chat(src, span_warning("Your eyes burn."))
 						I.add_autopsy_data("Radiation Burns", 1 * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
 						I.take_damage(1 * species.radiation_mod * RADIATION_SPEED_COEFFICIENT) //0.1 damage. Not a lot, but enough to tell you to get to medical.
 						eye_blurry += 10
 
 			if(accumulated_rads > 200) // (4Gy)
 				if(prob(5) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
-					to_chat(src, "<span class='warning'>Your feel nauseated.</span>")
+					to_chat(src, span_warning("Your feel nauseated."))
 					spawn vomit()
 				if(!weakened && prob(2) && prob(accumulated_rads * RADIATION_SPEED_COEFFICIENT))
-					to_chat(src, "<span class='warning'>Your feel exhausted.</span>")
+					to_chat(src, span_warning("Your feel exhausted."))
 					AdjustWeakened(3)
 			if(accumulated_rads > 300) // (6Gy)
 				if(get_active_hand() && prob(15) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
-					to_chat(src, "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>")
+					to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding!"))
 					drop_item()
 			if(accumulated_rads > 700) // (12Gy)
 				if(!paralysis && prob(1) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //1 in 1000 chance per tick.
-					to_chat(src, "<span class='critical'>You have a seizure!</span>")
+					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
 					make_jittery(1000)
 					if(!lying)
@@ -665,7 +665,7 @@
 		if(exhaled_pp > safe_exhaled_max)
 			if (prob(15))
 				var/word = pick("extremely dizzy","short of breath","faint","confused")
-				to_chat(src, "<span class='danger'>You feel [word].</span>")
+				to_chat(src, span_danger("You feel [word]."))
 
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			failed_exhale = 1
@@ -673,7 +673,7 @@
 		else if(exhaled_pp > safe_exhaled_max * 0.7)
 			if (!prob(1))
 				var/word = pick("dizzy","short of breath","faint","momentarily confused")
-				to_chat(src, "<span class='warning'>You feel [word].</span>")
+				to_chat(src, span_warning("You feel [word]."))
 
 			//scale linearly from 0 to 1 between safe_exhaled_max and safe_exhaled_max*0.7
 			var/ratio = 1.0 - (safe_exhaled_max - exhaled_pp)/(safe_exhaled_max*0.3)
@@ -686,7 +686,7 @@
 		else if(exhaled_pp > safe_exhaled_max * 0.6)
 			if(prob(0.3))
 				var/word = pick("a little dizzy","short of breath")
-				to_chat(src, "<span class='warning'>You feel [word].</span>")
+				to_chat(src, span_warning("You feel [word]."))
 
 	// Too much poison in the air.
 	if(toxins_pp > safe_toxins_max)
@@ -731,10 +731,10 @@
 
 		if(breath.temperature <= species.breath_cold_level_1)
 			if(prob(20))
-				to_chat(src, "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>")
+				to_chat(src, span_danger("You feel your face freezing and icicles forming in your lungs!"))
 		else if(breath.temperature >= species.breath_heat_level_1)
 			if(prob(20))
-				to_chat(src, "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>")
+				to_chat(src, span_danger("You feel your face burning and a searing heat in your lungs!"))
 
 		if(breath.temperature >= species.heat_discomfort_level)
 
@@ -1236,7 +1236,7 @@
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
 		if(halloss >= species.total_health)
-			to_chat(src, "<span class='notice'>You're in too much pain to keep going...</span>")
+			to_chat(src, span_notice("You're in too much pain to keep going..."))
 			src.visible_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.")
 			Paralyse(10)
 			setHalLoss(species.total_health - 1)
@@ -1256,16 +1256,16 @@
 				if(prob(1) && get_active_hand())
 					var/stuff_to_drop = get_active_hand()
 					drop_item()
-					visible_message("<span class='notice'>\The [src] suddenly drops their [stuff_to_drop].</span>","<span class='warning'>You drop your [stuff_to_drop]!</span>")
+					visible_message(span_notice("\The [src] suddenly drops their [stuff_to_drop]."),span_warning("You drop your [stuff_to_drop]!"))
 				if(prob(5))
 					var/fear_self = pick(fear_message_self)
 					var/fear_other = pick(fear_message_other)
-					visible_message("<span class='notice'>\The [src][fear_other]</span>","<span class='warning'>[fear_self]</span>")
+					visible_message(span_notice("\The [src][fear_other]"),span_warning("[fear_self]"))
 			else if(fear >= 30 && !isSynthetic())
 				if(prob(2))
 					var/fear_self = pick(fear_message_self)
 					var/fear_other = pick(fear_message_other)
-					visible_message("<span class='notice'>\The [src][fear_other]</span>","<span class='warning'>[fear_self]</span>")
+					visible_message(span_notice("\The [src][fear_other]"),span_warning("[fear_self]"))
 
 		if(paralysis || sleeping)
 			blinded = 1
@@ -1747,7 +1747,7 @@
 		if (getToxLoss() >= 30 && isSynthetic())
 			if(!confused)
 				if(prob(5))
-					to_chat(src, "<span class='danger'>You lose directional control!</span>")
+					to_chat(src, span_danger("You lose directional control!"))
 					Confuse(10)
 		if (getToxLoss() >= 45 && !isSynthetic())
 			spawn vomit()
@@ -1860,26 +1860,26 @@
 
 	if(shock_stage == 40)
 		if(traumatic_shock >= 80)
-			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
+			to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc)) //VOREStation Edit
 			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
 		if (prob(2))
 			if(traumatic_shock >= 80)
-				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
+				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
 			Weaken(20)
 
 	if(shock_stage >= 80)
 		if (prob(5))
 			if(traumatic_shock >= 80)
-				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
+				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
 			Weaken(20)
 
 	if(shock_stage >= 120)
 		if (prob(2))
 			if(traumatic_shock >= 80)
-				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You are about to lose consciousness")]!</span>")
+				to_chat(src, span_danger("[pick("You black out", "You feel like you could die any moment now", "You are about to lose consciousness")]!"))
 			Paralyse(5)
 
 	if(shock_stage == 150)

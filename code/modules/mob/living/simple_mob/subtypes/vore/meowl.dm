@@ -104,7 +104,7 @@
 	if(istype(O, /obj/item/reagent_containers/food))
 		if(health <= 0)
 			return
-		user.visible_message("<span class='notice'>\The [src] happily gulps down \the [O] right out of \the [user]'s hand, it seems pretty content now.</span>","<span class='notice'>\The [src] happily gulps down \the [O] right out of your hand, it seems pretty content now.</span>")
+		user.visible_message(span_notice("\The [src] happily gulps down \the [O] right out of \the [user]'s hand, it seems pretty content now."),span_notice("\The [src] happily gulps down \the [O] right out of your hand, it seems pretty content now."))
 		user.drop_from_inventory(O)
 		qdel(O)
 		well_fed = world.time

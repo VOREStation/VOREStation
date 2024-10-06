@@ -34,7 +34,7 @@
 
 	if (isrobot(user) || locked)
 		if(istype(O, /obj/item/multitool))
-			to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
+			to_chat(user, span_warning("Resetting circuitry..."))
 			playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
 			if(do_after(user, 20 * O.toolspeed))
 				locked = 0
@@ -50,7 +50,7 @@
 			else
 				playsound(src, 'sound/effects/Glasshit.ogg', 100, 1) //We don't want this playing every time
 			if(W.force < 15)
-				to_chat(user, "<span class='notice'>The cabinet's protective glass glances off the hit.</span>")
+				to_chat(user, span_notice("The cabinet's protective glass glances off the hit."))
 			else
 				hitstaken++
 				if(hitstaken == 4)
@@ -68,7 +68,7 @@
 			fireaxe = O
 			user.remove_from_mob(O)
 			contents += O
-			to_chat(user, "<span class='notice'>You place the fire axe back in the [name].</span>")
+			to_chat(user, span_notice("You place the fire axe back in the [name]."))
 			update_icon()
 		else
 			if(smashed)
@@ -85,7 +85,7 @@
 				flick("[icon_state]closing", src)
 				return
 			else
-				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
+				to_chat(user, span_warning("Resetting circuitry..."))
 				playsound(src, 'sound/machines/lockenable.ogg', 50, 1)
 				if(do_after(user,20 * O.toolspeed))
 					locked = 1
@@ -101,14 +101,14 @@
 	//	hasaxe = 1
 
 	if(locked)
-		to_chat(user, "<span class='warning'>The cabinet won't budge!</span>")
+		to_chat(user, span_warning("The cabinet won't budge!"))
 		return
 
 	if(open)
 		if(fireaxe)
 			user.put_in_hands(fireaxe)
 			fireaxe = null
-			to_chat (user, "<span class='notice'>You take the fire axe from the [name].</span>")
+			to_chat (user, span_notice("You take the fire axe from the [name]."))
 			add_fingerprint(user)
 			update_icon()
 		else
@@ -123,7 +123,7 @@
 /obj/structure/fireaxecabinet/attack_tk(mob/user as mob)
 	if(open && fireaxe)
 		fireaxe.forceMove(loc)
-		to_chat(user, "<span class='notice'>You telekinetically remove the fire axe.</span>")
+		to_chat(user, span_notice("You telekinetically remove the fire axe."))
 		fireaxe = null
 		update_icon()
 		return
@@ -144,9 +144,9 @@
 
 	if (isrobot(usr) || locked || smashed)
 		if(locked)
-			to_chat(usr, "<span class='warning'>The cabinet won't budge!</span>")
+			to_chat(usr, span_warning("The cabinet won't budge!"))
 		else if(smashed)
-			to_chat(usr, "<span class='notice'>The protective glass is broken!</span>")
+			to_chat(usr, span_notice("The protective glass is broken!"))
 		return
 
 	toggle_close_open()
@@ -163,23 +163,23 @@
 		if(fireaxe)
 			usr.put_in_hands(fireaxe)
 			fireaxe = null
-			to_chat(usr, "<span class='notice'>You take the Fire axe from the [name].</span>")
+			to_chat(usr, span_notice("You take the Fire axe from the [name]."))
 		else
-			to_chat(usr, "<span class='notice'>The [name] is empty.</span>")
+			to_chat(usr, span_notice("The [name] is empty."))
 	else
-		to_chat(usr, "<span class='notice'>The [name] is closed.</span>")
+		to_chat(usr, span_notice("The [name] is closed."))
 	update_icon()
 
 /obj/structure/fireaxecabinet/attack_ai(mob/user as mob)
 	if(smashed)
-		to_chat(user, "<span class='warning'>The security of the cabinet is compromised.</span>")
+		to_chat(user, span_warning("The security of the cabinet is compromised."))
 		return
 	else
 		locked = !locked
 		if(locked)
-			to_chat(user, "<span class='warning'>Cabinet locked.</span>")
+			to_chat(user, span_warning("Cabinet locked."))
 		else
-			to_chat(user, "<span class='notice'>Cabinet unlocked.</span>")
+			to_chat(user, span_notice("Cabinet unlocked."))
 		return
 
 /obj/structure/fireaxecabinet/update_icon() //Template: fireaxe[has fireaxe][is opened][hits taken][is smashed]. If you want the opening or closing animations, add "opening" or "closing" right after the numbers

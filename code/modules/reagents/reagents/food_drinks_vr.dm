@@ -62,9 +62,9 @@
 				return
 			else
 				if((dose < 5) && (dose == metabolism || prob(5)))
-					to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
+					to_chat(M, span_danger("Your insides feel uncomfortably hot!"))
 				if(dose >= 5 && prob(5))
-					M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
+					M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are burning!"), span_danger("You feel like your insides are on fire!"), span_danger("You feel like your belly is full of lava!")))
 
 /datum/reagent/ethanol/monstertamer
 	name = "Monster Tamer"
@@ -103,7 +103,7 @@
 				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
 				if (H.feral <=0) //check if they're unferalled
 					H.feral = 0
-					to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
+					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -466,7 +466,7 @@
 				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
 				if (H.feral <=0) //check if they're unferalled
 					H.feral = 0
-					to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
+					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/ethanol/hairoftherat/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -556,7 +556,7 @@
 			H.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
 			if(H.feral <=0) //Check if they're unferalled
 				H.feral = 0
-				to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
+				to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 				log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/nutriment/protein/brainzsnax/red
@@ -883,7 +883,7 @@
 /datum/reagent/drink/coffee/nukie/mega/fast/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(prob(1))
-		M.visible_message("<span class='danger'>\The [M] sizzles!</span>")
+		M.visible_message(span_danger("\The [M] sizzles!"))
 		M.adjustFireLoss(5)
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 

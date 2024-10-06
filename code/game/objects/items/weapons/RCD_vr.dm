@@ -69,16 +69,16 @@
 		var/obj/item/rcd_ammo/cartridge = W
 		var/can_store = min(max_stored_matter - stored_matter, cartridge.remaining)
 		if(can_store <= 0)
-			to_chat(user, span("warning", "There's either no space or \the [cartridge] is empty!"))
+			to_chat(user, span_warning("There's either no space or \the [cartridge] is empty!"))
 			return FALSE
 		stored_matter += can_store
 		cartridge.remaining -= can_store
 		if(!cartridge.remaining)
-			to_chat(user, span("warning", "\The [cartridge] dissolves as it empties of compressed matter."))
+			to_chat(user, span_warning("\The [cartridge] dissolves as it empties of compressed matter."))
 			user.drop_from_inventory(W)
 			qdel(W)
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, span("notice", "The RCD now holds [stored_matter]/[max_stored_matter] matter-units."))
+		to_chat(user, span_notice("The RCD now holds [stored_matter]/[max_stored_matter] matter-units."))
 		update_icon()
 		return TRUE
 	return ..()
@@ -169,7 +169,7 @@
 		else
 			return
 	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
-	to_chat(user, "<span class='notice'>You change RCD's mode to '[choice]'.</span>")
+	to_chat(user, span_notice("You change RCD's mode to '[choice]'."))
 
 //////////////////
 /obj/item/rcd/electric/update_icon()

@@ -120,23 +120,23 @@
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber || allowed_magazines && !is_type_in_list(A, allowed_magazines))
-			to_chat(user, "<span class='warning'>[AM] won't load into [src]!</span>")
+			to_chat(user, span_warning("[AM] won't load into [src]!"))
 			return
 		switch(AM.mag_type)
 			if(MAGAZINE)
 				if(ammo_magazine)
-					to_chat(user, "<span class='warning'>[src] already has a magazine loaded.</span>") //already a magazine here
+					to_chat(user, span_warning("[src] already has a magazine loaded.")) //already a magazine here
 					return
 				if(do_after(user, reload_time * AM.w_class))
 					user.remove_from_mob(AM)
 					AM.loc = src
 					ammo_magazine = AM
-					user.visible_message("[user] inserts [AM] into [src].", "<span class='notice'>You insert [AM] into [src].</span>")
+					user.visible_message("[user] inserts [AM] into [src].", span_notice("You insert [AM] into [src]."))
 					user.hud_used.update_ammo_hud(user, src)
 					playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
-					to_chat(user, "<span class='warning'>[src] is full!</span>")
+					to_chat(user, span_warning("[src] is full!"))
 					return
 				var/count = 0
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
@@ -150,7 +150,7 @@
 						user.hud_used.update_ammo_hud(user, src)
 				if(do_after(user, reload_time * AM.w_class))
 					if(count)
-						user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into [src].</span>")
+						user.visible_message("[user] reloads [src].", span_notice("You load [count] round\s into [src]."))
 						user.hud_used.update_ammo_hud(user, src)
 						playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		AM.update_icon()
@@ -159,14 +159,14 @@
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
 			return //incompatible
 		if(loaded.len >= max_shells)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return
 
 		if(do_after(user, reload_time * C.w_class))
 			user.remove_from_mob(C)
 			C.loc = src
 			loaded.Insert(1, C) //add to the head of the list
-			user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
+			user.visible_message("[user] inserts \a [C] into [src].", span_notice("You insert \a [C] into [src]."))
 			playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
 	else if(istype(A, /obj/item/storage))
@@ -174,7 +174,7 @@
 		if(!(load_method & SINGLE_CASING))
 			return //incompatible
 
-		to_chat(user, "<span class='notice'>You start loading \the [src].</span>")
+		to_chat(user, span_notice("You start loading \the [src]."))
 		sleep(1 SECOND)
 		for(var/obj/item/ammo_casing/ammo in storage.contents)
 			if(caliber != ammo.caliber)
@@ -183,7 +183,7 @@
 			load_ammo(ammo, user)
 
 			if(loaded.len >= max_shells)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				to_chat(user, span_warning("[src] is full."))
 				break
 			sleep(1 SECOND)
 
@@ -194,7 +194,7 @@
 /obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
-		user.visible_message("[user] removes [ammo_magazine] from [src].", "<span class='notice'>You remove [ammo_magazine] from [src].</span>")
+		user.visible_message("[user] removes [ammo_magazine] from [src].", span_notice("You remove [ammo_magazine] from [src]."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
@@ -210,16 +210,16 @@
 					count++
 				loaded.Cut()
 			if(count)
-				user.visible_message("[user] unloads [src].", "<span class='notice'>You unload [count] round\s from [src].</span>")
+				user.visible_message("[user] unloads [src].", span_notice("You unload [count] round\s from [src]."))
 		else if(load_method & SINGLE_CASING)
 			var/obj/item/ammo_casing/C = loaded[loaded.len]
 			loaded.len--
 			user.put_in_hands(C)
-			user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+			user.visible_message("[user] removes \a [C] from [src].", span_notice("You remove \a [C] from [src]."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		user.hud_used.update_ammo_hud(user, src)
 	else
-		to_chat(user, "<span class='warning'>[src] is empty.</span>")
+		to_chat(user, span_warning("[src] is empty."))
 	update_icon()
 	user.hud_used.update_ammo_hud(user, src)
 
@@ -245,7 +245,7 @@
 		ammo_magazine.loc = get_turf(src.loc)
 		user.visible_message(
 			"[ammo_magazine] falls out and clatters on the floor!",
-			"<span class='notice'>[ammo_magazine] falls out and clatters on the floor!</span>"
+			span_notice("[ammo_magazine] falls out and clatters on the floor!")
 			)
 		if(auto_eject_sound)
 			playsound(src, auto_eject_sound, 40, 1)

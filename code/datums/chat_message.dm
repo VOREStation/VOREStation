@@ -126,7 +126,7 @@ var/list/runechat_image_cache = list()
 		// Always force it back to a pref if they have one
 		if(ismob(target))
 			var/mob/M = target
-			if(M?.client?.prefs?.runechat_color != COLOR_BLACK)
+			if(M?.client?.prefs && M.client.prefs.runechat_color != COLOR_BLACK)
 				target.chat_color = M.client.prefs.runechat_color
 				target.chat_color_darkened = M.client.prefs.runechat_color
 

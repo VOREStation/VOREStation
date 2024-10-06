@@ -29,9 +29,9 @@
 		var/turf/T = get_turf(src)
 		for(var/atom/movable/AM in contents)
 			if(AM.simulated) AM.forceMove(T)
-		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							 "<span class='notice'>You pry open \the [src].</span>", \
-							 "<span class='notice'>You hear splitting wood.</span>")
+		user.visible_message(span_notice("[user] pries \the [src] open."), \
+							 span_notice("You pry open \the [src]."), \
+							 span_notice("You hear splitting wood."))
 		qdel(src)
 	else
 		return attack_hand(user)

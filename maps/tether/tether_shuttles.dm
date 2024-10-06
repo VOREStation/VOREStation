@@ -167,18 +167,18 @@
 	if(!istype(WT))
 		return 0
 	if(wear <= 20)
-		to_chat(user,"<span class='notice'>\The [src] doesn't seem to need repairs right now.</span>")
+		to_chat(user,span_notice("\The [src] doesn't seem to need repairs right now."))
 		return 1
 	if(!WT.remove_fuel(0, user))
-		to_chat(user,"<span class='warning'>\The [WT] must be on to complete this task.</span>")
+		to_chat(user,span_warning("\The [WT] must be on to complete this task."))
 		return 1
 	playsound(src, 'sound/items/Welder.ogg', 50, 1)
-	user.visible_message("<span class='notice'>\The [user] begins \the [src] overhaul.</span>","<span class='notice'>You begin an overhaul of \the [src].</span>")
+	user.visible_message(span_notice("\The [user] begins \the [src] overhaul."),span_notice("You begin an overhaul of \the [src]."))
 	if(!do_after(user, wear SECONDS, src))
 		return 1
 	if(!src || !WT.isOn())
 		return 1
-	user.visible_message("<span class='notice'>\The [user] has overhauled \the [src].</span>","<span class='notice'>You complete \the [src] overhaul.</span>")
+	user.visible_message(span_notice("\The [user] has overhauled \the [src]."),span_notice("You complete \the [src] overhaul."))
 	wear = 20
 	update_icon()
 	return 1

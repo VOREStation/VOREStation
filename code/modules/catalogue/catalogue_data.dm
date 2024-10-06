@@ -104,7 +104,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 /datum/category_item/catalogue/proc/display_in_chatlog(mob/user)
 	to_chat(user, "<br>")
-	to_chat(user, span("notice", "<b>[uppertext(name)]</b>"))
+	to_chat(user, span_notice("<b>[uppertext(name)]</b>"))
 
 	// Some entries get very long so lets not totally flood the chatlog.
 	var/desc_length_limit = 750
@@ -113,9 +113,9 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 		displayed_desc = copytext(displayed_desc, 1, desc_length_limit + 1)
 		displayed_desc += "... (View databanks for full data)"
 
-	to_chat(user, span("notice", "<i>[displayed_desc]</i>"))
-	to_chat(user, span("notice", "Cataloguers : <b>[english_list(cataloguers)]</b>."))
-	to_chat(user, span("notice", "Contributes <b>[value]</b> points to personal exploration fund."))
+	to_chat(user, span_notice("<i>[displayed_desc]</i>"))
+	to_chat(user, span_notice("Cataloguers : <b>[english_list(cataloguers)]</b>."))
+	to_chat(user, span_notice("Contributes <b>[value]</b> points to personal exploration fund."))
 
 /*
 		// Truncates text to limit if necessary.

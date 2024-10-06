@@ -20,7 +20,7 @@
 	if(busy)	//Prevent someone from trying to get two uses of the spell from one instance.
 		return 0
 	if(!allowed_to_teleport())
-		to_chat(user, "<span class='warning'>You can't teleport here!</span>")
+		to_chat(user, span_warning("You can't teleport here!"))
 		return 0
 //	if(isturf(hit_atom))
 
@@ -28,7 +28,7 @@
 	var/turf/our_turf = get_turf(user)	//Where we are.
 	if(!T.density)
 		if(!T.check_density())
-			to_chat(user, "<span class='warning'>Perhaps you should try using passWALL on a wall, or other solid object.</span>")
+			to_chat(user, span_warning("Perhaps you should try using passWALL on a wall, or other solid object."))
 			return 0
 	var/direction = get_dir(our_turf, T)
 	var/total_cost = 0
@@ -36,7 +36,7 @@
 	var/turf/found_turf = null			//Our destination, if one is found.
 	var/i = maximum_distance
 
-	visible_message("<span class='info'>[user] rests a hand on \the [hit_atom].</span>")
+	visible_message(span_info("[user] rests a hand on \the [hit_atom]."))
 	busy = 1
 
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -62,18 +62,18 @@
 
 	if(found_turf)
 		if(user.loc != our_turf)
-			to_chat(user, "<span class='warning'>You need to stand still in order to phase through \the [hit_atom].</span>")
+			to_chat(user, span_warning("You need to stand still in order to phase through \the [hit_atom]."))
 			return 0
 		if(pay_energy(total_cost) && !user.incapacitated() )
-			visible_message("<span class='warning'>[user] appears to phase through \the [hit_atom]!</span>")
-			to_chat(user, "<span class='info'>You find a destination on the other side of \the [hit_atom], and phase through it.</span>")
+			visible_message(span_warning("[user] appears to phase through \the [hit_atom]!"))
+			to_chat(user, span_info("You find a destination on the other side of \the [hit_atom], and phase through it."))
 			spark_system.start()
 			user.forceMove(found_turf)
 			qdel(src)
 			return 1
 		else
-			to_chat(user, "<span class='warning'>You don't have enough energy to phase through these walls!</span>")
+			to_chat(user, span_warning("You don't have enough energy to phase through these walls!"))
 			busy = 0
 	else
-		to_chat(user, "<span class='info'>You weren't able to find an open space to go to.</span>")
+		to_chat(user, span_info("You weren't able to find an open space to go to."))
 		busy = 0

@@ -110,7 +110,7 @@
 	if(spawning_types.len && powered())
 		spawn_progress_time += world.time - last_process_time
 		if(spawn_progress_time > max_spawn_time)
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] pings!</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] pings!"))
 
 			var/obj/source_material = pop(stored_materials)
 			var/spawn_type = pop(spawning_types)
@@ -133,7 +133,7 @@
 				icon_state = "borgcharger0(old)"
 
 		else if(prob(5))
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")].</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")]."))
 
 	last_process_time = world.time
 
@@ -161,9 +161,9 @@
 			if(key in construction)
 				if(LAZYLEN(stored_materials) > LAZYLEN(spawning_types))
 					if(LAZYLEN(spawning_types))
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")].</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")]."))
 					else
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src]'s front compartment slides shut.</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] [src]'s front compartment slides shut."))
 					spawning_types.Add(construction[key])
 					spawn_progress_time = 0
 					update_use_power(USE_POWER_ACTIVE)
@@ -173,9 +173,9 @@
 
 /obj/machinery/replicator/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!W.canremove || !user.canUnEquip(W)) //No armblades, no grabs. No other-thing-I-didn't-think-of.
-		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine.</span>")
+		to_chat(user, span_notice("You cannot put \the [W] into the machine."))
 		return
 	user.drop_item()
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<span class='notice'><b>\The [user]</b> inserts \the [W] into \the [src].</span>")
+	src.visible_message(span_notice("<b>\The [user]</b> inserts \the [W] into \the [src]."))

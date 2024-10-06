@@ -93,9 +93,9 @@
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
 			update_icon()
 		else
-			to_chat(user, "<span class='warning'>The controls are locked!</span>")
+			to_chat(user, span_warning("The controls are locked!"))
 	else
-		to_chat(user, "<span class='warning'>\The [src] needs to be firmly secured to the floor first.</span>")
+		to_chat(user, span_warning("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 
 
@@ -177,7 +177,7 @@
 				src.anchored = FALSE
 				disconnect_from_network()
 			if(2)
-				to_chat(user, "<span class='warning'>\The [src] needs to be unwelded from the floor.</span>")
+				to_chat(user, span_warning("\The [src] needs to be unwelded from the floor."))
 		update_icon() // VOREStation Add
 		return
 
@@ -188,7 +188,7 @@
 			return
 		switch(state)
 			if(0)
-				to_chat(user, "<span class='warning'>\The [src] needs to be wrenched to the floor.</span>")
+				to_chat(user, span_warning("\The [src] needs to be wrenched to the floor."))
 			if(1)
 				if (WT.remove_fuel(0,user))
 					playsound(src, WT.usesound, 50, 1)
@@ -201,7 +201,7 @@
 						to_chat(user, "You weld [src] to the floor.")
 						connect_to_network()
 				else
-					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+					to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			if(2)
 				if (WT.remove_fuel(0,user))
 					playsound(src, WT.usesound, 50, 1)
@@ -214,39 +214,39 @@
 						to_chat(user, "You cut [src] free from the floor.")
 						disconnect_from_network()
 				else
-					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+					to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		update_icon() // VOREStation Add
 		return
 
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_STEEL)
 		var/amt = CEILING(( initial(integrity) - integrity)/10, 1)
 		if(!amt)
-			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
+			to_chat(user, span_notice("\The [src] is already fully repaired."))
 			return
 		var/obj/item/stack/P = W
 		if(!P.can_use(amt))
-			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
+			to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
-		to_chat(user, "<span class='notice'>You begin repairing \the [src]...</span>")
+		to_chat(user, span_notice("You begin repairing \the [src]..."))
 		if(do_after(user, 30))
 			if(P.use(amt))
-				to_chat(user, "<span class='notice'>You have repaired \the [src].</span>")
+				to_chat(user, span_notice("You have repaired \the [src]."))
 				integrity = initial(integrity)
 				return
 			else
-				to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
+				to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 				return
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
-			to_chat(user, "<span class='warning'>The lock seems to be broken.</span>")
+			to_chat(user, span_warning("The lock seems to be broken."))
 			return
 		if(src.allowed(user))
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			update_icon() // VOREStation Add
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
+			to_chat(user, span_warning("Access denied."))
 		return
 	..()
 	return
@@ -255,7 +255,7 @@
 	if(!emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] emags [src].","<span class='warning'>You short out the lock.</span>")
+		user.visible_message("[user.name] emags [src].",span_warning("You short out the lock."))
 		return 1
 
 /obj/machinery/power/emitter/bullet_act(var/obj/item/projectile/P)
@@ -271,10 +271,10 @@
 	integrity = between(0, integrity + amount, initial(integrity))
 	if(integrity == 0)
 		if(powernet && avail(active_power_usage)) // If it's powered, it goes boom if killed.
-			visible_message(src, "<span class='danger'>\The [src] explodes violently!</span>", "<span class='danger'>You hear an explosion!</span>")
+			visible_message(src, span_danger("\The [src] explodes violently!"), span_danger("You hear an explosion!"))
 			explosion(get_turf(src), 1, 2, 4)
 		else
-			src.visible_message("<span class='danger'>\The [src] crumples apart!</span>", "<span class='warning'>You hear metal collapsing.</span>")
+			src.visible_message(span_danger("\The [src] crumples apart!"), span_warning("You hear metal collapsing."))
 		if(src)
 			qdel(src)
 
@@ -282,19 +282,19 @@
 	. = ..()
 	switch(state)
 		if(0)
-			. += "<span class='warning'>It is not secured in place!</span>"
+			. += span_warning("It is not secured in place!")
 		if(1)
-			. += "<span class='warning'>It has been bolted down securely, but not welded into place.</span>"
+			. += span_warning("It has been bolted down securely, but not welded into place.")
 		if(2)
-			. += "<span class='notice'>It has been bolted down securely and welded down into place.</span>"
+			. += span_notice("It has been bolted down securely and welded down into place.")
 	var/integrity_percentage = round((integrity / initial(integrity)) * 100)
 	switch(integrity_percentage)
 		if(0 to 30)
-			. += "<span class='danger'>It is close to falling apart!</span>"
+			. += span_danger("It is close to falling apart!")
 		if(31 to 70)
-			. += "<span class='danger'>It is damaged.</span>"
+			. += span_danger("It is damaged.")
 		if(77 to 99)
-			. += "<span class='warning'>It is slightly damaged.</span>"
+			. += span_warning("It is slightly damaged.")
 
 //R-UST port
 /obj/machinery/power/emitter/proc/get_initial_fire_delay()

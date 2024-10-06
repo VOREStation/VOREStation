@@ -85,7 +85,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>")
+		to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))
@@ -260,7 +260,7 @@
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		turbine = null
-		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>")
+		to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 		updateConnection()
 	else
 		..()

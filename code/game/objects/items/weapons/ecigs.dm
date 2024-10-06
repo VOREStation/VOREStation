@@ -24,25 +24,25 @@
 
 /obj/item/clothing/mask/smokable/ecig/examine(mob/user)
 	. = ..()
-	
+
 	if(active)
-		. += "<span class='notice'>It is turned on.</span>"
+		. += span_notice("It is turned on.")
 	else
-		. += "<span class='notice'>It is turned off.</span>"
+		. += span_notice("It is turned off.")
 	if(Adjacent(user))
 		if(ec_cartridge)
 			if(!ec_cartridge.reagents?.total_volume)
-				. += "<span class='notice'>Its cartridge is empty!</span>"
+				. += span_notice("Its cartridge is empty!")
 			else if (ec_cartridge.reagents.total_volume <= ec_cartridge.volume * 0.25)
-				. += "<span class='notice'>Its cartridge is almost empty!</span>"
+				. += span_notice("Its cartridge is almost empty!")
 			else if (ec_cartridge.reagents.total_volume <= ec_cartridge.volume * 0.66)
-				. += "<span class='notice'>Its cartridge is half full!</span>"
+				. += span_notice("Its cartridge is half full!")
 			else if (ec_cartridge.reagents.total_volume <= ec_cartridge.volume * 0.90)
-				. += "<span class='notice'>Its cartridge is almost full!</span>"
+				. += span_notice("Its cartridge is almost full!")
 			else
-				. += "<span class='notice'>Its cartridge is full!</span>"
+				. += span_notice("Its cartridge is full!")
 		else
-			. += "<span class='notice'>It has no cartridge.</span>"
+			. += span_notice("It has no cartridge.")
 
 /obj/item/clothing/mask/smokable/ecig/simple
 	name = "simple electronic cigarette"

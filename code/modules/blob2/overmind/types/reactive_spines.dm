@@ -26,7 +26,7 @@
 // Even if the melee attack is enough to one-shot this blob, it gets to retaliate at least once.
 /datum/blob_type/reactive_spines/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
 	if(damage > 0 && attacker && get_dist(B, attacker) <= 1)
-		B.visible_message("<span class='danger'>The [name] retaliates, lashing out at \the [attacker]!</span>")
+		B.visible_message(span_danger("The [name] retaliates, lashing out at \the [attacker]!"))
 		B.blob_attack_animation(attacker, B.overmind)
 		attacker.blob_act(B)
 	return ..()
@@ -49,7 +49,7 @@
 
 		var/obj/item/projectile/P = new spore_projectile(get_turf(B))
 
-		carrier.visible_message("<span class='danger'>\The [B] fires a spine at \the [L]!</span>")
+		carrier.visible_message(span_danger("\The [B] fires a spine at \the [L]!"))
 		P.launch_projectile(L, BP_TORSO, carrier)
 
 	return

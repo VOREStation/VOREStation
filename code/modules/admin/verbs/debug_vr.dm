@@ -2,7 +2,7 @@
 	set category = "Fun"
 	set name = "Quick NIF"
 	set desc = "Spawns a NIF into someone in quick-implant mode."
-	
+
 	var/input_NIF
 
 	if(!check_rights(R_ADMIN))
@@ -14,15 +14,15 @@
 		return
 
 	if(!istype(H))
-		to_chat(usr,"<span class='warning'>That mob type ([H.type]) doesn't support NIFs, sorry.</span>")
+		to_chat(usr,span_warning("That mob type ([H.type]) doesn't support NIFs, sorry."))
 		return
 
 	if(!H.get_organ(BP_HEAD))
-		to_chat(usr,"<span class='warning'>Target is unsuitable.</span>")
+		to_chat(usr,span_warning("Target is unsuitable."))
 		return
 
 	if(H.nif)
-		to_chat(usr,"<span class='warning'>Target already has a NIF.</span>")
+		to_chat(usr,span_warning("Target already has a NIF."))
 		return
 
 	if(H.species.flags & NO_SCAN)
@@ -48,5 +48,4 @@
 			new /obj/item/nif(H)
 
 	log_and_message_admins("[key_name(src)] Quick NIF'd [H.real_name] with a [input_NIF].")
-	feedback_add_details("admin_verb","QNIF") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc! 
-
+	feedback_add_details("admin_verb","QNIF") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

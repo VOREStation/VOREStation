@@ -53,7 +53,7 @@
 /obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
 	var/w_type = W.type
 	if(w_type in allocated_gamma)
-		to_chat(user,"<span class='notice'>You feel \the [W] slip from your hand, and disappear into the trash pile.</span>")
+		to_chat(user,span_notice("You feel \the [W] slip from your hand, and disappear into the trash pile."))
 		user.unEquip(W)
 		W.forceMove(src)
 		allocated_gamma -= w_type
@@ -84,12 +84,12 @@
 
 /obj/structure/trash_pile/attack_ghost(mob/observer/user as mob)
 	if(config.disable_player_mice)
-		to_chat(user, "<span class='warning'>Spawning as a mouse is currently disabled.</span>")
+		to_chat(user, span_warning("Spawning as a mouse is currently disabled."))
 		return
 
 	//VOREStation Add Start
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, "<span class='warning'>You cannot become a mouse because you are banned from playing ghost roles.</span>")
+		to_chat(user, span_warning("You cannot become a mouse because you are banned from playing ghost roles."))
 		return
 	//VOREStation Add End
 
@@ -98,14 +98,14 @@
 
 	var/turf/T = get_turf(src)
 	if(!T || (T.z in using_map.admin_levels))
-		to_chat(user, "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>")
+		to_chat(user, span_warning("You may not spawn as a mouse on this Z-level."))
 		return
 
 	var/timedifference = world.time - user.client.time_died_as_mouse
 	if(user.client.time_died_as_mouse && timedifference <= mouse_respawn_time * 600)
 		var/timedifference_text
 		timedifference_text = time2text(mouse_respawn_time * 600 - timedifference,"mm:ss")
-		to_chat(user, "<span class='warning'>You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left.</span>")
+		to_chat(user, span_warning("You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left."))
 		return
 
 	var/response = tgui_alert(user, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?",list("Squeek!","Nope!"))
@@ -119,7 +119,7 @@
 			host.universal_understand = 0
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = user.ckey
-		to_chat(host, "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>")
+		to_chat(host, span_info("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
 
 	var/atom/A = get_holder_at_turf_level(src)
 	A.visible_message("[host] crawls out of \the [src].")
@@ -129,23 +129,23 @@
 	//Human mob
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.visible_message("[user] searches through \the [src].","<span class='notice'>You search through \the [src].</span>")
+		H.visible_message("[user] searches through \the [src].",span_notice("You search through \the [src]."))
 		if(hider)
-			to_chat(hider,"<span class='warning'>[user] is searching the trash pile you're in!</span>")
+			to_chat(hider,span_warning("[user] is searching the trash pile you're in!"))
 
 		//Do the searching
 		if(do_after(user,rand(4 SECONDS,6 SECONDS),src))
 
 			//If there was a hider, chance to reveal them
 			if(hider && prob(50))
-				to_chat(hider,"<span class='danger'>You've been discovered!</span>")
+				to_chat(hider,span_danger("You've been discovered!"))
 				hider.forceMove(get_turf(src))
 				hider = null
-				to_chat(user,"<span class='danger'>Some sort of creature leaps out of \the [src]!</span>")
+				to_chat(user,span_danger("Some sort of creature leaps out of \the [src]!"))
 
 			//You already searched this one bruh
 			else if(user.ckey in searchedby)
-				to_chat(H,"<span class='warning'>There's nothing else for you in \the [src]!</span>")
+				to_chat(H,span_warning("There's nothing else for you in \the [src]!"))
 
 			//You found an item!
 			else
@@ -170,7 +170,7 @@
 				if(I)
 					searchedby += user.ckey
 					I.forceMove(get_turf(src))
-					to_chat(H,"<span class='notice'>You found \a [I]!</span>")
+					to_chat(H,span_notice("You found \a [I]!"))
 
 	else
 		return ..()

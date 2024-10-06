@@ -24,14 +24,14 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/affecting = H.get_organ(zone)
-		to_chat(user, "<span class='danger'>An inexplicable force rips through your [affecting.name], tearing the sword from your grasp!</span>")
+		to_chat(user, span_danger("An inexplicable force rips through your [affecting.name], tearing the sword from your grasp!"))
 		//random amount of damage between half of the blade's force and the full force of the blade.
 		user.apply_damage(rand(force/2, force), BRUTE, zone, 0, sharp = TRUE, edge = TRUE)
 		user.Weaken(5)
 	else if(!istype(user, /mob/living/simple_mob/construct))
-		to_chat(user, "<span class='danger'>An inexplicable force rips through you, tearing the sword from your grasp!</span>")
+		to_chat(user, span_danger("An inexplicable force rips through you, tearing the sword from your grasp!"))
 	else
-		to_chat(user, "<span class='critical'>The blade hisses, forcing itself from your manipulators. \The [src] will only allow mortals to wield it against foes, not kin.</span>")
+		to_chat(user, span_critical("The blade hisses, forcing itself from your manipulators. \The [src] will only allow mortals to wield it against foes, not kin."))
 
 	user.drop_from_inventory(src, src.loc)
 	throw_at(get_edge_target_turf(src, pick(alldirs)), rand(1,3), throw_speed)
@@ -43,10 +43,10 @@
 
 /obj/item/melee/cultblade/pickup(mob/living/user as mob)
 	if(!iscultist(user) && !istype(user, /mob/living/simple_mob/construct))
-		to_chat(user, "<span class='warning'>An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly.</span>")
+		to_chat(user, span_warning("An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly."))
 		user.make_dizzy(120)
 	if(istype(user, /mob/living/simple_mob/construct))
-		to_chat(user, "<span class='warning'>\The [src] hisses, as it is discontent with your acquisition of it. It would be wise to return it to a worthy mortal quickly.</span>")
+		to_chat(user, span_warning("\The [src] hisses, as it is discontent with your acquisition of it. It would be wise to return it to a worthy mortal quickly."))
 
 /obj/item/clothing/head/culthood
 	name = "cult hood"

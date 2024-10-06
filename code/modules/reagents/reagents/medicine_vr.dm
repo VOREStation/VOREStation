@@ -32,7 +32,7 @@
 /datum/reagent/numbing_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 	if(prob(0.01)) //1 in 10000 chance per tick. Extremely rare.
-		to_chat(M,"<span class='warning'>Your body feels numb as a light, tingly sensation spreads throughout it, like some odd warmth.</span>")
+		to_chat(M,span_warning("Your body feels numb as a light, tingly sensation spreads throughout it, like some odd warmth."))
 	//Not noted here, but a movement debuff of 1.5 is handed out in human_movement.dm when numbing_enzyme is in a person's bloodstream!
 
 /datum/reagent/numbing_enzyme/overdose(var/mob/living/carbon/M, var/alien)
@@ -40,24 +40,24 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(prob(1))
-			to_chat(H,"<span class='warning'>Your entire body feels numb and the sensation of pins and needles continually assaults you. You blink and the next thing you know, your legs give out momentarily!</span>")
+			to_chat(H,span_warning("Your entire body feels numb and the sensation of pins and needles continually assaults you. You blink and the next thing you know, your legs give out momentarily!"))
 			H.AdjustWeakened(5) //Fall onto the floor for a few moments.
 			H.Confuse(15) //Be unable to walk correctly for a bit longer.
 		if(prob(1))
 			if(H.losebreath <= 1 && H.oxyloss <= 20) //Let's not suffocate them to the point that they pass out.
-				to_chat(H,"<span class='warning'>You feel a sharp stabbing pain in your chest and quickly realize that your lungs have stopped functioning!</span>") //Let's scare them a bit.
+				to_chat(H,span_warning("You feel a sharp stabbing pain in your chest and quickly realize that your lungs have stopped functioning!")) //Let's scare them a bit.
 				H.losebreath = 10
 				H.adjustOxyLoss(5)
 		if(prob(2))
-			to_chat(H,"<span class='warning'>You feel a dull pain behind your eyes and at thee back of your head...</span>")
+			to_chat(H,span_warning("You feel a dull pain behind your eyes and at thee back of your head..."))
 			H.hallucination += 20 //It messes with your mind for some reason.
 			H.eye_blurry += 20 //Groggy vision for a small bit.
 		if(prob(3))
-			to_chat(H,"<span class='warning'>You shiver, your body continually being assaulted by the sensation of pins and needles.</span>")
+			to_chat(H,span_warning("You shiver, your body continually being assaulted by the sensation of pins and needles."))
 			H.emote("shiver")
 			H.make_jittery(10)
 		if(prob(3))
-			to_chat(H,"<span class='warning'>Your tongue feels numb and unresponsive.</span>")
+			to_chat(H,span_warning("Your tongue feels numb and unresponsive."))
 			H.stuttering += 20
 
 /datum/reagent/vermicetol

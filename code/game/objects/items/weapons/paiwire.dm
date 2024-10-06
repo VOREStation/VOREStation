@@ -4,7 +4,7 @@
 		if(istype(M, /obj/machinery/door/airlock))
 			var/obj/machinery/door/airlock/A = M
 			if(A.secured_wires)
-				to_chat(user,"<span class='warning'>\The [M] doesn't have any acessible data ports for \the [src]!</span>")
+				to_chat(user,span_warning("\The [M] doesn't have any acessible data ports for \the [src]!"))
 				return
 		//VOREStation Add End
 		user.visible_message("[user] inserts [src] into a data port on [M].", "You insert [src] into a data port on [M].", "You hear the satisfying click of a wire jack fastening into place.")

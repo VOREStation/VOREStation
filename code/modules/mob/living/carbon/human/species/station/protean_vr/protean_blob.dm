@@ -276,7 +276,7 @@
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='vwarning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,span_vwarning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 
 /mob/living/simple_mob/protean_blob/attack_target(var/atom/A)
 	if(refactory && istype(A,/obj/item/stack/material))
@@ -320,7 +320,7 @@ var/global/list/disallowed_protean_accessories = list(
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/nano_intoblob(force)
 	if(!force && !isturf(loc))
-		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
+		to_chat(src,span_warning("You can't change forms while inside something."))
 		return
 
 	var/panel_was_up = FALSE
@@ -424,7 +424,7 @@ var/global/list/disallowed_protean_accessories = list(
 		return
 
 	if(!force && !isturf(blob.loc))
-		to_chat(blob,"<span class='warning'>You can't change forms while inside something.</span>")
+		to_chat(blob,span_warning("You can't change forms while inside something."))
 		return
 
 	var/panel_was_up = FALSE

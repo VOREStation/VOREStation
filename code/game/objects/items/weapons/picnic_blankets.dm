@@ -66,7 +66,7 @@
 				continue
 			if(LAZYLEN(T.contents) > 20) //Avoiding potential perf issues by not iterating over large piles of objs
 				if(!anti_spam)
-					to_chat(usr, SPAN_NOTICE("Too many items! Couldn't fully unfold the blanket!"))
+					to_chat(usr, span_notice("Too many items! Couldn't fully unfold the blanket!"))
 					anti_spam = TRUE
 				continue
 			for(var/obj/O in T)
@@ -101,9 +101,9 @@
 /obj/structure/picnic_blanket_deployed/examine(mob/user)
 	. = ..()
 	if(blanket_type == CENTER)
-		. += SPAN_NOTICE("This is the center of a folded out picnic blanket. You can use this to start packing it up!")
+		. += span_notice("This is the center of a folded out picnic blanket. You can use this to start packing it up!")
 	if(blanket_type == SIDE)
-		. += SPAN_NOTICE("This is one of the edges. Look for the center to start packing!")
+		. += span_notice("This is one of the edges. Look for the center to start packing!")
 
 //For Mapping use only.
 //If player folds it back up, it reverts to normal type so the Initialize() won't cause issues

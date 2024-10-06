@@ -52,9 +52,9 @@
 		name = "[design] [material] [type]"
 		desc = "A [type], made of [material]. It's rather [design]."
 		customized = 1
-		to_chat(usr,"<span class='notice'>[src] has now been customized.</span>")
+		to_chat(usr,span_notice("[src] has now been customized."))
 	else
-		to_chat(usr,"<span class='notice'>[src] has already been customized!</span>")
+		to_chat(usr,span_notice("[src] has already been customized!"))
 
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
@@ -169,11 +169,11 @@
 		if(href_list["tag"])
 			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+				to_chat(usr,span_notice("[name]'s tag set to be blank."))
 				name = initial(name)
 				desc = initial(desc)
 			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+				to_chat(usr,span_notice("You set the [name]'s tag to '[str]'."))
 				name = initial(name) + " ([str])"
 				desc = initial(desc) + " The tag says \"[str]\"."
 		else
@@ -215,7 +215,7 @@
 			M = loc
 		if(ismob(loc.loc))
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
-		to_chat(M,"<span class='danger'>You feel a sharp shock!</span>")
+		to_chat(M,span_danger("You feel a sharp shock!"))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, M)
 		s.start()
@@ -293,21 +293,21 @@
 
 /obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
-		to_chat(user,"<span class='notice'>[name]'s interface is projected onto your hand.</span>")
+		to_chat(user,span_notice("[name]'s interface is projected onto your hand."))
 	else
 		if(writtenon)
-			to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
+			to_chat(user,span_notice("You need a pen or a screwdriver to edit the tag on this collar."))
 			return
-		to_chat(user,"<span class='notice'>You adjust the [name]'s tag.</span>")
+		to_chat(user,span_notice("You adjust the [name]'s tag."))
 
 	var/str = copytext(reject_bad_text(tgui_input_text(user,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 
 	if(!str || !length(str))
-		to_chat(user,"<span class='notice'>[name]'s tag set to be blank.</span>")
+		to_chat(user,span_notice("[name]'s tag set to be blank."))
 		name = initial(name)
 		desc = initial(desc)
 	else
-		to_chat(user,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+		to_chat(user,span_notice("You set the [name]'s tag to '[str]'."))
 		initialize_tag(str)
 
 /obj/item/clothing/accessory/collar/proc/initialize_tag(var/tag)
@@ -331,7 +331,7 @@
 		update_collartag(user, I, "crossed out", "cross out", "written")
 		return
 
-	to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
+	to_chat(user,span_notice("You need a pen or a screwdriver to edit the tag on this collar."))
 
 /obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, var/erasemethod, var/erasing, var/writemethod)
 	if(!(istype(user.get_active_hand(),I)) || !(istype(user.get_inactive_hand(),src)) || (user.stat))
@@ -341,19 +341,19 @@
 
 	if(!str || !length(str))
 		if(!writtenon)
-			to_chat(user,"<span class='notice'>You don't write anything.</span>")
+			to_chat(user,span_notice("You don't write anything."))
 		else
-			to_chat(user,"<span class='notice'>You [erasing] the words with the [I].</span>")
+			to_chat(user,span_notice("You [erasing] the words with the [I]."))
 			name = initial(name)
 			desc = initial(desc) + " The tag has had the words [erasemethod]."
 	else
 		if(!writtenon)
-			to_chat(user,"<span class='notice'>You write '[str]' on the tag with the [I].</span>")
+			to_chat(user,span_notice("You write '[str]' on the tag with the [I]."))
 			name = initial(name) + " ([str])"
 			desc = initial(desc) + " \"[str]\" has been [writemethod] on the tag."
 			writtenon = 1
 		else
-			to_chat(user,"<span class='notice'>You [erasing] the words on the tag with the [I], and write '[str]'.</span>")
+			to_chat(user,span_notice("You [erasing] the words on the tag with the [I], and write '[str]'."))
 			name = initial(name) + " ([str])"
 			desc = initial(desc) + " Something has been [erasemethod] on the tag, and it now has \"[str]\" [writemethod] on it."
 
@@ -381,11 +381,11 @@
 		if(href_list["tag"])
 			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+				to_chat(usr,span_notice("[name]'s tag set to be blank."))
 				name = initial(name)
 				desc = initial(desc)
 			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+				to_chat(usr,span_notice("You set the [name]'s tag to '[str]'."))
 				name = initial(name) + " ([str])"
 				desc = initial(desc) + " The tag says \"[str]\"."
 		else
@@ -400,9 +400,9 @@
 					if(!size_select)
 						return //cancelled
 					target_size = clamp((size_select/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
-					to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
+					to_chat(usr, span_notice("You set the size to [size_select]%"))
 					if(target_size < RESIZE_MINIMUM || target_size > RESIZE_MAXIMUM)
-						to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
+						to_chat(usr, span_notice("Note: Resizing limited to 25-200% automatically while outside dormatory areas.")) //hint that we clamp it in resize
 		if(!( master ))
 			if(istype(loc, /mob))
 				attack_self(loc)
@@ -463,7 +463,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		if(!H.resizable)
-			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
 		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
@@ -472,18 +472,18 @@
 			last_activated = world.time
 			original_size = H.size_multiplier
 			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
 			s.start()
 		else if(H.size_multiplier == target_size)
 			if(original_size == null)
-				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
 			H.resize(original_size, ignore_prefs = FALSE)
 			original_size = null
-			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
 			s.set_up(3, 1, M)
@@ -495,7 +495,7 @@
 
 /obj/item/clothing/accessory/collar/shock/bluespace/attackby(var/obj/item/component, mob/user as mob)
 	if (component.has_tool_quality(TOOL_WRENCH))
-		to_chat(user, "<span class='notice'>You crack the bluespace crystal [src].</span>")
+		to_chat(user, span_notice("You crack the bluespace crystal [src]."))
 		var/turf/T = get_turf(src)
 		new /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning(T)
 		user.drop_from_inventory(src)
@@ -504,7 +504,7 @@
 	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
-	to_chat(user, "<span class='notice'>You wire the signaler into the [src].</span>")
+	to_chat(user, span_notice("You wire the signaler into the [src]."))
 	user.drop_item()
 	qdel(component)
 	var/turf/T = get_turf(src)
@@ -526,7 +526,7 @@
 
 /obj/item/clothing/accessory/collar/shock/bluespace/modified/attackby(var/obj/item/component, mob/user as mob)
 	if (component.has_tool_quality(TOOL_WRENCH))
-		to_chat(user, "<span class='notice'>You crack the bluespace crystal [src], the attached signaler disconnects.</span>")
+		to_chat(user, span_notice("You crack the bluespace crystal [src], the attached signaler disconnects."))
 		var/turf/T = get_turf(src)
 		new /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning(T)
 		user.drop_from_inventory(src)
@@ -535,7 +535,7 @@
 	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
-	to_chat(user, "<span class='notice'>There is already a signaler wired to the [src].</span>")
+	to_chat(user, span_notice("There is already a signaler wired to the [src]."))
 	return
 
 /obj/item/clothing/accessory/collar/shock/bluespace/modified/attack_self(mob/user as mob, flag1)
@@ -570,11 +570,11 @@
 		if(href_list["tag"])
 			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+				to_chat(usr,span_notice("[name]'s tag set to be blank."))
 				name = initial(name)
 				desc = initial(desc)
 			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+				to_chat(usr,span_notice("You set the [name]'s tag to '[str]'."))
 				name = initial(name) + " ([str])"
 				desc = initial(desc) + " The tag says \"[str]\"."
 		if(!( master ))
@@ -609,10 +609,10 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		if(!H.resizable)
-			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
 		if (target_size < 0.26)
-			H.visible_message("<span class='warning'>The collar on [H] flickers, but fizzles out.</span>","<span class='notice'>Your collar flickers, but is not powerful enough to shrink you that small.</span>")
+			H.visible_message(span_warning("The collar on [H] flickers, but fizzles out."),span_notice("Your collar flickers, but is not powerful enough to shrink you that small."))
 			return
 		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
@@ -621,18 +621,18 @@
 			last_activated = world.time
 			original_size = H.size_multiplier
 			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
 			s.start()
 		else if(H.size_multiplier == target_size)
 			if(original_size == null)
-				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
 			H.resize(original_size, ignore_prefs = FALSE)
 			original_size = null
-			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
 			s.set_up(3, 1, M)
@@ -655,7 +655,7 @@
 	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
-	to_chat(user, "<span class='notice'>The signaler doesn't respond to the connection attempt [src].</span>")
+	to_chat(user, span_notice("The signaler doesn't respond to the connection attempt [src]."))
 	return
 
 /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attack_self(mob/user as mob, flag1)
@@ -697,11 +697,11 @@
 		if(href_list["tag"])
 			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+				to_chat(usr,span_notice("[name]'s tag set to be blank."))
 				name = initial(name)
 				desc = initial(desc)
 			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+				to_chat(usr,span_notice("You set the [name]'s tag to '[str]'."))
 				name = initial(name) + " ([str])"
 				desc = initial(desc) + " The tag says \"[str]\"."
 		else
@@ -742,10 +742,10 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		if(!H.resizable)
-			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
 		if (target_size < 0.25)
-			H.visible_message("<span class='warning'>The collar on [H] flickers, but fizzles out.</span>","<span class='notice'>Your collar flickers, but is not powerful enough to shrink you that small.</span>")
+			H.visible_message(span_warning("The collar on [H] flickers, but fizzles out."),span_notice("Your collar flickers, but is not powerful enough to shrink you that small."))
 			return
 		if(currently_shrinking == 0)
 			if(!(world.time - last_activated > 10 SECONDS))
@@ -755,19 +755,19 @@
 			original_size = H.size_multiplier
 			currently_shrinking = 1
 			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
 			s.start()
 		else if(currently_shrinking == 1)
 			if(original_size == null)
-				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
 			H.resize(original_size, ignore_prefs = FALSE)
 			original_size = null
 			currently_shrinking = 0
-			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
 			s.set_up(3, 1, M)

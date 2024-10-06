@@ -583,14 +583,14 @@
 				if(G.affecting.stat == DEAD)
 					var/shield_chance = min(80, (30 * (M.mob_size / 10)))	//Small mobs have a harder time keeping a dead body as a shield than a human-sized one. Unathi would have an easier job, if they are made to be SIZE_LARGE in the future. -Mech
 					if(prob(shield_chance))
-						visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
+						visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
 						if(bump_targets)
 							if(Bump(G.affecting))
 								return
 					else
-						visible_message("<span class='danger'>\The [M] tries to use [G.affecting] as a shield, but fails!</span>")
+						visible_message(span_danger("\The [M] tries to use [G.affecting] as a shield, but fails!"))
 				else
-					visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
+					visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
 					if(bump_targets)
 						if(Bump(G.affecting))
 							return //If Bump() returns 0 (keep going) then we continue on to attack M.
@@ -712,14 +712,14 @@
 	//hit messages
 	if(silenced)
 		playsound(target_mob, hitsound, 5, 1, -1)
-		to_chat(target_mob, span("critical", "You've been hit in the [impacted_organ] by \the [src]!"))
+		to_chat(target_mob, span_critical("You've been hit in the [impacted_organ] by \the [src]!"))
 	else
 		var/volume = vol_by_damage()
 		playsound(target_mob, hitsound, volume, 1, -1)
 		// X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 		target_mob.visible_message(
-			span("danger", "\The [target_mob] was hit in the [impacted_organ] by \the [src]!"),
-			span("critical", "You've been hit in the [impacted_organ] by \the [src]!")
+			span_danger("\The [target_mob] was hit in the [impacted_organ] by \the [src]!"),
+			span_critical("You've been hit in the [impacted_organ] by \the [src]!")
 		)
 
 	//admin logs

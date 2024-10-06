@@ -86,10 +86,10 @@
 /obj/item/blobcore_chunk/attack_self(var/mob/user)
 	if(blob_type && world.time > active_ability_cooldown + last_active_use)
 		last_active_use = world.time
-		to_chat(user, "<span class='alien'>[icon2html(src, user.client)] \The [src] gesticulates.</span>")
+		to_chat(user, span_alien("[icon2html(src, user.client)] \The [src] gesticulates."))
 		blob_type.on_chunk_use(src, user)
 	else
-		to_chat(user, "<span class='notice'>\The [src] doesn't seem to respond.</span>")
+		to_chat(user, span_notice("\The [src] doesn't seem to respond."))
 	..()
 
 /obj/item/blobcore_chunk/process()
@@ -102,9 +102,9 @@
 		should_tick = !should_tick
 
 		if(should_tick)
-			to_chat(user, "<span class='alien'>\The [src] shudders with life.</span>")
+			to_chat(user, span_alien("\The [src] shudders with life."))
 		else
-			to_chat(user, "<span class='alien'>\The [src] stills, returning to a death-like state.</span>")
+			to_chat(user, span_alien("\The [src] stills, returning to a death-like state."))
 
 /obj/item/blobcore_chunk/proc/regen(var/newfaction = null)
 	if(istype(blob_type))
@@ -133,10 +133,10 @@
 /decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen())
-		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
+		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))
 		chunk.can_genesis = FALSE
 	else
-		chunk.visible_message("<span class='warning'>[chunk] shifts strangely, but falls still.</span>")
+		chunk.visible_message(span_warning("[chunk] shifts strangely, but falls still."))
 
 /decl/chemical_reaction/instant/blob_reconstitution/domination
 	name = "Allied Blob Revival"
@@ -148,7 +148,7 @@
 /decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen("neutral"))
-		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
+		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))
 		chunk.can_genesis = FALSE
 	else
-		chunk.visible_message("<span class='warning'>[chunk] shifts strangely, but falls still.</span>")
+		chunk.visible_message(span_warning("[chunk] shifts strangely, but falls still."))

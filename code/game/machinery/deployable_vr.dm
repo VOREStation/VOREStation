@@ -39,7 +39,7 @@
 	density = FALSE
 	name = initial(name)
 	desc = initial(desc)
-	visible_message("<span class='warning'>[src] topples over!</span>")
+	visible_message(span_warning("[src] topples over!"))
 
 /obj/structure/barricade/cutout/proc/untopple()
 	if(!toppled)
@@ -49,7 +49,7 @@
 	density = TRUE
 	name = fake_name
 	desc = fake_desc
-	visible_message("<span class='warning'>[src] is uprighted to their proper position.</span>")
+	visible_message(span_warning("[src] is uprighted to their proper position."))
 
 /obj/structure/barricade/cutout/CheckHealth()
 	if(!toppled && (health < (maxhealth/2)))
@@ -67,7 +67,7 @@
 	. = ..()
 
 	if(Adjacent(user))
-		. += "<span class='notice'>... from this distance, they seem to be made of [material.name] ...</span>"
+		. += span_notice("... from this distance, they seem to be made of [material.name] ...")
 
 /obj/structure/barricade/cutout/attackby(var/obj/I, var/mob/user)
 	if(is_type_in_list(I, painters))

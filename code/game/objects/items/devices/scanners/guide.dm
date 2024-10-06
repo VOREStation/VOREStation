@@ -3,7 +3,7 @@
 	set desc = "Toggles whether or not \the [src] will provide guidance and instruction in addition to scanning."
 	set category = "Object"
 	guide = !guide
-	to_chat(usr, "<span class='notice'>You toggle \the [src]'s guidance system [guide ? "on" : "off"].</span>")
+	to_chat(usr, span_notice("You toggle \the [src]'s guidance system [guide ? "on" : "off"]."))
 
 
 /obj/item/healthanalyzer/guide
@@ -106,6 +106,6 @@
 	if(dat)
 		peeb +="<span class='notice'><b>GUIDANCE SYSTEM BEGIN</b></span><br>"
 		peeb += dat
-		peeb += "<span class='notice'>For more detailed information about patient condition, use the stationary scanner in medbay.</span>"
+		peeb += span_notice("For more detailed information about patient condition, use the stationary scanner in medbay.")
 
 	user.show_message(peeb, 1)

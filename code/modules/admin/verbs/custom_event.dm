@@ -19,9 +19,9 @@
 
 	custom_event_msg = input
 
-	to_world("<h1 class='alert'>Custom Event</h1>")
-	to_world("<h2 class='alert'>A custom event is starting. OOC Info:</h2>")
-	to_world("<span class='alert'>[custom_event_msg]</span>")
+	to_world("<h1>[span_alert("Custom Event")]</h1>")
+	to_world("<h2>[span_alert("A custom event is starting. OOC Info:")]</h2>")
+	to_world(span_alert("[custom_event_msg]"))
 	to_world("<br>")
 
 	SSwebhooks.send(
@@ -37,10 +37,10 @@
 	set name = "Custom Event Info"
 
 	if(!custom_event_msg || custom_event_msg == "")
-		to_chat(src, "<span class='filter_notice'>There currently is no known custom event taking place.</span>")
-		to_chat(src, "<span class='filter_notice'>Keep in mind: it is possible that an admin has not properly set this.</span>")
+		to_chat(src, span_filter_notice("There currently is no known custom event taking place."))
+		to_chat(src, span_filter_notice("Keep in mind: it is possible that an admin has not properly set this."))
 		return
 
-	to_chat(src, "<h1 class='filter_notice alert'>Custom Event</h1>")
-	to_chat(src, "<h2 class='filter_notice alert'>A custom event is taking place. OOC Info:</h2>")
-	to_chat(src, "<span class='filter_notice alert'>[custom_event_msg]<br></span>")
+	to_chat(src, "<h1>[span_filter_notice(span_alert("Custom Event"))]</h1>")
+	to_chat(src, "<h2>[span_filter_notice(span_alert("A custom event is taking place. OOC Info:"))]</h2>")
+	to_chat(src, span_filter_notice(span_alert("[custom_event_msg]<br>")))

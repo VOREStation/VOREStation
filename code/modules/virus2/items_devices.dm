@@ -61,7 +61,7 @@
 		return ..()
 		//VOREstation edit end
 	if(prob(50))
-		to_chat(user, "<span class='danger'>\The [src] shatters!</span>")
+		to_chat(user, span_danger("\The [src] shatters!"))
 		if(virus2.infectionchance > 0)
 			for(var/mob/living/carbon/target in view(1, get_turf(src)))
 				if(airborne_can_reach(get_turf(src), get_turf(target)))

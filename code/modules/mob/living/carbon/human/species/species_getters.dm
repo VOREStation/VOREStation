@@ -104,7 +104,7 @@
 			discomfort_message = pick(heat_discomfort_strings)
 
 	if(discomfort_message && prob(5))
-		to_chat(H, SPAN_DANGER(discomfort_message))
+		to_chat(H, span_danger(discomfort_message))
 	return !!discomfort_message
 
 /datum/species/proc/get_random_name(var/gender)

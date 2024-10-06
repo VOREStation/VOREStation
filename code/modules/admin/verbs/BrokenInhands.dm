@@ -31,6 +31,4 @@
 		var/F = file("broken_icons.txt")
 		fdel(F)
 		F << text
-		to_world("<span class='filter_system'>Completeled successfully and written to [F]</span>")
-
-
+		to_world(span_filter_system("Completeled successfully and written to [F]"))

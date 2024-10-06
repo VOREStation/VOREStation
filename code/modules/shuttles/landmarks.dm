@@ -163,13 +163,14 @@
 /obj/item/spaceflare
 	name = "bluespace flare"
 	desc = "Burst transmitter used to broadcast all needed information for shuttle navigation systems. Has a flare attached for marking the spot where you probably shouldn't be standing."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "bluflare"
 	light_color = "#3728ff"
 	var/active
 
 /obj/item/spaceflare/attack_self(var/mob/user)
 	if(!active)
-		visible_message("<span class='notice'>[user] pulls the cord, activating the [src].</span>")
+		visible_message(span_notice("[user] pulls the cord, activating the [src]."))
 		activate()
 
 /obj/item/spaceflare/proc/activate()

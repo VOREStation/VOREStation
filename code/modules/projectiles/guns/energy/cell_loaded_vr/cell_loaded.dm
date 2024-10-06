@@ -58,9 +58,9 @@
 /obj/item/gun/projectile/cell_loaded/proc/switch_to(obj/item/ammo_casing/microbattery/new_batt)
 	if(ishuman(loc))
 		if(chambered && new_batt.type == chambered.type)
-			to_chat(loc,"<span class='warning'>\The [src] is now using the next [new_batt.type_name] power cell.</span>")
+			to_chat(loc,span_warning("\The [src] is now using the next [new_batt.type_name] power cell."))
 		else
-			to_chat(loc,"<span class='warning'>\The [src] is now firing [new_batt.type_name].</span>")
+			to_chat(loc,span_warning("\The [src] is now firing [new_batt.type_name]."))
 
 	chambered = new_batt
 	update_charge()
@@ -159,10 +159,10 @@
 	if(istype(W, /obj/item/ammo_casing/microbattery))
 		var/obj/item/ammo_casing/microbattery/B = W
 		if(!istype(B, ammo_type))
-			to_chat(user, "<span class='warning'>[B] does not fit into [src].</span>")
+			to_chat(user, span_warning("[B] does not fit into [src]."))
 			return
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, "<span class='warning'>[src] is full!</span>")
+			to_chat(user, span_warning("[src] is full!"))
 			return
 		user.remove_from_mob(B)
 		B.loc = src

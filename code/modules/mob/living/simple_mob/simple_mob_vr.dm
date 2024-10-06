@@ -308,7 +308,7 @@
 
 /datum/riding/simple_mob/force_dismount(mob/M)
 	. =..()
-	ridden.visible_message("<span class='notice'>[M] stops riding [ridden]!</span>")
+	ridden.visible_message(span_notice("[M] stops riding [ridden]!"))
 
 /datum/riding/simple_mob/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/simple_mob/L = ridden
@@ -335,7 +335,7 @@
 	if(M in buckled_mobs)
 		return FALSE
 	if(M.size_multiplier > size_multiplier * 1.2)
-		to_chat(src,"<span class='warning'>This isn't a pony show! You need to be bigger for them to ride.</span>")
+		to_chat(src,span_warning("This isn't a pony show! You need to be bigger for them to ride."))
 		return FALSE
 
 	var/mob/living/carbon/human/H = M
@@ -375,7 +375,7 @@
 	if(!can_buckle || !istype(M) || !M.Adjacent(src) || M.buckled)
 		return
 	if(buckle_mob(M))
-		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+		visible_message(span_notice("[M] starts riding [name]!"))
 
 /mob/living/simple_mob/handle_message_mode(message_mode, message, verb, used_radios, speaking, alt_name)
 	if(mob_radio)
@@ -431,7 +431,7 @@
 	status_flags |= LEAPING
 	pixel_y = pixel_y + 10
 
-	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
+	src.visible_message(span_danger("\The [src] leaps at [T]!"))
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	playsound(src, 'sound/effects/bodyfall1.ogg', 50, 1)
 	pixel_y = default_pixel_y
@@ -441,7 +441,7 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		to_chat(src, "<span class='warning'>You miss!</span>")
+		to_chat(src, span_warning("You miss!"))
 		return
 
 	if(ishuman(T))

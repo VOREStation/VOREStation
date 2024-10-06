@@ -57,21 +57,21 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 
 	if (!can_use(required))
 		if (produced>1)
-			to_chat(user, "<span class='warning'>You haven't got enough [src] to build \the [produced] [recipe.title]\s!</span>")
+			to_chat(user, span_warning("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
 		else
-			to_chat(user, "<span class='warning'>You haven't got enough [src] to build \the [recipe.title]!</span>")
+			to_chat(user, span_warning("You haven't got enough [src] to build \the [recipe.title]!"))
 		return
 
 	if (recipe.one_per_turf && (locate(recipe.result_type) in user.loc))
-		to_chat(user, "<span class='warning'>There is another [recipe.title] here!</span>")
+		to_chat(user, span_warning("There is another [recipe.title] here!"))
 		return
 
 	if (recipe.on_floor && !isfloor(user.loc))
-		to_chat(user, "<span class='warning'>\The [recipe.title] must be constructed on the floor!</span>")
+		to_chat(user, span_warning("\The [recipe.title] must be constructed on the floor!"))
 		return
 
 	if (recipe.time)
-		to_chat(user, "<span class='notice'>Building [recipe.title] ...</span>")
+		to_chat(user, span_notice("Building [recipe.title] ..."))
 		if (!do_after(user, recipe.time))
 			return
 
@@ -147,4 +147,4 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 		var/obj/item/stack/sandbags/SB = new (get_turf(src), 1, bag_material)
 		SB.color = color
 		if(user)
-			to_chat(user, "<span class='notice'>You fill a sandbag.</span>")
+			to_chat(user, span_notice("You fill a sandbag."))

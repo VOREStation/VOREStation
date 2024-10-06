@@ -86,11 +86,11 @@
 		return
 
 	if(!usr.IsAdvancedToolUser())
-		to_chat(user, "<span class='notice'>You lack the dexterity to do that.</span>")
+		to_chat(user, span_notice("You lack the dexterity to do that."))
 		return
 
 	if(!Adjacent(usr))
-		to_chat(user, "<span class='notice'>You can't reach the [src] from there, get closer!</span>")
+		to_chat(user, span_notice("You can't reach the [src] from there, get closer!"))
 		return
 
 	if(open)
@@ -104,7 +104,7 @@
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
-	to_chat(user, "<span class='notice'>You [open? "open":"close"] the oven door</span>")
+	to_chat(user, span_notice("You [open? "open":"close"] the oven door"))
 	update_icon()
 
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
@@ -117,7 +117,7 @@
 
 /obj/machinery/appliance/cooker/oven/can_insert(var/obj/item/I, var/mob/user)
 	if(!open && !manip(I))
-		to_chat(user, "<span class='warning'>You can't put anything in while the door is closed!</span>")
+		to_chat(user, span_warning("You can't put anything in while the door is closed!"))
 		return 0
 
 	else
@@ -136,7 +136,7 @@
 /obj/machinery/appliance/cooker/oven/can_remove_items(var/mob/user, show_warning = TRUE)
 	if(!open)
 		if(show_warning)
-			to_chat(user, "<span class='warning'>You can't take anything out while the door is closed!</span>")
+			to_chat(user, span_warning("You can't take anything out while the door is closed!"))
 		return 0
 
 	else

@@ -5,7 +5,7 @@
 	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs_hideable)
 	verbs += /client/proc/show_verbs
 
-	to_chat(src, "<span class='filter_system interface'>Most of your adminverbs have been hidden.</span>")
+	to_chat(src, span_filter_system(span_interface("Most of your adminverbs have been hidden.")))
 	feedback_add_details("admin_verb","HMV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -16,7 +16,7 @@
 	remove_admin_verbs()
 	verbs += /client/proc/show_verbs
 
-	to_chat(src, "<span class='filter_system interface'>Almost all of your adminverbs have been hidden.</span>")
+	to_chat(src, span_filter_system(span_interface("Almost all of your adminverbs have been hidden.")))
 	feedback_add_details("admin_verb","TAVVH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -27,7 +27,7 @@
 	verbs -= /client/proc/show_verbs
 	add_admin_verbs()
 
-	to_chat(src, "<span class='filter_adminlog interface'>All of your adminverbs are now visible.</span>")
+	to_chat(src, span_filter_adminlog(span_interface("All of your adminverbs are now visible.")))
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -54,13 +54,13 @@
 			else
 				ghost.reenter_corpse()
 		else
-			to_chat(ghost, "<span class='filter_system warning'>Error:  Aghost:  Can't reenter corpse.</span>")
+			to_chat(ghost, span_filter_system(span_warning("Error:  Aghost:  Can't reenter corpse.")))
 			return
 
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(istype(mob,/mob/new_player))
-		to_chat(src, "<span class='filter_system warning'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</span>")
+		to_chat(src, span_filter_system(span_warning("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.")))
 	else
 		//ghostize
 		var/mob/body = mob
@@ -87,11 +87,11 @@
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, "<span class='filter_system danger'>Invisimin off. Invisibility reset.</span>")
+			to_chat(mob, span_filter_system(span_danger("Invisimin off. Invisibility reset.")))
 			mob.alpha = max(mob.alpha + 100, 255)
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, "<span class='filter_system notice'><b>Invisimin on. You are now as invisible as a ghost.</b></span>")
+			to_chat(mob, span_filter_system(span_notice("<b>Invisimin on. You are now as invisible as a ghost.</b>")))
 			mob.alpha = max(mob.alpha - 100, 0)
 
 
@@ -220,7 +220,7 @@
 
 	if(!warned_ckey || !istext(warned_ckey))	return
 	if(warned_ckey in admin_datums)
-		to_chat(usr, "<span class='warning'>Error: warn(): You can't warn admins.</span>")
+		to_chat(usr, span_warning("Error: warn(): You can't warn admins."))
 		return
 
 	var/datum/preferences/D
@@ -229,14 +229,14 @@
 	else	D = preferences_datums[warned_ckey]
 
 	if(!D)
-		to_chat(src, "<span class='warning'>Error: warn(): No such ckey found.</span>")
+		to_chat(src, span_warning("Error: warn(): No such ckey found."))
 		return
 
 	if(++D.warns >= MAX_WARNS)					//uh ohhhh...you'reee iiiiin trouuuubble O:)
 		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
 		if(C)
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
-			to_chat(C, "<span class='filter_system danger'><BIG>You have been autobanned due to a warning by [ckey].</BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.</span>")
+			to_chat(C, span_filter_system(span_danger("<BIG>You have been autobanned due to a warning by [ckey].</BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.")))
 			del(C)
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
@@ -244,7 +244,7 @@
 		feedback_inc("ban_warn",1)
 	else
 		if(C)
-			to_chat(C, "<span class='filter_system danger'><BIG>You have been formally warned by an administrator.</BIG><br>Further warnings will result in an autoban.</span>")
+			to_chat(C, span_filter_system(span_danger("<BIG>You have been formally warned by an administrator.</BIG><br>Further warnings will result in an autoban.")))
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)]. They have [MAX_WARNS-D.warns] strikes remaining.")
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] (DC). They have [MAX_WARNS-D.warns] strikes remaining.")
@@ -320,7 +320,7 @@
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
 	if(!L)
-		to_chat(usr, "<span class='warning'>Looks like you didn't select a mob.</span>")
+		to_chat(usr, span_warning("Looks like you didn't select a mob."))
 		return
 
 	var/list/possible_modifiers = subtypesof(/datum/modifier)
@@ -366,7 +366,7 @@
 		if(!msg)
 			return
 		for (var/mob/V in hearers(mob.control_object))
-			V.show_message("<span class='filter_say'><b>[mob.control_object.name]</b> says: \"[msg]\"</span>", 2)
+			V.show_message(span_filter_say("<b>[mob.control_object.name]</b> says: \"[msg]\""), 2)
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/kill_air() // -- TLE
@@ -374,7 +374,7 @@
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
 	SSair.can_fire = !SSair.can_fire
-	to_chat(usr, "<span class='filter_system'><b>[SSair.can_fire ? "En" : "Dis"]abled air processing.</b></span>")
+	to_chat(usr, span_filter_system("<b>[SSair.can_fire ? "En" : "Dis"]abled air processing.</b>"))
 	feedback_add_details("admin_verb","KA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins(span_blue("[key_name_admin(usr)] used 'kill air'."), 1)
@@ -387,7 +387,7 @@
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", 1)
-		to_chat(src, "<span class='filter_system interface'>You now have the keys to control the planet, or at least a small space station</span>")
+		to_chat(src, span_filter_system(span_interface("You now have the keys to control the planet, or at least a small space station")))
 		verbs -= /client/proc/readmin_self
 
 /client/proc/deadmin_self()
@@ -399,7 +399,7 @@
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", 1)
 			deadmin()
-			to_chat(src, "<span class='filter_system interface'>You are now a normal player.</span>")
+			to_chat(src, span_filter_system(span_interface("You are now a normal player.")))
 			verbs |= /client/proc/readmin_self
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -529,8 +529,8 @@
 
 	if(tgui_alert(usr, "Are you sure you want to tell them to man up?","Confirmation",list("Deal with it","No")) != "Deal with it") return
 
-	to_chat(T, "<span class='filter_system notice'><b><font size=3>Man up and deal with it.</font></b></span>")
-	to_chat(T, "<span class='filter_system notice'>Move along.</span>")
+	to_chat(T, span_filter_system(span_notice("<b><font size=3>Man up and deal with it.</font></b>")))
+	to_chat(T, span_filter_system(span_notice("Move along.")))
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told [key_name(T)] to man up and deal with it."), 1)

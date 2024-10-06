@@ -142,8 +142,8 @@
 			if(!(H.gender == MALE))
 				H.set_gender(MALE)
 				H.change_gender_identity(MALE)
-				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now male.</span>",
-								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became male.</span>")
+				H.visible_message(span_notice("[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now male."),
+								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became male."))
 
 /datum/reagent/gynorovir
 	name = "Gynorovir"
@@ -163,8 +163,8 @@
 			if(!(H.gender == FEMALE))
 				H.set_gender(FEMALE)
 				H.change_gender_identity(FEMALE)
-				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now female.</span>",
-								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became female.</span>")
+				H.visible_message(span_notice("[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now female."),
+								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became female."))
 
 /datum/reagent/androgynorovir
 	name = "Androgynorovir"
@@ -184,8 +184,8 @@
 			if(!(H.gender == PLURAL))
 				H.set_gender(PLURAL)
 				H.change_gender_identity(PLURAL)
-				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now of mixed gender.</span>",
-								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became of mixed gender.</span>")
+				H.visible_message(span_notice("[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now of mixed gender."),
+								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became of mixed gender."))
 
 
 ////////////////////////// Misc Drugs //////////////////////////
@@ -241,4 +241,4 @@
 /datum/reagent/pain_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, -200)
 	if(prob(0.01)) //1 in 10000 chance per tick. Extremely rare.
-		to_chat(M,"<span class='warning'>Your body feels as though it's on fire!</span>")
+		to_chat(M,span_warning("Your body feels as though it's on fire!"))

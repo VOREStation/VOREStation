@@ -87,13 +87,13 @@
 		reattach_paddles(user)
 	else if(istype(W, /obj/item/cell))
 		if(bcell)
-			to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
+			to_chat(user, span_notice("\The [src] already has a cell."))
 		else
 			if(!user.unEquip(W))
 				return
 			W.forceMove(src)
 			bcell = W
-			to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
+			to_chat(user, span_notice("You install a cell in \the [src]."))
 			update_icon()
 
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
@@ -101,7 +101,7 @@
 			bcell.update_icon()
 			bcell.forceMove(get_turf(src.loc))
 			bcell = null
-			to_chat(user, "<span class='notice'>You remove the cell from \the [src].</span>")
+			to_chat(user, span_notice("You remove the cell from \the [src]."))
 			update_icon()
 	else
 		return ..()
@@ -120,7 +120,7 @@
 
 	var/mob/living/carbon/human/user = usr
 	if(!paddles)
-		to_chat(user, "<span class='warning'>The paddles are missing!</span>")
+		to_chat(user, span_warning("The paddles are missing!"))
 		return
 
 	if(paddles.loc != src)
@@ -128,10 +128,10 @@
 		return
 
 	if(!slot_check())
-		to_chat(user, "<span class='warning'>You need to equip [src] before taking out [paddles].</span>")
+		to_chat(user, span_warning("You need to equip [src] before taking out [paddles]."))
 	else
 		if(!usr.put_in_hands(paddles)) //Detach the paddles into the user's hands
-			to_chat(user, "<span class='warning'>You need a free hand to hold the paddles!</span>")
+			to_chat(user, span_warning("You need a free hand to hold the paddles!"))
 		update_icon() //success
 
 //checks that the base unit is in the correct slot to be used
@@ -163,7 +163,7 @@
 	if(ismob(paddles.loc))
 		var/mob/M = paddles.loc
 		if(M.drop_from_inventory(paddles, src))
-			to_chat(user, "<span class='notice'>\The [paddles] snap back into the main unit.</span>")
+			to_chat(user, span_notice("\The [paddles] snap back into the main unit."))
 	else
 		paddles.forceMove(src)
 
@@ -258,13 +258,13 @@
 	if(busy)
 		return 0
 	if(!check_charge(chargecost))
-		to_chat(user, "<span class='warning'>\The [src] doesn't have enough charge left to do that.</span>")
+		to_chat(user, span_warning("\The [src] doesn't have enough charge left to do that."))
 		return 0
 	if(!wielded && !isrobot(user))
-		to_chat(user, "<span class='warning'>You need to wield the paddles with both hands before you can use them on someone!</span>")
+		to_chat(user, span_warning("You need to wield the paddles with both hands before you can use them on someone!"))
 		return 0
 	if(cooldown)
-		to_chat(user, "<span class='warning'>\The [src] are re-energizing!</span>")
+		to_chat(user, span_warning("\The [src] are re-energizing!"))
 		return 0
 	return 1
 
@@ -390,10 +390,10 @@
 		ghost.notify_revive("Someone is trying to resuscitate you. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg', source = src)
 
 	//beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
-	user.visible_message("<span class='warning'>\The [user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")
+	user.visible_message(span_warning("\The [user] begins to place [src] on [H]'s chest."), span_warning("You begin to place [src] on [H]'s chest..."))
 	if(!do_after(user, 30, H))
 		return
-	user.visible_message("<b>\The [user]</b> places [src] on [H]'s chest.", "<span class='warning'>You place [src] on [H]'s chest.</span>")
+	user.visible_message("<b>\The [user]</b> places [src] on [H]'s chest.", span_warning("You place [src] on [H]'s chest."))
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
 
 	var/error = can_defib(H)
@@ -415,7 +415,7 @@
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
-	H.visible_message("<span class='warning'>\The [H]'s body convulses a bit.</span>")
+	H.visible_message(span_warning("\The [H]'s body convulses a bit."))
 	playsound(src, "bodyfall", 50, 1)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
 	set_cooldown(cooldowntime)
@@ -447,19 +447,19 @@
 /obj/item/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, var/target_zone)
 	var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 	if(!affecting)
-		to_chat(user, "<span class='warning'>They are missing that body part!</span>")
+		to_chat(user, span_warning("They are missing that body part!"))
 		return
 
 	//no need to spend time carefully placing the paddles, we're just trying to shock them
-	user.visible_message("<span class='danger'>\The [user] slaps [src] onto [H]'s [affecting.name].</span>", "<span class='danger'>You overcharge [src] and slap them onto [H]'s [affecting.name].</span>")
+	user.visible_message(span_danger("\The [user] slaps [src] onto [H]'s [affecting.name]."), span_danger("You overcharge [src] and slap them onto [H]'s [affecting.name]."))
 
 	//Just stop at awkwardly slapping electrodes on people if the safety is enabled
 	if(safety)
-		to_chat(user, "<span class='warning'>You can't do that while the safety is enabled.</span>")
+		to_chat(user, span_warning("You can't do that while the safety is enabled."))
 		return
 
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
-	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>", runemessage = "whines")
+	audible_message(span_warning("\The [src] lets out a steadily rising hum..."), runemessage = "whines")
 
 	if(!do_after(user, chargetime, H))
 		return
@@ -470,7 +470,7 @@
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
-	user.visible_message("<span class='danger'><i>\The [user] shocks [H] with \the [src]!</i></span>", "<span class='warning'>You shock [H] with \the [src]!</span>")
+	user.visible_message(span_danger("<i>\The [user] shocks [H] with \the [src]!</i>"), span_warning("You shock [H] with \the [src]!"))
 	playsound(src, 'sound/machines/defib_zap.ogg', 100, 1, -1)
 	playsound(src, 'sound/weapons/Egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)
@@ -536,12 +536,12 @@
 /obj/item/shockpaddles/emag_act(mob/user)
 	if(safety)
 		safety = 0
-		to_chat(user, "<span class='warning'>You silently disable \the [src]'s safety protocols with the cryptographic sequencer.</span>")
+		to_chat(user, span_warning("You silently disable \the [src]'s safety protocols with the cryptographic sequencer."))
 		update_icon()
 		return 1
 	else
 		safety = 1
-		to_chat(user, "<span class='notice'>You silently enable \the [src]'s safety protocols with the cryptographic sequencer.</span>")
+		to_chat(user, span_notice("You silently enable \the [src]'s safety protocols with the cryptographic sequencer."))
 		update_icon()
 		return 1
 
@@ -653,7 +653,7 @@
 		if(2)
 			new_fail = max(fail_counter, 8)
 			if(ismob(loc))
-				to_chat(loc, "<span class='warning'>\The [src] feel pleasantly warm.</span>")
+				to_chat(loc, span_warning("\The [src] feel pleasantly warm."))
 
 	if(new_fail && !fail_counter)
 		START_PROCESSING(SSobj, src)

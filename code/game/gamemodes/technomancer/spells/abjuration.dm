@@ -23,18 +23,18 @@
 			SM = L
 		if(L.summoned || (SM && SM.supernatural) )
 			if(L.client) // Player-controlled mobs are immune to being killed by this.
-				to_chat(user, "<span class='warning'>\The [L] resists your attempt to banish it!</span>")
-				to_chat(L, "<span class='warning'>\The [user] tried to teleport you far away, but failed.</span>")
+				to_chat(user, span_warning("\The [L] resists your attempt to banish it!"))
+				to_chat(L, span_warning("\The [user] tried to teleport you far away, but failed."))
 				return 0
 			else
 				visible_message("<b>\The [L]</b> vanishes!")
 				qdel(L)
 		else if(istype(L, /mob/living/simple_mob/construct))
 			var/mob/living/simple_mob/construct/evil = L
-			to_chat(evil, "<span class='danger'>\The [user]'s abjuration purges your form!</span>")
+			to_chat(evil, span_danger("\The [user]'s abjuration purges your form!"))
 			evil.purge = 3
 		adjust_instability(5)
 	// In case NarNar comes back someday.
 	if(istype(hit_atom, /obj/singularity/narsie))
-		to_chat(user, "<span class='danger'>One does not simply abjurate Nar'sie away.</span>")
+		to_chat(user, span_danger("One does not simply abjurate Nar'sie away."))
 		adjust_instability(200)

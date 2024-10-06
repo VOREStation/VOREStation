@@ -38,22 +38,22 @@
 	var/opts = clickprops["shift"]
 
 	if(opts)
-		to_chat(my_kin,"<span class='notice'><b>[name]</b> (Cost: [cost]%) - [desc]</span>")
+		to_chat(my_kin,span_notice("<b>[name]</b> (Cost: [cost]%) - [desc]"))
 	else
 		do_ability(my_kin)
 
 /obj/effect/shadekin_ability/proc/do_ability()
 	if(my_kin.stat)
-		to_chat(my_kin,"<span class='warning'>Can't use that ability in your state!</span>")
+		to_chat(my_kin,span_warning("Can't use that ability in your state!"))
 		return FALSE
 	if(shift_mode == NOT_WHILE_SHIFTED && (my_kin.ability_flags & AB_PHASE_SHIFTED))
-		to_chat(my_kin,"<span class='warning'>Can't use that ability while phase shifted!</span>")
+		to_chat(my_kin,span_warning("Can't use that ability while phase shifted!"))
 		return FALSE
 	else if(shift_mode == ONLY_WHILE_SHIFTED && !(my_kin.ability_flags & AB_PHASE_SHIFTED))
-		to_chat(my_kin,"<span class='warning'>Can only use that ability while phase shifted!</span>")
+		to_chat(my_kin,span_warning("Can only use that ability while phase shifted!"))
 		return FALSE
 	else if(my_kin.energy < cost)
-		to_chat(my_kin,"<span class='warning'>Not enough energy for that ability!</span>")
+		to_chat(my_kin,span_warning("Not enough energy for that ability!"))
 		return FALSE
 
 	my_kin.energy -= cost
@@ -97,8 +97,8 @@
 	desc = "You feel serene and well rested."
 	mob_overlay_state = "green_sparkles"
 
-	on_created_text = "<span class='notice'>Sparkles begin to appear around you, and all your ills seem to fade away.</span>"
-	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel much healthier than before.</span>"
+	on_created_text = span_notice("Sparkles begin to appear around you, and all your ills seem to fade away.")
+	on_expired_text = span_notice("The sparkles have faded, although you feel much healthier than before.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/shadekin/heal_boop/tick()
@@ -129,8 +129,8 @@
 	desc = "Darkness envelops you."
 	mob_overlay_state = ""
 
-	on_created_text = "<span class='notice'>You drag part of The Dark into realspace, enveloping yourself.</span>"
-	on_expired_text = "<span class='warning'>You lose your grasp on The Dark and realspace reasserts itself.</span>"
+	on_created_text = span_notice("You drag part of The Dark into realspace, enveloping yourself.")
+	on_expired_text = span_warning("You lose your grasp on The Dark and realspace reasserts itself.")
 	stacks = MODIFIER_STACK_EXTEND
 	var/mob/living/simple_mob/shadekin/my_kin
 

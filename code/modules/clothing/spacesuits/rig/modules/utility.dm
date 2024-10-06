@@ -203,7 +203,7 @@
 	if(total_transferred)
 		to_chat(user, span_blue("You transfer [total_transferred] units into the suit reservoir."))
 	else
-		to_chat(user, "<span class='danger'>None of the reagents seem suitable.</span>")
+		to_chat(user, span_danger("None of the reagents seem suitable."))
 	return 1
 
 /obj/item/rig_module/chem_dispenser/engage(atom/target)
@@ -214,7 +214,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!charge_selected)
-		to_chat(H, "<span class='danger'>You have not selected a chemical type.</span>")
+		to_chat(H, span_danger("You have not selected a chemical type."))
 		return 0
 
 	var/datum/rig_charge/charge = charges[charge_selected]
@@ -224,7 +224,7 @@
 
 	var/chems_to_use = 10
 	if(charge.charges <= 0)
-		to_chat(H, "<span class='danger'>Insufficient chems!</span>")
+		to_chat(H, span_danger("Insufficient chems!"))
 		return 0
 	else if(charge.charges < chems_to_use)
 		chems_to_use = charge.charges
@@ -239,8 +239,8 @@
 		target_mob = H
 
 	if(target_mob != H)
-		to_chat(H, "<span class='danger'>You inject [target_mob] with [chems_to_use] unit\s of [charge.display_name].</span>")
-	to_chat(target_mob, "<span class='danger'>You feel a rushing in your veins as [chems_to_use] unit\s of [charge.display_name] [chems_to_use == 1 ? "is" : "are"] injected.</span>")
+		to_chat(H, span_danger("You inject [target_mob] with [chems_to_use] unit\s of [charge.display_name]."))
+	to_chat(target_mob, span_danger("You feel a rushing in your veins as [chems_to_use] unit\s of [charge.display_name] [chems_to_use == 1 ? "is" : "are"] injected."))
 	target_mob.reagents.add_reagent(charge.display_name, chems_to_use)
 
 	charge.charges -= chems_to_use
@@ -448,7 +448,7 @@
 	var/mob/living/M = holder.wearer
 
 	if(M.l_hand && M.r_hand)
-		to_chat(M, "<span class='danger'>Your hands are full.</span>")
+		to_chat(M, span_danger("Your hands are full."))
 		deactivate()
 		return
 
@@ -505,7 +505,7 @@
 		return 0
 
 	if(accepted_item.charges >= 5)
-		to_chat(user, "<span class='danger'>Another grenade of that type will not fit into the module.</span>")
+		to_chat(user, span_danger("Another grenade of that type will not fit into the module."))
 		return 0
 
 	to_chat(user, span_blue("<b>You slot \the [input_device] into the suit module.</b>"))
@@ -525,7 +525,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!charge_selected)
-		to_chat(H, "<span class='danger'>You have not selected a grenade type.</span>")
+		to_chat(H, span_danger("You have not selected a grenade type."))
 		return 0
 
 	var/datum/rig_charge/charge = charges[charge_selected]
@@ -534,12 +534,12 @@
 		return 0
 
 	if(charge.charges <= 0)
-		to_chat(H, "<span class='danger'>Insufficient grenades!</span>")
+		to_chat(H, span_danger("Insufficient grenades!"))
 		return 0
 
 	charge.charges--
 	var/obj/item/grenade/new_grenade = new charge.product_type(get_turf(H))
-	H.visible_message("<span class='danger'>[H] launches \a [new_grenade]!</span>")
+	H.visible_message(span_danger("[H] launches \a [new_grenade]!"))
 	new_grenade.activate(H)
 	new_grenade.throw_at(target,fire_force,fire_distance)
 
@@ -597,10 +597,10 @@
 	if(!target)
 		if(device == iastamp)
 			device = deniedstamp
-			to_chat(holder.wearer, "<span class='notice'>Switched to denied stamp.</span>")
+			to_chat(holder.wearer, span_notice("Switched to denied stamp."))
 		else if(device == deniedstamp)
 			device = iastamp
-			to_chat(holder.wearer, "<span class='notice'>Switched to internal affairs stamp.</span>")
+			to_chat(holder.wearer, span_notice("Switched to internal affairs stamp."))
 		return 1
 
 /obj/item/rig_module/sprinter
@@ -643,6 +643,6 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<span class='danger'>Your hardsuit returns to normal speed.</span>")
+	to_chat(H, span_danger("Your hardsuit returns to normal speed."))
 
 	holder.slowdown = initial(holder.slowdown)

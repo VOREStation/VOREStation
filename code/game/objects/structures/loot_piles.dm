@@ -51,29 +51,29 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		var/mob/living/L = user
 
 		if(busy)
-			to_chat(L, "<span class='warning'>\The [src] is already being searched.</span>")
+			to_chat(L, span_warning("\The [src] is already being searched."))
 			return
 
-		L.visible_message("[user] searches through \the [src].","<span class='notice'>You search through \the [src].</span>")
+		L.visible_message("[user] searches through \the [src].",span_notice("You search through \the [src]."))
 
 		//Do the searching
 		busy = TRUE
 		if(do_after(user,rand(4 SECONDS,6 SECONDS),src))
 			// The loot's all gone.
 			if(loot_depletion && loot_left <= 0)
-				to_chat(L, "<span class='warning'>\The [src] has been picked clean.</span>")
+				to_chat(L, span_warning("\The [src] has been picked clean."))
 				busy = FALSE
 				return
 
 			//You already searched this one
 			if( (user.ckey in searched_by) && !allow_multiple_looting)
-				to_chat(L, "<span class='warning'>You can't find anything else vaguely useful in \the [src].  Another set of eyes might, however.</span>")
+				to_chat(L, span_warning("You can't find anything else vaguely useful in \the [src].  Another set of eyes might, however."))
 				busy = FALSE
 				return
 
 			// You got unlucky.
 			if(chance_nothing && prob(chance_nothing))
-				to_chat(L, "<span class='warning'>Nothing in this pile really catches your eye...</span>")
+				to_chat(L, span_warning("Nothing in this pile really catches your eye..."))
 				searched_by |= user.ckey
 				busy = FALSE
 				return
@@ -104,11 +104,19 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 			if(loot)
 				searched_by |= user.ckey
 				loot.forceMove(get_turf(src))
-				to_chat(L, "<span class='[span]'>You found \a [loot]!</span>")
+				var/final_message = "You found \a [loot]!"
+				switch(span)
+					if("notice")
+						final_message = span_notice(final_message)
+					if("cult")
+						final_message = span_cult(final_message)
+					if("alium")
+						final_message = span_alium(final_message)
+				to_chat(L, span_info(final_message))
 				if(loot_depletion)
 					loot_left--
 					if(loot_left <= 0)
-						to_chat(L, "<span class='warning'>You seem to have gotten the last of the spoils inside \the [src].</span>")
+						to_chat(L, span_warning("You seem to have gotten the last of the spoils inside \the [src]."))
 						if(delete_on_depletion)
 							qdel(src)
 

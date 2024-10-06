@@ -105,25 +105,25 @@
 
 /obj/item/kinetic_crusher/examine(mob/living/user)
 	. = ..()
-	. += "<span class='notice'>Mark a[emagged ? "nything": " creature"] with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
-	. += "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>"
+	. += span_notice("Mark a[emagged ? "nything": " creature"] with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
+	. += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
 /*
 	for(var/t in trophies)
 		var/obj/item/crusher_trophy/T = t
-		. += "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>"
+		. += span_notice("It has \a [T] attached, which causes [T.effect_desc()].")
 */
 
 /*
 /obj/item/kinetic_crusher/attackby(obj/item/I, mob/living/user)
 	if(I.tool_behaviour == TOOL_CROWBAR)
 		if(LAZYLEN(trophies))
-			to_chat(user, "<span class='notice'>You remove [src]'s trophies.</span>")
+			to_chat(user, span_notice("You remove [src]'s trophies."))
 			I.play_tool_sound(src)
 			for(var/t in trophies)
 				var/obj/item/crusher_trophy/T = t
 				T.remove_from(src, user)
 		else
-			to_chat(user, "<span class='warning'>There are no trophies on [src].</span>")
+			to_chat(user, span_warning("There are no trophies on [src]."))
 	else if(istype(I, /obj/item/crusher_trophy))
 		var/obj/item/crusher_trophy/T = I
 		T.add_to(src, user)
@@ -133,7 +133,7 @@
 
 /obj/item/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!wielded && requires_wield)
-		to_chat(user, "<span class='warning'>[src] is too heavy to use with one hand.</span>")
+		to_chat(user, span_warning("[src] is too heavy to use with one hand."))
 		return
 	..()
 
@@ -355,9 +355,9 @@
 		src.forceMove(storing_module)
 		storing_module.stored_gauntlets = src
 		user.visible_message(
-			"<span class='notice'>[user] retracts [src] with a click and a hiss.</span>",
-			"<span class='notice'>You retract [src] with a click and a hiss.</span>",
-			"<span class='notice'>You hear a click and a hiss.</span>"
+			span_notice("[user] retracts [src] with a click and a hiss."),
+			span_notice("You retract [src] with a click and a hiss."),
+			span_notice("You hear a click and a hiss.")
 			)
 		playsound(src, 'sound/items/helmetdeploy.ogg', 40, 1)
 		storing_module.active = FALSE

@@ -67,10 +67,10 @@
 			if(copyitem)
 				copyitem.loc = usr.loc
 				usr.put_in_hands(copyitem)
-				to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
+				to_chat(usr, span_notice("You take \the [copyitem] out of \the [src]."))
 				copyitem = null
 			else if(has_buckled_mobs())
-				to_chat(buckled_mobs[1], "<span class='notice'>You feel a slight pressure on your ass.</span>") // It can't eject your asscheeks, but it'll try.
+				to_chat(buckled_mobs[1], span_notice("You feel a slight pressure on your ass.")) // It can't eject your asscheeks, but it'll try.
 			. = TRUE
 		if("set_copies")
 			copies = clamp(text2num(params["num_copies"]), 1, maxcopies)
@@ -111,31 +111,31 @@
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			copy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
+			audible_message(span_notice("You can hear [src] whirring as it finishes printing."), runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/photo))
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			photocopy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
+			audible_message(span_notice("You can hear [src] whirring as it finishes printing."), runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/paper_bundle))
 			sleep(11)
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			var/obj/item/paper_bundle/B = bundlecopy(copyitem)
 			sleep(11*B.pages.len)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
+			audible_message(span_notice("You can hear [src] whirring as it finishes printing."), runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (has_buckled_mobs()) // VOREStation EDIT: For ass-copying.
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
-			audible_message("<span class='notice'>You can hear [src] whirring as it attempts to scan.</span>", runemessage = "whirr")
+			audible_message(span_notice("You can hear [src] whirring as it attempts to scan."), runemessage = "whirr")
 			sleep(rand(20,45)) // Sit with your bare ass on the copier for a random time, feel like a fool, get stared at.
 			copyass(user)
 			sleep(15)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
+			audible_message(span_notice("You can hear [src] whirring as it finishes printing."), runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else
-			to_chat(user, "<span class='warning'>\The [copyitem] can't be copied by [src].</span>")
+			to_chat(user, span_warning("\The [copyitem] can't be copied by [src]."))
 			playsound(src, "sound/machines/buzz-two.ogg", 100)
 			break
 
@@ -148,28 +148,28 @@
 			user.drop_item()
 			copyitem = O
 			O.loc = src
-			to_chat(user, "<span class='notice'>You insert \the [O] into \the [src].</span>")
+			to_chat(user, span_notice("You insert \the [O] into \the [src]."))
 			playsound(src, "sound/machines/click.ogg", 100, 1)
 			flick(insert_anim, src)
 		else
-			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
+			to_chat(user, span_notice("There is already something in \the [src]."))
 	else if(istype(O, /obj/item/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
-			to_chat(user, "<span class='notice'>You insert the toner cartridge into \the [src].</span>")
+			to_chat(user, span_notice("You insert the toner cartridge into \the [src]."))
 			flick("photocopier_toner", src)
 			playsound(loc, 'sound/machines/click.ogg', 50, 1)
 			var/obj/item/toner/T = O
 			toner += T.toner_amount
 			qdel(O)
 		else
-			to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
+			to_chat(user, span_notice("This cartridge is not yet ready for replacement! Use up the rest of the toner."))
 			flick("photocopier_notoner", src)
 			playsound(loc, 'sound/machines/buzz-two.ogg', 75, 1)
 	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 	else if(default_deconstruction_screwdriver(user, O))
 		return
 	else if(default_deconstruction_crowbar(user, O))
@@ -230,7 +230,7 @@
 		toner--
 	if(toner == 0)
 		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-		visible_message("<span class='notice'>A [span_red("red")] light on \the [src] flashes, indicating that it is out of toner.</span>")
+		visible_message(span_notice("A [span_red("red")] light on \the [src] flashes, indicating that it is out of toner."))
 	return c
 
 
@@ -253,7 +253,7 @@
 	if(toner < 0)
 		toner = 0
 		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
+		visible_message(span_notice("A red light on \the [src] flashes, indicating that it is out of toner."))
 
 	return p
 
@@ -337,7 +337,7 @@
 	if(toner < 0)
 		toner = 0
 		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
+		visible_message(span_notice("A red light on \the [src] flashes, indicating that it is out of toner."))
 	return p
 
 // VOREStation Edit Stop
@@ -349,7 +349,7 @@
 		if(toner <= 0 && need_toner)
 			toner = 0
 			playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-			visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
+			visible_message(span_notice("A red light on \the [src] flashes, indicating that it is out of toner."))
 			break
 
 		if(istype(W, /obj/item/paper))
@@ -376,7 +376,7 @@
 		if(M.item_is_in_hands(C))
 			continue
 		if((C.body_parts_covered & LOWER_TORSO) && !istype(C,/obj/item/clothing/under/permit))
-			to_chat(usr, "<span class='warning'>One needs to not be wearing pants to photocopy one's ass...</span>")
+			to_chat(usr, span_warning("One needs to not be wearing pants to photocopy one's ass..."))
 			return FALSE
 	return TRUE
 

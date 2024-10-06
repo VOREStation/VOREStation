@@ -8,7 +8,7 @@
 
 /obj/structure/prop/fake_ai/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/aicard)) // People trying to card the fake AI will get told its impossible.
-		to_chat(user, span("warning", "This core does not appear to have a suitable port to use \the [O] on..."))
+		to_chat(user, span_warning("This core does not appear to have a suitable port to use \the [O] on..."))
 		return TRUE
 	return ..()
 

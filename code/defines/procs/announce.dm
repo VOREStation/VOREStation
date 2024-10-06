@@ -56,19 +56,19 @@
 	for(var/mob/M in player_list)
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			to_chat(M, "<h2 class='alert'>[title]</h2>")
-			to_chat(M, "<span class='alert'>[message]</span>")
+			to_chat(M, span_alert("[message]"))
 			if (announcer)
-				to_chat(M, "<span class='alert'> -[html_encode(announcer)]</span>")
+				to_chat(M, span_alert(" -[html_encode(announcer)]"))
 
 // You'll need to update these to_world usages if you want to make these z-level specific ~Aro
 /datum/announcement/minor/Message(message as text, message_title as text)
-	to_world("<b>[message]</b>")
+	to_world(span_bold("[message]"))
 
 /datum/announcement/priority/Message(message as text, message_title as text)
 	to_world("<h1 class='alert'>[message_title]</h1>")
-	to_world("<span class='alert'>[message]</span>")
+	to_world(span_alert("[message]"))
 	if(announcer)
-		to_world("<span class='alert'> -[html_encode(announcer)]</span>")
+		to_world(span_alert(" -[html_encode(announcer)]"))
 	to_world("<br>")
 
 /datum/announcement/priority/command/Message(message as text, message_title as text, var/list/zlevels)
@@ -77,7 +77,7 @@
 	if (message_title)
 		command += "<br><h2 class='alert'>[message_title]</h2>"
 
-	command += "<br><span class='alert'>[message]</span><br>"
+	command += "<br>[span_alert(message)]<br>"
 	command += "<br>"
 	for(var/mob/M in player_list)
 		if(zlevels && !(get_z(M) in zlevels))
@@ -86,13 +86,13 @@
 			to_chat(M, command)
 
 /datum/announcement/priority/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
+	global_announcer.autosay(span_alert("[message_title]:") + " [message]", announcer ? announcer : ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
 /datum/announcement/priority/command/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay("<span class='alert'>[command_name()] - [message_title]:</span> [message]", ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
+	global_announcer.autosay(span_alert("[command_name()] - [message_title]:") + " [message]", ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
 /datum/announcement/priority/security/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
+	global_announcer.autosay(span_alert("[message_title]:") + " [message]", ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
 /datum/announcement/proc/NewsCast(var/message as text, var/message_title as text)
 	if(!newscast)

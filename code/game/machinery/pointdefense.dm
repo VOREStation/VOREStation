@@ -62,7 +62,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			return FALSE
 
 		if(!(get_z(PD) in GetConnectedZlevels(get_z(src))))
-			to_chat(usr, "<span class='warning'>[PD] is not within control range.</span>")
+			to_chat(usr, span_warning("[PD] is not within control range."))
 			return FALSE
 
 		if(!PD.Activate()) //Activate() whilst the device is active will return false.
@@ -100,9 +100,9 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			// Check for duplicate controllers with this ID
 			for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
 				if(PC != src && PC.id_tag == id_tag)
-					to_chat(user, "<span class='warning'>The [new_ident] network already has a controller.</span>")
+					to_chat(user, span_warning("The [new_ident] network already has a controller."))
 					return
-			to_chat(user, "<span class='notice'>You register [src] with the [new_ident] network.</span>")
+			to_chat(user, span_notice("You register [src] with the [new_ident] network."))
 			id_tag = new_ident
 		return
 	if(default_deconstruction_screwdriver(user, W))
@@ -215,7 +215,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
-			to_chat(user, "<span class='notice'>You register [src] with the [new_ident] network.</span>")
+			to_chat(user, span_notice("You register [src] with the [new_ident] network."))
 			id_tag = new_ident
 		return
 	if(default_deconstruction_screwdriver(user, W))

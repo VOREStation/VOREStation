@@ -18,9 +18,9 @@
 	..()
 	if(W.has_tool_quality(TOOL_WELDER) || istype(W, /obj/item/flame/lighter))
 		if(cheater)
-			to_chat(user, "<span class='warning'>Wait, this [name] is already weighted!</span>")
+			to_chat(user, span_warning("Wait, this [name] is already weighted!"))
 		else if(tamper_proof)
-			to_chat(user, "<span class='warning'>This [name] is proofed against tampering!</span>")
+			to_chat(user, span_warning("This [name] is proofed against tampering!"))
 		else
 			var/to_weight = input("What should the [name] be weighted towards? You can't undo this later, only change the number!","Set the desired result") as null|num
 			if(isnull(to_weight) || (to_weight < 1) || (to_weight > sides)) //You must input a number higher than 0 and no greater than the number of sides
@@ -110,9 +110,9 @@
 		else if(sides == 20 && result == 1)
 			comment = "Ouch, bad luck."
 
-		user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \
-							 "<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
-							 "<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
+		user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
+							 span_notice("You throw [src]. It lands on a [result]. [comment]"), \
+							 span_notice("You hear [src] landing on a [result]. [comment]"))
 
 /*
  * Dice packs
@@ -165,9 +165,9 @@
 		)
 
 /obj/item/storage/dicecup/attack_self(mob/user as mob)
-	user.visible_message("<span class='notice'>[user] shakes [src].</span>", \
-							 "<span class='notice'>You shake [src].</span>", \
-							 "<span class='notice'>You hear dice rolling.</span>")
+	user.visible_message(span_notice("[user] shakes [src]."), \
+							 span_notice("You shake [src]."), \
+							 span_notice("You hear dice rolling."))
 	rollCup(user)
 
 /obj/item/storage/dicecup/proc/rollCup(mob/user as mob)

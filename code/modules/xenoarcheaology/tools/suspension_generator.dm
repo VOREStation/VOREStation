@@ -24,7 +24,7 @@
 			M.Weaken(3)
 			cell.charge -= power_use
 			if(prob(5))
-				to_chat(M, "<span class='warning'>[pick("You feel tingly","You feel like floating","It is hard to speak","You can barely move")].</span>")
+				to_chat(M, span_warning("[pick("You feel tingly","You feel like floating","It is hard to speak","You can barely move")]."))
 
 		for(var/obj/item/I in T)
 			if(!suspension_field.contents.len)
@@ -45,7 +45,7 @@
 
 		icon_state = "suspension"
 		cell = null
-		to_chat(user, "<span class='info'>You remove the power cell</span>")
+		to_chat(user, span_info("You remove the power cell"))
 
 /obj/machinery/suspension_gen/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -78,7 +78,7 @@
 					if(anchored)
 						activate()
 					else
-						to_chat(usr, "<span class='warning'>You are unable to activate [src] until it is properly secured on the ground.</span>")
+						to_chat(usr, span_warning("You are unable to activate [src] until it is properly secured on the ground."))
 			else
 				deactivate()
 			return TRUE
@@ -98,7 +98,7 @@
 			else
 				anchored = 1
 			playsound(src, W.usesound, 50, 1)
-			to_chat(user, "<span class='info'>You wrench the stabilising bolts [anchored ? "into place" : "loose"].</span>")
+			to_chat(user, span_info("You wrench the stabilising bolts [anchored ? "into place" : "loose"]."))
 			if(anchored)
 				desc = "Its tracks are held firmly in place with securing bolts."
 				icon_state = "suspension_wrenched"
@@ -108,26 +108,26 @@
 			playsound(loc, 'sound/items/Ratchet.ogg', 40)
 			update_icon()
 		else
-			to_chat(user, "<span class='warning'>You are unable to secure [src] while it is active!</span>")
+			to_chat(user, span_warning("You are unable to secure [src] while it is active!"))
 	else if (istype(W, /obj/item/cell))
 		if(panel_open)
 			if(cell)
-				to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
+				to_chat(user, span_warning("There is a power cell already installed."))
 			else
 				user.drop_item()
 				W.loc = src
 				cell = W
-				to_chat(user, "<span class='info'>You insert the power cell.</span>")
+				to_chat(user, span_info("You insert the power cell."))
 				icon_state = "suspension"
 	else if(istype(W, /obj/item/card))
 		var/obj/item/card/I = W
 		if(!auth_card)
 			if(attempt_unlock(I, user))
-				to_chat(user, "<span class='info'>You swipe [I], the console flashes \'<i>Access granted.</i>\'</span>")
+				to_chat(user, span_info("You swipe [I], the console flashes \'<i>Access granted.</i>\'"))
 			else
-				to_chat(user, "<span class='warning'>You swipe [I], console flashes \'<i>Access denied.</i>\'</span>")
+				to_chat(user, span_warning("You swipe [I], console flashes \'<i>Access denied.</i>\'"))
 		else
-			to_chat(user, "<span class='warning'>Remove [auth_card] first.</span>")
+			to_chat(user, span_warning("Remove [auth_card] first."))
 
 /obj/machinery/suspension_gen/proc/attempt_unlock(var/obj/item/card/C, var/mob/user)
 	if(!panel_open)
@@ -177,7 +177,7 @@
 	var/turf/T = get_turf(suspension_field)
 
 	for(var/mob/living/M in T)
-		to_chat(M, "<span class='info'>You no longer feel like floating.</span>")
+		to_chat(M, span_info("You no longer feel like floating."))
 		M.Weaken(3)
 
 	visible_message(span_blue("[icon2html(src,viewers(src))] [src] deactivates with a gentle shudder."))

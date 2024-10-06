@@ -4,22 +4,22 @@
 
 	if (src.getBruteLoss())
 		if (src.getBruteLoss() < 75)
-			. += "<span class='warning'>It looks slightly dented.</span>"
+			. += span_warning("It looks slightly dented.")
 		else
-			. += "<span class='warning'><B>It looks severely dented!</B></span>"
+			. += span_warning("<B>It looks severely dented!</B>")
 	if (src.getFireLoss())
 		if (src.getFireLoss() < 75)
-			. += "<span class='warning'>It looks slightly charred.</span>"
+			. += span_warning("It looks slightly charred.")
 		else
-			. += "<span class='warning'><B>It looks severely burnt and heat-warped!</B></span>"
+			. += span_warning("<B>It looks severely burnt and heat-warped!</B>")
 
 	if(opened)
-		. += "<span class='warning'>Its cover is open and the power cell is [cell ? "installed" : "missing"].</span>"
+		. += span_warning("Its cover is open and the power cell is [cell ? "installed" : "missing"].")
 	else
 		. += "Its cover is closed."
 
 	if(!has_power)
-		. += "<span class='warning'>It appears to be running on backup power.</span>"
+		. += span_warning("It appears to be running on backup power.")
 
 	switch(src.stat)
 		if(CONSCIOUS)
@@ -27,8 +27,8 @@
 				. += "It appears to be an [deployed ? "active" : "empty"] AI shell."
 			else if(!src.client)
 				. += "It appears to be in stand-by mode." //afk
-		if(UNCONSCIOUS)		. += "<span class='warning'>It doesn't seem to be responding.</span>"
-		if(DEAD)			. += "<span class='deadsay'>It looks completely unsalvageable.</span>"
+		if(UNCONSCIOUS)		. += span_warning("It doesn't seem to be responding.")
+		if(DEAD)			. += span_deadsay("It looks completely unsalvageable.")
 
 	// VOREStation Edit: Start
 	. += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit

@@ -99,7 +99,7 @@ var/datum/antagonist/wizard/wizards
 		break
 	if(!survivor)
 		feedback_set_details("round_end_result","loss - wizard killed")
-		to_world("<span class='danger'><font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!</font></span>")
+		to_world(span_danger("<font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!</font>"))
 
 //To batch-remove wizard spells. Linked to mind.dm.
 /mob/proc/spellremove()
@@ -122,12 +122,12 @@ Made a proc so this is not repeated 14 (or more) times.*/
 // Humans can wear clothes.
 /mob/living/carbon/human/wearing_wiz_garb()
 	if(!is_wiz_garb(src.wear_suit))
-		to_chat(src, "<span class='warning'>I don't feel strong enough without my robe.</span>")
+		to_chat(src, span_warning("I don't feel strong enough without my robe."))
 		return 0
 	if(!is_wiz_garb(src.shoes))
-		to_chat(src, "<span class='warning'>I don't feel strong enough without my sandals.</span>")
+		to_chat(src, span_warning("I don't feel strong enough without my sandals."))
 		return 0
 	if(!is_wiz_garb(src.head))
-		to_chat(src, "<span class='warning'>I don't feel strong enough without my hat.</span>")
+		to_chat(src, span_warning("I don't feel strong enough without my hat."))
 		return 0
 	return 1

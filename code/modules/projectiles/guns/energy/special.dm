@@ -72,29 +72,29 @@
 			user.drop_item()
 			W.loc = src
 			emitter = W
-			to_chat(user, "<span class='notice'>You install a [emitter.name] in [src].</span>")
+			to_chat(user, span_notice("You install a [emitter.name] in [src]."))
 		else
-			to_chat(user, "<span class='notice'>[src] already has a laser.</span>")
+			to_chat(user, span_notice("[src] already has a laser."))
 
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(emitter)
-			to_chat(user, "<span class='notice'>You remove the [emitter.name] from the [src].</span>")
+			to_chat(user, span_notice("You remove the [emitter.name] from the [src]."))
 			emitter.loc = get_turf(src.loc)
 			playsound(src, W.usesound, 50, 1)
 			emitter = null
 			return
 		else
-			to_chat(user, "<span class='notice'>There is no micro laser in this [src].</span>")
+			to_chat(user, span_notice("There is no micro laser in this [src]."))
 			return
 
 /obj/item/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
 	//allow shooting into adjacent hydrotrays regardless of intent
 	if(!emitter)
-		to_chat(user, "<span class='notice'>The [src] has no laser! </span>")
+		to_chat(user, span_notice("The [src] has no laser! "))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 	if(adjacent_flag && istype(target,/obj/machinery/portable_atmospherics/hydroponics))
-		user.visible_message("<span class='danger'>\The [user] fires \the [src] into \the [target]!</span>")
+		user.visible_message(span_danger("\The [user] fires \the [src] into \the [target]!"))
 		Fire(target,user)
 		return
 	..()
@@ -111,7 +111,7 @@
 
 	gene = SSplants.plant_gene_datums[genemask]
 
-	to_chat(usr, "<span class='info'>You set the [src]'s targeted genetic area to [genemask].</span>")
+	to_chat(usr, span_info("You set the [src]'s targeted genetic area to [genemask]."))
 
 	return
 
@@ -186,14 +186,14 @@
 
 /obj/item/gun/energy/staff/special_check(var/mob/user)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		to_chat(usr, "<span class='warning'>You focus your mind on \the [src], but nothing happens!</span>")
+		to_chat(usr, span_warning("You focus your mind on \the [src], but nothing happens!"))
 		return 0
 
 	return ..()
 
 /obj/item/gun/energy/staff/handle_click_empty(mob/user = null)
 	if (user)
-		user.visible_message("*fizzle*", "<span class='danger'>*fizzle*</span>")
+		user.visible_message("*fizzle*", span_danger("*fizzle*"))
 	else
 		src.visible_message("*fizzle*")
 	playsound(src, 'sound/effects/sparks1.ogg', 100, 1)
@@ -215,11 +215,11 @@
 	attack_self(mob/living/user as mob)
 		if(projectile_type == "/obj/item/projectile/forcebolt")
 			charge_cost = 400
-			to_chat(user, "<span class='warning'>The [src.name] will now strike a small area.</span>")
+			to_chat(user, span_warning("The [src.name] will now strike a small area."))
 			projectile_type = "/obj/item/projectile/forcebolt/strong"
 		else
 			charge_cost = 200
-			to_chat(user, "<span class='warning'>The [src.name] will now strike only a single person.</span>")
+			to_chat(user, span_warning("The [src.name] will now strike only a single person."))
 			projectile_type = "/obj/item/projectile/forcebolt"
 	*/
 
@@ -278,12 +278,12 @@
 
 /obj/item/gun/energy/maghowitzer/attack(atom/A, mob/living/user, def_zone)
 	if(power_cycle)
-		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
+		to_chat(user, span_notice("\The [src] is already powering up!"))
 		return 0
 	var/turf/target_turf = get_turf(A)
 	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/effects/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
 	if(beameffect)
-		user.visible_message("<span class='cult'>[user] aims \the [src] at \the [A].</span>")
+		user.visible_message(span_cult("[user] aims \the [src] at \the [A]."))
 	if(power_supply && power_supply.charge >= charge_cost) //Do a delay for pointblanking too.
 		power_cycle = TRUE
 		if(do_after(user, 30))
@@ -304,7 +304,7 @@
 
 /obj/item/gun/energy/maghowitzer/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(power_cycle)
-		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
+		to_chat(user, span_notice("\The [src] is already powering up!"))
 		return 0
 
 	var/turf/target_turf = get_turf(A)
@@ -312,7 +312,7 @@
 	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/effects/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
 
 	if(beameffect)
-		user.visible_message("<span class='cult'>[user] aims \the [src] at \the [A].</span>")
+		user.visible_message(span_cult("[user] aims \the [src] at \the [A]."))
 
 	if(!power_cycle)
 		power_cycle = TRUE
@@ -331,4 +331,4 @@
 			handle_click_empty(user)
 		power_cycle = FALSE
 	else
-		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
+		to_chat(user, span_notice("\The [src] is already powering up!"))

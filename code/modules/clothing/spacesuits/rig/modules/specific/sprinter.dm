@@ -38,6 +38,6 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<span class='danger'>Your hardsuit returns to normal speed.</span>")
+	to_chat(H, span_danger("Your hardsuit returns to normal speed."))
 
 	holder.slowdown = initial(holder.slowdown)
