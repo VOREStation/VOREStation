@@ -11,6 +11,8 @@
 	var/audio = 0		//If you need to hear to get the message
 	var/listening = 0
 	var/datum/language/langset
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/universal_translator/attack_self(mob/user)
 	if(!listening) //Turning ON
