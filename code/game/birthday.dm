@@ -18,7 +18,7 @@
 	client.prefs.last_birthday_notification = world_time_year	//We only want to ask once a year per character, this persists, update early in case of shenanigans
 	if(birthday)	//woo
 		msg = "Today is your birthday! Do you want to increase your character's listed age?"
-		if(client.prefs.bday_announce)
+		if(client.prefs.read_preference(/datum/preference/toggle/bday_announce))
 			var/list/sounds = list('sound/voice/BIRTH.ogg')
 			var/oursound = pickweight(sounds)
 			command_announcement.Announce("Confirmed presence of BIRTHDAY aboard the station! It is [src.real_name]'s birthday or similar sort of celebration, name day, hatchday, WHATEVER! We encourage you to go find [src.real_name] and show them how we celebrate around here! Have a secure day!", "BIRTHDAY!", oursound)

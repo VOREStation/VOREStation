@@ -315,6 +315,13 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	return TRUE
 
+/datum/preferences/proc/update_preference_by_type(preference_type, preference_value)
+	var/datum/preference/preference_entry = GLOB.preference_entries[preference_type]
+	if(isnull(preference_entry))
+		CRASH("Preference type `[preference_type]` is invalid!")
+
+	return update_preference(preference_entry, preference_value)
+
 /// Checks that a given value is valid.
 /// Must be overriden by subtypes.
 /// Any type can be passed through.
@@ -354,8 +361,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	// 	if(!(savefile_key in species.get_features()))
 	// 		return FALSE
 
-	if(!should_show_on_page(preferences.current_window))
-		return FALSE
+	// TODO: Restore when tgui
+	// if(!should_show_on_page(preferences.current_window))
+	// 	return FALSE
 
 	return TRUE
 

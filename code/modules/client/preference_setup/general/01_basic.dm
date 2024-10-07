@@ -20,7 +20,6 @@
 	pref.bday_month						= save_data["bday_month"]
 	pref.bday_day						= save_data["bday_day"]
 	pref.last_birthday_notification		= save_data["last_bday_note"]
-	pref.bday_announce					= save_data["bday_announce"]
 	pref.spawnpoint						= save_data["spawnpoint"]
 	pref.metadata						= save_data["OOC_Notes"]
 	pref.metadata_likes					= save_data["OOC_Notes_Likes"]
@@ -36,7 +35,6 @@
 	save_data["bday_month"]				= pref.bday_month
 	save_data["bday_day"]				= pref.bday_day
 	save_data["last_bday_note"]			= pref.last_birthday_notification
-	save_data["bday_announce"]			= pref.bday_announce
 	save_data["spawnpoint"]				= pref.spawnpoint
 	save_data["OOC_Notes"]				= pref.metadata
 	save_data["OOC_Notes_Likes"]		= pref.metadata_likes
@@ -91,7 +89,7 @@
 	. += "<br>"
 	. += "<b>Biological Sex:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
-	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "No"]</a><br>"
+	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.read_preference(/datum/preference/toggle/bday_announce) ? "Yes" : "No"]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(config.allow_Metadata)
 		. += "<b>OOC Notes: <a href='?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a></b><br>"
@@ -203,7 +201,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["bday_announce"])
-		pref.bday_announce = !pref.bday_announce
+		pref.update_preference_by_type(/datum/preference/toggle/bday_announce, !pref.read_preference(/datum/preference/toggle/bday_announce))
 		return TOPIC_REFRESH
 
 	else if(href_list["spawnpoint"])
