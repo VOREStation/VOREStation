@@ -222,6 +222,8 @@
 
 #define span_giant(str) "<font size='5'>" + str + "</font>"
 
+#define span_giganteus(str) "<font size='6'>" + str + "</font>"
+
 #define span_massive(str) "<font size='7'>" + str + "</font>"
 
 #define span_narsie(str) "<font size='15'>" + str + "</font>"
@@ -236,3 +238,6 @@
 
 // Links!
 #define span_linkify(str) ("<span class='linkify'>" + str + "</span>")
+
+// Just used downstream
+#define span_wingdings(str) ("<span class='wingdings'>" + str + "</span>")
