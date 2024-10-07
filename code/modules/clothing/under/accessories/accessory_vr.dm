@@ -359,85 +359,29 @@
 	var/target_size = 1
 	on = 1
 
-/obj/item/clothing/accessory/collar/shock/bluespace/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
+/obj/item/clothing/accessory/collar/shock/bluespace/tgui_static_data(mob/user)
+	var/list/data = ..()
+	data["target_size_min"] = RESIZE_MINIMUM_DORMS
+	data["target_size_max"] = RESIZE_MAXIMUM_DORMS
+	return data
+
+/obj/item/clothing/accessory/collar/shock/bluespace/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["target_size"] = target_size
+	return data
+
+/obj/item/clothing/accessory/collar/shock/bluespace/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
-		usr.set_machine(src)
-		if(href_list["freq"])
-			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
-		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
-			if(!str || !length(str))
-				to_chat(usr,span_notice("[name]'s tag set to be blank."))
-				name = initial(name)
-				desc = initial(desc)
-			else
-				to_chat(usr,span_notice("You set the [name]'s tag to '[str]'."))
-				name = initial(name) + " ([str])"
-				desc = initial(desc) + " The tag says \"[str]\"."
-		else
-			if(href_list["code"])
-				code += text2num(href_list["code"])
-				code = round(code)
-				code = min(100, code)
-				code = max(1, code)
-			else
-				if(href_list["size"])
-					var/size_select = tgui_input_number(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", target_size * 100, 200, 25)
-					if(!size_select)
-						return //cancelled
-					target_size = clamp((size_select/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
-					to_chat(usr, span_notice("You set the size to [size_select]%"))
-					if(target_size < RESIZE_MINIMUM || target_size > RESIZE_MAXIMUM)
-						to_chat(usr, span_notice("Note: Resizing limited to 25-200% automatically while outside dormatory areas.")) //hint that we clamp it in resize
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
-		return
-	return
 
-/obj/item/clothing/accessory/collar/shock/bluespace/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
-		return
-	user.set_machine(src)
-	var/dat = {"<TT>
-			<B>Frequency/Code</B> for collar:<BR>
-			Frequency:
-			<A href='byond://?src=\ref[src];freq=-10'>-</A>
-			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-			<A href='byond://?src=\ref[src];freq=2'>+</A>
-			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-
-			Code:
-			<A href='byond://?src=\ref[src];code=-5'>-</A>
-			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-			<A href='byond://?src=\ref[src];code=1'>+</A>
-			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-
-			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
-
-			Size:
-			<A href='?src=\ref[src];size=100'>Set size</A><BR>
-			</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+	switch(action)
+		if("size")
+			target_size = clamp((params["size"]/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
+			to_chat(usr, span_notice("You set the size to [target_size * 100]%"))
+			if(target_size < RESIZE_MINIMUM || target_size > RESIZE_MAXIMUM)
+				to_chat(usr, span_notice("Note: Resizing limited to 25-200% automatically while outside dormatory areas.")) //hint that we clamp it in resize
+			. = TRUE
 
 /obj/item/clothing/accessory/collar/shock/bluespace/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption != code)
@@ -527,63 +471,15 @@
 	to_chat(user, span_notice("There is already a signaler wired to the [src]."))
 	return
 
-/obj/item/clothing/accessory/collar/shock/bluespace/modified/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
-		return
-	user.set_machine(src) //Doesn't need code or size options as the code now just defines the size.
-	var/dat = {"<TT>
-			<B>Frequency/Code</B> for collar:<BR>
-			Frequency:
-			<A href='byond://?src=\ref[src];freq=-10'>-</A>
-			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-			<A href='byond://?src=\ref[src];freq=2'>+</A>
-			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["target_size"] = "code"
+	return data
 
-			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
-
-			The size control of the collar is determined by two times the value of the code it recieves, to a minimum of 26 (code 13).
-			</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
-
-/obj/item/clothing/accessory/collar/shock/bluespace/modified/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
-		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
-		usr.set_machine(src)
-		if(href_list["freq"])
-			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
-		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
-			if(!str || !length(str))
-				to_chat(usr,span_notice("[name]'s tag set to be blank."))
-				name = initial(name)
-				desc = initial(desc)
-			else
-				to_chat(usr,span_notice("You set the [name]'s tag to '[str]'."))
-				name = initial(name) + " ([str])"
-				desc = initial(desc) + " The tag says \"[str]\"."
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
-		return
-	return
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(action == "size")
+		return // no modifying size
+	. = ..()
 
 /obj/item/clothing/accessory/collar/shock/bluespace/modified/receive_signal(datum/signal/signal)
 	if(!signal)
@@ -647,76 +543,15 @@
 	to_chat(user, span_notice("The signaler doesn't respond to the connection attempt [src]."))
 	return
 
-/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
-		return
-	user.set_machine(src)
-	var/dat = {"<TT>
-			<B>Frequency/Code</B> for collar:<BR>
-			Frequency:
-			<A href='byond://?src=\ref[src];freq=-10'>-</A>
-			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-			<A href='byond://?src=\ref[src];freq=2'>+</A>
-			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["target_size"] = "locked"
+	return data
 
-			Code:
-			<A href='byond://?src=\ref[src];code=-5'>-</A>
-			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-			<A href='byond://?src=\ref[src];code=1'>+</A>
-			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-
-			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
-
-			Size:
-			Input Disabled!<BR>
-			</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
-
-/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
-		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
-		usr.set_machine(src)
-		if(href_list["freq"])
-			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
-		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
-			if(!str || !length(str))
-				to_chat(usr,span_notice("[name]'s tag set to be blank."))
-				name = initial(name)
-				desc = initial(desc)
-			else
-				to_chat(usr,span_notice("You set the [name]'s tag to '[str]'."))
-				name = initial(name) + " ([str])"
-				desc = initial(desc) + " The tag says \"[str]\"."
-		else
-			if(href_list["code"])
-				code += text2num(href_list["code"])
-				code = round(code)
-				code = min(100, code)
-				code = max(1, code)
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
-		return
-	return
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(action == "size")
+		return // no modifying size
+	. = ..()
 
 /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/receive_signal(datum/signal/signal)
 	if(!signal)
