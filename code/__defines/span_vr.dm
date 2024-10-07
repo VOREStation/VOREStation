@@ -173,7 +173,6 @@
 #define span_admin(str) ("<span class='admin'>" + str + "</span>")
 #define span_linkOn(str) ("<span class='linkOn'>" + str + "</span>")
 #define span_linkOff(str) ("<span class='linkOff'>" + str + "</span>")
-#define span_filter_pm(str) ("<span class='filter_pm'>" + str + "</span>")
 #define span_filter_pray(str) ("<span class='filter_pray'>" + str + "</span>") // (Uses the chat message type directly)
 
 // Admin log filters
@@ -197,6 +196,7 @@
 #define span_adminhelp(str) ("<span class='adminhelp'>" + str + "</span>")
 #define span_admin_pm_notice(str) ("<span class='pm notice'>" + str + "</span>")
 #define span_admin_pm_warning(str) ("<span class='pm warning'>" + str + "</span>")
+#define span_filter_pm(str) ("<span class='filter_pm'>" + str + "</span>")
 
 // Mentor pm filter
 #define span_mentor(str) ("<span class='mentor'>" + str + "</span>")

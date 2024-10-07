@@ -145,7 +145,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_ADMINPM,
     name: 'Admin PMs',
     description: 'Messages to/from admins (adminhelp)',
-    selector: '.pm, .adminhelp',
+    selector: '.pm, .adminhelp, .filter_pm',
   },
   {
     type: MESSAGE_TYPE_MENTORPM,
