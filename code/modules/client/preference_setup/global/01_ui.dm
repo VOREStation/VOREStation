@@ -11,11 +11,6 @@
 	pref.client_fps			= savefile.get_entry("client_fps")
 	pref.ambience_freq		= savefile.get_entry("ambience_freq")
 	pref.ambience_chance	= savefile.get_entry("ambience_chance")
-	pref.tgui_fancy			= savefile.get_entry("tgui_fancy")
-	pref.tgui_lock			= savefile.get_entry("tgui_lock")
-	pref.tgui_input_mode	= savefile.get_entry("tgui_input_mode")
-	pref.tgui_large_buttons		= savefile.get_entry("tgui_large_buttons")
-	pref.tgui_swapped_buttons	= savefile.get_entry("tgui_swapped_buttons")
 	pref.obfuscate_key		= savefile.get_entry("obfuscate_key")
 	pref.obfuscate_job		= savefile.get_entry("obfuscate_job")
 	pref.chat_timestamp		= savefile.get_entry("chat_timestamp")
@@ -29,11 +24,6 @@
 	savefile.set_entry("client_fps",		pref.client_fps)
 	savefile.set_entry("ambience_freq",		pref.ambience_freq)
 	savefile.set_entry("ambience_chance",	pref.ambience_chance)
-	savefile.set_entry("tgui_fancy",		pref.tgui_fancy)
-	savefile.set_entry("tgui_lock",			pref.tgui_lock)
-	savefile.set_entry("tgui_input_mode",	pref.tgui_input_mode)
-	savefile.set_entry("tgui_large_buttons",	pref.tgui_large_buttons)
-	savefile.set_entry("tgui_swapped_buttons",	pref.tgui_swapped_buttons)
 	savefile.set_entry("obfuscate_key",		pref.obfuscate_key)
 	savefile.set_entry("obfuscate_job",		pref.obfuscate_job)
 	savefile.set_entry("chat_timestamp",	pref.chat_timestamp)
@@ -46,12 +36,7 @@
 	pref.tooltipstyle		= sanitize_inlist(pref.tooltipstyle, all_tooltip_styles, initial(pref.tooltipstyle))
 	pref.client_fps			= sanitize_integer(pref.client_fps, 0, MAX_CLIENT_FPS, initial(pref.client_fps))
 	pref.ambience_freq		= sanitize_integer(pref.ambience_freq, 0, 60, initial(pref.ambience_freq)) // No more than once per hour.
-	pref.ambience_chance 	= sanitize_integer(pref.ambience_chance, 0, 100, initial(pref.ambience_chance)) // 0-100 range.
-	pref.tgui_fancy			= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
-	pref.tgui_lock			= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
-	pref.tgui_input_mode	= sanitize_integer(pref.tgui_input_mode, 0, 1, initial(pref.tgui_input_mode))
-	pref.tgui_large_buttons	= sanitize_integer(pref.tgui_large_buttons, 0, 1, initial(pref.tgui_large_buttons))
-	pref.tgui_swapped_buttons	= sanitize_integer(pref.tgui_swapped_buttons, 0, 1, initial(pref.tgui_swapped_buttons))
+	pref.ambience_chance 	= sanitize_integer(pref.ambience_chance, 0, 100, initial(pref.ambience_chance)) // 0-100 range.)
 	pref.obfuscate_key		= sanitize_integer(pref.obfuscate_key, 0, 1, initial(pref.obfuscate_key))
 	pref.obfuscate_job		= sanitize_integer(pref.obfuscate_job, 0, 1, initial(pref.obfuscate_job))
 	pref.chat_timestamp		= sanitize_integer(pref.chat_timestamp, 0, 1, initial(pref.chat_timestamp))
@@ -59,20 +44,15 @@
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. = span_bold("UI Style:") + " <a href='byond://?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
 	. += span_bold("Custom UI") + " (recommended for White UI):<br>"
-	. += "-Color: <a href='byond://?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> [color_square(hex = pref.UI_style_color)] <a href='byond://?src=\ref[src];reset=ui'>reset</a><br>"
-	. += "-Alpha(transparency): <a href='byond://?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='byond://?src=\ref[src];reset=alpha'>reset</a><br>"
-	. += span_bold("Tooltip Style:") + " <a href='byond://?src=\ref[src];select_tooltip_style=1'><b>[pref.tooltipstyle]</b></a><br>"
-	. += span_bold("Client FPS:") + " <a href='byond://?src=\ref[src];select_client_fps=1'><b>[pref.client_fps]</b></a><br>"
-	. += span_bold("Random Ambience Frequency:") + " <a href='byond://?src=\ref[src];select_ambience_freq=1'><b>[pref.ambience_freq]</b></a><br>"
-	. += span_bold("Ambience Chance:") + " <a href='byond://?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
-	. += span_bold("TGUI Window Mode:") + " <a href='byond://?src=\ref[src];tgui_fancy=1'><b>[(pref.tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</b></a><br>"
-	. += span_bold("TGUI Window Placement:") + " <a href='byond://?src=\ref[src];tgui_lock=1'><b>[(pref.tgui_lock) ? "Primary Monitor" : "Free (default)"]</b></a><br>"
-	. += span_bold("TGUI Input Framework:") + " <a href='byond://?src=\ref[src];tgui_input_mode=1'><b>[(pref.tgui_input_mode) ? "Enabled" : "Disabled (default)"]</b></a><br>"
-	. += span_bold("TGUI Large Buttons:") + " <a href='byond://?src=\ref[src];tgui_large_buttons=1'><b>[(pref.tgui_large_buttons) ? "Enabled (default)" : "Disabled"]</b></a><br>"
-	. += span_bold("TGUI Swapped Buttons:") + " <a href='byond://?src=\ref[src];tgui_swapped_buttons=1'><b>[(pref.tgui_swapped_buttons) ? "Enabled" : "Disabled (default)"]</b></a><br>"
-	. += span_bold("Obfuscate Ckey:") + " <a href='byond://?src=\ref[src];obfuscate_key=1'><b>[(pref.obfuscate_key) ? "Enabled" : "Disabled (default)"]</b></a><br>"
-	. += span_bold("Obfuscate Job:") + " <a href='byond://?src=\ref[src];obfuscate_job=1'><b>[(pref.obfuscate_job) ? "Enabled" : "Disabled (default)"]</b></a><br>"
-	. += span_bold("Chat Timestamps:") + " <a href='byond://?src=\ref[src];chat_timestamps=1'><b>[(pref.chat_timestamp) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> [color_square(hex = pref.UI_style_color)] <a href='?src=\ref[src];reset=ui'>reset</a><br>"
+	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='?src=\ref[src];reset=alpha'>reset</a><br>"
+	. += span_bold("Tooltip Style:") + " <a href='?src=\ref[src];select_tooltip_style=1'><b>[pref.tooltipstyle]</b></a><br>"
+	. += span_bold("Client FPS:") + " <a href='?src=\ref[src];select_client_fps=1'><b>[pref.client_fps]</b></a><br>"
+	. += span_bold("Random Ambience Frequency:") + " <a href='?src=\ref[src];select_ambience_freq=1'><b>[pref.ambience_freq]</b></a><br>"
+	. += span_bold("Ambience Chance:") + " <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
+	. += span_bold("Obfuscate Ckey:") + " <a href='?src=\ref[src];obfuscate_key=1'><b>[(pref.obfuscate_key) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += span_bold("Obfuscate Job:") + " <a href='?src=\ref[src];obfuscate_job=1'><b>[(pref.obfuscate_job) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += span_bold("Chat Timestamps:") + " <a href='?src=\ref[src];chat_timestamps=1'><b>[(pref.chat_timestamp) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
 		. += span_bold("OOC Color:")
 		if(pref.ooccolor == initial(pref.ooccolor))
@@ -132,26 +112,6 @@
 		if(isnull(ambience_chance_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(ambience_chance_new < 0 || ambience_chance_new > 100) return TOPIC_NOACTION
 		pref.ambience_chance = ambience_chance_new
-		return TOPIC_REFRESH
-
-	else if(href_list["tgui_fancy"])
-		pref.tgui_fancy = !pref.tgui_fancy
-		return TOPIC_REFRESH
-
-	else if(href_list["tgui_lock"])
-		pref.tgui_lock = !pref.tgui_lock
-		return TOPIC_REFRESH
-
-	else if(href_list["tgui_input_mode"])
-		pref.tgui_input_mode = !pref.tgui_input_mode
-		return TOPIC_REFRESH
-
-	else if(href_list["tgui_large_buttons"])
-		pref.tgui_large_buttons = !pref.tgui_large_buttons
-		return TOPIC_REFRESH
-
-	else if(href_list["tgui_swapped_buttons"])
-		pref.tgui_swapped_buttons = !pref.tgui_swapped_buttons
 		return TOPIC_REFRESH
 
 	else if(href_list["obfuscate_key"])

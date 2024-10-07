@@ -1,4 +1,38 @@
 /datum/preferences
+
+/datum/preferences/proc/randomise_appearance_prefs_update(randomize_flags = ALL, datum/species/current_species)
+	randomise_appearance_prefs(randomize_flags, current_species)
+
+/datum/preferences/proc/randomise_appearance_prefs_write(randomize_flags = ALL, datum/species/current_species)
+	randomise_appearance_prefs(randomize_flags, current_species, TRUE)
+
+/// Fully randomizes everything in the character.
+/datum/preferences/proc/randomise_appearance_prefs(randomize_flags = ALL, datum/species/current_species, write = FALSE)
+	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if (!preference.included_in_randomization_flags(randomize_flags))
+			continue
+		if (preference.is_randomizable())
+			if(write)
+				write_preference(preference, preference.create_random_value(src, current_species))
+			else
+				update_preference(preference, preference.create_random_value(src, current_species))
+
+/* Currently not used
+/// Randomizes the character according to preferences.
+/datum/preferences/proc/apply_character_randomization_prefs(antag_override = FALSE)
+	switch (read_preference(/datum/preference/choiced/random_body))
+		if (RANDOM_ANTAG_ONLY)
+			if (!antag_override)
+				return
+
+		if (RANDOM_DISABLED)
+			return
+
+	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if (should_randomize(preference, antag_override))
+			write_preference(preference, preference.create_random_value(src))
+*/
+
 	//The mob should have a gender you want before running this proc. Will run fine without H
 /datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
 	var/datum/species/current_species = GLOB.all_species[species ? species : "Human"]
@@ -32,7 +66,7 @@
 	headset = rand(1,3)
 	backbag = rand(1,6)
 	pdachoice = rand(1,7)
-	age = rand(current_species.min_age, current_species.max_age)
+	randomise_appearance_prefs_update(current_species = current_species)
 	b_type = RANDOM_BLOOD_TYPE
 	if(H)
 		copy_to(H,1)

@@ -244,9 +244,23 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return FALSE
 
 	var/tree_key = "character[default_slot]"
+	var/first_save = FALSE
 	if(!(tree_key in savefile.get_entry()))
 		savefile.set_entry(tree_key, list())
+		first_save = TRUE
 	var/save_data = savefile.get_entry(tree_key)
+
+	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if(preference.savefile_identifier != PREFERENCE_CHARACTER && !first_save)
+			continue
+
+		if(!(preference.type in recently_updated_keys) && !first_save)
+			continue
+
+		recently_updated_keys -= preference.type
+
+		if(preference.type in value_cache)
+			write_preference(preference, preference.pref_serialize(value_cache[preference.type]))
 
 	save_data["version"] = SAVEFILE_VERSION_MAX //load_character will sanitize any bad data, so assume up-to-date.
 	player_setup.save_character(save_data)
