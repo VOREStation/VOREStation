@@ -12,6 +12,9 @@
 	var/obj/item/disk/nuclear/the_disk = null
 	var/active = 0
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/pinpointer/Destroy()
 	active = 0
 	STOP_PROCESSING(SSobj, src)

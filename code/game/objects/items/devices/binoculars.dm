@@ -8,6 +8,8 @@
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 	//matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 

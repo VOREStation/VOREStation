@@ -8,6 +8,8 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!iscarbon(M))

@@ -18,6 +18,9 @@
 	var/showadvscan = 1
 	var/guide = FALSE
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/healthanalyzer/New()
 	if(advscan >= 1)
 		verbs += /obj/item/healthanalyzer/proc/toggle_adv

@@ -91,6 +91,8 @@
 	var/sampled_turf = ""
 	var/num_stored_bags = 10
 	var/obj/item/evidencebag/filled_bag
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/core_sampler/examine(var/mob/user)
 	. = ..()

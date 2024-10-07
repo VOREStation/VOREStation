@@ -31,6 +31,8 @@ var/global/list/active_radio_jammers = list()
 	var/tick_cost = 5 //VOREStation Edit - For the ERPs.
 
 	origin_tech = list(TECH_ILLEGAL = 7, TECH_BLUESPACE = 5) //Such technology! Subspace jamming!
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/radio_jammer/New()
 	power_source = new(src)

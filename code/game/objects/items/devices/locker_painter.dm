@@ -69,6 +69,8 @@
 		/obj/structure/closet/statue,
 		/obj/structure/closet/walllocker
 		)
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/closet_painter/afterattack(atom/A, var/mob/user, proximity)
 	if(!proximity)

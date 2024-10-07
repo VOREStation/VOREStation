@@ -20,6 +20,9 @@
 
 	var/global/list/overlay_cache = list() //cache recent overlays
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/t_scanner/update_icon()
 	icon_state = "t-ray[on]"
 

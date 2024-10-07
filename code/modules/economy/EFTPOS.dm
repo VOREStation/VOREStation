@@ -11,6 +11,8 @@
 	var/transaction_purpose = "Default charge"
 	var/access_code = 0
 	var/datum/money_account/linked_account
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/eftpos/Initialize()
 	. = ..()

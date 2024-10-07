@@ -13,6 +13,9 @@
 	var/reveal_blood = TRUE
 	var/reveal_fibers = FALSE
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))
 		to_chat(user, span_warning("\The [M] does not seem to be compatible with this device."))

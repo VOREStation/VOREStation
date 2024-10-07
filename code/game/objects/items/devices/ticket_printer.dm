@@ -6,6 +6,8 @@
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	var/print_cooldown = 1 MINUTE
 	var/last_print
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/ticket_printer/attack_self(mob/user)
 	. = ..()

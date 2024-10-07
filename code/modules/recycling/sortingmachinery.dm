@@ -339,6 +339,8 @@
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
 	slot_flags = SLOT_BELT
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/destTagger/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
