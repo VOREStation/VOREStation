@@ -72,7 +72,7 @@
 	if(istype(O, /obj/item/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
 		if(ai_holder.retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
 			user.Weaken(5) //They get tackled anyway whether they're edible or not.
-			user.visible_message("<span class='danger'>[user] swats [src] with [O] and promptly gets tackled!</span>!")
+			user.visible_message(span_danger("[user] swats [src] with [O] and promptly gets tackled!"))
 			if(will_eat(user))
 				set_AI_busy(TRUE)
 				animal_nom(user)

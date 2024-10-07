@@ -28,23 +28,23 @@
 	if(!istype(target))
 		return
 	if(target.buckled)
-		occupant_message("[target] will not fit into the sleeper because they are buckled to [target.buckled].")
+		occupant_message(span_infoplain("[target] will not fit into the sleeper because they are buckled to [target.buckled]."))
 		return
 	if(occupant)
-		occupant_message("The sleeper is already occupied")
+		occupant_message(span_warning("The sleeper is already occupied"))
 		return
 	if(target.has_buckled_mobs())
 		occupant_message(span_warning("\The [target] has other entities attached to it. Remove them first."))
 		return
-	occupant_message("You start putting [target] into [src].")
-	chassis.visible_message("[chassis] starts putting [target] into the [src].")
+	occupant_message(span_infoplain("You start putting [target] into [src]."))
+	chassis.visible_message(span_infoplain("[chassis] starts putting [target] into the [src]."))
 	var/C = chassis.loc
 	var/T = target.loc
 	if(do_after_cooldown(target))
 		if(chassis.loc!=C || target.loc!=T)
 			return
 		if(occupant)
-			occupant_message(span_red("<B>The sleeper is already occupied!</B>"))
+			occupant_message(span_boldwarning("The sleeper is already occupied!"))
 			return
 		target.forceMove(src)
 		occupant = target
@@ -57,8 +57,8 @@
 		*/
 		set_ready_state(FALSE)
 		START_PROCESSING(SSprocessing, src)
-		occupant_message(span_blue("[target] successfully loaded into [src]. Life support functions engaged."))
-		chassis.visible_message("[chassis] loads [target] into [src].")
+		occupant_message(span_notice("[target] successfully loaded into [src]. Life support functions engaged."))
+		chassis.visible_message(span_infoplain("[chassis] loads [target] into [src]."))
 		log_message("[target] loaded. Life support functions engaged.")
 	return
 
@@ -66,7 +66,7 @@
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
-	occupant_message("[occupant] ejected. Life support functions disabled.")
+	occupant_message(span_infoplain("[occupant] ejected. Life support functions disabled."))
 	log_message("[occupant] ejected. Life support functions disabled.")
 	occupant.reset_view()
 	/*
@@ -82,7 +82,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/detach()
 	if(occupant)
-		occupant_message("Unable to detach [src] - equipment occupied.")
+		occupant_message(span_infoplain("Unable to detach [src] - equipment occupied."))
 		return
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
@@ -179,9 +179,9 @@
 		return 0
 	var/to_inject = min(R.volume, inject_amount)
 	if(to_inject && occupant.reagents.get_reagent_amount(R.id) + to_inject > inject_amount*4)
-		occupant_message("Sleeper safeties prohibit you from injecting more than [inject_amount*4] units of [R.name].")
+		occupant_message(span_warning("Sleeper safeties prohibit you from injecting more than [inject_amount*4] units of [R.name]."))
 	else
-		occupant_message("Injecting [occupant] with [to_inject] units of [R.name].")
+		occupant_message(span_notice("Injecting [occupant] with [to_inject] units of [R.name]."))
 		log_message("Injecting [occupant] with [to_inject] units of [R.name].")
 		//SG.reagents.trans_id_to(occupant,R.id,to_inject)
 		SG.reagents.remove_reagent(R.id,to_inject)
@@ -218,7 +218,7 @@
 	if(!chassis.has_charge(energy_drain))
 		set_ready_state(TRUE)
 		log_message("Deactivated.")
-		occupant_message("[src] deactivated - no power.")
+		occupant_message(span_infoplain("[src] deactivated - no power."))
 		return PROCESS_KILL
 	var/mob/living/carbon/M = occupant
 	if(!M)

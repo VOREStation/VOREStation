@@ -60,10 +60,10 @@
 	src.brainmob.ckey = candidate.ckey
 	src.brainmob.mind.reset()
 	src.name = "positronic brain ([src.brainmob.name])"
-	to_chat(src.brainmob, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
-	to_chat(src.brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
-	to_chat(src.brainmob, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
-	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
+	to_chat(src.brainmob, span_infoplain(span_bold("You are a positronic brain, brought into existence on [station_name()].")))
+	to_chat(src.brainmob, span_infoplain(span_bold("As a synthetic intelligence, you answer to all crewmembers, as well as the AI.")))
+	to_chat(src.brainmob, span_infoplain(span_bold("Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.")))
+	to_chat(src.brainmob, span_infoplain(span_bold("Use say #b to speak to other artificial intelligences.")))
 	src.brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
 
 	var/turf/T = get_turf_or_move(src.loc)

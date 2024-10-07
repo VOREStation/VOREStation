@@ -105,11 +105,11 @@
 
 /datum/nifsoft/compliance/activate()
 	if((. = ..()))
-		to_chat(nif.human,span_danger("You are compelled to follow these rules: </span>\n<span class='notify'>[laws]"))
+		to_chat(nif.human,span_danger("You are compelled to follow these rules:") + "\n" + span_notify("[laws]"))
 
 /datum/nifsoft/compliance/install()
 	if((. = ..()))
-		to_chat(nif.human,span_danger("You feel suddenly compelled to follow these rules: </span>\n<span class='notify'>[laws]"))
+		to_chat(nif.human,span_danger("You feel suddenly compelled to follow these rules:") + "\n" + span_notify("[laws]"))
 
 /datum/nifsoft/compliance/uninstall()
 	nif.notify("ERROR! Unable to comply!",TRUE)

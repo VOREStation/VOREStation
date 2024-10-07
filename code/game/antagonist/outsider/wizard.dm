@@ -66,7 +66,7 @@ var/datum/antagonist/wizard/wizards
 
 /datum/antagonist/wizard/update_antag_mob(var/datum/mind/wizard)
 	..()
-	wizard.store_memory("<B>Remember:</B> do not forget to prepare your spells.")
+	wizard.store_memory(span_bold("Remember:") + " do not forget to prepare your spells.")
 	wizard.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
 	wizard.current.name = wizard.current.real_name
 
@@ -99,7 +99,7 @@ var/datum/antagonist/wizard/wizards
 		break
 	if(!survivor)
 		feedback_set_details("round_end_result","loss - wizard killed")
-		to_world(span_danger("<font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!</font>"))
+		to_world(span_boldannounce(span_large("The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!")))
 
 //To batch-remove wizard spells. Linked to mind.dm.
 /mob/proc/spellremove()

@@ -17,19 +17,19 @@
 				to_chat(user, span_warning("You need at least 5 [reinforcing.singular_name]\s for this task."))
 				return
 			reinforcing.use(5)
-			user.visible_message("<b>\The [user]</b> shapes some steel sheets around \the [src] to form a body.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " shapes some steel sheets around \the [src] to form a body."))
 			increment_construction_stage()
 			return
 
 	if(istype(thing, /obj/item/tape_roll) && construction_stage == 2)
-		user.visible_message("<b>\The [user]</b> secures \the [src] together with \the [thing].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " secures \the [src] together with \the [thing]."))
 		increment_construction_stage()
 		return
 
 	if(istype(thing, /obj/item/pipe) && construction_stage == 3)
 		user.drop_from_inventory(thing)
 		qdel(thing)
-		user.visible_message("<b>\The [user]</b> jams \the [thing] into \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " jams \the [thing] into \the [src]."))
 		increment_construction_stage()
 		return
 
@@ -44,7 +44,7 @@
 			to_chat(user, span_warning("You need more fuel!"))
 			return
 
-		user.visible_message("<b>\The [user]</b> welds the barrel of \the [src] into place.")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " welds the barrel of \the [src] into place."))
 		playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 		increment_construction_stage()
 		return
@@ -55,19 +55,19 @@
 			to_chat(user, span_warning("You need at least 5 lengths of cable for this task."))
 			return
 		cable.use(5)
-		user.visible_message("<b>\The [user]</b> wires \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " wires \the [src]."))
 		increment_construction_stage()
 		return
 
 	if(istype(thing, /obj/item/smes_coil) && construction_stage >= 6 && construction_stage <= 8)
-		user.visible_message("<b>\The [user]</b> installs \a [thing] into \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " installs \a [thing] into \the [src]."))
 		user.drop_from_inventory(thing)
 		qdel(thing)
 		increment_construction_stage()
 		return
 
 	if(thing.has_tool_quality(TOOL_SCREWDRIVER) && construction_stage >= 9)
-		user.visible_message("<b>\The [user]</b> secures \the [src] and finishes it off.")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " secures \the [src] and finishes it off."))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		var/obj/item/gun/magnetic/coilgun = new(loc)
 		var/put_in_hands

@@ -165,7 +165,7 @@ var/list/wrapped_species_by_ref = list()
 		return
 
 	wrapped_species_by_ref["\ref[src]"] = new_species
-	visible_message("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!")
+	visible_message(span_infoplain(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
 	regenerate_icons()
 */
 

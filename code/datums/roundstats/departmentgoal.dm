@@ -41,7 +41,7 @@ GLOBAL_LIST(active_department_goals)
 	for(var/category in GLOB.active_department_goals)
 		var/list/cat_goals = GLOB.active_department_goals[category]
 
-		to_world(span_filter_system("<b>[category]</b>"))
+		to_world(span_world("[category]"))
 
 		if(!LAZYLEN(cat_goals))
 			to_world(span_filter_system("There were no assigned goals!"))

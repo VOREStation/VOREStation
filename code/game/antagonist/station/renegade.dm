@@ -98,7 +98,7 @@ var/datum/antagonist/renegade/renegades
 
 
 /proc/rightandwrong()
-	to_chat(usr, "<B>You summoned guns!</B>")
+	to_chat(usr, span_infoplain(span_bold("You summoned guns!")))
 	message_admins("[key_name_admin(usr, 1)] summoned guns!")
 	for(var/mob/living/carbon/human/H in player_list)
 		if(H.stat == 2 || !(H.client)) continue

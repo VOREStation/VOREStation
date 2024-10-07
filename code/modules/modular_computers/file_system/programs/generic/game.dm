@@ -168,7 +168,7 @@
 				to_chat(usr, span_notice("Hardware error: Printer is out of paper."))
 				return
 			else
-				computer.visible_message("<b>\The [computer]</b> prints out paper.")
+				computer.visible_message(span_infoplain(span_bold("\The [computer]") + " prints out paper."))
 				if(ticket_count >= 1)
 					new /obj/item/stack/arcadeticket((get_turf(computer)), 1)
 					to_chat(usr, span_notice("[src] dispenses a ticket!"))

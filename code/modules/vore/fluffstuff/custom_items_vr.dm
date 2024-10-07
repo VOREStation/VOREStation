@@ -1299,8 +1299,8 @@
 	if (istype(user))
 		// It's only made for Verie's chassis silly!
 		if (user.ckey != owner)
-			to_chat(user, "<span class='warning'>The brush's teeth are far too rough to even comb your hair. Apparently, \
-			this device was not made for people like you.</span>")
+			to_chat(user, span_warning("The brush's teeth are far too rough to even comb your hair. Apparently, \
+			this device was not made for people like you."))
 			return
 
 		if (!user.hair_accessory_style)
@@ -1309,14 +1309,14 @@
 			user.update_hair()
 			user.visible_message("[user] combs her hair. \The [src] leaves behind glowing cyan highlights as it passes through \
 			her black strands.", \
-			"<span class='notice'>You brush your hair. \The [src]'s teeth begin to vibrate and glow as they react to your nanites. \
+			span_notice("You brush your hair. \The [src]'s teeth begin to vibrate and glow as they react to your nanites. \
 			The teeth stimulate the nanites in your hair strands until your hair give off a brilliant, faintly pulsing \
-			cyan glow!</span>")
+			cyan glow!"))
 
 		else
 			user.visible_message("[user] combs her hair. \The [src] brushes away her glowing cyan highlights. Neat!", \
-			"<span class='notice'>You brush your hair. \The [src]'s teeth wipe away the glowing streaks in your hair \
-			like a sponge scrubbing away a stain.</span>")
+			span_notice("You brush your hair. \The [src]'s teeth wipe away the glowing streaks in your hair \
+			like a sponge scrubbing away a stain."))
 			user.hair_accessory_style = null
 			for(var/datum/sprite_accessory/hair_accessory/verie_hair_glow/V in user)
 				to_chat(user, span_warning("found a V to delete!"))
@@ -1542,16 +1542,16 @@
 	if(world.time - last_message <= 5 SECONDS)
 		return
 	if(user.a_intent == I_HELP)
-		user.visible_message(span_notice("<b>\The [user]</b> hugs [src]!"),span_notice("You hug [src]!"))
+		user.visible_message(span_notice(span_bold("\The [user]") + " hugs [src]!"),span_notice("You hug [src]!"))
 		icon_state = "pandorba"
 	else if (user.a_intent == I_HURT)
-		user.visible_message(span_warning("<b>\The [user]</b> punches [src]!"),span_warning("You punch [src]!"))
+		user.visible_message(span_warning(span_bold("\The [user]") + " punches [src]!"),span_warning("You punch [src]!"))
 		icon_state = "pandorba_h"
 	else if (user.a_intent == I_GRAB)
-		user.visible_message(span_warning("<b>\The [user]</b> attempts to strangle [src]!"),span_warning("You attempt to strangle [src]!"))
+		user.visible_message(span_warning(span_bold("\The [user]") + " attempts to strangle [src]!"),span_warning("You attempt to strangle [src]!"))
 		icon_state = "pandorba_g"
 	else
-		user.visible_message(span_notice("<b>\The [user]</b> pokes [src]."),span_notice("You poke [src]."))
+		user.visible_message(span_notice(span_bold("\The [user]") + " pokes [src]."),span_notice("You poke [src]."))
 		icon_state = "pandorba_d"
 		playsound(src, 'sound/items/drop/plushie.ogg', 25, 0)
 		visible_message("[src] says, \"[pokephrase]\"")

@@ -79,7 +79,7 @@
 		var/mob/living/carbon/human/C = loc
 		if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 			if (!active || !ec_cartridge || !ec_cartridge.reagents.total_volume)//no cartridge
-				to_chat(C, "<span class='notice'>[src] turns off.</span> ")
+				to_chat(C, span_notice("[src] turns off."))
 				active=0//autodisable the cigarette
 				STOP_PROCESSING(SSobj, src)
 				update_icon()
@@ -109,27 +109,27 @@
 /obj/item/clothing/mask/smokable/ecig/attackby(var/obj/item/I, var/mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/ecig_cartridge))
 		if (ec_cartridge)//can't add second one
-			to_chat(user, "<span class='notice'>A cartridge has already been installed.</span> ")
+			to_chat(user, span_notice("A cartridge has already been installed."))
 		else//fits in new one
 			user.remove_from_mob(I)
 			I.forceMove(src)//I.loc=src
 			ec_cartridge = I
 			update_icon()
-			to_chat(user, "<span class='notice'>You insert [I] into [src].</span> ")
+			to_chat(user, span_notice("You insert [I] into [src]."))
 
 /obj/item/clothing/mask/smokable/ecig/attack_self(mob/user as mob)
 	if (active)
 		active=0
 		STOP_PROCESSING(SSobj, src)
-		to_chat(user, "<span class='notice'>You turn off \the [src]. </span> ")
+		to_chat(user, span_notice("You turn off \the [src]. "))
 		update_icon()
 	else
 		if (!ec_cartridge)
-			to_chat(user, "<span class='notice'>You can't use it with no cartridge installed!.</span> ")
+			to_chat(user, span_notice("You can't use it with no cartridge installed!."))
 			return
 		active=1
 		START_PROCESSING(SSobj, src)
-		to_chat(user, "<span class='notice'>You turn on \the [src]. </span> ")
+		to_chat(user, span_notice("You turn on \the [src]. "))
 		update_icon()
 
 /obj/item/clothing/mask/smokable/ecig/attack_hand(mob/user as mob)//eject cartridge
@@ -137,7 +137,7 @@
 		if (ec_cartridge)
 			active=0
 			user.put_in_hands(ec_cartridge)
-			to_chat(user, "<span class='notice'>You eject [ec_cartridge] from \the [src].</span> ")
+			to_chat(user, span_notice("You eject [ec_cartridge] from \the [src]."))
 			ec_cartridge = null
 			update_icon()
 	else

@@ -6,7 +6,7 @@
 		return
 
 	var/list/potentialRandomZlevels = list()
-	admin_notice(span_red("<B> Searching for away missions...</B>"), R_DEBUG)
+	admin_notice(span_red(span_bold(" Searching for away missions...")), R_DEBUG)
 	var/list/Lines = file2list("maps/RandomZLevels/fileList.txt")
 	if(!Lines.len)	return
 	for (var/t in Lines)
@@ -38,7 +38,7 @@
 
 
 	if(potentialRandomZlevels.len)
-		admin_notice(span_red("<B>Loading away mission...</B>"), R_DEBUG)
+		admin_notice(span_red(span_bold("Loading away mission...")), R_DEBUG)
 
 		var/map = pick(potentialRandomZlevels)
 		to_world_log("Away mission picked: [map]") //VOREStation Add for debugging
@@ -53,10 +53,10 @@
 				continue
 			awaydestinations.Add(L)
 		*/ //VOREStation Removal End
-		admin_notice(span_red("<B>Away mission loaded.</B>"), R_DEBUG)
+		admin_notice(span_red(span_bold("Away mission loaded.")), R_DEBUG)
 
 	else
-		admin_notice(span_red("<B>No away missions found.</B>"), R_DEBUG)
+		admin_notice(span_red(span_bold("No away missions found.")), R_DEBUG)
 		return
 
 //VOREStation Add - This landmark type so it's not so ghetto.

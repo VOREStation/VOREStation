@@ -95,7 +95,7 @@ var/datum/antagonist/traitor/traitors
 	var/mob/living/carbon/human/M = get_nt_opposed()
 	if(M && M != traitor_mob)
 		to_chat(traitor_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them.")
-		traitor_mob.mind.store_memory("<b>Potential Collaborator</b>: [M.real_name]")
+		traitor_mob.mind.store_memory(span_bold("Potential Collaborator") + ": [M.real_name]")
 
 	//Begin code phrase.
 	give_codewords(traitor_mob)
@@ -160,7 +160,7 @@ var/datum/antagonist/traitor/traitors
 		target_radio.hidden_uplink = T
 		target_radio.traitor_frequency = freq
 		to_chat(traitor_mob, "A portable object teleportation relay has been installed in your [R.name] [loc]. Simply dial the frequency [format_frequency(freq)] to unlock its hidden features.")
-		traitor_mob.mind.store_memory("<B>Radio Freq:</B> [format_frequency(freq)] ([R.name] [loc]).")
+		traitor_mob.mind.store_memory(span_bold("Radio Freq:") + " [format_frequency(freq)] ([R.name] [loc]).")
 
 	else if (istype(R, /obj/item/pda))
 		// generate a passcode if the uplink is hidden in a PDA

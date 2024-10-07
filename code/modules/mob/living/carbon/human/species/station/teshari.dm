@@ -210,7 +210,7 @@
 	// Handled!
 	if(!silent)
 		to_chat(H, span_notice("You catch the air in your wings and greatly slow your fall."))
-		landing.visible_message("<b>\The [H]</b> glides down from above, landing safely.")
+		landing.visible_message(span_infoplain(span_bold("\The [H]") + " glides down from above, landing safely."))
 		H.Stun(1)
 		playsound(H, "rustle", 25, 1)
 	return TRUE

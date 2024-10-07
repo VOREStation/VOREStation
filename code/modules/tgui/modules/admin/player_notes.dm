@@ -195,7 +195,7 @@
 	PlayerNotesPageLegacy(1, filter)
 
 /datum/admins/proc/PlayerNotesPageLegacy(page, filter)
-	var/dat = "<B>Player notes</B> - <a href='?src=\ref[src];[HrefToken()];notes_legacy=filter'>Apply Filter</a><HR>"
+	var/dat = span_bold("Player notes") + " - <a href='?src=\ref[src];[HrefToken()];notes_legacy=filter'>Apply Filter</a><HR>"
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -234,11 +234,9 @@
 
 		// Display a footer to select different pages
 		for(var/index = 1, index <= number_pages, index++)
-			if(index == page)
-				dat += "<b>"
 			dat += "<a href='?src=\ref[src];[HrefToken()];notes_legacy=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
 			if(index == page)
-				dat += "</b>"
+				dat = span_bold(dat)
 
 	usr << browse(dat, "window=player_notes;size=400x400")
 
@@ -263,7 +261,7 @@
 		if(C.ckey == key)
 			p_age = C.player_age
 			break
-	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
+	dat += span_black(span_bold("Player age: [p_age]")) + "<br>"
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos

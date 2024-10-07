@@ -47,7 +47,7 @@
 			if(L.buckled)
 				L.buckled.unbuckle_mob()
 		AM.forceMove(destination)
-		AM.visible_message("<b>\The [AM]</b> vanishes!")
+		AM.visible_message(span_infoplain(span_bold("\The [AM]") + " vanishes!"))
 		to_chat(AM, span_notice("You suddenly appear somewhere else!"))
 		new /obj/effect/effect/sparks(destination)
 		new /obj/effect/effect/sparks(starting)

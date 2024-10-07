@@ -132,10 +132,10 @@ log transactions
 		//js replicated from obj/machinery/computer/card
 		var/dat = "<h1>Automatic Teller Machine</h1>"
 		dat += "For all your monetary needs!<br>"
-		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting IT Support</i><br/>"
+		dat += span_italics("This terminal is") + " [machine_id]. " + span_italics("Report this code when contacting IT Support") + "<br/>"
 
 		if(emagged > 0)
-			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact IT Support.</span>"
+			dat += "Card: " + span_red("LOCKED") + "<br><br>" + span_red("Unauthorized terminal access detected! This ATM has been locked. Please contact IT Support.")
 		else
 			dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 
@@ -162,7 +162,7 @@ log transactions
 							dat += "[text]<hr><br>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=0'>Back</a>"
 						if(VIEW_TRANSACTION_LOGS)
-							dat += "<b>Transaction logs</b><br>"
+							dat += span_bold("Transaction logs") + "<br>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=0'>Back</a>"
 							dat += "<table border=1 style='width:100%'>"
 							dat += "<tr>"
@@ -185,7 +185,7 @@ log transactions
 							dat += "</table>"
 							dat += "<A href='?src=\ref[src];choice=print_transaction'>Print</a><br>"
 						if(TRANSFER_FUNDS)
-							dat += "<b>Account balance:</b> $[authenticated_account.money]<br>"
+							dat += span_bold("Account balance:") + " $[authenticated_account.money]<br>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=0'>Back</a><br><br>"
 							dat += "<form name='transfer' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
@@ -197,7 +197,7 @@ log transactions
 							dat += "</form>"
 						else
 							dat += "Welcome, <b>[authenticated_account.owner_name].</b><br/>"
-							dat += "<b>Account balance:</b> $[authenticated_account.money]"
+							dat += span_bold("Account balance:") + " $[authenticated_account.money]"
 							dat += "<form name='withdrawal' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
 							dat += "<input type='radio' name='choice' value='withdrawal' checked> Cash  <input type='radio' name='choice' value='e_withdrawal'> Chargecard<br>"
@@ -212,8 +212,8 @@ log transactions
 				dat += "<form name='atm_auth' action='?src=\ref[src]' method='get'>"
 				dat += "<input type='hidden' name='src' value='\ref[src]'>"
 				dat += "<input type='hidden' name='choice' value='attempt_auth'>"
-				dat += "<b>Account:</b> <input type='text' id='account_num' name='account_num' style='width:250px; background-color:white;'><br>"
-				dat += "<b>PIN:</b> <input type='text' id='account_pin' name='account_pin' style='width:250px; background-color:white;'><br>"
+				dat += span_bold("Account:") + " <input type='text' id='account_num' name='account_num' style='width:250px; background-color:white;'><br>"
+				dat += span_bold("PIN:") + " <input type='text' id='account_pin' name='account_pin' style='width:250px; background-color:white;'><br>"
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
@@ -234,7 +234,7 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, "[icon2html(src, usr.client)]<span class='info'>Funds transfer successful.</span>")
+							to_chat(usr, "[icon2html(src, usr.client)]" + span_info("Funds transfer successful."))
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
@@ -247,10 +247,10 @@ log transactions
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
-							to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Funds transfer failed.</span>")
+							to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Funds transfer failed."))
 
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -336,7 +336,7 @@ log transactions
 						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			if("withdrawal")
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
@@ -361,17 +361,17 @@ log transactions
 						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)
 					R.name = "Account balance: [authenticated_account.owner_name]"
-					R.info = "<b>NT Automated Teller Account Statement</b><br><br>"
-					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
-					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-					R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
-					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
-					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
+					R.info = span_bold("NT Automated Teller Account Statement") + "<br><br>"
+					R.info += span_italics("Account holder:") + " [authenticated_account.owner_name]<br>"
+					R.info += span_italics("Account number:") + " [authenticated_account.account_number]<br>"
+					R.info += span_italics("Balance:") + " $[authenticated_account.money]<br>"
+					R.info += span_italics("Date and time:") + " [stationtime2text()], [current_date_string]<br><br>"
+					R.info += span_italics("Service terminal ID:") + " [machine_id]<br>"
 
 					//stamp the paper
 					var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -380,7 +380,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/stamp
 					R.add_overlay(stampoverlay)
-					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+					R.stamps += "<HR>" + span_italics("This paper has been stamped by the Automatic Teller Machine.")
 
 				if(prob(50))
 					playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
@@ -390,11 +390,11 @@ log transactions
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)
 					R.name = "Transaction logs: [authenticated_account.owner_name]"
-					R.info = "<b>Transaction logs</b><br>"
-					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
-					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-					R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
-					R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
+					R.info = span_bold("Transaction logs") + "<br>"
+					R.info += span_italics("Account holder:") + " [authenticated_account.owner_name]<br>"
+					R.info += span_italics("Account number:") + " [authenticated_account.account_number]<br>"
+					R.info += span_italics("Date and time:") + " [stationtime2text()], [current_date_string]<br><br>"
+					R.info += span_italics("Service terminal ID:") + " [machine_id]<br>"
 					R.info += "<table border=1 style='width:100%'>"
 					R.info += "<tr>"
 					R.info += "<td><b>Date</b></td>"
@@ -422,7 +422,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/stamp
 					R.add_overlay(stampoverlay)
-					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+					R.stamps += "<HR>" + span_italics("This paper has been stamped by the Automatic Teller Machine.")
 
 				if(prob(50))
 					playsound(src, 'sound/items/polaroid1.ogg', 50, 1)

@@ -68,7 +68,7 @@
 	pref.runechat_color = sanitize_hexcolor(pref.runechat_color, COLOR_BLACK)
 
 /datum/category_item/player_setup_item/general/language/content()
-	. += "<b>Languages</b><br>"
+	. += span_bold("Languages") + "<br>"
 	var/datum/species/S = GLOB.all_species[pref.species]
 	if(pref.alternate_languages.len > (S.num_alternate_languages + pref.extra_languages))
 		testing("LANGSANI: Truncated [pref.client]'s character [pref.real_name || "-name not yet loaded-"] language list because it was too long (len: [pref.alternate_languages.len], allowed: [S.num_alternate_languages])")
@@ -88,10 +88,10 @@
 	else
 		. += "- [pref.species] cannot choose secondary languages.<br>"
 
-	. += "<b>Language Keys</b><br>"
+	. += span_bold("Language Keys") + "<br>"
 	. += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
-	. += "<b>Preferred Language</b> <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
-	. += "<b>Runechat Color</b> <a href='?src=\ref[src];pref_runechat_color=1'>Change Runechat Color</a> [color_square(hex = pref.runechat_color)]"
+	. += span_bold("Preferred Language") + " <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
+	. += span_bold("Runechat Color") + " <a href='?src=\ref[src];pref_runechat_color=1'>Change Runechat Color</a> [color_square(hex = pref.runechat_color)]"
 
 /datum/category_item/player_setup_item/general/language/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["remove_language"])

@@ -564,7 +564,7 @@
 			take_damage(incoming_damage)
 			S.do_attack_animation(src)
 			return 1
-		visible_message("<b>\The [L]</b> bonks \the [src]'s casing!")
+		visible_message(span_infoplain(span_bold("\The [L]") + " bonks \the [src]'s casing!"))
 	return ..()
 
 /obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
@@ -572,7 +572,7 @@
 		//Emagging the turret makes it go bonkers and stun everyone. It also makes
 		//the turret shoot much, much faster.
 		to_chat(user, span_warning("You short out [src]'s threat assessment circuits."))
-		visible_message("[src] hums oddly...")
+		visible_message(span_info("[src] hums oddly..."))
 		emagged = TRUE
 		controllock = TRUE
 		enabled = FALSE //turns off the turret temporarily

@@ -26,7 +26,7 @@
 		if(user.a_intent == I_HURT)
 			user.visible_message(span_danger("\The [user] hammers on the lift button!"))
 		else
-			user.visible_message("<b>\The [user]</b> presses the lift button.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " presses the lift button."))
 
 
 /obj/structure/lift/New(var/newloc, var/datum/turbolift/_lift)

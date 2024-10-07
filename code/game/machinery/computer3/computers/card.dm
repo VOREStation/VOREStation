@@ -146,14 +146,14 @@
 	// form for renaming the ID
 	dat += "<form name='cardcomp' action='byond://' method='get'>"
 	dat += "<input type='hidden' name='src' value='\ref[src]'>"
-	dat += "<b>registered_name:</b> <input type='text' id='namefield' name='reg' value='[writer.registered_name]' style='width:250px; background-color:white;' onchange='markRed()'>"
+	dat += span_bold("registered_name:") + " <input type='text' id='namefield' name='reg' value='[writer.registered_name]' style='width:250px; background-color:white;' onchange='markRed()'>"
 	dat += "<input type='submit' value='Rename' onclick='markGreen()'>"
 	dat += "</form>"
 
 	// form for changing assignment, taken care of by scriptblock() mostly
 	var/assign_temp = writer.assignment
 	if(!assign_temp || assign_temp == "") assign_temp = "Unassigned"
-	dat += "<b>Assignment:</b> [assign_temp] <span id='alljobsslot'><a href='#' onclick='showAll()'>change</a></span>"
+	dat += span_bold("Assignment:") + " [assign_temp] <span id='alljobsslot'><a href='#' onclick='showAll()'>change</a></span>"
 
 	// list of access rights
 	dat += accessblock()
@@ -276,7 +276,7 @@
 		printing = 1
 		sleep(50)
 		var/obj/item/paper/P = new /obj/item/paper( computer.loc )
-		P.info = "<B>Crew Manifest:</B><BR>"
+		P.info = span_bold("Crew Manifest:") + "<BR>"
 		var/list/L = list()
 		for (var/datum/data/record/t in data_core.general)
 			var/R = t.fields["name"] + " - " + t.fields["rank"]

@@ -1,6 +1,6 @@
 /obj/item/research_sample
 	name = "research sample"
-	desc = "A curious sample of unknown material. Destructive analysis might yield scientific advances. Alternatively, it may be possible to stabilize it to yield useful resources instead.<br/><span class='warning'>It looks dangerous to handle without heavy gloves or other protective equipment.</span>"
+	desc = "A curious sample of unknown material. Destructive analysis might yield scientific advances. Alternatively, it may be possible to stabilize it to yield useful resources instead.<br/>" + span_warning("It looks dangerous to handle without heavy gloves or other protective equipment.")
 	icon = 'icons/obj/samples.dmi'
 	icon_state = "sample"
 	w_class = ITEMSIZE_TINY

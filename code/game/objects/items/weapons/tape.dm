@@ -156,7 +156,7 @@
 		user.drop_from_inventory(I)
 		I.loc = src
 		qdel(I)
-		to_chat(user, "<span-class='notice'>You place \the [I] back into \the [src].</span>")
+		to_chat(user, span_notice("You place \the [I] back into \the [src]."))
 
 /obj/item/ducttape/attack_hand(mob/living/L)
 	anchored = FALSE

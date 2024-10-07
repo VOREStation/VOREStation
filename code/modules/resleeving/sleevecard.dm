@@ -30,12 +30,12 @@
 		var/obj/item/card/emag/E = I
 		if(E.uses && !emagged)
 			E.uses --
-			user.visible_message("<span class ='warning'>\The [user] swipes a card over [src].</span>","<span class ='warning'>You swipe your [E] over [src].</span>", range = 2, runemessage = "click")
+			user.visible_message(span_warning("\The [user] swipes a card over [src]."),span_warning("You swipe your [E] over [src]."), range = 2, runemessage = "click")
 			emagged = TRUE
 			if(pai)
 				var/mob/living/silicon/pai/infomorph/our_infomorph = pai
 				our_infomorph.emagged = TRUE
-				to_chat(our_infomorph, "<span class ='warning'>You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master.</span>")
+				to_chat(our_infomorph, span_warning("You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master."))
 
 /obj/item/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
 	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key=db_key)

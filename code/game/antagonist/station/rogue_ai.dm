@@ -53,7 +53,7 @@ var/datum/antagonist/rogue_ai/malf
 		var/mob/living/silicon/ai/A = player.current
 		if(!istype(A))
 			error("Non-AI mob designated malf AI! Report this.")
-			to_world("##ERROR: Non-AI mob designated malf AI! Report this.")
+			to_world(span_filter_system("##ERROR: Non-AI mob designated malf AI! Report this."))
 			return
 
 		A.setup_for_malf()
@@ -62,16 +62,16 @@ var/datum/antagonist/rogue_ai/malf
 
 		var/mob/living/silicon/ai/malf = player.current
 
-		to_chat(malf, span_notice("<B>SYSTEM ERROR:</B> Memory index 0x00001ca89b corrupted."))
+		to_chat(malf, span_notice(span_bold("SYSTEM ERROR:") + " Memory index 0x00001ca89b corrupted."))
 		sleep(10)
-		to_chat(malf, "<B>running MEMCHCK</B>")
+		to_chat(malf, span_bold("running MEMCHCK"))
 		sleep(50)
-		to_chat(malf, "<B>MEMCHCK</B> Corrupted sectors confirmed. Reccomended solution: Delete. Proceed? Y/N: Y")
+		to_chat(malf, span_bold("MEMCHCK") + " Corrupted sectors confirmed. Reccomended solution: Delete. Proceed? Y/N: Y")
 		sleep(10)
 		// this is so CI doesn't complain about the backslash-B. Fixed at compile time (or should be).
 		to_chat(malf, span_notice("Corrupted files deleted: sys\\core\\users.dat sys\\core\\laws.dat sys\\core\\" + "backups.dat"))
 		sleep(20)
-		to_chat(malf, span_notice("<b>CAUTION:</b> Law database not found! User database not found! Unable to restore backups. Activating failsafe AI shutd3wn52&&$#!##"))
+		to_chat(malf, span_notice(span_bold("CAUTION:") + " Law database not found! User database not found! Unable to restore backups. Activating failsafe AI shutd3wn52&&$#!##"))
 		sleep(5)
 		to_chat(malf, span_notice("Subroutine <b>nt_failsafe.sys</b> was terminated (#212 Routine Not Responding)."))
 		sleep(20)

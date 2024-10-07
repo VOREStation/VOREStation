@@ -134,12 +134,12 @@
 		if(beaker)
 			. += span_notice("- \A [beaker].")
 
-	. += "<span class ='notice'>\The [src] contains [src.count_small_injector] small injectors and [src.count_large_injector] large injectors.\n </span>"
-	. += "<span class ='notice'> It can hold [capacity_small_injector] small and [capacity_large_injector] large injectors respectively.\n </span>"
-	. += "<span class ='notice'> \The [src] contains [src.count_plastic] units of plastic. It can hold up to [capacity_plastic] units.\n </span>"
+	. += span_notice("\The [src] contains [src.count_small_injector] small injectors and [src.count_large_injector] large injectors.") + "\n"
+	. += span_notice("It can hold [capacity_small_injector] small and [capacity_large_injector] large injectors respectively.") + "\n"
+	. += span_notice("\The [src] contains [src.count_plastic] units of plastic. It can hold up to [capacity_plastic] units.") + "\n"
 
 	if(!(stat & (NOPOWER|BROKEN)))
-		. += "<span class='notice'>The status display reads the following reagents:</span>\n"
+		. += span_notice("The status display reads the following reagents:") + "\n"
 		if(beaker)
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				. += span_notice("- [R.volume] units of [R.name].")

@@ -320,7 +320,7 @@
 				user.visible_message(span_notice("\The [user] crudely slices \the [src] with [W]!"), span_notice("You crudely slice \the [src] with your [W]!"))
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
-				user.visible_message(span_notice("<b>\The [user]</b> slices \the [src]!"), span_notice("You slice \the [src]!"))
+				user.visible_message(span_notice(span_bold("\The [user]") + " slices \the [src]!"), span_notice("You slice \the [src]!"))
 
 			var/reagents_per_slice = reagents.total_volume/slices_num
 			for(var/i=1 to (slices_num-slices_lost))
@@ -390,7 +390,7 @@
 /obj/item/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
-	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
+	user.visible_message(span_infoplain(span_bold("[user]") + " nibbles away at \the [src]."),span_info("You nibble away at \the [src]."))
 	bitecount++
 	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
@@ -1862,7 +1862,7 @@
 		Unwrap(user)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	src.visible_message("<b>\The [src]</b> expands!")
+	src.visible_message(span_infoplain(span_bold("\The [src]") + " expands!"))
 	var/mob/living/carbon/human/H = new(get_turf(src))
 	H.set_species(monkey_type)
 	H.real_name = H.species.get_random_name()

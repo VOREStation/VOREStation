@@ -255,7 +255,7 @@
 			for(var/re in injection_chems)
 				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
 				if(C)
-					dat += "<span class='linkOff'>Inject [C.name]</span><BR>"
+					dat += span_linkOff("Inject [C.name]") + "<BR>"
 
 	dat += "<h3>[name] Status</h3>"
 	dat += "<div style='display: flex; flex-wrap: wrap; flex-direction: row;'>"
@@ -345,9 +345,9 @@
 		if(round(patient.paralysis / 4) >= 1)
 			dat += text("<HR>Patient paralyzed for: []<BR>", round(patient.paralysis / 4) >= 1 ? "[round(patient.paralysis / 4)] seconds" : "None")
 		if(patient.getBrainLoss())
-			dat += "<div class='line'><span class='average'>Significant brain damage detected.</span></div><br>"
+			dat += "<div class='line'>" + span_orange("Significant brain damage detected.") + "</div><br>"
 		if(patient.getCloneLoss())
-			dat += "<div class='line'><span class='average'>Patient may be improperly cloned.</span></div><br>"
+			dat += "<div class='line'>" + span_orange("Patient may be improperly cloned.") + "</div><br>"
 		if(patient.reagents.reagent_list.len)
 			for(var/datum/reagent/R in patient.reagents.reagent_list)
 				dat += "<div class='line'><div style='width: 170px;' class='statusLabel'>[R.name]:</div><div class='statusValue'>[round(R.volume, 0.1)] units</div></div><br>"

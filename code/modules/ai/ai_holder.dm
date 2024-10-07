@@ -170,11 +170,10 @@
 			to_chat(usr, span_warning("You don't appear to have changed anything on the AI datum you were editing."))
 			href_list["datumrefresh"] = "\ref[src]"
 		else
-			var/message = "<span class='notice'>These differences were detected in your varedit. If you notice any that you didn't change, please redo your edit:<br>"
+			var/message = "These differences were detected in your varedit. If you notice any that you didn't change, please redo your edit:<br>"
 			for(var/key in diff)
-				message += "<b>- [key]:</b> [before[key]] => [after[key]]<br>"
-			message += "</span>"
-			to_chat(usr,message)
+				message += span_bold("- [key]:") + " [before[key]] => [after[key]]<br>"
+			to_chat(usr,span_notice(message))
 
 		var/original_type = holder.type
 		var/list/levels_working = GetConnectedZlevels(holder.z)

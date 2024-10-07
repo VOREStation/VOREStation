@@ -1237,7 +1237,7 @@
 
 		if(halloss >= species.total_health)
 			to_chat(src, span_notice("You're in too much pain to keep going..."))
-			src.visible_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.")
+			src.visible_message(span_infoplain(span_bold("[src]") + " slumps to the ground, too weak to continue fighting."))
 			Paralyse(10)
 			setHalLoss(species.total_health - 1)
 

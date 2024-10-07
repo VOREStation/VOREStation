@@ -113,7 +113,7 @@ var/global/list/valid_ringtones = list(
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
-	. += "<b>Equipment:</b><br>"
+	. += span_bold("Equipment:") + "<br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"

@@ -36,7 +36,7 @@
 		to_chat(user, span_danger("Another grenade of that type will not fit into the module."))
 		return 0
 
-	to_chat(user, span_blue("<b>You slot \the [input_device] into the suit module.</b>"))
+	to_chat(user, span_boldnotice("You slot \the [input_device] into the suit module."))
 	user.drop_from_inventory(input_device)
 	qdel(input_device)
 	accepted_item.charges++

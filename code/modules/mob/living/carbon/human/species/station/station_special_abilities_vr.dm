@@ -176,8 +176,8 @@
 	name = "imperfect regeneration"
 	desc = "You feel rather weak and unfocused, having just regrown your body not so long ago."
 
-	on_created_text = span_warning("<font size='3'>You feel weak and unsteady, that regeneration having been rougher than most.</font>")
-	on_expired_text = span_notice("<font size='3'>You feel your strength and focus return to you.</font>")
+	on_created_text = span_warning(span_large("You feel weak and unsteady, that regeneration having been rougher than most."))
+	on_expired_text = span_notice(span_large("You feel your strength and focus return to you."))
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
@@ -469,9 +469,9 @@
 
 
 	if(noise)
-		src.visible_message(span_red("<b>[src] moves their head next to [B]'s neck, seemingly looking for something!</b>"))
+		src.visible_message(span_infoplain(span_red(span_bold("[src] moves their head next to [B]'s neck, seemingly looking for something!"))))
 	else
-		src.visible_message(span_red("<i>[src] moves their head next to [B]'s neck, seemingly looking for something!</i>"), range = 1)
+		src.visible_message(span_infoplain(span_red(span_italics("[src] moves their head next to [B]'s neck, seemingly looking for something!"))), range = 1)
 
 	if(bleed) //Due to possibility of missing/misclick and missing the bleeding cues, we are warning the scene members of BLEEDING being on
 		to_chat(src, span_warning("This is going to cause [B] to keep bleeding!"))
@@ -480,9 +480,9 @@
 	if(do_after(src, 300, B)) //Thrirty seconds.
 		if(!Adjacent(B)) return
 		if(noise)
-			src.visible_message(span_red("<b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b>"))
+			src.visible_message(span_infoplain(span_red(span_bold("[src] suddenly extends their fangs and plunges them down into [B]'s neck!"))))
 		else
-			src.visible_message(span_red("<i>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</i>"), range = 1)
+			src.visible_message(span_infoplain(span_red(span_italics("[src] suddenly extends their fangs and plunges them down into [B]'s neck!"))), range = 1)
 		if(bleed)
 			B.apply_damage(10, BRUTE, BP_HEAD, blocked = 0, soaked = 0, sharp = TRUE, edge = FALSE)
 			var/obj/item/organ/external/E = B.get_organ(BP_HEAD)
@@ -1657,7 +1657,7 @@
 			add_attack_logs(src,target,"Injection trait ([trait_injection_selected], [trait_injection_amount])")
 			if(target.reagents && (trait_injection_amount > 0) && !synth)
 				target.reagents.add_reagent(trait_injection_selected, trait_injection_amount)
-			var/ourmsg = "<span class='warning'>[usr] [trait_injection_verb] [target] "
+			var/ourmsg = "[usr] [trait_injection_verb] [target] "
 			switch(zone_sel.selecting)
 				if(BP_HEAD)
 					ourmsg += "on the head!"
@@ -1677,5 +1677,4 @@
 					ourmsg += "on the mouth!"
 				if("eyes")
 					ourmsg += "on the eyes!"
-			ourmsg += "</span>"
-			visible_message(ourmsg)
+			visible_message(span_warning(ourmsg))

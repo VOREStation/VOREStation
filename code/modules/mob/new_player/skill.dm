@@ -181,11 +181,11 @@ var/global/list/SKILL_PRE = list(JOB_ENGINEER = SKILL_ENGINEER, JOB_ROBOTICIST =
 		return
 
 	var/HTML = "<body>"
-	HTML += "<b>Select your Skills</b><br>"
+	HTML += span_bold("Select your Skills") + "<br>"
 	HTML += "Current skill level: <b>[M.GetSkillClass(M.used_skillpoints)]</b> ([M.used_skillpoints])<br>"
 	HTML += "<table>"
 	for(var/V in SKILLS)
-		HTML += "<tr><th colspan = 5><b>[V]</b>"
+		HTML += "<tr><th colspan = 5>" + span_bold("[V]")
 		HTML += "</th></tr>"
 		for(var/datum/skill/S in SKILLS[V])
 			var/level = M.skills[S.ID]

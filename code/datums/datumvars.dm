@@ -91,7 +91,7 @@
 /datum/proc/vv_get_header()
 	. = list()
 	if(("name" in vars) && !isatom(src))
-		. += "<b>[vars["name"]]</b><br>"
+		. += span_bold("[vars["name"]]") + "<br>"
 
 /datum/proc/on_reagent_change(changetype)
 	return

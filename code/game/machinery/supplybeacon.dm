@@ -12,11 +12,11 @@
 	deploy_path = /obj/machinery/power/supply_beacon/supermatter
 
 /obj/item/supply_beacon/attack_self(var/mob/user)
-	user.visible_message("<b>\The [user]</b> begins setting up \the [src].")
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " begins setting up \the [src]."))
 	if(!do_after(user, deploy_time))
 		return
 	var/obj/S = new deploy_path(get_turf(user))
-	user.visible_message("<b>\The [user]</b> deploys \the [S].")
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " deploys \the [S]."))
 	user.unEquip(src)
 	qdel(src)
 

@@ -99,9 +99,9 @@ var/list/mentor_verbs_default = list(
 	log_admin("Mentorsay: [key_name(src)]: [msg]")
 
 	for(var/client/C in GLOB.mentors)
-		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " <span class='mentor_channel'><span class='name'>[src]</span>: <span class='message'>[msg]</span></span>")
+		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " " + span_mentor_channel(span_name("[src]") + ": " + span_message("[msg]")))
 	for(var/client/C in GLOB.admins)
-		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " <span class='mentor_channel'><span class='name'>[src]</span>: <span class='message'>[msg]</span></span>")
+		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " " + span_mentor_channel(span_name("[src]") + ": " + span_message("[msg]")))
 
 /proc/mentor_commands(href, href_list, client/C)
 	if(href_list["mhelp"])

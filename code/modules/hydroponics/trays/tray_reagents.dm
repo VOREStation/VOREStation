@@ -20,7 +20,7 @@
 
 /obj/item/plantspray/pests
 	name = "pest-spray"
-	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
+	desc = "It's some pest eliminator spray! " + span_italics("Do not inhale!")
 	icon_state = "pestspray"
 	pest_kill_str = 6
 

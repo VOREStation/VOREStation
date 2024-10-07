@@ -74,7 +74,7 @@
 
 	message = encode_html_emphasis(message)
 
-	say_dead_direct("[pick("complains","moans","whines","laments","blubbers")], <span class='message'>\"[message]\"</span>", src)
+	say_dead_direct("[pick("complains","moans","whines","laments","blubbers")], " + span_message("\"[message]\""), src)
 
 /mob/proc/say_understands(var/mob/other, var/datum/language/speaking = null)
 	if(stat == DEAD)

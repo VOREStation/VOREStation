@@ -21,8 +21,8 @@
 		if(L.has_modifier_of_type(/datum/modifier/berserk)) // Already angry.
 			to_chat(L, span_warning("An otherworldly feeling seems to enter your mind again, and it fans your inner flame, extending your rage."))
 		else // Exhausted or something.
-			to_chat(L, "<span class='warning'>An otherworldly feeling seems to enter your mind, and you briefly feel an intense anger, but \
-			it quickly passes.</span>")
+			to_chat(L, span_warning("An otherworldly feeling seems to enter your mind, and you briefly feel an intense anger, but \
+			it quickly passes."))
 		return FALSE
 
 /datum/artifact_effect/berserk/DoEffectTouch(var/mob/toucher)

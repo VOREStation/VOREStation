@@ -51,7 +51,7 @@ Please do not abuse this ability.
 		// Only humans, simple_mobs and non-AI silicons are included. Obscure stuff like bots is skipped.
 
 	if(!eligible_targets.len)
-		to_chat(src, "<span class=notice>No eligible preds were found.</span>")				// :(
+		to_chat(src, span_notice("No eligible preds were found."))				// :(
 		return
 
 	var/mob/living/target = tgui_input_list(src, "Please specify which character you want to spawn inside of.", "Predator", eligible_targets)	// Offer the list of things we gathered.
@@ -60,7 +60,7 @@ Please do not abuse this ability.
 		return
 
 	// Notify them that its now pred's turn
-	to_chat(src, "<span class=notice>Inbelly spawn request sent to predator.</span>")
+	to_chat(src, span_notice("Inbelly spawn request sent to predator."))
 	target.inbelly_spawn_prompt(client)			// Hand reins over to them
 
 /mob/living/proc/inbelly_spawn_prompt(client/potential_prey)
@@ -70,27 +70,27 @@ Please do not abuse this ability.
 	// Are we cool with this prey spawning in at all?
 	var/answer = tgui_alert(src, "[potential_prey.ckey] (as [potential_prey.prefs.real_name]) wants to spawn in one of your bellies. Do you accept?", "Inbelly Spawning", list("Yes", "No"))
 	if(answer != "Yes")
-		to_chat(potential_prey, "<span class=notice>Your request was turned down.</span>")
+		to_chat(potential_prey, span_notice("Your request was turned down."))
 		return
 
 	// Let them know so that they don't spam it.
-	to_chat(potential_prey, "<span class=notice>Predator agreed to your request. Wait a bit while they choose a belly.</span>")
+	to_chat(potential_prey, span_notice("Predator agreed to your request. Wait a bit while they choose a belly."))
 
 	// Where we dropping?
 	var/obj/belly/belly_choice = tgui_input_list(src, "Choose Target Belly", "Belly Choice", src.vore_organs)
 
 	// Wdym nowhere?
 	if(!belly_choice || !istype(belly_choice))
-		to_chat(potential_prey, "<span class=notice>Something went wrong with predator selecting a belly. Try again?</span>")
-		to_chat(src, "<span class=notice>No valid belly selected. Inbelly spawn cancelled.</span>")
+		to_chat(potential_prey, span_notice("Something went wrong with predator selecting a belly. Try again?"))
+		to_chat(src, span_notice("No valid belly selected. Inbelly spawn cancelled."))
 		return
 
 	// Extra caution never hurts
 	if(belly_choice.digest_mode == DM_DIGEST)
 		var/digest_answer = tgui_alert(src, "[belly_choice] is currently set to Digest. Are you sure you want to spawn prey there?", "Inbelly Spawning", list("Yes", "No"))
 		if(digest_answer != "Yes")
-			to_chat(potential_prey, "<span class=notice>Something went wrong with predator selecting a belly. Try again?</span>")
-			to_chat(src, "<span class=notice>Inbelly spawn cancelled.</span>")
+			to_chat(potential_prey, span_notice("Something went wrong with predator selecting a belly. Try again?"))
+			to_chat(src, span_notice("Inbelly spawn cancelled."))
 
 	// Are they already fat (and/or appropriate equivalent)?
 	var/absorbed = FALSE
@@ -101,18 +101,18 @@ Please do not abuse this ability.
 
 	// They disappeared?
 	if(!potential_prey)
-		to_chat(src, "<span class=notice>No prey found. Something went wrong!</span>")
+		to_chat(src, span_notice("No prey found. Something went wrong!"))
 		return
 
 	// Final confirmation for pred
 	var/confirmation_pred = tgui_alert(src, "Are you certain that you want [potential_prey.prefs.real_name] spawned in your [belly_choice][absorbed ? ", absorbed" : ""]?", "Inbelly Spawning", list("Yes", "No"))
 
 	if(confirmation_pred != "Yes")
-		to_chat(potential_prey, "<span class=notice>Your pred couldn't finish selection. Try again?</span>")
-		to_chat(src, "<span class=notice>Inbelly spawn cancelled.</span>")
+		to_chat(potential_prey, span_notice("Your pred couldn't finish selection. Try again?"))
+		to_chat(src, span_notice("Inbelly spawn cancelled."))
 		return
 
-	to_chat(src, "<span class=notice>Waiting for prey's confirmation...</span>")
+	to_chat(src, span_notice("Waiting for prey's confirmation..."))
 
 	// And final confirmation for prey
 	var/confirmation_prey = tgui_alert(potential_prey, "Are you certain that you to spawn in [src]'s [belly_choice][absorbed ? ", absorbed" : ""]?", "Inbelly Spawning", list("Yes", "No"))
@@ -120,13 +120,13 @@ Please do not abuse this ability.
 	if(confirmation_prey == "Yes" && potential_prey && src && belly_choice)
 		//Now we finally spawn them in!
 		if(!is_alien_whitelisted(potential_prey, GLOB.all_species[potential_prey.prefs.species]))
-			to_chat(potential_prey, "<span class=notice>You are not whitelisted to play as currently selected character.</span>")
-			to_chat(src, "<span class=notice>Prey accepted the confirmation, but something went wrong with spawning their character.</span>")
+			to_chat(potential_prey, span_notice("You are not whitelisted to play as currently selected character."))
+			to_chat(src, span_notice("Prey accepted the confirmation, but something went wrong with spawning their character."))
 			return
 		inbelly_spawn(potential_prey, src, belly_choice, absorbed)
 	else
-		to_chat(potential_prey, "<span class=notice>Inbelly spawn cancelled.</span>")
-		to_chat(src, "<span class=notice>Prey cancelled their inbelly spawn request.</span>")
+		to_chat(potential_prey, span_notice("Inbelly spawn cancelled."))
+		to_chat(src, span_notice("Prey cancelled their inbelly spawn request."))
 		return
 
 /proc/inbelly_spawn(client/prey, mob/living/pred, obj/belly/target_belly, var/absorbed = FALSE)

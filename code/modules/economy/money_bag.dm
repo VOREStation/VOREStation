@@ -30,7 +30,7 @@
 		if (istype(C,/obj/item/coin/uranium))
 			amt_uranium++;
 
-	var/dat = text("<b>The contents of the moneybag reveal...</b><br>")
+	var/dat = span_bold("The contents of the moneybag reveal...") + "<br>"
 	if (amt_gold)
 		dat += text("Gold coins: [amt_gold] <A href='?src=\ref[src];remove=gold'>Remove one</A><br>")
 	if (amt_silver)

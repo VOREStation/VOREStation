@@ -175,7 +175,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			if(FEMALE)
 				t_him = "her"
 
-	H.visible_message("<b>\The [H]</b> glomps [target] to make [t_him] feel better!", \
+	H.visible_message(span_infoplain(span_bold("\The [H]") + " glomps [target] to make [t_him] feel better!"), \
 					span_notice("You glomp [target] to make [t_him] feel better!"))
 	H.apply_stored_shock_to(target)
 

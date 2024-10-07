@@ -47,7 +47,7 @@
 	if(is_stump)
 		if(istype(W,/obj/item/shovel))
 			if(do_after(user, 5 SECONDS))
-				visible_message("<b>\The [user]</b> digs up \the [src] stump with \the [W].")
+				visible_message(span_infoplain(span_bold("\The [user]") + " digs up \the [src] stump with \the [W]."))
 				qdel(src)
 		return
 

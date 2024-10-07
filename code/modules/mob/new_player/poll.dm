@@ -17,7 +17,7 @@
 /mob/new_player/proc/privacy_poll()
 	var/output = "<div align='center'><B>Player poll</B>"
 	output +="<hr>"
-	output += "<b>We would like to expand our stats gathering.</b>"
+	output += span_bold("We would like to expand our stats gathering.")
 	output += "<br>This however involves gathering data about player behavior, play styles, unique player numbers, play times, etc. Data like that cannot be gathered fully anonymously, which is why we're asking you how you'd feel if player-specific data was gathered. Prior to any of this actually happening, a privacy policy will be discussed, but before that can begin, we'd preliminarily like to know how you feel about the concept."
 	output +="<hr>"
 	output += "How do you feel about the game gathering player-specific statistics? This includes statistics about individual players as well as in-game polling/opinion requests."
@@ -131,7 +131,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>"
+				output += span_bold("Question: [pollquestion]") + "<br>"
 				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
@@ -145,7 +145,7 @@
 					if(O.optionid && O.optiontext)
 						if(voted)
 							if(votedoptionid == O.optionid)
-								output += "<b>[O.optiontext]</b><br>"
+								output += span_bold("[O.optiontext]") + "<br>"
 							else
 								output += "[O.optiontext]<br>"
 						else
@@ -175,7 +175,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>"
+				output += span_bold("Question: [pollquestion]") + "<br>"
 				output += "<font size='2'>Feedback gathering runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
@@ -209,7 +209,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>"
+				output += span_bold("Question: [pollquestion]") + "<br>"
 				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				var/voted = 0
@@ -304,7 +304,7 @@
 
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>You can select up to [multiplechoiceoptions] options. If you select more, the first [multiplechoiceoptions] will be saved.<br>"
+				output += span_bold("Question: [pollquestion]") + "<br>You can select up to [multiplechoiceoptions] options. If you select more, the first [multiplechoiceoptions] will be saved.<br>"
 				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
@@ -320,7 +320,7 @@
 					if(O.optionid && O.optiontext)
 						if(voted)
 							if(O.optionid in votedfor)
-								output += "<b>[O.optiontext]</b><br>"
+								output += span_bold("[O.optiontext]") + "<br>"
 							else
 								output += "[O.optiontext]<br>"
 						else

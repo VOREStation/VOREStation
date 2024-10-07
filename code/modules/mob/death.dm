@@ -76,7 +76,7 @@
 	facing_dir = null
 
 	if(!gibbed && deathmessage != DEATHGASP_NO_MESSAGE)
-		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
+		src.visible_message(span_infoplain(span_bold("\The [src.name]") + " [deathmessage]"))
 
 	set_stat(DEAD)
 

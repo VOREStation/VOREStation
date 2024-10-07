@@ -177,7 +177,7 @@
 		recipes = typesof(/datum/particle_smasher_recipe)
 
 	if(!target)	// You are just blasting an empty machine.
-		visible_message("<b>\The [src]</b> shudders.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " shudders."))
 		update_icon()
 		return
 

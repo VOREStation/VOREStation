@@ -99,7 +99,7 @@
 				if(allowed(usr))
 					locked = !locked
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Insufficient access.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Insufficient access."))
 			if("link_account")
 				var/attempt_account_num = tgui_input_number(usr, "Enter account number", "New account number")
 				var/attempt_pin = tgui_input_number(usr, "Enter PIN", "Account PIN")
@@ -107,9 +107,9 @@
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Account has been suspended.</span>")
+						src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Account has been suspended."))
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Account not found.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("custom_order")
 				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
 				if (!t_purpose || !Adjacent(usr)) return
@@ -157,7 +157,7 @@
 					price_list.Cut()
 			if("reset_log")
 				transaction_logs.Cut()
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='notice'>Transaction log reset.</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_notice("Transaction log reset."))
 	updateDialog()
 
 
@@ -203,7 +203,7 @@
 		return
 
 	if (!linked_account)
-		usr.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to connect to linked account."))
 		return
 
 	// Access account for transaction
@@ -216,13 +216,13 @@
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!D)
-			src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to access account. Check security settings and try again."))
 		else
 			if(D.suspended)
-				src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Your account has been suspended.</span>")
+				src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Your account has been suspended."))
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Not enough funds.</span>")
+					src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
 				else
 					// Transfer the money
 					D.money -= transaction_amount
@@ -265,7 +265,7 @@
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Not enough funds.</span>")
+			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
 		else
 			// Transfer the money
 			E.worth -= transaction_amount
@@ -291,13 +291,13 @@
 /obj/item/retail_scanner/proc/scan_item_price(var/obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Only up to ten different items allowed per purchase."))
 		return
 
 	// First check if item has a valid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to find item in database.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to find item in database."))
 		return
 	// Call out item cost
 	src.visible_message("[icon2html(src,viewers(src))]\A [O]: [price ? "[price] Thaler\s" : "free of charge"].")
@@ -368,11 +368,11 @@
 
 /obj/item/retail_scanner/proc/check_account()
 	if (!linked_account)
-		usr.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to connect to linked account."))
 		return 0
 
 	if(linked_account.suspended)
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Connected account has been suspended.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Connected account has been suspended."))
 		return 0
 	return 1
 
@@ -380,7 +380,7 @@
 /obj/item/retail_scanner/proc/transaction_complete()
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
-	src.visible_message("[icon2html(src,viewers(src))]<span class='notice'>Transaction complete.</span>")
+	src.visible_message("[icon2html(src,viewers(src))]" + span_notice("Transaction complete."))
 	flick("retail_approve", src)
 	reset_memory()
 	updateDialog()

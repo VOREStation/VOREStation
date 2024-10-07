@@ -127,8 +127,8 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		return "[sender.friendly_name], it appears you've already registered your chat and game IDs. If you've changed game or chat usernames, please contact an administrator for help."
 
 	// Okay. We found them, they're in the DB, and they have no discord ID set.
-	var/message = "<span class='notice'>A request has been sent from Discord to validate your Byond username, by '[sender.friendly_name]' in '[sender.channel.friendly_name]'</span>\
-	<br><span class='warning'>If you did not send this request, do not click the link below, and do notify an administrator in-game or on Discord ASAP.</span>\
+	var/message = span_notice("A request has been sent from Discord to validate your Byond username, by '[sender.friendly_name]' in '[sender.channel.friendly_name]'") + "\
+	<br>" + span_warning("If you did not send this request, do not click the link below, and do notify an administrator in-game or on Discord ASAP.") + "\
 	<br><a href='byond://?src=\ref[user];discord_reg=[html_encode(sender.id)]'>Click Here</a> if you authorized this registration attempt. This link is valid for 10 minutes."
 	to_chat(user, message)
 

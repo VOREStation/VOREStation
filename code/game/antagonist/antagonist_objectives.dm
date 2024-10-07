@@ -24,10 +24,10 @@
 			if(!O.completed && !O.check_completion())
 				result = 0
 		if(result && victory_text)
-			to_world(span_danger("<font size = 3>[victory_text]</font>"))
+			to_world(span_boldannounce(span_large("[victory_text]")))
 			if(victory_feedback_tag) feedback_set_details("round_end_result","[victory_feedback_tag]")
 		else if(loss_text)
-			to_world(span_danger("<font size = 3>[loss_text]</font>"))
+			to_world(span_boldannounce(span_large("[loss_text]")))
 			if(loss_feedback_tag) feedback_set_details("round_end_result","[loss_feedback_tag]")
 
 /mob/living/proc/write_ambition()

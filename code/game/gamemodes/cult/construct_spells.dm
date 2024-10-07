@@ -671,6 +671,6 @@
 			W.visible_message(span_danger("\The [user] [attack_message] \the [W], obliterating it!"))
 			W.dismantle_wall(1)
 		else
-			user.visible_message("<b>\The [user]</b> lowers its fist.")
+			user.visible_message(span_bold("\The [user]") + " lowers its fist.")
 			return
 	qdel(src)

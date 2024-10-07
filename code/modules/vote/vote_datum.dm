@@ -90,14 +90,14 @@
             if(length(winning_options) == 1)
                 var/res = winning_options[1]
                 if(res in choices)
-                    to_chat(world, span_interface("<b><code>[res]</code> won the vote!</b>"))
+                    to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote!")))
                     return res
                 else
                     to_chat(world, span_interface("The winner of the vote ([sanitize(res)]) isn't a valid choice? What the heck?"))
                     stack_trace("Vote concluded with an invalid answer. Answer was [sanitize(res)], choices were [json_encode(choices)]")
                     return null
 
-            to_chat(world, span_interface("<b>No clear winner. The vote did not pass.</b>"))
+            to_chat(world, span_interface(span_bold("No clear winner. The vote did not pass.")))
             return null
 
         if(VOTE_RESULT_TYPE_SKEWED)
@@ -105,14 +105,14 @@
             if(maxvotes >= required_votes && length(winning_options) == 1)
                 var/res = winning_options[1]
                 if(res in choices)
-                    to_chat(world, span_interface("<b><code>[res]</code> won the vote with a 70% majority!</b>"))
+                    to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote with a 70% majority!")))
                     return res
                 else
                     to_chat(world, span_interface("The winner of the vote ([sanitize(res)]) isn't a valid choice? What the heck?"))
                     stack_trace("Vote concluded with an invalid answer. Answer was [sanitize(res)], choices were [json_encode(choices)]")
                     return null
 
-            to_chat(world, span_interface("<b>No option received 70% of the votes. The vote did not pass.</b>"))
+            to_chat(world, span_interface(span_bold("No option received 70% of the votes. The vote did not pass.")))
             return null
 
     return null

@@ -28,7 +28,7 @@
 	candidate.savefile_save(preference_mob())
 
 /datum/category_item/player_setup_item/player_global/pai/content(var/mob/user)
-	. += "<b>pAI:</b><br>"
+	. += span_bold("pAI:") + "<br>"
 	if(!candidate)
 		log_debug("[user] pAI prefs have a null candidate var.")
 		return .

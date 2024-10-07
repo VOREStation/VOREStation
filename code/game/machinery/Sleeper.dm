@@ -384,7 +384,7 @@
 			beaker = I
 			user.drop_item()
 			I.loc = src
-			user.visible_message("<b>\The [user]</b> adds \a [I] to \the [src].", span_notice("You add \a [I] to \the [src]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " adds \a [I] to \the [src]."), span_notice("You add \a [I] to \the [src]."))
 		else
 			to_chat(user, span_warning("\The [src] has a beaker already."))
 		return

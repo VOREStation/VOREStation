@@ -107,11 +107,11 @@
 	var/new_link = strip_html_simple(tgui_input_text(usr, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
 	if(new_link && CanUseTopic(usr))
 		if(length(new_link) > 100)
-			to_chat(usr, "<span class = 'warning'>Your entry is too long, it must be 100 characters or less.</span>")
+			to_chat(usr, span_warning("Your entry is too long, it must be 100 characters or less."))
 			return
 
 		custom_link = new_link
-		to_chat(usr, "<span class = 'notice'>Link set: [custom_link]</span>")
+		to_chat(usr, span_notice("Link set: [custom_link]"))
 		log_admin("[usr]/[usr.ckey] set their custom link to [custom_link]")
 
 /mob/living/verb/set_voice_freq()

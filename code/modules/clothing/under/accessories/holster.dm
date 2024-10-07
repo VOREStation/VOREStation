@@ -151,7 +151,7 @@
 
 /obj/item/clothing/accessory/holster/hip
 	name = "hip holster"
-	desc = "<i>No one dared to ask his business, no one dared to make a slip. The stranger there among them had a big iron on his hip.</i>"
+	desc = span_italics("No one dared to ask his business, no one dared to make a slip. The stranger there among them had a big iron on his hip.")
 	icon_state = "holster_hip"
 	concealed_holster = 0
 

@@ -51,7 +51,7 @@
 
 			if(ore_type) metals[ore_type] += T.resources[metal]
 
-	var/message = "[icon2html(src, user.client)] <span class='notice'>The scanner beeps and displays a readout.</span>"
+	var/message = "[icon2html(src, user.client)] " + span_notice("The scanner beeps and displays a readout.")
 
 	for(var/ore_type in metals)
 		var/result = "no sign"
@@ -65,7 +65,7 @@
 		else
 			result = metals[ore_type]
 
-		message += "<br><span class='notice'>- [result] of [ore_type].</span>"
+		message += "<br>" + span_notice("- [result] of [ore_type].")
 
 	to_chat(user, message)
 

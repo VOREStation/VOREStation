@@ -37,7 +37,7 @@
 		var/text = sanitizeSafe(tgui_input_text(usr, "What would you like to write?", null, null, writing_space), writing_space)
 		if(!text || thing.loc != user || (!Adjacent(user) && loc != user) || user.incapacitated())
 			return
-		user.visible_message("<b>\The [user]</b> jots a note down on \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " jots a note down on \the [src]."))
 		written_by = user.ckey
 		if(written_text)
 			written_text = "[written_text] [text]"

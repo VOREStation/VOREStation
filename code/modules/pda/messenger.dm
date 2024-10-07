@@ -175,7 +175,7 @@
 			to_chat(U, "ERROR: Cannot reach recipient.")
 			return
 		useMS.send_pda_message("[P.owner]","[pda.owner]","[t]")
-		pda.investigate_log(span_game(span_say("PDA Message - <span class='name'>[U.key] - [pda.owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span>")), "pda")
+		pda.investigate_log(span_game(span_say("PDA Message - " + span_name("[U.key] - [pda.owner]") + " -> " + span_name("[P.owner]") + ": " + span_message("[t]"))), "pda")
 
 		receive_message(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]"), "\ref[P]")
 		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
@@ -223,7 +223,7 @@
 		var/owner = data["owner"]
 		var/job = data["job"]
 		var/message = data["message"]
-		notify("<b>Message from [owner] ([job]), </b>\"[message]\" (<a href='?src=\ref[src];choice=Message;target=[ref]'>Reply</a>)")
+		notify(span_bold("Message from [owner] ([job]), ") + "\"[message]\" (<a href='?src=\ref[src];choice=Message;target=[ref]'>Reply</a>)")
 
 /datum/data/pda/app/messenger/multicast
 /datum/data/pda/app/messenger/multicast/receive_message(list/data, ref)

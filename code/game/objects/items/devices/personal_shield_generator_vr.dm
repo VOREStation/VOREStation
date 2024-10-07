@@ -126,11 +126,11 @@
 						s.start()
 						shield_active = 0
 						if(bcell.charge_delay) //It WILL blow up soon. Downside of self-charging cells.
-							to_chat(src.loc, "<span class='critical'>Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
-							'WARNING, INTERNAL CELL MELTDOWN IMMINENT. TIME TILL EXPLOSION: [bcell.charge_delay/10] SECONDS. DISCARD UNIT IMMEDIATELY!'</span>")
+							to_chat(src.loc, span_critical("Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
+							'WARNING, INTERNAL CELL MELTDOWN IMMINENT. TIME TILL EXPLOSION: [bcell.charge_delay/10] SECONDS. DISCARD UNIT IMMEDIATELY!'"))
 						else //It won't blow up unless you turn it back on again. Upside of using non-charging cells.
-							to_chat(src.loc, "<span class='critical'>Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
-							'WARNING, INTERNAL CELL CRITICALLY DAMAGED. REPLACE CELL IMMEDIATELY.'</span>")
+							to_chat(src.loc, span_critical("Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
+							'WARNING, INTERNAL CELL CRITICALLY DAMAGED. REPLACE CELL IMMEDIATELY.'"))
 						STOP_PROCESSING(SSobj, src)
 						update_icon()
 			else

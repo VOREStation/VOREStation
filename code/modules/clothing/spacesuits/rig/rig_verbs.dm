@@ -223,11 +223,11 @@
 
 	if(!istype(module))
 		selected_module = null
-		to_chat(usr, span_blue("<b>Primary system is now: deselected.</b>"))
+		to_chat(usr, span_boldnotice("Primary system is now: deselected."))
 		return
 
 	selected_module = module
-	to_chat(usr, span_blue("<b>Primary system is now: [selected_module.interface_name].</b>"))
+	to_chat(usr, span_boldnotice("Primary system is now: [selected_module.interface_name]."))
 
 /obj/item/rig/verb/toggle_module()
 
@@ -261,10 +261,10 @@
 		return
 
 	if(module.active)
-		to_chat(usr, span_blue("<b>You attempt to deactivate \the [module.interface_name].</b>"))
+		to_chat(usr, span_boldnotice("You attempt to deactivate \the [module.interface_name]."))
 		module.deactivate()
 	else
-		to_chat(usr, span_blue("<b>You attempt to activate \the [module.interface_name].</b>"))
+		to_chat(usr, span_boldnotice("You attempt to activate \the [module.interface_name]."))
 		module.activate()
 
 /obj/item/rig/verb/engage_module()
@@ -298,5 +298,5 @@
 	if(!istype(module))
 		return
 
-	to_chat(usr, span_blue("<b>You attempt to engage the [module.interface_name].</b>"))
+	to_chat(usr, span_boldnotice("You attempt to engage the [module.interface_name]."))
 	module.engage()

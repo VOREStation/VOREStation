@@ -517,7 +517,7 @@
 
 	if(mounted_pack.loc != src.loc && src.loc != mounted_pack)
 		mounted_pack.return_nozzle()
-		visible_message("<b>\The [src]</b> retracts to its fueltank.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " retracts to its fueltank."))
 
 	if(get_fuel() <= get_max_fuel())
 		mounted_pack.reagents.trans_to_obj(src, 1)
