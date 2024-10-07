@@ -50,7 +50,7 @@
 		return TRUE
 
 	var/min_age = job.get_min_age(prefs.species, prefs.organ_data["brain"])
-	if(prefs.age >= min_age)
+	if(prefs.read_preference(/datum/preference/numeric/human/age) >= min_age)
 		return TRUE
 	return FALSE
 
