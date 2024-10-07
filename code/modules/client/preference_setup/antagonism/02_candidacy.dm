@@ -42,7 +42,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 
 /datum/category_item/player_setup_item/antagonism/candidacy/content(var/mob/user)
 	if(jobban_isbanned(user, JOB_SYNDICATE))
-		. += "<b>You are banned from antagonist roles.</b>"
+		. += span_bold("You are banned from antagonist roles.")
 		pref.be_special = 0
 	else
 		var/n = 0

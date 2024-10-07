@@ -53,7 +53,7 @@ var/datum/antagonist/rogue_ai/malf
 		var/mob/living/silicon/ai/A = player.current
 		if(!istype(A))
 			error("Non-AI mob designated malf AI! Report this.")
-			to_world("##ERROR: Non-AI mob designated malf AI! Report this.")
+			to_world(span_filter_system("##ERROR: Non-AI mob designated malf AI! Report this."))
 			return
 
 		A.setup_for_malf()
@@ -64,7 +64,7 @@ var/datum/antagonist/rogue_ai/malf
 
 		to_chat(malf, span_notice(span_bold("SYSTEM ERROR:") + " Memory index 0x00001ca89b corrupted."))
 		sleep(10)
-		to_chat(malf, "<B>running MEMCHCK</B>")
+		to_chat(malf, span_bold("running MEMCHCK"))
 		sleep(50)
 		to_chat(malf, span_bold("MEMCHCK") + " Corrupted sectors confirmed. Reccomended solution: Delete. Proceed? Y/N: Y")
 		sleep(10)

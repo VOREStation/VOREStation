@@ -275,7 +275,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			"}
 		dat += "<br>"
 		if(radio)
-			dat += "<b>Radio Uplink</b>"
+			dat += span_bold("Radio Uplink")
 			dat += {"
 				<table class="request">
 					<tr>

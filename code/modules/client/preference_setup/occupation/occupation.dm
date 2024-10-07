@@ -210,11 +210,11 @@
 
 	switch(pref.alternate_option)
 		if(GET_RANDOM_JOB)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a></u>"
+			. += span_underline("<a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a>")
 		if(BE_ASSISTANT)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a></u>"
+			. += span_underline("<a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a>")
 		if(RETURN_TO_LOBBY)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a></u>"
+			. += span_underline("<a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a>")
 
 	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
 	. += "</tt>"

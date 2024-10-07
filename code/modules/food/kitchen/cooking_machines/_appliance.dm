@@ -116,11 +116,11 @@
 	if (progress < 0.75)
 		return span_notice("It's cooking away nicely.")
 	if (progress < 1)
-		return span_notice("<b>It's almost ready!</b>")
+		return span_boldnotice("It's almost ready!")
 
 	var/half_overcook = (CI.overcook_mult - 1)*0.5
 	if (progress < 1+half_overcook)
-		return span_soghun("<b>It is done !</b>")
+		return span_soghun(span_bold("It is done!"))
 	if (progress < CI.overcook_mult)
 		return span_warning("It looks overcooked, get it out!")
 	else

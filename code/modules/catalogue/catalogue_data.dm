@@ -103,8 +103,8 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 						. += item
 
 /datum/category_item/catalogue/proc/display_in_chatlog(mob/user)
-	to_chat(user, "<br>")
-	to_chat(user, span_notice("<b>[uppertext(name)]</b>"))
+	to_chat(user, span_infoplain("<br>"))
+	to_chat(user, span_boldnotice("[uppertext(name)]"))
 
 	// Some entries get very long so lets not totally flood the chatlog.
 	var/desc_length_limit = 750

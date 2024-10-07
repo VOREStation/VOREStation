@@ -74,7 +74,7 @@
 			src.take_organ_damage(0,5,emp=1)
 			Confuse(2)
 	flash_eyes(affect_silicon = 1)
-	to_chat(src, span_danger("<B>*BZZZT*</B>"))
+	to_chat(src, span_bolddanger("*BZZZT*"))
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 

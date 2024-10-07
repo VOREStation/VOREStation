@@ -78,8 +78,8 @@
 		crew += H
 
 	if(crew.len < 2)
-		to_world(span_danger("There aren't enough players for this mode!"))
-		to_world(span_danger("Rebooting world in 5 seconds."))
+		to_world(span_boldannounce("There aren't enough players for this mode!"))
+		to_world(span_boldannounce("Rebooting world in 5 seconds."))
 
 		if(blackbox)
 			blackbox.save_all_data_to_sql()
@@ -169,10 +169,10 @@
 	for(var/mob/M in world)
 		if(M.client)
 			M << 'sound/machines/Alarm.ogg'
-	to_world(span_boldnotice("Incoming missile detected.. Impact in 10.."))
+	to_world(span_boldannounce("Incoming missile detected.. Impact in 10.."))
 	for (var/i=9 to 1 step -1)
 		sleep(10)
-		to_world(span_boldnotice("[i].."))
+		to_world(span_boldannounce("[i].."))
 	sleep(10)
 	enter_allowed = 0
 	if(ticker)
@@ -190,9 +190,9 @@
 /datum/game_mode/epidemic/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","win - epidemic cured")
-		to_world(span_danger(span_large("The virus outbreak was contained! The crew wins!")))
+		to_world(span_boldannounce(span_large("The virus outbreak was contained! The crew wins!")))
 	else if(finished == 2)
 		feedback_set_details("round_end_result","loss - rev heads killed")
-		to_world(span_danger(span_large("The crew succumbed to the epidemic!")))
+		to_world(span_boldannounce(span_large("The crew succumbed to the epidemic!")))
 	..()
 	return 1

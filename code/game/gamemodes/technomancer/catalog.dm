@@ -104,7 +104,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 		if(spell_tab != category)
 			return "<a href='byond://?src=\ref[src];spell_category=[category]'>[category]</a>"
 		else
-			return "<b>[category]</b>"
+			return span_bold("[category]")
 
 // Proc: attack_self()
 // Parameters: 1 (user - the mob clicking on the catalog)

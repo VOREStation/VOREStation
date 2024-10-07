@@ -141,7 +141,7 @@
 		if(new_recharge_state != last_recharge_state)
 			last_recharge_state = new_recharge_state
 			if(last_recharge_state)
-				to_chat(src, span_notice("<b>Your integrated solar panels begin recharging your battery.</b>"))
+				to_chat(src, span_boldnotice("Your integrated solar panels begin recharging your battery."))
 			else
 				to_chat(src, span_danger("Your integrated solar panels cease recharging your battery."))
 

@@ -448,7 +448,7 @@
 				output += "<td align='center'><b>[ckey]</b></td>"
 				output += "<td align='center'>[bantime]</td>"
 				output += "<td align='center'><b>[ackey]</b></td>"
-				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
+				output += "<td align='center'>[(unbanned || auto) ? "" : span_bold("<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=unban;dbbanid=[banid]\">Unban</a>")]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"

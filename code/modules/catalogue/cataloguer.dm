@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 			var/list/group_dat = list()
 			var/show_group = FALSE
 
-			group_dat += "<b>[group.name]</b>"
+			group_dat += span_bold("[group.name]")
 			for(var/datum/category_item/catalogue/item as anything in group.items)
 				if(item.visible || debug)
 					group_dat += "<a href='?src=\ref[src];show_data=\ref[item]'>[item.name]</a>"

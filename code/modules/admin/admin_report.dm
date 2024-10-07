@@ -150,7 +150,7 @@ world/New()
 		if(N.ID == ID)
 			found = N
 	if(!found)
-		to_chat(src, "<b>* An error occurred, sorry.</b>")
+		to_chat(src, span_boldwarning("* An error occurred, sorry."))
 
 	found.done = 1
 
@@ -159,7 +159,7 @@ world/New()
 
 /client/proc/edit_report(ID as num)
 	if(!src.holder || src.holder.level < 0)
-		to_chat(src, "<b>You tried to modify the news, but you're not an admin!</b>")
+		to_chat(src, span_boldwarning("You tried to modify the news, but you're not an admin!"))
 		return
 
 	var/savefile/Reports = new("data/reports.sav")
@@ -172,7 +172,7 @@ world/New()
 		if(N.ID == ID)
 			found = N
 	if(!found)
-		to_chat(src, "<b>* An error occurred, sorry.</b>")
+		to_chat(src, span_boldwarning("* An error occurred, sorry."))
 
 	var/body = tgui_input_text(src.mob, "Enter a body for the news", "Body", multiline = TRUE, prevent_enter = TRUE)
 	if(!body) return

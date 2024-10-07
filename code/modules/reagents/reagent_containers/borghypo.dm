@@ -100,7 +100,7 @@
 		if(t)
 			t += ", "
 		if(mode == i)
-			t += "<b>[reagent_names[i]]</b>"
+			t += span_bold("[reagent_names[i]]")
 		else
 			t += "<a href='?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
 	t = "Available reagents: [t]."

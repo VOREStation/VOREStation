@@ -168,7 +168,7 @@
 	set desc = "This spams all the active jobban entries for the current round to standard output."
 	set category = "Debug"
 
-	to_chat(usr, "<b>Jobbans active in this round.</b>")
+	to_chat(usr, span_bold("Jobbans active in this round."))
 	for(var/t in jobban_keylist)
 		to_chat(usr, "[t]")
 
@@ -181,7 +181,7 @@
 	if(!job_filter)
 		return
 
-	to_chat(usr, "<b>Jobbans active in this round.</b>")
+	to_chat(usr, span_bold("Jobbans active in this round."))
 	for(var/t in jobban_keylist)
 		if(findtext(t, job_filter))
 			to_chat(usr, "[t]")

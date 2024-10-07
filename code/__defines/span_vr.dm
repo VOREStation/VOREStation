@@ -77,7 +77,6 @@
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
 #define span_warningplain(str) ("<span class='warningplain'>" + str + "</span>")
 #define span_boldwarning(str) ("<span class='boldwarning'>" + str + "</span>")
-#define span_sinister(str) ("<span class='sinister'>" + str + "</span>")
 #define span_filter_warning(str) ("<span class='filter_warning'>" + str + "</span>") // Close to warning plain, maybe replace
 
 // FIltered under info
@@ -165,13 +164,15 @@
 /* System and Debug */
 // System filter
 #define span_boldannounce(str) ("<span class='boldannounce'>" + str + "</span>")
+#define span_world(str) ("<span class='world'>" + str + "</span>") // Bold system messages, use this for important world messages to make sure players can't filter them!
+#define span_filter_system(str) ("<span class='filter_system'>" + str + "</span>") // Plain system filter
+#define span_sinister(str) ("<span class='sinister'>" + str + "</span>")
 
 // Unfiltered
 #define span_prefix(str) ("<span class='prefix'>" + str + "</span>")
 #define span_admin(str) ("<span class='admin'>" + str + "</span>")
 #define span_linkOn(str) ("<span class='linkOn'>" + str + "</span>")
 #define span_linkOff(str) ("<span class='linkOff'>" + str + "</span>")
-#define span_filter_system(str) ("<span class='filter_system'>" + str + "</span>")
 #define span_filter_pm(str) ("<span class='filter_pm'>" + str + "</span>")
 #define span_filter_pray(str) ("<span class='filter_pray'>" + str + "</span>") // (Uses the chat message type directly)
 

@@ -1,7 +1,7 @@
 
 /obj/mecha/combat/gorilla
 	name = "Gorilla"
-	desc = "<b>Blitzkrieg!</b>" //stop using all caps in item descs i will fight you. its redundant with the bold.
+	desc = span_bold("Blitzkrieg!") //stop using all caps in item descs i will fight you. its redundant with the bold.
 	icon = 'icons/mecha/mecha64x64.dmi'
 	icon_state = "pzrmech"
 	initial_icon = "pzrmech"

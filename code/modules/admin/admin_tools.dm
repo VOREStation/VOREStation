@@ -4,7 +4,7 @@
 	set desc = "Check a player's attack logs."
 
 //Views specific attack logs belonging to one player.
-	var/dat = "<B>[M]'s Attack Log:<HR></B>"
+	var/dat = span_bold("[M]'s Attack Log:<HR>")
 	dat += span_bold("Viewing attack logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)
 		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"
@@ -35,7 +35,7 @@
 	set desc = "Check a player's dialogue logs."
 
 //Views specific dialogue logs belonging to one player.
-	var/dat = "<B>[M]'s Dialogue Log:<HR></B>"
+	var/dat = span_bold("[M]'s Dialogue Log:<HR>")
 	dat += span_bold("Viewing say and emote logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)
 		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"

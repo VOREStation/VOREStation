@@ -237,7 +237,7 @@
 				warn = 1
 
 	if(warn && isliving(bumped))
-		to_chat(bumped, span_filter_notice("<b>You accidentally touch \the [holder] as it hits you.</b>"))
+		to_chat(bumped, span_filter_notice(span_bold("You accidentally touch \the [holder] as it hits you.")))
 
 /datum/component/artifact_master/proc/on_bumped()
 	var/atom/movable/M = args[2]
@@ -258,7 +258,7 @@
 				warn = 1
 
 	if(warn && isliving(M))
-		to_chat(M, span_filter_notice("<b>You accidentally touch \the [holder].</b>"))
+		to_chat(M, span_filter_notice(span_bold("You accidentally touch \the [holder].")))
 
 /datum/component/artifact_master/proc/on_attack_hand()
 	var/mob/living/user = args[2]
@@ -285,7 +285,7 @@
 			my_effect.DoEffectTouch(user)
 
 	if(triggered)
-		to_chat(user, span_filter_notice("<b>You touch [holder].</b>"))
+		to_chat(user, span_filter_notice(span_bold("You touch [holder].")))
 
 	else
 		to_chat(user, span_filter_notice(span_bold("You touch [holder],") + " [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))

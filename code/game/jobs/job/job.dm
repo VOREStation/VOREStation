@@ -88,7 +88,7 @@
 
 		H.mind.initial_account = M
 
-	to_chat(H, span_notice("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
+	to_chat(H, span_boldnotice("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]"))
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title)

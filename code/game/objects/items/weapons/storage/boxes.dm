@@ -156,7 +156,7 @@
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	desc = span_bold("WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.")
 	icon_state = "flashbang"
 	starts_with = list(/obj/item/grenade/flashbang = 7)
 	drop_sound = 'sound/items/drop/ammobox.ogg'
@@ -335,7 +335,7 @@
 
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
-	desc = span_red("<B>WARNING:</B>") + " <I>Keep out of reach of children</I>."
+	desc = span_red(span_bold("WARNING:")) + " " + span_italics("Keep out of reach of children") + "."
 	icon_state = "mousetraps"
 	starts_with = list(/obj/item/assembly/mousetrap = 7)
 

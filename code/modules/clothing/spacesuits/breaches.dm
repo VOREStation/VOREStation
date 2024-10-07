@@ -227,4 +227,4 @@ var/global/list/breach_burn_descriptors = list(
 	. = ..()
 	if(can_breach && breaches?.len)
 		for(var/datum/breach/B in breaches)
-			. += span_red("<B>It has \a [B.descriptor].</B>")
+			. += span_red(span_bold("It has \a [B.descriptor]."))

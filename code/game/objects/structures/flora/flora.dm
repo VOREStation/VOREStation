@@ -308,7 +308,7 @@
 
 /obj/structure/flora/pottedplant/attack_hand(mob/user)
 	if(!stored_item)
-		to_chat(user, span_filter_notice("<b>You see nothing of interest in [src]...</b>"))
+		to_chat(user, span_filter_notice(span_bold("You see nothing of interest in [src]...")))
 	else
 		if(do_after(user, 10))
 			to_chat(user, span_filter_notice("You find [icon2html(stored_item, user.client)] [stored_item] in [src]!"))

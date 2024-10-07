@@ -43,7 +43,7 @@
 	output += span_bold("Station Time:") + " [stationtime2text()]<br>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
-		output += "<b>Server Initializing!</b>"
+		output += span_bold("Server Initializing!")
 	else
 		output += span_bold("Round Duration:") + " [roundduration2text()]<br>"
 	output += "<hr>"
@@ -288,7 +288,7 @@
 			var/sql = "INSERT INTO erro_privacy VALUES (null, Now(), '[src.ckey]', '[option]')"
 			var/DBQuery/query_insert = dbcon.NewQuery(sql)
 			query_insert.Execute()
-			to_chat(usr, "<b>Thank you for your vote!</b>")
+			to_chat(usr, span_bold("Thank you for your vote!"))
 			usr << browse(null,"window=privacypoll")
 
 	if(!ready && href_list["preference"])
@@ -531,7 +531,7 @@
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
-	dat += "<b>Welcome, [name].<br></b>"
+	dat += span_bold("Welcome, [name].<br>")
 	dat += "Round Duration: [roundduration2text()]<br>"
 
 	if(emergency_shuttle) //In case NanoTrasen decides reposess CentCom's shuttles.

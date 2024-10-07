@@ -17,7 +17,7 @@
 /mob/new_player/proc/privacy_poll()
 	var/output = "<div align='center'><B>Player poll</B>"
 	output +="<hr>"
-	output += "<b>We would like to expand our stats gathering.</b>"
+	output += span_bold("We would like to expand our stats gathering.")
 	output += "<br>This however involves gathering data about player behavior, play styles, unique player numbers, play times, etc. Data like that cannot be gathered fully anonymously, which is why we're asking you how you'd feel if player-specific data was gathered. Prior to any of this actually happening, a privacy policy will be discussed, but before that can begin, we'd preliminarily like to know how you feel about the concept."
 	output +="<hr>"
 	output += "How do you feel about the game gathering player-specific statistics? This includes statistics about individual players as well as in-game polling/opinion requests."

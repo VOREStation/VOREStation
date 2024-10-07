@@ -55,7 +55,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_SYSTEM,
     name: 'System Messages',
     description: 'Messages from your client, always enabled',
-    selector: '.boldannounce',
+    selector: '.boldannounce, .world, .span_filter_system, .sinister',
     important: true,
   },
   // Basic types
@@ -113,7 +113,7 @@ export const MESSAGE_TYPES = [
     name: 'Info',
     description: 'Non-urgent messages from the game and items',
     selector:
-      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .sinister, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious, .filter_notice',
+      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious, .filter_notice',
   },
   {
     type: MESSAGE_TYPE_WARNING,

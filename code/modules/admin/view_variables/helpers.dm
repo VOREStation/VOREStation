@@ -2,7 +2,7 @@
 // Keep these two together, they *must* be defined on both
 // If /client ever becomes /datum/client or similar, they can be merged
 /datum/proc/get_view_variables_header()
-	return "<b>[src]</b>"
+	return span_bold("[src]")
 
 /atom/get_view_variables_header()
 	return {"

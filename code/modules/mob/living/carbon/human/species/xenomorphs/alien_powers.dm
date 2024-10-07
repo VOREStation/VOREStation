@@ -269,7 +269,7 @@
 			else O = new /obj/item/stack/material/resin(targetLoc)
 
 	if(O)
-		visible_message(span_warning(span_bold("[src] vomits up a thick purple substance and begins to shape it!")), span_alium("You shape a [choice]."))
+		visible_message(span_boldwarning("[src] vomits up a thick purple substance and begins to shape it!"), span_alium("You shape a [choice]."))
 		O.color = "#321D37"
 		playsound(src, 'sound/effects/blobattack.ogg', 40, 1)
 
@@ -331,7 +331,7 @@
 		else
 			use_hand = "right"
 
-	src.visible_message(span_warning(span_bold("\The [src]") + " seizes [T] aggressively!"))
+	src.visible_message(span_boldwarning("\The [src]") + " seizes [T] aggressively!")
 
 	var/obj/item/grab/G = new(src,T)
 	if(use_hand == "left")

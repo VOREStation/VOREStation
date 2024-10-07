@@ -68,10 +68,10 @@
 	C.prefs.copy_to(H)
 	H.key = C.key
 
-	to_chat(H, "<b>You are the Technomancer's apprentice!  Your goal is to assist them in their mission at the [station_name()].</b>")
-	to_chat(H, "<b>Your service has not gone unrewarded, however. Studying under them, you have learned how to use a Manipulation Core \
-	of your own.  You also have a catalog, to purchase your own functions and equipment as you see fit.</b>")
-	to_chat(H, "<b>It would be wise to speak to your master, and learn what their plans are for today.</b>")
+	to_chat(H, span_infoplain(span_bold("You are the Technomancer's apprentice! Your goal is to assist them in their mission at the [station_name()].")))
+	to_chat(H, span_infoplain(span_bold("Your service has not gone unrewarded, however. Studying under them, you have learned how to use a Manipulation Core \
+	of your own. You also have a catalog, to purchase your own functions and equipment as you see fit.")))
+	to_chat(H, span_infoplain(span_bold("It would be wise to speak to your master, and learn what their plans are for today.")))
 
 	spawn(1)
 		technomancers.add_antagonist(H.mind, 0, 1, 0, 0, 0)

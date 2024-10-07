@@ -63,7 +63,7 @@
 /*
 /obj/mecha/combat/durand/get_stats_part()
 	var/output = ..()
-	output += "<b>Defence mode: [defence?"on":"off"]</b>"
+	output += span_bold("Defence mode: [defence?"on":"off"]")
 	return output
 */
 

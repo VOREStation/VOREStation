@@ -19,7 +19,7 @@ var/datum/controller/transfer_controller/transfer_controller
 	//VOREStation Edit START
 	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES)
 		shift_last_vote = 99999999 //Setting to a stupidly high number since it'll be not used again.
-		to_world("<b>Warning: You have one hour left in the shift. Wrap up your scenes in the next 60 minutes before the transfer is called.</b>") //VOREStation Edit
+		to_world(span_world(span_notice("Warning: You have one hour left in the shift. Wrap up your scenes in the next 60 minutes before the transfer is called."))) //VOREStation Edit
 	if (round_duration_in_ds >= shift_hard_end - 1 MINUTE)
 		init_shift_change(null, 1)
 		shift_hard_end = timerbuffer + config.vote_autotransfer_interval //If shuttle somehow gets recalled, let's force it to call again next time a vote would occur.

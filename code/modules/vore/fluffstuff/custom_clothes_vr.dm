@@ -547,7 +547,7 @@
 
 	//Chica Head
 /obj/item/clothing/head/helmet/fluff/freddy/chica
-	desc = span_red("<b>LET'S EAT!</b>")
+	desc = span_red(span_bold("LET'S EAT!"))
 	icon_state = "chicahead"
 	item_state = "chicahead_mob"
 
@@ -586,7 +586,7 @@
 
 	//Chica Suit
 /obj/item/clothing/suit/fluff/freddy/chica
-	desc = span_red("<b>LET'S EAT!</b>")
+	desc = span_red(span_bold("LET'S EAT!"))
 	icon_state = "chicasuit"
 	item_state = "chicasuit_mob"
 
@@ -1302,7 +1302,7 @@ Departamental Swimsuits, for general use
 //For general use maybe
 /obj/item/clothing/under/batter //I guess we're going OFF limits.
 	name = "Worn baseball outfit"
-	desc = "<b>Purification in progress...</b>"
+	desc = span_bold("Purification in progress...")
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "batter"

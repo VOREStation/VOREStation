@@ -252,7 +252,7 @@
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
-			msg += span_warning("<B>[T.He] [T.is] convulsing violently!</B>")
+			msg += span_boldwarning("[T.He] [T.is] convulsing violently!")
 		else if(jitteriness >= 200)
 			msg += span_warning("[T.He] [T.is] extremely jittery.")
 		else if(jitteriness >= 100)
@@ -329,9 +329,9 @@
 
 		var/obj/item/organ/external/E = organs_by_name[organ_tag]
 		if(!E)
-			wound_flavor_text["[organ_descriptor]"] = span_warning(span_bold("[T.He] [T.is] missing [T.his] [organ_descriptor]."))
+			wound_flavor_text["[organ_descriptor]"] = span_boldwarning("[T.He] [T.is] missing [T.his] [organ_descriptor].")
 		else if(E.is_stump())
-			wound_flavor_text["[organ_descriptor]"] = span_warning(span_bold("[T.He] [T.has] a stump where [T.his] [organ_descriptor] should be."))
+			wound_flavor_text["[organ_descriptor]"] = span_boldwarning("[T.He] [T.has] a stump where [T.his] [organ_descriptor] should be.")
 		else
 			continue
 
@@ -340,7 +340,7 @@
 			if((temp.organ_tag in hidden) && hidden[temp.organ_tag])
 				continue //Organ is hidden, don't talk about it
 			if(temp.status & ORGAN_DESTROYED)
-				wound_flavor_text["[temp.name]"] = span_warning(span_bold("[T.He] [T.is] missing [T.his] [temp.name]."))
+				wound_flavor_text["[temp.name]"] = span_boldwarning("[T.He] [T.is] missing [T.his] [temp.name].")
 				continue
 
 			if(!looks_synth && temp.robotic == ORGAN_ROBOT)

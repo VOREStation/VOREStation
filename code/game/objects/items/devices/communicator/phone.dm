@@ -101,9 +101,9 @@
 	qdel(blackness)
 
 	to_chat(new_voice, span_notice("[icon2html(src,new_voice.client)] Connection to [src] established."))
-	to_chat(new_voice, "<b>To talk to the person on the other end of the call, just talk normally.</b>")
-	to_chat(new_voice, "<b>If you want to end the call, use the 'Hang Up' verb.  The other person can also hang up at any time.</b>")
-	to_chat(new_voice, "<b>Remember, your character does not know anything you've learned from observing!</b>")
+	to_chat(new_voice, span_infoplain(span_bold("To talk to the person on the other end of the call, just talk normally.")))
+	to_chat(new_voice, span_infoplain(span_bold("If you want to end the call, use the 'Hang Up' verb.  The other person can also hang up at any time.")))
+	to_chat(new_voice, span_infoplain(span_bold("Remember, your character does not know anything you've learned from observing!")))
 	if(new_voice.mind)
 		new_voice.mind.assigned_role = JOB_DISEMBODIED_VOICE
 	if(user)

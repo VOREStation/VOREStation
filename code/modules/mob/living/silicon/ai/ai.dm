@@ -191,9 +191,9 @@ var/list/ai_verbs_default = list(
 	return
 
 /mob/living/silicon/ai/proc/on_mob_init()
-	var/init_text = list("<B>You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>",
-							"<B>To look at other parts of the station, click on yourself to get a camera menu.</B>",
-							"<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>",
+	var/init_text = list(span_bold("You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras)."),
+							span_bold("To look at other parts of the station, click on yourself to get a camera menu."),
+							span_bold("While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc."),
 							"To use something, simply click on it.",
 							"For department channels, use the following say commands:")
 	to_chat(src, span_filter_notice("[jointext(init_text, "<br>")]"))
@@ -218,7 +218,7 @@ var/list/ai_verbs_default = list(
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
-		to_chat(src, span_filter_notice("<b>These laws may be changed by other players, or by you being the traitor.</b>"))
+		to_chat(src, span_filter_notice(span_bold("These laws may be changed by other players, or by you being the traitor.")))
 
 	job = JOB_AI
 	setup_icon()

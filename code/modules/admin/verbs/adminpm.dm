@@ -173,7 +173,7 @@
 				if(!recipient.current_ticket)
 					new /datum/admin_help(msg, recipient, TRUE)
 
-				to_chat(recipient, span_admin_pm_warning(span_huge("<b>-- Administrator private message --</b>")))
+				to_chat(recipient, span_admin_pm_warning(span_huge(span_bold("-- Administrator private message --"))))
 				to_chat(recipient, span_admin_pm_warning("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [msg]"))
 				to_chat(recipient, span_admin_pm_warning(span_italics("Click on the administrator's name to reply.")))
 				to_chat(src, span_admin_pm_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [msg]"))
@@ -262,7 +262,7 @@
 	message_admins("IRC message from [sender] to [key_name_admin(C)] : [msg]")
 	log_admin("IRC PM: [sender] -> [key_name(C)] : [msg]")
 
-	to_chat(C, span_admin_pm_warning(span_huge("<b>-- Administrator private message --</b>")))
+	to_chat(C, span_admin_pm_warning(span_huge(span_bold("-- Administrator private message --"))))
 	to_chat(C, span_admin_pm_warning("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"))
 	to_chat(C, span_admin_pm_warning(span_italics("Click on the administrator's name to reply.")))
 
