@@ -98,6 +98,10 @@
 			add_eyes()
 	update_transform()
 
+/mob/living/simple_mob/regenerate_icons()
+	..()
+	update_icon()
+
 /mob/living/simple_mob/proc/will_eat(var/mob/living/M)
 	if(client) //You do this yourself, dick!
 		//ai_log("vr/wont eat [M] because we're player-controlled", 3) //VORESTATION AI TEMPORARY REMOVAL
