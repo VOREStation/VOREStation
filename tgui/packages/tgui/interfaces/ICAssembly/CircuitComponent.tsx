@@ -48,15 +48,18 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
   // THIS IS IMPORTANT:
   // This reduces the amount of unnecessary updates, which reduces the amount of work that has to be done
   // by the `Plane` component to keep track of where ports are located.
-  shouldComponentUpdate = (nextProps, nextState) => {
+  shouldComponentUpdate = (
+    nextProps: CircuitProps,
+    nextState: CircuitState,
+  ) => {
     const { inputs, outputs, activators } = this.props.circuit;
 
     return (
       shallowDiffers(this.props, nextProps) ||
       shallowDiffers(this.state, nextState) ||
-      shallowDiffers(inputs, nextProps.inputs) ||
-      shallowDiffers(outputs, nextProps.outputs) ||
-      shallowDiffers(activators, nextProps.activators)
+      shallowDiffers(inputs, nextProps.circuit.inputs) ||
+      shallowDiffers(outputs, nextProps.circuit.outputs) ||
+      shallowDiffers(activators, nextProps.circuit.activators)
     );
   };
 

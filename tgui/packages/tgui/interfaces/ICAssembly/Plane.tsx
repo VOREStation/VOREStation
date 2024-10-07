@@ -15,7 +15,6 @@ import {
   MOUSE_BUTTON_LEFT,
   PortData,
   PortTypesToColor,
-  TIME_UNTIL_PORT_RELEASE_WORKS,
 } from './types';
 
 export type PlaneProps = {};
@@ -23,7 +22,6 @@ export type PlaneProps = {};
 type PlaneState = {
   locations: Record<string, { x: number; y: number }>;
   selectedPort: PortData | null;
-  timeUntilPortReleaseTimesOut: number;
   backgroundX: number;
   backgroundY: number;
   zoom: number;
@@ -39,7 +37,6 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     this.state = {
       locations: {},
       selectedPort: null,
-      timeUntilPortReleaseTimesOut: 0,
       backgroundX: 50,
       backgroundY: 50,
       zoom: 1,
@@ -113,7 +110,7 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     const { act } = useBackend();
     const { selectedPort } = this.state;
 
-    if (!selectedPort || selectedPort.ref === port.ref) {
+    if (!selectedPort) {
       return;
     }
 
@@ -121,18 +118,16 @@ export class Plane extends Component<PlaneProps, PlaneState> {
       selectedPort: null,
     });
 
+    // Don't actually wire a port to itself...
+    if (selectedPort.ref === port.ref) {
+      return;
+    }
+
     act('wire_internal', { pin1: selectedPort.ref, pin2: port.ref });
   };
 
   handlePortRelease = (event: MouseEvent) => {
     window.removeEventListener('mouseup', this.handlePortRelease);
-
-    // This will let players release their mouse when dragging
-    // to stop connecting the port, whilst letting players
-    // click on the port to click and connect.
-    if (this.state.timeUntilPortReleaseTimesOut > Date.now()) {
-      return;
-    }
 
     this.setState({
       selectedPort: null,
@@ -160,10 +155,6 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     });
 
     this.handleDragging(event);
-
-    this.setState({
-      timeUntilPortReleaseTimesOut: Date.now() + TIME_UNTIL_PORT_RELEASE_WORKS,
-    });
 
     window.addEventListener('mousemove', this.handleDragging);
     window.addEventListener('mouseup', this.handlePortRelease);
