@@ -1,4 +1,6 @@
 /mob/living/carbon/human/proc/consider_birthday()
+	var/bday_month = read_preference(/datum/preference/numeric/bday_month)
+	var/bday_day = read_preference(/datum/preference/numeric/bday_day)
 	if(!bday_month || !bday_day)	//If we don't have one of these set, don't worry about it
 		return
 	if(real_name != client.prefs.real_name)	//let's not celebrate the birthday of that weird mob we got dropped into

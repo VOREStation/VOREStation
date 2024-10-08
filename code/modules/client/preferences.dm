@@ -40,8 +40,6 @@ var/list/preferences_datums = list()
 	var/be_random_name = 0				//whether we are a random name every round
 	var/nickname						//our character's nickname
 	var/age = 30						//age of character
-	var/bday_month = 0					//Birthday month
-	var/bday_day = 0					//Birthday day
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
