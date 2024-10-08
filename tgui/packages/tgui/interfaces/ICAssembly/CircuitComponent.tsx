@@ -182,7 +182,17 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
                 compact
                 tooltip={
                   <Box>
-                    <Box mb={1}>{circuit.extended_desc}</Box>
+                    <Box mb={1}>
+                      {
+                        <div
+                          // All of the descriptions are pulled from the game files
+                          // eslint-disable-next-line react/no-danger
+                          dangerouslySetInnerHTML={{
+                            __html: circuit.extended_desc,
+                          }}
+                        />
+                      }
+                    </Box>
                     {!!circuit.power_draw_idle && (
                       <Box
                         backgroundColor="orange"
