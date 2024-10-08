@@ -39,7 +39,6 @@ var/list/preferences_datums = list()
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/nickname						//our character's nickname
-	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
@@ -252,7 +251,7 @@ var/list/preferences_datums = list()
 					used_skillpoints += 6 * multiplier
 
 /datum/preferences/proc/GetSkillClass(points)
-	return CalculateSkillClass(points, age)
+	return CalculateSkillClass(points, read_preference(/datum/preference/numeric/age))
 
 /proc/CalculateSkillClass(points, age)
 	if(points <= 0) return "Unconfigured"

@@ -16,7 +16,6 @@
 	pref.be_random_name					= save_data["name_is_always_random"]
 	pref.biological_gender				= save_data["gender"]
 	pref.identifying_gender				= save_data["id_gender"]
-	pref.age							= save_data["age"]
 	pref.spawnpoint						= save_data["spawnpoint"]
 	pref.metadata						= save_data["OOC_Notes"]
 	pref.metadata_likes					= save_data["OOC_Notes_Likes"]
@@ -28,14 +27,12 @@
 	save_data["name_is_always_random"]	= pref.be_random_name
 	save_data["gender"]					= pref.biological_gender
 	save_data["id_gender"]				= pref.identifying_gender
-	save_data["age"]					= pref.age
 	save_data["spawnpoint"]				= pref.spawnpoint
 	save_data["OOC_Notes"]				= pref.metadata
 	save_data["OOC_Notes_Likes"]		= pref.metadata_likes
 	save_data["OOC_Notes_Disikes"]		= pref.metadata_dislikes
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
-	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species, is_FBP())
@@ -64,7 +61,6 @@
 
 	character.gender = pref.biological_gender
 	character.identifying_gender = pref.identifying_gender
-	character.age = pref.age
 
 /datum/category_item/player_setup_item/general/basic/content()
 	. = list()
@@ -78,7 +74,7 @@
 	. += "<br>"
 	. += "<b>Biological Sex:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
-	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.read_preference(/datum/preference/numeric/bday_month)]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.read_preference(/datum/preference/numeric/bday_day)]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.read_preference(/datum/preference/toggle/bday_announce) ? "Yes" : "No"]</a><br>"
+	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.read_preference(/datum/preference/numeric/age)]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.read_preference(/datum/preference/numeric/bday_month)]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.read_preference(/datum/preference/numeric/bday_day)]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.read_preference(/datum/preference/toggle/bday_announce) ? "Yes" : "No"]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(config.allow_Metadata)
 		. += "<b>OOC Notes: <a href='?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a></b><br>"
@@ -136,9 +132,9 @@
 	else if(href_list["age"])
 		var/min_age = get_min_age()
 		var/max_age = get_max_age()
-		var/new_age = tgui_input_number(user, "Choose your character's age:\n([min_age]-[max_age])", "Character Preference", pref.age, max_age, min_age)
+		var/new_age = tgui_input_number(user, "Choose your character's age:\n([min_age]-[max_age])", "Character Preference", pref.read_preference(/datum/preference/numeric/age), max_age, min_age)
 		if(new_age && CanUseTopic(user))
-			pref.age = max(min(round(text2num(new_age)), max_age), min_age)
+			pref.update_preference_by_type(/datum/preference/numeric/age, max(min(round(text2num(new_age)), max_age), min_age))
 			return TOPIC_REFRESH
 
 	else if(href_list["bday_month"])

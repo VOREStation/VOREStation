@@ -31,7 +31,7 @@
 
 	backbag = rand(1,6)
 	pdachoice = rand(1,7)
-	age = rand(current_species.min_age, current_species.max_age)
+	update_preference_by_type(/datum/preference/numeric/age, rand(current_species.min_age, current_species.max_age))
 	b_type = RANDOM_BLOOD_TYPE
 	if(H)
 		copy_to(H,1)

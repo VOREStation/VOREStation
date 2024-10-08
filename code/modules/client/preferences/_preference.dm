@@ -281,6 +281,10 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /mob/proc/read_preference(preference_type)
 	return client?.prefs?.read_preference(preference_type)
 
+/// Write a /datum/preference type and return its value directly to the json.
+/mob/proc/write_preference_directly(preference_type)
+	return client?.prefs?.write_preference_by_type(preference_type)
+
 /// Set a /datum/preference entry.
 /// Returns TRUE for a successful preference application.
 /// Returns FALSE if it is invalid.

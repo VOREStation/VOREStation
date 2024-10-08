@@ -10,6 +10,21 @@
 
 
 // Numerics
+/datum/preference/numeric/age
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "age"
+	savefile_identifier = PREFERENCE_CHARACTER
+
+	step = 1
+	minimum = 18
+	maximum = 250
+
+/datum/preference/numeric/bday_month/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+/datum/preference/numeric/bday_month/create_default_value()
+	return 1
+
 /datum/preference/numeric/bday_month
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "bday_month"
@@ -23,7 +38,7 @@
 	return
 
 /datum/preference/numeric/bday_month/create_default_value()
-	return 1
+	return 0
 
 /datum/preference/numeric/bday_day
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -35,10 +50,11 @@
 	maximum = 31
 
 /datum/preference/numeric/bday_day/apply_to_human(mob/living/carbon/human/target, value)
+	target.age = value
 	return
 
 /datum/preference/numeric/bday_day/create_default_value()
-	return 1
+	return 0
 
 /datum/preference/numeric/last_bday_note
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
