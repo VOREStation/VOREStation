@@ -25,10 +25,6 @@
 /datum/preference/numeric/bday_month/create_default_value()
 	return 1
 
-/datum/preference/numeric/bday_month/is_accessible(datum/preferences/preferences)
-	..()
-	return FALSE
-
 /datum/preference/numeric/bday_day
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "bday_day"
@@ -43,10 +39,6 @@
 
 /datum/preference/numeric/bday_day/create_default_value()
 	return 1
-
-/datum/preference/numeric/bday_day/is_accessible(datum/preferences/preferences)
-	..()
-	return FALSE
 
 /datum/preference/numeric/last_bday_note
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED

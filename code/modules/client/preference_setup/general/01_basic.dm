@@ -144,10 +144,10 @@
 	else if(href_list["bday_month"])
 		var/new_month = tgui_input_number(user, "Choose your character's birth month (number)", "Birthday Month", pref.read_preference(/datum/preference/numeric/bday_month), 12, 0)
 		if(new_month && CanUseTopic(user))
-			pref.write_preference_by_type(/datum/preference/numeric/bday_month, new_month)
+			pref.update_preference_by_type(/datum/preference/numeric/bday_month, new_month)
 		else if((tgui_alert(user, "Would you like to clear the birthday entry?","Clear?",list("No","Yes")) == "Yes") && CanUseTopic(user))
-			pref.write_preference_by_type(/datum/preference/numeric/bday_month, 0)
-			pref.write_preference_by_type(/datum/preference/numeric/bday_day, 0)
+			pref.update_preference_by_type(/datum/preference/numeric/bday_month, 0)
+			pref.update_preference_by_type(/datum/preference/numeric/bday_day, 0)
 		return TOPIC_REFRESH
 
 	else if(href_list["bday_day"])
@@ -183,10 +183,10 @@
 
 		var/new_day = tgui_input_number(user, "Choose your character's birth day (number, 1-[max_days])", "Birthday Day", pref.read_preference(/datum/preference/numeric/bday_day), max_days, 0)
 		if(new_day && CanUseTopic(user))
-			pref.write_preference_by_type(/datum/preference/numeric/bday_day, new_day)
+			pref.update_preference_by_type(/datum/preference/numeric/bday_day, new_day)
 		else if((tgui_alert(user, "Would you like to clear the birthday entry?","Clear?",list("No","Yes")) == "Yes") && CanUseTopic(user))
-			pref.write_preference_by_type(/datum/preference/numeric/bday_month, 0)
-			pref.write_preference_by_type(/datum/preference/numeric/bday_day, 0)
+			pref.update_preference_by_type(/datum/preference/numeric/bday_month, 0)
+			pref.update_preference_by_type(/datum/preference/numeric/bday_day, 0)
 		return TOPIC_REFRESH
 
 	else if(href_list["bday_announce"])
