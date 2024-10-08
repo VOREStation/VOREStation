@@ -42,7 +42,6 @@ var/list/preferences_datums = list()
 	var/age = 30						//age of character
 	var/bday_month = 0					//Birthday month
 	var/bday_day = 0					//Birthday day
-	var/last_birthday_notification = 0	//The last year we were notified about our birthday
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents

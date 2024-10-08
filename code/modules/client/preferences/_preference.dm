@@ -292,6 +292,20 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		value_cache[preference.type] = new_value
 	return success
 
+/// Writes a value and saves to disk immediately
+/// Used by things that need to directly write to the player savefile things that aren't "really" prefs
+/datum/preferences/proc/write_preference_by_type(preference_type, preference_value)
+	var/datum/preference/preference_entry = GLOB.preference_entries[preference_type]
+	if(isnull(preference_entry))
+		CRASH("Preference type `[preference_type]` is invalid!")
+
+	if(!write_preference(preference_entry, preference_entry.pref_serialize(preference_value)))
+		return
+
+	save_character()
+	save_preferences()
+	return TRUE
+
 /// Will perform an update on the preference, but not write to the savefile.
 /// This will, for instance, update the character preference view.
 /// Performs sanity checks.

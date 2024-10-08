@@ -19,7 +19,6 @@
 	pref.age							= save_data["age"]
 	pref.bday_month						= save_data["bday_month"]
 	pref.bday_day						= save_data["bday_day"]
-	pref.last_birthday_notification		= save_data["last_bday_note"]
 	pref.spawnpoint						= save_data["spawnpoint"]
 	pref.metadata						= save_data["OOC_Notes"]
 	pref.metadata_likes					= save_data["OOC_Notes_Likes"]
@@ -34,7 +33,6 @@
 	save_data["age"]					= pref.age
 	save_data["bday_month"]				= pref.bday_month
 	save_data["bday_day"]				= pref.bday_day
-	save_data["last_bday_note"]			= pref.last_birthday_notification
 	save_data["spawnpoint"]				= pref.spawnpoint
 	save_data["OOC_Notes"]				= pref.metadata
 	save_data["OOC_Notes_Likes"]		= pref.metadata_likes
@@ -44,7 +42,6 @@
 	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))
 	pref.bday_month			= sanitize_integer(pref.bday_month, 0, 12, initial(pref.bday_month))
 	pref.bday_day			= sanitize_integer(pref.bday_day, 0, 31, initial(pref.bday_day))
-	pref.last_birthday_notification = sanitize_integer(pref.last_birthday_notification, 0, 9999, initial(pref.last_birthday_notification))
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species, is_FBP())

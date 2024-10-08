@@ -3,7 +3,8 @@
 		return
 	if(real_name != client.prefs.real_name)	//let's not celebrate the birthday of that weird mob we got dropped into
 		return
-	if(!(client.prefs.last_birthday_notification < world_time_year))	//you only get notified once a year
+
+	if(!(client.prefs.read_preference(/datum/preference/numeric/last_bday_note) < world_time_year))	//you only get notified once a year
 		return
 	if((world_time_month == bday_month) && (world_time_day == bday_day))	//it is your birthday
 		birthday(1)
@@ -14,8 +15,8 @@
 
 /mob/living/carbon/human/proc/birthday(var/birthday = 0)
 	var/msg
-	var/lastyear = client.prefs.last_birthday_notification
-	client.prefs.last_birthday_notification = world_time_year	//We only want to ask once a year per character, this persists, update early in case of shenanigans
+	var/lastyear = client.prefs.read_preference(/datum/preference/numeric/last_bday_note)
+	client.prefs.write_preference_by_type(/datum/preference/numeric/last_bday_note, world_time_year)	//We only want to ask once a year per character, this persists, update early in case of shenanigans
 	if(birthday)	//woo
 		msg = "Today is your birthday! Do you want to increase your character's listed age?"
 		if(client.prefs.read_preference(/datum/preference/toggle/bday_announce))
