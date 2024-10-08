@@ -180,27 +180,32 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     const connections: Connection[] = [];
 
     for (const circuit of data.circuits) {
-      for (const input of circuit.inputs) {
-        for (const output of input.linked) {
-          const output_port = locations[output.ref];
-          connections.push({
-            color: PortTypesToColor[decodeHtmlEntities(input.type)] || 'blue',
-            from: output_port,
-            to: locations[input.ref],
-          });
-        }
-      }
-      for (const activator of circuit.activators) {
-        if (activator.rawdata) {
-          // input
-          for (const output of activator.linked) {
+      if (circuit.inputs) {
+        for (const input of circuit.inputs) {
+          for (const output of input.linked) {
             const output_port = locations[output.ref];
             connections.push({
-              color:
-                PortTypesToColor[decodeHtmlEntities(activator.type)] || 'blue',
-              to: output_port,
-              from: locations[activator.ref],
+              color: PortTypesToColor[decodeHtmlEntities(input.type)] || 'blue',
+              from: output_port,
+              to: locations[input.ref],
             });
+          }
+        }
+      }
+      if (circuit.activators) {
+        for (const activator of circuit.activators) {
+          if (activator.rawdata) {
+            // input
+            for (const output of activator.linked) {
+              const output_port = locations[output.ref];
+              connections.push({
+                color:
+                  PortTypesToColor[decodeHtmlEntities(activator.type)] ||
+                  'blue',
+                to: output_port,
+                from: locations[activator.ref],
+              });
+            }
           }
         }
       }

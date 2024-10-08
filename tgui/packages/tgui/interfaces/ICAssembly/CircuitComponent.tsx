@@ -52,14 +52,14 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     nextProps: CircuitProps,
     nextState: CircuitState,
   ) => {
-    const { inputs, outputs, activators } = this.props.circuit;
+    const { inputs = [], outputs = [], activators = [] } = this.props.circuit;
 
     return (
       shallowDiffers(this.props, nextProps) ||
       shallowDiffers(this.state, nextState) ||
-      shallowDiffers(inputs, nextProps.circuit.inputs) ||
-      shallowDiffers(outputs, nextProps.circuit.outputs) ||
-      shallowDiffers(activators, nextProps.circuit.activators)
+      shallowDiffers(inputs, nextProps.circuit.inputs!) ||
+      shallowDiffers(outputs, nextProps.circuit.outputs!) ||
+      shallowDiffers(activators, nextProps.circuit.activators!)
     );
   };
 
@@ -138,7 +138,7 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
       ...rest
     } = this.props;
 
-    const { name, ref, inputs, outputs, activators } = circuit;
+    const { name, ref, inputs = [], outputs = [], activators = [] } = circuit;
 
     const { startPos, dragPos } = this.state;
 
