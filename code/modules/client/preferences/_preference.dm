@@ -302,8 +302,11 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	if(!write_preference(preference_entry, preference_entry.pref_serialize(preference_value)))
 		return
 
-	save_character()
-	save_preferences()
+	if(preference_entry.savefile_identifier == PREFERENCE_CHARACTER)
+		var/save_data = get_save_data_for_savefile_identifier(preference_entry.savefile_identifier)
+		player_setup.save_character(save_data)
+	else
+		savefile.save()
 	return TRUE
 
 /// Will perform an update on the preference, but not write to the savefile.
