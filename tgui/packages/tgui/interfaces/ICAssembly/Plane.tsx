@@ -182,8 +182,16 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     for (const circuit of data.circuits) {
       if (circuit.inputs) {
         for (const input of circuit.inputs) {
-          for (const output of input.linked) {
+          connectionloop: for (const output of input.linked) {
             const output_port = locations[output.ref];
+            for (const connection of connections) {
+              if (
+                connection.from === locations[input.ref] &&
+                connection.to === output_port
+              ) {
+                continue connectionloop;
+              }
+            }
             connections.push({
               color: PortTypesToColor[decodeHtmlEntities(input.type)] || 'blue',
               from: output_port,
@@ -196,8 +204,16 @@ export class Plane extends Component<PlaneProps, PlaneState> {
         for (const activator of circuit.activators) {
           if (activator.rawdata) {
             // input
-            for (const output of activator.linked) {
+            connectionloop: for (const output of activator.linked) {
               const output_port = locations[output.ref];
+              for (const connection of connections) {
+                if (
+                  connection.from === locations[activator.ref] &&
+                  connection.to === output_port
+                ) {
+                  continue connectionloop;
+                }
+              }
               connections.push({
                 color:
                   PortTypesToColor[decodeHtmlEntities(activator.type)] ||
