@@ -380,6 +380,15 @@
 // 	return
 
 // eject the contents of the disposal unit
+
+/obj/machinery/disposal/verb/force_eject()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Force Eject"
+	if(flushing)
+		return
+	eject()
+
 /obj/machinery/disposal/proc/eject()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(src.loc)
