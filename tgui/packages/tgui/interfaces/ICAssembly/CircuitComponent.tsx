@@ -48,15 +48,18 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
   // THIS IS IMPORTANT:
   // This reduces the amount of unnecessary updates, which reduces the amount of work that has to be done
   // by the `Plane` component to keep track of where ports are located.
-  shouldComponentUpdate = (nextProps, nextState) => {
-    const { inputs, outputs, activators } = this.props.circuit;
+  shouldComponentUpdate = (
+    nextProps: CircuitProps,
+    nextState: CircuitState,
+  ) => {
+    const { inputs = [], outputs = [], activators = [] } = this.props.circuit;
 
     return (
       shallowDiffers(this.props, nextProps) ||
       shallowDiffers(this.state, nextState) ||
-      shallowDiffers(inputs, nextProps.inputs) ||
-      shallowDiffers(outputs, nextProps.outputs) ||
-      shallowDiffers(activators, nextProps.activators)
+      shallowDiffers(inputs, nextProps.circuit.inputs!) ||
+      shallowDiffers(outputs, nextProps.circuit.outputs!) ||
+      shallowDiffers(activators, nextProps.circuit.activators!)
     );
   };
 
@@ -135,7 +138,7 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
       ...rest
     } = this.props;
 
-    const { name, ref, inputs, outputs, activators } = circuit;
+    const { name, ref, inputs = [], outputs = [], activators = [] } = circuit;
 
     const { startPos, dragPos } = this.state;
 
@@ -179,7 +182,17 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
                 compact
                 tooltip={
                   <Box>
-                    <Box mb={1}>{circuit.extended_desc}</Box>
+                    <Box mb={1}>
+                      {
+                        <div
+                          // All of the descriptions are pulled from the game files
+                          // eslint-disable-next-line react/no-danger
+                          dangerouslySetInnerHTML={{
+                            __html: circuit.extended_desc,
+                          }}
+                        />
+                      }
+                    </Box>
                     {!!circuit.power_draw_idle && (
                       <Box
                         backgroundColor="orange"

@@ -18,9 +18,9 @@ export type CircuitData = {
   power_draw_idle: number;
   power_draw_per_use: number;
   extended_desc: string;
-  inputs: PortData[];
-  outputs: PortData[];
-  activators: PortData[];
+  inputs?: PortData[];
+  outputs?: PortData[];
+  activators?: PortData[];
 };
 
 export type PortData = {
