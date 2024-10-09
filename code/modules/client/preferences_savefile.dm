@@ -251,10 +251,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/save_data = savefile.get_entry(tree_key)
 
 	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
-		if(preference.savefile_identifier != PREFERENCE_CHARACTER && !fist_save)
+		if(preference.savefile_identifier != PREFERENCE_CHARACTER && !first_save)
 			continue
 
-		if(!(preference.type in recently_updated_keys) && !fist_save)
+		if(!(preference.type in recently_updated_keys) && !first_save)
 			continue
 
 		recently_updated_keys -= preference.type
