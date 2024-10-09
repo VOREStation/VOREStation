@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Produce a random value for the purposes of character randomization.
 /// Will just create a default value by default.
-/datum/preference/proc/create_random_value(datum/preferences/preferences)
+/datum/preference/proc/create_random_value(datum/preferences/preferences, datum/species/current_species)
 	return create_informed_default_value(preferences)
 
 /// Returns whether or not a preference can be randomized.

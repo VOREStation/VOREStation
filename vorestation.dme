@@ -2029,6 +2029,7 @@
 #include "code\modules\client\preferences\_preference.dm"
 #include "code\modules\client\preferences\preferences_tg.dm"
 #include "code\modules\client\preferences\middleware\_middleware.dm"
+#include "code\modules\client\preferences\middleware\random.dm"
 #include "code\modules\client\preferences\migrations\13_preferences.dm"
 #include "code\modules\client\preferences\migrations\14_nifs.dm"
 #include "code\modules\client\preferences\migrations\15_nif_path.dm"

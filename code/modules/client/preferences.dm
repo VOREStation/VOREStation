@@ -120,6 +120,11 @@ var/list/preferences_datums = list()
 	var/skill_specialization = null
 	var/list/skills = list() // skills can range from 0 to 3
 
+	//character preferences
+	var/slot_randomized //keeps track of round-to-round randomization of the character slot, prevents overwriting
+
+	var/list/randomise = list()
+
 	// maps each organ to either null(intact), "cyborg" or "amputated"
 	// will probably not be able to do this for head and torso ;)
 	var/list/organ_data = list()
@@ -344,6 +349,7 @@ var/list/preferences_datums = list()
 		mannequin.set_dir(D)
 		mannequin.update_tail_showing()
 		mannequin.ImmediateOverlayUpdate()
+		randomize_appearance_and_body_for(mannequin)
 		var/mutable_appearance/MA = new(mannequin)
 		O.appearance = MA
 		O.screen_loc = preview_screen_locs["[D]"]

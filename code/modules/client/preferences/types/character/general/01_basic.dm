@@ -19,11 +19,15 @@
 	minimum = 18
 	maximum = 250
 
-/datum/preference/numeric/bday_month/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/numeric/age/apply_to_human(mob/living/carbon/human/target, value)
+	target.age = value
 	return
 
-/datum/preference/numeric/bday_month/create_default_value()
-	return 1
+/datum/preference/numeric/age/create_default_value()
+	return 18
+
+/datum/preference/numeric/age/create_random_value(datum/preferences/preferences, datum/species/current_species)
+	return rand(current_species.min_age, current_species.max_age)
 
 /datum/preference/numeric/bday_month
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -50,7 +54,6 @@
 	maximum = 31
 
 /datum/preference/numeric/bday_day/apply_to_human(mob/living/carbon/human/target, value)
-	target.age = value
 	return
 
 /datum/preference/numeric/bday_day/create_default_value()
