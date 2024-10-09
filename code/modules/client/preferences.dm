@@ -349,7 +349,6 @@ var/list/preferences_datums = list()
 		mannequin.set_dir(D)
 		mannequin.update_tail_showing()
 		mannequin.ImmediateOverlayUpdate()
-		randomize_appearance_and_body_for(mannequin)
 		var/mutable_appearance/MA = new(mannequin)
 		O.appearance = MA
 		O.screen_loc = preview_screen_locs["[D]"]
