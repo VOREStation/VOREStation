@@ -244,10 +244,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return FALSE
 
 	var/tree_key = "character[default_slot]"
-	var/fist_save = FALSE
+	var/first_save = FALSE
 	if(!(tree_key in savefile.get_entry()))
 		savefile.set_entry(tree_key, list())
-		fist_save = TRUE
+		first_save = TRUE
 	var/save_data = savefile.get_entry(tree_key)
 
 	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
