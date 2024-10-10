@@ -1,7 +1,7 @@
-/mob/living/simple_mob/vore/scrubble
+/mob/living/simple_mob/vore/fluffball
 	name = "fluffball"
 	desc = "A small, rotund humanoid creature. It is difficult to make out physical features of it as it covers most of its face behind big floppy, fluffy ears with only beady yellow eyes looking out. Most of its body is covered by a thick, soft tail that it wraps around itself and holds onto with small stumpy arms."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/scrubble)
+	catalogue_data = list(/datum/category_item/catalogue/fauna/fluffball)
 	tt_desc = "glamoris fluffalia"
 	icon = 'icons/mob/vore.dmi'
 	icon_dead = "fluffball-dead"
@@ -131,22 +131,23 @@
 
 /mob/living/simple_mob/vore/fluffball/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(W.istype(/obj/item/reagent_containers/food))
+	if(istype(W,/obj/item/reagent_containers/food))
 		user.drop_item(W)
 		qdel(W)
-		M.visible_message("<span class='notice'>\The [src] quickly steals \the [w] into its fluff, it seems to have become a little less shy!</span>!")
-		if(ai_holder_type.istype(/datum/ai_holder/simple_mob/hostile/fluffball))
-			L.ai_holder_type = /datum/ai_holder/simple_mob/vore/fluffball
-			L.initialize_ai_holder()
+		visible_message("<span class='notice'>\The [src] quickly steals \the [W] into its fluff, it seems to have become a little less shy!</span>!")
+		var/datum/ai_holder/simple_mob/hostile/fluffball/A = ai_holder
+		if(istype(A))
+			A.friend_list |= user
 
 //AI
 
 /datum/ai_holder/simple_mob/hostile/fluffball
 	can_flee = TRUE
-	vision_range = 2 //Only react if you get close
+	vision_range = 3 //Only react if you get close
 	can_flee = TRUE					// If they're even allowed to flee.
 	flee_when_dying = TRUE			// If they should flee when low on health.
 	dying_threshold = 1.1			// Flee at max health
+	var/list/friend_list = list()
 
 /datum/ai_holder/simple_mob/hostile/fluffball/flee_from_target()
 	ai_log("flee_from_target() : Entering.", AI_LOG_DEBUG)
@@ -180,12 +181,14 @@
 	var/list/valid_mobs = list()
 	for(var/mob/living/possible_target in possible_targets)
 		var/mob/living/carbon/human/H = possible_target
-		if(H.istype())
-			/obj/item/reagent_containers/food/L = H.get_active_hand()
-			/obj/item/reagent_containers/food/R = H.get_inactive_hand()
-			if(R.istype() || L.istype())
+		if(istype(H))
+			var/obj/item/reagent_containers/food/B = H.get_active_hand()
+			var/obj/item/reagent_containers/food/R = H.get_inactive_hand()
+			if(istype(R) || istype(B))
 				continue
 		if(!can_attack(possible_target))
+			continue
+		if((possible_target in friend_list) && !check_attacker(possible_target))
 			continue
 		L |= possible_target
 		if(!isliving(possible_target))

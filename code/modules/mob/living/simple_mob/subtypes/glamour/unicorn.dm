@@ -21,6 +21,7 @@
 	say_list_type = /datum/say_list/horse/unicorn
 	ai_holder_type = /datum/ai_holder/simple_mob/vore
 	minbodytemp = 0
+	movement_cooldown = 1
 
 	vore_bump_chance = 75
 	vore_pounce_chance = 75
@@ -68,4 +69,7 @@
 	emote_see = list("twinkles prettily", "shakes its mane", "looks so very regal")
 
 /mob/living/simple_mob/vore/horse/unicorn/hostile
-ai_holder_type = /datum/ai_holder/simple_mob/vore/hostile
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive/unicorn
+
+/datum/ai_holder/simple_mob/ranged/aggressive/unicorn
+	pointblank = FALSE

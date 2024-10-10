@@ -7,7 +7,8 @@
 	icon_living = "ddraig"
 	icon_state = "ddraig"
 	icon_rest = "ddraig_rest"
-	faction = FACTION_DRAGON
+	faction = FACTION_GLAMOUR
+	catalogue_data = list(/datum/category_item/catalogue/fauna/ddraig)
 	old_x = -32
 	old_y = 0
 	vis_height = 92
@@ -20,7 +21,7 @@
 	response_help = "bumps"
 	response_disarm = "shoves"
 	response_harm = "bites"
-	movement_cooldown = -1
+	movement_cooldown = 1
 	harm_intent_damage = 10
 	melee_damage_lower = 15
 	melee_damage_upper = 25
@@ -38,10 +39,12 @@
 
 	var/flames
 	var/firebreathtimer
+	var/charge_warmup = 3 SECOND
+	var/tf_warmup = 2 SECOND
 
 	special_attack_min_range = 2
 	special_attack_max_range = 6
-	special_attack_cooldown = 30 SECONDS
+	special_attack_cooldown = 15 SECONDS
 
 	var/leap_warmup = 2 SECOND // How long the leap telegraphing is.
 	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
@@ -70,14 +73,14 @@
 	verbs |= /mob/living/proc/toggle_rider_reins
 	verbs |= /mob/living/proc/set_size
 	verbs |= /mob/living/proc/polymorph
-	verbs |= /mob/living/proc/invisibility
+	verbs |= /mob/living/proc/glamour_invisibility
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/ddraig/init_vore()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
-	B.desc = "The enormous beast snaps it's boney jaws around your form, effortlessly lifting you from the ground. Throwing it's head backwards, your body is tossed up momentarily as the maw parts wider, only for you to descend rapidly moments later. You're caught in the creature's throat for a moment, contracting dark purple flesh holding tightly onto you, there's no going back at this point. The peristaltic motions squeeze you down this tunnel towards your final destination, where you're soon relieved of the intense squelching to be pushed into a move flexible, stretching chamber. Immediately coated in caustic oozes, the world around you seems more than eager to ensure that you're soaked over every inch, wrinkled walls twisting and grinding around your body. The drake's stomach clenches and compresses over you rhythmically, attempting to eagerly add you to the soup of fluids that fill this sloshing gut. Omnipresent sounds of groaning, gurgling and burbling bodily functions signify just how active this process already is."
+	B.desc = "Despite the jaws of the dragon not being particular visible, once they begin to part it reveals a rather vast maw. More than wide enough to engulf your head and upper body, the ddraig lifts you effortlessly from the ground, standing up to full height with only your legs dangling from the beast's mouth. Inside you are engulfed in the wet, slimy and hot slobber of the creature. A massive tongue beneath your body curls over you to taste and lather every inch on offer. Soon enough, the dragon tosses its head backwards, sending your body beyond the throat, wrapped in the rippled lining of the creatures gullet for a slow, dark descent into the abyss below. It is a long journey through that seemingly endless neck, but eventually you are deposited in the creature's stomach. Little sound from the outside makes it inside, all drowned out by the cacophony of bodily functions groaning, burbling and beating around you. Despite the size of the beast, the gut is not massive, the walls clench down tight around your helplessly trapped body. The stomach lining grinds roughly over your body, smearing you in a slurry of slimy fluids."
 	B.vore_sound = "Tauric Swallow"
 	B.release_sound = "Pred Escape"
 	B.mode_flags = DM_FLAG_THICKBELLY
@@ -87,30 +90,39 @@
 	B.digest_brute = 3
 	B.digest_burn = 2
 	B.digest_oxy = 0
-	B.digestchance = 50
+	B.selectchance = 50
 	B.absorbchance = 0
 	B.escapechance = 3
 	B.escape_stun = 5
 	B.contamination_color = "grey"
 	B.contamination_flavor = "Wet"
 	B.emote_lists[DM_DIGEST] = list(
-		"The drake growls in annoyance before clenching those wrinkled walls tight against your form, grinding away at you!",
-		"As the beast wanders about, you're forced to slip and slide around amidst a pool of thick digestive goop, sinking briefly into the thick, heavy walls!",
-		"You can barely hear the drake let out a pleased rumble as its stomach eagerly gurgles around its newfound meal!",
+		"The ddraig coos contentedly as the walls crush and squeeze over your body!",
+		"As the ddraig moves about, it becomes more difficult to keep yourself upright, being forced to turn and slip of the slime slickened stomach lining.",
+		"You can't make out any sound from the outside as the gut grumbled and reverberates over your body.",
 		"As the thinning air begins to make you feel dizzy, menacing bworps and grumbles fill that dark, constantly shifting organ!",
 		"The constant, rhythmic kneading and massaging starts to take its toll along with the muggy heat, making you feel weaker and weaker!",
-		"The drake happily wanders around while digesting its meal, almost like it is trying to show off the hanging gut you've given it. Not like it made much of a difference on his already borderline obese form anyway~")
+		"The slender creature has no issue showing off the weak movements of you inside, even the churning of the gut itself tosses you about, all bumps so very visible on its flesh.")
+
+/datum/category_item/catalogue/fauna/ddraig
+	name = "Extra-Realspace Fauna - Ddraig"
+	desc = "Classification: Draconis glamoris\
+	<br><br>\
+	A massive dragon-like creature found to reside in the glamour, also known as whitespace. The ddraig is considered a rarity, even amongst this alien world, and often revered by other inhabitants. \
+	It is rarely considered outright aggressive, but has been known to attack if it feels threatened. It is a sapiant creature and considered to be particularly intelligent. \
+	It is a carnivorous creature and quite capable of hunting. Aside from the deadly claws and teeth, it is also able to breathe fire like realspace dragons, turn itself invisible at will, and transform other creatures temporarily."
+	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/ddraig/do_special_attack(atom/A)
 	. = TRUE
 	if(ckey)
 		return
 	var/specialattack = rand(1,3)
-	if(rand == 1)
+	if(specialattack == 1)
 		lunge(A)
-	if(rand == 2)
+	if(specialattack == 2)
 		firebreathstart(A)
-	if(rand == 3)
+	if(specialattack == 3)
 		tfbeam(A)
 
 /mob/living/simple_mob/vore/ddraig/proc/lunge(atom/A)	//Mostly copied from hunter.dm
@@ -150,10 +162,10 @@
 /mob/living/simple_mob/vore/ddraig/proc/firebreathstart(var/atom/A) //Borrowed from le big dragon
 	glow_toggle = 1
 	set_light(glow_range, glow_intensity, glow_color) //Setting it here so the light starts immediately
-	if(!enraged)
-		set_AI_busy(TRUE)
 	flames = 1
-	build_icons()
+	set_AI_busy(TRUE)
+	visible_message(span_warning("\The [src] opens its maw, emitting flames!"))
+	do_windup_animation(A, charge_warmup)
 	firebreathtimer = addtimer(CALLBACK(src, PROC_REF(firebreathend), A), charge_warmup, TIMER_STOPPABLE)
 	playsound(src, "sound/magic/Fireball.ogg", 50, 1)
 
@@ -169,11 +181,15 @@
 	set_AI_busy(FALSE)
 	glow_toggle = 0
 	flames = 0
-	build_icons()
 
 /mob/living/simple_mob/vore/ddraig/proc/tfbeam(var/atom/A)
 	if(!isturf(get_turf(A)))
 		return
+	set_AI_busy(TRUE)
+	visible_message(span_warning("\The [src] begins to shimmer with a rainbow hue!"))
+	do_windup_animation(A, tf_warmup)
+	sleep(tf_warmup)
+	set_AI_busy(FALSE)
 	var/obj/item/projectile/P = new /obj/item/projectile/beam/mouselaser/ddraig(get_turf(src))
 	src.visible_message(span_danger("\The [src] breathes a beam at \the [A]!"))
 	playsound(src, "sound/weapons/sparkle.ogg", 50, 1)
@@ -186,30 +202,118 @@
 	tracer_type = /obj/effect/projectile/tracer/rainbow
 	impact_type = /obj/effect/projectile/impact/rainbow
 
-/obj/item/projectile/beam/mouselaser/on_hit(var/atom/target)
-	var/list/tf_list = list("mouse" = /mob/living/simple_mob/animal/passive/mouse,
-		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
-		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
-		"woof" = /mob/living/simple_mob/vore/woof,
-		"corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
-		"cat" = /mob/living/simple_mob/animal/passive/cat,
-		"chicken" = /mob/living/simple_mob/animal/passive/chicken,
-		"cow" = /mob/living/simple_mob/animal/passive/cow,
-		"lizard" = /mob/living/simple_mob/animal/passive/lizard,
-		"rabbit" = /mob/living/simple_mob/vore/rabbit,
-		"fox" = /mob/living/simple_mob/animal/passive/fox,
-		"fennec" = /mob/living/simple_mob/vore/fennec,
-		"cute fennec" = /mob/living/simple_mob/animal/passive/fennec,
-		"fennix" = /mob/living/simple_mob/vore/fennix,
-		"red panda" = /mob/living/simple_mob/vore/redpanda,
-		"opossum" = /mob/living/simple_mob/animal/passive/opossum,
-		"horse" = /mob/living/simple_mob/vore/horse,
-		"goose" = /mob/living/simple_mob/animal/space/goose,
-		"sheep" = /mob/living/simple_mob/vore/sheep)
+/obj/item/projectile/beam/mouselaser/ddraig/on_hit(var/atom/target)
+	var/mob/living/M = target
+	if(!istype(M))
+		return
+	if(target != firer)	//If you shot yourself, you probably want to be TFed so don't bother with prefs.
+		if(!M.allow_spontaneous_tf && !tf_admin_pref_override)
+			return
+	if(M.tf_mob_holder)
+		var/mob/living/ourmob = M.tf_mob_holder
+		if(ourmob.ai_holder)
+			var/datum/ai_holder/our_AI = ourmob.ai_holder
+			our_AI.set_stance(STANCE_IDLE)
+		M.tf_mob_holder = null
+		ourmob.ckey = M.ckey
+		var/turf/get_dat_turf = get_turf(target)
+		ourmob.loc = get_dat_turf
+		ourmob.forceMove(get_dat_turf)
+		ourmob.vore_selected = M.vore_selected
+		M.vore_selected = null
+		for(var/obj/belly/B as anything in M.vore_organs)
+			B.loc = ourmob
+			B.forceMove(ourmob)
+			B.owner = ourmob
+			M.vore_organs -= B
+			ourmob.vore_organs += B
+
+		ourmob.Life(1)
+		if(ishuman(M))
+			for(var/obj/item/W in M)
+				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
+					continue
+				M.drop_from_inventory(W)
+
+		qdel(target)
+		return
+	else
+		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
+			return
+		var/mob/living/new_mob = spawn_mob(M)
+		new_mob.faction = M.faction
+
+		if(new_mob && isliving(new_mob))
+			for(var/obj/belly/B as anything in new_mob.vore_organs)
+				new_mob.vore_organs -= B
+				qdel(B)
+			new_mob.vore_organs = list()
+			new_mob.name = M.name
+			new_mob.real_name = M.real_name
+			for(var/lang in M.languages)
+				new_mob.languages |= lang
+			M.copy_vore_prefs_to_mob(new_mob)
+			new_mob.vore_selected = M.vore_selected
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(ishuman(new_mob))
+					var/mob/living/carbon/human/N = new_mob
+					N.gender = H.gender
+					N.identifying_gender = H.identifying_gender
+				else
+					new_mob.gender = H.gender
+			else
+				new_mob.gender = M.gender
+				if(ishuman(new_mob))
+					var/mob/living/carbon/human/N = new_mob
+					N.identifying_gender = M.gender
+
+			for(var/obj/belly/B as anything in M.vore_organs)
+				B.loc = new_mob
+				B.forceMove(new_mob)
+				B.owner = new_mob
+				M.vore_organs -= B
+				new_mob.vore_organs += B
+
+			new_mob.ckey = M.ckey
+			if(M.ai_holder && new_mob.ai_holder)
+				var/datum/ai_holder/old_AI = M.ai_holder
+				old_AI.set_stance(STANCE_SLEEP)
+				var/datum/ai_holder/new_AI = new_mob.ai_holder
+				new_AI.hostile = old_AI.hostile
+				new_AI.retaliate = old_AI.retaliate
+			M.loc = new_mob
+			M.forceMove(new_mob)
+			new_mob.tf_mob_holder = M
+
+			spawn(30 SECONDS)
+				new_mob.revert_mob_tf() //TF them back after 30 seconds, basically takes them out of the fight for a short time.
+
+/obj/item/projectile/beam/mouselaser/ddraig/spawn_mob(var/mob/living/target)
+	var/list/tf_list = list(/mob/living/simple_mob/animal/passive/mouse,
+		/mob/living/simple_mob/animal/passive/mouse/rat,
+		/mob/living/simple_mob/vore/alienanimals/dustjumper,
+		/mob/living/simple_mob/vore/woof,
+		/mob/living/simple_mob/animal/passive/dog/corgi,
+		/mob/living/simple_mob/animal/passive/cat,
+		/mob/living/simple_mob/animal/passive/chicken,
+		/mob/living/simple_mob/animal/passive/cow,
+		/mob/living/simple_mob/animal/passive/lizard,
+		/mob/living/simple_mob/vore/rabbit,
+		/mob/living/simple_mob/animal/passive/fox,
+		/mob/living/simple_mob/vore/fennec,
+		/mob/living/simple_mob/animal/passive/fennec,
+		/mob/living/simple_mob/vore/fennix,
+		/mob/living/simple_mob/vore/redpanda,
+		/mob/living/simple_mob/animal/passive/opossum,
+		/mob/living/simple_mob/vore/horse,
+		/mob/living/simple_mob/animal/space/goose,
+		/mob/living/simple_mob/vore/sheep)
 	tf_type = pick(tf_list)
-	. = ..()
-	spawn(30 SECONDS)
-		target.revert_mob_tf() //TF them back after 30 seconds, basically takes them out of the fight for a short time.
+	if(!ispath(tf_type))
+		return
+	var/new_mob = new tf_type(get_turf(target))
+	return new_mob
 
 /datum/ai_holder/simple_mob/vore/ddraig
 	var/used_invis = 0
@@ -420,7 +524,7 @@
 	var/new_mob = new tf_type(get_turf(src))
 	return new_mob
 
-/mob/living/proc/invisibility()
+/mob/living/proc/glamour_invisibility()
 	set name = "Invisibility"
 	set desc = "Change your appearance to match your surroundings, becoming completely invisible to the naked eye."
 	set category = "Abilities"
@@ -431,11 +535,7 @@
 
 	if(!cloaked)
 		cloak()
-		block_hud = 1
-		hud_updateflag = 1
-		to_chat(src, span_warning("Your fur shimmers and shifts around you, hiding you from the naked eye."))
+		to_chat(src, span_warning("Your skin shimmers and shifts around you, hiding you from the naked eye."))
 	else
 		uncloak()
-		block_hud = 0
-		hud_updateflag = 1
-		to_chat(src, span_warning("The brustling of your fur settles down and you become visible once again."))
+		to_chat(src, span_warning("The shifting of your skin settles down and you become visible once again."))
