@@ -220,11 +220,13 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	SHOULD_NOT_SLEEP(TRUE)
 	apply_to_client(client, value)
 
-/// Apply this preference onto the given living and its subtypes.
-/// Calls the according procs depending on type
-/datum/preferences/proc/apply_prefs_to(mob/living)
+/// Apply this preference onto the given liivng mob.
+/// calls the according procs depending on type
+/datum/preference/proc/apply_prefs_to(mob/living)
 	apply_to_living(living)
-	if(ishuman(living))
+	if(isanimal(living))
+		apply_to_animal(living)
+	else if(ishuman(living))
 		apply_to_human(living)
 	else if(issilicon(living))
 		apply_to_silicon(living)
@@ -241,6 +243,14 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Must be overriden by subtypes.
 /// Called when the savefile_identifier == PREFERENCE_CHARACTER.
 /datum/preference/proc/apply_to_silicon(mob/living/silicon/target, value)
+	SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(FALSE)
+	CRASH("`apply_to_human()` was not implemented for [type]!")
+
+/// Apply this preference onto the given animal.
+/// Must be overriden by subtypes.
+/// Called when the savefile_identifier == PREFERENCE_CHARACTER.
+/datum/preference/proc/apply_to_animal(mob/living/simple_mob/target, value)
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("`apply_to_human()` was not implemented for [type]!")
@@ -514,16 +524,34 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/choiced/human/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/choiced/human/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/choiced/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/choiced/living/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/choiced/living/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/choiced/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/choiced/silicon/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/choiced/silicon/apply_to_animal(mob/living/simple_mob, value)
+	return
+
+/datum/preference/choiced/animal/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+/datum/preference/choiced/animal/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/choiced/animal/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
 /// A preference that represents an RGB color of something.
@@ -549,16 +577,34 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/color/human/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/color/human/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/color/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/color/living/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/color/living/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/color/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/color/silicon/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/color/silicon/apply_to_animal(mob/living/simple_mob, value)
+	return
+
+/datum/preference/color/animal/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+/datum/preference/color/animal/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/color/animal/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
 /// A numeric preference with a minimum and maximum value
@@ -601,16 +647,34 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/numeric/human/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/numeric/human/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/numeric/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/numeric/living/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/numeric/living/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/numeric/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/numeric/silicon/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/numeric/silicon/apply_to_animal(mob/living/simple_mob, value)
+	return
+
+/datum/preference/numeric/animal/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+/datum/preference/numeric/animal/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/numeric/animal/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
 /// A preference whose value is always TRUE or FALSE
@@ -629,10 +693,14 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/toggle/is_valid(value)
 	return value == TRUE || value == FALSE
 
+
 /datum/preference/toggle/human/apply_to_living(mob/living/target, value)
 	return
 
 /datum/preference/toggle/human/apply_to_silicon(mob/living/silicon/target, value)
+	return
+
+/datum/preference/toggle/human/apply_to_animal(mob/living/simple_mob, value)
 	return
 
 /datum/preference/toggle/living/apply_to_human(mob/living/carbon/human/target, value)
@@ -641,10 +709,25 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/toggle/living/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/toggle/living/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/toggle/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/toggle/silicon/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/toggle/silicon/apply_to_animal(mob/living/simple_mob, value)
+	return
+
+/datum/preference/toggle/animal/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+/datum/preference/toggle/animal/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/toggle/animal/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
 /// A string-based preference accepting arbitrary string values entered by the user, with a maximum length.
@@ -676,14 +759,32 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/text/human/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/text/human/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/text/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/text/living/apply_to_silicon(mob/living/silicon/target, value)
 	return
 
+/datum/preference/text/living/apply_to_animal(mob/living/simple_mob, value)
+	return
+
 /datum/preference/text/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
 /datum/preference/text/silicon/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/text/silicon/apply_to_animal(mob/living/simple_mob, value)
+	return
+
+/datum/preference/text/animal/apply_to_human(mob/living/carbon/human/target, value)
+	return
+
+/datum/preference/text/animal/apply_to_living(mob/living/target, value)
+	return
+
+/datum/preference/text/animal/apply_to_silicon(mob/living/silicon/target, value)
 	return
