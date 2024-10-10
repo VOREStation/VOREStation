@@ -77,8 +77,8 @@
 /datum/preference/proc/included_in_randomization_flags(randomize_flags)
 	return TRUE
 
-/datum/preference/name/included_in_randomization_flags(randomize_flags)
-	return !!(randomize_flags & RANDOMIZE_NAME)
+// /datum/preference/name/included_in_randomization_flags(randomize_flags)
+// 	return !!(randomize_flags & RANDOMIZE_NAME)
 
-/datum/preference/choiced/species/included_in_randomization_flags(randomize_flags)
-	return !!(randomize_flags & RANDOMIZE_SPECIES)
+// /datum/preference/choiced/species/included_in_randomization_flags(randomize_flags)
+// 	return !!(randomize_flags & RANDOMIZE_SPECIES)
