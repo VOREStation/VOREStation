@@ -108,3 +108,9 @@
 //VOREStation edit ends
 /obj/effect/projectile/muzzle/pointdefense
 	icon_state = "muzzle_pointdef"
+
+/obj/effect/projectile/muzzle/rainbow
+	icon_state = "muzzle_rainbow"
+	light_range = 3
+	light_power = 1
+	light_color = "#ffffff"

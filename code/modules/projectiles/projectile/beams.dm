@@ -432,6 +432,17 @@
 	tracer_type = /obj/effect/projectile/tracer/darkmatter
 	impact_type = /obj/effect/projectile/impact/darkmatter
 	hud_state = "plasma_rifle_blast"
+
+/obj/item/projectile/beam/rainbow
+	name = "rainbow"
+	fire_sound = 'sound/weapons/sparkle.ogg'
+	icon_state = "rainbow"
+	light_color = "#ffffff"
+	muzzle_type = /obj/effect/projectile/muzzle/rainbow
+	tracer_type = /obj/effect/projectile/tracer/rainbow
+	impact_type = /obj/effect/projectile/impact/rainbow
+	hud_state = "laser"
+	damage = 20
 //
 // Projectile Beam Definitions
 //
