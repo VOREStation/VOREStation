@@ -220,6 +220,15 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	SHOULD_NOT_SLEEP(TRUE)
 	apply_to_client(client, value)
 
+/// Apply this preference onto the given living and its subtypes.
+/// Calls the according procs depending on type
+/datum/preferences/proc/apply_prefs_to(mob/living)
+	apply_to_living(living)
+	if(ishuman(living))
+		apply_to_human(living)
+	else if(issilicon(living))
+		apply_to_silicon(living)
+
 /// Apply this preference onto the given human.
 /// Must be overriden by subtypes.
 /// Called when the savefile_identifier == PREFERENCE_CHARACTER.
