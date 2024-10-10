@@ -317,6 +317,43 @@
 
 /datum/ai_holder/simple_mob/vore/ddraig
 	var/used_invis = 0
+	can_flee = TRUE
+	flee_when_dying = FALSE
+
+/datum/ai_holder/simple_mob/vore/find_target(list/possible_targets, has_targets_list)
+	if(!vore_hostile)
+		return ..()
+	if(!isanimal(holder))	//Only simplemobs have the vars we need
+		return ..()
+	var/mob/living/simple_mob/H = holder
+	if(H.vore_fullness >= H.vore_capacity)	//Don't beat people up if we're full
+		return ..()
+	ai_log("find_target() : Entered.", AI_LOG_TRACE)
+
+	. = list()
+	if(!has_targets_list)
+		possible_targets = list_targets()
+	var/list/valid_mobs = list()
+	for(var/mob/living/possible_target in possible_targets)
+		if(!can_attack(possible_target))
+			continue
+		if(istype(target,/mob/living/simple_mob) && !check_attacker(target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
+			continue
+		. |= possible_target
+		if(!isliving(possible_target))
+			continue
+		if(vore_check(possible_target))
+			valid_mobs |= possible_target
+
+	var/new_target
+	if(valid_mobs.len)
+		new_target = pick(valid_mobs)
+	else if(hostile)
+		new_target = pick(.)
+	if(!new_target)
+		return null
+	give_target(new_target)
+	return new_target
 
 /datum/ai_holder/simple_mob/vore/ddraig/engage_target()
 	ai_log("engage_target() : Entering.", AI_LOG_DEBUG)
@@ -328,8 +365,16 @@
 	if((holder.health < (holder.maxHealth / 4)) && !used_invis)
 		holder.cloak()
 		used_invis = 1
+		step_away(holder, target, 8)
+		step_away(holder, target, 8)
+		step_away(holder, target, 8)
+		step_away(holder, target, 8)
+		step_away(holder, target, 8)
 		spawn(60 SECONDS)
 			holder.uncloak()
+
+	if(istype(target,/mob/living/simple_mob) && !check_attacker(target)) //Immediately disengage with TF'd mobs so you don't one shot the poor guy you turned into a mouse.
+		lose_target()
 
 	// Can we still see them?
 	if(!target || !can_attack(target))
