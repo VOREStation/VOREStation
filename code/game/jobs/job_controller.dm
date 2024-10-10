@@ -50,7 +50,7 @@ var/global/datum/controller/occupations/job_master
 		var/datum/job/job = GetJob(rank)
 		if(!job)
 			return 0
-		if((job.minimum_character_age || job.min_age_by_species) && (player.client.prefs.age < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
+		if((job.minimum_character_age || job.min_age_by_species) && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
 			return 0
 		if(jobban_isbanned(player, rank))
 			return 0
@@ -93,7 +93,7 @@ var/global/datum/controller/occupations/job_master
 		if(!job.player_old_enough(player.client))
 			Debug("FOC player not old enough, Player: [player]")
 			continue
-		if(job.minimum_character_age && (player.client.prefs.age < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
+		if(job.minimum_character_age && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
 			Debug("FOC character not old enough, Player: [player]")
 			continue
 		//VOREStation Code Start
@@ -121,7 +121,7 @@ var/global/datum/controller/occupations/job_master
 		if(!job)
 			continue
 
-		if((job.minimum_character_age || job.min_age_by_species) && (player.client.prefs.age < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
+		if((job.minimum_character_age || job.min_age_by_species) && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
 			continue
 
 		if(job.is_species_banned(player.client.prefs.species, player.client.prefs.organ_data["brain"]) == TRUE)
@@ -180,7 +180,7 @@ var/global/datum/controller/occupations/job_master
 			for(var/mob/V in candidates)
 				// Log-out during round-start? What a bad boy, no head position for you!
 				if(!V.client) continue
-				var/age = V.client.prefs.age
+				var/age = V.read_preference(/datum/preference/numeric/human/age)
 
 				if(age < job.get_min_age(V.client.prefs.species, V.client.prefs.organ_data["brain"])) // Nope.
 					continue
