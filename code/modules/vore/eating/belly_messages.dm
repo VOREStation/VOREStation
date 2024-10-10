@@ -199,6 +199,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	. = replacetext(., "%countprey", use_absorbed_count ? absorbed_count : total_prey_count)
 	. = replacetext(., "%countghosts", ghost_count)
 	. = replacetext(., "%count", all_object_and_prey_count)
+	. = replacetext(., "%digestedprey", digested_prey_count)
 
 	if(!isnull(item))
 		. = replacetext(., "%item", item)

@@ -102,6 +102,9 @@ export const VoreSelectedBellyDescriptions = (props: {
               <LabeledList.Item label="%count">
                 Number of prey and items, minus ghosts.
               </LabeledList.Item>
+              <LabeledList.Item label="%digestedprey">
+                Number of prey digested in this belly.
+              </LabeledList.Item>
               <LabeledList.Item label="%item">
                 Only used in resist messages - item the prey is using to escape.
               </LabeledList.Item>
