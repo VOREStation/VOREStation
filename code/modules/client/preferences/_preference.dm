@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Apply this preference onto the given liivng mob.
 /// calls the according procs depending on type
-/datum/preference/proc/apply_prefs_to(mob/living)
+/datum/preference/proc/apply_pref_to(mob/living)
 	apply_to_living(living)
 	if(isanimal(living))
 		apply_to_animal(living)
