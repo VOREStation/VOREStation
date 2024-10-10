@@ -1,12 +1,21 @@
 /datum/preferences
 
+/datum/preferences/proc/randomise_appearance_prefs_update(randomize_flags = ALL, datum/species/current_species)
+	randomise_appearance_prefs(randomize_flags, current_species)
+
+/datum/preferences/proc/randomise_appearance_prefs_write(randomize_flags = ALL, datum/species/current_species)
+	randomise_appearance_prefs(randomize_flags, current_species, TRUE)
+
 /// Fully randomizes everything in the character.
-/datum/preferences/proc/randomise_appearance_prefs(randomize_flags = ALL, datum/species/current_species)
+/datum/preferences/proc/randomise_appearance_prefs(randomize_flags = ALL, datum/species/current_species, write = FALSE)
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (!preference.included_in_randomization_flags(randomize_flags))
 			continue
 		if (preference.is_randomizable())
-			write_preference(preference, preference.create_random_value(src, current_species))
+			if(write)
+				write_preference(preference, preference.create_random_value(src, current_species))
+			else
+				update_preference(preference, preference.create_random_value(src, current_species))
 
 /* Currently not used
 /// Randomizes the character according to preferences.
@@ -56,7 +65,7 @@
 
 	backbag = rand(1,6)
 	pdachoice = rand(1,7)
-	randomise_appearance_prefs(current_species = current_species)
+	randomise_appearance_prefs_update(current_species = current_species)
 	b_type = RANDOM_BLOOD_TYPE
 	if(H)
 		copy_to(H,1)
