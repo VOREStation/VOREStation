@@ -251,7 +251,7 @@ var/list/preferences_datums = list()
 					used_skillpoints += 6 * multiplier
 
 /datum/preferences/proc/GetSkillClass(points)
-	return CalculateSkillClass(points, read_preference(/datum/preference/numeric/age))
+	return CalculateSkillClass(points, read_preference(/datum/preference/numeric/human/age))
 
 /proc/CalculateSkillClass(points, age)
 	if(points <= 0) return "Unconfigured"
