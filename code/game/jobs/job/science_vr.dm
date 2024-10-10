@@ -86,7 +86,15 @@
 /datum/job/roboticist
 	total_positions = 3
 	pto_type = PTO_SCIENCE
-	alt_titles = list(JOB_ALT_ASSEMBLY_TECHNICIAN = /datum/alt_title/assembly_tech, JOB_ALT_BIOMECHANICAL_ENGINEER = /datum/alt_title/biomech, JOB_ALT_MECHATRONIC_ENGINEER = /datum/alt_title/mech_tech)
+	alt_titles = list(
+		JOB_ALT_ASSEMBLY_TECHNICIAN = /datum/alt_title/assembly_tech,
+		JOB_ALT_BIOMECHANICAL_ENGINEER = /datum/alt_title/biomech,
+		JOB_ALT_MECHATRONIC_ENGINEER = /datum/alt_title/mech_tech,
+		JOB_ALT_SOFTWARE_ENGINEER = /datum/alt_title/software_engi)
+
+/datum/alt_title/software_engi
+	title = JOB_ALT_SOFTWARE_ENGINEER
+	title_blurb = "A " + JOB_ALT_SOFTWARE_ENGINEER + " specializes in working with software and firmware. They also often deal with integrated circuits."
 
 /datum/alt_title/assembly_tech
 	title = JOB_ALT_ASSEMBLY_TECHNICIAN
