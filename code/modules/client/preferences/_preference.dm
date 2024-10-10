@@ -693,7 +693,6 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/toggle/is_valid(value)
 	return value == TRUE || value == FALSE
 
-
 /datum/preference/toggle/human/apply_to_living(mob/living/target, value)
 	return
 
