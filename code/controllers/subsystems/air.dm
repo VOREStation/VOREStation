@@ -244,9 +244,8 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/stat_entry(msg_prefix)
-	var/list/msg = list(msg_prefix)
-	msg += "S:[current_step ? part_names[current_step] : ""] "
+/datum/controller/subsystem/air/stat_entry(msg)
+	msg = "S:[current_step ? part_names[current_step] : ""] "
 	msg += "C:{"
 	msg += "T [round(cost_turfs, 1)] | "
 	msg += "E [round(cost_edges, 1)] | "
@@ -263,7 +262,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	msg += "H [active_hotspots.len] | "
 	msg += "Z [zones_to_update.len] "
 	msg += "}"
-	..(msg.Join())
+	return ..()
 
 // ZAS might displace objects as the map loads if an air tick is processed mid-load.
 /datum/controller/subsystem/air/StartLoadingMap(var/quiet = TRUE)

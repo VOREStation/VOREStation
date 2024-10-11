@@ -24,8 +24,9 @@ SUBSYSTEM_DEF(processing)
 		if(CHECK_BITFIELD(D.datum_flags, DF_ISPROCESSING))
 			processing |= D
 
-/datum/controller/subsystem/processing/stat_entry()
-	..("[stat_tag]:[processing.len]")
+/datum/controller/subsystem/processing/stat_entry(msg)
+	msg = "[stat_tag]:[processing.len]"
+	return ..()
 
 /datum/controller/subsystem/processing/fire(resumed = 0)
 	if (!resumed)
@@ -69,14 +70,14 @@ SUBSYSTEM_DEF(processing)
 		log_world(msg)
 		return
 	msg += "Lists: current_run: [currentrun.len], processing: [processing.len]\n"
-	
+
 	if(!currentrun.len)
 		msg += "!!The subsystem just finished the processing list, and currentrun is empty (or has never run).\n"
 		msg += "!!The info below is the tail of processing instead of currentrun.\n"
-	
+
 	var/datum/D = currentrun.len ? currentrun[currentrun.len] : processing[processing.len]
 	msg += "Tail entry: [describeThis(D)] (this is likely the item AFTER the problem item)\n"
-	
+
 	var/position = processing.Find(D)
 	if(!position)
 		msg += "Unable to find context of tail entry in processing list.\n"

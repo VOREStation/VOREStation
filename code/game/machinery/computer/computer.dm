@@ -49,12 +49,12 @@
 				return
 			if (prob(50))
 				for(var/x in verbs)
-					verbs -= x
+					src.verbs -= x
 				set_broken()
 		if(3.0)
 			if (prob(25))
 				for(var/x in verbs)
-					verbs -= x
+					src.verbs -= x
 				set_broken()
 		else
 	return

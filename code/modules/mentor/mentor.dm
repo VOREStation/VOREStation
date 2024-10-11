@@ -36,11 +36,11 @@ var/list/mentor_verbs_default = list(
 
 /client/proc/add_mentor_verbs()
 	if(mentorholder)
-		verbs += mentor_verbs_default
+		add_verb(src, mentor_verbs_default)
 
 /client/proc/remove_mentor_verbs()
 	if(mentorholder)
-		verbs -= mentor_verbs_default
+		remove_verb(src, mentor_verbs_default)
 
 /client/proc/make_mentor()
 	set category = "Special Verbs"

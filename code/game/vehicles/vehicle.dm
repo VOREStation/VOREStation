@@ -69,10 +69,10 @@
 
 
 /obj/vehicle/proc/removeVerb(verb_path)
-	verbs -= verb_path
+	src.verbs -= verb_path
 
 /obj/vehicle/proc/addVerb(verb_path)
-	verbs += verb_path
+	src.verbs += verb_path
 
 /obj/vehicle/proc/add_cell(var/obj/item/cell/C=null)
 	if(C)

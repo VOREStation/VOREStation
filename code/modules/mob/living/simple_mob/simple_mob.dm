@@ -180,7 +180,7 @@
 	var/isthermal = 0
 
 /mob/living/simple_mob/Initialize()
-	verbs -= /mob/verb/observe
+	remove_verb(src, /mob/verb/observe)
 	health = maxHealth
 
 	if(ID_provided) //VOREStation Edit
@@ -199,7 +199,7 @@
 		organ_names = GET_DECL(organ_names)
 
 	if(config.allow_simple_mob_recolor)
-		verbs |= /mob/living/simple_mob/proc/ColorMate
+		add_verb(src, /mob/living/simple_mob/proc/ColorMate)
 
 
 	return ..()
@@ -226,7 +226,7 @@
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
 	if(hasthermals)
-		verbs |= /mob/living/simple_mob/proc/hunting_vision //So that maint preds can see prey through walls, to make it easier to find them.
+		add_verb(src, /mob/living/simple_mob/proc/hunting_vision) //So that maint preds can see prey through walls, to make it easier to find them.
 
 /mob/living/simple_mob/SelfMove(turf/n, direct, movetime)
 	var/turf/old_turf = get_turf(src)
@@ -286,11 +286,10 @@
 
 	. += ..()
 
-
-/mob/living/simple_mob/Stat()
-	..()
-	if(statpanel("Status") && show_stat_health)
-		stat(null, "Health: [round((health / getMaxHealth()) * 100)]%")
+/mob/living/simple_mob/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "Health: [round((health / getMaxHealth()) * 100)]%"
 
 /mob/living/simple_mob/lay_down()
 	..()

@@ -131,7 +131,7 @@
 
 	update_icon()
 
-	verbs |= /mob/proc/adjust_hive_range
+	add_verb(src, /mob/proc/adjust_hive_range)
 
 	return ..()
 
@@ -225,14 +225,21 @@
 	add_overlay(tailimage)
 	add_overlay(eye_icon_state)
 
-/mob/living/simple_mob/shadekin/Stat()
-	. = ..()
-	if(statpanel("Shadekin"))
-		abilities_stat()
+/mob/living/simple_mob/shadekin/update_misc_tabs()
+	..()
+	var/list/L = list()
+	for(var/obj/effect/shadekin_ability/A as anything in shadekin_abilities)
+		var/client/C = client
+		var/img
+		if(C && istype(C)) //sanity checks
+			if(A.ability_name in C.misc_cache)
+				img = C.misc_cache[A.ability_name]
+			else
+				img = icon2html(A,C,sourceonly=TRUE)
+				C.misc_cache[A.ability_name] = img
 
-/mob/living/simple_mob/shadekin/proc/abilities_stat()
-	for(var/obj/effect/shadekin_ability/ability as anything in shadekin_abilities)
-		stat("[ability.ability_name]",ability.atom_button_text())
+		L[++L.len] = list("[A.ability_name]", A.ability_name, img, "Activate", REF(A))
+	misc_tabs["Shadekin"] = L
 
 //They phase back to the dark when killed
 /mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")

@@ -494,7 +494,7 @@
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/ventcrawl
+			add_verb(Tar, /mob/living/proc/ventcrawl)
 
 		if("darksight")
 			var/mob/living/carbon/human/Tar = target
@@ -509,26 +509,26 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/enter_cocoon
+			add_verb(Tar, /mob/living/carbon/human/proc/enter_cocoon)
 
 		if("transformation")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_hair
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_hair_colors
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_wings
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_tail
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_ears
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_select_shape //designed for non-shapeshifter mobs
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_select_colour
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_hair)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_hair_colors)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_gender)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_wings)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_tail)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_ears)
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_select_shape) //designed for non-shapeshifter mobs
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_select_colour)
 
 		if("set_size")
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/set_size
+			add_verb(Tar, /mob/living/proc/set_size)
 
 		if("lleill_energy")
 			var/mob/living/carbon/human/Tar = target
@@ -543,44 +543,44 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_invisibility
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_invisibility)
 
 		if("beast_form")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_beast_form
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_beast_form)
 
 		if("lleill_transmute")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_transmute
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_transmute)
 
 		if("lleill_alchemy")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_alchemy
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_alchemy)
 
 		if("lleill_drain")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_contact
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_contact)
 
 		if("brutal_pred")
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/shred_limb
+			add_verb(Tar, /mob/living/proc/shred_limb)
 
 		if("trash_eater")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/eat_trash
-			Tar.verbs |= /mob/living/proc/toggle_trash_catching
+			add_verb(Tar, /mob/living/proc/eat_trash)
+			add_verb(Tar, /mob/living/proc/toggle_trash_catching)
 
 
 		////////INVENTORY//////////////
