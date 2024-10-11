@@ -640,7 +640,7 @@
 	set name = "Active Playtime"
 	set category = "IC"
 
-	if(!play_hours.len)
+	if(!play_hours?.len)
 		to_chat(src, span_warning("Persistent playtime disabled!"))
 		return
 
