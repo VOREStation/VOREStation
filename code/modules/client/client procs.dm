@@ -646,6 +646,6 @@
 
 	var/department_hours = "Your department hours:"
 	for(var/play_hour in play_hours)
-		if(isnum(play_hours[play_hour]))
+		if(!isnum(play_hour) && isnum(play_hours[play_hour]))
 			department_hours += "<br>\t[capitalize(play_hour)]: [play_hours[play_hour]]"
 	to_chat(src, span_info(department_hours))
