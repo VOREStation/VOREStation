@@ -728,6 +728,7 @@ function draw_verbs(cat) {
 				name = splitName[1];
 		}
 		var command = part[1];
+		var desc = part[2];
 
 		if (command && name.lastIndexOf(cat, 0) != -1 && (name.length == cat.length || name.charAt(cat.length) == ".")) {
 			var subCat = name.lastIndexOf(".") != -1 ? name.split(".")[1] : null;
@@ -741,6 +742,7 @@ function draw_verbs(cat) {
 			a.href = "#";
 			a.onclick = make_verb_onclick(command.replace(/\s/g, "-"));
 			a.className = "grid-item";
+			a.title = desc || "No description";
 			var t = document.createElement("span");
 			t.textContent = command;
 			t.className = "grid-item-text";
