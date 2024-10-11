@@ -641,11 +641,14 @@
 	set category = "IC"
 
 	if(!play_hours.len)
-		to_chat(src, span_warning("No recorded playtime found!"))
+		to_chat(src, span_warning("Persistent playtime disabled!"))
 		return
 
-	var/department_hours = "Your department hours:"
+	var/department_hours = ""
 	for(var/play_hour in play_hours)
 		if(!isnum(play_hour) && isnum(play_hours[play_hour]))
 			department_hours += "<br>\t[capitalize(play_hour)]: [play_hours[play_hour]]"
-	to_chat(src, span_info(department_hours))
+	if(!department_hours)
+		to_chat(src, span_warning("No recorded playtime found!"))
+		return
+	to_chat(src, span_info("Your department hours:" + department_hours))
