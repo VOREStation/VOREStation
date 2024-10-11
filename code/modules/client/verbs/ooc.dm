@@ -276,10 +276,8 @@
 	else //Delayed to avoid wingets from Login calls.
 		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS))
 
-//CHOMPEdit Begin
 /client/verb/fix_stat_panel()
 	set name = "Fix Stat Panel"
 	set hidden = TRUE
 
 	init_verbs()
-//CHOMPEdit End

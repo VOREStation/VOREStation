@@ -113,8 +113,8 @@
 			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?")
 		return
 	//VOREStation Add End
-	if(href_list["reload_statbrowser"]) //CHOMPEdit
-		stat_panel.reinitialize() //CHOMPEdit
+	if(href_list["reload_statbrowser"])
+		stat_panel.reinitialize()
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)

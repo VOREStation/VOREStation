@@ -49,7 +49,7 @@
 /client/var/description_holders[0]
 
 /client/proc/update_description_holders(atom/A, update_antag_info=0)
-	examine_icon = null //CHOMPEdit
+	examine_icon = null
 	description_holders["info"] = A.get_description_info()
 	description_holders["fluff"] = A.get_description_fluff()
 	description_holders["antag"] = (update_antag_info)? A.get_description_antag() : ""
@@ -87,7 +87,7 @@
 	if(client)
 		var/is_antag = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
 		client.update_description_holders(A, is_antag)
-		SSstatpanels.set_examine_tab(client) //CHOMPEdit
+		SSstatpanels.set_examine_tab(client)
 
 
 /mob/verb/mob_examine()
