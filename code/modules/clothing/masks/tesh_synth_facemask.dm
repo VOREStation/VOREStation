@@ -38,7 +38,7 @@
 		var/obj/item/organ/external/E = user.organs_by_name[BP_HEAD]
 		if(istype(E) && (E.robotic >= ORGAN_ROBOT))
 			return 1
-		to_chat(user, "<span class='warning'>You must have a compatible robotic head to install this upgrade.</span>")
+		to_chat(user, span_warning("You must have a compatible robotic head to install this upgrade."))
 	return 0
 
 /obj/item/clothing/mask/synthfacemask/update_icon()

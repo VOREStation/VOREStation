@@ -43,11 +43,11 @@
 /obj/machinery/atmospheric_field_generator/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_CROWBAR) && isactive)
 		if(!src) return
-		to_chat(user, "<span class='warning'>You can't open the ARF-G whilst it's running!</span>")
+		to_chat(user, span_warning("You can't open the ARF-G whilst it's running!"))
 		return
 	if(W.has_tool_quality(TOOL_CROWBAR) && !isactive)
 		if(!src) return
-		to_chat(user, "<span class='notice'>You [hatch_open? "close" : "open"] \the [src]'s access hatch.</span>")
+		to_chat(user, span_notice("You [hatch_open? "close" : "open"] \the [src]'s access hatch."))
 		hatch_open = !hatch_open
 		update_icon()
 		if(alwaysactive && wires_intact)
@@ -55,13 +55,13 @@
 		return
 	if(hatch_open && W.has_tool_quality(TOOL_MULTITOOL))
 		if(!src) return
-		to_chat(user, "<span class='notice'>You toggle \the [src]'s activation behavior to [alwaysactive? "emergency" : "always-on"].</span>")
+		to_chat(user, span_notice("You toggle \the [src]'s activation behavior to [alwaysactive? "emergency" : "always-on"]."))
 		alwaysactive = !alwaysactive
 		update_icon()
 		return
 	if(hatch_open && W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!src) return
-		to_chat(user, "<span class='warning'>You [wires_intact? "cut" : "mend"] \the [src]'s wires!</span>")
+		to_chat(user, span_warning("You [wires_intact? "cut" : "mend"] \the [src]'s wires!"))
 		wires_intact = !wires_intact
 		update_icon()
 		return
@@ -70,13 +70,13 @@
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.isOn()) return
 		if(WT.get_fuel() < 5) // uses up 5 fuel.
-			to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
+			to_chat(user, span_warning("You need more fuel to complete this task."))
 			return
 		user.visible_message("[user] starts to disassemble \the [src].", "You start to disassemble \the [src].")
 		playsound(src, WT.usesound, 50, 1)
 		if(do_after(user,15 * W.toolspeed))
 			if(!src || !user || !WT.remove_fuel(5, user)) return
-			to_chat(user, "<span class='notice'>You fully disassemble \the [src]. There were no salvageable parts.</span>")
+			to_chat(user, span_notice("You fully disassemble \the [src]. There were no salvageable parts."))
 			qdel(src)
 		return
 
@@ -141,7 +141,7 @@
 		isactive = TRUE
 		icon_state = "arfg_on"
 		new field_type (src.loc)
-		src.visible_message("<span class='warning'>The ARF-G crackles to life!</span>","<span class='warning'>You hear an ARF-G coming online!</span>")
+		src.visible_message(span_warning("The ARF-G crackles to life!"),span_warning("You hear an ARF-G coming online!"))
 		update_use_power(USE_POWER_ACTIVE)
 	return
 

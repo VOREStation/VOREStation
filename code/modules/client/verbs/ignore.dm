@@ -8,15 +8,15 @@
 	key_to_ignore = ckey(sanitize(key_to_ignore))
 	if(prefs && prefs.ignored_players)
 		if(key_to_ignore in prefs.ignored_players)
-			to_chat(usr, "<span class='warning'>[key_to_ignore] is already being ignored.</span>")
+			to_chat(usr, span_warning("[key_to_ignore] is already being ignored."))
 			return
 		if(key_to_ignore == usr.ckey)
-			to_chat(usr, "<span class='notice'>You can't ignore yourself.</span>")
+			to_chat(usr, span_notice("You can't ignore yourself."))
 			return
 
 		prefs.ignored_players |= key_to_ignore
 		SScharacter_setup.queue_preferences_save(prefs)
-		to_chat(usr, "<span class='notice'>Now ignoring <b>[key_to_ignore]</b>.</span>")
+		to_chat(usr, span_notice("Now ignoring <b>[key_to_ignore]</b>."))
 
 /client/verb/unignore()
 	set name = "Unignore"
@@ -24,11 +24,11 @@
 	set desc = "Reverts your ignoring of a specific player."
 
 	if(!prefs)
-		to_chat(usr, "<span class='warning'>Preferences not found.</span>")
+		to_chat(usr, span_warning("Preferences not found."))
 		return
 
 	if(!prefs.ignored_players?.len)
-		to_chat(usr, "<span class='warning'>You aren't ignoring any players.</span>")
+		to_chat(usr, span_warning("You aren't ignoring any players."))
 		return
 
 	var/key_to_unignore = tgui_input_list(usr, "Ignored players", "Unignore", prefs.ignored_players)
@@ -36,11 +36,11 @@
 		return
 	key_to_unignore = ckey(sanitize(key_to_unignore))
 	if(!(key_to_unignore in prefs.ignored_players))
-		to_chat(usr, "<span class='warning'>[key_to_unignore] isn't being ignored.</span>")
+		to_chat(usr, span_warning("[key_to_unignore] isn't being ignored."))
 		return
 	prefs.ignored_players -= key_to_unignore
 	SScharacter_setup.queue_preferences_save(prefs)
-	to_chat(usr, "<span class='notice'>Reverted ignore on <b>[key_to_unignore]</b>.</span>")
+	to_chat(usr, span_notice("Reverted ignore on <b>[key_to_unignore]</b>."))
 
 /mob/proc/is_key_ignored(var/key_to_check)
 	if(client)

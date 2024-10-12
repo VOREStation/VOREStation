@@ -21,7 +21,7 @@ var/global/list/cached_icons = list()
 /obj/item/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target) && reagents.total_volume > 5)
-		user.visible_message("<span class='warning'>\The [target] has been splashed with something by [user]!</span>")
+		user.visible_message(span_warning("\The [target] has been splashed with something by [user]!"))
 		reagents.trans_to_turf(target, 5)
 	else
 		return ..()
@@ -75,4 +75,3 @@ var/global/list/cached_icons = list()
 	name = "paint remover bucket"
 	icon_state = "paint_white"
 	paint_type = "#FFFFFF"
-

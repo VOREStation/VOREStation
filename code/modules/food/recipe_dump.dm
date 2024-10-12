@@ -110,7 +110,7 @@
 			var/amt = drink_recipes[Rp]["Catalysts"][rid]
 			drink_recipes[Rp]["Catalysts"] -= rid
 			drink_recipes[Rp]["Catalysts"][R_name] = amt
-			
+
 	//We can also change the appliance to its proper name.
 	for(var/Rp in food_recipes)
 		switch(food_recipes[Rp]["Appliance"])
@@ -181,7 +181,7 @@
 
 		//Name
 		html += "<td><b>[food_recipes[Rp]["Result"]]</b></td>"
-		
+
 		//Appliance
 		html += "<td><b>[food_recipes[Rp]["Appliance"]]</b></td>"
 
@@ -199,9 +199,9 @@
 
 		//Coating
 		if(!food_recipes[Rp]["has_coatable_items"])
-			html += "<span class = \"coating coating_not_applicable\"><li><b>Coating:</b> N/A, no coatable items</li></span>" 
+			html += "<span class = \"coating coating_not_applicable\"><li><b>Coating:</b> N/A, no coatable items</li></span>"
 			// css can be used to style or hide these depending on the class.  This has two classes
-			// coating and coating_not_applicable, which can each have styles applied. 
+			// coating and coating_not_applicable, which can each have styles applied.
 		else if(food_recipes[Rp]["Coating"] == -1)
 			html += "<span class = \"coating coating_any_coating\"><li><b>Coating:</b> Optionally, any coating</li></span>"
 		else if(isnull(food_recipes[Rp]["Coating"]))
@@ -295,4 +295,4 @@
 	html += "</table></body></html>"
 	src << browse(html, "window=recipes;file=recipes_drinks.html;display=0")
 
-	to_chat(src, "<span class='notice'>In your byond cache, recipe-xxx.png files and recipes_drinks.html and recipes_food.html now exist. Place recipe-xxx.png files in a subfolder named 'imgrecipes' wherever you put them. The file will take a food.css or drinks.css file if in the same path.</span>")
+	to_chat(src, span_notice("In your byond cache, recipe-xxx.png files and recipes_drinks.html and recipes_food.html now exist. Place recipe-xxx.png files in a subfolder named 'imgrecipes' wherever you put them. The file will take a food.css or drinks.css file if in the same path."))

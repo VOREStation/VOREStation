@@ -30,9 +30,9 @@
 	if(next)
 		grenades -= next //Remove grenade from loaded list.
 		chambered = next
-		to_chat(M, "<span class='warning'>You pump [src], loading \a [next] into the chamber.</span>")
+		to_chat(M, span_warning("You pump [src], loading \a [next] into the chamber."))
 	else
-		to_chat(M, "<span class='warning'>You pump [src], but the magazine is empty.</span>")
+		to_chat(M, span_warning("You pump [src], but the magazine is empty."))
 	update_icon()
 
 /obj/item/gun/launcher/grenade/examine(mob/user)
@@ -46,24 +46,24 @@
 /obj/item/gun/launcher/grenade/proc/load(obj/item/grenade/G, mob/user)
 	if(G.loadable)
 		if(grenades.len >= max_grenades)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return
 		user.remove_from_mob(G)
 		G.loc = src
 		grenades.Insert(1, G) //add to the head of the list, so that it is loaded on the next pump
-		user.visible_message("[user] inserts \a [G] into [src].", "<span class='notice'>You insert \a [G] into [src].</span>")
+		user.visible_message("[user] inserts \a [G] into [src].", span_notice("You insert \a [G] into [src]."))
 		return
-	to_chat(user, "<span class='warning'>[G] doesn't seem to fit in the [src]!</span>")
+	to_chat(user, span_warning("[G] doesn't seem to fit in the [src]!"))
 
 /obj/item/gun/launcher/grenade/proc/unload(mob/user)
 	if(grenades.len)
 		var/obj/item/grenade/G = grenades[grenades.len]
 		grenades.len--
 		user.put_in_hands(G)
-		user.visible_message("[user] removes \a [G] from [src].", "<span class='notice'>You remove \a [G] from [src].</span>")
+		user.visible_message("[user] removes \a [G] from [src].", span_notice("You remove \a [G] from [src]."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
-		to_chat(user, "<span class='warning'>[src] is empty.</span>")
+		to_chat(user, span_warning("[src] is empty."))
 
 /obj/item/gun/launcher/grenade/attack_self(mob/user)
 	pump(user)
@@ -106,20 +106,20 @@
 /obj/item/gun/launcher/grenade/underslung/load(obj/item/grenade/G, mob/user)
 	if(G.loadable)
 		if(chambered)
-			to_chat(user, "<span class='warning'>[src] is already loaded.</span>")
+			to_chat(user, span_warning("[src] is already loaded."))
 			return
 		user.remove_from_mob(G)
 		G.loc = src
 		chambered = G
-		user.visible_message("[user] load \a [G] into [src].", "<span class='notice'>You load \a [G] into [src].</span>")
+		user.visible_message("[user] load \a [G] into [src].", span_notice("You load \a [G] into [src]."))
 		return
-	to_chat(user, "<span class='warning'>[G] doesn't seem to fit in the [src]!</span>")
+	to_chat(user, span_warning("[G] doesn't seem to fit in the [src]!"))
 
 /obj/item/gun/launcher/grenade/underslung/unload(mob/user)
 	if(chambered)
 		user.put_in_hands(chambered)
-		user.visible_message("[user] removes \a [chambered] from [src].", "<span class='notice'>You remove \a [chambered] from [src].</span>")
+		user.visible_message("[user] removes \a [chambered] from [src].", span_notice("You remove \a [chambered] from [src]."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		chambered = null
 	else
-		to_chat(user, "<span class='warning'>[src] is empty.</span>")
+		to_chat(user, span_warning("[src] is empty."))

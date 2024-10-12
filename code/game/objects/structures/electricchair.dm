@@ -34,7 +34,7 @@
 	else
 		on = 1
 		icon_state = "echair1"
-	to_chat(usr, "<span class='notice'>You switch [on ? "on" : "off"] [src].</span>")
+	to_chat(usr, span_notice("You switch [on ? "on" : "off"] [src]."))
 	return
 
 /obj/structure/bed/chair/e_chair/rotate_clockwise()
@@ -67,11 +67,11 @@
 	if(has_buckled_mobs())
 		for(var/mob/living/L as anything in buckled_mobs)
 			L.burn_skin(85)
-			to_chat(L, "<span class='danger'>You feel a deep shock course through your body!</span>")
+			to_chat(L, span_danger("You feel a deep shock course through your body!"))
 			sleep(1)
 			L.burn_skin(85)
 			L.Stun(600)
-	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
+	visible_message(span_danger("The electric chair went off!"), span_danger("You hear a deep sharp shock!"))
 
 	A.power_light = light
 	A.update_icon()

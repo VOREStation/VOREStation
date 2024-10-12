@@ -31,9 +31,9 @@
 		var/string = "It contains....</br>"
 		for (var/atom/movable/A in contents)
 			string += "[A.name] </br>"
-		. += "<span class='notice'>[string]</span>"
+		. += span_notice("[string]")
 	if (reagents.total_volume)
-		. += "<span class='notice'>It contains [reagents.total_volume]u of reagents.</span>"
+		. += span_notice("It contains [reagents.total_volume]u of reagents.")
 
 
 /obj/item/reagent_containers/cooking_container/attackby(var/obj/item/I as obj, var/mob/user as mob)
@@ -53,13 +53,13 @@
 	for (var/possible_type in insertable)
 		if (istype(I, possible_type))
 			if (!can_fit(I))
-				to_chat(user, "<span class='warning'>There's no more space in the [src] for that!</span>")
+				to_chat(user, span_warning("There's no more space in the [src] for that!"))
 				return 0
 
 			if(!user.unEquip(I) && !isturf(I.loc))
 				return
 			I.forceMove(src)
-			to_chat(user, "<span class='notice'>You put the [I] into the [src].</span>")
+			to_chat(user, span_notice("You put the [I] into the [src]."))
 			food_items += 1
 			update_icon()
 			return
@@ -78,21 +78,21 @@
 		return
 
 	if (user.stat || user.restrained())
-		to_chat(user, "<span class='notice'>You are in no fit state to do this.</span>")
+		to_chat(user, span_notice("You are in no fit state to do this."))
 		return
 
 	if (!Adjacent(user))
-		to_chat(user, "<span class='filter_notice'>You can't reach [src] from here.</span>")
+		to_chat(user, span_filter_notice("You can't reach [src] from here."))
 		return
 
 	if (!contents.len)
-		to_chat(user, "<span class='warning'>There's nothing in the [src] you can remove!</span>")
+		to_chat(user, span_warning("There's nothing in the [src] you can remove!"))
 		return
 
 	for (var/atom/movable/A in contents)
 		A.forceMove(get_turf(src))
 
-	to_chat(user, "<span class='notice'>You remove all the solid items from the [src].</span>")
+	to_chat(user, span_notice("You remove all the solid items from the [src]."))
 
 /obj/item/reagent_containers/cooking_container/proc/check_contents()
 	if (contents.len == 0)

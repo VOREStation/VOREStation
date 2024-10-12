@@ -88,7 +88,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+			to_chat(user, span_notice("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -105,7 +105,7 @@
 			ChangeTurf(/turf/simulated/floor/airless)
 			return
 		else
-			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
+			to_chat(user, span_warning("The plating is going to need some support."))
 
 	if(istype(C, /obj/item/stack/tile/roofing))
 		var/turf/T = GetAbove(src)
@@ -119,16 +119,16 @@
 				if(!A)
 					A = locate(/turf/simulated/wall) in T.CardinalTurfs()
 				if(!A)
-					to_chat(user, "<span class='warning'>There's nothing to attach the ceiling to!</span>")
+					to_chat(user, span_warning("There's nothing to attach the ceiling to!"))
 					return
 
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
 					T.ChangeTurf(/turf/simulated/floor)
 					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-					user.visible_message("<span class='notice'>[user] expands the ceiling.</span>", "<span class='notice'>You expand the ceiling.</span>")
+					user.visible_message(span_notice("[user] expands the ceiling."), span_notice("You expand the ceiling."))
 			else
-				to_chat(user, "<span class='warning'>There aren't any holes in the ceiling to patch here.</span>")
+				to_chat(user, span_warning("There aren't any holes in the ceiling to patch here."))
 				return
 		// Space shouldn't have weather of the sort planets with atmospheres do.
 		// If that's changed, then you'll want to swipe the rest of the roofing code from code/game/turfs/simulated/floor_attackby.dm

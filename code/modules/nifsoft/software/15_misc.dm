@@ -21,7 +21,7 @@
 				deactivate()
 			return FALSE
 
-		H.visible_message("<span class='warning'>Thin snakelike tendrils grow from [H] and connect to \the [apc].</span>","<span class='notice'>Thin snakelike tendrils grow from you and connect to \the [apc].</span>")
+		H.visible_message(span_warning("Thin snakelike tendrils grow from [H] and connect to \the [apc]."),span_notice("Thin snakelike tendrils grow from you and connect to \the [apc]."))
 
 /datum/nifsoft/apc_recharge/deactivate(var/force = FALSE)
 	if((. = ..()))
@@ -36,7 +36,7 @@
 			return TRUE
 		else
 			nif.notify("APC charging has ended.")
-			H.visible_message("<span class='warning'>[H]'s snakelike tendrils whip back into their body from \the [apc].</span>","<span class='notice'>The APC connector tendrils return to your body.</span>")
+			H.visible_message(span_warning("[H]'s snakelike tendrils whip back into their body from \the [apc]."),span_notice("The APC connector tendrils return to your body."))
 			deactivate()
 			return FALSE
 
@@ -105,11 +105,11 @@
 
 /datum/nifsoft/compliance/activate()
 	if((. = ..()))
-		to_chat(nif.human,"<span class='danger'>You are compelled to follow these rules: </span>\n<span class='notify'>[laws]</span>")
+		to_chat(nif.human,span_danger("You are compelled to follow these rules: </span>\n<span class='notify'>[laws]"))
 
 /datum/nifsoft/compliance/install()
 	if((. = ..()))
-		to_chat(nif.human,"<span class='danger'>You feel suddenly compelled to follow these rules: </span>\n<span class='notify'>[laws]</span>")
+		to_chat(nif.human,span_danger("You feel suddenly compelled to follow these rules: </span>\n<span class='notify'>[laws]"))
 
 /datum/nifsoft/compliance/uninstall()
 	nif.notify("ERROR! Unable to comply!",TRUE)
@@ -131,12 +131,12 @@
 
 		if (!nif.human.size_range_check(new_size))
 			if(new_size)
-				to_chat(nif.human,"<span class='notice'>The safety features of the NIF Program prevent you from choosing this size.</span>")
+				to_chat(nif.human,span_notice("The safety features of the NIF Program prevent you from choosing this size."))
 			return
 		else
 			if(nif.human.resize(new_size/100, uncapped=nif.human.has_large_resize_bounds(), ignore_prefs = TRUE))
-				to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
-				nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
+				to_chat(nif.human,span_notice("You set the size to [new_size]%"))
+				nif.human.visible_message(span_warning("Swirling grey mist envelops [nif.human] as they change size!"),span_notice("Swirling streams of nanites wrap around you as you change size!"))
 		spawn(0)
 			deactivate()
 
@@ -188,7 +188,7 @@
 
 /datum/nifsoft/malware/activate()
 	if((. = ..()))
-		to_chat(nif.human,"<span class='danger'>Runtime error in 15_misc.dm, line 191.</span>")
+		to_chat(nif.human,span_danger("Runtime error in 15_misc.dm, line 191."))
 
 /datum/nifsoft/malware/install()
 	if((. = ..()))

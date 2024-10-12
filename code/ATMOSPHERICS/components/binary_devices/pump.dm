@@ -205,7 +205,7 @@ Thus, the two variables affect pump operation are set in New():
 		return
 	add_fingerprint(usr)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 	tgui_interact(user)
 
@@ -242,17 +242,17 @@ Thus, the two variables affect pump operation are set in New():
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
-		to_chat(user, "<span class='warning'>You cannot unwrench this [src], turn it off first.</span>")
+		to_chat(user, span_warning("You cannot unwrench this [src], turn it off first."))
 		return 1
 	if(!can_unwrench())
-		to_chat(user, "<span class='warning'>You cannot unwrench this [src], it too exerted due to internal pressure.</span>")
+		to_chat(user, span_warning("You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 	playsound(src, W.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
 			"<b>\The [user]</b> unfastens \the [src].", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		deconstruct()

@@ -20,12 +20,12 @@
 	var/inject_amount = 10
 	if(src.mind.changeling.recursive_enhancement)
 		inject_amount = inject_amount * 1.5
-		to_chat(src, "<span class='notice'>We inject extra chemicals.</span>")
+		to_chat(src, span_notice("We inject extra chemicals."))
 	if(T.reagents)
 		T.reagents.add_reagent("cryotoxin", inject_amount)
 	feedback_add_details("changeling_powers","CS")
 	src.verbs -= /mob/proc/changeling_cryo_sting
 	spawn(3 MINUTES)
-		to_chat(src, "<span class='notice'>Our cryogenic string is ready to be used once more.</span>")
+		to_chat(src, span_notice("Our cryogenic string is ready to be used once more."))
 		src.verbs |= /mob/proc/changeling_cryo_sting
 	return 1

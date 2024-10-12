@@ -18,7 +18,7 @@
 /obj/item/stack/animalhide/attackby(obj/item/W as obj, mob/user as mob)
 	if(has_edge(W) || is_sharp(W))
 		//visible message on mobs is defined as visible_message(var/message, var/self_message, var/blind_message)
-		user.visible_message("<b>\The [user]</b> starts cutting hair off \the [src]", "<span class='notice'>You start cutting the hair off \the [src]</span>", "You hear the sound of a knife rubbing against flesh")
+		user.visible_message("<b>\The [user]</b> starts cutting hair off \the [src]", span_notice("You start cutting the hair off \the [src]"), "You hear the sound of a knife rubbing against flesh")
 		var/scraped = 0
 		while(amount > 0 && do_after(user, 2.5 SECONDS, user))
 			//Try locating an exisitng stack on the tile and add to there if possible

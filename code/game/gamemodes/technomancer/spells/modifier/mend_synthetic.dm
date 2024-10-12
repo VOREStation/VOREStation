@@ -24,8 +24,8 @@
 	desc = "Something seems to be repairing you."
 	mob_overlay_state = "cyan_sparkles"
 
-	on_created_text = "<span class='warning'>Sparkles begin to appear around you, and your systems report integrity rising.</span>"
-	on_expired_text = "<span class='notice'>The sparkles have faded, although your systems seem to be better than before.</span>"
+	on_created_text = span_warning("Sparkles begin to appear around you, and your systems report integrity rising.")
+	on_expired_text = span_notice("The sparkles have faded, although your systems seem to be better than before.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/technomancer/mend_synthetic/tick()

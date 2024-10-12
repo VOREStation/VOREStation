@@ -22,7 +22,7 @@
 		return
 
 	else if(istype(get_area(src), /area/shuttle))
-		to_chat(user, "<span class='warning'>\The [src] cannot be constructed on a shuttle.</span>")
+		to_chat(user, span_warning("\The [src] cannot be constructed on a shuttle."))
 		return
 	if(W.has_tool_quality(TOOL_WRENCH))
 		switch(state)
@@ -41,14 +41,14 @@
 					"You hear a ratchet")
 				src.anchored = FALSE
 			if(CONSTRUCTION_WELDED)
-				to_chat(user, "<span class='warning'>\The [src] needs to be unwelded.</span>")
+				to_chat(user, span_warning("\The [src] needs to be unwelded."))
 		return
 
 	if(W.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = W.get_welder()
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
-				to_chat(user, "<span class='warning'>The refinforcing bolts need to be secured.</span>")
+				to_chat(user, span_warning("The refinforcing bolts need to be secured."))
 			if(CONSTRUCTION_WRENCHED)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -61,7 +61,7 @@
 						to_chat(user, "You weld \the [src] to the floor.")
 						try_construct(user)
 				else
-					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+					to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			if(CONSTRUCTION_WELDED)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -73,7 +73,7 @@
 						state = CONSTRUCTION_WRENCHED
 						to_chat(user, "You cut \the [src] free from the floor.")
 				else
-					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+					to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return
 
 // Try to construct this into a real stairway.
@@ -92,7 +92,7 @@
 		if(direction == DOWN && (src.z in using_map.below_blocked_levels)) continue
 		if(direction == UP && (LA.z in using_map.below_blocked_levels)) continue
 		if(LA.state != CONSTRUCTION_WELDED)
-			to_chat(user, "<span class='warning'>\The [LA] [direction == UP ? "above" : "below"] must be secured and welded.</span>")
+			to_chat(user, span_warning("\The [LA] [direction == UP ? "above" : "below"] must be secured and welded."))
 			return
 		if(direction == UP)
 			above = LA
@@ -100,7 +100,7 @@
 			below = LA
 
 	if(!above && !below)
-		to_chat(user, "<span class='notice'>\The [src] is ready to be connected to from above or below.</span>")
+		to_chat(user, span_notice("\The [src] is ready to be connected to from above or below."))
 		return
 
 	// Construct them from bottom to top, because they initialize from top to bottom.

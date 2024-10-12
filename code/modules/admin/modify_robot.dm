@@ -502,15 +502,15 @@
 				target.lawsync()
 			return TRUE
 		if("notify_laws")
-			to_chat(target, "<span class='danger'>Law Notice</span>")
+			to_chat(target, span_danger("Law Notice"))
 			target.laws.show_laws(target)
 			if(isAI(target))
 				var/mob/living/silicon/ai/AI = target
 				for(var/mob/living/silicon/robot/R in AI.connected_robots)
-					to_chat(R, "<span class='danger'>Law Notice</span>")
+					to_chat(R, span_danger("Law Notice"))
 					R.laws.show_laws(R)
 			if(usr != target)
-				to_chat(usr, "<span class='notice'>Laws displayed.</span>")
+				to_chat(usr, span_notice("Laws displayed."))
 			return TRUE
 		if("select_ai")
 			selected_ai = locate(params["new_ai"])

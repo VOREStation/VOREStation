@@ -216,9 +216,9 @@
 /obj/structure/closet/body_bag/cryobag/examine(mob/user)
 	. = ..()
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
-		. += "<span class='info'>You peer into \the [src].</span>"
+		. += span_info("You peer into \the [src].")
 		if(syringe)
-			. += "<span class='info'>It has a syringe added to it.</span>"
+			. += span_info("It has a syringe added to it.")
 		for(var/mob/living/L in contents)
 			. += L.examine(user)
 
@@ -233,10 +233,10 @@
 
 		else if(istype(W,/obj/item/reagent_containers/syringe))
 			if(syringe)
-				to_chat(user,"<span class='warning'>\The [src] already has an injector! Remove it first.</span>")
+				to_chat(user,span_warning("\The [src] already has an injector! Remove it first."))
 			else
 				var/obj/item/reagent_containers/syringe/syringe = W
-				to_chat(user,"<span class='info'>You insert \the [syringe] into \the [src], and it locks into place.</span>")
+				to_chat(user,span_info("You insert \the [syringe] into \the [src], and it locks into place."))
 				user.unEquip(syringe)
 				src.syringe = syringe
 				syringe.loc = null
@@ -247,10 +247,10 @@
 		else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 			if(syringe)
 				if(used)
-					to_chat(user,"<span class='warning'>The injector cannot be removed now that the stasis bag has been used!</span>")
+					to_chat(user,span_warning("The injector cannot be removed now that the stasis bag has been used!"))
 				else
 					syringe.forceMove(src.loc)
-					to_chat(user,"<span class='info'>You pry \the [syringe] out of \the [src].</span>")
+					to_chat(user,span_info("You pry \the [syringe] out of \the [src]."))
 					syringe = null
 
 		else

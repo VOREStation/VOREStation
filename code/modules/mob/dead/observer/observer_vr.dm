@@ -11,27 +11,27 @@
 
 	//Good choice testing and some instance-grabbing
 	if(!ishuman(picked))
-		to_chat(src,"<span class='warning'>[picked] isn't in a humanoid mob at the moment.</span>")
+		to_chat(src,span_warning("[picked] isn't in a humanoid mob at the moment."))
 		return
 
 	var/mob/living/carbon/human/H = picked
 
 	if(H.stat || !H.client)
-		to_chat(src,"<span class='warning'>[H] isn't awake/alive at the moment.</span>")
+		to_chat(src,span_warning("[H] isn't awake/alive at the moment."))
 		return
 
 	if(!H.nif)
-		to_chat(src,"<span class='warning'>[H] doesn't have a NIF installed.</span>")
+		to_chat(src,span_warning("[H] doesn't have a NIF installed."))
 		return
 
 	var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,"<span class='warning'>[H] doesn't have the Soulcatcher NIFSoft installed, or their NIF is unpowered.</span>")
+		to_chat(src,span_warning("[H] doesn't have the Soulcatcher NIFSoft installed, or their NIF is unpowered."))
 		return
 
 	//Fine fine, we can ask.
 	var/obj/item/nif/nif = H.nif
-	to_chat(src,"<span class='notice'>Request sent to [H].</span>")
+	to_chat(src,span_notice("Request sent to [H]."))
 
 	var/req_time = world.time
 	nif.notify("Transient mindstate detected, analyzing...")
@@ -39,11 +39,11 @@
 	var/response = tgui_alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny","Allow"))
 
 	if(!response || response == "Deny")
-		to_chat(src,"<span class='warning'>[H] denied your request.</span>")
+		to_chat(src,span_warning("[H] denied your request."))
 		return
 
 	if((world.time - req_time) > 1 MINUTES)
-		to_chat(H,"<span class='warning'>The request had already expired. (1 minute waiting max)</span>")
+		to_chat(H,span_warning("The request had already expired. (1 minute waiting max)"))
 		return
 
 	//Final check since we waited for input a couple times.
@@ -63,7 +63,7 @@
 	set desc = "If your past-due backup notification was missed or ignored, you can use this to send a new one."
 
 	if(!mind)
-		to_chat(src,"<span class='warning'>Your ghost is missing game values that allow this functionality, sorry.</span>")
+		to_chat(src,span_warning("Your ghost is missing game values that allow this functionality, sorry."))
 		return
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(mind.name)
 	if(db)
@@ -73,17 +73,17 @@
 				record.dead_state = MR_DEAD				//Such as if you got scanned but didn't take an implant. It's a little funky, but I mean, you got scanned
 				db.notify(record)						//So you probably will want to let someone know if you die.
 				record.last_notification = world.time
-				to_chat(src, "<span class='notice'>New notification has been sent.</span>")
+				to_chat(src, span_notice("New notification has been sent."))
 			else
-				to_chat(src, "<span class='warning'>Your backup is not past-due yet.</span>")
+				to_chat(src, span_warning("Your backup is not past-due yet."))
 		else if((world.time - record.last_notification) < 5 MINUTES)
-			to_chat(src, "<span class='warning'>Too little time has passed since your last notification.</span>")
+			to_chat(src, span_warning("Too little time has passed since your last notification."))
 		else
 			db.notify(record)
 			record.last_notification = world.time
-			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
+			to_chat(src, span_notice("New notification has been sent."))
 	else
-		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
+		to_chat(src,span_warning("No backup record could be found, sorry."))
 /*
 /mob/observer/dead/verb/backup_delay()
 	set category = "Ghost"
@@ -91,18 +91,18 @@
 	set desc = "You can use this to avoid automatic backup notification happening. Manual notification can still be used."
 
 	if(!mind)
-		to_chat(src,"<span class='warning'>Your ghost is missing game values that allow this functionality, sorry.</span>")
+		to_chat(src,span_warning("Your ghost is missing game values that allow this functionality, sorry."))
 		return
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(mind.name)
 	if(db)
 		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
 		if(record.dead_state == MR_DEAD || !(record.do_notify))
-			to_chat(src, "<span class='warning'>The notification has already happened or been delayed.</span>")
+			to_chat(src, span_warning("The notification has already happened or been delayed."))
 		else
 			record.do_notify = FALSE
-			to_chat(src, "<span class='notice'>Overdue mind backup notification delayed successfully.</span>")
+			to_chat(src, span_notice("Overdue mind backup notification delayed successfully."))
 	else
-		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
+		to_chat(src,span_warning("No backup record could be found, sorry."))
 */
 /mob/observer/dead/verb/findghostpod() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -115,7 +115,7 @@
 
 	var/input = tgui_input_list(usr, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
 	if(!input)
-		to_chat(src, "<span class='filter_notice'>No active ghost pods detected.</span>")
+		to_chat(src, span_filter_notice("No active ghost pods detected."))
 		return
 
 	var/target = observe_list_format(active_ghost_pods)[input]
@@ -129,7 +129,7 @@
 			forceMove(T)
 			stop_following()
 		else
-			to_chat(src, "<span class='filter_notice'>This ghost pod is not located in the game world.</span>")
+			to_chat(src, span_filter_notice("This ghost pod is not located in the game world."))
 
 /mob/observer/dead/verb/findautoresleever()
 	set category = "Ghost"
@@ -150,11 +150,11 @@
 	var/obj/machinery/transhuman/autoresleever/thisone = pick(ar)
 
 	if(!thisone)
-		to_chat(src, "<span class='warning'>There appears to be no auto-resleevers available.</span>")
+		to_chat(src, span_warning("There appears to be no auto-resleevers available."))
 		return
 	var/L = get_turf(thisone)
 	if(!L)
-		to_chat(src, "<span class='warning'>There appears to be something wrong with this auto-resleever, try again.</span>")
+		to_chat(src, span_warning("There appears to be something wrong with this auto-resleever, try again."))
 		return
 
 	forceMove(L)

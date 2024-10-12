@@ -24,7 +24,7 @@
 	if (istype(W, /obj/item/paper/carbon))
 		var/obj/item/paper/carbon/C = W
 		if (!C.iscopy && !C.copied)
-			to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
+			to_chat(user, span_notice("Take off the carbon copy first."))
 			add_fingerprint(user)
 			return
 	// adding sheets
@@ -43,7 +43,7 @@
 			O.add_fingerprint(usr)
 			pages.Add(O)
 
-		to_chat(user, "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
+		to_chat(user, span_notice("You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name]."))
 		qdel(W)
 	else
 		if(istype(W, /obj/item/tape_roll))
@@ -60,9 +60,9 @@
 
 /obj/item/paper_bundle/proc/insert_sheet_at(mob/user, var/index, obj/item/sheet)
 	if(istype(sheet, /obj/item/paper))
-		to_chat(user, "<span class='notice'>You add [(sheet.name == "paper") ? "the paper" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
+		to_chat(user, span_notice("You add [(sheet.name == "paper") ? "the paper" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name]."))
 	else if(istype(sheet, /obj/item/photo))
-		to_chat(user, "<span class='notice'>You add [(sheet.name == "photo") ? "the photo" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
+		to_chat(user, span_notice("You add [(sheet.name == "photo") ? "the photo" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name]."))
 
 	user.drop_from_inventory(sheet)
 	sheet.loc = src
@@ -101,7 +101,7 @@
 	if(Adjacent(user))
 		show_content(user)
 	else
-		. += "<span class='notice'>It is too far away.</span>"
+		. += span_notice("It is too far away.")
 
 /obj/item/paper_bundle/proc/show_content(mob/user as mob)
 	var/dat
@@ -169,7 +169,7 @@
 			usr.put_in_hands(W)
 			pages.Remove(pages[page])
 
-			to_chat(usr, "<span class='notice'>You remove the [W.name] from the bundle.</span>")
+			to_chat(usr, span_notice("You remove the [W.name] from the bundle."))
 
 			if(pages.len <= 1)
 				var/obj/item/paper/P = src[1]
@@ -187,7 +187,7 @@
 		src.attack_self(usr)
 		updateUsrDialog()
 	else
-		to_chat(usr, "<span class='notice'>You need to hold it in hands!</span>")
+		to_chat(usr, span_notice("You need to hold it in hands!"))
 
 /obj/item/paper_bundle/verb/rename()
 	set name = "Rename bundle"
@@ -206,7 +206,7 @@
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, "<span class='notice'>You loosen the bundle.</span>")
+	to_chat(usr, span_notice("You loosen the bundle."))
 	for(var/obj/O in src)
 		O.loc = usr.loc
 		O.layer = initial(O.layer)

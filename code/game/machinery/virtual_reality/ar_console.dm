@@ -28,7 +28,7 @@
 			visible_message("<b>\The [src]</b> emits a low droning sound, before the pod door clicks open.")
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD)
-		visible_message("<span class='warning'>\The [src] sounds an alarm, swinging its hatch open.</span>")
+		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
 		go_out()
 
 /obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
@@ -88,11 +88,11 @@
 		return
 
 	if(avatar && !occupant.stat)
-		to_chat(occupant,"<span class='alien'>\The [src] begins to [pick("whir","hum","pulse")] as a screen appears in front of you.</span>")
+		to_chat(occupant,span_alien("\The [src] begins to [pick("whir","hum","pulse")] as a screen appears in front of you."))
 		if(tgui_alert(occupant, "This pod is already linked. Are you certain you wish to engage?", "Commmit?", list("Yes", "No")) != "Yes")
-			visible_message("<span class='alien'>\The [src] pulses!</span>")
+			visible_message(span_alien("\The [src] pulses!"))
 
-	to_chat(occupant,"<span class='alien'>Your mind blurs as information bombards you.</span>")
+	to_chat(occupant,span_alien("Your mind blurs as information bombards you."))
 
 	if(!avatar)
 		var/turf/T = get_turf(src)
@@ -108,7 +108,7 @@
 			avatar.real_name = newname
 
 		avatar.forceMove(T)
-		visible_message("<span class='alium'>\The [src] [pick("gurgles", "churns", "sloshes")] before spitting out \the [avatar]!</span>")
+		visible_message(span_alium("\The [src] [pick("gurgles", "churns", "sloshes")] before spitting out \the [avatar]!"))
 
 	else
 

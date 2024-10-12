@@ -97,7 +97,7 @@
 	canmove = TRUE
 	card.setEmotion(15)
 	playsound(card, 'sound/effects/pai-restore.ogg', 50, FALSE)
-	card.visible_message("<span class='filter_notice'>\The [card] chimes.</span>", runemessage = "chime")
+	card.visible_message(span_filter_notice("\The [card] chimes."), runemessage = "chime")
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -217,7 +217,7 @@
 			hide_glow = FALSE
 		update_icon()
 	else
-		to_chat(src, "<span class='filter_notice'>Your selected chassis cannot modify its eye glow!</span>")
+		to_chat(src, span_filter_notice("Your selected chassis cannot modify its eye glow!"))
 		return
 
 
@@ -226,7 +226,7 @@
 	set name = "Pick Eye Color"
 	if(chassis in allows_eye_color)
 	else
-		to_chat(src, "<span class='warning'>Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen.</span>")
+		to_chat(src, span_warning("Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen."))
 
 	var/new_eye_color = input(src, "Choose your character's eye color:", "Eye Color") as color|null
 	if(new_eye_color)
@@ -322,19 +322,19 @@
 
 	if(H.zone_sel.selecting == "head")
 		H.visible_message( \
-			"<span class='notice'>[H] pats [target] on the head.</span>", \
-			"<span class='notice'>You pat [target] on the head.</span>", )
+			span_notice("[H] pats [target] on the head."), \
+			span_notice("You pat [target] on the head."), )
 	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
 		H.visible_message( \
-			"<span class='notice'>[H] shakes [target]'s hand.</span>", \
-			"<span class='notice'>You shake [target]'s hand.</span>", )
+			span_notice("[H] shakes [target]'s hand."), \
+			span_notice("You shake [target]'s hand."), )
 	else if(H.zone_sel.selecting == "mouth")
 		H.visible_message( \
-			"<span class='notice'>[H] boops [target]'s nose.</span>", \
-			"<span class='notice'>You boop [target] on the nose.</span>", )
+			span_notice("[H] boops [target]'s nose."), \
+			span_notice("You boop [target] on the nose."), )
 	else
-		H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-						"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
+						span_notice("You hug [target] to make [t_him] feel better!"))
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 /mob/living/silicon/pai/proc/savefile_path(mob/user)
@@ -411,7 +411,7 @@
 	set category = "pAI Commands"
 	set name = "Save Configuration"
 	savefile_save(src)
-	to_chat(src, "<span class='filter_notice'>[name] configuration saved to global pAI settings.</span>")
+	to_chat(src, span_filter_notice("[name] configuration saved to global pAI settings."))
 
 /mob/living/silicon/pai/a_intent_change(input as text)
 	. = ..()
@@ -470,10 +470,10 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
+			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if(loc != card)
-		to_chat(src, "<span class='warning'>Your message won't be visible while unfolded!</span>")
+		to_chat(src, span_warning("Your message won't be visible while unfolded!"))
 	if (!message)
 		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message")
 	message = sanitize_or_reflect(message,src)
@@ -485,50 +485,50 @@
 	card.screen_msg = message
 	var/logmsg = "(CARD SCREEN)[message]"
 	log_say(logmsg,src)
-	to_chat(src, "<span class='filter_say cult'>You print a message to your screen, \"[message]\"</span>")
+	to_chat(src, span_filter_say(span_cult("You print a message to your screen, \"[message]\"")))
 	if(isliving(card.loc))
 		var/mob/living/L = card.loc
 		if(L.client)
-			to_chat(L, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
+			to_chat(L, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 		else return
 	else if(isbelly(card.loc))
 		var/obj/belly/b = card.loc
 		if(b.owner.client)
-			to_chat(b.owner, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
+			to_chat(b.owner, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 		else return
 	else if(istype(card.loc, /obj/item/pda))
 		var/obj/item/pda/p = card.loc
 		if(isliving(p.loc))
 			var/mob/living/L = p.loc
 			if(L.client)
-				to_chat(L, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
+				to_chat(L, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 			else return
 		else if(isbelly(p.loc))
 			var/obj/belly/b = card.loc
 			if(b.owner.client)
-				to_chat(b.owner, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
+				to_chat(b.owner, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 			else return
 		else return
 	else return
-	to_chat(src, "<span class='notice'>Your message was relayed.</span>")
+	to_chat(src, span_notice("Your message was relayed."))
 	for (var/mob/G in player_list)
 		if (istype(G, /mob/new_player))
 			continue
 		else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
 			if((client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder) && \
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
-				to_chat(G, "<span class='filter_say cult'>[src.name]'s screen prints, \"[message]\"</span>")
+				to_chat(G, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 
 /mob/living/silicon/pai/proc/touch_window(soft_name)	//This lets us touch TGUI procs and windows that may be nested behind other TGUI procs and windows
 	if(stat != CONSCIOUS)								//so we can access our software without having to open up the software interface TGUI window
-		to_chat(src, "<span class='warning'>You can't do that right now.</span>")
+		to_chat(src, span_warning("You can't do that right now."))
 		return
 	for(var/thing in software)
 		var/datum/pai_software/S = software[thing]
 		if(istype(S, /datum/pai_software) && S.name == soft_name)
 			if(S.toggle)
 				S.toggle(src)
-				to_chat(src, "<span class='notice'>You toggled [S.name].</span>")
+				to_chat(src, span_notice("You toggled [S.name]."))
 				refresh_software_status()
 			else
 				S.tgui_interact(src)
@@ -538,12 +538,12 @@
 		var/datum/pai_software/our_soft = pai_software_by_key[thing]
 		if(our_soft.name == soft_name)
 			if(!(ram >= our_soft.ram_cost))
-				to_chat(src, "<span class='warning'>Insufficient RAM for download. (Cost [our_soft.ram_cost] : [ram] Remaining)</span>")
+				to_chat(src, span_warning("Insufficient RAM for download. (Cost [our_soft.ram_cost] : [ram] Remaining)"))
 				return
 			if(tgui_alert(src, "Do you want to download [our_soft.name]? It costs [our_soft.ram_cost], and you have [ram] remaining.", "Download [our_soft.name]", list("Yes", "No")) == "Yes")
 				ram -= our_soft.ram_cost
 				software[our_soft.id] = our_soft
-				to_chat(src, "<span class='notice'>You downloaded [our_soft.name]. ([ram] RAM remaining.)</span>")
+				to_chat(src, span_notice("You downloaded [our_soft.name]. ([ram] RAM remaining.)"))
 				refresh_software_status()
 
 /mob/living/silicon/pai/proc/refresh_software_status()	//This manages the pAI software status buttons icon states based on if you have them and if they are enabled

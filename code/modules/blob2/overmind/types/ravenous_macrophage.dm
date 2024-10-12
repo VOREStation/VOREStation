@@ -34,14 +34,14 @@
 /datum/blob_type/ravenous_macrophage/on_death(obj/structure/blob/B)
 	var/obj/structure/blob/other = locate() in oview(2, B)
 	if(other)
-		B.visible_message("<span class='danger'>The dying mass is rapidly consumed by the nearby [other]!</span>")
+		B.visible_message(span_danger("The dying mass is rapidly consumed by the nearby [other]!"))
 		if(other.overmind)
 			other.overmind.add_points(rand(1,4))
 
 /datum/blob_type/ravenous_macrophage/on_chunk_tick(obj/item/blobcore_chunk/B)
 	var/mob/living/L = locate() in range(world.view, B)
 	if(prob(5) && !L.stat)	// There's some active living thing nearby, produce offgas.
-		B.visible_message("<span class='alien'>[icon2html(B,viewers(B))] \The [B] disgorches a cloud of noxious gas!</span>")
+		B.visible_message(span_alien("[icon2html(B,viewers(B))] \The [B] disgorches a cloud of noxious gas!"))
 		var/turf/T = get_turf(B)
 		var/datum/effect/effect/system/smoke_spread/noxious/BS = new /datum/effect/effect/system/smoke_spread/noxious
 		BS.attach(T)

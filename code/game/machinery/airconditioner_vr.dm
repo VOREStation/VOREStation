@@ -38,7 +38,7 @@
 			return
 	if(I.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
-		visible_message("<span class='notice'>\The [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
+		visible_message(span_notice("\The [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user]."))
 		playsound(src, I.usesound, 75, 1)
 		if(anchored)
 			connect_to_network()
@@ -63,7 +63,7 @@
 	if(!anchored)
 		return
 	on = !on
-	user.visible_message("<span class='notice'>[user] [on ? "activates" : "deactivates"] \the [src].</span>","<span class='notice'>You [on ? "activate" : "deactivate"] \the [src].</span>")
+	user.visible_message(span_notice("[user] [on ? "activates" : "deactivates"] \the [src]."),span_notice("You [on ? "activate" : "deactivate"] \the [src]."))
 	if(!on)
 		change_mode(MODE_IDLE)
 	update_icon()
@@ -153,7 +153,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(5, 0, T)
 	s.start()
-	visible_message("<span class='warning'>\The [src] bursts into flame!</span>")
+	visible_message(span_warning("\The [src] bursts into flame!"))
 
 #undef MODE_IDLE
 #undef MODE_HEATING

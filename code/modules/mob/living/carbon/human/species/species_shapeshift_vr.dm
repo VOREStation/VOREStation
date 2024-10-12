@@ -177,7 +177,7 @@
 
 	for(var/obj/item/organ/external/L as anything in src.organs)
 		L.transparent = !L.transparent
-	visible_message("<span class='notice'>\The [src]'s internal composition seems to change.</span>")
+	visible_message(span_notice("\The [src]'s internal composition seems to change."))
 	update_icons_body()
 	update_hair()
 
@@ -189,5 +189,5 @@
 	species.base_species = new_species
 	wrapped_species_by_ref["\ref[src]"] = new_species
 	if (visible)
-		visible_message("<span class='filter_notice'><b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!</span>")
+		visible_message(span_filter_notice("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!"))
 		regenerate_icons()

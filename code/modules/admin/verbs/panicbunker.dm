@@ -1,12 +1,12 @@
 /client/proc/panicbunker()
 	set category = "Server"
 	set name = "Toggle Panic Bunker"
-	
+
 	if(!check_rights(R_ADMIN))
 		return
 
 	if (!config.sql_enabled)
-		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
+		to_chat(usr, span_adminnotice("The Database is not enabled!"))
 		return
 
 	config.panic_bunker = (!config.panic_bunker)

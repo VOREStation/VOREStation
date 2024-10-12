@@ -19,23 +19,23 @@
 // Pairing
 /obj/item/juke_remote/proc/pair_juke(obj/machinery/media/jukebox/juke, mob/user)
 	if(paired_juke)
-		to_chat(user, "<span class='warning'>The [src] is already paired to [paired_juke == juke ? "that" : "a different"] jukebox.</span>")
+		to_chat(user, span_warning("The [src] is already paired to [paired_juke == juke ? "that" : "a different"] jukebox."))
 		return
 	paired_juke = juke
 	LAZYDISTINCTADD(paired_juke.remotes, src)
-	to_chat(user, "<span class='notice'>You pair the [src] to the [juke].</span>")
+	to_chat(user, span_notice("You pair the [src] to the [juke]."))
 	icon_state = "[initial(icon_state)]_ready"
 
 /obj/item/juke_remote/proc/unpair_juke(mob/user)
 	if(!paired_juke)
-		to_chat(user, "<span class='warning'>The [src] isn't paired to anything.</span>")
+		to_chat(user, span_warning("The [src] isn't paired to anything."))
 		return
 	LAZYREMOVE(paired_juke.remotes, src)
 	paired_juke = null
 	icon_state = initial(icon_state)
 	unanchor()
 	detach_area()
-	to_chat(user, "<span class='notice'>You unpair the [src].</span>")
+	to_chat(user, span_notice("You unpair the [src]."))
 	icon_state = "[initial(icon_state)]"
 
 /obj/item/juke_remote/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -93,7 +93,7 @@
 	A.media_source = paired_juke
 	update_music()
 	return TRUE
-	
+
 /obj/item/juke_remote/proc/detach_area()
 	if(!our_area || (paired_juke && our_area.media_source != paired_juke))
 		return

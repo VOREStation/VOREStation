@@ -29,8 +29,8 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 /mob/new_player/Login()
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 	if(join_motd)
-		join_motd = GLOB.is_valid_url.Replace(join_motd,"<span class='linkify'>$1</span>")
-		to_chat(src, "<div class=\"motd\">[join_motd]</div>")
+		join_motd = GLOB.is_valid_url.Replace(join_motd,span_linkify("$1"))
+		to_chat(src, examine_block("<div class=\"motd\">[join_motd]</div>"))
 
 	if(has_respawned)
 		to_chat(usr, config.respawn_message)

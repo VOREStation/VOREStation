@@ -295,9 +295,9 @@
 		var/new_grav = 1
 		if(destination.flags & SLANDMARK_FLAG_ZERO_G)
 			var/area/new_area = get_area(destination)
-			new_grav = new_area.has_gravity
+			new_grav = new_area.get_gravity()
 		for(var/area/our_area in shuttle_area)
-			if(our_area.has_gravity != new_grav)
+			if(our_area.get_gravity() != new_grav)
 				our_area.gravitychange(new_grav)
 
 	// TODO - Old code used to throw stuff out of the way instead of squashing.  Should we?
@@ -338,7 +338,7 @@
 						to_chat(M, span_red("The floor lurches beneath you!"))
 						shake_camera(M, 10, 1)
 						// TODO - tossing?
-						//M.visible_message("<span class='warning'>[M.name] is tossed around by the sudden acceleration!</span>")
+						//M.visible_message(span_warning("[M.name] is tossed around by the sudden acceleration!"))
 						//M.throw_at_random(FALSE, 4, 1)
 						if(istype(M, /mob/living/carbon))
 							M.Weaken(3)

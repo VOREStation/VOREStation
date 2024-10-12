@@ -37,7 +37,7 @@
 	T.wet_floor()
 
 /datum/blob_type/pressurized_slime/on_death(obj/structure/blob/B)
-	B.visible_message("<span class='danger'>The blob ruptures, spraying the area with liquid!</span>")
+	B.visible_message(span_danger("The blob ruptures, spraying the area with liquid!"))
 	wet_surroundings(B, 50)
 
 /datum/blob_type/pressurized_slime/proc/wet_surroundings(var/obj/structure/blob/B, var/probability = 50)

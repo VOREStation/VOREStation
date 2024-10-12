@@ -28,11 +28,11 @@
 
 /obj/machinery/door/blast/puzzle/bullet_act(var/obj/item/projectile/Proj)
 	if(!istype(Proj, /obj/item/projectile/test))
-		visible_message("<span class='cult'>\The [src] is completely unaffected by \the [Proj].</span>")
+		visible_message(span_cult("\The [src] is completely unaffected by \the [Proj]."))
 	qdel(Proj) //No piercing. No.
 
 /obj/machinery/door/blast/puzzle/ex_act(severity)
-	visible_message("<span class='cult'>\The [src] is completely unaffected by the blast.</span>")
+	visible_message(span_cult("\The [src] is completely unaffected by the blast."))
 	return
 
 /obj/machinery/door/blast/puzzle/Initialize()
@@ -57,7 +57,7 @@
 	if(check_locks())
 		force_toggle(1, user)
 	else
-		to_chat(user, "<span class='notice'>\The [src] does not respond to your touch.</span>")
+		to_chat(user, span_notice("\The [src] does not respond to your touch."))
 
 /obj/machinery/door/blast/puzzle/attackby(obj/item/C as obj, mob/user as mob)
 	if(istype(C, /obj/item))
@@ -65,14 +65,14 @@
 			if(istype(C,/obj/item/material/twohanded/fireaxe))
 				var/obj/item/material/twohanded/fireaxe/F = C
 				if(!F.wielded)
-					to_chat(user, "<span class='warning'>You need to be wielding \the [F] to do that.</span>")
+					to_chat(user, span_warning("You need to be wielding \the [F] to do that."))
 					return
 
 			if(check_locks())
 				force_toggle(1, user)
 
 			else
-				to_chat(user, "<span class='notice'>[src]'s arcane workings resist your effort.</span>")
+				to_chat(user, span_notice("[src]'s arcane workings resist your effort."))
 			return
 
 		else if(src.density && (user.a_intent == I_HURT))
@@ -80,10 +80,10 @@
 			user.setClickCooldown(user.get_attack_speed(W))
 			if(W.damtype == BRUTE || W.damtype == BURN)
 				user.do_attack_animation(src)
-				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
+				user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
 
 		else if(istype(C, /obj/item/plastique))
-			to_chat(user, "<span class='danger'>On contacting \the [src], a flash of light envelops \the [C] as it is turned to ash. Oh.</span>")
+			to_chat(user, span_danger("On contacting \the [src], a flash of light envelops \the [C] as it is turned to ash. Oh."))
 			qdel(C)
 			return 0
 

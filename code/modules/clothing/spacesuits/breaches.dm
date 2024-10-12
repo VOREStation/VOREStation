@@ -190,7 +190,7 @@ var/global/list/breach_burn_descriptors = list(
 			return
 
 		if(istype(src.loc,/mob/living))
-			to_chat(user, "<span class='warning'>How do you intend to patch a hardsuit while someone is wearing it?</span>")
+			to_chat(user, span_warning("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return
 
 		if(!damage || !burn_damage)

@@ -56,7 +56,7 @@
 /obj/trader/attack_hand(mob/living/user)
 	. = ..()
 	if(trading)
-		to_chat(user, "<span class='notice'>\The [src] is busy with someone else at the moment...</span>")
+		to_chat(user, span_notice("\The [src] is busy with someone else at the moment..."))
 		return
 	var/coin_value = get_value(accepts)
 	if(products.len > 0)
@@ -72,7 +72,7 @@
 		var/ask = tgui_alert(user, "[welcome_msg][welcome_accepts_name][welcome_msg_finish]", "[src]",list("Yes","No","Return banked funds"), timeout = 10 SECONDS)
 		if (ask == "Return banked funds")
 			if(!Adjacent(user))
-				to_chat(user, "<span class='notice'>You aren't close enough.</span>")
+				to_chat(user, span_notice("You aren't close enough."))
 				trading = FALSE
 				return
 			return_funds()
@@ -82,7 +82,7 @@
 			trading = FALSE
 			return
 		if(!Adjacent(user))
-			to_chat(user, "<span class='notice'>You decided not to get anything.</span>")
+			to_chat(user, span_notice("You decided not to get anything."))
 			trading = FALSE
 			return
 		if(interact_sound.len > 0)
@@ -92,7 +92,7 @@
 				sound_lastplayed = world.time
 		var/obj/input = tgui_input_list(user, "What would you like? You have [coin_value] banked with this trader.", "Trader", products, timeout = 30 SECONDS)
 		if(!input || !Adjacent(user))
-			to_chat(user, "<span class='notice'>You decided not to get anything.</span>")
+			to_chat(user, span_notice("You decided not to get anything."))
 			trading = FALSE
 			return
 		var/p = 0
@@ -101,15 +101,15 @@
 			p = prices[t]
 		if(p > 0)
 			if(tgui_alert(user, "Are you sure? This costs [p].", "Confirm",list("Yes","No")) != "Yes")
-				to_chat(user, "<span class='notice'>You decided not to.</span>")
+				to_chat(user, span_notice("You decided not to."))
 				trading = FALSE
 				return
 			else if (coin_value < p)
-				to_chat(user, "<span class='warning'>You haven't provided enough funds!</span>")
+				to_chat(user, span_warning("You haven't provided enough funds!"))
 				trading = FALSE
 				return
 		if(!Adjacent(user))
-			to_chat(user, "<span class='notice'>You decided not to get anything.</span>")
+			to_chat(user, span_notice("You decided not to get anything."))
 			trading = FALSE
 			return
 		if(t in multiple)
@@ -127,15 +127,15 @@
 		deduct_value(p)
 		if(tgui_alert(user, "Would you like your change back, or would you like it to remain banked for later use? (Anyone can use banked funds)", "[src]",list("Keep it banked","I want my change"), timeout = 10 SECONDS) == "I want my change")
 			if(!Adjacent(user))
-				to_chat(user, "<span class='notice'>You aren't close enough.</span>")
+				to_chat(user, span_notice("You aren't close enough."))
 				trading = FALSE
 				return
 			return_funds()
 		else
-			to_chat(user, "<span class='notice'>You decided leave your change banked.</span>")
+			to_chat(user, span_notice("You decided leave your change banked."))
 		trading = FALSE
 	else
-		to_chat(user, "<span class='notice'>\The [src] hasn't got anything to sell.</span>")
+		to_chat(user, span_notice("\The [src] hasn't got anything to sell."))
 		return
 
 /obj/trader/attackby(obj/item/O, mob/user)
@@ -145,7 +145,7 @@
 			if(istype(O, /obj/item/aliencoin))
 				var/obj/item/aliencoin/a = O
 				coinbalance += a.value
-				visible_message("<span class='notice'>\The [src] accepts \the [user]'s [O].</span>")
+				visible_message(span_notice("\The [src] accepts \the [user]'s [O]."))
 				qdel(a)
 		if("money")
 			if(istype(O, /obj/item/spacecash))
@@ -156,18 +156,18 @@
 					c.worth += loadsamoney
 					c.update_icon()
 					loadsamoney = null
-					visible_message("<span class='notice'>\The [src] accepts \the [user]'s [O].</span>")
+					visible_message(span_notice("\The [src] accepts \the [user]'s [O]."))
 					return
 				user.drop_item()
 				w.forceMove(src.contents)
 				bank += w
-				visible_message("<span class='notice'>\The [src] accepts \the [user]'s [w].</span>")
+				visible_message(span_notice("\The [src] accepts \the [user]'s [w]."))
 		if("item")
 			if(istype(O, /obj))
 				user.drop_item()
 				O.forceMove(src.contents)
 				bank += O
-				visible_message("<span class='notice'>\The [src] accepts \the [user]'s [O].</span>")
+				visible_message(span_notice("\The [src] accepts \the [user]'s [O]."))
 
 /obj/trader/proc/get_value(kind)
 	var/value = 0
@@ -181,14 +181,14 @@
 					value += a.worth
 				else
 					c.forceMove(get_turf(src))
-					visible_message("<span class='warning'>\The [src] drops the worthless [c]...</span>")
+					visible_message(span_warning("\The [src] drops the worthless [c]..."))
 		if("item")
 			for(var/obj/c in bank)
 				if(istype(c, accepted_itemtype))
 					value += accepted_item_worth
 				else
 					c.forceMove(get_turf(src))
-					visible_message("<span class='warning'>\The [src] drops the worthless [c]...</span>")
+					visible_message(span_warning("\The [src] drops the worthless [c]..."))
 	return value
 
 /obj/trader/proc/deduct_value(amount)
@@ -243,9 +243,9 @@
 				c.forceMove(get_turf(loc))
 				bank -= c
 	if(u_get_refund)
-		visible_message("<span class='notice'>\The [src] drops the banked [welcome_accepts_name].</span>")
+		visible_message(span_notice("\The [src] drops the banked [welcome_accepts_name]."))
 	else
-		visible_message("<span class='notice'>\The [src] doesn't have anything banked for you.</span>")
+		visible_message(span_notice("\The [src] doesn't have anything banked for you."))
 
 /obj/trader/proc/move_trader()
 	var/list/pt = list()

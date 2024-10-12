@@ -7,7 +7,7 @@ var/datum/antagonist/ninja/ninjas
 	role_text_plural = "Ninja"
 	bantype = "ninja"
 	landmark_id = "ninjastart"
-	welcome_text = "<span class='info'>You are an elite mercenary assassin of the Spider Clan. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.</span>"
+	welcome_text = span_info("You are an elite mercenary assassin of the Spider Clan. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.")
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_CLEAR_EQUIPMENT | ANTAG_CHOOSE_NAME | ANTAG_RANDSPAWN | ANTAG_VOTABLE | ANTAG_SET_APPEARANCE
 	antaghud_indicator = "hudninja"
 
@@ -85,8 +85,8 @@ var/datum/antagonist/ninja/ninjas
 	if(!..())
 		return 0
 	var/directive = generate_ninja_directive("heel")
-	player.store_memory("<B>Directive:</B> <span class='danger'>[directive]</span><br>")
-	to_chat(player, "<b>Remember your directive:</b> [directive].")
+	player.store_memory(span_bold("Directive:") + " " + span_danger("[directive]") + "<br>")
+	to_chat(player, span_bold("Remember your directive:") + " [directive].")
 
 /datum/antagonist/ninja/update_antag_mob(var/datum/mind/player)
 	..()
@@ -126,7 +126,7 @@ var/datum/antagonist/ninja/ninjas
 		if(player.internal)
 			player.internals.icon_state = "internal1"
 		else
-			to_chat(player, "<span class='danger'>You forgot to turn on your internals! Quickly, toggle the valve!</span>")
+			to_chat(player, span_danger("You forgot to turn on your internals! Quickly, toggle the valve!"))
 
 /datum/antagonist/ninja/proc/generate_ninja_directive(side)
 	var/directive = "[side=="face"?"[using_map.company_name]":"A criminal syndicate"] is your employer. "//Let them know which side they're on.

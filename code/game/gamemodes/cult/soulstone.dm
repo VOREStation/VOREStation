@@ -25,11 +25,11 @@
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return..()
 	if(jobban_isbanned(M, JOB_CULTIST))
-		to_chat(user, "<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>")
+		to_chat(user, span_warning("This person's soul is too corrupt and cannot be captured!"))
 		return..()
 
 	if(M.has_brain_worms()) //Borer stuff - RR
-		to_chat(user, "<span class='warning'>This being is corrupted by an alien intelligence and cannot be soul trapped.</span>")
+		to_chat(user, span_warning("This being is corrupted by an alien intelligence and cannot be soul trapped."))
 		return..()
 
 	add_attack_logs(user,M,"Soulstone'd with [src.name]")
@@ -107,16 +107,16 @@
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")
-		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone has already been imprinted with [src.imprinted]'s mind!")
+		to_chat(U, span_danger("Capture failed!") + ": The soul stone has already been imprinted with [src.imprinted]'s mind!")
 		return
 	if ((T.health + T.halloss) > config.health_threshold_crit && T.stat != DEAD)
-		to_chat(U, "<span class='danger'>Capture failed!</span>: Kill or maim the victim first!")
+		to_chat(U, span_danger("Capture failed!") + ": Kill or maim the victim first!")
 		return
 	if(T.client == null)
-		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul has already fled it's mortal frame.")
+		to_chat(U, span_danger("Capture failed!") + ": The soul has already fled it's mortal frame.")
 		return
 	if(src.contents.len)
-		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone is full! Use or free an existing soul to make room.")
+		to_chat(U, span_danger("Capture failed!") + ": The soul stone is full! Use or free an existing soul to make room.")
 		return
 
 	for(var/obj/item/W in T)
@@ -151,7 +151,7 @@
 	src.icon_state = "soulstone2"
 	src.name = "Soul Stone: [S.real_name]"
 	to_chat(S, "Your soul has been captured! You are now bound to [U.name]'s will, help them suceed in their goals at all costs.")
-	to_chat(U, "<span class='notice'>Capture successful!</span> : [T.real_name]'s soul has been ripped from their body and stored within the soul stone.")
+	to_chat(U, span_notice("Capture successful!") + ": [T.real_name]'s soul has been ripped from their body and stored within the soul stone.")
 	to_chat(U, "The soulstone has been imprinted with [S.real_name]'s mind, it will no longer react to other souls.")
 	src.imprinted = "[S.name]"
 	qdel(T)
@@ -160,13 +160,13 @@
 	if(!istype(T))
 		return;
 	if (T.stat == DEAD)
-		to_chat(U, "<span class='danger'>Capture failed!</span>: The shade has already been banished!")
+		to_chat(U, span_danger("Capture failed!") + ": The shade has already been banished!")
 		return
 	if(src.contents.len)
-		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone is full! Use or free an existing soul to make room.")
+		to_chat(U, span_danger("Capture failed!") + ": The soul stone is full! Use or free an existing soul to make room.")
 		return
 	if(T.name != src.imprinted)
-		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone has already been imprinted with [src.imprinted]'s mind!")
+		to_chat(U, span_danger("Capture failed!") + ": The soul stone has already been imprinted with [src.imprinted]'s mind!")
 		return
 
 	T.forceMove(src) //put shade in stone
@@ -176,12 +176,12 @@
 	src.icon_state = "soulstone2"
 
 	to_chat(T, "Your soul has been recaptured by the soul stone, its arcane energies are reknitting your ethereal form")
-	to_chat(U, "<span class='notice'>Capture successful!</span> : [T.name]'s has been recaptured and stored within the soul stone.")
+	to_chat(U, span_notice("Capture successful!") + ": [T.name]'s has been recaptured and stored within the soul stone.")
 
 /obj/item/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
 	var/mob/living/simple_mob/construct/shade/A = locate() in src
 	if(!A)
-		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone is empty! Go kill someone!")
+		to_chat(U, span_danger("Capture failed!") + ": The soul stone is empty! Go kill someone!")
 		return;
 	var/construct_class = tgui_input_list(U, "Please choose which type of construct you wish to create.", "Construct Type", possible_constructs)
 	switch(construct_class)

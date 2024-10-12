@@ -140,7 +140,7 @@
 
 	if(istype(A, /mob/living))
 		var/mob/living/M = A
-		visible_message("<span class='danger'>[src] knocks over [M]!</span>")
+		visible_message(span_danger("[src] knocks over [M]!"))
 		M.apply_effects(2, 2)				// Knock people down for a short moment
 		M.apply_damages(8 / move_delay)		// Smaller amount of damage than a tug, since this will always be possible because Quads don't have safeties.
 		var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
@@ -154,7 +154,7 @@
 		M.throw_at(T2, 1, 1, src)
 		if(istype(load, /mob/living/carbon/human))
 			var/mob/living/D = load
-			to_chat(D, "<span class='danger'>You hit [M]!</span>")
+			to_chat(D, span_danger("You hit [M]!"))
 			add_attack_logs(D,M,"Ran over with [src.name]")
 
 
@@ -253,7 +253,7 @@
 
 	if(istype(A, /mob/living))
 		var/mob/living/M = A
-		visible_message("<span class='danger'>[src] knocks over [M]!</span>")
+		visible_message(span_danger("[src] knocks over [M]!"))
 		M.apply_effects(1, 1)
 		M.apply_damages(8 / move_delay)
 		if(load)
@@ -265,7 +265,7 @@
 		M.throw_at(T2, 1, 1, src)
 		if(istype(load, /mob/living/carbon/human))
 			var/mob/living/D = load
-			to_chat(D, "<span class='danger'>You hit [M]!</span>")
+			to_chat(D, span_danger("You hit [M]!"))
 			add_attack_logs(D,M,"Ran over with [src.name]")
 
 /obj/vehicle/train/trolley/trailer/update_icon()

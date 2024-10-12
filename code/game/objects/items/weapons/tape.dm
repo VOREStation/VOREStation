@@ -24,24 +24,24 @@
 		if(user.a_intent == I_HELP)
 			return
 		if(!can_place(H, user))
-			to_chat(user, "<span class='danger'>You need to have a firm grip on [H] before you can use \the [src]!</span>")
+			to_chat(user, span_danger("You need to have a firm grip on [H] before you can use \the [src]!"))
 			return
 		else
 			if(user.zone_sel.selecting == O_EYES)
 
 				if(!H.organs_by_name[BP_HEAD])
-					to_chat(user, "<span class='warning'>\The [H] doesn't have a head.</span>")
+					to_chat(user, span_warning("\The [H] doesn't have a head."))
 					return
 				if(!H.has_eyes())
-					to_chat(user, "<span class='warning'>\The [H] doesn't have any eyes.</span>")
+					to_chat(user, span_warning("\The [H] doesn't have any eyes."))
 					return
 				if(H.glasses)
-					to_chat(user, "<span class='warning'>\The [H] is already wearing something on their eyes.</span>")
+					to_chat(user, span_warning("\The [H] is already wearing something on their eyes."))
 					return
 				if(H.head && (H.head.body_parts_covered & FACE))
-					to_chat(user, "<span class='warning'>Remove their [H.head] first.</span>")
+					to_chat(user, span_warning("Remove their [H.head] first."))
 					return
-				user.visible_message("<span class='danger'>\The [user] begins taping over \the [H]'s eyes!</span>")
+				user.visible_message(span_danger("\The [user] begins taping over \the [H]'s eyes!"))
 
 				if(!do_after(user, 30))
 					return
@@ -52,25 +52,25 @@
 				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
 					return
 
-				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
+				user.visible_message(span_danger("\The [user] has taped up \the [H]'s eyes!"))
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses, ignore_obstructions = FALSE)
 				H.update_inv_glasses()
 				playsound(src, 'sound/effects/tape.ogg',25)
 
 			else if(user.zone_sel.selecting == O_MOUTH || user.zone_sel.selecting == BP_HEAD)
 				if(!H.organs_by_name[BP_HEAD])
-					to_chat(user, "<span class='warning'>\The [H] doesn't have a head.</span>")
+					to_chat(user, span_warning("\The [H] doesn't have a head."))
 					return
 				if(!H.check_has_mouth())
-					to_chat(user, "<span class='warning'>\The [H] doesn't have a mouth.</span>")
+					to_chat(user, span_warning("\The [H] doesn't have a mouth."))
 					return
 				if(H.wear_mask)
-					to_chat(user, "<span class='warning'>\The [H] is already wearing a mask.</span>")
+					to_chat(user, span_warning("\The [H] is already wearing a mask."))
 					return
 				if(H.head && (H.head.body_parts_covered & FACE))
-					to_chat(user, "<span class='warning'>Remove their [H.head] first.</span>")
+					to_chat(user, span_warning("Remove their [H.head] first."))
 					return
-				user.visible_message("<span class='danger'>\The [user] begins taping up \the [H]'s mouth!</span>")
+				user.visible_message(span_danger("\The [user] begins taping up \the [H]'s mouth!"))
 
 				if(!do_after(user, 30))
 					return
@@ -81,7 +81,7 @@
 				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || (H.head && (H.head.body_parts_covered & FACE)))
 					return
 
-				user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
+				user.visible_message(span_danger("\The [user] has taped up \the [H]'s mouth!"))
 
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask, ignore_obstructions = FALSE)
 				H.update_inv_wear_mask()

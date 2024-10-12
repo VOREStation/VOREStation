@@ -20,7 +20,7 @@
 
 	var/datum/shuttle/autodock/multi/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(shuttle))
-		to_chat(usr, "<span class='warning'>Unable to establish link with the shuttle.</span>")
+		to_chat(usr, span_warning("Unable to establish link with the shuttle."))
 		return TRUE
 
 	switch(action)
@@ -35,7 +35,7 @@
 				return TRUE
 			shuttle.cloaked = !shuttle.cloaked
 			if(shuttle.legit)
-				to_chat(usr, "<span class='notice'>Ship ATC inhibitor systems have been [(shuttle.cloaked ? "activated. The station will not" : "deactivated. The station will")] be notified of our arrival.</span>")
+				to_chat(usr, span_notice("Ship ATC inhibitor systems have been [(shuttle.cloaked ? "activated. The station will not" : "deactivated. The station will")] be notified of our arrival."))
 			else
-				to_chat(usr, "<span class='warning'>Ship stealth systems have been [(shuttle.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.</span>")
+				to_chat(usr, span_warning("Ship stealth systems have been [(shuttle.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."))
 			return TRUE

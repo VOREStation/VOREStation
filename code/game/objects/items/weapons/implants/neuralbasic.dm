@@ -22,7 +22,7 @@
 /obj/item/implant/neural/Destroy()
 	if(my_brain)
 		if(my_brain.owner)
-			to_chat(my_brain.owner, "<span class='critical'>You feel a pressure in your mind as something is ripped away.</span>")
+			to_chat(my_brain.owner, span_critical("You feel a pressure in your mind as something is ripped away."))
 	STOP_PROCESSING(SSobj, src)
 	my_brain = null
 	return ..()
@@ -30,7 +30,7 @@
 /obj/item/implant/neural/process()
 	if(my_brain && part)
 		if(my_brain.loc != part.loc)
-			to_chat(my_brain.owner, "<span class='critical'>You feel a pressure in your mind as something is ripped away.</span>")
+			to_chat(my_brain.owner, span_critical("You feel a pressure in your mind as something is ripped away."))
 			meltdown()
 	return 1
 
@@ -67,26 +67,26 @@ Implant Specifics:<BR>"}
 			else if(prob(80))
 				my_brain.take_damage(5)
 				if(!robotic_brain)
-					to_chat(L, "<span class='critical'>Something in your [brain_location] burns!</span>")
+					to_chat(L, span_critical("Something in your [brain_location] burns!"))
 				else
-					to_chat(L, "<span class='warning'>Severe fault detected in [brain_location].</span>")
+					to_chat(L, span_warning("Severe fault detected in [brain_location]."))
 		if(2)
 			if(prob(80))
 				my_brain.take_damage(3)
 				if(!robotic_brain)
-					to_chat(L, "<span class='danger'>It feels like something is digging into your [brain_location]!</span>")
+					to_chat(L, span_danger("It feels like something is digging into your [brain_location]!"))
 				else
-					to_chat(L, "<span class='warning'>Fault detected in [brain_location].</span>")
+					to_chat(L, span_warning("Fault detected in [brain_location]."))
 		if(3)
 			if(prob(60))
 				my_brain.take_damage(2)
 				if(!robotic_brain)
-					to_chat(L, "<span class='warning'>There is a stabbing pain in your [brain_location]!</span>")
+					to_chat(L, span_warning("There is a stabbing pain in your [brain_location]!"))
 		if(4)
 			if(prob(40))
 				my_brain.take_damage(1)
 				if(!robotic_brain)
-					to_chat(L, "<span class='warning'>Your [brain_location] aches.</span>")
+					to_chat(L, span_warning("Your [brain_location] aches."))
 
 	spawn(delay)
 		malfunction--
@@ -99,7 +99,7 @@ Implant Specifics:<BR>"}
 		if(ishuman(my_brain.owner))
 			H = my_brain.owner
 			if(robotic_brain)
-				to_chat(H, "<span class='critical'>WARNING. Fault dete-ct-- in the \the [src].</span>")
+				to_chat(H, span_critical("WARNING. Fault dete-ct-- in the \the [src]."))
 			H.Confuse(30)
 			H.AdjustBlinded(5)
 		my_brain.take_damage(15)

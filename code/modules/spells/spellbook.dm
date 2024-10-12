@@ -15,7 +15,7 @@
 	if(!user)
 		return
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		to_chat(usr, "<span class='warning'>You stare at the book but cannot make sense of the markings!</span>")
+		to_chat(usr, span_warning("You stare at the book but cannot make sense of the markings!"))
 		return
 
 	user.set_machine(src)
@@ -229,7 +229,7 @@
 								H.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 								H.see_in_dark = 8
 								H.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-								to_chat(H, "<span class='notice'>The walls suddenly disappear.</span>")
+								to_chat(H, span_notice("The walls suddenly disappear."))
 							temp = "You have purchased a scrying orb, and gained x-ray vision."
 							max_uses--
 		else
@@ -261,24 +261,24 @@
 			if(user.mind)
 				// TODO: Update to new antagonist system.
 				if(user.mind.special_role == JOB_APPRENTICE || user.mind.special_role == JOB_WIZARD)
-					to_chat(user, "<span class='notice'>You're already far more versed in this spell than this flimsy how-to book can provide.</span>")
+					to_chat(user, span_notice("You're already far more versed in this spell than this flimsy how-to book can provide."))
 				else
-					to_chat(user, "<span class='notice'>You've already read this one.</span>")
+					to_chat(user, span_notice("You've already read this one."))
 			return
 	if(used)
 		recoil(user)
 	else
 		user.add_spell(S)
-		to_chat(user, "<span class='notice'>you rapidly read through the arcane book. Suddenly you realize you understand [spellname]!</span>")
+		to_chat(user, span_notice("you rapidly read through the arcane book. Suddenly you realize you understand [spellname]!"))
 		user.attack_log += text("\[[time_stamp()]\] [span_orange("[user.real_name] ([user.ckey]) learned the spell [spellname] ([S]).")]")
 		onlearned(user)
 
 /obj/item/spellbook/oneuse/proc/recoil(mob/user as mob)
-	user.visible_message("<span class='warning'>[src] glows in a black light!</span>")
+	user.visible_message(span_warning("[src] glows in a black light!"))
 
 /obj/item/spellbook/oneuse/proc/onlearned(mob/user as mob)
 	used = 1
-	user.visible_message("<span class='caution'>[src] glows dark for a second!</span>")
+	user.visible_message(span_warning("[src] glows dark for a second!"))
 
 /obj/item/spellbook/oneuse/attackby()
 	return
@@ -302,7 +302,7 @@
 
 /obj/item/spellbook/oneuse/smoke/recoil(mob/living/user as mob)
 	..()
-	to_chat(user, "<span class='caution'>Your stomach rumbles...</span>")
+	to_chat(user, span_warning("Your stomach rumbles..."))
 	if(user.nutrition)
 		user.adjust_nutrition(-200)
 
@@ -314,7 +314,7 @@
 
 /obj/item/spellbook/oneuse/blind/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>You go blind!</span>")
+	to_chat(user, span_warning("You go blind!"))
 	user.Blind(10)
 
 /obj/item/spellbook/oneuse/mindswap
@@ -336,10 +336,10 @@
 		stored_swap = null
 	if(!stored_swap)
 		stored_swap = user
-		to_chat(user, "<span class='warning'>For a moment you feel like you don't even know who you are anymore.</span>")
+		to_chat(user, span_warning("For a moment you feel like you don't even know who you are anymore."))
 		return
 	if(stored_swap == user)
-		to_chat(user, "<span class='notice'>You stare at the book some more, but there doesn't seem to be anything else to learn...</span>")
+		to_chat(user, span_notice("You stare at the book some more, but there doesn't seem to be anything else to learn..."))
 		return
 
 	if(user.mind.special_verbs.len)
@@ -368,8 +368,8 @@
 		for(var/V in user.mind.special_verbs)
 			user.verbs += V
 
-	to_chat(stored_swap, "<span class='warning'>You're suddenly somewhere else... and someone else?!</span>")
-	to_chat(user, "<span class='warning'>Suddenly you're staring at [src] again... where are you, who are you?!</span>")
+	to_chat(stored_swap, span_warning("You're suddenly somewhere else... and someone else?!"))
+	to_chat(user, span_warning("Suddenly you're staring at [src] again... where are you, who are you?!"))
 	stored_swap = null
 
 /obj/item/spellbook/oneuse/forcewall
@@ -380,7 +380,7 @@
 
 /obj/item/spellbook/oneuse/forcewall/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>You suddenly feel very solid!</span>")
+	to_chat(user, span_warning("You suddenly feel very solid!"))
 	var/obj/structure/closet/statue/S = new /obj/structure/closet/statue(user.loc, user)
 	S.timer = 30
 	user.drop_item()
@@ -394,7 +394,7 @@
 
 /obj/item/spellbook/oneuse/knock/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>You're knocked down!</span>")
+	to_chat(user, span_warning("You're knocked down!"))
 	user.Weaken(20)
 
 /obj/item/spellbook/oneuse/horsemask
@@ -414,7 +414,7 @@
 		user.equip_to_slot_if_possible(magichead, slot_wear_mask, 1, 1)
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>I say thee neigh</span>")
+		to_chat(user, span_notice("I say thee neigh"))
 
 /obj/item/spellbook/oneuse/charge
 	spell = /spell/aoe_turf/charge
@@ -424,5 +424,5 @@
 
 /obj/item/spellbook/oneuse/charge/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>[src] suddenly feels very warm!</span>")
+	to_chat(user, span_warning("[src] suddenly feels very warm!"))
 	empulse(src, 1, 1, 1, 1)

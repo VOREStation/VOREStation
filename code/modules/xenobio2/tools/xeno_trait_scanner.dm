@@ -65,12 +65,12 @@
 		prod_reagents = P.reagents
 
 	if(!trait_info)
-		to_chat(user, "<span class='danger'>[src] can tell you nothing about \the [target].</span>")
+		to_chat(user, span_danger("[src] can tell you nothing about \the [target]."))
 		return
 
 	form_title = "[targetName]"
 	var/dat = "<h3>Biological data for [form_title]</h3>"
-	user.visible_message("<span class='notice'>[user] runs the scanner over \the [target].</span>")
+	user.visible_message(span_notice("[user] runs the scanner over \the [target]."))
 
 	dat += "<h2>General Data</h2>"
 

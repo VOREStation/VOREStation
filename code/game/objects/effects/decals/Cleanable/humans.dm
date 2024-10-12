@@ -89,6 +89,7 @@ var/global/list/image/splatter_cache=list()
 		if(istype(S))
 			S.blood_color = basecolor
 			S.track_blood = max(amount,S.track_blood)
+			S.update_icon() // Cut previous overlays
 			if(!S.blood_overlay)
 				S.generate_blood_overlay()
 			if(!S.blood_DNA)
@@ -127,7 +128,7 @@ var/global/list/image/splatter_cache=list()
 			return
 		var/taken = rand(1,amount)
 		amount -= taken
-		to_chat(user, "<span class='notice'>You get some of \the [src] on your hands.</span>")
+		to_chat(user, span_notice("You get some of \the [src] on your hands."))
 		if (!user.blood_DNA)
 			user.blood_DNA = list()
 		user.blood_DNA |= blood_DNA.Copy()

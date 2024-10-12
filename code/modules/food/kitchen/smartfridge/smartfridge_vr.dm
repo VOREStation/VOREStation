@@ -65,4 +65,4 @@
 		attached = above
 		item_records = attached.item_records
 	else
-		to_chat(world,"<span class='danger'>[src] at [x],[y],[z] cannot find the unit above it!</span>")
+		to_chat(world,span_danger("[src] at [x],[y],[z] cannot find the unit above it!"))

@@ -47,28 +47,28 @@
 /datum/data/pda/utility/scanmode/medical/scan_mob(mob/living/C as mob, mob/living/user as mob)
 	C.visible_message("<span class=warning>[user] has analyzed [C]'s vitals!</span>")
 
-	user.show_message("<span class='notice'>Analyzing Results for [C]:</span>")
-	user.show_message("<span class='notice'>    Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]</span>", 1)
+	user.show_message(span_notice("Analyzing Results for [C]:"))
+	user.show_message(span_notice("    Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]"), 1)
 	user.show_message(text("<span class='notice'>    Damage Specifics:</span> <span class='[]'>[]</span>-<span class='[]'>[]</span>-<span class='[]'>[]</span>-<span class='[]'>[]</span>",
 			(C.getOxyLoss() > 50) ? "warning" : "", C.getOxyLoss(),
 			(C.getToxLoss() > 50) ? "warning" : "", C.getToxLoss(),
 			(C.getFireLoss() > 50) ? "warning" : "", C.getFireLoss(),
 			(C.getBruteLoss() > 50) ? "warning" : "", C.getBruteLoss()
 			), 1)
-	user.show_message("<span class='notice'>    Key: Suffocation/Toxin/Burns/Brute</span>", 1)
-	user.show_message("<span class='notice'>    Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
+	user.show_message(span_notice("    Key: Suffocation/Toxin/Burns/Brute"), 1)
+	user.show_message(span_notice("    Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)"), 1)
 	if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
-		user.show_message("<span class='notice'>    Time of Death: [C.tod]</span>")
+		user.show_message(span_notice("    Time of Death: [C.tod]"))
 	if(istype(C, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = C
 		var/list/damaged = H.get_damaged_organs(1,1)
-		user.show_message("<span class='notice'>Localized Damage, Brute/Burn:</span>",1)
+		user.show_message(span_notice("Localized Damage, Brute/Burn:"),1)
 		if(length(damaged)>0)
 			for(var/obj/item/organ/external/org in damaged)
 				user.show_message(text("<span class='notice'>     []: <span class='[]'>[]</span>-<span class='[]'>[]</span></span>",
 						capitalize(org.name), (org.brute_dam > 0) ? "warning" : "notice", org.brute_dam, (org.burn_dam > 0) ? "warning" : "notice", org.burn_dam),1)
 		else
-			user.show_message("<span class='notice'>    Limbs are OK.</span>",1)
+			user.show_message(span_notice("    Limbs are OK."),1)
 
 /datum/data/pda/utility/scanmode/dna
 	base_name = "DNA Scanner"
@@ -118,13 +118,13 @@
 	if(!isnull(A.reagents))
 		if(A.reagents.reagent_list.len > 0)
 			var/reagents_length = A.reagents.reagent_list.len
-			to_chat(user, "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.</span>")
+			to_chat(user, span_notice("[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found."))
 			for(var/re in A.reagents.reagent_list)
-				to_chat(user, "<span class='notice'>\t [re]</span>")
+				to_chat(user, span_notice("\t [re]"))
 		else
-			to_chat(user, "<span class='notice'>No active chemical agents found in [A].</span>")
+			to_chat(user, span_notice("No active chemical agents found in [A]."))
 	else
-		to_chat(user, "<span class='notice'>No significant chemical agents found in [A].</span>")
+		to_chat(user, span_notice("No significant chemical agents found in [A]."))
 
 /datum/data/pda/utility/scanmode/gas
 	base_name = "Gas Scanner"

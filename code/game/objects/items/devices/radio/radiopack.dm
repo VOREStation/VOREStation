@@ -54,7 +54,7 @@
 
 	var/mob/living/carbon/human/user = usr
 	if(!handset)
-		to_chat(user, "<span class='warning'>The handset is missing!</span>")
+		to_chat(user, span_warning("The handset is missing!"))
 		return
 
 	if(handset.loc != src)
@@ -62,10 +62,10 @@
 		return
 
 	if(!slot_check())
-		to_chat(user, "<span class='warning'>You need to equip [src] before taking out [handset].</span>")
+		to_chat(user, span_warning("You need to equip [src] before taking out [handset]."))
 	else
 		if(!usr.put_in_hands(handset)) //Detach the handset into the user's hands
-			to_chat(user, "<span class='warning'>You need a free hand to hold the handset!</span>")
+			to_chat(user, span_warning("You need a free hand to hold the handset!"))
 		update_icon() //success
 
 //checks that the base unit is in the correct slot to be used
@@ -91,7 +91,7 @@
 	if(ismob(handset.loc))
 		var/mob/M = handset.loc
 		if(M.drop_from_inventory(handset, src))
-			to_chat(user, "<span class='notice'>\The [handset] snaps back into the main unit.</span>")
+			to_chat(user, span_notice("\The [handset] snaps back into the main unit."))
 	else
 		handset.forceMove(src)
 
@@ -138,7 +138,7 @@
 		return -1
 	if(!freq)
 		return -1
-	
+
 	//Only listen on main freq
 	if(freq == frequency)
 		return canhear_range

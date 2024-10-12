@@ -84,7 +84,7 @@
 	if(!istype(W, /obj/item/glass_extra/straw) && !istype(W, /obj/item/reagent_containers/rollingpaper))
 		return ..()
 
-	user.visible_message("<span class='warning'>[user] snorts [src] with [W]!</span>")
+	user.visible_message(span_warning("[user] snorts [src] with [W]!"))
 	playsound(loc, 'sound/effects/snort.ogg', 50, 1)
 
 	if(reagents)

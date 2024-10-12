@@ -364,10 +364,10 @@
 		return
 	if(O?.has_tool_quality(TOOL_CROWBAR) || O?.has_tool_quality(TOOL_WRENCH) || istype(O, /obj/item/storage/part_replacer))
 		if(offline_for)
-			to_chat(user, "<span class='warning'>Wait until \the [src] cools down from emergency shutdown first!</span>")
+			to_chat(user, span_warning("Wait until \the [src] cools down from emergency shutdown first!"))
 			return
 		if(running)
-			to_chat(user, "<span class='notice'>Turn off \the [src] first!</span>")
+			to_chat(user, span_notice("Turn off \the [src] first!"))
 			return
 	if(default_deconstruction_crowbar(user, O))
 		return

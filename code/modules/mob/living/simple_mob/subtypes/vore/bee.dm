@@ -65,7 +65,7 @@
 // Does actual poison injection, after all checks passed.
 /mob/living/simple_mob/vore/bee/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
-		to_chat(L, "<span class='warning'>You feel a tiny prick.</span>")
+		to_chat(L, span_warning("You feel a tiny prick."))
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /datum/say_list/bee

@@ -189,7 +189,7 @@
 
 /mob/living/simple_mob/vore/scel/proc/tongue(atom/A)
 	var/obj/item/projectile/P = new /obj/item/projectile/beam/appendage(get_turf(src))
-	src.visible_message("<span class='danger'>\The [src] launches a black appendage at \the [A]!</span>")
+	src.visible_message(span_danger("\The [src] launches a black appendage at \the [A]!"))
 	playsound(src, "sound/effects/slime_squish.ogg", 50, 1)
 	P.launch_projectile(A, BP_TORSO, src)
 

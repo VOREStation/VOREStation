@@ -131,7 +131,7 @@
 
 			positive_locations.Add(D)
 
-			to_chat(user, "<span class='notice'>[icon2html(src, user.client)] [src] pings.</span>")
+			to_chat(user, span_notice("[icon2html(src, user.client)] [src] pings."))
 
 	else if(istype(A, /obj/structure/boulder))
 		var/obj/structure/boulder/B = A
@@ -149,7 +149,7 @@
 
 			positive_locations.Add(D)
 
-			to_chat(user, "<span class='notice'>[icon2html(src, user.client)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
+			to_chat(user, span_notice("[icon2html(src, user.client)] [src] pings [pick("madly","wildly","excitedly","crazily")]!"))
 
 /obj/item/depth_scanner/attack_self(var/mob/living/user)
 	tgui_interact(user)

@@ -77,7 +77,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	if(L.stat || L.restrained())
 		return
 	if(last_fax_role_request && (world.time - last_fax_role_request < 5 MINUTES))
-		to_chat(L, "<span class='warning'>The global automated relays are still recalibrating. Try again later or relay your request in written form for processing.</span>")
+		to_chat(L, span_warning("The global automated relays are still recalibrating. Try again later or relay your request in written form for processing."))
 		return
 
 	var/confirmation = tgui_alert(L, "Are you sure you want to send automated crew request?", "Confirmation", list("Yes", "No", "Cancel"))
@@ -115,7 +115,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	var/datum/department/ping_dept = SSjob.get_ping_role(role)
 	if(!ping_dept)
-		to_chat(L, "<span class='warning'>Selected job cannot be requested for \[ERRORDEPTNOTFOUND] reason. Please report this to system administrator.</span>")
+		to_chat(L, span_warning("Selected job cannot be requested for \[ERRORDEPTNOTFOUND] reason. Please report this to system administrator."))
 		return
 	var/message_color = "#FFFFFF"
 	var/ping_name = null
@@ -141,13 +141,13 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		if(DEPARTMENT_TALON)
 			ping_name = "Offmap"
 	if(!ping_name)
-		to_chat(L, "<span class='warning'>Selected job cannot be requested for \[ERRORUNKNOWNDEPT] reason. Please report this to system administrator.</span>")
+		to_chat(L, span_warning("Selected job cannot be requested for \[ERRORUNKNOWNDEPT] reason. Please report this to system administrator."))
 		return
 	message_color = ping_dept.color
 
 	message_chat_rolerequest(message_color, ping_name, reason, role)
 	last_fax_role_request = world.time
-	to_chat(L, "<span class='notice'>Your request was transmitted.</span>")
+	to_chat(L, span_notice("Your request was transmitted."))
 
 /obj/machinery/photocopier/faxmachine/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -218,7 +218,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 					return
 				copyitem.forceMove(loc)
 				usr.put_in_hands(copyitem)
-				to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
+				to_chat(usr, span_notice("You take \the [copyitem] out of \the [src]."))
 				copyitem = null
 		if("send_automated_staff_request")
 			request_roles()

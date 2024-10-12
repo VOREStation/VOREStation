@@ -65,7 +65,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			if(src.locked || src.welded)
-				visible_message("<span class='danger'>\The [user] begins breaking into \the [src] internals!</span>")
+				visible_message(span_danger("\The [user] begins breaking into \the [src] internals!"))
 				user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
 				if(do_after(user,10 SECONDS,src))
 					src.locked = 0
@@ -76,13 +76,13 @@
 						src.shock(user, 100)
 				user.set_AI_busy(FALSE)
 			else if(src.density)
-				visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+				visible_message(span_danger("\The [user] forces \the [src] open!"))
 				open(1)
 			else
-				visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+				visible_message(span_danger("\The [user] forces \the [src] closed!"))
 				close(1)
 		else
-			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			visible_message(span_notice("\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"]."))
 		return
 	..()
 
@@ -91,10 +91,10 @@
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			if(src.locked || src.welded)
-				visible_message("<span class='alium'>\The [user] begins tearing into \the [src] internals!</span>")
+				visible_message(span_alium("\The [user] begins tearing into \the [src] internals!"))
 				src.do_animate("deny")
 				if(do_after(user,15 SECONDS,src))
-					visible_message("<span class='danger'>\The [user] tears \the [src] open, sparks flying from its electronics!</span>")
+					visible_message(span_danger("\The [user] tears \the [src] open, sparks flying from its electronics!"))
 					src.do_animate("spark")
 					playsound(src, 'sound/machines/door/airlock_tear_apart.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					src.locked = 0
@@ -103,17 +103,17 @@
 					open(1)
 					src.set_broken() //These aren't emags, these be CLAWS
 			else if(src.density)
-				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
+				visible_message(span_alium("\The [user] begins forcing \the [src] open!"))
 				if(do_after(user, 5 SECONDS,src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
-					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					open(1)
 			else
-				visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+				visible_message(span_danger("\The [user] forces \the [src] closed!"))
 				close(1)
 		else
 			src.do_animate("deny")
-			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			visible_message(span_notice("\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"]."))
 			return
 	..()
 
@@ -670,7 +670,7 @@ About the new airlock wires panel:
 			else /*if(src.justzap)*/
 				return
 		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
-			to_chat(user, "<span class='danger'>You feel a powerful shock course through your body!</span>")
+			to_chat(user, span_danger("You feel a powerful shock course through your body!"))
 			user.halloss += 10
 			user.stunned += 10
 			return
@@ -1007,7 +1007,7 @@ About the new airlock wires panel:
 	if(!Adjacent(user))
 		return
 	else if(user.a_intent == I_HURT)
-		src.visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
+		src.visible_message(span_warning("[user] hammers on \the [src]!"), span_warning("Someone hammers loudly on \the [src]!"))
 		src.add_fingerprint(user)
 		if(icon_state == "door_closed" && arePowerSystemsOn())
 			flick("door_deny", src)
@@ -1043,14 +1043,14 @@ About the new airlock wires panel:
 				loseMainPower()
 				update_icon()
 			else
-				to_chat(usr, "<span class='warning'>Main power is already offline.</span>")
+				to_chat(usr, span_warning("Main power is already offline."))
 			. = TRUE
 		if("disrupt-backup")
 			if(!backup_power_lost_until)
 				loseBackupPower()
 				update_icon()
 			else
-				to_chat(usr, "<span class='warning'>Backup power is already offline.</span>")
+				to_chat(usr, span_warning("Backup power is already offline."))
 			. = TRUE
 		if("shock-restore")
 			electrify(0, 1)
@@ -1105,27 +1105,27 @@ About the new airlock wires panel:
 	if(!user_allowed(user))
 		return
 	if(wires.is_cut(WIRE_DOOR_BOLTS))
-		to_chat(user, "<span class='warning'>The door bolt drop wire is cut - you can't toggle the door bolts.</span>")
+		to_chat(user, span_warning("The door bolt drop wire is cut - you can't toggle the door bolts."))
 		return
 	if(locked)
 		if(!arePowerSystemsOn())
-			to_chat(user, "<span class='warning'>The door has no power - you can't raise the door bolts.</span>")
+			to_chat(user, span_warning("The door has no power - you can't raise the door bolts."))
 		else
 			unlock()
-			to_chat(user, "<span class='notice'>The door bolts have been raised.</span>")
+			to_chat(user, span_notice("The door bolts have been raised."))
 			// log_combat(user, src, "unbolted")
 	else
 		lock()
-		to_chat(user, "<span class='warning'>The door bolts have been dropped.</span>")
+		to_chat(user, span_warning("The door bolts have been dropped."))
 		// log_combat(user, src, "bolted")
 
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
 	if(!user_allowed(user))
 		return
 	if(welded)
-		to_chat(user, text("<span class='warning'>The airlock has been welded shut!</span>"))
+		to_chat(user, span_warning("The airlock has been welded shut!"))
 	else if(locked)
-		to_chat(user, text("<span class='warning'>The door bolts are down!</span>"))
+		to_chat(user, span_warning("The door bolts are down!"))
 	else if(!density)
 		close()
 	else
@@ -1167,7 +1167,7 @@ About the new airlock wires panel:
 	else if(C.has_tool_quality(TOOL_SCREWDRIVER))
 		if (src.p_open)
 			if (stat & BROKEN)
-				to_chat(usr, "<span class='warning'>The panel is broken and cannot be closed.</span>")
+				to_chat(usr, span_warning("The panel is broken and cannot be closed."))
 			else
 				src.p_open = FALSE
 				playsound(src, C.usesound, 50, 1)
@@ -1192,7 +1192,7 @@ About the new airlock wires panel:
 			playsound(src, C.usesound, 75, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
 			if(do_after(user,40 * C.toolspeed))
-				to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
+				to_chat(user, span_notice("You removed the airlock electronics!"))
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
 				if (istype(da, /obj/structure/door_assembly/multi_tile))
@@ -1220,9 +1220,9 @@ About the new airlock wires panel:
 				qdel(src)
 				return
 		else if(arePowerSystemsOn())
-			to_chat(user, "<span class='notice'>The airlock's motors resist your efforts to force it.</span>")
+			to_chat(user, span_notice("The airlock's motors resist your efforts to force it."))
 		else if(locked)
-			to_chat(user, "<span class='notice'>The airlock's bolts prevent it from being forced.</span>")
+			to_chat(user, span_notice("The airlock's bolts prevent it from being forced."))
 		else
 			if(density)
 				spawn(0)	open(1)
@@ -1234,12 +1234,12 @@ About the new airlock wires panel:
 		var/obj/item/W = C
 		if((W.pry == 1) && !arePowerSystemsOn())
 			if(locked)
-				to_chat(user, "<span class='notice'>The airlock's bolts prevent it from being forced.</span>")
+				to_chat(user, span_notice("The airlock's bolts prevent it from being forced."))
 			else if( !welded && !operating )
 				if(istype(C, /obj/item/material/twohanded/fireaxe)) // If this is a fireaxe, make sure it's held in two hands.
 					var/obj/item/material/twohanded/fireaxe/F = C
 					if(!F.wielded)
-						to_chat(user, "<span class='warning'>You need to be wielding \the [F] to do that.</span>")
+						to_chat(user, span_warning("You need to be wielding \the [F] to do that."))
 						return
 				// At this point, it's an armblade or a fireaxe that passed the wielded test, let's try to open it.
 				if(density)

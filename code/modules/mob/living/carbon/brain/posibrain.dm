@@ -49,7 +49,7 @@
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
-	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're just a metal cube.</span>")
+	to_chat(brainmob, span_notify("You feel slightly disoriented. That's normal when you're just a metal cube."))
 	icon_state = "posibrain-occupied"
 	return
 

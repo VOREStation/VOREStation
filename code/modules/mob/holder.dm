@@ -102,18 +102,18 @@ var/list/holder_mob_icon_cache = list()
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src) // If it's another item, we can just continue existing, or if it's a turf we'll qdel() in Moved()
-		to_chat(M, "<span class='warning'>\The [held] wriggles out of your grip!</span>")
-		to_chat(held, "<span class='warning'>You wiggle out of [M]'s grip!</span>")
+		to_chat(M, span_warning("\The [held] wriggles out of your grip!"))
+		to_chat(held, span_warning("You wiggle out of [M]'s grip!"))
 	else if(istype(loc, /obj/item/clothing/accessory/holster))
 		var/obj/item/clothing/accessory/holster/holster = loc
 		if(holster.holstered == src)
 			holster.clear_holster()
-		to_chat(held, "<span class='warning'>You extricate yourself from [holster].</span>")
+		to_chat(held, span_warning("You extricate yourself from [holster]."))
 		forceMove(get_turf(src))
 		held.reset_view(null)
 	else if(isitem(loc))
 		var/obj/item/I = loc
-		to_chat(held, "<span class='warning'>You struggle free of [loc].</span>")
+		to_chat(held, span_warning("You struggle free of [loc]."))
 		forceMove(get_turf(src))
 		held.reset_view(null)
 		if(istype(I))
@@ -324,12 +324,12 @@ var/list/holder_mob_icon_cache = list()
 	grabber.put_in_hands(H)
 
 	if(self_grab)
-		to_chat(grabber, "<span class='notice'>\The [src] clambers onto you!</span>")
-		to_chat(src, "<span class='notice'>You climb up onto \the [grabber]!</span>")
+		to_chat(grabber, span_notice("\The [src] clambers onto you!"))
+		to_chat(src, span_notice("You climb up onto \the [grabber]!"))
 		grabber.equip_to_slot_if_possible(H, slot_back, 0, 1)
 	else
-		to_chat(grabber, "<span class='notice'>You scoop up \the [src]!</span>")
-		to_chat(src, "<span class='notice'>\The [grabber] scoops you up!</span>")
+		to_chat(grabber, span_notice("You scoop up \the [src]!"))
+		to_chat(src, span_notice("\The [grabber] scoops you up!"))
 
 	add_attack_logs(grabber, H.held_mob, "Scooped up", FALSE) // Not important enough to notify admins, but still helpful.
 	return H

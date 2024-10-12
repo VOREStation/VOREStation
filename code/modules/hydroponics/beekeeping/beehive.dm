@@ -96,7 +96,7 @@
 		update_icon()
 		return
 	else if(istype(I, /obj/item/analyzer/plant_analyzer))
-		to_chat(user, "<span class='notice'>Scan result of \the [src]...</span>")
+		to_chat(user, span_notice("Scan result of \the [src]..."))
 		to_chat(user, "Beehive is [bee_count ? "[round(bee_count)]% full" : "empty"].[bee_count > 90 ? " Colony is ready to split." : ""]")
 		if(length(frames))
 			to_chat(user, "[length(frames)] frames installed, [round(honeycombs / 100)] filled.")

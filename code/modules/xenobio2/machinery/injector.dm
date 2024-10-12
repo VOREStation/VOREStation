@@ -43,17 +43,17 @@
 
 /obj/machinery/xenobio2/manualinjector/proc/move_into_injector(var/mob/user,var/mob/living/victim)
 	if(src.occupant)
-		to_chat(user, "<span class='danger'>The injector is full, empty it first!</span>")
+		to_chat(user, span_danger("The injector is full, empty it first!"))
 		return
 
 	if(!(istype(victim, /mob/living/simple_mob/xeno)) && !emagged)
-		to_chat(user, "<span class='danger'>This is not a suitable subject for the injector!</span>")
+		to_chat(user, span_danger("This is not a suitable subject for the injector!"))
 		return
 
-	user.visible_message("<span class='danger'>[user] starts to put [victim] into the injector!</span>")
+	user.visible_message(span_danger("[user] starts to put [victim] into the injector!"))
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
-		user.visible_message("<span class='danger'>[user] stuffs [victim] into the injector!</span>")
+		user.visible_message(span_danger("[user] stuffs [victim] into the injector!"))
 		if(victim.client)
 			victim.client.perspective = EYE_PERSPECTIVE
 			victim.client.eye = src
@@ -111,14 +111,14 @@
 				var/obj/machinery/computer/xenobio2/C = P.connectable
 				computer = C
 				C.injector = src
-				to_chat(user, "<span class='warning'> You link the [src] to the [P.connectable]!</span>")
+				to_chat(user, span_warning(" You link the [src] to the [P.connectable]!"))
 		else
-			to_chat(user, "<span class='warning'> You store the [src] in the [P]'s buffer!</span>")
+			to_chat(user, span_warning(" You store the [src] in the [P]'s buffer!"))
 			P.connectable = src
 		return
 
 	if(panel_open)
-		to_chat(user, "<span class='warning'>Close the panel first!</span>")
+		to_chat(user, span_warning("Close the panel first!"))
 
 	var/obj/item/grab/G = W
 
@@ -126,7 +126,7 @@
 		return ..()
 
 	if(G.state < 2)
-		to_chat(user, "<span class='danger'>You need a better grip to do that!</span>")
+		to_chat(user, span_danger("You need a better grip to do that!"))
 		return
 
 	move_into_injector(user,G.affecting)

@@ -58,7 +58,7 @@ var/global/list/security_printer_tickets = list()	//VOREStation Edit
 
 	//VOREStation add Start - Ticket time!
 	if(security_printer_tickets.len)
-		valid_stats_list.Add("<span class = 'danger'>[security_printer_tickets.len] unique security tickets were issued today!</span><br>Examples include:")
+		valid_stats_list.Add(span_danger("[security_printer_tickets.len] unique security tickets were issued today!") + "<br>Examples include:")
 		var/good_num = 5
 		var/ourticket
 		while(good_num > 0)
@@ -67,7 +67,7 @@ var/global/list/security_printer_tickets = list()	//VOREStation Edit
 				ourticket = pick(security_printer_tickets)
 				security_printer_tickets -= ourticket
 				if(ourticket)
-					valid_stats_list.Add("<b>-</b>\"[ourticket]\"")
+					valid_stats_list.Add(span_bold("-")+"\"[ourticket]\"")
 				good_num--
 			else
 				good_num = 0

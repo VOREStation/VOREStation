@@ -67,10 +67,10 @@
 	add_fingerprint(user)
 
 	if(!pai)
-		to_chat(user,"<span class='warning'>\The [src] does not have a mind in it!</span>")
+		to_chat(user,span_warning("\The [src] does not have a mind in it!"))
 	else
 		if(!emagged)
-			to_chat(user,"<span class='notice'>\The [src] displays the name '[pai]'.</span>")
+			to_chat(user,span_notice("\The [src] displays the name '[pai]'."))
 		else ..()
 
 /mob/living/silicon/pai/infomorph
@@ -133,4 +133,4 @@
 	if(emagged)
 		touch_window("Directives")
 	else
-		to_chat(src, "<span class='notice'>You are not bound by any laws or directives.</span>")
+		to_chat(src, span_notice("You are not bound by any laws or directives."))

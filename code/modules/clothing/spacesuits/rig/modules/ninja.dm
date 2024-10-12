@@ -51,7 +51,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<span class='danger'>You are now visible.</span>")
+	to_chat(H, span_danger("You are now visible."))
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
@@ -100,7 +100,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
-		to_chat(H, "<span class='warning'>You cannot teleport out of your current location.</span>")
+		to_chat(H, span_warning("You cannot teleport out of your current location."))
 		return 0
 
 	var/turf/T
@@ -110,23 +110,23 @@
 		T = get_teleport_loc(get_turf(H), H, 6, 1, 1, 1)
 
 	if(!T)
-		to_chat(H, "<span class='warning'>No valid teleport target found.</span>")
+		to_chat(H, span_warning("No valid teleport target found."))
 		return 0
 
 	if(T.density)
-		to_chat(H, "<span class='warning'>You cannot teleport into solid walls.</span>")
+		to_chat(H, span_warning("You cannot teleport into solid walls."))
 		return 0
 
 	if(T.z in using_map.admin_levels)
-		to_chat(H, "<span class='warning'>You cannot use your teleporter on this Z-level.</span>")
+		to_chat(H, span_warning("You cannot use your teleporter on this Z-level."))
 		return 0
 
 	if(T.contains_dense_objects())
-		to_chat(H, "<span class='warning'>You cannot teleport to a location with solid objects.</span>")
+		to_chat(H, span_warning("You cannot teleport to a location with solid objects."))
 		return 0
 
 	if(T.z != H.z || get_dist(T, get_turf(H)) > world.view)
-		to_chat(H, "<span class='warning'>You cannot teleport to such a distant object.</span>")
+		to_chat(H, span_warning("You cannot teleport to such a distant object."))
 		return 0
 
 	if(!..()) return 0

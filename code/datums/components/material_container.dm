@@ -102,7 +102,7 @@
 	for(var/datum/material/M as anything in materials)
 		var/amt = materials[M]
 		if(amt)
-			examine_texts += "<span class='notice'>It has [amt] units of [lowertext(M.name)] stored.</span>"
+			examine_texts += span_notice("It has [amt] units of [lowertext(M.name)] stored.")
 
 /// Proc that allows players to fill the parent with mats
 /datum/component/material_container/proc/on_attackby(datum/source, obj/item/I, mob/living/user)
@@ -113,7 +113,7 @@
 		return
 	if(tc && !is_type_in_typecache(I, tc))
 		if(!(mat_container_flags & MATCONTAINER_SILENT))
-			to_chat(user, "<span class='warning'>[parent] won't accept [I]!</span>")
+			to_chat(user, span_warning("[parent] won't accept [I]!"))
 		return
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	var/datum/callback/pc = precondition
@@ -125,10 +125,10 @@
 		return
 	var/material_amount = get_item_material_amount(I, mat_container_flags)
 	if(!material_amount)
-		to_chat(user, "<span class='warning'>[I] does not contain sufficient materials to be accepted by [parent].</span>")
+		to_chat(user, span_warning("[I] does not contain sufficient materials to be accepted by [parent]."))
 		return
 	if(!has_space(material_amount))
-		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		to_chat(user, span_warning("[parent] is full. Please remove materials from [parent] in order to insert more."))
 		return
 	user_insert(I, user, mat_container_flags)
 
@@ -136,7 +136,7 @@
 /datum/component/material_container/proc/user_insert_stack(obj/item/stack/S, mob/living/user, breakdown_flags = mat_container_flags)
 	var/sheets = S.get_amount()
 	if(sheets < 1)
-		to_chat(user, "<span class='warning'>[S] does not contain sufficient materials to be accepted by [parent].</span>")
+		to_chat(user, span_warning("[S] does not contain sufficient materials to be accepted by [parent]."))
 		return
 
 	// Cache this since S may go away after use()
@@ -149,23 +149,23 @@
 
 		// If any part of a sheet can't go in us, the whole sheet is invalid
 		if(!can_hold_material(GET_MATERIAL_REF(material)))
-			to_chat(user, "<span class='warning'>[parent] cannot contain [material].</span>")
+			to_chat(user, span_warning("[parent] cannot contain [material]."))
 			return
 
 	// Our sheet had no material. Whoops.
 	if(!matter_per_sheet)
-		to_chat(user, "<span class='warning'>[S] does not contain any matter acceptable by [parent].</span>")
+		to_chat(user, span_warning("[S] does not contain any matter acceptable by [parent]."))
 		return
 
 	// If we can't fit the material for one sheet, we're full.
 	if(!has_space(matter_per_sheet))
-		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		to_chat(user, span_warning("[parent] is full. Please remove materials from [parent] in order to insert more."))
 		return
 
 	// Calculate the maximum amount of sheets we could possibly accept.
 	var/max_sheets = round((max_amount - total_amount) / matter_per_sheet)
 	if(max_sheets <= 0)
-		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		to_chat(user, span_warning("[parent] is full. Please remove materials from [parent] in order to insert more."))
 		return
 
 	// Calculate the amount of sheets we're actually going to use.
@@ -176,7 +176,7 @@
 
 	// Use the amount of sheets from the stack
 	if(!S.use(sheets_to_use))
-		to_chat(user, "<span class='warning'>Something went wrong with your stack. Split it manually and try again.</span>")
+		to_chat(user, span_warning("Something went wrong with your stack. Split it manually and try again."))
 		return
 
 	// We're going to blindly insert all of the materials, our assertion above says it shouldn't be possible to overflow
@@ -187,7 +187,7 @@
 		last_inserted_id = matter
 
 	// Tell the user and wrap up.
-	to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
+	to_chat(user, span_notice("You insert a material total of [inserted] into [parent]."))
 	if(after_insert)
 		after_insert.Invoke(S, last_inserted_id, inserted)
 
@@ -196,11 +196,11 @@
 	set waitfor = FALSE
 	var/active_held = user.get_active_hand()  // differs from I when using TK
 	if(!user.unEquip(I))
-		to_chat(user, "<span class='warning'>[I] is stuck to you and cannot be placed into [parent].</span>")
+		to_chat(user, span_warning("[I] is stuck to you and cannot be placed into [parent]."))
 		return
 	var/inserted = insert_item(I, breakdown_flags = mat_container_flags)
 	if(inserted)
-		to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
+		to_chat(user, span_notice("You insert a material total of [inserted] into [parent]."))
 		qdel(I)
 		if(after_insert)
 			after_insert.Invoke(I, last_inserted_id, inserted)

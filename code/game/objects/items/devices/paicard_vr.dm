@@ -14,69 +14,69 @@ var/global/list/paikeys = list()
 	if(istype(I,/obj/item/tool/screwdriver))
 		if(panel_open)
 			panel_open = FALSE
-			user.visible_message("<span class ='notice'>\The [user] secured \the [src]'s maintenance panel.</span>")
+			user.visible_message(span_notice("\The [user] secured \the [src]'s maintenance panel."))
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		else if(pai)
 			if(do_after(user, 3 SECONDS))
 				panel_open = TRUE
-				user.visible_message("<span class ='warning'>\The [user] opened \the [src]'s maintenance panel.</span>")
+				user.visible_message(span_warning("\The [user] opened \the [src]'s maintenance panel."))
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 	if(istype(I,/obj/item/robotanalyzer))
 		if(!panel_open)
-			to_chat(user, "<span class ='warning'>The panel isn't open. You will need to unscrew it to open it.</span>")
+			to_chat(user, span_warning("The panel isn't open. You will need to unscrew it to open it."))
 		else
 			if(cell == PP_FUNCTIONAL)
-				to_chat(user,"Power cell: <span class ='notice'>functional</span>")
+				to_chat(user,"Power cell: " + span_notice("functional"))
 			else if(cell == PP_BROKEN)
-				to_chat(user,"Power cell: <span class ='warning'>damaged - CRITICAL</span>")
+				to_chat(user,"Power cell: " + span_warning("damaged - CRITICAL"))
 			else
-				to_chat(user,"Power cell: <span class ='warning'>missing - CRITICAL</span>")
+				to_chat(user,"Power cell: " + span_warning("missing - CRITICAL"))
 
 			if(processor == PP_FUNCTIONAL)
-				to_chat(user,"Processor: <span class ='notice'>functional</span>")
+				to_chat(user,"Processor: " + span_notice("functional"))
 			else if(processor == PP_BROKEN)
-				to_chat(user,"Processor: <span class ='warning'>damaged - CRITICAL</span>")
+				to_chat(user,"Processor: " + span_warning("damaged - CRITICAL"))
 			else
-				to_chat(user,"Processor: <span class ='warning'>missing - CRITICAL</span>")
+				to_chat(user,"Processor: " + span_warning("missing - CRITICAL"))
 
 			if(board == PP_FUNCTIONAL)
-				to_chat(user,"Board: <span class ='notice'>functional</span>")
+				to_chat(user,"Board: " + span_notice("functional"))
 			else if(board == PP_BROKEN)
-				to_chat(user,"Board: <span class ='warning'>damaged - CRITICAL</span>")
+				to_chat(user,"Board: " + span_warning("damaged - CRITICAL"))
 			else
-				to_chat(user,"Board: <span class ='warning'>missing - CRITICAL</span>")
+				to_chat(user,"Board: " + span_warning("missing - CRITICAL"))
 
 			if(capacitor == PP_FUNCTIONAL)
-				to_chat(user,"Capacitors: <span class ='notice'>functional</span>")
+				to_chat(user,"Capacitors: " + span_notice("functional"))
 			else if(capacitor == PP_BROKEN)
-				to_chat(user,"Capacitors: <span class ='warning'>damaged - CRITICAL</span>")
+				to_chat(user,"Capacitors: " + span_warning("damaged - CRITICAL"))
 			else
-				to_chat(user,"Capacitors: <span class ='warning'>missing - CRITICAL</span>")
+				to_chat(user,"Capacitors: " + span_warning("missing - CRITICAL"))
 
 			if(projector == PP_FUNCTIONAL)
-				to_chat(user,"Projectors: <span class ='notice'>functional</span>")
+				to_chat(user,"Projectors: " + span_notice("functional"))
 			else if(projector == PP_BROKEN)
-				to_chat(user,"Projectors: <span class ='warning'>damaged</span>")
+				to_chat(user,"Projectors: " + span_warning("damaged"))
 			else
-				to_chat(user,"Projectors: <span class ='warning'>missing</span>")
+				to_chat(user,"Projectors: " + span_warning("missing"))
 
 			if(emitter == PP_FUNCTIONAL)
-				to_chat(user,"Emitters: <span class ='notice'>functional</span>")
+				to_chat(user,"Emitters: " + span_notice("functional"))
 			else if(emitter == PP_BROKEN)
-				to_chat(user,"Emitters: <span class ='warning'>damaged</span>")
+				to_chat(user,"Emitters: " + span_warning("damaged"))
 			else
-				to_chat(user,"Emitters: <span class ='warning'>missing</span>")
+				to_chat(user,"Emitters: " + span_warning("missing"))
 
 			if(speech_synthesizer == PP_FUNCTIONAL)
-				to_chat(user,"Speech Synthesizer: <span class ='notice'>functional</span>")
+				to_chat(user,"Speech Synthesizer: " + span_notice("functional"))
 			else if(speech_synthesizer == PP_BROKEN)
-				to_chat(user,"Speech Synthesizer: <span class ='warning'>damaged</span>")
+				to_chat(user,"Speech Synthesizer: " + span_warning("damaged"))
 			else
-				to_chat(user,"Speech Synthesizer: <span class ='warning'>missing</span>")
+				to_chat(user,"Speech Synthesizer: " + span_warning("missing"))
 
 	if(istype(I,/obj/item/multitool))
 		if(!panel_open)
-			to_chat(user, "<span class ='warning'>You can't do that in this state.</span>")
+			to_chat(user, span_warning("You can't do that in this state."))
 		else
 			var/list/parts = list()
 			if(cell != PP_MISSING)
@@ -98,123 +98,123 @@ var/global/list/paikeys = list()
 			switch(choice)
 				if("cell")
 					if(cell == PP_FUNCTIONAL)
-						to_chat(user,"Power cell: <span class ='notice'>functional</span>")
+						to_chat(user,"Power cell: " + span_notice("functional"))
 					else if(speech_synthesizer == PP_BROKEN)
-						to_chat(user,"Power cell: <span class ='warning'>damaged</span>")
+						to_chat(user,"Power cell: " + span_warning("damaged"))
 					else
-						to_chat(user,"Power cell: <span class ='warning'>missing</span>")
+						to_chat(user,"Power cell: " + span_warning("missing"))
 
 				if("processor")
 					if(processor == PP_FUNCTIONAL)
-						to_chat(user,"Processor: <span class ='notice'>functional</span>")
+						to_chat(user,"Processor: " + span_notice("functional"))
 					else if(speech_synthesizer == PP_BROKEN)
-						to_chat(user,"Processor: <span class ='warning'>damaged</span>")
+						to_chat(user,"Processor: " + span_warning("damaged"))
 					else
-						to_chat(user,"Processor: <span class ='warning'>missing</span>")
+						to_chat(user,"Processor: " + span_warning("missing"))
 
 				if("board")
 					if(board == PP_FUNCTIONAL)
-						to_chat(user,"Board: <span class ='notice'>functional</span>")
+						to_chat(user,"Board: " + span_notice("functional"))
 					else if(speech_synthesizer == PP_BROKEN)
-						to_chat(user,"Board: <span class ='warning'>damaged</span>")
+						to_chat(user,"Board: " + span_warning("damaged"))
 					else
-						to_chat(user,"Board: <span class ='warning'>missing</span>")
+						to_chat(user,"Board: " + span_warning("missing"))
 
 				if("capacitor")
 					if(capacitor == PP_FUNCTIONAL)
-						to_chat(user,"Capacitors: <span class ='notice'>functional</span>")
+						to_chat(user,"Capacitors: " + span_notice("functional"))
 					else if(speech_synthesizer == PP_BROKEN)
-						to_chat(user,"Capacitors: <span class ='warning'>damaged</span>")
+						to_chat(user,"Capacitors: " + span_warning("damaged"))
 					else
-						to_chat(user,"Capacitors: <span class ='warning'>missing</span>")
+						to_chat(user,"Capacitors: " + span_warning("missing"))
 
 				if("projector")
 					if(projector == PP_FUNCTIONAL)
-						to_chat(user,"Projectors: <span class ='notice'>functional</span>")
+						to_chat(user,"Projectors: " + span_notice("functional"))
 					else if(speech_synthesizer == PP_BROKEN)
-						to_chat(user,"Projectors: <span class ='warning'>damaged</span>")
+						to_chat(user,"Projectors: " + span_warning("damaged"))
 					else
-						to_chat(user,"Projectors: <span class ='warning'>missing</span>")
+						to_chat(user,"Projectors: " + span_warning("missing"))
 
 				if("emitter")
 					if(emitter == PP_FUNCTIONAL)
-						to_chat(user,"Emitters: <span class ='notice'>functional</span>")
+						to_chat(user,"Emitters: " + span_notice("functional"))
 					else if(speech_synthesizer == PP_BROKEN)
-						to_chat(user,"Emitters: <span class ='warning'>damaged</span>")
+						to_chat(user,"Emitters: " + span_warning("damaged"))
 					else
-						to_chat(user,"Emitters: <span class ='warning'>missing</span>")
+						to_chat(user,"Emitters: " + span_warning("missing"))
 
 				if("speech synthesizer")
 					if(speech_synthesizer == PP_FUNCTIONAL)
-						to_chat(user,"Speech Synthesizer: <span class ='notice'>functional</span>")
+						to_chat(user,"Speech Synthesizer: " + span_notice("functional"))
 					else if(speech_synthesizer == PP_BROKEN)
-						to_chat(user,"Speech Synthesizer: <span class ='warning'>damaged</span>")
+						to_chat(user,"Speech Synthesizer: " + span_warning("damaged"))
 					else
-						to_chat(user,"Speech Synthesizer: <span class ='warning'>missing</span>")
+						to_chat(user,"Speech Synthesizer: " + span_warning("missing"))
 
 	if(istype(I,/obj/item/paiparts/cell))
 		if(cell == PP_MISSING)
 			if(do_after(user, 3 SECONDS))
-				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				user.visible_message(span_notice("\The [user] installs \the [I] into \the [src]."),span_notice("You install \the [I] into \the [src]."))
 				cell = PP_FUNCTIONAL
 				user.drop_from_inventory(I)
 				qdel(I)
 		else
-			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 	if(istype(I,/obj/item/paiparts/processor))
 		if(processor == PP_MISSING)
 			if(do_after(user, 3 SECONDS))
-				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				user.visible_message(span_notice("\The [user] installs \the [I] into \the [src]."),span_notice("You install \the [I] into \the [src]."))
 				processor = PP_FUNCTIONAL
 				user.drop_from_inventory(I)
 				qdel(I)
 		else
-			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 	if(istype(I,/obj/item/paiparts/board))
 		if(board == PP_MISSING)
 			if(do_after(user, 3 SECONDS))
-				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				user.visible_message(span_notice("\The [user] installs \the [I] into \the [src]."),span_notice("You install \the [I] into \the [src]."))
 				board = PP_FUNCTIONAL
 				user.drop_from_inventory(I)
 				qdel(I)
 		else
-			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 	if(istype(I,/obj/item/paiparts/capacitor))
 		if(capacitor == PP_MISSING)
 			if(do_after(user, 3 SECONDS))
-				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				user.visible_message(span_notice("\The [user] installs \the [I] into \the [src]."),span_notice("You install \the [I] into \the [src]."))
 				capacitor = PP_FUNCTIONAL
 				user.drop_from_inventory(I)
 				qdel(I)
 		else
-			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 	if(istype(I,/obj/item/paiparts/projector))
 		if(projector == PP_MISSING)
 			if(do_after(user, 3 SECONDS))
-				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				user.visible_message(span_notice("\The [user] installs \the [I] into \the [src]."),span_notice("You install \the [I] into \the [src]."))
 				projector = PP_FUNCTIONAL
 				user.drop_from_inventory(I)
 				qdel(I)
 		else
-			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 	if(istype(I,/obj/item/paiparts/emitter))
 		if(emitter == PP_MISSING)
 			if(do_after(user, 3 SECONDS))
-				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				user.visible_message(span_notice("\The [user] installs \the [I] into \the [src]."),span_notice("You install \the [I] into \the [src]."))
 				emitter = PP_FUNCTIONAL
 				user.drop_from_inventory(I)
 				qdel(I)
 		else
-			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 	if(istype(I,/obj/item/paiparts/speech_synthesizer))
 		if(speech_synthesizer == PP_MISSING)
 			if(do_after(user, 3 SECONDS))
-				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				user.visible_message(span_notice("\The [user] installs \the [I] into \the [src]."),span_notice("You install \the [I] into \the [src]."))
 				speech_synthesizer = PP_FUNCTIONAL
 				user.drop_from_inventory(I)
 				qdel(I)
 		else
-			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 
 /obj/item/paicard/attack_self(mob/user)
 	if(!panel_open)
@@ -249,14 +249,14 @@ var/global/list/paikeys = list()
 				new /obj/item/paiparts/capacitor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
-			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
+			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			cell = PP_MISSING
 		if("processor")
 			if(processor == PP_FUNCTIONAL)
 				new /obj/item/paiparts/capacitor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
-			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
+			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			processor = PP_MISSING
 		if("board")
 			board = PP_MISSING
@@ -264,35 +264,35 @@ var/global/list/paikeys = list()
 				new /obj/item/paiparts/capacitor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
-			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
+			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 
 		if("capacitor")
 			if(capacitor == PP_FUNCTIONAL)
 				new /obj/item/paiparts/capacitor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
-			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
+			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			capacitor = PP_MISSING
 		if("projector")
 			if(projector == PP_FUNCTIONAL)
 				new /obj/item/paiparts/capacitor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
-			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
+			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			projector = PP_MISSING
 		if("emitter")
 			if(emitter == PP_FUNCTIONAL)
 				new /obj/item/paiparts/capacitor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
-			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
+			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			emitter = PP_MISSING
 		if("speech synthesizer")
 			if(speech_synthesizer == PP_FUNCTIONAL)
 				new /obj/item/paiparts/capacitor(get_turf(user))
 			else
 				new /obj/item/paiparts(get_turf(user))
-			user.visible_message("<span class ='warning'>\The [user] removes \the [choice] from \the [src].</span>","<span class ='warning'>You remove \the [choice] from \the [src].</span>")
+			user.visible_message(span_warning("\The [user] removes \the [choice] from \the [src]."),span_warning("You remove \the [choice] from \the [src]."))
 			speech_synthesizer = PP_MISSING
 
 /obj/item/paicard/proc/death_damage()

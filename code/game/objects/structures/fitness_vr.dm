@@ -27,7 +27,7 @@
 	if(!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	usr.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
 	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
@@ -43,7 +43,7 @@
 	else
 		usr.forceMove(get_turf(src))
 
-	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
+	usr.visible_message(span_warning("[user] climbed over \the [src]!"))
 	LAZYREMOVE(climbers, user)
 
 /obj/structure/fitness/boxing_ropes/can_climb(var/mob/living/user, post_climb_check=0) //Sets it to keep people from climbing over into the next turf if it is occupied.
@@ -53,7 +53,7 @@
 	if(get_turf(user) == get_turf(src))
 		var/obj/occupied = neighbor_turf_impassable()
 		if(occupied)
-			to_chat(user, "<span class='danger'>You can't climb there, there's \a [occupied] in the way.</span>")
+			to_chat(user, span_danger("You can't climb there, there's \a [occupied] in the way."))
 			return 0
 	return 1
 

@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	return B
 
 /obj/structure/blob/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	user.do_attack_animation(src)
 	if(overmind)
@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 			return FALSE
 
 		H.do_attack_animation(src)
-		H.visible_message("<span class='danger'>[H] strikes \the [src]!</span>")
+		H.visible_message(span_danger("[H] strikes \the [src]!"))
 
 		var/real_damage = rand(3,6)
 		var/hit_dam_type = attack.damage_type
@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 /obj/structure/blob/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
-	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+	visible_message(span_danger("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))
 	var/damage = W.force
 	switch(W.damtype)
 		if(BURN, BIOACID, ELECTROCUTE, OXY)

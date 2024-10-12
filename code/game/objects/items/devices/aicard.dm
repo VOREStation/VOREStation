@@ -74,12 +74,12 @@
 			INVOKE_ASYNC(src, PROC_REF(wipe_ai))
 		if("radio")
 			carded_ai.aiRadio.disabledAi = !carded_ai.aiRadio.disabledAi
-			to_chat(carded_ai, "<span class='warning'>Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!</span>")
-			to_chat(user, "<span class='notice'>You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver.</span>")
+			to_chat(carded_ai, span_warning("Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!"))
+			to_chat(user, span_notice("You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver."))
 		if("wireless")
 			carded_ai.control_disabled = !carded_ai.control_disabled
-			to_chat(carded_ai, "<span class='warning'>Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!</span>")
-			to_chat(user, "<span class='notice'>You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface.</span>")
+			to_chat(carded_ai, span_warning("Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!"))
+			to_chat(user, span_notice("You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface."))
 			if(carded_ai.control_disabled && carded_ai.deployed_shell)
 				carded_ai.disconnect_shell("Disconnecting from remote shell due to [src] wireless access interface being disabled.")
 			update_icon()
@@ -153,13 +153,13 @@
 
 /obj/item/aicard/see_emote(mob/living/M, text)
 	if(carded_ai && carded_ai.client)
-		var/rendered = "<span class='message'>[text]</span>"
+		var/rendered = span_message("[text]")
 		carded_ai.show_message(rendered, 2)
 	..()
 
 /obj/item/aicard/show_message(msg, type, alt, alt_type)
 	if(carded_ai && carded_ai.client)
-		var/rendered = "<span class='message'>[msg]</span>"
+		var/rendered = span_message("[msg]")
 		carded_ai.show_message(rendered, type)
 	..()
 

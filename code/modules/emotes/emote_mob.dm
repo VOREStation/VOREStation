@@ -21,7 +21,7 @@
 
 	if(usr == src) //client-called emote
 		if (client && (client.prefs.muted & MUTE_IC))
-			to_chat(src, "<span class='warning'>You cannot send IC messages (muted).</span>")
+			to_chat(src, span_warning("You cannot send IC messages (muted)."))
 			return
 
 		if(world.time < next_emote)
@@ -189,9 +189,9 @@
 	if(input)
 		log_emote(message,src) //Log before we add junk
 		if(usr && usr.client)
-			message = "<span class='emote'><B>[src]</B> [input]</span>"
+			message = span_emote("<B>[src]</B> [input]")
 		else
-			message = "<span class='npcemote'><B>[src]</B> [input]</span>"
+			message = span_npc_emote("<B>[src]</B> [input]")
 	else
 		return
 
@@ -221,9 +221,9 @@
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
 					if(isobserver(M))
-						message = "<span class='emote'><B>[src]</B> ([ghost_follow_link(src, M)]) [input]</span>"
+						message = span_emote("<B>[src]</B> ([ghost_follow_link(src, M)]) [input]")
 					if(usr && usr.client && M && !(get_z(usr) == get_z(M)))
-						message = "<span class='multizsay'>[message]</span>"
+						message = span_multizsay("[message]")
 					M.show_message(message, m_type)
 					M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
 

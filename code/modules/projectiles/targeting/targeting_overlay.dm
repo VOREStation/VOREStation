@@ -110,24 +110,24 @@
 	if(!locked && lock_time <= world.time)
 		locked = 1
 		to_chat(owner, "<span class ='notice'>You are locked onto your target.</span>")
-		to_chat(aiming_at, "<span class='danger'>The gun is trained on you!</span>")
+		to_chat(aiming_at, span_danger("The gun is trained on you!"))
 		update_icon()
 
 	var/cancel_aim = 1
 
 	var/mob/living/carbon/human/H = owner
 	if(!(aiming_with in owner) || (istype(H) && !H.item_is_in_hands(aiming_with)))
-		to_chat(owner, "<span class='warning'>You must keep hold of your weapon!</span>")
+		to_chat(owner, span_warning("You must keep hold of your weapon!"))
 	else if(owner.eye_blind)
-		to_chat(owner, "<span class='warning'>You are blind and cannot see your target!</span>")
+		to_chat(owner, span_warning("You are blind and cannot see your target!"))
 	else if(!aiming_at || !istype(aiming_at.loc, /turf))
-		to_chat(owner, "<span class='warning'>You have lost sight of your target!</span>")
+		to_chat(owner, span_warning("You have lost sight of your target!"))
 	else if(owner.incapacitated() || owner.lying || owner.restrained())
-		to_chat(owner, "<span class='warning'>You must be conscious and standing to keep track of your target!</span>")
+		to_chat(owner, span_warning("You must be conscious and standing to keep track of your target!"))
 	else if(aiming_at.alpha <= 50 || (aiming_at.invisibility > owner.see_invisible))
-		to_chat(owner, "<span class='warning'>Your target has become invisible!</span>")
+		to_chat(owner, span_warning("Your target has become invisible!"))
 	else if(get_dist(get_turf(owner), get_turf(aiming_at)) > 7) // !(owner in viewers(aiming_at, 7))
-		to_chat(owner, "<span class='warning'>Your target is too far away to track!</span>")
+		to_chat(owner, span_warning("Your target is too far away to track!"))
 	else
 		cancel_aim = 0
 
@@ -147,31 +147,31 @@
 		return
 
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You cannot aim a gun in your current state.</span>")
+		to_chat(owner, span_warning("You cannot aim a gun in your current state."))
 		return
 	if(owner.lying)
-		to_chat(owner, "<span class='warning'>You cannot aim a gun while prone.</span>")
+		to_chat(owner, span_warning("You cannot aim a gun while prone."))
 		return
 	if(owner.restrained())
-		to_chat(owner, "<span class='warning'>You cannot aim a gun while handcuffed.</span>")
+		to_chat(owner, span_warning("You cannot aim a gun while handcuffed."))
 		return
 	if(target.alpha <= 50)
-		to_chat(owner, "<span class='warning'>You cannot aim at something you cannot see.</span>")
+		to_chat(owner, span_warning("You cannot aim at something you cannot see."))
 		return
 
 	if(aiming_at)
 		if(aiming_at == target)
 			return
 		aiming_at.aimed -= src
-		owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
+		owner.visible_message(span_danger("\The [owner] turns \the [thing] on \the [target]!"))
 	else
-		owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
+		owner.visible_message(span_danger("\The [owner] aims \the [thing] at \the [target]!"))
 	log_and_message_admins("aimed \a [thing] at [key_name(target)].")
 
 	if(owner.client)
 		owner.client.add_gun_icons()
-	to_chat(target, "<span class='danger'>You now have a gun pointed at you. No sudden moves!</span>")
-	to_chat(target, "<span class='critical'>If you fail to comply with your assailant, you accept the consequences of your actions.</span>")
+	to_chat(target, span_danger("You now have a gun pointed at you. No sudden moves!"))
+	to_chat(target, span_critical("If you fail to comply with your assailant, you accept the consequences of your actions."))
 	aiming_with = thing
 	aiming_at = target
 	if(istype(aiming_with, /obj/item/gun))
@@ -204,10 +204,10 @@
 
 	if(owner.client)
 		if(active)
-			to_chat(owner, "<span class='notice'>You will now aim rather than fire.</span>")
+			to_chat(owner, span_notice("You will now aim rather than fire."))
 			owner.client.add_gun_icons()
 		else
-			to_chat(owner, "<span class='notice'>You will no longer aim rather than fire.</span>")
+			to_chat(owner, span_notice("You will no longer aim rather than fire."))
 			owner.client.remove_gun_icons()
 		owner.gun_setting_icon.icon_state = "gun[active]"
 
@@ -224,4 +224,3 @@
 	aiming_at = null
 	loc = null
 	STOP_PROCESSING(SSobj, src)
-

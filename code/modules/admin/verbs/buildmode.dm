@@ -301,7 +301,7 @@
 						area_enabled = 1
 						area_name = tgui_input_text(usr, "New area name", "Room Buildmode", max_length = MAX_NAME_LEN)
 						if(isnull(area_name))
-							to_chat(usr, "<span class='notice'>You must enter a non-null name.</span>")
+							to_chat(usr, span_notice("You must enter a non-null name."))
 							area_enabled = 0
 							return
 						area_name = sanitize(area_name,MAX_NAME_LEN)
@@ -417,7 +417,7 @@
 					qdel(object)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
-				to_chat(user, "<span class='notice'>[object]([object.type]) copied to buildmode.</span>")
+				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)
@@ -429,13 +429,13 @@
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
 				else
-					to_chat(user, "<span class='danger'>[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'</span>")
+					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 			if(pa.Find("right"))
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
 				else
-					to_chat(user, "<span class='danger'>[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'</span>")
+					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 
 		if(BUILDMODE_THROW)
 			if(pa.Find("left"))
@@ -449,19 +449,19 @@
 		if(BUILDMODE_ROOM)
 			if(pa.Find("left"))
 				holder.buildmode.coordA = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as point A.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as point A."))
 
 			if(pa.Find("right"))
 				holder.buildmode.coordB = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as point B.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as point B."))
 
 			if(holder.buildmode.coordA && holder.buildmode.coordB)
 				if(isnull(holder.buildmode.area_name))
-					to_chat(user, "<span class='notice'>ERROR: Insert area name before use.</span>")
+					to_chat(user, span_notice("ERROR: Insert area name before use."))
 					holder.buildmode.coordA = null
 					holder.buildmode.coordB = null
 					return
-				to_chat(user, "<span class='notice'>A and B set, creating rectangle.</span>")
+				to_chat(user, span_notice("A and B set, creating rectangle."))
 				holder.buildmode.make_rectangle(
 					holder.buildmode.coordA,
 					holder.buildmode.coordB,
@@ -475,14 +475,14 @@
 		if(BUILDMODE_LADDER)
 			if(pa.Find("left"))
 				holder.buildmode.coordA = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as upper ladder location.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as upper ladder location."))
 
 			if(pa.Find("right"))
 				holder.buildmode.coordB = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as lower ladder location.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as lower ladder location."))
 
 			if(holder.buildmode.coordA && holder.buildmode.coordB)
-				to_chat(user, "<span class='notice'>Ladder locations set, building ladders.</span>")
+				to_chat(user, span_notice("Ladder locations set, building ladders."))
 				var/obj/structure/ladder/A = new /obj/structure/ladder/up(holder.buildmode.coordA)
 				var/obj/structure/ladder/B = new /obj/structure/ladder(holder.buildmode.coordB)
 				A.target_up = B
@@ -654,7 +654,7 @@
 
 		if(BUILDMODE_DROP)
 			if(ispath(holder.buildmode.objholder,/turf))
-				to_chat(user, "<span class='warning'>Cannot use turfs with this mode.</span>")
+				to_chat(user, span_warning("Cannot use turfs with this mode."))
 				return
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder))
@@ -666,7 +666,7 @@
 					FE.crushing = TRUE
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
-				to_chat(user, "<span class='notice'>[object]([object.type]) copied to buildmode.</span>")
+				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)

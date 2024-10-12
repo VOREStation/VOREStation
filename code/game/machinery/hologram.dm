@@ -57,13 +57,13 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	if(tgui_alert(user,"Would you like to request an AI's presence?","Request AI",list("Yes","No")) == "Yes")
 		if(last_request + 200 < world.time) //don't spam the AI with requests you jerk!
 			last_request = world.time
-			to_chat(user, "<span class='notice'>You request an AI's presence.</span>")
+			to_chat(user, span_notice("You request an AI's presence."))
 			var/area/area = get_area(src)
 			for(var/mob/living/silicon/ai/AI in living_mob_list)
 				if(!AI.client)	continue
-				to_chat(AI, "<span class='info'>Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>.</span>")
+				to_chat(AI, span_info("Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
 		else
-			to_chat(user, "<span class='notice'>A request for AI presence was already sent recently.</span>")
+			to_chat(user, span_notice("A request for AI presence was already sent recently."))
 
 /obj/machinery/hologram/holopad/attack_ai(mob/living/silicon/ai/user)
 	if(!istype(user))
@@ -82,12 +82,12 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 /obj/machinery/hologram/holopad/proc/activate_holo(mob/living/silicon/ai/user)
 	if(!(stat & NOPOWER) && user.eyeobj.loc == src.loc)//If the projector has power and client eye is on it
 		if(user.holo)
-			to_chat(user, "<span class='danger'>ERROR:</span> Image feed in progress.")
+			to_chat(user, span_danger("ERROR:") + " Image feed in progress.")
 			return
 		create_holo(user)//Create one.
 		visible_message("A holographic image of [user] flicks to life right before your eyes!")
 	else
-		to_chat(user, "<span class='danger'>ERROR:</span> Unable to project hologram.")
+		to_chat(user, span_danger("ERROR:") + " Unable to project hologram.")
 	return
 
 /*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
@@ -102,14 +102,14 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	if(M)
 		for(var/mob/living/silicon/ai/master in masters)
 			//var/name_used = M.GetVoice()
-			var/rendered = "<i><span class='game say'>Holopad received, <span class='message'>[text]</span></span></i>"
+			var/rendered = span_game(span_say(span_italics("Holopad received, " + span_message("[text]"))))
 			//The lack of name_used is needed, because message already contains a name.  This is needed for simple mobs to emote properly.
 			master.show_message(rendered, 2)
 	return
 
 /obj/machinery/hologram/holopad/show_message(msg, type, alt, alt_type)
 	for(var/mob/living/silicon/ai/master in masters)
-		var/rendered = "<i><span class='game say'>Holopad received, <span class='message'>[msg]</span></span></i>"
+		var/rendered = span_game(span_say(span_italics("Holopad received, " + span_message("[msg]"))))
 		master.show_message(rendered, type)
 	return
 

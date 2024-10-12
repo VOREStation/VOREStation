@@ -28,7 +28,7 @@
 
 /obj/item/disposable_teleporter/attack_self(mob/user as mob)
 	if(!uses)
-		to_chat(user, "<span class='danger'>\The [src] has ran out of uses, and is now useless to you!</span>")
+		to_chat(user, span_danger("\The [src] has ran out of uses, and is now useless to you!"))
 		return
 	else
 		var/area_wanted = tgui_input_list(user, "Area to teleport to", "Teleportation", teleportlocs)
@@ -74,8 +74,8 @@
 
 		if(destination)
 			user.forceMove(destination)
-			to_chat(user, "<span class='notice'>You are teleported to \the [A].</span>")
+			to_chat(user, span_notice("You are teleported to \the [A]."))
 			uses--
 			if(uses <= 0)
-				to_chat(user, "<span class='danger'>\The [src] has ran out of uses, and disintegrates from your hands.</span>")
+				to_chat(user, span_danger("\The [src] has ran out of uses, and disintegrates from your hands."))
 				qdel(src)

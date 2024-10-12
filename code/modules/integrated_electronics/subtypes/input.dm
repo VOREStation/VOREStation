@@ -20,7 +20,7 @@
 
 
 /obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
-	to_chat(user, "<span class='notice'>You press the button labeled '[src.displayed_name]'.</span>")
+	to_chat(user, span_notice("You press the button labeled '[src.displayed_name]'."))
 	activate_pin(1)
 
 /obj/item/integrated_circuit/input/toggle_button
@@ -38,7 +38,7 @@
 	set_pin_data(IC_OUTPUT, 1, !get_pin_data(IC_OUTPUT, 1))
 	push_data()
 	activate_pin(1)
-	to_chat(user, "<span class='notice'>You toggle the button labeled '[src.displayed_name]' [get_pin_data(IC_OUTPUT, 1) ? "on" : "off"].</span>")
+	to_chat(user, span_notice("You toggle the button labeled '[src.displayed_name]' [get_pin_data(IC_OUTPUT, 1) ? "on" : "off"]."))
 
 /obj/item/integrated_circuit/input/numberpad
 	name = "number pad"

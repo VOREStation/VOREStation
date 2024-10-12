@@ -254,7 +254,7 @@
 				new /obj/item/reagent_containers/food/snacks/chaoscakeslice(src.loc)
 
 		else
-			to_chat(user, "<span class='notice'>It looks so good... But it feels so wrong to eat it before it's finished...</span>")
+			to_chat(user, span_notice("It looks so good... But it feels so wrong to eat it before it's finished..."))
 			return
 	if(istype(W,/obj/item/chaoscake_layer))
 		var/obj/item/chaoscake_layer/C = W
@@ -299,11 +299,11 @@
 
 /obj/structure/theonepizza/attackby(var/obj/item/W, var/mob/living/user)
 	if(istype(W,/obj/item/material/knife))
-		user.visible_message("<b>\The [user]</b> starts to slowly cut through The One Pizza.", "<span class='notice'>You start to slowly cut through The One Pizza.</span>")
+		user.visible_message("<b>\The [user]</b> starts to slowly cut through The One Pizza.", span_notice("You start to slowly cut through The One Pizza."))
 		if(do_after(user, slicetime, exclusive = TASK_USER_EXCLUSIVE))
 			if(!src)
 				return		// We got disappeared already
-			user.visible_message("<b>\The [user]</b> successfully cuts The One Pizza.", "<span class='notice'>You successfully cut The One Pizza.</span>")
+			user.visible_message("<b>\The [user]</b> successfully cuts The One Pizza.", span_notice("You successfully cut The One Pizza."))
 			for(var/slicetype in slicelist)
 				new slicetype(src.loc)
 			qdel(src)

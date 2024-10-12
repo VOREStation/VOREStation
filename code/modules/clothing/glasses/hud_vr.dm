@@ -51,12 +51,12 @@
 		if(prob(10))
 			icon_state = "3d"
 			if(ishuman(loc))
-				to_chat(loc, "<span class='warning'>The lenses of your [src.name] malfunction!</span>")
+				to_chat(loc, span_warning("The lenses of your [src.name] malfunction!"))
 	..()
 
 /obj/item/clothing/glasses/omnihud/proc/flashed()
 	if(flash_prot && ishuman(loc))
-		to_chat(loc, "<span class='warning'>Your [src.name] darken to try and protect your eyes!</span>")
+		to_chat(loc, span_warning("Your [src.name] darken to try and protect your eyes!"))
 
 /obj/item/clothing/glasses/omnihud/prescribe(var/mob/user)
 	prescription = !prescription
@@ -76,10 +76,10 @@
 
 	var/mob/living/carbon/human/H = user
 	if(!H.glasses || !(H.glasses == src))
-		to_chat(user, "<span class='warning'>You must be wearing the [src] to see the display.</span>")
+		to_chat(user, span_warning("You must be wearing the [src] to see the display."))
 	else
 		if(!ar_interact(H))
-			to_chat(user, "<span class='warning'>The [src] does not have any kind of special display.</span>")
+			to_chat(user, span_warning("The [src] does not have any kind of special display."))
 
 //cosmetic shading, doesn't enhance eye protection
 /obj/item/clothing/glasses/omnihud/verb/chromatize()

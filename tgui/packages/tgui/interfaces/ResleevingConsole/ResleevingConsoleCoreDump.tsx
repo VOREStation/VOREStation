@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Dimmer, Flex, Icon } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Dimmer, Flex, Icon } from 'tgui-core/components';
 
 export const ResleevingConsoleCoreDump = (props) => {
   return (
@@ -26,6 +26,7 @@ export const ResleevingConsoleDiskPrep = (props) => {
       <Box color="bad">
         <h2>!!WARNING!!</h2>
       </Box>
+      <PulsingWarningTriangle />
       <Box color="bad">
         This will transfer all minds to the dump disk, and the TransCore will be
         made unusable until post-shift maintenance! This should only be used in
@@ -48,5 +49,16 @@ export const ResleevingConsoleDiskPrep = (props) => {
         </Button.Confirm>
       </Box>
     </Dimmer>
+  );
+};
+
+export const PulsingWarningTriangle = (props) => {
+  return (
+    <Icon
+      color="bad"
+      size={4}
+      name="exclamation-triangle"
+      className="ResleevingConsole__WarningTriangle"
+    />
   );
 };

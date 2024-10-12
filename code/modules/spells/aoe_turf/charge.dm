@@ -27,9 +27,9 @@
 		for(var/spell/S in M.spell_list)
 			if(!istype(S, /spell/aoe_turf/charge))
 				S.charge_counter = S.charge_max
-		to_chat(M, "<span class='notice'>You feel raw magic flowing through you, it feels good!</span>")
+		to_chat(M, span_notice("You feel raw magic flowing through you, it feels good!"))
 	else
-		to_chat(M, "<span class='notice'>You feel very strange for a moment, but then it passes.</span>")
+		to_chat(M, span_notice("You feel very strange for a moment, but then it passes."))
 	return M
 
 /spell/aoe_turf/charge/proc/cast_charge(var/atom/target)
@@ -47,7 +47,7 @@
 	if(istype(target, /obj/item/spellbook/oneuse))
 		var/obj/item/spellbook/oneuse/I = target
 		if(prob(50))
-			I.visible_message("<span class='warning'>[I] catches fire!</span>")
+			I.visible_message(span_warning("[I] catches fire!"))
 			qdel(I)
 		else
 			I.used = 0
@@ -65,5 +65,5 @@
 	if(!charged_item)
 		return 0
 	else
-		charged_item.visible_message("<span class='notice'>[charged_item] suddenly sparks with energy!</span>")
+		charged_item.visible_message(span_notice("[charged_item] suddenly sparks with energy!"))
 		return 1

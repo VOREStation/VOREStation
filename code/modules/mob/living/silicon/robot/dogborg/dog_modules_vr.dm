@@ -81,14 +81,14 @@
 	else
 		if(affecting)
 			if(dogborg)
-				target.visible_message("<span class='danger'>[target] has been zap-chomped in the [affecting.name] with [src] by [user]!</span>")
+				target.visible_message(span_danger("[target] has been zap-chomped in the [affecting.name] with [src] by [user]!"))
 			else
-				target.visible_message("<span class='danger'>[target] has been zapped in the [affecting.name] with [src] by [user]!</span>")
+				target.visible_message(span_danger("[target] has been zapped in the [affecting.name] with [src] by [user]!"))
 		else
 			if(dogborg)
-				target.visible_message("<span class='danger'>[target] has been zap-chomped with [src] by [user]!</span>")
+				target.visible_message(span_danger("[target] has been zap-chomped with [src] by [user]!"))
 			else
-				target.visible_message("<span class='danger'>[target] has been zapped with [src] by [user]!</span>")
+				target.visible_message(span_danger("[target] has been zapped with [src] by [user]!"))
 		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	// Try to use power
@@ -130,17 +130,17 @@
 	var/total_moles = environment.total_moles
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.visible_message("<span class='notice'>[user] scans the air.</span>", "<span class='notice'>You scan the air...</span>")
+	user.visible_message(span_notice("[user] scans the air."), span_notice("You scan the air..."))
 
-	to_chat(user, "<span class='notice'><B>Scan results:</B></span>")
+	to_chat(user, span_notice("<B>Scan results:</B>"))
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+		to_chat(user, span_notice("Pressure: [round(pressure,0.1)] kPa"))
 	else
-		to_chat(user, "<span class='warning'>Pressure: [round(pressure,0.1)] kPa</span>")
+		to_chat(user, span_warning("Pressure: [round(pressure,0.1)] kPa"))
 	if(total_moles)
 		for(var/g in environment.gas)
-			to_chat(user, "<span class='notice'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</span>")
-		to_chat(user, "<span class='notice'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</span>")
+			to_chat(user, span_notice("[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%"))
+		to_chat(user, span_notice("Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"))
 
 /obj/item/boop_module/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)
@@ -151,7 +151,7 @@
 		return
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.visible_message("<span class='notice'>[user] scan at \the [O.name].</span>", "<span class='notice'>You scan \the [O.name]...</span>")
+	user.visible_message(span_notice("[user] scan at \the [O.name]."), span_notice("You scan \the [O.name]..."))
 
 	if(!isnull(O.reagents))
 		var/dat = ""
@@ -160,11 +160,11 @@
 				dat += "\n \t <span class='notice'>[R]</span>"
 
 		if(dat)
-			to_chat(user, "<span class='notice'>Your BOOP module indicates: [dat]</span>")
+			to_chat(user, span_notice("Your BOOP module indicates: [dat]"))
 		else
-			to_chat(user, "<span class='notice'>No active chemical agents detected in [O].</span>")
+			to_chat(user, span_notice("No active chemical agents detected in [O]."))
 	else
-		to_chat(user, "<span class='notice'>No significant chemical agents detected in [O].</span>")
+		to_chat(user, span_notice("No significant chemical agents detected in [O]."))
 
 	return
 
@@ -264,29 +264,29 @@
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(busy)
-		to_chat(user, "<span class='warning'>You are already licking something else.</span>")
+		to_chat(user, span_warning("You are already licking something else."))
 		return
 	if(user.client && (target in user.client.screen))
-		to_chat(user, "<span class='warning'>You need to take \the [target.name] off before cleaning it!</span>")
+		to_chat(user, span_warning("You need to take \the [target.name] off before cleaning it!"))
 		return
 	else if(istype(target,/obj/item))
 		if(istype(target,/obj/item/trash))
-			user.visible_message("<span class='filter_notice'>[user] nibbles away at \the [target.name].</span>", "<span class='notice'>You begin to nibble away at \the [target.name]...</span>")
+			user.visible_message(span_filter_notice("[user] nibbles away at \the [target.name]."), span_notice("You begin to nibble away at \the [target.name]..."))
 			busy = 1
 			if(do_after (user, 50))
-				user.visible_message("<span class='filter_notice'>[user] finishes eating \the [target.name].</span>", "<span class='notice'>You finish eating \the [target.name].</span>")
-				to_chat(user, "<span class='notice'>You finish off \the [target.name].</span>")
+				user.visible_message(span_filter_notice("[user] finishes eating \the [target.name]."), span_notice("You finish eating \the [target.name]."))
+				to_chat(user, span_notice("You finish off \the [target.name]."))
 				qdel(target)
 				var/mob/living/silicon/robot/R = user
 				R.cell.charge += 250
 			busy = 0
 			return
 		if(istype(target,/obj/item/cell))
-			user.visible_message("<span class='filter_notice'>[user] begins cramming \the [target.name] down its throat.</span>", "<span class='notice'>You begin cramming \the [target.name] down your throat...</span>")
+			user.visible_message(span_filter_notice("[user] begins cramming \the [target.name] down its throat."), span_notice("You begin cramming \the [target.name] down your throat..."))
 			busy = 1
 			if(do_after (user, 50))
-				user.visible_message("<span class='filter_notice'>[user] finishes gulping down \the [target.name].</span>", "<span class='notice'>You finish swallowing \the [target.name].</span>")
-				to_chat(user, "<span class='notice'>You finish off \the [target.name], and gain some charge!</span>")
+				user.visible_message(span_filter_notice("[user] finishes gulping down \the [target.name]."), span_notice("You finish swallowing \the [target.name]."))
+				to_chat(user, span_notice("You finish off \the [target.name], and gain some charge!"))
 				var/mob/living/silicon/robot/R = user
 				var/obj/item/cell/C = target
 				R.cell.charge += C.charge / 3
@@ -303,11 +303,11 @@
 			L.Stun(1)
 			L.Weaken(1)
 			L.apply_effect(STUTTER, 1)
-			L.visible_message("<span class='danger'>[user] has shocked [L] with its tongue!</span>", \
-								"<span class='userdanger'>[user] has shocked you with its tongue! You can feel the betrayal.</span>")
+			L.visible_message(span_danger("[user] has shocked [L] with its tongue!"), \
+								span_userdanger("[user] has shocked you with its tongue! You can feel the betrayal."))
 			playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		else
-			user.visible_message("<span class='notice'>\The [user] affectionately licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionately lick all over \the [target]'s face!</span>")
+			user.visible_message(span_notice("\The [user] affectionately licks all over \the [target]'s face!"), span_notice("You affectionately lick all over \the [target]'s face!"))
 			playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 			var/mob/living/carbon/human/H = target
 			if(H.species.lightweight == 1)
@@ -378,17 +378,17 @@
 		var/new_color = input(usr, "Choose a color to set the light to! (Default is [LIGHT_COLOR_INCANDESCENT_TUBE])", "", selected_color) as color|null
 		if(new_color)
 			selected_color = new_color
-			to_chat(user, "<span class='filter_notice'>The light color has been changed.</span>")
+			to_chat(user, span_filter_notice("The light color has been changed."))
 		return
 	else
 		if(uses >= max_uses)
-			to_chat(user, "<span class='warning'>[src.name] is full.</span>")
+			to_chat(user, span_warning("[src.name] is full."))
 			return
 		if(uses < max_uses && cooldown == 0)
 			if(glass.energy < 125)
-				to_chat(user, "<span class='warning'>Insufficient material reserves.</span>")
+				to_chat(user, span_warning("Insufficient material reserves."))
 				return
-			to_chat(user, "<span class='filter_notice'>It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still.</span>")
+			to_chat(user, span_filter_notice("It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still."))
 			cooldown = 1
 			if(do_after(user, 50))
 				glass.use_charge(125)
@@ -397,7 +397,7 @@
 			else
 				cooldown = 0
 		else
-			to_chat(user, "<span class='filter_notice'>It has [uses] lights remaining.</span>")
+			to_chat(user, span_filter_notice("It has [uses] lights remaining."))
 			return
 
 /obj/item/dogborg/stasis_clamp
@@ -463,17 +463,17 @@
 
 /mob/living/silicon/robot/proc/leap(var/bluespace = FALSE)
 	if(last_special > world.time)
-		to_chat(src, "<span class='filter_notice'>Your leap actuators are still recharging.</span>")
+		to_chat(src, span_filter_notice("Your leap actuators are still recharging."))
 		return
 
 	var/power_cost = bluespace ? 1000 : 750
 	var/minimum_power = bluespace ? 2500 : 1000
 	if(cell.charge < minimum_power)
-		to_chat(src, "<span class='filter_notice'>Cell charge too low to continue.</span>")
+		to_chat(src, span_filter_notice("Cell charge too low to continue."))
 		return
 
 	if(usr.incapacitated(INCAPACITATION_DISABLED))
-		to_chat(src, "<span class='filter_notice'>You cannot leap in your current state.</span>")
+		to_chat(src, span_filter_notice("You cannot leap in your current state."))
 		return
 
 	var/list/choices = list()
@@ -502,14 +502,14 @@
 		return
 
 	if(usr.incapacitated(INCAPACITATION_DISABLED))
-		to_chat(src, "<span class='filter_notice'>You cannot leap in your current state.</span>")
+		to_chat(src, span_filter_notice("You cannot leap in your current state."))
 		return
 
 	last_special = world.time + 10
 	status_flags |= LEAPING
 	pixel_y = pixel_y + 10
 
-	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
+	src.visible_message(span_danger("\The [src] leaps at [T]!"))
 	if(bluespace)
 		src.forceMove(get_turf(T))
 		T.hitby(src)
@@ -524,7 +524,7 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		to_chat(src, "<span class='warning'>You miss!</span>")
+		to_chat(src, span_warning("You miss!"))
 		return
 
 	if(ishuman(T))

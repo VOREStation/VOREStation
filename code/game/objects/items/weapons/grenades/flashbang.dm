@@ -28,7 +28,7 @@
 	qdel(src)
 
 /obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
-	to_chat(M, "<span class='danger'>BANG</span>")						// Called during the loop that bangs people in lockers/containers and when banging
+	to_chat(M, span_danger("BANG"))						// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(src, 'sound/effects/bang.ogg', 50, 1, 30)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph
 
@@ -80,18 +80,18 @@
 	if(ishuman(M))
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if (E && E.damage >= E.min_bruised_damage)
-			to_chat(M, "<span class='danger'>Your eyes start to burn badly!</span>")
+			to_chat(M, span_danger("Your eyes start to burn badly!"))
 			if(!banglet && !(istype(src , /obj/item/grenade/flashbang/clusterbang)))
 				if (E.damage >= E.min_broken_damage)
-					to_chat(M, "<span class='danger'>You can't see anything!</span>")
+					to_chat(M, span_danger("You can't see anything!"))
 	if (M.ear_damage >= 15)
-		to_chat(M, "<span class='danger'>Your ears start to ring badly!</span>")
+		to_chat(M, span_danger("Your ears start to ring badly!"))
 		if(!banglet && !(istype(src , /obj/item/grenade/flashbang/clusterbang)))
 			if (prob(M.ear_damage - 10 + 5))
-				to_chat(M, "<span class='danger'>You can't hear anything!</span>")
+				to_chat(M, span_danger("You can't hear anything!"))
 				M.sdisabilities |= DEAF
 	else if(M.ear_damage >= 5)
-		to_chat(M, "<span class='danger'>Your ears start to ring!</span>")
+		to_chat(M, span_danger("Your ears start to ring!"))
 
 /obj/item/grenade/flashbang/Destroy()
 	walk(src, 0) // Because we might have called walk_away, we must stop the walk loop or BYOND keeps an internal reference to us forever.

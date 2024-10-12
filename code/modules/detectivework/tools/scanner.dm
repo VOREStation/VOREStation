@@ -15,26 +15,26 @@
 
 /obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))
-		to_chat(user, "<span class='warning'>\The [M] does not seem to be compatible with this device.</span>")
+		to_chat(user, span_warning("\The [M] does not seem to be compatible with this device."))
 		flick("[icon_state]0",src)
 		return 0
 
 	if(reveal_fingerprints)
 		if((!( istype(M.dna, /datum/dna) ) || M.gloves))
-			to_chat(user, "<span class='notice'>No fingerprints found on [M]</span>")
+			to_chat(user, span_notice("No fingerprints found on [M]"))
 			flick("[icon_state]0",src)
 			return 0
 		else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
 			var/obj/item/sample/print/P = new /obj/item/sample/print(user.loc)
 			P.attack(M, user)
-			to_chat(user, "<span class='notice'>Done printing.</span>")
-	//		to_chat(user, "<span class='notice'>[M]'s Fingerprints: [md5(M.dna.uni_identity)]</span>")
+			to_chat(user, span_notice("Done printing."))
+	//		to_chat(user, span_notice("[M]'s Fingerprints: [md5(M.dna.uni_identity)]"))
 
 	if(reveal_blood && M.blood_DNA && M.blood_DNA.len)
-		to_chat(user, "<span class='notice'>Blood found on [M]. Analysing...</span>")
+		to_chat(user, span_notice("Blood found on [M]. Analysing..."))
 		spawn(15)
 			for(var/blood in M.blood_DNA)
-				to_chat(user, "<span class='notice'>Blood type: [M.blood_DNA[blood]]\nDNA: [blood]</span>")
+				to_chat(user, span_notice("Blood type: [M.blood_DNA[blood]]\nDNA: [blood]"))
 	return
 
 /obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
@@ -45,7 +45,7 @@
 /*
 	if(istype(A,/obj/machinery/computer/forensic_scanning))
 		user.visible_message("[user] takes a cord out of [src] and hooks its end into [A]" ,\
-		"<span class='notice'>You download data from [src] to [A]</span>")
+		span_notice("You download data from [src] to [A]"))
 		var/obj/machinery/computer/forensic_scanning/F = A
 		F.sync_data(stored)
 		return
@@ -59,27 +59,27 @@
 	add_fingerprint(user)
 
 	if(!(do_after(user, 1 SECOND)))
-		to_chat(user, "<span class='warning'>You must remain still for the device to complete its work.</span>")
+		to_chat(user, span_warning("You must remain still for the device to complete its work."))
 		return 0
 
 	//General
 	if ((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
-		"<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on [A]!</span>",\
+		span_warning("Unable to locate any fingerprints, materials, fibers, or blood on [A]!"),\
 		"You hear a faint hum of electrical equipment.")
 		flick("[icon_state]0",src)
 		return 0
 
 	if(add_data(A))
-		to_chat(user,"<span class='notice'>Object already in internal memory. Consolidating data...</span>")
+		to_chat(user,span_notice("Object already in internal memory. Consolidating data..."))
 		flick("[icon_state]1",src)
 		return
 
 	//PRINTS
 	if(A.fingerprints && A.fingerprints.len)
-		to_chat(user, "<span class='notice'>Isolated [A.fingerprints.len] fingerprints:</span>")
+		to_chat(user, span_notice("Isolated [A.fingerprints.len] fingerprints:"))
 		if(!reveal_incompletes)
-			to_chat(user, "<span class='warning'>Rapid Analysis Imperfect: Scan samples with H.R.F.S. equipment to determine nature of incomplete prints.</span>")
+			to_chat(user, span_warning("Rapid Analysis Imperfect: Scan samples with H.R.F.S. equipment to determine nature of incomplete prints."))
 		var/list/complete_prints = list()
 		var/list/incomplete_prints = list()
 		for(var/i in A.fingerprints)
@@ -89,38 +89,38 @@
 			else
 				incomplete_prints += print
 		if(complete_prints.len < 1)
-			to_chat(user, "<span class='notice'>No intact prints found</span>")
+			to_chat(user, span_notice("No intact prints found"))
 		else
-			to_chat(user, "<span class='notice'>Found [complete_prints.len] intact prints</span>")
+			to_chat(user, span_notice("Found [complete_prints.len] intact prints"))
 			if(reveal_fingerprints)
 				for(var/i in complete_prints)
-					to_chat(user, "<span class='notice'>&nbsp;&nbsp;&nbsp;&nbsp;[i]</span>")
+					to_chat(user, span_notice("&nbsp;&nbsp;&nbsp;&nbsp;[i]"))
 
-		to_chat(user, "<span class='notice'>Found [incomplete_prints.len] incomplete prints</span>")
+		to_chat(user, span_notice("Found [incomplete_prints.len] incomplete prints"))
 		if(reveal_incompletes)
 			for(var/i in incomplete_prints)
-				to_chat(user, "<span class='notice'>&nbsp;&nbsp;&nbsp;&nbsp;[i]</span>")
+				to_chat(user, span_notice("&nbsp;&nbsp;&nbsp;&nbsp;[i]"))
 
 
 	//FIBERS
 	if(A.suit_fibers && A.suit_fibers.len)
-		to_chat(user,"<span class='notice'>Fibers/Materials detected.[reveal_fibers ? " Analysing..." : " Acquisition of fibers for H.R.F.S. analysis advised."]</span>")
+		to_chat(user,span_notice("Fibers/Materials detected.[reveal_fibers ? " Analysing..." : " Acquisition of fibers for H.R.F.S. analysis advised."]"))
 		flick("[icon_state]1",src)
 		if(reveal_fibers && do_after(user, 5 SECONDS))
-			to_chat(user, "<span class='notice'>Apparel samples scanned:</span>")
+			to_chat(user, span_notice("Apparel samples scanned:"))
 			for(var/sample in A.suit_fibers)
 				to_chat(user, " - <span class='notice'>[sample]</span>")
 
 	//Blood
 	if (A.blood_DNA && A.blood_DNA.len)
-		to_chat(user, "<span class='notice'>Blood detected.[reveal_blood ? " Analysing..." : " Acquisition of swab for H.R.F.S. analysis advised."]</span>")
+		to_chat(user, span_notice("Blood detected.[reveal_blood ? " Analysing..." : " Acquisition of swab for H.R.F.S. analysis advised."]"))
 		if(reveal_blood && do_after(user, 5 SECONDS))
 			flick("[icon_state]1",src)
 			for(var/blood in A.blood_DNA)
 				to_chat(user, "Blood type: <span class='warning'>[A.blood_DNA[blood]]</span> DNA: <span class='warning'>[blood]</span>")
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
-	"<span class='notice'>You finish scanning \the [A].</span>",\
+	span_notice("You finish scanning \the [A]."),\
 	"You hear a faint hum of electrical equipment.")
 	flick("[icon_state]1",src)
 	return 0
@@ -153,7 +153,7 @@
 			var/list/fibers = F.fields["fibers"]
 			var/list/bloods = F.fields["blood"]
 
-			to_chat(user, "<span class='notice'>Data for: [F.fields["name"]]</span>")
+			to_chat(user, span_notice("Data for: [F.fields["name"]]"))
 
 			if(reveal_fingerprints)
 				var/list/complete_prints = list()
@@ -167,20 +167,20 @@
 						incomplete_prints += print
 
 				if(complete_prints.len < 1)
-					to_chat(user, "<span class='notice'>No intact prints found.</span>")
+					to_chat(user, span_notice("No intact prints found."))
 
 				if(reveal_incompletes)
 					for(var/print in incomplete_prints)
 						to_chat(user, " - <span class='notice'>[print]</span>")
 
 			if(fibers && fibers.len)
-				to_chat(user, "<span class='notice'>[fibers.len] samples of material were present.</span>")
+				to_chat(user, span_notice("[fibers.len] samples of material were present."))
 				if(reveal_fibers)
 					for(var/sample in fibers)
 						to_chat(user, " - <span class='notice'>[sample]</span>")
 
 			if(bloods && bloods.len)
-				to_chat(user, "<span class='notice'>[bloods.len] samples of blood were present.</span>")
+				to_chat(user, span_notice("[bloods.len] samples of blood were present."))
 				if(reveal_blood)
 					for(var/bloodsample in bloods)
 						to_chat(user, " - <span class='warning'>[bloodsample]</span> Type: [bloods[bloodsample]]")
@@ -192,7 +192,7 @@
 
 	if (tgui_alert(usr, "Are you sure you want to wipe all data from [src]?","Wipe Data",list("Yes","No")) == "Yes")
 		stored = list()
-		to_chat(usr, "<span class='notice'>Forensic data erase complete.</span>")
+		to_chat(usr, span_notice("Forensic data erase complete."))
 
 /obj/item/detective_scanner/advanced
 	name = "advanced forensic scanner"

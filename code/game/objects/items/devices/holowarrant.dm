@@ -18,7 +18,7 @@
 	if(in_range(user, src) || istype(user, /mob/observer/dead))
 		show_content(user) //Opens a browse window, not chatbox related
 	else
-		. += "<span class='notice'>You have to go closer if you want to read it.</span>"
+		. += span_notice("You have to go closer if you want to read it.")
 
 //hit yourself with it
 /obj/item/holowarrant/attack_self(mob/living/user as mob)
@@ -28,7 +28,7 @@
 		for(var/datum/data/record/warrant/W in data_core.warrants)
 			warrants += W.fields["namewarrant"]
 	if(warrants.len == 0)
-		to_chat(user,"<span class='notice'>There are no warrants available</span>")
+		to_chat(user,span_notice("There are no warrants available"))
 		return
 	var/temp
 	temp = tgui_input_list(user, "Which warrant would you like to load?", "Warrant Selection", warrants)
@@ -44,17 +44,17 @@
 			var/choice = tgui_alert(user, "Would you like to authorize this warrant?","Warrant authorization",list("Yes","No"))
 			if(choice == "Yes")
 				active.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
-			user.visible_message("<span class='notice'>You swipe \the [I] through the [src].</span>", \
-					"<span class='notice'>[user] swipes \the [I] through the [src].</span>")
+			user.visible_message(span_notice("You swipe \the [I] through the [src]."), \
+					span_notice("[user] swipes \the [I] through the [src]."))
 			return 1
-		to_chat(user, "<span class='warning'>You don't have the access to do this!</span>") // VOREStation edit
+		to_chat(user, span_warning("You don't have the access to do this!")) // VOREStation edit
 		return 1
 	..()
 
 //hit other people with it
 /obj/item/holowarrant/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	user.visible_message("<span class='notice'>You show the warrant to [M].</span>", \
-			"<span class='notice'>[user] holds up a warrant projector and shows the contents to [M].</span>")
+	user.visible_message(span_notice("You show the warrant to [M]."), \
+			span_notice("[user] holds up a warrant projector and shows the contents to [M]."))
 	M.examinate(src)
 
 /obj/item/holowarrant/update_icon()

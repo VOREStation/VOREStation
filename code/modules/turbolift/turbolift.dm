@@ -28,7 +28,7 @@
 	priority_mode = TRUE
 	cancel_pending_floors()
 	update_ext_panel_icons()
-	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>", runemessage = "BUZZ")
+	control_panel_interior.audible_message(span_info("This turbolift is responding to a priority call.  Please exit the lift when it stops and make way."), runemessage = "BUZZ")
 	spawn(time)
 		priority_mode = FALSE
 		update_ext_panel_icons()

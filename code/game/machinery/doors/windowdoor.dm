@@ -156,7 +156,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
-			visible_message("<span class='danger'>[user] smashes against the [src.name].</span>", 1)
+			visible_message(span_danger("[user] smashes against the [src.name]."), 1)
 			user.do_attack_animation(src)
 			user.setClickCooldown(user.get_attack_speed())
 			take_damage(25)
@@ -193,14 +193,14 @@
 			var/obj/item/weldingtool/WT = I.get_welder()
 			if(health < maxhealth)
 				if(WT.remove_fuel(1 ,user))
-					to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+					to_chat(user, span_notice("You begin repairing [src]..."))
 					playsound(src, WT.usesound, 50, 1)
 					if(do_after(user, 40 * WT.toolspeed, target = src))
 						health = maxhealth
 						update_icon()
-						to_chat(user, "<span class='notice'>You repair [src].</span>")
+						to_chat(user, span_notice("You repair [src]."))
 			else
-				to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
+				to_chat(user, span_warning("[src] is already in good condition!"))
 			return
 
 		//Emags and ninja swords? You may pass.
@@ -211,7 +211,7 @@
 				spark_system.start()
 				playsound(src, "sparks", 50, 1)
 				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
-				visible_message("<span class='warning'>The glass door was sliced open by [user]!</span>")
+				visible_message(span_warning("The glass door was sliced open by [user]!"))
 			return 1
 
 		//If it's opened/emagged, crowbar can pry it out of its frame.
@@ -219,7 +219,7 @@
 			playsound(src, I.usesound, 50, 1)
 			user.visible_message("[user] begins prying the windoor out of the frame.", "You start to pry the windoor out of the frame.")
 			if (do_after(user,40 * I.toolspeed))
-				to_chat(user,"<span class='notice'>You pried the windoor out of the frame!</span>")
+				to_chat(user,span_notice("You pried the windoor out of the frame!"))
 
 				var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
 				if (istype(src, /obj/machinery/door/window/brigdoor))
@@ -255,7 +255,7 @@
 			user.setClickCooldown(user.get_attack_speed(I))
 			var/aforce = I.force
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
-			visible_message("<span class='danger'>[src] was hit by [I].</span>")
+			visible_message(span_danger("[src] was hit by [I]."))
 			if(I.damtype == BRUTE || I.damtype == BURN)
 				take_damage(aforce)
 			return

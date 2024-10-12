@@ -13,10 +13,10 @@
 	if(..()) //This will only run if no other problems occured when equiping.
 		for(var/obj/item/clothing/I in list(H.gloves, H.shoes))
 			if(I && (src.body_parts_covered & ARMS && I.body_parts_covered & ARMS) )
-				to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>")
+				to_chat(H, span_warning("You can't wear \the [src] with \the [I], it's in the way."))
 				return 0
 			if(I && (src.body_parts_covered & LEGS && I.body_parts_covered & LEGS) )
-				to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>")
+				to_chat(H, span_warning("You can't wear \the [src] with \the [I], it's in the way."))
 				return 0
 		return 1
 
@@ -86,7 +86,7 @@
 		if(!(def_zone in list(BP_TORSO, BP_GROIN)))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
-			visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+			visible_message(span_danger("\The [user]'s [src.name] reflects [attack_text]!"))
 
 			// Find a turf near or on the original location to bounce to
 			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
@@ -174,7 +174,7 @@
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(50))
-		user.visible_message("<span class='danger'>The reactive teleport system flings [user] clear of the attack!</span>")
+		user.visible_message(span_danger("The reactive teleport system flings [user] clear of the attack!"))
 		var/list/turfs = new/list()
 		for(var/turf/T in orange(6, user))
 			if(istype(T,/turf/space)) continue
@@ -237,7 +237,7 @@
 
 /obj/item/clothing/suit/armor/alien/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(block_chance))
-		user.visible_message("<span class='danger'>\The [src] completely absorbs [attack_text]!</span>")
+		user.visible_message(span_danger("\The [src] completely absorbs [attack_text]!"))
 		return TRUE
 	return FALSE
 
@@ -529,13 +529,13 @@
 			if(H.gloves.body_parts_covered & ARMS)
 				for(var/obj/item/clothing/accessory/A in src)
 					if(A.body_parts_covered & ARMS)
-						to_chat(H, "<span class='warning'>You can't wear \the [A] with \the [H.gloves], they're in the way.</span>")
+						to_chat(H, span_warning("You can't wear \the [A] with \the [H.gloves], they're in the way."))
 						return 0
 		if(H.shoes)
 			if(H.shoes.body_parts_covered & LEGS)
 				for(var/obj/item/clothing/accessory/A in src)
 					if(A.body_parts_covered & LEGS)
-						to_chat(H, "<span class='warning'>You can't wear \the [A] with \the [H.shoes], they're in the way.</span>")
+						to_chat(H, span_warning("You can't wear \the [A] with \the [H.shoes], they're in the way."))
 						return 0
 		return 1
 

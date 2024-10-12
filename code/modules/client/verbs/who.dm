@@ -51,7 +51,7 @@
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	msg = "<span class='filter_notice'>[jointext(msg, "<br>")]</span>"
+	msg = span_filter_notice("[jointext(msg, "<br>")]")
 	to_chat(src,msg)
 
 /client/verb/staffwho()
@@ -146,4 +146,4 @@
 
 	msg += "\n<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.</span>"
 
-	to_chat(src,"<span class='filter_notice'>[jointext(msg, "<br>")]</span>")
+	to_chat(src,span_filter_notice("[jointext(msg, "<br>")]"))

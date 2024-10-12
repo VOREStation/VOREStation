@@ -28,20 +28,20 @@
 	var/datum/gender/TU = gender_datums[M.get_visible_gender()]
 
 	if(M.l_hand && M.r_hand)
-		to_chat(M, "<span class='danger'>Your hands are full.</span>")
+		to_chat(M, span_danger("Your hands are full."))
 		deactivate()
 		return
 	if(M.a_intent == I_HURT)
 		M.visible_message(
-			"<span class='danger'>[M] throws [TU.his] arms out, extending [stored_gauntlets] from \the [holder] with a click!</span>",
-			"<span class='danger'>You throw your arms out, extending [stored_gauntlets] from \the [holder] with a click!</span>",
-			"<span class='notice'>You hear a threatening hiss and a click.</span>"
+			span_danger("[M] throws [TU.his] arms out, extending [stored_gauntlets] from \the [holder] with a click!"),
+			span_danger("You throw your arms out, extending [stored_gauntlets] from \the [holder] with a click!"),
+			span_notice("You hear a threatening hiss and a click.")
 			)
 	else
 		M.visible_message(
-			"<span class='notice'>[M] extends [stored_gauntlets] from \the [holder] with a click!</span>",
-			"<span class='notice'>You extend  [stored_gauntlets] from \the [holder] with a click!</span>",
-			"<span class='notice'>You hear a hiss and a click.</span>")
+			span_notice("[M] extends [stored_gauntlets] from \the [holder] with a click!"),
+			span_notice("You extend  [stored_gauntlets] from \the [holder] with a click!"),
+			span_notice("You hear a hiss and a click."))
 
 	playsound(src, 'sound/items/helmetdeploy.ogg', 40, 1)
 	M.put_in_hands(stored_gauntlets)

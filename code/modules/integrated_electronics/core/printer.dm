@@ -210,14 +210,14 @@
 
 			if(!debug)
 				if(!Adjacent(usr))
-					to_chat(usr, "<span class='notice'>You are too far away from \the [src].</span>")
+					to_chat(usr, span_notice("You are too far away from \the [src]."))
 				if(metal - cost < 0)
-					to_chat(usr, "<span class='warning'>You need [cost] metal to build that!.</span>")
+					to_chat(usr, span_warning("You need [cost] metal to build that!."))
 					return 1
 				metal -= cost
 			var/obj/item/built = new build_type(get_turf(loc))
 			usr.put_in_hands(built)
-			to_chat(usr, "<span class='notice'>[capitalize(built.name)] printed.</span>")
+			to_chat(usr, span_notice("[capitalize(built.name)] printed."))
 			playsound(src, 'sound/items/jaws_pry.ogg', 50, TRUE)
 			return TRUE
 

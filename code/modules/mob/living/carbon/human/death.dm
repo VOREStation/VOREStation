@@ -85,7 +85,7 @@
 		// SSgame_master.adjust_danger(gibbed ? 40 : 20)  // VOREStation Edit - We don't use SSgame_master yet.
 		for(var/mob/observer/dead/O in mob_list)
 			if(O.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
-				to_chat(O, "<span class='deadsay'><b>[src]</b> has died in <b>[get_area(src)]</b>. [ghost_follow_link(src, O)] </span>")
+				to_chat(O, span_deadsay("<b>[src]</b> has died in <b>[get_area(src)]</b>. [ghost_follow_link(src, O)] "))
 
 	if(!gibbed && species.death_sound)
 		playsound(src, species.death_sound, 80, 1, 1)
@@ -95,7 +95,7 @@
 		ticker.mode.check_win()
 
 	if(wearing_rig)
-		wearing_rig.notify_ai("<span class='danger'>Warning: user death event. Mobility control passed to integrated intelligence system.</span>")
+		wearing_rig.notify_ai(span_danger("Warning: user death event. Mobility control passed to integrated intelligence system."))
 
 	// If the body is in VR, move the mind back to the real world
 	if(vr_holder)
@@ -109,7 +109,7 @@
 		vr_link.exit_vr()
 		vr_link.vr_holder = null
 		vr_link = null
-		to_chat(src, "<span class='danger'>Everything abruptly stops.</span>")
+		to_chat(src, span_danger("Everything abruptly stops."))
 
 	return ..(gibbed,species.get_death_message(src))
 

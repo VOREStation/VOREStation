@@ -11,5 +11,5 @@
 	M.forceMove(egg)
 	egg.name = egg_name
 	if(message)
-		to_chat(M, "<span class='vnotice'>You lose sensation of your body, feeling only the warmth around you as you're encased in an egg.</span>")
-		to_chat(O, "<span class='vnotice'>Your body shifts as you encase [M] in an egg.</span>")
+		to_chat(M, span_vnotice("You lose sensation of your body, feeling only the warmth around you as you're encased in an egg."))
+		to_chat(O, span_vnotice("Your body shifts as you encase [M] in an egg."))

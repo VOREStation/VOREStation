@@ -27,8 +27,8 @@
 			summon_underlay.alpha = 127
 			L.underlays |= summon_underlay
 			on_summon(L)
-			to_chat(user, "<span class='notice'>You've successfully teleported \a [L] to you!</span>")
-			visible_message("<span class='warning'>\A [L] appears from no-where!</span>")
+			to_chat(user, span_notice("You've successfully teleported \a [L] to you!"))
+			visible_message(span_warning("\A [L] appears from no-where!"))
 			log_and_message_admins("has summoned \a [L] at [T.x],[T.y],[T.z].")
 			user.adjust_instability(instability_cost)
 

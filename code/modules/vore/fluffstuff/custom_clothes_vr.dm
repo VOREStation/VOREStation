@@ -91,10 +91,10 @@
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_suit != src)
-				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
+				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
 				return
 			if(H.head)
-				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
+				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
 			else
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
@@ -612,7 +612,7 @@
 /obj/item/clothing/head/helmet/space/void/engineering/hazmat/fluff/screehelm/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "scree")
-			to_chat(H, "<span class='warning'>Your face and whoever is meant for this helmet are too different.</span>")
+			to_chat(H, span_warning("Your face and whoever is meant for this helmet are too different."))
 			return 0
 		else
 			return 1
@@ -635,7 +635,7 @@
 /obj/item/clothing/suit/space/void/engineering/hazmat/fluff/screespess/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "scree")
-			to_chat(H, "<span class='warning'>The gloves only have three fingers, not to mention the accommodation for extra limbs.</span>")
+			to_chat(H, span_warning("The gloves only have three fingers, not to mention the accommodation for extra limbs."))
 			return 0
 		else
 			return 1
@@ -689,7 +689,7 @@
 /obj/item/clothing/under/fluff/aluranevines/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "natje")
-			to_chat(H, "<span class='warning'>Wrapping vines around yourself is a quite an... Odd idea. You decide otherwise.</span>")
+			to_chat(H, span_warning("Wrapping vines around yourself is a quite an... Odd idea. You decide otherwise."))
 			return 0
 		else
 			return 1
@@ -854,7 +854,7 @@
 /obj/item/clothing/head/helmet/space/fluff/joan/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "joanrisu")
-			to_chat(H, "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>")
+			to_chat(H, span_warning("You try to fit on the helmet, but it doesn't fit."))
 			return 0
 		else
 			return 1
@@ -881,7 +881,7 @@
 /obj/item/clothing/suit/space/fluff/joan/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "joanrisu")
-			to_chat(H, "<span class='warning'>You try to fit into the suit, to no avail.</span>")
+			to_chat(H, span_warning("You try to fit into the suit, to no avail."))
 			return 0
 		else
 			return 1
@@ -1320,7 +1320,7 @@ Departamental Swimsuits, for general use
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			return ..()
 		else
-			to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
+			to_chat(H, span_warning("You need to have a wolf-taur half to wear this."))
 			return 0
 
 //samanthafyre:Kateryna Petrovitch
@@ -1337,7 +1337,7 @@ Departamental Swimsuits, for general use
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			return ..()
 		else
-			to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
+			to_chat(H, span_warning("You need to have a wolf-taur half to wear this."))
 			return 0
 
 //samanthafyre:Kateryna Petrovitch
@@ -1367,7 +1367,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/head/helmet/space/fluff/kate/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "samanthafyre")
-			to_chat(H, "<span class='warning'>You try to fit on the helmet, but it doesn't fit.</span>")
+			to_chat(H, span_warning("You try to fit on the helmet, but it doesn't fit."))
 			return 0
 		else
 			return 1
@@ -1564,10 +1564,10 @@ Departamental Swimsuits, for general use
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_suit != src)
-				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
+				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
 				return
 			if(H.head)
-				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
+				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
 			else
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
@@ -1757,7 +1757,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/head/helmet/space/void/security/hasd/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(H.ckey != "silencedmp5a5")
-			to_chat(H, "<span class='warning'>...The faceplate is clearly not made for your anatomy, thus, does not fit.</span>")
+			to_chat(H, span_warning("...The faceplate is clearly not made for your anatomy, thus, does not fit."))
 			return 0
 		else
 			return 1
@@ -1776,7 +1776,7 @@ Departamental Swimsuits, for general use
 	if(..() && istype(H) && H.ckey == "silencedmp5a5")
 		return 1
 	else
-		to_chat(H, "<span class='warning'>This suit is not designed for you.</span>")
+		to_chat(H, span_warning("This suit is not designed for you."))
 		return 0
 
 //Zigfe:Zaoozaoo Xrimxuqmqixzix
@@ -2031,7 +2031,7 @@ Departamental Swimsuits, for general use
 		if (M.ckey == "ryumi")
 			return 1
 		else if (M.get_active_hand() == src)
-			to_chat(M, "<span class='warning'>What the heck? \The [src] doesn't fit!</span>")
+			to_chat(M, span_warning("What the heck? \The [src] doesn't fit!"))
 			return 0
 
 /obj/item/clothing/shoes/fluff/nikki
@@ -2047,7 +2047,7 @@ Departamental Swimsuits, for general use
 		if (M.ckey == "ryumi")
 			return 1
 		else if (M.get_active_hand() == src)
-			to_chat(M, "<span class='warning'>What the heck? \The [src] doesn't fit!</span>")
+			to_chat(M, span_warning("What the heck? \The [src] doesn't fit!"))
 			return 0
 
 /obj/item/clothing/suit/fluff/nikki //see /obj/item/rig/nikki
@@ -2112,27 +2112,27 @@ Departamental Swimsuits, for general use
 
 /obj/item/clothing/head/fluff/nikki/proc/teleport_fail(mob/user, mob/target)
 	if (target != user)
-		user.visible_message("<span class='notice'>[user] harmlessly bops [target] with \the [src].</span>", \
-		"<span class='notice'>\The [src] harmlessly bops [target]. The hat seems... unwilling?</span>")
+		user.visible_message(span_notice("[user] harmlessly bops [target] with \the [src]."), \
+		span_notice("\The [src] harmlessly bops [target]. The hat seems... unwilling?"))
 	else
 		user.visible_message("<b>\The [src]</b> flops over [user]'s' head for a moment, but they seem alright.", \
-		"<span class='notice'>\The [src] flops over your head for a moment, but you correct it without issue. There we go!</span>")
+		span_notice("\The [src] flops over your head for a moment, but you correct it without issue. There we go!"))
 
 /obj/item/clothing/head/fluff/nikki/proc/hat_warp_checks(var/mob/living/target, mob/user, proximity_flag)
 	if (!proximity_flag)
 		return 0
 
 	if (!translocator)
-		to_chat(user, "<span class='warning'>\The [src] doesn't have a translocator inside it yet, you goof!</span>")
+		to_chat(user, span_warning("\The [src] doesn't have a translocator inside it yet, you goof!"))
 		return 0
 
 	if (target.ckey == owner && target != user) // ur not getting me that easy sonny jim......
-		to_chat(user, "<span class='warning'>You think to turn \the [src] on its creator?! <b>FOOOOOOOOL.</b></span>")
-		to_chat(user, "<span class='notice'>From seemingly nowhere you hear echoing, derisive laughter, accompanied by a stock laugh track and... Are those bike horns?</span>")
+		to_chat(user, span_warning("You think to turn \the [src] on its creator?! <b>FOOOOOOOOL.</b>"))
+		to_chat(user, span_notice("From seemingly nowhere you hear echoing, derisive laughter, accompanied by a stock laugh track and... Are those bike horns?"))
 		return 0
 
 	if (!istype(target))
-		to_chat(user, "<span class='warning'>\The [src] isn't a valid target!</span>")
+		to_chat(user, span_warning("\The [src] isn't a valid target!"))
 		return 0
 
 	// Because other mobs (i.e. monkeys) apparently have dropnom prey set to 0, we check SPECIFICALLY for humans' dropnom setting.
@@ -2148,11 +2148,11 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/head/fluff/nikki/attackby(obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/perfect_tele) && user.get_inactive_hand() == src)
 		if (translocator)
-			visible_message("<span class='notice'>[user] starts to pull \a [translocator] out of \the [src] to swap it out with \the [I]...</span>", \
-			"<span class='notice'>You start pulling \the [translocator] pops out of its compartment with a soft 'click' as you replace it with \the [I]....</span>")
+			visible_message(span_notice("[user] starts to pull \a [translocator] out of \the [src] to swap it out with \the [I]..."), \
+			span_notice("You start pulling \the [translocator] pops out of its compartment with a soft 'click' as you replace it with \the [I]...."))
 		else
-			visible_message("<span class='notice'>[user] begins slipping \the [I] into \the [src]...</span>", \
-			"<span class='notice'>You begin to snap \the [I] into a small, hidden compartment inside \the [src]...</span>")
+			visible_message(span_notice("[user] begins slipping \the [I] into \the [src]..."), \
+			span_notice("You begin to snap \the [I] into a small, hidden compartment inside \the [src]..."))
 		// This works for both adding and replacing a translocator
 		translocator_equip(I, user)
 		return
@@ -2201,8 +2201,8 @@ Departamental Swimsuits, for general use
 		// hey, are we actually able to teleport this poor person?
 		if (hat_warp_checks(user, user, proximity_flag = 1))
 			// YOU FOOL! YOU HAVE ACTIVATED MY STAND, 「ＶＯＲＥ　ＢＹ　ＨＡＴ」！
-			src.visible_message("<span class='danger'>\The [src] falls over [user]'s head... and somehow falls over the rest of their body, causing them to vanish inside. Where did they go?!</span>", \
-			"<span class='danger'>The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b></span>")
+			src.visible_message(span_danger("\The [src] falls over [user]'s head... and somehow falls over the rest of their body, causing them to vanish inside. Where did they go?!"), \
+			span_danger("The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b>"))
 			var/uh_oh = pick(translocator.beacons)
 			user.remove_from_mob(src, get_turf(user))
 			translocator.destination = translocator.beacons[uh_oh]
@@ -2216,18 +2216,18 @@ Departamental Swimsuits, for general use
 		// Silly fluffed up styles of teleporting people based on user intent.
 		switch (user.a_intent)
 			if (I_HELP)
-				user.visible_message("<span class='notice'>[user] guides \the [target] to the bottomless hole within \the [src]. They begin to climb inside...</span>")
+				user.visible_message(span_notice("[user] guides \the [target] to the bottomless hole within \the [src]. They begin to climb inside..."))
 				if (do_after(user, 5 SECONDS, target))
 					translocator.afterattack(target, user, proximity_flag)
 			if (I_DISARM)
-				user.visible_message("<span class='danger'>[user] plops \the [src] onto \the [target]'s head!</span>")
+				user.visible_message(span_danger("[user] plops \the [src] onto \the [target]'s head!"))
 				translocator.afterattack(target, user, proximity_flag)
 			if (I_GRAB)
-				user.visible_message("<span class='danger'>[user] begins stuffing [target] into \the [src]!</span>")
+				user.visible_message(span_danger("[user] begins stuffing [target] into \the [src]!"))
 				if (do_after(user, 5 SECONDS, target))
 					translocator.afterattack(target, user, proximity_flag)
 			if (I_HURT)
-				user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
+				user.visible_message(span_danger("[user] swipes \the [src] over \the [target]!"))
 				translocator.afterattack(target, user, proximity_flag)
 
 		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
@@ -2376,10 +2376,10 @@ Departamental Swimsuits, for general use
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_suit != src)
-				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
+				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
 				return
 			if(H.head)
-				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
+				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
 			else
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
@@ -2434,10 +2434,10 @@ Departamental Swimsuits, for general use
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_suit != src)
-				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
+				to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
 				return
 			if(H.head)
-				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
+				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
 			else
 				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)

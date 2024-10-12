@@ -94,10 +94,10 @@
 		if("Resonance Time")
 			if(burst_time == 50)
 				burst_time = 30
-				to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 3 seconds.</span>")
+				to_chat(user, span_info("You set the resonator's fields to detonate after 3 seconds."))
 			else
 				burst_time = 50
-				to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 5 seconds.</span>")
+				to_chat(user, span_info("You set the resonator's fields to detonate after 5 seconds."))
 		if("Toggle Cascade")
 			spreadmode = !spreadmode
 			to_chat(user, span_info("You have [(spreadmode ? "enabled" : "disabled")] the resonance cascade mode."))
@@ -152,7 +152,7 @@
 	for(var/mob/living/L in src.loc)
 		if(creator)
 			add_attack_logs(creator, L, "used a resonator field on")
-		to_chat(L, "<span class='danger'>\The [src] ruptured with you in it!</span>")
+		to_chat(L, span_danger("\The [src] ruptured with you in it!"))
 		L.apply_damage(resonance_damage, BRUTE)
 	qdel(src)
 

@@ -38,8 +38,8 @@
 
 /datum/surgery_step/cavity/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='danger'>[user]'s hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!</span>", \
-	"<span class='danger'>Your hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!</span>")
+	user.visible_message(span_danger("[user]'s hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!"), \
+	span_danger("Your hand slips, scraping around inside [target]'s [affected.name] with \the [tool]!"))
 	affected.createwound(CUT, 20)
 
 ///////////////////////////////////////////////////////////////
@@ -64,16 +64,16 @@
 
 /datum/surgery_step/cavity/make_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='filter_notice'>[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>", \
-	"<span class='filter_notice'>You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>" )
+	user.visible_message(span_filter_notice("[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."), \
+	span_filter_notice("You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].") )
 	target.custom_pain("The pain in your chest is living hell!",1)
 	affected.cavity = 1
 	..()
 
 /datum/surgery_step/cavity/make_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='notice'>[user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>", \
-	"<span class='notice'>You make some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].</span>" )
+	user.visible_message(span_notice("[user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."), \
+	span_notice("You make some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].") )
 
 ///////////////////////////////////////////////////////////////
 // Cavity Closing Surgery
@@ -99,16 +99,16 @@
 
 /datum/surgery_step/cavity/close_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='filter_notice'>[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].</span>", \
-	"<span class='filter_notice'>You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].</span>" )
+	user.visible_message(span_filter_notice("[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool]."), \
+	span_filter_notice("You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].") )
 	target.custom_pain("The pain in your chest is living hell!",1)
 	affected.cavity = 0
 	..()
 
 /datum/surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='notice'>[user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool].</span>", \
-	"<span class='notice'> You mend[target]'s [get_cavity(affected)] cavity walls with \the [tool].</span>" )
+	user.visible_message(span_notice("[user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool]."), \
+	span_notice(" You mend[target]'s [get_cavity(affected)] cavity walls with \the [tool].") )
 
 ///////////////////////////////////////////////////////////////
 // Item Implantation Surgery
@@ -149,8 +149,8 @@
 	if(isrobot(user) && istype(tool, /obj/item/gripper))
 		var/obj/item/gripper/G = tool
 		tool = G.wrapped
-	user.visible_message("<span class='notice'>[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
-	"<span class='notice'>You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" ) //Nobody will probably ever see this, but I made these two blue. ~CK
+	user.visible_message(span_notice("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity."), \
+	span_notice("You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.") ) //Nobody will probably ever see this, but I made these two blue. ~CK
 	target.custom_pain("The pain in your chest is living hell!",1)
 	..()
 
@@ -162,10 +162,10 @@
 		G.drop_item()
 	else
 		user.drop_item()
-	user.visible_message("<span class='notice'>[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
-	"<span class='notice'>You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" )
+	user.visible_message(span_notice("[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity."), \
+	span_notice("You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.") )
 	if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && (affected.robotic < ORGAN_ROBOT))
-		to_chat(user, "<span class='danger'> You tear some blood vessels trying to fit such a big object in this cavity.</span>")
+		to_chat(user, span_danger(" You tear some blood vessels trying to fit such a big object in this cavity."))
 		var/datum/wound/internal_bleeding/I = new (10)
 		affected.wounds += I
 		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
@@ -200,8 +200,8 @@
 
 /datum/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='notice'>[user] starts poking around inside [target]'s [affected.name] with \the [tool].</span>", \
-	"<span class='notice'>You start poking around inside [target]'s [affected.name] with \the [tool].</span>" )
+	user.visible_message(span_notice("[user] starts poking around inside [target]'s [affected.name] with \the [tool]."), \
+	span_notice("You start poking around inside [target]'s [affected.name] with \the [tool].") )
 	target.custom_pain("The pain in your [affected.name] is living hell!",1)
 	..()
 
@@ -212,28 +212,28 @@
 
 		var/obj/item/obj = tgui_input_list(user, "Which embedded item do you wish to remove?", "Surgery Select", affected.implants)
 		if(isnull(obj)) //They clicked cancel.
-			user.visible_message("<span class='notice'>[user] takes \the [tool] out of [target]'s [affected.name].</span>", \
-			"<span class='notice'>You take \the [tool] out of the incision on [target]'s [affected.name].</span>" )
+			user.visible_message(span_notice("[user] takes \the [tool] out of [target]'s [affected.name]."), \
+			span_notice("You take \the [tool] out of the incision on [target]'s [affected.name].") )
 			return
 		if(!do_mob(user, target, 1)) //They moved away
-			to_chat(user, "<span class='warning'>You must remain close to and keep focused on your patient to conduct surgery.</span>")
-			user.visible_message("<span class='notice'>[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!</span>", \
-			"<span class='notice'>You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!</span>" )
+			to_chat(user, span_warning("You must remain close to and keep focused on your patient to conduct surgery."))
+			user.visible_message(span_notice("[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!"), \
+			span_notice("You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!") )
 			return
 
 		if(istype(obj,/obj/item/implant))
 			var/obj/item/implant/imp = obj
 			if (!imp.islegal()) //ILLEGAL IMPLANT ALERT!!!!!!!!!!
-				user.visible_message("<span class='notice'>[user] seems to be intently working on something within [target]'s [affected.name] with \the [tool]!</span>", \
-				"<span class='notice'>You intently begin to take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!</span>" )
+				user.visible_message(span_notice("[user] seems to be intently working on something within [target]'s [affected.name] with \the [tool]!"), \
+				span_notice("You intently begin to take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!") )
 				if(!do_after(user, min_duration, target))
-					user.visible_message("<span class='notice'>[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!</span>", \
-					"<span class='notice'>You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!</span>" )
+					user.visible_message(span_notice("[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!"), \
+					span_notice("You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!") )
 					return
 
 
-		user.visible_message("<span class='notice'>[user] takes something out of the incision on [target]'s [affected.name] with \the [tool]!</span>", \
-		"<span class='notice'>You take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!</span>" )
+		user.visible_message(span_notice("[user] takes something out of the incision on [target]'s [affected.name] with \the [tool]!"), \
+		span_notice("You take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!") )
 		affected.implants -= obj
 		if(!target.has_embedded_objects())
 			target.clear_alert("embeddedobject")
@@ -257,8 +257,8 @@
 				imp.implanted = 0
 			else if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
 	else
-		user.visible_message("<span class='notice'>[user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.</span>", \
-		"<span class='notice'>You could not find anything inside [target]'s [affected.name].</span>" )
+		user.visible_message(span_notice("[user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out."), \
+		span_notice("You could not find anything inside [target]'s [affected.name].") )
 
 /datum/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	..()
@@ -268,7 +268,7 @@
 		fail_prob += 100 - tool_quality(tool)
 		if (prob(fail_prob))
 			var/obj/item/implant/imp = affected.implants[1]
-			user.visible_message("<span class='danger'> Something beeps inside [target]'s [affected.name]!</span>")
+			user.visible_message(span_danger(" Something beeps inside [target]'s [affected.name]!"))
 			playsound(imp, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)
 				imp.activate()

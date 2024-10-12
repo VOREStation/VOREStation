@@ -23,8 +23,8 @@
 /datum/modifier/hivebot_weaken
 	name = "Shocked"
 	desc = "You feel less able to exert yourself after being prodded."
-	on_created_text = "<span class='warning'>You feel weak...</span>"
-	on_expired_text = "<span class='notice'>You feel better.</span>"
+	on_created_text = span_warning("You feel weak...")
+	on_expired_text = span_notice("You feel better.")
 	stacks = MODIFIER_STACK_EXTEND
 	mob_overlay_state = "electricity"
 

@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 /obj/machinery/power/fusion_core/attackby(var/obj/item/W, var/mob/user)
 
 	if(owned_field)
-		to_chat(user,"<span class='warning'>Shut \the [src] off first!</span>")
+		to_chat(user,span_warning("Shut \the [src] off first!"))
 		return
 
 	if(default_deconstruction_screwdriver(user, W))

@@ -65,7 +65,7 @@
 			return
 
 	if(robotic && owner.get_restraining_bolt())
-		to_chat(owner, "<span class='warning'>\The [src] doesn't respond.</span>")
+		to_chat(owner, span_warning("\The [src] doesn't respond."))
 		return
 
 	var/item_to_equip = integrated_object
@@ -153,11 +153,11 @@
 	if(buckled)
 		var/obj/Ob = buckled
 		if(Ob.buckle_lying)
-			to_chat(M, "<span class='notice'>You cannot use your augments when restrained.</span>")
+			to_chat(M, span_notice("You cannot use your augments when restrained."))
 			return 0
 
 	if((slot == slot_l_hand && l_hand) || (slot == slot_r_hand && r_hand))
-		to_chat(M,"<span class='warning'>Your hand is full.  Drop something first.</span>")
+		to_chat(M,span_warning("Your hand is full.  Drop something first."))
 		return 0
 
 	var/del_if_failure = destroy_on_drop

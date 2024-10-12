@@ -53,8 +53,8 @@
 	playsound(src, 'sound/weapons/chargeup.ogg', 100, 1)
 	spinning_up = TRUE
 	update_icon()
-	user.visible_message("<span class='notice'>[user] starts charging the [src]!</span>", \
-                        "<span class='notice'>You start charging the [src]!</span>")
+	user.visible_message(span_notice("[user] starts charging the [src]!"), \
+                        span_notice("You start charging the [src]!"))
 	if(do_after(user, 8, src))
 		spinning_up = FALSE
 		..()

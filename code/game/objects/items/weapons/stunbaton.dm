@@ -103,7 +103,7 @@
 	..()
 	if(status && grip_safety && !taped_safety)
 		status = 0
-		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
+		visible_message(span_warning("\The [src]'s grip safety engages!"))
 	update_icon()
 
 /obj/item/melee/baton/examine(mob/user)
@@ -111,11 +111,11 @@
 
 	if(Adjacent(user))
 		if(taped_safety)
-			. += "<span class='warning'>Someone has wrapped tape around the grip!</span>"
+			. += span_warning("Someone has wrapped tape around the grip!")
 		if(bcell)
-			. += "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
+			. += span_notice("The baton is [round(bcell.percent())]% charged.")
 		if(!bcell)
-			. += "<span class='warning'>The baton does not have a power source installed.</span>"
+			. += span_warning("The baton does not have a power source installed.")
 
 /obj/item/melee/baton/attackby(obj/item/W, mob/user)
 	if(use_external_power)
@@ -126,22 +126,22 @@
 				user.drop_item()
 				W.loc = src
 				bcell = W
-				to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
+				to_chat(user, span_notice("You install a cell in [src]."))
 				update_icon()
 			else
-				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
+				to_chat(user, span_notice("[src] already has a cell."))
 		else
-			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
+			to_chat(user, span_notice("This cell is not fitted for [src]."))
 	if(istype(W, /obj/item/tape_roll) || istype(W, /obj/item/taperoll))
 		if(grip_safety && !taped_safety)	//no point letting people wrap tape around the grips of batons without a safety
-			to_chat(user, "<span class='notice'>You firmly wrap tape around the baton's grip, disabling the safety system.</span>")
+			to_chat(user, span_notice("You firmly wrap tape around the baton's grip, disabling the safety system."))
 			playsound(src, 'sound/effects/tape.ogg',25)
 			taped_safety = TRUE
 		else if(grip_safety && taped_safety)
-			to_chat(user, "<span class='notice'>The grip safety has already been taped down.</span>")
+			to_chat(user, span_notice("The grip safety has already been taped down."))
 	if(istype(W, /obj/item/tool/screwdriver))
 		if(taped_safety)
-			to_chat(user, "<span class='notice'>You painstakingly scrape away the tape over the grip safety.</span>")
+			to_chat(user, span_notice("You painstakingly scrape away the tape over the grip safety."))
 			taped_safety = FALSE
 
 /obj/item/melee/baton/attack_hand(mob/user as mob)
@@ -150,7 +150,7 @@
 			bcell.update_icon()
 			user.put_in_hands(bcell)
 			bcell = null
-			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
+			to_chat(user, span_notice("You remove the cell from the [src]."))
 			status = 0
 			update_icon()
 			return
@@ -166,20 +166,20 @@
 			bcell = R.cell
 	if(bcell && bcell.charge >= hitcost)
 		status = !status
-		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
+		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(src, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = 0
 		if(!bcell)
-			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
+			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
-			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
+			to_chat(user, span_warning("[src] is out of charge."))
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='danger'>You accidentally hit yourself with the [src]!</span>")
+		to_chat(user, span_danger("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
 		deductcharge(hitcost)
 		return
@@ -204,14 +204,14 @@
 		stun *= 0.5
 	else if(!status)
 		if(affecting)
-			target.visible_message("<span class='warning'>[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off.</span>")
+			target.visible_message(span_warning("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
 		else
-			target.visible_message("<span class='warning'>[target] has been prodded with [src] by [user]. Luckily it was off.</span>")
+			target.visible_message(span_warning("[target] has been prodded with [src] by [user]. Luckily it was off."))
 	else
 		if(affecting)
-			target.visible_message("<span class='danger'>[target] has been prodded in the [affecting.name] with [src] by [user]!</span>")
+			target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 		else
-			target.visible_message("<span class='danger'>[target] has been prodded with [src] by [user]!</span>")
+			target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
 		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	//stun effects
@@ -256,12 +256,12 @@
 				user.drop_item()
 				W.loc = src
 				bcell = W
-				to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
+				to_chat(user, span_notice("You install a cell in [src]."))
 				update_icon()
 			else
-				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
+				to_chat(user, span_notice("[src] already has a cell."))
 		else
-			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
+			to_chat(user, span_notice("This cell is not fitted for [src]."))
 
 /obj/item/melee/baton/get_description_interaction()
 	var/list/results = list()

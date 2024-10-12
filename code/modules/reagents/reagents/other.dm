@@ -509,7 +509,7 @@
 				var/obj/item/clothing/mask/smokable/S = H.wear_mask
 				if(S.lit)
 					S.quench() // No smoking in my medbay!
-					H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
+					H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"

@@ -58,7 +58,7 @@
 
 		var/obj/item/projectile/P = new spore_projectile(get_turf(B))
 
-		user.visible_message("<span class='danger'>[icon2html(B,viewers(user))] \The [B] discharges energy toward \the [L]!</span>")
+		user.visible_message(span_danger("[icon2html(B,viewers(user))] \The [B] discharges energy toward \the [L]!"))
 		P.launch_projectile(L, BP_TORSO, user)
 
 	return

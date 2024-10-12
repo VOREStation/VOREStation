@@ -48,7 +48,7 @@
 				L.buckled.unbuckle_mob()
 		AM.forceMove(destination)
 		AM.visible_message("<b>\The [AM]</b> vanishes!")
-		to_chat(AM, "<span class='notice'>You suddenly appear somewhere else!</span>")
+		to_chat(AM, span_notice("You suddenly appear somewhere else!"))
 		new /obj/effect/effect/sparks(destination)
 		new /obj/effect/effect/sparks(starting)
 	return
@@ -57,10 +57,10 @@
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(!within_range(AM))
-			to_chat(user, "<span class='warning'>\The [AM] is too far away to blink.</span>")
+			to_chat(user, span_warning("\The [AM] is too far away to blink."))
 			return
 		if(!allowed_to_teleport())
-			to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
+			to_chat(user, span_warning("Teleportation doesn't seem to work here."))
 			return
 		if(pay_energy(400))
 			if(check_for_scepter())
@@ -70,11 +70,11 @@
 			adjust_instability(3)
 			add_attack_logs(user,AM,"Blinked")
 		else
-			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")
+			to_chat(user, span_warning("You need more energy to blink [AM] away!"))
 
 /obj/item/spell/blink/on_use_cast(mob/user)
 	if(!allowed_to_teleport())
-		to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
+		to_chat(user, span_warning("Teleportation doesn't seem to work here."))
 		return
 	if(pay_energy(200))
 		if(check_for_scepter())
@@ -84,16 +84,16 @@
 		adjust_instability(1)
 		add_attack_logs(user,user,"Blinked")
 	else
-		to_chat(user, "<span class='warning'>You need more energy to blink yourself away!</span>")
+		to_chat(user, span_warning("You need more energy to blink yourself away!"))
 
 /obj/item/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(!allowed_to_teleport())
-			to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
+			to_chat(user, span_warning("Teleportation doesn't seem to work here."))
 			return
 		if(pay_energy(300))
-			visible_message("<span class='danger'>\The [user] reaches out towards \the [AM] with a glowing hand.</span>")
+			visible_message(span_danger("\The [user] reaches out towards \the [AM] with a glowing hand."))
 			if(check_for_scepter())
 				safe_blink(AM, 10)
 			else
@@ -101,4 +101,4 @@
 			adjust_instability(2)
 			add_attack_logs(user,AM,"Blinked")
 		else
-			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")
+			to_chat(user, span_warning("You need more energy to blink [AM] away!"))

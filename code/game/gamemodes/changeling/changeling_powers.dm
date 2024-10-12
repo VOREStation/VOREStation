@@ -102,7 +102,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	var/mob/living/carbon/human/H = src
 	if(istype(H))
-		var/saved_dna = H.dna.Clone() /// Prevent transform from breaking. 
+		var/saved_dna = H.dna.Clone() /// Prevent transform from breaking.
 		var/datum/absorbed_dna/newDNA = new(H.real_name, saved_dna, H.species.name, H.languages, H.identifying_gender, H.flavor_texts, H.modifiers)
 		absorbDNA(newDNA)
 
@@ -131,19 +131,19 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		return
 
 	if(src.stat > max_stat)
-		to_chat(src, "<span class='warning'>We are incapacitated.</span>")
+		to_chat(src, span_warning("We are incapacitated."))
 		return
 
 	if(changeling.absorbed_dna.len < required_dna)
-		to_chat(src, "<span class='warning'>We require at least [required_dna] samples of compatible DNA.</span>")
+		to_chat(src, span_warning("We require at least [required_dna] samples of compatible DNA."))
 		return
 
 	if(changeling.chem_charges < required_chems)
-		to_chat(src, "<span class='warning'>We require at least [required_chems] units of chemicals to do that!</span>")
+		to_chat(src, span_warning("We require at least [required_chems] units of chemicals to do that!"))
 		return
 
 	if(changeling.geneticdamage > max_genetic_damage)
-		to_chat(src, "<span class='warning'>Our genomes are still reassembling. We need time to recover first.</span>")
+		to_chat(src, span_warning("Our genomes are still reassembling. We need time to recover first."))
 		return
 
 	return changeling
@@ -206,11 +206,11 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(M.loc == src.loc)
 		return 1 //target and source are in the same thing
 	if(!isturf(src.loc) || !isturf(M.loc))
-		to_chat(src, "<span class='warning'>We cannot reach \the [M] with a sting!</span>")
+		to_chat(src, span_warning("We cannot reach \the [M] with a sting!"))
 		return 0 //One is inside, the other is outside something.
 	// Maximum queued turfs set to 25; I don't *think* anything raises sting_range above 2, but if it does the 25 may need raising
 	if(!AStar(src.loc, M.loc, /turf/proc/AdjacentTurfsRangedSting, /turf/proc/Distance, max_nodes=25, max_node_depth=sting_range)) //If we can't find a path, fail
-		to_chat(src, "<span class='warning'>We cannot find a path to sting \the [M] by!</span>")
+		to_chat(src, span_warning("We cannot find a path to sting \the [M] by!"))
 		return 0
 	return 1
 
@@ -227,7 +227,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!T)
 		return
 	if(T.isSynthetic())
-		to_chat(src, "<span class='notice'>We are unable to pierce the outer shell of [T].</span>")
+		to_chat(src, span_notice("We are unable to pierce the outer shell of [T]."))
 		return
 	if(!(T in view(changeling.sting_range))) return
 	if(!sting_can_reach(T, changeling.sting_range)) return
@@ -238,7 +238,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	src.verbs -= verb_path
 	spawn(10)	src.verbs += verb_path
 
-	to_chat(src, "<span class='notice'>We stealthily sting [T].</span>")
+	to_chat(src, span_notice("We stealthily sting [T]."))
 	if(!T.mind || !T.mind.changeling)	return T	//T will be affected by the sting
-	to_chat(T, "<span class='warning'>You feel a tiny prick.</span>")
+	to_chat(T, span_warning("You feel a tiny prick."))
 	return

@@ -14,7 +14,7 @@
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Death sting (changeling)")
-	to_chat(T, "<span class='danger'>You feel a small prick and your chest becomes tight.</span>")
+	to_chat(T, span_danger("You feel a small prick and your chest becomes tight."))
 	T.silent = 10
 	T.Paralyse(10)
 	T.make_jittery(100)

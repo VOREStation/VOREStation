@@ -35,7 +35,7 @@
 /obj/item/geiger/examine(mob/user)
 	. = ..()
 	get_radiation()
-	. += "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>"
+	. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.")
 
 /obj/item/geiger/rad_act(amount)
 	if(!amount || !scanning)
@@ -66,7 +66,7 @@
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	update_sound()
-	to_chat(user, "<span class='notice'>[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src].</span>")
+	to_chat(user, span_notice("[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src]."))
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
@@ -121,7 +121,7 @@
 	scanning = !scanning
 	update_icon()
 	update_sound()
-	to_chat(user, "<span class='notice'>[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src].</span>")
+	to_chat(user, span_notice("[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src]."))
 
 /obj/item/geiger/wall/update_icon()
 	if(!scanning)

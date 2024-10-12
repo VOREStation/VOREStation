@@ -23,7 +23,7 @@
 /obj/item/tank/oxygen/examine(mob/user)
 	. = ..()
 	if(loc == user && (air_contents.gas["oxygen"] < 10))
-		. += "<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>"
+		. += span_warning("The meter on \the [src] indicates you are almost out of oxygen!")
 
 /obj/item/tank/oxygen/yellow
 	desc = "A tank of oxygen, this one is yellow."
@@ -59,7 +59,7 @@
 /obj/item/tank/air/examine(mob/user)
 	. = ..()
 	if(loc == user && (air_contents.gas["oxygen"] < 1))
-		. += "<span class='warning'>The meter on \the [src] indicates you are almost out of air!</span>"
+		. += span_warning("The meter on \the [src] indicates you are almost out of air!")
 		user << sound('sound/effects/alert.ogg')
 
 /obj/item/tank/air/Initialize()
@@ -142,7 +142,7 @@
 /obj/item/tank/emergency/oxygen/examine(mob/user)
 	. = ..()
 	if(loc == user && (air_contents.gas["oxygen"] < 0.2))
-		. += "<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
+		. += span_danger("The meter on the [src.name] indicates you are almost out of air!")
 		user << sound('sound/effects/alert.ogg')
 
 /obj/item/tank/emergency/oxygen/engi
@@ -215,7 +215,7 @@
 /obj/item/tank/nitrogen/examine(mob/user)
 	. = ..()
 	if(loc == user && (air_contents.gas["nitrogen"] < 10))
-		. += "<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>"
+		. += span_danger("The meter on \the [src] indicates you are almost out of nitrogen!")
 		//playsound(user, 'sound/effects/alert.ogg', 50, 1)
 
 /obj/item/tank/stasis/nitro_cryo // Synthmorph bags need to have initial pressure within safe bounds for human atmospheric pressure, but low temperature to stop unwanted degredation.

@@ -27,7 +27,7 @@ var/datum/antagonist/mutineer/mutineers
 /*
 	var/list/directive_candidates = get_directive_candidates()
 	if(!directive_candidates || directive_candidates.len == 0)
-		to_world("<span class='warning'>Mutiny mode aborted: no valid candidates for Directive X.</span>")
+		to_world(span_warning("Mutiny mode aborted: no valid candidates for Directive X."))
 		return 0
 
 	head_loyalist = pick(loyalist_candidates)

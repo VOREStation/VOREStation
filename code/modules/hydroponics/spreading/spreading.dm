@@ -17,9 +17,9 @@
 			vine.mature_time = 0
 			vine.process()
 
-			message_admins("<span class='notice'>Event: Spacevines spawned at [T.loc] ([T.x],[T.y],[T.z])</span>")
+			message_admins(span_notice("Event: Spacevines spawned at [T.loc] ([T.x],[T.y],[T.z])"))
 			return
-		message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
+		message_admins(span_notice("Event: Spacevines failed to find a viable turf."))
 
 /obj/effect/dead_plant
 	anchored = TRUE
@@ -91,7 +91,7 @@
 	if(!SSplants)
 		sleep(250) // ugly hack, should mean roundstart plants are fine. TODO initialize perhaps?
 	if(!SSplants)
-		to_world("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
+		to_world(span_danger("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
@@ -247,16 +247,16 @@
 
 	if(W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/surgical/scalpel))
 		if(sampled)
-			to_chat(user, "<span class='warning'>\The [src] has already been sampled recently.</span>")
+			to_chat(user, span_warning("\The [src] has already been sampled recently."))
 			return
 		if(!is_mature())
-			to_chat(user, "<span class='warning'>\The [src] is not mature enough to yield a sample yet.</span>")
+			to_chat(user, span_warning("\The [src] is not mature enough to yield a sample yet."))
 			return
 		if(!seed)
-			to_chat(user, "<span class='warning'>There is nothing to take a sample from.</span>")
+			to_chat(user, span_warning("There is nothing to take a sample from."))
 			return
 		if(sampled)
-			to_chat(user, "<span class='danger'>You cannot take another sample from \the [src].</span>")
+			to_chat(user, span_danger("You cannot take another sample from \the [src]."))
 			return
 		if(prob(70))
 			sampled = 1

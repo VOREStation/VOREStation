@@ -73,7 +73,7 @@
 /obj/machinery/computer/ship/attack_ai(mob/user)
 	//VOREStation Addition Start
 	if(!ai_control && issilicon(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return
 	//VOREStation Addition End
 	if(tgui_status(user, tgui_state()) > STATUS_CLOSE)
@@ -90,11 +90,11 @@
 		return
 	//VOREStation Addition Start
 	if(!ai_control && issilicon(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return TRUE
 	//VOREStation Addition End
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return TRUE
 	if(tgui_status(user, tgui_state()) > STATUS_CLOSE)
 		return interface_interact(user)

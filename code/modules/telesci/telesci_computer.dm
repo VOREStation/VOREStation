@@ -51,26 +51,26 @@
 /obj/machinery/computer/telescience/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/bluespace_crystal))
 		if(crystals.len >= max_crystals)
-			to_chat(user, "<span class='warning'>There are not enough crystal slots.</span>")
+			to_chat(user, span_warning("There are not enough crystal slots."))
 			return
 		if(!user.unEquip(W))
 			return
 		crystals += W
 		W.forceMove(src)
-		user.visible_message("[user] inserts [W] into \the [src]'s crystal slot.", "<span class='notice'>You insert [W] into \the [src]'s crystal slot.</span>")
+		user.visible_message("[user] inserts [W] into \the [src]'s crystal slot.", span_notice("You insert [W] into \the [src]'s crystal slot."))
 		updateDialog()
 	else if(istype(W, /obj/item/gps))
 		if(!inserted_gps)
 			inserted_gps = W
 			user.unEquip(W)
 			W.forceMove(src)
-			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", "<span class='notice'>You insert [W] into \the [src]'s GPS device slot.</span>")
+			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", span_notice("You insert [W] into \the [src]'s GPS device slot."))
 	else if(istype(W, /obj/item/multitool))
 		var/obj/item/multitool/M = W
 		if(M.connectable && istype(M.connectable, /obj/machinery/telepad))
 			telepad = M.connectable
 			M.connectable = null
-			to_chat(user, "<span class='caution'>You upload the data from the [W.name]'s buffer.</span>")
+			to_chat(user, span_warning("You upload the data from the [W.name]'s buffer."))
 	else
 		return ..()
 
@@ -191,7 +191,7 @@
 	switch(rand(99))
 		if(0 to 85)
 			sparks()
-			visible_message("<span class='warning'>The telepad weakly fizzles.</span>")
+			visible_message(span_warning("The telepad weakly fizzles."))
 			return
 		if(86 to 90)
 			// Irradiate everyone in telescience!
@@ -200,7 +200,7 @@
 				sparks()
 				for(var/mob/living/carbon/human/M in viewers(L, null))
 					M.apply_effect((rand(10, 20)), IRRADIATE, 0)
-					to_chat(M, "<span class='warning'>You feel strange.</span>")
+					to_chat(M, span_warning("You feel strange."))
 			return
 		if(91 to 98)
 			// They did the mash! (They did the monster mash!) The monster mash! (It was a graveyard smash!)
@@ -219,7 +219,7 @@
 			return
 		if(99)
 			sparks()
-			visible_message("<span class='warning'>The telepad changes colors rapidly, and opens a portal, and you see what your mind seems to think is the very threads that hold the pattern of the universe together, and a eerie sense of paranoia creeps into you.</span>")
+			visible_message(span_warning("The telepad changes colors rapidly, and opens a portal, and you see what your mind seems to think is the very threads that hold the pattern of the universe together, and a eerie sense of paranoia creeps into you."))
 			spacevine_infestation()
 			return
 

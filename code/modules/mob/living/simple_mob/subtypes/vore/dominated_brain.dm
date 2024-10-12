@@ -78,16 +78,16 @@
 		if(tgui_alert(src, "Do you want to wrest control over your body back from \the [prey_name]?", "Regain Control",list("No","Yes")) != "Yes")
 			return
 
-		to_chat(src, "<span class='danger'>You begin to resist \the [prey_name]'s control!!!</span>")
-		to_chat(pred_body, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
+		to_chat(src, span_danger("You begin to resist \the [prey_name]'s control!!!"))
+		to_chat(pred_body, span_danger("You feel the captive mind of [src] begin to resist your control."))
 
 		if(do_after(src, 10 SECONDS, exclusive = TRUE))
 			restore_control()
 		else
-			to_chat(src, "<span class='notice'>Your attempt to regain control has been interrupted...</span>")
-			to_chat(pred_body, "<span class='notice'>The dominant sensation fades away...</span>")
+			to_chat(src, span_notice("Your attempt to regain control has been interrupted..."))
+			to_chat(pred_body, span_notice("The dominant sensation fades away..."))
 	else
-		to_chat(src, "<span class='warning'>\The [pred_body] is already dominated, and cannot be controlled at this time.</span>")
+		to_chat(src, span_warning("\The [pred_body] is already dominated, and cannot be controlled at this time."))
 		..()
 
 /mob/living/dominated_brain/proc/restore_control(ask = TRUE)
@@ -187,47 +187,47 @@
 		if(isbelly(pocketpal.card.loc))
 			pred = pocketpal.card.loc.loc
 	else
-		to_chat(prey, "<span class='notice'>You are not inside anyone.</span>")
+		to_chat(prey, span_notice("You are not inside anyone."))
 		return
 
 	if(prey.stat == DEAD)
-		to_chat(prey, "<span class='warning'>You cannot do that in your current state.</span>")
+		to_chat(prey, span_warning("You cannot do that in your current state."))
 		return
 
 	if(!pred.allow_mind_transfer)
-		to_chat(prey, "<span class='warning'>[pred] is unable to be dominated.</span>")
+		to_chat(prey, span_warning("[pred] is unable to be dominated."))
 		return
 
 	if(!pred.ckey)
-		to_chat(prey, "<span class='notice'>\The [pred] isn't able to be dominated.</span>")
+		to_chat(prey, span_notice("\The [pred] isn't able to be dominated."))
 		return
 	if(isrobot(pred) && jobban_isbanned(prey, JOB_CYBORG))
-		to_chat(prey, "<span class='warning'>Forces beyond your comprehension forbid you from taking control of [pred].</span>")
+		to_chat(prey, span_warning("Forces beyond your comprehension forbid you from taking control of [pred]."))
 		return
 	if(prey.prey_controlled)
-		to_chat(prey, "<span class='warning'>You are already controlling someone, you can't control anyone else at this time.</span>")
+		to_chat(prey, span_warning("You are already controlling someone, you can't control anyone else at this time."))
 		return
 	if(pred.prey_controlled)
-		to_chat(prey, "<span class='warning'>\The [pred] is already dominated, and cannot be controlled at this time.</span>")
+		to_chat(prey, span_warning("\The [pred] is already dominated, and cannot be controlled at this time."))
 		return
 	if(tgui_alert(prey, "You are attempting to take over [pred], are you sure? Ensure that their preferences align with this kind of play.", "Take Over Predator",list("No","Yes")) != "Yes")
 		return
-	to_chat(prey, "<span class='notice'>You attempt to exert your control over \the [pred]...</span>")
+	to_chat(prey, span_notice("You attempt to exert your control over \the [pred]..."))
 	log_admin("[key_name_admin(prey)] attempted to take over [pred].")
 	if(tgui_alert(pred, "\The [prey] has elected to attempt to take control of you. Is this something you will allow to happen?", "Allow Prey Domination",list("No","Yes")) != "Yes")
-		to_chat(prey, "<span class='warning'>\The [pred] declined your request for control.</span>")
+		to_chat(prey, span_warning("\The [pred] declined your request for control."))
 		return
 	if(tgui_alert(pred, "Are you sure? If you should decide to revoke this, you will have the ability to do so in your 'Abilities' tab.", "Allow Prey Domination",list("No","Yes")) != "Yes")
 		return
-	to_chat(pred, "<span class='warning'>You can feel the will of another overwriting your own, control of your body being sapped away from you...</span>")
-	to_chat(prey, "<span class='warning'>You can feel the will of your host diminishing as you exert your will over them!</span>")
+	to_chat(pred, span_warning("You can feel the will of another overwriting your own, control of your body being sapped away from you..."))
+	to_chat(prey, span_warning("You can feel the will of your host diminishing as you exert your will over them!"))
 	if(!do_after(prey, 10 SECONDS, exclusive = TRUE))
-		to_chat(prey, "<span class='notice'>Your attempt to regain control has been interrupted...</span>")
-		to_chat(pred, "<span class='notice'>The dominant sensation fades away...</span>")
+		to_chat(prey, span_notice("Your attempt to regain control has been interrupted..."))
+		to_chat(pred, span_notice("The dominant sensation fades away..."))
 		return
 
-	to_chat(prey, "<span class='danger'>You plunge your conciousness into \the [pred], assuming control over their very body, leaving your own behind within \the [pred]'s [loc].</span>")
-	to_chat(pred, "<span class='danger'>You feel your body move on its own, as you are pushed to the background, and an alien consciousness displaces yours.</span>")
+	to_chat(prey, span_danger("You plunge your conciousness into \the [pred], assuming control over their very body, leaving your own behind within \the [pred]'s [loc]."))
+	to_chat(pred, span_danger("You feel your body move on its own, as you are pushed to the background, and an alien consciousness displaces yours."))
 	var/mob/living/dominated_brain/pred_brain
 	var/delete_source = FALSE
 	if(istype(prey, /mob/living/dominated_brain))
@@ -279,13 +279,13 @@
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
 			if(db.ckey == db.pred_ckey)
-				to_chat(src, "<span class='notice'>You ease off of your control, releasing \the [db].</span>")
-				to_chat(db, "<span class='notice'>You feel the alien presence fade, and restore control of your body to you of their own will...</span>")
+				to_chat(src, span_notice("You ease off of your control, releasing \the [db]."))
+				to_chat(db, span_notice("You feel the alien presence fade, and restore control of your body to you of their own will..."))
 				db.restore_control()
 				return
 			else
 				continue
-	to_chat(src, "<span class='danger'>You haven't been taken over, and shouldn't have this verb. I'll clean that up for you. Report this on the github, it is a bug.</span>")
+	to_chat(src, span_danger("You haven't been taken over, and shouldn't have this verb. I'll clean that up for you. Report this on the github, it is a bug."))
 	verbs -= /mob/proc/release_predator
 
 /mob/living/dominated_brain/proc/resist_control()
@@ -296,16 +296,16 @@
 		dominate_predator()
 		return
 	if(pred_ckey == ckey && pred_body.prey_controlled)
-		to_chat(src, "<span class='danger'>You begin to resist \the [prey_name]'s control!!!</span>")
-		to_chat(pred_body, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
+		to_chat(src, span_danger("You begin to resist \the [prey_name]'s control!!!"))
+		to_chat(pred_body, span_danger("You feel the captive mind of [src] begin to resist your control."))
 
 		if(do_after(src, 10 SECONDS, exclusive = TRUE))
 			restore_control()
 		else
-			to_chat(src, "<span class='notice'>Your attempt to regain control has been interrupted...</span>")
-			to_chat(pred_body, "<span class='notice'>The dominant sensation fades away...</span>")
+			to_chat(src, span_notice("Your attempt to regain control has been interrupted..."))
+			to_chat(pred_body, span_notice("The dominant sensation fades away..."))
 	else
-		to_chat(src, "<span class='warning'>\The [pred_body] is already dominated, and cannot be controlled at this time.</span>")
+		to_chat(src, span_warning("\The [pred_body] is already dominated, and cannot be controlled at this time."))
 
 /mob/living/proc/dominate_prey()
 	set category = "Abilities"
@@ -320,35 +320,35 @@
 			else
 				continue
 	if(!possible_mobs)
-		to_chat(src, "<span class='warning'>There are no valid targets inside of you.</span>")
+		to_chat(src, span_warning("There are no valid targets inside of you."))
 		return
 	var/input = tgui_input_list(src, "Select a mob to dominate:", "Dominate Prey", possible_mobs)
 	if(!input)
 		return
 	var/mob/living/M = input
 	if(!M.allow_mind_transfer) //check if the dominated mob pref is enabled
-		to_chat(src, "<span class='warning'>[M] is unable to be dominated.</span>")
+		to_chat(src, span_warning("[M] is unable to be dominated."))
 		return
 	if(tgui_alert(src, "You selected [M] to attempt to dominate. Are you sure?", "Dominate Prey",list("No","Yes")) != "Yes")
 		return
 	log_admin("[key_name_admin(src)] offered to use dominate prey on [M] ([M.ckey]).")
-	to_chat(src, "<span class='warning'>Attempting to dominate and gather \the [M]'s mind...</span>")
+	to_chat(src, span_warning("Attempting to dominate and gather \the [M]'s mind..."))
 	if(tgui_alert(M, "\The [src] has elected collect your mind into their own. Is this something you will allow to happen?", "Allow Dominate Prey",list("No","Yes")) != "Yes")
-		to_chat(src, "<span class='warning'>\The [M] has declined your Dominate Prey attempt.</span>")
+		to_chat(src, span_warning("\The [M] has declined your Dominate Prey attempt."))
 		return
 	if(tgui_alert(M, "Are you sure? You can only undo this while your body is inside of [src]. (You can resist, or use the resist verb in the abilities tab)", "Allow Dominate Prey",list("No","Yes")) != "Yes")
-		to_chat(src, "<span class='warning'>\The [M] has declined your Dominate Prey attempt.</span>")
+		to_chat(src, span_warning("\The [M] has declined your Dominate Prey attempt."))
 		return
-	to_chat(M, "<span class='warning'>You can feel the will of another pulling you away from your body...</span>")
-	to_chat(src, "<span class='warning'>You can feel the will of your prey diminishing as you gather them!</span>")
+	to_chat(M, span_warning("You can feel the will of another pulling you away from your body..."))
+	to_chat(src, span_warning("You can feel the will of your prey diminishing as you gather them!"))
 
 	if(!do_after(src, 10 SECONDS, exclusive = TRUE))
-		to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
-		to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
+		to_chat(M, span_notice("The alien presence fades, and you are left along in your body..."))
+		to_chat(src, span_notice("Your attempt to gather [M]'s mind has been interrupted."))
 		return
 	if(!isbelly(M.loc))
-		to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
-		to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
+		to_chat(M, span_notice("The alien presence fades, and you are left along in your body..."))
+		to_chat(src, span_notice("Your attempt to gather [M]'s mind has been interrupted."))
 		return
 
 	var/mob/living/dominated_brain/db = new /mob/living/dominated_brain(src, src, M.name, M)
@@ -374,8 +374,8 @@
 
 	db.ckey = db.prey_ckey
 	log_admin("[db] ([db.ckey]) has agreed to [src]'s dominate prey attempt, and so no longer occupies their original body.")
-	to_chat(src, "<span class='notice'>You feel your mind expanded as [M] is incorporated into you.</span>")
-	to_chat(M, "<span class='warning'>Your mind is gathered into \the [src], becoming part of them...</span>")
+	to_chat(src, span_notice("You feel your mind expanded as [M] is incorporated into you."))
+	to_chat(M, span_warning("Your mind is gathered into \the [src], becoming part of them..."))
 
 /mob/living/dominated_brain/proc/cease_this_foolishness()
 	set category = "Abilities"
@@ -383,25 +383,25 @@
 	set desc = "If your body is inside of your predator still, attempts to re-insert yourself into it."
 
 	if(prey_body && prey_body.loc.loc == pred_body)
-		to_chat(src, "<span class='notice'>You exert your will and attempt to return to yout body!!!</span>")
-		to_chat(pred_body, "<span class='warning'>\The [src] resists your hold and attempts to return to their body!</span>")
+		to_chat(src, span_notice("You exert your will and attempt to return to yout body!!!"))
+		to_chat(pred_body, span_warning("\The [src] resists your hold and attempts to return to their body!"))
 		if(do_after(src, 10 SECONDS, exclusive = TRUE))
 			if(prey_body && prey_body.loc.loc == pred_body)
 
 				prey_body.ckey = prey_ckey
 				pred_body.absorb_langs()
-				to_chat(src, "<span class='warning'>Your connection to [pred_body] fades, and you awaken back in your own body!</span>")
-				to_chat(pred_body, "<span class='warning'>You feel as though a piece of yourself is missing, as \the [src] returns to their body.</span>")
+				to_chat(src, span_warning("Your connection to [pred_body] fades, and you awaken back in your own body!"))
+				to_chat(pred_body, span_warning("You feel as though a piece of yourself is missing, as \the [src] returns to their body."))
 				log_admin("[src] ([src.ckey]) has returned to their body, [prey_body].")
 				qdel(src)
 			else
-				to_chat(src, "<span class='warning'>Your attempt to regain your body has been interrupted...</span>")
+				to_chat(src, span_warning("Your attempt to regain your body has been interrupted..."))
 		else
-			to_chat(src, "<span class='warning'>Your attempt to regain your body has been interrupted...</span>")
+			to_chat(src, span_warning("Your attempt to regain your body has been interrupted..."))
 	else if(prey_body)
-		to_chat(src, "<span class='warning'>You can sense your body... but it is not contained within [pred_body]... You cannot return to it at this time.</span>")
+		to_chat(src, span_warning("You can sense your body... but it is not contained within [pred_body]... You cannot return to it at this time."))
 	else
-		to_chat(src, "<span class='warning'>Your body seems to no longer exist, so, you cannot return to it.</span>")
+		to_chat(src, span_warning("Your body seems to no longer exist, so, you cannot return to it."))
 		verbs -= /mob/living/dominated_brain/proc/cease_this_foolishness
 
 /mob/living/proc/lend_prey_control()
@@ -417,7 +417,7 @@
 			else
 				continue
 	if(!possible_mobs)
-		to_chat(src, "<span class='warning'>There are no valid targets inside of you.</span>")
+		to_chat(src, span_warning("There are no valid targets inside of you."))
 		return
 	var/input = tgui_input_list(src, "Select a mob to give control:", "Give Prey Control", possible_mobs)
 	if(!input)
@@ -426,39 +426,39 @@
 	var/mob/living/pred = src
 
 	if(prey.stat == DEAD)
-		to_chat(pred, "<span class='warning'>You cannot do that to this prey.</span>")
+		to_chat(pred, span_warning("You cannot do that to this prey."))
 		return
 
 	if(!prey.ckey)
-		to_chat(pred, "<span class='notice'>\The [prey] cannot take control.</span>")
+		to_chat(pred, span_notice("\The [prey] cannot take control."))
 		return
 	if(isrobot(pred) && jobban_isbanned(prey, JOB_CYBORG))
-		to_chat(pred, "<span class='warning'>Forces beyond your comprehension prevent you from giving [prey] control.</span>")
+		to_chat(pred, span_warning("Forces beyond your comprehension prevent you from giving [prey] control."))
 		return
 	if(prey.prey_controlled)
-		to_chat(pred, "<span class='warning'>\The [prey] is already under someone's control and cannot be given control of your body.</span>")
+		to_chat(pred, span_warning("\The [prey] is already under someone's control and cannot be given control of your body."))
 		return
 	if(pred.prey_controlled)
-		to_chat(pred, "<span class='warning'>You are already controlling someone's body.</span>")
+		to_chat(pred, span_warning("You are already controlling someone's body."))
 		return
 	if(tgui_alert(pred, "You are attempting to give [prey] control over you, are you sure? Ensure that their preferences align with this kind of play.", "Give Prey Control",list("No","Yes")) != "Yes")
 		return
-	to_chat(pred, "<span class='notice'>You attempt to give your control over to \the [prey]...</span>")
+	to_chat(pred, span_notice("You attempt to give your control over to \the [prey]..."))
 	log_admin("[key_name_admin(pred)] attempted to give control to [prey].")
 	if(tgui_alert(prey, "\The [pred] has elected to attempt to give you control of them. Is this something you will allow to happen?", "Allow Prey Domination",list("No","Yes")) != "Yes")
-		to_chat(pred, "<span class='warning'>\The [prey] declined your request for control.</span>")
+		to_chat(pred, span_warning("\The [prey] declined your request for control."))
 		return
 	if(tgui_alert(prey, "Are you sure? If you should decide to revoke this, you will have the ability to do so in your 'Abilities' tab.", "Allow Prey Domination",list("No","Yes")) != "Yes")
 		return
-	to_chat(pred, "<span class='warning'>You diminish your will, reducing it and allowing will of your prey to take over...</span>")
-	to_chat(prey, "<span class='warning'>You can feel the will of your host diminishing as you are given control over them!</span>")
+	to_chat(pred, span_warning("You diminish your will, reducing it and allowing will of your prey to take over..."))
+	to_chat(prey, span_warning("You can feel the will of your host diminishing as you are given control over them!"))
 	if(!do_after(pred, 10 SECONDS, exclusive = TRUE))
-		to_chat(pred, "<span class='notice'>Your attempt to share control has been interrupted...</span>")
-		to_chat(prey, "<span class='notice'>The dominant sensation fades away...</span>")
+		to_chat(pred, span_notice("Your attempt to share control has been interrupted..."))
+		to_chat(prey, span_notice("The dominant sensation fades away..."))
 		return
 
-	to_chat(prey, "<span class='danger'>You plunge your conciousness into \the [pred], assuming control over their very body, leaving your own behind within \the [pred]'s [loc].</span>")
-	to_chat(pred, "<span class='danger'>You feel your body move on its own, as you move to the background, and an alien consciousness displaces yours.</span>")
+	to_chat(prey, span_danger("You plunge your conciousness into \the [pred], assuming control over their very body, leaving your own behind within \the [pred]'s [loc]."))
+	to_chat(pred, span_danger("You feel your body move on its own, as you move to the background, and an alien consciousness displaces yours."))
 	var/mob/living/dominated_brain/pred_brain
 	var/delete_source = FALSE
 	if(istype(prey, /mob/living/dominated_brain))

@@ -50,10 +50,10 @@
 
 	if(user)
 		if(active)
-			to_chat(user, "<span class='notice'>You flip out \the [src].</span>")
+			to_chat(user, span_notice("You flip out \the [src]."))
 			playsound(src, 'sound/weapons/flipblade.ogg', 15, 1)
 		else
-			to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
+			to_chat(user, span_notice("\The [src] can now be concealed."))
 		add_fingerprint(user)
 
 /*

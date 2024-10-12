@@ -67,14 +67,14 @@ var/global/list/light_type_cache = list()
 			else
 				. += "The casing has no power cell for backup power."
 		else
-			. += "<span class='danger'>This casing doesn't support power cells for backup power.</span>"
+			. += span_danger("This casing doesn't support power cells for backup power.")
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
 	if(cell)
-		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
+		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
 		user.put_in_hands(cell)
 		cell.update_icon()
 		cell = null
@@ -83,16 +83,16 @@ var/global/list/light_type_cache = list()
 	src.add_fingerprint(user)
 	if(istype(W, /obj/item/cell/emergency_light))
 		if(!cell_connectors)
-			to_chat(user, "<span class='warning'>This [name] can't support a power cell!</span>")
+			to_chat(user, span_warning("This [name] can't support a power cell!"))
 			return
 		if(!user.unEquip(W))
-			to_chat(user, "<span class='warning'>[W] is stuck to your hand!</span>")
+			to_chat(user, span_warning("[W] is stuck to your hand!"))
 			return
 		if(cell)
-			to_chat(user, "<span class='warning'>There is a power cell already installed!</span>")
+			to_chat(user, span_warning("There is a power cell already installed!"))
 		else if(user.drop_from_inventory(W))
-			user.visible_message("<span class='notice'>[user] hooks up [W] to [src].</span>", \
-			"<span class='notice'>You add [W] to [src].</span>")
+			user.visible_message(span_notice("[user] hooks up [W] to [src]."), \
+			span_notice("You add [W] to [src]."))
 			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 			W.forceMove(src)
 			cell = W
@@ -508,7 +508,7 @@ var/global/list/light_type_cache = list()
 		return
 	if(!(status == LIGHT_OK||status == LIGHT_BURNED))
 		return
-	visible_message("<span class='danger'>[user] smashes the light!</span>")
+	visible_message(span_danger("[user] smashes the light!"))
 	user.do_attack_animation(src)
 	broken()
 	return 1
@@ -664,7 +664,7 @@ var/global/list/light_type_cache = list()
 	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
 	if(!lamp_shade)
 		if(istype(W, /obj/item/lampshade))
@@ -719,7 +719,7 @@ var/global/list/light_type_cache = list()
 	if(!has_emergency_power(pwr))
 		return FALSE
 	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
-		visible_message("<span class='warning'>[src] short-circuits from too powerful of a power cell!</span>")
+		visible_message(span_warning("[src] short-circuits from too powerful of a power cell!"))
 		status = LIGHT_BURNED
 		installed_light.status = status
 		return FALSE
@@ -746,7 +746,7 @@ var/global/list/light_type_cache = list()
 // ai attack - turn on/off emergency lighting for a specific fixture
 /obj/machinery/light/attack_ai(mob/user)
 	no_emergency = !no_emergency
-	to_chat(user, "<span class='notice'>Emergency lights for this fixture have been [no_emergency ? "disabled" : "enabled"].</span>")
+	to_chat(user, span_notice("Emergency lights for this fixture have been [no_emergency ? "disabled" : "enabled"]."))
 	update(FALSE)
 	return
 

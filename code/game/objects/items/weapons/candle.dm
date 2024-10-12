@@ -29,7 +29,7 @@
 	if(W.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
-			light("<span class='notice'>\The [user] casually lights the [src] with [W].</span>")
+			light(span_notice("\The [user] casually lights the [src] with [W]."))
 	else if(istype(W, /obj/item/flame/lighter))
 		var/obj/item/flame/lighter/L = W
 		if(L.lit)
@@ -44,7 +44,7 @@
 			light()
 
 
-/obj/item/flame/candle/proc/light(var/flavor_text = "<span class='notice'>\The [usr] lights the [src].</span>")
+/obj/item/flame/candle/proc/light(var/flavor_text = span_notice("\The [usr] lights the [src]."))
 	if(!lit)
 		lit = TRUE
 		visible_message(flavor_text)
@@ -114,11 +114,11 @@
 
 /obj/item/flame/candle/everburn/Initialize()
 	. = ..()
-	light("<span class='notice'>\The [src] mysteriously lights itself!.</span>")
+	light(span_notice("\The [src] mysteriously lights itself!."))
 
 /obj/item/flame/candle/candelabra/everburn
 	wax = 99999
 
 /obj/item/flame/candle/candelabra/everburn/Initialize()
 	. = ..()
-	light("<span class='notice'>\The [src] mysteriously lights itself!.</span>")
+	light(span_notice("\The [src] mysteriously lights itself!."))

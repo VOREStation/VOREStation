@@ -224,11 +224,11 @@
 			if(H.nutrition <= amount)
 				use(user,H)
 			else
-				to_chat(user,"<span class='warning'>The difference in potential is too great. [user == M ? "You have" : "[H] has"] too much charge to use such a small battery.</span>")
+				to_chat(user,span_warning("The difference in potential is too great. [user == M ? "You have" : "[H] has"] too much charge to use such a small battery."))
 		else if(M == user)
-			to_chat(user,"<span class='warning'>You lick the cell, and your tongue tingles slightly.</span>")
+			to_chat(user,span_warning("You lick the cell, and your tongue tingles slightly."))
 		else
-			to_chat(user,"<span class='warning'>This cell is meant for use on humanoid synthetics only.</span>")
+			to_chat(user,span_warning("This cell is meant for use on humanoid synthetics only."))
 
 	. = ..()
 

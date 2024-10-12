@@ -22,21 +22,21 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_power_cost(usr))
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!check_suit_access(usr))
 		return
 
 	if(!visor)
-		to_chat(usr, "<span class='warning'>The hardsuit does not have a configurable visor.</span>")
+		to_chat(usr, span_warning("The hardsuit does not have a configurable visor."))
 		return
 
 	if(!visor.active)
@@ -52,7 +52,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -80,7 +80,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -96,7 +96,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -112,7 +112,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -131,7 +131,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -153,18 +153,18 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!visor)
-		to_chat(usr, "<span class='warning'>The hardsuit does not have a configurable visor.</span>")
+		to_chat(usr, span_warning("The hardsuit does not have a configurable visor."))
 		return
 
 	if(!visor.active)
 		visor.activate()
 
 	if(!visor.active)
-		to_chat(usr, "<span class='warning'>The visor is suffering a hardware fault and cannot be configured.</span>")
+		to_chat(usr, span_warning("The visor is suffering a hardware fault and cannot be configured."))
 		return
 
 	visor.engage()
@@ -180,15 +180,15 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!speech)
-		to_chat(usr, "<span class='warning'>The hardsuit does not have a speech synthesiser.</span>")
+		to_chat(usr, span_warning("The hardsuit does not have a speech synthesiser."))
 		return
 
 	speech.engage()
@@ -207,11 +207,11 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	var/list/selectable = list()
@@ -243,11 +243,11 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	var/list/selectable = list()
@@ -278,11 +278,11 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_power_cost(usr, 0, 0, 0, 0))

@@ -47,10 +47,10 @@
 /obj/machinery/power/supply_beacon/attackby(var/obj/item/W, var/mob/user)
 	if(!use_power && W.has_tool_quality(TOOL_WRENCH))
 		if(!anchored && !connect_to_network())
-			to_chat(user, "<span class='warning'>This device must be placed over an exposed cable.</span>")
+			to_chat(user, span_warning("This device must be placed over an exposed cable."))
 			return
 		anchored = !anchored
-		user.visible_message("<span class='notice'>\The [user] [anchored ? "secures" : "unsecures"] \the [src].</span>")
+		user.visible_message(span_notice("\The [user] [anchored ? "secures" : "unsecures"] \the [src]."))
 		playsound(src, W.usesound, 50, 1)
 		return
 	return ..()
@@ -59,13 +59,13 @@
 
 	if(expended)
 		update_use_power(USE_POWER_OFF)
-		to_chat (user, "<span class='warning'>\The [src] has used up its charge.</span>")
+		to_chat (user, span_warning("\The [src] has used up its charge."))
 		return
 
 	if(anchored)
 		return use_power ? deactivate(user) : activate(user)
 	else
-		to_chat(user, "<span class='warning'>You need to secure the beacon with a wrench first!</span>")
+		to_chat(user, span_warning("You need to secure the beacon with a wrench first!"))
 		return
 
 /obj/machinery/power/supply_beacon/attack_ai(var/mob/user)
@@ -76,12 +76,12 @@
 	if(expended)
 		return
 	if(surplus() < 500)
-		if(user) to_chat(user, "<span class='notice'>The connected wire doesn't have enough current.</span>")
+		if(user) to_chat(user, span_notice("The connected wire doesn't have enough current."))
 		return
 	set_light(3, 3, "#00CCAA")
 	icon_state = "beacon_active"
 	update_use_power(USE_POWER_IDLE)
-	if(user) to_chat(user, "<span class='notice'>You activate the beacon. The supply drop will be dispatched soon.</span>")
+	if(user) to_chat(user, span_notice("You activate the beacon. The supply drop will be dispatched soon."))
 
 /obj/machinery/power/supply_beacon/proc/deactivate(var/mob/user, var/permanent)
 	if(permanent)
@@ -92,7 +92,7 @@
 	set_light(0)
 	update_use_power(USE_POWER_OFF)
 	target_drop_time = null
-	if(user) to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")
+	if(user) to_chat(user, span_notice("You deactivate the beacon."))
 
 /obj/machinery/power/supply_beacon/Destroy()
 	if(use_power)

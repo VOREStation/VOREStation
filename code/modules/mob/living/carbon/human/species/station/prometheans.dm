@@ -176,7 +176,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 				t_him = "her"
 
 	H.visible_message("<b>\The [H]</b> glomps [target] to make [t_him] feel better!", \
-					"<span class='notice'>You glomp [target] to make [t_him] feel better!</span>")
+					span_notice("You glomp [target] to make [t_him] feel better!"))
 	H.apply_stored_shock_to(target)
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
@@ -364,6 +364,6 @@ var/datum/species/shapeshifter/promethean/prometheans
 		if(11 to 20)
 			return "[t_she] glowing gently with moderate levels of electrical activity.\n"
 		if(21 to 35)
-			return "<span class='warning'>[t_she] glowing brightly with high levels of electrical activity.</span>"
+			return span_warning("[t_she] glowing brightly with high levels of electrical activity.")
 		if(35 to INFINITY)
-			return "<span class='danger'>[t_she] radiating massive levels of electrical activity!</span>"
+			return span_danger("[t_she] radiating massive levels of electrical activity!")

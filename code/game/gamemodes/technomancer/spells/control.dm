@@ -92,41 +92,41 @@
 		if(choice == "Yes")
 			for(var/mob/living/L in controlled_mobs)
 				deselect(L)
-			to_chat(user, "<span class='notice'>You've released control of all entities you had in control.</span>")
+			to_chat(user, span_notice("You've released control of all entities you had in control."))
 
 
 /obj/item/spell/control/on_ranged_cast(atom/hit_atom, mob/living/user)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		if(L == user && !controlled_mobs.len)
-			to_chat(user, "<span class='warning'>This function doesn't work on higher-intelligence entities, however since you're \
-			trying to use it on yourself, perhaps you're an exception?  Regardless, nothing happens.</span>")
+			to_chat(user, span_warning("This function doesn't work on higher-intelligence entities, however since you're \
+			trying to use it on yourself, perhaps you're an exception?  Regardless, nothing happens."))
 			return 0
 
 		if(L.mob_class & allowed_mob_classes)
 			if(!(L in controlled_mobs)) //Selecting
 				if(L.client)
-					to_chat(user, "<span class='danger'>\The [L] seems to resist you!</span>")
+					to_chat(user, span_danger("\The [L] seems to resist you!"))
 					return 0
 				if(!L.has_AI())
 					to_chat(user, span_warning("\The [L] seems too dim for this to work on them."))
 					return FALSE
 				if(pay_energy(500))
 					select(L)
-					to_chat(user, "<span class='notice'>\The [L] is now under your (limited) control.</span>")
+					to_chat(user, span_notice("\The [L] is now under your (limited) control."))
 			else //Deselect them
 				deselect(L)
-				to_chat(user, "<span class='notice'>You free \the [L] from your grasp.</span>")
+				to_chat(user, span_notice("You free \the [L] from your grasp."))
 
 		else //Let's attack
 			if(!controlled_mobs.len)
-				to_chat(user, "<span class='warning'>You have no entities under your control to command.</span>")
+				to_chat(user, span_warning("You have no entities under your control to command."))
 				return 0
 			if(pay_energy(25 * controlled_mobs.len))
 				attack_all(L)
 				add_attack_logs(user,L,"Commanded their army of [controlled_mobs.len]")
-				to_chat(user, "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to \
-				attack \the [L].</span>")
+				to_chat(user, span_notice("You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to \
+				attack \the [L]."))
 				//This is to stop someone from controlling beepsky and getting him to stun someone 5 times a second.
 				user.setClickCooldown(8)
 				adjust_instability(controlled_mobs.len)
@@ -134,10 +134,10 @@
 	else if(isturf(hit_atom))
 		var/turf/T = hit_atom
 		if(!controlled_mobs.len)
-			to_chat(user, "<span class='warning'>You have no entities under your control to command.</span>")
+			to_chat(user, span_warning("You have no entities under your control to command."))
 			return 0
 		if(pay_energy(10 * controlled_mobs.len))
 			move_all(T)
 			adjust_instability(controlled_mobs.len)
-			to_chat(user, "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to move \
-			towards \the [T].</span>")
+			to_chat(user, span_notice("You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to move \
+			towards \the [T]."))

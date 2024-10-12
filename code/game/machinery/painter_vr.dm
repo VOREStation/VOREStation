@@ -68,7 +68,7 @@
 		return
 
 	if(is_type_in_list(I, allowed_types) && !inoperable())
-		user.visible_message("<span class='notice'>[user] inserts \the [I] into the Color Mate receptable.</span>")
+		user.visible_message(span_notice("[user] inserts \the [I] into the Color Mate receptable."))
 		user.drop_from_inventory(I)
 		I.forceMove(src)
 		inserted = I

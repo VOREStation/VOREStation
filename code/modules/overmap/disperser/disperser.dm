@@ -25,11 +25,11 @@
 	if(I && I.has_tool_quality(TOOL_WRENCH))
 		if(panel_open)
 			user.visible_message("<b>\The [user]</b> rotates \the [src] with \the [I].",
-				"<span class='notice'>You rotate \the [src] with \the [I].</span>")
+				span_notice("You rotate \the [src] with \the [I]."))
 			set_dir(turn(dir, 90))
 			playsound(src, 'sound/items/jaws_pry.ogg', 50, 1)
 		else
-			to_chat(user, "<span class='notice'>The maintenance panel must be screwed open for this!</span>")
+			to_chat(user, span_notice("The maintenance panel must be screwed open for this!"))
 		return
 	if(default_deconstruction_screwdriver(user, I))
 		return

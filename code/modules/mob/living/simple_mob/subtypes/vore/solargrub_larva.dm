@@ -122,7 +122,7 @@ var/global/list/grub_machine_overlays = list()
 	set_AI_busy(TRUE)
 	forceMove(M)
 	powermachine.draining = 2
-	visible_message("<span class='warning'>\The [src] finds an opening and crawls inside \the [M].</span>")
+	visible_message(span_warning("\The [src] finds an opening and crawls inside \the [M]."))
 	if(!(M.type in grub_machine_overlays))
 		generate_machine_effect(M)
 	machine_effect = image(grub_machine_overlays[M.type], M) //Can't do this the reasonable way with an overlay,
@@ -176,7 +176,7 @@ var/global/list/grub_machine_overlays = list()
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/expand_grub()
 	eject_from_machine()
-	visible_message("<span class='warning'>\The [src] suddenly balloons in size!</span>")
+	visible_message(span_warning("\The [src] suddenly balloons in size!"))
 	log_game("A larva has matured into a grub in area [src.loc.name] ([src.x],[src.y],[src.z]")
 	var/mob/living/simple_mob/vore/solargrub/adult = new(get_turf(src))
 	adult.tracked = tracked
@@ -297,6 +297,6 @@ var/global/list/grub_machine_overlays = list()
 			var/mob/living/simple_mob/animal/solargrub_larva/grub = locate() in O
 			if(grub)
 				grub.eject_from_machine(O)
-				to_chat(user, "<span class='warning'>You disturb a grub nesting in \the [O]!</span>")
+				to_chat(user, span_warning("You disturb a grub nesting in \the [O]!"))
 				return
 	return ..()

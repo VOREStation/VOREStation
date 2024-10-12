@@ -196,7 +196,7 @@ var/list/ai_verbs_default = list(
 							"<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>",
 							"To use something, simply click on it.",
 							"For department channels, use the following say commands:")
-	to_chat(src, "<span class='filter_notice'>[jointext(init_text, "<br>")]</span>")
+	to_chat(src, span_filter_notice("[jointext(init_text, "<br>")]"))
 
 	var/radio_text = ""
 	for(var/i = 1 to common_radio.channels.len)
@@ -218,7 +218,7 @@ var/list/ai_verbs_default = list(
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
-		to_chat(src, "<span class='filter_notice'><b>These laws may be changed by other players, or by you being the traitor.</b></span>")
+		to_chat(src, span_filter_notice("<b>These laws may be changed by other players, or by you being the traitor.</b>"))
 
 	job = JOB_AI
 	setup_icon()
@@ -364,7 +364,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	if(message_cooldown)
-		to_chat(src, "<span class='filter_notice'>Please allow one minute to pass between announcements.</span>")
+		to_chat(src, span_filter_notice("Please allow one minute to pass between announcements."))
 		return
 	var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "A.I. Announcement")
 	if(!input)
@@ -422,13 +422,13 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 	if(emergency_message_cooldown)
-		to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
+		to_chat(usr, span_warning("Arrays recycling. Please stand by."))
 		return
 	var/input = sanitize(tgui_input_text(usr, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
 	CentCom_announce(input, usr)
-	to_chat(usr, "<span class='notice'>Message transmitted.</span>")
+	to_chat(usr, span_notice("Message transmitted."))
 	log_game("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
@@ -471,7 +471,7 @@ var/list/ai_verbs_default = list(
 			if(H)
 				H.attack_ai(src) //may as well recycle
 			else
-				to_chat(src, "<span class='notice'>Unable to locate the holopad.</span>")
+				to_chat(src, span_notice("Unable to locate the holopad."))
 
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
@@ -479,7 +479,7 @@ var/list/ai_verbs_default = list(
 		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
-			to_chat(src, "<span class='filter_warning'>[span_red("System error. Cannot locate [html_decode(href_list["trackname"])].")]</span>")
+			to_chat(src, span_filter_warning("[span_red("System error. Cannot locate [html_decode(href_list["trackname"])].")]"))
 		return
 
 	if(href_list["trackbot"])
@@ -487,7 +487,7 @@ var/list/ai_verbs_default = list(
 		if(target)
 			ai_actual_track(target)
 		else
-			to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
+			to_chat(src, span_warning("Target is not on or near any active cameras on the station."))
 		return
 
 	if(href_list["open"])
@@ -579,7 +579,7 @@ var/list/ai_verbs_default = list(
 		if(network in C.network)
 			eyeobj.setLoc(get_turf(C))
 			break
-	to_chat(src, "<span class='notice'>Switched to [network] camera network.</span>")
+	to_chat(src, span_notice("Switched to [network] camera network."))
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
@@ -729,7 +729,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	camera_light_on = !camera_light_on
-	to_chat(src, "<span class='filter_notice'>Camera lights [camera_light_on ? "activated" : "deactivated"].</span>")
+	to_chat(src, span_filter_notice("Camera lights [camera_light_on ? "activated" : "deactivated"]."))
 	if(!camera_light_on)
 		if(camera)
 			camera.set_light(0)
@@ -772,24 +772,24 @@ var/list/ai_verbs_default = list(
 
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(user == deployed_shell)
-			to_chat(user, "<span class='notice'>The shell's subsystems resist your efforts to tamper with your bolts.</span>")
+			to_chat(user, span_notice("The shell's subsystems resist your efforts to tamper with your bolts."))
 			return
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
-			user.visible_message("<span class='notice'>\The [user] starts to unbolt \the [src] from the plating...</span>")
+			user.visible_message(span_notice("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<span class='notice'>\The [user] decides not to unbolt \the [src].</span>")
+				user.visible_message(span_notice("\The [user] decides not to unbolt \the [src]."))
 				return
-			user.visible_message("<span class='notice'>\The [user] finishes unfastening \the [src]!</span>")
+			user.visible_message(span_notice("\The [user] finishes unfastening \the [src]!"))
 			anchored = FALSE
 			return
 		else
 			playsound(src, W.usesound, 50, 1)
-			user.visible_message("<span class='notice'>\The [user] starts to bolt \the [src] to the plating...</span>")
+			user.visible_message(span_notice("\The [user] starts to bolt \the [src] to the plating..."))
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<span class='notice'>\The [user] decides not to bolt \the [src].</span>")
+				user.visible_message(span_notice("\The [user] decides not to bolt \the [src]."))
 				return
-			user.visible_message("<span class='notice'>\The [user] finishes fastening down \the [src]!</span>")
+			user.visible_message(span_notice("\The [user] finishes fastening down \the [src]!"))
 			anchored = TRUE
 			return
 	else
@@ -803,7 +803,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_RADIO))
 		return
 
-	to_chat(src, "<span class='filter_notice'>Accessing Subspace Transceiver control...</span>")
+	to_chat(src, span_filter_notice("Accessing Subspace Transceiver control..."))
 	if (src.aiRadio)
 		src.aiRadio.interact(src)
 
@@ -826,27 +826,27 @@ var/list/ai_verbs_default = list(
 		var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
 		walk(hologram, 0)
 	//VOREStation Add End
-	to_chat(usr, "<span class='filter_notice'>Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now.</span>")
+	to_chat(usr, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
 
 
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
 	if(stat == DEAD)
 		if(feedback)
-			to_chat(src, "<span class='warning'>You are dead!</span>")
+			to_chat(src, span_warning("You are dead!"))
 		return 1
 
 	if(aiRestorePowerRoutine)
 		if(feedback)
-			to_chat(src, "<span class='warning'>You lack power!</span>")
+			to_chat(src, span_warning("You lack power!"))
 		return 1
 
 	if((flags & AI_CHECK_WIRELESS) && src.control_disabled)
 		if(feedback)
-			to_chat(src, "<span class='warning'>Wireless control is disabled!</span>")
+			to_chat(src, span_warning("Wireless control is disabled!"))
 		return 1
 	if((flags & AI_CHECK_RADIO) && src.aiRadio.disabledAi)
 		if(feedback)
-			to_chat(src, "<span class='warning'>System Error - Transceiver Disabled!</span>")
+			to_chat(src, span_warning("System Error - Transceiver Disabled!"))
 		return 1
 	return 0
 
@@ -878,14 +878,14 @@ var/list/ai_verbs_default = list(
 			switch(tgui_alert(src, "Do you want to open \the [A] for [target]?", "Doorknob_v2a.exe", list("Yes", "No")))
 				if("Yes")
 					A.AIShiftClick(src)
-					to_chat(src, "<span class='notice'>You open \the [A] for [target].</span>")
+					to_chat(src, span_notice("You open \the [A] for [target]."))
 				else
-					to_chat(src, "<span class='warning'>You deny the request.</span>")
+					to_chat(src, span_warning("You deny the request."))
 		else
-			to_chat(src, "<span class='warning'>Unable to locate an airlock near [target].</span>")
+			to_chat(src, span_warning("Unable to locate an airlock near [target]."))
 
 	else
-		to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
+		to_chat(src, span_warning("Target is not on or near any active cameras on the station."))
 
 /mob/living/silicon/ai/ex_act(var/severity)
 	if(severity == 1.0)
@@ -987,7 +987,7 @@ var/list/ai_verbs_default = list(
 	var/message = combined["formatted"]
 	var/name_used = M.GetVoice()
 	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
-	var/rendered = "<span class='game say'><i>Relayed Speech: <span class='name'>[name_used]</span> [message]</i></span>"
+	var/rendered = span_game(span_say("<i>Relayed Speech: [span_name(name_used)] [message]</i>"))
 	show_message(rendered, 2)
 
 /mob/living/silicon/ai/proc/toggle_multicam_verb()

@@ -105,15 +105,15 @@
 /obj/item/assembly_holder/attackby(var/obj/item/W, var/mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!a_left || !a_right)
-			to_chat(user, "<span class='warning'> BUG:Assembly part missing, please report this!</span>")
+			to_chat(user, span_warning(" BUG:Assembly part missing, please report this!"))
 			return
 		a_left.toggle_secure()
 		a_right.toggle_secure()
 		secured = !secured
 		if(secured)
-			to_chat(user, "<span class='notice'>\The [src] is ready!</span>")
+			to_chat(user, span_notice("\The [src] is ready!"))
 		else
-			to_chat(user, "<span class='notice'>\The [src] can now be taken apart!</span>")
+			to_chat(user, span_notice("\The [src] can now be taken apart!"))
 		update_icon()
 		return
 	else
@@ -123,7 +123,7 @@
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!a_left || !a_right)
-			to_chat(user, "<span class='warning'> BUG:Assembly part missing, please report this!</span>")
+			to_chat(user, span_warning(" BUG:Assembly part missing, please report this!"))
 			return
 		if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
 			switch(tgui_alert(usr, "Which side would you like to use?","Side",list("Left","Right")))
@@ -208,18 +208,18 @@
 		if(!istype(tmr,/obj/item/assembly/timer))
 			tmr = holder.a_right
 		if(!istype(tmr,/obj/item/assembly/timer))
-			to_chat(usr, "<span class='notice'>This detonator has no timer.</span>")
+			to_chat(usr, span_notice("This detonator has no timer."))
 			return
 
 		if(tmr.timing)
-			to_chat(usr, "<span class='notice'>Clock is ticking already.</span>")
+			to_chat(usr, span_notice("Clock is ticking already."))
 		else
 			var/ntime = tgui_input_number(usr, "Enter desired time in seconds", "Time", "5", 1000, 0)
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"
-				to_chat(usr, "<span class='notice'>Timer set to [tmr.time] seconds.</span>")
+				to_chat(usr, span_notice("Timer set to [tmr.time] seconds."))
 			else
-				to_chat(usr, "<span class='notice'>Timer can't be [ntime<=0?"negative":"more than 1000 seconds"].</span>")
+				to_chat(usr, span_notice("Timer can't be [ntime<=0?"negative":"more than 1000 seconds"]."))
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this while [usr.stat?"unconscious/dead":"restrained"].</span>")
+		to_chat(usr, span_notice("You cannot do this while [usr.stat?"unconscious/dead":"restrained"]."))

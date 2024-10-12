@@ -14,7 +14,7 @@
 		var/datum/material/reinforcing_with = reinforcing.get_material()
 		if(reinforcing_with.name == MAT_STEEL) // Steel
 			if(reinforcing.get_amount() < 5)
-				to_chat(user, "<span class='warning'>You need at least 5 [reinforcing.singular_name]\s for this task.</span>")
+				to_chat(user, span_warning("You need at least 5 [reinforcing.singular_name]\s for this task."))
 				return
 			reinforcing.use(5)
 			user.visible_message("<b>\The [user]</b> shapes some steel sheets around \the [src] to form a body.")
@@ -37,11 +37,11 @@
 		var/obj/item/weldingtool/welder = thing.get_welder()
 
 		if(!welder.isOn())
-			to_chat(user, "<span class='warning'>Turn it on first!</span>")
+			to_chat(user, span_warning("Turn it on first!"))
 			return
 
 		if(!welder.remove_fuel(0,user))
-			to_chat(user, "<span class='warning'>You need more fuel!</span>")
+			to_chat(user, span_warning("You need more fuel!"))
 			return
 
 		user.visible_message("<b>\The [user]</b> welds the barrel of \the [src] into place.")
@@ -52,7 +52,7 @@
 	if(istype(thing, /obj/item/stack/cable_coil) && construction_stage == 5)
 		var/obj/item/stack/cable_coil/cable = thing
 		if(cable.get_amount() < 5)
-			to_chat(user, "<span class='warning'>You need at least 5 lengths of cable for this task.</span>")
+			to_chat(user, span_warning("You need at least 5 lengths of cable for this task."))
 			return
 		cable.use(5)
 		user.visible_message("<b>\The [user]</b> wires \the [src].")
@@ -92,18 +92,18 @@
 	if(get_dist(user, src) <= 2)
 		switch(construction_stage)
 			if(2)
-				. += "<span class='notice'>It has a metal frame loosely shaped around the stock.</span>"
+				. += span_notice("It has a metal frame loosely shaped around the stock.")
 			if(3)
-				. += "<span class='notice'>It has a metal frame duct-taped to the stock.</span>"
+				. += span_notice("It has a metal frame duct-taped to the stock.")
 			if(4)
-				. += "<span class='notice'>It has a length of pipe attached to the body.</span>"
+				. += span_notice("It has a length of pipe attached to the body.")
 			if(4)
-				. += "<span class='notice'>It has a length of pipe welded to the body.</span>"
+				. += span_notice("It has a length of pipe welded to the body.")
 			if(6)
-				. += "<span class='notice'>It has a cable mount and capacitor jack wired to the frame.</span>"
+				. += span_notice("It has a cable mount and capacitor jack wired to the frame.")
 			if(7)
-				. += "<span class='notice'>It has a single superconducting coil threaded onto the barrel.</span>"
+				. += span_notice("It has a single superconducting coil threaded onto the barrel.")
 			if(8)
-				. += "<span class='notice'>It has a pair of superconducting coils threaded onto the barrel.</span>"
+				. += span_notice("It has a pair of superconducting coils threaded onto the barrel.")
 			if(9)
-				. += "<span class='notice'>It has three superconducting coils attached to the body, waiting to be secured.</span>"
+				. += span_notice("It has three superconducting coils attached to the body, waiting to be secured.")

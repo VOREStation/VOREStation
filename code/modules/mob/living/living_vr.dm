@@ -33,7 +33,7 @@
 	if(new_metadata && CanUseTopic(usr))
 		ooc_notes = new_metadata
 		client.prefs.metadata = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC notes updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC notes updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
 		ooc_notes_window(usr)
 		set_metainfo_likes(FALSE)
@@ -46,7 +46,7 @@
 	if(new_metadata && CanUseTopic(usr))
 		ooc_notes = new_metadata
 		client.prefs.metadata = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC notes updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC notes updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
 		ooc_notes_window(usr)
 
@@ -59,7 +59,7 @@
 			new_metadata = ""
 		ooc_notes_likes = new_metadata
 		client.prefs.metadata_likes = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC note likes have been updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC note likes have been updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC note likes mid-round.")
 		if(reopen)
 			ooc_notes_window(usr)
@@ -73,7 +73,7 @@
 			new_metadata = ""
 		ooc_notes_dislikes = new_metadata
 		client.prefs.metadata_dislikes = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC note dislikes have been updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC note dislikes have been updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC note dislikes mid-round.")
 		if(reopen)
 			ooc_notes_window(usr)
@@ -82,10 +82,10 @@
 	if(usr != src)
 		return
 	if(client.prefs.real_name != real_name)
-		to_chat(usr, "<span class='danger'>Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving.</span>")
+		to_chat(usr, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
 		return
 	if(client.prefs.save_character())
-		to_chat(usr, "<span class='filter_notice'>Character preferences saved.</span>")
+		to_chat(usr, span_filter_notice("Character preferences saved."))
 
 /mob/living/proc/print_ooc_notes_to_chat()
 	if(!ooc_notes)
@@ -95,7 +95,7 @@
 		msg += "<br><br><b>LIKES</b><br><br>[ooc_notes_likes]"
 	if(ooc_notes_dislikes)
 		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
-	to_chat(usr, "<span class='chatexport'>[src]'s Metainfo:<br>[msg]</span>")
+	to_chat(usr, span_chatexport("[src]'s Metainfo:<br>[msg]"))
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"

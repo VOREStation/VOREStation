@@ -37,22 +37,22 @@
 	if(istype(G, /obj/item/grab))
 		var/obj/item/grab/H = G
 		if(panel_open)
-			to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+			to_chat(user, span_notice("Close the maintenance panel first."))
 			return
 		if(!ismob(H.affecting))
 			return
 		if(!ishuman(H.affecting))
-			to_chat(user, "<span class='warning'>\The [src] is not designed for that organism!</span>")
+			to_chat(user, span_warning("\The [src] is not designed for that organism!"))
 			return
 		if(occupant)
-			to_chat(user, "<span class='notice'>\The [src] is already occupied!</span>")
+			to_chat(user, span_notice("\The [src] is already occupied!"))
 			return
 		if(H.affecting.has_buckled_mobs())
 			to_chat(user, span_warning("\The [H.affecting] has other entities attached to it. Remove them first."))
 			return
 		var/mob/M = H.affecting
 		if(M.abiotic())
-			to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
+			to_chat(user, span_notice("Subject cannot have abiotic items on."))
 			return
 		M.forceMove(src)
 		occupant = M
@@ -79,16 +79,16 @@
 	if(!ishuman(user) && !isrobot(user))
 		return 0 //not a borg or human
 	if(panel_open)
-		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(user, span_notice("Close the maintenance panel first."))
 		return 0 //panel open
 	if(occupant)
-		to_chat(user, "<span class='notice'>\The [src] is already occupied.</span>")
+		to_chat(user, span_notice("\The [src] is already occupied."))
 		return 0 //occupied
 
 	if(O.buckled)
 		return 0
 	if(O.abiotic())
-		to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return 0
 	if(O.has_buckled_mobs())
 		to_chat(user, span_warning("\The [O] has other entities attached to it. Remove them first."))
@@ -350,7 +350,7 @@
 			eject()
 		if("print_p")
 			var/atom/target = console ? console : src
-			visible_message("<span class='notice'>[target] rattles and prints out a sheet of paper.</span>")
+			visible_message(span_notice("[target] rattles and prints out a sheet of paper."))
 			playsound(src, 'sound/machines/printer.ogg', 50, 1)
 			var/obj/item/paper/P = new /obj/item/paper(get_turf(target))
 			var/name = occupant ? occupant.name : "Unknown"
@@ -579,9 +579,9 @@
 				var/obj/machinery/bodyscanner/C = P.connectable
 				scanner = C
 				C.console = src
-				to_chat(user, "<span class='warning'> You link the [src] to the [P.connectable]!</span>")
+				to_chat(user, span_warning(" You link the [src] to the [P.connectable]!"))
 		else
-			to_chat(user, "<span class='warning'> You store the [src] in the [P]'s buffer!</span>")
+			to_chat(user, span_warning(" You store the [src] in the [P]'s buffer!"))
 			P.connectable = src
 		return
 	else
@@ -641,11 +641,11 @@
 	if(!scanner)
 		findscanner()
 		if(!scanner)
-			to_chat(user, "<span class='notice'>Scanner not found!</span>")
+			to_chat(user, span_notice("Scanner not found!"))
 			return
 
 	if(scanner.panel_open)
-		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(user, span_notice("Close the maintenance panel first."))
 		return
 
 	if(scanner)

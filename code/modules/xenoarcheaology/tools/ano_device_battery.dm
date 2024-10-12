@@ -109,7 +109,7 @@
 				time_end = world.time + duration
 				last_process = world.time
 			else
-				to_chat(usr, "<span class='warning'>[src] is unable to start due to no anomolous power source inserted/remaining.</span>")
+				to_chat(usr, span_warning("[src] is unable to start due to no anomolous power source inserted/remaining."))
 			return TRUE
 		if("shutdown")
 			activated = FALSE

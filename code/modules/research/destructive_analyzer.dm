@@ -38,10 +38,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
-		to_chat(user, "<span class='notice'>\The [src] is busy right now.</span>")
+		to_chat(user, span_notice("\The [src] is busy right now."))
 		return
 	if(loaded_item)
-		to_chat(user, "<span class='notice'>There is something already loaded into \the [src].</span>")
+		to_chat(user, span_notice("There is something already loaded into \the [src]."))
 		return 1
 	if(default_deconstruction_screwdriver(user, O))
 		if(linked_console)
@@ -53,25 +53,25 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(default_part_replacement(user, O))
 		return
 	if(panel_open)
-		to_chat(user, "<span class='notice'>You can't load \the [src] while it's opened.</span>")
+		to_chat(user, span_notice("You can't load \the [src] while it's opened."))
 		return 1
 	if(!linked_console)
-		to_chat(user, "<span class='notice'>\The [src] must be linked to an R&D console first.</span>")
+		to_chat(user, span_notice("\The [src] must be linked to an R&D console first."))
 		return
 	if(!loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
 		if(!O.origin_tech)
-			to_chat(user, "<span class='notice'>This doesn't seem to have a tech origin.</span>")
+			to_chat(user, span_notice("This doesn't seem to have a tech origin."))
 			return
 		if(O.origin_tech.len == 0)
-			to_chat(user, "<span class='notice'>You cannot deconstruct this item.</span>")
+			to_chat(user, span_notice("You cannot deconstruct this item."))
 			return
 		busy = 1
 		loaded_item = O
 		user.drop_item()
 		O.loc = src
-		to_chat(user, "<span class='notice'>You add \the [O] to \the [src].</span>")
+		to_chat(user, span_notice("You add \the [O] to \the [src]."))
 		flick("d_analyzer_la", src)
 		spawn(10)
 			update_icon()
@@ -84,13 +84,13 @@ Note: Must be placed within 3 tiles of the R&D Console
 		var/obj/item/storage/part_replacer/replacer = dropping
 		replacer.hide_from(user)
 		if(!linked_console)
-			to_chat(user, "<span class='notice'>\The [src] must be linked to an R&D console first.</span>")
+			to_chat(user, span_notice("\The [src] must be linked to an R&D console first."))
 			return 0
 		if(!linked_console.linked_lathe)
-			to_chat(user, "<span class='notice'>Link a protolathe to [src]'s R&D console first.</span>")
+			to_chat(user, span_notice("Link a protolathe to [src]'s R&D console first."))
 			return 0
 		if(!rped_recycler_ready)
-			to_chat(user, "<span class='notice'>\The [src]'s stock parts recycler isn't ready yet.</span>")
+			to_chat(user, span_notice("\The [src]'s stock parts recycler isn't ready yet."))
 			return 0
 		var/obj/machinery/r_n_d/protolathe/lathe_to_fill = linked_console.linked_lathe
 		var/lowest_rating = INFINITY // We want the lowest-part tier rating in the RPED so we only recycle the lowest-tier parts.
@@ -98,7 +98,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			if(B.rped_rating() < lowest_rating)
 				lowest_rating = B.rped_rating()
 		if(lowest_rating == INFINITY)
-			to_chat(user, "<span class='notice'>Mass part deconstruction attempt canceled - no valid parts for recycling detected.</span>")
+			to_chat(user, span_notice("Mass part deconstruction attempt canceled - no valid parts for recycling detected."))
 			return 0
 		for(var/obj/item/B in replacer.contents)
 			if(B.rped_rating() > lowest_rating)
@@ -111,7 +111,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		rped_recycler_ready = FALSE
 		addtimer(CALLBACK(src, PROC_REF(rped_ready)), 5 SECONDS)
-		to_chat(user, "<span class='notice'>You deconstruct all the parts of rating [lowest_rating] in [replacer] with [src].</span>")
+		to_chat(user, span_notice("You deconstruct all the parts of rating [lowest_rating] in [replacer] with [src]."))
 		return 1
 	else
 		..()

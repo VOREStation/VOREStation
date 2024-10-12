@@ -115,23 +115,23 @@
 	if(O.GetID())
 		if(access_scanner.allowed(user) && !open)
 			locked = !locked
-			to_chat(user, "<span class='notice'>Controls are now [locked ? "locked." : "unlocked."]</span>")
+			to_chat(user, span_notice("Controls are now [locked ? "locked." : "unlocked."]"))
 			attack_hand(user)
 			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR! SYSTEMS COMPROMISED!</span>")
+				to_chat(user, span_warning("ERROR! SYSTEMS COMPROMISED!"))
 		else
 			if(open)
-				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
+				to_chat(user, span_warning("Please close the access panel before locking it."))
 			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
+				to_chat(user, span_warning("Access denied."))
 		return
 	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!locked)
 			open = !open
-			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
+			to_chat(user, span_notice("Maintenance panel is now [open ? "opened" : "closed"]."))
 			playsound(src, O.usesound, 50, 1)
 		else
-			to_chat(user, "<span class='notice'>You need to unlock the controls first.</span>")
+			to_chat(user, span_notice("You need to unlock the controls first."))
 		return
 	else if(O.has_tool_quality(TOOL_WELDER))
 		if(health < getMaxHealth())
@@ -145,20 +145,20 @@
 				else
 					fireloss = fireloss - 10
 				updatehealth()
-				user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
+				user.visible_message(span_notice("[user] repairs [src]."),span_notice("You repair [src]."))
 				playsound(src, O.usesound, 50, 1)
 			else
-				to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
+				to_chat(user, span_notice("Unable to repair with the maintenance panel closed."))
 		else
-			to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
+			to_chat(user, span_notice("[src] does not need a repair."))
 		return
 	else if(istype(O, /obj/item/assembly/prox_sensor) && emagged)
 		if(open)
-			to_chat(user, "<span class='notice'>You repair the bot's systems.</span>")
+			to_chat(user, span_notice("You repair the bot's systems."))
 			emagged = 0
 			qdel(O)
 		else
-			to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
+			to_chat(user, span_notice("Unable to repair with the maintenance panel closed."))
 	else if(istype(O, /obj/item/paicard))
 		if(open)
 			insertpai(user, O)

@@ -375,7 +375,7 @@
 		icon_state = options[choice]
 		user.update_inv_wear_mask()
 		user.update_action_buttons()
-		to_chat(user, "<span class='notice'>Your paper mask now is now [choice].</span>")
+		to_chat(user, span_notice("Your paper mask now is now [choice]."))
 		return 1
 
 /obj/item/clothing/mask/emotions
@@ -411,7 +411,7 @@
 		icon_state = options[choice]
 		user.update_inv_wear_mask()
 		user.update_action_buttons()
-		to_chat(user, "<span class='notice'>Your [src] now displays a [choice] emotion.</span>")
+		to_chat(user, span_notice("Your [src] now displays a [choice] emotion."))
 		return 1
 
 /obj/item/clothing/mask/mouthwheat

@@ -19,9 +19,9 @@
 
 	var/mob/living/carbon/human/C = src
 	if(C.digitalcamo)
-		to_chat(C, "<span class='notice'>We return to normal.</span>")
+		to_chat(C, span_notice("We return to normal."))
 	else
-		to_chat(C, "<span class='notice'>We distort our form to prevent AI-tracking.</span>")
+		to_chat(C, span_notice("We distort our form to prevent AI-tracking."))
 	C.digitalcamo = !C.digitalcamo
 
 	spawn(0)

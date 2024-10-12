@@ -18,13 +18,13 @@
 	update_icon()
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
-	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
+	to_chat(user, span_notice("You need a crowbar to pry this open!"))
 	return
 
 /obj/structure/largecrate/attackby(obj/item/W as obj, mob/user as mob)
 	var/turf/T = get_turf(src)
 	if(!T)
-		to_chat(user, "<span class='notice'>You can't open this here!</span>")
+		to_chat(user, span_notice("You can't open this here!"))
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		new /obj/item/stack/material/wood(src)
 
@@ -39,9 +39,9 @@
 					AMBLINAL.ghostjoin_icon()
 					active_ghost_pods |= AMBLINAL
 			//VOREStation Add End
-		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							 "<span class='notice'>You pry open \the [src].</span>", \
-							 "<span class='notice'>You hear splitting wood.</span>")
+		user.visible_message(span_notice("[user] pries \the [src] open."), \
+							 span_notice("You pry open \the [src]."), \
+							 span_notice("You hear splitting wood."))
 		qdel(src)
 	else
 		return attack_hand(user)

@@ -36,7 +36,7 @@
 		return
 	if(!target)
 		if(isliving(user))
-			to_chat(user, "<span class='notice'>Your hand scatters \the [src]...</span>")
+			to_chat(user, span_notice("Your hand scatters \the [src]..."))
 			qdel(src)	//Delete portals which aren't set that people mess with.
 		else return		//do not send ghosts, zshadows, ai eyes, etc
 	else if(isliving(user) || istype(user, /mob/observer/dead) && user?.client?.holder)	//unless they're staff
@@ -45,7 +45,7 @@
 
 /obj/structure/portal_event/attack_ghost(var/mob/observer/dead/user)
 	if(!target && user?.client?.holder)
-		to_chat(user, "<span class='notice'>Selecting 'Portal Here' will create and link a portal at your location, while 'Target Here' will create an object that is only visible to ghosts which will act as the target, again at your location. Each option will give you the ability to change portal types, but for all options except 'Select Type' you only get one shot at it, so be sure to experiment with 'Select Type' first if you're not familiar with them.</span>")
+		to_chat(user, span_notice("Selecting 'Portal Here' will create and link a portal at your location, while 'Target Here' will create an object that is only visible to ghosts which will act as the target, again at your location. Each option will give you the ability to change portal types, but for all options except 'Select Type' you only get one shot at it, so be sure to experiment with 'Select Type' first if you're not familiar with them."))
 		var/response = tgui_alert(user, "You appear to be staff. This portal has no exit point. If you want to make one, move to where you want it to go, and click the appropriate option, see chat for more info, otherwise click 'Cancel'", "Unbound Portal", list("Cancel","Portal Here","Target Here", "Select Type"))
 		if(response == "Portal Here")
 			target = new type(get_turf(user), src)
@@ -112,7 +112,7 @@
 	if (M.anchored&&istype(M, /obj/mecha))
 		return
 	if (!target)
-		to_chat(M, "<span class='notice'>\The [src] scatters as you pass through it...</span>")
+		to_chat(M, span_notice("\The [src] scatters as you pass through it..."))
 		qdel(src)
 		return
 	if (!istype(M, /atom/movable))
@@ -132,7 +132,7 @@
 	if(portalfind)
 		var/possible_turfs = place.AdjacentTurfs()
 		if(isemptylist(possible_turfs))
-			to_chat(M, "<span class='notice'>Something blocks your way.</span>")
+			to_chat(M, span_notice("Something blocks your way."))
 			return
 		temptarg = pick(possible_turfs)
 		do_safe_teleport(M, temptarg, 0)
@@ -216,7 +216,7 @@
 					sleep(1)
 					MI.Paralyse(10)
 					MI << 'sound/effects/bamf.ogg'
-					to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+					to_chat(MI,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 				for(var/obj/item/I in L)
 					if(istype(I,/obj/item/implant) || istype(I,/obj/item/nif))
 						continue
@@ -226,5 +226,5 @@
 			sleep(1)
 			L.Paralyse(10)
 			L << 'sound/effects/bamf.ogg'
-			to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+			to_chat(L,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 	return

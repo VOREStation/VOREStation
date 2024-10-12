@@ -46,12 +46,12 @@
 		comment = "tails"
 	else if(result == 2)
 		comment = "heads"
-	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [comment]! </span>", runemessage = "[src] landed on [comment]")
+	user.visible_message(span_notice("[user] has thrown [src]. It lands on [comment]! "), runemessage = "[src] landed on [comment]")
 	if(rand(1,20) == 1)
-		user.visible_message("<span class='notice'>[user] fumbled the [src]!</span>", runemessage = "fumbles [src]")
+		user.visible_message(span_notice("[user] fumbled the [src]!"), runemessage = "fumbles [src]")
 		user.remove_from_mob(src)
 
 /obj/item/aliencoin/examine(var/mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "<span class='notice'>It has some writing along its edge that seems to be some language that you are not familiar with. The face of the coin is very smooth, with what appears to be some kind of angular logo along the left side, and a couple of lines of the alien text along the opposite side. The reverse side is similarly smooth, the top of it features what appears to be some kind of vortex, surrounded by six stars, three on either side, with further swirls and intricate patterns along the bottom sections of this face. Looking closely, you can see that there is more text hidden among the swirls.</span>"
+		. += span_notice("It has some writing along its edge that seems to be some language that you are not familiar with. The face of the coin is very smooth, with what appears to be some kind of angular logo along the left side, and a couple of lines of the alien text along the opposite side. The reverse side is similarly smooth, the top of it features what appears to be some kind of vortex, surrounded by six stars, three on either side, with further swirls and intricate patterns along the bottom sections of this face. Looking closely, you can see that there is more text hidden among the swirls.")

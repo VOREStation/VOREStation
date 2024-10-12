@@ -116,7 +116,7 @@
 	if(user.a_intent == I_DISARM)
 		if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
 			return
-		to_chat(user, "<span class='notice'>[src] was dismantaled into bricks.</span>")
+		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 		var/turf/simulated/floor/F = get_turf(src)
 		if(istype(F))
@@ -213,7 +213,7 @@
 	if(user.a_intent == I_DISARM)
 		if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
 			return
-		to_chat(user, "<span class='notice'>[src] was dismantaled into bricks.</span>")
+		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 		if(!isnull(loc))
 			new /obj/item/stack/material/smolebricks(loc)
@@ -228,8 +228,8 @@
 		take_damage()
 		playsound(src, 'sound/items/smolebuildinghit2.ogg', 50, 1)
 		user.do_attack_animation(src)
-		usr.visible_message("<span class='danger'>\The [usr] bangs against \the [src]!</span>",
-							"<span class='danger'>You bang against \the [src]!</span>",
+		usr.visible_message(span_danger("\The [usr] bangs against \the [src]!"),
+							span_danger("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
 		usr.visible_message("[usr.name] knocks on the [src.name].",
@@ -248,7 +248,7 @@
 	return
 //results of attacks will remove building and spawn in ruins.
 /obj/structure/smolebuilding/proc/dismantle()
-	visible_message("<span class='danger'>\The [src] falls apart!</span>")
+	visible_message(span_danger("\The [src] falls apart!"))
 	playsound(src, 'sound/items/smolebuildingdestoryed.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 	new /obj/structure/smoleruins(loc)
 	qdel(src)
@@ -264,7 +264,7 @@
 	return
 //is the same as dismaintal but instead of ruins it just makes it all explode
 /obj/structure/smolebuilding/proc/displode()
-	visible_message("<span class='danger'>\The [src] explodes into pieces!</span>")
+	visible_message(span_danger("\The [src] explodes into pieces!"))
 	playsound(src, 'sound/items/smolebuildingdestoryedshort.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 	new /obj/item/stack/material/smolebricks(loc)
 	new /obj/item/stack/material/smolebricks(loc)
@@ -276,7 +276,7 @@
 	if(user.a_intent == I_DISARM)
 		if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
 			return
-		to_chat(user, "<span class='notice'>[src] was dismantaled into bricks.</span>")
+		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolelargeunbuild.ogg', 50, 1, volume_channel = VOLUME_CHANNEL_MASTER)
 		if(!isnull(loc))
 			new /obj/item/stack/material/smolebricks(loc)
@@ -293,7 +293,7 @@
 	return
 
 /obj/structure/smoleruins/proc/displode()
-	visible_message("<span class='danger'>\The [src] explodes into pieces!</span>")
+	visible_message(span_danger("\The [src] explodes into pieces!"))
 	playsound(src, 'sound/items/smolebuildingdestoryedshort.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
 	new /obj/item/stack/material/smolebricks(loc)
 	new /obj/item/stack/material/smolebricks(loc)

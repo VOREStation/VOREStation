@@ -71,7 +71,7 @@ var/list/gamemode_cache = list()
 
 	var/static/respawn = 1
 	var/static/respawn_time = 3000			// time before a dead player is allowed to respawn (in ds, though the config file asks for minutes, and it's converted below)
-	var/static/respawn_message = "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+	var/static/respawn_message = span_notice("<B>Make sure to play a different character, and please roleplay correctly!</B>")
 
 	var/static/guest_jobban = 1
 	var/static/usewhitelist = 0
@@ -529,7 +529,7 @@ var/list/gamemode_cache = list()
 					config.respawn_time = raw_minutes MINUTES
 
 				if ("respawn_message")
-					config.respawn_message = "<span class='notice'><B>[value]</B></span>"
+					config.respawn_message = span_notice("<B>[value]</B>")
 
 				if ("servername")
 					config.server_name = value

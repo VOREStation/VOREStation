@@ -70,10 +70,10 @@
 
 /obj/machinery/station_map/attack_hand(var/mob/user)
 	if(watching_mob && (watching_mob != user))
-		to_chat(user, "<span class='warning'>Someone else is currently watching the holomap.</span>")
+		to_chat(user, span_warning("Someone else is currently watching the holomap."))
 		return
 	if(user.loc != loc)
-		to_chat(user, "<span class='warning'>You need to stand in front of \the [src].</span>")
+		to_chat(user, span_warning("You need to stand in front of \the [src]."))
 		return
 	startWatching(user)
 
@@ -119,9 +119,9 @@
 			update_use_power(USE_POWER_ACTIVE)
 
 			if(bogus)
-				to_chat(user, "<span class='warning'>The holomap failed to initialize. This area of space cannot be mapped.</span>")
+				to_chat(user, span_warning("The holomap failed to initialize. This area of space cannot be mapped."))
 			else
-				to_chat(user, "<span class='notice'>A hologram of the station appears before your eyes.</span>")
+				to_chat(user, span_notice("A hologram of the station appears before your eyes."))
 
 /obj/machinery/station_map/attack_ai(var/mob/living/silicon/robot/user)
 	return // TODO - Implement for AI ~Leshana

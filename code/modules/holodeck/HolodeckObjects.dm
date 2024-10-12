@@ -188,17 +188,17 @@
 			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
 			switch (state)
 				if(1)
-					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+					M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
 					M.apply_damage(7)
 					hit(10)
 				if(2)
-					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+					M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 					if (prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
 					hit(25)
 				if(3)
-					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+					M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 					M.Weaken(5)
 					M.apply_damage(20)
 					hit(50)
@@ -207,11 +207,11 @@
 	if(W.flags & NOBLUDGEON) return
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		to_chat(user, "<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
+		to_chat(user, span_notice("It's a holowindow, you can't unfasten it!"))
 	else if(W.has_tool_quality(TOOL_CROWBAR) && reinf && state <= 1)
-		to_chat(user, "<span class='notice'>It's a holowindow, you can't pry it!</span>")
+		to_chat(user, span_notice("It's a holowindow, you can't pry it!"))
 	else if(W.has_tool_quality(TOOL_WRENCH) && !anchored && (!state || !reinf))
-		to_chat(user, "<span class='notice'>It's a holowindow, you can't dismantle it!</span>")
+		to_chat(user, span_notice("It's a holowindow, you can't dismantle it!"))
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			hit(W.force)
@@ -268,12 +268,12 @@
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
-		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
+		to_chat(user, span_notice("It's a holochair, you can't dismantle it!"))
 	return
 //VOREStation Add
 /obj/structure/bed/holobed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
-		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
+		to_chat(user, span_notice("It's a holochair, you can't dismantle it!"))
 	return
 //VOREStation Add End
 /obj/item/holo
@@ -308,7 +308,7 @@
 
 /obj/item/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
-		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
@@ -324,13 +324,13 @@
 		item_state = "[icon_state]_blade"
 		w_class = ITEMSIZE_LARGE
 		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>[src] is now active.</span>")
+		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = 3
 		item_state = "[icon_state]"
 		w_class = ITEMSIZE_SMALL
 		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, span_notice("[src] can now be concealed."))
 
 	update_icon()
 	add_fingerprint(user)
@@ -342,7 +342,7 @@
 			rainbow = TRUE
 		else
 			rainbow = FALSE
-		to_chat(user, "<span class='notice'>You manipulate the color controller in [src].</span>")
+		to_chat(user, span_notice("You manipulate the color controller in [src]."))
 		update_icon()
 	return ..()
 
@@ -384,16 +384,16 @@
 	if (istype(W, /obj/item/grab) && get_dist(src,user)<2)
 		var/obj/item/grab/G = W
 		if(G.state<2)
-			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 		G.affecting.loc = src.loc
 		G.affecting.Weaken(5)
-		visible_message("<span class='warning'>[G.assailant] dunks [G.affecting] into the [src]!</span>", 3)
+		visible_message(span_warning("[G.assailant] dunks [G.affecting] into the [src]!"), 3)
 		qdel(W)
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
 		user.drop_item(src.loc)
-		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>", 3)
+		visible_message(span_notice("[user] dunks [W] into the [src]!"), 3)
 		return
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target)

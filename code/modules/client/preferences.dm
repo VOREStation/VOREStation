@@ -284,7 +284,7 @@ var/list/preferences_datums = list()
 	if(!user || !user.client)	return
 
 	if(!get_mob_by_key(client_ckey))
-		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")
+		to_chat(user, span_danger("No mob exists for the given client!"))
 		return
 
 	if(!char_render_holders)
@@ -375,7 +375,7 @@ var/list/preferences_datums = list()
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
-			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			to_chat(user, span_danger("The forum URL is not set in the server configuration."))
 			return
 	ShowChoices(usr)
 	return 1
@@ -452,7 +452,7 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	if(selecting_slots)
-		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		to_chat(user, span_warning("You already have a slot selection dialog open!"))
 		return
 	if(!savefile)
 		return
@@ -494,7 +494,7 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
 	if(selecting_slots)
-		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		to_chat(user, span_warning("You already have a slot selection dialog open!"))
 		return
 	if(!savefile)
 		return

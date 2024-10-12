@@ -49,13 +49,13 @@
 			return
 
 		if(get_amount() < 4)
-			to_chat(user, "<span class='warning'>You need at least four tiles to do this.</span>")
+			to_chat(user, span_warning("You need at least four tiles to do this."))
 			return
 
 		if(WT.remove_fuel(0,user))
 			new welds_into(usr.loc)
 			usr.update_icon()
-			visible_message("<span class='notice'>\The [src] is shaped by [user.name] with the welding tool.</span>","You hear welding.")
+			visible_message(span_notice("\The [src] is shaped by [user.name] with the welding tool."),"You hear welding.")
 			var/obj/item/stack/tile/T = src
 			src = null
 			var/replace = (user.get_inactive_hand()==T)

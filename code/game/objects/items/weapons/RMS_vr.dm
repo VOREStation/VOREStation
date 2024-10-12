@@ -72,16 +72,16 @@
 /obj/item/rms/proc/drain_battery(user, battery)
 	var/obj/item/cell/C = battery
 	if(stored_charge == max_charge)
-		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer is full on charge!.</span>")
+		to_chat(user, span_notice("The Rapid Material Synthesizer is full on charge!."))
 	if(C.charge == 0)
-		to_chat(user, "<span class='notice'>The battery has no charge.</span>")
+		to_chat(user, span_notice("The battery has no charge."))
 	else
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		if(do_after(user, 2,target = C))
 			stored_charge += C.charge
 			C.charge = 0
 			C.update_icon()
-			to_chat(user, "<span class='notice'>You drain [C].</span>")
+			to_chat(user, span_notice("You drain [C]."))
 	stored_charge = CLAMP(stored_charge, 0, max_charge)
 	update_icon()
 
@@ -101,13 +101,13 @@
 	var/obj/product
 	if(!overcharge)
 		if(!can_afford(charge_cost))
-			to_chat(user, "<span class='notice'>There is not enough charge to use this mode.</span>")
+			to_chat(user, span_notice("There is not enough charge to use this mode."))
 			return
 		else
 			consume_resources(charge_cost)
 	else
 		if(!can_afford(charge_cost_o))
-			to_chat(user, "<span class='notice'>There is not enough charge to use the overcharged mode.</span>")
+			to_chat(user, span_notice("There is not enough charge to use the overcharged mode."))
 			return
 		else
 			consume_resources(charge_cost_o)
@@ -206,7 +206,7 @@
 		use_rms(target, user)
 		return
 	else
-		to_chat(user, "<span class='notice'>Invalid target for the device.</span>")
+		to_chat(user, span_notice("Invalid target for the device."))
 		return
 
 /obj/item/rms/attack_self(mob/user)
@@ -251,9 +251,9 @@
 	if(W.has_tool_quality(TOOL_MULTITOOL))
 		overcharge = !overcharge
 	if(overcharge)
-		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer quietly whirrs...</span>")
+		to_chat(user, span_notice("The Rapid Material Synthesizer quietly whirrs..."))
 	else
-		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer resumes normal operation.</span>")
+		to_chat(user, span_notice("The Rapid Material Synthesizer resumes normal operation."))
 	return ..()
 
 

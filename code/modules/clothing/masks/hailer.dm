@@ -68,36 +68,36 @@
 	var/message = phrase_list[key]
 
 	if (!safety)
-		to_chat(usr, "<span class='notice'>You set the restrictor to: FUCK YOUR CUNT YOU SHIT EATING COCKSUCKER MAN EAT A DONG FUCKING ASS RAMMING SHIT FUCK EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS OF FUCK AND DO SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FUCK ASS WANKER FROM THE DEPTHS OF SHIT.</span>")
+		to_chat(usr, span_notice("You set the restrictor to: FUCK YOUR CUNT YOU SHIT EATING COCKSUCKER MAN EAT A DONG FUCKING ASS RAMMING SHIT FUCK EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS OF FUCK AND DO SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FUCK ASS WANKER FROM THE DEPTHS OF SHIT."))
 		return
 	switch(aggressiveness)
 		if(1)
 			phrase = (phrase < 6) ? (phrase + 1) : 1
 			key = phrase_list[phrase]
 			message = phrase_list[key]
-			to_chat(usr,"<span class='notice'>You set the restrictor to: [message]</span>")
+			to_chat(usr,span_notice("You set the restrictor to: [message]"))
 		if(2)
 			phrase = (phrase < 11 && phrase >= 7) ? (phrase + 1) : 7
 			key = phrase_list[phrase]
 			message = phrase_list[key]
-			to_chat(usr,"<span class='notice'>You set the restrictor to: [message]</span>")
+			to_chat(usr,span_notice("You set the restrictor to: [message]"))
 		if(3)
 			phrase = (phrase < 18 && phrase >= 12 ) ? (phrase + 1) : 12
 			key = phrase_list[phrase]
 			message = phrase_list[key]
-			to_chat(usr,"<span class='notice'>You set the restrictor to: [message]</span>")
+			to_chat(usr,span_notice("You set the restrictor to: [message]"))
 		if(4)
 			phrase = (phrase < 18 && phrase >= 1 ) ? (phrase + 1) : 1
 			key = phrase_list[phrase]
 			message = phrase_list[key]
-			to_chat(usr,"<span class='notice'>You set the restrictor to: [message]</span>")
+			to_chat(usr,span_notice("You set the restrictor to: [message]"))
 		else
-			to_chat(usr, "<span class='notice'>It's broken.</span>")
+			to_chat(usr, span_notice("It's broken."))
 
 /obj/item/clothing/mask/gas/sechailer/emag_act(mob/user)
 	if(safety)
 		safety = 0
-		to_chat(user, "<span class='warning'>You silently fry [src]'s vocal circuit with the cryptographic sequencer.</span>")
+		to_chat(user, span_warning("You silently fry [src]'s vocal circuit with the cryptographic sequencer."))
 	else
 		return
 
@@ -105,30 +105,30 @@
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(aggressiveness)
 			if(1)
-				to_chat(user, "<span class='notice'>You set the aggressiveness restrictor to the second position.</span>")
+				to_chat(user, span_notice("You set the aggressiveness restrictor to the second position."))
 				aggressiveness = 2
 				phrase = 7
 			if(2)
-				to_chat(user, "<span class='notice'>You set the aggressiveness restrictor to the third position.</span>")
+				to_chat(user, span_notice("You set the aggressiveness restrictor to the third position."))
 				aggressiveness = 3
 				phrase = 13
 			if(3)
-				to_chat(user, "<span class='notice'>You set the aggressiveness restrictor to the fourth position.</span>")
+				to_chat(user, span_notice("You set the aggressiveness restrictor to the fourth position."))
 				aggressiveness = 4
 				phrase = 1
 			if(4)
-				to_chat(user, "<span class='notice'>You set the aggressiveness restrictor to the first position.</span>")
+				to_chat(user, span_notice("You set the aggressiveness restrictor to the first position."))
 				aggressiveness = 1
 				phrase = 1
 			if(5)
-				to_chat(user, "<span class='warning'>You adjust the restrictor but nothing happens, probably because its broken.</span>")
+				to_chat(user, span_warning("You adjust the restrictor but nothing happens, probably because its broken."))
 	if(I.has_tool_quality(TOOL_WIRECUTTER))
 		if(aggressiveness != 5)
-			to_chat(user, "<span class='warning'>You broke it!</span>")
+			to_chat(user, span_warning("You broke it!"))
 			aggressiveness = 5
 	if(I.has_tool_quality(TOOL_CROWBAR))
 		if(!hailer)
-			to_chat(user, "<span class='warning'>This mask has an integrated hailer, you can't remove it!</span>")
+			to_chat(user, span_warning("This mask has an integrated hailer, you can't remove it!"))
 		else
 			var/obj/N = new /obj/item/clothing/mask/gas/half(src.loc)
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)

@@ -111,7 +111,7 @@
 
 /obj/item/implant/reagent_generator/roiz/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	to_chat(source, span_notice("You implant [source] with \the [src]."))
 	source.verbs |= assigned_proc
 	return 1
 
@@ -139,7 +139,7 @@
 				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
 		new /obj/item/reagent_containers/food/snacks/egg/roiz(get_turf(src))
@@ -150,13 +150,13 @@
 			var/emote = rimplant.emote_descriptor[index]
 			var/verb_desc = rimplant.verb_descriptor[index]
 			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+			usr.visible_message(span_notice("[usr] [verb_desc] [emote]"),
+							span_notice("You [self_verb_desc] [emote]"))
 		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+			visible_message(span_notice("[src] [pick(rimplant.short_emote_descriptor)] an egg."),
+								span_notice("You [pick(rimplant.self_emote_descriptor)] an egg."))
 		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
+			visible_message(span_notice("[src] [pick(rimplant.random_emote)].")) // M-mlem.
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
@@ -180,7 +180,7 @@
 
 /obj/item/implant/reagent_generator/jasmine/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	to_chat(source, span_notice("You implant [source] with \the [src]."))
 	source.verbs |= assigned_proc
 	return 1
 
@@ -208,7 +208,7 @@
 				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
 		new /obj/item/reagent_containers/food/snacks/egg/roiz(get_turf(src))
@@ -219,13 +219,13 @@
 			var/emote = rimplant.emote_descriptor[index]
 			var/verb_desc = rimplant.verb_descriptor[index]
 			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+			usr.visible_message(span_notice("[usr] [verb_desc] [emote]"),
+							span_notice("You [self_verb_desc] [emote]"))
 		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+			visible_message(span_notice("[src] [pick(rimplant.short_emote_descriptor)] an egg."),
+								span_notice("You [pick(rimplant.self_emote_descriptor)] an egg."))
 		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
+			visible_message(span_notice("[src] [pick(rimplant.random_emote)]."))
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
@@ -249,7 +249,7 @@
 
 /obj/item/implant/reagent_generator/yonra/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	to_chat(source, span_notice("You implant [source] with \the [src]."))
 	source.verbs |= assigned_proc
 	return 1
 
@@ -277,7 +277,7 @@
 				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
 		new /obj/item/reagent_containers/food/snacks/egg/teshari(get_turf(src))
@@ -288,13 +288,13 @@
 			var/emote = rimplant.emote_descriptor[index]
 			var/verb_desc = rimplant.verb_descriptor[index]
 			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+			usr.visible_message(span_notice("[usr] [verb_desc] [emote]"),
+							span_notice("You [self_verb_desc] [emote]"))
 		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+			visible_message(span_notice("[src] [pick(rimplant.short_emote_descriptor)] an egg."),
+								span_notice("You [pick(rimplant.self_emote_descriptor)] an egg."))
 		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
+			visible_message(span_notice("[src] [pick(rimplant.random_emote)]."))
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
@@ -334,7 +334,7 @@
 
 /obj/item/implant/reagent_generator/rischi/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	to_chat(source, span_notice("You implant [source] with \the [src]."))
 	source.verbs |= assigned_proc
 	return 1
 
@@ -362,7 +362,7 @@
 				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
 		new /obj/item/reagent_containers/food/snacks/egg/teshari/tesh2(get_turf(src))
@@ -373,13 +373,13 @@
 			var/emote = rimplant.emote_descriptor[index]
 			var/verb_desc = rimplant.verb_descriptor[index]
 			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+			usr.visible_message(span_notice("[usr] [verb_desc] [emote]"),
+							span_notice("You [self_verb_desc] [emote]"))
 		else
-			visible_message("<span class='notice'>[src] falls to her knees as the urge to lay overwhelms her, letting out a whimper as she [pick(rimplant.short_emote_descriptor)] an egg from between her legs.</span>",
-								"<span class='notice'>You fall to your knees as the urge to lay overwhelms you, letting out a whimper as you [pick(rimplant.self_emote_descriptor)] an egg from between your legs.</span>")
+			visible_message(span_notice("[src] falls to her knees as the urge to lay overwhelms her, letting out a whimper as she [pick(rimplant.short_emote_descriptor)] an egg from between her legs."),
+								span_notice("You fall to your knees as the urge to lay overwhelms you, letting out a whimper as you [pick(rimplant.self_emote_descriptor)] an egg from between your legs."))
 		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
+			visible_message(span_notice("[src] [pick(rimplant.random_emote)]."))
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 
@@ -420,10 +420,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(user, "<span class='warning'>The egg refuses to take on this color!</span>")
+			to_chat(user, span_warning("The egg refuses to take on this color!"))
 			return
 
-		to_chat(user, "<span class='notice'>You color \the [src] [clr]</span>")
+		to_chat(user, span_notice("You color \the [src] [clr]"))
 		icon_state = "egg_roiz_[clr]"
 		desc = "It's a large lizard egg. It has been colored [clr]!"
 		if (clr == "rainbow")
@@ -485,7 +485,7 @@
 
 /obj/item/implant/reagent_generator/evian/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
+	to_chat(source, span_notice("You implant [source] with \the [src]."))
 	source.verbs |= assigned_proc
 	return 1
 
@@ -513,7 +513,7 @@
 				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
+			to_chat(src, span_notice("[pick(rimplant.empty_message)]"))
 			return
 
 		new /obj/item/reagent_containers/food/snacks/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the functionality
@@ -524,13 +524,13 @@
 			var/emote = rimplant.emote_descriptor[index]
 			var/verb_desc = rimplant.verb_descriptor[index]
 			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
+			usr.visible_message(span_notice("[usr] [verb_desc] [emote]"),
+							span_notice("You [self_verb_desc] [emote]"))
 		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
+			visible_message(span_notice("[src] [pick(rimplant.short_emote_descriptor)] an egg."),
+								span_notice("You [pick(rimplant.self_emote_descriptor)] an egg."))
 		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
+			visible_message(span_notice("[src] [pick(rimplant.random_emote)].")) // M-mlem.
 
 		rimplant.reagents.remove_any(rimplant.transfer_amount)
 

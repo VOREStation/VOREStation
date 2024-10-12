@@ -178,7 +178,7 @@
 		H.ckey = H.temporary_form.ckey
 		QDEL_NULL(H.temporary_form)
 
-	to_chat(H, "<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
+	to_chat(H, span_warning("You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station."))
 
 	spawn(1)
 		if(H)
@@ -263,8 +263,8 @@
 	name = "Protean Effect - M.Hydrogen"
 	desc = "You're affected by the presence of metallic hydrogen."
 
-	on_created_text = "<span class='notice'>You feel yourself accelerate, the metallic hydrogen increasing your speed temporarily.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the metallic hydrogen, and you return to normal speed.</span>"
+	on_created_text = span_notice("You feel yourself accelerate, the metallic hydrogen increasing your speed temporarily.")
+	on_expired_text = span_notice("Your refactory finishes consuming the metallic hydrogen, and you return to normal speed.")
 
 	material_name = MAT_METALHYDROGEN
 
@@ -274,8 +274,8 @@
 	name = "Protean Effect - Uranium"
 	desc = "You're affected by the presence of uranium."
 
-	on_created_text = "<span class='notice'>You feel yourself become nearly impervious to physical attacks as uranium is incorporated in your nanites.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the uranium, and you return to your normal nanites.</span>"
+	on_created_text = span_notice("You feel yourself become nearly impervious to physical attacks as uranium is incorporated in your nanites.")
+	on_expired_text = span_notice("Your refactory finishes consuming the uranium, and you return to your normal nanites.")
 
 	material_name = MAT_URANIUM
 
@@ -285,8 +285,8 @@
 	name = "Protean Effect - Gold"
 	desc = "You're affected by the presence of gold."
 
-	on_created_text = "<span class='notice'>You feel yourself become more reflective, able to resist heat and fire better for a time.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the gold, and you return to your normal nanites.</span>"
+	on_created_text = span_notice("You feel yourself become more reflective, able to resist heat and fire better for a time.")
+	on_expired_text = span_notice("Your refactory finishes consuming the gold, and you return to your normal nanites.")
 
 	material_name = MAT_GOLD
 
@@ -296,8 +296,8 @@
 	name = "Protean Effect - Silver"
 	desc = "You're affected by the presence of silver."
 
-	on_created_text = "<span class='notice'>Your physical control is improved for a time, making it easier to hit targets, and avoid being hit.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the silver, and your motor control returns to normal.</span>"
+	on_created_text = span_notice("Your physical control is improved for a time, making it easier to hit targets, and avoid being hit.")
+	on_expired_text = span_notice("Your refactory finishes consuming the silver, and your motor control returns to normal.")
 
 	material_name = MAT_SILVER
 
@@ -308,8 +308,8 @@
 	name = "Protean Effect - Steel"
 	desc = "You're affected by the presence of steel."
 
-	on_created_text = "<span class='notice'>You feel new nanites being produced from your stockpile of steel, healing you slowly.</span>"
-	on_expired_text = "<span class='notice'>Your steel supply has either run out, or is no longer needed, and your healing stops.</span>"
+	on_created_text = span_notice("You feel new nanites being produced from your stockpile of steel, healing you slowly.")
+	on_expired_text = span_notice("Your steel supply has either run out, or is no longer needed, and your healing stops.")
 
 	material_name = MAT_STEEL
 

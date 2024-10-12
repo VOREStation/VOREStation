@@ -62,7 +62,7 @@
 // Does actual poison injection, after all checks passed.
 /mob/living/simple_mob/mechanical/corrupt_maint_drone/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
-		to_chat(L, "<span class='warning'>Something burns in your veins.</span>")
+		to_chat(L, span_warning("Something burns in your veins."))
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 
