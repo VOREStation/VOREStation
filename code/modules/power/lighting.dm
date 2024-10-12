@@ -831,6 +831,13 @@ var/global/list/light_type_cache = list()
 		return
 
 	to_chat(user, "You telekinetically remove the light [get_fitting_name()].")
+	installed_light.status = status
+	installed_light.forceMove(src.loc)
+	var/obj/item/tk_grab/O = new(src)
+	user.put_in_active_hand(O)
+	O.host = user
+	O.focus_object(installed_light)
+	installed_light.update_icon()
 	remove_bulb()
 
 // break the light and make sparks if was on
