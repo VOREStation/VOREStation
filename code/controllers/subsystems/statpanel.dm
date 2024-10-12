@@ -174,6 +174,7 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
 	var/list/tickets = GLOB.ahelp_tickets.stat_entry(target)
+	tickets += GLOB.mhelp_tickets.stat_entry(target)
 	target.stat_panel.send_message("update_tickets", tickets)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
