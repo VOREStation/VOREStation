@@ -1190,36 +1190,39 @@
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument
 	if(!user)
 		CRASH("display_voreprefs() was called without an associated user.")
-	var/dispvoreprefs = "<b>[src]'s vore preferences</b><br><br><br>"
+
+	var/dat = "<br><b>[src]'s vore preferences</b><br><br>"
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_ooc))
-		dispvoreprefs += "<font color='red'><b>OOC DISABLED</b></font><br>"
+		dat += "<font color='red'><b>OOC DISABLED</b></font><br>"
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_looc))
-		dispvoreprefs += "<font color='red'><b>LOOC DISABLED</b></font><br>"
-	dispvoreprefs += "<b>Digestable:</b> [digestable ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Devourable:</b> [devourable ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Feedable:</b> [feeding ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Absorption Permission:</b> [absorbable ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += "<b>Leaves Remains:</b> [digest_leave_remains ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Mob Vore:</b> [allowmobvore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Healbelly permission:</b> [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += "<b>Selective Mode Pref:</b> [src.selective_preference]<br>"
-	dispvoreprefs += "<b>Spontaneous vore prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Drop Vore:</b> [drop_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Slip Vore:</b> [slip_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Throw vore:</b> [throw_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Stumble Vore:</b> [stumble_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Food Vore:</b> [food_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Inbelly Spawning:</b> [allow_inbelly_spawning ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += "<b>Mind transfer:</b> [allow_mind_transfer ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += "<b>Can be picked up:</b> [pickup_pref ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += "<b>Global Vore Privacy is:</b> [eating_privacy_global ? "Subtle" : "Loud"]<br>"
-	dispvoreprefs += "<b>Allow Mimicry:</b> [allow_mimicry ? "Yes" : "No"]<br>"
-	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name]mvp;size=300x400;can_resize=1;can_minimize=0")
-	onclose(user, "[name]")
-	return
+		dat += "<font color='red'><b>LOOC DISABLED</b></font><br>"
+	dat += "<b>Digestable:</b> [digestable ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Devourable:</b> [devourable ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Feedable:</b> [feeding ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Absorption Permission:</b> [absorbable ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += "<b>Leaves Remains:</b> [digest_leave_remains ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Mob Vore:</b> [allowmobvore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Healbelly permission:</b> [permit_healbelly ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += "<b>Selective Mode Pref:</b> [src.selective_preference]<br>"
+	dat += "<b>Spontaneous vore prey:</b> [can_be_drop_prey ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Drop Vore:</b> [drop_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Slip Vore:</b> [slip_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Throw vore:</b> [throw_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Stumble Vore:</b> [stumble_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Food Vore:</b> [food_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Inbelly Spawning:</b> [allow_inbelly_spawning ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += "<b>Mind transfer:</b> [allow_mind_transfer ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += "<b>Can be picked up:</b> [pickup_pref ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += "<b>Global Vore Privacy is:</b> [eating_privacy_global ? "Subtle" : "Loud"]<br>"
+	dat += "<b>Allow Mimicry:</b> [allow_mimicry ? span_green("Yes") : span_red("No")]<br>"
+	dat = "<center>[dat]</center>"
+
+	var/datum/browser/popup = new(user, "[name]mvp", "Vore Prefs: [src]", 300, 400, src)
+	popup.set_content(dat)
+	popup.open()
 
 // Full screen belly overlays!
 /obj/screen/fullscreen/belly
