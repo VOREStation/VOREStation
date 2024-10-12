@@ -194,3 +194,39 @@ modular computers
 /datum/gear/utility/customlaptop/New()
 	..()
 	gear_tweaks += new /datum/gear_tweak/laptop()
+
+//////////Language Translators
+
+/datum/gear/utility/translator
+	display_name = "handheld translator (selection)"
+	path = /obj/item/universal_translator/limited
+	cost = 4
+
+/datum/gear/utility/translator/New()
+	..()
+	var/list/translators = list(
+	"galcom" = /obj/item/universal_translator/limited,
+	"solcom" = /obj/item/universal_translator/limited/sol,
+	"terminus" = /obj/item/universal_translator/limited/terminus,
+	"tradeband" = /obj/item/universal_translator/limited/tradeband,
+	"gutterband" = /obj/item/universal_translator/limited/gutterband,
+	"skrellian" = /obj/item/universal_translator/limited/skrellian,
+	"sinta'unathi" = /obj/item/universal_translator/limited/unathi,
+	"siik" = /obj/item/universal_translator/limited/siik,
+	"schechi" = /obj/item/universal_translator/limited/schechi,
+	"vedaqh" = /obj/item/universal_translator/limited/vedaqh,
+	"birdsong" = /obj/item/universal_translator/limited/birdsong,
+	"sagaru" = /obj/item/universal_translator/limited/sagaru,
+	"canilunzt" = /obj/item/universal_translator/limited/canilunzt,
+	"ecureuilian" = /obj/item/universal_translator/limited/ecureuilian,
+	"daemon" = /obj/item/universal_translator/limited/daemon,
+	"enochian" = /obj/item/universal_translator/limited/enochian,
+	"vespinae" = /obj/item/universal_translator/limited/vespinae,
+	"d'rudak'ar" = /obj/item/universal_translator/limited/dragon,
+	"spacer" = /obj/item/universal_translator/limited/spacer,
+	"tavan" = /obj/item/universal_translator/limited/tavan,
+	"echo song" = /obj/item/universal_translator/limited/echosong,
+	"akhani" = /obj/item/universal_translator/limited/akhani,
+	"alai" = /obj/item/universal_translator/limited/alai
+	)
+	gear_tweaks += new/datum/gear_tweak/path(translators)
