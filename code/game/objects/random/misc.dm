@@ -1143,3 +1143,34 @@
 		prob(1);/obj/item/cracker/vore,
 		prob(1);/obj/item/cracker/money
 	)
+
+/obj/random/translator
+	name = "Random language translator"
+	desc = "This is a random single language translator."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "translator_small"
+
+/obj/random/translator/item_to_spawn()
+	return pick(/obj/item/universal_translator/limited,
+		/obj/item/universal_translator/limited/sol,
+		/obj/item/universal_translator/limited/terminus,
+		/obj/item/universal_translator/limited/tradeband,
+		/obj/item/universal_translator/limited/gutterband,
+		/obj/item/universal_translator/limited/skrellian,
+		/obj/item/universal_translator/limited/unathi,
+		/obj/item/universal_translator/limited/siik,
+		/obj/item/universal_translator/limited/schechi,
+		/obj/item/universal_translator/limited/vedaqh,
+		/obj/item/universal_translator/limited/birdsong,
+		/obj/item/universal_translator/limited/sagaru,
+		/obj/item/universal_translator/limited/canilunzt,
+		/obj/item/universal_translator/limited/ecureuilian,
+		/obj/item/universal_translator/limited/daemon,
+		/obj/item/universal_translator/limited/enochian,
+		/obj/item/universal_translator/limited/vespinae,
+		/obj/item/universal_translator/limited/dragon,
+		/obj/item/universal_translator/limited/spacer,
+		/obj/item/universal_translator/limited/tavan,
+		/obj/item/universal_translator/limited/echosong,
+		/obj/item/universal_translator/limited/akhani,
+		/obj/item/universal_translator/limited/alai)

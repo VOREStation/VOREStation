@@ -92,6 +92,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	data["name"] = name
 	data["desc"] = desc
+	data["ref"] = REF(src)
 	data["displayed_name"] = displayed_name
 	data["removable"] = removable
 
@@ -110,21 +111,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		outputs_list.Add(list(tgui_pin_data(io)))
 
 	for(var/datum/integrated_io/io in activators)
-		var/list/list/activator = list(
-			"ref" = REF(io),
-			"name" = io.name,
-			"pulse_out" = io.data,
-			"linked" = list()
-		)
-		for(var/datum/integrated_io/linked in io.linked)
-			activator["linked"].Add(list(list(
-				"ref" = REF(linked),
-				"name" = linked.name,
-				"holder_ref" = REF(linked.holder),
-				"holder_name" = linked.holder.displayed_name,
-			)))
-
-		activators_list.Add(list(activator))
+		activators_list.Add(list(tgui_pin_data(io)))
 
 	data["inputs"] = inputs_list
 	data["outputs"] = outputs_list
@@ -139,6 +126,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	pindata["type"] = io.display_pin_type()
 	pindata["name"] = io.name
 	pindata["data"] = io.display_data(io.data)
+	pindata["rawdata"] = io.data
 	pindata["ref"] = REF(io)
 	var/list/linked_list = list()
 	for(var/datum/integrated_io/linked in io.linked)
