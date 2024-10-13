@@ -167,3 +167,6 @@
 					if("select_charge_type")
 						module.charge_selected = params["charge_type"]
 						. = TRUE
+		if("tank_settings")
+			air_supply?.attack_self(usr)
+			. = TRUE
