@@ -12,3 +12,13 @@
 /datum/tgui_module/crew_manifest/robot
 /datum/tgui_module/crew_manifest/robot/tgui_state(mob/user)
 	return GLOB.tgui_self_state
+
+// Module that deletes itself when it's closed
+/datum/tgui_module/crew_manifest/self_deleting
+
+/datum/tgui_module/crew_manifest/self_deleting/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
+
+/datum/tgui_module/crew_manifest/self_deleting/tgui_state(mob/user)
+	return GLOB.tgui_always_state
