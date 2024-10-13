@@ -186,7 +186,7 @@
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 
-		to_chat(target, span_rlooc(create_text_tag("looc", "LOOC:", target) + " " + span_prefix("(R)") + "<EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
+		to_chat(target, span_rlooc(create_text_tag("rlooc", "RLOOC:", target) + " " + span_prefix("(R)") + "<EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
 
 /mob/proc/get_looc_source()
 	return src
