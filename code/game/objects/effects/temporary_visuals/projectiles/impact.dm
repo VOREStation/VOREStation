@@ -96,3 +96,9 @@
 //VOREStation edit ends
 /obj/effect/projectile/impact/pointdefense
 	icon_state = "impact_pointdef"
+
+/obj/effect/projectile/impact/rainbow
+	icon_state = "impact_rainbow"
+	light_range = 3
+	light_power = 1
+	light_color = "#ffffff"
