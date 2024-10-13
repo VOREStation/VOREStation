@@ -5,7 +5,7 @@
 	if(SSvote.active_vote)
 		SSvote.active_vote.tgui_interact(usr)
 	else
-		to_chat(usr, "There is no active vote")
+		to_chat(usr, span_warning("There is no active vote"))
 
 /client/proc/start_vote()
 	set category = "Admin"
@@ -16,7 +16,7 @@
 		return
 
 	if(SSvote.active_vote)
-		to_chat(usr, "A vote is already in progress")
+		to_chat(usr, span_warning("A vote is already in progress"))
 		return
 
 	var/vote_types = subtypesof(/datum/vote)

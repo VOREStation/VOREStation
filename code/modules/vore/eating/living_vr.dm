@@ -1190,36 +1190,38 @@
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument
 	if(!user)
 		CRASH("display_voreprefs() was called without an associated user.")
-	var/dispvoreprefs = span_bold("[src]'s vore preferences") + "<br><br><br>"
+	var/dat = "<br>" + span_bold("[src]'s vore preferences") + "<br><br>"
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_ooc))
-		dispvoreprefs += span_red(span_bold("OOC DISABLED")) + "<br>"
+		dat += span_red(span_bold("OOC DISABLED")) + "<br>"
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_looc))
-		dispvoreprefs += span_red(span_bold("LOOC DISABLED")) + "<br>"
-	dispvoreprefs += span_bold("Digestable:") + " [digestable ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Devourable:") + " [devourable ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Feedable:") + " [feeding ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Absorption Permission:") + " [absorbable ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += span_bold("Leaves Remains:") + " [digest_leave_remains ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Mob Vore:") + " [allowmobvore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Healbelly permission:") + " [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += span_bold("Selective Mode Pref:") + " [src.selective_preference]<br>"
-	dispvoreprefs += span_bold("Spontaneous vore prey:") + " [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Spontaneous vore pred:") + " [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Drop Vore:") + " [drop_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Slip Vore:") + " [slip_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Throw vore:") + " [throw_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Stumble Vore:") + " [stumble_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Food Vore:") + " [food_vore ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Inbelly Spawning:") + " [allow_inbelly_spawning ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += span_bold("Spontaneous transformation:") + " [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
-	dispvoreprefs += span_bold("Mind transfer:") + " [allow_mind_transfer ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += span_bold("Can be stepped on/over:") + " [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += span_bold("Can be picked up:") + " [pickup_pref ? "Allowed" : "Disallowed"]<br>"
-	dispvoreprefs += span_bold("Global Vore Privacy is:") + " [eating_privacy_global ? "Subtle" : "Loud"]<br>"
-	dispvoreprefs += span_bold("Allow Mimicry:") + " [allow_mimicry ? "Yes" : "No"]<br>"
-	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name]mvp;size=300x400;can_resize=1;can_minimize=0")
-	onclose(user, "[name]")
-	return
+		dat += span_red(span_bold("LOOC DISABLED")) + "<br>"
+	dat += span_bold("Digestable:") + " [digestable ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Devourable:") + " [devourable ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Feedable:") + " [feeding ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Absorption Permission:") + " [absorbable ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += span_bold("Leaves Remains:") + " [digest_leave_remains ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Mob Vore:") + " [allowmobvore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Healbelly permission:") + " [permit_healbelly ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += span_bold("Selective Mode Pref:") + " [src.selective_preference]<br>"
+	dat += span_bold("Spontaneous vore prey:") + " [can_be_drop_prey ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Spontaneous vore pred:") + " [can_be_drop_pred ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Drop Vore:") + " [drop_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Slip Vore:") + " [slip_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Throw vore:") + " [throw_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Stumble Vore:") + " [stumble_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Food Vore:") + " [food_vore ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Inbelly Spawning:") + " [allow_inbelly_spawning ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += span_bold("Spontaneous transformation:") + " [allow_spontaneous_tf ? span_green("Enabled") : span_red("Disabled")]<br>"
+	dat += span_bold("Mind transfer:") + " [allow_mind_transfer ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += span_bold("Can be stepped on/over:") + " [step_mechanics_pref ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += span_bold("Can be picked up:") + " [pickup_pref ? span_green("Allowed") : span_red("Disallowed")]<br>"
+	dat += span_bold("Global Vore Privacy is:") + " [eating_privacy_global ? "Subtle" : "Loud"]<br>"
+	dat += span_bold("Allow Mimicry:") + " [allow_mimicry ? span_green("Yes") : span_red("No")]<br>"
+	dat = "<center>[dat]</center>"
+
+	var/datum/browser/popup = new(user, "[name]mvp", "Vore Prefs: [src]", 300, 400, src)
+	popup.set_content(dat)
+	popup.open()
 
 // Full screen belly overlays!
 /obj/screen/fullscreen/belly

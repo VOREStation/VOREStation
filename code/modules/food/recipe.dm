@@ -209,6 +209,14 @@
 			var/obj/item/I = locate(i) in container
 			if (I && I.reagents)
 				I.reagents.trans_to_holder(buffer,I.reagents.total_volume)
+			// Outpost 21 upport start - Handle holders dropping mobs on destruction. No more endless mice burgers
+			if(istype(I,/obj/item/holder))
+				var/obj/item/holder/hol = I
+				if(hol.held_mob?.client)
+					hol.held_mob.ghostize()
+				qdel(hol.held_mob)
+				hol.held_mob = null
+			// Outpost 21 upport end
 			qdel(I)
 
 	//Find fruits
