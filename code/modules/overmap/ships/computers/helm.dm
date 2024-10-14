@@ -98,10 +98,13 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 		for(var/plane in linked.cam_plane_masters)
 			user.client.register_map_obj(plane)
 		user.client.register_map_obj(linked.cam_background)
-		linked.update_screen()
 
 		ui = new(user, src, "OvermapHelm", "[linked.name] Helm Control") // 565, 545
 		ui.open()
+		addtimer(CALLBACK(src, PROC_REF(update_map)), 0.1 SECONDS)
+
+/obj/machinery/computer/ship/helm/proc/update_map()
+	linked.update_screen()
 
 /obj/machinery/computer/ship/helm/tgui_close(mob/user)
 	. = ..()
@@ -172,7 +175,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SHIP_REFRESH))
 				to_chat(usr, span_warning("You cannot refresh the map so often."))
 				return
-			linked.update_screen()
+			update_map()
 			TIMER_COOLDOWN_START(src, COOLDOWN_SHIP_REFRESH, 5 SECONDS)
 			. = TRUE
 		if("add")
