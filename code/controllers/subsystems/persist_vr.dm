@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(persist)
 		return
 
 	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.IsConnected())
 		src.currentrun.Cut()
 		return
 	if(!resumed)
@@ -85,7 +85,7 @@ SUBSYSTEM_DEF(persist)
 		var/sql_dpt = sql_sanitize_text(department_earning)
 		var/sql_bal = text2num("[C.department_hours[department_earning]]")
 		var/sql_total = text2num("[C.play_hours[department_earning]]")
-		var/DBQuery/query = dbcon.NewQuery("INSERT INTO vr_player_hours (ckey, department, hours, total_hours) VALUES ('[sql_ckey]', '[sql_dpt]', [sql_bal], [sql_total]) ON DUPLICATE KEY UPDATE hours = VALUES(hours), total_hours = VALUES(total_hours)")
+		var/datum/DBQuery/query = SSdbcore.NewQuery("INSERT INTO vr_player_hours (ckey, department, hours, total_hours) VALUES ('[sql_ckey]', '[sql_dpt]', [sql_bal], [sql_total]) ON DUPLICATE KEY UPDATE hours = VALUES(hours), total_hours = VALUES(total_hours)")
 		query.Execute()
 
 		if (MC_TICK_CHECK)

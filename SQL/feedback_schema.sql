@@ -1,3 +1,7 @@
+--
+-- Table structure for table `erro_admin`
+--
+
 CREATE TABLE `erro_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
@@ -7,6 +11,10 @@ CREATE TABLE `erro_admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
+--
+-- Table structure for table `erro_admin_log`
+--
+
 CREATE TABLE `erro_admin_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -15,6 +23,10 @@ CREATE TABLE `erro_admin_log` (
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `erro_ban`
+--
 
 CREATE TABLE `erro_ban` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -43,6 +55,24 @@ CREATE TABLE `erro_ban` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
+--
+-- Table structure for table `erro_connection_log`
+--
+
+CREATE TABLE `erro_connection_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `datetime` datetime NOT NULL,
+  `serverip` varchar(32) NOT NULL,
+  `ckey` varchar(32) NOT NULL,
+  `ip` varchar(32) NOT NULL,
+  `computerid` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `erro_feedback`
+--
+
 CREATE TABLE `erro_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `time` datetime NOT NULL,
@@ -52,6 +82,10 @@ CREATE TABLE `erro_feedback` (
   `details` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `erro_player`
+--
 
 CREATE TABLE `erro_player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -67,6 +101,10 @@ CREATE TABLE `erro_player` (
   KEY `discord_id` (`discord_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
+--
+-- Table structure for table `erro_poll_option`
+--
+
 CREATE TABLE `erro_poll_option` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pollid` int(11) NOT NULL,
@@ -80,6 +118,10 @@ CREATE TABLE `erro_poll_option` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
+--
+-- Table structure for table `erro_poll_question`
+--
+
 CREATE TABLE `erro_poll_question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `polltype` varchar(16) NOT NULL DEFAULT 'OPTION',
@@ -89,6 +131,10 @@ CREATE TABLE `erro_poll_question` (
   `adminonly` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `erro_poll_textreply`
+--
 
 CREATE TABLE `erro_poll_textreply` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -100,6 +146,10 @@ CREATE TABLE `erro_poll_textreply` (
   `adminrank` varchar(32) NOT NULL DEFAULT 'Player',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `erro_poll_vote`
+--
 
 CREATE TABLE `erro_poll_vote` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -113,6 +163,10 @@ CREATE TABLE `erro_poll_vote` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
+--
+-- Table structure for table `erro_privacy`
+--
+
 CREATE TABLE `erro_privacy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -120,6 +174,90 @@ CREATE TABLE `erro_privacy` (
   `option` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `death`
+--
+
+CREATE TABLE `death` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `pod` TEXT NOT NULL COMMENT 'Place of death' ,
+  `coord` TEXT NOT NULL COMMENT 'X, Y, Z POD' ,
+  `tod` DATETIME NOT NULL COMMENT 'Time of death' ,
+  `job` TEXT NOT NULL ,
+  `special` TEXT NOT NULL ,
+  `name` TEXT NOT NULL ,
+  `byondkey` TEXT NOT NULL ,
+  `laname` TEXT NOT NULL COMMENT 'Last attacker name' ,
+  `lakey` TEXT NOT NULL COMMENT 'Last attacker key' ,
+  `gender` TEXT NOT NULL ,
+  `bruteloss` INT(11) NOT NULL ,
+  `brainloss` INT(11) NOT NULL ,
+  `fireloss` INT(11) NOT NULL ,
+  `oxyloss` INT(11) NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+
+--
+-- Table structure for table `karma`
+--
+
+CREATE TABLE `karma` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `spendername` TEXT NOT NULL ,
+  `spenderkey` TEXT NOT NULL ,
+  `receivername` TEXT NOT NULL ,
+  `receiverkey` TEXT NOT NULL ,
+  `receiverrole` TEXT NOT NULL ,
+  `receiverspecial` TEXT NOT NULL ,
+  `isnegative` TINYINT(1) NOT NULL ,
+  `spenderip` TEXT NOT NULL ,
+  `time` DATETIME NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+
+--
+-- Table structure for table `karmatotals`
+--
+
+CREATE TABLE `karmatotals` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `byondkey` TEXT NOT NULL ,
+  `karma` INT(11) NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `library`
+--
+
+CREATE TABLE `library` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `author` TEXT NOT NULL ,
+  `title` TEXT NOT NULL ,
+  `content` TEXT NOT NULL ,
+  `category` TEXT NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+
+--
+-- Table structure for table `population`
+--
+
+CREATE TABLE `population` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `playercount` INT(11) NULL DEFAULT NULL ,
+  `admincount` INT(11) NULL DEFAULT NULL ,
+  `time` DATETIME NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
+--
+-- Table structure for table `vr_player_hours`
+--
 
 CREATE TABLE `vr_player_hours` (
   `ckey` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
