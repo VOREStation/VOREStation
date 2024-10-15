@@ -88,6 +88,8 @@ var/global/list/obj/item/communicator/all_communicators = list()
 								"spark" = 'sound/effects/sparks4.ogg',
 								"rad" = 'sound/items/geiger/high1.ogg',
 								"servo" = 'sound/machines/rig/rigservo.ogg')
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 // Proc: New()
 // Parameters: None

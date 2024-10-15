@@ -13,6 +13,9 @@
 	var/radiation_count = 0
 	var/datum/looping_sound/geiger/soundloop
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/geiger/Initialize()
 	soundloop = new(list(src), FALSE)
 	return ..()

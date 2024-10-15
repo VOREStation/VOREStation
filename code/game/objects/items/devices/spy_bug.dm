@@ -17,6 +17,9 @@
 	var/obj/machinery/camera/bug/camera
 	var/camtype = /obj/machinery/camera/bug
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/camerabug/New()
 	..()
 //	radio = new(src)
@@ -55,6 +58,9 @@
 	throw_range = 15
 	throw_speed = 3
 	origin_tech = list(TECH_ENGINEERING = 1)
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/brokenbug/spy
 	name = "broken bug"
@@ -157,6 +163,10 @@
 //	var/obj/item/radio/bug/radio
 	var/obj/machinery/camera/bug/selected_camera
 	var/list/obj/machinery/camera/bug/cameras = new()
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /*
 /obj/item/bug_monitor/New()
 	radio = new(src)

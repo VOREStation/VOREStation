@@ -28,6 +28,8 @@
 	var/obj/item/wrapped = null // Item currently being held.
 
 	var/force_holder = null //
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/gripper/examine(mob/user)
 	. = ..()

@@ -13,6 +13,8 @@
 	var/malfunction = 0
 	var/initialize_loc = BP_TORSO
 	var/known_implant = FALSE
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/implant/proc/trigger(emote, source as mob)
 	return

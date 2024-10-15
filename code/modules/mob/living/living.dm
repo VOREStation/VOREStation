@@ -1119,7 +1119,7 @@
 
 	var/atom/movable/item = src.get_active_hand()
 
-	if(!item)
+	if(!item || istype(item, /obj/item/tk_grab))
 		return FALSE
 
 	var/throw_range = item.throw_range

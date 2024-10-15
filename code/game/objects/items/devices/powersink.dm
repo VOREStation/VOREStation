@@ -24,6 +24,9 @@
 	var/datum/powernet/PN			// Our powernet
 	var/obj/structure/cable/attached		// the attached cable
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/powersink/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	STOP_PROCESSING_POWER_OBJECT(src)
