@@ -87,7 +87,7 @@ em						{font-style: normal;font-weight: bold;}
 .alert, .valert			{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 .ghostalert				{color: #5c00e6;	font-style: italic; font-weight: bold;}
-
+.wingdings				{font-family: Wingdings, Webdings}
 
 /* VOREStation Edit Start */
 .emote					{}
@@ -145,6 +145,7 @@ h1.alert, h2.alert		{color: #000000;}
 .spacer					{color: #9c660b;}
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
 .teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
+.marish 				{color: #9e31a4;}
 .shadekin				{color: #be3cc5; font-size: 150%; font-weight: bold; font-family: "Gabriola", cursive, sans-serif;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
