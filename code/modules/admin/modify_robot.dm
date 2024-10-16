@@ -205,7 +205,7 @@
 			target.module.contents.Add(add_item)
 			spawn(0)
 				SEND_SIGNAL(add_item, COMSIG_OBSERVER_MOVED)
-			target.hud_used.update_robot_modules_display()
+			target.hud_used?.update_robot_modules_display()
 			if(istype(add_item, /obj/item/stack/))
 				var/obj/item/stack/item_with_synth = add_item
 				for(var/synth in item_with_synth.synths)
@@ -250,7 +250,7 @@
 		if("rem_module")
 			var/obj/item/rem_item = locate(params["module"])
 			target.uneq_all()
-			target.hud_used.update_robot_modules_display(TRUE)
+			target.hud_used?.update_robot_modules_display(TRUE)
 			target.module.emag.Remove(rem_item)
 			target.module.modules.Remove(rem_item)
 			target.module.contents.Remove(rem_item)
@@ -269,14 +269,14 @@
 			source.emag_items = 1
 			// Target
 			target.uneq_all()
-			target.hud_used.update_robot_modules_display(TRUE)
+			target.hud_used?.update_robot_modules_display(TRUE)
 			qdel(target.module)
 			target.modtype = mod_type
 			module_type = robot_modules[mod_type]
 			target.transform_with_anim()
 			new module_type(target)
 			target.hands.icon_state = target.get_hud_module_icon()
-			target.hud_used.update_robot_modules_display()
+			target.hud_used?.update_robot_modules_display()
 			return TRUE
 		if("ert_toggle")
 			target.crisis_override = !target.crisis_override
@@ -306,7 +306,7 @@
 			if(!U.action(target))
 				return FALSE
 			U.loc = target
-			target.hud_used.update_robot_modules_display()
+			target.hud_used?.update_robot_modules_display()
 			return TRUE
 		if("install_modkit")
 			var/new_modkit = text2path(params["modkit"])
@@ -552,7 +552,7 @@
 				target.clear_inherent_laws()
 				target.laws = new global.using_map.default_law_type
 				target.laws.show_laws(target)
-				target.hud_used.update_robot_modules_display()
+				target.hud_used?.update_robot_modules_display()
 			else
 				target.emagged = 1
 				target.lawupdate = 0
@@ -564,7 +564,7 @@
 					if(!target.bolt.malfunction)
 						target.bolt.malfunction = MALFUNCTION_PERMANENT
 				target.laws.show_laws(target)
-				target.hud_used.update_robot_modules_display()
+				target.hud_used?.update_robot_modules_display()
 			return TRUE
 
 /datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
