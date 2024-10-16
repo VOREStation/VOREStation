@@ -28,7 +28,8 @@ ORGAN_REGENERATION_MULTIPLIER 50
 ### REVIVAL ###
 
 ## whether pod plants work or not
-REVIVAL_POD_PLANTS 1
+## FIXME: Unused config. Only uncomment if changed in code.
+# REVIVAL_POD_PLANTS 1
 
 ## whether cloning tubes work or not
 REVIVAL_CLONING 1
@@ -45,7 +46,7 @@ REVIVAL_BRAIN_LIFE -1
 ## These values get directly added to values and totals in-game. To speed things up make the number negative, to slow things down, make the number positive.
 
 
-## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied. 
+## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
 RUN_SPEED 3
 WALK_SPEED 9
 
@@ -53,9 +54,12 @@ WALK_SPEED 9
 ## The variables below affect the movement of specific mob types.
 HUMAN_DELAY 0
 ROBOT_DELAY 0
-MONKEY_DELAY 0
-ALIEN_DELAY 0
-METROID_DELAY 0
+## FIXME: Unused config. Only uncomment if changed in code.
+# MONKEY_DELAY 0
+## FIXME: Unused config. Only uncomment if changed in code.
+# ALIEN_DELAY 0
+## FIXME: Unused config. Only uncomment if changed in code.
+# METROID_DELAY 0
 ANIMAL_DELAY 0
 
 ## Volume of footstep sound effects. Range: 1-100, Set to 0 to disable footstep sounds.
@@ -70,3 +74,23 @@ FOOTSTEP_VOLUME 65
 
 ## Whether or not humans show an area message when they die.
 SHOW_HUMAN_DEATH_MESSAGE
+
+## Alert level descriptions
+ALERT_DESC_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
+
+ALERT_DESC_YELLOW_UPTO A minor security emergency has developed. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced.
+ALERT_DESC_YELLOW_DOWNTO Code yellow procedures are now in effect. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced.
+
+ALERT_DESC_VIOLET_UPTO A major medical emergency has developed. Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey all relevant instructions from medical staff.
+ALERT_DESC_VIOLET_DOWNTO Code violet procedures are now in effect; Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey relevant instructions from medical staff.
+
+ALERT_DESC_ORANGE_UPTO A major engineering emergency has developed. Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff.
+ALERT_DESC_ORANGE_DOWNTO Code orange procedures are now in effect; Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff.
+
+ALERT_DESC_BLUE_UPTO A major security emergency has developed. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person.
+ALERT_DESC_BLUE_DOWNTO Code blue procedures are now in effect. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person.
+
+ALERT_DESC_RED_UPTO There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised.
+ALERT_DESC_RED_DOWNTO The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.
+
+ALERT_DESC_DELTA The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.

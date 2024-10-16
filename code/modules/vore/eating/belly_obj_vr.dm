@@ -603,7 +603,7 @@
 		M.release_vore_contents(include_absorbed = TRUE, silent = TRUE)
 
 	//Drop all items into the belly.
-	if(config.items_survive_digestion)
+	if(CONFIG_GET(flag/items_survive_digestion))
 		for(var/obj/item/W in M)
 			if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W

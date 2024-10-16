@@ -5,7 +5,7 @@
 	due_date = 0 // Game time in 1/10th seconds
 	unique = 1   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
 
-
+/*
 /obj/item/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
@@ -21,12 +21,13 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Guide_to_construction&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[CONFIG_GET(string/wikiurl)]Guide_to_construction&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
 
 		"}
+*/
 
 /obj/item/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
@@ -273,6 +274,7 @@
 				</body>
 			</html>"}
 
+/*
 /obj/item/book/manual/engineering_hacking
 	name = "Hacking"
 	icon_state ="bookHacking"
@@ -288,13 +290,13 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Hacking&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[CONFIG_GET(string/wikiurl)]Hacking&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
 
 		"}
-
+*/
 
 /obj/item/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
@@ -629,6 +631,7 @@
 			</html>
 			"}
 
+/*
 /obj/item/book/manual/robotics_manual
 	name = "Guide to Robotics"
 	icon_state ="evabook"
@@ -642,10 +645,11 @@
 		<html><head>
 		</head>
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Guide_to_Robotics&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[CONFIG_GET(string/wikiurl)]Guide_to_Robotics&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 		</html>
 		"}
+*/
 
 /obj/item/book/manual/robotics_cyborgs
 	name = JOB_CYBORG + "s for Dummies"
@@ -852,7 +856,7 @@
 			</html>
 		"}
 
-
+/*
 /obj/item/book/manual/security_space_law
 	name = "Corporate Regulations"
 	desc = "A set of corporate guidelines for keeping law and order on privately-owned space stations."
@@ -869,7 +873,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Corporate_Regulations&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[CONFIG_GET(string/wikiurl)]Corporate_Regulations&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
@@ -920,7 +924,7 @@
 
 				<HR COLOR="steelblue" WIDTH="60%" ALIGN="LEFT">
 
-				<iframe width='100%' height='100%' src="[config.wikiurl]Guide_to_Medicine&printable=yes&removelinks=1" frameborder="0" id="main_frame"></iframe>
+				<iframe width='100%' height='100%' src="[CONFIG_GET(string/wikiurl)]Guide_to_Medicine&printable=yes&removelinks=1" frameborder="0" id="main_frame"></iframe>
 				</body>
 			</html>
 
@@ -942,12 +946,12 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='100%' src="[config.wikiurl]Guide_to_Engineering&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+		<iframe width='100%' height='100%' src="[CONFIG_GET(string/wikiurl)]Guide_to_Engineering&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
 
 		</html>
 
 		"}
-
+*/
 
 /obj/item/book/manual/chef_recipes
 	name = JOB_CHEF + " Recipes"
