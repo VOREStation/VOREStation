@@ -5,6 +5,8 @@
 	icon_state = "labeler1"
 	var/list/modes
 	var/mode
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/pipe_painter/New()
 	..()

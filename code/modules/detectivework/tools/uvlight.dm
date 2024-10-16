@@ -16,6 +16,8 @@
 	var/range = 3
 	var/on = 0
 	var/step_alpha = 50
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/uv_light/attack_self(var/mob/user)
 	on = !on

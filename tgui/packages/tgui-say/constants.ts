@@ -3,6 +3,7 @@ export enum WINDOW_SIZES {
   small = 30,
   medium = 50,
   large = 70,
+  max = 130,
   width = 360,
 }
 

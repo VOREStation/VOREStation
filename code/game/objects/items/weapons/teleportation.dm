@@ -22,6 +22,8 @@
 	throw_range = 20
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MAT_STEEL = 400)
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/locator/attack_self(mob/user as mob)
 	user.set_machine(src)

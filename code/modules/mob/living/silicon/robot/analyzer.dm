@@ -16,6 +16,8 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(MAT_STEEL = 500, MAT_GLASS = 200)
 	var/mode = 1;
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	do_scan(M, user)

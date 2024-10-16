@@ -16,6 +16,9 @@
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/chameleon/dropped()
 	disrupt()
 	..()

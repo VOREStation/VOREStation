@@ -178,7 +178,8 @@ var/list/lunchables_ethanol_reagents_ = list(/datum/reagent/ethanol/acid_spit,
 /proc/init_lunchable_list(var/list/lunches)
 	. = list()
 	for(var/obj/O as anything in lunches)
-		.[initial(O.name)] = O
+		var/name = replacetext(initial(O.name), new/regex("\improper *", "g"), "")
+		.[name] = O
 	return sortAssoc(.)
 
 /proc/init_lunchable_reagent_list(var/list/banned_reagents, var/reagent_types)
