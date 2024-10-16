@@ -156,6 +156,8 @@
 #include "code\__defines\traits\_traits.dm"
 #include "code\__defines\traits\declarations.dm"
 #include "code\__defines\traits\sources.dm"
+#include "code\__defines\verdigris\_verdigris.dm"
+#include "code\__defines\verdigris\random_map.dm"
 #include "code\_global_vars\_regexes.dm"
 #include "code\_global_vars\bitfields.dm"
 #include "code\_global_vars\misc.dm"
