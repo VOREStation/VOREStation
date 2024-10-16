@@ -89,6 +89,13 @@
 			.["target"]["components"] = get_components()
 			.["cell"] = list("name" = target.cell?.name, "charge" = target.cell?.charge, "maxcharge" = target.cell?.maxcharge)
 			.["cell_options"] = get_cells()
+			.["camera_options"] = get_component("camera")
+			.["radio_options"] = get_component("radio")
+			.["actuator_options"] = get_component("actuator")
+			.["diagnosis_options"] = get_component("diagnosis")
+			.["comms_options"] = get_component("comms")
+			.["armour_options"] = get_component("armour")
+			.["current_gear"] = get_gear()
 			// Access
 			.["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
 			var/list/active_access = list()
@@ -348,22 +355,22 @@
 			var/datum/robot_component/C = locate(params["component"])
 			if(C.wrapped)
 				qdel(C.wrapped)
+			var/new_component = text2path(params["new_part"])
 			if(istype(C, /datum/robot_component/actuator))
-				C.wrapped = new /obj/item/robot_parts/robot_component/actuator(target)
+				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/radio))
-				C.wrapped = new /obj/item/robot_parts/robot_component/radio(target)
+				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/cell))
-				var/new_cell = text2path(params["cell"])
-				target.cell = new new_cell(target)
+				target.cell = new new_component(target)
 				C.wrapped = target.cell
 			else if(istype(C, /datum/robot_component/diagnosis_unit))
-				C.wrapped = new /obj/item/robot_parts/robot_component/diagnosis_unit(target)
+				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/camera))
-				C.wrapped = new /obj/item/robot_parts/robot_component/camera(target)
+				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/binary_communication))
-				C.wrapped = new /obj/item/robot_parts/robot_component/binary_communication_device(target)
+				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/armour))
-				C.wrapped = new /obj/item/robot_parts/robot_component/armour(target)
+				C.wrapped = new new_component(target)
 			C.brute_damage = 0
 			C.electronics_damage = 0
 			C.install()
@@ -675,11 +682,53 @@
 		cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
 	return cell_options
 
+/datum/eventkit/modify_robot/proc/get_component(var/type)
+	var/path
+	switch(type)
+		if("camera")
+			path = /obj/item/robot_parts/robot_component/camera
+		if("radio")
+			path = /obj/item/robot_parts/robot_component/radio
+		if("actuator")
+			path = /obj/item/robot_parts/robot_component/actuator
+		if("diagnosis")
+			path = /obj/item/robot_parts/robot_component/diagnosis_unit
+		if("comms")
+			path = /obj/item/robot_parts/robot_component/binary_communication_device
+		if("armour")
+			path = /obj/item/robot_parts/robot_component/armour
+	if(!path)
+		return
+	var/list/components = list()
+	for(var/component in typesof(path))
+		var/obj/item/robot_parts/robot_component/C = component
+		components += list("[initial(C.name)]" = list("path" = "[component]", "idle_usage" = "[C.idle_usage]", "active_usage" = "[C.active_usage]", "max_damage" = "[C.max_damage]"))
+	return components
+
+/datum/eventkit/modify_robot/proc/get_gear()
+	var/list/equip = list()
+	for (var/V in target.components)
+		var/datum/robot_component/C = target.components[V]
+		switch(V)
+			if("actuator")
+				equip += list("[lowertext(C.name)]" = "[C.wrapped?.name]")
+			if("radio")
+				equip += list("[lowertext(C.name)]" = "[C.wrapped?.name]")
+			if("diagnosis unit")
+				equip += list("[lowertext(C.name)]" = "[C.wrapped?.name]")
+			if("camera")
+				equip += list("[lowertext(C.name)]" = "[C.wrapped?.name]")
+			if("comms")
+				equip += list("[lowertext(C.name)]" = "[C.wrapped?.name]")
+			if("armour")
+				equip += list("[lowertext(C.name)]" = "[C.wrapped?.name]")
+	return equip
+
 /datum/eventkit/modify_robot/proc/get_components()
 	var/list/components = list()
 	for(var/entry in target.components)
 		var/datum/robot_component/C = target.components[entry]
-		components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
+		components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "idle_usage" = C.idle_usage, "active_usage" = C.active_usage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
 	return components
 
 /datum/eventkit/modify_robot/proc/package_laws(var/list/data, var/field, var/list/datum/ai_law/laws)
