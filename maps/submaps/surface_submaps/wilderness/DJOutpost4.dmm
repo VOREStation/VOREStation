@@ -29,7 +29,7 @@
 "aC" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow,/obj/machinery/power/solar_control/autostart,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aD" = (/obj/effect/overlay/snow/floor,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/random/landmine,/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
 "aE" = (/obj/structure/bookcase,/obj/item/book/codex/lore/robutt,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
-"aF" = (/obj/structure/bookcase,/obj/item/book/codex/lore/vir,/obj/item/book/manual/excavation,/obj/item/book/manual/engineering_construction,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+"aF" = (/obj/structure/bookcase,/obj/item/book/codex/lore/vir,/obj/item/book/manual/excavation,/obj/item/book/manual/wiki/engineering_construction,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aG" = (/obj/machinery/holoplant,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aH" = (/obj/item/storage/toolbox/mechanical,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aI" = (/obj/structure/table/steel_reinforced,/obj/item/radio/phone,/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
