@@ -248,7 +248,7 @@
 /area/wizard_station)
 "aC" = (
 /obj/structure/table/woodentable,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"
@@ -814,7 +814,7 @@
 /area/wizard_station)
 "bS" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/book/manual/engineering_hacking,
+/obj/item/book/manual/wiki/engineering_hacking,
 /obj/item/radio/intercom{
 	desc = "Talk through this. Evilly";
 	frequency = 1213;
