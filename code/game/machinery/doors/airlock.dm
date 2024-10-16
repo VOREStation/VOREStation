@@ -60,7 +60,7 @@
 	var/knock_sound = 'sound/machines/2beeplow.ogg'
 	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	var/knock_unpowered_sound = 'sound/machines/door/knock_glass.ogg'
-	var/hold_open
+	var/mob/hold_open
 
 /obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -1361,7 +1361,7 @@ About the new airlock wires panel:
 	if(!forced)
 		//despite the name, this wire is for general door control.
 		if(hold_open)
-			if(Adjacent(hold_open))
+			if(Adjacent(hold_open) && !hold_open.incapacitated())
 				return 0
 			else
 				hold_open = null
