@@ -59,7 +59,7 @@ export const CellCommp = (props: {
       />
       <Stack vertical>
         <Stack.Item>
-          Max Damage: {cell.max_damage}
+          Max Damage: {cells[selectedCell]?.max_damage}
         </Stack.Item>
         <Stack.Item>
           Charge State: {cells[selectedCell]?.charge} /{' '}
