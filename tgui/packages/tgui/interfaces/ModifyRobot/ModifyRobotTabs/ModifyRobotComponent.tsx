@@ -280,13 +280,15 @@ const ComponentSection = (props: {
                       </Flex.Item>
                     </Flex>
                   </Stack.Item>
-                  <Flex>
-                    <Flex.Item>Idle Power: {component.idle_usage}</Flex.Item>
-                    <Flex.Item grow />
-                    <Flex.Item>
-                      Active Power: {component.active_usage}
-                    </Flex.Item>
-                  </Flex>
+                  {action === 'add_component' && (
+                    <Flex>
+                      <Flex.Item>Idle Power: {component.idle_usage}</Flex.Item>
+                      <Flex.Item grow />
+                      <Flex.Item>
+                        Active Power: {component.active_usage}
+                      </Flex.Item>
+                    </Flex>
+                  )}
                   <Stack.Item />
                   <Stack.Item>
                     {action === 'add_component' &&
