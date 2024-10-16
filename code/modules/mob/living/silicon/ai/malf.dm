@@ -105,7 +105,7 @@
 
 // Returns percentage of AI's remaining hardware integrity (maxhealth - (bruteloss + fireloss))
 /mob/living/silicon/ai/proc/hardware_integrity()
-	return (health-config.health_threshold_dead)/2
+	return (health - CONFIG_GET(number/health_threshold_dead)) / 2
 
 // Shows capacitor charge and hardware integrity information to the AI in Status tab.
 /mob/living/silicon/ai/show_system_integrity()

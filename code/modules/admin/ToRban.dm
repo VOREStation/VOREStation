@@ -52,11 +52,11 @@
 			ToRban_update()
 		if("toggle")
 			if(config)
-				if(config.ToRban)
-					config.ToRban = 0
+				if(CONFIG_GET(flag/ToRban))
+					CONFIG_SET(flag/ToRban, FALSE)
 					message_admins(span_red("ToR banning disabled."))
 				else
-					config.ToRban = 1
+					CONFIG_SET(flag/ToRban, TRUE)
 					message_admins(span_green("ToR banning enabled."))
 		if("show")
 			var/savefile/F = new(TORFILE)

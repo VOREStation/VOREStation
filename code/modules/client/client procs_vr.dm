@@ -17,10 +17,10 @@
 
 //Service returns a single float in html body
 /client/proc/ipr_getipintel()
-	if(!config.ipr_email)
+	if(!CONFIG_GET(string/ipr_email))
 		return -1
 
-	var/request = "https://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
+	var/request = "https://check.getipintel.net/check.php?ip=[address]&contact=[CONFIG_GET(string/ipr_email)]"
 	var/http[] = world.Export(request)
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.
@@ -30,7 +30,7 @@
 	//429 is rate limit exceeded
 	if(text2num(http["STATUS"]) == 429)
 		log_and_message_admins("getipintel.net reports HTTP status 429. IP reputation checking is now disabled. If you see this, let a developer know.")
-		config.ip_reputation = FALSE
+		CONFIG_SET(flag/ip_reputation, FALSE)
 		return -1
 
 	var/content = file2text(http["CONTENT"]) //world.Export actually returns a file object in CONTENT
@@ -61,7 +61,7 @@
 
 		log_and_message_admins(ipr_error)
 		if(fatal)
-			config.ip_reputation = FALSE
+			CONFIG_SET(flag/ip_reputation, FALSE)
 			log_and_message_admins("With this error, IP reputation checking is disabled for this shift. Let a developer know.")
 		return -1
 
@@ -71,10 +71,10 @@
 
 //Service returns JSON in html body
 /client/proc/ipr_ipqualityscore()
-	if(!config.ipqualityscore_apikey)
+	if(!CONFIG_GET(string/ipqualityscore_apikey))
 		return -1
 
-	var/request = "https://www.ipqualityscore.com/api/json/ip/[config.ipqualityscore_apikey]/[address]?strictness=1&fast=true&byond_key=[key]"
+	var/request = "https://www.ipqualityscore.com/api/json/ip/[CONFIG_GET(string/ipqualityscore_apikey)]/[address]?strictness=1&fast=true&byond_key=[key]"
 	var/http[] = world.Export(request)
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.

@@ -77,11 +77,11 @@
 /datum/job/intern/New()
 	..()
 	if(config)
-		total_positions = config.limit_interns
-		spawn_positions = config.limit_interns
+		total_positions = CONFIG_GET(number/limit_interns)
+		spawn_positions = CONFIG_GET(number/limit_interns)
 
 /datum/job/intern/get_access()
-	if(config.assistant_maint)
+	if(CONFIG_GET(flag/assistant_maint))
 		return list(access_maint_tunnels)
 	else
 		return list()
@@ -102,8 +102,8 @@
 /datum/job/assistant/New()
 	..()
 	if(config)
-		total_positions = config.limit_visitors
-		spawn_positions = config.limit_visitors
+		total_positions = CONFIG_GET(number/limit_visitors)
+		spawn_positions = CONFIG_GET(number/limit_visitors)
 
 /datum/job/assistant/get_access()
 	return list()

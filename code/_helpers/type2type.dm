@@ -1,10 +1,40 @@
 /*
  * Holds procs designed to change one type of value, into another.
  * Contains:
+ * 			file2list
+ *			type2top
  *			hex2num & num2hex
  *			file2list
  *			angle2dir
  */
+
+//Splits the text of a file at seperator and returns them in a list.
+//returns an empty list if the file doesn't exist
+/world/proc/file2list(filename, seperator="\n", trim = TRUE)
+	if (trim)
+		return splittext(trim(file2text(filename)),seperator)
+	return splittext(file2text(filename),seperator)
+
+//returns a string the last bit of a type, without the preceeding '/'
+/proc/type2top(the_type)
+	//handle the builtins manually
+	if(!ispath(the_type))
+		return
+	switch(the_type)
+		if(/datum)
+			return "datum"
+		if(/atom)
+			return "atom"
+		if(/obj)
+			return "obj"
+		if(/mob)
+			return "mob"
+		if(/area)
+			return "area"
+		if(/turf)
+			return "turf"
+		else //regex everything else (works for /proc too)
+			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
 
 // Returns an integer given a hexadecimal number string as input.
 /proc/hex2num(hex)
