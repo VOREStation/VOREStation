@@ -58,9 +58,7 @@ export const CellCommp = (props: {
         onSelected={setSelectedCell}
       />
       <Stack vertical>
-        <Stack.Item>
-          Max Damage: {cells[selectedCell]?.max_damage}
-        </Stack.Item>
+        <Stack.Item>Max Damage: {cells[selectedCell]?.max_damage}</Stack.Item>
         <Stack.Item>
           Charge State: {cells[selectedCell]?.charge} /{' '}
           {cells[selectedCell]?.max_charge}
