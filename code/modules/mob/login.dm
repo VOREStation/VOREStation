@@ -83,4 +83,5 @@
 
 	if(cloaked && cloaked_selfimage)
 		client.images += cloaked_selfimage
+	client.init_verbs()
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)

@@ -1,0 +1,2 @@
+#define TURFLIST_UPDATED (1 << 0)
+#define TURFLIST_UPDATE_QUEUED (1 << 1)

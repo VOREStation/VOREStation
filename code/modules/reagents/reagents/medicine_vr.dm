@@ -324,7 +324,7 @@
 	scannable = 1
 
 /datum/reagent/glamour/affect_blood(var/mob/living/carbon/target, var/removed)
-	target.verbs |= /mob/living/carbon/human/proc/enter_cocoon
+	add_verb(target, /mob/living/carbon/human/proc/enter_cocoon)
 	target.bloodstr.clear_reagents() //instantly clears reagents afterwards
 	target.ingested.clear_reagents()
 	target.touching.clear_reagents()

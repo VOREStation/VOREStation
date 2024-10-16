@@ -24,7 +24,7 @@ mob
 				sandbox.owner = src.ckey
 				if(src.client.holder)
 					sandbox.admin = 1
-				verbs += new/mob/proc/sandbox_panel
+				add_verb(src, /mob/proc/sandbox_panel)
 		sandbox_panel()
 			if(sandbox)
 				sandbox.update()

@@ -25,7 +25,7 @@
 /obj/item/robot_module/robot/platform/verb/set_eye_colour()
 	set name = "Set Eye Colour"
 	set desc = "Select an eye colour to use."
-	set category = "Robot Commands"
+	set category = "Abilities.Silicon"
 	set src in usr
 
 	var/new_pupil_color = input(usr, "Select a pupil colour.", "Pupil Colour Selection") as color|null

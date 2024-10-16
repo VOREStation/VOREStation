@@ -267,7 +267,7 @@
 
 	set name = "Drop Item"
 	set desc = "Release an item from your magnetic gripper."
-	set category = "Robot Commands"
+	set category = "Abilities.Silicon"
 
 	drop_item()
 
