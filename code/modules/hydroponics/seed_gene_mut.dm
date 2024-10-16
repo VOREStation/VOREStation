@@ -4,7 +4,7 @@
 		return src
 
 	var/datum/seed/S = diverge()	//Let's not modify all of the seeds.
-	T.visible_message("<b>\The [S.display_name]</b> quivers!")	//Mimicks the normal mutation.
+	T.visible_message(span_infoplain(span_bold("\The [S.display_name]") + " quivers!"))	//Mimicks the normal mutation.
 	G.mutate(S, T)
 
 	return S
@@ -97,7 +97,7 @@
 			T.visible_message(span_notice("\The [S.display_name] begins to glow!"))
 			if(prob(50))
 				S.set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
-				T.visible_message("<span class='notice'>\The [S.display_name]'s glow </span><font color='[S.get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")
+				T.visible_message(span_notice("\The [S.display_name]'s glow") + " <font color='[S.get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")
 		else
 			T.visible_message(span_notice("\The [S.display_name]'s glow dims..."))
 	if(prob(60))
@@ -126,7 +126,7 @@
 		S.set_trait(TRAIT_MATURATION, S.get_trait(TRAIT_MATURATION)+rand(-1,1),30,0)
 	if(prob(55))
 		S.set_trait(TRAIT_SPREAD, S.get_trait(TRAIT_SPREAD)+rand(-1,1),2,0)
-		T.visible_message("<b>\The [S.display_name]</b> spasms visibly, shifting in the tray.")
+		T.visible_message(span_infoplain(span_bold("\The [S.display_name]") + " spasms visibly, shifting in the tray."))
 
 /decl/plantgene/fruit/mutate(var/datum/seed/S)
 	if(prob(65))

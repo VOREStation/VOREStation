@@ -3,7 +3,7 @@ var/global/floorIsLava = 0
 
 ////////////////////////////////
 /proc/message_admins(var/msg)
-	msg = "<span class='filter_adminlog log_message'><span class='prefix'>ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
+	msg = span_filter_adminlog(span_log_message(span_prefix("ADMIN LOG:") + span_message("[msg]")))
 	//log_adminwarn(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
@@ -14,7 +14,7 @@ var/global/floorIsLava = 0
 					confidential = TRUE)
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
-	var/rendered = "<span class='filter_attacklog log_message'><span class='prefix'>ATTACK:</span> <span class=\"message\">[text]</span></span>"
+	var/rendered = span_filter_attacklog(span_log_message(span_prefix("ATTACK:") + span_message("[text]")))
 	for(var/client/C in GLOB.admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			if(C.prefs?.read_preference(/datum/preference/toggle/show_attack_logs))
@@ -104,7 +104,7 @@ var/global/floorIsLava = 0
 	if (M.client)
 		if(!istype(M, /mob/new_player))
 			body += "<br><br>"
-			body += "<b>Transformation:</b>"
+			body += span_bold("Transformation:")
 			body += "<br>"
 
 			//Monkey
@@ -318,13 +318,13 @@ var/global/floorIsLava = 0
 		if(1)
 			dat+= "Station Feed Channels<HR>"
 			if( isemptylist(news_network.network_channels) )
-				dat+="<I>No active channels found...</I>"
+				dat+=span_italics("No active channels found...")
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
 					if(CHANNEL.is_admin_channel)
 						dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen'><A href='?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
 					else
-						dat+="<B><A href='?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
+						dat+=span_bold("<A href='?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>")
 			dat+={"<BR><HR><A href='?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
 				<BR><A href='?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>
 			"}
@@ -460,7 +460,7 @@ var/global/floorIsLava = 0
 
 			dat+="<BR><A href='?src=\ref[src];[HrefToken()];ac_setScreen=[11]'>Back</A>"
 		if(14)
-			dat+="<B>Wanted Issue Handler:</B>"
+			dat+=span_bold("Wanted Issue Handler:")
 			var/wanted_already = 0
 			var/end_param = 1
 			if(news_network.wanted_issue)
@@ -627,7 +627,7 @@ var/global/floorIsLava = 0
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		to_world("<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>")
+		to_world(span_notice(span_bold("[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:") + "<p style='text-indent: 50px'>[message]</p>"))
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -678,7 +678,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!speech_verb)
 		return
 
-	to_chat(usr, "<span class='notice'><B>Intercom Convo Directions</B><br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
+	to_chat(usr, span_notice(span_bold("Intercom Convo Directions") + "<br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
 		add another line, and type a (whole) number of seconds to pause between that message, and the next message, then repeat the message syntax up to 20 times. For example:<br>\
 		--- --- ---<br>\
 		Some Guy|Hello guys, what's up?<br>\
@@ -687,7 +687,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		5<br>\
 		Some Guy|Yeah, you too.<br>\
 		--- --- ---<br>\
-		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed.</span>")
+		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed."))
 
 	var/list/decomposed
 	var/message = tgui_input_text(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "", multiline = TRUE, prevent_enter = TRUE)
@@ -759,9 +759,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	config.ooc_allowed = !(config.ooc_allowed)
 	if (config.ooc_allowed)
-		to_world("<B>The OOC channel has been globally enabled!</B>")
+		to_world(span_world("The OOC channel has been globally enabled!"))
 	else
-		to_world("<B>The OOC channel has been globally disabled!</B>")
+		to_world(span_world("The OOC channel has been globally disabled!"))
 	log_and_message_admins("toggled OOC.")
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -775,9 +775,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	config.looc_allowed = !(config.looc_allowed)
 	if (config.looc_allowed)
-		to_world("<B>The LOOC channel has been globally enabled!</B>")
+		to_world(span_world("The LOOC channel has been globally enabled!"))
 	else
-		to_world("<B>The LOOC channel has been globally disabled!</B>")
+		to_world(span_world("The LOOC channel has been globally disabled!"))
 	log_and_message_admins("toggled LOOC.")
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -792,9 +792,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	config.dsay_allowed = !(config.dsay_allowed)
 	if (config.dsay_allowed)
-		to_world("<B>Deadchat has been globally enabled!</B>")
+		to_world(span_world("Deadchat has been globally enabled!"))
 	else
-		to_world("<B>Deadchat has been globally disabled!</B>")
+		to_world(span_world("Deadchat has been globally disabled!"))
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
@@ -854,7 +854,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		SSticker.start_immediately = FALSE
-		to_world(span_notice("Immediate game start canceled.  Normal startup resumed."))
+		to_world(span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
 		log_and_message_admins("cancelled immediate game start.")
 
 /datum/admins/proc/toggleenter()
@@ -863,9 +863,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Entering"
 	config.enter_allowed = !(config.enter_allowed)
 	if (!(config.enter_allowed))
-		to_world("<B>New players may no longer enter the game.</B>")
+		to_world(span_world("New players may no longer enter the game."))
 	else
-		to_world("<B>New players may now enter the game.</B>")
+		to_world(span_world("New players may now enter the game."))
 	log_admin("[key_name(usr)] toggled new player game entering.")
 	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."), 1)
 	world.update_status()
@@ -877,9 +877,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle AI"
 	config.allow_ai = !( config.allow_ai )
 	if (!( config.allow_ai ))
-		to_world("<B>The AI job is no longer chooseable.</B>")
+		to_world(span_world("The AI job is no longer chooseable."))
 	else
-		to_world("<B>The AI job is chooseable now.</B>")
+		to_world(span_world("The AI job is chooseable now."))
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -890,9 +890,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Respawn"
 	config.abandon_allowed = !(config.abandon_allowed)
 	if(config.abandon_allowed)
-		to_world("<B>You may now respawn.</B>")
+		to_world(span_world("You may now respawn."))
 	else
-		to_world("<B>You may no longer respawn :(</B>")
+		to_world(span_world("You may no longer respawn :("))
 	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"]."), 1)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
@@ -904,9 +904,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Persistent Data"
 	config.persistence_disabled = !(config.persistence_disabled)
 	if(!config.persistence_disabled)
-		to_world("<B>Persistence is now enabled..</B>")
+		to_world(span_world("Persistence is now enabled.."))
 	else
-		to_world("<B>Persistence is no longer enabled.</B>")
+		to_world(span_world("Persistence is no longer enabled."))
 	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"]."), 1)
 	log_admin("[key_name(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"].")
 	world.update_status()
@@ -918,9 +918,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Mapload Persistent Data"
 	config.persistence_ignore_mapload = !(config.persistence_ignore_mapload)
 	if(!config.persistence_ignore_mapload)
-		to_world("<B>Persistence is now enabled..</B>")
+		to_world(span_world("Persistence is now enabled.."))
 	else
-		to_world("<B>Persistence is no longer enabled.</B>")
+		to_world(span_world("Persistence is no longer enabled."))
 	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [config.persistence_ignore_mapload ? "Off" : "On"]."), 1)
 	log_admin("[key_name(usr)] toggled persistence to [config.persistence_ignore_mapload ? "Off" : "On"].")
 	world.update_status()
@@ -957,10 +957,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 		return
 	round_progressing = !round_progressing
 	if (!round_progressing)
-		to_world("<b>The game start has been delayed.</b>")
+		to_world(span_world("The game start has been delayed."))
 		log_admin("[key_name(usr)] delayed the game.")
 	else
-		to_world("<b>The game will start soon.</b>")
+		to_world(span_world("The game will start soon."))
 		log_admin("[key_name(usr)] removed the delay.")
 	feedback_add_details("admin_verb","DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -995,7 +995,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!usr.client.holder)	return
 	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
-	to_world("[span_red("<b>Rebooting world!</b>")] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]")
+	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
 
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
@@ -1223,7 +1223,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	else
 		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a></b>.<br/>"
 
-	out += "<b>All antag ids:</b>"
+	out += span_bold("All antag ids:")
 	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
 		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
 			antag.update_current_antag_max()
@@ -1244,9 +1244,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle tinted welding helmets."
 	config.welder_vision = !( config.welder_vision )
 	if (config.welder_vision)
-		to_world("<B>Reduced welder vision has been enabled!</B>")
+		to_world(span_world("Reduced welder vision has been enabled!"))
 	else
-		to_world("<B>Reduced welder vision has been disabled!</B>")
+		to_world(span_world("Reduced welder vision has been disabled!"))
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1257,9 +1257,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle guests"
 	config.guests_allowed = !(config.guests_allowed)
 	if (!(config.guests_allowed))
-		to_world("<B>Guests may no longer enter the game.</B>")
+		to_world(span_world("Guests may no longer enter the game."))
 	else
-		to_world("<B>Guests may now enter the game.</B>")
+		to_world(span_world("Guests may now enter the game."))
 	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
 	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed."), 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1269,21 +1269,21 @@ var/datum/announcement/minor/admin_min_announcer = new
 	for(var/mob/living/silicon/S in mob_list)
 		ai_number++
 		if(isAI(S))
-			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, span_bold("AI [key_name(S, usr)]'s laws:"))
 		else if(isrobot(S))
 			var/mob/living/silicon/robot/R = S
-			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independent)"]: laws:</b>")
+			to_chat(usr, span_bold("CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independent)"]: laws:"))
 		else if (ispAI(S))
-			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, span_bold("pAI [key_name(S, usr)]'s laws:"))
 		else
-			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, span_bold("SOMETHING SILICON [key_name(S, usr)]'s laws:"))
 
 		if (S.laws == null)
 			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
 		else
 			S.laws.show_laws(usr)
 	if(!ai_number)
-		to_chat(usr, "<b>No AIs located</b>") //Just so you know the thing is actually working and not just ignoring you.
+		to_chat(usr, span_bold("No AIs located")) //Just so you know the thing is actually working and not just ignoring you.
 
 /datum/admins/proc/show_skills()
 	set category = "Admin"
@@ -1316,7 +1316,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 /proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
 	if(!whom)
-		return "<b>(*null*)</b>"
+		return span_bold("(*null*)")
 	var/mob/M
 	var/client/C
 	if(istype(whom, /client))
@@ -1326,25 +1326,25 @@ var/datum/announcement/minor/admin_min_announcer = new
 		M = whom
 		C = M.client
 	else
-		return "<b>(*not a mob*)</b>"
+		return span_bold("(*not a mob*)")
 	switch(detail)
 		if(0)
-			return "<b>[key_name(C, link, name, highlight_special)]</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)]")
 
 		if(1)	//Private Messages
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>)")
 
 		if(2)	//Admins
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 		if(3)	//Devs
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>)([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>)([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 		if(4)	//Event Managers
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 
 /proc/ishost(whom)

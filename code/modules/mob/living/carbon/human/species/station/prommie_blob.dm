@@ -258,11 +258,11 @@
 
 	if(is_wide)
 		is_wide = FALSE
-		src.visible_message("<b>[src.name]</b> pulls together, compacting themselves into a small ball!")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " pulls together, compacting themselves into a small ball!"))
 		update_icon()
 	else
 		is_wide = TRUE
-		src.visible_message("<b>[src.name]</b> flows outwards, their goop expanding!")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " flows outwards, their goop expanding!"))
 		update_icon()
 
 /mob/living/simple_mob/slime/promethean/proc/toggle_shine()
@@ -278,11 +278,11 @@
 
 	if(shiny)
 		shiny = FALSE
-		src.visible_message("<b>[src.name]</b> dulls their shine, becoming more translucent.")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " dulls their shine, becoming more translucent."))
 		update_icon()
 	else
 		shiny = TRUE
-		src.visible_message("<b>[src.name]</b> glistens and sparkles, shining brilliantly.")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " glistens and sparkles, shining brilliantly."))
 		update_icon()
 
 /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour()
@@ -410,7 +410,7 @@
 	moveToNullspace()
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> squishes into their true form!")
+	blob.visible_message(span_infoplain(span_bold("[src.name]") + " squishes into their true form!"))
 
 	//Transfer vore organs
 	blob.vore_organs = vore_organs
@@ -443,7 +443,7 @@
 	stop_pulling()
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> pulls together, forming a humanoid shape!")
+	blob.visible_message(span_infoplain(span_bold("[src.name]") + " pulls together, forming a humanoid shape!"))
 
 	//Record where they should go
 	var/atom/reform_spot = blob.drop_location()

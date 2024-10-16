@@ -387,7 +387,7 @@
 		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
 		dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 		dat += "Round Duration: <B>[roundduration2text()]</B><BR>"
-		dat += "<B>Emergency shuttle</B><BR>"
+		dat += span_bold("Emergency shuttle") + "<BR>"
 		if (!emergency_shuttle.online())
 			dat += "<a href='?src=\ref[src];[HrefToken()];call_shuttle=1'>Call Shuttle</a><br>"
 		else

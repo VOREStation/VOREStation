@@ -424,13 +424,13 @@
 
 			var/obj/item/paper/P = new /obj/item/paper(loc)
 			P.info = "<center><b>Chemical Analysis</b></center><br>"
-			P.info += "<b>Time of analysis:</b> [worldtime2stationtime(world.time)]<br><br>"
-			P.info += "<b>Chemical name:</b> [R.name]<br>"
+			P.info += span_bold("Time of analysis:") + " [worldtime2stationtime(world.time)]<br><br>"
+			P.info += span_bold("Chemical name:") + " [R.name]<br>"
 			if(istype(R, /datum/reagent/blood))
 				var/datum/reagent/blood/B = R
-				P.info += "<b>Description:</b> N/A<br><b>Blood Type:</b> [B.data["blood_type"]]<br><b>DNA:</b> [B.data["blood_DNA"]]"
+				P.info += span_bold("Description:") + " N/A<br><b>Blood Type:</b> [B.data["blood_type"]]<br><b>DNA:</b> [B.data["blood_DNA"]]"
 			else
-				P.info += "<b>Description:</b> [R.description]"
+				P.info += span_bold("Description:") + " [R.description]"
 			P.info += "<br><br><b>Notes:</b><br>"
 			P.name = "Chemical Analysis - [R.name]"
 			spawn(50)

@@ -6,25 +6,25 @@
 	set category = "IC"
 	set src = usr
 
-	var/dat = "<b><font size = 5>Known Attacks</font></b><br/><br/>"
+	var/dat = span_bold("<font size = 5>Known Attacks</font>") + "<br/><br/>"
 
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
-		dat += "<b>Primarily [u_attack.attack_name] </b><br/><br/><br/>"
+		dat += span_bold("Primarily [u_attack.attack_name] ") + "<br/><br/><br/>"
 
 	src << browse(dat, "window=checkattack")
 	return
 
 /mob/living/carbon/human/check_attacks()
-	var/dat = "<b><font size = 5>Known Attacks</font></b><br/><br/>"
+	var/dat = span_bold("<font size = 5>Known Attacks</font>") + "<br/><br/>"
 
 	if(default_attack)
 		dat += "Current default attack: [default_attack.attack_name] - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/>"
 
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if(u_attack == default_attack)
-			dat += "<b>Primarily [u_attack.attack_name]</b> - default - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/><br/>"
+			dat += span_bold("Primarily [u_attack.attack_name]") + " - default - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/><br/>"
 		else
-			dat += "<b>Primarily [u_attack.attack_name]</b> - <a href='byond://?src=\ref[src];default_attk=\ref[u_attack]'>set default</a><br/><br/><br/>"
+			dat += span_bold("Primarily [u_attack.attack_name]") + " - <a href='byond://?src=\ref[src];default_attk=\ref[u_attack]'>set default</a><br/><br/><br/>"
 
 	src << browse(dat, "window=checkattack")
 

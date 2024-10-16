@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
-		to_chat(usr, "[icon2html(cashmoney, user.client)] <span class='warning'>That is not enough money.</span>")
+		to_chat(usr, "[icon2html(cashmoney, user.client)] " + span_warning("That is not enough money."))
 		return 0
 
 	if(istype(cashmoney, /obj/item/spacecash))
@@ -628,7 +628,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(prob(1))
 		sleep(3)
 		if(R.get_product(get_turf(src)))
-			visible_message("<b>\The [src]</b> clunks as it vends an additional item.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " clunks as it vends an additional item."))
 	playsound(src, "sound/[vending_sound]", 100, 1, 1)
 
 	GLOB.items_sold_shift_roundstat++
@@ -754,7 +754,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message(span_npc_say("<span class='name'>\The [src]</span> beeps, \"[message]\""),2)
+		O.show_message(span_npc_say(span_name("\The [src]") + " beeps, \"[message]\""),2)
 	return
 
 /obj/machinery/vending/power_change()

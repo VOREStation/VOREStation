@@ -315,7 +315,7 @@
 /obj/item/kinetic_crusher/machete/gauntlets/proc/wield(var/mob/living/M)
 	name = initial(name)
 	wielded = TRUE
-	to_chat(M, "<span class ='notice'>You ready [src].</span>")
+	to_chat(M, span_notice("You ready [src]."))
 	var/obj/item/offhand/crushergauntlets/O = new(M)
 	O.name = "[name] - readied"
 	O.desc = "As much as you'd like to punch things with one hand, [src] is far too unwieldy for that."
@@ -324,7 +324,7 @@
 	offhand = O
 
 /obj/item/kinetic_crusher/machete/gauntlets/proc/unwield(var/mob/living/M)
-	to_chat(M, "<span class ='notice'>You unready [src].</span>")
+	to_chat(M, span_notice("You unready [src]."))
 	name = "[initial(name)] (unreadied)"
 	wielded = FALSE
 	if(offhand)

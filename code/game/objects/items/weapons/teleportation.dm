@@ -55,11 +55,11 @@ Frequency:
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
 		if (href_list["refresh"])
-			src.temp = "<B>Persistent Signal Locator</B><HR>"
+			src.temp = span_bold("Persistent Signal Locator") + "<HR>"
 			var/turf/sr = get_turf(src)
 
 			if (sr)
-				src.temp += "<B>Located Beacons:</B><BR>"
+				src.temp += span_bold("Located Beacons:") + "<BR>"
 
 				for(var/obj/item/radio/beacon/W in all_beacons)
 					if (W.frequency == src.frequency)
@@ -78,7 +78,7 @@ Frequency:
 										direct = "very weak"
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
-				src.temp += "<B>Extraneous Signals:</B><BR>"
+				src.temp += span_bold("Extraneous Signals:") + "<BR>"
 				for (var/obj/item/implant/tracking/W in all_tracking_implants)
 					if (!W.implanted || !(istype(W.loc,/obj/item/organ/external) || ismob(W.loc) || W.malfunction))
 						continue
@@ -96,9 +96,9 @@ Frequency:
 									direct = "weak"
 							src.temp += "[W.id]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
-				src.temp += "<B>You are at \[[sr.x],[sr.y],[sr.z]\]</B> in orbital coordinates.<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
+				src.temp += span_bold("You are at \[[sr.x],[sr.y],[sr.z]\]") + " in orbital coordinates.<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
 			else
-				src.temp += "<B><FONT color='red'>Processing Error:</FONT></B> Unable to locate orbital position.<BR>"
+				src.temp += span_bold("<FONT color='red'>Processing Error:</FONT>") + " Unable to locate orbital position.<BR>"
 		else
 			if (href_list["freq"])
 				src.frequency += text2num(href_list["freq"])

@@ -146,7 +146,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/Login()
 	. = ..()
 	if(can_pick_shell)
-		to_chat(src, "<b>You can select a shell using the 'Abilities.Silicon' > 'Customize Appearance'</b>")
+		to_chat(src, span_infoplain(span_bold("You can select a shell using the 'Abilities.Silicon' > 'Customize Appearance'")))
 
 //Redefining some robot procs...
 /mob/living/silicon/robot/drone/SetName(pickedName as text)
@@ -225,7 +225,7 @@ var/list/mob_hat_cache = list()
 			return
 		user.unEquip(W)
 		wear_hat(W)
-		user.visible_message("<b>\The [user]</b> puts \the [W] on \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " puts \the [W] on \the [src]."))
 		return
 	else if(istype(W, /obj/item/borg/upgrade/))
 		to_chat(user, span_danger("\The [src] is not compatible with \the [W]."))
@@ -286,7 +286,7 @@ var/list/mob_hat_cache = list()
 
 	log_game("[key_name(user)] emagged drone [key_name(src)]. Laws overridden.")
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
+	lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
 
 	emagged = 1
 	lawupdate = 0
@@ -297,7 +297,7 @@ var/list/mob_hat_cache = list()
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
 
-	to_chat(src, "<b>Obey these laws:</b>")
+	to_chat(src, span_infoplain(span_bold("Obey these laws:")))
 	laws.show_laws(src)
 	to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and \his commands."))
 	return 1
@@ -384,15 +384,15 @@ var/list/mob_hat_cache = list()
 		player.mob.mind.transfer_to(src)
 
 	lawupdate = 0
-	to_chat(src, "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>.")
+	to_chat(src, span_infoplain(span_bold("Systems rebooted") + " Loading base pattern maintenance protocol... " + span_bold("loaded") + "."))
 	full_law_reset()
 	welcome_drone()
 
 /mob/living/silicon/robot/drone/proc/welcome_drone()
-	to_chat(src, "<b>You are a maintenance drone, a tiny-brained robotic repair machine</b>.")
-	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
-	to_chat(src, "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
-	to_chat(src, "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows.")
+	to_chat(src, span_infoplain(span_bold("You are a maintenance drone, a tiny-brained robotic repair machine") + "."))
+	to_chat(src, span_infoplain("You have no individual will, no personality, and no drives or urges other than your laws."))
+	to_chat(src, span_infoplain("Remember,  you are " + span_bold("lawed against interference with the crew") + ". Also remember, " + span_bold("you DO NOT take orders from the AI") + "."))
+	to_chat(src, span_infoplain("Use " + span_bold("say ;Hello") + " to talk to other drones and " + span_bold("say Hello") + " to speak silently to your nearby fellows."))
 
 /mob/living/silicon/robot/drone/add_robot_verbs()
 	add_verb(src, silicon_subsystems)
@@ -401,10 +401,10 @@ var/list/mob_hat_cache = list()
 	remove_verb(src, silicon_subsystems)
 
 /mob/living/silicon/robot/drone/construction/welcome_drone()
-	to_chat(src, "<b>You are a construction drone, an autonomous engineering and fabrication system.</b>.")
-	to_chat(src, "You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible.")
-	to_chat(src, "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows.")
-	to_chat(src, "<b>You do not follow orders from anyone; not the AI, not humans, and not other synthetics.</b>.")
+	to_chat(src, span_infoplain(span_bold("You are a construction drone, an autonomous engineering and fabrication system") + "."))
+	to_chat(src, span_infoplain("You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible."))
+	to_chat(src, span_infoplain("Use " + span_bold(":d") + " to talk to other drones and " + span_bold("say") + " to speak silently to your nearby fellows."))
+	to_chat(src, span_infoplain(span_bold("You do not follow orders from anyone; not the AI, not humans, and not other synthetics") + "."))
 
 /mob/living/silicon/robot/drone/construction/init()
 	..()

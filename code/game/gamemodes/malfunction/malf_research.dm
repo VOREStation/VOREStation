@@ -31,7 +31,7 @@
 /datum/malf_research/proc/finish_research()
 	if(!focus)
 		return
-	to_chat(owner, "<b>Research Completed</b>: [focus.name]")
+	to_chat(owner, span_bold("Research Completed") + ": [focus.name]")
 	add_verb(owner, focus.ability)
 	available_abilities -= focus
 	if(focus.next)

@@ -165,7 +165,7 @@
 				hunger += 5
 		else
 			food.Weaken(5)
-			food.visible_message("<span class='danger'>\The [src] pounces on \the [food]!</span>!")
+			food.visible_message(span_danger("\The [src] pounces on \the [food]!"))
 			target_mob = food
 			EatTarget()
 			hunger = 0

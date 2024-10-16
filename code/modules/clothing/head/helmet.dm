@@ -150,7 +150,7 @@
 
 /obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
-	desc = "<i>'Let the battle commence!'</i>"
+	desc = span_italics("'Let the battle commence!'")
 	icon_state = "thunderdome"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
 	cold_protection = HEAD

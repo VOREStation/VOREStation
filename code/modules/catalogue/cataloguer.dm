@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 			dat += "<a href='?src=\ref[src];debug_unlock=\ref[displayed_data]'>\[(DEBUG) Force Discovery\]</a>"
 		dat += "<hr>"
 
-		dat += "<i>[displayed_data.desc]</i>"
+		dat += span_italics("[displayed_data.desc]")
 		if(LAZYLEN(displayed_data.cataloguers))
 			dat += "Cataloguers : <b>[english_list(displayed_data.cataloguers)]</b>."
 		else
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 			var/list/group_dat = list()
 			var/show_group = FALSE
 
-			group_dat += "<b>[group.name]</b>"
+			group_dat += span_bold("[group.name]")
 			for(var/datum/category_item/catalogue/item as anything in group.items)
 				if(item.visible || debug)
 					group_dat += "<a href='?src=\ref[src];show_data=\ref[item]'>[item.name]</a>"

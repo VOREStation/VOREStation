@@ -52,8 +52,8 @@
 	switch(scan_type)
 		if("robot")
 			if(mode)
-				var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
-				var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
+				var/BU = M.getFireLoss() > 50 	? 	span_bold("[M.getFireLoss()]") 		: M.getFireLoss()
+				var/BR = M.getBruteLoss() > 50 	? 	span_bold("[M.getBruteLoss()]") 	: M.getBruteLoss()
 				user.show_message(span_blue("Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]"))
 				user.show_message("\t Key: [span_orange("Electronics")]/[span_red("Brute")]", 1)
 				user.show_message("\t Damage Specifics: [span_orange("[BU]")] - [span_red("[BR]")]")
@@ -73,7 +73,7 @@
 					else if (cell_charge > 1)
 						cell_text = span_red("[cell_charge]")
 					else
-						cell_text = span_red("<b>[cell_charge]</b>")
+						cell_text = span_red(span_bold("[cell_charge]"))
 					user.show_message("\t Power Cell Status: [span_blue("[capitalize(cell.name)]")] at [cell_text]% charge")
 				var/list/damaged = R.get_damaged_components(1,1,1)
 				user.show_message(span_blue("Localized Damage:"),1)
@@ -81,7 +81,7 @@
 					for(var/datum/robot_component/org in damaged)
 						user.show_message(span_blue(text("\t []: [][] - [] - [] - []",	\
 						span_blue(capitalize(org.name)),					\
-						(org.installed == -1)	?	"[span_red("<b>DESTROYED</b>")] "					:"",\
+						(org.installed == -1)	?	"[span_red(span_bold("DESTROYED"))] "					:"",\
 						(org.electronics_damage > 0)	?	"[span_orange("[org.electronics_damage]")]"	:0,	\
 						(org.brute_damage > 0)	?	"[span_red("[org.brute_damage]")]"					:0,	\
 						(org.toggled)	?	"Toggled ON"	:	"[span_red("Toggled OFF")]",\
@@ -121,7 +121,7 @@
 						user.show_message("\t Basic Modules, used for direct upgrade purposes:")
 						show_title = FALSE
 					if(R.has_basic_upgrade(initial(upgrade.build_path)) == "")
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red(span_bold("ERROR"))]"))
 					else
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_basic_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
@@ -134,7 +134,7 @@
 						user.show_message("\t Advanced Modules, used for module upgrade purposes:")
 						show_title = FALSE
 					if(R.has_advanced_upgrade(initial(upgrade.build_path)) == "")
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red(span_bold("ERROR"))]"))
 					else
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_advanced_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
@@ -147,7 +147,7 @@
 						user.show_message("\t Restricted Modules, used for module upgrade purposes on specific chassis:")
 						show_title = FALSE
 					if(R.has_restricted_upgrade(initial(upgrade.build_path)) == "")
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red(span_bold("ERROR"))]"))
 					else
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_restricted_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 				show_title = TRUE
@@ -161,7 +161,7 @@
 						user.show_message("\t Special Modules, used for recreation purposes:")
 						show_title = FALSE
 					if(R.has_no_prod_upgrade(initial(upgrade.build_path)) == "")
-						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red("<b>ERROR</b>")]"))
+						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [span_red(span_bold("ERROR"))]"))
 					else
 						user.show_message(span_blue("\t\t [capitalize(initial(upgrade.name))]: [R.has_no_prod_upgrade(initial(upgrade.build_path)) ? span_green("Installed") : span_red("Missing")]"))
 
@@ -204,7 +204,7 @@
 			var/tank_temperature = Mecha.internal_tank ? Mecha.internal_tank.return_temperature() : "Unknown"
 			var/cabin_pressure = round(Mecha.return_pressure(),0.01)
 
-			var/output = {"<span class='notice'>Analyzing Results for \the [Mecha]:</span><br>
+			var/output = span_notice("Analyzing Results for \the [Mecha]:") + {"<br>
 				<b>Chassis Integrity: </b> [integrity]%<br>
 				<b>Powercell charge: </b>[isnull(cell_charge)?"No powercell installed":"[capitalize(initial(Mecha.cell.name))] at [Mecha.cell.percent()]%"]<br>
 				<b>Air source: </b>[Mecha.use_internal_tank?"Internal Airtank":"Environment"]<br>
@@ -220,11 +220,11 @@
 			to_chat(user, span_notice("Internal Diagnostics:"))
 			for(var/slot in Mecha.internal_components)
 				var/obj/item/mecha_parts/component/MC = Mecha.internal_components[slot]
-				to_chat(user, "[MC?"[slot]: [MC] <span class='notice'>[round((MC.integrity / MC.max_integrity) * 100, 0.1)]%</span> integrity. [MC.get_efficiency() * 100] Operational capacity.":span_warning("[slot]: Component Not Found")]")
+				to_chat(user, "[MC? ("[slot]: [MC] " + span_notice("[round((MC.integrity / MC.max_integrity) * 100, 0.1)]%") + " integrity. [MC.get_efficiency() * 100] Operational capacity.") : span_warning("[slot]: Component Not Found")]")
 
 			to_chat(user, "<hr>")
 			to_chat(user, span_notice("General Statistics:"))
-			to_chat(user, "<span class='notice'>Movement Weight: [Mecha.get_step_delay()]</span><br>")
+			to_chat(user, span_notice("Movement Weight: [Mecha.get_step_delay()]") + "<br>")
 
 	src.add_fingerprint(user)
 	return

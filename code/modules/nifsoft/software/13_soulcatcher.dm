@@ -74,13 +74,13 @@
 
 	to_chat(nif.human,
 			type = MESSAGE_TYPE_NIF,
-			html = span_nif("<b>\[[icon2html(nif.big_icon, nif.human)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\""))
+			html = span_nif(span_bold("\[[icon2html(nif.big_icon, nif.human)]NIF\]") + " " + span_bold("Soulcatcher") + " displays, \"" + span_notice(span_nif("[message]")) + "\""))
 	nif.human << sound
 
 	for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 		to_chat(CS,
 				type = MESSAGE_TYPE_NIF,
-				html = span_nif("<b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\""))
+				html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + " " + span_bold("Soulcatcher") + " displays, \"" + span_notice(span_nif("[message]")) + "\""))
 		CS << sound
 
 /datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
@@ -88,17 +88,17 @@
 
 	//AR Projecting
 	if(eyeobj)
-		sender.eyeobj.visible_message(span_game(span_say("<b>[sender_name]</b> says, \"[message]\"")))
+		sender.eyeobj.visible_message(span_game(span_say(span_bold("[sender_name]") + " says, \"[message]\"")))
 
 	//Not AR Projecting
 	else
 		to_chat(nif.human,
 				type = MESSAGE_TYPE_NIF,
-				html = span_nif("<b>\[[icon2html(nif.big_icon, nif.human.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\""))
+				html = span_nif(span_bold("\[[icon2html(nif.big_icon, nif.human.client)]NIF\]") + " " + span_bold("[sender_name]") + " speaks, \"[message]\""))
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,
 					type = MESSAGE_TYPE_NIF,
-					html = span_nif("<b>\[[icon2html(nif.big_icon, CS.client)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\""))
+					html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + " " + span_bold("[sender_name]") + " speaks, \"[message]\""))
 
 	log_nsay(message,nif.human.real_name,sender)
 
@@ -113,11 +113,11 @@
 	else
 		to_chat(nif.human,
 				type = MESSAGE_TYPE_NIF,
-				html = span_nif("<b>\[[icon2html(nif.big_icon,nif.human.client)]NIF\]</b> <b>[sender_name]</b> [message]"))
+				html = span_nif(span_bold("\[[icon2html(nif.big_icon,nif.human.client)]NIF\]") + " " + span_bold("[sender_name]") + " [message]"))
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,
 					type = MESSAGE_TYPE_NIF,
-					html = span_nif("<b>\[[icon2html(nif.big_icon,CS.client)]NIF\]</b> <b>[sender_name]</b> [message]"))
+					html = span_nif(span_bold("\[[icon2html(nif.big_icon,CS.client)]NIF\]") + " " + span_bold("[sender_name]") + " [message]"))
 
 	log_nme(message,nif.human.real_name,sender)
 
@@ -145,7 +145,7 @@
 				inside_flavor = new_flavor
 				nif.notify("Updating VR environment...")
 				for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
-					to_chat(CS,"<span class='notice'>Your surroundings change to...</span>\n[inside_flavor]")
+					to_chat(CS,span_notice("Your surroundings change to...") + "\n[inside_flavor]")
 				save_settings()
 				return TRUE
 
@@ -251,7 +251,7 @@
 		qdel(M) //Bye ghost
 
 	//Give them a flavortext message
-	var/message = "<span class='notice'>Your vision fades in a haze of static, before returning.</span>\n\
+	var/message = span_notice("Your vision fades in a haze of static, before returning.") + "\n\
 					Around you, you see...\n\
 					[inside_flavor]"
 
@@ -259,8 +259,8 @@
 
 	//Reminder on how this works to host
 	if(brainmobs.len == 1) //Only spam this on the first one
-		to_chat(nif.human,"<span class='notice'>Your occupant's messages/actions can only be seen by you, and you can \
-		send messages that only they can hear/see by using the NSay and NMe verbs (or the *nsay and *nme emotes).</span>")
+		to_chat(nif.human,span_notice("Your occupant's messages/actions can only be seen by you, and you can \
+		send messages that only they can hear/see by using the NSay and NMe verbs (or the *nsay and *nme emotes)."))
 
 	//Announce to host and other minds
 	notify_into("New mind loaded: [brainmob.name]")

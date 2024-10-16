@@ -81,7 +81,7 @@ var/global/list/breach_burn_descriptors = list(
 			amount_left = 0
 			B.update_descriptor()
 
-	user.visible_message("<b>[user]</b> patches some of the damage on \the [src].")
+	user.visible_message(span_infoplain(span_bold("[user]") + " patches some of the damage on \the [src]."))
 	calc_breach_damage()
 
 /obj/item/clothing/suit/space/proc/create_breaches(var/damtype, var/amount)
@@ -119,9 +119,9 @@ var/global/list/breach_burn_descriptors = list(
 				amount -= needs
 
 			if(existing.damtype == BRUTE)
-				T.visible_message("<span class = 'warning'>\The [existing.descriptor] on [src] gapes wider!</span>")
+				T.visible_message(span_warning("\The [existing.descriptor] on [src] gapes wider!"))
 			else if(existing.damtype == BURN)
-				T.visible_message("<span class = 'warning'>\The [existing.descriptor] on [src] widens!</span>")
+				T.visible_message(span_warning("\The [existing.descriptor] on [src] widens!"))
 
 	if (amount)
 		//Spawn a new breach.
@@ -135,9 +135,9 @@ var/global/list/breach_burn_descriptors = list(
 		B.holder = src
 
 		if(B.damtype == BRUTE)
-			T.visible_message("<span class = 'warning'>\A [B.descriptor] opens up on [src]!</span>")
+			T.visible_message(span_warning("\A [B.descriptor] opens up on [src]!"))
 		else if(B.damtype == BURN)
-			T.visible_message("<span class = 'warning'>\A [B.descriptor] marks the surface of [src]!</span>")
+			T.visible_message(span_warning("\A [B.descriptor] marks the surface of [src]!"))
 
 	calc_breach_damage()
 
@@ -227,4 +227,4 @@ var/global/list/breach_burn_descriptors = list(
 	. = ..()
 	if(can_breach && breaches?.len)
 		for(var/datum/breach/B in breaches)
-			. += span_red("<B>It has \a [B.descriptor].</B>")
+			. += span_red(span_bold("It has \a [B.descriptor]."))

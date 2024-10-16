@@ -117,7 +117,7 @@
 
 			user.machine = src
 
-			var/dat = text("<b>[name]</b><br>")
+			var/dat = text(span_bold("[name]") + "<br>")
 			if (active)
 				dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
 			else

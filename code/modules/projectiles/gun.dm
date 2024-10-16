@@ -189,7 +189,7 @@
 			if(!attached_lock.exploding)
 				if(attached_lock.safety_level == 1)
 					to_chat(M, span_danger("\The [src] hisses in dissapointment."))
-					visible_message(span_game(span_say("<span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"")), span_game(span_say("<span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"")))
+					visible_message(span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")), span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")))
 					attached_lock.exploding = 1
 					spawn(100)
 						explosion(src, 0, 0, 3, 4)
@@ -711,10 +711,10 @@
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
-		user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
+		user.visible_message(span_warning("[user] pulls the trigger."))
 		play_fire_sound(M, in_chamber)
 		if(istype(in_chamber, /obj/item/projectile/beam/lasertag))
-			user.show_message("<span class = 'warning'>You feel rather silly, trying to commit suicide with a toy.</span>")
+			user.show_message(span_warning("You feel rather silly, trying to commit suicide with a toy."))
 			mouthshoot = 0
 			return
 
@@ -724,7 +724,7 @@
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp = TRUE)
 			user.death()
 		else if(in_chamber.damage_type == HALLOSS)
-			to_chat(user, "<span class = 'notice'>Ow...</span>")
+			to_chat(user, span_notice("Ow..."))
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
 		mouthshoot = 0

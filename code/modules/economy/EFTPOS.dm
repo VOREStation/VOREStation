@@ -28,10 +28,10 @@
 	var/obj/item/paper/R = new(src.loc)
 	R.name = "Steps to success: Correct EFTPOS Usage"
 	//Temptative new manual:
-	R.info += "<b>First EFTPOS setup:</b><br>"
+	R.info += span_bold("First EFTPOS setup:") + "<br>"
 	R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
 	R.info += "2. Connect the EFTPOS to the account in which you want to receive the funds.<br><br>"
-	R.info += "<b>When starting a new transaction:</b><br>"
+	R.info += span_bold("When starting a new transaction:") + "<br>"
 	R.info += "1. Enter the amount of money you want to charge and a purpose message for the new transaction.<br>"
 	R.info += "2. Lock the new transaction. If you want to modify or cancel the transaction, you simply have to reset your EFTPOS device.<br>"
 	R.info += "3. Give the EFTPOS device to your customer, he/she must finish the transaction by swiping their ID card or a charge card with enough funds.<br>"
@@ -56,9 +56,9 @@
 /obj/item/eftpos/proc/print_reference()
 	var/obj/item/paper/R = new(src.loc)
 	R.name = "Reference: [eftpos_name]"
-	R.info = "<b>[eftpos_name] reference</b><br><br>"
+	R.info = span_bold("[eftpos_name] reference") + "<br><br>"
 	R.info += "Access code: [access_code]<br><br>"
-	R.info += "<b>Do not lose or misplace this code.</b><br>"
+	R.info += span_bold("Do not lose or misplace this code.") + "<br>"
 
 	//stamp the paper
 	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -75,7 +75,7 @@
 
 /obj/item/eftpos/attack_self(mob/user as mob)
 	if(get_dist(src,user) <= 1)
-		var/dat = "<b>[eftpos_name]</b><br>"
+		var/dat = span_bold("[eftpos_name]") + "<br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting IT Support</i><br>"
 		if(transaction_locked)
 			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
@@ -109,7 +109,7 @@
 		if(linked_account)
 			scan_card(I, O)
 		else
-			to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Unable to connect to linked account.</span>")
+			to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Unable to connect to linked account."))
 	else if (istype(O, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/ewallet/E = O
 		if (linked_account)
@@ -134,11 +134,11 @@
 						T.time = stationtime2text()
 						linked_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>\The [O] doesn't have that much money!</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("\The [O] doesn't have that much money!"))
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Connected account has been suspended.</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Connected account has been suspended."))
 		else
-			to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>EFTPOS is not connected to an account.</span>")
+			to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("EFTPOS is not connected to an account."))
 
 	else
 		..()
@@ -156,14 +156,14 @@
 						tgui_alert_async(usr, "That is not a valid code!")
 					print_reference()
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Incorrect code entered.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Incorrect code entered."))
 			if("change_id")
 				var/attempt_code = text2num(input(usr, "Re-enter the current EFTPOS access code", "Confirm EFTPOS code"))
 				if(attempt_code == access_code)
 					eftpos_name = sanitize(input(usr, "Enter a new terminal ID for this device", "Enter new EFTPOS ID"), MAX_NAME_LEN) + " EFTPOS scanner"
 					print_reference()
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Incorrect code entered.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Incorrect code entered."))
 			if("link_account")
 				var/attempt_account_num = tgui_input_number(usr, "Enter account number to pay EFTPOS charges into", "New account number")
 				var/attempt_pin = tgui_input_number(usr, "Enter pin code", "Account pin")
@@ -171,9 +171,9 @@
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Account has been suspended.</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account has been suspended."))
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Account not found.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("trans_purpose")
 				var/choice = sanitize(input(usr, "Enter reason for EFTPOS transaction", "Transaction purpose"))
 				if(choice) transaction_purpose = choice
@@ -196,14 +196,14 @@
 				else if(linked_account)
 					transaction_locked = 1
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>No account connected to send transactions to.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("No account connected to send transactions to."))
 			if("scan_card")
 				if(linked_account)
 					var/obj/item/I = usr.get_active_hand()
 					if (istype(I, /obj/item/card))
 						scan_card(I)
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Unable to link accounts.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Unable to link accounts."))
 			if("reset")
 				//reset the access code - requires HoP/captain access
 				var/obj/item/I = usr.get_active_hand()
@@ -211,10 +211,10 @@
 					var/obj/item/card/id/C = I
 					if((access_cent_captain in C.access) || (access_hop in C.access) || (access_captain in C.access))
 						access_code = 0
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='info'>Access code reset to 0.</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_info("Access code reset to 0."))
 				else if (istype(I, /obj/item/card/emag))
 					access_code = 0
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='info'>Access code reset to 0.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_info("Access code reset to 0."))
 
 	src.attack_self(usr)
 
@@ -267,19 +267,19 @@
 								T.time = stationtime2text()
 								linked_account.transaction_log.Add(T)
 							else
-								to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have that much money!</span>")
+								to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have that much money!"))
 						else
-							to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Your account has been suspended.</span>")
+							to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Your account has been suspended."))
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Unable to access account. Check security settings and try again."))
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Connected account has been suspended.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Connected account has been suspended."))
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>EFTPOS is not connected to an account.</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("EFTPOS is not connected to an account."))
 	else if (istype(I, /obj/item/card/emag))
 		if(transaction_locked)
 			if(transaction_paid)
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='info'>You stealthily swipe \the [I] through \the [src].</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_info("You stealthily swipe \the [I] through \the [src]."))
 				transaction_locked = 0
 				transaction_paid = 0
 			else

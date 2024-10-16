@@ -454,7 +454,7 @@
 	set category = "IC"
 	set src in oview(1)
 
-	usr.visible_message("<span class = 'notice'>\The [usr] pets \the [src].</span>", "<span class = 'notice'>You pet \the [src].</span>", runemessage = "pet pat...")
+	usr.visible_message(span_notice("\The [usr] pets \the [src]."), span_notice("You pet \the [src]."), runemessage = "pet pat...")
 	var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
 
 	if(s && istype(s, /obj/effect/overmap/visitable/ship/simplemob/stardog))
@@ -489,11 +489,11 @@
 	var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
 
 	log_subtle(message,L)
-	message = span_emote_subtle("<B>[L]</B> <I>[message]</I>")
-	message = "<B>(From the back of \the [m]) </B>" + message
+	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
+	message = span_bold("(From the back of \the [m]) ") + message
 	message = encode_html_emphasis(message)
 
-	var/undisplayed_message = span_emote("<B>[L]</B> <I>does something too subtle for you to see.</I>")
+	var/undisplayed_message = span_emote(span_bold("[L]") + " " + span_italics("does something too subtle for you to see."))
 	var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(m),1,2)
 	var/list/vis_mobs = vis["mobs"]
 	vis_mobs |= L
@@ -1051,26 +1051,26 @@
 	if(!host)
 		set_up()
 		if(!host)
-			to_chat(user, "<span class = 'warning'>It doesn't respond...</span>")
+			to_chat(user, span_warning("It doesn't respond..."))
 			return
 	control(user)
 
 /obj/structure/control_pod/proc/control(mob/living/user)
 	if(!host.affinity)	//take care of my dog
-		to_chat(user, "<span class = 'warning'>As you press your hand to \the [src], it resists your advance... A sense of longing ripples through your mind...</span>")
+		to_chat(user, span_warning("As you press your hand to \the [src], it resists your advance... A sense of longing ripples through your mind..."))
 		return
 	if(controller)	//busy
-		to_chat(user, "<span class = 'warning'>You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!</span>")
+		to_chat(user, span_warning("You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!"))
 		return
-	user.visible_message("<span class = 'notice'>\The [user] reaches out to touch \the [src]...</span>","<span class = 'notice'>You reach out to touch \the [src]...</span>")
+	user.visible_message(span_notice("\The [user] reaches out to touch \the [src]..."),span_notice("You reach out to touch \the [src]..."))
 	if(!do_after(user, 10 SECONDS, src, exclusive = TRUE))
-		user.visible_message("<span class = 'warning'>\The [user] pulls back from \the [src].</span>","<span class = 'warning'>You pull back from \the [src].</span>")
+		user.visible_message(span_warning("\The [user] pulls back from \the [src]."),span_warning("You pull back from \the [src]."))
 		return
 	if(controller)	//got busy while you were waiting, get rekt
-		to_chat(user, "<span class = 'warning'>You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!</span>")
+		to_chat(user, span_warning("You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!"))
 		return
 	controller = user
-	visible_message("<span class = 'warning'>\The [src] accepts \the [controller], submerging them beneath the surface of the flesh!</span>")
+	visible_message(span_warning("\The [src] accepts \the [controller], submerging them beneath the surface of the flesh!"))
 	user.stop_pulling()
 	user.forceMove(src)
 	host.ckey = user.ckey
@@ -1080,10 +1080,10 @@
 	set_light(5, 0.75, "#f94bff")
 
 /obj/structure/control_pod/proc/eject()
-	to_chat(host, "<span class = 'warning'>You feel your control over \the [host] slip away from you!</span>")
+	to_chat(host, span_warning("You feel your control over \the [host] slip away from you!"))
 	controller.forceMove(get_turf(src))
 	controller.ckey = host.ckey
-	visible_message("<span class = 'warning'>\The [controller] is ejected from \the [src], tumbling free!</span>")
+	visible_message(span_warning("\The [controller] is ejected from \the [src], tumbling free!"))
 	log_admin("[controller.ckey] is no longer controlling [host], they have been returned to their body, [controller].")
 	icon_state = "control_node0"
 	plane = OBJ_PLANE
@@ -1161,11 +1161,11 @@
 		return
 
 	log_subtle(message,L)
-	message = span_emote_subtle("<B>[L]</B> <I>[message]</I>")
-	message = "<B>(From within \the [s]) </B>" + message
+	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
+	message = span_bold("(From within \the [s]) ") + message
 	message = encode_html_emphasis(message)
 
-	var/undisplayed_message = span_emote("<B>[L]</B> <I>does something too subtle for you to see.</I>")
+	var/undisplayed_message = span_emote(span_bold("[L]") + " " + span_italics("does something too subtle for you to see."))
 	var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(s),1,2)
 	var/list/vis_mobs = vis["mobs"]
 	vis_mobs |= L
@@ -1663,7 +1663,7 @@
 	else if(user.faction == faction)
 		SwitchState()
 	else if(user.a_intent == I_HELP)
-		visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		visible_message(span_warningplain("[user] knocks on \the [src]."), span_warningplain("Someone knocks on \the [src]."))
 		playsound(src, knock_sound, 50, 0, 3)
 		countdown -= 10
 	else
@@ -1679,7 +1679,7 @@
 	else if(user.faction == faction)
 		SwitchState()
 	else if(user.a_intent == I_HELP)
-		visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		visible_message(span_warningplain("[user] knocks on \the [src]."), span_warningplain("Someone knocks on \the [src]."))
 		playsound(src, knock_sound, 50, 0, 3)
 		countdown -= 10
 	else

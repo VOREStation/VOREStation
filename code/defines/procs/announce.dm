@@ -69,7 +69,7 @@
 	to_world(span_alert("[message]"))
 	if(announcer)
 		to_world(span_alert(" -[html_encode(announcer)]"))
-	to_world("<br>")
+	to_world(span_alert("<br>"))
 
 /datum/announcement/priority/command/Message(message as text, message_title as text, var/list/zlevels)
 	var/command

@@ -197,7 +197,7 @@ var/list/sacrificed = list()
 			cultists.Add(M)
 	if(cultists.len >= 9)
 		if(!narsie_cometh)//so we don't initiate Hell more than one time.
-			to_world(span_narsie(span_red(span_bold("THE VEIL HAS BEEN SHATTERED!"))))
+			to_world(span_world(span_narsie(span_red("THE VEIL HAS BEEN SHATTERED!"))))
 			world << sound('sound/effects/weather/wind/wind_5_1.ogg')
 
 			SetUniversalState(/datum/universal_state/hell)
@@ -357,9 +357,9 @@ var/list/sacrificed = list()
 	else if(!corpse_to_raise.client && corpse_to_raise.mind) //Don't force the dead person to come back if they don't want to.
 		for(var/mob/observer/dead/ghost in player_list)
 			if(ghost.mind == corpse_to_raise.mind)
-				to_chat(ghost, span_interface("<b><font size = 3>The cultist [usr.real_name] is trying to \
-				revive you. Return to your body if you want to be resurrected into the service of Nar'Sie!</b> \
-				(Verbs -> Ghost -> Re-enter corpse)</font>"))
+				to_chat(ghost, span_interface(span_large(span_bold("The cultist [usr.real_name] is trying to \
+				revive you. Return to your body if you want to be resurrected into the service of Nar'Sie!") + "\
+				(Verbs -> Ghost -> Re-enter corpse)")))
 				break
 
 	sleep(10 SECONDS)
@@ -1082,10 +1082,10 @@ var/list/sacrificed = list()
 		var/obj/item/nullrod/N = locate() in T
 		if(N)
 			for(var/mob/O in viewers(T, null))
-				O.show_message(span_warning(span_bold("[usr] invokes a talisman at [T], but they are unaffected!")), 1)
+				O.show_message(span_boldwarning("[usr] invokes a talisman at [T], but they are unaffected!"), 1)
 		else
 			for(var/mob/O in viewers(T, null))
-				O.show_message(span_warning(span_bold("[usr] invokes a talisman at [T]")), 1)
+				O.show_message(span_boldwarning("[usr] invokes a talisman at [T]"), 1)
 
 			if(issilicon(T))
 				T.Weaken(15)

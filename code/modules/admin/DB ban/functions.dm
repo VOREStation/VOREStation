@@ -280,7 +280,7 @@
 	output += "<td width='65%' align='center' bgcolor='#f9f9f9'>"
 
 	output += "<form method='GET' action='?src=\ref[src]'>[HrefTokenFormField()]"
-	output += "<b>Add custom ban:</b> (ONLY use this if you can't ban through any other method)"
+	output += span_bold("Add custom ban:") + " (ONLY use this if you can't ban through any other method)"
 	output += "<input type='hidden' name='src' value='\ref[src]'>"
 	output += "<table width='100%'><tr>"
 	output += "<td width='50%' align='right'><b>Ban type:</b><select name='dbbanaddtype'>"
@@ -307,7 +307,7 @@
 	for(var/j in bantypes)
 		output += "<option value='[j]'>[j]</option>"
 	output += "</select></td></tr></table>"
-	output += "<b>Reason:<br></b><textarea name='dbbanreason' cols='50'></textarea><br>"
+	output += span_bold("Reason:<br>") + "<textarea name='dbbanreason' cols='50'></textarea><br>"
 	output += "<input type='submit' value='Add ban'>"
 	output += "</form>"
 
@@ -437,18 +437,18 @@
 					if("PERMABAN")
 						typedesc = "<font color='red'><b>PERMABAN</b></font>"
 					if("TEMPBAN")
-						typedesc = "<b>TEMPBAN</b><br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
+						typedesc = span_bold("TEMPBAN") + "<br><font size='2'>([duration] minutes) [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=duration;dbbanid=[banid]\">Edit</a>)"]<br>Expires [expiration]</font>"
 					if("JOB_PERMABAN")
-						typedesc = "<b>JOBBAN</b><br><font size='2'>([job])</font>"
+						typedesc = span_bold("JOBBAN") + "<br><font size='2'>([job])</font>"
 					if("JOB_TEMPBAN")
-						typedesc = "<b>TEMP JOBBAN</b><br><font size='2'>([job])<br>([duration] minutes<br>Expires [expiration]</font>"
+						typedesc = span_bold("TEMP JOBBAN") + "<br><font size='2'>([job])<br>([duration] minutes<br>Expires [expiration]</font>"
 
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center'>[typedesc]</td>"
 				output += "<td align='center'><b>[ckey]</b></td>"
 				output += "<td align='center'>[bantime]</td>"
 				output += "<td align='center'><b>[ackey]</b></td>"
-				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
+				output += "<td align='center'>[(unbanned || auto) ? "" : span_bold("<a href=\"byond://?src=\ref[src];[HrefToken()];dbbanedit=unban;dbbanid=[banid]\">Unban</a>")]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center' colspan='2' bgcolor=''><b>IP:</b> [ip]</td>"

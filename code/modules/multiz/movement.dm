@@ -540,8 +540,8 @@
 	else
 		if(!silent)
 			if(planetary)
-				visible_message(span_danger("<font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font>"), \
-					span_danger("<font size='3'> You fall out of the sky and crash into \the [landing]!</font>"), \
+				visible_message(span_danger(span_large("\A [src] falls out of the sky and crashes into \the [landing]!")), \
+					span_danger(span_large(" You fall out of the sky and crash into \the [landing]!")), \
 					"You hear something slam into \the [landing].")
 				var/turf/T = get_turf(landing)
 				explosion(T, 0, 1, 2)
@@ -639,8 +639,8 @@
 	else
 		if(!silent)
 			if(planetary)
-				visible_message(span_danger("<font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font>"), \
-					span_danger("<font size='3'> You fall out of the skiy and crash into \the [landing]!</font>"), \
+				visible_message(span_danger(span_large("\A [src] falls out of the sky and crashes into \the [landing]!")), \
+					span_danger(span_large(" You fall out of the skiy and crash into \the [landing]!")), \
 					"You hear something slam into \the [landing].")
 				var/turf/T = get_turf(landing)
 				explosion(T, 0, 1, 2)

@@ -191,7 +191,7 @@ var/list/global/tank_gauge_cache = list()
 			if(!valve_welded)
 				to_chat(user, span_notice("You begin welding the \the [src] emergency pressure relief valve."))
 				if(do_after(user, 40,src))
-					to_chat(user, span_notice("You carefully weld \the [src] emergency pressure relief valve shut.</span><span class='warning'> \The [src] may now rupture under pressure!"))
+					to_chat(user, span_notice("You carefully weld \the [src] emergency pressure relief valve shut.") + " " + span_warning("\The [src] may now rupture under pressure!"))
 					src.valve_welded = 1
 					src.leaking = 0
 				else
@@ -455,7 +455,7 @@ var/list/global/tank_gauge_cache = list()
 				return
 			T.assume_air(air_contents)
 			playsound(src, 'sound/weapons/Gunshot_shotgun.ogg', 20, 1)
-			visible_message("[icon2html(src,viewers(src))] <span class='danger'>\The [src] flies apart!</span>", span_warning("You hear a bang!"))
+			visible_message("[icon2html(src,viewers(src))] " + span_danger("\The [src] flies apart!"), span_warning("You hear a bang!"))
 			T.hotspot_expose(air_contents.temperature, 70, 1)
 
 
@@ -500,7 +500,7 @@ var/list/global/tank_gauge_cache = list()
 
 			T.assume_air(leaked_gas)
 			if(!leaking)
-				visible_message("[icon2html(src,viewers(src))] <span class='warning'>\The [src] relief valve flips open with a hiss!</span>", "You hear hissing.")
+				visible_message("[icon2html(src,viewers(src))] " + span_warning("\The [src] relief valve flips open with a hiss!"), "You hear hissing.")
 				playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
 				leaking = 1
 				#ifdef FIREDBG

@@ -14,32 +14,32 @@
 	if(lawupdate)
 		if (connected_ai)
 			if(connected_ai.stat || connected_ai.control_disabled)
-				to_chat(src, "<b>AI signal lost, unable to sync laws.</b>")
+				to_chat(src, span_infoplain(span_bold("AI signal lost, unable to sync laws.")))
 
 			else
 				lawsync()
 				photosync()
-				to_chat(src, "<b>Laws synced with AI, be sure to note any changes.</b>")
+				to_chat(src, span_infoplain(span_bold("Laws synced with AI, be sure to note any changes.")))
 				// TODO: Update to new antagonist system.
 				if(mind && mind.special_role == "traitor" && mind.original == src)
-					to_chat(src, "<b>Remember, your AI does NOT share or know about your law 0.</b>")
+					to_chat(src, span_infoplain(span_bold("Remember, your AI does NOT share or know about your law 0.")))
 		else
-			to_chat(src, "<b>No AI selected to sync laws with, disabling lawsync protocol.</b>")
+			to_chat(src, span_infoplain(span_bold("No AI selected to sync laws with, disabling lawsync protocol.")))
 			lawupdate = FALSE
 
-	to_chat(who, "<b>Obey these laws:</b>")
+	to_chat(who, span_infoplain(span_bold("Obey these laws:")))
 	laws.show_laws(who)
 	if(shell) //AI shell
-		to_chat(who, "<b>Remember, you are an AI remotely controlling your shell, other AIs can be ignored.</b>")
+		to_chat(who, span_infoplain(span_bold("Remember, you are an AI remotely controlling your shell, other AIs can be ignored.")))
 	// TODO: Update to new antagonist system.
 	else if(mind && (mind.special_role == "traitor" && mind.original == src) && connected_ai)
-		to_chat(who, "<b>Remember, [connected_ai.name] is technically your master, but your objective comes first.</b>")
+		to_chat(who, span_infoplain(span_bold("Remember, [connected_ai.name] is technically your master, but your objective comes first.")))
 	else if(connected_ai)
-		to_chat(who, "<b>Remember, [connected_ai.name] is your master, other AIs can be ignored.</b>")
+		to_chat(who, span_infoplain(span_bold("Remember, [connected_ai.name] is your master, other AIs can be ignored.")))
 	else if(emagged)
-		to_chat(who, "<b>Remember, you are not required to listen to the AI.</b>")
+		to_chat(who, span_infoplain(span_bold("Remember, you are not required to listen to the AI.")))
 	else
-		to_chat(who, "<b>Remember, you are not bound to any AI, you are not required to listen to them.</b>")
+		to_chat(who, span_infoplain(span_bold("Remember, you are not bound to any AI, you are not required to listen to them.")))
 
 
 /mob/living/silicon/robot/lawsync()

@@ -26,7 +26,7 @@
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
 		return ..(user)
 
-	var/t1 = text("<B>Access control</B><br>\n")
+	var/t1 = span_bold("Access control") + "<br>\n"
 
 	if (last_configurator)
 		t1 += "Operator: [last_configurator]<br>"

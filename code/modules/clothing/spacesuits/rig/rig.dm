@@ -384,7 +384,7 @@
 			QDEL_NULL(minihud)
 		else
 			minihud = new (M.hud_used, src)
-	to_chat(M, span_notice("<b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b>"))
+	to_chat(M, span_boldnotice("Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"]."))
 	playsound(src, 'sound/machines/rig/rigstarted.ogg', 10, FALSE)
 	M.client?.screen -= booting_L
 	qdel(booting_L)
@@ -675,7 +675,7 @@
 			return
 
 	if(istype(M) && (M.back == src || M.belt == src))
-		M.visible_message(span_notice("<b>[M] struggles into \the [src].</b>"), span_notice("<b>You struggle into \the [src].</b>"))
+		M.visible_message(span_boldnotice("[M] struggles into \the [src]."), span_boldnotice("You struggle into \the [src]."))
 		wearer = M
 		wearer.wearing_rig = src
 		update_icon()
@@ -725,7 +725,7 @@
 				holder = use_obj.loc
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
-						to_chat(H, span_notice("<b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b>"))
+						to_chat(H, span_boldnotice("Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly."))
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
@@ -953,7 +953,7 @@
 						M.stop_pulling()
 
 	if(wearer.pinned.len)
-		to_chat(src, "<span class='notice'>Your host is pinned to a wall by [wearer.pinned[1]]</span>!")
+		to_chat(src, span_notice("Your host is pinned to a wall by [wearer.pinned[1]]!"))
 		return 0
 
 	// AIs are a bit slower than regular and ignore move intent.

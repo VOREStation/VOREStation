@@ -74,7 +74,7 @@
 			src.take_organ_damage(0,5,emp=1)
 			Confuse(2)
 	flash_eyes(affect_silicon = 1)
-	to_chat(src, span_danger("<B>*BZZZT*</B>"))
+	to_chat(src, span_bolddanger("*BZZZT*"))
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 
@@ -221,7 +221,7 @@
 				default_str = " - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a>"
 
 			var/synth = (L in speech_synthesizer_langs)
-			. += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br>[L.desc]<br><br>"
+			. += span_bold("[L.name] ([get_language_prefix()][L.key])") + "[synth ? default_str : null]<br>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br>[L.desc]<br><br>"
 
 /mob/living/silicon/proc/toggle_sensor_mode() //VOREStation Add to make borgs use omni starts here - Tank, clueless bird
 	if(sensor_type)

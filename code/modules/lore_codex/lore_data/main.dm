@@ -19,7 +19,7 @@
 // We're a bird.
 /datum/lore/codex/page/about_lore
 	name = "About"
-	data = "<i>The Traveler's Guide to Human Space</i> is a series of books detailing a specific location inside a location colonized by humans.  \
+	data = span_italics("The Traveler's Guide to Human Space") + " is a series of books detailing a specific location inside a location colonized by humans.  \
 	This book is for the system Vir, and was written by Eshi Tache, an explorer whom has visited many star systems, and \
 	has personally visited and seen many of the locations described inside this book.  Two other people have also assisted in the creation of this \
 	book, being Qooqr Volquum, whom is an expert on synthetics, and Damian Fischer, a historian. Together, they provide valuable information and facts that lie outside of Tache's expertise.\
@@ -28,5 +28,5 @@
 	to an immigrant from another system or even from outside human space, and anyone inbetween.  The publisher wishes to note that any opinions expressed \
 	in this text does not reflect the opinions of the publisher, and are instead the author's.\
 	<br><br>\
-	Eshi Tache has also written other <i>The Traveler's Guide</i> books, including <i>Sol Edition</i>, <i>Tau Ceti Edition</i>, <i>Alpha Centauri Edition</i>, and more, \
+	Eshi Tache has also written other " + span_italics("The Traveler's Guide") + " books, including " + span_italics("Sol Edition") + ", " + span_italics("Tau Ceti Edition") + ", " + span_italics("Alpha Centauri Edition") + ", and more, \
 	which you can find in your local book store, library, or e-reader device."

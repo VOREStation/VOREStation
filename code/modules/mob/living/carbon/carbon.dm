@@ -78,7 +78,7 @@
 		M.loc = src.loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
-				N.show_message(span_red(text("<B>[M] bursts out of [src]!</B>")), 2)
+				N.show_message(span_bolddanger("[M] bursts out of [src]!"), 2)
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
@@ -89,7 +89,7 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			to_chat(H, span_red("You can't use your [temp.name]"))
+			to_chat(H, span_warning("You can't use your [temp.name]"))
 			return
 
 	return
@@ -106,7 +106,7 @@
 	var/weaken_dur = (rand(2,4)-severity)*species.emp_stun_mod //0-3 knockdown, on par with.. you get the idea
 	var/blind_dur = (rand(3,6)-severity)*species.emp_stun_mod //0-5 blind
 	if(species.emp_sensitivity) //receive warning message and basic effects
-		to_chat(src, span_danger("<B>*BZZZT*</B>"))
+		to_chat(src, span_bolddanger("*BZZZT*"))
 		switch(severity)
 			if(1)
 				to_chat(src, span_danger("DANGER: Extreme EM flux detected!"))
@@ -243,9 +243,9 @@
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)
-					src.show_message("My [org.name] is <span class='warning'> [english_list(status)].</span>",1)
+					src.show_message("My [org.name] is " + span_warning("[english_list(status)]."),1)
 				else
-					src.show_message("My [org.name] is <span class='notice'> OK.</span>",1)
+					src.show_message("My [org.name] is " + span_notice("OK."),1)
 
 			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
 				H.play_xylophone()

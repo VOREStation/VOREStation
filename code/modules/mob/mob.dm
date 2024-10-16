@@ -90,7 +90,7 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		to_chat(src, span_filter_notice("<I>... You can almost hear someone talking ...</I>"))
+		to_chat(src, span_filter_notice(span_italics("... You can almost hear someone talking ...")))
 	else
 		if(client && client.prefs.chat_timestamp)
 			// TG-Chat filters latch directly to the spans, we no longer need that
@@ -339,7 +339,7 @@
 		if(length(msg) <= 40)
 			return span_notice("[msg]")
 		else
-			return "<span class='notice'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</span></a>"
+			return span_notice("[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>")
 
 /*
 /mob/verb/help()
@@ -387,7 +387,7 @@
 	set category = "OOC"
 
 	if(stat != DEAD || !ticker)
-		to_chat(usr, span_notice("<B>You must be dead to use this!</B>"))
+		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
 	// Final chance to abort "respawning"
@@ -634,7 +634,7 @@
 		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
-			to_chat(src, span_filter_notice("[span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")]"))
+			to_chat(src, span_filter_notice("[span_red(span_bold("Pulling \the [H] in their current condition would probably be a bad idea."))]"))
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -936,9 +936,9 @@
 		return
 
 	if(self)
-		visible_message(span_warning("<b>[src] rips [selection] out of their body.</b>"),span_warning("<b>You rip [selection] out of your body.</b>"))
+		visible_message(span_boldwarning("[src] rips [selection] out of their body."),span_boldwarning("You rip [selection] out of your body."))
 	else
-		visible_message(span_warning("<b>[usr] rips [selection] out of [src]'s body.</b>"),span_warning("<b>[usr] rips [selection] out of your body.</b>"))
+		visible_message(span_boldwarning("[usr] rips [selection] out of [src]'s body."),span_boldwarning("[usr] rips [selection] out of your body."))
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		remove_verb(src, /mob/proc/yank_out_object)

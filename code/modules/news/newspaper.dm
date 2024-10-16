@@ -32,17 +32,17 @@
 					if(important_message)
 						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"
 					else
-						dat+="<I>Other than the title, the rest of the newspaper is unprinted...</I>"
+						dat+=span_italics("Other than the title, the rest of the newspaper is unprinted...")
 				else
 					dat+="Contents:<BR><ul>"
 					for(var/datum/feed_channel/NP in news_content)
 						pages++
 					if(important_message)
-						dat+="<B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
+						dat+=span_bold("<FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT>") + " <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
 					var/temp_page=0
 					for(var/datum/feed_channel/NP in news_content)
 						temp_page++
-						dat+="<B>[NP.channel_name]</B> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
+						dat+=span_bold("[NP.channel_name]") + " " + span_normal("\[page [temp_page+1]\]") + "<BR>"
 					dat+="</ul>"
 				if(scribble_page==curr_page)
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
@@ -77,16 +77,16 @@
 					pages++
 				if(important_message!=null)
 					dat+="<DIV STYLE='float:center;'><FONT SIZE=4><B>Wanted Issue:</B></FONT></DIV><BR><BR>"
-					dat+="<B>Criminal name</B>: <FONT COLOR='maroon'>[important_message.author]</FONT><BR>"
-					dat+="<B>Description</B>: [important_message.body]<BR>"
-					dat+="<B>Photo:</B>: "
+					dat+=span_bold("Criminal name") + ": <FONT COLOR='maroon'>[important_message.author]</FONT><BR>"
+					dat+=span_bold("Description") + ": [important_message.body]<BR>"
+					dat+=span_bold("Photo:") + ": "
 					if(important_message.img)
 						user << browse_rsc(important_message.img, "tmp_photow.png")
 						dat+="<BR><img src='tmp_photow.png' width = '180'>"
 					else
 						dat+="None"
 				else
-					dat+="<I>Apart from some uninteresting Classified ads, there's nothing on this page...</I>"
+					dat+=span_italics("Apart from some uninteresting Classified ads, there's nothing on this page...")
 				if(scribble_page==curr_page)
 					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
@@ -97,7 +97,7 @@
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
-		to_chat(user, "The paper is full of intelligible symbols!")
+		to_chat(user, span_infoplain("The paper is full of intelligible symbols!"))
 
 /obj/item/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr

@@ -70,7 +70,7 @@
 
 	. = list()
 	. += "<tt><center>"
-	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
+	. += span_bold("Choose occupation chances") + "<br>Unavailable occupations are crossed out.<br>"
 	. += "<script type='text/javascript'>function setJobPrefRedirect(level, rank) { window.location.href='?src=\ref[src];level=' + level + ';set_job=' + encodeURIComponent(rank); return false; }</script>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%' valign='top'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -158,7 +158,7 @@
 			. += "<font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
 		if((rank in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND) ) || (rank == JOB_AI))//Bold head jobs
-			. += "<b>[rank]</b></a>"
+			. += span_bold("[rank]") + "</a>"
 		else
 			. += "[rank]</a>"
 
@@ -210,11 +210,11 @@
 
 	switch(pref.alternate_option)
 		if(GET_RANDOM_JOB)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a></u>"
+			. += span_underline("<a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a>")
 		if(BE_ASSISTANT)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a></u>"
+			. += span_underline("<a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a>")
 		if(RETURN_TO_LOBBY)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a></u>"
+			. += span_underline("<a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a>")
 
 	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
 	. += "</tt>"
@@ -252,11 +252,11 @@
 
 		dat += "<p style='background-color: [job.selection_color]'><br><br><p>"
 		if(job.alt_titles)
-			dat += "<i><b>Alternate titles:</b> [english_list(job.alt_titles)].</i>"
+			dat += span_italics(span_bold("Alternate titles:") + " [english_list(job.alt_titles)].")
 		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")
 		dat += "<img src=job[ckey(rank)].png width=96 height=96 style='float:left;'>"
 		if(job.departments)
-			dat += "<b>Departments:</b> [english_list(job.departments)]."
+			dat += span_bold("Departments:") + " [english_list(job.departments)]."
 			if(LAZYLEN(job.departments_managed))
 				dat += "You manage these departments: [english_list(job.departments_managed)]"
 

@@ -98,7 +98,7 @@
 		// Can disasemble or reassemble from packed or off (and this one takes time)
 		if("(Dis)Assemble")
 			if(can_transition_to(state == UAV_PACKED ? UAV_OFF : UAV_PACKED, user))
-				user.visible_message("<b>[user]</b> starts [state == UAV_PACKED ? "unpacking" : "packing"] [src].", "You start [state == UAV_PACKED ? "unpacking" : "packing"] [src].")
+				user.visible_message(span_infoplain(span_bold("[user]") + " starts [state == UAV_PACKED ? "unpacking" : "packing"] [src]."), span_info("You start [state == UAV_PACKED ? "unpacking" : "packing"] [src]."))
 				if(do_after(user, 10 SECONDS, src))
 					return toggle_packed(user)
 		// Can toggle power from on and off
@@ -314,21 +314,21 @@
 		var/mob/master = wr.resolve()
 		var/list/combined = master.combine_message(message_pieces, verb, M)
 		var/message = combined["formatted"]
-		var/rendered = "<i><span class='game say'>UAV received: <span class='name'>[name_used]</span> [message]</span></i>"
+		var/rendered = span_game(span_say(span_italics("UAV received: " + span_name("[name_used]") + " [message]")))
 		master.show_message(rendered, 2)
 
 /obj/item/uav/see_emote(var/mob/living/M, text)
 	for(var/wr_master in masters)
 		var/datum/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
-		var/rendered = "<i><span class='game say'>UAV received, <span class='message'>[text]</span></span></i>"
+		var/rendered = span_game(span_say(span_italics("UAV received, " + span_message("[text]"))))
 		master.show_message(rendered, 2)
 
 /obj/item/uav/show_message(msg, type, alt, alt_type)
 	for(var/wr_master in masters)
 		var/datum/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
-		var/rendered = "<i><span class='game say'>UAV received, <span class='message'>[msg]</span></span></i>"
+		var/rendered = span_game(span_say(span_italics("UAV received, " + span_message("[msg]"))))
 		master.show_message(rendered, type)
 
 /obj/item/uav/take_damage(var/damage)

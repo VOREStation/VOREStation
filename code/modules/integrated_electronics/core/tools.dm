@@ -33,8 +33,8 @@
 			to_chat(user, span_warning("Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless."))
 			return
 		if(io.io_type != selected_io.io_type)
-			to_chat(user, "<span class='warning'>Those two types of channels are incompatible. The first is a [selected_io.io_type], \
-			while the second is a [io.io_type].</span>")
+			to_chat(user, span_warning("Those two types of channels are incompatible. The first is a [selected_io.io_type], \
+			while the second is a [io.io_type]."))
 			return
 		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
 			to_chat(user, span_warning("Both \the [io.holder] and \the [selected_io.holder] need to be inside the same assembly."))
@@ -61,21 +61,21 @@
 
 	else if(mode == UNWIRING)
 		if(io == selected_io)
-			to_chat(user, "<span class='warning'>You can't wire a pin into each other, so unwiring \the [selected_io.holder] from \
-			the same pin is rather moot.</span>")
+			to_chat(user, span_warning("You can't wire a pin into each other, so unwiring \the [selected_io.holder] from \
+			the same pin is rather moot."))
 			return
 		if(selected_io in io.linked)
 			io.linked.Remove(selected_io)
 			selected_io.linked.Remove(io)
-			to_chat(user, "<span class='notice'>You disconnect \the [selected_io.holder]'s [selected_io.name] from \
-			\the [io.holder]'s [io.name].</span>")
+			to_chat(user, span_notice("You disconnect \the [selected_io.holder]'s [selected_io.name] from \
+			\the [io.holder]'s [io.name]."))
 			selected_io.holder.interact(user) // This is to update the UI.
 			selected_io = null
 			mode = UNWIRE
 			update_icon()
 		else
-			to_chat(user, "<span class='warning'>\The [selected_io.holder]'s [selected_io.name] and \the [io.holder]'s \
-			[io.name] are not connected.</span>")
+			to_chat(user, span_warning("\The [selected_io.holder]'s [selected_io.name] and \the [io.holder]'s \
+			[io.name] are not connected."))
 			return
 	return
 
@@ -135,8 +135,8 @@
 				to_chat(user, span_notice("You set \the [src]'s memory to [new_data]."))
 		if("ref")
 			accepting_refs = 1
-			to_chat(user, "<span class='notice'>You turn \the [src]'s ref scanner on. Slide it across \
-			an object for a ref of that object to save it in memory.</span>")
+			to_chat(user, span_notice("You turn \the [src]'s ref scanner on. Slide it across \
+			an object for a ref of that object to save it in memory."))
 		if("null")
 			data_to_write = null
 			to_chat(user, span_notice("You set \the [src]'s memory to absolutely nothing."))
@@ -145,8 +145,8 @@
 	if(accepting_refs && proximity)
 		data_to_write = WEAKREF(target)
 		visible_message(span_notice("[user] slides \a [src]'s over \the [target]."))
-		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\]. The ref scanner is \
-		now off.</span>")
+		to_chat(user, span_notice("You set \the [src]'s memory to a reference to [target.name] \[Ref\]. The ref scanner is \
+		now off."))
 		accepting_refs = 0
 
 /obj/item/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
@@ -206,8 +206,8 @@
 			to_chat(user, span_warning("Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless."))
 			return
 		if(io.io_type != selected_io.io_type)
-			to_chat(user, "<span class='warning'>Those two types of channels are incompatible. The first is a [selected_io.io_type], \
-			while the second is a [io.io_type].</span>")
+			to_chat(user, span_warning("Those two types of channels are incompatible. The first is a [selected_io.io_type], \
+			while the second is a [io.io_type]."))
 			return
 		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
 			to_chat(user, span_warning("Both \the [io.holder] and \the [selected_io.holder] need to be inside the same assembly."))
@@ -237,8 +237,8 @@
 	else
 		io1.linked.Remove(io2)
 		io2.linked.Remove(io1)
-		to_chat(user, "<span class='notice'>You clip the data connection between the [io1.holder.displayed_name]'s \
-		[io1.name] and the [io2.holder.displayed_name]'s [io2.name].</span>")
+		to_chat(user, span_notice("You clip the data connection between the [io1.holder.displayed_name]'s \
+		[io1.name] and the [io2.holder.displayed_name]'s [io2.name]."))
 		io1.holder.interact(user) // This is to update the UI.
 		update_icon()
 
@@ -246,8 +246,8 @@
 	if(accepting_refs && toolmode == MULTITOOL_MODE_INTCIRCUITS && proximity)
 		weakref_wiring = WEAKREF(target)
 		visible_message(span_notice("[user] slides \a [src]'s over \the [target]."))
-		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\]. The ref scanner is \
-		now off.</span>")
+		to_chat(user, span_notice("You set \the [src]'s memory to a reference to [target.name] \[Ref\]. The ref scanner is \
+		now off."))
 		accepting_refs = 0
 
 
