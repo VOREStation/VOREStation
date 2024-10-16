@@ -98,7 +98,7 @@ export const ModifyRobotComponent = (props: {
       comms={comms}
       selectedArm={selectedArm}
       arm_options={arm_options}
-      setSelectedArm={setSelectedArm}
+      onSelectedArm={setSelectedArm}
       arms={arms}
     />
   );
