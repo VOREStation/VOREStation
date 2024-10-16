@@ -80,10 +80,10 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && config.loadout_whitelist != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
-			if(config.loadout_whitelist == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
+		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
+			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
-			if(config.loadout_whitelist == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))
+			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))
 				continue
 		if(max_cost && G.cost > max_cost)
 			continue
@@ -236,14 +236,14 @@ var/list/gear_datums = list()
 		if(href_list["next_slot"])
 			//change the current slot number
 			pref.gear_slot = pref.gear_slot+1
-			if(pref.gear_slot>config.loadout_slots)
+			if(pref.gear_slot > CONFIG_GET(number/loadout_slots))
 				pref.gear_slot = 1
 		//If we're moving down a slot..
 		else if(href_list["prev_slot"])
 			//change current slot one down
 			pref.gear_slot = pref.gear_slot-1
 			if(pref.gear_slot<1)
-				pref.gear_slot = config.loadout_slots
+				pref.gear_slot = CONFIG_GET(number/loadout_slots)
 		// Set the currently selected gear to whatever's in the new slot
 		if(pref.gear_list["[pref.gear_slot]"])
 			pref.gear = pref.gear_list["[pref.gear_slot]"]

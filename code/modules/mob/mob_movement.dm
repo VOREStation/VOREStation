@@ -16,9 +16,9 @@
 		if("run")
 			if(drowsyness > 0)
 				. += 6
-			. += config.run_speed
+			. += CONFIG_GET(number/run_speed)
 		if("walk")
-			. += config.walk_speed
+			. += CONFIG_GET(number/walk_speed)
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))

@@ -138,7 +138,7 @@
 
 	if(!breath || (breath.total_moles == 0))
 		H.failed_last_breath = 1
-		if(H.health > config.health_threshold_crit)
+		if(H.health > CONFIG_GET(number/health_threshold_crit))
 			H.adjustOxyLoss(ALRAUNE_MAX_OXYLOSS)
 		else
 			H.adjustOxyLoss(ALRAUNE_CRIT_MAX_OXYLOSS)

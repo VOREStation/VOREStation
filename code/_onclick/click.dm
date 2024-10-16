@@ -158,7 +158,7 @@
 	next_click = max(world.time + timeout, next_click)
 
 /mob/proc/checkClickCooldown()
-	if(next_click > world.time && !config.no_click_cooldown)
+	if(next_click > world.time && !CONFIG_GET(flag/no_click_cooldown))
 		return FALSE
 	return TRUE
 

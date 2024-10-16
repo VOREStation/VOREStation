@@ -125,7 +125,7 @@
 	set name = "Display Job bans"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.Jobbans()
 		else
 			holder.DB_ban_panel()
@@ -136,7 +136,7 @@
 	set name = "Unban Panel"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.unbanpanel()
 		else
 			holder.DB_ban_panel()
@@ -409,8 +409,8 @@
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		config.log_hrefs = !config.log_hrefs
-		message_admins(span_bold("[key_name_admin(usr)] [config.log_hrefs ? "started" : "stopped"] logging hrefs"))
+		CONFIG_SET(flag/log_hrefs, !CONFIG_GET(flag/log_hrefs))
+		message_admins(span_bold("[key_name_admin(usr)] [CONFIG_GET(flag/log_hrefs) ? "started" : "stopped"] logging hrefs"))
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
@@ -511,16 +511,16 @@
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		config.cult_ghostwriter = !config.cult_ghostwriter
-		message_admins("Admin [key_name_admin(usr)] has [config.cult_ghostwriter ? "en" : "dis"]abled ghost writers.", 1)
+		CONFIG_SET(flag/cult_ghostwriter, !CONFIG_GET(flag/cult_ghostwriter))
+		message_admins("Admin [key_name_admin(usr)] has [CONFIG_GET(flag/cult_ghostwriter) ? "en" : "dis"]abled ghost writers.", 1)
 
 /client/proc/toggledrones()
 	set name = "Toggle maintenance drones"
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		config.allow_drone_spawn = !config.allow_drone_spawn
-		message_admins("Admin [key_name_admin(usr)] has [config.allow_drone_spawn ? "en" : "dis"]abled maintenance drones.", 1)
+		CONFIG_SET(flag/allow_drone_spawn, !CONFIG_GET(flag/allow_drone_spawn))
+		message_admins("Admin [key_name_admin(usr)] has [CONFIG_GET(flag/allow_drone_spawn) ? "en" : "dis"]abled maintenance drones.", 1)
 
 /client/proc/man_up(mob/T as mob in mob_list)
 	set category = "Fun"

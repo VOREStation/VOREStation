@@ -131,9 +131,9 @@ Book Cart End
 /obj/structure/bookcase/manuals/medical/New()
 	..()
 	new /obj/item/book/manual/medical_cloning(src)
-	new /obj/item/book/manual/medical_diagnostics_manual(src)
-	new /obj/item/book/manual/medical_diagnostics_manual(src)
-	new /obj/item/book/manual/medical_diagnostics_manual(src)
+	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
+	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
+	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
 	update_icon()
 
 
@@ -142,10 +142,10 @@ Book Cart End
 
 /obj/structure/bookcase/manuals/engineering/New()
 	..()
-	new /obj/item/book/manual/engineering_construction(src)
+	new /obj/item/book/manual/wiki/engineering_construction(src)
 	new /obj/item/book/manual/engineering_particle_accelerator(src)
-	new /obj/item/book/manual/engineering_hacking(src)
-	new /obj/item/book/manual/engineering_guide(src)
+	new /obj/item/book/manual/wiki/engineering_hacking(src)
+	new /obj/item/book/manual/wiki/engineering_guide(src)
 	new /obj/item/book/manual/atmospipes(src)
 	new /obj/item/book/manual/engineering_singularity_safety(src)
 	new /obj/item/book/manual/evaguide(src)

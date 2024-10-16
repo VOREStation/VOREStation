@@ -109,7 +109,7 @@
 	if(src.imprinted != "empty")
 		to_chat(U, span_danger("Capture failed!") + ": The soul stone has already been imprinted with [src.imprinted]'s mind!")
 		return
-	if ((T.health + T.halloss) > config.health_threshold_crit && T.stat != DEAD)
+	if ((T.health + T.halloss) > CONFIG_GET(number/health_threshold_crit) && T.stat != DEAD)
 		to_chat(U, span_danger("Capture failed!") + ": Kill or maim the victim first!")
 		return
 	if(T.client == null)

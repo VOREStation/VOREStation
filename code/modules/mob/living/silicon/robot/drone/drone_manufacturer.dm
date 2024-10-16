@@ -57,14 +57,14 @@
 
 	icon_state = "drone_fab_active"
 	var/elapsed = world.time - time_last_drone
-	drone_progress = round((elapsed/config.drone_build_time)*100)
+	drone_progress = round((elapsed / CONFIG_GET(number/drone_build_time)) * 100)
 
 	if(drone_progress >= 100)
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
 
 /obj/machinery/drone_fabricator/examine(mob/user)
 	. = ..()
-	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
+	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && CONFIG_GET(flag/allow_drone_spawn) && count_drones() < CONFIG_GET(number/max_maint_drones))
 		. += "<br><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 
 /obj/machinery/drone_fabricator/proc/create_drone(var/client/player)
@@ -72,7 +72,7 @@
 	if(stat & NOPOWER)
 		return
 
-	if(!produce_drones || !config.allow_drone_spawn || count_drones() >= config.max_maint_drones)
+	if(!produce_drones || !CONFIG_GET(flag/allow_drone_spawn) || count_drones() >= CONFIG_GET(number/max_maint_drones))
 		return
 
 	if(player && !istype(player.mob,/mob/observer/dead))
@@ -102,7 +102,7 @@
 		to_chat(src, span_danger("The game hasn't started yet!"))
 		return
 
-	if(!(config.allow_drone_spawn))
+	if(!CONFIG_GET(flag/allow_drone_spawn))
 		to_chat(src, span_danger("That verb is not currently permitted."))
 		return
 
@@ -117,7 +117,7 @@
 		return
 
 	// VOREStation Addition Start
-	if(config.use_age_restriction_for_jobs && isnum(src.client.player_age))
+	if(CONFIG_GET(flag/use_age_restriction_for_jobs) && isnum(src.client.player_age))
 		var/time_till_play = max(0, 3 - src.client.player_age)
 		if(time_till_play)
 			to_chat(usr, span_danger("You have not been playing on the server long enough to join as drone."))
