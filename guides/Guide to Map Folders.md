@@ -39,7 +39,7 @@ virgo_minitest: VORE, Testing map used for CI, do not touch
 ## What _submaps.dm (map-folder-specific, Tether uses _tether_submaps.dm) should look like:
 
 # Map-specific areas should be loaded without a #include, and the mappath should just be:
-mappath = 'tether_plains.dmm'
+mappath = "maps/your_map/tether_plains.dmm"
 
 # Non-map specific expedition areas should be loaded as follows:
 
@@ -59,7 +59,7 @@ mappath = 'tether_plains.dmm'
 /datum/map_template/tether_lateload/away_beach
 	name = "Desert Planet - Z1 Beach"
 	desc = "The beach away mission."
-	mappath = 'maps/expedition_vr/beach/beach.dmm'
+	mappath = "maps/expedition_vr/beach/beach.dmm"
 	associated_map_datum = /datum/map_z_level/tether_lateload/away_beach
 
 /datum/map_z_level/tether_lateload/away_beach
