@@ -357,19 +357,31 @@
 				qdel(C.wrapped)
 			var/new_component = text2path(params["new_part"])
 			if(istype(C, /datum/robot_component/actuator))
+				if(!new_component)
+					new_component = /obj/item/robot_parts/robot_component/actuator
 				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/radio))
+				if(!new_component)
+					new_component = /obj/item/robot_parts/robot_component/radio
 				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/cell))
 				target.cell = new new_component(target)
 				C.wrapped = target.cell
 			else if(istype(C, /datum/robot_component/diagnosis_unit))
+				if(!new_component)
+					new_component = /obj/item/robot_parts/robot_component/diagnosis_unit
 				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/camera))
+				if(!new_component)
+					new_component = /obj/item/robot_parts/robot_component/camera
 				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/binary_communication))
+				if(!new_component)
+					new_component = /obj/item/robot_parts/robot_component/binary_communication_device
 				C.wrapped = new new_component(target)
 			else if(istype(C, /datum/robot_component/armour))
+				if(!new_component)
+					new_component = /obj/item/robot_parts/robot_component/armour
 				C.wrapped = new new_component(target)
 			C.brute_damage = 0
 			C.electronics_damage = 0
