@@ -199,13 +199,16 @@ Book Cart End
 			to_chat(user, span_notice("The pages of [title] have been cut out!"))
 			return
 	if(src.dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		display_content(user)
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
 		playsound(src, 'sound/bureaucracy/bookopen.ogg', 50, 1)
 		onclose(user, "book")
 		playsound(src, 'sound/bureaucracy/bookclose.ogg', 50, 1)
 	else
 		to_chat(user, "This book is completely blank!")
+
+/obj/item/book/proc/display_content(mob/living/user)
+	user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 
 /obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
 	if(carved)
@@ -297,7 +300,7 @@ Book Cart End
 	if(user.zone_sel.selecting == O_EYES)
 		user.visible_message(span_notice("You open up the book and show it to [M]."), \
 			span_notice(" [user] opens up a book and shows it to [M]."))
-		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		display_content(M)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
 /*
