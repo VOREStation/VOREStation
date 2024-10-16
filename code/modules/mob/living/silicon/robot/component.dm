@@ -21,11 +21,15 @@
 	src.owner = R
 
 /datum/robot_component/proc/install()
-	if(istype(wrapped,/obj/item/robot_parts/robot_component))
+	if(istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		max_damage = comp.max_damage
 		idle_usage = comp.idle_usage
 		active_usage = comp.active_usage
+		return
+	if(istype(wrapped, /obj/item/cell))
+		var/obj/item/cell/cell = wrapped
+		max_damage = cell.robot_durability
 
 /datum/robot_component/proc/uninstall()
 	max_damage = initial(max_damage)
