@@ -70,7 +70,7 @@ export const ModifyRobotComponent = (props: {
       cell={cell}
       selectedCell={selectedCell}
       cell_options={cell_options}
-      setSelectedCell={setSelectedCell}
+      onSelectedCell={setSelectedCell}
       cells={cells}
     />
   );
@@ -78,23 +78,23 @@ export const ModifyRobotComponent = (props: {
     <CompTab
       selectedAct={selectedAct}
       act_options={act_options}
-      setSelectedAct={setSelectedAct}
+      onSelectedAct={setSelectedAct}
       acts={acts}
       selectedRad={selectedRad}
       rad_options={rad_options}
-      setSelectedRad={setSelectedRad}
+      onSelectedRad={setSelectedRad}
       rads={rads}
       selectedDiag={selectedDiag}
       diag_options={diag_options}
-      setSelectedDiag={setSelectedDiag}
+      onSelectedDiag={setSelectedDiag}
       diags={diags}
       selectedCam={selectedCam}
       cam_options={cam_options}
-      setSelectedCam={setSelectedCam}
+      onSelectedCam={setSelectedCam}
       cams={cams}
       selectedComm={selectedComm}
       comm_options={comm_options}
-      setSelectedComm={setSelectedComm}
+      onSelectedComm={setSelectedComm}
       comms={comms}
       selectedArm={selectedArm}
       arm_options={arm_options}

@@ -17,11 +17,11 @@ export const CellCommp = (props: {
   cell: InstalledCell;
   selectedCell: string;
   cell_options: string[];
-  setSelectedCell: (value: any) => void;
+  onSelectedCell: (value: any) => void;
   cells: Record<string, Cell>;
 }) => {
   const { act } = useBackend();
-  const { cell, selectedCell, cell_options, setSelectedCell, cells } = props;
+  const { cell, selectedCell, cell_options, onSelectedCell, cells } = props;
   return (
     <Section>
       Current cell:{' '}
@@ -55,7 +55,7 @@ export const CellCommp = (props: {
         width="100%"
         selected={selectedCell}
         options={cell_options}
-        onSelected={setSelectedCell}
+        onSelected={onSelectedCell}
       />
       <Stack vertical>
         <Stack.Item>Max Damage: {cells[selectedCell]?.max_damage}</Stack.Item>
@@ -77,53 +77,53 @@ export const CellCommp = (props: {
 export const CompTab = (props: {
   selectedAct: string;
   act_options: string[];
-  setSelectedAct: (value: any) => void;
+  onSelectedAct: (value: any) => void;
   acts: Record<string, Comp>;
   selectedRad: string;
   rad_options: string[];
-  setSelectedRad: (value: any) => void;
+  onSelectedRad: (value: any) => void;
   rads: Record<string, Comp>;
   selectedDiag: string;
   diag_options: string[];
-  setSelectedDiag: (value: any) => void;
+  onSelectedDiag: (value: any) => void;
   diags: Record<string, Comp>;
   selectedCam: string;
   cam_options: string[];
-  setSelectedCam: (value: any) => void;
+  onSelectedCam: (value: any) => void;
   cams: Record<string, Comp>;
   selectedComm: string;
   comm_options: string[];
-  setSelectedComm: (value: any) => void;
+  onSelectedComm: (value: any) => void;
   comms: Record<string, Comp>;
   selectedArm: string;
   arm_options: string[];
-  setSelectedArm: (value: any) => void;
+  onSelectedArm: (value: any) => void;
   arms: Record<string, Comp>;
 }) => {
   const {
     selectedAct,
     act_options,
-    setSelectedAct,
+    onSelectedAct,
     acts,
     selectedRad,
     rad_options,
-    setSelectedRad,
+    onSelectedRad,
     rads,
     selectedDiag,
     diag_options,
-    setSelectedDiag,
+    onSelectedDiag,
     diags,
     selectedCam,
     cam_options,
-    setSelectedCam,
+    onSelectedCam,
     cams,
     selectedComm,
     comm_options,
-    setSelectedComm,
+    onSelectedComm,
     comms,
     selectedArm,
     arm_options,
-    setSelectedArm,
+    onSelectedArm,
     arms,
   } = props;
   return (
@@ -132,42 +132,42 @@ export const CompTab = (props: {
         width="100%"
         selected={selectedAct}
         options={act_options}
-        onSelected={setSelectedAct}
+        onSelected={onSelectedAct}
       />
       <ComponentInfo comps={acts[selectedAct]} />
       <Dropdown
         width="100%"
         selected={selectedRad}
         options={rad_options}
-        onSelected={setSelectedRad}
+        onSelected={onSelectedRad}
       />
       <ComponentInfo comps={rads[selectedRad]} />
       <Dropdown
         width="100%"
         selected={selectedDiag}
         options={diag_options}
-        onSelected={setSelectedDiag}
+        onSelected={onSelectedDiag}
       />
       <ComponentInfo comps={diags[selectedDiag]} />
       <Dropdown
         width="100%"
         selected={selectedCam}
         options={cam_options}
-        onSelected={setSelectedCam}
+        onSelected={onSelectedCam}
       />
       <ComponentInfo comps={cams[selectedCam]} />
       <Dropdown
         width="100%"
         selected={selectedComm}
         options={comm_options}
-        onSelected={setSelectedComm}
+        onSelected={onSelectedComm}
       />
       <ComponentInfo comps={comms[selectedComm]} />
       <Dropdown
         width="100%"
         selected={selectedArm}
         options={arm_options}
-        onSelected={setSelectedArm}
+        onSelected={onSelectedArm}
       />
       <ComponentInfo comps={arms[selectedArm]} />
     </Section>
