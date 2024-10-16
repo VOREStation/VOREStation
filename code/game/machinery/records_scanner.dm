@@ -51,7 +51,7 @@
 	var/age = user.age
 	var/gender = user.gender
 	/* no dbstuff yet
-	var/DBQuery/cquery = dbcon.NewQuery("SELECT * from jobban WHERE ckey='[user.ckey]'")
+	var/datum/DBQuery/cquery = SSdbcore.NewQuery("SELECT * from jobban WHERE ckey='[user.ckey]'")
 	if(!cquery.Execute()) return
 	else
 		while(cquery.NextRow())
