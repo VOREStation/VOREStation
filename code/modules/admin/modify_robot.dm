@@ -679,7 +679,7 @@
 			continue
 		if(cell_options[initial(C.name)]) // empty cells are defined after normal cells!
 			continue
-		cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
+		cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge), "max_damage" = initial(C.robot_durability))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
 	return cell_options
 
 /datum/eventkit/modify_robot/proc/get_component(var/type)

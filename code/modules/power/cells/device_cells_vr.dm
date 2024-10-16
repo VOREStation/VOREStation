@@ -29,6 +29,7 @@
 	matter = null
 	standard_overlays = FALSE
 	var/swaps_to = /obj/item/cell/device/weapon/recharge/alien
+	robot_durability = 100
 
 /obj/item/cell/void/attack_self(var/mob/user)
 	user.remove_from_mob(src)

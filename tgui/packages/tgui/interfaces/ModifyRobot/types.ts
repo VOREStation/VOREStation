@@ -124,6 +124,7 @@ export type Cell = {
   max_charge: number;
   charge_amount: number;
   self_charge: BooleanLike;
+  max_damage: number;
 };
 
 export type Comp = {
