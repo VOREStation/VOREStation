@@ -6,6 +6,8 @@
 	var/beacon_active = FALSE
 	var/list/levels_for_distress
 	var/obj/item/gps/gps = null
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/emergency_beacon/New()
 	gps = new/obj/item/gps/emergency_beacon(src)

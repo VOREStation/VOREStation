@@ -206,7 +206,7 @@
 		H.ability_master = new /obj/screen/movable/ability_master/lleill(H)
 	for(var/datum/power/lleill/P in lleill_ability_datums)
 		if(!(P.verbpath in H.verbs))
-			H.verbs += P.verbpath
+			add_verb(H, P.verbpath)
 			H.ability_master.add_lleill_ability(
 					object_given = H,
 					verb_given = P.verbpath,
@@ -239,4 +239,3 @@
 /datum/species/lleill/add_inherent_verbs(var/mob/living/carbon/human/H)
 	..()
 	add_lleill_abilities(H)
-

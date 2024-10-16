@@ -160,23 +160,24 @@
 /obj/spellbutton/DblClick()
 	return Click()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 
 	if(. && istype(back,/obj/item/technomancer_core))
 		var/obj/item/technomancer_core/core = back
-		setup_technomancer_stat(core)
+		. += setup_technomancer_stat(core)
 
 /mob/living/carbon/human/proc/setup_technomancer_stat(var/obj/item/technomancer_core/core)
-	if(core && statpanel("Spell Core"))
+	. = list()
+	if(core)
 		var/charge_status = "[core.energy]/[core.max_energy] ([round( (core.energy / core.max_energy) * 100)]%) \
 		([round(core.energy_delta)]/s)"
 		var/instability_delta = instability - last_instability
 		var/instability_status = "[src.instability] ([round(instability_delta, 0.1)]/s)"
-		stat("Core charge", charge_status)
-		stat("User instability", instability_status)
+		. += "Core charge: [charge_status]"
+		. += "User instability: [instability_status]"
 		for(var/obj/spellbutton/button in core.spells)
-			stat(button)
+			. += button
 
 /obj/item/technomancer_core/proc/add_spell(var/path, var/new_name, var/ability_icon_state)
 	if(!path || !ispath(path))

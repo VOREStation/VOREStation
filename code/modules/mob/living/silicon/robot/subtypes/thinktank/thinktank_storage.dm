@@ -106,7 +106,7 @@
 
 /mob/living/silicon/robot/platform/verb/drop_stored_atom_verb()
 	set name = "Eject Cargo"
-	set category = "Robot Commands"
+	set category = "Abilities.Silicon"
 	set desc = "Drop something from your internal storage."
 
 	if(incapacitated())

@@ -526,11 +526,10 @@ var/global/list/wounds_being_tended_by_drakes = list()
 	else
 		remove_modifiers_of_type(/datum/modifier/ace)
 
-/mob/living/simple_mob/animal/sif/grafadreka/Stat()
+/mob/living/simple_mob/animal/sif/grafadreka/get_status_tab_items()
 	. = ..()
-	if(statpanel("Status"))
-		stat("Nutrition:", "[nutrition]/[max_nutrition]")
-		stat("Stored sap:", "[stored_sap]/[max_stored_sap]")
+	. += "Nutrition: [nutrition]/[max_nutrition]"
+	. += "Stored sap: [stored_sap]/[max_stored_sap]"
 
 /mob/living/simple_mob/animal/sif/grafadreka/proc/can_bite(var/mob/living/M)
 	return istype(M) && (M.lying || M.confused || M.incapacitated())

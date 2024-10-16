@@ -73,7 +73,7 @@
 			if("Immortality")
 				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
 				to_chat(user, span_warning("The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart."))
-				user.verbs += /mob/living/carbon/proc/immortality
+				add_verb(user, /mob/living/carbon/proc/immortality)
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()
 			if("To Kill")

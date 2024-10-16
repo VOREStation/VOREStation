@@ -240,15 +240,15 @@ I think I covered everything.
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
-	verbs |= /mob/living/simple_mob/vore/bigdragon/proc/set_style
-	verbs |= /mob/living/simple_mob/vore/bigdragon/proc/toggle_glow
-	verbs |= /mob/living/simple_mob/vore/bigdragon/proc/sprite_toggle
-	verbs |= /mob/living/simple_mob/vore/bigdragon/proc/flame_toggle
-	verbs |= /mob/living/simple_mob/vore/bigdragon/proc/special_toggle
-	//verbs |= /mob/living/simple_mob/vore/bigdragon/proc/set_name //Implemented upstream
-	//verbs |= /mob/living/simple_mob/vore/bigdragon/proc/set_desc //Implemented upstream
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
+	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_style)
+	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/toggle_glow)
+	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/sprite_toggle)
+	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/flame_toggle)
+	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/special_toggle)
+	//add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_name) //Implemented upstream
+	//add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_desc) //Implemented upstream
 	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/vore/bigdragon/Initialize()

@@ -119,7 +119,7 @@
 		aiCamera.deletepicture()
 
 /mob/living/silicon/robot/proc/take_image()
-	set category ="Robot Commands"
+	set category ="Abilities.Silicon"
 	set name = "Take Image"
 	set desc = "Takes an image"
 
@@ -127,7 +127,7 @@
 		aiCamera.toggle_camera_mode()
 
 /mob/living/silicon/robot/proc/view_images()
-	set category ="Robot Commands"
+	set category ="Abilities.Silicon"
 	set name = "View Images"
 	set desc = "View images"
 
@@ -135,7 +135,7 @@
 		aiCamera.viewpictures()
 
 /mob/living/silicon/robot/proc/delete_images()
-	set category = "Robot Commands"
+	set category = "Abilities.Silicon"
 	set name = "Delete Image"
 	set desc = "Delete a local image"
 

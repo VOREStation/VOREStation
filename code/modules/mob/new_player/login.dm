@@ -50,6 +50,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 	created_for = ckey
 
 	new_player_panel()
+	client.init_verbs()
 	spawn(40)
 		if(client)
 			handle_privacy_poll()

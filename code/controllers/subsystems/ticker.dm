@@ -41,6 +41,10 @@ SUBSYSTEM_DEF(ticker)
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
 
+	var/round_start_time = 0
+
+
+
 // This global variable exists for legacy support so we don't have to rename every 'ticker' to 'SSticker' yet.
 var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/PreInit()
@@ -101,6 +105,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 // Called during GAME_STATE_SETTING_UP (RUNLEVEL_SETUP)
 /datum/controller/subsystem/ticker/proc/setup_tick(resumed = FALSE)
+	round_start_time = world.time // otherwise round_start_time would be 0 for the signals
 	if(!setup_choose_gamemode())
 		// It failed, go back to lobby state and re-send the welcome message
 		pregame_timeleft = config.pregame_time
@@ -418,6 +423,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 				if(new_char.client)
 					var/obj/screen/splash/S = new(new_char.client, TRUE)
 					S.Fade(TRUE)
+					new_char.client.init_verbs()
 
 			// If they're a carbon, they can get manifested
 			if(J?.mob_type & JOB_CARBON)
@@ -542,28 +548,29 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	return 1
 
-/datum/controller/subsystem/ticker/stat_entry()
+/datum/controller/subsystem/ticker/stat_entry(msg)
 	switch(current_state)
 		if(GAME_STATE_INIT)
 			..()
 		if(GAME_STATE_PREGAME) // RUNLEVEL_LOBBY
-			..("START [round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]")
+			msg = "START [round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]"
 		if(GAME_STATE_SETTING_UP) // RUNLEVEL_SETUP
-			..("SETUP")
+			msg = "SETUP"
 		if(GAME_STATE_PLAYING) // RUNLEVEL_GAME
-			..("GAME")
+			msg = "GAME"
 		if(GAME_STATE_FINISHED) // RUNLEVEL_POSTGAME
 			switch(end_game_state)
 				if(END_GAME_MODE_FINISHED)
-					..("MODE OVER, WAITING")
+					msg = "MODE OVER, WAITING"
 				if(END_GAME_READY_TO_END)
-					..("ENDGAME PROCESSING")
+					msg = "ENDGAME PROCESSING"
 				if(END_GAME_ENDING)
-					..("END IN [round(restart_timeleft/10)]s")
+					msg = "END IN [round(restart_timeleft/10)]s"
 				if(END_GAME_DELAYED)
-					..("END PAUSED")
+					msg = "END PAUSED"
 				else
-					..("ENDGAME ERROR:[end_game_state]")
+					msg = "ENDGAME ERROR:[end_game_state]"
+	return ..()
 
 /datum/controller/subsystem/ticker/Recover()
 	flags |= SS_NO_INIT // Don't initialize again
@@ -579,3 +586,5 @@ var/global/datum/controller/subsystem/ticker/ticker
 	minds = SSticker.minds
 
 	random_players = SSticker.random_players
+
+	round_start_time = SSticker.round_start_time

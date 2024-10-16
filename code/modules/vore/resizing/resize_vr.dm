@@ -166,7 +166,7 @@
 /*
 //Add the set_size() proc to usable verbs. By commenting this out, we can leave the proc and hand it to species that need it.
 /hook/living_new/proc/resize_setup(mob/living/H)
-	H.verbs += /mob/living/proc/set_size
+	add_verb(H, /mob/living/proc/set_size)
 	return 1
 */
 

@@ -33,6 +33,9 @@
 
 	var/cell_type = /obj/item/cell/device
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/flash/Initialize()
 	. = ..()
 	power_supply = new cell_type(src)

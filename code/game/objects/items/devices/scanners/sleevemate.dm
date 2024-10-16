@@ -25,6 +25,8 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	// Needs a matching /datum/transcore_db with key defined in code
 	var/db_key
 	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/sleevemate/Initialize()
 	. = ..()

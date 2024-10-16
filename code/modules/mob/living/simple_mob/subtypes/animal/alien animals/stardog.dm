@@ -69,8 +69,8 @@
 
 /mob/living/simple_mob/vore/overmap/stardog/Login()
 	. = ..()
-	verbs -= /mob/living/simple_mob/proc/set_name
-	verbs -= /mob/living/simple_mob/proc/set_desc
+	remove_verb(src, /mob/living/simple_mob/proc/set_name)
+	remove_verb(src, /mob/living/simple_mob/proc/set_desc)
 
 /mob/living/simple_mob/vore/overmap/stardog/attack_hand(mob/living/user)
 	if(!(user.pickup_pref && user.pickup_active))
@@ -164,10 +164,10 @@
 		weather_areas -= anything
 	return ..()
 
-/mob/living/simple_mob/vore/overmap/stardog/Stat()
-	..()
-	if(statpanel("Status"))
-		stat(null, "Affinity: [round(affinity)]")
+/mob/living/simple_mob/vore/overmap/stardog/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "Affinity: [round(affinity)]"
 
 /mob/living/simple_mob/vore/overmap/stardog/start_pulling(var/atom/movable/AM)
 	if(!istype(loc, /turf/unsimulated/map))	//Don't pull stuff on the overmap

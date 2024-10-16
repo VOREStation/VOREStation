@@ -32,7 +32,7 @@
 	if(!focus)
 		return
 	to_chat(owner, span_bold("Research Completed") + ": [focus.name]")
-	owner.verbs.Add(focus.ability)
+	add_verb(owner, focus.ability)
 	available_abilities -= focus
 	if(focus.next)
 		available_abilities += focus.next

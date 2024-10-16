@@ -62,10 +62,10 @@
 	/obj/effect))
 
 /mob/living/simple_mob/vore/morph/Initialize()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/simple_mob/vore/morph/proc/take_over_prey
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/simple_mob/vore/morph/proc/take_over_prey)
 	if(!istype(src, /mob/living/simple_mob/vore/morph/dominated_prey))
-		verbs += /mob/living/simple_mob/vore/morph/proc/morph_color
+		add_verb(src, /mob/living/simple_mob/vore/morph/proc/morph_color)
 
 	return ..()
 

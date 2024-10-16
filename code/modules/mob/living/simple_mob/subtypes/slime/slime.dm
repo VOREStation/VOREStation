@@ -91,7 +91,7 @@ var/list/_slime_default_emotes = list(
 	emote_hear = list("squishes")
 
 /mob/living/simple_mob/slime/Initialize()
-	verbs += /mob/living/proc/ventcrawl
+	add_verb(src, /mob/living/proc/ventcrawl)
 	update_mood()
 	glow_color = color
 	handle_light()
