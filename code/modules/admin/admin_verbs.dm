@@ -410,7 +410,7 @@
 	if(!holder)	return
 	if(config)
 		CONFIG_SET(flag/log_hrefs, !CONFIG_GET(flag/log_hrefs))
-		message_admins(span_bold("[key_name_admin(usr)] [CONFIG_GET(string/log_hrefs) ? "started" : "stopped"] logging hrefs"))
+		message_admins(span_bold("[key_name_admin(usr)] [CONFIG_GET(flag/log_hrefs) ? "started" : "stopped"] logging hrefs"))
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
