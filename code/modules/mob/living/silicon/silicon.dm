@@ -129,10 +129,11 @@
 
 // this function shows the health of the AI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
+	. = list()
 	if(!src.stat)
-		. = "System integrity: [round((health/getMaxHealth())*100)]%"
+		. += "System integrity: [round((health/getMaxHealth())*100)]%"
 	else
-		. = "Systems nonfunctional"
+		. += "Systems nonfunctional"
 
 
 // This is a pure virtual function, it should be overwritten by all subclasses
