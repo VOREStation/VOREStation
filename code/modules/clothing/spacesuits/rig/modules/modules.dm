@@ -260,6 +260,10 @@
 				module.holder.selected_module = module
 			if("engage")
 				module.engage()
+			if("activate")
+				module.activate()
+			if("deactivate")
+				module.deactivate()
 			if("toggle")
 				if(module.active)
 					module.deactivate()
