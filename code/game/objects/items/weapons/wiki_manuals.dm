@@ -36,7 +36,7 @@
 	var/wiki_url = CONFIG_GET(string/wikiurl)
 	if(!wiki_url)
 		//user.balloon_alert(user, "this book is empty!")
-		to_chat(user, "this book is empty!")
+		to_chat(user, span_info("this book is empty!"))
 		return
 
 	//credit_book_to_reader(user)
@@ -91,7 +91,7 @@
 	var/wiki_url = CONFIG_GET(string/wikiurl)
 	if(!wiki_url)
 		//user.balloon_alert(user, "this book is empty!")
-		to_chat(user, "this book is empty!")
+		to_chat(user, span_info("this book is empty!"))
 		return
 
 	var/dat = {"<html>
