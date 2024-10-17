@@ -519,10 +519,11 @@
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
+	. = list()
 	// if you have a jetpack, show the internal tank pressure
 	var/obj/item/tank/jetpack/current_jetpack = installed_jetpack()
 	if (current_jetpack)
-		. = "Internal Atmosphere Info: [current_jetpack.name]"
+		. += "Internal Atmosphere Info: [current_jetpack.name]"
 		. += "Tank Pressure: [current_jetpack.air_contents.return_pressure()]"
 
 
@@ -535,12 +536,13 @@
 
 // this function displays the cyborgs current cell charge in the stat panel
 /mob/living/silicon/robot/proc/show_cell_power()
+	. = list()
 	if(cell)
-		. = "Charge Left: [round(cell.percent())]%"
+		. += "Charge Left: [round(cell.percent())]%"
 		. += "Cell Rating: [round(cell.maxcharge)]" // Round just in case we somehow get crazy values
 		. += "Power Cell Load: [round(used_power_this_tick)]W"
 	else
-		. = "No Cell Inserted!"
+		. += "No Cell Inserted!"
 
 // function to toggle VTEC once installed
 /mob/living/silicon/robot/proc/toggle_vtec()
