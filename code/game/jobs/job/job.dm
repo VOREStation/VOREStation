@@ -98,7 +98,7 @@
 	. = outfit.equip_base(H, title, alt_title)
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)
+	if(!config || CONFIG_GET(flag/jobs_have_minimal_access))
 		return src.minimal_access.Copy()
 	else
 		return src.access.Copy()
@@ -108,7 +108,7 @@
 	return (available_in_days(C) == 0) //Available in 0 days = available right now = player is old enough to play.
 
 /datum/job/proc/available_in_days(client/C)
-	if(C && config.use_age_restriction_for_jobs && isnum(C.player_age) && isnum(minimal_player_age))
+	if(C && CONFIG_GET(flag/use_age_restriction_for_jobs) && isnum(C.player_age) && isnum(minimal_player_age))
 		return max(0, minimal_player_age - C.player_age)
 	return 0
 

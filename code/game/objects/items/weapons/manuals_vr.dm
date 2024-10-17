@@ -6,7 +6,7 @@
 	author = "NanoTrasen"
 	title = "Standard Operating Procedure"
 
-/obj/item/book/manual/standard_operating_procedure/New()
+/obj/item/book/manual/standard_operating_procedure/Initialize()
 	..()
 	dat = {"
 
@@ -14,7 +14,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Standard_Operating_Procedure&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[CONFIG_GET(string/wikiurl)]Standard_Operating_Procedure&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
@@ -29,7 +29,7 @@
 	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
-/obj/item/book/manual/command_guide/New()
+/obj/item/book/manual/command_guide/Initialize()
 	..()
 	dat = {"
 
@@ -37,7 +37,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="[config.wikiurl]Chain_of_Command&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[CONFIG_GET(string/wikiurl)]Chain_of_Command&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>

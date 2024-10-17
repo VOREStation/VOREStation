@@ -2991,7 +2991,7 @@
 /area/centcom/medical)
 "dzV" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/book/manual/engineering_hacking,
+/obj/item/book/manual/wiki/engineering_hacking,
 /obj/item/radio/intercom{
 	desc = "Talk through this. Evilly";
 	dir = 4;

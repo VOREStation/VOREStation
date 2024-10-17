@@ -91,7 +91,7 @@
 	get_starting_locations()
 	if(!role_text_plural)
 		role_text_plural = role_text
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs |= protected_jobs
 	if(antaghud_indicator)
 		if(!hud_icon_reference)
@@ -112,7 +112,7 @@
 		if(ghosts_only && !istype(player.current, /mob/observer/dead))
 			candidates -= player
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role! They have been removed from the draft.")
-		else if(config.use_age_restriction_for_antags && player.current.client.player_age < minimum_player_age)
+		else if(CONFIG_GET(flag/use_age_restriction_for_antags) && player.current.client.player_age < minimum_player_age)
 			candidates -= player
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: Is only [player.current.client.player_age] day\s old, has to be [minimum_player_age] day\s!")
 		else if(player.special_role)

@@ -64,9 +64,9 @@
 		to_chat(user, span_notice("\The [I] does <b>[DPS]</b> damage per second."))
 		if(DPS > 0)
 			to_chat(user, span_notice("At your maximum health ([user.getMaxHealth()]), it would take approximately;"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - config.health_threshold_softcrit) / DPS] seconds to softcrit you. ([config.health_threshold_softcrit] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - config.health_threshold_crit) / DPS] seconds to hardcrit you. ([config.health_threshold_crit] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - config.health_threshold_dead) / DPS] seconds to kill you. ([config.health_threshold_dead] health)"))
+			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_softcrit)) / DPS] seconds to softcrit you. ([CONFIG_GET(number/health_threshold_softcrit)] health)"))
+			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_crit)) / DPS] seconds to hardcrit you. ([CONFIG_GET(number/health_threshold_crit)] health)"))
+			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_dead)) / DPS] seconds to kill you. ([CONFIG_GET(number/health_threshold_dead)] health)"))
 
 	else
 		to_chat(user, span_warning("You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb."))
@@ -206,9 +206,9 @@
 	set category = "Server"
 	set name = "Toggle Aliens"
 
-	config.aliens_allowed = !config.aliens_allowed
-	log_admin("[key_name(src)] has turned aliens [config.aliens_allowed ? "on" : "off"].")
-	message_admins("[key_name_admin(src)] has turned aliens [config.aliens_allowed ? "on" : "off"].", 0)
+	CONFIG_SET(flag/aliens_allowed, !CONFIG_GET(flag/aliens_allowed))
+	log_admin("[key_name(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
+	message_admins("[key_name_admin(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_display_del_log()

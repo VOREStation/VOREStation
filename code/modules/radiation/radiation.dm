@@ -18,12 +18,12 @@
 /datum/radiation_source/proc/update_rad_power(var/new_power = null)
 	if(new_power == null || new_power == rad_power)
 		return // No change
-	else if(new_power <= config.radiation_lower_limit)
+	else if(new_power <= CONFIG_GET(number/radiation_lower_limit))
 		qdel(src) // Decayed to nothing
 	else
 		rad_power = new_power
 		if(!flat)
-			range = min(round(sqrt(rad_power / config.radiation_lower_limit)), 31)  // R = rad_power / dist**2 - Solve for dist
+			range = min(round(sqrt(rad_power / CONFIG_GET(number/radiation_lower_limit))), 31)  // R = rad_power / dist**2 - Solve for dist
 	return
 
 /turf
@@ -38,7 +38,7 @@
 		else if(O.density) //So open doors don't get counted
 			var/datum/material/M = O.get_material()
 			if(!M)	continue
-			cached_rad_resistance += (M.weight + M.radiation_resistance) / config.radiation_material_resistance_divisor
+			cached_rad_resistance += (M.weight + M.radiation_resistance) / CONFIG_GET(number/radiation_material_resistance_divisor)
 	// Looks like storing the contents length is meant to be a basic check if the cache is stale due to items enter/exiting.  Better than nothing so I'm leaving it as is. ~Leshana
 	SSradiation.resistance_cache[src] = (length(contents) + 1)
 	return
@@ -49,7 +49,7 @@
 	temp_rad_resistance += material.weight + material.radiation_resistance
 	if(reinf_material)
 		temp_rad_resistance += reinf_material.weight + reinf_material.radiation_resistance
-	cached_rad_resistance = (density ? (temp_rad_resistance) / config.radiation_material_resistance_divisor : 0)
+	cached_rad_resistance = (density ? (temp_rad_resistance) / CONFIG_GET(number/radiation_material_resistance_divisor) : 0)
 	return
 
 /turf/simulated/mineral/calc_rad_resistance()

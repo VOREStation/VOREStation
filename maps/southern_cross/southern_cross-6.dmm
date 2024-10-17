@@ -1563,7 +1563,7 @@
 "Ec" = (/obj/machinery/door/airlock/glass_security{name = "Escape Shuttle Cell"; req_access = list(1)},/turf/simulated/shuttle/floor/red,/area/shuttle/escape/centcom)
 "Ed" = (/obj/machinery/door/airlock/glass_medical{name = "Escape Shuttle Infirmary"; req_access = list(5)},/turf/simulated/shuttle/floor/white,/area/shuttle/escape/centcom)
 "Ee" = (/obj/machinery/recharge_station,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
-"Ef" = (/obj/structure/table/steel_reinforced,/obj/item/book/manual/engineering_hacking,/obj/item/radio/intercom{desc = "Talk through this. Evilly"; frequency = 1213; name = "Subversive Intercom"; pixel_x = 32; subspace_transmission = 1; syndie = 1},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/wizard_station)
+"Ef" = (/obj/structure/table/steel_reinforced,/obj/item/book/manual/wiki/engineering_hacking,/obj/item/radio/intercom{desc = "Talk through this. Evilly"; frequency = 1213; name = "Subversive Intercom"; pixel_x = 32; subspace_transmission = 1; syndie = 1},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/wizard_station)
 "Eg" = (/obj/effect/floor_decal/industrial/warning/corner,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/wizard_station)
 "Eh" = (/obj/effect/floor_decal/industrial/warning,/turf/unsimulated/floor{icon_state = "dark"},/area/wizard_station)
 "Ei" = (/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 8},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/wizard_station)
@@ -2602,4 +2602,3 @@ aaaaRfababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

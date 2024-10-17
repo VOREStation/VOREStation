@@ -8192,9 +8192,9 @@
 "atZ" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/bookcase/manuals/engineering,
-/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/wiki/engineering_construction,
 /obj/item/book/manual/atmospipes,
-/obj/item/book/manual/engineering_guide,
+/obj/item/book/manual/wiki/engineering_guide,
 /obj/item/book/manual/evaguide,
 /turf/simulated/floor/tiled,
 /area/engineering/break_room)

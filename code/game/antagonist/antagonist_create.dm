@@ -106,13 +106,13 @@
 		to_chat(player.current, span_notice("[leader_welcome_text]"))
 	else
 		to_chat(player.current, span_notice("[welcome_text]"))
-	if (config.objectives_disabled)
+	if (CONFIG_GET(flag/objectives_disabled))
 		to_chat(player.current, span_notice("[antag_text]"))
 
 	if((flags & ANTAG_HAS_NUKE) && !spawned_nuke)
 		create_nuke()
 
-	if (!config.objectives_disabled)
+	if (!CONFIG_GET(flag/objectives_disabled))
 		show_objectives(player)
 	return 1
 

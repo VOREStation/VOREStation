@@ -204,7 +204,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!slot)
 		slot = default_slot
 
-	slot = sanitize_integer(slot, 1, config.character_slots, initial(default_slot))
+	slot = sanitize_integer(slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
 	if(slot != default_slot)
 		default_slot = slot
 		savefile.set_entry("default_slot", slot)
@@ -261,7 +261,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// This basically just changes default_slot without loading the correct data, so the next save call will overwrite
 	// the slot
-	slot = sanitize_integer(slot, 1, config.character_slots, initial(default_slot))
+	slot = sanitize_integer(slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
 	if(slot != default_slot)
 		default_slot = slot
 		nif_path = nif_durability = nif_savedata = null //VOREStation Add - Don't copy NIF

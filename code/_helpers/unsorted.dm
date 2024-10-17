@@ -1359,9 +1359,6 @@ var/mob/dview/dview_mob = new
 #undef NOT_FLAG
 #undef HAS_FLAG
 
-//datum may be null, but it does need to be a typed var
-#define NAMEOF(datum, X) (#X || ##datum.##X)
-
 #define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
 #define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)

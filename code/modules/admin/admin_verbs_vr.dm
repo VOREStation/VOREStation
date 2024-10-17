@@ -132,8 +132,8 @@
 	var/which = tgui_alert(usr, "Which do you want to toggle?", "Choose Recolour Toggle", list("Robot", "Simple Mob"))
 	switch(which)
 		if("Robot")
-			config.allow_robot_recolor = !config.allow_robot_recolor
-			to_chat(usr, "You have [config.allow_robot_recolor ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
+			CONFIG_SET(flag/allow_robot_recolor, !CONFIG_GET(flag/allow_robot_recolor))
+			to_chat(usr, "You have [CONFIG_GET(flag/allow_robot_recolor) ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
 		if("Simple Mob")
-			config.allow_simple_mob_recolor = !config.allow_simple_mob_recolor
-			to_chat(usr, "You have [config.allow_simple_mob_recolor ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
+			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
+			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
