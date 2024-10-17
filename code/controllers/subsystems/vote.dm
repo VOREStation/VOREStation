@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(vote)
 
 		log_vote(text)
 
-		to_world(span_filter_system(span_purple(span_bold("[text]") + "nType " + span_bold("vote") + " or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.")))
+		to_world(span_filter_system(span_purple(span_bold("[text]") + "\nType " + span_bold("vote") + " or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.")))
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 

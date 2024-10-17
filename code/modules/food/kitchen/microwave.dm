@@ -357,12 +357,12 @@
 		for (var/O in items_counts)
 			var/N = items_counts[O]
 			if (!(O in items_measures))
-				dat += {span_bold("[capitalize(O)]:") + " [N] [lowertext(O)]\s<BR>"}
+				dat += span_bold("[capitalize(O)]:") + " [N] [lowertext(O)]\s<BR>"
 			else
 				if (N==1)
-					dat += {span_bold("[capitalize(O)]:") + " [N] [items_measures[O]]<BR>"}
+					dat += span_bold("[capitalize(O)]:") + " [N] [items_measures[O]]<BR>"
 				else
-					dat += {span_bold("[capitalize(O)]:") + " [N] [items_measures_p[O]]<BR>"}
+					dat += span_bold("[capitalize(O)]:") + " [N] [items_measures_p[O]]<BR>"
 
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/display_name = R.name
@@ -370,12 +370,12 @@
 				display_name = "Hotsauce"
 			if (R.id == "frostoil")
 				display_name = "Coldsauce"
-			dat += {span_bold("[display_name]:") + " [R.volume] unit\s<BR>"}
+			dat += span_bold("[display_name]:") + " [R.volume] unit\s<BR>"
 
 		if (items_counts.len==0 && reagents.reagent_list.len==0)
-			dat = {span_bold("The microwave is empty") + "<BR>"}
+			dat = span_bold("The microwave is empty") + "<BR>"
 		else
-			dat = {span_bold("Ingredients:") + "<br>[dat]"}
+			dat = span_bold("Ingredients:") + "<br>[dat]"
 		dat += {"<HR><BR>\
 <A href='?src=\ref[src];action=cook'>Turn on!<BR>\
 <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
