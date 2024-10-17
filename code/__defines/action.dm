@@ -3,3 +3,8 @@
 #define AB_CHECK_LYING 4
 #define AB_CHECK_ALIVE 8
 #define AB_CHECK_INSIDE 16
+
+#define AB_ITEM 1
+#define AB_SPELL 2
+#define AB_INNATE 3
+#define AB_GENERIC 4
