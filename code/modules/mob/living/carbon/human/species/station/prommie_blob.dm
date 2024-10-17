@@ -80,6 +80,11 @@
 		QDEL_NULL(stored_blob)
 	return ..()
 
+/mob/living/simple_mob/slime/promethean/update_misc_tabs()
+	. = ..()
+	if(humanform)
+		humanform.species.update_misc_tabs(src)
+
 /mob/living/simple_mob/slime/promethean/handle_special() // Should disable default slime healing, we'll use nutrition based heals instead.
 	if(rad_glow)
 		rad_glow = CLAMP(rad_glow,0,250)
