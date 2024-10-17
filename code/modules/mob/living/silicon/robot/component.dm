@@ -21,7 +21,20 @@
 	src.owner = R
 
 /datum/robot_component/proc/install()
+	if(istype(wrapped, /obj/item/robot_parts/robot_component))
+		var/obj/item/robot_parts/robot_component/comp = wrapped
+		max_damage = comp.max_damage
+		idle_usage = comp.idle_usage
+		active_usage = comp.active_usage
+		return
+	if(istype(wrapped, /obj/item/cell))
+		var/obj/item/cell/cell = wrapped
+		max_damage = cell.robot_durability
+
 /datum/robot_component/proc/uninstall()
+	max_damage = initial(max_damage)
+	idle_usage = initial(idle_usage)
+	active_usage = initial(active_usage)
 
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon
@@ -231,24 +244,34 @@
 	var/brute = 0
 	var/burn = 0
 	var/icon_state_broken = "broken"
+	var/idle_usage = 0
+	var/active_usage = 0
+	var/max_damage = 0
 
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"
 	desc = "A module used for binary communications over encrypted frequencies, commonly used by synthetic robots."
 	icon_state = "binradio"
 	icon_state_broken = "binradio_broken"
+	idle_usage = 5
+	active_usage = 25
+	max_damage = 30
 
 /obj/item/robot_parts/robot_component/actuator
 	name = "actuator"
 	desc = "A modular, hydraulic actuator used by exosuits and robots alike for movement and manipulation."
 	icon_state = "motor"
 	icon_state_broken = "motor_broken"
+	idle_usage = 0
+	active_usage = 200
+	max_damage = 50
 
 /obj/item/robot_parts/robot_component/armour
 	name = "armour plating"
 	desc = "A pair of flexible, adaptable armor plates, used to protect the internals of robots."
 	icon_state = "armor"
 	icon_state_broken = "armor_broken"
+	max_damage = 90
 
 /obj/item/robot_parts/robot_component/armour_platform
 	name = "platform armour plating"
@@ -256,21 +279,64 @@
 	icon_state = "armor"
 	icon_state_broken = "armor_broken"
 	color = COLOR_GRAY80
+	max_damage = 140
 
 /obj/item/robot_parts/robot_component/camera
 	name = "camera"
 	desc = "A modified camera module used as a visual receptor for robots and exosuits, also serving as a relay for wireless video feed."
 	icon_state = "camera"
 	icon_state_broken = "camera_broken"
+	idle_usage = 10
+	max_damage = 40
 
 /obj/item/robot_parts/robot_component/diagnosis_unit
 	name = "diagnosis unit"
 	desc = "An internal computer and sensors used by robots and exosuits to accurately diagnose any system discrepancies on their components."
 	icon_state = "analyser"
 	icon_state_broken = "analyser_broken"
+	active_usage = 1000
+	max_damage = 30
 
 /obj/item/robot_parts/robot_component/radio
 	name = "radio"
 	desc = "A modular, multi-frequency radio used by robots and exosuits to enable communication systems. Comes with built-in subspace receivers."
 	icon_state = "radio"
 	icon_state_broken = "radio_broken"
+	idle_usage = 15
+	active_usage = 75
+	max_damage = 40
+
+// Improved components
+/obj/item/robot_parts/robot_component/binary_communication_device/upgraded
+	name = "improved binary communication device"
+	idle_usage = 2.5
+	active_usage = 12.5
+	max_damage = 45
+
+/obj/item/robot_parts/robot_component/radio/upgraded
+	name = "improved radio"
+	idle_usage = 5
+	active_usage = 35
+	max_damage = 40
+
+/obj/item/robot_parts/robot_component/actuator/upgraded
+	name = "improved actuator"
+	idle_usage = 0
+	active_usage = 100
+	max_damage = 75
+
+/obj/item/robot_parts/robot_component/diagnosis_unit/upgraded
+	name = "improved self-diagnosis unit"
+	active_usage = 500
+	max_damage = 45
+
+/obj/item/robot_parts/robot_component/camera/upgraded
+	name = "improved camera"
+	idle_usage = 5
+	max_damage = 60
+
+/obj/item/robot_parts/robot_component/armour/armour_titan
+	name = "prototype armour plating"
+	desc = "A pair of flexible, adaptable armor plates, used to protect the internals of robots."
+	max_damage = 220
+	color = COLOR_OFF_WHITE
