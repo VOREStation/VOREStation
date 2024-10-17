@@ -398,7 +398,7 @@
 				if(!src || !WT.isOn()) return
 				playsound(src, WT.usesound, 50, 1)
 				if(!welded)
-					user.visible_message("<b>\The [user]</b> welds the vent shut.", span_notice("You weld the vent shut."), "You hear welding.")
+					user.visible_message(span_bold("\The [user]") + " welds the vent shut.", span_notice("You weld the vent shut."), "You hear welding.")
 					welded = 1
 					update_icon()
 				else
@@ -446,7 +446,7 @@
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<b>\The [user]</b> unfastens \the [src].", \
+			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		deconstruct()

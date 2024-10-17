@@ -344,7 +344,7 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
-	HTML += "<b>Update Flavour Text</b> <hr />"
+	HTML += span_bold("Update Flavour Text") + " <hr />"
 	HTML += "<br></center>"
 	HTML += "<a href='byond://?src=\ref[src];flavor_change=general'>General:</a> "
 	HTML += TextPreview(flavor_texts["general"])

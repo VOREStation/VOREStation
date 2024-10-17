@@ -26,14 +26,14 @@
 			to_chat(user, span_warning("You need at least three hundred units of material to form a fuel rod."))
 			return 1
 		var/datum/reagent/R = thing.reagents.reagent_list[1]
-		visible_message("<b>\The [src]</b> compresses the contents of \the [thing] into a new fuel assembly.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " compresses the contents of \the [thing] into a new fuel assembly."))
 		var/obj/item/fuel_assembly/F = new(get_turf(src), R.id, R.color)
 		thing.reagents.remove_reagent(R.id, R.volume)
 		user.put_in_hands(F)
 
 	else if(istype(thing, /obj/machinery/power/supermatter))
 		var/obj/item/fuel_assembly/F = new(get_turf(src), "supermatter")
-		visible_message("<b>\The [src]</b> compresses \the [thing] into a new fuel assembly.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " compresses \the [thing] into a new fuel assembly."))
 		qdel(thing)
 		user.put_in_hands(F)
 		return 1
@@ -58,7 +58,7 @@
 			to_chat(user, span_warning("You need at least 25 [mat.sheet_plural_name] to make a fuel rod."))
 			return
 		var/obj/item/fuel_assembly/F = new(get_turf(src), mat.name)
-		visible_message("<b>\The [src]</b> compresses the [mat.use_name] into a new fuel assembly.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " compresses the [mat.use_name] into a new fuel assembly."))
 		M.use(FUSION_ROD_SHEET_AMT)
 		user.put_in_hands(F)
 

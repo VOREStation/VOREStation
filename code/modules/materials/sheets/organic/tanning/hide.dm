@@ -1,7 +1,7 @@
 /obj/item/stack/animalhide
 	name = "hide"
 	desc = "The hide of some creature."
-	description_info = "Use something <b><span class='red'>sharp</span></b>, like a knife, to scrape the hairs/feathers/etc off this hide to prepare it for tanning."
+	description_info = "Use something " + span_bold(span_red("sharp")) + ", like a knife, to scrape the hairs/feathers/etc off this hide to prepare it for tanning."
 	icon_state = "sheet-hide"
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
@@ -18,7 +18,7 @@
 /obj/item/stack/animalhide/attackby(obj/item/W as obj, mob/user as mob)
 	if(has_edge(W) || is_sharp(W))
 		//visible message on mobs is defined as visible_message(var/message, var/self_message, var/blind_message)
-		user.visible_message("<b>\The [user]</b> starts cutting hair off \the [src]", span_notice("You start cutting the hair off \the [src]"), "You hear the sound of a knife rubbing against flesh")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts cutting hair off \the [src]"), span_notice("You start cutting the hair off \the [src]"), "You hear the sound of a knife rubbing against flesh")
 		var/scraped = 0
 		while(amount > 0 && do_after(user, 2.5 SECONDS, user))
 			//Try locating an exisitng stack on the tile and add to there if possible

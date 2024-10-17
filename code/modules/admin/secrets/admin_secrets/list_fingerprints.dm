@@ -5,7 +5,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/dat = "<B>Showing Fingerprints.</B><HR>"
+	var/dat = span_bold("Showing Fingerprints.") + "<HR>"
 	dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
 	for(var/mob/living/carbon/human/H in mob_list)
 		if(H.ckey)

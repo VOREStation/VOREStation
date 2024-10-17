@@ -57,9 +57,9 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 
 		if(cur_assembly)
 			cur_assembly.forceMove(get_turf(src))
-			visible_message("<b>\The [user]</b> swaps \the [src]'s [cur_assembly] for \a [W].")
+			visible_message(span_infoplain(span_bold("\The [user]") + " swaps \the [src]'s [cur_assembly] for \a [W]."))
 		else
-			visible_message("<b>\The [user]</b> inserts \a [W] into \the [src].")
+			visible_message(span_infoplain(span_bold("\The [user]") + " inserts \a [W] into \the [src]."))
 
 		user.drop_from_inventory(W)
 		W.forceMove(src)
@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 	if(cur_assembly)
 		cur_assembly.forceMove(get_turf(src))
 		user.put_in_hands(cur_assembly)
-		visible_message("<b>\The [user]</b> removes \the [cur_assembly] from \the [src].")
+		visible_message(span_infoplain(span_bold("\The [user]") + " removes \the [cur_assembly] from \the [src]."))
 		cur_assembly = null
 		return
 	else

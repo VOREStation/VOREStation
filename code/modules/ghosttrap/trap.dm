@@ -26,12 +26,12 @@ var/list/ghost_traps
 	if(!istype(candidate) || !candidate.client || !candidate.ckey)
 		return 0
 	if(!candidate.MayRespawn())
-		to_chat(candidate, "You have made use of the AntagHUD and hence cannot enter play as \a [object].")
+		to_chat(candidate, span_infoplain("You have made use of the AntagHUD and hence cannot enter play as \a [object]."))
 		return 0
 	if(islist(ban_checks))
 		for(var/bantype in ban_checks)
 			if(jobban_isbanned(candidate, "[bantype]"))
-				to_chat(candidate, "You are banned from one or more required roles and hence cannot enter play as \a [object].")
+				to_chat(candidate, span_infoplain("You are banned from one or more required roles and hence cannot enter play as \a [object]."))
 				return 0
 	return 1
 
@@ -78,12 +78,12 @@ var/list/ghost_traps
 
 // Fluff!
 /datum/ghosttrap/proc/welcome_candidate(var/mob/target)
-	to_chat(target, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
-	to_chat(target, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
-	to_chat(target, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
-	to_chat(target, "<b>Use say #b to speak to other artificial intelligences.</b>")
+	to_chat(target, span_infoplain(span_bold("You are a positronic brain, brought into existence on [station_name()].")))
+	to_chat(target, span_infoplain(span_bold("As a synthetic intelligence, you answer to all crewmembers, as well as the AI.")))
+	to_chat(target, span_infoplain(span_bold("Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.")))
+	to_chat(target, span_infoplain(span_bold("Use say #b to speak to other artificial intelligences.")))
 	var/turf/T = get_turf(target)
-	T.visible_message("<b>\The [src]</b> chimes quietly.")
+	T.visible_message(span_infoplain(span_bold("\The [src]") + " chimes quietly."))
 	var/obj/item/mmi/digital/posibrain/P = target.loc
 	if(!istype(P)) //wat
 		return
@@ -107,8 +107,8 @@ var/list/ghost_traps
 	ghost_trap_role = "Plant"
 
 /datum/ghosttrap/plant/welcome_candidate(var/mob/target)
-	to_chat(target, span_alium("<B>You awaken slowly, stirring into sluggish motion as the air caresses you.</B>"))
+	to_chat(target, span_infoplain(span_alium(span_bold("You awaken slowly, stirring into sluggish motion as the air caresses you."))))
 	// This is a hack, replace with some kind of species blurb proc.
 	if(istype(target,/mob/living/carbon/alien/diona))
-		to_chat(target, "<B>You are \a [target], one of a race of drifting interstellar plantlike creatures that sometimes share their seeds with human traders.</B>")
-		to_chat(target, "<B>Too much darkness will send you into shock and starve you, but light will help you heal.</B>")
+		to_chat(target, span_infoplain(span_bold("You are \a [target], one of a race of drifting interstellar plantlike creatures that sometimes share their seeds with human traders.")))
+		to_chat(target, span_infoplain(span_bold("Too much darkness will send you into shock and starve you, but light will help you heal.")))

@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	if(total_bulge < bulge_size || bulge_size == 0)
 		return ""
 
-	return(span_red("<i>[belly_format_string(raw_message, english_list(vore_contents))]</i>"))
+	return(span_red(span_italics("[belly_format_string(raw_message, english_list(vore_contents))]")))
 
 /obj/belly/proc/get_examine_msg_absorbed()
 	if(!(contents.len) || !(examine_messages_absorbed.len) || !display_absorbed_examine)
@@ -259,7 +259,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	if(!absorbed_count)
 		return ""
 
-	return(span_red("<i>[belly_format_string(raw_message, english_list(absorbed_victims), use_absorbed_count = TRUE)]</i>"))
+	return(span_red(span_italics("[belly_format_string(raw_message, english_list(absorbed_victims), use_absorbed_count = TRUE)]")))
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so

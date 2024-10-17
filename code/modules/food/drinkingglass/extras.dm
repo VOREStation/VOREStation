@@ -7,13 +7,13 @@
 			extras += GE
 			user.remove_from_mob(GE)
 			GE.loc = src
-			to_chat(user, "<span class=notice>You add \the [GE] to \the [src].</span>")
+			to_chat(user, span_notice("You add \the [GE] to \the [src]."))
 			update_icon()
 		else
-			to_chat(user, "<span class=warning>There's no space to put \the [GE] on \the [src]!</span>")
+			to_chat(user, span_warning("There's no space to put \the [GE] on \the [src]!"))
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/fruit_slice))
 		if(!rim_pos)
-			to_chat(user, "<span class=warning>There's no space to put \the [I] on \the [src]!</span>")
+			to_chat(user, span_warning("There's no space to put \the [I] on \the [src]!"))
 			return
 		var/obj/item/reagent_containers/food/snacks/fruit_slice/FS = I
 		extras += FS
@@ -21,7 +21,7 @@
 		FS.pixel_x = 0 // Reset its pixel offsets so the icons work!
 		FS.pixel_y = 0
 		FS.loc = src
-		to_chat(user, "<span class=notice>You add \the [FS] to \the [src].</span>")
+		to_chat(user, span_notice("You add \the [FS] to \the [src]."))
 		update_icon()
 	else
 		return ..()
@@ -31,7 +31,7 @@
 		return ..()
 
 	if(!extras.len)
-		to_chat(user, "<span class=warning>There's nothing on the glass to remove!</span>")
+		to_chat(user, span_warning("There's nothing on the glass to remove!"))
 		return
 
 	var/choice = tgui_input_list(user, "What would you like to remove from the glass?", "Removal Choice", extras)
@@ -39,10 +39,10 @@
 		return
 
 	if(user.put_in_active_hand(choice))
-		to_chat(user, "<span class=notice>You remove \the [choice] from \the [src].</span>")
+		to_chat(user, span_notice("You remove \the [choice] from \the [src]."))
 		extras -= choice
 	else
-		to_chat(user, "<span class=warning>Something went wrong, please try again.</span>")
+		to_chat(user, span_warning("Something went wrong, please try again."))
 
 	update_icon()
 
@@ -95,13 +95,13 @@
 		to_chat(user, span_warning("There's not enough of [victim] left to sip on!"))
 		return
 
-	user.visible_message("<b>[user]</b> starts sipping on [victim] with [src]!", "You start sipping on [victim] with [src].")
+	user.visible_message(span_infoplain(span_bold("[user]") + " starts sipping on [victim] with [src]!"), span_info("You start sipping on [victim] with [src]."))
 	if(!do_after(user, 3 SECONDS, victim, exclusive = TASK_ALL_EXCLUSIVE))
 		return
 
-	user.visible_message("<b>[user]</b> sips some of [victim] with [src]!", "You take a sip of [victim] with [src]. Yum!")
+	user.visible_message(span_infoplain(span_bold("[user]") + " sips some of [victim] with [src]!"), span_info("You take a sip of [victim] with [src]. Yum!"))
 	if(victim.vore_taste)
-		to_chat(user, "<b>[victim]</b> tastes like... [victim.vore_taste]!")
+		to_chat(user, span_infoplain(span_bold("[victim]") + " tastes like... [victim.vore_taste]!"))
 
 	victim.apply_damage(5, used_weapon = "straw")
 

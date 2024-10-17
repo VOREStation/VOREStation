@@ -67,8 +67,8 @@
 	var/dat = "<h2>Cash Register<hr></h2>"
 	if (locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
-		dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><br>"
-		dat += "<b>[cash_locked? "Unlock" : "Lock"] Cash Box</b> | "
+		dat += "Linked account: " + span_bold("[linked_account ? linked_account.owner_name : "None"]") + "<br>"
+		dat += span_bold("[cash_locked? "Unlock" : "Lock"] Cash Box") + " | "
 	else
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Lock</a><br>"
 		dat += "Linked account: <a href='?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><br>"
@@ -103,7 +103,7 @@
 				if(allowed(usr))
 					locked = !locked
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Insufficient access.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Insufficient access."))
 			if("toggle_cash_lock")
 				cash_locked = !cash_locked
 			if("link_account")
@@ -113,9 +113,9 @@
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Account has been suspended.</span>")
+						src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Account has been suspended."))
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Account not found.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("custom_order")
 				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
 				if (!t_purpose || !Adjacent(usr)) return
@@ -163,7 +163,7 @@
 					price_list.Cut()
 			if("reset_log")
 				transaction_logs.Cut()
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='notice'>Transaction log reset.</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_notice("Transaction log reset."))
 	updateDialog()
 
 
@@ -208,7 +208,7 @@
 		return 1
 	else
 		confirm_item = I
-		src.visible_message("[icon2html(src,viewers(src))]<b>Total price:</b> [transaction_amount] Thaler\s. Swipe again to confirm.")
+		src.visible_message(span_infoplain("[icon2html(src,viewers(src))]" + span_bold("Total price:") + " [transaction_amount] Thaler\s. Swipe again to confirm."))
 		playsound(src, 'sound/machines/twobeep.ogg', 25)
 		return 0
 
@@ -219,14 +219,14 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("The cash box is open."))
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(I))
 		return
 
 	if (!linked_account)
-		usr.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to connect to linked account."))
 		return
 
 	// Access account for transaction
@@ -239,13 +239,13 @@
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!D)
-			src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to access account. Check security settings and try again."))
 		else
 			if(D.suspended)
-				src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Your account has been suspended.</span>")
+				src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Your account has been suspended."))
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Not enough funds.</span>")
+					src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
 				else
 					// Transfer the money
 					D.money -= transaction_amount
@@ -284,7 +284,7 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("The cash box is open."))
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(E))
@@ -293,7 +293,7 @@
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Not enough funds.</span>")
+			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
 		else
 			// Transfer the money
 			E.worth -= transaction_amount
@@ -322,14 +322,14 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("The cash box is open."))
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(SC))
 		return
 
 	if(transaction_amount > SC.worth)
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Not enough money.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough money."))
 	else
 		// Insert cash into magical slot
 		SC.worth -= transaction_amount
@@ -351,17 +351,17 @@
 /obj/machinery/cash_register/proc/scan_item_price(obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Only up to ten different items allowed per purchase."))
 		return
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("The cash box is open."))
 		return
 
 	// First check if item has a valid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to find item in database.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to find item in database."))
 		return
 	// Call out item cost
 	src.visible_message("[icon2html(src,viewers(src))]\A [O]: [price ? "[price] Thaler\s" : "free of charge"].")
@@ -399,7 +399,7 @@
 		item_name = item_list[i]
 		dat += "<tr><td class=\"tx-name-r\">[item_list[item_name] ? "<a href='?src=\ref[src];choice=subtract;item=\ref[item_name]'>-</a> <a href='?src=\ref[src];choice=set_amount;item=\ref[item_name]'>Set</a> <a href='?src=\ref[src];choice=add;item=\ref[item_name]'>+</a> [item_list[item_name]] x " : ""][item_name] <a href='?src=\ref[src];choice=clear;item=\ref[item_name]'>Remove</a></td><td class=\"tx-data-r\" width=50>[price_list[item_name] * item_list[item_name]] &thorn</td></tr>"
 	dat += "</table><table width=300>"
-	dat += "<tr><td class=\"tx-name-r\"><a href='?src=\ref[src];choice=clear'>Clear Entry</a></td><td class=\"tx-name-r\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
+	dat += "<tr><td class=\"tx-name-r\"><a href='?src=\ref[src];choice=clear'>Clear Entry</a></td><td class=\"tx-name-r\" style='text-align: right'>" + span_bold("Total Amount: [transaction_amount] &thorn") + "</td></tr>"
 	dat += "</table></html>"
 	return dat
 
@@ -424,7 +424,7 @@
 	for(var/i=1, i<=item_list.len, i++)
 		item_name = item_list[i]
 		dat += "<tr><td class=\"tx-name\">[item_list[item_name] ? "[item_list[item_name]] x " : ""][item_name]</td><td class=\"tx-data\" width=50>[price_list[item_name] * item_list[item_name]] &thorn</td></tr>"
-	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
+	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'>" + span_bold("Total Amount: [transaction_amount] &thorn") + "</td></tr>"
 	dat += "</table></html>"
 
 	transaction_logs += dat
@@ -432,11 +432,11 @@
 
 /obj/machinery/cash_register/proc/check_account()
 	if (!linked_account)
-		usr.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to connect to linked account."))
 		return 0
 
 	if(linked_account.suspended)
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Connected account has been suspended.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Connected account has been suspended."))
 		return 0
 	return 1
 
@@ -444,7 +444,7 @@
 /obj/machinery/cash_register/proc/transaction_complete()
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
-	src.visible_message("[icon2html(src,viewers(src))]<span class='notice'>Transaction complete.</span>")
+	src.visible_message("[icon2html(src,viewers(src))]" + span_notice("Transaction complete."))
 	flick("register_approve", src)
 	reset_memory()
 	updateDialog()

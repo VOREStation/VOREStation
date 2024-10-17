@@ -201,7 +201,7 @@
 	if(interpreter.GetVar("$source") in S.stored_names)
 		setname = interpreter.GetVar("$source")
 	else
-		setname = "<i>[interpreter.GetVar("$source")]</i>"
+		setname = span_italics("[interpreter.GetVar("$source")]")
 
 	if(signal.data["name"] != setname)
 		signal.data["realname"] = setname
@@ -255,7 +255,7 @@
 	if(source in S.stored_names)
 		newsign.data["name"] = source
 	else
-		newsign.data["name"] = "<i>[html_encode(uppertext(source))]</i>"
+		newsign.data["name"] = span_italics("[html_encode(uppertext(source))]")
 	newsign.data["realname"] = newsign.data["name"]
 	newsign.data["job"] = job
 	newsign.data["compression"] = 0

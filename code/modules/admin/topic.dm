@@ -809,9 +809,9 @@
 							msg += ", [job]"
 					notes_add(M.ckey, "Banned  from [msg] - [reason]", usr)
 					message_admins(span_blue("[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes"), 1)
-					to_chat(M, span_filter_system("[span_red("<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")]"))
-					to_chat(M, span_filter_system("[span_red("<B>The reason is: [reason]</B>")]"))
-					to_chat(M, span_filter_system("[span_red("This jobban will be lifted in [mins] minutes.")]"))
+					to_chat(M, span_filter_system(span_red(span_large(span_bold("You have been jobbanned by [usr.client.ckey] from: [msg].")))))
+					to_chat(M, span_filter_system(span_red(span_bold("The reason is: [reason]"))))
+					to_chat(M, span_filter_system(span_red("This jobban will be lifted in [mins] minutes.")))
 					href_list["jobban2"] = 1 // lets it fall through and refresh
 					return 1
 				if("No")
@@ -830,9 +830,9 @@
 							else		msg += ", [job]"
 						notes_add(M.ckey, "Banned  from [msg] - [reason]", usr)
 						message_admins(span_blue("[key_name_admin(usr)] banned [key_name_admin(M)] from [msg]"), 1)
-						to_chat(M, span_filter_system("[span_red("<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")]"))
-						to_chat(M, span_filter_system("[span_red("<B>The reason is: [reason]</B>")]"))
-						to_chat(M, span_filter_system("[span_red("Jobban can be lifted only upon request.")]"))
+						to_chat(M, span_filter_system(span_red(span_large(span_bold("You have been jobbanned by [usr.client.ckey] from: [msg].")))))
+						to_chat(M, span_filter_system(span_red(span_bold("The reason is: [reason]"))))
+						to_chat(M, span_filter_system(span_red("Jobban can be lifted only upon request.")))
 						href_list["jobban2"] = 1 // lets it fall through and refresh
 						return 1
 				if("Cancel")
@@ -863,7 +863,7 @@
 						continue
 			if(msg)
 				message_admins(span_blue("[key_name_admin(usr)] unbanned [key_name_admin(M)] from [msg]"), 1)
-				to_chat(M, span_filter_system(span_danger("<BIG>You have been un-jobbanned by [usr.client.ckey] from [msg].</BIG>")))
+				to_chat(M, span_filter_system(span_red(span_large("You have been un-jobbanned by [usr.client.ckey] from [msg]."))))
 				href_list["jobban2"] = 1 // lets it fall through and refresh
 			return 1
 		return 0 //we didn't do anything!
@@ -1025,7 +1025,7 @@
 		master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [config.mode_names[master_mode]].")
 		message_admins(span_blue("[key_name_admin(usr)] set the mode as [config.mode_names[master_mode]]."), 1)
-		to_world(span_blue("<b>The mode is now: [config.mode_names[master_mode]]</b>"))
+		to_world(span_world(span_blue("The mode is now: [config.mode_names[master_mode]]")))
 		Game() // updates the main game menu
 		world.save_mode(master_mode)
 		.(href, list("c_mode"=1))
@@ -1359,7 +1359,7 @@
 			for(var/client/X in GLOB.admins)
 				if((R_ADMIN|R_MOD|R_SERVER) & X.holder.rights) //VOREStation Edit
 					to_chat(X, take_msg)
-			to_chat(M, span_filter_pm(span_notice("<b>Your adminhelp is being attended to by [usr.client]. Thanks for your patience!</b>")))
+			to_chat(M, span_filter_pm(span_boldnotice("Your adminhelp is being attended to by [usr.client]. Thanks for your patience!")))
 			// VoreStation Edit Start
 			if (config.chat_webhook_url)
 				spawn(0)
@@ -1408,9 +1408,9 @@
 
 		//Job + antagonist
 		if(M.mind)
-			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: [span_red("<b>[M.mind.special_role]</b>")]; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
+			special_role_description = "Role: " + span_bold("[M.mind.assigned_role]") + "; Antagonist: [span_red(span_bold("[M.mind.special_role]"))]; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
 		else
-			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"
+			special_role_description = "Role: " + span_italics("Mind datum missing") + " Antagonist: " + span_italics("Mind datum missing") + "; Has been rev: " + span_italics("Mind datum missing") + ";"
 
 		//Health
 		if(isliving(M))
@@ -1418,8 +1418,8 @@
 			var/status
 			switch (M.stat)
 				if (0) status = "Alive"
-				if (1) status = span_orange("<b>Unconscious</b>")
-				if (2) status = span_red("<b>Dead</b>")
+				if (1) status = span_orange(span_bold("Unconscious"))
+				if (2) status = span_red(span_bold("Dead"))
 			health_description = "Status = [status]"
 			health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getBrainLoss()]"
 		else
@@ -1428,7 +1428,7 @@
 		//Gener
 		switch(M.gender)
 			if(MALE,FEMALE)	gender_description = "[M.gender]"
-			else			gender_description = span_red("<b>[M.gender]</b>")
+			else			gender_description = span_red(span_bold("[M.gender]"))
 
 		to_chat(src.owner, "<span class='filter_adminlog'><b>Info about [M.name]:</b><br>\
 							Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]<br>\
@@ -1936,27 +1936,27 @@
 
 	else if(href_list["ac_censor_channel_author"])
 		var/datum/feed_channel/FC = locate(href_list["ac_censor_channel_author"])
-		if(FC.author != "<B>\[REDACTED\]</B>")
+		if(FC.author != span_bold("\[REDACTED\]"))
 			FC.backup_author = FC.author
-			FC.author = "<B>\[REDACTED\]</B>"
+			FC.author = span_bold("\[REDACTED\]")
 		else
 			FC.author = FC.backup_author
 		src.access_news_network()
 
 	else if(href_list["ac_censor_channel_story_author"])
 		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_author"])
-		if(MSG.author != "<B>\[REDACTED\]</B>")
+		if(MSG.author != span_bold("\[REDACTED\]"))
 			MSG.backup_author = MSG.author
-			MSG.author = "<B>\[REDACTED\]</B>"
+			MSG.author = span_bold("\[REDACTED\]")
 		else
 			MSG.author = MSG.backup_author
 		src.access_news_network()
 
 	else if(href_list["ac_censor_channel_story_body"])
 		var/datum/feed_message/MSG = locate(href_list["ac_censor_channel_story_body"])
-		if(MSG.body != "<B>\[REDACTED\]</B>")
+		if(MSG.body != span_bold("\[REDACTED\]"))
 			MSG.backup_body = MSG.body
-			MSG.body = "<B>\[REDACTED\]</B>"
+			MSG.body = span_bold("\[REDACTED\]")
 		else
 			MSG.body = MSG.backup_body
 		src.access_news_network()

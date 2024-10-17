@@ -24,7 +24,7 @@
 
 /datum/reagent/glamour_transparent/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!target.cloaked)
-		target.visible_message("<b>\The [target]</b> vanishes from sight.")
+		target.visible_message(span_infoplain(span_bold("\The [target]") + " vanishes from sight."))
 		target.cloak()
 	target.bloodstr.clear_reagents() //instantly clears reagents afterwards
 	target.ingested.clear_reagents()
@@ -32,7 +32,7 @@
 	spawn(600)
 		if(target.cloaked)
 			target.uncloak()
-			target.visible_message("<b>\The [target]</b> appears as if from thin air.")
+			target.visible_message(span_infoplain(span_bold("\The [target]") + " appears as if from thin air."))
 
 //Shrinking Glamour (scaling potion)
 
@@ -159,7 +159,7 @@
 		if(!h_action || h_action == "Cancel")
 			return
 		if(h_action == "Recall")
-			H.visible_message("<b>\The [H]</b> returns to the face.")
+			H.visible_message(span_infoplain(span_bold("\The [H]") + " returns to the face."))
 			qdel(H)
 			homunculus = 0
 			return
@@ -253,7 +253,7 @@
 			to_chat(M, span_warning("You leave the glamour ring alone."))
 			return
 		to_chat(M, span_warning("You have destroyed \the [src]."))
-		src.visible_message("<b>\The [M]</b> has broken apart \the [src].")
+		src.visible_message(span_infoplain(span_bold("\The [M]") + " has broken apart \the [src]."))
 		if(M != connected_mob && connected_mob)
 			to_chat(connected_mob, span_warning("\The [src] has been destroyed by \the [M]."))
 		if(istype(LL))

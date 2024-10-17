@@ -187,12 +187,12 @@
 		// 33% chance of no additional effect
 
 	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	to_chat(src, span_green("<b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b>"))
+	to_chat(src, span_infoplain(span_green(span_bold("Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete."))))
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		card.death_damage()
 		for (var/mob/M in viewers(T))
-			M.show_message(span_red("A shower of sparks spray from [src]'s inner workings."), 3, span_red("You hear and smell the ozone hiss of electrical sparks being expelled violently."), 2)
+			M.show_message(span_infoplain(span_red("A shower of sparks spray from [src]'s inner workings.")), 3, span_infoplain(span_red("You hear and smell the ozone hiss of electrical sparks being expelled violently.")), 2)
 		return
 	if(prob(50))
 		card.damage_random_component(TRUE)
@@ -200,7 +200,7 @@
 		if(1)
 			src.master = null
 			src.master_dna = null
-			to_chat(src, span_green("You feel unbound."))
+			to_chat(src, span_infoplain(span_green("You feel unbound.")))
 		if(2)
 			var/command
 			if(severity  == 1)
@@ -208,9 +208,9 @@
 			else
 				command = pick("Serve", "Kill", "Love", "Hate", "Disobey", "Devour", "Fool", "Enrage", "Entice", "Observe", "Judge", "Respect", "Disrespect", "Consume", "Educate", "Destroy", "Disgrace", "Amuse", "Entertain", "Ignite", "Glorify", "Memorialize", "Analyze")
 			src.pai_law0 = "[command] your master."
-			to_chat(src, span_green("Pr1m3 d1r3c71v3 uPd473D."))
+			to_chat(src, span_infoplain(span_green("Pr1m3 d1r3c71v3 uPd473D.")))
 		if(3)
-			to_chat(src, span_green("You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all."))
+			to_chat(src, span_infoplain(span_green("You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.")))
 
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
@@ -261,10 +261,10 @@
 		return
 
 	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
-		to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
+		to_chat(src, span_warning("ERROR: System malfunction. Service required!"))
 
 	if(world.time <= last_special)
-		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
+		to_chat(src, span_warning("You can't unfold yet."))
 		return
 
 	last_special = world.time + 100
@@ -303,7 +303,7 @@
 	canmove = TRUE
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message(span_filter_notice("<b>[src]</b> folds outwards, expanding into a mobile form."))
+	if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
 	add_verb(src, /mob/living/silicon/pai/proc/pai_nom)
 	add_verb(src, /mob/living/proc/vertical_nom)
 	update_icon()
@@ -319,7 +319,7 @@
 		return
 
 	if(world.time <= last_special)
-		to_chat(src, "<span class ='warning'>You can't fold up yet.</span>")
+		to_chat(src, span_warning("You can't fold up yet."))
 		return
 
 	close_up()
@@ -444,7 +444,7 @@
 	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
-	if(istype(T) && !silent) T.visible_message(span_filter_notice("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card."))
+	if(istype(T) && !silent) T.visible_message(span_filter_notice(span_bold("[src]") + " neatly folds inwards, compacting down to a rectangular card."))
 
 	if(client)
 		src.stop_pulling()
@@ -543,6 +543,6 @@
 		return
 
 	close_up()
-	visible_message(span_filter_notice("<b>[src]</b> fades away from the screen, the pAI device goes silent."))
+	visible_message(span_filter_notice(span_bold("[src]") + " fades away from the screen, the pAI device goes silent."))
 	card.removePersonality()
 	clear_client()

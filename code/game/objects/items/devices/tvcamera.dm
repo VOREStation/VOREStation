@@ -123,7 +123,7 @@
 	. = ..()
 	if(camera.status && !isturf(target))
 		show_tvs(target)
-		user.visible_message("<b>[user]</b> aims [src] at [target].", "You aim [src] at [target].")
+		user.visible_message(span_infoplain(span_bold("[user]") + " aims [src] at [target]."), span_info("You aim [src] at [target]."))
 		if(user.machine == src)
 			show_ui(user) // refresh the UI
 

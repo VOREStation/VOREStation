@@ -31,12 +31,12 @@
 
 	for(var/mob/M in mob_list)
 		if(check_rights(R_ADMIN|R_MOD|R_EVENT, 0, M)) // Staff can see AOOC unconditionally, and with more details.
-			to_chat(M, span_ooc(span_aooc("[create_text_tag("aooc", "Antag-OOC:", M.client)] <EM>[get_options_bar(src, 0, 1, 1)]([admin_jump_link(usr, M.client.holder)]):</EM> <span class='message'>[msg]</span>")))
+			to_chat(M, span_ooc(span_aooc("[create_text_tag("aooc", "Antag-OOC:", M.client)] <EM>[get_options_bar(src, 0, 1, 1)]([admin_jump_link(usr, M.client.holder)]):</EM> " + span_message("[msg]"))))
 		else if(M.client) // Players can only see AOOC if observing, or if they are an antag type allowed to use AOOC.
 			var/datum/antagonist/A = null
 			if(M.mind) // Observers don't have minds, but they should still see AOOC.
 				A = get_antag_data(M.mind.special_role)
 			if((M.mind && M.mind.special_role && A && A.can_hear_aooc) || isobserver(M)) // Antags must have their type be allowed to AOOC to see AOOC.  This prevents, say, ERT from seeing AOOC.
-				to_chat(M, span_ooc(span_aooc("[create_text_tag("aooc", "Antag-OOC:", M.client)] <EM>[player_display]:</EM> <span class='message'>[msg]</span>")))
+				to_chat(M, span_ooc(span_aooc("[create_text_tag("aooc", "Antag-OOC:", M.client)] <EM>[player_display]:</EM> " + span_message("[msg]"))))
 
 	log_aooc(msg,src)

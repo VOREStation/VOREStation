@@ -24,7 +24,7 @@
 				return
 			if("")
 				F.dir.Remove(ckey)
-				to_chat(src, span_filter_adminlog("<b>Memo removed</b>"))
+				to_chat(src, span_filter_adminlog(span_bold("Memo removed")))
 				return
 		if( findtext(memo,"<script",1,0) )
 			return
@@ -52,7 +52,7 @@
 			ckey = src.ckey
 		if(ckey)
 			F.dir.Remove(ckey)
-			to_chat(src, span_filter_adminlog("<b>Removed Memo created by [ckey].</b>"))
+			to_chat(src, span_filter_adminlog(span_bold("Removed Memo created by [ckey].")))
 
 #undef MEMOFILE
 #undef ENABLE_MEMOS

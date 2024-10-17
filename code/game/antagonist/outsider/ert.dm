@@ -8,12 +8,12 @@ var/datum/antagonist/ert/ert
 	role_text_plural = "Emergency Responders"
 	welcome_text = "As member of the Emergency Response Team, you answer only to your leader and company officials."
 	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
-	antag_text = "You are an <b>anti</b> antagonist! Within the rules, \
+	antag_text = "You are an " + span_bold("anti") + " antagonist! Within the rules, \
 		try to save the station and its inhabitants from the ongoing crisis. \
-		Try to make sure other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
+		Try to make sure other players have " + span_italics("fun") + "! If you are confused or at a loss, always adminhelp, \
 		and before taking extreme actions, please try to also contact the administration! \
-		Think through your actions and make the roleplay immersive! <b>Please remember all \
-		rules aside from those without explicit exceptions apply to the ERT.</b>"
+		Think through your actions and make the roleplay immersive! " + span_bold("Please remember all \
+		rules aside from those without explicit exceptions apply to the ERT.")
 	leader_welcome_text = "As leader of the Emergency Response Team, you answer only to the Company, and have authority to override the " + JOB_SITE_MANAGER + " where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the " + JOB_SITE_MANAGER + " where possible, however."
 	landmark_id = "Response Team"
 	id_type = /obj/item/card/id/centcom/ERT

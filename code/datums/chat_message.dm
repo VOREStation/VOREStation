@@ -148,7 +148,7 @@ var/list/runechat_image_cache = list()
 	// Differnt from our own system of name emphasis, maybe unify
 	var/list/names = splittext(owner.name, " ")
 	for (var/word in names)
-		text = replacetext(text, word, "<b>[word]</b>")
+		text = replacetext(text, word, span_bold("[word]"))
 
 	var/list/prefixes
 

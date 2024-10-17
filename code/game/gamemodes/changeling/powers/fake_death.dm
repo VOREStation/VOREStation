@@ -47,7 +47,7 @@
 
 		new /obj/changeling_revive_holder(src)
 
-		to_chat(src, span_notice("<font size='5'>We are ready to rise.  Use the <b>Revive</b> verb when you are ready.</font>"))
+		to_chat(src, span_notice(span_giant("We are ready to rise.  Use the <b>Revive</b> verb when you are ready.")))
 
 	feedback_add_details("changeling_powers","FD")
 	return 1

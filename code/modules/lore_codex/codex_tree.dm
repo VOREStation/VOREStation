@@ -71,7 +71,7 @@
 	var/datum/lore/codex/checked = current_page["[user]"]
 	if(istype(checked))
 		var/output = ""
-		output = "<b>[checked.name]</b>"
+		output = span_bold("[checked.name]")
 		while(checked.parent)
 			output = "<a href='?src=\ref[src];target=\ref[checked.parent]'>[checked.parent.name]</a> \> [output]"
 			checked = checked.parent

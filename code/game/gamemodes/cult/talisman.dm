@@ -60,7 +60,7 @@
 		qdel(src)
 		return
 
-	var/dat = "<B>There are [src.uses] bloody runes on the parchment.</B><BR>"
+	var/dat = span_bold("There are [src.uses] bloody runes on the parchment.") + "<BR>"
 	dat += "Please choose the chant to be imbued into the fabric of reality.<BR>"
 	dat += "<HR>"
 	dat += "<A href='?src=\ref[src];rune=newtome'>N'ath reth sh'yro eth d'raggathnor!</A> - Allows you to summon a new arcane tome.<BR>"

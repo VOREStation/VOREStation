@@ -291,7 +291,7 @@
 	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
 	t += "Generated power : [DisplayPower(lastgen)]<BR><BR>"
 	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
-	t += "Starter: [ compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]"
+	t += "Starter: [ compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> " + span_bold("On") : span_bold("Off") + " <A href='?src=\ref[src];str=1'>On</A>"]"
 	t += "</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>"
 	t += "</TT>"
 	var/datum/browser/popup = new(user, "turbine", name, 700, 500, src)

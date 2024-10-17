@@ -227,9 +227,9 @@
 		if(law == zeroth_law_borg)
 			continue
 		if(law == zeroth_law)
-			to_chat(who, span_danger("[law.get_index()]. [law.law]"))
+			to_chat(who, span_info(span_red("[law.get_index()]. [law.law]")))
 		else
-			to_chat(who, "[law.get_index()]. [law.law]")
+			to_chat(who, span_infoplain("[law.get_index()]. [law.law]"))
 
 /********************
 *	Stating Laws	*

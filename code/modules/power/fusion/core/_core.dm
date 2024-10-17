@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	if(Output.get_pairing())
 		reagents.trans_to_holder(Output.reagents, Output.reagents.maximum_volume)
 		if(prob(5))
-			visible_message("<b>\The [src]</b> gurgles as it exports fluid.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " gurgles as it exports fluid."))
 
 	if(owned_field)
 
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 /obj/machinery/power/fusion_core/attack_hand(var/mob/user)
 	if(!Adjacent(user)) // As funny as it was for the AI to hug-kill the tokamak field from a distance...
 		return
-	visible_message("<b>\The [user]</b> hugs \the [src] to make it feel better!")
+	visible_message(span_infoplain(span_bold("\The [user]") + " hugs \the [src] to make it feel better!"))
 	if(owned_field)
 		Shutdown()
 

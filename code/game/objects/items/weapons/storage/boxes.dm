@@ -156,7 +156,7 @@
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	desc = span_bold("WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.")
 	icon_state = "flashbang"
 	starts_with = list(/obj/item/grenade/flashbang = 7)
 	drop_sound = 'sound/items/drop/ammobox.ogg'
@@ -335,7 +335,7 @@
 
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
-	desc = span_red("<B>WARNING:</B>") + " <I>Keep out of reach of children</I>."
+	desc = span_red(span_bold("WARNING:")) + " " + span_italics("Keep out of reach of children") + "."
 	icon_state = "mousetraps"
 	starts_with = list(/obj/item/assembly/mousetrap = 7)
 
@@ -466,7 +466,7 @@
 //Donk-pockets
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	desc = span_bold("Instructions:") + " " + span_italics("Heat in microwave. Product will cool if not eaten within seven minutes.")
 	icon_state = "donkpocketbox"
 	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket = 7)
 
@@ -502,6 +502,6 @@
 
 /obj/item/storage/box/sinpockets
 	name = "box of sin-pockets"
-	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
+	desc = span_bold("Instructions:") + " " + span_italics("Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.")
 	icon_state = "donk_kit"
 	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket = 7)

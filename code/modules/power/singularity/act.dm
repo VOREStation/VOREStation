@@ -30,7 +30,7 @@
 		for(var/obj/item/hand in handlist)
 			if(prob(current_size*5) && hand.w_class >= ((11-current_size)/2) && unEquip(hand))
 				step_towards(hand, S)
-				to_chat(src, "<span class = 'warning'>The [S] pulls \the [hand] from your grip!</span>")
+				to_chat(src, span_warning("The [S] pulls \the [hand] from your grip!"))
 
 	if(!lying && (!shoes || !(shoes.item_flags & NOSLIP)) && (!species || !(species.flags & NOSLIP)) && prob(current_size*5))
 		to_chat(src, span_danger("A strong gravitational force slams you to the ground!"))

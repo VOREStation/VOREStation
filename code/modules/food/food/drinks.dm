@@ -96,6 +96,9 @@
 				if(!F.can_be_drop_prey || !F.food_vore)
 					continue
 
+				if(isanimal(M) && !F.allowmobvore && !M.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
+					continue
+
 				var/do_nom = FALSE
 
 				if(!reagents.total_volume)

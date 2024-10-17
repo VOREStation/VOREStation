@@ -54,7 +54,7 @@
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
-	desc = "<i>'Special delivery!'</i>"
+	desc = span_italics("'Special delivery!'")
 	icon_state = "mailman"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	rolled_sleeves = 0

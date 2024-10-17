@@ -267,12 +267,12 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
-	. += "<b>Custom Species Name:</b> "
+	. += span_bold("Custom Species Name:") + " "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
-		. += "<b>Icon Base: </b> "
+		. += span_bold("Icon Base:") + " "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
 	var/traits_left = pref.max_traits
@@ -284,10 +284,10 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 		points_left -= traits_costs[T]
 		if(T in pref.pos_traits)
 			traits_left--
-	. += "<b>Traits Left:</b> [traits_left]<br>"
-	. += "<b>Points Left:</b> [points_left]<br>"
+	. += span_bold("Traits Left:") + " [traits_left]<br>"
+	. += span_bold("Points Left:") + " [points_left]<br>"
 	if(points_left < 0 || traits_left < 0 || (!pref.custom_species && pref.species == SPECIES_CUSTOM))
-		. += "<span style='color:red;'><b>^ Fix things! ^</b></span><br>"
+		. += span_red(span_bold("^ Fix things! ^")) + "<br>"
 
 	. += "<a href='?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
 	. += "<ul>"
@@ -310,34 +310,34 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 		. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neg_traits[T])]</li>"
 	. += "</ul>"
 
-	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
+	. += span_bold("Blood Color: ") //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
 	. += "<a href='?src=\ref[src];blood_color=1'>Set Color <font color='[pref.blood_color]'>&#9899;</font></a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
-	. += "<b>Blood Reagent: </b>"	//Wanna be copper-based? Go ahead.
+	. += span_bold("Blood Reagent: ")	//Wanna be copper-based? Go ahead.
 	. += "<a href='?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
 	. += "<br>"
 
-	. += "<b>Custom Say: </b>"
+	. += span_bold("Custom Say: ")
 	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_say=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Whisper: </b>"
+	. += span_bold("Custom Whisper: ")
 	. += "<a href='?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_whisper=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Ask: </b>"
+	. += span_bold("Custom Ask: ")
 	. += "<a href='?src=\ref[src];custom_ask=1'>Set Ask Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_ask=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Exclaim: </b>"
+	. += span_bold("Custom Exclaim: ")
 	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_exclaim=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Heat Discomfort: </b>"
+	. += span_bold("Custom Heat Discomfort: ")
 	. += "<a href='?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
 	. += "(<a href='?src=\ref[src];reset_heat=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Cold Discomfort: </b>"
+	. += span_bold("Custom Cold Discomfort: ")
 	. += "<a href='?src=\ref[src];custom_cold=1'>Set Cold Messages</a>"
 	. += "(<a href='?src=\ref[src];reset_cold=1'>Reset</A>)"
 	. += "<br>"

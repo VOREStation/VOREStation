@@ -443,13 +443,13 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								var/list/security_hud_text = list()
-								security_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]"
-								security_hud_text += "<b>Species:</b> [R.fields["species"]]"
-								security_hud_text += "<b>Minor Crimes:</b> [R.fields["mi_crim"]]"
-								security_hud_text += "<b>Details:</b> [R.fields["mi_crim_d"]]"
-								security_hud_text += "<b>Major Crimes:</b> [R.fields["ma_crim"]]"
-								security_hud_text += "<b>Details:</b> [R.fields["ma_crim_d"]]"
-								security_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
+								security_hud_text += span_bold("Name:") + " [R.fields["name"]]	" + span_bold("Criminal Status:") + " [R.fields["criminal"]]"
+								security_hud_text += span_bold("Species:") + " [R.fields["species"]]"
+								security_hud_text += span_bold("Minor Crimes:") + " [R.fields["mi_crim"]]"
+								security_hud_text += span_bold("Details:") + " [R.fields["mi_crim_d"]]"
+								security_hud_text += span_bold("Major Crimes:") + " [R.fields["ma_crim"]]"
+								security_hud_text += span_bold("Details:") + " [R.fields["ma_crim_d"]]"
+								security_hud_text += span_bold("Notes:") + " [R.fields["notes"]]"
 								security_hud_text += "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, span_filter_notice("[jointext(security_hud_text, "<br>")]"))
 								read = 1
@@ -562,14 +562,14 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
 								var/list/medical_hud_text = list()
-								medical_hud_text += "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]	<b>Blood Basis:</b> [R.fields["blood_reagent"]]"
-								medical_hud_text += "<b>Species:</b> [R.fields["species"]]"
-								medical_hud_text += "<b>DNA:</b> [R.fields["b_dna"]]"
-								medical_hud_text += "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]"
-								medical_hud_text += "<b>Details:</b> [R.fields["mi_dis_d"]]"
-								medical_hud_text += "<b>Major Disabilities:</b> [R.fields["ma_dis"]]"
-								medical_hud_text += "<b>Details:</b> [R.fields["ma_dis_d"]]"
-								medical_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
+								medical_hud_text += span_bold("Name:") + " [R.fields["name"]]	" + span_bold("Blood Type:") + " [R.fields["b_type"]]	" + span_bold("Blood Basis:") + " [R.fields["blood_reagent"]]"
+								medical_hud_text += span_bold("Species:") + " [R.fields["species"]]"
+								medical_hud_text += span_bold("DNA:") + " [R.fields["b_dna"]]"
+								medical_hud_text += span_bold("Minor Disabilities:") + " [R.fields["mi_dis"]]"
+								medical_hud_text += span_bold("Details:") + " [R.fields["mi_dis_d"]]"
+								medical_hud_text += span_bold("Major Disabilities:") + " [R.fields["ma_dis"]]"
+								medical_hud_text += span_bold("Details:") + " [R.fields["ma_dis_d"]]"
+								medical_hud_text += span_bold("Notes:") + " [R.fields["notes"]]"
 								medical_hud_text += "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, span_filter_notice("[jointext(medical_hud_text, "<br>")]"))
 								read = 1
@@ -646,16 +646,16 @@
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"best"))
 								var/list/emp_hud_text = list()
-								emp_hud_text += "<b>Name:</b> [R.fields["name"]]"
-								emp_hud_text += "<b>Species:</b> [R.fields["species"]]"
-								emp_hud_text += "<b>Assignment:</b> [R.fields["real_rank"]] ([R.fields["rank"]])"
-								emp_hud_text += "<b>Home System:</b> [R.fields["home_system"]]"
-								emp_hud_text += "<b>Birthplace:</b> [R.fields["birthplace"]]"
-								emp_hud_text += "<b>Citizenship:</b> [R.fields["citizenship"]]"
-								emp_hud_text += "<b>Primary Employer:</b> [R.fields["personal_faction"]]"
-								emp_hud_text += "<b>Religious Beliefs:</b> [R.fields["religion"]]"
-								emp_hud_text += "<b>Known Languages:</b> [R.fields["languages"]]"
-								emp_hud_text += "<b>Notes:</b> [R.fields["notes"]]"
+								emp_hud_text += span_bold("Name:") + " [R.fields["name"]]"
+								emp_hud_text += span_bold("Species:") + " [R.fields["species"]]"
+								emp_hud_text += span_bold("Assignment:") + " [R.fields["real_rank"]] ([R.fields["rank"]])"
+								emp_hud_text += span_bold("Home System:") + " [R.fields["home_system"]]"
+								emp_hud_text += span_bold("Birthplace:") + " [R.fields["birthplace"]]"
+								emp_hud_text += span_bold("Citizenship:") + " [R.fields["citizenship"]]"
+								emp_hud_text += span_bold("Primary Employer:") + " [R.fields["personal_faction"]]"
+								emp_hud_text += span_bold("Religious Beliefs:") + " [R.fields["religion"]]"
+								emp_hud_text += span_bold("Known Languages:") + " [R.fields["languages"]]"
+								emp_hud_text += span_bold("Notes:") + " [R.fields["notes"]]"
 								emp_hud_text += "<a href='?src=\ref[src];emprecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, span_filter_notice("[jointext(emp_hud_text, "<br>")]"))
 								read = 1
@@ -972,7 +972,7 @@
 	usr.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
 	log_say("(TPATH to [key_name(target)]) [say]",src)
 	for(var/mob/observer/dead/G in mob_list)
-		G.show_message(span_filter_say("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>"))
+		G.show_message(span_filter_say(span_italics("Telepathic message from " + span_bold("[src]") + " to " + span_bold("[target]") + ": [say]")))
 
 /mob/living/carbon/human/proc/remoteobserve()
 	set name = "Remote View"

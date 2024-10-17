@@ -151,7 +151,7 @@
 							to_chat(usr, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 							return
 						else
-							computer.visible_message("<b>\The [computer]</b> prints out paper.")
+							computer.visible_message(span_bold("\The [computer]") + " prints out paper.")
 				else
 					var/contents = {"<h4>Crew Manifest</h4>
 									<br>
@@ -161,7 +161,7 @@
 						to_chat(usr, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 						return
 					else
-						computer.visible_message("<b>\The [computer]</b> prints out paper.")
+						computer.visible_message(span_bold("\The [computer]") + " prints out paper.")
 			. = TRUE
 		if("modify")
 			if(computer && computer.card_slot)

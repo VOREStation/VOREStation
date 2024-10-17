@@ -58,7 +58,7 @@
 				to_chat(user, span_warning("\The [src] appears to reject this brain.  It is incompatible."))
 				return
 
-		user.visible_message("<b>\The [user]</b> sticks \a [O] into \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " sticks \a [O] into \the [src]."))
 		B.preserved = TRUE
 
 		brainmob = B.brainmob
@@ -271,10 +271,10 @@
 		src.brainmob.mind.reset()
 	src.brainmob.ckey = candidate.ckey
 	src.name = "[name] ([src.brainmob.name])"
-	to_chat(src.brainmob, "<b>You are [src.name], brought into existence on [station_name()].</b>")
-	to_chat(src.brainmob, "<b>As a synthetic intelligence, you are designed with organic values in mind.</b>")
-	to_chat(src.brainmob, "<b>However, unless placed in a lawed chassis, you are not obligated to obey any individual crew member.</b>") //it's not like they can hurt anyone
-//	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
+	to_chat(src.brainmob, span_infoplain(span_bold("You are [src.name], brought into existence on [station_name()].")))
+	to_chat(src.brainmob, span_infoplain(span_bold("As a synthetic intelligence, you are designed with organic values in mind.")))
+	to_chat(src.brainmob, span_infoplain(span_bold("However, unless placed in a lawed chassis, you are not obligated to obey any individual crew member."))) //it's not like they can hurt anyone
+//	to_chat(src.brainmob, span_infoplain(span_bold("Use say #b to speak to other artificial intelligences.")))
 	src.brainmob.mind.assigned_role = JOB_SYNTHETIC_BRAIN
 
 	var/turf/T = get_turf_or_move(src.loc)

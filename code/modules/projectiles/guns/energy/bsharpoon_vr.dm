@@ -68,23 +68,23 @@
 	if(!user || !A || isstorage(A))
 		return
 	if(!scanmod)
-		to_chat(user,"<span class = 'warning'>The scanning module has been removed from [src]!</span>")
+		to_chat(user,span_warning("The scanning module has been removed from [src]!"))
 		return
 	if(transforming)
-		to_chat(user,"<span class = 'warning'>You can't fire while \the [src] transforming!</span>")
+		to_chat(user,span_warning("You can't fire while \the [src] transforming!"))
 		return
 	if(!firable)
-		to_chat(user,"<span class = 'warning'>\The [src] is recharging...</span>")
+		to_chat(user,span_warning("\The [src] is recharging..."))
 		return
 	if(is_jammed(A) || is_jammed(user))
 		firable = FALSE
 		VARSET_IN(src, firable, TRUE, 30 SECONDS)
-		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles due to interference!</span>")
+		to_chat(user,span_warning("\The [src] shot fizzles due to interference!"))
 		playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 		return
 	var/turf/T = get_turf(A)
 	if(!T || (T.check_density(ignore_mobs = TRUE) && mode == 1))
-		to_chat(user,"<span class = 'warning'>That's a little too solid to harpoon into!</span>")
+		to_chat(user,span_warning("That's a little too solid to harpoon into!"))
 		return
 	var/turf/ownturf = get_turf(src)
 	if(ownturf.z != T.z || get_dist(T,ownturf) > world.view)
@@ -211,7 +211,7 @@
 	if(transforming) return
 	mode = !mode
 	transforming = 1
-	to_chat(user,"<span class = 'info'>You change \the [src]'s mode to [mode ? "transmiting" : "receiving"].</span>")
+	to_chat(user,span_info("You change \the [src]'s mode to [mode ? "transmiting" : "receiving"]."))
 	update_icon()
 
 /obj/item/bluespace_harpoon/verb/chande_dropnom_mode(mob/user as mob)
@@ -220,7 +220,7 @@
 	set src in range(0)
 
 	dropnoms_active = !dropnoms_active
-	to_chat(user,"<span class = 'info'>You switch \the [src]'s spatial rearrangement [dropnoms_active ? "on" : "off"]. (Telenoms [dropnoms_active ? "enabled" : "disabled"])</span>")
+	to_chat(user,span_info("You switch \the [src]'s spatial rearrangement [dropnoms_active ? "on" : "off"]. (Telenoms [dropnoms_active ? "enabled" : "disabled"])"))
 
 /obj/item/bluespace_harpoon/update_icon()
 	if(transforming)

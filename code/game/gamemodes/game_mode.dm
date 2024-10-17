@@ -117,11 +117,11 @@ var/global/list/additional_antag_types = list()
 				return
 
 /datum/game_mode/proc/announce() //to be called when round starts
-	to_world(span_bold("The current game mode is [capitalize(name)]!"))
+	to_world(span_world("The current game mode is [capitalize(name)]!"))
 	if(round_description)
-		to_world("[round_description]")
+		to_world(span_filter_system("[round_description]"))
 	if(round_autoantag)
-		to_world("Antagonists will be added to the round automagically as needed.")
+		to_world(span_filter_system("Antagonists will be added to the round automagically as needed."))
 	if(antag_templates && antag_templates.len)
 		var/antag_summary = span_bold("Possible antagonist types:") + " "
 		var/i = 1
@@ -135,7 +135,7 @@ var/global/list/additional_antag_types = list()
 			i++
 		antag_summary += "."
 		if(antag_templates.len > 1 && master_mode != "secret")
-			to_world("[antag_summary]")
+			to_world(span_filter_system("[antag_summary]"))
 		else
 			message_admins("[antag_summary]")
 
@@ -339,11 +339,11 @@ var/global/list/additional_antag_types = list()
 	var/text = ""
 	if(surviving_total > 0)
 		text += "<br>There [surviving_total>1 ? ("were " + span_bold("[surviving_total] survivors")) : ("was " + span_bold("one survivor"))] ("
-		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts")
+		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]") + ") and " + span_bold("[ghosts] ghosts")
 		text += ".<br>"
 	else
-		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
-	to_world(text)
+		text += "There were " + span_bold("no survivors") + " (" + span_bold("[ghosts] ghosts") + ")."
+	to_world(span_filter_system(text))
 
 	if(clients > 0)
 		feedback_set("round_end_clients",clients)
@@ -553,7 +553,7 @@ var/global/list/additional_antag_types = list()
 		return
 
 	if(master_mode != "secret")
-		to_chat(usr, span_notice(span_bold("The roundtype is [capitalize(ticker.mode.name)]")))
+		to_chat(usr, span_boldnotice("The roundtype is [capitalize(ticker.mode.name)]"))
 		if(ticker.mode.round_description)
 			to_chat(usr, span_notice(span_italics("[ticker.mode.round_description]")))
 		if(ticker.mode.extended_round_description)

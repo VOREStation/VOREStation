@@ -73,7 +73,7 @@
 			to_chat(src, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
 			return
 		if(mute_irc)
-			to_chat(src, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
+			to_chat(usr, span_warning("You cannot use this as your client has been muted from sending messages to the admins on IRC"))
 			return
 		send2adminirc(href_list["irc_msg"])
 		return

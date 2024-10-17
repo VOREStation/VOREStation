@@ -121,8 +121,8 @@
 				data += "<font color='blue'>Blood type: [bloodsamp.dna[blood]]<br>\nDNA: [blood]<br><br></font>"
 		else
 			data += "No DNA found.<br>"
-		P.info = "<b>[src] analysis report #[report_num]</b><br>"
-		P.info += "<b>Scanned item:</b><br>[bloodsamp.name]<br>[bloodsamp.desc]<br><br>" + data
+		P.info = span_bold("[src] analysis report #[report_num]") + "<br>"
+		P.info += span_bold("Scanned item:") + "<br>[bloodsamp.name]<br>[bloodsamp.desc]<br><br>" + data
 		P.forceMove(loc)
 		P.update_icon()
 		scanning = FALSE

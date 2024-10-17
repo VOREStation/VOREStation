@@ -13,12 +13,12 @@
 		if(M.mind)
 			M.mind.transfer_to(R)
 		// Put this text here before ckey change so that their laws are shown below it, since borg login() shows it.
-		to_chat(M, "<span class='notice'>You are a <b>Lost Drone</b>, discovered inside the wreckage of your previous home. \
+		to_chat(M, span_notice("You are a " + span_bold("Lost Drone") + ", discovered inside the wreckage of your previous home. \
 		Something has reactivated you, with their intentions unknown to you, and yours unknown to them. They are a foreign entity, \
-		however they did free you from your pod...</span>")
-		to_chat(M, "<span class='notice'><b>Be sure to examine your currently loaded lawset closely.</b>  Remember, your \
+		however they did free you from your pod..."))
+		to_chat(M, span_notice(span_bold("Be sure to examine your currently loaded lawset closely.") + " Remember, your \
 		definiton of 'the station' is where your pod is, and unless your laws say otherwise, the entity that released you \
-		from the pod is not a crewmember.</span>")
+		from the pod is not a crewmember."))
 		R.ckey = M.ckey
 		visible_message(span_warning("As \the [src] opens, the eyes of the robot flicker as it is activated."))
 		R.namepick()

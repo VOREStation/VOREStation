@@ -87,7 +87,7 @@
 	if(!((skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)))
 		//VOREStation Add Start
 		if(custom_species)
-			name_ender = ", a <b>[src.custom_species]</b>"
+			name_ender = ", a " + span_bold("[src.custom_species]")
 		else if(looks_synth)
 		//VOREStation Add End
 			var/use_gender = "a synthetic"
@@ -96,12 +96,12 @@
 			else if(gender == FEMALE)
 				use_gender = "a gynoid"
 
-			name_ender = ", <b><font color='#555555'>[use_gender]!</font></b>[species.get_additional_examine_text(src)]"
+			name_ender = ", " + span_bold(span_gray("[use_gender]!")) + "[species.get_additional_examine_text(src)]"
 
 		else if(species.name != "Human")
-			name_ender = ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>[species.get_additional_examine_text(src)]"
+			name_ender = ", " + span_bold("<font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font>") + "[species.get_additional_examine_text(src)]"
 
-	var/list/msg = list("<span class='info'>","This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
+	var/list/msg = list("This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
 
 	//uniform
 	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
@@ -252,7 +252,7 @@
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
-			msg += span_warning("<B>[T.He] [T.is] convulsing violently!</B>")
+			msg += span_boldwarning("[T.He] [T.is] convulsing violently!")
 		else if(jitteriness >= 200)
 			msg += span_warning("[T.He] [T.is] extremely jittery.")
 		else if(jitteriness >= 100)
@@ -290,7 +290,7 @@
 		if((stat == 2 || src.losebreath) && get_dist(user, src) <= 3)
 			msg += span_warning("[T.He] [T.does] not appear to be breathing.")
 		if(istype(user, /mob/living/carbon/human) && !user.stat && Adjacent(user))
-			user.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
+			user.visible_message(span_infoplain(span_bold("[usr]") + " checks [src]'s pulse."), span_infoplain("You check [src]'s pulse."))
 		spawn(15)
 			if(isobserver(user) || (Adjacent(user) && !user.stat)) // If you're a corpse then you can't exactly check their pulse, but ghosts can see anything
 				if(pulse == PULSE_NONE)
@@ -329,9 +329,9 @@
 
 		var/obj/item/organ/external/E = organs_by_name[organ_tag]
 		if(!E)
-			wound_flavor_text["[organ_descriptor]"] = span_warning("<b>[T.He] [T.is] missing [T.his] [organ_descriptor].</b>")
+			wound_flavor_text["[organ_descriptor]"] = span_boldwarning("[T.He] [T.is] missing [T.his] [organ_descriptor].")
 		else if(E.is_stump())
-			wound_flavor_text["[organ_descriptor]"] = span_warning("<b>[T.He] [T.has] a stump where [T.his] [organ_descriptor] should be.</b>")
+			wound_flavor_text["[organ_descriptor]"] = span_boldwarning("[T.He] [T.has] a stump where [T.his] [organ_descriptor] should be.")
 		else
 			continue
 
@@ -340,7 +340,7 @@
 			if((temp.organ_tag in hidden) && hidden[temp.organ_tag])
 				continue //Organ is hidden, don't talk about it
 			if(temp.status & ORGAN_DESTROYED)
-				wound_flavor_text["[temp.name]"] = span_warning("<b>[T.He] [T.is] missing [T.his] [temp.name].</b>")
+				wound_flavor_text["[temp.name]"] = span_boldwarning("[T.He] [T.is] missing [T.his] [temp.name].")
 				continue
 
 			if(!looks_synth && temp.robotic == ORGAN_ROBOT)
@@ -434,13 +434,13 @@
 
 	// VOREStation Start
 	if(custom_link)
-		msg += "Custom link: <span class='linkify'>[custom_link]</span>"
+		msg += "Custom link: " + span_linkify("[custom_link]")
 
 	if(ooc_notes)
 		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 	msg += "<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 	// VOREStation End
-	msg += "</span>"
+	msg = list(span_info(jointext(msg, "<br>")))
 	if(applying_pressure)
 		msg += applying_pressure
 

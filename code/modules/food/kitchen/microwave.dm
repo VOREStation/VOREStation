@@ -79,24 +79,24 @@
 	if(src.broken > 0)
 		if(src.broken == 2 && O.has_tool_quality(TOOL_SCREWDRIVER)) // If it's broken and they're using a screwdriver
 			user.visible_message( \
-				"<b>\The [user]</b> starts to fix part of the microwave.", \
+				span_infoplain(span_bold("\The [user]") + " starts to fix part of the microwave."), \
 				span_notice("You start to fix part of the microwave.") \
 			)
 			playsound(src, O.usesound, 50, 1)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
-					"<b>\The [user]</b> fixes part of the microwave.", \
+					span_infoplain(span_bold("\The [user]") + " fixes part of the microwave."), \
 					span_notice("You have fixed part of the microwave.") \
 				)
 				src.broken = 1 // Fix it a bit
 		else if(src.broken == 1 && O.has_tool_quality(TOOL_WRENCH)) // If it's broken and they're doing the wrench
 			user.visible_message( \
-				"<b>\The [user]</b> starts to fix part of the microwave.", \
+				span_infoplain(span_bold("\The [user]") + " starts to fix part of the microwave."), \
 				span_notice("You start to fix part of the microwave.") \
 			)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
-					"<b>\The [user]</b> fixes the microwave.", \
+					span_infoplain(span_bold("\The [user]") + " fixes the microwave."), \
 					span_notice("You have fixed the microwave.") \
 				)
 				src.icon_state = "mw"
@@ -110,7 +110,7 @@
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/reagent_containers/spray/cleaner) || istype(O, /obj/item/soap)) // If they're trying to clean it then let them
 			user.visible_message( \
-				"<b>\The [user]</b> starts to clean the microwave.", \
+				span_infoplain(span_bold("\The [user]") + " starts to clean the microwave."), \
 				span_notice("You start to clean the microwave.") \
 			)
 			if (do_after(user,20))
@@ -357,12 +357,12 @@
 		for (var/O in items_counts)
 			var/N = items_counts[O]
 			if (!(O in items_measures))
-				dat += {"<B>[capitalize(O)]:</B> [N] [lowertext(O)]\s<BR>"}
+				dat += {span_bold("[capitalize(O)]:") + " [N] [lowertext(O)]\s<BR>"}
 			else
 				if (N==1)
-					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures[O]]<BR>"}
+					dat += {span_bold("[capitalize(O)]:") + " [N] [items_measures[O]]<BR>"}
 				else
-					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures_p[O]]<BR>"}
+					dat += {span_bold("[capitalize(O)]:") + " [N] [items_measures_p[O]]<BR>"}
 
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/display_name = R.name
@@ -370,12 +370,12 @@
 				display_name = "Hotsauce"
 			if (R.id == "frostoil")
 				display_name = "Coldsauce"
-			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
+			dat += {span_bold("[display_name]:") + " [R.volume] unit\s<BR>"}
 
 		if (items_counts.len==0 && reagents.reagent_list.len==0)
-			dat = {"<B>The microwave is empty</B><BR>"}
+			dat = {span_bold("The microwave is empty") + "<BR>"}
 		else
-			dat = {"<b>Ingredients:</b><br>[dat]"}
+			dat = {span_bold("Ingredients:") + "<br>[dat]"}
 		dat += {"<HR><BR>\
 <A href='?src=\ref[src];action=cook'>Turn on!<BR>\
 <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\

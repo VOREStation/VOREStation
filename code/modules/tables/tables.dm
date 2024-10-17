@@ -108,7 +108,7 @@ var/list/table_icon_cache = list()
 		return 1
 
 	if(carpeted && W.has_tool_quality(TOOL_CROWBAR))
-		user.visible_message("<b>\The [user]</b> removes the carpet from \the [src].",
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " removes the carpet from \the [src]."),
 		                              span_notice("You remove the carpet from \the [src]."))
 		new carpeted_type(loc)
 		carpeted = 0
@@ -118,7 +118,7 @@ var/list/table_icon_cache = list()
 	if(!carpeted && material && istype(W, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
-			user.visible_message("<b>\The [user]</b> adds \the [C] to \the [src].",
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " adds \the [C] to \the [src]."),
 			                              span_notice("You add \the [C] to \the [src]."))
 			carpeted = 1
 			carpeted_type = W.type
@@ -149,7 +149,7 @@ var/list/table_icon_cache = list()
 			playsound(src, F.usesound, 50, 1)
 			if(!do_after(user, 20 * F.toolspeed) || !F.remove_fuel(1, user))
 				return
-			user.visible_message("<b>\The [user]</b> repairs some damage to \the [src].",
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " repairs some damage to \the [src]."),
 			                              span_notice("You repair some damage to \the [src]."))
 			health = max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return 1
@@ -189,7 +189,7 @@ var/list/table_icon_cache = list()
 			src.break_to_parts()
 			user.do_attack_animation(src)
 			return 1
-	visible_message("<b>\The [user]</b> scratches at \the [src]!")
+	visible_message(span_infoplain(span_bold("\The [user]") + " scratches at \the [src]!"))
 	return ..()
 
 /obj/structure/table/MouseDrop_T(obj/item/stack/material/what)
@@ -258,14 +258,14 @@ var/list/table_icon_cache = list()
 
 	if(manipulating) return M
 	manipulating = 1
-	user.visible_message("<b>\The [user]</b> begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.",
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place."),
 	                              span_notice("You begin removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place."))
 	if(sound)
 		playsound(src, sound, 50, 1)
 	if(!do_after(user, delay))
 		manipulating = 0
 		return M
-	user.visible_message("<b>\The [user]</b> removes the [M.display_name] [what] from \the [src].",
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " removes the [M.display_name] [what] from \the [src]."),
 	                              span_notice("You remove the [M.display_name] [what] from \the [src]."))
 	new M.stack_type(src.loc)
 	manipulating = 0
@@ -280,13 +280,13 @@ var/list/table_icon_cache = list()
 /obj/structure/table/proc/dismantle(obj/item/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
-	user.visible_message("<b>\The [user]</b> begins dismantling \the [src].",
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " begins dismantling \the [src]."),
 	                              span_notice("You begin dismantling \the [src]."))
 	playsound(src, W.usesound, 50, 1)
 	if(!do_after(user, 20 * W.toolspeed))
 		manipulating = 0
 		return
-	user.visible_message("<b>\The [user]</b> dismantles \the [src].",
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " dismantles \the [src]."),
 	                              span_notice("You dismantle \the [src]."))
 	new /obj/item/stack/material/steel(src.loc)
 	qdel(src)

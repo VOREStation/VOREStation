@@ -52,7 +52,7 @@
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))
 	S.client = candidate.client
-	to_chat(S, "<b>You are a promethean, brought into existence on [station_name()].</b>")
+	to_chat(S, span_infoplain(span_bold("You are a promethean, brought into existence on [station_name()].")))
 	S.mind.assigned_role = JOB_PROMETHEAN
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#2398FF")

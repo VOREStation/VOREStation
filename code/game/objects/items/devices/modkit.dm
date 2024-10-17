@@ -52,7 +52,7 @@
 
 	playsound(src, O.usesound, 100, 1)
 
-	user.visible_message("<b>\The [user]</b> opens \the [src] and modifies \the [O].",span_notice("You open \the [src] and modify \the [O]."))
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " opens \the [src] and modifies \the [O]."),span_notice("You open \the [src] and modify \the [O]."))
 
 	I.refit_for_species(target_species)
 

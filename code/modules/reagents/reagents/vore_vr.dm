@@ -113,7 +113,7 @@
 			else if(prob(1))
 				playsound(M, 'sound/vore/schlorp.ogg', 50, 1)
 				P.absorbed = 0
-				M.visible_message(span_green("<b>Something spills into [M]'s [lowertext(B.name)]!</b>"))
+				M.visible_message(span_infoplain(span_green(span_bold("Something spills into [M]'s [lowertext(B.name)]!"))))
 
 ////////////////////////// TF Drugs //////////////////////////
 

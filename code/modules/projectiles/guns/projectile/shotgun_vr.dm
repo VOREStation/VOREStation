@@ -54,7 +54,7 @@
 		one_handed_penalty = 15 //Stock extended to steady it, even with just the one hand.
 		recoil = 1 //As above, stock and foregrip would help with the kick
 	else
-		user.visible_message("<b>\The [user]</b> collapses their shotgun's stock and fold it's foregrip.",\
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " collapses their shotgun's stock and fold it's foregrip."),\
 		span_notice("You fold the shotgun's stock and foregrip."),\
 		"You hear a click.")
 		icon_state = "compshotc"

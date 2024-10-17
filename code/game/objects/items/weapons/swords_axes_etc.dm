@@ -67,7 +67,7 @@
 		force = 15//quite robust
 		attack_verb = list("smacked", "struck", "slapped")
 	else
-		user.visible_message("<b>\The [user]</b> collapses their telescopic baton.",\
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " collapses their telescopic baton."),\
 		span_notice("You collapse the baton."),\
 		"You hear a click.")
 		icon_state = "telebaton0"

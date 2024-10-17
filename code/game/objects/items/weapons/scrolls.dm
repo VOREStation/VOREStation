@@ -20,10 +20,10 @@
 		return
 
 	user.set_machine(src)
-	var/dat = "<B>Teleportation Scroll:</B><BR>"
+	var/dat = span_bold("Teleportation Scroll:") + "<BR>"
 	dat += "Number of uses: [src.uses]<BR>"
 	dat += "<HR>"
-	dat += "<B>Four uses use them wisely:</B><BR>"
+	dat += span_bold("Four uses use them wisely:") + "<BR>"
 	dat += "<A href='byond://?src=\ref[src];spell_teleport=1'>Teleport</A><BR>"
 	dat += "Kind regards,<br>Wizards Federation<br><br>P.S. Don't forget to bring your gear, you'll need it to cast most spells.<HR>"
 	user << browse(dat, "window=scroll")

@@ -45,9 +45,9 @@
 		if(1)
 			establish_old_db_connection()
 			if(!dbcon_old.IsConnected())
-				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font><BR>"
+				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.") + "<BR>"
 			else if(!SQLquery)
-				dat += "<font color=red><b>ERROR</b>: Malformed search request. Please contact your system administrator for assistance.</font><BR>"
+				dat += span_red(span_bold("ERROR") + ": Malformed search request. Please contact your system administrator for assistance.") + "<BR>"
 			else
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
@@ -187,7 +187,7 @@
 				new /obj/item/book/tome(src.loc)
 				var/datum/gender/T = gender_datums[user.get_visible_gender()]
 				to_chat(user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
-				user.visible_message("<b>\The [user]</b> stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older.", 2)
+				user.visible_message(span_infoplain(span_bold("\The [user]") + " stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older."), 2)
 				src.arcanecheckout = 0
 		if(1)
 			// Inventory
@@ -207,7 +207,7 @@
 				//timedue *= 10
 				timedue /= 600
 				if(timedue <= 0)
-					timedue = "<font color=red><b>(OVERDUE)</b> [timedue]</font>"
+					timedue = span_red(span_bold("(OVERDUE)") + " [timedue]")
 				else
 					timedue = round(timedue)
 				dat += {"\"[b.bookname]\", Checked out to: [b.mobname]<BR>--- Taken: [timetaken] minutes ago, Due: in [timedue] minutes<BR>
@@ -228,7 +228,7 @@
 		if(4)
 			dat += "<h3>Internal Archive</h3>"
 			if(!all_books || !all_books.len)
-				dat +=	"<font color=red><b>ERROR</b> Something has gone seriously wrong. Contact System Administrator for more information.</font>"
+				dat +=	span_red(span_bold("ERROR") + " Something has gone seriously wrong. Contact System Administrator for more information.")
 			else
 				dat += {"<table>
 				<tr><td><A href='?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='?src=\ref[src];sort=title>TITLE</A></td><td><A href='?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
@@ -244,7 +244,7 @@
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(5)
 			//dat += "<H3>ERROR</H3>" //VOREStation Removal
-			//dat+= "<FONT color=red>Library Database is in Secure Management Mode.</FONT><BR>\ //VOREStation Removal
+			//dat+= span_red("Library Database is in Secure Management Mode.") + "<BR>\ //VOREStation Removal
 			//Contact a System Administrator for more information.<BR>" //VOREStation Removal
 			//VOREstation Edit Start
 			dat += "<H3>Upload a New Title</H3>"
@@ -253,9 +253,9 @@
 					scanner = S
 					break
 			if(!scanner)
-				dat += "<FONT color=red>No scanner found within wireless network range.</FONT><BR>"
+				dat += span_red("No scanner found within wireless network range.") + "<BR>"
 			else if(!scanner.cache)
-				dat += "<FONT color=red>No data found in scanner memory.</FONT><BR>"
+				dat += span_red("No data found in scanner memory.") + "<BR>"
 			else
 				dat += {"<TT>Data marked for upload...</TT><BR>
 				<TT>Title: </TT>[scanner.cache.name]<BR>"}
@@ -275,10 +275,10 @@
 			dat += "<h3>External Archive</h3>" //VOREStation Edit
 			establish_old_db_connection()
 
-			//dat += "<h3><font color=red>Warning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.</font></h3>" //VOREStation Removal
+			//dat += "<h3>" + span_red("arning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.") + "</h3>" //VOREStation Removal
 
 			if(!dbcon_old.IsConnected())
-				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
+				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 			else
 				dat += {"<A href='?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
@@ -319,7 +319,7 @@
 		establish_old_db_connection()
 
 		if(!dbcon_old.IsConnected())
-			dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
+			dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 		else
 			dat += {"<A href='?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 			<table>
@@ -385,7 +385,7 @@
 
 				else
 					for (var/mob/V in hearers(src))
-						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
+						V.show_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\""))
 
 			if("7")
 				screenstate = 7
@@ -465,7 +465,7 @@
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
+				V.show_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\""))
 		else
 			bibledelay = 1
 			spawn(6)
@@ -536,7 +536,7 @@
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)
-		dat += "<FONT color=#005500>Data stored in memory.</FONT><BR>"
+		dat += span_darkgray("Data stored in memory.") + "<BR>"
 	else
 		dat += "No data stored in memory.<BR>"
 	dat += "<A href='?src=\ref[src];scan=1'>\[Scan\]</A>"

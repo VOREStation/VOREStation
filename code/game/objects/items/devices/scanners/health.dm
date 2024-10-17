@@ -62,38 +62,43 @@
 
 	if (!ishuman(M) || M.isSynthetic())
 		//these sensors are designed for organic life
-		dat += "<span class='notice'>Analyzing Results for ERROR:\n\tOverall Status: ERROR<br>"
-		dat += "\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
-		dat += "\tDamage Specifics: [span_cyan("?")] - [span_green("?")] - [span_orange("?")] - [span_red("?")]<br>"
-		dat += "Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span><br>"
+		var/analyzed = "Analyzing Results for ERROR:\n\tOverall Status: ERROR<br>"
+		analyzed += "\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
+		analyzed += "\tDamage Specifics: [span_cyan("?")] - [span_green("?")] - [span_orange("?")] - [span_red("?")]<br>"
+		analyzed += "Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"
+		dat += span_notice(analyzed) + "<br>"
 		dat += "[span_warning("Warning: Blood Level ERROR: --% --cl.")] [span_notice("Type: ERROR")]<br>"
 		dat += span_notice("Subject's pulse: [span_red("-- bpm.")]")
 		user.show_message(dat, 1)
 		return
 
 	var/fake_oxy = max(rand(1,40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
-	var/OX = M.getOxyLoss() > 50 	? 	"<b>[M.getOxyLoss()]</b>" 		: M.getOxyLoss()
-	var/TX = M.getToxLoss() > 50 	? 	"<b>[M.getToxLoss()]</b>" 		: M.getToxLoss()
-	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
-	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
+	var/OX = M.getOxyLoss() > 50 	? 	span_bold("[M.getOxyLoss()]") 		: M.getOxyLoss()
+	var/TX = M.getToxLoss() > 50 	? 	span_bold("[M.getToxLoss()]")  		: M.getToxLoss()
+	var/BU = M.getFireLoss() > 50 	? 	span_bold("M.getFireLoss()]") 		: M.getFireLoss()
+	var/BR = M.getBruteLoss() > 50 	? 	span_bold("[M.getBruteLoss()]")  	: M.getBruteLoss()
+	var/analyzed_results = ""
 	if(M.status_flags & FAKEDEATH)
-		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
+		OX = fake_oxy > 50 			? 	span_bold("[fake_oxy]") 			: fake_oxy
 		dat += span_notice("Analyzing Results for [M]:")
 		dat += "<br>"
 		dat += span_notice("Overall Status: dead")
 		dat += "<br>"
 	else
-		dat += 	"<span class='notice'>Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round((M.health/M.getMaxHealth())*100) ]% healthy"]<br>"
-	dat += 		"\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
-	dat += 		"\tDamage Specifics: [span_cyan("[OX]")] - [span_green("[TX]")] - [span_orange("[BU]")] - [span_red("[BR]")]<br>"
-	dat +=		"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span><br>"
+		analyzed_results += "Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round((M.health/M.getMaxHealth())*100) ]% healthy"]<br>"
+	analyzed_results += "\tKey: [span_cyan("Suffocation")]/[span_green("Toxin")]/[span_orange("Burns")]/[span_red("Brute")]<br>"
+	analyzed_results += "\tDamage Specifics: [span_cyan("[OX]")] - [span_green("[TX]")] - [span_orange("[BU]")] - [span_red("[BR]")]<br>"
+	analyzed_results +=	"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)<br>"
+	if(!(M.status_flags & FAKEDEATH))
+		analyzed_results = span_notice(analyzed_results)
+	dat += analyzed_results
 	//VOREStation edit/addition starts
 	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
 		dat += 	span_notice("Time of Death: [worldtime2stationtime(M.timeofdeath)]")
 		dat += "<br>"
 		var/tdelta = round(world.time - M.timeofdeath)
 		if(tdelta < (DEFIB_TIME_LIMIT * 10))
-			dat += span_notice("<b>Subject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!</b>")
+			dat += span_boldnotice("Subject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!")
 			dat += "<br>"
 	//VOREStation edit/addition ends
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
@@ -106,17 +111,18 @@
 				if(org.robotic >= ORGAN_ROBOT)
 					continue
 				else
-					dat += "<span class='notice'>     [capitalize(org.name)]: [(org.brute_dam > 0) ? span_warning("[org.brute_dam]") : 0]"
-					dat += "[(org.status & ORGAN_BLEEDING)?span_danger("\[Bleeding\]"):""] - "
-					dat += "[(org.burn_dam > 0) ? "[span_orange("[org.burn_dam]")]" : 0]</span><br>"
+					var/our_damage = "     [capitalize(org.name)]: [(org.brute_dam > 0) ? span_warning("[org.brute_dam]") : 0]"
+					our_damage += "[(org.status & ORGAN_BLEEDING)?span_danger("\[Bleeding\]"):""] - "
+					our_damage += "[(org.burn_dam > 0) ? "[span_orange("[org.burn_dam]")]" : 0]"
+					dat += span_notice(our_damage) + "<br>"
 		else
 			dat += span_notice("    Limbs are OK.")
 			dat += "<br>"
 
-	OX = M.getOxyLoss() > 50 ? 	 "[span_cyan("<b>Severe oxygen deprivation detected</b>")]" 			: 	"Subject bloodstream oxygen level normal"
-	TX = M.getToxLoss() > 50 ? 	 "[span_green("<b>Dangerous amount of toxins detected</b>")]" 	: 	"Subject bloodstream toxin level minimal"
-	BU = M.getFireLoss() > 50 ?  "[span_orange("<b>Severe burn damage detected</b>")]" 			:	"Subject burn injury status O.K"
-	BR = M.getBruteLoss() > 50 ? "[span_red("<b>Severe anatomical damage detected</b>")]"		 		: 	"Subject brute-force injury status O.K"
+	OX = M.getOxyLoss() > 50 ? 	 "[span_cyan(span_bold("Severe oxygen deprivation detected"))]" 			: 	"Subject bloodstream oxygen level normal"
+	TX = M.getToxLoss() > 50 ? 	 "[span_green(span_bold("Dangerous amount of toxins detected"))]" 	: 	"Subject bloodstream toxin level minimal"
+	BU = M.getFireLoss() > 50 ?  "[span_orange(span_bold("Severe burn damage detected"))]" 			:	"Subject burn injury status O.K"
+	BR = M.getBruteLoss() > 50 ? "[span_red(span_bold("Severe anatomical damage detected"))]"		 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		span_warning("Severe oxygen deprivation detected") 	: 	"Subject bloodstream oxygen level normal"
 	dat += "[OX] | [TX] | [BU] | [BR]<br>"
@@ -358,10 +364,10 @@
 			var/blood_type = H.dna.b_type
 			var/blood_reagent = H.species.blood_reagents
 			if(blood_volume <= H.species.blood_volume*H.species.blood_level_danger)
-				dat += span_danger("<i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i>")
+				dat += span_danger(span_italics("Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent]."))
 				dat += "<br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_warning)
-				dat += span_danger("<i>Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].</i>")
+				dat += span_danger(span_italics("Warning: Blood Level VERY LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent]."))
 				dat += "<br>"
 			else if(blood_volume <= H.species.blood_volume*H.species.blood_level_safe)
 				dat += span_danger("Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl. Type: [blood_type]. Basis: [blood_reagent].")

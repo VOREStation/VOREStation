@@ -1,7 +1,7 @@
 /obj/item/paper/pamphlet
 	name = "pamphlet"
 	icon_state = "pamphlet"
-	info = "<b>Welcome to the Gateway project...</b><br>\
+	info = span_bold("Welcome to the Gateway project...") + "<br>\
 			Congratulations! If you're reading this, you and your superiors have decided that you're \
 			ready to commit to a life spent colonising the rolling hills of far away worlds. You \
 			must be ready for a lifetime of adventure, a little bit of hard work, and an award \

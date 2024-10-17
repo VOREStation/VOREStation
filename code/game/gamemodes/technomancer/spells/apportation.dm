@@ -67,7 +67,7 @@
 					return
 
 				L.Weaken(3)
-				user.visible_message(span_warning("<b>\The [user]</b> seizes [L]!"))
+				user.visible_message(span_warning(span_bold("\The [user]") + " seizes [L]!"))
 
 				var/obj/item/grab/G = new(user,L)
 

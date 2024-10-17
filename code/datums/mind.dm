@@ -110,7 +110,7 @@
 	memory += "[new_text]<BR>"
 
 /datum/mind/proc/show_memory(mob/recipient)
-	var/output = "<B>[current.real_name]'s Memory</B><HR>"
+	var/output = span_bold("[current.real_name]'s Memory") + "<HR>"
 	output += memory
 
 	if(objectives.len>0)
@@ -118,7 +118,7 @@
 
 		var/obj_count = 1
 		for(var/datum/objective/objective in objectives)
-			output += "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+			output += span_bold("Objective #[obj_count]") + ": [objective.explanation_text]"
 			obj_count++
 
 	if(ambitions)
@@ -130,7 +130,7 @@
 		tgui_alert_async(usr, "Not before round-start!", "Alert")
 		return
 
-	var/out = "<B>[name]</B>[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
+	var/out = span_bold("[name]") + "[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
 	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];[HrefToken()];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
@@ -139,12 +139,12 @@
 		var/datum/antagonist/antag = all_antag_types[antag_type]
 		out += "[antag.get_panel_entry(src)]"
 	out += "</table><hr>"
-	out += "<b>Objectives</b></br>"
+	out += span_bold("Objectives") + "</br>"
 
 	if(objectives && objectives.len)
 		var/num = 1
 		for(var/datum/objective/O in objectives)
-			out += "<b>Objective #[num]:</b> [O.explanation_text] "
+			out += span_bold("Objective #[num]:") + " [O.explanation_text] "
 			if(O.completed)
 				out += "([span_green("complete")])"
 			else
@@ -157,7 +157,7 @@
 	else
 		out += "None."
 	out += "<br><a href='?src=\ref[src];[HrefToken()];obj_add=1'>\[add\]</a><br><br>"
-	out += "<b>Ambitions:</b> [ambitions ? ambitions : "None"] <a href='?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
+	out += span_bold("Ambitions:") + " [ambitions ? ambitions : "None"] <a href='?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
@@ -424,7 +424,7 @@
 		var/obj_count = 1
 		to_chat(current, span_blue("Your current objectives:"))
 		for(var/datum/objective/objective in objectives)
-			to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
+			to_chat(current, span_bold("Objective #[obj_count]") + ": [objective.explanation_text]")
 			obj_count++
 	edit_memory()
 

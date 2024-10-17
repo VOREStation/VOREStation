@@ -262,13 +262,13 @@
 		var/playedmessage = mytape.storedinfo[i]
 		if (findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
 			playedmessage = copytext(playedmessage,2)
-		T.audible_message(span_maroon("<B>Tape Recorder</B>: [playedmessage]"), runemessage = playedmessage)
+		T.audible_message(span_maroon(span_bold("Tape Recorder") + ": [playedmessage]"), runemessage = playedmessage)
 
 		if(mytape.storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
 			T = get_turf(src)
-			T.audible_message(span_maroon("<B>Tape Recorder</B>: End of recording."), runemessage = "click")
+			T.audible_message(span_maroon(span_bold("Tape Recorder") + ": End of recording."), runemessage = "click")
 			break
 		else
 			playsleepseconds = mytape.timestamp[i+1] - mytape.timestamp[i]
@@ -276,7 +276,7 @@
 		if(playsleepseconds > 14)
 			sleep(10)
 			T = get_turf(src)
-			T.audible_message(span_maroon("<B>Tape Recorder</B>: Skipping [playsleepseconds] seconds of silence"), runemessage = "tape winding")
+			T.audible_message(span_maroon(span_bold("Tape Recorder") + ": Skipping [playsleepseconds] seconds of silence"), runemessage = "tape winding")
 			playsleepseconds = 1
 		sleep(10 * playsleepseconds)
 
@@ -286,19 +286,19 @@
 
 	if(emagged)
 		var/turf/T = get_turf(src)
-		T.audible_message(span_maroon("<B>Tape Recorder</B>: This tape recorder will self-destruct in... Five."), runemessage = "beep beep")
+		T.audible_message(span_maroon(span_bold("Tape Recorder") + ": This tape recorder will self-destruct in... Five."), runemessage = "beep beep")
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message(span_maroon("<B>Tape Recorder</B>: Four."))
+		T.audible_message(span_maroon(span_bold("Tape Recorder") + ": Four."))
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message(span_maroon("<B>Tape Recorder</B>: Three."))
+		T.audible_message(span_maroon(span_bold("Tape Recorder") + ": Three."))
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message(span_maroon("<B>Tape Recorder</B>: Two."))
+		T.audible_message(span_maroon(span_bold("Tape Recorder") + ": Two."))
 		sleep(10)
 		T = get_turf(src)
-		T.audible_message(span_maroon("<B>Tape Recorder</B>: One."))
+		T.audible_message(span_maroon(span_bold("Tape Recorder") + ": One."))
 		sleep(10)
 		explode()
 
@@ -327,7 +327,7 @@
 
 	to_chat(usr, span_notice("Transcript printed."))
 	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
-	var/t1 = "<B>Transcript:</B><BR><BR>"
+	var/t1 = span_bold("Transcript:") + "<BR><BR>"
 	for(var/i=1,mytape.storedinfo.len >= i,i++)
 		var/printedmessage = mytape.storedinfo[i]
 		if (findtextEx(printedmessage,"*",1,2)) //replace action sounds

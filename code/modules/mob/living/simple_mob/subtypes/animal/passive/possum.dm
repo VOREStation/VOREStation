@@ -159,11 +159,11 @@
 		var/datum/ai_holder/simple_mob/passive/possum/poss_ai = ai_holder
 		if(!client && istype(poss_ai))
 			if(!poss_ai.is_angry)
-				visible_message("<b>\The [src]</b> hisses!")
+				visible_message(span_infoplain(span_bold("\The [src]") + " hisses!"))
 				poss_ai.is_angry = TRUE
 				poss_ai.be_angery_until = world.time + rand(30 SECONDS, 1 MINUTE)
 			else
-				visible_message("<b>\The [src]</b> dies!")
+				visible_message(span_infoplain(span_bold("\The [src]") + " dies!"))
 				resting = TRUE
 				poss_ai.play_dead_until = world.time + rand(1 MINUTE, 2 MINUTES)
 		update_icon()

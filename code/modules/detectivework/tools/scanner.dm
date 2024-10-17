@@ -112,7 +112,7 @@
 		if(reveal_fibers && do_after(user, 5 SECONDS))
 			to_chat(user, span_notice("Apparel samples scanned:"))
 			for(var/sample in A.suit_fibers)
-				to_chat(user, " - <span class='notice'>[sample]</span>")
+				to_chat(user, " - " + span_notice("[sample]"))
 
 	//Blood
 	if (A.blood_DNA && A.blood_DNA.len)
@@ -120,7 +120,7 @@
 		if(reveal_blood && do_after(user, 5 SECONDS))
 			flick("[icon_state]1",src)
 			for(var/blood in A.blood_DNA)
-				to_chat(user, "Blood type: <span class='warning'>[A.blood_DNA[blood]]</span> DNA: <span class='warning'>[blood]</span>")
+				to_chat(user, "Blood type: " + span_warning("[A.blood_DNA[blood]]") + " DNA: " + span_warning("[blood]"))
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 	span_notice("You finish scanning \the [A]."),\
@@ -165,7 +165,7 @@
 					var/print = fprints[i]
 					if(stringpercent(print) <= FINGERPRINT_COMPLETE)
 						complete_prints += print
-						to_chat(user, " - <span class='notice'>[print]</span>")
+						to_chat(user, " - " + span_notice("[print]"))
 					else
 						incomplete_prints += print
 
@@ -174,19 +174,19 @@
 
 				if(reveal_incompletes)
 					for(var/print in incomplete_prints)
-						to_chat(user, " - <span class='notice'>[print]</span>")
+						to_chat(user, " - " + span_notice("[print]"))
 
 			if(fibers && fibers.len)
 				to_chat(user, span_notice("[fibers.len] samples of material were present."))
 				if(reveal_fibers)
 					for(var/sample in fibers)
-						to_chat(user, " - <span class='notice'>[sample]</span>")
+						to_chat(user, " - " + span_notice("[sample]"))
 
 			if(bloods && bloods.len)
 				to_chat(user, span_notice("[bloods.len] samples of blood were present."))
 				if(reveal_blood)
 					for(var/bloodsample in bloods)
-						to_chat(user, " - <span class='warning'>[bloodsample]</span> Type: [bloods[bloodsample]]")
+						to_chat(user, " - " + span_warning("[bloodsample]") + " Type: [bloods[bloodsample]]")
 
 /obj/item/detective_scanner/verb/wipe()
 	set name = "Wipe Forensic Data"

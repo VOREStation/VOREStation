@@ -443,7 +443,7 @@ emp_act
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
 		if(species && species.throwforce_absorb_threshold >= throw_damage)
-			visible_message("<b>\The [O]</b> simply bounces off of [src]'s body!")
+			visible_message(span_infoplain(span_bold("\The [O]") + " simply bounces off of [src]'s body!"))
 			return
 
 		var/zone
@@ -468,7 +468,7 @@ emp_act
 				return
 
 		if(!zone)
-			visible_message("<b>\The [O]</b> misses [src] narrowly!")
+			visible_message(span_infoplain(span_bold("\The [O]") + " misses [src] narrowly!"))
 			return
 
 		O.throwing = 0		//it hit, so stop moving

@@ -11,8 +11,8 @@
 	name = "alien console"
 	desc = "The console flashes what appear to be symbols you've never seen before."
 	icon_state = "console-c"
-	interaction_message = "<span class='warning'>The console flashes a series of unknown symbols as you press a button on what is presumably a keyboard. It probably some sort of \
-	authentication error. Since you're not an alien, you should probably leave it alone.</span>"
+	interaction_message = span_warning("The console flashes a series of unknown symbols as you press a button on what is presumably a keyboard. It probably some sort of \
+	authentication error. Since you're not an alien, you should probably leave it alone.")
 
 /obj/structure/prop/alien/computer/camera
 	desc = "This console is briefly flashing video feeds of various locations close by."

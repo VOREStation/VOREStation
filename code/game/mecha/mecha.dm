@@ -517,7 +517,7 @@
 		if(25 to 45)
 			. += span_warning("It's heavily damaged.")
 		else
-			. += span_warning("<b> It's falling apart.</b> ")
+			. += span_warning(span_bold(" It's falling apart.") + " ")
 	if(equipment?.len)
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
@@ -962,12 +962,12 @@
 	internal_damage &= ~int_dam_flag
 	switch(int_dam_flag)
 		if(MECHA_INT_TEMP_CONTROL)
-			occupant_message(span_blue("<b>Life support system reactivated.</b>"))
+			occupant_message(span_infoplain(span_blue(span_bold("Life support system reactivated."))))
 			start_process(MECHA_PROC_INT_TEMP)
 		if(MECHA_INT_FIRE)
-			occupant_message(span_blue("<b>Internal fire extinquished.</b>"))
+			occupant_message(span_infoplain(span_blue(span_bold("Internal fire extinquished."))))
 		if(MECHA_INT_TANK_BREACH)
-			occupant_message(span_blue("<b>Damaged internal tank has been sealed.</b>"))
+			occupant_message(span_infoplain(span_blue(span_bold("Damaged internal tank has been sealed."))))
 	return
 
 
@@ -1080,9 +1080,9 @@
 		src.take_damage(15)	//The take_damage() proc handles armor values
 		if(prob(25))	//Hulks punch hard but lets not give them consistent internal damage.
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-		user.visible_message(span_red("<b>[user] hits [src.name], doing some damage.</b>"), span_red("<b>You hit [src.name] with all your might. The metal creaks and bends.</b>"))
+		user.visible_message(span_warning(span_red(span_bold("[user] hits [src.name], doing some damage."))), span_warning(span_red(span_bold("You hit [src.name] with all your might. The metal creaks and bends."))))
 	else
-		user.visible_message(span_red("<b>[user] hits [src.name]. Nothing happens.</b>"),span_red("<b>You hit [src.name] with no visible effect.</b>"))
+		user.visible_message(span_infoplain((span_red(span_bold("[user] hits [src.name]. Nothing happens.")))),span_infoplain(span_red(span_bold("You hit [src.name] with no visible effect."))))
 		src.log_append_to_last("Armor saved.")
 	return
 
@@ -1350,18 +1350,18 @@
 
 	else if(W.force < temp_damage_minimum)	//Is your attack too PATHETIC to do anything. 3 damage to a person shouldn't do anything to a mech.
 		src.occupant_message(span_notice("\The [W] bounces off the armor."))
-		src.visible_message("\The [W] bounces off \the [src] armor")
+		src.visible_message(span_infoplain("\The [W] bounces off \the [src] armor"))
 		return
 
 	else if(W.armor_penetration < temp_minimum_penetration)	//If you don't have enough pen, you won't do full damage
 		src.occupant_message(span_notice("\The [W] struggles to bypass \the [src] armor."))
-		src.visible_message("\The [W] struggles to bypass \the [src] armor")
+		src.visible_message(span_infoplain("\The [W] struggles to bypass \the [src] armor"))
 		pass_damage_reduc_mod = temp_fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
 
 	else
 		pass_damage_reduc_mod = 1		//Just making sure.
-		src.occupant_message(span_red("<b>[user] hits [src] with [W].</b>"))
-		user.visible_message(span_red("<b>[user] hits [src] with [W].</b>"), span_red("<b>You hit [src] with [W].</b>"))
+		src.occupant_message(span_warning(span_red(span_bold("[user] hits [src] with [W]."))))
+		user.visible_message(span_warning(span_red(span_bold("[user] hits [src] with [W]."))), span_danger(span_red(span_bold("You hit [src] with [W]."))))
 
 		var/pass_damage = W.force
 		pass_damage = (pass_damage*pass_damage_reduc_mod)	//Apply the reduction of damage from not having enough armor penetration. This is not regular armor values at play.
@@ -1946,7 +1946,7 @@
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message("<b>\The [usr]</b> starts to climb into [src.name]")
+		visible_message(span_infoplain(span_bold("\The [usr]") + " starts to climb into [src.name]"))
 		if(enter_after(40,usr))
 			if(!src.occupant)
 				moved_inside(usr)
@@ -2246,16 +2246,16 @@
 
 
 	if(defence_mode_possible)
-		output += "<b>Defence mode: [defence_mode?"on":"off"]</b><br>"
+		output += span_bold("Defence mode: [defence_mode?"on":"off"]") + "<br>"
 	if(overload_possible)
-		output += "<b>Leg actuators overload: [overload?"on":"off"]</b><br>"
+		output += span_bold("Leg actuators overload: [overload?"on":"off"]") + "<br>"
 	if(smoke_possible)
-		output += "<b>Smoke:</b> [smoke_reserve]<br>"
+		output += span_bold("Smoke:") + " [smoke_reserve]<br>"
 	if(thrusters_possible)
-		output += "<b>Thrusters:</b> [thrusters?"on":"off"]<br>"
+		output += span_bold("Thrusters:") + " [thrusters?"on":"off"]<br>"
 
 //Cargo components. Keep this last otherwise it does weird alignment issues.
-	output += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
+	output += span_bold("Cargo Compartment Contents:") + "<div style=\"margin-left: 15px;\">"
 	if(src.cargo.len)
 		for(var/obj/O in src.cargo)
 			output += "<a href='?src=\ref[src];drop_from_cargo=\ref[O]'>Unload</a> : [O]<br>"
@@ -2338,7 +2338,7 @@
 /obj/mecha/proc/get_equipment_list() //outputs mecha equipment list in html
 	if(!equipment.len)
 		return
-	var/output = "<b>Equipment:</b><div style=\"margin-left: 15px;\">"
+	var/output = span_bold("Equipment:") + "<div style=\"margin-left: 15px;\">"
 	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
 		output += "<div id='\ref[MT]'>[MT.get_equip_info()]</div>"
 	output += "</div>"
@@ -2586,11 +2586,11 @@
 		var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P = passengers[pname]
 		var/mob/occupant = P.occupant
 
-		user.visible_message("<b>\The [user]</b> begins opening the hatch on \the [P]...", span_notice("You begin opening the hatch on \the [P]..."))
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " begins opening the hatch on \the [P]..."), span_notice("You begin opening the hatch on \the [P]..."))
 		if (!do_after(user, 40))
 			return
 
-		user.visible_message("<b>\The [user]</b> opens the hatch on \the [P] and removes [occupant]!", span_notice("You open the hatch on \the [P] and remove [occupant]!"))
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " opens the hatch on \the [P] and removes [occupant]!"), span_notice("You open the hatch on \the [P] and remove [occupant]!"))
 		P.go_out()
 		P.log_message("[occupant] was removed.")
 		return
@@ -2777,7 +2777,7 @@
 	if(prob(temp_deflect_chance))//Deflected
 		src.log_append_to_last("Armor saved.")
 		src.occupant_message(span_notice("\The [user]'s attack is stopped by the armor."))
-		visible_message("<b>\The [user]</b> rebounds off [src.name]'s armor!")
+		visible_message(span_infoplain(span_bold("\The [user]") + " rebounds off [src.name]'s armor!"))
 		user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 

@@ -39,22 +39,22 @@
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
 
-	output += "<b>Map:</b> [using_map.full_name]<br>"
-	output += "<b>Station Time:</b> [stationtime2text()]<br>"
+	output += span_bold("Map:") + " [using_map.full_name]<br>"
+	output += span_bold("Station Time:") + " [stationtime2text()]<br>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
-		output += "<b>Server Initializing!</b>"
+		output += span_bold("Server Initializing!")
 	else
-		output += "<b>Round Duration:</b> [roundduration2text()]<br>"
+		output += span_bold("Round Duration:") + " [roundduration2text()]<br>"
 	output += "<hr>"
 
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Character Setup</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			output += "<p>\[ " + span_linkOn(span_bold("Ready")) + " | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <span class='linkOn'><b>Not Ready</b></span> \]</p>"
+			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | " + span_linkOn(span_bold("Not Ready")) + " \]</p>"
 
 	else
 		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
@@ -290,7 +290,7 @@
 			var/sql = "INSERT INTO erro_privacy VALUES (null, Now(), '[src.ckey]', '[option]')"
 			var/DBQuery/query_insert = dbcon.NewQuery(sql)
 			query_insert.Execute()
-			to_chat(usr, "<b>Thank you for your vote!</b>")
+			to_chat(usr, span_bold("Thank you for your vote!"))
 			usr << browse(null,"window=privacypoll")
 
 	if(!ready && href_list["preference"])
@@ -387,7 +387,7 @@
 		dat += "<br>"
 		dat += "[F["body"]]"
 		dat += "<br>"
-		dat += "<font size='2'><i>Last written by [F["author"]], on [F["timestamp"]].</i></font>"
+		dat += span_normal(span_italics("Last written by [F["author"]], on [F["timestamp"]]."))
 		dat += "</center></body></html>"
 		var/datum/browser/popup = new(src, "Server News", "Server News", 450, 300, src)
 		popup.set_content(dat)
@@ -534,7 +534,7 @@
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
-	dat += "<b>Welcome, [name].<br></b>"
+	dat += span_bold("Welcome, [name].<br>")
 	dat += "Round Duration: [roundduration2text()]<br>"
 
 	if(emergency_shuttle) //In case NanoTrasen decides reposess CentCom's shuttles.

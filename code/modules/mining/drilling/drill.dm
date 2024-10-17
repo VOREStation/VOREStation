@@ -273,12 +273,12 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				visible_message("<b>\The [src]</b> lurches downwards, grinding noisily.")
+				visible_message(span_infoplain(span_bold("\The [src]") + " lurches downwards, grinding noisily."))
 				need_update_field = 1
 				harvest_speed *= total_brace_tier
 				charge_use *= total_brace_tier
 			else
-				visible_message("<b>\The [src]</b> shudders to a grinding halt.")
+				visible_message(span_infoplain(span_bold("\The [src]") + " shudders to a grinding halt."))
 		else
 			to_chat(user, span_notice("The drill is unpowered."))
 	else
@@ -356,7 +356,7 @@
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
 	if(error)
-		src.visible_message("<b>\The [src]</b> flashes a '[error]' warning.")
+		src.visible_message(span_infoplain(span_bold("\The [src]") + " flashes a '[error]' warning."))
 		faultreporter.autosay(error, src.name, "Supply", using_map.get_map_levels(z))
 	need_player_check = 1
 	active = 0

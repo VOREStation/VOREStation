@@ -104,7 +104,7 @@
 			L.visible_message(
 				span_danger("[L] steps on \the [src]."),
 				span_danger("You step on \the [src]!"),
-				"<b>You hear a squishy noise!</b>"
+				span_infoplain(span_bold("You hear a squishy noise!"))
 				)
 			set_dir(L.dir)
 			buckle_mob(L)

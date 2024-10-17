@@ -12,7 +12,7 @@
 /var/decl/global_vars/global_vars_
 
 /decl/global_vars
-	var/name = "<b>Global Variables</b>"
+	var/name = span_bold("Global Variables")
 
 /decl/global_vars/get_view_variables_options()
 	return "" // Ensuring changes to the base proc never affect us

@@ -110,7 +110,7 @@
 	name = "redcoat's hat"
 	icon_state = "redcoat"
 	item_state_slots = list(slot_r_hand_str = "pirate", slot_l_hand_str = "pirate")
-	desc = "<i>'I guess it's a redhead.'</i>"
+	desc = span_italics("'I guess it's a redhead.'")
 	body_parts_covered = 0
 
 /obj/item/clothing/head/mailman

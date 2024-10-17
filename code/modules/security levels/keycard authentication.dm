@@ -189,13 +189,13 @@ var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	to_world(span_red("<font size=4>Attention!</font>"))
-	to_world(span_red("The maintenance access requirement has been revoked on all airlocks."))
+	to_world(span_alert(span_red(span_huge("Attention!"))))
+	to_world(span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	to_world(span_red("<font size=4>Attention!</font>"))
-	to_world(span_red("The maintenance access requirement has been readded on all maintenance airlocks."))
+	to_world(span_alert(span_red(span_huge("Attention!"))))
+	to_world(span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))

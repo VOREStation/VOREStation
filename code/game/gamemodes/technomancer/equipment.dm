@@ -15,7 +15,7 @@
 	desc = "A core optimized for passive regeneration, however at the cost of capacity.  Has a capacity of 7,000 units of energy, and \
 	recharges at a rate of 70 units.  Complex gravatics and force manipulation allows the wearer to also run slightly faster.<br>\
 	" + span_red("Capacity: 7k") + "<br>\
-	" + span_green("<b>Recharge: 70/s</b>") + "<br>\
+	" + span_green(span_bold("Recharge: 70/s")) + "<br>\
 	" + span_red("Instability Modifier: 90%") + "<br>\
 	Energy Cost Modifier: 100%<br>\
 	Spell Power: 100%"
@@ -27,7 +27,7 @@
 	desc = "This core has very large capacitors, however it also has a subpar fractal reactor.  The user is recommended to \
 	purchase one or more energy-generating Functions as well if using this core.  The intense weight of the core unfortunately can \
 	cause the wear to move slightly slower, and the closeness of the capacitors causes a slight increase in incoming instability.<br>\
-	" + span_green("<b>Capacity: 20k</b>") + "<br>\
+	" + span_green(span_bold("Capacity: 20k")) + "<br>\
 	" + span_red("Recharge: 25/s") + "<br>\
 	" + span_red("Instability Modifier: 100%") + "<br>\
 	Energy Cost Modifier: 100%<br>\
@@ -42,7 +42,7 @@
 	increases as the user accumulates more instability, eventually exceeding even the rapid core in regen speed, at a huge risk.<br>\
 	" + span_green("Capacity: 13k") + "<br>\
 	" + span_green("Recharge: 35/s to 110/s+") + "<br>\
-	" + span_red("<b>Instability Modifier: 130%</b>") + "<br>\
+	" + span_red(span_bold("Instability Modifier: 130%")) + "<br>\
 	" + span_green("Energy Cost Modifier: 70%") + "<br>\
 	" + span_green("Spell Power: 110%") + ""
 	cost = 100
@@ -79,9 +79,9 @@
 	ratings for everything else.<br>\
 	" + span_red("Capacity: 7k") + "<br>\
 	" + span_red("Recharge: 30/s") + "<br>\
-	" + span_green("<b>Instability Modifier: 30%</b>") + "<br>\
+	" + span_green(span_bold("Instability Modifier: 30%")) + "<br>\
 	Energy Cost Modifier: 100%<br>\
-	" + span_red("<b>Spell Power: 70%</b>") + ""
+	" + span_red(span_bold("Spell Power: 70%")) + ""
 	cost = 100
 	obj_path = /obj/item/technomancer_core/safety
 
@@ -93,8 +93,8 @@
 	" + span_red("Capacity: 15k (effectively 7.5k)") + "<br>\
 	" + span_red("Recharge: 40/s") + "<br>\
 	" + span_red("Instability Modifier: 110%") + "<br>\
-	" + span_red("<b>Energy Cost Modifier: 200%</b>") + "<br>\
-	" + span_green("<b>Spell Power: 175%</b>") + ""
+	" + span_red(span_bold("Energy Cost Modifier: 200%")) + "<br>\
+	" + span_green(span_bold("Spell Power: 175%")) + ""
 	cost = 100
 	obj_path = /obj/item/technomancer_core/overcharged
 

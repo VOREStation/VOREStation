@@ -26,11 +26,11 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	my_controller = get_controller(get_area(src))
 	my_device = locate(my_device_type) in get_turf(src)
 	if(!my_device)
-		to_world("<b>[span_red("WARNING:")][span_black("Airlock helper '[name]' couldn't find what it wanted at: X:[x] Y:[y] Z:[z]")]</b>")
+		to_world(span_world("[span_red("WARNING:")][span_black("Airlock helper '[name]' couldn't find what it wanted at: X:[x] Y:[y] Z:[z]")]"))
 	else if(!my_controller)
-		to_world("<b>[span_red("WARNING:")][span_black("Airlock helper '[name]' couldn't find a controller at: X:[x] Y:[y] Z:[z]")]</b>")
+		to_world(span_world("[span_red("WARNING:")][span_black("Airlock helper '[name]' couldn't find a controller at: X:[x] Y:[y] Z:[z]")]"))
 	else if(!my_controller.id_tag)
-		to_world("<b>[span_red("WARNING:")][span_black("Airlock helper '[name]' found a controller without an 'id_tag' set: X:[x] Y:[y] Z:[z]")]</b>")
+		to_world(span_world("[span_red("WARNING:")][span_black("Airlock helper '[name]' found a controller without an 'id_tag' set: X:[x] Y:[y] Z:[z]")]"))
 	else
 		setup()
 	return INITIALIZE_HINT_QDEL

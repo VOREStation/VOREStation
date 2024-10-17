@@ -120,9 +120,9 @@
 /obj/screen/movable/pic_in_pic/ai/proc/set_ai(mob/living/silicon/ai/new_ai)
 	if(!aiEye && !QDELETED(src))
 		if(new_ai)
-			to_chat(new_ai, "<span class='danger'><h2>You've run into a unfixable bug with AI eye code. \
+			to_chat(new_ai, span_danger("<h2>You've run into a unfixable bug with AI eye code. \
 In order to create a new multicam, you will have to select a different camera first before trying to add one, or ask an admin to fix you. \
-Whatever you did that made the last camera window disappear-- don't do that again.</h2></span>")
+Whatever you did that made the last camera window disappear-- don't do that again.</h2>"))
 		qdel(src)
 		return
 	if(ai)

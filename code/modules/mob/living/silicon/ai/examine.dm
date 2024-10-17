@@ -8,17 +8,17 @@
 			if (src.getBruteLoss() < 30)
 				. += span_warning("It looks slightly dented.")
 			else
-				. += span_warning("<B>It looks severely dented!</B>")
+				. += span_boldwarning("It looks severely dented!")
 		if (src.getFireLoss())
 			if (src.getFireLoss() < 30)
 				. += span_warning("It looks slightly charred.")
 			else
-				. += span_warning("<B>Its casing is melted and heat-warped!</B>")
+				. += span_boldwarning("Its casing is melted and heat-warped!")
 		if (src.getOxyLoss() && (aiRestorePowerRoutine != 0 && !APU_power))
 			if (src.getOxyLoss() > 175)
-				. += span_warning("<B>It seems to be running on backup power. Its display is blinking a \"BACKUP POWER CRITICAL\" warning.</B>")
+				. += span_boldwarning("It seems to be running on backup power. Its display is blinking a \"BACKUP POWER CRITICAL\" warning.")
 			else if(src.getOxyLoss() > 100)
-				. += span_warning("<B>It seems to be running on backup power. Its display is blinking a \"BACKUP POWER LOW\" warning.</B>")
+				. += span_boldwarning("It seems to be running on backup power. Its display is blinking a \"BACKUP POWER LOW\" warning.")
 			else
 				. += span_warning("It seems to be running on backup power.")
 

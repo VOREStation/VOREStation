@@ -5,7 +5,7 @@ var/inactive_keys = "None<br>"
 	set category = "Admin"
 	set name = "Check activity of players with custom items"
 
-	var/dat = "<b>Inactive players with custom items</b><br>"
+	var/dat = span_bold("Inactive players with custom items") + "<br>"
 	dat += "<br>"
 	dat += "The list below contains players with custom items that have not logged\
 	 in for the past two months, or have not logged in since this system was implemented.\
@@ -76,7 +76,7 @@ var/inactive_keys = "None<br>"
 		inactive_keys = ""
 		for(var/cur_key in inactive_ckeys)
 			if(inactive_ckeys[cur_key])
-				inactive_keys += "<b>[cur_key]</b> - [inactive_ckeys[cur_key]]<br>"
+				inactive_keys += span_bold("[cur_key]") + " - [inactive_ckeys[cur_key]]<br>"
 			else
 				inactive_keys += "[cur_key] - no database entry<br>"
 

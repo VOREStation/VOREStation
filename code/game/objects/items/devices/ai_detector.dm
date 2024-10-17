@@ -103,13 +103,13 @@
 				to_chat(carrier, span_warning("[icon2html(src, carrier.client)] Warning: AI focus at nearby location."))
 				carrier << 'sound/machines/defib_SafetyOn.ogg'
 			if(PROXIMITY_ON_SCREEN)
-				to_chat(carrier, "<font size='3'><span class='danger'>[icon2html(src, carrier.client)] Alert: AI or camera focused at current location!</span></font>")
+				to_chat(carrier, span_danger(span_large("[icon2html(src, carrier.client)] Alert: AI or camera focused at current location!")))
 				carrier <<'sound/machines/defib_ready.ogg'
 			if(PROXIMITY_TRACKING)
-				to_chat(carrier, "<font size='3'><span class='danger'>[icon2html(src, carrier.client)] Danger: AI is actively tracking you!</span></font>")
+				to_chat(carrier, span_danger(span_large("[icon2html(src, carrier.client)] Danger: AI is actively tracking you!")))
 				carrier << 'sound/machines/defib_success.ogg'
 			if(PROXIMITY_TRACKING_FAIL)
-				to_chat(carrier, "<font size='3'><span class='danger'>[icon2html(src, carrier.client)] Danger: AI is attempting to actively track you, but you are outside of the camera network!</span></font>")
+				to_chat(carrier, span_danger(span_large("[icon2html(src, carrier.client)] Danger: AI is attempting to actively track you, but you are outside of the camera network!")))
 				carrier <<'sound/machines/defib_ready.ogg'
 
 

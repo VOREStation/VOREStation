@@ -103,7 +103,7 @@
 		if(!do_after(M, P.digspeed*3))
 			return
 
-		M.visible_message("<span cleass='warning'>[M] breaks apart \the [src].</span>", "<span cleass='warning'>You break apart \the [src].</span>")
+		M.visible_message(span_warning("[M] breaks apart \the [src]."), span_warning("You break apart \the [src]."))
 		for(var/obj/O in src)
 			O.forceMove(get_turf(src))
 		qdel(src)

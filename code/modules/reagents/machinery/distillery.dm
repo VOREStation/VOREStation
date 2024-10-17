@@ -108,8 +108,8 @@
 
 		. += span_notice("\The [src]'s gauges read:")
 		if(!use_atmos)
-			. += span_notice("- Target Temperature:</span> <span class='warning'>[target_temp]")
-		. += span_notice("- Temperature:</span> <span class='warning'>[current_temp]")
+			. += span_notice("- Target Temperature:") + span_warning("[target_temp]")
+		. += span_notice("- Temperature:") + span_warning("[current_temp]")
 
 		if(InputBeaker)
 			if(InputBeaker.reagents.reagent_list.len)
@@ -146,7 +146,7 @@
 
 	to_chat(user, span_notice("You press \the [src]'s chamber agitator button."))
 	if(on)
-		visible_message("<b>\The [src]</b> rattles to life.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " rattles to life."))
 		reagents.handle_reactions()
 	else
 		spawn(1 SECOND)
@@ -187,8 +187,8 @@
 		if("inspect gauges")
 			to_chat(user, span_notice("\The [src]'s gauges read:"))
 			if(!use_atmos)
-				to_chat(user, span_notice("- Target Temperature:</span> <span class='warning'>[target_temp]"))
-			to_chat(user, span_notice("- Temperature:</span> <span class='warning'>[current_temp]"))
+				to_chat(user, span_notice("- Target Temperature:") + span_warning("[target_temp]"))
+			to_chat(user, span_notice("- Temperature:") + span_warning("[current_temp]"))
 
 		if("pulse agitator")
 			toggle_mixing(user)
@@ -316,7 +316,7 @@
 				if(target_temp == round(current_temp, 1.0))
 					current_temp = target_temp // Hard set it so we don't need to worry about exact decimals any more, after we've been keeping track of it all this time
 					playsound(src, 'sound/machines/ping.ogg', 50, 0)
-					src.visible_message("<b>\The [src]</b> pings as it reaches the target temperature.")
+					src.visible_message(span_infoplain(span_bold("\The [src]") + " pings as it reaches the target temperature."))
 
 		else if(connected_port && avg_pressure > 1000)
 			current_temp = round((current_temp + avg_temp) / 2)

@@ -135,7 +135,7 @@
 /mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(35))
-		visible_message(span_red("<B>[src] blocks [Proj] with its shield!</B>"))
+		visible_message(span_bolddanger("[src] blocks [Proj] with its shield!"))
 		if(Proj.firer)
 			ai_holder.react_to_attack(Proj.firer)
 		return
@@ -321,7 +321,7 @@
 			try_reload()
 			return FALSE
 
-	visible_message(span_danger("<b>\The [src]</b> fires at \the [orig_targ]!"))
+	visible_message(span_danger(span_bold("\The [src]") + " fires at \the [orig_targ]!"))
 	shoot(A)
 	if(casingtype)
 		new casingtype(loc)

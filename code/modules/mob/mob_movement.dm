@@ -428,7 +428,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)) && !buckled)
-		to_chat(src, span_notice("<B>You slipped!</B>"))
+		to_chat(src, span_boldnotice("You slipped!"))
 		inertia_dir = last_move
 		step(src, src.inertia_dir) // Not using Move for smooth glide here because this is a 'slip' so should be sudden.
 		return 0

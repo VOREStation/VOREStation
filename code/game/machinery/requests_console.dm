@@ -200,7 +200,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		if("print")
 			var/msg = message_log[text2num(params["print"])];
 			if(msg)
-				msg = "<b>[msg[1]]:</b><br>[msg[2]]"
+				msg = span_bold("[msg[1]]:") + "<br>[msg[2]]"
 				msg = replacetext(msg, "<BR>", "\n")
 				msg = strip_html_properly(msg)
 				var/obj/item/paper/R = new(src.loc)

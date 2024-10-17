@@ -106,7 +106,7 @@
 			to_chat(user, span_warning("Nothing left to do with it now. Maybe you can break it down into materials."))
 		else
 			open_pod()
-			user.visible_message("<b>[user]</b> opens \the [src]!","You open \the [src]!")
+			user.visible_message(span_infoplain(span_bold("[user]") + " opens \the [src]!"),span_infoplain("You open \the [src]!"))
 
 /obj/structure/drop_pod/attackby(obj/item/O, mob/user)
 	if(O.has_tool_quality(TOOL_WRENCH))

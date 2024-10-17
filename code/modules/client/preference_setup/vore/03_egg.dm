@@ -44,7 +44,7 @@
 /datum/category_item/player_setup_item/vore/egg/content(var/mob/user)
 	. += "<br>"
 	. += " Egg Type: <a href='?src=\ref[src];vore_egg_type=1'>[pref.vore_egg_type]</a><br>"
-	. += "<b>Autohiss Default Setting:</b> <a href='?src=\ref[src];autohiss=1'>[pref.autohiss]</a><br>" // VOREStation Add
+	. += span_bold("Autohiss Default Setting:") + " <a href='?src=\ref[src];autohiss=1'>[pref.autohiss]</a><br>" // VOREStation Add
 
 /datum/category_item/player_setup_item/vore/egg/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))

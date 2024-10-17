@@ -30,11 +30,11 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 /datum/category_item/player_setup_item/antagonism/basic/content(var/mob/user)
 	. += "Faction: <a href='?src=\ref[src];antagfaction=1'>[pref.antag_faction]</a><br/>"
 	. += "Visibility: <a href='?src=\ref[src];antagvis=1'>[pref.antag_vis]</a><br/>"
-	. +="<b>Uplink Type : <a href='?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a></b>"
+	. +=span_bold("Uplink Type : <a href='?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a>")
 	. +="<br>"
-	. +="<b>Exploitable information:</b><br>"
+	. +=span_bold("Exploitable information:") + "<br>"
 	if(jobban_isbanned(user, "Records"))
-		. += "<b>You are banned from using character records.</b><br>"
+		. += span_bold("You are banned from using character records.") + "<br>"
 	else
 		. +="<a href='?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br>"
 

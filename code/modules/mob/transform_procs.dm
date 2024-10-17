@@ -36,7 +36,7 @@
 	dna.SetSEState(MONKEYBLOCK,1)
 	dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 
-	to_chat(src, "<B>You are now [species.name]. </B>")
+	to_chat(src, span_infoplain(span_bold("You are now [species.name]. ")))
 	qdel(animation)
 
 	return src
@@ -216,7 +216,7 @@
 	new_xeno.a_intent = I_HURT
 	new_xeno.key = key
 
-	to_chat(new_xeno, "<B>You are now an alien.</B>")
+	to_chat(new_xeno, span_infoplain(span_bold("You are now an alien.")))
 	qdel(src)
 	return
 
@@ -238,7 +238,7 @@
 	new_corgi.a_intent = I_HURT
 	new_corgi.key = key
 
-	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
+	to_chat(new_corgi, span_infoplain(span_bold("You are now a Corgi. Yap Yap!")))
 	qdel(src)
 	return
 

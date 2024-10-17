@@ -114,28 +114,27 @@ var/sc_safecode5 = "[rand(0,9)]"
 	name = "smudged paper"
 
 /obj/item/paper/sc_safehint_paper_prison/New()
-	info = "<i>The ink is smudged, you can only make out a couple numbers:</i> '[sc_safecode1]**[sc_safecode4]*'"
+	info = span_italics("The ink is smudged, you can only make out a couple numbers:") + " '[sc_safecode1]**[sc_safecode4]*'"
 
 /obj/item/paper/sc_safehint_paper_hydro
 	name = "shredded paper"
 /obj/item/paper/sc_safehint_paper_hydro/New()
-	info = "<i>Although the paper is shredded, you can clearly see the number:</i> '[sc_safecode2]'"
+	info = span_italics("Although the paper is shredded, you can clearly see the number:") + " '[sc_safecode2]'"
 
 /obj/item/paper/sc_safehint_paper_caf
 	name = "blood-soaked paper"
 	//This does not have to be in New() because it is a constant. There are no variables in it i.e. [sc_safcode]
-	info = "<span class=red><i>This paper is soaked in blood, it is impossible to read any text.</i></span>"
+	info = span_red(span_italics("This paper is soaked in blood, it is impossible to read any text."))
 
 /obj/item/paper/sc_safehint_paper_bible
 	name = "hidden paper"
 /obj/item/paper/sc_safehint_paper_bible/New()
-	info = {"<i>It would appear that the pen hidden with the paper had leaked ink over the paper.
-			However you can make out the last three digits:</i>'[sc_safecode3][sc_safecode4][sc_safecode5]'
-			"}
+	info = span_italics("It would appear that the pen hidden with the paper had leaked ink over the paper.\
+			However you can make out the last three digits:") + " '[sc_safecode3][sc_safecode4][sc_safecode5]'"
 
 /obj/item/paper/sc_safehint_paper_shuttle
-	info = {"<b>Target:</b> Research-station Epsilon<br>
-			<b>Objective:</b> Prototype weaponry. The captain likely keeps them locked in her safe.<br>
+	info = span_bold("Target:") + " Research-station Epsilon<br>" + span_bold("Objective:") + " " + {"
+			Prototype weaponry. The captain likely keeps them locked in her safe.<br>
 			<br>
 			Our on-board spy has learned the code and has hidden away a few copies of the code around the station. Unfortunatly he has been captured by security
 			Your objective is to split up, locate any of the papers containing the captain's safe code, open the safe and
