@@ -238,7 +238,7 @@
 				img = icon2html(A,C,sourceonly=TRUE)
 				C.misc_cache[A.ability_name] = img
 
-		L[++L.len] = list("[A.ability_name]", A.ability_name, img, "Activate", REF(A))
+		L[++L.len] = list("[A.ability_name]", A.ability_name, img, A.atom_button_text(), REF(A))
 	misc_tabs["Shadekin"] = L
 
 //They phase back to the dark when killed
