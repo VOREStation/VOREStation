@@ -1243,20 +1243,19 @@
 	if(!result)
 		return
 	if(result == "Open Panel")
-		var/mob/living/user = usr
-		if(!user)
-			to_chat(usr,span_notice("Mob undefined: [user]"))
+		if(!istype(src))
+			to_chat(src,span_notice("Mob undefined: [src]"))
 			return FALSE
 
 		var/datum/vore_look/export_panel/exportPanel
 		if(!exportPanel)
-			exportPanel = new(usr)
+			exportPanel = new(src)
 
 		if(!exportPanel)
-			to_chat(user,span_notice("Export panel undefined: [exportPanel]"))
+			to_chat(src,span_notice("Export panel undefined: [exportPanel]"))
 			return
 
-		exportPanel.tgui_interact(user)
+		exportPanel.tgui_interact(src)
 	else
 		for(var/belly in vore_organs)
 			if(isbelly(belly))
