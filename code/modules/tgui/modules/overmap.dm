@@ -17,6 +17,24 @@
 				unlook(M)
 	. = ..()
 
+/datum/tgui_module/ship/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		if(linked)
+			user.client.register_map_obj(linked.cam_screen)
+			for(var/plane in linked.cam_plane_masters)
+				user.client.register_map_obj(plane)
+			user.client.register_map_obj(linked.cam_background)
+			linked.update_screen()
+
+		ui = new(user, src, tgui_id, name, parent_ui)
+		ui.open()
+
+/datum/tgui_module/ship/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["mapRef"] = linked?.map_name
+	return data
+
 /datum/tgui_module/ship/tgui_status(mob/user)
 	. = ..()
 	if(. > STATUS_DISABLED)
@@ -29,6 +47,9 @@
 	. = ..()
 	user.unset_machine()
 	unlook(user)
+
+	// Unregister map objects
+	user.client?.clear_map(linked?.map_name)
 
 /datum/tgui_module/ship/proc/sync_linked()
 	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(get_z(tgui_host()))
