@@ -8,7 +8,7 @@
 	dat += span_bold("Viewing attack logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)
 		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"
-	dat += "<br><b>Note:</b> This is arranged from earliest to latest. <br><br>"
+	dat += "<br>" + span_bold("Note:") + " This is arranged from earliest to latest. <br><br>"
 
 
 	if(!isemptylist(M.attack_log))
@@ -39,7 +39,7 @@
 	dat += span_bold("Viewing say and emote logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)
 		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"
-	dat += "<br><b>Note:</b> This is arranged from earliest to latest. <br><br>"
+	dat += "<br>" + span_bold("Note:") + " This is arranged from earliest to latest. <br><br>"
 
 	if(!isemptylist(M.dialogue_log))
 		dat += "<fieldset style='border: 2px solid white; display: inline'>"
