@@ -142,7 +142,7 @@
 		mmsg += "\n"
 
 	if(config.show_mentors)
-		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mmsg
+		msg += "\n" + span_bold(" Current Mentors ([num_mentors_online]):") + "\n" + mmsg
 
 	msg += "\n" + span_info("Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.")
 
