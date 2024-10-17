@@ -91,7 +91,7 @@ fi
 
 part "color macros"
 #Checking for color macros
-(num=`$grep -n '\\\\(red|blue|green|black|b|i[^mc])' $code_files | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
+(num=`$grep -n '\\\\(red|blue|green|black|b|i[^mnc])' $code_files | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
 retVal=$?
 if [ $retVal -ne 0 ]; then
   echo -e "${RED}Do not use any byond color macros (such as \blue), they are deprecated.${NC}"

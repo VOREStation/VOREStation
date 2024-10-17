@@ -6,7 +6,7 @@
 	author = "NanoTrasen"
 	title = "Standard Operating Procedure"
 
-/obj/item/book/manual/standard_operating_procedure/New()
+/obj/item/book/manual/standard_operating_procedure/Initialize()
 	..()
 	dat = {"
 
@@ -29,7 +29,7 @@
 	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
-/obj/item/book/manual/command_guide/New()
+/obj/item/book/manual/command_guide/Initialize()
 	..()
 	dat = {"
 
