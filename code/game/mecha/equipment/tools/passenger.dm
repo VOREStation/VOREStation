@@ -35,7 +35,7 @@
 		else if(src.occupant != user)
 			to_chat(user, span_warning("[src.occupant] was faster. Try harder next time, loser."))
 	else
-		to_chat(user, "You stop entering the exosuit.")
+		to_chat(user, span_info("You stop entering the exosuit."))
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/container_resist(var/mob/living)
 	if(occupant == living)
@@ -50,7 +50,7 @@
 	if(usr != occupant)
 		return
 	if(door_locked)
-		to_chat(occupant, "<span class='notice'>\The [src] is locked! You begin operating the emergency unlock mechanism. This will take one minute.</span>")
+		to_chat(occupant, span_notice("\The [src] is locked! You begin operating the emergency unlock mechanism. This will take one minute."))
 		sleep(600)
 		if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
 			return
@@ -58,8 +58,8 @@
 			door_locked = FALSE
 			occupant_message("Passenger compartment hatch unlocked.")
 			if (chassis)
-				chassis.visible_message("The hatch on \the [chassis] unlocks.", "You hear something latching.")
-	to_chat(occupant, "You climb out from \the [src].")
+				chassis.visible_message(span_infoplain("The hatch on \the [chassis] unlocks."), span_hear("You hear something latching."))
+	to_chat(occupant, span_info("You climb out from \the [src]."))
 	go_out()
 	occupant_message("[occupant] disembarked.")
 	log_message("[occupant] disembarked.")
