@@ -113,7 +113,7 @@
 			try_reload()
 			return FALSE
 
-	visible_message(span_bolddanger("\The [src]") + " fires at \the [A]!")
+	visible_message(span_danger(span_bold("\The [src]") + " fires at \the [A]!"))
 	shoot(A)
 	if(casingtype)
 		new casingtype(loc)
