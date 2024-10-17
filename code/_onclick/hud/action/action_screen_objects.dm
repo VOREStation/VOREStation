@@ -6,7 +6,8 @@
 /obj/screen/movable/action_button/Click(location,control,params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
-		moved = 0
+		moved = FALSE
+		owner?.owner?.update_action_buttons()
 		return 1
 	if(!usr.checkClickCooldown())
 		return
