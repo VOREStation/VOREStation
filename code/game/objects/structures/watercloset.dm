@@ -561,7 +561,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		gunshot_residue = null
+		H.gunshot_residue = null
 		if(H.gloves)
 			H.gloves.clean_blood()
 			H.update_inv_gloves()
