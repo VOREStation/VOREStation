@@ -904,7 +904,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Persistent Data"
 	config.persistence_disabled = !(config.persistence_disabled)
 	if(!config.persistence_disabled)
-		to_world(span_world("Persistence is now enabled.."))
+		to_world(span_world("Persistence is now enabled."))
 	else
 		to_world(span_world("Persistence is no longer enabled."))
 	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"]."), 1)
@@ -918,7 +918,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Mapload Persistent Data"
 	config.persistence_ignore_mapload = !(config.persistence_ignore_mapload)
 	if(!config.persistence_ignore_mapload)
-		to_world(span_world("Persistence is now enabled.."))
+		to_world(span_world("Persistence is now enabled."))
 	else
 		to_world(span_world("Persistence is no longer enabled."))
 	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [config.persistence_ignore_mapload ? "Off" : "On"]."), 1)

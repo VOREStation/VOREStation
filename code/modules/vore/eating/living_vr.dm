@@ -471,7 +471,7 @@
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-	visible_message(span_vwarning("[src] licks [tasted]!"),span_vnotice("You lick [tasted]. They taste rather like [tasted.get_taste_message()]."),span_bold("Slurp!"))
+	visible_message(span_vwarning("[src] licks [tasted]!"),span_vnotice("You lick [tasted]. They taste rather like [tasted.get_taste_message()]."),span_infoplain(span_bold("Slurp!")))
 
 
 /mob/living/proc/get_taste_message(allow_generic = 1)
@@ -510,7 +510,7 @@
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	visible_message(span_vwarning("[src] smells [smelled]!"),span_vnotice("You smell [smelled]. They smell like [smelled.get_smell_message()]."),span_bold("Sniff!"))
+	visible_message(span_vwarning("[src] smells [smelled]!"),span_vnotice("You smell [smelled]. They smell like [smelled.get_smell_message()]."),span_infoplain(span_bold("Sniff!")))
 
 /mob/living/proc/get_smell_message(allow_generic = 1)
 	if(!vore_smell && !allow_generic)
