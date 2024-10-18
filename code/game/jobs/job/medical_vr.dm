@@ -30,7 +30,7 @@
 	pto_type = PTO_MEDICAL
 	alt_titles = list(JOB_ALT_PHYSICIAN = /datum/alt_title/physician, JOB_ALT_MEDICAL_PRACTITIONER = /datum/alt_title/medical_practitioner, JOB_ALT_SURGEON = /datum/alt_title/surgeon,
 						JOB_ALT_EMERGENCY_PHYSICIAN = /datum/alt_title/emergency_physician, JOB_ALT_NURSE = /datum/alt_title/nurse, JOB_ALT_ORDERLY = /datum/alt_title/orderly,
-						JOB_ALT_VIROLOGIST = /datum/alt_title/virologist, JOB_ALT_MEDICAL_CONTRACTOR = /datum/alt_title/medical_contractor)
+						JOB_ALT_VIROLOGIST = /datum/alt_title/virologist, JOB_ALT_MEDICAL_CONTRACTOR = /datum/alt_title/medical_contractor, JOB_ALT_GENETICIST = /datum/alt_title/geneticist)
 
 /datum/alt_title/physician
 	title = JOB_ALT_PHYSICIAN
@@ -47,6 +47,10 @@
 /datum/alt_title/medical_contractor
 	title = JOB_ALT_MEDICAL_CONTRACTOR
 	title_blurb = "A " + JOB_ALT_MEDICAL_CONTRACTOR + " can be anything from a full-blown doctor to the likes of a nurse or orderly, but isn't directly employed by NT proper."
+
+/datum/alt_title/geneticist
+	title = JOB_ALT_GENETICIST
+	title_blurb = "A " + JOB_ALT_GENETICIST + " is a specialist in reforming technology and genetic editing with tools such as the body design console."
 
 /datum/job/doctor/get_request_reasons()
 	return list("Surgery pending", "Viral outbreak", "Assembling expedition team")
