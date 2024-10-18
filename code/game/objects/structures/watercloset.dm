@@ -570,8 +570,8 @@
 				H.r_hand.clean_blood()
 			if(H.l_hand)
 				H.l_hand.clean_blood()
-			bloody_hands = 0
-			user.germ_level = 0
+			H.bloody_hands = 0
+			H.germ_level = 0
 	else
 		user.clean_blood()
 	for(var/mob/V in viewers(src, null))
