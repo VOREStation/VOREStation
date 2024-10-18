@@ -173,7 +173,7 @@
 	power_cost = 100
 	ammo_material = MAT_PHORON
 
-	action_button_name = "Toggle internal generator"
+	actions_types = list(/datum/action/item_action/toggle_internal_generator)
 
 	var/generator_state = GEN_OFF
 	var/datum/looping_sound/small_motor/soundloop
@@ -204,8 +204,8 @@
 	QDEL_NULL(soundloop)
 	. = ..()
 
-/obj/item/gun/magnetic/matfed/phoronbore/ui_action_click()
-	toggle_generator(usr)
+/obj/item/gun/magnetic/matfed/phoronbore/ui_action_click(mob/user, actiontype)
+	toggle_generator(user)
 
 /obj/item/gun/magnetic/matfed/phoronbore/process()
 	if(generator_state && !mat_storage)

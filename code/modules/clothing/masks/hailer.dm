@@ -4,7 +4,7 @@
 	description_info = "This mask has a hailer attached, you can activate it on the button or use the Halt! verb, for switching phrases you can alt+click it or change it using the change phrase verb."
 	icon_state = "halfgas"
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 55, rad = 0)
-	action_button_name = "HALT!"
+	actions_types = list(/datum/action/item_action/halt)
 	body_parts_covered = FACE
 	var/obj/item/hailer/hailer
 	var/cooldown = 0
@@ -53,7 +53,7 @@
 	phrase = 12
 
 
-/obj/item/clothing/mask/gas/sechailer/ui_action_click()
+/obj/item/clothing/mask/gas/sechailer/ui_action_click(mob/user, actiontype)
 	halt()
 
 /obj/item/clothing/mask/gas/sechailer/AltClick(mob/user)

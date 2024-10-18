@@ -90,7 +90,7 @@
 	species_restricted = list(SPECIES_VOX)
 	filtered_gases = list("oxygen", "nitrous_oxide")
 	var/mask_open = FALSE	// Controls if the Vox can eat through this mask
-	action_button_name = "Toggle Feeding Port"
+	actions_types = list(/datum/action/item_action/toggle_feeding_port)
 
 /obj/item/clothing/mask/gas/swat/vox/proc/feeding_port(mob/user)
 	if(user.canmove && !user.stat)

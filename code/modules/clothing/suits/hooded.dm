@@ -7,7 +7,7 @@
 	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
 	var/hood_up = FALSE
 	var/toggleicon
-	action_button_name = "Toggle Hood"
+	actions_types = list(/datum/action/item_action/toggle_hood)
 
 /obj/item/clothing/suit/storage/hooded/New()
 	toggleicon = "[initial(icon_state)]"
@@ -23,7 +23,7 @@
 		var/obj/item/clothing/head/hood/H = new hoodtype(src)
 		hood = H
 
-/obj/item/clothing/suit/storage/hooded/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/ui_action_click(mob/user, actiontype)
 	ToggleHood()
 
 /obj/item/clothing/suit/storage/hooded/equipped(mob/user, slot)
@@ -74,7 +74,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	action_button_name = "Toggle Hood"
+	actions_types = list(/datum/action/item_action/toggle_hood)
 
 /obj/item/clothing/suit/storage/hooded/costume/siffet
 	name = "siffet costume"

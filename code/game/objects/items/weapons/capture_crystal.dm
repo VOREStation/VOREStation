@@ -7,7 +7,7 @@
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 	throwforce = 0
 	force = 0
-	action_button_name = "Command"
+	actions_types = list(/datum/action/item_action/command)
 
 	var/active = FALSE					//Is it set up?
 	var/mob/living/owner				//Reference to the owner
@@ -48,7 +48,7 @@
 		. += span_deptradio("<a href='?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
 
 //Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.
-/obj/item/capture_crystal/ui_action_click()
+/obj/item/capture_crystal/ui_action_click(mob/user, actiontype)
 	if(!ismob(loc))
 		return
 	var/mob/living/M = src.loc
@@ -67,7 +67,7 @@
 			to_chat(M, span_notice("\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
 			log_admin("[key_name_admin(M)] set [bound_mob] to [AI.hostile].")
 	else if(bound_mob.client)
-		var/transmit_msg = tgui_input_text(usr, "What is your command?", "Command")
+		var/transmit_msg = tgui_input_text(user, "What is your command?", "Command")
 		if(length(transmit_msg) >= MAX_MESSAGE_LEN)
 			to_chat(M, span_danger("Your message was TOO LONG!:[transmit_msg]"))
 			return

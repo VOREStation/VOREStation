@@ -76,7 +76,8 @@
 	// Clothing assemblies can be triggered by clicking on the HUD. This allows that to occur.
 	action_circuit = new(src.IC)
 	IC.force_add_circuit(action_circuit)
-	action_button_name = "Activate [name]"
+
+	new /datum/action/item_action/activate(src, name)
 
 /obj/item/clothing/Destroy()
 	if(IC)

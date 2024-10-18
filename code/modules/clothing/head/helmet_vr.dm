@@ -28,7 +28,7 @@
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 
-// Armor Versions Here	
+// Armor Versions Here
 /obj/item/clothing/head/helmet/combat/crusader
 	name = "crusader helmet"
 	desc = "ye olde armored helmet"
@@ -47,10 +47,10 @@
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	tint = TINT_HEAVY
 	siemens_coefficient = 2
-	
+
 	var/base_state
 	var/up = FALSE
-	
+
 /obj/item/clothing/head/helmet/combat/bedevere/attack_self()
 	toggle()
 
@@ -83,8 +83,8 @@
 		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = src.loc
 			M.update_inv_wear_mask()
-		usr.update_action_buttons()
-		
+		usr.update_action_buttons_icon()
+
 // Costume Versions Here
 /obj/item/clothing/head/helmet/combat/crusader_costume
 	name = "crusader costume helmet"
@@ -104,10 +104,10 @@
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	tint = TINT_HEAVY
 	siemens_coefficient = 1
-	
+
 	var/base_state
 	var/up = FALSE
-	
+
 /obj/item/clothing/head/helmet/combat/bedevere_costume/attack_self()
 	toggle()
 
@@ -140,4 +140,4 @@
 		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = src.loc
 			M.update_inv_wear_mask()
-		usr.update_action_buttons()
+		usr.update_action_buttons_icon()

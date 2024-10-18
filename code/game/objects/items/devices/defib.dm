@@ -15,7 +15,7 @@
 	w_class = ITEMSIZE_LARGE
 	unacidable = TRUE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
-	action_button_name = "Remove/Replace Paddles"
+	actions_types = list(/datum/action/item_action/remove_replace_paddles)
 
 	var/obj/item/shockpaddles/linked/paddles
 	var/obj/item/cell/bcell = null
@@ -64,7 +64,7 @@
 	else
 		add_overlay("[initial(icon_state)]-nocell")
 
-/obj/item/defib_kit/ui_action_click()
+/obj/item/defib_kit/ui_action_click(mob/user, actiontype)
 	toggle_paddles()
 
 /obj/item/defib_kit/attack_hand(mob/user)

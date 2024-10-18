@@ -68,7 +68,7 @@
 	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "medgravpatch"
 	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
-	action_button_name = "Toggle Eyepatch"
+	actions_types = list(/datum/action/item_action/toggle_eyepatch)
 	off_state = "eyepatch"
 	enables_planes = list(VIS_CH_STATUS,VIS_CH_HEALTH,VIS_FULLBRIGHT,VIS_MESONS)
 
@@ -82,8 +82,7 @@
 	flash_protection = FLASH_PROTECTION_MODERATE
 	item_flags = AIRTIGHT
 	body_parts_covered = EYES
-	action_button_name = "Change scanning pattern"
-	action_button_is_hands_free = TRUE
+	actions_types = list(/datum/action/item_action/hands_free/change_scanning_pattern)
 	var/static/list/tac_sec_vis_anim = list()
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis/Initialize(mapload)
@@ -107,7 +106,7 @@
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
 		user.update_inv_glasses()
-		user.update_action_buttons()
+		user.update_action_buttons_icon()
 		to_chat(user, span_notice("Your [src] now displays [choice] ."))
 		return 1
 

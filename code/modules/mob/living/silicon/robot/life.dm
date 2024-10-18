@@ -10,7 +10,6 @@
 	//Status updates, death etc.
 	clamp_values()
 	handle_regular_status_updates()
-	handle_actions()
 	handle_instability()
 	// For some reason borg Life() doesn't call ..()
 	handle_modifiers()

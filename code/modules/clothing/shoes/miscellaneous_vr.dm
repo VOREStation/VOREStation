@@ -14,7 +14,7 @@
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 	// resistance_flags = FIRE_PROOF
-	action_button_name = "Activate Jump Boots"
+	actions_types = list(/datum/action/item_action/activate_jump_boots)
 	permeability_coefficient = 0.05
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
@@ -22,7 +22,7 @@
 	var/recharging_time = 0 //time until next dash
 	// var/jumping = FALSE //are we mid-jump? We have no throw_at callback, so we have to check user.throwing.
 
-/obj/item/clothing/shoes/bhop/ui_action_click()
+/obj/item/clothing/shoes/bhop/ui_action_click(mob/unused_user, actiontype)
 	var/mob/living/user = loc
 	if(!isliving(user))
 		return

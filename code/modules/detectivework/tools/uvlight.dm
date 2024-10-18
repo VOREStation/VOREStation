@@ -5,7 +5,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
-	action_button_name = "Toggle UV light"
+	actions_types = list(/datum/action/item_action/toggle_uv_light)
 	matter = list(MAT_STEEL = 150)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
