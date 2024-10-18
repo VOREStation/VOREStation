@@ -559,9 +559,21 @@
 		return
 	busy = 0
 
-	user.clean_blood()
-	if(ishuman(user))
-		user:update_inv_gloves()
+	if(iscarbon(user))
+		var/mob/living/carbon/human/H = user
+		if(H.gloves)
+			H.gloves.clean_blood()
+			H.update_inv_gloves()
+			H.gloves.germ_level = 0
+		else
+			if(H.r_hand)
+				H.r_hand.clean_blood()
+			if(H.l_hand)
+				H.l_hand.clean_blood()
+			bloody_hands = 0
+			user.germ_level = 0
+	else
+		user.clean_blood()
 	for(var/mob/V in viewers(src, null))
 		V.show_message(span_notice("[user] washes their hands using \the [src]."))
 

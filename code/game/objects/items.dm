@@ -650,8 +650,10 @@ var/list/global/slot_flags_enumeration = list(
 		return
 
 	//if we haven't made our blood_overlay already
-	if( !blood_overlay )
+	if(!blood_overlay)
 		generate_blood_overlay()
+	else
+		overlays.Remove(blood_overlay)
 
 	//Make the blood_overlay have the proper color then apply it.
 	blood_overlay.color = blood_color
