@@ -37,7 +37,7 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	one_handed_penalty = 30 //You madman, one-handing a 12g shotgun.
 	recoil = 5 //Unfold the damn stock you fool!
-	action_button_name = "Toggle stock"
+	actions_types = list(/datum/action/item_action/toggle_stock)
 	var/stock = FALSE
 
 
@@ -69,7 +69,7 @@
 		H.update_inv_r_hand()
 
 	playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
-	user.update_action_buttons()
+	user.update_action_buttons_icon()
 
 /obj/item/gun/projectile/shotgun/compact/verb/verb_toggle_stock(mob/user as mob)
 	set category = "Object"
@@ -94,7 +94,7 @@
 	else
 		to_chat(usr, span_notice("You cannot do this in your current state."))
 
-/obj/item/gun/projectile/shotgun/compact/ui_action_click()
+/obj/item/gun/projectile/shotgun/compact/ui_action_click(mob/unused_user, actiontype)
 	var/mob/living/user = loc
 	if(!isliving(user))
 		return

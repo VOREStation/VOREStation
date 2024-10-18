@@ -141,7 +141,7 @@
 	action_sound = 'sound/weapons/riflebolt.ogg'
 	pump_animation = "scoped-boltaction-cycling"
 
-/obj/item/gun/projectile/shotgun/pump/rifle/ui_action_click()
+/obj/item/gun/projectile/shotgun/pump/rifle/ui_action_click(mob/user, actiontype)
 	scope()
 
 /obj/item/gun/projectile/shotgun/pump/rifle/verb/scope()

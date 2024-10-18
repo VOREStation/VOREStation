@@ -28,7 +28,7 @@
 		return
 
 	screen_loc = position
-	moved = TRUE
+	moved = screen_loc
 
 /// Takes mouse parmas as input, returns a string representing the appropriate mouse position
 /obj/screen/movable/proc/mouse_params_to_position(params)

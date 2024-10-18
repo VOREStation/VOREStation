@@ -485,7 +485,7 @@
 		update_light()
 
 	update_icon(user)
-	user.update_action_buttons()
+	user.update_action_buttons_icon()
 
 /obj/item/clothing/head/attack_ai(var/mob/user)
 	if(!mob_wear_hat(user))

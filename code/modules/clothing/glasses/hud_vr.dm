@@ -141,7 +141,7 @@
 		away_planes = null
 		to_chat(usr, span_notice("You enabled the Augmented Reality HUD of your [src.name]."))
 	ar_toggled = !ar_toggled
-	usr.update_action_buttons()
+	usr.update_action_buttons_icon()
 	usr.recalculate_vis()
 
 
@@ -167,7 +167,7 @@
 	These have been upgraded with medical records access and virus database integration. \
 	They can also read data from active suit sensors using the crew monitoring system."
 	mode = "med"
-	action_button_name = "AR Console (Crew Monitor)"
+	actions_types = list(/datum/action/item_action/ar_console_crew)
 	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
@@ -183,7 +183,7 @@
 	They also have access to security alerts such as camera and motion sensor alarms."
 	mode = "sec"
 	flash_protection = FLASH_PROTECTION_MODERATE //weld protection is a little too widespread
-	action_button_name = "AR Console (Security Alerts)"
+	actions_types = list(/datum/action/item_action/ar_console_security_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/security/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
@@ -199,7 +199,7 @@
 	and can also display a list of atmospheric, fire, and power alarms."
 	mode = "eng"
 	flash_protection = FLASH_PROTECTION_MAJOR
-	action_button_name = "AR Console (Station Alerts)"
+	actions_types = list(/datum/action/item_action/ar_console_station_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/engineering/glasses
 
 /obj/item/clothing/glasses/omnihud/eng/ar_interact(var/mob/living/carbon/human/user)
@@ -249,7 +249,7 @@
 			item_state = initial(item_state)
 			usr.update_inv_glasses()
 			to_chat(usr, "You activate the retinal projector on the [src].")
-		usr.update_action_buttons()
+		usr.update_action_buttons_icon()
 
 /obj/item/clothing/glasses/omnihud/all
 	name = "\improper AR-B glasses"
@@ -259,7 +259,7 @@
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
-	action_button_name = "AR Console (All Alerts)"
+	actions_types = list(/datum/action/item_action/ar_console_all_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
 
 /obj/item/clothing/glasses/omnihud/all/ar_interact(var/mob/living/carbon/human/user)
