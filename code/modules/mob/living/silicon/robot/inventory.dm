@@ -212,16 +212,16 @@
 	var/slot_num
 	if(slot_start == 0)
 		slot_num = 1
-		slot_start = 2
 	else
 		slot_num = slot_start + 1
-
-	while(slot_start != slot_num) //If we wrap around without finding any free slots, just give up.
+		if(slot_num > 3)
+			return
+	// Attempt to rotate through the slots until we're past slot 3, or find the next usable slot. Allows skipping empty slots, while still having an empty slot at end of rotation.
+	while(slot_num <= 3)
 		if(module_active(slot_num))
 			select_module(slot_num)
 			return
 		slot_num++
-		if(slot_num > 3) slot_num = 1 //Wrap around.
 
 	return
 
