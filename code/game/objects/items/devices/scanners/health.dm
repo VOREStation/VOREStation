@@ -75,7 +75,7 @@
 	var/fake_oxy = max(rand(1,40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
 	var/OX = M.getOxyLoss() > 50 	? 	span_bold("[M.getOxyLoss()]") 		: M.getOxyLoss()
 	var/TX = M.getToxLoss() > 50 	? 	span_bold("[M.getToxLoss()]")  		: M.getToxLoss()
-	var/BU = M.getFireLoss() > 50 	? 	span_bold("M.getFireLoss()]") 		: M.getFireLoss()
+	var/BU = M.getFireLoss() > 50 	? 	span_bold("[M.getFireLoss()]") 		: M.getFireLoss()
 	var/BR = M.getBruteLoss() > 50 	? 	span_bold("[M.getBruteLoss()]")  	: M.getBruteLoss()
 	var/analyzed_results = ""
 	if(M.status_flags & FAKEDEATH)
