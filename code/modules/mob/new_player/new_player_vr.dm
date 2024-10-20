@@ -7,12 +7,12 @@
 		return TRUE
 
 	//No Flavor Text
-	if (config.require_flavor && !(J.mob_type & JOB_SILICON) && (!client?.prefs?.flavor_texts["general"] || length(client.prefs.flavor_texts["general"]) < 30))
+	if (CONFIG_GET(flag/require_flavor) && !(J.mob_type & JOB_SILICON) && (!client?.prefs?.flavor_texts["general"] || length(client.prefs.flavor_texts["general"]) < 30))
 		to_chat(src,span_warning("Please set your general flavor text to give a basic description of your character. Set it using the 'Set Flavor text' button on the 'General' tab in character setup, and choosing 'General' category."))
 		pass = FALSE
 
 	//No OOC notes
-	if (config.allow_Metadata && (!client?.prefs?.metadata || length(client.prefs.metadata) < 15))
+	if (CONFIG_GET(flag/allow_metadata) && (!client?.prefs?.metadata || length(client.prefs.metadata) < 15))
 		to_chat(src,span_warning("Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup."))
 		pass = FALSE
 

@@ -8737,7 +8737,7 @@
 /area/centcom/holding)
 "rl" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
 "rm" = (
@@ -9682,7 +9682,7 @@
 /area/centcom/security)
 "tu" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
@@ -9913,7 +9913,7 @@
 /area/centcom/security)
 "tT" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/gun/energy/taser,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/blue/border,
@@ -11642,8 +11642,8 @@
 	dir = 10
 	},
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -13904,7 +13904,7 @@
 /area/centcom/security)
 "AJ" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -14610,7 +14610,7 @@
 	})
 "BL" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/taperecorder,
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,

@@ -179,7 +179,7 @@ var/list/organ_cache = list()
 		if(B && prob(40) && !isbelly(loc)) //VOREStation Edit
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
-		if(config.organs_decay && decays) damage += rand(1,3)
+		if(CONFIG_GET(flag/organs_decay) && decays) damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
 		adjust_germ_level(rand(2,6))

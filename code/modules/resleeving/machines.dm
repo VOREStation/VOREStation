@@ -191,7 +191,7 @@
 
 /obj/machinery/clonepod/transhuman/get_completion()
 	if(occupant)
-		return 100 * ((occupant.health + abs(config.health_threshold_dead)) / (occupant.maxHealth + abs(config.health_threshold_dead)))
+		return 100 * ((occupant.health + abs(CONFIG_GET(number/health_threshold_dead))) / (occupant.maxHealth + abs(CONFIG_GET(number/health_threshold_dead))))
 	return 0
 
 /obj/machinery/clonepod/transhuman/examine(mob/user, infix, suffix)

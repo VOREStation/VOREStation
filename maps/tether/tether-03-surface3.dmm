@@ -1743,7 +1743,7 @@
 /area/tether/surfacebase/security/upperhall)
 "acK" = (
 /obj/structure/bookcase,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/standard_operating_procedure,
 /obj/item/book/manual/command_guide,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -5825,8 +5825,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/security/lobby)
 "aiV" = (
@@ -13949,7 +13949,7 @@
 	desc = "There appears to be a shrine to WGW at the back...";
 	name = "Forbidden Knowledge"
 	},
-/obj/item/book/manual/engineering_hacking,
+/obj/item/book/manual/wiki/engineering_hacking,
 /obj/item/book/manual/nuclear,
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/library/study)
@@ -19037,14 +19037,14 @@
 /obj/item/book/manual/mass_spectrometry,
 /obj/item/book/manual/materials_chemistry_analysis,
 /obj/item/book/manual/medical_cloning,
-/obj/item/book/manual/medical_diagnostics_manual,
+/obj/item/book/manual/wiki/medical_diagnostics_manual,
 /obj/item/book/manual/research_and_development,
 /obj/item/book/manual/resleeving,
 /obj/item/book/manual/ripley_build_and_repair,
 /obj/item/book/manual/robotics_cyborgs,
-/obj/item/book/manual/robotics_manual,
+/obj/item/book/manual/wiki/robotics_manual,
 /obj/item/book/manual/rust_engine,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/standard_operating_procedure,
 /obj/item/book/manual/stasis,
 /obj/item/book/manual/supermatter_engine,
@@ -19442,8 +19442,8 @@
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/command_guide,
 /obj/item/book/manual/detective,
-/obj/item/book/manual/engineering_construction,
-/obj/item/book/manual/engineering_guide,
+/obj/item/book/manual/wiki/engineering_construction,
+/obj/item/book/manual/wiki/engineering_guide,
 /obj/item/book/manual/engineering_particle_accelerator,
 /obj/item/book/manual/engineering_singularity_safety,
 /obj/item/book/manual/evaguide,
@@ -30159,7 +30159,7 @@
 /area/crew_quarters/captain)
 "bbb" = (
 /obj/structure/bookcase,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/standard_operating_procedure,
 /obj/item/book/manual/command_guide,
 /turf/simulated/floor/wood,
@@ -34909,7 +34909,7 @@
 "bkS" = (
 /obj/structure/table/standard,
 /obj/item/book/manual/robotics_cyborgs,
-/obj/item/book/manual/robotics_manual,
+/obj/item/book/manual/wiki/robotics_manual,
 /obj/item/clothing/glasses/omnihud/rnd,
 /obj/machinery/light{
 	dir = 8
@@ -36729,9 +36729,9 @@
 /area/tether/surfacebase/security/briefingroom)
 "crz" = (
 /obj/structure/bookcase,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/engineering_construction,
 /obj/item/book/manual/detective,
 /obj/item/book/manual/standard_operating_procedure,
 /obj/item/book/codex/lore/vir,
@@ -43278,9 +43278,9 @@
 /area/tether/surfacebase/security/iaa/officeb)
 "tPE" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/codex,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
@@ -43969,8 +43969,8 @@
 /obj/structure/bookcase,
 /obj/item/book/manual/standard_operating_procedure,
 /obj/item/book/manual/standard_operating_procedure,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/command_guide,
 /obj/item/book/manual/command_guide,
 /obj/effect/floor_decal/spline/plain{
@@ -44998,8 +44998,8 @@
 /obj/structure/bookcase,
 /obj/item/book/manual/standard_operating_procedure,
 /obj/item/book/manual/standard_operating_procedure,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/command_guide,
 /obj/item/book/manual/command_guide,
 /obj/effect/floor_decal/spline/plain{

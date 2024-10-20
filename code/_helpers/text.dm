@@ -613,3 +613,10 @@
 	paper_text = replacetext(paper_text, "<br>", "\n")
 	paper_text = strip_html_properly(paper_text) // Get rid of everything else entirely.
 	return paper_text
+
+//json decode that will return null on parse error instead of runtiming.
+/proc/safe_json_decode(data)
+	try
+		return json_decode(data)
+	catch
+		return null

@@ -19,7 +19,7 @@
 
 /datum/controller/subsystem/events/proc/GetInteractWindow()
 	var/html = "<A align='right' href='?src=\ref[src];refresh=1'>Refresh</A>"
-	html += "<A align='right' href='?src=\ref[src];pause_all=[!config.allow_random_events]'>Pause All - [config.allow_random_events ? "Pause" : "Resume"]</A>"
+	html += "<A align='right' href='?src=\ref[src];pause_all=[!CONFIG_GET(flag/allow_random_events)]'>Pause All - [CONFIG_GET(flag/allow_random_events) ? "Pause" : "Resume"]</A>"
 
 	if(selected_event_container)
 		var/event_time = max(0, selected_event_container.next_event_time - world.time)
@@ -153,8 +153,8 @@
 		EC.delayed = !EC.delayed
 		log_and_message_admins("has [EC.delayed ? "paused" : "resumed"] countdown for [severity_to_string[EC.severity]] events.")
 	else if(href_list["pause_all"])
-		config.allow_random_events = text2num(href_list["pause_all"])
-		log_and_message_admins("has [config.allow_random_events ? "resumed" : "paused"] countdown for all events.")
+		CONFIG_SET(flag/allow_random_events, text2num(href_list["pause_all"]))
+		log_and_message_admins("has [CONFIG_GET(flag/allow_random_events) ? "resumed" : "paused"] countdown for all events.")
 	else if(href_list["interval"])
 		var/delay = tgui_input_number(usr, "Enter delay modifier. A value less than one means events fire more often, higher than one less often.", "Set Interval Modifier")
 		if(delay && delay > 0)

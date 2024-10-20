@@ -27,21 +27,21 @@
 
 /proc/log_admin(text)
 	admin_log.Add(text)
-	if (config.log_admin)
+	if (CONFIG_GET(flag/log_admin))
 		WRITE_LOG(diary, "ADMIN: [text]")
 
 /proc/log_adminpm(text, client/source, client/dest)
 	admin_log.Add(text)
-	if (config.log_admin)
+	if (CONFIG_GET(flag/log_admin))
 		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
 
 /proc/log_pray(text, client/source)
 	admin_log.Add(text)
-	if (config.log_admin)
+	if (CONFIG_GET(flag/log_admin))
 		WRITE_LOG(diary, "PRAY: [key_name(source)]: [text]")
 
 /proc/log_debug(text)
-	if (config.log_debug)
+	if (CONFIG_GET(flag/log_debug))
 		WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
 
 	for(var/client/C in GLOB.admins)
@@ -51,25 +51,25 @@
 					html = span_filter_debuglogs("DEBUG: [text]"))
 
 /proc/log_game(text)
-	if (config.log_game)
+	if (CONFIG_GET(flag/log_game))
 		WRITE_LOG(diary, "GAME: [text]")
 
 /proc/log_vote(text)
-	if (config.log_vote)
+	if (CONFIG_GET(flag/log_vote))
 		WRITE_LOG(diary, "VOTE: [text]")
 
 /proc/log_access_in(client/new_client)
-	if (config.log_access)
+	if (CONFIG_GET(flag/log_access))
 		var/message = "[key_name(new_client)] - IP:[new_client.address] - CID:[new_client.computer_id] - BYOND v[new_client.byond_version]"
 		WRITE_LOG(diary, "ACCESS IN: [message]") //VOREStation Edit
 
 /proc/log_access_out(mob/last_mob)
-	if (config.log_access)
+	if (CONFIG_GET(flag/log_access))
 		var/message = "[key_name(last_mob)] - IP:[last_mob.lastKnownIP] - CID:Logged Out - BYOND Logged Out"
 		WRITE_LOG(diary, "ACCESS OUT: [message]")
 
 /proc/log_say(text, mob/speaker)
-	if (config.log_say)
+	if (CONFIG_GET(flag/log_say))
 		WRITE_LOG(diary, "SAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	//Log the message to in-game dialogue logs, as well.
@@ -78,25 +78,25 @@
 		GLOB.round_text_log += span_bold("([time_stamp()])") + " (" + span_bold("[speaker]/[speaker.client]") + ") " + span_underline("SAY:") + " - " + span_green("[text]")
 
 /proc/log_ooc(text, client/user)
-	if (config.log_ooc)
+	if (CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(diary, "OOC: [user.simple_info_line()]: [html_decode(text)]")
 
 	GLOB.round_text_log += span_bold("([time_stamp()])") + " (" + span_bold("[user]") + ") " + span_underline("OOC:") + " - " + span_blue(span_bold("[text]"))
 
 /proc/log_aooc(text, client/user)
-	if (config.log_ooc)
+	if (CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(diary, "AOOC: [user.simple_info_line()]: [html_decode(text)]")
 
 	GLOB.round_text_log += span_bold("([time_stamp()])") + " (" + span_bold("[user]") + ") " + span_underline("AOOC:") + " - " + span_red(span_bold("[text]"))
 
 /proc/log_looc(text, client/user)
-	if (config.log_ooc)
+	if (CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(diary, "LOOC: [user.simple_info_line()]: [html_decode(text)]")
 
 	GLOB.round_text_log += span_bold("([time_stamp()])") + " (" + span_bold("[user]") + ") " + span_underline("LOOC:") + " - " + span_orange(span_bold("[text]"))
 
 /proc/log_whisper(text, mob/speaker)
-	if (config.log_whisper)
+	if (CONFIG_GET(flag/log_whisper))
 		WRITE_LOG(diary, "WHISPER: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	if(speaker.client)
@@ -104,7 +104,7 @@
 		GLOB.round_text_log += span_bold("([time_stamp()])") + " (" + span_bold("[speaker]/[speaker.client]") + ") " + span_underline("SAY:") + " - " + span_gray(span_italics("[text]"))
 
 /proc/log_emote(text, mob/speaker)
-	if (config.log_emote)
+	if (CONFIG_GET(flag/log_emote))
 		WRITE_LOG(diary, "EMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	if(speaker.client)
@@ -112,38 +112,38 @@
 		GLOB.round_text_log += span_bold("([time_stamp()])") + " (" + span_bold("[speaker]/[speaker.client]") + ") " + span_underline("EMOTE:") + " - " + span_pink("[text]")
 
 /proc/log_attack(attacker, defender, message)
-	if (config.log_attack)
+	if (CONFIG_GET(flag/log_attack))
 		WRITE_LOG(diary, "ATTACK: [attacker] against [defender]: [message]")
 
 /proc/log_adminsay(text, mob/speaker)
-	if (config.log_adminchat)
+	if (CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(diary, "ADMINSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_modsay(text, mob/speaker)
-	if (config.log_adminchat)
+	if (CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(diary, "MODSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_eventsay(text, mob/speaker)
-	if (config.log_adminchat)
+	if (CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(diary, "EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_ghostsay(text, mob/speaker)
-	if (config.log_say)
+	if (CONFIG_GET(flag/log_say))
 		WRITE_LOG(diary, "DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	speaker.dialogue_log += span_bold("([time_stamp()])") + " (" + span_bold("[speaker]/[speaker.client]") + ") " + span_underline("DEADSAY:") + " - " + span_green("[text]")
 	GLOB.round_text_log += span_small(span_purple(span_bold("([time_stamp()])") + " (" + span_bold("[speaker]/[speaker.client]") + ") " + span_underline("DEADSAY:") + " - [text]"))
 
 /proc/log_ghostemote(text, mob/speaker)
-	if (config.log_emote)
+	if (CONFIG_GET(flag/log_emote))
 		WRITE_LOG(diary, "DEADEMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 
 /proc/log_adminwarn(text)
-	if (config.log_adminwarn)
+	if (CONFIG_GET(flag/log_adminwarn))
 		WRITE_LOG(diary, "ADMINWARN: [html_decode(text)]")
 
 /proc/log_pda(text, mob/speaker)
-	if (config.log_pda)
+	if (CONFIG_GET(flag/log_pda))
 		WRITE_LOG(diary, "PDA: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	speaker.dialogue_log += span_bold("([time_stamp()])") + " (" + span_bold("[speaker]/[speaker.client]") + ") " + span_underline("MSG:") + " - " + span_darkgreen("[text]")
@@ -151,7 +151,7 @@
 
 /proc/log_to_dd(text)
 	to_world_log(text) //this comes before the config check because it can't possibly runtime
-	if(config.log_world_output)
+	if(CONFIG_GET(flag/log_world_output))
 		WRITE_LOG(diary, "DD_OUTPUT: [text]")
 
 /proc/log_error(text)

@@ -4454,8 +4454,8 @@
 /area/tether/surfacebase/medical/resleeving)
 "ahd" = (
 /obj/structure/bookcase,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4504,8 +4504,8 @@
 /area/tether/surfacebase/security/detective/officeb)
 "ahk" = (
 /obj/structure/bookcase,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -6529,7 +6529,7 @@
 /obj/structure/bookcase/manuals/medical,
 /obj/item/book/manual/resleeving,
 /obj/item/book/manual/stasis,
-/obj/item/book/manual/medical_diagnostics_manual{
+/obj/item/book/manual/wiki/medical_diagnostics_manual{
 	pixel_y = 7
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
@@ -11357,7 +11357,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "asE" = (
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/gunbox/warden,
 /obj/structure/closet/secure_closet/warden,
 /obj/machinery/light,
@@ -18587,7 +18587,7 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aHb" = (
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -21828,8 +21828,8 @@
 /area/engineering/lower/lobby)
 "aNL" = (
 /obj/structure/bookcase,
-/obj/item/book/manual/engineering_guide,
-/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/wiki/engineering_guide,
+/obj/item/book/manual/wiki/engineering_construction,
 /obj/item/book/manual/atmospipes,
 /turf/simulated/floor/tiled/dark,
 /area/engineering/lower/breakroom)

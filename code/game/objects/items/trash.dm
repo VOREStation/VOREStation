@@ -17,7 +17,7 @@
 		age = _age
 
 /obj/item/trash/Initialize(mapload)
-	if(!mapload || !config.persistence_ignore_mapload)
+	if(!mapload || !CONFIG_GET(flag/persistence_ignore_mapload))
 		SSpersistence.track_value(src, /datum/persistent/filth/trash)
 	. = ..()
 

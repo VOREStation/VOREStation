@@ -15804,7 +15804,7 @@
 /area/redgate/facility/cell29)
 "wmm" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/book/manual/robotics_manual,
+/obj/item/book/manual/wiki/robotics_manual,
 /turf/simulated/floor/tiled/steel_grid,
 /area/redgate/facility/ne)
 "wmn" = (

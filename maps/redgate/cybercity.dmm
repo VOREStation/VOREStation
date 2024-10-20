@@ -8709,7 +8709,7 @@
 /area/redgate/city/pizza)
 "luj" = (
 /obj/structure/table/woodentable,
-/obj/item/book/manual/medical_diagnostics_manual{
+/obj/item/book/manual/wiki/medical_diagnostics_manual{
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood,
