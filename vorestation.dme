@@ -4113,6 +4113,7 @@
 #include "code\modules\tgui\modules\crew_manifest.dm"
 #include "code\modules\tgui\modules\crew_monitor.dm"
 #include "code\modules\tgui\modules\gyrotron_control.dm"
+#include "code\modules\tgui\modules\late_choices.dm"
 #include "code\modules\tgui\modules\law_manager.dm"
 #include "code\modules\tgui\modules\overmap.dm"
 #include "code\modules\tgui\modules\power_monitor.dm"
